@@ -1,4 +1,4 @@
-import RenderAuthorize from '@/components/Authorized';
+import RenderAuthorize from '@/customComponents/Authorized';
 
 // eslint-disable-next-line import/no-cycle
 import { getAuthority } from './authority';
