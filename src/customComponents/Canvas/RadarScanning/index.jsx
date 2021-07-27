@@ -1,4 +1,4 @@
-import { requestAnimFrame } from '@/utils/tools';
+import { requestAnimFrame } from '../../../utils/tools';
 
 import Core from '../Core';
 
@@ -45,7 +45,7 @@ class RadarScanning extends Core {
     c.removeEventListener('mousemove', this.orbGo, false);
   };
 
-  orbGo = (e) => {
+  orbGo = e => {
     const mx = e.pageX - c.offsetLeft;
     const my = e.pageY - c.offsetTop;
 
@@ -128,7 +128,7 @@ class RadarScanning extends Core {
     ctx.stroke();
   };
 
-  createOrbByExist = (o) => {
+  createOrbByExist = o => {
     const orb = o;
 
     const mxNew = orb.x;

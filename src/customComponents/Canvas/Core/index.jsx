@@ -1,6 +1,6 @@
-import { stringIsNullOrWhiteSpace } from '@/utils/tools';
 import React, { PureComponent } from 'react';
 
+import { stringIsNullOrWhiteSpace } from '../../../utils/tools';
 class Index extends PureComponent {
   constructor(props) {
     super(props);
@@ -74,7 +74,10 @@ class Index extends PureComponent {
   };
 
   buildContainorStyle = () => {
-    const { backgroundImage } = { ...{ backgroundImage: '' }, ...(this.props || {}) };
+    const { backgroundImage } = {
+      ...{ backgroundImage: '' },
+      ...(this.props || {}),
+    };
 
     return {
       ...(stringIsNullOrWhiteSpace(backgroundImage) ? {} : { backgroundImage }),

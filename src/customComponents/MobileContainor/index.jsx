@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import VerticalBox from '@/customComponents/VerticalBox';
+import VerticalBox from '../VerticalBox';
 
 import styles from './index.less';
 

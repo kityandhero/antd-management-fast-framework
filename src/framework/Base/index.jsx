@@ -2,7 +2,7 @@
 import { PureComponent } from 'react';
 import { history } from 'umi';
 
-import { defaultBaseState } from '@/utils/tools';
+import { defaultBaseState } from '../../utils/tools';
 
 class Base extends PureComponent {
   mounted = false;
@@ -61,7 +61,7 @@ class Base extends PureComponent {
 
   afterUnmount = () => {};
 
-  goToPath = (path) => {
+  goToPath = path => {
     const location = {
       pathname: path,
     };
@@ -69,7 +69,7 @@ class Base extends PureComponent {
     history.push(location);
   };
 
-  redirectToPath = (path) => {
+  redirectToPath = path => {
     const location = {
       pathname: path,
     };

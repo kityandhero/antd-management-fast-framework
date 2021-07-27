@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Space } from 'antd';
 
-import { stringIsNullOrWhiteSpace } from '@/utils/tools';
-import FlexBox from '@/customComponents/FlexBox';
+import { stringIsNullOrWhiteSpace } from '../../utils/tools';
+
+import FlexBox from '../FlexBox';
 
 import styles from './index.less';
 

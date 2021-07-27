@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Row, Col, Input, Select } from 'antd';
 
-import { toNumber, isFunction } from '@/utils/tools';
+import { toNumber, isFunction } from '../../utils/tools';
 
 import styles from './index.less';
 
@@ -62,7 +62,12 @@ class FigureRange extends PureComponent {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { type: typeData, min: minData, max: maxData, value: valueData } = nextProps;
+    const {
+      type: typeData,
+      min: minData,
+      max: maxData,
+      value: valueData,
+    } = nextProps;
 
     const type = toNumber(typeData);
     const min = toNumber(minData);
@@ -82,7 +87,12 @@ class FigureRange extends PureComponent {
         type === figureRangeType.except.flag
       )
     ) {
-      return { type: figureRangeType.unlimited.flag, min: null, max: null, value: null };
+      return {
+        type: figureRangeType.unlimited.flag,
+        min: null,
+        max: null,
+        value: null,
+      };
     }
 
     return { type, min, max, value };
@@ -96,7 +106,7 @@ class FigureRange extends PureComponent {
     }
   };
 
-  onTypeChange = (v) => {
+  onTypeChange = v => {
     const { min, max, value } = this.state;
 
     const d = toNumber(v);
@@ -106,7 +116,7 @@ class FigureRange extends PureComponent {
     this.onDataChange(d, min, max, value);
   };
 
-  onValueChange = (e) => {
+  onValueChange = e => {
     const { type, min, max } = this.state;
     const { value: v } = e.target;
 
@@ -117,7 +127,7 @@ class FigureRange extends PureComponent {
     this.onDataChange(type, min, max, d);
   };
 
-  onMinChange = (e) => {
+  onMinChange = e => {
     const { type, max, value } = this.state;
     const { value: v } = e.target;
 
@@ -128,7 +138,7 @@ class FigureRange extends PureComponent {
     this.onDataChange(type, d, max, value);
   };
 
-  onMaxChange = (e) => {
+  onMaxChange = e => {
     const { type, min, value } = this.state;
     const { value: v } = e.target;
 
@@ -148,33 +158,47 @@ class FigureRange extends PureComponent {
         <Row wrap={false} style={{ display: 'flex' }}>
           <Col
             flex={
-              type === figureRangeType.unlimited.flag || type === figureRangeType.zero.flag
+              type === figureRangeType.unlimited.flag ||
+              type === figureRangeType.zero.flag
                 ? 'auto'
                 : '100px'
             }
           >
             <Select
               className={
-                type !== figureRangeType.unlimited.flag && type !== figureRangeType.zero.flag
+                type !== figureRangeType.unlimited.flag &&
+                type !== figureRangeType.zero.flag
                   ? styles.select
                   : null
               }
               style={{ width: '100%' }}
               defaultValue={`${type}`}
               value={`${type}`}
-              onChange={(e) => {
+              onChange={e => {
                 this.onTypeChange(e);
               }}
             >
               <Option value={`${figureRangeType.unlimited.flag}`}>
                 {figureRangeType.unlimited.text}
               </Option>
-              <Option value={`${figureRangeType.zero.flag}`}>{figureRangeType.zero.text}</Option>
-              <Option value={`${figureRangeType.eq.flag}`}>{figureRangeType.eq.text}</Option>
-              <Option value={`${figureRangeType.gt.flag}`}>{figureRangeType.gt.text}</Option>
-              <Option value={`${figureRangeType.gte.flag}`}>{figureRangeType.gte.text}</Option>
-              <Option value={`${figureRangeType.le.flag}`}>{figureRangeType.le.text}</Option>
-              <Option value={`${figureRangeType.lte.flag}`}>{figureRangeType.lte.text}</Option>
+              <Option value={`${figureRangeType.zero.flag}`}>
+                {figureRangeType.zero.text}
+              </Option>
+              <Option value={`${figureRangeType.eq.flag}`}>
+                {figureRangeType.eq.text}
+              </Option>
+              <Option value={`${figureRangeType.gt.flag}`}>
+                {figureRangeType.gt.text}
+              </Option>
+              <Option value={`${figureRangeType.gte.flag}`}>
+                {figureRangeType.gte.text}
+              </Option>
+              <Option value={`${figureRangeType.le.flag}`}>
+                {figureRangeType.le.text}
+              </Option>
+              <Option value={`${figureRangeType.lte.flag}`}>
+                {figureRangeType.lte.text}
+              </Option>
               <Option value={`${figureRangeType.between.flag}`}>
                 {figureRangeType.between.text}
               </Option>
@@ -184,7 +208,8 @@ class FigureRange extends PureComponent {
             </Select>
           </Col>
 
-          {type !== figureRangeType.unlimited.flag && type !== figureRangeType.zero.flag ? (
+          {type !== figureRangeType.unlimited.flag &&
+          type !== figureRangeType.zero.flag ? (
             <Col flex="auto">
               {type === figureRangeType.eq.flag ||
               type === figureRangeType.gt.flag ||
@@ -195,13 +220,14 @@ class FigureRange extends PureComponent {
                   className={styles.valueInput}
                   value={value}
                   placeholder={valueText}
-                  onChange={(v) => {
+                  onChange={v => {
                     this.onValueChange(v);
                   }}
                 />
               ) : null}
 
-              {type === figureRangeType.between.flag || type === figureRangeType.except.flag ? (
+              {type === figureRangeType.between.flag ||
+              type === figureRangeType.except.flag ? (
                 <Row wrap={false}>
                   <Col flex="0 1 auto">
                     <Input
@@ -209,7 +235,7 @@ class FigureRange extends PureComponent {
                       className={styles.minInput}
                       placeholder={minText}
                       value={min}
-                      onChange={(v) => {
+                      onChange={v => {
                         this.onMinChange(v);
                       }}
                     />
@@ -235,7 +261,7 @@ class FigureRange extends PureComponent {
                       }}
                       placeholder={maxText}
                       value={max}
-                      onChange={(v) => {
+                      onChange={v => {
                         this.onMaxChange(v);
                       }}
                     />

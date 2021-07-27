@@ -1,6 +1,6 @@
-import BubblySource from '@/customComponents/Canvas/Bubbly';
-import RadarScanningSource from '@/customComponents/Canvas/RadarScanning';
-import SpiritSource from '@/customComponents/Canvas/Spirit';
+import BubblySource from './Bubbly';
+import RadarScanningSource from './RadarScanning';
+import SpiritSource from './Spirit';
 
 export const Bubbly = BubblySource;
 export const RadarScanning = RadarScanningSource;

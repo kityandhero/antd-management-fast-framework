@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Row, Col, Divider } from 'antd';
 
-import { isArray, showRuntimeErrorMessage } from '@/utils/tools';
+import { isArray, showRuntimeErrorMessage } from '../../utils/tools';
 
 class FlexText extends PureComponent {
   render() {

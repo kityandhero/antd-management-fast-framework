@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react';
 
-import { stringIsNullOrWhiteSpace, copyToClipboard, getRandomColor, isNumber } from '@/utils/tools';
+import {
+  stringIsNullOrWhiteSpace,
+  copyToClipboard,
+  getRandomColor,
+  isNumber,
+} from '../../utils/tools';
 
 class ColorText extends PureComponent {
   copyText = () => {
@@ -12,14 +17,24 @@ class ColorText extends PureComponent {
   };
 
   render() {
-    const { textPrefix, randomSeed, seedOffset, randomColor, color, text, canCopy } = this.props;
+    const {
+      textPrefix,
+      randomSeed,
+      seedOffset,
+      randomColor,
+      color,
+      text,
+      canCopy,
+    } = this.props;
 
     let colorValue = color || '';
 
     const randomColorValue = randomColor || false;
 
     if (randomColorValue) {
-      colorValue = getRandomColor(randomSeed + (isNumber(seedOffset) ? Math.abs(seedOffset) : 0));
+      colorValue = getRandomColor(
+        randomSeed + (isNumber(seedOffset) ? Math.abs(seedOffset) : 0),
+      );
     }
 
     const style = {

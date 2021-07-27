@@ -55,14 +55,14 @@ import {
   isBoolean,
   toNumber,
   toDatetime,
-} from '@/utils/tools';
+} from '../../utils/tools';
 import {
   defaultEmptyImage,
   formContentConfig,
   unlimitedWithStringFlag,
   whetherNumber,
   datetimeFormat,
-} from '@/utils/constants';
+} from '../../utils/constants';
 import EverySpace from '../../customComponents/EverySpace';
 import FlexText from '../../customComponents/FlexText';
 import FlexBox from '../../customComponents/FlexBox';
@@ -116,7 +116,7 @@ class Common extends Core {
 
   // 该方法必须重载覆盖
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getApiData = (props) => {
+  getApiData = props => {
     showRuntimeErrorMessage('getApiData 方法需要重载实现');
 
     return {
@@ -142,13 +142,13 @@ class Common extends Core {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  beforeFirstLoadRequest = (submitData) => {};
+  beforeFirstLoadRequest = submitData => {};
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  beforeReLoadRequest = (submitData) => {};
+  beforeReLoadRequest = submitData => {};
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  beforeRequest = (submitData) => {};
+  beforeRequest = submitData => {};
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterGetFirstRequestResult = (submitData, responseData) => {};
@@ -165,7 +165,9 @@ class Common extends Core {
 
   setRequestingData(params, callback) {
     const d =
-      params == null ? { type: '', payload: {} } : { ...{ type: '', payload: {} }, ...params };
+      params == null
+        ? { type: '', payload: {} }
+        : { ...{ type: '', payload: {} }, ...params };
 
     this.lastRequestingData = d;
 
@@ -178,12 +180,12 @@ class Common extends Core {
     this.setRequestingData({ type: '', payload: {} });
   }
 
-  initLoadRequestParams = (o) => o || {};
+  initLoadRequestParams = o => o || {};
 
-  supplementLoadRequestParams = (o) => o || {};
+  supplementLoadRequestParams = o => o || {};
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  checkLoadRequestParams = (o) => {
+  checkLoadRequestParams = o => {
     return true;
   };
 
@@ -304,7 +306,11 @@ class Common extends Core {
             const { dataSuccess } = metaOriginalData;
 
             if (dataSuccess) {
-              const { list: metaListData, data: metaData, extra: metaExtra } = metaOriginalData;
+              const {
+                list: metaListData,
+                data: metaData,
+                extra: metaExtra,
+              } = metaOriginalData;
 
               this.setState({
                 metaData: metaData || null,
@@ -345,7 +351,10 @@ class Common extends Core {
                 () => {
                   this.afterFirstLoadSuccess();
 
-                  this.afterGetFirstRequestResult(requestData, metaOriginalData);
+                  this.afterGetFirstRequestResult(
+                    requestData,
+                    metaOriginalData,
+                  );
                 },
               );
             }
@@ -358,7 +367,7 @@ class Common extends Core {
 
             this.clearRequestingData();
           })
-          .catch((res) => {
+          .catch(res => {
             recordObject(res);
           });
       }
@@ -415,7 +424,12 @@ class Common extends Core {
   afterFirstLoadSuccess = () => {};
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {};
+  afterLoadSuccess = (
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  ) => {};
 
   afterReloadSuccess = () => {};
 
@@ -426,9 +440,23 @@ class Common extends Core {
   };
 
   checkWorkDoing() {
-    const { dataLoading, reloading, searching, refreshing, paging, processing } = this.state;
+    const {
+      dataLoading,
+      reloading,
+      searching,
+      refreshing,
+      paging,
+      processing,
+    } = this.state;
 
-    if (dataLoading || reloading || searching || refreshing || paging || processing) {
+    if (
+      dataLoading ||
+      reloading ||
+      searching ||
+      refreshing ||
+      paging ||
+      processing
+    ) {
       message.info('数据正在处理中，请稍等一下再点哦');
 
       return true;
@@ -483,7 +511,7 @@ class Common extends Core {
     };
   };
 
-  renderFormNowTimeField = (data) => {
+  renderFormNowTimeField = data => {
     const { label, helper, formItemLayout } = {
       ...{ helper: '数据的添加时间', label: '添加时间', formItemLayout: null },
       ...(data || {}),
@@ -504,7 +532,10 @@ class Common extends Core {
         }
       >
         <Input
-          value={formatDatetime(new Date(), datetimeFormat.yearMonthDayHourMinute)}
+          value={formatDatetime(
+            new Date(),
+            datetimeFormat.yearMonthDayHourMinute,
+          )}
           addonBefore={<FormOutlined />}
           disabled
           placeholder={buildFieldDescription(resultCheck.label)}
@@ -583,7 +614,7 @@ class Common extends Core {
     const list = [];
 
     if (listData.length > 0) {
-      listData.forEach((item) => {
+      listData.forEach(item => {
         const { name, flag, availability } = {
           ...{ name: '', flag: '', availability: whetherNumber.yes },
           ...(item || {}),
@@ -616,7 +647,7 @@ class Common extends Core {
     const list = [];
 
     if (listData.length > 0) {
-      listData.forEach((item) => {
+      listData.forEach(item => {
         const { name, flag, availability } = {
           ...{ name: '', flag: '', availability: whetherNumber.yes },
           ...(item || {}),
@@ -756,7 +787,12 @@ class Common extends Core {
     );
   };
 
-  renderFormDisplay = (label, content, formItemLayout = {}, useDisplayBoxStyle = true) => {
+  renderFormDisplay = (
+    label,
+    content,
+    formItemLayout = {},
+    useDisplayBoxStyle = true,
+  ) => {
     const title = label;
 
     let labelText = 'object';
@@ -771,7 +807,9 @@ class Common extends Core {
 
     return (
       <FormItem {...formItemLayout} label={labelText}>
-        <div className={useDisplayBoxStyle ? styles.displayBox : null}>{content}</div>
+        <div className={useDisplayBoxStyle ? styles.displayBox : null}>
+          {content}
+        </div>
       </FormItem>
     );
   };
@@ -825,7 +863,9 @@ class Common extends Core {
     const otherInputProps = {
       ...{
         addonBefore: icon,
-        placeholder: canOperate ? buildFieldDescription(title, reminderPrefix) : '暂无数据',
+        placeholder: canOperate
+          ? buildFieldDescription(title, reminderPrefix)
+          : '暂无数据',
         disabled: !canOperate,
       },
       ...(inputProps || {}),
@@ -918,7 +958,10 @@ class Common extends Core {
             },
           ]}
         >
-          <FlexBox left={`是否开启${label}:`} right={<Switch {...otherSwitchProps} />} />
+          <FlexBox
+            left={`是否开启${label}:`}
+            right={<Switch {...otherSwitchProps} />}
+          />
         </FormItem>,
         hidden,
       );
@@ -940,7 +983,10 @@ class Common extends Core {
           },
         ]}
       >
-        <FlexBox left={`是否开启${label}：`} right={<Switch {...otherSwitchProps} />} />
+        <FlexBox
+          left={`是否开启${label}：`}
+          right={<Switch {...otherSwitchProps} />}
+        />
       </FormItem>,
       hidden,
     );
@@ -1058,7 +1104,9 @@ class Common extends Core {
             language={language}
             // style={docco}
           >
-            {language === 'javascript' ? JSON.stringify(value || {}, null, '    ') : value}
+            {language === 'javascript'
+              ? JSON.stringify(value || {}, null, '    ')
+              : value}
           </SyntaxHighlighter>
         ) : (
           <SyntaxHighlighter
@@ -1077,7 +1125,7 @@ class Common extends Core {
     );
   };
 
-  renderJsonView = (value) => {
+  renderJsonView = value => {
     return (
       <>
         {isObject(value) ? (
@@ -1610,12 +1658,18 @@ class Common extends Core {
     return item == null ? '未知' : item.name;
   };
 
-  renderWhetherOption = ({ withUnlimited = true, adjustListDataCallback = null }) => {
+  renderWhetherOption = ({
+    withUnlimited = true,
+    adjustListDataCallback = null,
+  }) => {
     const listData = this.whetherList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderWhetherRadio = ({ withUnlimited = true, adjustListDataCallback = null }) => {
+  renderWhetherRadio = ({
+    withUnlimited = true,
+    adjustListDataCallback = null,
+  }) => {
     const listData = this.whetherList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1632,7 +1686,11 @@ class Common extends Core {
       showRuntimeErrorMessage('renderSearchWhetherFormItem need param name。');
     }
 
-    return this.renderSearchFormSelect(title, name, this.renderWhetherOption(withUnlimited));
+    return this.renderSearchFormSelect(
+      title,
+      name,
+      this.renderWhetherOption(withUnlimited),
+    );
   };
 
   renderFormWhetherSelect = (
@@ -1753,7 +1811,7 @@ class Common extends Core {
       text: buttonText || '保存',
       onClick:
         onClick == null
-          ? (e) => {
+          ? e => {
               this.validate(e);
             }
           : onClick,
@@ -1771,7 +1829,7 @@ class Common extends Core {
         type={type || 'primary'}
         size={size || null}
         disabled={buttonDisabled}
-        onClick={(e) => {
+        onClick={e => {
           if (isFunction(onClick)) {
             onClick(e);
           } else {
@@ -1811,7 +1869,7 @@ class Common extends Core {
     throw new Error(text);
   };
 
-  beforeVideoUpload = (file) => {
+  beforeVideoUpload = file => {
     const isVideo = file.type === 'video/mp4';
 
     if (!isVideo) {
@@ -1826,7 +1884,7 @@ class Common extends Core {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  pretreatmentImageUploadRemoteResponse = (response) => {
+  pretreatmentImageUploadRemoteResponse = response => {
     const text = '需要在继承中重新实现 pretreatmentImageUploadRemoteResponse';
 
     showRuntimeErrorMessage(text);
@@ -1835,8 +1893,9 @@ class Common extends Core {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  pretreatmentFileBase64UploadRemoteResponse = (response) => {
-    const text = '需要在继承中重新实现 pretreatmentFileBase64UploadRemoteResponse';
+  pretreatmentFileBase64UploadRemoteResponse = response => {
+    const text =
+      '需要在继承中重新实现 pretreatmentFileBase64UploadRemoteResponse';
 
     showRuntimeErrorMessage(text);
 
@@ -1844,7 +1903,7 @@ class Common extends Core {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  pretreatmentVideoUploadRemoteResponse = (response) => {
+  pretreatmentVideoUploadRemoteResponse = response => {
     const text = '需要在继承中重新实现 pretreatmentVideoUploadRemoteResponse';
 
     showRuntimeErrorMessage(text);
@@ -1867,7 +1926,10 @@ class Common extends Core {
       return null;
     }
 
-    const { stick, title, tools } = { ...{ stick: false, title: '工具栏', tools: [] }, ...config };
+    const { stick, title, tools } = {
+      ...{ stick: false, title: '工具栏', tools: [] },
+      ...config,
+    };
 
     if (!isArray(tools)) {
       showErrorMessage('工具栏配置数据无效');
@@ -1889,7 +1951,7 @@ class Common extends Core {
           bodyStyle={{ padding: 0 }}
           extra={
             <Space split={<Divider type="vertical" />}>
-              {toolList.map((o) => {
+              {toolList.map(o => {
                 return (
                   <Tooltip key={o.key} title={o.title || ''}>
                     {o.component}
@@ -2009,7 +2071,7 @@ class Common extends Core {
     );
   };
 
-  buildFormContent = (config) => {
+  buildFormContent = config => {
     const formContentWrapperTypeConfig = this.buildFormContentWrapperTypeConfig() || {
       mode: formContentConfig.wrapperType.page,
     };
@@ -2132,15 +2194,24 @@ class Common extends Core {
             <Card
               key={key}
               title={
-                index === 0 && mode !== formContentConfig.wrapperType.page ? null : (text || '') ===
-                    '' && (subText || '') === '' ? null : (
+                index === 0 &&
+                mode !== formContentConfig.wrapperType.page ? null : (text ||
+                    '') === '' && (subText || '') === '' ? null : (
                   <>
                     <FlexText
                       icon={icon || null}
                       text={text || ''}
                       subText={subText || ''}
-                      addonBefore={(titleAddonBefore || null) == null ? null : titleAddonBefore}
-                      addonAfter={(titleAddonAfter || null) == null ? null : titleAddonAfter}
+                      addonBefore={
+                        (titleAddonBefore || null) == null
+                          ? null
+                          : titleAddonBefore
+                      }
+                      addonAfter={
+                        (titleAddonAfter || null) == null
+                          ? null
+                          : titleAddonAfter
+                      }
                     />
                   </>
                 )
@@ -2179,8 +2250,11 @@ class Common extends Core {
                   {this.buildFormContentItem(
                     mode,
                     isArray(contentItems)
-                      ? contentItems.map((o) => {
-                          return { ...o, ...{ formItemLayout: formItemLayout || null } };
+                      ? contentItems.map(o => {
+                          return {
+                            ...o,
+                            ...{ formItemLayout: formItemLayout || null },
+                          };
                         })
                       : [],
                     index,
@@ -2244,9 +2318,15 @@ class Common extends Core {
               };
 
               let lg =
-                (lgValue || 6) < 12 && mode !== formContentConfig.wrapperType.page ? 12 : lgValue;
+                (lgValue || 6) < 12 &&
+                mode !== formContentConfig.wrapperType.page
+                  ? 12
+                  : lgValue;
 
-              lg = lg > 12 && mode !== formContentConfig.wrapperType.page ? 24 : lg;
+              lg =
+                lg > 12 && mode !== formContentConfig.wrapperType.page
+                  ? 24
+                  : lg;
               lg = lg > 24 ? 24 : lg;
 
               if (type === formContentConfig.contentItemType.imageUpload) {
@@ -2263,8 +2343,10 @@ class Common extends Core {
                   <Col key={contentItemKey} lg={24} md={12} sm={24} xs={24}>
                     <ImageUpload
                       {...uploadProps}
-                      pretreatmentRemoteResponse={this.pretreatmentImageUploadRemoteResponse}
-                      afterUploadSuccess={(image) => {
+                      pretreatmentRemoteResponse={
+                        this.pretreatmentImageUploadRemoteResponse
+                      }
+                      afterUploadSuccess={image => {
                         if (isFunction(contentItem.afterUploadSuccess)) {
                           contentItem.afterUploadSuccess(image);
                         }
@@ -2328,8 +2410,10 @@ class Common extends Core {
                       fieldData.label,
                       <FileBase64Upload
                         {...uploadProps}
-                        pretreatmentRemoteResponse={this.pretreatmentFileBase64UploadRemoteResponse}
-                        afterUploadSuccess={(fileBase64) => {
+                        pretreatmentRemoteResponse={
+                          this.pretreatmentFileBase64UploadRemoteResponse
+                        }
+                        afterUploadSuccess={fileBase64 => {
                           if (isFunction(contentItem.afterUploadSuccess)) {
                             contentItem.afterUploadSuccess(fileBase64);
                           }
@@ -2355,13 +2439,21 @@ class Common extends Core {
                 };
 
                 return (
-                  <Col key={contentItemKey} lg={lg || 6} md={12} sm={24} xs={24}>
+                  <Col
+                    key={contentItemKey}
+                    lg={lg || 6}
+                    md={12}
+                    sm={24}
+                    xs={24}
+                  >
                     {this.renderFormInnerComponent(
                       fieldData.label,
                       <VideoUpload
                         {...uploadProps}
-                        pretreatmentRemoteResponse={this.pretreatmentVideoUploadRemoteResponse}
-                        afterChangeSuccess={(video) => {
+                        pretreatmentRemoteResponse={
+                          this.pretreatmentVideoUploadRemoteResponse
+                        }
+                        afterChangeSuccess={video => {
                           if (isFunction(contentItem.afterChangeSuccess)) {
                             contentItem.afterChangeSuccess(video);
                           }
@@ -2453,7 +2545,8 @@ class Common extends Core {
                     />
                   ) : null}
 
-                  {type === formContentConfig.contentItemType.onlyShowTextByFlexText ? (
+                  {type ===
+                  formContentConfig.contentItemType.onlyShowTextByFlexText ? (
                     <FlexText
                       style={{
                         margin: '5px 0',
@@ -2517,13 +2610,17 @@ class Common extends Core {
                         {
                           ...{},
                           ...(contentItem.otherProps || {}),
-                          ...{ disabled: true, placeholder: `暂无${fieldData.label}信息` },
+                          ...{
+                            disabled: true,
+                            placeholder: `暂无${fieldData.label}信息`,
+                          },
                         },
                         formItemLayout,
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.onlyShowInputDatetime
+                  {type ===
+                  formContentConfig.contentItemType.onlyShowInputDatetime
                     ? this.renderFormOnlyShowInput(
                         fieldData.label,
                         formatDatetime(
@@ -2535,7 +2632,10 @@ class Common extends Core {
                         {
                           ...{},
                           ...(contentItem.otherProps || {}),
-                          ...{ disabled: true, placeholder: `暂无${fieldData.label}信息` },
+                          ...{
+                            disabled: true,
+                            placeholder: `暂无${fieldData.label}信息`,
+                          },
                         },
                         formItemLayout,
                       )
@@ -2550,7 +2650,9 @@ class Common extends Core {
                             refitCommonData(
                               isFunction(contentItem.pretreatmentData)
                                 ? contentItem.pretreatmentData(
-                                    isArray(contentItem.listData) ? contentItem.listData : [],
+                                    isArray(contentItem.listData)
+                                      ? contentItem.listData
+                                      : [],
                                   )
                                 : isArray(contentItem.listData)
                                 ? contentItem.listData
@@ -2591,7 +2693,9 @@ class Common extends Core {
                         () => {
                           return this.renderFormRadioCore(
                             refitCommonData(
-                              isArray(contentItem.listData) ? contentItem.listData : [],
+                              isArray(contentItem.listData)
+                                ? contentItem.listData
+                                : [],
                             ),
                           );
                         },
@@ -2625,11 +2729,9 @@ class Common extends Core {
                     ? this.renderFormOnlyShowText(
                         fieldData.label,
                         contentItem.value,
-                        (
-                          isUndefined(contentItem.showHelper)
-                            ? false
-                            : contentItem.showHelper || false
-                        )
+                        (isUndefined(contentItem.showHelper)
+                        ? false
+                        : contentItem.showHelper || false)
                           ? fieldData.helper || ''
                           : '',
                         formItemLayout,

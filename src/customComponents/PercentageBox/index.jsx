@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { isMoney, roundToTarget } from '@/utils/tools';
+import { isMoney, roundToTarget } from '../../utils/tools';
 
 class PercentageBox extends PureComponent {
   render() {

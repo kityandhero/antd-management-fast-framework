@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import { Divider } from 'antd';
 
-import { isArray, stringIsNullOrWhiteSpace, toNumber } from '@/utils/tools';
+import { isArray, stringIsNullOrWhiteSpace, toNumber } from '../../utils/tools';
 
 // import ColorText from '../ColorText';
 import { buildDescriptionGrid } from '../FunctionComponent';
@@ -81,10 +81,14 @@ class HelpBox extends PureComponent {
         })} */}
 
         {buildDescriptionGrid({
-          list: list.map((o) => {
+          list: list.map(o => {
             return {
               key: o.key,
-              label: stringIsNullOrWhiteSpace(o.label) ? (showNumber ? o.no : '•') : o.label,
+              label: stringIsNullOrWhiteSpace(o.label)
+                ? showNumber
+                  ? o.no
+                  : '•'
+                : o.label,
               value: o.text,
             };
           }),
@@ -93,7 +97,11 @@ class HelpBox extends PureComponent {
             colon: showNumber,
             column: 1,
             labelStyle: {
-              width: customLabelWidth ? labelWidthStyle : showNumber ? '22px' : '12px',
+              width: customLabelWidth
+                ? labelWidthStyle
+                : showNumber
+                ? '22px'
+                : '12px',
             },
             contentStyle: {
               color: '#999',

@@ -1,9 +1,17 @@
 import React, { PureComponent } from 'react';
 import { Avatar } from 'antd';
-import { LoadingOutlined, PictureOutlined, ReloadOutlined } from '@ant-design/icons';
+import {
+  LoadingOutlined,
+  PictureOutlined,
+  ReloadOutlined,
+} from '@ant-design/icons';
 
-import { stringIsNullOrWhiteSpace, isFunction, showRuntimeErrorMessage } from '@/utils/tools';
-import { defaultEmptyImage } from '@/utils/constants';
+import {
+  stringIsNullOrWhiteSpace,
+  isFunction,
+  showRuntimeErrorMessage,
+} from '../../utils/tools';
+import { defaultEmptyImage } from '../../utils/constants';
 
 export const avatarImageLoadResultCollection = {
   wait: -1,
@@ -55,7 +63,9 @@ export function decorateAvatar(
             };
           }
 
-          if (avatarImageLoadResult === avatarImageLoadResultCollection.success) {
+          if (
+            avatarImageLoadResult === avatarImageLoadResultCollection.success
+          ) {
             currentAvatar = { src };
           }
 
@@ -95,7 +105,13 @@ class DecorateAvatar extends PureComponent {
   };
 
   render() {
-    const { avatar, defaultAvatarIcon, showPageHeaderAvatar, dataLoading, reloading } = this.props;
+    const {
+      avatar,
+      defaultAvatarIcon,
+      showPageHeaderAvatar,
+      dataLoading,
+      reloading,
+    } = this.props;
     const { avatarImageLoadResult } = this.state;
 
     if (showPageHeaderAvatar) {

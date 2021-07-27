@@ -2,9 +2,8 @@ import React from 'react';
 import parse from 'html-react-parser';
 import { FormOutlined, ContactsOutlined } from '@ant-design/icons';
 
-import { toNumber } from '@/utils/tools';
-import { dataTypeCollection, formContentConfig } from '@/utils/constants';
-
+import { toNumber } from '../../utils/tools';
+import { dataTypeCollection, formContentConfig } from '../../utils/constants';
 import Base from '../../framework/DataDrawer/Base';
 
 import styles from './index.less';

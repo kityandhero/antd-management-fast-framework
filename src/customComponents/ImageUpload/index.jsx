@@ -8,10 +8,15 @@ import {
   DeleteOutlined,
 } from '@ant-design/icons';
 
-import { isFunction, showRuntimeErrorMessage, stringIsNullOrWhiteSpace } from '@/utils/tools';
-import ImageBox from '@/customComponents/ImageBox';
-import FlexBox from '@/customComponents/FlexBox';
-import VerticalBox from '@/customComponents/VerticalBox';
+import {
+  isFunction,
+  showRuntimeErrorMessage,
+  stringIsNullOrWhiteSpace,
+} from '../../utils/tools';
+
+import ImageBox from '../ImageBox';
+import FlexBox from '..Charts/FlexBox';
+import VerticalBox from '../VerticalBox';
 
 import styles from './index.less';
 
@@ -33,7 +38,7 @@ class ImageUpload extends PureComponent {
 
   handleUploadCancel = () => this.setState({ previewVisible: false });
 
-  handleFilePreview = (file) => {
+  handleFilePreview = file => {
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
@@ -55,7 +60,7 @@ class ImageUpload extends PureComponent {
     });
   };
 
-  beforeUpload = (file) => {
+  beforeUpload = file => {
     const isPic =
       file.type === 'image/jpeg' ||
       file.type === 'image/gif' ||
@@ -72,7 +77,7 @@ class ImageUpload extends PureComponent {
     return isPic && isLt2M;
   };
 
-  handleUploadChange = (info) => {
+  handleUploadChange = info => {
     const { pretreatmentRemoteResponse, afterUploadSuccess } = this.props;
 
     if (info.file.status === 'uploading') {
@@ -196,7 +201,9 @@ class ImageUpload extends PureComponent {
                 <Upload {...uploadProps}>
                   <div className={styles.imageAction}>
                     {uploading ? <LoadingOutlined /> : <UploadOutlined />}
-                    <div className="ant-upload-text">{uploading ? '上传中' : '上传'}</div>
+                    <div className="ant-upload-text">
+                      {uploading ? '上传中' : '上传'}
+                    </div>
                   </div>
 
                   <VerticalBox
@@ -244,7 +251,9 @@ class ImageUpload extends PureComponent {
               </div>
             </>
           ) : (
-            <Upload {...uploadProps}>{(fileList || []).length >= 8 ? null : uploadButton}</Upload>
+            <Upload {...uploadProps}>
+              {(fileList || []).length >= 8 ? null : uploadButton}
+            </Upload>
           )}
 
           <Modal
@@ -299,7 +308,7 @@ ImageUpload.defaultProps = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onItemChange: ({ file, fileList }) => {},
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onItemRemove: (file) => {},
+  onItemRemove: file => {},
 };
 
 export default ImageUpload;

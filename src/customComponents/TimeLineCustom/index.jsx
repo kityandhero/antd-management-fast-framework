@@ -3,8 +3,8 @@ import moment from 'moment';
 import { List } from 'antd';
 import { ClockCircleOutlined, MessageOutlined } from '@ant-design/icons';
 
-// import { getRandomColor } from '@/utils/tools';
-import CustomBase from '@/framework/CustomBase';
+// import { getRandomColor } from '../../utils/tools';
+import CustomBase from '../../framework/CustomBase';
 
 import styles from './index.less';
 
@@ -38,19 +38,22 @@ class TimeLineCustom extends CustomBase {
     return null;
   };
 
-  getCreateTimeDatePart = (v) => moment(v).format('YYYY-MM-DD');
+  getCreateTimeDatePart = v => moment(v).format('YYYY-MM-DD');
 
-  getCreateTimeTimePart = (v) => moment(v).format('HH:mm');
+  getCreateTimeTimePart = v => moment(v).format('HH:mm');
 
   handleTableChange = (pageNo, pageSize) => {
     const { onChange } = this.props;
     onChange(pageNo, pageSize);
   };
 
-  renderDateLabel = (v) => {
+  renderDateLabel = v => {
     this.currentTime = this.currentTime || v;
     const preTime = this.currentTime || v;
-    if (!this.currentPageStart && new Date(preTime).getDay() === new Date(v).getDay()) {
+    if (
+      !this.currentPageStart &&
+      new Date(preTime).getDay() === new Date(v).getDay()
+    ) {
       return false;
     }
 
@@ -58,12 +61,14 @@ class TimeLineCustom extends CustomBase {
     this.currentTime = v;
     return (
       <div className={`${styles.timeLabel} ${styles.listItem}`}>
-        <span className={styles.backgroundRed}>{this.getCreateTimeDatePart(v)}</span>
+        <span className={styles.backgroundRed}>
+          {this.getCreateTimeDatePart(v)}
+        </span>
       </div>
     );
   };
 
-  renderInfo = (item) => {
+  renderInfo = item => {
     const {
       // iconStyle: iconStyleValue,
       // getBackgroundColorKey,
@@ -163,7 +168,7 @@ class TimeLineCustom extends CustomBase {
             size="large"
             pagination={paginationProps}
             dataSource={list}
-            renderItem={(item) => (
+            renderItem={item => (
               <List.Item
                 key={item.title}
                 style={{

@@ -13,7 +13,11 @@ import {
   Menu,
   Tag,
 } from 'antd';
-import { EllipsisOutlined, LoadingOutlined, ImportOutlined } from '@ant-design/icons';
+import {
+  EllipsisOutlined,
+  LoadingOutlined,
+  ImportOutlined,
+} from '@ant-design/icons';
 
 import {
   formatDatetime,
@@ -27,13 +31,13 @@ import {
   isNumber,
   toNumber,
   sortBy,
-} from '@/utils/tools';
-import { pageHeaderRenderType } from '@/utils/constants';
-import VerticalBox from '@/customComponents/VerticalBox';
-import ImageBox from '@/customComponents/ImageBox';
-import IconInfo from '@/customComponents/IconInfo';
-import FlexBox from '@/customComponents/FlexBox';
-import FlexText from '@/customComponents/FlexText';
+} from '../../utils/tools';
+import { pageHeaderRenderType } from '../../utils/constants';
+import VerticalBox from '../VerticalBox';
+import ImageBox from '../ImageBox';
+import IconInfo from '../IconInfo';
+import FlexBox from '../FlexBox';
+import FlexText from '../FlexText';
 
 const { Paragraph } = Typography;
 const ButtonGroup = Button.Group;
@@ -73,11 +77,13 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
     >
       <Row>
         <Col>
-          {stringIsNullOrWhiteSpace(headerTitlePrefixValue) ? '' : `${headerTitlePrefixValue}：`}
+          {stringIsNullOrWhiteSpace(headerTitlePrefixValue)
+            ? ''
+            : `${headerTitlePrefixValue}：`}
         </Col>
         <Col flex="auto">
           <Space>
-            {nameList.map((o) => (
+            {nameList.map(o => (
               <TextAnimal key={o.key} type="alpha" mode="smooth">
                 {o.text}
               </TextAnimal>
@@ -195,7 +201,7 @@ export function buildCustomGrid({ key = null, list, props }) {
           <FlexText text={title} />
         </div>
         <Row style={containorStyle}>
-          {dataList.map((item) => {
+          {dataList.map(item => {
             const { hidden } = { ...{ hidden: false }, ...(item || {}) };
 
             if (hidden) {
@@ -221,7 +227,11 @@ export function buildCustomGrid({ key = null, list, props }) {
               >
                 <FlexBox
                   flexAuto="right"
-                  left={<div style={labelStyle}>{`${item.label}${colon ? '：' : ''}`}</div>}
+                  left={
+                    <div style={labelStyle}>{`${item.label}${
+                      colon ? '：' : ''
+                    }`}</div>
+                  }
                   right={
                     <div style={contentStyle}>
                       {item.value}
@@ -261,7 +271,7 @@ export function buildDescriptionGrid({ key = null, list, props }) {
 
     return (
       <Descriptions key={key} {...(props || {})}>
-        {dataList.map((item) => {
+        {dataList.map(item => {
           const { emptyValue } = { ...{ emptyValue: '' }, ...item };
 
           return (
@@ -300,13 +310,13 @@ export function pageHeaderContent({ list }) {
     return null;
   }
 
-  let listData = list.map((o) => {
+  let listData = list.map(o => {
     const d = { ...{ sort: 10000 }, ...o };
 
     return { ...d };
   });
 
-  listData = sortBy(listData, (o) => o.sort);
+  listData = sortBy(listData, o => o.sort);
 
   listData = listData.map((o, index) => {
     const d = { ...{}, ...o };
@@ -318,7 +328,7 @@ export function pageHeaderContent({ list }) {
 
   return (
     <>
-      {listData.map((o) => {
+      {listData.map(o => {
         const { type, list: listItem } = o;
 
         if (!isArray(listItem)) {
@@ -327,7 +337,10 @@ export function pageHeaderContent({ list }) {
 
         if (type === pageHeaderRenderType.descriptionGrid) {
           const listGridData = listItem.map((one, index) => {
-            return { ...{ key: `${o.key}_descriptionGridItem_${index}` }, ...one };
+            return {
+              ...{ key: `${o.key}_descriptionGridItem_${index}` },
+              ...one,
+            };
           });
 
           return buildDescriptionGrid({
@@ -347,7 +360,7 @@ export function pageHeaderContent({ list }) {
 
           return (
             <div key={`${o.key}_paragraph_container`}>
-              {listParagraph.map((item) => {
+              {listParagraph.map(item => {
                 if (stringIsNullOrWhiteSpace(item.paragraph)) {
                   return null;
                 }
@@ -365,7 +378,7 @@ export function pageHeaderContent({ list }) {
 
           return (
             <Space key={`${o.key}_space`}>
-              {listAction.map((item) => {
+              {listAction.map(item => {
                 return item.action;
               })}
             </Space>
@@ -400,7 +413,10 @@ export function pageHeaderExtraContent(data) {
     return null;
   }
 
-  const v = { ...{ textLabel: '描述', text: '', tileLabel: '时间', time: new Date() }, ...data };
+  const v = {
+    ...{ textLabel: '描述', text: '', tileLabel: '时间', time: new Date() },
+    ...data,
+  };
 
   const textStyle = {
     fontSize: '20px',
@@ -431,7 +447,7 @@ export function buildButtonGroup(buttonGroupData) {
 
   return (
     <ButtonGroup>
-      {(buttonGroupData.buttons || []).map((item) => {
+      {(buttonGroupData.buttons || []).map(item => {
         const { confirmMode, confirmProps } = item;
 
         const { disabled, onClick } = item.buttonProps || {
@@ -490,7 +506,7 @@ export function buildButtonGroup(buttonGroupData) {
               ...{
                 overlay: (
                   <Menu {...(buttonGroupData.menu.props || {})}>
-                    {buttonGroupData.menu.items.map((item) => (
+                    {buttonGroupData.menu.items.map(item => (
                       <Menu.Item {...(item.props || {})} key={item.key}>
                         {item.children}
                       </Menu.Item>
@@ -521,7 +537,7 @@ export function buildDropdownEllipsis(ellipsisActionData) {
 
   const menu = (
     <Menu {...(ellipsisActionData.menuProps || {})}>
-      {ellipsisActionData.items.map((item) => (
+      {ellipsisActionData.items.map(item => (
         <Menu.Item {...(item.props || {})} key={item.key}>
           {item.children}
         </Menu.Item>
@@ -546,7 +562,12 @@ export function buildDropdownEllipsis(ellipsisActionData) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function buildListViewItemExtra({ align, index, imageUrl, emptyImageUrl }) {
+export function buildListViewItemExtra({
+  align,
+  index,
+  imageUrl,
+  emptyImageUrl,
+}) {
   return (
     <VerticalBox
       align={align || 'bottom'}
@@ -587,12 +608,15 @@ export function buildTagList({ list = [] }) {
   }
 
   const tagList = list.map((o, index) => {
-    return { ...{ key: `pageHeaderTag_${index}`, color: '#000', text: '未知' }, ...(o || {}) };
+    return {
+      ...{ key: `pageHeaderTag_${index}`, color: '#000', text: '未知' },
+      ...(o || {}),
+    };
   });
 
   return (
     <Space>
-      {tagList.map((o) => {
+      {tagList.map(o => {
         return (
           <Tag key={o.key} color={o.color}>
             <TextAnimal type="left" mode="smooth">
@@ -606,7 +630,11 @@ export function buildTagList({ list = [] }) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function buildListViewItemActionSelect({ index, selectData, selectCallback }) {
+export function buildListViewItemActionSelect({
+  index,
+  selectData,
+  selectCallback,
+}) {
   if (!isFunction(selectCallback)) {
     showRuntimeErrorMessage('selectCallback 不是有效的回调函数');
   }
@@ -615,7 +643,7 @@ export function buildListViewItemActionSelect({ index, selectData, selectCallbac
     <Popconfirm
       placement="topRight"
       title="选择此信息，确定吗？"
-      onConfirm={(e) => {
+      onConfirm={e => {
         if (isFunction(selectCallback)) {
           selectCallback(e, selectData);
         }

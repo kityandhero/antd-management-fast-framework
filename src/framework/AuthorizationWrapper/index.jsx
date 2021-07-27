@@ -4,8 +4,8 @@ import {
   getDerivedStateFromPropsForUrlParams,
   isFunction,
   showRuntimeErrorMessage,
-} from '@/utils/tools';
-import { checkHasAuthority } from '@/utils/authority';
+} from '../../utils/tools';
+import { checkHasAuthority } from '../../utils/authority';
 
 import SupplementWrapper from '../CustomWrapper/SupplementWrapper';
 
@@ -36,7 +36,7 @@ class AuthorizationWrapper extends SupplementWrapper {
     }
   };
 
-  checkAuthority = (auth) => checkHasAuthority(auth);
+  checkAuthority = auth => checkHasAuthority(auth);
 
   getCurrentOperator = () => {
     const {

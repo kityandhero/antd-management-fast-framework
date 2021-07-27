@@ -1,10 +1,16 @@
 import React, { PureComponent } from 'react';
 
-import { stringIsNullOrWhiteSpace } from '@/utils/tools';
+import { stringIsNullOrWhiteSpace } from '../../utils/tools';
 
 class EverySpace extends PureComponent {
   render() {
-    const { size, direction, backgroundColor, margin, borderRadius } = this.props;
+    const {
+      size,
+      direction,
+      backgroundColor,
+      margin,
+      borderRadius,
+    } = this.props;
 
     if (size <= 0) {
       return null;
@@ -16,7 +22,9 @@ class EverySpace extends PureComponent {
 
     const customStyle = {
       ...{},
-      ...(stringIsNullOrWhiteSpace(backgroundColor || '') ? {} : { backgroundColor }),
+      ...(stringIsNullOrWhiteSpace(backgroundColor || '')
+        ? {}
+        : { backgroundColor }),
       ...(stringIsNullOrWhiteSpace(margin || '') ? {} : { margin }),
       ...(stringIsNullOrWhiteSpace(borderRadius || '') ? {} : { borderRadius }),
     };

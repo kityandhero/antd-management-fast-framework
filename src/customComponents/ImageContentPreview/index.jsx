@@ -2,9 +2,8 @@ import React from 'react';
 import parse from 'html-react-parser';
 import { Drawer, Empty } from 'antd';
 
-import { imageContentPreviewMode } from '@/utils/constants';
-import CustomBase from '@/framework/CustomBase';
-
+import { imageContentPreviewMode } from '../../utils/constants';
+import CustomBase from '../../framework/CustomBase';
 
 import styles from './index.less';
 
@@ -47,7 +46,7 @@ class ImageContentPreview extends CustomBase {
 
     if (mode === imageContentPreviewMode.imageList) {
       const imageListHtmlContent = (imageList || [])
-        .map((item) => `<img src="${item}" alt="" />`)
+        .map(item => `<img src="${item}" alt="" />`)
         .join('');
 
       return (
@@ -75,7 +74,10 @@ class ImageContentPreview extends CustomBase {
 
     if (mode === imageContentPreviewMode.listItem) {
       const listItemHtmlContent = (listItem || [])
-        .map((item) => `<img src="${item.image}" alt="" /><p>${item.description}</p>`)
+        .map(
+          item =>
+            `<img src="${item.image}" alt="" /><p>${item.description}</p>`,
+        )
         .join('');
 
       return (

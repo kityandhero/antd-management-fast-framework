@@ -1,13 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Row, Col, Image, Spin } from 'antd';
-import { EyeOutlined, PictureOutlined, LoadingOutlined } from '@ant-design/icons';
+import {
+  EyeOutlined,
+  PictureOutlined,
+  LoadingOutlined,
+} from '@ant-design/icons';
 
-import { isFunction, trim, replace, stringIsNullOrWhiteSpace } from '@/utils/tools';
-import { defaultEmptyImage } from '@/utils/constants';
-import IconInfo from '@/customComponents/IconInfo';
-
+import {
+  isFunction,
+  trim,
+  replace,
+  stringIsNullOrWhiteSpace,
+} from '../../utils/tools';
+import { defaultEmptyImage } from '../../utils/constants';
 import CustomBase from '../../framework/CustomBase';
+
+import IconInfo from '../IconInfo';
 
 import styles from './index.less';
 
@@ -77,7 +86,8 @@ class ImageBox extends CustomBase {
     aspectRatioVerify = aspectRatioVerify <= 0 ? 1 : aspectRatioVerify;
 
     // eslint-disable-next-line no-constant-condition
-    const borderRadiusDefaultStyle = borderRadiusValue || true ? { borderRadius: '4px' } : {};
+    const borderRadiusDefaultStyle =
+      borderRadiusValue || true ? { borderRadius: '4px' } : {};
 
     const circle = circleValue || false;
 
@@ -96,7 +106,9 @@ class ImageBox extends CustomBase {
     };
 
     const backgroundColor =
-      (backgroundColorValue || null) == null ? {} : { backgroundColor: backgroundColorValue };
+      (backgroundColorValue || null) == null
+        ? {}
+        : { backgroundColor: backgroundColorValue };
 
     const showMode = showModeValue || 'box';
 
@@ -118,11 +130,17 @@ class ImageBox extends CustomBase {
 
     const { src: srcPre, showErrorOverlay } = prevState;
 
-    return { ...result, ...{ showErrorOverlay: srcPre === imageSrc ? showErrorOverlay : false } };
+    return {
+      ...result,
+      ...{ showErrorOverlay: srcPre === imageSrc ? showErrorOverlay : false },
+    };
   }
 
   onImageLoadSuccess() {
-    const { showOverlay: showOverlayValue, loadingEffect: loadingEffectValue } = this.props;
+    const {
+      showOverlay: showOverlayValue,
+      loadingEffect: loadingEffectValue,
+    } = this.props;
 
     const showOverlay = showOverlayValue || false;
 
@@ -183,7 +201,11 @@ class ImageBox extends CustomBase {
       imageLoadSuccess && !stringIsNullOrWhiteSpace(src) && preview
         ? previewSimpleMask
           ? {
-              mask: React.createElement('div', {}, React.createElement(EyeOutlined, null)),
+              mask: React.createElement(
+                'div',
+                {},
+                React.createElement(EyeOutlined, null),
+              ),
             }
           : true
         : false;
@@ -194,12 +216,25 @@ class ImageBox extends CustomBase {
           {aspectRatio === 1 ? <div className={styles.placeholderBox} /> : null}
 
           {aspectRatio !== 1 ? (
-            <div className={styles.placeholderBox} style={{ marginTop: `${aspectRatio * 100}%` }} />
+            <div
+              className={styles.placeholderBox}
+              style={{ marginTop: `${aspectRatio * 100}%` }}
+            />
           ) : null}
 
           {showOverlay ? (
-            <div className={classNames(styles.overlayBox, styles.overlayTextBackground)}>
-              <Row type="flex" align="middle" justify="center" className={styles.overlayTextInner}>
+            <div
+              className={classNames(
+                styles.overlayBox,
+                styles.overlayTextBackground,
+              )}
+            >
+              <Row
+                type="flex"
+                align="middle"
+                justify="center"
+                className={styles.overlayTextInner}
+              >
                 <Col>
                   <div className={styles.overlayText}>{overlayText}</div>
                 </Col>
@@ -209,16 +244,28 @@ class ImageBox extends CustomBase {
 
           {showMode === 'loading' ? (
             <div>
-              <Spin indicator={<LoadingOutlined style={{ fontSize: 18 }} spin />} />
+              <Spin
+                indicator={<LoadingOutlined style={{ fontSize: 18 }} spin />}
+              />
             </div>
           ) : null}
 
           {loadingEffect && !loadSuccess && !showOverlay ? (
-            <div className={classNames(styles.overlayBox, styles.overlayLoading)}>
-              <Row justify="space-around" align="middle" style={{ height: '100%' }}>
+            <div
+              className={classNames(styles.overlayBox, styles.overlayLoading)}
+            >
+              <Row
+                justify="space-around"
+                align="middle"
+                style={{ height: '100%' }}
+              >
                 <Col flex="auto" />
                 <Col>
-                  <Spin indicator={<LoadingOutlined style={{ fontSize: 18 }} spin />} />
+                  <Spin
+                    indicator={
+                      <LoadingOutlined style={{ fontSize: 18 }} spin />
+                    }
+                  />
                 </Col>
                 <Col flex="auto" />
               </Row>
@@ -226,18 +273,33 @@ class ImageBox extends CustomBase {
           ) : null}
 
           {showErrorOverlay ? (
-            <div className={classNames(styles.overlayBox, styles.overlayErrorBackground)}>
-              <Row justify="space-around" align="middle" style={{ height: '100%' }}>
+            <div
+              className={classNames(
+                styles.overlayBox,
+                styles.overlayErrorBackground,
+              )}
+            >
+              <Row
+                justify="space-around"
+                align="middle"
+                style={{ height: '100%' }}
+              >
                 <Col flex="auto" />
                 <Col>
                   {showErrorIcon ? (
                     <IconInfo
                       direction="vertical"
                       icon={<PictureOutlined className={styles.overlayIcon} />}
-                      text={<span className={styles.overlayText}>{errorOverlayText}</span>}
+                      text={
+                        <span className={styles.overlayText}>
+                          {errorOverlayText}
+                        </span>
+                      }
                     />
                   ) : (
-                    <span className={styles.overlayText}>{errorOverlayText}</span>
+                    <span className={styles.overlayText}>
+                      {errorOverlayText}
+                    </span>
                   )}
                 </Col>
                 <Col flex="auto" />
@@ -268,11 +330,19 @@ class ImageBox extends CustomBase {
               )}
               style={imageBoxStyle}
             >
-              <Col style={fillHeight ? { height: '100%', width: '100%' } : { width: '100%' }}>
+              <Col
+                style={
+                  fillHeight
+                    ? { height: '100%', width: '100%' }
+                    : { width: '100%' }
+                }
+              >
                 <Image
                   className={fillHeight ? styles.fullHeight : null}
                   style={
-                    imageLoadSuccess && !stringIsNullOrWhiteSpace(src) && preview
+                    imageLoadSuccess &&
+                    !stringIsNullOrWhiteSpace(src) &&
+                    preview
                       ? { cursor: 'pointer' }
                       : {}
                   }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CustomBase from '@/framework/CustomBase';
+import CustomBase from '../../framework/CustomBase';
 
 import styles from './index.less';
 
@@ -60,7 +60,7 @@ class Countdown extends CustomBase {
     this.setState = () => {};
   }
 
-  countFun = (time) => {
+  countFun = time => {
     const et = new Date(time).getTime();
     let sysSecond = et - new Date().getTime();
     this.timer = setInterval(() => {
@@ -103,9 +103,15 @@ class Countdown extends CustomBase {
           <span>
             {day > 0 ? `${day}天` : null}
             {day === 0 && hour !== '00' ? `${hour}小时` : null}
-            {day === 0 && hour === '00' && minute !== '00' ? `${minute}:${second}` : null}
-            {day === 0 && hour === '00' && minute === '00' && second > 0 ? `${second}秒` : null}
-            {day === 0 && hour === '00' && minute === '00' && second === 0 ? des : null}
+            {day === 0 && hour === '00' && minute !== '00'
+              ? `${minute}:${second}`
+              : null}
+            {day === 0 && hour === '00' && minute === '00' && second > 0
+              ? `${second}秒`
+              : null}
+            {day === 0 && hour === '00' && minute === '00' && second === 0
+              ? des
+              : null}
           </span>
         </span>
       </>

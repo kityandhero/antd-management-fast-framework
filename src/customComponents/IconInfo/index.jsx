@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Row, Col, Tooltip } from 'antd';
 
-import { stringIsNullOrWhiteSpace, copyToClipboard } from '@/utils/tools';
-import Ellipsis from '@/customComponents/Ellipsis';
+import { stringIsNullOrWhiteSpace, copyToClipboard } from '../../utils/tools';
+
+import Ellipsis from '../Ellipsis';
 
 import styles from './index.less';
 
@@ -47,7 +48,10 @@ class IconInfo extends PureComponent {
     const tooltip = tooltipValue || false;
     const ellipsis = ellipsisValue || false;
 
-    const iconItem = (icon || null) == null ? null : <span className={styles.iconBox}>{icon}</span>;
+    const iconItem =
+      (icon || null) == null ? null : (
+        <span className={styles.iconBox}>{icon}</span>
+      );
 
     let direction = directionValue || 'horizontal';
 
@@ -70,7 +74,10 @@ class IconInfo extends PureComponent {
                   >
                     {ellipsis ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
-                        {stringIsNullOrWhiteSpace(textPrefix) ? null : `${textPrefix}：`} {text}
+                        {stringIsNullOrWhiteSpace(textPrefix)
+                          ? null
+                          : `${textPrefix}：`}{' '}
+                        {text}
                       </Ellipsis>
                     ) : stringIsNullOrWhiteSpace(textPrefix) ? (
                       text
@@ -104,7 +111,10 @@ class IconInfo extends PureComponent {
                   >
                     {ellipsis ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
-                        {stringIsNullOrWhiteSpace(textPrefix) ? null : `${textPrefix}：`} {text}
+                        {stringIsNullOrWhiteSpace(textPrefix)
+                          ? null
+                          : `${textPrefix}：`}{' '}
+                        {text}
                       </Ellipsis>
                     ) : stringIsNullOrWhiteSpace(textPrefix) ? (
                       text
@@ -134,7 +144,10 @@ class IconInfo extends PureComponent {
                 >
                   {ellipsis ? (
                     <Ellipsis tooltip={tooltip} lines={1}>
-                      {stringIsNullOrWhiteSpace(textPrefix) ? null : `${textPrefix}：`} {text}
+                      {stringIsNullOrWhiteSpace(textPrefix)
+                        ? null
+                        : `${textPrefix}：`}{' '}
+                      {text}
                     </Ellipsis>
                   ) : stringIsNullOrWhiteSpace(textPrefix) ? (
                     text
@@ -163,7 +176,10 @@ class IconInfo extends PureComponent {
                 >
                   {ellipsis ? (
                     <Ellipsis tooltip={tooltip} lines={1}>
-                      {stringIsNullOrWhiteSpace(textPrefix) ? null : `${textPrefix}：`} {text}
+                      {stringIsNullOrWhiteSpace(textPrefix)
+                        ? null
+                        : `${textPrefix}：`}{' '}
+                      {text}
                     </Ellipsis>
                   ) : stringIsNullOrWhiteSpace(textPrefix) ? (
                     text
@@ -224,7 +240,10 @@ class IconInfo extends PureComponent {
                   >
                     {ellipsis ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
-                        {stringIsNullOrWhiteSpace(textPrefix) ? null : `${textPrefix}：`} {text}
+                        {stringIsNullOrWhiteSpace(textPrefix)
+                          ? null
+                          : `${textPrefix}：`}{' '}
+                        {text}
                       </Ellipsis>
                     ) : stringIsNullOrWhiteSpace(textPrefix) ? (
                       text

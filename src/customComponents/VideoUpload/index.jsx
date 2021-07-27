@@ -1,5 +1,15 @@
 import React, { PureComponent } from 'react';
-import { Input, Upload, Dropdown, Menu, Button, Modal, Space, Divider, Tooltip } from 'antd';
+import {
+  Input,
+  Upload,
+  Dropdown,
+  Menu,
+  Button,
+  Modal,
+  Space,
+  Divider,
+  Tooltip,
+} from 'antd';
 import ReactPlayer from 'react-player';
 import {
   LoadingOutlined,
@@ -18,8 +28,9 @@ import {
   showRuntimeErrorMessage,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
-} from '@/utils/tools';
-import IconInfo from '@/customComponents/IconInfo';
+} from '../../utils/tools';
+
+import IconInfo from '../IconInfo';
 
 const { TextArea } = Input;
 
@@ -83,7 +94,7 @@ class VideoUpload extends PureComponent {
     });
   };
 
-  handleUrlChange = (e) => {
+  handleUrlChange = e => {
     const {
       target: { value: v },
     } = e;
@@ -136,7 +147,7 @@ class VideoUpload extends PureComponent {
     );
   };
 
-  beforeUpload = (file) => {
+  beforeUpload = file => {
     const isVideo = file.type === 'video/mp4';
 
     if (!isVideo) {
@@ -150,7 +161,7 @@ class VideoUpload extends PureComponent {
     return isVideo && isLt3M;
   };
 
-  handleUploadChange = (info) => {
+  handleUploadChange = info => {
     const { pretreatmentRemoteResponse, afterChangeSuccess } = this.props;
 
     if (info.file.status === 'uploading') {
@@ -185,7 +196,7 @@ class VideoUpload extends PureComponent {
     }
   };
 
-  handleMenuClick = (e) => {
+  handleMenuClick = e => {
     const { key } = e;
     const { videoUrl } = this.state;
 
@@ -218,7 +229,13 @@ class VideoUpload extends PureComponent {
 
   render() {
     const { action, disabled, showPreview, tokenSet } = this.props;
-    const { uploading, previewVisible, changeUrlVisible, videoUrlTemp, videoUrl } = this.state;
+    const {
+      uploading,
+      previewVisible,
+      changeUrlVisible,
+      videoUrlTemp,
+      videoUrl,
+    } = this.state;
 
     const uploadProps = {
       disabled,
@@ -341,7 +358,9 @@ class VideoUpload extends PureComponent {
         </Modal>
 
         <Modal
-          title={<IconInfo icon={<SwapOutlined />} text="请输入将更换的视频地址" />}
+          title={
+            <IconInfo icon={<SwapOutlined />} text="请输入将更换的视频地址" />
+          }
           visible={changeUrlVisible}
           onOk={this.handleChangeUrlOk}
           onCancel={this.handleChangeUrlCancel}
