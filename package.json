@@ -65,7 +65,7 @@
   "files": [
     "lib"
   ],
-  "version": "1.0.2",
+  "version": "1.0.3",
   "directories": {
     "example": "example",
     "lib": "lib",
