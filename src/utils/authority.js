@@ -1,10 +1,9 @@
-import accessWayCollection from '../../customConfig/accessWayCollection';
-
 import {
   getStringFromLocalStorage,
   saveJsonToLocalStorage,
   isArray,
 } from './tools';
+import { getAccessWayCollectionCache } from './globalStorageAssist';
 // eslint-disable-next-line import/no-cycle
 import { reloadAuthorized } from './Authorized';
 
@@ -63,7 +62,7 @@ export function getAllAuthority() {
 
 export function checkIsSuper() {
   const list = getAllAuthorityCore();
-  const superAuth = accessWayCollection.super;
+  const superAuth = getAccessWayCollectionCache().super;
 
   const isSuper = (list || []).find(o => o === superAuth) || '';
 
@@ -76,7 +75,7 @@ export function checkIsSuper() {
 
 export function checkHasAuthority(auth) {
   const list = getAllAuthorityCore();
-  const superAuth = accessWayCollection.super;
+  const superAuth = getAccessWayCollectionCache().super;
 
   const isSuper = (list || []).find(o => o === superAuth);
 

@@ -13,9 +13,9 @@ import {
 } from '../../../utils/tools';
 import { listViewModeCollection } from '../../../utils/constants';
 import {
-  getUseParamsDataCache,
-  setUseParamsDataCache,
-} from '@/customConfig/storageAssist';
+  getParamsDataCache,
+  setParamsDataCache,
+} from '../../../utils/globalStorageAssist';
 
 import Base from '../../DataListView/Base';
 import DensityAction from '../../DataListView/DensityAction';
@@ -97,7 +97,7 @@ class MultiPage extends Base {
         return d;
       }
 
-      d = getUseParamsDataCache(paramsKey);
+      d = getParamsDataCache(paramsKey);
 
       this.useParamsKey = false;
     } else {
@@ -142,7 +142,7 @@ class MultiPage extends Base {
     return this.adjustLoadRequestParams(d);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   afterGetFirstRequestResult = (submitData, responseData) => {
     const form = this.getSearchForm();
     const { urlParams } = this.state;
@@ -177,14 +177,14 @@ class MultiPage extends Base {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   adjustRenderLoadRequestParamsWithKey = d => {};
 
   afterGetRequestResult = () => {
     const { paramsKey } = this.state;
 
     if (!stringIsNullOrWhiteSpace(paramsKey)) {
-      setUseParamsDataCache(paramsKey, this.lastLoadParams);
+      setParamsDataCache(paramsKey, this.lastLoadParams);
     }
   };
 
