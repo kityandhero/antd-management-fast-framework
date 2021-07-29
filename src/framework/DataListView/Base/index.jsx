@@ -4,6 +4,7 @@ import {
   Row,
   Col,
   Card,
+  Affix,
   Alert,
   List,
   Tooltip,
@@ -13,6 +14,7 @@ import {
   Divider,
   message,
   Badge,
+  Space,
 } from 'antd';
 import {
   SearchOutlined,
@@ -21,6 +23,7 @@ import {
   PictureOutlined,
   FormOutlined,
   InfoCircleOutlined,
+  ToolOutlined,
 } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
@@ -39,6 +42,9 @@ import {
   replaceTargetText,
   formatDatetime,
   formatMoney,
+  recordObject,
+  showErrorMessage,
+  isBoolean,
 } from '../../../utils/tools';
 import {
   searchFormContentConfig,
@@ -121,11 +127,14 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = (
+    // eslint-disable-next-line no-unused-vars
     metaData,
+    // eslint-disable-next-line no-unused-vars
     metaListData,
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   ) => {};
 
@@ -158,7 +167,7 @@ class ListBase extends AuthorizationWrapper {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   afterSetSearchFormFieldsValue = v => {};
 
   getPageName = () => {
@@ -929,7 +938,7 @@ class ListBase extends AuthorizationWrapper {
     });
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   setSortKeyColumns = e => {};
 
   getColumnsMap = () => {
@@ -950,10 +959,10 @@ class ListBase extends AuthorizationWrapper {
     return o;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   onBatchActionSelect = key => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderTable = config => null;
 
   renderAlertContent = () => {
@@ -1099,7 +1108,7 @@ class ListBase extends AuthorizationWrapper {
       .replace(/-/g, '/');
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   handleTabChange = key => {};
 
   onPageHeaderAvatarLoadErrorCallback = () => {
@@ -1239,7 +1248,7 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItem = (record, index) => {
     return (
       <List.Item
@@ -1251,12 +1260,12 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemInner = (record, index) => {
     return null;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemExtra = (record, index) => {
     return null;
   };
@@ -1279,12 +1288,12 @@ class ListBase extends AuthorizationWrapper {
     return [...(isArray(actionOthers) ? actionOthers : []), actionSelect];
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemActionOthers = (record, index) => {
     return null;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemActionSelect = (record, index) => {
     return null;
   };

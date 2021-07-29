@@ -21,7 +21,7 @@ class FileBase64Upload extends PureComponent {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     const { fileBase64 } = nextProps;
 

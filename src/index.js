@@ -1,7 +1,7 @@
 // ref:
 // - https://umijs.org/plugins/api
 
-export default function(api) {
+export default function init(api) {
   api.logger.info('use plugin');
 
   api.modifyHTML($ => {

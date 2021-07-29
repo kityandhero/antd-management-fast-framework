@@ -49,14 +49,14 @@ class SinglePageDrawer extends SinglePage {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     const { visible, externalData } = nextProps;
 
     return { visible, externalData };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
     const { visible: visiblePre } = preState;
     const { visible } = this.state;
@@ -74,7 +74,7 @@ class SinglePageDrawer extends SinglePage {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
     this.executeAfterDoOtherWhenChangeVisible();
   };

@@ -46,6 +46,8 @@ class RadarScanning extends Core {
   };
 
   orbGo = e => {
+    const c = this.getCanvas();
+
     const mx = e.pageX - c.offsetLeft;
     const my = e.pageY - c.offsetTop;
 

@@ -11,11 +11,13 @@ class FlexBox extends PureComponent {
       right,
       top,
       bottom,
-      direction,
+      direction: directionSource,
       vertical,
     } = this.props;
 
-    if (direction !== 'horizontal' && direction !== 'vertical') {
+    let direction = directionSource;
+
+    if (directionSource !== 'horizontal' && directionSource !== 'vertical') {
       direction = 'horizontal';
     }
 
@@ -44,7 +46,10 @@ class FlexBox extends PureComponent {
       );
     }
 
-    const { minHeight, bottomHeight } = {
+    const {
+      // minHeight,
+      bottomHeight,
+    } = {
       ...{
         bottomHeight: '180rpx',
       },

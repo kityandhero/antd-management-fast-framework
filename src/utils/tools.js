@@ -1490,7 +1490,7 @@ export function getQueue() {
  * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state，
  * @export
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 export function getDerivedStateFromPropsForUrlParamsCore(nextProps, prevState) {
   const { match } = nextProps;
 

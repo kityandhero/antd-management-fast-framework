@@ -21,14 +21,14 @@ class BaseWindow extends Base {
 
   goToUpdateWhenProcessed = false;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     const { visible, externalData } = nextProps;
 
     return { visible, externalData };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
     const { visible: visiblePre } = preState;
     const { visible } = this.state;
@@ -44,7 +44,7 @@ class BaseWindow extends Base {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
     this.executeAfterDoOtherWhenChangeVisible();
   };
@@ -68,15 +68,18 @@ class BaseWindow extends Base {
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = (
+    // eslint-disable-next-line no-unused-vars
     metaData,
+    // eslint-disable-next-line no-unused-vars
     metaListData,
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   ) => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   fillForm = (metaData, metaListData, metaExtra, metaOriginalData) => {
     const initialValues = this.buildInitialValues(
       metaData,
@@ -100,7 +103,7 @@ class BaseWindow extends Base {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   afterSetFieldsValue = v => {};
 
   afterCheckSubmitRequestParams = o => o;
@@ -237,7 +240,7 @@ class BaseWindow extends Base {
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   buildInitialValues = (metaData, metaListData, metaExtra, metaOriginalData) =>
     null;
 

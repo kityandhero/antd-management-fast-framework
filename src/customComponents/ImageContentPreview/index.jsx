@@ -23,7 +23,7 @@ class ImageContentPreview extends CustomBase {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     const { visible, mode, imageList, listItem, htmlContent } = nextProps;
 

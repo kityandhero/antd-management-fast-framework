@@ -49,7 +49,7 @@ class ImageBox extends CustomBase {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     const {
       src,
@@ -86,8 +86,9 @@ class ImageBox extends CustomBase {
     aspectRatioVerify = aspectRatioVerify <= 0 ? 1 : aspectRatioVerify;
 
     // eslint-disable-next-line no-constant-condition
-    const borderRadiusDefaultStyle =
-      borderRadiusValue || true ? { borderRadius: '4px' } : {};
+    const borderRadiusDefaultStyle = borderRadiusValue
+      ? { borderRadius: '4px' }
+      : {};
 
     const circle = circleValue || false;
 

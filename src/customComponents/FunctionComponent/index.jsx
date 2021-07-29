@@ -561,9 +561,9 @@ export function buildDropdownEllipsis(ellipsisActionData) {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function buildListViewItemExtra({
   align,
+  // eslint-disable-next-line no-unused-vars
   index,
   imageUrl,
   emptyImageUrl,
@@ -629,8 +629,8 @@ export function buildTagList({ list = [] }) {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function buildListViewItemActionSelect({
+  // eslint-disable-next-line no-unused-vars
   index,
   selectData,
   selectCallback,

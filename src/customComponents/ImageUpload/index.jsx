@@ -15,7 +15,7 @@ import {
 } from '../../utils/tools';
 
 import ImageBox from '../ImageBox';
-import FlexBox from '..Charts/FlexBox';
+import FlexBox from '../FlexBox';
 import VerticalBox from '../VerticalBox';
 
 import styles from './index.less';
@@ -305,9 +305,9 @@ ImageUpload.defaultProps = {
   },
   pretreatmentRemoteResponse: () => {},
   afterUploadSuccess: () => {},
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   onItemChange: ({ file, fileList }) => {},
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   onItemRemove: file => {},
 };
 

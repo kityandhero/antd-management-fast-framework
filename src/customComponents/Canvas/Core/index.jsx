@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 
 import { stringIsNullOrWhiteSpace } from '../../../utils/tools';
+
 class Index extends PureComponent {
   constructor(props) {
     super(props);
@@ -9,9 +10,11 @@ class Index extends PureComponent {
   }
 
   canvasContainerRef = React.createRef();
+
   canvasRef = React.createRef();
 
   canvasWidth = 0;
+
   canvasHeight = 0;
 
   componentDidMount() {
@@ -57,7 +60,7 @@ class Index extends PureComponent {
     return c.getContext('2d');
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   doAfterDidMount = ({ canvasContext }) => {};
 
   resize = () => {
