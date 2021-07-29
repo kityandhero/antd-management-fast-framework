@@ -1,4 +1,4 @@
-import { isFunction } from '@/utils/tools';
+import { isFunction } from '../../../utils/tools';
 
 import BaseLoadModal from '../BaseLoadModal';
 

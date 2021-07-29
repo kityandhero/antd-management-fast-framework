@@ -6,7 +6,7 @@ import {
   isFunction,
   showRuntimeErrorMessage,
   isUndefined,
-} from '@/utils/tools';
+} from '../../../utils/tools';
 
 import Base from '../Base';
 
@@ -55,16 +55,26 @@ class BaseWindow extends Base {
     return this.formRef.current;
   };
 
-  supplementSubmitRequestParams = (o) => o;
+  supplementSubmitRequestParams = o => o;
 
   afterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {
     this.fillForm(metaData);
 
-    this.doOtherAfterLoadSuccess(metaData, metaListData, metaExtra, metaOriginalData);
+    this.doOtherAfterLoadSuccess(
+      metaData,
+      metaListData,
+      metaExtra,
+      metaOriginalData,
+    );
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherAfterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {};
+  doOtherAfterLoadSuccess = (
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  ) => {};
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   fillForm = (metaData, metaListData, metaExtra, metaOriginalData) => {
@@ -80,7 +90,7 @@ class BaseWindow extends Base {
     }
   };
 
-  setFormFieldsValue = (v) => {
+  setFormFieldsValue = v => {
     const form = this.getTargetForm();
 
     if (form != null) {
@@ -91,9 +101,9 @@ class BaseWindow extends Base {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterSetFieldsValue = (v) => {};
+  afterSetFieldsValue = v => {};
 
-  afterCheckSubmitRequestParams = (o) => o;
+  afterCheckSubmitRequestParams = o => o;
 
   execSubmitApi = (values = {}, afterSubmitCallback) => {
     const { dispatch } = this.props;
@@ -126,7 +136,11 @@ class BaseWindow extends Base {
           const { dataSuccess } = remoteData;
 
           if (dataSuccess) {
-            const { list: metaListData, data: metaData, extra: metaExtra } = remoteData;
+            const {
+              list: metaListData,
+              data: metaData,
+              extra: metaExtra,
+            } = remoteData;
 
             this.afterSubmitSuccess(
               metaData || null,
@@ -148,7 +162,7 @@ class BaseWindow extends Base {
     }
   };
 
-  handleOkWithForm = (e) => {
+  handleOkWithForm = e => {
     e.preventDefault();
 
     const form = this.getTargetForm();
@@ -160,20 +174,20 @@ class BaseWindow extends Base {
     const { validateFields } = form;
 
     validateFields()
-      .then((values) => {
+      .then(values => {
         this.execSubmitApi(values, () => {
           if (this.goToUpdateWhenProcessed) {
             this.reloadByUrl();
           }
         });
       })
-      .catch((error) => {
+      .catch(error => {
         const { errorFields } = error;
 
         if (!isUndefined(errorFields)) {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          Object.values(errorFields).forEach(o => {
             m.push(o.errors[0]);
           });
 
@@ -199,7 +213,7 @@ class BaseWindow extends Base {
       });
   };
 
-  handleOk = (e) => {
+  handleOk = e => {
     if (this.submitWithForm) {
       this.handleOkWithForm(e);
     } else {
@@ -207,12 +221,25 @@ class BaseWindow extends Base {
     }
   };
 
-  afterSubmitSuccess = (singleData, listData, extraData, responseOriginalData, submitData) => {
-    this.doAfterSubmitSuccess(singleData, listData, extraData, responseOriginalData, submitData);
+  afterSubmitSuccess = (
+    singleData,
+    listData,
+    extraData,
+    responseOriginalData,
+    submitData,
+  ) => {
+    this.doAfterSubmitSuccess(
+      singleData,
+      listData,
+      extraData,
+      responseOriginalData,
+      submitData,
+    );
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  buildInitialValues = (metaData, metaListData, metaExtra, metaOriginalData) => null;
+  buildInitialValues = (metaData, metaListData, metaExtra, metaOriginalData) =>
+    null;
 
   handleCancel = () => {
     const { afterCancel } = this.props;

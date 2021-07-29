@@ -1,4 +1,7 @@
-import { getDerivedStateFromPropsForUrlParams, defaultFormState } from '@/utils/tools';
+import {
+  getDerivedStateFromPropsForUrlParams,
+  defaultFormState,
+} from '../../../utils/tools';
 
 import DataCore from '../DataCore';
 
@@ -53,11 +56,21 @@ class DataLoad extends DataCore {
   afterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {
     this.fillForm(metaData, metaListData, metaExtra, metaOriginalData);
 
-    this.doOtherAfterLoadSuccess(metaData, metaListData, metaExtra, metaOriginalData);
+    this.doOtherAfterLoadSuccess(
+      metaData,
+      metaListData,
+      metaExtra,
+      metaOriginalData,
+    );
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherAfterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {};
+  doOtherAfterLoadSuccess = (
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  ) => {};
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   fillForm = (metaData, metaListData, metaExtra, metaOriginalData) => {

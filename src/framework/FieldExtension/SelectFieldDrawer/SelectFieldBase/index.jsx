@@ -1,8 +1,12 @@
 import React from 'react';
 import { Button, Divider } from 'antd';
-import { FormOutlined, CloseCircleOutlined, SearchOutlined } from '@ant-design/icons';
+import {
+  FormOutlined,
+  CloseCircleOutlined,
+  SearchOutlined,
+} from '@ant-design/icons';
 
-import { isFunction, showRuntimeErrorMessage } from '@/utils/tools';
+import { isFunction, showRuntimeErrorMessage } from '../../../../utils/tools';
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
 
 class SelectFieldBase extends SupplementWrapper {
@@ -86,7 +90,7 @@ class SelectFieldBase extends SupplementWrapper {
               }}
               disabled={dataLoading || processing || !loadSuccess}
               title={`选择${fieldTitle}`}
-              onClick={(e) => this.showSelect(e)}
+              onClick={e => this.showSelect(e)}
             >
               <SearchOutlined />
             </Button>

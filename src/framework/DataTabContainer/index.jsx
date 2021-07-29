@@ -2,15 +2,18 @@ import React from 'react';
 import { PictureOutlined } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
-import { pageHeaderRenderType } from '@/utils/constants';
+import { pageHeaderRenderType } from '../../utils/constants';
 import {
   pageHeaderTitle,
   pageHeaderTagWrapper,
   pageHeaderContent,
   pageHeaderExtraContent,
   buildTagList,
-} from '@/customComponents/FunctionComponent';
-import { avatarImageLoadResultCollection, decorateAvatar } from '@/customComponents/DecorateAvatar';
+} from '../../../customComponents/FunctionComponent';
+import {
+  avatarImageLoadResultCollection,
+  decorateAvatar,
+} from '../../customComponents/DecorateAvatar';
 
 import DataSingleView from '../DataSingleView/DataLoad';
 
@@ -69,17 +72,19 @@ class DataTabContainer extends DataSingleView {
     }
   };
 
-  handleTabChange = (key) => {
+  handleTabChange = key => {
     const { match } = this.props;
 
-    (this.tabList || []).forEach((item) => {
+    (this.tabList || []).forEach(item => {
       if (item.key === key) {
-        this.redirectToPath(`${match.url.replace('/update', '/load')}/${item.key}`);
+        this.redirectToPath(
+          `${match.url.replace('/update', '/load')}/${item.key}`,
+        );
       }
     });
   };
 
-  adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
+  adjustTabListAvailable = tabListAvailable => tabListAvailable;
 
   getTabActiveKey = () => {
     const {
@@ -94,7 +99,12 @@ class DataTabContainer extends DataSingleView {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  buildInitialValues = (metaData, metaListData, metaExtra, metaOriginalData) => {
+  buildInitialValues = (
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  ) => {
     return null;
   };
 
@@ -168,7 +178,7 @@ class DataTabContainer extends DataSingleView {
   getTabListAvailable = () => {
     const tabListAvailable = [];
 
-    (this.tabList || []).forEach((o) => {
+    (this.tabList || []).forEach(o => {
       const v = typeof o.show === 'undefined' ? true : o.show === true;
 
       if (v) {
@@ -237,7 +247,10 @@ class DataTabContainer extends DataSingleView {
         <PageHeaderWrapper
           className={styles.customContainor}
           avatar={avatarProps}
-          title={pageHeaderTitle(this.getPageName(), this.pageHeaderTitlePrefix())}
+          title={pageHeaderTitle(
+            this.getPageName(),
+            this.pageHeaderTitlePrefix(),
+          )}
           subTitle={this.pageHeaderSubTitle()}
           tags={pageHeaderTagWrapper(this.pageHeaderTag())}
           extra={this.pageHeaderAction()}

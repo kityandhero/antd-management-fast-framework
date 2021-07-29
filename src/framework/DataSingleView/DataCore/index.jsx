@@ -9,8 +9,14 @@ import {
   ContactsOutlined,
 } from '@ant-design/icons';
 
-import { getDerivedStateFromPropsForUrlParams, showRuntimeErrorMessage } from '@/utils/tools';
-import { buildButtonGroup, buildDropdownEllipsis } from '@/customComponents/FunctionComponent';
+import {
+  getDerivedStateFromPropsForUrlParams,
+  showRuntimeErrorMessage,
+} from '../../../utils/tools';
+import {
+  buildButtonGroup,
+  buildDropdownEllipsis,
+} from '../../../customComponents/FunctionComponent';
 
 import BaseView from '../../DataOperation/BaseView';
 
@@ -31,7 +37,7 @@ class DataCore extends BaseView {
     return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
   }
 
-  setFormFieldsValue = (v) => {
+  setFormFieldsValue = v => {
     const form = this.getTargetForm();
 
     if (form != null) {
@@ -42,7 +48,7 @@ class DataCore extends BaseView {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterSetFieldsValue = (v) => {};
+  afterSetFieldsValue = v => {};
 
   getTargetForm = () => {
     return this.formRef.current;
@@ -74,7 +80,7 @@ class DataCore extends BaseView {
       <Tooltip placement="top" title="返回列表页">
         <Button
           {...props}
-          onClick={(e) => {
+          onClick={e => {
             this.backToList(e);
           }}
         >
@@ -107,7 +113,11 @@ class DataCore extends BaseView {
                 this.reloadData();
               }}
             >
-              {reloading || refreshing ? <LoadingOutlined /> : <ReloadOutlined />}
+              {reloading || refreshing ? (
+                <LoadingOutlined />
+              ) : (
+                <ReloadOutlined />
+              )}
             </Button>
           </Tooltip>
         ) : null}
@@ -116,7 +126,12 @@ class DataCore extends BaseView {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  buildInitialValues = (metaData, metaListData, metaExtra, metaOriginalData) => {
+  buildInitialValues = (
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  ) => {
     if (this.loadDataAfterMount) {
       if (this.needSetFormValueAfterLoad) {
         showRuntimeErrorMessage('buildInitialValues 方法需要重新实现。');

@@ -2,7 +2,11 @@ import { extend } from 'umi-request';
 import { history } from 'umi';
 import { message, notification } from 'antd';
 
-import { getTokenKeyName, getToken, clearCustomData } from '@/customConfig/storageAssist';
+import {
+  getTokenKeyName,
+  getToken,
+  clearCustomData,
+} from '../../customConfig/storageAssist';
 
 import { authenticationFailCode } from './constants';
 
@@ -30,7 +34,7 @@ const codeMessage = {
 /**
  * 异常处理程序
  */
-const errorHandler = (error) => {
+const errorHandler = error => {
   const { response } = error;
 
   if (response && response.status) {
@@ -101,7 +105,7 @@ request.interceptors.response.use((response, options) => {
   response
     .clone()
     .json()
-    .then((o) => {
+    .then(o => {
       const { code } = o;
 
       if (code === authenticationFailCode) {
@@ -116,7 +120,7 @@ request.interceptors.response.use((response, options) => {
         }, 200);
       }
     })
-    .catch((o) => {
+    .catch(o => {
       recordText(o);
     });
 

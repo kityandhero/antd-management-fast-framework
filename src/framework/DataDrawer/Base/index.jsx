@@ -2,8 +2,12 @@ import React from 'react';
 import { Layout, Drawer, Form, Button, Row, Col, Affix } from 'antd';
 import { FormOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
-import { isUndefined, isFunction, defaultFormState } from '@/utils/tools';
-import { formContentConfig } from '@/utils/constants';
+import {
+  isUndefined,
+  isFunction,
+  defaultFormState,
+} from '../../../utils/tools';
+import { formContentConfig } from '../../../utils/constants';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
 

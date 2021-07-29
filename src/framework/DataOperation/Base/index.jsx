@@ -1,14 +1,18 @@
 import { message, notification } from 'antd';
 
-import { stringIsNullOrWhiteSpace, isFunction, showRuntimeErrorMessage } from '@/utils/tools';
+import {
+  stringIsNullOrWhiteSpace,
+  isFunction,
+  showRuntimeErrorMessage,
+} from '../../../utils/tools';
 
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {
-  supplementLoadRequestParams = (o) => o;
+  supplementLoadRequestParams = o => o;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  checkSubmitData = (o) => {
+  checkSubmitData = o => {
     if ((o || null) == null) {
       showRuntimeErrorMessage('提交的数据不能为空');
 
@@ -19,9 +23,15 @@ class Base extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  checkSubmitRequestParams = (o) => true;
+  checkSubmitRequestParams = o => true;
 
-  doAfterSubmitSuccess = (singleData, listData, extraData, responseOriginalData, submitData) => {
+  doAfterSubmitSuccess = (
+    singleData,
+    listData,
+    extraData,
+    responseOriginalData,
+    submitData,
+  ) => {
     const { afterOK } = this.props;
 
     this.doOtherAfterSubmitSuccess(
@@ -49,7 +59,13 @@ class Base extends AuthorizationWrapper {
     );
 
     if (isFunction(afterOK)) {
-      afterOK(singleData, listData, extraData, responseOriginalData, submitData);
+      afterOK(
+        singleData,
+        listData,
+        extraData,
+        responseOriginalData,
+        submitData,
+      );
     }
   };
 
@@ -78,7 +94,13 @@ class Base extends AuthorizationWrapper {
         type: 'success',
         text: '',
       },
-      ...this.buildMessage(singleData, listData, extraData, responseOriginalData, submitData),
+      ...this.buildMessage(
+        singleData,
+        listData,
+        extraData,
+        responseOriginalData,
+        submitData,
+      ),
     };
 
     if (!stringIsNullOrWhiteSpace(text)) {
@@ -151,12 +173,7 @@ class Base extends AuthorizationWrapper {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     submitData,
   ) => {
-    const {
-      type,
-      placement,
-      message: messageText,
-      description,
-    } = {
+    const { type, placement, message: messageText, description } = {
       ...{
         type: 'success',
         placement: 'bottomRight',

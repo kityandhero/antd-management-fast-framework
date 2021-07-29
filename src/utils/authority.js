@@ -1,6 +1,10 @@
-import accessWayCollection from '@/customConfig/accessWayCollection';
+import accessWayCollection from '../../customConfig/accessWayCollection';
 
-import { getStringFromLocalStorage, saveJsonToLocalStorage, isArray } from './tools';
+import {
+  getStringFromLocalStorage,
+  saveJsonToLocalStorage,
+  isArray,
+} from './tools';
 // eslint-disable-next-line import/no-cycle
 import { reloadAuthorized } from './Authorized';
 
@@ -8,7 +12,9 @@ import { reloadAuthorized } from './Authorized';
 export function getAuthority(str) {
   // return getStringFromLocalStorage('antd-pro-authority') || ['admin', 'user'];
   const authorityString =
-    typeof str === 'undefined' ? getStringFromLocalStorage('antd-pro-authority') : str;
+    typeof str === 'undefined'
+      ? getStringFromLocalStorage('antd-pro-authority')
+      : str;
   // authorityString could be admin, "admin", ["admin"]
   let authority;
 
@@ -24,7 +30,10 @@ export function getAuthority(str) {
     return [authority];
   }
 
-  if (!authority && ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site') {
+  if (
+    !authority &&
+    ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site'
+  ) {
     return ['admin'];
   }
 
@@ -56,7 +65,7 @@ export function checkIsSuper() {
   const list = getAllAuthorityCore();
   const superAuth = accessWayCollection.super;
 
-  const isSuper = (list || []).find((o) => o === superAuth) || '';
+  const isSuper = (list || []).find(o => o === superAuth) || '';
 
   if (isSuper === superAuth) {
     return true;
@@ -69,13 +78,13 @@ export function checkHasAuthority(auth) {
   const list = getAllAuthorityCore();
   const superAuth = accessWayCollection.super;
 
-  const isSuper = (list || []).find((o) => o === superAuth);
+  const isSuper = (list || []).find(o => o === superAuth);
 
   if (isSuper === superAuth) {
     return true;
   }
 
-  const v = (list || []).find((o) => o === auth);
+  const v = (list || []).find(o => o === auth);
 
   return v !== undefined;
 }

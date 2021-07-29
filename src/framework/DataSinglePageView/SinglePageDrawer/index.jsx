@@ -1,11 +1,24 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { Drawer, Card, List, Divider, Tag, Tooltip, Button, Row, Col } from 'antd';
+import {
+  Drawer,
+  Card,
+  List,
+  Divider,
+  Tag,
+  Tooltip,
+  Button,
+  Row,
+  Col,
+} from 'antd';
 import { ReloadOutlined, ReadOutlined } from '@ant-design/icons';
 
-import { isFunction } from '@/utils/tools';
-import { listViewModeCollection, contentConfig } from '@/utils/constants';
-import { buildListViewItemActionSelect } from '@/customComponents/FunctionComponent';
+import { isFunction } from '../../../utils/tools';
+import {
+  listViewModeCollection,
+  contentConfig,
+} from '../../../utils/constants';
+import { buildListViewItemActionSelect } from '../../../customComponents/FunctionComponent';
 
 import DensityAction from '../../DataListView/DensityAction';
 import ColumnSetting from '../../DataListView/ColumnSetting';
@@ -98,8 +111,14 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderViewContainor = () => {
-    const { reloadAnimalShow, listTitle, tableSize, refreshing, listViewMode, renderSearchForm } =
-      this.state;
+    const {
+      reloadAnimalShow,
+      listTitle,
+      tableSize,
+      refreshing,
+      listViewMode,
+      renderSearchForm,
+    } = this.state;
 
     const extraAction = this.renderExtraAction();
     const searchForm = this.renderForm();
@@ -108,19 +127,30 @@ class SinglePageDrawer extends SinglePage {
       <div
         className={styles.tableList}
         style={
-          listViewMode === listViewModeCollection.list ? { height: '100%', overflow: 'hidden' } : {}
+          listViewMode === listViewModeCollection.list
+            ? { height: '100%', overflow: 'hidden' }
+            : {}
         }
       >
         <div
           className={styles.containorBox}
           style={
             listViewMode === listViewModeCollection.list
-              ? { height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' }
+              ? {
+                  height: '100%',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }
               : {}
           }
         >
           {renderSearchForm && (searchForm || null) != null ? (
-            <div style={listViewMode === listViewModeCollection.list ? { flex: 0 } : {}}>
+            <div
+              style={
+                listViewMode === listViewModeCollection.list ? { flex: 0 } : {}
+              }
+            >
               <Card
                 bordered={false}
                 className={styles.containorSearch}
@@ -159,10 +189,20 @@ class SinglePageDrawer extends SinglePage {
               }
               style={
                 listViewMode === listViewModeCollection.list
-                  ? { height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' }
+                  ? {
+                      height: '100%',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }
                   : {}
               }
-              headStyle={{ borderBottom: 0, paddingLeft: 0, paddingRight: 0, flex: 0 }}
+              headStyle={{
+                borderBottom: 0,
+                paddingLeft: 0,
+                paddingRight: 0,
+                flex: 0,
+              }}
               bodyStyle={{
                 paddingTop: 0,
                 paddingBottom: 0,
@@ -185,7 +225,7 @@ class SinglePageDrawer extends SinglePage {
                   {listViewMode === listViewModeCollection.table ? (
                     <DensityAction
                       tableSize={tableSize}
-                      setTableSize={(key) => {
+                      setTableSize={key => {
                         this.setTableSize(key);
                       }}
                     />
@@ -207,10 +247,10 @@ class SinglePageDrawer extends SinglePage {
                     <ColumnSetting
                       columns={this.getColumn()}
                       columnsMap={this.getColumnsMap()}
-                      setColumnsMap={(e) => {
+                      setColumnsMap={e => {
                         this.setColumnsMap(e);
                       }}
-                      setSortKeyColumns={(key) => {
+                      setSortKeyColumns={key => {
                         this.setSortKeyColumns(key);
                       }}
                     />
@@ -230,7 +270,13 @@ class SinglePageDrawer extends SinglePage {
                     : {}
                 }
               >
-                <div style={listViewMode === listViewModeCollection.list ? { flex: 0 } : {}}>
+                <div
+                  style={
+                    listViewMode === listViewModeCollection.list
+                      ? { flex: 0 }
+                      : {}
+                  }
+                >
                   {this.renderAboveTable()}
                 </div>
 
@@ -278,7 +324,9 @@ class SinglePageDrawer extends SinglePage {
       <div
         className={styles.mainContainor}
         style={
-          listViewMode === listViewModeCollection.list ? { height: '100%', overflow: 'hidden' } : {}
+          listViewMode === listViewModeCollection.list
+            ? { height: '100%', overflow: 'hidden' }
+            : {}
         }
       >
         {this.renderContentContainor()}
@@ -297,13 +345,20 @@ class SinglePageDrawer extends SinglePage {
       <div
         style={
           listViewMode === listViewModeCollection.list
-            ? { height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' }
+            ? {
+                height: '100%',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+              }
             : {}
         }
       >
         <div
           style={
-            listViewMode === listViewModeCollection.list ? { flex: 'auto', overflow: 'hidden' } : {}
+            listViewMode === listViewModeCollection.list
+              ? { flex: 'auto', overflow: 'hidden' }
+              : {}
           }
         >
           <List
@@ -323,15 +378,29 @@ class SinglePageDrawer extends SinglePage {
         </div>
 
         {(bottomBar || null) == null ? null : (
-          <div style={listViewMode === listViewModeCollection.list ? { flex: 0 } : {}}>
+          <div
+            style={
+              listViewMode === listViewModeCollection.list ? { flex: 0 } : {}
+            }
+          >
             <div
               style={
                 listViewMode === listViewModeCollection.list
-                  ? { height: '100%', display: 'flex', justifyContent: 'space-between' }
+                  ? {
+                      height: '100%',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }
                   : {}
               }
             >
-              <div style={listViewMode === listViewModeCollection.list ? { flex: 'auto' } : {}} />
+              <div
+                style={
+                  listViewMode === listViewModeCollection.list
+                    ? { flex: 'auto' }
+                    : {}
+                }
+              />
 
               {bottomBar}
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { yuan } from '@/customComponents/Charts';
+import { yuan } from '../customComponents/Charts';
 /**
  * 减少使用 dangerouslySetInnerHTML
  */
@@ -22,7 +22,7 @@ export default class Yuan extends React.PureComponent {
   render() {
     return (
       <span
-        ref={(ref) => {
+        ref={ref => {
           this.main = ref;
         }}
       />

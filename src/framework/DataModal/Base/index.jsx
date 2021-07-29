@@ -1,9 +1,13 @@
 import React from 'react';
 import { Row, Col, Form, Modal, Spin } from 'antd';
-import { CloseCircleOutlined, LoadingOutlined, EditOutlined } from '@ant-design/icons';
+import {
+  CloseCircleOutlined,
+  LoadingOutlined,
+  EditOutlined,
+} from '@ant-design/icons';
 
-import { defaultFormState, isUndefined } from '@/utils/tools';
-import { formContentConfig } from '@/utils/constants';
+import { defaultFormState, isUndefined } from '../../../utils/tools';
+import { formContentConfig } from '../../../utils/constants';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
 
@@ -96,7 +100,8 @@ class Base extends BaseWindow {
 
   buildOkButtonProps = () => {
     if (this.reloadWhenShow) {
-      const buttonDisabled = this.getSaveButtonDisabled() || this.getOtherButtonDisabled();
+      const buttonDisabled =
+        this.getSaveButtonDisabled() || this.getOtherButtonDisabled();
 
       return {
         disabled: buttonDisabled,
@@ -129,7 +134,8 @@ class Base extends BaseWindow {
 
   buildCancelButtonProps = () => {
     if (this.reloadWhenShow) {
-      const buttonDisabled = this.getSaveButtonDisabled() || this.getOtherButtonDisabled();
+      const buttonDisabled =
+        this.getSaveButtonDisabled() || this.getOtherButtonDisabled();
 
       return {
         disabled: buttonDisabled,
@@ -190,7 +196,7 @@ class Base extends BaseWindow {
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         zIndex={1001}
         okButtonProps={this.buildOkButtonProps()}
-        onOk={(e) => {
+        onOk={e => {
           this.handleOk(e);
         }}
         okText={this.buildOkTextWrapper()}
@@ -198,7 +204,9 @@ class Base extends BaseWindow {
         cancelText={this.buildCancelText()}
         onCancel={this.handleCancel}
       >
-        <Spin spinning={processing || dataLoading}>{this.renderModalInner()}</Spin>
+        <Spin spinning={processing || dataLoading}>
+          {this.renderModalInner()}
+        </Spin>
 
         {this.renderOther()}
       </Modal>

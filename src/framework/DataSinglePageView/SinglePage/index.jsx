@@ -6,8 +6,8 @@ import {
   stringIsNullOrWhiteSpace,
   showRuntimeErrorMessage,
   isUndefined,
-} from '@/utils/tools';
-import { listViewModeCollection } from '@/utils/constants';
+} from '../../../utils/tools';
+import { listViewModeCollection } from '../../../utils/constants';
 
 import Base from '../../DataListView/Base';
 import StandardTableCustom from '../../../customComponents/StandardTableCustom';
@@ -50,7 +50,7 @@ class SinglePage extends Base {
    *
    * @memberof PagerList
    */
-  adjustLoadRequestParams = (o) => o || {};
+  adjustLoadRequestParams = o => o || {};
 
   initLoadRequestParams = (o = {}) => {
     let d = o;
@@ -94,7 +94,7 @@ class SinglePage extends Base {
     return this.adjustLoadRequestParams(d);
   };
 
-  handleSearch = (e) => {
+  handleSearch = e => {
     e.preventDefault();
 
     if (this.checkWorkDoing()) {
@@ -106,7 +106,7 @@ class SinglePage extends Base {
     const { validateFields } = form;
 
     validateFields()
-      .then((fieldsValue) => {
+      .then(fieldsValue => {
         const values = {
           ...fieldsValue,
           updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
@@ -114,13 +114,13 @@ class SinglePage extends Base {
 
         this.searchData({ formValues: values });
       })
-      .catch((error) => {
+      .catch(error => {
         const { errorFields } = error;
 
         if (!isUndefined(errorFields)) {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          Object.values(errorFields).forEach(o => {
             m.push(o.errors[0]);
           });
 

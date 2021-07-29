@@ -1,4 +1,8 @@
-import { removeLocalStorage, getJsonFromLocalStorage, saveJsonToLocalStorage } from '@/utils/tools';
+import {
+  removeLocalStorage,
+  getJsonFromLocalStorage,
+  saveJsonToLocalStorage,
+} from '../utils/tools';
 
 const storageKeyCollection = {
   nearestLocalhostNotify: 'nearestLocalhostNotify',

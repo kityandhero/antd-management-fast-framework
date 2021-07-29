@@ -5,7 +5,7 @@ import {
   isFunction,
   isUndefined,
   showRuntimeErrorMessage,
-} from '@/utils/tools';
+} from '../../../utils/tools';
 import DataSingleView from '../../DataSingleView/DataLoad';
 
 class BaseUpdateForm extends DataSingleView {
@@ -23,9 +23,9 @@ class BaseUpdateForm extends DataSingleView {
     this.reloadData();
   };
 
-  supplementSubmitRequestParams = (o) => o;
+  supplementSubmitRequestParams = o => o;
 
-  afterCheckSubmitRequestParams = (o) => o;
+  afterCheckSubmitRequestParams = o => o;
 
   execSubmitApi = (values = {}, afterSubmitCallback) => {
     const { dispatch } = this.props;
@@ -58,7 +58,11 @@ class BaseUpdateForm extends DataSingleView {
           const { dataSuccess } = remoteData;
 
           if (dataSuccess) {
-            const { list: metaListData, data: metaData, extra: metaExtra } = remoteData;
+            const {
+              list: metaListData,
+              data: metaData,
+              extra: metaExtra,
+            } = remoteData;
 
             this.afterSubmitSuccess(
               metaData || null,
@@ -81,7 +85,7 @@ class BaseUpdateForm extends DataSingleView {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  validate = (e) => {
+  validate = e => {
     const form = this.getTargetForm();
 
     if (form == null) {
@@ -91,20 +95,20 @@ class BaseUpdateForm extends DataSingleView {
     const { validateFields } = form;
 
     validateFields()
-      .then((values) => {
+      .then(values => {
         this.execSubmitApi(values, () => {
           if (this.goToUpdateWhenProcessed) {
             this.reloadByUrl();
           }
         });
       })
-      .catch((error) => {
+      .catch(error => {
         const { errorFields } = error;
 
         if (!isUndefined(errorFields)) {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          Object.values(errorFields).forEach(o => {
             m.push(o.errors[0]);
           });
 

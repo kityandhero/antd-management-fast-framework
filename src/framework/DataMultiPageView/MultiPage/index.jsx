@@ -10,9 +10,12 @@ import {
   isNumber,
   isUndefined,
   showRuntimeErrorMessage,
-} from '@/utils/tools';
-import { listViewModeCollection } from '@/utils/constants';
-import { getUseParamsDataCache, setUseParamsDataCache } from '@/customConfig/storageAssist';
+} from '../../../utils/tools';
+import { listViewModeCollection } from '../../../utils/constants';
+import {
+  getUseParamsDataCache,
+  setUseParamsDataCache,
+} from '@/customConfig/storageAssist';
 
 import Base from '../../DataListView/Base';
 import DensityAction from '../../DataListView/DensityAction';
@@ -71,14 +74,14 @@ class MultiPage extends Base {
    *
    * @memberof PagerList
    */
-  adjustLoadRequestParams = (o) => o || {};
+  adjustLoadRequestParams = o => o || {};
 
   /**
    * 创建初始化请求数据体
    *
    * @memberof PagerList
    */
-  initLoadRequestParams = (o) => {
+  initLoadRequestParams = o => {
     let d = o || {};
 
     const { paramsKey, loadApiPath, formValues, filters, sorter } = this.state;
@@ -98,7 +101,14 @@ class MultiPage extends Base {
 
       this.useParamsKey = false;
     } else {
-      const { startTimeAlias, endTimeAlias, pageNo, pageSize, startTime, endTime } = this.state;
+      const {
+        startTimeAlias,
+        endTimeAlias,
+        pageNo,
+        pageSize,
+        startTime,
+        endTime,
+      } = this.state;
 
       if (!stringIsNullOrWhiteSpace(startTime)) {
         if (!stringIsNullOrWhiteSpace(startTimeAlias)) {
@@ -153,7 +163,7 @@ class MultiPage extends Base {
 
       const d = form.getFieldsValue();
 
-      Object.keys(d).forEach((key) => {
+      Object.keys(d).forEach(key => {
         const c = p[key] === 0 ? 0 : p[key] || null;
 
         if (c != null) {
@@ -168,7 +178,7 @@ class MultiPage extends Base {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  adjustRenderLoadRequestParamsWithKey = (d) => {};
+  adjustRenderLoadRequestParamsWithKey = d => {};
 
   afterGetRequestResult = () => {
     const { paramsKey } = this.state;
@@ -178,7 +188,7 @@ class MultiPage extends Base {
     }
   };
 
-  handleSearch = (e) => {
+  handleSearch = e => {
     e.preventDefault();
 
     if (this.checkWorkDoing()) {
@@ -191,7 +201,7 @@ class MultiPage extends Base {
     const { pageSize } = this.state;
 
     validateFields()
-      .then((fieldsValue) => {
+      .then(fieldsValue => {
         const values = {
           ...fieldsValue,
           updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
@@ -199,13 +209,13 @@ class MultiPage extends Base {
 
         this.searchData({ formValues: values, pageNo: 1, pageSize });
       })
-      .catch((error) => {
+      .catch(error => {
         const { errorFields } = error;
 
         if (!isUndefined(errorFields)) {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          Object.values(errorFields).forEach(o => {
             m.push(o.errors[0]);
           });
 
@@ -320,7 +330,10 @@ class MultiPage extends Base {
   renderListView = () => {
     const { metaOriginalData, dataLoading, reloading, processing } = this.state;
 
-    const { list, pagination } = metaOriginalData || { list: [], pagination: {} };
+    const { list, pagination } = metaOriginalData || {
+      list: [],
+      pagination: {},
+    };
 
     const paginationConfig = { ...pagination };
 
@@ -369,7 +382,7 @@ class MultiPage extends Base {
         <>
           <DensityAction
             tableSize={tableSize}
-            setTableSize={(key) => {
+            setTableSize={key => {
               this.setTableSize(key);
             }}
           />
@@ -392,10 +405,10 @@ class MultiPage extends Base {
           <ColumnSetting
             columns={this.getColumn()}
             columnsMap={this.getColumnsMap()}
-            setColumnsMap={(e) => {
+            setColumnsMap={e => {
               this.setColumnsMap(e);
             }}
-            setSortKeyColumns={(key) => {
+            setSortKeyColumns={key => {
               this.setSortKeyColumns(key);
             }}
           />

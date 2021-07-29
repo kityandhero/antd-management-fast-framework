@@ -39,7 +39,7 @@ import {
   replaceTargetText,
   formatDatetime,
   formatMoney,
-} from '@/utils/tools';
+} from '../../../utils/tools';
 import {
   searchFormContentConfig,
   columnFacadeMode,
@@ -47,15 +47,13 @@ import {
   datetimeFormat,
   contentConfig,
   pageHeaderRenderType,
-} from '@/utils/constants';
-import EverySpace from '@/customComponents/EverySpace';
-import IconInfo from '@/customComponents/IconInfo';
-import EllipsisCustom from '@/customComponents/EllipsisCustom';
-import Ellipsis from '@/customComponents/Ellipsis';
-import ImageBox from '@/customComponents/ImageBox';
-import HelpCard from '@/customComponents/HelpCard';
-
-import AuthorizationWrapper from '../../AuthorizationWrapper';
+} from '../../../utils/constants';
+import EverySpace from '../../../customComponents/EverySpace';
+import IconInfo from '../../../customComponents/IconInfo';
+import EllipsisCustom from '../../../customComponents/EllipsisCustom';
+import Ellipsis from '../../../customComponents/Ellipsis';
+import ImageBox from '../../../customComponents/ImageBox';
+import HelpCard from '../../../customComponents/HelpCard';
 import {
   buildButtonGroup,
   buildDropdownEllipsis,
@@ -70,6 +68,7 @@ import {
   decorateAvatar,
 } from '../../../customComponents/DecorateAvatar';
 import { tableSizeConfig } from '../../../customComponents/StandardTableCustom';
+import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 import DensityAction from '../DensityAction';
 import ColumnSetting from '../ColumnSetting';
@@ -114,11 +113,21 @@ class ListBase extends AuthorizationWrapper {
   }
 
   afterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {
-    this.doOtherAfterLoadSuccess(metaData, metaListData, metaExtra, metaOriginalData);
+    this.doOtherAfterLoadSuccess(
+      metaData,
+      metaListData,
+      metaExtra,
+      metaOriginalData,
+    );
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherAfterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {};
+  doOtherAfterLoadSuccess = (
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  ) => {};
 
   onDateRangeChange = (dates, dateStrings) => {
     this.setState({
@@ -127,7 +136,7 @@ class ListBase extends AuthorizationWrapper {
     });
   };
 
-  handleSelectRows = (rows) => {
+  handleSelectRows = rows => {
     this.setState({
       selectedDataTableDataRows: rows,
     });
@@ -139,7 +148,7 @@ class ListBase extends AuthorizationWrapper {
     });
   };
 
-  setSearchFormFieldsValue = (v) => {
+  setSearchFormFieldsValue = v => {
     const form = this.getSearchForm();
 
     if (form != null) {
@@ -150,7 +159,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterSetSearchFormFieldsValue = (v) => {};
+  afterSetSearchFormFieldsValue = v => {};
 
   getPageName = () => {
     const { pageName } = this.state;
@@ -166,13 +175,13 @@ class ListBase extends AuthorizationWrapper {
     return this.buildColumnList(list);
   };
 
-  buildColumnList = (list) => {
-    return (isArray(list) ? list : []).map((o) => {
+  buildColumnList = list => {
+    return (isArray(list) ? list : []).map(o => {
       return this.buildColumnItem(o);
     });
   };
 
-  buildColumnItem = (o) => {
+  buildColumnItem = o => {
     const d = { ...o };
 
     const { dataTarget, showHelper, placeholder } = {
@@ -263,10 +272,16 @@ class ListBase extends AuthorizationWrapper {
         let facadeConfig = facadeConfigSource || {};
 
         if (isFunction(facadeConfigBuilder)) {
-          facadeConfig = { ...facadeConfig, ...(facadeConfigBuilder(value, record) || {}) };
+          facadeConfig = {
+            ...facadeConfig,
+            ...(facadeConfigBuilder(value, record) || {}),
+          };
         }
 
-        if (stringIsNullOrWhiteSpace(facadeMode) || facadeMode === columnFacadeMode.ellipsis) {
+        if (
+          stringIsNullOrWhiteSpace(facadeMode) ||
+          facadeMode === columnFacadeMode.ellipsis
+        ) {
           if (isFunction(d.formatValue)) {
             val = d.formatValue(value, record);
           }
@@ -321,11 +336,16 @@ class ListBase extends AuthorizationWrapper {
 
         if (facadeMode === columnFacadeMode.datetime) {
           const { color, datetimeFormat: datetimeFormatValue } = {
-            ...{ color: null, datetimeFormat: datetimeFormat.yearMonthDayHourMinuteSecond },
+            ...{
+              color: null,
+              datetimeFormat: datetimeFormat.yearMonthDayHourMinuteSecond,
+            },
             ...facadeConfig,
           };
 
-          val = stringIsNullOrWhiteSpace(val) ? '' : formatDatetime(val, datetimeFormatValue) || '';
+          val = stringIsNullOrWhiteSpace(val)
+            ? ''
+            : formatDatetime(val, datetimeFormatValue) || '';
 
           return (
             <>
@@ -467,7 +487,7 @@ class ListBase extends AuthorizationWrapper {
   // 其他项重置
   handleFormOtherReset = () => {};
 
-  handleSearch = (e) => {
+  handleSearch = e => {
     e.preventDefault();
 
     if (this.checkWorkDoing()) {
@@ -479,7 +499,7 @@ class ListBase extends AuthorizationWrapper {
     const { validateFields } = form;
 
     validateFields()
-      .then((fieldsValue) => {
+      .then(fieldsValue => {
         const values = {
           ...fieldsValue,
           updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
@@ -487,13 +507,13 @@ class ListBase extends AuthorizationWrapper {
 
         this.searchData({ formValues: values });
       })
-      .catch((error) => {
+      .catch(error => {
         const { errorFields } = error;
 
         if (!isUndefined(errorFields)) {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          Object.values(errorFields).forEach(o => {
             m.push(o.errors[0]);
           });
 
@@ -523,7 +543,7 @@ class ListBase extends AuthorizationWrapper {
     return this.formRef.current;
   };
 
-  buildSearchFormContent = (config) => {
+  buildSearchFormContent = config => {
     if ((config || null) == null) {
       return null;
     }
@@ -537,7 +557,7 @@ class ListBase extends AuthorizationWrapper {
     const listData = [];
 
     if (isArray(list)) {
-      list.forEach((co) => {
+      list.forEach(co => {
         listData.push(co);
       });
     }
@@ -615,24 +635,38 @@ class ListBase extends AuthorizationWrapper {
           : null}
 
         {type === searchFormContentConfig.contentItemType.inputNumber
-          ? this.renderSearchInputNumber(fieldData.label, fieldData.name, fieldData.helper, {
-              ...{},
-              ...(contentItem.otherProps || {}),
-            })
+          ? this.renderSearchInputNumber(
+              fieldData.label,
+              fieldData.name,
+              fieldData.helper,
+              {
+                ...{},
+                ...(contentItem.otherProps || {}),
+              },
+            )
           : null}
 
         {type === searchFormContentConfig.contentItemType.datePicker
-          ? this.renderFormDatePicker(fieldData.label, fieldData.name, false, fieldData.helper, {
-              ...{},
-              ...(otherProps || {}),
-            })
+          ? this.renderFormDatePicker(
+              fieldData.label,
+              fieldData.name,
+              false,
+              fieldData.helper,
+              {
+                ...{},
+                ...(otherProps || {}),
+              },
+            )
           : null}
 
         {type === searchFormContentConfig.contentItemType.customRangePicker
-          ? this.renderSimpleFormRangePickerCore(contentItem.dateRangeFieldName, {
-              ...{},
-              ...(otherProps || {}),
-            })
+          ? this.renderSimpleFormRangePickerCore(
+              contentItem.dateRangeFieldName,
+              {
+                ...{},
+                ...(otherProps || {}),
+              },
+            )
           : null}
 
         {type === searchFormContentConfig.contentItemType.onlyShowInput
@@ -641,7 +675,11 @@ class ListBase extends AuthorizationWrapper {
               contentItem.value,
               fieldData.helper || '',
               contentItem.icon || <FormOutlined />,
-              { ...{}, ...(contentItem.otherProps || {}), ...{ disabled: true } },
+              {
+                ...{},
+                ...(contentItem.otherProps || {}),
+                ...{ disabled: true },
+              },
             )
           : null}
 
@@ -654,10 +692,18 @@ class ListBase extends AuthorizationWrapper {
           : null}
 
         {type === searchFormContentConfig.contentItemType.innerComponent
-          ? this.renderFormInnerComponent(fieldData.label, component, fieldData.helper, null, false)
+          ? this.renderFormInnerComponent(
+              fieldData.label,
+              component,
+              fieldData.helper,
+              null,
+              false,
+            )
           : null}
 
-        {type === searchFormContentConfig.contentItemType.component ? component || null : null}
+        {type === searchFormContentConfig.contentItemType.component
+          ? component || null
+          : null}
       </Col>
     );
   };
@@ -689,7 +735,7 @@ class ListBase extends AuthorizationWrapper {
         <Button
           disabled={dataLoading || reloading || searching}
           type="primary"
-          onClick={(e) => {
+          onClick={e => {
             this.handleSearch(e);
           }}
         >
@@ -718,7 +764,10 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  renderSimpleFormRangePickerCore = (dateRangeFieldName, rangePickerProps = null) => {
+  renderSimpleFormRangePickerCore = (
+    dateRangeFieldName,
+    rangePickerProps = null,
+  ) => {
     const { startTime, endTime } = this.state;
 
     const valueList = [];
@@ -760,10 +809,17 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  renderSimpleFormRangePicker = (dateRangeFieldName, colLg = 8, rangePickerProps = null) => {
+  renderSimpleFormRangePicker = (
+    dateRangeFieldName,
+    colLg = 8,
+    rangePickerProps = null,
+  ) => {
     return (
       <Col lg={colLg} md={12} sm={24} xs={24}>
-        {this.renderSimpleFormRangePickerCore(dateRangeFieldName, rangePickerProps)}
+        {this.renderSimpleFormRangePickerCore(
+          dateRangeFieldName,
+          rangePickerProps,
+        )}
       </Col>
     );
   };
@@ -818,7 +874,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   restoreColumnsOtherConfigArray = () => {
-    const columnsOtherConfigArray = this.getColumn().map((item) => {
+    const columnsOtherConfigArray = this.getColumn().map(item => {
       return { dataIndex: item.dataIndex, show: true, fixed: item.fixed || '' };
     });
 
@@ -839,15 +895,17 @@ class ListBase extends AuthorizationWrapper {
     };
   };
 
-  setTableSize = (key) => {
+  setTableSize = key => {
     this.setState({ tableSize: key });
   };
 
-  setColumnsMap = (e) => {
+  setColumnsMap = e => {
     if (Object.keys(e || {}).length === 0) {
       this.restoreColumnsOtherConfigArray();
     } else {
-      const columnsOtherConfigArrayChanged = (this.columnsOtherConfig || []).map((item) => {
+      const columnsOtherConfigArrayChanged = (
+        this.columnsOtherConfig || []
+      ).map(item => {
         const { dataIndex } = item;
 
         if (!isUndefined(e[dataIndex])) {
@@ -866,16 +924,18 @@ class ListBase extends AuthorizationWrapper {
 
     const { counterSetColumnsOtherConfig } = this.state;
 
-    this.setState({ counterSetColumnsOtherConfig: counterSetColumnsOtherConfig + 1 });
+    this.setState({
+      counterSetColumnsOtherConfig: counterSetColumnsOtherConfig + 1,
+    });
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setSortKeyColumns = (e) => {};
+  setSortKeyColumns = e => {};
 
   getColumnsMap = () => {
     const o = {};
 
-    (this.columnsOtherConfig || []).forEach((item) => {
+    (this.columnsOtherConfig || []).forEach(item => {
       const { dataIndex } = item;
 
       const temp = { ...{}, ...item };
@@ -891,10 +951,10 @@ class ListBase extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onBatchActionSelect = (key) => {};
+  onBatchActionSelect = key => {};
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  renderTable = (config) => null;
+  renderTable = config => null;
 
   renderAlertContent = () => {
     return '';
@@ -965,7 +1025,9 @@ class ListBase extends AuthorizationWrapper {
   renderBatchAction = () => {
     const { showSelect, selectedDataTableDataRows } = this.state;
 
-    const selectRows = isArray(selectedDataTableDataRows) ? selectedDataTableDataRows : [];
+    const selectRows = isArray(selectedDataTableDataRows)
+      ? selectedDataTableDataRows
+      : [];
 
     if (showSelect) {
       const batchActionMenu = this.renderBatchActionMenu();
@@ -974,7 +1036,7 @@ class ListBase extends AuthorizationWrapper {
         return (
           <>
             <BatchAction.Button
-              onSelect={(key) => {
+              onSelect={key => {
                 this.onBatchActionSelect(key);
               }}
               menus={batchActionMenu}
@@ -1009,12 +1071,12 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
-  adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
+  adjustTabListAvailable = tabListAvailable => tabListAvailable;
 
   getTabListAvailable = () => {
     const tabListAvailable = [];
 
-    (this.tabList || []).forEach((o) => {
+    (this.tabList || []).forEach(o => {
       const v = typeof o.show === 'undefined' ? true : o.show === true;
 
       if (v) {
@@ -1038,7 +1100,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleTabChange = (key) => {};
+  handleTabChange = key => {};
 
   onPageHeaderAvatarLoadErrorCallback = () => {
     this.setState({
@@ -1058,7 +1120,9 @@ class ListBase extends AuthorizationWrapper {
       <>
         <div className={styles.buttonBox}>
           {buildButtonGroup(buttonGroupData)}
-          {(ellipsisActionData || null) == null ? null : <Divider type="vertical" />}
+          {(ellipsisActionData || null) == null ? null : (
+            <Divider type="vertical" />
+          )}
           {buildDropdownEllipsis(ellipsisActionData)}
         </div>
       </>
@@ -1141,7 +1205,7 @@ class ListBase extends AuthorizationWrapper {
       <>
         <DensityAction
           tableSize={tableSize}
-          setTableSize={(key) => {
+          setTableSize={key => {
             this.setTableSize(key);
           }}
         />
@@ -1164,10 +1228,10 @@ class ListBase extends AuthorizationWrapper {
         <ColumnSetting
           columns={this.getColumn()}
           columnsMap={this.getColumnsMap()}
-          setColumnsMap={(e) => {
+          setColumnsMap={e => {
             this.setColumnsMap(e);
           }}
-          setSortKeyColumns={(key) => {
+          setSortKeyColumns={key => {
             this.setSortKeyColumns(key);
           }}
         />
@@ -1254,7 +1318,10 @@ class ListBase extends AuthorizationWrapper {
       return null;
     }
 
-    const { stick, title, tools } = { ...{ stick: false, title: '工具栏', tools: [] }, ...config };
+    const { stick, title, tools } = {
+      ...{ stick: false, title: '工具栏', tools: [] },
+      ...config,
+    };
 
     if (!isArray(tools)) {
       showErrorMessage('工具栏配置数据无效');
@@ -1276,7 +1343,7 @@ class ListBase extends AuthorizationWrapper {
           bodyStyle={{ padding: 0 }}
           extra={
             <Space split={<Divider type="vertical" />}>
-              {toolList.map((o) => {
+              {toolList.map(o => {
                 return (
                   <Tooltip key={o.key} title={o.title || ''}>
                     {o.component}
@@ -1355,7 +1422,8 @@ class ListBase extends AuthorizationWrapper {
     return (
       <HelpCard
         border={
-          mode !== contentConfig.wrapperType.model && mode !== contentConfig.wrapperType.drawer
+          mode !== contentConfig.wrapperType.model &&
+          mode !== contentConfig.wrapperType.drawer
         }
         compact={mode === contentConfig.wrapperType.model}
         helpBoxProps={{
@@ -1485,7 +1553,10 @@ class ListBase extends AuthorizationWrapper {
       return (
         <PageHeaderWrapper
           avatar={avatarProps}
-          title={pageHeaderTitle(this.getPageName(), this.pageHeaderTitlePrefix())}
+          title={pageHeaderTitle(
+            this.getPageName(),
+            this.pageHeaderTitlePrefix(),
+          )}
           subTitle={this.pageHeaderSubTitle()}
           tags={pageHeaderTagWrapper(this.pageHeaderTag())}
           extra={this.pageHeaderAction()}

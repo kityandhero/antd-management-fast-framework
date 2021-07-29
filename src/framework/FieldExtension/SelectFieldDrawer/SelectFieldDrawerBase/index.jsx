@@ -1,7 +1,11 @@
 import { message } from 'antd';
 
-import { isFunction, showRuntimeErrorMessage, toNumber } from '@/utils/tools';
-import { selectModeCollection } from '@/utils/constants';
+import {
+  isFunction,
+  showRuntimeErrorMessage,
+  toNumber,
+} from '../../../../utils/tools';
+import { selectModeCollection } from '../../../../utils/constants';
 
 import SelectFieldBase from '../SelectFieldBase';
 
@@ -44,7 +48,7 @@ class SelectFieldInteractiveBase extends SelectFieldBase {
     this.setState({ drawerVisible: false });
   };
 
-  afterDrawerSelectSuccess = (o) => {
+  afterDrawerSelectSuccess = o => {
     this.afterSelectSuccessCore(o);
   };
 
@@ -54,7 +58,7 @@ class SelectFieldInteractiveBase extends SelectFieldBase {
     });
   };
 
-  afterModalSelectSuccess = (o) => {
+  afterModalSelectSuccess = o => {
     this.setState({
       modalVisible: false,
     });
@@ -68,7 +72,7 @@ class SelectFieldInteractiveBase extends SelectFieldBase {
     });
   };
 
-  afterSelectSuccessCore = (o) => {
+  afterSelectSuccessCore = o => {
     if ((o || null) == null) {
       const { fieldTitle, fieldPlaceholder } = this.getFieldData() || {
         fieldTitle: '',
