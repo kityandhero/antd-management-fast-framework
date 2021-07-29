@@ -11,12 +11,18 @@ import styles from './index.less';
  * 默认的 index 列容器，提供一个好看的 index
  * @param param0
  */
-const DropdownButton = ({ children, menus = [], onSelect, style, disabled }) => (
+const DropdownButton = ({
+  children,
+  menus = [],
+  onSelect,
+  style,
+  disabled,
+}) => (
   <ConfigConsumer>
     {() => {
       const menu = (
-        <Menu onClick={(params) => onSelect && onSelect(params.key)}>
-          {menus.map((item) => (
+        <Menu onClick={params => onSelect && onSelect(params.key)}>
+          {menus.map(item => (
             <Menu.Item
               key={item.key}
               disabled={(item.disabled || null) == null ? false : item.disabled}
@@ -28,7 +34,11 @@ const DropdownButton = ({ children, menus = [], onSelect, style, disabled }) => 
       );
 
       return (
-        <Dropdown overlay={menu} className={styles.batchAction} disabled={disabled}>
+        <Dropdown
+          overlay={menu}
+          className={styles.batchAction}
+          disabled={disabled}
+        >
           <Button style={style}>
             {children} <DownOutlined />
           </Button>
@@ -42,14 +52,18 @@ const BatchAction = ({ style, onSelect, menus = [], disabled }) => (
   <ConfigConsumer>
     {() => {
       const menu = (
-        <Menu onClick={(params) => onSelect && onSelect(params.key)}>
-          {menus.map((item) => (
+        <Menu onClick={params => onSelect && onSelect(params.key)}>
+          {menus.map(item => (
             <Menu.Item key={item.key}>{item.name}</Menu.Item>
           ))}
         </Menu>
       );
       return (
-        <Dropdown overlay={menu} className={styles.batchAction} disabled={disabled}>
+        <Dropdown
+          overlay={menu}
+          className={styles.batchAction}
+          disabled={disabled}
+        >
           <a style={style}>
             <EllipsisOutlined />
           </a>

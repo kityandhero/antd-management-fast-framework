@@ -1,6 +1,10 @@
 import React from 'react';
 import { Button, Checkbox, Popover, Tooltip } from 'antd';
-import { PushpinOutlined, SettingOutlined, VerticalAlignMiddleOutlined } from '@ant-design/icons';
+import {
+  PushpinOutlined,
+  SettingOutlined,
+  VerticalAlignMiddleOutlined,
+} from '@ant-design/icons';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -28,7 +32,15 @@ export const genColumnKey = (key, dataIndex) => {
   return undefined;
 };
 
-const ToolTipIcon = ({ title, show, children, columnKey, fixed, columnsMap, setColumnsMap }) => {
+const ToolTipIcon = ({
+  title,
+  show,
+  children,
+  columnKey,
+  fixed,
+  columnsMap,
+  setColumnsMap,
+}) => {
   if (show) {
     return (
       <Tooltip title={title}>
@@ -50,7 +62,13 @@ const ToolTipIcon = ({ title, show, children, columnKey, fixed, columnsMap, setC
   return null;
 };
 
-const CheckboxListItem = ({ columnKey, columnsMap, title, setColumnsMap, fixed }) => {
+const CheckboxListItem = ({
+  columnKey,
+  columnsMap,
+  title,
+  setColumnsMap,
+  fixed,
+}) => {
   const columnsCollection = columnsMap || [];
 
   const config = columnsCollection[columnKey || 'null'] || { show: true };
@@ -59,7 +77,7 @@ const CheckboxListItem = ({ columnKey, columnsMap, title, setColumnsMap, fixed }
     <span className={styles.item} key={columnKey}>
       <Checkbox
         className={styles.checkbox}
-        onChange={(e) => {
+        onChange={e => {
           if (columnKey) {
             const tempConfig = columnsCollection[columnKey || ''] || {};
             const newSetting = { ...tempConfig };
@@ -83,14 +101,24 @@ const CheckboxListItem = ({ columnKey, columnsMap, title, setColumnsMap, fixed }
         {title}
       </Checkbox>
       <span className={styles.option}>
-        <ToolTipIcon columnKey={columnKey} fixed="left" title="固定到左边" show={fixed !== 'left'}>
+        <ToolTipIcon
+          columnKey={columnKey}
+          fixed="left"
+          title="固定到左边"
+          show={fixed !== 'left'}
+        >
           <PushpinOutlined
             style={{
               transform: 'rotate(-90deg)',
             }}
           />
         </ToolTipIcon>
-        <ToolTipIcon columnKey={columnKey} fixed={undefined} title="取消固定" show={!!fixed}>
+        <ToolTipIcon
+          columnKey={columnKey}
+          fixed={undefined}
+          title="取消固定"
+          show={!!fixed}
+        >
           <VerticalAlignMiddleOutlined />
         </ToolTipIcon>
         <ToolTipIcon
@@ -124,7 +152,7 @@ const CheckboxList = ({
   const move = (id, targetIndex) => {
     const newColumns = [...sortKeyColumns];
 
-    const findIndex = newColumns.findIndex((columnKey) => columnKey === id);
+    const findIndex = newColumns.findIndex(columnKey => columnKey === id);
 
     const key = newColumns[findIndex];
     newColumns.splice(findIndex, 1);
@@ -136,28 +164,30 @@ const CheckboxList = ({
     setSortKeyColumns(newColumns);
   };
 
-  const listDom = list.map(({ key, dataIndex, title, fixed, ...rest }, index) => {
-    const columnKey = genColumnKey(key, dataIndex || rest.index);
+  const listDom = list.map(
+    ({ key, dataIndex, title, fixed, ...rest }, index) => {
+      const columnKey = genColumnKey(key, dataIndex || rest.index);
 
-    return (
-      <DnDItem
-        index={index}
-        id={`${columnKey}_${rest.index}`}
-        key={`${columnKey || 'no'}_${title}`}
-        end={(id, targetIndex) => {
-          move(id, targetIndex);
-        }}
-      >
-        <CheckboxListItem
-          setColumnsMap={setColumnsMap}
-          columnKey={columnKey || `${index}`}
-          columnsMap={columnsMap}
-          title={title}
-          fixed={fixed}
-        />
-      </DnDItem>
-    );
-  });
+      return (
+        <DnDItem
+          index={index}
+          id={`${columnKey}_${rest.index}`}
+          key={`${columnKey || 'no'}_${title}`}
+          end={(id, targetIndex) => {
+            move(id, targetIndex);
+          }}
+        >
+          <CheckboxListItem
+            setColumnsMap={setColumnsMap}
+            columnKey={columnKey || `${index}`}
+            columnsMap={columnsMap}
+            title={title}
+            fixed={fixed}
+          />
+        </DnDItem>
+      );
+    },
+  );
 
   return (
     <DndProvider backend={Backend}>
@@ -167,12 +197,17 @@ const CheckboxList = ({
   );
 };
 
-const GroupCheckboxList = ({ localColumns, columnsMap, setColumnsMap, setSortKeyColumns }) => {
+const GroupCheckboxList = ({
+  localColumns,
+  columnsMap,
+  setColumnsMap,
+  setSortKeyColumns,
+}) => {
   const rightList = [];
   const leftList = [];
   const list = [];
 
-  localColumns.forEach((item) => {
+  localColumns.forEach(item => {
     const { fixed } = item;
     if (fixed === 'left') {
       leftList.push(item);
@@ -216,7 +251,7 @@ const GroupCheckboxList = ({ localColumns, columnsMap, setColumnsMap, setSortKey
   );
 };
 
-const ColumnSetting = (props) => {
+const ColumnSetting = props => {
   const localColumns = props.columns || [];
   const { columnsMap, setColumnsMap, setSortKeyColumns } = props;
 
@@ -241,11 +276,12 @@ const ColumnSetting = (props) => {
     }
   };
 
-  const selectKeys = Object.values(columnsMap || []).filter((value) => {
+  const selectKeys = Object.values(columnsMap || []).filter(value => {
     return !value || value.show === false;
   });
 
-  const indeterminate = selectKeys.length > 0 && selectKeys.length !== localColumns.length;
+  const indeterminate =
+    selectKeys.length > 0 && selectKeys.length !== localColumns.length;
 
   return (
     <span className={styles.columnSetting}>
@@ -255,8 +291,11 @@ const ColumnSetting = (props) => {
           <div className={styles.topTitle}>
             <Checkbox
               indeterminate={indeterminate}
-              checked={selectKeys.length === 0 && selectKeys.length !== localColumns.length}
-              onChange={(e) => {
+              checked={
+                selectKeys.length === 0 &&
+                selectKeys.length !== localColumns.length
+              }
+              onChange={e => {
                 if (e.target.checked) {
                   setAllSelectAction();
                 } else {

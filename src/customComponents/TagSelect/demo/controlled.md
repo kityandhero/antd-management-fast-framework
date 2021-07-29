@@ -13,7 +13,7 @@ class Demo extends React.Component {
   state = {
     value: ['cat1'],
   };
-  handleFormSubmit = (value) => {
+  handleFormSubmit = value => {
     this.setState({
       value,
     });
@@ -32,7 +32,11 @@ class Demo extends React.Component {
             padding: 16,
           }}
         >
-          <TagSelect hideCheckAll={true} value={this.state.value} onChange={this.handleFormSubmit}>
+          <TagSelect
+            hideCheckAll={true}
+            value={this.state.value}
+            onChange={this.handleFormSubmit}
+          >
             <TagSelect.Option value="cat1">类目一</TagSelect.Option>
             <TagSelect.Option value="cat2">类目二</TagSelect.Option>
             <TagSelect.Option value="cat3">类目三</TagSelect.Option>

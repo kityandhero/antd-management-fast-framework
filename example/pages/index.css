@@ -11,7 +11,7 @@ a {
 }
 
 .normal {
-  background: #ddd;
   height: 100vh;
   padding: 48px;
+  background: #ddd;
 }

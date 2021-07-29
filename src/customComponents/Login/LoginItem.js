@@ -100,7 +100,9 @@ class WrapFormItem extends Component {
                 size="large"
                 onClick={this.onGetCaptcha}
               >
-                {count ? `${count} ${getCaptchaSecondText}` : getCaptchaButtonText}
+                {count
+                  ? `${count} ${getCaptchaSecondText}`
+                  : getCaptchaButtonText}
               </Button>
             </Col>
           </Row>
@@ -121,11 +123,11 @@ WrapFormItem.defaultProps = {
 };
 
 const LoginItem = {};
-Object.keys(ItemMap).forEach((key) => {
+Object.keys(ItemMap).forEach(key => {
   const item = ItemMap[key];
-  LoginItem[key] = (props) => (
+  LoginItem[key] = props => (
     <LoginContext.Consumer>
-      {(context) => (
+      {context => (
         <WrapFormItem
           customprops={item.props}
           rules={item.rules}

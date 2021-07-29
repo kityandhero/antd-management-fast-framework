@@ -38,7 +38,11 @@ export default function NoticeList({
           ) : null;
 
           return (
-            <List.Item className={itemCls} key={item.key || i} onClick={() => onClick(item)}>
+            <List.Item
+              className={itemCls}
+              key={item.key || i}
+              onClick={() => onClick(item)}
+            >
               <List.Item.Meta
                 className={styles.meta}
                 avatar={<span className={styles.iconElement}>{leftIcon}</span>}
@@ -50,7 +54,10 @@ export default function NoticeList({
                 }
                 description={
                   <div>
-                    <div className={styles.description} title={item.description}>
+                    <div
+                      className={styles.description}
+                      title={item.description}
+                    >
                       {item.description}
                     </div>
                     <div className={styles.datetime}>{item.datetime}</div>

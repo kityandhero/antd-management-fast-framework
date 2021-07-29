@@ -5,4 +5,7 @@ export interface ITagSelectOptionProps {
   style?: React.CSSProperties;
 }
 
-export default class TagSelectOption extends React.Component<ITagSelectOptionProps, any> {}
+export default class TagSelectOption extends React.Component<
+  ITagSelectOptionProps,
+  any
+> {}

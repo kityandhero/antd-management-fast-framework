@@ -22,9 +22,10 @@ import Ellipsis from 'ant-design-pro/lib/Ellipsis';
 
 const article = (
   <p>
-    There were injuries alleged in three <a href="#cover">cases in 2015</a>, and a fourth incident
-    in September, according to the safety recall report. After meeting with US regulators in
-    October, the firm decided to issue a voluntary recall.
+    There were injuries alleged in three <a href="#cover">cases in 2015</a>, and
+    a fourth incident in September, according to the safety recall report. After
+    meeting with US regulators in October, the firm decided to issue a voluntary
+    recall.
   </p>
 );
 

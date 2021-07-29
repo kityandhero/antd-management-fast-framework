@@ -4,7 +4,17 @@ import { CaretUpFilled, CaretDownOutlined } from '@ant-design/icons';
 
 import styles from './index.less';
 
-const NumberInfo = ({ theme, title, subTitle, total, subTotal, status, suffix, gap, ...rest }) => (
+const NumberInfo = ({
+  theme,
+  title,
+  subTitle,
+  total,
+  subTotal,
+  status,
+  suffix,
+  gap,
+  ...rest
+}) => (
   <div
     className={classNames(styles.numberInfo, {
       [styles[`numberInfo${theme}`]]: theme,
@@ -12,7 +22,10 @@ const NumberInfo = ({ theme, title, subTitle, total, subTotal, status, suffix, g
     {...rest}
   >
     {title && (
-      <div className={styles.numberInfoTitle} title={typeof title === 'string' ? title : ''}>
+      <div
+        className={styles.numberInfoTitle}
+        title={typeof title === 'string' ? title : ''}
+      >
         {title}
       </div>
     )}
@@ -24,7 +37,10 @@ const NumberInfo = ({ theme, title, subTitle, total, subTotal, status, suffix, g
         {subTitle}
       </div>
     )}
-    <div className={styles.numberInfoValue} style={gap ? { marginTop: gap } : null}>
+    <div
+      className={styles.numberInfoValue}
+      style={gap ? { marginTop: gap } : null}
+    >
       <span>
         {total}
         {suffix && <em className={styles.suffix}>{suffix}</em>}

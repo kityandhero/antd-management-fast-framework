@@ -1,5 +1,10 @@
 import React from 'react';
-import { UserOutlined, LockOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  LockOutlined,
+  MobileOutlined,
+  MailOutlined,
+} from '@ant-design/icons';
 
 import styles from './index.less';
 

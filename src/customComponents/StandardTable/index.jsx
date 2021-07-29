@@ -4,7 +4,7 @@ import styles from './index.less';
 
 function initTotalList(columns) {
   const totalList = [];
-  columns.forEach((column) => {
+  columns.forEach(column => {
     if (column.needTotal) {
       totalList.push({ ...column, total: 0 });
     }
@@ -38,9 +38,12 @@ class StandardTable extends PureComponent {
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
     let { needTotalList } = this.state;
-    needTotalList = needTotalList.map((item) => ({
+    needTotalList = needTotalList.map(item => ({
       ...item,
-      total: selectedRows.reduce((sum, val) => sum + parseFloat(val[item.dataIndex], 10), 0),
+      total: selectedRows.reduce(
+        (sum, val) => sum + parseFloat(val[item.dataIndex], 10),
+        0,
+      ),
     }));
     const { onSelectRow } = this.props;
     if (onSelectRow) {
@@ -75,7 +78,7 @@ class StandardTable extends PureComponent {
     const rowSelection = {
       selectedRowKeys,
       onChange: this.handleRowSelectChange,
-      getCheckboxProps: (record) => ({
+      getCheckboxProps: record => ({
         disabled: record.disabled,
       }),
     };
@@ -86,8 +89,10 @@ class StandardTable extends PureComponent {
           <Alert
             message={
               <>
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
-                {needTotalList.map((item) => (
+                已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a>{' '}
+                项&nbsp;&nbsp;
+                {needTotalList.map(item => (
                   <span style={{ marginLeft: 8 }} key={item.dataIndex}>
                     {item.title}
                     总计&nbsp;

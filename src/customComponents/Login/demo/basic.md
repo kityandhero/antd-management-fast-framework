@@ -20,17 +20,24 @@ class LoginDemo extends React.Component {
     autoLogin: true,
   };
   onSubmit = (err, values) => {
-    console.log('value collected ->', { ...values, autoLogin: this.state.autoLogin });
+    console.log('value collected ->', {
+      ...values,
+      autoLogin: this.state.autoLogin,
+    });
     if (this.state.type === 'tab1') {
       this.setState(
         {
           notice: '',
         },
         () => {
-          if (!err && (values.username !== 'admin' || values.password !== '888888')) {
+          if (
+            !err &&
+            (values.username !== 'admin' || values.password !== '888888')
+          ) {
             setTimeout(() => {
               this.setState({
-                notice: 'The combination of username and password is incorrect!',
+                notice:
+                  'The combination of username and password is incorrect!',
               });
             }, 500);
           }
@@ -38,12 +45,12 @@ class LoginDemo extends React.Component {
       );
     }
   };
-  onTabChange = (key) => {
+  onTabChange = key => {
     this.setState({
       type: key,
     });
   };
-  changeAutoLogin = (e) => {
+  changeAutoLogin = e => {
     this.setState({
       autoLogin: e.target.checked,
     });
@@ -70,10 +77,16 @@ class LoginDemo extends React.Component {
         </Tab>
         <Tab key="tab2" tab="Mobile">
           <Mobile name="mobile" />
-          <Captcha onGetCaptcha={() => console.log('Get captcha!')} name="captcha" />
+          <Captcha
+            onGetCaptcha={() => console.log('Get captcha!')}
+            name="captcha"
+          />
         </Tab>
         <div>
-          <Checkbox checked={this.state.autoLogin} onChange={this.changeAutoLogin}>
+          <Checkbox
+            checked={this.state.autoLogin}
+            onChange={this.changeAutoLogin}
+          >
             Keep me logged in
           </Checkbox>
           <a style={{ float: 'right' }} href="">

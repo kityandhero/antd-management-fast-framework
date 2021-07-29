@@ -6,7 +6,9 @@ export interface IAvatarListProps {
   maxLength?: number;
   excessItemsStyle?: React.CSSProperties;
   style?: React.CSSProperties;
-  children: React.ReactElement<AvatarItem> | Array<React.ReactElement<AvatarItem>>;
+  children:
+    | React.ReactElement<AvatarItem>
+    | Array<React.ReactElement<AvatarItem>>;
 }
 
 export default class AvatarList extends React.Component<IAvatarListProps, any> {

@@ -100,7 +100,11 @@ class WaterWave extends Component {
     const circleOffset = -(Math.PI / 2);
     let circleLock = true;
 
-    for (let i = circleOffset; i < circleOffset + 2 * Math.PI; i += 1 / (8 * Math.PI)) {
+    for (
+      let i = circleOffset;
+      i < circleOffset + 2 * Math.PI;
+      i += 1 / (8 * Math.PI)
+    ) {
       arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
     }
 
@@ -213,7 +217,7 @@ class WaterWave extends Component {
     return (
       <div
         className={styles.waterWave}
-        ref={(n) => (this.root = n)}
+        ref={n => (this.root = n)}
         style={{
           transform: `scale(${radio})`,
         }}
@@ -227,7 +231,7 @@ class WaterWave extends Component {
         >
           <canvas
             className={styles.waterWaveCanvasWrapper}
-            ref={(n) => (this.node = n)}
+            ref={n => (this.node = n)}
             width={height * 2}
             height={height * 2}
           />

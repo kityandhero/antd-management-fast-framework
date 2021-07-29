@@ -16,7 +16,7 @@ class NoticeIcon extends PureComponent {
     onItemClick(item, tabProps);
   };
 
-  onTabChange = (tabType) => {
+  onTabChange = tabType => {
     const { onTabChange } = this.props;
     onTabChange(tabType);
   };
@@ -26,7 +26,7 @@ class NoticeIcon extends PureComponent {
     if (!children) {
       return null;
     }
-    const panes = React.Children.map(children, (child) => {
+    const panes = React.Children.map(children, child => {
       const title =
         child.props.list && child.props.list.length > 0
           ? `${child.props.title} (${child.props.list.length})`
@@ -36,7 +36,7 @@ class NoticeIcon extends PureComponent {
           <List
             {...child.props}
             data={child.props.list}
-            onClick={(item) => this.onItemClick(item, child.props)}
+            onClick={item => this.onItemClick(item, child.props)}
             onClear={() => onClear(child.props.name)}
             title={child.props.title}
             locale={locale}
@@ -54,13 +54,24 @@ class NoticeIcon extends PureComponent {
   }
 
   render() {
-    const { className, count, popupAlign, popupVisible, onPopupVisibleChange, bell } = this.props;
+    const {
+      className,
+      count,
+      popupAlign,
+      popupVisible,
+      onPopupVisibleChange,
+      bell,
+    } = this.props;
     const noticeButtonClass = classNames(className, styles.noticeButton);
     const notificationBox = this.getNotificationBox();
     const NoticeBellIcon = bell || <BellOutlined className={styles.icon} />;
     const trigger = (
       <span className={noticeButtonClass}>
-        <Badge count={count} style={{ boxShadow: 'none' }} className={styles.badge}>
+        <Badge
+          count={count}
+          style={{ boxShadow: 'none' }}
+          className={styles.badge}
+        >
           {NoticeBellIcon}
         </Badge>
       </span>
@@ -99,7 +110,8 @@ NoticeIcon.defaultProps = {
     emptyText: 'No notifications',
     clear: 'Clear',
   },
-  emptyImage: 'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
+  emptyImage:
+    'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
 };
 
 export default NoticeIcon;

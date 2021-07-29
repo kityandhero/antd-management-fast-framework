@@ -1,4 +1,12 @@
-import { Chart, registerShape, Coordinate, Axis, Interaction, Interval, Tooltip } from 'bizcharts';
+import {
+  Chart,
+  registerShape,
+  Coordinate,
+  Axis,
+  Interaction,
+  Interval,
+  Tooltip,
+} from 'bizcharts';
 import React, { Component } from 'react';
 import { Row, Col, Divider } from 'antd';
 import classNames from 'classnames';
@@ -29,10 +37,10 @@ registerShape('interval', 'sliceShape', {
 class Pie extends Component {
   state = {};
 
-  calculateTotal = (d) => {
+  calculateTotal = d => {
     let result = 0;
 
-    (d || []).map((o) => {
+    (d || []).map(o => {
       result += o.y;
 
       return o;
@@ -60,7 +68,12 @@ class Pie extends Component {
                 <Coordinate type="theta" radius={0.8} innerRadius={0.75} />
                 <Axis visible={false} />
                 <Tooltip showTitle={false} />
-                <Interval adjust="stack" position="y" color="x" shape="sliceShape" />
+                <Interval
+                  adjust="stack"
+                  position="y"
+                  color="x"
+                  shape="sliceShape"
+                />
                 <Interaction type="element-single-selected" />
               </Chart>
             </div>
@@ -69,7 +82,9 @@ class Pie extends Component {
               <div className={styles.total}>
                 {subTitle && <h4 className="pie-sub-title">{subTitle}</h4>}
                 {total && (
-                  <div className="pie-stat">{typeof total === 'function' ? total() : total}</div>
+                  <div className="pie-stat">
+                    {typeof total === 'function' ? total() : total}
+                  </div>
                 )}
               </div>
             )}
@@ -91,7 +106,9 @@ class Pie extends Component {
                     <Divider type="vertical" />
                     <span className={styles.percent}>
                       {`${((totalValue || 0) > 0
-                        ? (Number.isNaN(item.y / totalValue) ? 0 : item.y / totalValue) * 100
+                        ? (Number.isNaN(item.y / totalValue)
+                            ? 0
+                            : item.y / totalValue) * 100
                         : 0
                       ).toFixed(2)}%`}
                     </span>

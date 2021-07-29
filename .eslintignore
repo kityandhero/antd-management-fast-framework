@@ -1,0 +1,11 @@
+/lambda/
+/scripts
+/config
+/public
+/lib
+.history
+*.test.js
+*.d.ts
+*.log
+*.zip
+*.txt

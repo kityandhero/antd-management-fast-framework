@@ -10,4 +10,7 @@ export interface INumberInfoProps {
   style?: React.CSSProperties;
 }
 
-export default class NumberInfo extends React.Component<INumberInfoProps, any> {}
+export default class NumberInfo extends React.Component<
+  INumberInfoProps,
+  any
+> {}

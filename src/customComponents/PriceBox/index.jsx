@@ -47,9 +47,13 @@ class PriceBox extends PureComponent {
           }}
         >
           <div style={{ ...commonStyle, ...(prefixStyle || {}) }}>{prefix}</div>
-          <div style={{ ...commonStyle, ...(integerPartStyle || {}) }}>{integer}</div>
+          <div style={{ ...commonStyle, ...(integerPartStyle || {}) }}>
+            {integer}
+          </div>
           <div style={{ ...commonStyle, ...(pointStyle || {}) }}>.</div>
-          <div style={{ ...commonStyle, ...(decimalPartStyle || {}) }}>{decimal}</div>
+          <div style={{ ...commonStyle, ...(decimalPartStyle || {}) }}>
+            {decimal}
+          </div>
         </div>
       </div>
     );

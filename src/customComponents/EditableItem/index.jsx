@@ -13,7 +13,7 @@ export default class EditableItem extends PureComponent {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { value } = e.target;
     this.setState({ value });
   };
@@ -37,7 +37,11 @@ export default class EditableItem extends PureComponent {
       <div className={styles.editableItem}>
         {editable ? (
           <div className={styles.wrapper}>
-            <Input value={value} onChange={this.handleChange} onPressEnter={this.check} />
+            <Input
+              value={value}
+              onChange={this.handleChange}
+              onPressEnter={this.check}
+            />
             <CheckOutlined className={styles.icon} onClick={this.check} />
           </div>
         ) : (

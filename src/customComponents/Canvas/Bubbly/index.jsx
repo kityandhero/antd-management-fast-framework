@@ -6,8 +6,15 @@ class CanvasRibbon extends Core {
   bubbleList = [];
 
   doAfterDidMount = ({ canvasContext }) => {
-    const { shadowColor, blur, bubbleFunc, radiusFunc, angleFunc, velocityFunc, bubbles } =
-      this.props;
+    const {
+      shadowColor,
+      blur,
+      bubbleFunc,
+      radiusFunc,
+      angleFunc,
+      velocityFunc,
+      bubbles,
+    } = this.props;
 
     const width = this.canvasWidth;
     const height = this.canvasHeight;
@@ -65,7 +72,7 @@ class CanvasRibbon extends Core {
       context.fillRect(0, 0, width, height);
       context.globalCompositeOperation = compose || 'lighter';
 
-      this.bubbleList = (this.bubbleList || []).map((b) => {
+      this.bubbleList = (this.bubbleList || []).map(b => {
         const bubble = b;
 
         context.beginPath();

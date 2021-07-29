@@ -1,6 +1,10 @@
 import React from 'react';
 import { Button, Divider } from 'antd';
-import { SaveOutlined, LoadingOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import {
+  SaveOutlined,
+  LoadingOutlined,
+  CloseCircleOutlined,
+} from '@ant-design/icons';
 
 import BaseLoadDrawer from '../BaseLoadDrawer';
 
@@ -28,7 +32,7 @@ class BaseUpdateDrawer extends BaseLoadDrawer {
         <Button
           type="primary"
           disabled={dataLoading || processing || !loadSuccess}
-          onClick={(e) => {
+          onClick={e => {
             this.handleOk(e);
           }}
         >

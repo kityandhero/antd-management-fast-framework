@@ -38,11 +38,19 @@ export const cutStrByFullLength = (str = '', maxLength) => {
   }, '');
 };
 
-const EllipsisText = ({ text, length, tooltip, fullWidthRecognition, ...other }) => {
+const EllipsisText = ({
+  text,
+  length,
+  tooltip,
+  fullWidthRecognition,
+  ...other
+}) => {
   if (typeof text !== 'string') {
     throw new Error('Ellipsis children must be string.');
   }
-  const textLength = fullWidthRecognition ? getStrFullLength(text) : text.length;
+  const textLength = fullWidthRecognition
+    ? getStrFullLength(text)
+    : text.length;
   if (textLength <= length || length < 0) {
     return <span {...other}>{text}</span>;
   }
@@ -51,7 +59,9 @@ const EllipsisText = ({ text, length, tooltip, fullWidthRecognition, ...other })
   if (length - tail.length <= 0) {
     displayText = '';
   } else {
-    displayText = fullWidthRecognition ? cutStrByFullLength(text, length) : text.slice(0, length);
+    displayText = fullWidthRecognition
+      ? cutStrByFullLength(text, length)
+      : text.slice(0, length);
   }
 
   if (tooltip) {
@@ -95,7 +105,8 @@ export default class EllipsisCustom extends Component {
   computeLine = () => {
     const { lines } = this.props;
     if (lines && !isSupportLineClamp) {
-      const text = this.shadowChildren.innerText || this.shadowChildren.textContent;
+      const text =
+        this.shadowChildren.innerText || this.shadowChildren.textContent;
       const lineHeight = parseInt(getComputedStyle(this.root).lineHeight, 10);
       const targetHeight = lines * lineHeight;
       this.content.style.height = `${targetHeight}px`;
@@ -158,23 +169,23 @@ export default class EllipsisCustom extends Component {
     return this.bisection(th, mid, begin, end, text, shadowNode);
   };
 
-  handleRoot = (n) => {
+  handleRoot = n => {
     this.root = n;
   };
 
-  handleContent = (n) => {
+  handleContent = n => {
     this.content = n;
   };
 
-  handleNode = (n) => {
+  handleNode = n => {
     this.node = n;
   };
 
-  handleShadow = (n) => {
+  handleShadow = n => {
     this.shadow = n;
   };
 
-  handleShadowChildren = (n) => {
+  handleShadowChildren = n => {
     this.shadowChildren = n;
   };
 
@@ -219,7 +230,9 @@ export default class EllipsisCustom extends Component {
       );
     }
 
-    const id = `antd-pro-ellipsis-${`${new Date().getTime()}${Math.floor(Math.random() * 100)}`}`;
+    const id = `antd-pro-ellipsis-${`${new Date().getTime()}${Math.floor(
+      Math.random() * 100,
+    )}`}`;
 
     // support document.body.style.webkitLineClamp
     if (isSupportLineClamp) {
@@ -234,7 +247,11 @@ export default class EllipsisCustom extends Component {
       );
 
       return tooltip ? (
-        <Tooltip {...tooltip} overlayStyle={TooltipOverlayStyle} title={children}>
+        <Tooltip
+          {...tooltip}
+          overlayStyle={TooltipOverlayStyle}
+          title={children}
+        >
           {node}
         </Tooltip>
       ) : (
@@ -253,7 +270,11 @@ export default class EllipsisCustom extends Component {
       <div {...restProps} ref={this.handleRoot} className={cls}>
         <div ref={this.handleContent}>
           {tooltip ? (
-            <Tooltip {...tooltip} overlayStyle={TooltipOverlayStyle} title={text}>
+            <Tooltip
+              {...tooltip}
+              overlayStyle={TooltipOverlayStyle}
+              title={text}
+            >
               {childNode}
             </Tooltip>
           ) : (

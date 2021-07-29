@@ -12,7 +12,7 @@ class EditableLinkGroup extends PureComponent {
     const { links, linkElement, onAdd } = this.props;
     return (
       <div className={styles.linkGroup}>
-        {links.map((link) =>
+        {links.map(link =>
           createElement(
             linkElement,
             {
@@ -23,7 +23,13 @@ class EditableLinkGroup extends PureComponent {
             link.title,
           ),
         )}
-        <Button size="small" type="primary" ghost onClick={onAdd} icon={<PlusOutlined />}>
+        <Button
+          size="small"
+          type="primary"
+          ghost
+          onClick={onAdd}
+          icon={<PlusOutlined />}
+        >
           添加
         </Button>
       </div>

@@ -38,7 +38,8 @@ const Card = ({ id, end, move, children, index }) => {
       const hoverBoundingRect = ref.current.getBoundingClientRect();
 
       // Get vertical middle
-      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      const hoverMiddleY =
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
 
       // Determine mouse position
       const clientOffset = monitor.getClientOffset();
@@ -76,10 +77,10 @@ const Card = ({ id, end, move, children, index }) => {
 
   const [{ isDragging }, drag] = useDrag({
     item: { type: ItemTypes.CARD, id, index },
-    collect: (monitor) => ({
+    collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),
-    end: (item) => {
+    end: item => {
       if (!item) {
         return;
       }
