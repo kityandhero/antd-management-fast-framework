@@ -60,7 +60,7 @@ class FigureRange extends PureComponent {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     const {
       type: typeData,
