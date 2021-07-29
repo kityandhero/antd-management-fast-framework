@@ -13,33 +13,22 @@
   "scripts": {
     "start": "cross-env APP_ROOT=example umi dev",
     "build": "father-build",
-    "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
-    "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
-    "lint-staged": "lint-staged",
-    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
-    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
-    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
-    "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
-    "prettier": "prettier -c --write \"**/*\"",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
     "test:update": "umi-test --updateSnapshot"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged"
-    }
-  },
   "lint-staged": {
-    "**/*.less": "stylelint --syntax less",
-    "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
-    "**/*.{js,jsx,tsx,ts,less,md,json}": [
-      "prettier --write"
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write",
+      "git add"
+    ],
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write",
+      "git add"
     ]
   },
-  "dependencies": {
-    "@ant-design/icons": "^4.6.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
@@ -56,7 +45,6 @@
     "cross-env": "^6.0.3",
     "express": "^4.15.3",
     "father-build": "^1.17.2",
-    "husky": "^7.0.1",
     "lerna": "^3.20.2",
     "lint-staged": "^10.0.8",
     "npm-run-all": "^4.1.5",
@@ -68,9 +56,6 @@
     "react-dom": "^16.12.0",
     "react-test-renderer": "^16.9.0",
     "test-umi-plugin": "^0.1.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-standard": "^22.0.0",
     "umi": "^3.1.0",
     "yorkie": "^2.0.0"
   },
