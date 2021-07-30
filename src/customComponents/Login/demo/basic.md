@@ -45,12 +45,12 @@ class LoginDemo extends React.Component {
       );
     }
   };
-  onTabChange = key => {
+  onTabChange = (key) => {
     this.setState({
       type: key,
     });
   };
-  changeAutoLogin = e => {
+  changeAutoLogin = (e) => {
     this.setState({
       autoLogin: e.target.checked,
     });

@@ -59,9 +59,9 @@ class BaseAddForm extends DataCore {
   };
 
   // eslint-disable-next-line no-unused-vars
-  afterFillForm = initialValues => {};
+  afterFillForm = (initialValues) => {};
 
-  setFormFieldsValue = v => {
+  setFormFieldsValue = (v) => {
     const form = this.getTargetForm();
 
     if (form != null) {
@@ -72,7 +72,7 @@ class BaseAddForm extends DataCore {
   };
 
   // eslint-disable-next-line no-unused-vars
-  afterSetFieldsValue = v => {};
+  afterSetFieldsValue = (v) => {};
 
   handleFormReset = () => {
     const form = this.getTargetForm();
@@ -86,10 +86,10 @@ class BaseAddForm extends DataCore {
     this.reloadData();
   };
 
-  supplementSubmitRequestParams = o => o;
+  supplementSubmitRequestParams = (o) => o;
 
   // eslint-disable-next-line no-unused-vars
-  validate = e => {
+  validate = (e) => {
     const { dispatch } = this.props;
 
     const form = this.getTargetForm();
@@ -99,7 +99,7 @@ class BaseAddForm extends DataCore {
     const { submitApiPath } = this.state;
 
     validateFields()
-      .then(values => {
+      .then((values) => {
         let submitData = pretreatmentRequestParams(values);
 
         submitData = this.supplementSubmitRequestParams(submitData);
@@ -140,13 +140,13 @@ class BaseAddForm extends DataCore {
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         const { errorFields } = error;
 
         if (!isUndefined(errorFields)) {
           const m = [];
 
-          Object.values(errorFields).forEach(o => {
+          Object.values(errorFields).forEach((o) => {
             m.push(o.errors[0]);
           });
 

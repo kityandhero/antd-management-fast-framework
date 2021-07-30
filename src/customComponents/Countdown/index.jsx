@@ -60,7 +60,7 @@ class Countdown extends CustomBase {
     this.setState = () => {};
   }
 
-  countFun = time => {
+  countFun = (time) => {
     const et = new Date(time).getTime();
     let sysSecond = et - new Date().getTime();
     this.timer = setInterval(() => {

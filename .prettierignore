@@ -36,6 +36,7 @@ Dockerfile*
 LICENSE
 .eslintcache
 *.lock
+.npmrc
 yarn-error.log
 .history
 *.log

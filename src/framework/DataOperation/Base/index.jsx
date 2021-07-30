@@ -9,10 +9,10 @@ import {
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {
-  supplementLoadRequestParams = o => o;
+  supplementLoadRequestParams = (o) => o;
 
   // eslint-disable-next-line no-unused-vars
-  checkSubmitData = o => {
+  checkSubmitData = (o) => {
     if ((o || null) == null) {
       showRuntimeErrorMessage('提交的数据不能为空');
 
@@ -23,7 +23,7 @@ class Base extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line no-unused-vars
-  checkSubmitRequestParams = o => true;
+  checkSubmitRequestParams = (o) => true;
 
   doAfterSubmitSuccess = (
     singleData,
@@ -173,7 +173,12 @@ class Base extends AuthorizationWrapper {
     // eslint-disable-next-line no-unused-vars
     submitData,
   ) => {
-    const { type, placement, message: messageText, description } = {
+    const {
+      type,
+      placement,
+      message: messageText,
+      description,
+    } = {
       ...{
         type: 'success',
         placement: 'bottomRight',

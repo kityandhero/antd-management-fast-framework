@@ -21,8 +21,8 @@ const DropdownButton = ({
   <ConfigConsumer>
     {() => {
       const menu = (
-        <Menu onClick={params => onSelect && onSelect(params.key)}>
-          {menus.map(item => (
+        <Menu onClick={(params) => onSelect && onSelect(params.key)}>
+          {menus.map((item) => (
             <Menu.Item
               key={item.key}
               disabled={(item.disabled || null) == null ? false : item.disabled}
@@ -52,8 +52,8 @@ const BatchAction = ({ style, onSelect, menus = [], disabled }) => (
   <ConfigConsumer>
     {() => {
       const menu = (
-        <Menu onClick={params => onSelect && onSelect(params.key)}>
-          {menus.map(item => (
+        <Menu onClick={(params) => onSelect && onSelect(params.key)}>
+          {menus.map((item) => (
             <Menu.Item key={item.key}>{item.name}</Menu.Item>
           ))}
         </Menu>

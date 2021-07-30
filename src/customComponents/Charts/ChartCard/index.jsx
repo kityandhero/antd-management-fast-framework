@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './index.less';
 
-const renderTotal = total => {
+const renderTotal = (total) => {
   if (!total && total !== 0) {
     return null;
   }

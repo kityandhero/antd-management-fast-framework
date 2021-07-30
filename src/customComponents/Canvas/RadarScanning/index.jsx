@@ -45,7 +45,7 @@ class RadarScanning extends Core {
     c.removeEventListener('mousemove', this.orbGo, false);
   };
 
-  orbGo = e => {
+  orbGo = (e) => {
     const c = this.getCanvas();
 
     const mx = e.pageX - c.offsetLeft;
@@ -130,7 +130,7 @@ class RadarScanning extends Core {
     ctx.stroke();
   };
 
-  createOrbByExist = o => {
+  createOrbByExist = (o) => {
     const orb = o;
 
     const mxNew = orb.x;

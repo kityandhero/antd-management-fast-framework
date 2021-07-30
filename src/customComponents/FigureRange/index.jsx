@@ -106,7 +106,7 @@ class FigureRange extends PureComponent {
     }
   };
 
-  onTypeChange = v => {
+  onTypeChange = (v) => {
     const { min, max, value } = this.state;
 
     const d = toNumber(v);
@@ -116,7 +116,7 @@ class FigureRange extends PureComponent {
     this.onDataChange(d, min, max, value);
   };
 
-  onValueChange = e => {
+  onValueChange = (e) => {
     const { type, min, max } = this.state;
     const { value: v } = e.target;
 
@@ -127,7 +127,7 @@ class FigureRange extends PureComponent {
     this.onDataChange(type, min, max, d);
   };
 
-  onMinChange = e => {
+  onMinChange = (e) => {
     const { type, max, value } = this.state;
     const { value: v } = e.target;
 
@@ -138,7 +138,7 @@ class FigureRange extends PureComponent {
     this.onDataChange(type, d, max, value);
   };
 
-  onMaxChange = e => {
+  onMaxChange = (e) => {
     const { type, min, value } = this.state;
     const { value: v } = e.target;
 
@@ -174,7 +174,7 @@ class FigureRange extends PureComponent {
               style={{ width: '100%' }}
               defaultValue={`${type}`}
               value={`${type}`}
-              onChange={e => {
+              onChange={(e) => {
                 this.onTypeChange(e);
               }}
             >
@@ -220,7 +220,7 @@ class FigureRange extends PureComponent {
                   className={styles.valueInput}
                   value={value}
                   placeholder={valueText}
-                  onChange={v => {
+                  onChange={(v) => {
                     this.onValueChange(v);
                   }}
                 />
@@ -235,7 +235,7 @@ class FigureRange extends PureComponent {
                       className={styles.minInput}
                       placeholder={minText}
                       value={min}
-                      onChange={v => {
+                      onChange={(v) => {
                         this.onMinChange(v);
                       }}
                     />
@@ -261,7 +261,7 @@ class FigureRange extends PureComponent {
                       }}
                       placeholder={maxText}
                       value={max}
-                      onChange={v => {
+                      onChange={(v) => {
                         this.onMaxChange(v);
                       }}
                     />

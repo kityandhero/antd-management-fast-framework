@@ -13,7 +13,7 @@ export default class EditableItem extends PureComponent {
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { value } = e.target;
     this.setState({ value });
   };

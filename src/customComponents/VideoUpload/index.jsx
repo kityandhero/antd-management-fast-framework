@@ -94,7 +94,7 @@ class VideoUpload extends PureComponent {
     });
   };
 
-  handleUrlChange = e => {
+  handleUrlChange = (e) => {
     const {
       target: { value: v },
     } = e;
@@ -147,7 +147,7 @@ class VideoUpload extends PureComponent {
     );
   };
 
-  beforeUpload = file => {
+  beforeUpload = (file) => {
     const isVideo = file.type === 'video/mp4';
 
     if (!isVideo) {
@@ -161,7 +161,7 @@ class VideoUpload extends PureComponent {
     return isVideo && isLt3M;
   };
 
-  handleUploadChange = info => {
+  handleUploadChange = (info) => {
     const { pretreatmentRemoteResponse, afterChangeSuccess } = this.props;
 
     if (info.file.status === 'uploading') {
@@ -196,7 +196,7 @@ class VideoUpload extends PureComponent {
     }
   };
 
-  handleMenuClick = e => {
+  handleMenuClick = (e) => {
     const { key } = e;
     const { videoUrl } = this.state;
 

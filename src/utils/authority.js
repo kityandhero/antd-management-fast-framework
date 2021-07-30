@@ -64,7 +64,7 @@ export function checkIsSuper() {
   const list = getAllAuthorityCore();
   const superAuth = getAccessWayCollectionCache().super;
 
-  const isSuper = (list || []).find(o => o === superAuth) || '';
+  const isSuper = (list || []).find((o) => o === superAuth) || '';
 
   if (isSuper === superAuth) {
     return true;
@@ -77,13 +77,13 @@ export function checkHasAuthority(auth) {
   const list = getAllAuthorityCore();
   const superAuth = getAccessWayCollectionCache().super;
 
-  const isSuper = (list || []).find(o => o === superAuth);
+  const isSuper = (list || []).find((o) => o === superAuth);
 
   if (isSuper === superAuth) {
     return true;
   }
 
-  const v = (list || []).find(o => o === auth);
+  const v = (list || []).find((o) => o === auth);
 
   return v !== undefined;
 }

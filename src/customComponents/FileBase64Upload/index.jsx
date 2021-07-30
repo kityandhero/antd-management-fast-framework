@@ -30,7 +30,7 @@ class FileBase64Upload extends PureComponent {
 
   handleUploadCancel = () => this.setState({ previewVisible: false });
 
-  beforeUpload = file => {
+  beforeUpload = (file) => {
     const isLt1M = file.size / 1024 / 1024 < 1;
     if (!isLt1M) {
       showRuntimeErrorMessage('文件不能超过1MB!');
@@ -39,7 +39,7 @@ class FileBase64Upload extends PureComponent {
     return isLt1M;
   };
 
-  handleUploadChange = info => {
+  handleUploadChange = (info) => {
     const { pretreatmentRemoteResponse, afterUploadSuccess } = this.props;
 
     if (info.file.status === 'uploading') {

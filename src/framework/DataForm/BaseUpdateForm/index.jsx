@@ -23,9 +23,9 @@ class BaseUpdateForm extends DataSingleView {
     this.reloadData();
   };
 
-  supplementSubmitRequestParams = o => o;
+  supplementSubmitRequestParams = (o) => o;
 
-  afterCheckSubmitRequestParams = o => o;
+  afterCheckSubmitRequestParams = (o) => o;
 
   execSubmitApi = (values = {}, afterSubmitCallback) => {
     const { dispatch } = this.props;
@@ -85,7 +85,7 @@ class BaseUpdateForm extends DataSingleView {
   };
 
   // eslint-disable-next-line no-unused-vars
-  validate = e => {
+  validate = (e) => {
     const form = this.getTargetForm();
 
     if (form == null) {
@@ -95,20 +95,20 @@ class BaseUpdateForm extends DataSingleView {
     const { validateFields } = form;
 
     validateFields()
-      .then(values => {
+      .then((values) => {
         this.execSubmitApi(values, () => {
           if (this.goToUpdateWhenProcessed) {
             this.reloadByUrl();
           }
         });
       })
-      .catch(error => {
+      .catch((error) => {
         const { errorFields } = error;
 
         if (!isUndefined(errorFields)) {
           const m = [];
 
-          Object.values(errorFields).forEach(o => {
+          Object.values(errorFields).forEach((o) => {
             m.push(o.errors[0]);
           });
 

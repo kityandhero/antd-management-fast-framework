@@ -37,10 +37,10 @@ registerShape('interval', 'sliceShape', {
 class Pie extends Component {
   state = {};
 
-  calculateTotal = d => {
+  calculateTotal = (d) => {
     let result = 0;
 
-    (d || []).map(o => {
+    (d || []).map((o) => {
       result += o.y;
 
       return o;

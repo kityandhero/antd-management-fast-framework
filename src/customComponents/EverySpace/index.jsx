@@ -4,13 +4,8 @@ import { stringIsNullOrWhiteSpace } from '../../utils/tools';
 
 class EverySpace extends PureComponent {
   render() {
-    const {
-      size,
-      direction,
-      backgroundColor,
-      margin,
-      borderRadius,
-    } = this.props;
+    const { size, direction, backgroundColor, margin, borderRadius } =
+      this.props;
 
     if (size <= 0) {
       return null;

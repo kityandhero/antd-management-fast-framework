@@ -72,7 +72,7 @@ class CanvasRibbon extends Core {
       context.fillRect(0, 0, width, height);
       context.globalCompositeOperation = compose || 'lighter';
 
-      this.bubbleList = (this.bubbleList || []).map(b => {
+      this.bubbleList = (this.bubbleList || []).map((b) => {
         const bubble = b;
 
         context.beginPath();

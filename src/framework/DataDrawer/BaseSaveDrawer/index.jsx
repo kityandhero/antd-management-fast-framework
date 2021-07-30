@@ -36,7 +36,7 @@ class BaseSaveDrawer extends Base {
         <Button
           type="primary"
           disabled={processing}
-          onClick={e => {
+          onClick={(e) => {
             this.handleOk(e);
           }}
         >

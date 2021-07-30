@@ -22,7 +22,7 @@ class Spirit extends Core {
 
     ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
-    this.circles = (this.circles || []).map(o => {
+    this.circles = (this.circles || []).map((o) => {
       if (o.alpha <= 0) {
         return this.createCircle();
       }
@@ -30,7 +30,7 @@ class Spirit extends Core {
       return o;
     });
 
-    (this.circles || []).forEach(o => {
+    (this.circles || []).forEach((o) => {
       this.drawCircle(ctx, o);
     });
 

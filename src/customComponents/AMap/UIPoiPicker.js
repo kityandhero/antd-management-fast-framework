@@ -11,11 +11,11 @@ class UIPoiPicker extends PureComponent {
   }
 
   loadUI = () => {
-    window.AMapUI.loadUI(['misc/PoiPicker'], PoiPicker => {
+    window.AMapUI.loadUI(['misc/PoiPicker'], (PoiPicker) => {
       /* eslint-disable no-new */
       new PoiPicker({
         input: 'pickerInput',
-      }).on('poiPicked', poiResult => {
+      }).on('poiPicked', (poiResult) => {
         // 用户选中的poi点信息
         // console.dir(poiResult);
         this.map.setCenter(poiResult.item.location);

@@ -4,7 +4,7 @@ import autoHeight from '../autoHeight';
 
 const { Arc, Html, Line } = Guide;
 
-const defaultFormatter = val => {
+const defaultFormatter = (val) => {
   switch (val) {
     case '2':
       return '差';
@@ -57,7 +57,7 @@ if (registerShape) {
   });
 }
 
-const Gauge = props => {
+const Gauge = (props) => {
   const {
     title,
     height = 1,

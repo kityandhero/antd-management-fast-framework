@@ -27,7 +27,7 @@ function getAutoHeight(n) {
 }
 
 function autoHeight() {
-  return WrappedComponent => {
+  return (WrappedComponent) => {
     class AutoHeightComponent extends React.Component {
       state = {
         computedHeight: 0,
@@ -53,7 +53,7 @@ function autoHeight() {
         }
       }
 
-      handleRoot = node => {
+      handleRoot = (node) => {
         this.root = node;
       };
 

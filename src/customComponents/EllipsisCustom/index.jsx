@@ -169,23 +169,23 @@ export default class EllipsisCustom extends Component {
     return this.bisection(th, mid, begin, end, text, shadowNode);
   };
 
-  handleRoot = n => {
+  handleRoot = (n) => {
     this.root = n;
   };
 
-  handleContent = n => {
+  handleContent = (n) => {
     this.content = n;
   };
 
-  handleNode = n => {
+  handleNode = (n) => {
     this.node = n;
   };
 
-  handleShadow = n => {
+  handleShadow = (n) => {
     this.shadow = n;
   };
 
-  handleShadowChildren = n => {
+  handleShadowChildren = (n) => {
     this.shadowChildren = n;
   };
 

@@ -38,16 +38,16 @@ class TimeLineCustom extends CustomBase {
     return null;
   };
 
-  getCreateTimeDatePart = v => moment(v).format('YYYY-MM-DD');
+  getCreateTimeDatePart = (v) => moment(v).format('YYYY-MM-DD');
 
-  getCreateTimeTimePart = v => moment(v).format('HH:mm');
+  getCreateTimeTimePart = (v) => moment(v).format('HH:mm');
 
   handleTableChange = (pageNo, pageSize) => {
     const { onChange } = this.props;
     onChange(pageNo, pageSize);
   };
 
-  renderDateLabel = v => {
+  renderDateLabel = (v) => {
     this.currentTime = this.currentTime || v;
     const preTime = this.currentTime || v;
     if (
@@ -68,7 +68,7 @@ class TimeLineCustom extends CustomBase {
     );
   };
 
-  renderInfo = item => {
+  renderInfo = (item) => {
     const {
       // iconStyle: iconStyleValue,
       // getBackgroundColorKey,
@@ -168,7 +168,7 @@ class TimeLineCustom extends CustomBase {
             size="large"
             pagination={paginationProps}
             dataSource={list}
-            renderItem={item => (
+            renderItem={(item) => (
               <List.Item
                 key={item.title}
                 style={{

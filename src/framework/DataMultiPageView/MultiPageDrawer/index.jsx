@@ -279,7 +279,7 @@ class MultiPageDrawer extends MultiPage {
                   {listViewMode === listViewModeCollection.table ? (
                     <DensityAction
                       tableSize={tableSize}
-                      setTableSize={key => {
+                      setTableSize={(key) => {
                         this.setTableSize(key);
                       }}
                     />
@@ -301,10 +301,10 @@ class MultiPageDrawer extends MultiPage {
                     <ColumnSetting
                       columns={this.getColumn()}
                       columnsMap={this.getColumnsMap()}
-                      setColumnsMap={e => {
+                      setColumnsMap={(e) => {
                         this.setColumnsMap(e);
                       }}
-                      setSortKeyColumns={key => {
+                      setSortKeyColumns={(key) => {
                         this.setSortKeyColumns(key);
                       }}
                     />
@@ -469,7 +469,7 @@ class MultiPageDrawer extends MultiPage {
               size="small"
               showSizeChanger
               showQuickJumper
-              showTotal={total => `共 ${total} 条信息`}
+              showTotal={(total) => `共 ${total} 条信息`}
               {...pagination}
               onChange={(page, size) => {
                 this.onPaginationChange(page, size);

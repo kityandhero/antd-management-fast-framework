@@ -13,7 +13,7 @@ class Demo extends React.Component {
   state = {
     value: ['cat1'],
   };
-  handleFormSubmit = value => {
+  handleFormSubmit = (value) => {
     this.setState({
       value,
     });

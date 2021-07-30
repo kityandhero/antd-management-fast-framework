@@ -138,10 +138,8 @@ class ImageBox extends CustomBase {
   }
 
   onImageLoadSuccess() {
-    const {
-      showOverlay: showOverlayValue,
-      loadingEffect: loadingEffectValue,
-    } = this.props;
+    const { showOverlay: showOverlayValue, loadingEffect: loadingEffectValue } =
+      this.props;
 
     const showOverlay = showOverlayValue || false;
 

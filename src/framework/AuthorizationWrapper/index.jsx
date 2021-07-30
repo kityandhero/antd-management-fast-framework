@@ -36,7 +36,7 @@ class AuthorizationWrapper extends SupplementWrapper {
     }
   };
 
-  checkAuthority = auth => checkHasAuthority(auth);
+  checkAuthority = (auth) => checkHasAuthority(auth);
 
   getCurrentOperator = () => {
     const {

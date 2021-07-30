@@ -126,7 +126,7 @@ function getNoticeData(notices) {
   if (notices.length === 0) {
     return {};
   }
-  const newNotices = notices.map(notice => {
+  const newNotices = notices.map((notice) => {
     const newNotice = { ...notice };
     if (newNotice.datetime) {
       newNotice.datetime = moment(notice.datetime).fromNow();
@@ -198,4 +198,5 @@ ReactDOM.render(
 ```
 
 ```css
+
 ```

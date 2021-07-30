@@ -83,7 +83,7 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
         </Col>
         <Col flex="auto">
           <Space>
-            {nameList.map(o => (
+            {nameList.map((o) => (
               <TextAnimal key={o.key} type="alpha" mode="smooth">
                 {o.text}
               </TextAnimal>
@@ -201,7 +201,7 @@ export function buildCustomGrid({ key = null, list, props }) {
           <FlexText text={title} />
         </div>
         <Row style={containorStyle}>
-          {dataList.map(item => {
+          {dataList.map((item) => {
             const { hidden } = { ...{ hidden: false }, ...(item || {}) };
 
             if (hidden) {
@@ -271,7 +271,7 @@ export function buildDescriptionGrid({ key = null, list, props }) {
 
     return (
       <Descriptions key={key} {...(props || {})}>
-        {dataList.map(item => {
+        {dataList.map((item) => {
           const { emptyValue } = { ...{ emptyValue: '' }, ...item };
 
           return (
@@ -310,13 +310,13 @@ export function pageHeaderContent({ list }) {
     return null;
   }
 
-  let listData = list.map(o => {
+  let listData = list.map((o) => {
     const d = { ...{ sort: 10000 }, ...o };
 
     return { ...d };
   });
 
-  listData = sortBy(listData, o => o.sort);
+  listData = sortBy(listData, (o) => o.sort);
 
   listData = listData.map((o, index) => {
     const d = { ...{}, ...o };
@@ -328,7 +328,7 @@ export function pageHeaderContent({ list }) {
 
   return (
     <>
-      {listData.map(o => {
+      {listData.map((o) => {
         const { type, list: listItem } = o;
 
         if (!isArray(listItem)) {
@@ -360,7 +360,7 @@ export function pageHeaderContent({ list }) {
 
           return (
             <div key={`${o.key}_paragraph_container`}>
-              {listParagraph.map(item => {
+              {listParagraph.map((item) => {
                 if (stringIsNullOrWhiteSpace(item.paragraph)) {
                   return null;
                 }
@@ -378,7 +378,7 @@ export function pageHeaderContent({ list }) {
 
           return (
             <Space key={`${o.key}_space`}>
-              {listAction.map(item => {
+              {listAction.map((item) => {
                 return item.action;
               })}
             </Space>
@@ -447,7 +447,7 @@ export function buildButtonGroup(buttonGroupData) {
 
   return (
     <ButtonGroup>
-      {(buttonGroupData.buttons || []).map(item => {
+      {(buttonGroupData.buttons || []).map((item) => {
         const { confirmMode, confirmProps } = item;
 
         const { disabled, onClick } = item.buttonProps || {
@@ -506,7 +506,7 @@ export function buildButtonGroup(buttonGroupData) {
               ...{
                 overlay: (
                   <Menu {...(buttonGroupData.menu.props || {})}>
-                    {buttonGroupData.menu.items.map(item => (
+                    {buttonGroupData.menu.items.map((item) => (
                       <Menu.Item {...(item.props || {})} key={item.key}>
                         {item.children}
                       </Menu.Item>
@@ -537,7 +537,7 @@ export function buildDropdownEllipsis(ellipsisActionData) {
 
   const menu = (
     <Menu {...(ellipsisActionData.menuProps || {})}>
-      {ellipsisActionData.items.map(item => (
+      {ellipsisActionData.items.map((item) => (
         <Menu.Item {...(item.props || {})} key={item.key}>
           {item.children}
         </Menu.Item>
@@ -616,7 +616,7 @@ export function buildTagList({ list = [] }) {
 
   return (
     <Space>
-      {tagList.map(o => {
+      {tagList.map((o) => {
         return (
           <Tag key={o.key} color={o.color}>
             <TextAnimal type="left" mode="smooth">
@@ -643,7 +643,7 @@ export function buildListViewItemActionSelect({
     <Popconfirm
       placement="topRight"
       title="选择此信息，确定吗？"
-      onConfirm={e => {
+      onConfirm={(e) => {
         if (isFunction(selectCallback)) {
           selectCallback(e, selectData);
         }

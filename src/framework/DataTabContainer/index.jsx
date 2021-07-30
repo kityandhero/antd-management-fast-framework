@@ -72,10 +72,10 @@ class DataTabContainer extends DataSingleView {
     }
   };
 
-  handleTabChange = key => {
+  handleTabChange = (key) => {
     const { match } = this.props;
 
-    (this.tabList || []).forEach(item => {
+    (this.tabList || []).forEach((item) => {
       if (item.key === key) {
         this.redirectToPath(
           `${match.url.replace('/update', '/load')}/${item.key}`,
@@ -84,7 +84,7 @@ class DataTabContainer extends DataSingleView {
     });
   };
 
-  adjustTabListAvailable = tabListAvailable => tabListAvailable;
+  adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
 
   getTabActiveKey = () => {
     const {
@@ -181,7 +181,7 @@ class DataTabContainer extends DataSingleView {
   getTabListAvailable = () => {
     const tabListAvailable = [];
 
-    (this.tabList || []).forEach(o => {
+    (this.tabList || []).forEach((o) => {
       const v = typeof o.show === 'undefined' ? true : o.show === true;
 
       if (v) {

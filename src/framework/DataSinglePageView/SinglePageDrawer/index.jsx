@@ -225,7 +225,7 @@ class SinglePageDrawer extends SinglePage {
                   {listViewMode === listViewModeCollection.table ? (
                     <DensityAction
                       tableSize={tableSize}
-                      setTableSize={key => {
+                      setTableSize={(key) => {
                         this.setTableSize(key);
                       }}
                     />
@@ -247,10 +247,10 @@ class SinglePageDrawer extends SinglePage {
                     <ColumnSetting
                       columns={this.getColumn()}
                       columnsMap={this.getColumnsMap()}
-                      setColumnsMap={e => {
+                      setColumnsMap={(e) => {
                         this.setColumnsMap(e);
                       }}
-                      setSortKeyColumns={key => {
+                      setSortKeyColumns={(key) => {
                         this.setSortKeyColumns(key);
                       }}
                     />

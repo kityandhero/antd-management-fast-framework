@@ -32,7 +32,7 @@ class BaseUpdateDrawer extends BaseLoadDrawer {
         <Button
           type="primary"
           disabled={dataLoading || processing || !loadSuccess}
-          onClick={e => {
+          onClick={(e) => {
             this.handleOk(e);
           }}
         >

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import styles from './index.less';
 
-const avatarSizeToClassName = size =>
+const avatarSizeToClassName = (size) =>
   classNames(styles.avatarItem, {
     [styles.avatarItemLarge]: size === 'large',
     [styles.avatarItemSmall]: size === 'small',
@@ -23,7 +23,7 @@ const AvatarList = ({
 
   const childrenWithProps = React.Children.toArray(children)
     .slice(0, numToShow)
-    .map(child =>
+    .map((child) =>
       React.cloneElement(child, {
         size,
       }),
@@ -34,8 +34,9 @@ const AvatarList = ({
 
     childrenWithProps.push(
       <li key="exceed" className={cls}>
-        <Avatar size={size} style={excessItemsStyle}>{`+${numOfChildren -
-          maxLength}`}</Avatar>
+        <Avatar size={size} style={excessItemsStyle}>{`+${
+          numOfChildren - maxLength
+        }`}</Avatar>
       </li>,
     );
   }

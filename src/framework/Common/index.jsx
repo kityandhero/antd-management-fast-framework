@@ -117,7 +117,7 @@ class Common extends Core {
 
   // 该方法必须重载覆盖
   // eslint-disable-next-line no-unused-vars
-  getApiData = props => {
+  getApiData = (props) => {
     showRuntimeErrorMessage('getApiData 方法需要重载实现');
 
     return {
@@ -143,13 +143,13 @@ class Common extends Core {
   };
 
   // eslint-disable-next-line no-unused-vars
-  beforeFirstLoadRequest = submitData => {};
+  beforeFirstLoadRequest = (submitData) => {};
 
   // eslint-disable-next-line no-unused-vars
-  beforeReLoadRequest = submitData => {};
+  beforeReLoadRequest = (submitData) => {};
 
   // eslint-disable-next-line no-unused-vars
-  beforeRequest = submitData => {};
+  beforeRequest = (submitData) => {};
 
   // eslint-disable-next-line no-unused-vars
   afterGetFirstRequestResult = (submitData, responseData) => {};
@@ -181,12 +181,12 @@ class Common extends Core {
     this.setRequestingData({ type: '', payload: {} });
   }
 
-  initLoadRequestParams = o => o || {};
+  initLoadRequestParams = (o) => o || {};
 
-  supplementLoadRequestParams = o => o || {};
+  supplementLoadRequestParams = (o) => o || {};
 
   // eslint-disable-next-line no-unused-vars
-  checkLoadRequestParams = o => {
+  checkLoadRequestParams = (o) => {
     return true;
   };
 
@@ -368,7 +368,7 @@ class Common extends Core {
 
             this.clearRequestingData();
           })
-          .catch(res => {
+          .catch((res) => {
             recordObject(res);
           });
       }
@@ -515,7 +515,7 @@ class Common extends Core {
     };
   };
 
-  renderFormNowTimeField = data => {
+  renderFormNowTimeField = (data) => {
     const { label, helper, formItemLayout } = {
       ...{ helper: '数据的添加时间', label: '添加时间', formItemLayout: null },
       ...(data || {}),
@@ -618,7 +618,7 @@ class Common extends Core {
     const list = [];
 
     if (listData.length > 0) {
-      listData.forEach(item => {
+      listData.forEach((item) => {
         const { name, flag, availability } = {
           ...{ name: '', flag: '', availability: whetherNumber.yes },
           ...(item || {}),
@@ -651,7 +651,7 @@ class Common extends Core {
     const list = [];
 
     if (listData.length > 0) {
-      listData.forEach(item => {
+      listData.forEach((item) => {
         const { name, flag, availability } = {
           ...{ name: '', flag: '', availability: whetherNumber.yes },
           ...(item || {}),
@@ -1129,7 +1129,7 @@ class Common extends Core {
     );
   };
 
-  renderJsonView = value => {
+  renderJsonView = (value) => {
     return (
       <>
         {isObject(value) ? (
@@ -1815,7 +1815,7 @@ class Common extends Core {
       text: buttonText || '保存',
       onClick:
         onClick == null
-          ? e => {
+          ? (e) => {
               this.validate(e);
             }
           : onClick,
@@ -1833,7 +1833,7 @@ class Common extends Core {
         type={type || 'primary'}
         size={size || null}
         disabled={buttonDisabled}
-        onClick={e => {
+        onClick={(e) => {
           if (isFunction(onClick)) {
             onClick(e);
           } else {
@@ -1873,7 +1873,7 @@ class Common extends Core {
     throw new Error(text);
   };
 
-  beforeVideoUpload = file => {
+  beforeVideoUpload = (file) => {
     const isVideo = file.type === 'video/mp4';
 
     if (!isVideo) {
@@ -1888,7 +1888,7 @@ class Common extends Core {
   };
 
   // eslint-disable-next-line no-unused-vars
-  pretreatmentImageUploadRemoteResponse = response => {
+  pretreatmentImageUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentImageUploadRemoteResponse';
 
     showRuntimeErrorMessage(text);
@@ -1897,7 +1897,7 @@ class Common extends Core {
   };
 
   // eslint-disable-next-line no-unused-vars
-  pretreatmentFileBase64UploadRemoteResponse = response => {
+  pretreatmentFileBase64UploadRemoteResponse = (response) => {
     const text =
       '需要在继承中重新实现 pretreatmentFileBase64UploadRemoteResponse';
 
@@ -1907,7 +1907,7 @@ class Common extends Core {
   };
 
   // eslint-disable-next-line no-unused-vars
-  pretreatmentVideoUploadRemoteResponse = response => {
+  pretreatmentVideoUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentVideoUploadRemoteResponse';
 
     showRuntimeErrorMessage(text);
@@ -1955,7 +1955,7 @@ class Common extends Core {
           bodyStyle={{ padding: 0 }}
           extra={
             <Space split={<Divider type="vertical" />}>
-              {toolList.map(o => {
+              {toolList.map((o) => {
                 return (
                   <Tooltip key={o.key} title={o.title || ''}>
                     {o.component}
@@ -2002,9 +2002,10 @@ class Common extends Core {
   };
 
   buildFormContentHelp = () => {
-    const formContentWrapperTypeConfig = this.buildFormContentWrapperTypeConfig() || {
-      mode: formContentConfig.wrapperType.page,
-    };
+    const formContentWrapperTypeConfig =
+      this.buildFormContentWrapperTypeConfig() || {
+        mode: formContentConfig.wrapperType.page,
+      };
 
     const configData = {
       ...{ mode: formContentConfig.wrapperType.page },
@@ -2048,9 +2049,10 @@ class Common extends Core {
   };
 
   buildFormContentHelpWrapper = () => {
-    const formContentWrapperTypeConfig = this.buildFormContentWrapperTypeConfig() || {
-      mode: formContentConfig.wrapperType.page,
-    };
+    const formContentWrapperTypeConfig =
+      this.buildFormContentWrapperTypeConfig() || {
+        mode: formContentConfig.wrapperType.page,
+      };
 
     const configData = {
       ...{ mode: formContentConfig.wrapperType.page },
@@ -2075,10 +2077,11 @@ class Common extends Core {
     );
   };
 
-  buildFormContent = config => {
-    const formContentWrapperTypeConfig = this.buildFormContentWrapperTypeConfig() || {
-      mode: formContentConfig.wrapperType.page,
-    };
+  buildFormContent = (config) => {
+    const formContentWrapperTypeConfig =
+      this.buildFormContentWrapperTypeConfig() || {
+        mode: formContentConfig.wrapperType.page,
+      };
     const configData = {
       ...{ mode: formContentConfig.wrapperType.page },
       ...(formContentWrapperTypeConfig || {}),
@@ -2254,7 +2257,7 @@ class Common extends Core {
                   {this.buildFormContentItem(
                     mode,
                     isArray(contentItems)
-                      ? contentItems.map(o => {
+                      ? contentItems.map((o) => {
                           return {
                             ...o,
                             ...{ formItemLayout: formItemLayout || null },
@@ -2350,7 +2353,7 @@ class Common extends Core {
                       pretreatmentRemoteResponse={
                         this.pretreatmentImageUploadRemoteResponse
                       }
-                      afterUploadSuccess={image => {
+                      afterUploadSuccess={(image) => {
                         if (isFunction(contentItem.afterUploadSuccess)) {
                           contentItem.afterUploadSuccess(image);
                         }
@@ -2417,7 +2420,7 @@ class Common extends Core {
                         pretreatmentRemoteResponse={
                           this.pretreatmentFileBase64UploadRemoteResponse
                         }
-                        afterUploadSuccess={fileBase64 => {
+                        afterUploadSuccess={(fileBase64) => {
                           if (isFunction(contentItem.afterUploadSuccess)) {
                             contentItem.afterUploadSuccess(fileBase64);
                           }
@@ -2457,7 +2460,7 @@ class Common extends Core {
                         pretreatmentRemoteResponse={
                           this.pretreatmentVideoUploadRemoteResponse
                         }
-                        afterChangeSuccess={video => {
+                        afterChangeSuccess={(video) => {
                           if (isFunction(contentItem.afterChangeSuccess)) {
                             contentItem.afterChangeSuccess(video);
                           }
@@ -2733,9 +2736,11 @@ class Common extends Core {
                     ? this.renderFormOnlyShowText(
                         fieldData.label,
                         contentItem.value,
-                        (isUndefined(contentItem.showHelper)
-                        ? false
-                        : contentItem.showHelper || false)
+                        (
+                          isUndefined(contentItem.showHelper)
+                            ? false
+                            : contentItem.showHelper || false
+                        )
                           ? fieldData.helper || ''
                           : '',
                         formItemLayout,

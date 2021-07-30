@@ -196,7 +196,7 @@ class Base extends BaseWindow {
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         zIndex={1001}
         okButtonProps={this.buildOkButtonProps()}
-        onOk={e => {
+        onOk={(e) => {
           this.handleOk(e);
         }}
         okText={this.buildOkTextWrapper()}

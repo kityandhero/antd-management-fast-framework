@@ -90,7 +90,7 @@ class SelectFieldBase extends SupplementWrapper {
               }}
               disabled={dataLoading || processing || !loadSuccess}
               title={`选择${fieldTitle}`}
-              onClick={e => this.showSelect(e)}
+              onClick={(e) => this.showSelect(e)}
             >
               <SearchOutlined />
             </Button>

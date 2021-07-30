@@ -2,7 +2,7 @@ import { Axis, Chart, Area, Line, Tooltip } from 'bizcharts';
 import React from 'react';
 import styles from '../index.less';
 
-const MiniArea = props => {
+const MiniArea = (props) => {
   const {
     data = [],
     autoFit = true,

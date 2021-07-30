@@ -38,7 +38,7 @@ class ImageUpload extends PureComponent {
 
   handleUploadCancel = () => this.setState({ previewVisible: false });
 
-  handleFilePreview = file => {
+  handleFilePreview = (file) => {
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
@@ -60,7 +60,7 @@ class ImageUpload extends PureComponent {
     });
   };
 
-  beforeUpload = file => {
+  beforeUpload = (file) => {
     const isPic =
       file.type === 'image/jpeg' ||
       file.type === 'image/gif' ||
@@ -77,7 +77,7 @@ class ImageUpload extends PureComponent {
     return isPic && isLt2M;
   };
 
-  handleUploadChange = info => {
+  handleUploadChange = (info) => {
     const { pretreatmentRemoteResponse, afterUploadSuccess } = this.props;
 
     if (info.file.status === 'uploading') {
@@ -308,7 +308,7 @@ ImageUpload.defaultProps = {
   // eslint-disable-next-line no-unused-vars
   onItemChange: ({ file, fileList }) => {},
   // eslint-disable-next-line no-unused-vars
-  onItemRemove: file => {},
+  onItemRemove: (file) => {},
 };
 
 export default ImageUpload;

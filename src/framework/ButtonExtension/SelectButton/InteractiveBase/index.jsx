@@ -46,7 +46,7 @@ class InteractiveBase extends Base {
     this.setState({ drawerVisible: false });
   };
 
-  afterDrawerSelectSuccess = o => {
+  afterDrawerSelectSuccess = (o) => {
     this.afterSelectSuccessCore(o);
   };
 
@@ -56,7 +56,7 @@ class InteractiveBase extends Base {
     });
   };
 
-  afterModalSelectSuccess = o => {
+  afterModalSelectSuccess = (o) => {
     this.setState({
       modalVisible: false,
     });
@@ -70,7 +70,7 @@ class InteractiveBase extends Base {
     });
   };
 
-  afterSelectSuccessCore = o => {
+  afterSelectSuccessCore = (o) => {
     if ((o || null) == null) {
       return;
     }

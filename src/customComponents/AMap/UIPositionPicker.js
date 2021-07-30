@@ -13,7 +13,7 @@ class UIPositionPicker extends PureComponent {
   loadUI = () => {
     const { callback } = this.props;
 
-    window.AMapUI.loadUI(['misc/PositionPicker'], PositionPicker => {
+    window.AMapUI.loadUI(['misc/PositionPicker'], (PositionPicker) => {
       /* eslint-disable no-new */
       new PositionPicker({
         mode: 'dragMap',
@@ -25,7 +25,7 @@ class UIPositionPicker extends PureComponent {
           ancher: [0, 0], // 锚点的位置，即被size缩放之后，图片的什么位置作为选中的位置
         },
       })
-        .on('success', positionResult => {
+        .on('success', (positionResult) => {
           if (typeof callback === 'function') {
             callback(positionResult);
           }

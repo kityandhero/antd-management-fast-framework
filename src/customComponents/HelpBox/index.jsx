@@ -81,7 +81,7 @@ class HelpBox extends PureComponent {
         })} */}
 
         {buildDescriptionGrid({
-          list: list.map(o => {
+          list: list.map((o) => {
             return {
               key: o.key,
               label: stringIsNullOrWhiteSpace(o.label)

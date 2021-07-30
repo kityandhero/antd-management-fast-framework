@@ -18,7 +18,7 @@ class Login extends Component {
     };
   }
 
-  onSwitch = type => {
+  onSwitch = (type) => {
     this.setState({
       type,
     });
@@ -33,19 +33,19 @@ class Login extends Component {
 
     return {
       tabUtil: {
-        addTab: id => {
+        addTab: (id) => {
           this.setState({
             tabs: [...tabs, id],
           });
         },
-        removeTab: id => {
+        removeTab: (id) => {
           this.setState({
-            tabs: tabs.filter(currentId => currentId !== id),
+            tabs: tabs.filter((currentId) => currentId !== id),
           });
         },
       },
       form,
-      updateActive: activeItem => {
+      updateActive: (activeItem) => {
         const { type, active } = this.state;
         if (active[type]) {
           active[type].push(activeItem);
@@ -59,7 +59,7 @@ class Login extends Component {
     };
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     const { currentForm } = e;
     e.preventDefault();
     const { active, type } = this.state;
@@ -75,7 +75,7 @@ class Login extends Component {
     const { type, tabs } = this.state;
     const TabChildren = [];
     const otherChildren = [];
-    React.Children.forEach(children, item => {
+    React.Children.forEach(children, (item) => {
       if (!item) {
         return;
       }
@@ -92,7 +92,7 @@ class Login extends Component {
     return (
       <LoginContext.Provider value={this.getContext()}>
         <div className={classNames(className, styles.login)}>
-          <Form noValidate onFinish={values => this.handleSubmit(values)}>
+          <Form noValidate onFinish={(values) => this.handleSubmit(values)}>
             {tabs.length ? (
               <>
                 <Tabs
@@ -131,7 +131,7 @@ Login.defaultProps = {
 
 Login.Tab = LoginTab;
 Login.Submit = LoginSubmit;
-Object.keys(LoginItem).forEach(item => {
+Object.keys(LoginItem).forEach((item) => {
   Login[item] = LoginItem[item];
 });
 
