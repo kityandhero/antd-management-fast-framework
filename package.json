@@ -141,7 +141,7 @@
   "files": [
     "lib"
   ],
-  "version": "1.0.19",
+  "version": "1.0.20",
   "directories": {
     "example": "example",
     "lib": "lib",
