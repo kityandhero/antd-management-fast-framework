@@ -164,7 +164,7 @@ export function defaultFormState() {
 
 export function getValue(obj) {
   return Object.keys(obj)
-    .map(key => obj[key])
+    .map((key) => obj[key])
     .join(',');
 }
 
@@ -504,7 +504,7 @@ export function inCollection(collection, value) {
     return result;
   }
 
-  collection.some(o => {
+  collection.some((o) => {
     if (o === value) {
       result = true;
 
@@ -1053,7 +1053,7 @@ export function searchFromList(itemKey, itemValue, sourceData) {
     return result;
   }
 
-  d.forEach(o => {
+  d.forEach((o) => {
     if (o[itemKey] === itemValue) {
       result = o;
     }
@@ -1947,7 +1947,11 @@ export function notify({
   message: messageValue,
   description: descriptionValue,
 }) {
-  const { placement, message: messageText, description } = {
+  const {
+    placement,
+    message: messageText,
+    description,
+  } = {
     ...{
       placement: 'bottomRight',
       message: '操作结果',
@@ -2027,7 +2031,7 @@ const requestAnimFrameCustom = (() => {
       window.mozRequestAnimationFrame ||
       window.oRequestAnimationFrame ||
       window.msRequestAnimationFrame ||
-      (a => {
+      ((a) => {
         window.setTimeout(a, 1e3 / 60);
       })
     );
