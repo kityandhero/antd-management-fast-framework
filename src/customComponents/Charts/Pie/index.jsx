@@ -49,7 +49,7 @@ class Pie extends Component {
     return result;
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleLegendClick = (item, i) => {};
 
   render() {

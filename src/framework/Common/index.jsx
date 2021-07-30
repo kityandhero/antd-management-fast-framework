@@ -112,11 +112,11 @@ class Common extends Core {
     this.init();
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   checkNeedUpdate = (preProps, preState, snapshot) => false;
 
   // 该方法必须重载覆盖
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getApiData = (props) => {
     showRuntimeErrorMessage('getApiData 方法需要重载实现');
 
@@ -142,22 +142,22 @@ class Common extends Core {
     this.initOther();
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   beforeFirstLoadRequest = (submitData) => {};
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   beforeReLoadRequest = (submitData) => {};
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   beforeRequest = (submitData) => {};
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterGetFirstRequestResult = (submitData, responseData) => {};
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterGetRequestResult = (submitData, responseData) => {};
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterGetReLoadRequestResult = (submitData, responseData) => {};
 
   getRequestingData() {
@@ -185,7 +185,7 @@ class Common extends Core {
 
   supplementLoadRequestParams = (o) => o || {};
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   checkLoadRequestParams = (o) => {
     return true;
   };
@@ -425,13 +425,13 @@ class Common extends Core {
   afterFirstLoadSuccess = () => {};
 
   afterLoadSuccess = (
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaListData,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaExtra,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaOriginalData,
   ) => {};
 
@@ -1887,7 +1887,7 @@ class Common extends Core {
     return isVideo && isLt3M;
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   pretreatmentImageUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentImageUploadRemoteResponse';
 
@@ -1896,7 +1896,7 @@ class Common extends Core {
     throw new Error(text);
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   pretreatmentFileBase64UploadRemoteResponse = (response) => {
     const text =
       '需要在继承中重新实现 pretreatmentFileBase64UploadRemoteResponse';
@@ -1906,7 +1906,7 @@ class Common extends Core {
     throw new Error(text);
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   pretreatmentVideoUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentVideoUploadRemoteResponse';
 

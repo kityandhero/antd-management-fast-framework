@@ -7,7 +7,7 @@
 **/templates/**
 
 **/*.svg
-package.json
+
 CNAME
 .ga
 .idea

@@ -60,7 +60,7 @@ class Index extends PureComponent {
     return c.getContext('2d');
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doAfterDidMount = ({ canvasContext }) => {};
 
   resize = () => {

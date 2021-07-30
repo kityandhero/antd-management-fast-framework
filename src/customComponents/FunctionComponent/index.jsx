@@ -563,7 +563,7 @@ export function buildDropdownEllipsis(ellipsisActionData) {
 
 export function buildListViewItemExtra({
   align,
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   index,
   imageUrl,
   emptyImageUrl,
@@ -630,7 +630,7 @@ export function buildTagList({ list = [] }) {
 }
 
 export function buildListViewItemActionSelect({
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   index,
   selectData,
   selectCallback,

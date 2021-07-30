@@ -1,7 +1,7 @@
 import Base from '../Base';
 
 class BaseLoadModal extends Base {
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
     this.setState({ dataLoading: true });
 

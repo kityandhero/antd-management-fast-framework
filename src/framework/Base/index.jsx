@@ -17,7 +17,7 @@ class Base extends PureComponent {
     this.state = defaultState;
   }
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     return null;
   }
@@ -49,12 +49,12 @@ class Base extends PureComponent {
 
   doDidMountTask = () => {};
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWhenGetSnapshotBeforeUpdate = (preProps, preState) => {
     return null;
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {};
 
   beforeUnmount = () => {};

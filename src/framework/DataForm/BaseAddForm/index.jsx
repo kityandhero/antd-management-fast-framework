@@ -58,7 +58,7 @@ class BaseAddForm extends DataCore {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterFillForm = (initialValues) => {};
 
   setFormFieldsValue = (v) => {
@@ -71,7 +71,7 @@ class BaseAddForm extends DataCore {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterSetFieldsValue = (v) => {};
 
   handleFormReset = () => {
@@ -88,7 +88,7 @@ class BaseAddForm extends DataCore {
 
   supplementSubmitRequestParams = (o) => o;
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   validate = (e) => {
     const { dispatch } = this.props;
 
@@ -205,15 +205,15 @@ class BaseAddForm extends DataCore {
   };
 
   buildNotificationDescription = (
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     singleData,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     listData,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     extraData,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     responseOriginalData,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     submitData,
   ) => {
     return `数据已经保存成功，请进行下一步操作。`;
