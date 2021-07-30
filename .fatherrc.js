@@ -2,7 +2,6 @@ export default [
   {
     target: 'node',
     cjs: { type: 'rollup' },
-    disableTypeCheck: true,
     extraBabelPlugins: [
       [
         'babel-plugin-import',
@@ -10,6 +9,6 @@ export default [
         'antd',
       ],
     ],
-    target: 'node',
+    disableTypeCheck: true,
   },
 ];
