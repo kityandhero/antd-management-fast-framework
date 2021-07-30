@@ -139,7 +139,7 @@
   "files": [
     "lib"
   ],
-  "version": "1.0.12",
+  "version": "1.0.13",
   "directories": {
     "example": "example",
     "lib": "lib",
