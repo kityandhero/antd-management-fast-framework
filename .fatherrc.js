@@ -10,5 +10,6 @@ export default [
         'antd',
       ],
     ],
+    target: 'node',
   },
 ];
