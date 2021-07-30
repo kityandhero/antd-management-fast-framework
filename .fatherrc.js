@@ -1,7 +1,7 @@
 export default [
   {
     target: 'node',
-    cjs: { type: 'rollup' },
+    cjs: { type: 'babel', lazy: true },
     extraBabelPlugins: [
       [
         'babel-plugin-import',
