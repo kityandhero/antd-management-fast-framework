@@ -142,7 +142,9 @@
   },
   "files": [
     "lib",
-    "src"
+    "src/customComponents",
+    "src/framework",
+    "src/utils"
   ],
   "version": "1.0.28",
   "directories": {
