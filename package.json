@@ -20,6 +20,7 @@
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
+    "lint-example": "umi g tmp && npm run lint-example:js && npm run lint-example:style && npm run lint:prettier",
     "lint-example:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./example && npm run lint:style",
     "lint-example:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./example",
     "lint-example:style": "stylelint --fix \"example/**/*.less\" --syntax less",
@@ -140,7 +141,8 @@
     "pre-commit": "lint-staged"
   },
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "version": "1.0.27",
   "directories": {
