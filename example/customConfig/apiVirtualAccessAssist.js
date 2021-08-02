@@ -1,7 +1,7 @@
 import { history } from 'umi';
 import { message } from 'antd';
 
-import { showRuntimeErrorMessage } from '../../lib/utils/tools';
+import { showRuntimeErrorMessage } from '../../src/utils/tools';
 
 import { getToken } from '../customConfig/storageAssist';
 

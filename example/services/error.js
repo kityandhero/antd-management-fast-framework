@@ -1,4 +1,4 @@
-import request from '../../lib/utils/request';
+import request from '../../src/utils/request';
 import { getApiVersion } from '@/customConfig/config';
 
 export default async function queryError(code) {

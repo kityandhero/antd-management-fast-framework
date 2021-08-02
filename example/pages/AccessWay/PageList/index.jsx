@@ -7,12 +7,12 @@ import {
   formatDatetime,
   copyToClipboard,
   replaceTargetText,
-} from '../../../../lib/utils/tools';
+} from '../../../../src/utils/tools';
 import { formNameCollection } from '@/customConfig/config';
-import MultiPage from '../../../../lib/framework/DataMultiPageView/MultiPage';
-import Ellipsis from '../../../../lib/customComponents/Ellipsis';
-import EllipsisCustom from '../../../../lib/customComponents/EllipsisCustom';
-import IconInfo from '../../../../lib/customComponents/IconInfo';
+import MultiPage from '../../../../src/framework/DataMultiPageView/MultiPage';
+import Ellipsis from '../../../../src/customComponents/Ellipsis';
+import EllipsisCustom from '../../../../src/customComponents/EllipsisCustom';
+import IconInfo from '../../../../src/customComponents/IconInfo';
 
 import { fieldData } from '../Common/data';
 

@@ -7,8 +7,8 @@ import {
   LogoutOutlined,
 } from '@ant-design/icons';
 
-import { checkHasAuthority } from '../../../lib/utils/authority';
-import { defaultUserAvatar } from '../../../lib/utils/constants';
+import { checkHasAuthority } from '../../../src/utils/authority';
+import { defaultUserAvatar } from '../../../src/utils/constants';
 import { accessWayCollection } from '@/customConfig/config';
 
 import HeaderDropdown from '../HeaderDropdown';

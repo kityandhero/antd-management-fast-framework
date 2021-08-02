@@ -5,8 +5,8 @@ import {
   searchFromList,
   isUndefined,
   isNull,
-} from '../../../lib/utils/tools';
-import { unlimitedWithStringFlag } from '../../../lib/utils/constants';
+} from '../../../src/utils/tools';
+import { unlimitedWithStringFlag } from '../../../src/utils/constants';
 
 import SupplementCore from '../SupplementCore';
 

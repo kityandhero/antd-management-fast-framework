@@ -1,4 +1,4 @@
-import request from '../../lib/utils/request';
+import request from '../../src/utils/request';
 
 export async function fakeAccountLogin(params) {
   return request('/api/login/account', {

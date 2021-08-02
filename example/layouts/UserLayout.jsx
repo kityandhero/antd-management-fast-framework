@@ -7,12 +7,12 @@ import {
   getPageTitle,
 } from '@ant-design/pro-layout';
 
-import { formatMessage } from '../../lib/utils/tools';
+import { formatMessage } from '../../src/utils/tools';
 import { defaultSettings } from '@/defaultSettings';
 import { showLogoInLoginView } from '../customConfig/config';
-import VerticalBox from '../../lib/customComponents/VerticalBox';
-import FlexBox from '../../lib/customComponents/FlexBox';
-import Bubbly from '../../lib/customComponents/Canvas/Bubbly';
+import VerticalBox from '../../src/customComponents/VerticalBox';
+import FlexBox from '../../src/customComponents/FlexBox';
+import Bubbly from '../../src/customComponents/Canvas/Bubbly';
 
 import styles from './UserLayout.less';
 

@@ -2,7 +2,7 @@ import {
   handlePageListDataAssist,
   handleListDataAssist,
   handleCommonDataAssist,
-} from '../../lib/utils/tools';
+} from '../../src/utils/tools';
 
 import { getData } from '../services/currentSupplier';
 

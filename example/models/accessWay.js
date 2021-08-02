@@ -1,7 +1,7 @@
 import {
   handlePageListDataAssist,
   handleCommonDataAssist,
-} from '../../lib/utils/tools';
+} from '../../src/utils/tools';
 
 import { pageListData, getData } from '../services/accessWay';
 

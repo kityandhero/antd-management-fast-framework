@@ -4,7 +4,7 @@ import {
   removeLocalStorage,
   getJsonFromLocalStorage,
   saveJsonToLocalStorage,
-} from '../../lib/utils/tools';
+} from '../../src/utils/tools';
 
 const storageKeyCollection = {
   metaData: 'metaData',

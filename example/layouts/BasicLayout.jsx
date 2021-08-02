@@ -12,9 +12,9 @@ import {
   defaultFooterData,
   menuHeaderRender,
 } from '@/customSpecialComponents/CustomAssembly';
-import { getQueue, checkDevelopment } from '../../lib/utils/tools';
-import { isAntDesignPro, getAuthorityFromRouter } from '../../lib/utils/utils';
-import Authorized from '../../lib/utils/Authorized';
+import { getQueue, checkDevelopment } from '../../src/utils/tools';
+import { isAntDesignPro, getAuthorityFromRouter } from '../../src/utils/utils';
+import Authorized from '../../src/utils/Authorized';
 import { defaultSettings } from '../defaultSettings';
 
 // import styles from './BasicLayout.less';

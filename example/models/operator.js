@@ -1,4 +1,4 @@
-import { handleCommonDataAssist } from '../../lib/utils/tools';
+import { handleCommonDataAssist } from '../../src/utils/tools';
 import {
   getCurrentData,
   getCurrentBasicInfoData,

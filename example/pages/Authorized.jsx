@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, Redirect } from 'umi';
 import { pathToRegexp } from 'path-to-regexp';
-import Authorized from '../../lib/utils/Authorized';
-import { getToken } from '../../lib/utils/tools';
+import Authorized from '../../src/utils/Authorized';
+import { getToken } from '../../src/utils/tools';
 
 const getRouteAuthority = (path, routeData) => {
   let authorities;

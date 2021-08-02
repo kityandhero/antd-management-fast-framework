@@ -1,4 +1,4 @@
-import { corsTarget } from '../../lib/utils/tools';
+import { corsTarget } from '../../src/utils/tools';
 
 import { pageConfig as pageConfigSource } from './pageConfig';
 import { accessWayCollection as accessWayCollectionSource } from './accessWayCollection';

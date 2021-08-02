@@ -1,4 +1,4 @@
-import { pretreatmentRemoteSingleData } from '../../lib/utils/tools';
+import { pretreatmentRemoteSingleData } from '../../src/utils/tools';
 import { query as queryUsers, queryCurrent } from '../services/user';
 
 export default {

@@ -3,14 +3,14 @@ import { message } from 'antd';
 import {
   pretreatmentRemoteSingleData,
   handleCommonDataAssist,
-} from '../../lib/utils/tools';
+} from '../../src/utils/tools';
 import {
   getMetaDataCache,
   setMetaDataCache,
   getCurrentOperatorCache,
   setCurrentOperatorCache,
 } from '../customConfig/storageAssist';
-import { whetherString } from '../../lib/utils/constants';
+import { whetherString } from '../../src/utils/constants';
 
 import { queryNotices } from '../services/user';
 import { getData } from '../services/global';

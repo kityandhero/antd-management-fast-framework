@@ -8,8 +8,8 @@ import {
   formatDatetime,
   pretreatmentRequestParams,
   getDerivedStateFromPropsForUrlParams,
-} from '../../../../lib/utils/tools';
-import DataTabContainer from '../../../../lib/framework/DataTabContainer';
+} from '../../../../src/utils/tools';
+import DataTabContainer from '../../../../src/framework/DataTabContainer';
 
 import { parseUrlParamsForSetState } from '../Assist/config';
 

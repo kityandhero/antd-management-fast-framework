@@ -1,5 +1,5 @@
-import { getDerivedStateFromPropsForUrlParams } from '../../../../lib/utils/tools';
-import BaseUpdateFormTab from '../../../../lib/framework/DataForm/BaseUpdateFormTab';
+import { getDerivedStateFromPropsForUrlParams } from '../../../../src/utils/tools';
+import BaseUpdateFormTab from '../../../../src/framework/DataForm/BaseUpdateFormTab';
 
 import {
   parseUrlParamsForSetState,
