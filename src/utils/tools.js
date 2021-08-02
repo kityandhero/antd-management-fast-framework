@@ -38,13 +38,10 @@ import {
   emptyDatetime,
   notificationTypeCollection,
   messageTypeCollection,
-} from './constants';
-
-import {
   logLevel,
   logShowMode,
   authenticationFailCode,
-  appInitCustom,
+  appInitDefault,
 } from './constants';
 
 const storageKeyCollection = {
@@ -53,19 +50,20 @@ const storageKeyCollection = {
 
 function getConfigData() {
   let corsTargetDomain = '';
+  let appInit = appInitDefault;
 
-  if (appInitCustom != null) {
-    if (appInitCustom.apiPrefix != null) {
-      if (appInitCustom.apiPrefix.corsTargetDomain != null) {
-        const {
-          apiPrefix: { corsTargetDomain: corsTargetDomainRemote },
-        } = appInitCustom;
+  if ((appInitCustom || null) != null) {
+    appInit = { ...appInitDefault, appInitCustom };
+  }
 
-        corsTargetDomain = corsTargetDomainRemote;
-      }
+  if (appInit.apiPrefix != null) {
+    if (appInit.apiPrefix.corsTargetDomain != null) {
+      const {
+        apiPrefix: { corsTargetDomain: corsTargetDomainRemote },
+      } = appInit;
+
+      corsTargetDomain = corsTargetDomainRemote;
     }
-  } else {
-    message.warn('未配置跨域域名');
   }
 
   return {
