@@ -54,7 +54,7 @@ export function getAccessWayCollectionCache() {
   const d = getJsonFromLocalStorage(key);
 
   if ((d || null) == null) {
-    return null;
+    return { ...(accessWaySpecialCollection || {}) };
   }
 
   return { ...(d || null), ...(accessWaySpecialCollection || {}) };

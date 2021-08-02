@@ -14,7 +14,10 @@ import {
   showRuntimeErrorMessage,
 } from '../../../../../src/utils/tools';
 import { defaultUserAvatar } from '../../../../../src/utils/constants';
-import { getToken } from '../../../../../src/utils/globalStorageAssist';
+import {
+  getToken,
+  getTokenKeyName,
+} from '../../../../../src/utils/globalStorageAssist';
 import BaseUpdateForm from '../../../../../src/framework/DataForm/BaseUpdateForm';
 
 import { fieldData } from '../../Common/data';

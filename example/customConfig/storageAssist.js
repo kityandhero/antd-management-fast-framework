@@ -14,17 +14,6 @@ const storageKeyCollection = {
 };
 
 /**
- * 获取Token键名
- *
- * @export
- * @param {*} fn
- * @returns
- */
-export function getTokenKeyName() {
-  return storageKeyCollection.token;
-}
-
-/**
  * 获取Token
  *
  * @export

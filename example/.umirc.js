@@ -39,7 +39,7 @@ export default defineConfig({
   routes: pageRoutes,
   // esbuild is father build tools
   // https://umijs.org/plugins/plugin-esbuild
-  esbuild: {},
+  // esbuild: {},
   // Fast Refresh 热更新
   fastRefresh: {},
   //禁用umi.js内置的 title 渲染机制 https://github.com/ant-design/ant-design-pro/issues/6360
