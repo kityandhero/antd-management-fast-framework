@@ -1,10 +1,10 @@
-import { getConfigData } from './tools';
+import { getAppInitConfigData } from './tools';
 
 export const defaultSettingsLayoutCustom = {
   getPlatformName: () => {
     let result = '';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.platformName || null) != null) {
@@ -19,7 +19,7 @@ export const defaultSettingsLayoutCustom = {
   getAppName: () => {
     let result = '';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.appName || null) != null) {
@@ -34,7 +34,7 @@ export const defaultSettingsLayoutCustom = {
   getAppDescription: () => {
     let result = '';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.appDescription || null) != null) {
@@ -49,7 +49,7 @@ export const defaultSettingsLayoutCustom = {
   getTitle: () => {
     let result = '商城管理系统';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.appName || null) != null) {
@@ -64,7 +64,7 @@ export const defaultSettingsLayoutCustom = {
   getLoginLogo: () => {
     let result = '/Logo.png';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.appName || null) != null) {
@@ -79,7 +79,7 @@ export const defaultSettingsLayoutCustom = {
   getShareLogo: () => {
     let result = '/shareLogo.png';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.appName || null) != null) {
@@ -94,7 +94,7 @@ export const defaultSettingsLayoutCustom = {
   getShareLogoName: () => {
     let result = '';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.appName || null) != null) {
@@ -109,7 +109,7 @@ export const defaultSettingsLayoutCustom = {
   getCompanyName: () => {
     let result = '';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.appName || null) != null) {
@@ -124,7 +124,7 @@ export const defaultSettingsLayoutCustom = {
   getLeftBarText: () => {
     let result = '';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.leftBarText || null) != null) {
@@ -139,7 +139,7 @@ export const defaultSettingsLayoutCustom = {
   getCopyright: () => {
     let result = '';
 
-    const appInit = getConfigData();
+    const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
       if ((appInit.copyright || null) != null) {

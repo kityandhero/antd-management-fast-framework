@@ -48,27 +48,14 @@ const storageKeyCollection = {
   nearestLocalhostNotify: 'nearestLocalhostNotify',
 };
 
-function getConfigData() {
-  let corsTargetDomain = '';
+export function getAppInitConfigData() {
   let appInit = appInitDefault;
 
   if ((appInitCustom || null) != null) {
     appInit = { ...appInitDefault, appInitCustom };
   }
 
-  if (appInit.apiPrefix != null) {
-    if (appInit.apiPrefix.corsTargetDomain != null) {
-      const {
-        apiPrefix: { corsTargetDomain: corsTargetDomainRemote },
-      } = appInit;
-
-      corsTargetDomain = corsTargetDomainRemote;
-    }
-  }
-
-  return {
-    corsTargetDomain,
-  };
+  return appInit;
 }
 
 export function defaultBaseState() {
@@ -259,9 +246,20 @@ export function checkDevelopment() {
  * @returns
  */
 export function corsTarget() {
-  const c = getConfigData();
+  const appInit = getAppInitConfigData();
+  let corsTargetDomain = '';
 
-  return c.corsTargetDomain;
+  if (appInit.apiPrefix != null) {
+    if (appInit.apiPrefix.corsTargetDomain != null) {
+      const {
+        apiPrefix: { corsTargetDomain: corsTargetDomainRemote },
+      } = appInit;
+
+      corsTargetDomain = corsTargetDomainRemote;
+    }
+  }
+
+  return corsTargetDomain;
 }
 
 export function showRuntimeErrorMessage(text, showStack = true) {
