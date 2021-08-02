@@ -6,16 +6,18 @@ import ProLayout, {
   SettingDrawer,
 } from '@ant-design/pro-layout';
 
+import { getQueue, checkDevelopment } from '../../src/utils/tools';
+import { setAccessWayCollectionCache } from '../../src/utils/globalStorageAssist';
+import { isAntDesignPro, getAuthorityFromRouter } from '../../src/utils/utils';
+import Authorized from '../../src/utils/Authorized';
+
+import { accessWayCollection } from '@/customConfig/config';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { execBasicLayoutRemoteRequest } from '@/customConfig/customLoad';
 import {
   defaultFooterData,
   menuHeaderRender,
 } from '@/customSpecialComponents/CustomAssembly';
-import { getQueue, checkDevelopment } from '../../src/utils/tools';
-import { isAntDesignPro, getAuthorityFromRouter } from '../../src/utils/utils';
-import Authorized from '../../src/utils/Authorized';
-
 import { formatMessage } from '@/utils/tools';
 import { defaultSettings } from '@/defaultSettings';
 
@@ -103,6 +105,7 @@ const BasicLayout = (props) => {
 
   useEffect(() => {
     if (dispatch) {
+      setAccessWayCollectionCache(accessWayCollection);
       execBasicLayoutRemoteRequest(dispatch);
 
       dispatch({

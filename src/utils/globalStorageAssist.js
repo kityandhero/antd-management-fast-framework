@@ -60,6 +60,12 @@ export function getAccessWayCollectionCache() {
   return { ...(d || null), ...(accessWaySpecialCollection || {}) };
 }
 
+export function setAccessWayCollectionCache(o) {
+  const key = storageKeyCollection.accessWayCollection;
+
+  saveJsonToLocalStorage(key, o || {});
+}
+
 /**
  * 获取useParamsData缓存
  *
