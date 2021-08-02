@@ -1,6 +1,10 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
-  plugins: [require.resolve('../lib')],
-  headerExtraLinks: ['/link1.css'],
+  locale: {
+    default: 'zh-CN',
+    // default true, when it is true, will use `navigator.language` overwrite default
+    antd: true,
+    baseNavigator: true,
+  },
 });

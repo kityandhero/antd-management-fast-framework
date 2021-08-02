@@ -2010,17 +2010,19 @@ export function notify({
 }
 
 const requestAnimFrameCustom = (() => {
-  if (isBrowser()) {
-    return (
-      window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.oRequestAnimationFrame ||
-      window.msRequestAnimationFrame ||
-      ((a) => {
-        window.setTimeout(a, 1e3 / 60);
-      })
-    );
+  if (isFunction(isBrowser)) {
+    if (isBrowser()) {
+      return (
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        ((a) => {
+          window.setTimeout(a, 1e3 / 60);
+        })
+      );
+    }
   }
 
   return () => {};
