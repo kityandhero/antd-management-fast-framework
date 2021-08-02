@@ -1,4 +1,4 @@
-import { history, useIntl, isBrowser } from 'umi';
+import { history, isBrowser } from 'umi';
 import { message, notification } from 'antd';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
@@ -1833,16 +1833,6 @@ export function handlePageListDataAssist(
     ...state,
     ...aliasData,
   };
-}
-
-function FormatMessageWrapper(o) {
-  const { formatMessage: formatMessageUseIntl } = useIntl();
-
-  return formatMessageUseIntl(o);
-}
-
-export function formatMessage(o) {
-  return FormatMessageWrapper(o);
 }
 
 export function checkLocalhost() {

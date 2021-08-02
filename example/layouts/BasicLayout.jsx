@@ -12,14 +12,12 @@ import {
   defaultFooterData,
   menuHeaderRender,
 } from '@/customSpecialComponents/CustomAssembly';
-import {
-  getQueue,
-  checkDevelopment,
-  formatMessage,
-} from '../../src/utils/tools';
+import { getQueue, checkDevelopment } from '../../src/utils/tools';
 import { isAntDesignPro, getAuthorityFromRouter } from '../../src/utils/utils';
 import Authorized from '../../src/utils/Authorized';
-import { defaultSettings } from '../defaultSettings';
+
+import { formatMessage } from '@/utils/tools';
+import { defaultSettings } from '@/defaultSettings';
 
 // import styles from './BasicLayout.less';
 
