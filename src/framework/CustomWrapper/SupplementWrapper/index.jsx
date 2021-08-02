@@ -1,7 +1,8 @@
 import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
-import Common from '../../Common';
 
-class SupplementWrapper extends Common {
+import Supplement from '@/customSpecialComponents/Supplement';
+
+class SupplementWrapper extends Supplement {
   static getDerivedStateFromProps(nextProps, prevState) {
     return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
   }

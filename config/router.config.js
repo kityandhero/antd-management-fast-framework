@@ -71,9 +71,9 @@ export default [
           },
         ],
       },
-      {
-        component: '404',
-      },
+      // {
+      //   component: '404',
+      // },
     ],
   },
 ];

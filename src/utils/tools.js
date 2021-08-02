@@ -44,18 +44,24 @@ import {
   appInitDefault,
 } from './constants';
 
+import { initConfig } from '@/customConfig/initConfig';
+
 const storageKeyCollection = {
   nearestLocalhostNotify: 'nearestLocalhostNotify',
 };
 
 export function getAppInitConfigData() {
-  let appInit = appInitDefault;
+  let appInitConfig = { ...appInitDefault, ...(initConfig || {}) };
 
-  if ((appInitCustom || null) != null) {
-    appInit = { ...appInitDefault, appInitCustom };
+  if (isFunction(isBrowser)) {
+    if (isBrowser()) {
+      if ((window.appInitCustom || null) != null) {
+        appInitConfig = { ...appInitConfig, ...window.appInitCustom };
+      }
+    }
   }
 
-  return appInit;
+  return appInitConfig;
 }
 
 export function defaultBaseState() {
