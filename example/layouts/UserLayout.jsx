@@ -8,7 +8,6 @@ import {
 } from '@ant-design/pro-layout';
 
 import { formatMessage } from '../../lib/utils/tools';
-import { appInitCustom } from '../../lib/utils/constants';
 import { defaultSettings } from '@/defaultSettings';
 import { showLogoInLoginView } from '../customConfig/config';
 import VerticalBox from '../../lib/customComponents/VerticalBox';
@@ -72,16 +71,12 @@ const UserLayout = (props) => {
                       />
                     ) : null}
                     <span className={styles.title}>
-                      {appInitCustom == null
-                        ? '未设置名称'
-                        : appInitCustom.appName || '未设置名称'}
+                      {defaultSettings.getAppName() || '未设置名称'}
                     </span>
                   </Link>
                 </div>
                 <div className={styles.desc}>
-                  {appInitCustom == null
-                    ? ''
-                    : appInitCustom.appDescription || ''}
+                  {defaultSettings.getAppDescription() || ''}
                 </div>
                 {children}
               </div>
@@ -92,9 +87,7 @@ const UserLayout = (props) => {
           <DefaultFooter
             style={{ background: 'inherit' }}
             links={[]}
-            copyright={
-              appInitCustom == null ? '' : appInitCustom.copyright || ''
-            }
+            copyright={defaultSettings.getCopyright || ''}
           />
         }
       />

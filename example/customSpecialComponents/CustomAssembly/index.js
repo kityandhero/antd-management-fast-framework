@@ -9,15 +9,17 @@ import {
   TeamOutlined,
 } from '@ant-design/icons';
 
-import { appInitCustom } from '../../../lib/utils/constants';
+import { stringIsNullOrWhiteSpace } from '../../../lib/utils/tools';
 import IconInfo from '../../../lib/customComponents/IconInfo';
 import FlexBox from '../../../lib/customComponents/FlexBox';
 import VerticalBox from '../../../lib/customComponents/VerticalBox';
 
+import { defaultSettings } from '@/defaultSettings';
+
 const { Title } = Typography;
 
 export const defaultFooterData = {
-  copyright: appInitCustom.copyright,
+  copyright: defaultSettings.getCopyright(),
   links: [
     {
       key: 'dataCenter',
@@ -68,6 +70,12 @@ export function menuHeaderRender(logoDom, config) {
 
   const { shortName } = { ...{ shortName: '' }, ...(platform || {}) };
 
+  let shortNameData = shortName;
+
+  if (stringIsNullOrWhiteSpace(shortNameData)) {
+    shortNameData = defaultSettings.getLeftBarText();
+  }
+
   const {
     collapsed,
     settings: { navTheme },
@@ -101,7 +109,7 @@ export function menuHeaderRender(logoDom, config) {
                 }}
               >
                 <TextAnimal type="alpha" mode="smooth">
-                  {appInitCustom == null ? '' : shortName || '应用简称'}
+                  {shortNameData || '应用简称'}
                 </TextAnimal>
               </Title>
             </VerticalBox>

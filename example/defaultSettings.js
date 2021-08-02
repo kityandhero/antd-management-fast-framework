@@ -1,6 +1,6 @@
 import defaultSettingsLayout from '@ant-design/pro-layout/lib/defaultSettings';
 
-import { appInitCustom } from '../lib/utils/constants';
+import { getConfigData } from '../lib/utils/tools';
 
 export const defaultSettings = {
   ...defaultSettingsLayout,
@@ -14,11 +14,43 @@ export const defaultSettings = {
     getPlatformName: () => {
       let result = '';
 
-      if ((appInitCustom || null) != null) {
-        if ((appInitCustom.appName || null) != null) {
-          const { platformName } = appInitCustom;
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.platformName || null) != null) {
+          const { platformName } = appInit;
 
           result = platformName;
+        }
+      }
+
+      return result || '';
+    },
+    getAppName: () => {
+      let result = '';
+
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.appName || null) != null) {
+          const { appName } = appInit;
+
+          result = appName;
+        }
+      }
+
+      return result || '';
+    },
+    getAppDescription: () => {
+      let result = '';
+
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.appDescription || null) != null) {
+          const { appDescription } = appInit;
+
+          result = appDescription;
         }
       }
 
@@ -27,9 +59,11 @@ export const defaultSettings = {
     getTitle: () => {
       let result = '商城管理系统';
 
-      if ((appInitCustom || null) != null) {
-        if ((appInitCustom.appName || null) != null) {
-          const { appName } = appInitCustom;
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.appName || null) != null) {
+          const { appName } = appInit;
 
           result = appName;
         }
@@ -40,9 +74,11 @@ export const defaultSettings = {
     getLoginLogo: () => {
       let result = '/Logo.png';
 
-      if ((appInitCustom || null) != null) {
-        if ((appInitCustom.appName || null) != null) {
-          const { loginLogo } = appInitCustom;
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.appName || null) != null) {
+          const { loginLogo } = appInit;
 
           result = loginLogo;
         }
@@ -53,9 +89,11 @@ export const defaultSettings = {
     getShareLogo: () => {
       let result = '/shareLogo.png';
 
-      if ((appInitCustom || null) != null) {
-        if ((appInitCustom.appName || null) != null) {
-          const { shareLogo } = appInitCustom;
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.appName || null) != null) {
+          const { shareLogo } = appInit;
 
           result = shareLogo;
         }
@@ -66,9 +104,11 @@ export const defaultSettings = {
     getShareLogoName: () => {
       let result = '';
 
-      if ((appInitCustom || null) != null) {
-        if ((appInitCustom.appName || null) != null) {
-          const { shareLogoName } = appInitCustom;
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.appName || null) != null) {
+          const { shareLogoName } = appInit;
 
           result = shareLogoName;
         }
@@ -79,11 +119,43 @@ export const defaultSettings = {
     getCompanyName: () => {
       let result = '';
 
-      if ((appInitCustom || null) != null) {
-        if ((appInitCustom.appName || null) != null) {
-          const { companyName } = appInitCustom;
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.appName || null) != null) {
+          const { companyName } = appInit;
 
           result = companyName;
+        }
+      }
+
+      return result || '';
+    },
+    getLeftBarText: () => {
+      let result = '';
+
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.leftBarText || null) != null) {
+          const { leftBarText } = appInit;
+
+          result = leftBarText;
+        }
+      }
+
+      return result || '';
+    },
+    getCopyright: () => {
+      let result = '';
+
+      const appInit = getConfigData();
+
+      if ((appInit || null) != null) {
+        if ((appInit.copyright || null) != null) {
+          const { copyright } = appInit;
+
+          result = copyright;
         }
       }
 
