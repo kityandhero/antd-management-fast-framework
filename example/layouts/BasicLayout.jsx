@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, connect, history, useIntl } from 'umi';
+import { Link, connect, history } from 'umi';
 import { Result, Button } from 'antd';
 import ProLayout, {
   DefaultFooter,
@@ -12,7 +12,11 @@ import {
   defaultFooterData,
   menuHeaderRender,
 } from '@/customSpecialComponents/CustomAssembly';
-import { getQueue, checkDevelopment } from '../../src/utils/tools';
+import {
+  getQueue,
+  checkDevelopment,
+  formatMessage,
+} from '../../src/utils/tools';
 import { isAntDesignPro, getAuthorityFromRouter } from '../../src/utils/utils';
 import Authorized from '../../src/utils/Authorized';
 import { defaultSettings } from '../defaultSettings';
@@ -129,8 +133,6 @@ const BasicLayout = (props) => {
   ) || {
     authority: undefined,
   };
-
-  const { formatMessage } = useIntl();
 
   const { currentOperator } = global || {
     currentOperator: { platform: { logo: '' } },
