@@ -169,6 +169,13 @@ export function removeToken(v) {
   return removeLocalStorage(key, v);
 }
 
+export function getTokenObject() {
+  const tokenSetObject = {};
+  tokenSetObject[`${getTokenKeyName()}`] = getToken() || '';
+
+  return tokenSetObject;
+}
+
 /**
  * 清空LocalStorage数据
  * @export

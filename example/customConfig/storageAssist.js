@@ -13,13 +13,6 @@ const storageKeyCollection = {
   currentOperator: 'currentOperator',
 };
 
-export function getTokenObject() {
-  const tokenSetObject = {};
-  tokenSetObject[`${getTokenKeyName()}`] = getToken() || '';
-
-  return tokenSetObject;
-}
-
 /**
  * 获取Token键名
  *

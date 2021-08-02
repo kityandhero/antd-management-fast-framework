@@ -2,8 +2,7 @@ import { history } from 'umi';
 import { message } from 'antd';
 
 import { showRuntimeErrorMessage } from '../../src/utils/tools';
-
-import { getToken } from '../customConfig/storageAssist';
+import { getToken } from '../../src/utils/globalStorageAssist';
 
 /**
  * 是否使用模拟访问

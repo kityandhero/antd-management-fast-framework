@@ -1,6 +1,5 @@
 import { pretreatmentRemoteSingleData } from '../../../src/utils/tools';
-import { getTokenObject } from '@/customConfig/storageAssist';
-
+import { getTokenObject } from '../../../src/utils/globalStorageAssist';
 import Common from '../../../src/framework/Common';
 
 class SupplementCore extends Common {
