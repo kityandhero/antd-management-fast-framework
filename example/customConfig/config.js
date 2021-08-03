@@ -1,4 +1,4 @@
-import { corsTarget } from '../../src/utils/tools';
+import { corsTarget } from 'antd-management-fast-framework/lib/utils/tools';
 
 import { pageConfig as pageConfigSource } from './pageConfig';
 import { accessWayCollection as accessWayCollectionSource } from './accessWayCollection';

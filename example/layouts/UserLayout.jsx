@@ -7,9 +7,9 @@ import {
   getPageTitle,
 } from '@ant-design/pro-layout';
 
-import VerticalBox from '../../src/customComponents/VerticalBox';
-import FlexBox from '../../src/customComponents/FlexBox';
-import Bubbly from '../../src/customComponents/Canvas/Bubbly';
+import VerticalBox from 'antd-management-fast-framework/lib/customComponents/VerticalBox';
+import FlexBox from 'antd-management-fast-framework/lib/customComponents/FlexBox';
+import Bubbly from 'antd-management-fast-framework/lib/customComponents/Canvas/Bubbly';
 
 import { formatMessage } from '@/utils/tools';
 import { showLogoInLoginView } from '@/customConfig/config';

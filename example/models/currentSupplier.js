@@ -2,7 +2,7 @@ import {
   handlePageListDataAssist,
   handleListDataAssist,
   handleCommonDataAssist,
-} from '../../src/utils/tools';
+} from 'antd-management-fast-framework/lib/utils/tools';
 
 import { getData } from '../services/currentSupplier';
 

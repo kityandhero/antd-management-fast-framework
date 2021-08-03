@@ -150,6 +150,7 @@
   "directories": {
     "example": "example",
     "lib": "lib",
+    "es": "lib",
     "test": "test"
   },
   "keywords": [

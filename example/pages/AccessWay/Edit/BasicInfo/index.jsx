@@ -18,11 +18,11 @@ import {
   ExclamationCircleOutlined,
 } from '@ant-design/icons';
 
-import HtmlBox from '../../../../../src/customComponents/HtmlBox';
+import HtmlBox from 'antd-management-fast-framework/lib/customComponents/HtmlBox';
 import {
   getDerivedStateFromPropsForUrlParams,
   pretreatmentRequestParams,
-} from '../../../../../src/utils/tools';
+} from 'antd-management-fast-framework/lib/utils/tools';
 
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import TabPageBase from '../../TabPageBase';

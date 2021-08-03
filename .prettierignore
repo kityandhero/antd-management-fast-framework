@@ -15,6 +15,7 @@ CNAME
 .umi-production
 /dist
 /lib
+/es
 /public
 .dockerignore
 .DS_Store

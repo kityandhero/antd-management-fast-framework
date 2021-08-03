@@ -3,6 +3,7 @@
     "@ant-design/icons": "^4.6.2",
     "@ant-design/pro-layout": "^6.23.0",
     "antd": "^4.16.9",
+    "antd-management-fast-framework": "^1.0.35",
     "array-move": "^3.0.1",
     "classnames": "^2.3.1",
     "html-react-parser": "^1.2.7",

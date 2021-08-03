@@ -8,8 +8,8 @@ import {
   formatDatetime,
   pretreatmentRequestParams,
   getDerivedStateFromPropsForUrlParams,
-} from '../../../../src/utils/tools';
-import DataTabContainer from '../../../../src/framework/DataTabContainer';
+} from 'antd-management-fast-framework/lib/utils/tools';
+import DataTabContainer from 'antd-management-fast-framework/lib/framework/DataTabContainer';
 
 import { parseUrlParamsForSetState } from '../Assist/config';
 

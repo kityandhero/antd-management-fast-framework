@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { recordObject } from '../../../src/utils/tools';
+import { recordObject } from 'antd-management-fast-framework/lib/utils/tools';
 
 // eslint-disable-next-line import/no-cycle
 import { CURRENT } from './renderAuthorize';

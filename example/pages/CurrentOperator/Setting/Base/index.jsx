@@ -12,13 +12,13 @@ import {
   pretreatmentRemoteSingleData,
   corsTarget,
   showRuntimeErrorMessage,
-} from '../../../../../src/utils/tools';
-import { defaultUserAvatar } from '../../../../../src/utils/constants';
+} from 'antd-management-fast-framework/lib/utils/tools';
+import { defaultUserAvatar } from 'antd-management-fast-framework/lib/utils/constants';
 import {
   getToken,
   getTokenKeyName,
-} from '../../../../../src/utils/globalStorageAssist';
-import BaseUpdateForm from '../../../../../src/framework/DataForm/BaseUpdateForm';
+} from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
+import BaseUpdateForm from 'antd-management-fast-framework/lib/framework/DataForm/BaseUpdateForm';
 
 import { fieldData } from '../../Common/data';
 
@@ -26,7 +26,7 @@ import styles from './index.less';
 
 // import GeographicView from '../Geographic';
 // import PhoneView from '../Phone';
-// import { getTimeDistance } from '../../../../../src/utils/utils';
+// import { getTimeDistance } from 'antd-management-fast-framework/lib/utils/utils';
 
 // 头像组件 方便以后独立，增加裁剪之类的功能
 const AvatarView = ({

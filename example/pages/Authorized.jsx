@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, Redirect } from 'umi';
 import { pathToRegexp } from 'path-to-regexp';
-import Authorized from '../../src/utils/Authorized';
-import { getToken } from '../../src/utils/globalStorageAssist';
+import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
+import { getToken } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
 
 const getRouteAuthority = (path, routeData) => {
   let authorities;

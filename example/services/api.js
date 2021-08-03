@@ -1,7 +1,7 @@
 import { stringify } from 'qs';
 import moment from 'moment';
 
-import request from '../../src/utils/request';
+import request from 'antd-management-fast-framework/lib/utils/request';
 import {
   transferToVirtualAccess,
   apiVirtualAccess,

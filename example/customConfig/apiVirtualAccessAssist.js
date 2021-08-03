@@ -1,8 +1,8 @@
 import { history } from 'umi';
 import { message } from 'antd';
 
-import { showRuntimeErrorMessage } from '../../src/utils/tools';
-import { getToken } from '../../src/utils/globalStorageAssist';
+import { showRuntimeErrorMessage } from 'antd-management-fast-framework/lib/utils/tools';
+import { getToken } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
 
 /**
  * 是否使用模拟访问

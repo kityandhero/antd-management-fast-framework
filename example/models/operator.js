@@ -1,4 +1,4 @@
-import { handleCommonDataAssist } from '../../src/utils/tools';
+import { handleCommonDataAssist } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   getCurrentData,
   getCurrentBasicInfoData,

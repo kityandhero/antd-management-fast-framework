@@ -5,8 +5,8 @@ import {
   searchFromList,
   isUndefined,
   isNull,
-} from '../../../src/utils/tools';
-import { unlimitedWithStringFlag } from '../../../src/utils/constants';
+} from 'antd-management-fast-framework/lib/utils/tools';
+import { unlimitedWithStringFlag } from 'antd-management-fast-framework/lib/utils/constants';
 
 import SupplementCore from '../SupplementCore';
 

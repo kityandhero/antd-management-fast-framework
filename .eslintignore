@@ -2,6 +2,8 @@
 /scripts
 /config
 /public
+/lib
+/es
 .history
 .npmrc
 *.test.js

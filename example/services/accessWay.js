@@ -1,4 +1,4 @@
-import request from '../../src/utils/request';
+import request from 'antd-management-fast-framework/lib/utils/request';
 
 import {
   apiVirtualSuccessAccess,

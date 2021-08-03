@@ -74,7 +74,7 @@ export default defineConfig({
         ) {
           return localName;
         }
-        const match = context.resourcePath.match(/src(.*)/);
+        const match = context.resourcePath.match(/example(.*)/);
         if (match && match[1]) {
           const antdProPath = match[1].replace('.less', '');
           const arr = winPath(antdProPath)

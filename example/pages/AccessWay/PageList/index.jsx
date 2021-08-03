@@ -7,12 +7,12 @@ import {
   formatDatetime,
   copyToClipboard,
   replaceTargetText,
-} from '../../../../src/utils/tools';
+} from 'antd-management-fast-framework/lib/utils/tools';
 import { formNameCollection } from '@/customConfig/config';
-import MultiPage from '../../../../src/framework/DataMultiPageView/MultiPage';
-import Ellipsis from '../../../../src/customComponents/Ellipsis';
-import EllipsisCustom from '../../../../src/customComponents/EllipsisCustom';
-import IconInfo from '../../../../src/customComponents/IconInfo';
+import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
+import Ellipsis from 'antd-management-fast-framework/lib/customComponents/Ellipsis';
+import EllipsisCustom from 'antd-management-fast-framework/lib/customComponents/EllipsisCustom';
+import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
 
 import { fieldData } from '../Common/data';
 

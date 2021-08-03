@@ -9,10 +9,10 @@ import {
   TeamOutlined,
 } from '@ant-design/icons';
 
-import { stringIsNullOrWhiteSpace } from '../../../src/utils/tools';
-import IconInfo from '../../../src/customComponents/IconInfo';
-import FlexBox from '../../../src/customComponents/FlexBox';
-import VerticalBox from '../../../src/customComponents/VerticalBox';
+import { stringIsNullOrWhiteSpace } from 'antd-management-fast-framework/lib/utils/tools';
+import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
+import FlexBox from 'antd-management-fast-framework/lib/customComponents/FlexBox';
+import VerticalBox from 'antd-management-fast-framework/lib/customComponents/VerticalBox';
 
 import { defaultSettings } from '@/defaultSettings';
 

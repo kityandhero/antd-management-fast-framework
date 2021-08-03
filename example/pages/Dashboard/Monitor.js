@@ -9,9 +9,9 @@ import {
   WaterWave,
   Gauge,
   TagCloud,
-} from '../../../src/customComponents/Charts';
-import NumberInfo from '../../../src/customComponents/NumberInfo';
-import Authorized from '../../../src/utils/Authorized';
+} from 'antd-management-fast-framework/lib/customComponents/Charts';
+import NumberInfo from 'antd-management-fast-framework/lib/customComponents/NumberInfo';
+import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
 
 import { formatMessage } from '@/utils/tools';
 // import CountDown from '@/components/CountDown';

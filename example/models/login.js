@@ -3,9 +3,9 @@ import { message } from 'antd';
 import { stringify } from 'querystring';
 
 import { accountLogin, getFakeCaptcha } from '@/services/api';
-import { setAuthority } from '../../src/utils/authority';
-import { getPageQuery } from '../../src/utils/utils';
-import { pretreatmentRemoteSingleData } from '../../src/utils/tools';
+import { setAuthority } from 'antd-management-fast-framework/lib/utils/authority';
+import { getPageQuery } from 'antd-management-fast-framework/lib/utils/utils';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   setToken,
   setSupplierFlag,
