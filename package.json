@@ -1,0 +1,22 @@
+{
+  "name": "antd-management-fast-framework-wrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kityandhero/antd-management-fast-framework.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kityandhero/antd-management-fast-framework/issues"
+  },
+  "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme"
+}
