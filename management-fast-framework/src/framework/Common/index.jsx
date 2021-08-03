@@ -7,9 +7,7 @@ import {
   Affix,
   Spin,
   Divider,
-  Select,
   Button,
-  Radio,
   Input,
   InputNumber,
   Switch,
@@ -49,19 +47,17 @@ import {
   formatDatetime,
   isArray,
   showRuntimeErrorMessage,
-  toString,
   stringIsEmpty,
   showErrorMessage,
   isBoolean,
-  toNumber,
   toDatetime,
   isNull,
+  checkFromConfig,
 } from '../../utils/tools';
 import {
   defaultEmptyImage,
   formContentConfig,
   unlimitedWithStringFlag,
-  whetherNumber,
   datetimeFormat,
 } from '../../utils/constants';
 import EverySpace from '../../customComponents/EverySpace';
@@ -74,8 +70,11 @@ import HelpCard from '../../customComponents/HelpCard';
 import IconInfo from '../../customComponents/IconInfo';
 import FileBase64Upload from '../../customComponents/FileBase64Upload';
 import {
+  buildFormRadioItem,
   buildFormRadio,
-  buildFormOption,
+  buildFormOptionItem,
+  buildFormSelect,
+  buildSearchFormSelect,
 } from '../../customComponents/FunctionComponent';
 
 import Core from '../Core';
@@ -83,9 +82,7 @@ import Core from '../Core';
 import styles from './index.less';
 
 const FormItem = Form.Item;
-const { Option } = Select;
 const { TextArea, Password } = Input;
-const RadioGroup = Radio.Group;
 
 class Common extends Core {
   loadDataAfterMount = true;
@@ -485,40 +482,6 @@ class Common extends Core {
     return null;
   };
 
-  checkFromConfig = (label, name, helper) => {
-    let labelText = 'object';
-    let nameText = 'object';
-    let helperText = 'object';
-
-    if (isObject(label)) {
-      showRuntimeErrorMessage('label必须为文本');
-
-      recordObject(label);
-    } else {
-      labelText = label;
-    }
-
-    if (isObject(name)) {
-      showRuntimeErrorMessage('name必须为文本');
-      recordObject(name);
-    } else {
-      nameText = name;
-    }
-
-    if (isObject(helper)) {
-      showRuntimeErrorMessage('helper必须为文本');
-      recordObject(helper);
-    } else {
-      helperText = helper;
-    }
-
-    return {
-      label: labelText,
-      name: nameText,
-      helper: helperText,
-    };
-  };
-
   renderFormNowTimeField = (data) => {
     const { label, helper, formItemLayout } = {
       ...{ helper: '数据的添加时间', label: '添加时间', formItemLayout: null },
@@ -527,7 +490,11 @@ class Common extends Core {
 
     const title = label || '添加时间';
 
-    const resultCheck = this.checkFromConfig(title, '', helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     return (
       <FormItem
@@ -553,6 +520,7 @@ class Common extends Core {
   };
 
   renderFormCreateTimeField = (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     name = 'createTime',
     helper = '数据的添加时间',
     label = '添加时间',
@@ -560,7 +528,11 @@ class Common extends Core {
   ) => {
     const title = label || '添加时间';
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     return (
       <FormItem
@@ -583,6 +555,7 @@ class Common extends Core {
   };
 
   renderFormUpdateTimeField = (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     name = 'updateTime',
     helper = '数据的最后修改时间',
     label = '最后修改时间',
@@ -590,7 +563,11 @@ class Common extends Core {
   ) => {
     const title = label || '最后修改时间';
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     return (
       <FormItem
@@ -613,11 +590,14 @@ class Common extends Core {
   };
 
   renderFormRadioCore = (listDataSource, adjustListDataCallback = null) => {
-    return buildFormRadio({ list: listDataSource, adjustListDataCallback });
+    return buildFormRadioItem({ list: listDataSource, adjustListDataCallback });
   };
 
   renderFormOptionCore = (listDataSource, adjustListDataCallback = null) => {
-    return buildFormOption({ list: listDataSource, adjustListDataCallback });
+    return buildFormOptionItem({
+      list: listDataSource,
+      adjustListDataCallback,
+    });
   };
 
   renderSearchInput = (
@@ -639,7 +619,11 @@ class Common extends Core {
       ...(inputProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     if (!canOperate) {
       return (
@@ -693,7 +677,11 @@ class Common extends Core {
       ...(inputProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     if (!canOperate) {
       return (
@@ -812,7 +800,11 @@ class Common extends Core {
       ...(inputProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     if (!canOperate) {
       return this.renderFormHiddenWrapper(
@@ -880,7 +872,11 @@ class Common extends Core {
       ...(otherProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     if (!canOperate) {
       return this.renderFormHiddenWrapper(
@@ -953,7 +949,11 @@ class Common extends Core {
       ...(inputProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     if (!canOperate) {
       return (
@@ -1009,7 +1009,11 @@ class Common extends Core {
   ) => {
     const title = label;
 
-    const resultCheck = this.checkFromConfig(title, getGuid(), helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     return (
       <FormItem
@@ -1101,7 +1105,11 @@ class Common extends Core {
   ) => {
     const title = label;
 
-    const resultCheck = this.checkFromConfig(title, getGuid(), helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     return (
       <FormItem
@@ -1159,7 +1167,11 @@ class Common extends Core {
       ...(textAreaProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, getGuid(), helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     return (
       <FormItem
@@ -1185,7 +1197,11 @@ class Common extends Core {
   renderFormText = (label, value, helper = null, formItemLayout = {}) => {
     const title = label;
 
-    const resultCheck = this.checkFromConfig(title, getGuid(), helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     return (
       <FormItem
@@ -1227,7 +1243,11 @@ class Common extends Core {
       ...(inputProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, getGuid(), helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     return (
       <FormItem
@@ -1271,7 +1291,11 @@ class Common extends Core {
       ...(inputNumberProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     if (!canOperate) {
       return (
@@ -1337,7 +1361,11 @@ class Common extends Core {
       ...(textAreaProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     if (!canOperate) {
       return (
@@ -1406,7 +1434,11 @@ class Common extends Core {
       ...(datePickerProps || {}),
     };
 
-    const resultCheck = this.checkFromConfig(title, name, helper);
+    const resultCheck = checkFromConfig({
+      label: title,
+      name: '',
+      helper,
+    });
 
     if (!canOperate) {
       return (
@@ -1450,128 +1482,49 @@ class Common extends Core {
   renderFormSelect = (
     label,
     name,
-    renderOptionFunction,
+    renderItemFunction,
     helper = null,
     onChangeCallback = null,
     formItemLayout = null,
     required = false,
     otherProps = null,
   ) => {
-    const otherSelectProps = {
-      ...{
-        placeholder: buildFieldDescription(label, '选择') || '请选择',
-        style: { width: '100%' },
-        onChange: (v, option) => {
-          if (isFunction(onChangeCallback)) {
-            onChangeCallback(v, option);
-          }
-        },
-      },
-      ...(otherProps || {}),
-    };
-
-    const resultCheck = this.checkFromConfig(label, name, helper);
-
-    return (
-      <FormItem
-        {...(formItemLayout || {})}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-        rules={[
-          {
-            required,
-            message: buildFieldDescription(resultCheck.label, '选择'),
-          },
-        ]}
-      >
-        <Select {...otherSelectProps}>
-          {isFunction(renderOptionFunction) ? renderOptionFunction() : null}
-        </Select>
-      </FormItem>
-    );
+    return buildFormSelect({
+      label,
+      name,
+      renderItemFunction,
+      helper,
+      onChangeCallback,
+      formItemLayout,
+      required,
+      otherProps,
+    });
   };
 
   renderFormRadio = (
     label,
     name,
-    renderOptionFunction,
+    renderItemFunction,
     helper = null,
     onChangeCallback = null,
     formItemLayout = null,
     required = false,
     otherProps = null,
   ) => {
-    const otherRadioProps = {
-      ...{
-        placeholder: buildFieldDescription(label, '选择'),
-        style: { width: '100%' },
-        onChange: (v, option) => {
-          if (isFunction(onChangeCallback)) {
-            onChangeCallback(v, option);
-          }
-        },
-      },
-      ...(otherProps || {}),
-    };
-
-    const resultCheck = this.checkFromConfig(label, name, helper);
-
-    return (
-      <FormItem
-        {...(formItemLayout || {})}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-        rules={[
-          {
-            required,
-            message: buildFieldDescription(resultCheck.label, '选择'),
-          },
-        ]}
-      >
-        <RadioGroup {...otherRadioProps}>
-          {isFunction(renderOptionFunction) ? renderOptionFunction() : null}
-        </RadioGroup>
-      </FormItem>
-    );
+    return buildFormRadio({
+      label,
+      name,
+      renderItemFunction,
+      helper,
+      onChangeCallback,
+      formItemLayout,
+      required,
+      otherProps,
+    });
   };
 
   renderSearchFormSelect = (label, name, options, helper = null) => {
-    const resultCheck = this.checkFromConfig(label, name, helper);
-
-    return (
-      <FormItem
-        label={resultCheck.label}
-        name={resultCheck.name}
-        rules={[
-          {
-            required: false,
-            message: buildFieldDescription(resultCheck.label, '选择'),
-          },
-        ]}
-        extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-      >
-        <Select
-          placeholder={buildFieldDescription(resultCheck.label, '选择')}
-          style={{ width: '100%' }}
-        >
-          {options}
-        </Select>
-      </FormItem>
-    );
+    return buildSearchFormSelect({ label, name, options, helper });
   };
 
   whetherList = (withUnlimited = true) => {

@@ -8,8 +8,11 @@ import {
 } from 'antd-management-fast-framework/lib/utils/tools';
 import { unlimitedWithStringFlag } from 'antd-management-fast-framework/lib/utils/constants';
 import {
+  buildFormRadioItem,
   buildFormRadio,
-  buildFormOption,
+  buildFormOptionItem,
+  buildFormSelect,
+  buildSearchFormSelect,
 } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
 export function refitRankList({ global, withUnlimited = true }) {
@@ -38,16 +41,18 @@ export function getRankName({ global, value, defaultValue = '' }) {
 
 renderRankOption = ({ global, withUnlimited = true, adjustListDataCallback = null }) => {
   const listData = refitRankList({ global, withUnlimited });
-  return buildFormRadio(listData, adjustListDataCallback);
+
+  return buildFormOptionItem({ list: listData, adjustListDataCallback });
 };
 
-renderRankRadio = (withUnlimited = true, adjustListDataCallback = null) => {
-  const listData = this.rankList(withUnlimited);
+renderRankRadio = ({ global, withUnlimited = true, adjustListDataCallback = null }) => {
+  const listData = refitRankList(withUnlimited);
 
-  return this.renderFormRadioCore(listData, adjustListDataCallback);
+  return buildFormRadioItem({ list: listData, adjustListDataCallback });
 };
 
 renderSearchRankSelect = (
+  global,
   withUnlimited = true,
   label = '商品分类',
   name = 'rankId',
@@ -55,7 +60,12 @@ renderSearchRankSelect = (
 ) => {
   const title = label || unknownLabel;
 
-  return this.renderSearchFormSelect(title, name, this.renderRankOption(withUnlimited), helper);
+  return buildSearchFormSelect({
+    label: title,
+    name,
+    options: renderRankOption({ global, withUnlimited }),
+    helper,
+  });
 };
 
 renderFormRankSelect = (
@@ -69,18 +79,18 @@ renderFormRankSelect = (
 ) => {
   const title = label || unknownLabel;
 
-  return this.renderFormSelect(
-    title,
+  return buildFormSelect({
+    label: title,
     name,
-    () => {
-      return this.renderRankOption(false);
+    renderItemFunction: () => {
+      return renderRankOption({ global, withUnlimited: false });
     },
     helper,
     onChangeCallback,
     formItemLayout,
     required,
     otherProps,
-  );
+  });
 };
 
 renderFormRankRadio = (
@@ -94,18 +104,18 @@ renderFormRankRadio = (
 ) => {
   const title = label || unknownLabel;
 
-  return this.renderFormRadio(
-    title,
+  return buildFormRadio({
+    label: title,
     name,
-    () => {
-      return this.renderRankRadio(false);
+    renderItemFunction: () => {
+      return renderRankRadio({ global, withUnlimited: false });
     },
     helper,
     onChangeCallback,
     formItemLayout,
     required,
     otherProps,
-  );
+  });
 };
 
 /**

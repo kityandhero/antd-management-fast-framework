@@ -192,12 +192,7 @@ export function stringIsEmpty(text) {
  * @param {*} afterKeepNumber
  * @returns
  */
-export function replaceTargetText(
-  text,
-  replaceText,
-  beforeKeepNumber,
-  afterKeepNumber,
-) {
+export function replaceTargetText(text, replaceText, beforeKeepNumber, afterKeepNumber) {
   let result = toString(text);
 
   const textLength = (text || '').length;
@@ -211,10 +206,7 @@ export function replaceTargetText(
     } else {
       const beforeKeep = text.substr(0, beforeKeepNumber);
 
-      const afterKeep = text.substr(
-        textLength - afterKeepNumber,
-        afterKeepNumber,
-      );
+      const afterKeep = text.substr(textLength - afterKeepNumber, afterKeepNumber);
 
       // const replaceTargetLength = textLength - (beforeKeepNumber || 0) - (afterKeepNumber || 0);
 
@@ -280,9 +272,7 @@ export function showRuntimeError({ text }, showStack = true) {
 
     if (showStack) {
       throw new Error(
-        `${
-          stringIsNullOrWhiteSpace(text || '') ? '' : `${toString(text)},`
-        }调用堆栈:`,
+        `${stringIsNullOrWhiteSpace(text || '') ? '' : `${toString(text)},`}调用堆栈:`,
       );
     }
   } catch (e) {
@@ -291,11 +281,7 @@ export function showRuntimeError({ text }, showStack = true) {
   }
 }
 
-export function showSuccessMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+export function showSuccessMessage({ duration = 3, message: messageText, onClose = () => {} }) {
   showMessage({
     type: messageTypeCollection.success,
     message: messageText,
@@ -304,11 +290,7 @@ export function showSuccessMessage({
   });
 }
 
-export function showErrorMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+export function showErrorMessage({ duration = 3, message: messageText, onClose = () => {} }) {
   showMessage({
     type: messageTypeCollection.error,
     message: messageText,
@@ -317,11 +299,7 @@ export function showErrorMessage({
   });
 }
 
-export function showWarnMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+export function showWarnMessage({ duration = 3, message: messageText, onClose = () => {} }) {
   showMessage({
     type: messageTypeCollection.warn,
     message: messageText,
@@ -330,11 +308,7 @@ export function showWarnMessage({
   });
 }
 
-export function showWarningMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+export function showWarningMessage({ duration = 3, message: messageText, onClose = () => {} }) {
   showMessage({
     type: messageTypeCollection.warning,
     message: messageText,
@@ -343,11 +317,7 @@ export function showWarningMessage({
   });
 }
 
-export function showInfoMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+export function showInfoMessage({ duration = 3, message: messageText, onClose = () => {} }) {
   showMessage({
     type: messageTypeCollection.info,
     message: messageText,
@@ -356,11 +326,7 @@ export function showInfoMessage({
   });
 }
 
-export function showLoadingMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+export function showLoadingMessage({ duration = 3, message: messageText, onClose = () => {} }) {
   showMessage({
     type: messageTypeCollection.loading,
     message: messageText,
@@ -369,11 +335,7 @@ export function showLoadingMessage({
   });
 }
 
-export function showOpenMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+export function showOpenMessage({ duration = 3, message: messageText, onClose = () => {} }) {
   showMessage({
     type: messageTypeCollection.open,
     message: messageText,
@@ -382,12 +344,7 @@ export function showOpenMessage({
   });
 }
 
-export function showMessage({
-  type,
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+export function showMessage({ type, duration = 3, message: messageText, onClose = () => {} }) {
   requestAnimationFrame(() => {
     switch (type) {
       case messageTypeCollection.success:
@@ -559,11 +516,7 @@ export function toDatetime(v) {
  * @param {*} v
  * @returns
  */
-export function formatDatetime(
-  v,
-  formatString = 'YYYY-MM-DD',
-  defaultValue = '',
-) {
+export function formatDatetime(v, formatString = 'YYYY-MM-DD', defaultValue = '') {
   if ((v || '') === '') {
     return defaultValue;
   }
@@ -787,13 +740,7 @@ export function formatDecimal(
   thousandSource = ',',
   decimalSource = '.',
 ) {
-  return formatMoney(
-    numberSource,
-    placesSource,
-    '',
-    thousandSource,
-    decimalSource,
-  );
+  return formatMoney(numberSource, placesSource, '', thousandSource, decimalSource);
 }
 
 /**
@@ -803,11 +750,7 @@ export function formatDecimal(
  * @param {*} str
  * @returns
  */
-export function formatMoney(
-  numberSource,
-  symbolSource = '￥',
-  format = '0,0.00',
-) {
+export function formatMoney(numberSource, symbolSource = '￥', format = '0,0.00') {
   return `${symbolSource}${numeral(numberSource).format(format)}`;
 }
 
@@ -919,9 +862,7 @@ function seededRandom(seed, min, max) {
  */
 export function getRandomColor(seed) {
   // eslint-disable-next-line
-  return `#${`00000${((seededRandom(seed) * 0x1000000) << 0).toString(
-    16,
-  )}`.substr(-6)}`;
+  return `#${`00000${((seededRandom(seed) * 0x1000000) << 0).toString(16)}`.substr(-6)}`;
 }
 
 function getBrowserInfoCore() {
@@ -1515,10 +1456,7 @@ export function getDerivedStateFromPropsForUrlParams(
   defaultUrlParams = { id: '' },
   parseUrlParamsForSetState = null,
 ) {
-  let stateUrlParams = getDerivedStateFromPropsForUrlParamsCore(
-    nextProps,
-    prevState,
-  );
+  let stateUrlParams = getDerivedStateFromPropsForUrlParamsCore(nextProps, prevState);
 
   stateUrlParams = stateUrlParams || { urlParams: defaultUrlParams };
 
@@ -1526,12 +1464,7 @@ export function getDerivedStateFromPropsForUrlParams(
 
   const { urlParams } = stateUrlParams;
 
-  if (
-    isEqualBySerialize(
-      { ...(urlParamsPrev || {}), ...{} },
-      { ...(urlParams || {}), ...{} },
-    )
-  ) {
+  if (isEqualBySerialize({ ...(urlParamsPrev || {}), ...{} }, { ...(urlParams || {}), ...{} })) {
     return prevState;
   }
 
@@ -1742,11 +1675,7 @@ export function getTimeDistance(type) {
 
     return [
       moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`),
-      moment(
-        moment(
-          `${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`,
-        ).valueOf() - 1000,
-      ),
+      moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000),
     ];
   }
 
@@ -1779,12 +1708,7 @@ export function handleCommonDataAssist(state, action, callback = null) {
   };
 }
 
-export function handleListDataAssist(
-  state,
-  action,
-  pretreatment = null,
-  callback = null,
-) {
+export function handleListDataAssist(state, action, pretreatment = null, callback = null) {
   const { payload: d, alias } = action;
 
   let v = pretreatmentRemoteListData(d, pretreatment);
@@ -1809,12 +1733,7 @@ export function handleListDataAssist(
   };
 }
 
-export function handlePageListDataAssist(
-  state,
-  action,
-  pretreatment = null,
-  callback = null,
-) {
+export function handlePageListDataAssist(state, action, pretreatment = null, callback = null) {
   const { payload: d, alias } = action;
 
   let v = pretreatmentRemotePageListData(d, pretreatment);
@@ -2011,6 +1930,40 @@ export function notify({
         break;
     }
   });
+}
+
+export function checkFromConfig({ label, name, helper }) {
+  let labelText = 'object';
+  let nameText = 'object';
+  let helperText = 'object';
+
+  if (isObject(label)) {
+    showRuntimeErrorMessage('label必须为文本');
+
+    recordObject(label);
+  } else {
+    labelText = label;
+  }
+
+  if (isObject(name)) {
+    showRuntimeErrorMessage('name必须为文本');
+    recordObject(name);
+  } else {
+    nameText = name;
+  }
+
+  if (isObject(helper)) {
+    showRuntimeErrorMessage('helper必须为文本');
+    recordObject(helper);
+  } else {
+    helperText = helper;
+  }
+
+  return {
+    label: labelText,
+    name: nameText,
+    helper: helperText,
+  };
 }
 
 const requestAnimFrameCustom = (() => {

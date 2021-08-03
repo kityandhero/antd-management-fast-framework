@@ -1,6 +1,7 @@
 import React from 'react';
 import TextAnimal from 'rc-texty';
 import {
+  Form,
   Typography,
   Space,
   Button,
@@ -15,11 +16,7 @@ import {
   Radio,
   Select,
 } from 'antd';
-import {
-  EllipsisOutlined,
-  LoadingOutlined,
-  ImportOutlined,
-} from '@ant-design/icons';
+import { EllipsisOutlined, LoadingOutlined, ImportOutlined } from '@ant-design/icons';
 
 import {
   formatDatetime,
@@ -85,9 +82,7 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
     >
       <Row>
         <Col>
-          {stringIsNullOrWhiteSpace(headerTitlePrefixValue)
-            ? ''
-            : `${headerTitlePrefixValue}：`}
+          {stringIsNullOrWhiteSpace(headerTitlePrefixValue) ? '' : `${headerTitlePrefixValue}：`}
         </Col>
         <Col flex="auto">
           <Space>
@@ -235,11 +230,7 @@ export function buildCustomGrid({ key = null, list, props }) {
               >
                 <FlexBox
                   flexAuto="right"
-                  left={
-                    <div style={labelStyle}>{`${item.label}${
-                      colon ? '：' : ''
-                    }`}</div>
-                  }
+                  left={<div style={labelStyle}>{`${item.label}${colon ? '：' : ''}`}</div>}
                   right={
                     <div style={contentStyle}>
                       {item.value}
@@ -723,8 +714,8 @@ export function buildFormRadio({
   };
 
   const resultCheck = checkFromConfig({
-    label,
-    name,
+    label: title,
+    name: '',
     helper,
   });
 
@@ -759,7 +750,7 @@ export function buildFormOptionItem(list, adjustListDataCallback = null) {
     listData = adjustListDataCallback(listData);
   }
 
-  const listOption = [];
+  const list = [];
 
   if (listData.length > 0) {
     listData.forEach((item) => {
@@ -776,7 +767,7 @@ export function buildFormOptionItem(list, adjustListDataCallback = null) {
         showRuntimeErrorMessage('flag 不能为空');
       }
 
-      listOption.push(
+      list.push(
         <Option
           key={`${flag}_${name}`}
           title={name}
@@ -788,7 +779,7 @@ export function buildFormOptionItem(list, adjustListDataCallback = null) {
       );
     });
 
-    return listOption;
+    return list;
   }
 
   return null;
@@ -818,8 +809,8 @@ export function buildFormSelect({
   };
 
   const resultCheck = checkFromConfig({
-    label,
-    name,
+    label: title,
+    name: '',
     helper,
   });
 
@@ -849,8 +840,8 @@ export function buildFormSelect({
 
 export function buildSearchFormSelect({ label, name, options, helper = null }) {
   const resultCheck = checkFromConfig({
-    label,
-    name,
+    label: title,
+    name: '',
     helper,
   });
 
