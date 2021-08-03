@@ -73,6 +73,10 @@ import ImageBox from '../../customComponents/ImageBox';
 import HelpCard from '../../customComponents/HelpCard';
 import IconInfo from '../../customComponents/IconInfo';
 import FileBase64Upload from '../../customComponents/FileBase64Upload';
+import {
+  buildFormRadio,
+  buildFormOption,
+} from '../../customComponents/FunctionComponent';
 
 import Core from '../Core';
 
@@ -609,78 +613,11 @@ class Common extends Core {
   };
 
   renderFormRadioCore = (listDataSource, adjustListDataCallback = null) => {
-    let listData = listDataSource || [];
-
-    if (isFunction(adjustListDataCallback)) {
-      listData = adjustListDataCallback(listData);
-    }
-
-    const list = [];
-
-    if (listData.length > 0) {
-      listData.forEach((item) => {
-        const { name, flag, availability } = {
-          ...{ name: '', flag: '', availability: whetherNumber.yes },
-          ...(item || {}),
-        };
-
-        list.push(
-          <Radio
-            key={`${flag}_${name}`}
-            value={flag}
-            disabled={toNumber(availability) !== whetherNumber.yes}
-          >
-            {name}
-          </Radio>,
-        );
-      });
-
-      return list;
-    }
-
-    return null;
+    return buildFormRadio({ list: listDataSource, adjustListDataCallback });
   };
 
   renderFormOptionCore = (listDataSource, adjustListDataCallback = null) => {
-    let listData = listDataSource || [];
-
-    if (isFunction(adjustListDataCallback)) {
-      listData = adjustListDataCallback(listData);
-    }
-
-    const list = [];
-
-    if (listData.length > 0) {
-      listData.forEach((item) => {
-        const { name, flag, availability } = {
-          ...{ name: '', flag: '', availability: whetherNumber.yes },
-          ...(item || {}),
-        };
-
-        if (stringIsNullOrWhiteSpace(toString(name))) {
-          showRuntimeErrorMessage('name 不能为空');
-        }
-
-        if (stringIsNullOrWhiteSpace(toString(flag))) {
-          showRuntimeErrorMessage('flag 不能为空');
-        }
-
-        list.push(
-          <Option
-            key={`${flag}_${name}`}
-            title={name}
-            value={flag}
-            disabled={toNumber(availability) !== whetherNumber.yes}
-          >
-            {name}
-          </Option>,
-        );
-      });
-
-      return list;
-    }
-
-    return null;
+    return buildFormOption({ list: listDataSource, adjustListDataCallback });
   };
 
   renderSearchInput = (

@@ -12,12 +12,9 @@ import {
   Tooltip,
   Menu,
   Tag,
+  Radio,
 } from 'antd';
-import {
-  EllipsisOutlined,
-  LoadingOutlined,
-  ImportOutlined,
-} from '@ant-design/icons';
+import { EllipsisOutlined, LoadingOutlined, ImportOutlined } from '@ant-design/icons';
 
 import {
   formatDatetime,
@@ -77,9 +74,7 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
     >
       <Row>
         <Col>
-          {stringIsNullOrWhiteSpace(headerTitlePrefixValue)
-            ? ''
-            : `${headerTitlePrefixValue}：`}
+          {stringIsNullOrWhiteSpace(headerTitlePrefixValue) ? '' : `${headerTitlePrefixValue}：`}
         </Col>
         <Col flex="auto">
           <Space>
@@ -227,11 +222,7 @@ export function buildCustomGrid({ key = null, list, props }) {
               >
                 <FlexBox
                   flexAuto="right"
-                  left={
-                    <div style={labelStyle}>{`${item.label}${
-                      colon ? '：' : ''
-                    }`}</div>
-                  }
+                  left={<div style={labelStyle}>{`${item.label}${colon ? '：' : ''}`}</div>}
                   right={
                     <div style={contentStyle}>
                       {item.value}
@@ -656,6 +647,81 @@ export function buildListViewItemActionSelect({
       </Button>
     </Popconfirm>
   );
+}
+
+export function buildFormRadio(list, adjustListDataCallback = null) {
+  let listData = list || [];
+
+  if (isFunction(adjustListDataCallback)) {
+    listData = adjustListDataCallback(listData);
+  }
+
+  const listRadio = [];
+
+  if (listData.length > 0) {
+    listData.forEach((item) => {
+      const { name, flag, availability } = {
+        ...{ name: '', flag: '', availability: whetherNumber.yes },
+        ...(item || {}),
+      };
+
+      listRadio.push(
+        <Radio
+          key={`${flag}_${name}`}
+          value={flag}
+          disabled={toNumber(availability) !== whetherNumber.yes}
+        >
+          {name}
+        </Radio>,
+      );
+    });
+
+    return listRadio;
+  }
+
+  return null;
+}
+
+export function buildFormOption(list, adjustListDataCallback = null) {
+  let listData = list || [];
+
+  if (isFunction(adjustListDataCallback)) {
+    listData = adjustListDataCallback(listData);
+  }
+
+  const list = [];
+
+  if (listData.length > 0) {
+    listData.forEach((item) => {
+      const { name, flag, availability } = {
+        ...{ name: '', flag: '', availability: whetherNumber.yes },
+        ...(item || {}),
+      };
+
+      if (stringIsNullOrWhiteSpace(toString(name))) {
+        showRuntimeErrorMessage('name 不能为空');
+      }
+
+      if (stringIsNullOrWhiteSpace(toString(flag))) {
+        showRuntimeErrorMessage('flag 不能为空');
+      }
+
+      list.push(
+        <Option
+          key={`${flag}_${name}`}
+          title={name}
+          value={flag}
+          disabled={toNumber(availability) !== whetherNumber.yes}
+        >
+          {name}
+        </Option>,
+      );
+    });
+
+    return list;
+  }
+
+  return null;
 }
 
 /**
