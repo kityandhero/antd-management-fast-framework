@@ -39,5 +39,5 @@ screenshot
 .eslintcache
 
 build
-lib
-es
+/lib
+/es
