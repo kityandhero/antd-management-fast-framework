@@ -1,0 +1,31 @@
+.displayBox {
+  padding: 4px 0 4px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.formItemOnlyShowText {
+  :global {
+    .ant-form-item-label {
+      label {
+        &::before {
+          display: inline-block;
+          margin-right: 4px;
+          color: #ff4d4f;
+          font-size: 14px;
+          font-family: SimSun, sans-serif;
+          line-height: 1;
+          content: '*';
+        }
+      }
+    }
+  }
+
+  // .ant-form-item-label > label::before {
+  //   width: 7px;
+  //   margin-right: 4px;
+  //   content: '';
+  // }
+}
