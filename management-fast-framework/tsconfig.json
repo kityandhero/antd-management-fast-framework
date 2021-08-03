@@ -19,7 +19,7 @@
     "experimentalDecorators": true,
     "strict": true,
     "paths": {
-      "@antd-management-fast-framework/*": ["./src/*"],
+      "@@@/*": ["./src/*"],
       "@/*": ["./example/*"],
       "@@/*": ["./example/.umi/*"]
     }

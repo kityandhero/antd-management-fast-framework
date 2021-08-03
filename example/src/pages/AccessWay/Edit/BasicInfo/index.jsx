@@ -1,16 +1,6 @@
 import React from 'react';
 import { connect } from 'umi';
-import {
-  Card,
-  Row,
-  Col,
-  Spin,
-  BackTop,
-  Select,
-  notification,
-  Popover,
-  message,
-} from 'antd';
+import { Card, Row, Col, Spin, BackTop, Select, notification, Popover, message } from 'antd';
 import {
   ProjectOutlined,
   CompressOutlined,
@@ -18,11 +8,11 @@ import {
   ExclamationCircleOutlined,
 } from '@ant-design/icons';
 
-import HtmlBox from '@antd-management-fast-framework/customComponents/HtmlBox';
+import HtmlBox from 'antd-management-fast-framework/lib/customComponents/HtmlBox';
 import {
   getDerivedStateFromPropsForUrlParams,
   pretreatmentRequestParams,
-} from '@antd-management-fast-framework/utils/tools';
+} from 'antd-management-fast-framework/lib/utils/tools';
 
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import TabPageBase from '../../TabPageBase';
@@ -67,10 +57,7 @@ class BasicInfo extends TabPageBase {
     const { dataLoading } = this.state;
 
     if (!dataLoading) {
-      if (
-        op === 'update' ||
-        this.checkNeedUpdate(preProps, preState, snapshot)
-      ) {
+      if (op === 'update' || this.checkNeedUpdate(preProps, preState, snapshot)) {
         this.loadData();
       }
     }
@@ -210,11 +197,7 @@ class BasicInfo extends TabPageBase {
         return null;
       }
       return (
-        <li
-          key={key}
-          className={styles.errorListItem}
-          onClick={() => scrollToField(key)}
-        >
+        <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
           <CompressOutlined className={styles.errorIcon} />
           <div className={styles.errorMessage}>{errors[key][0]}</div>
           <div className={styles.errorField}>{fieldData[key]}</div>
@@ -281,9 +264,7 @@ class BasicInfo extends TabPageBase {
             const that = this;
 
             that.setState({ processing: false }, () => {
-              dispatch(
-                that.redirectToPath(pathname.replace('/load/', '/update/')),
-              );
+              dispatch(that.redirectToPath(pathname.replace('/load/', '/update/')));
             });
           }
         });
@@ -323,63 +304,47 @@ class BasicInfo extends TabPageBase {
               <Row gutter={24}>
                 <Col lg={24} md={12} sm={24}>
                   <div className={styles.fieldBox}>
-                    {`${fieldData.message}：${
-                      metaData === null ? '' : metaData.message || '无'
-                    }`}
+                    {`${fieldData.message}：${metaData === null ? '' : metaData.message || '无'}`}
                   </div>
                 </Col>
               </Row>
               <Row gutter={24}>
                 <Col lg={24} md={12} sm={24}>
                   <div className={styles.fieldBox}>
-                    {`${fieldData.url}：${
-                      metaData === null ? '' : metaData.url || '无'
-                    }`}
+                    {`${fieldData.url}：${metaData === null ? '' : metaData.url || '无'}`}
                   </div>
                 </Col>
               </Row>
               <Row gutter={24}>
                 <Col lg={6} md={12} sm={24} xs={24}>
                   <div className={styles.fieldBox}>
-                    {`${fieldData.source}：${
-                      metaData === null ? '' : metaData.source || '无'
-                    }`}
+                    {`${fieldData.source}：${metaData === null ? '' : metaData.source || '无'}`}
                   </div>
                 </Col>
 
                 <Col lg={6} md={12} sm={24} xs={24}>
                   <div className={styles.fieldBox}>
-                    {`${fieldData.userId}：${
-                      metaData === null ? '' : metaData.userId || '无'
-                    }`}
+                    {`${fieldData.userId}：${metaData === null ? '' : metaData.userId || '无'}`}
                   </div>
                 </Col>
                 <Col lg={6} md={12} sm={24} xs={24}>
                   <div className={styles.fieldBox}>
-                    {`${fieldData.scene}：${
-                      metaData === null ? '' : metaData.scene || '无'
-                    }`}
+                    {`${fieldData.scene}：${metaData === null ? '' : metaData.scene || '无'}`}
                   </div>
                 </Col>
                 <Col lg={6} md={12} sm={24} xs={24}>
                   <div className={styles.fieldBox}>
-                    {`${fieldData.host}：${
-                      metaData === null ? '' : metaData.host || '无'
-                    }`}
+                    {`${fieldData.host}：${metaData === null ? '' : metaData.host || '无'}`}
                   </div>
                 </Col>
                 <Col lg={6} md={12} sm={24} xs={24}>
                   <div className={styles.fieldBox}>
-                    {`${fieldData.port}：${
-                      metaData === null ? '' : metaData.port || '无'
-                    }`}
+                    {`${fieldData.port}：${metaData === null ? '' : metaData.port || '无'}`}
                   </div>
                 </Col>
                 <Col lg={6} md={12} sm={24} xs={24}>
                   <div className={styles.fieldBox}>
-                    {`${fieldData.log}：${
-                      metaData === null ? '' : metaData.log || '无'
-                    }`}
+                    {`${fieldData.log}：${metaData === null ? '' : metaData.log || '无'}`}
                   </div>
                 </Col>
                 <Col lg={6} md={12} sm={24} xs={24}>
@@ -391,9 +356,7 @@ class BasicInfo extends TabPageBase {
                 </Col>
                 <Col lg={6} md={12} sm={24} xs={24}>
                   <div className={styles.fieldBox}>
-                    {`${fieldData.ip}：${
-                      metaData === null ? '' : metaData.ip || '无'
-                    }`}
+                    {`${fieldData.ip}：${metaData === null ? '' : metaData.ip || '无'}`}
                   </div>
                 </Col>
               </Row>
@@ -414,18 +377,14 @@ class BasicInfo extends TabPageBase {
                 <Col lg={12} md={12} sm={24}>
                   <div className={styles.fieldBox}>
                     {`${fieldData.exceptionTypeName}：${
-                      metaData === null
-                        ? ''
-                        : metaData.exceptionTypeName || '无'
+                      metaData === null ? '' : metaData.exceptionTypeName || '无'
                     }`}
                   </div>
                 </Col>
                 <Col lg={12} md={12} sm={24}>
                   <div className={styles.fieldBox}>
                     {`${fieldData.exceptionTypeFullName}：${
-                      metaData === null
-                        ? ''
-                        : metaData.exceptionTypeFullName || '无'
+                      metaData === null ? '' : metaData.exceptionTypeFullName || '无'
                     }`}
                   </div>
                 </Col>
@@ -446,10 +405,7 @@ class BasicInfo extends TabPageBase {
               <HtmlBox>
                 {metaData === null
                   ? ''
-                  : (metaData.stackTrace || '无').replace(
-                      new RegExp('\\r\\n', 'g'),
-                      '<br/>',
-                    )}
+                  : (metaData.stackTrace || '无').replace(new RegExp('\\r\\n', 'g'), '<br/>')}
               </HtmlBox>
             </Spin>
           </Card>

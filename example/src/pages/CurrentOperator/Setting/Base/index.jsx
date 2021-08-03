@@ -12,13 +12,13 @@ import {
   pretreatmentRemoteSingleData,
   corsTarget,
   showRuntimeErrorMessage,
-} from '@antd-management-fast-framework/utils/tools';
-import { defaultUserAvatar } from '@antd-management-fast-framework/utils/constants';
+} from 'antd-management-fast-framework/lib/utils/tools';
+import { defaultUserAvatar } from 'antd-management-fast-framework/lib/utils/constants';
 import {
   getToken,
   getTokenKeyName,
-} from '@antd-management-fast-framework/utils/globalStorageAssist';
-import BaseUpdateForm from '@antd-management-fast-framework/framework/DataForm/BaseUpdateForm';
+} from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
+import BaseUpdateForm from 'antd-management-fast-framework/lib/framework/DataForm/BaseUpdateForm';
 
 import { fieldData } from '../../Common/data';
 
@@ -26,15 +26,10 @@ import styles from './index.less';
 
 // import GeographicView from '../Geographic';
 // import PhoneView from '../Phone';
-// import { getTimeDistance } from '@antd-management-fast-framework/utils/utils';
+// import { getTimeDistance } from 'antd-management-fast-framework/lib/utils/utils';
 
 // 头像组件 方便以后独立，增加裁剪之类的功能
-const AvatarView = ({
-  processing,
-  avatar,
-  uploadMainProps,
-  imageUploading,
-}) => (
+const AvatarView = ({ processing, avatar, uploadMainProps, imageUploading }) => (
   <>
     <Spin spinning={processing}>
       <div className={styles.avatar_title}>头像</div>
@@ -43,9 +38,7 @@ const AvatarView = ({
       </div>
       <Upload {...uploadMainProps}>
         <div className={styles.button_view}>
-          <Button>
-            {imageUploading ? <LoadingOutlined /> : <UploadOutlined />} 更换头像
-          </Button>
+          <Button>{imageUploading ? <LoadingOutlined /> : <UploadOutlined />} 更换头像</Button>
         </div>
       </Upload>
     </Spin>
@@ -250,8 +243,7 @@ class BaseView extends BaseUpdateForm {
   };
 
   render() {
-    const { dataLoading, processing, tokenSet, imageUploading, imageUrl } =
-      this.state;
+    const { dataLoading, processing, tokenSet, imageUploading, imageUrl } = this.state;
 
     const corsUrl = corsTarget();
 

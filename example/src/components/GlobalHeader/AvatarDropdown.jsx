@@ -1,14 +1,10 @@
 import React from 'react';
 import { connect, history } from 'umi';
 import { Avatar, Menu, Spin } from 'antd';
-import {
-  ShopOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-} from '@ant-design/icons';
+import { ShopOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 
-import { checkHasAuthority } from '@antd-management-fast-framework/utils/authority';
-import { defaultUserAvatar } from '@antd-management-fast-framework/utils/constants';
+import { checkHasAuthority } from 'antd-management-fast-framework/lib/utils/authority';
+import { defaultUserAvatar } from 'antd-management-fast-framework/lib/utils/constants';
 import { accessWayCollection } from '@/customConfig/config';
 
 import HeaderDropdown from '../HeaderDropdown';
@@ -68,11 +64,7 @@ class AvatarDropdown extends React.Component {
     }
 
     const menuHeaderDropdown = (
-      <Menu
-        className={styles.menu}
-        selectedKeys={[]}
-        onClick={this.onMenuClick}
-      >
+      <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
         {menuItems.map((o) => (
           <Menu.Item key={o.key}>
             {o.icon}
@@ -98,9 +90,7 @@ class AvatarDropdown extends React.Component {
             src={currentOperator.avatar || defaultUserAvatar}
             alt="avatar"
           />
-          <span className={styles.name}>
-            {currentOperator.loginName || '未知用户'}
-          </span>
+          <span className={styles.name}>{currentOperator.loginName || '未知用户'}</span>
         </span>
       </HeaderDropdown>
     ) : (

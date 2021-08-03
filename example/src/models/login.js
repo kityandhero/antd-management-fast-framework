@@ -3,14 +3,10 @@ import { message } from 'antd';
 import { stringify } from 'querystring';
 
 import { accountLogin, getFakeCaptcha } from '@/services/api';
-import { setAuthority } from '@antd-management-fast-framework/utils/authority';
-import { getPageQuery } from '@antd-management-fast-framework/utils/utils';
-import { pretreatmentRemoteSingleData } from '@antd-management-fast-framework/utils/tools';
-import {
-  setToken,
-  setSupplierFlag,
-  clearCustomData,
-} from '@/customConfig/storageAssist';
+import { setAuthority } from 'antd-management-fast-framework/lib/utils/authority';
+import { getPageQuery } from 'antd-management-fast-framework/lib/utils/utils';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/tools';
+import { setToken, setSupplierFlag, clearCustomData } from '@/customConfig/storageAssist';
 
 export default {
   namespace: 'login',
@@ -87,13 +83,7 @@ export default {
       v.data.role = [];
 
       const { data } = v;
-      const {
-        currentAuthority,
-        token: tokenValue,
-        code,
-        role,
-        supplierFlag,
-      } = data;
+      const { currentAuthority, token: tokenValue, code, role, supplierFlag } = data;
 
       setAuthority(currentAuthority);
       setToken(tokenValue);

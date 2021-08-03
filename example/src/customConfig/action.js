@@ -1,7 +1,4 @@
-import {
-  isFunction,
-  showRuntimeError,
-} from '@antd-management-fast-framework/utils/tools';
+import { isFunction, showRuntimeError } from 'antd-management-fast-framework/lib/utils/tools';
 
 export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   const { metaOriginalData } = target.state;
@@ -28,9 +25,7 @@ export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   });
 
   if (indexData >= 0) {
-    metaOriginalData.list[indexData] = handler(
-      metaOriginalData.list[indexData],
-    );
+    metaOriginalData.list[indexData] = handler(metaOriginalData.list[indexData]);
 
     target.setState({ metaOriginalData });
   }

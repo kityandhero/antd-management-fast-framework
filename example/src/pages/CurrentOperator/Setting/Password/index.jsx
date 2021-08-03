@@ -3,8 +3,8 @@ import { Spin, notification, BackTop } from 'antd';
 import { connect } from 'umi';
 import { KeyOutlined } from '@ant-design/icons';
 
-import { showRuntimeErrorMessage } from '@antd-management-fast-framework/utils/tools';
-import BaseUpdateForm from '@antd-management-fast-framework/framework/DataForm/BaseUpdateForm';
+import { showRuntimeErrorMessage } from 'antd-management-fast-framework/lib/utils/tools';
+import BaseUpdateForm from 'antd-management-fast-framework/lib/framework/DataForm/BaseUpdateForm';
 
 import { fieldData } from '../../Common/data';
 

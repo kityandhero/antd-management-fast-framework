@@ -9,9 +9,9 @@ import {
   WaterWave,
   Gauge,
   TagCloud,
-} from '@antd-management-fast-framework/customComponents/Charts';
-import NumberInfo from '@antd-management-fast-framework/customComponents/NumberInfo';
-import Authorized from '@antd-management-fast-framework/utils/Authorized';
+} from 'antd-management-fast-framework/lib/customComponents/Charts';
+import NumberInfo from 'antd-management-fast-framework/lib/customComponents/NumberInfo';
+import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
 
 import { formatMessage } from '@/utils/tools';
 // import CountDown from '@/components/CountDown';
@@ -49,18 +49,8 @@ class Monitor extends PureComponent {
     return (
       <GridContent>
         <Row gutter={24}>
-          <Col
-            xl={18}
-            lg={24}
-            md={24}
-            sm={24}
-            xs={24}
-            style={{ marginBottom: 24 }}
-          >
-            <Card
-              title={formatMessage({ id: 'app.monitor.trading-activity' })}
-              bordered={false}
-            >
+          <Col xl={18} lg={24} md={24} sm={24} xs={24} style={{ marginBottom: 24 }}>
+            <Card title={formatMessage({ id: 'app.monitor.trading-activity' })} bordered={false}>
               <Row>
                 <Col md={6} sm={12} xs={24}>
                   <NumberInfo

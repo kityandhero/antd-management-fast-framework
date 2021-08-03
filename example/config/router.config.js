@@ -1,4 +1,4 @@
-import { accessWayCollection } from '../example/customConfig/config';
+import { accessWayCollection } from '../src/customConfig/config';
 
 export default [
   {
@@ -19,19 +19,13 @@ export default [
         path: '/dashboard',
         name: 'dashboard',
         icon: 'dashboard',
-        authority: [
-          accessWayCollection.super,
-          accessWayCollection.dashboard.analysis,
-        ],
+        authority: [accessWayCollection.super, accessWayCollection.dashboard.analysis],
         routes: [
           {
             path: '/dashboard/analysis',
             name: 'analysis',
             icon: 'area-chart',
-            authority: [
-              accessWayCollection.super,
-              accessWayCollection.dashboard.analysis,
-            ],
+            authority: [accessWayCollection.super, accessWayCollection.dashboard.analysis],
             component: './Dashboard/Analysis',
           },
         ],

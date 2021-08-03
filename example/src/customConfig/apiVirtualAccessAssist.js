@@ -1,8 +1,8 @@
 import { history } from 'umi';
 import { message } from 'antd';
 
-import { showRuntimeErrorMessage } from '@antd-management-fast-framework/utils/tools';
-import { getToken } from '@antd-management-fast-framework/utils/globalStorageAssist';
+import { showRuntimeErrorMessage } from 'antd-management-fast-framework/lib/utils/tools';
+import { getToken } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
 
 /**
  * 是否使用模拟访问
@@ -35,11 +35,7 @@ function apiVirtualAuthorize() {
  * @param {boolean} [needAuthorize=true]
  * @returns
  */
-export function apiVirtualFailData(
-  statusCode,
-  messageText,
-  needAuthorize = true,
-) {
+export function apiVirtualFailData(statusCode, messageText, needAuthorize = true) {
   if (needAuthorize) {
     if (apiVirtualAuthorize()) {
       showRuntimeErrorMessage(messageText);
@@ -102,10 +98,7 @@ export function apiVirtualSuccessData(successData, needAuthorize = true) {
  * @param {boolean} [needAuthorize=true]
  * @returns
  */
-export async function apiVirtualSuccessAccess(
-  dataVirtual,
-  needAuthorize = true,
-) {
+export async function apiVirtualSuccessAccess(dataVirtual, needAuthorize = true) {
   let result = {};
 
   await new Promise((resolve) => {

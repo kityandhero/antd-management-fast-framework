@@ -8,8 +8,8 @@ import {
   formatDatetime,
   pretreatmentRequestParams,
   getDerivedStateFromPropsForUrlParams,
-} from '@antd-management-fast-framework/utils/tools';
-import DataTabContainer from '@antd-management-fast-framework/framework/DataTabContainer';
+} from 'antd-management-fast-framework/lib/utils/tools';
+import DataTabContainer from 'antd-management-fast-framework/lib/framework/DataTabContainer';
 
 import { parseUrlParamsForSetState } from '../Assist/config';
 
@@ -167,9 +167,7 @@ class Edit extends DataTabContainer {
             <Description label="数据标识">
               {metaData === null ? '' : metaData.accessWayId}
             </Description>
-            <Description label="类型">
-              {metaData === null ? '' : metaData.typeNote}
-            </Description>
+            <Description label="类型">{metaData === null ? '' : metaData.typeNote}</Description>
             <Description label="出现位置">
               {metaData === null ? '' : metaData.channelNote}
             </Description>
@@ -177,11 +175,7 @@ class Edit extends DataTabContainer {
               {metaData === null ? '' : metaData.degreeNote}
             </Description>
             <Description label="是否发送通知">
-              {metaData === null
-                ? ''
-                : metaData.sendNotification
-                ? '不发送'
-                : '发送'}
+              {metaData === null ? '' : metaData.sendNotification ? '不发送' : '发送'}
             </Description>
             <Description label="发送时间">
               {metaData === null
@@ -198,23 +192,14 @@ class Edit extends DataTabContainer {
               <div className={styles.textSecondary}>发生日期</div>
               <div className={styles.heading}>
                 {' '}
-                {formatDatetime(
-                  metaData === null ? '' : metaData.createTime,
-                  'HH:mm:ss',
-                  '--',
-                )}
+                {formatDatetime(metaData === null ? '' : metaData.createTime, 'HH:mm:ss', '--')}
                 <br />
-                {formatDatetime(
-                  metaData === null ? '' : metaData.createTime,
-                  'YYYY-MM-DD',
-                )}
+                {formatDatetime(metaData === null ? '' : metaData.createTime, 'YYYY-MM-DD')}
               </div>
             </Col>
             <Col xs={24} sm={12}>
               <div className={styles.textSecondary}>处理状态</div>
-              <div className={styles.heading}>
-                {metaData === null ? '' : metaData.resolveNote}
-              </div>
+              <div className={styles.heading}>{metaData === null ? '' : metaData.resolveNote}</div>
             </Col>
           </Row>
         }

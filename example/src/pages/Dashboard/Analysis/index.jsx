@@ -28,17 +28,17 @@ import {
   MiniProgress,
   Field,
   Bar,
-} from '@antd-management-fast-framework/customComponents/Charts';
+} from 'antd-management-fast-framework/lib/customComponents/Charts';
 import {
   formatDecimal,
   formatDatetime,
   pretreatmentRequestParams,
   formatMoney,
-} from '@antd-management-fast-framework/utils/tools';
-import { datetimeFormat } from '@antd-management-fast-framework/utils/constants';
-import DataLoad from '@antd-management-fast-framework/framework/DataSingleView/DataLoad';
-import Trend from '@antd-management-fast-framework/customComponents/Trend';
-import VerticalBox from '@antd-management-fast-framework/customComponents/VerticalBox';
+} from 'antd-management-fast-framework/lib/utils/tools';
+import { datetimeFormat } from 'antd-management-fast-framework/lib/utils/constants';
+import DataLoad from 'antd-management-fast-framework/lib/framework/DataSingleView/DataLoad';
+import Trend from 'antd-management-fast-framework/lib/customComponents/Trend';
+import VerticalBox from 'antd-management-fast-framework/lib/customComponents/VerticalBox';
 
 import { accessWayCollection } from '@/customConfig/config';
 
@@ -193,11 +193,7 @@ class Analysis extends DataLoad {
 
         if (dataSuccess) {
           const { data: metaData } = data;
-          const {
-            totalSaleCount,
-            todaySaleCount,
-            saleCountRange: saleCountRangeData,
-          } = metaData;
+          const { totalSaleCount, todaySaleCount, saleCountRange: saleCountRangeData } = metaData;
 
           const saleCountRange = [];
 
@@ -451,8 +447,7 @@ class Analysis extends DataLoad {
 
         if (dataSuccess) {
           const { data: metaData } = data;
-          const { saleAmountRange: saleAmountRangeSource, productRankingList } =
-            metaData;
+          const { saleAmountRange: saleAmountRangeSource, productRankingList } = metaData;
 
           const saleAmountRange = [];
 
@@ -507,8 +502,7 @@ class Analysis extends DataLoad {
 
         if (dataSuccess) {
           const { data: metaData } = data;
-          const { saleCountRange: saleCountRangeSource, productRankingList } =
-            metaData;
+          const { saleCountRange: saleCountRangeSource, productRankingList } = metaData;
 
           const saleCountRange = [];
 
@@ -700,10 +694,7 @@ class Analysis extends DataLoad {
                       <Col span={12}>
                         <Statistic
                           title=""
-                          value={
-                            Math.abs(saleAmountData.weekChainRelativeRatio) *
-                            100
-                          }
+                          value={Math.abs(saleAmountData.weekChainRelativeRatio) * 100}
                           formatter={(v) => {
                             return (
                               <>
@@ -714,8 +705,7 @@ class Analysis extends DataLoad {
                                       : { color: '#3f8600' }
                                   }
                                 >
-                                  {saleAmountData.weekChainRelativeRatio >=
-                                  0 ? (
+                                  {saleAmountData.weekChainRelativeRatio >= 0 ? (
                                     <ArrowUpOutlined />
                                   ) : (
                                     <ArrowDownOutlined />
@@ -734,9 +724,7 @@ class Analysis extends DataLoad {
                       <Col span={12}>
                         <Statistic
                           title=""
-                          value={
-                            Math.abs(saleAmountData.dayChainRelativeRatio) * 100
-                          }
+                          value={Math.abs(saleAmountData.dayChainRelativeRatio) * 100}
                           formatter={(v) => {
                             return (
                               <>
@@ -786,10 +774,7 @@ class Analysis extends DataLoad {
                 }
                 total={saleCountData.totalSaleCount}
                 footer={
-                  <Field
-                    label="今日目前订单量"
-                    value={`${saleCountData.todaySaleCount}笔`}
-                  />
+                  <Field label="今日目前订单量" value={`${saleCountData.todaySaleCount}笔`} />
                 }
                 contentHeight={46}
               >
@@ -817,9 +802,7 @@ class Analysis extends DataLoad {
                   <>
                     <Field
                       label="今日出库物品数"
-                      value={
-                        <>{`${goodsCountData.todayGoodsCount || '暂无'}`}</>
-                      }
+                      value={<>{`${goodsCountData.todayGoodsCount || '暂无'}`}</>}
                     />
                   </>
                 }
@@ -905,44 +888,36 @@ class Analysis extends DataLoad {
                     <Col xl={8} lg={12} md={12} sm={24} xs={24}>
                       <div className={styles.salesRank}>
                         <div className={styles.salesRankInner}>
-                          <h4 className={styles.rankingTitle}>
-                            商品销售额排名
-                          </h4>
+                          <h4 className={styles.rankingTitle}>商品销售额排名</h4>
                           <ul className={styles.rankingList}>
-                            {(saleAmountRangeData.productRankingList || []).map(
-                              (item, i) => {
-                                if (i >= productRankingMaxCount) {
-                                  return null;
-                                }
+                            {(saleAmountRangeData.productRankingList || []).map((item, i) => {
+                              if (i >= productRankingMaxCount) {
+                                return null;
+                              }
 
-                                return (
-                                  <li
-                                    key={`saleAmountMerchant_${item.ranking}`}
+                              return (
+                                <li key={`saleAmountMerchant_${item.ranking}`}>
+                                  <span
+                                    className={`${styles.rankingItemNumber} ${
+                                      i < 3 ? styles.active : ''
+                                    }`}
                                   >
-                                    <span
-                                      className={`${styles.rankingItemNumber} ${
-                                        i < 3 ? styles.active : ''
-                                      }`}
-                                    >
-                                      {item.ranking}
-                                    </span>
-                                    <span
-                                      className={styles.rankingItemTitle}
-                                      title={item.name || '暂无排名'}
-                                    >
-                                      {item.name || '暂无排名'}
-                                    </span>
-                                    <span className={styles.rankingItemValue}>
-                                      {formatMoney(item.amount)}
-                                    </span>
-                                  </li>
-                                );
-                              },
-                            )}
+                                    {item.ranking}
+                                  </span>
+                                  <span
+                                    className={styles.rankingItemTitle}
+                                    title={item.name || '暂无排名'}
+                                  >
+                                    {item.name || '暂无排名'}
+                                  </span>
+                                  <span className={styles.rankingItemValue}>
+                                    {formatMoney(item.amount)}
+                                  </span>
+                                </li>
+                              );
+                            })}
                           </ul>
-                          {saleRangeMode === 'custom' ? (
-                            <RankingNoSupportBox />
-                          ) : null}
+                          {saleRangeMode === 'custom' ? <RankingNoSupportBox /> : null}
                         </div>
                       </div>
                     </Col>
@@ -962,40 +937,34 @@ class Analysis extends DataLoad {
                     <Col xl={8} lg={12} md={12} sm={24} xs={24}>
                       <div className={styles.salesRank}>
                         <div className={styles.salesRankInner}>
-                          <h4 className={styles.rankingTitle}>
-                            单品订单量排名
-                          </h4>
+                          <h4 className={styles.rankingTitle}>单品订单量排名</h4>
                           <ul className={styles.rankingList}>
-                            {(saleCountRangeData.productRankingList || []).map(
-                              (item, i) => {
-                                if (i >= productRankingMaxCount) {
-                                  return null;
-                                }
+                            {(saleCountRangeData.productRankingList || []).map((item, i) => {
+                              if (i >= productRankingMaxCount) {
+                                return null;
+                              }
 
-                                return (
-                                  <li key={`saleCountMerchant_${item.ranking}`}>
-                                    <span
-                                      className={`${styles.rankingItemNumber} ${
-                                        i < 3 ? styles.active : ''
-                                      }`}
-                                    >
-                                      {item.ranking}
-                                    </span>
-                                    <span
-                                      className={styles.rankingItemTitle}
-                                      title={item.name || '暂无排名'}
-                                    >
-                                      {item.name || '暂无排名'}
-                                    </span>
-                                    <span>{item.count}</span>
-                                  </li>
-                                );
-                              },
-                            )}
+                              return (
+                                <li key={`saleCountMerchant_${item.ranking}`}>
+                                  <span
+                                    className={`${styles.rankingItemNumber} ${
+                                      i < 3 ? styles.active : ''
+                                    }`}
+                                  >
+                                    {item.ranking}
+                                  </span>
+                                  <span
+                                    className={styles.rankingItemTitle}
+                                    title={item.name || '暂无排名'}
+                                  >
+                                    {item.name || '暂无排名'}
+                                  </span>
+                                  <span>{item.count}</span>
+                                </li>
+                              );
+                            })}
                           </ul>
-                          {saleRangeMode === 'custom' ? (
-                            <RankingNoSupportBox />
-                          ) : null}
+                          {saleRangeMode === 'custom' ? <RankingNoSupportBox /> : null}
                         </div>
                       </div>
                     </Col>

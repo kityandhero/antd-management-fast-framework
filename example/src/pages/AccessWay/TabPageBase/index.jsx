@@ -1,10 +1,7 @@
-import { getDerivedStateFromPropsForUrlParams } from '@antd-management-fast-framework/utils/tools';
-import BaseUpdateFormTab from '@antd-management-fast-framework/framework/DataForm/BaseUpdateFormTab';
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/lib/utils/tools';
+import BaseUpdateFormTab from 'antd-management-fast-framework/lib/framework/DataForm/BaseUpdateFormTab';
 
-import {
-  parseUrlParamsForSetState,
-  checkNeedUpdateAssist,
-} from '../Assist/config';
+import { parseUrlParamsForSetState, checkNeedUpdateAssist } from '../Assist/config';
 
 class BaseEditTab extends BaseUpdateFormTab {
   goToUpdateWhenProcessed = true;

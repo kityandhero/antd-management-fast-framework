@@ -1,15 +1,11 @@
 import React from 'react';
 import { connect, Link } from 'umi';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import {
-  DefaultFooter,
-  getMenuData,
-  getPageTitle,
-} from '@ant-design/pro-layout';
+import { DefaultFooter, getMenuData, getPageTitle } from '@ant-design/pro-layout';
 
-import VerticalBox from '@antd-management-fast-framework/customComponents/VerticalBox';
-import FlexBox from '@antd-management-fast-framework/customComponents/FlexBox';
-import Bubbly from '@antd-management-fast-framework/customComponents/Canvas/Bubbly';
+import VerticalBox from 'antd-management-fast-framework/lib/customComponents/VerticalBox';
+import FlexBox from 'antd-management-fast-framework/lib/customComponents/FlexBox';
+import Bubbly from 'antd-management-fast-framework/lib/customComponents/Canvas/Bubbly';
 
 import { formatMessage } from '@/utils/tools';
 import { showLogoInLoginView } from '@/customConfig/config';
@@ -76,9 +72,7 @@ const UserLayout = (props) => {
                     </span>
                   </Link>
                 </div>
-                <div className={styles.desc}>
-                  {defaultSettings.getAppDescription() || ''}
-                </div>
+                <div className={styles.desc}>{defaultSettings.getAppDescription() || ''}</div>
                 {children}
               </div>
             </div>

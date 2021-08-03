@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, Redirect } from 'umi';
 import { pathToRegexp } from 'path-to-regexp';
-import Authorized from '@antd-management-fast-framework/utils/Authorized';
-import { getToken } from '@antd-management-fast-framework/utils/globalStorageAssist';
+import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
+import { getToken } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
 
 const getRouteAuthority = (path, routeData) => {
   let authorities;
@@ -37,13 +37,7 @@ const AuthComponent = ({
   return (
     <Authorized
       authority={getRouteAuthority(location.pathname, routes) || ''}
-      noMatch={
-        isLogin ? (
-          <Redirect to="/exception/403" />
-        ) : (
-          <Redirect to="/user/login" />
-        )
-      }
+      noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to="/user/login" />}
     >
       {children}
     </Authorized>

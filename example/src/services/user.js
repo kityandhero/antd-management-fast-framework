@@ -1,4 +1,4 @@
-import request from '@antd-management-fast-framework/utils/request';
+import request from 'antd-management-fast-framework/lib/utils/request';
 import {
   apiVirtualSuccessAccess,
   transferToVirtualAccess,
@@ -13,8 +13,7 @@ export async function queryCurrent() {
   if (transferToVirtualAccess()) {
     const result = await apiVirtualSuccessAccess({
       name: 'Serati Ma',
-      avatar:
-        'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
       email: 'antdesign@alipay.com',
       signature: '海纳百川，有容乃大',
       title: '交互专家',

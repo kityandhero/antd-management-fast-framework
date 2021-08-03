@@ -1,7 +1,7 @@
 import {
   handlePageListDataAssist,
   handleCommonDataAssist,
-} from '@antd-management-fast-framework/utils/tools';
+} from 'antd-management-fast-framework/lib/utils/tools';
 
 import { pageListData, getData } from '../services/accessWay';
 

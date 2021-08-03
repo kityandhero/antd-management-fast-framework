@@ -5,8 +5,8 @@ import {
   searchFromList,
   isUndefined,
   isNull,
-} from '@antd-management-fast-framework/utils/tools';
-import { unlimitedWithStringFlag } from '@antd-management-fast-framework/utils/constants';
+} from 'antd-management-fast-framework/lib/utils/tools';
+import { unlimitedWithStringFlag } from 'antd-management-fast-framework/lib/utils/constants';
 
 import SupplementCore from '../SupplementCore';
 
@@ -67,12 +67,7 @@ class Supplement extends SupplementCore {
   ) => {
     const title = label || unknownLabel;
 
-    return this.renderSearchFormSelect(
-      title,
-      name,
-      this.renderRankOption(withUnlimited),
-      helper,
-    );
+    return this.renderSearchFormSelect(title, name, this.renderRankOption(withUnlimited), helper);
   };
 
   renderFormRankSelect = (
@@ -169,12 +164,7 @@ class Supplement extends SupplementCore {
   ) => {
     const title = label || unknownLabel;
 
-    return this.renderSearchFormSelect(
-      title,
-      name,
-      this.renderBrandOption(withUnlimited),
-      helper,
-    );
+    return this.renderSearchFormSelect(title, name, this.renderBrandOption(withUnlimited), helper);
   };
 
   renderFormBrandSelect = (
@@ -252,18 +242,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderProductSkuSaleTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductSkuSaleTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productSkuSaleTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderProductSkuSaleTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductSkuSaleTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productSkuSaleTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -360,18 +344,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderProductStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderProductStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -468,18 +446,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderProductSkuStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductSkuStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productSkuStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderProductSkuStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductSkuStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productSkuStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -576,18 +548,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderProductBuyTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductBuyTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productBuyTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderProductBuyTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductBuyTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productBuyTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -684,18 +650,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderBusinessModeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderBusinessModeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.businessModeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderBusinessModeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderBusinessModeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.businessModeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -792,18 +752,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderProductSkuSaleTimeModeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductSkuSaleTimeModeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productSkuSaleTimeModeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderProductSkuSaleTimeModeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductSkuSaleTimeModeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productSkuSaleTimeModeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -900,18 +854,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderProductMediaStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductMediaStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productMediaStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderProductMediaStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductMediaStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productMediaStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1008,18 +956,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderStatisticModeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderStatisticModeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.statisticModeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderStatisticModeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderStatisticModeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.statisticModeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1116,18 +1058,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderPayTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderPayTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.payTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderPayTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderPayTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.payTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1224,18 +1160,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderClientTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderClientTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.clientTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderClientTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderClientTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.clientTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1332,18 +1262,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderReplenishmentReasonTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderReplenishmentReasonTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.replenishmentReasonTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderReplenishmentReasonTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderReplenishmentReasonTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.replenishmentReasonTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1440,18 +1364,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderReplenishmentTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderReplenishmentTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.replenishmentTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderReplenishmentTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderReplenishmentTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.replenishmentTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1548,18 +1466,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderReplenishmentStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderReplenishmentStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.replenishmentStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderReplenishmentStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderReplenishmentStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.replenishmentStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1656,10 +1568,7 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderGenderOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderGenderOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.genderList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
@@ -1678,12 +1587,7 @@ class Supplement extends SupplementCore {
   ) => {
     const title = label || unknownLabel;
 
-    return this.renderSearchFormSelect(
-      title,
-      name,
-      this.renderGenderOption(withUnlimited),
-      helper,
-    );
+    return this.renderSearchFormSelect(title, name, this.renderGenderOption(withUnlimited), helper);
   };
 
   renderFormGenderSelect = (
@@ -1761,18 +1665,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderRefundOrderHandleTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderRefundOrderHandleTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.refundOrderHandleTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderRefundOrderHandleTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderRefundOrderHandleTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.refundOrderHandleTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1869,18 +1767,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderRefundOrderStateOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderRefundOrderStateOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.refundOrderStateList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderRefundOrderStateRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderRefundOrderStateRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.refundOrderStateList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -1977,18 +1869,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderAreaManagerStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAreaManagerStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.areaManagerStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderAreaManagerStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAreaManagerStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.areaManagerStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -2085,18 +1971,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderDistributionStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderDistributionStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.distributionStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderDistributionStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderDistributionStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.distributionStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -2193,18 +2073,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderOrderMessageOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderOrderMessageOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.orderMessageList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderOrderMessageRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderOrderMessageRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.orderMessageList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -2301,18 +2175,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderAdministrationAuthorityOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAdministrationAuthorityOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.administrationAuthorityList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderAdministrationAuthorityRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAdministrationAuthorityRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.administrationAuthorityList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -2409,18 +2277,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderRefundOrderReturnStoreOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderRefundOrderReturnStoreOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.refundOrderReturnStoreList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderRefundOrderReturnStoreRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderRefundOrderReturnStoreRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.refundOrderReturnStoreList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -2517,18 +2379,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderAccessWayTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAccessWayTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.accessWayTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderAccessWayTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAccessWayTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.accessWayTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -2625,18 +2481,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderReplenishmentStatusModeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderReplenishmentStatusModeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.replenishmentStatusModeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderReplenishmentStatusModeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderReplenishmentStatusModeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.replenishmentStatusModeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -2733,18 +2583,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderShowInStoreOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderShowInStoreOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.showInStoreList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderShowInStoreRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderShowInStoreRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.showInStoreList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -2841,18 +2685,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderShowInAppOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderShowInAppOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.showInAppList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderShowInAppRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderShowInAppRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.showInAppList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -2949,18 +2787,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderShowInWeChatOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderShowInWeChatOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.showInWeChatList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderShowInWeChatRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderShowInWeChatRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.showInWeChatList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -3057,18 +2889,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderProductSkuStockChangeTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductSkuStockChangeTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productSkuStockChangeTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderProductSkuStockChangeTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductSkuStockChangeTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productSkuStockChangeTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -3165,18 +2991,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderPeopleAccountLogTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderPeopleAccountLogTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.peopleAccountLogTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderPeopleAccountLogTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderPeopleAccountLogTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.peopleAccountLogTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -3273,18 +3093,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderPeopleAccountLogIsOutInOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderPeopleAccountLogIsOutInOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.peopleAccountLogIsOutInList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderPeopleAccountLogIsOutInRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderPeopleAccountLogIsOutInRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.peopleAccountLogIsOutInList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -3381,18 +3195,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderPeopleAccountLogInTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderPeopleAccountLogInTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.peopleAccountLogInTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderPeopleAccountLogInTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderPeopleAccountLogInTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.peopleAccountLogInTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -3489,18 +3297,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderProductPurchaseStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductPurchaseStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productPurchaseStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderProductPurchaseStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderProductPurchaseStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.productPurchaseStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -3597,18 +3399,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponScopeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponScopeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponScopeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponScopeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponScopeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponScopeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -3705,18 +3501,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponApplicableObjectOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponApplicableObjectOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponApplicableObjectList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponApplicableObjectRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponApplicableObjectRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponApplicableObjectList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -3813,18 +3603,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponExpireModeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponExpireModeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponExpireModeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponExpireModeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponExpireModeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponExpireModeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -3921,18 +3705,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponDisplayRangeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponDisplayRangeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponDisplayRangeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponDisplayRangeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponDisplayRangeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponDisplayRangeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -4029,18 +3807,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -4137,18 +3909,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponDisplayOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponDisplayOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponDisplayList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponDisplayRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponDisplayRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponDisplayList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -4245,18 +4011,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponSceneOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponSceneOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponSceneList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponSceneRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponSceneRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponSceneList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -4353,18 +4113,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -4461,18 +4215,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponGoodsUseInBusinessOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponGoodsUseInBusinessOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponGoodsUseInBusinessList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponGoodsUseInBusinessRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponGoodsUseInBusinessRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponGoodsUseInBusinessList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -4569,18 +4317,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderExpiredOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpiredOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expiredList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderExpiredRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpiredRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expiredList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -4677,18 +4419,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponStockChangeTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStockChangeTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStockChangeTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponStockChangeTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStockChangeTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStockChangeTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -4785,18 +4521,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponStockCacheChangedOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStockCacheChangedOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStockCacheChangedList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponStockCacheChangedRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStockCacheChangedRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStockCacheChangedList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -5001,18 +4731,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponStockModeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStockModeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStockModeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponStockModeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStockModeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStockModeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -5109,18 +4833,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderCouponStockStateOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStockStateOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStockStateList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderCouponStockStateRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderCouponStockStateRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.couponStockStateList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -5217,18 +4935,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderUserCouponStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderUserCouponStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.userCouponStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderUserCouponStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderUserCouponStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.userCouponStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -5545,8 +5257,7 @@ class Supplement extends SupplementCore {
     withUnlimited = true,
     adjustListDataCallback = null,
   ) => {
-    const listData =
-      this.areaConfigWhetherCustomOutboundNoticeList(withUnlimited);
+    const listData = this.areaConfigWhetherCustomOutboundNoticeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
@@ -5554,8 +5265,7 @@ class Supplement extends SupplementCore {
     withUnlimited = true,
     adjustListDataCallback = null,
   ) => {
-    const listData =
-      this.areaConfigWhetherCustomOutboundNoticeList(withUnlimited);
+    const listData = this.areaConfigWhetherCustomOutboundNoticeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
   };
@@ -5651,18 +5361,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderTagDisplayRangeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderTagDisplayRangeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.tagDisplayRangeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderTagDisplayRangeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderTagDisplayRangeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.tagDisplayRangeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -5759,18 +5463,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderTagGoodsTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderTagGoodsTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.tagGoodsTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderTagGoodsTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderTagGoodsTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.tagGoodsTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -5867,18 +5565,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderRecommendOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderRecommendOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.recommendList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderRecommendRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderRecommendRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.recommendList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -5975,10 +5667,7 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.statusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
@@ -5997,12 +5686,7 @@ class Supplement extends SupplementCore {
   ) => {
     const title = label || unknownLabel;
 
-    return this.renderSearchFormSelect(
-      title,
-      name,
-      this.renderStatusOption(withUnlimited),
-      helper,
-    );
+    return this.renderSearchFormSelect(title, name, this.renderStatusOption(withUnlimited), helper);
   };
 
   renderFormStatusSelect = (
@@ -6080,18 +5764,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderAreaCallCenterStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAreaCallCenterStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.areaCallCenterStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderAreaCallCenterStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAreaCallCenterStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.areaCallCenterStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -6188,18 +5866,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderAreaCallCenterCategoryOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAreaCallCenterCategoryOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.areaCallCenterCategoryList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderAreaCallCenterCategoryRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderAreaCallCenterCategoryRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.areaCallCenterCategoryList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -6271,13 +5943,10 @@ class Supplement extends SupplementCore {
     );
   };
 
-  productSkuRecentStatisticRecentDaysStatisticStatusList = (
-    withUnlimited = true,
-  ) => {
+  productSkuRecentStatisticRecentDaysStatisticStatusList = (withUnlimited = true) => {
     const { global } = this.props;
 
-    const list =
-      global.productSkuRecentStatisticRecentDaysStatisticStatusList || [];
+    const list = global.productSkuRecentStatisticRecentDaysStatisticStatusList || [];
 
     if (withUnlimited) {
       return refitCommonData(list, unlimitedWithStringFlag);
@@ -6286,10 +5955,7 @@ class Supplement extends SupplementCore {
     return refitCommonData(list);
   };
 
-  getProductSkuRecentStatisticRecentDaysStatisticStatusName = (
-    v,
-    defaultValue = '',
-  ) => {
+  getProductSkuRecentStatisticRecentDaysStatisticStatusName = (v, defaultValue = '') => {
     if (isInvalid(v)) {
       return defaultValue;
     }
@@ -6306,10 +5972,7 @@ class Supplement extends SupplementCore {
     withUnlimited = true,
     adjustListDataCallback = null,
   ) => {
-    const listData =
-      this.productSkuRecentStatisticRecentDaysStatisticStatusList(
-        withUnlimited,
-      );
+    const listData = this.productSkuRecentStatisticRecentDaysStatisticStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
@@ -6317,10 +5980,7 @@ class Supplement extends SupplementCore {
     withUnlimited = true,
     adjustListDataCallback = null,
   ) => {
-    const listData =
-      this.productSkuRecentStatisticRecentDaysStatisticStatusList(
-        withUnlimited,
-      );
+    const listData = this.productSkuRecentStatisticRecentDaysStatisticStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
   };
@@ -6336,9 +5996,7 @@ class Supplement extends SupplementCore {
     return this.renderSearchFormSelect(
       title,
       name,
-      this.renderProductSkuRecentStatisticRecentDaysStatisticStatusOption(
-        withUnlimited,
-      ),
+      this.renderProductSkuRecentStatisticRecentDaysStatisticStatusOption(withUnlimited),
       helper,
     );
   };
@@ -6358,9 +6016,7 @@ class Supplement extends SupplementCore {
       title,
       name,
       () => {
-        return this.renderProductSkuRecentStatisticRecentDaysStatisticStatusOption(
-          false,
-        );
+        return this.renderProductSkuRecentStatisticRecentDaysStatisticStatusOption(false);
       },
       helper,
       onChangeCallback,
@@ -6385,9 +6041,7 @@ class Supplement extends SupplementCore {
       title,
       name,
       () => {
-        return this.renderProductSkuRecentStatisticRecentDaysStatisticStatusRadio(
-          false,
-        );
+        return this.renderProductSkuRecentStatisticRecentDaysStatisticStatusRadio(false);
       },
       helper,
       onChangeCallback,
@@ -6530,18 +6184,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderSmsLogStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderSmsLogStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.smsLogStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderSmsLogStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderSmsLogStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.smsLogStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -6638,18 +6286,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderSmsLogAggregateOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderSmsLogAggregateOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.smsLogAggregateList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderSmsLogAggregateRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderSmsLogAggregateRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.smsLogAggregateList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -6746,18 +6388,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderSmsCategoryStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderSmsCategoryStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.smsCategoryStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderSmsCategoryStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderSmsCategoryStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.smsCategoryStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -6854,18 +6490,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderExpressOrderStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressOrderStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressOrderStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderExpressOrderStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressOrderStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressOrderStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -7070,18 +6700,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderExpressOrderSaleTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressOrderSaleTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressOrderSaleTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderExpressOrderSaleTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressOrderSaleTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressOrderSaleTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -7178,18 +6802,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderExpressOrderDetailStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressOrderDetailStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressOrderDetailStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderExpressOrderDetailStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressOrderDetailStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressOrderDetailStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -7290,8 +6908,7 @@ class Supplement extends SupplementCore {
     withUnlimited = true,
     adjustListDataCallback = null,
   ) => {
-    const listData =
-      this.expressOrderDetailScoreProcessingStatusList(withUnlimited);
+    const listData = this.expressOrderDetailScoreProcessingStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
@@ -7299,8 +6916,7 @@ class Supplement extends SupplementCore {
     withUnlimited = true,
     adjustListDataCallback = null,
   ) => {
-    const listData =
-      this.expressOrderDetailScoreProcessingStatusList(withUnlimited);
+    const listData = this.expressOrderDetailScoreProcessingStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
   };
@@ -7396,18 +7012,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderExpressRefundOrderStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressRefundOrderStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressRefundOrderStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderExpressRefundOrderStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressRefundOrderStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressRefundOrderStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -7553,10 +7163,7 @@ class Supplement extends SupplementCore {
       title,
       name,
       () => {
-        return this.renderExpressRefundOrderHandleTypeOption(
-          false,
-          adjustListDataCallback,
-        );
+        return this.renderExpressRefundOrderHandleTypeOption(false, adjustListDataCallback);
       },
       helper,
       onChangeCallback,
@@ -7582,10 +7189,7 @@ class Supplement extends SupplementCore {
       title,
       name,
       () => {
-        return this.renderExpressRefundOrderHandleTypeRadio(
-          false,
-          adjustListDataCallback,
-        );
+        return this.renderExpressRefundOrderHandleTypeRadio(false, adjustListDataCallback);
       },
       helper,
       onChangeCallback,
@@ -7628,10 +7232,7 @@ class Supplement extends SupplementCore {
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderExpressReplenishmentStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressReplenishmentStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressReplenishmentStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -7728,18 +7329,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderExpressReplenishmentTypeOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressReplenishmentTypeOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressReplenishmentTypeList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderExpressReplenishmentTypeRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderExpressReplenishmentTypeRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.expressReplenishmentTypeList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);
@@ -7944,18 +7539,12 @@ class Supplement extends SupplementCore {
     return item == null ? '未知' : item.name;
   };
 
-  renderSettlementStatusOption = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderSettlementStatusOption = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.settlementStatusList(withUnlimited);
     return this.renderFormOptionCore(listData, adjustListDataCallback);
   };
 
-  renderSettlementStatusRadio = (
-    withUnlimited = true,
-    adjustListDataCallback = null,
-  ) => {
+  renderSettlementStatusRadio = (withUnlimited = true, adjustListDataCallback = null) => {
     const listData = this.settlementStatusList(withUnlimited);
 
     return this.renderFormRadioCore(listData, adjustListDataCallback);

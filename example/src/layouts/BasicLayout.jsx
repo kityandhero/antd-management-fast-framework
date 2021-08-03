@@ -1,29 +1,20 @@
 import React, { useEffect } from 'react';
 import { Link, connect, history } from 'umi';
 import { Result, Button } from 'antd';
-import ProLayout, {
-  DefaultFooter,
-  SettingDrawer,
-} from '@ant-design/pro-layout';
+import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
 
-import {
-  getQueue,
-  checkDevelopment,
-} from '@antd-management-fast-framework/utils/tools';
-import { setAccessWayCollectionCache } from '@antd-management-fast-framework/utils/globalStorageAssist';
+import { getQueue, checkDevelopment } from 'antd-management-fast-framework/lib/utils/tools';
+import { setAccessWayCollectionCache } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
 import {
   isAntDesignPro,
   getAuthorityFromRouter,
-} from '@antd-management-fast-framework/utils/utils';
-import Authorized from '@antd-management-fast-framework/utils/Authorized';
+} from 'antd-management-fast-framework/lib/utils/utils';
+import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
 
 import { accessWayCollection } from '@/customConfig/config';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { execBasicLayoutRemoteRequest } from '@/customConfig/customLoad';
-import {
-  defaultFooterData,
-  menuHeaderRender,
-} from '@/customSpecialComponents/CustomAssembly';
+import { defaultFooterData, menuHeaderRender } from '@/customSpecialComponents/CustomAssembly';
 import { formatMessage } from '@/utils/tools';
 import { defaultSettings } from '@/defaultSettings';
 
@@ -58,10 +49,7 @@ const menuDataRender = (menuList) =>
   });
 
 const defaultFooterDom = (
-  <DefaultFooter
-    copyright={defaultFooterData.copyright}
-    links={defaultFooterData.links}
-  />
+  <DefaultFooter copyright={defaultFooterData.copyright} links={defaultFooterData.links} />
 );
 
 const footerRender = () => {
@@ -78,11 +66,7 @@ const footerRender = () => {
           textAlign: 'center',
         }}
       >
-        <a
-          href="https://www.netlify.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
           <img
             src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
             width="82px"
@@ -134,10 +118,7 @@ const BasicLayout = (props) => {
 
   getQueue();
 
-  const authorized = getAuthorityFromRouter(
-    props.route.routes,
-    location.pathname || '/',
-  ) || {
+  const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
     authority: undefined,
   };
 
@@ -166,11 +147,7 @@ const BasicLayout = (props) => {
             children: [],
           };
 
-          if (
-            menuItemProps.isUrl ||
-            (childrenArray || []).length > 0 ||
-            !menuItemProps.path
-          ) {
+          if (menuItemProps.isUrl || (childrenArray || []).length > 0 || !menuItemProps.path) {
             return defaultDom;
           }
 

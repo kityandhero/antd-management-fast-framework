@@ -7,12 +7,12 @@ import {
   formatDatetime,
   copyToClipboard,
   replaceTargetText,
-} from '@antd-management-fast-framework/utils/tools';
+} from 'antd-management-fast-framework/lib/utils/tools';
 import { formNameCollection } from '@/customConfig/config';
-import MultiPage from '@antd-management-fast-framework/framework/DataMultiPageView/MultiPage';
-import Ellipsis from '@antd-management-fast-framework/customComponents/Ellipsis';
-import EllipsisCustom from '@antd-management-fast-framework/customComponents/EllipsisCustom';
-import IconInfo from '@antd-management-fast-framework/customComponents/IconInfo';
+import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
+import Ellipsis from 'antd-management-fast-framework/lib/customComponents/Ellipsis';
+import EllipsisCustom from 'antd-management-fast-framework/lib/customComponents/EllipsisCustom';
+import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
 
 import { fieldData } from '../Common/data';
 
@@ -47,9 +47,7 @@ class PageList extends MultiPage {
   goToEdit = (record) => {
     const { accessWayId } = record;
 
-    this.goToPath(
-      `/permission/accessWay/edit/load/${accessWayId}/key/basicInfo`,
-    );
+    this.goToPath(`/permission/accessWay/edit/load/${accessWayId}/key/basicInfo`);
   };
 
   renderSimpleFormRow = () => {
