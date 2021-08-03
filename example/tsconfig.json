@@ -19,7 +19,6 @@
     "experimentalDecorators": true,
     "strict": true,
     "paths": {
-      "@@@/*": ["../management-fast-framework/src/*"],
       "@/*": ["./src/*"],
       "@@/*": ["./src/.umi/*"]
     }

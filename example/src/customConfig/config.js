@@ -1,7 +1,7 @@
-import { corsTarget } from 'antd-management-fast-framework/lib/utils/tools';
-
 import { pageConfig as pageConfigSource } from './pageConfig';
 import { accessWayCollection as accessWayCollectionSource } from './accessWayCollection';
+
+import { corsTarget } from '../../../management-fast-framework/src/utils/tools';
 
 export const amapkey = 'bff966857f8311eb68ea03dcbac869ad';
 
