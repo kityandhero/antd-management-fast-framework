@@ -1,4 +1,4 @@
-import { accessWayCollection } from '../src/customConfig/config';
+import { accessWayCollection } from '../src/customConfig/accessWayCollection';
 
 export default [
   {
