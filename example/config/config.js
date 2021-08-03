@@ -1,12 +1,12 @@
 import { defineConfig, utils } from 'umi';
 
-import proxy from '../config/proxy';
-import pageRoutes from '../config/router.config';
-import webpackPlugin from '../config/plugin.config';
+import proxy from './proxy';
+import pageRoutes from './router.config';
+import webpackPlugin from './plugin.config';
 
 const { winPath } = utils;
 
-const remoteAppInitConfigDomain = 'http://s_m_api.b.com';
+const corsTargetDomain = 'http://supplierapi.panduolakeji.com';
 const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION, REACT_APP_ENV } =
   process.env;
 const isAntDesignProPreview =
@@ -31,15 +31,15 @@ export default defineConfig({
   dynamicImport: {
     loading: '@/components/PageLoading/index',
   },
-  favicon: `${remoteAppInitConfigDomain}/assists/image/favicon.ico`,
-  headScripts: [`${remoteAppInitConfigDomain}/interactionConfig/init.js`],
+  favicon: `${corsTargetDomain}/assists/image/favicon.ico`,
+  headScripts: [`${corsTargetDomain}/interactionConfig/init.js`],
   targets: {
     ie: 11,
   },
   routes: pageRoutes,
   // esbuild is father build tools
   // https://umijs.org/plugins/plugin-esbuild
-  // esbuild: {},
+  esbuild: {},
   // Fast Refresh 热更新
   fastRefresh: {},
   //禁用umi.js内置的 title 渲染机制 https://github.com/ant-design/ant-design-pro/issues/6360
@@ -49,7 +49,7 @@ export default defineConfig({
     '@border-radius-base': '4px',
   },
   define: {
-    corsTargetDomain: remoteAppInitConfigDomain,
+    corsTargetDomain: corsTargetDomain,
     REACT_APP_ENV: REACT_APP_ENV || false,
     ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION:
       ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION || '', // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
@@ -74,7 +74,7 @@ export default defineConfig({
         ) {
           return localName;
         }
-        const match = context.resourcePath.match(/example(.*)/);
+        const match = context.resourcePath.match(/src(.*)/);
         if (match && match[1]) {
           const antdProPath = match[1].replace('.less', '');
           const arr = winPath(antdProPath)
@@ -96,14 +96,14 @@ export default defineConfig({
   proxy: proxy[REACT_APP_ENV || 'dev'],
   chainWebpack: webpackPlugin,
   /*
- proxy: {
-   '/server/api/': {
-     target: 'https://preview.pro.ant.design/',
-     changeOrigin: true,
-     pathRewrite: { '^/server': '' },
-   },
- },
- */
+  proxy: {
+    '/server/api/': {
+      target: 'https://preview.pro.ant.design/',
+      changeOrigin: true,
+      pathRewrite: { '^/server': '' },
+    },
+  },
+  */
   ssr: false,
   // mfsu: {},
   // webpack5: {},
