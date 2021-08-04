@@ -476,7 +476,9 @@ export function recordObject(record, level = logLevel.debug) {
 function logShowInConsole() {
   const appInit = getAppInitConfigData();
   const result = !!(appInit.showLogInConsole || false);
-
+  console.log({
+    logShowInConsole: result,
+  });
   return result;
 }
 
