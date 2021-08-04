@@ -6,11 +6,9 @@ import webpackPlugin from './plugin.config';
 
 const { winPath } = utils;
 
-const corsTargetDomain = 'http://supplierapi.panduolakeji.com';
-const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION, REACT_APP_ENV } =
-  process.env;
-const isAntDesignProPreview =
-  ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site';
+const corsTargetDomain = '';
+const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION, REACT_APP_ENV } = process.env;
+const isAntDesignProPreview = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site';
 
 export default defineConfig({
   //plugins,
@@ -32,7 +30,11 @@ export default defineConfig({
     loading: '@/components/PageLoading/index',
   },
   favicon: `${corsTargetDomain}/assists/image/favicon.ico`,
-  headScripts: [`${corsTargetDomain}/interactionConfig/init.js`],
+  headScripts: [
+    {
+      src: `${corsTargetDomain}/interactionConfig/init.js`,
+    },
+  ],
   targets: {
     ie: 11,
   },
