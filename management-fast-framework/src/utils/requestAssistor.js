@@ -30,6 +30,10 @@ export async function request({
 
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
 
+  console.log({
+    showRequestInfo,
+  });
+
   if (showRequestInfo) {
     const useVirtualRequest =
       defaultSettingsLayoutCustom.getUseVirtualRequest();

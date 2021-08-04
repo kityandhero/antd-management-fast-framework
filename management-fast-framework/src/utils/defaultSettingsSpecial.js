@@ -18,10 +18,10 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
-      result = appInit.useVirtualRequest || false;
+      result = !!(appInit.useVirtualRequest || false);
     }
 
-    return result || '';
+    return result || false;
   },
   getShowRequestInfo: () => {
     let result = false;
@@ -29,10 +29,10 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
-      result = appInit.showRequestInfo || false;
+      result = !!(appInit.useVirtualRequest || false);
     }
 
-    return result || '';
+    return result || false;
   },
   getPlatformName: () => {
     let result = '';

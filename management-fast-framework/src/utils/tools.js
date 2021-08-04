@@ -59,10 +59,6 @@ export function getAppInitConfigData() {
     }
   }
 
-  console.log({
-    appInitConfig,
-  });
-
   return appInitConfig;
 }
 
