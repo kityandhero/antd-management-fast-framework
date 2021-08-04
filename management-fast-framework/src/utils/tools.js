@@ -43,6 +43,7 @@ import {
   authenticationFailCode,
   appInitDefault,
 } from './constants';
+import { exception } from 'console';
 
 const storageKeyCollection = {
   nearestLocalhostNotify: 'nearestLocalhostNotify',
@@ -438,7 +439,9 @@ export function showMessage({
 export function recordLog(record, showMode, level = logLevel.debug) {
   if (logShowInConsole()) {
     let showModeModified =
-      (showMode || null) == null ? logShowMode.unknown : showMode;
+      (showMode || null) == null || stringIsNullOrWhiteSpace(showMode)
+        ? logShowMode.unknown
+        : showMode;
 
     if (
       !inCollection(
@@ -446,7 +449,7 @@ export function recordLog(record, showMode, level = logLevel.debug) {
         showModeModified,
       )
     ) {
-      showErrorMessage('无效的日志显示模式');
+      throw new Error(`无效的日志显示模式:${showModeModified}`);
     }
 
     if (showModeModified === logShowMode.unknown) {
