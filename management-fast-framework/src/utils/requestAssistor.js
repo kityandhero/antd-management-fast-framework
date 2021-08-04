@@ -17,7 +17,7 @@ export async function request({
     message: '虚拟未知错误',
   },
   virtualRequestResult = true,
-  virtualNeedAuthorize = false,
+  virtualNeedAuthorize = true,
 }) {
   let apiVersion = defaultSettingsLayoutCustom.getApiVersion();
 

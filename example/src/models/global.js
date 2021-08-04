@@ -14,7 +14,7 @@ import { whetherString } from 'antd-management-fast-framework/lib/utils/constant
 
 import { queryNotices } from '../services/user';
 import { getData } from '../services/global';
-import { getCurrentBasicInfoData } from '../services/operator';
+import { getCurrentBasicInfoData } from '../services/currentOperator';
 
 const GlobalModel = {
   namespace: 'global',

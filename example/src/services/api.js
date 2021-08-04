@@ -319,6 +319,13 @@ export async function accountLogin(params) {
   return request({
     api: '/entrance/signIn',
     params,
+    virtualSuccessResponse: {
+      data: {
+        name: '张三量',
+        currentAuthority: ['super'],
+      },
+    },
+    virtualNeedAuthorize: false,
   });
 
   // const url = `${getApiVersion()}/entrance/signIn`;

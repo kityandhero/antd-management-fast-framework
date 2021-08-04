@@ -1,13 +1,14 @@
 import { handleCommonDataAssist } from 'antd-management-fast-framework/lib/utils/tools';
+
 import {
   getCurrentData,
   getCurrentBasicInfoData,
   updateCurrentBasicInfoData,
   changeCurrentPasswordData,
-} from '../services/operator';
+} from '@/services/currentOperator';
 
 export default {
-  namespace: 'operator',
+  namespace: 'currentOperator',
 
   state: {},
 

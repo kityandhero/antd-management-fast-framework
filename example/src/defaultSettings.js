@@ -8,7 +8,7 @@ export const defaultSettings = {
   ...{
     title: '标题',
     // navTheme: 'light',
-    layout: 'top',
+    // layout: 'top',
     fixSiderbar: true,
     contentWidth: 'Fluid',
     emptyLogo: '/EmptyLogo.png',
