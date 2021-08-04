@@ -6,9 +6,9 @@ export async function pageListData(params) {
     params,
     virtualSuccessResponse: {
       extra: {
+        pageNo: 1,
         pageSize: 10,
         total: 0,
-        pageNo: 1,
       },
       list: [],
     },
