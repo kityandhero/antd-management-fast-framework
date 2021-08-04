@@ -2,7 +2,6 @@ import { recordLog, recordText, stringIsNullOrWhiteSpace } from './tools';
 import remoteRequest from './request';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 import {
-  transferToVirtualAccess,
   apiVirtualAccess,
   apiVirtualSuccessData,
   apiVirtualFailData,
@@ -31,7 +30,7 @@ export async function request({
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
   const useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest();
 
-  if (transferToVirtualAccess()) {
+  if (useVirtualRequest) {
     const result = await apiVirtualAccess((resolve) => {
       setTimeout(() => {
         if (virtualRequestResult) {
