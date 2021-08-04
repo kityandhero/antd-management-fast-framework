@@ -458,15 +458,15 @@ export function recordLog(record, showMode, level = logLevel.debug) {
         showModeModified = logShowMode.object;
       }
     }
-    console.log(showModeModified);
-    if (showMode === logShowMode.text) {
+
+    if (showModeModified === logShowMode.text) {
       const data = { level, record };
 
       // eslint-disable-next-line no-console
       console.log(JSON.stringify(data));
     }
 
-    if (showMode === logShowMode.object) {
+    if (showModeModified === logShowMode.object) {
       // eslint-disable-next-line no-console
       console.log({ level, record });
     }
