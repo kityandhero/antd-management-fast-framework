@@ -30,13 +30,15 @@ export async function request({
 
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
 
-  console.log({
-    showRequestInfo,
-  });
-
   if (showRequestInfo) {
     const useVirtualRequest =
       defaultSettingsLayoutCustom.getUseVirtualRequest();
+
+    console.log({
+      showRequestInfo,
+      useVirtualRequest,
+      apiVersion,
+    });
 
     if (useVirtualRequest) {
       recordLog({

@@ -29,7 +29,7 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     if ((appInit || null) != null) {
-      result = !!(appInit.useVirtualRequest || false);
+      result = !!(appInit.showRequestInfo || false);
     }
 
     return result || false;
