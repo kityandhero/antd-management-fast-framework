@@ -1,4 +1,4 @@
-window.appInitCustomData = {
+window.appInitCustom = {
   platformName: '平台名称',
   appName: '应用名称',
   appDescription: 'u应用描述',

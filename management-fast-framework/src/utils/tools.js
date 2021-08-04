@@ -52,12 +52,6 @@ export function getAppInitConfigData() {
   let appInitConfig = appInitDefault;
 
   if (isFunction(isBrowser)) {
-    console.log({
-      isBrowser: isBrowser(),
-      appInitConfig,
-      appInitCustom: window.appInitCustom,
-    });
-
     if (isBrowser()) {
       if ((window.appInitCustom || null) != null) {
         appInitConfig = { ...appInitConfig, ...window.appInitCustom };
@@ -65,7 +59,9 @@ export function getAppInitConfigData() {
     }
   }
 
-  console.log(appInitConfig);
+  console.log({
+    appInitConfig,
+  });
 
   return appInitConfig;
 }
