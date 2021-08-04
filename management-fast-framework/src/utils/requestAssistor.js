@@ -30,12 +30,6 @@ export async function request({
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
   const useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest();
 
-  recordObject({
-    url,
-    useVirtualRequest,
-    showRequestInfo,
-  });
-
   if (useVirtualRequest) {
     const result = await apiVirtualAccess({
       dataBuild: (resolve) => {
@@ -57,10 +51,6 @@ export async function request({
           }
         }, 800);
       },
-    });
-
-    recordObject({
-      showRequestInfo,
     });
 
     if (showRequestInfo) {
