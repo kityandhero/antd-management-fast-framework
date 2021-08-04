@@ -20,6 +20,7 @@ export async function request({
   virtualRequestResult = true,
   virtualNeedAuthorize = false,
 }) {
+  console.log(defaultSettingsLayoutCustom);
   let apiVersion = defaultSettingsLayoutCustom.getApiVersion();
 
   if (!stringIsNullOrWhiteSpace(apiVersion)) {
