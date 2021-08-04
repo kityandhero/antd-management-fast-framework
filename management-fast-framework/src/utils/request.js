@@ -3,14 +3,17 @@ import { history } from 'umi';
 import { message, notification } from 'antd';
 
 import {
+  corsTarget,
+  recordText,
+  trySendNearestLocalhostNotify,
+  stringIsNullOrWhiteSpace,
+} from './tools';
+import {
   getTokenKeyName,
   getToken,
   clearCustomData,
 } from './globalStorageAssist';
-
-import { authenticationFailCode } from './constants';
-
-import { corsTarget, recordText, trySendNearestLocalhostNotify } from './tools';
+import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -108,14 +111,20 @@ request.interceptors.response.use((response) => {
     .then((o) => {
       const { code } = o;
 
-      if (code === authenticationFailCode) {
+      if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
+        const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+
+        if (stringIsNullOrWhiteSpace(loginPath)) {
+          throw new Error('缺少登录页面路径配置');
+        }
+
         setTimeout(() => {
           clearCustomData();
 
           message.info('登陆超时，请重新登录！', 0.6);
 
           history.replace({
-            pathname: '/user/login',
+            pathname: loginPath,
           });
         }, 200);
       }

@@ -1,7 +1,11 @@
 import { history } from 'umi';
 import { message } from 'antd';
 
-import { showRuntimeErrorMessage, isFunction } from './tools';
+import {
+  showRuntimeErrorMessage,
+  isFunction,
+  stringIsNullOrWhiteSpace,
+} from './tools';
 import { getToken } from './globalStorageAssist';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 
@@ -44,7 +48,7 @@ export function apiVirtualFailData({
     }
 
     return {
-      code: 2001,
+      code: defaultSettingsLayoutCustom.getAuthenticationFailCode(),
       message: '未授权的访问',
     };
   }
@@ -71,7 +75,7 @@ export function apiVirtualSuccessData({ data, needAuthorize = true }) {
     }
 
     return {
-      code: 2001,
+      code: defaultSettingsLayoutCustom.getAuthenticationFailCode(),
       message: '未授权的访问',
     };
   }
@@ -104,8 +108,14 @@ export async function apiVirtualSuccessAccess({
 
   const { code } = result;
 
-  if (code === 2001) {
-    history.push('/user/login');
+  if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
+    const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+
+    if (stringIsNullOrWhiteSpace(loginPath)) {
+      throw new Error('缺少登录页面路径配置');
+    }
+
+    history.push(loginPath);
   }
 
   return result;
@@ -132,8 +142,14 @@ export async function apiVirtualFailAccess({
 
   const { code, message: messageText } = result;
 
-  if (code === 2001) {
-    history.push('/user/login');
+  if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
+    const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+
+    if (stringIsNullOrWhiteSpace(loginPath)) {
+      throw new Error('缺少登录页面路径配置');
+    }
+
+    history.push(loginPath);
   } else if (code !== 200) {
     message.warn(messageText);
   }

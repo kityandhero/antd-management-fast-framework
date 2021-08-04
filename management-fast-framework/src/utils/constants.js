@@ -25,6 +25,8 @@ export const appInitDefault = {
   apiPrefix: {
     corsTargetProduction: '',
   },
+  authenticationFailCode,
+  loginPath: '/user/login',
   showLogInConsole: false,
   showRequestInfo: false,
   useVirtualRequest: false,

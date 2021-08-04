@@ -40,7 +40,6 @@ import {
   messageTypeCollection,
   logLevel,
   logShowMode,
-  authenticationFailCode,
   appInitDefault,
 } from './constants';
 
@@ -1129,9 +1128,16 @@ function dataExceptionNotice(d) {
       }
     }
 
+    const appInit = getAppInitConfigData();
+    const { authenticationFailCode, loginPath } = appInit;
+
     if (code === authenticationFailCode) {
+      if (stringIsNullOrWhiteSpace(loginPath)) {
+        throw new Error('缺少登录页面路径配置');
+      }
+
       requestAnimationFrame(() => {
-        history.replace('/user/login');
+        history.replace(loginPath);
       });
     }
   }

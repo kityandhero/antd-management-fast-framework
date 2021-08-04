@@ -1,6 +1,29 @@
 import { getAppInitConfigData } from './tools';
+import { authenticationFailCode } from './constants';
 
 export const defaultSettingsLayoutCustom = {
+  getAuthenticationFailCode: () => {
+    let result = '';
+
+    const appInit = getAppInitConfigData();
+
+    if ((appInit || null) != null) {
+      result = appInit.authenticationFailCode || authenticationFailCode;
+    }
+
+    return result || authenticationFailCode;
+  },
+  getLoginPath: () => {
+    let result = '';
+
+    const appInit = getAppInitConfigData();
+
+    if ((appInit || null) != null) {
+      result = appInit.loginPath || '';
+    }
+
+    return result || '';
+  },
   getApiVersion: () => {
     let result = '';
 

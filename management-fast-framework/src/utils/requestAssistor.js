@@ -1,4 +1,7 @@
+import { message } from 'antd';
+import { history } from 'umi';
 import { recordObject, stringIsNullOrWhiteSpace } from './tools';
+import { getToken, clearCustomData } from './globalStorageAssist';
 import remoteRequest from './request';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 import {
@@ -31,27 +34,56 @@ export async function request({
   const useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest();
 
   if (useVirtualRequest) {
-    const result = await apiVirtualAccess({
-      dataBuild: (resolve) => {
-        setTimeout(() => {
-          if (virtualRequestResult) {
-            resolve(
-              apiVirtualSuccessData({
-                data: virtualSuccessResponse,
-                needAuthorize: virtualNeedAuthorize,
-              }),
-            );
-          } else {
-            resolve(
-              apiVirtualFailData({
-                ...(virtualFailResponse || {}),
-                ...{ needAuthorize: virtualNeedAuthorize },
-              }),
-            );
-          }
-        }, 800);
-      },
-    });
+    let result = {};
+    let verifyToken = false;
+
+    if (virtualNeedAuthorize) {
+      const token = getToken();
+
+      if (!stringIsNullOrWhiteSpace(token)) {
+        verifyToken = true;
+      }
+    }
+
+    if (virtualNeedAuthorize && !verifyToken) {
+      const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+
+      if (stringIsNullOrWhiteSpace(loginPath)) {
+        throw new Error('缺少登录页面路径配置');
+      }
+
+      setTimeout(() => {
+        clearCustomData();
+
+        message.info('登陆超时，请重新登录！', 0.6);
+
+        history.replace({
+          pathname: loginPath,
+        });
+      }, 800);
+    } else {
+      result = await apiVirtualAccess({
+        dataBuild: (resolve) => {
+          setTimeout(() => {
+            if (virtualRequestResult) {
+              resolve(
+                apiVirtualSuccessData({
+                  data: virtualSuccessResponse,
+                  needAuthorize: virtualNeedAuthorize,
+                }),
+              );
+            } else {
+              resolve(
+                apiVirtualFailData({
+                  ...(virtualFailResponse || {}),
+                  ...{ needAuthorize: virtualNeedAuthorize },
+                }),
+              );
+            }
+          }, 800);
+        },
+      });
+    }
 
     if (showRequestInfo) {
       recordObject({
