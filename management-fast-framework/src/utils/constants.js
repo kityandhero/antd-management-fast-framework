@@ -25,6 +25,9 @@ export const appInitDefault = {
   apiPrefix: {
     corsTargetProduction: '',
   },
+  showRequestInfo: false,
+  useVirtualRequest: false,
+  apiVersion: '',
 };
 
 export const accessWaySpecialCollection = {

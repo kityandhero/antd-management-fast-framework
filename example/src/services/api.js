@@ -1,32 +1,29 @@
 import { stringify } from 'qs';
 import moment from 'moment';
-
-import request from 'antd-management-fast-framework/lib/utils/request';
-import {
-  transferToVirtualAccess,
-  apiVirtualAccess,
-  apiVirtualSuccessAccess,
-  apiVirtualSuccessData,
-  apiVirtualFailData,
-} from '@/customConfig/apiVirtualAccessAssist';
-import { getApiVersion } from '@/customConfig/config';
+import { request } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 
 export async function queryProjectNotice() {
-  return request(`${getApiVersion()}/api/project/notice`);
+  return request({
+    api: '/api/project/notice',
+  });
 }
 
 export async function queryActivities() {
-  return request(`${getApiVersion()}/api/activities`);
+  return request({
+    api: '/api/activities',
+  });
 }
 
 export async function queryRule(params) {
-  return request(`${getApiVersion()}/api/rule?${stringify(params)}`);
+  return request({
+    api: `/api/rule?${stringify(params)}`,
+  });
 }
 
 export async function removeRule(params) {
-  return request(`${getApiVersion()}/api/rule`, {
-    method: 'POST',
-    body: {
+  return request({
+    api: `/api/rule`,
+    params: {
       ...params,
       method: 'delete',
     },
@@ -34,9 +31,9 @@ export async function removeRule(params) {
 }
 
 export async function addRule(params) {
-  return request(`${getApiVersion()}/api/rule`, {
-    method: 'POST',
-    body: {
+  return request({
+    api: `/api/rule`,
+    params: {
       ...params,
       method: 'post',
     },
@@ -44,9 +41,9 @@ export async function addRule(params) {
 }
 
 export async function updateRule(params) {
-  return request(`${getApiVersion()}/api/rule`, {
-    method: 'POST',
-    body: {
+  return request({
+    api: `/api/rule`,
+    params: {
       ...params,
       method: 'update',
     },
@@ -54,9 +51,9 @@ export async function updateRule(params) {
 }
 
 export async function fakeSubmitForm(params) {
-  return request(`${getApiVersion()}/api/forms`, {
-    method: 'POST',
-    data: params,
+  return request({
+    api: `/api/forms`,
+    params,
   });
 }
 
@@ -239,48 +236,55 @@ export async function fakeChartData() {
     });
   });
 
-  const getFakeChartData = {
-    visitData,
-    visitData2,
-    salesData,
-    searchData,
-    offlineData,
-    offlineChartData,
-    salesTypeData,
-    salesTypeDataOnline,
-    salesTypeDataOffline,
-    radarData,
-  };
-
-  const result = await apiVirtualSuccessAccess(getFakeChartData);
-
-  return result;
-  // }
-
-  // return request(`${getApiVersion()}/api/fake_chart_data');
+  return request({
+    api: `/api/fake_chart_data`,
+    virtualSuccessResponse: {
+      data: {
+        visitData,
+        visitData2,
+        salesData,
+        searchData,
+        offlineData,
+        offlineChartData,
+        salesTypeData,
+        salesTypeDataOnline,
+        salesTypeDataOffline,
+        radarData,
+      },
+    },
+  });
 }
 
 export async function queryTags() {
-  return request(`${getApiVersion()}/api/tags`);
+  return request({
+    api: `/api/tags`,
+  });
 }
 
 export async function queryBasicProfile() {
-  return request(`${getApiVersion()}/api/profile/basic`);
+  return request({
+    api: `/api/profile/basic`,
+  });
 }
 
 export async function queryAdvancedProfile() {
-  return request(`${getApiVersion()}/api/profile/advanced`);
+  return request({
+    api: `/api/profile/advanced`,
+  });
 }
 
 export async function queryFakeList(params) {
-  return request(`${getApiVersion()}/api/fake_list?${stringify(params)}`);
+  return request({
+    api: `/api/fake_list?${stringify(params)}`,
+  });
 }
 
 export async function removeFakeList(params) {
   const { count = 5, ...restParams } = params;
-  return request(`${getApiVersion()}/api/fake_list?count=${count}`, {
-    method: 'POST',
-    body: {
+
+  return request({
+    api: `/api/fake_list?count=${count}`,
+    params: {
       ...restParams,
       method: 'delete',
     },
@@ -289,9 +293,10 @@ export async function removeFakeList(params) {
 
 export async function addFakeList(params) {
   const { count = 5, ...restParams } = params;
-  return request(`/api/fake_list?count=${count}`, {
-    method: 'POST',
-    body: {
+
+  return request({
+    api: `/api/fake_list?count=${count}`,
+    params: {
       ...restParams,
       method: 'post',
     },
@@ -300,9 +305,10 @@ export async function addFakeList(params) {
 
 export async function updateFakeList(params) {
   const { count = 5, ...restParams } = params;
-  return request(`/api/fake_list?count=${count}`, {
-    method: 'POST',
-    body: {
+
+  return request({
+    api: `/api/fake_list?count=${count}`,
+    params: {
       ...restParams,
       method: 'update',
     },
@@ -310,84 +316,96 @@ export async function updateFakeList(params) {
 }
 
 export async function accountLogin(params) {
-  if (transferToVirtualAccess()) {
-    const result = await apiVirtualAccess((resolve) => {
-      setTimeout(() => {
-        const {
-          password,
-          userName,
-          //  type
-        } = params;
-        if (password === '888888' && userName === 'admin') {
-          resolve(
-            apiVirtualSuccessData(
-              {
-                data: {
-                  // id: 1,
-                  // token: '059b1900-7d7b-40aa-872f-197d04b03385',
-                  // userName: 'admin',
-                  // type,
-                  // role: [],
-                  currentAuthority: ['admin'],
-                  // menuAuthorityIds: '1',
-                  name: '张晓辉',
-                  city: '152',
-                  type: 1,
-                  token: '3415136134125',
-                },
-              },
-              false,
-            ),
-          );
-        } else if (password === '123456' && userName === 'user') {
-          resolve(
-            apiVirtualSuccessData(
-              {
-                data: {
-                  // id: 2,
-                  // token: 'a9f98dab-00c1-4929-b79f-bacd1a7846d0',
-                  // userName: 'user',
-                  // type,
-                  // role: [],
-                  currentAuthority: ['user'],
-                  // menuAuthorityIds: '1',
-                  name: '张烟',
-                  city: '152',
-                  type: 1,
-                  token: '4567357242135',
-                },
-              },
-              false,
-            ),
-          );
-        } else {
-          resolve(apiVirtualFailData(1001, '用户名不存在或密码错误', false));
-        }
-      }, 800);
-    });
-
-    return result;
-  }
-
-  return request(`${getApiVersion()}/entrance/signIn`, {
-    method: 'POST',
-    data: params,
+  return request({
+    api: '/entrance/signIn',
+    params,
   });
+
+  // const url = `${getApiVersion()}/entrance/signIn`;
+
+  // if (transferToVirtualAccess(url)) {
+  //   const result = await apiVirtualAccess((resolve) => {
+  //     setTimeout(() => {
+  //       const {
+  //         password,
+  //         userName,
+  //         //  type
+  //       } = params;
+
+  //       if (password === '888888' && userName === 'admin') {
+  //         resolve(
+  //           apiVirtualSuccessData({
+  //             data: {
+  //               data: {
+  //                 // id: 1,
+  //                 // token: '059b1900-7d7b-40aa-872f-197d04b03385',
+  //                 // userName: 'admin',
+  //                 // type,
+  //                 // role: [],
+  //                 currentAuthority: ['admin'],
+  //                 // menuAuthorityIds: '1',
+  //                 name: '张晓辉',
+  //                 city: '152',
+  //                 type: 1,
+  //                 token: '3415136134125',
+  //               },
+  //             },
+  //             needAuthorize: false,
+  //           }),
+  //         );
+  //       } else if (password === '123456' && userName === 'user') {
+  //         resolve(
+  //           apiVirtualSuccessData({
+  //             data: {
+  //               data: {
+  //                 // id: 2,
+  //                 // token: 'a9f98dab-00c1-4929-b79f-bacd1a7846d0',
+  //                 // userName: 'user',
+  //                 // type,
+  //                 // role: [],
+  //                 currentAuthority: ['user'],
+  //                 // menuAuthorityIds: '1',
+  //                 name: '张烟',
+  //                 city: '152',
+  //                 type: 1,
+  //                 token: '4567357242135',
+  //               },
+  //             },
+  //             needAuthorize: false,
+  //           }),
+  //         );
+  //       } else {
+  //         resolve(apiVirtualFailData(1001, '用户名不存在或密码错误', false));
+  //       }
+  //     }, 800);
+  //   });
+
+  //   return result;
+  // }
+
+  // return request(url, {
+  //   method: 'POST',
+  //   data: params,
+  // });
 }
 
 export async function fakeRegister(params) {
-  return request(`${getApiVersion()}/api/register`, {
-    method: 'POST',
-    data: params,
+  return request({
+    api: `/api/register`,
+    params,
   });
 }
 
 export async function queryNotices() {
-  return request(`${getApiVersion()}/Manager/ListNotice`);
+  return request({
+    api: `/Manager/ListNotice`,
+  });
 }
 
 export async function getFakeCaptcha(mobile) {
-  return request(`/api/captcha?mobile=${mobile}`);
+  return request({
+    api: `/api/captcha?mobile=${mobile}`,
+  });
 }
 
 /**

@@ -1,11 +1,9 @@
 import { history } from 'umi';
 import { message } from 'antd';
 
-import {
-  showRuntimeErrorMessage,
-  isFunction,
-} from 'antd-management-fast-framework/lib/utils/tools';
-import { getToken } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
+import { showRuntimeErrorMessage, isFunction } from './tools';
+import { getToken } from './globalStorageAssist';
+import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 
 /**
  * 是否使用模拟访问
@@ -14,9 +12,7 @@ import { getToken } from 'antd-management-fast-framework/lib/utils/globalStorage
  * @returns
  */
 export function transferToVirtualAccess() {
-  // return process.env.NODE_ENV === 'development';
-  return true;
-  // return false;
+  return defaultSettingsLayoutCustom.getUseVirtualRequest();
 }
 
 /**
@@ -31,17 +27,15 @@ function apiVirtualAuthorize() {
 
 /**
  * 封装模拟的错误返回
- *
- * @export
- * @param {*} code
- * @param {*} message
- * @param {boolean} [needAuthorize=true]
- * @returns
  */
-export function apiVirtualFailData({ code, message: messageText, needAuthorize = true }) {
+export function apiVirtualFailData({
+  code,
+  message: messageText,
+  needAuthorize = true,
+}) {
   if (needAuthorize) {
     if (apiVirtualAuthorize()) {
-      showRuntimeErrorMessage(message);
+      showRuntimeErrorMessage(messageText);
 
       return {
         code,
@@ -65,11 +59,6 @@ export function apiVirtualFailData({ code, message: messageText, needAuthorize =
 
 /**
  * 封装模拟的正确返回
- *
- * @export
- * @param {*} data
- * @param {boolean} [needAuthorize=true]
- * @returns
  */
 export function apiVirtualSuccessData({ data, needAuthorize = true }) {
   if (needAuthorize) {
@@ -96,13 +85,11 @@ export function apiVirtualSuccessData({ data, needAuthorize = true }) {
 
 /**
  * 封装正确的虚拟访问
- *
- * @export
- * @param {*} remoteResponse
- * @param {boolean} [needAuthorize=true]
- * @returns
  */
-export async function apiVirtualSuccessAccess({ remoteResponse, needAuthorize = true }) {
+export async function apiVirtualSuccessAccess({
+  remoteResponse,
+  needAuthorize = true,
+}) {
   let result = {};
 
   await new Promise((resolve) => {
@@ -126,13 +113,11 @@ export async function apiVirtualSuccessAccess({ remoteResponse, needAuthorize = 
 
 /**
  * 封装失败的虚拟访问
- *
- * @export
- * @param {*} remoteResponse
- * @param {boolean} [needAuthorize=true]
- * @returns
  */
-export async function apiVirtualFailAccess({ remoteResponse, needAuthorize = true }) {
+export async function apiVirtualFailAccess({
+  remoteResponse,
+  needAuthorize = true,
+}) {
   let result = {};
 
   await new Promise((resolve) => {
@@ -158,47 +143,6 @@ export async function apiVirtualFailAccess({ remoteResponse, needAuthorize = tru
 
 /**
  * 封装模拟访问
- *
- * @export
- * @param {*} dataBuildFunction
- * dataBuildFunction示例
- * apiVirtualAccess(resolve => {
- *   setTimeout(() => {
- *     const { password, userName, type } = params;
- *     if (password === '888888' && userName === 'admin') {
- *       resolve(
- *         apiVirtualSuccessData(
- *           {
- *             id: 1,
- *             token: '059b1900-7d7b-40aa-872f-197d04b03385',
- *             userName: 'admin',
- *             type,
- *             role: [],
- *             currentAuthority: 'admin',
- *           },
- *           false
- *         )
- *       );
- *     } else if (password === '123456' && userName === 'user') {
- *       resolve(
- *         apiVirtualSuccessData(
- *           {
- *             id: 2,
- *             token: 'a9f98dab-00c1-4929-b79f-bacd1a7846d0',
- *             userName: 'user',
- *             type,
- *             role: [],
- *             currentAuthority: 'user',
- *           },
- *           false
- *         )
- *       );
- *     } else {
- *       resolve(apiVirtualFailData(1001, '用户名不存在或密码错误', false));
- *     }
- *   }, 300);
- * });
- * @returns
  */
 export async function apiVirtualAccess({ dataBuild }) {
   let result = {};
@@ -222,4 +166,52 @@ export async function apiVirtualAccess({ dataBuild }) {
   }
 
   return result;
+}
+
+//  dataBuild示例
+// apiVirtualAccess((resolve) => {
+//   setTimeout(() => {
+//     const { password, userName, type } = params;
+//     if (password === '888888' && userName === 'admin') {
+//       resolve(
+//         apiVirtualSuccessData(
+//           {
+//             id: 1,
+//             token: '059b1900-7d7b-40aa-872f-197d04b03385',
+//             userName: 'admin',
+//             type,
+//             role: [],
+//             currentAuthority: 'admin',
+//           },
+//           false,
+//         ),
+//       );
+//     } else if (password === '123456' && userName === 'user') {
+//       resolve(
+//         apiVirtualSuccessData(
+//           {
+//             id: 2,
+//             token: 'a9f98dab-00c1-4929-b79f-bacd1a7846d0',
+//             userName: 'user',
+//             type,
+//             role: [],
+//             currentAuthority: 'user',
+//           },
+//           false,
+//         ),
+//       );
+//     } else {
+//       resolve(apiVirtualFailData(1001, '用户名不存在或密码错误', false));
+//     }
+//   }, 300);
+// });
+
+/**
+ * 占位函数
+ *
+ * @export
+ * @returns
+ */
+export function empty() {
+  return {};
 }

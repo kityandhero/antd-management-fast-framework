@@ -1,6 +1,39 @@
 import { getAppInitConfigData } from './tools';
 
 export const defaultSettingsLayoutCustom = {
+  getApiVersion: () => {
+    let result = '';
+
+    const appInit = getAppInitConfigData();
+
+    if ((appInit || null) != null) {
+      result = appInit.apiVersion || '';
+    }
+
+    return result || '';
+  },
+  getUseVirtualRequest: () => {
+    let result = false;
+
+    const appInit = getAppInitConfigData();
+
+    if ((appInit || null) != null) {
+      result = appInit.useVirtualRequest || false;
+    }
+
+    return result || '';
+  },
+  getShowRequestInfo: () => {
+    let result = false;
+
+    const appInit = getAppInitConfigData();
+
+    if ((appInit || null) != null) {
+      result = appInit.showRequestInfo || false;
+    }
+
+    return result || '';
+  },
   getPlatformName: () => {
     let result = '';
 

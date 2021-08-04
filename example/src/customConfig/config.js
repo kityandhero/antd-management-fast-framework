@@ -3,6 +3,8 @@ import { accessWayCollection as accessWayCollectionSource } from './accessWayCol
 
 import { corsTarget } from 'antd-management-fast-framework/lib/utils/tools';
 
+export const showRequestInConsole = process.env.NODE_ENV === 'development';
+
 export const amapkey = 'bff966857f8311eb68ea03dcbac869ad';
 
 export const goodsTypeCollection = {
