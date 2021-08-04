@@ -37,24 +37,26 @@ export async function request({
   });
 
   if (useVirtualRequest) {
-    const result = await apiVirtualAccess((resolve) => {
-      setTimeout(() => {
-        if (virtualRequestResult) {
-          resolve(
-            apiVirtualSuccessData({
-              data: virtualSuccessResponse,
-              needAuthorize: virtualNeedAuthorize,
-            }),
-          );
-        } else {
-          resolve(
-            apiVirtualFailData({
-              ...(virtualFailResponse || {}),
-              ...{ needAuthorize: virtualNeedAuthorize },
-            }),
-          );
-        }
-      }, 800);
+    const result = await apiVirtualAccess({
+      dataBuild: (resolve) => {
+        setTimeout(() => {
+          if (virtualRequestResult) {
+            resolve(
+              apiVirtualSuccessData({
+                data: virtualSuccessResponse,
+                needAuthorize: virtualNeedAuthorize,
+              }),
+            );
+          } else {
+            resolve(
+              apiVirtualFailData({
+                ...(virtualFailResponse || {}),
+                ...{ needAuthorize: virtualNeedAuthorize },
+              }),
+            );
+          }
+        }, 800);
+      },
     });
 
     recordObject({
