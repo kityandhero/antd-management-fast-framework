@@ -1,4 +1,4 @@
-import { recordLog, recordText, stringIsNullOrWhiteSpace } from './tools';
+import { recordObject, stringIsNullOrWhiteSpace } from './tools';
 import remoteRequest from './request';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 import {
@@ -30,6 +30,12 @@ export async function request({
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
   const useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest();
 
+  recordObject({
+    url,
+    useVirtualRequest,
+    showRequestInfo,
+  });
+
   if (useVirtualRequest) {
     const result = await apiVirtualAccess((resolve) => {
       setTimeout(() => {
@@ -52,7 +58,7 @@ export async function request({
     });
 
     if (showRequestInfo) {
-      recordLog({
+      recordObject({
         url,
         useVirtualRequest,
         virtualResponse: result,
@@ -63,7 +69,9 @@ export async function request({
   }
 
   if (showRequestInfo) {
-    recordText(url);
+    recordObject({
+      url,
+    });
   }
 
   return remoteRequest(url, {
