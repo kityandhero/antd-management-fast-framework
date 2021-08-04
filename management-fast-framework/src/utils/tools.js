@@ -477,6 +477,7 @@ function logShowInConsole() {
   const appInit = getAppInitConfigData();
   const result = !!(appInit.showLogInConsole || false);
   console.log({
+    appInit,
     logShowInConsole: result,
   });
   return result;
