@@ -458,7 +458,7 @@ export function recordLog(record, showMode, level = logLevel.debug) {
         showModeModified = logShowMode.object;
       }
     }
-
+    console.log(showModeModified);
     if (showMode === logShowMode.text) {
       const data = { level, record };
 
