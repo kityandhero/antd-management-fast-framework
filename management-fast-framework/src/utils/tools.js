@@ -474,13 +474,10 @@ export function recordObject(record, level = logLevel.debug) {
 }
 
 function logShowInConsole() {
-  const { NODE_ENV } = process.env;
+  const appInit = getAppInitConfigData();
+  const result = !!(appInit.showLogInConsole || false);
 
-  if (NODE_ENV === 'development') {
-    return true;
-  }
-
-  return false;
+  return result;
 }
 
 /**

@@ -25,6 +25,7 @@ export const appInitDefault = {
   apiPrefix: {
     corsTargetProduction: '',
   },
+  showLogInConsole: false,
   showRequestInfo: false,
   useVirtualRequest: false,
   apiVersion: '',

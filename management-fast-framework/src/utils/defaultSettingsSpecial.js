@@ -23,6 +23,17 @@ export const defaultSettingsLayoutCustom = {
 
     return result || false;
   },
+  getShowLogInConsole: () => {
+    let result = false;
+
+    const appInit = getAppInitConfigData();
+
+    if ((appInit || null) != null) {
+      result = !!(appInit.showLogInConsole || false);
+    }
+
+    return result || false;
+  },
   getShowRequestInfo: () => {
     let result = false;
 

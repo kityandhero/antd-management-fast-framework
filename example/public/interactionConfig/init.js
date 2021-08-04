@@ -11,6 +11,7 @@ window.appInitCustom = {
   apiPrefix: {
     corsTargetDomain: '',
   },
+  showLogInConsole: true,
   showRequestInfo: true,
   useVirtualRequest: true,
   apiVersion: 'v1',
