@@ -437,6 +437,26 @@ export function showMessage({
  */
 export function recordLog(record, showMode, level = logLevel.debug) {
   if (logShowInConsole()) {
+    let showModeModified =
+      (showMode || null) == null ? logShowMode.unknown : showMode;
+
+    if (
+      !inCollection(
+        [logShowMode.unknown, logShowMode.text, logShowMode.object],
+        showModeModified,
+      )
+    ) {
+      showErrorMessage('无效的日志显示模式');
+    }
+
+    if (showModeModified === logShowMode.unknown) {
+      if (isString(record)) {
+        showModeModified = logShowMode.text;
+      } else {
+        showModeModified = logShowMode.object;
+      }
+    }
+
     if (showMode === logShowMode.text) {
       const data = { level, record };
 
@@ -476,10 +496,7 @@ export function recordObject(record, level = logLevel.debug) {
 function logShowInConsole() {
   const appInit = getAppInitConfigData();
   const result = !!(appInit.showLogInConsole || false);
-  console.log({
-    appInit,
-    logShowInConsole: result,
-  });
+
   return result;
 }
 

@@ -1,7 +1,7 @@
 window.appInitCustom = {
   platformName: '平台名称',
   appName: '应用名称',
-  appDescription: 'u应用描述',
+  appDescription: '应用描述',
   loginLogo: '/Assists/Image/logo.png',
   shareLogo: '/Assists/Image/shareLogo.png',
   shareLogoName: '平台名称',

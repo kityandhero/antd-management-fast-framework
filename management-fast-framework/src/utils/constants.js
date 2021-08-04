@@ -183,6 +183,7 @@ export const logLevel = {
 };
 
 export const logShowMode = {
+  unknown: 'unknown',
   text: 'text',
   object: 'object',
 };
