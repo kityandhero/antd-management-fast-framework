@@ -11,6 +11,7 @@ window.appInitCustom = {
   apiPrefix: {
     corsTargetDomain: '',
   },
+  authenticationFailCode: 2001,
   loginPath: '/user/login',
   showLogInConsole: true,
   showRequestInfo: true,
