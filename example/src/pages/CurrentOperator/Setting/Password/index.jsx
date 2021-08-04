@@ -10,9 +10,9 @@ import { fieldData } from '../../Common/data';
 
 import styles from './index.less';
 
-@connect(({ operator, loading }) => ({
-  operator,
-  loading: loading.models.operator,
+@connect(({ currentOperator, loading }) => ({
+  currentOperator,
+  loading: loading.models.currentOperator,
 }))
 class Password extends BaseUpdateForm {
   loadDataAfterMount = false;
@@ -24,7 +24,7 @@ class Password extends BaseUpdateForm {
       ...this.state,
       ...{
         dataLoading: false,
-        submitApiPath: 'operator/changeCurrentPassword',
+        submitApiPath: 'currentOperator/changeCurrentPassword',
       },
     };
   }
@@ -42,7 +42,7 @@ class Password extends BaseUpdateForm {
 
   getApiData = (props) => {
     const {
-      operator: { data },
+      currentOperator: { data },
     } = props;
 
     return data;

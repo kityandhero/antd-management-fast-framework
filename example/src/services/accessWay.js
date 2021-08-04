@@ -4,6 +4,14 @@ export async function pageListData(params) {
   return request({
     api: `/accessWay/pageList`,
     params,
+    virtualSuccessResponse: {
+      extra: {
+        pageSize: 10,
+        total: 0,
+        pageNo: 1,
+      },
+      list: [],
+    },
   });
 }
 

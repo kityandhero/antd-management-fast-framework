@@ -15,6 +15,12 @@ export default {
   'menu.exception.server-error': '500',
   'menu.exception.trigger': '触发错误',
 
+  'menu.permission': '权限相关',
+  'menu.permission.accessWay': '操作模块',
+  'menu.permission.accessWay.list': '模块列表',
+  'menu.permission.accessWay.edit': '模块详情',
+  'menu.permission.accessWay.edit.basicInfo': '基本信息',
+
   'menu.marketing': '营销活动',
   'menu.marketing.discount': '抢购活动',
   'menu.marketing.discount.pageList': '抢购列表',
@@ -66,8 +72,7 @@ export default {
   'menu.productBusiness.product.edit.refundRecord': '退款记录',
   'menu.productBusiness.product.edit.replenishmentRecord': '售后记录',
   'menu.productBusiness.product.edit.goodsOutboundLineRecord': '线路出库记录',
-  'menu.productBusiness.product.edit.goodsOutboundMerchantRecord':
-    '社区出库记录',
+  'menu.productBusiness.product.edit.goodsOutboundMerchantRecord': '社区出库记录',
   'menu.productBusiness.product.edit.getGoodsSaleRange': '销售曲线',
   'menu.productBusiness.rank': '品类列表',
   'menu.productBusiness.rank.pageList': '品类列表',
@@ -81,25 +86,21 @@ export default {
   'menu.expressBusiness.expressOrderDetail.edit': '订单详情',
   'menu.expressBusiness.expressOrderDetail.edit.basicInfo': '基本信息',
   'menu.expressBusiness.expressOrderDetail.edit.operationRecord': '操作记录',
-  'menu.expressBusiness.expressOrderDetail.edit.operationRecord.pageList':
-    '记录列表',
+  'menu.expressBusiness.expressOrderDetail.edit.operationRecord.pageList': '记录列表',
   'menu.expressBusiness.expressRefundOrder': '退款单',
   'menu.expressBusiness.expressRefundOrder.pageList': '退款单列表',
   'menu.expressBusiness.expressRefundOrder.edit': '退款单详情',
   'menu.expressBusiness.expressRefundOrder.edit.orderInfo': '订单信息',
   'menu.expressBusiness.expressRefundOrder.edit.refundInfo': '退款信息',
   'menu.expressBusiness.expressRefundOrder.edit.operationRecord': '操作记录',
-  'menu.expressBusiness.expressRefundOrder.edit.operationRecord.pageList':
-    '记录列表',
+  'menu.expressBusiness.expressRefundOrder.edit.operationRecord.pageList': '记录列表',
   'menu.expressBusiness.expressReplenishment': '售后订单',
   'menu.expressBusiness.expressReplenishment.pageList': '售后订单列表',
   'menu.expressBusiness.expressReplenishment.edit': '售后单详情',
   'menu.expressBusiness.expressReplenishment.edit.orderInfo': '订单信息',
-  'menu.expressBusiness.expressReplenishment.edit.replenishmentInfo':
-    '售后信息',
+  'menu.expressBusiness.expressReplenishment.edit.replenishmentInfo': '售后信息',
   'menu.expressBusiness.expressReplenishment.edit.operationRecord': '操作记录',
-  'menu.expressBusiness.expressReplenishment.edit.operationRecord.pageList':
-    '记录列表',
+  'menu.expressBusiness.expressReplenishment.edit.operationRecord.pageList': '记录列表',
 
   'menu.stock': '库存',
   'menu.stock.config': '设置',

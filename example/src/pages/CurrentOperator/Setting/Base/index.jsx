@@ -45,10 +45,10 @@ const AvatarView = ({ processing, avatar, uploadMainProps, imageUploading }) => 
   </>
 );
 
-@connect(({ operator, global, loading }) => ({
-  operator,
+@connect(({ currentOperator, global, loading }) => ({
+  currentOperator,
   global,
-  loading: loading.models.operator,
+  loading: loading.models.currentOperator,
 }))
 class BaseView extends BaseUpdateForm {
   constructor(props) {
@@ -60,8 +60,8 @@ class BaseView extends BaseUpdateForm {
     this.state = {
       ...this.state,
       ...{
-        loadApiPath: 'operator/getCurrentBasicInfo',
-        submitApiPath: 'operator/updateCurrentBasicInfo',
+        loadApiPath: 'currentOperator/getCurrentBasicInfo',
+        submitApiPath: 'currentOperator/updateCurrentBasicInfo',
         imageUploading: false,
         imageUrl: '',
         tokenSet: tokenSetObject,
@@ -104,7 +104,7 @@ class BaseView extends BaseUpdateForm {
 
   getApiData = (props) => {
     const {
-      operator: { data },
+      currentOperator: { data },
     } = props;
 
     return data;

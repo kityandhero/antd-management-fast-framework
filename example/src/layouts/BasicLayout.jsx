@@ -196,9 +196,9 @@ const BasicLayout = (props) => {
   );
 };
 
-export default connect(({ operator, global, settings }) => ({
+export default connect(({ currentOperator, global, settings }) => ({
   collapsed: global.collapsed,
   settings,
-  operator,
+  currentOperator,
   global,
 }))(BasicLayout);

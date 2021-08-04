@@ -31,6 +31,30 @@ export default [
         ],
       },
       {
+        name: 'permission',
+        icon: 'bar-chart',
+        path: '/permission',
+        routes: [
+          {
+            path: '/permission/accessWay',
+            name: 'accessWay',
+            icon: 'bars',
+            routes: [
+              {
+                path: '/permission/accessWay',
+                redirect: '/permission/accessWay/pageList/no',
+              },
+              {
+                path: '/permission/accessWay/pageList/:pageKey',
+                name: 'list',
+                hideInMenu: true,
+                component: './AccessWay/PageList',
+              },
+            ],
+          },
+        ],
+      },
+      {
         path: '/currentOperator',
         name: 'currentOperator',
         icon: 'user',

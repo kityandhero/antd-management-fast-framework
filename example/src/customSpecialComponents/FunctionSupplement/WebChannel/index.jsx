@@ -55,7 +55,7 @@ export function renderRankRadio({ global, withUnlimited = true, adjustListDataCa
 export function renderSearchRankSelect(
   global,
   withUnlimited = true,
-  label = '商品分类',
+  label = 'Web渠道',
   name = 'rankId',
   helper = null,
 ) {
@@ -72,7 +72,7 @@ export function renderSearchRankSelect(
 export function renderFormRankSelect(
   helper = null,
   onChangeCallback,
-  label = '商品分类',
+  label = 'Web渠道',
   formItemLayout = null,
   required = true,
   name = 'rankId',
@@ -97,7 +97,7 @@ export function renderFormRankSelect(
 export function renderFormRankRadio(
   helper = null,
   onChangeCallback,
-  label = '商品分类',
+  label = 'Web渠道',
   formItemLayout = null,
   required = true,
   name = 'rankId',

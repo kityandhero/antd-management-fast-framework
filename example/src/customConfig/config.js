@@ -8,6 +8,8 @@ import {
 
 import { defaultSettings } from '@/defaultSettings';
 
+const unknownLabel = '未知';
+
 export const showRequestInConsole = process.env.NODE_ENV === 'development';
 
 export const amapkey = 'bff966857f8311eb68ea03dcbac869ad';

@@ -1,17 +1,13 @@
 import React from 'react';
 import { connect } from 'umi';
-import { Row, Col, Dropdown, Menu } from 'antd';
+import { Dropdown, Menu } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
 
 import {
-  formatDatetime,
-  copyToClipboard,
-  replaceTargetText,
-} from 'antd-management-fast-framework/lib/utils/tools';
-import { formNameCollection } from '@/customConfig/config';
+  columnFacadeMode,
+  searchFormContentConfig,
+} from 'antd-management-fast-framework/lib/utils/constants';
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
-import Ellipsis from 'antd-management-fast-framework/lib/customComponents/Ellipsis';
-import EllipsisCustom from 'antd-management-fast-framework/lib/customComponents/EllipsisCustom';
 import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
 
 import { fieldData } from '../Common/data';
@@ -50,147 +46,76 @@ class PageList extends MultiPage {
     this.goToPath(`/permission/accessWay/edit/load/${accessWayId}/key/basicInfo`);
   };
 
-  renderSimpleFormRow = () => {
-    const { dateRangeFieldName } = this.state;
-
-    return (
-      <>
-        <Row gutter={24}>
-          <Col md={4} sm={24}>
-            {this.renderSearchWebChannelSelect()}
-          </Col>
-          {this.renderSimpleFormRangePicker(dateRangeFieldName, 8)}
-          {this.renderSimpleFormButton()}
-        </Row>
-      </>
-    );
+  searchFormContentConfigData = () => {
+    return {
+      list: [
+        {
+          lg: 6,
+          type: searchFormContentConfig.contentItemType.input,
+          fieldData: fieldData.name,
+        },
+        {
+          lg: 6,
+          type: searchFormContentConfig.contentItemType.component,
+          component: this.renderSimpleFormButtonCore(),
+        },
+      ],
+    };
   };
 
-  getColumn = () => [
+  getColumnWrapper = () => [
     {
-      title: fieldData.name.label,
-      dataIndex: fieldData.name.name,
+      dataTarget: fieldData.name,
       align: 'left',
-      render: (val) => (
-        <>
-          <Ellipsis tooltip lines={1}>
-            {val}
-          </Ellipsis>
-        </>
-      ),
+      showRichFacade: true,
+      emptyValue: '--',
+      formatValue: (val) => {
+        return val === '' ? '' : val;
+      },
     },
     {
-      title: fieldData.relativePath.label,
-      dataIndex: fieldData.relativePath.name,
+      dataTarget: fieldData.relativePath,
       width: 300,
       align: 'left',
-      render: (val) => (
-        <>
-          <Ellipsis tooltip lines={1}>
-            {val || '--'}
-          </Ellipsis>
-        </>
-      ),
+      showRichFacade: true,
+      emptyValue: '--',
+      formatValue: (val) => {
+        return val === '' ? '' : val;
+      },
     },
     {
-      title: fieldData.guidTag.label,
-      dataIndex: fieldData.guidTag.name,
+      dataTarget: fieldData.guidTag,
       width: 120,
-      align: 'center',
-      render: (val) => (
-        <>
-          <EllipsisCustom
-            tooltip
-            lines={1}
-            removeChildren
-            extraContent={
-              <>
-                <a
-                  onClick={() => {
-                    copyToClipboard(val);
-                  }}
-                >
-                  {replaceTargetText(val, '***', 2, 6)}
-                </a>
-              </>
-            }
-          >
-            {val} [点击复制]
-          </EllipsisCustom>
-        </>
-      ),
+      showRichFacade: true,
+      canCopy: true,
     },
     {
-      title: fieldData.expand.label,
-      dataIndex: fieldData.expand.name,
-      width: 340,
-      align: 'center',
-      render: (val) => (
-        <>
-          <Ellipsis tooltip lines={1}>
-            {val || '--'}
-          </Ellipsis>
-        </>
-      ),
-    },
-    // {
-    //   title:fieldData.accessWayId.label,
-    //   dataIndex: fieldData.accessWayId.name,
-    //   width: 120,
-    //   align: 'center',
-    //   render: val => (
-    //     <>
-    //       <EllipsisCustom
-    //         tooltip
-    //         lines={1}
-    //         removeChildren
-    //         extraContent={
-    //           <>
-    //             <a
-    //               onClick={() => {
-    //                 copyToClipboard(val);
-    //               }}
-    //             >
-    //               {replaceTargetText(val, '***', 2, 6)}
-    //             </a>
-    //           </>
-    //         }
-    //       >
-    //         {val} [点击复制]
-    //       </EllipsisCustom>
-    //     </>
-    //   ),
-    // },
-    {
-      title: fieldData.createTime.label,
-      dataIndex: fieldData.createTime.name,
-      width: 140,
-      align: 'center',
-      sorter: false,
-      render: (val) => (
-        <>
-          <Ellipsis tooltip lines={1}>
-            {formatDatetime(val, 'MM-DD HH:mm', '--')}
-          </Ellipsis>
-        </>
-      ),
-    },
-    {
-      title: fieldData.channel.label,
-      dataIndex: fieldData.channel.name,
+      dataTarget: fieldData.channel,
       width: 160,
-      align: 'center',
-      render: (val, record) => (
-        <>
-          <Ellipsis tooltip lines={1}>
-            {record.channelNote}
-          </Ellipsis>
-        </>
-      ),
+      showRichFacade: true,
+      emptyValue: '--',
+      formatValue: (val, record) => {
+        return record.channelNote;
+      },
     },
     {
-      title: formNameCollection.customOperate.label,
-      dataIndex: formNameCollection.customOperate.name,
+      dataTarget: fieldData.createTime,
+      width: 140,
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.datetime,
+      emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.channel,
+      width: 160,
+      showRichFacade: true,
+      emptyValue: '--',
+      formatValue: (val, record) => {
+        return record.channelNote;
+      },
+    },
+    {
+      dataTarget: fieldData.customOperate,
       width: 106,
       fixed: 'right',
       align: 'center',
