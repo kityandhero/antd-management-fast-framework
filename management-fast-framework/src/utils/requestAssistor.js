@@ -29,20 +29,7 @@ export async function request({
   const url = `${apiVersion}${api}`;
 
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
-
-  if (showRequestInfo) {
-    const useVirtualRequest =
-      defaultSettingsLayoutCustom.getUseVirtualRequest();
-
-    if (useVirtualRequest) {
-      recordLog({
-        url,
-        useVirtualRequest: defaultSettingsLayoutCustom.getUseVirtualRequest(),
-      });
-    } else {
-      recordText(url);
-    }
-  }
+  const useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest();
 
   if (transferToVirtualAccess()) {
     const result = await apiVirtualAccess((resolve) => {
@@ -65,7 +52,19 @@ export async function request({
       }, 800);
     });
 
+    if (showRequestInfo) {
+      recordLog({
+        url,
+        useVirtualRequest,
+        virtualResponse: result,
+      });
+    }
+
     return result;
+  }
+
+  if (showRequestInfo) {
+    recordText(url);
   }
 
   return remoteRequest(url, {
