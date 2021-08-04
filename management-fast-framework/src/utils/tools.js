@@ -43,7 +43,6 @@ import {
   authenticationFailCode,
   appInitDefault,
 } from './constants';
-import { exception } from 'console';
 
 const storageKeyCollection = {
   nearestLocalhostNotify: 'nearestLocalhostNotify',
