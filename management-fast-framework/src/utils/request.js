@@ -100,8 +100,8 @@ request.interceptors.request.use(async (url, options) => {
 });
 
 // response拦截器, 处理response
-// eslint-disable-next-line no-unused-vars
-request.interceptors.response.use((response, options) => {
+// request.interceptors.response.use((response, _options)
+request.interceptors.response.use((response) => {
   response
     .clone()
     .json()
