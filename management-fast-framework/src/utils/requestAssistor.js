@@ -57,6 +57,10 @@ export async function request({
       }, 800);
     });
 
+    recordObject({
+      showRequestInfo,
+    });
+
     if (showRequestInfo) {
       recordObject({
         url,
