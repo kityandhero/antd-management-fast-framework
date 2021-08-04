@@ -21,7 +21,8 @@ export async function request({
   virtualNeedAuthorize = false,
 }) {
   recordLog(defaultSettingsLayoutCustom);
-  let apiVersion = defaultSettingsLayoutCustom.getApiVersion();
+  // let apiVersion = defaultSettingsLayoutCustom.getApiVersion();
+  let apiVersion = '';
 
   if (!stringIsNullOrWhiteSpace(apiVersion)) {
     apiVersion = `/${apiVersion}`;
