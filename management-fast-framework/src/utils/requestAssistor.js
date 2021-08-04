@@ -20,9 +20,7 @@ export async function request({
   virtualRequestResult = true,
   virtualNeedAuthorize = false,
 }) {
-  console.log(defaultSettingsLayoutCustom);
   let apiVersion = defaultSettingsLayoutCustom.getApiVersion();
-  // let apiVersion = '';
 
   if (!stringIsNullOrWhiteSpace(apiVersion)) {
     apiVersion = `/${apiVersion}`;
@@ -46,7 +44,7 @@ export async function request({
     }
   }
 
-  if (transferToVirtualAccess(url)) {
+  if (transferToVirtualAccess()) {
     const result = await apiVirtualAccess((resolve) => {
       setTimeout(() => {
         if (virtualRequestResult) {
