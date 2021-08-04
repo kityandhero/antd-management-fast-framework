@@ -11,8 +11,10 @@
     "mfsu",
     "pageview",
     "pify",
+    "prettierrc",
     "regexes",
     "scroller",
+    "stylelintrc",
     "umijs"
   ]
 }
