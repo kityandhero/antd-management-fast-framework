@@ -11,4 +11,7 @@ window.appInitCustomData = {
   apiPrefix: {
     corsTargetDomain: '',
   },
+  showRequestInfo: true,
+  useVirtualRequest: true,
+  apiVersion: 'v1',
 };

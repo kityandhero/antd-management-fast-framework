@@ -1,7 +1,12 @@
 import { pageConfig as pageConfigSource } from './pageConfig';
 import { accessWayCollection as accessWayCollectionSource } from './accessWayCollection';
 
-import { corsTarget } from 'antd-management-fast-framework/lib/utils/tools';
+import {
+  corsTarget,
+  stringIsNullOrWhiteSpace,
+} from 'antd-management-fast-framework/lib/utils/tools';
+
+import { defaultSettings } from '@/defaultSettings';
 
 export const showRequestInConsole = process.env.NODE_ENV === 'development';
 
@@ -51,15 +56,18 @@ export const priceColor = '#267cb7';
 export const defaultPoint = [113.672108, 34.749387];
 
 export function getApiVersion() {
-  // const  version= "v1";
-  const version = 'beta';
+  const version = defaultSettings.getApiVersion();
 
-  const path = `/${version}`;
-
-  return path;
+  return version;
 }
 
 export function corsTargetWithApiVersion() {
+  let apiVersion = getApiVersion();
+
+  if (!stringIsNullOrWhiteSpace(apiVersion)) {
+    apiVersion = `/${apiVersion}`;
+  }
+
   const path = `${corsTarget()}${getApiVersion()}`;
 
   return path;

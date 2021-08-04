@@ -1,4 +1,4 @@
-import { recordLog, recordText } from './tools';
+import { recordLog, recordText, stringIsNullOrWhiteSpace } from './tools';
 import remoteRequest from './request';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 import {
@@ -20,7 +20,13 @@ export async function request({
   virtualRequestResult = true,
   virtualNeedAuthorize = false,
 }) {
-  const url = `${defaultSettingsLayoutCustom.getApiVersion()}${api}`;
+  let apiVersion = defaultSettingsLayoutCustom.getApiVersion();
+
+  if (!stringIsNullOrWhiteSpace(apiVersion)) {
+    apiVersion = `/${apiVersion}`;
+  }
+
+  const url = `${apiVersion}${api}`;
 
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
 

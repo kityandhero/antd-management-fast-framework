@@ -1,8 +1,9 @@
-import request from 'antd-management-fast-framework/lib/utils/request';
-import { getApiVersion } from '@/customConfig/config';
+import { request } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 
 export default async function queryError(code) {
-  return request(`${getApiVersion()}/api/${code}`);
+  return request({
+    api: `/api/${code}`,
+  });
 }
 
 /**

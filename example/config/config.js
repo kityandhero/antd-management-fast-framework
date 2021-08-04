@@ -8,10 +8,9 @@ const { winPath } = utils;
 
 const corsTargetDomain = '';
 const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION, REACT_APP_ENV } = process.env;
-const isAntDesignProPreview = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site';
 
 export default defineConfig({
-  //plugins,
+  // plugins,
   hash: true,
   antd: {
     // dark: true,
@@ -44,14 +43,14 @@ export default defineConfig({
   // esbuild: {},
   // Fast Refresh 热更新
   fastRefresh: {},
-  //禁用umi.js内置的 title 渲染机制 https://github.com/ant-design/ant-design-pro/issues/6360
+  // 禁用umi.js内置的 title 渲染机制 https://github.com/ant-design/ant-design-pro/issues/6360
   title: false,
   theme: {
     '@primary-color': '#F5222D',
     '@border-radius-base': '4px',
   },
   define: {
-    corsTargetDomain: corsTargetDomain,
+    corsTargetDomain,
     REACT_APP_ENV: REACT_APP_ENV || false,
     ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION:
       ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION || '', // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。

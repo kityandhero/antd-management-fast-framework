@@ -1,22 +1,9 @@
-import request from 'antd-management-fast-framework/lib/utils/request';
-import {
-  apiVirtualSuccessAccess,
-  transferToVirtualAccess,
-} from '../customConfig/apiVirtualAccessAssist';
-import { getApiVersion } from '../customConfig/config';
+import { request } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 
 export async function getData(params) {
-  if (transferToVirtualAccess()) {
-    const result = await apiVirtualSuccessAccess({
-      data: {},
-    });
-
-    return result;
-  }
-
-  return request(`${getApiVersion()}/currentSupplier/get`, {
-    method: 'POST',
-    data: params,
+  return request({
+    api: `/currentSupplier/get`,
+    params,
   });
 }
 
