@@ -8,7 +8,7 @@ export function checkNeedUpdateAssist(
   currentState,
   preProps,
   preState,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   snapshot,
 ) {
   const { accessWayId } = currentState;

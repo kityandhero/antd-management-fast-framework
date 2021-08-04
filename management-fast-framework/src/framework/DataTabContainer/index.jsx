@@ -40,7 +40,7 @@ class DataTabContainer extends DataSingleView {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
     const { urlParams } = this.state;
 
@@ -99,13 +99,13 @@ class DataTabContainer extends DataSingleView {
   };
 
   buildInitialValues = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   ) => {
     return null;

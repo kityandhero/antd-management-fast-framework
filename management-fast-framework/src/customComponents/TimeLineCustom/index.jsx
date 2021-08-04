@@ -21,7 +21,7 @@ class TimeLineCustom extends CustomBase {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     const {
       data: { list, pagination },
@@ -30,7 +30,7 @@ class TimeLineCustom extends CustomBase {
     return { list, pagination };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   doWhenGetSnapshotBeforeUpdate = (preProps, preState) => {
     this.currentTime = null;
     this.currentPageStart = true;

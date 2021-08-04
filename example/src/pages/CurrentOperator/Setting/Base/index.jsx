@@ -74,13 +74,13 @@ class BaseView extends BaseUpdateForm {
   }
 
   buildInitialValues = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   ) => {
     const values = {};
@@ -95,7 +95,7 @@ class BaseView extends BaseUpdateForm {
     return values;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   afterFillForm = (metaData, metaListData, metaExtra, metaOriginalData) => {
     const { avatar } = metaData;
 

@@ -47,7 +47,7 @@ class DataCore extends BaseView {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   afterSetFieldsValue = (v) => {};
 
   getTargetForm = () => {
@@ -126,13 +126,13 @@ class DataCore extends BaseView {
   };
 
   buildInitialValues = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   ) => {
     if (this.loadDataAfterMount) {

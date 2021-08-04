@@ -84,7 +84,7 @@ class BaseUpdateForm extends DataSingleView {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   validate = (e) => {
     const form = this.getTargetForm();
 
