@@ -12,12 +12,6 @@ export function formatMessage(o) {
   return FormatMessageWrapper(o);
 }
 
-export function showRequestInfoInConsole() {
-  if (showRequestInConsole) {
-
-  }
-}
-
 export function getSexName(value) {
   let result = '未知';
 
