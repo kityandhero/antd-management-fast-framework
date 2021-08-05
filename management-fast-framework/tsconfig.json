@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "lib",
+    // "outDir": "lib",
     "module": "esnext",
     "target": "esnext",
     "lib": ["esnext", "dom"],
@@ -28,6 +28,7 @@
   },
   "include": [
     "lib/**/*",
+    "es/**/*",
     // "mock/**/*",
     // "example/**/*",
     // "src/**/*",
