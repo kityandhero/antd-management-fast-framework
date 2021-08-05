@@ -17,7 +17,7 @@ import {
 import { unknownLabel } from '@/customConfig/config';
 
 export function refitRankList({ global, withUnlimited = true }) {
-  const list = (global || null) == null ? [] : global.rankList || [];
+  const { rankList: list } = { ...{ rankList: [] }, ...(global || {}) };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);

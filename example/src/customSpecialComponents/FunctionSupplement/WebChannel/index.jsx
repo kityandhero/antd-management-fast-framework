@@ -16,8 +16,8 @@ import {
 
 import { unknownLabel } from '@/customConfig/config';
 
-export function refitRankList({ global, withUnlimited = true }) {
-  const list = (global || null) == null ? [] : global.rankList || [];
+export function refitWebChannelList({ global, withUnlimited = true }) {
+  const { webChannelList: list } = { ...{ webChannelList: [] }, ...(global || {}) };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);
@@ -26,7 +26,7 @@ export function refitRankList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getRankName({ global, value, defaultValue = '' }) {
+export function getWebChannelName({ global, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -34,29 +34,37 @@ export function getRankName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitRankList({ global, withUnlimited: false }),
+    refitWebChannelList({ global, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
-export function renderRankOption({ global, withUnlimited = true, adjustListDataCallback = null }) {
-  const listData = refitRankList({ global, withUnlimited });
+export function renderWebChannelOption({
+  global,
+  withUnlimited = true,
+  adjustListDataCallback = null,
+}) {
+  const listData = refitWebChannelList({ global, withUnlimited });
 
   return buildFormOptionItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderRankRadio({ global, withUnlimited = true, adjustListDataCallback = null }) {
-  const listData = refitRankList({ global, withUnlimited });
+export function renderWebChannelRadio({
+  global,
+  withUnlimited = true,
+  adjustListDataCallback = null,
+}) {
+  const listData = refitWebChannelList({ global, withUnlimited });
 
   return buildFormRadioItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderSearchRankSelect(
+export function renderSearchWebChannelSelect(
   global,
   withUnlimited = true,
   label = 'Web渠道',
-  name = 'rankId',
+  name = 'WebChannelId',
   helper = null,
 ) {
   const title = label || unknownLabel;
@@ -64,18 +72,18 @@ export function renderSearchRankSelect(
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderRankOption({ global, withUnlimited }),
+    options: renderWebChannelOption({ global, withUnlimited }),
     helper,
   });
 }
 
-export function renderFormRankSelect(
+export function renderFormWebChannelSelect(
   helper = null,
   onChangeCallback,
   label = 'Web渠道',
   formItemLayout = null,
   required = true,
-  name = 'rankId',
+  name = 'WebChannelId',
   otherProps = null,
 ) {
   const title = label || unknownLabel;
@@ -84,7 +92,7 @@ export function renderFormRankSelect(
     label: title,
     name,
     renderItemFunction: () => {
-      return renderRankOption({ global, withUnlimited: false });
+      return renderWebChannelOption({ global, withUnlimited: false });
     },
     helper,
     onChangeCallback,
@@ -94,13 +102,13 @@ export function renderFormRankSelect(
   });
 }
 
-export function renderFormRankRadio(
+export function renderFormWebChannelRadio(
   helper = null,
   onChangeCallback,
   label = 'Web渠道',
   formItemLayout = null,
   required = true,
-  name = 'rankId',
+  name = 'WebChannelId',
   otherProps = null,
 ) {
   const title = label || unknownLabel;
@@ -109,7 +117,7 @@ export function renderFormRankRadio(
     label: title,
     name,
     renderItemFunction: () => {
-      return renderRankRadio({ global, withUnlimited: false });
+      return renderWebChannelRadio({ global, withUnlimited: false });
     },
     helper,
     onChangeCallback,

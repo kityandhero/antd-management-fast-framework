@@ -8,7 +8,7 @@ import {
 
 import { defaultSettings } from '@/defaultSettings';
 
-const unknownLabel = '未知';
+export const unknownLabel = '未知';
 
 export const showRequestInConsole = process.env.NODE_ENV === 'development';
 

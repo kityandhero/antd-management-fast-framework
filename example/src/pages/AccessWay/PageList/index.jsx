@@ -10,6 +10,7 @@ import {
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
 import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
 
+import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { fieldData } from '../Common/data';
 
 @connect(({ accessWay, global, loading }) => ({
@@ -53,6 +54,11 @@ class PageList extends MultiPage {
           lg: 6,
           type: searchFormContentConfig.contentItemType.input,
           fieldData: fieldData.name,
+        },
+        {
+          lg: 6,
+          type: searchFormContentConfig.contentItemType.component,
+          component: renderSearchWebChannelSelect(),
         },
         {
           lg: 6,
