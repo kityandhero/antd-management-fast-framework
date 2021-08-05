@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "build/dist",
+    "outDir": "lib",
     "module": "esnext",
     "target": "esnext",
     "lib": ["esnext", "dom"],
@@ -18,6 +18,8 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "strict": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "paths": {
       "@@@/*": ["./src/*"],
       "@/*": ["./example/*"],
@@ -25,18 +27,19 @@
     }
   },
   "include": [
-    "mock/**/*",
-    "example/**/*",
-    "src/**/*",
-    "tests/**/*",
-    "test/**/*",
-    "__test__/**/*",
-    "typings/**/*",
-    "config/**/*",
-    ".eslintrc.js",
-    ".stylelintrc.js",
-    ".prettierrc.js",
-    "jest.config.js",
+    "lib/**/*",
+    // "mock/**/*",
+    // "example/**/*",
+    // "src/**/*",
+    // "tests/**/*",
+    // "test/**/*",
+    // "__test__/**/*",
+    // "typings/**/*",
+    // "config/**/*",
+    // ".eslintrc.js",
+    // ".stylelintrc.js",
+    // ".prettierrc.js",
+    // "jest.config.js",
     "mock/*"
   ],
   "exclude": [
