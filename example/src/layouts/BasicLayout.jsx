@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, connect } from 'umi';
+import { Link, connect, FormattedMessage } from 'umi';
 import { Result, Button } from 'antd';
 import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
 
@@ -18,8 +18,6 @@ import { execBasicLayoutRemoteRequest } from '@/customConfig/customLoad';
 import { defaultFooterData, menuHeaderRender } from '@/customSpecialComponents/CustomAssembly';
 import { formatMessage } from '@/utils/tools';
 import { defaultSettings } from '@/defaultSettings';
-
-// import styles from './BasicLayout.less';
 
 const loginPath = defaultSettings.getLoginPath();
 
@@ -90,9 +88,6 @@ const BasicLayout = (props) => {
     global,
     // setSetting
   } = props;
-  /**
-   * constructor
-   */
 
   useEffect(() => {
     if (dispatch) {
@@ -104,9 +99,6 @@ const BasicLayout = (props) => {
       });
     }
   }, [dispatch]);
-  /**
-   * init variables
-   */
 
   const handleMenuCollapse = (payload) => {
     if (dispatch) {
@@ -115,7 +107,7 @@ const BasicLayout = (props) => {
         payload,
       });
     }
-  }; // get children authority
+  };
 
   getQueue();
 
@@ -135,7 +127,9 @@ const BasicLayout = (props) => {
     <>
       <ProLayout
         logo={defaultSettings.getLeftBarLogo(logo)}
-        formatMessage={formatMessage}
+        formatMessage={(o) => {
+          return <FormattedMessage {...o} />;
+        }}
         {...proLayoutDefaultProps}
         menuHeaderRender={(logoDom) => {
           return menuHeaderRender(logoDom, props);
@@ -148,6 +142,17 @@ const BasicLayout = (props) => {
           },
           ...routers,
         ]}
+        menuItemRender={(menuItemProps, defaultDom) => {
+          const { children: childrenArray } = menuItemProps.children || {
+            children: [],
+          };
+
+          if (menuItemProps.isUrl || (childrenArray || []).length > 0 || !menuItemProps.path) {
+            return defaultDom;
+          }
+
+          return <Link to={menuItemProps.path}>{defaultDom}</Link>;
+        }}
         footerRender={footerRender}
         menuDataRender={menuDataRender}
         rightContentRender={() => <RightContent />}
@@ -166,12 +171,12 @@ const BasicLayout = (props) => {
         <SettingDrawer
           settings={settings}
           disableUrlParams={true}
-          onSettingChange={(config) =>
+          onSettingChange={(config) => {
             dispatch({
               type: 'settings/changeSetting',
               payload: config,
-            })
-          }
+            });
+          }}
         />
       ) : null}
     </>
