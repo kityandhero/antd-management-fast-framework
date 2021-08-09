@@ -9,7 +9,7 @@ import {
   pretreatmentRequestParams,
   getDerivedStateFromPropsForUrlParams,
 } from 'antd-management-fast-framework/lib/utils/tools';
-import DataTabContainer from 'antd-management-fast-framework/lib/framework/DataTabContainer';
+import { DataTabContainer } from 'antd-management-fast-framework/lib/framework';
 
 import { parseUrlParamsForSetState } from '../Assist/config';
 
