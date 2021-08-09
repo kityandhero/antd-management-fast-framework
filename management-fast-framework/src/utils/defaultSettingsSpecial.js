@@ -1,13 +1,18 @@
 import { getAppInitConfigData, stringIsNullOrWhiteSpace } from './tools';
-import { authenticationFailCode } from './constants';
+import {
+  authenticationFailCode,
+  emptyLogo as emptyLogoImage,
+} from './constants';
 
 export const defaultSettingsLayoutCustom = {
-  emptyLogo: '/EmptyLogo.png',
-  leftBarLogo: '/EmptyLogo.png',
+  emptyLogo: emptyLogoImage,
+  leftBarLogo: emptyLogoImage,
   getEmptyLogo: () => {
     const appInit = getAppInitConfigData();
 
-    const { emptyLogo } = { ...{ emptyLogo: '/Logo.png', ...(appInit || {}) } };
+    const { emptyLogo } = {
+      ...{ emptyLogo: emptyLogoImage, ...(appInit || {}) },
+    };
 
     return emptyLogo || '';
   },
@@ -94,14 +99,18 @@ export const defaultSettingsLayoutCustom = {
   getLoginLogo: () => {
     const appInit = getAppInitConfigData();
 
-    const { loginLogo } = { ...{ loginLogo: '/Logo.png', ...(appInit || {}) } };
+    const { loginLogo } = {
+      ...{ loginLogo: emptyLogoImage, ...(appInit || {}) },
+    };
 
     return loginLogo || '';
   },
   getShareLogo: () => {
     const appInit = getAppInitConfigData();
 
-    const { shareLogo } = { ...{ shareLogo: '/Logo.png', ...(appInit || {}) } };
+    const { shareLogo } = {
+      ...{ shareLogo: emptyLogoImage, ...(appInit || {}) },
+    };
 
     return shareLogo || '';
   },
