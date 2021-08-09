@@ -3,6 +3,10 @@ import { connect, Redirect } from 'umi';
 import { PageLoading } from '@ant-design/pro-layout';
 import { stringify } from 'querystring';
 
+import { defaultSettings } from '@/defaultSettings';
+
+const loginPath = defaultSettings.getLoginPath();
+
 class SecurityLayout extends React.Component {
   state = {
     isReady: false,
@@ -35,9 +39,8 @@ class SecurityLayout extends React.Component {
       return <PageLoading />;
     }
 
-    if (!isLogin && window.location.pathname !== '/user/login') {
-      return <Redirect to={`/user/login?${queryString}`} />;
-      // return <Redirect to={`/user/login`} />;
+    if (!isLogin && window.location.pathname !== loginPath) {
+      return <Redirect to={`${loginPath}?${queryString}`} />;
     }
 
     return children;

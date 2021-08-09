@@ -4,6 +4,10 @@ import { pathToRegexp } from 'path-to-regexp';
 import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
 import { getToken } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
 
+import { defaultSettings } from '@/defaultSettings';
+
+const loginPath = defaultSettings.getLoginPath();
+
 const getRouteAuthority = (path, routeData) => {
   let authorities;
   routeData.forEach((route) => {
@@ -37,7 +41,7 @@ const AuthComponent = ({
   return (
     <Authorized
       authority={getRouteAuthority(location.pathname, routes) || ''}
-      noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to="/user/login" />}
+      noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to={loginPath} />}
     >
       {children}
     </Authorized>

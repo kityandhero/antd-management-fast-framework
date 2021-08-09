@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { Link, connect, history } from 'umi';
+import { Link, connect } from 'umi';
 import { Result, Button } from 'antd';
 import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
 
 import { getQueue, checkDevelopment } from 'antd-management-fast-framework/lib/utils/tools';
+import { proLayoutDefaultProps } from 'antd-management-fast-framework/lib/utils/constants';
 import { setAccessWayCollectionCache } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
 import {
   isAntDesignPro,
@@ -20,7 +21,7 @@ import { defaultSettings } from '@/defaultSettings';
 
 // import styles from './BasicLayout.less';
 
-// const logo = defaultSettings.getShareLogo();
+const loginPath = defaultSettings.getLoginPath();
 
 const noMatch = (
   <Result
@@ -29,7 +30,7 @@ const noMatch = (
     subTitle="Sorry, you are not authorized to access this page."
     extra={
       <Button type="primary">
-        <Link to="/user/login">Go Login</Link>
+        <Link to={loginPath}>Go Login</Link>
       </Button>
     }
   />
@@ -133,26 +134,13 @@ const BasicLayout = (props) => {
   return (
     <>
       <ProLayout
-        logo={logo || defaultSettings.emptyLogo}
+        logo={defaultSettings.getLeftBarLogo(logo)}
         formatMessage={formatMessage}
-        {...props}
-        {...settings}
+        {...proLayoutDefaultProps}
         menuHeaderRender={(logoDom) => {
           return menuHeaderRender(logoDom, props);
         }}
-        onMenuHeaderClick={() => history.push('/')}
         onCollapse={handleMenuCollapse}
-        menuItemRender={(menuItemProps, defaultDom) => {
-          const { children: childrenArray } = menuItemProps.children || {
-            children: [],
-          };
-
-          if (menuItemProps.isUrl || (childrenArray || []).length > 0 || !menuItemProps.path) {
-            return defaultDom;
-          }
-
-          return <Link to={menuItemProps.path}>{defaultDom}</Link>;
-        }}
         breadcrumbRender={(routers = []) => [
           {
             path: '/',
@@ -160,14 +148,6 @@ const BasicLayout = (props) => {
           },
           ...routers,
         ]}
-        itemRender={(route, params, routes, paths) => {
-          const first = routes.indexOf(route) === 0;
-          return first ? (
-            <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
-          ) : (
-            <span>{route.breadcrumbName}</span>
-          );
-        }}
         footerRender={footerRender}
         menuDataRender={menuDataRender}
         rightContentRender={() => <RightContent />}
@@ -175,6 +155,8 @@ const BasicLayout = (props) => {
         //   content: 'Pandora',
         //   fontColor: 'rgba(24,144,255,0.15)',
         // }}
+        {...props}
+        {...settings}
       >
         <Authorized authority={authorized.authority} noMatch={noMatch}>
           {children}

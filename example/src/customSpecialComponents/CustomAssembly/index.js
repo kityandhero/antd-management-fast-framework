@@ -1,6 +1,4 @@
 import React from 'react';
-import TextAnimal from 'rc-texty';
-import { Typography } from 'antd';
 import {
   DashboardOutlined,
   ShopOutlined,
@@ -11,12 +9,9 @@ import {
 
 import { stringIsNullOrWhiteSpace } from 'antd-management-fast-framework/lib/utils/tools';
 import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
-import FlexBox from 'antd-management-fast-framework/lib/customComponents/FlexBox';
-import VerticalBox from 'antd-management-fast-framework/lib/customComponents/VerticalBox';
+import { buildMenuHeaderRender } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
 import { defaultSettings } from '@/defaultSettings';
-
-const { Title } = Typography;
 
 export const defaultFooterData = {
   copyright: defaultSettings.getCopyright(),
@@ -81,43 +76,7 @@ export function menuHeaderRender(logoDom, config) {
     settings: { navTheme },
   } = config;
 
-  return (
-    <>
-      <FlexBox
-        flexAuto="right"
-        left={logoDom}
-        right={
-          collapsed ? null : (
-            <VerticalBox
-              align="center"
-              alignJustify="start"
-              style={{
-                height: '100%',
-              }}
-            >
-              <Title
-                level={1}
-                style={{
-                  ...{
-                    margin: ' 0 0 0 12px',
-                    fontSize: '20px',
-                    color: 'white',
-                    fontWeight: '600',
-                    lineHeight: '32px',
-                  },
-                  ...(navTheme === 'light' ? { color: '#000000d9' } : {}),
-                }}
-              >
-                <TextAnimal type="alpha" mode="smooth">
-                  {shortNameData || '应用简称'}
-                </TextAnimal>
-              </Title>
-            </VerticalBox>
-          )
-        }
-      />
-    </>
-  );
+  return buildMenuHeaderRender({ logoDom, collapsed, navTheme, shortName: shortNameData });
 }
 
 /**

@@ -7,6 +7,9 @@ import { setAuthority } from 'antd-management-fast-framework/lib/utils/authority
 import { getPageQuery } from 'antd-management-fast-framework/lib/utils/utils';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/tools';
 import { setToken, setSupplierFlag, clearCustomData } from '@/customConfig/storageAssist';
+import { defaultSettings } from '@/defaultSettings';
+
+const loginPath = defaultSettings.getLoginPath();
 
 export default {
   namespace: 'login',
@@ -57,12 +60,12 @@ export default {
     logout() {
       const { redirect } = getPageQuery(); // Note: There may be security issues, please note
 
-      if (window.location.pathname !== '/user/login' && !redirect) {
+      if (window.location.pathname !== loginPath && !redirect) {
         clearCustomData();
 
         message.info('退出登录成功！', 0.6).then(() => {
           history.replace({
-            pathname: '/user/login',
+            pathname: loginPath,
             search: stringify({
               redirect: window.location.href,
             }),

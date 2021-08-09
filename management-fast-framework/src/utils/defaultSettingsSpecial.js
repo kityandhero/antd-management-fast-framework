@@ -1,222 +1,150 @@
-import { getAppInitConfigData } from './tools';
+import { getAppInitConfigData, stringIsNullOrWhiteSpace } from './tools';
 import { authenticationFailCode } from './constants';
 
 export const defaultSettingsLayoutCustom = {
-  getAuthenticationFailCode: () => {
-    let result = '';
-
+  emptyLogo: '/EmptyLogo.png',
+  leftBarLogo: '/EmptyLogo.png',
+  getEmptyLogo: () => {
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      result = appInit.authenticationFailCode || authenticationFailCode;
-    }
+    const { emptyLogo } = { ...{ emptyLogo: '/Logo.png', ...(appInit || {}) } };
 
-    return result || authenticationFailCode;
+    return emptyLogo || '';
+  },
+  getAuthenticationFailCode: () => {
+    const appInit = getAppInitConfigData();
+
+    const { authenticationFailCode: code } = {
+      ...{ authenticationFailCode, ...(appInit || {}) },
+    };
+
+    return code || authenticationFailCode;
   },
   getLoginPath: () => {
-    let result = '';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      result = appInit.loginPath || '';
-    }
+    const { loginPath } = { ...{ loginPath: '', ...(appInit || {}) } };
 
-    return result || '';
+    return loginPath || '';
   },
   getApiVersion: () => {
-    let result = '';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      result = appInit.apiVersion || '';
-    }
+    const { apiVersion } = { ...{ apiVersion: '', ...(appInit || {}) } };
 
-    return result || '';
+    return apiVersion || '';
   },
   getUseVirtualRequest: () => {
-    let result = false;
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      result = !!(appInit.useVirtualRequest || false);
-    }
+    const { useVirtualRequest } = {
+      ...{ useVirtualRequest: false, ...(appInit || {}) },
+    };
 
-    return result || false;
+    return useVirtualRequest || false;
   },
   getShowLogInConsole: () => {
-    let result = false;
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      result = !!(appInit.showLogInConsole || false);
-    }
+    const { showLogInConsole } = {
+      ...{ showLogInConsole: false, ...(appInit || {}) },
+    };
 
-    return result || false;
+    return showLogInConsole || false;
   },
   getShowRequestInfo: () => {
-    let result = false;
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      result = !!(appInit.showRequestInfo || false);
-    }
+    const { showRequestInfo } = {
+      ...{ showRequestInfo: false, ...(appInit || {}) },
+    };
 
-    return result || false;
+    return showRequestInfo || false;
   },
   getPlatformName: () => {
-    let result = '';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.platformName || null) != null) {
-        const { platformName } = appInit;
+    const { platformName } = { ...{ platformName: '', ...(appInit || {}) } };
 
-        result = platformName;
-      }
-    }
-
-    return result || '';
+    return platformName || '';
   },
   getAppName: () => {
-    let result = '';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.appName || null) != null) {
-        const { appName } = appInit;
+    const { appName } = { ...{ appName: '', ...(appInit || {}) } };
 
-        result = appName;
-      }
-    }
-
-    return result || '';
+    return appName || '';
   },
   getAppDescription: () => {
-    let result = '';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.appDescription || null) != null) {
-        const { appDescription } = appInit;
+    const { appDescription } = {
+      ...{ appDescription: '', ...(appInit || {}) },
+    };
 
-        result = appDescription;
-      }
-    }
-
-    return result || '';
+    return appDescription || '';
   },
   getTitle: () => {
-    let result = '商城管理系统';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.appName || null) != null) {
-        const { appName } = appInit;
+    const { appName } = { ...{ appName: '', ...(appInit || {}) } };
 
-        result = appName;
-      }
-    }
-
-    return result || '';
+    return appName || '';
   },
   getLoginLogo: () => {
-    let result = '/Logo.png';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.appName || null) != null) {
-        const { loginLogo } = appInit;
+    const { loginLogo } = { ...{ loginLogo: '/Logo.png', ...(appInit || {}) } };
 
-        result = loginLogo;
-      }
-    }
-
-    return result || '';
+    return loginLogo || '';
   },
   getShareLogo: () => {
-    let result = '/shareLogo.png';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.appName || null) != null) {
-        const { shareLogo } = appInit;
+    const { shareLogo } = { ...{ shareLogo: '/Logo.png', ...(appInit || {}) } };
 
-        result = shareLogo;
-      }
-    }
-
-    return result || '';
+    return shareLogo || '';
   },
   getShareLogoName: () => {
-    let result = '';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.appName || null) != null) {
-        const { shareLogoName } = appInit;
+    const { shareLogoName } = { ...{ shareLogoName: '', ...(appInit || {}) } };
 
-        result = shareLogoName;
-      }
-    }
-
-    return result || '';
+    return shareLogoName || '';
   },
   getCompanyName: () => {
-    let result = '';
+    const appInit = getAppInitConfigData();
+
+    const { companyName } = { ...{ companyName: '', ...(appInit || {}) } };
+
+    return companyName || '';
+  },
+  getLeftBarLogo: (remoteLogo) => {
+    if (!stringIsNullOrWhiteSpace(remoteLogo || null)) {
+      return remoteLogo;
+    }
 
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.appName || null) != null) {
-        const { companyName } = appInit;
+    const { leftBarLogo } = {
+      ...{ leftBarLogo: '/Logo.png', ...(appInit || {}) },
+    };
 
-        result = companyName;
-      }
-    }
-
-    return result || '';
+    return leftBarLogo || '';
   },
   getLeftBarText: () => {
-    let result = '';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.leftBarText || null) != null) {
-        const { leftBarText } = appInit;
+    const { leftBarText } = { ...{ leftBarText: '', ...(appInit || {}) } };
 
-        result = leftBarText;
-      }
-    }
-
-    return result || '';
+    return leftBarText || '';
   },
   getCopyright: () => {
-    let result = '';
-
     const appInit = getAppInitConfigData();
 
-    if ((appInit || null) != null) {
-      if ((appInit.copyright || null) != null) {
-        const { copyright } = appInit;
+    const { copyright } = { ...{ copyright: '', ...(appInit || {}) } };
 
-        result = copyright;
-      }
-    }
-
-    return result || '';
+    return copyright || '';
   },
 };
 

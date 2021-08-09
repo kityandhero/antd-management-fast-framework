@@ -51,6 +51,7 @@ const RadioGroup = Radio.Group;
 const { Paragraph } = Typography;
 const ButtonGroup = Button.Group;
 const { Item: Description } = Descriptions;
+const { Title } = Typography;
 
 export function pageHeaderTitle(pageName, headerTitlePrefix) {
   const headerTitlePrefixValue = headerTitlePrefix || '';
@@ -878,6 +879,51 @@ export function buildSearchFormSelect({ label, name, options, helper = null }) {
         {options}
       </Select>
     </FormItem>
+  );
+}
+
+export function buildMenuHeaderRender({
+  logoDom,
+  collapsed,
+  navTheme,
+  shortName,
+}) {
+  return (
+    <>
+      <FlexBox
+        flexAuto="right"
+        left={logoDom}
+        right={
+          collapsed ? null : (
+            <VerticalBox
+              align="center"
+              alignJustify="start"
+              style={{
+                height: '100%',
+              }}
+            >
+              <Title
+                level={1}
+                style={{
+                  ...{
+                    margin: ' 0 0 0 12px',
+                    fontSize: '20px',
+                    color: 'white',
+                    fontWeight: '600',
+                    lineHeight: '32px',
+                  },
+                  ...(navTheme === 'light' ? { color: '#000000d9' } : {}),
+                }}
+              >
+                <TextAnimal type="alpha" mode="smooth">
+                  {shortName || '应用简称'}
+                </TextAnimal>
+              </Title>
+            </VerticalBox>
+          )
+        }
+      />
+    </>
   );
 }
 
