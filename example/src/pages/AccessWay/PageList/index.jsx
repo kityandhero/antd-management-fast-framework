@@ -8,7 +8,7 @@ import {
   searchFormContentConfig,
 } from 'antd-management-fast-framework/lib/utils/constants';
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
-import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
+import { IconInfo } from 'antd-management-fast-framework/lib/customComponents';
 
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { fieldData } from '../Common/data';
