@@ -27,8 +27,8 @@
     }
   },
   "include": [
-    "lib/**/*",
-    "es/**/*",
+    "lib/**/*"
+    // "es/**/*",
     // "mock/**/*",
     // "example/**/*",
     // "src/**/*",
@@ -41,7 +41,7 @@
     // ".stylelintrc.js",
     // ".prettierrc.js",
     // "jest.config.js",
-    "mock/*"
+    // "mock/*"
   ],
   "exclude": [
     "node_modules",
