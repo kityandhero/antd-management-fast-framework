@@ -113,6 +113,8 @@ class BasicInfo extends TabPageBase {
   handleSubmit = (e) => {
     e.preventDefault();
 
+    const that = this;
+
     const {
       dispatch,
       form,
