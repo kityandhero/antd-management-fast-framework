@@ -14,7 +14,7 @@ export const defaultSettingsLayoutCustom = {
       ...{ emptyLogo: emptyLogoImage, ...(appInit || {}) },
     };
 
-    return emptyLogo || '';
+    return emptyLogo || emptyLogoImage;
   },
   getAuthenticationFailCode: () => {
     const appInit = getAppInitConfigData();
@@ -103,7 +103,7 @@ export const defaultSettingsLayoutCustom = {
       ...{ loginLogo: emptyLogoImage, ...(appInit || {}) },
     };
 
-    return loginLogo || '';
+    return loginLogo || emptyLogoImage;
   },
   getShareLogo: () => {
     const appInit = getAppInitConfigData();
@@ -112,7 +112,7 @@ export const defaultSettingsLayoutCustom = {
       ...{ shareLogo: emptyLogoImage, ...(appInit || {}) },
     };
 
-    return shareLogo || '';
+    return shareLogo || emptyLogoImage;
   },
   getShareLogoName: () => {
     const appInit = getAppInitConfigData();
@@ -136,10 +136,10 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     const { leftBarLogo } = {
-      ...{ leftBarLogo: '/Logo.png', ...(appInit || {}) },
+      ...{ leftBarLogo: emptyLogoImage, ...(appInit || {}) },
     };
 
-    return leftBarLogo || '';
+    return leftBarLogo || emptyLogoImage;
   },
   getLeftBarText: () => {
     const appInit = getAppInitConfigData();
