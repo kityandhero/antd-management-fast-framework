@@ -131,6 +131,8 @@ const BasicLayout = (props) => {
           return <FormattedMessage {...o} />;
         }}
         {...proLayoutDefaultProps}
+        {...props}
+        {...settings}
         menuHeaderRender={(logoDom) => {
           return menuHeaderRender(logoDom, props);
         }}
@@ -160,8 +162,6 @@ const BasicLayout = (props) => {
         //   content: 'Pandora',
         //   fontColor: 'rgba(24,144,255,0.15)',
         // }}
-        {...props}
-        {...settings}
       >
         <Authorized authority={authorized.authority} noMatch={noMatch}>
           {children}
