@@ -5,14 +5,14 @@ import { yuan } from '../customComponents/Charts';
  */
 export default class Yuan extends React.PureComponent {
   componentDidMount() {
-    this.rendertoHtml();
+    this.renderToHtml();
   }
 
   componentDidUpdate() {
-    this.rendertoHtml();
+    this.renderToHtml();
   }
 
-  rendertoHtml = () => {
+  renderToHtml = () => {
     const { children } = this.props;
     if (this.main) {
       this.main.innerHTML = yuan(children);
