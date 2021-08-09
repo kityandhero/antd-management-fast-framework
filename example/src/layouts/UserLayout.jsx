@@ -82,7 +82,7 @@ const UserLayout = (props) => {
           <DefaultFooter
             style={{ background: 'inherit' }}
             links={[]}
-            copyright={defaultSettings.getCopyright || ''}
+            copyright={defaultSettings.getCopyright() || ''}
           />
         }
       />
