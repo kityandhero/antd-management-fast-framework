@@ -668,7 +668,7 @@ export function buildListViewItemActionSelect({
   );
 }
 
-export function buildFormRadioItem(list, adjustListDataCallback = null) {
+export function buildFormRadioItem({ list, adjustListDataCallback = null }) {
   let listData = list || [];
 
   if (isFunction(adjustListDataCallback)) {
@@ -754,7 +754,7 @@ export function buildFormRadio({
   );
 }
 
-export function buildFormOptionItem(list, adjustListDataCallback = null) {
+export function buildFormOptionItem({ list, adjustListDataCallback = null }) {
   let listData = list || [];
 
   if (isFunction(adjustListDataCallback)) {
