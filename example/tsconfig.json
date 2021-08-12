@@ -6,7 +6,7 @@
     "lib": ["esnext", "dom"],
     "sourceMap": true,
     "baseUrl": ".",
-    // "jsx": "react-jsx",
+    "jsx": "react-jsx",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",

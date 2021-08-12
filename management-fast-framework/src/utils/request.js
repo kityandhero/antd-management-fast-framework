@@ -7,6 +7,8 @@ import {
   recordText,
   trySendNearestLocalhostNotify,
   stringIsNullOrWhiteSpace,
+  isString,
+  recordObject,
 } from './tools';
 import {
   getTokenKeyName,
@@ -77,6 +79,19 @@ request.interceptors.request.use(async (url, options) => {
   const token = getToken() || 'anonymous';
 
   const corsUrl = corsTarget();
+
+  if (!isString(corsUrl)) {
+    recordObject(corsUrl);
+
+    throw new Error('corsUrl is not string');
+  }
+
+  if (!isString(url)) {
+    recordObject(url);
+
+    throw new Error('url is not string');
+  }
+
   // const url = transferToVirtualAccess() ? urlParam : `${corsUrl}${urlParam}`;
   const urlChange = `${corsUrl}${url}`;
 
