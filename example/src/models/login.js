@@ -2,11 +2,16 @@ import { history } from 'umi';
 import { message } from 'antd';
 import { stringify } from 'querystring';
 
-import { accountLogin, getFakeCaptcha } from '@/services/api';
-import { setAuthority } from 'antd-management-fast-framework/lib/utils/authority';
-import { getPageQuery } from 'antd-management-fast-framework/lib/utils/utils';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/tools';
-import { setToken, setSupplierFlag, clearCustomData } from '@/customConfig/storageAssist';
+import {
+  setToken,
+  clearCustomData,
+} from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
+import { getPageQuery } from 'antd-management-fast-framework/lib/utils/utils';
+import { setAuthority } from 'antd-management-fast-framework/lib/utils/authority';
+
+import { setDataFlag } from '@/utils/storageAssist';
+import { accountLogin, getFakeCaptcha } from '@/services/api';
 import { defaultSettings } from '@/defaultSettings';
 
 const loginPath = defaultSettings.getLoginPath();
@@ -90,7 +95,7 @@ export default {
 
       setAuthority(currentAuthority);
       setToken(tokenValue);
-      setSupplierFlag(supplierFlag);
+      setDataFlag(supplierFlag);
 
       return {
         ...state,
