@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { history } from 'umi';
-import { recordObject, stringIsNullOrWhiteSpace } from './tools';
+import { isString, recordObject, stringIsNullOrWhiteSpace } from './tools';
 import { getToken, clearCustomData } from './globalStorageAssist';
 import remoteRequest from './request';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
@@ -24,11 +24,23 @@ export async function request({
 }) {
   let apiVersion = defaultSettingsLayoutCustom.getApiVersion();
 
-  if (!stringIsNullOrWhiteSpace(apiVersion)) {
-    apiVersion = `/${apiVersion}`;
+  if (!isString(apiVersion)) {
+    recordObject(apiVersion);
+
+    throw new Error('apiVersion is not string');
   }
 
-  const url = `${apiVersion}${api}`;
+  if (!isString(api)) {
+    recordObject(api);
+
+    throw new Error('api is not string');
+  }
+
+  if (!stringIsNullOrWhiteSpace(apiVersion)) {
+    apiVersion = `/${apiVersion}/`;
+  }
+
+  const url = `${apiVersion}${api}`.replace('//', '/');
 
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
   const useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest();
