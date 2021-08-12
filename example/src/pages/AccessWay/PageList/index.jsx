@@ -33,6 +33,12 @@ class PageList extends MultiPage {
     };
   }
 
+  getGlobal = () => {
+    const { global } = this.props;
+
+    return global || null;
+  };
+
   getApiData = (props) => {
     const {
       accessWay: { data },
@@ -58,7 +64,9 @@ class PageList extends MultiPage {
         {
           lg: 6,
           type: searchFormContentConfig.contentItemType.component,
-          component: renderSearchWebChannelSelect(),
+          component: renderSearchWebChannelSelect({
+            global: this.getGlobal(),
+          }),
         },
         {
           lg: 6,
