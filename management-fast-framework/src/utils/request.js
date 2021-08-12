@@ -97,6 +97,12 @@ request.interceptors.request.use(async (url, options) => {
 
   trySendNearestLocalhostNotify({ text: corsUrl });
 
+  if (!isString(urlChange)) {
+    recordObject(urlChange);
+
+    throw new Error('urlChange is not string');
+  }
+
   if (token) {
     const headers = {
       'Content-Type': 'application/json',
