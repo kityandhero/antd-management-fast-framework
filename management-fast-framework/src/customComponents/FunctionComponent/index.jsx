@@ -15,12 +15,19 @@ import {
   Tag,
   Radio,
   Select,
+  Input,
+  InputNumber,
+  Switch,
+  DatePicker,
 } from 'antd';
 import {
   EllipsisOutlined,
   LoadingOutlined,
   ImportOutlined,
+  FormOutlined,
 } from '@ant-design/icons';
+import ReactJson from 'react-json-view';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import {
   formatDatetime,
@@ -37,15 +44,24 @@ import {
   buildFieldHelper,
   buildFieldDescription,
   checkFromConfig,
+  isObject,
+  recordObject,
 } from '../../utils/tools';
-import { pageHeaderRenderType, whetherNumber } from '../../utils/constants';
+import {
+  pageHeaderRenderType,
+  whetherNumber,
+  datetimeFormat,
+} from '../../utils/constants';
 import VerticalBox from '../VerticalBox';
 import ImageBox from '../ImageBox';
 import IconInfo from '../IconInfo';
 import FlexBox from '../FlexBox';
 import FlexText from '../FlexText';
 
+import styles from './index.less';
+
 const FormItem = Form.Item;
+const { TextArea, Password } = Input;
 const { Option } = Select;
 const RadioGroup = Radio.Group;
 const { Paragraph } = Typography;
@@ -447,6 +463,51 @@ export function pageHeaderExtraContent(data) {
         <div style={textStyle}>{v.text}</div>
       </Col>
     </Row>
+  );
+}
+
+export function buildMenuHeaderRender({
+  logoDom,
+  collapsed,
+  navTheme,
+  shortName,
+}) {
+  return (
+    <>
+      <FlexBox
+        flexAuto="right"
+        left={logoDom}
+        right={
+          collapsed ? null : (
+            <VerticalBox
+              align="center"
+              alignJustify="start"
+              style={{
+                height: '100%',
+              }}
+            >
+              <Title
+                level={1}
+                style={{
+                  ...{
+                    margin: ' 0 0 0 12px',
+                    fontSize: '20px',
+                    color: 'white',
+                    fontWeight: '600',
+                    lineHeight: '32px',
+                  },
+                  ...(navTheme === 'light' ? { color: '#000000d9' } : {}),
+                }}
+              >
+                <TextAnimal type="alpha" mode="smooth">
+                  {shortName || '应用简称'}
+                </TextAnimal>
+              </Title>
+            </VerticalBox>
+          )
+        }
+      />
+    </>
   );
 }
 
@@ -892,48 +953,1007 @@ export function buildSearchFormSelect({ label, name, options, helper = null }) {
   );
 }
 
-export function buildMenuHeaderRender({
-  logoDom,
-  collapsed,
-  navTheme,
-  shortName,
+export function buildFormNowTimeField({
+  label = '添加时间',
+  helper = '数据的添加时间',
+  formItemLayout = null,
 }) {
+  const {
+    label: labelChanged,
+    helper: helperChanged,
+    formItemLayout: formItemLayoutChanged,
+  } = {
+    ...{ helper: '数据的添加时间', label: '添加时间', formItemLayout: null },
+    ...{ label, helper, formItemLayout },
+  };
+
+  const resultCheck = checkFromConfig({
+    label: labelChanged || '添加时间',
+    name: '',
+    helper: helperChanged,
+  });
+
+  return (
+    <FormItem
+      {...(formItemLayoutChanged || {})}
+      label={resultCheck.label}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+    >
+      <Input
+        value={formatDatetime(
+          new Date(),
+          datetimeFormat.yearMonthDayHourMinute,
+        )}
+        addonBefore={<FormOutlined />}
+        disabled
+        placeholder={buildFieldDescription(resultCheck.label)}
+      />
+    </FormItem>
+  );
+}
+
+export function buildFormCreateTimeField({
+  name = 'createTime',
+  helper = '数据的添加时间',
+  label = '添加时间',
+  formItemLayout = null,
+}) {
+  const title = label || '添加时间';
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  return (
+    <FormItem
+      {...(formItemLayout || {})}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+    >
+      <Input
+        addonBefore={<FormOutlined />}
+        disabled
+        placeholder={buildFieldDescription(resultCheck.label)}
+      />
+    </FormItem>
+  );
+}
+
+export function buildFormUpdateTimeField({
+  name = 'updateTime',
+  helper = '数据的最后修改时间',
+  label = '最后修改时间',
+  formItemLayout = null,
+}) {
+  const title = label || '最后修改时间';
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  return (
+    <FormItem
+      {...(formItemLayout || {})}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+    >
+      <Input
+        addonBefore={<FormOutlined />}
+        disabled
+        placeholder={buildFieldDescription(resultCheck.label)}
+      />
+    </FormItem>
+  );
+}
+
+export function buildSearchInput({
+  label,
+  name,
+  helper = null,
+  icon = <FormOutlined />,
+  inputProps = {},
+  canOperate = true,
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const otherInputProps = {
+    ...{
+      addonBefore: icon,
+      placeholder: buildFieldDescription(title, '输入'),
+    },
+    ...(inputProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  if (!canOperate) {
+    return (
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+      >
+        <Input {...otherInputProps} />
+      </FormItem>
+    );
+  }
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+    >
+      <Input {...otherInputProps} />
+    </FormItem>
+  );
+}
+
+export function buildSearchInputNumber({
+  label,
+  name,
+  helper = null,
+  inputProps = {},
+  canOperate = true,
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const otherInputProps = {
+    ...{
+      style: { width: '100%' },
+      min: 0,
+      placeholder: buildFieldDescription(title, '输入'),
+    },
+    ...(inputProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  if (!canOperate) {
+    return (
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+      >
+        <InputNumber {...otherInputProps} />
+      </FormItem>
+    );
+  }
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+    >
+      <InputNumber {...otherInputProps} />
+    </FormItem>
+  );
+}
+
+export function buildFormDisplay({
+  label,
+  content,
+  formItemLayout = {},
+  useDisplayBoxStyle = true,
+}) {
+  const title = label;
+
+  let labelText = 'object';
+
+  if (isObject(title)) {
+    showRuntimeErrorMessage('label必须为文本');
+
+    recordObject(label);
+  } else {
+    labelText = title;
+  }
+
+  return (
+    <FormItem {...formItemLayout} label={labelText}>
+      <div style={useDisplayBoxStyle ? { padding: '4px 0 4px 0' } : {}}>
+        {content}
+      </div>
+    </FormItem>
+  );
+}
+
+export function buildFormHiddenWrapper({ children, hidden = true }) {
+  if (hidden) {
+    return <div style={{ display: 'hidden' }}>{children}</div>;
+  }
+
+  return <>{children}</>;
+}
+
+export function buildFormInputFieldData(
+  fieldData,
+  required = false,
+  icon = <FormOutlined />,
+  inputProps = {},
+  canOperate = true,
+  formItemLayout = {},
+  reminderPrefix = '输入',
+  hidden = false,
+) {
+  const { label, name, helper } = {
+    ...{
+      label: null,
+      name: null,
+      helper: null,
+    },
+    ...(fieldData || {}),
+  };
+
+  return buildFormInput({
+    label: label || null,
+    name: name || null,
+    required,
+    helper: helper || null,
+    icon,
+    inputProps,
+    canOperate,
+    formItemLayout,
+    reminderPrefix,
+    hidden,
+  });
+}
+
+export function buildFormInput({
+  label,
+  name,
+  required = false,
+  helper = null,
+  icon = <FormOutlined />,
+  inputProps = {},
+  canOperate = true,
+  formItemLayout = {},
+  reminderPrefix = '输入',
+  hidden = false,
+}) {
+  const title = label;
+
+  const otherInputProps = {
+    ...{
+      addonBefore: icon,
+      placeholder: canOperate
+        ? buildFieldDescription(title, reminderPrefix)
+        : '暂无数据',
+      disabled: !canOperate,
+    },
+    ...(inputProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  if (!canOperate) {
+    return this.renderFormHiddenWrapper(
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+        rules={[
+          {
+            required,
+            message: buildFieldDescription(resultCheck.label),
+          },
+        ]}
+      >
+        <Input {...otherInputProps} />
+      </FormItem>,
+      hidden,
+    );
+  }
+
+  return this.renderFormHiddenWrapper(
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <Input {...otherInputProps} />
+    </FormItem>,
+    hidden,
+  );
+}
+
+export function buildFormSwitch({
+  label,
+  name,
+  required = false,
+  helper = null,
+  otherProps = {},
+  canOperate = true,
+  formItemLayout = {},
+  hidden = false,
+}) {
+  const title = label;
+
+  const otherSwitchProps = {
+    ...{
+      disabled: !canOperate,
+    },
+    ...(otherProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  if (!canOperate) {
+    return this.renderFormHiddenWrapper(
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+        rules={[
+          {
+            required,
+            message: buildFieldDescription(resultCheck.label),
+          },
+        ]}
+      >
+        <FlexBox
+          left={`是否开启${label}:`}
+          right={<Switch {...otherSwitchProps} />}
+        />
+      </FormItem>,
+      hidden,
+    );
+  }
+
+  return this.renderFormHiddenWrapper(
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <FlexBox
+        left={`是否开启${label}：`}
+        right={<Switch {...otherSwitchProps} />}
+      />
+    </FormItem>,
+    hidden,
+  );
+}
+
+export function buildFormPassword({
+  label,
+  name,
+  required = false,
+  helper = null,
+  icon = <FormOutlined />,
+  inputProps = {},
+  canOperate = true,
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const otherInputProps = {
+    ...{
+      addonBefore: icon,
+      placeholder: buildFieldDescription(title, '输入'),
+    },
+    ...(inputProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  if (!canOperate) {
+    return (
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+        rules={[
+          {
+            required,
+            message: buildFieldDescription(resultCheck.label),
+          },
+        ]}
+      >
+        <Password {...otherInputProps} />
+      </FormItem>
+    );
+  }
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <Password {...otherInputProps} />
+    </FormItem>
+  );
+}
+
+export function buildFormOnlyShowText({
+  label,
+  value,
+  helper = null,
+  formItemLayout = {},
+  requiredForShow = false,
+}) {
+  const title = label;
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name: '',
+    helper,
+  });
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      className={requiredForShow ? styles.formItemOnlyShowText : null}
+      // style={{ marginBottom: 0 }}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required: false,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      {value}
+    </FormItem>
+  );
+}
+
+export function buildSyntaxHighlighter({ language, value }) {
   return (
     <>
-      <FlexBox
-        flexAuto="right"
-        left={logoDom}
-        right={
-          collapsed ? null : (
-            <VerticalBox
-              align="center"
-              alignJustify="start"
-              style={{
-                height: '100%',
-              }}
-            >
-              <Title
-                level={1}
-                style={{
-                  ...{
-                    margin: ' 0 0 0 12px',
-                    fontSize: '20px',
-                    color: 'white',
-                    fontWeight: '600',
-                    lineHeight: '32px',
-                  },
-                  ...(navTheme === 'light' ? { color: '#000000d9' } : {}),
-                }}
-              >
-                <TextAnimal type="alpha" mode="smooth">
-                  {shortName || '应用简称'}
-                </TextAnimal>
-              </Title>
-            </VerticalBox>
-          )
-        }
-      />
+      {isObject(value) ? (
+        <SyntaxHighlighter
+          showLineNumbers
+          wrapLines
+          lineProps={{ style: { paddingBottom: 8 } }}
+          language={language}
+          // style={docco}
+        >
+          {language === 'javascript'
+            ? JSON.stringify(value || {}, null, '    ')
+            : value}
+        </SyntaxHighlighter>
+      ) : (
+        <SyntaxHighlighter
+          showLineNumbers
+          wrapLines
+          lineProps={{ style: { paddingBottom: 8 } }}
+          language={language}
+          // style={docco}
+        >
+          {language === 'javascript'
+            ? JSON.stringify(JSON.parse(value || null), null, '    ')
+            : value}
+        </SyntaxHighlighter>
+      )}
     </>
+  );
+}
+
+export function buildJsonView({ value, theme = 'monokai' }) {
+  return (
+    <>
+      {isObject(value) ? (
+        <ReactJson
+          src={value}
+          theme={theme || 'monokai'}
+          name={false}
+          displayDataTypes={false}
+          displayObjectSize={false}
+          enableClipboard={false}
+        />
+      ) : (
+        <ReactJson
+          src={JSON.parse(value || '{}')}
+          theme={theme || 'monokai'}
+          name={false}
+          displayDataTypes={false}
+          displayObjectSize={false}
+          enableClipboard={false}
+        />
+      )}
+    </>
+  );
+}
+
+export function buildFormInnerComponent({
+  label,
+  innerComponent,
+  helper = null,
+  formItemLayout = {},
+  requiredForShow = false,
+}) {
+  const title = label;
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name: '',
+    helper,
+  });
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      className={requiredForShow ? styles.formItemOnlyShowText : null}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required: false,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      {innerComponent}
+    </FormItem>
+  );
+}
+
+export function buildFormOnlyShowSyntaxHighlighter({
+  language,
+  label,
+  value,
+  helper = null,
+  formItemLayout = {},
+  requiredForShow = false,
+}) {
+  return this.renderFormInnerComponent(
+    label,
+    this.renderSyntaxHighlighter(language, value),
+    helper,
+    formItemLayout,
+    requiredForShow,
+  );
+}
+
+export function buildFormOnlyShowTextarea({
+  label,
+  value,
+  helper = null,
+  textAreaProps = { disabled: true },
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const otherTextAreaProps = {
+    ...{
+      placeholder: '暂无数据',
+      value: stringIsNullOrWhiteSpace(value || '') ? '' : value,
+    },
+    ...(textAreaProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name: '',
+    helper,
+  });
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required: false,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <TextArea {...otherTextAreaProps} />
+    </FormItem>
+  );
+}
+
+export function buildFormText({
+  label,
+  value,
+  helper = null,
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name: '',
+    helper,
+  });
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required: false,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      {value}
+    </FormItem>
+  );
+}
+
+export function buildFormOnlyShowInput({
+  label,
+  value,
+  helper = null,
+  icon = <FormOutlined />,
+  inputProps = { disabled: true },
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const otherInputProps = {
+    ...{
+      addonBefore: icon,
+      placeholder: '暂无数据',
+      value: stringIsNullOrWhiteSpace(value || '') ? '' : value,
+    },
+    ...(inputProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name: '',
+    helper,
+  });
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required: false,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <Input {...otherInputProps} />
+    </FormItem>
+  );
+}
+
+export function buildFormInputNumber({
+  label,
+  name,
+  required = false,
+  helper = null,
+  inputNumberProps = {},
+  canOperate = true,
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const otherInputNumberProps = {
+    ...{
+      style: { width: '100%' },
+      min: 0,
+      placeholder: buildFieldDescription(title, '输入'),
+      disabled: !canOperate,
+    },
+    ...(inputNumberProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  if (!canOperate) {
+    return (
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+        rules={[
+          {
+            required,
+            message: buildFieldDescription(resultCheck.label),
+          },
+        ]}
+      >
+        <InputNumber {...otherInputNumberProps} />
+      </FormItem>
+    );
+  }
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <InputNumber {...otherInputNumberProps} />
+    </FormItem>
+  );
+}
+
+export function buildFormTextArea({
+  label,
+  name,
+  required = false,
+  helper = null,
+  textAreaProps = {},
+  canOperate = true,
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const otherTextAreaProps = {
+    ...{
+      placeholder: buildFieldDescription(title, '输入'),
+      disabled: !canOperate,
+    },
+    ...(textAreaProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  if (!canOperate) {
+    return (
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+        rules={[
+          {
+            required,
+            message: buildFieldDescription(resultCheck.label),
+          },
+        ]}
+      >
+        <TextArea {...otherTextAreaProps} />
+      </FormItem>
+    );
+  }
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <TextArea {...otherTextAreaProps} />
+    </FormItem>
+  );
+}
+
+export function buildFormDatePicker({
+  label,
+  name,
+  required = false,
+  helper = null,
+  datePickerProps = {},
+  canOperate = true,
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const otherDatePickerProps = {
+    ...{
+      style: { width: '100%' },
+      showTime: true,
+      format: 'YYYY-MM-DD HH:mm:ss',
+      inputReadOnly: true,
+      placeholder: buildFieldDescription(title, '选择'),
+    },
+    ...(datePickerProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  if (!canOperate) {
+    return (
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+      >
+        <DatePicker {...otherDatePickerProps} />
+      </FormItem>
+    );
+  }
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <DatePicker {...otherDatePickerProps} />
+    </FormItem>
   );
 }
 
