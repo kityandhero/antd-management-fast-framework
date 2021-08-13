@@ -38,12 +38,7 @@ export default defineConfig({
     ie: 11,
   },
   routes: pageRoutes,
-  // esbuild is father build tools
-  // https://umijs.org/plugins/plugin-esbuild
-  // esbuild: {},
-  // Fast Refresh 热更新
   fastRefresh: {},
-  // 禁用umi.js内置的 title 渲染机制 https://github.com/ant-design/ant-design-pro/issues/6360
   title: false,
   theme: {
     '@primary-color': '#F5222D',
@@ -56,12 +51,6 @@ export default defineConfig({
       ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION || '', // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
   },
   ignoreMomentLocale: true,
-  // nodeModulesTransform: {
-  //   type: 'none',
-  //   exclude: [],
-  // },
-  // devtool: false,
-  // devtool: process.env.NODE_ENV === 'production' ? false : 'eval',
   lessLoader: {
     javascriptEnabled: true,
   },
@@ -95,19 +84,12 @@ export default defineConfig({
     type: 'hash',
   },
   proxy: proxy[REACT_APP_ENV || 'dev'],
-  chainWebpack: webpackPlugin,
-  /*
-  proxy: {
-    '/server/api/': {
-      target: 'https://preview.pro.ant.design/',
-      changeOrigin: true,
-      pathRewrite: { '^/server': '' },
-    },
-  },
-  */
+  // chainWebpack: webpackPlugin,
   ssr: false,
-  // mfsu: {},
+  mfsu: {},
   // webpack5: {},
+  // esbuild: {},
+  fastRefresh: {},
   exportStatic: {},
   headerExtraLinks: ['/home.css'],
 });

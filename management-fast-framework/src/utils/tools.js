@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import copy from 'copy-to-clipboard';
 import queue from 'queue';
 import numeral from 'numeral';
-import arrayMoveUtil from 'array-move';
+import { arrayMoveImmutable, arrayMoveMutable } from 'array-move';
 import {
   isEqual as isEqualLodash,
   isFunction as isFunctionLodash,
@@ -1334,11 +1334,11 @@ export function getDerivedStateFromPropsForUrlParams(
 }
 
 export function arrayMove(array, from, to) {
-  return arrayMoveUtil(array, from, to);
+  return arrayMoveImmutable(array, from, to);
 }
 
 export function arrayMoveMutate(array, from, to) {
-  return arrayMoveUtil.mutate(array, from, to);
+  return arrayMoveMutable(array, from, to);
 }
 
 /**
