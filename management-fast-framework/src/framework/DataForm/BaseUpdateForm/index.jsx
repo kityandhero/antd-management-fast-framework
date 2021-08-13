@@ -1,11 +1,11 @@
 import { message } from 'antd';
 
 import {
-  pretreatmentRequestParams,
   isFunction,
   isUndefined,
   showRuntimeErrorMessage,
 } from '../../../utils/tools';
+import { pretreatmentRequestParams } from '../../../utils/remoteAssist';
 import DataSingleView from '../../DataSingleView/DataLoad';
 
 class BaseUpdateForm extends DataSingleView {

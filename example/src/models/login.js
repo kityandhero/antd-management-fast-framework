@@ -91,11 +91,11 @@ export default {
       v.data.role = [];
 
       const { data } = v;
-      const { currentAuthority, token: tokenValue, code, role, supplierFlag } = data;
+      const { currentAuthority, token: tokenValue, code, role, dataFlag } = data;
 
       setAuthority(currentAuthority);
       setToken(tokenValue);
-      setDataFlag(supplierFlag);
+      setDataFlag(dataFlag || '');
 
       return {
         ...state,

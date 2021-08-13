@@ -33,6 +33,7 @@ function apiVirtualAuthorize() {
  * 封装模拟的错误返回
  */
 export function apiVirtualFailData({
+  remoteResponse,
   code,
   message: messageText,
   needAuthorize = true,
@@ -44,12 +45,15 @@ export function apiVirtualFailData({
       return {
         code,
         message: messageText,
+        success: false,
+        ...remoteResponse,
       };
     }
 
     return {
       code: defaultSettingsLayoutCustom.getAuthenticationFailCode(),
-      message: '未授权的访问',
+      message: '登录失效，请重新登录',
+      success: false,
     };
   }
 
@@ -58,32 +62,40 @@ export function apiVirtualFailData({
   return {
     code,
     message,
+    success: false,
+    ...remoteResponse,
   };
 }
 
 /**
  * 封装模拟的正确返回
  */
-export function apiVirtualSuccessData({ data, needAuthorize = true }) {
+export function apiVirtualSuccessData({
+  remoteResponse,
+  needAuthorize = true,
+}) {
   if (needAuthorize) {
     if (apiVirtualAuthorize()) {
       return {
-        code: 200,
-        message: '',
-        ...data,
+        code: defaultSettingsLayoutCustom.getApiSuccessCode(),
+        message: 'success',
+        success: true,
+        ...remoteResponse,
       };
     }
 
     return {
       code: defaultSettingsLayoutCustom.getAuthenticationFailCode(),
-      message: '未授权的访问',
+      message: '登录失效，请重新登录',
+      success: true,
     };
   }
 
   return {
-    code: 200,
-    message: '',
-    ...data,
+    code: defaultSettingsLayoutCustom.getApiSuccessCode(),
+    message: 'success',
+    success: true,
+    ...remoteResponse,
   };
 }
 
@@ -98,7 +110,12 @@ export async function apiVirtualSuccessAccess({
 
   await new Promise((resolve) => {
     setTimeout(() => {
-      resolve(apiVirtualSuccessData({ remoteResponse, needAuthorize }));
+      resolve(
+        apiVirtualSuccessData({
+          remoteResponse,
+          needAuthorize,
+        }),
+      );
     }, 300);
   }).then((data) => {
     result = data;
@@ -150,7 +167,7 @@ export async function apiVirtualFailAccess({
     }
 
     history.push(loginPath);
-  } else if (code !== 200) {
+  } else if (code !== defaultSettingsLayoutCustom.getApiSuccessCode()) {
     message.warn(messageText);
   }
 
@@ -177,50 +194,12 @@ export async function apiVirtualAccess({ dataBuild }) {
 
   const { code, message: messageText } = result;
 
-  if (code !== 200) {
+  if (code !== defaultSettingsLayoutCustom.getApiSuccessCode()) {
     message.warn(messageText);
   }
 
   return result;
 }
-
-//  dataBuild示例
-// apiVirtualAccess((resolve) => {
-//   setTimeout(() => {
-//     const { password, userName, type } = params;
-//     if (password === '888888' && userName === 'admin') {
-//       resolve(
-//         apiVirtualSuccessData(
-//           {
-//             id: 1,
-//             token: '059b1900-7d7b-40aa-872f-197d04b03385',
-//             userName: 'admin',
-//             type,
-//             role: [],
-//             currentAuthority: 'admin',
-//           },
-//           false,
-//         ),
-//       );
-//     } else if (password === '123456' && userName === 'user') {
-//       resolve(
-//         apiVirtualSuccessData(
-//           {
-//             id: 2,
-//             token: 'a9f98dab-00c1-4929-b79f-bacd1a7846d0',
-//             userName: 'user',
-//             type,
-//             role: [],
-//             currentAuthority: 'user',
-//           },
-//           false,
-//         ),
-//       );
-//     } else {
-//       resolve(apiVirtualFailData(1001, '用户名不存在或密码错误', false));
-//     }
-//   }, 300);
-// });
 
 /**
  * 占位函数

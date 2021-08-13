@@ -1,4 +1,4 @@
-import { pretreatmentRemoteSingleData } from '../../../utils/tools';
+import { pretreatmentRemoteSingleData } from '../../../utils/requestAssistor';
 import { getTokenObject } from '../../../utils/globalStorageAssist';
 import Common from '../../../framework/Common';
 

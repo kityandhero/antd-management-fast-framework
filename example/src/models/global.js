@@ -4,13 +4,14 @@ import {
   pretreatmentRemoteSingleData,
   handleCommonDataAssist,
 } from 'antd-management-fast-framework/lib/utils/tools';
+import { whetherString } from 'antd-management-fast-framework/lib/utils/constants';
+
 import {
   getMetaDataCache,
   setMetaDataCache,
   getCurrentOperatorCache,
   setCurrentOperatorCache,
-} from '../customConfig/storageAssist';
-import { whetherString } from 'antd-management-fast-framework/lib/utils/constants';
+} from '@/utils/storageAssist';
 
 import { queryNotices } from '../services/user';
 import { getData } from '../services/global';

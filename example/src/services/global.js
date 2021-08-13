@@ -8,6 +8,32 @@ export async function getData(params) {
   return request({
     api: `/metaData/get`,
     params,
+    virtualSuccessResponse: {
+      data: {
+        webChannelList: [
+          {
+            flag: '20000',
+            name: '管理中心',
+            availability: 1,
+          },
+          {
+            flag: '21000',
+            name: '地区管理后台',
+            availability: 1,
+          },
+          {
+            flag: '21100',
+            name: '一件代发管理后台',
+            availability: 1,
+          },
+          {
+            flag: '53000',
+            name: '供应商管理系统',
+            availability: 1,
+          },
+        ],
+      },
+    },
   });
 }
 

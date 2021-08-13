@@ -33,7 +33,6 @@ import {
   isFunction,
   defaultCommonState,
   buildFieldDescription,
-  pretreatmentRequestParams,
   buildFieldHelper,
   isUndefined,
   recordText,
@@ -54,6 +53,7 @@ import {
   isNull,
   checkFromConfig,
 } from '../../utils/tools';
+import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import {
   defaultEmptyImage,
   formContentConfig,

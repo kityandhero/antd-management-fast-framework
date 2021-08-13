@@ -1,6 +1,7 @@
 import { getAppInitConfigData, stringIsNullOrWhiteSpace } from './tools';
 import {
-  authenticationFailCode,
+  apiSuccessCode as apiSuccessCodeDefault,
+  authenticationFailCode as authenticationFailCodeDefault,
   emptyLogo as emptyLogoImage,
 } from './constants';
 
@@ -11,31 +12,51 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     const { emptyLogo } = {
-      ...{ emptyLogo: emptyLogoImage, ...(appInit || {}) },
+      ...{ emptyLogo: emptyLogoImage },
+      ...(appInit || {}),
     };
 
     return emptyLogo || emptyLogoImage;
   },
+  getApiSuccessCode: () => {
+    const appInit = getAppInitConfigData();
+
+    const { apiSuccessCode } = {
+      ...{ apiSuccessCode: apiSuccessCodeDefault },
+      ...(appInit || {}),
+    };
+
+    return apiSuccessCode || apiSuccessCodeDefault;
+  },
   getAuthenticationFailCode: () => {
     const appInit = getAppInitConfigData();
 
-    const { authenticationFailCode: code } = {
-      ...{ authenticationFailCode, ...(appInit || {}) },
+    const { authenticationFailCode } = {
+      ...{
+        authenticationFailCode: authenticationFailCodeDefault,
+        ...(appInit || {}),
+      },
     };
 
-    return code || authenticationFailCode;
+    return authenticationFailCode || authenticationFailCodeDefault;
   },
   getLoginPath: () => {
     const appInit = getAppInitConfigData();
 
-    const { loginPath } = { ...{ loginPath: '', ...(appInit || {}) } };
+    const { loginPath } = {
+      ...{ loginPath: '' },
+      ...(appInit || {}),
+    };
 
     return loginPath || '';
   },
   getApiVersion: () => {
     const appInit = getAppInitConfigData();
 
-    const { apiVersion } = { ...{ apiVersion: '', ...(appInit || {}) } };
+    const { apiVersion } = {
+      ...{ apiVersion: '' },
+      ...(appInit || {}),
+    };
 
     return apiVersion || '';
   },
@@ -43,7 +64,8 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     const { useVirtualRequest } = {
-      ...{ useVirtualRequest: false, ...(appInit || {}) },
+      ...{ useVirtualRequest: false },
+      ...(appInit || {}),
     };
 
     return useVirtualRequest || false;
@@ -52,7 +74,8 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     const { showLogInConsole } = {
-      ...{ showLogInConsole: false, ...(appInit || {}) },
+      ...{ showLogInConsole: false },
+      ...(appInit || {}),
     };
 
     return showLogInConsole || false;
@@ -61,7 +84,8 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     const { showRequestInfo } = {
-      ...{ showRequestInfo: false, ...(appInit || {}) },
+      ...{ showRequestInfo: false },
+      ...(appInit || {}),
     };
 
     return showRequestInfo || false;
@@ -69,14 +93,20 @@ export const defaultSettingsLayoutCustom = {
   getPlatformName: () => {
     const appInit = getAppInitConfigData();
 
-    const { platformName } = { ...{ platformName: '', ...(appInit || {}) } };
+    const { platformName } = {
+      ...{ platformName: '' },
+      ...(appInit || {}),
+    };
 
     return platformName || '';
   },
   getAppName: () => {
     const appInit = getAppInitConfigData();
 
-    const { appName } = { ...{ appName: '', ...(appInit || {}) } };
+    const { appName } = {
+      ...{ appName: '' },
+      ...(appInit || {}),
+    };
 
     return appName || '';
   },
@@ -84,7 +114,8 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     const { appDescription } = {
-      ...{ appDescription: '', ...(appInit || {}) },
+      ...{ appDescription: '' },
+      ...(appInit || {}),
     };
 
     return appDescription || '';
@@ -92,7 +123,10 @@ export const defaultSettingsLayoutCustom = {
   getTitle: () => {
     const appInit = getAppInitConfigData();
 
-    const { appName } = { ...{ appName: '', ...(appInit || {}) } };
+    const { appName } = {
+      ...{ appName: '' },
+      ...(appInit || {}),
+    };
 
     return appName || '';
   },
@@ -100,7 +134,8 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     const { loginLogo } = {
-      ...{ loginLogo: emptyLogoImage, ...(appInit || {}) },
+      ...{ loginLogo: emptyLogoImage },
+      ...(appInit || {}),
     };
 
     return loginLogo || emptyLogoImage;
@@ -109,7 +144,8 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     const { shareLogo } = {
-      ...{ shareLogo: emptyLogoImage, ...(appInit || {}) },
+      ...{ shareLogo: emptyLogoImage },
+      ...(appInit || {}),
     };
 
     return shareLogo || emptyLogoImage;
@@ -117,14 +153,20 @@ export const defaultSettingsLayoutCustom = {
   getShareLogoName: () => {
     const appInit = getAppInitConfigData();
 
-    const { shareLogoName } = { ...{ shareLogoName: '', ...(appInit || {}) } };
+    const { shareLogoName } = {
+      ...{ shareLogoName: '' },
+      ...(appInit || {}),
+    };
 
     return shareLogoName || '';
   },
   getCompanyName: () => {
     const appInit = getAppInitConfigData();
 
-    const { companyName } = { ...{ companyName: '', ...(appInit || {}) } };
+    const { companyName } = {
+      ...{ companyName: '' },
+      ...(appInit || {}),
+    };
 
     return companyName || '';
   },
@@ -136,7 +178,8 @@ export const defaultSettingsLayoutCustom = {
     const appInit = getAppInitConfigData();
 
     const { leftBarLogo } = {
-      ...{ leftBarLogo: emptyLogoImage, ...(appInit || {}) },
+      ...{ leftBarLogo: emptyLogoImage },
+      ...(appInit || {}),
     };
 
     return leftBarLogo || emptyLogoImage;
@@ -144,14 +187,20 @@ export const defaultSettingsLayoutCustom = {
   getLeftBarText: () => {
     const appInit = getAppInitConfigData();
 
-    const { leftBarText } = { ...{ leftBarText: '', ...(appInit || {}) } };
+    const { leftBarText } = {
+      ...{ leftBarText: '' },
+      ...(appInit || {}),
+    };
 
     return leftBarText || '';
   },
   getCopyright: () => {
     const appInit = getAppInitConfigData();
 
-    const { copyright } = { ...{ copyright: '', ...(appInit || {}) } };
+    const { copyright } = {
+      ...{ copyright: '' },
+      ...(appInit || {}),
+    };
 
     return copyright || '';
   },

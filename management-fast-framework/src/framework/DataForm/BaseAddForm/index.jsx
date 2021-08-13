@@ -5,11 +5,11 @@ import { PlusOutlined } from '@ant-design/icons';
 import {
   getDerivedStateFromPropsForUrlParams,
   defaultFormState,
-  pretreatmentRequestParams,
   formatDatetime,
   isUndefined,
   showRuntimeErrorMessage,
 } from '../../../utils/tools';
+import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 import { formNameCollection, datetimeFormat } from '../../../utils/constants';
 
 import DataCore from '../../DataSingleView/DataCore';

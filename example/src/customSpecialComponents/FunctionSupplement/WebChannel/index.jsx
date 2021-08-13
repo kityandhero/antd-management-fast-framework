@@ -1,4 +1,4 @@
-import {
+﻿import {
   refitCommonData,
   isInvalid,
   searchFromList,
@@ -17,7 +17,7 @@ import {
 import { unknownLabel } from '@/customConfig/config';
 
 export function refitWebChannelList({ global, withUnlimited = true }) {
-  const { webChannelList: list } = { ...{ webChannelList: [] }, ...(global || {}) };
+  const { rankList: list } = { ...{ rankList: [] }, ...(global || {}) };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);
@@ -40,33 +40,25 @@ export function getWebChannelName({ global, value, defaultValue = '' }) {
   return item == null ? '未知' : item.name;
 }
 
-export function renderWebChannelOption({
-  global,
-  withUnlimited = true,
-  adjustListDataCallback = null,
-}) {
+export function renderWebChannelOption({ global, withUnlimited = true, adjustListDataCallback = null }) {
   const listData = refitWebChannelList({ global, withUnlimited });
 
   return buildFormOptionItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderWebChannelRadio({
-  global,
-  withUnlimited = true,
-  adjustListDataCallback = null,
-}) {
+export function renderWebChannelRadio({ global, withUnlimited = true, adjustListDataCallback = null }) {
   const listData = refitWebChannelList({ global, withUnlimited });
 
   return buildFormRadioItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderSearchWebChannelSelect(
-  global,
+export function renderSearchWebChannelSelect({
+  global = null,
   withUnlimited = true,
   label = 'Web渠道',
-  name = 'WebChannelId',
+  name = 'webChannelId',
   helper = null,
-) {
+}) {
   const title = label || unknownLabel;
 
   return buildSearchFormSelect({
@@ -77,15 +69,16 @@ export function renderSearchWebChannelSelect(
   });
 }
 
-export function renderFormWebChannelSelect(
+export function renderFormWebChannelSelect({
+  global = null,
   helper = null,
   onChangeCallback,
   label = 'Web渠道',
   formItemLayout = null,
   required = true,
-  name = 'WebChannelId',
+  name = 'webChannelId',
   otherProps = null,
-) {
+}) {
   const title = label || unknownLabel;
 
   return buildFormSelect({
@@ -102,15 +95,16 @@ export function renderFormWebChannelSelect(
   });
 }
 
-export function renderFormWebChannelRadio(
+export function renderFormWebChannelRadio({
+  global = null,
   helper = null,
   onChangeCallback,
   label = 'Web渠道',
   formItemLayout = null,
   required = true,
-  name = 'WebChannelId',
+  name = 'webChannelId',
   otherProps = null,
-) {
+}) {
   const title = label || unknownLabel;
 
   return buildFormRadio({

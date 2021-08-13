@@ -1,6 +1,12 @@
 import { message } from 'antd';
 import { history } from 'umi';
-import { isString, recordObject, stringIsNullOrWhiteSpace } from './tools';
+import {
+  isString,
+  recordObject,
+  stringIsNullOrWhiteSpace,
+  isFunction,
+  isUndefined,
+} from './tools';
 import { getToken, clearCustomData } from './globalStorageAssist';
 import remoteRequest from './request';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
@@ -9,6 +15,319 @@ import {
   apiVirtualSuccessData,
   apiVirtualFailData,
 } from './virtualRequest';
+
+function errorCustomData() {
+  return {
+    code: -1,
+    message: '',
+    data: null,
+    list: [],
+    extra: null,
+  };
+}
+
+function dataExceptionNotice(d) {
+  const { code, message: messageText } = d;
+  const c = errorCustomData();
+
+  const lastCustomMessage = window.lastCustomMessage || {
+    code: -1,
+    message: '',
+    time: new Date().getTime(),
+  };
+
+  if (code !== c.code) {
+    if ((messageText || '') !== '') {
+      const currentTime = new Date().getTime();
+      if (code === lastCustomMessage.code) {
+        if (currentTime - lastCustomMessage.time > 800) {
+          requestAnimationFrame(() => {
+            message.error(messageText);
+          });
+
+          window.lastCustomMessage = {
+            code,
+            message: messageText,
+            time: currentTime,
+          };
+        }
+      } else {
+        requestAnimationFrame(() => {
+          message.error(messageText);
+        });
+
+        window.lastCustomMessage = {
+          code,
+          message: messageText,
+          time: currentTime,
+        };
+      }
+    }
+
+    const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+    const authenticationFailCode =
+      defaultSettingsLayoutCustom.getAuthenticationFailCode();
+
+    if (code === authenticationFailCode) {
+      if (stringIsNullOrWhiteSpace(loginPath)) {
+        throw new Error('缺少登录页面路径配置');
+      }
+
+      requestAnimationFrame(() => {
+        history.replace(loginPath);
+      });
+    }
+  }
+}
+
+/**
+ * 预处理单项数据返回
+ *
+ * @export
+ * @param {*} d
+ * @returns
+ */
+export function pretreatmentRemoteSingleData(d) {
+  const { code, message: messageText } = d || errorCustomData();
+  let v = {};
+
+  const apiSuccessCode = defaultSettingsLayoutCustom.getApiSuccessCode();
+
+  if (code === apiSuccessCode) {
+    const { data, extra } = d;
+    v = {
+      code,
+      message: messageText,
+      data: data || {},
+      extra: extra || {},
+      dataSuccess: true,
+    };
+  } else {
+    v = {
+      code,
+      message: messageText || '网络异常',
+      data: null,
+      extra: null,
+      dataSuccess: false,
+    };
+
+    dataExceptionNotice(v);
+  }
+
+  return v;
+}
+
+/**
+ * 预处理集合数据返回
+ *
+ * @export
+ * @param {*} d
+ * @returns
+ */
+export function pretreatmentRemoteListData(d, listItemHandler) {
+  const { code, message: messageText } = d || errorCustomData();
+  let v = {};
+
+  if (code === defaultSettingsLayoutCustom.getApiSuccessCode()) {
+    const { list: listData, extra: extraData } = d;
+    const list = (listData || []).map((item, index) => {
+      let o = item;
+
+      if ((o.key || null) == null) {
+        o.key = `list-${index}`;
+      }
+
+      if (typeof listItemHandler === 'function') {
+        o = listItemHandler(o);
+      }
+      return o;
+    });
+
+    v = {
+      code,
+      message: messageText,
+      count: (list || []).length,
+      list,
+      extra: extraData,
+      dataSuccess: true,
+    };
+  } else {
+    v = {
+      code,
+      message: messageText || '网络异常',
+      count: 0,
+      list: [],
+      extra: null,
+      dataSuccess: false,
+    };
+
+    dataExceptionNotice(v);
+  }
+
+  return v;
+}
+
+/**
+ * 预处理分页数据返回
+ *
+ * @export
+ * @param {*} d
+ * @returns
+ */
+export function pretreatmentRemotePageListData(d, listItemHandler) {
+  const { code, message: messageText } = d || errorCustomData();
+  let v = {};
+
+  if (code === defaultSettingsLayoutCustom.getApiSuccessCode()) {
+    const { list: listData, extra: extraData } = d;
+    const { pageNo } = extraData;
+    const list = (listData || []).map((item, index) => {
+      let o = item;
+
+      if ((o.key || null) == null) {
+        o.key = `${pageNo}-${index}`;
+      }
+
+      if (typeof listItemHandler === 'function') {
+        o = listItemHandler(o);
+      }
+      return o;
+    });
+
+    v = {
+      code,
+      message: messageText,
+      count: (list || []).length,
+      list,
+      pagination: {
+        total: extraData.total,
+        pageSize: extraData.pageSize,
+        current: parseInt(pageNo || 1, 10) || 1,
+      },
+      extra: extraData,
+      dataSuccess: true,
+    };
+  } else {
+    v = {
+      code,
+      message: messageText || '网络异常',
+      count: 0,
+      list: [],
+      extra: null,
+      pagination: {
+        total: 0,
+        pageSize: 10,
+        current: 1,
+      },
+      dataSuccess: false,
+    };
+
+    dataExceptionNotice(v);
+  }
+  return v;
+}
+
+/**
+ * 预处理数据请求
+ *
+ * @export
+ * @param {*} d
+ * @returns
+ */
+export function pretreatmentRequestParams(params, customHandle) {
+  let submitData = params || {};
+
+  if (typeof customHandle === 'function') {
+    submitData = customHandle(submitData);
+  }
+
+  return submitData;
+}
+
+export function handleCommonDataAssist(state, action, callback = null) {
+  const { payload: d, alias } = action;
+
+  let v = pretreatmentRemoteSingleData(d);
+
+  if (isFunction(callback)) {
+    v = callback(v);
+  }
+
+  if (isUndefined(alias)) {
+    return {
+      ...state,
+      data: v,
+    };
+  }
+
+  const aliasData = {};
+  aliasData[alias] = v;
+
+  return {
+    ...state,
+    ...aliasData,
+  };
+}
+
+export function handleListDataAssist(
+  state,
+  action,
+  pretreatment = null,
+  callback = null,
+) {
+  const { payload: d, alias } = action;
+
+  let v = pretreatmentRemoteListData(d, pretreatment);
+
+  if (isFunction(callback)) {
+    v = callback(v);
+  }
+
+  if (isUndefined(alias)) {
+    return {
+      ...state,
+      data: v,
+    };
+  }
+
+  const aliasData = {};
+  aliasData[alias] = v;
+
+  return {
+    ...state,
+    ...aliasData,
+  };
+}
+
+export function handlePageListDataAssist(
+  state,
+  action,
+  pretreatment = null,
+  callback = null,
+) {
+  const { payload: d, alias } = action;
+
+  let v = pretreatmentRemotePageListData(d, pretreatment);
+
+  if (isFunction(callback)) {
+    v = callback(v);
+  }
+
+  if (isUndefined(alias)) {
+    return {
+      ...state,
+      data: v,
+    };
+  }
+
+  const aliasData = {};
+  aliasData[alias] = v;
+
+  return {
+    ...state,
+    ...aliasData,
+  };
+}
 
 export async function request({
   api,
@@ -80,7 +399,7 @@ export async function request({
             if (virtualRequestResult) {
               resolve(
                 apiVirtualSuccessData({
-                  data: virtualSuccessResponse,
+                  remoteResponse: virtualSuccessResponse,
                   needAuthorize: virtualNeedAuthorize,
                 }),
               );

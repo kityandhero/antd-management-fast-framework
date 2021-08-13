@@ -343,7 +343,7 @@ export async function accountLogin(params) {
   //       if (password === '888888' && userName === 'admin') {
   //         resolve(
   //           apiVirtualSuccessData({
-  //             data: {
+  //             remoteResponse: {
   //               data: {
   //                 // id: 1,
   //                 // token: '059b1900-7d7b-40aa-872f-197d04b03385',
@@ -364,7 +364,7 @@ export async function accountLogin(params) {
   //       } else if (password === '123456' && userName === 'user') {
   //         resolve(
   //           apiVirtualSuccessData({
-  //             data: {
+  //             remoteResponse: {
   //               data: {
   //                 // id: 2,
   //                 // token: 'a9f98dab-00c1-4929-b79f-bacd1a7846d0',

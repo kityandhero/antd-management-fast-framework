@@ -2,11 +2,11 @@ import React from 'react';
 import { message } from 'antd';
 
 import {
-  pretreatmentRequestParams,
   isFunction,
   showRuntimeErrorMessage,
   isUndefined,
 } from '../../../utils/tools';
+import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 
 import Base from '../Base';
 
