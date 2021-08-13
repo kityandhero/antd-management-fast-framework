@@ -1215,7 +1215,7 @@ export function buildFormHiddenWrapper({ children, hidden = true }) {
   return <>{children}</>;
 }
 
-export function buildFormInputFieldData(
+export function buildFormInputFieldData({
   fieldData,
   required = false,
   icon = <FormOutlined />,
@@ -1224,7 +1224,7 @@ export function buildFormInputFieldData(
   formItemLayout = {},
   reminderPrefix = '输入',
   hidden = false,
-) {
+}) {
   const { label, name, helper } = {
     ...{
       label: null,

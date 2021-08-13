@@ -60,7 +60,7 @@ import {
   buildFormSelect,
   buildSearchFormSelect,
   buildFormNowTimeField,
-  renderFormCreateTimeField,
+  buildFormCreateTimeField,
   buildFormUpdateTimeField,
   buildSearchInput,
   buildSearchInputNumber,
@@ -498,7 +498,7 @@ class Common extends Core {
     label = '添加时间',
     formItemLayout = null,
   ) => {
-    return renderFormCreateTimeField({
+    return buildFormCreateTimeField({
       name,
       helper,
       label,
