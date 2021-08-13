@@ -17,7 +17,7 @@ import {
 import { unknownLabel } from '@/customConfig/config';
 
 export function refitWebChannelList({ global, withUnlimited = true }) {
-  const { rankList: list } = { ...{ rankList: [] }, ...(global || {}) };
+  const { webChannelList: list } = { ...{ webChannelList: [] }, ...(global || {}) };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);
@@ -40,13 +40,21 @@ export function getWebChannelName({ global, value, defaultValue = '' }) {
   return item == null ? '未知' : item.name;
 }
 
-export function renderWebChannelOption({ global, withUnlimited = true, adjustListDataCallback = null }) {
+export function renderWebChannelOption({
+  global,
+  withUnlimited = true,
+  adjustListDataCallback = null,
+}) {
   const listData = refitWebChannelList({ global, withUnlimited });
 
   return buildFormOptionItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderWebChannelRadio({ global, withUnlimited = true, adjustListDataCallback = null }) {
+export function renderWebChannelRadio({
+  global,
+  withUnlimited = true,
+  adjustListDataCallback = null,
+}) {
   const listData = refitWebChannelList({ global, withUnlimited });
 
   return buildFormRadioItem({ list: listData, adjustListDataCallback });

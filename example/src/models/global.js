@@ -167,6 +167,7 @@ const GlobalModel = {
     expressReplenishmentTypeList: [],
     expressReplenishmentReasonTypeList: [],
     settlementStatusList: [],
+    webChannelList: [],
   },
 
   effects: {
@@ -280,6 +281,7 @@ const GlobalModel = {
             expressReplenishmentTypeList,
             expressReplenishmentReasonTypeList,
             settlementStatusList,
+            webChannelList,
           } = metaData;
 
           result = {
@@ -361,6 +363,7 @@ const GlobalModel = {
             expressReplenishmentTypeList,
             expressReplenishmentReasonTypeList,
             settlementStatusList,
+            webChannelList,
           };
 
           setMetaDataCache(result);
