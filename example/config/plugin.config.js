@@ -24,7 +24,7 @@ function getModulePackageName(module) {
   return packageName;
 }
 
-const webpackPlugin = (config) => {
+export const webpackPlugin = (config) => {
   // console.dir(config);
   // config.profile(true);
 
@@ -93,74 +93,84 @@ const webpackPlugin = (config) => {
     });
 };
 
-// const webpackPlugin = (config, { env }) => {
-//   config.merge({
-//     mode: 'development',
-//     optimization: {
-//       minimize: env === 'production',
-//       splitChunks: {
-//         // chunks: 'async',
-//         // minSize: 1,
-//         // minChunks: 2,
-//         // automaticNameDelimiter: '.',
-//         cacheGroups: {
-//           default: {
-//             minChunks: 2,
-//             priority: -20,
-//             reuseExistingChunk: true,
-//           },
-//           viz: {
-//             test: (module) => {
-//               const packageName = getModulePackageName(module) || '';
+export const webpackPlugin5 = (config, { env }) => {
+  config.module.rule('mjs-rule').test(/.m?js/).resolve.set('fullySpecified', false);
 
-//               if (packageName) {
-//                 return [
-//                   'antd',
-//                   'bizcharts',
-//                   'gg-editor',
-//                   'g6',
-//                   '@antv',
-//                   'l7',
-//                   'gg-editor-core',
-//                   'bizcharts-plugin-slider',
-//                   'braft-editor',
-//                   'classnames',
-//                   'lodash',
-//                   'numeral',
-//                 ].includes(packageName);
-//               }
+  config.merge({
+    mode: 'development',
+    optimization: {
+      minimize: env === 'production',
+      splitChunks: {
+        // chunks: 'async',
+        // minSize: 1,
+        // minChunks: 2,
+        // automaticNameDelimiter: '.',
+        cacheGroups: {
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+          viz: {
+            test: (module) => {
+              const packageName = getModulePackageName(module) || '';
 
-//               return false;
-//             },
-//           },
-//           misc: {
-//             test: (module) => {
-//               const packageName = getModulePackageName(module) || '';
+              if (packageName) {
+                return [
+                  'antd',
+                  'bizcharts',
+                  'gg-editor',
+                  'g6',
+                  '@antv',
+                  'l7',
+                  'gg-editor-core',
+                  'bizcharts-plugin-slider',
+                  'braft-editor',
+                  'classnames',
+                  'lodash',
+                  'numeral',
+                ].includes(packageName);
+              }
 
-//               if (packageName) {
-//                 return ![
-//                   'antd',
-//                   'bizcharts',
-//                   'gg-editor',
-//                   'g6',
-//                   '@antv',
-//                   'l7',
-//                   'gg-editor-core',
-//                   'bizcharts-plugin-slider',
-//                   'braft-editor',
-//                   'classnames',
-//                   'lodash',
-//                   'numeral',
-//                 ].includes(packageName);
-//               }
+              return false;
+            },
+          },
+          misc: {
+            test: (module) => {
+              const packageName = getModulePackageName(module) || '';
 
-//               return false;
-//             },
-//           },
-//         },
-//       },
-//     },
-//   });
-// };
+              if (packageName) {
+                return ![
+                  'antd',
+                  'bizcharts',
+                  'gg-editor',
+                  'g6',
+                  '@antv',
+                  'l7',
+                  'gg-editor-core',
+                  'bizcharts-plugin-slider',
+                  'braft-editor',
+                  'classnames',
+                  'lodash',
+                  'numeral',
+                ].includes(packageName);
+              }
 
-export default webpackPlugin;
+              return false;
+            },
+          },
+        },
+      },
+    },
+  });
+};
+
+/**
+ * 占位函数
+ *
+ * @export
+ * @returns
+ */
+export function empty() {
+  return {};
+}

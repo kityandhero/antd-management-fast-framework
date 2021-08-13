@@ -2,7 +2,7 @@ import { defineConfig, utils } from 'umi';
 
 import proxy from './proxy';
 import pageRoutes from './router.config';
-import webpackPlugin from './plugin.config';
+import { webpackPlugin, webpackPlugin5 } from './plugin.config';
 
 const { winPath } = utils;
 
@@ -84,7 +84,7 @@ export default defineConfig({
     type: 'hash',
   },
   proxy: proxy[REACT_APP_ENV || 'dev'],
-  // chainWebpack: webpackPlugin,
+  chainWebpack: webpackPlugin5,
   ssr: false,
   mfsu: {},
   // webpack5: {},

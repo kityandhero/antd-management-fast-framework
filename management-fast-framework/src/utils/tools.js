@@ -1,4 +1,3 @@
-import { isBrowser } from 'umi';
 import { message, notification } from 'antd';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
@@ -47,14 +46,20 @@ const storageKeyCollection = {
   nearestLocalhostNotify: 'nearestLocalhostNotify',
 };
 
+function isBrowser() {
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.document !== 'undefined' &&
+    typeof window.document.createElement !== 'undefined'
+  );
+}
+
 export function getAppInitConfigData() {
   let appInitConfig = appInitDefault;
 
-  if (isFunction(isBrowser)) {
-    if (isBrowser()) {
-      if ((window.appInitCustom || null) != null) {
-        appInitConfig = { ...appInitConfig, ...window.appInitCustom };
-      }
+  if (isBrowser()) {
+    if ((window.appInitCustom || null) != null) {
+      appInitConfig = { ...appInitConfig, ...window.appInitCustom };
     }
   }
 
@@ -1762,19 +1767,17 @@ export function checkFromConfig({ label, name, helper }) {
 }
 
 const requestAnimFrameCustom = (() => {
-  if (isFunction(isBrowser)) {
-    if (isBrowser()) {
-      return (
-        window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        ((a) => {
-          window.setTimeout(a, 1e3 / 60);
-        })
-      );
-    }
+  if (isBrowser()) {
+    return (
+      window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      ((a) => {
+        window.setTimeout(a, 1e3 / 60);
+      })
+    );
   }
 
   return () => {};
