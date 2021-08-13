@@ -1,10 +1,5 @@
 module.exports = {
   extends: [require.resolve('@umijs/fabric/dist/eslint')],
-  globals: {
-    ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: true,
-    page: true,
-    REACT_APP_ENV: true,
-  },
   rules: {
     'import/no-cycle': ['error', { maxDepth: Infinity }],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
@@ -29,5 +24,6 @@ module.exports = {
     'no-nested-ternary': 0,
     'compat/compat': 0,
     '@typescript-eslint/no-this-alias': ['off'],
+    '@typescript-eslint/no-unused-vars': ['off'],
   },
 };

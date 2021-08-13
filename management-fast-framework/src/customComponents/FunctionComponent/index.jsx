@@ -1280,7 +1280,33 @@ export function buildFormInput({
   });
 
   if (!canOperate) {
-    return this.renderFormHiddenWrapper(
+    return buildFormHiddenWrapper({
+      children: (
+        <FormItem
+          {...formItemLayout}
+          label={resultCheck.label}
+          name={resultCheck.name}
+          extra={
+            stringIsNullOrWhiteSpace(resultCheck.helper || '')
+              ? null
+              : buildFieldHelper(resultCheck.helper)
+          }
+          rules={[
+            {
+              required,
+              message: buildFieldDescription(resultCheck.label),
+            },
+          ]}
+        >
+          <Input {...otherInputProps} />
+        </FormItem>
+      ),
+      hidden,
+    });
+  }
+
+  return buildFormHiddenWrapper({
+    children: (
       <FormItem
         {...formItemLayout}
         label={resultCheck.label}
@@ -1298,32 +1324,10 @@ export function buildFormInput({
         ]}
       >
         <Input {...otherInputProps} />
-      </FormItem>,
-      hidden,
-    );
-  }
-
-  return this.renderFormHiddenWrapper(
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <Input {...otherInputProps} />
-    </FormItem>,
+      </FormItem>
+    ),
     hidden,
-  );
+  });
 }
 
 export function buildFormSwitch({
@@ -1352,7 +1356,35 @@ export function buildFormSwitch({
   });
 
   if (!canOperate) {
-    return this.renderFormHiddenWrapper(
+    return buildFormHiddenWrapper({
+      children: (
+        <FormItem
+          {...formItemLayout}
+          label={resultCheck.label}
+          extra={
+            stringIsNullOrWhiteSpace(resultCheck.helper || '')
+              ? null
+              : buildFieldHelper(resultCheck.helper)
+          }
+          rules={[
+            {
+              required,
+              message: buildFieldDescription(resultCheck.label),
+            },
+          ]}
+        >
+          <FlexBox
+            left={`是否开启${label}:`}
+            right={<Switch {...otherSwitchProps} />}
+          />
+        </FormItem>
+      ),
+      hidden,
+    });
+  }
+
+  return buildFormHiddenWrapper({
+    children: (
       <FormItem
         {...formItemLayout}
         label={resultCheck.label}
@@ -1369,37 +1401,13 @@ export function buildFormSwitch({
         ]}
       >
         <FlexBox
-          left={`是否开启${label}:`}
+          left={`是否开启${label}：`}
           right={<Switch {...otherSwitchProps} />}
         />
-      </FormItem>,
-      hidden,
-    );
-  }
-
-  return this.renderFormHiddenWrapper(
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <FlexBox
-        left={`是否开启${label}：`}
-        right={<Switch {...otherSwitchProps} />}
-      />
-    </FormItem>,
+      </FormItem>
+    ),
     hidden,
-  );
+  });
 }
 
 export function buildFormPassword({
@@ -1614,13 +1622,13 @@ export function buildFormOnlyShowSyntaxHighlighter({
   formItemLayout = {},
   requiredForShow = false,
 }) {
-  return this.renderFormInnerComponent(
+  return buildFormInnerComponent({
     label,
-    this.renderSyntaxHighlighter(language, value),
+    innerComponent: buildSyntaxHighlighter({ language, value }),
     helper,
     formItemLayout,
     requiredForShow,
-  );
+  });
 }
 
 export function buildFormOnlyShowTextarea({
