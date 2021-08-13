@@ -87,7 +87,7 @@ export function apiVirtualSuccessData({
     return {
       code: defaultSettingsLayoutCustom.getAuthenticationFailCode(),
       message: '登录失效，请重新登录',
-      success: true,
+      success: false,
     };
   }
 

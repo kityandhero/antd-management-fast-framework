@@ -5,7 +5,7 @@ import {
   isUndefined,
   showRuntimeErrorMessage,
 } from '../../../utils/tools';
-import { pretreatmentRequestParams } from '../../../utils/remoteAssist';
+import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 import DataSingleView from '../../DataSingleView/DataLoad';
 
 class BaseUpdateForm extends DataSingleView {
