@@ -72,7 +72,7 @@ function autoHeight() {
   return (WrappedComponent) => {
     return (
       <AutoHeightComponent>
-        <WrappedComponent {...this.props} style={{ height: `100%` }} />
+        <WrappedComponent style={{ height: `100%` }} />
       </AutoHeightComponent>
     );
   };
