@@ -14,6 +14,7 @@
     "multilines",
     "noninteractive",
     "npminstall",
+    "pify",
     "prettierrc",
     "regexes",
     "scroller",

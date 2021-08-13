@@ -26,50 +26,55 @@ function getAutoHeight(n) {
   return height;
 }
 
-function autoHeight() {
-  return (WrappedComponent) => {
-    class AutoHeightComponent extends React.Component {
-      state = {
-        computedHeight: 0,
-      };
+class AutoHeightComponent extends React.Component {
+  state = {
+    computedHeight: 0,
+  };
 
-      root = undefined;
+  root = undefined;
 
-      componentDidMount() {
-        const { height } = this.props;
+  componentDidMount() {
+    const { height } = this.props;
 
-        if (!height) {
-          let h = getAutoHeight(this.root);
-          this.setState({
-            computedHeight: h,
-          });
+    if (!height) {
+      let h = getAutoHeight(this.root);
+      this.setState({
+        computedHeight: h,
+      });
 
-          if (h < 1) {
-            h = getAutoHeight(this.root);
-            this.setState({
-              computedHeight: h,
-            });
-          }
-        }
-      }
-
-      handleRoot = (node) => {
-        this.root = node;
-      };
-
-      render() {
-        const { height } = this.props;
-        const { computedHeight } = this.state;
-        const h = height || computedHeight;
-        return (
-          <div ref={this.handleRoot}>
-            {h > 0 && <WrappedComponent {...this.props} height={h} />}
-          </div>
-        );
+      if (h < 1) {
+        h = getAutoHeight(this.root);
+        this.setState({
+          computedHeight: h,
+        });
       }
     }
+  }
 
-    return AutoHeightComponent;
+  handleRoot = (node) => {
+    this.root = node;
+  };
+
+  render() {
+    const { height } = this.props;
+    const { computedHeight } = this.state;
+    const h = height || computedHeight;
+
+    return (
+      <div ref={this.handleRoot} style={{ height: `${h}px` }}>
+        {h > 0 ? this.props.children : null}
+      </div>
+    );
+  }
+}
+
+function autoHeight() {
+  return (WrappedComponent) => {
+    return (
+      <AutoHeightComponent>
+        <WrappedComponent {...this.props} style={{ height: `100%` }} />
+      </AutoHeightComponent>
+    );
   };
 }
 
