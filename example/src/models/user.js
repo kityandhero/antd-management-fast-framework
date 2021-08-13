@@ -1,4 +1,4 @@
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/tools';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 import { query as queryUsers, queryCurrent } from '../services/user';
 
 export default {

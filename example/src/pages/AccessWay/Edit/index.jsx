@@ -6,9 +6,9 @@ import { RollbackOutlined } from '@ant-design/icons';
 
 import {
   formatDatetime,
-  pretreatmentRequestParams,
   getDerivedStateFromPropsForUrlParams,
 } from 'antd-management-fast-framework/lib/utils/tools';
+import { pretreatmentRequestParams } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 import { DataTabContainer } from 'antd-management-fast-framework/lib/framework';
 
 import { parseUrlParamsForSetState } from '../Assist/config';

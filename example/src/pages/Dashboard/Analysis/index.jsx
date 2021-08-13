@@ -32,9 +32,9 @@ import {
 import {
   formatDecimal,
   formatDatetime,
-  pretreatmentRequestParams,
   formatMoney,
 } from 'antd-management-fast-framework/lib/utils/tools';
+import { pretreatmentRequestParams } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 import { datetimeFormat } from 'antd-management-fast-framework/lib/utils/constants';
 import DataLoad from 'antd-management-fast-framework/lib/framework/DataSingleView/DataLoad';
 import Trend from 'antd-management-fast-framework/lib/customComponents/Trend';

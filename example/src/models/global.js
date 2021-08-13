@@ -3,7 +3,7 @@ import { message } from 'antd';
 import {
   pretreatmentRemoteSingleData,
   handleCommonDataAssist,
-} from 'antd-management-fast-framework/lib/utils/tools';
+} from 'antd-management-fast-framework/lib/utils/requestAssistor';
 import { whetherString } from 'antd-management-fast-framework/lib/utils/constants';
 
 import {

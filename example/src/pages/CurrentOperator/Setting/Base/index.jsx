@@ -9,10 +9,10 @@ import {
 } from '@ant-design/icons';
 
 import {
-  pretreatmentRemoteSingleData,
   corsTarget,
   showRuntimeErrorMessage,
 } from 'antd-management-fast-framework/lib/utils/tools';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 import { defaultUserAvatar } from 'antd-management-fast-framework/lib/utils/constants';
 import {
   getToken,

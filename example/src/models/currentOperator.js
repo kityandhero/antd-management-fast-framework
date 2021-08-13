@@ -1,4 +1,4 @@
-import { handleCommonDataAssist } from 'antd-management-fast-framework/lib/utils/tools';
+import { handleCommonDataAssist } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 
 import {
   getCurrentData,

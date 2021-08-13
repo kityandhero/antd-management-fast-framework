@@ -9,10 +9,8 @@ import {
 } from '@ant-design/icons';
 
 import HtmlBox from 'antd-management-fast-framework/lib/customComponents/HtmlBox';
-import {
-  getDerivedStateFromPropsForUrlParams,
-  pretreatmentRequestParams,
-} from 'antd-management-fast-framework/lib/utils/tools';
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/lib/utils/tools';
+import { pretreatmentRequestParams } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import TabPageBase from '../../TabPageBase';
