@@ -765,8 +765,14 @@ export function buildFormOptionItem({ list, adjustListDataCallback = null }) {
 
   if (listData.length > 0) {
     listData.forEach((item) => {
-      const { name, flag, availability } = {
-        ...{ name: '', flag: '', availability: whetherNumber.yes },
+      const { name, flag, alias, description, availability } = {
+        ...{
+          name: '',
+          flag: '',
+          description: '',
+          alias: '',
+          availability: whetherNumber.yes,
+        },
         ...(item || {}),
       };
 
@@ -781,7 +787,11 @@ export function buildFormOptionItem({ list, adjustListDataCallback = null }) {
       listOption.push(
         <Option
           key={`${flag}_${name}`}
-          title={name}
+          title={`${alias || name}${
+            stringIsNullOrWhiteSpace(description || '')
+              ? ''
+              : `[${description}]`
+          }`}
           value={flag}
           disabled={toNumber(availability) !== whetherNumber.yes}
         >
