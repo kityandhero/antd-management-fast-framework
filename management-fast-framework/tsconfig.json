@@ -21,15 +21,14 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "paths": {
-      "@@@/*": ["./src/*"],
       "@/*": ["./example/*"],
       "@@/*": ["./example/.umi/*"]
     }
   },
   "include": [
-    "src/**/*",
-    "lib/**/*",
-    "es/**/*"
+    // "src/**/*",
+    "lib/**/*"
+    // "es/**/*"
     // "mock/**/*",
     // "example/**/*",
     // "tests/**/*",

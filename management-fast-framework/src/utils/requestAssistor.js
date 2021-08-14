@@ -124,7 +124,7 @@ export function pretreatmentRemoteSingleData(d) {
  * @param {*} d
  * @returns
  */
-export function pretreatmentRemoteListData(d, listItemHandler) {
+export function pretreatmentRemoteListData(d, itemHandler) {
   const { code, message: messageText } = d || errorCustomData();
   let v = {};
 
@@ -137,8 +137,8 @@ export function pretreatmentRemoteListData(d, listItemHandler) {
         o.key = `list-${index}`;
       }
 
-      if (typeof listItemHandler === 'function') {
-        o = listItemHandler(o);
+      if (typeof itemHandler === 'function') {
+        o = itemHandler(o);
       }
       return o;
     });

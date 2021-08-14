@@ -82,6 +82,7 @@ import {
   buildFormTextArea,
   buildFormDatePicker,
 } from '../../customComponents/FunctionComponent';
+import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
 
 import Core from '../Core';
 
@@ -1809,15 +1810,18 @@ class Common extends Core {
                     : null}
 
                   {type === formContentConfig.contentItemType.whetherSelect
-                    ? this.renderFormWhetherSelect(
-                        fieldData.label,
-                        fieldData.name,
-                        fieldData.helper,
-                        contentItem.onChangeCallback,
+                    ? renderFormWhetherSelect({
+                        label: fieldData.label,
+                        name: fieldData.name,
+                        helper: fieldData.helper,
+                        onChangeCallback: contentItem.onChangeCallback,
                         formItemLayout,
-                        true,
-                        { ...{}, ...(contentItem.otherProps || {}) },
-                      )
+                        required: true,
+                        otherProps: {
+                          ...{},
+                          ...(contentItem.otherProps || {}),
+                        },
+                      })
                     : null}
 
                   {type === formContentConfig.contentItemType.customSelect

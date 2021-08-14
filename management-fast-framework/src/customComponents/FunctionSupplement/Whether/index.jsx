@@ -4,20 +4,24 @@
   searchFromList,
   isUndefined,
   isNull,
-} from 'antd-management-fast-framework/lib/utils/tools';
-import { unlimitedWithStringFlag } from 'antd-management-fast-framework/lib/utils/constants';
+} from '../../../utils/tools';
+import { modelCollection } from '../../../utils/globalModel';
+import { unlimitedWithStringFlag } from '../../../utils/constants';
 import {
   buildFormRadioItem,
   buildFormRadio,
   buildFormOptionItem,
   buildFormSelect,
   buildSearchFormSelect,
-} from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
+} from '../../FunctionComponent';
 
 import { unknownLabel } from '@/customConfig/config';
 
-export function refitWhetherList({ global, withUnlimited = true }) {
-  const { whetherList: list } = { ...{ whetherList: [] }, ...(global || {}) };
+export function refitWhetherList({ withUnlimited = true }) {
+  const { whetherList: list } = {
+    ...{ whetherList: [] },
+    ...(modelCollection || {}),
+  };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);
@@ -26,7 +30,7 @@ export function refitWhetherList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getWhetherName({ global, value, defaultValue = '' }) {
+export function getWhetherName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -34,26 +38,31 @@ export function getWhetherName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitWhetherList({ global, withUnlimited: false }),
+    refitWhetherList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
-export function renderWhetherOption({ global, withUnlimited = true, adjustListDataCallback = null }) {
-  const listData = refitWhetherList({ global, withUnlimited });
+export function renderWhetherOption({
+  withUnlimited = true,
+  adjustListDataCallback = null,
+}) {
+  const listData = refitWhetherList({ withUnlimited });
 
   return buildFormOptionItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderWhetherRadio({ global, withUnlimited = true, adjustListDataCallback = null }) {
-  const listData = refitWhetherList({ global, withUnlimited });
+export function renderWhetherRadio({
+  withUnlimited = true,
+  adjustListDataCallback = null,
+}) {
+  const listData = refitWhetherList({ withUnlimited });
 
   return buildFormRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchWhetherSelect({
-  global = null,
   withUnlimited = true,
   label = '调用时设置',
   name = 'whether',
@@ -64,13 +73,12 @@ export function renderSearchWhetherSelect({
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderWhetherOption({ global, withUnlimited }),
+    options: renderWhetherOption({ withUnlimited }),
     helper,
   });
 }
 
 export function renderFormWhetherSelect({
-  global = null,
   helper = null,
   onChangeCallback,
   label = '调用时设置',
@@ -85,7 +93,7 @@ export function renderFormWhetherSelect({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderWhetherOption({ global, withUnlimited: false });
+      return renderWhetherOption({ withUnlimited: false });
     },
     helper,
     onChangeCallback,
@@ -96,7 +104,6 @@ export function renderFormWhetherSelect({
 }
 
 export function renderFormWhetherRadio({
-  global = null,
   helper = null,
   onChangeCallback,
   label = '调用时设置',
@@ -111,7 +118,7 @@ export function renderFormWhetherRadio({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderWhetherRadio({ global, withUnlimited: false });
+      return renderWhetherRadio({ withUnlimited: false });
     },
     helper,
     onChangeCallback,
