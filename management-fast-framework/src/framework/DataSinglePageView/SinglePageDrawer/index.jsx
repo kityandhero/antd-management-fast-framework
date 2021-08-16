@@ -450,6 +450,7 @@ class SinglePageDrawer extends SinglePage {
           <div
             style={{
               height: 'calc(100vh - 55px)',
+              backgroundColor: '#fff',
             }}
           >
             {this.renderDrawerInner()}
