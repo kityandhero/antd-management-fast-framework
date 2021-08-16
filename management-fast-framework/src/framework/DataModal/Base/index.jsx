@@ -6,7 +6,11 @@ import {
   EditOutlined,
 } from '@ant-design/icons';
 
-import { defaultFormState, isUndefined } from '../../../utils/tools';
+import {
+  defaultFormState,
+  isUndefined,
+  stringIsNullOrWhiteSpace,
+} from '../../../utils/tools';
 import { formContentConfig } from '../../../utils/constants';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
@@ -174,11 +178,20 @@ class Base extends BaseWindow {
     return pageName;
   };
 
+  buildTitleSubText = () => {
+    return '';
+  };
+
   buildTitle = () => {
+    const subText = this.buildTitleSubText();
+
     return (
       <Row gutter={6}>
         <Col>{this.buildTitleIcon()}</Col>
-        <Col flex="auto">{this.buildTitleText()}</Col>
+        <Col flex="auto">
+          {this.buildTitleText()}
+          {stringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`}
+        </Col>
       </Row>
     );
   };
