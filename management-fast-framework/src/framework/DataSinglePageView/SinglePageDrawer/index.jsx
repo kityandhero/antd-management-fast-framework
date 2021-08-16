@@ -325,7 +325,7 @@ class SinglePageDrawer extends SinglePage {
         className={styles.mainContainor}
         style={
           listViewMode === listViewModeCollection.list
-            ? { height: '100%', overflow: 'hidden' }
+            ? { height: '100%', overflow: 'hidden', backgroundColor: '#fff' }
             : {}
         }
       >
@@ -450,7 +450,6 @@ class SinglePageDrawer extends SinglePage {
           <div
             style={{
               height: 'calc(100vh - 55px)',
-              backgroundColor: '#fff',
             }}
           >
             {this.renderDrawerInner()}
