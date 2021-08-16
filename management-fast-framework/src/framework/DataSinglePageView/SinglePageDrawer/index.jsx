@@ -307,7 +307,12 @@ class SinglePageDrawer extends SinglePage {
         className={styles.contentContainor}
         style={{
           ...(listViewMode === listViewModeCollection.list
-            ? { paddingBottom: 0, height: '100%', overflow: 'hidden' }
+            ? {
+                paddingBottom: 0,
+                height: '100%',
+                overflow: 'hidden',
+                backgroundColor: '#fff',
+              }
             : { paddingBottom: 0 }),
           ...(renderSearchForm ? {} : { paddingTop: 0 }),
         }}
@@ -325,7 +330,7 @@ class SinglePageDrawer extends SinglePage {
         className={styles.mainContainor}
         style={
           listViewMode === listViewModeCollection.list
-            ? { height: '100%', overflow: 'hidden', backgroundColor: '#fff' }
+            ? { height: '100%', overflow: 'hidden' }
             : {}
         }
       >
