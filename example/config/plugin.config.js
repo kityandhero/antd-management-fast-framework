@@ -24,7 +24,7 @@ function getModulePackageName(module) {
   return packageName;
 }
 
-export const webpackPlugin = (config) => {
+export const webpackPlugin4 = (config) => {
   // console.dir(config);
   // config.profile(true);
 

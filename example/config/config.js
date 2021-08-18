@@ -2,7 +2,7 @@ import { defineConfig, utils } from 'umi';
 
 import proxy from './proxy';
 import pageRoutes from './router.config';
-import { webpackPlugin, webpackPlugin5 } from './plugin.config';
+import { webpackPlugin5 } from './plugin.config';
 
 const { winPath } = utils;
 
@@ -38,7 +38,6 @@ export default defineConfig({
     ie: 11,
   },
   routes: pageRoutes,
-  fastRefresh: {},
   title: false,
   theme: {
     '@primary-color': '#F5222D',
