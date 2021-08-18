@@ -28,5 +28,6 @@ module.exports = {
     'no-nested-ternary': 0,
     'compat/compat': 0,
     '@typescript-eslint/no-this-alias': ['off'],
+    '@typescript-eslint/no-unused-vars': 0,
   },
 };
