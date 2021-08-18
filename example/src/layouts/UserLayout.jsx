@@ -8,7 +8,6 @@ import FlexBox from 'antd-management-fast-framework/lib/customComponents/FlexBox
 import Bubbly from 'antd-management-fast-framework/lib/customComponents/Canvas/Bubbly';
 
 import { formatMessage } from '@/utils/tools';
-import { showLogoInLoginView } from '@/customConfig/config';
 import { defaultSettings } from '@/defaultSettings';
 
 import styles from './UserLayout.less';
@@ -60,7 +59,7 @@ const UserLayout = (props) => {
               <div className={styles.top}>
                 <div className={styles.header}>
                   <Link to="#">
-                    {showLogoInLoginView() ? (
+                    {defaultSettings.getShowLogoInLoginView() ? (
                       <img
                         alt="logo"
                         className={styles.logo}

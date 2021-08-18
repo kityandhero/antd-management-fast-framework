@@ -6,8 +6,26 @@ import {
 } from './constants';
 
 export const defaultSettingsLayoutCustom = {
-  emptyLogo: emptyLogoImage,
-  leftBarLogo: emptyLogoImage,
+  getShowSelectLanguage: () => {
+    const appInit = getAppInitConfigData();
+
+    const { showSelectLanguage } = {
+      ...{ showSelectLanguage: false },
+      ...(appInit || {}),
+    };
+
+    return showSelectLanguage || false;
+  },
+  getShowLogoInLoginView: () => {
+    const appInit = getAppInitConfigData();
+
+    const { showLogoInLoginView } = {
+      ...{ showLogoInLoginView: false },
+      ...(appInit || {}),
+    };
+
+    return showLogoInLoginView || false;
+  },
   getEmptyLogo: () => {
     const appInit = getAppInitConfigData();
 

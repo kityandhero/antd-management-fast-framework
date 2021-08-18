@@ -3,7 +3,7 @@ import { connect, SelectLang } from 'umi';
 import { Tooltip, Tag } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 
-import { showSelectLanguage } from '@/customConfig/config';
+import { defaultSettings } from '@/defaultSettings';
 
 import Avatar from './AvatarDropdown';
 
@@ -69,7 +69,7 @@ const GlobalHeaderRight = (props) => {
         </span>
       )}
 
-      {showSelectLanguage() ? <SelectLang className={styles.action} /> : null}
+      {defaultSettings.getShowSelectLanguage() ? <SelectLang className={styles.action} /> : null}
     </div>
   );
 };

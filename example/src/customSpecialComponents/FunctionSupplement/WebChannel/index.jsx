@@ -14,7 +14,7 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
-import { unknownLabel } from '@/customConfig/config';
+import { unknownLabel } from '@/customConfig/constants';
 
 export function refitWebChannelList({ global, withUnlimited = true }) {
   const { webChannelList: list } = { ...{ webChannelList: [] }, ...(global || {}) };

@@ -6,6 +6,7 @@ import {
   stringIsNullOrWhiteSpace,
   isFunction,
   isUndefined,
+  corsTarget,
 } from './tools';
 import { getToken, clearCustomData } from './globalStorageAssist';
 import remoteRequest from './request';
@@ -437,6 +438,24 @@ export async function request({
     method,
     data: params,
   });
+}
+
+export function getApiVersion() {
+  const version = defaultSettingsLayoutCustom.getApiVersion();
+
+  return version;
+}
+
+export function corsTargetWithApiVersion() {
+  let apiVersion = getApiVersion();
+
+  if (!stringIsNullOrWhiteSpace(apiVersion)) {
+    apiVersion = `/${apiVersion}`;
+  }
+
+  const path = `${corsTarget()}${getApiVersion()}`;
+
+  return path;
 }
 
 /**

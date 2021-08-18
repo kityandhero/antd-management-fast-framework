@@ -29,6 +29,10 @@ export const appInitDefault = {
   apiPrefix: {
     corsTargetProduction: '',
   },
+  showSelectLanguage: false,
+  showLogoInLoginView: true,
+  emptyLogo,
+  leftBarLogo: emptyLogo,
   apiSuccessCode,
   authenticationFailCode,
   loginPath: '/user/login',
