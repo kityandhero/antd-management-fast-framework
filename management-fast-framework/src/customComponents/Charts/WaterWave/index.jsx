@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import autoHeight from '../autoHeight';
+
+import AutoHeightComponent from '../autoHeight';
 import styles from './index.less';
+
 /* eslint no-return-assign: 0 */
 
 /* eslint no-mixed-operators: 0 */
@@ -215,39 +217,42 @@ class WaterWave extends Component {
     const { radio } = this.state;
     const { percent, title, height = 1 } = this.props;
     return (
-      <div
-        className={styles.waterWave}
-        ref={(n) => (this.root = n)}
-        style={{
-          transform: `scale(${radio})`,
-        }}
-      >
+      <AutoHeightComponent>
         <div
+          className={styles.waterWave}
+          ref={(n) => (this.root = n)}
           style={{
-            width: height,
-            height,
-            overflow: 'hidden',
+            transform: `scale(${radio})`,
+            height: `100%`,
           }}
         >
-          <canvas
-            className={styles.waterWaveCanvasWrapper}
-            ref={(n) => (this.node = n)}
-            width={height * 2}
-            height={height * 2}
-          />
+          <div
+            style={{
+              width: height,
+              height,
+              overflow: 'hidden',
+            }}
+          >
+            <canvas
+              className={styles.waterWaveCanvasWrapper}
+              ref={(n) => (this.node = n)}
+              width={height * 2}
+              height={height * 2}
+            />
+          </div>
+          <div
+            className={styles.text}
+            style={{
+              width: height,
+            }}
+          >
+            {title && <span>{title}</span>}
+            <h4>{percent}%</h4>
+          </div>
         </div>
-        <div
-          className={styles.text}
-          style={{
-            width: height,
-          }}
-        >
-          {title && <span>{title}</span>}
-          <h4>{percent}%</h4>
-        </div>
-      </div>
+      </AutoHeightComponent>
     );
   }
 }
 
-export default autoHeight()(WaterWave);
+export default WaterWave;

@@ -68,14 +68,4 @@ class AutoHeightComponent extends React.Component {
   }
 }
 
-function autoHeight() {
-  return (WrappedComponent) => {
-    return (
-      <AutoHeightComponent>
-        <WrappedComponent style={{ height: `100%` }} />
-      </AutoHeightComponent>
-    );
-  };
-}
-
-export default autoHeight;
+export default AutoHeightComponent;

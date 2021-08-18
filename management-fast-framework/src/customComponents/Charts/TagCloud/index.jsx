@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import DataSet from '@antv/data-set';
 import Debounce from 'lodash.debounce';
 import classNames from 'classnames';
-import autoHeight from '../autoHeight';
+
+import AutoHeightComponent from '../autoHeight';
 import styles from './index.less';
 /* eslint no-underscore-dangle: 0 */
 
@@ -144,54 +145,56 @@ class TagCloud extends Component {
   }, 500);
 
   render() {
-    const { className, height } = this.props;
+    const { className } = this.props;
     const { dv, width, height: stateHeight } = this.state;
     return (
-      <div
-        className={classNames(styles.tagCloud, className)}
-        style={{
-          width: '100%',
-          height,
-        }}
-        ref={this.saveRootRef}
-      >
-        {dv && (
-          <Chart
-            width={width}
-            height={stateHeight}
-            data={dv}
-            padding={0}
-            scale={{
-              x: {
-                nice: false,
-              },
-              y: {
-                nice: false,
-              },
-            }}
-          >
-            <Tooltip showTitle={false} />
-            <Coordinate reflect="y" />
-            <Geom
-              type="point"
-              position="x*y"
-              color="text"
-              shape="cloud"
-              tooltip={[
-                'text*value',
-                function trans(text, value) {
-                  return {
-                    name: text,
-                    value,
-                  };
+      <AutoHeightComponent>
+        <div
+          className={classNames(styles.tagCloud, className)}
+          style={{
+            width: '100%',
+            height: `100%`,
+          }}
+          ref={this.saveRootRef}
+        >
+          {dv && (
+            <Chart
+              width={width}
+              height={stateHeight}
+              data={dv}
+              padding={0}
+              scale={{
+                x: {
+                  nice: false,
                 },
-              ]}
-            />
-          </Chart>
-        )}
-      </div>
+                y: {
+                  nice: false,
+                },
+              }}
+            >
+              <Tooltip showTitle={false} />
+              <Coordinate reflect="y" />
+              <Geom
+                type="point"
+                position="x*y"
+                color="text"
+                shape="cloud"
+                tooltip={[
+                  'text*value',
+                  function trans(text, value) {
+                    return {
+                      name: text,
+                      value,
+                    };
+                  },
+                ]}
+              />
+            </Chart>
+          )}
+        </div>
+      </AutoHeightComponent>
     );
   }
 }
 
-export default autoHeight()(TagCloud);
+export default TagCloud;

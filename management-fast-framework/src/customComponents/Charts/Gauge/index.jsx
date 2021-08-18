@@ -1,6 +1,6 @@
 import { Axis, Chart, Coordinate, Geom, Guide, registerShape } from 'bizcharts';
 import React from 'react';
-import autoHeight from '../autoHeight';
+import AutoHeightComponent from '../autoHeight';
 
 const { Arc, Html, Line } = Guide;
 
@@ -60,7 +60,6 @@ if (registerShape) {
 const Gauge = (props) => {
   const {
     title,
-    height = 1,
     percent,
     forceFit = true,
     formatter = defaultFormatter,
@@ -96,88 +95,90 @@ const Gauge = (props) => {
     textAlign: 'center',
   };
   return (
-    <Chart
-      height={height}
-      data={data}
-      scale={cols}
-      padding={[-16, 0, 16, 0]}
-      forceFit={forceFit}
-    >
-      <Coordinate
-        type="polar"
-        startAngle={-1.25 * Math.PI}
-        endAngle={0.25 * Math.PI}
-        radius={0.8}
-      />
-      <Axis name="1" line={undefined} />
-      <Axis
-        line={undefined}
-        tickLine={undefined}
-        subTickLine={undefined}
-        name="value"
-        zIndex={2}
-        label={{
-          offset: -12,
-          formatter,
-          textStyle,
-        }}
-      />
-      <Guide>
-        <Line
-          start={[3, 0.905]}
-          end={[3, 0.85]}
-          lineStyle={{
-            stroke: color,
-            lineDash: undefined,
-            lineWidth: 2,
+    <AutoHeightComponent>
+      <Chart
+        style={{ height: `100%` }}
+        data={data}
+        scale={cols}
+        padding={[-16, 0, 16, 0]}
+        forceFit={forceFit}
+      >
+        <Coordinate
+          type="polar"
+          startAngle={-1.25 * Math.PI}
+          endAngle={0.25 * Math.PI}
+          radius={0.8}
+        />
+        <Axis name="1" line={undefined} />
+        <Axis
+          line={undefined}
+          tickLine={undefined}
+          subTickLine={undefined}
+          name="value"
+          zIndex={2}
+          label={{
+            offset: -12,
+            formatter,
+            textStyle,
           }}
         />
-        <Line
-          start={[5, 0.905]}
-          end={[5, 0.85]}
-          lineStyle={{
-            stroke: color,
-            lineDash: undefined,
-            lineWidth: 3,
-          }}
+        <Guide>
+          <Line
+            start={[3, 0.905]}
+            end={[3, 0.85]}
+            lineStyle={{
+              stroke: color,
+              lineDash: undefined,
+              lineWidth: 2,
+            }}
+          />
+          <Line
+            start={[5, 0.905]}
+            end={[5, 0.85]}
+            lineStyle={{
+              stroke: color,
+              lineDash: undefined,
+              lineWidth: 3,
+            }}
+          />
+          <Line
+            start={[7, 0.905]}
+            end={[7, 0.85]}
+            lineStyle={{
+              stroke: color,
+              lineDash: undefined,
+              lineWidth: 3,
+            }}
+          />
+          <Arc
+            start={[0, 0.965]}
+            end={[10, 0.965]}
+            style={{
+              stroke: bgColor,
+              lineWidth: 10,
+            }}
+          />
+          <Arc
+            start={[0, 0.965]}
+            end={[data[0].value, 0.965]}
+            style={{
+              stroke: color,
+              lineWidth: 10,
+            }}
+          />
+          <Html position={['50%', '95%']} html={renderHtml()} />
+        </Guide>
+        <Geom
+          line={false}
+          type="point"
+          position="value*1"
+          shape="pointer"
+          color={color}
+          active={false}
         />
-        <Line
-          start={[7, 0.905]}
-          end={[7, 0.85]}
-          lineStyle={{
-            stroke: color,
-            lineDash: undefined,
-            lineWidth: 3,
-          }}
-        />
-        <Arc
-          start={[0, 0.965]}
-          end={[10, 0.965]}
-          style={{
-            stroke: bgColor,
-            lineWidth: 10,
-          }}
-        />
-        <Arc
-          start={[0, 0.965]}
-          end={[data[0].value, 0.965]}
-          style={{
-            stroke: color,
-            lineWidth: 10,
-          }}
-        />
-        <Html position={['50%', '95%']} html={renderHtml()} />
-      </Guide>
-      <Geom
-        line={false}
-        type="point"
-        position="value*1"
-        shape="pointer"
-        color={color}
-        active={false}
-      />
-    </Chart>
+      </Chart>
+    </AutoHeightComponent>
   );
 };
 
-export default autoHeight()(Gauge);
+export default Gauge;

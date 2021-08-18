@@ -1,7 +1,8 @@
 import { Axis, Chart, Geom, Legend, Tooltip, Slider } from 'bizcharts';
 import DataSet from '@antv/data-set';
 import React from 'react';
-import autoHeight from '../autoHeight';
+
+import AutoHeightComponent from '../autoHeight';
 import styles from './index.less';
 
 const TimelineChart = (props) => {
@@ -106,36 +107,45 @@ const TimelineChart = (props) => {
   );
 
   return (
-    <div
-      className={styles.timelineChart}
-      style={{
-        height: height + 30,
-      }}
-    >
-      <div>
-        {title && <h4>{title}</h4>}
-        <Chart
-          height={height}
-          padding={padding}
-          data={dv}
-          scale={cols}
-          forceFit
-        >
-          <Axis name="x" />
-          <Tooltip />
-          <Legend name="key" position="top" />
-          <Geom type="line" position="x*value" size={borderWidth} color="key" />
-        </Chart>
+    <AutoHeightComponent>
+      <div style={{ height: `100%` }}>
         <div
+          className={styles.timelineChart}
           style={{
-            marginRight: -20,
+            height: height + 30,
           }}
         >
-          <SliderGen />
+          <div>
+            {title && <h4>{title}</h4>}
+            <Chart
+              height={height}
+              padding={padding}
+              data={dv}
+              scale={cols}
+              forceFit
+            >
+              <Axis name="x" />
+              <Tooltip />
+              <Legend name="key" position="top" />
+              <Geom
+                type="line"
+                position="x*value"
+                size={borderWidth}
+                color="key"
+              />
+            </Chart>
+            <div
+              style={{
+                marginRight: -20,
+              }}
+            >
+              <SliderGen />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </AutoHeightComponent>
   );
 };
 
-export default autoHeight()(TimelineChart);
+export default TimelineChart;
