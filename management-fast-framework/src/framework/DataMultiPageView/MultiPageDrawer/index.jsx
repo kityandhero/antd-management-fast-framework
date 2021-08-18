@@ -370,10 +370,12 @@ class MultiPageDrawer extends MultiPage {
                 paddingBottom: 0,
                 height: '100%',
                 overflow: 'hidden',
-                backgroundColor: '#fff',
               }
             : { paddingBottom: 0 }),
           ...(renderSearchForm ? {} : { paddingTop: 0 }),
+          ...{
+            backgroundColor: '#fff',
+          },
         }}
       >
         {this.renderViewContainor()}
