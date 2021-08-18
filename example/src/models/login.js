@@ -85,13 +85,8 @@ export default {
       const d = payload;
       const v = pretreatmentRemoteSingleData(d);
 
-      v.data.userName = v.data.name;
-      v.data.id = v.data.areaManagerId;
-      v.data.type = 1;
-      v.data.role = [];
-
       const { data } = v;
-      const { currentAuthority, token: tokenValue, code, role, dataFlag } = data;
+      const { currentAuthority, token: tokenValue, code, dataFlag } = data;
 
       setAuthority(currentAuthority);
       setToken(tokenValue);
@@ -100,7 +95,6 @@ export default {
       return {
         ...state,
         status: code,
-        role,
       };
     },
   },

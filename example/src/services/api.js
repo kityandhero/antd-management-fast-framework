@@ -58,7 +58,6 @@ export async function fakeSubmitForm(params) {
 }
 
 export async function fakeChartData() {
-  // if (transferToVirtualAccess()) {
   const visitData = [];
   const beginDay = new Date().getTime();
 
@@ -328,73 +327,6 @@ export async function accountLogin(params) {
     },
     virtualNeedAuthorize: false,
   });
-
-  // const url = `${getApiVersion()}/entrance/signIn`;
-
-  // if (transferToVirtualAccess(url)) {
-  //   const result = await apiVirtualAccess((resolve) => {
-  //     setTimeout(() => {
-  //       const {
-  //         password,
-  //         userName,
-  //         //  type
-  //       } = params;
-
-  //       if (password === '888888' && userName === 'admin') {
-  //         resolve(
-  //           apiVirtualSuccessData({
-  //             remoteResponse: {
-  //               data: {
-  //                 // id: 1,
-  //                 // token: '059b1900-7d7b-40aa-872f-197d04b03385',
-  //                 // userName: 'admin',
-  //                 // type,
-  //                 // role: [],
-  //                 currentAuthority: ['admin'],
-  //                 // menuAuthorityIds: '1',
-  //                 name: '张晓辉',
-  //                 city: '152',
-  //                 type: 1,
-  //                 token: '3415136134125',
-  //               },
-  //             },
-  //             needAuthorize: false,
-  //           }),
-  //         );
-  //       } else if (password === '123456' && userName === 'user') {
-  //         resolve(
-  //           apiVirtualSuccessData({
-  //             remoteResponse: {
-  //               data: {
-  //                 // id: 2,
-  //                 // token: 'a9f98dab-00c1-4929-b79f-bacd1a7846d0',
-  //                 // userName: 'user',
-  //                 // type,
-  //                 // role: [],
-  //                 currentAuthority: ['user'],
-  //                 // menuAuthorityIds: '1',
-  //                 name: '张烟',
-  //                 city: '152',
-  //                 type: 1,
-  //                 token: '4567357242135',
-  //               },
-  //             },
-  //             needAuthorize: false,
-  //           }),
-  //         );
-  //       } else {
-  //         resolve(apiVirtualFailData(1001, '用户名不存在或密码错误', false));
-  //       }
-  //     }, 800);
-  //   });
-
-  //   return result;
-  // }
-
-  // return request(url, {
-  //   method: 'POST',
-  //   data: params,
-  // });
 }
 
 export async function fakeRegister(params) {

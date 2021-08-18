@@ -1,5 +1,6 @@
 import {
   handlePageListDataAssist,
+  handleListDataAssist,
   handleCommonDataAssist,
 } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 
@@ -30,6 +31,9 @@ export default {
   reducers: {
     handlePageListData(state, action) {
       return handlePageListDataAssist(state, action);
+    },
+    handleListData(state, action) {
+      return handleListDataAssist(state, action);
     },
     handleCommonData(state, action) {
       return handleCommonDataAssist(state, action);
