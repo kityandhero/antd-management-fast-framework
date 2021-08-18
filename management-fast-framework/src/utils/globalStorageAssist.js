@@ -9,10 +9,11 @@ import {
 
 import { accessWaySpecialCollection } from './constants';
 
-const storageKeyCollection = {
+export const storageKeyCollection = {
   token: 'token',
   accessWayCollection: 'accessWayCollection',
   nearestLocalhostNotify: 'nearestLocalhostNotify',
+  authorityCollection: 'authorityCollection',
 };
 
 export function getNearestLocalhostNotifyCache() {

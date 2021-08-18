@@ -3,7 +3,10 @@ import {
   saveJsonToLocalStorage,
   isArray,
 } from './tools';
-import { getAccessWayCollectionCache } from './globalStorageAssist';
+import {
+  storageKeyCollection,
+  getAccessWayCollectionCache,
+} from './globalStorageAssist';
 // eslint-disable-next-line import/no-cycle
 import { reloadAuthorized } from './Authorized';
 
@@ -12,7 +15,7 @@ export function getAuthority(str) {
   // return getStringFromLocalStorage('antd-pro-authority') || ['admin', 'user'];
   const authorityString =
     typeof str === 'undefined'
-      ? getStringFromLocalStorage('antd-pro-authority')
+      ? getStringFromLocalStorage(storageKeyCollection.authorityCollection)
       : str;
   // authorityString could be admin, "admin", ["admin"]
   let authority;
@@ -29,14 +32,11 @@ export function getAuthority(str) {
     return [authority];
   }
 
-  if (
-    !authority &&
-    ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site'
-  ) {
-    return ['admin'];
+  if (isArray(authority)) {
+    return authority;
   }
 
-  return authority || ['admin'];
+  return [];
 }
 
 function getAllAuthorityCore() {
@@ -90,7 +90,10 @@ export function checkHasAuthority(auth) {
 
 export function setAuthority(authority) {
   const proAuthority = typeof authority === 'string' ? [authority] : authority;
-  saveJsonToLocalStorage('antd-pro-authority', proAuthority);
+  saveJsonToLocalStorage(
+    storageKeyCollection.authorityCollection,
+    proAuthority,
+  );
 
   // auto reload
   reloadAuthorized();

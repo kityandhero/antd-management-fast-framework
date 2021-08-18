@@ -6,10 +6,7 @@ import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout'
 import { getQueue, checkDevelopment } from 'antd-management-fast-framework/lib/utils/tools';
 import { proLayoutDefaultProps } from 'antd-management-fast-framework/lib/utils/constants';
 import { setAccessWayCollectionCache } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
-import {
-  isAntDesignPro,
-  getAuthorityFromRouter,
-} from 'antd-management-fast-framework/lib/utils/utils';
+import { getAuthorityFromRouter } from 'antd-management-fast-framework/lib/utils/utils';
 import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -34,9 +31,6 @@ const noMatch = (
   />
 );
 
-/**
- * use Authorized check all menu item
- */
 const menuDataRender = (menuList) =>
   menuList.map((item) => {
     const localItem = {
@@ -52,29 +46,7 @@ const defaultFooterDom = (
 );
 
 const footerRender = () => {
-  if (!isAntDesignPro()) {
-    return defaultFooterDom;
-  }
-
-  return (
-    <>
-      {defaultFooterDom}
-      <div
-        style={{
-          padding: '0px 24px 24px',
-          textAlign: 'center',
-        }}
-      >
-        <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
-          <img
-            src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
-            width="82px"
-            alt="netlify logo"
-          />
-        </a>
-      </div>
-    </>
-  );
+  return defaultFooterDom;
 };
 
 const BasicLayout = (props) => {
