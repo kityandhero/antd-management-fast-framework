@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "cross-env APP_ROOT=example umi dev",
-    "build": "father-build && tsc -d -p .",
+    "build": "rimraf ./src/**/*.d.ts ./lib ./es && tsc -d -p . && father-build",
     "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
     "lint-staged": "lint-staged",
