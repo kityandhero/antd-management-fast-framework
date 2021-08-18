@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { List } from 'antd';
-import {
-  TaobaoOutlined,
-  AlipayOutlined,
-  DingdingOutlined,
-} from '@ant-design/icons';
+import { TaobaoOutlined, AlipayOutlined, DingdingOutlined } from '@ant-design/icons';
 
 import { formatMessage } from '@/utils/tools';
 
@@ -13,28 +9,19 @@ class BindingView extends Component {
     return [
       {
         title: formatMessage({ id: 'app.settings.binding.taobao' }, {}),
-        description: formatMessage(
-          { id: 'app.settings.binding.taobao-description' },
-          {},
-        ),
+        description: formatMessage({ id: 'app.settings.binding.taobao-description' }, {}),
         actions: [<a>{formatMessage({ id: 'app.settings.binding.bind' })}</a>],
         avatar: <TaobaoOutlined className="taobao" />,
       },
       {
         title: formatMessage({ id: 'app.settings.binding.alipay' }, {}),
-        description: formatMessage(
-          { id: 'app.settings.binding.alipay-description' },
-          {},
-        ),
+        description: formatMessage({ id: 'app.settings.binding.alipay-description' }, {}),
         actions: [<a>{formatMessage({ id: 'app.settings.binding.bind' })}</a>],
         avatar: <AlipayOutlined className="alipay" />,
       },
       {
         title: formatMessage({ id: 'app.settings.binding.dingding' }, {}),
-        description: formatMessage(
-          { id: 'app.settings.binding.dingding-description' },
-          {},
-        ),
+        description: formatMessage({ id: 'app.settings.binding.dingding-description' }, {}),
         actions: [<a>{formatMessage({ id: 'app.settings.binding.bind' })}</a>],
         avatar: <DingdingOutlined className="dingding" />,
       },
