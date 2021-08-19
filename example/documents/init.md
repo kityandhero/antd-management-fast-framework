@@ -5,7 +5,7 @@
 ## Install
 
 * npm install -g husky
-* npm install -D prettier husky commitizen @commitlint/config-conventional @commitlint/cli lint-staged cz-conventional-changelog cz-conventional-changelog-zh
+* npm install -D prettier husky commitizen @commitlint/config-conventional @commitlint/cli lint-staged cz-conventional-changelog 
 * npm install -D eslint eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-simple-import-sort
 
 ---
