@@ -3,6 +3,7 @@
     "antv",
     "bmap",
     "cnpm",
+    "commitlint",
     "dockerignore",
     "esbuild",
     "fittext",
