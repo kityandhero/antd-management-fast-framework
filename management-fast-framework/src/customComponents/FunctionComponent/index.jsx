@@ -179,12 +179,13 @@ export function buildMenu({
       }}
     >
       {listMenuItem.map((o) => {
-        const { type, key, icon, text, hidden } = {
+        const { type, key, icon, text, disabled, hidden } = {
           ...{
             type: menuType.menu,
             key: '',
             icon: null,
             text: '',
+            disabled: false,
             hidden: false,
           },
           ...o,
@@ -204,7 +205,7 @@ export function buildMenu({
 
         if (itemType === menuType.menu) {
           return (
-            <Menu.Item key={key}>
+            <Menu.Item key={key} disabled={disabled}>
               <IconInfo icon={icon} text={text} />
             </Menu.Item>
           );
