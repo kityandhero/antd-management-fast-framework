@@ -25,6 +25,7 @@ import {
   LoadingOutlined,
   ImportOutlined,
   FormOutlined,
+  EditOutlined,
 } from '@ant-design/icons';
 import ReactJson from 'react-json-view';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -176,12 +177,12 @@ export function buildMenu({
         withDivider: false,
         uponDivider: true,
         key: '',
-        icon: null,
+        icon: <EditOutlined />,
         text: '',
         disabled: false,
         hidden: false,
       },
-      ...o,
+      ...(o || {}),
       ...{
         type: menuType.menu,
       },
@@ -195,7 +196,7 @@ export function buildMenu({
       });
     }
 
-    if (withDivider) {
+    if (withDivider || false) {
       const divider = {
         key: getGuid(),
         icon: null,
@@ -240,22 +241,16 @@ export function buildMenu({
           return null;
         }
 
-        const itemType = type || menuType.menu;
-
-        if (itemType === menuType.menu) {
+        if (type === menuType.menu) {
           return (
             <Menu.Item key={key} disabled={disabled}>
-              <IconInfo icon={icon} text={text} />
+              <IconInfo icon={icon || <EditOutlined />} text={text} />
             </Menu.Item>
           );
         }
 
-        if (itemType === menuType.divider) {
-          return (
-            <Menu.Div key={key}>
-              <IconInfo icon={icon} text={text} />
-            </Menu.Div>
-          );
+        if (type === menuType.divider) {
+          return <Menu.Divider />;
         }
 
         return null;
