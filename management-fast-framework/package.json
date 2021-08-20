@@ -147,7 +147,7 @@
     "src/framework",
     "src/utils"
   ],
-  "version": "1.0.116",
+  "version": "1.0.117",
   "directories": {
     "example": "example",
     "lib": "lib",
