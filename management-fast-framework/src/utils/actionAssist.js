@@ -65,6 +65,7 @@ export async function actionCore({
   target,
   record,
   successCallback,
+  successMessage = '数据已经操作成功，请进行后续操作。',
 }) {
   if ((target || null) == null) {
     throw new Error('actionCore: target is not allow null');
@@ -105,7 +106,7 @@ export async function actionCore({
     if (dataSuccess) {
       const { data: remoteData } = data;
 
-      notifySuccess();
+      notifySuccess(successMessage);
 
       if (isFunction(successCallback)) {
         successCallback({
@@ -130,6 +131,7 @@ export async function confirmActionCore({
   record,
   successCallback,
   okAction = null,
+  successMessage = '数据已经操作成功，请进行后续操作。',
 }) {
   if (!isFunction(okAction)) {
     throw new Error('actionCore: okAction must be function');
@@ -145,7 +147,7 @@ export async function confirmActionCore({
     cancelText: cancelText || '取消',
     confirmLoading: { processing },
     onOk() {
-      okAction({ target, record, successCallback });
+      okAction({ target, record, successCallback, successMessage });
     },
     onCancel() {},
   });
