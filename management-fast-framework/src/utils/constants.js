@@ -59,6 +59,11 @@ export const formNameCollection = {
   },
 };
 
+export const menuType = {
+  divider: 'divider',
+  menu: 'menu',
+};
+
 export const imageContentPreviewMode = {
   html: 1,
   listItem: 2,

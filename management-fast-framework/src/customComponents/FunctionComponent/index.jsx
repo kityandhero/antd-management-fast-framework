@@ -46,11 +46,13 @@ import {
   checkFromConfig,
   isObject,
   recordObject,
+  showErrorMessage,
 } from '../../utils/tools';
 import {
   pageHeaderRenderType,
   whetherNumber,
   datetimeFormat,
+  menuType,
 } from '../../utils/constants';
 import VerticalBox from '../VerticalBox';
 import ImageBox from '../ImageBox';
@@ -118,6 +120,75 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
         </Col>
       </Row>
     </span>
+  );
+}
+
+export function buildMenu({
+  record: r,
+  handleMenuClick = () => {},
+  list = [],
+}) {
+  if (isFunction(handleMenuClick)) {
+    throw new Error('buildMenu : handleMenuClick must be function');
+  }
+
+  if (isArray(list)) {
+    throw new Error('buildMenu : list must be array');
+  }
+
+  const listMenuItem = list || [];
+
+  return (
+    <Menu
+      onClick={(e) => {
+        const { key } = e;
+
+        handleMenuClick({ key, record: r });
+      }}
+    >
+      {listMenuItem.map((o) => {
+        const { type, key, icon, text, hidden } = {
+          ...{
+            type: menuType.menu,
+            key: '',
+            icon: null,
+            text: '',
+            hidden: false,
+          },
+          ...o,
+        };
+
+        if (stringIsNullOrWhiteSpace(key)) {
+          showErrorMessage({
+            message: 'key is not allow empty',
+          });
+        }
+
+        if (hidden) {
+          return null;
+        }
+
+        const itemType = type || menuType.menu;
+
+        if (itemType === menuType.menu) {
+          return (
+            <Menu.Item key={key}>
+              <IconInfo icon={icon} text={text} />
+            </Menu.Item>
+          );
+        }
+
+        if (itemType === menuType.divider) {
+          return (
+            <Menu.Div key={key}>
+              <IconInfo icon={icon} text={text} />
+            </Menu.Div>
+          );
+        }
+
+        return null;
+      })}
+    </Menu>
   );
 }
 
