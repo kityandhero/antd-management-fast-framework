@@ -168,7 +168,56 @@ export function buildMenu({
     throw new Error('buildMenu : menuItems must be array');
   }
 
-  const listMenuItem = menuItems || [];
+  const listMenuItem = [];
+
+  (menuItems || []).forEach((o) => {
+    const d = {
+      ...{
+        withDivider: false,
+        uponDivider: true,
+        key: '',
+        icon: null,
+        text: '',
+        disabled: false,
+        hidden: false,
+      },
+      ...o,
+      ...{
+        type: menuType.menu,
+      },
+    };
+
+    const { key, disabled, hidden, withDivider, uponDivider } = d;
+
+    if (stringIsNullOrWhiteSpace(key)) {
+      showErrorMessage({
+        message: 'key is not allow empty',
+      });
+    }
+
+    if (withDivider) {
+      const divider = {
+        key: getGuid(),
+        icon: null,
+        text: '',
+        disabled,
+        hidden,
+        type: menuType.divider,
+      };
+
+      if (uponDivider) {
+        listMenuItem.push(divider);
+      }
+
+      listMenuItem.push(d);
+
+      if (!uponDivider) {
+        listMenuItem.push(divider);
+      }
+    } else {
+      listMenuItem.push(d);
+    }
+  });
 
   return (
     <Menu
@@ -179,17 +228,7 @@ export function buildMenu({
       }}
     >
       {listMenuItem.map((o) => {
-        const { type, key, icon, text, disabled, hidden } = {
-          ...{
-            type: menuType.menu,
-            key: '',
-            icon: null,
-            text: '',
-            disabled: false,
-            hidden: false,
-          },
-          ...o,
-        };
+        const { type, key, icon, text, disabled, hidden } = o;
 
         if (stringIsNullOrWhiteSpace(key)) {
           showErrorMessage({
