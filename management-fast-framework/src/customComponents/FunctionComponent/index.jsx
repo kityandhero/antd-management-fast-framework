@@ -132,7 +132,7 @@ export function buildDropdown({
   handleMenuClick = () => {},
   menuItems = [],
 }) {
-  if (isFunction(handleButtonClick)) {
+  if (!isFunction(handleButtonClick)) {
     throw new Error('buildDropdown : handleButtonClick must be function');
   }
 
@@ -160,11 +160,11 @@ export function buildMenu({
   handleMenuClick = () => {},
   menuItems = [],
 }) {
-  if (isFunction(handleMenuClick)) {
+  if (!isFunction(handleMenuClick)) {
     throw new Error('buildMenu : handleMenuClick must be function');
   }
 
-  if (isArray(menuItems)) {
+  if (!isArray(menuItems)) {
     throw new Error('buildMenu : menuItems must be array');
   }
 
