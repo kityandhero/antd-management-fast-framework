@@ -123,20 +123,52 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
   );
 }
 
+export function buildDropdown({
+  size = 'small',
+  text = '按钮',
+  icon = null,
+  record: r,
+  handleButtonClick = () => {},
+  handleMenuClick = () => {},
+  menuItems = [],
+}) {
+  if (isFunction(handleButtonClick)) {
+    throw new Error('buildDropdown : handleButtonClick must be function');
+  }
+
+  return (
+    <>
+      <Dropdown.Button
+        size={size || 'small'}
+        onClick={() => {
+          handleButtonClick({ record: r });
+        }}
+        overlay={buildMenu({
+          record: r,
+          handleMenuClick,
+          menuItems,
+        })}
+      >
+        <IconInfo icon={icon || <FormOutlined />} text={text || '按钮'} />
+      </Dropdown.Button>
+    </>
+  );
+}
+
 export function buildMenu({
   record: r,
   handleMenuClick = () => {},
-  list = [],
+  menuItems = [],
 }) {
   if (isFunction(handleMenuClick)) {
     throw new Error('buildMenu : handleMenuClick must be function');
   }
 
-  if (isArray(list)) {
-    throw new Error('buildMenu : list must be array');
+  if (isArray(menuItems)) {
+    throw new Error('buildMenu : menuItems must be array');
   }
 
-  const listMenuItem = list || [];
+  const listMenuItem = menuItems || [];
 
   return (
     <Menu
