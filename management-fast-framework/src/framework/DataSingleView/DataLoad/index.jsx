@@ -53,48 +53,75 @@ class DataLoad extends DataCore {
     }
   };
 
-  afterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {
-    this.fillForm(metaData, metaListData, metaExtra, metaOriginalData);
-
-    this.doOtherAfterLoadSuccess(
+  afterLoadSuccess = ({
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  }) => {
+    this.fillForm({
       metaData,
       metaListData,
       metaExtra,
       metaOriginalData,
-    );
+    });
+
+    this.doOtherAfterLoadSuccess({
+      metaData,
+      metaListData,
+      metaExtra,
+      metaOriginalData,
+    });
   };
 
-  doOtherAfterLoadSuccess = (
+  doOtherAfterLoadSuccess = ({
     // eslint-disable-next-line no-unused-vars
-    metaData,
+    metaData = null,
     // eslint-disable-next-line no-unused-vars
-    metaListData,
+    metaListData = [],
     // eslint-disable-next-line no-unused-vars
-    metaExtra,
+    metaExtra = null,
     // eslint-disable-next-line no-unused-vars
-    metaOriginalData,
-  ) => {};
+    metaOriginalData = null,
+  }) => {};
 
-  // eslint-disable-next-line no-unused-vars
-  fillForm = (metaData, metaListData, metaExtra, metaOriginalData) => {
-    const initialValues = this.buildInitialValues(
+  fillForm = ({
+    metaData = null,
+    metaListData = [],
+    metaExtra = null,
+    metaOriginalData = null,
+  }) => {
+    const initialValues = this.buildInitialValues({
       metaData,
       metaListData,
       metaExtra,
       metaOriginalData,
-    );
+    });
 
     const form = this.getTargetForm();
 
     if (form != null) {
       form.setFieldsValue(initialValues);
 
-      this.afterFillForm(metaData, metaListData, metaExtra, metaOriginalData);
+      this.afterFillForm({
+        metaData,
+        metaListData,
+        metaExtra,
+        metaOriginalData,
+      });
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
-  afterFillForm = (metaData, metaListData, metaExtra, metaOriginalData) => {};
+  afterFillForm = ({
+    // eslint-disable-next-line no-unused-vars
+    metaData = null,
+    // eslint-disable-next-line no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line no-unused-vars
+    metaOriginalData = null,
+  }) => {};
 }
 
 export default DataLoad;

@@ -125,16 +125,16 @@ class DataCore extends BaseView {
     );
   };
 
-  buildInitialValues = (
+  buildInitialValues = ({
     // eslint-disable-next-line no-unused-vars
-    metaData,
+    metaData = null,
     // eslint-disable-next-line no-unused-vars
-    metaListData,
+    metaListData = [],
     // eslint-disable-next-line no-unused-vars
-    metaExtra,
+    metaExtra = null,
     // eslint-disable-next-line no-unused-vars
-    metaOriginalData,
-  ) => {
+    metaOriginalData = null,
+  }) => {
     if (this.loadDataAfterMount) {
       if (this.needSetFormValueAfterLoad) {
         showRuntimeErrorMessage('buildInitialValues 方法需要重新实现。');
@@ -180,12 +180,12 @@ class DataCore extends BaseView {
   renderForm = () => {
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
-    const initialValues = this.buildInitialValues(
+    const initialValues = this.buildInitialValues({
       metaData,
       metaListData,
       metaExtra,
       metaOriginalData,
-    );
+    });
 
     const otherFormProps = this.buildOtherFormProps();
 

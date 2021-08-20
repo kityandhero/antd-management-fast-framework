@@ -57,36 +57,50 @@ class BaseWindow extends Base {
 
   supplementSubmitRequestParams = (o) => o;
 
-  afterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {
-    this.fillForm(metaData);
-
-    this.doOtherAfterLoadSuccess(
+  afterLoadSuccess = ({
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  }) => {
+    this.fillForm({
       metaData,
       metaListData,
       metaExtra,
       metaOriginalData,
-    );
+    });
+
+    this.doOtherAfterLoadSuccess({
+      metaData,
+      metaListData,
+      metaExtra,
+      metaOriginalData,
+    });
   };
 
-  doOtherAfterLoadSuccess = (
+  doOtherAfterLoadSuccess = ({
     // eslint-disable-next-line no-unused-vars
-    metaData,
+    metaData = null,
     // eslint-disable-next-line no-unused-vars
-    metaListData,
+    metaListData = [],
     // eslint-disable-next-line no-unused-vars
-    metaExtra,
+    metaExtra = null,
     // eslint-disable-next-line no-unused-vars
-    metaOriginalData,
-  ) => {};
+    metaOriginalData = null,
+  }) => {};
 
-  // eslint-disable-next-line no-unused-vars
-  fillForm = (metaData, metaListData, metaExtra, metaOriginalData) => {
-    const initialValues = this.buildInitialValues(
+  fillForm = ({
+    metaData = null,
+    metaListData = [],
+    metaExtra = null,
+    metaOriginalData = null,
+  }) => {
+    const initialValues = this.buildInitialValues({
       metaData,
       metaListData,
       metaExtra,
       metaOriginalData,
-    );
+    });
 
     if (initialValues != null) {
       this.setFormFieldsValue(initialValues);
@@ -224,25 +238,37 @@ class BaseWindow extends Base {
     }
   };
 
-  afterSubmitSuccess = (
-    singleData,
-    listData,
-    extraData,
-    responseOriginalData,
-    submitData,
-  ) => {
-    this.doAfterSubmitSuccess(
+  afterSubmitSuccess = ({
+    // eslint-disable-next-line no-unused-vars
+    singleData = null,
+    // eslint-disable-next-line no-unused-vars
+    listData = [],
+    // eslint-disable-next-line no-unused-vars
+    extraData = null,
+    // eslint-disable-next-line no-unused-vars
+    responseOriginalData = null,
+    // eslint-disable-next-line no-unused-vars
+    submitData = null,
+  }) => {
+    this.doAfterSubmitSuccess({
       singleData,
       listData,
       extraData,
       responseOriginalData,
       submitData,
-    );
+    });
   };
 
-  // eslint-disable-next-line no-unused-vars
-  buildInitialValues = (metaData, metaListData, metaExtra, metaOriginalData) =>
-    null;
+  buildInitialValues = ({
+    // eslint-disable-next-line no-unused-vars
+    metaData = null,
+    // eslint-disable-next-line no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line no-unused-vars
+    metaOriginalData = null,
+  }) => null;
 
   handleCancel = () => {
     const { afterCancel } = this.props;

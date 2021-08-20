@@ -1,24 +1,27 @@
 import { Modal } from 'antd';
 
-import { isFunction, notifySuccess, showRuntimeError } from './tools';
+import {
+  isFunction,
+  notifySuccess,
+  showErrorMessage,
+  showRuntimeError,
+} from './tools';
 
 const { confirm } = Modal;
 
 export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   if ((target || null) == null) {
-    throw new Error('actionCore: target is not allow null');
+    throw new Error('actionCore: target not allow null');
   }
 
   if ((target.state || null) == null) {
-    throw new Error('actionCore: target.state is not allow null');
+    throw new Error('actionCore: target.state not allow null');
   }
 
   const { metaOriginalData } = target.state;
 
   if ((metaOriginalData || null) == null) {
-    throw new Error(
-      'actionCore: target.state.metaOriginalData is not allow null',
-    );
+    throw new Error('actionCore: target.state.metaOriginalData not allow null');
   }
 
   let indexData = -1;
@@ -67,18 +70,22 @@ export async function actionCore({
   successCallback,
   successMessage = '数据已经操作成功，请进行后续操作。',
 }) {
+  if ((record || null) == null) {
+    showErrorMessage('actionCore : record not allow null');
+  }
+
   if ((target || null) == null) {
-    throw new Error('actionCore: target is not allow null');
+    throw new Error('actionCore: target not allow null');
   }
 
   if ((target.props || null) == null) {
-    throw new Error('actionCore: target.props is not allow null');
+    throw new Error('actionCore: target.props not allow null');
   }
 
   const { dispatch } = target.props;
 
   if ((dispatch || null) == null) {
-    throw new Error('actionCore: dispatch is not allow null');
+    throw new Error('actionCore: dispatch not allow null');
   }
 
   if (!isFunction(target.setState)) {
@@ -98,7 +105,7 @@ export async function actionCore({
     const data = getApiData(target.props);
 
     if ((data || null) == null) {
-      throw new Error('actionCore: getApiData result is not allow null');
+      throw new Error('actionCore: getApiData result not allow null');
     }
 
     const { dataSuccess } = data;

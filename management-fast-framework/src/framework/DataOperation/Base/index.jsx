@@ -25,82 +25,92 @@ class Base extends AuthorizationWrapper {
   // eslint-disable-next-line no-unused-vars
   checkSubmitRequestParams = (o) => true;
 
-  doAfterSubmitSuccess = (
-    singleData,
-    listData,
-    extraData,
-    responseOriginalData,
-    submitData,
-  ) => {
+  doAfterSubmitSuccess = ({
+    // eslint-disable-next-line no-unused-vars
+    singleData = null,
+    // eslint-disable-next-line no-unused-vars
+    listData = [],
+    // eslint-disable-next-line no-unused-vars
+    extraData = null,
+    // eslint-disable-next-line no-unused-vars
+    responseOriginalData = null,
+    // eslint-disable-next-line no-unused-vars
+    submitData = null,
+  }) => {
     const { afterOK } = this.props;
 
-    this.doOtherAfterSubmitSuccess(
+    this.doOtherAfterSubmitSuccess({
       singleData,
       listData,
       extraData,
       responseOriginalData,
       submitData,
-    );
+    });
 
-    this.sendSubmitSuccessMessage(
+    this.sendSubmitSuccessMessage({
       singleData,
       listData,
       extraData,
       responseOriginalData,
       submitData,
-    );
+    });
 
-    this.sendSubmitSuccessNotification(
+    this.sendSubmitSuccessNotification({
       singleData,
       listData,
       extraData,
       responseOriginalData,
       submitData,
-    );
+    });
 
     if (isFunction(afterOK)) {
-      afterOK(
+      afterOK({
         singleData,
         listData,
         extraData,
         responseOriginalData,
         submitData,
-      );
+      });
     }
   };
 
-  doOtherAfterSubmitSuccess = (
+  doOtherAfterSubmitSuccess = ({
     // eslint-disable-next-line no-unused-vars
-    singleData,
+    singleData = null,
     // eslint-disable-next-line no-unused-vars
-    listData,
+    listData = [],
     // eslint-disable-next-line no-unused-vars
-    extraData,
+    extraData = null,
     // eslint-disable-next-line no-unused-vars
-    responseOriginalData,
+    responseOriginalData = null,
     // eslint-disable-next-line no-unused-vars
-    submitData,
-  ) => {};
+    submitData = null,
+  }) => {};
 
-  sendSubmitSuccessMessage = (
-    singleData,
-    listData,
-    extraData,
-    responseOriginalData,
-    submitData,
-  ) => {
+  sendSubmitSuccessMessage = ({
+    // eslint-disable-next-line no-unused-vars
+    singleData = null,
+    // eslint-disable-next-line no-unused-vars
+    listData = [],
+    // eslint-disable-next-line no-unused-vars
+    extraData = null,
+    // eslint-disable-next-line no-unused-vars
+    responseOriginalData = null,
+    // eslint-disable-next-line no-unused-vars
+    submitData = null,
+  }) => {
     const { type, text } = {
       ...{
         type: 'success',
         text: '',
       },
-      ...this.buildMessage(
+      ...this.buildMessage({
         singleData,
         listData,
         extraData,
         responseOriginalData,
         submitData,
-      ),
+      }),
     };
 
     if (!stringIsNullOrWhiteSpace(text)) {
@@ -118,27 +128,27 @@ class Base extends AuthorizationWrapper {
     }
   };
 
-  buildMessage = (
+  buildMessage = ({
     // eslint-disable-next-line no-unused-vars
-    singleData,
+    singleData = null,
     // eslint-disable-next-line no-unused-vars
-    listData,
+    listData = [],
     // eslint-disable-next-line no-unused-vars
-    extraData,
+    extraData = null,
     // eslint-disable-next-line no-unused-vars
-    responseOriginalData,
+    responseOriginalData = null,
     // eslint-disable-next-line no-unused-vars
-    submitData,
-  ) => {
+    submitData = null,
+  }) => {
     return {
       type: this.buildMessageType(),
-      text: this.buildMessageText(
+      text: this.buildMessageText({
         singleData,
         listData,
         extraData,
         responseOriginalData,
         submitData,
-      ),
+      }),
     };
   };
 
@@ -146,33 +156,33 @@ class Base extends AuthorizationWrapper {
     return 'success';
   };
 
-  buildMessageText = (
+  buildMessageText = ({
     // eslint-disable-next-line no-unused-vars
-    singleData,
+    singleData = null,
     // eslint-disable-next-line no-unused-vars
-    listData,
+    listData = [],
     // eslint-disable-next-line no-unused-vars
-    extraData,
+    extraData = null,
     // eslint-disable-next-line no-unused-vars
-    responseOriginalData,
+    responseOriginalData = null,
     // eslint-disable-next-line no-unused-vars
-    submitData,
-  ) => {
+    submitData = null,
+  }) => {
     return '';
   };
 
-  sendSubmitSuccessNotification = (
+  sendSubmitSuccessNotification = ({
     // eslint-disable-next-line no-unused-vars
-    singleData,
+    singleData = null,
     // eslint-disable-next-line no-unused-vars
-    listData,
+    listData = [],
     // eslint-disable-next-line no-unused-vars
-    extraData,
+    extraData = null,
     // eslint-disable-next-line no-unused-vars
-    responseOriginalData,
+    responseOriginalData = null,
     // eslint-disable-next-line no-unused-vars
-    submitData,
-  ) => {
+    submitData = null,
+  }) => {
     const {
       type,
       placement,
@@ -189,13 +199,13 @@ class Base extends AuthorizationWrapper {
         type: this.buildNotificationType(),
         placement: this.buildNotificationPlacement(),
         message: this.buildNotificationMessage(),
-        description: this.buildNotificationDescription(
+        description: this.buildNotificationDescription({
           singleData,
           listData,
           extraData,
           responseOriginalData,
           submitData,
-        ),
+        }),
       },
     };
 
@@ -250,18 +260,18 @@ class Base extends AuthorizationWrapper {
     return `操作执行通知`;
   };
 
-  buildNotificationDescription = (
+  buildNotificationDescription = ({
     // eslint-disable-next-line no-unused-vars
-    singleData,
+    singleData = null,
     // eslint-disable-next-line no-unused-vars
-    listData,
+    listData = [],
     // eslint-disable-next-line no-unused-vars
-    extraData,
+    extraData = null,
     // eslint-disable-next-line no-unused-vars
-    responseOriginalData,
+    responseOriginalData = null,
     // eslint-disable-next-line no-unused-vars
-    submitData,
-  ) => {
+    submitData = null,
+  }) => {
     return `已成功更新信息，请继续其他操作。`;
   };
 }

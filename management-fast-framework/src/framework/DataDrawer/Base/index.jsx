@@ -57,12 +57,12 @@ class Base extends BaseWindow {
   renderForm = () => {
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
-    const initialValues = this.buildInitialValues(
+    const initialValues = this.buildInitialValues({
       metaData,
       metaListData,
       metaExtra,
       metaOriginalData,
-    );
+    });
 
     const otherFormProps = this.buildOtherFormProps();
 

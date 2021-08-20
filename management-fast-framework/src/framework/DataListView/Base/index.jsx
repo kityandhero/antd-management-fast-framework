@@ -118,25 +118,30 @@ class ListBase extends AuthorizationWrapper {
     return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
   }
 
-  afterLoadSuccess = (metaData, metaListData, metaExtra, metaOriginalData) => {
-    this.doOtherAfterLoadSuccess(
+  afterLoadSuccess = ({
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  }) => {
+    this.doOtherAfterLoadSuccess({
       metaData,
       metaListData,
       metaExtra,
       metaOriginalData,
-    );
+    });
   };
 
-  doOtherAfterLoadSuccess = (
+  doOtherAfterLoadSuccess = ({
     // eslint-disable-next-line no-unused-vars
-    metaData,
+    metaData = null,
     // eslint-disable-next-line no-unused-vars
-    metaListData,
+    metaListData = [],
     // eslint-disable-next-line no-unused-vars
-    metaExtra,
+    metaExtra = null,
     // eslint-disable-next-line no-unused-vars
-    metaOriginalData,
-  ) => {};
+    metaOriginalData = null,
+  }) => {};
 
   onDateRangeChange = (dates, dateStrings) => {
     this.setState({

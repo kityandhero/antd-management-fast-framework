@@ -323,12 +323,12 @@ class Common extends Core {
                 metaOriginalData,
               });
 
-              this.afterLoadSuccess(
-                metaData || null,
-                metaListData || [],
-                metaExtra || null,
-                metaOriginalData,
-              );
+              this.afterLoadSuccess({
+                metaData: metaData || null,
+                metaListData: metaListData || [],
+                metaExtra: metaExtra || null,
+                metaOriginalData: metaOriginalData || null,
+              });
             }
 
             const { reloading: reloadingComplete } = this.state;
@@ -427,16 +427,16 @@ class Common extends Core {
 
   afterFirstLoadSuccess = () => {};
 
-  afterLoadSuccess = (
+  afterLoadSuccess = ({
     // eslint-disable-next-line no-unused-vars
-    metaData,
+    metaData = null,
     // eslint-disable-next-line no-unused-vars
-    metaListData,
+    metaListData = [],
     // eslint-disable-next-line no-unused-vars
-    metaExtra,
+    metaExtra = null,
     // eslint-disable-next-line no-unused-vars
-    metaOriginalData,
-  ) => {};
+    metaOriginalData = null,
+  }) => {};
 
   afterReloadSuccess = () => {};
 

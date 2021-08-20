@@ -98,16 +98,16 @@ class DataTabContainer extends DataSingleView {
       .replace(/-/g, '/');
   };
 
-  buildInitialValues = (
+  buildInitialValues = ({
     // eslint-disable-next-line no-unused-vars
-    metaData,
+    metaData = null,
     // eslint-disable-next-line no-unused-vars
-    metaListData,
+    metaListData = [],
     // eslint-disable-next-line no-unused-vars
-    metaExtra,
+    metaExtra = null,
     // eslint-disable-next-line no-unused-vars
-    metaOriginalData,
-  ) => {
+    metaOriginalData = null,
+  }) => {
     return null;
   };
 

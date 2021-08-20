@@ -25,7 +25,7 @@ class BaseSaveDrawer extends Base {
   }
 
   adjustWhenDidMount = () => {
-    this.fillForm();
+    this.fillForm({});
   };
 
   renderButton = () => {

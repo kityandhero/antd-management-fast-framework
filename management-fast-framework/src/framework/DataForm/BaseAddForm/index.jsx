@@ -204,18 +204,18 @@ class BaseAddForm extends DataCore {
     );
   };
 
-  buildNotificationDescription = (
+  buildNotificationDescription = ({
     // eslint-disable-next-line no-unused-vars
-    singleData,
+    singleData = null,
     // eslint-disable-next-line no-unused-vars
-    listData,
+    listData = [],
     // eslint-disable-next-line no-unused-vars
-    extraData,
+    extraData = null,
     // eslint-disable-next-line no-unused-vars
-    responseOriginalData,
+    responseOriginalData = null,
     // eslint-disable-next-line no-unused-vars
-    submitData,
-  ) => {
+    submitData = null,
+  }) => {
     return `数据已经保存成功，请进行下一步操作。`;
   };
 }
