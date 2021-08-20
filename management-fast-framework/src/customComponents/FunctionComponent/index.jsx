@@ -250,7 +250,7 @@ export function buildMenu({
         }
 
         if (type === menuType.divider) {
-          return <Menu.Divider />;
+          return <Menu.Divider key={key} />;
         }
 
         return null;
