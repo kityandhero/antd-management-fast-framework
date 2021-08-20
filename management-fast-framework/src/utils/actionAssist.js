@@ -1,8 +1,62 @@
 import { Modal } from 'antd';
 
-import { isFunction, notifySuccess } from './tools';
+import { isFunction, notifySuccess, showRuntimeError } from './tools';
 
 const { confirm } = Modal;
+
+export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
+  if ((target || null) == null) {
+    throw new Error('actionCore: target is not allow null');
+  }
+
+  if ((target.state || null) == null) {
+    throw new Error('actionCore: target.state is not allow null');
+  }
+
+  const { metaOriginalData } = target.state;
+
+  if ((metaOriginalData || null) == null) {
+    throw new Error(
+      'actionCore: target.state.metaOriginalData is not allow null',
+    );
+  }
+
+  let indexData = -1;
+
+  if (!isFunction(compareDataIdHandler)) {
+    showRuntimeError(`compareDataIdHandler mast be function`);
+
+    return;
+  }
+
+  if (!isFunction(handler)) {
+    showRuntimeError(`handler mast be function`);
+
+    return;
+  }
+
+  if ((metaOriginalData.list || null) == null) {
+    throw new Error(
+      'actionCore: target.state.metaOriginalData.list must be array',
+    );
+  }
+
+  metaOriginalData.list.forEach((o, index) => {
+    const compareDataId = compareDataIdHandler(o);
+
+    if (compareDataId === dataId) {
+      indexData = index;
+    }
+  });
+
+  if (indexData >= 0) {
+    metaOriginalData.list[indexData] = handler(
+      metaOriginalData.list[indexData],
+    );
+
+    target.setState({ metaOriginalData });
+  }
+}
 
 export async function actionCore({
   api,
