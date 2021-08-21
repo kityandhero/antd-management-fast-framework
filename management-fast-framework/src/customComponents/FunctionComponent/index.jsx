@@ -48,6 +48,7 @@ import {
   isObject,
   recordObject,
   showErrorMessage,
+  isBoolean,
 } from '../../utils/tools';
 import {
   pageHeaderRenderType,
@@ -169,26 +170,25 @@ export function buildMenu({
     throw new Error('buildMenu : menuItems must be array');
   }
 
-  const listMenuItem = [];
+  let listMenuItem = [];
 
   (menuItems || []).forEach((o) => {
     const d = {
       ...{
         withDivider: false,
         uponDivider: true,
-        key: '',
+        key: getGuid(),
         icon: <EditOutlined />,
         text: '',
         disabled: false,
         hidden: false,
+        type: menuType.menu,
+        confirm: false,
       },
       ...(o || {}),
-      ...{
-        type: menuType.menu,
-      },
     };
 
-    const { key, disabled, hidden, withDivider, uponDivider } = d;
+    const { key, disabled, hidden, withDivider, type, uponDivider } = d;
 
     if (stringIsNullOrWhiteSpace(key)) {
       showErrorMessage({
@@ -196,7 +196,7 @@ export function buildMenu({
       });
     }
 
-    if (withDivider || false) {
+    if (withDivider && type === menuType.menu) {
       const divider = {
         key: getGuid(),
         icon: null,
@@ -220,6 +220,43 @@ export function buildMenu({
     }
   });
 
+  listMenuItem = listMenuItem.map((o) => {
+    const d = { ...(o || {}) };
+
+    const { confirm } = d;
+
+    if (confirm) {
+      if (isBoolean(confirm)) {
+        throw new Error(
+          'buildMenu : confirm property in menu Items not allow bool when check confirm is true.',
+        );
+      }
+
+      const { placement, title, handleConfirm, okText, cancelText } = {
+        ...{
+          placement: 'topRight',
+          title: '将要进行操作，确定吗？',
+          handleConfirm: () => {},
+          okText: '确定',
+          cancelText: '取消',
+        },
+        ...(isObject(confirm) ? confirm : {}),
+      };
+
+      d.confirm = {
+        placement,
+        title,
+        handleConfirm,
+        okText,
+        cancelText,
+      };
+    } else {
+      d.confirm = false;
+    }
+
+    return d;
+  });
+
   return (
     <Menu
       onClick={(e) => {
@@ -229,7 +266,7 @@ export function buildMenu({
       }}
     >
       {listMenuItem.map((o) => {
-        const { type, key, icon, text, disabled, hidden } = o;
+        const { type, key, icon, text, disabled, hidden, confirm } = o;
 
         if (stringIsNullOrWhiteSpace(key)) {
           showErrorMessage({
@@ -242,6 +279,27 @@ export function buildMenu({
         }
 
         if (type === menuType.menu) {
+          if (confirm) {
+            const { placement, title, handleConfirm, okText, cancelText } =
+              confirm;
+
+            return (
+              <Popconfirm
+                key={key}
+                placement={placement}
+                title={title}
+                onConfirm={() => handleConfirm(r)}
+                okText={okText}
+                cancelText={cancelText}
+                disabled={disabled}
+              >
+                <Button size="small" disabled={disabled}>
+                  <IconInfo icon={icon || <EditOutlined />} text={text} />
+                </Button>
+              </Popconfirm>
+            );
+          }
+
           return (
             <Menu.Item key={key} disabled={disabled}>
               <IconInfo icon={icon || <EditOutlined />} text={text} />
