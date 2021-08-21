@@ -245,7 +245,8 @@ class ListBase extends AuthorizationWrapper {
     const {
       align,
       showRichFacade,
-      facadeMode,
+      facadeMode: facadeModeSource,
+      facadeModeBuilder,
       facadeConfig: facadeConfigSource,
       facadeConfigBuilder,
       sorter,
@@ -254,6 +255,7 @@ class ListBase extends AuthorizationWrapper {
         align: 'center',
         showRichFacade: false,
         facadeMode: null,
+        facadeModeBuilder: () => {},
         facadeConfig: {},
         facadeConfigBuilder: () => {},
         sorter: false,
@@ -282,6 +284,15 @@ class ListBase extends AuthorizationWrapper {
 
       d.render = (value, record) => {
         let val = value;
+
+        let facadeMode = facadeModeSource || {};
+
+        if (isFunction(facadeModeBuilder)) {
+          facadeMode = {
+            ...facadeMode,
+            ...(facadeModeBuilder(value, record) || {}),
+          };
+        }
 
         let facadeConfig = facadeConfigSource || {};
 
