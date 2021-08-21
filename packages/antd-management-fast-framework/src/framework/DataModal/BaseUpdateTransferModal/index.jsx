@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'umi';
-import { Form, Transfer } from 'antd';
+import { Transfer } from 'antd';
 
-import { isFunction } from '../../../utils/tools';
 import { formContentConfig } from '../../../utils/constants';
 import BaseUpdateModal from '../BaseUpdateModal';
 
@@ -25,6 +23,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   buildTargetKeys = (preProps, preState, snapshot) => {
     throw new Error('buildTargetKeys need overload');
   };
