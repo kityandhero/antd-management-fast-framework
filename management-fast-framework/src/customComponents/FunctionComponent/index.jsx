@@ -49,6 +49,7 @@ import {
   recordObject,
   showErrorMessage,
   isBoolean,
+  inCollection,
 } from '../../utils/tools';
 import {
   pageHeaderRenderType,
@@ -196,27 +197,29 @@ export function buildMenu({
       });
     }
 
-    if (withDivider && type === menuType.menu) {
-      const divider = {
-        key: getGuid(),
-        icon: null,
-        text: '',
-        disabled,
-        hidden,
-        type: menuType.divider,
-      };
+    if (inCollection([menuType.divider, menuType.menu], type)) {
+      if (withDivider && type === menuType.menu) {
+        const divider = {
+          key: getGuid(),
+          icon: null,
+          text: '',
+          disabled,
+          hidden,
+          type: menuType.divider,
+        };
 
-      if (uponDivider) {
-        listMenuItem.push(divider);
+        if (uponDivider) {
+          listMenuItem.push(divider);
+        }
+
+        listMenuItem.push(d);
+
+        if (!uponDivider) {
+          listMenuItem.push(divider);
+        }
+      } else {
+        listMenuItem.push(d);
       }
-
-      listMenuItem.push(d);
-
-      if (!uponDivider) {
-        listMenuItem.push(divider);
-      }
-    } else {
-      listMenuItem.push(d);
     }
   });
 
