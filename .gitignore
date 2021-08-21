@@ -2,32 +2,40 @@
 
 # dependencies
 **/node_modules
-# roadhog-api-doc ignore
-/src/utils/request-temp.js
-_roadhog-api-doc
 
 # history
-/.history
+**/.history
 
 # production
-./dist
+**/dist
 
-# misc
-.DS_Store
-npm-debug.log*
-yarn-error.log
+# idea
+**/.idea
 
-/coverage
-.idea
+# temp
+**/.temp
+
+# mock
+functions/mock
+
+# cache
+.cache/
+
+# docz
+.docz/
+
+# gitmodules
+.gitmodules
+
+# coverage
+**/coverage
+
+# lock
 yarn.lock
 package-lock.json
-*bak
 
-# visual studio code
+# log
 *.log
-
-functions/mock
-.temp/**
 
 # umi
 .umi
@@ -35,10 +43,12 @@ functions/mock
 
 # screenshot
 screenshot
+
+# firebase
 .firebase
+
+# eslintcache
 .eslintcache
 
-build
-/lib
-/es
-node_modules
+# build
+**/build

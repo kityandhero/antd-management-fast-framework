@@ -2,8 +2,10 @@
   "cSpell.words": [
     "antv",
     "bmap",
+    "browserslist",
     "cnpm",
     "commitlint",
+    "conventionalcommits",
     "dockerignore",
     "esbuild",
     "fittext",
@@ -17,10 +19,17 @@
     "noninteractive",
     "npminstall",
     "pify",
+    "precommit",
     "prettierrc",
     "regexes",
     "scroller",
     "stylelintrc",
     "umijs"
-  ]
+  ],
+  "eslint.workingDirectories": [
+    "packages/antd-management-fast-framework",
+    "packages/simple"
+  ],
+  "eslint.packageManager": "yarn",
+  "git.ignoreLimitWarning": true
 }

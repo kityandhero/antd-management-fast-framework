@@ -1,15 +1,14 @@
 {
   "name": "antd-management-fast-framework",
-  "main": "lib/index.js",
+  "version": "1.0.123",
   "description": "antd-management-fast-framework",
-  "authors": {
-    "name": "kityandhero",
-    "email": "kityandhero@126.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kityandhero/antd-management-fast-framework.git"
-  },
+  "keywords": [
+    "antd-management-fast-framework"
+  ],
+  "author": "kityandhero <kityandhero@126.com>",
+  "homepage": "https://github.com/kityandhero/antd-management-fast-framework.git",
+  "license": "MIT",
+  "main": "lib/index.js",
   "scripts": {
     "v:p": "npm version patch && npm publish",
     "start": "cross-env APP_ROOT=example umi dev",
@@ -25,18 +24,6 @@
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
     "test:update": "umi-test --updateSnapshot"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*.less": "stylelint --syntax less",
-    "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
-    "**/*.{js,jsx,tsx,ts,less,md,json}": [
-      "prettier --write"
-    ]
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.3",
@@ -147,16 +134,20 @@
     "src/framework",
     "src/utils"
   ],
-  "version": "1.0.123",
   "directories": {
     "example": "example",
     "lib": "lib",
     "es": "lib",
     "test": "test"
   },
-  "keywords": [
-    "antd-management-fast-framework"
-  ],
-  "author": "kityandhero",
-  "license": "MIT"
+  "publishConfig": {
+    "registry": "http://localhost:4873/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kityandhero/antd-management-fast-framework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kityandhero/antd-management-fast-framework/issues"
+  }
 }

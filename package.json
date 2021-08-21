@@ -1,0 +1,38 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "lerna:b": "lerna bootstrap",
+    "lerna:create": "lerna create",
+    "lerna:build": "lerna run --stream --sort build",
+    "lerna:publish": "lerna publish",
+    "changelog": "lerna version --conventional-commits --no-push --no-git-tag-version",
+    "lerna": "lerna",
+    "clean": "lerna clean && rm -rf ./node_modules",
+    "cz": "cz",
+    "commitlint": "commitlint"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "commitizen": "^4.2.2",
+    "conventional-changelog-conventionalcommits": "^4.5.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-lerna-changelog": "^2.0.3",
+    "husky": "^4.3.6",
+    "lerna": "^4.0.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-lerna-changelog"
+    }
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "kityandhero <kityandhero@126.com>",
+  "license": "MIT"
+}
