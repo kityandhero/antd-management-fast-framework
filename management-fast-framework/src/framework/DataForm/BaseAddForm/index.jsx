@@ -125,13 +125,13 @@ class BaseAddForm extends DataCore {
                   extra: metaExtra,
                 } = remoteData;
 
-                this.afterSubmitSuccess(
-                  metaData || null,
-                  metaListData || [],
-                  metaExtra || null,
-                  remoteData,
-                  submitData,
-                );
+                this.afterSubmitSuccess({
+                  singleData: metaData || null,
+                  listData: metaListData || [],
+                  extraData: metaExtra || null,
+                  responseOriginalData: remoteData || null,
+                  submitData: submitData || null,
+                });
               }
 
               // eslint-disable-next-line react/no-unused-state
