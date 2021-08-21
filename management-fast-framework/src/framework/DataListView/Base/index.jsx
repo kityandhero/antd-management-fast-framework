@@ -285,13 +285,12 @@ class ListBase extends AuthorizationWrapper {
       d.render = (value, record) => {
         let val = value;
 
-        let facadeMode = facadeModeSource || {};
+        let facadeMode = facadeModeSource || '';
 
         if (isFunction(facadeModeBuilder)) {
-          facadeMode = {
-            ...facadeMode,
-            ...(facadeModeBuilder(value, record) || {}),
-          };
+          facadeMode = facadeModeBuilder(value, record) || '';
+
+          facadeMode = stringIsNullOrWhiteSpace(facadeMode) ? '' : facadeMode;
         }
 
         let facadeConfig = facadeConfigSource || {};
