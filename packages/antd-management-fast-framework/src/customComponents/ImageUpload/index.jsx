@@ -305,9 +305,9 @@ ImageUpload.defaultProps = {
   },
   pretreatmentRemoteResponse: () => {},
   afterUploadSuccess: () => {},
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onItemChange: ({ file, fileList }) => {},
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onItemRemove: (file) => {},
 };
 

@@ -142,7 +142,7 @@ class MultiPage extends Base {
     return this.adjustLoadRequestParams(d);
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterGetFirstRequestResult = (submitData, responseData) => {
     const form = this.getSearchForm();
     const { urlParams } = this.state;
@@ -177,7 +177,7 @@ class MultiPage extends Base {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   adjustRenderLoadRequestParamsWithKey = (d) => {};
 
   afterGetRequestResult = () => {

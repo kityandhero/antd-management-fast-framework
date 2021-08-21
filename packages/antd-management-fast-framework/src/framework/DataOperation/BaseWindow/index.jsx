@@ -21,14 +21,14 @@ class BaseWindow extends Base {
 
   goToUpdateWhenProcessed = false;
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     const { visible, externalData } = nextProps;
 
     return { visible, externalData };
   }
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
     const { visible: visiblePre } = preState;
     const { visible } = this.state;
@@ -44,7 +44,7 @@ class BaseWindow extends Base {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
     this.executeAfterDoOtherWhenChangeVisible();
   };
@@ -79,13 +79,13 @@ class BaseWindow extends Base {
   };
 
   doOtherAfterLoadSuccess = ({
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaOriginalData = null,
   }) => {};
 
@@ -117,7 +117,7 @@ class BaseWindow extends Base {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterSetFieldsValue = (v) => {};
 
   afterCheckSubmitRequestParams = (o) => o;
@@ -239,15 +239,15 @@ class BaseWindow extends Base {
   };
 
   afterSubmitSuccess = ({
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     singleData = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     listData = [],
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     extraData = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     responseOriginalData = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     submitData = null,
   }) => {
     this.doAfterSubmitSuccess({
@@ -260,13 +260,13 @@ class BaseWindow extends Base {
   };
 
   buildInitialValues = ({
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaOriginalData = null,
   }) => null;
 

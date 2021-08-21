@@ -21,7 +21,7 @@ class Countdown extends CustomBase {
     };
   }
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
     const { endTime } = nextProps;
 
@@ -39,7 +39,7 @@ class Countdown extends CustomBase {
     }
   }
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
     const { endTime: et } = this.state;
 

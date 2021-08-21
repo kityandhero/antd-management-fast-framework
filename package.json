@@ -11,7 +11,8 @@
     "lerna": "lerna",
     "clean": "lerna clean && rm -rf ./node_modules",
     "cz": "cz",
-    "commitlint": "commitlint"
+    "commitlint": "commitlint --edit",
+    "lint-staged": "lint-staged"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -21,7 +22,8 @@
     "cz-conventional-changelog": "^3.3.0",
     "cz-lerna-changelog": "^2.0.3",
     "husky": "^4.3.6",
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "lint-staged": "^11.1.2"
   },
   "workspaces": [
     "packages/*"

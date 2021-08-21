@@ -25,7 +25,7 @@ class DataLoad extends DataCore {
     return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
   }
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
     const { urlParams } = this.state;
 
@@ -75,13 +75,13 @@ class DataLoad extends DataCore {
   };
 
   doOtherAfterLoadSuccess = ({
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaOriginalData = null,
   }) => {};
 
@@ -113,13 +113,13 @@ class DataLoad extends DataCore {
   };
 
   afterFillForm = ({
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaOriginalData = null,
   }) => {};
 }
