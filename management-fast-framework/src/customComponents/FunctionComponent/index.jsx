@@ -126,10 +126,42 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
   );
 }
 
+export function buildPopconfirm({
+  placement = 'topRight',
+  size = 'small',
+  text = '按钮',
+  icon = <FormOutlined />,
+  record: r,
+  title = '将要进行操作，确定吗？',
+  okText = '确定',
+  cancelText = '取消',
+  handleConfirm = () => {},
+  disabled = false,
+}) {
+  if (!isFunction(handleConfirm)) {
+    throw new Error('buildPopconfirm : handleConfirm must be function');
+  }
+
+  return (
+    <Popconfirm
+      placement={placement || 'topRight'}
+      title={title || '将要进行操作，确定吗？'}
+      onConfirm={() => handleConfirm(r)}
+      okText={okText || '确定'}
+      cancelText={cancelText || '取消'}
+      disabled={disabled || false}
+    >
+      <Button size={size} disabled={disabled || false}>
+        <IconInfo icon={icon || <FormOutlined />} text={text} />
+      </Button>
+    </Popconfirm>
+  );
+}
+
 export function buildDropdown({
   size = 'small',
   text = '按钮',
-  icon = null,
+  icon = <FormOutlined />,
   record: r,
   handleButtonClick = () => {},
   handleMenuClick = () => {},
@@ -192,6 +224,8 @@ export function buildMenu({
     const { key, disabled, hidden, withDivider, type, uponDivider } = d;
 
     if (stringIsNullOrWhiteSpace(key)) {
+      recordObject(d);
+
       showErrorMessage({
         message: 'key is not allow empty',
       });
