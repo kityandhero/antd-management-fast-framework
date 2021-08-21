@@ -54,8 +54,17 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
     throw new Error('buildDataSource need overload');
   };
 
+  buildTransferTitle = () => {
+    return ['未拥有', '已拥有'];
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  buildItem = (o) => {
+    throw new Error('buildItem need overload');
+  };
+
   formContentConfigData = () => {
-    const { targetKeys, selectedKeys } = this.state;
+    const { dataLoading, processing, targetKeys, selectedKeys } = this.state;
 
     return {
       list: [
@@ -72,20 +81,13 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
                       width: 312,
                     }}
                     dataSource={this.buildDataSource()}
-                    titles={['未拥有', '已拥有']}
+                    titles={this.buildTransferTitle()}
                     targetKeys={targetKeys}
                     selectedKeys={selectedKeys}
                     onChange={this.handleChange}
                     onSelectChange={this.handleSelectChange}
                     render={(item) => {
-                      const {
-                        additional: { createMode },
-                      } = item;
-
-                      return `${item.name} [${getAreaAgentRoleCreateModeName({
-                        global: this.getGlobal(),
-                        value: createMode,
-                      })}]`;
+                      return this.buildItem(item);
                     }}
                   />
                 </div>
