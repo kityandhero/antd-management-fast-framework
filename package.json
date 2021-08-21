@@ -12,7 +12,10 @@
     "clean": "lerna clean && rm -rf ./node_modules",
     "cz": "cz",
     "commitlint": "commitlint --edit",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "build:f": "cd packages/antd-management-fast-framework && npm run build",
+    "build:fvp": "cd packages/antd-management-fast-framework && npm version patch && npm publish",
+    "start": "cd packages/simple && npm start"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
