@@ -255,7 +255,7 @@ class ListBase extends AuthorizationWrapper {
         align: 'center',
         showRichFacade: false,
         facadeMode: null,
-        facadeModeBuilder: () => {},
+        facadeModeBuilder: null,
         facadeConfig: {},
         facadeConfigBuilder: () => {},
         sorter: false,
@@ -288,7 +288,7 @@ class ListBase extends AuthorizationWrapper {
         let facadeMode = facadeModeSource || '';
 
         if (isFunction(facadeModeBuilder)) {
-          facadeMode = facadeModeBuilder(value, record) || '';
+          facadeMode = facadeModeBuilder(value, record) || facadeMode;
 
           facadeMode = stringIsNullOrWhiteSpace(facadeMode) ? '' : facadeMode;
         }
