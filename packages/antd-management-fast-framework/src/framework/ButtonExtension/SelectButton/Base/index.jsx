@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 
-import { showRuntimeErrorMessage } from '../../../../utils/tools';
+import { isArray, showRuntimeErrorMessage } from '../../../../utils/tools';
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
 
 class Base extends SupplementWrapper {
@@ -22,8 +22,24 @@ class Base extends SupplementWrapper {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
+  buildOtherList = () => {
+    return [];
+  };
+
   renderOther = () => {
-    return null;
+    const list = this.buildOtherList();
+
+    if (!isArray(list) || list.length === 0) {
+      return null;
+    }
+
+    return (
+      <>
+        {list.map((o) => {
+          return o;
+        })}
+      </>
+    );
   };
 
   showSelect = () => {
