@@ -954,7 +954,20 @@ class Common extends Core {
     });
   };
 
-  renderGeneralButton = ({ key = null, type, size, text, icon, onClick }) => {
+  renderGeneralButton = ({
+    key = null,
+    type,
+    size,
+    text,
+    icon,
+    onClick,
+    disabled = false,
+    hidden = false,
+  }) => {
+    if (hidden) {
+      return null;
+    }
+
     const buttonDisabled = this.getSaveButtonDisabled();
     const buttonProcessing = this.getSaveButtonProcessing();
     const ico = (icon || null) == null ? this.getSaveButtonIcon() : icon;
@@ -964,7 +977,7 @@ class Common extends Core {
         key={key || getGuid()}
         type={type || 'primary'}
         size={size || null}
-        disabled={buttonDisabled}
+        disabled={buttonDisabled || disabled}
         onClick={(e) => {
           if (isFunction(onClick)) {
             onClick(e);

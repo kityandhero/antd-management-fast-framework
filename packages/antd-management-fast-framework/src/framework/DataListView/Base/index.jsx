@@ -81,6 +81,7 @@ import ColumnSetting from '../ColumnSetting';
 import BatchAction from '../BatchAction';
 
 import styles from './index.less';
+import { isObject } from 'lodash';
 
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
@@ -1010,12 +1011,67 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  renderExtraButtonList = () => null;
+  buildExtraButtonList = () => {
+    return [];
+  };
+
+  renderExtraButtonList = () => {
+    const list = this.buildExtraButtonList();
+
+    if (!isArray(list)) {
+      return [];
+    }
+
+    const buttons = [];
+
+    list.forEach((o) => {
+      if (isObject(o)) {
+        const { type, icon, text, onClick } = {
+          ...{
+            key: null,
+            type: 'primary',
+            size: null,
+            text: null,
+            icon: null,
+            onClick: null,
+            disabled: false,
+            hidden: false,
+          },
+          ...(o || {}),
+        };
+
+        if (stringIsNullOrWhiteSpace(icon) && stringIsNullOrWhiteSpace(text)) {
+          recordObject(list);
+
+          throw new Error(
+            'buildExtraButtonList: text or icon not allow both null or empty,the list show in console, please check it.',
+          );
+        }
+
+        const button = this.renderGeneralButton({
+          key: key || null,
+          type: type || 'primary',
+          size: size || null,
+          icon: icon || null,
+          text: text || null,
+          onClick: onClick || null,
+          disabled: disabled || false,
+          hidden: hidden || false,
+        });
+
+        if (button != null) {
+          buttons.push(button);
+        }
+      }
+    });
+
+    return buttons;
+  };
 
   renderExtraAction = () => {
     const buttonList = this.renderExtraButtonList();
 
-    if (isArray(buttonList)) {
+    if (isArray(buttonList) && buttonList.length > 0) {
       const list = [];
 
       buttonList.forEach((eo, ei) => {
