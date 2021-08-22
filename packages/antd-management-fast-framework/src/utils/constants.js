@@ -85,15 +85,41 @@ export const listViewModeCollection = {
 };
 
 export const selectModeCollection = {
+  /**
+   * value : 0
+   */
   drawer: 0,
+
+  /**
+   * value : 1
+   */
   modal: 1,
 };
 
 export const columnFacadeMode = {
+  /**
+   * value : ellipsis
+   */
   ellipsis: 'ellipsis',
+
+  /**
+   * value : image
+   */
   image: 'image',
+
+  /**
+   * value : datetime
+   */
   datetime: 'datetime',
+
+  /**
+   * value : badge
+   */
   badge: 'badge',
+
+  /**
+   * value : money
+   */
   money: 'money',
 };
 

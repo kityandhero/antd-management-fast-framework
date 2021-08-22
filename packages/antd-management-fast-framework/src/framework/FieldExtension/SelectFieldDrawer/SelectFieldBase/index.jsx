@@ -37,10 +37,6 @@ class SelectFieldBase extends SupplementWrapper {
     }
   };
 
-  renderOther = () => {
-    return null;
-  };
-
   showSelect = () => {
     showRuntimeErrorMessage('showSelect 方法需要在上层进行实现');
   };

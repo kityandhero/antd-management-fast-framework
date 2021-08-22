@@ -94,20 +94,22 @@ class InteractiveBase extends Base {
     showRuntimeErrorMessage('需要实现 renderSelectModal 方法');
   };
 
-  renderOther = () => {
+  buildOtherList = () => {
     const { selectMode } = this.props;
 
+    const list = [];
+
     if (toNumber(selectMode) === selectModeCollection.drawer) {
-      return this.renderSelectDrawer();
+      list.push(this.renderSelectDrawer());
     }
 
     if (toNumber(selectMode) === selectModeCollection.modal) {
-      return this.renderSelectModal();
+      list.push(this.renderSelectModal());
     }
 
     showRuntimeErrorMessage('无效的选择项渲染模式');
 
-    return null;
+    return list;
   };
 }
 

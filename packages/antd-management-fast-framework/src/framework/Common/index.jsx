@@ -482,8 +482,24 @@ class Common extends Core {
     this.redirectToPath(pathname.replace('/load/', '/update/'));
   }
 
+  buildOtherList = () => {
+    return [];
+  };
+
   renderOther = () => {
-    return null;
+    const list = this.buildOtherList();
+
+    if (!isArray(list) || list.length === 0) {
+      return null;
+    }
+
+    return (
+      <>
+        {list.map((o) => {
+          return o;
+        })}
+      </>
+    );
   };
 
   renderFormNowTimeField = (data) => {

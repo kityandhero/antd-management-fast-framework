@@ -22,26 +22,6 @@ class Base extends SupplementWrapper {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
-  buildOtherList = () => {
-    return [];
-  };
-
-  renderOther = () => {
-    const list = this.buildOtherList();
-
-    if (!isArray(list) || list.length === 0) {
-      return null;
-    }
-
-    return (
-      <>
-        {list.map((o) => {
-          return o;
-        })}
-      </>
-    );
-  };
-
   showSelect = () => {
     showRuntimeErrorMessage('showSelect 方法需要在上层进行实现');
   };
