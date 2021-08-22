@@ -53,19 +53,8 @@ class PageList extends MultiPage {
     this.goToPath(`/permission/accessWay/edit/load/${accessWayId}/key/basicInfo`);
   };
 
-  renderExtraButtonList = () => {
-    const list = [];
-
-    list.push(
-      this.renderGeneralButton({
-        type: 'primary',
-        icon: <PlusOutlined />,
-        text: '新增',
-        onClick: () => {},
-      }),
-    );
-
-    return list;
+  buildExtraButtonList = () => {
+    return [{ type: 'primary', icon: <PlusOutlined />, text: '新增', onClick: () => {} }];
   };
 
   searchFormContentConfigData = () => {
