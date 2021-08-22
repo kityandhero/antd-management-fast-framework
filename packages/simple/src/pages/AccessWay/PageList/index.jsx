@@ -7,6 +7,7 @@ import { showInfoMessage } from 'antd-management-fast-framework/lib/utils/tools'
 import {
   columnFacadeMode,
   searchFormContentConfig,
+  columnPlaceholder,
 } from 'antd-management-fast-framework/lib/utils/constants';
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
 import { IconInfo } from 'antd-management-fast-framework/lib/customComponents';
@@ -112,6 +113,7 @@ class PageList extends MultiPage {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.name,
+      width: 670,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
@@ -151,15 +153,7 @@ class PageList extends MultiPage {
       facadeMode: columnFacadeMode.datetime,
       emptyValue: '--',
     },
-    {
-      dataTarget: fieldData.channel,
-      width: 160,
-      showRichFacade: true,
-      emptyValue: '--',
-      formatValue: (val, record) => {
-        return record.channelNote;
-      },
-    },
+    columnPlaceholder,
     {
       dataTarget: fieldData.customOperate,
       width: 106,
