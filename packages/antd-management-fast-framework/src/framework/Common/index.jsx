@@ -10,6 +10,7 @@ import {
   message,
   Space,
   Tooltip,
+  Popconfirm,
 } from 'antd';
 import {
   ContactsOutlined,
@@ -38,6 +39,7 @@ import {
   showErrorMessage,
   isBoolean,
   toDatetime,
+  isObject,
 } from '../../utils/tools';
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import {
@@ -963,6 +965,7 @@ class Common extends Core {
     onClick,
     disabled = false,
     hidden = false,
+    confirm = false,
   }) => {
     if (hidden) {
       return null;
@@ -971,6 +974,65 @@ class Common extends Core {
     const buttonDisabled = this.getSaveButtonDisabled();
     const buttonProcessing = this.getSaveButtonProcessing();
     const ico = (icon || null) == null ? this.getSaveButtonIcon() : icon;
+
+    if (confirm) {
+      if (isBoolean(confirm)) {
+        recordObject({
+          key,
+          type,
+          size,
+          text,
+          icon,
+          onClick,
+          disabled,
+          hidden,
+          confirm,
+        });
+
+        throw new Error(
+          'renderGeneralButton : confirm property not allow bool when check confirm is true.',
+        );
+      }
+
+      const { placement, title, okText, cancelText } = {
+        ...{
+          placement: 'topRight',
+          title: '将要进行操作，确定吗？',
+          okText: '确定',
+          cancelText: '取消',
+        },
+        ...(isObject(confirm) ? confirm : {}),
+      };
+
+      return (
+        <Popconfirm
+          key={key || getGuid()}
+          placement={placement}
+          title={title || 'confirm:缺少title配置'}
+          onConfirm={(e) => {
+            if (isFunction(onClick)) {
+              onClick(e);
+            } else {
+              showErrorMessage('onClick is not function');
+            }
+          }}
+          okText={okText}
+          cancelText={cancelText}
+          disabled={buttonDisabled || disabled}
+        >
+          <Button
+            type={type || 'primary'}
+            size={size || null}
+            disabled={buttonDisabled || disabled}
+          >
+            <IconInfo
+              icon={buttonProcessing ? <LoadingOutlined /> : ico}
+              text={text || 'button'}
+            />
+          </Button>
+        </Popconfirm>
+      );
+    }
 
     return (
       <Button
@@ -986,8 +1048,10 @@ class Common extends Core {
           }
         }}
       >
-        {buttonProcessing ? <LoadingOutlined /> : ico}
-        {text || 'button'}
+        <IconInfo
+          icon={buttonProcessing ? <LoadingOutlined /> : ico}
+          text={text || 'button'}
+        />
       </Button>
     );
   };
@@ -1004,8 +1068,10 @@ class Common extends Core {
         disabled={dataLoading || reloading || processing || !loadSuccess}
         onClick={this.reloadData}
       >
-        {reloading ? <LoadingOutlined /> : <ReloadOutlined />}
-        刷新
+        <IconInfo
+          icon={reloading ? <LoadingOutlined /> : <ReloadOutlined />}
+          text="刷新"
+        />
       </Button>
     );
   };

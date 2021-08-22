@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'umi';
 import { Dropdown, Menu } from 'antd';
-import { ReadOutlined } from '@ant-design/icons';
+import { ReadOutlined, PlusOutlined } from '@ant-design/icons';
 
+import { showInfoMessage } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   columnFacadeMode,
   searchFormContentConfig,
@@ -54,7 +55,34 @@ class PageList extends MultiPage {
   };
 
   buildExtraButtonList = () => {
-    return [{ type: 'primary', icon: <PlusOutlined />, text: '新增', onClick: () => {} }];
+    return [
+      {
+        type: 'primary',
+        icon: <PlusOutlined />,
+        text: '确认按钮',
+        onClick: () => {
+          showInfoMessage({
+            message: 'click confirm button',
+          });
+        },
+        confirm: {
+          placement: 'topRight',
+          title: '将要进行操作，确定吗？',
+          okText: '确定',
+          cancelText: '取消',
+        },
+      },
+      {
+        type: 'primary',
+        icon: <PlusOutlined />,
+        text: '普通按钮',
+        onClick: () => {
+          showInfoMessage({
+            message: 'click button',
+          });
+        },
+      },
+    ];
   };
 
   searchFormContentConfigData = () => {

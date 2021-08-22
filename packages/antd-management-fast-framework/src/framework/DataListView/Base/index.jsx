@@ -45,6 +45,7 @@ import {
   recordObject,
   showErrorMessage,
   isBoolean,
+  getGuid,
 } from '../../../utils/tools';
 import {
   searchFormContentConfig,
@@ -1026,9 +1027,19 @@ class ListBase extends AuthorizationWrapper {
 
     list.forEach((o) => {
       if (isObject(o)) {
-        const { type, icon, text, onClick } = {
+        const {
+          key,
+          type,
+          size,
+          icon,
+          text,
+          onClick,
+          disabled,
+          hidden,
+          confirm,
+        } = {
           ...{
-            key: null,
+            key: getGuid(),
             type: 'primary',
             size: null,
             text: null,
@@ -1036,6 +1047,7 @@ class ListBase extends AuthorizationWrapper {
             onClick: null,
             disabled: false,
             hidden: false,
+            confirm: false,
           },
           ...(o || {}),
         };
@@ -1049,7 +1061,7 @@ class ListBase extends AuthorizationWrapper {
         }
 
         const button = this.renderGeneralButton({
-          key: key || null,
+          key: key || getGuid(),
           type: type || 'primary',
           size: size || null,
           icon: icon || null,
@@ -1057,6 +1069,7 @@ class ListBase extends AuthorizationWrapper {
           onClick: onClick || null,
           disabled: disabled || false,
           hidden: hidden || false,
+          confirm: confirm || false,
         });
 
         if (button != null) {
