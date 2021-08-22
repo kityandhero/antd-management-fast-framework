@@ -496,7 +496,7 @@ class Common extends Core {
     return (
       <>
         {list.map((o) => {
-          return o;
+          return <div key={getGuid()}>{o}</div>;
         })}
       </>
     );
