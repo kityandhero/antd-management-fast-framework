@@ -21,9 +21,11 @@ class AuthorizationWrapper extends SupplementWrapper {
 
     if (this.componentAuthority == null) {
       this.init();
+
       needDoOther = true;
     } else if (this.checkAuthority(this.componentAuthority)) {
       this.init();
+
       needDoOther = true;
     } else {
       showRuntimeErrorMessage(`缺少权限：${this.componentAuthority}`);
