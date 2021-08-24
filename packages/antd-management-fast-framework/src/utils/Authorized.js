@@ -1,3 +1,5 @@
+import { getStringFromLocalStorage } from './globalStorageAssist';
+import { storageKeyCollection } from './constants';
 import RenderAuthorize from '../customComponents/Authorized';
 
 export function getAuthority(str) {
@@ -33,11 +35,6 @@ let Authorized = RenderAuthorize(getAuthority());
 const reloadAuthorized = () => {
   Authorized = RenderAuthorize(getAuthority());
 };
-
-/**
- * hard code
- * block need it。
- */
 
 window.reloadAuthorized = reloadAuthorized;
 
