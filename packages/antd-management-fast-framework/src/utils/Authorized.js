@@ -1,7 +1,5 @@
-import {
-  storageKeyCollection,
-  getStringFromLocalStorage,
-} from './globalStorageAssist';
+import { getStringFromLocalStorage } from './tools';
+import { storageKeyCollection } from './globalStorageAssist';
 import RenderAuthorize from '../customComponents/Authorized';
 
 export function getAuthority(str) {
