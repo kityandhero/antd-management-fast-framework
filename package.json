@@ -11,7 +11,7 @@
     "lerna": "lerna",
     "clean": "lerna clean && rm -rf ./node_modules",
     "cz": "cz",
-    "scz": "git stage * && npm run cz",
+    "scz": "git stage * && npm run cz && git push",
     "commitlint": "commitlint --edit",
     "lint-staged": "lint-staged",
     "build:fvp": "npm run build:f && npm run build:vp",
