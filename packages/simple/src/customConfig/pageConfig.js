@@ -1,13 +1,8 @@
 export const pageConfig = {
   ...{
-    productSku: {
+    accessWay: {
       pageList: {
-        paramsKey: 'c488c90d-07d5-48fd-8ccb-80d8d9b49d8f',
-      },
-    },
-    settlement: {
-      pageList: {
-        paramsKey: 'd7c46638-34c9-4b31-90b0-322d942a61a8',
+        paramsKey: 'd0491b39-e01c-40cc-b163-5e62f124a3de',
       },
     },
   },

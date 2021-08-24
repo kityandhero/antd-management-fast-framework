@@ -2,53 +2,27 @@ import {
   getStringFromLocalStorage,
   saveJsonToLocalStorage,
   isArray,
+  recordObject,
 } from './tools';
 import {
   storageKeyCollection,
   getAccessWayCollectionCache,
 } from './globalStorageAssist';
-// eslint-disable-next-line import/no-cycle
 import { reloadAuthorized } from './Authorized';
 
-// use localStorage to store the authority info, which might be sent from server in actual project.
-export function getAuthority(str) {
-  // return getStringFromLocalStorage('antd-pro-authority') || ['admin', 'user'];
-  const authorityString =
-    typeof str === 'undefined'
-      ? getStringFromLocalStorage(storageKeyCollection.authorityCollection)
-      : str;
-  // authorityString could be admin, "admin", ["admin"]
-  let authority;
-
-  try {
-    if (authorityString) {
-      authority = JSON.parse(authorityString);
-    }
-  } catch (e) {
-    authority = authorityString;
-  }
-
-  if (typeof authority === 'string') {
-    return [authority];
-  }
-
-  if (isArray(authority)) {
-    return authority;
-  }
-
-  return [];
-}
-
 function getAllAuthorityCore() {
-  // return getStringFromLocalStorage('antd-pro-authority') || ['admin', 'user'];
-  const authorityString = getStringFromLocalStorage('antd-pro-authority');
-  // authorityString could be admin, "admin", ["admin"]
+  const authorityString = getStringFromLocalStorage(
+    storageKeyCollection.authorityCollection,
+  );
+
   let authority;
+
   try {
     authority = JSON.parse(authorityString);
   } catch (e) {
     authority = authorityString;
   }
+
   if (typeof authority === 'string') {
     return [authority];
   }

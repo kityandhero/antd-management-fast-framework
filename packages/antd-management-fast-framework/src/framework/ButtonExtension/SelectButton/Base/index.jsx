@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 
-import { isArray, showRuntimeErrorMessage } from '../../../../utils/tools';
+import { showRuntimeErrorMessage } from '../../../../utils/tools';
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
 
 class Base extends SupplementWrapper {

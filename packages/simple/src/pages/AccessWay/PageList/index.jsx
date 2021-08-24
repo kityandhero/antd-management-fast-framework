@@ -12,6 +12,8 @@ import {
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
 import { IconInfo } from 'antd-management-fast-framework/lib/customComponents';
 
+import { pageConfig } from '@/customConfig/config';
+
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { fieldData } from '../Common/data';
 
@@ -28,7 +30,7 @@ class PageList extends MultiPage {
       ...this.state,
       ...{
         pageName: '模块列表',
-        paramsKey: '3c7c3102-ad12-47b4-86ef-7d38c855bddc',
+        paramsKey: pageConfig.accessWay.pageList.paramsKey,
         loadApiPath: 'accessWay/pageList',
         dateRangeFieldName: '生成时段',
       },
