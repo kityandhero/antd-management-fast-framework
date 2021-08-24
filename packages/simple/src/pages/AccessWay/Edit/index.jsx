@@ -127,6 +127,19 @@ class Edit extends DataTabContainer {
     this.goToPath(`/accessWay/pageList/key`);
   };
 
+  pageHeaderTagList = () => {
+    return [
+      {
+        color: '#000',
+        text: '未知',
+      },
+      {
+        color: 'purple',
+        text: '标签2',
+      },
+    ];
+  };
+
   render() {
     const { match, children } = this.props;
     const {
