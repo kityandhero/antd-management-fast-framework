@@ -85,6 +85,13 @@ export function checkHasAuthority(auth) {
 
   const v = (list || []).find((o) => o === auth);
 
+  if ((v ?? null) == null) {
+    recordObject({
+      checkAuthority: auth,
+      listAuthority: list,
+    });
+  }
+
   return v !== undefined;
 }
 
