@@ -1,4 +1,4 @@
-import { getStringFromLocalStorage } from './tools';
+import { getStringFromLocalStorage, isArray } from './tools';
 import { storageKeyCollection } from './globalStorageAssist';
 import RenderAuthorize from '../customComponents/Authorized';
 
