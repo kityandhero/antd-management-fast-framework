@@ -18,7 +18,9 @@
     "build:f": "cd packages/antd-management-fast-framework && npm run build",
     "build:vp": "cd packages/antd-management-fast-framework && npm version patch && npm publish",
     "build:fp": "cd packages/antd-management-fast-framework && npm publish",
-    "reinstall": "npm run clean && npm run lerna:b",
+    "clean:framework": "cd packages/antd-management-fast-framework && npm run clean-file",
+    "clean:simple": "cd packages/simple && npm run clean-file",
+    "reinstall": "npm run clean && npm run clean:framework && npm run clean:simple && npm run lerna:b",
     "start": "cd packages/simple && npm start"
   },
   "devDependencies": {

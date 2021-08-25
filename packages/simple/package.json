@@ -14,7 +14,7 @@
     "analyze-dev": "cross-env ANALYZE=1 umi dev",
     "analyze-build": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
-    "clean-file": "rimraf ./node_modules/ ./src/.umi/",
+    "clean-file": "rimraf .\\/node_modules .\\/src\\/.umi",
     "deploy": "npm run site && npm run gh-pages",
     "docker-hub:build": "docker build  -f Dockerfile.hub -t  ant-design-pro ./",
     "docker-prod:build": "docker-compose -f ./docker/docker-compose.yml build",

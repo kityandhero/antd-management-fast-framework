@@ -12,7 +12,7 @@
   "scripts": {
     "v:p": "npm version patch && npm publish",
     "start": "cross-env APP_ROOT=example umi dev",
-    "clean-file": "rimraf ./node_modules",
+    "clean-file": "rimraf .\\/node_modules",
     "build": "rimraf ./src/**/*.d.ts ./lib ./es && tsc -p . && father-build && rimraf ./src/**/*.d.ts",
     "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
