@@ -163,12 +163,32 @@ export function buildDropdown({
   text = '按钮',
   icon = <FormOutlined />,
   record: r,
+  disabled = false,
+  hidden = false,
   handleButtonClick = () => {},
   handleMenuClick = () => {},
-  menuItems = [],
+  menuItems: menuItemsSource = [],
 }) {
+  if (hidden) {
+    return null;
+  }
+
   if (!isFunction(handleButtonClick)) {
     throw new Error('buildDropdown : handleButtonClick must be function');
+  }
+
+  if (!isArray(menuItemsSource) || menuItemsSource.length === 0) {
+    return (
+      <Button
+        size={size || 'small'}
+        onClick={() => {
+          handleButtonClick({ record: r });
+        }}
+        disabled={disabled ?? false}
+      >
+        <IconInfo icon={icon || <FormOutlined />} text={text || '按钮'} />
+      </Button>
+    );
   }
 
   return (
@@ -178,6 +198,7 @@ export function buildDropdown({
         onClick={() => {
           handleButtonClick({ record: r });
         }}
+        disabled={disabled ?? false}
         overlay={buildMenu({
           record: r,
           handleMenuClick,

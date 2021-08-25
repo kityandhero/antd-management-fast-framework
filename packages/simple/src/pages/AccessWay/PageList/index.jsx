@@ -1,19 +1,25 @@
 import React from 'react';
 import { connect } from 'umi';
 import { Dropdown, Menu } from 'antd';
-import { ReadOutlined, PlusOutlined } from '@ant-design/icons';
+import { ReloadOutlined, ReadOutlined, PlusOutlined } from '@ant-design/icons';
 
-import { showInfoMessage } from 'antd-management-fast-framework/lib/utils/tools';
+import { toNumber, showInfoMessage } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   columnFacadeMode,
   searchFormContentConfig,
   columnPlaceholder,
 } from 'antd-management-fast-framework/lib/utils/constants';
+import { handleItem } from 'antd-management-fast-framework/lib/utils/actionAssist';
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
-import { IconInfo } from 'antd-management-fast-framework/lib/customComponents';
+import { buildDropdown } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
 import { pageConfig } from '@/customConfig/config';
 
+import {
+  setOfflineConfirmAction,
+  setOnlineConfirmAction,
+  refreshCacheConfirmAction,
+} from '../Assist/action';
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { fieldData } from '../Common/data';
 
@@ -49,6 +55,62 @@ class PageList extends MultiPage {
     } = props;
 
     return data;
+  };
+
+  handleMenuClick = ({ key, record }) => {
+    switch (key) {
+      case 'setOnline':
+        this.setOnline(record);
+        break;
+
+      case 'setOffline':
+        this.setOffline(record);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  handleItemStatus = ({ target, record, remoteData }) => {
+    const accessWayId = getPathValue(record, fieldData.accessWayId.name);
+
+    handleItem({
+      target,
+      dataId: accessWayId,
+      compareDataIdHandler: (o) => {
+        const { accessWayId: v } = o;
+
+        return v;
+      },
+      handler: (d) => {
+        const o = d;
+
+        o[fieldData.status.name] = getPathValue(remoteData, fieldData.status.name);
+
+        return d;
+      },
+    });
+  };
+
+  setOffline = (r) => {
+    setOfflineConfirmAction({
+      target: this,
+      record: r,
+      successCallback: ({ target, record, remoteData }) => {
+        target.handleItemStatus({ target, record, remoteData });
+      },
+    });
+  };
+
+  setOnline = (r) => {
+    setOnlineConfirmAction({
+      target: this,
+      record: r,
+      successCallback: ({ target, record, remoteData }) => {
+        target.handleItemStatus({ target, record, remoteData });
+      },
+    });
   };
 
   goToEdit = (record) => {
@@ -161,23 +223,43 @@ class PageList extends MultiPage {
       width: 106,
       fixed: 'right',
       align: 'center',
-      render: (text, record) => (
-        <>
-          <Dropdown.Button
-            size="small"
-            onClick={() => this.goToEdit(record)}
-            overlay={
-              <Menu onClick={(e) => this.handleMenuClick(e, record)}>
-                {/* <Menu.Item key="1">
-                  <IconInfo icon={<DeleteOutlined />} text="删除" />
-                </Menu.Item> */}
-              </Menu>
-            }
-          >
-            <IconInfo icon={<ReadOutlined />} text="详情" />
-          </Dropdown.Button>
-        </>
-      ),
+      render: (text, r) => {
+        const itemStatus = toNumber(getPathValue(r, fieldData.status.name));
+
+        return buildDropdown({
+          size: 'small',
+          text: '修改',
+          icon: <EditOutlined />,
+          handleButtonClick: ({ record }) => {
+            this.goToEdit(record);
+          },
+          record: r,
+          handleMenuClick: ({ key, record }) => {
+            this.handleMenuClick({ key, record });
+          },
+          menuItems: [
+            {
+              key: 'setOnline',
+              icon: <PlayCircleOutlined />,
+              text: '设为上线',
+              disabled: itemStatus === statusCollection.start,
+            },
+            {
+              key: 'setOffline',
+              icon: <PauseCircleOutlined />,
+              text: '设为下线',
+              disabled: itemStatus === statusCollection.stop,
+            },
+            {
+              key: 'refreshCache',
+              withDivider: true,
+              uponDivider: true,
+              icon: <ReloadOutlined />,
+              text: '刷新缓存',
+            },
+          ],
+        });
+      },
     },
   ];
 }

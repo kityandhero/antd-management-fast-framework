@@ -38,7 +38,31 @@ export const fieldData = {
       name: 'keywords',
       helper: '',
     },
+    status: {
+      label: '状态',
+      name: 'status',
+      helper: '',
+    },
   },
+  ...{
+    statusNote: {
+      label: '状态',
+      name: 'statusNote',
+      helper: '',
+    },
+  },
+};
+
+export const statusCollection = {
+  /**
+   * value: 1
+   */
+  online: 1,
+
+  /**
+   * value : 0
+   */
+  offline: 0,
 };
 
 /**

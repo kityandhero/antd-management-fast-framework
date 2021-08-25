@@ -40,7 +40,7 @@ export default defineConfig({
   routes: pageRoutes,
   title: false,
   theme: {
-    '@primary-color': '#F5222D',
+    // '@primary-color': '#F5222D',
     '@border-radius-base': '4px',
   },
   define: {
