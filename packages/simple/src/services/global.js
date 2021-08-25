@@ -32,6 +32,23 @@ export async function getData(params) {
             availability: 1,
           },
         ],
+        accessWayStatusList: [
+          {
+            flag: '-1',
+            name: '未知',
+            availability: 1,
+          },
+          {
+            flag: '1',
+            name: '上线',
+            availability: 1,
+          },
+          {
+            flag: '0',
+            name: '下线',
+            availability: 1,
+          },
+        ],
       },
     },
   });

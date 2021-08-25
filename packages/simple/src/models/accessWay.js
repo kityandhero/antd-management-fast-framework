@@ -4,7 +4,13 @@ import {
   handleCommonDataAssist,
 } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 
-import { pageListData, getData } from '../services/accessWay';
+import {
+  pageListData,
+  getData,
+  setOfflineData,
+  setOnlineData,
+  refreshCacheData,
+} from '../services/accessWay';
 
 export default {
   namespace: 'accessWay',
@@ -21,6 +27,27 @@ export default {
     },
     *get({ payload }, { call, put }) {
       const response = yield call(getData, payload);
+      yield put({
+        type: 'handleCommonData',
+        payload: response,
+      });
+    },
+    *setOffline({ payload }, { call, put }) {
+      const response = yield call(setOfflineData, payload);
+      yield put({
+        type: 'handleCommonData',
+        payload: response,
+      });
+    },
+    *setOnline({ payload }, { call, put }) {
+      const response = yield call(setOnlineData, payload);
+      yield put({
+        type: 'handleCommonData',
+        payload: response,
+      });
+    },
+    *refreshCache({ payload }, { call, put }) {
+      const response = yield call(refreshCacheData, payload);
       yield put({
         type: 'handleCommonData',
         payload: response,

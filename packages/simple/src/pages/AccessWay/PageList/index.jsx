@@ -19,12 +19,17 @@ import {
   columnFacadeMode,
   searchFormContentConfig,
   columnPlaceholder,
+  unlimitedWithStringFlag,
 } from 'antd-management-fast-framework/lib/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/lib/utils/actionAssist';
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
 import { buildDropdown } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
 import { pageConfig } from '@/customConfig/config';
+import {
+  getAccessWayStatusName,
+  renderSearchAccessWayStatusSelect,
+} from '@/customSpecialComponents/FunctionSupplement/AccessWayStatus';
 
 import {
   setOfflineConfirmAction,
@@ -68,6 +73,26 @@ class PageList extends MultiPage {
     return data;
   };
 
+  getStatusBadge = (v) => {
+    let result = 'default';
+
+    switch (v) {
+      case 1:
+        result = 'processing';
+        break;
+
+      case 0:
+        result = 'default';
+        break;
+
+      default:
+        result = 'error';
+        break;
+    }
+
+    return result;
+  };
+
   handleMenuClick = ({ key, record }) => {
     switch (key) {
       case 'setOnline':
@@ -76,6 +101,10 @@ class PageList extends MultiPage {
 
       case 'setOffline':
         this.setOffline(record);
+        break;
+
+      case 'refreshCache':
+        refreshCacheConfirmAction({ target: this, record });
         break;
 
       default:
@@ -161,6 +190,15 @@ class PageList extends MultiPage {
     ];
   };
 
+  renderSimpleFormInitialValues = () => {
+    const values = {};
+
+    values[fieldData.status.name] = unlimitedWithStringFlag.key;
+    values[fieldData.channel.name] = unlimitedWithStringFlag.key;
+
+    return values;
+  };
+
   searchFormContentConfigData = () => {
     return {
       list: [
@@ -168,6 +206,13 @@ class PageList extends MultiPage {
           lg: 6,
           type: searchFormContentConfig.contentItemType.input,
           fieldData: fieldData.name,
+        },
+        {
+          lg: 6,
+          type: searchFormContentConfig.contentItemType.component,
+          component: renderSearchAccessWayStatusSelect({
+            global: this.getGlobal(),
+          }),
         },
         {
           lg: 6,
@@ -188,7 +233,7 @@ class PageList extends MultiPage {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.name,
-      width: 670,
+      width: 520,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
@@ -213,6 +258,22 @@ class PageList extends MultiPage {
       canCopy: true,
     },
     {
+      dataTarget: fieldData.status,
+      width: 120,
+      emptyValue: '--',
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.badge,
+      facadeConfigBuilder: (val) => {
+        return {
+          status: this.getStatusBadge(val),
+          text: getAccessWayStatusName({
+            global: this.getGlobal(),
+            value: val,
+          }),
+        };
+      },
+    },
+    {
       dataTarget: fieldData.channel,
       width: 160,
       showRichFacade: true,
@@ -223,7 +284,7 @@ class PageList extends MultiPage {
     },
     {
       dataTarget: fieldData.createTime,
-      width: 140,
+      width: 160,
       showRichFacade: true,
       facadeMode: columnFacadeMode.datetime,
       emptyValue: '--',

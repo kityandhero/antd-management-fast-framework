@@ -1,6 +1,10 @@
 import { getPathValue, ellipsis } from 'antd-management-fast-framework/lib/utils/tools';
+import {
+  actionCore,
+  confirmActionCore,
+} from 'antd-management-fast-framework/lib/utils/actionAssist';
 
-import { fieldData, mediaItemData } from '../Common/data';
+import { fieldData } from '../Common/data';
 
 export function setOnlineAction({ target, record, successCallback, successMessage }) {
   actionCore({
@@ -10,7 +14,7 @@ export function setOnlineAction({ target, record, successCallback, successMessag
     },
     getApiData: (props) => {
       const {
-        areaAgent: { data },
+        accessWay: { data },
       } = props;
 
       return data;
@@ -37,13 +41,13 @@ export async function setOnlineConfirmAction({ target, record, successCallback, 
 
 export function setOfflineAction({ target, record, successCallback, successMessage }) {
   actionCore({
-    api: 'accessWay/setOnline',
+    api: 'accessWay/setOffline',
     params: {
       accessWayId: getPathValue(record, fieldData.accessWayId.name),
     },
     getApiData: (props) => {
       const {
-        areaAgent: { data },
+        accessWay: { data },
       } = props;
 
       return data;
@@ -72,11 +76,11 @@ export async function refreshCacheAction({ target, record, successCallback, succ
   actionCore({
     api: 'accessWay/refreshCache',
     params: {
-      areaAgentId: getPathValue(record, fieldData.areaAgentId.name),
+      accessWayId: getPathValue(record, fieldData.accessWayId.name),
     },
     getApiData: (props) => {
       const {
-        areaAgent: { data },
+        accessWay: { data },
       } = props;
 
       return data;

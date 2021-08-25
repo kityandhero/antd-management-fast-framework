@@ -16,8 +16,8 @@ import {
 
 import { unknownLabel } from '@/customConfig/constants';
 
-export function refitWebChannelList({ global, withUnlimited = true }) {
-  const { webChannelList: list } = { ...{ webChannelList: [] }, ...(global || {}) };
+export function refitAccessWayStatusList({ global, withUnlimited = true }) {
+  const { accessWayStatusList: list } = { ...{ accessWayStatusList: [] }, ...(global || {}) };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);
@@ -26,7 +26,7 @@ export function refitWebChannelList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getWebChannelName({ global, value, defaultValue = '' }) {
+export function getAccessWayStatusName({ global, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -34,37 +34,29 @@ export function getWebChannelName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitWebChannelList({ global, withUnlimited: false }),
+    refitAccessWayStatusList({ global, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
-export function renderWebChannelOption({
-  global,
-  withUnlimited = true,
-  adjustListDataCallback = null,
-}) {
-  const listData = refitWebChannelList({ global, withUnlimited });
+export function renderAccessWayStatusOption({ global, withUnlimited = true, adjustListDataCallback = null }) {
+  const listData = refitAccessWayStatusList({ global, withUnlimited });
 
   return buildFormOptionItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderWebChannelRadio({
-  global,
-  withUnlimited = true,
-  adjustListDataCallback = null,
-}) {
-  const listData = refitWebChannelList({ global, withUnlimited });
+export function renderAccessWayStatusRadio({ global, withUnlimited = true, adjustListDataCallback = null }) {
+  const listData = refitAccessWayStatusList({ global, withUnlimited });
 
   return buildFormRadioItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderSearchWebChannelSelect({
+export function renderSearchAccessWayStatusSelect({
   global = null,
   withUnlimited = true,
-  label = 'Web渠道',
-  name = 'channel',
+  label = '状态',
+  name = 'status',
   helper = null,
 }) {
   const title = label || unknownLabel;
@@ -72,19 +64,19 @@ export function renderSearchWebChannelSelect({
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderWebChannelOption({ global, withUnlimited }),
+    options: renderAccessWayStatusOption({ global, withUnlimited }),
     helper,
   });
 }
 
-export function renderFormWebChannelSelect({
+export function renderFormAccessWayStatusSelect({
   global = null,
   helper = null,
   onChangeCallback,
-  label = 'Web渠道',
+  label = '状态',
   formItemLayout = null,
   required = true,
-  name = 'channel',
+  name = 'status',
   otherProps = null,
 }) {
   const title = label || unknownLabel;
@@ -93,7 +85,7 @@ export function renderFormWebChannelSelect({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderWebChannelOption({ global, withUnlimited: false });
+      return renderAccessWayStatusOption({ global, withUnlimited: false });
     },
     helper,
     onChangeCallback,
@@ -103,14 +95,14 @@ export function renderFormWebChannelSelect({
   });
 }
 
-export function renderFormWebChannelRadio({
+export function renderFormAccessWayStatusRadio({
   global = null,
   helper = null,
   onChangeCallback,
-  label = 'Web渠道',
+  label = '状态',
   formItemLayout = null,
   required = true,
-  name = 'channel',
+  name = 'status',
   otherProps = null,
 }) {
   const title = label || unknownLabel;
@@ -119,7 +111,7 @@ export function renderFormWebChannelRadio({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderWebChannelRadio({ global, withUnlimited: false });
+      return renderAccessWayStatusRadio({ global, withUnlimited: false });
     },
     helper,
     onChangeCallback,
