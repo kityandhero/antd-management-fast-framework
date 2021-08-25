@@ -1,9 +1,20 @@
 import React from 'react';
 import { connect } from 'umi';
 import { Dropdown, Menu } from 'antd';
-import { ReloadOutlined, ReadOutlined, PlusOutlined } from '@ant-design/icons';
+import {
+  ReloadOutlined,
+  ReadOutlined,
+  PlusOutlined,
+  EditOutlined,
+  PlayCircleOutlined,
+  PauseCircleOutlined,
+} from '@ant-design/icons';
 
-import { toNumber, showInfoMessage } from 'antd-management-fast-framework/lib/utils/tools';
+import {
+  toNumber,
+  getPathValue,
+  showInfoMessage,
+} from 'antd-management-fast-framework/lib/utils/tools';
 import {
   columnFacadeMode,
   searchFormContentConfig,
@@ -21,7 +32,7 @@ import {
   refreshCacheConfirmAction,
 } from '../Assist/action';
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
-import { fieldData } from '../Common/data';
+import { fieldData, statusCollection } from '../Common/data';
 
 @connect(({ accessWay, global, loading }) => ({
   accessWay,
@@ -242,13 +253,13 @@ class PageList extends MultiPage {
               key: 'setOnline',
               icon: <PlayCircleOutlined />,
               text: '设为上线',
-              disabled: itemStatus === statusCollection.start,
+              disabled: itemStatus === statusCollection.online,
             },
             {
               key: 'setOffline',
               icon: <PauseCircleOutlined />,
               text: '设为下线',
-              disabled: itemStatus === statusCollection.stop,
+              disabled: itemStatus === statusCollection.offline,
             },
             {
               key: 'refreshCache',

@@ -167,7 +167,7 @@ export function buildDropdown({
   hidden = false,
   handleButtonClick = () => {},
   handleMenuClick = () => {},
-  menuItems: menuItemsSource = [],
+  menuItems = [],
 }) {
   if (hidden) {
     return null;
@@ -177,7 +177,7 @@ export function buildDropdown({
     throw new Error('buildDropdown : handleButtonClick must be function');
   }
 
-  if (!isArray(menuItemsSource) || menuItemsSource.length === 0) {
+  if (!isArray(menuItems) || menuItems.length === 0) {
     return (
       <Button
         size={size || 'small'}
