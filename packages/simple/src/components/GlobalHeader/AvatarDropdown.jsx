@@ -15,16 +15,6 @@ class AvatarDropdown extends React.Component {
   onMenuClick = (event) => {
     const { key } = event;
 
-    if (key === 'areaConfig') {
-      history.push('/system/areaConfig');
-      return;
-    }
-
-    if (key === 'warehouse') {
-      history.push('/system/areaConfig/editMasterWarehouse');
-      return;
-    }
-
     if (key === 'logout') {
       const { dispatch } = this.props;
 
@@ -46,22 +36,6 @@ class AvatarDropdown extends React.Component {
     } = this.props;
 
     const menuItems = [];
-
-    if (checkHasAuthority(accessWayCollection.areaConfig.get)) {
-      menuItems.push({
-        key: 'areaConfig',
-        icon: <SettingOutlined />,
-        text: '地区设置',
-      });
-    }
-
-    if (checkHasAuthority(accessWayCollection.warehouse.getMaster)) {
-      menuItems.push({
-        key: 'warehouse',
-        icon: <ShopOutlined />,
-        text: '主仓信息',
-      });
-    }
 
     const menuHeaderDropdown = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>

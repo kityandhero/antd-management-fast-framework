@@ -55,6 +55,61 @@ export default [
         ],
       },
       {
+        name: 'news',
+        icon: 'team',
+        path: '/news',
+        authority: [accessWayCollection.super, accessWayCollection.article.pageList],
+        routes: [
+          {
+            path: '/news/article',
+            name: 'article',
+            icon: 'bars',
+            authority: [accessWayCollection.super, accessWayCollection.article.pageList],
+            hideChildrenInMenu: true,
+            routes: [
+              {
+                path: '/news/article',
+                redirect: '/news/article/pageList',
+              },
+              {
+                path: '/news/article/pageList',
+                redirect: '/news/article/pageList/no',
+              },
+              {
+                path: '/news/article/pageList/:pageKey',
+                hideInMenu: true,
+                component: './Article/PageList',
+              },
+              {
+                path: '/news/article/addBasicInfo',
+                name: 'addBasicInfo',
+                icon: 'plus-square',
+                authority: [accessWayCollection.super, accessWayCollection.article.addBasicInfo],
+                component: './Article/Add',
+              },
+              {
+                path: '/news/article/edit/:op/:id/:pageKey',
+                name: 'edit',
+                hideInMenu: true,
+                component: './Article/Edit',
+                routes: [
+                  {
+                    path: '/news/article/edit/:op/:id/:pageKey/basicInfo',
+                    name: 'basicInfo',
+                    component: './Article/Edit/BasicInfo',
+                  },
+                  {
+                    path: '/news/article/edit/:op/:id/:pageKey/mediaInfo',
+                    name: 'mediaInfo',
+                    component: './Article/Edit/MediaInfo',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
         path: '/currentOperator',
         name: 'currentOperator',
         icon: 'user',
