@@ -18,6 +18,7 @@
     "multilines",
     "noninteractive",
     "npminstall",
+    "pageview",
     "pify",
     "precommit",
     "prettierrc",
