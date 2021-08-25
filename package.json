@@ -21,6 +21,7 @@
     "clean:framework": "cd packages/antd-management-fast-framework && npm run clean-file",
     "clean:simple": "cd packages/simple && npm run clean-file",
     "reinstall": "npm run clean && npm run clean:framework && npm run clean:simple && npm run lerna:b",
+    "show:v": "cd packages/antd-management-fast-framework && npm version",
     "start": "cd packages/simple && npm start"
   },
   "devDependencies": {
