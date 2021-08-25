@@ -47,7 +47,7 @@ class PageList extends MultiPage {
       ...this.state,
       ...{
         pageName: '文章列表',
-        paramsKey: pageConfig.product.pageList.paramsKey,
+        paramsKey: pageConfig.article.pageList.paramsKey,
         loadApiPath: 'article/pageList',
       },
     };

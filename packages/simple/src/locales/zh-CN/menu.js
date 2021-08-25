@@ -21,6 +21,14 @@ export default {
   'menu.permission.accessWay.edit': '模块详情',
   'menu.permission.accessWay.edit.basicInfo': '基本信息',
 
+  'menu.news': '资讯中心',
+  'menu.news.article': '文章管理',
+  'menu.news.article.pageList': '文章列表',
+  'menu.news.article.addBasicInfo': '新增文章',
+  'menu.news.article.edit': '编辑文章',
+  'menu.news.article.edit.basicInfo': '基本信息',
+  'menu.news.article.edit.mediaInfo': '媒体信息',
+
   'menu.marketing': '营销活动',
   'menu.marketing.discount': '抢购活动',
   'menu.marketing.discount.pageList': '抢购列表',

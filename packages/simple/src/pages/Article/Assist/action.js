@@ -4,7 +4,7 @@ import {
   confirmActionCore,
 } from 'antd-management-fast-framework/lib/utils/actionAssist';
 
-import { fieldData } from '../Common/data';
+import { fieldData, mediaItemData } from '../Common/data';
 
 export function setOnlineAction({ target, record, successCallback, successMessage }) {
   actionCore({
@@ -118,6 +118,7 @@ export function setMediaCollectionSortAction({ target, record, successCallback, 
     api: 'article/setMediaCollectionSort',
     params: {
       articleId: getPathValue(record, fieldData.articleId.name),
+      ids: getPathValue(record, 'ids'),
     },
     getApiData: (props) => {
       const {
@@ -138,6 +139,7 @@ export async function removeMediaItemAction({ target, record, successCallback, s
     api: 'article/removeMediaItem',
     params: {
       articleId: getPathValue(record, fieldData.articleId.name),
+      id: getPathValue(record, mediaItemData.id.name),
     },
     getApiData: (props) => {
       const {

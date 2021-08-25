@@ -83,6 +83,10 @@ class BasicInfo extends TabPageBase {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
+    this.setCustomData(metaData);
+  };
+
+  setCustomData = (metaData) => {
     const { mediaItemList: mediaItemSourceList } = metaData;
 
     const mediaItemList = [];
@@ -100,6 +104,7 @@ class BasicInfo extends TabPageBase {
     });
 
     this.setState({
+      metaData,
       mediaItemList,
       mediaItemCount: mediaItemList.length,
     });
@@ -203,8 +208,12 @@ class BasicInfo extends TabPageBase {
         break;
 
       case 'removeItem':
-        removeMediaItemConfirmAction(this, { ...(record || {}), ...{ articleId } }, (that) => {
-          that.reloadData();
+        removeMediaItemConfirmAction({
+          target: this,
+          record: { ...(record || {}), ...{ articleId } },
+          successCallback: ({ target, remoteData }) => {
+            target.setCustomData(remoteData);
+          },
         });
         break;
 
