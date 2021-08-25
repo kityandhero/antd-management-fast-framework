@@ -17,6 +17,7 @@
     "build:fvp": "npm run build:f && npm run build:vp",
     "build:f": "cd packages/antd-management-fast-framework && npm run build",
     "build:vp": "cd packages/antd-management-fast-framework && npm version patch && npm publish",
+    "build:fp": "cd packages/antd-management-fast-framework && npm publish",
     "start": "cd packages/simple && npm start"
   },
   "devDependencies": {
