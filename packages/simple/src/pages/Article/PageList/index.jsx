@@ -201,18 +201,15 @@ class PageList extends MultiPage {
   };
 
   buildExtraButtonList = () => {
-    const list = [];
-
-    if (this.checkAuthority(accessWayCollection.article.addBasicInfo)) {
-      list.push({
+    return [
+      {
         type: 'primary',
         icon: <PlusOutlined />,
         text: '新增文章',
         onClick: this.goToAdd,
-      });
-    }
-
-    return list;
+        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo),
+      },
+    ];
   };
 
   getColumnWrapper = () => [
