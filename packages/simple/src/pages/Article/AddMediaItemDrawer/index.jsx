@@ -180,6 +180,7 @@ class Index extends BaseAddDrawer {
           spinning: processing,
           items: [
             {
+              lg: 24,
               type: formContentConfig.contentItemType.videoUpload,
               fieldData: mediaItemData.video,
               video,

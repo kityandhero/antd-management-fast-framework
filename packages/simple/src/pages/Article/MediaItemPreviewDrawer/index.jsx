@@ -11,8 +11,6 @@ import { formContentConfig } from 'antd-management-fast-framework/lib/utils/cons
 import MobileContainor from 'antd-management-fast-framework/lib/customComponents/MobileContainor';
 import Base from 'antd-management-fast-framework/lib/framework/DataDrawer/Base';
 
-import styles from './index.less';
-
 class MediaItemPreviewDrawer extends Base {
   loadDataAfterMount = false;
 
@@ -69,7 +67,13 @@ class MediaItemPreviewDrawer extends Base {
         {stringIsNullOrWhiteSpace(record.title) ? null : <h3>{record.title}</h3>}
         {stringIsNullOrWhiteSpace(record.image) ? null : <img width="100%" src={record.image} />}
         {stringIsNullOrWhiteSpace(record.description) ? null : (
-          <p className={styles.description}>{record.description}</p>
+          <p
+            style={{
+              textIndent: '35px',
+            }}
+          >
+            {record.description}
+          </p>
         )}
         {stringIsNullOrWhiteSpace(record.video) ? null : (
           <ReactPlayer width={'100%'} height="auto" url={record.video} controls />

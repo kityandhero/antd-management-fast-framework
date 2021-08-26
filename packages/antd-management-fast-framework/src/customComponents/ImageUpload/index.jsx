@@ -17,6 +17,7 @@ import {
 import ImageBox from '../ImageBox';
 import FlexBox from '../FlexBox';
 import VerticalBox from '../VerticalBox';
+import CenterBox from '../CenterBox';
 
 import styles from './index.less';
 
@@ -200,8 +201,13 @@ class ImageUpload extends PureComponent {
               >
                 <Upload {...uploadProps}>
                   <div className={styles.imageAction}>
-                    {uploading ? <LoadingOutlined /> : <UploadOutlined />}
-                    <div className="ant-upload-text">
+                    <div className={styles.icon}>
+                      <CenterBox>
+                        {uploading ? <LoadingOutlined /> : <UploadOutlined />}
+                      </CenterBox>
+                    </div>
+
+                    <div className={styles.text}>
                       {uploading ? '上传中' : '上传'}
                     </div>
                   </div>
