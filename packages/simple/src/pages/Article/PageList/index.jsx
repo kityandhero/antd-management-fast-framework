@@ -307,6 +307,17 @@ class PageList extends MultiPage {
       },
     },
   ];
+
+  buildHelpConfig = () => {
+    return {
+      title: '操作提示',
+      list: [
+        {
+          text: '简要说明：这里可以显示需要提示的信息。',
+        },
+      ],
+    };
+  };
 }
 
 export default PageList;
