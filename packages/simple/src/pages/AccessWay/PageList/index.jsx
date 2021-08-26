@@ -237,9 +237,6 @@ class PageList extends MultiPage {
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
-      formatValue: (val) => {
-        return val === '' ? '' : val;
-      },
     },
     {
       dataTarget: fieldData.relativePath,
@@ -247,9 +244,6 @@ class PageList extends MultiPage {
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
-      formatValue: (val) => {
-        return val === '' ? '' : val;
-      },
     },
     {
       dataTarget: fieldData.guidTag,
