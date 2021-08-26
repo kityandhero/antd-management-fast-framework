@@ -9,7 +9,7 @@ import {
   stringIsNullOrWhiteSpace,
   isNumber,
   isUndefined,
-  showRuntimeErrorMessage,
+  showRuntimeError,
 } from '../../../utils/tools';
 import { listViewModeCollection } from '../../../utils/constants';
 import {
@@ -87,13 +87,23 @@ class MultiPage extends Base {
     const { paramsKey, loadApiPath, formValues, filters, sorter } = this.state;
 
     if ((loadApiPath || '') === '') {
-      showRuntimeErrorMessage('loadApiPath需要配置');
+      const text = 'loadApiPath需要配置';
+
+      showRuntimeError({
+        message: text,
+      });
+
       return d;
     }
 
     if (this.useParamsKey) {
       if ((paramsKey || '') === '') {
-        showRuntimeErrorMessage('paramsKey需要配置');
+        const text = 'paramsKey需要配置';
+
+        showRuntimeError({
+          message: text,
+        });
+
         return d;
       }
 
@@ -236,7 +246,9 @@ class MultiPage extends Base {
 
           message.warn(errorMessage);
         } else {
-          showRuntimeErrorMessage(error);
+          showRuntimeError({
+            message: error,
+          });
         }
       });
   };
@@ -363,13 +375,21 @@ class MultiPage extends Base {
 
     if (listViewMode === listViewModeCollection.list) {
       if (showSelect) {
-        showRuntimeErrorMessage('MultiListView显示模式下不支持选择');
+        const text = 'MultiListView显示模式下不支持选择';
+
+        showRuntimeError({
+          message: text,
+        });
       }
 
       return this.renderListView();
     }
 
-    showRuntimeErrorMessage('未知的显示模式');
+    const text = '未知的显示模式';
+
+    showRuntimeError({
+      message: text,
+    });
 
     return null;
   };

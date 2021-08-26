@@ -27,13 +27,21 @@ export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   let indexData = -1;
 
   if (!isFunction(compareDataIdHandler)) {
-    showRuntimeError(`compareDataIdHandler mast be function`);
+    const text = `compareDataIdHandler mast be function`;
+
+    showRuntimeError({
+      message: text,
+    });
 
     return;
   }
 
   if (!isFunction(handler)) {
-    showRuntimeError(`handler mast be function`);
+    const text = `handler mast be function`;
+
+    showRuntimeError({
+      message: text,
+    });
 
     return;
   }

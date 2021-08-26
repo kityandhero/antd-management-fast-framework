@@ -1,17 +1,23 @@
-import { isFunction, showRuntimeError } from 'antd-management-fast-framework/lib/utils/tools';
+import { isFunction, showError } from 'antd-management-fast-framework/lib/utils/tools';
 
 export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   const { metaOriginalData } = target.state;
   let indexData = -1;
 
   if (!isFunction(compareDataIdHandler)) {
-    showRuntimeError(`compareDataIdHandler mast be function`);
+    const text = `compareDataIdHandler mast be function`;
+
+    showRuntimeError({
+      message: text,
+    });
 
     return;
   }
 
   if (!isFunction(handler)) {
-    showRuntimeError(`handler mast be function`);
+    const text = `handler mast be function`;
+
+    showError(text);
 
     return;
   }

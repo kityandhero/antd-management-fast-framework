@@ -3,7 +3,7 @@ import { message } from 'antd';
 
 import {
   isFunction,
-  showRuntimeErrorMessage,
+  showRuntimeError,
   isUndefined,
 } from '../../../utils/tools';
 import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
@@ -128,7 +128,12 @@ class BaseWindow extends Base {
     const { submitApiPath } = this.state;
 
     if ((submitApiPath || '') === '') {
-      showRuntimeErrorMessage(`缺少 submitApiPath 配置！`);
+      const text = `缺少 submitApiPath 配置！`;
+
+      showRuntimeError({
+        message: text,
+      });
+
       return;
     }
 
@@ -225,7 +230,9 @@ class BaseWindow extends Base {
 
           message.warn(errorMessage);
         } else {
-          showRuntimeErrorMessage(error);
+          showRuntimeError({
+            message: error,
+          });
         }
       });
   };

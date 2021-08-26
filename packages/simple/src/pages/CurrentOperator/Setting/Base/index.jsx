@@ -8,10 +8,7 @@ import {
   LoadingOutlined,
 } from '@ant-design/icons';
 
-import {
-  corsTarget,
-  showRuntimeErrorMessage,
-} from 'antd-management-fast-framework/lib/utils/tools';
+import { corsTarget, showError } from 'antd-management-fast-framework/lib/utils/tools';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 import { defaultUserAvatar } from 'antd-management-fast-framework/lib/utils/constants';
 import {
@@ -147,11 +144,15 @@ class BaseView extends BaseUpdateForm {
       file.type === 'image/jpg' ||
       file.type === 'image/png';
     if (!isPic) {
-      showRuntimeErrorMessage('请上传图片文件!');
+      const text = '请上传图片文件!';
+
+      showError(text);
     }
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
-      showRuntimeErrorMessage('图片文件不能超过2MB!');
+      const text = '图片文件不能超过2MB!';
+
+      showError(text);
     }
 
     return isPic && isLt2M;

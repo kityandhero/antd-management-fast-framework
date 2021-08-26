@@ -35,7 +35,7 @@ import {
   isArray,
   copyToClipboard,
   stringIsNullOrWhiteSpace,
-  showRuntimeErrorMessage,
+  showRuntimeError,
   toString,
   getGuid,
   isFunction,
@@ -777,7 +777,11 @@ export function buildButtonGroup(buttonGroupData) {
 
         const { disabled, onClick } = item.buttonProps || {
           onClick: () => {
-            showRuntimeErrorMessage('缺少配置');
+            const text = '缺少配置';
+
+            showRuntimeError({
+              message: text,
+            });
           },
         };
 
@@ -793,7 +797,11 @@ export function buildButtonGroup(buttonGroupData) {
         const defaultConfirmProps = {
           title: '确定进行操作吗？',
           onConfirm: () => {
-            showRuntimeErrorMessage('缺少配置');
+            const text = '缺少配置';
+
+            showRuntimeError({
+              message: text,
+            });
           },
           okText: '确定',
           cancelText: '取消',
@@ -961,7 +969,11 @@ export function buildListViewItemActionSelect({
   selectCallback,
 }) {
   if (!isFunction(selectCallback)) {
-    showRuntimeErrorMessage('selectCallback 不是有效的回调函数');
+    const text = 'selectCallback 不是有效的回调函数';
+
+    showRuntimeError({
+      message: text,
+    });
   }
 
   return (
@@ -1092,11 +1104,19 @@ export function buildFormOptionItem({ list, adjustListDataCallback = null }) {
       };
 
       if (stringIsNullOrWhiteSpace(toString(name))) {
-        showRuntimeErrorMessage('name 不能为空');
+        const text = 'name 不能为空';
+
+        showRuntimeError({
+          message: text,
+        });
       }
 
       if (stringIsNullOrWhiteSpace(toString(flag))) {
-        showRuntimeErrorMessage('flag 不能为空');
+        const text = 'flag 不能为空';
+
+        showRuntimeError({
+          message: text,
+        });
       }
 
       listOption.push(
@@ -1445,7 +1465,11 @@ export function buildFormDisplay({
   let labelText = 'object';
 
   if (isObject(title)) {
-    showRuntimeErrorMessage('label必须为文本');
+    const text = 'label必须为文本';
+
+    showRuntimeError({
+      message: text,
+    });
 
     recordObject(label);
   } else {

@@ -2,7 +2,7 @@ import { history } from 'umi';
 import { message } from 'antd';
 
 import {
-  showRuntimeErrorMessage,
+  showRuntimeError,
   isFunction,
   stringIsNullOrWhiteSpace,
 } from './tools';
@@ -40,7 +40,9 @@ export function apiVirtualFailData({
 }) {
   if (needAuthorize) {
     if (apiVirtualAuthorize()) {
-      showRuntimeErrorMessage(messageText);
+      showRuntimeError({
+        message: messageText,
+      });
 
       return {
         code,
@@ -57,7 +59,9 @@ export function apiVirtualFailData({
     };
   }
 
-  showRuntimeErrorMessage(message);
+  showRuntimeError({
+    message: messageText,
+  });
 
   return {
     code,

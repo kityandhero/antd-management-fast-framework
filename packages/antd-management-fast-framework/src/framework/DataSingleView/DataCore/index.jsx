@@ -11,7 +11,7 @@ import {
 
 import {
   getDerivedStateFromPropsForUrlParams,
-  showRuntimeErrorMessage,
+  showRuntimeError,
 } from '../../../utils/tools';
 import {
   buildButtonGroup,
@@ -137,7 +137,11 @@ class DataCore extends BaseView {
   }) => {
     if (this.loadDataAfterMount) {
       if (this.needSetFormValueAfterLoad) {
-        showRuntimeErrorMessage('buildInitialValues 方法需要重新实现。');
+        const text = 'buildInitialValues 方法需要重新实现。';
+
+        showRuntimeError({
+          message: text,
+        });
 
         return {};
       }

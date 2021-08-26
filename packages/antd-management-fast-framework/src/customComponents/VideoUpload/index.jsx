@@ -25,7 +25,7 @@ import {
 import {
   copyToClipboard,
   isFunction,
-  showRuntimeErrorMessage,
+  showRuntimeError,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
@@ -117,7 +117,11 @@ class VideoUpload extends PureComponent {
         if (isFunction(afterChangeSuccess)) {
           afterChangeSuccess(videoUrlTemp || '');
         } else {
-          showRuntimeErrorMessage('afterChangeSuccess 配置无效');
+          const text = 'afterChangeSuccess 配置无效';
+
+          showRuntimeError({
+            message: text,
+          });
         }
       },
     );
@@ -141,7 +145,11 @@ class VideoUpload extends PureComponent {
         if (isFunction(afterChangeSuccess)) {
           afterChangeSuccess('');
         } else {
-          showRuntimeErrorMessage('afterChangeSuccess 配置无效');
+          const text = 'afterChangeSuccess 配置无效';
+
+          showRuntimeError({
+            message: text,
+          });
         }
       },
     );
@@ -186,12 +194,20 @@ class VideoUpload extends PureComponent {
             if (isFunction(afterChangeSuccess)) {
               afterChangeSuccess(video || '');
             } else {
-              showRuntimeErrorMessage('afterChangeSuccess 配置无效');
+              const text = 'afterChangeSuccess 配置无效';
+
+              showRuntimeError({
+                message: text,
+              });
             }
           },
         );
       } else {
-        showRuntimeErrorMessage('pretreatmentRemoteResponse 配置无效');
+        const text = 'pretreatmentRemoteResponse 配置无效';
+
+        showRuntimeError({
+          message: text,
+        });
       }
     }
   };

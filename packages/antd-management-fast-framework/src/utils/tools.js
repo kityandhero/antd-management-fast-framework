@@ -270,22 +270,26 @@ export function corsTarget() {
   return corsTargetDomain;
 }
 
-export function showRuntimeErrorMessage(text, showStack = true) {
-  showRuntimeError({ text: toString(text) }, showStack);
+export function showError(text) {
+  showErrorMessage({
+    message: text,
+  });
 }
 
-export function showRuntimeError({ text }, showStack = true) {
+export function showRuntimeError({ message: messageText, showStack = true }) {
   try {
-    if (!stringIsNullOrWhiteSpace(text || '')) {
+    if (!stringIsNullOrWhiteSpace(messageText || '')) {
       showErrorMessage({
-        message: text,
+        message: messageText,
       });
     }
 
     if (showStack) {
       throw new Error(
         `${
-          stringIsNullOrWhiteSpace(text || '') ? '' : `${toString(text)},`
+          stringIsNullOrWhiteSpace(messageText || '')
+            ? ''
+            : `${toString(messageText)},`
         }调用堆栈:`,
       );
     }
@@ -783,7 +787,11 @@ export function getPathValue(o, path, defaultValue = null) {
   }
 
   if (!isString(path)) {
-    showRuntimeErrorMessage('getPathValue Function param path must be string');
+    const text = 'getPathValue Function param path must be string';
+
+    showRuntimeError({
+      message: text,
+    });
 
     return null;
   }
@@ -1738,7 +1746,11 @@ export function checkFromConfig({ label, name, helper }) {
   let helperText = 'object';
 
   if (isObject(label)) {
-    showRuntimeErrorMessage('label必须为文本');
+    const text = 'label必须为文本';
+
+    showRuntimeError({
+      message: text,
+    });
 
     recordObject(label);
   } else {
@@ -1746,14 +1758,24 @@ export function checkFromConfig({ label, name, helper }) {
   }
 
   if (isObject(name)) {
-    showRuntimeErrorMessage('name必须为文本');
+    const text = 'name必须为文本';
+
+    showRuntimeError({
+      message: text,
+    });
+
     recordObject(name);
   } else {
     nameText = name;
   }
 
   if (isObject(helper)) {
-    showRuntimeErrorMessage('helper必须为文本');
+    const text = 'helper必须为文本';
+
+    showRuntimeError({
+      message: text,
+    });
+
     recordObject(helper);
   } else {
     helperText = helper;

@@ -3,7 +3,7 @@ import { Spin, notification, BackTop } from 'antd';
 import { connect } from 'umi';
 import { KeyOutlined } from '@ant-design/icons';
 
-import { showRuntimeErrorMessage } from 'antd-management-fast-framework/lib/utils/tools';
+import { showError } from 'antd-management-fast-framework/lib/utils/tools';
 import BaseUpdateForm from 'antd-management-fast-framework/lib/framework/DataForm/BaseUpdateForm';
 
 import { fieldData } from '../../Common/data';
@@ -54,12 +54,18 @@ class Password extends BaseUpdateForm {
 
   checkSubmitRequestParams = (o) => {
     if (o.newWord.length < 6) {
-      showRuntimeErrorMessage('新密码长度太短，请输入6~32位的新密码！');
+      const text = '新密码长度太短，请输入6~32位的新密码！';
+
+      showError(text);
+
       return false;
     }
 
     if (o.reNewWord !== o.newWord) {
-      showRuntimeErrorMessage('两次密码输入不一致！');
+      const text = '两次密码输入不一致！';
+
+      showError(text);
+
       return false;
     }
 

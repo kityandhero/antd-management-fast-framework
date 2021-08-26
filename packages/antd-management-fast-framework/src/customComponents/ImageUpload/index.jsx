@@ -10,7 +10,7 @@ import {
 
 import {
   isFunction,
-  showRuntimeErrorMessage,
+  showRuntimeError,
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
 
@@ -68,11 +68,19 @@ class ImageUpload extends PureComponent {
       file.type === 'image/jpg' ||
       file.type === 'image/png';
     if (!isPic) {
-      showRuntimeErrorMessage('请上传图片文件!');
+      const text = '请上传图片文件!';
+
+      showRuntimeError({
+        message: text,
+      });
     }
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
-      showRuntimeErrorMessage('图片文件不能超过2MB!');
+      const text = '图片文件不能超过2MB!';
+
+      showRuntimeError({
+        message: text,
+      });
     }
 
     return isPic && isLt2M;
@@ -101,10 +109,18 @@ class ImageUpload extends PureComponent {
         if (isFunction(afterUploadSuccess)) {
           afterUploadSuccess(image || '');
         } else {
-          showRuntimeErrorMessage('afterUploadSuccess 配置无效');
+          const text = 'afterUploadSuccess 配置无效';
+
+          showRuntimeError({
+            message: text,
+          });
         }
       } else {
-        showRuntimeErrorMessage('pretreatmentRemoteResponse 配置无效');
+        const text = 'pretreatmentRemoteResponse 配置无效';
+
+        showRuntimeError({
+          message: text,
+        });
       }
     }
   };
@@ -133,7 +149,11 @@ class ImageUpload extends PureComponent {
         onCancel() {},
       });
     } else {
-      showRuntimeErrorMessage('afterUploadSuccess 配置无效');
+      const text = 'afterUploadSuccess 配置无效';
+
+      showRuntimeError({
+        message: text,
+      });
     }
   };
 

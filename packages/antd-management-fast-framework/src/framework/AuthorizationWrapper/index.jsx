@@ -3,7 +3,7 @@ import { history } from 'umi';
 import {
   getDerivedStateFromPropsForUrlParams,
   isFunction,
-  showRuntimeErrorMessage,
+  showRuntimeError,
 } from '../../utils/tools';
 import { checkHasAuthority } from '../../utils/authority';
 
@@ -28,7 +28,11 @@ class AuthorizationWrapper extends SupplementWrapper {
 
       needDoOther = true;
     } else {
-      showRuntimeErrorMessage(`缺少权限：${this.componentAuthority}`);
+      const text = `缺少权限：${this.componentAuthority}`;
+
+      showRuntimeError({
+        message: text,
+      });
 
       history.replace('/exception/404');
     }

@@ -34,7 +34,7 @@ import {
   getGuid,
   formatDatetime,
   isArray,
-  showRuntimeErrorMessage,
+  showRuntimeError,
   stringIsEmpty,
   showErrorMessage,
   isBoolean,
@@ -123,7 +123,11 @@ class Common extends Core {
   // 该方法必须重载覆盖
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getApiData = (props) => {
-    showRuntimeErrorMessage('getApiData 方法需要重载实现');
+    const text = 'getApiData 方法需要重载实现';
+
+    showRuntimeError({
+      message: text,
+    });
 
     return {
       metaOriginalData: {
@@ -206,7 +210,11 @@ class Common extends Core {
 
     try {
       if ((loadApiPath || '') === '') {
-        showRuntimeErrorMessage('loadApiPath需要配置');
+        const text = 'loadApiPath需要配置';
+
+        showRuntimeError({
+          message: text,
+        });
 
         this.setState({
           dataLoading: false,
@@ -1079,7 +1087,9 @@ class Common extends Core {
   getUploadTokenObject = () => {
     const text = '需要在继承中重新实现 getUploadTokenObject';
 
-    showRuntimeErrorMessage(text);
+    showRuntimeError({
+      message: text,
+    });
 
     throw new Error(text);
   };
@@ -1088,11 +1098,19 @@ class Common extends Core {
     const isVideo = file.type === 'video/mp4';
 
     if (!isVideo) {
-      showRuntimeErrorMessage('请上传视频文件!');
+      const text = '请上传视频文件!';
+
+      showRuntimeError({
+        message: text,
+      });
     }
     const isLt3M = file.size / 1024 / 1024 < 3;
     if (!isLt3M) {
-      showRuntimeErrorMessage('视频文件不能超过3MB!');
+      const text = '视频文件不能超过3MB!';
+
+      showRuntimeError({
+        message: text,
+      });
     }
 
     return isVideo && isLt3M;
@@ -1102,7 +1120,9 @@ class Common extends Core {
   pretreatmentImageUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentImageUploadRemoteResponse';
 
-    showRuntimeErrorMessage(text);
+    showRuntimeError({
+      message: text,
+    });
 
     throw new Error(text);
   };
@@ -1112,7 +1132,9 @@ class Common extends Core {
     const text =
       '需要在继承中重新实现 pretreatmentFileBase64UploadRemoteResponse';
 
-    showRuntimeErrorMessage(text);
+    showRuntimeError({
+      message: text,
+    });
 
     throw new Error(text);
   };
@@ -1121,7 +1143,9 @@ class Common extends Core {
   pretreatmentVideoUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentVideoUploadRemoteResponse';
 
-    showRuntimeErrorMessage(text);
+    showRuntimeError({
+      message: text,
+    });
 
     throw new Error(text);
   };

@@ -6,7 +6,7 @@ import {
   SearchOutlined,
 } from '@ant-design/icons';
 
-import { isFunction, showRuntimeErrorMessage } from '../../../../utils/tools';
+import { isFunction, showRuntimeError } from '../../../../utils/tools';
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
 
 class SelectFieldBase extends SupplementWrapper {
@@ -38,7 +38,11 @@ class SelectFieldBase extends SupplementWrapper {
   };
 
   showSelect = () => {
-    showRuntimeErrorMessage('showSelect 方法需要在上层进行实现');
+    const text = 'showSelect 方法需要在上层进行实现';
+
+    showRuntimeError({
+      message: text,
+    });
   };
 
   getFieldData = () => {

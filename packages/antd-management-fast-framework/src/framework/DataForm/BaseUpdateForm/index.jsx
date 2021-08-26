@@ -3,7 +3,7 @@ import { message } from 'antd';
 import {
   isFunction,
   isUndefined,
-  showRuntimeErrorMessage,
+  showRuntimeError,
 } from '../../../utils/tools';
 import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 import DataSingleView from '../../DataSingleView/DataLoad';
@@ -33,7 +33,12 @@ class BaseUpdateForm extends DataSingleView {
     const { submitApiPath } = this.state;
 
     if ((submitApiPath || '') === '') {
-      showRuntimeErrorMessage(`缺少 submitApiPath 配置！`);
+      const text = `缺少 submitApiPath 配置！`;
+
+      showRuntimeError({
+        message: text,
+      });
+
       return;
     }
 
@@ -129,7 +134,9 @@ class BaseUpdateForm extends DataSingleView {
 
           message.warn(errorMessage);
         } else {
-          showRuntimeErrorMessage(error);
+          showRuntimeError({
+            message: error,
+          });
         }
       });
   };

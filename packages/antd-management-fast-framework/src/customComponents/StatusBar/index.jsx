@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Row, Col, Divider } from 'antd';
 
-import { isArray, showRuntimeErrorMessage } from '../../utils/tools';
+import { isArray, showRuntimeError } from '../../utils/tools';
 
 class FlexText extends PureComponent {
   render() {
@@ -10,7 +10,11 @@ class FlexText extends PureComponent {
     let actionList = actionsValue || [];
 
     if (!isArray(actionList)) {
-      showRuntimeErrorMessage('actions 必须为数组');
+      const text = 'actions 必须为数组';
+
+      showRuntimeError({
+        message: text,
+      });
 
       actionList = [];
     }

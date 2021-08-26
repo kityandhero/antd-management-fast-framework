@@ -7,7 +7,7 @@ import {
   defaultFormState,
   formatDatetime,
   isUndefined,
-  showRuntimeErrorMessage,
+  showRuntimeError,
 } from '../../../utils/tools';
 import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 import { formNameCollection, datetimeFormat } from '../../../utils/constants';
@@ -167,7 +167,9 @@ class BaseAddForm extends DataCore {
 
           message.warn(errorMessage);
         } else {
-          showRuntimeErrorMessage(error);
+          showRuntimeError({
+            message: error,
+          });
         }
       });
   };

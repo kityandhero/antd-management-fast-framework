@@ -35,7 +35,7 @@ import {
   stringToMoment,
   recordText,
   getDerivedStateFromPropsForUrlParams,
-  showRuntimeErrorMessage,
+  showRuntimeError,
   stringIsNullOrWhiteSpace,
   isFunction,
   copyToClipboard,
@@ -215,7 +215,9 @@ class ListBase extends AuthorizationWrapper {
         column: o,
       })}`;
 
-      showRuntimeErrorMessage(text);
+      showRuntimeError({
+        message: text,
+      });
 
       recordText(text);
     } else {
@@ -226,7 +228,9 @@ class ListBase extends AuthorizationWrapper {
           column: o,
         })}`;
 
-        showRuntimeErrorMessage(text);
+        showRuntimeError({
+          message: text,
+        });
 
         recordText(text);
       } else {
@@ -560,7 +564,9 @@ class ListBase extends AuthorizationWrapper {
 
           message.warn(errorMessage);
         } else {
-          showRuntimeErrorMessage(error);
+          showRuntimeError({
+            message: error,
+          });
         }
       });
   };
@@ -1391,7 +1397,11 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderListView = () => {
-    showRuntimeErrorMessage('需要重载实现renderListView');
+    const text = '需要重载实现renderListView';
+
+    showRuntimeError({
+      message: text,
+    });
 
     return null;
   };

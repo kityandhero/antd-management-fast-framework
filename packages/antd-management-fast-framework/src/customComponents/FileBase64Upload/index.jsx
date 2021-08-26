@@ -6,7 +6,7 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 
-import { isFunction, showRuntimeErrorMessage } from '../../utils/tools';
+import { isFunction, showRuntimeError } from '../../utils/tools';
 
 class FileBase64Upload extends PureComponent {
   constructor(props) {
@@ -33,7 +33,11 @@ class FileBase64Upload extends PureComponent {
   beforeUpload = (file) => {
     const isLt1M = file.size / 1024 / 1024 < 1;
     if (!isLt1M) {
-      showRuntimeErrorMessage('文件不能超过1MB!');
+      const text = '文件不能超过1MB!';
+
+      showRuntimeError({
+        message: text,
+      });
     }
 
     return isLt1M;
@@ -61,10 +65,18 @@ class FileBase64Upload extends PureComponent {
         if (isFunction(afterUploadSuccess)) {
           afterUploadSuccess(fileBase64 || '');
         } else {
-          showRuntimeErrorMessage('afterUploadSuccess 配置无效');
+          const text = 'afterUploadSuccess 配置无效';
+
+          showRuntimeError({
+            message: text,
+          });
         }
       } else {
-        showRuntimeErrorMessage('pretreatmentRemoteResponse 配置无效');
+        const text = 'pretreatmentRemoteResponse 配置无效';
+
+        showRuntimeError({
+          message: text,
+        });
       }
     }
   };

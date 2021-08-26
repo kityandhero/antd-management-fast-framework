@@ -9,7 +9,7 @@ import {
 import {
   stringIsNullOrWhiteSpace,
   isFunction,
-  showRuntimeErrorMessage,
+  showRuntimeError,
 } from '../../utils/tools';
 import { defaultEmptyImage } from '../../utils/constants';
 
@@ -73,7 +73,11 @@ export function decorateAvatar(
             currentAvatar = {
               src: defaultEmptyImage,
               onError: () => {
-                showRuntimeErrorMessage('加载默认图片失败');
+                const text = '加载默认图片失败';
+
+                showRuntimeError({
+                  message: text,
+                });
 
                 return true;
               },

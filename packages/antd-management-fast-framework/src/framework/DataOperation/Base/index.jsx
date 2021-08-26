@@ -3,7 +3,7 @@ import { message, notification } from 'antd';
 import {
   stringIsNullOrWhiteSpace,
   isFunction,
-  showRuntimeErrorMessage,
+  showRuntimeError,
 } from '../../../utils/tools';
 
 import AuthorizationWrapper from '../../AuthorizationWrapper';
@@ -14,7 +14,11 @@ class Base extends AuthorizationWrapper {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   checkSubmitData = (o) => {
     if ((o || null) == null) {
-      showRuntimeErrorMessage('提交的数据不能为空');
+      const text = '提交的数据不能为空';
+
+      showRuntimeError({
+        message: text,
+      });
 
       return false;
     }

@@ -2,7 +2,7 @@ import { message } from 'antd';
 
 import {
   isFunction,
-  showRuntimeErrorMessage,
+  showRuntimeError,
   toNumber,
 } from '../../../../utils/tools';
 import { selectModeCollection } from '../../../../utils/constants';
@@ -96,11 +96,19 @@ class SelectFieldInteractiveBase extends SelectFieldBase {
   };
 
   renderSelectDrawer = () => {
-    showRuntimeErrorMessage('需要实现 renderSelectDrawer 方法');
+    const text = '需要实现 renderSelectDrawer 方法';
+
+    showRuntimeError({
+      message: text,
+    });
   };
 
   renderSelectModal = () => {
-    showRuntimeErrorMessage('需要实现 renderSelectModal 方法');
+    const text = '需要实现 renderSelectModal 方法';
+
+    showRuntimeError({
+      message: text,
+    });
   };
 
   renderOther = () => {
@@ -114,7 +122,11 @@ class SelectFieldInteractiveBase extends SelectFieldBase {
       return this.renderSelectModal();
     }
 
-    showRuntimeErrorMessage('无效的选择项渲染模式');
+    const text = '无效的选择项渲染模式';
+
+    showRuntimeError({
+      message: text,
+    });
 
     return null;
   };
