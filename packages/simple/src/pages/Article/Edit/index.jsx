@@ -254,6 +254,7 @@ class Edit extends DataTabContainer {
       handleMenuClick: (e) => {
         recordObject(e);
       },
+      record: metaData,
       menuItems: [
         {
           key: 'refreshCacheConfirm',

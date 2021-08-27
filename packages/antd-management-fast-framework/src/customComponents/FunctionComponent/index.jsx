@@ -982,6 +982,7 @@ export function buildDropdownEllipsis({
   title = '更多操作',
   disabled = false,
   hidden = false,
+  record: r,
   handleMenuClick = () => {},
   menuItems = [],
 }) {
