@@ -1358,6 +1358,7 @@ class Common extends Core {
             items: contentItems,
             otherComponent,
             formItemLayout,
+            instruction,
           } = {
             ...{
               title: '',
@@ -1368,6 +1369,7 @@ class Common extends Core {
               items: [],
               otherComponent: null,
               formItemLayout: null,
+              instruction: null,
             },
             ...(item || {}),
           };
@@ -1503,6 +1505,10 @@ class Common extends Core {
                   )}
 
                   {otherComponent || null}
+
+                  {isObject(instruction ?? false) ? (
+                    <HelpBox {...instruction} />
+                  ) : null}
                 </>
               </Spin>
             </Card>

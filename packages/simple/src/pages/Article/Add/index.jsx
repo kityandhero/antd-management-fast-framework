@@ -153,6 +153,15 @@ class Add extends BaseAddForm {
           ],
         },
       ],
+      instruction: {
+        title: '操作说明',
+        showNumber: true,
+        list: [
+          {
+            text: '这里是操作说明。',
+          },
+        ],
+      },
     };
   };
 }
