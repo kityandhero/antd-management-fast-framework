@@ -915,23 +915,39 @@ export function buildButtonGroup(buttonGroupData) {
   return (
     <ButtonGroup>
       {(buttonGroupData.buttons || []).map((item) => {
-        const { confirmMode, confirmProps } = item;
+        const {
+          confirmMode,
+          confirmProps,
+          hidden,
+          disabled: disabledOut,
+        } = item;
 
-        const { disabled, onClick } = item.buttonProps || {
-          onClick: () => {
-            const text = '缺少配置';
+        if (hidden) {
+          return null;
+        }
 
-            showRuntimeError({
-              message: text,
-            });
+        const { disabled: disabledInner, onClick } = {
+          ...{
+            onClick: () => {
+              const text = '缺少配置';
+
+              showRuntimeError({
+                message: text,
+              });
+            },
           },
+          ...(item.buttonProps ?? {}),
         };
+
+        const disabled = disabledInner || disabledOut;
 
         if (!(confirmMode || false) || disabled) {
           return (
             <Button key={item.key} {...(item.buttonProps || {})}>
-              {item.loading ? <LoadingOutlined /> : item.icon}
-              {item.text || ''}
+              <IconInfo
+                icon={item.loading ? <LoadingOutlined /> : item.icon}
+                text={item.text ?? ''}
+              />
             </Button>
           );
         }
@@ -963,10 +979,12 @@ export function buildButtonGroup(buttonGroupData) {
         delete buttonProps.onClick;
 
         return (
-          <Popconfirm {...(cp || {})} key={item.key}>
+          <Popconfirm {...(cp || {})} key={item.key} disabled={disabled}>
             <Button {...(buttonProps || {})}>
-              {item.loading ? <LoadingOutlined /> : item.icon}
-              {item.text || ''}
+              <IconInfo
+                icon={item.loading ? <LoadingOutlined /> : item.icon}
+                text={item.text ?? ''}
+              />
             </Button>
           </Popconfirm>
         );
