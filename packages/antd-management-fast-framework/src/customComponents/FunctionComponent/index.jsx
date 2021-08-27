@@ -989,10 +989,6 @@ export function buildDropdownEllipsis({
     return null;
   }
 
-  if (!isFunction(handleButtonClick)) {
-    throw new Error('buildDropdown : handleButtonClick must be function');
-  }
-
   if (!isArray(menuItems) || menuItems.length === 0) {
     return null;
   }

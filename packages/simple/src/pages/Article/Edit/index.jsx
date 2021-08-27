@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'umi';
-import { UpCircleOutlined, DownCircleOutlined, ReloadOutlined } from '@ant-design/icons';
+import {
+  UpCircleOutlined,
+  DownCircleOutlined,
+  ReloadOutlined,
+  LoadingOutlined,
+} from '@ant-design/icons';
 
 import {
   stringIsNullOrWhiteSpace,
@@ -209,6 +214,8 @@ class Edit extends DataTabContainer {
       return null;
     }
 
+    const status = toNumber(getPathValue(metaData, fieldData.status.name));
+
     const that = this;
 
     const menuItems = {
@@ -266,7 +273,7 @@ class Edit extends DataTabContainer {
           icon: <ReloadOutlined />,
           text: '刷新缓存',
           hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
-          disabled: itemStatus === statusCollection.offline,
+          disabled: status === statusCollection.offline,
         },
       ],
     };
