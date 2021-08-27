@@ -25,7 +25,7 @@ import { fieldData } from '../../Common/data';
   loading: loading.models.article,
 }))
 class BasicInfo extends TabPageBase {
-  componentAuthority = accessWayCollection.article.get;
+  componentAuthority = accessWayCollection.article.get.permission;
 
   constructor(props) {
     super(props);
@@ -118,7 +118,7 @@ class BasicInfo extends TabPageBase {
             affix: true,
             list: [
               ...[this.renderRefreshButton()],
-              ...(this.checkAuthority(accessWayCollection.article.updateBasicInfo)
+              ...(this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission)
                 ? [this.renderSaveButton()]
                 : []),
             ],

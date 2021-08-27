@@ -1218,11 +1218,17 @@ class ListBase extends AuthorizationWrapper {
     return (
       <>
         <div className={styles.buttonBox}>
-          {buildButtonGroup(buttonGroupData)}
+          {(buttonGroupData || null) == null
+            ? null
+            : buildButtonGroup(buttonGroupData)}
+
           {(ellipsisActionData || null) == null ? null : (
             <Divider type="vertical" />
           )}
-          {buildDropdownEllipsis(ellipsisActionData)}
+
+          {(ellipsisActionData || null) == null
+            ? null
+            : buildDropdownEllipsis(ellipsisActionData)}
         </div>
       </>
     );

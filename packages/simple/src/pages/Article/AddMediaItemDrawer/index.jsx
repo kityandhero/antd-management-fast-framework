@@ -24,7 +24,7 @@ import { mediaItemData } from '../Common/data';
   loading: loading.models.article,
 }))
 class Index extends BaseAddDrawer {
-  componentAuthority = accessWayCollection.article.addMediaItem;
+  componentAuthority = accessWayCollection.article.addMediaItem.permission;
 
   constructor(props) {
     super(props);

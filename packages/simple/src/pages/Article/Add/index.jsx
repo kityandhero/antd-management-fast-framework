@@ -24,7 +24,7 @@ import { fieldData } from '../Common/data';
   loading: loading.models.article,
 }))
 class Add extends BaseAddForm {
-  componentAuthority = accessWayCollection.article.addBasicInfo;
+  componentAuthority = accessWayCollection.article.addBasicInfo.permission;
 
   constructor(props) {
     super(props);

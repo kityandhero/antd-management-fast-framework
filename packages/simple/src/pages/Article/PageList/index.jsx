@@ -38,7 +38,7 @@ import { fieldData, statusCollection } from '../Common/data';
   loading: loading.models.article,
 }))
 class PageList extends MultiPage {
-  componentAuthority = accessWayCollection.article.pageList;
+  componentAuthority = accessWayCollection.article.pageList.permission;
 
   constructor(props) {
     super(props);
@@ -47,7 +47,7 @@ class PageList extends MultiPage {
       ...this.state,
       ...{
         pageName: '文章列表',
-        paramsKey: pageConfig.article.pageList.paramsKey,
+        paramsKey: accessWayCollection.article.pageList.paramsKey,
         loadApiPath: 'article/pageList',
       },
     };
@@ -207,7 +207,7 @@ class PageList extends MultiPage {
         icon: <PlusOutlined />,
         text: '新增文章',
         onClick: this.goToAdd,
-        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo),
+        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
       },
     ];
   };
@@ -292,14 +292,14 @@ class PageList extends MultiPage {
               key: 'setOnline',
               icon: <PlayCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
               text: '设为上线',
-              hidden: !this.checkAuthority(accessWayCollection.article.setOnline),
+              hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
               disabled: itemStatus === statusCollection.online,
             },
             {
               key: 'setOffline',
               icon: <PauseCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
               text: '设为下线',
-              hidden: !this.checkAuthority(accessWayCollection.article.setOffline),
+              hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
               disabled: itemStatus === statusCollection.offline,
             },
           ],

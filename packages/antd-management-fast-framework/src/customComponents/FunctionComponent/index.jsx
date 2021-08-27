@@ -128,7 +128,7 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
 
 export function buildButton({
   key: keySource = null,
-  type: typeSource = 'primary',
+  type: typeSource = 'default',
   size: sizeSource = 'small',
   text: textSource = '按钮',
   icon: iconSource = <FormOutlined />,
@@ -158,7 +158,7 @@ export function buildButton({
   } = {
     ...{
       key: keySource ?? null,
-      type: typeSource ?? 'primary',
+      type: typeSource ?? 'default',
       size: sizeSource ?? 'small',
       text: textSource ?? '按钮',
       icon: iconSource ?? <FormOutlined />,
@@ -916,78 +916,38 @@ export function buildButtonGroup(buttonGroupData) {
     <ButtonGroup>
       {(buttonGroupData.buttons || []).map((item) => {
         const {
-          confirmMode,
-          confirmProps,
+          key,
+          type,
+          size,
+          text,
+          icon,
+          handleClick,
           hidden,
-          disabled: disabledOut,
+          disabled,
+          confirm,
+          handleData,
+          processing,
+          iconProcessing,
         } = item;
 
         if (hidden) {
           return null;
         }
 
-        const { disabled: disabledInner, onClick } = {
-          ...{
-            onClick: () => {
-              const text = '缺少配置';
-
-              showRuntimeError({
-                message: text,
-              });
-            },
-          },
-          ...(item.buttonProps ?? {}),
-        };
-
-        const disabled = disabledInner || disabledOut;
-
-        if (!(confirmMode || false) || disabled) {
-          return (
-            <Button key={item.key} {...(item.buttonProps || {})}>
-              <IconInfo
-                icon={item.loading ? <LoadingOutlined /> : item.icon}
-                text={item.text ?? ''}
-              />
-            </Button>
-          );
-        }
-
-        const defaultConfirmProps = {
-          title: '确定进行操作吗？',
-          onConfirm: () => {
-            const text = '缺少配置';
-
-            showRuntimeError({
-              message: text,
-            });
-          },
-          okText: '确定',
-          cancelText: '取消',
-        };
-
-        const cp = {
-          ...defaultConfirmProps,
-          ...{
-            onConfirm: onClick,
-          },
-          ...(confirmProps || {}),
-        };
-
-        const { buttonProps } = item;
-
-        delete cp.onClick;
-        delete buttonProps.onClick;
-
-        return (
-          <Popconfirm {...(cp || {})} key={item.key} disabled={disabled}>
-            <Button {...(buttonProps || {})}>
-              <IconInfo
-                icon={item.loading ? <LoadingOutlined /> : item.icon}
-                text={item.text ?? ''}
-              />
-            </Button>
-          </Popconfirm>
-        );
+        return buildButton({
+          key,
+          type,
+          size,
+          text,
+          icon,
+          handleClick,
+          hidden,
+          disabled,
+          confirm,
+          handleData,
+          processing,
+          iconProcessing,
+        });
       })}
 
       {(buttonGroupData.menu || null) != null ? (
@@ -997,15 +957,11 @@ export function buildButtonGroup(buttonGroupData) {
               ...{ placement: 'bottomRight' },
               ...(buttonGroupData.menu.dropdownProps || {}),
               ...{
-                overlay: (
-                  <Menu {...(buttonGroupData.menu.props || {})}>
-                    {buttonGroupData.menu.items.map((item) => (
-                      <Menu.Item {...(item.props || {})} key={item.key}>
-                        {item.children}
-                      </Menu.Item>
-                    ))}
-                  </Menu>
-                ),
+                overlay: buildMenu({
+                  record: handleData,
+                  handleMenuClick,
+                  menuItems,
+                }),
               },
             }}
           >
@@ -1019,29 +975,48 @@ export function buildButtonGroup(buttonGroupData) {
   );
 }
 
-export function buildDropdownEllipsis(ellipsisActionData) {
-  if ((ellipsisActionData || null) == null) {
+export function buildDropdownEllipsis({
+  key = null,
+  size = 'default',
+  placement = 'top',
+  title = '更多操作',
+  disabled = false,
+  hidden = false,
+  handleMenuClick = () => {},
+  menuItems = [],
+}) {
+  if (hidden) {
     return null;
   }
 
-  if (!isArray(ellipsisActionData.items)) {
+  if (!isFunction(handleButtonClick)) {
+    throw new Error('buildDropdown : handleButtonClick must be function');
+  }
+
+  if (!isArray(menuItems) || menuItems.length === 0) {
     return null;
   }
 
-  const menu = (
-    <Menu {...(ellipsisActionData.menuProps || {})}>
-      {ellipsisActionData.items.map((item) => (
-        <Menu.Item {...(item.props || {})} key={item.key}>
-          {item.children}
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
+  const tooltipProps = {
+    placement: placement ?? 'top',
+    title: title ?? '更多操作',
+  };
+
+  if ((key || null) != null) {
+    tooltipProps.key = key;
+  }
 
   return (
-    <Tooltip key={getGuid()} placement="top" title="更多操作">
-      <Dropdown {...(ellipsisActionData.dropdownProps || {})} overlay={menu}>
-        <Button {...(ellipsisActionData.buttonProps || {})}>
+    <Tooltip {...tooltipProps}>
+      <Dropdown
+        disabled={disabled}
+        overlay={buildMenu({
+          record: r,
+          handleMenuClick,
+          menuItems,
+        })}
+      >
+        <Button size={size ?? 'default'}>
           <EllipsisOutlined
             style={{
               fontSize: 20,

@@ -48,7 +48,7 @@ import { mediaItemData } from '../../Common/data';
   loading: loading.models.article,
 }))
 class BasicInfo extends TabPageBase {
-  componentAuthority = accessWayCollection.article.get;
+  componentAuthority = accessWayCollection.article.get.permission;
 
   constructor(props) {
     super(props);
@@ -428,23 +428,23 @@ class BasicInfo extends TabPageBase {
                 onClick={() => this.showUpdateMediaItemDrawer(record)}
                 overlay={
                   <Menu onClick={(e) => this.handleMenuClick(e, record)}>
-                    {this.checkAuthority(accessWayCollection.article.addMediaItem) ? (
+                    {this.checkAuthority(accessWayCollection.article.addMediaItem.permission) ? (
                       <Menu.Item key="insertItem">
                         <IconInfo icon={<InsertRowBelowOutlined />} text="在下方插入" />
                       </Menu.Item>
                     ) : null}
 
-                    {this.checkAuthority(accessWayCollection.article.addMediaItem) ? (
+                    {this.checkAuthority(accessWayCollection.article.addMediaItem.permission) ? (
                       <Menu.Divider />
                     ) : null}
 
-                    {this.checkAuthority(accessWayCollection.article.updateSort) ? (
+                    {this.checkAuthority(accessWayCollection.article.updateSort.permission) ? (
                       <Menu.Item key="moveUp" disabled={record.sort === 1}>
                         <IconInfo icon={<ArrowUpOutlined />} text="向上移动" />
                       </Menu.Item>
                     ) : null}
 
-                    {this.checkAuthority(accessWayCollection.article.updateSort) ? (
+                    {this.checkAuthority(accessWayCollection.article.updateSort.permission) ? (
                       <Menu.Item
                         key="moveDown"
                         disabled={record.sort === (mediaItemList || []).length}
@@ -453,11 +453,11 @@ class BasicInfo extends TabPageBase {
                       </Menu.Item>
                     ) : null}
 
-                    {this.checkAuthority(accessWayCollection.article.updateSort) ? (
+                    {this.checkAuthority(accessWayCollection.article.updateSort.permission) ? (
                       <Menu.Divider />
                     ) : null}
 
-                    {this.checkAuthority(accessWayCollection.article.removeMediaItem) ? (
+                    {this.checkAuthority(accessWayCollection.article.removeMediaItem.permission) ? (
                       <Menu.Item key="removeItem">
                         <IconInfo icon={<DeleteOutlined />} text="删除信息" />
                       </Menu.Item>
@@ -494,7 +494,7 @@ class BasicInfo extends TabPageBase {
             <Button
               type="primary"
               disabled={
-                !this.checkAuthority(accessWayCollection.article.addMediaItem) ||
+                !this.checkAuthority(accessWayCollection.article.addMediaItem.permission) ||
                 dataLoading ||
                 !loadSuccess
               }

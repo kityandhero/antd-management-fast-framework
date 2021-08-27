@@ -36,7 +36,7 @@ export function getAllAuthority() {
 
 export function checkIsSuper() {
   const list = getAllAuthorityCore();
-  const superAuth = getAccessWayCollectionCache().super;
+  const superAuth = getAccessWayCollectionCache().super.permission ?? '';
 
   const isSuper = (list || []).find((o) => o === superAuth) || '';
 
@@ -49,7 +49,9 @@ export function checkIsSuper() {
 
 export function checkHasAuthority(auth) {
   const list = getAllAuthorityCore();
-  const superAuth = getAccessWayCollectionCache().super;
+
+  const accessWayCollection = getAccessWayCollectionCache();
+  const superAuth = accessWayCollection.super.permission ?? '';
 
   const isSuper = (list || []).find((o) => o === superAuth);
 
@@ -61,8 +63,10 @@ export function checkHasAuthority(auth) {
 
   if ((v ?? null) == null) {
     recordObject({
+      superAuth,
       checkAuthority: auth,
       listAuthority: list,
+      accessWayCollection,
     });
   }
 

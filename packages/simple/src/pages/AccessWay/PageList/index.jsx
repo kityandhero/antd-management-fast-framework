@@ -25,7 +25,7 @@ import { handleItem } from 'antd-management-fast-framework/lib/utils/actionAssis
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
 import { buildDropdown } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
-import { pageConfig } from '@/customConfig/config';
+import { accessWayCollection } from '@/customConfig/config';
 import {
   getAccessWayStatusName,
   renderSearchAccessWayStatusSelect,
@@ -45,6 +45,8 @@ import { fieldData, statusCollection } from '../Common/data';
   loading: loading.models.accessWay,
 }))
 class PageList extends MultiPage {
+  componentAuthority = accessWayCollection.accessWay.pageList.permission;
+
   constructor(props) {
     super(props);
 
@@ -52,7 +54,7 @@ class PageList extends MultiPage {
       ...this.state,
       ...{
         pageName: '模块列表',
-        paramsKey: pageConfig.accessWay.pageList.paramsKey,
+        paramsKey: accessWayCollection.accessWay.pageList.paramsKey,
         loadApiPath: 'accessWay/pageList',
         dateRangeFieldName: '生成时段',
       },

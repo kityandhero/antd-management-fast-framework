@@ -19,13 +19,19 @@ export default [
         path: '/dashboard',
         name: 'dashboard',
         icon: 'dashboard',
-        authority: [accessWayCollection.super, accessWayCollection.dashboard.analysis],
+        authority: [
+          accessWayCollection.super.permission,
+          accessWayCollection.dashboard.analysis.permission,
+        ],
         routes: [
           {
             path: '/dashboard/analysis',
             name: 'analysis',
             icon: 'area-chart',
-            authority: [accessWayCollection.super, accessWayCollection.dashboard.analysis],
+            authority: [
+              accessWayCollection.super.permission,
+              accessWayCollection.dashboard.analysis.permission,
+            ],
             component: './Dashboard/Analysis',
           },
         ],
@@ -58,13 +64,19 @@ export default [
         name: 'news',
         icon: 'team',
         path: '/news',
-        authority: [accessWayCollection.super, accessWayCollection.article.pageList],
+        authority: [
+          accessWayCollection.super.permission,
+          accessWayCollection.article.pageList.permission,
+        ],
         routes: [
           {
             path: '/news/article',
             name: 'article',
             icon: 'bars',
-            authority: [accessWayCollection.super, accessWayCollection.article.pageList],
+            authority: [
+              accessWayCollection.super.permission,
+              accessWayCollection.article.pageList.permission,
+            ],
             hideChildrenInMenu: true,
             routes: [
               {
@@ -84,7 +96,10 @@ export default [
                 path: '/news/article/addBasicInfo',
                 name: 'addBasicInfo',
                 icon: 'plus-square',
-                authority: [accessWayCollection.super, accessWayCollection.article.addBasicInfo],
+                authority: [
+                  accessWayCollection.super.permission.permission,
+                  accessWayCollection.article.addBasicInfo.permission,
+                ],
                 component: './Article/Add',
               },
               {

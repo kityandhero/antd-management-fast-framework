@@ -55,7 +55,7 @@ const productRankingMaxCount = 7;
   loading: loading.models.dashboard,
 }))
 class Analysis extends DataLoad {
-  componentAuthority = accessWayCollection.dashboard.analysis;
+  componentAuthority = accessWayCollection.dashboard.analysis.permission;
 
   constructor(props) {
     super(props);

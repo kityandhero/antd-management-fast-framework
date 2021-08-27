@@ -43,7 +43,9 @@ export const appInitDefault = {
 };
 
 export const accessWaySpecialCollection = {
-  super: 'super',
+  super: {
+    permission: 'super',
+  },
 };
 
 export const formNameCollection = {

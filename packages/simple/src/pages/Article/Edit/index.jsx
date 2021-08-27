@@ -8,6 +8,8 @@ import {
   getDerivedStateFromPropsForUrlParams,
   getPathValue,
   toNumber,
+  showInfoMessage,
+  recordObject,
 } from 'antd-management-fast-framework/lib/utils/tools';
 import { accessWayCollection } from '@/customConfig/config';
 
@@ -16,7 +18,7 @@ import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconIn
 
 import { setOfflineAction, setOnlineAction, refreshCacheConfirmAction } from '../Assist/action';
 import { parseUrlParamsForSetState, checkNeedUpdateAssist } from '../Assist/config';
-import { fieldData } from '../Common/data';
+import { fieldData, statusCollection } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -24,17 +26,17 @@ import { fieldData } from '../Common/data';
   loading: loading.models.article,
 }))
 class Edit extends DataTabContainer {
-  componentAuthority = accessWayCollection.article.get;
+  componentAuthority = accessWayCollection.article.get.permission;
 
   tabList = [
     {
       key: 'basicInfo',
-      show: this.checkAuthority(accessWayCollection.article.get),
+      show: this.checkAuthority(accessWayCollection.article.get.permission),
       tab: '基本信息',
     },
     {
       key: 'mediaInfo',
-      show: this.checkAuthority(accessWayCollection.article.updateMediaData),
+      show: this.checkAuthority(accessWayCollection.article.updateMediaData.permission),
       tab: '媒体信息',
     },
   ];
@@ -129,61 +131,71 @@ class Edit extends DataTabContainer {
 
   pageHeaderActionExtraGroup = () => {
     const { metaData, dataLoading, processing } = this.state;
-    const buttons = [];
 
     if (metaData == null) {
       return null;
     }
 
-    if (this.checkAuthority(accessWayCollection.article.setOnline)) {
-      buttons.push({
+    const status = toNumber(getPathValue(metaData, fieldData.status.name));
+
+    const that = this;
+
+    const buttons = [
+      {
         key: 'setOnline',
-        confirmMode: true,
-        confirmProps: {
+        type: 'default',
+        size: 'small',
+        text: '上架',
+        icon: <UpCircleOutlined />,
+        handleClick: (r) => {
+          showInfoMessage({
+            message: '上架',
+          });
+
+          showInfoMessage({
+            message: JSON.stringify(r),
+          });
+        },
+        hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
+        disabled: dataLoading || processing || status === statusCollection.online,
+        confirm: {
           title: '设置为上架，确定吗？',
           placement: 'bottomRight',
-          onConfirm: () => {
-            this.setOnline(metaData);
-          },
+          okText: '确定',
+          cancelText: '取消',
         },
-        buttonProps: {
-          loading: processing,
-          disabled:
-            dataLoading ||
-            processing ||
-            metaData == null ||
-            (metaData != null && toNumber(getPathValue(metaData, fieldData.status.name)) === 10),
-          icon: <UpCircleOutlined />,
-        },
-
-        text: '上架',
-      });
-    }
-
-    if (this.checkAuthority(accessWayCollection.article.setOffline)) {
-      buttons.push({
+        handleData: metaData,
+        processing: dataLoading,
+        iconProcessing: <LoadingOutlined />,
+      },
+      {
         key: 'setOffline',
-        confirmMode: true,
-        confirmProps: {
+        type: 'default',
+        size: 'small',
+        text: '下架',
+        icon: <UpCircleOutlined />,
+        handleClick: (r) => {
+          showInfoMessage({
+            message: '下架',
+          });
+
+          showInfoMessage({
+            message: JSON.stringify(r),
+          });
+        },
+        hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
+        disabled: dataLoading || processing || status === statusCollection.offline,
+        confirm: {
           title: '设置为下架，确定吗？',
           placement: 'bottomRight',
-          onConfirm: () => {
-            this.setOffline(metaData);
-          },
+          okText: '确定',
+          cancelText: '取消',
         },
-        buttonProps: {
-          loading: processing,
-          disabled:
-            dataLoading ||
-            processing ||
-            metaData == null ||
-            (metaData != null && toNumber(getPathValue(metaData, fieldData.status.name)) === 0),
-          icon: <DownCircleOutlined />,
-        },
-
-        text: '下架',
-      });
-    }
+        handleData: metaData,
+        processing: dataLoading,
+        iconProcessing: <LoadingOutlined />,
+      },
+    ];
 
     return {
       buttons,
@@ -225,7 +237,39 @@ class Edit extends DataTabContainer {
       ],
     };
 
-    return menuItems;
+    return {
+      key: undefined,
+      size: 'default',
+      placement: 'top',
+      title: '更多操作',
+      disabled: false,
+      hidden: false,
+      handleMenuClick: (e) => {
+        recordObject(e);
+      },
+      menuItems: [
+        {
+          key: 'refreshCacheConfirm',
+          icon: <ReloadOutlined />,
+          text: '按钮1',
+          hidden: true,
+        },
+        {
+          key: 'refreshCacheConfirm',
+          icon: <ReloadOutlined />,
+          text: '按钮2',
+          hidden: false,
+          disabled: true,
+        },
+        {
+          key: 'refreshCacheConfirm',
+          icon: <ReloadOutlined />,
+          text: '刷新缓存',
+          hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+          disabled: itemStatus === statusCollection.offline,
+        },
+      ],
+    };
   };
 
   pageHeaderExtraContentData = () => {

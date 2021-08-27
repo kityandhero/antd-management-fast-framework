@@ -1,35 +1,86 @@
 export const accessWayCollection = {
   ...{
-    super: 'super',
+    super: {
+      permission: 'super',
+    },
     dashboard: {
-      analysis: 'c0b26b10-bb9e-4d43-8afe-1493e2e24d37',
-      getAnalysisMicroApp: '8d125116-c0a3-47a0-a962-cfd1e925a07d',
+      analysis: {
+        permission: '',
+      },
+      getAnalysisMicroApp: {
+        permission: '',
+      },
     },
     accessWay: {
-      pageList: '',
-      get: '',
-      setOnline: 'a0fe7637-b8a7-420f-8109-35780f41330e',
-      setOffline: '5a5065bb-ce05-44d1-bd3b-cd2206062bb3',
-      refreshCache: '',
+      pageList: {
+        permission: '',
+      },
+      get: {
+        permission: '',
+      },
+      setOnline: {
+        permission: '',
+      },
+      setOffline: {
+        permission: '',
+      },
+      refreshCache: {
+        permission: '',
+      },
     },
     article: {
-      pageList: '',
-      get: '',
-      addBasicInfo: '',
-      updateBasicInfo: '',
-      updateContentData: '',
-      updateMediaData: '',
-      updateSort: '',
-      updateRenderType: '',
-      setOnline: '',
-      setOffline: '',
-      Remove: '',
-      refreshCache: '',
-      getMediaItem: '',
-      addMediaItem: '',
-      updateMediaItem: '',
-      setMediaCollectionSort: '',
-      removeMediaItem: '',
+      pageList: {
+        paramsKey: 'a1b398d9-0bf7-40df-9f2b-4bb15d69f970',
+        permission: '',
+      },
+      get: {
+        permission: '',
+      },
+      addBasicInfo: {
+        permission: '',
+      },
+      updateBasicInfo: {
+        permission: '',
+      },
+      updateContentData: {
+        permission: '',
+      },
+      updateMediaData: {
+        permission: '',
+      },
+      updateSort: {
+        permission: '',
+      },
+      updateRenderType: {
+        permission: '',
+      },
+      setOnline: {
+        permission: '',
+      },
+      setOffline: {
+        permission: '',
+      },
+      Remove: {
+        permission: '',
+      },
+      refreshCache: {
+        permission: '',
+      },
+      getMediaItem: {
+        permission: '',
+      },
+      addMediaItem: {
+        permission: '',
+      },
+      updateMediaItem: {
+        permission: '',
+      },
+      setMediaCollectionSort: {
+        permission: '',
+      },
+      removeMediaItem: {
+        permission: '',
+      },
     },
   },
 };

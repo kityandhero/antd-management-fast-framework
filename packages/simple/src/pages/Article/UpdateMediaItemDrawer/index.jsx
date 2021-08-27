@@ -22,7 +22,7 @@ import { mediaItemData } from '../Common/data';
   loading: loading.models.article,
 }))
 class Index extends BaseUpdateDrawer {
-  componentAuthority = accessWayCollection.article.getMediaItem;
+  componentAuthority = accessWayCollection.article.getMediaItem.permission;
 
   constructor(props) {
     super(props);

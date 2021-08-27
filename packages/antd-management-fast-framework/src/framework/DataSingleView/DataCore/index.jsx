@@ -98,9 +98,13 @@ class DataCore extends BaseView {
 
     return (
       <Space>
-        {buildButtonGroup(buttonGroupData)}
+        {(buttonGroupData || null) != null
+          ? buildButtonGroup(buttonGroupData)
+          : null}
 
-        {buildDropdownEllipsis(ellipsisActionData)}
+        {(ellipsisActionData || null) != null
+          ? buildDropdownEllipsis(ellipsisActionData)
+          : null}
 
         {this.pageHeaderActionBack()}
 
