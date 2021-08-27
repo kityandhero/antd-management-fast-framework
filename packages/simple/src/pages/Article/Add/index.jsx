@@ -165,10 +165,19 @@ class Add extends BaseAddForm {
           spinning: processing,
           items: [
             {
-              lg: 18,
+              lg: 12,
               type: formContentConfig.contentItemType.input,
               fieldData: fieldData.title,
               require: true,
+            },
+            {
+              lg: 6,
+              type: formContentConfig.contentItemType.input,
+              fieldData: fieldData.sort,
+            },
+            {
+              lg: 6,
+              type: formContentConfig.contentItemType.placeholder,
             },
             {
               lg: 24,

@@ -152,6 +152,7 @@ export const formContentConfig = {
     help: 'help',
   },
   contentItemType: {
+    placeholder: 'placeholder',
     text: 'text',
     input: 'input',
     password: 'password',

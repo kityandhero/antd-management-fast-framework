@@ -1486,6 +1486,9 @@ class Common extends Core {
 
               const {
                 lg: lgValue,
+                md,
+                sm,
+                xs,
                 type,
                 require,
                 fieldData: fieldDataValue,
@@ -1495,6 +1498,9 @@ class Common extends Core {
               } = {
                 ...{
                   lg: 6,
+                  md: 12,
+                  sm: 24,
+                  xs: 24,
                   require: false,
                   type: '',
                   fieldData: {
@@ -1534,6 +1540,18 @@ class Common extends Core {
                   : lg;
               lg = lg > 24 ? 24 : lg;
 
+              if (type === formContentConfig.contentItemType.placeholder) {
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg}
+                    md={lg || md}
+                    sm={lg || sm}
+                    xs={lg || xs}
+                  />
+                );
+              }
+
               if (type === formContentConfig.contentItemType.imageUpload) {
                 const uploadProps = {
                   ...(contentItem.uploadProps || {}),
@@ -1545,7 +1563,7 @@ class Common extends Core {
                 };
 
                 return (
-                  <Col key={contentItemKey} lg={24} md={12} sm={24} xs={24}>
+                  <Col key={contentItemKey} lg={24} md={md} sm={sm} xs={xs}>
                     <ImageUpload
                       {...uploadProps}
                       pretreatmentRemoteResponse={
@@ -1589,7 +1607,7 @@ class Common extends Core {
                 );
 
                 return (
-                  <Col key={contentItemKey} lg={24} md={12} sm={24} xs={24}>
+                  <Col key={contentItemKey} lg={24} md={24} sm={24} xs={24}>
                     {imageBoxContainorStyle == null ? (
                       imageBox
                     ) : (
@@ -1610,7 +1628,7 @@ class Common extends Core {
                 };
 
                 return (
-                  <Col key={contentItemKey} lg={24} md={12} sm={24} xs={24}>
+                  <Col key={contentItemKey} lg={24} md={24} sm={24} xs={24}>
                     {this.renderFormInnerComponent(
                       fieldData.label,
                       <FileBase64Upload
@@ -1647,9 +1665,9 @@ class Common extends Core {
                   <Col
                     key={contentItemKey}
                     lg={lg || 6}
-                    md={12}
-                    sm={24}
-                    xs={24}
+                    md={md}
+                    sm={sm}
+                    xs={xs}
                   >
                     {this.renderFormInnerComponent(
                       fieldData.label,
@@ -1673,7 +1691,7 @@ class Common extends Core {
               }
 
               return (
-                <Col key={contentItemKey} lg={lg || 6} md={12} sm={24} xs={24}>
+                <Col key={contentItemKey} lg={lg || 6} md={md} sm={sm} xs={xs}>
                   {type === formContentConfig.contentItemType.text
                     ? this.renderFormText(
                         fieldData.label,

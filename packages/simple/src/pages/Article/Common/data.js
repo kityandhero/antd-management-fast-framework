@@ -18,6 +18,11 @@ export const fieldData = {
       name: 'subtitle',
       helper: '文章的副标题',
     },
+    sort: {
+      label: '排序值',
+      name: 'sort',
+      helper: '文章的排序值',
+    },
     description: {
       label: '简介描述',
       name: 'description',
