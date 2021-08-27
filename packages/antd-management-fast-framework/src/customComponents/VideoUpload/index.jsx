@@ -75,7 +75,11 @@ class VideoUpload extends PureComponent {
     const { videoUrl } = this.state;
 
     if (stringIsNullOrWhiteSpace(videoUrl)) {
-      showErrorMessage('无效的视频源');
+      const text = '无效的视频源';
+
+      showErrorMessage({
+        message: text,
+      });
 
       return;
     }
@@ -159,11 +163,19 @@ class VideoUpload extends PureComponent {
     const isVideo = file.type === 'video/mp4';
 
     if (!isVideo) {
-      showErrorMessage('请上传视频文件!');
+      const text = '请上传视频文件!';
+
+      showErrorMessage({
+        message: text,
+      });
     }
     const isLt3M = file.size / 1024 / 1024 < 3;
     if (!isLt3M) {
-      showErrorMessage('视频文件不能超过3MB!');
+      const text = '视频文件不能超过3MB!';
+
+      showErrorMessage({
+        message: text,
+      });
     }
 
     return isVideo && isLt3M;
@@ -227,7 +239,11 @@ class VideoUpload extends PureComponent {
 
       case 'copyUrl':
         if (stringIsNullOrWhiteSpace(videoUrl)) {
-          showErrorMessage('当前未设置视频地址');
+          const text = '当前未设置视频地址';
+
+          showErrorMessage({
+            message: text,
+          });
         } else {
           copyToClipboard(videoUrl);
         }

@@ -10,7 +10,6 @@ import {
   message,
   Space,
   Tooltip,
-  Popconfirm,
 } from 'antd';
 import {
   ContactsOutlined,
@@ -31,7 +30,6 @@ import {
   refitCommonData,
   stringIsNullOrWhiteSpace,
   recordObject,
-  getGuid,
   formatDatetime,
   isArray,
   showRuntimeError,
@@ -52,6 +50,7 @@ import FlexText from '../../customComponents/FlexText';
 import ImageUpload from '../../customComponents/ImageUpload';
 import VideoUpload from '../../customComponents/VideoUpload';
 import ImageBox from '../../customComponents/ImageBox';
+import HelpBox from '../../customComponents/HelpBox';
 import HelpCard from '../../customComponents/HelpCard';
 import IconInfo from '../../customComponents/IconInfo';
 import FileBase64Upload from '../../customComponents/FileBase64Upload';
@@ -83,6 +82,7 @@ import {
   buildFormInputNumber,
   buildFormTextArea,
   buildFormDatePicker,
+  buildButton,
 } from '../../customComponents/FunctionComponent';
 import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
 
@@ -974,6 +974,8 @@ class Common extends Core {
     disabled = false,
     hidden = false,
     confirm = false,
+    processing = false,
+    handleData = null,
   }) => {
     if (hidden) {
       return null;
@@ -983,85 +985,19 @@ class Common extends Core {
     const buttonProcessing = this.getSaveButtonProcessing();
     const ico = (icon || null) == null ? this.getSaveButtonIcon() : icon;
 
-    if (confirm) {
-      if (isBoolean(confirm)) {
-        recordObject({
-          key,
-          type,
-          size,
-          text,
-          icon,
-          onClick,
-          disabled,
-          hidden,
-          confirm,
-        });
-
-        throw new Error(
-          'renderGeneralButton : confirm property not allow bool when check confirm is true.',
-        );
-      }
-
-      const { placement, title, okText, cancelText } = {
-        ...{
-          placement: 'topRight',
-          title: '将要进行操作，确定吗？',
-          okText: '确定',
-          cancelText: '取消',
-        },
-        ...(isObject(confirm) ? confirm : {}),
-      };
-
-      return (
-        <Popconfirm
-          key={key || getGuid()}
-          placement={placement}
-          title={title || 'confirm:缺少title配置'}
-          onConfirm={(e) => {
-            if (isFunction(onClick)) {
-              onClick(e);
-            } else {
-              showErrorMessage('onClick is not function');
-            }
-          }}
-          okText={okText}
-          cancelText={cancelText}
-          disabled={buttonDisabled || disabled}
-        >
-          <Button
-            type={type || 'primary'}
-            size={size || null}
-            disabled={buttonDisabled || disabled}
-          >
-            <IconInfo
-              icon={buttonProcessing ? <LoadingOutlined /> : ico}
-              text={text || 'button'}
-            />
-          </Button>
-        </Popconfirm>
-      );
-    }
-
-    return (
-      <Button
-        key={key || getGuid()}
-        type={type || 'primary'}
-        size={size || null}
-        disabled={buttonDisabled || disabled}
-        onClick={(e) => {
-          if (isFunction(onClick)) {
-            onClick(e);
-          } else {
-            showErrorMessage('onClick is not function');
-          }
-        }}
-      >
-        <IconInfo
-          icon={buttonProcessing ? <LoadingOutlined /> : ico}
-          text={text || 'button'}
-        />
-      </Button>
-    );
+    return buildButton({
+      key,
+      type,
+      size,
+      text,
+      icon: ico,
+      handleClick: onClick,
+      disabled: disabled || buttonDisabled,
+      processing: processing || buttonProcessing,
+      hidden,
+      confirm,
+      handleData: handleData ?? null,
+    });
   };
 
   buildOtherFormProps = () => {
@@ -1171,7 +1107,11 @@ class Common extends Core {
     };
 
     if (!isArray(tools)) {
-      showErrorMessage('工具栏配置数据无效');
+      const text = '工具栏配置数据无效';
+
+      showErrorMessage({
+        message: text,
+      });
 
       recordObject(config);
 
@@ -1260,7 +1200,11 @@ class Common extends Core {
     };
 
     if (!isArray(list)) {
-      showErrorMessage('帮助条目数据无效');
+      const text = '帮助条目数据无效';
+
+      showErrorMessage({
+        message: text,
+      });
 
       recordObject(config);
 

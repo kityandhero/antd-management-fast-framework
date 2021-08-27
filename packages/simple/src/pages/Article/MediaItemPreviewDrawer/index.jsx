@@ -39,7 +39,11 @@ class MediaItemPreviewDrawer extends Base {
     const { data } = this.props;
 
     if (!isArray(data)) {
-      showErrorMessage('预览数据格式无效');
+      const text = '预览数据格式无效';
+
+      showErrorMessage({
+        message: text,
+      });
 
       return null;
     }

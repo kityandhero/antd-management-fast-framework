@@ -79,7 +79,11 @@ export async function actionCore({
   successMessage = '数据已经操作成功，请进行后续操作。',
 }) {
   if ((record || null) == null) {
-    showErrorMessage('actionCore : record not allow null');
+    const text = 'actionCore : record not allow null';
+
+    showErrorMessage({
+      message: text,
+    });
   }
 
   if ((target || null) == null) {

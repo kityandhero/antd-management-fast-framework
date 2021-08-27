@@ -1427,7 +1427,11 @@ class ListBase extends AuthorizationWrapper {
     };
 
     if (!isArray(tools)) {
-      showErrorMessage('工具栏配置数据无效');
+      const text = '工具栏配置数据无效';
+
+      showErrorMessage({
+        message: text,
+      });
 
       recordObject(config);
 
@@ -1447,6 +1451,12 @@ class ListBase extends AuthorizationWrapper {
           extra={
             <Space split={<Divider type="vertical" />}>
               {toolList.map((o) => {
+                const { hidden } = { ...{ hidden: false }, ...(o ?? {}) };
+
+                if (hidden) {
+                  return null;
+                }
+
                 return (
                   <Tooltip key={o.key} title={o.title || ''}>
                     {o.component}
@@ -1515,7 +1525,11 @@ class ListBase extends AuthorizationWrapper {
     };
 
     if (!isArray(list)) {
-      showErrorMessage('帮助条目数据无效');
+      const text = '帮助条目数据无效';
+
+      showErrorMessage({
+        message: text,
+      });
 
       recordObject(config);
 

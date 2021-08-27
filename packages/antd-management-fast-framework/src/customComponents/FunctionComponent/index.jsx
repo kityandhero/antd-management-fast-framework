@@ -126,6 +126,148 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
   );
 }
 
+export function buildButton({
+  key: keySource = null,
+  type: typeSource = 'primary',
+  size: sizeSource = 'small',
+  text: textSource = '按钮',
+  icon: iconSource = <FormOutlined />,
+  handleClick: handleClickSource = () => {},
+  hidden: hiddenSource = false,
+  disabled: disabledSource = false,
+  confirm: confirmSource = false,
+  handleData: handleDataSource = null,
+  processing: processingSource = false,
+  iconProcessing: iconProcessingSource = <LoadingOutlined />,
+}) {
+  let confirmAdjust = false;
+
+  const {
+    key,
+    type,
+    size,
+    icon,
+    text,
+    disabled,
+    hidden,
+    confirm,
+    handleData,
+    handleClick,
+    processing,
+    iconProcessing,
+  } = {
+    ...{
+      key: keySource ?? null,
+      type: typeSource ?? 'primary',
+      size: sizeSource ?? 'small',
+      text: textSource ?? '按钮',
+      icon: iconSource ?? <FormOutlined />,
+      handleClick: handleClickSource ?? null,
+      hidden: hiddenSource ?? false,
+      disabled: disabledSource ?? false,
+      confirm: confirmSource ?? false,
+      processing: processingSource ?? false,
+      iconProcessing: iconProcessingSource ?? <LoadingOutlined />,
+      handleData: handleDataSource ?? null,
+    },
+  };
+
+  if (hidden) {
+    return null;
+  }
+
+  confirmAdjust = confirm;
+
+  if (confirmAdjust) {
+    if (isBoolean(confirmAdjust)) {
+      recordObject({
+        key,
+        type,
+        size,
+        icon,
+        text,
+        disabled,
+        hidden,
+        confirm,
+        handleData,
+        handleClick,
+        processing,
+        iconProcessing,
+      });
+
+      throw new Error(
+        'buildMenu : confirm property in menu Items not allow bool when check confirm is true.',
+      );
+    }
+
+    const { placement, title, handleConfirm, okText, cancelText } = {
+      ...{
+        placement: 'topRight',
+        title: '将要进行操作，确定吗？',
+        okText: '确定',
+        cancelText: '取消',
+      },
+      ...(isObject(confirmAdjust) ? confirmAdjust : {}),
+    };
+
+    confirmAdjust = {
+      placement,
+      title,
+      handleConfirm,
+      okText,
+      cancelText,
+    };
+  } else {
+    confirmAdjust = false;
+  }
+
+  const ico = processing
+    ? iconProcessing ?? <LoadingOutlined />
+    : icon ?? <EditOutlined />;
+
+  if (confirmAdjust) {
+    const { placement, title, okText, cancelText } = confirmAdjust;
+
+    return (
+      <Popconfirm
+        key={key ?? undefined}
+        placement={placement}
+        title={title || 'confirm:缺少title配置'}
+        onConfirm={() => {
+          if (isFunction(handleClick)) {
+            handleClick(handleData ?? null);
+          } else {
+            const messageText = 'buildButton : handleClick is not function';
+
+            showErrorMessage({
+              message: messageText,
+            });
+          }
+        }}
+        okText={okText}
+        cancelText={cancelText}
+        disabled={disabled}
+      >
+        <Button type={type} size={size} disabled={disabled}>
+          <IconInfo icon={ico} text={text} />
+        </Button>
+      </Popconfirm>
+    );
+  }
+
+  return (
+    <Button
+      key={key ?? undefined}
+      type={type}
+      size={size}
+      disabled={disabled}
+      onClick={() => handleClick(handleData ?? null)}
+    >
+      <IconInfo icon={ico} text={text} />
+    </Button>
+  );
+}
+
 export function buildPopconfirm({
   placement = 'topRight',
   size = 'small',
