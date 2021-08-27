@@ -1450,8 +1450,21 @@ class Common extends Core {
 
                   {otherComponent || null}
 
-                  {isObject(instruction ?? false) ? (
-                    <HelpBox {...instruction} />
+                  {isObject(instruction ?? false) ||
+                  isArray(instruction ?? false) ? (
+                    isArray(instruction ?? false) ? (
+                      instruction.map((o, indexHelpBox) => {
+                        if ((o ?? null) == null) {
+                          return null;
+                        }
+
+                        const keyHelpBox = `${key}_HelpBox_$${indexHelpBox}`;
+
+                        return <HelpBox key={keyHelpBox} {...o} />;
+                      })
+                    ) : (
+                      <HelpBox {...instruction} />
+                    )
                   ) : null}
                 </>
               </Spin>

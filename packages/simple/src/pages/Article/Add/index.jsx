@@ -6,6 +6,8 @@ import {
   getDerivedStateFromPropsForUrlParams,
   corsTarget,
   showInfoMessage,
+  isObject,
+  isArray,
 } from 'antd-management-fast-framework/lib/utils/tools';
 import { formContentConfig } from 'antd-management-fast-framework/lib/utils/constants';
 import BaseAddForm from 'antd-management-fast-framework/lib/framework/DataForm/BaseAddForm';
@@ -176,8 +178,15 @@ class Add extends BaseAddForm {
           ],
           instruction: {
             title: '操作说明',
+            showDivider: true,
             showNumber: true,
             list: [
+              {
+                text: '这里是操作说明。',
+              },
+              {
+                text: '这里是操作说明。',
+              },
               {
                 text: '这里是操作说明。',
               },
@@ -199,6 +208,40 @@ class Add extends BaseAddForm {
               afterUploadSuccess: (imageData) => {
                 this.afterImageUploadSuccess(imageData);
               },
+            },
+          ],
+          instruction: [
+            {
+              title: '操作说明1',
+              showDivider: false,
+              showNumber: true,
+              list: [
+                {
+                  text: '这里是操作说明。',
+                },
+                {
+                  text: '这里是操作说明。',
+                },
+                {
+                  text: '这里是操作说明。',
+                },
+              ],
+            },
+            {
+              title: '操作说明2',
+              showDivider: false,
+              showNumber: true,
+              list: [
+                {
+                  text: '这里是操作说明。',
+                },
+                {
+                  text: '这里是操作说明。',
+                },
+                {
+                  text: '这里是操作说明。',
+                },
+              ],
             },
           ],
         },

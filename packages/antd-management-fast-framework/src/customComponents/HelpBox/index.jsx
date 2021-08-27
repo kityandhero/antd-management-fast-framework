@@ -14,6 +14,7 @@ class HelpBox extends PureComponent {
     const {
       title: titleValue,
       showTitle,
+      showDivider,
       showNumber,
       labelWidth: labelWidthValue,
       list: listData,
@@ -23,6 +24,7 @@ class HelpBox extends PureComponent {
         title: '',
         showTitle: true,
         showNumber: true,
+        showDivider: true,
         labelWidth: null,
         list: [],
         useBackground: false,
@@ -59,17 +61,33 @@ class HelpBox extends PureComponent {
         )}
       >
         {showTitle ? (
-          <Divider
-            orientation="left"
-            plain
-            style={{
-              marginTop: 4,
-              marginBottom: 4,
-              color: '#999',
-            }}
-          >
-            {title}
-          </Divider>
+          showDivider ? (
+            <Divider
+              orientation="left"
+              plain
+              style={{
+                marginTop: 4,
+                marginBottom: 4,
+                color: '#999',
+              }}
+            >
+              {title}
+            </Divider>
+          ) : (
+            <div
+              style={{
+                marginTop: '4px',
+                marginBottom: '4px',
+                color: 'rgb(153, 153, 153)',
+                fontWeight: 'normal',
+                fontSize: '14px',
+                lineHeight: '22px',
+                height: '22px',
+              }}
+            >
+              {title}：
+            </div>
+          )
         ) : null}
 
         {/* {list.map((o) => {
