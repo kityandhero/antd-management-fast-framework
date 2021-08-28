@@ -78,7 +78,9 @@ export async function actionCore({
   record,
   successCallback,
   successMessage = '数据已经操作成功，请进行后续操作。',
+  successMessageBuilder = null,
   showProcessing = true,
+  textProcessing = '处理中，请稍后',
 }) {
   if ((record || null) == null) {
     const text = 'actionCore : record not allow null';
@@ -113,7 +115,7 @@ export async function actionCore({
 
     message.loading({
       key,
-      content: '处理中，请稍后',
+      content: textProcessing || '处理中，请稍后',
       duration: 0,
     });
   }
@@ -144,7 +146,13 @@ export async function actionCore({
       if (dataSuccess) {
         const { data: remoteData } = data;
 
-        notifySuccess(successMessage);
+        let messageText = successMessage;
+
+        if (isFunction(successMessageBuilder)) {
+          messageText = successMessageBuilder(remoteData);
+        }
+
+        notifySuccess(messageText);
 
         if (isFunction(successCallback)) {
           successCallback({
@@ -175,6 +183,7 @@ export async function confirmActionCore({
   successCallback,
   okAction = null,
   successMessage = '数据已经操作成功，请进行后续操作。',
+  successMessageBuilder = null,
   showProcessing = true,
 }) {
   if (!isFunction(okAction)) {
@@ -196,6 +205,7 @@ export async function confirmActionCore({
         record,
         successCallback,
         successMessage,
+        successMessageBuilder,
         showProcessing,
       });
     },
