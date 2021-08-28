@@ -1,10 +1,11 @@
-import { Modal } from 'antd';
+import { Modal, message } from 'antd';
 
 import {
   isFunction,
   notifySuccess,
   showErrorMessage,
   showRuntimeError,
+  getGuid,
 } from './tools';
 
 const { confirm } = Modal;
@@ -77,6 +78,7 @@ export async function actionCore({
   record,
   successCallback,
   successMessage = '数据已经操作成功，请进行后续操作。',
+  showProcessing = true,
 }) {
   if ((record || null) == null) {
     const text = 'actionCore : record not allow null';
@@ -104,40 +106,62 @@ export async function actionCore({
     throw new Error('actionCore: target.setState must be function');
   }
 
+  let key = '';
+
+  if (showProcessing) {
+    key = getGuid();
+
+    message.loading({
+      key,
+      content: '处理中，请稍后',
+      duration: 0,
+    });
+  }
+
   target.setState({ processing: true });
 
   dispatch({
     type: api,
     payload: params,
-  }).then(() => {
-    if (!isFunction(getApiData)) {
-      throw new Error('actionCore: getApiData must be function');
-    }
-
-    const data = getApiData(target.props);
-
-    if ((data || null) == null) {
-      throw new Error('actionCore: getApiData result not allow null');
-    }
-
-    const { dataSuccess } = data;
-
-    if (dataSuccess) {
-      const { data: remoteData } = data;
-
-      notifySuccess(successMessage);
-
-      if (isFunction(successCallback)) {
-        successCallback({
-          target,
-          record,
-          remoteData: remoteData || null,
-        });
+  })
+    .then(() => {
+      if (showProcessing) {
+        message.destroy(key);
       }
-    }
 
-    target.setState({ processing: false });
-  });
+      if (!isFunction(getApiData)) {
+        throw new Error('actionCore: getApiData must be function');
+      }
+
+      const data = getApiData(target.props);
+
+      if ((data || null) == null) {
+        throw new Error('actionCore: getApiData result not allow null');
+      }
+
+      const { dataSuccess } = data;
+
+      if (dataSuccess) {
+        const { data: remoteData } = data;
+
+        notifySuccess(successMessage);
+
+        if (isFunction(successCallback)) {
+          successCallback({
+            target,
+            record,
+            remoteData: remoteData || null,
+          });
+        }
+      }
+
+      target.setState({ processing: false });
+    })
+    .catch(() => {
+      if (showProcessing) {
+        message.destroy(key);
+      }
+    });
 }
 
 export async function confirmActionCore({
@@ -151,6 +175,7 @@ export async function confirmActionCore({
   successCallback,
   okAction = null,
   successMessage = '数据已经操作成功，请进行后续操作。',
+  showProcessing = true,
 }) {
   if (!isFunction(okAction)) {
     throw new Error('actionCore: okAction must be function');
@@ -166,7 +191,13 @@ export async function confirmActionCore({
     cancelText: cancelText || '取消',
     confirmLoading: { processing },
     onOk() {
-      okAction({ target, record, successCallback, successMessage });
+      okAction({
+        target,
+        record,
+        successCallback,
+        successMessage,
+        showProcessing,
+      });
     },
     onCancel() {},
   });

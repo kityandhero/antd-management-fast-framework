@@ -154,11 +154,13 @@ class Edit extends DataTabContainer {
         text: '上架',
         icon: <UpCircleOutlined />,
         handleClick: (r) => {
-          showInfoMessage({
-            message: '上架',
-          });
+          that.setOnline(r);
 
-          notifySuccess(JSON.stringify(r));
+          // showInfoMessage({
+          //   message: '上架',
+          // });
+
+          // notifySuccess(JSON.stringify(r));
         },
         hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
         disabled: dataLoading || processing || status === statusCollection.online,
@@ -169,8 +171,8 @@ class Edit extends DataTabContainer {
           cancelText: '取消',
         },
         handleData: metaData,
-        processing: dataLoading,
-        iconProcessing: <LoadingOutlined />,
+        // processing: dataLoading,
+        // iconProcessing: <LoadingOutlined />,
       },
       {
         key: 'setOffline',
@@ -179,13 +181,15 @@ class Edit extends DataTabContainer {
         text: '下架',
         icon: <UpCircleOutlined />,
         handleClick: (r) => {
-          showInfoMessage({
-            message: '下架',
-          });
+          that.setOffline(r);
 
-          showInfoMessage({
-            message: JSON.stringify(r),
-          });
+          // showInfoMessage({
+          //   message: '下架',
+          // });
+
+          // showInfoMessage({
+          //   message: JSON.stringify(r),
+          // });
         },
         hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
         disabled: dataLoading || processing || status === statusCollection.offline,
@@ -196,8 +200,8 @@ class Edit extends DataTabContainer {
           cancelText: '取消',
         },
         handleData: metaData,
-        processing: dataLoading,
-        iconProcessing: <LoadingOutlined />,
+        // processing: dataLoading,
+        // iconProcessing: <LoadingOutlined />,
       },
     ];
 
