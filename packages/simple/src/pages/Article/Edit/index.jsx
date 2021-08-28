@@ -15,6 +15,7 @@ import {
   toNumber,
   showInfoMessage,
   recordObject,
+  notifySuccess,
 } from 'antd-management-fast-framework/lib/utils/tools';
 import { accessWayCollection } from '@/customConfig/config';
 
@@ -149,7 +150,7 @@ class Edit extends DataTabContainer {
       {
         key: 'setOnline',
         type: 'default',
-        size: 'small',
+        size: 'default',
         text: '上架',
         icon: <UpCircleOutlined />,
         handleClick: (r) => {
@@ -157,9 +158,7 @@ class Edit extends DataTabContainer {
             message: '上架',
           });
 
-          showInfoMessage({
-            message: JSON.stringify(r),
-          });
+          notifySuccess(JSON.stringify(r));
         },
         hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
         disabled: dataLoading || processing || status === statusCollection.online,
@@ -176,7 +175,7 @@ class Edit extends DataTabContainer {
       {
         key: 'setOffline',
         type: 'default',
-        size: 'small',
+        size: 'default',
         text: '下架',
         icon: <UpCircleOutlined />,
         handleClick: (r) => {
@@ -216,34 +215,6 @@ class Edit extends DataTabContainer {
 
     const status = toNumber(getPathValue(metaData, fieldData.status.name));
 
-    const that = this;
-
-    const menuItems = {
-      dropdownProps: {
-        disabled: dataLoading || processing || metaData == null,
-      },
-      menuProps: {
-        onClick: (e) => {
-          const { key } = e;
-
-          switch (key) {
-            case 'refreshCacheConfirm':
-              refreshCacheConfirmAction({ target: that, record: metaData });
-              break;
-
-            default:
-              break;
-          }
-        },
-      },
-      items: [
-        {
-          key: 'refreshCacheConfirm',
-          children: <IconInfo icon={<ReloadOutlined />} text="刷新缓存" />,
-        },
-      ],
-    };
-
     return {
       key: undefined,
       size: 'default',
@@ -251,30 +222,79 @@ class Edit extends DataTabContainer {
       title: '更多操作',
       disabled: false,
       hidden: false,
-      handleMenuClick: (e) => {
-        recordObject(e);
+      handleMenuClick: ({ key, record }) => {
+        switch (key) {
+          case 'click1':
+            showInfoMessage({
+              message: `click ${key}`,
+            });
+
+            notifySuccess(JSON.stringify(record));
+            break;
+
+          case 'click2':
+            showInfoMessage({
+              message: `click ${key}`,
+            });
+
+            notifySuccess(JSON.stringify(record));
+            break;
+
+          case 'click3':
+            showInfoMessage({
+              message: `click ${key}`,
+            });
+
+            notifySuccess(JSON.stringify(record));
+            break;
+
+          case 'click4':
+            showInfoMessage({
+              message: `click ${key}`,
+            });
+
+            notifySuccess(JSON.stringify(record));
+            break;
+
+          default:
+            break;
+        }
       },
       record: metaData,
       menuItems: [
         {
-          key: 'refreshCacheConfirm',
+          key: 'click1',
           icon: <ReloadOutlined />,
           text: '按钮1',
           hidden: true,
         },
         {
-          key: 'refreshCacheConfirm',
+          key: 'click2',
           icon: <ReloadOutlined />,
           text: '按钮2',
           hidden: false,
           disabled: true,
         },
         {
-          key: 'refreshCacheConfirm',
+          key: 'click3',
+          icon: <ReloadOutlined />,
+          text: '按钮2',
+          hidden: false,
+          disabled: false,
+          // confirm: {
+          //   title: '确认操作，确定吗？',
+          //   placement: 'bottomRight',
+          //   okText: '确定',
+          //   cancelText: '取消',
+          // },
+        },
+        {
+          key: 'click4',
+          withDivider: true,
+          uponDivider: true,
           icon: <ReloadOutlined />,
           text: '刷新缓存',
           hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
-          disabled: status === statusCollection.offline,
         },
       ],
     };

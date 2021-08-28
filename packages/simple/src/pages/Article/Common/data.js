@@ -43,11 +43,6 @@ export const fieldData = {
       name: 'mediaData',
       helper: '文章的媒体内容',
     },
-    sort: {
-      label: '排序值',
-      name: 'sort',
-      helper: '文章的排序值',
-    },
     renderType: {
       label: '渲染模式',
       name: 'renderType',
@@ -173,7 +168,7 @@ export const statusCollection = {
    * 已上线
    * value : 1
    */
-  online: 10,
+  online: 1,
 };
 
 /**

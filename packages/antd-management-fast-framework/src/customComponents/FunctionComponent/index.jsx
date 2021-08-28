@@ -129,7 +129,7 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
 export function buildButton({
   key: keySource = null,
   type: typeSource = 'default',
-  size: sizeSource = 'small',
+  size: sizeSource = 'default',
   text: textSource = '按钮',
   icon: iconSource = <FormOutlined />,
   handleClick: handleClickSource = () => {},
@@ -159,7 +159,7 @@ export function buildButton({
     ...{
       key: keySource ?? null,
       type: typeSource ?? 'default',
-      size: sizeSource ?? 'small',
+      size: sizeSource ?? 'default',
       text: textSource ?? '按钮',
       icon: iconSource ?? <FormOutlined />,
       handleClick: handleClickSource ?? null,

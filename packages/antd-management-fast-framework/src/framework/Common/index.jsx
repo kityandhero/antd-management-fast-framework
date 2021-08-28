@@ -954,6 +954,7 @@ class Common extends Core {
 
   renderSaveButton = (buttonText = '', onClick = null) => {
     return this.renderGeneralButton({
+      type: 'primary',
       text: buttonText || '保存',
       onClick:
         onClick == null

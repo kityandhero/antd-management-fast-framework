@@ -186,6 +186,7 @@ export async function setOnlineData(params) {
     virtualSuccessResponse: {
       data: {
         articleId: '1430367617461391360',
+        status: 1,
       },
     },
   });
@@ -198,6 +199,7 @@ export async function setOfflineData(params) {
     virtualSuccessResponse: {
       data: {
         articleId: '1430367617461391360',
+        status: 0,
       },
     },
   });

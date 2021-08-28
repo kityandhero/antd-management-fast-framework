@@ -30,6 +30,7 @@ const GlobalModel = {
       notices: [],
       webChannelList: [],
       accessWayStatusList: [],
+      articleStatusList: [],
     },
   },
 
@@ -65,11 +66,12 @@ const GlobalModel = {
         const { dataSuccess, data: metaData } = data;
 
         if (dataSuccess) {
-          const { webChannelList, accessWayStatusList } = metaData;
+          const { webChannelList, accessWayStatusList, articleStatusList } = metaData;
 
           result = {
             webChannelList,
             accessWayStatusList,
+            articleStatusList,
           };
 
           setMetaDataCache(result);

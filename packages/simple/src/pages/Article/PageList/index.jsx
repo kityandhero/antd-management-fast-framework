@@ -5,6 +5,7 @@ import {
   PlusOutlined,
   PlayCircleTwoTone,
   PauseCircleTwoTone,
+  ConsoleSqlOutlined,
 } from '@ant-design/icons';
 
 import { toNumber, getPathValue } from 'antd-management-fast-framework/lib/utils/tools';
@@ -71,8 +72,8 @@ class PageList extends MultiPage {
     let result = 'default';
 
     switch (v) {
-      case 10:
-        result = 'success';
+      case 1:
+        result = 'processing';
         break;
 
       case 0:
