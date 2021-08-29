@@ -234,14 +234,12 @@
       "create-umi"
     ]
   },
-  "publishConfig": {
-    "registry": "http://localhost:4873/"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kityandhero/antd-management-fast-framework.git"
   },
   "bugs": {
     "url": "https://github.com/kityandhero/antd-management-fast-framework/issues"
-  }
+  },
+  "gitHead": "bff59dd6f73f7876bf07eddc292fdc8ee7048059"
 }
