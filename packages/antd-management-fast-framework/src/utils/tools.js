@@ -1658,6 +1658,9 @@ export function notifySuccess(text) {
   });
 }
 
+/**
+ * 发送页面通知
+ */
 export function notify({
   type,
   placement: placementValue,
