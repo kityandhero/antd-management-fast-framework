@@ -127,9 +127,9 @@ class PageList extends MultiPage {
   setOnline = (r) => {
     setOnlineConfirmAction({
       target: this,
-      record: r,
-      successCallback: ({ target, record, remoteData }) => {
-        target.handleItemStatus({ target, record, remoteData });
+      handleData: r,
+      successCallback: ({ target, handleData, remoteData }) => {
+        target.handleItemStatus({ target, handleData, remoteData });
       },
     });
   };
@@ -137,9 +137,9 @@ class PageList extends MultiPage {
   setOffline = (r) => {
     setOfflineConfirmAction({
       target: this,
-      record: r,
-      successCallback: ({ target, record, remoteData }) => {
-        target.handleItemStatus({ target, record, remoteData });
+      handleData: r,
+      successCallback: ({ target, handleData, remoteData }) => {
+        target.handleItemStatus({ target, handleData, remoteData });
       },
     });
   };

@@ -102,7 +102,7 @@ class Edit extends DataTabContainer {
   setOnline = (r) => {
     setOnlineAction({
       target: this,
-      record: r,
+      handleData: r,
       successCallback: ({ target }) => {
         target.reloadData();
       },
@@ -112,7 +112,7 @@ class Edit extends DataTabContainer {
   setOffline = (r) => {
     setOfflineAction({
       target: this,
-      record: r,
+      handleData: r,
       successCallback: ({ target }) => {
         target.reloadData();
       },
