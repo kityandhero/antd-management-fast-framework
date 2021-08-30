@@ -103,8 +103,12 @@ class Edit extends DataTabContainer {
     setOnlineAction({
       target: this,
       handleData: r,
-      successCallback: ({ target }) => {
-        target.reloadData();
+      successCallback: ({ target, remoteData }) => {
+        const { metaData } = target.state;
+
+        metaData[fieldData.status.name] = getPathValue(remoteData, fieldData.status.name);
+
+        target.setState({ metaData });
       },
     });
   };
@@ -113,8 +117,12 @@ class Edit extends DataTabContainer {
     setOfflineAction({
       target: this,
       handleData: r,
-      successCallback: ({ target }) => {
-        target.reloadData();
+      successCallback: ({ target, remoteData }) => {
+        const { metaData } = target.state;
+
+        metaData[fieldData.status.name] = getPathValue(remoteData, fieldData.status.name);
+
+        target.setState({ metaData });
       },
     });
   };
