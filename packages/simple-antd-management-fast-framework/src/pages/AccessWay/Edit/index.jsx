@@ -132,6 +132,7 @@ class Edit extends DataTabContainer {
       {
         color: '#000',
         text: '未知',
+        hidden: true,
       },
       {
         color: 'purple',
