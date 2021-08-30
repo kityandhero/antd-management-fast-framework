@@ -378,6 +378,10 @@ export function buildDropdown({
     return null;
   }
 
+  const tooltipAdjust = tooltipSource;
+
+  const otherProps = tooltipAdjust ? {} : { key: key || getGuid() };
+
   let hasHandleButtonClick = false;
 
   if ((handleButtonClick || null) != null) {
@@ -395,7 +399,7 @@ export function buildDropdown({
   if (!isArray(menuItems) || menuItems.length === 0) {
     button = (
       <Button
-        key={key || getGuid()}
+        {...otherProps}
         size={size || 'default'}
         onClick={() => {
           handleButtonClick({ handleData: r });
@@ -409,7 +413,7 @@ export function buildDropdown({
     button = (
       <>
         <Dropdown.Button
-          key={key || getGuid()}
+          {...otherProps}
           size={size || 'default'}
           onClick={() => {
             handleButtonClick({ handleData: r });
@@ -428,7 +432,7 @@ export function buildDropdown({
   } else {
     button = (
       <Dropdown
-        key={key || getGuid()}
+        {...otherProps}
         disabled={disabled ?? false}
         overlay={buildMenu({
           handleData: r,
@@ -442,8 +446,6 @@ export function buildDropdown({
       </Dropdown>
     );
   }
-
-  const tooltipAdjust = tooltipSource;
 
   if (tooltipAdjust) {
     if (isBoolean(tooltipAdjust)) {
@@ -461,7 +463,7 @@ export function buildDropdown({
     };
 
     return (
-      <Tooltip placement={placement} title={title}>
+      <Tooltip key={key || getGuid()} placement={placement} title={title}>
         {button}
       </Tooltip>
     );
