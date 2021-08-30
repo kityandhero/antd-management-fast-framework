@@ -153,8 +153,8 @@ class Edit extends DataTabContainer {
         size: 'default',
         text: '上架',
         icon: <UpCircleOutlined />,
-        handleClick: (r) => {
-          that.setOnline(r);
+        handleButtonClick: ({ handleData }) => {
+          that.setOnline(handleData);
         },
         hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
         disabled: dataLoading || processing || status === statusCollection.online,
@@ -174,8 +174,8 @@ class Edit extends DataTabContainer {
         size: 'default',
         text: '下架',
         icon: <UpCircleOutlined />,
-        handleClick: (r) => {
-          that.setOffline(r);
+        handleButtonClick: ({ handleData }) => {
+          that.setOffline(handleData);
         },
         hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
         disabled: dataLoading || processing || status === statusCollection.offline,
