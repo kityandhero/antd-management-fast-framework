@@ -307,6 +307,7 @@ export function buildDropdownButton({
   text = '按钮',
   icon = <FormOutlined />,
   handleData: r,
+  arrow = true,
   disabled = false,
   hidden = false,
   handleButtonClick = null,
@@ -320,6 +321,7 @@ export function buildDropdownButton({
     text,
     icon,
     handleData: r,
+    arrow,
     disabled,
     hidden,
     handleButtonClick,
@@ -340,6 +342,7 @@ export function buildDropdownEllipsis({
       }}
     />
   ),
+  arrow = true,
   disabled = false,
   hidden = false,
   handleData: r,
@@ -353,6 +356,7 @@ export function buildDropdownEllipsis({
     text: '',
     icon,
     handleData: r,
+    arrow,
     disabled,
     hidden,
     handleButtonClick: null,
@@ -368,6 +372,7 @@ export function buildDropdown({
   text = '按钮',
   icon = <FormOutlined />,
   handleData: r,
+  arrow = true,
   disabled = false,
   hidden = false,
   handleButtonClick = null,
@@ -433,6 +438,7 @@ export function buildDropdown({
     button = (
       <Dropdown
         {...otherProps}
+        arrow={arrow}
         disabled={disabled ?? false}
         overlay={buildMenu({
           handleData: r,
