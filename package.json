@@ -1,6 +1,6 @@
 {
-  "name": "root",
-  "private": false,
+  "name": "lerna-antd-management-fast-framework",
+  "private": true,
   "scripts": {
     "prepare": "husky install",
     "lerna:b": "lerna bootstrap",
