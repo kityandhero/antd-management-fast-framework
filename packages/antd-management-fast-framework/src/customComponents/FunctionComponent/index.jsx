@@ -1072,20 +1072,37 @@ export function buildTagList({ list = [] }) {
     return null;
   }
 
-  const tagList = list.map((o, index) => {
-    return {
-      ...{ key: `pageHeaderTag_${index}`, color: '#000', text: '未知' },
+  const tagList = [];
+
+  list.forEach((o, index) => {
+    const d = {
+      ...{
+        key: `pageHeaderTag_${index}`,
+        color: '#000',
+        text: '未知',
+        hidden: false,
+      },
       ...(o || {}),
     };
+
+    if (!hidden) {
+      tagList.push(d);
+    }
   });
+
+  if (tagList.length <= 0) {
+    return null;
+  }
 
   return (
     <Space>
       {tagList.map((o) => {
+        const { key, text, color } = o;
+
         return (
-          <Tag key={o.key} color={o.color}>
+          <Tag key={key} color={color}>
             <TextAnimal type="left" mode="smooth">
-              {o.text}
+              {text}
             </TextAnimal>
           </Tag>
         );
