@@ -1075,7 +1075,7 @@ export function buildTagList({ list = [] }) {
   const tagList = [];
 
   list.forEach((o, index) => {
-    const d = {
+    const { key, color, text, hidden } = {
       ...{
         key: `pageHeaderTag_${index}`,
         color: '#000',
@@ -1086,7 +1086,11 @@ export function buildTagList({ list = [] }) {
     };
 
     if (!hidden) {
-      tagList.push(d);
+      tagList.push({
+        key,
+        color,
+        text,
+      });
     }
   });
 
