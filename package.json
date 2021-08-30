@@ -10,6 +10,7 @@
     "changelog": "lerna version --conventional-commits --no-push --no-git-tag-version",
     "lerna": "lerna",
     "clean": "lerna clean && rimraf ./node_modules/",
+    "publish:f": "npm run build:f && npm run scz && lerna updated && lerna publish",
     "cz": "cz",
     "scz": "git stage * && npm run cz && git push",
     "commitlint": "commitlint --edit",
