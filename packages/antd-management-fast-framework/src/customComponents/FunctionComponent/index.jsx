@@ -1021,65 +1021,25 @@ export function buildButtonGroup(buttonGroupData) {
     return null;
   }
 
+  const { buttons } = {
+    ...{
+      buttons: [],
+      menu: null,
+    },
+    ...(buttonGroupData || {}),
+  };
+
   return (
     <ButtonGroup>
-      {(buttonGroupData.buttons || []).map((item) => {
-        const {
-          key,
-          type,
-          size,
-          text,
-          icon,
-          handleClick,
-          hidden,
-          disabled,
-          confirm,
-          handleData,
-          processing,
-          iconProcessing,
-        } = item;
+      {buttons.map((item) => {
+        const { hidden } = { ...{ hidden: false }, ...item };
 
         if (hidden) {
           return null;
         }
 
-        return buildButton({
-          key,
-          type,
-          size,
-          text,
-          icon,
-          handleClick,
-          hidden,
-          disabled,
-          confirm,
-          handleData,
-          processing,
-          iconProcessing,
-        });
+        return buildDropdown(item);
       })}
-
-      {(buttonGroupData.menu || null) != null ? (
-        (buttonGroupData.menu.items || []).length > 0 ? (
-          <Dropdown
-            {...{
-              ...{ placement: 'bottomRight' },
-              ...(buttonGroupData.menu.dropdownProps || {}),
-              ...{
-                overlay: buildMenu({
-                  handleData,
-                  handleMenuClick,
-                  menuItems,
-                }),
-              },
-            }}
-          >
-            <Button {...(buttonGroupData.menu.buttonProps || {})}>
-              {buttonGroupData.menu.children || <EllipsisOutlined />}
-            </Button>
-          </Dropdown>
-        ) : null
-      ) : null}
     </ButtonGroup>
   );
 }
