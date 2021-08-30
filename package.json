@@ -20,10 +20,10 @@
     "build:vp": "cd packages/antd-management-fast-framework && npm version patch && npm publish",
     "build:fp": "cd packages/antd-management-fast-framework && npm publish",
     "clean:framework": "cd packages/antd-management-fast-framework && npm run clean-file",
-    "clean:simple": "cd packages/simple && npm run clean-file",
+    "clean:simple": "cd packages/simple-antd-management-fast-framework && npm run clean-file",
     "reinstall": "npm run clean && npm run clean:framework && npm run clean:simple && npm run lerna:b",
     "show:v": "cd packages/antd-management-fast-framework && npm version",
-    "start": "cd packages/simple && npm start"
+    "start": "cd packages/simple-antd-management-fast-framework && npm start"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

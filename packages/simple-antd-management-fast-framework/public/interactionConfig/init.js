@@ -1,0 +1,22 @@
+window.appInitCustom = {
+  platformName: '平台名称',
+  appName: '应用名称',
+  appDescription: '应用描述',
+  loginLogo: '',
+  shareLogo: '',
+  shareLogoName: '平台名称',
+  leftBarLogo: '',
+  leftBarText: '平台简称',
+  companyName: '公司名称',
+  copyright: '2020 ****科技有限公司 技术部出品',
+  apiPrefix: {
+    corsTargetDomain: '',
+  },
+  apiSuccessCode: 200,
+  authenticationFailCode: 2001,
+  loginPath: '/user/login',
+  showLogInConsole: true,
+  showRequestInfo: true,
+  useVirtualRequest: true,
+  apiVersion: 'v1',
+};
