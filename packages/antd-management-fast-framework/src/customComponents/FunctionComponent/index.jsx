@@ -301,6 +301,7 @@ export function buildPopconfirm({
 }
 
 export function buildDropdownButton({
+  key = getGuid(),
   tooltip = false,
   size = 'small',
   text = '按钮',
@@ -313,6 +314,7 @@ export function buildDropdownButton({
   menuItems = [],
 }) {
   return buildDropdown({
+    key,
     tooltip,
     size,
     text,
@@ -327,6 +329,7 @@ export function buildDropdownButton({
 }
 
 export function buildDropdownEllipsis({
+  key = getGuid(),
   tooltip = { placement: 'top', title: '更多操作' },
   size = 'default',
   icon = (
@@ -344,6 +347,7 @@ export function buildDropdownEllipsis({
   menuItems = [],
 }) {
   return buildDropdown({
+    key,
     tooltip,
     size,
     text: '',
@@ -358,6 +362,7 @@ export function buildDropdownEllipsis({
 }
 
 export function buildDropdown({
+  key = getGuid(),
   tooltip: tooltipSource = false,
   size = 'default',
   text = '按钮',
@@ -390,6 +395,7 @@ export function buildDropdown({
   if (!isArray(menuItems) || menuItems.length === 0) {
     button = (
       <Button
+        key={key || getGuid()}
         size={size || 'default'}
         onClick={() => {
           handleButtonClick({ handleData: r });
@@ -403,6 +409,7 @@ export function buildDropdown({
     button = (
       <>
         <Dropdown.Button
+          key={key || getGuid()}
           size={size || 'default'}
           onClick={() => {
             handleButtonClick({ handleData: r });
@@ -421,6 +428,7 @@ export function buildDropdown({
   } else {
     button = (
       <Dropdown
+        key={key || getGuid()}
         disabled={disabled ?? false}
         overlay={buildMenu({
           handleData: r,
