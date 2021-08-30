@@ -1016,18 +1016,10 @@ export function buildMenuHeaderRender({
   );
 }
 
-export function buildButtonGroup(buttonGroupData) {
-  if ((buttonGroupData || null) == null) {
+export function buildButtonGroup({ buttons = [] }) {
+  if (!isArray(buttons) || buttons.length <= 0) {
     return null;
   }
-
-  const { buttons } = {
-    ...{
-      buttons: [],
-      menu: null,
-    },
-    ...(buttonGroupData || {}),
-  };
 
   return (
     <ButtonGroup>

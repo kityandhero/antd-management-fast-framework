@@ -206,7 +206,6 @@ class Edit extends DataTabContainer {
     const status = toNumber(getPathValue(metaData, fieldData.status.name));
 
     return {
-      key: undefined,
       size: 'default',
       placement: 'top',
       title: '更多操作',
