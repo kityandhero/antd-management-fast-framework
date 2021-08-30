@@ -190,27 +190,27 @@ class BasicInfo extends TabPageBase {
     this.setState({ updateMediaItemDrawerVisible: false });
   };
 
-  handleMenuClick = (e, record) => {
+  handleMenuClick = (e, handleData) => {
     const { articleId } = this.state;
     const { key } = e;
 
     switch (key) {
       case 'insertItem':
-        this.showInsertMediaItemDrawer(record);
+        this.showInsertMediaItemDrawer(handleData);
         break;
 
       case 'moveUp':
-        this.changeSort(key, record);
+        this.changeSort(key, handleData);
         break;
 
       case 'moveDown':
-        this.changeSort(key, record);
+        this.changeSort(key, handleData);
         break;
 
       case 'removeItem':
         removeMediaItemConfirmAction({
           target: this,
-          record: { ...(record || {}), ...{ articleId } },
+          record: { ...(handleData || {}), ...{ articleId } },
           successCallback: ({ target, remoteData }) => {
             target.setCustomData(remoteData);
           },

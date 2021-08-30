@@ -23,7 +23,7 @@ import {
 } from 'antd-management-fast-framework/lib/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/lib/utils/actionAssist';
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
-import { buildDropdown } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
+import { buildDropdownButton } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 import {
@@ -95,18 +95,18 @@ class PageList extends MultiPage {
     return result;
   };
 
-  handleMenuClick = ({ key, record }) => {
+  handleMenuClick = ({ key, handleData }) => {
     switch (key) {
       case 'setOnline':
-        this.setOnline(record);
+        this.setOnline(handleData);
         break;
 
       case 'setOffline':
-        this.setOffline(record);
+        this.setOffline(handleData);
         break;
 
       case 'refreshCache':
-        refreshCacheConfirmAction({ target: this, record });
+        refreshCacheConfirmAction({ target: this, handleData });
         break;
 
       default:
@@ -294,16 +294,16 @@ class PageList extends MultiPage {
       render: (text, r) => {
         const itemStatus = toNumber(getPathValue(r, fieldData.status.name));
 
-        return buildDropdown({
+        return buildDropdownButton({
           size: 'small',
           text: '修改',
           icon: <EditOutlined />,
-          handleButtonClick: ({ record }) => {
-            this.goToEdit(record);
+          handleButtonClick: ({ handleData }) => {
+            this.goToEdit(handleData);
           },
-          record: r,
-          handleMenuClick: ({ key, record }) => {
-            this.handleMenuClick({ key, record });
+          handleData: r,
+          handleMenuClick: ({ key, handleData }) => {
+            this.handleMenuClick({ key, handleData });
           },
           menuItems: [
             {

@@ -56,9 +56,21 @@ class DataCore extends BaseView {
 
   pageHeaderLogo = () => <Avatar shape="square" icon={<PlusOutlined />} />;
 
-  pageHeaderActionExtraGroup = () => null;
+  buildPageHeaderActionExtraGroup = () => {
+    return null;
+  };
 
-  pageHeaderActionExtraEllipsis = () => null;
+  pageHeaderActionExtraGroup = () => {
+    return this.buildPageHeaderActionExtraGroup();
+  };
+
+  buildPageHeaderActionExtraEllipsis = () => {
+    return null;
+  };
+
+  pageHeaderActionExtraEllipsis = () => {
+    return this.buildPageHeaderActionExtraEllipsis();
+  };
 
   pageHeaderActionBack = () => {
     const { backPath } = this.state;

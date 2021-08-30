@@ -135,7 +135,7 @@ class Edit extends DataTabContainer {
     return null;
   };
 
-  pageHeaderActionExtraGroup = () => {
+  buildPageHeaderActionExtraGroup = () => {
     const { metaData, dataLoading, processing } = this.state;
 
     if (metaData == null) {
@@ -155,12 +155,6 @@ class Edit extends DataTabContainer {
         icon: <UpCircleOutlined />,
         handleClick: (r) => {
           that.setOnline(r);
-
-          // showInfoMessage({
-          //   message: '上架',
-          // });
-
-          // notifySuccess(JSON.stringify(r));
         },
         hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
         disabled: dataLoading || processing || status === statusCollection.online,
@@ -182,14 +176,6 @@ class Edit extends DataTabContainer {
         icon: <UpCircleOutlined />,
         handleClick: (r) => {
           that.setOffline(r);
-
-          // showInfoMessage({
-          //   message: '下架',
-          // });
-
-          // showInfoMessage({
-          //   message: JSON.stringify(r),
-          // });
         },
         hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
         disabled: dataLoading || processing || status === statusCollection.offline,
@@ -210,7 +196,7 @@ class Edit extends DataTabContainer {
     };
   };
 
-  pageHeaderActionExtraEllipsis = () => {
+  buildPageHeaderActionExtraEllipsis = () => {
     const { metaData, dataLoading, processing } = this.state;
 
     if ((metaData || null) == null) {
@@ -226,14 +212,14 @@ class Edit extends DataTabContainer {
       title: '更多操作',
       disabled: false,
       hidden: false,
-      handleMenuClick: ({ key, record }) => {
+      handleMenuClick: ({ key, handleData }) => {
         switch (key) {
           case 'click1':
             showInfoMessage({
               message: `click ${key}`,
             });
 
-            notifySuccess(JSON.stringify(record));
+            notifySuccess(JSON.stringify(handleData));
             break;
 
           case 'click2':
@@ -241,7 +227,7 @@ class Edit extends DataTabContainer {
               message: `click ${key}`,
             });
 
-            notifySuccess(JSON.stringify(record));
+            notifySuccess(JSON.stringify(handleData));
             break;
 
           case 'click3':
@@ -249,7 +235,7 @@ class Edit extends DataTabContainer {
               message: `click ${key}`,
             });
 
-            notifySuccess(JSON.stringify(record));
+            notifySuccess(JSON.stringify(handleData));
             break;
 
           case 'click4':
@@ -257,14 +243,14 @@ class Edit extends DataTabContainer {
               message: `click ${key}`,
             });
 
-            notifySuccess(JSON.stringify(record));
+            notifySuccess(JSON.stringify(handleData));
             break;
 
           default:
             break;
         }
       },
-      record: metaData,
+      handleData: metaData,
       menuItems: [
         {
           key: 'click1',

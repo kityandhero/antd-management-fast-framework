@@ -6,11 +6,11 @@ import {
 
 import { fieldData } from '../Common/data';
 
-export function setOnlineAction({ target, record, successCallback, successMessage }) {
+export function setOnlineAction({ target, handleData, successCallback, successMessage }) {
   actionCore({
     api: 'accessWay/setOnline',
     params: {
-      accessWayId: getPathValue(record, fieldData.accessWayId.name),
+      accessWayId: getPathValue(handleData, fieldData.accessWayId.name),
     },
     getApiData: (props) => {
       const {
@@ -20,30 +20,35 @@ export function setOnlineAction({ target, record, successCallback, successMessag
       return data;
     },
     target,
-    record,
+    handleData,
     successCallback,
     successMessage,
   });
 }
 
-export async function setOnlineConfirmAction({ target, record, successCallback, successMessage }) {
+export async function setOnlineConfirmAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
   confirmActionCore({
     title: `设置为正在上线状态`,
     content: `将要设为正在上线状态，确定吗？`,
     target,
-    record,
+    handleData,
     successCallback,
-    okAction: ({ target: t, record: r, successCallback: sc }) => {
-      setOnlineAction({ target: t, record: r, successCallback: sc, successMessage });
+    okAction: ({ target: t, handleData: r, successCallback: sc }) => {
+      setOnlineAction({ target: t, handleData: r, successCallback: sc, successMessage });
     },
   });
 }
 
-export function setOfflineAction({ target, record, successCallback, successMessage }) {
+export function setOfflineAction({ target, handleData, successCallback, successMessage }) {
   actionCore({
     api: 'accessWay/setOffline',
     params: {
-      accessWayId: getPathValue(record, fieldData.accessWayId.name),
+      accessWayId: getPathValue(handleData, fieldData.accessWayId.name),
     },
     getApiData: (props) => {
       const {
@@ -53,30 +58,35 @@ export function setOfflineAction({ target, record, successCallback, successMessa
       return data;
     },
     target,
-    record,
+    handleData,
     successCallback,
     successMessage,
   });
 }
 
-export async function setOfflineConfirmAction({ target, record, successCallback, successMessage }) {
+export async function setOfflineConfirmAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
   confirmActionCore({
     title: `设置为下线状态`,
     content: `将要设为下线状态，确定吗？`,
     target,
-    record,
+    handleData,
     successCallback,
-    okAction: ({ target: t, record: r, successCallback: sc }) => {
-      setOfflineAction({ target: t, record: r, successCallback: sc, successMessage });
+    okAction: ({ target: t, handleData: r, successCallback: sc }) => {
+      setOfflineAction({ target: t, handleData: r, successCallback: sc, successMessage });
     },
   });
 }
 
-export async function refreshCacheAction({ target, record, successCallback, successMessage }) {
+export async function refreshCacheAction({ target, handleData, successCallback, successMessage }) {
   actionCore({
     api: 'accessWay/refreshCache',
     params: {
-      accessWayId: getPathValue(record, fieldData.accessWayId.name),
+      accessWayId: getPathValue(handleData, fieldData.accessWayId.name),
     },
     getApiData: (props) => {
       const {
@@ -86,7 +96,7 @@ export async function refreshCacheAction({ target, record, successCallback, succ
       return data;
     },
     target,
-    record,
+    handleData,
     successCallback,
     successMessage,
   });
@@ -94,18 +104,21 @@ export async function refreshCacheAction({ target, record, successCallback, succ
 
 export async function refreshCacheConfirmAction({
   target,
-  record,
+  handleData,
   successCallback,
   successMessage,
 }) {
   confirmActionCore({
     title: `刷新缓存`,
-    content: `即将刷新“${ellipsis(getPathValue(record, fieldData.name.name), 40)}”的缓存，确定吗？`,
+    content: `即将刷新“${ellipsis(
+      getPathValue(handleData, fieldData.name.name),
+      40,
+    )}”的缓存，确定吗？`,
     target,
-    record,
+    handleData,
     successCallback,
-    okAction: ({ target: t, record: r, successCallback: sc }) => {
-      refreshCacheAction({ target: t, record: r, successCallback: sc, successMessage });
+    okAction: ({ target: t, handleData: r, successCallback: sc }) => {
+      refreshCacheAction({ target: t, handleData: r, successCallback: sc, successMessage });
     },
   });
 }

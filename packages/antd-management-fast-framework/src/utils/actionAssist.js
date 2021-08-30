@@ -75,15 +75,15 @@ export async function actionCore({
   params,
   getApiData = null,
   target,
-  record,
+  handleData,
   successCallback,
   successMessage = '数据已经操作成功，请进行后续操作。',
   successMessageBuilder = null,
   showProcessing = true,
   textProcessing = '处理中，请稍后',
 }) {
-  if ((record || null) == null) {
-    const text = 'actionCore : record not allow null';
+  if ((handleData || null) == null) {
+    const text = 'actionCore : handleData not allow null';
 
     showErrorMessage({
       message: text,
@@ -157,7 +157,7 @@ export async function actionCore({
         if (isFunction(successCallback)) {
           successCallback({
             target,
-            record,
+            handleData,
             remoteData: remoteData || null,
           });
         }
@@ -179,7 +179,7 @@ export async function confirmActionCore({
   okType = 'danger',
   cancelText = '取消',
   target,
-  record,
+  handleData,
   successCallback,
   okAction = null,
   successMessage = '数据已经操作成功，请进行后续操作。',
@@ -202,7 +202,7 @@ export async function confirmActionCore({
     onOk() {
       okAction({
         target,
-        record,
+        handleData,
         successCallback,
         successMessage,
         successMessageBuilder,

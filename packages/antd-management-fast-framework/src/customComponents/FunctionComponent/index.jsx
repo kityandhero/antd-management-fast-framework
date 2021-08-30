@@ -300,14 +300,72 @@ export function buildPopconfirm({
   );
 }
 
-export function buildDropdown({
+export function buildDropdownButton({
+  tooltip = false,
   size = 'small',
   text = '按钮',
   icon = <FormOutlined />,
-  record: r,
+  handleData: r,
   disabled = false,
   hidden = false,
-  handleButtonClick = () => {},
+  handleButtonClick = null,
+  handleMenuClick = () => {},
+  menuItems = [],
+}) {
+  return buildDropdown({
+    tooltip,
+    size,
+    text,
+    icon,
+    handleData: r,
+    disabled,
+    hidden,
+    handleButtonClick,
+    handleMenuClick,
+    menuItems,
+  });
+}
+
+export function buildDropdownEllipsis({
+  tooltip = { placement: 'top', title: '更多操作' },
+  size = 'default',
+  icon = (
+    <EllipsisOutlined
+      style={{
+        fontSize: 20,
+        verticalAlign: 'top',
+      }}
+    />
+  ),
+  disabled = false,
+  hidden = false,
+  handleData: r,
+  handleMenuClick = () => {},
+  menuItems = [],
+}) {
+  return buildDropdown({
+    tooltip,
+    size,
+    text: '',
+    icon,
+    handleData: r,
+    disabled,
+    hidden,
+    handleButtonClick: null,
+    handleMenuClick,
+    menuItems,
+  });
+}
+
+export function buildDropdown({
+  tooltip: tooltipSource = false,
+  size = 'default',
+  text = '按钮',
+  icon = <FormOutlined />,
+  handleData: r,
+  disabled = false,
+  hidden = false,
+  handleButtonClick = null,
   handleMenuClick = () => {},
   menuItems = [],
 }) {
@@ -315,46 +373,97 @@ export function buildDropdown({
     return null;
   }
 
-  if (!isFunction(handleButtonClick)) {
-    throw new Error('buildDropdown : handleButtonClick must be function');
+  let hasHandleButtonClick = false;
+
+  if ((handleButtonClick || null) != null) {
+    if (!isFunction(handleButtonClick)) {
+      throw new Error(
+        'buildDropdown(framework) : handleButtonClick must be function',
+      );
+    }
+
+    hasHandleButtonClick = true;
   }
 
+  let button = null;
+
   if (!isArray(menuItems) || menuItems.length === 0) {
-    return (
+    button = (
       <Button
-        size={size || 'small'}
+        size={size || 'default'}
         onClick={() => {
-          handleButtonClick({ record: r });
+          handleButtonClick({ handleData: r });
         }}
         disabled={disabled ?? false}
       >
-        <IconInfo icon={icon || <FormOutlined />} text={text || '按钮'} />
+        <IconInfo icon={icon || null} text={text || ''} />
       </Button>
     );
-  }
-
-  return (
-    <>
-      <Dropdown.Button
-        size={size || 'small'}
-        onClick={() => {
-          handleButtonClick({ record: r });
-        }}
+  } else if (hasHandleButtonClick) {
+    button = (
+      <>
+        <Dropdown.Button
+          size={size || 'default'}
+          onClick={() => {
+            handleButtonClick({ handleData: r });
+          }}
+          disabled={disabled ?? false}
+          overlay={buildMenu({
+            handleData: r,
+            handleMenuClick,
+            menuItems,
+          })}
+        >
+          <IconInfo icon={icon || null} text={text || ''} />
+        </Dropdown.Button>
+      </>
+    );
+  } else {
+    button = (
+      <Dropdown
         disabled={disabled ?? false}
         overlay={buildMenu({
-          record: r,
+          handleData: r,
           handleMenuClick,
           menuItems,
         })}
       >
-        <IconInfo icon={icon || <FormOutlined />} text={text || '按钮'} />
-      </Dropdown.Button>
-    </>
-  );
+        <Button size={size ?? 'default'}>
+          <IconInfo icon={icon || null} text={text || ''} />
+        </Button>
+      </Dropdown>
+    );
+  }
+
+  const tooltipAdjust = tooltipSource;
+
+  if (tooltipAdjust) {
+    if (isBoolean(tooltipAdjust)) {
+      throw new Error(
+        'buildDropdown(framework) : tooltip property in menu Items not allow bool when check tooltip is true.',
+      );
+    }
+
+    const { placement, title } = {
+      ...{
+        placement: 'top',
+        title: 'tooltip title need set',
+      },
+      ...(isObject(tooltipAdjust) ? tooltipAdjust : {}),
+    };
+
+    return (
+      <Tooltip placement={placement} title={title}>
+        {button}
+      </Tooltip>
+    );
+  }
+
+  return button;
 }
 
 export function buildMenu({
-  record: r,
+  handleData: r,
   handleMenuClick = () => {},
   menuItems = [],
 }) {
@@ -462,7 +571,7 @@ export function buildMenu({
       onClick={(e) => {
         const { key } = e;
 
-        handleMenuClick({ key, record: r });
+        handleMenuClick({ key, handleData: r });
       }}
     >
       {listMenuItem.map((o) => {
@@ -958,7 +1067,7 @@ export function buildButtonGroup(buttonGroupData) {
               ...(buttonGroupData.menu.dropdownProps || {}),
               ...{
                 overlay: buildMenu({
-                  record: handleData,
+                  handleData,
                   handleMenuClick,
                   menuItems,
                 }),
@@ -972,57 +1081,6 @@ export function buildButtonGroup(buttonGroupData) {
         ) : null
       ) : null}
     </ButtonGroup>
-  );
-}
-
-export function buildDropdownEllipsis({
-  key = null,
-  size = 'default',
-  placement = 'top',
-  title = '更多操作',
-  disabled = false,
-  hidden = false,
-  record: r,
-  handleMenuClick = () => {},
-  menuItems = [],
-}) {
-  if (hidden) {
-    return null;
-  }
-
-  if (!isArray(menuItems) || menuItems.length === 0) {
-    return null;
-  }
-
-  const tooltipProps = {
-    placement: placement ?? 'top',
-    title: title ?? '更多操作',
-  };
-
-  if ((key || null) != null) {
-    tooltipProps.key = key;
-  }
-
-  return (
-    <Tooltip {...tooltipProps}>
-      <Dropdown
-        disabled={disabled}
-        overlay={buildMenu({
-          record: r,
-          handleMenuClick,
-          menuItems,
-        })}
-      >
-        <Button size={size ?? 'default'}>
-          <EllipsisOutlined
-            style={{
-              fontSize: 20,
-              verticalAlign: 'top',
-            }}
-          />
-        </Button>
-      </Dropdown>
-    </Tooltip>
   );
 }
 
