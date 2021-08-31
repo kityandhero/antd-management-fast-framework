@@ -268,41 +268,10 @@ export function buildButton({
   );
 }
 
-export function buildPopconfirm({
-  placement = 'topRight',
-  size = 'small',
-  text = '按钮',
-  icon = <FormOutlined />,
-  record: r,
-  title = '将要进行操作，确定吗？',
-  okText = '确定',
-  cancelText = '取消',
-  handleConfirm = () => {},
-  disabled = false,
-}) {
-  if (!isFunction(handleConfirm)) {
-    throw new Error('buildPopconfirm : handleConfirm must be function');
-  }
-
-  return (
-    <Popconfirm
-      placement={placement || 'topRight'}
-      title={title || '将要进行操作，确定吗？'}
-      onConfirm={() => handleConfirm(r)}
-      okText={okText || '确定'}
-      cancelText={cancelText || '取消'}
-      disabled={disabled || false}
-    >
-      <Button size={size} disabled={disabled || false}>
-        <IconInfo icon={icon || <FormOutlined />} text={text} />
-      </Button>
-    </Popconfirm>
-  );
-}
-
 export function buildDropdownButton({
   key = getGuid(),
   tooltip = false,
+  type: typeSource = 'default',
   size = 'small',
   text = '按钮',
   icon = <FormOutlined />,
@@ -317,6 +286,7 @@ export function buildDropdownButton({
   return buildDropdown({
     key,
     tooltip,
+    type: typeSource,
     size,
     text,
     icon,
@@ -333,6 +303,7 @@ export function buildDropdownButton({
 export function buildDropdownEllipsis({
   key = getGuid(),
   tooltip = { placement: 'top', title: '更多操作' },
+  type: typeSource = 'default',
   size = 'default',
   icon = (
     <EllipsisOutlined
@@ -352,6 +323,7 @@ export function buildDropdownEllipsis({
   return buildDropdown({
     key,
     tooltip,
+    type: typeSource,
     size,
     text: '',
     icon,
@@ -368,6 +340,7 @@ export function buildDropdownEllipsis({
 export function buildDropdown({
   key = getGuid(),
   tooltip: tooltipSource = false,
+  type: typeSource = 'default',
   size = 'default',
   text = '按钮',
   icon = <FormOutlined />,
@@ -378,6 +351,9 @@ export function buildDropdown({
   handleButtonClick = null,
   handleMenuClick = () => {},
   menuItems = [],
+  confirm = false,
+  processing = false,
+  iconProcessing = <LoadingOutlined />,
 }) {
   if (hidden) {
     return null;
@@ -402,9 +378,27 @@ export function buildDropdown({
   let button = null;
 
   if (!isArray(menuItems) || menuItems.length === 0) {
+    button = buildButton({
+      ...{
+        type,
+        size,
+        text,
+        icon,
+        handleClick: handleButtonClick,
+        hidden,
+        disabled,
+        confirm,
+        handleData,
+        processing,
+        iconProcessing,
+      },
+      ...otherProps,
+    });
+
     button = (
       <Button
         {...otherProps}
+        type={typeSource || 'default'}
         size={size || 'default'}
         onClick={() => {
           handleButtonClick({ handleData: r });
@@ -419,6 +413,7 @@ export function buildDropdown({
       <>
         <Dropdown.Button
           {...otherProps}
+          type={typeSource || 'default'}
           size={size || 'default'}
           onClick={() => {
             handleButtonClick({ handleData: r });
@@ -446,7 +441,7 @@ export function buildDropdown({
           menuItems,
         })}
       >
-        <Button size={size ?? 'default'}>
+        <Button type={typeSource || 'default'} size={size ?? 'default'}>
           <IconInfo icon={icon || null} text={text || ''} />
         </Button>
       </Dropdown>
