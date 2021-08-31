@@ -235,7 +235,7 @@ export function buildButton({
         title={title || 'confirm:缺少title配置'}
         onConfirm={() => {
           if (isFunction(handleClick)) {
-            handleClick(handleData ?? null);
+            handleClick({ handleData: handleData ?? null });
           } else {
             const messageText = 'buildButton : handleClick is not function';
 
@@ -261,7 +261,7 @@ export function buildButton({
       type={type}
       size={size}
       disabled={disabled}
-      onClick={() => handleClick(handleData ?? null)}
+      onClick={() => handleClick({ handleData: handleData ?? null })}
     >
       <IconInfo icon={ico} text={text} />
     </Button>
