@@ -714,20 +714,25 @@ export function buildCustomGrid({ key = null, list, props }) {
         }
       : {};
 
+    const titleComponent = stringIsNullOrWhiteSpace(title) ? null : (
+      <div
+        style={{
+          marginBottom: '8px',
+          color: '#000000d9',
+          fontWeight: 500,
+          fontSize: '16px',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+        }}
+      >
+        <FlexText text={title} />
+      </div>
+    );
+
     return (
       <div key={key}>
-        <div
-          style={{
-            marginBottom: '8px',
-            color: '#000000d9',
-            fontWeight: 500,
-            fontSize: '16px',
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
-          }}
-        >
-          <FlexText text={title} />
-        </div>
+        {titleComponent}
+
         <Row style={containorStyle}>
           {dataList.map((item) => {
             const { hidden } = { ...{ hidden: false }, ...(item || {}) };
