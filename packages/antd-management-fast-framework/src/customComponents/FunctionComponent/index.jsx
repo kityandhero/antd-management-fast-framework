@@ -388,7 +388,7 @@ export function buildDropdown({
         hidden,
         disabled,
         confirm,
-        handleData,
+        handleData: r,
         processing,
         iconProcessing,
       },
