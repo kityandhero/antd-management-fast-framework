@@ -380,7 +380,7 @@ export function buildDropdown({
   if (!isArray(menuItems) || menuItems.length === 0) {
     button = buildButton({
       ...{
-        type,
+        type: typeSource || 'default',
         size,
         text,
         icon,
@@ -394,20 +394,6 @@ export function buildDropdown({
       },
       ...otherProps,
     });
-
-    button = (
-      <Button
-        {...otherProps}
-        type={typeSource || 'default'}
-        size={size || 'default'}
-        onClick={() => {
-          handleButtonClick({ handleData: r });
-        }}
-        disabled={disabled ?? false}
-      >
-        <IconInfo icon={icon || null} text={text || ''} />
-      </Button>
-    );
   } else if (hasHandleButtonClick) {
     button = (
       <>
