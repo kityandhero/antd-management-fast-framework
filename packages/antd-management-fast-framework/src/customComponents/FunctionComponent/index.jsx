@@ -126,6 +126,9 @@ export function pageHeaderTitle(pageName, headerTitlePrefix) {
   );
 }
 
+/**
+ * 构建按钮
+ */
 export function buildButton({
   key: keySource = null,
   type: typeSource = 'default',
