@@ -17,6 +17,9 @@ import {
   apiVirtualFailData,
 } from './virtualRequest';
 
+/**
+ * 错误数据模型
+ */
 function errorCustomData() {
   return {
     code: -1,
