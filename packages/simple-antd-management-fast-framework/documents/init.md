@@ -5,7 +5,7 @@
 ## Install
 
 - npm install -g husky
-- npm install -D prettier husky commitizen @commitlint/config-conventional @commitlint/cli lint-staged cz-conventional-changelog
+- npm install -D prettier husky commitizen @commitlint/config-lerna-scopes @commitlint/cli lint-staged cz-conventional-changelog
 - npm install -D eslint eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-simple-import-sort
 
 ---
@@ -21,7 +21,7 @@
 
 - husky add .husky/pre-commit "npx lint-staged --allow-empty $1"
 - husky add .husky/commit-msg "npx commitlint --edit $1"
-- echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+- echo "module.exports = {extends: ['@commitlint/config-lerna-scopes']}" > commitlint.config.js
 
 ---
 
