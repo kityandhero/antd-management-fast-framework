@@ -1461,10 +1461,16 @@ export function isUndefined(value) {
   return isUndefinedLodash(value);
 }
 
+/**
+ * check value is null
+ */
 export function isNull(value) {
   return isNullLodash(value);
 }
 
+/**
+ * check value is date
+ */
 export function isDate(value) {
   return isDateLodash(value);
 }
