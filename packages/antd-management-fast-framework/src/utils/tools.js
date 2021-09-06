@@ -1469,6 +1469,9 @@ export function isDate(value) {
   return isDateLodash(value);
 }
 
+/**
+ * check value is string
+ */
 export function isString(value) {
   return isStringLodash(value);
 }
@@ -1507,6 +1510,9 @@ export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
 }
 
+/**
+ * getTimeDistance
+ */
 export function getTimeDistance(type) {
   const now = new Date();
   const oneDay = 1000 * 60 * 60 * 24;
