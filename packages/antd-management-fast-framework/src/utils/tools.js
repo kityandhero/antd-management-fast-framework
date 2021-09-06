@@ -1605,6 +1605,9 @@ export function removeNearestLocalhostNotifyCache() {
   removeLocalStorage(key);
 }
 
+/**
+ * 尝试发送最近一次本地调用通知（一般用于开发阶段，提示调用的接口域）
+ */
 export function trySendNearestLocalhostNotify({ text }) {
   let needSend = false;
   let nearestTime = 0;
