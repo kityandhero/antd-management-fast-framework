@@ -17,7 +17,7 @@
     "commitlint": "commitlint --edit",
     "lint-staged": "lint-staged",
     "build:fvp": "npm run build:f && npm run build:vp",
-    "build:f": "cd packages/antd-management-fast-framework && npm run build",
+    "build:f": "cd packages/antd-management-fast-framework && npm run build && npm run delete:dts",
     "build:p": "cd packages/antd-management-fast-framework && npm publish",
     "build:vp": "cd packages/antd-management-fast-framework && npm version patch && npm publish",
     "build:fp": "cd packages/antd-management-fast-framework && npm publish",
