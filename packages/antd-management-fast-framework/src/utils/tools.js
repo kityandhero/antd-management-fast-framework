@@ -1457,6 +1457,9 @@ export function isBoolean(value) {
   return isBooleanLodash(value);
 }
 
+/**
+ * check value is undefined
+ */
 export function isUndefined(value) {
   return isUndefinedLodash(value);
 }
