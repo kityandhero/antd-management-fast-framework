@@ -12,7 +12,7 @@
     "clean": "lerna clean && rimraf ./node_modules/",
     "publish:f": "npm run build:f && npm run scz && lerna updated && lerna publish",
     "cz": "cz",
-    "scz": "git stage * && npm run cz && git push",
+    "scz": "git stage -A && npm run cz && git push",
     "commitlint": "commitlint --edit",
     "lint-staged": "lint-staged",
     "build:fvp": "npm run build:f && npm run build:vp",
