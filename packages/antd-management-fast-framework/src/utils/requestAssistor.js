@@ -27,6 +27,10 @@ function errorCustomData() {
   };
 }
 
+/**
+ * 数据异常通知
+ * @param {*} d 异常数据
+ */
 function dataExceptionNotice(d) {
   const { code, message: messageText } = d;
   const c = errorCustomData();
