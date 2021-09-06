@@ -11,6 +11,11 @@ function FormatMessageWrapper(o) {
   return formatMessageUseIntl(o);
 }
 
+/**
+ * 语言渲染封装器
+ * @param {*} o 语言配置
+ * @returns
+ */
 export function formatMessage(o) {
   return FormatMessageWrapper(o);
 }
