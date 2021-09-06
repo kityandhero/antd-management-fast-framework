@@ -36,6 +36,7 @@
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@commitlint/config-lerna-scopes": "^13.1.0",
     "commitizen": "^4.2.4",
     "conventional-changelog-conventionalcommits": "^4.6.0",
     "cz-conventional-changelog": "^3.3.0",
