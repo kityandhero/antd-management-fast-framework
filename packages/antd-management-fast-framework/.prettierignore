@@ -20,6 +20,7 @@ CNAME
 .dockerignore
 .DS_Store
 .eslintignore
+.gitattributes
 *.png
 *.jpg
 *.jpeg
