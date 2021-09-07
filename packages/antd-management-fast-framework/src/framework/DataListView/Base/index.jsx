@@ -341,6 +341,8 @@ class ListBase extends AuthorizationWrapper {
           ...facadeConfig,
         };
 
+        let styleMerge = {};
+
         if (
           stringIsNullOrWhiteSpace(facadeMode) ||
           facadeMode === columnFacadeMode.ellipsis
@@ -353,7 +355,10 @@ class ListBase extends AuthorizationWrapper {
             return emptyValue;
           }
 
-          const styleMerge = { ...((color || null) == null ? {} : { color }) };
+          styleMerge = {
+            ...styleMerge,
+            ...((color || null) == null ? {} : { color }),
+          };
 
           if (canCopy) {
             return (
