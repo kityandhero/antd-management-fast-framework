@@ -46,6 +46,7 @@ import {
   showErrorMessage,
   isBoolean,
   getGuid,
+  isObject,
 } from '../../../utils/tools';
 import {
   searchFormContentConfig,
@@ -81,8 +82,6 @@ import ColumnSetting from '../ColumnSetting';
 import BatchAction from '../BatchAction';
 
 import styles from './index.less';
-import { isObject } from 'lodash';
-import IconContext from '@ant-design/icons/lib/components/Context';
 
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
@@ -390,7 +389,7 @@ class ListBase extends AuthorizationWrapper {
             <>
               {(addonBefore || null) == null ? null : addonBefore}
 
-              <IconContext
+              <IconInfo
                 icon={icon || null}
                 iconPosition={iconPosition || 'left'}
                 text={val || emptyValue}
@@ -418,7 +417,7 @@ class ListBase extends AuthorizationWrapper {
             <>
               {(addonBefore || null) == null ? null : addonBefore}
 
-              <IconContext
+              <IconInfo
                 icon={icon || null}
                 iconPosition={iconPosition || 'left'}
                 text={val || emptyValue}
@@ -444,7 +443,7 @@ class ListBase extends AuthorizationWrapper {
             <>
               {(addonBefore || null) == null ? null : addonBefore}
 
-              <IconContext
+              <IconInfo
                 icon={icon || null}
                 iconPosition={iconPosition || 'left'}
                 text={formatMoney(val) || emptyValue}
