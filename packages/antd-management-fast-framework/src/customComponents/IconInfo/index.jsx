@@ -15,9 +15,14 @@ const defaultValue = {
   icon: null,
   iconPosition: 'left',
   iconTooltip: '',
-  textPrefix: null,
   canCopy: false,
+  textPrefix: '',
+  textPrefixStyle: null,
   text: '',
+  textStyle: null,
+  separator: '：',
+  separatorStyle: null,
+  style: null,
 };
 
 class IconInfo extends PureComponent {
@@ -35,13 +40,18 @@ class IconInfo extends PureComponent {
       responsive: responsiveValue,
       tooltip: tooltipValue,
       ellipsis: ellipsisValue,
-      text,
       textPrefix,
+      textPrefixStyle,
+      text,
+      textStyle,
+      separator,
+      separatorStyle,
       icon,
       iconPosition,
       iconTooltip,
       onClick,
       canCopy,
+      style: styleSource,
     } = { ...defaultValue, ...(this.props || {}) };
 
     const responsive = responsiveValue || false;
@@ -59,6 +69,40 @@ class IconInfo extends PureComponent {
       direction = 'horizontal';
     }
 
+    const styleMerge = {
+      ...(styleSource || {}),
+      ...(canCopy ? { cursor: 'pointer' } : {}),
+    };
+
+    const textMerge = stringIsNullOrWhiteSpace(textPrefix) ? (
+      (textStyle || null) == null ? (
+        text || ''
+      ) : (
+        <span style={textStyle}>{text || ''}</span>
+      )
+    ) : (
+      `${
+        (textPrefixStyle || null) == null ? (
+          textPrefix || ''
+        ) : (
+          <span style={textPrefixStyle}>{textPrefix || ''}</span>
+        )
+      }${
+        stringIsNullOrWhiteSpace(separator) ? null : (separatorStyle || null) ==
+          null ? (
+          separator || '：'
+        ) : (
+          <span style={separatorStyle}>{separator || '：'}</span>
+        )
+      }${
+        (textStyle || null) == null ? (
+          text || ''
+        ) : (
+          <span style={textStyle}>{text || ''}</span>
+        )
+      }`
+    );
+
     if (direction === 'horizontal') {
       return (
         <>
@@ -67,22 +111,17 @@ class IconInfo extends PureComponent {
               (iconItem || null) == null ? (
                 <Row gutter={8}>
                   <Col
-                    style={canCopy ? { cursor: 'pointer' } : {}}
+                    style={styleMerge}
                     onClick={() => {
                       this.copyText();
                     }}
                   >
                     {ellipsis ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
-                        {stringIsNullOrWhiteSpace(textPrefix)
-                          ? null
-                          : `${textPrefix}：`}{' '}
-                        {text}
+                        {textMerge}
                       </Ellipsis>
-                    ) : stringIsNullOrWhiteSpace(textPrefix) ? (
-                      text
                     ) : (
-                      `${textPrefix}：${text}`
+                      textMerge
                     )}
                   </Col>
                 </Row>
@@ -111,15 +150,10 @@ class IconInfo extends PureComponent {
                   >
                     {ellipsis ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
-                        {stringIsNullOrWhiteSpace(textPrefix)
-                          ? null
-                          : `${textPrefix}：`}{' '}
-                        {text}
+                        {textMerge}
                       </Ellipsis>
-                    ) : stringIsNullOrWhiteSpace(textPrefix) ? (
-                      text
                     ) : (
-                      `${textPrefix}：${text}`
+                      textMerge
                     )}
                   </Col>
 
@@ -144,15 +178,10 @@ class IconInfo extends PureComponent {
                 >
                   {ellipsis ? (
                     <Ellipsis tooltip={tooltip} lines={1}>
-                      {stringIsNullOrWhiteSpace(textPrefix)
-                        ? null
-                        : `${textPrefix}：`}{' '}
-                      {text}
+                      {textMerge}
                     </Ellipsis>
-                  ) : stringIsNullOrWhiteSpace(textPrefix) ? (
-                    text
                   ) : (
-                    `${textPrefix}：${text}`
+                    textMerge
                   )}
                 </Col>
               </Row>
@@ -176,15 +205,10 @@ class IconInfo extends PureComponent {
                 >
                   {ellipsis ? (
                     <Ellipsis tooltip={tooltip} lines={1}>
-                      {stringIsNullOrWhiteSpace(textPrefix)
-                        ? null
-                        : `${textPrefix}：`}{' '}
-                      {text}
+                      {textMerge}
                     </Ellipsis>
-                  ) : stringIsNullOrWhiteSpace(textPrefix) ? (
-                    text
                   ) : (
-                    `${textPrefix}：${text}`
+                    textMerge
                   )}
                 </Col>
 
@@ -240,15 +264,10 @@ class IconInfo extends PureComponent {
                   >
                     {ellipsis ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
-                        {stringIsNullOrWhiteSpace(textPrefix)
-                          ? null
-                          : `${textPrefix}：`}{' '}
-                        {text}
+                        {textMerge}
                       </Ellipsis>
-                    ) : stringIsNullOrWhiteSpace(textPrefix) ? (
-                      text
                     ) : (
-                      `${textPrefix}：${text}`
+                      textMerge
                     )}
                   </Col>
                   <Col flex="auto" />

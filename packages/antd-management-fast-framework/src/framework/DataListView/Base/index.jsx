@@ -58,7 +58,6 @@ import {
 import EverySpace from '../../../customComponents/EverySpace';
 import IconInfo from '../../../customComponents/IconInfo';
 import EllipsisCustom from '../../../customComponents/EllipsisCustom';
-import Ellipsis from '../../../customComponents/Ellipsis';
 import ImageBox from '../../../customComponents/ImageBox';
 import HelpCard from '../../../customComponents/HelpCard';
 import {
@@ -83,6 +82,7 @@ import BatchAction from '../BatchAction';
 
 import styles from './index.less';
 import { isObject } from 'lodash';
+import IconContext from '@ant-design/icons/lib/components/Context';
 
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
@@ -273,8 +273,8 @@ class ListBase extends AuthorizationWrapper {
     d.sorter = sorter;
 
     if (!isFunction(d.render) && showRichFacade) {
-      const { canCopy, emptyValue } = {
-        ...{ canCopy: false, emptyValue: null },
+      const { canCopy, copyPrompt, emptyValue } = {
+        ...{ canCopy: false, copyPrompt: '[点击复制]', emptyValue: null },
         ...d,
       };
 
@@ -308,6 +308,39 @@ class ListBase extends AuthorizationWrapper {
           };
         }
 
+        const {
+          color,
+          valPrefix,
+          valPrefixStyle,
+          valStyle,
+          separator,
+          separatorStyle,
+          icon,
+          iconPosition,
+          addonAfter,
+          addonBefore,
+          datetimeFormat: datetimeFormatValue,
+          status,
+          text,
+        } = {
+          ...{
+            color: null,
+            valPrefix: '',
+            valPrefixStyle: null,
+            valStyle: null,
+            separator: '：',
+            separatorStyle: null,
+            icon: null,
+            iconPosition: 'left',
+            addonAfter: null,
+            addonBefore: null,
+            datetimeFormat: datetimeFormat.yearMonthDayHourMinuteSecond,
+            status: 'default',
+            text: '',
+          },
+          ...facadeConfig,
+        };
+
         if (
           stringIsNullOrWhiteSpace(facadeMode) ||
           facadeMode === columnFacadeMode.ellipsis
@@ -316,20 +349,17 @@ class ListBase extends AuthorizationWrapper {
             val = d.formatValue(value, record);
           }
 
-          const { color } = {
-            ...{ color: null },
-            ...facadeConfig,
-          };
-
           if (stringIsNullOrWhiteSpace(val)) {
             return emptyValue;
           }
+
+          const styleMerge = { ...((color || null) == null ? {} : { color }) };
 
           if (canCopy) {
             return (
               <>
                 <EllipsisCustom
-                  style={{ ...((color || null) == null ? {} : { color }) }}
+                  style={styleMerge}
                   tooltip={{ placement: tooltipPlacement }}
                   lines={1}
                   removeChildren
@@ -345,7 +375,7 @@ class ListBase extends AuthorizationWrapper {
                     </>
                   }
                 >
-                  {val || emptyValue} [点击复制]
+                  {val || emptyValue} {copyPrompt || '[点击复制]'}
                 </EllipsisCustom>
               </>
             );
@@ -353,60 +383,77 @@ class ListBase extends AuthorizationWrapper {
 
           return (
             <>
-              <Ellipsis
-                style={{ ...((color || null) == null ? {} : { color }) }}
+              {(addonBefore || null) == null ? null : addonBefore}
+
+              <IconContext
+                icon={icon || null}
+                iconPosition={iconPosition || 'left'}
+                text={val || emptyValue}
+                textStyle={valStyle || null}
+                textPrefix={valPrefix}
+                textPrefixStyle={valPrefixStyle || null}
+                separator={separator || ''}
+                separatorStyle={separatorStyle || null}
+                style={styleMerge}
                 tooltip={{ placement: tooltipPlacement }}
-                lines={1}
-              >
-                {val || emptyValue}
-              </Ellipsis>
+                ellipsis
+              />
+
+              {(addonAfter || null) == null ? null : addonAfter}
             </>
           );
         }
 
         if (facadeMode === columnFacadeMode.datetime) {
-          const { color, datetimeFormat: datetimeFormatValue } = {
-            ...{
-              color: null,
-              datetimeFormat: datetimeFormat.yearMonthDayHourMinuteSecond,
-            },
-            ...facadeConfig,
-          };
-
           val = stringIsNullOrWhiteSpace(val)
             ? ''
             : formatDatetime(val, datetimeFormatValue) || '';
 
           return (
             <>
-              <Ellipsis
-                style={{ ...((color || null) == null ? {} : { color }) }}
+              {(addonBefore || null) == null ? null : addonBefore}
+
+              <IconContext
+                icon={icon || null}
+                iconPosition={iconPosition || 'left'}
+                text={val || emptyValue}
+                textStyle={valStyle || null}
+                textPrefix={valPrefix}
+                textPrefixStyle={valPrefixStyle || null}
+                separator={separator || ''}
+                separatorStyle={separatorStyle || null}
+                style={styleMerge}
                 tooltip={{ placement: tooltipPlacement }}
-                lines={1}
-              >
-                {val || emptyValue}
-              </Ellipsis>
+                ellipsis
+              />
+
+              {(addonAfter || null) == null ? null : addonAfter}
             </>
           );
         }
 
         if (facadeMode === columnFacadeMode.money) {
-          const { color } = {
-            ...{ color: null },
-            ...facadeConfig,
-          };
-
           val = stringIsNullOrWhiteSpace(val) ? '' : val;
 
           return (
             <>
-              <Ellipsis
-                style={{ ...((color || null) == null ? {} : { color }) }}
+              {(addonBefore || null) == null ? null : addonBefore}
+
+              <IconContext
+                icon={icon || null}
+                iconPosition={iconPosition || 'left'}
+                text={formatMoney(val) || emptyValue}
+                textStyle={valStyle || null}
+                textPrefix={valPrefix}
+                textPrefixStyle={valPrefixStyle || null}
+                separator={separator || ''}
+                separatorStyle={separatorStyle || null}
+                style={styleMerge}
                 tooltip={{ placement: tooltipPlacement }}
-                lines={1}
-              >
-                {formatMoney(val) || emptyValue}
-              </Ellipsis>
+                ellipsis
+              />
+
+              {(addonAfter || null) == null ? null : addonAfter}
             </>
           );
         }
@@ -453,11 +500,6 @@ class ListBase extends AuthorizationWrapper {
           if (isFunction(d.formatValue)) {
             val = d.formatValue(value, record);
           }
-
-          const { status, text } = {
-            ...{ status: 'default', text: '' },
-            ...facadeConfig,
-          };
 
           return (
             <>
