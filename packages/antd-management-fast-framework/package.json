@@ -137,7 +137,6 @@
     "src/utils"
   ],
   "directories": {
-    "example": "example",
     "lib": "lib",
     "es": "lib",
     "test": "test"
@@ -148,6 +147,5 @@
   },
   "bugs": {
     "url": "https://github.com/kityandhero/antd-management-fast-framework/issues"
-  },
-  "gitHead": "bff59dd6f73f7876bf07eddc292fdc8ee7048059"
+  }
 }
