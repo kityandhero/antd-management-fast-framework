@@ -14,7 +14,7 @@
     "publish:c": "npm run scz && lerna updated && lerna publish",
     "cz": "cz",
     "scz": "git stage -A && npm run cz && git push",
-    "commitlint": "commitlint --edit",
+    "commitlint": "npx commitlint --edit",
     "lint-staged": "lint-staged",
     "build:fvp": "npm run build:f && npm run build:vp",
     "build:f": "cd packages/antd-management-fast-framework && npm run build && npm run delete:dts",

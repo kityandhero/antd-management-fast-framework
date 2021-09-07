@@ -252,6 +252,13 @@ export function pretreatmentRequestParams(params, customHandle) {
   return submitData;
 }
 
+/**
+ * 常规数据出库辅助方法
+ * @param {*} state
+ * @param {*} action
+ * @param {*} callback
+ * @returns
+ */
 export function handleCommonDataAssist(state, action, callback = null) {
   const { payload: d, alias } = action;
 
