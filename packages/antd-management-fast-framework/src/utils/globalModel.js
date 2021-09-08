@@ -1,3 +1,6 @@
+/**
+ * 底层通用数据定义
+ */
 export const modelCollection = {
   whetherList: [
     {
