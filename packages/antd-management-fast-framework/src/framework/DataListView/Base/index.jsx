@@ -409,6 +409,11 @@ class ListBase extends AuthorizationWrapper {
         }
 
         if (facadeMode === columnFacadeMode.datetime) {
+          styleMerge = {
+            ...styleMerge,
+            ...((color || null) == null ? {} : { color }),
+          };
+
           val = stringIsNullOrWhiteSpace(val)
             ? ''
             : formatDatetime(val, datetimeFormatValue) || '';
@@ -437,6 +442,11 @@ class ListBase extends AuthorizationWrapper {
         }
 
         if (facadeMode === columnFacadeMode.money) {
+          styleMerge = {
+            ...styleMerge,
+            ...((color || null) == null ? {} : { color }),
+          };
+
           val = stringIsNullOrWhiteSpace(val) ? '' : val;
 
           return (
