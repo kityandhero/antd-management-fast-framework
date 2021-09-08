@@ -143,7 +143,7 @@ class IconInfo extends PureComponent {
                     md={16}
                     sm={24}
                     xs={24}
-                    style={canCopy ? { cursor: 'pointer' } : {}}
+                    style={styleMerge}
                     onClick={() => {
                       this.copyText();
                     }}
@@ -171,7 +171,7 @@ class IconInfo extends PureComponent {
             ) : (iconItem || null) == null ? (
               <Row gutter={8}>
                 <Col
-                  style={canCopy ? { cursor: 'pointer' } : {}}
+                  style={styleMerge}
                   onClick={() => {
                     this.copyText();
                   }}
@@ -198,7 +198,7 @@ class IconInfo extends PureComponent {
                 ) : null}
 
                 <Col
-                  style={canCopy ? { cursor: 'pointer' } : {}}
+                  style={styleMerge}
                   onClick={() => {
                     this.copyText();
                   }}
@@ -238,7 +238,7 @@ class IconInfo extends PureComponent {
                   <Row>
                     <Col flex="auto" />
                     <Col
-                      style={canCopy ? { cursor: 'pointer' } : {}}
+                      style={styleMerge}
                       onClick={() => {
                         this.copyText();
                       }}
@@ -257,7 +257,7 @@ class IconInfo extends PureComponent {
                 <Row>
                   <Col flex="auto" />
                   <Col
-                    style={canCopy ? { cursor: 'pointer' } : {}}
+                    style={styleMerge}
                     onClick={() => {
                       this.copyText();
                     }}

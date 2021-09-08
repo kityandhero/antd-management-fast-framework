@@ -19,8 +19,8 @@ import { handleItem } from 'antd-management-fast-framework/lib/utils/actionAssis
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
 import { buildDropdownButton } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
-import { accessWayCollection, pageConfig } from '@/customConfig/config';
-import { colorCollection } from '@/customConfig/constants';
+import { accessWayCollection } from '@/customConfig/config';
+import { colorCollection, priceColor } from '@/customConfig/constants';
 import {
   getArticleRenderTypeName,
   renderSearchArticleRenderTypeSelect,
@@ -232,6 +232,9 @@ class PageList extends MultiPage {
       width: 120,
       showRichFacade: true,
       emptyValue: '--',
+      facadeConfig: {
+        color: priceColor,
+      },
       formatValue: (val) => {
         return getArticleRenderTypeName({
           global: this.getGlobal(),
