@@ -10,6 +10,11 @@ import {
 
 const { confirm } = Modal;
 
+/**
+ * 处理 actionCore 的异步请求结果
+ * @param {*} param0
+ * @returns
+ */
 export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   if ((target || null) == null) {
     throw new Error('actionCore: target not allow null');
