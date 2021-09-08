@@ -82,8 +82,8 @@
     "@types/node": "^16.7.13",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@umijs/fabric": "^2.6.7",
-    "@umijs/test": "^3.5.17",
-    "@umijs/test-utils": "^3.5.17",
+    "@umijs/test": "^3.5.18",
+    "@umijs/test-utils": "^3.5.18",
     "babel-cli": "^6.26.0",
     "babel-plugin-import": "^1.13.3",
     "babel-preset-env": "^1.7.0",
@@ -123,7 +123,7 @@
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0",
     "test-umi-plugin": "^0.1.0",
-    "umi": "^3.5.17",
+    "umi": "^3.5.18",
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
