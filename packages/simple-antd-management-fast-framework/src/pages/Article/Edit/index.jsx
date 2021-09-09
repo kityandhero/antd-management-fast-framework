@@ -278,12 +278,12 @@ class Edit extends DataTabContainer {
           text: '按钮2',
           hidden: false,
           disabled: false,
-          // confirm: {
-          //   title: '确认操作，确定吗？',
-          //   placement: 'bottomRight',
-          //   okText: '确定',
-          //   cancelText: '取消',
-          // },
+          confirm: {
+            title: '确认操作，确定吗？',
+            placement: 'bottomRight',
+            okText: '确定',
+            cancelText: '取消',
+          },
         },
         {
           key: 'click4',

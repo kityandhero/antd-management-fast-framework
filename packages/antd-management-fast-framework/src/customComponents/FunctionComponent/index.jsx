@@ -602,7 +602,16 @@ export function buildMenu({
                 cancelText={cancelText}
                 disabled={disabled}
               >
-                <Button size="small" disabled={disabled}>
+                <Button
+                  type="text"
+                  style={{
+                    padding: '5px 12px',
+                    width: '100%',
+                    display: 'inline-flex',
+                  }}
+                  size="small"
+                  disabled={disabled}
+                >
                   <IconInfo icon={icon || <EditOutlined />} text={text} />
                 </Button>
               </Popconfirm>
