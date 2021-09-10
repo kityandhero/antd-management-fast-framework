@@ -545,7 +545,9 @@ export function buildMenu({
         ...{
           placement: 'topRight',
           title: '将要进行操作，确定吗？',
-          handleConfirm: () => {},
+          handleConfirm: ({ key, handleData }) => {
+            handleMenuClick({ key, handleData });
+          },
           okText: '确定',
           cancelText: '取消',
         },
@@ -597,23 +599,32 @@ export function buildMenu({
                 key={key}
                 placement={placement}
                 title={title}
-                onConfirm={() => handleConfirm(r)}
+                onConfirm={() => handleConfirm({ key, handleData: r })}
                 okText={okText}
                 cancelText={cancelText}
                 disabled={disabled}
               >
-                <Button
-                  type="text"
+                <li
+                  className={styles.menuItemCustom}
                   style={{
-                    padding: '5px 12px',
-                    width: '100%',
-                    display: 'inline-flex',
+                    display: 'inherit',
+                    height: '32px',
                   }}
-                  size="small"
-                  disabled={disabled}
                 >
-                  <IconInfo icon={icon || <EditOutlined />} text={text} />
-                </Button>
+                  <Button
+                    className={styles.menuItemCustomButton}
+                    type="text"
+                    style={{
+                      padding: '5px 12px',
+                      border: 0,
+                      height: '32px',
+                    }}
+                    size="small"
+                    disabled={disabled}
+                  >
+                    <IconInfo icon={icon || <EditOutlined />} text={text} />
+                  </Button>
+                </li>
               </Popconfirm>
             );
           }

@@ -273,6 +273,12 @@ class Edit extends DataTabContainer {
           disabled: true,
         },
         {
+          key: 'click21',
+          icon: <ReloadOutlined />,
+          text: '按钮21',
+          hidden: false,
+        },
+        {
           key: 'click3',
           icon: <ReloadOutlined />,
           text: '按钮2',

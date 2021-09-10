@@ -298,6 +298,9 @@ class PageList extends MultiPage {
               text: '设为上线',
               hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
               disabled: itemStatus === statusCollection.online,
+              confirm: {
+                title: '将要设置为上线，确定吗？',
+              },
             },
             {
               key: 'setOffline',
@@ -305,6 +308,9 @@ class PageList extends MultiPage {
               text: '设为下线',
               hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
               disabled: itemStatus === statusCollection.offline,
+              confirm: {
+                title: '将要设置为下线，确定吗？',
+              },
             },
           ],
         });

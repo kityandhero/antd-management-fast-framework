@@ -22,6 +22,7 @@
     "build:p": "cd packages/antd-management-fast-framework && npm publish",
     "build:vp": "cd packages/antd-management-fast-framework && npm version patch && npm publish",
     "build:fp": "cd packages/antd-management-fast-framework && npm publish",
+    "build:start": "npm run build:f && npm start",
     "clean:framework": "cd packages/antd-management-fast-framework && npm run clean-file",
     "clean:simple": "cd packages/simple-antd-management-fast-framework && npm run clean-file",
     "reinstall": "npm run clean && npm run clean:framework && npm run clean:simple && npm run lerna:b",
