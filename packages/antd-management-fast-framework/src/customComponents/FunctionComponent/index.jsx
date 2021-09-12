@@ -142,6 +142,7 @@ export function buildButton({
   handleData: handleDataSource = null,
   processing: processingSource = false,
   iconProcessing: iconProcessingSource = <LoadingOutlined />,
+  style: styleSource = null,
 }) {
   let confirmAdjust = false;
 
@@ -158,6 +159,7 @@ export function buildButton({
     handleClick,
     processing,
     iconProcessing,
+    style,
   } = {
     ...{
       key: keySource ?? null,
@@ -172,6 +174,7 @@ export function buildButton({
       processing: processingSource ?? false,
       iconProcessing: iconProcessingSource ?? <LoadingOutlined />,
       handleData: handleDataSource ?? null,
+      style: styleSource || null,
     },
   };
 
@@ -196,6 +199,7 @@ export function buildButton({
         handleClick,
         processing,
         iconProcessing,
+        style,
       });
 
       throw new Error(
@@ -251,7 +255,12 @@ export function buildButton({
         cancelText={cancelText}
         disabled={disabled}
       >
-        <Button type={type} size={size} disabled={disabled}>
+        <Button
+          type={type}
+          size={size}
+          style={style || null}
+          disabled={disabled}
+        >
           <IconInfo icon={ico} text={text} />
         </Button>
       </Popconfirm>
@@ -261,6 +270,7 @@ export function buildButton({
   return (
     <Button
       key={key ?? undefined}
+      style={style || null}
       type={type}
       size={size}
       disabled={disabled}

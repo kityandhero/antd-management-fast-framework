@@ -977,6 +977,7 @@ class Common extends Core {
     confirm = false,
     processing = false,
     handleData = null,
+    style = null,
   }) => {
     if (hidden) {
       return null;
@@ -998,6 +999,7 @@ class Common extends Core {
       hidden,
       confirm,
       handleData: handleData ?? null,
+      style: style || null,
     });
   };
 
