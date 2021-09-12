@@ -1240,9 +1240,9 @@ export function buildFormRadio({
     ...{
       placeholder: buildFieldDescription(label, '选择'),
       style: { width: '100%' },
-      onChange: (v, option) => {
+      onChange: (e) => {
         if (isFunction(onChangeCallback)) {
-          onChangeCallback(v, option);
+          onChangeCallback(e);
         }
       },
     },
