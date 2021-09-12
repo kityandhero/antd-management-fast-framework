@@ -1553,6 +1553,24 @@ class Common extends Core {
                 );
               }
 
+              if (type === formContentConfig.contentItemType.divider) {
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg}
+                    md={lg || md}
+                    sm={lg || sm}
+                    xs={lg || xs}
+                  >
+                    <Divider {...{ ...{}, ...(contentItem.otherProps || {}) }}>
+                      {stringIsNullOrWhiteSpace(contentItem.text || '')
+                        ? null
+                        : contentItem.text}
+                    </Divider>
+                  </Col>
+                );
+              }
+
               if (type === formContentConfig.contentItemType.imageUpload) {
                 const uploadProps = {
                   ...(contentItem.uploadProps || {}),

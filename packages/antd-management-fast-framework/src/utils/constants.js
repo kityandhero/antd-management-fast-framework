@@ -182,6 +182,7 @@ export const formContentConfig = {
     jsonView: 'jsonView',
     flexText: 'flexText',
     onlyShowTextByFlexText: 'onlyShowTextByFlexText',
+    divider: 'divider',
   },
 };
 
@@ -196,6 +197,7 @@ export const searchFormContentConfig = {
     component: 'component',
     datePicker: 'datePicker',
     customRangePicker: 'customRangePicker',
+    divider: 'divider',
   },
 };
 

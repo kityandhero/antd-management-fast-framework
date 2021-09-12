@@ -133,6 +133,11 @@ class BasicInfo extends TabPageBase {
             },
             {
               lg: 24,
+              type: formContentConfig.contentItemType.divider,
+              text: '分隔线',
+            },
+            {
+              lg: 24,
               type: formContentConfig.contentItemType.input,
               fieldData: fieldData.subtitle,
             },
