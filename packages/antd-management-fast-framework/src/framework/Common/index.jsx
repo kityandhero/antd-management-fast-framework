@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Row,
   Col,
@@ -1365,11 +1365,7 @@ class Common extends Core {
           const extraItems = extraListData.map((extraItem, extraItemIndex) => {
             const extraItemKey = `formContent_key_${index}_extra_${extraItemIndex}`;
 
-            if (stringIsNullOrWhiteSpace(extraItem)) {
-              return <Divider key={extraItemKey} type="vertical" />;
-            }
-
-            return <span key={extraItemKey}>{extraItem}</span>;
+            return <Fragment key={extraItemKey}>{extraItem}</Fragment>;
           });
 
           const hasExtraItems = extraItems.length > 0;
@@ -1418,7 +1414,7 @@ class Common extends Core {
                     </Affix>
                   ) : (
                     <>
-                      <div>{extraItems}</div>
+                      <Space>{extraItems}</Space>
                     </>
                   )
                 ) : null
