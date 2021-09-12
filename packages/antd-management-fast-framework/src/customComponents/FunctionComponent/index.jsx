@@ -137,6 +137,7 @@ export function buildButton({
   icon: iconSource = <FormOutlined />,
   handleClick: handleClickSource = () => {},
   hidden: hiddenSource = false,
+  danger: dangerSource = false,
   disabled: disabledSource = false,
   confirm: confirmSource = false,
   handleData: handleDataSource = null,
@@ -152,6 +153,7 @@ export function buildButton({
     size,
     icon,
     text,
+    danger,
     disabled,
     hidden,
     confirm,
@@ -168,6 +170,7 @@ export function buildButton({
       text: textSource ?? '按钮',
       icon: iconSource ?? <FormOutlined />,
       handleClick: handleClickSource ?? null,
+      danger: dangerSource ?? false,
       hidden: hiddenSource ?? false,
       disabled: disabledSource ?? false,
       confirm: confirmSource ?? false,
@@ -192,6 +195,7 @@ export function buildButton({
         size,
         icon,
         text,
+        danger,
         disabled,
         hidden,
         confirm,
@@ -259,6 +263,7 @@ export function buildButton({
           type={type}
           size={size}
           style={style || null}
+          danger={danger}
           disabled={disabled}
         >
           <IconInfo icon={ico} text={text} />
@@ -273,6 +278,7 @@ export function buildButton({
       style={style || null}
       type={type}
       size={size}
+      danger={danger}
       disabled={disabled}
       onClick={() => handleClick({ handleData: handleData ?? null })}
     >
