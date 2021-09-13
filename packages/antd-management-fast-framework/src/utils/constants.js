@@ -61,6 +61,19 @@ export const formNameCollection = {
   },
 };
 
+export const convertCollection = {
+  number: 'number',
+  datetime: 'datetime',
+  string: 'string',
+  moment: 'moment',
+};
+
+export const formatCollection = {
+  money: 'money',
+  datetime: 'datetime',
+  chineseMoney: 'chineseMoney',
+};
+
 export const menuType = {
   divider: 'divider',
   menu: 'menu',

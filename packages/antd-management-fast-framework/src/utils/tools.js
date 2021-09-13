@@ -40,6 +40,8 @@ import {
   logLevel,
   logShowMode,
   appInitDefault,
+  convertCollection,
+  formatCollection,
 } from './constants';
 
 const storageKeyCollection = {
@@ -784,15 +786,64 @@ export function getValueByKey({
   data,
   key,
   defaultValue = null,
+  convert = null,
+  convertBuilder = null,
   format = null,
+  formatBuilder = null,
 }) {
   const v = getPathValue(data, key, defaultValue);
 
-  if ((v ?? null) != null && isFunction(format)) {
-    return format(v);
+  let result = v;
+
+  if (isFunction(convertBuilder)) {
+    result = convertBuilder(v);
+  } else if ((convert || null) != null) {
+    switch (convert) {
+      case convertCollection.number:
+        result = toNumber(v);
+        break;
+
+      case convertCollection.datetime:
+        result = toDatetime(v);
+        break;
+
+      case convertCollection.string:
+        result = toString(v);
+        break;
+
+      case convertCollection.moment:
+        result = stringToMoment(toString(v));
+        break;
+
+      default:
+        result = v;
+        break;
+    }
   }
 
-  return v;
+  if (isFunction(formatBuilder)) {
+    result = formatBuilder(v);
+  } else if ((format || null) != null) {
+    switch (format) {
+      case formatCollection.money:
+        result = formatMoney(v);
+        break;
+
+      case formatCollection.datetime:
+        result = formatDatetime(v);
+        break;
+
+      case formatCollection.chineseMoney:
+        result = formatMoneyToChinese(v);
+        break;
+
+      default:
+        result = v;
+        break;
+    }
+  }
+
+  return result;
 }
 
 /**
