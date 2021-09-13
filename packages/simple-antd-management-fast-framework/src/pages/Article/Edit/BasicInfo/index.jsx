@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'umi';
-import { PictureOutlined } from '@ant-design/icons';
+import { PictureOutlined, InfoCircleFilled, FormOutlined } from '@ant-design/icons';
 
 import {
   formatDatetime,
@@ -116,11 +116,30 @@ class BasicInfo extends TabPageBase {
           },
           extra: {
             affix: true,
+            split: false,
             list: [
-              ...[this.renderRefreshButton()],
-              ...(this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission)
-                ? [this.renderSaveButton()]
-                : []),
+              {
+                type: formContentConfig.cardExtraType.iconInfo,
+                icon: <InfoCircleFilled />,
+                text: '一些说明',
+              },
+              {
+                type: formContentConfig.cardExtraType.generalButton,
+                icon: <FormOutlined />,
+                text: '一般按钮',
+              },
+              {
+                type: formContentConfig.cardExtraType.generalButton,
+                hidden: true,
+                icon: <FormOutlined />,
+                text: '隐藏按钮',
+              },
+              {
+                type: formContentConfig.cardExtraType.refresh,
+              },
+              {
+                type: formContentConfig.cardExtraType.save,
+              },
             ],
           },
           spinning: dataLoading || processing,

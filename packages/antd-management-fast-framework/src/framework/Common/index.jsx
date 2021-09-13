@@ -83,6 +83,9 @@ import {
   buildFormTextArea,
   buildFormDatePicker,
   buildButton,
+  buildDropdown,
+  buildDropdownButton,
+  buildDropdownEllipsis,
 } from '../../customComponents/FunctionComponent';
 import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
 
@@ -1343,8 +1346,12 @@ class Common extends Core {
             },
             ...(title || {}),
           };
-          const { affix, list: extraItemList } = {
-            ...{ affix: false, list: [] },
+          const {
+            affix,
+            split,
+            list: extraItemList,
+          } = {
+            ...{ affix: false, split: false, list: [] },
             ...(extra || {}),
           };
 
@@ -1362,10 +1369,70 @@ class Common extends Core {
             });
           }
 
-          const extraItems = extraListData.map((extraItem, extraItemIndex) => {
-            const extraItemKey = `formContent_key_${index}_extra_${extraItemIndex}`;
+          const extraItems = [];
 
-            return <Fragment key={extraItemKey}>{extraItem}</Fragment>;
+          extraListData.forEach((extraItem, extraItemIndex) => {
+            if ((extraItem || null) != null) {
+              const {
+                hidden: extraItemHidden,
+                type: extraItemType,
+                icon: extraItemIcon,
+                type: extraItemText,
+              } = {
+                ...{ hidden: false, type: null, icon: null, text: '' },
+                ...extraItem,
+              };
+
+              if (!extraItemHidden) {
+                const extraItemKey = `formContent_key_${index}_extra_${extraItemIndex}`;
+
+                let extraItemAdjust = extraItem;
+
+                switch (extraItemType) {
+                  case formContentConfig.cardExtraType.refresh:
+                    extraItemAdjust = this.renderRefreshButton();
+                    break;
+
+                  case formContentConfig.cardExtraType.save:
+                    extraItemAdjust = this.renderSaveButton();
+                    break;
+
+                  case formContentConfig.cardExtraType.generalButton:
+                    extraItemAdjust = this.renderGeneralButton(extraItem);
+                    break;
+
+                  case formContentConfig.cardExtraType.button:
+                    extraItemAdjust = buildButton(extraItem);
+                    break;
+
+                  case formContentConfig.cardExtraType.dropdown:
+                    extraItemAdjust = buildDropdown(extraItem);
+                    break;
+
+                  case formContentConfig.cardExtraType.dropdownButton:
+                    extraItemAdjust = buildDropdownButton(extraItem);
+                    break;
+
+                  case formContentConfig.cardExtraType.dropdownEllipsis:
+                    extraItemAdjust = buildDropdownEllipsis(extraItem);
+                    break;
+
+                  case formContentConfig.cardExtraType.iconInfo:
+                    extraItemAdjust = (
+                      <IconInfo icon={extraItemIcon} text={extraItemText} />
+                    );
+                    break;
+
+                  default:
+                    extraItemAdjust = extraItem;
+                    break;
+                }
+
+                extraItems.push(
+                  <Fragment key={extraItemKey}>{extraItemAdjust}</Fragment>,
+                );
+              }
+            }
           });
 
           const hasExtraItems = extraItems.length > 0;
@@ -1410,11 +1477,35 @@ class Common extends Core {
                 hasExtraItems ? (
                   mode === formContentConfig.wrapperType.page && affix ? (
                     <Affix offsetTop={20}>
-                      <div>{extraItems}</div>
+                      <Space
+                        split={
+                          isBoolean(split) ? (
+                            split ? (
+                              <Divider type="vertical" />
+                            ) : null
+                          ) : (
+                            split
+                          )
+                        }
+                      >
+                        {extraItems}
+                      </Space>
                     </Affix>
                   ) : (
                     <>
-                      <Space>{extraItems}</Space>
+                      <Space
+                        split={
+                          isBoolean(split) ? (
+                            split ? (
+                              <Divider type="vertical" />
+                            ) : null
+                          ) : (
+                            split
+                          )
+                        }
+                      >
+                        {extraItems}
+                      </Space>
                     </>
                   )
                 ) : null

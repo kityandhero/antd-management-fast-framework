@@ -153,6 +153,16 @@ export const formContentConfig = {
     normal: 'normal',
     help: 'help',
   },
+  cardExtraType: {
+    refresh: 'refresh',
+    save: 'save',
+    generalButton: 'generalButton',
+    iconInfo: 'iconInfo',
+    button: 'button',
+    dropdownButton: 'dropdownButton',
+    dropdownEllipsis: 'dropdownEllipsis',
+    dropdown: 'dropdown',
+  },
   contentItemType: {
     placeholder: 'placeholder',
     text: 'text',
