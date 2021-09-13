@@ -777,6 +777,27 @@ export function toMoney(v) {
   return 0;
 }
 
+/**
+ * 通过 key 获取对应得值
+ */
+export function getValueByKey({
+  data,
+  key,
+  defaultValue = null,
+  format = null,
+}) {
+  const v = getPathValue(data, key, defaultValue);
+
+  if ((v ?? null) != null && isFunction(format)) {
+    return format(v);
+  }
+
+  return v;
+}
+
+/**
+ * 通过 path 获取对应得值
+ */
 export function getPathValue(o, path, defaultValue = null) {
   if (isUndefined(o)) {
     return null || defaultValue;
