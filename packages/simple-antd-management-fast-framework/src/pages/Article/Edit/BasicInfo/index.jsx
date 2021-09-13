@@ -139,6 +139,7 @@ class BasicInfo extends TabPageBase {
               },
               {
                 type: formContentConfig.cardExtraType.save,
+                hidden: true,
               },
             ],
           },

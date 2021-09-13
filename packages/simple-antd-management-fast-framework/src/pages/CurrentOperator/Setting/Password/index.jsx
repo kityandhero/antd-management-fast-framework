@@ -145,7 +145,9 @@ class Password extends BaseUpdateForm {
             <KeyOutlined />,
           )}
 
-          {this.renderSaveButton('更新密码')}
+          {this.renderSaveButton({
+            text: '更新密码',
+          })}
         </div>
         <BackTop />
       </>

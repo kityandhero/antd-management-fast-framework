@@ -946,19 +946,19 @@ class Common extends Core {
     return <SaveOutlined />;
   };
 
-  renderDisabledButton = (buttonText = '') => {
+  renderDisabledButton = (text = '') => {
     return (
       <Button type="primary" disabled>
         {this.getDisabledButtonIcon()}
-        {buttonText || '保存'}
+        {text || '保存'}
       </Button>
     );
   };
 
-  renderSaveButton = (buttonText = '', onClick = null) => {
+  renderSaveButton = ({ text, onClick }) => {
     return this.renderGeneralButton({
       type: 'primary',
-      text: buttonText || '保存',
+      text: text || '保存',
       onClick:
         onClick == null
           ? (e) => {
@@ -1394,7 +1394,7 @@ class Common extends Core {
                     break;
 
                   case formContentConfig.cardExtraType.save:
-                    extraItemAdjust = this.renderSaveButton();
+                    extraItemAdjust = this.renderSaveButton(extraItem);
                     break;
 
                   case formContentConfig.cardExtraType.generalButton:

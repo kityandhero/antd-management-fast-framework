@@ -160,7 +160,11 @@ class Add extends BaseAddForm {
 
           extra: {
             affix: true,
-            list: [this.renderSaveButton('保存并进行下一步')],
+            list: [
+              this.renderSaveButton({
+                text: '保存并进行下一步',
+              }),
+            ],
           },
           spinning: processing,
           items: [
