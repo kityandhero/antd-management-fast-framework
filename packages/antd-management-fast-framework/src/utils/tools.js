@@ -42,6 +42,7 @@ import {
   appInitDefault,
   convertCollection,
   formatCollection,
+  datetimeFormat,
 } from './constants';
 
 const storageKeyCollection = {
@@ -590,7 +591,7 @@ export function toDatetime(v) {
  */
 export function formatDatetime(
   v,
-  formatString = 'YYYY-MM-DD',
+  formatString = datetimeFormat.yearMonthDayHourMinuteSecond,
   defaultValue = '',
 ) {
   if ((v || '') === '') {
