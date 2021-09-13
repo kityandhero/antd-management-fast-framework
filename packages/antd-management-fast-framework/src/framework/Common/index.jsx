@@ -1375,11 +1375,11 @@ class Common extends Core {
             if ((extraItem || null) != null) {
               const {
                 hidden: extraItemHidden,
-                type: extraItemType,
+                buildType: extraItemType,
                 icon: extraItemIcon,
-                type: extraItemText,
+                text: extraItemText,
               } = {
-                ...{ hidden: false, type: null, icon: null, text: '' },
+                ...{ hidden: false, buildType: null, icon: null, text: '' },
                 ...extraItem,
               };
 
@@ -1389,35 +1389,35 @@ class Common extends Core {
                 let extraItemAdjust = extraItem;
 
                 switch (extraItemType) {
-                  case formContentConfig.cardExtraType.refresh:
+                  case formContentConfig.cardExtraBuildType.refresh:
                     extraItemAdjust = this.renderRefreshButton();
                     break;
 
-                  case formContentConfig.cardExtraType.save:
+                  case formContentConfig.cardExtraBuildType.save:
                     extraItemAdjust = this.renderSaveButton(extraItem);
                     break;
 
-                  case formContentConfig.cardExtraType.generalButton:
+                  case formContentConfig.cardExtraBuildType.generalButton:
                     extraItemAdjust = this.renderGeneralButton(extraItem);
                     break;
 
-                  case formContentConfig.cardExtraType.button:
+                  case formContentConfig.cardExtraBuildType.button:
                     extraItemAdjust = buildButton(extraItem);
                     break;
 
-                  case formContentConfig.cardExtraType.dropdown:
+                  case formContentConfig.cardExtraBuildType.dropdown:
                     extraItemAdjust = buildDropdown(extraItem);
                     break;
 
-                  case formContentConfig.cardExtraType.dropdownButton:
+                  case formContentConfig.cardExtraBuildType.dropdownButton:
                     extraItemAdjust = buildDropdownButton(extraItem);
                     break;
 
-                  case formContentConfig.cardExtraType.dropdownEllipsis:
+                  case formContentConfig.cardExtraBuildType.dropdownEllipsis:
                     extraItemAdjust = buildDropdownEllipsis(extraItem);
                     break;
 
-                  case formContentConfig.cardExtraType.iconInfo:
+                  case formContentConfig.cardExtraBuildType.iconInfo:
                     extraItemAdjust = (
                       <IconInfo icon={extraItemIcon} text={extraItemText} />
                     );

@@ -119,26 +119,26 @@ class BasicInfo extends TabPageBase {
             split: false,
             list: [
               {
-                type: formContentConfig.cardExtraType.iconInfo,
+                buildType: formContentConfig.cardExtraBuildType.iconInfo,
                 icon: <InfoCircleFilled />,
                 text: '一些说明',
               },
               {
-                type: formContentConfig.cardExtraType.generalButton,
+                buildType: formContentConfig.cardExtraBuildType.generalButton,
                 icon: <FormOutlined />,
                 text: '一般按钮',
               },
               {
-                type: formContentConfig.cardExtraType.generalButton,
+                buildType: formContentConfig.cardExtraBuildType.generalButton,
                 hidden: true,
                 icon: <FormOutlined />,
                 text: '隐藏按钮',
               },
               {
-                type: formContentConfig.cardExtraType.refresh,
+                buildType: formContentConfig.cardExtraBuildType.refresh,
               },
               {
-                type: formContentConfig.cardExtraType.save,
+                buildType: formContentConfig.cardExtraBuildType.save,
                 hidden: true,
               },
             ],

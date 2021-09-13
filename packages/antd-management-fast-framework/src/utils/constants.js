@@ -153,7 +153,7 @@ export const formContentConfig = {
     normal: 'normal',
     help: 'help',
   },
-  cardExtraType: {
+  cardExtraBuildType: {
     refresh: 'refresh',
     save: 'save',
     generalButton: 'generalButton',
