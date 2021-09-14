@@ -9,6 +9,9 @@ import {
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {
+  /**
+   * need set form value after load success
+   */
   needSetFormValueAfterLoad = true;
 
   supplementLoadRequestParams = (o) => o;
