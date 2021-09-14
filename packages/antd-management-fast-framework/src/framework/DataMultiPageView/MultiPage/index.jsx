@@ -10,6 +10,7 @@ import {
   isNumber,
   isUndefined,
   showRuntimeError,
+  recordObject,
 } from '../../../utils/tools';
 import { listViewModeCollection } from '../../../utils/constants';
 import {
@@ -92,6 +93,8 @@ class MultiPage extends Base {
       showRuntimeError({
         message: text,
       });
+
+      recordObject(this);
 
       return d;
     }

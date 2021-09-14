@@ -13,6 +13,7 @@ export const accessWayCollection = {
     },
     accessWay: {
       pageList: {
+        paramsKey: '6ec51bf6-9656-4271-9a7a-4c01dbf795b0',
         permission: '',
       },
       get: {

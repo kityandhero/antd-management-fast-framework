@@ -19,17 +19,13 @@ class Base extends AuthorizationWrapper {
     metaExtra = null,
     metaOriginalData = null,
   }) => {
-    if (this.loadDataAfterMount) {
-      if (this.needSetFormValueAfterLoad) {
-        return this.fillFormInitialValuesAfterLoad({
-          metaData,
-          metaListData,
-          metaExtra,
-          metaOriginalData,
-        });
-      }
-
-      return {};
+    if (this.needSetFormValueAfterLoad) {
+      return this.fillFormInitialValuesAfterLoad({
+        metaData,
+        metaListData,
+        metaExtra,
+        metaOriginalData,
+      });
     }
 
     return {};

@@ -64,6 +64,8 @@ class SinglePage extends Base {
         message: text,
       });
 
+      recordObject(this);
+
       return d;
     }
 

@@ -145,6 +145,7 @@ class Add extends BaseAddForm {
   fillFormDefaultInitialValues = () => {
     const v = {};
 
+    v[fieldData.title.name] = '标题1';
     v[fieldData.sort.name] = 0;
     v[fieldData.subtitle.name] = '';
 

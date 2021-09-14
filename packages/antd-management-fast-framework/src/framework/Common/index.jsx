@@ -219,6 +219,8 @@ class Common extends Core {
           message: text,
         });
 
+        recordObject(this);
+
         this.setState({
           dataLoading: false,
           loadSuccess: false,

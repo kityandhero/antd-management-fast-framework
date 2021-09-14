@@ -9,7 +9,10 @@ import {
   formatDatetime,
   toDatetime,
 } from 'antd-management-fast-framework/lib/utils/tools';
-import { formContentConfig } from 'antd-management-fast-framework/lib/utils/constants';
+import {
+  formContentConfig,
+  datetimeFormat,
+} from 'antd-management-fast-framework/lib/utils/constants';
 import { accessWayCollection } from '@/customConfig/config';
 
 import BaseUpdateDrawer from 'antd-management-fast-framework/lib/framework/DataDrawer/BaseUpdateDrawer';
@@ -80,6 +83,7 @@ class Index extends BaseUpdateDrawer {
       );
     }
 
+    console.log(values);
     return values;
   };
 

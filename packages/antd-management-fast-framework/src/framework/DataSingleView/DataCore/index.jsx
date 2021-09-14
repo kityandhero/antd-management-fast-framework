@@ -9,10 +9,7 @@ import {
   ContactsOutlined,
 } from '@ant-design/icons';
 
-import {
-  getDerivedStateFromPropsForUrlParams,
-  showRuntimeError,
-} from '../../../utils/tools';
+import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
 import {
   buildButtonGroup,
   buildDropdownEllipsis,
