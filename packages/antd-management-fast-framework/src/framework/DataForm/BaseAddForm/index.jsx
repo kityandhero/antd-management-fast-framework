@@ -17,6 +17,8 @@ import DataCore from '../../DataSingleView/DataCore';
 class BaseAddForm extends DataCore {
   loadDataAfterMount = false;
 
+  needSetFormValueAfterLoad = false;
+
   formRef = React.createRef();
 
   constructor(props) {
@@ -177,6 +179,10 @@ class BaseAddForm extends DataCore {
   pageHeaderLogo = () => <Avatar shape="square" icon={<PlusOutlined />} />;
 
   buildInitialValues = () => {
+    return this.fillFormDefaultInitialValues();
+  };
+
+  fillFormDefaultInitialValues = () => {
     const initialValues = {};
 
     initialValues[formNameCollection.createTime.name] = formatDatetime(

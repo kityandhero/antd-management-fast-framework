@@ -27,8 +27,6 @@ class DataCore extends BaseView {
 
   reloadByUrlOp = false;
 
-  needSetFormValueAfterLoad = true;
-
   actionBackProps = {};
 
   formRef = React.createRef();
@@ -139,33 +137,6 @@ class DataCore extends BaseView {
         ) : null}
       </Space>
     );
-  };
-
-  buildInitialValues = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaOriginalData = null,
-  }) => {
-    if (this.loadDataAfterMount) {
-      if (this.needSetFormValueAfterLoad) {
-        const text = 'buildInitialValues 方法需要重新实现。';
-
-        showRuntimeError({
-          message: text,
-        });
-
-        return {};
-      }
-
-      return {};
-    }
-
-    return {};
   };
 
   buildFormLayout = () => {

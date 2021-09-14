@@ -1,6 +1,10 @@
+import { formNameCollection } from '../../../utils/constants';
+
 import BaseSaveDrawer from '../BaseSaveDrawer';
 
 class BaseAddDrawer extends BaseSaveDrawer {
+  needSetFormValueAfterLoad = false;
+
   constructor(props) {
     super(props);
 
@@ -12,6 +16,21 @@ class BaseAddDrawer extends BaseSaveDrawer {
   static getDerivedStateFromProps(nextProps, prevState) {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
+
+  buildInitialValues = () => {
+    return this.fillFormDefaultInitialValues();
+  };
+
+  fillFormDefaultInitialValues = () => {
+    const initialValues = {};
+
+    initialValues[formNameCollection.createTime.name] = formatDatetime(
+      new Date(),
+      datetimeFormat.yearMonthDayHourMinute,
+    );
+
+    return initialValues;
+  };
 }
 
 export default BaseAddDrawer;

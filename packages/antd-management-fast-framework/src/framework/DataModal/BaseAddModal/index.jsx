@@ -1,7 +1,11 @@
+import { formNameCollection } from '../../../utils/constants';
+
 import Base from '../Base';
 
 class BaseAddModal extends Base {
   reloadWhenShow = false;
+
+  needSetFormValueAfterLoad = false;
 
   constructor(props) {
     super(props);
@@ -57,6 +61,21 @@ class BaseAddModal extends Base {
         this.reloadData();
       }, 700);
     }
+  };
+
+  buildInitialValues = () => {
+    return this.fillFormDefaultInitialValues();
+  };
+
+  fillFormDefaultInitialValues = () => {
+    const initialValues = {};
+
+    initialValues[formNameCollection.createTime.name] = formatDatetime(
+      new Date(),
+      datetimeFormat.yearMonthDayHourMinute,
+    );
+
+    return initialValues;
   };
 }
 

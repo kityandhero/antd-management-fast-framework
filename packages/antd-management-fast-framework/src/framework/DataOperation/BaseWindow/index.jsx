@@ -266,17 +266,6 @@ class BaseWindow extends Base {
     });
   };
 
-  buildInitialValues = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaOriginalData = null,
-  }) => null;
-
   handleCancel = () => {
     const { afterCancel } = this.props;
 

@@ -9,7 +9,51 @@ import {
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {
+  needSetFormValueAfterLoad = true;
+
   supplementLoadRequestParams = (o) => o;
+
+  buildInitialValues = ({
+    metaData = null,
+    metaListData = [],
+    metaExtra = null,
+    metaOriginalData = null,
+  }) => {
+    if (this.loadDataAfterMount) {
+      if (this.needSetFormValueAfterLoad) {
+        return this.fillFormInitialValuesAfterLoad({
+          metaData,
+          metaListData,
+          metaExtra,
+          metaOriginalData,
+        });
+      }
+
+      return {};
+    }
+
+    return {};
+  };
+
+  fillFormInitialValuesAfterLoad = ({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaData = null,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaOriginalData = null,
+  }) => {
+    const text =
+      "if property “needSetFormValueAfterLoad” is true, fillFormInitialValuesAfterLoad need overload,if you don't want to do this,need set “needSetFormValueAfterLoad” to false 。";
+
+    showRuntimeError({
+      message: text,
+    });
+
+    return {};
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   checkSubmitData = (o) => {
