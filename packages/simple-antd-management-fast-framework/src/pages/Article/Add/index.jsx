@@ -142,6 +142,15 @@ class Add extends BaseAddForm {
     };
   };
 
+  fillFormDefaultInitialValues = () => {
+    const v = {};
+
+    v[fieldData.sort.name] = 0;
+    v[fieldData.subtitle.name] = '';
+
+    return v;
+  };
+
   formContentConfigData = () => {
     const { processing, image } = this.state;
 
