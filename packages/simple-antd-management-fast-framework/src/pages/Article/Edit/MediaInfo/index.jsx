@@ -79,7 +79,7 @@ class BasicInfo extends TabPageBase {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  buildInitialValues = (metaData, metaListData, metaExtra, metaOriginalData) => null;
+  fillFormInitialValuesAfterLoad = (metaData, metaListData, metaExtra, metaOriginalData) => null;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {

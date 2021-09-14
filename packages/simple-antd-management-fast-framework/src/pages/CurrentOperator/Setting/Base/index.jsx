@@ -70,7 +70,7 @@ class BaseView extends BaseUpdateForm {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
-  buildInitialValues = (
+  fillFormInitialValuesAfterLoad = (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

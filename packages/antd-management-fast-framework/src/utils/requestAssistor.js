@@ -436,6 +436,7 @@ export async function request({
         url,
         useVirtualRequest,
         virtualResponse: result,
+        params,
       });
     }
 
@@ -445,6 +446,7 @@ export async function request({
   if (showRequestInfo) {
     recordObject({
       url,
+      params,
     });
   }
 

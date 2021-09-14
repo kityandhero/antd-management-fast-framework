@@ -57,12 +57,6 @@ class Add extends BaseAddForm {
     return data;
   };
 
-  buildInitialValues = () => {
-    const values = {};
-
-    return values;
-  };
-
   afterImageUploadSuccess = (image) => {
     this.setState({ image });
   };
