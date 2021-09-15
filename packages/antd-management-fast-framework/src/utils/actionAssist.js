@@ -133,7 +133,9 @@ export async function actionCore({
   })
     .then(() => {
       if (showProcessing) {
-        message.destroy(key);
+        setTimeout(() => {
+          message.destroy(key);
+        }, 200);
       }
 
       if (!isFunction(getApiData)) {
