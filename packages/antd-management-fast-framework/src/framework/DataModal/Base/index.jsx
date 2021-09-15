@@ -84,7 +84,7 @@ class Base extends BaseWindow {
     return null;
   };
 
-  buildFormContentWrapperTypeConfig = () => {
+  buildWrapperTypeConfig = () => {
     return { mode: formContentConfig.wrapperType.model };
   };
 

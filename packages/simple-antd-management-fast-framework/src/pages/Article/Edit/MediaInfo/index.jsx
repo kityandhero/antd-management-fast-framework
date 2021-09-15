@@ -474,7 +474,7 @@ class BasicInfo extends TabPageBase {
     );
   };
 
-  buildFormContentToolBarConfig = () => {
+  buildToolBarConfig = () => {
     const { dataLoading, loadSuccess, mediaItemCount } = this.state;
 
     return {
@@ -529,7 +529,7 @@ class BasicInfo extends TabPageBase {
     };
   };
 
-  buildFormContentHelpConfig = () => {
+  buildHelpConfig = () => {
     return {
       title: '操作提示',
       list: [

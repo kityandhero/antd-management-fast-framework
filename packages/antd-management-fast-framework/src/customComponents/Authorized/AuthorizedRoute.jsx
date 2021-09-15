@@ -1,5 +1,6 @@
 import { Redirect, Route } from 'umi';
 import React from 'react';
+
 import Authorized from './Authorized';
 
 const AuthorizedRoute = ({

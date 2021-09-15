@@ -44,6 +44,7 @@ import {
   defaultEmptyImage,
   formContentConfig,
   datetimeFormat,
+  contentConfig,
 } from '../../utils/constants';
 import EverySpace from '../../customComponents/EverySpace';
 import FlexText from '../../customComponents/FlexText';
@@ -1096,16 +1097,12 @@ class Common extends Core {
     throw new Error(text);
   };
 
-  buildFormContentWrapperTypeConfig = () => {
-    return { mode: formContentConfig.wrapperType.page };
-  };
-
-  buildFormContentToolBarConfig = () => {
+  buildToolBarConfig = () => {
     return null;
   };
 
-  buildFormContentToolBar = () => {
-    const config = this.buildFormContentToolBarConfig();
+  buildToolBar = () => {
+    const config = this.buildToolBarConfig();
 
     if ((config || null) == null) {
       return null;
@@ -1141,6 +1138,12 @@ class Common extends Core {
           extra={
             <Space split={<Divider type="vertical" />}>
               {toolList.map((o) => {
+                const { hidden } = { ...{ hidden: false }, ...(o ?? {}) };
+
+                if (hidden) {
+                  return null;
+                }
+
                 return (
                   <Tooltip key={o.key} title={o.title || ''}>
                     {o.component}
@@ -1172,8 +1175,8 @@ class Common extends Core {
     );
   };
 
-  buildFormContentToolBarWrapper = () => {
-    const toolBar = this.buildFormContentToolBar();
+  buildToolBarWrapper = () => {
+    const toolBar = this.buildToolBar();
 
     if ((toolBar || null) == null) {
       return null;
@@ -1182,23 +1185,26 @@ class Common extends Core {
     return <>{toolBar}</>;
   };
 
-  buildFormContentHelpConfig = () => {
+  buildWrapperTypeConfig = () => {
+    return { mode: contentConfig.wrapperType.page };
+  };
+
+  buildHelpConfig = () => {
     return null;
   };
 
-  buildFormContentHelp = () => {
-    const formContentWrapperTypeConfig =
-      this.buildFormContentWrapperTypeConfig() || {
-        mode: formContentConfig.wrapperType.page,
-      };
+  buildHelp = () => {
+    const wrapperTypeConfig = this.buildWrapperTypeConfig() || {
+      mode: contentConfig.wrapperType.page,
+    };
 
     const configData = {
-      ...{ mode: formContentConfig.wrapperType.page },
-      ...(formContentWrapperTypeConfig || {}),
+      ...{ mode: contentConfig.wrapperType.page },
+      ...(wrapperTypeConfig || {}),
     };
     const { mode } = configData;
 
-    const config = this.buildFormContentHelpConfig();
+    const config = this.buildHelpConfig();
 
     if ((config || null) == null) {
       return null;
@@ -1224,10 +1230,10 @@ class Common extends Core {
     return (
       <HelpCard
         border={
-          mode !== formContentConfig.wrapperType.model &&
-          mode !== formContentConfig.wrapperType.drawer
+          mode !== contentConfig.wrapperType.model &&
+          mode !== contentConfig.wrapperType.drawer
         }
-        compact={mode === formContentConfig.wrapperType.model}
+        compact={mode === contentConfig.wrapperType.model}
         helpBoxProps={{
           title: title || '操作帮助',
           showNumber: showNumber || false,
@@ -1237,19 +1243,18 @@ class Common extends Core {
     );
   };
 
-  buildFormContentHelpWrapper = () => {
-    const formContentWrapperTypeConfig =
-      this.buildFormContentWrapperTypeConfig() || {
-        mode: formContentConfig.wrapperType.page,
-      };
+  buildHelpWrapper = () => {
+    const formContentWrapperTypeConfig = this.buildWrapperTypeConfig() || {
+      mode: contentConfig.wrapperType.page,
+    };
 
     const configData = {
-      ...{ mode: formContentConfig.wrapperType.page },
+      ...{ mode: contentConfig.wrapperType.page },
       ...(formContentWrapperTypeConfig || {}),
     };
     const { mode } = configData;
 
-    const help = this.buildFormContentHelp();
+    const help = this.buildHelp();
 
     if ((help || null) == null) {
       return null;
@@ -1257,7 +1262,7 @@ class Common extends Core {
 
     return (
       <>
-        {mode !== formContentConfig.wrapperType.model ? (
+        {mode !== contentConfig.wrapperType.model ? (
           <EverySpace size={22} direction="horizontal" />
         ) : null}
 
@@ -1267,10 +1272,9 @@ class Common extends Core {
   };
 
   buildFormContent = (config) => {
-    const formContentWrapperTypeConfig =
-      this.buildFormContentWrapperTypeConfig() || {
-        mode: formContentConfig.wrapperType.page,
-      };
+    const formContentWrapperTypeConfig = this.buildWrapperTypeConfig() || {
+      mode: formContentConfig.wrapperType.page,
+    };
     const configData = {
       ...{ mode: formContentConfig.wrapperType.page },
       ...(formContentWrapperTypeConfig || {}),
@@ -1293,7 +1297,7 @@ class Common extends Core {
 
     return (
       <>
-        {this.buildFormContentToolBarWrapper()}
+        {this.buildToolBarWrapper()}
 
         {listData.map((item, index) => {
           const key = `formContent_key_${index}`;
@@ -1566,7 +1570,7 @@ class Common extends Core {
           );
         })}
 
-        {this.buildFormContentHelpWrapper()}
+        {this.buildHelpWrapper()}
       </>
     );
   };

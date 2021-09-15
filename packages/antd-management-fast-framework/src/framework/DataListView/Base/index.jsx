@@ -4,7 +4,6 @@ import {
   Row,
   Col,
   Card,
-  Affix,
   Alert,
   List,
   Tooltip,
@@ -14,7 +13,6 @@ import {
   Divider,
   message,
   Badge,
-  Space,
 } from 'antd';
 import {
   SearchOutlined,
@@ -23,7 +21,6 @@ import {
   PictureOutlined,
   FormOutlined,
   InfoCircleOutlined,
-  ToolOutlined,
 } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
@@ -43,8 +40,6 @@ import {
   formatDatetime,
   formatMoney,
   recordObject,
-  showErrorMessage,
-  isBoolean,
   getGuid,
   isObject,
 } from '../../../utils/tools';
@@ -53,14 +48,12 @@ import {
   columnFacadeMode,
   defaultEmptyImage,
   datetimeFormat,
-  contentConfig,
   pageHeaderRenderType,
 } from '../../../utils/constants';
 import EverySpace from '../../../customComponents/EverySpace';
 import IconInfo from '../../../customComponents/IconInfo';
 import EllipsisCustom from '../../../customComponents/EllipsisCustom';
 import ImageBox from '../../../customComponents/ImageBox';
-import HelpCard from '../../../customComponents/HelpCard';
 import {
   buildButtonGroup,
   buildDropdownEllipsis,
@@ -1466,180 +1459,6 @@ class ListBase extends AuthorizationWrapper {
     });
 
     return null;
-  };
-
-  buildWrapperTypeConfig = () => {
-    return { mode: contentConfig.wrapperType.page };
-  };
-
-  buildToolBarConfig = () => {
-    return null;
-  };
-
-  buildToolBar = () => {
-    const config = this.buildToolBarConfig();
-
-    if ((config || null) == null) {
-      return null;
-    }
-
-    const { stick, title, tools } = {
-      ...{ stick: false, title: '工具栏', tools: [] },
-      ...config,
-    };
-
-    if (!isArray(tools)) {
-      const text = '工具栏配置数据无效';
-
-      showErrorMessage({
-        message: text,
-      });
-
-      recordObject(config);
-
-      return null;
-    }
-
-    const toolList = tools.map((o, index) => {
-      return { ...o, ...{ key: `toolItem_${index}` } };
-    });
-
-    const bar = (
-      <div style={{ backgroundColor: 'rgb(240, 242, 245)' }}>
-        <Card
-          title={<IconInfo icon={<ToolOutlined />} text={title || '工具栏'} />}
-          bordered={false}
-          bodyStyle={{ padding: 0 }}
-          extra={
-            <Space split={<Divider type="vertical" />}>
-              {toolList.map((o) => {
-                const { hidden } = { ...{ hidden: false }, ...(o ?? {}) };
-
-                if (hidden) {
-                  return null;
-                }
-
-                return (
-                  <Tooltip key={o.key} title={o.title || ''}>
-                    {o.component}
-                  </Tooltip>
-                );
-              })}
-            </Space>
-          }
-        />
-
-        <EverySpace size={2} direction="horizontal" />
-      </div>
-    );
-
-    if (isBoolean(stick) && stick) {
-      return (
-        <>
-          <Affix offsetTop={0}>{bar}</Affix>
-          <EverySpace size={20} direction="horizontal" />
-        </>
-      );
-    }
-
-    return (
-      <>
-        {bar}
-        <EverySpace size={20} direction="horizontal" />
-      </>
-    );
-  };
-
-  buildToolBarWrapper = () => {
-    const toolBar = this.buildToolBar();
-
-    if ((toolBar || null) == null) {
-      return null;
-    }
-
-    return <>{toolBar}</>;
-  };
-
-  buildHelpConfig = () => {
-    return null;
-  };
-
-  buildHelp = () => {
-    const formContentWrapperTypeConfig = this.buildWrapperTypeConfig() || {
-      mode: contentConfig.wrapperType.page,
-    };
-
-    const configData = {
-      ...{ mode: contentConfig.wrapperType.page },
-      ...(formContentWrapperTypeConfig || {}),
-    };
-    const { mode } = configData;
-
-    const config = this.buildHelpConfig();
-
-    if ((config || null) == null) {
-      return null;
-    }
-
-    const { title, showNumber, list } = {
-      ...{ title: '操作帮助', showNumber: true, list: [] },
-      ...config,
-    };
-
-    if (!isArray(list)) {
-      const text = '帮助条目数据无效';
-
-      showErrorMessage({
-        message: text,
-      });
-
-      recordObject(config);
-
-      return null;
-    }
-
-    return (
-      <HelpCard
-        border={
-          mode !== contentConfig.wrapperType.model &&
-          mode !== contentConfig.wrapperType.drawer
-        }
-        compact={mode === contentConfig.wrapperType.model}
-        helpBoxProps={{
-          title: title || '操作帮助',
-          showNumber: showNumber || false,
-          list,
-        }}
-      />
-    );
-  };
-
-  buildHelpWrapper = () => {
-    const formContentWrapperTypeConfig = this.buildWrapperTypeConfig() || {
-      mode: contentConfig.wrapperType.page,
-    };
-
-    const configData = {
-      ...{ mode: contentConfig.wrapperType.page },
-      ...(formContentWrapperTypeConfig || {}),
-    };
-    const { mode } = configData;
-
-    const help = this.buildHelp();
-
-    if ((help || null) == null) {
-      return null;
-    }
-
-    return (
-      <>
-        {mode !== contentConfig.wrapperType.model ? (
-          <EverySpace size={22} direction="horizontal" />
-        ) : null}
-
-        {help}
-      </>
-    );
   };
 
   renderPageContent = () => {

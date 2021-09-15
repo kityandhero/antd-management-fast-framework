@@ -1,6 +1,6 @@
 import { connect, history } from 'umi';
-import { notification } from 'antd';
-import { PictureOutlined } from '@ant-design/icons';
+import { Space } from 'antd';
+import { PictureOutlined, FormOutlined } from '@ant-design/icons';
 
 import {
   getDerivedStateFromPropsForUrlParams,
@@ -11,6 +11,9 @@ import {
 } from 'antd-management-fast-framework/lib/utils/tools';
 import { formContentConfig } from 'antd-management-fast-framework/lib/utils/constants';
 import BaseAddForm from 'antd-management-fast-framework/lib/framework/DataForm/BaseAddForm';
+import FadeBox from 'antd-management-fast-framework/lib/customComponents/AnimalBox/FadeBox';
+import QueueBox from 'antd-management-fast-framework/lib/customComponents/AnimalBox/QueueBox';
+import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
 import { buildButton } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -36,6 +39,7 @@ class Add extends BaseAddForm {
         pageName: '发布文章',
         submitApiPath: 'article/addBasicInfo',
         image: '',
+        fadeBoxShow: true,
       },
     };
   }
@@ -76,6 +80,14 @@ class Add extends BaseAddForm {
     const { articleId } = singleData;
 
     this.goToPath(`/news/article/edit/load/${articleId}/1/basicInfo`);
+  };
+
+  toggleFadeBoxShow = () => {
+    const { fadeBoxShow } = this.state;
+
+    this.setState({
+      fadeBoxShow: !fadeBoxShow,
+    });
   };
 
   buildToolBarConfig = () => {
@@ -161,13 +173,21 @@ class Add extends BaseAddForm {
           title: {
             text: '基本信息',
           },
-
           extra: {
             affix: true,
             list: [
-              this.renderSaveButton({
+              {
+                buildType: formContentConfig.cardExtraBuildType.generalButton,
+                icon: <FormOutlined />,
+                text: '切换FadeBox显示',
+                onClick: () => {
+                  this.toggleFadeBoxShow();
+                },
+              },
+              {
+                buildType: formContentConfig.cardExtraBuildType.save,
                 text: '保存并进行下一步',
-              }),
+              },
             ],
           },
           spinning: processing,
@@ -289,6 +309,60 @@ class Add extends BaseAddForm {
         },
       ],
     };
+  };
+
+  renderOther = () => {
+    const { fadeBoxShow } = this.state;
+
+    return (
+      <>
+        <FadeBox show={fadeBoxShow}>
+          <div>
+            <Space>
+              <IconInfo icon={<FormOutlined />} text="文字1" />
+              <IconInfo icon={<FormOutlined />} text="文字2" />
+              <IconInfo icon={<FormOutlined />} text="文字3" />
+            </Space>
+          </div>
+        </FadeBox>
+
+        <QueueBox
+          show={fadeBoxShow}
+          style={{
+            marginTop: '20px',
+          }}
+          itemStyle={{
+            marginBottom: '2px',
+          }}
+          items={[
+            {
+              hidden: true,
+              builder: () => {
+                return <IconInfo icon={<FormOutlined />} text="文字1" />;
+              },
+            },
+            {
+              hidden: false,
+              builder: () => {
+                return <IconInfo icon={<FormOutlined />} text="文字2" />;
+              },
+            },
+            {
+              hidden: true,
+              builder: () => {
+                return <IconInfo icon={<FormOutlined />} text="文字3" />;
+              },
+            },
+            {
+              hidden: false,
+              builder: () => {
+                return <IconInfo icon={<FormOutlined />} text="文字4" />;
+              },
+            },
+          ]}
+        />
+      </>
+    );
   };
 }
 

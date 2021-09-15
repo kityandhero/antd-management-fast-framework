@@ -8,7 +8,11 @@ import {
   ConsoleSqlOutlined,
 } from '@ant-design/icons';
 
-import { toNumber, getPathValue } from 'antd-management-fast-framework/lib/utils/tools';
+import {
+  toNumber,
+  getPathValue,
+  showInfoMessage,
+} from 'antd-management-fast-framework/lib/utils/tools';
 import {
   unlimitedWithStringFlag,
   searchFormContentConfig,
@@ -153,6 +157,70 @@ class PageList extends MultiPage {
     const { articleId } = record;
 
     this.goToPath(`/news/article/edit/load/${articleId}/key/basicInfo`);
+  };
+
+  buildToolBarConfig = () => {
+    return {
+      stick: false,
+      title: '工具栏',
+      tools: [
+        {
+          title: '按钮提示1',
+          component: this.renderGeneralButton({
+            text: '按钮1',
+            onClick: () => {
+              showInfoMessage({
+                message: 'click button 4',
+              });
+            },
+            disabled: false,
+          }),
+        },
+        {
+          title: '按钮提示2',
+          hidden: false,
+          component: this.renderGeneralButton({
+            text: '按钮2',
+            onClick: () => {
+              showInfoMessage({
+                message: 'click button 4',
+              });
+            },
+          }),
+        },
+        {
+          title: '按钮提示2',
+          hidden: false,
+          component: this.renderGeneralButton({
+            text: '按钮2',
+            onClick: () => {
+              showInfoMessage({
+                message: 'click button 4',
+              });
+            },
+            processing: true,
+          }),
+        },
+        {
+          title: '按钮提示4',
+          hidden: false,
+          component: this.renderGeneralButton({
+            text: '按钮4',
+            onClick: () => {
+              showInfoMessage({
+                message: 'click button 4',
+              });
+            },
+            confirm: {
+              placement: 'topRight',
+              title: '将要进行操作，确定吗？',
+              okText: '确定',
+              cancelText: '取消',
+            },
+          }),
+        },
+      ],
+    };
   };
 
   renderSimpleFormInitialValues = () => {
