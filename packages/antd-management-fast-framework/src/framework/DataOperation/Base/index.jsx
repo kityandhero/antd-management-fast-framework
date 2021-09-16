@@ -42,7 +42,7 @@ class Base extends AuthorizationWrapper {
     metaOriginalData = null,
   }) => {
     const text =
-      "if property “needSetFormValueAfterLoad” is true, fillFormInitialValuesAfterLoad need overload,if you don't want to do this,need set “needSetFormValueAfterLoad” to false 。";
+      "if property “needSetFormValueAfterLoad” is true, fillFormInitialValuesAfterLoad need overload to fill from,if you don't want to do this,need set “needSetFormValueAfterLoad” to false 。";
 
     showRuntimeError({
       message: text,
