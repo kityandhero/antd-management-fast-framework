@@ -33,6 +33,8 @@ import styles from './index.less';
 class MultiPageDrawer extends MultiPage {
   loadDataAfterMount = false;
 
+  needSetFormValueAfterLoad = false;
+
   reloadWhenShow = true;
 
   constructor(props) {

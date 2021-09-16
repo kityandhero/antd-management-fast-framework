@@ -30,6 +30,8 @@ import styles from './index.less';
 class SinglePageDrawer extends SinglePage {
   loadDataAfterMount = false;
 
+  needSetFormValueAfterLoad = false;
+
   reloadWhenShow = true;
 
   constructor(props) {
