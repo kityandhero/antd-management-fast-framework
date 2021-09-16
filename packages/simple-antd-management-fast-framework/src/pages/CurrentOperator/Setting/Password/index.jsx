@@ -17,6 +17,8 @@ import styles from './index.less';
 class Password extends BaseUpdateForm {
   loadDataAfterMount = false;
 
+  needSetFormValueAfterLoad = false;
+
   constructor(props) {
     super(props);
 
@@ -28,10 +30,6 @@ class Password extends BaseUpdateForm {
       },
     };
   }
-
-  getNeedSetFormValueAfterLoad = () => {
-    return false;
-  };
 
   fillFormInitialValuesAfterLoad = (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

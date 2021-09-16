@@ -9,11 +9,9 @@ import {
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {
-  supplementLoadRequestParams = (o) => o;
+  needSetFormValueAfterLoad = true;
 
-  getNeedSetFormValueAfterLoad = () => {
-    return true;
-  };
+  supplementLoadRequestParams = (o) => o;
 
   buildInitialValues = ({
     metaData = null,
@@ -21,7 +19,7 @@ class Base extends AuthorizationWrapper {
     metaExtra = null,
     metaOriginalData = null,
   }) => {
-    if (this.getNeedSetFormValueAfterLoad()) {
+    if (this.needSetFormValueAfterLoad || false) {
       return this.fillFormInitialValuesAfterLoad({
         metaData,
         metaListData,

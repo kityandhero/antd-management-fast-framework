@@ -4,6 +4,8 @@ import { formNameCollection, datetimeFormat } from '../../../utils/constants';
 import Base from '../Base';
 
 class BaseNeedlessLoadDrawer extends Base {
+  needSetFormValueAfterLoad = false;
+
   constructor(props) {
     super(props);
 
@@ -15,10 +17,6 @@ class BaseNeedlessLoadDrawer extends Base {
   static getDerivedStateFromProps(nextProps, prevState) {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
-
-  getNeedSetFormValueAfterLoad = () => {
-    return false;
-  };
 
   buildInitialValues = () => {
     return this.fillFormDefaultInitialValues();

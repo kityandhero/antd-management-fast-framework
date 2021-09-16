@@ -11,6 +11,8 @@ import styles from './index.less';
 class DataPreviewDrawer extends Base {
   loadDataAfterMount = false;
 
+  needSetFormValueAfterLoad = false;
+
   constructor(props) {
     super(props);
 
@@ -21,10 +23,6 @@ class DataPreviewDrawer extends Base {
       },
     };
   }
-
-  getNeedSetFormValueAfterLoad = () => {
-    return false;
-  };
 
   renderTitleIcon = () => {
     const { icon } = this.props;

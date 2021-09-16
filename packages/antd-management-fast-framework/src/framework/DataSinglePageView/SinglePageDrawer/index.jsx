@@ -30,6 +30,8 @@ import styles from './index.less';
 class SinglePageDrawer extends SinglePage {
   loadDataAfterMount = false;
 
+  needSetFormValueAfterLoad = false;
+
   reloadWhenShow = true;
 
   constructor(props) {
@@ -55,10 +57,6 @@ class SinglePageDrawer extends SinglePage {
 
     return { visible, externalData };
   }
-
-  getNeedSetFormValueAfterLoad = () => {
-    return false;
-  };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
