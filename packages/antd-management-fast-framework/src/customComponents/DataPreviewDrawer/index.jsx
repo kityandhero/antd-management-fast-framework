@@ -11,6 +11,8 @@ import styles from './index.less';
 class DataPreviewDrawer extends Base {
   loadDataAfterMount = false;
 
+  needSetFormValueAfterLoad = false;
+
   constructor(props) {
     super(props);
 
