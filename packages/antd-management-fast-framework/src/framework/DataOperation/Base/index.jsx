@@ -9,12 +9,11 @@ import {
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {
-  /**
-   * need set form value after load success
-   */
-  needSetFormValueAfterLoad = true;
-
   supplementLoadRequestParams = (o) => o;
+
+  getNeedSetFormValueAfterLoad = () => {
+    return true;
+  };
 
   buildInitialValues = ({
     metaData = null,
@@ -22,7 +21,7 @@ class Base extends AuthorizationWrapper {
     metaExtra = null,
     metaOriginalData = null,
   }) => {
-    if (this.needSetFormValueAfterLoad) {
+    if (this.getNeedSetFormValueAfterLoad()) {
       return this.fillFormInitialValuesAfterLoad({
         metaData,
         metaListData,

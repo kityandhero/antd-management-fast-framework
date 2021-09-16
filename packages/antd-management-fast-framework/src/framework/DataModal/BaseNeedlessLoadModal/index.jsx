@@ -6,8 +6,6 @@ import Base from '../Base';
 class BaseAddModal extends Base {
   reloadWhenShow = false;
 
-  needSetFormValueAfterLoad = false;
-
   constructor(props) {
     super(props);
 
@@ -32,6 +30,10 @@ class BaseAddModal extends Base {
 
     return { visible, needReset, externalData };
   }
+
+  getNeedSetFormValueAfterLoad = () => {
+    return false;
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {

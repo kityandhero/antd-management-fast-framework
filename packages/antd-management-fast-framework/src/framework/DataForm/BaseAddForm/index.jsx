@@ -17,8 +17,6 @@ import DataCore from '../../DataSingleView/DataCore';
 class BaseAddForm extends DataCore {
   loadDataAfterMount = false;
 
-  needSetFormValueAfterLoad = false;
-
   formRef = React.createRef();
 
   constructor(props) {
@@ -37,6 +35,10 @@ class BaseAddForm extends DataCore {
   static getDerivedStateFromProps(nextProps, prevState) {
     return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
   }
+
+  getNeedSetFormValueAfterLoad = () => {
+    return false;
+  };
 
   adjustWhenDidMount = () => {
     this.fillForm();

@@ -33,8 +33,6 @@ import styles from './index.less';
 class MultiPageDrawer extends MultiPage {
   loadDataAfterMount = false;
 
-  needSetFormValueAfterLoad = false;
-
   reloadWhenShow = true;
 
   constructor(props) {
@@ -62,6 +60,10 @@ class MultiPageDrawer extends MultiPage {
 
     return { visible: visible || false, externalData: externalData || null };
   }
+
+  getNeedSetFormValueAfterLoad = () => {
+    return false;
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {

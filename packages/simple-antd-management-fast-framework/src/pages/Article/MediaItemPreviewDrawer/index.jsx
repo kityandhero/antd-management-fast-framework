@@ -12,8 +12,6 @@ import MobileContainor from 'antd-management-fast-framework/lib/customComponents
 import Base from 'antd-management-fast-framework/lib/framework/DataDrawer/Base';
 
 class MediaItemPreviewDrawer extends Base {
-  needSetFormValueAfterLoad = false;
-
   constructor(props) {
     super(props);
 
@@ -26,6 +24,10 @@ class MediaItemPreviewDrawer extends Base {
       },
     };
   }
+
+  getNeedSetFormValueAfterLoad = () => {
+    return false;
+  };
 
   renderTitleIcon = () => {
     return <PictureOutlined />;

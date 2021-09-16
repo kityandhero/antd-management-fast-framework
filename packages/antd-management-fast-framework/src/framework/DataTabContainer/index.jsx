@@ -20,8 +20,6 @@ import DataSingleView from '../DataSingleView/DataLoad';
 import styles from './index.less';
 
 class DataTabContainer extends DataSingleView {
-  needSetFormValueAfterLoad = false;
-
   tabList = [];
 
   constructor(props) {
@@ -39,6 +37,10 @@ class DataTabContainer extends DataSingleView {
   static getDerivedStateFromProps(nextProps, prevState) {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
+
+  getNeedSetFormValueAfterLoad = () => {
+    return false;
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
