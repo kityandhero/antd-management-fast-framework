@@ -53,17 +53,11 @@ export default defineConfig({
   history: {
     type: 'hash',
   },
-  /*
-  proxy: {
-    '/server/api/': {
-      target: 'https://preview.pro.ant.design/',
-      changeOrigin: true,
-      pathRewrite: { '^/server': '' },
-    },
-  },
-  */
   ssr: false,
   // mfsu: {},
   // webpack5: {},
   exportStatic: {},
+  extraCustomOption: {
+    babelCompact: false,
+  },
 });

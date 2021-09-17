@@ -89,5 +89,8 @@ export default defineConfig({
   // esbuild: {},
   fastRefresh: {},
   exportStatic: {},
-  headerExtraLinks: ['/home.css'],
+  extraCustomOption: {
+    headerExtraLinks: ['/home.css'],
+    babelCompact: false,
+  },
 });
