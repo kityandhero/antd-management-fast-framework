@@ -290,6 +290,7 @@ export function buildButton({
 export function buildDropdownButton({
   key = getGuid(),
   tooltip = false,
+  placement = 'bottomRight',
   type: typeSource = 'default',
   size = 'small',
   text = '按钮',
@@ -306,6 +307,7 @@ export function buildDropdownButton({
     key,
     tooltip,
     type: typeSource,
+    placement,
     size,
     text,
     icon,
@@ -360,7 +362,7 @@ export function buildDropdown({
   key = getGuid(),
   tooltip: tooltipSource = false,
   type: typeSource = 'default',
-  placement: placementDropdown = 'bottomLeft',
+  placement: placementDropdown = 'bottomRight',
   size = 'default',
   text = '按钮',
   icon = <FormOutlined />,
@@ -420,7 +422,7 @@ export function buildDropdown({
         <Dropdown.Button
           {...otherProps}
           type={typeSource || 'default'}
-          placement={placementDropdown || 'bottomLeft'}
+          placement={placementDropdown || 'bottomRight'}
           size={size || 'default'}
           onClick={() => {
             handleButtonClick({ handleData: r });
@@ -440,7 +442,7 @@ export function buildDropdown({
     button = (
       <Dropdown
         {...otherProps}
-        placement={placementDropdown || 'bottomLeft'}
+        placement={placementDropdown || 'bottomRight'}
         arrow={arrow}
         disabled={disabled ?? false}
         overlay={buildMenu({
