@@ -1,3 +1,5 @@
+import { ImportOutlined } from '@ant-design/icons';
+
 import MultiPageDrawer from '../MultiPageDrawer';
 
 class MultiPageSelectDrawer extends MultiPageDrawer {

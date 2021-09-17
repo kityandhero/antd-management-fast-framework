@@ -8,3 +8,4 @@
 *.log
 *.zip
 *.txt
+.eslintrc.js

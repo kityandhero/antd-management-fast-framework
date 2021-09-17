@@ -29,7 +29,6 @@ export function getAuthority(str) {
   return [];
 }
 
-// eslint-disable-next-line import/no-mutable-exports
 let Authorized = RenderAuthorize(getAuthority());
 
 const reloadAuthorized = () => {

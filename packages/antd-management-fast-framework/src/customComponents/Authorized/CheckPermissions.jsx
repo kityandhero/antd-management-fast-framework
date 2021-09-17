@@ -2,9 +2,7 @@ import React from 'react';
 
 import { recordObject } from '../../utils/tools';
 
-// eslint-disable-next-line import/no-cycle
 import { CURRENT } from './renderAuthorize';
-// eslint-disable-next-line import/no-cycle
 import PromiseRender from './PromiseRender';
 
 /**
