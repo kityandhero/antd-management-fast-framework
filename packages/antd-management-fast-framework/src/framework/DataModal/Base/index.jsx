@@ -172,14 +172,14 @@ class Base extends BaseWindow {
     return <EditOutlined />;
   };
 
+  buildTitlePrevText = () => {
+    return '';
+  };
+
   buildTitleText = () => {
     const { pageName } = this.state;
 
     return pageName;
-  };
-
-  buildTitlePrevText = () => {
-    return '';
   };
 
   buildTitleSubText = () => {

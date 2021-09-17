@@ -44,10 +44,29 @@ class Base extends BaseWindow {
     }
   };
 
+  buildTitlePrevText = () => {
+    return '';
+  };
+
+  buildTitleText = () => {
+    const { pageName } = this.state;
+
+    return pageName;
+  };
+
+  buildTitleSubText = () => {
+    return '';
+  };
+
   renderTitleIcon = () => <FormOutlined />;
 
   renderTitle = () => {
-    return '信息详情';
+    const prevText = this.buildTitlePrevText();
+    const subText = this.buildTitleSubText();
+
+    return `${prevText}${this.buildTitleText() || '信息详情'}${
+      stringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`
+    }`;
   };
 
   buildFormLayout = () => {
