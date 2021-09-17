@@ -178,17 +178,23 @@ class Base extends BaseWindow {
     return pageName;
   };
 
+  buildTitlePrevText = () => {
+    return '';
+  };
+
   buildTitleSubText = () => {
     return '';
   };
 
   buildTitle = () => {
+    const prevText = this.buildTitlePrevText();
     const subText = this.buildTitleSubText();
 
     return (
       <Row gutter={6}>
         <Col>{this.buildTitleIcon()}</Col>
         <Col flex="auto">
+          {prevText}
           {this.buildTitleText()}
           {stringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`}
         </Col>
