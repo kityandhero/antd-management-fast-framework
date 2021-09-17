@@ -360,6 +360,7 @@ export function buildDropdown({
   key = getGuid(),
   tooltip: tooltipSource = false,
   type: typeSource = 'default',
+  placement: placementDropdown = 'bottomLeft',
   size = 'default',
   text = '按钮',
   icon = <FormOutlined />,
@@ -419,6 +420,7 @@ export function buildDropdown({
         <Dropdown.Button
           {...otherProps}
           type={typeSource || 'default'}
+          placement={placementDropdown || 'bottomLeft'}
           size={size || 'default'}
           onClick={() => {
             handleButtonClick({ handleData: r });
@@ -438,6 +440,7 @@ export function buildDropdown({
     button = (
       <Dropdown
         {...otherProps}
+        placement={placementDropdown || 'bottomLeft'}
         arrow={arrow}
         disabled={disabled ?? false}
         overlay={buildMenu({
@@ -460,7 +463,7 @@ export function buildDropdown({
       );
     }
 
-    const { placement, title } = {
+    const { placement: placementTooltip, title } = {
       ...{
         placement: 'top',
         title: 'tooltip title need set',
@@ -469,7 +472,11 @@ export function buildDropdown({
     };
 
     return (
-      <Tooltip key={key || getGuid()} placement={placement} title={title}>
+      <Tooltip
+        key={key || getGuid()}
+        placement={placementTooltip || 'top'}
+        title={title}
+      >
         {button}
       </Tooltip>
     );
