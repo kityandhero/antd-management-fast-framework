@@ -188,7 +188,9 @@ class Base extends BaseWindow {
 
   buildTitle = () => {
     const prevText = this.buildTitlePrevText();
-    const subText = this.buildTitleSubText();
+    let subText = this.buildTitleSubText();
+
+    subText = stringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`;
 
     return (
       <Row gutter={6}>
@@ -196,7 +198,7 @@ class Base extends BaseWindow {
         <Col flex="auto">
           {prevText}
           {this.buildTitleText()}
-          {stringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`}
+          {subText}
         </Col>
       </Row>
     );

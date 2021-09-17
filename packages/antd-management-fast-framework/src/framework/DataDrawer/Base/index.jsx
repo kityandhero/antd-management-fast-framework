@@ -62,11 +62,11 @@ class Base extends BaseWindow {
 
   renderTitle = () => {
     const prevText = this.buildTitlePrevText();
-    const subText = this.buildTitleSubText();
+    let subText = this.buildTitleSubText();
 
-    return `${prevText}${this.buildTitleText() || '信息详情'}${
-      stringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`
-    }`;
+    subText = stringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`;
+
+    return `${prevText}${this.buildTitleText() || '信息详情'}${subText}`;
   };
 
   buildFormLayout = () => {
