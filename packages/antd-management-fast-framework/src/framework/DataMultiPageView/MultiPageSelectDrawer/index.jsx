@@ -1,7 +1,9 @@
 import { ImportOutlined } from '@ant-design/icons';
 
-import MultiPageDrawer from '../MultiPageDrawer';
+import { isFunction } from '../../../utils/tools';
 import { buildButton } from '../../../customComponents/FunctionComponent';
+
+import MultiPageDrawer from '../MultiPageDrawer';
 
 class MultiPageSelectDrawer extends MultiPageDrawer {
   static getDerivedStateFromProps(nextProps, prevState) {
