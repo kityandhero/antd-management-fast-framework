@@ -354,6 +354,9 @@ export function showWarningMessage({
   });
 }
 
+/**
+ * 显示消息信息
+ */
 export function showInfoMessage({
   duration = 3,
   message: messageText,
