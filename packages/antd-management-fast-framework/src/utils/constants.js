@@ -160,6 +160,20 @@ export const pageHeaderRenderType = {
   action: 'action ',
 };
 
+export const drawerConfig = {
+  bottomBarBuildType: {
+    close: 'close',
+    refresh: 'refresh',
+    save: 'save',
+    generalButton: 'generalButton',
+    iconInfo: 'iconInfo',
+    button: 'button',
+    dropdownButton: 'dropdownButton',
+    dropdownEllipsis: 'dropdownEllipsis',
+    dropdown: 'dropdown',
+  },
+};
+
 export const formContentConfig = {
   ...contentConfig,
   cardType: {

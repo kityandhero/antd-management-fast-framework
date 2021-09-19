@@ -958,16 +958,34 @@ class Common extends Core {
     );
   };
 
-  renderSaveButton = ({ text, onClick }) => {
+  renderSaveButton = ({
+    icon,
+    text,
+    onClick,
+    disabled = false,
+    processing = false,
+    hidden = false,
+  }) => {
+    const that = this;
+
+    const buttonDisabled = this.getSaveButtonDisabled();
+    const buttonProcessing = this.getSaveButtonProcessing();
+    const ico = (icon || null) == null ? this.getSaveButtonIcon() : icon;
+
     return this.renderGeneralButton({
       type: 'primary',
       text: text || '保存',
-      onClick:
-        onClick == null
-          ? (e) => {
-              this.validate(e);
-            }
-          : onClick,
+      icon: ico,
+      hidden,
+      disabled: disabled || buttonDisabled,
+      processing: processing || buttonProcessing,
+      onClick: (e) => {
+        if (isFunction(onClick)) {
+          onClick(e);
+        } else {
+          that.validate(e);
+        }
+      },
     });
   };
 
@@ -990,20 +1008,16 @@ class Common extends Core {
       return null;
     }
 
-    const buttonDisabled = this.getSaveButtonDisabled();
-    const buttonProcessing = this.getSaveButtonProcessing();
-    const ico = (icon || null) == null ? this.getSaveButtonIcon() : icon;
-
     return buildButton({
       key,
       type,
       size,
       text,
-      icon: ico,
+      icon,
       handleClick: onClick,
       danger: danger || false,
-      disabled: disabled || buttonDisabled,
-      processing: processing || buttonProcessing,
+      disabled,
+      processing,
       hidden,
       confirm,
       handleData: handleData ?? null,

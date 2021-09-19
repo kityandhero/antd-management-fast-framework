@@ -5,6 +5,7 @@ import {
   isFunction,
   showRuntimeError,
   isUndefined,
+  stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
 import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 
@@ -185,7 +186,9 @@ class BaseWindow extends Base {
   };
 
   handleOkWithForm = (e) => {
-    e.preventDefault();
+    // if ((e || null) != null) {
+    //   e.preventDefault();
+    // }
 
     const form = this.getTargetForm();
 
@@ -276,6 +279,16 @@ class BaseWindow extends Base {
 
   getFormClassName = () => {
     return null;
+  };
+
+  getSaveButtonDisabled = () => {
+    const { loadApiPath, dataLoading, processing, loadSuccess } = this.state;
+
+    return (
+      dataLoading ||
+      processing ||
+      (!stringIsNullOrWhiteSpace(loadApiPath || '') && !loadSuccess)
+    );
   };
 }
 

@@ -109,7 +109,9 @@ class BasicInfo extends TabPageBase {
   };
 
   handleSubmit = (e) => {
-    e.preventDefault();
+    // if ((e || null) != null) {
+    //   e.preventDefault();
+    // }
 
     const that = this;
 

@@ -202,7 +202,9 @@ class MultiPage extends Base {
   };
 
   handleSearch = (e) => {
-    e.preventDefault();
+    // if ((e || null) != null) {
+    //   e.preventDefault();
+    // }
 
     if (this.checkWorkDoing()) {
       return;

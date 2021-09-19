@@ -1,5 +1,5 @@
-import React from 'react';
-import { Layout, Drawer, Form, Button, Row, Col, Affix } from 'antd';
+import React, { Fragment } from 'react';
+import { Layout, Drawer, Form, Space, Row, Col, Affix, Divider } from 'antd';
 import { FormOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import {
@@ -7,7 +7,9 @@ import {
   isFunction,
   defaultFormState,
 } from '../../../utils/tools';
-import { formContentConfig } from '../../../utils/constants';
+import { formContentConfig, drawerConfig } from '../../../utils/constants';
+import { FlexBox } from '../../../customComponents/FlexBox';
+import { buildButton } from '../../../customComponents/FunctionComponent';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
 
@@ -114,23 +116,132 @@ class Base extends BaseWindow {
     return <div className={styles.contentContainor}>{this.renderForm()}</div>;
   };
 
-  renderButton = () => {
-    const { dataLoading, processing } = this.state;
+  renderCloseButton = (option) => {
+    const o = {
+      ...{
+        type: 'default',
+        icon: <CloseCircleOutlined />,
+        text: '关闭',
+      },
+      ...(option || {}),
+      ...{
+        onClick: () => {
+          this.onClose();
+        },
+      },
+    };
 
-    return (
-      <>
-        <Button
-          type="default"
-          disabled={dataLoading || processing}
-          onClick={() => {
-            this.onClose();
-          }}
-        >
-          <CloseCircleOutlined />
-          关闭
-        </Button>
-      </>
-    );
+    return this.renderGeneralButton(o);
+  };
+
+  buildBottomBarInnerExtraConfigList = () => {
+    return [];
+  };
+
+  buildBottomBarInnerDefaultConfigList = () => {
+    return [
+      {
+        buildType: drawerConfig.bottomBarBuildType.close,
+      },
+    ];
+  };
+
+  buildBottomBarInnerItemConfigList = () => {
+    const bottomBarInnerExtraConfigList =
+      this.buildBottomBarInnerExtraConfigList();
+    const bottomBarInnerDefaultConfigList =
+      this.buildBottomBarInnerDefaultConfigList();
+
+    return [
+      ...bottomBarInnerExtraConfigList,
+      ...bottomBarInnerDefaultConfigList,
+    ];
+  };
+
+  renderBottomBarInner = () => {
+    const components = [];
+
+    const configList = this.buildBottomBarInnerItemConfigList();
+
+    const that = this;
+
+    configList.forEach((item, index) => {
+      if ((item || null) != null) {
+        const {
+          hidden: itemHidden,
+          buildType: itemBuildType,
+          icon: itemIcon,
+          text: itemText,
+        } = {
+          ...{ hidden: false, buildType: null, icon: null, text: '' },
+          ...item,
+        };
+
+        if (!itemHidden) {
+          const itemKey = `drawer_bottomBar_button_key_${index}`;
+
+          let itemAdjust = item;
+
+          switch (itemBuildType) {
+            case drawerConfig.bottomBarBuildType.close:
+              itemAdjust = this.renderCloseButton(item);
+              break;
+
+            case drawerConfig.bottomBarBuildType.save:
+              itemAdjust = this.renderSaveButton({
+                ...item,
+                ...{
+                  onClick: (e) => {
+                    that.handleOk(e);
+                  },
+                },
+              });
+              break;
+
+            case drawerConfig.bottomBarBuildType.generalButton:
+              itemAdjust = this.renderGeneralButton(item);
+              break;
+
+            case drawerConfig.bottomBarBuildType.button:
+              itemAdjust = buildButton(item);
+              break;
+
+            case drawerConfig.bottomBarBuildType.dropdown:
+              itemAdjust = buildDropdown({
+                ...item,
+                ...{ placement: 'topRight' },
+              });
+              break;
+
+            case drawerConfig.bottomBarBuildType.dropdownButton:
+              itemAdjust = buildDropdownButton({
+                ...item,
+                ...{ placement: 'topRight' },
+              });
+              break;
+
+            case drawerConfig.bottomBarBuildType.dropdownEllipsis:
+              itemAdjust = buildDropdownEllipsis({
+                ...item,
+                ...{ placement: 'topRight' },
+              });
+              break;
+
+            case drawerConfig.bottomBarBuildType.iconInfo:
+              itemAdjust = <IconInfo icon={itemIcon} text={itemText} />;
+              break;
+
+            default:
+              itemAdjust = item;
+              break;
+          }
+
+          components.push(<Fragment key={itemKey}>{itemAdjust}</Fragment>);
+        }
+      }
+    });
+
+    return components;
   };
 
   renderBottomBar = () => {
@@ -140,7 +251,9 @@ class Base extends BaseWindow {
           <div className={styles.bottomBar}>
             <Row>
               <Col span={24} style={{ textAlign: 'right' }}>
-                {this.renderButton()}
+                <Space split={<Divider type="vertical" />}>
+                  {this.renderBottomBarInner()}
+                </Space>
               </Col>
             </Row>
           </div>
