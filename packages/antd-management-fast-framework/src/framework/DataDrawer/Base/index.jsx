@@ -8,7 +8,6 @@ import {
   defaultFormState,
 } from '../../../utils/tools';
 import { formContentConfig, drawerConfig } from '../../../utils/constants';
-import { FlexBox } from '../../../customComponents/FlexBox';
 import { buildButton } from '../../../customComponents/FunctionComponent';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
@@ -73,6 +72,10 @@ class Base extends BaseWindow {
 
   buildFormLayout = () => {
     return 'vertical';
+  };
+
+  buildNotificationPlacement = () => {
+    return `bottomLeft`;
   };
 
   renderForm = () => {
