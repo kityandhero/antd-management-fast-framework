@@ -187,7 +187,18 @@ class IconInfo extends PureComponent {
               </Row>
             ) : (
               <Row gutter={8}>
-                {iconPosition === 'left' ? (
+                {stringIsNullOrWhiteSpace(textMerge) ? (
+                  <Col>
+                    {stringIsNullOrWhiteSpace(iconTooltip) ? (
+                      iconItem
+                    ) : (
+                      <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
+                    )}
+                  </Col>
+                ) : null}
+
+                {!stringIsNullOrWhiteSpace(textMerge) &&
+                iconPosition === 'left' ? (
                   <Col flex="auto">
                     {stringIsNullOrWhiteSpace(iconTooltip) ? (
                       iconItem
@@ -197,22 +208,25 @@ class IconInfo extends PureComponent {
                   </Col>
                 ) : null}
 
-                <Col
-                  style={styleMerge}
-                  onClick={() => {
-                    this.copyText();
-                  }}
-                >
-                  {ellipsis ? (
-                    <Ellipsis tooltip={tooltip} lines={1}>
-                      {textMerge}
-                    </Ellipsis>
-                  ) : (
-                    textMerge
-                  )}
-                </Col>
+                {!stringIsNullOrWhiteSpace(textMerge) ? (
+                  <Col
+                    style={styleMerge}
+                    onClick={() => {
+                      this.copyText();
+                    }}
+                  >
+                    {ellipsis ? (
+                      <Ellipsis tooltip={tooltip} lines={1}>
+                        {textMerge}
+                      </Ellipsis>
+                    ) : (
+                      textMerge
+                    )}
+                  </Col>
+                ) : null}
 
-                {iconPosition !== 'left' ? (
+                {!stringIsNullOrWhiteSpace(textMerge) &&
+                iconPosition !== 'left' ? (
                   <Col flex="auto">
                     {stringIsNullOrWhiteSpace(iconTooltip) ? (
                       iconItem
