@@ -66,6 +66,7 @@ export const convertCollection = {
   datetime: 'datetime',
   string: 'string',
   moment: 'moment',
+  money: 'money',
 };
 
 export const formatCollection = {

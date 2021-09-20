@@ -185,11 +185,7 @@ class BaseWindow extends Base {
     }
   };
 
-  handleOkWithForm = (e) => {
-    // if ((e || null) != null) {
-    //   e.preventDefault();
-    // }
-
+  handleOkWithForm = () => {
     const form = this.getTargetForm();
 
     if (form == null) {

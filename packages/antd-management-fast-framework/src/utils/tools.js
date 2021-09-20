@@ -819,6 +819,10 @@ export function getValueByKey({
         result = stringToMoment(toString(v));
         break;
 
+      case convertCollection.money:
+        result = toMoney(v);
+        break;
+
       default:
         result = v;
         break;
