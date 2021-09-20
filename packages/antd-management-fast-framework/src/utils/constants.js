@@ -190,6 +190,7 @@ export const formContentConfig = {
     dropdownButton: 'dropdownButton',
     dropdownEllipsis: 'dropdownEllipsis',
     dropdown: 'dropdown',
+    component: 'component',
   },
   contentItemType: {
     placeholder: 'placeholder',

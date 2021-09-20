@@ -1398,8 +1398,15 @@ class Common extends Core {
                 buildType: extraItemType,
                 icon: extraItemIcon,
                 text: extraItemText,
+                component: componentSource,
               } = {
-                ...{ hidden: false, buildType: null, icon: null, text: '' },
+                ...{
+                  hidden: false,
+                  buildType: null,
+                  icon: null,
+                  text: '',
+                  component: null,
+                },
                 ...extraItem,
               };
 
@@ -1443,8 +1450,17 @@ class Common extends Core {
                     );
                     break;
 
+                  case formContentConfig.cardExtraBuildType.component:
+                    extraItemAdjust = componentSource || null;
+                    break;
+
                   default:
-                    extraItemAdjust = extraItem;
+                    recordObject({
+                      message: '未找到匹配的构建模式',
+                      config: extraItem,
+                    });
+
+                    extraItemAdjust = null;
                     break;
                 }
 
