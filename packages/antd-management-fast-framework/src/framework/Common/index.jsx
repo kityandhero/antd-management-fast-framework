@@ -38,6 +38,7 @@ import {
   isBoolean,
   toDatetime,
   isObject,
+  copyToClipboard,
 } from '../../utils/tools';
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import {
@@ -1983,6 +1984,21 @@ class Common extends Core {
                             disabled: true,
                             placeholder: `暂无${fieldData.label}信息`,
                           },
+                          ...(contentItem.canCopy || false
+                            ? {
+                                addonAfter: this.renderGeneralButton({
+                                  style: {
+                                    border: '0px solid #d9d9d9',
+                                    backgroundColor: '#fafafa',
+                                    height: '30px',
+                                  },
+                                  title: '点击复制',
+                                  onClick: () => {
+                                    copyToClipboard(contentItem.value);
+                                  },
+                                }),
+                              }
+                            : {}),
                         },
                         formItemLayout,
                       )
