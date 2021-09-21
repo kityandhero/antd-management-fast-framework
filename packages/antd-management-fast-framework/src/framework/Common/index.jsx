@@ -1729,8 +1729,6 @@ class Common extends Core {
               }
 
               if (type === formContentConfig.contentItemType.imageShow) {
-                let imageBoxContainorStyle = null;
-
                 const imageBoxProps = {
                   ...{
                     loadingEffect: true,
@@ -1741,9 +1739,10 @@ class Common extends Core {
                   ...(contentItem.imageBoxProps || {}),
                 };
 
-                if ((contentItem.imageBoxContainorStyle || null) != null) {
-                  imageBoxContainorStyle = contentItem.imageBoxContainorStyle;
-                }
+                const imageBoxContainorStyle = {
+                  ...{ width: '120px' },
+                  ...(contentItem.imageBoxContainorStyle || {}),
+                };
 
                 const imageBox = (
                   <ImageBox
@@ -1755,10 +1754,93 @@ class Common extends Core {
 
                 return (
                   <Col key={contentItemKey} lg={24} md={24} sm={24} xs={24}>
-                    {imageBoxContainorStyle == null ? (
-                      imageBox
+                    <div style={imageBoxContainorStyle}>{imageBox}</div>
+                  </Col>
+                );
+              }
+
+              if (type === formContentConfig.contentItemType.imageListShow) {
+                let imageBoxListContainorStyle = null;
+
+                const imageBoxProps = {
+                  ...{
+                    loadingEffect: true,
+                    errorOverlayVisible: true,
+                    showErrorIcon: false,
+                    alt: '',
+                  },
+                  ...(contentItem.imageBoxProps || {}),
+                };
+
+                if ((contentItem.imageBoxListContainorStyle || null) != null) {
+                  imageBoxListContainorStyle =
+                    contentItem.imageBoxListContainorStyle;
+                }
+
+                const imageBoxContainorStyle = {
+                  ...{ width: '120px' },
+                  ...(contentItem.imageBoxContainorStyle || {}),
+                };
+
+                const imageItemShowList = [];
+
+                const ignoreEmpty = contentItem.ignoreEmpty || false;
+
+                (isArray(contentItem.imageList)
+                  ? contentItem.imageList
+                  : []
+                ).forEach((imageOne, imageIndex) => {
+                  const imageKey = `contentItem_${contentIndex}_imageList_item_${imageIndex}`;
+
+                  if (ignoreEmpty) {
+                    if (!stringIsNullOrWhiteSpace(imageOne)) {
+                      imageItemShowList.push({
+                        key: imageKey,
+                        imageBoxContainorStyle,
+                        component: (
+                          <ImageBox
+                            src={imageOne || defaultEmptyImage}
+                            preview={!stringIsEmpty(imageOne || '')}
+                            {...imageBoxProps}
+                          />
+                        ),
+                      });
+                    }
+                  } else {
+                    imageItemShowList.push({
+                      key: imageKey,
+                      imageBoxContainorStyle,
+                      component: (
+                        <ImageBox
+                          src={imageOne || defaultEmptyImage}
+                          preview={!stringIsEmpty(imageOne || '')}
+                          {...imageBoxProps}
+                        />
+                      ),
+                    });
+                  }
+                });
+
+                const imageListContainor = (
+                  <Space>
+                    {imageItemShowList.map((o) => {
+                      return (
+                        <div key={o.key} style={o.imageBoxContainorStyle}>
+                          {o.component}
+                        </div>
+                      );
+                    })}
+                  </Space>
+                );
+
+                return (
+                  <Col key={contentItemKey} lg={24} md={24} sm={24} xs={24}>
+                    {imageBoxListContainorStyle == null ? (
+                      imageListContainor
                     ) : (
-                      <div style={imageBoxContainorStyle}>{imageBox}</div>
+                      <div style={imageBoxListContainorStyle}>
+                        {imageListContainor}
+                      </div>
                     )}
                   </Col>
                 );

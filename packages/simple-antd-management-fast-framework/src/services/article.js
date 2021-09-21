@@ -1,5 +1,7 @@
 import { request } from 'antd-management-fast-framework/lib/utils/requestAssistor';
 
+import { defaultSettings } from '@/defaultSettings';
+
 export async function pageListData(params) {
   return request({
     api: `/article/pageList`,
@@ -37,6 +39,14 @@ export async function pageListData(params) {
           key: '1430367617461391360',
           renderTypeNote: '媒体渲染',
           statusNote: '已下线',
+          image: defaultSettings.getEmptyLogo(),
+          imageList: [
+            defaultSettings.getEmptyLogo(),
+            defaultSettings.getEmptyLogo(),
+            defaultSettings.getEmptyLogo(),
+            defaultSettings.getEmptyLogo(),
+            defaultSettings.getEmptyLogo(),
+          ],
           mediaItemList: [
             {
               id: '986170e1-1b3f-46ca-930e-1b20cba2ef8b',
@@ -88,6 +98,14 @@ export async function getData(params) {
         key: '1430367617461391360',
         renderTypeNote: '媒体渲染',
         statusNote: '已下线',
+        image: defaultSettings.getEmptyLogo(),
+        imageList: [
+          defaultSettings.getEmptyLogo(),
+          defaultSettings.getEmptyLogo(),
+          defaultSettings.getEmptyLogo(),
+          defaultSettings.getEmptyLogo(),
+          defaultSettings.getEmptyLogo(),
+        ],
         mediaItemList: [
           {
             id: '986170e1-1b3f-46ca-930e-1b20cba2ef8b',

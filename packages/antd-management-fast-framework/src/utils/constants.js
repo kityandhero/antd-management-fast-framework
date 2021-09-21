@@ -212,6 +212,7 @@ export const formContentConfig = {
     onlyShowText: 'onlyShowText',
     imageUpload: 'imageUpload',
     imageShow: 'imageShow',
+    imageListShow: 'imageListShow',
     fileBase64Upload: 'fileBase64Upload',
     videoUpload: 'videoUpload',
     innerComponent: 'innerComponent',

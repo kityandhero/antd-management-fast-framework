@@ -37,6 +37,7 @@ class BasicInfo extends TabPageBase {
         submitApiPath: 'article/updateBasicInfo',
         articleId: null,
         image: '',
+        imageList: [],
       },
     };
   }
@@ -49,6 +50,30 @@ class BasicInfo extends TabPageBase {
       parseUrlParamsForSetState,
     );
   }
+
+  supplementSubmitRequestParams = (o) => {
+    const d = o;
+    const { articleId, image } = this.state;
+
+    d.articleId = articleId;
+    d.image = image;
+
+    return d;
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
+    const { image, imageList } = metaData;
+
+    this.setState({
+      image,
+      imageList,
+    });
+  };
+
+  afterImageUploadSuccess = (image) => {
+    this.setState({ image });
+  };
 
   fillFormInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -82,32 +107,11 @@ class BasicInfo extends TabPageBase {
     return values;
   };
 
-  supplementSubmitRequestParams = (o) => {
-    const d = o;
-    const { articleId, image } = this.state;
-
-    d.articleId = articleId;
-    d.image = image;
-
-    return d;
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
-    const { image } = metaData;
-
-    this.setState({
-      image,
-    });
-  };
-
-  afterImageUploadSuccess = (image) => {
-    this.setState({ image });
-  };
-
   formContentConfigData = () => {
-    const { metaData, processing, dataLoading, image } = this.state;
-
+    const { metaData, processing, dataLoading, image, imageList } = this.state;
+    console.log({
+      imageList,
+    });
     return {
       list: [
         {
@@ -165,7 +169,7 @@ class BasicInfo extends TabPageBase {
         {
           title: {
             icon: <PictureOutlined />,
-            text: '配图',
+            text: '配图上传',
             subText: '[上传后需点击保存按钮保存！]',
           },
           spinning: dataLoading || processing,
@@ -177,6 +181,37 @@ class BasicInfo extends TabPageBase {
               afterUploadSuccess: (imageData) => {
                 this.afterImageUploadSuccess(imageData);
               },
+            },
+          ],
+        },
+        {
+          title: {
+            icon: <PictureOutlined />,
+            text: '单配图纯展示',
+            subText: '[上传后需点击保存按钮保存！]',
+          },
+          spinning: dataLoading || processing,
+          items: [
+            {
+              type: formContentConfig.contentItemType.imageShow,
+              image,
+              imageBoxContainorStyle: {
+                width: '120px',
+              },
+            },
+          ],
+        },
+        {
+          title: {
+            icon: <PictureOutlined />,
+            text: '配图集合纯展示',
+            subText: '[上传后需点击保存按钮保存！]',
+          },
+          spinning: dataLoading || processing,
+          items: [
+            {
+              type: formContentConfig.contentItemType.imageListShow,
+              imageList,
             },
           ],
         },
