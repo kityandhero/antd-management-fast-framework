@@ -1004,6 +1004,7 @@ class Common extends Core {
     processing = false,
     handleData = null,
     style = null,
+    showIcon = true,
   }) => {
     if (hidden) {
       return null;
@@ -1023,6 +1024,7 @@ class Common extends Core {
       confirm,
       handleData: handleData ?? null,
       style: style || null,
+      showIcon,
     });
   };
 
@@ -2074,9 +2076,14 @@ class Common extends Core {
                                     backgroundColor: '#fafafa',
                                     height: '30px',
                                   },
-                                  title: '点击复制',
+                                  icon: null,
+                                  showIcon: false,
+                                  disabled: stringIsNullOrWhiteSpace(
+                                    contentItem.value || '',
+                                  ),
+                                  text: '点击复制',
                                   onClick: () => {
-                                    copyToClipboard(contentItem.value);
+                                    copyToClipboard(contentItem.value || '');
                                   },
                                 }),
                               }

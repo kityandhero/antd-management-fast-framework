@@ -144,6 +144,7 @@ export function buildButton({
   processing: processingSource = false,
   iconProcessing: iconProcessingSource = <LoadingOutlined />,
   style: styleSource = null,
+  showIcon: showIconSource = true,
 }) {
   let confirmAdjust = false;
 
@@ -162,6 +163,7 @@ export function buildButton({
     processing,
     iconProcessing,
     style,
+    showIcon,
   } = {
     ...{
       key: keySource ?? null,
@@ -178,6 +180,7 @@ export function buildButton({
       iconProcessing: iconProcessingSource ?? <LoadingOutlined />,
       handleData: handleDataSource ?? null,
       style: styleSource || null,
+      showIcon: showIconSource,
     },
   };
 
@@ -204,6 +207,7 @@ export function buildButton({
         processing,
         iconProcessing,
         style,
+        showIcon,
       });
 
       throw new Error(
@@ -234,7 +238,7 @@ export function buildButton({
 
   const ico = processing
     ? iconProcessing ?? <LoadingOutlined />
-    : icon ?? <EditOutlined />;
+    : icon ?? <FormOutlined />;
 
   if (confirmAdjust) {
     const { placement, title, okText, cancelText } = confirmAdjust;
@@ -266,7 +270,7 @@ export function buildButton({
           danger={danger}
           disabled={disabled}
         >
-          <IconInfo icon={ico} text={text} />
+          {!showIcon ? text : <IconInfo icon={ico} text={text} />}
         </Button>
       </Popconfirm>
     );
@@ -282,7 +286,7 @@ export function buildButton({
       disabled={disabled}
       onClick={() => handleClick({ handleData: handleData ?? null })}
     >
-      <IconInfo icon={ico} text={text} />
+      {!showIcon ? text : <IconInfo icon={ico} text={text} />}
     </Button>
   );
 }

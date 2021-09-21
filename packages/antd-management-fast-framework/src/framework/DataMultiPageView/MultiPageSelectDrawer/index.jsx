@@ -25,12 +25,14 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
     text: textSource = '选择',
     icon: iconSource = <ImportOutlined />,
     handleData = null,
+    showIcon = true,
   }) => {
     return buildButton({
       ...{
         size: 'small',
         icon: iconSource || <ImportOutlined />,
         text: textSource || '选择',
+        showIcon,
         handleClick: () =>
           this.selectRecord({ handleData: handleData || null }),
       },

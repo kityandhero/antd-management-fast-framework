@@ -8,6 +8,7 @@ import {
   getDerivedStateFromPropsForUrlParams,
   getPathValue,
   toDatetime,
+  getValueByKey,
 } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   formContentConfig,
@@ -153,6 +154,16 @@ class BasicInfo extends TabPageBase {
               type: formContentConfig.contentItemType.input,
               fieldData: fieldData.title,
               require: true,
+            },
+            {
+              lg: 6,
+              type: formContentConfig.contentItemType.onlyShowInput,
+              fieldData: fieldData.articleId,
+              value: getValueByKey({
+                data: metaData,
+                key: fieldData.articleId.name,
+              }),
+              canCopy: true,
             },
             {
               lg: 24,
