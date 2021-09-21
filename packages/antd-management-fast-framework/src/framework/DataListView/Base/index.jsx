@@ -566,11 +566,7 @@ class ListBase extends AuthorizationWrapper {
   // 其他项重置
   handleFormOtherReset = () => {};
 
-  handleSearch = (e) => {
-    // if ((e || null) != null) {
-    //   e.preventDefault();
-    // }
-
+  handleSearch = () => {
     if (this.checkWorkDoing()) {
       return;
     }

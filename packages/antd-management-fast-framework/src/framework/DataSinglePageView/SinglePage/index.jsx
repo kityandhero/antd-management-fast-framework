@@ -101,11 +101,7 @@ class SinglePage extends Base {
     return this.adjustLoadRequestParams(d);
   };
 
-  handleSearch = (e) => {
-    // if ((e || null) != null) {
-    //   e.preventDefault();
-    // }
-
+  handleSearch = () => {
     if (this.checkWorkDoing()) {
       return;
     }
