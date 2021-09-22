@@ -7,9 +7,11 @@
 } from 'antd-management-fast-framework/lib/utils/tools';
 import { unlimitedWithStringFlag } from 'antd-management-fast-framework/lib/utils/constants';
 import {
-  buildFormRadioItem,
+  buildRadioItem,
+  buildCustomRadio,
   buildFormRadio,
-  buildFormOptionItem,
+  buildOptionItem,
+  buildCustomSelect,
   buildFormSelect,
   buildSearchFormSelect,
 } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
@@ -47,7 +49,7 @@ export function renderWebChannelOption({
 }) {
   const listData = refitWebChannelList({ global, withUnlimited });
 
-  return buildFormOptionItem({ list: listData, adjustListDataCallback });
+  return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderWebChannelRadio({
@@ -57,7 +59,7 @@ export function renderWebChannelRadio({
 }) {
   const listData = refitWebChannelList({ global, withUnlimited });
 
-  return buildFormRadioItem({ list: listData, adjustListDataCallback });
+  return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchWebChannelSelect({
@@ -66,14 +68,40 @@ export function renderSearchWebChannelSelect({
   label = 'Web渠道',
   name = 'channel',
   helper = null,
+  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderWebChannelOption({ global, withUnlimited }),
+    options: renderWebChannelOption({ global, withUnlimited, adjustListDataCallback }),
     helper,
+  });
+}
+
+export function renderCustomWebChannelSelect({
+  global = null,
+  label = 'Web渠道',
+  separator = '：',
+  size = 'middle',
+  onChangeCallback,
+  otherProps = null,
+  adjustListDataCallback = null,
+}) {
+  return buildCustomSelect({
+    label,
+    separator,
+    size,
+    renderItemFunction: () => {
+      return renderWebChannelOption({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
+    },
+    onChangeCallback,
+    otherProps,
   });
 }
 
@@ -86,6 +114,7 @@ export function renderFormWebChannelSelect({
   required = true,
   name = 'channel',
   otherProps = null,
+  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
@@ -93,12 +122,41 @@ export function renderFormWebChannelSelect({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderWebChannelOption({ global, withUnlimited: false });
+      return renderWebChannelOption({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
     },
     helper,
     onChangeCallback,
     formItemLayout,
     required,
+    otherProps,
+  });
+}
+
+export function renderCustomWebChannelRadio({
+  global = null,
+  label = 'Web渠道',
+  separator = '：',
+  size = 'middle',
+  onChangeCallback,
+  otherProps = null,
+  adjustListDataCallback = null,
+}) {
+  return buildCustomRadio({
+    label,
+    separator,
+    size,
+    renderItemFunction: () => {
+      return renderWebChannelRadio({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
+    },
+    onChangeCallback,
     otherProps,
   });
 }
@@ -112,6 +170,7 @@ export function renderFormWebChannelRadio({
   required = true,
   name = 'channel',
   otherProps = null,
+  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
@@ -119,7 +178,11 @@ export function renderFormWebChannelRadio({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderWebChannelRadio({ global, withUnlimited: false });
+      return renderWebChannelRadio({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
     },
     helper,
     onChangeCallback,

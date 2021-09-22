@@ -8,9 +8,9 @@
 import { modelCollection } from '../../../utils/globalModel';
 import { unlimitedWithStringFlag } from '../../../utils/constants';
 import {
-  buildFormRadioItem,
+  buildRadioItem,
   buildFormRadio,
-  buildFormOptionItem,
+  buildOptionItem,
   buildFormSelect,
   buildSearchFormSelect,
 } from '../../FunctionComponent';
@@ -50,7 +50,7 @@ export function renderWhetherOption({
 }) {
   const listData = refitWhetherList({ withUnlimited });
 
-  return buildFormOptionItem({ list: listData, adjustListDataCallback });
+  return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderWhetherRadio({
@@ -59,7 +59,7 @@ export function renderWhetherRadio({
 }) {
   const listData = refitWhetherList({ withUnlimited });
 
-  return buildFormRadioItem({ list: listData, adjustListDataCallback });
+  return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchWhetherSelect({

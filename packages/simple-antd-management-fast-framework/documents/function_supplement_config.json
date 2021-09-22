@@ -1,7 +1,32 @@
 [
   {
+    "FunctionSegment": "Whether",
+    "Label": "调用时设置",
+    "Name": "whether"
+  },
+  {
+    "FunctionSegment": "Rank",
+    "Label": "商品分类",
+    "Name": "rankId"
+  },
+  {
     "FunctionSegment": "AccessWayStatus",
     "Label": "状态",
     "Name": "status"
+  },
+  {
+    "FunctionSegment": "ArticleRenderType",
+    "Label": "渲染模式",
+    "Name": "renderType"
+  },
+  {
+    "FunctionSegment": "ArticleStatus",
+    "Label": "状态",
+    "Name": "status"
+  },
+  {
+    "FunctionSegment": "WebChannel",
+    "Label": "Web渠道",
+    "Name": "channel"
   }
 ]

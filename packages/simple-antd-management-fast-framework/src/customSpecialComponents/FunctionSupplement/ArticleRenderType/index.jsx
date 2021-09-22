@@ -7,9 +7,11 @@
 } from 'antd-management-fast-framework/lib/utils/tools';
 import { unlimitedWithStringFlag } from 'antd-management-fast-framework/lib/utils/constants';
 import {
-  buildFormRadioItem,
+  buildRadioItem,
+  buildCustomRadio,
   buildFormRadio,
-  buildFormOptionItem,
+  buildOptionItem,
+  buildCustomSelect,
   buildFormSelect,
   buildSearchFormSelect,
 } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
@@ -47,7 +49,7 @@ export function renderArticleRenderTypeOption({
 }) {
   const listData = refitArticleRenderTypeList({ global, withUnlimited });
 
-  return buildFormOptionItem({ list: listData, adjustListDataCallback });
+  return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderArticleRenderTypeRadio({
@@ -57,7 +59,7 @@ export function renderArticleRenderTypeRadio({
 }) {
   const listData = refitArticleRenderTypeList({ global, withUnlimited });
 
-  return buildFormRadioItem({ list: listData, adjustListDataCallback });
+  return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchArticleRenderTypeSelect({
@@ -66,14 +68,40 @@ export function renderSearchArticleRenderTypeSelect({
   label = '渲染模式',
   name = 'renderType',
   helper = null,
+  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderArticleRenderTypeOption({ global, withUnlimited }),
+    options: renderArticleRenderTypeOption({ global, withUnlimited, adjustListDataCallback }),
     helper,
+  });
+}
+
+export function renderCustomArticleRenderTypeSelect({
+  global = null,
+  label = '渲染模式',
+  separator = '：',
+  size = 'middle',
+  onChangeCallback,
+  otherProps = null,
+  adjustListDataCallback = null,
+}) {
+  return buildCustomSelect({
+    label,
+    separator,
+    size,
+    renderItemFunction: () => {
+      return renderArticleRenderTypeOption({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
+    },
+    onChangeCallback,
+    otherProps,
   });
 }
 
@@ -86,6 +114,7 @@ export function renderFormArticleRenderTypeSelect({
   required = true,
   name = 'renderType',
   otherProps = null,
+  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
@@ -93,12 +122,41 @@ export function renderFormArticleRenderTypeSelect({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderArticleRenderTypeOption({ global, withUnlimited: false });
+      return renderArticleRenderTypeOption({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
     },
     helper,
     onChangeCallback,
     formItemLayout,
     required,
+    otherProps,
+  });
+}
+
+export function renderCustomArticleRenderTypeRadio({
+  global = null,
+  label = '渲染模式',
+  separator = '：',
+  size = 'middle',
+  onChangeCallback,
+  otherProps = null,
+  adjustListDataCallback = null,
+}) {
+  return buildCustomRadio({
+    label,
+    separator,
+    size,
+    renderItemFunction: () => {
+      return renderArticleRenderTypeRadio({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
+    },
+    onChangeCallback,
     otherProps,
   });
 }
@@ -112,6 +170,7 @@ export function renderFormArticleRenderTypeRadio({
   required = true,
   name = 'renderType',
   otherProps = null,
+  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
@@ -119,7 +178,11 @@ export function renderFormArticleRenderTypeRadio({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderArticleRenderTypeRadio({ global, withUnlimited: false });
+      return renderArticleRenderTypeRadio({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
     },
     helper,
     onChangeCallback,

@@ -7,9 +7,11 @@
 } from 'antd-management-fast-framework/lib/utils/tools';
 import { unlimitedWithStringFlag } from 'antd-management-fast-framework/lib/utils/constants';
 import {
-  buildFormRadioItem,
+  buildRadioItem,
+  buildCustomRadio,
   buildFormRadio,
-  buildFormOptionItem,
+  buildOptionItem,
+  buildCustomSelect,
   buildFormSelect,
   buildSearchFormSelect,
 } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
@@ -47,7 +49,7 @@ export function renderArticleStatusOption({
 }) {
   const listData = refitArticleStatusList({ global, withUnlimited });
 
-  return buildFormOptionItem({ list: listData, adjustListDataCallback });
+  return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderArticleStatusRadio({
@@ -57,7 +59,7 @@ export function renderArticleStatusRadio({
 }) {
   const listData = refitArticleStatusList({ global, withUnlimited });
 
-  return buildFormRadioItem({ list: listData, adjustListDataCallback });
+  return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchArticleStatusSelect({
@@ -66,14 +68,40 @@ export function renderSearchArticleStatusSelect({
   label = '状态',
   name = 'status',
   helper = null,
+  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderArticleStatusOption({ global, withUnlimited }),
+    options: renderArticleStatusOption({ global, withUnlimited, adjustListDataCallback }),
     helper,
+  });
+}
+
+export function renderCustomArticleStatusSelect({
+  global = null,
+  label = '状态',
+  separator = '：',
+  size = 'middle',
+  onChangeCallback,
+  otherProps = null,
+  adjustListDataCallback = null,
+}) {
+  return buildCustomSelect({
+    label,
+    separator,
+    size,
+    renderItemFunction: () => {
+      return renderArticleStatusOption({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
+    },
+    onChangeCallback,
+    otherProps,
   });
 }
 
@@ -86,6 +114,7 @@ export function renderFormArticleStatusSelect({
   required = true,
   name = 'status',
   otherProps = null,
+  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
@@ -93,12 +122,41 @@ export function renderFormArticleStatusSelect({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderArticleStatusOption({ global, withUnlimited: false });
+      return renderArticleStatusOption({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
     },
     helper,
     onChangeCallback,
     formItemLayout,
     required,
+    otherProps,
+  });
+}
+
+export function renderCustomArticleStatusRadio({
+  global = null,
+  label = '状态',
+  separator = '：',
+  size = 'middle',
+  onChangeCallback,
+  otherProps = null,
+  adjustListDataCallback = null,
+}) {
+  return buildCustomRadio({
+    label,
+    separator,
+    size,
+    renderItemFunction: () => {
+      return renderArticleStatusRadio({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
+    },
+    onChangeCallback,
     otherProps,
   });
 }
@@ -112,6 +170,7 @@ export function renderFormArticleStatusRadio({
   required = true,
   name = 'status',
   otherProps = null,
+  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
@@ -119,7 +178,11 @@ export function renderFormArticleStatusRadio({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderArticleStatusRadio({ global, withUnlimited: false });
+      return renderArticleStatusRadio({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
     },
     helper,
     onChangeCallback,

@@ -1212,7 +1212,7 @@ export function buildListViewItemActionSelect({
   );
 }
 
-export function buildFormRadioItem({ list, adjustListDataCallback = null }) {
+export function buildRadioItem({ list, adjustListDataCallback = null }) {
   let listData = list || [];
 
   if (isFunction(adjustListDataCallback)) {
@@ -1243,6 +1243,53 @@ export function buildFormRadioItem({ list, adjustListDataCallback = null }) {
   }
 
   return null;
+}
+
+export function buildCustomRadio({
+  label,
+  separator = '：',
+  size = 'middle',
+  renderItemFunction,
+  onChangeCallback = null,
+  otherProps = null,
+}) {
+  const otherRadioProps = {
+    ...{
+      placeholder: buildFieldDescription(label, '选择'),
+      style: { width: '100%' },
+      size,
+      onChange: (e) => {
+        if (isFunction(onChangeCallback)) {
+          onChangeCallback(e);
+        }
+      },
+    },
+    ...(otherProps || {}),
+  };
+
+  return (
+    <FlexBox
+      flexAuto="right"
+      left={
+        stringIsNullOrWhiteSpace(label || '') ? null : (
+          <VerticalBox
+            align="center"
+            alignJustify="start"
+            style={{
+              height: '100%',
+            }}
+          >
+            {`${label}${separator}`}
+          </VerticalBox>
+        )
+      }
+      right={
+        <RadioGroup {...otherRadioProps}>
+          {isFunction(renderItemFunction) ? renderItemFunction() : null}
+        </RadioGroup>
+      }
+    />
+  );
 }
 
 export function buildFormRadio({
@@ -1298,7 +1345,7 @@ export function buildFormRadio({
   );
 }
 
-export function buildFormOptionItem({ list, adjustListDataCallback = null }) {
+export function buildOptionItem({ list, adjustListDataCallback = null }) {
   let listData = list || [];
 
   if (isFunction(adjustListDataCallback)) {
@@ -1356,6 +1403,53 @@ export function buildFormOptionItem({ list, adjustListDataCallback = null }) {
   }
 
   return null;
+}
+
+export function buildCustomSelect({
+  label,
+  separator = '：',
+  size = 'middle',
+  renderItemFunction,
+  onChangeCallback = null,
+  otherProps = null,
+}) {
+  const otherSelectProps = {
+    ...{
+      placeholder: buildFieldDescription(label, '选择') || '请选择',
+      size,
+      style: { width: '100%' },
+      onChange: (v, option) => {
+        if (isFunction(onChangeCallback)) {
+          onChangeCallback(v, option);
+        }
+      },
+    },
+    ...(otherProps || {}),
+  };
+
+  return (
+    <FlexBox
+      flexAuto="right"
+      left={
+        stringIsNullOrWhiteSpace(label || '') ? null : (
+          <VerticalBox
+            align="center"
+            alignJustify="start"
+            style={{
+              height: '100%',
+            }}
+          >
+            {`${label}${separator}`}
+          </VerticalBox>
+        )
+      }
+      right={
+        <Select {...otherSelectProps}>
+          {isFunction(renderItemFunction) ? renderItemFunction() : null}
+        </Select>
+      }
+    />
+  );
 }
 
 export function buildFormSelect({

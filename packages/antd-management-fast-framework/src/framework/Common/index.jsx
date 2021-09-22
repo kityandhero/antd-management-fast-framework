@@ -57,9 +57,9 @@ import HelpCard from '../../customComponents/HelpCard';
 import IconInfo from '../../customComponents/IconInfo';
 import FileBase64Upload from '../../customComponents/FileBase64Upload';
 import {
-  buildFormRadioItem,
+  buildRadioItem,
   buildFormRadio,
-  buildFormOptionItem,
+  buildOptionItem,
   buildFormSelect,
   buildSearchFormSelect,
   buildFormNowTimeField,
@@ -539,11 +539,11 @@ class Common extends Core {
   };
 
   renderFormRadioCore = (listDataSource, adjustListDataCallback = null) => {
-    return buildFormRadioItem({ list: listDataSource, adjustListDataCallback });
+    return buildRadioItem({ list: listDataSource, adjustListDataCallback });
   };
 
   renderFormOptionCore = (listDataSource, adjustListDataCallback = null) => {
-    return buildFormOptionItem({
+    return buildOptionItem({
       list: listDataSource,
       adjustListDataCallback,
     });

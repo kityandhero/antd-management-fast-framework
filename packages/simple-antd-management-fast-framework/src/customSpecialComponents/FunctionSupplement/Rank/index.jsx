@@ -1,4 +1,4 @@
-import {
+﻿import {
   refitCommonData,
   isInvalid,
   searchFromList,
@@ -7,9 +7,11 @@ import {
 } from 'antd-management-fast-framework/lib/utils/tools';
 import { unlimitedWithStringFlag } from 'antd-management-fast-framework/lib/utils/constants';
 import {
-  buildFormRadioItem,
+  buildRadioItem,
+  buildCustomRadio,
   buildFormRadio,
-  buildFormOptionItem,
+  buildOptionItem,
+  buildCustomSelect,
   buildFormSelect,
   buildSearchFormSelect,
 } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
@@ -43,33 +45,60 @@ export function getRankName({ global, value, defaultValue = '' }) {
 export function renderRankOption({ global, withUnlimited = true, adjustListDataCallback = null }) {
   const listData = refitRankList({ global, withUnlimited });
 
-  return buildFormOptionItem({ list: listData, adjustListDataCallback });
+  return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderRankRadio({ global, withUnlimited = true, adjustListDataCallback = null }) {
   const listData = refitRankList({ global, withUnlimited });
 
-  return buildFormRadioItem({ list: listData, adjustListDataCallback });
+  return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderSearchRankSelect(
-  global,
+export function renderSearchRankSelect({
+  global = null,
   withUnlimited = true,
   label = '商品分类',
   name = 'rankId',
   helper = null,
-) {
+  adjustListDataCallback = null,
+}) {
   const title = label || unknownLabel;
 
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderRankOption({ global, withUnlimited }),
+    options: renderRankOption({ global, withUnlimited, adjustListDataCallback }),
     helper,
   });
 }
 
-export function renderFormRankSelect(
+export function renderCustomRankSelect({
+  global = null,
+  label = '商品分类',
+  separator = '：',
+  size = 'middle',
+  onChangeCallback,
+  otherProps = null,
+  adjustListDataCallback = null,
+}) {
+  return buildCustomSelect({
+    label,
+    separator,
+    size,
+    renderItemFunction: () => {
+      return renderRankOption({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
+    },
+    onChangeCallback,
+    otherProps,
+  });
+}
+
+export function renderFormRankSelect({
+  global = null,
   helper = null,
   onChangeCallback,
   label = '商品分类',
@@ -77,14 +106,19 @@ export function renderFormRankSelect(
   required = true,
   name = 'rankId',
   otherProps = null,
-) {
+  adjustListDataCallback = null,
+}) {
   const title = label || unknownLabel;
 
   return buildFormSelect({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderRankOption({ global, withUnlimited: false });
+      return renderRankOption({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
     },
     helper,
     onChangeCallback,
@@ -94,7 +128,33 @@ export function renderFormRankSelect(
   });
 }
 
-export function renderFormRankRadio(
+export function renderCustomRankRadio({
+  global = null,
+  label = '商品分类',
+  separator = '：',
+  size = 'middle',
+  onChangeCallback,
+  otherProps = null,
+  adjustListDataCallback = null,
+}) {
+  return buildCustomRadio({
+    label,
+    separator,
+    size,
+    renderItemFunction: () => {
+      return renderRankRadio({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
+    },
+    onChangeCallback,
+    otherProps,
+  });
+}
+
+export function renderFormRankRadio({
+  global = null,
   helper = null,
   onChangeCallback,
   label = '商品分类',
@@ -102,14 +162,19 @@ export function renderFormRankRadio(
   required = true,
   name = 'rankId',
   otherProps = null,
-) {
+  adjustListDataCallback = null,
+}) {
   const title = label || unknownLabel;
 
   return buildFormRadio({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderRankRadio({ global, withUnlimited: false });
+      return renderRankRadio({
+        global,
+        withUnlimited: false,
+        adjustListDataCallback,
+      });
     },
     helper,
     onChangeCallback,

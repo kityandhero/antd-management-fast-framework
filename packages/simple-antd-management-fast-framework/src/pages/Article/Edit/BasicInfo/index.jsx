@@ -14,7 +14,9 @@ import {
   formContentConfig,
   datetimeFormat,
 } from 'antd-management-fast-framework/lib/utils/constants';
+
 import { accessWayCollection } from '@/customConfig/config';
+import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
 import TabPageBase from '../../TabPageBase';
 import { parseUrlParamsForSetState } from '../../Assist/config';
@@ -127,6 +129,12 @@ class BasicInfo extends TabPageBase {
                 buildType: formContentConfig.cardExtraBuildType.iconInfo,
                 icon: <InfoCircleFilled />,
                 text: '一些说明',
+              },
+              {
+                buildType: formContentConfig.cardExtraBuildType.component,
+                component: renderCustomArticleStatusSelect({
+                  global: this.getGlobal(),
+                }),
               },
               {
                 buildType: formContentConfig.cardExtraBuildType.generalButton,

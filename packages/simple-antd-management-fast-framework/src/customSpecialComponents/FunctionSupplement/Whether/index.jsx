@@ -18,8 +18,8 @@ import {
 
 import { unknownLabel } from '@/customConfig/constants';
 
-export function refitAccessWayStatusList({ global, withUnlimited = true }) {
-  const { accessWayStatusList: list } = { ...{ accessWayStatusList: [] }, ...(global || {}) };
+export function refitWhetherList({ global, withUnlimited = true }) {
+  const { whetherList: list } = { ...{ whetherList: [] }, ...(global || {}) };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);
@@ -28,7 +28,7 @@ export function refitAccessWayStatusList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getAccessWayStatusName({ global, value, defaultValue = '' }) {
+export function getWhetherName({ global, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -36,37 +36,37 @@ export function getAccessWayStatusName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitAccessWayStatusList({ global, withUnlimited: false }),
+    refitWhetherList({ global, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
-export function renderAccessWayStatusOption({
+export function renderWhetherOption({
   global,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitAccessWayStatusList({ global, withUnlimited });
+  const listData = refitWhetherList({ global, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderAccessWayStatusRadio({
+export function renderWhetherRadio({
   global,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitAccessWayStatusList({ global, withUnlimited });
+  const listData = refitWhetherList({ global, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderSearchAccessWayStatusSelect({
+export function renderSearchWhetherSelect({
   global = null,
   withUnlimited = true,
-  label = '状态',
-  name = 'status',
+  label = '调用时设置',
+  name = 'whether',
   helper = null,
   adjustListDataCallback = null,
 }) {
@@ -75,14 +75,14 @@ export function renderSearchAccessWayStatusSelect({
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderAccessWayStatusOption({ global, withUnlimited, adjustListDataCallback }),
+    options: renderWhetherOption({ global, withUnlimited, adjustListDataCallback }),
     helper,
   });
 }
 
-export function renderCustomAccessWayStatusSelect({
+export function renderCustomWhetherSelect({
   global = null,
-  label = '状态',
+  label = '调用时设置',
   separator = '：',
   size = 'middle',
   onChangeCallback,
@@ -94,7 +94,7 @@ export function renderCustomAccessWayStatusSelect({
     separator,
     size,
     renderItemFunction: () => {
-      return renderAccessWayStatusOption({
+      return renderWhetherOption({
         global,
         withUnlimited: false,
         adjustListDataCallback,
@@ -105,14 +105,14 @@ export function renderCustomAccessWayStatusSelect({
   });
 }
 
-export function renderFormAccessWayStatusSelect({
+export function renderFormWhetherSelect({
   global = null,
   helper = null,
   onChangeCallback,
-  label = '状态',
+  label = '调用时设置',
   formItemLayout = null,
   required = true,
-  name = 'status',
+  name = 'whether',
   otherProps = null,
   adjustListDataCallback = null,
 }) {
@@ -122,7 +122,7 @@ export function renderFormAccessWayStatusSelect({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderAccessWayStatusOption({
+      return renderWhetherOption({
         global,
         withUnlimited: false,
         adjustListDataCallback,
@@ -136,9 +136,9 @@ export function renderFormAccessWayStatusSelect({
   });
 }
 
-export function renderCustomAccessWayStatusRadio({
+export function renderCustomWhetherRadio({
   global = null,
-  label = '状态',
+  label = '调用时设置',
   separator = '：',
   size = 'middle',
   onChangeCallback,
@@ -150,7 +150,7 @@ export function renderCustomAccessWayStatusRadio({
     separator,
     size,
     renderItemFunction: () => {
-      return renderAccessWayStatusRadio({
+      return renderWhetherRadio({
         global,
         withUnlimited: false,
         adjustListDataCallback,
@@ -161,14 +161,14 @@ export function renderCustomAccessWayStatusRadio({
   });
 }
 
-export function renderFormAccessWayStatusRadio({
+export function renderFormWhetherRadio({
   global = null,
   helper = null,
   onChangeCallback,
-  label = '状态',
+  label = '调用时设置',
   formItemLayout = null,
   required = true,
-  name = 'status',
+  name = 'whether',
   otherProps = null,
   adjustListDataCallback = null,
 }) {
@@ -178,7 +178,7 @@ export function renderFormAccessWayStatusRadio({
     label: title,
     name,
     renderItemFunction: () => {
-      return renderAccessWayStatusRadio({
+      return renderWhetherRadio({
         global,
         withUnlimited: false,
         adjustListDataCallback,
