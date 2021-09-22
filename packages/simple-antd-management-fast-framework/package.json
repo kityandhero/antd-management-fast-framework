@@ -135,7 +135,7 @@
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.173",
     "@types/qs": "^6.9.7",
-    "@types/react": "^17.0.22",
+    "@types/react": "^17.0.24",
     "@types/react-document-title": "^2.0.5",
     "@types/react-dom": "^17.0.9",
     "@types/react-helmet": "^6.1.2",
@@ -177,7 +177,7 @@
     "npm-check-updates": "^11.8.5",
     "prettier": "^2.4.1",
     "pro-download": "1.0.1",
-    "puppeteer-core": "^10.2.0",
+    "puppeteer-core": "^10.4.0",
     "rimraf": "^3.0.2",
     "slash2": "^2.0.0",
     "stylelint": "^13.13.1",
@@ -195,7 +195,7 @@
     "rc-util": "^5.5.0"
   },
   "optionalDependencies": {
-    "puppeteer": "^10.2.0"
+    "puppeteer": "^10.4.0"
   },
   "engines": {
     "node": ">=10.0.0"
