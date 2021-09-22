@@ -1247,6 +1247,7 @@ export function buildRadioItem({ list, adjustListDataCallback = null }) {
 
 export function buildCustomRadio({
   label,
+  value = null,
   separator = '：',
   size = 'middle',
   renderItemFunction,
@@ -1258,6 +1259,7 @@ export function buildCustomRadio({
       placeholder: buildFieldDescription(label, '选择'),
       style: { width: '100%' },
       size,
+      value,
       onChange: (e) => {
         if (isFunction(onChangeCallback)) {
           onChangeCallback(e);
@@ -1407,6 +1409,7 @@ export function buildOptionItem({ list, adjustListDataCallback = null }) {
 
 export function buildCustomSelect({
   label,
+  value = null,
   separator = '：',
   size = 'middle',
   renderItemFunction,
@@ -1417,6 +1420,7 @@ export function buildCustomSelect({
     ...{
       placeholder: buildFieldDescription(label, '选择') || '请选择',
       size,
+      value,
       style: { width: '100%' },
       onChange: (v, option) => {
         if (isFunction(onChangeCallback)) {
