@@ -1245,6 +1245,9 @@ export function buildRadioItem({ list, adjustListDataCallback = null }) {
   return null;
 }
 
+/**
+ *build custom radio group
+ */
 export function buildCustomRadio({
   label,
   value = null,
