@@ -692,6 +692,7 @@ export function buildCustomGrid({ key = null, list, props }) {
       column: columnSource,
       labelStyle: labelStyleSource,
       contentStyle: contentStyleSource,
+      emptyValue: globalEmptyValue,
       emptyStyle: globalEmptyStyle,
       bordered: borderedSource,
       colon: colonSource,
@@ -702,6 +703,8 @@ export function buildCustomGrid({ key = null, list, props }) {
         column: 3,
         labelStyle: {},
         contentStyle: {},
+        emptyValue: null,
+        emptyStyle: null,
         bordered: false,
         colon: true,
         size: null,
@@ -818,8 +821,8 @@ export function buildCustomGrid({ key = null, list, props }) {
                 key: getGuid(),
                 label: '',
                 value: '',
-                emptyValue: '',
-                emptyStyle: {},
+                emptyValue: null,
+                emptyStyle: null,
                 span: 1,
                 canCopy: false,
                 copyData: null,
@@ -828,10 +831,11 @@ export function buildCustomGrid({ key = null, list, props }) {
               ...(item || {}),
             };
 
-            const v = itemValue || itemEmptyValue;
+            const v = itemValue || itemEmptyValue || globalEmptyValue;
 
             const isEmpty =
-              (itemValue || null || itemEmptyValue) == itemEmptyValue;
+              (itemValue || itemEmptyValue || globalEmptyValue) ==
+                itemEmptyValue || globalEmptyValue;
 
             return (
               <Col
@@ -852,7 +856,8 @@ export function buildCustomGrid({ key = null, list, props }) {
                     <div
                       style={{
                         ...contentStyle,
-                        ...(isEmpty ? itemEmptyStyle : {}),
+                        ...(isEmpty ? globalEmptyStyle || {} : {}),
+                        ...(isEmpty ? itemEmptyStyle || {} : {}),
                       }}
                     >
                       {v}
