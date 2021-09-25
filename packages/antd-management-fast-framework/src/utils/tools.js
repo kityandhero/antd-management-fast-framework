@@ -1738,6 +1738,9 @@ export function trySendNearestLocalhostNotify({ text }) {
   }
 }
 
+/**
+ * 文本缩略
+ */
 export function ellipsis(value, length) {
   if (value && value.length > length) {
     return `${toString(value).substr(0, length)}...`;

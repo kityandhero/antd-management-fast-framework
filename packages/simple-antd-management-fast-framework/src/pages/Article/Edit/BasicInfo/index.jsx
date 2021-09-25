@@ -239,6 +239,7 @@ class BasicInfo extends TabPageBase {
                       data: metaData,
                       key: fieldData.articleId.name,
                     }),
+                    canCopy: true,
                   },
                   {
                     label: fieldData.title.label,
