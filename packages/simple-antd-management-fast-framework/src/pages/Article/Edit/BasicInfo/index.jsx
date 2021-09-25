@@ -229,6 +229,7 @@ class BasicInfo extends TabPageBase {
           spinning: dataLoading || processing,
           items: [
             {
+              lg: 24,
               type: formContentConfig.contentItemType.component,
               component: buildCustomGrid({
                 list: [
@@ -255,7 +256,12 @@ class BasicInfo extends TabPageBase {
                     }),
                   },
                   {
-                    span: 3,
+                    label: fieldData.subtitle.label,
+                    value: '',
+                    emptyValue: '空白值演示',
+                  },
+                  {
+                    span: 2,
                     label: fieldData.description.label,
                     value: getValueByKey({
                       data: metaData,

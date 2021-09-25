@@ -835,7 +835,17 @@ export function buildCustomGrid({ key = null, list, props }) {
 
             const isEmpty =
               (itemValue || itemEmptyValue || globalEmptyValue) ==
-                itemEmptyValue || globalEmptyValue;
+              (itemEmptyValue || globalEmptyValue);
+
+            console.log({
+              itemValue,
+              itemEmptyValue,
+              globalEmptyValue,
+              v: itemValue || itemEmptyValue || globalEmptyValue,
+              isEmpty:
+                (itemValue || itemEmptyValue || globalEmptyValue) ==
+                (itemEmptyValue || globalEmptyValue),
+            });
 
             return (
               <Col
