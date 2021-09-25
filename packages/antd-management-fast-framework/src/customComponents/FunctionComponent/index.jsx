@@ -692,6 +692,7 @@ export function buildCustomGrid({ key = null, list, props }) {
       column: columnSource,
       labelStyle: labelStyleSource,
       contentStyle: contentStyleSource,
+      emptyStyle: globalEmptyStyle,
       bordered: borderedSource,
       colon: colonSource,
       size: sizeSource,
@@ -802,29 +803,64 @@ export function buildCustomGrid({ key = null, list, props }) {
                   paddingBottom: paddingBottomNoBorder,
                 };
 
+            const {
+              key: itemKey,
+              label: itemLabel,
+              value: itemValue,
+              emptyValue: itemEmptyValue,
+              emptyStyle: itemEmptyStyle,
+              span: itemSpan,
+              canCopy: itemCanCopy,
+              copyData: itemCopyData,
+              props: itemProps,
+            } = {
+              ...{
+                key: getGuid(),
+                label: '',
+                value: '',
+                emptyValue: '',
+                emptyStyle: {},
+                span: 1,
+                canCopy: false,
+                copyData: null,
+                props: null,
+              },
+              ...(item || {}),
+            };
+
+            const v = itemValue || itemEmptyValue;
+
+            const isEmpty =
+              (itemValue || null || itemEmptyValue) == itemEmptyValue;
+
             return (
               <Col
-                key={item.key}
+                key={itemKey}
                 style={itemStyle}
-                label={item.label}
-                span={columnSpan * (item.span || 1)}
-                {...(item.props || {})}
+                label={itemLabel}
+                span={columnSpan * (toNumber(itemSpan) || 1)}
+                {...(itemProps || {})}
               >
                 <FlexBox
                   flexAuto="right"
                   left={
-                    <div style={labelStyle}>{`${item.label}${
+                    <div style={labelStyle}>{`${itemLabel}${
                       colon ? '：' : ''
                     }`}</div>
                   }
                   right={
-                    <div style={contentStyle}>
-                      {item.value}
-                      {item.canCopy && (item.canCopy || null) != null ? (
+                    <div
+                      style={{
+                        ...contentStyle,
+                        ...(isEmpty ? itemEmptyStyle : {}),
+                      }}
+                    >
+                      {v}
+                      {itemCanCopy && (itemCanCopy || null) != null ? (
                         <a
                           style={{ marginLeft: '10px' }}
                           onClick={() => {
-                            copyToClipboard(item.copyData || item.value);
+                            copyToClipboard(itemCopyData || itemValue);
                           }}
                         >
                           [复制]
