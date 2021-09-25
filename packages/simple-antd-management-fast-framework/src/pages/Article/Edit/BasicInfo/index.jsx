@@ -13,7 +13,9 @@ import {
 import {
   formContentConfig,
   datetimeFormat,
+  convertCollection,
 } from 'antd-management-fast-framework/lib/utils/constants';
+import { buildCustomGrid } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
@@ -217,6 +219,62 @@ class BasicInfo extends TabPageBase {
               imageBoxContainorStyle: {
                 width: '120px',
               },
+            },
+          ],
+        },
+        {
+          title: {
+            text: '表格展示',
+          },
+          spinning: dataLoading || processing,
+          items: [
+            {
+              type: formContentConfig.contentItemType.component,
+              component: buildCustomGrid({
+                list: [
+                  {
+                    label: fieldData.articleId.label,
+                    value: getValueByKey({
+                      data: metaData,
+                      key: fieldData.articleId.name,
+                    }),
+                  },
+                  {
+                    label: fieldData.title.label,
+                    value: getValueByKey({
+                      data: metaData,
+                      key: fieldData.title.name,
+                    }),
+                  },
+                  {
+                    label: fieldData.sort.label,
+                    value: getValueByKey({
+                      data: metaData,
+                      key: fieldData.sort.name,
+                      convert: convertCollection.string,
+                    }),
+                  },
+                  {
+                    span: 3,
+                    label: fieldData.description.label,
+                    value: getValueByKey({
+                      data: metaData,
+                      key: fieldData.description.name,
+                    }),
+                  },
+                ],
+                props: {
+                  bordered: true,
+                  column: 3,
+                  emptyStyle: {
+                    color: '#cccccc',
+                  },
+                  emptyValue: '待完善',
+                  labelStyle: {
+                    width: '140px',
+                  },
+                },
+              }),
             },
           ],
         },
