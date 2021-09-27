@@ -1468,9 +1468,8 @@ class Common extends Core {
             }
 
             return (
-              <div className={styles.cardContainor}>
+              <div key={key} className={styles.cardContainor}>
                 <Card
-                  key={key}
                   title={
                     index === 0 &&
                     mode !==
