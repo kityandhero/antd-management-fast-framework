@@ -5,13 +5,14 @@ import { ContactsOutlined, VideoCameraOutlined, PictureOutlined } from '@ant-des
 import {
   corsTarget,
   stringIsNullOrWhiteSpace,
-  getPathValue,
   formatDatetime,
   toDatetime,
+  getValueByKey,
 } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   formContentConfig,
   datetimeFormat,
+  formatCollection,
 } from 'antd-management-fast-framework/lib/utils/constants';
 import { accessWayCollection } from '@/customConfig/config';
 
@@ -63,24 +64,25 @@ class Index extends BaseUpdateDrawer {
     const values = {};
 
     if (metaData != null) {
-      values[mediaItemData.title.name] = getPathValue(metaData, mediaItemData.title.name);
-      values[mediaItemData.sort.name] = getPathValue(metaData, mediaItemData.sort.name);
-      values[mediaItemData.description.name] = getPathValue(
-        metaData,
-        mediaItemData.description.name,
-      );
-      values[mediaItemData.link.name] = getPathValue(metaData, mediaItemData.link.name);
+      values[mediaItemData.title.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.title.name,
+      });
 
-      values[mediaItemData.createTime.name] = formatDatetime(
-        getPathValue(metaData, mediaItemData.createTime.name),
-        datetimeFormat.monthDayHourMinuteSecond,
-        '',
-      );
-      values[mediaItemData.updateTime.name] = formatDatetime(
-        getPathValue(metaData, mediaItemData.updateTime.name),
-        datetimeFormat.monthDayHourMinuteSecond,
-        '',
-      );
+      values[mediaItemData.sort.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.sort.name,
+      });
+
+      values[mediaItemData.description.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.description.name,
+      });
+
+      values[mediaItemData.link.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.link.name,
+      });
     }
 
     console.log(values);
@@ -242,24 +244,20 @@ class Index extends BaseUpdateDrawer {
             {
               type: formContentConfig.contentItemType.onlyShowInput,
               fieldData: mediaItemData.createTime,
-              value:
-                metaData == null
-                  ? null
-                  : formatDatetime(
-                      toDatetime(getPathValue(metaData, mediaItemData.createTime.name, '')),
-                      datetimeFormat.monthDayHourMinuteSecond,
-                    ),
+              value: getValueByKey({
+                data: metaData,
+                key: mediaItemData.createTime.name,
+                format: formatCollection.datetime,
+              }),
             },
             {
               type: formContentConfig.contentItemType.onlyShowInput,
               fieldData: mediaItemData.updateTime,
-              value:
-                metaData == null
-                  ? null
-                  : formatDatetime(
-                      toDatetime(getPathValue(metaData, mediaItemData.updateTime.name, '')),
-                      datetimeFormat.monthDayHourMinuteSecond,
-                    ),
+              value: getValueByKey({
+                data: metaData,
+                key: mediaItemData.updateTime.name,
+                format: formatCollection.datetime,
+              }),
             },
           ],
         },

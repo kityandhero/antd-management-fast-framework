@@ -6,18 +6,20 @@ import {
   PlayCircleTwoTone,
   PauseCircleTwoTone,
   ConsoleSqlOutlined,
+  ReloadOutlined,
 } from '@ant-design/icons';
 
 import {
   toNumber,
-  getPathValue,
   showInfoMessage,
+  getValueByKey,
 } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   unlimitedWithStringFlag,
   searchFormContentConfig,
   columnFacadeMode,
   columnPlaceholder,
+  convertCollection,
 } from 'antd-management-fast-framework/lib/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/lib/utils/actionAssist';
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
@@ -34,7 +36,7 @@ import {
   renderSearchArticleStatusSelect,
 } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
-import { setOfflineConfirmAction, setOnlineConfirmAction } from '../Assist/action';
+import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
 import { fieldData, statusCollection } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({
@@ -103,13 +105,20 @@ class PageList extends MultiPage {
         this.setOffline(handleData);
         break;
 
+      case 'refreshCache':
+        this.refreshCache(handleData);
+        break;
+
       default:
         break;
     }
   };
 
   handleItemStatus = ({ target, record, remoteData }) => {
-    const articleId = getPathValue(record, fieldData.articleId.name);
+    const articleId = getValueByKey({
+      data: remoteData,
+      key: fieldData.articleId.name,
+    });
 
     handleItem({
       target,
@@ -122,7 +131,10 @@ class PageList extends MultiPage {
       handler: (d) => {
         const o = d;
 
-        o[fieldData.status.name] = getPathValue(remoteData, fieldData.status.name);
+        o[fieldData.status.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.status.name,
+        });
 
         return d;
       },
@@ -130,7 +142,7 @@ class PageList extends MultiPage {
   };
 
   setOnline = (r) => {
-    setOnlineConfirmAction({
+    setOnlineAction({
       target: this,
       handleData: r,
       successCallback: ({ target, handleData, remoteData }) => {
@@ -140,12 +152,19 @@ class PageList extends MultiPage {
   };
 
   setOffline = (r) => {
-    setOfflineConfirmAction({
+    setOfflineAction({
       target: this,
       handleData: r,
       successCallback: ({ target, handleData, remoteData }) => {
         target.handleItemStatus({ target, handleData, remoteData });
       },
+    });
+  };
+
+  refreshCache = (r) => {
+    refreshCacheAction({
+      target: this,
+      handleData: r,
     });
   };
 
@@ -347,7 +366,11 @@ class PageList extends MultiPage {
       width: 106,
       fixed: 'right',
       render: (text, r) => {
-        const itemStatus = toNumber(getPathValue(r, fieldData.status.name));
+        const itemStatus = getValueByKey({
+          data: r,
+          key: fieldData.status.name,
+          convert: convertCollection.number,
+        });
 
         return buildDropdownButton({
           size: 'small',
@@ -379,6 +402,17 @@ class PageList extends MultiPage {
               disabled: itemStatus === statusCollection.offline,
               confirm: {
                 title: '将要设置为下线，确定吗？',
+              },
+            },
+            {
+              key: 'refreshCache',
+              withDivider: true,
+              uponDivider: true,
+              icon: <ReloadOutlined />,
+              text: '刷新缓存',
+              hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+              confirm: {
+                title: '将要刷新缓存，确定吗？',
               },
             },
           ],

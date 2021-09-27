@@ -47,7 +47,6 @@ import {
   datetimeFormat,
   contentConfig,
 } from '../../utils/constants';
-import EverySpace from '../../customComponents/EverySpace';
 import FlexText from '../../customComponents/FlexText';
 import ImageUpload from '../../customComponents/ImageUpload';
 import VideoUpload from '../../customComponents/VideoUpload';
@@ -92,6 +91,8 @@ import {
 import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
 
 import Core from '../Core';
+
+import styles from './index.less';
 
 class Common extends Core {
   loadDataAfterMount = true;
@@ -1147,7 +1148,7 @@ class Common extends Core {
     });
 
     const bar = (
-      <div style={{ backgroundColor: 'rgb(240, 242, 245)' }}>
+      <div className={styles.cardContainor}>
         <Card
           title={<IconInfo icon={<ToolOutlined />} text={title || '工具栏'} />}
           bordered={false}
@@ -1170,26 +1171,14 @@ class Common extends Core {
             </Space>
           }
         />
-
-        <EverySpace size={2} direction="horizontal" />
       </div>
     );
 
     if (isBoolean(stick) && stick) {
-      return (
-        <>
-          <Affix offsetTop={0}>{bar}</Affix>
-          <EverySpace size={20} direction="horizontal" />
-        </>
-      );
+      return <Affix offsetTop={0}>{bar}</Affix>;
     }
 
-    return (
-      <>
-        {bar}
-        <EverySpace size={20} direction="horizontal" />
-      </>
-    );
+    return bar;
   };
 
   buildToolBarWrapper = () => {
@@ -1199,7 +1188,7 @@ class Common extends Core {
       return null;
     }
 
-    return <>{toolBar}</>;
+    return toolBar;
   };
 
   buildWrapperTypeConfig = () => {
@@ -1261,15 +1250,14 @@ class Common extends Core {
   };
 
   buildHelpWrapper = () => {
-    const formContentWrapperTypeConfig = this.buildWrapperTypeConfig() || {
-      mode: contentConfig.wrapperType.page,
-    };
+    // const formContentWrapperTypeConfig = this.buildWrapperTypeConfig() || {
+    //   mode: contentConfig.wrapperType.page,
+    // };
 
-    const configData = {
-      ...{ mode: contentConfig.wrapperType.page },
-      ...(formContentWrapperTypeConfig || {}),
-    };
-    const { mode } = configData;
+    // const configData = {
+    //   ...{ mode: contentConfig.wrapperType.page },
+    //   ...(formContentWrapperTypeConfig || {}),
+    // };
 
     const help = this.buildHelp();
 
@@ -1277,15 +1265,7 @@ class Common extends Core {
       return null;
     }
 
-    return (
-      <>
-        {mode !== contentConfig.wrapperType.model ? (
-          <EverySpace size={22} direction="horizontal" />
-        ) : null}
-
-        {help}
-      </>
-    );
+    return help;
   };
 
   buildFormContent = (config) => {
@@ -1314,296 +1294,302 @@ class Common extends Core {
 
     return (
       <>
-        {this.buildToolBarWrapper()}
+        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+          {this.buildToolBarWrapper()}
 
-        {listData.map((item, index) => {
-          const key = `formContent_key_${index}`;
+          {listData.map((item, index) => {
+            const key = `formContent_key_${index}`;
 
-          if (stringIsNullOrWhiteSpace(item)) {
-            return <EverySpace key={key} size={24} direction="horizontal" />;
-          }
+            if ((item || null) == null) {
+              return null;
+            }
 
-          const {
-            title,
-            extra,
-            hidden,
-            cardType,
-            cardBodyStyle,
-            spinning,
-            items: contentItems,
-            otherComponent,
-            formItemLayout,
-            instruction,
-          } = {
-            ...{
-              title: '',
-              extra: null,
-              hidden: false,
-              cardType: formContentConfig.cardType.normal,
-              cardBodyStyle: {},
-              items: [],
-              otherComponent: null,
-              formItemLayout: null,
-              instruction: null,
-            },
-            ...(item || {}),
-          };
+            const {
+              title,
+              extra,
+              hidden,
+              cardType,
+              cardBodyStyle,
+              spinning,
+              items: contentItems,
+              otherComponent,
+              formItemLayout,
+              instruction,
+            } = {
+              ...{
+                title: '',
+                extra: null,
+                hidden: false,
+                cardType: formContentConfig.cardType.normal,
+                cardBodyStyle: {},
+                items: [],
+                otherComponent: null,
+                formItemLayout: null,
+                instruction: null,
+              },
+              ...(item || {}),
+            };
 
-          if (hidden || false) {
-            return null;
-          }
+            if (hidden || false) {
+              return null;
+            }
 
-          const {
-            icon,
-            text,
-            subText,
-            addonBefore: titleAddonBefore,
-            addonAfter: titleAddonAfter,
-          } = {
-            ...{
-              icon: <ContactsOutlined />,
-              text: '',
-              subText: '',
-              addonBefore: null,
-              addonAfter: null,
-            },
-            ...(title || {}),
-          };
-          const {
-            affix,
-            split,
-            list: extraItemList,
-          } = {
-            ...{ affix: false, split: false, list: [] },
-            ...(extra || {}),
-          };
+            const {
+              icon,
+              text,
+              subText,
+              addonBefore: titleAddonBefore,
+              addonAfter: titleAddonAfter,
+            } = {
+              ...{
+                icon: <ContactsOutlined />,
+                text: '',
+                subText: '',
+                addonBefore: null,
+                addonAfter: null,
+              },
+              ...(title || {}),
+            };
 
-          const extraListData = [];
+            const {
+              affix,
+              split,
+              list: extraItemList,
+            } = {
+              ...{ affix: false, split: false, list: [] },
+              ...(extra || {}),
+            };
 
-          if (isArray(extraItemList)) {
-            extraItemList.forEach((eo, ei) => {
-              if ((eo || null) != null) {
-                extraListData.push(eo);
+            const extraListData = [];
 
-                if (ei !== extraItemList.length - 1) {
-                  extraListData.push('');
+            if (isArray(extraItemList)) {
+              extraItemList.forEach((eo, ei) => {
+                if ((eo || null) != null) {
+                  extraListData.push(eo);
+
+                  if (ei !== extraItemList.length - 1) {
+                    extraListData.push('');
+                  }
+                }
+              });
+            }
+
+            const extraItems = [];
+
+            extraListData.forEach((extraItem, extraItemIndex) => {
+              if ((extraItem || null) != null) {
+                const {
+                  hidden: extraItemHidden,
+                  buildType: extraItemType,
+                  icon: extraItemIcon,
+                  text: extraItemText,
+                  component: componentSource,
+                } = {
+                  ...{
+                    hidden: false,
+                    buildType: null,
+                    icon: null,
+                    text: '',
+                    component: null,
+                  },
+                  ...extraItem,
+                };
+
+                if (!extraItemHidden) {
+                  const extraItemKey = `formContent_key_${index}_extra_${extraItemIndex}`;
+
+                  let extraItemAdjust = extraItem;
+
+                  switch (extraItemType) {
+                    case formContentConfig.cardExtraBuildType.refresh:
+                      extraItemAdjust = this.renderRefreshButton();
+                      break;
+
+                    case formContentConfig.cardExtraBuildType.save:
+                      extraItemAdjust = this.renderSaveButton(extraItem);
+                      break;
+
+                    case formContentConfig.cardExtraBuildType.generalButton:
+                      extraItemAdjust = this.renderGeneralButton(extraItem);
+                      break;
+
+                    case formContentConfig.cardExtraBuildType.button:
+                      extraItemAdjust = buildButton(extraItem);
+                      break;
+
+                    case formContentConfig.cardExtraBuildType.dropdown:
+                      extraItemAdjust = buildDropdown(extraItem);
+                      break;
+
+                    case formContentConfig.cardExtraBuildType.dropdownButton:
+                      extraItemAdjust = buildDropdownButton(extraItem);
+                      break;
+
+                    case formContentConfig.cardExtraBuildType.dropdownEllipsis:
+                      extraItemAdjust = buildDropdownEllipsis(extraItem);
+                      break;
+
+                    case formContentConfig.cardExtraBuildType.iconInfo:
+                      extraItemAdjust = (
+                        <IconInfo icon={extraItemIcon} text={extraItemText} />
+                      );
+                      break;
+
+                    case formContentConfig.cardExtraBuildType.component:
+                      extraItemAdjust = componentSource || null;
+                      break;
+
+                    default:
+                      recordObject({
+                        message: '未找到匹配的构建模式',
+                        config: extraItem,
+                      });
+
+                      extraItemAdjust = null;
+                      break;
+                  }
+
+                  extraItems.push(
+                    <Fragment key={extraItemKey}>{extraItemAdjust}</Fragment>,
+                  );
                 }
               }
             });
-          }
 
-          const extraItems = [];
+            const hasExtraItems = extraItems.length > 0;
 
-          extraListData.forEach((extraItem, extraItemIndex) => {
-            if ((extraItem || null) != null) {
-              const {
-                hidden: extraItemHidden,
-                buildType: extraItemType,
-                icon: extraItemIcon,
-                text: extraItemText,
-                component: componentSource,
-              } = {
-                ...{
-                  hidden: false,
-                  buildType: null,
-                  icon: null,
-                  text: '',
-                  component: null,
-                },
-                ...extraItem,
+            let cardTypeBodyStyle = {};
+
+            if (cardType === formContentConfig.cardType.help) {
+              cardTypeBodyStyle = {
+                paddingTop: '12px',
+                paddingBottom: '12px',
               };
-
-              if (!extraItemHidden) {
-                const extraItemKey = `formContent_key_${index}_extra_${extraItemIndex}`;
-
-                let extraItemAdjust = extraItem;
-
-                switch (extraItemType) {
-                  case formContentConfig.cardExtraBuildType.refresh:
-                    extraItemAdjust = this.renderRefreshButton();
-                    break;
-
-                  case formContentConfig.cardExtraBuildType.save:
-                    extraItemAdjust = this.renderSaveButton(extraItem);
-                    break;
-
-                  case formContentConfig.cardExtraBuildType.generalButton:
-                    extraItemAdjust = this.renderGeneralButton(extraItem);
-                    break;
-
-                  case formContentConfig.cardExtraBuildType.button:
-                    extraItemAdjust = buildButton(extraItem);
-                    break;
-
-                  case formContentConfig.cardExtraBuildType.dropdown:
-                    extraItemAdjust = buildDropdown(extraItem);
-                    break;
-
-                  case formContentConfig.cardExtraBuildType.dropdownButton:
-                    extraItemAdjust = buildDropdownButton(extraItem);
-                    break;
-
-                  case formContentConfig.cardExtraBuildType.dropdownEllipsis:
-                    extraItemAdjust = buildDropdownEllipsis(extraItem);
-                    break;
-
-                  case formContentConfig.cardExtraBuildType.iconInfo:
-                    extraItemAdjust = (
-                      <IconInfo icon={extraItemIcon} text={extraItemText} />
-                    );
-                    break;
-
-                  case formContentConfig.cardExtraBuildType.component:
-                    extraItemAdjust = componentSource || null;
-                    break;
-
-                  default:
-                    recordObject({
-                      message: '未找到匹配的构建模式',
-                      config: extraItem,
-                    });
-
-                    extraItemAdjust = null;
-                    break;
-                }
-
-                extraItems.push(
-                  <Fragment key={extraItemKey}>{extraItemAdjust}</Fragment>,
-                );
-              }
             }
-          });
 
-          const hasExtraItems = extraItems.length > 0;
-
-          let cardTypeBodyStyle = {};
-
-          if (cardType === formContentConfig.cardType.help) {
-            cardTypeBodyStyle = {
-              paddingTop: '12px',
-              paddingBottom: '12px',
-            };
-          }
-
-          return (
-            <Card
-              key={key}
-              title={
-                index === 0 &&
-                mode !== formContentConfig.wrapperType.page ? null : (text ||
-                    '') === '' && (subText || '') === '' ? null : (
-                  <>
-                    <FlexText
-                      icon={icon || null}
-                      text={text || ''}
-                      subText={subText || ''}
-                      addonBefore={
-                        (titleAddonBefore || null) == null
-                          ? null
-                          : titleAddonBefore
-                      }
-                      addonAfter={
-                        (titleAddonAfter || null) == null
-                          ? null
-                          : titleAddonAfter
-                      }
-                    />
-                  </>
-                )
-              }
-              bordered={false}
-              extra={
-                hasExtraItems ? (
-                  mode === formContentConfig.wrapperType.page && affix ? (
-                    <Affix offsetTop={20}>
-                      <Space
-                        split={
-                          isBoolean(split) ? (
-                            split ? (
-                              <Divider type="vertical" />
-                            ) : null
-                          ) : (
-                            split
-                          )
-                        }
-                      >
-                        {extraItems}
-                      </Space>
-                    </Affix>
-                  ) : (
-                    <>
-                      <Space
-                        split={
-                          isBoolean(split) ? (
-                            split ? (
-                              <Divider type="vertical" />
-                            ) : null
-                          ) : (
-                            split
-                          )
-                        }
-                      >
-                        {extraItems}
-                      </Space>
-                    </>
-                  )
-                ) : null
-              }
-              bodyStyle={
-                mode === formContentConfig.wrapperType.model
-                  ? {
-                      ...(cardBodyStyle || {}),
-                      ...(cardTypeBodyStyle || {}),
-                      ...{
-                        paddingBottom: 0,
-                      },
-                    }
-                  : {
-                      ...(cardBodyStyle || {}),
-                      ...(cardTypeBodyStyle || {}),
-                    }
-              }
-            >
-              <Spin spinning={spinning || false}>
-                <>
-                  {this.buildFormContentItem(
-                    mode,
-                    isArray(contentItems)
-                      ? contentItems.map((o) => {
-                          return {
-                            ...o,
-                            ...{ formItemLayout: formItemLayout || null },
-                          };
-                        })
-                      : [],
-                    index,
-                  )}
-
-                  {otherComponent || null}
-
-                  {isObject(instruction ?? false) ||
-                  isArray(instruction ?? false) ? (
-                    isArray(instruction ?? false) ? (
-                      instruction.map((o, indexHelpBox) => {
-                        if ((o ?? null) == null) {
-                          return null;
-                        }
-
-                        const keyHelpBox = `${key}_HelpBox_$${indexHelpBox}`;
-
-                        return <HelpBox key={keyHelpBox} {...o} />;
-                      })
-                    ) : (
-                      <HelpBox {...instruction} />
+            return (
+              <div className={styles.cardContainor}>
+                <Card
+                  key={key}
+                  title={
+                    index === 0 &&
+                    mode !==
+                      formContentConfig.wrapperType.page ? null : (text ||
+                        '') === '' && (subText || '') === '' ? null : (
+                      <>
+                        <FlexText
+                          icon={icon || null}
+                          text={text || ''}
+                          subText={subText || ''}
+                          addonBefore={
+                            (titleAddonBefore || null) == null
+                              ? null
+                              : titleAddonBefore
+                          }
+                          addonAfter={
+                            (titleAddonAfter || null) == null
+                              ? null
+                              : titleAddonAfter
+                          }
+                        />
+                      </>
                     )
-                  ) : null}
-                </>
-              </Spin>
-            </Card>
-          );
-        })}
+                  }
+                  bordered={false}
+                  extra={
+                    hasExtraItems ? (
+                      mode === formContentConfig.wrapperType.page && affix ? (
+                        <Affix offsetTop={20}>
+                          <Space
+                            split={
+                              isBoolean(split) ? (
+                                split ? (
+                                  <Divider type="vertical" />
+                                ) : null
+                              ) : (
+                                split
+                              )
+                            }
+                          >
+                            {extraItems}
+                          </Space>
+                        </Affix>
+                      ) : (
+                        <>
+                          <Space
+                            split={
+                              isBoolean(split) ? (
+                                split ? (
+                                  <Divider type="vertical" />
+                                ) : null
+                              ) : (
+                                split
+                              )
+                            }
+                          >
+                            {extraItems}
+                          </Space>
+                        </>
+                      )
+                    ) : null
+                  }
+                  bodyStyle={
+                    mode === formContentConfig.wrapperType.model
+                      ? {
+                          ...(cardBodyStyle || {}),
+                          ...(cardTypeBodyStyle || {}),
+                          ...{
+                            paddingBottom: 0,
+                          },
+                        }
+                      : {
+                          ...(cardBodyStyle || {}),
+                          ...(cardTypeBodyStyle || {}),
+                        }
+                  }
+                >
+                  <Spin spinning={spinning || false}>
+                    <>
+                      {this.buildFormContentItem(
+                        mode,
+                        isArray(contentItems)
+                          ? contentItems.map((o) => {
+                              return {
+                                ...o,
+                                ...{ formItemLayout: formItemLayout || null },
+                              };
+                            })
+                          : [],
+                        index,
+                      )}
 
-        {this.buildHelpWrapper()}
+                      {otherComponent || null}
+
+                      {isObject(instruction ?? false) ||
+                      isArray(instruction ?? false) ? (
+                        isArray(instruction ?? false) ? (
+                          instruction.map((o, indexHelpBox) => {
+                            if ((o ?? null) == null) {
+                              return null;
+                            }
+
+                            const keyHelpBox = `${key}_HelpBox_$${indexHelpBox}`;
+
+                            return <HelpBox key={keyHelpBox} {...o} />;
+                          })
+                        ) : (
+                          <HelpBox {...instruction} />
+                        )
+                      ) : null}
+                    </>
+                  </Spin>
+                </Card>
+              </div>
+            );
+          })}
+
+          {this.buildHelpWrapper()}
+        </Space>
       </>
     );
   };

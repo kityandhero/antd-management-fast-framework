@@ -12,14 +12,15 @@ import {
 
 import {
   toNumber,
-  getPathValue,
   showInfoMessage,
+  getValueByKey,
 } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   columnFacadeMode,
   searchFormContentConfig,
   columnPlaceholder,
   unlimitedWithStringFlag,
+  convertCollection,
 } from 'antd-management-fast-framework/lib/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/lib/utils/actionAssist';
 import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
@@ -115,7 +116,10 @@ class PageList extends MultiPage {
   };
 
   handleItemStatus = ({ target, record, remoteData }) => {
-    const accessWayId = getPathValue(record, fieldData.accessWayId.name);
+    const accessWayId = getValueByKey({
+      data: metaData,
+      key: fieldData.accessWayId.name,
+    });
 
     handleItem({
       target,
@@ -128,7 +132,10 @@ class PageList extends MultiPage {
       handler: (d) => {
         const o = d;
 
-        o[fieldData.status.name] = getPathValue(remoteData, fieldData.status.name);
+        o[fieldData.status.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.status.name,
+        });
 
         return d;
       },
@@ -292,7 +299,11 @@ class PageList extends MultiPage {
       fixed: 'right',
       align: 'center',
       render: (text, r) => {
-        const itemStatus = toNumber(getPathValue(r, fieldData.status.name));
+        const itemStatus = getValueByKey({
+          data: r,
+          key: fieldData.status.name,
+          convert: convertCollection.number,
+        });
 
         return buildDropdownButton({
           size: 'small',

@@ -13,6 +13,7 @@ import {
   Divider,
   message,
   Badge,
+  Space,
 } from 'antd';
 import {
   SearchOutlined,
@@ -50,7 +51,6 @@ import {
   datetimeFormat,
   pageHeaderRenderType,
 } from '../../../utils/constants';
-import EverySpace from '../../../customComponents/EverySpace';
 import IconInfo from '../../../customComponents/IconInfo';
 import EllipsisCustom from '../../../customComponents/EllipsisCustom';
 import ImageBox from '../../../customComponents/ImageBox';
@@ -1468,43 +1468,43 @@ class ListBase extends AuthorizationWrapper {
 
     return (
       <div className={styles.containorBox}>
-        {this.buildToolBarWrapper()}
+        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+          {this.buildToolBarWrapper()}
 
-        {renderSearchForm && (searchForm || null) != null ? (
-          <>
-            <Card bordered={false} className={styles.containorSearch}>
-              <div className={styles.tableListForm}>{searchForm}</div>
-            </Card>
-
-            <EverySpace size={24} direction="horizontal" />
-          </>
-        ) : null}
-
-        <Card
-          title={listTitle}
-          headStyle={{ borderBottom: '0px' }}
-          bodyStyle={{ paddingTop: '0', paddingBottom: 10 }}
-          bordered={false}
-          className={styles.containorTable}
-          extra={
+          {renderSearchForm && (searchForm || null) != null ? (
             <>
-              {extraAction}
-
-              {extraAction == null ? null : <Divider type="vertical" />}
-
-              {this.renderBatchAction()}
-
-              {this.renderCardExtraAction()}
+              <Card bordered={false} className={styles.containorSearch}>
+                <div className={styles.tableListForm}>{searchForm}</div>
+              </Card>
             </>
-          }
-        >
-          <div className={styles.tableList}>
-            {this.renderAboveTable()}
-            {this.renderView()}
-          </div>
-        </Card>
+          ) : null}
 
-        {this.buildHelpWrapper()}
+          <Card
+            title={listTitle}
+            headStyle={{ borderBottom: '0px' }}
+            bodyStyle={{ paddingTop: '0', paddingBottom: 10 }}
+            bordered={false}
+            className={styles.containorTable}
+            extra={
+              <>
+                {extraAction}
+
+                {extraAction == null ? null : <Divider type="vertical" />}
+
+                {this.renderBatchAction()}
+
+                {this.renderCardExtraAction()}
+              </>
+            }
+          >
+            <div className={styles.tableList}>
+              {this.renderAboveTable()}
+              {this.renderView()}
+            </div>
+          </Card>
+
+          {this.buildHelpWrapper()}
+        </Space>
       </div>
     );
   };

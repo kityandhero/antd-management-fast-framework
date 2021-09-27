@@ -1,4 +1,4 @@
-import { getPathValue, ellipsis } from 'antd-management-fast-framework/lib/utils/tools';
+import { ellipsis, getValueByKey } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   actionCore,
   confirmActionCore,
@@ -10,7 +10,10 @@ export function setOnlineAction({ target, handleData, successCallback, successMe
   actionCore({
     api: 'article/setOnline',
     params: {
-      articleId: getPathValue(handleData, fieldData.articleId.name),
+      articleId: getValueByKey({
+        data: handleData,
+        key: fieldData.articleId.name,
+      }),
     },
     getApiData: (props) => {
       const {
@@ -23,24 +26,6 @@ export function setOnlineAction({ target, handleData, successCallback, successMe
     handleData,
     successCallback,
     successMessage,
-  });
-}
-
-export async function setOnlineConfirmAction({
-  target,
-  handleData,
-  successCallback,
-  successMessage,
-}) {
-  confirmActionCore({
-    title: `设置为正在上线状态`,
-    content: `将要设为正在上线状态，确定吗？`,
-    target,
-    handleData,
-    successCallback,
-    okAction: ({ target: t, handleData: r, successCallback: sc }) => {
-      setOnlineAction({ target: t, handleData: r, successCallback: sc, successMessage });
-    },
   });
 }
 
@@ -48,7 +33,10 @@ export function setOfflineAction({ target, handleData, successCallback, successM
   actionCore({
     api: 'article/setOffline',
     params: {
-      articleId: getPathValue(handleData, fieldData.articleId.name),
+      articleId: getValueByKey({
+        data: handleData,
+        key: fieldData.articleId.name,
+      }),
     },
     getApiData: (props) => {
       const {
@@ -61,24 +49,6 @@ export function setOfflineAction({ target, handleData, successCallback, successM
     handleData,
     successCallback,
     successMessage,
-  });
-}
-
-export async function setOfflineConfirmAction({
-  target,
-  handleData,
-  successCallback,
-  successMessage,
-}) {
-  confirmActionCore({
-    title: `设置为下线状态`,
-    content: `将要设为下线状态，确定吗？`,
-    target,
-    handleData,
-    successCallback,
-    okAction: ({ target: t, handleData: r, successCallback: sc }) => {
-      setOfflineAction({ target: t, handleData: r, successCallback: sc, successMessage });
-    },
   });
 }
 
@@ -86,7 +56,10 @@ export async function refreshCacheAction({ target, handleData, successCallback, 
   actionCore({
     api: 'article/refreshCache',
     params: {
-      articleId: getPathValue(handleData, fieldData.articleId.name),
+      articleId: getValueByKey({
+        data: handleData,
+        key: fieldData.articleId.name,
+      }),
     },
     getApiData: (props) => {
       const {
@@ -99,27 +72,6 @@ export async function refreshCacheAction({ target, handleData, successCallback, 
     handleData,
     successCallback,
     successMessage,
-  });
-}
-
-export async function refreshCacheConfirmAction({
-  target,
-  handleData,
-  successCallback,
-  successMessage,
-}) {
-  confirmActionCore({
-    title: `刷新缓存`,
-    content: `即将刷新“${ellipsis(
-      getPathValue(handleData, fieldData.title.name),
-      40,
-    )}”的缓存，确定吗？`,
-    target,
-    handleData,
-    successCallback,
-    okAction: ({ target: t, handleData: r, successCallback: sc }) => {
-      refreshCacheAction({ target: t, handleData: r, successCallback: sc, successMessage });
-    },
   });
 }
 
@@ -132,8 +84,14 @@ export function setMediaCollectionSortAction({
   actionCore({
     api: 'article/setMediaCollectionSort',
     params: {
-      articleId: getPathValue(handleData, fieldData.articleId.name),
-      ids: getPathValue(handleData, 'ids'),
+      articleId: getValueByKey({
+        data: handleData,
+        key: fieldData.articleId.name,
+      }),
+      ids: getValueByKey({
+        data: handleData,
+        key: 'ids',
+      }),
     },
     getApiData: (props) => {
       const {
@@ -158,8 +116,14 @@ export async function removeMediaItemAction({
   actionCore({
     api: 'article/removeMediaItem',
     params: {
-      articleId: getPathValue(handleData, fieldData.articleId.name),
-      id: getPathValue(handleData, mediaItemData.id.name),
+      articleId: getValueByKey({
+        data: handleData,
+        key: fieldData.articleId.name,
+      }),
+      id: getValueByKey({
+        data: handleData,
+        key: mediaItemData.id.name,
+      }),
     },
     getApiData: (props) => {
       const {
@@ -172,27 +136,6 @@ export async function removeMediaItemAction({
     handleData,
     successCallback,
     successMessage,
-  });
-}
-
-export async function removeMediaItemConfirmAction({
-  target,
-  handleData,
-  successCallback,
-  successMessage,
-}) {
-  confirmActionCore({
-    title: `移除媒体项`,
-    content: `即将移除媒体项“${ellipsis(
-      getPathValue(handleData, mediaItemData.id.name),
-      40,
-    )}”，确定吗？`,
-    target,
-    handleData,
-    successCallback,
-    okAction: ({ target: t, handleData: r, successCallback: sc }) => {
-      removeMediaItemAction({ target: t, handleData: r, successCallback: sc, successMessage });
-    },
   });
 }
 

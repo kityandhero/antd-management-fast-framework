@@ -5,24 +5,28 @@ import {
   DownCircleOutlined,
   ReloadOutlined,
   LoadingOutlined,
+  FormOutlined,
 } from '@ant-design/icons';
 
 import {
   stringIsNullOrWhiteSpace,
   toDatetime,
   getDerivedStateFromPropsForUrlParams,
-  getPathValue,
   toNumber,
   showInfoMessage,
   recordObject,
   notifySuccess,
+  getValueByKey,
 } from 'antd-management-fast-framework/lib/utils/tools';
-import { accessWayCollection } from '@/customConfig/config';
-
+import { convertCollection } from 'antd-management-fast-framework/lib/utils/constants';
 import DataTabContainer from 'antd-management-fast-framework/lib/framework/DataTabContainer';
 import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
 
-import { setOfflineAction, setOnlineAction, refreshCacheConfirmAction } from '../Assist/action';
+import { accessWayCollection } from '@/customConfig/config';
+import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
+import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
+
+import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
 import { parseUrlParamsForSetState, checkNeedUpdateAssist } from '../Assist/config';
 import { fieldData, statusCollection } from '../Common/data';
 
@@ -70,6 +74,12 @@ class Edit extends DataTabContainer {
     );
   }
 
+  getGlobal = () => {
+    const { global } = this.props;
+
+    return global || null;
+  };
+
   getApiData = (props) => {
     const {
       article: { data },
@@ -95,7 +105,10 @@ class Edit extends DataTabContainer {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
     this.setState({
-      pageName: getPathValue(metaData, fieldData.title.name),
+      pageName: getValueByKey({
+        data: metaData,
+        key: fieldData.title.name,
+      }),
     });
   };
 
@@ -106,7 +119,10 @@ class Edit extends DataTabContainer {
       successCallback: ({ target, remoteData }) => {
         const { metaData } = target.state;
 
-        metaData[fieldData.status.name] = getPathValue(remoteData, fieldData.status.name);
+        metaData[fieldData.status.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.status.name,
+        });
 
         target.setState({ metaData });
       },
@@ -120,9 +136,22 @@ class Edit extends DataTabContainer {
       successCallback: ({ target, remoteData }) => {
         const { metaData } = target.state;
 
-        metaData[fieldData.status.name] = getPathValue(remoteData, fieldData.status.name);
+        metaData[fieldData.status.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.status.name,
+        });
 
         target.setState({ metaData });
+      },
+    });
+  };
+
+  refreshCache = (r) => {
+    refreshCacheAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target }) => {
+        target.reloadData();
       },
     });
   };
@@ -134,7 +163,10 @@ class Edit extends DataTabContainer {
   pageHeaderAvatar = () => {
     const { metaData } = this.state;
 
-    const image = getPathValue(metaData, fieldData.image.name);
+    const image = getValueByKey({
+      data: metaData,
+      key: fieldData.image.name,
+    });
 
     if (!stringIsNullOrWhiteSpace(image || '')) {
       return { src: image };
@@ -150,7 +182,11 @@ class Edit extends DataTabContainer {
       return null;
     }
 
-    const status = toNumber(getPathValue(metaData, fieldData.status.name));
+    const status = getValueByKey({
+      data: metaData,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
 
     const that = this;
 
@@ -211,7 +247,13 @@ class Edit extends DataTabContainer {
       return null;
     }
 
-    const status = toNumber(getPathValue(metaData, fieldData.status.name));
+    const status = getValueByKey({
+      data: metaData,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
+    const that = this;
 
     return {
       size: 'default',
@@ -237,6 +279,14 @@ class Edit extends DataTabContainer {
             notifySuccess(JSON.stringify(handleData));
             break;
 
+          case 'click21':
+            showInfoMessage({
+              message: `click ${key}`,
+            });
+
+            notifySuccess(JSON.stringify(handleData));
+            break;
+
           case 'click3':
             showInfoMessage({
               message: `click ${key}`,
@@ -245,12 +295,8 @@ class Edit extends DataTabContainer {
             notifySuccess(JSON.stringify(handleData));
             break;
 
-          case 'click4':
-            showInfoMessage({
-              message: `click ${key}`,
-            });
-
-            notifySuccess(JSON.stringify(handleData));
+          case 'refreshCache':
+            that.refreshCache(handleData);
             break;
 
           default:
@@ -261,26 +307,26 @@ class Edit extends DataTabContainer {
       menuItems: [
         {
           key: 'click1',
-          icon: <ReloadOutlined />,
+          icon: <FormOutlined />,
           text: '按钮1',
           hidden: true,
         },
         {
           key: 'click2',
-          icon: <ReloadOutlined />,
+          icon: <FormOutlined />,
           text: '按钮2',
           hidden: false,
           disabled: true,
         },
         {
           key: 'click21',
-          icon: <ReloadOutlined />,
+          icon: <FormOutlined />,
           text: '按钮21',
           hidden: false,
         },
         {
           key: 'click3',
-          icon: <ReloadOutlined />,
+          icon: <FormOutlined />,
           text: '按钮2',
           hidden: false,
           disabled: false,
@@ -292,12 +338,15 @@ class Edit extends DataTabContainer {
           },
         },
         {
-          key: 'click4',
+          key: 'refreshCache',
           withDivider: true,
           uponDivider: true,
           icon: <ReloadOutlined />,
           text: '刷新缓存',
           hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+          confirm: {
+            title: '将要刷新缓存，确定吗？',
+          },
         },
       ],
     };
@@ -308,10 +357,20 @@ class Edit extends DataTabContainer {
 
     return {
       textLabel: fieldData.status.label,
-      text: getPathValue(metaData, fieldData.statusNote.name),
+      text: getArticleStatusName({
+        global: this.getGlobal(),
+        value: getValueByKey({
+          data: metaData,
+          key: fieldData.status.name,
+          convert: convertCollection.number,
+        }),
+      }),
       timeLabel: fieldData.createTime.label,
-      time:
-        metaData === null ? null : toDatetime(getPathValue(metaData, fieldData.createTime.name)),
+      time: getValueByKey({
+        data: metaData,
+        key: fieldData.createTime.name,
+        convert: convertCollection.datetime,
+      }),
     };
   };
 
@@ -322,13 +381,22 @@ class Edit extends DataTabContainer {
 
     list.push({
       label: fieldData.articleId.label,
-      value: getPathValue(metaData, fieldData.articleId.name),
+      value: getValueByKey({
+        data: metaData,
+        key: fieldData.articleId.name,
+      }),
       canCopy: true,
     });
 
     list.push({
       label: fieldData.renderTypeNote.label,
-      value: getPathValue(metaData, fieldData.renderTypeNote.name),
+      value: getArticleRenderTypeName({
+        global: this.getGlobal(),
+        value: getValueByKey({
+          data: metaData,
+          key: fieldData.renderType.name,
+        }),
+      }),
       canCopy: false,
     });
 

@@ -6,14 +6,15 @@ import {
   formatDatetime,
   corsTarget,
   getDerivedStateFromPropsForUrlParams,
-  getPathValue,
   toDatetime,
   getValueByKey,
+  showInfoMessage,
 } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   formContentConfig,
   datetimeFormat,
   convertCollection,
+  formatCollection,
 } from 'antd-management-fast-framework/lib/utils/constants';
 import { buildCustomGrid } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 
@@ -80,6 +81,70 @@ class BasicInfo extends TabPageBase {
     this.setState({ image });
   };
 
+  buildToolBarConfig = () => {
+    return {
+      stick: false,
+      title: '工具栏',
+      tools: [
+        {
+          title: '按钮提示1',
+          component: this.renderGeneralButton({
+            text: '按钮1',
+            onClick: () => {
+              showInfoMessage({
+                message: 'click button 4',
+              });
+            },
+            disabled: false,
+          }),
+        },
+        {
+          title: '按钮提示2',
+          hidden: false,
+          component: this.renderGeneralButton({
+            text: '按钮2',
+            onClick: () => {
+              showInfoMessage({
+                message: 'click button 4',
+              });
+            },
+          }),
+        },
+        {
+          title: '按钮提示2',
+          hidden: false,
+          component: this.renderGeneralButton({
+            text: '按钮2',
+            onClick: () => {
+              showInfoMessage({
+                message: 'click button 4',
+              });
+            },
+            processing: true,
+          }),
+        },
+        {
+          title: '按钮提示4',
+          hidden: false,
+          component: this.renderGeneralButton({
+            text: '按钮4',
+            onClick: () => {
+              showInfoMessage({
+                message: 'click button 4',
+              });
+            },
+            confirm: {
+              placement: 'topRight',
+              title: '将要进行操作，确定吗？',
+              okText: '确定',
+              cancelText: '取消',
+            },
+          }),
+        },
+      ],
+    };
+  };
+
   fillFormInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
@@ -93,20 +158,18 @@ class BasicInfo extends TabPageBase {
     const values = {};
 
     if (metaData != null) {
-      values[fieldData.title.name] = getPathValue(metaData, fieldData.title.name);
-      values[fieldData.subtitle.name] = getPathValue(metaData, fieldData.subtitle.name);
-      values[fieldData.description.name] = getPathValue(metaData, fieldData.description.name);
-
-      values[fieldData.createTime.name] = formatDatetime(
-        getPathValue(metaData, fieldData.createTime.name),
-        datetimeFormat.monthDayHourMinuteSecond,
-        '',
-      );
-      values[fieldData.updateTime.name] = formatDatetime(
-        getPathValue(metaData, fieldData.updateTime.name),
-        datetimeFormat.monthDayHourMinuteSecond,
-        '',
-      );
+      values[fieldData.title.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.title.name,
+      });
+      values[fieldData.subtitle.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.subtitle.name,
+      });
+      values[fieldData.description.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.description.name,
+      });
     }
 
     return values;
@@ -322,26 +385,36 @@ class BasicInfo extends TabPageBase {
             {
               type: formContentConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.createTime,
-              value:
-                metaData == null
-                  ? null
-                  : formatDatetime(
-                      toDatetime(metaData.createTime),
-                      datetimeFormat.monthDayHourMinuteSecond,
-                    ),
+              value: getValueByKey({
+                data: metaData,
+                key: fieldData.createTime.name,
+                format: formatCollection.datetime,
+              }),
             },
             {
               type: formContentConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.updateTime,
-              value:
-                metaData == null
-                  ? null
-                  : formatDatetime(
-                      toDatetime(metaData.updateTime),
-                      datetimeFormat.monthDayHourMinuteSecond,
-                    ),
+              value: getValueByKey({
+                data: metaData,
+                key: fieldData.updateTime.name,
+                format: formatCollection.datetime,
+              }),
             },
           ],
+        },
+      ],
+    };
+  };
+
+  buildHelpConfig = () => {
+    return {
+      title: '操作提示',
+      list: [
+        {
+          text: '简要说明：这里可以显示需要提示的信息。',
+        },
+        {
+          text: '简要说明：这里可以显示需要提示的信息。',
         },
       ],
     };

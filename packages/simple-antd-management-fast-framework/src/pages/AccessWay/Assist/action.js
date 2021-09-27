@@ -1,4 +1,4 @@
-import { getPathValue, ellipsis } from 'antd-management-fast-framework/lib/utils/tools';
+import { ellipsis, getValueByKey } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   actionCore,
   confirmActionCore,
@@ -10,7 +10,10 @@ export function setOnlineAction({ target, handleData, successCallback, successMe
   actionCore({
     api: 'accessWay/setOnline',
     params: {
-      accessWayId: getPathValue(handleData, fieldData.accessWayId.name),
+      accessWayId: getValueByKey({
+        data: handleData,
+        key: fieldData.accessWayId.name,
+      }),
     },
     getApiData: (props) => {
       const {
@@ -48,7 +51,10 @@ export function setOfflineAction({ target, handleData, successCallback, successM
   actionCore({
     api: 'accessWay/setOffline',
     params: {
-      accessWayId: getPathValue(handleData, fieldData.accessWayId.name),
+      accessWayId: getValueByKey({
+        data: handleData,
+        key: fieldData.accessWayId.name,
+      }),
     },
     getApiData: (props) => {
       const {
@@ -86,7 +92,10 @@ export async function refreshCacheAction({ target, handleData, successCallback, 
   actionCore({
     api: 'accessWay/refreshCache',
     params: {
-      accessWayId: getPathValue(handleData, fieldData.accessWayId.name),
+      accessWayId: getValueByKey({
+        data: handleData,
+        key: fieldData.accessWayId.name,
+      }),
     },
     getApiData: (props) => {
       const {
@@ -111,7 +120,10 @@ export async function refreshCacheConfirmAction({
   confirmActionCore({
     title: `刷新缓存`,
     content: `即将刷新“${ellipsis(
-      getPathValue(handleData, fieldData.name.name),
+      getValueByKey({
+        data: handleData,
+        key: fieldData.name.name,
+      }),
       40,
     )}”的缓存，确定吗？`,
     target,

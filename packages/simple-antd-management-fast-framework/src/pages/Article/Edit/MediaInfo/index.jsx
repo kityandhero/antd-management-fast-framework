@@ -9,24 +9,29 @@ import {
   DeleteOutlined,
   EditOutlined,
   InsertRowBelowOutlined,
+  ReloadOutlined,
 } from '@ant-design/icons';
 
 import {
   getDerivedStateFromPropsForUrlParams,
-  getPathValue,
   toDatetime,
   formatDatetime,
   isArray,
+  getValueByKey,
+  toString,
 } from 'antd-management-fast-framework/lib/utils/tools';
 import {
   defaultEmptyImage,
   formContentConfig,
   datetimeFormat,
+  convertCollection,
+  formatCollection,
 } from 'antd-management-fast-framework/lib/utils/constants';
 import ColorText from 'antd-management-fast-framework/lib/customComponents/ColorText';
 import StatusBar from 'antd-management-fast-framework/lib/customComponents/StatusBar';
 import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
 import FlexBox from 'antd-management-fast-framework/lib/customComponents/FlexBox';
+import { buildDropdownButton } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
 import {
   buildListViewItemExtra,
   buildDescriptionGrid,
@@ -38,7 +43,7 @@ import AddMediaItemDrawer from '../../AddMediaItemDrawer';
 import UpdateMediaItemDrawer from '../../UpdateMediaItemDrawer';
 import MediaItemPreviewDrawer from '../../MediaItemPreviewDrawer';
 import TabPageBase from '../../TabPageBase';
-import { setMediaCollectionSortAction, removeMediaItemConfirmAction } from '../../Assist/action';
+import { setMediaCollectionSortAction, removeMediaItemAction } from '../../Assist/action';
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { mediaItemData } from '../../Common/data';
 
@@ -125,7 +130,10 @@ class BasicInfo extends TabPageBase {
   showInsertMediaItemDrawer = (record) => {
     this.setState({
       addMediaItemDrawerVisible: true,
-      selectForwardId: getPathValue(record, mediaItemData.id.name),
+      selectForwardId: getValueByKey({
+        data: record,
+        key: mediaItemData.id.name,
+      }),
     });
   };
 
@@ -208,9 +216,9 @@ class BasicInfo extends TabPageBase {
         break;
 
       case 'removeItem':
-        removeMediaItemConfirmAction({
+        removeMediaItemAction({
           target: this,
-          record: { ...(handleData || {}), ...{ articleId } },
+          handleData: { ...(handleData || {}), ...{ articleId } },
           successCallback: ({ target, remoteData }) => {
             target.setCustomData(remoteData);
           },
@@ -310,7 +318,10 @@ class BasicInfo extends TabPageBase {
     this.setState({ mediaItemList: mediaItems }, () => {
       const ids = (isArray(mediaItems) ? mediaItems : [])
         .map((o) => {
-          const v = getPathValue(o, mediaItemData.id.name, '') || '';
+          const v = getValueByKey({
+            data: o,
+            key: mediaItemData.id.name,
+          });
 
           return v;
         })
@@ -341,25 +352,61 @@ class BasicInfo extends TabPageBase {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  renderListViewItemInner = (record, index) => {
+  renderListViewItemInner = (r, index) => {
     const { mediaItemList } = this.state;
+
+    const title = getValueByKey({
+      data: r,
+      key: mediaItemData.title.name,
+      defaultValue: '无标题',
+    });
+
+    const image = getValueByKey({
+      data: r,
+      key: mediaItemData.image.name,
+    });
+
+    const description = getValueByKey({
+      data: r,
+      key: mediaItemData.description.name,
+      defaultValue: '无描述',
+    });
+
+    const link = getValueByKey({
+      data: r,
+      key: mediaItemData.link.name,
+      defaultValue: '未设置',
+    });
+
+    const video = getValueByKey({
+      data: r,
+      key: mediaItemData.video.name,
+      defaultValue: '未设置',
+    });
+
+    const sort = getValueByKey({
+      data: r,
+      key: mediaItemData.sort.name,
+      convert: convertCollection.number,
+    });
+
+    const createTime = getValueByKey({
+      data: r,
+      key: mediaItemData.createTime.name,
+      format: formatCollection.datetime,
+    });
 
     return (
       <>
         <List.Item.Meta
-          title={
-            <ColorText
-              textPrefix={mediaItemData.title.label}
-              text={getPathValue(record, mediaItemData.title.name, '无标题') || '无标题'}
-            />
-          }
+          title={<ColorText textPrefix={mediaItemData.title.label} text={title} />}
           description={
             <FlexBox
               flexAuto="right"
               left={buildListViewItemExtra({
                 index,
                 align: 'top',
-                imageUrl: getPathValue(record, mediaItemData.image.name),
+                imageUrl: image,
                 emptyImageUrl: defaultEmptyImage,
               })}
               right={
@@ -372,17 +419,15 @@ class BasicInfo extends TabPageBase {
                     list: [
                       {
                         label: mediaItemData.description.label,
-                        value:
-                          getPathValue(record, mediaItemData.description.name, '无描述') ||
-                          '无描述',
+                        value: description,
                       },
                       {
                         label: mediaItemData.link.label,
-                        value: getPathValue(record, mediaItemData.link.name, '无描述') || '无描述',
+                        value: link,
                       },
                       {
                         label: mediaItemData.video.label,
-                        value: getPathValue(record, mediaItemData.video.name, '无描述') || '无描述',
+                        value: video,
                       },
                     ],
                     props: {
@@ -406,68 +451,80 @@ class BasicInfo extends TabPageBase {
             actions={[
               <IconInfo
                 textPrefix={mediaItemData.id.label}
-                text={getPathValue(record, mediaItemData.id.name)}
+                text={getValueByKey({
+                  data: r,
+                  key: mediaItemData.id.name,
+                })}
                 canCopy
               />,
-              <IconInfo
-                textPrefix={mediaItemData.sort.label}
-                text={getPathValue(record, mediaItemData.sort.name)}
-              />,
+              <IconInfo textPrefix={mediaItemData.sort.label} text={toString(sort)} />,
               <IconInfo
                 textPrefix={mediaItemData.createTime.label}
-                text={formatDatetime(
-                  toDatetime(getPathValue(record, mediaItemData.createTime.name)),
-                  datetimeFormat.monthDayHourMinuteSecond,
-                )}
+                textPrefix={mediaItemData.createTime.label}
+                textPrefix={mediaItemData.createTime.label}
+                text={createTime}
               />,
             ]}
-            extra={
-              <Dropdown.Button
-                size="small"
-                placement="topRight"
-                onClick={() => this.showUpdateMediaItemDrawer(record)}
-                overlay={
-                  <Menu onClick={(e) => this.handleMenuClick(e, record)}>
-                    {this.checkAuthority(accessWayCollection.article.addMediaItem.permission) ? (
-                      <Menu.Item key="insertItem">
-                        <IconInfo icon={<InsertRowBelowOutlined />} text="在下方插入" />
-                      </Menu.Item>
-                    ) : null}
-
-                    {this.checkAuthority(accessWayCollection.article.addMediaItem.permission) ? (
-                      <Menu.Divider />
-                    ) : null}
-
-                    {this.checkAuthority(accessWayCollection.article.updateSort.permission) ? (
-                      <Menu.Item key="moveUp" disabled={record.sort === 1}>
-                        <IconInfo icon={<ArrowUpOutlined />} text="向上移动" />
-                      </Menu.Item>
-                    ) : null}
-
-                    {this.checkAuthority(accessWayCollection.article.updateSort.permission) ? (
-                      <Menu.Item
-                        key="moveDown"
-                        disabled={record.sort === (mediaItemList || []).length}
-                      >
-                        <IconInfo icon={<ArrowDownOutlined />} text="向下移动" />
-                      </Menu.Item>
-                    ) : null}
-
-                    {this.checkAuthority(accessWayCollection.article.updateSort.permission) ? (
-                      <Menu.Divider />
-                    ) : null}
-
-                    {this.checkAuthority(accessWayCollection.article.removeMediaItem.permission) ? (
-                      <Menu.Item key="removeItem">
-                        <IconInfo icon={<DeleteOutlined />} text="删除信息" />
-                      </Menu.Item>
-                    ) : null}
-                  </Menu>
-                }
-              >
-                <IconInfo icon={<EditOutlined />} text="修改" />
-              </Dropdown.Button>
-            }
+            extra={buildDropdownButton({
+              size: 'small',
+              text: '编辑',
+              icon: <EditOutlined />,
+              handleButtonClick: ({ handleData }) => {
+                this.showUpdateMediaItemDrawer(handleData);
+              },
+              handleData: r,
+              handleMenuClick: ({ key, handleData }) => {
+                this.handleMenuClick({ key, handleData });
+              },
+              menuItems: [
+                {
+                  key: 'insertItem',
+                  icon: <InsertRowBelowOutlined />,
+                  text: '在下方插入',
+                  hidden: !this.checkAuthority(accessWayCollection.article.addMediaItem.permission),
+                },
+                {
+                  key: 'moveUp',
+                  withDivider: true,
+                  uponDivider: true,
+                  icon: <ArrowUpOutlined />,
+                  text: '向上移动',
+                  hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
+                  disabled: sort === 1,
+                },
+                {
+                  key: 'moveDown',
+                  icon: <ArrowDownOutlined />,
+                  text: '向下移动',
+                  hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
+                  disabled: sort === (mediaItemList || []).length,
+                },
+                {
+                  key: 'refreshCache',
+                  withDivider: true,
+                  uponDivider: true,
+                  icon: <ReloadOutlined />,
+                  text: '刷新缓存',
+                  hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+                  confirm: {
+                    title: '将要刷新缓存，确定吗？',
+                  },
+                },
+                {
+                  key: 'removeItem',
+                  withDivider: true,
+                  uponDivider: true,
+                  icon: <DeleteOutlined />,
+                  text: '删除信息',
+                  hidden: !this.checkAuthority(
+                    accessWayCollection.article.removeMediaItem.permission,
+                  ),
+                  confirm: {
+                    title: '将要删除信息，确定吗？',
+                  },
+                },
+              ],
+            })}
           />
         </div>
       </>
