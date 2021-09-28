@@ -92,8 +92,16 @@ class BaseView extends BaseUpdateForm {
     return values;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterFillForm = (metaData, metaListData, metaExtra, metaOriginalData) => {
+  afterFillForm = ({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaData = null,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaOriginalData = null,
+  }) => {
     const { avatar } = metaData;
 
     this.setState({ imageUrl: avatar || '' });
