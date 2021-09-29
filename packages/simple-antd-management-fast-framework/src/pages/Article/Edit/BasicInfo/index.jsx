@@ -249,6 +249,19 @@ class BasicInfo extends TabPageBase {
               fieldData: fieldData.subtitle,
             },
           ],
+          instruction: {
+            title: '局部操作说明',
+            showDivider: false,
+            showNumber: true,
+            list: [
+              {
+                text: '这是一些操作说明1',
+              },
+              {
+                text: '这是一些操作说明2',
+              },
+            ],
+          },
         },
         {
           title: {
@@ -373,6 +386,34 @@ class BasicInfo extends TabPageBase {
               type: formContentConfig.contentItemType.textarea,
               fieldData: fieldData.description,
               require: true,
+            },
+          ],
+          instruction: [
+            {
+              title: '局部操作说明1',
+              showDivider: false,
+              showNumber: true,
+              list: [
+                {
+                  text: '这是一些操作说明1',
+                },
+                {
+                  text: '这是一些操作说明2',
+                },
+              ],
+            },
+            {
+              title: '局部操作说明2',
+              showDivider: false,
+              showNumber: true,
+              list: [
+                {
+                  text: '这是一些操作说明1',
+                },
+                {
+                  text: '这是一些操作说明2',
+                },
+              ],
             },
           ],
         },

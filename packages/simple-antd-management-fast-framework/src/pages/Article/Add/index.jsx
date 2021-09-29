@@ -228,18 +228,15 @@ class Add extends BaseAddForm {
             },
           ],
           instruction: {
-            title: '操作说明',
-            showDivider: true,
+            title: '局部操作说明',
+            showDivider: false,
             showNumber: true,
             list: [
               {
-                text: '这里是操作说明。',
+                text: '这是一些操作说明1',
               },
               {
-                text: '这里是操作说明。',
-              },
-              {
-                text: '这里是操作说明。',
+                text: '这是一些操作说明2',
               },
             ],
           },
@@ -263,7 +260,7 @@ class Add extends BaseAddForm {
           ],
           instruction: [
             {
-              title: '操作说明1',
+              title: '局部操作说明1',
               showDivider: false,
               showNumber: true,
               list: [
@@ -279,7 +276,7 @@ class Add extends BaseAddForm {
               ],
             },
             {
-              title: '操作说明2',
+              title: '局部操作说明2',
               showDivider: false,
               showNumber: true,
               list: [
@@ -320,6 +317,20 @@ class Add extends BaseAddForm {
               type: formContentConfig.contentItemType.nowTime,
             },
           ],
+        },
+      ],
+    };
+  };
+
+  buildHelpConfig = () => {
+    return {
+      title: '操作提示',
+      list: [
+        {
+          text: '简要说明：这里可以显示需要提示的信息。',
+        },
+        {
+          text: '简要说明：这里可以显示需要提示的信息。',
         },
       ],
     };

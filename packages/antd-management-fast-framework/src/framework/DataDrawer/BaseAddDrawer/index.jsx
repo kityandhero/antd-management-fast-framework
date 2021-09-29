@@ -23,9 +23,18 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   };
 
   buildBottomBarInnerDefaultConfigList = () => {
+    const buttonProcessing = this.getSaveButtonProcessing();
+
+    const that = this;
+
     return [
       {
-        buildType: drawerConfig.bottomBarBuildType.save,
+        buildType: drawerConfig.bottomBarBuildType.generalButton,
+        type: 'primary',
+        disabled: buttonProcessing,
+        onClick: (e) => {
+          that.handleOk(e);
+        },
       },
       {
         buildType: drawerConfig.bottomBarBuildType.close,

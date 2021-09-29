@@ -7,6 +7,7 @@ import {
   PauseCircleTwoTone,
   ConsoleSqlOutlined,
   ReloadOutlined,
+  EditOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -36,6 +37,8 @@ import {
   renderSearchArticleStatusSelect,
 } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
+import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
+import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
 import { fieldData, statusCollection } from '../Common/data';
 
@@ -57,6 +60,9 @@ class PageList extends MultiPage {
         pageName: '文章列表',
         paramsKey: accessWayCollection.article.pageList.paramsKey,
         loadApiPath: 'article/pageList',
+        addBasicInfoDrawerVisible: false,
+        updateBasicInfoDrawerVisible: false,
+        currentRecord: null,
       },
     };
   }
@@ -97,6 +103,10 @@ class PageList extends MultiPage {
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
+      case 'showUpdateBasicInfoDrawer':
+        this.showUpdateBasicInfoDrawer(handleData);
+        break;
+
       case 'setOnline':
         this.setOnline(handleData);
         break;
@@ -166,6 +176,55 @@ class PageList extends MultiPage {
       target: this,
       handleData: r,
     });
+  };
+
+  showAddBasicInfoDrawer = () => {
+    this.setState({
+      addBasicInfoDrawerVisible: true,
+    });
+  };
+
+  afterAddBasicInfoDrawerOk = () => {
+    this.setState({ addBasicInfoDrawerVisible: false }, () => {
+      const that = this;
+
+      setTimeout(() => {
+        that.refreshData();
+      }, 500);
+    });
+  };
+
+  afterAddBasicInfoDrawerCancel = () => {
+    this.setState({ addBasicInfoDrawerVisible: false });
+  };
+
+  afterAddBasicInfoDrawerClose = () => {
+    this.setState({ addBasicInfoDrawerVisible: false });
+  };
+
+  showUpdateBasicInfoDrawer = (r) => {
+    this.setState({
+      updateBasicInfoDrawerVisible: true,
+      currentRecord: r,
+    });
+  };
+
+  afterUpdateBasicInfoDrawerOk = () => {
+    this.setState({ updateBasicInfoDrawerVisible: false }, () => {
+      const that = this;
+
+      setTimeout(() => {
+        that.refreshData();
+      }, 500);
+    });
+  };
+
+  afterUpdateBasicInfoDrawerCancel = () => {
+    this.setState({ updateBasicInfoDrawerVisible: false });
+  };
+
+  afterUpdateBasicInfoDrawerClose = () => {
+    this.setState({ updateBasicInfoDrawerVisible: false });
   };
 
   goToAdd = () => {
@@ -294,7 +353,14 @@ class PageList extends MultiPage {
       {
         type: 'primary',
         icon: <PlusOutlined />,
-        text: '新增文章',
+        text: '新增文章[侧拉]',
+        onClick: this.showAddBasicInfoDrawer,
+        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+      },
+      {
+        type: 'primary',
+        icon: <PlusOutlined />,
+        text: '新增文章[页面]',
         onClick: this.goToAdd,
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
       },
@@ -385,6 +451,14 @@ class PageList extends MultiPage {
           },
           menuItems: [
             {
+              key: 'showUpdateBasicInfoDrawer',
+              withDivider: true,
+              uponDivider: true,
+              icon: <EditOutlined />,
+              text: '编辑[侧拉]',
+              hidden: !this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission),
+            },
+            {
               key: 'setOnline',
               icon: <PlayCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
               text: '设为上线',
@@ -433,6 +507,43 @@ class PageList extends MultiPage {
         },
       ],
     };
+  };
+
+  renderOther = () => {
+    const { articleId, addBasicInfoDrawerVisible, updateBasicInfoDrawerVisible, currentRecord } =
+      this.state;
+
+    return (
+      <>
+        <AddBasicInfoDrawer
+          visible={addBasicInfoDrawerVisible}
+          externalData={{ articleId }}
+          afterOK={() => {
+            this.afterAddBasicInfoDrawerOk();
+          }}
+          afterCancel={() => {
+            this.afterAddBasicInfoDrawerCancel();
+          }}
+          afterClose={() => {
+            this.afterAddBasicInfoDrawerClose();
+          }}
+        />
+
+        <UpdateBasicInfoDrawer
+          visible={updateBasicInfoDrawerVisible}
+          externalData={currentRecord}
+          afterOK={() => {
+            this.afterUpdateBasicInfoDrawerOk();
+          }}
+          afterCancel={() => {
+            this.afterUpdateBasicInfoDrawerCancel();
+          }}
+          afterClose={() => {
+            this.afterUpdateBasicInfoDrawerClose();
+          }}
+        />
+      </>
+    );
   };
 }
 
