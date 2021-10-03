@@ -1,3 +1,4 @@
+import React from 'react';
 import { history, Link } from 'umi';
 
 export const proLayoutDefaultProps = {
