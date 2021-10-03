@@ -4,7 +4,7 @@ import { Result, Button } from 'antd';
 import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
 
 import { getQueue, checkDevelopment } from 'antd-management-fast-framework/lib/utils/tools';
-import { proLayoutDefaultProps } from 'antd-management-fast-framework/lib/utils/constants';
+import { proLayoutDefaultProps } from 'antd-management-fast-framework/lib/utils/proLayoutCollection';
 import { setAccessWayCollectionCache } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
 import { getAuthorityFromRouter } from 'antd-management-fast-framework/lib/utils/utils';
 import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
