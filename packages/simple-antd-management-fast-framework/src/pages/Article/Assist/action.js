@@ -1,4 +1,8 @@
-import { ellipsis, getValueByKey } from 'antd-management-fast-framework/lib/utils/tools';
+import {
+  ellipsis,
+  getValueByKey,
+  recordError,
+} from 'antd-management-fast-framework/lib/utils/tools';
 import {
   actionCore,
   confirmActionCore,
@@ -10,13 +14,13 @@ function getApiData(props) {
   const { article } = props;
 
   if ((article || null) == null) {
-    console.log('getApiData has some undefined error');
+    recordError('getApiData has some undefined error');
   }
 
   const { data } = article;
 
   if ((data || null) == null) {
-    console.log('data:getApiData has some undefined error');
+    recordError('data:getApiData has some undefined error');
   }
 
   return data;

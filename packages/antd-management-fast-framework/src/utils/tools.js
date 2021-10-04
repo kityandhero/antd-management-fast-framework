@@ -450,29 +450,29 @@ export function showMessage({
  * @returns
  */
 export function recordLog(record, showMode, level = logLevel.debug) {
-  if (logShowInConsole()) {
-    let showModeModified =
-      (showMode || null) == null || stringIsNullOrWhiteSpace(showMode)
-        ? logShowMode.unknown
-        : showMode;
+  let showModeModified =
+    (showMode || null) == null || stringIsNullOrWhiteSpace(showMode)
+      ? logShowMode.unknown
+      : showMode;
 
-    if (
-      !inCollection(
-        [logShowMode.unknown, logShowMode.text, logShowMode.object],
-        showModeModified,
-      )
-    ) {
-      throw new Error(`无效的日志显示模式:${showModeModified}`);
+  if (
+    !inCollection(
+      [logShowMode.unknown, logShowMode.text, logShowMode.object],
+      showModeModified,
+    )
+  ) {
+    throw new Error(`无效的日志显示模式:${showModeModified}`);
+  }
+
+  if (showModeModified === logShowMode.unknown) {
+    if (isString(record)) {
+      showModeModified = logShowMode.text;
+    } else {
+      showModeModified = logShowMode.object;
     }
+  }
 
-    if (showModeModified === logShowMode.unknown) {
-      if (isString(record)) {
-        showModeModified = logShowMode.text;
-      } else {
-        showModeModified = logShowMode.object;
-      }
-    }
-
+  if (logShowInConsole() && level === logLevel.debug) {
     if (showModeModified === logShowMode.text) {
       const data = { level, record };
 
@@ -484,6 +484,31 @@ export function recordLog(record, showMode, level = logLevel.debug) {
       // eslint-disable-next-line no-console
       console.log({ level, record });
     }
+  }
+
+  if (level === logLevel.error) {
+    if (showModeModified === logShowMode.text) {
+      const data = { level, record };
+
+      // eslint-disable-next-line no-console
+      console.log(JSON.stringify(data));
+    }
+
+    if (showModeModified === logShowMode.object) {
+      // eslint-disable-next-line no-console
+      console.log({ level, record });
+    }
+  }
+}
+
+/**
+ * 记录错误信息
+ */
+export function recordError(record) {
+  if (isString(record)) {
+    recordText(record, logLevel.error);
+  } else {
+    recordObject(record, logLevel.error);
   }
 }
 
