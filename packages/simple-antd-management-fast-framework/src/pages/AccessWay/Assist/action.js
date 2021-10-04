@@ -6,6 +6,22 @@ import {
 
 import { fieldData } from '../Common/data';
 
+function getApiData(props) {
+  const { accessWay } = props;
+
+  if ((accessWay || null) == null) {
+    console.log('getApiData has some undefined error');
+  }
+
+  const { data } = accessWay;
+
+  if ((data || null) == null) {
+    console.log('data:getApiData has some undefined error');
+  }
+
+  return data;
+}
+
 export function setOnlineAction({ target, handleData, successCallback, successMessage }) {
   actionCore({
     api: 'accessWay/setOnline',
@@ -15,13 +31,7 @@ export function setOnlineAction({ target, handleData, successCallback, successMe
         key: fieldData.accessWayId.name,
       }),
     },
-    getApiData: (props) => {
-      const {
-        accessWay: { data },
-      } = props;
-
-      return data;
-    },
+    getApiData,
     target,
     handleData,
     successCallback,
