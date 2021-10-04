@@ -6,6 +6,22 @@ import {
 
 import { fieldData, mediaItemData } from '../Common/data';
 
+function getApiData(props) {
+  const { article } = props;
+
+  if ((article || null) == null) {
+    console.log('getApiData has some undefined error');
+  }
+
+  const { data } = article;
+
+  if ((data || null) == null) {
+    console.log('data:getApiData has some undefined error');
+  }
+
+  return data;
+}
+
 export function setOnlineAction({ target, handleData, successCallback, successMessage }) {
   actionCore({
     api: 'article/setOnline',
@@ -15,13 +31,7 @@ export function setOnlineAction({ target, handleData, successCallback, successMe
         key: fieldData.articleId.name,
       }),
     },
-    getApiData: (props) => {
-      const {
-        article: { data },
-      } = props;
-
-      return data;
-    },
+    getApiData,
     target,
     handleData,
     successCallback,
@@ -38,13 +48,7 @@ export function setOfflineAction({ target, handleData, successCallback, successM
         key: fieldData.articleId.name,
       }),
     },
-    getApiData: (props) => {
-      const {
-        article: { data },
-      } = props;
-
-      return data;
-    },
+    getApiData,
     target,
     handleData,
     successCallback,
@@ -61,13 +65,7 @@ export async function refreshCacheAction({ target, handleData, successCallback, 
         key: fieldData.articleId.name,
       }),
     },
-    getApiData: (props) => {
-      const {
-        article: { data },
-      } = props;
-
-      return data;
-    },
+    getApiData,
     target,
     handleData,
     successCallback,
@@ -93,13 +91,7 @@ export function setMediaCollectionSortAction({
         key: 'ids',
       }),
     },
-    getApiData: (props) => {
-      const {
-        article: { data },
-      } = props;
-
-      return data;
-    },
+    getApiData,
     target,
     handleData,
     successCallback,
@@ -125,13 +117,7 @@ export async function removeMediaItemAction({
         key: mediaItemData.id.name,
       }),
     },
-    getApiData: (props) => {
-      const {
-        article: { data },
-      } = props;
-
-      return data;
-    },
+    getApiData,
     target,
     handleData,
     successCallback,
