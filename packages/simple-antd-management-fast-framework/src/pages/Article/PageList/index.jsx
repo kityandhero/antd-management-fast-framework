@@ -421,7 +421,6 @@ class PageList extends MultiPage {
     {
       dataTarget: fieldData.createTime,
       width: 160,
-      sorter: false,
       showRichFacade: true,
       facadeMode: columnFacadeMode.datetime,
       emptyValue: '--',
