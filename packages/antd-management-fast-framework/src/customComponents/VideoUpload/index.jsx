@@ -169,7 +169,9 @@ class VideoUpload extends PureComponent {
         message: text,
       });
     }
-    const isLt3M = file.size / 1024 / 1024 < 3;
+
+    const isLt3M = file.size / 1024 / 1024 < 11;
+
     if (!isLt3M) {
       const text = '视频文件不能超过3MB!';
 

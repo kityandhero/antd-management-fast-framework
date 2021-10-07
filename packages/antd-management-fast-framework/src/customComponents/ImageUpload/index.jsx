@@ -74,7 +74,9 @@ class ImageUpload extends PureComponent {
         message: text,
       });
     }
+
     const isLt2M = file.size / 1024 / 1024 < 2;
+
     if (!isLt2M) {
       const text = '图片文件不能超过2MB!';
 
