@@ -6,6 +6,36 @@ import {
 } from './constants';
 
 export const defaultSettingsLayoutCustom = {
+  getFileUploadMaxSize: () => {
+    const appInit = getAppInitConfigData();
+
+    const { fileUploadMaxSize } = {
+      ...{ fileUploadMaxSize: 2 },
+      ...(appInit || {}),
+    };
+
+    return fileUploadMaxSize || 2;
+  },
+  getVideoUploadMaxSize: () => {
+    const appInit = getAppInitConfigData();
+
+    const { videoUploadMaxSize } = {
+      ...{ videoUploadMaxSize: 4 },
+      ...(appInit || {}),
+    };
+
+    return videoUploadMaxSize || 4;
+  },
+  getImageUploadMaxSize: () => {
+    const appInit = getAppInitConfigData();
+
+    const { imageUploadMaxSize } = {
+      ...{ imageUploadMaxSize: 2 },
+      ...(appInit || {}),
+    };
+
+    return imageUploadMaxSize || 2;
+  },
   getShowSelectLanguage: () => {
     const appInit = getAppInitConfigData();
 

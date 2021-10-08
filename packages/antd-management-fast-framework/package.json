@@ -132,6 +132,10 @@
   },
   "files": [
     "es",
+    "lib"
+  ],
+  "filesOther": [
+    "es",
     "lib",
     "src/customComponents",
     "src/framework",

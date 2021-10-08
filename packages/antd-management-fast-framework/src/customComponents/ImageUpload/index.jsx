@@ -13,6 +13,7 @@ import {
   showRuntimeError,
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 import ImageBox from '../ImageBox';
 import FlexBox from '../FlexBox';
@@ -75,7 +76,9 @@ class ImageUpload extends PureComponent {
       });
     }
 
-    const isLt2M = file.size / 1024 / 1024 < 2;
+    const isLt2M =
+      file.size / 1024 / 1024 <
+      defaultSettingsLayoutCustom.getImageUploadMaxSize();
 
     if (!isLt2M) {
       const text = '图片文件不能超过2MB!';

@@ -29,6 +29,7 @@ import {
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 import IconInfo from '../IconInfo';
 
@@ -170,7 +171,9 @@ class VideoUpload extends PureComponent {
       });
     }
 
-    const isLt3M = file.size / 1024 / 1024 < 11;
+    const isLt3M =
+      file.size / 1024 / 1024 <
+      defaultSettingsLayoutCustom.getVideoUploadMaxSize();
 
     if (!isLt3M) {
       const text = '视频文件不能超过3MB!';

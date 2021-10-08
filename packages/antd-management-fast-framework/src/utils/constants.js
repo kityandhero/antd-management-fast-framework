@@ -40,6 +40,9 @@ export const appInitDefault = {
   showRequestInfo: false,
   useVirtualRequest: false,
   apiVersion: '',
+  imageUploadMaxSize: 2,
+  videoUploadMaxSize: 4,
+  fileUploadMaxSize: 2,
 };
 
 export const accessWaySpecialCollection = {

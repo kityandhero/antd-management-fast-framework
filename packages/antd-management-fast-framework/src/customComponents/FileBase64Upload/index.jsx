@@ -7,6 +7,7 @@ import {
 } from '@ant-design/icons';
 
 import { isFunction, showRuntimeError } from '../../utils/tools';
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 class FileBase64Upload extends PureComponent {
   constructor(props) {
@@ -31,7 +32,9 @@ class FileBase64Upload extends PureComponent {
   handleUploadCancel = () => this.setState({ previewVisible: false });
 
   beforeUpload = (file) => {
-    const isLt1M = file.size / 1024 / 1024 < 1;
+    const isLt1M =
+      file.size / 1024 / 1024 <
+      defaultSettingsLayoutCustom.getFileUploadMaxSize();
     if (!isLt1M) {
       const text = '文件不能超过1MB!';
 
