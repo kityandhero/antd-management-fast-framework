@@ -23,9 +23,13 @@ class Base extends PureComponent {
   }
 
   componentDidMount() {
+    this.beforeDidMount();
+
     this.mounted = true;
 
     this.doDidMountTask();
+
+    this.afterDidMount();
   }
 
   // eslint-disable-next-line react/sort-comp
@@ -56,6 +60,10 @@ class Base extends PureComponent {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {};
+
+  beforeDidMount = () => {};
+
+  afterDidMount = () => {};
 
   beforeUnmount = () => {};
 

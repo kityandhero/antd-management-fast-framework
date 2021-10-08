@@ -3,6 +3,11 @@ export const accessWayCollection = {
     super: {
       permission: 'super',
     },
+    currentOperator: {
+      updateBasicInfo: {
+        permission: '',
+      },
+    },
     dashboard: {
       analysis: {
         permission: '',
