@@ -14,7 +14,7 @@ import {
   toNumber,
   showInfoMessage,
   getValueByKey,
-} from 'antd-management-fast-framework/lib/utils/tools';
+} from '@antd-management-fast-framework/utils/tools';
 import {
   unlimitedWithStringFlag,
   searchFormContentConfig,

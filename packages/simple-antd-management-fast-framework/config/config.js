@@ -12,6 +12,9 @@ const { REACT_APP_ENV } = process.env;
 export default defineConfig({
   // plugins,
   hash: true,
+  alias: {
+    '@antd-management-fast-framework': 'antd-management-fast-framework/src',
+  },
   antd: {
     // dark: true,
   },
