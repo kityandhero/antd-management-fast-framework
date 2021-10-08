@@ -1,4 +1,4 @@
-import { formNameCollection } from 'antd-management-fast-framework/lib/utils/constants';
+import { formNameCollection } from '@fast-framework/utils/constants';
 
 export const fieldData = {
   ...(formNameCollection || {}),

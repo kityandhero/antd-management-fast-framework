@@ -4,8 +4,8 @@
   searchFromList,
   isUndefined,
   isNull,
-} from 'antd-management-fast-framework/lib/utils/tools';
-import { unlimitedWithStringFlag } from 'antd-management-fast-framework/lib/utils/constants';
+} from '@fast-framework/utils/tools';
+import { unlimitedWithStringFlag } from '@fast-framework/utils/constants';
 import {
   buildRadioItem,
   buildCustomRadio,
@@ -14,7 +14,7 @@ import {
   buildCustomSelect,
   buildFormSelect,
   buildSearchFormSelect,
-} from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
+} from '@fast-framework/customComponents/FunctionComponent';
 
 import { unknownLabel } from '@/customConfig/constants';
 

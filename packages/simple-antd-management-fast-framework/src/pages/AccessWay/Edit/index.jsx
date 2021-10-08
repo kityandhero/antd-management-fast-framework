@@ -4,12 +4,9 @@ import { Row, Col, Avatar, Button, Descriptions } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { RollbackOutlined } from '@ant-design/icons';
 
-import {
-  formatDatetime,
-  getDerivedStateFromPropsForUrlParams,
-} from 'antd-management-fast-framework/lib/utils/tools';
-import { pretreatmentRequestParams } from 'antd-management-fast-framework/lib/utils/requestAssistor';
-import { DataTabContainer } from 'antd-management-fast-framework/lib/framework';
+import { formatDatetime, getDerivedStateFromPropsForUrlParams } from '@fast-framework/utils/tools';
+import { pretreatmentRequestParams } from '@fast-framework/utils/requestAssistor';
+import { DataTabContainer } from '@fast-framework/framework';
 
 import { parseUrlParamsForSetState } from '../Assist/config';
 

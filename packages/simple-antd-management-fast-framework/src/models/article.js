@@ -2,7 +2,7 @@ import {
   handlePageListDataAssist,
   handleListDataAssist,
   handleCommonDataAssist,
-} from 'antd-management-fast-framework/lib/utils/requestAssistor';
+} from '@fast-framework/utils/requestAssistor';
 
 import {
   pageListData,

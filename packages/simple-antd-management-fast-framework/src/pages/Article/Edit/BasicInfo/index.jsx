@@ -9,14 +9,14 @@ import {
   toDatetime,
   getValueByKey,
   showInfoMessage,
-} from 'antd-management-fast-framework/lib/utils/tools';
+} from '@fast-framework/utils/tools';
 import {
   formContentConfig,
   datetimeFormat,
   convertCollection,
   formatCollection,
-} from 'antd-management-fast-framework/lib/utils/constants';
-import { buildCustomGrid } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
+} from '@fast-framework/utils/constants';
+import { buildCustomGrid } from '@fast-framework/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';

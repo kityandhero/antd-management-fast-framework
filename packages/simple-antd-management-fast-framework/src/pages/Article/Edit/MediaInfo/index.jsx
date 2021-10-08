@@ -19,23 +19,23 @@ import {
   isArray,
   getValueByKey,
   toString,
-} from 'antd-management-fast-framework/lib/utils/tools';
+} from '@fast-framework/utils/tools';
 import {
   defaultEmptyImage,
   formContentConfig,
   datetimeFormat,
   convertCollection,
   formatCollection,
-} from 'antd-management-fast-framework/lib/utils/constants';
-import ColorText from 'antd-management-fast-framework/lib/customComponents/ColorText';
-import StatusBar from 'antd-management-fast-framework/lib/customComponents/StatusBar';
-import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
-import FlexBox from 'antd-management-fast-framework/lib/customComponents/FlexBox';
-import { buildDropdownButton } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
+} from '@fast-framework/utils/constants';
+import ColorText from '@fast-framework/customComponents/ColorText';
+import StatusBar from '@fast-framework/customComponents/StatusBar';
+import IconInfo from '@fast-framework/customComponents/IconInfo';
+import FlexBox from '@fast-framework/customComponents/FlexBox';
+import { buildDropdownButton } from '@fast-framework/customComponents/FunctionComponent';
 import {
   buildListViewItemExtra,
   buildDescriptionGrid,
-} from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
+} from '@fast-framework/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 

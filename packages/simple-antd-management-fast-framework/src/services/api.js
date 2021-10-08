@@ -1,6 +1,6 @@
 import { stringify } from 'qs';
 import moment from 'moment';
-import { request } from 'antd-management-fast-framework/lib/utils/requestAssistor';
+import { request } from '@fast-framework/utils/requestAssistor';
 
 export async function queryProjectNotice() {
   return request({

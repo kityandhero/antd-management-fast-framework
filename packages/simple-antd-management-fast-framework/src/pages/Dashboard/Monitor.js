@@ -4,14 +4,9 @@ import { Row, Col, Card, Tooltip } from 'antd';
 import numeral from 'numeral';
 import { GridContent } from '@ant-design/pro-layout';
 
-import {
-  Pie,
-  WaterWave,
-  Gauge,
-  TagCloud,
-} from 'antd-management-fast-framework/lib/customComponents/Charts';
-import NumberInfo from 'antd-management-fast-framework/lib/customComponents/NumberInfo';
-import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
+import { Pie, WaterWave, Gauge, TagCloud } from '@fast-framework/customComponents/Charts';
+import NumberInfo from '@fast-framework/customComponents/NumberInfo';
+import Authorized from '@fast-framework/utils/Authorized';
 
 import { formatMessage } from '@/utils/tools';
 // import CountDown from '@/components/CountDown';

@@ -10,21 +10,17 @@ import {
   EditOutlined,
 } from '@ant-design/icons';
 
-import {
-  toNumber,
-  showInfoMessage,
-  getValueByKey,
-} from '@antd-management-fast-framework/utils/tools';
+import { toNumber, showInfoMessage, getValueByKey } from '@fast-framework/utils/tools';
 import {
   unlimitedWithStringFlag,
   searchFormContentConfig,
   columnFacadeMode,
   columnPlaceholder,
   convertCollection,
-} from 'antd-management-fast-framework/lib/utils/constants';
-import { handleItem } from 'antd-management-fast-framework/lib/utils/actionAssist';
-import MultiPage from 'antd-management-fast-framework/lib/framework/DataMultiPageView/MultiPage';
-import { buildDropdownButton } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
+} from '@fast-framework/utils/constants';
+import { handleItem } from '@fast-framework/utils/actionAssist';
+import MultiPage from '@fast-framework/framework/DataMultiPageView/MultiPage';
+import { buildDropdownButton } from '@fast-framework/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection, priceColor } from '@/customConfig/constants';

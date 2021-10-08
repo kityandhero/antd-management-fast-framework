@@ -8,15 +8,15 @@ import {
   formatDatetime,
   toDatetime,
   getValueByKey,
-} from 'antd-management-fast-framework/lib/utils/tools';
+} from '@fast-framework/utils/tools';
 import {
   formContentConfig,
   datetimeFormat,
   formatCollection,
-} from 'antd-management-fast-framework/lib/utils/constants';
+} from '@fast-framework/utils/constants';
 import { accessWayCollection } from '@/customConfig/config';
 
-import BaseUpdateDrawer from 'antd-management-fast-framework/lib/framework/DataDrawer/BaseUpdateDrawer';
+import BaseUpdateDrawer from '@fast-framework/framework/DataDrawer/BaseUpdateDrawer';
 
 import { mediaItemData } from '../Common/data';
 

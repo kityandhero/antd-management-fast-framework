@@ -8,13 +8,13 @@ import {
   showInfoMessage,
   isObject,
   isArray,
-} from 'antd-management-fast-framework/lib/utils/tools';
-import { formContentConfig } from 'antd-management-fast-framework/lib/utils/constants';
-import BaseAddForm from 'antd-management-fast-framework/lib/framework/DataForm/BaseAddForm';
-import FadeBox from 'antd-management-fast-framework/lib/customComponents/AnimalBox/FadeBox';
-import QueueBox from 'antd-management-fast-framework/lib/customComponents/AnimalBox/QueueBox';
-import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
-import { buildButton } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
+} from '@fast-framework/utils/tools';
+import { formContentConfig } from '@fast-framework/utils/constants';
+import BaseAddForm from '@fast-framework/framework/DataForm/BaseAddForm';
+import FadeBox from '@fast-framework/customComponents/AnimalBox/FadeBox';
+import QueueBox from '@fast-framework/customComponents/AnimalBox/QueueBox';
+import IconInfo from '@fast-framework/customComponents/IconInfo';
+import { buildButton } from '@fast-framework/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 

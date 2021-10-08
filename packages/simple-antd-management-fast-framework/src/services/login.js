@@ -1,4 +1,4 @@
-import request from 'antd-management-fast-framework/lib/utils/request';
+import request from '@fast-framework/utils/request';
 
 export async function fakeAccountLogin(params) {
   return request({

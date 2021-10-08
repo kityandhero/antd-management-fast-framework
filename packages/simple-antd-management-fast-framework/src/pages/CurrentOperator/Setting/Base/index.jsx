@@ -8,14 +8,11 @@ import {
   LoadingOutlined,
 } from '@ant-design/icons';
 
-import { corsTarget, showError } from 'antd-management-fast-framework/lib/utils/tools';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/requestAssistor';
-import { defaultUserAvatar } from 'antd-management-fast-framework/lib/utils/constants';
-import {
-  getToken,
-  getTokenKeyName,
-} from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
-import BaseUpdateForm from 'antd-management-fast-framework/lib/framework/DataForm/BaseUpdateForm';
+import { corsTarget, showError } from '@fast-framework/utils/tools';
+import { pretreatmentRemoteSingleData } from '@fast-framework/utils/requestAssistor';
+import { defaultUserAvatar } from '@fast-framework/utils/constants';
+import { getToken, getTokenKeyName } from '@fast-framework/utils/globalStorageAssist';
+import BaseUpdateForm from '@fast-framework/framework/DataForm/BaseUpdateForm';
 
 import { fieldData } from '../../Common/data';
 
@@ -23,7 +20,7 @@ import styles from './index.less';
 
 // import GeographicView from '../Geographic';
 // import PhoneView from '../Phone';
-// import { getTimeDistance } from 'antd-management-fast-framework/lib/utils/utils';
+// import { getTimeDistance } from '@fast-framework/utils/utils';
 
 // 头像组件 方便以后独立，增加裁剪之类的功能
 const AvatarView = ({ processing, avatar, uploadMainProps, imageUploading }) => (

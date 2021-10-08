@@ -2,13 +2,10 @@ import { history } from 'umi';
 import { message } from 'antd';
 import { stringify } from 'querystring';
 
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/lib/utils/requestAssistor';
-import {
-  setToken,
-  clearCustomData,
-} from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
-import { getPageQuery } from 'antd-management-fast-framework/lib/utils/utils';
-import { setAuthority } from 'antd-management-fast-framework/lib/utils/authority';
+import { pretreatmentRemoteSingleData } from '@fast-framework/utils/requestAssistor';
+import { setToken, clearCustomData } from '@fast-framework/utils/globalStorageAssist';
+import { getPageQuery } from '@fast-framework/utils/utils';
+import { setAuthority } from '@fast-framework/utils/authority';
 
 import { setDataFlag } from '@/utils/storageAssist';
 import { accountLogin, getFakeCaptcha } from '@/services/api';

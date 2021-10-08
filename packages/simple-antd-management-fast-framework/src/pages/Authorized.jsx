@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, Redirect } from 'umi';
 import { pathToRegexp } from 'path-to-regexp';
-import Authorized from 'antd-management-fast-framework/lib/utils/Authorized';
-import { getToken } from 'antd-management-fast-framework/lib/utils/globalStorageAssist';
+import Authorized from '@fast-framework/utils/Authorized';
+import { getToken } from '@fast-framework/utils/globalStorageAssist';
 
 import { defaultSettings } from '@/defaultSettings';
 

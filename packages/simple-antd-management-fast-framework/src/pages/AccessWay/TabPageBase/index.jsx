@@ -1,5 +1,5 @@
-import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/lib/utils/tools';
-import BaseUpdateFormTab from 'antd-management-fast-framework/lib/framework/DataForm/BaseUpdateFormTab';
+import { getDerivedStateFromPropsForUrlParams } from '@fast-framework/utils/tools';
+import BaseUpdateFormTab from '@fast-framework/framework/DataForm/BaseUpdateFormTab';
 
 import { parseUrlParamsForSetState, checkNeedUpdateAssist } from '../Assist/config';
 

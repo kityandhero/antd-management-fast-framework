@@ -1,12 +1,5 @@
-import {
-  ellipsis,
-  getValueByKey,
-  recordError,
-} from 'antd-management-fast-framework/lib/utils/tools';
-import {
-  actionCore,
-  confirmActionCore,
-} from 'antd-management-fast-framework/lib/utils/actionAssist';
+import { ellipsis, getValueByKey, recordError } from '@fast-framework/utils/tools';
+import { actionCore, confirmActionCore } from '@fast-framework/utils/actionAssist';
 
 import { fieldData } from '../Common/data';
 

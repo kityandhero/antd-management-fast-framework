@@ -1,4 +1,4 @@
-import { isFunction, showError } from 'antd-management-fast-framework/lib/utils/tools';
+import { isFunction, showError } from '@fast-framework/utils/tools';
 
 export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   const { metaOriginalData } = target.state;

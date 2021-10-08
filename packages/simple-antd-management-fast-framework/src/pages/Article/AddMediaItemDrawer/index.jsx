@@ -7,14 +7,11 @@ import {
   PictureOutlined,
 } from '@ant-design/icons';
 
-import {
-  corsTarget,
-  stringIsNullOrWhiteSpace,
-} from 'antd-management-fast-framework/lib/utils/tools';
-import { formContentConfig } from 'antd-management-fast-framework/lib/utils/constants';
+import { corsTarget, stringIsNullOrWhiteSpace } from '@fast-framework/utils/tools';
+import { formContentConfig } from '@fast-framework/utils/constants';
 import { accessWayCollection } from '@/customConfig/config';
 
-import BaseAddDrawer from 'antd-management-fast-framework/lib/framework/DataDrawer/BaseAddDrawer';
+import BaseAddDrawer from '@fast-framework/framework/DataDrawer/BaseAddDrawer';
 
 import { mediaItemData } from '../Common/data';
 

@@ -7,9 +7,9 @@ import {
   TeamOutlined,
 } from '@ant-design/icons';
 
-import { stringIsNullOrWhiteSpace } from 'antd-management-fast-framework/lib/utils/tools';
-import IconInfo from 'antd-management-fast-framework/lib/customComponents/IconInfo';
-import { buildMenuHeaderRender } from 'antd-management-fast-framework/lib/customComponents/FunctionComponent';
+import { stringIsNullOrWhiteSpace } from '@fast-framework/utils/tools';
+import IconInfo from '@fast-framework/customComponents/IconInfo';
+import { buildMenuHeaderRender } from '@fast-framework/customComponents/FunctionComponent';
 
 import { defaultSettings } from '@/defaultSettings';
 
