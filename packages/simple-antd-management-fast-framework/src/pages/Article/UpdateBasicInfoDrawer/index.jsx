@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'umi';
 import { ContactsOutlined } from '@ant-design/icons';
 
-import { getValueByKey } from '@fast-framework/utils/tools';
-import { formContentConfig, formatCollection } from '@fast-framework/utils/constants';
-import BaseUpdateDrawer from '@fast-framework/framework/DataDrawer/BaseUpdateDrawer';
+import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
+import {
+  formContentConfig,
+  formatCollection,
+} from 'antd-management-fast-framework/es/utils/constants';
+import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
 

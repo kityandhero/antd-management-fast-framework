@@ -1,6 +1,6 @@
 import defaultSettingsLayout from '@ant-design/pro-layout/lib/defaultSettings';
 
-import { defaultSettingsLayoutCustom } from '@fast-framework/utils/defaultSettingsSpecial';
+import { defaultSettingsLayoutCustom } from 'antd-management-fast-framework/es/utils/defaultSettingsSpecial';
 
 export const defaultSettings = {
   ...defaultSettingsLayout,

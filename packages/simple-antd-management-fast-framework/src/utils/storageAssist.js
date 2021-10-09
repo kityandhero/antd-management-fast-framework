@@ -4,8 +4,8 @@ import {
   removeLocalStorage,
   getJsonFromLocalStorage,
   saveJsonToLocalStorage,
-} from '@fast-framework/utils/tools';
-import { getToken } from '@fast-framework/utils/globalStorageAssist';
+} from 'antd-management-fast-framework/es/utils/tools';
+import { getToken } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
 
 const storageKeyCollection = {
   metaData: 'metaData',

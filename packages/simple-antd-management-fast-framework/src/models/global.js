@@ -3,9 +3,9 @@ import { message } from 'antd';
 import {
   pretreatmentRemoteSingleData,
   handleCommonDataAssist,
-} from '@fast-framework/utils/requestAssistor';
-import { whetherString } from '@fast-framework/utils/constants';
-import { modelCollection } from '@fast-framework/utils/globalModel';
+} from 'antd-management-fast-framework/es/utils/requestAssistor';
+import { whetherString } from 'antd-management-fast-framework/es/utils/constants';
+import { modelCollection } from 'antd-management-fast-framework/es/utils/globalModel';
 
 import {
   getMetaDataCache,

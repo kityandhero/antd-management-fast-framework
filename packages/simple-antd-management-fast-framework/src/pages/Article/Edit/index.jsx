@@ -17,10 +17,10 @@ import {
   recordObject,
   notifySuccess,
   getValueByKey,
-} from '@fast-framework/utils/tools';
-import { convertCollection } from '@fast-framework/utils/constants';
-import DataTabContainer from '@fast-framework/framework/DataTabContainer';
-import IconInfo from '@fast-framework/customComponents/IconInfo';
+} from 'antd-management-fast-framework/es/utils/tools';
+import { convertCollection } from 'antd-management-fast-framework/es/utils/constants';
+import DataTabContainer from 'antd-management-fast-framework/es/framework/DataTabContainer';
+import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';

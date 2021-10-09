@@ -141,11 +141,11 @@ export default [
             routes: [
               {
                 path: '/currentOperator/setting',
-                redirect: '/currentOperator/setting/base',
+                redirect: '/currentOperator/setting/basicInfo',
               },
               {
-                path: '/currentOperator/setting/base',
-                component: './CurrentOperator/Setting/Base',
+                path: '/currentOperator/setting/basicInfo',
+                component: './CurrentOperator/Setting/BasicInfo',
               },
               {
                 path: '/currentOperator/setting/password',

@@ -1,4 +1,4 @@
-import { request } from '@fast-framework/utils/requestAssistor';
+import { request } from 'antd-management-fast-framework/es/utils/requestAssistor';
 
 import { defaultSettings } from '@/defaultSettings';
 

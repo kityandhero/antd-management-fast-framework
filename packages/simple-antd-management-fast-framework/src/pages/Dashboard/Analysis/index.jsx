@@ -28,13 +28,17 @@ import {
   MiniProgress,
   Field,
   Bar,
-} from '@fast-framework/customComponents/Charts';
-import { formatDecimal, formatDatetime, formatMoney } from '@fast-framework/utils/tools';
-import { pretreatmentRequestParams } from '@fast-framework/utils/requestAssistor';
-import { datetimeFormat } from '@fast-framework/utils/constants';
-import DataLoad from '@fast-framework/framework/DataSingleView/DataLoad';
-import Trend from '@fast-framework/customComponents/Trend';
-import VerticalBox from '@fast-framework/customComponents/VerticalBox';
+} from 'antd-management-fast-framework/es/customComponents/Charts';
+import {
+  formatDecimal,
+  formatDatetime,
+  formatMoney,
+} from 'antd-management-fast-framework/es/utils/tools';
+import { pretreatmentRequestParams } from 'antd-management-fast-framework/es/utils/requestAssistor';
+import { datetimeFormat } from 'antd-management-fast-framework/es/utils/constants';
+import DataLoad from 'antd-management-fast-framework/es/framework/DataSingleView/DataLoad';
+import Trend from 'antd-management-fast-framework/es/customComponents/Trend';
+import VerticalBox from 'antd-management-fast-framework/es/customComponents/VerticalBox';
 
 import { accessWayCollection } from '@/customConfig/config';
 

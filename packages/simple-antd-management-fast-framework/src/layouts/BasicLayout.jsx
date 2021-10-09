@@ -3,11 +3,11 @@ import { Link, connect, FormattedMessage } from 'umi';
 import { Result, Button } from 'antd';
 import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
 
-import { getQueue, checkDevelopment } from '@fast-framework/utils/tools';
-import { proLayoutDefaultProps } from '@fast-framework/utils/proLayoutCollection';
-import { setAccessWayCollectionCache } from '@fast-framework/utils/globalStorageAssist';
-import { getAuthorityFromRouter } from '@fast-framework/utils/utils';
-import Authorized from '@fast-framework/utils/Authorized';
+import { getQueue, checkDevelopment } from 'antd-management-fast-framework/es/utils/tools';
+import { proLayoutDefaultProps } from 'antd-management-fast-framework/es/utils/proLayoutCollection';
+import { setAccessWayCollectionCache } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
+import { getAuthorityFromRouter } from 'antd-management-fast-framework/es/utils/utils';
+import Authorized from 'antd-management-fast-framework/es/utils/Authorized';
 
 import { accessWayCollection } from '@/customConfig/config';
 import RightContent from '@/components/GlobalHeader/RightContent';

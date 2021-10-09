@@ -3,9 +3,9 @@ import { connect, Link } from 'umi';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { DefaultFooter, getMenuData, getPageTitle } from '@ant-design/pro-layout';
 
-import VerticalBox from '@fast-framework/customComponents/VerticalBox';
-import FlexBox from '@fast-framework/customComponents/FlexBox';
-import Bubbly from '@fast-framework/customComponents/Canvas/Bubbly';
+import VerticalBox from 'antd-management-fast-framework/es/customComponents/VerticalBox';
+import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
+import Bubbly from 'antd-management-fast-framework/es/customComponents/Canvas/Bubbly';
 
 import { formatMessage } from '@/utils/tools';
 import { defaultSettings } from '@/defaultSettings';

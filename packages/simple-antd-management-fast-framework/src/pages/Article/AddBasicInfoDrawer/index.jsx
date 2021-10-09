@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'umi';
 import { ContactsOutlined } from '@ant-design/icons';
 
-import { formContentConfig } from '@fast-framework/utils/constants';
-import BaseAddDrawer from '@fast-framework/framework/DataDrawer/BaseAddDrawer';
+import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
+import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
 

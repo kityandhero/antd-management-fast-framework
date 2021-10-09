@@ -2,10 +2,14 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import { PictureOutlined } from '@ant-design/icons';
 
-import { isArray, showErrorMessage, stringIsNullOrWhiteSpace } from '@fast-framework/utils/tools';
-import { formContentConfig } from '@fast-framework/utils/constants';
-import MobileContainor from '@fast-framework/customComponents/MobileContainor';
-import Base from '@fast-framework/framework/DataDrawer/Base';
+import {
+  isArray,
+  showErrorMessage,
+  stringIsNullOrWhiteSpace,
+} from 'antd-management-fast-framework/es/utils/tools';
+import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
+import MobileContainor from 'antd-management-fast-framework/es/customComponents/MobileContainor';
+import Base from 'antd-management-fast-framework/es/framework/DataDrawer/Base';
 
 class MediaItemPreviewDrawer extends Base {
   needSetFormValueAfterLoad = false;

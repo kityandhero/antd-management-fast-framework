@@ -1,7 +1,8 @@
 import { connect } from 'umi';
 import { FormOutlined } from '@ant-design/icons';
 
-import DataMenuContainer from '@fast-framework/framework/DataMenuContainer';
+import { formNameCollection } from 'antd-management-fast-framework/es/utils/tools';
+import DataMenuContainer from 'antd-management-fast-framework/es/framework/DataMenuContainer';
 
 import { accessWayCollection } from '@/customConfig/config';
 
@@ -22,6 +23,24 @@ class Setting extends DataMenuContainer {
       text: '更改密码',
     },
   ];
+
+  selectKey = ({ key }) => {
+    let path = '';
+
+    const { match } = this.props;
+
+    const currentKey = this.getMenuActiveKeyCore('');
+
+    if (stringIsNullOrWhiteSpace(currentKey)) {
+      path = currentKey + '/' + key;
+    } else {
+      path = match.url.replace('/' + currentKey, '/' + key);
+    }
+    console.log({
+      path,
+    });
+    this.goToPath(path);
+  };
 }
 
 export default Setting;

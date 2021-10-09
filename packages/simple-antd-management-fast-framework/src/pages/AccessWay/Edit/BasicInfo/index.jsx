@@ -8,9 +8,9 @@ import {
   ExclamationCircleOutlined,
 } from '@ant-design/icons';
 
-import HtmlBox from '@fast-framework/customComponents/HtmlBox';
-import { getDerivedStateFromPropsForUrlParams } from '@fast-framework/utils/tools';
-import { pretreatmentRequestParams } from '@fast-framework/utils/requestAssistor';
+import HtmlBox from 'antd-management-fast-framework/es/customComponents/HtmlBox';
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/es/utils/tools';
+import { pretreatmentRequestParams } from 'antd-management-fast-framework/es/utils/requestAssistor';
 
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import TabPageBase from '../../TabPageBase';

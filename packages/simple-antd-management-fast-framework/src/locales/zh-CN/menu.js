@@ -152,7 +152,7 @@ export default {
   'menu.account.areaAgentRole.edit.moduleInfo': '模块信息',
   'menu.account.current': '当前用户',
   'menu.account.current.setting': '信息设置',
-  'menu.account.current.setting.base': '基本信息',
+  'menu.account.current.setting.basicInfo': '基本信息',
   'menu.account.current.setting.security': '安全设置',
   'menu.organization': '组织管理',
   'menu.organization.department': '部门列表',
