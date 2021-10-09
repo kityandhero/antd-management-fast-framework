@@ -1,20 +1,15 @@
-import React from 'react';
-import { Spin, notification, BackTop } from 'antd';
 import { connect } from 'umi';
-import { KeyOutlined } from '@ant-design/icons';
 
-import { showError } from 'antd-management-fast-framework/es/utils/tools';
-import BaseUpdateForm from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateForm';
+import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
+import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
 
 import { fieldData } from '../../Common/data';
-
-import styles from './index.less';
 
 @connect(({ currentOperator, loading }) => ({
   currentOperator,
   loading: loading.models.currentOperator,
 }))
-class Password extends BaseUpdateForm {
+class Password extends BaseUpdateFormContent {
   loadDataAfterMount = false;
 
   needSetFormValueAfterLoad = false;
@@ -31,27 +26,12 @@ class Password extends BaseUpdateForm {
     };
   }
 
-  fillFormInitialValuesAfterLoad = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaOriginalData = null,
-  }) => {};
-
   getApiData = (props) => {
     const {
       currentOperator: { data },
     } = props;
 
     return data;
-  };
-
-  getViewDom = (ref) => {
-    this.view = ref;
   };
 
   checkSubmitRequestParams = (o) => {
@@ -82,91 +62,79 @@ class Password extends BaseUpdateForm {
     return d;
   };
 
-  afterSubmitSuccess = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    singleData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    listData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    extra,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    responseOriginalData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    submitData,
-  ) => {
-    const form = this.getTargetForm();
-
-    form.resetFields();
-
-    requestAnimationFrame(() => {
-      notification.success({
-        placement: 'bottomRight',
-        message: '操作结果',
-        description: '密码修改成功。',
-      });
-    });
+  buildFormLayout = () => {
+    return 'horizontal';
   };
 
-  getSaveButtonDisabled = () => {
-    const { processing } = this.state;
-
-    return processing;
+  buildOtherFormProps = () => {
+    return {
+      labelCol: {
+        span: 3,
+      },
+      wrapperCol: {
+        span: 21,
+      },
+    };
   };
 
-  getSaveButtonLoading = () => {
-    const { processing } = this.state;
+  fillFormInitialValuesAfterLoad = ({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaData = null,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    metaOriginalData = null,
+  }) => {};
 
-    return processing;
-  };
+  formContentConfigData = () => {
+    const { metaData, processing, dataLoading, avatar } = this.state;
 
-  formContent = () => {
-    return (
-      <>
-        <div className={styles.containorBox}>
-          {this.renderFormPassword(
-            fieldData.originalWord.label,
-            fieldData.originalWord.name,
-            true,
-            fieldData.originalWord.helper,
-            <KeyOutlined />,
-          )}
-
-          {this.renderFormPassword(
-            fieldData.newWord.label,
-            fieldData.newWord.name,
-            true,
-            fieldData.newWord.helper,
-            <KeyOutlined />,
-          )}
-
-          {this.renderFormPassword(
-            fieldData.reNewWord.label,
-            fieldData.reNewWord.name,
-            true,
-            fieldData.reNewWord.helper,
-            <KeyOutlined />,
-          )}
-
-          {this.renderSaveButton({
+    return {
+      list: [
+        {
+          title: {
             text: '更新密码',
-          })}
-        </div>
-        <BackTop />
-      </>
-    );
+          },
+          extra: {
+            list: [
+              {
+                buildType: formContentConfig.cardExtraBuildType.save,
+              },
+            ],
+          },
+          spinning: dataLoading || processing,
+          items: [
+            {
+              lg: 24,
+              type: formContentConfig.contentItemType.password,
+              fieldData: fieldData.originalWord,
+              require: true,
+            },
+            {
+              lg: 24,
+              type: formContentConfig.contentItemType.password,
+              fieldData: fieldData.newWord,
+              require: true,
+            },
+            {
+              lg: 24,
+              type: formContentConfig.contentItemType.password,
+              fieldData: fieldData.reNewWord,
+              require: true,
+            },
+            {
+              lg: 24,
+              type: formContentConfig.contentItemType.innerComponent,
+              fieldData: { label: '' },
+              component: this.renderSaveButton({}),
+            },
+          ],
+        },
+      ],
+    };
   };
-
-  render() {
-    const { processing } = this.state;
-
-    return (
-      <div className={styles.baseView} ref={this.getViewDom}>
-        <div className={styles.left}>
-          <Spin spinning={processing}>{this.renderForm()}</Spin>
-        </div>
-      </div>
-    );
-  }
 }
 
 export default Password;

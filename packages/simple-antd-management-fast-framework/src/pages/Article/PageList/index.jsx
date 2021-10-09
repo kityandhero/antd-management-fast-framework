@@ -37,6 +37,7 @@ import {
   renderSearchArticleStatusSelect,
 } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
+import ChangeSortModal from '../ChangeSortModal';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
@@ -60,6 +61,7 @@ class PageList extends MultiPage {
         pageName: '文章列表',
         paramsKey: accessWayCollection.article.pageList.paramsKey,
         loadApiPath: 'article/pageList',
+        changeSortModalVisible: false,
         addBasicInfoDrawerVisible: false,
         updateBasicInfoDrawerVisible: false,
         currentRecord: null,
@@ -81,26 +83,6 @@ class PageList extends MultiPage {
     return data;
   };
 
-  getStatusBadge = (v) => {
-    let result = 'default';
-
-    switch (v) {
-      case 1:
-        result = 'processing';
-        break;
-
-      case 0:
-        result = 'warning';
-        break;
-
-      default:
-        result = 'default';
-        break;
-    }
-
-    return result;
-  };
-
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
       case 'showUpdateBasicInfoDrawer':
@@ -113,6 +95,10 @@ class PageList extends MultiPage {
 
       case 'setOffline':
         this.setOffline(handleData);
+        break;
+
+      case 'setSort':
+        this.showChangeSortModal(handleData);
         break;
 
       case 'refreshCache':
@@ -225,6 +211,83 @@ class PageList extends MultiPage {
 
   afterUpdateBasicInfoDrawerClose = () => {
     this.setState({ updateBasicInfoDrawerVisible: false });
+  };
+
+  showChangeSortModal = (currentRecord) => {
+    this.setState({ changeSortModalVisible: true, currentRecord });
+  };
+
+  afterChangeSortModalOk = ({
+    singleData,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    listData,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    extraData,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    responseOriginalData,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    submitData,
+  }) => {
+    const that = this;
+
+    if (singleData != null) {
+      const articleId = getValueByKey({
+        data: singleData,
+        key: fieldData.articleId.name,
+      });
+
+      handleItem({
+        target: that,
+        dataId: articleId,
+        compareDataIdHandler: (o) => {
+          const { articleId: v } = o;
+
+          return v;
+        },
+        handler: (d) => {
+          const o = d;
+
+          o[fieldData.sort.name] = getValueByKey({
+            data: singleData,
+            key: fieldData.sort.name,
+          });
+
+          return d;
+        },
+      });
+    } else {
+      that.reloadData();
+    }
+
+    that.setState({
+      changeSortModalVisible: false,
+    });
+  };
+
+  afterChangeSortModalCancel = () => {
+    this.setState({
+      changeSortModalVisible: false,
+    });
+  };
+
+  getStatusBadge = (v) => {
+    let result = 'default';
+
+    switch (v) {
+      case 1:
+        result = 'processing';
+        break;
+
+      case 0:
+        result = 'warning';
+        break;
+
+      default:
+        result = 'default';
+        break;
+    }
+
+    return result;
   };
 
   goToAdd = () => {
@@ -478,6 +541,14 @@ class PageList extends MultiPage {
               },
             },
             {
+              key: 'setSort',
+              withDivider: true,
+              uponDivider: true,
+              icon: <EditOutlined />,
+              text: '设置排序值',
+              hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
+            },
+            {
               key: 'refreshCache',
               withDivider: true,
               uponDivider: true,
@@ -509,8 +580,17 @@ class PageList extends MultiPage {
   };
 
   renderOther = () => {
-    const { articleId, addBasicInfoDrawerVisible, updateBasicInfoDrawerVisible, currentRecord } =
-      this.state;
+    const {
+      articleId,
+      addBasicInfoDrawerVisible,
+      updateBasicInfoDrawerVisible,
+      changeSortModalVisible,
+      currentRecord,
+    } = this.state;
+
+    const renderChangeSortModal = this.checkAuthority(
+      accessWayCollection.article.updateSort.permission,
+    );
 
     return (
       <>
@@ -541,6 +621,15 @@ class PageList extends MultiPage {
             this.afterUpdateBasicInfoDrawerClose();
           }}
         />
+
+        {renderChangeSortModal ? (
+          <ChangeSortModal
+            visible={changeSortModalVisible}
+            externalData={currentRecord}
+            afterOK={this.afterChangeSortModalOk}
+            afterCancel={this.afterChangeSortModalCancel}
+          />
+        ) : null}
       </>
     );
   };

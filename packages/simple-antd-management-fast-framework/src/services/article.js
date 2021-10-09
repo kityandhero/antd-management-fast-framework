@@ -179,7 +179,10 @@ export async function updateSortData(params) {
     params,
     virtualSuccessResponse: {
       data: {
-        articleId: '1430367617461391360',
+        ...params,
+        ...{
+          articleId: '1430367617461391360',
+        },
       },
     },
   });
