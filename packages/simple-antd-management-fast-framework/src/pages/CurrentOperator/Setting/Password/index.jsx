@@ -31,16 +31,16 @@ class Password extends BaseUpdateForm {
     };
   }
 
-  fillFormInitialValuesAfterLoad = (
+  fillFormInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaData,
+    metaData = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaListData,
+    metaListData = [],
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaExtra,
+    metaExtra = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    metaOriginalData,
-  ) => {};
+    metaOriginalData = null,
+  }) => {};
 
   getApiData = (props) => {
     const {

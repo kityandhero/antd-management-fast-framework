@@ -2,7 +2,12 @@ import React from 'react';
 import { Menu } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
 
-import { isArray, stringIsNullOrWhiteSpace } from '../../utils/tools';
+import {
+  isArray,
+  stringIsNullOrWhiteSpace,
+  endsWith,
+  removeEndMatch,
+} from '../../utils/tools';
 import IconInfo from '../../customComponents/IconInfo';
 
 import AuthorizationWrapper from '../AuthorizationWrapper';
@@ -228,10 +233,10 @@ class DataMenuContainer extends AuthorizationWrapper {
 
     const currentKey = this.getMenuActiveKeyCore('');
 
-    if (stringIsNullOrWhiteSpace(currentKey)) {
-      path = currentKey + '/' + key;
+    if (endsWith(match.url, '/' + currentKey)) {
+      path = removeEndMatch(match.url, '/' + currentKey) + '/' + key;
     } else {
-      path = match.url.replace('/' + currentKey, '/' + key);
+      path = match.url + '/' + key;
     }
 
     this.goToPath(path);
@@ -291,10 +296,7 @@ class DataMenuContainer extends AuthorizationWrapper {
               {this.buildMenu()}
             </Menu>
           </div>
-          <div className={styles.right}>
-            <div className={styles.title}>{this.renderRightTitle()}</div>
-            {children}
-          </div>
+          <div className={styles.right}>{children}</div>
         </div>
       </GridContent>
     );

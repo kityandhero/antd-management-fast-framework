@@ -13,6 +13,11 @@ export const fieldData = {
       name: 'name',
       helper: '注意书写名称规范',
     },
+    avatar: {
+      label: '头像',
+      name: 'avatar',
+      helper: '',
+    },
     email: {
       label: '邮箱',
       name: 'email',

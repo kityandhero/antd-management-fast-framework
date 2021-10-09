@@ -30,6 +30,7 @@ import {
   toString as toStringLodash,
   get as getLodash,
   toLower,
+  endsWith as endsWithLodash,
 } from 'lodash';
 
 import {
@@ -948,8 +949,72 @@ export function formatMoney(
 }
 
 export function toPercentage(val, format = '0,0.00') {
-  numeral(val);
-  return `${numeral(toNumber(val * 1000) / 10).format(format)}%`;
+  return `${numeral(toNumber(numeral(val) * 1000) / 10).format(format)}%`;
+}
+
+/**
+ * 检查字符串string是否以给定的target字符串结尾
+ */
+export function endsWith(source, target, position) {
+  return endsWithLodash(source, target, position);
+}
+
+/**
+ * 如果字符串末尾匹配目标字符串，则从源字符串末尾移除匹配项
+ */
+export function removeEndMatch(source, target) {
+  if (!isString(source)) {
+    throw new Error('removeEndMatch only use for string source');
+  }
+
+  if (!isString(target)) {
+    throw new Error('removeEndMatch only use for string target');
+  }
+
+  if (stringIsNullOrWhiteSpace(source)) {
+    return source;
+  }
+
+  if (stringIsNullOrWhiteSpace(target)) {
+    return source;
+  }
+
+  const lastIndex = source.lastIndexOf(target);
+
+  if (lastIndex >= 0 && source.length === lastIndex + target.length) {
+    return source.substr(lastIndex, target.length);
+  }
+
+  return source;
+}
+
+/**
+ * 从源字符串移除最后一个匹配项
+ */
+export function removeLastMatch(source, target) {
+  if (!isString(source)) {
+    throw new Error('removeEndMatch only use for string source');
+  }
+
+  if (!isString(target)) {
+    throw new Error('removeEndMatch only use for string target');
+  }
+
+  if (stringIsNullOrWhiteSpace(source)) {
+    return source;
+  }
+
+  if (stringIsNullOrWhiteSpace(target)) {
+    return source;
+  }
+
+  const lastIndex = source.lastIndexOf(target);
+
+  if (lastIndex >= 0) {
+    return source.substr(lastIndex, target.length);
+  }
+
+  return source;
 }
 
 /**

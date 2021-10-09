@@ -4,13 +4,13 @@
   display: flex;
   width: 100%;
   height: 100%;
-  padding-top: 16px;
-  padding-bottom: 16px;
   overflow: auto;
   background-color: @body-background;
 
   .leftMenu {
     width: 224px;
+    margin-top: 16px;
+    margin-bottom: 16px;
     border-right: @border-width-base @border-style-base @border-color-split;
 
     :global {
@@ -25,18 +25,19 @@
   }
   .right {
     flex: 1;
-    padding-top: 8px;
-    padding-right: 40px;
-    padding-bottom: 8px;
-    padding-left: 40px;
+    background-color: #f0f2f5;
+    padding-top: 0;
+    padding-right: 00;
+    padding-bottom: 0;
+    padding-left: 20px;
 
-    .title {
-      margin-bottom: 12px;
-      color: @heading-color;
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 28px;
-    }
+    // .title {
+    //   margin-bottom: 12px;
+    //   color: @heading-color;
+    //   font-weight: 500;
+    //   font-size: 20px;
+    //   line-height: 28px;
+    // }
   }
   :global {
     .ant-list-split .ant-list-item:last-child {
@@ -100,7 +101,7 @@
       border: none;
     }
     .right {
-      padding: 40px;
+      padding: 0;
     }
   }
 }

@@ -162,10 +162,12 @@ class BasicInfo extends TabPageBase {
         data: metaData,
         key: fieldData.title.name,
       });
+
       values[fieldData.subtitle.name] = getValueByKey({
         data: metaData,
         key: fieldData.subtitle.name,
       });
+
       values[fieldData.description.name] = getValueByKey({
         data: metaData,
         key: fieldData.description.name,
