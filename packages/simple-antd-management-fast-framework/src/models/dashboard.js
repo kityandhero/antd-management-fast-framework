@@ -24,6 +24,7 @@ export default {
   effects: {
     *showAnalysis({ payload }, { call, put }) {
       const response = yield call(showAnalysisData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -31,6 +32,7 @@ export default {
     },
     *getSaleCount({ payload }, { call, put }) {
       const response = yield call(getSaleCountData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -38,6 +40,7 @@ export default {
     },
     *getSaleAmount({ payload }, { call, put }) {
       const response = yield call(getSaleAmountData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -45,6 +48,7 @@ export default {
     },
     *getGoodsCount({ payload }, { call, put }) {
       const response = yield call(getGoodsCountData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -52,6 +56,7 @@ export default {
     },
     *getAreaAccountBalance({ payload }, { call, put }) {
       const response = yield call(getAreaAccountBalanceData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -59,6 +64,7 @@ export default {
     },
     *getReplenishmentStatistic({ payload }, { call, put }) {
       const response = yield call(getReplenishmentStatisticData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -66,6 +72,7 @@ export default {
     },
     *getSaleAmountRange({ payload }, { call, put }) {
       const response = yield call(getSaleAmountRangeData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -73,6 +80,7 @@ export default {
     },
     *getSaleCountRange({ payload }, { call, put }) {
       const response = yield call(getSaleCountRangeData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -80,6 +88,7 @@ export default {
     },
     *getSearch({ payload }, { call, put }) {
       const response = yield call(getSearchData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -87,6 +96,7 @@ export default {
     },
     *getRankStatistic({ payload }, { call, put }) {
       const response = yield call(getRankStatisticData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -94,6 +104,7 @@ export default {
     },
     *getStoreStatistic({ payload }, { call, put }) {
       const response = yield call(getStoreStatisticData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,

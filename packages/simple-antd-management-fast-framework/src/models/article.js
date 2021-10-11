@@ -32,6 +32,7 @@ export default {
   effects: {
     *pageList({ payload }, { call, put }) {
       const response = yield call(pageListData, payload);
+
       yield put({
         type: 'handlePageListData',
         payload: response,
@@ -39,6 +40,7 @@ export default {
     },
     *get({ payload }, { call, put }) {
       const response = yield call(getData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -46,6 +48,7 @@ export default {
     },
     *addBasicInfo({ payload }, { call, put }) {
       const response = yield call(addBasicInfoData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -53,6 +56,7 @@ export default {
     },
     *updateBasicInfo({ payload }, { call, put }) {
       const response = yield call(updateBasicInfoData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -60,6 +64,7 @@ export default {
     },
     *updateContentInfo({ payload }, { call, put }) {
       const response = yield call(updateContentInfoData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -67,6 +72,7 @@ export default {
     },
     *updateMediaInfo({ payload }, { call, put }) {
       const response = yield call(updateMediaInfoData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -74,6 +80,7 @@ export default {
     },
     *updateSort({ payload }, { call, put }) {
       const response = yield call(updateSortData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -81,6 +88,7 @@ export default {
     },
     *updateRenderType({ payload }, { call, put }) {
       const response = yield call(updateRenderTypeData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -88,6 +96,7 @@ export default {
     },
     *setOnline({ payload }, { call, put }) {
       const response = yield call(setOnlineData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -95,6 +104,7 @@ export default {
     },
     *setOffline({ payload }, { call, put }) {
       const response = yield call(setOfflineData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -102,6 +112,7 @@ export default {
     },
     *refreshCache({ payload }, { call, put }) {
       const response = yield call(refreshCacheData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -109,6 +120,7 @@ export default {
     },
     *remove({ payload }, { call, put }) {
       const response = yield call(removeData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -116,6 +128,7 @@ export default {
     },
     *getMediaItem({ payload }, { call, put }) {
       const response = yield call(getMediaItemData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -123,6 +136,7 @@ export default {
     },
     *addMediaItem({ payload }, { call, put }) {
       const response = yield call(addMediaItemData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -130,6 +144,7 @@ export default {
     },
     *updateMediaItem({ payload }, { call, put }) {
       const response = yield call(updateMediaItemData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -137,6 +152,7 @@ export default {
     },
     *setMediaCollectionSort({ payload }, { call, put }) {
       const response = yield call(setMediaCollectionSortData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,
@@ -144,6 +160,7 @@ export default {
     },
     *removeMediaItem({ payload }, { call, put }) {
       const response = yield call(removeMediaItemData, payload);
+
       yield put({
         type: 'handleCommonData',
         payload: response,

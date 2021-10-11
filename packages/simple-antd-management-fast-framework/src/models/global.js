@@ -124,6 +124,7 @@ const GlobalModel = {
     },
     *fetchNotices(_, { call, put, select }) {
       const data = yield call(queryNotices);
+
       yield put({
         type: 'saveNotices',
         payload: data,
@@ -131,6 +132,7 @@ const GlobalModel = {
       const unreadCount = yield select(
         (state) => state.global.notices.filter((item) => !item.read).length,
       );
+
       yield put({
         type: 'user/changeNotifyCount',
         payload: {
@@ -148,6 +150,7 @@ const GlobalModel = {
       const unreadCount = yield select(
         (state) => state.global.notices.filter((item) => !item.read).length,
       );
+
       yield put({
         type: 'user/changeNotifyCount',
         payload: {
@@ -168,10 +171,12 @@ const GlobalModel = {
           return notice;
         }),
       );
+
       yield put({
         type: 'saveNotices',
         payload: notices,
       });
+
       yield put({
         type: 'user/changeNotifyCount',
         payload: {
