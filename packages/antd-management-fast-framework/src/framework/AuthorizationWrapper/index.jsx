@@ -48,6 +48,7 @@ class AuthorizationWrapper extends SupplementWrapper {
     const {
       global: { currentOperator },
     } = this.props;
+
     return currentOperator;
   };
 
