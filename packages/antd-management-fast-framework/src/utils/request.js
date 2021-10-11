@@ -87,7 +87,7 @@ request.interceptors.request.use(async (url, options) => {
   }
 
   if (!isString(url)) {
-    recordObject(url);
+    recordObject({ url });
 
     throw new Error('url is not string');
   }
@@ -98,10 +98,12 @@ request.interceptors.request.use(async (url, options) => {
   trySendNearestLocalhostNotify({ text: corsUrl });
 
   if (!isString(urlChange)) {
-    recordObject(urlChange);
+    recordObject({ urlChange });
 
     throw new Error('urlChange is not string');
   }
+
+  const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
 
   if (token) {
     const headers = {
@@ -111,10 +113,23 @@ request.interceptors.request.use(async (url, options) => {
 
     headers[`${getTokenKeyName()}`] = token;
 
+    if (showRequestInfo) {
+      recordObject({
+        corsUrl,
+        api: url,
+        urlChange,
+        options: { ...options, headers },
+      });
+    }
+
     return {
       url: urlChange,
       options: { ...options, headers },
     };
+  }
+
+  if (showRequestInfo) {
+    recordObject({ corsUrl, api: url, urlChange, options });
   }
 
   return {

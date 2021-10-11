@@ -443,13 +443,6 @@ export async function request({
     return result;
   }
 
-  if (showRequestInfo) {
-    recordObject({
-      url,
-      params,
-    });
-  }
-
   return remoteRequest(url, {
     method,
     data: params,
