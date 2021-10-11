@@ -443,6 +443,15 @@ export async function request({
     return result;
   }
 
+  if (showRequestInfo) {
+    recordObject({
+      api,
+      apiVersion,
+      apiChange: url,
+      params,
+    });
+  }
+
   return remoteRequest(url, {
     method,
     data: params,

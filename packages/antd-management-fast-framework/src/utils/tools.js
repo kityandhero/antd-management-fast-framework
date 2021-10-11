@@ -80,7 +80,6 @@ export function defaultBaseState() {
     paging: false,
     firstLoadSuccess: false,
     loadSuccess: false,
-
     urlParams: null,
     externalData: null,
   };
