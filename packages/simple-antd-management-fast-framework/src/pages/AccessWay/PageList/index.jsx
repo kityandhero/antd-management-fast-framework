@@ -32,11 +32,7 @@ import {
   renderSearchAccessWayStatusSelect,
 } from '@/customSpecialComponents/FunctionSupplement/AccessWayStatus';
 
-import {
-  setOfflineConfirmAction,
-  setOnlineConfirmAction,
-  refreshCacheConfirmAction,
-} from '../Assist/action';
+import { refreshCacheConfirmAction } from '../Assist/action';
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { fieldData, statusCollection } from '../Common/data';
 
@@ -98,14 +94,6 @@ class PageList extends MultiPage {
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
-      case 'setOnline':
-        this.setOnline(handleData);
-        break;
-
-      case 'setOffline':
-        this.setOffline(handleData);
-        break;
-
       case 'refreshCache':
         refreshCacheConfirmAction({ target: this, handleData });
         break;
@@ -113,53 +101,6 @@ class PageList extends MultiPage {
       default:
         break;
     }
-  };
-
-  handleItemStatus = ({ target, record, remoteData }) => {
-    const accessWayId = getValueByKey({
-      data: metaData,
-      key: fieldData.accessWayId.name,
-    });
-
-    handleItem({
-      target,
-      dataId: accessWayId,
-      compareDataIdHandler: (o) => {
-        const { accessWayId: v } = o;
-
-        return v;
-      },
-      handler: (d) => {
-        const o = d;
-
-        o[fieldData.status.name] = getValueByKey({
-          data: remoteData,
-          key: fieldData.status.name,
-        });
-
-        return d;
-      },
-    });
-  };
-
-  setOffline = (r) => {
-    setOfflineConfirmAction({
-      target: this,
-      handleData: r,
-      successCallback: ({ target, handleData, remoteData }) => {
-        target.handleItemStatus({ target, handleData, remoteData });
-      },
-    });
-  };
-
-  setOnline = (r) => {
-    setOnlineConfirmAction({
-      target: this,
-      handleData: r,
-      successCallback: ({ target, handleData, remoteData }) => {
-        target.handleItemStatus({ target, handleData, remoteData });
-      },
-    });
   };
 
   goToEdit = (record) => {
@@ -318,21 +259,7 @@ class PageList extends MultiPage {
           },
           menuItems: [
             {
-              key: 'setOnline',
-              icon: <PlayCircleOutlined />,
-              text: '设为上线',
-              disabled: itemStatus === statusCollection.online,
-            },
-            {
-              key: 'setOffline',
-              icon: <PauseCircleOutlined />,
-              text: '设为下线',
-              disabled: itemStatus === statusCollection.offline,
-            },
-            {
               key: 'refreshCache',
-              withDivider: true,
-              uponDivider: true,
               icon: <ReloadOutlined />,
               text: '刷新缓存',
             },

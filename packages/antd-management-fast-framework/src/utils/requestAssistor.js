@@ -406,7 +406,7 @@ export async function request({
         history.replace({
           pathname: loginPath,
         });
-      }, 800);
+      }, 400);
     } else {
       result = await apiVirtualAccess({
         dataBuild: (resolve) => {
@@ -426,7 +426,7 @@ export async function request({
                 }),
               );
             }
-          }, 800);
+          }, 400);
         },
       });
     }
