@@ -458,6 +458,9 @@ export async function request({
   });
 }
 
+/**
+ * 获取配置的 api 版本号
+ */
 export function getApiVersion() {
   const version = defaultSettingsLayoutCustom.getApiVersion();
 
