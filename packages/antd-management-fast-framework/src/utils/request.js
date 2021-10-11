@@ -94,8 +94,15 @@ request.interceptors.request.use(async (url, options) => {
       throw new Error('url is not string');
     }
 
-    // const url = transferToVirtualAccess() ? urlParam : `${corsUrl}${urlParam}`;
-    const urlChange = `${corsUrl}${url}`;
+    let urlChange = url;
+
+    if (!stringIsNullOrWhiteSpace(corsUrl)) {
+      if (url.indexOf(corsUrl) >= 0) {
+        urlChange = url;
+      } else {
+        urlChange = `${corsUrl}${url}`;
+      }
+    }
 
     trySendNearestLocalhostNotify({ text: corsUrl });
 
