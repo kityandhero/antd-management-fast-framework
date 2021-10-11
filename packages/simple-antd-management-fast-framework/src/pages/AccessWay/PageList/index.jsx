@@ -32,7 +32,7 @@ import {
   renderSearchAccessWayStatusSelect,
 } from '@/customSpecialComponents/FunctionSupplement/AccessWayStatus';
 
-import { refreshCacheConfirmAction } from '../Assist/action';
+import { refreshCacheAction } from '../Assist/action';
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { fieldData, statusCollection } from '../Common/data';
 
@@ -72,6 +72,24 @@ class PageList extends MultiPage {
     return data;
   };
 
+  handleMenuClick = ({ key, handleData }) => {
+    switch (key) {
+      case 'refreshCache':
+        this.refreshCache(handleData);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  refreshCache = (r) => {
+    refreshCacheAction({
+      target: this,
+      handleData: r,
+    });
+  };
+
   getStatusBadge = (v) => {
     let result = 'default';
 
@@ -90,17 +108,6 @@ class PageList extends MultiPage {
     }
 
     return result;
-  };
-
-  handleMenuClick = ({ key, handleData }) => {
-    switch (key) {
-      case 'refreshCache':
-        refreshCacheConfirmAction({ target: this, handleData });
-        break;
-
-      default:
-        break;
-    }
   };
 
   goToEdit = (record) => {
@@ -262,6 +269,9 @@ class PageList extends MultiPage {
               key: 'refreshCache',
               icon: <ReloadOutlined />,
               text: '刷新缓存',
+              confirm: {
+                title: '将要刷新缓存，确定吗？',
+              },
             },
           ],
         });
