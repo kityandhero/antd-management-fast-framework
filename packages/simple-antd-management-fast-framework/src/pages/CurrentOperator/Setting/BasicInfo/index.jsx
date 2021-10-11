@@ -12,7 +12,7 @@ import { fieldData } from '../../Common/data';
   global,
   loading: loading.models.currentOperator,
 }))
-class BaseView extends BaseUpdateFormContent {
+class BasicInfo extends BaseUpdateFormContent {
   constructor(props) {
     super(props);
 
@@ -113,6 +113,7 @@ class BaseView extends BaseUpdateFormContent {
             text: '账户信息',
           },
           extra: {
+            affix: true,
             list: [
               {
                 buildType: formContentConfig.cardExtraBuildType.refresh,
@@ -205,4 +206,4 @@ class BaseView extends BaseUpdateFormContent {
   };
 }
 
-export default BaseView;
+export default BasicInfo;

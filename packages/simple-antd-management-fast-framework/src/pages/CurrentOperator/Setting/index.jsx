@@ -1,17 +1,12 @@
 import { connect } from 'umi';
 import { FormOutlined } from '@ant-design/icons';
 
-import {
-  stringIsNullOrWhiteSpace,
-  endsWith,
-  removeEndMatch,
-} from 'antd-management-fast-framework/es/utils/tools';
 import DataMenuContainer from 'antd-management-fast-framework/es/framework/DataMenuContainer';
 
 import { accessWayCollection } from '@/customConfig/config';
 
-@connect(({ areaManager }) => ({
-  areaManager,
+@connect(({ currentOperator }) => ({
+  currentOperator,
 }))
 class Setting extends DataMenuContainer {
   menuList = [
