@@ -443,6 +443,33 @@ class BasicInfo extends TabPageBase {
                 format: formatCollection.datetime,
               }),
             },
+            {
+              lg: 24,
+              type: formContentConfig.contentItemType.save,
+            },
+            {
+              lg: 24,
+              type: formContentConfig.contentItemType.button,
+              config: {
+                text: '一般按钮',
+              },
+            },
+            {
+              lg: 24,
+              type: formContentConfig.contentItemType.actionList,
+              config: [
+                {
+                  buildType: formContentConfig.cardExtraBuildType.refresh,
+                },
+                {
+                  buildType: formContentConfig.cardExtraBuildType.save,
+                },
+                {
+                  buildType: formContentConfig.cardExtraBuildType.generalButton,
+                  text: '一般按钮',
+                },
+              ],
+            },
           ],
         },
       ],
