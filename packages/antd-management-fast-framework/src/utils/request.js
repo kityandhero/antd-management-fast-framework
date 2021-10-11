@@ -9,6 +9,7 @@ import {
   stringIsNullOrWhiteSpace,
   isString,
   recordObject,
+  recordError,
 } from './tools';
 import {
   getTokenKeyName,
@@ -76,66 +77,70 @@ const request = extend({
 
 // request拦截器, 改变url 或 options.
 request.interceptors.request.use(async (url, options) => {
-  const token = getToken() || 'anonymous';
+  try {
+    const token = getToken() || 'anonymous';
 
-  const corsUrl = corsTarget();
+    const corsUrl = corsTarget();
 
-  if (!isString(corsUrl)) {
-    recordObject(corsUrl);
+    if (!isString(corsUrl)) {
+      recordObject(corsUrl);
 
-    throw new Error('corsUrl is not string');
-  }
+      throw new Error('corsUrl is not string');
+    }
 
-  if (!isString(url)) {
-    recordObject({ url });
+    if (!isString(url)) {
+      recordObject({ url });
 
-    throw new Error('url is not string');
-  }
+      throw new Error('url is not string');
+    }
 
-  // const url = transferToVirtualAccess() ? urlParam : `${corsUrl}${urlParam}`;
-  const urlChange = `${corsUrl}${url}`;
+    // const url = transferToVirtualAccess() ? urlParam : `${corsUrl}${urlParam}`;
+    const urlChange = `${corsUrl}${url}`;
 
-  trySendNearestLocalhostNotify({ text: corsUrl });
+    trySendNearestLocalhostNotify({ text: corsUrl });
 
-  if (!isString(urlChange)) {
-    recordObject({ urlChange });
+    if (!isString(urlChange)) {
+      recordObject({ urlChange });
 
-    throw new Error('urlChange is not string');
-  }
+      throw new Error('urlChange is not string');
+    }
 
-  const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
+    const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
 
-  if (token) {
-    const headers = {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    };
+    if (token) {
+      const headers = {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      };
 
-    headers[`${getTokenKeyName()}`] = token;
+      headers[`${getTokenKeyName()}`] = token;
+
+      if (showRequestInfo) {
+        recordObject({
+          corsUrl,
+          api: url,
+          urlChange,
+          options: { ...options, headers },
+        });
+      }
+
+      return {
+        url: urlChange,
+        options: { ...options, headers },
+      };
+    }
 
     if (showRequestInfo) {
-      recordObject({
-        corsUrl,
-        api: url,
-        urlChange,
-        options: { ...options, headers },
-      });
+      recordObject({ corsUrl, api: url, urlChange, options });
     }
 
     return {
       url: urlChange,
-      options: { ...options, headers },
+      options: { ...options },
     };
+  } catch (e) {
+    recordError(e.stack);
   }
-
-  if (showRequestInfo) {
-    recordObject({ corsUrl, api: url, urlChange, options });
-  }
-
-  return {
-    url: urlChange,
-    options: { ...options },
-  };
 });
 
 // response拦截器, 处理response
