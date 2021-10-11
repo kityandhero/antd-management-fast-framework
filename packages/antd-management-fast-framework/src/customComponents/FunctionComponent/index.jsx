@@ -2251,6 +2251,32 @@ export function buildFormInnerComponent({
   );
 }
 
+export function buildFormActionItem({ component, formItemLayout = {} }) {
+  if ((component || null) == null) {
+    return null;
+  }
+
+  return (
+    <FormItem
+      {...{ ...(formItemLayout || {}), ...{ colon: false } }}
+      label={<div />}
+    >
+      {component}
+    </FormItem>
+  );
+}
+
+export function buildFormButton({ config, formItemLayout = {} }) {
+  return (
+    <FormItem
+      {...{ ...(formItemLayout || {}), ...{ colon: false } }}
+      label={<div />}
+    >
+      {buildButton(config)}
+    </FormItem>
+  );
+}
+
 export function buildFormOnlyShowSyntaxHighlighter({
   language,
   label,

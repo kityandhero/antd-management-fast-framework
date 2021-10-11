@@ -79,6 +79,8 @@ import {
   buildFormOnlyShowTextarea,
   buildFormText,
   buildFormInnerComponent,
+  buildFormButton,
+  buildFormActionItem,
   buildFormOnlyShowInput,
   buildFormInputNumber,
   buildFormTextArea,
@@ -744,6 +746,20 @@ class Common extends Core {
     });
   };
 
+  renderFormButton = (config, formItemLayout = {}) => {
+    return buildFormButton({
+      config,
+      formItemLayout,
+    });
+  };
+
+  renderFormActionItem = (component, formItemLayout = {}) => {
+    return buildFormActionItem({
+      component: component || null,
+      formItemLayout,
+    });
+  };
+
   renderFormOnlyShowSyntaxHighlighter = (
     language,
     label,
@@ -1273,12 +1289,21 @@ class Common extends Core {
       mode: formContentConfig.wrapperType.page,
     };
     const configData = {
-      ...{ mode: formContentConfig.wrapperType.page },
+      ...{
+        mode: formContentConfig.wrapperType.page,
+        justify: 'start',
+        align: 'top',
+      },
       ...(formContentWrapperTypeConfig || {}),
       ...{ list: [] },
       ...(config || {}),
     };
-    const { mode, list } = configData;
+    const {
+      mode,
+      justify: justifyGeneral,
+      align: alignGeneral,
+      list,
+    } = configData;
 
     const listData = [];
 
@@ -1315,6 +1340,8 @@ class Common extends Core {
               otherComponent,
               formItemLayout,
               instruction,
+              justify: justifyRow,
+              align: alignRow,
             } = {
               ...{
                 title: '',
@@ -1326,6 +1353,8 @@ class Common extends Core {
                 otherComponent: null,
                 formItemLayout: null,
                 instruction: null,
+                justify: 'start',
+                align: 'top',
               },
               ...(item || {}),
             };
@@ -1374,86 +1403,9 @@ class Common extends Core {
               });
             }
 
-            const extraItems = [];
-
-            extraListData.forEach((extraItem, extraItemIndex) => {
-              if ((extraItem || null) != null) {
-                const {
-                  hidden: extraItemHidden,
-                  buildType: extraItemType,
-                  icon: extraItemIcon,
-                  text: extraItemText,
-                  component: componentSource,
-                } = {
-                  ...{
-                    hidden: false,
-                    buildType: null,
-                    icon: null,
-                    text: '',
-                    component: null,
-                  },
-                  ...extraItem,
-                };
-
-                if (!extraItemHidden) {
-                  const extraItemKey = `formContent_key_${index}_extra_${extraItemIndex}`;
-
-                  let extraItemAdjust = extraItem;
-
-                  switch (extraItemType) {
-                    case formContentConfig.cardExtraBuildType.refresh:
-                      extraItemAdjust = this.renderRefreshButton();
-                      break;
-
-                    case formContentConfig.cardExtraBuildType.save:
-                      extraItemAdjust = this.renderSaveButton(extraItem);
-                      break;
-
-                    case formContentConfig.cardExtraBuildType.generalButton:
-                      extraItemAdjust = this.renderGeneralButton(extraItem);
-                      break;
-
-                    case formContentConfig.cardExtraBuildType.button:
-                      extraItemAdjust = buildButton(extraItem);
-                      break;
-
-                    case formContentConfig.cardExtraBuildType.dropdown:
-                      extraItemAdjust = buildDropdown(extraItem);
-                      break;
-
-                    case formContentConfig.cardExtraBuildType.dropdownButton:
-                      extraItemAdjust = buildDropdownButton(extraItem);
-                      break;
-
-                    case formContentConfig.cardExtraBuildType.dropdownEllipsis:
-                      extraItemAdjust = buildDropdownEllipsis(extraItem);
-                      break;
-
-                    case formContentConfig.cardExtraBuildType.iconInfo:
-                      extraItemAdjust = (
-                        <IconInfo icon={extraItemIcon} text={extraItemText} />
-                      );
-                      break;
-
-                    case formContentConfig.cardExtraBuildType.component:
-                      extraItemAdjust = componentSource || null;
-                      break;
-
-                    default:
-                      recordObject({
-                        message: '未找到匹配的构建模式',
-                        config: extraItem,
-                      });
-
-                      extraItemAdjust = null;
-                      break;
-                  }
-
-                  extraItems.push(
-                    <Fragment key={extraItemKey}>{extraItemAdjust}</Fragment>,
-                  );
-                }
-              }
+            const extraItems = this.buildFormActionList({
+              keyPrefix: `formContent_key_${index}_extra`,
+              configList: extraListData,
             });
 
             const hasExtraItems = extraItems.length > 0;
@@ -1549,9 +1501,11 @@ class Common extends Core {
                 >
                   <Spin spinning={spinning || false}>
                     <>
-                      {this.buildFormContentItem(
+                      {this.buildFormContentItem({
                         mode,
-                        isArray(contentItems)
+                        justify: justifyRow || justifyGeneral,
+                        align: alignRow || alignGeneral,
+                        items: isArray(contentItems)
                           ? contentItems.map((o) => {
                               return {
                                 ...o,
@@ -1560,7 +1514,7 @@ class Common extends Core {
                             })
                           : [],
                         index,
-                      )}
+                      })}
 
                       {otherComponent || null}
 
@@ -1593,9 +1547,16 @@ class Common extends Core {
     );
   };
 
-  buildFormContentItem = (mode, contentItems, contentIndex) => {
+  buildFormContentItem = ({
+    mode,
+    justify,
+    align,
+    gutter = 24,
+    items: contentItems,
+    index: contentIndex,
+  }) => {
     return (
-      <Row gutter={24}>
+      <Row justify={justify} align={align} gutter={gutter || 24}>
         {isArray(contentItems)
           ? contentItems.map((contentItem, contentItemIndex) => {
               const contentItemKey = `formContent_key_${contentIndex}_content_${contentItemIndex}`;
@@ -2212,6 +2173,39 @@ class Common extends Core {
                       )
                     : null}
 
+                  {type === formContentConfig.contentItemType.save
+                    ? this.renderFormActionItem(
+                        this.renderSaveButton(contentItem.config || {}),
+                        formItemLayout,
+                      )
+                    : null}
+
+                  {type === formContentConfig.contentItemType.button
+                    ? this.renderFormButton(
+                        contentItem.config || {},
+                        formItemLayout,
+                      )
+                    : null}
+
+                  {type === formContentConfig.contentItemType.actionList ? (
+                    <Space
+                      split={
+                        isBoolean(contentItem.split || false) ? (
+                          contentItem.split || false ? (
+                            <Divider type="vertical" />
+                          ) : null
+                        ) : (
+                          contentItem.split
+                        )
+                      }
+                    >
+                      {this.buildFormActionList({
+                        keyPrefix: `form_card_${contentIndex}_action_key`,
+                        configList: contentItem.config || [],
+                      })}
+                    </Space>
+                  ) : null}
+
                   {type === formContentConfig.contentItemType.component
                     ? contentItem.component || null
                     : null}
@@ -2229,6 +2223,88 @@ class Common extends Core {
           : null}
       </Row>
     );
+  };
+
+  buildFormActionList = ({ keyPrefix = '', configList }) => {
+    const list = [];
+
+    (isArray(configList) ? configList : []).forEach((item, index) => {
+      if ((item || null) != null) {
+        const {
+          hidden,
+          buildType,
+          icon,
+          text,
+          component: componentSource,
+        } = {
+          ...{
+            hidden: false,
+            buildType: null,
+            icon: null,
+            text: '',
+            component: null,
+          },
+          ...item,
+        };
+
+        if (!hidden) {
+          const itemKey = `${keyPrefix || 'formAction'}_${index}`;
+
+          let itemAdjust = item;
+
+          switch (buildType) {
+            case formContentConfig.cardExtraBuildType.refresh:
+              itemAdjust = this.renderRefreshButton();
+              break;
+
+            case formContentConfig.cardExtraBuildType.save:
+              itemAdjust = this.renderSaveButton(item);
+              break;
+
+            case formContentConfig.cardExtraBuildType.generalButton:
+              itemAdjust = this.renderGeneralButton(item);
+              break;
+
+            case formContentConfig.cardExtraBuildType.button:
+              itemAdjust = buildButton(item);
+              break;
+
+            case formContentConfig.cardExtraBuildType.dropdown:
+              itemAdjust = buildDropdown(item);
+              break;
+
+            case formContentConfig.cardExtraBuildType.dropdownButton:
+              itemAdjust = buildDropdownButton(item);
+              break;
+
+            case formContentConfig.cardExtraBuildType.dropdownEllipsis:
+              itemAdjust = buildDropdownEllipsis(item);
+              break;
+
+            case formContentConfig.cardExtraBuildType.iconInfo:
+              itemAdjust = <IconInfo icon={icon} text={text} />;
+              break;
+
+            case formContentConfig.cardExtraBuildType.component:
+              itemAdjust = componentSource || null;
+              break;
+
+            default:
+              recordObject({
+                message: '未找到匹配的构建模式',
+                config: item,
+              });
+
+              itemAdjust = null;
+              break;
+          }
+
+          list.push(<Fragment key={itemKey}>{itemAdjust}</Fragment>);
+        }
+      }
+    });
+
+    return list;
   };
 }
 

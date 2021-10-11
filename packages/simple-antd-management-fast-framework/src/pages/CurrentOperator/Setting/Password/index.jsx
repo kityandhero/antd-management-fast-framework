@@ -69,10 +69,10 @@ class Password extends BaseUpdateFormContent {
   buildOtherFormProps = () => {
     return {
       labelCol: {
-        span: 3,
+        span: 4,
       },
       wrapperCol: {
-        span: 21,
+        span: 12,
       },
     };
   };
@@ -94,6 +94,7 @@ class Password extends BaseUpdateFormContent {
     return {
       list: [
         {
+          justify: 'center',
           title: {
             text: '更新密码',
           },
@@ -107,28 +108,26 @@ class Password extends BaseUpdateFormContent {
           spinning: dataLoading || processing,
           items: [
             {
-              lg: 24,
+              lg: 16,
               type: formContentConfig.contentItemType.password,
               fieldData: fieldData.originalWord,
               require: true,
             },
             {
-              lg: 24,
+              lg: 16,
               type: formContentConfig.contentItemType.password,
               fieldData: fieldData.newWord,
               require: true,
             },
             {
-              lg: 24,
+              lg: 16,
               type: formContentConfig.contentItemType.password,
               fieldData: fieldData.reNewWord,
               require: true,
             },
             {
-              lg: 24,
-              type: formContentConfig.contentItemType.innerComponent,
-              fieldData: { label: '' },
-              component: this.renderSaveButton({}),
+              lg: 16,
+              type: formContentConfig.contentItemType.save,
             },
           ],
         },
