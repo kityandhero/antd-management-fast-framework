@@ -1,5 +1,6 @@
 import { connect } from 'umi';
 
+import { showError } from 'antd-management-fast-framework/lib/utils/tools';
 import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
 import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
 
@@ -89,7 +90,7 @@ class Password extends BaseUpdateFormContent {
   }) => {};
 
   formContentConfigData = () => {
-    const { metaData, processing, dataLoading, avatar } = this.state;
+    const { processing, dataLoading } = this.state;
 
     return {
       list: [
@@ -97,13 +98,6 @@ class Password extends BaseUpdateFormContent {
           justify: 'center',
           title: {
             text: '更新密码',
-          },
-          extra: {
-            list: [
-              {
-                buildType: formContentConfig.cardExtraBuildType.save,
-              },
-            ],
           },
           spinning: dataLoading || processing,
           items: [
