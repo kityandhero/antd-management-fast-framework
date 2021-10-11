@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "lerna:b": "husky install && lerna bootstrap",
+    "lerna:b": "npm run clean && husky install && lerna bootstrap",
     "lerna:create": "lerna create",
     "lerna:build": "lerna run --stream --sort build",
     "lerna:publish": "lerna publish",
