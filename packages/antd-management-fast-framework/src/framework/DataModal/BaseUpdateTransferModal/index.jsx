@@ -1,7 +1,7 @@
 import React from 'react';
 import { Transfer } from 'antd';
 
-import { formContentConfig } from '../../../utils/constants';
+import { cardConfig } from '../../../utils/constants';
 import BaseUpdateModal from '../BaseUpdateModal';
 
 class BaseUpdateTransferModal extends BaseUpdateModal {
@@ -73,7 +73,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.component,
+              type: cardConfig.contentItemType.component,
               component: (
                 <div>
                   <Transfer

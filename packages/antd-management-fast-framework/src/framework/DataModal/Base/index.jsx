@@ -11,7 +11,7 @@ import {
   isUndefined,
   stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
-import { formContentConfig } from '../../../utils/constants';
+import { cardConfig } from '../../../utils/constants';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
 
@@ -85,11 +85,11 @@ class Base extends BaseWindow {
   };
 
   buildWrapperTypeConfig = () => {
-    return { mode: formContentConfig.wrapperType.model };
+    return { mode: cardConfig.wrapperType.model };
   };
 
   formContent = () => {
-    return this.buildFormContent(this.formContentConfigData());
+    return this.buildCardCollection(this.formContentConfigData());
   };
 
   renderModalInner = () => {

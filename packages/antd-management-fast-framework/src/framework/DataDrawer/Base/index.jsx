@@ -8,7 +8,7 @@ import {
   defaultFormState,
   stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
-import { formContentConfig, drawerConfig } from '../../../utils/constants';
+import { cardConfig, drawerConfig } from '../../../utils/constants';
 import { buildButton } from '../../../customComponents/FunctionComponent';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
@@ -109,11 +109,11 @@ class Base extends BaseWindow {
   };
 
   buildWrapperTypeConfig = () => {
-    return { mode: formContentConfig.wrapperType.drawer };
+    return { mode: cardConfig.wrapperType.drawer };
   };
 
   formContent = () => {
-    return this.buildFormContent(this.formContentConfigData());
+    return this.buildCardCollection(this.formContentConfigData());
   };
 
   renderContentContainor = () => {

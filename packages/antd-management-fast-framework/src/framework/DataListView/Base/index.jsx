@@ -45,7 +45,7 @@ import {
   isObject,
 } from '../../../utils/tools';
 import {
-  searchFormContentConfig,
+  searchCardConfig,
   columnFacadeMode,
   defaultEmptyImage,
   datetimeFormat,
@@ -703,7 +703,7 @@ class ListBase extends AuthorizationWrapper {
 
     return (
       <Col key={contentItemKey} lg={lg || 6} md={md} sm={sm} xs={xs}>
-        {type === searchFormContentConfig.contentItemType.input
+        {type === searchCardConfig.contentItemType.input
           ? this.renderSearchInput(
               fieldData.label,
               fieldData.name,
@@ -713,7 +713,7 @@ class ListBase extends AuthorizationWrapper {
             )
           : null}
 
-        {type === searchFormContentConfig.contentItemType.inputNumber
+        {type === searchCardConfig.contentItemType.inputNumber
           ? this.renderSearchInputNumber(
               fieldData.label,
               fieldData.name,
@@ -725,7 +725,7 @@ class ListBase extends AuthorizationWrapper {
             )
           : null}
 
-        {type === searchFormContentConfig.contentItemType.datePicker
+        {type === searchCardConfig.contentItemType.datePicker
           ? this.renderFormDatePicker(
               fieldData.label,
               fieldData.name,
@@ -738,7 +738,7 @@ class ListBase extends AuthorizationWrapper {
             )
           : null}
 
-        {type === searchFormContentConfig.contentItemType.customRangePicker
+        {type === searchCardConfig.contentItemType.customRangePicker
           ? this.renderSimpleFormRangePickerCore(
               contentItem.dateRangeFieldName,
               {
@@ -748,7 +748,7 @@ class ListBase extends AuthorizationWrapper {
             )
           : null}
 
-        {type === searchFormContentConfig.contentItemType.onlyShowInput
+        {type === searchCardConfig.contentItemType.onlyShowInput
           ? this.renderFormOnlyShowInput(
               fieldData.label,
               contentItem.value,
@@ -762,15 +762,15 @@ class ListBase extends AuthorizationWrapper {
             )
           : null}
 
-        {type === searchFormContentConfig.contentItemType.customSelect
+        {type === searchCardConfig.contentItemType.customSelect
           ? contentItem.component
           : null}
 
-        {type === searchFormContentConfig.contentItemType.customRadio
+        {type === searchCardConfig.contentItemType.customRadio
           ? contentItem.component
           : null}
 
-        {type === searchFormContentConfig.contentItemType.innerComponent
+        {type === searchCardConfig.contentItemType.innerComponent
           ? this.renderFormInnerComponent(
               fieldData.label,
               component,
@@ -780,7 +780,7 @@ class ListBase extends AuthorizationWrapper {
             )
           : null}
 
-        {type === searchFormContentConfig.contentItemType.component
+        {type === searchCardConfig.contentItemType.component
           ? component || null
           : null}
       </Col>
@@ -794,12 +794,12 @@ class ListBase extends AuthorizationWrapper {
       list: [
         {
           lg: 10,
-          type: searchFormContentConfig.contentItemType.customRangePicker,
+          type: searchCardConfig.contentItemType.customRangePicker,
           dateRangeFieldName,
         },
         {
           lg: 6,
-          type: searchFormContentConfig.contentItemType.component,
+          type: searchCardConfig.contentItemType.component,
           component: this.renderSimpleFormButtonCore(),
         },
       ],

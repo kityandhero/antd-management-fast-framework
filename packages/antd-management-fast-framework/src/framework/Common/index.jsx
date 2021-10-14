@@ -43,7 +43,7 @@ import {
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import {
   defaultEmptyImage,
-  formContentConfig,
+  cardConfig,
   datetimeFormat,
   contentConfig,
 } from '../../utils/constants';
@@ -1284,13 +1284,13 @@ class Common extends Core {
     return help;
   };
 
-  buildFormContent = (config) => {
+  buildCardCollection = (config) => {
     const formContentWrapperTypeConfig = this.buildWrapperTypeConfig() || {
-      mode: formContentConfig.wrapperType.page,
+      mode: cardConfig.wrapperType.page,
     };
     const configData = {
       ...{
-        mode: formContentConfig.wrapperType.page,
+        mode: cardConfig.wrapperType.page,
         justify: 'start',
         align: 'top',
       },
@@ -1347,7 +1347,7 @@ class Common extends Core {
                 title: '',
                 extra: null,
                 hidden: false,
-                cardType: formContentConfig.cardType.normal,
+                cardType: cardConfig.renderType.normal,
                 cardBodyStyle: {},
                 items: [],
                 otherComponent: null,
@@ -1412,7 +1412,7 @@ class Common extends Core {
 
             let cardTypeBodyStyle = {};
 
-            if (cardType === formContentConfig.cardType.help) {
+            if (cardType === cardConfig.renderType.help) {
               cardTypeBodyStyle = {
                 paddingTop: '12px',
                 paddingBottom: '12px',
@@ -1424,8 +1424,7 @@ class Common extends Core {
                 <Card
                   title={
                     index === 0 &&
-                    mode !==
-                      formContentConfig.wrapperType.page ? null : (text ||
+                    mode !== cardConfig.wrapperType.page ? null : (text ||
                         '') === '' && (subText || '') === '' ? null : (
                       <>
                         <FlexText
@@ -1449,7 +1448,7 @@ class Common extends Core {
                   bordered={false}
                   extra={
                     hasExtraItems ? (
-                      mode === formContentConfig.wrapperType.page && affix ? (
+                      mode === cardConfig.wrapperType.page && affix ? (
                         <Affix offsetTop={20}>
                           <Space
                             split={
@@ -1485,7 +1484,7 @@ class Common extends Core {
                     ) : null
                   }
                   bodyStyle={
-                    mode === formContentConfig.wrapperType.model
+                    mode === cardConfig.wrapperType.model
                       ? {
                           ...(cardBodyStyle || {}),
                           ...(cardTypeBodyStyle || {}),
@@ -1606,18 +1605,14 @@ class Common extends Core {
               };
 
               let lg =
-                (lgValue || 6) < 12 &&
-                mode !== formContentConfig.wrapperType.page
+                (lgValue || 6) < 12 && mode !== cardConfig.wrapperType.page
                   ? 12
                   : lgValue;
 
-              lg =
-                lg > 12 && mode !== formContentConfig.wrapperType.page
-                  ? 24
-                  : lg;
+              lg = lg > 12 && mode !== cardConfig.wrapperType.page ? 24 : lg;
               lg = lg > 24 ? 24 : lg;
 
-              if (type === formContentConfig.contentItemType.placeholder) {
+              if (type === cardConfig.contentItemType.placeholder) {
                 return (
                   <Col
                     key={contentItemKey}
@@ -1629,7 +1624,7 @@ class Common extends Core {
                 );
               }
 
-              if (type === formContentConfig.contentItemType.divider) {
+              if (type === cardConfig.contentItemType.divider) {
                 return (
                   <Col
                     key={contentItemKey}
@@ -1647,7 +1642,7 @@ class Common extends Core {
                 );
               }
 
-              if (type === formContentConfig.contentItemType.imageUpload) {
+              if (type === cardConfig.contentItemType.imageUpload) {
                 const uploadProps = {
                   ...(contentItem.uploadProps || {}),
                   ...{
@@ -1676,7 +1671,7 @@ class Common extends Core {
                 );
               }
 
-              if (type === formContentConfig.contentItemType.imageShow) {
+              if (type === cardConfig.contentItemType.imageShow) {
                 const imageBoxProps = {
                   ...{
                     loadingEffect: true,
@@ -1707,7 +1702,7 @@ class Common extends Core {
                 );
               }
 
-              if (type === formContentConfig.contentItemType.imageListShow) {
+              if (type === cardConfig.contentItemType.imageListShow) {
                 let imageBoxListContainorStyle = null;
 
                 const imageBoxProps = {
@@ -1794,7 +1789,7 @@ class Common extends Core {
                 );
               }
 
-              if (type === formContentConfig.contentItemType.fileBase64Upload) {
+              if (type === cardConfig.contentItemType.fileBase64Upload) {
                 const uploadProps = {
                   ...(contentItem.uploadProps || {}),
                   ...{
@@ -1827,7 +1822,7 @@ class Common extends Core {
                 );
               }
 
-              if (type === formContentConfig.contentItemType.videoUpload) {
+              if (type === cardConfig.contentItemType.videoUpload) {
                 const uploadProps = {
                   ...(contentItem.uploadProps || {}),
                   ...{
@@ -1869,7 +1864,7 @@ class Common extends Core {
 
               return (
                 <Col key={contentItemKey} lg={lg || 6} md={md} sm={sm} xs={xs}>
-                  {type === formContentConfig.contentItemType.text
+                  {type === cardConfig.contentItemType.text
                     ? this.renderFormText(
                         fieldData.label,
                         contentItem.value || '',
@@ -1878,7 +1873,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.input
+                  {type === cardConfig.contentItemType.input
                     ? this.renderFormInput(
                         fieldData.label,
                         fieldData.name,
@@ -1891,7 +1886,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.password
+                  {type === cardConfig.contentItemType.password
                     ? this.renderFormPassword(
                         fieldData.label,
                         fieldData.name,
@@ -1904,7 +1899,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.inputNumber
+                  {type === cardConfig.contentItemType.inputNumber
                     ? this.renderFormInputNumber(
                         fieldData.label,
                         fieldData.name,
@@ -1916,7 +1911,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.switch
+                  {type === cardConfig.contentItemType.switch
                     ? this.renderFormSwitch(
                         fieldData.label,
                         fieldData.name,
@@ -1932,7 +1927,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.flexText ? (
+                  {type === cardConfig.contentItemType.flexText ? (
                     <FlexText
                       {...{
                         ...{
@@ -1946,7 +1941,7 @@ class Common extends Core {
                   ) : null}
 
                   {type ===
-                  formContentConfig.contentItemType.onlyShowTextByFlexText ? (
+                  cardConfig.contentItemType.onlyShowTextByFlexText ? (
                     <FlexText
                       style={{
                         margin: '5px 0',
@@ -1957,7 +1952,7 @@ class Common extends Core {
                     />
                   ) : null}
 
-                  {type === formContentConfig.contentItemType.datePicker
+                  {type === cardConfig.contentItemType.datePicker
                     ? this.renderFormDatePicker(
                         fieldData.label,
                         fieldData.name,
@@ -1969,7 +1964,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.textarea
+                  {type === cardConfig.contentItemType.textarea
                     ? this.renderFormTextArea(
                         fieldData.label,
                         fieldData.name,
@@ -1984,7 +1979,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.onlyShowTextarea
+                  {type === cardConfig.contentItemType.onlyShowTextarea
                     ? this.renderFormOnlyShowTextarea(
                         fieldData.label,
                         contentItem.value,
@@ -2001,7 +1996,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.onlyShowInput
+                  {type === cardConfig.contentItemType.onlyShowInput
                     ? this.renderFormOnlyShowInput(
                         fieldData.label,
                         contentItem.value,
@@ -2039,8 +2034,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type ===
-                  formContentConfig.contentItemType.onlyShowInputDatetime
+                  {type === cardConfig.contentItemType.onlyShowInputDatetime
                     ? this.renderFormOnlyShowInput(
                         fieldData.label,
                         formatDatetime(
@@ -2061,7 +2055,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.select
+                  {type === cardConfig.contentItemType.select
                     ? this.renderFormSelect(
                         fieldData.label,
                         fieldData.name,
@@ -2090,7 +2084,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.whetherSelect
+                  {type === cardConfig.contentItemType.whetherSelect
                     ? renderFormWhetherSelect({
                         label: fieldData.label,
                         name: fieldData.name,
@@ -2105,11 +2099,11 @@ class Common extends Core {
                       })
                     : null}
 
-                  {type === formContentConfig.contentItemType.customSelect
+                  {type === cardConfig.contentItemType.customSelect
                     ? contentItem.component
                     : null}
 
-                  {type === formContentConfig.contentItemType.radio
+                  {type === cardConfig.contentItemType.radio
                     ? this.renderFormSelect(
                         fieldData.label,
                         fieldData.name,
@@ -2132,7 +2126,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.whetherRadio
+                  {type === cardConfig.contentItemType.whetherRadio
                     ? this.renderFormWhetherRadio(
                         fieldData.label,
                         fieldData.name,
@@ -2144,11 +2138,11 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.customRadio
+                  {type === cardConfig.contentItemType.customRadio
                     ? contentItem.component
                     : null}
 
-                  {type === formContentConfig.contentItemType.onlyShowText
+                  {type === cardConfig.contentItemType.onlyShowText
                     ? this.renderFormOnlyShowText(
                         fieldData.label,
                         contentItem.value,
@@ -2163,7 +2157,7 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.innerComponent
+                  {type === cardConfig.contentItemType.innerComponent
                     ? this.renderFormInnerComponent(
                         fieldData.label,
                         contentItem.component,
@@ -2173,21 +2167,21 @@ class Common extends Core {
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.save
+                  {type === cardConfig.contentItemType.save
                     ? this.renderFormActionItem(
                         this.renderSaveButton(contentItem.config || {}),
                         formItemLayout,
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.button
+                  {type === cardConfig.contentItemType.button
                     ? this.renderFormButton(
                         contentItem.config || {},
                         formItemLayout,
                       )
                     : null}
 
-                  {type === formContentConfig.contentItemType.actionList ? (
+                  {type === cardConfig.contentItemType.actionList ? (
                     <Space
                       split={
                         isBoolean(contentItem.split || false) ? (
@@ -2206,15 +2200,15 @@ class Common extends Core {
                     </Space>
                   ) : null}
 
-                  {type === formContentConfig.contentItemType.component
+                  {type === cardConfig.contentItemType.component
                     ? contentItem.component || null
                     : null}
 
-                  {type === formContentConfig.contentItemType.jsonView
+                  {type === cardConfig.contentItemType.jsonView
                     ? this.renderJsonView(contentItem.value)
                     : null}
 
-                  {type === formContentConfig.contentItemType.nowTime
+                  {type === cardConfig.contentItemType.nowTime
                     ? this.renderFormNowTimeField({ formItemLayout })
                     : null}
                 </Col>
@@ -2253,39 +2247,39 @@ class Common extends Core {
           let itemAdjust = item;
 
           switch (buildType) {
-            case formContentConfig.cardExtraBuildType.refresh:
+            case cardConfig.extraBuildType.refresh:
               itemAdjust = this.renderRefreshButton();
               break;
 
-            case formContentConfig.cardExtraBuildType.save:
+            case cardConfig.extraBuildType.save:
               itemAdjust = this.renderSaveButton(item);
               break;
 
-            case formContentConfig.cardExtraBuildType.generalButton:
+            case cardConfig.extraBuildType.generalButton:
               itemAdjust = this.renderGeneralButton(item);
               break;
 
-            case formContentConfig.cardExtraBuildType.button:
+            case cardConfig.extraBuildType.button:
               itemAdjust = buildButton(item);
               break;
 
-            case formContentConfig.cardExtraBuildType.dropdown:
+            case cardConfig.extraBuildType.dropdown:
               itemAdjust = buildDropdown(item);
               break;
 
-            case formContentConfig.cardExtraBuildType.dropdownButton:
+            case cardConfig.extraBuildType.dropdownButton:
               itemAdjust = buildDropdownButton(item);
               break;
 
-            case formContentConfig.cardExtraBuildType.dropdownEllipsis:
+            case cardConfig.extraBuildType.dropdownEllipsis:
               itemAdjust = buildDropdownEllipsis(item);
               break;
 
-            case formContentConfig.cardExtraBuildType.iconInfo:
+            case cardConfig.extraBuildType.iconInfo:
               itemAdjust = <IconInfo icon={icon} text={text} />;
               break;
 
-            case formContentConfig.cardExtraBuildType.component:
+            case cardConfig.extraBuildType.component:
               itemAdjust = componentSource || null;
               break;
 

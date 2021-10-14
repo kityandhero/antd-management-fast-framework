@@ -3,7 +3,7 @@ import parse from 'html-react-parser';
 import { FormOutlined, ContactsOutlined } from '@ant-design/icons';
 
 import { toNumber } from '../../utils/tools';
-import { dataTypeCollection, formContentConfig } from '../../utils/constants';
+import { dataTypeCollection, cardConfig } from '../../utils/constants';
 import Base from '../../framework/DataDrawer/Base';
 
 import styles from './index.less';
@@ -48,7 +48,7 @@ class DataPreviewDrawer extends Base {
         items: [
           {
             lg: 24,
-            type: formContentConfig.contentItemType.onlyShowText,
+            type: cardConfig.contentItemType.onlyShowText,
             fieldData: {
               label: '',
               helper: '',
@@ -68,7 +68,7 @@ class DataPreviewDrawer extends Base {
         items: [
           {
             lg: 24,
-            type: formContentConfig.contentItemType.onlyShowText,
+            type: cardConfig.contentItemType.onlyShowText,
             fieldData: {
               label: '操作内容',
               helper: '',
@@ -89,7 +89,7 @@ class DataPreviewDrawer extends Base {
         items: [
           {
             lg: 24,
-            type: formContentConfig.contentItemType.jsonView,
+            type: cardConfig.contentItemType.jsonView,
             value: data,
           },
         ],
@@ -103,7 +103,7 @@ class DataPreviewDrawer extends Base {
         items: [
           {
             lg: 24,
-            type: formContentConfig.contentItemType.onlyShowText,
+            type: cardConfig.contentItemType.onlyShowText,
             fieldData: {
               label: '操作内容',
               helper: '',

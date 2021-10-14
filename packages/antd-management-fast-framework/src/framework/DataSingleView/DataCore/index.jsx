@@ -195,7 +195,7 @@ class DataCore extends BaseView {
   };
 
   formContent = () => {
-    return this.buildFormContent(this.formContentConfigData());
+    return this.buildCardCollection(this.formContentConfigData());
   };
 
   render() {

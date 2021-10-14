@@ -178,13 +178,13 @@ export const drawerConfig = {
   },
 };
 
-export const formContentConfig = {
+export const cardConfig = {
   ...contentConfig,
-  cardType: {
+  renderType: {
     normal: 'normal',
     help: 'help',
   },
-  cardExtraBuildType: {
+  extraBuildType: {
     refresh: 'refresh',
     save: 'save',
     generalButton: 'generalButton',
@@ -232,7 +232,7 @@ export const formContentConfig = {
   },
 };
 
-export const searchFormContentConfig = {
+export const searchCardConfig = {
   contentItemType: {
     input: 'input',
     inputNumber: 'inputNumber',
