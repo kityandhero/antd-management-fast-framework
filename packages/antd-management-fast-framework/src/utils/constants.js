@@ -99,17 +99,31 @@ export const datetimeFormat = {
 };
 
 export const listViewModeCollection = {
+  /**
+   * 适用Table组件构建展示
+   */
   table: 0,
+
+  /**
+   * 使用List组件构建展示
+   */
   list: 1,
+
+  /**
+   * 构建Card集合展示
+   */
+  cardCollectionView: 2,
 };
 
 export const selectModeCollection = {
   /**
+   * 侧拉面板
    * value : 0
    */
   drawer: 0,
 
   /**
+   * 弹出框
    * value : 1
    */
   modal: 1,
@@ -117,26 +131,31 @@ export const selectModeCollection = {
 
 export const columnFacadeMode = {
   /**
+   * 省略文本
    * value : ellipsis
    */
   ellipsis: 'ellipsis',
 
   /**
+   * 图片展示
    * value : image
    */
   image: 'image',
 
   /**
+   * 日期
    * value : datetime
    */
   datetime: 'datetime',
 
   /**
+   * Badge展示
    * value : badge
    */
   badge: 'badge',
 
   /**
+   * 货币，例如￥0.05
    * value : money
    */
   money: 'money',
@@ -184,120 +203,385 @@ export const cardConfig = {
     normal: 'normal',
     help: 'help',
   },
+
+  /**
+   * 扩展区构建模式
+   */
   extraBuildType: {
+    /**
+     * 内置的刷新按钮，根据请求配置触发重新加载，一般用于详情类展示或表单初始加载
+     */
     refresh: 'refresh',
+
+    /**
+     * 内置的保存按钮，表单上下文中将根据提交配置触发提交操作，非表单环境不要使用
+     */
     save: 'save',
+
+    /**
+     * 根据配置项渲染按钮，事件触发需要自定义指定
+     */
     generalButton: 'generalButton',
+
+    /**
+     * 带图标文字，图标为空或者文字为空情况下渲染方式有差异
+     */
     iconInfo: 'iconInfo',
+
+    /**
+     * 根据配置项渲染按钮，事件触发需要自定义指定,配置项与generalButton相仿，配置模式有所不同，最终效果类似
+     */
     button: 'button',
+
+    /**
+     * 带扩展操作的按钮
+     */
     dropdownButton: 'dropdownButton',
+
+    /**
+     * 带扩展操作的省略按钮，省略占位符本身不具有操作
+     */
     dropdownEllipsis: 'dropdownEllipsis',
+
+    /**
+     * dropdown
+     */
     dropdown: 'dropdown',
+
+    /**
+     * 指定渲染自定义组件，组件由配置传入
+     */
     component: 'component',
   },
   contentItemType: {
+    /**
+     * Col占位符,自由指定占用大小
+     */
     placeholder: 'placeholder',
+
+    /**
+     * 纯文本渲染项目
+     */
     text: 'text',
+
+    /**
+     * 输入框，仅用于单页详情或表单上下文环境
+     */
     input: 'input',
+
+    /**
+     * 密码框，仅用于单页详情或表单上下文环境
+     */
     password: 'password',
+
+    /**
+     * 数字框，仅用于单页详情或表单上下文环境
+     */
     inputNumber: 'inputNumber',
+
+    /**
+     * 文本域，仅用于单页详情或表单上下文环境
+     */
     textarea: 'textarea',
+
+    /**
+     * switch开关
+     */
     switch: 'switch',
+
+    /**
+     * 一般选择框
+     */
     select: 'select',
+
+    /**
+     * ”是/否“ 选择框
+     */
     whetherSelect: 'whetherSelect',
+
+    /**
+     * 自定义选择框
+     */
     customSelect: 'customSelect',
+
+    /**
+     * 一般单选框
+     */
     radio: 'radio',
+
+    /**
+     * ”是/否“ 单选框
+     */
     whetherRadio: 'whetherRadio',
+
+    /**
+     * 自定义单选框
+     */
     customRadio: 'customRadio',
+
+    /**
+     * 纯展示文本域，仅用于单页详情或表单上下文环境
+     */
     onlyShowTextarea: 'onlyShowTextarea',
+
+    /**
+     * 只读输入框，仅用于单页详情或表单上下文环境
+     */
     onlyShowInput: 'onlyShowInput',
+
+    /**
+     * 只读日期框，仅用于单页详情或表单上下文环境
+     */
     onlyShowInputDatetime: 'onlyShowInputDatetime',
+
+    /**
+     * 文字信息展示，仅用于单页详情或表单上下文环境
+     */
     onlyShowText: 'onlyShowText',
+
+    /**
+     * 图片上传
+     */
     imageUpload: 'imageUpload',
+
+    /**
+     * 图片展示
+     */
     imageShow: 'imageShow',
+
+    /**
+     * 图片集展示
+     */
     imageListShow: 'imageListShow',
+
+    /**
+     * 文件串行化上传
+     */
     fileBase64Upload: 'fileBase64Upload',
+
+    /**
+     * 视频上传
+     */
     videoUpload: 'videoUpload',
+
+    /**
+     * 内部自定义组件，仅用于单页详情或表单上下文环境显示单项内容区域
+     */
     innerComponent: 'innerComponent',
+
+    /**
+     * 保存按钮，表单上下文中将根据提交配置触发提交操作，非表单环境不要使用，与extraBuildType处的save具有相似功能
+     */
     save: 'save',
+
+    /**
+     * 渲染按钮
+     */
     button: 'button',
+
+    /**
+     * 操作集合
+     */
     actionList: 'actionList',
+
+    /**
+     * 组件
+     */
     component: 'component',
+
+    /**
+     * 渲染当前时间，仅用于单页详情或表单上下文环境显示单项内容区域
+     */
     nowTime: 'nowTime',
+
+    /**
+     * 日期选择项，仅用于单页详情或表单上下文环境显示单项内容区域
+     */
     datePicker: 'datePicker',
+
+    /**
+     * json可视化展示
+     */
     jsonView: 'jsonView',
+
+    /**
+     * flex类型文字
+     */
     flexText: 'flexText',
+
+    /**
+     * flex类型文字
+     */
     onlyShowTextByFlexText: 'onlyShowTextByFlexText',
+
+    /**
+     * 分隔符
+     */
     divider: 'divider',
   },
 };
 
 export const searchCardConfig = {
   contentItemType: {
+    /**
+     * 输入框
+     */
     input: 'input',
+
+    /**
+     * 数字框
+     */
     inputNumber: 'inputNumber',
+
+    /**
+     * 自定义选择框
+     */
     customSelect: 'customSelect',
+
+    /**
+     * 自定义单选框
+     */
     customRadio: 'customRadio',
+
+    /**
+     * 只读输入框
+     */
     onlyShowInput: 'onlyShowInput',
+
+    /**
+     * 内部自定义组件
+     */
     innerComponent: 'innerComponent',
+
+    /**
+     * 自定义组件
+     */
     component: 'component',
+
+    /**
+     * 日期选择框
+     */
     datePicker: 'datePicker',
+
+    /**
+     * 日期范围选择框
+     */
     customRangePicker: 'customRangePicker',
+
+    /**
+     * 分隔符
+     */
     divider: 'divider',
   },
 };
 
+/**
+ * 字符串类型 ‘0’/'1'
+ */
 export const whetherString = {
   no: '0',
   yes: '1',
 };
 
+/**
+ * 字符串类型 0/1
+ */
 export const whetherNumber = {
   no: 0,
   yes: 1,
 };
 
+/**
+ * 文本类型不限【-10000】
+ */
 export const unlimitedWithStringFlag = {
   key: '-10000',
   name: '不限',
   flag: '-10000',
 };
 
+/**
+ * 数字类型不限【-10000】
+ */
 export const unlimitedWithNumberFlag = {
   key: -10000,
   name: '不限',
   flag: -10000,
 };
 
+/**
+ * 日志类型
+ */
 export const logLevel = {
+  /**
+   * 调试
+   */
   debug: 'debug',
+
+  /**
+   * 警告
+   */
   warn: 'warn',
+
+  /**
+   * 错误
+   */
   error: 'error',
 };
 
 export const logShowMode = {
+  /**
+   * 未知
+   */
   unknown: 'unknown',
+
+  /**
+   * 文本
+   */
   text: 'text',
+
+  /**
+   * 对象
+   */
   object: 'object',
 };
 
 export const dataTypeCollection = {
+  /**
+   * 未知类型
+   */
   unknown: {
     flag: 0,
     name: '未知类型',
   },
+
+  /**
+   * Json单体
+   */
   jsonObject: {
     flag: 100,
     name: 'Json单体',
   },
+
+  /**
+   * Json列表
+   */
   jsonObjectList: {
     flag: 200,
     name: 'Json列表',
   },
+
+  /**
+   * 一般值
+   */
   commonValue: {
     flag: 300,
     name: '一般值',
   },
+
+  /**
+   * Html
+   */
   html: {
     flag: 400,
     name: 'Html',

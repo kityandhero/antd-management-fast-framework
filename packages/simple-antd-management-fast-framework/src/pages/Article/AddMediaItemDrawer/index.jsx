@@ -11,7 +11,7 @@ import {
   corsTarget,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import { accessWayCollection } from '@/customConfig/config';
 
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
@@ -103,7 +103,7 @@ class Index extends BaseAddDrawer {
     return '添加媒体项';
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { processing, image, video } = this.state;
 
     return {
@@ -117,7 +117,7 @@ class Index extends BaseAddDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: mediaItemData.title,
             },
           ],
@@ -131,7 +131,7 @@ class Index extends BaseAddDrawer {
           spinning: processing,
           items: [
             {
-              type: formContentConfig.contentItemType.imageUpload,
+              type: cardConfig.contentItemType.imageUpload,
               image,
               uploadProps: {
                 singleMode: {
@@ -154,7 +154,7 @@ class Index extends BaseAddDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.textarea,
+              type: cardConfig.contentItemType.textarea,
               fieldData: mediaItemData.description,
             },
           ],
@@ -167,7 +167,7 @@ class Index extends BaseAddDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: mediaItemData.link,
             },
           ],
@@ -181,7 +181,7 @@ class Index extends BaseAddDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.videoUpload,
+              type: cardConfig.contentItemType.videoUpload,
               fieldData: mediaItemData.video,
               video,
               showPreview: true,
@@ -199,7 +199,7 @@ class Index extends BaseAddDrawer {
           spinning: processing,
           items: [
             {
-              type: formContentConfig.contentItemType.nowTime,
+              type: cardConfig.contentItemType.nowTime,
             },
           ],
         },

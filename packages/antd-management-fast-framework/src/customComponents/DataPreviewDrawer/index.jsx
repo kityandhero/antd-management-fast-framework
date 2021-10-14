@@ -36,7 +36,7 @@ class DataPreviewDrawer extends Base {
     return title || '';
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { dataType, data } = this.props;
 
     const list = [

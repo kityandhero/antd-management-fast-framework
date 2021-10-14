@@ -9,7 +9,7 @@ import {
   isObject,
   isArray,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import BaseAddForm from 'antd-management-fast-framework/es/framework/DataForm/BaseAddForm';
 import FadeBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/FadeBox';
 import QueueBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/QueueBox';
@@ -178,7 +178,7 @@ class Add extends BaseAddForm {
     return v;
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { processing, image } = this.state;
 
     return {
@@ -191,7 +191,7 @@ class Add extends BaseAddForm {
             affix: true,
             list: [
               {
-                buildType: formContentConfig.cardExtraBuildType.generalButton,
+                buildType: cardConfig.extraBuildType.generalButton,
                 icon: <FormOutlined />,
                 text: '切换FadeBox显示',
                 onClick: () => {
@@ -199,7 +199,7 @@ class Add extends BaseAddForm {
                 },
               },
               {
-                buildType: formContentConfig.cardExtraBuildType.save,
+                buildType: cardConfig.extraBuildType.save,
                 text: '保存并进行下一步',
               },
             ],
@@ -208,22 +208,22 @@ class Add extends BaseAddForm {
           items: [
             {
               lg: 12,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.title,
               require: true,
             },
             {
               lg: 6,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.sort,
             },
             {
               lg: 6,
-              type: formContentConfig.contentItemType.placeholder,
+              type: cardConfig.contentItemType.placeholder,
             },
             {
               lg: 24,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.subtitle,
             },
           ],
@@ -250,7 +250,7 @@ class Add extends BaseAddForm {
           spinning: processing,
           items: [
             {
-              type: formContentConfig.contentItemType.imageUpload,
+              type: cardConfig.contentItemType.imageUpload,
               image,
               action: `${corsTarget()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
@@ -301,7 +301,7 @@ class Add extends BaseAddForm {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.textarea,
+              type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
               require: true,
             },
@@ -314,7 +314,7 @@ class Add extends BaseAddForm {
           spinning: processing,
           items: [
             {
-              type: formContentConfig.contentItemType.nowTime,
+              type: cardConfig.contentItemType.nowTime,
             },
           ],
         },

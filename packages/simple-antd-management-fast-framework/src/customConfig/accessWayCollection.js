@@ -39,6 +39,9 @@ export const accessWayCollection = {
         paramsKey: 'a1b398d9-0bf7-40df-9f2b-4bb15d69f970',
         permission: '',
       },
+      singleList: {
+        permission: '',
+      },
       get: {
         permission: '',
       },

@@ -2,7 +2,7 @@ import { connect } from 'umi';
 import { PictureOutlined } from '@ant-design/icons';
 
 import { corsTarget, getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
-import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
 
 import { fieldData } from '../../Common/data';
@@ -103,7 +103,7 @@ class BasicInfo extends BaseUpdateFormContent {
     return values;
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { metaData, processing, dataLoading, avatar } = this.state;
 
     return {
@@ -116,10 +116,10 @@ class BasicInfo extends BaseUpdateFormContent {
             affix: true,
             list: [
               {
-                buildType: formContentConfig.cardExtraBuildType.refresh,
+                buildType: cardConfig.extraBuildType.refresh,
               },
               {
-                buildType: formContentConfig.cardExtraBuildType.save,
+                buildType: cardConfig.extraBuildType.save,
               },
             ],
           },
@@ -127,7 +127,7 @@ class BasicInfo extends BaseUpdateFormContent {
           items: [
             {
               lg: 6,
-              type: formContentConfig.contentItemType.onlyShowInput,
+              type: cardConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.loginName,
               value: getValueByKey({
                 data: metaData,
@@ -136,7 +136,7 @@ class BasicInfo extends BaseUpdateFormContent {
             },
             {
               lg: 6,
-              type: formContentConfig.contentItemType.onlyShowInput,
+              type: cardConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.cityName,
               value: getValueByKey({
                 data: metaData,
@@ -153,18 +153,18 @@ class BasicInfo extends BaseUpdateFormContent {
           items: [
             {
               lg: 6,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.name,
               require: true,
             },
             {
               lg: 6,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.email,
             },
             {
               lg: 6,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.phone,
             },
           ],
@@ -178,7 +178,7 @@ class BasicInfo extends BaseUpdateFormContent {
           spinning: dataLoading || processing,
           items: [
             {
-              type: formContentConfig.contentItemType.imageUpload,
+              type: cardConfig.contentItemType.imageUpload,
               image: avatar,
               action: `${corsTarget()}/currentOperator/uploadImage`,
               afterUploadSuccess: (imageData) => {
@@ -195,7 +195,7 @@ class BasicInfo extends BaseUpdateFormContent {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.textarea,
+              type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
               require: true,
             },

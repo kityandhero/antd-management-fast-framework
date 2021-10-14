@@ -6,6 +6,7 @@ import {
 
 import {
   pageListData,
+  singleListData,
   getData,
   addBasicInfoData,
   updateBasicInfoData,
@@ -35,6 +36,14 @@ export default {
 
       yield put({
         type: 'handlePageListData',
+        payload: response,
+      });
+    },
+    *singleList({ payload }, { call, put }) {
+      const response = yield call(singleListData, payload);
+
+      yield put({
+        type: 'handleListData',
         payload: response,
       });
     },

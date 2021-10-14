@@ -1,7 +1,7 @@
 import { connect } from 'umi';
 
 import { showError } from 'antd-management-fast-framework/lib/utils/tools';
-import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
 
 import { fieldData } from '../../Common/data';
@@ -89,7 +89,7 @@ class Password extends BaseUpdateFormContent {
     metaOriginalData = null,
   }) => {};
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { processing, dataLoading } = this.state;
 
     return {
@@ -103,25 +103,25 @@ class Password extends BaseUpdateFormContent {
           items: [
             {
               lg: 16,
-              type: formContentConfig.contentItemType.password,
+              type: cardConfig.contentItemType.password,
               fieldData: fieldData.originalWord,
               require: true,
             },
             {
               lg: 16,
-              type: formContentConfig.contentItemType.password,
+              type: cardConfig.contentItemType.password,
               fieldData: fieldData.newWord,
               require: true,
             },
             {
               lg: 16,
-              type: formContentConfig.contentItemType.password,
+              type: cardConfig.contentItemType.password,
               fieldData: fieldData.reNewWord,
               require: true,
             },
             {
               lg: 16,
-              type: formContentConfig.contentItemType.save,
+              type: cardConfig.contentItemType.save,
             },
           ],
         },

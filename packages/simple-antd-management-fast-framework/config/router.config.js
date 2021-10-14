@@ -122,6 +122,16 @@ export default [
               },
             ],
           },
+          {
+            path: '/news/articleSingleList',
+            name: 'articleSingleList',
+            icon: 'bars',
+            authority: [
+              accessWayCollection.super.permission,
+              accessWayCollection.article.singleList.permission,
+            ],
+            component: './Article/SingleList',
+          },
         ],
       },
       {

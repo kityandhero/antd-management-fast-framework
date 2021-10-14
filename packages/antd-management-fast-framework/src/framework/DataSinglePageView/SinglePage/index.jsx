@@ -6,6 +6,7 @@ import {
   stringIsNullOrWhiteSpace,
   showRuntimeError,
   isUndefined,
+  showErrorMessage,
 } from '../../../utils/tools';
 import { listViewModeCollection } from '../../../utils/constants';
 
@@ -172,6 +173,17 @@ class SinglePage extends Base {
     );
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  establishCardCollectionViewItemConfig = (record) => {
+    const text = 'establishCardListItemConfig 需要重载实现';
+
+    showErrorMessage({
+      message: text,
+    });
+
+    return null;
+  };
+
   renderView = () => {
     const { showSelect, listViewMode } = this.state;
 
@@ -189,6 +201,33 @@ class SinglePage extends Base {
       }
 
       return this.renderListView();
+    }
+
+    if (listViewMode === listViewModeCollection.cardCollectionView) {
+      if (showSelect) {
+        const text = 'MultiListView显示模式下不支持选择';
+
+        showRuntimeError({
+          message: text,
+        });
+      }
+
+      const { metaOriginalData } = this.state;
+
+      const { list } = { ...{ list: [] }, ...(metaOriginalData || {}) };
+
+      return (
+        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+          {list.forEach((o, index) => {
+            return this.buildCardCollectionItem({
+              config: this.establishCardCollectionViewItemConfig(o),
+              key: index,
+            });
+          })}
+        </Space>
+      );
+
+      return this.buildCardCollection(this.establishCardCollectionConfig());
     }
 
     const text = '未知的显示模式';

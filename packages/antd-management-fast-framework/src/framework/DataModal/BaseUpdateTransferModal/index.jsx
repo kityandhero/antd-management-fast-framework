@@ -63,7 +63,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
     throw new Error('buildItem need overload');
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { dataLoading, processing, targetKeys, selectedKeys } = this.state;
 
     return {

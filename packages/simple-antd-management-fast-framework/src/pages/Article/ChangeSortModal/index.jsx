@@ -1,10 +1,7 @@
 import { connect } from 'umi';
 
 import { getValueByKey } from 'antd-management-fast-framework/lib/utils/tools';
-import {
-  formContentConfig,
-  convertCollection,
-} from 'antd-management-fast-framework/lib/utils/constants';
+import { cardConfig, convertCollection } from 'antd-management-fast-framework/lib/utils/constants';
 import BaseUpdateModal from 'antd-management-fast-framework/lib/framework/DataModal/BaseUpdateModal';
 
 import { fieldData } from '../Common/data';
@@ -124,14 +121,14 @@ class ChangeSortModal extends BaseUpdateModal {
     return values;
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     return {
       list: [
         {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.inputNumber,
+              type: cardConfig.contentItemType.inputNumber,
               fieldData: fieldData.sort,
             },
           ],

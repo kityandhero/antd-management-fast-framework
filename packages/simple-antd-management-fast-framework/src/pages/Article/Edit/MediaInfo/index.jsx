@@ -22,7 +22,7 @@ import {
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
   defaultEmptyImage,
-  formContentConfig,
+  cardConfig,
   datetimeFormat,
   convertCollection,
   formatCollection,
@@ -612,7 +612,7 @@ class BasicInfo extends TabPageBase {
     };
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { processing, dataLoading, mediaItemList } = this.state;
 
     return {
@@ -625,7 +625,7 @@ class BasicInfo extends TabPageBase {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.component,
+              type: cardConfig.contentItemType.component,
               component: this.renderListView(mediaItemList),
             },
           ],

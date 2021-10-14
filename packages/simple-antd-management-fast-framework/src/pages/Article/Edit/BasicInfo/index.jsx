@@ -11,7 +11,7 @@ import {
   showInfoMessage,
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
-  formContentConfig,
+  cardConfig,
   datetimeFormat,
   convertCollection,
   formatCollection,
@@ -177,11 +177,9 @@ class BasicInfo extends TabPageBase {
     return values;
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { metaData, processing, dataLoading, image, imageList } = this.state;
-    console.log({
-      imageList,
-    });
+
     return {
       list: [
         {
@@ -193,32 +191,32 @@ class BasicInfo extends TabPageBase {
             split: false,
             list: [
               {
-                buildType: formContentConfig.cardExtraBuildType.iconInfo,
+                buildType: cardConfig.extraBuildType.iconInfo,
                 icon: <InfoCircleFilled />,
                 text: '一些说明',
               },
               {
-                buildType: formContentConfig.cardExtraBuildType.component,
+                buildType: cardConfig.extraBuildType.component,
                 component: renderCustomArticleStatusSelect({
                   global: this.getGlobal(),
                 }),
               },
               {
-                buildType: formContentConfig.cardExtraBuildType.generalButton,
+                buildType: cardConfig.extraBuildType.generalButton,
                 icon: <FormOutlined />,
                 text: '一般按钮',
               },
               {
-                buildType: formContentConfig.cardExtraBuildType.generalButton,
+                buildType: cardConfig.extraBuildType.generalButton,
                 hidden: true,
                 icon: <FormOutlined />,
                 text: '隐藏按钮',
               },
               {
-                buildType: formContentConfig.cardExtraBuildType.refresh,
+                buildType: cardConfig.extraBuildType.refresh,
               },
               {
-                buildType: formContentConfig.cardExtraBuildType.save,
+                buildType: cardConfig.extraBuildType.save,
               },
             ],
           },
@@ -226,13 +224,13 @@ class BasicInfo extends TabPageBase {
           items: [
             {
               lg: 18,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.title,
               require: true,
             },
             {
               lg: 6,
-              type: formContentConfig.contentItemType.onlyShowInput,
+              type: cardConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.articleId,
               value: getValueByKey({
                 data: metaData,
@@ -242,12 +240,12 @@ class BasicInfo extends TabPageBase {
             },
             {
               lg: 24,
-              type: formContentConfig.contentItemType.divider,
+              type: cardConfig.contentItemType.divider,
               text: '分隔线',
             },
             {
               lg: 24,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.subtitle,
             },
           ],
@@ -274,7 +272,7 @@ class BasicInfo extends TabPageBase {
           spinning: dataLoading || processing,
           items: [
             {
-              type: formContentConfig.contentItemType.imageUpload,
+              type: cardConfig.contentItemType.imageUpload,
               image,
               action: `${corsTarget()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
@@ -292,7 +290,7 @@ class BasicInfo extends TabPageBase {
           spinning: dataLoading || processing,
           items: [
             {
-              type: formContentConfig.contentItemType.imageShow,
+              type: cardConfig.contentItemType.imageShow,
               image,
               imageBoxContainorStyle: {
                 width: '120px',
@@ -308,7 +306,7 @@ class BasicInfo extends TabPageBase {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.component,
+              type: cardConfig.contentItemType.component,
               component: buildCustomGrid({
                 list: [
                   {
@@ -372,7 +370,7 @@ class BasicInfo extends TabPageBase {
           spinning: dataLoading || processing,
           items: [
             {
-              type: formContentConfig.contentItemType.imageListShow,
+              type: cardConfig.contentItemType.imageListShow,
               imageList,
             },
           ],
@@ -385,7 +383,7 @@ class BasicInfo extends TabPageBase {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.textarea,
+              type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
               require: true,
             },
@@ -426,7 +424,7 @@ class BasicInfo extends TabPageBase {
           spinning: dataLoading || processing,
           items: [
             {
-              type: formContentConfig.contentItemType.onlyShowInput,
+              type: cardConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.createTime,
               value: getValueByKey({
                 data: metaData,
@@ -435,7 +433,7 @@ class BasicInfo extends TabPageBase {
               }),
             },
             {
-              type: formContentConfig.contentItemType.onlyShowInput,
+              type: cardConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.updateTime,
               value: getValueByKey({
                 data: metaData,
@@ -445,27 +443,27 @@ class BasicInfo extends TabPageBase {
             },
             {
               lg: 24,
-              type: formContentConfig.contentItemType.save,
+              type: cardConfig.contentItemType.save,
             },
             {
               lg: 24,
-              type: formContentConfig.contentItemType.button,
+              type: cardConfig.contentItemType.button,
               config: {
                 text: '一般按钮',
               },
             },
             {
               lg: 24,
-              type: formContentConfig.contentItemType.actionList,
+              type: cardConfig.contentItemType.actionList,
               config: [
                 {
-                  buildType: formContentConfig.cardExtraBuildType.refresh,
+                  buildType: cardConfig.extraBuildType.refresh,
                 },
                 {
-                  buildType: formContentConfig.cardExtraBuildType.save,
+                  buildType: cardConfig.extraBuildType.save,
                 },
                 {
-                  buildType: formContentConfig.cardExtraBuildType.generalButton,
+                  buildType: cardConfig.extraBuildType.generalButton,
                   text: '一般按钮',
                 },
               ],

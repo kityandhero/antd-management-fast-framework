@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'umi';
 import { ContactsOutlined } from '@ant-design/icons';
 
-import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
@@ -47,7 +47,7 @@ class Index extends BaseAddDrawer {
     return '新增选项';
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { processing } = this.state;
 
     return {
@@ -61,7 +61,7 @@ class Index extends BaseAddDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.title,
               require: true,
             },
@@ -89,7 +89,7 @@ class Index extends BaseAddDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.textarea,
+              type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
             },
           ],
@@ -130,7 +130,7 @@ class Index extends BaseAddDrawer {
           spinning: processing,
           items: [
             {
-              type: formContentConfig.contentItemType.nowTime,
+              type: cardConfig.contentItemType.nowTime,
             },
           ],
         },

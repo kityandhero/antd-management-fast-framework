@@ -10,7 +10,7 @@ import {
   getValueByKey,
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
-  formContentConfig,
+  cardConfig,
   datetimeFormat,
   formatCollection,
 } from 'antd-management-fast-framework/es/utils/constants';
@@ -147,7 +147,7 @@ class Index extends BaseUpdateDrawer {
     return '编辑媒体项';
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { dataLoading, processing, metaData, image, video } = this.state;
 
     return {
@@ -161,7 +161,7 @@ class Index extends BaseUpdateDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: mediaItemData.title,
             },
           ],
@@ -175,7 +175,7 @@ class Index extends BaseUpdateDrawer {
           spinning: dataLoading || processing,
           items: [
             {
-              type: formContentConfig.contentItemType.imageUpload,
+              type: cardConfig.contentItemType.imageUpload,
               image,
               uploadProps: {
                 singleMode: {
@@ -198,7 +198,7 @@ class Index extends BaseUpdateDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.textarea,
+              type: cardConfig.contentItemType.textarea,
               fieldData: mediaItemData.description,
             },
           ],
@@ -211,7 +211,7 @@ class Index extends BaseUpdateDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: mediaItemData.link,
             },
           ],
@@ -224,7 +224,7 @@ class Index extends BaseUpdateDrawer {
           spinning: processing,
           items: [
             {
-              type: formContentConfig.contentItemType.videoUpload,
+              type: cardConfig.contentItemType.videoUpload,
               fieldData: mediaItemData.video,
               video,
               showPreview: true,
@@ -242,7 +242,7 @@ class Index extends BaseUpdateDrawer {
           spinning: dataLoading || processing,
           items: [
             {
-              type: formContentConfig.contentItemType.onlyShowInput,
+              type: cardConfig.contentItemType.onlyShowInput,
               fieldData: mediaItemData.createTime,
               value: getValueByKey({
                 data: metaData,
@@ -251,7 +251,7 @@ class Index extends BaseUpdateDrawer {
               }),
             },
             {
-              type: formContentConfig.contentItemType.onlyShowInput,
+              type: cardConfig.contentItemType.onlyShowInput,
               fieldData: mediaItemData.updateTime,
               value: getValueByKey({
                 data: metaData,

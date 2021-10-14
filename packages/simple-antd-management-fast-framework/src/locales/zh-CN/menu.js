@@ -22,8 +22,9 @@ export default {
   'menu.permission.accessWay.edit.basicInfo': '基本信息',
 
   'menu.news': '资讯中心',
+  'menu.news.articleSingleList': '单页列表',
   'menu.news.article': '文章管理',
-  'menu.news.article.pageList': '文章列表',
+  'menu.news.article.pageList': '分页列表',
   'menu.news.article.addBasicInfo': '新增文章',
   'menu.news.article.edit': '编辑文章',
   'menu.news.article.edit.basicInfo': '基本信息',

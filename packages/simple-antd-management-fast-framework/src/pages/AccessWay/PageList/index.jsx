@@ -17,7 +17,7 @@ import {
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
   columnFacadeMode,
-  searchFormContentConfig,
+  searchCardConfig,
   columnPlaceholder,
   unlimitedWithStringFlag,
   convertCollection,
@@ -156,31 +156,31 @@ class PageList extends MultiPage {
     return values;
   };
 
-  searchFormContentConfigData = () => {
+  searchCardConfigData = () => {
     return {
       list: [
         {
           lg: 6,
-          type: searchFormContentConfig.contentItemType.input,
+          type: searchCardConfig.contentItemType.input,
           fieldData: fieldData.name,
         },
         {
           lg: 6,
-          type: searchFormContentConfig.contentItemType.component,
+          type: searchCardConfig.contentItemType.component,
           component: renderSearchAccessWayStatusSelect({
             global: this.getGlobal(),
           }),
         },
         {
           lg: 6,
-          type: searchFormContentConfig.contentItemType.component,
+          type: searchCardConfig.contentItemType.component,
           component: renderSearchWebChannelSelect({
             global: this.getGlobal(),
           }),
         },
         {
           lg: 6,
-          type: searchFormContentConfig.contentItemType.component,
+          type: searchCardConfig.contentItemType.component,
           component: this.renderSimpleFormButtonCore(),
         },
       ],

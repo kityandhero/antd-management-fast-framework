@@ -190,12 +190,12 @@ class DataCore extends BaseView {
     );
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     return null;
   };
 
   formContent = () => {
-    return this.buildCardCollection(this.formContentConfigData());
+    return this.buildCardCollection(this.establishCardCollectionConfig());
   };
 
   render() {

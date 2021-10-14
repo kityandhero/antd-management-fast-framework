@@ -21,10 +21,14 @@ import {
   columnFacadeMode,
   columnPlaceholder,
   convertCollection,
+  listViewModeCollection,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
-import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
-import { buildDropdownButton } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePage';
+import {
+  buildCustomGrid,
+  buildDropdownButton,
+} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection, priceColor } from '@/customConfig/constants';
@@ -48,8 +52,8 @@ import { fieldData, statusCollection } from '../Common/data';
   global,
   loading: loading.models.article,
 }))
-class PageList extends MultiPage {
-  componentAuthority = accessWayCollection.article.pageList.permission;
+class SingleList extends SinglePage {
+  componentAuthority = accessWayCollection.article.singleList.permission;
 
   constructor(props) {
     super(props);
@@ -58,9 +62,10 @@ class PageList extends MultiPage {
       ...this.state,
       ...{
         showSelect: true,
-        pageName: '文章列表',
-        paramsKey: accessWayCollection.article.pageList.paramsKey,
-        loadApiPath: 'article/pageList',
+        pageName: '文章单页列表',
+        paramsKey: accessWayCollection.article.singleList.permission,
+        loadApiPath: 'article/singleList',
+        listViewMode: listViewModeCollection.cardCollection,
         changeSortModalVisible: false,
         addBasicInfoDrawerVisible: false,
         updateBasicInfoDrawerVisible: false,
@@ -411,159 +416,136 @@ class PageList extends MultiPage {
     };
   };
 
-  buildExtraButtonList = () => {
-    return [
-      {
-        type: 'primary',
-        icon: <PlusOutlined />,
-        text: '新增文章[侧拉]',
-        onClick: this.showAddBasicInfoDrawer,
-        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
-      },
-      {
-        type: 'primary',
-        icon: <PlusOutlined />,
-        text: '新增文章[页面]',
-        onClick: this.goToAdd,
-        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
-      },
-    ];
+  buildToolBarConfig = () => {
+    return {
+      stick: false,
+      title: '工具栏',
+      tools: [
+        {
+          title: '新增文章[侧拉]',
+          component: this.renderGeneralButton({
+            type: 'primary',
+            icon: <PlusOutlined />,
+            text: '新增文章[侧拉]',
+            onClick: () => {
+              this.showAddBasicInfoDrawer();
+            },
+            hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+          }),
+        },
+        {
+          title: '新增文章[侧拉]',
+          component: this.renderGeneralButton({
+            type: 'primary',
+            icon: <PlusOutlined />,
+            text: '新增文章[页面]',
+            onClick: () => {
+              this.goToAdd();
+            },
+            hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+          }),
+        },
+      ],
+    };
   };
 
-  getColumnWrapper = () => [
-    {
-      dataTarget: fieldData.title,
-      width: 780,
-      align: 'left',
-      showRichFacade: true,
-      emptyValue: '--',
-    },
-    {
-      dataTarget: fieldData.sort,
-      width: 100,
-      showRichFacade: true,
-      emptyValue: '--',
-    },
-    {
-      dataTarget: fieldData.renderType,
-      width: 120,
-      showRichFacade: true,
-      emptyValue: '--',
-      facadeConfig: {
-        color: priceColor,
-      },
-      formatValue: (val) => {
-        return getArticleRenderTypeName({
-          global: this.getGlobal(),
-          value: val,
-        });
-      },
-    },
-    {
-      dataTarget: fieldData.status,
-      width: 100,
-      emptyValue: '--',
-      showRichFacade: true,
-      facadeMode: columnFacadeMode.badge,
-      facadeConfigBuilder: (val) => {
-        return {
-          status: this.getStatusBadge(val),
-          text: getArticleStatusName({
-            global: this.getGlobal(),
-            value: val,
-          }),
-        };
-      },
-    },
-    {
-      dataTarget: fieldData.articleId,
-      width: 140,
-      showRichFacade: true,
-      canCopy: true,
-    },
-    {
-      dataTarget: fieldData.createTime,
-      width: 160,
-      showRichFacade: true,
-      facadeMode: columnFacadeMode.datetime,
-      emptyValue: '--',
-    },
-    columnPlaceholder,
-    {
-      dataTarget: fieldData.customOperate,
-      width: 106,
-      fixed: 'right',
-      render: (text, r) => {
-        const itemStatus = getValueByKey({
-          data: r,
-          key: fieldData.status.name,
-          convert: convertCollection.number,
-        });
+  establishCardCollectionConfig = (record) => {
+    const { processing, dataLoading } = this.state;
 
-        return buildDropdownButton({
-          size: 'small',
-          text: '编辑',
-          icon: <FormOutlined />,
-          handleButtonClick: ({ handleData }) => {
-            this.goToEdit(handleData);
-          },
-          handleData: r,
-          handleMenuClick: ({ key, handleData }) => {
-            this.handleMenuClick({ key, handleData });
-          },
-          menuItems: [
-            {
-              key: 'showUpdateBasicInfoDrawer',
-              withDivider: true,
-              uponDivider: true,
-              icon: <EditOutlined />,
-              text: '编辑[侧拉]',
-              hidden: !this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission),
-            },
-            {
-              key: 'setOnline',
-              icon: <PlayCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
-              text: '设为上线',
-              hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
-              disabled: itemStatus === statusCollection.online,
-              confirm: {
-                title: '将要设置为上线，确定吗？',
-              },
-            },
-            {
-              key: 'setOffline',
-              icon: <PauseCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
-              text: '设为下线',
-              hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
-              disabled: itemStatus === statusCollection.offline,
-              confirm: {
-                title: '将要设置为下线，确定吗？',
-              },
-            },
-            {
-              key: 'setSort',
-              withDivider: true,
-              uponDivider: true,
-              icon: <EditOutlined />,
-              text: '设置排序值',
-              hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
-            },
-            {
-              key: 'refreshCache',
-              withDivider: true,
-              uponDivider: true,
-              icon: <ReloadOutlined />,
-              text: '刷新缓存',
-              hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
-              confirm: {
-                title: '将要刷新缓存，确定吗？',
-              },
-            },
-          ],
-        });
+    return {
+      title: {
+        text: getValueByKey({
+          data: record,
+          key: fieldData.title.name,
+        }),
       },
-    },
-  ];
+      extra: {
+        affix: true,
+        split: false,
+        list: [
+          {
+            buildType: cardConfig.extraBuildType.iconInfo,
+            icon: <InfoCircleFilled />,
+            text: '一些说明',
+          },
+          {
+            buildType: cardConfig.extraBuildType.generalButton,
+            icon: <FormOutlined />,
+            text: '一般按钮',
+          },
+          {
+            buildType: cardConfig.extraBuildType.generalButton,
+            hidden: true,
+            icon: <FormOutlined />,
+            text: '隐藏按钮',
+          },
+        ],
+      },
+      spinning: dataLoading || processing,
+      items: [
+        {
+          lg: 24,
+          type: formContentConfig.contentItemType.component,
+          component: buildCustomGrid({
+            list: [
+              {
+                label: fieldData.name.label,
+                value: getValueByKey({
+                  data: metaData,
+                  key: fieldData.name.name,
+                }),
+              },
+              {
+                label: fieldData.shortName.label,
+                value: getValueByKey({
+                  data: metaData,
+                  key: fieldData.shortName.name,
+                }),
+              },
+              {
+                label: fieldData.typeNote.label,
+                value: getValueByKey({
+                  data: metaData,
+                  key: fieldData.typeNote.name,
+                }),
+              },
+              {
+                label: fieldData.statusNote.label,
+                value: getValueByKey({
+                  data: metaData,
+                  key: fieldData.statusNote.name,
+                }),
+              },
+            ],
+            props: {
+              bordered: true,
+              column: 4,
+              labelStyle: {
+                width: '160px',
+              },
+              emptyValue: '暂无',
+              emptyStyle: {
+                color: '#ccc',
+              },
+            },
+          }),
+        },
+      ],
+      instruction: {
+        title: '局部操作说明',
+        showDivider: false,
+        showNumber: true,
+        list: [
+          {
+            text: '这是一些操作说明1',
+          },
+          {
+            text: '这是一些操作说明2',
+          },
+        ],
+      },
+    };
+  };
 
   buildHelpConfig = () => {
     return {
@@ -635,4 +617,4 @@ class PageList extends MultiPage {
   };
 }
 
-export default PageList;
+export default SingleList;

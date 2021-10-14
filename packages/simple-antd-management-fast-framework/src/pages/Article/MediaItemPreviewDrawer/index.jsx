@@ -7,7 +7,7 @@ import {
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { formContentConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import MobileContainor from 'antd-management-fast-framework/es/customComponents/MobileContainor';
 import Base from 'antd-management-fast-framework/es/framework/DataDrawer/Base';
 
@@ -86,14 +86,14 @@ class MediaItemPreviewDrawer extends Base {
     );
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     return {
       list: [
         {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.component,
+              type: cardConfig.contentItemType.component,
               component: <MobileContainor>{this.buildArticle()}</MobileContainor>,
             },
           ],

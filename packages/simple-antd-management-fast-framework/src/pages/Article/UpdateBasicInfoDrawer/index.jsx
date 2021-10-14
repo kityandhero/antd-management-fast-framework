@@ -3,10 +3,7 @@ import { connect } from 'umi';
 import { ContactsOutlined } from '@ant-design/icons';
 
 import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
-import {
-  formContentConfig,
-  formatCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig, formatCollection } from 'antd-management-fast-framework/es/utils/constants';
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
@@ -105,7 +102,7 @@ class Index extends BaseUpdateDrawer {
     return '编辑选项信息';
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     const { metaData, processing, dataLoading } = this.state;
 
     return {
@@ -120,7 +117,7 @@ class Index extends BaseUpdateDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.input,
+              type: cardConfig.contentItemType.input,
               fieldData: fieldData.title,
               require: true,
             },
@@ -148,7 +145,7 @@ class Index extends BaseUpdateDrawer {
           items: [
             {
               lg: 24,
-              type: formContentConfig.contentItemType.textarea,
+              type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
             },
           ],
@@ -189,7 +186,7 @@ class Index extends BaseUpdateDrawer {
           spinning: dataLoading || processing,
           items: [
             {
-              type: formContentConfig.contentItemType.onlyShowInput,
+              type: cardConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.createTime,
               value: getValueByKey({
                 data: metaData,
@@ -198,7 +195,7 @@ class Index extends BaseUpdateDrawer {
               }),
             },
             {
-              type: formContentConfig.contentItemType.onlyShowInput,
+              type: cardConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.updateTime,
               value: getValueByKey({
                 data: metaData,

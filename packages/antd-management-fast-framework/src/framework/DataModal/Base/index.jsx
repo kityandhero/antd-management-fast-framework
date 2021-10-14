@@ -80,7 +80,7 @@ class Base extends BaseWindow {
     );
   };
 
-  formContentConfigData = () => {
+  establishCardCollectionConfig = () => {
     return null;
   };
 
@@ -89,7 +89,7 @@ class Base extends BaseWindow {
   };
 
   formContent = () => {
-    return this.buildCardCollection(this.formContentConfigData());
+    return this.buildCardCollection(this.establishCardCollectionConfig());
   };
 
   renderModalInner = () => {
