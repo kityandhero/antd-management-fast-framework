@@ -172,14 +172,31 @@ class Base extends BaseWindow {
     configList.forEach((item, index) => {
       if ((item || null) != null) {
         const {
-          hidden: itemHidden,
+          hidden,
           buildType: itemBuildType,
           icon: itemIcon,
           text: itemText,
+          component: itemComponent,
         } = {
-          ...{ hidden: false, buildType: null, icon: null, text: '' },
+          ...{
+            hidden: false,
+            buildType: null,
+            icon: null,
+            text: '',
+            component: null,
+          },
           ...item,
         };
+
+        let itemHidden = hidden;
+
+        if (
+          !hidden &&
+          itemBuildType === drawerConfig.bottomBarBuildType.component &&
+          (itemComponent || null) == null
+        ) {
+          itemHidden = true;
+        }
 
         if (!itemHidden) {
           const itemKey = `drawer_bottomBar_button_key_${index}`;
@@ -233,6 +250,10 @@ class Base extends BaseWindow {
 
             case drawerConfig.bottomBarBuildType.iconInfo:
               itemAdjust = <IconInfo icon={itemIcon} text={itemText} />;
+              break;
+
+            case drawerConfig.bottomBarBuildType.component:
+              itemAdjust = itemComponent || null;
               break;
 
             default:

@@ -39,6 +39,7 @@ import {
   toDatetime,
   isObject,
   copyToClipboard,
+  inCollection,
 } from '../../utils/tools';
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import {
@@ -55,6 +56,9 @@ import HelpBox from '../../customComponents/HelpBox';
 import HelpCard from '../../customComponents/HelpCard';
 import IconInfo from '../../customComponents/IconInfo';
 import FileBase64Upload from '../../customComponents/FileBase64Upload';
+import FadeBox from '../../customComponents/AnimalBox/FadeBox';
+import QueueBox from '../../customComponents/AnimalBox/QueueBox';
+
 import {
   buildRadioItem,
   buildFormRadio,
@@ -1353,6 +1357,10 @@ class Common extends Core {
 
     const {
       title,
+      size,
+      bordered,
+      useAnimal,
+      animalType,
       extra,
       hidden,
       cardType,
@@ -1367,6 +1375,10 @@ class Common extends Core {
     } = {
       ...{
         title: '',
+        size: 'default',
+        bordered: false,
+        useAnimal: false,
+        animalType: cardConfig.animalType.none,
         extra: null,
         hidden: false,
         cardType: cardConfig.renderType.normal,
@@ -1441,119 +1453,138 @@ class Common extends Core {
       };
     }
 
-    return (
-      <div key={key} className={styles.cardContainor}>
-        <Card
-          title={
-            cardItemKey === 0 &&
-            mode !== cardConfig.wrapperType.page ? null : (text || '') === '' &&
-              (subText || '') === '' ? null : (
+    const card = (
+      <Card
+        title={
+          cardItemKey === 0 &&
+          mode !== cardConfig.wrapperType.page ? null : (text || '') === '' &&
+            (subText || '') === '' ? null : (
+            <>
+              <FlexText
+                icon={icon || null}
+                text={text || ''}
+                subText={subText || ''}
+                addonBefore={
+                  (titleAddonBefore || null) == null ? null : titleAddonBefore
+                }
+                addonAfter={
+                  (titleAddonAfter || null) == null ? null : titleAddonAfter
+                }
+              />
+            </>
+          )
+        }
+        size={size || 'default'}
+        bordered={bordered}
+        extra={
+          hasExtraItems ? (
+            mode === cardConfig.wrapperType.page && affix ? (
+              <Affix offsetTop={20}>
+                <Space
+                  split={
+                    isBoolean(split) ? (
+                      split ? (
+                        <Divider type="vertical" />
+                      ) : null
+                    ) : (
+                      split
+                    )
+                  }
+                >
+                  {extraItems}
+                </Space>
+              </Affix>
+            ) : (
               <>
-                <FlexText
-                  icon={icon || null}
-                  text={text || ''}
-                  subText={subText || ''}
-                  addonBefore={
-                    (titleAddonBefore || null) == null ? null : titleAddonBefore
+                <Space
+                  split={
+                    isBoolean(split) ? (
+                      split ? (
+                        <Divider type="vertical" />
+                      ) : null
+                    ) : (
+                      split
+                    )
                   }
-                  addonAfter={
-                    (titleAddonAfter || null) == null ? null : titleAddonAfter
-                  }
-                />
+                >
+                  {extraItems}
+                </Space>
               </>
             )
-          }
-          bordered={false}
-          extra={
-            hasExtraItems ? (
-              mode === cardConfig.wrapperType.page && affix ? (
-                <Affix offsetTop={20}>
-                  <Space
-                    split={
-                      isBoolean(split) ? (
-                        split ? (
-                          <Divider type="vertical" />
-                        ) : null
-                      ) : (
-                        split
-                      )
-                    }
-                  >
-                    {extraItems}
-                  </Space>
-                </Affix>
-              ) : (
-                <>
-                  <Space
-                    split={
-                      isBoolean(split) ? (
-                        split ? (
-                          <Divider type="vertical" />
-                        ) : null
-                      ) : (
-                        split
-                      )
-                    }
-                  >
-                    {extraItems}
-                  </Space>
-                </>
-              )
-            ) : null
-          }
-          bodyStyle={
-            mode === cardConfig.wrapperType.model
-              ? {
-                  ...(cardBodyStyle || {}),
-                  ...(cardTypeBodyStyle || {}),
-                  ...{
-                    paddingBottom: 0,
-                  },
-                }
-              : {
-                  ...(cardBodyStyle || {}),
-                  ...(cardTypeBodyStyle || {}),
-                }
-          }
-        >
-          <Spin spinning={spinning || false}>
-            <>
-              {this.buildCardCollectionItemContent({
-                mode,
-                justify: justifyRow || justifyGeneral,
-                align: alignRow || alignGeneral,
-                items: isArray(contentItems)
-                  ? contentItems.map((o) => {
-                      return {
-                        ...o,
-                        ...{ formItemLayout: formItemLayout || null },
-                      };
-                    })
-                  : [],
-                index: cardItemKey,
-              })}
-
-              {otherComponent || null}
-
-              {isObject(instruction ?? false) ||
-              isArray(instruction ?? false) ? (
-                isArray(instruction ?? false) ? (
-                  instruction.map((o, indexHelpBox) => {
-                    if ((o ?? null) == null) {
-                      return null;
-                    }
-
-                    const keyHelpBox = `${key}_HelpBox_$${indexHelpBox}`;
-
-                    return <HelpBox key={keyHelpBox} {...o} />;
+          ) : null
+        }
+        bodyStyle={
+          mode === cardConfig.wrapperType.model
+            ? {
+                ...(cardBodyStyle || {}),
+                ...(cardTypeBodyStyle || {}),
+                ...{
+                  paddingBottom: 0,
+                },
+              }
+            : {
+                ...(cardBodyStyle || {}),
+                ...(cardTypeBodyStyle || {}),
+              }
+        }
+      >
+        <Spin spinning={spinning || false}>
+          <>
+            {this.buildCardCollectionItemContent({
+              mode,
+              justify: justifyRow || justifyGeneral,
+              align: alignRow || alignGeneral,
+              items: isArray(contentItems)
+                ? contentItems.map((o) => {
+                    return {
+                      ...o,
+                      ...{ formItemLayout: formItemLayout || null },
+                    };
                   })
-                ) : (
-                  <HelpBox {...instruction} />
-                )
-              ) : null}
-            </>
-          </Spin>
-        </Card>
+                : [],
+              index: cardItemKey,
+            })}
+
+            {otherComponent || null}
+
+            {isObject(instruction ?? false) || isArray(instruction ?? false) ? (
+              isArray(instruction ?? false) ? (
+                instruction.map((o, indexHelpBox) => {
+                  if ((o ?? null) == null) {
+                    return null;
+                  }
+
+                  const keyHelpBox = `${key}_HelpBox_$${indexHelpBox}`;
+
+                  return <HelpBox key={keyHelpBox} {...o} />;
+                })
+              ) : (
+                <HelpBox {...instruction} />
+              )
+            ) : null}
+          </>
+        </Spin>
+      </Card>
+    );
+
+    return (
+      <div key={key} className={styles.cardContainor}>
+        {isBoolean(useAnimal) && animalType === cardConfig.animalType.fade ? (
+          <FadeBox>{card}</FadeBox>
+        ) : null}
+
+        {isBoolean(useAnimal) && animalType === cardConfig.animalType.queue ? (
+          <QueueBox>{card}</QueueBox>
+        ) : null}
+
+        {!isBoolean(useAnimal) ||
+        (isBoolean(useAnimal) &&
+          !inCollection(
+            [cardConfig.animalType.fade, cardConfig.animalType.queue],
+            animalType,
+          ))
+          ? card
+          : null}
       </div>
     );
   };

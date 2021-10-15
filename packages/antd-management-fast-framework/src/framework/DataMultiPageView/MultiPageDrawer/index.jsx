@@ -5,7 +5,6 @@ import {
   Card,
   Divider,
   List,
-  Pagination,
   Tag,
   Tooltip,
   Button,
@@ -17,7 +16,7 @@ import { ReloadOutlined, ReadOutlined } from '@ant-design/icons';
 
 import { isFunction, notify } from '../../../utils/tools';
 import {
-  listViewModeCollection,
+  listViewConfig,
   notificationTypeCollection,
   contentConfig,
 } from '../../../utils/constants';
@@ -50,7 +49,7 @@ class MultiPageDrawer extends MultiPage {
       ...{
         visible: false,
         reloadAnimalShow: false,
-        listViewMode: listViewModeCollection.table,
+        listViewMode: listViewConfig.viewMode.table,
         showListViewItemActionSelect: true,
       },
     };
@@ -135,30 +134,6 @@ class MultiPageDrawer extends MultiPage {
     }
   };
 
-  onPaginationChange = (page, pageSize) => {
-    this.handleStandardTableChange(
-      {
-        current: page,
-        pageSize,
-      },
-      {},
-      {},
-    );
-  };
-
-  onPaginationShowSizeChange = (current, size) => {
-    this.setState({ pageNo: 1 });
-
-    this.handleStandardTableChange(
-      {
-        current: 1,
-        pageSize: size,
-      },
-      {},
-      {},
-    );
-  };
-
   buildWrapperTypeConfig = () => {
     return { mode: contentConfig.wrapperType.drawer };
   };
@@ -176,14 +151,14 @@ class MultiPageDrawer extends MultiPage {
       renderSearchForm,
     } = this.state;
 
-    const extraAction = this.renderExtraAction();
+    const extraAction = this.renderExtraActionView();
     const searchForm = this.renderForm();
 
     return (
       <div
         className={styles.tableList}
         style={
-          listViewMode === listViewModeCollection.list
+          listViewMode === listViewConfig.viewMode.list
             ? { height: '100%', overflow: 'hidden' }
             : {}
         }
@@ -191,7 +166,7 @@ class MultiPageDrawer extends MultiPage {
         <div
           className={styles.containorBox}
           style={
-            listViewMode === listViewModeCollection.list
+            listViewMode === listViewConfig.viewMode.list
               ? {
                   height: '100%',
                   overflow: 'hidden',
@@ -204,7 +179,7 @@ class MultiPageDrawer extends MultiPage {
           {renderSearchForm && (searchForm || null) != null ? (
             <div
               style={
-                listViewMode === listViewModeCollection.list ? { flex: 0 } : {}
+                listViewMode === listViewConfig.viewMode.list ? { flex: 0 } : {}
               }
             >
               <Card
@@ -223,7 +198,7 @@ class MultiPageDrawer extends MultiPage {
 
           <div
             style={
-              listViewMode === listViewModeCollection.list
+              listViewMode === listViewConfig.viewMode.list
                 ? { flex: 'auto', overflow: 'hidden' }
                 : {}
             }
@@ -244,7 +219,7 @@ class MultiPageDrawer extends MultiPage {
                 </Row>
               }
               style={
-                listViewMode === listViewModeCollection.list
+                listViewMode === listViewConfig.viewMode.list
                   ? {
                       height: '100%',
                       overflow: 'hidden',
@@ -278,7 +253,7 @@ class MultiPageDrawer extends MultiPage {
 
                   {this.renderBatchAction()}
 
-                  {listViewMode === listViewModeCollection.table ? (
+                  {listViewMode === listViewConfig.viewMode.table ? (
                     <DensityAction
                       tableSize={tableSize}
                       setTableSize={(key) => {
@@ -299,7 +274,7 @@ class MultiPageDrawer extends MultiPage {
                     />
                   </Tooltip>
 
-                  {listViewMode === listViewModeCollection.table ? (
+                  {listViewMode === listViewConfig.viewMode.table ? (
                     <ColumnSetting
                       columns={this.getColumn()}
                       columnsMap={this.getColumnsMap()}
@@ -320,7 +295,7 @@ class MultiPageDrawer extends MultiPage {
               >
                 <div
                   style={
-                    listViewMode === listViewModeCollection.list
+                    listViewMode === listViewConfig.viewMode.list
                       ? {
                           height: '100%',
                           overflow: 'hidden',
@@ -332,7 +307,7 @@ class MultiPageDrawer extends MultiPage {
                 >
                   <div
                     style={
-                      listViewMode === listViewModeCollection.list
+                      listViewMode === listViewConfig.viewMode.list
                         ? { flex: 0 }
                         : {}
                     }
@@ -342,7 +317,7 @@ class MultiPageDrawer extends MultiPage {
 
                   <div
                     style={
-                      listViewMode === listViewModeCollection.list
+                      listViewMode === listViewConfig.viewMode.list
                         ? { flex: 'auto', overflow: 'hidden', paddingTop: 5 }
                         : {}
                     }
@@ -367,7 +342,7 @@ class MultiPageDrawer extends MultiPage {
       <div
         className={styles.contentContainor}
         style={{
-          ...(listViewMode === listViewModeCollection.list
+          ...(listViewMode === listViewConfig.viewMode.list
             ? {
                 paddingBottom: 0,
                 height: '100%',
@@ -392,7 +367,7 @@ class MultiPageDrawer extends MultiPage {
       <div
         className={styles.mainContainor}
         style={
-          listViewMode === listViewModeCollection.list
+          listViewMode === listViewConfig.viewMode.list
             ? { height: '100%', overflow: 'hidden' }
             : {}
         }
@@ -403,17 +378,12 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderListView = () => {
-    const { metaOriginalData, listViewMode, pageNo, pageSize } = this.state;
-
-    const { list, pagination } = metaOriginalData || {
-      list: [],
-      pagination: {},
-    };
+    const { listViewMode } = this.state;
 
     return (
       <div
         style={
-          listViewMode === listViewModeCollection.list
+          listViewMode === listViewConfig.viewMode.list
             ? {
                 height: '100%',
                 overflow: 'hidden',
@@ -425,21 +395,20 @@ class MultiPageDrawer extends MultiPage {
       >
         <div
           style={
-            listViewMode === listViewModeCollection.list
+            listViewMode === listViewConfig.viewMode.list
               ? { flex: 'auto', overflow: 'hidden' }
               : {}
           }
         >
           <List
             style={
-              listViewMode === listViewModeCollection.list
+              listViewMode === listViewConfig.viewMode.list
                 ? { height: '100%', overflow: 'auto' }
                 : {}
             }
             className={styles.list}
             itemLayout={this.renderListViewItemLayout()}
-            dataSource={list}
-            // pagination={pagination}
+            dataSource={this.establishViewDataSource()}
             renderItem={(item, index) => {
               return this.renderListViewItem(item, index);
             }}
@@ -448,14 +417,14 @@ class MultiPageDrawer extends MultiPage {
 
         <div
           style={
-            listViewMode === listViewModeCollection.list
+            listViewMode === listViewConfig.viewMode.list
               ? { flex: 0, paddingTop: 10, paddingBottom: 10 }
               : {}
           }
         >
           <div
             style={
-              listViewMode === listViewModeCollection.list
+              listViewMode === listViewConfig.viewMode.list
                 ? {
                     height: '100%',
                     display: 'flex',
@@ -466,27 +435,13 @@ class MultiPageDrawer extends MultiPage {
           >
             <div
               style={
-                listViewMode === listViewModeCollection.list
+                listViewMode === listViewConfig.viewMode.list
                   ? { flex: 'auto' }
                   : {}
               }
             />
 
-            <Pagination
-              current={pageNo}
-              pageSize={pageSize}
-              size="small"
-              showSizeChanger
-              showQuickJumper
-              showTotal={(total) => `共 ${total} 条信息`}
-              {...pagination}
-              onChange={(page, size) => {
-                this.onPaginationChange(page, size);
-              }}
-              onShowSizeChange={(current, size) => {
-                this.onPaginationShowSizeChange(current, size);
-              }}
-            />
+            {this.renderPaginationView()}
           </div>
         </div>
       </div>
@@ -525,7 +480,7 @@ class MultiPageDrawer extends MultiPage {
           padding: 0,
         }}
       >
-        {listViewMode === listViewModeCollection.list ? (
+        {listViewMode === listViewConfig.viewMode.list ? (
           <div
             style={{
               height: 'calc(100vh - 55px)',

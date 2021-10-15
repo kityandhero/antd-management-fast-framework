@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Form,
   Row,
@@ -14,6 +14,8 @@ import {
   message,
   Badge,
   Space,
+  Empty,
+  Spin,
 } from 'antd';
 import {
   SearchOutlined,
@@ -40,9 +42,6 @@ import {
   replaceTargetText,
   formatDatetime,
   formatMoney,
-  recordObject,
-  getGuid,
-  isObject,
 } from '../../../utils/tools';
 import {
   searchCardConfig,
@@ -50,13 +49,17 @@ import {
   defaultEmptyImage,
   datetimeFormat,
   pageHeaderRenderType,
+  listViewConfig,
 } from '../../../utils/constants';
 import IconInfo from '../../../customComponents/IconInfo';
 import EllipsisCustom from '../../../customComponents/EllipsisCustom';
 import ImageBox from '../../../customComponents/ImageBox';
 import {
-  buildButtonGroup,
+  buildButton,
+  buildDropdown,
+  buildDropdownButton,
   buildDropdownEllipsis,
+  buildButtonGroup,
   pageHeaderTitle,
   pageHeaderTagWrapper,
   pageHeaderContent,
@@ -67,7 +70,7 @@ import {
   avatarImageLoadResultCollection,
   decorateAvatar,
 } from '../../../customComponents/DecorateAvatar';
-import { tableSizeConfig } from '../../../customComponents/StandardTableCustom';
+import StandardTableCustom from '../../../customComponents/StandardTableCustom';
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 import DensityAction from '../DensityAction';
@@ -95,12 +98,14 @@ class ListBase extends AuthorizationWrapper {
       ...this.state,
       ...defaultState,
       ...{
+        showSelect: false,
         renderPageHeaderWrapper: true,
         listTitle: '检索结果',
         defaultAvatarIcon: <PictureOutlined />,
+        listViewMode: listViewConfig.viewMode.list,
         avatarImageLoadResult: avatarImageLoadResultCollection.wait,
         showPageHeaderAvatar: false,
-        tableSize: tableSizeConfig.middle,
+        tableSize: listViewConfig.tableSize.middle,
         counterSetColumnsOtherConfig: 0,
         renderSearchForm: true,
         showListViewItemActionSelect: false,
@@ -1065,101 +1070,108 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  buildExtraButtonList = () => {
+  buildDataContainerExtraActionConfigList = () => {
     return [];
   };
 
-  renderExtraButtonList = () => {
-    const list = this.buildExtraButtonList();
+  establishDataContainerExtraActionList = () => {
+    const configList = this.buildDataContainerExtraActionConfigList();
 
-    if (!isArray(list)) {
+    if (!isArray(configList)) {
       return [];
     }
 
-    const buttons = [];
+    const components = [];
 
-    list.forEach((o) => {
-      if (isObject(o)) {
+    configList.forEach((item, index) => {
+      if ((item || null) != null) {
         const {
-          key,
-          type,
-          size,
-          icon,
-          text,
-          onClick,
-          disabled,
           hidden,
-          confirm,
+          buildType: itemBuildType,
+          icon: itemIcon,
+          text: itemText,
+          component: itemComponent,
         } = {
           ...{
-            key: getGuid(),
-            type: 'primary',
-            size: null,
-            text: null,
-            icon: null,
-            onClick: null,
-            disabled: false,
+            buildType: listViewConfig.dataContainerExtraActionBuildType.button,
             hidden: false,
-            confirm: false,
+            icon: null,
+            text: '',
+            component: null,
           },
-          ...(o || {}),
+          ...item,
         };
 
-        if (stringIsNullOrWhiteSpace(icon) && stringIsNullOrWhiteSpace(text)) {
-          recordObject(list);
+        let itemHidden = hidden;
 
-          throw new Error(
-            'buildExtraButtonList: text or icon not allow both null or empty,the list show in console, please check it.',
-          );
+        if (
+          !hidden &&
+          itemBuildType ===
+            listViewConfig.dataContainerExtraActionBuildType.component &&
+          (itemComponent || null) == null
+        ) {
+          itemHidden = true;
         }
 
-        const button = this.renderGeneralButton({
-          key: key || getGuid(),
-          type: type || 'primary',
-          size: size || null,
-          icon: icon || null,
-          text: text || null,
-          onClick: onClick || null,
-          disabled: disabled || false,
-          hidden: hidden || false,
-          confirm: confirm || false,
-        });
+        if (!itemHidden) {
+          const itemKey = `listView_dataContainerExtraAction_key_${index}`;
 
-        if (button != null) {
-          buttons.push(button);
+          let itemAdjust = item;
+
+          switch (itemBuildType) {
+            case listViewConfig.dataContainerExtraActionBuildType.generalButton:
+              itemAdjust = this.renderGeneralButton(item);
+              break;
+
+            case listViewConfig.dataContainerExtraActionBuildType.button:
+              itemAdjust = buildButton(item);
+              break;
+
+            case listViewConfig.dataContainerExtraActionBuildType.dropdown:
+              itemAdjust = buildDropdown(item);
+              break;
+
+            case listViewConfig.dataContainerExtraActionBuildType
+              .dropdownButton:
+              itemAdjust = buildDropdownButton(item);
+              break;
+
+            case listViewConfig.dataContainerExtraActionBuildType
+              .dropdownEllipsis:
+              itemAdjust = buildDropdownEllipsis(item);
+              break;
+
+            case listViewConfig.dataContainerExtraActionBuildType.iconInfo:
+              itemAdjust = <IconInfo icon={itemIcon} text={itemText} />;
+              break;
+
+            case listViewConfig.dataContainerExtraActionBuildType.component:
+              itemAdjust = itemComponent || null;
+              break;
+
+            default:
+              itemAdjust = item;
+              break;
+          }
+
+          components.push(<Fragment key={itemKey}>{itemAdjust}</Fragment>);
         }
       }
     });
 
-    return buttons;
+    return components;
   };
 
-  renderExtraAction = () => {
-    const buttonList = this.renderExtraButtonList();
+  renderExtraActionView = () => {
+    const actions = this.establishDataContainerExtraActionList();
 
-    if (isArray(buttonList) && buttonList.length > 0) {
-      const list = [];
-
-      buttonList.forEach((eo, ei) => {
-        list.push(eo);
-
-        if (ei !== buttonList.length - 1) {
-          list.push('');
-        }
-      });
-
+    if (isArray(actions) && actions.length > 0) {
       return (
-        <>
-          {list.map((item, index) => {
-            const key = `extraAction_button_${index}`;
-
-            if (stringIsNullOrWhiteSpace(item)) {
-              return <Divider key={key} type="vertical" />;
-            }
-
-            return <span key={key}>{item}</span>;
+        <Space split={<Divider type="vertical" />}>
+          {actions.map((item) => {
+            return item;
           })}
-        </>
+        </Space>
       );
     }
 
@@ -1252,6 +1264,31 @@ class ListBase extends AuthorizationWrapper {
     this.setState({
       avatarImageLoadResult: avatarImageLoadResultCollection.fail,
     });
+  };
+
+  establishViewDataSource = () => {
+    const text = 'establishViewDataSource 需要重载实现用来构建列表数据源';
+
+    showRuntimeError({
+      message: text,
+    });
+
+    return null;
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  establishCardCollectionViewItemConfig = (record) => {
+    const text = 'establishCardCollectionViewItemConfig 需要重载实现';
+
+    showRuntimeError({
+      message: text,
+    });
+
+    return null;
+  };
+
+  establishViewPaginationConfig = () => {
+    return null;
   };
 
   pageHeaderActionExtraGroup = () => null;
@@ -1351,17 +1388,49 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderCardExtraAction = () => {
-    const { tableSize, refreshing } = this.state;
+    const { listViewMode, tableSize, refreshing } = this.state;
+
+    if (listViewMode === listViewConfig.viewMode.table) {
+      return (
+        <>
+          <DensityAction
+            tableSize={tableSize}
+            setTableSize={(key) => {
+              this.setTableSize(key);
+            }}
+          />
+
+          <Tooltip title="刷新本页">
+            <Button
+              shape="circle"
+              style={{
+                color: '#000',
+                border: 0,
+              }}
+              loading={refreshing}
+              icon={<ReloadOutlined />}
+              onClick={() => {
+                this.refreshData();
+              }}
+            />
+          </Tooltip>
+
+          <ColumnSetting
+            columns={this.getColumn()}
+            columnsMap={this.getColumnsMap()}
+            setColumnsMap={(e) => {
+              this.setColumnsMap(e);
+            }}
+            setSortKeyColumns={(key) => {
+              this.setSortKeyColumns(key);
+            }}
+          />
+        </>
+      );
+    }
 
     return (
       <>
-        <DensityAction
-          tableSize={tableSize}
-          setTableSize={(key) => {
-            this.setTableSize(key);
-          }}
-        />
-
         <Tooltip title="刷新本页">
           <Button
             shape="circle"
@@ -1376,17 +1445,6 @@ class ListBase extends AuthorizationWrapper {
             }}
           />
         </Tooltip>
-
-        <ColumnSetting
-          columns={this.getColumn()}
-          columnsMap={this.getColumnsMap()}
-          setColumnsMap={(e) => {
-            this.setColumnsMap(e);
-          }}
-          setSortKeyColumns={(key) => {
-            this.setSortKeyColumns(key);
-          }}
-        />
       </>
     );
   };
@@ -1405,6 +1463,12 @@ class ListBase extends AuthorizationWrapper {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   renderListViewItemInner = (record, index) => {
+    const text = 'renderListViewItemInner 需要重载实现';
+
+    showRuntimeError({
+      message: text,
+    });
+
     return null;
   };
 
@@ -1450,7 +1514,145 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderListView = () => {
-    const text = '需要重载实现renderListView';
+    const { dataLoading, reloading, processing } = this.state;
+
+    return (
+      <Spin spinning={dataLoading || reloading || processing}>
+        <List
+          itemLayout={this.renderListViewItemLayout()}
+          size={this.renderListViewSize()}
+          dataSource={this.establishViewDataSource()}
+          pagination={this.establishViewPaginationConfig() || false}
+          renderItem={(item, index) => {
+            return this.renderListViewItem(item, index);
+          }}
+        />
+      </Spin>
+    );
+  };
+
+  renderTableView = () => {
+    const {
+      tableScroll,
+      showSelect,
+      selectedDataTableDataRows,
+      dataLoading,
+      processing,
+    } = this.state;
+
+    const { styleSet, columns, expandable, size } = this.buildTableConfig();
+
+    const paginationConfig = this.establishViewPaginationConfig() || false;
+
+    const standardTableCustomOption = {
+      loading: dataLoading || processing,
+      showSelect,
+      selectedRows: selectedDataTableDataRows,
+      columns,
+      size: size || null,
+      onSelectRow: this.handleSelectRows,
+      onChange: paginationConfig ? this.handleStandardTableChange : null,
+    };
+
+    if (paginationConfig) {
+      standardTableCustomOption.data = {
+        list: this.establishViewDataSource(),
+        pagination: paginationConfig,
+      };
+    } else {
+      standardTableCustomOption.data = this.establishViewDataSource();
+      standardTableCustomOption.pagination = false;
+    }
+
+    if ((styleSet || null) != null) {
+      standardTableCustomOption.style = styleSet;
+    }
+
+    if ((tableScroll || null) != null) {
+      standardTableCustomOption.scroll = tableScroll;
+    }
+
+    standardTableCustomOption.expandable = {
+      ...{
+        rowExpandable: false,
+        expandedRowRender: null,
+      },
+      ...(expandable || {}),
+    };
+
+    return (
+      <div className={styles.tableContainor}>
+        <StandardTableCustom {...standardTableCustomOption} />
+      </div>
+    );
+  };
+
+  renderCardCollectionView = ({ list }) => {
+    const { dataLoading, reloading, processing } = this.state;
+
+    const listItem = isArray(list) ? list : [];
+    const itemCount = listItem.length;
+
+    return (
+      <Spin spinning={dataLoading || reloading || processing}>
+        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+          {itemCount > 0 ? (
+            listItem.map((o, index) => {
+              return this.buildCardCollectionItem({
+                config: this.establishCardCollectionViewItemConfig(o),
+                key: index,
+              });
+            })
+          ) : dataLoading || reloading ? (
+            <div style={{ height: '130px' }} />
+          ) : (
+            <Empty />
+          )}
+        </Space>
+
+        {this.renderPaginationView()}
+      </Spin>
+    );
+  };
+
+  renderPaginationView = () => {
+    return null;
+  };
+
+  renderView = () => {
+    const { showSelect, listViewMode } = this.state;
+
+    if (listViewMode === listViewConfig.viewMode.table) {
+      return this.renderTableView();
+    }
+
+    if (listViewMode === listViewConfig.viewMode.list) {
+      if (showSelect) {
+        const text = 'MultiListView显示模式下不支持选择';
+
+        showRuntimeError({
+          message: text,
+        });
+      }
+
+      return this.renderListView();
+    }
+
+    if (listViewMode === listViewConfig.viewMode.cardCollectionView) {
+      if (showSelect) {
+        const text = 'MultiListView显示模式下不支持选择';
+
+        showRuntimeError({
+          message: text,
+        });
+      }
+
+      return this.renderCardCollectionView({
+        list: this.establishViewDataSource(),
+      });
+    }
+
+    const text = '未知的显示模式';
 
     showRuntimeError({
       message: text,
@@ -1460,11 +1662,13 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderPageContent = () => {
-    const { listTitle, renderSearchForm } = this.state;
+    const { listViewMode, listTitle, renderSearchForm } = this.state;
 
-    const extraAction = this.renderExtraAction();
+    const extraAction = this.renderExtraActionView();
 
     const searchForm = this.renderForm();
+
+    const hasPagination = this.renderPaginationView() != null;
 
     return (
       <div className={styles.containorBox}>
@@ -1482,7 +1686,24 @@ class ListBase extends AuthorizationWrapper {
           <Card
             title={listTitle}
             headStyle={{ borderBottom: '0px' }}
-            bodyStyle={{ paddingTop: '0', paddingBottom: 10 }}
+            bodyStyle={{
+              paddingTop: '0',
+              paddingBottom: hasPagination
+                ? listViewMode === listViewConfig.viewMode.table
+                  ? 0
+                  : listViewMode === listViewConfig.viewMode.list
+                  ? 20
+                  : listViewMode === listViewConfig.viewMode.cardCollectionView
+                  ? 0
+                  : 0
+                : listViewMode === listViewConfig.viewMode.table
+                ? 0
+                : listViewMode === listViewConfig.viewMode.list
+                ? 20
+                : listViewMode === listViewConfig.viewMode.cardCollectionView
+                ? 20
+                : 20,
+            }}
             bordered={false}
             className={styles.containorTable}
             extra={

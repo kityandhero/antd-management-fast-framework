@@ -1,17 +1,13 @@
-import React from 'react';
-import { Spin, List, message } from 'antd';
+import { message } from 'antd';
 
 import {
   defaultListState,
   stringIsNullOrWhiteSpace,
   showRuntimeError,
   isUndefined,
-  showErrorMessage,
 } from '../../../utils/tools';
-import { listViewModeCollection } from '../../../utils/constants';
 
 import Base from '../../DataListView/Base';
-import StandardTableCustom from '../../../customComponents/StandardTableCustom';
 
 class SinglePage extends Base {
   constructor(props) {
@@ -154,130 +150,15 @@ class SinglePage extends Base {
       });
   };
 
-  renderListView = () => {
-    const { metaOriginalData, dataLoading, reloading, processing } = this.state;
+  establishViewDataSource = () => {
+    const { metaOriginalData } = this.state;
 
-    const { list } = metaOriginalData || { list: [] };
-
-    return (
-      <Spin spinning={dataLoading || reloading || processing}>
-        <List
-          itemLayout={this.renderListViewItemLayout()}
-          size={this.renderListViewSize()}
-          dataSource={list}
-          renderItem={(item, index) => {
-            return this.renderListViewItem(item, index);
-          }}
-        />
-      </Spin>
-    );
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  establishCardCollectionViewItemConfig = (record) => {
-    const text = 'establishCardListItemConfig 需要重载实现';
-
-    showErrorMessage({
-      message: text,
-    });
-
-    return null;
-  };
-
-  renderView = () => {
-    const { showSelect, listViewMode } = this.state;
-
-    if (listViewMode === listViewModeCollection.table) {
-      return this.renderTableView();
-    }
-
-    if (listViewMode === listViewModeCollection.list) {
-      if (showSelect) {
-        const text = 'MultiListView显示模式下不支持选择';
-
-        showRuntimeError({
-          message: text,
-        });
-      }
-
-      return this.renderListView();
-    }
-
-    if (listViewMode === listViewModeCollection.cardCollectionView) {
-      if (showSelect) {
-        const text = 'MultiListView显示模式下不支持选择';
-
-        showRuntimeError({
-          message: text,
-        });
-      }
-
-      const { metaOriginalData } = this.state;
-
-      const { list } = { ...{ list: [] }, ...(metaOriginalData || {}) };
-
-      return (
-        <Space style={{ width: '100%' }} direction="vertical" size={24}>
-          {list.forEach((o, index) => {
-            return this.buildCardCollectionItem({
-              config: this.establishCardCollectionViewItemConfig(o),
-              key: index,
-            });
-          })}
-        </Space>
-      );
-
-      return this.buildCardCollection(this.establishCardCollectionConfig());
-    }
-
-    const text = '未知的显示模式';
-
-    showRuntimeError({
-      message: text,
-    });
-
-    return null;
-  };
-
-  renderTableView = () => {
-    const {
-      tableScroll,
-      showSelect,
-      selectedDataTableDataRows,
-      metaOriginalData,
-      dataLoading,
-      processing,
-    } = this.state;
-
-    const { styleSet, columns, expandable } = this.buildTableConfig();
-
-    const standardTableCustomOption = {
-      loading: dataLoading || processing,
-      data: metaOriginalData || { list: [] },
-      showSelect,
-      pagination: false,
-      selectedRows: selectedDataTableDataRows,
-      columns,
-      onSelectRow: this.handleSelectRows,
+    const { list } = {
+      ...{ list: [] },
+      ...(metaOriginalData || {}),
     };
 
-    if ((styleSet || null) != null) {
-      standardTableCustomOption.style = styleSet;
-    }
-
-    if ((tableScroll || null) != null) {
-      standardTableCustomOption.scroll = tableScroll;
-    }
-
-    standardTableCustomOption.expandable = {
-      ...{
-        rowExpandable: false,
-        expandedRowRender: null,
-      },
-      ...(expandable || {}),
-    };
-
-    return <StandardTableCustom {...standardTableCustomOption} />;
+    return list;
   };
 }
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import { List, Spin, Tooltip, Button, message } from 'antd';
-import { ReloadOutlined } from '@ant-design/icons';
+import { Pagination, message } from 'antd';
 
 import {
   defaultPageListState,
@@ -12,18 +11,13 @@ import {
   showRuntimeError,
   recordObject,
 } from '../../../utils/tools';
-import { listViewModeCollection } from '../../../utils/constants';
 import {
   getParamsDataCache,
   setParamsDataCache,
 } from '../../../utils/globalStorageAssist';
+import FlexBox from '../../../customComponents/FlexBox';
 
 import Base from '../../DataListView/Base';
-import DensityAction from '../../DataListView/DensityAction';
-import ColumnSetting from '../../DataListView/ColumnSetting';
-import StandardTableCustom from '../../../customComponents/StandardTableCustom';
-
-import styles from './index.less';
 
 class MultiPage extends Base {
   lastLoadParams = null;
@@ -281,6 +275,17 @@ class MultiPage extends Base {
     this.pageListData(params);
   };
 
+  handlePaginationChange = (page, pageSize) => {
+    this.handleStandardTableChange(
+      {
+        current: page,
+        pageSize,
+      },
+      {},
+      {},
+    );
+  };
+
   handleListViewPaginationChange = (page, pageSize) => {
     if (this.checkWorkDoing()) {
       return;
@@ -297,163 +302,76 @@ class MultiPage extends Base {
     this.pageListData(params);
   };
 
-  renderTableView = () => {
-    const {
-      tableScroll,
-      showSelect,
-      selectedDataTableDataRows,
-      metaOriginalData,
-      dataLoading,
-      processing,
-    } = this.state;
+  handlePaginationShowSizeChange = (current, size) => {
+    this.setState({ pageNo: 1 });
 
-    const { styleSet, columns, expandable, size } = this.buildTableConfig();
-
-    const standardTableCustomOption = {
-      loading: dataLoading || processing,
-      data: metaOriginalData || { list: [], pagination: {} },
-      showSelect,
-      selectedRows: selectedDataTableDataRows,
-      columns,
-      size,
-      onSelectRow: this.handleSelectRows,
-      onChange: this.handleStandardTableChange,
-    };
-
-    if ((styleSet || null) != null) {
-      standardTableCustomOption.style = styleSet;
-    }
-
-    if ((tableScroll || null) != null) {
-      standardTableCustomOption.scroll = tableScroll;
-    }
-
-    standardTableCustomOption.expandable = {
-      ...{},
-      ...(expandable || {}),
-    };
-
-    return (
-      <div className={styles.tableContainor}>
-        <StandardTableCustom {...standardTableCustomOption} />
-      </div>
+    this.handleStandardTableChange(
+      {
+        current: 1,
+        pageSize: size,
+      },
+      {},
+      {},
     );
   };
 
-  renderListView = () => {
-    const { metaOriginalData, dataLoading, reloading, processing } = this.state;
+  establishViewDataSource = () => {
+    const { metaOriginalData } = this.state;
 
-    const { list, pagination } = metaOriginalData || {
-      list: [],
-      pagination: {},
+    const { list } = {
+      ...{ list: [] },
+      ...(metaOriginalData || {}),
+    };
+
+    return list;
+  };
+
+  establishViewPaginationConfig = () => {
+    const { metaOriginalData } = this.state;
+
+    const { pagination } = {
+      ...{ pagination: {} },
+      ...(metaOriginalData || {}),
     };
 
     const paginationConfig = { ...pagination };
 
     paginationConfig.onChange = this.handleListViewPaginationChange;
 
-    return (
-      <Spin spinning={dataLoading || reloading || processing}>
-        <List
-          itemLayout={this.renderListViewItemLayout()}
-          size={this.renderListViewSize()}
-          dataSource={list}
-          pagination={paginationConfig}
-          renderItem={(item, index) => {
-            return this.renderListViewItem(item, index);
-          }}
-        />
-      </Spin>
-    );
+    return paginationConfig;
   };
 
-  renderView = () => {
-    const { showSelect, listViewMode } = this.state;
+  renderPaginationView = () => {
+    const { pageNo, pageSize } = this.state;
 
-    if (listViewMode === listViewModeCollection.table) {
-      return this.renderTableView();
-    }
+    const paginationConfig = this.establishViewPaginationConfig();
 
-    if (listViewMode === listViewModeCollection.list) {
-      if (showSelect) {
-        const text = 'MultiListView显示模式下不支持选择';
-
-        showRuntimeError({
-          message: text,
-        });
-      }
-
-      return this.renderListView();
-    }
-
-    const text = '未知的显示模式';
-
-    showRuntimeError({
-      message: text,
-    });
-
-    return null;
-  };
-
-  renderCardExtraAction = () => {
-    const { listViewMode, tableSize, refreshing } = this.state;
-
-    if (listViewMode === listViewModeCollection.table) {
-      return (
-        <>
-          <DensityAction
-            tableSize={tableSize}
-            setTableSize={(key) => {
-              this.setTableSize(key);
-            }}
-          />
-
-          <Tooltip title="刷新本页">
-            <Button
-              shape="circle"
-              style={{
-                color: '#000',
-                border: 0,
-              }}
-              loading={refreshing}
-              icon={<ReloadOutlined />}
-              onClick={() => {
-                this.refreshData();
-              }}
-            />
-          </Tooltip>
-
-          <ColumnSetting
-            columns={this.getColumn()}
-            columnsMap={this.getColumnsMap()}
-            setColumnsMap={(e) => {
-              this.setColumnsMap(e);
-            }}
-            setSortKeyColumns={(key) => {
-              this.setSortKeyColumns(key);
-            }}
-          />
-        </>
-      );
-    }
+    paginationConfig.onChange = this.handleListViewPaginationChange;
 
     return (
-      <>
-        <Tooltip title="刷新本页">
-          <Button
-            shape="circle"
-            style={{
-              color: '#000',
-              border: 0,
+      <FlexBox
+        style={{
+          paddingTop: 16,
+          paddingBottom: 16,
+        }}
+        right={
+          <Pagination
+            current={pageNo}
+            pageSize={pageSize}
+            size="small"
+            showSizeChanger
+            showQuickJumper
+            showTotal={(total) => `共 ${total} 条信息`}
+            {...paginationConfig}
+            onChange={(page, size) => {
+              this.handlePaginationChange(page, size);
             }}
-            loading={refreshing}
-            icon={<ReloadOutlined />}
-            onClick={() => {
-              this.refreshData();
+            onShowSizeChange={(current, size) => {
+              this.handlePaginationShowSizeChange(current, size);
             }}
           />
-        </Tooltip>
-      </>
+        }
+      />
     );
   };
 }

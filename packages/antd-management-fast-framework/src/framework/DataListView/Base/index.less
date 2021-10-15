@@ -1,5 +1,4 @@
 @import '~antd/lib/style/themes/default.less';
-
 @import '../../../utils/utils.less';
 
 @media screen and (min-width: @screen-lg) {
@@ -135,6 +134,14 @@
     .submitButtons {
       margin-bottom: 24px;
       white-space: nowrap;
+    }
+  }
+}
+
+.tableContainor {
+  :global {
+    .ant-table-expanded-row .ant-card {
+      box-shadow: 0 2px 12px 2px #aaa;
     }
   }
 }

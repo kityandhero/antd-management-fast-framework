@@ -1253,7 +1253,34 @@ export function buildListViewItemActionSelect({
   );
 }
 
-export function buildRadioItem({ list, adjustListDataCallback = null }) {
+export function buildRadioGroup({
+  value = null,
+  defaultValue = null,
+  style = null,
+  button = false,
+  buttonStyle = null,
+  list,
+  adjustListDataCallback = null,
+  onChange = null,
+}) {
+  return (
+    <Radio.Group
+      value={value || null}
+      onChange={onChange || null}
+      defaultValue={defaultValue || null}
+      buttonStyle={buttonStyle || null}
+      style={style || null}
+    >
+      {buildRadioItem({ button, list, adjustListDataCallback })}
+    </Radio.Group>
+  );
+}
+
+export function buildRadioItem({
+  button = false,
+  list,
+  adjustListDataCallback = null,
+}) {
   let listData = list || [];
 
   if (isFunction(adjustListDataCallback)) {
@@ -1269,15 +1296,27 @@ export function buildRadioItem({ list, adjustListDataCallback = null }) {
         ...(item || {}),
       };
 
-      listRadio.push(
-        <Radio
-          key={`${flag}_${name}`}
+      const key = `${flag}_${name}`;
+
+      const radio = button ? (
+        <Radio.Button
+          key={key}
           value={flag}
           disabled={toNumber(availability) !== whetherNumber.yes}
         >
           {name}
-        </Radio>,
+        </Radio.Button>
+      ) : (
+        <Radio
+          key={key}
+          value={flag}
+          disabled={toNumber(availability) !== whetherNumber.yes}
+        >
+          {name}
+        </Radio>
       );
+
+      listRadio.push(radio);
     });
 
     return listRadio;

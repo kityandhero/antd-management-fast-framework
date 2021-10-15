@@ -116,9 +116,10 @@ class PageList extends MultiPage {
     this.goToPath(`/permission/accessWay/edit/load/${accessWayId}/key/basicInfo`);
   };
 
-  buildExtraButtonList = () => {
+  buildDataContainerExtraActionConfigList = () => {
     return [
       {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.button,
         type: 'primary',
         icon: <PlusOutlined />,
         text: '确认按钮',

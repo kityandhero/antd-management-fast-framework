@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'umi';
+import { Spin, List, Space, message } from 'antd';
 import {
   FormOutlined,
   PlusOutlined,
@@ -8,6 +9,7 @@ import {
   ConsoleSqlOutlined,
   ReloadOutlined,
   EditOutlined,
+  InfoCircleFilled,
 } from '@ant-design/icons';
 
 import {
@@ -21,13 +23,16 @@ import {
   columnFacadeMode,
   columnPlaceholder,
   convertCollection,
-  listViewModeCollection,
+  listViewConfig,
+  cardConfig,
+  whetherNumber,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
 import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePage';
 import {
+  buildRadioGroup,
   buildCustomGrid,
-  buildDropdownButton,
+  buildDropdown,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -61,11 +66,10 @@ class SingleList extends SinglePage {
     this.state = {
       ...this.state,
       ...{
-        showSelect: true,
         pageName: '文章单页列表',
         paramsKey: accessWayCollection.article.singleList.permission,
         loadApiPath: 'article/singleList',
-        listViewMode: listViewModeCollection.cardCollection,
+        listViewMode: listViewConfig.viewMode.cardCollectionView,
         changeSortModalVisible: false,
         addBasicInfoDrawerVisible: false,
         updateBasicInfoDrawerVisible: false,
@@ -416,42 +420,69 @@ class SingleList extends SinglePage {
     };
   };
 
-  buildToolBarConfig = () => {
-    return {
-      stick: false,
-      title: '工具栏',
-      tools: [
-        {
-          title: '新增文章[侧拉]',
-          component: this.renderGeneralButton({
-            type: 'primary',
-            icon: <PlusOutlined />,
-            text: '新增文章[侧拉]',
-            onClick: () => {
-              this.showAddBasicInfoDrawer();
+  buildDataContainerExtraActionConfigList = () => {
+    const { listViewMode } = this.state;
+
+    return [
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.component,
+        component: buildRadioGroup({
+          value: listViewMode,
+          button: true,
+          list: [
+            {
+              flag: listViewConfig.viewMode.table,
+              name: 'TableView',
+              availability: whetherNumber.yes,
             },
-            hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
-          }),
-        },
-        {
-          title: '新增文章[侧拉]',
-          component: this.renderGeneralButton({
-            type: 'primary',
-            icon: <PlusOutlined />,
-            text: '新增文章[页面]',
-            onClick: () => {
-              this.goToAdd();
+            {
+              flag: listViewConfig.viewMode.list,
+              name: 'ListView',
+              availability: whetherNumber.yes,
             },
-            hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
-          }),
-        },
-      ],
-    };
+            {
+              flag: listViewConfig.viewMode.cardCollectionView,
+              name: 'CardView',
+              availability: whetherNumber.yes,
+            },
+            {
+              flag: '4',
+              name: 'OtherView',
+              availability: whetherNumber.no,
+            },
+          ],
+          onChange: (e) => {
+            const {
+              target: { value: v },
+            } = e;
+
+            this.setState({
+              listViewMode: v,
+              showSelect: v === listViewConfig.viewMode.table,
+            });
+          },
+        }),
+      },
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'primary',
+        icon: <PlusOutlined />,
+        text: '新增文章[侧拉]',
+        onClick: this.showAddBasicInfoDrawer,
+        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+      },
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'primary',
+        icon: <PlusOutlined />,
+        text: '新增文章[页面]',
+        onClick: this.goToAdd,
+        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+      },
+    ];
   };
 
-  establishCardCollectionConfig = (record) => {
-    const { processing, dataLoading } = this.state;
-
+  establishCardCollectionViewItemConfig = (record) => {
     return {
       title: {
         text: getValueByKey({
@@ -459,8 +490,10 @@ class SingleList extends SinglePage {
           key: fieldData.title.name,
         }),
       },
+      useAnimal: true,
+      animalType: cardConfig.animalType.queue,
+      bordered: true,
       extra: {
-        affix: true,
         split: false,
         list: [
           {
@@ -481,38 +514,37 @@ class SingleList extends SinglePage {
           },
         ],
       },
-      spinning: dataLoading || processing,
       items: [
         {
           lg: 24,
-          type: formContentConfig.contentItemType.component,
+          type: cardConfig.contentItemType.component,
           component: buildCustomGrid({
             list: [
               {
-                label: fieldData.name.label,
+                label: fieldData.title.label,
                 value: getValueByKey({
-                  data: metaData,
-                  key: fieldData.name.name,
+                  data: record,
+                  key: fieldData.title.name,
                 }),
               },
               {
-                label: fieldData.shortName.label,
+                label: fieldData.subtitle.label,
                 value: getValueByKey({
-                  data: metaData,
-                  key: fieldData.shortName.name,
+                  data: record,
+                  key: fieldData.subtitle.name,
                 }),
               },
               {
-                label: fieldData.typeNote.label,
+                label: fieldData.renderTypeNote.label,
                 value: getValueByKey({
-                  data: metaData,
-                  key: fieldData.typeNote.name,
+                  data: record,
+                  key: fieldData.renderTypeNote.name,
                 }),
               },
               {
                 label: fieldData.statusNote.label,
                 value: getValueByKey({
-                  data: metaData,
+                  data: record,
                   key: fieldData.statusNote.name,
                 }),
               },

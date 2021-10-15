@@ -14,10 +14,7 @@ import {
 import { ReloadOutlined, ReadOutlined } from '@ant-design/icons';
 
 import { isFunction } from '../../../utils/tools';
-import {
-  listViewModeCollection,
-  contentConfig,
-} from '../../../utils/constants';
+import { listViewConfig, contentConfig } from '../../../utils/constants';
 import { buildListViewItemActionSelect } from '../../../customComponents/FunctionComponent';
 
 import DensityAction from '../../DataListView/DensityAction';
@@ -45,7 +42,7 @@ class SinglePageDrawer extends SinglePage {
       ...{
         visible: false,
         reloadAnimalShow: false,
-        listViewMode: listViewModeCollection.table,
+        listViewMode: listViewConfig.viewMode.table,
         showListViewItemActionSelect: true,
       },
     };
@@ -122,14 +119,14 @@ class SinglePageDrawer extends SinglePage {
       renderSearchForm,
     } = this.state;
 
-    const extraAction = this.renderExtraAction();
+    const extraAction = this.renderExtraActionView();
     const searchForm = this.renderForm();
 
     return (
       <div
         className={styles.tableList}
         style={
-          listViewMode === listViewModeCollection.list
+          listViewMode === listViewConfig.viewMode.list
             ? { height: '100%', overflow: 'hidden' }
             : {}
         }
@@ -137,7 +134,7 @@ class SinglePageDrawer extends SinglePage {
         <div
           className={styles.containorBox}
           style={
-            listViewMode === listViewModeCollection.list
+            listViewMode === listViewConfig.viewMode.list
               ? {
                   height: '100%',
                   overflow: 'hidden',
@@ -150,7 +147,7 @@ class SinglePageDrawer extends SinglePage {
           {renderSearchForm && (searchForm || null) != null ? (
             <div
               style={
-                listViewMode === listViewModeCollection.list ? { flex: 0 } : {}
+                listViewMode === listViewConfig.viewMode.list ? { flex: 0 } : {}
               }
             >
               <Card
@@ -169,7 +166,7 @@ class SinglePageDrawer extends SinglePage {
 
           <div
             style={
-              listViewMode === listViewModeCollection.list
+              listViewMode === listViewConfig.viewMode.list
                 ? { flex: 'auto', overflow: 'hidden' }
                 : {}
             }
@@ -190,7 +187,7 @@ class SinglePageDrawer extends SinglePage {
                 </Row>
               }
               style={
-                listViewMode === listViewModeCollection.list
+                listViewMode === listViewConfig.viewMode.list
                   ? {
                       height: '100%',
                       overflow: 'hidden',
@@ -224,7 +221,7 @@ class SinglePageDrawer extends SinglePage {
 
                   {this.renderBatchAction()}
 
-                  {listViewMode === listViewModeCollection.table ? (
+                  {listViewMode === listViewConfig.viewMode.table ? (
                     <DensityAction
                       tableSize={tableSize}
                       setTableSize={(key) => {
@@ -245,7 +242,7 @@ class SinglePageDrawer extends SinglePage {
                     />
                   </Tooltip>
 
-                  {listViewMode === listViewModeCollection.table ? (
+                  {listViewMode === listViewConfig.viewMode.table ? (
                     <ColumnSetting
                       columns={this.getColumn()}
                       columnsMap={this.getColumnsMap()}
@@ -262,7 +259,7 @@ class SinglePageDrawer extends SinglePage {
             >
               <div
                 style={
-                  listViewMode === listViewModeCollection.list
+                  listViewMode === listViewConfig.viewMode.list
                     ? {
                         height: '100%',
                         overflow: 'hidden',
@@ -274,7 +271,7 @@ class SinglePageDrawer extends SinglePage {
               >
                 <div
                   style={
-                    listViewMode === listViewModeCollection.list
+                    listViewMode === listViewConfig.viewMode.list
                       ? { flex: 0 }
                       : {}
                   }
@@ -284,7 +281,7 @@ class SinglePageDrawer extends SinglePage {
 
                 <div
                   style={
-                    listViewMode === listViewModeCollection.list
+                    listViewMode === listViewConfig.viewMode.list
                       ? { flex: 'auto', overflow: 'hidden', paddingTop: 5 }
                       : {}
                   }
@@ -308,7 +305,7 @@ class SinglePageDrawer extends SinglePage {
       <div
         className={styles.contentContainor}
         style={{
-          ...(listViewMode === listViewModeCollection.list
+          ...(listViewMode === listViewConfig.viewMode.list
             ? {
                 paddingBottom: 0,
                 height: '100%',
@@ -333,7 +330,7 @@ class SinglePageDrawer extends SinglePage {
       <div
         className={styles.mainContainor}
         style={
-          listViewMode === listViewModeCollection.list
+          listViewMode === listViewConfig.viewMode.list
             ? { height: '100%', overflow: 'hidden' }
             : {}
         }
@@ -344,16 +341,16 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderListView = () => {
-    const { metaOriginalData, dataLoading, listViewMode } = this.state;
+    const { dataLoading, listViewMode } = this.state;
 
-    const { list } = metaOriginalData || { list: [], pagination: {} };
+    const list = this.establishViewDataSource();
 
     const bottomBar = this.renderListViewBottomBar();
 
     return (
       <div
         style={
-          listViewMode === listViewModeCollection.list
+          listViewMode === listViewConfig.viewMode.list
             ? {
                 height: '100%',
                 overflow: 'hidden',
@@ -365,21 +362,20 @@ class SinglePageDrawer extends SinglePage {
       >
         <div
           style={
-            listViewMode === listViewModeCollection.list
+            listViewMode === listViewConfig.viewMode.list
               ? { flex: 'auto', overflow: 'hidden' }
               : {}
           }
         >
           <List
             style={
-              listViewMode === listViewModeCollection.list
+              listViewMode === listViewConfig.viewMode.list
                 ? { height: '100%', overflow: 'auto' }
                 : {}
             }
             loading={dataLoading}
             itemLayout={this.renderListViewItemLayout()}
             dataSource={list}
-            // pagination={pagination}
             renderItem={(item, index) => {
               return this.renderListViewItem(item, index);
             }}
@@ -389,12 +385,12 @@ class SinglePageDrawer extends SinglePage {
         {(bottomBar || null) == null ? null : (
           <div
             style={
-              listViewMode === listViewModeCollection.list ? { flex: 0 } : {}
+              listViewMode === listViewConfig.viewMode.list ? { flex: 0 } : {}
             }
           >
             <div
               style={
-                listViewMode === listViewModeCollection.list
+                listViewMode === listViewConfig.viewMode.list
                   ? {
                       height: '100%',
                       display: 'flex',
@@ -405,7 +401,7 @@ class SinglePageDrawer extends SinglePage {
             >
               <div
                 style={
-                  listViewMode === listViewModeCollection.list
+                  listViewMode === listViewConfig.viewMode.list
                     ? { flex: 'auto' }
                     : {}
                 }
@@ -455,7 +451,7 @@ class SinglePageDrawer extends SinglePage {
           padding: 0,
         }}
       >
-        {listViewMode === listViewModeCollection.list ? (
+        {listViewMode === listViewConfig.viewMode.list ? (
           <div
             style={{
               height: 'calc(100vh - 55px)',

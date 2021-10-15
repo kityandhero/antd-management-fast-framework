@@ -13,6 +13,7 @@ import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import BaseAddForm from 'antd-management-fast-framework/es/framework/DataForm/BaseAddForm';
 import FadeBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/FadeBox';
 import QueueBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/QueueBox';
+import QueueListBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/QueueListBox';
 import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
 import { buildButton } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
@@ -351,7 +352,11 @@ class Add extends BaseAddForm {
           </div>
         </FadeBox>
 
-        <QueueBox
+        <QueueBox show={fadeBoxShow}>
+          <IconInfo icon={<FormOutlined />} text="QueueBox" />
+        </QueueBox>
+
+        <QueueListBox
           show={fadeBoxShow}
           style={{
             marginTop: '20px',
@@ -363,25 +368,25 @@ class Add extends BaseAddForm {
             {
               hidden: true,
               builder: () => {
-                return <IconInfo icon={<FormOutlined />} text="文字1" />;
+                return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 1" />;
               },
             },
             {
               hidden: false,
               builder: () => {
-                return <IconInfo icon={<FormOutlined />} text="文字2" />;
+                return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 2" />;
               },
             },
             {
               hidden: true,
               builder: () => {
-                return <IconInfo icon={<FormOutlined />} text="文字3" />;
+                return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 3" />;
               },
             },
             {
               hidden: false,
               builder: () => {
-                return <IconInfo icon={<FormOutlined />} text="文字4" />;
+                return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 4" />;
               },
             },
           ]}

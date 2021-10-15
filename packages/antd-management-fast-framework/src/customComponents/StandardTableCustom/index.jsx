@@ -1,13 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Table, Alert, Spin } from 'antd';
 
-import styles from './index.less';
+import { listViewConfig } from '../../utils/constants';
 
-export const tableSizeConfig = {
-  middle: 'middle',
-  small: 'small',
-  large: 'large',
-};
+import styles from './index.less';
 
 function initTotalList(columns) {
   const totalList = [];
@@ -139,7 +135,7 @@ class StandardTableCustom extends PureComponent {
           <Table
             rowKey={rowKey || 'key'}
             // loading={loading}
-            size={size || tableSizeConfig.middle}
+            size={size || listViewConfig.tableSize.middle}
             rowSelection={rowSelection}
             dataSource={list}
             pagination={paginationProps}

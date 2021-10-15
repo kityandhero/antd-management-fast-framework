@@ -1,0 +1,27 @@
+formContentConfig -> cardConfig
+cardType -> renderType
+cardExtraBuildType -> extraBuildType
+
+searchFormContentConfig -> searchCardConfig
+
+formContentConfigData -> establishCardCollectionConfig
+buildEveryCardFromCollection -> buildCardCollectionItemContent
+buildFormActionList -> buildEveryCardActionList
+—————————————————————————————————
+formContentConfig. -> cardConfig.
+formContentConfig -> cardConfig
+
+cardConfig.cardType -> cardConfig.renderType 
+cardConfig.cardExtraBuildType -> cardConfig.extraBuildType 
+
+===========
+searchFormContentConfig. -> searchFormContentConfig.
+searchFormContentConfig -> searchCardConfig
+
+===============================
+buildExtraButtonList -> buildDataContainerExtraActionConfigList
+===============================
+listViewModeCollection -> listViewConfig.viewMode
+tableSizeConfig -> listViewConfig.tableSize
+
+===//GeneralButton

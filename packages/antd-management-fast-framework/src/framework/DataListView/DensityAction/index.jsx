@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import { ColumnHeightOutlined } from '@ant-design/icons';
 import { Menu, Button, Dropdown, Tooltip } from 'antd';
+import { ColumnHeightOutlined } from '@ant-design/icons';
 
-import { tableSizeConfig } from '../../../customComponents/StandardTableCustom';
+import { listViewConfig } from '../../../utils/constants';
 
 class DensityAction extends PureComponent {
   render() {
@@ -22,9 +22,9 @@ class DensityAction extends PureComponent {
               width: 80,
             }}
           >
-            <Menu.Item key={tableSizeConfig.small}>紧凑</Menu.Item>
-            <Menu.Item key={tableSizeConfig.middle}>中等</Menu.Item>
-            <Menu.Item key={tableSizeConfig.large}>宽松</Menu.Item>
+            <Menu.Item key={listViewConfig.tableSize.small}>紧凑</Menu.Item>
+            <Menu.Item key={listViewConfig.tableSize.middle}>中等</Menu.Item>
+            <Menu.Item key={listViewConfig.tableSize.large}>宽松</Menu.Item>
           </Menu>
         }
       >

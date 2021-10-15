@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'umi';
+import { List, Space, Spin, Divider } from 'antd';
 import {
   FormOutlined,
   PlusOutlined,
@@ -8,12 +9,14 @@ import {
   ConsoleSqlOutlined,
   ReloadOutlined,
   EditOutlined,
+  InfoCircleFilled,
 } from '@ant-design/icons';
 
 import {
   toNumber,
   showInfoMessage,
   getValueByKey,
+  isArray,
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
   unlimitedWithStringFlag,
@@ -21,10 +24,20 @@ import {
   columnFacadeMode,
   columnPlaceholder,
   convertCollection,
+  listViewConfig,
+  cardConfig,
+  whetherNumber,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
-import { buildDropdownButton } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import {
+  buildRadioGroup,
+  buildCustomGrid,
+  buildDropdownButton,
+  buildButton,
+  buildDropdown,
+  buildDropdownEllipsis,
+} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection, priceColor } from '@/customConfig/constants';
@@ -60,6 +73,7 @@ class PageList extends MultiPage {
         showSelect: true,
         pageName: '文章列表',
         paramsKey: accessWayCollection.article.pageList.paramsKey,
+        listViewMode: listViewConfig.viewMode.table,
         loadApiPath: 'article/pageList',
         changeSortModalVisible: false,
         addBasicInfoDrawerVisible: false,
@@ -165,6 +179,7 @@ class PageList extends MultiPage {
   };
 
   showAddBasicInfoDrawer = () => {
+    console.log('11');
     this.setState({
       addBasicInfoDrawerVisible: true,
     });
@@ -301,6 +316,8 @@ class PageList extends MultiPage {
   };
 
   buildToolBarConfig = () => {
+    const that = this;
+
     return {
       stick: false,
       title: '工具栏',
@@ -411,9 +428,97 @@ class PageList extends MultiPage {
     };
   };
 
-  buildExtraButtonList = () => {
+  // renderListView = () => {
+  //   const { dataLoading, reloading, processing } = this.state;
+
+  //   return (
+  //     <Spin spinning={dataLoading || reloading || processing}>
+  //       <List
+  //         itemLayout={this.renderListViewItemLayout()}
+  //         size={this.renderListViewSize()}
+  //         dataSource={this.establishViewDataSource()}
+  //         pagination={this.establishViewPaginationConfig() || false}
+  //         renderItem={(item, index) => {
+  //           return this.renderListViewItem(item, index);
+  //         }}
+  //       />
+  //     </Spin>
+  //   );
+  // };
+
+  // renderCardCollectionView = ({ list }) => {
+  //   const { dataLoading, reloading, processing } = this.state;
+
+  //   const listItem = isArray(list) ? list : [];
+  //   const itemCount = listItem.length;
+
+  //   return (
+  //     <Spin spinning={dataLoading || reloading || processing}>
+  //       <Space style={{ width: '100%' }} direction="vertical" size={24}>
+  //         {itemCount > 0 ? (
+  //           listItem.map((o, index) => {
+  //             return this.buildCardCollectionItem({
+  //               config: this.establishCardCollectionViewItemConfig(o),
+  //               key: index,
+  //             });
+  //           })
+  //         ) : dataLoading || reloading ? (
+  //           <div style={{ height: '130px' }} />
+  //         ) : (
+  //           <Empty />
+  //         )}
+  //       </Space>
+
+  //       {this.renderPaginationView()}
+  //     </Spin>
+  //   );
+  // };
+
+  buildDataContainerExtraActionConfigList = () => {
+    const { listViewMode } = this.state;
+
     return [
       {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.component,
+        component: buildRadioGroup({
+          value: listViewMode,
+          button: true,
+          list: [
+            {
+              flag: listViewConfig.viewMode.table,
+              name: 'TableView',
+              availability: whetherNumber.yes,
+            },
+            {
+              flag: listViewConfig.viewMode.list,
+              name: 'ListView',
+              availability: whetherNumber.yes,
+            },
+            {
+              flag: listViewConfig.viewMode.cardCollectionView,
+              name: 'CardView',
+              availability: whetherNumber.yes,
+            },
+            {
+              flag: '4',
+              name: 'OtherView',
+              availability: whetherNumber.no,
+            },
+          ],
+          onChange: (e) => {
+            const {
+              target: { value: v },
+            } = e;
+
+            this.setState({
+              listViewMode: v,
+              showSelect: v === listViewConfig.viewMode.table,
+            });
+          },
+        }),
+      },
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: <PlusOutlined />,
         text: '新增文章[侧拉]',
@@ -421,6 +526,7 @@ class PageList extends MultiPage {
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
       },
       {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: <PlusOutlined />,
         text: '新增文章[页面]',
@@ -428,6 +534,121 @@ class PageList extends MultiPage {
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
       },
     ];
+  };
+
+  establishCardCollectionViewItemConfig = (r) => {
+    return {
+      title: {
+        text: getValueByKey({
+          data: r,
+          key: fieldData.title.name,
+        }),
+      },
+      useAnimal: true,
+      animalType: cardConfig.animalType.queue,
+      bordered: true,
+      extra: {
+        split: false,
+        list: [
+          {
+            buildType: cardConfig.extraBuildType.iconInfo,
+            icon: <InfoCircleFilled />,
+            text: '一些说明',
+          },
+          {
+            buildType: cardConfig.extraBuildType.generalButton,
+            icon: <FormOutlined />,
+            text: '一般按钮',
+          },
+          {
+            buildType: cardConfig.extraBuildType.generalButton,
+            hidden: true,
+            icon: <FormOutlined />,
+            text: '隐藏按钮',
+          },
+        ],
+      },
+      items: [
+        {
+          lg: 24,
+          type: cardConfig.contentItemType.component,
+          component: buildCustomGrid({
+            list: [
+              {
+                label: fieldData.title.label,
+                value: getValueByKey({
+                  data: r,
+                  key: fieldData.title.name,
+                }),
+              },
+              {
+                label: fieldData.subtitle.label,
+                value: getValueByKey({
+                  data: r,
+                  key: fieldData.subtitle.name,
+                }),
+              },
+              {
+                label: fieldData.renderTypeNote.label,
+                value: getValueByKey({
+                  data: r,
+                  key: fieldData.renderTypeNote.name,
+                }),
+              },
+              {
+                label: fieldData.statusNote.label,
+                value: getValueByKey({
+                  data: r,
+                  key: fieldData.statusNote.name,
+                }),
+              },
+            ],
+            props: {
+              bordered: true,
+              column: 4,
+              labelStyle: {
+                width: '160px',
+              },
+              emptyValue: '暂无',
+              emptyStyle: {
+                color: '#ccc',
+              },
+            },
+          }),
+        },
+      ],
+      instruction: {
+        title: '局部操作说明',
+        showDivider: false,
+        showNumber: true,
+        list: [
+          {
+            text: '这是一些操作说明1',
+          },
+          {
+            text: '这是一些操作说明2',
+          },
+        ],
+      },
+    };
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  renderListViewItemInner = (r, index) => {
+    return (
+      <>
+        <List.Item.Meta
+          title={getValueByKey({
+            data: r,
+            key: fieldData.title.name,
+          })}
+          description={getValueByKey({
+            data: r,
+            key: fieldData.description.name,
+          })}
+        />
+      </>
+    );
   };
 
   getColumnWrapper = () => [

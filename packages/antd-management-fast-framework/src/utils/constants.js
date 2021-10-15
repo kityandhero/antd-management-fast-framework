@@ -98,23 +98,6 @@ export const datetimeFormat = {
   monthDay: 'MM-DD',
 };
 
-export const listViewModeCollection = {
-  /**
-   * 适用Table组件构建展示
-   */
-  table: 0,
-
-  /**
-   * 使用List组件构建展示
-   */
-  list: 1,
-
-  /**
-   * 构建Card集合展示
-   */
-  cardCollectionView: 2,
-};
-
 export const selectModeCollection = {
   /**
    * 侧拉面板
@@ -183,6 +166,43 @@ export const pageHeaderRenderType = {
   action: 'action ',
 };
 
+export const listViewConfig = {
+  dataContainerExtraActionBuildType: {
+    generalButton: 'generalButton',
+    button: 'button',
+    dropdown: 'dropdown',
+    dropdownButton: 'dropdownButton',
+    dropdownEllipsis: 'dropdownEllipsis',
+    iconInfo: 'iconInfo',
+
+    /**
+     * 指定渲染自定义组件，组件由配置传入
+     */
+    component: 'component',
+  },
+  viewMode: {
+    /**
+     * 适用Table组件构建展示
+     */
+    table: 0,
+
+    /**
+     * 使用List组件构建展示
+     */
+    list: 1,
+
+    /**
+     * 构建Card集合展示
+     */
+    cardCollectionView: 2,
+  },
+  tableSize: {
+    middle: 'middle',
+    small: 'small',
+    large: 'large',
+  },
+};
+
 export const drawerConfig = {
   bottomBarBuildType: {
     close: 'close',
@@ -194,6 +214,11 @@ export const drawerConfig = {
     dropdownButton: 'dropdownButton',
     dropdownEllipsis: 'dropdownEllipsis',
     dropdown: 'dropdown',
+
+    /**
+     * 指定渲染自定义组件，组件由配置传入
+     */
+    component: 'component',
   },
 };
 
@@ -202,6 +227,15 @@ export const cardConfig = {
   renderType: {
     normal: 'normal',
     help: 'help',
+  },
+
+  /**
+   * 动画支持
+   */
+  animalType: {
+    none: 'none',
+    fade: 'fade',
+    queue: 'queue',
   },
 
   /**

@@ -34,7 +34,7 @@ import {
 } from 'lodash';
 
 import {
-  listViewModeCollection,
+  listViewConfig,
   emptyDatetime,
   notificationTypeCollection,
   messageTypeCollection,
@@ -118,7 +118,7 @@ export function defaultListState() {
       endTimeAlias: '',
       startTime: '',
       endTime: '',
-      listViewMode: listViewModeCollection.table,
+      listViewMode: listViewConfig.viewMode.table,
       showSelect: false,
       selectedDataTableDataRows: [],
     },
@@ -140,7 +140,7 @@ export function defaultPageListState() {
       pageSize: 10,
       startTime: '',
       endTime: '',
-      listViewMode: listViewModeCollection.table,
+      listViewMode: listViewConfig.viewMode.table,
       showSelect: false,
       selectedDataTableDataRows: [],
     },
