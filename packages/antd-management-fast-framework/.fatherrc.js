@@ -14,5 +14,19 @@ export default [
       ],
     ],
     disableTypeCheck: true,
+    // runtimeHelpers: true,
+    extraBabelPlugins: [
+      [
+        'babel-plugin-import',
+        {
+          libraryName: 'antd',
+          libraryDirectory: 'es',
+          style: true,
+        },
+      ],
+    ],
+    autoprefixer: {
+      browsers: ['ie>9', 'Safari >= 6'],
+    },
   },
 ];

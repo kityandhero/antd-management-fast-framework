@@ -180,7 +180,15 @@ class ListBase extends AuthorizationWrapper {
     return pageName;
   };
 
-  getColumnWrapper = () => [];
+  getColumnWrapper = () => {
+    const text = 'getColumnWrapper 需要重载实现';
+
+    showRuntimeError({
+      message: text,
+    });
+
+    return [];
+  };
 
   buildColumnFromWrapper = () => {
     const list = this.getColumnWrapper() || [];
