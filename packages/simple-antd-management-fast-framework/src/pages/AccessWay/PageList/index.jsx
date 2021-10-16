@@ -157,7 +157,7 @@ class PageList extends MultiPage {
     return values;
   };
 
-  searchCardConfigData = () => {
+  establishSearchCardConfig = () => {
     return {
       list: [
         {

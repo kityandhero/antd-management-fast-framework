@@ -390,7 +390,7 @@ class PageList extends MultiPage {
     return values;
   };
 
-  searchCardConfigData = () => {
+  establishSearchCardConfig = () => {
     const { dateRangeFieldName } = this.state;
 
     return {
@@ -427,52 +427,6 @@ class PageList extends MultiPage {
       ],
     };
   };
-
-  // renderListView = () => {
-  //   const { dataLoading, reloading, processing } = this.state;
-
-  //   return (
-  //     <Spin spinning={dataLoading || reloading || processing}>
-  //       <List
-  //         itemLayout={this.renderListViewItemLayout()}
-  //         size={this.renderListViewSize()}
-  //         dataSource={this.establishViewDataSource()}
-  //         pagination={this.establishViewPaginationConfig() || false}
-  //         renderItem={(item, index) => {
-  //           return this.renderListViewItem(item, index);
-  //         }}
-  //       />
-  //     </Spin>
-  //   );
-  // };
-
-  // renderCardCollectionView = ({ list }) => {
-  //   const { dataLoading, reloading, processing } = this.state;
-
-  //   const listItem = isArray(list) ? list : [];
-  //   const itemCount = listItem.length;
-
-  //   return (
-  //     <Spin spinning={dataLoading || reloading || processing}>
-  //       <Space style={{ width: '100%' }} direction="vertical" size={24}>
-  //         {itemCount > 0 ? (
-  //           listItem.map((o, index) => {
-  //             return this.buildCardCollectionItem({
-  //               config: this.establishCardCollectionViewItemConfig(o),
-  //               key: index,
-  //             });
-  //           })
-  //         ) : dataLoading || reloading ? (
-  //           <div style={{ height: '130px' }} />
-  //         ) : (
-  //           <Empty />
-  //         )}
-  //       </Space>
-
-  //       {this.renderPaginationView()}
-  //     </Spin>
-  //   );
-  // };
 
   buildDataContainerExtraActionConfigList = () => {
     const { listViewMode } = this.state;

@@ -382,7 +382,7 @@ class SingleList extends SinglePage {
     return values;
   };
 
-  searchCardConfigData = () => {
+  establishSearchCardConfig = () => {
     const { dateRangeFieldName } = this.state;
 
     return {

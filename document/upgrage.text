@@ -2,7 +2,7 @@ formContentConfig -> cardConfig
 cardType -> renderType
 cardExtraBuildType -> extraBuildType
 
-searchFormContentConfig -> searchCardConfig
+searchFormContentConfig -> establishSearchCardConfig 
 
 formContentConfigData -> establishCardCollectionConfig
 buildEveryCardFromCollection -> buildCardCollectionItemContent
@@ -15,7 +15,7 @@ cardConfig.cardType -> cardConfig.renderType
 cardConfig.cardExtraBuildType -> cardConfig.extraBuildType 
 
 ===========
-searchFormContentConfig. -> searchFormContentConfig.
+searchFormContentConfig. -> searchCardConfig.
 searchFormContentConfig -> searchCardConfig
 
 ===============================

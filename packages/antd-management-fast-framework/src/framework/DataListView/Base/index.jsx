@@ -800,7 +800,7 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  searchCardConfigData = () => {
+  establishSearchCardConfig = () => {
     const { dateRangeFieldName } = this.state;
 
     return {
@@ -917,13 +917,13 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderSimpleFormRow = () => {
-    const searchCardConfigData = this.searchCardConfigData();
+    const config = this.establishSearchCardConfig();
 
-    if ((searchCardConfigData || null) == null) {
+    if ((config || null) == null) {
       return null;
     }
 
-    return this.buildSearchFormContent(searchCardConfigData);
+    return this.buildSearchFormContent(config);
   };
 
   renderSimpleFormInitialValues = () => {
