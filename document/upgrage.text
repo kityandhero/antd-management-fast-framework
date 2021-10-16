@@ -16,7 +16,7 @@ pageHeaderAvatar -> establishPageHeaderAvatarConfig
 establishPageHeaderTitlePrefix -> establishPageHeaderTitlePrefix
 
 renderSimpleFormButtonCore -> buildSearchCardButtonCore
-buildSearchCardRangePickerCore -> buildSearchCardRangePickerCore
+renderSimpleFormRangePickerCore -> buildSearchCardRangePickerCore
 buildToolBarConfig -> establishToolBarConfig
 establishHelpConfig -> establishHelpConfig
 buildOtherFormProps -> buildFormAdditionalConfig
