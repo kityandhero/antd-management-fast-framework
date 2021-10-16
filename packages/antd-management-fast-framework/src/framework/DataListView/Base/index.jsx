@@ -959,7 +959,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line arrow-body-style
-  buildTableExpandableConfig = () => {
+  establishTableExpandableConfig = () => {
     // 可以配置额外的Table属性
 
     return {};
@@ -977,7 +977,7 @@ class ListBase extends AuthorizationWrapper {
     const { tableSize } = this.state;
 
     const columns = this.getColumnMerged();
-    const expandable = this.buildTableExpandableConfig();
+    const expandable = this.establishTableExpandableConfig();
 
     return {
       ...this.buildTableOtherConfig(),

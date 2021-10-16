@@ -5,21 +5,23 @@ cardExtraBuildType -> extraBuildType
 needSetFormValueAfterLoad - > resetDataAfterLoad
 
 # function
-searchFormContentConfig -> establishSearchCardConfig 
+searchFormContentConfigData -> establishSearchCardConfig 
 renderSimpleFormInitialValues -> fillSearchCardInitialValues
 formContentConfigData -> establishCardCollectionConfig
-establishPageHeaderActionExtraEllipsisConfig -> establishPageHeaderActionExtraEllipsisConfig
+buildPageHeaderActionExtraEllipsis -> establishPageHeaderActionExtraEllipsisConfig
 pageHeaderExtraContentData -> establishPageHeaderExtraContentConfig
 pageHeaderContentGridData -> establishPageHeaderContentGridConfig
 buildPageHeaderActionExtraGroup -> establishPageHeaderActionExtraGroupConfig
 pageHeaderAvatar -> establishPageHeaderAvatarConfig
+pageHeaderTagList -> establishPageHeaderTagCollectionConfig
 pageHeaderTitlePrefix -> establishPageHeaderTitlePrefix
 buildExtraButtonList -> establishDataContainerExtraActionCollectionConfig
+establishTableExpandableConfig -> establishTableExpandableConfig
 
 renderSimpleFormButtonCore -> buildSearchCardButtonCore
 renderSimpleFormRangePickerCore -> buildSearchCardRangePickerCore
 buildToolBarConfig -> establishToolBarConfig
-establishHelpConfig -> establishHelpConfig
+buildHelpConfig -> establishHelpConfig
 buildOtherFormProps -> buildFormAdditionalConfig
 
 fillFormInitialValuesAfterLoad -> fillInitialValuesAfterLoad
@@ -47,5 +49,3 @@ listViewModeCollection -> listViewConfig.viewMode
 tableSizeConfig -> listViewConfig.tableSize
 
 
-
-===//GeneralButton
