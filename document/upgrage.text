@@ -2,9 +2,17 @@ formContentConfig -> cardConfig
 cardType -> renderType
 cardExtraBuildType -> extraBuildType
 
+# function
 searchFormContentConfig -> establishSearchCardConfig 
-
+renderSimpleFormInitialValues -> fillSearchCardInitialValues
 formContentConfigData -> establishCardCollectionConfig
+establishPageHeaderActionExtraEllipsisConfig -> establishPageHeaderActionExtraEllipsisConfig
+establishPageHeaderExtraContentConfig -> establishPageHeaderExtraContentConfig
+establishPageHeaderContentGridConfig -> establishPageHeaderContentGridConfig
+establishPageHeaderActionExtraGroupConfig -> establishPageHeaderActionExtraGroupConfig
+pageHeaderAvatar -> establishPageHeaderAvatarConfig
+establishPageHeaderTitlePrefix -> establishPageHeaderTitlePrefix
+
 buildEveryCardFromCollection -> buildCardCollectionItemContent
 buildFormActionList -> buildEveryCardActionList
 —————————————————————————————————
@@ -23,5 +31,7 @@ buildExtraButtonList -> buildDataContainerExtraActionConfigList
 ===============================
 listViewModeCollection -> listViewConfig.viewMode
 tableSizeConfig -> listViewConfig.tableSize
+
+
 
 ===//GeneralButton

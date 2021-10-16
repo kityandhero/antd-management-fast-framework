@@ -931,7 +931,7 @@ export function buildDescriptionGrid({ key = null, list, props }) {
   return null;
 }
 
-export function pageHeaderContent({ list }) {
+export function buildPageHeaderContent({ list }) {
   if (!isArray(list)) {
     return null;
   }
@@ -1017,7 +1017,7 @@ export function pageHeaderContent({ list }) {
   );
 }
 
-export function pageHeaderTagWrapper(Tags) {
+export function buildPageHeaderTagWrapper(Tags) {
   return (
     <>
       <div

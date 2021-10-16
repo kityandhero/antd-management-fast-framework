@@ -381,7 +381,7 @@ class PageList extends MultiPage {
     };
   };
 
-  renderSimpleFormInitialValues = () => {
+  fillSearchCardInitialValues = () => {
     const values = {};
 
     values[fieldData.renderType.name] = unlimitedWithStringFlag.key;

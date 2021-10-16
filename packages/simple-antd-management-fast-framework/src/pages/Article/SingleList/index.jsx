@@ -373,7 +373,7 @@ class SingleList extends SinglePage {
     };
   };
 
-  renderSimpleFormInitialValues = () => {
+  fillSearchCardInitialValues = () => {
     const values = {};
 
     values[fieldData.renderType.name] = unlimitedWithStringFlag.key;

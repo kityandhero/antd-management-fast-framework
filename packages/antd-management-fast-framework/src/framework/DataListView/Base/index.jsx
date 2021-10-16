@@ -61,8 +61,8 @@ import {
   buildDropdownEllipsis,
   buildButtonGroup,
   pageHeaderTitle,
-  pageHeaderTagWrapper,
-  pageHeaderContent,
+  buildPageHeaderTagWrapper,
+  buildPageHeaderContent,
   pageHeaderExtraContent,
   buildTagList,
 } from '../../../customComponents/FunctionComponent';
@@ -926,7 +926,7 @@ class ListBase extends AuthorizationWrapper {
     return this.buildSearchFormContent(config);
   };
 
-  renderSimpleFormInitialValues = () => {
+  fillSearchCardInitialValues = () => {
     return {};
   };
 
@@ -940,7 +940,7 @@ class ListBase extends AuthorizationWrapper {
     return (
       <Form
         ref={this.formRef}
-        initialValues={this.renderSimpleFormInitialValues()}
+        initialValues={this.fillSearchCardInitialValues()}
         onSubmit={this.handleSearch}
         layout="horizontal"
       >
@@ -1299,13 +1299,14 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
-  pageHeaderActionExtraGroup = () => null;
+  establishPageHeaderActionExtraGroupConfig = () => null;
 
-  pageHeaderActionExtraEllipsis = () => null;
+  establishPageHeaderActionExtraEllipsisConfig = () => null;
 
-  pageHeaderAction = () => {
-    const buttonGroupData = this.pageHeaderActionExtraGroup();
-    const ellipsisActionData = this.pageHeaderActionExtraEllipsis();
+  buildPageHeaderAction = () => {
+    const buttonGroupData = this.establishPageHeaderActionExtraGroupConfig();
+    const ellipsisActionData =
+      this.establishPageHeaderActionExtraEllipsisConfig();
 
     return (
       <>
@@ -1326,73 +1327,77 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  pageHeaderTagList = () => [];
+  establishPageHeaderTagCollectionConfig = () => [];
 
-  pageHeaderTag = () => {
-    return buildTagList({ list: this.pageHeaderTagList() });
+  establishPageHeaderTagConfig = () => {
+    return buildTagList({
+      list: this.establishPageHeaderTagCollectionConfig(),
+    });
   };
 
-  pageHeaderAvatar = () => {
+  establishPageHeaderAvatarConfig = () => {
     return null;
   };
 
-  pageHeaderTitlePrefix = () => {
+  establishPageHeaderTitlePrefix = () => {
     return '';
   };
 
-  pageHeaderSubTitle = () => null;
+  buildPageHeaderSubTitle = () => null;
 
-  pageHeaderContentGridData = () => {
+  establishPageHeaderContentGridCollectionConfig = () => {
     return [];
   };
 
-  pageHeaderContentGridConfig = () => {
+  establishPageHeaderContentGridConfig = () => {
     return {
       type: pageHeaderRenderType.descriptionGrid,
-      list: this.pageHeaderContentGridData(),
+      list: this.establishPageHeaderContentGridCollectionConfig(),
     };
   };
 
-  pageHeaderContentParagraphData = () => {
+  establishPageHeaderContentParagraphCollectionConfig = () => {
     return [];
   };
 
-  pageHeaderContentParagraphConfig = () => {
+  establishPageHeaderContentParagraphConfig = () => {
     return {
       type: pageHeaderRenderType.paragraph,
-      list: this.pageHeaderContentParagraphData(),
+      list: this.establishPageHeaderContentParagraphCollectionConfig(),
     };
   };
 
-  pageHeaderContentActionData = () => {
+  establishPageHeaderContentActionCollectionConfig = () => {
     return [];
   };
 
-  pageHeaderContentActionConfig = () => {
+  establishPageHeaderContentActionConfig = () => {
     return {
       type: pageHeaderRenderType.paragraph,
-      list: this.pageHeaderContentActionData(),
+      list: this.establishPageHeaderContentActionCollectionConfig(),
     };
   };
 
-  pageHeaderContentData = () => {
+  establishPageHeaderContentConfig = () => {
     return {
       list: [
-        this.pageHeaderContentGridConfig(),
-        this.pageHeaderContentParagraphConfig(),
-        this.pageHeaderContentActionConfig(),
+        this.establishPageHeaderContentGridConfig(),
+        this.establishPageHeaderContentParagraphConfig(),
+        this.establishPageHeaderContentActionConfig(),
       ],
     };
   };
 
   renderPageHeaderContent = () => {
-    return pageHeaderContent(this.pageHeaderContentData() || {});
+    return buildPageHeaderContent(
+      this.establishPageHeaderContentConfig() || {},
+    );
   };
 
-  pageHeaderExtraContentData = () => null;
+  establishPageHeaderExtraContentConfig = () => null;
 
   renderPageHeaderExtraContent = () => {
-    return pageHeaderExtraContent(this.pageHeaderExtraContentData());
+    return pageHeaderExtraContent(this.establishPageHeaderExtraContentConfig());
   };
 
   renderCardExtraAction = () => {
@@ -1762,7 +1767,7 @@ class ListBase extends AuthorizationWrapper {
 
     const avatarProps = showPageHeaderAvatar
       ? decorateAvatar(
-          this.pageHeaderAvatar(),
+          this.establishPageHeaderAvatarConfig(),
           defaultAvatarIcon,
           showPageHeaderAvatar,
           dataLoading,
@@ -1780,11 +1785,11 @@ class ListBase extends AuthorizationWrapper {
           avatar={avatarProps}
           title={pageHeaderTitle(
             this.getPageName(),
-            this.pageHeaderTitlePrefix(),
+            this.establishPageHeaderTitlePrefix(),
           )}
-          subTitle={this.pageHeaderSubTitle()}
-          tags={pageHeaderTagWrapper(this.pageHeaderTag())}
-          extra={this.pageHeaderAction()}
+          subTitle={this.buildPageHeaderSubTitle()}
+          tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
+          extra={this.buildPageHeaderAction()}
           tabActiveKey={this.getTabActiveKey()}
           content={this.renderPageHeaderContent()}
           extraContent={this.renderPageHeaderExtraContent()}

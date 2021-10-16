@@ -156,11 +156,11 @@ class Edit extends DataTabContainer {
     });
   };
 
-  pageHeaderTitlePrefix = () => {
+  establishPageHeaderTitlePrefix = () => {
     return '文章';
   };
 
-  pageHeaderAvatar = () => {
+  establishPageHeaderAvatarConfig = () => {
     const { metaData } = this.state;
 
     const image = getValueByKey({
@@ -175,7 +175,7 @@ class Edit extends DataTabContainer {
     return null;
   };
 
-  buildPageHeaderActionExtraGroup = () => {
+  establishPageHeaderActionExtraGroupConfig = () => {
     const { metaData, dataLoading, processing } = this.state;
 
     if (metaData == null) {
@@ -240,7 +240,7 @@ class Edit extends DataTabContainer {
     };
   };
 
-  buildPageHeaderActionExtraEllipsis = () => {
+  establishPageHeaderActionExtraEllipsisConfig = () => {
     const { metaData, dataLoading, processing } = this.state;
 
     if ((metaData || null) == null) {
@@ -352,7 +352,7 @@ class Edit extends DataTabContainer {
     };
   };
 
-  pageHeaderExtraContentData = () => {
+  establishPageHeaderExtraContentConfig = () => {
     const { metaData } = this.state;
 
     return {
@@ -374,7 +374,7 @@ class Edit extends DataTabContainer {
     };
   };
 
-  pageHeaderContentGridData = () => {
+  establishPageHeaderContentGridConfig = () => {
     const { metaData } = this.state;
 
     const list = [];

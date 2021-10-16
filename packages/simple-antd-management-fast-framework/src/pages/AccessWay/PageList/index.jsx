@@ -21,6 +21,7 @@ import {
   columnPlaceholder,
   unlimitedWithStringFlag,
   convertCollection,
+  listViewConfig,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
@@ -148,7 +149,7 @@ class PageList extends MultiPage {
     ];
   };
 
-  renderSimpleFormInitialValues = () => {
+  fillSearchCardInitialValues = () => {
     const values = {};
 
     values[fieldData.status.name] = unlimitedWithStringFlag.key;

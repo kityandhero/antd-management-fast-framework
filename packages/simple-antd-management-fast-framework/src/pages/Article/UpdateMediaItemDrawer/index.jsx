@@ -66,22 +66,22 @@ class Index extends BaseUpdateDrawer {
     if (metaData != null) {
       values[mediaItemData.title.name] = getValueByKey({
         data: metaData,
-        key: fieldData.title.name,
+        key: mediaItemData.title.name,
       });
 
       values[mediaItemData.sort.name] = getValueByKey({
         data: metaData,
-        key: fieldData.sort.name,
+        key: mediaItemData.sort.name,
       });
 
       values[mediaItemData.description.name] = getValueByKey({
         data: metaData,
-        key: fieldData.description.name,
+        key: mediaItemData.description.name,
       });
 
       values[mediaItemData.link.name] = getValueByKey({
         data: metaData,
-        key: fieldData.link.name,
+        key: mediaItemData.link.name,
       });
     }
 

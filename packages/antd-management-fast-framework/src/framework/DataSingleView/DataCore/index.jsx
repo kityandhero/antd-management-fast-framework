@@ -51,23 +51,15 @@ class DataCore extends BaseView {
 
   pageHeaderLogo = () => <Avatar shape="square" icon={<PlusOutlined />} />;
 
-  buildPageHeaderActionExtraGroup = () => {
+  establishPageHeaderActionExtraGroupConfig = () => {
     return null;
   };
 
-  pageHeaderActionExtraGroup = () => {
-    return this.buildPageHeaderActionExtraGroup();
-  };
-
-  buildPageHeaderActionExtraEllipsis = () => {
+  establishPageHeaderActionExtraEllipsisConfig = () => {
     return null;
   };
 
-  pageHeaderActionExtraEllipsis = () => {
-    return this.buildPageHeaderActionExtraEllipsis();
-  };
-
-  pageHeaderActionBack = () => {
+  buildPageHeaderActionBack = () => {
     const { backPath } = this.state;
 
     if (!this.enableActionBack) {
@@ -100,20 +92,22 @@ class DataCore extends BaseView {
   pageHeaderAction = () => {
     const { dataLoading, reloading, refreshing, showReloadButton } = this.state;
 
-    const buttonGroupData = this.pageHeaderActionExtraGroup();
-    const ellipsisActionData = this.pageHeaderActionExtraEllipsis();
+    const actionExtraGroupConfig =
+      this.establishPageHeaderActionExtraGroupConfig();
+    const actionExtraEllipsisConfig =
+      this.establishPageHeaderActionExtraEllipsisConfig();
 
     return (
       <Space>
-        {(buttonGroupData || null) != null
-          ? buildButtonGroup(buttonGroupData)
+        {(actionExtraGroupConfig || null) != null
+          ? buildButtonGroup(actionExtraGroupConfig)
           : null}
 
-        {(ellipsisActionData || null) != null
-          ? buildDropdownEllipsis(ellipsisActionData)
+        {(actionExtraEllipsisConfig || null) != null
+          ? buildDropdownEllipsis(actionExtraEllipsisConfig)
           : null}
 
-        {this.pageHeaderActionBack()}
+        {this.buildPageHeaderActionBack()}
 
         {showReloadButton ? (
           <Tooltip placement="top" title="刷新">
