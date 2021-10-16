@@ -315,7 +315,7 @@ class PageList extends MultiPage {
     this.goToPath(`/news/article/edit/load/${articleId}/key/basicInfo`);
   };
 
-  buildToolBarConfig = () => {
+  establishToolBarConfig = () => {
     const that = this;
 
     return {
@@ -410,7 +410,7 @@ class PageList extends MultiPage {
         {
           lg: 12,
           type: searchCardConfig.contentItemType.component,
-          component: this.renderSimpleFormRangePickerCore(dateRangeFieldName),
+          component: this.buildSearchCardRangePickerCore(dateRangeFieldName),
         },
         {
           lg: 6,
@@ -422,13 +422,13 @@ class PageList extends MultiPage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: this.renderSimpleFormButtonCore(),
+          component: this.buildSearchCardButtonCore(),
         },
       ],
     };
   };
 
-  buildDataContainerExtraActionConfigList = () => {
+  establishDataContainerExtraActionCollectionConfig = () => {
     const { listViewMode } = this.state;
 
     return [
@@ -740,7 +740,7 @@ class PageList extends MultiPage {
     },
   ];
 
-  buildHelpConfig = () => {
+  establishHelpConfig = () => {
     return {
       title: '操作提示',
       list: [

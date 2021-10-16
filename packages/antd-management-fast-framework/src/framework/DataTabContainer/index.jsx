@@ -20,7 +20,7 @@ import DataSingleView from '../DataSingleView/DataLoad';
 import styles from './index.less';
 
 class DataTabContainer extends DataSingleView {
-  needSetFormValueAfterLoad = false;
+  resetDataAfterLoad = false;
 
   tabList = [];
 
@@ -98,7 +98,7 @@ class DataTabContainer extends DataSingleView {
       .replace(/-/g, '/');
   };
 
-  fillFormInitialValuesAfterLoad = ({
+  fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -17,7 +17,7 @@ import DataCore from '../../DataSingleView/DataCore';
 class BaseAddForm extends DataCore {
   loadDataAfterMount = false;
 
-  needSetFormValueAfterLoad = false;
+  resetDataAfterLoad = false;
 
   formRef = React.createRef();
 
@@ -39,14 +39,14 @@ class BaseAddForm extends DataCore {
   }
 
   adjustWhenDidMount = () => {
-    this.fillForm();
+    this.fillData();
   };
 
   getTargetForm = () => {
     return this.formRef.current;
   };
 
-  fillForm = () => {
+  fillData = () => {
     const initialValues = this.buildInitialValues();
 
     if (initialValues == null) {
@@ -179,10 +179,10 @@ class BaseAddForm extends DataCore {
   pageHeaderLogo = () => <Avatar shape="square" icon={<PlusOutlined />} />;
 
   buildInitialValues = () => {
-    return this.fillFormDefaultInitialValues();
+    return this.fillDefaultInitialValues();
   };
 
-  fillFormDefaultInitialValues = () => {
+  fillDefaultInitialValues = () => {
     const initialValues = {};
 
     initialValues[formNameCollection.createTime.name] = formatDatetime(
@@ -197,7 +197,7 @@ class BaseAddForm extends DataCore {
     const initialValues = this.buildInitialValues();
 
     const formLayout = this.buildFormLayout();
-    const otherFormProps = this.buildOtherFormProps();
+    const otherFormProps = this.buildFormAdditionalConfig();
 
     return (
       <Form

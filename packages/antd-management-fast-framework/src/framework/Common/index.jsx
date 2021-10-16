@@ -1049,7 +1049,7 @@ class Common extends Core {
     });
   };
 
-  buildOtherFormProps = () => {
+  buildFormAdditionalConfig = () => {
     return {};
   };
 
@@ -1135,12 +1135,12 @@ class Common extends Core {
     throw new Error(text);
   };
 
-  buildToolBarConfig = () => {
+  establishToolBarConfig = () => {
     return null;
   };
 
   buildToolBar = () => {
-    const config = this.buildToolBarConfig();
+    const config = this.establishToolBarConfig();
 
     if ((config || null) == null) {
       return null;
@@ -1211,16 +1211,16 @@ class Common extends Core {
     return toolBar;
   };
 
-  buildWrapperTypeConfig = () => {
+  establishWrapperTypeConfig = () => {
     return { mode: contentConfig.wrapperType.page };
   };
 
-  buildHelpConfig = () => {
+  establishHelpConfig = () => {
     return null;
   };
 
   buildHelp = () => {
-    const wrapperTypeConfig = this.buildWrapperTypeConfig() || {
+    const wrapperTypeConfig = this.establishWrapperTypeConfig() || {
       mode: contentConfig.wrapperType.page,
     };
 
@@ -1230,7 +1230,7 @@ class Common extends Core {
     };
     const { mode } = configData;
 
-    const config = this.buildHelpConfig();
+    const config = this.establishHelpConfig();
 
     if ((config || null) == null) {
       return null;
@@ -1270,15 +1270,6 @@ class Common extends Core {
   };
 
   buildHelpWrapper = () => {
-    // const formContentWrapperTypeConfig = this.buildWrapperTypeConfig() || {
-    //   mode: contentConfig.wrapperType.page,
-    // };
-
-    // const configData = {
-    //   ...{ mode: contentConfig.wrapperType.page },
-    //   ...(formContentWrapperTypeConfig || {}),
-    // };
-
     const help = this.buildHelp();
 
     if ((help || null) == null) {
@@ -1289,7 +1280,7 @@ class Common extends Core {
   };
 
   buildCardCollection = (config) => {
-    const formContentWrapperTypeConfig = this.buildWrapperTypeConfig() || {
+    const formContentWrapperTypeConfig = this.establishWrapperTypeConfig() || {
       mode: cardConfig.wrapperType.page,
     };
     const configData = {

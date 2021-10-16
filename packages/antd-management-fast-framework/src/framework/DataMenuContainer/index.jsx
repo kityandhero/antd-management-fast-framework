@@ -19,7 +19,7 @@ const { Item } = Menu;
 class DataMenuContainer extends AuthorizationWrapper {
   loadDataAfterMount = false;
 
-  needSetFormValueAfterLoad = false;
+  resetDataAfterLoad = false;
 
   menuList = [];
 

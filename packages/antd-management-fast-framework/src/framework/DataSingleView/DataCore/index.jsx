@@ -169,7 +169,7 @@ class DataCore extends BaseView {
       metaOriginalData,
     });
 
-    const otherFormProps = this.buildOtherFormProps();
+    const otherFormProps = this.buildFormAdditionalConfig();
 
     return (
       <Form

@@ -84,7 +84,7 @@ class BasicInfo extends TabPageBase {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  fillFormInitialValuesAfterLoad = (metaData, metaListData, metaExtra, metaOriginalData) => null;
+  fillInitialValuesAfterLoad = (metaData, metaListData, metaExtra, metaOriginalData) => null;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
@@ -531,7 +531,7 @@ class BasicInfo extends TabPageBase {
     );
   };
 
-  buildToolBarConfig = () => {
+  establishToolBarConfig = () => {
     const { dataLoading, loadSuccess, mediaItemCount } = this.state;
 
     return {
@@ -586,7 +586,7 @@ class BasicInfo extends TabPageBase {
     };
   };
 
-  buildHelpConfig = () => {
+  establishHelpConfig = () => {
     return {
       title: '操作提示',
       list: [

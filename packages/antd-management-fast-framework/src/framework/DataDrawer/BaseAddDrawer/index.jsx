@@ -21,7 +21,7 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   }
 
   adjustWhenDidMount = () => {
-    this.fillForm({});
+    this.fillData({});
   };
 
   buildBottomBarInnerDefaultConfigList = () => {

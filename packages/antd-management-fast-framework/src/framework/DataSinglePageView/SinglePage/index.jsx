@@ -23,12 +23,12 @@ class SinglePage extends Base {
     };
   }
 
-  handleFormReset = () => {
-    const form = this.getSearchForm();
+  handleSearchReset = () => {
+    const form = this.getSearchCard();
 
     form.resetFields();
 
-    this.handleFormOtherReset();
+    this.handleAdditionalSearchReset();
 
     this.setState(
       {
@@ -103,7 +103,7 @@ class SinglePage extends Base {
       return;
     }
 
-    const form = this.getSearchForm();
+    const form = this.getSearchCard();
 
     const { validateFields } = form;
 

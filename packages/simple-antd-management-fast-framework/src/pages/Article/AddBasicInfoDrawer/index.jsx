@@ -138,7 +138,7 @@ class Index extends BaseAddDrawer {
     };
   };
 
-  buildHelpConfig = () => {
+  establishHelpConfig = () => {
     return {
       title: '操作提示',
       list: [

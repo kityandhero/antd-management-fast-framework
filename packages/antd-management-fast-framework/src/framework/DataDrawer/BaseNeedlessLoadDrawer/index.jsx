@@ -4,7 +4,7 @@ import { formNameCollection, datetimeFormat } from '../../../utils/constants';
 import Base from '../Base';
 
 class BaseNeedlessLoadDrawer extends Base {
-  needSetFormValueAfterLoad = false;
+  resetDataAfterLoad = false;
 
   constructor(props) {
     super(props);
@@ -19,10 +19,10 @@ class BaseNeedlessLoadDrawer extends Base {
   }
 
   buildInitialValues = () => {
-    return this.fillFormDefaultInitialValues();
+    return this.fillDefaultInitialValues();
   };
 
-  fillFormDefaultInitialValues = () => {
+  fillDefaultInitialValues = () => {
     const initialValues = {};
 
     initialValues[formNameCollection.createTime.name] = formatDatetime(

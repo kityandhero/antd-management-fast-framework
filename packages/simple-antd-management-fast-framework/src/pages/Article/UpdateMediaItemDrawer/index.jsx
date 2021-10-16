@@ -51,7 +51,7 @@ class Index extends BaseUpdateDrawer {
     return data;
   };
 
-  fillFormInitialValuesAfterLoad = ({
+  fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

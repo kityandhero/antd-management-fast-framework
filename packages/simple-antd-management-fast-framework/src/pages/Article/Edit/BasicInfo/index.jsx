@@ -81,7 +81,7 @@ class BasicInfo extends TabPageBase {
     this.setState({ image });
   };
 
-  buildToolBarConfig = () => {
+  establishToolBarConfig = () => {
     return {
       stick: false,
       title: '工具栏',
@@ -145,7 +145,7 @@ class BasicInfo extends TabPageBase {
     };
   };
 
-  fillFormInitialValuesAfterLoad = ({
+  fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -474,7 +474,7 @@ class BasicInfo extends TabPageBase {
     };
   };
 
-  buildHelpConfig = () => {
+  establishHelpConfig = () => {
     return {
       title: '操作提示',
       list: [

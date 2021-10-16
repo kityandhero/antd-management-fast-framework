@@ -35,20 +35,20 @@ class MultiPage extends Base {
     };
   }
 
-  handleFormReset = (checkWorkDoing = true) => {
+  handleSearchReset = (checkWorkDoing = true) => {
     if (checkWorkDoing) {
       if (this.checkWorkDoing()) {
         return;
       }
     }
 
-    const form = this.getSearchForm();
+    const form = this.getSearchCard();
 
     const { pageSize } = this.state;
 
     form.resetFields();
 
-    this.handleFormOtherReset();
+    this.handleAdditionalSearchReset();
 
     this.setState(
       {
@@ -151,7 +151,7 @@ class MultiPage extends Base {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterGetFirstRequestResult = (submitData, responseData) => {
-    const form = this.getSearchForm();
+    const form = this.getSearchCard();
     const { urlParams } = this.state;
 
     let pageKey = 'no';
@@ -200,7 +200,7 @@ class MultiPage extends Base {
       return;
     }
 
-    const form = this.getSearchForm();
+    const form = this.getSearchCard();
 
     const { validateFields } = form;
     const { pageSize } = this.state;

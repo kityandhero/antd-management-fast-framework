@@ -87,7 +87,7 @@ class ChangeSortModal extends BaseUpdateModal {
     });
   };
 
-  buildOtherFormProps = () => {
+  buildFormAdditionalConfig = () => {
     return {
       labelCol: {
         span: 3,
@@ -98,7 +98,7 @@ class ChangeSortModal extends BaseUpdateModal {
     };
   };
 
-  fillFormInitialValuesAfterLoad = ({
+  fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

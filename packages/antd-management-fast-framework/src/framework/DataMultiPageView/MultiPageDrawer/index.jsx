@@ -32,7 +32,7 @@ import styles from './index.less';
 class MultiPageDrawer extends MultiPage {
   loadDataAfterMount = false;
 
-  needSetFormValueAfterLoad = false;
+  resetDataAfterLoad = false;
 
   reloadWhenShow = true;
 
@@ -83,7 +83,7 @@ class MultiPageDrawer extends MultiPage {
       const that = this;
 
       setTimeout(() => {
-        that.handleFormReset(false);
+        that.handleSearchReset(false);
       }, 700);
     } else if (this.reloadWhenShow) {
       this.setState({ reloadAnimalShow: true });
@@ -134,7 +134,7 @@ class MultiPageDrawer extends MultiPage {
     }
   };
 
-  buildWrapperTypeConfig = () => {
+  establishWrapperTypeConfig = () => {
     return { mode: contentConfig.wrapperType.drawer };
   };
 

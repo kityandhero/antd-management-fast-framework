@@ -6,7 +6,7 @@ import Base from '../Base';
 class BaseAddModal extends Base {
   reloadWhenShow = false;
 
-  needSetFormValueAfterLoad = false;
+  resetDataAfterLoad = false;
 
   constructor(props) {
     super(props);
@@ -65,10 +65,10 @@ class BaseAddModal extends Base {
   };
 
   buildInitialValues = () => {
-    return this.fillFormDefaultInitialValues();
+    return this.fillDefaultInitialValues();
   };
 
-  fillFormDefaultInitialValues = () => {
+  fillDefaultInitialValues = () => {
     const initialValues = {};
 
     initialValues[formNameCollection.createTime.name] = formatDatetime(

@@ -59,7 +59,7 @@ class DataLoad extends DataCore {
     metaExtra,
     metaOriginalData,
   }) => {
-    this.fillForm({
+    this.fillData({
       metaData,
       metaListData,
       metaExtra,
@@ -85,7 +85,7 @@ class DataLoad extends DataCore {
     metaOriginalData = null,
   }) => {};
 
-  fillForm = ({
+  fillData = ({
     metaData = null,
     metaListData = [],
     metaExtra = null,

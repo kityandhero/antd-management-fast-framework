@@ -27,7 +27,7 @@ import styles from './index.less';
 class SinglePageDrawer extends SinglePage {
   loadDataAfterMount = false;
 
-  needSetFormValueAfterLoad = false;
+  resetDataAfterLoad = false;
 
   reloadWhenShow = true;
 
@@ -105,7 +105,7 @@ class SinglePageDrawer extends SinglePage {
     this.onClose();
   };
 
-  buildWrapperTypeConfig = () => {
+  establishWrapperTypeConfig = () => {
     return { mode: contentConfig.wrapperType.drawer };
   };
 

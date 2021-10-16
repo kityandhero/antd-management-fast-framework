@@ -162,7 +162,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   setSearchFormFieldsValue = (v) => {
-    const form = this.getSearchForm();
+    const form = this.getSearchCard();
 
     if (form != null) {
       form.setFieldsValue(v);
@@ -572,19 +572,19 @@ class ListBase extends AuthorizationWrapper {
     return columns;
   };
 
-  handleFormReset = () => {
+  handleSearchReset = () => {
     // 需要继承重载
   };
 
   // 其他项重置
-  handleFormOtherReset = () => {};
+  handleAdditionalSearchReset = () => {};
 
   handleSearch = () => {
     if (this.checkWorkDoing()) {
       return;
     }
 
-    const form = this.getSearchForm();
+    const form = this.getSearchCard();
 
     const { validateFields } = form;
 
@@ -631,11 +631,11 @@ class ListBase extends AuthorizationWrapper {
       });
   };
 
-  getSearchForm = () => {
+  getSearchCard = () => {
     return this.formRef.current;
   };
 
-  buildSearchFormContent = (config) => {
+  buildSearchCardContent = (config) => {
     if ((config || null) == null) {
       return null;
     }
@@ -658,7 +658,7 @@ class ListBase extends AuthorizationWrapper {
       <>
         <Row gutter={24}>
           {listData.map((item, index) => {
-            return this.buildSearchFormContentItem(item, index);
+            return this.buildSearchCardContentItem(item, index);
           })}
         </Row>
 
@@ -667,7 +667,7 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  buildSearchFormContentItem = (contentItem, contentIndex) => {
+  buildSearchCardContentItem = (contentItem, contentIndex) => {
     const contentItemKey = `searchFormContent_key_${contentIndex}`;
 
     const {
@@ -752,7 +752,7 @@ class ListBase extends AuthorizationWrapper {
           : null}
 
         {type === searchCardConfig.contentItemType.customRangePicker
-          ? this.renderSimpleFormRangePickerCore(
+          ? this.buildSearchCardRangePickerCore(
               contentItem.dateRangeFieldName,
               {
                 ...{},
@@ -813,13 +813,13 @@ class ListBase extends AuthorizationWrapper {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: this.renderSimpleFormButtonCore(),
+          component: this.buildSearchCardButtonCore(),
         },
       ],
     };
   };
 
-  renderSimpleFormButtonCore = () => {
+  buildSearchCardButtonCore = () => {
     const { dataLoading, reloading, searching } = this.state;
 
     return (
@@ -838,7 +838,7 @@ class ListBase extends AuthorizationWrapper {
           disabled={dataLoading || reloading || searching}
           style={{ marginLeft: 8 }}
           onClick={() => {
-            this.handleFormReset();
+            this.handleSearchReset();
           }}
         >
           {reloading ? <LoadingOutlined /> : <ReloadOutlined />}
@@ -848,15 +848,15 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  renderSimpleFormButton = (ColMd = 6) => {
+  buildSearchCardButton = (ColMd = 6) => {
     return (
       <Col md={ColMd} sm={24}>
-        {this.renderSimpleFormButtonCore()}
+        {this.buildSearchCardButtonCore()}
       </Col>
     );
   };
 
-  renderSimpleFormRangePickerCore = (
+  buildSearchCardRangePickerCore = (
     dateRangeFieldName,
     rangePickerProps = null,
   ) => {
@@ -901,14 +901,14 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  renderSimpleFormRangePicker = (
+  buildSearchCardRangePicker = (
     dateRangeFieldName,
     colLg = 8,
     rangePickerProps = null,
   ) => {
     return (
       <Col lg={colLg} md={12} sm={24} xs={24}>
-        {this.renderSimpleFormRangePickerCore(
+        {this.buildSearchCardRangePickerCore(
           dateRangeFieldName,
           rangePickerProps,
         )}
@@ -916,22 +916,22 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  renderSimpleFormRow = () => {
+  buildSearchCardRow = () => {
     const config = this.establishSearchCardConfig();
 
     if ((config || null) == null) {
       return null;
     }
 
-    return this.buildSearchFormContent(config);
+    return this.buildSearchCardContent(config);
   };
 
   fillSearchCardInitialValues = () => {
     return {};
   };
 
-  renderSimpleForm = () => {
-    const el = this.renderSimpleFormRow();
+  buildSearchCard = () => {
+    const el = this.buildSearchCardRow();
 
     if ((el || null) == null) {
       return null;
@@ -949,7 +949,7 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  renderForm = () => this.renderSimpleForm();
+  renderForm = () => this.buildSearchCard();
 
   // eslint-disable-next-line arrow-body-style
   buildTableOtherConfig = () => {
@@ -1078,12 +1078,12 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  buildDataContainerExtraActionConfigList = () => {
+  establishDataContainerExtraActionCollectionConfig = () => {
     return [];
   };
 
-  establishDataContainerExtraActionList = () => {
-    const configList = this.buildDataContainerExtraActionConfigList();
+  buildDataContainerExtraActionCollection = () => {
+    const configList = this.establishDataContainerExtraActionCollectionConfig();
 
     if (!isArray(configList)) {
       return [];
@@ -1171,7 +1171,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderExtraActionView = () => {
-    const actions = this.establishDataContainerExtraActionList();
+    const actions = this.buildDataContainerExtraActionCollection();
 
     if (isArray(actions) && actions.length > 0) {
       return (

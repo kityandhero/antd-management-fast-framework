@@ -64,7 +64,7 @@ class BaseWindow extends Base {
     metaExtra,
     metaOriginalData,
   }) => {
-    this.fillForm({
+    this.fillData({
       metaData,
       metaListData,
       metaExtra,
@@ -90,7 +90,7 @@ class BaseWindow extends Base {
     metaOriginalData = null,
   }) => {};
 
-  fillForm = ({
+  fillData = ({
     metaData = null,
     metaListData = [],
     metaExtra = null,

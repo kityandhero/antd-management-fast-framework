@@ -66,7 +66,7 @@ class BasicInfo extends BaseUpdateFormContent {
     this.setState({ avatar: image });
   };
 
-  fillFormInitialValuesAfterLoad = ({
+  fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

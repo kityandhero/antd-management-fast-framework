@@ -12,7 +12,7 @@ import MobileContainor from 'antd-management-fast-framework/es/customComponents/
 import Base from 'antd-management-fast-framework/es/framework/DataDrawer/Base';
 
 class MediaItemPreviewDrawer extends Base {
-  needSetFormValueAfterLoad = false;
+  resetDataAfterLoad = false;
 
   constructor(props) {
     super(props);

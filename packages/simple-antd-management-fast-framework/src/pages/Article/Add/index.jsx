@@ -91,7 +91,7 @@ class Add extends BaseAddForm {
     });
   };
 
-  buildToolBarConfig = () => {
+  establishToolBarConfig = () => {
     return {
       stick: false,
       title: '工具栏',
@@ -155,7 +155,7 @@ class Add extends BaseAddForm {
     };
   };
 
-  buildHelpConfig = () => {
+  establishHelpConfig = () => {
     return {
       title: '操作提示',
       list: [
@@ -169,7 +169,7 @@ class Add extends BaseAddForm {
     };
   };
 
-  fillFormDefaultInitialValues = () => {
+  fillDefaultInitialValues = () => {
     const v = {};
 
     v[fieldData.title.name] = '标题1';
@@ -323,7 +323,7 @@ class Add extends BaseAddForm {
     };
   };
 
-  buildHelpConfig = () => {
+  establishHelpConfig = () => {
     return {
       title: '操作提示',
       list: [

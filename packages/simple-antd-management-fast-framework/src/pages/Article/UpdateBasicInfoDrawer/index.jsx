@@ -47,7 +47,7 @@ class Index extends BaseUpdateDrawer {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  fillFormInitialValuesAfterLoad = ({
+  fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -209,7 +209,7 @@ class Index extends BaseUpdateDrawer {
     };
   };
 
-  buildHelpConfig = () => {
+  establishHelpConfig = () => {
     return {
       title: '操作提示',
       list: [

@@ -13,7 +13,7 @@ import { fieldData } from '../../Common/data';
 class Password extends BaseUpdateFormContent {
   loadDataAfterMount = false;
 
-  needSetFormValueAfterLoad = false;
+  resetDataAfterLoad = false;
 
   constructor(props) {
     super(props);
@@ -67,7 +67,7 @@ class Password extends BaseUpdateFormContent {
     return 'horizontal';
   };
 
-  buildOtherFormProps = () => {
+  buildFormAdditionalConfig = () => {
     return {
       labelCol: {
         span: 4,
@@ -78,7 +78,7 @@ class Password extends BaseUpdateFormContent {
     };
   };
 
-  fillFormInitialValuesAfterLoad = ({
+  fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

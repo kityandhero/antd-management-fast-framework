@@ -9,7 +9,7 @@ import {
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {
-  needSetFormValueAfterLoad = true;
+  resetDataAfterLoad = true;
 
   supplementLoadRequestParams = (o) => o;
 
@@ -19,8 +19,8 @@ class Base extends AuthorizationWrapper {
     metaExtra = null,
     metaOriginalData = null,
   }) => {
-    if (this.needSetFormValueAfterLoad || false) {
-      return this.fillFormInitialValuesAfterLoad({
+    if (this.resetDataAfterLoad || false) {
+      return this.fillInitialValuesAfterLoad({
         metaData,
         metaListData,
         metaExtra,
@@ -31,7 +31,7 @@ class Base extends AuthorizationWrapper {
     return {};
   };
 
-  fillFormInitialValuesAfterLoad = ({
+  fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -42,7 +42,7 @@ class Base extends AuthorizationWrapper {
     metaOriginalData = null,
   }) => {
     const text =
-      "if property “needSetFormValueAfterLoad” is true, fillFormInitialValuesAfterLoad need overload to fill from,if you don't want to do this,need set “needSetFormValueAfterLoad” to false 。";
+      "if property “resetDataAfterLoad” is true, fillInitialValuesAfterLoad need overload to fill from,if you don't want to do this,need set “resetDataAfterLoad” to false 。";
 
     showRuntimeError({
       message: text,

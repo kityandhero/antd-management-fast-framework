@@ -89,7 +89,7 @@ class Base extends BaseWindow {
       metaOriginalData,
     });
 
-    const otherFormProps = this.buildOtherFormProps();
+    const otherFormProps = this.buildFormAdditionalConfig();
 
     return (
       <Form
@@ -108,7 +108,7 @@ class Base extends BaseWindow {
     return null;
   };
 
-  buildWrapperTypeConfig = () => {
+  establishWrapperTypeConfig = () => {
     return { mode: cardConfig.wrapperType.drawer };
   };
 

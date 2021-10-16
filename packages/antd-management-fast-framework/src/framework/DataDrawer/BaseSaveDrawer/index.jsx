@@ -17,7 +17,7 @@ class BaseSaveDrawer extends Base {
   }
 
   adjustWhenDidMount = () => {
-    this.fillForm({});
+    this.fillData({});
   };
 
   buildBottomBarInnerDefaultConfigList = () => {

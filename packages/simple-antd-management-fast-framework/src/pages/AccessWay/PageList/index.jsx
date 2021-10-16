@@ -117,7 +117,7 @@ class PageList extends MultiPage {
     this.goToPath(`/permission/accessWay/edit/load/${accessWayId}/key/basicInfo`);
   };
 
-  buildDataContainerExtraActionConfigList = () => {
+  establishDataContainerExtraActionCollectionConfig = () => {
     return [
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.button,
@@ -183,7 +183,7 @@ class PageList extends MultiPage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: this.renderSimpleFormButtonCore(),
+          component: this.buildSearchCardButtonCore(),
         },
       ],
     };

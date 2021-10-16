@@ -309,7 +309,7 @@ class SingleList extends SinglePage {
     this.goToPath(`/news/article/edit/load/${articleId}/key/basicInfo`);
   };
 
-  buildToolBarConfig = () => {
+  establishToolBarConfig = () => {
     return {
       stick: false,
       title: '工具栏',
@@ -402,7 +402,7 @@ class SingleList extends SinglePage {
         {
           lg: 12,
           type: searchCardConfig.contentItemType.component,
-          component: this.renderSimpleFormRangePickerCore(dateRangeFieldName),
+          component: this.buildSearchCardRangePickerCore(dateRangeFieldName),
         },
         {
           lg: 6,
@@ -414,13 +414,13 @@ class SingleList extends SinglePage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: this.renderSimpleFormButtonCore(),
+          component: this.buildSearchCardButtonCore(),
         },
       ],
     };
   };
 
-  buildDataContainerExtraActionConfigList = () => {
+  establishDataContainerExtraActionCollectionConfig = () => {
     const { listViewMode } = this.state;
 
     return [
@@ -579,7 +579,7 @@ class SingleList extends SinglePage {
     };
   };
 
-  buildHelpConfig = () => {
+  establishHelpConfig = () => {
     return {
       title: '操作提示',
       list: [
