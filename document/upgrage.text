@@ -2,18 +2,19 @@ formContentConfig -> cardConfig
 cardType -> renderType
 cardExtraBuildType -> extraBuildType
 
-resetValueAfterLoad - > resetDataAfterLoad
+needSetFormValueAfterLoad - > resetDataAfterLoad
 
 # function
 searchFormContentConfig -> establishSearchCardConfig 
 renderSimpleFormInitialValues -> fillSearchCardInitialValues
 formContentConfigData -> establishCardCollectionConfig
 establishPageHeaderActionExtraEllipsisConfig -> establishPageHeaderActionExtraEllipsisConfig
-establishPageHeaderExtraContentConfig -> establishPageHeaderExtraContentConfig
-establishPageHeaderContentGridConfig -> establishPageHeaderContentGridConfig
-establishPageHeaderActionExtraGroupConfig -> establishPageHeaderActionExtraGroupConfig
+pageHeaderExtraContentData -> establishPageHeaderExtraContentConfig
+pageHeaderContentGridData -> establishPageHeaderContentGridConfig
+buildPageHeaderActionExtraGroup -> establishPageHeaderActionExtraGroupConfig
 pageHeaderAvatar -> establishPageHeaderAvatarConfig
-establishPageHeaderTitlePrefix -> establishPageHeaderTitlePrefix
+pageHeaderTitlePrefix -> establishPageHeaderTitlePrefix
+buildExtraButtonList -> establishDataContainerExtraActionCollectionConfig
 
 renderSimpleFormButtonCore -> buildSearchCardButtonCore
 renderSimpleFormRangePickerCore -> buildSearchCardRangePickerCore
@@ -22,7 +23,7 @@ establishHelpConfig -> establishHelpConfig
 buildOtherFormProps -> buildFormAdditionalConfig
 
 fillFormInitialValuesAfterLoad -> fillInitialValuesAfterLoad
-fillDefaultInitialValues -> fillDefaultInitialValues
+fillFormDefaultInitialValues -> fillDefaultInitialValues
 fillForm -> fillData
 handleFormOtherReset -> handleAdditionalSearchReset
 
@@ -40,7 +41,7 @@ searchFormContentConfig. -> searchCardConfig.
 searchFormContentConfig -> searchCardConfig
 
 ===============================
-buildExtraButtonList -> establishDataContainerExtraActionCollectionConfig
+
 ===============================
 listViewModeCollection -> listViewConfig.viewMode
 tableSizeConfig -> listViewConfig.tableSize

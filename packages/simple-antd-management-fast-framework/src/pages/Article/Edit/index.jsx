@@ -175,6 +175,40 @@ class Edit extends DataTabContainer {
     return null;
   };
 
+  establishPageHeaderTagCollectionConfig = () => {
+    const { metaData } = this.state;
+
+    const list = [];
+
+    if ((metaData || null) == null) {
+      return list;
+    }
+
+    const status = getValueByKey({
+      data: metaData,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
+    const statusNote = getArticleStatusName({
+      global: this.getGlobal(),
+      value: status,
+    });
+
+    return [
+      {
+        color: 'red',
+        text: statusNote,
+        hidden: status !== statusCollection.offline,
+      },
+      {
+        color: 'green',
+        text: statusNote,
+        hidden: status !== statusCollection.online,
+      },
+    ];
+  };
+
   establishPageHeaderActionExtraGroupConfig = () => {
     const { metaData, dataLoading, processing } = this.state;
 
