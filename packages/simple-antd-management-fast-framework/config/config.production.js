@@ -14,6 +14,7 @@ const headScripts = [
 ];
 
 export default defineConfig({
-  // favicon: `${corsTargetDomain}/assists/image/favicon.ico`,
-  // headScripts,
+  favicon: `${corsTargetDomain}/assists/image/favicon.ico`,
+  headScripts,
+  esbuild: {},
 });
