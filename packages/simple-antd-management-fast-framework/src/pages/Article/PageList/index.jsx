@@ -48,8 +48,6 @@ import {
   buildDropdown,
   buildDropdownEllipsis,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import QueueBox from 'antd-management-fast-framework/lib/customComponents/AnimalBox/QueueBox';
-import RotateBox from 'antd-management-fast-framework/lib/customComponents/AnimalBox/RotateBox';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection, priceColor } from '@/customConfig/constants';

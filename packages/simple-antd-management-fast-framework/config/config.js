@@ -6,7 +6,6 @@ import { webpackPlugin5 } from './plugin.config';
 
 const { winPath } = utils;
 
-const corsTargetDomain = '';
 const { REACT_APP_ENV } = process.env;
 
 export default defineConfig({
@@ -29,12 +28,6 @@ export default defineConfig({
   dynamicImport: {
     loading: '@/components/PageLoading/index',
   },
-  favicon: `${corsTargetDomain}/assists/image/favicon.ico`,
-  headScripts: [
-    {
-      src: `${corsTargetDomain}/interactionConfig/init.js`,
-    },
-  ],
   targets: {
     ie: 11,
   },
@@ -45,7 +38,6 @@ export default defineConfig({
     '@border-radius-base': '4px',
   },
   define: {
-    corsTargetDomain,
     REACT_APP_ENV: REACT_APP_ENV || false,
   },
   ignoreMomentLocale: true,

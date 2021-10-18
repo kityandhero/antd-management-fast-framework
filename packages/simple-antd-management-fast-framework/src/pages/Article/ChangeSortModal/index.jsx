@@ -1,8 +1,8 @@
 import { connect } from 'umi';
 
-import { getValueByKey } from 'antd-management-fast-framework/lib/utils/tools';
-import { cardConfig, convertCollection } from 'antd-management-fast-framework/lib/utils/constants';
-import BaseUpdateModal from 'antd-management-fast-framework/lib/framework/DataModal/BaseUpdateModal';
+import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
+import { cardConfig, convertCollection } from 'antd-management-fast-framework/es/utils/constants';
+import BaseUpdateModal from 'antd-management-fast-framework/es/framework/DataModal/BaseUpdateModal';
 
 import { fieldData } from '../Common/data';
 

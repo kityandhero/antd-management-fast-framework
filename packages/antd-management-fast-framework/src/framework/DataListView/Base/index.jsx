@@ -968,7 +968,7 @@ class ListBase extends AuthorizationWrapper {
   establishTableExpandableConfig = () => {
     // 可以配置额外的Table属性
 
-    return {};
+    return null;
   };
 
   restoreColumnsOtherConfigArray = () => {
@@ -1592,45 +1592,58 @@ class ListBase extends AuthorizationWrapper {
       standardTableCustomOption.scroll = tableScroll;
     }
 
-    const {
-      checkNeedExpander,
-      rowExpandable,
-      expandPlaceholderIcon,
-      expanderStyle,
-      animalType: expandAnimalType,
-      expandIconRotate,
-      expandIcon: expandIconCustom,
-      expandedRowRender: expandedRowRenderCustom,
-    } = {
-      ...{
-        // 断整夜数据，如若整页数据不需要显示展开按钮，则整体不渲染，有助于优化页面显示效果，需要判断时配置此处检测函数
-        checkNeedExpander: (list) => {
-          return isArray(list) && list.length > 0;
-        },
-        rowExpandable: false,
-        expandPlaceholderIcon: (
-          <BorderOuterOutlined
-            style={{
-              color: '#ccc',
-            }}
-          />
-        ),
-        expanderStyle: null,
-        animalType: listViewConfig.expandAnimalType.none,
-        expandIconRotate: true,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        expandIcon: ({ expanded, onExpand, record }) => {
-          return <RightCircleOutlined />;
-        },
-        expandedRowRender: null,
-      },
-      ...(expandable || null),
-    };
+    let expandableConfig = null;
 
-    const checkNeedExpanderResult = checkNeedExpander(metaListData);
+    if ((expandable || null) != null) {
+      const {
+        checkNeedExpander,
+        rowExpandable,
+        expandPlaceholderIcon,
+        expanderStyle,
+        animalType: expandAnimalType,
+        expandIconRotate,
+        expandIcon: expandIconCustom,
+        expandedRowRender: expandedRowRenderCustom,
+      } = {
+        ...{
+          // 判断当前列表数据，如若列表所有数据都不需要显示展开按钮，则忽略其他配置
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          checkNeedExpander: null,
+          rowExpandable: false,
+          expandPlaceholderIcon: (
+            <BorderOuterOutlined
+              style={{
+                color: '#ccc',
+              }}
+            />
+          ),
+          expanderStyle: null,
+          animalType: listViewConfig.expandAnimalType.none,
+          expandIconRotate: true,
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          expandIcon: ({ expanded, onExpand, record }) => {
+            return <RightCircleOutlined />;
+          },
+          expandedRowRender: null,
+        },
+        ...(expandable || null),
+      };
 
-    const expandableConfig =
-      isBoolean(checkNeedExpanderResult) && checkNeedExpanderResult
+      let checkNeedExpanderResult = true;
+
+      if (isBoolean(checkNeedExpander)) {
+        checkNeedExpanderResult = checkNeedExpander;
+      }
+
+      if (isFunction(checkNeedExpander)) {
+        const r = checkNeedExpander(metaListData);
+
+        if (isBoolean(checkNeedExpander)) {
+          checkNeedExpanderResult = r;
+        }
+      }
+
+      expandableConfig = checkNeedExpanderResult
         ? {
             rowExpandable,
             expandIcon: ({
@@ -1657,26 +1670,33 @@ class ListBase extends AuthorizationWrapper {
 
               return expandIconCustom({ expanded, onExpand, record });
             },
-            expandedRowRender: (record, index, indent, expanded) => {
-              let child = expandedRowRenderCustom(
-                record,
-                index,
-                indent,
-                expanded,
-              );
+            expandedRowRender: isFunction(expandedRowRenderCustom)
+              ? (record, index, indent, expanded) => {
+                  let child = expandedRowRenderCustom(
+                    record,
+                    index,
+                    indent,
+                    expanded,
+                  );
 
-              if (expandAnimalType === listViewConfig.expandAnimalType.fade) {
-                child = <FadeBox show={expanded}>{child}</FadeBox>;
-              }
+                  if (
+                    expandAnimalType === listViewConfig.expandAnimalType.fade
+                  ) {
+                    child = <FadeBox show={expanded}>{child}</FadeBox>;
+                  }
 
-              if (expandAnimalType === listViewConfig.expandAnimalType.queue) {
-                child = <QueueBox show={expanded}>{child}</QueueBox>;
-              }
+                  if (
+                    expandAnimalType === listViewConfig.expandAnimalType.queue
+                  ) {
+                    child = <QueueBox show={expanded}>{child}</QueueBox>;
+                  }
 
-              return <div style={expanderStyle || {}}>{child}</div>;
-            },
+                  return <div style={expanderStyle || {}}>{child}</div>;
+                }
+              : null,
           }
         : {};
+    }
 
     standardTableCustomOption.expandable = expandableConfig;
 

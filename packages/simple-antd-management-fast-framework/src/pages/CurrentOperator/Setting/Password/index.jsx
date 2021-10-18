@@ -1,6 +1,6 @@
 import { connect } from 'umi';
 
-import { showError } from 'antd-management-fast-framework/lib/utils/tools';
+import { showError } from 'antd-management-fast-framework/es/utils/tools';
 import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
 
