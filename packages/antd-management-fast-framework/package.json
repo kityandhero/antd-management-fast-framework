@@ -131,8 +131,7 @@
     "pre-commit": "lint-staged"
   },
   "files": [
-    "es",
-    "lib"
+    "es"
   ],
   "filesOther": [
     "es",

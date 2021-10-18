@@ -5,7 +5,7 @@ export default [
       type: 'babel',
       //  importLibToEs: true
     },
-    cjs: { type: 'babel', lazy: true },
+    // cjs: { type: 'babel', lazy: true },
     extraBabelPlugins: [
       [
         'babel-plugin-import',
