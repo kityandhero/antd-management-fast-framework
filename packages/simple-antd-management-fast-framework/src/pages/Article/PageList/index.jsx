@@ -448,11 +448,6 @@ class PageList extends MultiPage {
           return o.mediaItemList.length > 0;
         });
 
-        console.log({
-          list,
-          result,
-        });
-
         return result;
       },
       rowExpandable: (record) => record.mediaItemList.length > 0,
