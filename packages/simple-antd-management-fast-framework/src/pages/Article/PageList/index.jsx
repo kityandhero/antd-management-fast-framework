@@ -443,15 +443,24 @@ class PageList extends MultiPage {
 
   establishTableExpandableConfig = () => {
     return {
+      checkNeedExpander: (list) => {
+        const result = (list || []).some((o) => {
+          return o.mediaItemList.length > 0;
+        });
+
+        console.log({
+          list,
+          result,
+        });
+
+        return result;
+      },
       rowExpandable: (record) => record.mediaItemList.length > 0,
+      expanderStyle: {
+        boxShadow: '0 2px 12px 2px #aaa',
+        borderRadius: '4px',
+      },
       animalType: listViewConfig.expandAnimalType.queue,
-      // expandPlaceholderIcon: (
-      //   <FieldNumberOutlined
-      //     style={{
-      //       color: '#ccc',
-      //     }}
-      //   />
-      // ),
       expandedRowRender: (record, index, indent, expanded) => {
         const columns = this.buildColumnList([
           {
@@ -482,8 +491,6 @@ class PageList extends MultiPage {
         );
 
         return child;
-
-        // return <QueueBox show={expanded}>{child}</QueueBox>;
       },
     };
   };

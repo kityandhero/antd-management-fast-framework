@@ -44,6 +44,7 @@ import {
   replaceTargetText,
   formatDatetime,
   formatMoney,
+  isBoolean,
 } from '../../../utils/tools';
 import {
   searchCardConfig,
@@ -1551,6 +1552,7 @@ class ListBase extends AuthorizationWrapper {
 
   renderTableView = () => {
     const {
+      metaListData,
       tableScroll,
       showSelect,
       selectedDataTableDataRows,
@@ -1591,14 +1593,20 @@ class ListBase extends AuthorizationWrapper {
     }
 
     const {
+      checkNeedExpander,
       rowExpandable,
       expandPlaceholderIcon,
+      expanderStyle,
       animalType: expandAnimalType,
       expandIconRotate,
       expandIcon: expandIconCustom,
       expandedRowRender: expandedRowRenderCustom,
     } = {
       ...{
+        // 断整夜数据，如若整页数据不需要显示展开按钮，则整体不渲染，有助于优化页面显示效果，需要判断时配置此处检测函数
+        checkNeedExpander: (list) => {
+          return isArray(list) && list.length > 0;
+        },
         rowExpandable: false,
         expandPlaceholderIcon: (
           <BorderOuterOutlined
@@ -1607,6 +1615,7 @@ class ListBase extends AuthorizationWrapper {
             }}
           />
         ),
+        expanderStyle: null,
         animalType: listViewConfig.expandAnimalType.none,
         expandIconRotate: true,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -1618,41 +1627,56 @@ class ListBase extends AuthorizationWrapper {
       ...(expandable || null),
     };
 
-    const expandableConfig = {
-      rowExpandable,
-      expandIcon: ({ expandable: canExpand, expanded, onExpand, record }) => {
-        if (!canExpand && (expandPlaceholderIcon || null) != null) {
-          return expandPlaceholderIcon || null;
-        }
+    const checkNeedExpanderResult = checkNeedExpander(metaListData);
 
-        if (expandIconRotate) {
-          return (
-            <RotateBox
-              rotate={expanded ? 90 : 0}
-              duration={200}
-              onClick={(e) => onExpand(record, e)}
-            >
-              {expandIconCustom({ expanded, onExpand, record })}
-            </RotateBox>
-          );
-        }
+    const expandableConfig =
+      isBoolean(checkNeedExpanderResult) && checkNeedExpanderResult
+        ? {
+            rowExpandable,
+            expandIcon: ({
+              expandable: canExpand,
+              expanded,
+              onExpand,
+              record,
+            }) => {
+              if (!canExpand && (expandPlaceholderIcon || null) != null) {
+                return expandPlaceholderIcon || null;
+              }
 
-        return expandIconCustom({ expanded, onExpand, record });
-      },
-      expandedRowRender: (record, index, indent, expanded) => {
-        const child = expandedRowRenderCustom(record, index, indent, expanded);
+              if (expandIconRotate) {
+                return (
+                  <RotateBox
+                    rotate={expanded ? 90 : 0}
+                    duration={200}
+                    onClick={(e) => onExpand(record, e)}
+                  >
+                    {expandIconCustom({ expanded, onExpand, record })}
+                  </RotateBox>
+                );
+              }
 
-        if (expandAnimalType === listViewConfig.expandAnimalType.fade) {
-          return <FadeBox show={expanded}>{child}</FadeBox>;
-        }
+              return expandIconCustom({ expanded, onExpand, record });
+            },
+            expandedRowRender: (record, index, indent, expanded) => {
+              let child = expandedRowRenderCustom(
+                record,
+                index,
+                indent,
+                expanded,
+              );
 
-        if (expandAnimalType === listViewConfig.expandAnimalType.queue) {
-          return <QueueBox show={expanded}>{child}</QueueBox>;
-        }
+              if (expandAnimalType === listViewConfig.expandAnimalType.fade) {
+                child = <FadeBox show={expanded}>{child}</FadeBox>;
+              }
 
-        return child;
-      },
-    };
+              if (expandAnimalType === listViewConfig.expandAnimalType.queue) {
+                child = <QueueBox show={expanded}>{child}</QueueBox>;
+              }
+
+              return <div style={expanderStyle || {}}>{child}</div>;
+            },
+          }
+        : {};
 
     standardTableCustomOption.expandable = expandableConfig;
 
