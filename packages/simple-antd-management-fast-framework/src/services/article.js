@@ -52,6 +52,17 @@ const article = {
   ],
 };
 
+const article2 = {
+  ...article,
+  ...{
+    key: '1',
+    articleId: '1',
+    mediaData: '',
+    imageList: [],
+    mediaItemList: [],
+  },
+};
+
 export async function pageListData(params) {
   return request({
     api: `/article/pageList`,
@@ -60,9 +71,9 @@ export async function pageListData(params) {
       extra: {
         pageNo: 1,
         pageSize: 10,
-        total: 1,
+        total: 2,
       },
-      list: [article],
+      list: [article, article2],
     },
   });
 }

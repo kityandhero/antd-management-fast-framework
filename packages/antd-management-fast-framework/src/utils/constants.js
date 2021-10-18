@@ -1,3 +1,9 @@
+const animalType = {
+  none: 'none',
+  fade: 'fade',
+  queue: 'queue',
+};
+
 export const zeroString = '0';
 
 export const zeroInt = 0;
@@ -201,6 +207,11 @@ export const listViewConfig = {
     small: 'small',
     large: 'large',
   },
+  expandAnimalType: {
+    none: animalType.none,
+    fade: animalType.fade,
+    queue: animalType.queue,
+  },
 };
 
 export const drawerConfig = {
@@ -233,9 +244,9 @@ export const cardConfig = {
    * 动画支持
    */
   animalType: {
-    none: 'none',
-    fade: 'fade',
-    queue: 'queue',
+    none: animalType.none,
+    fade: animalType.fade,
+    queue: animalType.queue,
   },
 
   /**

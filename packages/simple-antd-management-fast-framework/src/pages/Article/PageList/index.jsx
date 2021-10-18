@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'umi';
-import { List, Space, Spin, Divider } from 'antd';
+import { List, Space, Card, Table, Spin, Divider } from 'antd';
 import {
   FormOutlined,
   PlusOutlined,
@@ -10,6 +10,16 @@ import {
   ReloadOutlined,
   EditOutlined,
   InfoCircleFilled,
+  PlusCircleTwoTone,
+  MinusCircleTwoTone,
+  MinusCircleOutlined,
+  CaretDownOutlined,
+  CaretRightOutlined,
+  RightSquareOutlined,
+  BorderOuterOutlined,
+  StopOutlined,
+  AimOutlined,
+  FieldNumberOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -38,6 +48,8 @@ import {
   buildDropdown,
   buildDropdownEllipsis,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import QueueBox from 'antd-management-fast-framework/lib/customComponents/AnimalBox/QueueBox';
+import RotateBox from 'antd-management-fast-framework/lib/customComponents/AnimalBox/RotateBox';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection, priceColor } from '@/customConfig/constants';
@@ -54,7 +66,7 @@ import ChangeSortModal from '../ChangeSortModal';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
-import { fieldData, statusCollection } from '../Common/data';
+import { fieldData, mediaItemData, statusCollection } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -74,6 +86,7 @@ class PageList extends MultiPage {
         pageName: '文章列表',
         paramsKey: accessWayCollection.article.pageList.paramsKey,
         listViewMode: listViewConfig.viewMode.table,
+        tableScroll: { x: 1720 },
         loadApiPath: 'article/pageList',
         changeSortModalVisible: false,
         addBasicInfoDrawerVisible: false,
@@ -425,6 +438,53 @@ class PageList extends MultiPage {
           component: this.buildSearchCardButtonCore(),
         },
       ],
+    };
+  };
+
+  establishTableExpandableConfig = () => {
+    return {
+      rowExpandable: (record) => record.mediaItemList.length > 0,
+      animalType: listViewConfig.expandAnimalType.queue,
+      // expandPlaceholderIcon: (
+      //   <FieldNumberOutlined
+      //     style={{
+      //       color: '#ccc',
+      //     }}
+      //   />
+      // ),
+      expandedRowRender: (record, index, indent, expanded) => {
+        const columns = this.buildColumnList([
+          {
+            dataTarget: mediaItemData.title,
+            // width: 180,
+            align: 'left',
+            showRichFacade: true,
+            emptyValue: '--',
+          },
+          {
+            dataTarget: fieldData.createTime,
+            width: 160,
+            showRichFacade: true,
+            facadeMode: columnFacadeMode.datetime,
+            emptyValue: '--',
+          },
+        ]);
+
+        const child = (
+          <Card>
+            <Table
+              // scroll={{ x: 1460 }}
+              columns={columns}
+              dataSource={record.mediaItemList}
+              pagination={false}
+            />
+          </Card>
+        );
+
+        return child;
+
+        // return <QueueBox show={expanded}>{child}</QueueBox>;
+      },
     };
   };
 

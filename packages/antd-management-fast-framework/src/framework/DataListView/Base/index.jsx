@@ -24,6 +24,8 @@ import {
   PictureOutlined,
   FormOutlined,
   InfoCircleOutlined,
+  BorderOuterOutlined,
+  RightCircleOutlined,
 } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
@@ -72,6 +74,9 @@ import {
 } from '../../../customComponents/DecorateAvatar';
 import StandardTableCustom from '../../../customComponents/StandardTableCustom';
 import AuthorizationWrapper from '../../AuthorizationWrapper';
+import QueueBox from '../../../customComponents/AnimalBox/QueueBox';
+import FadeBox from '../../../customComponents/AnimalBox/FadeBox';
+import RotateBox from '../../../customComponents/AnimalBox/RotateBox';
 
 import DensityAction from '../DensityAction';
 import ColumnSetting from '../ColumnSetting';
@@ -1585,13 +1590,71 @@ class ListBase extends AuthorizationWrapper {
       standardTableCustomOption.scroll = tableScroll;
     }
 
-    standardTableCustomOption.expandable = {
+    const {
+      rowExpandable,
+      expandPlaceholderIcon,
+      animalType: expandAnimalType,
+      expandIconRotate,
+      expandIcon: expandIconCustom,
+      expandedRowRender: expandedRowRenderCustom,
+    } = {
       ...{
         rowExpandable: false,
+        expandPlaceholderIcon: (
+          <BorderOuterOutlined
+            style={{
+              color: '#ccc',
+            }}
+          />
+        ),
+        animalType: listViewConfig.expandAnimalType.none,
+        expandIconRotate: true,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        expandIcon: ({ expanded, onExpand, record }) => {
+          return <RightCircleOutlined />;
+        },
         expandedRowRender: null,
       },
-      ...(expandable || {}),
+      ...(expandable || null),
     };
+
+    const expandableConfig = {
+      rowExpandable,
+      expandIcon: ({ expandable: canExpand, expanded, onExpand, record }) => {
+        if (!canExpand && (expandPlaceholderIcon || null) != null) {
+          return expandPlaceholderIcon || null;
+        }
+
+        if (expandIconRotate) {
+          return (
+            <RotateBox
+              rotate={expanded ? 90 : 0}
+              duration={200}
+              onClick={(e) => onExpand(record, e)}
+            >
+              {expandIconCustom({ expanded, onExpand, record })}
+            </RotateBox>
+          );
+        }
+
+        return expandIconCustom({ expanded, onExpand, record });
+      },
+      expandedRowRender: (record, index, indent, expanded) => {
+        const child = expandedRowRenderCustom(record, index, indent, expanded);
+
+        if (expandAnimalType === listViewConfig.expandAnimalType.fade) {
+          return <FadeBox show={expanded}>{child}</FadeBox>;
+        }
+
+        if (expandAnimalType === listViewConfig.expandAnimalType.queue) {
+          return <QueueBox show={expanded}>{child}</QueueBox>;
+        }
+
+        return child;
+      },
+    };
+
+    standardTableCustomOption.expandable = expandableConfig;
 
     return (
       <div className={styles.tableContainor}>
