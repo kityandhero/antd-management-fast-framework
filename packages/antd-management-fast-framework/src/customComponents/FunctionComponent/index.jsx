@@ -893,19 +893,46 @@ export function buildDescriptionGrid({ key = null, list, props }) {
       return { ...{ canCopy: false }, ...d };
     });
 
-    const { itemStyle } = { ...{ itemStyle: null }, ...(props || {}) };
+    const { labelStyle: globalLabelStyle, contentStyle: globalContentStyle } = {
+      ...{ labelStyle: null, contentStyle: null },
+      ...(props || {}),
+    };
 
     return (
       <Descriptions key={key} {...(props || {})}>
         {dataList.map((item) => {
-          const { emptyValue } = { ...{ emptyValue: '' }, ...item };
+          const {
+            key: itemKey,
+            label,
+            span,
+            labelStyle,
+            contentStyle,
+            emptyValue,
+          } = {
+            ...{
+              label: '',
+              span: 1,
+              labelStyle: null,
+              contentStyle: null,
+              emptyValue: '',
+            },
+            ...item,
+          };
 
           return (
             <Description
-              key={item.key}
-              label={item.label}
-              span={item.span || 1}
-              style={{ ...itemStyle, ...(item.style || null) }}
+              key={itemKey}
+              label={label}
+              span={span || 1}
+              labelStyle={{
+                ...(globalLabelStyle || {}),
+                ...(labelStyle || {}),
+              }}
+              contentStyle={{
+                ...(globalContentStyle || {}),
+                ...(contentStyle || {}),
+              }}
+              // style={{ ...itemStyle, ...(item.style || null) }}
             >
               {item.value || emptyValue}
               {item.canCopy && (item.canCopy || null) != null ? (

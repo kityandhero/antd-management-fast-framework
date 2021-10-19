@@ -235,6 +235,9 @@ class Add extends BaseAddForm {
             list: [
               {
                 text: '这是一些操作说明1',
+                contentStyle: {
+                  color: '#1e94ff',
+                },
               },
               {
                 text: '这是一些操作说明2',
@@ -264,6 +267,7 @@ class Add extends BaseAddForm {
               title: '局部操作说明1',
               showDivider: false,
               showNumber: true,
+              hidden: true,
               list: [
                 {
                   text: '这里是操作说明。',

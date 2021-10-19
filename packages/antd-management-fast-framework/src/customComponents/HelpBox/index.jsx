@@ -19,6 +19,7 @@ class HelpBox extends PureComponent {
       labelWidth: labelWidthValue,
       list: listData,
       useBackground,
+      hidden,
     } = {
       ...{
         title: '',
@@ -28,16 +29,33 @@ class HelpBox extends PureComponent {
         labelWidth: null,
         list: [],
         useBackground: false,
+        hidden: false,
       },
       ...(this.props || {}),
     };
+
+    if (hidden) {
+      return null;
+    }
 
     const title = titleValue || '帮助信息';
     let list = [];
 
     if (isArray(listData)) {
       list = listData.map((o, index) => {
-        const d = { ...{ key: '', label: '', text: '' }, ...o };
+        const d = {
+          ...{
+            key: '',
+            label: '',
+            text: '',
+            span: 1,
+            labelStyle: null,
+            contentStyle: null,
+            canCopy: false,
+            copyData: null,
+          },
+          ...o,
+        };
 
         d.key = `help_box_item_${index}`;
         d.no = index + 1;
@@ -78,7 +96,7 @@ class HelpBox extends PureComponent {
               style={{
                 marginTop: '4px',
                 marginBottom: '4px',
-                color: 'rgb(153, 153, 153)',
+                color: '#999',
                 fontWeight: 'normal',
                 fontSize: '14px',
                 lineHeight: '22px',
@@ -100,14 +118,31 @@ class HelpBox extends PureComponent {
 
         {buildDescriptionGrid({
           list: list.map((o) => {
+            const {
+              key,
+              no,
+              label,
+              text,
+              labelStyle,
+              contentStyle,
+              span,
+              canCopy,
+              copyData,
+            } = o;
+
             return {
-              key: o.key,
-              label: stringIsNullOrWhiteSpace(o.label)
+              key: key,
+              label: stringIsNullOrWhiteSpace(label)
                 ? showNumber
-                  ? o.no
+                  ? no
                   : '•'
-                : o.label,
-              value: o.text,
+                : label,
+              value: text,
+              labelStyle: labelStyle || null,
+              contentStyle: contentStyle || null,
+              span,
+              canCopy,
+              copyData,
             };
           }),
           props: {
@@ -141,6 +176,7 @@ HelpBox.defaultProps = {
   labelWidth: null,
   list: [],
   useBackground: false,
+  hidden: false,
 };
 
 export default HelpBox;
