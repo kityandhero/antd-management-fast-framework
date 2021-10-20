@@ -1574,15 +1574,10 @@ class ListBase extends AuthorizationWrapper {
       onChange: paginationConfig ? this.handleStandardTableChange : null,
     };
 
-    if (paginationConfig) {
-      standardTableCustomOption.data = {
-        list: this.establishViewDataSource(),
-        pagination: paginationConfig,
-      };
-    } else {
-      standardTableCustomOption.data = this.establishViewDataSource();
-      standardTableCustomOption.pagination = false;
-    }
+    standardTableCustomOption.data = {
+      list: this.establishViewDataSource(),
+      pagination: !!paginationConfig ? paginationConfig : false,
+    };
 
     if ((styleSet || null) != null) {
       standardTableCustomOption.style = styleSet;
