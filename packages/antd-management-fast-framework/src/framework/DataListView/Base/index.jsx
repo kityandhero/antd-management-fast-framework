@@ -157,6 +157,26 @@ class ListBase extends AuthorizationWrapper {
     });
   };
 
+  getSearchFormFieldsValue = (nameList, filter) => {
+    const form = this.getSearchCard();
+
+    if (form != null) {
+      return form.getFieldsValue(nameList, filter);
+    }
+
+    return {};
+  };
+
+  getSearchFormFieldValue = (name) => {
+    const form = this.getSearchCard();
+
+    if (form != null) {
+      return form.getFieldValue(name);
+    }
+
+    return null;
+  };
+
   setSearchFormFieldsValue = (v) => {
     const form = this.getSearchCard();
 

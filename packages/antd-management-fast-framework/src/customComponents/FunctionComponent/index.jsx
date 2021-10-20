@@ -2818,13 +2818,13 @@ export function buildColumnItem({
       tooltipPlacement = 'topRight';
     }
 
-    d.render = (value, record) => {
+    d.render = (value, record, index) => {
       let val = value;
 
       let facadeMode = facadeModeSource || '';
 
       if (isFunction(facadeModeBuilder)) {
-        facadeMode = facadeModeBuilder(value, record) || facadeMode;
+        facadeMode = facadeModeBuilder(value, record, index) || facadeMode;
 
         facadeMode = stringIsNullOrWhiteSpace(facadeMode) ? '' : facadeMode;
       }
@@ -2834,7 +2834,7 @@ export function buildColumnItem({
       if (isFunction(facadeConfigBuilder)) {
         facadeConfig = {
           ...facadeConfig,
-          ...(facadeConfigBuilder(value, record) || {}),
+          ...(facadeConfigBuilder(value, record, index) || {}),
         };
       }
 
@@ -2878,7 +2878,7 @@ export function buildColumnItem({
         facadeMode === columnFacadeMode.ellipsis
       ) {
         if (isFunction(d.formatValue)) {
-          val = d.formatValue(value, record);
+          val = d.formatValue(value, record, index);
         }
 
         if (stringIsNullOrWhiteSpace(val)) {
@@ -3005,7 +3005,7 @@ export function buildColumnItem({
 
       if (facadeMode === columnFacadeMode.image) {
         if (isFunction(d.formatValue)) {
-          val = d.formatValue(value, record);
+          val = d.formatValue(value, record, index);
         }
 
         const { imageWidth, circle, previewSimpleMask } = {
@@ -3043,7 +3043,7 @@ export function buildColumnItem({
 
       if (facadeMode === columnFacadeMode.badge) {
         if (isFunction(d.formatValue)) {
-          val = d.formatValue(value, record);
+          val = d.formatValue(value, record, index);
         }
 
         return (
