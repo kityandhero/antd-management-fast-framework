@@ -948,7 +948,9 @@ export function formatMoney(
 }
 
 export function toPercentage(val, format = '0,0.00') {
-  return `${numeral(toNumber(numeral(val) * 1000) / 10).format(format)}%`;
+  return `${numeral(toNumber(numeral(val).value() * 1000) / 10).format(
+    format,
+  )}%`;
 }
 
 /**
