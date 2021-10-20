@@ -4,7 +4,7 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 import { pageHeaderRenderType } from '../../utils/constants';
 import {
-  pageHeaderTitle,
+  buildPageHeaderTitle,
   buildPageHeaderTagWrapper,
   buildPageHeaderContent,
   pageHeaderExtraContent,
@@ -252,7 +252,7 @@ class DataTabContainer extends DataSingleView {
         <PageHeaderWrapper
           className={styles.customContainor}
           avatar={avatarProps}
-          title={pageHeaderTitle(
+          title={buildPageHeaderTitle(
             this.getPageName(),
             this.establishPageHeaderTitlePrefix(),
           )}
@@ -280,7 +280,10 @@ class DataTabContainer extends DataSingleView {
       <PageHeaderWrapper
         className={styles.customContainor}
         avatar={avatarProps}
-        title={pageHeaderTitle(pageName, this.establishPageHeaderTitlePrefix())}
+        title={buildPageHeaderTitle(
+          pageName,
+          this.establishPageHeaderTitlePrefix(),
+        )}
         subTitle={this.buildPageHeaderSubTitle()}
         tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
         extra={this.pageHeaderAction()}

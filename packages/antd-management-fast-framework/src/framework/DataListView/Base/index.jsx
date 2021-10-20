@@ -12,7 +12,6 @@ import {
   BackTop,
   Divider,
   message,
-  Badge,
   Space,
   Empty,
   Spin,
@@ -23,7 +22,6 @@ import {
   LoadingOutlined,
   PictureOutlined,
   FormOutlined,
-  InfoCircleOutlined,
   BorderOuterOutlined,
   RightCircleOutlined,
 } from '@ant-design/icons';
@@ -35,39 +33,31 @@ import {
   isArray,
   isUndefined,
   stringToMoment,
-  recordText,
   getDerivedStateFromPropsForUrlParams,
   showRuntimeError,
-  stringIsNullOrWhiteSpace,
   isFunction,
-  copyToClipboard,
-  replaceTargetText,
-  formatDatetime,
-  formatMoney,
   isBoolean,
 } from '../../../utils/tools';
 import {
   searchCardConfig,
-  columnFacadeMode,
-  defaultEmptyImage,
   datetimeFormat,
   pageHeaderRenderType,
   listViewConfig,
 } from '../../../utils/constants';
 import IconInfo from '../../../customComponents/IconInfo';
-import EllipsisCustom from '../../../customComponents/EllipsisCustom';
-import ImageBox from '../../../customComponents/ImageBox';
 import {
   buildButton,
   buildDropdown,
   buildDropdownButton,
   buildDropdownEllipsis,
   buildButtonGroup,
-  pageHeaderTitle,
+  buildPageHeaderTitle,
   buildPageHeaderTagWrapper,
   buildPageHeaderContent,
   pageHeaderExtraContent,
   buildTagList,
+  buildColumnList,
+  buildColumnItem,
 } from '../../../customComponents/FunctionComponent';
 import {
   avatarImageLoadResultCollection,
@@ -203,342 +193,17 @@ class ListBase extends AuthorizationWrapper {
   };
 
   buildColumnList = (list) => {
-    return (isArray(list) ? list : []).map((o) => {
-      return this.buildColumnItem(o);
+    return buildColumnList({
+      columnList: list,
+      attachedTargetName: this.constructor.name,
     });
   };
 
   buildColumnItem = (o) => {
-    const d = { ...o };
-
-    const { dataTarget, showHelper, placeholder } = {
-      ...{ showHelper: false, placeholder: false },
-      ...(o || {}),
-    };
-
-    if (placeholder || false) {
-      return d;
-    }
-
-    if ((dataTarget || null) == null) {
-      const text = `错误的列配置,缺少dataTarget:${JSON.stringify({
-        el: this.constructor.name,
-        column: o,
-      })}`;
-
-      showRuntimeError({
-        message: text,
-      });
-
-      recordText(text);
-    } else {
-      const { label, name, helper } = dataTarget;
-
-      if ((label || null) == null || (name || null) == null) {
-        const text = `错误的列配置，dataTarget内容缺失:${JSON.stringify({
-          column: o,
-        })}`;
-
-        showRuntimeError({
-          message: text,
-        });
-
-        recordText(text);
-      } else {
-        d.title = showHelper ? (
-          <IconInfo
-            icon={<InfoCircleOutlined />}
-            iconPosition="right"
-            iconTooltip={helper}
-            text={label}
-          />
-        ) : (
-          label
-        );
-        d.dataIndex = name;
-      }
-    }
-
-    const {
-      align,
-      showRichFacade,
-      facadeMode: facadeModeSource,
-      facadeModeBuilder,
-      facadeConfig: facadeConfigSource,
-      facadeConfigBuilder,
-      sorter,
-    } = {
-      ...{
-        align: 'center',
-        showRichFacade: false,
-        facadeMode: null,
-        facadeModeBuilder: null,
-        facadeConfig: {},
-        facadeConfigBuilder: () => {},
-        sorter: false,
-      },
-      ...d,
-    };
-
-    d.align = align;
-    d.sorter = sorter;
-
-    if (!isFunction(d.render) && showRichFacade) {
-      const { canCopy, copyPrompt, emptyValue } = {
-        ...{ canCopy: false, copyPrompt: '[点击复制]', emptyValue: null },
-        ...d,
-      };
-
-      let tooltipPlacement = 'top';
-
-      if (align === 'left') {
-        tooltipPlacement = 'topLeft';
-      }
-
-      if (align === 'right') {
-        tooltipPlacement = 'topRight';
-      }
-
-      d.render = (value, record) => {
-        let val = value;
-
-        let facadeMode = facadeModeSource || '';
-
-        if (isFunction(facadeModeBuilder)) {
-          facadeMode = facadeModeBuilder(value, record) || facadeMode;
-
-          facadeMode = stringIsNullOrWhiteSpace(facadeMode) ? '' : facadeMode;
-        }
-
-        let facadeConfig = facadeConfigSource || {};
-
-        if (isFunction(facadeConfigBuilder)) {
-          facadeConfig = {
-            ...facadeConfig,
-            ...(facadeConfigBuilder(value, record) || {}),
-          };
-        }
-
-        const {
-          color,
-          valPrefix,
-          valPrefixStyle,
-          valStyle,
-          separator,
-          separatorStyle,
-          icon,
-          iconPosition,
-          addonAfter,
-          addonBefore,
-          datetimeFormat: datetimeFormatValue,
-          status,
-          text,
-        } = {
-          ...{
-            color: null,
-            valPrefix: '',
-            valPrefixStyle: null,
-            valStyle: null,
-            separator: '：',
-            separatorStyle: null,
-            icon: null,
-            iconPosition: 'left',
-            addonAfter: null,
-            addonBefore: null,
-            datetimeFormat: datetimeFormat.yearMonthDayHourMinuteSecond,
-            status: 'default',
-            text: '',
-          },
-          ...facadeConfig,
-        };
-
-        let styleMerge = {};
-
-        if (
-          stringIsNullOrWhiteSpace(facadeMode) ||
-          facadeMode === columnFacadeMode.ellipsis
-        ) {
-          if (isFunction(d.formatValue)) {
-            val = d.formatValue(value, record);
-          }
-
-          if (stringIsNullOrWhiteSpace(val)) {
-            return emptyValue;
-          }
-
-          styleMerge = {
-            ...styleMerge,
-            ...((color || null) == null ? {} : { color }),
-          };
-
-          if (canCopy) {
-            return (
-              <>
-                <EllipsisCustom
-                  style={styleMerge}
-                  tooltip={{ placement: tooltipPlacement }}
-                  lines={1}
-                  removeChildren
-                  extraContent={
-                    <>
-                      <a
-                        onClick={() => {
-                          copyToClipboard(val);
-                        }}
-                      >
-                        {replaceTargetText(val, '***', 2, 6)}
-                      </a>
-                    </>
-                  }
-                >
-                  {val || emptyValue} {copyPrompt || '[点击复制]'}
-                </EllipsisCustom>
-              </>
-            );
-          }
-
-          return (
-            <>
-              {(addonBefore || null) == null ? null : addonBefore}
-
-              <IconInfo
-                icon={icon || null}
-                iconPosition={iconPosition || 'left'}
-                text={val || emptyValue}
-                textStyle={valStyle || null}
-                textPrefix={valPrefix}
-                textPrefixStyle={valPrefixStyle || null}
-                separator={separator || ''}
-                separatorStyle={separatorStyle || null}
-                style={styleMerge}
-                tooltip={{ placement: tooltipPlacement }}
-                ellipsis
-              />
-
-              {(addonAfter || null) == null ? null : addonAfter}
-            </>
-          );
-        }
-
-        if (facadeMode === columnFacadeMode.datetime) {
-          styleMerge = {
-            ...styleMerge,
-            ...((color || null) == null ? {} : { color }),
-          };
-
-          val = stringIsNullOrWhiteSpace(val)
-            ? ''
-            : formatDatetime(val, datetimeFormatValue) || '';
-
-          return (
-            <>
-              {(addonBefore || null) == null ? null : addonBefore}
-
-              <IconInfo
-                icon={icon || null}
-                iconPosition={iconPosition || 'left'}
-                text={val || emptyValue}
-                textStyle={valStyle || null}
-                textPrefix={valPrefix}
-                textPrefixStyle={valPrefixStyle || null}
-                separator={separator || ''}
-                separatorStyle={separatorStyle || null}
-                style={styleMerge}
-                tooltip={{ placement: tooltipPlacement }}
-                ellipsis
-              />
-
-              {(addonAfter || null) == null ? null : addonAfter}
-            </>
-          );
-        }
-
-        if (facadeMode === columnFacadeMode.money) {
-          styleMerge = {
-            ...styleMerge,
-            ...((color || null) == null ? {} : { color }),
-          };
-
-          val = stringIsNullOrWhiteSpace(val) ? '' : val;
-
-          return (
-            <>
-              {(addonBefore || null) == null ? null : addonBefore}
-
-              <IconInfo
-                icon={icon || null}
-                iconPosition={iconPosition || 'left'}
-                text={formatMoney(val) || emptyValue}
-                textStyle={valStyle || null}
-                textPrefix={valPrefix}
-                textPrefixStyle={valPrefixStyle || null}
-                separator={separator || ''}
-                separatorStyle={separatorStyle || null}
-                style={styleMerge}
-                tooltip={{ placement: tooltipPlacement }}
-                ellipsis
-              />
-
-              {(addonAfter || null) == null ? null : addonAfter}
-            </>
-          );
-        }
-
-        if (facadeMode === columnFacadeMode.image) {
-          if (isFunction(d.formatValue)) {
-            val = d.formatValue(value, record);
-          }
-
-          const { imageWidth, circle, previewSimpleMask } = {
-            ...{ imageWidth: '30px', circle: true, previewSimpleMask: true },
-            ...facadeConfig,
-          };
-
-          return (
-            <>
-              <Row>
-                <Col flex="auto" />
-                <Col>
-                  <div
-                    style={{
-                      width: imageWidth,
-                    }}
-                  >
-                    <ImageBox
-                      src={val || defaultEmptyImage}
-                      circle={circle}
-                      loadingEffect
-                      errorOverlayVisible
-                      showErrorIcon={false}
-                      alt=""
-                      preview={!stringIsNullOrWhiteSpace(val)}
-                      previewSimpleMask={previewSimpleMask}
-                    />
-                  </div>
-                </Col>
-                <Col flex="auto" />
-              </Row>
-            </>
-          );
-        }
-
-        if (facadeMode === columnFacadeMode.badge) {
-          if (isFunction(d.formatValue)) {
-            val = d.formatValue(value, record);
-          }
-
-          return (
-            <>
-              <Badge status={status} text={text} />
-            </>
-          );
-        }
-
-        throw new Error(`无效的渲染模式：${facadeMode}`);
-      };
-    }
-
-    return d;
+    return buildColumnItem({
+      column: o,
+      attachedTargetName: this.constructor.name,
+    });
   };
 
   getColumn = () => {
@@ -1885,7 +1550,7 @@ class ListBase extends AuthorizationWrapper {
       return (
         <PageHeaderWrapper
           avatar={avatarProps}
-          title={pageHeaderTitle(
+          title={buildPageHeaderTitle(
             this.getPageName(),
             this.establishPageHeaderTitlePrefix(),
           )}
