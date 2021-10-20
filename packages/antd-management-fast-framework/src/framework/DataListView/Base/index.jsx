@@ -1235,6 +1235,10 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
+  /**
+   * 构建分页视图
+   * frontendPagination配置仅用在前台模拟分页时
+   */
   renderTableView = () => {
     const {
       metaListData,
@@ -1245,7 +1249,8 @@ class ListBase extends AuthorizationWrapper {
       processing,
     } = this.state;
 
-    const { styleSet, columns, expandable, size } = this.buildTableConfig();
+    const { styleSet, columns, expandable, size, frontendPagination } =
+      this.buildTableConfig();
 
     const paginationConfig = this.establishViewPaginationConfig() || false;
 
@@ -1258,6 +1263,24 @@ class ListBase extends AuthorizationWrapper {
       onSelectRow: this.handleSelectRows,
       onChange: paginationConfig ? this.handleStandardTableChange : null,
     };
+
+    if (!!paginationConfig) {
+      standardTableCustomOption.data = {
+        list: this.establishViewDataSource(),
+        pagination: paginationConfig,
+      };
+
+      standardTableCustomOption.showPagination = true;
+    } else {
+      standardTableCustomOption.data = {
+        list: this.establishViewDataSource(),
+        pagination: false,
+      };
+
+      standardTableCustomOption.showPagination = frontendPagination
+        ? true
+        : false;
+    }
 
     standardTableCustomOption.data = {
       list: this.establishViewDataSource(),

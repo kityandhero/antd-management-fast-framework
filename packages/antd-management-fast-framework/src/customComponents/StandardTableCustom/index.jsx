@@ -76,14 +76,17 @@ class StandardTableCustom extends PureComponent {
       rowKey,
       size,
       showSelect: showSelectOption,
+      showPagination,
       ...rest
     } = this.props;
 
-    const paginationProps = {
-      showSizeChanger: true,
-      showQuickJumper: true,
-      ...pagination,
-    };
+    const paginationProps = showPagination
+      ? {
+          showSizeChanger: true,
+          showQuickJumper: true,
+          ...pagination,
+        }
+      : false;
 
     const { selectedRows } = this.props;
     const showSelect = showSelectOption || false;
@@ -148,5 +151,9 @@ class StandardTableCustom extends PureComponent {
     );
   }
 }
+
+StandardTableCustom.defaultProps = {
+  showPagination: true,
+};
 
 export default StandardTableCustom;
