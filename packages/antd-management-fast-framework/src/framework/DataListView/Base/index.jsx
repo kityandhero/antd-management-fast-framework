@@ -994,6 +994,30 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
+  /**
+   * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
+   */
+  supplementPaginationConfig = () => {
+    const { pageSize } = this.state;
+
+    const config = {
+      ...{
+        size: 'default',
+        showSizeChanger: true,
+        showQuickJumper: true,
+        showTotal: (total) => `共 ${total} 条信息`,
+      },
+      ...this.establishViewPaginationConfig(),
+      ...{
+        pageSize: pageSize,
+      },
+    };
+
+    delete config.current;
+
+    return;
+  };
+
   establishPageHeaderActionExtraGroupConfig = () => null;
 
   establishPageHeaderActionExtraEllipsisConfig = () => null;
@@ -1268,12 +1292,16 @@ class ListBase extends AuthorizationWrapper {
   renderListView = () => {
     const { dataLoading, reloading, processing } = this.state;
 
-    const paginationConfig = this.establishViewPaginationConfig() || false;
+    let pagination = false;
 
-    if (isObject(paginationConfig)) {
-      paginationConfig.onChange = this.handlePaginationChange;
+    const paginationConfig = this.establishViewPaginationConfig();
 
-      paginationConfig.onShowSizeChange = this.handlePaginationShowSizeChange;
+    if (!!paginationConfig) {
+      pagination = this.supplementPaginationConfig();
+
+      pagination.onChange = this.handlePaginationChange;
+
+      pagination.onShowSizeChange = this.handlePaginationShowSizeChange;
     }
 
     return (
@@ -1282,7 +1310,7 @@ class ListBase extends AuthorizationWrapper {
           itemLayout={this.renderListViewItemLayout()}
           size={this.renderListViewSize()}
           dataSource={this.establishViewDataSource()}
-          pagination={this.establishViewPaginationConfig() || false}
+          pagination={pagination}
           renderItem={(item, index) => {
             return this.renderListViewItem(item, index);
           }}
@@ -1303,7 +1331,6 @@ class ListBase extends AuthorizationWrapper {
       selectedDataTableDataRows,
       dataLoading,
       processing,
-      pageSize,
     } = this.state;
 
     const { styleSet, columns, expandable, size, frontendPagination } =
@@ -1322,22 +1349,15 @@ class ListBase extends AuthorizationWrapper {
     };
 
     if (!!paginationConfig) {
-      standardTableCustomOption.data = {
-        list: this.establishViewDataSource(),
-        pagination: paginationConfig,
-      };
-
       standardTableCustomOption.showPagination = true;
     } else {
-      standardTableCustomOption.data = {
-        list: this.establishViewDataSource(),
-        pagination: {
-          pageSize,
-        },
-      };
-
       standardTableCustomOption.showPagination = !!frontendPagination;
     }
+
+    standardTableCustomOption.data = {
+      list: this.establishViewDataSource(),
+      pagination: this.supplementPaginationConfig(),
+    };
 
     if ((styleSet || null) != null) {
       standardTableCustomOption.style = styleSet;

@@ -325,9 +325,7 @@ class MultiPage extends Base {
   };
 
   renderPaginationView = () => {
-    const { pageNo, pageSize } = this.state;
-
-    const paginationConfig = this.establishViewPaginationConfig();
+    const paginationConfig = this.supplementPaginationConfig();
 
     return (
       <FlexBox
@@ -337,12 +335,6 @@ class MultiPage extends Base {
         }}
         right={
           <Pagination
-            current={pageNo}
-            pageSize={pageSize}
-            size="small"
-            showSizeChanger
-            showQuickJumper
-            showTotal={(total) => `共 ${total} 条信息`}
             {...paginationConfig}
             onChange={(page, size) => {
               this.handlePaginationChange(page, size);
