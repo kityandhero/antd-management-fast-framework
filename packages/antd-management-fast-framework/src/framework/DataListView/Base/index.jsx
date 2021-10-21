@@ -1017,7 +1017,7 @@ class ListBase extends AuthorizationWrapper {
 
     delete config.current;
 
-    return;
+    return config;
   };
 
   establishPageHeaderActionExtraGroupConfig = () => null;
