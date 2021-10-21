@@ -37,6 +37,7 @@ import {
   showRuntimeError,
   isFunction,
   isBoolean,
+  isObject,
 } from '../../../utils/tools';
 import {
   searchCardConfig,
@@ -986,6 +987,9 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
+  /**
+   * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
+   */
   establishViewPaginationConfig = () => {
     return null;
   };
@@ -1086,31 +1090,6 @@ class ListBase extends AuthorizationWrapper {
    * @param {*} sorter
    */
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
-    if (this.checkWorkDoing()) {
-      return;
-    }
-
-    const { formValues } = this.state;
-
-    const filters = Object.keys(filtersArg).reduce((obj, key) => {
-      const newObj = { ...obj };
-      newObj[key] = getValue(filtersArg[key]);
-      return newObj;
-    }, {});
-
-    const params = {
-      pageNo: pagination.current,
-      pageSize: pagination.pageSize,
-      formValues,
-      filters,
-    };
-
-    if (sorter.field) {
-      params.sorter = { sorter: `${sorter.field}_${sorter.order}` };
-    }
-
-    this.pageListData(params);
-
     this.handleAdditionalStandardTableChange(pagination, filtersArg, sorter);
   };
 
@@ -1141,6 +1120,12 @@ class ListBase extends AuthorizationWrapper {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleAdditionalPaginationChange = (page, pageSize) => {};
+
+  handlePaginationShowSizeChange = (current, size) => {
+    this.setState({ pageNo: 1 }, () => {
+      this.handlePaginationChange(1, size);
+    });
+  };
 
   renderPageHeaderContent = () => {
     return buildPageHeaderContent(
@@ -1283,6 +1268,14 @@ class ListBase extends AuthorizationWrapper {
   renderListView = () => {
     const { dataLoading, reloading, processing } = this.state;
 
+    const paginationConfig = this.establishViewPaginationConfig() || false;
+
+    if (isObject(paginationConfig)) {
+      paginationConfig.onChange = this.handlePaginationChange;
+
+      paginationConfig.onShowSizeChange = this.handlePaginationShowSizeChange;
+    }
+
     return (
       <Spin spinning={dataLoading || reloading || processing}>
         <List
@@ -1325,7 +1318,7 @@ class ListBase extends AuthorizationWrapper {
       columns,
       size: size || null,
       onSelectRow: this.handleSelectRows,
-      onChange: paginationConfig ? this.handleStandardTableChange : null,
+      onChange: this.handleStandardTableChange,
     };
 
     if (!!paginationConfig) {
@@ -1340,17 +1333,11 @@ class ListBase extends AuthorizationWrapper {
         list: this.establishViewDataSource(),
         pagination: {
           pageSize,
-          onChange: this.handleStandardTableChange,
         },
       };
 
       standardTableCustomOption.showPagination = !!frontendPagination;
     }
-
-    standardTableCustomOption.data = {
-      list: this.establishViewDataSource(),
-      pagination: !!paginationConfig ? paginationConfig : false,
-    };
 
     if ((styleSet || null) != null) {
       standardTableCustomOption.style = styleSet;

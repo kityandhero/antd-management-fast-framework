@@ -247,6 +247,41 @@ class MultiPage extends Base {
       });
   };
 
+  /**
+   * 配置StandardTable切换页面时需要引发的事项
+   * @param {*} pagination
+   * @param {*} filtersArg
+   * @param {*} sorter
+   */
+  handleStandardTableChange = (pagination, filtersArg, sorter) => {
+    if (this.checkWorkDoing()) {
+      return;
+    }
+
+    const { formValues } = this.state;
+
+    const filters = Object.keys(filtersArg).reduce((obj, key) => {
+      const newObj = { ...obj };
+      newObj[key] = getValue(filtersArg[key]);
+      return newObj;
+    }, {});
+
+    const params = {
+      pageNo: pagination.current,
+      pageSize: pagination.pageSize,
+      formValues,
+      filters,
+    };
+
+    if (sorter.field) {
+      params.sorter = { sorter: `${sorter.field}_${sorter.order}` };
+    }
+
+    this.pageListData(params);
+
+    this.handleAdditionalStandardTableChange(pagination, filtersArg, sorter);
+  };
+
   handlePaginationChange = (page, pageSize) => {
     if (this.checkWorkDoing()) {
       return;
@@ -263,12 +298,6 @@ class MultiPage extends Base {
     this.pageListData(params);
 
     this.handleAdditionalPaginationChange(page, pageSize);
-  };
-
-  handlePaginationShowSizeChange = (current, size) => {
-    this.setState({ pageNo: 1 }, () => {
-      this.handlePaginationChange(1, size);
-    });
   };
 
   establishViewDataSource = () => {
@@ -292,8 +321,6 @@ class MultiPage extends Base {
 
     const paginationConfig = { ...pagination };
 
-    paginationConfig.onChange = this.handleListViewPaginationChange;
-
     return paginationConfig;
   };
 
@@ -301,8 +328,6 @@ class MultiPage extends Base {
     const { pageNo, pageSize } = this.state;
 
     const paginationConfig = this.establishViewPaginationConfig();
-
-    paginationConfig.onChange = this.handleListViewPaginationChange;
 
     return (
       <FlexBox
