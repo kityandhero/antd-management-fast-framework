@@ -1005,7 +1005,9 @@ class ListBase extends AuthorizationWrapper {
         size: 'default',
         showSizeChanger: true,
         showQuickJumper: true,
-        showTotal: (total) => `共 ${total} 条信息`,
+        showTotal: (total, range) => {
+          return `${range[0]}-${range[1]} 共 ${total} 条信息`;
+        },
       },
       ...this.establishViewPaginationConfig(),
       ...{
