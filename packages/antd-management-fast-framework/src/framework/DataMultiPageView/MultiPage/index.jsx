@@ -273,6 +273,8 @@ class MultiPage extends Base {
     }
 
     this.pageListData(params);
+
+    this.handleAdditionalStandardTableChange(pagination, filtersArg, sorter);
   };
 
   handlePaginationChange = (page, pageSize) => {

@@ -643,7 +643,7 @@ class ListBase extends AuthorizationWrapper {
   renderForm = () => this.buildSearchCard();
 
   // eslint-disable-next-line arrow-body-style
-  buildTableOtherConfig = () => {
+  establishTableAdditionalConfig = () => {
     // 可以配置额外的Table属性
 
     return {};
@@ -671,7 +671,7 @@ class ListBase extends AuthorizationWrapper {
     const expandable = this.establishTableExpandableConfig();
 
     return {
-      ...this.buildTableOtherConfig(),
+      ...this.establishTableAdditionalConfig(),
       columns,
       size: tableSize,
       expandable,
@@ -1079,6 +1079,19 @@ class ListBase extends AuthorizationWrapper {
     };
   };
 
+  handleStandardTableChange = (pagination, filtersArg, sorter) => {
+    this.handleAdditionalStandardTableChange(pagination, filtersArg, sorter);
+  };
+
+  /**
+   * 配置额外的切换页面时需要引发的事项
+   * @param {*} pagination
+   * @param {*} filtersArg
+   * @param {*} sorter
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleAdditionalStandardTableChange = (pagination, filtersArg, sorter) => {};
+
   renderPageHeaderContent = () => {
     return buildPageHeaderContent(
       this.establishPageHeaderContentConfig() || {},
@@ -1247,6 +1260,7 @@ class ListBase extends AuthorizationWrapper {
       selectedDataTableDataRows,
       dataLoading,
       processing,
+      pageSize,
     } = this.state;
 
     const { styleSet, columns, expandable, size, frontendPagination } =
@@ -1274,7 +1288,9 @@ class ListBase extends AuthorizationWrapper {
     } else {
       standardTableCustomOption.data = {
         list: this.establishViewDataSource(),
-        pagination: false,
+        pagination: {
+          pageSize,
+        },
       };
 
       standardTableCustomOption.showPagination = !!frontendPagination;
@@ -1493,7 +1509,7 @@ class ListBase extends AuthorizationWrapper {
 
     const { frontendPagination } = {
       ...{ frontendPagination: false },
-      ...(this.buildTableOtherConfig() || {}),
+      ...(this.establishTableAdditionalConfig() || {}),
     };
 
     return (

@@ -114,6 +114,8 @@ export function defaultListState() {
       dateRangeFieldName: '发生时间',
       tableScroll: { x: 1520 },
       formValues: {},
+      pageNo: 1,
+      pageSize: 10,
       startTimeAlias: '',
       endTimeAlias: '',
       startTime: '',

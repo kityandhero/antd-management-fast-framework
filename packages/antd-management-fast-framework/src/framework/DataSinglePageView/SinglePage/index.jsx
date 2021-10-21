@@ -5,6 +5,7 @@ import {
   stringIsNullOrWhiteSpace,
   showRuntimeError,
   isUndefined,
+  toNumber,
 } from '../../../utils/tools';
 
 import Base from '../../DataListView/Base';
@@ -20,6 +21,9 @@ class SinglePage extends Base {
     this.state = {
       ...this.state,
       ...defaultState,
+      ...{
+        frontendPageNo: 1,
+      },
     };
   }
 
@@ -159,6 +163,26 @@ class SinglePage extends Base {
     };
 
     return list;
+  };
+
+  establishTableAdditionalConfig = () => {
+    return {
+      //前台模拟分页，有助于优化长列表页面交互操作导致的延迟
+      frontendPagination: true,
+    };
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleAdditionalStandardTableChange = (pagination, filtersArg, sorter) => {
+    const { current: frontendPageNo } = pagination;
+
+    this.setState({ frontendPageNo: toNumber(frontendPageNo) });
+  };
+
+  getFrontendPageNo = () => {
+    const { frontendPageNo } = this.state;
+
+    return toNumber(frontendPageNo);
   };
 }
 
