@@ -3,7 +3,6 @@ import { Pagination, message } from 'antd';
 
 import {
   defaultPageListState,
-  getValue,
   dateToMoment,
   stringIsNullOrWhiteSpace,
   isNumber,
@@ -248,47 +247,7 @@ class MultiPage extends Base {
       });
   };
 
-  handleStandardTableChange = (pagination, filtersArg, sorter) => {
-    if (this.checkWorkDoing()) {
-      return;
-    }
-
-    const { formValues } = this.state;
-
-    const filters = Object.keys(filtersArg).reduce((obj, key) => {
-      const newObj = { ...obj };
-      newObj[key] = getValue(filtersArg[key]);
-      return newObj;
-    }, {});
-
-    const params = {
-      pageNo: pagination.current,
-      pageSize: pagination.pageSize,
-      formValues,
-      filters,
-    };
-
-    if (sorter.field) {
-      params.sorter = { sorter: `${sorter.field}_${sorter.order}` };
-    }
-
-    this.pageListData(params);
-
-    this.handleAdditionalStandardTableChange(pagination, filtersArg, sorter);
-  };
-
   handlePaginationChange = (page, pageSize) => {
-    this.handleStandardTableChange(
-      {
-        current: page,
-        pageSize,
-      },
-      {},
-      {},
-    );
-  };
-
-  handleListViewPaginationChange = (page, pageSize) => {
     if (this.checkWorkDoing()) {
       return;
     }
@@ -302,19 +261,14 @@ class MultiPage extends Base {
     };
 
     this.pageListData(params);
+
+    this.handleAdditionalPaginationChange(page, pageSize);
   };
 
   handlePaginationShowSizeChange = (current, size) => {
-    this.setState({ pageNo: 1 });
-
-    this.handleStandardTableChange(
-      {
-        current: 1,
-        pageSize: size,
-      },
-      {},
-      {},
-    );
+    this.setState({ pageNo: 1 }, () => {
+      this.handlePaginationChange(1, size);
+    });
   };
 
   establishViewDataSource = () => {

@@ -1079,18 +1079,68 @@ class ListBase extends AuthorizationWrapper {
     };
   };
 
+  /**
+   * 配置StandardTable切换页面时需要引发的事项
+   * @param {*} pagination
+   * @param {*} filtersArg
+   * @param {*} sorter
+   */
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
+    if (this.checkWorkDoing()) {
+      return;
+    }
+
+    const { formValues } = this.state;
+
+    const filters = Object.keys(filtersArg).reduce((obj, key) => {
+      const newObj = { ...obj };
+      newObj[key] = getValue(filtersArg[key]);
+      return newObj;
+    }, {});
+
+    const params = {
+      pageNo: pagination.current,
+      pageSize: pagination.pageSize,
+      formValues,
+      filters,
+    };
+
+    if (sorter.field) {
+      params.sorter = { sorter: `${sorter.field}_${sorter.order}` };
+    }
+
+    this.pageListData(params);
+
     this.handleAdditionalStandardTableChange(pagination, filtersArg, sorter);
   };
 
   /**
-   * 配置额外的切换页面时需要引发的事项
+   * 配置额外的StandardTable切换页面时需要引发的事项
    * @param {*} pagination
    * @param {*} filtersArg
    * @param {*} sorter
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleAdditionalStandardTableChange = (pagination, filtersArg, sorter) => {};
+
+  /**
+   * 配置Pagination切换页面时需要引发的事项,用于listView/cardView
+   * @param {*} pagination
+   * @param {*} filtersArg
+   * @param {*} sorter
+   */
+  handlePaginationChange = (page, pageSize) => {
+    this.handleAdditionalPaginationChange(page, pageSize);
+  };
+
+  /**
+   * 配置额外的Pagination切换页面时需要引发的事项,用于listView/cardView
+   * @param {*} pagination
+   * @param {*} filtersArg
+   * @param {*} sorter
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleAdditionalPaginationChange = (page, pageSize) => {};
 
   renderPageHeaderContent = () => {
     return buildPageHeaderContent(
@@ -1290,6 +1340,7 @@ class ListBase extends AuthorizationWrapper {
         list: this.establishViewDataSource(),
         pagination: {
           pageSize,
+          onChange: this.handleStandardTableChange,
         },
       };
 
