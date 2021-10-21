@@ -1277,9 +1277,7 @@ class ListBase extends AuthorizationWrapper {
         pagination: false,
       };
 
-      standardTableCustomOption.showPagination = frontendPagination
-        ? true
-        : false;
+      standardTableCustomOption.showPagination = !!frontendPagination;
     }
 
     standardTableCustomOption.data = {
@@ -1495,7 +1493,7 @@ class ListBase extends AuthorizationWrapper {
 
     const { frontendPagination } = {
       ...{ frontendPagination: false },
-      ...(this.establishViewPaginationConfig() || {}),
+      ...(this.buildTableOtherConfig() || {}),
     };
 
     return (
