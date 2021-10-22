@@ -1259,6 +1259,7 @@ export function buildTagList({ list = [] }) {
 export function buildListViewItemActionSelect({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   index,
+  confirm = false,
   selectData,
   selectCallback,
 }) {
@@ -1269,6 +1270,23 @@ export function buildListViewItemActionSelect({
       message: text,
     });
   }
+
+  return buildButton({
+    ...{
+      confirm,
+      size: 'small',
+      type: 'link',
+      icon: <ImportOutlined />,
+      text: '选取',
+      showIcon,
+      handleClick: ({ handleData }) => {
+        if (isFunction(selectCallback)) {
+          selectCallback(handleData);
+        }
+      },
+      handleData: selectData,
+    },
+  });
 
   return (
     <Popconfirm

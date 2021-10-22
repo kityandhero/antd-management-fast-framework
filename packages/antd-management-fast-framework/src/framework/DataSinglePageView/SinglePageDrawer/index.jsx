@@ -87,7 +87,7 @@ class SinglePageDrawer extends SinglePage {
     }
   };
 
-  selectRecord = (e, record) => {
+  selectRecord = (record) => {
     const { afterSelectSuccess, hideDrawerAfterSelect } = this.props;
 
     if (isFunction(afterSelectSuccess)) {
@@ -425,7 +425,7 @@ class SinglePageDrawer extends SinglePage {
     return buildListViewItemActionSelect({
       index,
       selectData: item,
-      selectCallback: (e, data) => that.selectRecord(e, data),
+      selectCallback: (data) => that.selectRecord(data),
     });
   };
 
