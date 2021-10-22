@@ -233,6 +233,9 @@ export const drawerConfig = {
   },
 };
 
+/**
+ * card配置集合
+ */
 export const cardConfig = {
   ...contentConfig,
   renderType: {
