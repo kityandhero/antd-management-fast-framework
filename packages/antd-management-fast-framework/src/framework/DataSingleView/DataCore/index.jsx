@@ -197,7 +197,7 @@ class DataCore extends BaseView {
 
     return (
       <PageHeaderWrapper title={pageName} logo={this.pageHeaderLogo()}>
-        <div className={styles.containorBox}>
+        <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
           {this.renderFormWrapper()}
           {this.renderOther()}
         </div>
