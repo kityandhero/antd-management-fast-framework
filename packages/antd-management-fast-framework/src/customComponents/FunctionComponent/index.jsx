@@ -70,6 +70,7 @@ import ImageBox from '../ImageBox';
 import IconInfo from '../IconInfo';
 import FlexBox from '../FlexBox';
 import FlexText from '../FlexText';
+import ColorText from '../ColorText';
 
 import styles from './index.less';
 
@@ -3058,6 +3059,44 @@ export function buildColumnItem({
   }
 
   return d;
+}
+
+/**
+ * 构建彩色文本
+ */
+export function buildColorText({
+  canCopy = false,
+  randomSeed = 0,
+  seedOffset = 0,
+  randomColor = false,
+  color = '',
+  textPrefix = null,
+  textPrefixStyle = null,
+  text = '',
+  separator = '：',
+  separatorStyle = null,
+  wrapperBuilder = null,
+}) {
+  const colorText = (
+    <ColorText
+      canCopy={canCopy || false}
+      randomSeed={randomSeed || 0}
+      seedOffset={seedOffset || 0}
+      randomColor={randomColor || false}
+      color={color || ''}
+      textPrefix={textPrefix || null}
+      textPrefixStyle={textPrefixStyle || null}
+      text={text || ''}
+      separator={separator || '：'}
+      separatorStyle={separatorStyle || null}
+    />
+  );
+
+  if (!isFunction(wrapperBuilder)) {
+    return colorText;
+  }
+
+  return wrapperBuilder(colorText);
 }
 
 /**

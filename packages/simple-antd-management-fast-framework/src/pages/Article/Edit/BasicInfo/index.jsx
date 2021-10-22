@@ -16,7 +16,11 @@ import {
   convertCollection,
   formatCollection,
 } from 'antd-management-fast-framework/es/utils/constants';
-import { buildCustomGrid } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import ColorText from 'antd-management-fast-framework/es/customComponents/ColorText';
+import {
+  buildColorText,
+  buildCustomGrid,
+} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
@@ -185,6 +189,14 @@ class BasicInfo extends TabPageBase {
         {
           title: {
             text: '基本信息',
+            subText: buildColorText({
+              textPrefix: '文本前缀',
+              text: '附属文本',
+              color: '#8909ef',
+              wrapperBuilder: (c) => {
+                return <>【{c}】</>;
+              },
+            }),
           },
           extra: {
             affix: true,

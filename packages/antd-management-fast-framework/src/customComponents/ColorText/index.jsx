@@ -19,12 +19,15 @@ class ColorText extends PureComponent {
   render() {
     const {
       textPrefix,
+      textPrefixStyle,
       randomSeed,
       seedOffset,
       randomColor,
       color,
       text,
       canCopy,
+      separator,
+      separatorStyle,
     } = this.props;
 
     let colorValue = color || '';
@@ -53,7 +56,16 @@ class ColorText extends PureComponent {
           this.copyText();
         }}
       >
-        {stringIsNullOrWhiteSpace(textPrefix) ? '' : `${textPrefix}：`}
+        {stringIsNullOrWhiteSpace(textPrefix) ? (
+          ''
+        ) : (
+          <>
+            <span style={textPrefixStyle || null}>{textPrefix}</span>
+            {stringIsNullOrWhiteSpace(separator) ? null : (
+              <span style={separatorStyle || null}>{separator}</span>
+            )}
+          </>
+        )}
         <span style={textStyle}>{text}</span>
       </span>
     );
@@ -67,7 +79,10 @@ ColorText.defaultProps = {
   randomColor: false,
   color: '',
   textPrefix: null,
+  textPrefixStyle: null,
   text: '',
+  separator: '：',
+  separatorStyle: null,
 };
 
 export default ColorText;
