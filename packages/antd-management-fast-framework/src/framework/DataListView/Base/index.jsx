@@ -37,10 +37,7 @@ import {
   showRuntimeError,
   isFunction,
   isBoolean,
-  isObject,
-  inCollection,
   toNumber,
-  sortedUnique,
 } from '../../../utils/tools';
 import {
   searchCardConfig,
@@ -98,6 +95,7 @@ class ListBase extends AuthorizationWrapper {
       ...this.state,
       ...defaultState,
       ...{
+        pageSizeAdditional: 0,
         showSelect: false,
         renderPageHeaderWrapper: true,
         listTitle: '检索结果',
@@ -116,6 +114,14 @@ class ListBase extends AuthorizationWrapper {
   static getDerivedStateFromProps(nextProps, prevState) {
     return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
   }
+
+  afterDidMount = () => {
+    const { pageSize } = this.state;
+
+    this.setState({
+      pageSizeAdditional: pageSize,
+    });
+  };
 
   afterLoadSuccess = ({
     metaData,
@@ -998,16 +1004,28 @@ class ListBase extends AuthorizationWrapper {
   };
 
   /**
+   *
+   * @returns build开始得方法不应再框架外部进行重写
+   */
+  buildPageSizeOptionList = () => {
+    const { pageSizeAdditional } = this.state;
+
+    let pageSizeList = [10, 20, 50, 100];
+
+    pageSizeList.push(toNumber(pageSizeAdditional));
+
+    pageSizeList = [...new Set(pageSizeList)].sort((a, b) => {
+      return a - b;
+    });
+
+    return pageSizeList;
+  };
+
+  /**
    * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
    */
   supplementPaginationConfig = () => {
     const { pageNo, pageSize } = this.state;
-
-    let pageSizeList = [10, 20, 50, 100];
-
-    pageSizeList.push(toNumber(pageSize));
-
-    pageSizeList = sortedUnique(pageSizeList);
 
     const config = {
       ...{
@@ -1017,7 +1035,7 @@ class ListBase extends AuthorizationWrapper {
         showTotal: (total, range) => {
           return `${range[0]}-${range[1]} 共 ${total} 条信息`;
         },
-        pageSizeOptions: pageSizeList,
+        pageSizeOptions: this.buildPageSizeOptionList(),
       },
       ...this.establishViewPaginationConfig(),
       ...{
