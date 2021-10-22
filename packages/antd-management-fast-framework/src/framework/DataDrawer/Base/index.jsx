@@ -129,7 +129,7 @@ class Base extends BaseWindow {
       },
       ...(option || {}),
       ...{
-        onClick: () => {
+        handleClick: () => {
           this.onClose();
         },
       },
