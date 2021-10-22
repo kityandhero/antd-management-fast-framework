@@ -115,11 +115,11 @@ class MultiPageDrawer extends MultiPage {
     this.onClose();
   };
 
-  selectRecord = (record) => {
+  selectRecord = ({ handleData }) => {
     const { afterSelectSuccess, hideDrawerAfterSelect } = this.props;
 
     if (isFunction(afterSelectSuccess)) {
-      afterSelectSuccess(record);
+      afterSelectSuccess(handleData);
     }
 
     if (hideDrawerAfterSelect) {
@@ -454,7 +454,7 @@ class MultiPageDrawer extends MultiPage {
     return buildListViewItemActionSelect({
       index,
       selectData: item,
-      selectCallback: (data) => that.selectRecord(data),
+      selectCallback: (data) => that.selectRecord({ handleData: data || null }),
     });
   };
 
