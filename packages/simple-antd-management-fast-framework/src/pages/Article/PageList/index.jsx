@@ -534,7 +534,7 @@ class PageList extends MultiPage {
         type: 'primary',
         icon: <PlusOutlined />,
         text: '新增文章[侧拉]',
-        onClick: this.showAddBasicInfoDrawer,
+        handleClick: this.showAddBasicInfoDrawer,
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
       },
       {
@@ -545,7 +545,7 @@ class PageList extends MultiPage {
           title: '即将跳转新增数据页面，确定吗？',
         },
         text: '新增文章[页面]',
-        onClick: this.goToAdd,
+        handleClick: this.goToAdd,
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
       },
     ];

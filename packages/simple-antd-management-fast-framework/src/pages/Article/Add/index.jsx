@@ -195,7 +195,7 @@ class Add extends BaseAddForm {
                 buildType: cardConfig.extraBuildType.generalButton,
                 icon: <FormOutlined />,
                 text: '切换FadeBox显示',
-                onClick: () => {
+                handleClick: () => {
                   this.toggleFadeBoxShow();
                 },
               },

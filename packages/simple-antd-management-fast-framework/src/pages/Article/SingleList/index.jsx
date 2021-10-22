@@ -468,7 +468,7 @@ class SingleList extends SinglePage {
         type: 'primary',
         icon: <PlusOutlined />,
         text: '新增文章[侧拉]',
-        onClick: this.showAddBasicInfoDrawer,
+        handleClick: this.showAddBasicInfoDrawer,
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
       },
       {
@@ -476,7 +476,7 @@ class SingleList extends SinglePage {
         type: 'primary',
         icon: <PlusOutlined />,
         text: '新增文章[页面]',
-        onClick: this.goToAdd,
+        handleClick: this.goToAdd,
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
       },
     ];

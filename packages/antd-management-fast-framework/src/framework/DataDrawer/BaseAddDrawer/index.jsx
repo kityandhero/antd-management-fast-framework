@@ -36,7 +36,7 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
         icon: <SaveOutlined />,
         text: '保存',
         disabled: buttonProcessing,
-        onClick: (e) => {
+        handleClick: (e) => {
           that.handleOk(e);
         },
       },
