@@ -337,7 +337,7 @@ class PageList extends MultiPage {
           title: '按钮提示1',
           component: this.renderGeneralButton({
             text: '按钮1',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -350,7 +350,7 @@ class PageList extends MultiPage {
           hidden: false,
           component: this.renderGeneralButton({
             text: '按钮2',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -362,7 +362,7 @@ class PageList extends MultiPage {
           hidden: false,
           component: this.renderGeneralButton({
             text: '按钮2',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -375,7 +375,7 @@ class PageList extends MultiPage {
           hidden: false,
           component: this.renderGeneralButton({
             text: '按钮4',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -472,7 +472,7 @@ class PageList extends MultiPage {
           },
         ]);
 
-        const child = (
+        return (
           <Card>
             <Table
               // scroll={{ x: 1460 }}
@@ -482,8 +482,6 @@ class PageList extends MultiPage {
             />
           </Card>
         );
-
-        return child;
       },
     };
   };
@@ -543,6 +541,9 @@ class PageList extends MultiPage {
         buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: <PlusOutlined />,
+        confirm: {
+          title: '即将跳转新增数据页面，确定吗？',
+        },
         text: '新增文章[页面]',
         onClick: this.goToAdd,
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),

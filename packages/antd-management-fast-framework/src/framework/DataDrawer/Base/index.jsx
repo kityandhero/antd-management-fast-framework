@@ -212,7 +212,7 @@ class Base extends BaseWindow {
               itemAdjust = this.renderSaveButton({
                 ...item,
                 ...{
-                  onClick: (e) => {
+                  handleClick: (e) => {
                     that.handleOk(e);
                   },
                 },

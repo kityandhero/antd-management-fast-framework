@@ -318,7 +318,7 @@ class SingleList extends SinglePage {
           title: '按钮提示1',
           component: this.renderGeneralButton({
             text: '按钮1',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -331,7 +331,7 @@ class SingleList extends SinglePage {
           hidden: false,
           component: this.renderGeneralButton({
             text: '按钮2',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -343,7 +343,7 @@ class SingleList extends SinglePage {
           hidden: false,
           component: this.renderGeneralButton({
             text: '按钮2',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -356,7 +356,7 @@ class SingleList extends SinglePage {
           hidden: false,
           component: this.renderGeneralButton({
             text: '按钮4',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });

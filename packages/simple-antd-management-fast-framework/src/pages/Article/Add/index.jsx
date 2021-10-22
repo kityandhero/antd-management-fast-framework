@@ -100,7 +100,7 @@ class Add extends BaseAddForm {
           title: '按钮提示1',
           component: this.renderGeneralButton({
             text: '按钮1',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -113,7 +113,7 @@ class Add extends BaseAddForm {
           hidden: false,
           component: this.renderGeneralButton({
             text: '按钮2',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -125,7 +125,7 @@ class Add extends BaseAddForm {
           hidden: false,
           component: this.renderGeneralButton({
             text: '按钮2',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });
@@ -138,7 +138,7 @@ class Add extends BaseAddForm {
           hidden: false,
           component: this.renderGeneralButton({
             text: '按钮4',
-            onClick: () => {
+            handleClick: () => {
               showInfoMessage({
                 message: 'click button 4',
               });

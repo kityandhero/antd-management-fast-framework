@@ -983,7 +983,7 @@ class Common extends Core {
   renderSaveButton = ({
     icon,
     text,
-    onClick,
+    handleClick,
     disabled = false,
     processing = false,
     hidden = false,
@@ -1001,9 +1001,9 @@ class Common extends Core {
       hidden,
       disabled: disabled || buttonDisabled,
       processing: processing || buttonProcessing,
-      onClick: (e) => {
-        if (isFunction(onClick)) {
-          onClick(e);
+      handleClick: (e) => {
+        if (isFunction(handleClick)) {
+          handleClick(e);
         } else {
           that.validate(e);
         }
@@ -1017,7 +1017,7 @@ class Common extends Core {
     size,
     text,
     icon,
-    onClick,
+    handleClick,
     danger = false,
     disabled = false,
     hidden = false,
@@ -1037,7 +1037,7 @@ class Common extends Core {
       size,
       text,
       icon,
-      handleClick: onClick,
+      handleClick,
       danger: danger || false,
       disabled,
       processing,
@@ -2057,7 +2057,7 @@ class Common extends Core {
                                     contentItem.value || '',
                                   ),
                                   text: '点击复制',
-                                  onClick: () => {
+                                  handleClick: () => {
                                     copyToClipboard(contentItem.value || '');
                                   },
                                 }),
