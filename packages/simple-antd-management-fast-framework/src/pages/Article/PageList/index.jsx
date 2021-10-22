@@ -84,6 +84,7 @@ class PageList extends MultiPage {
         pageName: '文章列表',
         paramsKey: accessWayCollection.article.pageList.paramsKey,
         listViewMode: listViewConfig.viewMode.table,
+        pageSize: 8,
         tableScroll: { x: 1720 },
         loadApiPath: 'article/pageList',
         changeSortModalVisible: false,

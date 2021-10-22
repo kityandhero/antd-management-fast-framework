@@ -38,6 +38,9 @@ import {
   isFunction,
   isBoolean,
   isObject,
+  inCollection,
+  toNumber,
+  sortedUnique,
 } from '../../../utils/tools';
 import {
   searchCardConfig,
@@ -998,7 +1001,13 @@ class ListBase extends AuthorizationWrapper {
    * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
    */
   supplementPaginationConfig = () => {
-    const { pageSize } = this.state;
+    const { pageNo, pageSize } = this.state;
+
+    let pageSizeList = [10, 20, 50, 100];
+
+    pageSizeList.push(toNumber(pageSize));
+
+    pageSizeList = sortedUnique(pageSizeList);
 
     const config = {
       ...{
@@ -1008,14 +1017,14 @@ class ListBase extends AuthorizationWrapper {
         showTotal: (total, range) => {
           return `${range[0]}-${range[1]} 共 ${total} 条信息`;
         },
+        pageSizeOptions: pageSizeList,
       },
       ...this.establishViewPaginationConfig(),
       ...{
+        current: pageNo,
         pageSize: pageSize,
       },
     };
-
-    delete config.current;
 
     return config;
   };

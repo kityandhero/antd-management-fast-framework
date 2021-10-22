@@ -29,6 +29,7 @@ import {
   split as splitLodash,
   toString as toStringLodash,
   get as getLodash,
+  sortedUniq as sortedUniqLodash,
   toLower,
   endsWith as endsWithLodash,
 } from 'lodash';
@@ -763,6 +764,13 @@ export function split(source, separator, limit = 1000) {
  */
 export function toString(value) {
   return toStringLodash(value);
+}
+
+/**
+ * 去除重复数据并排序（升序）
+ */
+export function sortedUnique(array) {
+  return sortedUniqLodash(array);
 }
 
 /**
