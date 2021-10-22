@@ -1600,7 +1600,7 @@ class ListBase extends AuthorizationWrapper {
     };
 
     return (
-      <div className={styles.containorBox}>
+      <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
         <Space style={{ width: '100%' }} direction="vertical" size={24}>
           {this.buildToolBarWrapper()}
 
