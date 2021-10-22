@@ -21,7 +21,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
   };
 
   renderSelectButton = ({
-    title: titleSource = '选择这条数据，确定吗？',
+    confirm = false,
     text: textSource = '选择',
     icon: iconSource = <ImportOutlined />,
     handleData = null,
@@ -29,6 +29,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
   }) => {
     return buildButton({
       ...{
+        confirm,
         size: 'small',
         icon: iconSource || <ImportOutlined />,
         text: textSource || '选择',
@@ -36,13 +37,6 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
         handleClick: () =>
           this.selectRecord({ handleData: handleData || null }),
       },
-      ...(stringIsNullOrWhiteSpace(titleSource)
-        ? {}
-        : {
-            confirm: {
-              title: titleSource || '选择这条数据，确定吗？',
-            },
-          }),
     });
   };
 }
