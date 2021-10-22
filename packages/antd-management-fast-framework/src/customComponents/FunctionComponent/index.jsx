@@ -1278,7 +1278,7 @@ export function buildListViewItemActionSelect({
       type: 'link',
       icon: <ImportOutlined />,
       text: '选取',
-      showIcon,
+      showIcon: true,
       handleClick: ({ handleData }) => {
         if (isFunction(selectCallback)) {
           selectCallback(handleData);
@@ -1287,24 +1287,6 @@ export function buildListViewItemActionSelect({
       handleData: selectData,
     },
   });
-
-  return (
-    <Popconfirm
-      placement="topRight"
-      title="选择此信息，确定吗？"
-      onConfirm={(e) => {
-        if (isFunction(selectCallback)) {
-          selectCallback(e, selectData);
-        }
-      }}
-      okText="确定"
-      cancelText="取消"
-    >
-      <Button type="link">
-        <IconInfo icon={<ImportOutlined />} text="选取" />
-      </Button>
-    </Popconfirm>
-  );
 }
 
 export function buildRadioGroup({
