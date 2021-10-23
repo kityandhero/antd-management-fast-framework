@@ -50,7 +50,7 @@ import {
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
-import { colorCollection, priceColor } from '@/customConfig/constants';
+import { colorCollection } from '@/customConfig/constants';
 import {
   getArticleRenderTypeName,
   renderSearchArticleRenderTypeSelect,
@@ -60,6 +60,7 @@ import {
   renderSearchArticleStatusSelect,
 } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
+import ArticleSelectField from '../SelectField';
 import ChangeSortModal from '../ChangeSortModal';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
@@ -91,6 +92,8 @@ class PageList extends MultiPage {
         addBasicInfoDrawerVisible: false,
         updateBasicInfoDrawerVisible: false,
         currentRecord: null,
+        articleId: '',
+        articleTitle: '',
       },
     };
   }
@@ -297,15 +300,48 @@ class PageList extends MultiPage {
     });
   };
 
+  afterArticleSelect = (d) => {
+    const { articleId, title } = d;
+
+    this.setState({
+      articleId: articleId || '',
+      articleTitle: title || '',
+    });
+
+    this.setSearchFormFieldsValue({
+      articleId: articleId || '',
+      articleTitle: title || '',
+    });
+  };
+
+  afterArticleClearSelect = () => {
+    this.setState({
+      articleId: '',
+      articleTitle: '',
+    });
+
+    this.setSearchFormFieldsValue({
+      articleId: '',
+      articleTitle: '',
+    });
+  };
+
+  handleAdditionalSearchReset = () => {
+    this.setState({
+      articleId: '',
+      articleTitle: '',
+    });
+  };
+
   getStatusBadge = (v) => {
     let result = 'default';
 
     switch (v) {
-      case 1:
+      case statusCollection.online:
         result = 'processing';
         break;
 
-      case 0:
+      case statusCollection.offline:
         result = 'warning';
         break;
 
@@ -403,7 +439,7 @@ class PageList extends MultiPage {
   };
 
   establishSearchCardConfig = () => {
-    const { dateRangeFieldName } = this.state;
+    const { dataLoading, processing, loadSuccess, dateRangeFieldName, articleTitle } = this.state;
 
     return {
       list: [
@@ -430,6 +466,28 @@ class PageList extends MultiPage {
           component: renderSearchArticleStatusSelect({
             global: this.getGlobal(),
           }),
+        },
+        {
+          lg: 6,
+          type: searchCardConfig.contentItemType.component,
+          component: (
+            <>
+              <ArticleSelectField
+                dataLoading={dataLoading}
+                processing={processing}
+                loadSuccess={loadSuccess}
+                label={fieldData.title.label}
+                title={articleTitle || null}
+                // helper={fieldData.title.helper}
+                afterSelect={(d) => {
+                  this.afterArticleSelect(d);
+                }}
+                afterClearSelect={() => {
+                  this.afterArticleClearSelect();
+                }}
+              />
+            </>
+          ),
         },
         {
           lg: 6,
@@ -687,7 +745,7 @@ class PageList extends MultiPage {
       showRichFacade: true,
       emptyValue: '--',
       facadeConfig: {
-        color: priceColor,
+        color: colorCollection.price,
       },
       formatValue: (val) => {
         return getArticleRenderTypeName({

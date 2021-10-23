@@ -377,6 +377,13 @@ class MultiPageDrawer extends MultiPage {
     );
   };
 
+  establishPaginationViewStyle = () => {
+    return {
+      paddingTop: 10,
+      paddingBottom: 10,
+    };
+  };
+
   renderListView = () => {
     const { listViewMode } = this.state;
 
@@ -418,7 +425,7 @@ class MultiPageDrawer extends MultiPage {
         <div
           style={
             listViewMode === listViewConfig.viewMode.list
-              ? { flex: 0, paddingTop: 10, paddingBottom: 10 }
+              ? { flex: 0, paddingTop: 0, paddingBottom: 0 }
               : {}
           }
         >

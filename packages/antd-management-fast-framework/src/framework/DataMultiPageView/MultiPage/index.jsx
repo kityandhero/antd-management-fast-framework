@@ -324,15 +324,21 @@ class MultiPage extends Base {
     return paginationConfig;
   };
 
+  establishPaginationViewStyle = () => {
+    return {
+      paddingTop: 16,
+      paddingBottom: 16,
+    };
+  };
+
   renderPaginationView = () => {
     const paginationConfig = this.supplementPaginationConfig();
 
+    const style = this.establishPaginationViewStyle();
+
     return (
       <FlexBox
-        style={{
-          paddingTop: 16,
-          paddingBottom: 16,
-        }}
+        style={style}
         right={
           <Pagination
             {...paginationConfig}

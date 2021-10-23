@@ -11,6 +11,7 @@ export const goodsTypeCollection = {
 export const colorCollection = {
   checkCircleColor: '#52c41a',
   closeCircleColor: '#ec8402',
+  price: '#267cb7',
 };
 
 export const couponScopeCollection = {
@@ -27,8 +28,6 @@ export const couponSceneCollection = {
   distributedToSharer: 3,
   distributedToShareVisitor: 4,
 };
-
-export const priceColor = '#267cb7';
 
 export const defaultPoint = [113.672108, 34.749387];
 
