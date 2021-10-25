@@ -28,6 +28,8 @@ import {
   FormOutlined,
   EditOutlined,
   InfoCircleOutlined,
+  BorderOuterOutlined,
+  RightCircleOutlined,
 } from '@ant-design/icons';
 import ReactJson from 'react-json-view';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -63,6 +65,7 @@ import {
   menuType,
   columnFacadeMode,
   defaultEmptyImage,
+  listViewConfig,
 } from '../../utils/constants';
 import VerticalBox from '../VerticalBox';
 import EllipsisCustom from '../EllipsisCustom';
@@ -71,6 +74,9 @@ import IconInfo from '../IconInfo';
 import FlexBox from '../FlexBox';
 import FlexText from '../FlexText';
 import ColorText from '../ColorText';
+import RotateBox from '../AnimalBox/RotateBox';
+import QueueBox from '../AnimalBox/QueueBox';
+import FadeBox from '../AnimalBox/FadeBox';
 
 import styles from './index.less';
 
@@ -3097,6 +3103,114 @@ export function buildColorText({
   }
 
   return wrapperBuilder(colorText);
+}
+
+export function adjustTableExpandConfig({ list, config }) {
+  if ((config || null) != null) {
+    const {
+      checkNeedExpander,
+      rowExpandable,
+      expandPlaceholderIcon,
+      expanderStyle,
+      animalType: expandAnimalType,
+      expandIconRotate,
+      expandIcon: expandIconCustom,
+      expandedRowRender: expandedRowRenderCustom,
+    } = {
+      ...{
+        // 判断当前列表数据，如若列表所有数据都不需要显示展开按钮，则忽略其他配置
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        checkNeedExpander: null,
+        rowExpandable: false,
+        expandPlaceholderIcon: (
+          <BorderOuterOutlined
+            style={{
+              color: '#ccc',
+            }}
+          />
+        ),
+        expanderStyle: null,
+        animalType: listViewConfig.expandAnimalType.none,
+        expandIconRotate: true,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        expandIcon: ({ expanded, onExpand, record }) => {
+          return <RightCircleOutlined />;
+        },
+        expandedRowRender: null,
+      },
+      ...(config || null),
+    };
+
+    let checkNeedExpanderResult = true;
+
+    if (isBoolean(checkNeedExpander)) {
+      checkNeedExpanderResult = checkNeedExpander;
+    }
+
+    if (isFunction(checkNeedExpander)) {
+      const r = checkNeedExpander(list);
+
+      if (isBoolean(checkNeedExpander)) {
+        checkNeedExpanderResult = r;
+      }
+    }
+
+    expandableConfig = checkNeedExpanderResult
+      ? {
+          rowExpandable,
+          expandIcon: ({
+            expandable: canExpand,
+            expanded,
+            onExpand,
+            record,
+          }) => {
+            if (!canExpand && (expandPlaceholderIcon || null) != null) {
+              return expandPlaceholderIcon || null;
+            }
+
+            if (expandIconRotate) {
+              return (
+                <RotateBox
+                  rotate={expanded ? 90 : 0}
+                  duration={200}
+                  onClick={(e) => onExpand(record, e)}
+                >
+                  {expandIconCustom({ expanded, onExpand, record })}
+                </RotateBox>
+              );
+            }
+
+            return expandIconCustom({ expanded, onExpand, record });
+          },
+          expandedRowRender: isFunction(expandedRowRenderCustom)
+            ? (record, index, indent, expanded) => {
+                let child = expandedRowRenderCustom(
+                  record,
+                  index,
+                  indent,
+                  expanded,
+                );
+
+                if (expandAnimalType === listViewConfig.expandAnimalType.fade) {
+                  child = <FadeBox show={expanded}>{child}</FadeBox>;
+                }
+
+                if (
+                  expandAnimalType === listViewConfig.expandAnimalType.queue
+                ) {
+                  child = <QueueBox show={expanded}>{child}</QueueBox>;
+                }
+
+                return <div style={expanderStyle || {}}>{child}</div>;
+              }
+            : null,
+        }
+      : {};
+
+    return expandableConfig;
+  }
+
+  return null;
 }
 
 /**
