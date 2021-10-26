@@ -214,6 +214,11 @@ export const listViewConfig = {
   },
 };
 
+export const sortOperate = {
+  moveUp: 'moveUp',
+  moveDown: 'moveDown',
+};
+
 export const drawerConfig = {
   bottomBarBuildType: {
     close: 'close',

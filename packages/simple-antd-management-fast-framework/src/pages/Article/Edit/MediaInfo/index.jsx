@@ -19,6 +19,7 @@ import {
   isArray,
   getValueByKey,
   toString,
+  sortCollectionByKey,
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
   defaultEmptyImage,
@@ -26,6 +27,7 @@ import {
   datetimeFormat,
   convertCollection,
   formatCollection,
+  sortOperate,
 } from 'antd-management-fast-framework/es/utils/constants';
 import ColorText from 'antd-management-fast-framework/es/customComponents/ColorText';
 import StatusBar from 'antd-management-fast-framework/es/customComponents/StatusBar';
@@ -198,20 +200,19 @@ class BasicInfo extends TabPageBase {
     this.setState({ updateMediaItemDrawerVisible: false });
   };
 
-  handleMenuClick = (e, handleData) => {
+  handleMenuClick = ({ key, handleData }) => {
     const { articleId } = this.state;
-    const { key } = e;
 
     switch (key) {
       case 'insertItem':
         this.showInsertMediaItemDrawer(handleData);
         break;
 
-      case 'moveUp':
+      case sortOperate.moveUp:
         this.changeSort(key, handleData);
         break;
 
-      case 'moveDown':
+      case sortOperate.moveDown:
         this.changeSort(key, handleData);
         break;
 
@@ -233,83 +234,15 @@ class BasicInfo extends TabPageBase {
   changeSort = (key, record) => {
     const { mediaItemList } = this.state;
 
-    const beforeList = [];
-    const afterList = [];
-    let result = [];
-
-    if ((mediaItemList || []).length <= 1) {
-      message.warn('无需排序!');
-
-      return;
-    }
-
-    (mediaItemList || []).forEach((item) => {
-      if (item.sort < record.sort) {
-        beforeList.push(item);
-      }
-
-      if (item.sort > record.sort) {
-        afterList.push(item);
-      }
+    const list = sortCollectionByKey({
+      operate: key,
+      item: record,
+      list: mediaItemList,
+      sortKey: 'sort',
+      sortMin: 1,
     });
 
-    switch (key) {
-      case 'moveUp':
-        if (record.sort === 1) {
-          message.warn('已经排在第一了!');
-          return;
-        }
-
-        (beforeList || []).forEach((item, index) => {
-          if (index < beforeList.length - 1) {
-            result.push(item);
-          } else {
-            const o1 = record;
-            o1.sort -= 1;
-
-            result.push(o1);
-
-            const o2 = item;
-            o2.sort += 1;
-
-            result.push(o2);
-          }
-        });
-
-        result = result.concat(afterList);
-
-        this.saveSortChangedMediaItem(result);
-
-        break;
-      case 'moveDown':
-        if (record.sort === (mediaItemList || []).length) {
-          message.warn('已经排在最后了!');
-        }
-
-        result = result.concat(beforeList);
-
-        (afterList || []).forEach((item, index) => {
-          if (index === 0) {
-            const o2 = item;
-            o2.sort -= 1;
-
-            result.push(o2);
-
-            const o1 = record;
-            o1.sort += 1;
-
-            result.push(o1);
-          } else {
-            result.push(item);
-          }
-        });
-
-        this.saveSortChangedMediaItem(result);
-
-        break;
-      default:
-        break;
-    }
+    this.saveSortChangedMediaItem(list);
   };
 
   saveSortChangedMediaItem = (mediaItems) => {
@@ -327,9 +260,12 @@ class BasicInfo extends TabPageBase {
         })
         .join();
 
-      setMediaCollectionSortAction(this, {
-        articleId,
-        ids,
+      setMediaCollectionSortAction({
+        target: this,
+        handleData: {
+          articleId,
+          ids,
+        },
       });
     });
   };
@@ -484,7 +420,7 @@ class BasicInfo extends TabPageBase {
                   hidden: !this.checkAuthority(accessWayCollection.article.addMediaItem.permission),
                 },
                 {
-                  key: 'moveUp',
+                  key: sortOperate.moveUp,
                   withDivider: true,
                   uponDivider: true,
                   icon: <ArrowUpOutlined />,
@@ -493,7 +429,7 @@ class BasicInfo extends TabPageBase {
                   disabled: sort === 1,
                 },
                 {
-                  key: 'moveDown',
+                  key: sortOperate.moveDown,
                   icon: <ArrowDownOutlined />,
                   text: '向下移动',
                   hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),

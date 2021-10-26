@@ -85,7 +85,6 @@ class Index extends BaseUpdateDrawer {
       });
     }
 
-    console.log(values);
     return values;
   };
 

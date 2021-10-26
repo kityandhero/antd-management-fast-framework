@@ -45,6 +45,7 @@ import {
   convertCollection,
   formatCollection,
   datetimeFormat,
+  sortOperate,
 } from './constants';
 
 const storageKeyCollection = {
@@ -2011,6 +2012,132 @@ const requestAnimFrameCustom = (() => {
 })();
 
 export const requestAnimFrame = requestAnimFrameCustom;
+
+/**
+ * 依照某个键的值进行排序，请确保键的值为数字型
+ */
+export function sortCollectionByKey({
+  operate,
+  item,
+  list,
+  sortKey,
+  sortMin = 0,
+}) {
+  if ((item || null) == null) {
+    return list;
+  }
+
+  const beforeList = [];
+  const afterList = [];
+  let result = [];
+
+  if ((list || []).length <= 1) {
+    const text = '无需排序!';
+
+    showWarnMessage({
+      message: text,
+    });
+
+    return list;
+  }
+
+  const itemSort = getValueByKey({
+    data: item,
+    key: sortKey,
+    convert: convertCollection.number,
+  });
+
+  (list || []).forEach((o) => {
+    const sort = getValueByKey({
+      data: o,
+      key: sortKey,
+      convert: convertCollection.number,
+    });
+
+    if (sort < itemSort) {
+      beforeList.push(o);
+    }
+
+    if (sort > itemSort) {
+      afterList.push(o);
+    }
+  });
+
+  switch (operate) {
+    case sortOperate.moveUp:
+      if (itemSort === sortMin) {
+        const text = '已经排在首位!';
+
+        showWarnMessage({
+          message: text,
+        });
+
+        return list;
+      }
+
+      (beforeList || []).forEach((o, index) => {
+        if (index < beforeList.length - 1) {
+          result.push(o);
+        } else {
+          const o1 = item;
+          o1[sortKey] -= 1;
+
+          result.push(o1);
+
+          const o2 = o;
+          o2[sortKey] += 1;
+
+          result.push(o2);
+        }
+      });
+
+      result = result.concat(afterList);
+
+      break;
+
+    case sortOperate.moveDown:
+      if (itemSort === (list || []).length + sortMin - 1) {
+        const text = '已经排在末位!';
+
+        showWarnMessage({
+          message: text,
+        });
+
+        return list;
+      }
+
+      result = result.concat(beforeList);
+
+      (afterList || []).forEach((o, index) => {
+        if (index === 0) {
+          const o2 = o;
+          o2[sortKey] -= 1;
+
+          result.push(o2);
+
+          const o1 = item;
+          o1[sortKey] += 1;
+
+          result.push(o1);
+        } else {
+          result.push(o);
+        }
+      });
+
+      break;
+
+    default:
+      const text = `不符合的操作，允许的操作为['${sortOperate.moveUp}','${sortOperate.moveDown}']!`;
+
+      showWarnMessage({
+        message: text,
+      });
+
+      break;
+  }
+
+  return result;
+}
 
 /**
  * 占位函数
