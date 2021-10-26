@@ -8,6 +8,7 @@
   padding-bottom: 16px;
   overflow: auto;
   background-color: @body-background;
+
   .leftmenu {
     width: 224px;
     border-right: @border-width-base @border-style-base @border-color-split;
@@ -22,12 +23,10 @@
       }
     }
   }
+
   .right {
     flex: 1;
-    padding-top: 8px;
-    padding-right: 40px;
-    padding-bottom: 8px;
-    padding-left: 40px;
+    padding: '8px 40px 8px 40px';
 
     .title {
       margin-bottom: 12px;
@@ -37,6 +36,7 @@
       line-height: 28px;
     }
   }
+
   :global {
     .ant-list-split .ant-list-item:last-child {
       border-bottom: 1px solid #e8e8e8;
@@ -48,6 +48,7 @@
     }
   }
 }
+
 :global {
   .ant-list-item-meta {
     // 账号绑定图标
@@ -94,10 +95,12 @@
 @media screen and (max-width: @screen-md) {
   .main {
     flex-direction: column;
+
     .leftmenu {
       width: 100%;
       border: none;
     }
+
     .right {
       padding: 40px;
     }

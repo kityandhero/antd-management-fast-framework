@@ -21,11 +21,12 @@
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
-    "lint:style": "stylelint --fix \"src/**/*.less\"",
+    "lint:style": "stylelint --fix \"./src/**/*.less\"",
     "prettier": "prettier -c --write \"**/*\"",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
-    "test:update": "umi-test --updateSnapshot"
+    "test:update": "umi-test --updateSnapshot",
+    "adjust-install": "cnpm install postcss-less"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

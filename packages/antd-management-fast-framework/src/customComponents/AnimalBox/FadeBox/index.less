@@ -2,7 +2,7 @@
 
 .fadeBox {
   .fade-enter {
-    opacity: 0;
+    opacity: 0%;
     animation-duration: 0.5s;
     animation-play-state: paused;
     animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
@@ -10,7 +10,7 @@
   }
 
   .fade-appear {
-    opacity: 0;
+    opacity: 0%;
     animation-duration: 0.5s;
     animation-play-state: paused;
     animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
@@ -25,35 +25,37 @@
   }
 
   .fade-enter.fade-enter-active {
-    animation-name: fadeIn;
+    animation-name: fade-in;
     animation-play-state: running;
   }
 
   .fade-appear.fade-appear-active {
-    animation-name: fadeIn;
+    animation-name: fade-in;
     animation-play-state: running;
   }
 
   .fade-leave.fade-leave-active {
-    animation-name: fadeOut;
+    animation-name: fade-out;
     animation-play-state: running;
   }
 
-  @keyframes fadeIn {
+  @keyframes fade-in {
     0% {
-      opacity: 0;
+      opacity: 0%;
     }
+
     100% {
-      opacity: 1;
+      opacity: 100%;
     }
   }
 
-  @keyframes fadeOut {
+  @keyframes fade-out {
     0% {
-      opacity: 1;
+      opacity: 100%;
     }
+
     100% {
-      opacity: 0;
+      opacity: 0%;
     }
   }
 }

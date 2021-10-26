@@ -33,11 +33,13 @@ ol {
   .ant-table {
     width: 100%;
     overflow-x: auto;
+
     &-thead > tr,
     &-tbody > tr {
       > th,
       > td {
         white-space: pre;
+
         > span {
           display: block;
         }
@@ -49,6 +51,7 @@ ol {
 :global {
   #nprogress {
     pointer-events: none;
+
     .bar {
       position: fixed;
       top: 0;
@@ -59,6 +62,7 @@ ol {
       height: 2px;
       background: #108ee9;
     }
+
     .peg {
       position: absolute;
       right: 0;
@@ -67,7 +71,7 @@ ol {
       height: 100%;
       box-shadow: 0 0 10px @primary-color, 0 0 5px @primary-color;
       transform: rotate(3deg) translate(0, -4px);
-      opacity: 1;
+      opacity: 100%;
     }
     // .spinner {
     //   display: block;
@@ -89,9 +93,11 @@ ol {
     //   }
     // }
   }
+
   .nprogress-custom-parent {
     position: relative;
     overflow: hidden;
+
     #nprogress {
       .bar,
       .spinner {
