@@ -87,6 +87,7 @@
     "nzh": "^1.0.5",
     "omit.js": "^2.0.2",
     "path-to-regexp": "^6.2.0",
+    "postcss-less": "^5.0.0",
     "prop-types": "^15.7.2",
     "qs": "^6.10.1",
     "queue": "^6.0.2",
@@ -127,7 +128,6 @@
   "devDependencies": {
     "@ant-design/colors": "^6.0.0",
     "@ant-design/pro-cli": "^2.1.5",
-    "@types/classnames": "^2.3.1",
     "@types/express": "^4.17.13",
     "@types/history": "^4.7.9",
     "@types/jest": "^27.0.2",

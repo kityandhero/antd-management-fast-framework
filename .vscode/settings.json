@@ -21,6 +21,7 @@
     "npminstall",
     "pageview",
     "pify",
+    "pnpm",
     "precommit",
     "prettierrc",
     "regexes",

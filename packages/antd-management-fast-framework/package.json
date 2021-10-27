@@ -48,6 +48,7 @@
     "numeral": "^2.0.6",
     "omit.js": "^2.0.2",
     "path-to-regexp": "^6.2.0",
+    "postcss-less": "^5.0.0",
     "prop-types": "^15.7.2",
     "queue": "^6.0.2",
     "rc-animate": "^3.1.1",
