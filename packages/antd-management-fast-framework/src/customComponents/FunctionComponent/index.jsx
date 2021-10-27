@@ -3155,7 +3155,7 @@ export function adjustTableExpandConfig({ list, config }) {
       }
     }
 
-    expandableConfig = checkNeedExpanderResult
+    const expandableConfig = checkNeedExpanderResult
       ? {
           rowExpandable,
           expandIcon: ({
