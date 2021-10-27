@@ -80,7 +80,7 @@ export default defineConfig({
   // webpack5: {},
   // esbuild: {},
   fastRefresh: {},
-  exportStatic: {},
+  // exportStatic: {},
   extraCustomOption: {
     headerExtraLinks: ['/home.css'],
     babelCompact: false,
