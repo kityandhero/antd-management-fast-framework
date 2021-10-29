@@ -647,6 +647,7 @@ export function buildMenu({
                 okText={okText}
                 cancelText={cancelText}
                 disabled={disabled}
+                overlayStyle={{ zIndex: 1060 }}
               >
                 <li
                   className={styles.menuItemCustom}
