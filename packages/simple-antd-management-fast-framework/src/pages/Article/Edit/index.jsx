@@ -409,30 +409,26 @@ class Edit extends DataTabContainer {
   establishPageHeaderContentGridConfig = () => {
     const { metaData } = this.state;
 
-    const list = [];
-
-    list.push({
-      label: fieldData.articleId.label,
-      value: getValueByKey({
-        data: metaData,
-        key: fieldData.articleId.name,
-      }),
-      canCopy: true,
-    });
-
-    list.push({
-      label: fieldData.renderTypeNote.label,
-      value: getArticleRenderTypeName({
-        global: this.getGlobal(),
+    return [
+      {
+        label: fieldData.articleId.label,
         value: getValueByKey({
           data: metaData,
-          key: fieldData.renderType.name,
+          key: fieldData.articleId.name,
         }),
-      }),
-      canCopy: false,
-    });
-
-    return list;
+        canCopy: true,
+      },
+      {
+        label: fieldData.renderTypeNote.label,
+        value: getArticleRenderTypeName({
+          global: this.getGlobal(),
+          value: getValueByKey({
+            data: metaData,
+            key: fieldData.renderType.name,
+          }),
+        }),
+      },
+    ];
   };
 }
 
