@@ -224,53 +224,51 @@ class Edit extends DataTabContainer {
 
     const that = this;
 
-    const buttons = [
-      {
-        key: 'setOnline',
-        type: 'default',
-        size: 'default',
-        text: '上架',
-        icon: <UpCircleOutlined />,
-        handleButtonClick: ({ handleData }) => {
-          that.setOnline(handleData);
-        },
-        hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
-        disabled: dataLoading || processing || status === statusCollection.online,
-        confirm: {
-          title: '设置为上架，确定吗？',
-          placement: 'bottomRight',
-          okText: '确定',
-          cancelText: '取消',
-        },
-        handleData: metaData,
-        // processing: dataLoading,
-        // iconProcessing: <LoadingOutlined />,
-      },
-      {
-        key: 'setOffline',
-        type: 'default',
-        size: 'default',
-        text: '下架',
-        icon: <UpCircleOutlined />,
-        handleButtonClick: ({ handleData }) => {
-          that.setOffline(handleData);
-        },
-        hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
-        disabled: dataLoading || processing || status === statusCollection.offline,
-        confirm: {
-          title: '设置为下架，确定吗？',
-          placement: 'bottomRight',
-          okText: '确定',
-          cancelText: '取消',
-        },
-        handleData: metaData,
-        // processing: dataLoading,
-        // iconProcessing: <LoadingOutlined />,
-      },
-    ];
-
     return {
-      buttons,
+      buttons: [
+        {
+          key: 'setOnline',
+          type: 'default',
+          size: 'default',
+          text: '上架',
+          icon: <UpCircleOutlined />,
+          handleButtonClick: ({ handleData }) => {
+            that.setOnline(handleData);
+          },
+          hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
+          disabled: dataLoading || processing || status === statusCollection.online,
+          confirm: {
+            title: '设置为上架，确定吗？',
+            placement: 'bottomRight',
+            okText: '确定',
+            cancelText: '取消',
+          },
+          handleData: metaData,
+          // processing: dataLoading,
+          // iconProcessing: <LoadingOutlined />,
+        },
+        {
+          key: 'setOffline',
+          type: 'default',
+          size: 'default',
+          text: '下架',
+          icon: <UpCircleOutlined />,
+          handleButtonClick: ({ handleData }) => {
+            that.setOffline(handleData);
+          },
+          hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
+          disabled: dataLoading || processing || status === statusCollection.offline,
+          confirm: {
+            title: '设置为下架，确定吗？',
+            placement: 'bottomRight',
+            okText: '确定',
+            cancelText: '取消',
+          },
+          handleData: metaData,
+          // processing: dataLoading,
+          // iconProcessing: <LoadingOutlined />,
+        },
+      ],
     };
   };
 
