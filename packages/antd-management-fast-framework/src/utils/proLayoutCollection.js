@@ -43,7 +43,7 @@ export const proLayoutDefaultProps = {
 
           setTimeout(() => {
             nprogress.done();
-          }, 200);
+          }, 400);
         }}
       >
         {defaultDom}

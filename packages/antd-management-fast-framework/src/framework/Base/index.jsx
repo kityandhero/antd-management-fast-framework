@@ -24,7 +24,9 @@ class Base extends PureComponent {
   }
 
   componentDidMount() {
-    nprogress.done();
+    setTimeout(() => {
+      nprogress.done();
+    }, 400);
 
     this.beforeDidMount();
 
