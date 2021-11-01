@@ -1,6 +1,7 @@
 import React from 'react';
 import { history, Link } from 'umi';
 import nprogress from 'nprogress';
+import { showErrorMessage } from './tools';
 
 export const proLayoutDefaultProps = {
   onMenuHeaderClick: () => history.push('/'),
@@ -30,6 +31,14 @@ export const proLayoutDefaultProps = {
       <Link
         to={menuItemProps.path}
         onClick={() => {
+          if ((nprogress || null) == null) {
+            const text = 'nprogress need install';
+
+            showErrorMessage({
+              message: text,
+            });
+          }
+
           nprogress.inc();
 
           setTimeout(() => {
