@@ -6,6 +6,7 @@ import {
   showErrorMessage,
   showRuntimeError,
   getGuid,
+  requestAnimFrame,
 } from './tools';
 
 const { confirm } = Modal;
@@ -121,10 +122,12 @@ export async function actionCore({
   if (showProcessing) {
     key = getGuid();
 
-    message.loading({
-      key,
-      content: textProcessing || '处理中，请稍后',
-      duration: 0,
+    requestAnimFrame(() => {
+      message.loading({
+        key,
+        content: textProcessing || '处理中，请稍后',
+        duration: 0,
+      });
     });
   }
 
@@ -177,7 +180,9 @@ export async function actionCore({
     })
     .catch(() => {
       if (showProcessing) {
-        message.destroy(key);
+        setTimeout(() => {
+          message.destroy(key);
+        }, 200);
       }
     });
 }

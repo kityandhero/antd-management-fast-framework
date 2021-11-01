@@ -12,6 +12,7 @@ import {
   isFunction,
   showRuntimeError,
   stringIsNullOrWhiteSpace,
+  toNumber,
 } from '../../utils/tools';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
@@ -23,6 +24,8 @@ import CenterBox from '../CenterBox';
 import styles from './index.less';
 
 const { confirm } = Modal;
+
+const defaultCapacity = 8;
 
 class ImageUpload extends PureComponent {
   constructor(props) {
@@ -168,6 +171,7 @@ class ImageUpload extends PureComponent {
       disabled,
       listType,
       fileList,
+      fileListCapacity,
       showUploadList,
       image,
       singleMode: singleModeSource,
@@ -184,6 +188,10 @@ class ImageUpload extends PureComponent {
         <div className="ant-upload-text">上传新图</div>
       </div>
     );
+
+    const capacity = toNumber(fileListCapacity);
+
+    const listCapacity = capacity <= 0 ? defaultCapacity : capacity;
 
     const uploadProps = {
       disabled,
@@ -285,7 +293,7 @@ class ImageUpload extends PureComponent {
             </>
           ) : (
             <Upload {...uploadProps}>
-              {(fileList || []).length >= 8 ? null : uploadButton}
+              {(fileList || []).length >= listCapacity ? null : uploadButton}
             </Upload>
           )}
 
@@ -343,6 +351,7 @@ ImageUpload.defaultProps = {
   onItemChange: ({ file, fileList }) => {},
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onItemRemove: (file) => {},
+  fileListCapacity: defaultCapacity,
 };
 
 export default ImageUpload;

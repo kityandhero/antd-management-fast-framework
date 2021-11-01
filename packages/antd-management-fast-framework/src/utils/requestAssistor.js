@@ -410,23 +410,21 @@ export async function request({
     } else {
       result = await apiVirtualAccess({
         dataBuild: (resolve) => {
-          setTimeout(() => {
-            if (virtualRequestResult) {
-              resolve(
-                apiVirtualSuccessData({
-                  remoteResponse: virtualSuccessResponse,
-                  needAuthorize: virtualNeedAuthorize,
-                }),
-              );
-            } else {
-              resolve(
-                apiVirtualFailData({
-                  ...(virtualFailResponse || {}),
-                  ...{ needAuthorize: virtualNeedAuthorize },
-                }),
-              );
-            }
-          }, 400);
+          if (virtualRequestResult) {
+            resolve(
+              apiVirtualSuccessData({
+                remoteResponse: virtualSuccessResponse,
+                needAuthorize: virtualNeedAuthorize,
+              }),
+            );
+          } else {
+            resolve(
+              apiVirtualFailData({
+                ...(virtualFailResponse || {}),
+                ...{ needAuthorize: virtualNeedAuthorize },
+              }),
+            );
+          }
         },
       });
     }
