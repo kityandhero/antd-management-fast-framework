@@ -122,17 +122,16 @@ export async function actionCore({
   if (showProcessing) {
     key = getGuid();
 
-    requestAnimFrame(() => {
-      message.loading({
-        key,
-        content: textProcessing || '处理中，请稍后',
-        duration: 0,
-      });
+    message.loading({
+      key,
+      content: textProcessing || '处理中，请稍后',
+      duration: 0,
     });
   }
 
   target.setState({ processing: true });
 
+  // 延迟一定时间，优化界面呈现
   setTimeout(() => {
     dispatch({
       type: api,
@@ -186,7 +185,7 @@ export async function actionCore({
           }, 200);
         }
       });
-  }, 200);
+  }, 300);
 }
 
 export async function confirmActionCore({
