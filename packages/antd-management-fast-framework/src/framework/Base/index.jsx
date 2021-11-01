@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { PureComponent } from 'react';
 import { history } from 'umi';
+import nprogress from 'nprogress';
 
 import { defaultBaseState } from '../../utils/tools';
 
@@ -23,6 +24,8 @@ class Base extends PureComponent {
   }
 
   componentDidMount() {
+    nprogress.done();
+
     this.beforeDidMount();
 
     this.mounted = true;
@@ -74,6 +77,8 @@ class Base extends PureComponent {
       pathname: path,
     };
 
+    nprogress.inc();
+
     history.push(location);
   };
 
@@ -81,6 +86,8 @@ class Base extends PureComponent {
     const location = {
       pathname: path,
     };
+
+    nprogress.inc();
 
     history.replace(location);
   };

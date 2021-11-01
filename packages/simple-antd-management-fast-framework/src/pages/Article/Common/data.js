@@ -33,6 +33,16 @@ export const fieldData = {
       name: 'image',
       helper: '文章的配图',
     },
+    fileBase64: {
+      label: '附件',
+      name: 'fileBase64',
+      helper: '文章的附件',
+    },
+    videoUrl: {
+      label: '视频地址',
+      name: 'videoUrl',
+      helper: '上传的视频资源，能增加可信度哦',
+    },
     contentData: {
       label: '详细内容',
       name: 'contentData',

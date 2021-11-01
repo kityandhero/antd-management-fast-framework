@@ -13,6 +13,18 @@ export function checkNeedUpdateAssist(currentState, preProps, preState, snapshot
   return articleIdPre !== articleId;
 }
 
+export function getArticleIdFromExternalData(state) {
+  const { externalData } = state;
+
+  let productId = '';
+
+  if ((externalData || null) != null) {
+    productId = externalData.productId || '';
+  }
+
+  return productId;
+}
+
 /**
  * 占位函数
  *

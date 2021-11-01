@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, connect, FormattedMessage } from 'umi';
+import nprogress from 'nprogress';
 import { Result, Button } from 'antd';
 import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
 
@@ -116,17 +117,6 @@ const BasicLayout = (props) => {
           },
           ...routers,
         ]}
-        menuItemRender={(menuItemProps, defaultDom) => {
-          const { children: childrenArray } = menuItemProps.children || {
-            children: [],
-          };
-
-          if (menuItemProps.isUrl || (childrenArray || []).length > 0 || !menuItemProps.path) {
-            return defaultDom;
-          }
-
-          return <Link to={menuItemProps.path}>{defaultDom}</Link>;
-        }}
         footerRender={footerRender}
         menuDataRender={menuDataRender}
         rightContentRender={() => <RightContent />}

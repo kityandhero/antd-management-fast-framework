@@ -11,6 +11,7 @@ import {
 import {
   isFunction,
   showRuntimeError,
+  showWarningMessage,
   stringIsNullOrWhiteSpace,
   toNumber,
 } from '../../utils/tools';
@@ -65,7 +66,21 @@ class ImageUpload extends PureComponent {
     });
   };
 
-  beforeUpload = (file) => {
+  beforeUpload = (file, fileList) => {
+    const { fileListCapacity } = this.props;
+
+    const capacity = toNumber(fileListCapacity);
+
+    const listCapacity = capacity <= 0 ? defaultCapacity : capacity;
+
+    if ((fileList || []).length > listCapacity) {
+      const text = `上传不能超过${listCapacity}`;
+
+      showWarningMessage({
+        message: text,
+      });
+    }
+
     const isPic =
       file.type === 'image/jpeg' ||
       file.type === 'image/gif' ||

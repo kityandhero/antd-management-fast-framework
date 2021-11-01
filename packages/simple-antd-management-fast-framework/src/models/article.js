@@ -23,6 +23,9 @@ import {
   updateMediaItemData,
   setMediaCollectionSortData,
   removeMediaItemData,
+  listImageData,
+  addImageData,
+  removeImageData,
 } from '@/services/article';
 
 export default {
@@ -169,6 +172,30 @@ export default {
     },
     *removeMediaItem({ payload }, { call, put }) {
       const response = yield call(removeMediaItemData, payload);
+
+      yield put({
+        type: 'handleCommonData',
+        payload: response,
+      });
+    },
+    *listImage({ payload }, { call, put }) {
+      const response = yield call(listImageData, payload);
+
+      yield put({
+        type: 'handleListData',
+        payload: response,
+      });
+    },
+    *addImage({ payload }, { call, put }) {
+      const response = yield call(addImageData, payload);
+
+      yield put({
+        type: 'handleCommonData',
+        payload: response,
+      });
+    },
+    *removeImage({ payload }, { call, put }) {
+      const response = yield call(removeImageData, payload);
 
       yield put({
         type: 'handleCommonData',

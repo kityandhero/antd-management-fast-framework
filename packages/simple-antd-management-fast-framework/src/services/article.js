@@ -2,6 +2,45 @@ import { request } from 'antd-management-fast-framework/es/utils/requestAssistor
 
 import { defaultSettings } from '@/defaultSettings';
 
+const imageFileList = [
+  {
+    id: '1441333040210120704',
+    key: '1441333040210120704',
+    sort: 1,
+    url: '/EmptyLogo.png',
+  },
+  {
+    id: '1440597205999292416',
+    key: '1440597205999292416',
+    sort: 2,
+    url: '/EmptyLogo.png',
+  },
+  {
+    id: '1455072511795531776',
+    key: '1455072511795531776',
+    sort: 3,
+    url: '/EmptyLogo.png',
+  },
+  {
+    id: '1455072513007685632',
+    key: '1455072513007685632',
+    sort: 4,
+    url: '/EmptyLogo.png',
+  },
+  {
+    id: '1455072513582305280',
+    key: '1455072513582305280',
+    sort: 5,
+    url: '/EmptyLogo.png',
+  },
+  {
+    id: '1455072514349862912',
+    key: '1455072514349862912',
+    sort: 6,
+    url: '/EmptyLogo.png',
+  },
+];
+
 const article = {
   articleId: '1430367617461391360',
   title: '测试2',
@@ -36,6 +75,7 @@ const article = {
     defaultSettings.getEmptyLogo(),
     defaultSettings.getEmptyLogo(),
   ],
+  imageFileList: imageFileList,
   mediaItemList: [
     {
       id: '986170e1-1b3f-46ca-930e-1b20cba2ef8b',
@@ -295,6 +335,38 @@ export async function removeMediaItemData(params) {
     params,
     virtualSuccessResponse: {
       data: article,
+    },
+  });
+}
+
+export async function listImageData(params) {
+  return request({
+    api: `/article/ListImage`,
+    params,
+    virtualSuccessResponse: {
+      list: imageFileList,
+    },
+  });
+}
+
+export async function addImageData(params) {
+  return request({
+    api: `/article/addImage`,
+    params,
+    virtualSuccessResponse: {
+      data: article,
+    },
+  });
+}
+
+export async function removeImageData(params) {
+  return request({
+    api: `/article/removeImage`,
+    params,
+    virtualSuccessResponse: {
+      data: {
+        ...params,
+      },
     },
   });
 }

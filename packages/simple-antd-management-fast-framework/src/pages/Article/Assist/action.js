@@ -1,5 +1,8 @@
 import { getValueByKey, recordError } from 'antd-management-fast-framework/es/utils/tools';
-import { actionCore } from 'antd-management-fast-framework/es/utils/actionAssist';
+import {
+  actionCore,
+  confirmActionCore,
+} from 'antd-management-fast-framework/es/utils/actionAssist';
 
 import { fieldData, mediaItemData } from '../Common/data';
 
@@ -119,6 +122,69 @@ export async function removeMediaItemAction({
     handleData,
     successCallback,
     successMessage,
+  });
+}
+
+export async function addGalleryImageAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: 'article/addImage',
+    params: {
+      articleId: getValueByKey({
+        data: handleData,
+        key: fieldData.articleId.name,
+      }),
+      url: handleData.url || '',
+    },
+    getApiData,
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export async function removeGalleryImageAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: 'article/removeImage',
+    params: {
+      articleId: getValueByKey({
+        data: handleData,
+        key: fieldData.articleId.name,
+      }),
+    },
+    getApiData,
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export async function removeGalleryImageConfirmAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  confirmActionCore({
+    title: `移除图片`,
+    content: `即将移除图片，确定吗？`,
+    target,
+    handleData,
+    successCallback,
+    okAction: ({ target: t, handleData: r, successCallback: sc }) => {
+      removeGalleryImageAction({ target: t, handleData: r, successCallback: sc, successMessage });
+    },
   });
 }
 

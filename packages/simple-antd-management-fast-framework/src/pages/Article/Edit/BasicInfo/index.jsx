@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'umi';
-import { PictureOutlined, InfoCircleFilled, FormOutlined } from '@ant-design/icons';
+import {
+  PictureOutlined,
+  InfoCircleFilled,
+  FormOutlined,
+  SortAscendingOutlined,
+} from '@ant-design/icons';
 
 import {
   formatDatetime,
@@ -10,6 +15,11 @@ import {
   getValueByKey,
   showInfoMessage,
 } from 'antd-management-fast-framework/es/utils/tools';
+import {
+  getTokenKeyName,
+  getToken,
+} from 'antd-management-fast-framework/es/utils/globalStorageAssist';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import {
   cardConfig,
   datetimeFormat,
@@ -26,7 +36,10 @@ import { accessWayCollection } from '@/customConfig/config';
 import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
 import TabPageBase from '../../TabPageBase';
+import ChangeImageSortModal from '../../ChangeImageSortModal';
+import { addGalleryImageAction, removeGalleryImageConfirmAction } from '../../Assist/action';
 import { parseUrlParamsForSetState } from '../../Assist/config';
+import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
 import { fieldData } from '../../Common/data';
 
 @connect(({ article, global, loading }) => ({
@@ -40,14 +53,22 @@ class BasicInfo extends TabPageBase {
   constructor(props) {
     super(props);
 
+    const tokenSetObject = {};
+
+    tokenSetObject[`${getTokenKeyName()}`] = getToken() || '';
+
     this.state = {
       ...this.state,
       ...{
         loadApiPath: 'article/get',
         submitApiPath: 'article/updateBasicInfo',
+        tokenSet: tokenSetObject,
+        changeImageSortModalVisible: false,
         articleId: null,
+        fileBase64: '',
         image: '',
         imageList: [],
+        fileList: [],
       },
     };
   }
@@ -73,16 +94,133 @@ class BasicInfo extends TabPageBase {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
-    const { image, imageList } = metaData;
+    const { image, imageList, imageFileList, videoUrl, fileBase64 } = metaData;
+
+    const fileList = [];
+
+    (imageFileList || []).forEach((item) => {
+      const o = {
+        uid: item.id,
+        name: '',
+        status: 'done',
+        url: item.url,
+      };
+
+      o[fieldDataArticleImage.articleImageId.name] = item.id;
+
+      fileList.push(o);
+    });
 
     this.setState({
       image,
       imageList,
+      fileList,
+      videoUrl,
+      fileBase64,
     });
   };
 
   afterImageUploadSuccess = (image) => {
     this.setState({ image });
+  };
+
+  afterVideoChangeSuccess = (video) => {
+    this.setState({ videoUrl: video });
+  };
+
+  afterFileUploadSuccess = (file) => {
+    this.setState({ fileBase64: file });
+  };
+
+  handleGalleryUploadChange = ({ file, fileList }) => {
+    this.setState({ fileList: [...fileList] });
+
+    if (file.status === 'done') {
+      const { response } = file;
+
+      const v = pretreatmentRemoteSingleData(response);
+
+      const { dataSuccess } = v;
+
+      if (dataSuccess) {
+        const {
+          data: { imageUrl },
+        } = v;
+
+        this.addGalleryImage({ file, fileList, imageUrl });
+      }
+    }
+  };
+
+  addGalleryImage = ({ file, fileList, imageUrl }) => {
+    const { metaData } = this.state;
+
+    addGalleryImageAction({
+      target: this,
+      handleData: { ...(metaData || {}), ...{ url: imageUrl } },
+      successCallback: ({ target, remoteData }) => {
+        (fileList || []).forEach((item) => {
+          if (item.uid === file.uid) {
+            item[fieldDataArticleImage.articleImageId.name] = getValueByKey({
+              data: remoteData,
+              key: fieldDataArticleImage.articleImageId.name,
+            });
+          }
+        });
+
+        target.setState({ fileList: [...fileList] });
+      },
+    });
+  };
+
+  onGalleryRemove = (file) => {
+    const articleImageId = getValueByKey({
+      data: file,
+      key: fieldDataArticleImage.articleImageId.name,
+    });
+
+    removeGalleryImageConfirmAction({
+      target: this,
+      handleData: { articleImageId },
+      successCallback: ({ target }) => {
+        const { fileList } = this.state;
+
+        const list = [];
+
+        (fileList || []).forEach((item) => {
+          const itemProductImageId = getValueByKey({
+            data: item,
+            key: fieldDataArticleImage.articleImageId.name,
+          });
+
+          if (itemProductImageId !== articleImageId) {
+            list.push(item);
+          }
+        });
+
+        target.setState({ fileList: [...list] });
+      },
+    });
+
+    return false;
+  };
+
+  showChangeImageSortModal = () => {
+    this.setState({ changeImageSortModalVisible: true });
+  };
+
+  afterChangeImageSortModalOk = () => {
+    this.setState({
+      changeImageSortModalVisible: false,
+    });
+
+    this.reloadData();
+  };
+
+  afterChangeImageSortModalCancel = () => {
+    this.setState({
+      changeImageSortModalVisible: false,
+    });
   };
 
   establishToolBarConfig = () => {
@@ -182,7 +320,8 @@ class BasicInfo extends TabPageBase {
   };
 
   establishCardCollectionConfig = () => {
-    const { metaData, processing, dataLoading, image, imageList } = this.state;
+    const { metaData, processing, dataLoading, image, videoUrl, fileBase64, imageList, fileList } =
+      this.state;
 
     return {
       list: [
@@ -260,6 +399,32 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.subtitle,
             },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.inputNumber,
+              fieldData: fieldData.sort,
+            },
+            {
+              lg: 18,
+              type: cardConfig.contentItemType.videoUpload,
+              fieldData: fieldData.videoUrl,
+              video: videoUrl,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadVideo`,
+              afterChangeSuccess: (videoData) => {
+                this.afterVideoChangeSuccess(videoData);
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.fileBase64Upload,
+              fieldData: fieldData.fileBase64,
+              fileBase64,
+              action: `${corsTarget()}/application/uploadFile`,
+              afterUploadSuccess: (file) => {
+                this.afterFileUploadSuccess(file);
+              },
+            },
           ],
           instruction: {
             title: '局部操作说明',
@@ -307,6 +472,43 @@ class BasicInfo extends TabPageBase {
               imageBoxContainorStyle: {
                 width: '120px',
               },
+            },
+          ],
+        },
+        {
+          title: {
+            text: '图片相册',
+            subText:
+              '[相册最大容量为8张图片，大小必须统一640*640（800*800），图片相册的添加和删除将自动保存，产品其他信息请在修改后点击保存按钮!]',
+          },
+          extra: {
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.generalButton,
+                hidden: !this.checkAuthority(accessWayCollection.article.updateImageSort),
+                text: '调整图片顺序',
+                icon: <SortAscendingOutlined />,
+                handleClick: (e) => this.showChangeImageSortModal(e),
+                disabled: dataLoading || processing,
+              },
+            ],
+          },
+          spinning: dataLoading || processing,
+          items: [
+            {
+              type: cardConfig.contentItemType.imageUpload,
+              action: `${corsTarget()}/article/uploadImage`,
+              disabled: !this.checkAuthority(accessWayCollection.article.addImage),
+              multiple: true,
+              fileList,
+              showUploadList: {
+                showPreviewIcon: true,
+                showDownloadIcon: true,
+                showRemoveIcon: this.checkAuthority(accessWayCollection.article.removeImage),
+              },
+              onItemChange: this.handleGalleryUploadChange,
+              onItemRemove: this.onGalleryRemove,
+              // showUploadList: true,
             },
           ],
         },
@@ -498,6 +700,19 @@ class BasicInfo extends TabPageBase {
         },
       ],
     };
+  };
+
+  renderOther = () => {
+    const { metaData, changeImageSortModalVisible } = this.state;
+
+    return (
+      <ChangeImageSortModal
+        externalData={metaData}
+        visible={changeImageSortModalVisible}
+        afterOK={this.afterChangeImageSortModalOk}
+        afterCancel={this.afterChangeImageSortModalCancel}
+      />
+    );
   };
 }
 

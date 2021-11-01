@@ -90,6 +90,15 @@ export const accessWayCollection = {
       removeMediaItem: {
         permission: '',
       },
+      addImage: {
+        permission: '',
+      },
+      removeImage: {
+        permission: '',
+      },
+      updateImageSort: {
+        permission: '',
+      },
     },
   },
 };
