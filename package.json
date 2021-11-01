@@ -5,7 +5,7 @@
     "prepare": "husky install",
     "adjust-install:framework": "cd packages/antd-management-fast-framework && npm run adjust-install",
     "adjust-install:simple": "cd packages/simple-antd-management-fast-framework && npm run adjust-install",
-    "lerna:b": "npm run clean && husky install && lerna bootstrap && npm run adjust-install:framework && npm run adjust-install:simple",
+    "lerna:b": "npm run clean && husky install && git pull && lerna bootstrap && npm run adjust-install:framework && npm run adjust-install:simple",
     "lerna:create": "lerna create",
     "lerna:build": "lerna run --stream --sort build",
     "lerna:publish": "lerna publish",

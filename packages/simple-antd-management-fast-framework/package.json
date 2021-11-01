@@ -58,7 +58,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-layout": "^6.27.1",
-    "@ant-design/pro-table": "^2.56.5",
+    "@ant-design/pro-table": "^2.56.6",
     "@antv/data-set": "^0.11.8",
     "@antv/l7": "^2.5.41",
     "@antv/l7-maps": "^2.5.41",
@@ -118,7 +118,7 @@
     "react-sortable-hoc": "^2.0.0",
     "react-syntax-highlighter": "^15.4.4",
     "react-zmage": "^0.8.5",
-    "redux": "^4.1.1",
+    "redux": "^4.1.2",
     "stylelint-declaration-block-no-ignored-properties": "^2.4.0",
     "umi": "^3.5.20",
     "umi-request": "^1.4.0",

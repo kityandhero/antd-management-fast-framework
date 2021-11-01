@@ -174,6 +174,7 @@ class ImageUpload extends PureComponent {
       tokenSet,
       onItemChange,
       onItemRemove,
+      multiple,
     } = this.props;
     const { uploading, previewVisible, previewImage } = this.state;
 
@@ -186,6 +187,7 @@ class ImageUpload extends PureComponent {
 
     const uploadProps = {
       disabled,
+      multiple,
       action,
       listType,
       showUploadList,
@@ -327,6 +329,7 @@ ImageUpload.defaultProps = {
   listType: 'picture-card',
   showUploadList: false,
   disabled: false,
+  multiple: false,
   tokenSet: {},
   image: '',
   fileList: [],
