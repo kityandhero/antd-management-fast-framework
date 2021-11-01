@@ -1678,12 +1678,17 @@ class Common extends Core {
 
               if (type === cardConfig.contentItemType.imageUpload) {
                 const uploadProps = {
-                  ...(contentItem.uploadProps || {}),
                   ...{
                     image: contentItem.image || '',
                     action: contentItem.action || '',
                     tokenSet: this.getUploadTokenObject(),
+                    multiple: contentItem.multiple || false,
+                    fileList: contentItem.fileList || [],
+                    showUploadList: contentItem.showUploadList || false,
+                    listType: contentItem.listType || 'picture-card',
+                    disabled: contentItem.disabled || false,
                   },
+                  ...(contentItem.uploadProps || {}),
                 };
 
                 return (
