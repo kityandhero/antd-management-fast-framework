@@ -133,58 +133,56 @@ export async function actionCore({
 
   target.setState({ processing: true });
 
-  dispatch({
-    type: api,
-    payload: params,
-  })
-    .then(() => {
-      if (showProcessing) {
-        setTimeout(() => {
-          message.destroy(key);
-        }, 200);
-      }
-
-      if (!isFunction(getApiData)) {
-        throw new Error('actionCore: getApiData must be function');
-      }
-
-      const data = getApiData(target.props);
-
-      if ((data || null) == null) {
-        throw new Error('actionCore: getApiData result not allow null');
-      }
-
-      const { dataSuccess } = data;
-
-      if (dataSuccess) {
-        const { data: remoteData } = data;
-
-        let messageText = successMessage;
-
-        if (isFunction(successMessageBuilder)) {
-          messageText = successMessageBuilder(remoteData);
-        }
-
-        notifySuccess(messageText);
-
-        if (isFunction(successCallback)) {
-          successCallback({
-            target,
-            handleData,
-            remoteData: remoteData || null,
-          });
-        }
-      }
-
-      target.setState({ processing: false });
+  setTimeout(() => {
+    dispatch({
+      type: api,
+      payload: params,
     })
-    .catch(() => {
-      if (showProcessing) {
-        setTimeout(() => {
+      .then(() => {
+        if (showProcessing) {
           message.destroy(key);
-        }, 200);
-      }
-    });
+        }
+
+        if (!isFunction(getApiData)) {
+          throw new Error('actionCore: getApiData must be function');
+        }
+
+        const data = getApiData(target.props);
+
+        if ((data || null) == null) {
+          throw new Error('actionCore: getApiData result not allow null');
+        }
+
+        const { dataSuccess } = data;
+
+        if (dataSuccess) {
+          const { data: remoteData } = data;
+
+          let messageText = successMessage;
+
+          if (isFunction(successMessageBuilder)) {
+            messageText = successMessageBuilder(remoteData);
+          }
+
+          notifySuccess(messageText);
+
+          if (isFunction(successCallback)) {
+            successCallback({
+              target,
+              handleData,
+              remoteData: remoteData || null,
+            });
+          }
+        }
+
+        target.setState({ processing: false });
+      })
+      .catch(() => {
+        if (showProcessing) {
+          message.destroy(key);
+        }
+      });
+  }, 200);
 }
 
 export async function confirmActionCore({
