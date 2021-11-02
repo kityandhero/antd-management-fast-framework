@@ -53,6 +53,11 @@
   "workspaces": [
     "packages/*"
   ],
+  "command": {
+    "publish": {
+      "conventionalCommits": true
+    }
+  },
   "version": "1.0.0",
   "main": "index.js",
   "author": "kityandhero <kityandhero@126.com>",
