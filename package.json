@@ -54,8 +54,17 @@
     "packages/*"
   ],
   "command": {
+    "updated": {
+      "conventionalCommits": true,
+      "changelogPreset": "conventional-changelog-conventionalcommits"
+    },
+    "version": {
+      "conventionalCommits": true,
+      "changelogPreset": "conventional-changelog-conventionalcommits"
+    },
     "publish": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "changelogPreset": "conventional-changelog-conventionalcommits"
     }
   },
   "version": "1.0.0",
