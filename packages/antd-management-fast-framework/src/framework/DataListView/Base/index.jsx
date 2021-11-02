@@ -678,6 +678,7 @@ class ListBase extends AuthorizationWrapper {
       ...this.establishTableAdditionalConfig(),
       columns,
       size: tableSize,
+      tableLayout: 'fix',
       expandable,
     };
   };

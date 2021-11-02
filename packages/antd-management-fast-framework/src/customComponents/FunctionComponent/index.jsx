@@ -2726,7 +2726,7 @@ export function buildColumnItem({
   const d = { ...columnConfig };
 
   const { dataTarget, showHelper, placeholder } = {
-    ...{ showHelper: false, placeholder: false },
+    ...{ showHelper: false, placeholder: false, ellipsis: true },
     ...(columnConfig || {}),
   };
 
