@@ -10,7 +10,7 @@
     },
     "version": {
       "conventionalCommits": true,
-      "message": "Chores: publish %s",
+      "message": "chore(release): publish",
       "changelogPreset": "conventional-changelog-conventionalcommits"
     },
     "publish": {
