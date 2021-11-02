@@ -63,8 +63,7 @@
       "changelogPreset": "conventional-changelog-conventionalcommits"
     },
     "publish": {
-      "conventionalCommits": true,
-      "changelogPreset": "conventional-changelog-conventionalcommits"
+      "message": "Chores: publish"
     }
   },
   "version": "1.0.0",
