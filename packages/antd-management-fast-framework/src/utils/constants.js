@@ -18,6 +18,9 @@ export const authenticationFailCode = 2001;
  */
 export const apiSuccessCode = 200;
 
+/**
+ * 1970-01-01 00:00
+ */
 export const emptyDatetime = '1970-01-01 00:00';
 
 export const defaultUserAvatar = '/user.png';
