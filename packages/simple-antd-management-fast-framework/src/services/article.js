@@ -43,7 +43,8 @@ const imageFileList = [
 
 const article = {
   articleId: '1430367617461391360',
-  title: '测试2',
+  title:
+    '很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的的标题2',
   subtitle: '测试2',
   description: '测试2',
   image: '',

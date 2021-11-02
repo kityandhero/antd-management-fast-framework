@@ -728,7 +728,7 @@ class PageList extends MultiPage {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
-      width: 780,
+      width: 180,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
