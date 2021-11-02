@@ -185,7 +185,7 @@ export async function actionCore({
           }, 200);
         }
       });
-  }, 300);
+  }, 400);
 }
 
 export async function confirmActionCore({
