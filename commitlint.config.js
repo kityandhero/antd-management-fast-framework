@@ -1,5 +1,8 @@
 module.exports = {
-  extends: ["@commitlint/config-lerna-scopes"],
+  extends: [
+    "@commitlint/config-conventional",
+    "@commitlint/config-lerna-scopes",
+  ],
   parserPreset: "conventional-changelog-conventionalcommits",
   prompt: {
     messages: {
