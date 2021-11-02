@@ -23,6 +23,9 @@ export const apiSuccessCode = 200;
  */
 export const emptyDatetime = '1970-01-01 00:00';
 
+/**
+ * 用户默认图
+ */
 export const defaultUserAvatar = '/user.png';
 
 export const defaultEmptyImage = '/noImageSmall.png';
