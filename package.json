@@ -11,12 +11,12 @@
     "lerna:publish": "lerna publish",
     "changelog": "lerna version --conventional-commits --no-push --no-git-tag-version",
     "lerna": "lerna",
-    "clean": "npm run clean:simple && npm run clean:framework && rimraf ./node_modules/ ./yarn-error.log ./yarn.lock  && lerna clean",
+    "clean": "npm run clean:simple && npm run clean:framework && rimraf ./node_modules/ && rimraf ./yarn-error.log && rimraf ./yarn.lock && lerna clean",
     "publish:f": "npm run build:f && npm run scz && lerna updated && lerna publish",
     "publish:c": "npm run scz && lerna updated && lerna publish",
     "publish:v": "lerna updated && lerna publish",
     "publish:npm": "cd packages/antd-management-fast-framework && nrm use npm && nrm ls && npm publish && nrm use vd && nrm ls",
-    "cz": "cz",
+    "cz": "git-cz",
     "scz": "git stage -A && npm run cz && git push",
     "commitlint": "npx commitlint --edit",
     "lint-staged": "lint-staged",
@@ -41,12 +41,10 @@
     "ncu:simple": "cd packages/simple-antd-management-fast-framework && ncu"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.2.1",
-    "@commitlint/config-lerna-scopes": "^13.2.0",
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "@commitlint/cz-commitlint": "^13.2.1",
     "commitizen": "^4.2.4",
-    "conventional-changelog-conventionalcommits": "^4.6.1",
-    "cz-conventional-changelog": "^3.3.0",
-    "cz-lerna-changelog": "^2.0.3",
     "husky": "^7.0.4",
     "lerna": "^4.0.0",
     "lint-staged": "^11.2.6"
@@ -54,11 +52,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-lerna-changelog"
-    }
-  },
   "version": "1.0.0",
   "main": "index.js",
   "author": "kityandhero <kityandhero@126.com>",
