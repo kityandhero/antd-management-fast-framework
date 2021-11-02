@@ -54,14 +54,6 @@
     "packages/*"
   ],
   "command": {
-    "updated": {
-      "conventionalCommits": true,
-      "changelogPreset": "conventional-changelog-conventionalcommits"
-    },
-    "version": {
-      "conventionalCommits": true,
-      "changelogPreset": "conventional-changelog-conventionalcommits"
-    },
     "publish": {
       "message": "Chores: publish"
     }
