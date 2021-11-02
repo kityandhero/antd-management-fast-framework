@@ -10,11 +10,12 @@
     },
     "version": {
       "conventionalCommits": true,
-      "message": "chore(antd-management-fast-framework): publish",
+      "message": "chore(antd-management-fast-framework): version",
       "changelogPreset": "conventional-changelog-conventionalcommits"
     },
     "publish": {
       "conventionalCommits": true,
+      "message": "chore(antd-management-fast-framework): publish",
       "changelogPreset": "conventional-changelog-conventionalcommits"
     }
   }
