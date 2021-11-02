@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
-    "@commitlint/config-conventional": "^14.1.0",
+    "@commitlint/config-lerna-scopes": "^14.0.0",
     "@commitlint/cz-commitlint": "^13.2.1",
     "commitizen": "^4.2.4",
     "husky": "^7.0.4",

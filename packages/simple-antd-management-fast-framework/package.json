@@ -1,7 +1,7 @@
 {
   "name": "simple-antd-management-fast-framework",
   "private": true,
-  "version": "1.0.167",
+  "version": "1.0.168",
   "description": "simple-antd-management-fast-framework",
   "keywords": [
     "simple-antd-management-fast-framework"
@@ -66,7 +66,7 @@
     "@types/lodash.isequal": "^4.5.5",
     "@umijs/plugin-esbuild": "^1.4.1",
     "antd": "^4.16.13",
-    "antd-management-fast-framework": "^1.2.59",
+    "antd-management-fast-framework": "^1.2.60",
     "array-move": "^4.0.0",
     "bizcharts": "^4.1.14",
     "braft-editor": "^2.3.9",
@@ -129,7 +129,7 @@
     "@ant-design/colors": "^6.0.0",
     "@ant-design/pro-cli": "^2.1.5",
     "@commitlint/cli": "^14.1.0",
-    "@commitlint/config-conventional": "^14.1.0",
+    "@commitlint/config-lerna-scopes": "^14.0.0",
     "@commitlint/cz-commitlint": "^13.2.1",
     "@types/express": "^4.17.13",
     "@types/history": "^4.7.9",
