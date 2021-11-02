@@ -53,11 +53,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "command": {
-    "publish": {
-      "message": "Chores: publish"
-    }
-  },
   "version": "1.0.0",
   "main": "index.js",
   "author": "kityandhero <kityandhero@126.com>",

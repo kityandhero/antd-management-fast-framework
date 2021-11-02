@@ -2,5 +2,19 @@
   "packages": ["packages/*"],
   "version": "independent",
   "useWorkspaces": true,
-  "npmClient": "yarn"
+  "npmClient": "yarn",
+  "command": {
+    "updated": {
+      "conventionalCommits": true,
+      "changelogPreset": "conventional-changelog-conventionalcommits"
+    },
+    "version": {
+      "conventionalCommits": true,
+      "changelogPreset": "conventional-changelog-conventionalcommits"
+    },
+    "publish": {
+      "conventionalCommits": true,
+      "changelogPreset": "conventional-changelog-conventionalcommits"
+    }
+  }
 }
