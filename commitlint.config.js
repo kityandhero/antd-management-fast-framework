@@ -3,9 +3,9 @@ module.exports = {
   parserPreset: "conventional-changelog-conventionalcommits",
   prompt: {
     messages: {
-      skip: ":skip",
-      max: "upper %d chars",
-      min: "%d chars at least",
+      skip: "[可跳过]",
+      max: "[字数上限: %d]",
+      min: "[字数下限: %d]",
       emptyWarning: "此为必填项目，不能为空白",
       upperLimitWarning: "超过最大限制",
       lowerLimitWarning: "低于最小限制",
@@ -77,7 +77,7 @@ module.exports = {
         description: "此更改的范围是什么(例如:组件或文件名)",
       },
       subject: {
-        description: "用简短的祈使句描述变化",
+        description: "用简短的祈使语句描述变化",
       },
       body: {
         description: "对变更提供更详细的描述",
