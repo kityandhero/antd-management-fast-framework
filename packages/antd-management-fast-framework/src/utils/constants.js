@@ -1,3 +1,6 @@
+/**
+ * 动画类型
+ */
 const animalType = {
   none: 'none',
   fade: 'fade',
