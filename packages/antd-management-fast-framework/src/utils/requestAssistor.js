@@ -472,7 +472,7 @@ export function corsTargetWithApiVersion() {
     apiVersion = `/${apiVersion}`;
   }
 
-  const path = `${corsTarget()}${getApiVersion()}`;
+  const path = `${corsTarget()}${apiVersion}`;
 
   return path;
 }
