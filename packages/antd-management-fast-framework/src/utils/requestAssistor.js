@@ -465,6 +465,9 @@ export function getApiVersion() {
   return version;
 }
 
+/**
+ * 构建跨域请求域前缀
+ */
 export function corsTargetWithApiVersion() {
   let apiVersion = getApiVersion();
 
