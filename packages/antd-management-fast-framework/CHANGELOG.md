@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.8.7](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.8.6...antd-management-fast-framework@1.8.7) (2021-11-06)
+
+### Bug Fixes
+
+- adjust corsTargetWithApiVersion function ([e465e1e](https://github.com/kityandhero/antd-management-fast-framework/commit/e465e1e1db0102a2bc104d31ac5254d264c2974c))
+
 ### [1.8.6](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.8.5...antd-management-fast-framework@1.8.6) (2021-11-06)
 
 **Note:** Version bump only for package antd-management-fast-framework
