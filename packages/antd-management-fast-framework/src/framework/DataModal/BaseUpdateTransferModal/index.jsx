@@ -28,8 +28,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
     throw new Error('buildTargetKeys need overload');
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
     this.setState(
       {
         targetKeys: this.buildTargetKeys(preProps, preState, snapshot),

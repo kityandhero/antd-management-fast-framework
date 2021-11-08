@@ -50,7 +50,14 @@ class Index extends BaseAddDrawer {
     return data;
   };
 
-  executeAfterDoOtherWhenChangeVisible = () => {
+  executeOtherAfterDoOtherWhenChangeVisible = (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    preProps,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    preState,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    snapshot,
+  ) => {
     this.setState({
       image: '',
       video: '',

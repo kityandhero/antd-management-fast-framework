@@ -34,23 +34,77 @@ class BaseWindow extends Base {
     const { visible: visiblePre } = preState;
     const { visible } = this.state;
 
-    if (visible && !visiblePre) {
-      const form = this.getTargetForm();
+    if (visiblePre !== visible) {
+      this.doOtherWhenChangeVisible(preProps, preState, snapshot, visible);
+    }
+  };
 
-      if (form != null) {
-        form.resetFields();
-      }
+  doOtherWhenChangeVisible = (preProps, preState, snapshot, currentVisible) => {
+    if (currentVisible) {
+      this.resetTargetFormFields();
 
-      this.doOtherWhenChangeVisible(preProps, preState, snapshot);
+      this.doOtherWhenChangeVisibleToShow(preProps, preState, snapshot);
+      this.executeAfterDoOtherWhenChangeVisibleToShow(
+        preProps,
+        preState,
+        snapshot,
+      );
+    } else {
+      this.doOtherWhenChangeVisibleToHide(preProps, preState, snapshot);
+      this.executeAfterDoOtherWhenChangeVisibleToHide(
+        preProps,
+        preState,
+        snapshot,
+      );
+    }
+
+    this.executeOtherAfterDoOtherWhenChangeVisible(
+      preProps,
+      preState,
+      snapshot,
+    );
+  };
+
+  resetTargetFormFields = () => {
+    const form = this.getTargetForm();
+
+    if (form != null) {
+      form.resetFields();
     }
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
-    this.executeAfterDoOtherWhenChangeVisible();
-  };
+  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {};
 
-  executeAfterDoOtherWhenChangeVisible = () => {};
+  executeAfterDoOtherWhenChangeVisibleToShow = (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    preProps,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    preState,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    snapshot,
+  ) => {};
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  doOtherWhenChangeVisibleToHide = (preProps, preState, snapshot) => {};
+
+  executeAfterDoOtherWhenChangeVisibleToHide = (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    preProps,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    preState,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    snapshot,
+  ) => {};
+
+  executeOtherAfterDoOtherWhenChangeVisible = (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    preProps,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    preState,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    snapshot,
+  ) => {};
 
   getTargetForm = () => {
     return this.formRef.current;

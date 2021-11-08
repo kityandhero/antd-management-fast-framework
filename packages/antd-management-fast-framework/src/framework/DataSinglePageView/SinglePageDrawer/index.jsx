@@ -57,28 +57,14 @@ class SinglePageDrawer extends SinglePage {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
-    const { visible: visiblePre } = preState;
-    const { visible } = this.state;
+    if (this.reloadWhenShow) {
+      const that = this;
 
-    if (visible && !visiblePre) {
-      if (this.reloadWhenShow) {
-        const that = this;
-
-        setTimeout(() => {
-          that.reloadData();
-        }, 460);
-      }
-
-      this.doOtherWhenChangeVisible(preProps, preState, snapshot);
+      setTimeout(() => {
+        that.reloadData();
+      }, 460);
     }
   };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
-    this.executeAfterDoOtherWhenChangeVisible();
-  };
-
-  executeAfterDoOtherWhenChangeVisible = () => {};
 
   onClose = () => {
     const { afterClose } = this.props;

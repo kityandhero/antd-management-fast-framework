@@ -2,7 +2,7 @@ import Base from '../Base';
 
 class BaseLoadModal extends Base {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
+  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
     this.setState({ dataLoading: true });
 
     if (this.reloadWhenShow) {
@@ -18,8 +18,6 @@ class BaseLoadModal extends Base {
     } else {
       this.setState({ dataLoading: false });
     }
-
-    this.executeAfterDoOtherWhenChangeVisible();
   };
 
   buildOkText = () => {

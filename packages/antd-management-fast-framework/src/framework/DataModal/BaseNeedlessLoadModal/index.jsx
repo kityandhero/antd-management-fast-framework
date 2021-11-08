@@ -33,28 +33,22 @@ class BaseAddModal extends Base {
     return { visible, needReset, externalData };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
-    const { visible: visiblePre } = preState;
-    const { needReset, visible } = this.state;
+  resetTargetFormFields = () => {
+    const { needReset } = this.state;
 
-    if (visible && !visiblePre) {
-      const form = this.getTargetForm();
+    const form = this.getTargetForm();
 
-      if (form != null) {
-        if (needReset) {
-          form.resetFields();
+    if (form != null) {
+      if (needReset) {
+        form.resetFields();
 
-          this.setState({ needReset: false });
-        }
+        this.setState({ needReset: false });
       }
-
-      this.doOtherWhenChangeVisible(preProps, preState, snapshot);
     }
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
+  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
     if (this.reloadWhenShow) {
       this.setState({ dataLoading: true });
 

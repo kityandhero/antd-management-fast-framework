@@ -55,7 +55,7 @@ class ChangeImageSortModal extends Base {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisible = (preProps, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
     this.reloadData();
   };
 
