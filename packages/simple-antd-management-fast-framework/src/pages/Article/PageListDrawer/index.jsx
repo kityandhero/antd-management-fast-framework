@@ -39,7 +39,7 @@ const { Text } = Typography;
   loading: loading.models.article,
 }))
 class PageListDrawer extends MultiPageSelectDrawer {
-  reloadWhenShow = false;
+  reloadWhenShow = true;
 
   componentAuthority = accessWayCollection.article.pageList.permission;
 
