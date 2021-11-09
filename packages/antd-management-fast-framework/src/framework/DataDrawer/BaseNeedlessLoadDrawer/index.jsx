@@ -18,6 +18,17 @@ class BaseNeedlessLoadDrawer extends Base {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
+    const form = this.getTargetForm();
+
+    if (form == null) {
+      return;
+    }
+
+    form.resetFields();
+  };
+
   buildInitialValues = () => {
     return this.fillDefaultInitialValues();
   };

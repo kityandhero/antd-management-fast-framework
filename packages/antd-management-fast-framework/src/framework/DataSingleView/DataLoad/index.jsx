@@ -26,7 +26,7 @@ class DataLoad extends DataCore {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
     const { urlParams } = this.state;
 
     const { urlParams: urlParamsPrev } = preState;

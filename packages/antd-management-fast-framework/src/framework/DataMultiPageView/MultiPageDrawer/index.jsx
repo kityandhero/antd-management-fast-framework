@@ -63,7 +63,7 @@ class MultiPageDrawer extends MultiPage {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
     const { firstLoadSuccess } = this.state;
 
     // 未加载数据过数据的时候，进行加载

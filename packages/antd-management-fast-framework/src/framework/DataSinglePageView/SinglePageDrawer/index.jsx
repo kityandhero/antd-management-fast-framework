@@ -56,7 +56,7 @@ class SinglePageDrawer extends SinglePage {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
     if (this.reloadWhenShow) {
       const that = this;
 

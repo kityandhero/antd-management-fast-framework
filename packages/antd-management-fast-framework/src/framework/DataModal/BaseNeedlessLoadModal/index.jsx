@@ -33,29 +33,15 @@ class BaseAddModal extends Base {
     return { visible, needReset, externalData };
   }
 
-  resetTargetFormFields = () => {
-    const { needReset } = this.state;
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
     const form = this.getTargetForm();
 
-    if (form != null) {
-      if (needReset) {
-        form.resetFields();
-
-        this.setState({ needReset: false });
-      }
+    if (form == null) {
+      return;
     }
-  };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
-    if (this.reloadWhenShow) {
-      this.setState({ dataLoading: true });
-
-      setTimeout(() => {
-        this.reloadData();
-      }, 700);
-    }
+    form.resetFields();
   };
 
   buildInitialValues = () => {

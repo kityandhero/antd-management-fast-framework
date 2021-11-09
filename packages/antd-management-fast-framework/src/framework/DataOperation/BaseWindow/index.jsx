@@ -41,8 +41,6 @@ class BaseWindow extends Base {
 
   doOtherWhenChangeVisible = (preProps, preState, snapshot, currentVisible) => {
     if (currentVisible) {
-      this.resetTargetFormFields();
-
       this.doOtherWhenChangeVisibleToShow(preProps, preState, snapshot);
       this.executeAfterDoOtherWhenChangeVisibleToShow(
         preProps,
@@ -63,14 +61,6 @@ class BaseWindow extends Base {
       preState,
       snapshot,
     );
-  };
-
-  resetTargetFormFields = () => {
-    const form = this.getTargetForm();
-
-    if (form != null) {
-      form.resetFields();
-    }
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
