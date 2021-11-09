@@ -1,6 +1,6 @@
 import { ImportOutlined } from '@ant-design/icons';
 
-import { isFunction, stringIsNullOrWhiteSpace } from '../../../utils/tools';
+import { isFunction } from '../../../utils/tools';
 import { buildButton } from '../../../customComponents/FunctionComponent';
 
 import MultiPageDrawer from '../MultiPageDrawer';
