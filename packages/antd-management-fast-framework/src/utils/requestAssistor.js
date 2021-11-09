@@ -348,6 +348,7 @@ export async function request({
   api,
   params = {},
   method = 'POST',
+  useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest(),
   virtualSuccessResponse = {},
   virtualFailResponse = {
     code: 1001,
@@ -377,7 +378,6 @@ export async function request({
   const url = `${apiVersion}${api}`.replace('//', '/');
 
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
-  const useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest();
 
   if (useVirtualRequest) {
     let result = {};
