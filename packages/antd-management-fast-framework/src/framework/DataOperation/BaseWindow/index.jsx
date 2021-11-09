@@ -39,6 +39,9 @@ class BaseWindow extends Base {
     }
   };
 
+  /**
+   * 当可见性发生变化时执行
+   */
   doOtherWhenChangeVisible = (preProps, preState, snapshot, currentVisible) => {
     if (currentVisible) {
       this.doOtherWhenChangeVisibleToShow(preProps, preState, snapshot);
@@ -63,9 +66,21 @@ class BaseWindow extends Base {
     );
   };
 
+  /**
+   * 当可见性变为显示时执行
+   * @param {*} preProps
+   * @param {*} preState
+   * @param {*} snapshot
+   */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {};
 
+  /**
+   * 当可见性变为显示时附加的执行
+   * @param {*} preProps
+   * @param {*} preState
+   * @param {*} snapshot
+   */
   executeAfterDoOtherWhenChangeVisibleToShow = (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     preProps,
@@ -75,9 +90,21 @@ class BaseWindow extends Base {
     snapshot,
   ) => {};
 
+  /**
+   * 当可见性变为隐藏时执行
+   * @param {*} preProps
+   * @param {*} preState
+   * @param {*} snapshot
+   */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherWhenChangeVisibleToHide = (preProps, preState, snapshot) => {};
 
+  /**
+   * 当可见性变为显示后附加的执行
+   * @param {*} preProps
+   * @param {*} preState
+   * @param {*} snapshot
+   */
   executeAfterDoOtherWhenChangeVisibleToHide = (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     preProps,
@@ -87,6 +114,12 @@ class BaseWindow extends Base {
     snapshot,
   ) => {};
 
+  /**
+   * 当可见性变更后的附加执行
+   * @param {*} preProps
+   * @param {*} preState
+   * @param {*} snapshot
+   */
   executeOtherAfterDoOtherWhenChangeVisible = (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     preProps,
