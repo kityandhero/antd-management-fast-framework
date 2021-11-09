@@ -7,7 +7,6 @@ import {
   Spin,
   Divider,
   Button,
-  message,
   Space,
   Tooltip,
 } from 'antd';
@@ -488,7 +487,11 @@ class Common extends Core {
       paging ||
       processing
     ) {
-      message.info('数据正在处理中，请稍等一下再点哦');
+      const text = '数据正在处理中，请稍等一下再点哦';
+
+      showErrorMessage({
+        message: text,
+      });
 
       return true;
     }

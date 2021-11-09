@@ -428,7 +428,7 @@ class SinglePageDrawer extends SinglePage {
 
     const list = this.establishViewDataSource();
 
-    const bottomBar = this.renderListViewBottomBar();
+    const bottomBar = this.renderPaginationView();
 
     return (
       <div
@@ -498,10 +498,6 @@ class SinglePageDrawer extends SinglePage {
     );
   };
 
-  renderListViewBottomBar = () => {
-    return null;
-  };
-
   renderListViewItemActionSelect = (item, index) => {
     const that = this;
 
@@ -542,9 +538,21 @@ class SinglePageDrawer extends SinglePage {
           >
             {this.renderDrawerInner()}
           </div>
-        ) : (
-          this.renderDrawerInner()
-        )}
+        ) : null}
+
+        {listViewMode === listViewConfig.viewMode.cardCollectionView ? (
+          <div
+            style={{
+              height: 'calc(100vh - 55px)',
+            }}
+          >
+            {this.renderDrawerInner()}
+          </div>
+        ) : null}
+
+        {listViewMode === listViewConfig.viewMode.table
+          ? this.renderDrawerInner()
+          : null}
       </Drawer>
     );
   }

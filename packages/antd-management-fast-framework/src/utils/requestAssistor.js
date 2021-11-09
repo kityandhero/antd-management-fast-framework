@@ -7,6 +7,7 @@ import {
   isFunction,
   isUndefined,
   corsTarget,
+  showInfoMessage,
 } from './tools';
 import { getToken, clearCustomData } from './globalStorageAssist';
 import remoteRequest from './request';
@@ -349,6 +350,7 @@ export async function request({
   params = {},
   method = 'POST',
   useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest(),
+  showUseVirtualRequestMessage = false,
   virtualSuccessResponse = {},
   virtualFailResponse = {
     code: 1001,
@@ -380,6 +382,14 @@ export async function request({
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
 
   if (useVirtualRequest) {
+    if (showUseVirtualRequestMessage) {
+      const text = '由虚拟访问返回';
+
+      showInfoMessage({
+        message: text,
+      });
+    }
+
     let result = {};
     let verifyToken = false;
 

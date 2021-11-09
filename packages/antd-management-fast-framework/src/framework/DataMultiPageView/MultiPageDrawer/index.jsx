@@ -578,9 +578,21 @@ class MultiPageDrawer extends MultiPage {
           >
             {this.renderDrawerInner()}
           </div>
-        ) : (
-          this.renderDrawerInner()
-        )}
+        ) : null}
+
+        {listViewMode === listViewConfig.viewMode.cardCollectionView ? (
+          <div
+            style={{
+              height: 'calc(100vh - 55px)',
+            }}
+          >
+            {this.renderDrawerInner()}
+          </div>
+        ) : null}
+
+        {listViewMode === listViewConfig.viewMode.table
+          ? this.renderDrawerInner()
+          : null}
       </Drawer>
     );
   }

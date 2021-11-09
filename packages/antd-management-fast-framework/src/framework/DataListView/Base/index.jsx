@@ -15,6 +15,7 @@ import {
   Space,
   Empty,
   Spin,
+  Pagination,
 } from 'antd';
 import {
   SearchOutlined,
@@ -63,6 +64,7 @@ import {
 } from '../../../customComponents/DecorateAvatar';
 import StandardTableCustom from '../../../customComponents/StandardTableCustom';
 import AuthorizationWrapper from '../../AuthorizationWrapper';
+import FlexBox from '../../../customComponents/FlexBox';
 
 import DensityAction from '../DensityAction';
 import ColumnSetting from '../ColumnSetting';
@@ -1169,10 +1171,9 @@ class ListBase extends AuthorizationWrapper {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleAdditionalPaginationChange = (page, pageSize) => {};
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handlePaginationShowSizeChange = (current, size) => {
-    this.setState({ pageNo: 1 }, () => {
-      this.handlePaginationChange(1, size);
-    });
+    this.setState({ pageNo: 1 });
   };
 
   renderPageHeaderContent = () => {
@@ -1318,7 +1319,7 @@ class ListBase extends AuthorizationWrapper {
 
     let pagination = false;
 
-    const paginationConfig = this.establishViewPaginationConfig();
+    const paginationConfig = this.establishViewPaginationConfig() || false;
 
     if (!!paginationConfig) {
       pagination = this.supplementPaginationConfig();
@@ -1431,7 +1432,32 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderPaginationView = () => {
-    return null;
+    let paginationConfig = this.establishViewPaginationConfig() || false;
+
+    if (!!!paginationConfig) {
+      return null;
+    }
+
+    paginationConfig = this.supplementPaginationConfig();
+
+    const style = this.establishPaginationViewStyle();
+
+    return (
+      <FlexBox
+        style={style}
+        right={
+          <Pagination
+            {...paginationConfig}
+            onChange={(page, size) => {
+              this.handlePaginationChange(page, size);
+            }}
+            onShowSizeChange={(current, size) => {
+              this.handlePaginationShowSizeChange(current, size);
+            }}
+          />
+        }
+      />
+    );
   };
 
   renderView = () => {

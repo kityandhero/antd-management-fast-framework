@@ -10,6 +10,7 @@ import {
   ReloadOutlined,
   EditOutlined,
   InfoCircleFilled,
+  SortAscendingOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -32,7 +33,10 @@ import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePa
 import {
   buildRadioGroup,
   buildCustomGrid,
+  buildDropdownButton,
+  buildButton,
   buildDropdown,
+  buildDropdownEllipsis,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -47,6 +51,7 @@ import {
 } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
 import ChangeSortModal from '../ChangeSortModal';
+import SingleListDrawer from '../SingleListDrawer';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
@@ -73,6 +78,7 @@ class SingleList extends SinglePage {
         changeSortModalVisible: false,
         addBasicInfoDrawerVisible: false,
         updateBasicInfoDrawerVisible: false,
+        singleListDrawerVisible: false,
         currentRecord: null,
       },
     };
@@ -171,6 +177,30 @@ class SingleList extends SinglePage {
       target: this,
       handleData: r,
     });
+  };
+
+  showSingleListDrawer = () => {
+    this.setState({
+      singleListDrawerVisible: true,
+    });
+  };
+
+  afterSingleListDrawerOk = () => {
+    this.setState({ singleListDrawerVisible: false }, () => {
+      const that = this;
+
+      setTimeout(() => {
+        that.refreshData();
+      }, 500);
+    });
+  };
+
+  afterSingleListDrawerCancel = () => {
+    this.setState({ singleListDrawerVisible: false });
+  };
+
+  afterSingleListDrawerClose = () => {
+    this.setState({ singleListDrawerVisible: false });
   };
 
   showAddBasicInfoDrawer = () => {
@@ -466,6 +496,14 @@ class SingleList extends SinglePage {
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
+        icon: <SortAscendingOutlined />,
+        text: '侧拉单页列表',
+        handleClick: this.showSingleListDrawer,
+        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+      },
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'primary',
         icon: <PlusOutlined />,
         text: '新增文章[侧拉]',
         handleClick: this.showAddBasicInfoDrawer,
@@ -579,6 +617,159 @@ class SingleList extends SinglePage {
     };
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  renderListViewItemInner = (r, index) => {
+    return (
+      <>
+        <List.Item.Meta
+          title={getValueByKey({
+            data: r,
+            key: fieldData.title.name,
+          })}
+          description={getValueByKey({
+            data: r,
+            key: fieldData.description.name,
+          })}
+        />
+      </>
+    );
+  };
+
+  getColumnWrapper = () => [
+    {
+      dataTarget: fieldData.title,
+      width: 180,
+      align: 'left',
+      showRichFacade: true,
+      emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.sort,
+      width: 100,
+      showRichFacade: true,
+      emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.renderType,
+      width: 120,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfig: {
+        color: colorCollection.price,
+      },
+      formatValue: (val) => {
+        return getArticleRenderTypeName({
+          global: this.getGlobal(),
+          value: val,
+        });
+      },
+    },
+    {
+      dataTarget: fieldData.status,
+      width: 100,
+      emptyValue: '--',
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.badge,
+      facadeConfigBuilder: (val) => {
+        return {
+          status: this.getStatusBadge(val),
+          text: getArticleStatusName({
+            global: this.getGlobal(),
+            value: val,
+          }),
+        };
+      },
+    },
+    {
+      dataTarget: fieldData.articleId,
+      width: 140,
+      showRichFacade: true,
+      canCopy: true,
+    },
+    {
+      dataTarget: fieldData.createTime,
+      width: 160,
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.datetime,
+      emptyValue: '--',
+    },
+    columnPlaceholder,
+    {
+      dataTarget: fieldData.customOperate,
+      width: 106,
+      fixed: 'right',
+      render: (text, r) => {
+        const itemStatus = getValueByKey({
+          data: r,
+          key: fieldData.status.name,
+          convert: convertCollection.number,
+        });
+
+        return buildDropdownButton({
+          size: 'small',
+          text: '编辑',
+          icon: <FormOutlined />,
+          handleButtonClick: ({ handleData }) => {
+            this.goToEdit(handleData);
+          },
+          handleData: r,
+          handleMenuClick: ({ key, handleData }) => {
+            this.handleMenuClick({ key, handleData });
+          },
+          menuItems: [
+            {
+              key: 'showUpdateBasicInfoDrawer',
+              withDivider: true,
+              uponDivider: true,
+              icon: <EditOutlined />,
+              text: '编辑[侧拉]',
+              hidden: !this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission),
+            },
+            {
+              key: 'setOnline',
+              icon: <PlayCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
+              text: '设为上线',
+              hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
+              disabled: itemStatus === statusCollection.online,
+              confirm: {
+                title: '将要设置为上线，确定吗？',
+              },
+            },
+            {
+              key: 'setOffline',
+              icon: <PauseCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
+              text: '设为下线',
+              hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
+              disabled: itemStatus === statusCollection.offline,
+              confirm: {
+                title: '将要设置为下线，确定吗？',
+              },
+            },
+            {
+              key: 'setSort',
+              withDivider: true,
+              uponDivider: true,
+              icon: <EditOutlined />,
+              text: '设置排序值',
+              hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
+            },
+            {
+              key: 'refreshCache',
+              withDivider: true,
+              uponDivider: true,
+              icon: <ReloadOutlined />,
+              text: '刷新缓存',
+              hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+              confirm: {
+                title: '将要刷新缓存，确定吗？',
+              },
+            },
+          ],
+        });
+      },
+    },
+  ];
+
   establishHelpConfig = () => {
     return {
       title: '操作提示',
@@ -596,6 +787,7 @@ class SingleList extends SinglePage {
   renderOther = () => {
     const {
       articleId,
+      singleListDrawerVisible,
       addBasicInfoDrawerVisible,
       updateBasicInfoDrawerVisible,
       changeSortModalVisible,
@@ -608,6 +800,20 @@ class SingleList extends SinglePage {
 
     return (
       <>
+        <SingleListDrawer
+          width={1200}
+          visible={singleListDrawerVisible}
+          afterOK={() => {
+            this.showSingleListDrawer();
+          }}
+          afterCancel={() => {
+            this.afterSingleListDrawerCancel();
+          }}
+          afterClose={() => {
+            this.afterSingleListDrawerClose();
+          }}
+        />
+
         <AddBasicInfoDrawer
           visible={addBasicInfoDrawerVisible}
           externalData={{ articleId }}

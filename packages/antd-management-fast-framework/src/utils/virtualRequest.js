@@ -125,8 +125,6 @@ export async function apiVirtualSuccessAccess({
     result = data;
   });
 
-  message.info('由虚拟访问返回');
-
   const { code } = result;
 
   if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
@@ -158,8 +156,6 @@ export async function apiVirtualFailAccess({
   }).then((data) => {
     result = data;
   });
-
-  message.info('由虚拟访问返回');
 
   const { code, message: messageText } = result;
 
@@ -193,8 +189,6 @@ export async function apiVirtualAccess({ dataBuild }) {
   }).then((data) => {
     result = data;
   });
-
-  message.info('由虚拟访问返回');
 
   const { code, message: messageText } = result;
 

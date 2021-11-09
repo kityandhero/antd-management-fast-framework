@@ -1,5 +1,4 @@
-import React from 'react';
-import { Pagination, message } from 'antd';
+import { message } from 'antd';
 
 import {
   defaultPageListState,
@@ -14,7 +13,6 @@ import {
   getParamsDataCache,
   setParamsDataCache,
 } from '../../../utils/globalStorageAssist';
-import FlexBox from '../../../customComponents/FlexBox';
 
 import Base from '../../DataListView/Base';
 
@@ -329,29 +327,6 @@ class MultiPage extends Base {
       paddingTop: 16,
       paddingBottom: 16,
     };
-  };
-
-  renderPaginationView = () => {
-    const paginationConfig = this.supplementPaginationConfig();
-
-    const style = this.establishPaginationViewStyle();
-
-    return (
-      <FlexBox
-        style={style}
-        right={
-          <Pagination
-            {...paginationConfig}
-            onChange={(page, size) => {
-              this.handlePaginationChange(page, size);
-            }}
-            onShowSizeChange={(current, size) => {
-              this.handlePaginationShowSizeChange(current, size);
-            }}
-          />
-        }
-      />
-    );
   };
 }
 
