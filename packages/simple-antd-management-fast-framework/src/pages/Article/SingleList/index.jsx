@@ -63,7 +63,7 @@ import { fieldData, statusCollection } from '../Common/data';
   loading: loading.models.article,
 }))
 class SingleList extends SinglePage {
-  useFrontendPagination = false;
+  useFrontendPagination = true;
 
   componentAuthority = accessWayCollection.article.singleList.permission;
 
