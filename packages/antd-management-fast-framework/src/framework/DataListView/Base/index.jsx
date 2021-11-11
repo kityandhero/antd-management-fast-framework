@@ -77,7 +77,12 @@ const { RangePicker } = DatePicker;
 
 class ListBase extends AuthorizationWrapper {
   /**
-   * 前台模拟分页，有助于优化长列表页面交互操作导致的延迟
+   * 使用远端分页
+   */
+  useRemotePagination = true;
+
+  /**
+   * 使用前台模拟分页，有助于优化长列表页面交互操作导致的延迟
    */
   useFrontendPagination = false;
 
@@ -166,6 +171,10 @@ class ListBase extends AuthorizationWrapper {
     this.setState({
       selectedDataTableDataRows: [],
     });
+  };
+
+  getCanUseFrontendPagination = () => {
+    return !!this.useRemotePagination ? false : !!this.useFrontendPagination;
   };
 
   getSearchFormFieldsValue = (nameList, filter) => {
@@ -1367,7 +1376,7 @@ class ListBase extends AuthorizationWrapper {
           itemLayout={this.renderListViewItemLayout()}
           size={this.renderListViewSize()}
           dataSource={
-            this.useFrontendPagination
+            this.getCanUseFrontendPagination()
               ? this.adjustFrontendPaginationViewDataSource()
               : this.adjustViewDataSource()
           }
@@ -1410,7 +1419,8 @@ class ListBase extends AuthorizationWrapper {
         list: metaListData,
         config: expandable,
       }),
-      showPagination: !!this.useFrontendPagination,
+      showPagination:
+        this.useRemotePagination || !!this.getCanUseFrontendPagination(),
     };
 
     standardTableCustomOption.data = {
@@ -1436,7 +1446,7 @@ class ListBase extends AuthorizationWrapper {
   renderCardCollectionView = () => {
     const { dataLoading, reloading, processing } = this.state;
 
-    const listItem = this.useFrontendPagination
+    const listItem = this.getCanUseFrontendPagination()
       ? this.adjustFrontendPaginationViewDataSource()
       : this.adjustViewDataSource();
     const itemCount = listItem.length;

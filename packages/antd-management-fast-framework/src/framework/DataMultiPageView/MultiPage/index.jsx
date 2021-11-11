@@ -18,7 +18,12 @@ import Base from '../../DataListView/Base';
 
 class MultiPage extends Base {
   /**
-   * 前台模拟分页，有助于优化长列表页面交互操作导致的延迟
+   * 使用远端分页
+   */
+  useRemotePagination = true;
+
+  /**
+   * 使用前台模拟分页，有助于优化长列表页面交互操作导致的延迟
    */
   useFrontendPagination = false;
 

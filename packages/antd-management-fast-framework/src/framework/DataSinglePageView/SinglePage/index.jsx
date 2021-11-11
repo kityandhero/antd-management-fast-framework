@@ -12,7 +12,12 @@ import Base from '../../DataListView/Base';
 
 class SinglePage extends Base {
   /**
-   * 前台模拟分页，有助于优化长列表页面交互操作导致的延迟
+   * 使用远端分页
+   */
+  useRemotePagination = false;
+
+  /**
+   * 使用前台模拟分页，有助于优化长列表页面交互操作导致的延迟
    */
   useFrontendPagination = true;
 
@@ -186,7 +191,7 @@ class SinglePage extends Base {
   buildFrontendPaginationListData = ({ pageNo, pageSize }) => {
     const list = this.adjustViewDataSource();
 
-    const listData = !!this.useFrontendPagination
+    const listData = !!this.getCanUseFrontendPagination()
       ? list.slice((pageNo - 1) * pageSize, pageNo * pageSize)
       : list;
 
@@ -254,7 +259,7 @@ class SinglePage extends Base {
   };
 
   renderPaginationView = () => {
-    if (!!!this.useFrontendPagination) {
+    if (!!!this.getCanUseFrontendPagination()) {
       return null;
     }
 
