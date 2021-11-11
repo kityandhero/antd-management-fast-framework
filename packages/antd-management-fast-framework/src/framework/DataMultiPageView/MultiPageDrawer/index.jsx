@@ -498,7 +498,12 @@ class MultiPageDrawer extends MultiPage {
             }
             className={styles.list}
             itemLayout={this.renderListViewItemLayout()}
-            dataSource={this.adjustViewDataSource()}
+            dataSource={
+              frontendPagination
+                ? this.adjustFrontendPaginationViewDataSource()
+                : this.adjustViewDataSource()
+            }
+            pagination={false}
             renderItem={(item, index) => {
               return this.renderListViewItem(item, index);
             }}

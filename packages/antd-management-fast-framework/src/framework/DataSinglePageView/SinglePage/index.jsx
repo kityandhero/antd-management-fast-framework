@@ -172,6 +172,13 @@ class SinglePage extends Base {
   adjustFrontendPaginationViewDataSource = () => {
     const { pageNo, pageSize } = this.state;
 
+    return this.buildFrontendPaginationListData({
+      pageNo,
+      pageSize,
+    });
+  };
+
+  buildFrontendPaginationListData = ({ pageNo, pageSize }) => {
     const list = this.adjustViewDataSource();
 
     const { frontendPagination } = {
@@ -206,6 +213,18 @@ class SinglePage extends Base {
     const frontendPagination = this.getFrontendPagination();
 
     return frontendPagination ? {} : null;
+  };
+
+  /**
+   * 配置Pagination切换页面时需要引发的事项,用于listView/cardView
+   * @param {*} pagination
+   * @param {*} filtersArg
+   * @param {*} sorter
+   */
+  handlePaginationChange = (page, pageSize) => {
+    this.setState({ pageNo: page, frontendPageNo: page });
+
+    this.handleAdditionalPaginationChange(page, pageSize);
   };
 
   /**

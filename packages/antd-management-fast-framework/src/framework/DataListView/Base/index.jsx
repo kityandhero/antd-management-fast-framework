@@ -1354,6 +1354,7 @@ class ListBase extends AuthorizationWrapper {
               ? this.adjustFrontendPaginationViewDataSource()
               : this.adjustViewDataSource()
           }
+          pagination={false}
           renderItem={(item, index) => {
             return this.renderListViewItem(item, index);
           }}
