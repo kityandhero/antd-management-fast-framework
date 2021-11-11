@@ -662,6 +662,17 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
+  getFrontendPagination = () => {
+    const { frontendPagination } = {
+      ...{
+        frontendPagination: false,
+      },
+      ...this.establishTableAdditionalConfig(),
+    };
+
+    return !!frontendPagination;
+  };
+
   restoreColumnsOtherConfigArray = () => {
     const columnsOtherConfigArray = this.getColumn().map((item) => {
       return { dataIndex: item.dataIndex, show: true, fixed: item.fixed || '' };
@@ -677,6 +688,7 @@ class ListBase extends AuthorizationWrapper {
     const expandable = this.establishTableExpandableConfig();
 
     return {
+      frontendPagination: this.getFrontendPagination(),
       ...this.establishTableAdditionalConfig(),
       columns,
       size: tableSize,
@@ -986,6 +998,10 @@ class ListBase extends AuthorizationWrapper {
     return this.establishViewDataSource();
   };
 
+  adjustFrontendPaginationViewDataSource = () => {
+    return this.adjustViewDataSource();
+  };
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   establishCardCollectionViewItemConfig = (record) => {
     const text = 'establishCardCollectionViewItemConfig 需要重载实现';
@@ -1248,6 +1264,7 @@ class ListBase extends AuthorizationWrapper {
               border: 0,
             }}
             loading={refreshing}
+            loading={refreshing}
             icon={<ReloadOutlined />}
             onClick={() => {
               this.refreshData();
@@ -1325,29 +1342,24 @@ class ListBase extends AuthorizationWrapper {
   renderListView = () => {
     const { dataLoading, reloading, processing } = this.state;
 
-    let pagination = false;
-
-    const paginationConfig = this.establishViewPaginationConfig() || false;
-
-    if (!!paginationConfig) {
-      pagination = this.supplementPaginationConfig();
-
-      pagination.onChange = this.handlePaginationChange;
-
-      pagination.onShowSizeChange = this.handlePaginationShowSizeChange;
-    }
+    const frontendPagination = this.getFrontendPagination();
 
     return (
       <Spin spinning={dataLoading || reloading || processing}>
         <List
           itemLayout={this.renderListViewItemLayout()}
           size={this.renderListViewSize()}
-          dataSource={this.adjustViewDataSource()}
-          pagination={pagination}
+          dataSource={
+            frontendPagination
+              ? this.adjustFrontendPaginationViewDataSource()
+              : this.adjustViewDataSource()
+          }
           renderItem={(item, index) => {
             return this.renderListViewItem(item, index);
           }}
         />
+
+        {this.renderPaginationView()}
       </Spin>
     );
   };
@@ -1411,10 +1423,14 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  renderCardCollectionView = ({ list }) => {
+  renderCardCollectionView = () => {
     const { dataLoading, reloading, processing } = this.state;
 
-    const listItem = isArray(list) ? list : [];
+    const frontendPagination = this.getFrontendPagination();
+
+    const listItem = frontendPagination
+      ? this.adjustFrontendPaginationViewDataSource()
+      : this.adjustViewDataSource();
     const itemCount = listItem.length;
 
     return (
@@ -1496,9 +1512,7 @@ class ListBase extends AuthorizationWrapper {
         });
       }
 
-      return this.renderCardCollectionView({
-        list: this.adjustViewDataSource(),
-      });
+      return this.renderCardCollectionView();
     }
 
     const text = '未知的显示模式';

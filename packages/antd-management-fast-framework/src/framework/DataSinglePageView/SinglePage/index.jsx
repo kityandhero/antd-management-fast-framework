@@ -169,10 +169,10 @@ class SinglePage extends Base {
     return list;
   };
 
-  adjustViewDataSource = () => {
+  adjustFrontendPaginationViewDataSource = () => {
     const { pageNo, pageSize } = this.state;
 
-    const list = this.establishViewDataSource();
+    const list = this.adjustViewDataSource();
 
     const { frontendPagination } = {
       ...{
@@ -184,10 +184,6 @@ class SinglePage extends Base {
     const listData = !!frontendPagination
       ? list.slice((pageNo - 1) * pageSize, pageNo * pageSize)
       : list;
-
-    console.log({
-      listData,
-    });
 
     return listData;
   };
@@ -207,14 +203,9 @@ class SinglePage extends Base {
    * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
    */
   establishViewPaginationConfig = () => {
-    const { frontendPagination } = {
-      ...{
-        frontendPagination: false,
-      },
-      ...this.establishTableAdditionalConfig(),
-    };
+    const frontendPagination = this.getFrontendPagination();
 
-    return !!frontendPagination ? {} : null;
+    return frontendPagination ? {} : null;
   };
 
   /**

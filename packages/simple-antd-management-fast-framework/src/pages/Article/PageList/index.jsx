@@ -194,7 +194,6 @@ class PageList extends MultiPage {
   };
 
   showAddBasicInfoDrawer = () => {
-    console.log('11');
     this.setState({
       addBasicInfoDrawerVisible: true,
     });
