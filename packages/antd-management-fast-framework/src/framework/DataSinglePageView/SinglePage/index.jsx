@@ -169,6 +169,29 @@ class SinglePage extends Base {
     return list;
   };
 
+  adjustViewDataSource = () => {
+    const { pageNo, pageSize } = this.state;
+
+    const list = this.establishViewDataSource();
+
+    const { frontendPagination } = {
+      ...{
+        frontendPagination: false,
+      },
+      ...this.establishTableAdditionalConfig(),
+    };
+
+    const listData = !!frontendPagination
+      ? list.slice((pageNo - 1) * pageSize, pageNo * pageSize)
+      : list;
+
+    console.log({
+      listData,
+    });
+
+    return listData;
+  };
+
   /**
    * 构建附加的分页配置
    * @returns
@@ -205,6 +228,7 @@ class SinglePage extends Base {
     const { current: frontendPageNoSource } = pagination;
 
     const frontendPageNo = toNumber(frontendPageNoSource);
+
     this.setState({ pageNo: frontendPageNo, frontendPageNo });
   };
 

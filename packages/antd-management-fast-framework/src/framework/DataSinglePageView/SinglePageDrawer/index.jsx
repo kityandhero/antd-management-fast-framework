@@ -426,7 +426,7 @@ class SinglePageDrawer extends SinglePage {
   renderListView = () => {
     const { dataLoading, listViewMode } = this.state;
 
-    const list = this.establishViewDataSource();
+    const list = this.adjustViewDataSource();
 
     const bottomBar = this.renderPaginationView();
 

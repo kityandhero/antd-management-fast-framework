@@ -982,6 +982,10 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
+  adjustViewDataSource = () => {
+    return this.establishViewDataSource();
+  };
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   establishCardCollectionViewItemConfig = (record) => {
     const text = 'establishCardCollectionViewItemConfig 需要重载实现';
@@ -1338,7 +1342,7 @@ class ListBase extends AuthorizationWrapper {
         <List
           itemLayout={this.renderListViewItemLayout()}
           size={this.renderListViewSize()}
-          dataSource={this.establishViewDataSource()}
+          dataSource={this.adjustViewDataSource()}
           pagination={pagination}
           renderItem={(item, index) => {
             return this.renderListViewItem(item, index);
@@ -1388,7 +1392,7 @@ class ListBase extends AuthorizationWrapper {
     }
 
     standardTableCustomOption.data = {
-      list: this.establishViewDataSource(),
+      list: this.adjustViewDataSource(),
       pagination: this.supplementPaginationConfig(),
     };
 
@@ -1493,7 +1497,7 @@ class ListBase extends AuthorizationWrapper {
       }
 
       return this.renderCardCollectionView({
-        list: this.establishViewDataSource(),
+        list: this.adjustViewDataSource(),
       });
     }
 
