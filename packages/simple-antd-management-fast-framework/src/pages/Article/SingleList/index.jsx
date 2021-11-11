@@ -778,10 +778,10 @@ class SingleList extends SinglePage {
       title: '操作提示',
       list: [
         {
-          text: '分页模式：单页数据也会启用分页试图，该模式为前端模拟分页，分页试图有助于解决长列表渲染情况下的页面卡顿情况。',
+          text: '分页模式：单页数据默认会启用前台模拟分页，分页试图有助于解决长列表渲染情况下的页面卡顿情况。',
         },
         {
-          text: '模式变更：不需要模拟分页展示，可以重载“establishTableAdditionalConfig”方法，设置 {frontendPagination: true}来关闭。',
+          text: '模式变更：如若不需要模拟分页展示，可以通过设置 this.useFrontendPagination = false 来关闭。',
         },
       ],
     };

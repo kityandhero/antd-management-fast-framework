@@ -73,6 +73,8 @@ import { fieldData, mediaItemData, statusCollection } from '../Common/data';
   loading: loading.models.article,
 }))
 class PageList extends MultiPage {
+  restoreSearch = true;
+
   componentAuthority = accessWayCollection.article.pageList.permission;
 
   constructor(props) {

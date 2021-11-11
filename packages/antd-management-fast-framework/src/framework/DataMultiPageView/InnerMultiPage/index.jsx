@@ -1,7 +1,7 @@
 import MultiPage from '../MultiPage';
 
 class InnerMultiPage extends MultiPage {
-  useParamsKey = false;
+  restoreSearch = false;
 
   constructor(props) {
     super(props);

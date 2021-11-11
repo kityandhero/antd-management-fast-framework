@@ -2,12 +2,11 @@ import { message } from 'antd';
 
 import {
   defaultPageListState,
-  dateToMoment,
   stringIsNullOrWhiteSpace,
-  isNumber,
   isUndefined,
   showRuntimeError,
   recordObject,
+  showWarnMessage,
 } from '../../../utils/tools';
 import {
   getParamsDataCache,
@@ -29,7 +28,15 @@ class MultiPage extends Base {
 
   lastLoadParams = null;
 
-  useParamsKey = true;
+  /**
+   * 是否恢复之前检索条件
+   */
+  restoreSearch = false;
+
+  /**
+   * 恢复检索是否完成
+   */
+  restoreSearchComplete = false;
 
   constructor(props) {
     super(props);
@@ -100,7 +107,7 @@ class MultiPage extends Base {
       return d;
     }
 
-    if (this.useParamsKey) {
+    if (this.restoreSearch && !!!this.restoreSearchComplete) {
       if ((paramsKey || '') === '') {
         const text = 'paramsKey需要配置';
 
@@ -113,7 +120,9 @@ class MultiPage extends Base {
 
       d = getParamsDataCache(paramsKey);
 
-      this.useParamsKey = false;
+      this.restoreSearchComplete = true;
+
+      this.restoreQueryDataBeforeFirstRequest(d);
     } else {
       const {
         startTimeAlias,
@@ -157,42 +166,16 @@ class MultiPage extends Base {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterGetFirstRequestResult = (submitData, responseData) => {
-    const form = this.getSearchCard();
-    const { urlParams } = this.state;
+  restoreQueryDataBeforeFirstRequest = (d) => {
+    setTimeout(() => {
+      const text =
+        '启用恢复之前查询状态功能需要重新实现 ”restoreQueryDataBeforeFirstRequest“ 方法,通过该方法填充视图中的各项查询条件 ';
 
-    let pageKey = 'no';
-
-    if (urlParams != null) {
-      pageKey = urlParams.pageKey || 'no';
-    }
-
-    const p = submitData;
-
-    if (pageKey === 'key' && p != null) {
-      if (p.startTime && p.endTime) {
-        p.dateRange = [dateToMoment(p.startTime), dateToMoment(p.endTime)];
-        // p.dateRange = `${p.startTime}-${p.endTime}`;
-      }
-
-      const d = form.getFieldsValue();
-
-      Object.keys(d).forEach((key) => {
-        const c = p[key] === 0 ? 0 : p[key] || null;
-
-        if (c != null) {
-          const obj = {};
-          obj[key] = isNumber(c) ? `${c}` : c;
-          form.setFieldsValue(obj);
-        }
+      showWarnMessage({
+        message: text,
       });
-
-      this.adjustRenderLoadRequestParamsWithKey(d);
-    }
+    }, 1500);
   };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  adjustRenderLoadRequestParamsWithKey = (d) => {};
 
   afterGetRequestResult = () => {
     const { paramsKey } = this.state;

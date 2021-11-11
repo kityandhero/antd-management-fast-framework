@@ -39,7 +39,7 @@ class MultiPageDrawer extends MultiPage {
   constructor(props) {
     super(props);
 
-    this.useParamsKey = false;
+    this.restoreSearch = false;
 
     const s = this.state;
     s.dataLoading = false;

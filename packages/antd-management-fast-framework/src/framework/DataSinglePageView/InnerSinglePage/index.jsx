@@ -1,7 +1,7 @@
 import SinglePage from '../SinglePage';
 
 class InnerSinglePage extends SinglePage {
-  useParamsKey = false;
+  restoreSearch = false;
 
   constructor(props) {
     super(props);
