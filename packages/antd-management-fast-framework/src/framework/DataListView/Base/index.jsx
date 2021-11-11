@@ -1154,7 +1154,10 @@ class ListBase extends AuthorizationWrapper {
   };
 
   establishPaginationViewStyle = () => {
-    return {};
+    return {
+      paddingTop: 16,
+      paddingBottom: 16,
+    };
   };
 
   /**
@@ -1534,11 +1537,6 @@ class ListBase extends AuthorizationWrapper {
 
     const hasPagination = this.renderPaginationView() != null;
 
-    const { frontendPagination } = {
-      ...{ frontendPagination: false },
-      ...(this.establishTableAdditionalConfig() || {}),
-    };
-
     return (
       <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
         <Space style={{ width: '100%' }} direction="vertical" size={24}>
@@ -1559,20 +1557,16 @@ class ListBase extends AuthorizationWrapper {
               paddingTop: '0',
               paddingBottom: hasPagination
                 ? listViewMode === listViewConfig.viewMode.table
-                  ? frontendPagination
-                    ? 0
-                    : 20
+                  ? 0
                   : listViewMode === listViewConfig.viewMode.list
-                  ? 20
+                  ? 0
                   : listViewMode === listViewConfig.viewMode.cardCollectionView
                   ? 0
                   : 0
                 : listViewMode === listViewConfig.viewMode.table
-                ? frontendPagination
-                  ? 0
-                  : 20
+                ? 0
                 : listViewMode === listViewConfig.viewMode.list
-                ? 20
+                ? 0
                 : listViewMode === listViewConfig.viewMode.cardCollectionView
                 ? 20
                 : 20,

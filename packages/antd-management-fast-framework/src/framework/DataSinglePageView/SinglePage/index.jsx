@@ -215,6 +215,14 @@ class SinglePage extends Base {
     return frontendPagination ? {} : null;
   };
 
+  establishViewPaginationConfig = () => {
+    const list = this.establishViewDataSource();
+
+    const paginationConfig = { total: (list || []).length };
+
+    return paginationConfig;
+  };
+
   /**
    * 配置Pagination切换页面时需要引发的事项,用于listView/cardView
    * @param {*} pagination

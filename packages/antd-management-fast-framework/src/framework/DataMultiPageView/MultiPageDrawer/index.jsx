@@ -470,6 +470,8 @@ class MultiPageDrawer extends MultiPage {
   renderListView = () => {
     const { listViewMode } = this.state;
 
+    const frontendPagination = this.getFrontendPagination();
+
     return (
       <div
         style={

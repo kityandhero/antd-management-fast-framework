@@ -321,13 +321,6 @@ class MultiPage extends Base {
 
     return paginationConfig;
   };
-
-  establishPaginationViewStyle = () => {
-    return {
-      paddingTop: 16,
-      paddingBottom: 16,
-    };
-  };
 }
 
 export default MultiPage;
