@@ -99,6 +99,17 @@ class SingleList extends SinglePage {
     return data;
   };
 
+  /**
+   * 构建附加的分页配置
+   * @returns
+   */
+  establishTableAdditionalConfig = () => {
+    return {
+      //前台模拟分页，有助于优化长列表页面交互操作导致的延迟
+      frontendPagination: false,
+    };
+  };
+
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
       case 'showUpdateBasicInfoDrawer':
@@ -852,72 +863,6 @@ class SingleList extends SinglePage {
           />
         ) : null}
       </>
-    );
-  };
-
-  adjustViewDataSource = () => {
-    const { pageNo, pageSize } = this.state;
-
-    const list = this.establishViewDataSource();
-
-    const { frontendPagination } = {
-      ...{
-        frontendPagination: false,
-      },
-      ...this.establishTableAdditionalConfig(),
-    };
-
-    const listData = !!frontendPagination
-      ? list.slice((pageNo - 1) * pageSize, pageNo * pageSize)
-      : list;
-
-    return list;
-  };
-
-  // handlePaginationChange = (page, pageSize) => {
-  //   const { pageNo, pageSize } = this.state;
-
-  //   const list = this.establishViewDataSource();
-
-  //   const { frontendPagination } = {
-  //     ...{
-  //       frontendPagination: false,
-  //     },
-  //     ...this.establishTableAdditionalConfig(),
-  //   };
-
-  //   const listData = !!frontendPagination
-  //     ? list.slice((pageNo - 1) * pageSize, pageNo * pageSize)
-  //     : list;
-  // };
-
-  renderListView = () => {
-    const { dataLoading, reloading, processing } = this.state;
-
-    let pagination = false;
-
-    const paginationConfig = this.establishViewPaginationConfig() || false;
-
-    if (!!paginationConfig) {
-      pagination = this.supplementPaginationConfig();
-
-      pagination.onChange = this.handlePaginationChange;
-
-      pagination.onShowSizeChange = this.handlePaginationShowSizeChange;
-    }
-
-    return (
-      <Spin spinning={dataLoading || reloading || processing}>
-        <List
-          itemLayout={this.renderListViewItemLayout()}
-          size={this.renderListViewSize()}
-          dataSource={this.adjustViewDataSource()}
-          pagination={pagination}
-          renderItem={(item, index) => {
-            return this.renderListViewItem(item, index);
-          }}
-        />
-      </Spin>
     );
   };
 }

@@ -259,6 +259,16 @@ class SinglePage extends Base {
 
     return toNumber(frontendPageNo);
   };
+
+  renderPaginationView = () => {
+    const frontendPagination = this.getFrontendPagination();
+
+    if (!!!frontendPagination) {
+      return null;
+    }
+
+    return this.buildPaginationBar();
+  };
 }
 
 export default SinglePage;

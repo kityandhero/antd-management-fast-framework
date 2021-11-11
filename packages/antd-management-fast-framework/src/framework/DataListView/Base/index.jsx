@@ -1215,6 +1215,29 @@ class ListBase extends AuthorizationWrapper {
     return pageHeaderExtraContent(this.establishPageHeaderExtraContentConfig());
   };
 
+  buildPaginationBar = () => {
+    const paginationConfig = this.supplementPaginationConfig();
+
+    const style = this.establishPaginationViewStyle();
+
+    return (
+      <FlexBox
+        style={style}
+        right={
+          <Pagination
+            {...paginationConfig}
+            onChange={(page, size) => {
+              this.handlePaginationChange(page, size);
+            }}
+            onShowSizeChange={(current, size) => {
+              this.handlePaginationShowSizeChange(current, size);
+            }}
+          />
+        }
+      />
+    );
+  };
+
   renderCardExtraAction = () => {
     const { listViewMode, tableSize, refreshing } = this.state;
 
@@ -1385,8 +1408,6 @@ class ListBase extends AuthorizationWrapper {
     const { styleSet, columns, expandable, size, frontendPagination } =
       this.buildTableConfig();
 
-    const paginationConfig = this.establishViewPaginationConfig() || false;
-
     const standardTableCustomOption = {
       loading: dataLoading || processing,
       showSelect,
@@ -1399,13 +1420,8 @@ class ListBase extends AuthorizationWrapper {
         list: metaListData,
         config: expandable,
       }),
+      showPagination: !!frontendPagination,
     };
-
-    if (!!paginationConfig) {
-      standardTableCustomOption.showPagination = true;
-    } else {
-      standardTableCustomOption.showPagination = !!frontendPagination;
-    }
 
     standardTableCustomOption.data = {
       list: this.adjustViewDataSource(),
@@ -1460,32 +1476,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderPaginationView = () => {
-    let paginationConfig = this.establishViewPaginationConfig() || false;
-
-    if (!!!paginationConfig) {
-      return null;
-    }
-
-    paginationConfig = this.supplementPaginationConfig();
-
-    const style = this.establishPaginationViewStyle();
-
-    return (
-      <FlexBox
-        style={style}
-        right={
-          <Pagination
-            {...paginationConfig}
-            onChange={(page, size) => {
-              this.handlePaginationChange(page, size);
-            }}
-            onShowSizeChange={(current, size) => {
-              this.handlePaginationShowSizeChange(current, size);
-            }}
-          />
-        }
-      />
-    );
+    return this.buildPaginationBar();
   };
 
   renderView = () => {
@@ -1555,21 +1546,7 @@ class ListBase extends AuthorizationWrapper {
             headStyle={{ borderBottom: '0px' }}
             bodyStyle={{
               paddingTop: '0',
-              paddingBottom: hasPagination
-                ? listViewMode === listViewConfig.viewMode.table
-                  ? 0
-                  : listViewMode === listViewConfig.viewMode.list
-                  ? 0
-                  : listViewMode === listViewConfig.viewMode.cardCollectionView
-                  ? 0
-                  : 0
-                : listViewMode === listViewConfig.viewMode.table
-                ? 0
-                : listViewMode === listViewConfig.viewMode.list
-                ? 0
-                : listViewMode === listViewConfig.viewMode.cardCollectionView
-                ? 20
-                : 20,
+              paddingBottom: hasPagination ? 0 : 24,
             }}
             bordered={false}
             className={styles.containorTable}
