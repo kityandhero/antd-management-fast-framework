@@ -1,6 +1,7 @@
 import { request } from 'antd-management-fast-framework/es/utils/requestAssistor';
 
 import { defaultSettings } from '@/defaultSettings';
+import { getValueByKey, toString } from 'antd-management-fast-framework/es/utils/tools';
 
 const imageFileList = [
   {
@@ -117,6 +118,37 @@ const article = {
   ],
 };
 
+const articleSimple = {
+  articleId: '',
+  title: '标题',
+  subtitle: '副标题',
+  description: '简介描述',
+  image: '',
+  contentData: '',
+  mediaData: '',
+  renderType: 20,
+  sort: 0,
+  status: 0,
+  author: '',
+  accessCount: 0,
+  businessMode: 10,
+  createUserId: '1385411903626547200',
+  createTime: '2021-08-25 11:13:09',
+  updateUserId: '1385411903626547200',
+  updateTime: '2021-08-25 17:08:41',
+  universalityMallId: 0,
+  areaAgentId: '1385411903530078208',
+  cityCode: '410100000000',
+  platformId: '1385408435780194304',
+  key: '',
+  renderTypeNote: '媒体渲染',
+  statusNote: '已下线',
+  image: defaultSettings.getEmptyLogo(),
+  imageList: [defaultSettings.getEmptyLogo(), defaultSettings.getEmptyLogo()],
+  imageFileList: imageFileList,
+  mediaItemList: [],
+};
+
 const article2 = {
   ...article,
   ...{
@@ -128,17 +160,82 @@ const article2 = {
   },
 };
 
+const articleEmptyList = [
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+];
+
+const articleList = articleEmptyList.map((o, index) => {
+  const no = `${index + 1}`;
+
+  return {
+    ...articleSimple,
+    ...{
+      articleId: no,
+      key: no,
+      title: articleSimple.title + no,
+      subtitle: articleSimple.subtitle + no,
+      description: articleSimple.description + no,
+    },
+  };
+});
+
+articleList.unshift(article);
+
+function findArticle({ articleId }) {
+  let result = null;
+
+  articleList.some((o) => {
+    const itemArticleId = getValueByKey({
+      data: o,
+      key: 'articleId',
+    });
+
+    if (toString(itemArticleId) === toString(articleId)) {
+      result = o;
+
+      return true;
+    }
+  });
+
+  return result;
+}
+
 export async function pageListData(params) {
+  const { pageNo, pageSize } = params;
+
   return request({
     api: `/article/pageList`,
     params,
     virtualSuccessResponse: {
       extra: {
-        pageNo: 1,
-        pageSize: 10,
-        total: 2,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        total: articleList.length,
       },
-      list: [article, article2],
+      list: articleList.slice((pageNo - 1) * pageSize, pageNo * pageSize),
     },
   });
 }
@@ -148,7 +245,7 @@ export async function singleListData(params) {
     api: `/article/singleList`,
     params,
     virtualSuccessResponse: {
-      list: [article, article, article, article],
+      list: articleList,
     },
   });
 }
@@ -158,7 +255,7 @@ export async function getData(params) {
     api: `/article/get`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: findArticle(params),
     },
   });
 }
@@ -168,7 +265,7 @@ export async function addBasicInfoData(params) {
     api: `/article/addBasicInfo`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: findArticle(params),
     },
   });
 }
@@ -178,7 +275,10 @@ export async function updateBasicInfoData(params) {
     api: `/article/updateBasicInfo`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
     },
   });
 }
@@ -188,7 +288,10 @@ export async function updateContentInfoData(params) {
     api: `/article/updateContentInfo`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
     },
   });
 }
@@ -198,7 +301,10 @@ export async function updateMediaInfoData(params) {
     api: `/article/updateMediaInfo`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
     },
   });
 }
@@ -209,10 +315,8 @@ export async function updateSortData(params) {
     params,
     virtualSuccessResponse: {
       data: {
+        ...findArticle(params),
         ...params,
-        ...{
-          articleId: article.articleId,
-        },
       },
     },
   });
@@ -223,7 +327,10 @@ export async function updateRenderTypeData(params) {
     api: `/article/updateRenderType`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
     },
   });
 }
@@ -234,8 +341,11 @@ export async function setOnlineData(params) {
     params,
     virtualSuccessResponse: {
       data: {
-        articleId: article.articleId,
-        status: 1,
+        ...findArticle(params),
+        ...params,
+        ...{
+          status: 1,
+        },
       },
     },
   });
@@ -247,8 +357,11 @@ export async function setOfflineData(params) {
     params,
     virtualSuccessResponse: {
       data: {
-        articleId: article.articleId,
-        status: 0,
+        ...findArticle(params),
+        ...params,
+        ...{
+          status: 0,
+        },
       },
     },
   });
@@ -260,7 +373,8 @@ export async function refreshCacheData(params) {
     params,
     virtualSuccessResponse: {
       data: {
-        articleId: article.articleId,
+        ...findArticle(params),
+        ...params,
       },
     },
   });
@@ -272,7 +386,8 @@ export async function removeData(params) {
     params,
     virtualSuccessResponse: {
       data: {
-        articleId: article.articleId,
+        ...findArticle(params),
+        ...params,
       },
     },
   });
@@ -305,7 +420,10 @@ export async function addMediaItemData(params) {
     api: `/article/addMediaItem`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
     },
   });
 }
@@ -315,7 +433,10 @@ export async function updateMediaItemData(params) {
     api: `/article/updateMediaItem`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
     },
   });
 }
@@ -325,7 +446,10 @@ export async function setMediaCollectionSortData(params) {
     api: `/article/setMediaCollectionSort`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
     },
   });
 }
@@ -335,7 +459,10 @@ export async function removeMediaItemData(params) {
     api: `/article/removeMediaItem`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
     },
   });
 }
@@ -355,7 +482,10 @@ export async function addImageData(params) {
     api: `/article/addImage`,
     params,
     virtualSuccessResponse: {
-      data: article,
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
     },
   });
 }

@@ -86,7 +86,7 @@ class PageList extends MultiPage {
         paramsKey: accessWayCollection.article.pageList.paramsKey,
         listViewMode: listViewConfig.viewMode.table,
         pageSize: 8,
-        tableScroll: { x: 1720 },
+        // tableScroll: { x: 1720 },
         loadApiPath: 'article/pageList',
         changeSortModalVisible: false,
         addBasicInfoDrawerVisible: false,
@@ -728,7 +728,7 @@ class PageList extends MultiPage {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
-      width: 180,
+      width: 680,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',

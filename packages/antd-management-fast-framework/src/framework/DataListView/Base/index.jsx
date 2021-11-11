@@ -1133,6 +1133,10 @@ class ListBase extends AuthorizationWrapper {
     };
   };
 
+  establishPaginationViewStyle = () => {
+    return {};
+  };
+
   /**
    * 配置StandardTable切换页面时需要引发的事项
    * @param {*} pagination

@@ -71,10 +71,11 @@ class SingleList extends SinglePage {
     this.state = {
       ...this.state,
       ...{
+        pageSize: 8,
         pageName: '文章单页列表',
         paramsKey: accessWayCollection.article.singleList.permission,
         loadApiPath: 'article/singleList',
-        listViewMode: listViewConfig.viewMode.cardCollectionView,
+        listViewMode: listViewConfig.viewMode.table,
         changeSortModalVisible: false,
         addBasicInfoDrawerVisible: false,
         updateBasicInfoDrawerVisible: false,
@@ -638,7 +639,7 @@ class SingleList extends SinglePage {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
-      width: 180,
+      width: 680,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
@@ -775,10 +776,10 @@ class SingleList extends SinglePage {
       title: '操作提示',
       list: [
         {
-          text: '简要说明：这里可以显示需要提示的信息。',
+          text: '分页模式：单页数据也会启用分页试图，该模式为前端模拟分页，分页试图有助于解决长列表渲染情况下的页面卡顿情况。',
         },
         {
-          text: '简要说明：这里可以显示需要提示的信息。',
+          text: '模式变更：不需要模拟分页展示，可以重载“establishTableAdditionalConfig”方法，设置 {frontendPagination: true}来关闭。',
         },
       ],
     };

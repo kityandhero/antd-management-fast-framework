@@ -154,6 +154,10 @@ class SinglePage extends Base {
       });
   };
 
+  /**
+   * 构建列表数据
+   * @returns
+   */
   establishViewDataSource = () => {
     const { metaOriginalData } = this.state;
 
@@ -165,6 +169,10 @@ class SinglePage extends Base {
     return list;
   };
 
+  /**
+   * 构建附加的分页配置
+   * @returns
+   */
   establishTableAdditionalConfig = () => {
     return {
       //前台模拟分页，有助于优化长列表页面交互操作导致的延迟
@@ -172,13 +180,38 @@ class SinglePage extends Base {
     };
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleAdditionalStandardTableChange = (pagination, filtersArg, sorter) => {
-    const { current: frontendPageNo } = pagination;
+  /**
+   * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
+   */
+  establishViewPaginationConfig = () => {
+    const { frontendPagination } = {
+      ...{
+        frontendPagination: false,
+      },
+      ...this.establishTableAdditionalConfig(),
+    };
 
-    this.setState({ frontendPageNo: toNumber(frontendPageNo) });
+    return !!frontendPagination ? {} : null;
   };
 
+  /**
+   * 当页码变动时的附加执行行为
+   * @param {*} pagination
+   * @param {*} filtersArg
+   * @param {*} sorter
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleAdditionalStandardTableChange = (pagination, filtersArg, sorter) => {
+    const { current: frontendPageNoSource } = pagination;
+
+    const frontendPageNo = toNumber(frontendPageNoSource);
+    this.setState({ pageNo: frontendPageNo, frontendPageNo });
+  };
+
+  /**
+   * 获取当前的前端模拟分页当前页码
+   * @returns
+   */
   getFrontendPageNo = () => {
     const { frontendPageNo } = this.state;
 
