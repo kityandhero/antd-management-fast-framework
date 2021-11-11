@@ -426,9 +426,7 @@ class SinglePageDrawer extends SinglePage {
   renderListView = () => {
     const { dataLoading, listViewMode } = this.state;
 
-    const frontendPagination = this.getFrontendPagination();
-
-    const list = frontendPagination
+    const list = this.useFrontendPagination
       ? this.adjustFrontendPaginationViewDataSource()
       : this.adjustViewDataSource();
 

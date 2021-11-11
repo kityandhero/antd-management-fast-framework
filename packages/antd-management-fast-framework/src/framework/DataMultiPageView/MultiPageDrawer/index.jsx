@@ -470,8 +470,6 @@ class MultiPageDrawer extends MultiPage {
   renderListView = () => {
     const { listViewMode } = this.state;
 
-    const frontendPagination = this.getFrontendPagination();
-
     return (
       <div
         style={
@@ -501,7 +499,7 @@ class MultiPageDrawer extends MultiPage {
             className={styles.list}
             itemLayout={this.renderListViewItemLayout()}
             dataSource={
-              frontendPagination
+              this.useFrontendPagination
                 ? this.adjustFrontendPaginationViewDataSource()
                 : this.adjustViewDataSource()
             }

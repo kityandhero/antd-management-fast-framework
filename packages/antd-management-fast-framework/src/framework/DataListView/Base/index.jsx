@@ -76,6 +76,11 @@ const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
 
 class ListBase extends AuthorizationWrapper {
+  /**
+   * 前台模拟分页，有助于优化长列表页面交互操作导致的延迟
+   */
+  useFrontendPagination = false;
+
   formRef = React.createRef();
 
   constructor(props) {
@@ -662,17 +667,6 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
-  getFrontendPagination = () => {
-    const { frontendPagination } = {
-      ...{
-        frontendPagination: false,
-      },
-      ...this.establishTableAdditionalConfig(),
-    };
-
-    return !!frontendPagination;
-  };
-
   restoreColumnsOtherConfigArray = () => {
     const columnsOtherConfigArray = this.getColumn().map((item) => {
       return { dataIndex: item.dataIndex, show: true, fixed: item.fixed || '' };
@@ -688,7 +682,6 @@ class ListBase extends AuthorizationWrapper {
     const expandable = this.establishTableExpandableConfig();
 
     return {
-      frontendPagination: this.getFrontendPagination(),
       ...this.establishTableAdditionalConfig(),
       columns,
       size: tableSize,
@@ -1368,15 +1361,13 @@ class ListBase extends AuthorizationWrapper {
   renderListView = () => {
     const { dataLoading, reloading, processing } = this.state;
 
-    const frontendPagination = this.getFrontendPagination();
-
     return (
       <Spin spinning={dataLoading || reloading || processing}>
         <List
           itemLayout={this.renderListViewItemLayout()}
           size={this.renderListViewSize()}
           dataSource={
-            frontendPagination
+            this.useFrontendPagination
               ? this.adjustFrontendPaginationViewDataSource()
               : this.adjustViewDataSource()
           }
@@ -1405,8 +1396,7 @@ class ListBase extends AuthorizationWrapper {
       processing,
     } = this.state;
 
-    const { styleSet, columns, expandable, size, frontendPagination } =
-      this.buildTableConfig();
+    const { styleSet, columns, expandable, size } = this.buildTableConfig();
 
     const standardTableCustomOption = {
       loading: dataLoading || processing,
@@ -1420,7 +1410,7 @@ class ListBase extends AuthorizationWrapper {
         list: metaListData,
         config: expandable,
       }),
-      showPagination: !!frontendPagination,
+      showPagination: !!this.useFrontendPagination,
     };
 
     standardTableCustomOption.data = {
@@ -1446,9 +1436,7 @@ class ListBase extends AuthorizationWrapper {
   renderCardCollectionView = () => {
     const { dataLoading, reloading, processing } = this.state;
 
-    const frontendPagination = this.getFrontendPagination();
-
-    const listItem = frontendPagination
+    const listItem = this.useFrontendPagination
       ? this.adjustFrontendPaginationViewDataSource()
       : this.adjustViewDataSource();
     const itemCount = listItem.length;
@@ -1520,7 +1508,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderPageContent = () => {
-    const { listViewMode, listTitle, renderSearchForm } = this.state;
+    const { listTitle, renderSearchForm } = this.state;
 
     const extraAction = this.renderExtraActionView();
 

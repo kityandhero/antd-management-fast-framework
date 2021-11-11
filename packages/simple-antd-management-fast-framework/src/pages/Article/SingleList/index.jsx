@@ -63,6 +63,8 @@ import { fieldData, statusCollection } from '../Common/data';
   loading: loading.models.article,
 }))
 class SingleList extends SinglePage {
+  useFrontendPagination = false;
+
   componentAuthority = accessWayCollection.article.singleList.permission;
 
   constructor(props) {
@@ -97,17 +99,6 @@ class SingleList extends SinglePage {
     } = props;
 
     return data;
-  };
-
-  /**
-   * 构建附加的分页配置
-   * @returns
-   */
-  establishTableAdditionalConfig = () => {
-    return {
-      //前台模拟分页，有助于优化长列表页面交互操作导致的延迟
-      frontendPagination: false,
-    };
   };
 
   handleMenuClick = ({ key, handleData }) => {

@@ -11,6 +11,11 @@ import {
 import Base from '../../DataListView/Base';
 
 class SinglePage extends Base {
+  /**
+   * 前台模拟分页，有助于优化长列表页面交互操作导致的延迟
+   */
+  useFrontendPagination = true;
+
   constructor(props) {
     super(props);
 
@@ -181,14 +186,7 @@ class SinglePage extends Base {
   buildFrontendPaginationListData = ({ pageNo, pageSize }) => {
     const list = this.adjustViewDataSource();
 
-    const { frontendPagination } = {
-      ...{
-        frontendPagination: false,
-      },
-      ...this.establishTableAdditionalConfig(),
-    };
-
-    const listData = !!frontendPagination
+    const listData = !!this.useFrontendPagination
       ? list.slice((pageNo - 1) * pageSize, pageNo * pageSize)
       : list;
 
@@ -200,19 +198,14 @@ class SinglePage extends Base {
    * @returns
    */
   establishTableAdditionalConfig = () => {
-    return {
-      //前台模拟分页，有助于优化长列表页面交互操作导致的延迟
-      frontendPagination: true,
-    };
+    return {};
   };
 
   /**
    * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
    */
   establishViewPaginationConfig = () => {
-    const frontendPagination = this.getFrontendPagination();
-
-    return frontendPagination ? {} : null;
+    return null;
   };
 
   establishViewPaginationConfig = () => {
@@ -261,9 +254,7 @@ class SinglePage extends Base {
   };
 
   renderPaginationView = () => {
-    const frontendPagination = this.getFrontendPagination();
-
-    if (!!!frontendPagination) {
+    if (!!!this.useFrontendPagination) {
       return null;
     }
 
