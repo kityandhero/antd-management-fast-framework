@@ -39,6 +39,7 @@ import {
   isObject,
   copyToClipboard,
   inCollection,
+  toString,
 } from '../../utils/tools';
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import {
@@ -346,12 +347,22 @@ class Common extends Core {
                 metaOriginalData,
               });
 
-              this.afterLoadSuccess({
-                metaData: metaData || null,
-                metaListData: metaListData || [],
-                metaExtra: metaExtra || null,
-                metaOriginalData: metaOriginalData || null,
-              });
+              try {
+                this.afterLoadSuccess({
+                  metaData: metaData || null,
+                  metaListData: metaListData || [],
+                  metaExtra: metaExtra || null,
+                  metaOriginalData: metaOriginalData || null,
+                });
+              } catch (e) {
+                console.log(e);
+
+                const text = toString(e);
+
+                showErrorMessage({
+                  message: text,
+                });
+              }
             }
 
             const { reloading: reloadingComplete } = this.state;
