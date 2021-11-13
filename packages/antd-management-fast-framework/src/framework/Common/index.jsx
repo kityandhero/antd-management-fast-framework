@@ -357,7 +357,7 @@ class Common extends Core {
               } catch (e) {
                 console.log(e);
 
-                const text = toString(e);
+                const text = `${toString(e)},place view in the console`;
 
                 showErrorMessage({
                   message: text,
