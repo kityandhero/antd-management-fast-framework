@@ -230,6 +230,9 @@ export const listViewConfig = {
   },
 };
 
+/**
+ * 排序动作
+ */
 export const sortOperate = {
   moveUp: 'moveUp',
   moveDown: 'moveDown',
