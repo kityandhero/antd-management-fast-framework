@@ -22,7 +22,7 @@ renderSimpleFormButtonCore -> buildSearchCardButtonCore
 renderSimpleFormRangePickerCore -> buildSearchCardRangePickerCore
 buildToolBarConfig -> establishToolBarConfig
 buildHelpConfig -> establishHelpConfig
-buildOtherFormProps -> buildFormAdditionalConfig
+buildOtherFormProps -> establishFormAdditionalConfig
 
 fillFormInitialValuesAfterLoad -> fillInitialValuesAfterLoad
 fillFormDefaultInitialValues -> fillDefaultInitialValues

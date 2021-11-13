@@ -197,7 +197,7 @@ class BaseAddForm extends DataCore {
     const initialValues = this.buildInitialValues();
 
     const formLayout = this.buildFormLayout();
-    const otherFormProps = this.buildFormAdditionalConfig();
+    const otherFormProps = this.establishFormAdditionalConfig();
 
     return (
       <Form

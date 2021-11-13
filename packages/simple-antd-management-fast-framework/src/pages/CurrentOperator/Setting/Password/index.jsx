@@ -67,7 +67,7 @@ class Password extends BaseUpdateFormContent {
     return 'horizontal';
   };
 
-  buildFormAdditionalConfig = () => {
+  establishFormAdditionalConfig = () => {
     return {
       labelCol: {
         span: 4,

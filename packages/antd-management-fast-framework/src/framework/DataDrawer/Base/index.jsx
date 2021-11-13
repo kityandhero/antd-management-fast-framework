@@ -89,7 +89,7 @@ class Base extends BaseWindow {
       metaOriginalData,
     });
 
-    const otherFormProps = this.buildFormAdditionalConfig();
+    const otherFormProps = this.establishFormAdditionalConfig();
 
     return (
       <Form

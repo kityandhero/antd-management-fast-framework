@@ -1052,7 +1052,7 @@ class Common extends Core {
     });
   };
 
-  buildFormAdditionalConfig = () => {
+  establishFormAdditionalConfig = () => {
     return {};
   };
 

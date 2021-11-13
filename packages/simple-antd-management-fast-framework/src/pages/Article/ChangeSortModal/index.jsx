@@ -87,7 +87,7 @@ class ChangeSortModal extends BaseUpdateModal {
     });
   };
 
-  buildFormAdditionalConfig = () => {
+  establishFormAdditionalConfig = () => {
     return {
       labelCol: {
         span: 3,

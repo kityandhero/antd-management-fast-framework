@@ -40,7 +40,7 @@ class Base extends BaseWindow {
     return 'horizontal';
   };
 
-  buildFormAdditionalConfig = () => {
+  establishFormAdditionalConfig = () => {
     return {
       labelCol: {
         span: 7,
@@ -51,49 +51,12 @@ class Base extends BaseWindow {
     };
   };
 
-  renderFormWrapper = () => {
-    return this.renderForm();
-  };
-
-  renderForm = () => {
-    const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
-
-    const initialValues = this.buildInitialValues({
-      metaData,
-      metaListData,
-      metaExtra,
-      metaOriginalData,
-    });
-
-    const otherFormProps = this.buildFormAdditionalConfig();
-
-    return (
-      <Form
-        ref={this.formRef}
-        layout={this.buildFormLayout()}
-        initialValues={initialValues}
-        className={this.getFormClassName()}
-        {...otherFormProps}
-      >
-        {this.formContent()}
-      </Form>
-    );
-  };
-
   establishCardCollectionConfig = () => {
     return null;
   };
 
   establishWrapperTypeConfig = () => {
     return { mode: cardConfig.wrapperType.model };
-  };
-
-  formContent = () => {
-    return this.buildCardCollection(this.establishCardCollectionConfig());
-  };
-
-  renderModalInner = () => {
-    return this.renderFormWrapper();
   };
 
   getSaveButtonDisabled = () => {
@@ -202,6 +165,43 @@ class Base extends BaseWindow {
         </Col>
       </Row>
     );
+  };
+
+  formContent = () => {
+    return this.buildCardCollection(this.establishCardCollectionConfig());
+  };
+
+  renderFormWrapper = () => {
+    return this.renderForm();
+  };
+
+  renderForm = () => {
+    const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
+
+    const initialValues = this.buildInitialValues({
+      metaData,
+      metaListData,
+      metaExtra,
+      metaOriginalData,
+    });
+
+    const otherFormProps = this.establishFormAdditionalConfig();
+
+    return (
+      <Form
+        ref={this.formRef}
+        layout={this.buildFormLayout()}
+        initialValues={initialValues}
+        className={this.getFormClassName()}
+        {...otherFormProps}
+      >
+        {this.formContent()}
+      </Form>
+    );
+  };
+
+  renderModalInner = () => {
+    return this.renderFormWrapper();
   };
 
   render() {
