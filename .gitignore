@@ -31,8 +31,8 @@ functions/mock
 **/coverage
 
 # lock
-yarn.lock
-package-lock.json
+**/yarn.lock
+**/package-lock.json
 
 # log
 *.log
