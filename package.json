@@ -48,7 +48,12 @@
     "commitizen": "^4.2.4",
     "husky": "^7.0.4",
     "lerna": "^4.0.0",
-    "lint-staged": "^11.2.6"
+    "lint-staged": "^12.0.2",
+    "postcss": "^8.3.11",
+    "postcss-less": "^5.0.0",
+    "stylelint": "^14.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^24.0.0"
   },
   "workspaces": [
     "packages/*"
