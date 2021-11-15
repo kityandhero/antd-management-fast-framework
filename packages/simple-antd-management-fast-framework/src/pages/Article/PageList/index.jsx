@@ -796,7 +796,7 @@ class PageList extends MultiPage {
           convert: convertCollection.number,
         });
 
-        return buildDropdownButton({
+        return buildDropdown({
           size: 'small',
           text: '编辑',
           icon: <FormOutlined />,
@@ -804,6 +804,9 @@ class PageList extends MultiPage {
             this.goToEdit(handleData);
           },
           handleData: r,
+          confirm: {
+            title: '将要进行编辑，确定吗？',
+          },
           handleMenuClick: ({ key, handleData }) => {
             this.handleMenuClick({ key, handleData });
           },

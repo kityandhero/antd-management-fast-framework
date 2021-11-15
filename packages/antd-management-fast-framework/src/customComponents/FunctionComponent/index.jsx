@@ -318,6 +318,7 @@ export function buildDropdownButton({
   arrow = true,
   disabled = false,
   hidden = false,
+  confirm = false,
   handleButtonClick = null,
   handleMenuClick = () => {},
   menuItems = [],
@@ -334,6 +335,7 @@ export function buildDropdownButton({
     arrow,
     disabled,
     hidden,
+    confirm,
     handleButtonClick,
     handleMenuClick,
     menuItems,
@@ -436,27 +438,107 @@ export function buildDropdown({
       ...otherProps,
     });
   } else if (hasHandleButtonClick) {
-    button = (
-      <>
-        <Dropdown.Button
+    let confirmAdjust = confirm;
+
+    if (confirmAdjust) {
+      if (isBoolean(confirmAdjust)) {
+        recordObject({
+          key,
+          type,
+          size,
+          icon,
+          text,
+          danger,
+          disabled,
+          hidden,
+          confirm,
+          handleData,
+          handleClick,
+          processing,
+          iconProcessing,
+          style,
+          showIcon,
+        });
+
+        throw new Error(
+          'buildMenu : confirm property in menu Items not allow bool when check confirm is true.',
+        );
+      }
+
+      const { placement, title, handleConfirm, okText, cancelText } = {
+        ...{
+          placement: 'topLeft',
+          title: '将要进行操作，确定吗？',
+          okText: '确定',
+          cancelText: '取消',
+        },
+        ...(isObject(confirmAdjust) ? confirmAdjust : {}),
+      };
+
+      confirmAdjust = {
+        placement,
+        title,
+        handleConfirm,
+        okText,
+        cancelText,
+      };
+    } else {
+      confirmAdjust = false;
+    }
+
+    if (confirmAdjust) {
+      const { placement, title, okText, cancelText } = confirmAdjust;
+
+      return (
+        <Popconfirm
           {...otherProps}
-          type={typeSource || 'default'}
-          placement={placementDropdown || 'bottomRight'}
-          size={size || 'default'}
-          onClick={() => {
+          placement={placement}
+          title={title || 'confirm:缺少title配置'}
+          onConfirm={() => {
             handleButtonClick({ handleData: r });
           }}
-          disabled={disabled ?? false}
-          overlay={buildMenu({
-            handleData: r,
-            handleMenuClick,
-            menuItems,
-          })}
+          okText={okText}
+          cancelText={cancelText}
+          disabled={disabled}
         >
-          <IconInfo icon={icon || null} text={text || ''} />
-        </Dropdown.Button>
-      </>
-    );
+          <Dropdown.Button
+            type={typeSource || 'default'}
+            placement={placementDropdown || 'bottomRight'}
+            size={size || 'default'}
+            disabled={disabled ?? false}
+            overlay={buildMenu({
+              handleData: r,
+              handleMenuClick,
+              menuItems,
+            })}
+          >
+            <IconInfo icon={icon || null} text={text || ''} />
+          </Dropdown.Button>
+        </Popconfirm>
+      );
+    } else {
+      button = (
+        <>
+          <Dropdown.Button
+            {...otherProps}
+            type={typeSource || 'default'}
+            placement={placementDropdown || 'bottomRight'}
+            size={size || 'default'}
+            onClick={() => {
+              handleButtonClick({ handleData: r });
+            }}
+            disabled={disabled ?? false}
+            overlay={buildMenu({
+              handleData: r,
+              handleMenuClick,
+              menuItems,
+            })}
+          >
+            <IconInfo icon={icon || null} text={text || ''} />
+          </Dropdown.Button>
+        </>
+      );
+    }
   } else {
     button = (
       <Dropdown
