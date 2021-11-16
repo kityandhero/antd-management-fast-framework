@@ -1119,11 +1119,12 @@ export function formatMoneyToChinese(v) {
   return ChineseString;
 }
 
-function seededRandom(seed, min, max) {
+export function seededRandom({ seed, min, max }) {
   const maxValue = max || 1;
   const minValue = min || 0;
   const seedValue = (seed * 9301 + 49297) % 233280;
   const rnd = seedValue / 233280.0;
+
   return minValue + rnd * (maxValue - minValue);
 }
 
