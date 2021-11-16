@@ -82,7 +82,9 @@ class TimeLineCustom extends CustomBase {
 
     // const iconStyle = {
     //   ...{
-    //     backgroundColor: getRandomColor(getBackgroundColorKey(item)),
+    //     backgroundColor: getRandomColor({
+    //       seed: getBackgroundColorKey(item),
+    //     }),
     //   },
     //   ...(iconStyleValue || {}),
     // };

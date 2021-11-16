@@ -27,6 +27,7 @@ import {
   showInfoMessage,
   getValueByKey,
   isArray,
+  getRandomColor,
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
   unlimitedWithStringFlag,
@@ -738,6 +739,13 @@ class PageList extends MultiPage {
       dataTarget: fieldData.sort,
       width: 100,
       showRichFacade: true,
+      facadeConfigBuilder: (val) => {
+        return {
+          color: getRandomColor({
+            seed: val,
+          }),
+        };
+      },
       emptyValue: '--',
     },
     {

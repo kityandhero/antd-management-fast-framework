@@ -35,9 +35,9 @@ class ColorText extends PureComponent {
     const randomColorValue = randomColor || false;
 
     if (randomColorValue) {
-      colorValue = getRandomColor(
-        randomSeed + (isNumber(seedOffset) ? Math.abs(seedOffset) : 0),
-      );
+      colorValue = getRandomColor({
+        seed: randomSeed + (isNumber(seedOffset) ? Math.abs(seedOffset) : 0),
+      });
     }
 
     const style = {

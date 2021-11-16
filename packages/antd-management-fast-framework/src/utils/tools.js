@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import copy from 'copy-to-clipboard';
 import queue from 'queue';
 import numeral from 'numeral';
+import randomColor from 'randomcolor';
 import { arrayMoveImmutable, arrayMoveMutable } from 'array-move';
 import {
   isEqual as isEqualLodash,
@@ -1133,11 +1134,26 @@ function seededRandom(seed, min, max) {
  * @param {*} seed
  * @returns
  */
-export function getRandomColor(seed) {
-  // eslint-disable-next-line
-  return `#${`00000${((seededRandom(seed) * 0x1000000) << 0).toString(
-    16,
-  )}`.substr(-6)}`;
+export function getRandomColor({
+  seed,
+  hue = null,
+  luminosity = null,
+  count = null,
+  format = null,
+  alpha = null,
+}) {
+  return randomColor({
+    seed,
+    hue,
+    luminosity,
+    count,
+    format,
+    alpha,
+  });
+
+  // return `#${`00000${((seededRandom(seed) * 0x1000000) << 0).toString(
+  //   16,
+  // )}`.substr(-6)}`;
 }
 
 function getBrowserInfoCore() {
