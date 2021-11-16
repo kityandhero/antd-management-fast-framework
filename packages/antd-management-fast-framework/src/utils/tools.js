@@ -1128,7 +1128,7 @@ function seededRandom(seed, min, max) {
 }
 
 /**
- * 通过种子返回随机颜色值
+ * 通过种子等配置返回随机颜色值
  *
  * @export
  * @param {*} seed

@@ -1923,6 +1923,7 @@ export function buildSearchInputNumber({
   label,
   name,
   helper = null,
+  icon = <FormOutlined />,
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -1931,6 +1932,7 @@ export function buildSearchInputNumber({
 
   const otherInputProps = {
     ...{
+      addonBefore: icon,
       style: { width: '100%' },
       min: 0,
       placeholder: buildFieldDescription(title, '输入'),
