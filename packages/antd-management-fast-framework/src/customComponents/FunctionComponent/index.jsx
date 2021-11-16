@@ -2588,6 +2588,7 @@ export function buildFormInputNumber({
   name,
   required = false,
   helper = null,
+  icon = <FormOutlined />,
   inputNumberProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2596,6 +2597,7 @@ export function buildFormInputNumber({
 
   const otherInputNumberProps = {
     ...{
+      addonBefore: icon,
       style: { width: '100%' },
       min: 0,
       placeholder: buildFieldDescription(title, '输入'),
