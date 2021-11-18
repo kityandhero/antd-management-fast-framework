@@ -634,7 +634,9 @@ export function formatDatetime(
     return defaultValue;
   }
 
-  const m = moment(typeof v === 'object' ? v : new Date(v.replace('/', '-')));
+  const m = moment(
+    typeof v === 'object' ? v : new Date(v.replace('/', '-')),
+  ).utcOffset(8);
 
   if (m.isSame(emptyDatetime)) {
     return defaultValue;
@@ -663,7 +665,7 @@ export function stringToMoment(v) {
     return null;
   }
 
-  return moment(new Date(d.replace('/', '-')));
+  return moment(new Date(d.replace('/', '-'))).utcOffset(8);
 }
 
 /**
@@ -674,7 +676,7 @@ export function stringToMoment(v) {
  * @returns
  */
 export function getMomentNow() {
-  return moment();
+  return moment().utcOffset(8);
 }
 
 /**
@@ -685,7 +687,7 @@ export function getMomentNow() {
  * @returns
  */
 export function dateToMoment(v) {
-  const m = moment(v);
+  const m = moment(v).utcOffset(8);
 
   if (m.isSame(emptyDatetime)) {
     return null;
@@ -1732,7 +1734,10 @@ export function getTimeDistance(type) {
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
-    return [moment(now), moment(now.getTime() + (oneDay - 1000))];
+    return [
+      moment(now).utcOffset(8),
+      moment(now.getTime() + (oneDay - 1000)).utcOffset(8),
+    ];
   }
 
   if (type === 'week') {
@@ -1749,7 +1754,10 @@ export function getTimeDistance(type) {
 
     const beginTime = now.getTime() - day * oneDay;
 
-    return [moment(beginTime), moment(beginTime + (7 * oneDay - 1000))];
+    return [
+      moment(beginTime).utcOffset(8),
+      moment(beginTime + (7 * oneDay - 1000)).utcOffset(8),
+    ];
   }
 
   if (type === 'month') {
@@ -1760,17 +1768,20 @@ export function getTimeDistance(type) {
     const nextMonth = nextDate.month();
 
     return [
-      moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`),
+      moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`).utcOffset(8),
       moment(
-        moment(
-          `${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`,
-        ).valueOf() - 1000,
-      ),
+        moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`)
+          .utcOffset(8)
+          .valueOf() - 1000,
+      ).utcOffset(8),
     ];
   }
 
   const year = now.getFullYear();
-  return [moment(`${year}-01-01 00:00:00`), moment(`${year}-12-31 23:59:59`)];
+  return [
+    moment(`${year}-01-01 00:00:00`).utcOffset(8),
+    moment(`${year}-12-31 23:59:59`).utcOffset(8),
+  ];
 }
 
 /**

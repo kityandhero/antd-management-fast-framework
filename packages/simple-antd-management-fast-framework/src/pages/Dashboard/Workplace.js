@@ -98,7 +98,7 @@ class Workplace extends PureComponent {
             }
             description={
               <span className={styles.datetime} title={item.updatedAt}>
-                {moment(item.updatedAt).fromNow()}
+                {moment(item.updatedAt).utcOffset(8).fromNow()}
               </span>
             }
           />
@@ -188,7 +188,7 @@ class Workplace extends PureComponent {
                       <Link to={item.memberLink}>{item.member || ''}</Link>
                       {item.updatedAt && (
                         <span className={styles.datetime} title={item.updatedAt}>
-                          {moment(item.updatedAt).fromNow()}
+                          {moment(item.updatedAt).utcOffset(8).fromNow()}
                         </span>
                       )}
                     </div>

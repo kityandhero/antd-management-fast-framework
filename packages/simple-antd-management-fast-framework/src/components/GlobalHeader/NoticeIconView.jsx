@@ -52,7 +52,7 @@ class GlobalHeaderRight extends Component {
       const newNotice = { ...notice };
 
       if (newNotice.datetime) {
-        newNotice.datetime = moment(notice.datetime).fromNow();
+        newNotice.datetime = moment(notice.datetime).utcOffset(8).fromNow();
       }
 
       if (newNotice.id) {

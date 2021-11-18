@@ -38,9 +38,9 @@ class TimeLineCustom extends CustomBase {
     return null;
   };
 
-  getCreateTimeDatePart = (v) => moment(v).format('YYYY-MM-DD');
+  getCreateTimeDatePart = (v) => moment(v).utcOffset(8).format('YYYY-MM-DD');
 
-  getCreateTimeTimePart = (v) => moment(v).format('HH:mm');
+  getCreateTimeTimePart = (v) => moment(v).utcOffset(8).format('HH:mm');
 
   handleTableChange = (pageNo, pageSize) => {
     const { onChange } = this.props;

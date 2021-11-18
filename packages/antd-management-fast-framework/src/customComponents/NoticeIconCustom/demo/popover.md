@@ -129,7 +129,7 @@ function getNoticeData(notices) {
   const newNotices = notices.map((notice) => {
     const newNotice = { ...notice };
     if (newNotice.datetime) {
-      newNotice.datetime = moment(notice.datetime).fromNow();
+      newNotice.datetime = moment(notice.datetime).utcOffset(8).fromNow();
     }
     // transform id to item key
     if (newNotice.id) {

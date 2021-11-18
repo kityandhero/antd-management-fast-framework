@@ -14,7 +14,11 @@ const ArticleListContent = ({
     <div className={styles.extra}>
       <Avatar src={avatar} size="small" />
       <a href={href}>{owner}</a> 发布在 <a href={href}>{href}</a>
-      <em>{moment(updatedAt).format(datetimeFormat.yearMonthDayHourMinute)}</em>
+      <em>
+        {moment(updatedAt)
+          .utcOffset(8)
+          .format(datetimeFormat.yearMonthDayHourMinute)}
+      </em>
     </div>
   </div>
 );
