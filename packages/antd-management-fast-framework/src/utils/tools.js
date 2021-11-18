@@ -646,6 +646,9 @@ export function formatDatetime({
   return m.format(format);
 }
 
+/**
+ * 格式化数字
+ */
 export function numeralFormat(v, formatString) {
   return numeral(v).format(formatString);
 }
