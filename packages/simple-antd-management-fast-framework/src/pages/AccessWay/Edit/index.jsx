@@ -205,10 +205,16 @@ class Edit extends DataTabContainer {
             <Col xs={24} sm={12}>
               <div className={styles.textSecondary}>发生日期</div>
               <div className={styles.heading}>
-                {' '}
-                {formatDatetime(metaData === null ? '' : metaData.createTime, 'HH:mm:ss', '--')}
+                {formatDatetime({
+                  data: metaData === null ? '' : metaData.createTime,
+                  format: 'HH:mm:ss',
+                  defaultValue: '--',
+                })}
                 <br />
-                {formatDatetime(metaData === null ? '' : metaData.createTime, 'YYYY-MM-DD')}
+                {formatDatetime({
+                  data: metaData === null ? '' : metaData.createTime,
+                  format: 'YYYY-MM-DD',
+                })}
               </div>
             </Col>
             <Col xs={24} sm={12}>

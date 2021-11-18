@@ -1,7 +1,7 @@
 import React from 'react';
-import moment from 'moment';
 import { Avatar } from 'antd';
 
+import { formatDatetime } from '../../utils/tools';
 import { datetimeFormat } from '../../utils/constants';
 
 import styles from './index.less';
@@ -15,9 +15,10 @@ const ArticleListContent = ({
       <Avatar src={avatar} size="small" />
       <a href={href}>{owner}</a> 发布在 <a href={href}>{href}</a>
       <em>
-        {moment(updatedAt)
-          .utcOffset(8)
-          .format(datetimeFormat.yearMonthDayHourMinute)}
+        {formatDatetime({
+          data: updatedAt,
+          format: datetimeFormat.yearMonthDayHourMinute,
+        })}
       </em>
     </div>
   </div>

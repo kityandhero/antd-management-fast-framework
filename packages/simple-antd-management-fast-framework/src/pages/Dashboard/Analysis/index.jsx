@@ -663,10 +663,10 @@ class Analysis extends DataLoad {
                 action={
                   <>
                     <Tooltip
-                      title={`每隔10分钟统计一次,本次统计时间为${formatDatetime(
-                        saleAmountData.totalSaleAmountTime,
-                        datetimeFormat.yearMonthDayHourMinute,
-                      )}`}
+                      title={`每隔10分钟统计一次,本次统计时间为${formatDatetime({
+                        data: saleAmountData.totalSaleAmountTime,
+                        format: datetimeFormat.yearMonthDayHourMinute,
+                      })}`}
                     >
                       <InfoCircleOutlined />
                     </Tooltip>
@@ -764,10 +764,10 @@ class Analysis extends DataLoad {
                 title="成交总订单量"
                 action={
                   <Tooltip
-                    title={`每隔10分钟统计一次,本次统计时间为${formatDatetime(
-                      saleAmountData.totalSaleAmountTime,
-                      datetimeFormat.yearMonthDayHourMinute,
-                    )}`}
+                    title={`每隔10分钟统计一次,本次统计时间为${formatDatetime({
+                      data: saleAmountData.totalSaleAmountTime,
+                      format: datetimeFormat.yearMonthDayHourMinute,
+                    })}`}
                   >
                     <InfoCircleOutlined />
                   </Tooltip>
@@ -789,10 +789,10 @@ class Analysis extends DataLoad {
                 title="成交物品总数"
                 action={
                   <Tooltip
-                    title={`每隔10分钟统计一次,本次统计时间为${formatDatetime(
-                      goodsCountData.totalGoodsCountTime,
-                      datetimeFormat.yearMonthDayHourMinute,
-                    )}`}
+                    title={`每隔10分钟统计一次,本次统计时间为${formatDatetime({
+                      data: goodsCountData.totalGoodsCountTime,
+                      format: datetimeFormat.yearMonthDayHourMinute,
+                    })}`}
                   >
                     <InfoCircleOutlined />
                   </Tooltip>
@@ -819,10 +819,10 @@ class Analysis extends DataLoad {
                 title="总售后占比"
                 action={
                   <Tooltip
-                    title={`每隔10分钟统计一次,本次统计时间为${formatDatetime(
-                      saleAmountData.totalSaleAmountTime,
-                      datetimeFormat.yearMonthDayHourMinute,
-                    )}`}
+                    title={`每隔10分钟统计一次,本次统计时间为${formatDatetime({
+                      data: saleAmountData.totalSaleAmountTime,
+                      format: datetimeFormat.yearMonthDayHourMinute,
+                    })}`}
                   >
                     <InfoCircleOutlined />
                   </Tooltip>

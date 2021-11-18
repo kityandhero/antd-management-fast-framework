@@ -31,7 +31,7 @@ import {
   buildFieldDescription,
   isArray,
   isUndefined,
-  stringToMoment,
+  toMoment,
   getDerivedStateFromPropsForUrlParams,
   showRuntimeError,
   toNumber,
@@ -576,11 +576,11 @@ class ListBase extends AuthorizationWrapper {
     const valueList = [];
 
     if ((startTime || null) != null) {
-      valueList.push(stringToMoment(startTime));
+      valueList.push(toMoment({ data: startTime }));
     }
 
     if ((endTime || null) != null) {
-      valueList.push(stringToMoment(endTime));
+      valueList.push(toMoment({ data: endTime }));
     }
 
     const p = {

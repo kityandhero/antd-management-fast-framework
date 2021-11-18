@@ -1,9 +1,9 @@
 import React from 'react';
-import moment from 'moment';
 import { List } from 'antd';
 import { ClockCircleOutlined, MessageOutlined } from '@ant-design/icons';
 
-// import { getRandomColor } from '../../utils/tools';
+import { formatDatetime } from '../../utils/tools';
+import { datetimeFormat } from '../../utils/constants';
 import CustomBase from '../../framework/CustomBase';
 
 import styles from './index.less';
@@ -38,9 +38,17 @@ class TimeLineCustom extends CustomBase {
     return null;
   };
 
-  getCreateTimeDatePart = (v) => moment(v).utcOffset(8).format('YYYY-MM-DD');
+  getCreateTimeDatePart = (v) =>
+    formatDatetime({
+      data: v,
+      format: datetimeFormat.yearMonthDay,
+    });
 
-  getCreateTimeTimePart = (v) => moment(v).utcOffset(8).format('HH:mm');
+  getCreateTimeTimePart = (v) =>
+    formatDatetime({
+      data: v,
+      format: datetimeFormat.hourMinute,
+    });
 
   handleTableChange = (pageNo, pageSize) => {
     const { onChange } = this.props;

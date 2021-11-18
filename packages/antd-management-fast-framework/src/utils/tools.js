@@ -625,47 +625,29 @@ export function toDatetime(v) {
  * @param {*} v
  * @returns
  */
-export function formatDatetime(
-  v,
-  formatString = datetimeFormat.yearMonthDayHourMinuteSecond,
+export function formatDatetime({
+  data,
+  format = datetimeFormat.yearMonthDayHourMinuteSecond,
   defaultValue = '',
-) {
-  if ((v || '') === '') {
+  timeZone = 8,
+}) {
+  if ((data || '') === '') {
     return defaultValue;
   }
 
   const m = moment(
-    typeof v === 'object' ? v : new Date(v.replace('/', '-')),
-  ).utcOffset(8);
+    typeof data === 'object' ? data : new Date(data.replace('/', '-')),
+  ).utcOffset(timeZone);
 
   if (m.isSame(emptyDatetime)) {
     return defaultValue;
   }
 
-  return m.format(formatString);
+  return m.format(format);
 }
 
 export function numeralFormat(v, formatString) {
   return numeral(v).format(formatString);
-}
-
-/**
- * 转化为Moment时间
- *
- * @export
- * @param {*} v
- * @returns
- */
-export function stringToMoment(v) {
-  if (moment.isMoment(v)) return v;
-
-  const d = (v || '').toString();
-
-  if (stringIsNullOrWhiteSpace(d)) {
-    return null;
-  }
-
-  return moment(new Date(d.replace('/', '-'))).utcOffset(8);
 }
 
 /**
@@ -675,8 +657,8 @@ export function stringToMoment(v) {
  * @param {*} v
  * @returns
  */
-export function getMomentNow() {
-  return moment().utcOffset(8);
+export function getMomentNow(timeZone = 8) {
+  return moment().utcOffset(timeZone);
 }
 
 /**
@@ -686,8 +668,46 @@ export function getMomentNow() {
  * @param {*} v
  * @returns
  */
-export function dateToMoment(v) {
-  const m = moment(v).utcOffset(8);
+export function toMoment({ data, timeZone = 8 }) {
+  if (isString(data)) {
+    return stringToMoment({ data, timeZone });
+  }
+
+  if (isDate(data)) {
+    return dateToMoment({ data, timeZone });
+  }
+
+  throw new Error('toMoment only support string and date');
+}
+
+/**
+ * 转化为Moment时间
+ *
+ * @export
+ * @param {*} v
+ * @returns
+ */
+export function stringToMoment({ data, timeZone = 8 }) {
+  if (moment.isMoment(data)) return data;
+
+  const d = (data || '').toString();
+
+  if (stringIsNullOrWhiteSpace(d)) {
+    return null;
+  }
+
+  return moment(new Date(d.replace('/', '-'))).utcOffset(timeZone);
+}
+
+/**
+ * 转化为Moment时间
+ *
+ * @export
+ * @param {*} v
+ * @returns
+ */
+export function dateToMoment({ data, timeZone = 8 }) {
+  const m = moment(data).utcOffset(timeZone);
 
   if (m.isSame(emptyDatetime)) {
     return null;
@@ -858,7 +878,7 @@ export function getValueByKey({
         break;
 
       case convertCollection.moment:
-        result = stringToMoment(toString(v));
+        result = toMoment({ data: toString(v) });
         break;
 
       case convertCollection.money:
@@ -880,7 +900,9 @@ export function getValueByKey({
         break;
 
       case formatCollection.datetime:
-        result = formatDatetime(v);
+        result = formatDatetime({
+          data: v,
+        });
         break;
 
       case formatCollection.chineseMoney:

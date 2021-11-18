@@ -115,9 +115,13 @@ export const datetimeFormat = {
   yearMonthDayHourMinuteSecond: 'YYYY-MM-DD HH:mm:ss',
   yearMonthDayHourMinute: 'YYYY-MM-DD HH:mm',
   yearMonthDay: 'YYYY-MM-DD',
+  yearMonth: 'YYYY-MM',
+  year: 'YYYY',
   monthDayHourMinuteSecond: 'YYYY-MM-DD HH:mm:ss',
   monthDayHourMinute: 'MM-DD HH:mm',
   monthDay: 'MM-DD',
+  hourMinute: 'HH:mm',
+  hourMinuteSecond: 'HH:mm:ss',
 };
 
 export const selectModeCollection = {

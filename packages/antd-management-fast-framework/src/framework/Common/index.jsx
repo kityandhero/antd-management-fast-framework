@@ -2095,10 +2095,10 @@ class Common extends Core {
                   {type === cardConfig.contentItemType.onlyShowInputDatetime
                     ? this.renderFormOnlyShowInput(
                         fieldData.label,
-                        formatDatetime(
-                          toDatetime(contentItem.value),
-                          datetimeFormat.yearMonthDayHourMinute,
-                        ),
+                        formatDatetime({
+                          data: toDatetime(contentItem.value),
+                          format: datetimeFormat.yearMonthDayHourMinute,
+                        }),
                         fieldData.helper || '',
                         contentItem.icon || <FormOutlined />,
                         {

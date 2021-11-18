@@ -51,10 +51,10 @@ class BaseAddModal extends Base {
   fillDefaultInitialValues = () => {
     const initialValues = {};
 
-    initialValues[formNameCollection.createTime.name] = formatDatetime(
-      new Date(),
-      datetimeFormat.yearMonthDayHourMinute,
-    );
+    initialValues[formNameCollection.createTime.name] = formatDatetime({
+      data: new Date(),
+      format: datetimeFormat.yearMonthDayHourMinute,
+    });
 
     return initialValues;
   };

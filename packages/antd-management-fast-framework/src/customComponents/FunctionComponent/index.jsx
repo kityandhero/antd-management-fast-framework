@@ -1178,9 +1178,16 @@ export function pageHeaderExtraContent(data) {
       <Col xs={24} sm={12}>
         <div>创建日期</div>
         <div style={textStyle}>
-          {formatDatetime(v.time, 'HH:mm:ss', '--')}
+          {formatDatetime({
+            data: v.time,
+            format: 'HH:mm:ss',
+            defaultValue: '--',
+          })}
           <br />
-          {formatDatetime(v.time, 'YYYY-MM-DD')}
+          {formatDatetime({
+            data: v.time,
+            format: 'YYYY-MM-DD',
+          })}
         </div>
       </Col>
       <Col xs={24} sm={12}>
@@ -1781,10 +1788,10 @@ export function buildFormNowTimeField({
       }
     >
       <Input
-        value={formatDatetime(
-          new Date(),
-          datetimeFormat.yearMonthDayHourMinute,
-        )}
+        value={formatDatetime({
+          data: new Date(),
+          format: datetimeFormat.yearMonthDayHourMinute,
+        })}
         addonBefore={<FormOutlined />}
         disabled
         placeholder={buildFieldDescription(resultCheck.label)}
@@ -3041,7 +3048,10 @@ export function buildColumnItem({
 
         val = stringIsNullOrWhiteSpace(val)
           ? ''
-          : formatDatetime(val, datetimeFormatValue) || '';
+          : formatDatetime({
+              data: val,
+              format: datetimeFormatValue,
+            }) || '';
 
         return (
           <>
