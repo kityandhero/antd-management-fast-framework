@@ -1407,6 +1407,7 @@ class Common extends Core {
     }
 
     const {
+      image,
       icon,
       text,
       subText,
@@ -1414,7 +1415,8 @@ class Common extends Core {
       addonAfter: titleAddonAfter,
     } = {
       ...{
-        icon: <ContactsOutlined />,
+        image: '',
+        icon: null,
         text: '',
         subText: '',
         addonBefore: null,
@@ -1431,6 +1433,10 @@ class Common extends Core {
       ...{ affix: false, split: false, list: [] },
       ...(extra || {}),
     };
+
+    const imageVisible = !stringIsNullOrWhiteSpace(image);
+
+    const iconAdjust = imageVisible ? icon : icon || <ContactsOutlined />;
 
     const extraListData = [];
 
@@ -1470,7 +1476,7 @@ class Common extends Core {
             (subText || '') === '' ? null : (
             <>
               <FlexText
-                icon={icon || null}
+                icon={iconAdjust || null}
                 text={text || ''}
                 subText={subText || ''}
                 addonBefore={
@@ -1482,6 +1488,14 @@ class Common extends Core {
               />
             </>
           )
+        }
+        style={imageVisible ? { position: 'relative' } : {}}
+        headStyle={
+          imageVisible
+            ? {
+                paddingLeft: '66px',
+              }
+            : {}
         }
         size={size || 'default'}
         bordered={bordered}
@@ -1573,6 +1587,28 @@ class Common extends Core {
             ) : null}
           </>
         </Spin>
+
+        {imageVisible ? (
+          <div
+            style={{
+              position: 'absolute',
+              width: '36px',
+              left: '24px',
+              top: '11px',
+            }}
+          >
+            <ImageBox
+              src={image}
+              circle
+              lazyLoad
+              errorOverlayVisible
+              showErrorOverlay
+              loadingEffect
+              preview
+              previewSimpleMask
+            />
+          </div>
+        ) : null}
       </Card>
     );
 
