@@ -24,7 +24,7 @@ function getModulePackageName(module) {
   return packageName;
 }
 
-export const webpackPlugin4 = (config) => {
+export const webpackPlugin = (config) => {
   // console.dir(config);
   // config.profile(true);
 
@@ -51,6 +51,7 @@ export const webpackPlugin4 = (config) => {
         vendors: {
           test: (module) => {
             const packageName = getModulePackageName(module) || '';
+
             if (packageName) {
               return [
                 'antd',
@@ -67,6 +68,7 @@ export const webpackPlugin4 = (config) => {
                 'numeral',
               ].includes(packageName);
             }
+
             return false;
           },
           name(module) {
@@ -96,10 +98,18 @@ export const webpackPlugin4 = (config) => {
 export const webpackPlugin5 = (config, { env }) => {
   config.module.rule('mjs-rule').test(/.m?js/).resolve.set('fullySpecified', false);
 
+  config.optimization.store.delete('noEmitOnErrors');
+
+  console.log({
+    currentEnv: env,
+  });
+
   config.merge({
-    mode: 'development',
+    // mode: 'development',
     optimization: {
+      emitOnErrors: true,
       minimize: env === 'production',
+      concatenateModules: env === 'production',
       splitChunks: {
         // chunks: 'async',
         // minSize: 1,
