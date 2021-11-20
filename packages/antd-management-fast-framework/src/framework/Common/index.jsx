@@ -211,7 +211,7 @@ class Common extends Core {
     return true;
   };
 
-  initLoad = (callback = null) => {
+  initLoad = ({ otherState = {}, callback = null }) => {
     const {
       loadApiPath,
       firstLoadSuccess,
@@ -261,21 +261,15 @@ class Common extends Core {
 
         this.beforeRequest(submitData || {});
 
-        if (dataLoading && !loadSuccess) {
-          this.initLoadCore(submitData || {}, callback);
-        } else {
-          this.setState(
-            {
-              dataLoading: true,
-              loadSuccess: false,
-            },
-            // () => {
-            //   this.initLoadCore(submitData || {}, callback);
-            // },
-          );
+        this.setState({
+          ...{
+            dataLoading: true,
+            loadSuccess: false,
+          },
+          ...(otherState || {}),
+        });
 
-          this.initLoadCore(submitData || {}, callback);
-        }
+        this.initLoadCore(submitData || {}, callback);
       }
     } catch (error) {
       recordText({ loadApiPath });
@@ -421,30 +415,36 @@ class Common extends Core {
   pageListData = (otherState, callback = null) => {
     const s = { ...(otherState || {}), ...{ paging: true } };
 
-    this.setState(s, () => {
-      this.initLoad(callback);
+    this.initLoad({
+      otherState: s,
+      callback,
     });
   };
 
   reloadData = (otherState, callback = null) => {
     const s = { ...(otherState || {}), ...{ reloading: true } };
 
-    this.setState(s, () => {
-      this.initLoad(callback);
+    this.initLoad({
+      otherState: s,
+      callback,
     });
   };
 
   searchData = (otherState, callback = null) => {
     const s = { ...(otherState || {}), ...{ searching: true } };
 
-    this.setState(s, () => {
-      this.initLoad(callback);
+    this.initLoad({
+      otherState: s,
+      callback,
     });
   };
 
   refreshData = (callback = null) => {
-    this.setState({ refreshing: true }, () => {
-      this.initLoad(callback);
+    this.initLoad({
+      otherState: {
+        refreshing: true,
+      },
+      callback,
     });
   };
 
