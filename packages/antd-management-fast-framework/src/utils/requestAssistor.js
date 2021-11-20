@@ -273,7 +273,6 @@ export function handleCommonDataAssist(state, action, callback = null) {
     return {
       ...state,
       data: v,
-      dispatchComplete: false,
     };
   }
 
@@ -283,7 +282,6 @@ export function handleCommonDataAssist(state, action, callback = null) {
   return {
     ...state,
     ...aliasData,
-    dispatchComplete: false,
   };
 }
 
@@ -305,7 +303,6 @@ export function handleListDataAssist(
     return {
       ...state,
       data: v,
-      dispatchComplete: false,
     };
   }
 
@@ -315,7 +312,6 @@ export function handleListDataAssist(
   return {
     ...state,
     ...aliasData,
-    dispatchComplete: false,
   };
 }
 
@@ -337,7 +333,6 @@ export function handlePageListDataAssist(
     return {
       ...state,
       data: v,
-      dispatchComplete: false,
     };
   }
 
@@ -347,7 +342,6 @@ export function handlePageListDataAssist(
   return {
     ...state,
     ...aliasData,
-    dispatchComplete: false,
   };
 }
 

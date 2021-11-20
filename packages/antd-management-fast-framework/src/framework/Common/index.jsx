@@ -235,6 +235,7 @@ class Common extends Core {
           searching: false,
           refreshing: false,
           paging: false,
+          dispatchComplete: true,
         });
 
         return;
@@ -263,6 +264,7 @@ class Common extends Core {
           ...{
             dataLoading: true,
             loadSuccess: false,
+            dispatchComplete: false,
           },
           ...(otherState || {}),
         };
@@ -326,6 +328,7 @@ class Common extends Core {
               searching: false,
               refreshing: false,
               paging: false,
+              dispatchComplete: true,
             };
 
             const metaOriginalData = this.getApiData(this.props);

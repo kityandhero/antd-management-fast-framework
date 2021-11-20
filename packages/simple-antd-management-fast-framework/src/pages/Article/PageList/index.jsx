@@ -78,6 +78,8 @@ class PageList extends MultiPage {
 
   componentAuthority = accessWayCollection.article.pageList.permission;
 
+  renderCount = 0;
+
   constructor(props) {
     super(props);
 
@@ -887,6 +889,14 @@ class PageList extends MultiPage {
   };
 
   renderOther = () => {
+    this.renderCount += 1;
+
+    console.log({
+      renderCount: this.renderCount,
+      // props: this.props,
+      state: JSON.parse(JSON.stringify(this.state)),
+    });
+
     const {
       articleId,
       addBasicInfoDrawerVisible,

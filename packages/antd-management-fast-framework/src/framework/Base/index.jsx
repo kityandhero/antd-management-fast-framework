@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { history } from 'umi';
 import nprogress from 'nprogress';
 
 import { defaultBaseState } from '../../utils/tools';
 
-class Base extends PureComponent {
+class Base extends Component {
   mounted = false;
 
   constructor(props) {
@@ -44,6 +44,22 @@ class Base extends PureComponent {
 
   componentDidUpdate(preProps, preState, snapshot) {
     this.doWorkWhenDidUpdate(preProps, preState, snapshot);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const { dispatchComplete } = {
+      ...{ dispatchComplete: true },
+      ...nextState,
+    };
+
+    if (!!!dispatchComplete) {
+      return false;
+    }
+
+    return (
+      { ...nextProps } != { ...this.props } ||
+      { ...nextState } != { ...this.state }
+    );
   }
 
   componentWillUnmount() {
