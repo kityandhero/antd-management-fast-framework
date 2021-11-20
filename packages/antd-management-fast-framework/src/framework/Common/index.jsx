@@ -264,14 +264,17 @@ class Common extends Core {
           ...{
             dataLoading: true,
             loadSuccess: false,
-            dispatchComplete: false,
           },
           ...(otherState || {}),
         };
 
-        this.setState(willSaveState);
+        this.setState(willSaveState, () => {
+          this.setState({
+            dispatchComplete: false,
+          });
 
-        this.initLoadCore(submitData || {}, callback);
+          this.initLoadCore(submitData || {}, callback);
+        });
       }
     } catch (error) {
       recordText({ loadApiPath });
