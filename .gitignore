@@ -31,15 +31,15 @@ functions/mock
 **/coverage
 
 # lock
-./yarn.lock
-./package-lock.json
+/yarn.lock
+/package-lock.json
 
 # log
 *.log
 
 # umi
 .umi
-.umi-production
+.umi-production 
 
 # screenshot
 screenshot
