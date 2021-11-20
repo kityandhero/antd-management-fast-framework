@@ -269,10 +269,12 @@ class Common extends Core {
               dataLoading: true,
               loadSuccess: false,
             },
-            () => {
-              this.initLoadCore(submitData || {}, callback);
-            },
+            // () => {
+            //   this.initLoadCore(submitData || {}, callback);
+            // },
           );
+
+          this.initLoadCore(submitData || {}, callback);
         }
       }
     } catch (error) {
