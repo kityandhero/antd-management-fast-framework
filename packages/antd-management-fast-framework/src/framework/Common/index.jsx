@@ -157,7 +157,7 @@ class Common extends Core {
 
   init = () => {
     if (this.loadDataAfterMount) {
-      this.initLoad();
+      this.initLoad({});
     }
 
     this.initOther();
@@ -261,13 +261,15 @@ class Common extends Core {
 
         this.beforeRequest(submitData || {});
 
-        this.setState({
+        const willSaveState = {
           ...{
             dataLoading: true,
             loadSuccess: false,
           },
           ...(otherState || {}),
-        });
+        };
+
+        this.setState(willSaveState);
 
         this.initLoadCore(submitData || {}, callback);
       }
