@@ -241,41 +241,45 @@ class Common extends Core {
         return;
       }
 
-      let submitData = this.initLoadRequestParams() || {};
+      const willSaveState = {
+        ...{
+          dataLoading: true,
+          loadSuccess: false,
+        },
+        ...(otherState || {}),
+      };
 
-      submitData = pretreatmentRequestParams(submitData || {});
+      this.setState(willSaveState, () => {
+        this.setState({
+          dispatchComplete: false,
+        });
 
-      submitData = this.supplementLoadRequestParams(submitData || {});
+        let submitData = this.initLoadRequestParams() || {};
 
-      const checkResult = this.checkLoadRequestParams(submitData || {});
+        submitData = pretreatmentRequestParams(submitData || {});
 
-      if (checkResult) {
-        if (!firstLoadSuccess) {
-          this.beforeFirstLoadRequest(submitData || {});
-        }
+        submitData = this.supplementLoadRequestParams(submitData || {});
 
-        if (reloadingBefore) {
-          this.beforeReLoadRequest(submitData || {});
-        }
+        const checkResult = this.checkLoadRequestParams(submitData || {});
 
-        this.beforeRequest(submitData || {});
+        if (checkResult) {
+          if (!firstLoadSuccess) {
+            this.beforeFirstLoadRequest(submitData || {});
+          }
 
-        const willSaveState = {
-          ...{
-            dataLoading: true,
-            loadSuccess: false,
-          },
-          ...(otherState || {}),
-        };
+          if (reloadingBefore) {
+            this.beforeReLoadRequest(submitData || {});
+          }
 
-        this.setState(willSaveState, () => {
-          this.setState({
-            dispatchComplete: false,
-          });
+          this.beforeRequest(submitData || {});
 
           this.initLoadCore(submitData || {}, callback);
-        });
-      }
+        } else {
+          this.setState({
+            dispatchComplete: true,
+          });
+        }
+      });
     } catch (error) {
       recordText({ loadApiPath });
 
