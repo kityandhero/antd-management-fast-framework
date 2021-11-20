@@ -11,7 +11,6 @@ import {
   DatePicker,
   BackTop,
   Divider,
-  message,
   Space,
   Empty,
   Spin,
@@ -35,6 +34,7 @@ import {
   getDerivedStateFromPropsForUrlParams,
   showRuntimeError,
   toNumber,
+  showWarnMessage,
 } from '../../../utils/tools';
 import {
   searchCardConfig,
@@ -88,6 +88,8 @@ class ListBase extends AuthorizationWrapper {
 
   formRef = React.createRef();
 
+  pageSizeAdditional = 0;
+
   constructor(props) {
     super(props);
 
@@ -101,7 +103,6 @@ class ListBase extends AuthorizationWrapper {
       ...this.state,
       ...defaultState,
       ...{
-        pageSizeAdditional: 0,
         showSelect: false,
         renderPageHeaderWrapper: true,
         listTitle: '检索结果',
@@ -124,9 +125,7 @@ class ListBase extends AuthorizationWrapper {
   afterDidMount = () => {
     const { pageSize } = this.state;
 
-    this.setState({
-      pageSizeAdditional: pageSize,
-    });
+    this.pageSizeAdditional = pageSize;
   };
 
   afterLoadSuccess = ({
@@ -333,7 +332,9 @@ class ListBase extends AuthorizationWrapper {
             errorMessage += ' ...';
           }
 
-          message.warn(errorMessage);
+          showWarnMessage({
+            message: errorMessage,
+          });
         } else {
           showRuntimeError({
             message: error,
@@ -1027,11 +1028,9 @@ class ListBase extends AuthorizationWrapper {
    * @returns build开始得方法不应再框架外部进行重写
    */
   buildPageSizeOptionList = () => {
-    const { pageSizeAdditional } = this.state;
-
     let pageSizeList = [10, 20, 50, 100];
 
-    pageSizeList.push(toNumber(pageSizeAdditional));
+    pageSizeList.push(toNumber(this.pageSizeAdditional));
 
     pageSizeList = [...new Set(pageSizeList)].sort((a, b) => {
       return a - b;
