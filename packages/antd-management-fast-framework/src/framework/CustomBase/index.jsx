@@ -4,6 +4,15 @@ import { isEqual, cloneWithoutMethod } from '../../utils/tools';
 
 class CustomBase extends Component {
   shouldComponentUpdate(nextProps, nextState) {
+    const { dispatchComplete } = {
+      ...{ dispatchComplete: true },
+      ...nextState,
+    };
+
+    if (!!!dispatchComplete) {
+      return false;
+    }
+
     const sourceProps = cloneWithoutMethod(this.props);
     const targetProps = cloneWithoutMethod(nextProps);
 

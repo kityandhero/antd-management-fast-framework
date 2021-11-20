@@ -216,8 +216,6 @@ class Common extends Core {
       loadApiPath,
       firstLoadSuccess,
       reloading: reloadingBefore,
-      dataLoading,
-      loadSuccess,
     } = this.state;
 
     try {
@@ -321,15 +319,33 @@ class Common extends Core {
           payload: requestData,
         })
           .then(() => {
+            let willSaveToState = {
+              dataLoading: false,
+              loadSuccess: false,
+              reloading: false,
+              searching: false,
+              refreshing: false,
+              paging: false,
+            };
+
             const metaOriginalData = this.getApiData(this.props);
 
             if (isUndefined(metaOriginalData)) {
+              this.setState(willSaveToState);
+
               return;
             }
 
             this.lastLoadParams = requestData;
 
             const { dataSuccess } = metaOriginalData;
+
+            willSaveToState = {
+              ...willSaveToState,
+              ...{
+                loadSuccess: dataSuccess,
+              },
+            };
 
             if (dataSuccess) {
               const {
@@ -338,12 +354,15 @@ class Common extends Core {
                 extra: metaExtra,
               } = metaOriginalData;
 
-              this.setState({
-                metaData: metaData || null,
-                metaExtra: metaExtra || null,
-                metaListData: metaListData || [],
-                metaOriginalData,
-              });
+              willSaveToState = {
+                ...{
+                  metaData: metaData || null,
+                  metaExtra: metaExtra || null,
+                  metaListData: metaListData || [],
+                  metaOriginalData,
+                },
+                ...willSaveToState,
+              };
 
               try {
                 this.afterLoadSuccess({
@@ -370,29 +389,21 @@ class Common extends Core {
               this.afterGetReLoadRequestResult(requestData, metaOriginalData);
             }
 
-            this.setState({
-              dataLoading: false,
-              loadSuccess: dataSuccess,
-              reloading: false,
-              searching: false,
-              refreshing: false,
-              paging: false,
-            });
-
             if (!firstLoadSuccess) {
-              this.setState(
-                {
+              willSaveToState = {
+                ...willSaveToState,
+                ...{
                   firstLoadSuccess: true,
                 },
-                () => {
-                  this.afterFirstLoadSuccess();
+              };
+            }
 
-                  this.afterGetFirstRequestResult(
-                    requestData,
-                    metaOriginalData,
-                  );
-                },
-              );
+            this.setState(willSaveToState);
+
+            if (!firstLoadSuccess) {
+              this.afterFirstLoadSuccess();
+
+              this.afterGetFirstRequestResult(requestData, metaOriginalData);
             }
 
             this.afterGetRequestResult(requestData, metaOriginalData);
