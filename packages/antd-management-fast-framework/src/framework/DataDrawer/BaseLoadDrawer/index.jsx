@@ -7,11 +7,7 @@ class BaseLoadDrawer extends Base {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
-    this.setState({ dataLoading: true });
-
-    setTimeout(() => {
-      this.reloadData();
-    }, 700);
+    this.reloadData({ dataLoading: true }, null, 300);
   };
 }
 

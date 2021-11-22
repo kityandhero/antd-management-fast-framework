@@ -115,18 +115,18 @@ class MultiPageDrawer extends MultiPage {
       this.setState({ dataLoading: true });
       const that = this;
 
-      setTimeout(() => {
-        that.handleSearchReset(false);
-      }, 700);
+      that.handleSearchReset(false, 700);
     } else if (this.reloadWhenShow) {
       this.setState({ reloadAnimalShow: true });
       const that = this;
 
-      setTimeout(() => {
-        that.reloadData({}, () => {
+      that.reloadData(
+        {},
+        () => {
           that.setState({ reloadAnimalShow: false });
-        });
-      }, 700);
+        },
+        700,
+      );
     }
   };
 

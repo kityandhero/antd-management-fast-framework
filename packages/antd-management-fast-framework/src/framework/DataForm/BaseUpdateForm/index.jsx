@@ -4,6 +4,7 @@ import {
   isFunction,
   isUndefined,
   showRuntimeError,
+  recordObject,
 } from '../../../utils/tools';
 import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 import DataSingleView from '../../DataSingleView/DataLoad';
@@ -51,40 +52,58 @@ class BaseUpdateForm extends DataSingleView {
     submitData = this.afterCheckSubmitRequestParams(submitData);
 
     if (checkResult) {
-      this.setState({ processing: true });
+      this.setState({ processing: true }, () => {
+        this.setState(
+          {
+            dispatchComplete: false,
+          },
+          () => {
+            dispatch({
+              type: submitApiPath,
+              payload: submitData,
+            })
+              .then(() => {
+                if (this.mounted) {
+                  const remoteData = this.getApiData(this.props);
 
-      dispatch({
-        type: submitApiPath,
-        payload: submitData,
-      }).then(() => {
-        if (this.mounted) {
-          const remoteData = this.getApiData(this.props);
+                  const { dataSuccess } = remoteData;
 
-          const { dataSuccess } = remoteData;
+                  if (dataSuccess) {
+                    const {
+                      list: metaListData,
+                      data: metaData,
+                      extra: metaExtra,
+                    } = remoteData;
 
-          if (dataSuccess) {
-            const {
-              list: metaListData,
-              data: metaData,
-              extra: metaExtra,
-            } = remoteData;
+                    this.afterSubmitSuccess({
+                      singleData: metaData || null,
+                      listData: metaListData || [],
+                      extraData: metaExtra || null,
+                      responseOriginalData: remoteData || null,
+                      submitData: submitData || null,
+                    });
+                  }
 
-            this.afterSubmitSuccess({
-              singleData: metaData || null,
-              listData: metaListData || [],
-              extraData: metaExtra || null,
-              responseOriginalData: remoteData || null,
-              submitData: submitData || null,
-            });
-          }
+                  if (isFunction(afterSubmitCallback)) {
+                    afterSubmitCallback();
+                  }
 
-          // eslint-disable-next-line react/no-unused-state
-          this.setState({ processing: false }, () => {
-            if (isFunction(afterSubmitCallback)) {
-              afterSubmitCallback();
-            }
-          });
-        }
+                  this.setState({
+                    processing: false,
+                    dispatchComplete: true,
+                  });
+                }
+              })
+              .catch((res) => {
+                recordObject(res);
+
+                this.setState({
+                  processing: false,
+                  dispatchComplete: true,
+                });
+              });
+          },
+        );
       });
     }
   };

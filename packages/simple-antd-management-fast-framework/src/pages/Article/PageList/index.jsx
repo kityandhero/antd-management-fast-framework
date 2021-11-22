@@ -205,13 +205,7 @@ class PageList extends MultiPage {
   };
 
   afterAddBasicInfoDrawerOk = () => {
-    this.setState({ addBasicInfoDrawerVisible: false }, () => {
-      const that = this;
-
-      setTimeout(() => {
-        that.refreshData();
-      }, 500);
-    });
+    this.refreshData({ addBasicInfoDrawerVisible: false }, null, 300);
   };
 
   afterAddBasicInfoDrawerCancel = () => {
@@ -230,13 +224,7 @@ class PageList extends MultiPage {
   };
 
   afterUpdateBasicInfoDrawerOk = () => {
-    this.setState({ updateBasicInfoDrawerVisible: false }, () => {
-      const that = this;
-
-      setTimeout(() => {
-        that.refreshData();
-      }, 500);
-    });
+    this.refreshData({ updateBasicInfoDrawerVisible: false }, null, 300);
   };
 
   afterUpdateBasicInfoDrawerCancel = () => {

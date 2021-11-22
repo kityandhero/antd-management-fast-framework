@@ -3,8 +3,6 @@ import Base from '../Base';
 class BaseLoadModal extends Base {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
-    this.setState({ dataLoading: true });
-
     if (this.reloadWhenShow) {
       const form = this.getTargetForm();
 
@@ -12,11 +10,7 @@ class BaseLoadModal extends Base {
         form.resetFields();
       }
 
-      setTimeout(() => {
-        this.reloadData();
-      }, 700);
-    } else {
-      this.setState({ dataLoading: false });
+      this.reloadData({ dataLoading: true }, null, 300);
     }
   };
 

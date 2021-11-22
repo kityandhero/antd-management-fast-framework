@@ -6,7 +6,7 @@ import {
   showErrorMessage,
   showRuntimeError,
   getGuid,
-  requestAnimFrame,
+  recordObject,
 } from './tools';
 
 const { confirm } = Modal;
@@ -130,73 +130,78 @@ export async function actionCore({
   }
 
   target.setState({ processing: true }, () => {
-    target.setState({
-      dispatchComplete: false,
-    });
+    target.setState(
+      {
+        dispatchComplete: false,
+      },
+      () => {
+        // 延迟一定时间，优化界面呈现
+        setTimeout(() => {
+          dispatch({
+            type: api,
+            payload: params,
+          })
+            .then(() => {
+              if (showProcessing) {
+                setTimeout(() => {
+                  message.destroy(key);
+                }, 200);
+              }
 
-    // 延迟一定时间，优化界面呈现
-    setTimeout(() => {
-      dispatch({
-        type: api,
-        payload: params,
-      })
-        .then(() => {
-          if (showProcessing) {
-            setTimeout(() => {
-              message.destroy(key);
-            }, 200);
-          }
+              if (!isFunction(getApiData)) {
+                throw new Error('actionCore: getApiData must be function');
+              }
 
-          if (!isFunction(getApiData)) {
-            throw new Error('actionCore: getApiData must be function');
-          }
+              const data = getApiData(target.props);
 
-          const data = getApiData(target.props);
+              if ((data || null) == null) {
+                throw new Error('actionCore: getApiData result not allow null');
+              }
 
-          if ((data || null) == null) {
-            throw new Error('actionCore: getApiData result not allow null');
-          }
+              const { dataSuccess } = data;
 
-          const { dataSuccess } = data;
+              if (dataSuccess) {
+                const { data: remoteData } = data;
 
-          if (dataSuccess) {
-            const { data: remoteData } = data;
+                let messageText = successMessage;
 
-            let messageText = successMessage;
+                if (isFunction(successMessageBuilder)) {
+                  messageText = successMessageBuilder(remoteData);
+                }
 
-            if (isFunction(successMessageBuilder)) {
-              messageText = successMessageBuilder(remoteData);
-            }
+                notifySuccess(messageText);
 
-            notifySuccess(messageText);
+                if (isFunction(successCallback)) {
+                  successCallback({
+                    target,
+                    handleData,
+                    remoteData: remoteData || null,
+                  });
+                }
+              }
 
-            if (isFunction(successCallback)) {
-              successCallback({
-                target,
-                handleData,
-                remoteData: remoteData || null,
+              target.setState({
+                processing: false,
+                dispatchComplete: true,
               });
-            }
-          }
+            })
+            .catch((res) => {
+              recordObject(res);
 
-          target.setState({
-            processing: false,
-            dispatchComplete: true,
-          });
-        })
-        .catch(() => {
-          target.setState({
-            processing: false,
-            dispatchComplete: true,
-          });
+              if (showProcessing) {
+                setTimeout(() => {
+                  message.destroy(key);
+                }, 200);
+              }
 
-          if (showProcessing) {
-            setTimeout(() => {
-              message.destroy(key);
-            }, 200);
-          }
-        });
-    }, 400);
+              target.setState({
+                processing: false,
+                dispatchComplete: true,
+              });
+            });
+        }, 400);
+      },
+    );
   });
 }
 

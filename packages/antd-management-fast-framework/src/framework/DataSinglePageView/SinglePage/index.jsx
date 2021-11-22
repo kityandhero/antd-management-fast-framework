@@ -44,16 +44,11 @@ class SinglePage extends Base {
 
     this.handleAdditionalSearchReset();
 
-    this.setState(
-      {
-        formValues: {},
-        startTime: '',
-        endTime: '',
-      },
-      () => {
-        this.reloadData();
-      },
-    );
+    this.reloadData({
+      formValues: {},
+      startTime: '',
+      endTime: '',
+    });
   };
 
   /**

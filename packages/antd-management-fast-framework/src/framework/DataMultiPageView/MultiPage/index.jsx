@@ -49,7 +49,7 @@ class MultiPage extends Base {
     };
   }
 
-  handleSearchReset = (checkWorkDoing = true) => {
+  handleSearchReset = (checkWorkDoing = true, delay = 0) => {
     if (checkWorkDoing) {
       if (this.checkWorkDoing()) {
         return;
@@ -64,7 +64,7 @@ class MultiPage extends Base {
 
     this.handleAdditionalSearchReset();
 
-    this.setState(
+    this.reloadData(
       {
         formValues: {},
         startTime: '',
@@ -72,9 +72,8 @@ class MultiPage extends Base {
         pageNo: 1,
         pageSize,
       },
-      () => {
-        this.reloadData();
-      },
+      null,
+      delay,
     );
   };
 

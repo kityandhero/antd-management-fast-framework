@@ -40,6 +40,7 @@ import {
   copyToClipboard,
   inCollection,
   toString,
+  toNumber,
 } from '../../utils/tools';
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import {
@@ -211,7 +212,7 @@ class Common extends Core {
     return true;
   };
 
-  initLoad = ({ otherState = {}, callback = null }) => {
+  initLoad = ({ otherState = {}, delay = 0, callback = null }) => {
     const {
       loadApiPath,
       firstLoadSuccess,
@@ -250,35 +251,48 @@ class Common extends Core {
       };
 
       this.setState(willSaveState, () => {
-        this.setState({
-          dispatchComplete: false,
-        });
+        this.setState(
+          {
+            dispatchComplete: false,
+          },
+          () => {
+            let submitData = this.initLoadRequestParams() || {};
 
-        let submitData = this.initLoadRequestParams() || {};
+            submitData = pretreatmentRequestParams(submitData || {});
 
-        submitData = pretreatmentRequestParams(submitData || {});
+            submitData = this.supplementLoadRequestParams(submitData || {});
 
-        submitData = this.supplementLoadRequestParams(submitData || {});
+            const checkResult = this.checkLoadRequestParams(submitData || {});
 
-        const checkResult = this.checkLoadRequestParams(submitData || {});
+            if (checkResult) {
+              if (!firstLoadSuccess) {
+                this.beforeFirstLoadRequest(submitData || {});
+              }
 
-        if (checkResult) {
-          if (!firstLoadSuccess) {
-            this.beforeFirstLoadRequest(submitData || {});
-          }
+              if (reloadingBefore) {
+                this.beforeReLoadRequest(submitData || {});
+              }
 
-          if (reloadingBefore) {
-            this.beforeReLoadRequest(submitData || {});
-          }
+              this.beforeRequest(submitData || {});
 
-          this.beforeRequest(submitData || {});
-
-          this.initLoadCore(submitData || {}, callback);
-        } else {
-          this.setState({
-            dispatchComplete: true,
-          });
-        }
+              this.initLoadCore({
+                requestData: submitData || {},
+                delay,
+                callback,
+              });
+            } else {
+              this.setState({
+                dataLoading: false,
+                loadSuccess: false,
+                reloading: false,
+                searching: false,
+                refreshing: false,
+                paging: false,
+                dispatchComplete: true,
+              });
+            }
+          },
+        );
       });
     } catch (error) {
       recordText({ loadApiPath });
@@ -291,7 +305,27 @@ class Common extends Core {
     return '';
   };
 
-  initLoadCore = (requestData, callback) => {
+  initLoadCore = ({ requestData, delay = 0, callback }) => {
+    const delayTime = toNumber(delay);
+
+    if (delayTime <= 0) {
+      this.loadFromApi({
+        requestData,
+        callback,
+      });
+    } else {
+      const that = this;
+
+      setTimeout(() => {
+        that.loadFromApi({
+          requestData,
+          callback,
+        });
+      }, delayTime);
+    }
+  };
+
+  loadFromApi = ({ requestData, callback }) => {
     let loadApiPath = '';
 
     try {
@@ -426,47 +460,71 @@ class Common extends Core {
           })
           .catch((res) => {
             recordObject(res);
+
+            this.setState({
+              dataLoading: false,
+              loadSuccess: false,
+              reloading: false,
+              searching: false,
+              refreshing: false,
+              paging: false,
+              dispatchComplete: true,
+            });
           });
       }
     } catch (error) {
       recordObject({ loadApiPath, requestData });
 
+      this.setState({
+        dataLoading: false,
+        loadSuccess: false,
+        reloading: false,
+        searching: false,
+        refreshing: false,
+        paging: false,
+        dispatchComplete: true,
+      });
+
       throw error;
     }
   };
 
-  pageListData = (otherState, callback = null) => {
+  pageListData = (otherState, callback = null, delay = 0) => {
     const s = { ...(otherState || {}), ...{ paging: true } };
 
     this.initLoad({
       otherState: s,
-      callback,
+      delay: delay || 0,
+      callback: callback || null,
     });
   };
 
-  reloadData = (otherState, callback = null) => {
+  reloadData = (otherState, callback = null, delay = 0) => {
     const s = { ...(otherState || {}), ...{ reloading: true } };
 
     this.initLoad({
       otherState: s,
-      callback,
+      delay: delay || 0,
+      callback: callback || null,
     });
   };
 
-  searchData = (otherState, callback = null) => {
+  searchData = (otherState, callback = null, delay = 0) => {
     const s = { ...(otherState || {}), ...{ searching: true } };
 
     this.initLoad({
       otherState: s,
+      delay: delay || 0,
       callback,
     });
   };
 
-  refreshData = (callback = null) => {
+  refreshData = (otherState, callback = null, delay = 0) => {
+    const s = { ...(otherState || {}), ...{ refreshing: true } };
+
     this.initLoad({
-      otherState: {
-        refreshing: true,
-      },
+      otherState: s,
+      delay: delay || 0,
       callback,
     });
   };
