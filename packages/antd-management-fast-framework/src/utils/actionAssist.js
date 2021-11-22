@@ -129,63 +129,75 @@ export async function actionCore({
     });
   }
 
-  target.setState({ processing: true });
+  target.setState({ processing: true }, () => {
+    target.setState({
+      dispatchComplete: false,
+    });
 
-  // 延迟一定时间，优化界面呈现
-  setTimeout(() => {
-    dispatch({
-      type: api,
-      payload: params,
-    })
-      .then(() => {
-        if (showProcessing) {
-          setTimeout(() => {
-            message.destroy(key);
-          }, 200);
-        }
-
-        if (!isFunction(getApiData)) {
-          throw new Error('actionCore: getApiData must be function');
-        }
-
-        const data = getApiData(target.props);
-
-        if ((data || null) == null) {
-          throw new Error('actionCore: getApiData result not allow null');
-        }
-
-        const { dataSuccess } = data;
-
-        if (dataSuccess) {
-          const { data: remoteData } = data;
-
-          let messageText = successMessage;
-
-          if (isFunction(successMessageBuilder)) {
-            messageText = successMessageBuilder(remoteData);
-          }
-
-          notifySuccess(messageText);
-
-          if (isFunction(successCallback)) {
-            successCallback({
-              target,
-              handleData,
-              remoteData: remoteData || null,
-            });
-          }
-        }
-
-        target.setState({ processing: false });
+    // 延迟一定时间，优化界面呈现
+    setTimeout(() => {
+      dispatch({
+        type: api,
+        payload: params,
       })
-      .catch(() => {
-        if (showProcessing) {
-          setTimeout(() => {
-            message.destroy(key);
-          }, 200);
-        }
-      });
-  }, 400);
+        .then(() => {
+          if (showProcessing) {
+            setTimeout(() => {
+              message.destroy(key);
+            }, 200);
+          }
+
+          if (!isFunction(getApiData)) {
+            throw new Error('actionCore: getApiData must be function');
+          }
+
+          const data = getApiData(target.props);
+
+          if ((data || null) == null) {
+            throw new Error('actionCore: getApiData result not allow null');
+          }
+
+          const { dataSuccess } = data;
+
+          if (dataSuccess) {
+            const { data: remoteData } = data;
+
+            let messageText = successMessage;
+
+            if (isFunction(successMessageBuilder)) {
+              messageText = successMessageBuilder(remoteData);
+            }
+
+            notifySuccess(messageText);
+
+            if (isFunction(successCallback)) {
+              successCallback({
+                target,
+                handleData,
+                remoteData: remoteData || null,
+              });
+            }
+          }
+
+          target.setState({
+            processing: false,
+            dispatchComplete: true,
+          });
+        })
+        .catch(() => {
+          target.setState({
+            processing: false,
+            dispatchComplete: true,
+          });
+
+          if (showProcessing) {
+            setTimeout(() => {
+              message.destroy(key);
+            }, 200);
+          }
+        });
+    }, 400);
+  });
 }
 
 export async function confirmActionCore({
