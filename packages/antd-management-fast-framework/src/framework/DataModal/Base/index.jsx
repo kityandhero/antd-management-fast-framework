@@ -204,7 +204,7 @@ class Base extends BaseWindow {
     return this.renderFormWrapper();
   };
 
-  render() {
+  renderFurther() {
     const { width, visible, processing, dataLoading } = this.state;
     const { maskClosable } = this.props;
 

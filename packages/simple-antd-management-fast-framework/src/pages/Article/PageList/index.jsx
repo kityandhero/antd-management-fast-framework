@@ -80,6 +80,8 @@ class PageList extends MultiPage {
 
   renderCount = 0;
 
+  showRenderCountInConsole = true;
+
   constructor(props) {
     super(props);
 

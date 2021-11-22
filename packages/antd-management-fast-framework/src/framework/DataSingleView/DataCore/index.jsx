@@ -192,7 +192,7 @@ class DataCore extends BaseView {
     return this.buildCardCollection(this.establishCardCollectionConfig());
   };
 
-  render() {
+  renderFurther() {
     const { pageName } = this.state;
 
     return (

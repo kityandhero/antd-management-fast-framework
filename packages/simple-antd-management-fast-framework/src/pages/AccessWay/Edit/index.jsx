@@ -141,7 +141,7 @@ class Edit extends DataTabContainer {
     ];
   };
 
-  render() {
+  renderFurther() {
     const { match, children } = this.props;
     const {
       metaData,

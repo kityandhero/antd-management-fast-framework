@@ -128,7 +128,7 @@ class SelectFieldBase extends SupplementWrapper {
     );
   };
 
-  render() {
+  renderFurther() {
     return (
       <>
         {this.renderField()}

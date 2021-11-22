@@ -274,7 +274,7 @@ class BasicInfo extends TabPageBase {
     });
   };
 
-  render() {
+  renderFurther() {
     const { metaData, processing, dataLoading } = this.state;
 
     const accessWayTypeData = this.accessWayTypeList();

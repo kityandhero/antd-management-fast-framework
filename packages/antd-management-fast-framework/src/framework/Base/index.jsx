@@ -3,10 +3,17 @@ import { Component } from 'react';
 import { history } from 'umi';
 import nprogress from 'nprogress';
 
-import { defaultBaseState } from '../../utils/tools';
+import { defaultBaseState, recordObject } from '../../utils/tools';
 
 class Base extends Component {
   mounted = false;
+
+  /**
+   *显示render次数开关，用于开发时候调试页面渲染性能
+   */
+  showRenderCountInConsole = false;
+
+  renderCount = 0;
 
   constructor(props) {
     super(props);
@@ -118,8 +125,22 @@ class Base extends Component {
     return (pageNo || 0) * (pageSize || 0) < (total || 0);
   };
 
-  render() {
+  showRenderCount() {
+    if (this.showRenderCountInConsole) {
+      recordObject({
+        renderCount: this.renderCount,
+      });
+    }
+  }
+
+  renderFurther() {
     return null;
+  }
+
+  render() {
+    this.showRenderCount();
+
+    return this.renderFurther();
   }
 }
 

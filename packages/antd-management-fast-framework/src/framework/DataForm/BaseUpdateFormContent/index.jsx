@@ -4,7 +4,7 @@ import { BackTop } from 'antd';
 import BaseUpdateForm from '../BaseUpdateForm';
 
 class BaseUpdateFormContent extends BaseUpdateForm {
-  render() {
+  renderFurther() {
     return (
       <>
         {this.renderFormWrapper()}

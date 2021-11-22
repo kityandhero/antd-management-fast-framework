@@ -53,7 +53,7 @@ class Base extends SupplementWrapper {
     return <Button {...p}>{children}</Button>;
   };
 
-  render() {
+  renderFurther() {
     return (
       <>
         {this.renderButton()}

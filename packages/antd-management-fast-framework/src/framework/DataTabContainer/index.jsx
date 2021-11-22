@@ -217,7 +217,7 @@ class DataTabContainer extends DataSingleView {
     return pageName;
   };
 
-  render() {
+  renderFurther() {
     const {
       pageName,
       defaultAvatarIcon,

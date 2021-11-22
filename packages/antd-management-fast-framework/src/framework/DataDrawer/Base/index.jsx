@@ -287,7 +287,7 @@ class Base extends BaseWindow {
     );
   };
 
-  render() {
+  renderFurther() {
     const { visible, width, height, showBottomBar, placement } = this.state;
     const { maskClosable } = this.props;
 

@@ -272,7 +272,7 @@ class DataMenuContainer extends AuthorizationWrapper {
     return this.buildRightTitle(this.getRightTitleConfig());
   };
 
-  render() {
+  renderFurther() {
     const selectMenuKey = this.getMenuActiveKey();
 
     const { children } = this.props;

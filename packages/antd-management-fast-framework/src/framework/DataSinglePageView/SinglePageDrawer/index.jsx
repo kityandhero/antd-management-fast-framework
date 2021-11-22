@@ -510,7 +510,7 @@ class SinglePageDrawer extends SinglePage {
     });
   };
 
-  render() {
+  renderFurther() {
     const { width: widthDrawer } = this.props;
     const { visible, listViewMode } = this.state;
 

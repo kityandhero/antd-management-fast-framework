@@ -1581,7 +1581,7 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  render() {
+  renderFurther() {
     const {
       renderPageHeaderWrapper,
       showPageHeaderAvatar,

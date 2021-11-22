@@ -579,7 +579,7 @@ class Analysis extends DataLoad {
     return '';
   }
 
-  render() {
+  renderFurther() {
     const {
       saleAmountLoading,
       saleAmountData,

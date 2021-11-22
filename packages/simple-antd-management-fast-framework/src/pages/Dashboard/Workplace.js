@@ -107,7 +107,7 @@ class Workplace extends PureComponent {
     });
   }
 
-  render() {
+  renderFurther() {
     const {
       currentUser,
       currentUserLoading,

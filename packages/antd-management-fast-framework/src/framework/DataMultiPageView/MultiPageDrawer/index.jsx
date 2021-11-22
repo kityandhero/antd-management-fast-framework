@@ -553,7 +553,7 @@ class MultiPageDrawer extends MultiPage {
     });
   };
 
-  render() {
+  renderFurther() {
     const { width: widthDrawer } = this.props;
     const { visible, listViewMode } = this.state;
 
