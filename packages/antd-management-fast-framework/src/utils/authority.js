@@ -74,6 +74,11 @@ export function checkHasAuthority(auth) {
     }
   }
 
+  console.log({
+    auth,
+    existCache,
+  });
+
   const list = getAllAuthorityCore();
 
   const accessWayCollection = getAccessWayCollectionCache();
