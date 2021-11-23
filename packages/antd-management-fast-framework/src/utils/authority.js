@@ -4,6 +4,7 @@ import {
   isArray,
   recordObject,
 } from './tools';
+import { hasCache, setCache, getCache } from './cacheAssist';
 import {
   storageKeyCollection,
   getAccessWayCollectionCache,
@@ -48,6 +49,16 @@ export function checkIsSuper() {
 }
 
 export function checkHasAuthority(auth) {
+  let result = '0';
+
+  if (hasCache(auth)) {
+    result = getCache(auth);
+
+    if (result !== undefined) {
+      return result !== '0';
+    }
+  }
+
   const list = getAllAuthorityCore();
 
   const accessWayCollection = getAccessWayCollectionCache();
@@ -70,7 +81,11 @@ export function checkHasAuthority(auth) {
     });
   }
 
-  return v !== undefined;
+  result = !!(v !== undefined) ? '1' : '0';
+
+  setCache(auth, result);
+
+  return result !== '0';
 }
 
 export function setAuthority(authority) {
