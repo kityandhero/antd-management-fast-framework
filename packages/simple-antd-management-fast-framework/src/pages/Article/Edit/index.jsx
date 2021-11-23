@@ -236,7 +236,7 @@ class Edit extends DataTabContainer {
             that.setOnline(handleData);
           },
           hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
-          disabled: dataLoading || processing || status === statusCollection.online,
+          disabled: this.checkInProgress() || status === statusCollection.online,
           confirm: {
             title: '设置为上架，确定吗？',
             placement: 'bottomRight',
@@ -257,7 +257,7 @@ class Edit extends DataTabContainer {
             that.setOffline(handleData);
           },
           hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
-          disabled: dataLoading || processing || status === statusCollection.offline,
+          disabled: this.checkInProgress() || status === statusCollection.offline,
           confirm: {
             title: '设置为下架，确定吗？',
             placement: 'bottomRight',

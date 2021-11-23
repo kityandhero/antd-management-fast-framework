@@ -68,7 +68,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
     return {
       list: [
         {
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,

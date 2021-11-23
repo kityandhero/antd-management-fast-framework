@@ -113,7 +113,7 @@ class Index extends BaseUpdateDrawer {
             text: '基本信息',
           },
           hasExtra: true,
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -141,7 +141,7 @@ class Index extends BaseUpdateDrawer {
             icon: <ContactsOutlined />,
             text: '简介描述',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -183,7 +183,7 @@ class Index extends BaseUpdateDrawer {
             icon: <ContactsOutlined />,
             text: '其他信息',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.onlyShowInput,

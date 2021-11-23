@@ -54,15 +54,7 @@ class SelectFieldBase extends SupplementWrapper {
   };
 
   renderField = () => {
-    const {
-      dataLoading,
-      processing,
-      loadSuccess,
-      label,
-      helper,
-      formItemLayout,
-      showClear,
-    } = this.props;
+    const { label, helper, formItemLayout, showClear } = this.props;
 
     const { fieldText, fieldTitle, fieldPlaceholder } = this.getFieldData() || {
       fieldText: '',
@@ -88,7 +80,7 @@ class SelectFieldBase extends SupplementWrapper {
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
-              disabled={dataLoading || processing || !loadSuccess}
+              disabled={this.checkOperability()}
               title={`选择${fieldTitle}`}
               onClick={(e) => this.showSelect(e)}
             >
@@ -114,7 +106,7 @@ class SelectFieldBase extends SupplementWrapper {
                   paddingLeft: 0,
                   paddingRight: 0,
                 }}
-                disabled={dataLoading || processing || !loadSuccess}
+                disabled={this.checkOperability()}
                 title="清除选择"
                 onClick={() => this.clearSelect()}
               >

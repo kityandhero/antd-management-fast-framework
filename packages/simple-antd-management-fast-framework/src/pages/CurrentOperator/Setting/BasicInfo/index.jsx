@@ -123,7 +123,7 @@ class BasicInfo extends BaseUpdateFormContent {
               },
             ],
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 6,
@@ -149,7 +149,7 @@ class BasicInfo extends BaseUpdateFormContent {
           title: {
             text: '基本信息',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 6,
@@ -175,7 +175,7 @@ class BasicInfo extends BaseUpdateFormContent {
             text: '头像上传',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -191,7 +191,7 @@ class BasicInfo extends BaseUpdateFormContent {
           title: {
             text: '简介描述',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,

@@ -1407,7 +1407,7 @@ class ListBase extends AuthorizationWrapper {
     const { styleSet, columns, expandable, size } = this.buildTableConfig();
 
     const standardTableCustomOption = {
-      loading: dataLoading || processing,
+      loading: this.checkInProgress(),
       showSelect,
       selectedRows: selectedDataTableDataRows,
       columns,

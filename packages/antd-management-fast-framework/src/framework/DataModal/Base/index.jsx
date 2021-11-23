@@ -62,7 +62,7 @@ class Base extends BaseWindow {
   getSaveButtonDisabled = () => {
     const { dataLoading, processing, loadSuccess } = this.state;
 
-    return dataLoading || processing || !loadSuccess;
+    return this.checkOperability();
   };
 
   buildOkButtonProps = () => {

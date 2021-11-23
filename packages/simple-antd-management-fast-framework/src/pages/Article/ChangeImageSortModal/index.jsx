@@ -202,7 +202,7 @@ class ChangeImageSortModal extends Base {
           <List
             size="large"
             rowKey="id"
-            // loading={dataLoading || processing}
+            // loading={this.checkInProgress()}
             pagination={false}
             dataSource={metaListData}
             renderItem={(item) => (

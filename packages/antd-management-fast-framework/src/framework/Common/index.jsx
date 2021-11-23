@@ -1039,10 +1039,10 @@ class Common extends Core {
   };
 
   getSaveButtonDisabled = () => {
-    const { dataLoading, processing, loadSuccess } = this.state;
+    const { processing } = this.state;
 
     if (this.loadDataAfterMount) {
-      return dataLoading || processing || !loadSuccess;
+      return this.checkOperability();
     }
 
     return processing;
@@ -1050,9 +1050,7 @@ class Common extends Core {
 
   getSaveButtonLoading = () => {
     if (this.loadDataAfterMount) {
-      const { dataLoading, loadSuccess } = this.state;
-
-      return dataLoading || !loadSuccess;
+      return this.checkLoadingProgress();
     }
 
     return this.loadDataAfterMount;

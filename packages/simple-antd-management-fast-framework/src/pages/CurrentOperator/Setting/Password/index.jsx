@@ -99,7 +99,7 @@ class Password extends BaseUpdateFormContent {
           title: {
             text: '更新密码',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 16,

@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { history } from 'umi';
 import nprogress from 'nprogress';
 
-import { defaultBaseState, recordObject } from '../../utils/tools';
+import { defaultBaseState } from '../../utils/tools';
 
 class Base extends Component {
   mounted = false;
@@ -127,10 +127,40 @@ class Base extends Component {
 
   showRenderCount() {
     if (this.showRenderCountInConsole) {
-      recordObject({
-        renderCount: this.renderCount,
-      });
+      this.renderCount += 1;
+
+      console.log(`render frequency: ${this.renderCount}`);
     }
+  }
+
+  /**
+   * check loading progress,if loading or load fail,return false,else return true
+   * @returns bool
+   */
+  checkLoadingProgress() {
+    const { dataLoading, loadSuccess } = this.state;
+
+    return dataLoading || !loadSuccess;
+  }
+
+  /**
+   * check operability,if loading or or processing or load fail,return false,else return true
+   * @returns bool
+   */
+  checkOperability() {
+    const { dataLoading, processing, loadSuccess } = this.state;
+
+    return dataLoading || processing || !loadSuccess;
+  }
+
+  /**
+   * check in progress,if loading or or processing,return false,else return true
+   * @returns bool
+   */
+  checkInProgress() {
+    const { dataLoading, processing } = this.state;
+
+    return dataLoading || processing;
   }
 
   renderFurther() {

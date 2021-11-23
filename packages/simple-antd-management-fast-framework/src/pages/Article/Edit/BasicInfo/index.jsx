@@ -320,8 +320,16 @@ class BasicInfo extends TabPageBase {
   };
 
   establishCardCollectionConfig = () => {
-    const { metaData, processing, dataLoading, image, videoUrl, fileBase64, imageList, fileList } =
-      this.state;
+    const {
+      metaData,
+      processing,
+      dataLoading,
+      image,
+      videoUrl,
+      fileBase64,
+      imageList,
+      fileList,
+    } = this.state;
 
     return {
       list: [
@@ -371,7 +379,7 @@ class BasicInfo extends TabPageBase {
               },
             ],
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 18,
@@ -446,7 +454,7 @@ class BasicInfo extends TabPageBase {
             text: '配图上传',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -464,7 +472,7 @@ class BasicInfo extends TabPageBase {
             text: '单配图纯展示',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.imageShow,
@@ -489,11 +497,11 @@ class BasicInfo extends TabPageBase {
                 text: '调整图片顺序',
                 icon: <SortAscendingOutlined />,
                 handleClick: (e) => this.showChangeImageSortModal(e),
-                disabled: dataLoading || processing,
+                disabled: this.checkInProgress(),
               },
             ],
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -516,7 +524,7 @@ class BasicInfo extends TabPageBase {
           title: {
             text: '表格展示',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -581,7 +589,7 @@ class BasicInfo extends TabPageBase {
             text: '配图集合纯展示',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.imageListShow,
@@ -593,7 +601,7 @@ class BasicInfo extends TabPageBase {
           title: {
             text: '简介描述',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -635,7 +643,7 @@ class BasicInfo extends TabPageBase {
           title: {
             text: '其他信息',
           },
-          spinning: dataLoading || processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.onlyShowInput,

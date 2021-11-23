@@ -302,7 +302,7 @@ class BasicInfo extends TabPageBase {
             className={styles.card}
             bordered={false}
           >
-            <Spin spinning={dataLoading || processing}>
+            <Spin spinning={this.checkInProgress()}>
               <Row gutter={24}>
                 <Col lg={24} md={12} sm={24}>
                   <div className={styles.fieldBox}>
@@ -374,7 +374,7 @@ class BasicInfo extends TabPageBase {
             className={styles.card}
             bordered={false}
           >
-            <Spin spinning={dataLoading || processing}>
+            <Spin spinning={this.checkInProgress()}>
               <Row gutter={24}>
                 <Col lg={12} md={12} sm={24}>
                   <div className={styles.fieldBox}>
@@ -403,7 +403,7 @@ class BasicInfo extends TabPageBase {
             className={styles.card}
             bordered={false}
           >
-            <Spin spinning={dataLoading || processing}>
+            <Spin spinning={this.checkInProgress()}>
               <HtmlBox>
                 {metaData === null
                   ? ''
