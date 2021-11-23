@@ -53,7 +53,8 @@ export function checkHasAuthority(auth) {
   if (isObject(auth)) {
     console.log({
       auth,
-      attachedTargetName: this.constructor.name,
+      attachedTargetName:
+        (this.constructor || null) != null ? this.constructor.name : '',
     });
   }
 
