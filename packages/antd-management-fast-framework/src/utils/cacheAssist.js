@@ -40,7 +40,7 @@ export function setCache({ key, value, expiration = 0 }) {
     throw new Error('cache pool not exist');
   }
 
-  cachePool.set(key, value, expiration);
+  return cachePool.set(key, value, expiration);
 }
 
 /**

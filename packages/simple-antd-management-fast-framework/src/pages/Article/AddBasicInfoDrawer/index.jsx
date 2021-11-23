@@ -15,7 +15,7 @@ import { fieldData } from '../Common/data';
   loading: loading.models.article,
 }))
 class Index extends BaseAddDrawer {
-  componentAuthority = accessWayCollection.article.addBasicInfo;
+  componentAuthority = accessWayCollection.article.addBasicInfo.permission;
 
   constructor(props) {
     super(props);

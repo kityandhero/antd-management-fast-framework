@@ -3,6 +3,7 @@ import {
   saveJsonToLocalStorage,
   isArray,
   recordObject,
+  isObject,
 } from './tools';
 import { hasCache, setCache, getCache } from './cacheAssist';
 import {
@@ -49,10 +50,19 @@ export function checkIsSuper() {
 }
 
 export function checkHasAuthority(auth) {
+  if (isObject(auth)) {
+    console.log({
+      auth,
+      attachedTargetName: this.constructor.name,
+    });
+  }
+
   let result = '0';
 
-  if (hasCache(auth)) {
-    result = getCache(auth);
+  const existCache = hasCache({ key: auth });
+
+  if (existCache) {
+    result = getCache({ key: auth });
 
     if (result !== undefined) {
       return result !== '0';
@@ -67,6 +77,11 @@ export function checkHasAuthority(auth) {
   const isSuper = (list || []).find((o) => o === superAuth);
 
   if (isSuper === superAuth) {
+    setCache({
+      key: auth,
+      value: '1',
+    });
+
     return true;
   }
 
@@ -83,7 +98,10 @@ export function checkHasAuthority(auth) {
 
   result = !!(v !== undefined) ? '1' : '0';
 
-  setCache(auth, result);
+  setCache({
+    key: auth,
+    value: result,
+  });
 
   return result !== '0';
 }
