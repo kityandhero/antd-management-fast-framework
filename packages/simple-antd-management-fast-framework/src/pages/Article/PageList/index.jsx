@@ -878,8 +878,6 @@ class PageList extends MultiPage {
   };
 
   renderOther = () => {
-    console.log(this.props);
-
     const {
       articleId,
       addBasicInfoDrawerVisible,
