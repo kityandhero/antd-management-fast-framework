@@ -273,6 +273,7 @@ export function handleCommonDataAssist(state, action, callback = null) {
     return {
       ...state,
       data: v,
+      fromRemote: true,
     };
   }
 
@@ -282,6 +283,7 @@ export function handleCommonDataAssist(state, action, callback = null) {
   return {
     ...state,
     ...aliasData,
+    fromRemote: true,
   };
 }
 
@@ -303,6 +305,7 @@ export function handleListDataAssist(
     return {
       ...state,
       data: v,
+      fromRemote: true,
     };
   }
 
@@ -312,6 +315,7 @@ export function handleListDataAssist(
   return {
     ...state,
     ...aliasData,
+    fromRemote: true,
   };
 }
 
@@ -333,6 +337,7 @@ export function handlePageListDataAssist(
     return {
       ...state,
       data: v,
+      fromRemote: true,
     };
   }
 
@@ -342,6 +347,7 @@ export function handlePageListDataAssist(
   return {
     ...state,
     ...aliasData,
+    fromRemote: true,
   };
 }
 
