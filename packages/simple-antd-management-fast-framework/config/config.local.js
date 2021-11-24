@@ -7,7 +7,7 @@ const corsTargetDomain = '';
 const headScripts = [
   ...[
     {
-      src: `${corsTargetDomain}/interactionConfig/init.js`,
+      src: `${corsTargetDomain}/interactionConfig/initRemote.js`,
     },
   ],
   ...headScriptsSource,
