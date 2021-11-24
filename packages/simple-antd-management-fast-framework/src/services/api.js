@@ -324,7 +324,7 @@ export async function accountLogin(params) {
     params,
     virtualSuccessResponse: {
       data: {
-        token: 'token',
+        token: 'e03c9a65-6537-4a44-acf4-bbf472fdd0fe',
         name: '张三量',
         currentAuthority: ['super'],
       },

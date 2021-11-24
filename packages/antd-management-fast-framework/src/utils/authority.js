@@ -5,7 +5,7 @@ import {
   recordObject,
   isObject,
 } from './tools';
-import { hasCache, setCache, getCache } from './cacheAssist';
+import { hasCache, setCache, getCache, flushAllCache } from './cacheAssist';
 import {
   storageKeyCollection,
   getAccessWayCollectionCache,
@@ -111,12 +111,20 @@ export function checkHasAuthority(auth) {
   return result !== '0';
 }
 
+/**
+ * 缓存用户权限数据体
+ * @param {*} authority
+ */
 export function setAuthority(authority) {
-  const proAuthority = typeof authority === 'string' ? [authority] : authority;
+  const authorityCollection =
+    typeof authority === 'string' ? [authority] : authority;
+
   saveJsonToLocalStorage(
     storageKeyCollection.authorityCollection,
-    proAuthority,
+    authorityCollection,
   );
+
+  flushAllCache();
 
   // auto reload
   reloadAuthorized();

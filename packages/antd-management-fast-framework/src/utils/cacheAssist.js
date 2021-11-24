@@ -1,4 +1,25 @@
 import nodeCache from 'node-cache';
+import {
+  isArray,
+  isNumber,
+  isString,
+  recordError,
+  stringIsNullOrWhiteSpace,
+} from './tools';
+
+function checkKey(key) {
+  if (stringIsNullOrWhiteSpace(key)) {
+    throw new Error('cache key is null or empty');
+  }
+
+  if (!(isString(key) || isNumber(key))) {
+    recordError(key);
+
+    throw new Error(
+      'cache key must be string or number,you can check it in console',
+    );
+  }
+}
 
 /**
  * 获取缓存池
@@ -34,6 +55,8 @@ export function hasCache({ key }) {
  * @param {*} expiration
  */
 export function setCache({ key, value, expiration = 0 }) {
+  checkKey(key);
+
   const cachePool = getCachePool();
 
   if (cachePool == null) {
@@ -41,6 +64,84 @@ export function setCache({ key, value, expiration = 0 }) {
   }
 
   return cachePool.set(key, value, expiration);
+}
+
+/**
+ * Sets multiple key val pairs. It is possible to define a ttl (seconds). Returns true on success
+ * @param {*} list
+ * @returns
+ */
+export function setMultiCache(list) {
+  if (!isArray(list)) {
+    throw new Error('setMultiCache: list must be array');
+  }
+
+  if (list.length <= 0) {
+    return true;
+  }
+
+  const listData = [];
+
+  list.forEach((o) => {
+    const { key, value, expiration } = {
+      ...{ key: '', value: '', expiration: 0 },
+      ...o,
+    };
+
+    if (!stringIsNullOrWhiteSpace(key)) {
+      checkKey(key);
+
+      listData.push({
+        key,
+        value,
+        ttl: expiration,
+      });
+    }
+  });
+
+  if (listData.length <= 0) {
+    return false;
+  }
+
+  const cachePool = getCachePool();
+
+  if (cachePool == null) {
+    throw new Error('cache pool not exist');
+  }
+
+  return cachePool.mset(listData);
+}
+
+/**
+ * a timestamp in ms representing the time at which the key will expire
+ * @param {*} key
+ * @returns
+ */
+export function getExpiration({ key }) {
+  const cachePool = getCachePool();
+
+  if (cachePool == null) {
+    throw new Error('cache pool not exist');
+  }
+
+  return cachePool.getTtl(key);
+}
+
+/**
+ * Redefine the ttl of a key. Returns true if the key has been found and changed. Otherwise returns false. If the ttl-argument isn't passed the default-TTL will be used.
+ * The key will be deleted when passing in a ttl < 0
+ * @param {*} key
+ * @param {*} expiration
+ * @returns
+ */
+export function setExpiration({ key, expiration }) {
+  const cachePool = getCachePool();
+
+  if (cachePool == null) {
+    throw new Error('cache pool not exist');
+  }
+
+  return cachePool.ttl(key, expiration);
 }
 
 /**
@@ -56,6 +157,25 @@ export function getCache({ key }) {
   }
 
   return cachePool.get(key);
+}
+
+/**
+ * Gets multiple saved values from the cache. Returns an empty object {} if not found or expired. If the value was found it returns an object with the key value pair.
+ * @param {*} list
+ * @returns
+ */
+export function getMultiCache(list) {
+  if (!isArray(list)) {
+    throw new Error('getMultiCache: list must be array');
+  }
+
+  const cachePool = getCachePool();
+
+  if (cachePool == null) {
+    throw new Error('cache pool not exist');
+  }
+
+  return cachePool.mget(list);
 }
 
 /**
@@ -79,6 +199,8 @@ export function takeCache({ key }) {
  * @returns
  */
 export function deleteCache({ key }) {
+  checkKey(key);
+
   const cachePool = getCachePool();
 
   if (cachePool == null) {
@@ -86,6 +208,53 @@ export function deleteCache({ key }) {
   }
 
   return cachePool.del(key);
+}
+
+/**
+ * Delete multiple keys. Returns the number of deleted entries. A delete will never fail.
+ * @param {*} list
+ * @returns
+ */
+export function deleteMultiCache(list) {
+  if (!isArray(list)) {
+    throw new Error('deleteMultiCache: list must be array');
+  }
+
+  const cachePool = getCachePool();
+
+  if (cachePool == null) {
+    throw new Error('cache pool not exist');
+  }
+
+  return cachePool.del(list);
+}
+
+/**
+ * Flush all data.
+ * @returns
+ */
+export function flushAllCache() {
+  const cachePool = getCachePool();
+
+  if (cachePool == null) {
+    throw new Error('cache pool not exist');
+  }
+
+  return cachePool.flushAll();
+}
+
+/**
+ * Returns the statistics.
+ * @returns
+ */
+export function statisticsCache() {
+  const cachePool = getCachePool();
+
+  if (cachePool == null) {
+    throw new Error('cache pool not exist');
+  }
+
+  return cachePool.getStats();
 }
 
 /**

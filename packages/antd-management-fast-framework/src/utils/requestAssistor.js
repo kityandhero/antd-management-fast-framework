@@ -351,6 +351,19 @@ export function handlePageListDataAssist(
   };
 }
 
+/**
+ * begin request（remote request / local virtual requests）
+ * @param {*} api [string]: request address
+ * @param {*} params [object]: request params
+ * @param {*} method [string]: ’GET‘ or ’POST‘, default is ’POST‘
+ * @param {*} useVirtualRequest [bool]: whether to apply virtual requests
+ * @param {*} showUseVirtualRequestMessage [bool]: whether display virtual request message prompt
+ * @param {*} virtualSuccessResponse [object]: virtual request success response data
+ * @param {*} virtualFailResponse [object]: virtual request fail response data
+ * @param {*} virtualRequestResult [object]:mandatory set virtual request result, generally used to debug
+ * @param {*} virtualNeedAuthorize [object]:set virtual request whether check token， only check mull or empty, generally used to debug
+ * @returns
+ */
 export async function request({
   api,
   params = {},
