@@ -4,6 +4,7 @@ import { history } from 'umi';
 import nprogress from 'nprogress';
 
 import { defaultBaseState, isObject } from '../../utils/tools';
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
@@ -94,9 +95,11 @@ class Base extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      nprogress.done();
-    }, 400);
+    if (defaultSettingsLayoutCustom.getUseNprogress()) {
+      setTimeout(() => {
+        nprogress.done();
+      }, 400);
+    }
 
     this.beforeDidMount();
 
@@ -182,7 +185,9 @@ class Base extends Component {
       pathname: path,
     };
 
-    nprogress.inc();
+    if (defaultSettingsLayoutCustom.getUseNprogress()) {
+      nprogress.inc();
+    }
 
     history.push(location);
   };
@@ -192,7 +197,9 @@ class Base extends Component {
       pathname: path,
     };
 
-    nprogress.inc();
+    if (defaultSettingsLayoutCustom.getUseNprogress()) {
+      nprogress.inc();
+    }
 
     history.replace(location);
   };

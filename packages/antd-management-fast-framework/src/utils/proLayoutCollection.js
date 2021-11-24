@@ -1,7 +1,9 @@
 import React from 'react';
 import { history, Link } from 'umi';
 import nprogress from 'nprogress';
+
 import { showErrorMessage } from './tools';
+import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 
 export const proLayoutDefaultProps = {
   onMenuHeaderClick: () => history.push('/'),
@@ -31,19 +33,21 @@ export const proLayoutDefaultProps = {
       <Link
         to={menuItemProps.path}
         onClick={() => {
-          if ((nprogress || null) == null) {
-            const text = 'nprogress need install';
+          if (defaultSettingsLayoutCustom.getUseNprogress()) {
+            if ((nprogress || null) == null) {
+              const text = 'nprogress need install';
 
-            showErrorMessage({
-              message: text,
-            });
+              showErrorMessage({
+                message: text,
+              });
+            }
+
+            nprogress.inc();
+
+            setTimeout(() => {
+              nprogress.done();
+            }, 400);
           }
-
-          nprogress.inc();
-
-          setTimeout(() => {
-            nprogress.done();
-          }, 400);
         }}
       >
         {defaultDom}

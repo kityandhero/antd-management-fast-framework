@@ -1,4 +1,4 @@
-window.appInitCustom = {
+window.appInitCustomLocal = {
   platformName: '平台名称',
   appName: '应用名称',
   appDescription: '应用描述',
@@ -19,4 +19,5 @@ window.appInitCustom = {
   showRequestInfo: true,
   useVirtualRequest: true,
   apiVersion: 'v1',
+  useNprogress: true,
 };

@@ -6,6 +6,16 @@ import {
 } from './constants';
 
 export const defaultSettingsLayoutCustom = {
+  getUseNprogress: () => {
+    const appInit = getAppInitConfigData();
+
+    const { useNprogress } = {
+      ...{ useNprogress: true },
+      ...(appInit || {}),
+    };
+
+    return useNprogress;
+  },
   getFileUploadMaxSize: () => {
     const appInit = getAppInitConfigData();
 

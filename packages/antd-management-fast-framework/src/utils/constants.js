@@ -65,6 +65,7 @@ export const appInitDefault = {
   imageUploadMaxSize: 2,
   videoUploadMaxSize: 4,
   fileUploadMaxSize: 2,
+  useNprogress: true,
 };
 
 export const accessWaySpecialCollection = {

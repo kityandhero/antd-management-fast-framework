@@ -65,8 +65,12 @@ export function getAppInitConfigData() {
   let appInitConfig = appInitDefault;
 
   if (isBrowser()) {
-    if ((window.appInitCustom || null) != null) {
-      appInitConfig = { ...appInitConfig, ...window.appInitCustom };
+    if ((window.appInitCustomLocal || null) != null) {
+      appInitConfig = { ...appInitConfig, ...window.appInitCustomLocal };
+    }
+
+    if ((window.appInitCustomRemote || null) != null) {
+      appInitConfig = { ...appInitConfig, ...window.appInitCustomRemote };
     }
   }
 

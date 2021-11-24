@@ -138,7 +138,7 @@ export function getTokenKeyName() {
 }
 
 /**
- * 获取Token
+ * Get Token
  *
  * @export
  * @param {*} fn
@@ -151,7 +151,7 @@ export function getToken() {
 }
 
 /**
- * 设置Token
+ * Set Token
  *
  * @export
  * @param {*} fn

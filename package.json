@@ -11,7 +11,7 @@
     "lerna:publish": "lerna publish --yes",
     "changelog": "lerna version --conventional-commits --no-push --no-git-tag-version",
     "lerna": "lerna",
-    "clean": "npm run clean:simple && npm run clean:framework && rimraf ./node_modules/ && rimraf ./yarn-error.log && rimraf ./yarn.lock && lerna clean",
+    "clean": "npm run clean:simple && npm run clean:framework && rimraf ./node_modules/ && rimraf ./yarn-error.log && rimraf ./yarn.lock && lerna clean -y",
     "publish:f": "npm run build:f && npm run scz && lerna updated && lerna publish --yes",
     "publish:c": "npm run scz && lerna updated && lerna publish --yes",
     "publish:v": "lerna updated && lerna publish --yes",

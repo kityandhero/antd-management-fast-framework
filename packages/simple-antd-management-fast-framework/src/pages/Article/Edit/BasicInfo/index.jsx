@@ -320,16 +320,8 @@ class BasicInfo extends TabPageBase {
   };
 
   establishCardCollectionConfig = () => {
-    const {
-      metaData,
-      processing,
-      dataLoading,
-      image,
-      videoUrl,
-      fileBase64,
-      imageList,
-      fileList,
-    } = this.state;
+    const { metaData, processing, dataLoading, image, videoUrl, fileBase64, imageList, fileList } =
+      this.state;
 
     return {
       list: [
@@ -493,7 +485,9 @@ class BasicInfo extends TabPageBase {
             list: [
               {
                 buildType: cardConfig.extraBuildType.generalButton,
-                hidden: !this.checkAuthority(accessWayCollection.article.updateImageSort),
+                hidden: !this.checkAuthority(
+                  accessWayCollection.article.updateImageSort.permission,
+                ),
                 text: '调整图片顺序',
                 icon: <SortAscendingOutlined />,
                 handleClick: (e) => this.showChangeImageSortModal(e),
@@ -506,13 +500,15 @@ class BasicInfo extends TabPageBase {
             {
               type: cardConfig.contentItemType.imageUpload,
               action: `${corsTarget()}/article/uploadImage`,
-              disabled: !this.checkAuthority(accessWayCollection.article.addImage),
+              disabled: !this.checkAuthority(accessWayCollection.article.addImage.permission),
               multiple: true,
               fileList,
               showUploadList: {
                 showPreviewIcon: true,
                 showDownloadIcon: true,
-                showRemoveIcon: this.checkAuthority(accessWayCollection.article.removeImage),
+                showRemoveIcon: this.checkAuthority(
+                  accessWayCollection.article.removeImage.permission,
+                ),
               },
               onItemChange: this.handleGalleryUploadChange,
               onItemRemove: this.onGalleryRemove,
