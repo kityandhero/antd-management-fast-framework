@@ -11,6 +11,7 @@ CNAME
 .DS_Store
 .eslintignore
 .gitattributes
+.browserslistrc
 *.png
 *.jpg
 *.jpeg

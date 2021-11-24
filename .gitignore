@@ -52,3 +52,5 @@ screenshot
 
 # build
 **/build
+/yarn.lock
+/package-lock.json
