@@ -1490,16 +1490,20 @@ class Common extends Core {
 
     const {
       image,
+      imageCircle,
       icon,
       text,
+      textEllipsisMaxWidth,
       subText,
       addonBefore: titleAddonBefore,
       addonAfter: titleAddonAfter,
     } = {
       ...{
         image: '',
+        imageCircle: true,
         icon: null,
         text: '',
+        textEllipsisMaxWidth: 0,
         subText: '',
         addonBefore: null,
         addonAfter: null,
@@ -1560,6 +1564,7 @@ class Common extends Core {
               <FlexText
                 icon={iconAdjust || null}
                 text={text || ''}
+                textEllipsisMaxWidth={textEllipsisMaxWidth}
                 subText={subText || ''}
                 addonBefore={
                   (titleAddonBefore || null) == null ? null : titleAddonBefore
@@ -1575,7 +1580,7 @@ class Common extends Core {
         headStyle={
           imageVisible
             ? {
-                paddingLeft: '66px',
+                paddingLeft: '64px',
               }
             : {}
         }
@@ -1674,14 +1679,14 @@ class Common extends Core {
           <div
             style={{
               position: 'absolute',
-              width: '36px',
-              left: '24px',
-              top: '11px',
+              width: '32px',
+              left: '22px',
+              top: '15px',
             }}
           >
             <ImageBox
               src={image}
-              circle
+              circle={imageCircle}
               lazyLoad
               errorOverlayVisible
               showErrorOverlay

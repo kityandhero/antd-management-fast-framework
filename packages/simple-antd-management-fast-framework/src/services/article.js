@@ -1,3 +1,4 @@
+import { defaultEmptyImage } from 'antd-management-fast-framework/es/utils/constants';
 import { request } from 'antd-management-fast-framework/es/utils/requestAssistor';
 
 import { defaultSettings } from '@/defaultSettings';
@@ -45,10 +46,12 @@ const imageFileList = [
 const article = {
   articleId: '1430367617461391360',
   title:
-    '很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的的标题2',
-  subtitle: '测试2',
-  description: '测试2',
-  image: '',
+    '标题很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的',
+  subtitle:
+    '副标题标题很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的',
+  description:
+    '简介描述简介描述简介描述简介描述简介描述简介描述简介描述简介描述简介描述简介描述简介描述简介描述简介描述简介描述',
+  image: defaultEmptyImage,
   contentData: '',
   mediaData:
     '[\r\n  {\r\n    "id": "986170e1-1b3f-46ca-930e-1b20cba2ef8b",\r\n    "title": "标题1",\r\n    "description": "",\r\n    "image": "",\r\n    "link": "",\r\n    "video": "",\r\n    "sort": 0,\r\n    "createTime": "2021-08-25 17:07:02",\r\n    "updateTime": "2021-08-25 17:07:02"\r\n  },\r\n  {\r\n    "id": "893d9347-e23a-47bc-a880-d8974d057a28",\r\n    "title": "",\r\n    "description": "描述1",\r\n    "image": "",\r\n    "link": "",\r\n    "video": "",\r\n    "sort": 1,\r\n    "createTime": "2021-08-25 17:08:41",\r\n    "updateTime": "2021-08-25 17:08:41"\r\n  }\r\n]',
@@ -198,6 +201,7 @@ const articleList = articleEmptyList.map((o, index) => {
       title: articleSimple.title + no,
       subtitle: articleSimple.subtitle + no,
       description: articleSimple.description + no,
+      image: '',
     },
   };
 });

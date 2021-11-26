@@ -960,12 +960,13 @@ export function buildCustomGrid({ key = null, list, props }) {
                         ...(isEmpty ? globalEmptyStyle || {} : {}),
                         ...(isEmpty ? itemEmptyStyle || {} : {}),
                         ...{
-                          '-webkit-box-orient': 'vertical',
-                          '-webkit-line-clamp': '1',
+                          WebkitBoxOrient: 'vertical',
+                          WebkitLineClamp: '1',
                           overflow: 'hidden',
                           display: '-webkit-box',
                           textOverflow: 'ellipsis',
                           wordBreak: 'break-all',
+                          whiteSpace: 'normal',
                         },
                       }}
                     >

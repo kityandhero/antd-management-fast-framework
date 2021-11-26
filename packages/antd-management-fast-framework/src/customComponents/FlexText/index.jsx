@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Space } from 'antd';
 
-import { stringIsNullOrWhiteSpace } from '../../utils/tools';
-
+import IconInfo from '../IconInfo';
 import FlexBox from '../FlexBox';
 
 import styles from './index.less';
@@ -13,6 +12,7 @@ class FlexText extends PureComponent {
       icon,
       textPrefix,
       text,
+      textEllipsisMaxWidth,
       subText,
       subTextStyle,
       addonBefore,
@@ -27,11 +27,15 @@ class FlexText extends PureComponent {
         left={
           <Space>
             {(addonBefore || null) == null ? null : addonBefore}
-            {(icon || null) == null ? null : <span>{icon}</span>}
-            <span>
-              {stringIsNullOrWhiteSpace(textPrefix) ? null : `${textPrefix}：`}
-              {text}
-            </span>
+
+            <IconInfo
+              icon={icon}
+              textPrefix={textPrefix}
+              text={text}
+              ellipsis
+              ellipsisMaxWidth={textEllipsisMaxWidth}
+            />
+
             {(subText || null) == null ? null : (
               <span className={styles.subText} style={subTextStyle || {}}>
                 {subText}
@@ -50,6 +54,7 @@ FlexText.defaultProps = {
   icon: null,
   textPrefix: null,
   text: '',
+  textEllipsisMaxWidth: 0,
   subText: '',
   subTextStyle: null,
   extra: null,

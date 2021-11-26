@@ -29,6 +29,7 @@ import {
   isArray,
   getRandomColor,
   recordObject,
+  replaceTargetText,
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
   unlimitedWithStringFlag,
@@ -39,6 +40,7 @@ import {
   listViewConfig,
   cardConfig,
   whetherNumber,
+  defaultEmptyImage,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
@@ -49,6 +51,7 @@ import {
   buildButton,
   buildDropdown,
   buildDropdownEllipsis,
+  buildTagList,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -606,9 +609,32 @@ class PageList extends MultiPage {
   establishCardCollectionViewItemConfig = (r) => {
     return {
       title: {
+        image: getValueByKey({
+          data: r,
+          key: fieldData.image.name,
+        }),
+        imageCircle: false,
         text: getValueByKey({
           data: r,
           key: fieldData.title.name,
+        }),
+        textEllipsisMaxWidth: 240,
+        subText: buildTagList({
+          list: [
+            {
+              color: 'volcano',
+              text: '推荐',
+            },
+            {
+              color: 'geekblue',
+              text: '热点',
+            },
+            {
+              color: 'geekblue',
+              text: '时政要闻',
+              hidden: true,
+            },
+          ],
         }),
       },
       useAnimal: true,
@@ -648,14 +674,25 @@ class PageList extends MultiPage {
             textStyle: {
               color: 'blue',
             },
+            textFormat: (v) => {
+              return replaceTargetText(v, '***', 2, 6);
+            },
             tooltip: true,
+            tooltipColor: '#cdbda0',
             ellipsis: true,
-            ellipsisWidth: 180,
+            // ellipsisMaxWidth: 180,
             onClick: () => {
               showInfoMessage({
                 message: 'onClick',
               });
             },
+          },
+          {
+            buildType: cardConfig.extraBuildType.iconInfo,
+            textPrefix: '标题',
+            text: '上浮提示上浮提示上浮提示上浮提示上浮提示上浮提示上浮提示上浮提示',
+            tooltip: true,
+            ellipsisMaxWidth: 180,
           },
           {
             buildType: cardConfig.extraBuildType.colorText,
@@ -767,6 +804,15 @@ class PageList extends MultiPage {
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.image,
+      width: 80,
+      showRichFacade: true,
+      facadeConfig: {
+        circle: false,
+      },
+      facadeMode: columnFacadeMode.image,
     },
     {
       dataTarget: fieldData.sort,

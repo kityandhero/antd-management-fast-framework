@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
+
+import { stringIsNullOrWhiteSpace } from '../../utils/tools';
+
 import styles from './index.less';
 
 /* eslint react/no-did-mount-set-state: 0 */
@@ -38,12 +41,12 @@ export const cutStrByFullLength = (str = '', maxLength) => {
   }, '');
 };
 
-const getTooltip = ({ tooltip, overlayStyle, title, children }) => {
+const getTooltip = ({ tooltip, overlayStyle, title, color, children }) => {
   if (tooltip) {
     const props =
       tooltip === true
-        ? { overlayStyle, title }
-        : { ...tooltip, overlayStyle, title };
+        ? { overlayStyle, title, color }
+        : { ...tooltip, overlayStyle, title, color };
     return <Tooltip {...props}>{children}</Tooltip>;
   }
   return children;
@@ -204,6 +207,8 @@ export default class Ellipsis extends Component {
       className,
       tooltip,
       fullWidthRecognition,
+      title,
+      color,
       ...restProps
     } = this.props;
 
@@ -250,10 +255,13 @@ export default class Ellipsis extends Component {
       );
 
       return getTooltip({
-        tooltip,
-        overlayStyle: TooltipOverlayStyle,
-        title: children,
-        children: node,
+        ...{
+          tooltip,
+          overlayStyle: TooltipOverlayStyle,
+          title: title || children,
+          children: node,
+        },
+        ...(stringIsNullOrWhiteSpace(color) ? {} : { color }),
       });
     }
 
