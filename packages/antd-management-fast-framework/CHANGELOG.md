@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.0](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.10.0...antd-management-fast-framework@1.11.0) (2021-11-26)
+
+### Features
+
+- iconinfo 组件针对 eclipse 做出调整 ([02db4d7](https://github.com/kityandhero/antd-management-fast-framework/commit/02db4d7103a499da90de6659479c34d631b3abfd))
+
 ## [1.10.0](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.9.39...antd-management-fast-framework@1.10.0) (2021-11-26)
 
 ### Features
