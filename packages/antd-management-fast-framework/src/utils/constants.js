@@ -306,6 +306,11 @@ export const cardConfig = {
     iconInfo: 'iconInfo',
 
     /**
+     * 彩色文字
+     */
+    colorText: 'colorText',
+
+    /**
      * 根据配置项渲染按钮，事件触发需要自定义指定,配置项与generalButton相仿，配置模式有所不同，最终效果类似
      */
     button: 'button',

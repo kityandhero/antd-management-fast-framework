@@ -59,6 +59,7 @@ import IconInfo from '../../customComponents/IconInfo';
 import FileBase64Upload from '../../customComponents/FileBase64Upload';
 import FadeBox from '../../customComponents/AnimalBox/FadeBox';
 import QueueBox from '../../customComponents/AnimalBox/QueueBox';
+import ColorText from '../../customComponents/ColorText';
 
 import {
   buildRadioItem,
@@ -2451,7 +2452,11 @@ class Common extends Core {
               break;
 
             case cardConfig.extraBuildType.iconInfo:
-              itemAdjust = <IconInfo icon={icon} text={text} />;
+              itemAdjust = <IconInfo {...item} />;
+              break;
+
+            case cardConfig.extraBuildType.colorText:
+              itemAdjust = <ColorText {...item} />;
               break;
 
             case cardConfig.extraBuildType.component:
