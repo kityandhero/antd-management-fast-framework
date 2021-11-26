@@ -2403,8 +2403,6 @@ class Common extends Core {
         const {
           hidden,
           buildType,
-          icon,
-          text,
           component: componentSource,
         } = {
           ...{

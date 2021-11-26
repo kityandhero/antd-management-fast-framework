@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
 import { Row, Col, Tooltip } from 'antd';
 
-import { stringIsNullOrWhiteSpace, copyToClipboard } from '../../utils/tools';
+import {
+  stringIsNullOrWhiteSpace,
+  copyToClipboard,
+  toNumber,
+} from '../../utils/tools';
 
 import Ellipsis from '../Ellipsis';
 
@@ -23,6 +27,7 @@ const defaultValue = {
   separator: '：',
   separatorStyle: null,
   style: null,
+  ellipsisWidth: 0,
 };
 
 class IconInfo extends PureComponent {
@@ -52,6 +57,7 @@ class IconInfo extends PureComponent {
       onClick,
       canCopy,
       style: styleSource,
+      ellipsisWidth: ellipsisWidthSource,
     } = { ...defaultValue, ...(this.props || {}) };
 
     const responsive = responsiveValue || false;
@@ -68,6 +74,10 @@ class IconInfo extends PureComponent {
     if (direction !== 'horizontal' && direction !== 'vertical') {
       direction = 'horizontal';
     }
+
+    let ellipsisWidth = toNumber(ellipsisWidthSource);
+
+    ellipsisWidth = ellipsisWidth <= 0 ? 0 : ellipsisWidth;
 
     const styleMerge = {
       ...(styleSource || {}),
@@ -116,7 +126,7 @@ class IconInfo extends PureComponent {
                       this.copyText();
                     }}
                   >
-                    {ellipsis ? (
+                    {ellipsis && ellipsisWidth > 0 ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
                         {textMerge}
                       </Ellipsis>
@@ -148,7 +158,7 @@ class IconInfo extends PureComponent {
                       this.copyText();
                     }}
                   >
-                    {ellipsis ? (
+                    {ellipsis && ellipsisWidth > 0 ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
                         {textMerge}
                       </Ellipsis>
@@ -176,7 +186,7 @@ class IconInfo extends PureComponent {
                     this.copyText();
                   }}
                 >
-                  {ellipsis ? (
+                  {ellipsis && ellipsisWidth > 0 ? (
                     <Ellipsis tooltip={tooltip} lines={1}>
                       {textMerge}
                     </Ellipsis>
@@ -215,7 +225,7 @@ class IconInfo extends PureComponent {
                       this.copyText();
                     }}
                   >
-                    {ellipsis ? (
+                    {ellipsis && ellipsisWidth > 0 ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
                         {textMerge}
                       </Ellipsis>
@@ -276,7 +286,7 @@ class IconInfo extends PureComponent {
                       this.copyText();
                     }}
                   >
-                    {ellipsis ? (
+                    {ellipsis && ellipsisWidth > 0 ? (
                       <Ellipsis tooltip={tooltip} lines={1}>
                         {textMerge}
                       </Ellipsis>
