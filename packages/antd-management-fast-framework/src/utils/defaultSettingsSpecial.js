@@ -128,6 +128,16 @@ export const defaultSettingsLayoutCustom = {
 
     return useVirtualRequest || false;
   },
+  getShowUseVirtualRequestMessage: () => {
+    const appInit = getAppInitConfigData();
+
+    const { showUseVirtualRequestMessage } = {
+      ...{ showUseVirtualRequestMessage: false },
+      ...(appInit || {}),
+    };
+
+    return showUseVirtualRequestMessage || false;
+  },
   getShowLogInConsole: () => {
     const appInit = getAppInitConfigData();
 

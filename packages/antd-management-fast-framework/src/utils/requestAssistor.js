@@ -369,7 +369,7 @@ export async function request({
   params = {},
   method = 'POST',
   useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest(),
-  showUseVirtualRequestMessage = false,
+  showUseVirtualRequestMessage = defaultSettingsLayoutCustom.getShowUseVirtualRequestMessage(),
   virtualSuccessResponse = {},
   virtualFailResponse = {
     code: 1001,

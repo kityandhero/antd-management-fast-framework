@@ -61,6 +61,7 @@ export const appInitDefault = {
   showLogInConsole: false,
   showRequestInfo: false,
   useVirtualRequest: false,
+  showUseVirtualRequestMessage: false,
   apiVersion: '',
   imageUploadMaxSize: 2,
   videoUploadMaxSize: 4,

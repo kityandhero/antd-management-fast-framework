@@ -20,6 +20,7 @@ import {
   StopOutlined,
   AimOutlined,
   FieldNumberOutlined,
+  PictureFilled,
 } from '@ant-design/icons';
 
 import {
@@ -614,6 +615,9 @@ class PageList extends MultiPage {
           key: fieldData.image.name,
         }),
         imageCircle: false,
+        icon: <PictureFilled />,
+        hideIcon: false,
+        hideIconWhenShowImage: true,
         text: getValueByKey({
           data: r,
           key: fieldData.title.name,

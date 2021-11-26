@@ -11,12 +11,12 @@ import {
   Tooltip,
 } from 'antd';
 import {
-  ContactsOutlined,
   FormOutlined,
   SaveOutlined,
   LoadingOutlined,
   ReloadOutlined,
   ToolOutlined,
+  ReadOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -1492,6 +1492,8 @@ class Common extends Core {
       image,
       imageCircle,
       icon,
+      hideIcon,
+      hideIconWhenShowImage,
       text,
       textEllipsisMaxWidth,
       subText,
@@ -1502,6 +1504,8 @@ class Common extends Core {
         image: '',
         imageCircle: true,
         icon: null,
+        hideIcon: false,
+        hideIconWhenShowImage: true,
         text: '',
         textEllipsisMaxWidth: 0,
         subText: '',
@@ -1522,7 +1526,13 @@ class Common extends Core {
 
     const imageVisible = !stringIsNullOrWhiteSpace(image);
 
-    const iconAdjust = imageVisible ? icon : icon || <ContactsOutlined />;
+    const iconAdjust = !!hideIcon
+      ? null
+      : imageVisible
+      ? !!hideIconWhenShowImage
+        ? null
+        : icon
+      : icon || <ReadOutlined />;
 
     const extraListData = [];
 
