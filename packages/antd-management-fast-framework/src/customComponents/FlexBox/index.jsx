@@ -8,7 +8,9 @@ class FlexBox extends PureComponent {
       allowWrap,
       flexAuto: flexAutoSource,
       left,
+      leftStyle,
       right,
+      rightStyle,
       top,
       bottom,
       direction: directionSource,
@@ -32,16 +34,28 @@ class FlexBox extends PureComponent {
       if (flexAuto === 'left') {
         return (
           <Row style={style}>
-            <Col flex="auto">{left}</Col>
-            {(right || null) == null ? null : <Col flex>{right}</Col>}
+            <Col flex="auto" style={leftStyle || null}>
+              {left}
+            </Col>
+            {(right || null) == null ? null : (
+              <Col flex style={rightStyle || null}>
+                {right}
+              </Col>
+            )}
           </Row>
         );
       }
 
       return (
         <Row style={style}>
-          <Col flex>{left}</Col>
-          {(right || null) == null ? null : <Col flex="auto">{right}</Col>}
+          <Col flex style={leftStyle || null}>
+            {left}
+          </Col>
+          {(right || null) == null ? null : (
+            <Col flex="auto" style={rightStyle || null}>
+              {right}
+            </Col>
+          )}
         </Row>
       );
     }

@@ -5,6 +5,9 @@ import {
   stringIsNullOrWhiteSpace,
   copyToClipboard,
   toNumber,
+  isObject,
+  isFunction,
+  isString,
 } from '../../utils/tools';
 
 import Ellipsis from '../Ellipsis';
@@ -20,6 +23,7 @@ const defaultValue = {
   iconPosition: 'left',
   iconTooltip: '',
   canCopy: false,
+  copyData: null,
   textPrefix: '',
   textPrefixStyle: null,
   text: '',
@@ -31,11 +35,11 @@ const defaultValue = {
 };
 
 class IconInfo extends PureComponent {
-  copyText = () => {
-    const { canCopy, text } = this.props;
+  copyDataToClipboard = () => {
+    const { canCopy, text, copyData } = this.props;
 
-    if (canCopy && !stringIsNullOrWhiteSpace(text)) {
-      copyToClipboard(text);
+    if (canCopy && !stringIsNullOrWhiteSpace(copyData || text)) {
+      copyToClipboard(copyData || text);
     }
   };
 
@@ -81,37 +85,54 @@ class IconInfo extends PureComponent {
 
     const styleMerge = {
       ...(styleSource || {}),
-      ...(canCopy ? { cursor: 'pointer' } : {}),
+      ...(canCopy || isFunction(onClick) ? { cursor: 'pointer' } : {}),
     };
 
-    const textMerge = stringIsNullOrWhiteSpace(textPrefix) ? (
-      (textStyle || null) == null ? (
+    let textMerge = null;
+
+    if (stringIsNullOrWhiteSpace(textPrefix)) {
+      textMerge = !isObject(textStyle) ? (
         text || ''
       ) : (
         <span style={textStyle}>{text || ''}</span>
-      )
-    ) : (
-      `${
-        (textPrefixStyle || null) == null ? (
-          textPrefix || ''
-        ) : (
-          <span style={textPrefixStyle}>{textPrefix || ''}</span>
-        )
-      }${
-        stringIsNullOrWhiteSpace(separator) ? null : (separatorStyle || null) ==
-          null ? (
-          separator || '：'
-        ) : (
-          <span style={separatorStyle}>{separator || '：'}</span>
-        )
-      }${
-        (textStyle || null) == null ? (
-          text || ''
-        ) : (
-          <span style={textStyle}>{text || ''}</span>
-        )
-      }`
-    );
+      );
+    } else {
+      const textPrefixAdjust = !isObject(textPrefixStyle) ? (
+        textPrefix || ''
+      ) : (
+        <span style={textPrefixStyle}>{textPrefix || ''}</span>
+      );
+
+      const separatorAdjust = stringIsNullOrWhiteSpace(separator) ? (
+        ''
+      ) : !isObject(separatorStyle) ? (
+        separator || '：'
+      ) : (
+        <span style={separatorStyle}>{separator || '：'}</span>
+      );
+
+      const textAdjust = !isObject(textStyle) ? (
+        text || ''
+      ) : (
+        <span style={textStyle}>{text || ''}</span>
+      );
+
+      if (
+        isString(textPrefixAdjust) &&
+        isString(separatorAdjust) &&
+        isString(textAdjust)
+      ) {
+        textMerge = `${textPrefixAdjust}${separatorAdjust}${textAdjust}`;
+      } else {
+        textMerge = (
+          <>
+            {textPrefixAdjust}
+            {separatorAdjust}
+            {textAdjust}
+          </>
+        );
+      }
+    }
 
     if (direction === 'horizontal') {
       return (
@@ -123,13 +144,26 @@ class IconInfo extends PureComponent {
                   <Col
                     style={styleMerge}
                     onClick={() => {
-                      this.copyText();
+                      this.copyDataToClipboard();
                     }}
                   >
-                    {ellipsis && ellipsisWidth > 0 ? (
-                      <Ellipsis tooltip={tooltip} lines={1}>
-                        {textMerge}
-                      </Ellipsis>
+                    {ellipsis ? (
+                      ellipsisWidth > 0 ? (
+                        <div
+                          style={{
+                            display: 'inline-flex',
+                            width: `${ellipsisWidth}px`,
+                          }}
+                        >
+                          <Ellipsis tooltip={tooltip} lines={1}>
+                            {textMerge}
+                          </Ellipsis>
+                        </div>
+                      ) : (
+                        <Ellipsis tooltip={tooltip} lines={1}>
+                          {textMerge}
+                        </Ellipsis>
+                      )
                     ) : (
                       textMerge
                     )}
@@ -155,13 +189,26 @@ class IconInfo extends PureComponent {
                     xs={24}
                     style={styleMerge}
                     onClick={() => {
-                      this.copyText();
+                      this.copyDataToClipboard();
                     }}
                   >
-                    {ellipsis && ellipsisWidth > 0 ? (
-                      <Ellipsis tooltip={tooltip} lines={1}>
-                        {textMerge}
-                      </Ellipsis>
+                    {ellipsis ? (
+                      ellipsisWidth > 0 ? (
+                        <div
+                          style={{
+                            display: 'inline-flex',
+                            width: `${ellipsisWidth}px`,
+                          }}
+                        >
+                          <Ellipsis tooltip={tooltip} lines={1}>
+                            {textMerge}
+                          </Ellipsis>
+                        </div>
+                      ) : (
+                        <Ellipsis tooltip={tooltip} lines={1}>
+                          {textMerge}
+                        </Ellipsis>
+                      )
                     ) : (
                       textMerge
                     )}
@@ -183,13 +230,26 @@ class IconInfo extends PureComponent {
                 <Col
                   style={styleMerge}
                   onClick={() => {
-                    this.copyText();
+                    this.copyDataToClipboard();
                   }}
                 >
-                  {ellipsis && ellipsisWidth > 0 ? (
-                    <Ellipsis tooltip={tooltip} lines={1}>
-                      {textMerge}
-                    </Ellipsis>
+                  {ellipsis ? (
+                    ellipsisWidth > 0 ? (
+                      <div
+                        style={{
+                          display: 'inline-flex',
+                          width: `${ellipsisWidth}px`,
+                        }}
+                      >
+                        <Ellipsis tooltip={tooltip} lines={1}>
+                          {textMerge}
+                        </Ellipsis>
+                      </div>
+                    ) : (
+                      <Ellipsis tooltip={tooltip} lines={1}>
+                        {textMerge}
+                      </Ellipsis>
+                    )
                   ) : (
                     textMerge
                   )}
@@ -222,13 +282,26 @@ class IconInfo extends PureComponent {
                   <Col
                     style={styleMerge}
                     onClick={() => {
-                      this.copyText();
+                      this.copyDataToClipboard();
                     }}
                   >
-                    {ellipsis && ellipsisWidth > 0 ? (
-                      <Ellipsis tooltip={tooltip} lines={1}>
-                        {textMerge}
-                      </Ellipsis>
+                    {ellipsis ? (
+                      ellipsisWidth > 0 ? (
+                        <div
+                          style={{
+                            display: 'inline-flex',
+                            width: `${ellipsisWidth}px`,
+                          }}
+                        >
+                          <Ellipsis tooltip={tooltip} lines={1}>
+                            {textMerge}
+                          </Ellipsis>
+                        </div>
+                      ) : (
+                        <Ellipsis tooltip={tooltip} lines={1}>
+                          {textMerge}
+                        </Ellipsis>
+                      )
                     ) : (
                       textMerge
                     )}
@@ -264,7 +337,7 @@ class IconInfo extends PureComponent {
                     <Col
                       style={styleMerge}
                       onClick={() => {
-                        this.copyText();
+                        this.copyDataToClipboard();
                       }}
                     >
                       {stringIsNullOrWhiteSpace(iconTooltip) ? (
@@ -283,13 +356,26 @@ class IconInfo extends PureComponent {
                   <Col
                     style={styleMerge}
                     onClick={() => {
-                      this.copyText();
+                      this.copyDataToClipboard();
                     }}
                   >
-                    {ellipsis && ellipsisWidth > 0 ? (
-                      <Ellipsis tooltip={tooltip} lines={1}>
-                        {textMerge}
-                      </Ellipsis>
+                    {ellipsis ? (
+                      ellipsisWidth > 0 ? (
+                        <div
+                          style={{
+                            display: 'inline-flex',
+                            width: `${ellipsisWidth}px`,
+                          }}
+                        >
+                          <Ellipsis tooltip={tooltip} lines={1}>
+                            {textMerge}
+                          </Ellipsis>
+                        </div>
+                      ) : (
+                        <Ellipsis tooltip={tooltip} lines={1}>
+                          {textMerge}
+                        </Ellipsis>
+                      )
                     ) : (
                       textMerge
                     )}

@@ -820,17 +820,17 @@ export function buildCustomGrid({ key = null, list, props }) {
       column = 3;
     }
 
-    let padding = '16px 24px';
+    let margin = '16px 24px';
     let paddingBottomNoBorder = '16px';
     let backgroundColor = '';
 
     if (sizeSource === 'middle') {
-      padding = '12px 24px';
+      margin = '12px 24px';
       paddingBottomNoBorder = '12px';
     }
 
     if (sizeSource === 'small') {
-      padding = '8px 16px';
+      margin = '8px 16px';
       paddingBottomNoBorder = '8px';
     }
 
@@ -851,20 +851,19 @@ export function buildCustomGrid({ key = null, list, props }) {
       ? {
           ...{
             width: '180px',
-            borderRight: '1px solid #f0f0f0',
           },
           ...(labelStyleSource || {}),
-          ...{ padding, backgroundColor },
+          ...{ margin },
         }
       : {};
 
     const contentStyle = bordered
       ? {
           ...{
-            padding: '16px 24px',
+            margin: '16px 24px',
           },
           ...(contentStyleSource || {}),
-          ...{ padding },
+          ...{ margin },
         }
       : {};
 
@@ -950,12 +949,24 @@ export function buildCustomGrid({ key = null, list, props }) {
                       colon ? '：' : ''
                     }`}</div>
                   }
+                  leftStyle={{
+                    ...{ backgroundColor },
+                    ...(bordered ? { borderRight: '1px solid #f0f0f0' } : {}),
+                  }}
                   right={
                     <div
                       style={{
                         ...contentStyle,
                         ...(isEmpty ? globalEmptyStyle || {} : {}),
                         ...(isEmpty ? itemEmptyStyle || {} : {}),
+                        ...{
+                          '-webkit-box-orient': 'vertical',
+                          '-webkit-line-clamp': '1',
+                          overflow: 'hidden',
+                          display: '-webkit-box',
+                          textOverflow: 'ellipsis',
+                          wordBreak: 'break-all',
+                        },
                       }}
                     >
                       {v}

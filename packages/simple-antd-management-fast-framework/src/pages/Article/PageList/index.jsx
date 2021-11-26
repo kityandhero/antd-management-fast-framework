@@ -615,12 +615,52 @@ class PageList extends MultiPage {
       animalType: cardConfig.animalType.queue,
       bordered: true,
       extra: {
-        split: false,
+        split: true,
         list: [
           {
             buildType: cardConfig.extraBuildType.iconInfo,
             icon: <InfoCircleFilled />,
             text: '一些说明',
+            canCopy: true,
+          },
+          {
+            buildType: cardConfig.extraBuildType.iconInfo,
+            icon: <InfoCircleFilled />,
+            textPrefix: '复制',
+            text: '自定义',
+            canCopy: true,
+            copyData: '要复制的文字',
+          },
+          {
+            buildType: cardConfig.extraBuildType.iconInfo,
+            icon: <InfoCircleFilled />,
+            iconPosition: 'right',
+            iconTooltip: '说明',
+            textPrefix: '前缀',
+            textPrefixStyle: {
+              color: 'red',
+            },
+            separator: '-',
+            separatorStyle: {
+              color: 'green',
+            },
+            text: '一些说明一些说明一些说明',
+            textStyle: {
+              color: 'blue',
+            },
+            tooltip: true,
+            ellipsis: true,
+            ellipsisWidth: 180,
+            onClick: () => {
+              showInfoMessage({
+                message: 'onClick',
+              });
+            },
+          },
+          {
+            buildType: cardConfig.extraBuildType.colorText,
+            textPrefix: '前缀',
+            text: '后缀',
           },
           {
             buildType: cardConfig.extraBuildType.generalButton,
@@ -642,6 +682,7 @@ class PageList extends MultiPage {
           component: buildCustomGrid({
             list: [
               {
+                span: 4,
                 label: fieldData.title.label,
                 value: getValueByKey({
                   data: r,
@@ -649,6 +690,7 @@ class PageList extends MultiPage {
                 }),
               },
               {
+                span: 2,
                 label: fieldData.subtitle.label,
                 value: getValueByKey({
                   data: r,
@@ -674,7 +716,7 @@ class PageList extends MultiPage {
               bordered: true,
               column: 4,
               labelStyle: {
-                width: '160px',
+                width: '100px',
               },
               emptyValue: '暂无',
               emptyStyle: {
