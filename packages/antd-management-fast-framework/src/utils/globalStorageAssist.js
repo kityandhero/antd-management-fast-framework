@@ -5,8 +5,9 @@ import {
   saveJsonToLocalStorage,
   saveStringToLocalStorage,
   clearLocalStorage,
+  isArray,
 } from './tools';
-
+import { hasCache, setCache, getCache } from './cacheAssist';
 import { accessWaySpecialCollection } from './constants';
 
 export const storageKeyCollection = {
@@ -50,7 +51,19 @@ export function removeNearestLocalhostNotifyCache() {
 }
 
 export function getAccessWayCollectionCache() {
+  let result = {};
+
   const key = storageKeyCollection.accessWayCollection;
+
+  const existCache = hasCache({ key });
+
+  if (existCache) {
+    result = getCache({ key });
+
+    if (isArray(result)) {
+      return result;
+    }
+  }
 
   const d = getJsonFromLocalStorage(key);
 
@@ -58,7 +71,14 @@ export function getAccessWayCollectionCache() {
     return { ...(accessWaySpecialCollection || {}) };
   }
 
-  return { ...(d || null), ...(accessWaySpecialCollection || {}) };
+  result = { ...(d || null), ...(accessWaySpecialCollection || {}) };
+
+  setCache({
+    key,
+    value: result,
+  });
+
+  return result;
 }
 
 export function setAccessWayCollectionCache(o) {

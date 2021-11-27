@@ -12,7 +12,21 @@ import {
 } from './globalStorageAssist';
 import { reloadAuthorized } from './Authorized';
 
+const authorityCollectionCache = 'authorityCollectionCache';
+
 function getAllAuthorityCore() {
+  let result = [];
+
+  const existCache = hasCache({ key: authorityCollectionCache });
+
+  if (existCache) {
+    result = getCache({ key: authorityCollectionCache });
+
+    if (isArray(result)) {
+      return result;
+    }
+  }
+
   const authorityString = getStringFromLocalStorage(
     storageKeyCollection.authorityCollection,
   );
@@ -26,10 +40,17 @@ function getAllAuthorityCore() {
   }
 
   if (typeof authority === 'string') {
-    return [authority];
+    result.push(authority);
+  } else {
+    result = isArray(authority) ? authority : [];
   }
 
-  return isArray(authority) ? authority : [];
+  setCache({
+    key: authorityCollectionCache,
+    value: result,
+  });
+
+  return result;
 }
 
 export function getAllAuthority() {
