@@ -15,6 +15,7 @@ import {
   Empty,
   Spin,
   Pagination,
+  Affix,
 } from 'antd';
 import {
   SearchOutlined,
@@ -85,6 +86,10 @@ class ListBase extends AuthorizationWrapper {
    * 使用前台模拟分页，有助于优化长列表页面交互操作导致的延迟
    */
   useFrontendPagination = false;
+
+  useFrontendPagination = false;
+
+  affixPaginationBar = true;
 
   formRef = React.createRef();
 
@@ -1221,7 +1226,7 @@ class ListBase extends AuthorizationWrapper {
 
     const style = this.establishPaginationViewStyle();
 
-    return (
+    const bar = (
       <FlexBox
         style={style}
         right={
@@ -1237,6 +1242,16 @@ class ListBase extends AuthorizationWrapper {
         }
       />
     );
+
+    if (this.affixPaginationBar) {
+      return (
+        <Affix offsetBottom={0}>
+          <div style={{ background: '#fff' }}>{bar}</div>
+        </Affix>
+      );
+    }
+
+    return bar;
   };
 
   renderCardExtraAction = () => {
@@ -1395,14 +1410,8 @@ class ListBase extends AuthorizationWrapper {
    * frontendPagination配置仅用在前台模拟分页时
    */
   renderTableView = () => {
-    const {
-      metaListData,
-      tableScroll,
-      showSelect,
-      selectedDataTableDataRows,
-      dataLoading,
-      processing,
-    } = this.state;
+    const { metaListData, tableScroll, showSelect, selectedDataTableDataRows } =
+      this.state;
 
     const { styleSet, columns, expandable, size } = this.buildTableConfig();
 
