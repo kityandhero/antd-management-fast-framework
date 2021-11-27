@@ -95,12 +95,6 @@ class Base extends Component {
   }
 
   componentDidMount() {
-    if (defaultSettingsLayoutCustom.getUseNprogress()) {
-      setTimeout(() => {
-        nprogress.done();
-      }, 400);
-    }
-
     this.beforeDidMount();
 
     this.mounted = true;
@@ -187,6 +181,10 @@ class Base extends Component {
 
     if (defaultSettingsLayoutCustom.getUseNprogress()) {
       nprogress.inc();
+
+      setTimeout(() => {
+        nprogress.done();
+      }, 400);
     }
 
     history.push(location);
@@ -199,6 +197,10 @@ class Base extends Component {
 
     if (defaultSettingsLayoutCustom.getUseNprogress()) {
       nprogress.inc();
+
+      setTimeout(() => {
+        nprogress.done();
+      }, 400);
     }
 
     history.replace(location);

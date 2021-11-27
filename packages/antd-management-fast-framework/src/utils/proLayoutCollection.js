@@ -5,6 +5,9 @@ import nprogress from 'nprogress';
 import { showErrorMessage } from './tools';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 
+/**
+ * layout默认配置
+ */
 export const proLayoutDefaultProps = {
   onMenuHeaderClick: () => history.push('/'),
   itemRender: (route, params, routes, paths) => {
