@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.11.4](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.11.3...antd-management-fast-framework@1.11.4) (2021-11-27)
+
+### Bug Fixes
+
+- adjust nprocess behavior ([066b5bc](https://github.com/kityandhero/antd-management-fast-framework/commit/066b5bc72f20404be57cd85a8c86f186cf48ddcb))
+- **antd-management-fast-framework:** 列表视图增加分页栏固定配置 ([3ed968a](https://github.com/kityandhero/antd-management-fast-framework/commit/3ed968a0704c562cdeecbe1934683e7e361ded47))
+
 ### [1.11.3](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.11.2...antd-management-fast-framework@1.11.3) (2021-11-26)
 
 ### Bug Fixes
