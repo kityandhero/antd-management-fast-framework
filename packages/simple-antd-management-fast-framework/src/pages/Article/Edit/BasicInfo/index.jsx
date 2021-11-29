@@ -709,14 +709,6 @@ class BasicInfo extends TabPageBase {
   renderOther = () => {
     const { metaData, changeImageSortModalVisible } = this.state;
 
-    const l = getValueByKey({
-      data: null,
-      key: fieldData.imageList.name,
-      convert: convertCollection.array,
-    });
-
-    console.log(l);
-
     return (
       <ChangeImageSortModal
         externalData={metaData}
