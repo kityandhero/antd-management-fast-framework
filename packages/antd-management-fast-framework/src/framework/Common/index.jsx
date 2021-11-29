@@ -1873,7 +1873,12 @@ class Common extends Core {
                 };
 
                 const imageBoxContainorStyle = {
-                  ...{ width: '120px' },
+                  ...{
+                    width: '100px',
+                    border: '1px solid #d9d9d9',
+                    borderRadius: '4px',
+                    padding: '8px',
+                  },
                   ...(contentItem.imageBoxContainorStyle || {}),
                 };
 
@@ -1911,7 +1916,12 @@ class Common extends Core {
                 }
 
                 const imageBoxContainorStyle = {
-                  ...{ width: '120px' },
+                  ...{
+                    width: '100px',
+                    border: '1px solid #d9d9d9',
+                    borderRadius: '4px',
+                    padding: '8px',
+                  },
                   ...(contentItem.imageBoxContainorStyle || {}),
                 };
 
