@@ -94,6 +94,7 @@ export const convertCollection = {
   string: 'string',
   moment: 'moment',
   money: 'money',
+  array: 'array',
 };
 
 export const formatCollection = {

@@ -892,6 +892,10 @@ export function getValueByKey({
         result = toMoney(v);
         break;
 
+      case convertCollection.array:
+        result = isArray(v) ? v : [v];
+        break;
+
       default:
         result = v;
         break;
