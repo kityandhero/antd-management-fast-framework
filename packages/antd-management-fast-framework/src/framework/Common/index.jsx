@@ -9,6 +9,7 @@ import {
   Button,
   Space,
   Tooltip,
+  Empty,
 } from 'antd';
 import {
   FormOutlined,
@@ -1966,13 +1967,17 @@ class Common extends Core {
 
                 const imageListContainor = (
                   <Space>
-                    {imageItemShowList.map((o) => {
-                      return (
-                        <div key={o.key} style={o.imageBoxContainorStyle}>
-                          {o.component}
-                        </div>
-                      );
-                    })}
+                    {imageItemShowList.length <= 0 ? (
+                      <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                    ) : (
+                      imageItemShowList.map((o) => {
+                        return (
+                          <div key={o.key} style={o.imageBoxContainorStyle}>
+                            {o.component}
+                          </div>
+                        );
+                      })
+                    )}
                   </Space>
                 );
 
