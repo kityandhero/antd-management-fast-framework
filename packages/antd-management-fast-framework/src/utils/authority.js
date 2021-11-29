@@ -4,6 +4,9 @@ import {
   isArray,
   recordObject,
   isObject,
+  isString,
+  showErrorMessage,
+  recordError,
 } from './tools';
 import { hasCache, setCache, getCache, flushAllCache } from './cacheAssist';
 import {
@@ -68,6 +71,46 @@ export function checkIsSuper() {
   }
 
   return false;
+}
+
+export function checkHasAuthorities(authCollection) {
+  let result = false;
+
+  if (isArray(authCollection)) {
+    authCollection.forEach((auth) => {
+      result = checkHasAuthority(auth);
+
+      if (result) {
+        return true;
+      }
+    });
+
+    for (const auth in authCollection) {
+      result = checkHasAuthority(auth);
+
+      if (result) {
+        break;
+      }
+    }
+
+    return result;
+  }
+
+  if (isString(authCollection)) {
+    result = checkHasAuthority(authCollection);
+
+    return result;
+  }
+
+  const text = '无效的待验证权限';
+
+  showErrorMessage({
+    message: text,
+  });
+
+  recordError({ auth });
+
+  return result;
 }
 
 export function checkHasAuthority(auth) {
