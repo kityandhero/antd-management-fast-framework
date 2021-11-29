@@ -893,7 +893,7 @@ export function getValueByKey({
         break;
 
       case convertCollection.array:
-        result = isArray(v) ? v : [v];
+        result = (v || null) == null ? [] : isArray(v) ? v : [v];
         break;
 
       default:

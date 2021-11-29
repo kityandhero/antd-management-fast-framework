@@ -109,6 +109,13 @@ export const fieldData = {
       helper: '',
     },
   },
+  ...{
+    imageList: {
+      label: '图片集合',
+      name: 'imageList',
+      helper: '',
+    },
+  },
 };
 
 export const mediaItemData = {
