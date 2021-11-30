@@ -1,4 +1,4 @@
-import { getValueByKey, recordError } from 'antd-management-fast-framework/es/utils/tools';
+import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
 import {
   getApiDataCore,
   actionCore,
