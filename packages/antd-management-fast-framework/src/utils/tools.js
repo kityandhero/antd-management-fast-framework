@@ -1951,7 +1951,7 @@ export function notify({
     },
   };
 
-  requestAnimationFrame(() => {
+  setTimeout(() => {
     switch (type) {
       case notificationTypeCollection.success:
         notification.success({
@@ -2007,7 +2007,7 @@ export function notify({
 
         break;
     }
-  });
+  }, 600);
 }
 
 export function checkFromConfig({ label, name, helper }) {
