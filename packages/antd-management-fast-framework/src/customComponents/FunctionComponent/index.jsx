@@ -121,22 +121,17 @@ export function buildPageHeaderTitle(pageName, headerTitlePrefix) {
         textOverflow: 'ellipsis',
       }}
     >
-      <Row>
-        <Col>
-          {stringIsNullOrWhiteSpace(headerTitlePrefixValue)
-            ? ''
-            : `${headerTitlePrefixValue}：`}
-        </Col>
-        <Col flex="auto">
-          <Space>
+      <IconInfo
+        textPrefix={headerTitlePrefixValue}
+        text={
+          <>
             {nameList.map((o) => (
-              <TextAnimal key={o.key} type="alpha" mode="smooth">
-                {o.text}
-              </TextAnimal>
+              <span>{o.text}</span>
             ))}
-          </Space>
-        </Col>
-      </Row>
+          </>
+        }
+        ellipsis
+      />
     </span>
   );
 }

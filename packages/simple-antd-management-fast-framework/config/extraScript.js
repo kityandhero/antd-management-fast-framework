@@ -2,9 +2,6 @@ export const headScripts = [
   {
     src: '/interactionConfig/initLocal.js',
   },
-  // {
-  //   src: '/print.js',
-  // },
 ];
 
 /**

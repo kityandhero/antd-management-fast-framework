@@ -49,6 +49,7 @@ import {
   cardConfig,
   datetimeFormat,
   contentConfig,
+  tabBarCollection,
 } from '../../utils/constants';
 import FlexText from '../../customComponents/FlexText';
 import ImageUpload from '../../customComponents/ImageUpload';
@@ -2488,6 +2489,86 @@ class Common extends Core {
               break;
 
             case cardConfig.extraBuildType.component:
+              itemAdjust = componentSource || null;
+              break;
+
+            default:
+              recordObject({
+                message: '未找到匹配的构建模式',
+                config: item,
+              });
+
+              itemAdjust = null;
+              break;
+          }
+
+          list.push(<Fragment key={itemKey}>{itemAdjust}</Fragment>);
+        }
+      }
+    });
+
+    return list;
+  };
+
+  buildTabBarExtraContentItemsCore = ({ keyPrefix = '', configList }) => {
+    const list = [];
+
+    (isArray(configList) ? configList : []).forEach((item, index) => {
+      if ((item || null) != null) {
+        const {
+          hidden,
+          buildType,
+          component: componentSource,
+        } = {
+          ...{
+            hidden: false,
+            buildType: null,
+            icon: null,
+            text: '',
+            component: null,
+          },
+          ...item,
+        };
+
+        if (!hidden) {
+          const itemKey = `${keyPrefix || 'tabBarExtraContentItem'}_${index}`;
+
+          let itemAdjust = item;
+
+          switch (buildType) {
+            case tabBarCollection.extraBuildType.button:
+              itemAdjust = buildButton(item);
+              break;
+
+            case tabBarCollection.extraBuildType.dropdown:
+              itemAdjust = buildDropdown(item);
+              break;
+
+            case tabBarCollection.extraBuildType.dropdownButton:
+              itemAdjust = buildDropdownButton(item);
+              break;
+
+            case tabBarCollection.extraBuildType.dropdownEllipsis:
+              itemAdjust = buildDropdownEllipsis(item);
+              break;
+
+            case tabBarCollection.extraBuildType.iconInfo:
+              itemAdjust = (
+                <div style={{ padding: '0 8px' }}>
+                  <IconInfo {...item} />
+                </div>
+              );
+              break;
+
+            case tabBarCollection.extraBuildType.colorText:
+              itemAdjust = (
+                <div style={{ padding: '0 8px' }}>
+                  <ColorText {...item} />
+                </div>
+              );
+              break;
+
+            case tabBarCollection.extraBuildType.component:
               itemAdjust = componentSource || null;
               break;
 

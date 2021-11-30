@@ -10,10 +10,13 @@ import {
 } from '@ant-design/icons';
 
 import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
+import { pageHeaderRenderType } from '../../../utils/constants';
 import {
   buildButtonGroup,
   buildDropdownEllipsis,
+  buildTagList,
 } from '../../../customComponents/FunctionComponent';
+import { avatarImageLoadResultCollection } from '../../../customComponents/DecorateAvatar';
 
 import BaseView from '../../DataOperation/BaseView';
 
@@ -27,6 +30,15 @@ class DataCore extends BaseView {
   actionBackProps = {};
 
   formRef = React.createRef();
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      ...this.state,
+      avatarImageLoadResult: avatarImageLoadResultCollection.wait,
+    };
+  }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
@@ -49,7 +61,72 @@ class DataCore extends BaseView {
     return this.formRef.current;
   };
 
-  pageHeaderLogo = () => <Avatar shape="square" icon={<PlusOutlined />} />;
+  onPageHeaderAvatarLoadErrorCallback = () => {
+    this.setState({
+      avatarImageLoadResult: avatarImageLoadResultCollection.fail,
+    });
+  };
+
+  establishPageHeaderAvatarConfig = () => {
+    return null;
+  };
+
+  establishPageHeaderContentGridConfig = () => {
+    return [];
+  };
+
+  establishPageHeaderContentCollectionGridConfig = () => {
+    return {
+      type: pageHeaderRenderType.descriptionGrid,
+      list: this.establishPageHeaderContentGridConfig(),
+    };
+  };
+
+  establishPageHeaderContentParagraphCollectionConfig = () => {
+    return [];
+  };
+
+  establishPageHeaderContentParagraphConfig = () => {
+    return {
+      type: pageHeaderRenderType.paragraph,
+      list: this.establishPageHeaderContentParagraphCollectionConfig(),
+    };
+  };
+
+  establishPageHeaderContentActionCollectionConfig = () => {
+    return [];
+  };
+
+  establishPageHeaderContentActionConfig = () => {
+    return {
+      type: pageHeaderRenderType.action,
+      list: this.establishPageHeaderContentActionCollectionConfig(),
+    };
+  };
+
+  establishPageHeaderContentConfig = () => {
+    return {
+      list: [
+        this.establishPageHeaderContentCollectionGridConfig(),
+        this.establishPageHeaderContentParagraphConfig(),
+        this.establishPageHeaderContentActionConfig(),
+      ],
+    };
+  };
+
+  establishPageHeaderTagCollectionConfig = () => [];
+
+  establishPageHeaderExtraContentConfig = () => null;
+
+  establishPageHeaderTitlePrefix = () => {
+    return '';
+  };
+
+  establishPageHeaderTagConfig = () => {
+    return buildTagList({
+      list: this.establishPageHeaderTagCollectionConfig(),
+    });
+  };
 
   establishPageHeaderActionExtraGroupConfig = () => {
     return null;
@@ -57,6 +134,16 @@ class DataCore extends BaseView {
 
   establishPageHeaderActionExtraEllipsisConfig = () => {
     return null;
+  };
+
+  buildPageHeaderSubTitle = () => null;
+
+  pageHeaderLogo = () => <Avatar shape="square" icon={<PlusOutlined />} />;
+
+  getPageName = () => {
+    const { pageName } = this.state;
+
+    return pageName;
   };
 
   buildPageHeaderActionBack = () => {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Avatar, message } from 'antd';
+import { Form, Avatar, BackTop, message } from 'antd';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { PlusOutlined } from '@ant-design/icons';
 
 import {
@@ -12,8 +13,17 @@ import {
 } from '../../../utils/tools';
 import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 import { formNameCollection, datetimeFormat } from '../../../utils/constants';
+import {
+  buildPageHeaderTitle,
+  buildPageHeaderTagWrapper,
+  buildPageHeaderContent,
+  pageHeaderExtraContent,
+} from '../../../customComponents/FunctionComponent';
+import { decorateAvatar } from '../../../customComponents/DecorateAvatar';
 
 import DataCore from '../../DataSingleView/DataCore';
+
+import styles from './index.less';
 
 class BaseAddForm extends DataCore {
   loadDataAfterMount = false;
@@ -249,6 +259,59 @@ class BaseAddForm extends DataCore {
   }) => {
     return `数据已经保存成功，请进行下一步操作。`;
   };
+
+  renderFurther() {
+    const {
+      defaultAvatarIcon,
+      showPageHeaderAvatar,
+      dataLoading,
+      reloading,
+      avatarImageLoadResult,
+    } = this.state;
+
+    const avatarProps = showPageHeaderAvatar
+      ? decorateAvatar(
+          this.establishPageHeaderAvatarConfig(),
+          defaultAvatarIcon,
+          showPageHeaderAvatar,
+          dataLoading,
+          reloading,
+          avatarImageLoadResult,
+          () => {
+            this.onPageHeaderAvatarLoadErrorCallback();
+          },
+        )
+      : null;
+
+    const pageHeaderContentConfig = this.establishPageHeaderContentConfig();
+
+    return (
+      <PageHeaderWrapper
+        className={styles.customContainor}
+        avatar={avatarProps}
+        title={buildPageHeaderTitle(
+          this.getPageName(),
+          this.establishPageHeaderTitlePrefix(),
+        )}
+        subTitle={this.buildPageHeaderSubTitle()}
+        tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
+        extra={this.pageHeaderAction()}
+        content={buildPageHeaderContent(pageHeaderContentConfig)}
+        extraContent={pageHeaderExtraContent(
+          this.establishPageHeaderExtraContentConfig(),
+        )}
+        // onBack={() => {
+        //   this.backToList();
+        // }}
+      >
+        <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
+          {this.renderFormWrapper()}
+          {this.renderOther()}
+        </div>
+        <BackTop />
+      </PageHeaderWrapper>
+    );
+  }
 }
 
 export default BaseAddForm;

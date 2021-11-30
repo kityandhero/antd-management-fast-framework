@@ -1,19 +1,16 @@
 import React from 'react';
-import { PictureOutlined } from '@ant-design/icons';
+import { Space, Divider } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PictureOutlined } from '@ant-design/icons';
 
-import { pageHeaderRenderType } from '../../utils/constants';
+import { isArray, isObject, isBoolean } from '../../utils/tools';
 import {
   buildPageHeaderTitle,
   buildPageHeaderTagWrapper,
   buildPageHeaderContent,
   pageHeaderExtraContent,
-  buildTagList,
 } from '../../customComponents/FunctionComponent';
-import {
-  avatarImageLoadResultCollection,
-  decorateAvatar,
-} from '../../customComponents/DecorateAvatar';
+import { decorateAvatar } from '../../customComponents/DecorateAvatar';
 
 import DataSingleView from '../DataSingleView/DataLoad';
 
@@ -30,7 +27,6 @@ class DataTabContainer extends DataSingleView {
     this.state = {
       ...this.state,
       defaultAvatarIcon: <PictureOutlined />,
-      avatarImageLoadResult: avatarImageLoadResultCollection.wait,
       showPageHeaderAvatar: true,
       customTabActiveKey: false,
     };
@@ -111,75 +107,6 @@ class DataTabContainer extends DataSingleView {
     return null;
   };
 
-  onPageHeaderAvatarLoadErrorCallback = () => {
-    this.setState({
-      avatarImageLoadResult: avatarImageLoadResultCollection.fail,
-    });
-  };
-
-  establishPageHeaderTagCollectionConfig = () => [];
-
-  establishPageHeaderTagConfig = () => {
-    return buildTagList({
-      list: this.establishPageHeaderTagCollectionConfig(),
-    });
-  };
-
-  establishPageHeaderAvatarConfig = () => {
-    return null;
-  };
-
-  establishPageHeaderTitlePrefix = () => {
-    return '';
-  };
-
-  buildPageHeaderSubTitle = () => null;
-
-  establishPageHeaderContentGridConfig = () => {
-    return [];
-  };
-
-  establishPageHeaderContentCollectionGridConfig = () => {
-    return {
-      type: pageHeaderRenderType.descriptionGrid,
-      list: this.establishPageHeaderContentGridConfig(),
-    };
-  };
-
-  establishPageHeaderContentParagraphCollectionConfig = () => {
-    return [];
-  };
-
-  establishPageHeaderContentParagraphConfig = () => {
-    return {
-      type: pageHeaderRenderType.paragraph,
-      list: this.establishPageHeaderContentParagraphCollectionConfig(),
-    };
-  };
-
-  establishPageHeaderContentActionCollectionConfig = () => {
-    return [];
-  };
-
-  establishPageHeaderContentActionConfig = () => {
-    return {
-      type: pageHeaderRenderType.action,
-      list: this.establishPageHeaderContentActionCollectionConfig(),
-    };
-  };
-
-  establishPageHeaderContentConfig = () => {
-    return {
-      list: [
-        this.establishPageHeaderContentCollectionGridConfig(),
-        this.establishPageHeaderContentParagraphConfig(),
-        this.establishPageHeaderContentActionConfig(),
-      ],
-    };
-  };
-
-  establishPageHeaderExtraContentConfig = () => null;
-
   getTabListAvailable = () => {
     const tabListAvailable = [];
 
@@ -211,15 +138,71 @@ class DataTabContainer extends DataSingleView {
     return null;
   };
 
-  getPageName = () => {
-    const { pageName } = this.state;
+  establishTabBarExtraContentLeftConfig = () => {
+    return null;
+  };
 
-    return pageName;
+  establishTabBarExtraContentRightConfig = () => {
+    return null;
+  };
+
+  buildTabBarExtraContentItems = ({
+    keyPrefix = '',
+    list: configListSource,
+    split: splitSource = false,
+  }) => {
+    const { split, list } = {
+      ...{
+        split: false,
+        list: [],
+      },
+      ...{
+        split: splitSource,
+        list: configListSource,
+      },
+    };
+
+    const configList = isArray(list) ? list : isObject(list) ? [list] : [];
+
+    if (configList.length <= 0) {
+      return null;
+    }
+
+    const listItem = this.buildTabBarExtraContentItemsCore({
+      keyPrefix,
+      configList,
+    });
+
+    return (
+      <Space
+        split={
+          isBoolean(split) ? split ? <Divider type="vertical" /> : null : split
+        }
+      >
+        {listItem}
+      </Space>
+    );
+  };
+
+  buildTabBarExtraContent = () => {
+    const leftItems = this.buildTabBarExtraContentItems({
+      keyPrefix: `data_tab_container_tab_bar_left_action_key`,
+      list: this.establishTabBarExtraContentLeftConfig(),
+    });
+
+    const rightItems = this.buildTabBarExtraContentItems({
+      keyPrefix: `data_tab_container_tab_bar_right_action_key`,
+      list: this.establishTabBarExtraContentRightConfig(),
+    });
+
+    return {
+      left: leftItems,
+      right: rightItems,
+    };
   };
 
   renderFurther() {
     const {
-      pageName,
       defaultAvatarIcon,
       showPageHeaderAvatar,
       dataLoading,
@@ -227,7 +210,6 @@ class DataTabContainer extends DataSingleView {
       avatarImageLoadResult,
     } = this.state;
     const { children } = this.props;
-    const { customTabActiveKey } = this.state;
 
     const tabListAvailable = this.getTabListAvailable();
 
@@ -247,54 +229,24 @@ class DataTabContainer extends DataSingleView {
 
     const pageHeaderContentConfig = this.establishPageHeaderContentConfig();
 
-    if (customTabActiveKey) {
-      return (
-        <PageHeaderWrapper
-          className={styles.customContainor}
-          avatar={avatarProps}
-          title={buildPageHeaderTitle(
-            this.getPageName(),
-            this.establishPageHeaderTitlePrefix(),
-          )}
-          subTitle={this.buildPageHeaderSubTitle()}
-          tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
-          extra={this.pageHeaderAction()}
-          // eslint-disable-next-line no-restricted-globals
-          tabActiveKey={this.getTabActiveKey()}
-          content={buildPageHeaderContent(pageHeaderContentConfig)}
-          extraContent={pageHeaderExtraContent(this.pageHeaderExtraContent())}
-          tabList={tabListAvailable}
-          // tabBarExtraContent={<Button>Extra Action</Button>}
-          onTabChange={this.handleTabChange}
-          tabProps={this.buildOtherTabProps()}
-          // onBack={() => {
-          //   this.backToList();
-          // }}
-        >
-          {children}
-        </PageHeaderWrapper>
-      );
-    }
-
     return (
       <PageHeaderWrapper
         className={styles.customContainor}
         avatar={avatarProps}
         title={buildPageHeaderTitle(
-          pageName,
+          this.getPageName(),
           this.establishPageHeaderTitlePrefix(),
         )}
         subTitle={this.buildPageHeaderSubTitle()}
         tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
         extra={this.pageHeaderAction()}
-        // eslint-disable-next-line no-restricted-globals
         tabActiveKey={this.getTabActiveKey()}
         content={buildPageHeaderContent(pageHeaderContentConfig)}
         extraContent={pageHeaderExtraContent(
           this.establishPageHeaderExtraContentConfig(),
         )}
         tabList={tabListAvailable}
-        // tabBarExtraContent={<Button>Extra Action</Button>}
+        tabBarExtraContent={this.buildTabBarExtraContent()}
         onTabChange={this.handleTabChange}
         tabProps={this.buildOtherTabProps()}
         // onBack={() => {

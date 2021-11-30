@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'umi';
+import { Space, Divider } from 'antd';
 import {
   UpCircleOutlined,
   DownCircleOutlined,
   ReloadOutlined,
   LoadingOutlined,
   FormOutlined,
+  InfoCircleFilled,
 } from '@ant-design/icons';
 
 import {
@@ -17,8 +19,14 @@ import {
   recordObject,
   notifySuccess,
   getValueByKey,
+  isArray,
+  isObject,
+  isBoolean,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { convertCollection } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  convertCollection,
+  tabBarCollection,
+} from 'antd-management-fast-framework/es/utils/constants';
 import DataTabContainer from 'antd-management-fast-framework/es/framework/DataTabContainer';
 import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
 
@@ -378,6 +386,81 @@ class Edit extends DataTabContainer {
           hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
           confirm: {
             title: '将要刷新缓存，确定吗？',
+          },
+        },
+      ],
+    };
+  };
+
+  establishTabBarExtraContentLeftConfig = () => {
+    return {
+      buildType: tabBarCollection.extraBuildType.iconInfo,
+      text: '功能导航：',
+    };
+  };
+
+  establishTabBarExtraContentRightConfig = () => {
+    const { metaData } = this.state;
+
+    return {
+      buildType: tabBarCollection.extraBuildType.dropdown,
+      icon: <FormOutlined />,
+      size: 'small',
+      text: '扩展菜单',
+      handleData: metaData,
+      hidden: false,
+      handleButtonClick: ({ handleData }) => {
+        showInfoMessage({
+          message: '已点击',
+        });
+      },
+      handleMenuClick: ({ key, handleData }) => {
+        switch (key) {
+          case 'extraBarAction1':
+            showInfoMessage({
+              message: `click ${key}`,
+            });
+
+            break;
+
+          case 'extraBarAction2':
+            showInfoMessage({
+              message: `click ${key}`,
+            });
+
+            break;
+
+          case 'extraBarAction3':
+            showInfoMessage({
+              message: `click ${key}`,
+            });
+
+            break;
+        }
+      },
+      menuItems: [
+        {
+          key: 'extraBarAction1',
+          icon: <FormOutlined />,
+          text: '按钮1',
+          hidden: false,
+          confirm: {
+            title: `即将点击按钮，确定吗？`,
+          },
+        },
+        {
+          key: 'extraBarAction2',
+          icon: <FormOutlined />,
+          text: '按钮2',
+          hidden: false,
+        },
+        {
+          key: 'extraBarAction3',
+          icon: <FormOutlined />,
+          text: '按钮3',
+          hidden: true,
+          confirm: {
+            title: `即将点击按钮3，确定吗？`,
           },
         },
       ],

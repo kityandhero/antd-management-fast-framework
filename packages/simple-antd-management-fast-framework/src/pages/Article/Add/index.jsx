@@ -1,6 +1,6 @@
 import { connect, history } from 'umi';
 import { Space } from 'antd';
-import { PictureOutlined, FormOutlined } from '@ant-design/icons';
+import { PictureOutlined, FormOutlined, UnorderedListOutlined } from '@ant-design/icons';
 
 import {
   getDerivedStateFromPropsForUrlParams,
@@ -27,7 +27,7 @@ import { fieldData } from '../Common/data';
   global,
   loading: loading.models.article,
 }))
-class Add extends BaseAddForm {
+class Index extends BaseAddForm {
   componentAuthority = accessWayCollection.article.addBasicInfo.permission;
 
   constructor(props) {
@@ -89,6 +89,28 @@ class Add extends BaseAddForm {
     this.setState({
       fadeBoxShow: !fadeBoxShow,
     });
+  };
+
+  establishPageHeaderActionExtraGroupConfig = () => {
+    const that = this;
+
+    return {
+      buttons: [
+        {
+          key: 'goToPageList',
+          text: '返回商品列表',
+          icon: <UnorderedListOutlined />,
+          handleButtonClick: ({ handleData }) => {
+            that.goToPageList(handleData);
+          },
+          hidden: false,
+        },
+      ],
+    };
+  };
+
+  goToPageList = () => {
+    this.goToPath(`/news/article/pageList/key`);
   };
 
   establishToolBarConfig = () => {
@@ -180,7 +202,7 @@ class Add extends BaseAddForm {
   };
 
   establishCardCollectionConfig = () => {
-    const { processing, image } = this.state;
+    const { processing, fadeBoxShow, image } = this.state;
 
     return {
       list: [
@@ -314,6 +336,71 @@ class Add extends BaseAddForm {
         },
         {
           title: {
+            text: '动画展示',
+          },
+          spinning: processing,
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <>
+                  <FadeBox show={fadeBoxShow}>
+                    <div>
+                      <Space>
+                        <IconInfo icon={<FormOutlined />} text="文字1" />
+                        <IconInfo icon={<FormOutlined />} text="文字2" />
+                        <IconInfo icon={<FormOutlined />} text="文字3" />
+                      </Space>
+                    </div>
+                  </FadeBox>
+
+                  <QueueBox show={fadeBoxShow}>
+                    <IconInfo icon={<FormOutlined />} text="QueueBox" />
+                  </QueueBox>
+
+                  <QueueListBox
+                    show={fadeBoxShow}
+                    style={{
+                      marginTop: '20px',
+                    }}
+                    itemStyle={{
+                      marginBottom: '2px',
+                    }}
+                    items={[
+                      {
+                        hidden: true,
+                        builder: () => {
+                          return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 1" />;
+                        },
+                      },
+                      {
+                        hidden: false,
+                        builder: () => {
+                          return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 2" />;
+                        },
+                      },
+                      {
+                        hidden: true,
+                        builder: () => {
+                          return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 3" />;
+                        },
+                      },
+                      {
+                        hidden: false,
+                        builder: () => {
+                          return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 4" />;
+                        },
+                      },
+                    ]}
+                  />
+                </>
+              ),
+            },
+          ],
+        },
+        {
+          title: {
             text: '其他信息',
           },
           spinning: processing,
@@ -344,60 +431,8 @@ class Add extends BaseAddForm {
   renderOther = () => {
     const { fadeBoxShow } = this.state;
 
-    return (
-      <>
-        <FadeBox show={fadeBoxShow}>
-          <div>
-            <Space>
-              <IconInfo icon={<FormOutlined />} text="文字1" />
-              <IconInfo icon={<FormOutlined />} text="文字2" />
-              <IconInfo icon={<FormOutlined />} text="文字3" />
-            </Space>
-          </div>
-        </FadeBox>
-
-        <QueueBox show={fadeBoxShow}>
-          <IconInfo icon={<FormOutlined />} text="QueueBox" />
-        </QueueBox>
-
-        <QueueListBox
-          show={fadeBoxShow}
-          style={{
-            marginTop: '20px',
-          }}
-          itemStyle={{
-            marginBottom: '2px',
-          }}
-          items={[
-            {
-              hidden: true,
-              builder: () => {
-                return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 1" />;
-              },
-            },
-            {
-              hidden: false,
-              builder: () => {
-                return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 2" />;
-              },
-            },
-            {
-              hidden: true,
-              builder: () => {
-                return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 3" />;
-              },
-            },
-            {
-              hidden: false,
-              builder: () => {
-                return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 4" />;
-              },
-            },
-          ]}
-        />
-      </>
-    );
+    return null;
   };
 }
 
-export default Add;
+export default Index;
