@@ -27,7 +27,7 @@ export function getApiDataCore({ props, modelName }) {
     );
   }
 
-  const { data } = user;
+  const { data } = m;
 
   if ((data || null) == null) {
     recordError(
