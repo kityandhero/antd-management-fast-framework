@@ -126,7 +126,7 @@ export function buildPageHeaderTitle(pageName, headerTitlePrefix) {
         text={
           <>
             {nameList.map((o) => (
-              <span>{o.text}</span>
+              <span key={o.key}>{o.text}</span>
             ))}
           </>
         }
