@@ -1,5 +1,6 @@
 import { getValueByKey, recordError } from 'antd-management-fast-framework/es/utils/tools';
 import {
+  getApiDataCore,
   actionCore,
   confirmActionCore,
 } from 'antd-management-fast-framework/es/utils/actionAssist';
@@ -7,19 +8,7 @@ import {
 import { fieldData, mediaItemData } from '../Common/data';
 
 function getApiData(props) {
-  const { article } = props;
-
-  if ((article || null) == null) {
-    recordError('getApiData has some undefined error');
-  }
-
-  const { data } = article;
-
-  if ((data || null) == null) {
-    recordError('data:getApiData has some undefined error');
-  }
-
-  return data;
+  return getApiDataCore({ props, modelName: 'article' });
 }
 
 export function setOnlineAction({ target, handleData, successCallback, successMessage }) {

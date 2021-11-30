@@ -7,9 +7,35 @@ import {
   showRuntimeError,
   getGuid,
   recordObject,
+  getPathValue,
+  isUndefined,
 } from './tools';
 
 const { confirm } = Modal;
+
+export function getApiDataCore({ props, modelName }) {
+  if (isUndefined(props)) {
+    throw new Error('props is undefined, please check params.');
+  }
+
+  const m = getPathValue(props, modelName);
+
+  if ((m || null) == null) {
+    recordError(
+      `getApiDataCore error: model ${modelName} is null or undefined`,
+    );
+  }
+
+  const { data } = user;
+
+  if ((data || null) == null) {
+    recordError(
+      `getApiDataCore error: key “data” in model ${modelName} is null or undefined`,
+    );
+  }
+
+  return data;
+}
 
 /**
  * 处理 actionCore 的异步请求结果
