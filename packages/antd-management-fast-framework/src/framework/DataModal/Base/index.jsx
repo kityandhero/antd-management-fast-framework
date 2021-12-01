@@ -12,6 +12,8 @@ import {
   stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
 import { cardConfig } from '../../../utils/constants';
+import IconInfo from '../../../customComponents/IconInfo';
+import FlexText from '../../../customComponents/FlexText';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
 
@@ -148,20 +150,25 @@ class Base extends BaseWindow {
   };
 
   buildTitle = () => {
-    const prevText = this.buildTitlePrevText();
-    let subText = this.buildTitleSubText();
+    const subText = this.buildTitleSubText();
 
-    subText = stringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`;
+    const subInfo = stringIsNullOrWhiteSpace(subText) ? null : (
+      <FlexText
+        flexAuto="right"
+        addonBefore={'【'}
+        text={subText}
+        addonAfter={'】'}
+      />
+    );
 
     return (
-      <Row gutter={6}>
-        <Col>{this.buildTitleIcon()}</Col>
-        <Col flex="auto">
-          {prevText}
-          {this.buildTitleText()}
-          {subText}
-        </Col>
-      </Row>
+      <FlexText
+        flexAuto="right"
+        icon={this.buildTitleIcon()}
+        textPrefix={this.buildTitlePrevText()}
+        text={this.buildTitleText()}
+        extra={subInfo}
+      />
     );
   };
 

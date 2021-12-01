@@ -90,10 +90,10 @@ class ChangeSortModal extends BaseUpdateModal {
   establishFormAdditionalConfig = () => {
     return {
       labelCol: {
-        span: 3,
+        flex: '60px',
       },
       wrapperCol: {
-        span: 21,
+        flex: 'auto',
       },
     };
   };

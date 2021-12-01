@@ -9,9 +9,11 @@ import styles from './index.less';
 class FlexText extends PureComponent {
   render() {
     const {
+      flexAuto: flexAutoSource,
       icon,
       textPrefix,
       text,
+      ellipsis,
       textEllipsisMaxWidth,
       subText,
       subTextStyle,
@@ -24,6 +26,7 @@ class FlexText extends PureComponent {
     return (
       <FlexBox
         style={style}
+        flexAuto={flexAutoSource}
         left={
           <Space>
             {(addonBefore || null) == null ? null : addonBefore}
@@ -32,7 +35,7 @@ class FlexText extends PureComponent {
               icon={icon}
               textPrefix={textPrefix}
               text={text}
-              ellipsis
+              ellipsis={ellipsis}
               ellipsisMaxWidth={textEllipsisMaxWidth}
             />
 
@@ -41,6 +44,7 @@ class FlexText extends PureComponent {
                 {subText}
               </span>
             )}
+
             {(addonAfter || null) == null ? null : addonAfter}
           </Space>
         }
@@ -51,9 +55,11 @@ class FlexText extends PureComponent {
 }
 
 FlexText.defaultProps = {
+  flexAuto: 'left',
   icon: null,
   textPrefix: null,
   text: '',
+  ellipsis: true,
   textEllipsisMaxWidth: 0,
   subText: '',
   subTextStyle: null,
