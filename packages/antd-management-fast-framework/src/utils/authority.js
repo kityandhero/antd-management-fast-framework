@@ -95,7 +95,7 @@ export function checkIsSuper() {
   const existCache = hasCache({ key: superPermissionCacheKey });
 
   if (existCache) {
-    result = getCache({ key: superPermissionCacheKey });
+    const result = getCache({ key: superPermissionCacheKey });
 
     if (result !== undefined) {
       return !!result;
