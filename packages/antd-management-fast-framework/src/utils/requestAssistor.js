@@ -402,11 +402,13 @@ export async function request({
 
   if (useVirtualRequest) {
     if (showUseVirtualRequestMessage) {
-      const text = '由虚拟访问返回';
+      setTimeout(() => {
+        const text = '由虚拟访问返回';
 
-      showInfoMessage({
-        message: text,
-      });
+        showInfoMessage({
+          message: text,
+        });
+      }, 500);
     }
 
     let result = {};
