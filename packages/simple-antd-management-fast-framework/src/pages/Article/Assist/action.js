@@ -11,7 +11,7 @@ function getApiData(props) {
   return getApiDataCore({ props, modelName: 'article' });
 }
 
-export function setOnlineAction({ target, handleData, successCallback, successMessage }) {
+export function setOnlineAction({ target, handleData, successCallback, successMessage = null }) {
   actionCore({
     api: 'article/setOnline',
     params: {
@@ -28,7 +28,7 @@ export function setOnlineAction({ target, handleData, successCallback, successMe
   });
 }
 
-export function setOfflineAction({ target, handleData, successCallback, successMessage }) {
+export function setOfflineAction({ target, handleData, successCallback, successMessage = null }) {
   actionCore({
     api: 'article/setOffline',
     params: {
@@ -45,7 +45,12 @@ export function setOfflineAction({ target, handleData, successCallback, successM
   });
 }
 
-export async function refreshCacheAction({ target, handleData, successCallback, successMessage }) {
+export async function refreshCacheAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage = null,
+}) {
   actionCore({
     api: 'article/refreshCache',
     params: {
