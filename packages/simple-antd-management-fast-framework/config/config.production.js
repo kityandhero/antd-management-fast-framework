@@ -1,6 +1,6 @@
 import { defineConfig } from 'umi';
 
-import { headScripts as headScriptsSource } from './extraScript';
+import { headScripts as headScriptsSource } from './config.production';
 
 const corsTargetDomain = '';
 
