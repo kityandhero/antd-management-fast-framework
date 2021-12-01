@@ -1,8 +1,4 @@
-export const headScripts = [
-  {
-    src: '/interactionConfig/initLocal.js',
-  },
-];
+export const headScripts = [];
 
 /**
  * 占位函数
