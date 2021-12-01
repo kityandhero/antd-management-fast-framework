@@ -7,6 +7,8 @@ import {
   isString,
   showErrorMessage,
   recordError,
+  getValueByKey,
+  stringIsNullOrWhiteSpace,
 } from './tools';
 import { hasCache, setCache, getCache, flushAllCache } from './cacheAssist';
 import {
@@ -16,6 +18,7 @@ import {
 import { reloadAuthorized } from './Authorized';
 
 const authorityCollectionCache = 'authorityCollectionCache';
+const superPermissionCacheKey = 'hasSuperPermission';
 
 function getAllAuthorityCore() {
   let result = [];
@@ -56,29 +59,79 @@ function getAllAuthorityCore() {
   return result;
 }
 
-export function getAllAuthority() {
+function getSuperPermission() {
+  let result = '';
+
+  const accessWayCollection = getAccessWayCollectionCache();
+
+  if (!isObject(accessWayCollection)) {
+    return result;
+  }
+
+  const superPermission = getValueByKey({
+    data: accessWayCollection,
+    key: 'super',
+  });
+
+  if (isObject(superPermission)) {
+    const superAuth = getValueByKey({
+      data: superPermission,
+      key: 'permission',
+    });
+
+    if (isString(superAuth)) {
+      result = superAuth;
+    }
+  }
+
+  return result;
+}
+
+function getAllAuthority() {
   return getAllAuthorityCore();
 }
 
 export function checkIsSuper() {
-  const list = getAllAuthorityCore();
-  const superAuth = getAccessWayCollectionCache().super.permission ?? '';
+  const existCache = hasCache({ key: superPermissionCacheKey });
 
-  const isSuper = (list || []).find((o) => o === superAuth) || '';
+  if (existCache) {
+    result = getCache({ key: superPermissionCacheKey });
 
-  if (isSuper === superAuth) {
-    return true;
+    if (result !== undefined) {
+      return !!result;
+    }
   }
+
+  const superPermission = getSuperPermission();
+
+  if (!stringIsNullOrWhiteSpace(superPermission)) {
+    const list = getAllAuthority();
+    const isSuper = (list || []).find((o) => o === superPermission) || '';
+
+    if (isSuper === superPermission) {
+      setCache({
+        key: superPermissionCacheKey,
+        value: true,
+      });
+
+      return true;
+    }
+  }
+
+  setCache({
+    key: superPermissionCacheKey,
+    value: false,
+  });
 
   return false;
 }
 
-export function checkHasAuthorities(authCollection) {
+function checkHasAuthorities(authCollection) {
   let result = false;
 
   if (isArray(authCollection)) {
     authCollection.forEach((auth) => {
-      result = checkHasAuthority(auth);
+      result = checkHasAuthorityCore(auth);
 
       if (result) {
         return true;
@@ -86,7 +139,7 @@ export function checkHasAuthorities(authCollection) {
     });
 
     for (const auth in authCollection) {
-      result = checkHasAuthority(auth);
+      result = checkHasAuthorityCore(auth);
 
       if (result) {
         break;
@@ -97,7 +150,7 @@ export function checkHasAuthorities(authCollection) {
   }
 
   if (isString(authCollection)) {
-    result = checkHasAuthority(authCollection);
+    result = checkHasAuthorityCore(authCollection);
 
     return result;
   }
@@ -113,7 +166,11 @@ export function checkHasAuthorities(authCollection) {
   return result;
 }
 
-export function checkHasAuthority(auth) {
+function checkHasAuthorityCore(auth) {
+  if (checkIsSuper()) {
+    return true;
+  }
+
   if (isObject(auth)) {
     console.log({
       auth,
@@ -138,21 +195,9 @@ export function checkHasAuthority(auth) {
     }
   }
 
-  const list = getAllAuthorityCore();
+  const list = getAllAuthority();
 
   const accessWayCollection = getAccessWayCollectionCache();
-  const superAuth = accessWayCollection.super.permission ?? '';
-
-  const isSuper = (list || []).find((o) => o === superAuth);
-
-  if (isSuper === superAuth) {
-    setCache({
-      key: auth,
-      value: '1',
-    });
-
-    return true;
-  }
 
   const v = (list || []).find((o) => o === auth);
 
@@ -173,6 +218,34 @@ export function checkHasAuthority(auth) {
   });
 
   return result !== '0';
+}
+
+export function checkHasAuthority(auth) {
+  if (isObject(auth)) {
+    console.log({
+      auth,
+      attachedTargetName:
+        (this || null) != null
+          ? (this.constructor || null) != null
+            ? this.constructor.name
+            : ''
+          : '',
+    });
+  }
+
+  if (isArray(auth)) {
+    return checkHasAuthorities(auth);
+  }
+
+  if (isString(auth)) {
+    return checkHasAuthorityCore(auth);
+  }
+
+  recordObject({
+    auth,
+  });
+
+  throw new Error('auth need string or string array, please check in console.');
 }
 
 /**
