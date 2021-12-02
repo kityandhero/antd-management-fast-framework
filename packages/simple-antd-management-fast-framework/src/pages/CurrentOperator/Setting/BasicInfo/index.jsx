@@ -106,6 +106,8 @@ class BasicInfo extends BaseUpdateFormContent {
   establishCardCollectionConfig = () => {
     const { metaData, processing, dataLoading, avatar } = this.state;
 
+    const spinning = this.checkInProgress();
+
     return {
       list: [
         {
@@ -123,7 +125,7 @@ class BasicInfo extends BaseUpdateFormContent {
               },
             ],
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 6,
@@ -149,7 +151,7 @@ class BasicInfo extends BaseUpdateFormContent {
           title: {
             text: '基本信息',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 6,
@@ -175,7 +177,7 @@ class BasicInfo extends BaseUpdateFormContent {
             text: '头像上传',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -191,7 +193,7 @@ class BasicInfo extends BaseUpdateFormContent {
           title: {
             text: '简介描述',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,

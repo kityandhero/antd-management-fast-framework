@@ -325,6 +325,8 @@ class BasicInfo extends TabPageBase {
     const { metaData, processing, dataLoading, image, videoUrl, fileBase64, imageList, fileList } =
       this.state;
 
+    const spinning = this.checkInProgress();
+
     return {
       list: [
         {
@@ -373,7 +375,7 @@ class BasicInfo extends TabPageBase {
               },
             ],
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 18,
@@ -448,7 +450,7 @@ class BasicInfo extends TabPageBase {
             text: '配图上传',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -466,7 +468,7 @@ class BasicInfo extends TabPageBase {
             text: '单配图纯展示',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.imageShow,
@@ -497,7 +499,7 @@ class BasicInfo extends TabPageBase {
               },
             ],
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -522,7 +524,7 @@ class BasicInfo extends TabPageBase {
           title: {
             text: '表格展示',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,
@@ -623,7 +625,7 @@ class BasicInfo extends TabPageBase {
             text: '配图集合纯展示',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.imageListShow,
@@ -635,7 +637,7 @@ class BasicInfo extends TabPageBase {
           title: {
             text: '简介描述',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,
@@ -677,7 +679,7 @@ class BasicInfo extends TabPageBase {
           title: {
             text: '其他信息',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.onlyShowInput,

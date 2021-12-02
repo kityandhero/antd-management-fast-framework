@@ -204,6 +204,8 @@ class Index extends BaseAddForm {
   establishCardCollectionConfig = () => {
     const { processing, fadeBoxShow, image } = this.state;
 
+    const spinning = this.checkInProgress();
+
     return {
       list: [
         {
@@ -227,7 +229,7 @@ class Index extends BaseAddForm {
               },
             ],
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 12,
@@ -273,7 +275,7 @@ class Index extends BaseAddForm {
             text: '配图',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -324,7 +326,7 @@ class Index extends BaseAddForm {
           title: {
             text: '简介描述',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,
@@ -338,7 +340,7 @@ class Index extends BaseAddForm {
           title: {
             text: '动画展示',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,
@@ -403,7 +405,7 @@ class Index extends BaseAddForm {
           title: {
             text: '其他信息',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.nowTime,

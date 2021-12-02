@@ -149,6 +149,8 @@ class Index extends BaseUpdateDrawer {
   establishCardCollectionConfig = () => {
     const { dataLoading, processing, metaData, image, video } = this.state;
 
+    const spinning = this.checkInProgress();
+
     return {
       list: [
         {
@@ -156,7 +158,7 @@ class Index extends BaseUpdateDrawer {
             icon: <ContactsOutlined />,
             text: mediaItemData.title.label,
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,
@@ -171,7 +173,7 @@ class Index extends BaseUpdateDrawer {
             text: mediaItemData.image.label,
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -193,7 +195,7 @@ class Index extends BaseUpdateDrawer {
           title: {
             text: mediaItemData.description.label,
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,
@@ -206,7 +208,7 @@ class Index extends BaseUpdateDrawer {
           title: {
             text: mediaItemData.link.label,
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,
@@ -220,7 +222,7 @@ class Index extends BaseUpdateDrawer {
             icon: <VideoCameraOutlined />,
             text: mediaItemData.video.label,
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.videoUpload,
@@ -238,7 +240,7 @@ class Index extends BaseUpdateDrawer {
           title: {
             text: '其他信息',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.onlyShowInput,

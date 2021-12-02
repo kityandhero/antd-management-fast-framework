@@ -50,6 +50,8 @@ class Index extends BaseAddDrawer {
   establishCardCollectionConfig = () => {
     const { processing } = this.state;
 
+    const spinning = this.checkInProgress();
+
     return {
       list: [
         {
@@ -57,7 +59,7 @@ class Index extends BaseAddDrawer {
             icon: <ContactsOutlined />,
             text: '基本信息',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,
@@ -85,7 +87,7 @@ class Index extends BaseAddDrawer {
             icon: <ContactsOutlined />,
             text: '简介描述',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 24,
@@ -127,7 +129,7 @@ class Index extends BaseAddDrawer {
             icon: <ContactsOutlined />,
             text: '其他信息',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               type: cardConfig.contentItemType.nowTime,

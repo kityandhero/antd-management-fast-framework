@@ -92,6 +92,8 @@ class Password extends BaseUpdateFormContent {
   establishCardCollectionConfig = () => {
     const { processing, dataLoading } = this.state;
 
+    const spinning = this.checkInProgress();
+
     return {
       list: [
         {
@@ -99,7 +101,7 @@ class Password extends BaseUpdateFormContent {
           title: {
             text: '更新密码',
           },
-          spinning: this.checkInProgress(),
+          spinning,
           items: [
             {
               lg: 16,
