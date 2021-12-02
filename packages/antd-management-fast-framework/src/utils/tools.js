@@ -813,9 +813,13 @@ export function sortedUnique(array) {
  *
  */
 export function roundToTarget(v, len) {
+  if (!isMoney(v)) {
+    return 0;
+  }
+
   const temp = 10 ** len;
 
-  return Math.round(v * temp) / temp;
+  return Math.round(toMoney(v) * temp) / temp;
 }
 
 /**
@@ -868,75 +872,101 @@ export function getValueByKey({
 
   let result = v;
 
-  if (isFunction(convertBuilder)) {
-    result = convertBuilder(v);
-  } else if ((convert || null) != null) {
-    switch (convert) {
-      case convertCollection.number:
-        result = toNumber(v);
-        break;
-
-      case convertCollection.datetime:
-        result = toDatetime(v);
-        break;
-
-      case convertCollection.string:
-        result = toString(v);
-        break;
-
-      case convertCollection.moment:
-        result = toMoment({ data: toString(v) });
-        break;
-
-      case convertCollection.money:
-        result = toMoney(v);
-        break;
-
-      case convertCollection.array:
-        result = (v || null) == null ? [] : isArray(v) ? v : [v];
-        break;
-
-      default:
-        result = v;
-        break;
+  if ((convertBuilder || null) != null || (convert || null) != null) {
+    if (isFunction(convertBuilder)) {
+      result = convertTarget({
+        target: v,
+        convert: convertBuilder,
+      });
+    } else {
+      result = convertTarget({
+        target: v,
+        convert,
+      });
     }
   }
 
-  if (isFunction(formatBuilder)) {
-    result = formatBuilder(v);
-  } else if ((format || null) != null) {
-    switch (format) {
-      case formatCollection.money:
-        result = formatMoney(v);
-        break;
-
-      case formatCollection.datetime:
-        result = formatDatetime({
-          data: v,
-        });
-        break;
-
-      case formatCollection.chineseMoney:
-        result = formatMoneyToChinese(v);
-        break;
-
-      case formatCollection.percentage:
-        const d = 0;
-
-        if (!isMoney(v)) {
-          d = roundToTarget(v * 100, 1);
-        }
-
-        result = `${d}%`;
-        break;
-
-      default:
-        result = v;
-        break;
+  if ((formatBuilder || null) != null || (format || null) != null) {
+    if (isFunction(formatBuilder)) {
+      result = formatTarget({
+        target: v,
+        format: formatBuilder,
+      });
+    } else {
+      result = formatTarget({
+        target: v,
+        format,
+      });
     }
   }
 
   return result;
+}
+
+export function convertTarget({ target, convert }) {
+  if (isFunction(convert)) {
+    return convert(target);
+  }
+
+  if (isString(convert)) {
+    switch (convert) {
+      case convertCollection.number:
+        return toNumber(target);
+
+      case convertCollection.datetime:
+        return toDatetime(target);
+
+      case convertCollection.string:
+        return toString(target);
+
+      case convertCollection.moment:
+        return toMoment({ data: toString(target) });
+
+      case convertCollection.money:
+        return toMoney(target);
+
+      case convertCollection.array:
+        return (target || null) == null
+          ? []
+          : isArray(target)
+          ? target
+          : [target];
+
+      default:
+        return target;
+    }
+  }
+
+  return target;
+}
+
+export function formatTarget({ target, format }) {
+  if (isFunction(format)) {
+    return format(target);
+  }
+
+  if (isString(format)) {
+    switch (format) {
+      case formatCollection.money:
+        return formatMoney(target);
+
+      case formatCollection.datetime:
+        return formatDatetime({
+          data: target,
+        });
+
+      case formatCollection.chineseMoney:
+        return formatMoneyToChinese(target);
+
+      case formatCollection.percentage:
+        return `${roundToTarget(target * 100, 1)}%`;
+
+      default:
+        return target;
+    }
+  }
+
+  return target;
 }
 
 /**

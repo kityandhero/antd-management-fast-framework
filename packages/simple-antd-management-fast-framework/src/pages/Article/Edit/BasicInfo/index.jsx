@@ -14,6 +14,8 @@ import {
   toDatetime,
   getValueByKey,
   showInfoMessage,
+  formatTarget,
+  convertTarget,
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
   getTokenKeyName,
@@ -536,6 +538,7 @@ class BasicInfo extends TabPageBase {
                     canCopy: true,
                   },
                   {
+                    span: 2,
                     label: fieldData.title.label,
                     value: getValueByKey({
                       data: metaData,
@@ -554,6 +557,41 @@ class BasicInfo extends TabPageBase {
                     label: fieldData.subtitle.label,
                     value: '',
                     emptyValue: '空白值演示',
+                  },
+                  {
+                    label: '百分比转换',
+                    value: formatTarget({
+                      target: 0.24,
+                      format: formatCollection.percentage,
+                    }),
+                  },
+                  {
+                    label: '中文金额',
+                    value: formatTarget({
+                      target: 451.31,
+                      format: formatCollection.chineseMoney,
+                    }),
+                  },
+                  {
+                    label: '日期格式化',
+                    value: formatTarget({
+                      target: new Date(),
+                      format: formatCollection.datetime,
+                    }),
+                  },
+                  {
+                    label: '金额格式化',
+                    value: formatTarget({
+                      target: 451.31,
+                      format: formatCollection.money,
+                    }),
+                  },
+                  {
+                    label: '类型转换',
+                    value: convertTarget({
+                      target: 0.24,
+                      convert: convertCollection.string,
+                    }),
                   },
                   {
                     span: 2,
