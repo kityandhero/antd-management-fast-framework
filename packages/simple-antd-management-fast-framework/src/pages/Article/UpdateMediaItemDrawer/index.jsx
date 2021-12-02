@@ -220,7 +220,7 @@ class Index extends BaseUpdateDrawer {
             icon: <VideoCameraOutlined />,
             text: mediaItemData.video.label,
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.videoUpload,

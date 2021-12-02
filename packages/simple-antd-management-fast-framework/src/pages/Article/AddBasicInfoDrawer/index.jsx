@@ -57,7 +57,7 @@ class Index extends BaseAddDrawer {
             icon: <ContactsOutlined />,
             text: '基本信息',
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -85,7 +85,7 @@ class Index extends BaseAddDrawer {
             icon: <ContactsOutlined />,
             text: '简介描述',
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -127,7 +127,7 @@ class Index extends BaseAddDrawer {
             icon: <ContactsOutlined />,
             text: '其他信息',
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.nowTime,

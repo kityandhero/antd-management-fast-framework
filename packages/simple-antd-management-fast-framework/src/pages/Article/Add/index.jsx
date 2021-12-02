@@ -227,7 +227,7 @@ class Index extends BaseAddForm {
               },
             ],
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 12,
@@ -273,7 +273,7 @@ class Index extends BaseAddForm {
             text: '配图',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -324,7 +324,7 @@ class Index extends BaseAddForm {
           title: {
             text: '简介描述',
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -338,7 +338,7 @@ class Index extends BaseAddForm {
           title: {
             text: '动画展示',
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -403,7 +403,7 @@ class Index extends BaseAddForm {
           title: {
             text: '其他信息',
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.nowTime,

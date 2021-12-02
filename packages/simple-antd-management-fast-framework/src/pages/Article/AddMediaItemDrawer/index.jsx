@@ -120,7 +120,7 @@ class Index extends BaseAddDrawer {
             icon: <ContactsOutlined />,
             text: mediaItemData.title.label,
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -135,7 +135,7 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.image.label,
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -157,7 +157,7 @@ class Index extends BaseAddDrawer {
           title: {
             text: mediaItemData.description.label,
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -170,7 +170,7 @@ class Index extends BaseAddDrawer {
           title: {
             text: mediaItemData.link.label,
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -184,7 +184,7 @@ class Index extends BaseAddDrawer {
             icon: <VideoCameraOutlined />,
             text: mediaItemData.video.label,
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               lg: 24,
@@ -203,7 +203,7 @@ class Index extends BaseAddDrawer {
           title: {
             text: '其他信息',
           },
-          spinning: processing,
+          spinning: this.checkInProgress(),
           items: [
             {
               type: cardConfig.contentItemType.nowTime,
