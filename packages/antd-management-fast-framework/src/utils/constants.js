@@ -88,19 +88,64 @@ export const formNameCollection = {
   },
 };
 
+/**
+ * 转换集合
+ */
 export const convertCollection = {
+  /**
+   * 数字
+   */
   number: 'number',
+
+  /**
+   * 日期 date
+   */
   datetime: 'datetime',
+
+  /**
+   * 字符串
+   */
   string: 'string',
+
+  /**
+   * moment日期
+   */
   moment: 'moment',
+
+  /**
+   * 金额
+   */
   money: 'money',
+
+  /**
+   * 数组
+   */
   array: 'array',
 };
 
+/**
+ * 格式化集合
+ */
 export const formatCollection = {
+  /**
+   * 金额 ￥ 0.00
+   */
   money: 'money',
+
+  /**
+   * 格式化日期 YYYY-MM-DD hh:mm:ss
+   */
   datetime: 'datetime',
+
+  /**
+   * 中文金额
+   */
   chineseMoney: 'chineseMoney',
+
+  /**
+   * 百分比
+   */
+  percentage: 'percentage',
 };
 
 export const menuType = {

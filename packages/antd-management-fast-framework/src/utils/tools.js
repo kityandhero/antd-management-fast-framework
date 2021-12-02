@@ -920,6 +920,16 @@ export function getValueByKey({
         result = formatMoneyToChinese(v);
         break;
 
+      case formatCollection.percentage:
+        const d = 0;
+
+        if (!isMoney(v)) {
+          d = roundToTarget(v * 100, 1);
+        }
+
+        result = `${d}%`;
+        break;
+
       default:
         result = v;
         break;
