@@ -100,12 +100,22 @@ class SinglePageDrawer extends SinglePage {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
-    if (this.reloadWhenShow) {
-      const that = this;
+    const { firstLoadSuccess } = this.state;
 
-      setTimeout(() => {
-        that.reloadData();
-      }, 460);
+    // 未加载数据过数据的时候，进行加载
+    if (!firstLoadSuccess) {
+      // 设置界面效果为加载中，减少用户误解
+      this.setState({ dataLoading: true });
+
+      this.handleSearchReset(false, 700);
+    } else if (this.reloadWhenShow) {
+      this.reloadData(
+        { reloadAnimalShow: true },
+        () => {
+          this.setState({ reloadAnimalShow: false });
+        },
+        700,
+      );
     }
   };
 

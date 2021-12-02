@@ -113,17 +113,13 @@ class MultiPageDrawer extends MultiPage {
     if (!firstLoadSuccess) {
       // 设置界面效果为加载中，减少用户误解
       this.setState({ dataLoading: true });
-      const that = this;
 
-      that.handleSearchReset(false, 700);
+      this.handleSearchReset(false, 700);
     } else if (this.reloadWhenShow) {
-      this.setState({ reloadAnimalShow: true });
-      const that = this;
-
-      that.reloadData(
-        {},
+      this.reloadData(
+        { reloadAnimalShow: true },
         () => {
-          that.setState({ reloadAnimalShow: false });
+          this.setState({ reloadAnimalShow: false });
         },
         700,
       );
