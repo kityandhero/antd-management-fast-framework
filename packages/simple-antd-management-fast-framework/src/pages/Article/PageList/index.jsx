@@ -71,6 +71,7 @@ import ChangeSortModal from '../ChangeSortModal';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
+import { getStatusBadge } from '../Assist/tools';
 import { fieldData, mediaItemData, statusCollection } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({
@@ -329,26 +330,6 @@ class PageList extends MultiPage {
       articleId: '',
       articleTitle: '',
     });
-  };
-
-  getStatusBadge = (v) => {
-    let result = 'default';
-
-    switch (v) {
-      case statusCollection.online:
-        result = 'processing';
-        break;
-
-      case statusCollection.offline:
-        result = 'warning';
-        break;
-
-      default:
-        result = 'default';
-        break;
-    }
-
-    return result;
   };
 
   goToAdd = () => {
@@ -855,7 +836,7 @@ class PageList extends MultiPage {
       facadeMode: columnFacadeMode.badge,
       facadeConfigBuilder: (val) => {
         return {
-          status: this.getStatusBadge(val),
+          status: getStatusBadge(val),
           text: getArticleStatusName({
             global: this.getGlobal(),
             value: val,

@@ -55,6 +55,7 @@ import SingleListDrawer from '../SingleListDrawer';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
+import { getStatusBadge } from '../Assist/tools';
 import { fieldData, statusCollection } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({
@@ -310,26 +311,6 @@ class SingleList extends SinglePage {
     this.setState({
       changeSortModalVisible: false,
     });
-  };
-
-  getStatusBadge = (v) => {
-    let result = 'default';
-
-    switch (v) {
-      case 1:
-        result = 'processing';
-        break;
-
-      case 0:
-        result = 'warning';
-        break;
-
-      default:
-        result = 'default';
-        break;
-    }
-
-    return result;
   };
 
   goToAdd = () => {
@@ -675,7 +656,7 @@ class SingleList extends SinglePage {
       facadeMode: columnFacadeMode.badge,
       facadeConfigBuilder: (val) => {
         return {
-          status: this.getStatusBadge(val),
+          status: getStatusBadge(val),
           text: getArticleStatusName({
             global: this.getGlobal(),
             value: val,
