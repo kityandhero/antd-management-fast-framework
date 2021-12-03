@@ -136,6 +136,22 @@ class Common extends Core {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   checkNeedUpdate = (preProps, preState, snapshot) => false;
 
+  getGlobal = () => {
+    const { global } = this.props;
+
+    if ((global || null) == null) {
+      const text = 'global is null, function getGlobal need override. ';
+
+      showRuntimeError({
+        message: text,
+      });
+
+      throw new Error(text);
+    }
+
+    return global;
+  };
+
   // 该方法必须重载覆盖
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getApiData = (props) => {
