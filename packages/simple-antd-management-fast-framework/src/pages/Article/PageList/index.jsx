@@ -862,21 +862,22 @@ class PageList extends MultiPage {
       dataTarget: fieldData.customOperate,
       width: 106,
       fixed: 'right',
-      render: (text, r) => {
+      facadeMode: columnFacadeMode.operate,
+      configBuilder: (text, record) => {
         const itemStatus = getValueByKey({
-          data: r,
+          data: record,
           key: fieldData.status.name,
           convert: convertCollection.number,
         });
 
-        return buildDropdown({
+        return {
           size: 'small',
           text: '编辑',
           icon: <FormOutlined />,
           handleButtonClick: ({ handleData }) => {
             this.goToEdit(handleData);
           },
-          handleData: r,
+          handleData: record,
           confirm: {
             title: '将要进行编辑，确定吗？',
           },
@@ -932,7 +933,7 @@ class PageList extends MultiPage {
               },
             },
           ],
-        });
+        };
       },
     },
   ];

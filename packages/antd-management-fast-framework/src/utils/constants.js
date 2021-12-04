@@ -216,6 +216,12 @@ export const columnFacadeMode = {
    * value : money
    */
   money: 'money',
+
+  /**
+   * 操作
+   * value : component
+   */
+  operate: 'operate',
 };
 
 export const columnPlaceholder = {

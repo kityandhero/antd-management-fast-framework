@@ -3164,6 +3164,16 @@ export function buildColumnItem({
         );
       }
 
+      if (facadeMode === columnFacadeMode.operate) {
+        if (!isFunction(d.configBuilder)) {
+          return null;
+        }
+
+        const operateConfig = d.configBuilder(value, record, index);
+
+        return buildDropdown(operateConfig);
+      }
+
       throw new Error(`无效的渲染模式：${facadeMode}`);
     };
   }
