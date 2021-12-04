@@ -790,6 +790,7 @@ export function buildCustomGrid({ key = null, list, props }) {
       bordered: borderedSource,
       colon: colonSource,
       size: sizeSource,
+      ellipsis,
     } = {
       ...{
         title: '',
@@ -801,6 +802,7 @@ export function buildCustomGrid({ key = null, list, props }) {
         bordered: false,
         colon: true,
         size: null,
+        ellipsis: true,
       },
       ...(props || {}),
     };
@@ -842,15 +844,13 @@ export function buildCustomGrid({ key = null, list, props }) {
       ? { borderTop: '1px solid #f0f0f0', borderLeft: '1px solid #f0f0f0' }
       : null;
 
-    const labelStyle = bordered
-      ? {
-          ...{
-            width: '180px',
-          },
-          ...(labelStyleSource || {}),
-          ...{ margin },
-        }
-      : {};
+    const labelStyle = {
+      ...{
+        width: '180px',
+      },
+      ...(labelStyleSource || {}),
+      ...(bordered ? { margin } : {}),
+    };
 
     const contentStyle = bordered
       ? {
@@ -956,13 +956,13 @@ export function buildCustomGrid({ key = null, list, props }) {
                         ...(isEmpty ? itemEmptyStyle || {} : {}),
                         ...{
                           WebkitBoxOrient: 'vertical',
-                          WebkitLineClamp: '1',
                           overflow: 'hidden',
                           display: '-webkit-box',
                           textOverflow: 'ellipsis',
                           wordBreak: 'break-all',
                           whiteSpace: 'normal',
                         },
+                        ...(ellipsis ? { WebkitLineClamp: '1' } : {}),
                       }}
                     >
                       {v}

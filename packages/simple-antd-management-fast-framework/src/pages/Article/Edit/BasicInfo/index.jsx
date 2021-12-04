@@ -5,6 +5,7 @@ import {
   InfoCircleFilled,
   FormOutlined,
   SortAscendingOutlined,
+  ContactsOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -464,23 +465,6 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
-            icon: <PictureOutlined />,
-            text: '单配图纯展示',
-            subText: '[上传后需点击保存按钮保存！]',
-          },
-          spinning,
-          items: [
-            {
-              type: cardConfig.contentItemType.imageShow,
-              image,
-              imageBoxContainorStyle: {
-                width: '120px',
-              },
-            },
-          ],
-        },
-        {
-          title: {
             text: '图片相册',
             subText:
               '[相册最大容量为8张图片，大小必须统一640*640（800*800），图片相册的添加和删除将自动保存，产品其他信息请在修改后点击保存按钮!]',
@@ -522,7 +506,36 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
-            text: '表格展示',
+            icon: <PictureOutlined />,
+            text: '单配图纯展示',
+          },
+          spinning,
+          items: [
+            {
+              type: cardConfig.contentItemType.imageShow,
+              image,
+              imageBoxContainorStyle: {
+                width: '120px',
+              },
+            },
+          ],
+        },
+        {
+          title: {
+            icon: <PictureOutlined />,
+            text: '配图集合纯展示',
+          },
+          spinning,
+          items: [
+            {
+              type: cardConfig.contentItemType.imageListShow,
+              imageList,
+            },
+          ],
+        },
+        {
+          title: {
+            text: '自构建表格展示',
           },
           spinning,
           items: [
@@ -621,15 +634,342 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
-            icon: <PictureOutlined />,
-            text: '配图集合纯展示',
-            subText: '[上传后需点击保存按钮保存！]',
+            text: '内嵌表格展示',
           },
           spinning,
           items: [
             {
-              type: cardConfig.contentItemType.imageListShow,
-              imageList,
+              lg: 12,
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  span: 2,
+                  label: fieldData.title.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.title.name,
+                  }),
+                },
+                {
+                  label: fieldData.subtitle.label,
+                  value: '',
+                  emptyValue: '空白值演示',
+                },
+                {
+                  label: '百分比转换',
+                  value: formatTarget({
+                    target: 0.24,
+                    format: formatCollection.percentage,
+                  }),
+                },
+                {
+                  label: fieldData.articleId.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.articleId.name,
+                  }),
+                  canCopy: true,
+                },
+                {
+                  label: fieldData.sort.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.sort.name,
+                    convert: convertCollection.string,
+                  }),
+                },
+              ],
+              props: {
+                title: '标题标题',
+                bordered: true,
+                column: 2,
+                emptyStyle: {
+                  color: '#cccccc',
+                },
+                emptyValue: '待完善',
+                labelStyle: {
+                  width: '140px',
+                },
+              },
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  label: '中文金额',
+                  value: formatTarget({
+                    target: 451.31,
+                    format: formatCollection.chineseMoney,
+                  }),
+                },
+                {
+                  label: '日期格式化',
+                  value: formatTarget({
+                    target: new Date(),
+                    format: formatCollection.datetime,
+                  }),
+                },
+                {
+                  label: '金额格式化',
+                  value: formatTarget({
+                    target: 451.31,
+                    format: formatCollection.money,
+                  }),
+                },
+                {
+                  label: '类型转换',
+                  value: convertTarget({
+                    target: 0.24,
+                    convert: convertCollection.string,
+                  }),
+                },
+                {
+                  span: 2,
+                  label: fieldData.description.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.description.name,
+                  }),
+                },
+              ],
+              props: {
+                title: '标题标题',
+                bordered: true,
+                column: 2,
+                emptyStyle: {
+                  color: '#cccccc',
+                },
+                emptyValue: '待完善',
+                labelStyle: {
+                  width: '100px',
+                },
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.divider,
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  span: 2,
+                  label: fieldData.title.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.title.name,
+                  }),
+                },
+                {
+                  label: fieldData.subtitle.label,
+                  value: '',
+                  emptyValue: '空白值演示',
+                },
+                {
+                  label: '百分比转换',
+                  value: formatTarget({
+                    target: 0.24,
+                    format: formatCollection.percentage,
+                  }),
+                },
+                {
+                  label: fieldData.articleId.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.articleId.name,
+                  }),
+                  canCopy: true,
+                },
+                {
+                  label: fieldData.sort.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.sort.name,
+                    convert: convertCollection.string,
+                  }),
+                },
+              ],
+              props: {
+                size: 'small',
+                bordered: true,
+                column: 2,
+                emptyStyle: {
+                  color: '#cccccc',
+                },
+                emptyValue: '待完善',
+                labelStyle: {
+                  width: '100px',
+                },
+              },
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  label: '中文金额',
+                  value: formatTarget({
+                    target: 451.31,
+                    format: formatCollection.chineseMoney,
+                  }),
+                },
+                {
+                  label: '日期格式化',
+                  value: formatTarget({
+                    target: new Date(),
+                    format: formatCollection.datetime,
+                  }),
+                },
+                {
+                  label: '金额格式化',
+                  value: formatTarget({
+                    target: 451.31,
+                    format: formatCollection.money,
+                  }),
+                },
+                {
+                  label: '类型转换',
+                  value: convertTarget({
+                    target: 0.24,
+                    convert: convertCollection.string,
+                  }),
+                },
+                {
+                  span: 2,
+                  label: fieldData.description.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.description.name,
+                  }),
+                },
+              ],
+              props: {
+                size: 'small',
+                bordered: true,
+                column: 2,
+                emptyStyle: {
+                  color: '#cccccc',
+                },
+                emptyValue: '待完善',
+                labelStyle: {
+                  width: '100px',
+                },
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.divider,
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  span: 2,
+                  label: fieldData.title.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.title.name,
+                  }),
+                },
+                {
+                  label: fieldData.subtitle.label,
+                  value: '',
+                  emptyValue: '空白值演示',
+                },
+                {
+                  label: '百分比转换',
+                  value: formatTarget({
+                    target: 0.24,
+                    format: formatCollection.percentage,
+                  }),
+                },
+                {
+                  label: fieldData.articleId.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.articleId.name,
+                  }),
+                  canCopy: true,
+                },
+                {
+                  label: fieldData.sort.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.sort.name,
+                    convert: convertCollection.string,
+                  }),
+                },
+              ],
+              props: {
+                size: 'small',
+                bordered: false,
+                column: 2,
+                emptyStyle: {
+                  color: '#cccccc',
+                },
+                emptyValue: '待完善',
+                labelStyle: {
+                  width: '100px',
+                },
+              },
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  label: '中文金额',
+                  value: formatTarget({
+                    target: 451.31,
+                    format: formatCollection.chineseMoney,
+                  }),
+                },
+                {
+                  label: '日期格式化',
+                  value: formatTarget({
+                    target: new Date(),
+                    format: formatCollection.datetime,
+                  }),
+                },
+                {
+                  label: '金额格式化',
+                  value: formatTarget({
+                    target: 451.31,
+                    format: formatCollection.money,
+                  }),
+                },
+                {
+                  label: '类型转换',
+                  value: convertTarget({
+                    target: 0.24,
+                    convert: convertCollection.string,
+                  }),
+                },
+                {
+                  span: 2,
+                  label: fieldData.description.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.description.name,
+                  }),
+                },
+              ],
+              props: {
+                size: 'small',
+                bordered: false,
+                column: 2,
+                emptyStyle: {
+                  color: '#cccccc',
+                },
+                emptyValue: '待完善',
+                labelStyle: {
+                  width: '100px',
+                },
+                ellipsis: false,
+              },
             },
           ],
         },
@@ -670,6 +1010,44 @@ class BasicInfo extends TabPageBase {
                 },
                 {
                   text: '这是一些操作说明2',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: {
+            text: '简介描述',
+          },
+          spinning,
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.html,
+              html: getValueByKey({
+                data: metaData,
+                key: fieldData.description.name,
+              }),
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.divider,
+              text: '空白数据',
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.html,
+              html: '',
+            },
+          ],
+          instruction: [
+            {
+              title: '说明',
+              showDivider: false,
+              showNumber: true,
+              list: [
+                {
+                  text: 'Html数据展示，空白将替换为Empty',
                 },
               ],
             },

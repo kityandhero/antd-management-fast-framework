@@ -547,6 +547,16 @@ export const cardConfig = {
      * 分隔符
      */
     divider: 'divider',
+
+    /**
+     * Html
+     */
+    html: 'html',
+
+    /**
+     * CustomGrid
+     */
+    customGrid: 'customGrid',
   },
 };
 

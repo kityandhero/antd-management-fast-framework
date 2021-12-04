@@ -1,4 +1,7 @@
 import React, { PureComponent } from 'react';
+import { Empty } from 'antd';
+
+import { stringIsNullOrWhiteSpace } from '../../utils/tools';
 
 import styles from './index.less';
 
@@ -15,13 +18,20 @@ class HtmlBox extends PureComponent {
   }
 
   renderToHtml = () => {
-    const { children } = this.props;
+    const { html } = this.props;
+
     if (this.main) {
-      this.main.innerHTML = children;
+      this.main.innerHTML = html;
     }
   };
 
   render() {
+    const { useEmpty, html } = this.props;
+
+    if (!!useEmpty && stringIsNullOrWhiteSpace(html)) {
+      return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
+    }
+
     return (
       <span
         className={styles.richTextBox}
@@ -32,5 +42,10 @@ class HtmlBox extends PureComponent {
     );
   }
 }
+
+HtmlBox.defaultProps = {
+  useEmpty: true,
+  html: '',
+};
 
 export default HtmlBox;

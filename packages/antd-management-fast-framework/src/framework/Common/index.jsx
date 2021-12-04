@@ -62,8 +62,10 @@ import FileBase64Upload from '../../customComponents/FileBase64Upload';
 import FadeBox from '../../customComponents/AnimalBox/FadeBox';
 import QueueBox from '../../customComponents/AnimalBox/QueueBox';
 import ColorText from '../../customComponents/ColorText';
+import HtmlBox from '../../customComponents/HtmlBox';
 
 import {
+  buildCustomGrid,
   buildRadioItem,
   buildFormRadio,
   buildOptionItem,
@@ -1841,6 +1843,57 @@ class Common extends Core {
                         ? null
                         : contentItem.text}
                     </Divider>
+                  </Col>
+                );
+              }
+
+              if (type === cardConfig.contentItemType.customGrid) {
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg}
+                    md={lg || md}
+                    sm={lg || sm}
+                    xs={lg || xs}
+                  >
+                    {buildCustomGrid({
+                      list: isArray(contentItem.list) ? contentItem.list : [],
+                      props: {
+                        ...{
+                          bordered: true,
+                          column: 3,
+                          emptyStyle: {
+                            color: '#cccccc',
+                          },
+                          emptyValue: '暂无',
+                          labelStyle: {
+                            width: '100px',
+                          },
+                        },
+                        ...(contentItem.props || {}),
+                      },
+                    })}
+                  </Col>
+                );
+              }
+
+              if (type === cardConfig.contentItemType.html) {
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg}
+                    md={lg || md}
+                    sm={lg || sm}
+                    xs={lg || xs}
+                  >
+                    <HtmlBox
+                      useEmpty={
+                        (contentItem.useEmpty || null) == null
+                          ? true
+                          : contentItem.useEmpty || false
+                      }
+                      html={contentItem.html || ''}
+                    />
                   </Col>
                 );
               }

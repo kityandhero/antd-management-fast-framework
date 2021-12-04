@@ -404,11 +404,14 @@ class BasicInfo extends TabPageBase {
             bordered={false}
           >
             <Spin spinning={this.checkInProgress()}>
-              <HtmlBox>
-                {metaData === null
-                  ? ''
-                  : (metaData.stackTrace || '无').replace(new RegExp('\\r\\n', 'g'), '<br/>')}
-              </HtmlBox>
+              <HtmlBox
+                useEmpty
+                html={
+                  metaData === null
+                    ? ''
+                    : (metaData.stackTrace || '无').replace(new RegExp('\\r\\n', 'g'), '<br/>')
+                }
+              />
             </Spin>
           </Card>
         </div>
