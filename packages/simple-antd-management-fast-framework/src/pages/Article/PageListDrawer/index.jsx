@@ -60,12 +60,6 @@ class PageListDrawer extends MultiPageSelectDrawer {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
-  getGlobal = () => {
-    const { global } = this.props;
-
-    return global || null;
-  };
-
   getApiData = (props) => {
     const {
       article: { data },

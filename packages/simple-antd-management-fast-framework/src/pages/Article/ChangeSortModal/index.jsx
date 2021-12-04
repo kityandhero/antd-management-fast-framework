@@ -25,12 +25,6 @@ class ChangeSortModal extends BaseUpdateModal {
     };
   }
 
-  getGlobal = () => {
-    const { global } = this.props;
-
-    return global || null;
-  };
-
   getApiData = (props) => {
     const {
       article: { data },

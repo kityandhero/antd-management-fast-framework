@@ -32,12 +32,6 @@ class Index extends BaseUpdateDrawer {
     };
   }
 
-  getGlobal = () => {
-    const { global } = this.props;
-
-    return global || null;
-  };
-
   getApiData = (props) => {
     const {
       article: { data },
