@@ -786,7 +786,7 @@ class PageList extends MultiPage {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
-      width: 680,
+      width: 620,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
@@ -862,7 +862,8 @@ class PageList extends MultiPage {
       dataTarget: fieldData.customOperate,
       width: 106,
       fixed: 'right',
-      facadeMode: columnFacadeMode.operate,
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.dropdown,
       configBuilder: (text, record) => {
         const itemStatus = getValueByKey({
           data: record,

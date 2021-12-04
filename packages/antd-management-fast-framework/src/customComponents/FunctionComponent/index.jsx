@@ -3164,7 +3164,7 @@ export function buildColumnItem({
         );
       }
 
-      if (facadeMode === columnFacadeMode.operate) {
+      if (facadeMode === columnFacadeMode.dropdown) {
         if (!isFunction(d.configBuilder)) {
           return null;
         }

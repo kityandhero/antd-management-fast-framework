@@ -218,10 +218,10 @@ export const columnFacadeMode = {
   money: 'money',
 
   /**
-   * 操作
-   * value : component
+   * dropdown
+   * value : dropdown component
    */
-  operate: 'operate',
+  dropdown: 'dropdown',
 };
 
 export const columnPlaceholder = {
