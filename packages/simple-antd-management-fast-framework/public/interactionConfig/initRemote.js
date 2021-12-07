@@ -7,7 +7,7 @@ window.appInitCustomRemote = {
   shareLogo: '',
   shareLogoName: '测试平台',
   leftBarLogo: '',
-  leftBarText: '测试系统',
+  leftBarText: '测试系统测试平台测试平台',
   companyName: '中国***公司',
   copyright: '2020 中国****科技有限公司 技术部出品',
   apiPrefix: {

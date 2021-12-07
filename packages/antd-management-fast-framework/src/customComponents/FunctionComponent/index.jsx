@@ -1212,7 +1212,11 @@ export function buildMenuHeaderRender({
   shortName,
 }) {
   return (
-    <>
+    <div
+      style={{
+        overflow: 'hidden',
+      }}
+    >
       <FlexBox
         flexAuto="right"
         left={logoDom}
@@ -1235,6 +1239,7 @@ export function buildMenuHeaderRender({
                     lineHeight: '32px',
                     overflow: 'hidden',
                     height: '100%',
+                    whiteSpace: 'nowrap',
                   },
                   ...(navTheme === 'light' ? { color: '#000000d9' } : {}),
                 }}
@@ -1245,7 +1250,7 @@ export function buildMenuHeaderRender({
           )
         }
       />
-    </>
+    </div>
   );
 }
 
