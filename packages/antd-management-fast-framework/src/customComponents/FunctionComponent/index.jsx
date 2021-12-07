@@ -1225,8 +1225,7 @@ export function buildMenuHeaderRender({
                 height: '100%',
               }}
             >
-              <Title
-                level={1}
+              <div
                 style={{
                   ...{
                     margin: ' 0 0 0 12px',
@@ -1234,14 +1233,14 @@ export function buildMenuHeaderRender({
                     color: 'white',
                     fontWeight: '600',
                     lineHeight: '32px',
+                    overflow: 'hidden',
+                    height: '100%',
                   },
                   ...(navTheme === 'light' ? { color: '#000000d9' } : {}),
                 }}
               >
-                <TextAnimal type="alpha" mode="smooth">
-                  {shortName || '应用简称'}
-                </TextAnimal>
-              </Title>
+                {shortName || '应用简称'}
+              </div>
             </VerticalBox>
           )
         }
