@@ -5,7 +5,7 @@ import {
   isFunction,
   showRuntimeError,
 } from '../../utils/tools';
-import { checkHasAuthority, checkHasAuthorities } from '../../utils/authority';
+import { checkHasAuthority } from '../../utils/authority';
 
 import SupplementWrapper from '../CustomWrapper/SupplementWrapper';
 
@@ -43,8 +43,6 @@ class AuthorizationWrapper extends SupplementWrapper {
   };
 
   checkAuthority = (auth) => checkHasAuthority(auth);
-
-  checkAuthorities = (auth) => checkHasAuthorities(auth);
 
   getCurrentOperator = () => {
     const {
