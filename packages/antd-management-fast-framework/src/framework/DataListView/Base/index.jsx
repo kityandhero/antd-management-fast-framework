@@ -16,6 +16,7 @@ import {
   Spin,
   Pagination,
   Affix,
+  Layout,
 } from 'antd';
 import {
   SearchOutlined,
@@ -42,6 +43,7 @@ import {
   datetimeFormat,
   pageHeaderRenderType,
   listViewConfig,
+  cardConfig,
 } from '../../../utils/constants';
 import IconInfo from '../../../customComponents/IconInfo';
 import {
@@ -73,6 +75,7 @@ import BatchAction from '../BatchAction';
 
 import styles from './index.less';
 
+const { Content, Sider } = Layout;
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
 
@@ -1525,7 +1528,67 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
-  renderPageContent = () => {
+  establishLeftViewConfig = () => {
+    return null;
+  };
+
+  renderLeftView = () => {
+    const config = this.establishLeftViewConfig();
+
+    if (config == null) {
+      return null;
+    }
+
+    const formContentWrapperTypeConfig = this.establishWrapperTypeConfig() || {
+      mode: cardConfig.wrapperType.page,
+    };
+    const configData = {
+      ...{
+        mode: cardConfig.wrapperType.page,
+        justify: 'start',
+        align: 'top',
+      },
+      ...(formContentWrapperTypeConfig || {}),
+      ...{ list: [] },
+      ...(config || {}),
+    };
+    const {
+      mode,
+      justify: justifyGeneral,
+      align: alignGeneral,
+      list,
+    } = configData;
+
+    const listData = [];
+
+    if (isArray(list)) {
+      list.forEach((co, ci) => {
+        listData.push(co);
+
+        if (ci !== list.length - 1) {
+          listData.push('');
+        }
+      });
+    }
+
+    return (
+      <>
+        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+          {listData.map((item, index) => {
+            return this.buildCardCollectionItem({
+              mode,
+              justify: justifyGeneral,
+              align: alignGeneral,
+              config: item,
+              key: index,
+            });
+          })}
+        </Space>
+      </>
+    );
+  };
+
+  renderRightView = () => {
     const { listTitle, renderSearchForm } = this.state;
 
     const extraAction = this.renderExtraActionView();
@@ -1535,44 +1598,119 @@ class ListBase extends AuthorizationWrapper {
     const hasPagination = this.renderPaginationView() != null;
 
     return (
+      <Space style={{ width: '100%' }} direction="vertical" size={24}>
+        {renderSearchForm && (searchForm || null) != null ? (
+          <>
+            <Card bordered={false} className={styles.containorSearch}>
+              <div className={styles.tableListForm}>{searchForm}</div>
+            </Card>
+          </>
+        ) : null}
+
+        <Card
+          title={listTitle}
+          headStyle={{ borderBottom: '0px' }}
+          bodyStyle={{
+            paddingTop: '0',
+            paddingBottom: hasPagination ? 0 : 24,
+          }}
+          bordered={false}
+          className={styles.containorTable}
+          extra={
+            <>
+              {extraAction}
+
+              {extraAction == null ? null : <Divider type="vertical" />}
+
+              {this.renderBatchAction()}
+
+              {this.renderCardExtraAction()}
+            </>
+          }
+        >
+          <div className={styles.tableList}>
+            {this.renderAboveTable()}
+            {this.renderView()}
+          </div>
+        </Card>
+      </Space>
+    );
+  };
+
+  establishPageContentLayoutSiderConfig = () => {
+    return {};
+  };
+
+  establishPageContentLayoutConfig = () => {
+    return {};
+  };
+
+  renderPageContent = () => {
+    const leftContentView = this.renderLeftView();
+    const rightContentView = this.renderRightView();
+
+    const layoutSiderConfig = this.establishPageContentLayoutSiderConfig();
+    let layoutConfig = this.establishPageContentLayoutConfig();
+
+    const { position: siderPosition } = {
+      ...{
+        position: 'left',
+      },
+      ...(layoutSiderConfig || {}),
+    };
+
+    const siderConfig = {
+      ...{
+        width: 300,
+        style: {
+          ...{
+            backgroundColor: '#fff',
+            borderRadius: '4px',
+            overflowX: 'auto',
+            overflowY: 'hidden',
+          },
+          ...(siderPosition === 'left'
+            ? { marginRight: '24px' }
+            : { marginLeft: '24px' }),
+        },
+      },
+      ...(layoutSiderConfig || {}),
+    };
+
+    layoutConfig = {
+      ...{
+        breakpoint: 'sm',
+        style: {
+          backgroundColor: '#f0f2f5',
+          minHeight: 'auto',
+        },
+      },
+      ...(layoutConfig || {}),
+    };
+
+    const inner =
+      leftContentView == null ? (
+        rightContentView
+      ) : (
+        <Layout {...layoutConfig}>
+          {siderPosition === 'left' ? (
+            <Sider {...siderConfig}>{leftContentView}</Sider>
+          ) : null}
+
+          <Content>{rightContentView}</Content>
+
+          {siderPosition !== 'left' ? (
+            <Sider {...siderConfig}>{leftContentView}</Sider>
+          ) : null}
+        </Layout>
+      );
+
+    return (
       <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
         <Space style={{ width: '100%' }} direction="vertical" size={24}>
           {this.buildToolBarWrapper()}
 
-          {renderSearchForm && (searchForm || null) != null ? (
-            <>
-              <Card bordered={false} className={styles.containorSearch}>
-                <div className={styles.tableListForm}>{searchForm}</div>
-              </Card>
-            </>
-          ) : null}
-
-          <Card
-            title={listTitle}
-            headStyle={{ borderBottom: '0px' }}
-            bodyStyle={{
-              paddingTop: '0',
-              paddingBottom: hasPagination ? 0 : 24,
-            }}
-            bordered={false}
-            className={styles.containorTable}
-            extra={
-              <>
-                {extraAction}
-
-                {extraAction == null ? null : <Divider type="vertical" />}
-
-                {this.renderBatchAction()}
-
-                {this.renderCardExtraAction()}
-              </>
-            }
-          >
-            <div className={styles.tableList}>
-              {this.renderAboveTable()}
-              {this.renderView()}
-            </div>
-          </Card>
+          {inner}
 
           {this.buildHelpWrapper()}
         </Space>

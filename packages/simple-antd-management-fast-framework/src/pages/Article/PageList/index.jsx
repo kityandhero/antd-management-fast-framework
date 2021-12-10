@@ -53,6 +53,7 @@ import {
   buildDropdown,
   buildDropdownEllipsis,
   buildTagList,
+  buildColorText,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -98,7 +99,7 @@ class PageList extends MultiPage {
         paramsKey: accessWayCollection.article.pageList.paramsKey,
         listViewMode: listViewConfig.viewMode.table,
         pageSize: 8,
-        // tableScroll: { x: 1720 },
+        tableScroll: { x: 1620 },
         loadApiPath: 'article/pageList',
         changeSortModalVisible: false,
         addBasicInfoDrawerVisible: false,
@@ -1000,6 +1001,99 @@ class PageList extends MultiPage {
         ) : null}
       </>
     );
+  };
+
+  establishLeftViewConfig = () => {
+    const spinning = this.checkInProgress();
+
+    return {
+      list: [
+        {
+          title: {
+            text: '基本信息',
+            subText: buildColorText({
+              textPrefix: '文本前缀',
+              text: '附属文本',
+              color: '#8909ef',
+              wrapperBuilder: (c) => {
+                return <>【{c}】</>;
+              },
+            }),
+          },
+          // extra: {
+          //   affix: true,
+          //   split: false,
+          //   list: [
+          //     {
+          //       buildType: cardConfig.extraBuildType.iconInfo,
+          //       icon: <InfoCircleFilled />,
+          //       text: '一些说明',
+          //     },
+          //     {
+          //       buildType: cardConfig.extraBuildType.generalButton,
+          //       icon: <FormOutlined />,
+          //       text: '一般按钮',
+          //     },
+          //     {
+          //       buildType: cardConfig.extraBuildType.generalButton,
+          //       hidden: true,
+          //       icon: <FormOutlined />,
+          //       text: '隐藏按钮',
+          //     },
+          //     {
+          //       buildType: cardConfig.extraBuildType.refresh,
+          //     },
+          //     {
+          //       buildType: cardConfig.extraBuildType.save,
+          //     },
+          //   ],
+          // },
+          spinning,
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.title,
+              require: true,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.divider,
+              text: '分隔线',
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.subtitle,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.inputNumber,
+              fieldData: fieldData.sort,
+            },
+          ],
+          instruction: {
+            title: '局部操作说明',
+            showDivider: false,
+            showNumber: true,
+            list: [
+              {
+                text: '这是一些操作说明1',
+              },
+              {
+                text: '这是一些操作说明2',
+              },
+            ],
+          },
+        },
+      ],
+    };
+  };
+
+  establishPageContentLayoutSiderConfig = () => {
+    return {
+      position: 'right',
+    };
   };
 }
 
