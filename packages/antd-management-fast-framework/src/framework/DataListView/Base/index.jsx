@@ -1742,17 +1742,25 @@ class ListBase extends AuthorizationWrapper {
         </Layout>
       );
 
-    return (
-      <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
-        <Space style={{ width: '100%' }} direction="vertical" size={24}>
-          {this.buildToolBarWrapper()}
+    const toolbar = this.buildToolBarWrapper();
 
-          {inner}
+    const help = this.buildHelpWrapper();
 
-          {this.buildHelpWrapper()}
-        </Space>
-      </div>
-    );
+    if ((toolbar || null) != null || (help || null) != null) {
+      return (
+        <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
+          <Space style={{ width: '100%' }} direction="vertical" size={24}>
+            {this.buildToolBarWrapper()}
+
+            {inner}
+
+            {this.buildHelpWrapper()}
+          </Space>
+        </div>
+      );
+    }
+
+    return inner;
   };
 
   renderPageBody = () => {
