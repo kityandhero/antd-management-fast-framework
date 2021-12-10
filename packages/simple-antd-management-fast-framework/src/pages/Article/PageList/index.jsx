@@ -84,6 +84,8 @@ import { fieldData, mediaItemData, statusCollection } from '../Common/data';
 class PageList extends MultiPage {
   restoreSearch = true;
 
+  showSearchForm = false;
+
   //在控制台中显示渲染次数，仅用于调试
   showRenderCountInConsole = true;
 
@@ -1173,7 +1175,7 @@ class PageList extends MultiPage {
 
   establishPageContentLayoutSiderConfig = () => {
     return {
-      position: 'right',
+      position: 'left',
     };
   };
 }

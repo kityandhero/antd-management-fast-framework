@@ -227,7 +227,6 @@ class MultiPageDrawer extends MultiPage {
       processing,
       refreshing,
       listViewMode,
-      renderSearchForm,
     } = this.state;
 
     const extraAction = this.renderExtraActionView();
@@ -255,7 +254,7 @@ class MultiPageDrawer extends MultiPage {
               : {}
           }
         >
-          {renderSearchForm && (searchForm || null) != null ? (
+          {this.showSearchForm && (searchForm || null) != null ? (
             <div
               style={
                 listViewMode === listViewConfig.viewMode.list ? { flex: 0 } : {}
@@ -415,7 +414,7 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderContentContainor = () => {
-    const { listViewMode, renderSearchForm } = this.state;
+    const { listViewMode } = this.state;
 
     return (
       <div
@@ -428,7 +427,7 @@ class MultiPageDrawer extends MultiPage {
                 overflow: 'hidden',
               }
             : { paddingBottom: 0 }),
-          ...(renderSearchForm ? {} : { paddingTop: 0 }),
+          ...(this.showSearchForm ? {} : { paddingTop: 0 }),
           ...{
             backgroundColor: '#fff',
           },

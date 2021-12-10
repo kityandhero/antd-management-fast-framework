@@ -92,6 +92,8 @@ class ListBase extends AuthorizationWrapper {
 
   useFrontendPagination = false;
 
+  showSearchForm = true;
+
   affixPaginationBar = true;
 
   formRef = React.createRef();
@@ -120,7 +122,6 @@ class ListBase extends AuthorizationWrapper {
         showPageHeaderAvatar: false,
         tableSize: listViewConfig.tableSize.middle,
         counterSetColumnsOtherConfig: 0,
-        renderSearchForm: true,
         showListViewItemActionSelect: false,
       },
     };
@@ -1621,7 +1622,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderContentArea = () => {
-    const { listTitle, renderSearchForm } = this.state;
+    const { listTitle } = this.state;
 
     const extraAction = this.renderExtraActionView();
 
@@ -1629,42 +1630,46 @@ class ListBase extends AuthorizationWrapper {
 
     const hasPagination = this.renderPaginationView() != null;
 
+    var gridView = (
+      <Card
+        title={listTitle}
+        headStyle={{ borderBottom: '0px' }}
+        bodyStyle={{
+          paddingTop: '0',
+          paddingBottom: hasPagination ? 0 : 24,
+        }}
+        bordered={false}
+        className={styles.containorTable}
+        extra={
+          <>
+            {extraAction}
+
+            {extraAction == null ? null : <Divider type="vertical" />}
+
+            {this.renderBatchAction()}
+
+            {this.renderCardExtraAction()}
+          </>
+        }
+      >
+        <div className={styles.tableList}>
+          {this.renderAboveTable()}
+          {this.renderView()}
+        </div>
+      </Card>
+    );
+
+    if (!this.showSearchForm || (searchForm || null) == null) {
+      return gridView;
+    }
+
     return (
       <Space style={{ width: '100%' }} direction="vertical" size={24}>
-        {renderSearchForm && (searchForm || null) != null ? (
-          <>
-            <Card bordered={false} className={styles.containorSearch}>
-              <div className={styles.tableListForm}>{searchForm}</div>
-            </Card>
-          </>
-        ) : null}
-
-        <Card
-          title={listTitle}
-          headStyle={{ borderBottom: '0px' }}
-          bodyStyle={{
-            paddingTop: '0',
-            paddingBottom: hasPagination ? 0 : 24,
-          }}
-          bordered={false}
-          className={styles.containorTable}
-          extra={
-            <>
-              {extraAction}
-
-              {extraAction == null ? null : <Divider type="vertical" />}
-
-              {this.renderBatchAction()}
-
-              {this.renderCardExtraAction()}
-            </>
-          }
-        >
-          <div className={styles.tableList}>
-            {this.renderAboveTable()}
-            {this.renderView()}
-          </div>
+        <Card bordered={false} className={styles.containorSearch}>
+          <div className={styles.tableListForm}>{searchForm}</div>
         </Card>
+
+        {gridView}
       </Space>
     );
   };

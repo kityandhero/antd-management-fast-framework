@@ -21,6 +21,7 @@ import {
   DatePicker,
   Badge,
   Tree,
+  Alert,
 } from 'antd';
 import {
   EllipsisOutlined,
@@ -771,6 +772,10 @@ export function buildMenu({
 
 export function buildTree(props) {
   return <Tree {...props} />;
+}
+
+export function buildAlert(props) {
+  return <Alert {...props} />;
 }
 
 export function buildCustomGrid({ key = null, list, props }) {

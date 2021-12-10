@@ -203,14 +203,8 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderViewContainor = () => {
-    const {
-      reloadAnimalShow,
-      listTitle,
-      tableSize,
-      refreshing,
-      listViewMode,
-      renderSearchForm,
-    } = this.state;
+    const { reloadAnimalShow, listTitle, tableSize, refreshing, listViewMode } =
+      this.state;
 
     const extraAction = this.renderExtraActionView();
     const searchForm = this.renderForm();
@@ -237,7 +231,7 @@ class SinglePageDrawer extends SinglePage {
               : {}
           }
         >
-          {renderSearchForm && (searchForm || null) != null ? (
+          {this.showSearchForm && (searchForm || null) != null ? (
             <div
               style={
                 listViewMode === listViewConfig.viewMode.list ? { flex: 0 } : {}
@@ -392,7 +386,7 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderContentContainor = () => {
-    const { listViewMode, renderSearchForm } = this.state;
+    const { listViewMode } = this.state;
 
     return (
       <div
@@ -405,7 +399,7 @@ class SinglePageDrawer extends SinglePage {
                 overflow: 'hidden',
               }
             : { paddingBottom: 0 }),
-          ...(renderSearchForm ? {} : { paddingTop: 0 }),
+          ...(this.showSearchForm ? {} : { paddingTop: 0 }),
           ...{
             backgroundColor: '#fff',
           },
