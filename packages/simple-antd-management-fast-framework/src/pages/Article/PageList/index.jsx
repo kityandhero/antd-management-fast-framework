@@ -1023,34 +1023,14 @@ class PageList extends MultiPage {
               },
             }),
           },
-          // extra: {
-          //   affix: true,
-          //   split: false,
-          //   list: [
-          //     {
-          //       buildType: cardConfig.extraBuildType.iconInfo,
-          //       icon: <InfoCircleFilled />,
-          //       text: '一些说明',
-          //     },
-          //     {
-          //       buildType: cardConfig.extraBuildType.generalButton,
-          //       icon: <FormOutlined />,
-          //       text: '一般按钮',
-          //     },
-          //     {
-          //       buildType: cardConfig.extraBuildType.generalButton,
-          //       hidden: true,
-          //       icon: <FormOutlined />,
-          //       text: '隐藏按钮',
-          //     },
-          //     {
-          //       buildType: cardConfig.extraBuildType.refresh,
-          //     },
-          //     {
-          //       buildType: cardConfig.extraBuildType.save,
-          //     },
-          //   ],
-          // },
+          extra: {
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.refresh,
+                size: 'small',
+              },
+            ],
+          },
           spinning,
           items: [
             {

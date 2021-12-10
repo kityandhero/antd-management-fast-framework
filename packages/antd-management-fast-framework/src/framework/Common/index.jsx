@@ -1174,20 +1174,22 @@ class Common extends Core {
     return {};
   };
 
-  renderRefreshButton = () => {
-    const { dataLoading, reloading, processing, loadSuccess } = this.state;
+  renderRefreshButton = (props = null) => {
+    const { size, text } = {
+      ...{
+        size: 'default',
+        text: '刷新',
+      },
+      ...(props || {}),
+    };
 
-    return (
-      <Button
-        disabled={dataLoading || reloading || processing || !loadSuccess}
-        onClick={this.reloadData}
-      >
-        <IconInfo
-          icon={reloading ? <LoadingOutlined /> : <ReloadOutlined />}
-          text="刷新"
-        />
-      </Button>
-    );
+    return buildButton({
+      size,
+      text,
+      icon: <ReloadOutlined />,
+      disabled: this.checkOperability(),
+      handleClick: this.reloadData,
+    });
   };
 
   getUploadTokenObject = () => {
@@ -2537,7 +2539,7 @@ class Common extends Core {
 
           switch (buildType) {
             case cardConfig.extraBuildType.refresh:
-              itemAdjust = this.renderRefreshButton();
+              itemAdjust = this.renderRefreshButton(item);
               break;
 
             case cardConfig.extraBuildType.save:
