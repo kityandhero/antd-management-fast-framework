@@ -1528,13 +1528,35 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
-  establishLeftViewConfig = () => {
+  establishSiderTopAreaConfig = () => {
     return null;
   };
 
-  renderLeftView = () => {
-    const config = this.establishLeftViewConfig();
+  renderSiderTopArea = () => {
+    const config = this.establishSiderTopAreaConfig();
 
+    if (config == null) {
+      return null;
+    }
+
+    return this.buildCardCollectionArea(config);
+  };
+
+  establishSiderBottomAreaConfig = () => {
+    return null;
+  };
+
+  renderSiderBottomArea = () => {
+    const config = this.establishSiderBottomAreaConfig();
+
+    if (config == null) {
+      return null;
+    }
+
+    return this.buildCardCollectionArea(config);
+  };
+
+  buildCardCollectionArea = (config = null) => {
     if (config == null) {
       return null;
     }
@@ -1572,23 +1594,33 @@ class ListBase extends AuthorizationWrapper {
     }
 
     return (
-      <>
-        <Space style={{ width: '100%' }} direction="vertical" size={24}>
-          {listData.map((item, index) => {
-            return this.buildCardCollectionItem({
-              mode,
-              justify: justifyGeneral,
-              align: alignGeneral,
-              config: item,
-              key: index,
-            });
-          })}
-        </Space>
-      </>
+      <Space style={{ width: '100%' }} direction="vertical" size={24}>
+        {listData.map((item, index) => {
+          return this.buildCardCollectionItem({
+            mode,
+            justify: justifyGeneral,
+            align: alignGeneral,
+            config: item,
+            key: index,
+          });
+        })}
+      </Space>
     );
   };
 
-  renderRightView = () => {
+  renderSiderArea = () => {
+    const topArea = this.renderSiderTopArea();
+
+    const bottomArea = this.renderSiderBottomArea();
+
+    if ((bottomArea || null) == null) {
+      return topArea;
+    }
+
+    return <FlexBox direction="vertical" top={topArea} bottom={bottomArea} />;
+  };
+
+  renderContentArea = () => {
     const { listTitle, renderSearchForm } = this.state;
 
     const extraAction = this.renderExtraActionView();
@@ -1646,8 +1678,8 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderPageContent = () => {
-    const leftContentView = this.renderLeftView();
-    const rightContentView = this.renderRightView();
+    const siderArea = this.renderSiderArea();
+    const contentArea = this.renderContentArea();
 
     const layoutSiderConfig = this.establishPageContentLayoutSiderConfig();
     let layoutConfig = this.establishPageContentLayoutConfig();
@@ -1689,18 +1721,18 @@ class ListBase extends AuthorizationWrapper {
     };
 
     const inner =
-      leftContentView == null ? (
-        rightContentView
+      siderArea == null ? (
+        contentArea
       ) : (
         <Layout {...layoutConfig}>
           {siderPosition === 'left' ? (
-            <Sider {...siderConfig}>{leftContentView}</Sider>
+            <Sider {...siderConfig}>{siderArea}</Sider>
           ) : null}
 
-          <Content>{rightContentView}</Content>
+          <Content>{contentArea}</Content>
 
           {siderPosition !== 'left' ? (
-            <Sider {...siderConfig}>{leftContentView}</Sider>
+            <Sider {...siderConfig}>{siderArea}</Sider>
           ) : null}
         </Layout>
       );

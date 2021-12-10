@@ -563,6 +563,11 @@ export const cardConfig = {
      * CustomGrid
      */
     customGrid: 'customGrid',
+
+    /**
+     * tree
+     */
+    tree: 'tree',
   },
 };
 

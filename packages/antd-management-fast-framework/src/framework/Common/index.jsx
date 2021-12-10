@@ -99,6 +99,7 @@ import {
   buildDropdown,
   buildDropdownButton,
   buildDropdownEllipsis,
+  buildTree,
 } from '../../customComponents/FunctionComponent';
 import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
 
@@ -1873,6 +1874,20 @@ class Common extends Core {
                         ...(contentItem.props || {}),
                       },
                     })}
+                  </Col>
+                );
+              }
+
+              if (type === cardConfig.contentItemType.tree) {
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg}
+                    md={lg || md}
+                    sm={lg || sm}
+                    xs={lg || xs}
+                  >
+                    {buildTree(contentItem)}
                   </Col>
                 );
               }

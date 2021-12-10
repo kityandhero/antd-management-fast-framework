@@ -21,6 +21,7 @@ import {
   AimOutlined,
   FieldNumberOutlined,
   PictureFilled,
+  DownOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -1003,7 +1004,7 @@ class PageList extends MultiPage {
     );
   };
 
-  establishLeftViewConfig = () => {
+  establishSiderTopAreaConfig = () => {
     const spinning = this.checkInProgress();
 
     return {
@@ -1052,24 +1053,104 @@ class PageList extends MultiPage {
           items: [
             {
               lg: 24,
-              type: cardConfig.contentItemType.input,
-              fieldData: fieldData.title,
-              require: true,
+              type: cardConfig.contentItemType.tree,
+              showLine: true,
+              switcherIcon: <DownOutlined />,
+              defaultExpandedKeys: ['0-0-0'],
+              onSelect: () => {},
+              treeData: [
+                {
+                  title: 'parent 1',
+                  key: '0-0',
+                  children: [
+                    {
+                      title: 'parent 1-0',
+                      key: '0-0-0',
+                      children: [
+                        {
+                          title: 'leaf',
+                          key: '0-0-0-0',
+                        },
+                        {
+                          title: 'leaf',
+                          key: '0-0-0-1',
+                        },
+                        {
+                          title: 'leaf',
+                          key: '0-0-0-2',
+                        },
+                      ],
+                    },
+                    {
+                      title: 'parent 1-1',
+                      key: '0-0-1',
+                      children: [
+                        {
+                          title: 'leaf',
+                          key: '0-0-1-0',
+                        },
+                      ],
+                    },
+                    {
+                      title: 'parent 1-2',
+                      key: '0-0-2',
+                      children: [
+                        {
+                          title: 'leaf',
+                          key: '0-0-2-0',
+                        },
+                        {
+                          title: 'leaf',
+                          key: '0-0-2-1',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
+          ],
+          instruction: {
+            title: '局部操作说明',
+            showDivider: false,
+            showNumber: true,
+            list: [
+              {
+                text: '这是一些操作说明1',
+              },
+              {
+                text: '这是一些操作说明2',
+              },
+            ],
+          },
+        },
+      ],
+    };
+  };
+
+  establishSiderBottomAreaConfig = () => {
+    const spinning = this.checkInProgress();
+
+    return {
+      list: [
+        {
+          title: {
+            text: '基本信息',
+            subText: buildColorText({
+              textPrefix: '文本前缀',
+              text: '附属文本',
+              color: '#8909ef',
+              wrapperBuilder: (c) => {
+                return <>【{c}】</>;
+              },
+            }),
+          },
+          spinning,
+          items: [
             {
-              lg: 24,
-              type: cardConfig.contentItemType.divider,
-              text: '分隔线',
-            },
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.input,
-              fieldData: fieldData.subtitle,
-            },
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.inputNumber,
-              fieldData: fieldData.sort,
+              buildType: cardConfig.extraBuildType.iconInfo,
+              icon: <InfoCircleFilled />,
+              text: '一些说明',
             },
           ],
           instruction: {
