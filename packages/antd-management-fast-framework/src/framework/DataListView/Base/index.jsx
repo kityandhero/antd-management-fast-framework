@@ -452,6 +452,7 @@ class ListBase extends AuthorizationWrapper {
               fieldData.label,
               fieldData.name,
               fieldData.helper,
+              icon || <FormOutlined />,
               {
                 ...{},
                 ...(contentItem.otherProps || {}),

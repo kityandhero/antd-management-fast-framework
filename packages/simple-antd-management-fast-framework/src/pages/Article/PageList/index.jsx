@@ -84,7 +84,7 @@ import { fieldData, mediaItemData, statusCollection } from '../Common/data';
 class PageList extends MultiPage {
   restoreSearch = true;
 
-  showSearchForm = false;
+  // showSearchForm = false;
 
   //在控制台中显示渲染次数，仅用于调试
   showRenderCountInConsole = true;
@@ -436,6 +436,11 @@ class PageList extends MultiPage {
           lg: 12,
           type: searchCardConfig.contentItemType.component,
           component: this.buildSearchCardRangePickerCore(dateRangeFieldName),
+        },
+        {
+          lg: 6,
+          type: searchCardConfig.contentItemType.inputNumber,
+          fieldData: fieldData.sort,
         },
         {
           lg: 6,
