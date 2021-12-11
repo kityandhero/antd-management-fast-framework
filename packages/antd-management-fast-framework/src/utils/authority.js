@@ -203,7 +203,6 @@ function checkHasAuthorityCore(auth) {
 
   if ((v ?? null) == null) {
     recordObject({
-      superAuth,
       checkAuthority: auth,
       listAuthority: list,
       accessWayCollection,
