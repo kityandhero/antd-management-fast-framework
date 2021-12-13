@@ -63,7 +63,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
   };
 
   establishCardCollectionConfig = () => {
-    const { dataLoading, processing, targetKeys, selectedKeys } = this.state;
+    const { targetKeys, selectedKeys } = this.state;
 
     return {
       list: [

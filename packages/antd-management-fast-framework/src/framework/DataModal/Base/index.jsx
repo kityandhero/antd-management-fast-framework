@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Form, Modal, Spin } from 'antd';
+import { Form, Modal, Spin } from 'antd';
 import {
   CloseCircleOutlined,
   LoadingOutlined,
@@ -12,7 +12,6 @@ import {
   stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
 import { cardConfig } from '../../../utils/constants';
-import IconInfo from '../../../customComponents/IconInfo';
 import FlexText from '../../../customComponents/FlexText';
 
 import BaseWindow from '../../DataOperation/BaseWindow';

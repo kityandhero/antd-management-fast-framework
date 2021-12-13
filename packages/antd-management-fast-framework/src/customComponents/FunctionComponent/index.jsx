@@ -89,7 +89,6 @@ const RadioGroup = Radio.Group;
 const { Paragraph } = Typography;
 const ButtonGroup = Button.Group;
 const { Item: Description } = Descriptions;
-const { Title } = Typography;
 
 export function buildPageHeaderTitle(pageName, headerTitlePrefix) {
   const headerTitlePrefixValue = headerTitlePrefix || '';
