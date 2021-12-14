@@ -60,6 +60,7 @@ import {
   buildTagList,
   buildColumnList,
   buildColumnItem,
+  buildCustomSelect,
 } from '../../../customComponents/FunctionComponent';
 import {
   avatarImageLoadResultCollection,
@@ -501,6 +502,10 @@ class ListBase extends AuthorizationWrapper {
           ? contentItem.component
           : null}
 
+        {type === cardConfig.contentItemType.flexSelect
+          ? buildCustomSelect(contentItem)
+          : null}
+
         {type === searchCardConfig.contentItemType.customRadio
           ? contentItem.component
           : null}
@@ -852,6 +857,10 @@ class ListBase extends AuthorizationWrapper {
           switch (itemBuildType) {
             case listViewConfig.dataContainerExtraActionBuildType.generalButton:
               itemAdjust = this.renderGeneralButton(item);
+              break;
+
+            case cardConfig.extraBuildType.flexSelect:
+              itemAdjust = buildCustomSelect(item);
               break;
 
             case listViewConfig.dataContainerExtraActionBuildType.button:

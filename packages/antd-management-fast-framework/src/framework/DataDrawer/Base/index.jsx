@@ -7,9 +7,19 @@ import {
   isFunction,
   defaultFormState,
   stringIsNullOrWhiteSpace,
+  isArray,
 } from '../../../utils/tools';
 import { cardConfig, drawerConfig } from '../../../utils/constants';
-import { buildButton } from '../../../customComponents/FunctionComponent';
+import IconInfo from '../../../customComponents/IconInfo';
+import ColorText from '../../../customComponents/ColorText';
+import {
+  buildButton,
+  buildButtonGroup,
+  buildDropdownEllipsis,
+  buildDropdown,
+  buildDropdownButton,
+  buildCustomSelect,
+} from '../../../customComponents/FunctionComponent';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
 
@@ -18,6 +28,8 @@ import styles from './index.less';
 const { Footer, Content } = Layout;
 
 class Base extends BaseWindow {
+  showExtraActionDivider = true;
+
   constructor(props) {
     super(props);
 
@@ -110,6 +122,135 @@ class Base extends BaseWindow {
 
   establishWrapperTypeConfig = () => {
     return { mode: cardConfig.wrapperType.drawer };
+  };
+
+  establishExtraActionConfig = () => null;
+
+  establishExtraActionGroupConfig = () => null;
+
+  establishExtraActionEllipsisConfig = () => null;
+
+  buildExtraAction = () => {
+    const listAction = [];
+    const { keyPrefix, list: configList } = {
+      ...{
+        keyPrefix: '',
+        list: [],
+      },
+      ...this.establishExtraActionConfig(),
+    };
+
+    (isArray(configList) ? configList : []).forEach((item, index) => {
+      if ((item || null) != null) {
+        const {
+          hidden,
+          buildType,
+          component: componentSource,
+        } = {
+          ...{
+            hidden: false,
+            buildType: null,
+            icon: null,
+            text: '',
+            component: null,
+          },
+          ...item,
+        };
+
+        if (!hidden) {
+          const itemKey = `${keyPrefix || 'drawerExtraActionItem'}_${index}`;
+
+          let itemAdjust = item;
+
+          switch (buildType) {
+            case drawerConfig.extraBuildType.flexSelect:
+              itemAdjust = buildCustomSelect(item);
+              break;
+
+            case drawerConfig.extraBuildType.button:
+              itemAdjust = buildButton(item);
+              break;
+
+            case drawerConfig.extraBuildType.dropdown:
+              itemAdjust = buildDropdown(item);
+              break;
+
+            case drawerConfig.extraBuildType.dropdownButton:
+              itemAdjust = buildDropdownButton(item);
+              break;
+
+            case drawerConfig.extraBuildType.dropdownEllipsis:
+              itemAdjust = buildDropdownEllipsis(item);
+              break;
+
+            case drawerConfig.extraBuildType.iconInfo:
+              itemAdjust = <IconInfo {...item} />;
+              break;
+
+            case drawerConfig.extraBuildType.colorText:
+              itemAdjust = <ColorText {...item} />;
+              break;
+
+            case drawerConfig.extraBuildType.component:
+              itemAdjust = componentSource || null;
+              break;
+
+            default:
+              recordObject({
+                message: '未找到匹配的构建模式',
+                config: item,
+              });
+
+              itemAdjust = null;
+              break;
+          }
+
+          listAction.push(<Fragment key={itemKey}>{itemAdjust}</Fragment>);
+        }
+      }
+    });
+
+    const buttonGroupData = this.establishExtraActionGroupConfig();
+
+    if ((buttonGroupData || null) != null) {
+      const buttonGroup = buildButtonGroup(buttonGroupData);
+
+      if ((buttonGroup || null) != null) {
+        listAction.push(
+          <Fragment key={`${keyPrefix || 'drawerExtraActionItem'}_buttonGroup`}>
+            {buttonGroup}
+          </Fragment>,
+        );
+      }
+    }
+
+    const ellipsisActionData = this.establishExtraActionEllipsisConfig();
+
+    if ((ellipsisActionData || null) != null) {
+      const dropdownEllipsis = buildDropdownEllipsis(ellipsisActionData);
+
+      if ((dropdownEllipsis || null) != null) {
+        listAction.push(
+          <Fragment
+            key={`${keyPrefix || 'drawerExtraActionItem'}_dropdownEllipsis`}
+          >
+            {dropdownEllipsis}
+          </Fragment>,
+        );
+      }
+    }
+
+    return (
+      <Space
+        split={
+          !!this.showExtraActionDivider || false ? (
+            <Divider type="vertical" />
+          ) : null
+        }
+      >
+        {listAction.map((o) => o)}
+      </Space>
+    );
   };
 
   formContent = () => {
@@ -223,6 +364,10 @@ class Base extends BaseWindow {
               itemAdjust = this.renderGeneralButton(item);
               break;
 
+            case cardConfig.extraBuildType.flexSelect:
+              itemAdjust = buildCustomSelect(item);
+              break;
+
             case drawerConfig.bottomBarBuildType.button:
               itemAdjust = buildButton(item);
               break;
@@ -317,6 +462,7 @@ class Base extends BaseWindow {
         bodyStyle={{
           padding: 0,
         }}
+        extra={this.buildExtraAction()}
       >
         <div className={styles.mainContainor}>
           <Layout>

@@ -99,6 +99,7 @@ import {
   buildDropdownButton,
   buildDropdownEllipsis,
   buildTree,
+  buildCustomSelect,
 } from '../../customComponents/FunctionComponent';
 import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
 
@@ -2395,6 +2396,10 @@ class Common extends Core {
                     ? contentItem.component
                     : null}
 
+                  {type === cardConfig.contentItemType.flexSelect
+                    ? buildCustomSelect(contentItem)
+                    : null}
+
                   {type === cardConfig.contentItemType.radio
                     ? this.renderFormSelect(
                         fieldData.label,
@@ -2549,6 +2554,10 @@ class Common extends Core {
               itemAdjust = this.renderGeneralButton(item);
               break;
 
+            case cardConfig.extraBuildType.flexSelect:
+              itemAdjust = buildCustomSelect(item);
+              break;
+
             case cardConfig.extraBuildType.button:
               itemAdjust = buildButton(item);
               break;
@@ -2621,6 +2630,10 @@ class Common extends Core {
           let itemAdjust = item;
 
           switch (buildType) {
+            case tabBarCollection.extraBuildType.flexSelect:
+              itemAdjust = buildCustomSelect(item);
+              break;
+
             case tabBarCollection.extraBuildType.button:
               itemAdjust = buildButton(item);
               break;

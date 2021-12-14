@@ -297,6 +297,50 @@ export const sortOperate = {
 };
 
 export const drawerConfig = {
+  /**
+   * 扩展区构建模式
+   */
+  extraBuildType: {
+    /**
+     * 带图标文字，图标为空或者文字为空情况下渲染方式有差异
+     */
+    iconInfo: 'iconInfo',
+
+    /**
+     * 彩色文字
+     */
+    colorText: 'colorText',
+
+    /**
+     * 自定义选择框
+     */
+    flexSelect: 'flexSelect',
+
+    /**
+     * 根据配置项渲染按钮，事件触发需要自定义指定,配置项与generalButton相仿，配置模式有所不同，最终效果类似
+     */
+    button: 'button',
+
+    /**
+     * 带扩展操作的按钮
+     */
+    dropdownButton: 'dropdownButton',
+
+    /**
+     * 带扩展操作的省略按钮，省略占位符本身不具有操作
+     */
+    dropdownEllipsis: 'dropdownEllipsis',
+
+    /**
+     * dropdown
+     */
+    dropdown: 'dropdown',
+
+    /**
+     * 指定渲染自定义组件，组件由配置传入
+     */
+    component: 'component',
+  },
   bottomBarBuildType: {
     close: 'close',
     refresh: 'refresh',
@@ -384,6 +428,11 @@ export const cardConfig = {
     dropdown: 'dropdown',
 
     /**
+     * 自定义选择框
+     */
+    flexSelect: 'flexSelect',
+
+    /**
      * 指定渲染自定义组件，组件由配置传入
      */
     component: 'component',
@@ -438,6 +487,11 @@ export const cardConfig = {
      * 自定义选择框
      */
     customSelect: 'customSelect',
+
+    /**
+     * 自定义选择框
+     */
+    flexSelect: 'flexSelect',
 
     /**
      * 一般单选框
@@ -587,6 +641,11 @@ export const searchCardConfig = {
      * 自定义选择框
      */
     customSelect: 'customSelect',
+
+    /**
+     * 自定义选择框
+     */
+    flexSelect: 'flexSelect',
 
     /**
      * 自定义单选框
@@ -773,6 +832,11 @@ export const tabBarCollection = {
     colorText: 'colorText',
 
     /**
+     * 自定义选择框
+     */
+    flexSelect: 'flexSelect',
+
+    /**
      * 根据配置项渲染按钮，事件触发需要自定义指定,配置项与generalButton相仿，配置模式有所不同，最终效果类似
      */
     button: 'button',
@@ -796,6 +860,29 @@ export const tabBarCollection = {
      * 指定渲染自定义组件，组件由配置传入
      */
     component: 'component',
+  },
+};
+
+/**
+ *设备模拟集合
+ */
+export const mobileTypeCollection = {
+  /**
+   * 模拟轮廓
+   */
+  roughSketch: {
+    label: '模拟轮廓',
+    name: 'roughSketch',
+    helper: '',
+  },
+
+  /**
+   * iphoneX
+   */
+  iphoneX: {
+    label: 'iphoneX',
+    name: 'iphoneX',
+    helper: '',
   },
 };
 

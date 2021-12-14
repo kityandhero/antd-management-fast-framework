@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { PictureOutlined } from '@ant-design/icons';
+import { PictureOutlined, UpCircleOutlined, FormOutlined, ReloadOutlined } from '@ant-design/icons';
 
 import {
   isArray,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
+  showInfoMessage,
+  notifySuccess,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
-import MobileContainor from 'antd-management-fast-framework/es/customComponents/MobileContainor';
+import { cardConfig, drawerConfig } from 'antd-management-fast-framework/es/utils/constants';
 import Base from 'antd-management-fast-framework/es/framework/DataDrawer/Base';
+import MobilePreviewDrawer from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewDrawer';
+import {
+  buildButtonGroup,
+  buildDropdownEllipsis,
+  buildOptionItem,
+} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
-class MediaItemPreviewDrawer extends Base {
+class MediaItemPreviewDrawer extends MobilePreviewDrawer {
   resetDataAfterLoad = false;
 
   constructor(props) {
@@ -19,11 +26,7 @@ class MediaItemPreviewDrawer extends Base {
 
     this.state = {
       ...this.state,
-      ...{
-        placement: 'top',
-        height: '100vh',
-        showBottomBar: false,
-      },
+      ...{},
     };
   }
 
@@ -86,20 +89,8 @@ class MediaItemPreviewDrawer extends Base {
     );
   };
 
-  establishCardCollectionConfig = () => {
-    return {
-      list: [
-        {
-          items: [
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.component,
-              component: <MobileContainor>{this.buildArticle()}</MobileContainor>,
-            },
-          ],
-        },
-      ],
-    };
+  renderInnerView = () => {
+    return this.buildArticle();
   };
 }
 
