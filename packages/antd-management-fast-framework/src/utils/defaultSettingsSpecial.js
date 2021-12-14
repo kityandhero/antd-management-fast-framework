@@ -26,6 +26,16 @@ export const defaultSettingsLayoutCustom = {
 
     return fileUploadMaxSize || 2;
   },
+  getAudioUploadMaxSize: () => {
+    const appInit = getAppInitConfigData();
+
+    const { audioUploadMaxSize } = {
+      ...{ audioUploadMaxSize: 4 },
+      ...(appInit || {}),
+    };
+
+    return audioUploadMaxSize || 4;
+  },
   getVideoUploadMaxSize: () => {
     const appInit = getAppInitConfigData();
 

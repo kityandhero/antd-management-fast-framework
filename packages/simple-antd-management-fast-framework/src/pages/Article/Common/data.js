@@ -41,7 +41,12 @@ export const fieldData = {
     videoUrl: {
       label: '视频地址',
       name: 'videoUrl',
-      helper: '上传的视频资源，能增加可信度哦',
+      helper: '上传的视频资源',
+    },
+    audioUrl: {
+      label: '音频地址',
+      name: 'audioUrl',
+      helper: '上传的音频资源',
     },
     contentData: {
       label: '详细内容',

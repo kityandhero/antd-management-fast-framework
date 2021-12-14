@@ -19,7 +19,7 @@ import {
   EllipsisOutlined,
   DeleteOutlined,
   CopyOutlined,
-  VideoCameraOutlined,
+  SoundOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -29,22 +29,23 @@ import {
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
+import { audioBackGroundImage } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 import IconInfo from '../IconInfo';
 
 const { TextArea } = Input;
 
-class VideoUpload extends PureComponent {
+class AudioUpload extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       ...this.state,
       ...{
-        videoSource: '',
-        videoUrl: '',
-        videoUrlTemp: '',
+        audioSource: '',
+        audioUrl: '',
+        audioUrlTemp: '',
         uploading: false,
         previewVisible: false,
         changeUrlVisible: false,
@@ -53,13 +54,13 @@ class VideoUpload extends PureComponent {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { video: videoNext } = nextProps;
-    const { videoSource: videoPrev } = prevState;
+    const { audio: audioNext } = nextProps;
+    const { audioSource: audioPrev } = prevState;
 
-    if ((videoNext || '') !== (videoPrev || '')) {
+    if ((audioNext || '') !== (audioPrev || '')) {
       return {
-        videoSource: videoNext,
-        videoUrl: videoNext,
+        audioSource: audioNext,
+        audioUrl: audioNext,
       };
     }
 
@@ -73,10 +74,10 @@ class VideoUpload extends PureComponent {
   };
 
   showPreviewModal = () => {
-    const { videoUrl } = this.state;
+    const { audioUrl } = this.state;
 
-    if (stringIsNullOrWhiteSpace(videoUrl)) {
-      const text = '无效的视频源';
+    if (stringIsNullOrWhiteSpace(audioUrl)) {
+      const text = '无效的音频源';
 
       showErrorMessage({
         message: text,
@@ -91,10 +92,10 @@ class VideoUpload extends PureComponent {
   };
 
   showChangeUrlModal = () => {
-    const { videoUrl } = this.state;
+    const { audioUrl } = this.state;
 
     this.setState({
-      videoUrlTemp: videoUrl,
+      audioUrlTemp: audioUrl,
       changeUrlVisible: true,
     });
   };
@@ -105,22 +106,22 @@ class VideoUpload extends PureComponent {
     } = e;
 
     this.setState({
-      videoUrlTemp: v,
+      audioUrlTemp: v,
     });
   };
 
   handleChangeUrlOk = () => {
     const { afterChangeSuccess } = this.props;
-    const { videoUrlTemp } = this.state;
+    const { audioUrlTemp } = this.state;
 
     this.setState(
       {
-        videoUrl: videoUrlTemp,
+        audioUrl: audioUrlTemp,
         changeUrlVisible: false,
       },
       () => {
         if (isFunction(afterChangeSuccess)) {
-          afterChangeSuccess(videoUrlTemp || '');
+          afterChangeSuccess(audioUrlTemp || '');
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
@@ -143,7 +144,7 @@ class VideoUpload extends PureComponent {
 
     this.setState(
       {
-        videoUrl: '',
+        audioUrl: '',
         changeUrlVisible: false,
       },
       () => {
@@ -161,10 +162,10 @@ class VideoUpload extends PureComponent {
   };
 
   beforeUpload = (file) => {
-    const isVideo = file.type === 'video/mp4';
+    const isAudio = file.type === 'audio/mpeg';
 
-    if (!isVideo) {
-      const text = '请上传视频文件(*.mp4)!';
+    if (!isAudio) {
+      const text = '请上传音频文件(*.mp3)!';
 
       showErrorMessage({
         message: text,
@@ -173,17 +174,17 @@ class VideoUpload extends PureComponent {
 
     const isLt3M =
       file.size / 1024 / 1024 <
-      defaultSettingsLayoutCustom.getVideoUploadMaxSize();
+      defaultSettingsLayoutCustom.getAudioUploadMaxSize();
 
     if (!isLt3M) {
-      const text = '视频文件不能超过3MB!';
+      const text = '音频文件不能超过3MB!';
 
       showErrorMessage({
         message: text,
       });
     }
 
-    return isVideo && isLt3M;
+    return isAudio && isLt3M;
   };
 
   handleUploadChange = (info) => {
@@ -198,18 +199,18 @@ class VideoUpload extends PureComponent {
       const { response } = info.file;
 
       if (isFunction(pretreatmentRemoteResponse)) {
-        const data = pretreatmentRemoteResponse(response) || { video: '' };
+        const data = pretreatmentRemoteResponse(response) || { audio: '' };
 
-        const { video } = data;
+        const { audio } = data;
 
         this.setState(
           {
-            videoUrl: video,
+            audioUrl: audio,
             uploading: false,
           },
           () => {
             if (isFunction(afterChangeSuccess)) {
-              afterChangeSuccess(video || '');
+              afterChangeSuccess(audio || '');
             } else {
               const text = 'afterChangeSuccess 配置无效';
 
@@ -231,7 +232,7 @@ class VideoUpload extends PureComponent {
 
   handleMenuClick = (e) => {
     const { key } = e;
-    const { videoUrl } = this.state;
+    const { audioUrl } = this.state;
 
     switch (key) {
       case 'changeUrl':
@@ -243,14 +244,14 @@ class VideoUpload extends PureComponent {
         break;
 
       case 'copyUrl':
-        if (stringIsNullOrWhiteSpace(videoUrl)) {
-          const text = '当前未设置视频地址';
+        if (stringIsNullOrWhiteSpace(audioUrl)) {
+          const text = '当前未设置音频地址';
 
           showErrorMessage({
             message: text,
           });
         } else {
-          copyToClipboard(videoUrl);
+          copyToClipboard(audioUrl);
         }
 
         break;
@@ -270,8 +271,8 @@ class VideoUpload extends PureComponent {
       uploading,
       previewVisible,
       changeUrlVisible,
-      videoUrlTemp,
-      videoUrl,
+      audioUrlTemp,
+      audioUrl,
     } = this.state;
 
     const uploadProps = {
@@ -290,14 +291,14 @@ class VideoUpload extends PureComponent {
           <IconInfo icon={<SwapOutlined />} text="更换地址" />
         </Menu.Item>
 
-        <Menu.Item key="copyUrl" disabled={stringIsNullOrWhiteSpace(videoUrl)}>
+        <Menu.Item key="copyUrl" disabled={stringIsNullOrWhiteSpace(audioUrl)}>
           <IconInfo icon={<CopyOutlined />} text="复制地址" />
         </Menu.Item>
 
         <Menu.Divider />
 
-        <Menu.Item key="clearUrl" disabled={stringIsNullOrWhiteSpace(videoUrl)}>
-          <IconInfo icon={<DeleteOutlined />} text="清空视频" />
+        <Menu.Item key="clearUrl" disabled={stringIsNullOrWhiteSpace(audioUrl)}>
+          <IconInfo icon={<DeleteOutlined />} text="清空音频" />
         </Menu.Item>
       </Menu>
     );
@@ -305,7 +306,7 @@ class VideoUpload extends PureComponent {
     const addonAfter = (
       <Space split={<Divider type="vertical" />}>
         {showPreview ? (
-          <Tooltip key="showVideoTip" placement="top" title="播放视频预览">
+          <Tooltip key="showAudioTip" placement="top" title="播放音频预览">
             <Button
               style={{
                 border: '0px solid #d9d9d9',
@@ -314,7 +315,7 @@ class VideoUpload extends PureComponent {
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
-              disabled={uploading || stringIsNullOrWhiteSpace(videoUrl)}
+              disabled={uploading || stringIsNullOrWhiteSpace(audioUrl)}
               onClick={() => {
                 this.showPreviewModal();
               }}
@@ -325,7 +326,7 @@ class VideoUpload extends PureComponent {
           </Tooltip>
         ) : null}
 
-        <Tooltip key="showChangeUrlTip" placement="top" title="上传视频">
+        <Tooltip key="showChangeUrlTip" placement="top" title="上传音频">
           <Upload {...uploadProps}>
             <Button
               style={{
@@ -379,24 +380,41 @@ class VideoUpload extends PureComponent {
       <>
         <Input
           disabled
-          addonBefore={<VideoCameraOutlined />}
+          addonBefore={<SoundOutlined />}
           addonAfter={addonAfter}
-          value={videoUrl}
-          placeholder="当前未设置视频地址"
+          value={audioUrl}
+          placeholder="当前未设置音频地址"
         />
 
         <Modal
-          title={<IconInfo icon={<VideoCameraOutlined />} text="视频预览" />}
+          title={<IconInfo icon={<SoundOutlined />} text="音频预览" />}
           visible={previewVisible}
           footer={null}
           onCancel={this.handleUploadCancel}
         >
-          <ReactPlayer width="100%" height="100%" url={videoUrl} controls />
+          <div
+            style={{
+              position: 'relative',
+              height: '100%',
+              width: '100%',
+            }}
+          >
+            <div
+              style={{
+                position: 'absolute',
+                height: '100%',
+                width: '100%',
+                zIndex: -1,
+                backgroundImage: audioBackGroundImage,
+              }}
+            />
+            <ReactPlayer width="100%" height="100%" url={audioUrl} controls />
+          </div>
         </Modal>
 
         <Modal
           title={
-            <IconInfo icon={<SwapOutlined />} text="请输入将更换的视频地址" />
+            <IconInfo icon={<SwapOutlined />} text="请输入将更换的音频地址" />
           }
           visible={changeUrlVisible}
           onOk={this.handleChangeUrlOk}
@@ -404,9 +422,9 @@ class VideoUpload extends PureComponent {
         >
           <TextArea
             rows={4}
-            value={videoUrlTemp}
+            value={audioUrlTemp}
             onChange={this.handleUrlChange}
-            placeholder="目前没有将要更换的视频地址"
+            placeholder="目前没有将要更换的音频地址"
           />
         </Modal>
       </>
@@ -414,14 +432,14 @@ class VideoUpload extends PureComponent {
   }
 }
 
-VideoUpload.defaultProps = {
+AudioUpload.defaultProps = {
   action: '',
   disabled: false,
   tokenSet: {},
-  video: '',
+  audio: '',
   showPreview: false,
   pretreatmentRemoteResponse: () => {},
   afterChangeSuccess: () => {},
 };
 
-export default VideoUpload;
+export default AudioUpload;

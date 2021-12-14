@@ -60,6 +60,24 @@ class SupplementCore extends Common {
 
     return result;
   };
+
+  pretreatmentAudioUploadRemoteResponse = (response) => {
+    let result = { audio: '' };
+
+    const v = pretreatmentRemoteSingleData(response);
+
+    const { dataSuccess } = v;
+
+    if (dataSuccess) {
+      const {
+        data: { audioUrl },
+      } = v;
+
+      result = { audio: audioUrl || '' };
+    }
+
+    return result;
+  };
 }
 
 export default SupplementCore;

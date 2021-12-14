@@ -12,6 +12,10 @@ import Base from '../../../framework/DataDrawer/Base';
 import VerticalBox from '../../VerticalBox';
 import RoughSketch from '../RoughSketch';
 import IphoneX from '../Devices/IphoneX';
+import Iphone8plus from '../Devices/Iphone8plus';
+import Iphone8 from '../Devices/Iphone8';
+import IPhone5S from '../Devices/IPhone5S';
+import GalaxyNote8 from '../Devices/GalaxyNote8';
 import { buildOptionItem } from '../../FunctionComponent';
 
 class MobilePreviewDrawer extends Base {
@@ -94,6 +98,22 @@ class MobilePreviewDrawer extends Base {
 
       case mobileTypeCollection.iphoneX.name:
         mobileView = <IphoneX>{this.renderInnerView()}</IphoneX>;
+        break;
+
+      case mobileTypeCollection.iphone8.name:
+        mobileView = <Iphone8>{this.renderInnerView()}</Iphone8>;
+        break;
+
+      case mobileTypeCollection.iphone8plus.name:
+        mobileView = <Iphone8plus>{this.renderInnerView()}</Iphone8plus>;
+        break;
+
+      case mobileTypeCollection.iPhone5S.name:
+        mobileView = <IPhone5S>{this.renderInnerView()}</IPhone5S>;
+        break;
+
+      case mobileTypeCollection.galaxyNote8.name:
+        mobileView = <GalaxyNote8>{this.renderInnerView()}</GalaxyNote8>;
         break;
 
       default:

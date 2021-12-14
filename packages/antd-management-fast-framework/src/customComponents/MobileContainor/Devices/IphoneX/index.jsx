@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from '../devices.less';
 
-class MobileContainor extends PureComponent {
+class Index extends PureComponent {
   render() {
     const { children } = this.props;
 
@@ -34,4 +34,4 @@ class MobileContainor extends PureComponent {
   }
 }
 
-export default MobileContainor;
+export default Index;

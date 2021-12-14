@@ -104,6 +104,10 @@ class Index extends BaseAddDrawer {
     this.setState({ video });
   };
 
+  afterAudioChangeSuccess = (audio) => {
+    this.setState({ audio });
+  };
+
   renderTitleIcon = () => <PlusSquareOutlined />;
 
   renderTitle = () => {

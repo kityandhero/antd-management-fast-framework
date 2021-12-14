@@ -97,7 +97,7 @@ class BasicInfo extends TabPageBase {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
-    const { image, imageList, imageFileList, videoUrl, fileBase64 } = metaData;
+    const { image, imageList, imageFileList, videoUrl, audioUrl, fileBase64 } = metaData;
 
     const fileList = [];
 
@@ -119,6 +119,7 @@ class BasicInfo extends TabPageBase {
       imageList,
       fileList,
       videoUrl,
+      audioUrl,
       fileBase64,
     });
   };
@@ -129,6 +130,10 @@ class BasicInfo extends TabPageBase {
 
   afterVideoChangeSuccess = (video) => {
     this.setState({ videoUrl: video });
+  };
+
+  afterAudioChangeSuccess = (audio) => {
+    this.setState({ audioUrl: audio });
   };
 
   afterFileUploadSuccess = (file) => {
@@ -323,8 +328,17 @@ class BasicInfo extends TabPageBase {
   };
 
   establishCardCollectionConfig = () => {
-    const { metaData, processing, dataLoading, image, videoUrl, fileBase64, imageList, fileList } =
-      this.state;
+    const {
+      metaData,
+      processing,
+      dataLoading,
+      image,
+      videoUrl,
+      audioUrl,
+      fileBase64,
+      imageList,
+      fileList,
+    } = this.state;
 
     const spinning = this.checkInProgress();
 
@@ -418,6 +432,17 @@ class BasicInfo extends TabPageBase {
               action: `${corsTarget()}/article/uploadVideo`,
               afterChangeSuccess: (videoData) => {
                 this.afterVideoChangeSuccess(videoData);
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.audioUpload,
+              fieldData: fieldData.audioUrl,
+              video: audioUrl,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadAudio`,
+              afterChangeSuccess: (audioData) => {
+                this.afterAudioChangeSuccess(audioData);
               },
             },
             {

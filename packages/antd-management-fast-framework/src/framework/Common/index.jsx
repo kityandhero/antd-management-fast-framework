@@ -53,6 +53,7 @@ import {
 import FlexText from '../../customComponents/FlexText';
 import ImageUpload from '../../customComponents/ImageUpload';
 import VideoUpload from '../../customComponents/VideoUpload';
+import AudioUpload from '../../customComponents/AudioUpload';
 import ImageBox from '../../customComponents/ImageBox';
 import HelpBox from '../../customComponents/HelpBox';
 import HelpCard from '../../customComponents/HelpCard';
@@ -1258,6 +1259,17 @@ class Common extends Core {
     throw new Error(text);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  pretreatmentAudioUploadRemoteResponse = (response) => {
+    const text = '需要在继承中重新实现 pretreatmentAudioUploadRemoteResponse';
+
+    showRuntimeError({
+      message: text,
+    });
+
+    throw new Error(text);
+  };
+
   establishToolBarConfig = () => {
     return null;
   };
@@ -2143,6 +2155,46 @@ class Common extends Core {
                         afterChangeSuccess={(video) => {
                           if (isFunction(contentItem.afterChangeSuccess)) {
                             contentItem.afterChangeSuccess(video);
+                          }
+                        }}
+                      />,
+                      fieldData.helper,
+                      formItemLayout,
+                      require,
+                    )}
+                  </Col>
+                );
+              }
+
+              if (type === cardConfig.contentItemType.audioUpload) {
+                const uploadProps = {
+                  ...(contentItem.uploadProps || {}),
+                  ...{
+                    video: contentItem.video || '',
+                    showPreview: contentItem.showPreview || false,
+                    action: contentItem.action || '',
+                    tokenSet: this.getUploadTokenObject(),
+                  },
+                };
+
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg || 6}
+                    md={md}
+                    sm={sm}
+                    xs={xs}
+                  >
+                    {this.renderFormInnerComponent(
+                      fieldData.label,
+                      <AudioUpload
+                        {...uploadProps}
+                        pretreatmentRemoteResponse={
+                          this.pretreatmentAudioUploadRemoteResponse
+                        }
+                        afterChangeSuccess={(audio) => {
+                          if (isFunction(contentItem.afterChangeSuccess)) {
+                            contentItem.afterChangeSuccess(audio);
                           }
                         }}
                       />,
