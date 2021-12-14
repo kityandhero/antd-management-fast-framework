@@ -73,6 +73,8 @@ const article = {
   renderTypeNote: '媒体渲染',
   statusNote: '已下线',
   image: defaultSettings.getEmptyLogo(),
+  video: 'http://file.panduolakeji.com/1053686316.mp4',
+  audio: 'http://file.panduolakeji.com/1057052295.mpeg',
   imageList: [
     defaultSettings.getEmptyLogo(),
     defaultSettings.getEmptyLogo(),

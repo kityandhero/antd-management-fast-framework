@@ -38,14 +38,14 @@ export const fieldData = {
       name: 'fileBase64',
       helper: '文章的附件',
     },
-    videoUrl: {
+    video: {
       label: '视频地址',
-      name: 'videoUrl',
+      name: 'video',
       helper: '上传的视频资源',
     },
-    audioUrl: {
+    audio: {
       label: '音频地址',
-      name: 'audioUrl',
+      name: 'audio',
       helper: '上传的音频资源',
     },
     contentData: {

@@ -87,17 +87,19 @@ class BasicInfo extends TabPageBase {
 
   supplementSubmitRequestParams = (o) => {
     const d = o;
-    const { articleId, image } = this.state;
+    const { articleId, image, video, audio } = this.state;
 
     d.articleId = articleId;
     d.image = image;
+    d.video = video;
+    d.audio = audio;
 
     return d;
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
-    const { image, imageList, imageFileList, videoUrl, audioUrl, fileBase64 } = metaData;
+    const { image, imageList, imageFileList, video, audio, fileBase64 } = metaData;
 
     const fileList = [];
 
@@ -118,8 +120,8 @@ class BasicInfo extends TabPageBase {
       image,
       imageList,
       fileList,
-      videoUrl,
-      audioUrl,
+      video,
+      audio,
       fileBase64,
     });
   };
@@ -129,11 +131,11 @@ class BasicInfo extends TabPageBase {
   };
 
   afterVideoChangeSuccess = (video) => {
-    this.setState({ videoUrl: video });
+    this.setState({ video });
   };
 
   afterAudioChangeSuccess = (audio) => {
-    this.setState({ audioUrl: audio });
+    this.setState({ audio });
   };
 
   afterFileUploadSuccess = (file) => {
@@ -333,8 +335,8 @@ class BasicInfo extends TabPageBase {
       processing,
       dataLoading,
       image,
-      videoUrl,
-      audioUrl,
+      video,
+      audio,
       fileBase64,
       imageList,
       fileList,
@@ -426,8 +428,8 @@ class BasicInfo extends TabPageBase {
             {
               lg: 18,
               type: cardConfig.contentItemType.videoUpload,
-              fieldData: fieldData.videoUrl,
-              video: videoUrl,
+              fieldData: fieldData.video,
+              video: video,
               showPreview: true,
               action: `${corsTarget()}/article/uploadVideo`,
               afterChangeSuccess: (videoData) => {
@@ -437,8 +439,8 @@ class BasicInfo extends TabPageBase {
             {
               lg: 24,
               type: cardConfig.contentItemType.audioUpload,
-              fieldData: fieldData.audioUrl,
-              video: audioUrl,
+              fieldData: fieldData.audio,
+              audio: audio,
               showPreview: true,
               action: `${corsTarget()}/article/uploadAudio`,
               afterChangeSuccess: (audioData) => {

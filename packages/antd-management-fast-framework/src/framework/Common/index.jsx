@@ -2170,7 +2170,7 @@ class Common extends Core {
                 const uploadProps = {
                   ...(contentItem.uploadProps || {}),
                   ...{
-                    video: contentItem.video || '',
+                    audio: contentItem.audio || '',
                     showPreview: contentItem.showPreview || false,
                     action: contentItem.action || '',
                     tokenSet: this.getUploadTokenObject(),

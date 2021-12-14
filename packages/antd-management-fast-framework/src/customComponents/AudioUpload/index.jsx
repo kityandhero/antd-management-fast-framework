@@ -395,19 +395,10 @@ class AudioUpload extends PureComponent {
           <div
             style={{
               position: 'relative',
-              height: '100%',
+              height: '50px',
               width: '100%',
             }}
           >
-            <div
-              style={{
-                position: 'absolute',
-                height: '100%',
-                width: '100%',
-                zIndex: -1,
-                backgroundImage: audioBackGroundImage,
-              }}
-            />
             <ReactPlayer width="100%" height="100%" url={audioUrl} controls />
           </div>
         </Modal>
