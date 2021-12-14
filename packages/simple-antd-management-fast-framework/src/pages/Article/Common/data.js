@@ -29,9 +29,14 @@ export const fieldData = {
       helper: '文章的简介描述',
     },
     image: {
-      label: '配图',
+      label: '正方形配图',
       name: 'image',
-      helper: '文章的配图',
+      helper: '文章的正方形图片配图,主要用于文章列表场景的布局展示',
+    },
+    rectangleImage: {
+      label: '长方形配图',
+      name: 'rectangleImage',
+      helper: '文章的长方形图片配图,主要用于文章列表场景的布局展示',
     },
     fileBase64: {
       label: '附件',

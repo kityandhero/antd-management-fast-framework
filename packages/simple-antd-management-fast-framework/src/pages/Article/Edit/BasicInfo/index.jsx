@@ -70,6 +70,9 @@ class BasicInfo extends TabPageBase {
         articleId: null,
         fileBase64: '',
         image: '',
+        rectangleImage: '',
+        video: '',
+        audio: '',
         imageList: [],
         fileList: [],
       },
@@ -87,10 +90,11 @@ class BasicInfo extends TabPageBase {
 
   supplementSubmitRequestParams = (o) => {
     const d = o;
-    const { articleId, image, video, audio } = this.state;
+    const { articleId, image, rectangleImage, video, audio } = this.state;
 
     d.articleId = articleId;
     d.image = image;
+    d.rectangleImage = rectangleImage;
     d.video = video;
     d.audio = audio;
 
@@ -99,7 +103,7 @@ class BasicInfo extends TabPageBase {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
-    const { image, imageList, imageFileList, video, audio, fileBase64 } = metaData;
+    const { image, rectangleImage, imageList, imageFileList, video, audio, fileBase64 } = metaData;
 
     const fileList = [];
 
@@ -118,6 +122,7 @@ class BasicInfo extends TabPageBase {
 
     this.setState({
       image,
+      rectangleImage,
       imageList,
       fileList,
       video,
@@ -128,6 +133,10 @@ class BasicInfo extends TabPageBase {
 
   afterImageUploadSuccess = (image) => {
     this.setState({ image });
+  };
+
+  afterRectangleImageUploadSuccess = (image) => {
+    this.setState({ rectangleImage: image });
   };
 
   afterVideoChangeSuccess = (video) => {
@@ -335,6 +344,7 @@ class BasicInfo extends TabPageBase {
       processing,
       dataLoading,
       image,
+      rectangleImage,
       video,
       audio,
       fileBase64,
@@ -481,11 +491,27 @@ class BasicInfo extends TabPageBase {
           spinning,
           items: [
             {
+              lg: 12,
               type: cardConfig.contentItemType.imageUpload,
+              icon: <PictureOutlined />,
+              title: fieldData.image.label,
+              helper: fieldData.image.helper,
               image,
               action: `${corsTarget()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
                 this.afterImageUploadSuccess(imageData);
+              },
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.imageUpload,
+              icon: <PictureOutlined />,
+              title: fieldData.rectangleImage.label,
+              helper: fieldData.rectangleImage.helper,
+              image: rectangleImage,
+              action: `${corsTarget()}/article/uploadImage`,
+              afterUploadSuccess: (imageData) => {
+                this.afterRectangleImageUploadSuccess(imageData);
               },
             },
           ],
@@ -513,6 +539,7 @@ class BasicInfo extends TabPageBase {
           spinning,
           items: [
             {
+              lg: 24,
               type: cardConfig.contentItemType.imageUpload,
               action: `${corsTarget()}/article/uploadImage`,
               disabled: !this.checkAuthority(accessWayCollection.article.addImage.permission),
@@ -539,6 +566,7 @@ class BasicInfo extends TabPageBase {
           spinning,
           items: [
             {
+              lg: 24,
               type: cardConfig.contentItemType.imageShow,
               image,
               imageBoxContainorStyle: {
@@ -555,6 +583,7 @@ class BasicInfo extends TabPageBase {
           spinning,
           items: [
             {
+              lg: 24,
               type: cardConfig.contentItemType.imageListShow,
               imageList,
             },

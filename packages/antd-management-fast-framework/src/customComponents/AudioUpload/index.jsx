@@ -29,7 +29,6 @@ import {
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
-import { audioBackGroundImage } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 import IconInfo from '../IconInfo';

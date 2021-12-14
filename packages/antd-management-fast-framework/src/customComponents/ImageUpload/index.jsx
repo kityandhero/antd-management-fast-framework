@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Modal, Upload, Space, message } from 'antd';
+import { Modal, Upload, Tooltip, Space, message } from 'antd';
 import {
   LoadingOutlined,
   PlusOutlined,
@@ -14,6 +14,7 @@ import {
   showWarningMessage,
   stringIsNullOrWhiteSpace,
   toNumber,
+  buildFieldHelper,
 } from '../../utils/tools';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
@@ -21,6 +22,7 @@ import ImageBox from '../ImageBox';
 import FlexBox from '../FlexBox';
 import VerticalBox from '../VerticalBox';
 import CenterBox from '../CenterBox';
+import IconInfo from '../IconInfo';
 
 import styles from './index.less';
 
@@ -194,6 +196,9 @@ class ImageUpload extends PureComponent {
       onItemChange,
       onItemRemove,
       multiple,
+      title,
+      icon,
+      helper,
     } = this.props;
     const { uploading, previewVisible, previewImage } = this.state;
 
@@ -238,111 +243,134 @@ class ImageUpload extends PureComponent {
     };
 
     return (
-      <div className={styles.containor}>
-        <div className="clearfix">
-          {!(showUploadList || false) ? (
-            <>
-              <div
-                className={styles.imageBox}
-                style={{
-                  minWidth: '140px',
-                  width,
-                }}
-              >
-                <Upload {...uploadProps}>
-                  <div className={styles.imageAction}>
-                    <div className={styles.icon}>
-                      <CenterBox>
-                        {uploading ? <LoadingOutlined /> : <UploadOutlined />}
-                      </CenterBox>
-                    </div>
+      <>
+        <div className={styles.containor}>
+          <div className="clearfix">
+            {!(showUploadList || false) ? (
+              <>
+                <div
+                  className={styles.imageBox}
+                  style={{
+                    minWidth: '140px',
+                    width,
+                  }}
+                >
+                  <Upload {...uploadProps}>
+                    <Tooltip title="上传图片">
+                      <div className={styles.imageAction}>
+                        <div className={styles.icon}>
+                          <CenterBox>
+                            {uploading ? (
+                              <LoadingOutlined />
+                            ) : (
+                              <UploadOutlined />
+                            )}
+                          </CenterBox>
+                        </div>
 
-                    <div className={styles.text}>
-                      {uploading ? '上传中' : '上传'}
-                    </div>
-                  </div>
+                        <div className={styles.text}>
+                          {uploading ? '上传中' : '上传'}
+                        </div>
+                      </div>
+                    </Tooltip>
 
-                  <VerticalBox
-                    align="bottom"
-                    style={{
-                      height: '100%',
-                    }}
-                  >
-                    <div
+                    <VerticalBox
+                      align="bottom"
                       style={{
-                        width,
-                        padding: '1px',
+                        height: '100%',
                       }}
                     >
-                      <ImageBox
-                        src={image || emptyImage}
-                        loadingEffect
-                        errorOverlayVisible
-                        showErrorIcon={false}
-                        fillHeight={false}
-                        alt=""
-                      />
-                    </div>
-                  </VerticalBox>
-                </Upload>
+                      <div
+                        style={{
+                          width,
+                          padding: '1px',
+                        }}
+                      >
+                        <ImageBox
+                          src={image || emptyImage}
+                          loadingEffect
+                          errorOverlayVisible
+                          showErrorIcon={false}
+                          fillHeight={false}
+                          alt=""
+                        />
+                      </div>
+                    </VerticalBox>
+                  </Upload>
 
-                <div className={styles.toolBar}>
-                  <FlexBox
-                    right={
-                      <Space>
-                        <EyeOutlined
-                          onClick={() => {
-                            this.handleImagePreview();
-                          }}
+                  <div className={styles.toolBar}>
+                    <FlexBox
+                      left={
+                        <IconInfo
+                          icon={icon}
+                          text={stringIsNullOrWhiteSpace(title) ? '' : title}
                         />
-                        <DeleteOutlined
-                          onClick={() => {
-                            this.clearImage();
-                          }}
-                        />
-                      </Space>
-                    }
-                  />
+                      }
+                      right={
+                        <Space>
+                          <Tooltip title="预览图片">
+                            <EyeOutlined
+                              onClick={() => {
+                                this.handleImagePreview();
+                              }}
+                            />
+                          </Tooltip>
+
+                          <Tooltip title="清除图片">
+                            <DeleteOutlined
+                              onClick={() => {
+                                this.clearImage();
+                              }}
+                            />
+                          </Tooltip>
+                        </Space>
+                      }
+                    />
+                  </div>
                 </div>
-              </div>
-            </>
-          ) : (
-            <Upload {...uploadProps}>
-              {(fileList || []).length >= listCapacity ? null : uploadButton}
-            </Upload>
-          )}
+              </>
+            ) : (
+              <Upload {...uploadProps}>
+                {(fileList || []).length >= listCapacity ? null : uploadButton}
+              </Upload>
+            )}
 
-          <Modal
-            visible={previewVisible}
-            footer={null}
-            onCancel={this.handleUploadCancel}
-            bodyStyle={{
-              boxShadow: '0 1px 4px #ccc, 0 0 40px #ccc inset',
-            }}
-          >
-            <VerticalBox
-              style={{
-                height: '100%',
+            <Modal
+              visible={previewVisible}
+              footer={null}
+              onCancel={this.handleUploadCancel}
+              bodyStyle={{
+                boxShadow: '0 1px 4px #ccc, 0 0 40px #ccc inset',
               }}
             >
-              <div
+              <VerticalBox
                 style={{
-                  width: '100%',
+                  height: '100%',
                 }}
               >
-                <ImageBox
-                  src={previewImage}
-                  loadingEffect
-                  errorOverlayVisible
-                  showErrorIcon={false}
-                  fillHeight={false}
-                  alt=""
-                />
-              </div>
-            </VerticalBox>
-          </Modal>
+                <div
+                  style={{
+                    width: '100%',
+                  }}
+                >
+                  <ImageBox
+                    src={previewImage}
+                    loadingEffect
+                    errorOverlayVisible
+                    showErrorIcon={false}
+                    fillHeight={false}
+                    alt=""
+                  />
+                </div>
+              </VerticalBox>
+            </Modal>
+          </div>
         </div>
-      </div>
+
+        {stringIsNullOrWhiteSpace(helper) ? null : (
+          <div className={styles.helper}>{buildFieldHelper(helper)}</div>
+        )}
+      </>
     );
   }
 }
@@ -360,6 +388,9 @@ ImageUpload.defaultProps = {
     width: '240px',
     emptyImage: '',
   },
+  icon: null,
+  title: '',
+  helper: '',
   pretreatmentRemoteResponse: () => {},
   afterUploadSuccess: () => {},
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

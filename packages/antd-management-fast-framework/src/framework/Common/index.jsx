@@ -1930,6 +1930,9 @@ class Common extends Core {
               if (type === cardConfig.contentItemType.imageUpload) {
                 const uploadProps = {
                   ...{
+                    icon: contentItem.icon || null,
+                    title: contentItem.title || '',
+                    helper: contentItem.helper || '',
                     image: contentItem.image || '',
                     action: contentItem.action || '',
                     tokenSet: this.getUploadTokenObject(),
@@ -1943,7 +1946,13 @@ class Common extends Core {
                 };
 
                 return (
-                  <Col key={contentItemKey} lg={24} md={md} sm={sm} xs={xs}>
+                  <Col
+                    key={contentItemKey}
+                    lg={lg || 6}
+                    md={md}
+                    sm={sm}
+                    xs={xs}
+                  >
                     <ImageUpload
                       {...uploadProps}
                       pretreatmentRemoteResponse={
@@ -1991,7 +2000,13 @@ class Common extends Core {
                 );
 
                 return (
-                  <Col key={contentItemKey} lg={24} md={24} sm={24} xs={24}>
+                  <Col
+                    key={contentItemKey}
+                    lg={lg || 6}
+                    md={md}
+                    sm={sm}
+                    xs={xs}
+                  >
                     <div style={imageBoxContainorStyle}>{imageBox}</div>
                   </Col>
                 );
@@ -2081,7 +2096,13 @@ class Common extends Core {
                 );
 
                 return (
-                  <Col key={contentItemKey} lg={24} md={24} sm={24} xs={24}>
+                  <Col
+                    key={contentItemKey}
+                    lg={lg || 6}
+                    md={md}
+                    sm={sm}
+                    xs={xs}
+                  >
                     {imageBoxListContainorStyle == null ? (
                       imageListContainor
                     ) : (
@@ -2104,7 +2125,13 @@ class Common extends Core {
                 };
 
                 return (
-                  <Col key={contentItemKey} lg={24} md={24} sm={24} xs={24}>
+                  <Col
+                    key={contentItemKey}
+                    lg={lg || 6}
+                    md={md}
+                    sm={sm}
+                    xs={xs}
+                  >
                     {this.renderFormInnerComponent(
                       fieldData.label,
                       <FileBase64Upload
