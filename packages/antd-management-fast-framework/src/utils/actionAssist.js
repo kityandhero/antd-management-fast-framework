@@ -237,6 +237,10 @@ export async function actionCore({
   });
 }
 
+/**
+ * confirmActionCore
+ * @param {*} param0
+ */
 export async function confirmActionCore({
   title,
   content,
