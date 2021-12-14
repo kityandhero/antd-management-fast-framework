@@ -14,6 +14,11 @@ import {
 
 const { confirm } = Modal;
 
+/**
+ * getApiDataCore
+ * @param {*} param0
+ * @returns
+ */
 export function getApiDataCore({ props, modelName }) {
   if (isUndefined(props)) {
     throw new Error('props is undefined, please check params.');
