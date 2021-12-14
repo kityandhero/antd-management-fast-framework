@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { PictureOutlined, UpCircleOutlined, FormOutlined, ReloadOutlined } from '@ant-design/icons';
+import { PictureOutlined } from '@ant-design/icons';
 
 import {
   isArray,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
-  showInfoMessage,
-  notifySuccess,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { cardConfig, drawerConfig } from 'antd-management-fast-framework/es/utils/constants';
-import Base from 'antd-management-fast-framework/es/framework/DataDrawer/Base';
 import MobilePreviewDrawer from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewDrawer';
 import {
   buildButtonGroup,
