@@ -19,7 +19,7 @@ export const configGeneral = {
   locale: {
     default: 'zh-CN',
     antd: true,
-    baseNavigator: true,
+    baseNavigator: false,
   },
   targets: {
     ie: 11,
