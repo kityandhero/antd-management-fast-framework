@@ -1289,6 +1289,7 @@ export function buildListViewItemExtra({
   index,
   imageUrl,
   emptyImageUrl,
+  width = '100px',
 }) {
   return (
     <VerticalBox
@@ -1299,7 +1300,7 @@ export function buildListViewItemExtra({
     >
       <div
         style={{
-          width: '100px',
+          width,
         }}
       >
         <ImageBox
