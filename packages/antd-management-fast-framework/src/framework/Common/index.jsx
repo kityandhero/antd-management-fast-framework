@@ -58,6 +58,7 @@ import ImageBox from '../../customComponents/ImageBox';
 import HelpBox from '../../customComponents/HelpBox';
 import HelpCard from '../../customComponents/HelpCard';
 import IconInfo from '../../customComponents/IconInfo';
+import FileUpload from '../../customComponents/FileUpload';
 import FileBase64Upload from '../../customComponents/FileBase64Upload';
 import FadeBox from '../../customComponents/AnimalBox/FadeBox';
 import QueueBox from '../../customComponents/AnimalBox/QueueBox';
@@ -1270,6 +1271,17 @@ class Common extends Core {
     throw new Error(text);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  pretreatmentFileUploadRemoteResponse = (response) => {
+    const text = '需要在继承中重新实现 pretreatmentFileUploadRemoteResponse';
+
+    showRuntimeError({
+      message: text,
+    });
+
+    throw new Error(text);
+  };
+
   establishToolBarConfig = () => {
     return null;
   };
@@ -2182,6 +2194,45 @@ class Common extends Core {
                         afterChangeSuccess={(video) => {
                           if (isFunction(contentItem.afterChangeSuccess)) {
                             contentItem.afterChangeSuccess(video);
+                          }
+                        }}
+                      />,
+                      fieldData.helper,
+                      formItemLayout,
+                      require,
+                    )}
+                  </Col>
+                );
+              }
+
+              if (type === cardConfig.contentItemType.fileUpload) {
+                const uploadProps = {
+                  ...(contentItem.uploadProps || {}),
+                  ...{
+                    file: contentItem.file || '',
+                    action: contentItem.action || '',
+                    tokenSet: this.getUploadTokenObject(),
+                  },
+                };
+
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg || 6}
+                    md={md}
+                    sm={sm}
+                    xs={xs}
+                  >
+                    {this.renderFormInnerComponent(
+                      fieldData.label,
+                      <FileUpload
+                        {...uploadProps}
+                        pretreatmentRemoteResponse={
+                          this.pretreatmentFileUploadRemoteResponse
+                        }
+                        afterChangeSuccess={(file) => {
+                          if (isFunction(contentItem.afterChangeSuccess)) {
+                            contentItem.afterChangeSuccess(file);
                           }
                         }}
                       />,

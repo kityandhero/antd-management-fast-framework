@@ -38,8 +38,13 @@ export const fieldData = {
       name: 'rectangleImage',
       helper: '文章的长方形图片配图,主要用于文章列表场景的布局展示',
     },
-    fileBase64: {
+    file: {
       label: '附件',
+      name: 'file',
+      helper: '文章的附件',
+    },
+    fileBase64: {
+      label: '附件[转Base64]',
       name: 'fileBase64',
       helper: '文章的附件',
     },

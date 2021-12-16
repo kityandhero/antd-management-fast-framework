@@ -73,6 +73,7 @@ class BasicInfo extends TabPageBase {
         rectangleImage: '',
         video: '',
         audio: '',
+        file: '',
         imageList: [],
         fileList: [],
       },
@@ -90,20 +91,22 @@ class BasicInfo extends TabPageBase {
 
   supplementSubmitRequestParams = (o) => {
     const d = o;
-    const { articleId, image, rectangleImage, video, audio } = this.state;
+    const { articleId, image, rectangleImage, video, audio, file } = this.state;
 
     d.articleId = articleId;
     d.image = image;
     d.rectangleImage = rectangleImage;
     d.video = video;
     d.audio = audio;
+    d.file = file;
 
     return d;
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
-    const { image, rectangleImage, imageList, imageFileList, video, audio, fileBase64 } = metaData;
+    const { image, rectangleImage, imageList, imageFileList, video, audio, file, fileBase64 } =
+      metaData;
 
     const fileList = [];
 
@@ -127,6 +130,7 @@ class BasicInfo extends TabPageBase {
       fileList,
       video,
       audio,
+      file,
       fileBase64,
     });
   };
@@ -147,8 +151,12 @@ class BasicInfo extends TabPageBase {
     this.setState({ audio });
   };
 
-  afterFileUploadSuccess = (file) => {
+  afterFileBase64UploadSuccess = (file) => {
     this.setState({ fileBase64: file });
+  };
+
+  afterFileUploadSuccess = (file) => {
+    this.setState({ file });
   };
 
   handleGalleryUploadChange = ({ file, fileList }) => {
@@ -347,6 +355,7 @@ class BasicInfo extends TabPageBase {
       rectangleImage,
       video,
       audio,
+      file,
       fileBase64,
       imageList,
       fileList,
@@ -439,22 +448,22 @@ class BasicInfo extends TabPageBase {
               lg: 18,
               type: cardConfig.contentItemType.videoUpload,
               fieldData: fieldData.video,
-              video: video,
+              video,
               showPreview: true,
               action: `${corsTarget()}/article/uploadVideo`,
-              afterChangeSuccess: (videoData) => {
-                this.afterVideoChangeSuccess(videoData);
+              afterChangeSuccess: (data) => {
+                this.afterVideoChangeSuccess(data);
               },
             },
             {
               lg: 24,
               type: cardConfig.contentItemType.audioUpload,
               fieldData: fieldData.audio,
-              audio: audio,
+              audio,
               showPreview: true,
               action: `${corsTarget()}/article/uploadAudio`,
-              afterChangeSuccess: (audioData) => {
-                this.afterAudioChangeSuccess(audioData);
+              afterChangeSuccess: (data) => {
+                this.afterAudioChangeSuccess(data);
               },
             },
             {
@@ -462,9 +471,19 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.fileBase64Upload,
               fieldData: fieldData.fileBase64,
               fileBase64,
+              action: `${corsTarget()}/application/uploadFileBase64`,
+              afterUploadSuccess: (data) => {
+                this.afterFileBase64UploadSuccess(data);
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.fileUpload,
+              fieldData: fieldData.file,
+              file,
               action: `${corsTarget()}/application/uploadFile`,
-              afterUploadSuccess: (file) => {
-                this.afterFileUploadSuccess(file);
+              afterUploadSuccess: (data) => {
+                this.afterFileUploadSuccess(data);
               },
             },
           ],

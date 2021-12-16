@@ -556,7 +556,12 @@ export const cardConfig = {
     videoUpload: 'videoUpload',
 
     /**
-     * yinpin上传
+     * 文件上传
+     */
+    fileUpload: 'fileUpload',
+
+    /**
+     * 音频上传
      */
     audioUpload: 'audioUpload',
 

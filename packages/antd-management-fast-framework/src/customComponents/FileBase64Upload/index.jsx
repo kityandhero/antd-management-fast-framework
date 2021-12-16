@@ -36,7 +36,7 @@ class FileBase64Upload extends PureComponent {
       file.size / 1024 / 1024 <
       defaultSettingsLayoutCustom.getFileUploadMaxSize();
     if (!isLt1M) {
-      const text = '文件不能超过1MB!';
+      const text = `文件不能超过${defaultSettingsLayoutCustom.getFileUploadMaxSize()}MB!`;
 
       showRuntimeError({
         message: text,

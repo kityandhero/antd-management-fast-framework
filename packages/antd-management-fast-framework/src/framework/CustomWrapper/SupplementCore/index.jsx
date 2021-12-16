@@ -78,6 +78,24 @@ class SupplementCore extends Common {
 
     return result;
   };
+
+  pretreatmentFileUploadRemoteResponse = (response) => {
+    let result = { file: '' };
+
+    const v = pretreatmentRemoteSingleData(response);
+
+    const { dataSuccess } = v;
+
+    if (dataSuccess) {
+      const {
+        data: { fileUrl },
+      } = v;
+
+      result = { file: fileUrl || '' };
+    }
+
+    return result;
+  };
 }
 
 export default SupplementCore;
