@@ -28,6 +28,7 @@ const GlobalModel = {
       collapsed: false,
       amapObject: null,
       notices: [],
+      mediaTypeList: [],
       webChannelList: [],
       accessWayStatusList: [],
       articleStatusList: [],
@@ -66,9 +67,11 @@ const GlobalModel = {
         const { dataSuccess, data: metaData } = data;
 
         if (dataSuccess) {
-          const { webChannelList, accessWayStatusList, articleStatusList } = metaData;
+          const { mediaTypeList, webChannelList, accessWayStatusList, articleStatusList } =
+            metaData;
 
           result = {
+            mediaTypeList,
             webChannelList,
             accessWayStatusList,
             articleStatusList,

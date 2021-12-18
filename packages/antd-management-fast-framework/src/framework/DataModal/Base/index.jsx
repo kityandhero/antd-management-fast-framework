@@ -175,10 +175,6 @@ class Base extends BaseWindow {
     return this.buildCardCollection(this.establishCardCollectionConfig());
   };
 
-  renderFormWrapper = () => {
-    return this.renderForm();
-  };
-
   renderForm = () => {
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
@@ -202,6 +198,10 @@ class Base extends BaseWindow {
         {this.formContent()}
       </Form>
     );
+  };
+
+  renderFormWrapper = () => {
+    return this.renderForm();
   };
 
   renderModalInner = () => {

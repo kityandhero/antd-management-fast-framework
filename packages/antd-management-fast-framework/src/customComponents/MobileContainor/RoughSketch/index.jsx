@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 
+import ContentView from '../ContentView';
+
 import styles from './index.less';
 
 class MobileContainor extends PureComponent {
@@ -8,7 +10,7 @@ class MobileContainor extends PureComponent {
 
     return (
       <div className={styles.device}>
-        <div className={styles.deviceInner}>{children}</div>
+        <ContentView>{children}</ContentView>
       </div>
     );
   }

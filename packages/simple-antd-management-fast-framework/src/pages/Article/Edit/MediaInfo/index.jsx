@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'umi';
-import { Button, List, Dropdown, Menu, message } from 'antd';
+import { Button, List, Dropdown, Space, Menu, message } from 'antd';
 import {
   ArrowUpOutlined,
   ArrowDownOutlined,
@@ -20,6 +20,7 @@ import {
   getValueByKey,
   toString,
   sortCollectionByKey,
+  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
   defaultEmptyImage,
@@ -28,6 +29,7 @@ import {
   convertCollection,
   formatCollection,
   sortOperate,
+  mobileTypeCollection,
 } from 'antd-management-fast-framework/es/utils/constants';
 import ColorText from 'antd-management-fast-framework/es/customComponents/ColorText';
 import StatusBar from 'antd-management-fast-framework/es/customComponents/StatusBar';
@@ -37,10 +39,12 @@ import { buildDropdownButton } from 'antd-management-fast-framework/es/customCom
 import {
   buildListViewItemExtra,
   buildDescriptionGrid,
+  buildCustomGrid,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 import { accessWayCollection } from '@/customConfig/config';
 
+import MobilePreviewBox from '../../MobilePreviewBox';
 import AddMediaItemDrawer from '../../AddMediaItemDrawer';
 import UpdateMediaItemDrawer from '../../UpdateMediaItemDrawer';
 import MediaItemPreviewDrawer from '../../MediaItemPreviewDrawer';
@@ -287,119 +291,151 @@ class BasicInfo extends TabPageBase {
     return <List.Item>{this.renderListViewItemInner(record, index)}</List.Item>;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  renderListViewItemInner = (r, index) => {
+  renderListViewItemInner = (record, index) => {
     const { mediaItemList } = this.state;
 
-    const title = getValueByKey({
-      data: r,
-      key: mediaItemData.title.name,
-      defaultValue: '无标题',
+    const mediaItemId = getValueByKey({
+      data: record,
+      key: mediaItemData.id.name,
     });
 
-    const image = getValueByKey({
-      data: r,
-      key: mediaItemData.image.name,
+    const title = getValueByKey({
+      data: record,
+      key: mediaItemData.title.name,
     });
 
     const description = getValueByKey({
-      data: r,
+      data: record,
       key: mediaItemData.description.name,
-      defaultValue: '无描述',
+    });
+
+    const image = getValueByKey({
+      data: record,
+      key: mediaItemData.image.name,
     });
 
     const link = getValueByKey({
-      data: r,
+      data: record,
       key: mediaItemData.link.name,
-      defaultValue: '未设置',
     });
 
     const video = getValueByKey({
-      data: r,
+      data: record,
       key: mediaItemData.video.name,
-      defaultValue: '未设置',
+    });
+
+    const audio = getValueByKey({
+      data: record,
+      key: mediaItemData.audio.name,
+    });
+
+    const attachment = getValueByKey({
+      data: record,
+      key: mediaItemData.attachment.name,
     });
 
     const sort = getValueByKey({
-      data: r,
+      data: record,
       key: mediaItemData.sort.name,
       convert: convertCollection.number,
     });
 
     const createTime = getValueByKey({
-      data: r,
+      data: record,
       key: mediaItemData.createTime.name,
       format: formatCollection.datetime,
     });
 
+    const grid = buildCustomGrid({
+      list: [
+        {
+          label: mediaItemData.mediaType.label,
+          value: title,
+        },
+        {
+          label: mediaItemData.image.label,
+          value: image,
+          hidden: stringIsNullOrWhiteSpace(image),
+        },
+        {
+          label: mediaItemData.description.label,
+          value: description,
+          hidden: stringIsNullOrWhiteSpace(description),
+        },
+        {
+          label: mediaItemData.link.label,
+          value: link,
+          hidden: stringIsNullOrWhiteSpace(link),
+        },
+        {
+          label: mediaItemData.video.label,
+          value: video,
+          hidden: stringIsNullOrWhiteSpace(video),
+        },
+        {
+          label: mediaItemData.audio.label,
+          value: audio,
+          hidden: stringIsNullOrWhiteSpace(audio),
+        },
+        {
+          label: mediaItemData.attachment.label,
+          value: attachment,
+          hidden: stringIsNullOrWhiteSpace(attachment),
+        },
+      ],
+      props: {
+        bordered: true,
+        column: 1,
+        size: 'small',
+        labelStyle: {
+          width: '80px',
+        },
+        emptyValue: '暂无',
+        emptyStyle: {
+          color: '#ccc',
+        },
+      },
+    });
+
     return (
       <>
-        <List.Item.Meta
-          title={<ColorText textPrefix={mediaItemData.title.label} text={title} />}
-          description={
+        <Space direction="vertical" style={{ width: '100%' }}>
+          {stringIsNullOrWhiteSpace(image) ? (
+            grid
+          ) : (
             <FlexBox
               flexAuto="right"
-              left={buildListViewItemExtra({
-                index,
-                align: 'top',
-                imageUrl: image,
-                emptyImageUrl: defaultEmptyImage,
-              })}
+              left={
+                stringIsNullOrWhiteSpace(image)
+                  ? null
+                  : buildListViewItemExtra({
+                      index,
+                      align: 'top',
+                      imageUrl: getValueByKey({
+                        data: record,
+                        key: mediaItemData.image.name,
+                      }),
+                      emptyImageUrl: defaultEmptyImage,
+                      width: '80px',
+                    })
+              }
               right={
                 <div
                   style={{
                     paddingLeft: '20px',
                   }}
                 >
-                  {buildDescriptionGrid({
-                    list: [
-                      {
-                        label: mediaItemData.description.label,
-                        value: description,
-                      },
-                      {
-                        label: mediaItemData.link.label,
-                        value: link,
-                      },
-                      {
-                        label: mediaItemData.video.label,
-                        value: video,
-                      },
-                    ],
-                    props: {
-                      bordered: false,
-                      column: 1,
-                      labelStyle: {
-                        width: '42px',
-                      },
-                      contentStyle: {
-                        color: '#999',
-                      },
-                    },
-                  })}
+                  {grid}
                 </div>
               }
             />
-          }
-        />
-        <div>
+          )}
+
           <StatusBar
             actions={[
-              <IconInfo
-                textPrefix={mediaItemData.id.label}
-                text={getValueByKey({
-                  data: r,
-                  key: mediaItemData.id.name,
-                })}
-                canCopy
-              />,
+              <IconInfo textPrefix={mediaItemData.id.label} text={mediaItemId} canCopy />,
               <IconInfo textPrefix={mediaItemData.sort.label} text={toString(sort)} />,
-              <IconInfo
-                textPrefix={mediaItemData.createTime.label}
-                textPrefix={mediaItemData.createTime.label}
-                textPrefix={mediaItemData.createTime.label}
-                text={createTime}
-              />,
+              <IconInfo textPrefix={mediaItemData.createTime.label} text={createTime} />,
             ]}
             extra={buildDropdownButton({
               size: 'small',
@@ -408,7 +444,7 @@ class BasicInfo extends TabPageBase {
               handleButtonClick: ({ handleData }) => {
                 this.showUpdateMediaItemDrawer(handleData);
               },
-              handleData: r,
+              handleData: record,
               handleMenuClick: ({ key, handleData }) => {
                 this.handleMenuClick({ key, handleData });
               },
@@ -420,7 +456,7 @@ class BasicInfo extends TabPageBase {
                   hidden: !this.checkAuthority(accessWayCollection.article.addMediaItem.permission),
                 },
                 {
-                  key: sortOperate.moveUp,
+                  key: 'moveUp',
                   withDivider: true,
                   uponDivider: true,
                   icon: <ArrowUpOutlined />,
@@ -429,7 +465,7 @@ class BasicInfo extends TabPageBase {
                   disabled: sort === 1,
                 },
                 {
-                  key: sortOperate.moveDown,
+                  key: 'moveDown',
                   icon: <ArrowDownOutlined />,
                   text: '向下移动',
                   hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
@@ -462,7 +498,7 @@ class BasicInfo extends TabPageBase {
               ],
             })}
           />
-        </div>
+        </Space>
       </>
     );
   };
@@ -527,22 +563,7 @@ class BasicInfo extends TabPageBase {
       title: '操作提示',
       list: [
         {
-          text: '若商品确定以后绝不会出现不同规格，可以使用创建商品时候自动生成的默认规格；若商品存在不同规格的可能性，则应该在商品建立之后，继续建立相关的规格名、规格值，然后创建指定规格的商品；这样之后，再次新增规格操作将会比较简单。',
-        },
-        {
-          text: '已存在订单得规格项不能删除。',
-        },
-        {
-          text: '默认规格在新增自定义规格后将被禁用并隐藏。',
-        },
-        {
-          text: '新人专享设置针对的是商品的某个特定规格，一旦设置不可取消（取消会带来意料之外的问题，故此禁止取消），新人专享商品禁止加入购物车（可加入购物车会带来某些意想不到的后果）。',
-        },
-        {
-          text: '新用户专享商品不可使用优惠券。',
-        },
-        {
-          text: '限时售卖针对的是商品层次，对商品下的所有规格同时生效，限时售卖商品禁止加入购物车（可加入购物车会带来某些意想不到的后果）。',
+          text: '文章的构建将依照媒体顺序进行。',
         },
       ],
     };
@@ -570,6 +591,21 @@ class BasicInfo extends TabPageBase {
         },
       ],
     };
+  };
+
+  establishPageContentLayoutSiderConfig = () => {
+    return { width: 400 };
+  };
+
+  renderSiderTopArea = () => {
+    const { mediaItemList } = this.state;
+
+    return (
+      <MobilePreviewBox
+        mobileList={[mobileTypeCollection.roughSketch, mobileTypeCollection.iPhone5S]}
+        data={mediaItemList || []}
+      />
+    );
   };
 
   renderOther = () => {

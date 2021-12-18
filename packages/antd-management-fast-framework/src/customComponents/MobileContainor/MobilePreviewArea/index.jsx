@@ -1,14 +1,18 @@
 import React from 'react';
-import { PictureOutlined } from '@ant-design/icons';
+import { MobileOutlined } from '@ant-design/icons';
 
-import { recordObject, showErrorMessage, isObject } from '../../../utils/tools';
+import {
+  recordObject,
+  showErrorMessage,
+  isObject,
+  isArray,
+} from '../../../utils/tools';
 import {
   cardConfig,
   mobileTypeCollection,
   whetherNumber,
-  drawerConfig,
 } from '../../../utils/constants';
-import BaseNeedlessLoadDrawer from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
+import Base from '../../../framework/DataOperation/Base';
 import VerticalBox from '../../VerticalBox';
 import RoughSketch from '../RoughSketch';
 import IphoneX from '../Devices/IphoneX';
@@ -18,7 +22,7 @@ import IPhone5S from '../Devices/IPhone5S';
 import GalaxyNote8 from '../Devices/GalaxyNote8';
 import { buildOptionItem } from '../../FunctionComponent';
 
-class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
+class Index extends Base {
   resetDataAfterLoad = false;
 
   constructor(props) {
@@ -35,59 +39,45 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
     };
   }
 
-  renderTitleIcon = () => {
-    return <PictureOutlined />;
+  buildMobileTypeArray = () => {
+    const list = [];
+
+    Object.entries(mobileTypeCollection).forEach((o) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const [k, v] = o;
+      if (isObject(v)) {
+        list.push(v);
+      }
+    });
+
+    return list;
   };
 
-  renderTitle = () => {
-    return '设备预览';
-  };
-
-  establishExtraActionConfig = () => {
+  establishCardCollectionConfig = () => {
+    const { mobileList } = this.props;
     const { mobileType } = this.state;
 
     const listConfig = [];
 
-    Object.entries(mobileTypeCollection).forEach((o, index) => {
-      const [k, v] = o;
+    const mobileCollection =
+      isArray(mobileList) && mobileList.length <= 0
+        ? this.buildMobileTypeArray()
+        : mobileList;
 
-      if (isObject(v)) {
+    mobileCollection.forEach((o, index) => {
+      if (isObject(o)) {
         const key = `mobileType_${index}`;
 
         listConfig.push({
           key,
-          flag: k,
-          name: v.label,
-          alias: v.label,
+          flag: o.name,
+          name: o.label,
+          alias: o.label,
           description: '',
           availability: whetherNumber.yes,
         });
       }
     });
-
-    return {
-      list: [
-        {
-          buildType: drawerConfig.extraBuildType.flexSelect,
-          label: '模拟设备',
-          value: mobileType,
-          renderItemFunction: () => {
-            return buildOptionItem({
-              list: listConfig,
-            });
-          },
-          onChangeCallback: (v) => {
-            this.setState({
-              mobileType: v,
-            });
-          },
-        },
-      ],
-    };
-  };
-
-  establishCardCollectionConfig = () => {
-    const { mobileType } = this.state;
 
     let mobileView = null;
 
@@ -136,6 +126,30 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
     return {
       list: [
         {
+          title: {
+            text: '手机预览',
+            icon: <MobileOutlined />,
+          },
+          extra: {
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.flexSelect,
+                size: 'small',
+                label: '模拟设备',
+                value: mobileType,
+                renderItemFunction: () => {
+                  return buildOptionItem({
+                    list: listConfig,
+                  });
+                },
+                onChangeCallback: (v) => {
+                  this.setState({
+                    mobileType: v,
+                  });
+                },
+              },
+            ],
+          },
           items: [
             {
               lg: 24,
@@ -163,8 +177,14 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
   renderInnerView = () => {
     return null;
   };
+
+  renderFurther() {
+    return this.buildCardCollection(this.establishCardCollectionConfig());
+  }
 }
 
-MobilePreviewDrawer.defaultProps = {};
+Index.defaultProps = {
+  mobileList: [],
+};
 
-export default MobilePreviewDrawer;
+export default Index;

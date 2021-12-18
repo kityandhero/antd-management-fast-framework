@@ -18,6 +18,11 @@ export const fieldData = {
       name: 'subtitle',
       helper: '文章的副标题',
     },
+    author: {
+      label: '作者',
+      name: 'author',
+      helper: '文章的作者',
+    },
     sort: {
       label: '排序值',
       name: 'sort',
@@ -57,6 +62,11 @@ export const fieldData = {
       label: '音频地址',
       name: 'audio',
       helper: '上传的音频资源',
+    },
+    attachment: {
+      label: '附件',
+      name: 'attachment',
+      helper: '',
     },
     contentData: {
       label: '详细内容',
@@ -140,6 +150,11 @@ export const mediaItemData = {
       name: 'id',
       helper: '',
     },
+    mediaType: {
+      label: '媒体类型',
+      name: 'mediaType',
+      helper: '',
+    },
     title: {
       label: '标题',
       name: 'title',
@@ -163,6 +178,16 @@ export const mediaItemData = {
     video: {
       label: '视频',
       name: 'video',
+      helper: '',
+    },
+    audio: {
+      label: '音频',
+      name: 'audio',
+      helper: '',
+    },
+    attachment: {
+      label: '附件',
+      name: 'attachment',
       helper: '',
     },
     sort: {

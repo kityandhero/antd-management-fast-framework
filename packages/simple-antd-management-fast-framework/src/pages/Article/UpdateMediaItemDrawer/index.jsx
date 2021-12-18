@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'umi';
-import { ContactsOutlined, VideoCameraOutlined, PictureOutlined } from '@ant-design/icons';
+import {
+  ContactsOutlined,
+  VideoCameraOutlined,
+  PictureOutlined,
+  SoundOutlined,
+  LinkOutlined,
+} from '@ant-design/icons';
 
 import {
   corsTarget,
@@ -8,15 +14,17 @@ import {
   formatDatetime,
   toDatetime,
   getValueByKey,
+  inCollection,
 } from 'antd-management-fast-framework/es/utils/tools';
 import {
   cardConfig,
   datetimeFormat,
   formatCollection,
 } from 'antd-management-fast-framework/es/utils/constants';
-import { accessWayCollection } from '@/customConfig/config';
-
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
+
+import { accessWayCollection } from '@/customConfig/config';
+import { mediaTypeCollection } from '@/customConfig/constants';
 
 import { mediaItemData } from '../Common/data';
 
@@ -39,6 +47,8 @@ class Index extends BaseUpdateDrawer {
         submitApiPath: 'article/updateMediaItem',
         image: '',
         video: '',
+        audio: '',
+        attachment: '',
       },
     };
   }
@@ -93,11 +103,17 @@ class Index extends BaseUpdateDrawer {
   };
 
   supplementSubmitRequestParams = (o) => {
-    const { image, video } = this.state;
+    const { mediaType, image, video, audio, attachment } = this.state;
 
     return {
       ...(this.supplementRequestParams(o) || {}),
-      ...{ image, video },
+      ...{
+        mediaType,
+        image,
+        video,
+        audio,
+        attachment,
+      },
     };
   };
 
@@ -126,11 +142,37 @@ class Index extends BaseUpdateDrawer {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
-    const { image, video } = metaData;
+    const mediaType = getValueByKey({
+      data: metaData,
+      key: mediaItemData.mediaType.name,
+    });
+
+    const image = getValueByKey({
+      data: metaData,
+      key: mediaItemData.image.name,
+    });
+
+    const video = getValueByKey({
+      data: metaData,
+      key: mediaItemData.video.name,
+    });
+
+    const audio = getValueByKey({
+      data: metaData,
+      key: mediaItemData.audio.name,
+    });
+
+    const attachment = getValueByKey({
+      data: metaData,
+      key: mediaItemData.attachment.name,
+    });
 
     this.setState({
-      image: image || '',
-      video: video || '',
+      mediaType,
+      image,
+      video,
+      audio,
+      attachment,
     });
   };
 
@@ -142,12 +184,21 @@ class Index extends BaseUpdateDrawer {
     this.setState({ video });
   };
 
+  afterAudioChangeSuccess = (audio) => {
+    this.setState({ audio });
+  };
+
+  afterAttachmentChangeSuccess = (attachment) => {
+    this.setState({ attachment });
+  };
+
   renderTitle = () => {
     return '编辑媒体项';
   };
 
   establishCardCollectionConfig = () => {
-    const { dataLoading, processing, metaData, image, video } = this.state;
+    const { dataLoading, processing, metaData, mediaType, image, video, audio, attachment } =
+      this.state;
 
     const spinning = this.checkInProgress();
 
@@ -222,9 +273,11 @@ class Index extends BaseUpdateDrawer {
             icon: <VideoCameraOutlined />,
             text: mediaItemData.video.label,
           },
-          spinning,
+          spinning: processing,
+          hidden: !inCollection([mediaTypeCollection.video], mediaType),
           items: [
             {
+              lg: 24,
               type: cardConfig.contentItemType.videoUpload,
               fieldData: mediaItemData.video,
               video,
@@ -232,6 +285,48 @@ class Index extends BaseUpdateDrawer {
               action: `${corsTarget()}/article/uploadVideo`,
               afterChangeSuccess: (videoData) => {
                 this.afterVideoChangeSuccess(videoData);
+              },
+            },
+          ],
+        },
+        {
+          title: {
+            icon: <SoundOutlined />,
+            text: mediaItemData.audio.label,
+          },
+          spinning,
+          hidden: !inCollection([mediaTypeCollection.audio], mediaType),
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.audioUpload,
+              fieldData: mediaItemData.audio,
+              audio,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadAudio`,
+              afterChangeSuccess: (audioData) => {
+                this.afterAudioChangeSuccess(audioData);
+              },
+            },
+          ],
+        },
+        {
+          title: {
+            icon: <LinkOutlined />,
+            text: mediaItemData.attachment.label,
+          },
+          spinning,
+          hidden: !inCollection([mediaTypeCollection.attachment], mediaType),
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.fileUpload,
+              fieldData: mediaItemData.attachment,
+              file: attachment,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadFile`,
+              afterChangeSuccess: (attachmentData) => {
+                this.afterAttachmentChangeSuccess(attachmentData);
               },
             },
           ],

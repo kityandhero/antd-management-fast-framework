@@ -29,6 +29,15 @@ export const couponSceneCollection = {
   distributedToShareVisitor: 4,
 };
 
+export const mediaTypeCollection = {
+  paragraph: 10,
+  image: 20,
+  video: 30,
+  audio: 40,
+  attachment: 50,
+  link: 100,
+};
+
 export const defaultPoint = [113.672108, 34.749387];
 
 /**

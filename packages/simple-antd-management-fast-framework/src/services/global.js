@@ -10,6 +10,33 @@ export async function getData(params) {
     params,
     virtualSuccessResponse: {
       data: {
+        mediaTypeList: [
+          {
+            flag: '10',
+            name: '段落',
+            availability: 1,
+          },
+          {
+            flag: '20',
+            name: '图片',
+            availability: 1,
+          },
+          {
+            flag: '30',
+            name: '视频',
+            availability: 1,
+          },
+          {
+            flag: '40',
+            name: '音频',
+            availability: 1,
+          },
+          {
+            flag: '50',
+            name: '附件',
+            availability: 1,
+          },
+        ],
         webChannelList: [
           {
             flag: '20000',

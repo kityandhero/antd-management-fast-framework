@@ -202,7 +202,7 @@ class Index extends BaseAddForm {
   };
 
   establishCardCollectionConfig = () => {
-    const { processing, fadeBoxShow, image } = this.state;
+    const { fadeBoxShow, image, rectangleImage, video, audio, attachment } = this.state;
 
     const spinning = this.checkInProgress();
 
@@ -240,16 +240,21 @@ class Index extends BaseAddForm {
             {
               lg: 6,
               type: cardConfig.contentItemType.input,
-              fieldData: fieldData.sort,
+              fieldData: fieldData.author,
             },
             {
               lg: 6,
               type: cardConfig.contentItemType.placeholder,
             },
             {
-              lg: 24,
+              lg: 18,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.subtitle,
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.sort,
             },
           ],
           instruction: {
@@ -278,11 +283,27 @@ class Index extends BaseAddForm {
           spinning,
           items: [
             {
+              lg: 6,
               type: cardConfig.contentItemType.imageUpload,
+              icon: <PictureOutlined />,
+              title: fieldData.image.label,
+              helper: fieldData.image.helper,
               image,
               action: `${corsTarget()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
                 this.afterImageUploadSuccess(imageData);
+              },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.imageUpload,
+              icon: <PictureOutlined />,
+              title: fieldData.rectangleImage.label,
+              helper: fieldData.rectangleImage.helper,
+              image: rectangleImage,
+              action: `${corsTarget()}/article/uploadImage`,
+              afterUploadSuccess: (imageData) => {
+                this.afterRectangleImageUploadSuccess(imageData);
               },
             },
           ],
@@ -324,7 +345,7 @@ class Index extends BaseAddForm {
         },
         {
           title: {
-            text: '简介描述',
+            text: '媒体、简介描述',
           },
           spinning,
           items: [
@@ -333,6 +354,38 @@ class Index extends BaseAddForm {
               type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
               require: true,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.videoUpload,
+              fieldData: fieldData.video,
+              video: video,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadVideo`,
+              afterChangeSuccess: (videoData) => {
+                this.afterVideoChangeSuccess(videoData);
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.audioUpload,
+              fieldData: fieldData.audio,
+              audio: audio,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadAudio`,
+              afterChangeSuccess: (audioData) => {
+                this.afterAudioChangeSuccess(audioData);
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.fileUpload,
+              fieldData: fieldData.attachment,
+              file: attachment,
+              action: `${corsTarget()}/article/uploadFile`,
+              afterChangeSuccess: (fileData) => {
+                this.afterAttachmentChangeSuccess(fileData);
+              },
             },
           ],
         },

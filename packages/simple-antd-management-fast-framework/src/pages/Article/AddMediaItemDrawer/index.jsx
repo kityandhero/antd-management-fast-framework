@@ -5,16 +5,23 @@ import {
   ContactsOutlined,
   VideoCameraOutlined,
   PictureOutlined,
+  SoundOutlined,
+  LinkOutlined,
 } from '@ant-design/icons';
 
 import {
   corsTarget,
+  inCollection,
   stringIsNullOrWhiteSpace,
+  toNumber,
+  toString,
 } from 'antd-management-fast-framework/es/utils/tools';
 import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
-import { accessWayCollection } from '@/customConfig/config';
-
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
+
+import { accessWayCollection } from '@/customConfig/config';
+import { mediaTypeCollection } from '@/customConfig/constants';
+import { renderFormMediaTypeSelect } from '@/customSpecialComponents/FunctionSupplement/MediaType';
 
 import { mediaItemData } from '../Common/data';
 
@@ -36,8 +43,11 @@ class Index extends BaseAddDrawer {
         loadDataAfterMount: false,
         pageName: '新增媒体',
         submitApiPath: 'article/addMediaItem',
+        mediaType: mediaTypeCollection.paragraph,
         image: '',
         video: '',
+        audio: '',
+        attachment: '',
       },
     };
   }
@@ -61,15 +71,22 @@ class Index extends BaseAddDrawer {
     this.setState({
       image: '',
       video: '',
+      audio: '',
+      attachment: '',
     });
   };
 
   supplementSubmitRequestParams = (o) => {
-    const { image, video } = this.state;
+    const { image, video, audio, attachment } = this.state;
 
     return {
       ...(this.supplementRequestParams(o) || {}),
-      ...{ image, video },
+      ...{
+        image,
+        video,
+        audio,
+        attachment,
+      },
     };
   };
 
@@ -108,14 +125,30 @@ class Index extends BaseAddDrawer {
     this.setState({ audio });
   };
 
+  afterAttachmentChangeSuccess = (attachment) => {
+    this.setState({ attachment });
+  };
+
+  onTypeChange = (v) => {
+    this.setState({ mediaType: toNumber(v) });
+  };
+
   renderTitleIcon = () => <PlusSquareOutlined />;
 
   renderTitle = () => {
     return '添加媒体项';
   };
 
+  fillDefaultInitialValues = () => {
+    const values = {};
+
+    values[mediaItemData.mediaType.name] = toString(mediaTypeCollection.paragraph);
+
+    return values;
+  };
+
   establishCardCollectionConfig = () => {
-    const { processing, image, video } = this.state;
+    const { mediaType, image, video, audio, attachment } = this.state;
 
     const spinning = this.checkInProgress();
 
@@ -130,8 +163,14 @@ class Index extends BaseAddDrawer {
           items: [
             {
               lg: 24,
-              type: cardConfig.contentItemType.input,
-              fieldData: mediaItemData.title,
+              type: cardConfig.contentItemType.component,
+              component: renderFormMediaTypeSelect({
+                global: this.getGlobal(),
+                onChangeCallback: (e) => {
+                  this.onTypeChange(e);
+                },
+              }),
+              require: true,
             },
           ],
         },
@@ -139,11 +178,13 @@ class Index extends BaseAddDrawer {
           title: {
             icon: <PictureOutlined />,
             text: mediaItemData.image.label,
-            subText: '[上传后需点击保存按钮保存！]',
+            subText: '[上传后需点击保存按钮保存]',
           },
           spinning,
+          hidden: !inCollection([mediaTypeCollection.image, mediaTypeCollection.video], mediaType),
           items: [
             {
+              lg: 24,
               type: cardConfig.contentItemType.imageUpload,
               image,
               uploadProps: {
@@ -164,6 +205,7 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.description.label,
           },
           spinning,
+          hidden: !inCollection([mediaTypeCollection.paragraph], mediaType),
           items: [
             {
               lg: 24,
@@ -177,6 +219,7 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.link.label,
           },
           spinning,
+          hidden: !inCollection([mediaTypeCollection.link], mediaType),
           items: [
             {
               lg: 24,
@@ -191,6 +234,7 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.video.label,
           },
           spinning,
+          hidden: !inCollection([mediaTypeCollection.video], mediaType),
           items: [
             {
               lg: 24,
@@ -201,6 +245,48 @@ class Index extends BaseAddDrawer {
               action: `${corsTarget()}/article/uploadVideo`,
               afterChangeSuccess: (videoData) => {
                 this.afterVideoChangeSuccess(videoData);
+              },
+            },
+          ],
+        },
+        {
+          title: {
+            icon: <SoundOutlined />,
+            text: mediaItemData.audio.label,
+          },
+          spinning,
+          hidden: !inCollection([mediaTypeCollection.audio], mediaType),
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.audioUpload,
+              fieldData: mediaItemData.audio,
+              audio,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadAudio`,
+              afterChangeSuccess: (audioData) => {
+                this.afterAudioChangeSuccess(audioData);
+              },
+            },
+          ],
+        },
+        {
+          title: {
+            icon: <LinkOutlined />,
+            text: mediaItemData.attachment.label,
+          },
+          spinning,
+          hidden: !inCollection([mediaTypeCollection.attachment], mediaType),
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.fileUpload,
+              fieldData: mediaItemData.attachment,
+              file: attachment,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadFile`,
+              afterChangeSuccess: (attachmentData) => {
+                this.afterAttachmentChangeSuccess(attachmentData);
               },
             },
           ],

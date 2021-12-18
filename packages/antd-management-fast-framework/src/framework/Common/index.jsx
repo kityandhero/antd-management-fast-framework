@@ -10,6 +10,7 @@ import {
   Space,
   Tooltip,
   Empty,
+  Layout,
 } from 'antd';
 import {
   FormOutlined,
@@ -51,6 +52,7 @@ import {
   tabBarCollection,
 } from '../../utils/constants';
 import FlexText from '../../customComponents/FlexText';
+import FlexBox from '../../customComponents/FlexBox';
 import ImageUpload from '../../customComponents/ImageUpload';
 import VideoUpload from '../../customComponents/VideoUpload';
 import AudioUpload from '../../customComponents/AudioUpload';
@@ -108,6 +110,8 @@ import { renderFormWhetherSelect } from '../../customComponents/FunctionSuppleme
 import Core from '../Core';
 
 import styles from './index.less';
+
+const { Content, Sider } = Layout;
 
 class Common extends Core {
   loadDataAfterMount = true;
@@ -1426,7 +1430,39 @@ class Common extends Core {
     return help;
   };
 
-  buildCardCollection = (config) => {
+  establishSiderTopAreaConfig = () => {
+    return null;
+  };
+
+  renderSiderTopArea = () => {
+    const config = this.establishSiderTopAreaConfig();
+
+    if (config == null) {
+      return null;
+    }
+
+    return this.buildCardCollectionArea(config);
+  };
+
+  establishSiderBottomAreaConfig = () => {
+    return null;
+  };
+
+  renderSiderBottomArea = () => {
+    const config = this.establishSiderBottomAreaConfig();
+
+    if (config == null) {
+      return null;
+    }
+
+    return this.buildCardCollectionArea(config);
+  };
+
+  buildCardCollectionArea = (config = null) => {
+    if (config == null) {
+      return null;
+    }
+
     const formContentWrapperTypeConfig = this.establishWrapperTypeConfig() || {
       mode: cardConfig.wrapperType.page,
     };
@@ -1460,24 +1496,117 @@ class Common extends Core {
     }
 
     return (
+      <Space style={{ width: '100%' }} direction="vertical" size={24}>
+        {listData.map((item, index) => {
+          return this.buildCardCollectionItem({
+            mode,
+            justify: justifyGeneral,
+            align: alignGeneral,
+            config: item,
+            key: index,
+          });
+        })}
+      </Space>
+    );
+  };
+
+  renderSiderArea = () => {
+    const topArea = this.renderSiderTopArea();
+
+    const bottomArea = this.renderSiderBottomArea();
+
+    if ((bottomArea || null) == null) {
+      return topArea;
+    }
+
+    return <FlexBox direction="vertical" top={topArea} bottom={bottomArea} />;
+  };
+
+  establishPageContentLayoutSiderConfig = () => {
+    return {};
+  };
+
+  establishPageContentLayoutConfig = () => {
+    return {};
+  };
+
+  buildCardCollection = (config) => {
+    const siderArea = this.renderSiderArea();
+    const contentArea = this.buildCardCollectionArea(config);
+
+    const layoutSiderConfig = this.establishPageContentLayoutSiderConfig();
+    let layoutConfig = this.establishPageContentLayoutConfig();
+
+    const { position: siderPosition } = {
+      ...{
+        position: 'left',
+      },
+      ...(layoutSiderConfig || {}),
+    };
+
+    const siderConfig = {
+      ...{
+        width: 300,
+        style: {
+          ...{
+            backgroundColor: '#fff',
+            borderRadius: '4px',
+            overflowX: 'auto',
+            overflowY: 'hidden',
+          },
+          ...(siderPosition === 'left'
+            ? { marginRight: '24px' }
+            : { marginLeft: '24px' }),
+        },
+      },
+      ...(layoutSiderConfig || {}),
+    };
+
+    layoutConfig = {
+      ...{
+        breakpoint: 'sm',
+        style: {
+          backgroundColor: '#f0f2f5',
+          minHeight: 'auto',
+        },
+      },
+      ...(layoutConfig || {}),
+    };
+
+    const inner =
+      siderArea == null ? (
+        contentArea
+      ) : (
+        <Layout {...layoutConfig}>
+          {siderPosition === 'left' ? (
+            <Sider {...siderConfig}>{siderArea}</Sider>
+          ) : null}
+
+          <Content>{contentArea}</Content>
+
+          {siderPosition !== 'left' ? (
+            <Sider {...siderConfig}>{siderArea}</Sider>
+          ) : null}
+        </Layout>
+      );
+
+    const toolbar = this.buildToolBarWrapper();
+
+    const help = this.buildHelpWrapper();
+
+    return (
       <>
         <Space style={{ width: '100%' }} direction="vertical" size={24}>
-          {this.buildToolBarWrapper()}
+          {toolbar}
 
-          {listData.map((item, index) => {
-            return this.buildCardCollectionItem({
-              mode,
-              justify: justifyGeneral,
-              align: alignGeneral,
-              config: item,
-              key: index,
-            });
-          })}
+          {inner}
 
-          {this.buildHelpWrapper()}
+          {help}
         </Space>
       </>
     );
+
+    return inner;
   };
 
   buildCardCollectionItem = ({

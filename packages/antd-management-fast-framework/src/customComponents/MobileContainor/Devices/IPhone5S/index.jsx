@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
 import { inCollection } from '../../../../utils/tools';
+import ContentView from '../../ContentView';
 
 import styles from '../devices.less';
 
@@ -28,7 +29,9 @@ class Index extends PureComponent {
           <div className={styles.camera} />
           <div className={styles.sensor} />
           <div className={styles.speaker} />
-          <div className={styles.screen}>{children}</div>
+          <div className={styles.screen}>
+            <ContentView>{children}</ContentView>
+          </div>
           <div className={styles.home} />
           <div className={styles['bottom-bar']} />
         </div>

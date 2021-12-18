@@ -1539,34 +1539,6 @@ class ListBase extends AuthorizationWrapper {
     return null;
   };
 
-  establishSiderTopAreaConfig = () => {
-    return null;
-  };
-
-  renderSiderTopArea = () => {
-    const config = this.establishSiderTopAreaConfig();
-
-    if (config == null) {
-      return null;
-    }
-
-    return this.buildCardCollectionArea(config);
-  };
-
-  establishSiderBottomAreaConfig = () => {
-    return null;
-  };
-
-  renderSiderBottomArea = () => {
-    const config = this.establishSiderBottomAreaConfig();
-
-    if (config == null) {
-      return null;
-    }
-
-    return this.buildCardCollectionArea(config);
-  };
-
   buildCardCollectionArea = (config = null) => {
     if (config == null) {
       return null;
@@ -1760,11 +1732,11 @@ class ListBase extends AuthorizationWrapper {
       return (
         <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
           <Space style={{ width: '100%' }} direction="vertical" size={24}>
-            {this.buildToolBarWrapper()}
+            {toolbar}
 
             {inner}
 
-            {this.buildHelpWrapper()}
+            {help}
           </Space>
         </div>
       );

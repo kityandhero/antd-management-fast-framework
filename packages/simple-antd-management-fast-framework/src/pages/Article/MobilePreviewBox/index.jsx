@@ -7,14 +7,16 @@ import {
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import MobilePreviewDrawer from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewDrawer';
+import MobilePreviewArea from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewArea';
 import {
   buildButtonGroup,
   buildDropdownEllipsis,
   buildOptionItem,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
-class MediaItemPreviewDrawer extends MobilePreviewDrawer {
+class MobilePreviewBox extends MobilePreviewArea {
+  loadDataAfterMount = false;
+
   resetDataAfterLoad = false;
 
   constructor(props) {
@@ -25,14 +27,6 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
       ...{},
     };
   }
-
-  renderTitleIcon = () => {
-    return <PictureOutlined />;
-  };
-
-  renderTitle = () => {
-    return '媒体图文预览';
-  };
 
   buildArticle = () => {
     const { data } = this.props;
@@ -89,8 +83,8 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
   };
 }
 
-MediaItemPreviewDrawer.defaultProps = {
+MobilePreviewBox.defaultProps = {
   data: [],
 };
 
-export default MediaItemPreviewDrawer;
+export default MobilePreviewBox;

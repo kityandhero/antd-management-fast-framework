@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
+import ContentView from '../../ContentView';
+
 import styles from '../devices.less';
 
 class Index extends PureComponent {
@@ -20,7 +22,9 @@ class Index extends PureComponent {
           <div className={styles.sleep} />
           <div className={styles.volume} />
           <div className={styles.camera} />
-          <div className={styles.screen}>{children}</div>
+          <div className={styles.screen}>
+            <ContentView>{children}</ContentView>
+          </div>
         </div>
       </div>
     );

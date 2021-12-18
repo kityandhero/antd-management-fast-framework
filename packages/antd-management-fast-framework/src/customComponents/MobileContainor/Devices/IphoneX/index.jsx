@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
+import ContentView from '../../ContentView';
+
 import styles from '../devices.less';
 
 class Index extends PureComponent {
@@ -27,7 +29,9 @@ class Index extends PureComponent {
             <div className={classNames(styles.shadow, styles['shadow--bl'])} />
           </div>
           <div className={styles['inner-shadow']} />
-          <div className={styles.screen}>{children}</div>
+          <div className={styles.screen}>
+            <ContentView>{children}</ContentView>
+          </div>
         </div>
       </div>
     );

@@ -68,12 +68,12 @@ class BasicInfo extends TabPageBase {
         tokenSet: tokenSetObject,
         changeImageSortModalVisible: false,
         articleId: null,
-        fileBase64: '',
+        attachmentBase64: '',
         image: '',
         rectangleImage: '',
         video: '',
         audio: '',
-        file: '',
+        attachment: '',
         imageList: [],
         fileList: [],
       },
@@ -91,22 +91,30 @@ class BasicInfo extends TabPageBase {
 
   supplementSubmitRequestParams = (o) => {
     const d = o;
-    const { articleId, image, rectangleImage, video, audio, file } = this.state;
+    const { articleId, image, rectangleImage, video, audio, attachment } = this.state;
 
     d.articleId = articleId;
     d.image = image;
     d.rectangleImage = rectangleImage;
     d.video = video;
     d.audio = audio;
-    d.file = file;
+    d.attachment = attachment;
 
     return d;
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
-    const { image, rectangleImage, imageList, imageFileList, video, audio, file, fileBase64 } =
-      metaData;
+    const {
+      image,
+      rectangleImage,
+      imageList,
+      imageFileList,
+      video,
+      audio,
+      attachment,
+      attachmentBase64,
+    } = metaData;
 
     const fileList = [];
 
@@ -130,8 +138,8 @@ class BasicInfo extends TabPageBase {
       fileList,
       video,
       audio,
-      file,
-      fileBase64,
+      attachment,
+      attachmentBase64,
     });
   };
 
@@ -151,12 +159,12 @@ class BasicInfo extends TabPageBase {
     this.setState({ audio });
   };
 
-  afterFileBase64UploadSuccess = (file) => {
-    this.setState({ fileBase64: file });
+  afterFileBase64UploadSuccess = (base64) => {
+    this.setState({ attachmentBase64: base64 });
   };
 
   afterFileUploadSuccess = (file) => {
-    this.setState({ file });
+    this.setState({ attachment: file });
   };
 
   handleGalleryUploadChange = ({ file, fileList }) => {
@@ -355,8 +363,8 @@ class BasicInfo extends TabPageBase {
       rectangleImage,
       video,
       audio,
-      file,
-      fileBase64,
+      attachment,
+      attachmentBase64,
       imageList,
       fileList,
     } = this.state;
@@ -470,7 +478,7 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.fileBase64Upload,
               fieldData: fieldData.fileBase64,
-              fileBase64,
+              fileBase64: attachmentBase64,
               action: `${corsTarget()}/application/uploadFileBase64`,
               afterUploadSuccess: (data) => {
                 this.afterFileBase64UploadSuccess(data);
@@ -480,7 +488,7 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.fileUpload,
               fieldData: fieldData.file,
-              file,
+              file: attachment,
               action: `${corsTarget()}/application/uploadFile`,
               afterUploadSuccess: (data) => {
                 this.afterFileUploadSuccess(data);
@@ -1059,6 +1067,38 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
               require: true,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.videoUpload,
+              fieldData: fieldData.video,
+              video: video,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadVideo`,
+              afterChangeSuccess: (videoData) => {
+                this.afterVideoChangeSuccess(videoData);
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.audioUpload,
+              fieldData: fieldData.audio,
+              audio: audio,
+              showPreview: true,
+              action: `${corsTarget()}/article/uploadAudio`,
+              afterChangeSuccess: (audioData) => {
+                this.afterAudioChangeSuccess(audioData);
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.fileUpload,
+              fieldData: fieldData.attachment,
+              file: attachment,
+              action: `${corsTarget()}/article/uploadFile`,
+              afterChangeSuccess: (file) => {
+                this.afterAttachmentChangeSuccess(file);
+              },
             },
           ],
           instruction: [
