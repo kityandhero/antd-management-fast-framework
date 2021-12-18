@@ -69,6 +69,8 @@ export const appInitDefault = {
   videoUploadMaxSize: 4,
   fileUploadMaxSize: 2,
   useNprogress: true,
+  tinymceApiKey: '',
+  tinymceConfig: null,
 };
 
 export const accessWaySpecialCollection = {
@@ -634,6 +636,11 @@ export const cardConfig = {
      * tree
      */
     tree: 'tree',
+
+    /**
+     * tinymce
+     */
+    tinymce: 'tinymce',
   },
 };
 

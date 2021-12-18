@@ -66,6 +66,7 @@ import FadeBox from '../../customComponents/AnimalBox/FadeBox';
 import QueueBox from '../../customComponents/AnimalBox/QueueBox';
 import ColorText from '../../customComponents/ColorText';
 import HtmlBox from '../../customComponents/HtmlBox';
+import TinymceWrapper from '../../customComponents/Editor/TinymceWrapper';
 
 import {
   buildCustomGrid,
@@ -127,7 +128,7 @@ class Common extends Core {
       ...defaultState,
       ...{
         backPath: '',
-        videoUploading: false,
+        htmlEditor: null,
       },
     };
   }
@@ -175,6 +176,12 @@ class Common extends Core {
         dataSuccess: false,
       },
     };
+  };
+
+  getHtmlEditorContent = () => {
+    const { htmlEditor } = this.state;
+
+    return html == null ? '' : htmlEditor.toHTML();
   };
 
   /**
@@ -2043,6 +2050,23 @@ class Common extends Core {
                     xs={lg || xs}
                   >
                     {buildTree(contentItem)}
+                  </Col>
+                );
+              }
+
+              if (type === cardConfig.contentItemType.tinymce) {
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg}
+                    md={lg || md}
+                    sm={lg || sm}
+                    xs={lg || xs}
+                  >
+                    <TinymceWrapper
+                      content={contentItem.html || ''}
+                      afterChange={contentItem.afterChange}
+                    />
                   </Col>
                 );
               }

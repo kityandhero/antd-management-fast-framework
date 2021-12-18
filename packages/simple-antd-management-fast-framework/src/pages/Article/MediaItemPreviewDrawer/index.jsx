@@ -71,7 +71,7 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
         {stringIsNullOrWhiteSpace(record.description) ? null : (
           <p
             style={{
-              textIndent: '35px',
+              textIndent: '28px',
             }}
           >
             {record.description}

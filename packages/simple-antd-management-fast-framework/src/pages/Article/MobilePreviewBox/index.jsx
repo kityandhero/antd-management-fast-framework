@@ -65,7 +65,7 @@ class MobilePreviewBox extends MobilePreviewArea {
         {stringIsNullOrWhiteSpace(record.description) ? null : (
           <p
             style={{
-              textIndent: '35px',
+              textIndent: '28px',
             }}
           >
             {record.description}

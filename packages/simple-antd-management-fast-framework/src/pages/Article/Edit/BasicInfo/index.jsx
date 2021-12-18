@@ -76,6 +76,8 @@ class BasicInfo extends TabPageBase {
         attachment: '',
         imageList: [],
         fileList: [],
+        content: '',
+        initContent: '',
       },
     };
   }
@@ -91,7 +93,7 @@ class BasicInfo extends TabPageBase {
 
   supplementSubmitRequestParams = (o) => {
     const d = o;
-    const { articleId, image, rectangleImage, video, audio, attachment } = this.state;
+    const { articleId, image, rectangleImage, video, audio, attachment, content } = this.state;
 
     d.articleId = articleId;
     d.image = image;
@@ -99,6 +101,7 @@ class BasicInfo extends TabPageBase {
     d.video = video;
     d.audio = audio;
     d.attachment = attachment;
+    d.content = content;
 
     return d;
   };
@@ -114,6 +117,7 @@ class BasicInfo extends TabPageBase {
       audio,
       attachment,
       attachmentBase64,
+      content,
     } = metaData;
 
     const fileList = [];
@@ -140,6 +144,8 @@ class BasicInfo extends TabPageBase {
       audio,
       attachment,
       attachmentBase64,
+      content,
+      initContent: content,
     });
   };
 
@@ -165,6 +171,10 @@ class BasicInfo extends TabPageBase {
 
   afterFileUploadSuccess = (file) => {
     this.setState({ attachment: file });
+  };
+
+  afterHtmlChange = ({ html, text }) => {
+    this.setState({ content: html });
   };
 
   handleGalleryUploadChange = ({ file, fileList }) => {
@@ -367,6 +377,7 @@ class BasicInfo extends TabPageBase {
       attachmentBase64,
       imageList,
       fileList,
+      initContent,
     } = this.state;
 
     const spinning = this.checkInProgress();
@@ -1153,6 +1164,32 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.html,
               html: '',
+            },
+          ],
+          instruction: [
+            {
+              title: '说明',
+              showDivider: false,
+              showNumber: true,
+              list: [
+                {
+                  text: 'Html数据展示，空白将替换为Empty',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: {
+            text: '富文本编辑',
+          },
+          spinning,
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.tinymce,
+              content: initContent,
+              afterChange: this.afterHtmlChange,
             },
           ],
           instruction: [

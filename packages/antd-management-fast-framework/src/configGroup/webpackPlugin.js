@@ -62,7 +62,6 @@ export const webpackPlugin = (config) => {
                 'l7',
                 'gg-editor-core',
                 'bizcharts-plugin-slider',
-                'braft-editor',
                 'classnames',
                 'lodash',
                 'numeral',
@@ -81,7 +80,6 @@ export const webpackPlugin = (config) => {
                   '@ant-design/icons',
                   '@antv/l7',
                   '@antv/l7-maps',
-                  'braft-editor',
                   'gg-editor',
                 ].indexOf(packageName) >= 0
               ) {
@@ -138,7 +136,6 @@ export const webpackPlugin5 = (config, { env }) => {
                   'l7',
                   'gg-editor-core',
                   'bizcharts-plugin-slider',
-                  'braft-editor',
                   'classnames',
                   'lodash',
                   'numeral',
@@ -162,7 +159,6 @@ export const webpackPlugin5 = (config, { env }) => {
                   'l7',
                   'gg-editor-core',
                   'bizcharts-plugin-slider',
-                  'braft-editor',
                   'classnames',
                   'lodash',
                   'numeral',

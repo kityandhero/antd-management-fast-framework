@@ -6,6 +6,26 @@ import {
 } from './constants';
 
 export const defaultSettingsLayoutCustom = {
+  getTinymceConfig: () => {
+    const appInit = getAppInitConfigData();
+
+    const { tinymceConfig } = {
+      ...{ tinymceConfig: null },
+      ...(appInit || {}),
+    };
+
+    return tinymceConfig || null;
+  },
+  getTinymceApiKey: () => {
+    const appInit = getAppInitConfigData();
+
+    const { tinymceApiKey } = {
+      ...{ tinymceApiKey: '' },
+      ...(appInit || {}),
+    };
+
+    return tinymceApiKey || '';
+  },
   getUseNprogress: () => {
     const appInit = getAppInitConfigData();
 
