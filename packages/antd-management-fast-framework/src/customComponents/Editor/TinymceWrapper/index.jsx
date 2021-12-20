@@ -141,9 +141,7 @@ class TinymceWrapper extends PureComponent {
     };
 
     xhr.onerror = function () {
-      failure(
-        'Image upload failed due to a XHR Transport error. Code: ' + xhr.status,
-      );
+      failure('图片上传失败，请确认上传地址有效可用. Code: ' + xhr.status);
     };
 
     formData = new FormData();

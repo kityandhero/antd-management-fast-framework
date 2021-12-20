@@ -44,6 +44,7 @@ import {
   toNumber,
 } from '../../utils/tools';
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import {
   defaultEmptyImage,
   cardConfig,
@@ -2064,8 +2065,19 @@ class Common extends Core {
                     xs={lg || xs}
                   >
                     <TinymceWrapper
+                      apiKey={
+                        contentItem.apiKey ||
+                        defaultSettingsLayoutCustom.getTinymceApiKey() ||
+                        ''
+                      }
                       content={contentItem.html || ''}
                       afterChange={contentItem.afterChange}
+                      initConfig={contentItem.initConfig || null}
+                      imagesUploadUrl={
+                        contentItem.imagesUploadUrl ||
+                        defaultSettingsLayoutCustom.getTinymceImagesUploadUrl() ||
+                        ''
+                      }
                     />
                   </Col>
                 );

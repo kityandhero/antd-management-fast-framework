@@ -138,6 +138,8 @@ class BasicInfo extends TabPageBase {
       fileList.push(o);
     });
 
+    this.htmlContent = content;
+
     this.setState({
       image,
       rectangleImage,
