@@ -2066,17 +2066,19 @@ class Common extends Core {
                   >
                     <TinymceWrapper
                       apiKey={
-                        contentItem.apiKey ||
-                        defaultSettingsLayoutCustom.getTinymceApiKey() ||
-                        ''
+                        stringIsNullOrWhiteSpace(contentItem.apiKey || '')
+                          ? defaultSettingsLayoutCustom.getTinymceApiKey()
+                          : contentItem.apiKey
                       }
                       content={contentItem.html || ''}
                       afterChange={contentItem.afterChange}
                       initConfig={contentItem.initConfig || null}
                       imagesUploadUrl={
-                        contentItem.imagesUploadUrl ||
-                        defaultSettingsLayoutCustom.getTinymceImagesUploadUrl() ||
-                        ''
+                        stringIsNullOrWhiteSpace(
+                          contentItem.imagesUploadUrl || '',
+                        )
+                          ? defaultSettingsLayoutCustom.getTinymceImagesUploadUrl()
+                          : contentItem.imagesUploadUrl
                       }
                     />
                   </Col>
