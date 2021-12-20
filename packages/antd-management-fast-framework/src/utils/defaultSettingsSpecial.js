@@ -6,15 +6,15 @@ import {
 } from './constants';
 
 export const defaultSettingsLayoutCustom = {
-  getTinymceConfig: () => {
+  getTinymceImagesUploadUrl: () => {
     const appInit = getAppInitConfigData();
 
-    const { tinymceConfig } = {
-      ...{ tinymceConfig: null },
+    const { tinymceImagesUploadUrl } = {
+      ...{ tinymceImagesUploadUrl: null },
       ...(appInit || {}),
     };
 
-    return tinymceConfig || null;
+    return tinymceImagesUploadUrl || '';
   },
   getTinymceApiKey: () => {
     const appInit = getAppInitConfigData();

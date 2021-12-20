@@ -53,6 +53,10 @@ import { fieldData } from '../../Common/data';
 class BasicInfo extends TabPageBase {
   componentAuthority = accessWayCollection.article.get.permission;
 
+  htmlContent = '';
+
+  textContent = '';
+
   constructor(props) {
     super(props);
 
@@ -76,7 +80,6 @@ class BasicInfo extends TabPageBase {
         attachment: '',
         imageList: [],
         fileList: [],
-        content: '',
         initContent: '',
       },
     };
@@ -101,7 +104,7 @@ class BasicInfo extends TabPageBase {
     d.video = video;
     d.audio = audio;
     d.attachment = attachment;
-    d.content = content;
+    d.content = this.htmlContent;
 
     return d;
   };
@@ -144,7 +147,6 @@ class BasicInfo extends TabPageBase {
       audio,
       attachment,
       attachmentBase64,
-      content,
       initContent: content,
     });
   };
@@ -174,7 +176,8 @@ class BasicInfo extends TabPageBase {
   };
 
   afterHtmlChange = ({ html, text }) => {
-    this.setState({ content: html });
+    this.htmlContent = html;
+    this.textContent = text;
   };
 
   handleGalleryUploadChange = ({ file, fileList }) => {

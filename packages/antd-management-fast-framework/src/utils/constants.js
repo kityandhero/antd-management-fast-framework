@@ -70,7 +70,7 @@ export const appInitDefault = {
   fileUploadMaxSize: 2,
   useNprogress: true,
   tinymceApiKey: '',
-  tinymceConfig: null,
+  tinymceImagesUploadUrl: '',
 };
 
 export const accessWaySpecialCollection = {

@@ -2,101 +2,19 @@ import React, { PureComponent } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
 import { corsTarget, isFunction } from '../../../utils/tools';
+import { pretreatmentRemoteSingleData } from '../../../utils/requestAssistor';
 import { getTokenKeyName, getToken } from '../../../utils/globalStorageAssist';
 import { defaultSettingsLayoutCustom } from '../../../utils/defaultSettingsSpecial';
 
 class TinymceWrapper extends PureComponent {
-  imagesUploadUrl = '';
-
   editor = React.createRef();
 
-  constructor(props) {
-    super(props);
+  buildConfig = () => {
+    const { initConfig } = this.props;
 
-    this.state = {
-      initContent: '',
-    };
-  }
+    var useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { initContent: contentPrev } = prevState;
-    const { content: contentNext } = nextProps;
-
-    if (contentPrev !== contentNext) {
-      return {
-        initContent: contentNext,
-      };
-    }
-
-    return {};
-  }
-
-  imageUploadHandler = (blobInfo, success, failure, progress) => {
-    var xhr, formData;
-
-    xhr = new XMLHttpRequest();
-
-    xhr.withCredentials = false;
-    xhr.open('POST', this.imagesUploadUrl);
-
-    xhr.setRequestHeader(getTokenKeyName(), getToken() || 'anonymous');
-
-    xhr.upload.onprogress = function (e) {
-      progress((e.loaded / e.total) * 100);
-    };
-
-    xhr.onload = function () {
-      var json;
-
-      if (xhr.status === 403) {
-        failure('HTTP Error: ' + xhr.status, { remove: true });
-        return;
-      }
-
-      if (xhr.status < 200 || xhr.status >= 300) {
-        failure('HTTP Error: ' + xhr.status);
-        return;
-      }
-
-      json = JSON.parse(xhr.responseText);
-
-      if (!json || typeof json.location != 'string') {
-        failure('Invalid JSON: ' + xhr.responseText);
-        return;
-      }
-
-      success(json.location);
-    };
-
-    xhr.onerror = function () {
-      failure(
-        'Image upload failed due to a XHR Transport error. Code: ' + xhr.status,
-      );
-    };
-
-    formData = new FormData();
-    formData.append('file', blobInfo.blob(), blobInfo.filename());
-
-    xhr.send(formData);
-  };
-
-  handleEditorChange = (newValue, editor) => {
-    const { afterChange } = this.props;
-
-    if (isFunction(afterChange)) {
-      afterChange({
-        html: editor.getContent(),
-        text: editor.getContent({ format: 'text' }),
-      });
-    }
-  };
-
-  render() {
-    const { initContent } = this.state;
-
-    const corsUrl = corsTarget();
-
-    const initConfig = {
+    const config = {
       ...{
         language: 'zh_CN',
         height: 600,
@@ -165,12 +83,88 @@ class TinymceWrapper extends PureComponent {
         images_upload_url: '',
         images_upload_handler: this.imageUploadHandler,
       },
-      ...(defaultSettingsLayoutCustom.getTinymceConfig() || {}),
+      ...(initConfig || {}),
     };
 
-    initConfig.images_upload_url = `${corsUrl}${initConfig.images_upload_url}`;
+    return config;
+  };
 
-    this.imagesUploadUrl = initConfig.images_upload_url;
+  imageUploadHandler = (blobInfo, success, failure, progress) => {
+    const { imagesUploadUrl } = this.props;
+    const corsUrl = corsTarget();
+
+    const images_upload_url = `${corsUrl}${imagesUploadUrl}`;
+
+    var xhr, formData;
+
+    xhr = new XMLHttpRequest();
+
+    xhr.withCredentials = false;
+    xhr.open('POST', images_upload_url);
+
+    xhr.setRequestHeader(getTokenKeyName(), getToken() || 'anonymous');
+
+    xhr.upload.onprogress = function (e) {
+      progress((e.loaded / e.total) * 100);
+    };
+
+    xhr.onload = function () {
+      if (xhr.status === 403) {
+        failure('HTTP Error: ' + xhr.status, { remove: true });
+        return;
+      }
+
+      if (xhr.status < 200 || xhr.status >= 300) {
+        failure('HTTP Error: ' + xhr.status);
+        return;
+      }
+
+      const v = pretreatmentRemoteSingleData(xhr.responseText);
+
+      const { dataSuccess } = v;
+
+      console.log(v);
+
+      if (!dataSuccess) {
+        failure(
+          `图片上传失败，请确认上传地址有效可用,当前上传地址为: ${images_upload_url}`,
+        );
+
+        return;
+      }
+
+      const {
+        data: { imageUrl },
+      } = v;
+
+      success(imageUrl || '');
+    };
+
+    xhr.onerror = function () {
+      failure(
+        'Image upload failed due to a XHR Transport error. Code: ' + xhr.status,
+      );
+    };
+
+    formData = new FormData();
+    formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+    xhr.send(formData);
+  };
+
+  handleEditorChange = (newValue, editor) => {
+    const { afterChange } = this.props;
+
+    if (isFunction(afterChange)) {
+      afterChange({
+        html: editor.getContent(),
+        text: editor.getContent({ format: 'text' }),
+      });
+    }
+  };
+
+  render() {
+    const { apiKey, content } = this.props;
 
     return (
       <div
@@ -179,10 +173,10 @@ class TinymceWrapper extends PureComponent {
         }}
       >
         <Editor
-          apiKey={defaultSettingsLayoutCustom.getTinymceApiKey()}
+          apiKey={apiKey}
           onInit={(evt, editor) => (this.editor.current = editor)}
-          initialValue={initContent}
-          init={initConfig}
+          initialValue={content}
+          init={this.buildConfig()}
           onEditorChange={this.handleEditorChange}
         />
       </div>
@@ -191,7 +185,10 @@ class TinymceWrapper extends PureComponent {
 }
 
 TinymceWrapper.defaultProps = {
+  apiKey: defaultSettingsLayoutCustom.getTinymceApiKey(),
   content: '',
+  initConfig: null,
+  imagesUploadUrl: defaultSettingsLayoutCustom.getTinymceImagesUploadUrl(),
 };
 
 export default TinymceWrapper;
