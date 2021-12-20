@@ -123,7 +123,7 @@ class TinymceWrapper extends PureComponent {
 
       const { dataSuccess } = v;
 
-      console.log(v);
+      console.log({ xhr, v });
 
       if (!dataSuccess) {
         failure(
