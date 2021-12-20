@@ -179,8 +179,7 @@ class DataCore extends BaseView {
   pageHeaderAction = () => {
     const { dataLoading, reloading, refreshing, showReloadButton } = this.state;
 
-    const actionExtraGroupConfig =
-      this.establishPageHeaderActionExtraGroupConfig();
+    const actionExtraGroupConfig = this.establishExtraActionConfig();
     const actionExtraEllipsisConfig =
       this.establishPageHeaderActionExtraEllipsisConfig();
 
