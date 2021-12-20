@@ -18,12 +18,13 @@ class TinymceWrapper extends PureComponent {
       ...{
         language: 'zh_CN',
         height: 600,
-        plugins_ignore: 'tinydrive imagetools toc',
+        plugins_ignore:
+          'tinydrive powerpaste imagetools advcode formatpainter pageembed permanentpen casechange checklist advtable export tinymcespellchecker linkchecker mentions tinycomments toc',
         plugins:
-          'print preview powerpaste casechange importcss searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable export',
+          'print preview  importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount a11ychecker textpattern noneditable help charmap quickbars  emoticons',
         mobile: {
           plugins:
-            'print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker textpattern noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable',
+            'print preview importcss tinydrive searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount a11ychecker textpattern noneditable help charmap quickbars  emoticons',
         },
         menu: {
           tc: {
@@ -33,16 +34,17 @@ class TinymceWrapper extends PureComponent {
         },
         menubar: 'file edit view insert format tools table tc help',
         toolbar:
-          'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+          'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor  removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
         autosave_ask_before_unload: true,
         autosave_interval: '30s',
         autosave_prefix: '{path}{query}-{id}-',
         autosave_restore_when_empty: false,
         autosave_retention: '2m',
         image_advtab: true,
-        link_list: [],
-        image_list: [],
-        image_class_list: [],
+        // link_list: [],
+        // image_list: [],
+        // 启用image_class_list 配置后,该值不能为空数组，否则将发生错误
+        // image_class_list: ['image'],
         importcss_append: true,
         templates: [
           {
@@ -70,16 +72,17 @@ class TinymceWrapper extends PureComponent {
           'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
         noneditable_noneditable_class: 'mceNonEditable',
         toolbar_mode: 'sliding',
-        spellchecker_ignore_list: ['Ephox', 'Moxiecode'],
-        tinycomments_mode: 'embedded',
+        // spellchecker_ignore_list: ['Ephox', 'Moxiecode'],
+        // tinycomments_mode: 'embedded',
         content_style: '.mymention{ color: gray; }',
-        contextmenu_ignore: 'imagetools',
-        contextmenu: 'link image table configurepermanentpen',
+        contextmenu_ignore: 'imagetools configurepermanentpen',
+        contextmenu: 'link image table',
         a11y_advanced_options: true,
         skin: useDarkMode ? 'oxide-dark' : 'oxide',
         content_css: useDarkMode ? 'dark' : 'default',
-        mentions_selector: '.mymention',
-        mentions_item_type: 'profile',
+        // mentions_selector: '.mymention',
+        // mentions_item_type: 'profile',
+        automatic_uploads: true,
         images_upload_url: '',
         images_upload_handler: this.imageUploadHandler,
       },
