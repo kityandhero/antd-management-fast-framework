@@ -73,6 +73,9 @@ export const appInitDefault = {
   tinymceImagesUploadUrl: '',
 };
 
+/**
+ * accessWaySpecialCollection
+ */
 export const accessWaySpecialCollection = {
   super: {
     permission: 'super',
