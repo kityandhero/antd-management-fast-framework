@@ -8,10 +8,8 @@ needSetFormValueAfterLoad - > resetDataAfterLoad
 searchFormContentConfigData -> establishSearchCardConfig 
 renderSimpleFormInitialValues -> fillSearchCardInitialValues
 formContentConfigData -> establishCardCollectionConfig
-buildPageHeaderActionExtraEllipsis -> establishPageHeaderActionExtraEllipsisConfig
 pageHeaderExtraContentData -> establishPageHeaderExtraContentConfig
 pageHeaderContentGridData -> establishPageHeaderContentGridConfig
-buildPageHeaderActionExtraGroup -> establishPageHeaderActionExtraGroupConfig
 pageHeaderAvatar -> establishPageHeaderAvatarConfig
 pageHeaderTagList -> establishPageHeaderTagCollectionConfig
 pageHeaderTitlePrefix -> establishPageHeaderTitlePrefix
@@ -30,7 +28,6 @@ fillForm -> fillData
 handleFormOtherReset -> handleAdditionalSearchReset
 
 buildEveryCardFromCollection -> buildCardCollectionItemContent
-buildFormActionList -> buildEveryCardActionList
 —————————————————————————————————
 formContentConfig. -> cardConfig.
 formContentConfig -> cardConfig

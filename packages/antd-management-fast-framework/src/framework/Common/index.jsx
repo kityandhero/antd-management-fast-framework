@@ -18,6 +18,7 @@ import {
   ReloadOutlined,
   ToolOutlined,
   ReadOutlined,
+  LoadingOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -50,7 +51,7 @@ import {
   cardConfig,
   datetimeFormat,
   contentConfig,
-  tabBarCollection,
+  extraBuildType,
 } from '../../utils/constants';
 import FlexText from '../../customComponents/FlexText';
 import FlexBox from '../../customComponents/FlexBox';
@@ -106,6 +107,7 @@ import {
   buildDropdownEllipsis,
   buildTree,
   buildCustomSelect,
+  buildButtonGroup,
 } from '../../customComponents/FunctionComponent';
 import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
 
@@ -116,6 +118,8 @@ import styles from './index.less';
 const { Content, Sider } = Layout;
 
 class Common extends Core {
+  showExtraActionDivider = false;
+
   loadDataAfterMount = true;
 
   lastRequestingData = { type: '', payload: {} };
@@ -129,7 +133,7 @@ class Common extends Core {
       ...defaultState,
       ...{
         backPath: '',
-        htmlEditor: null,
+        showReloadButton: false,
       },
     };
   }
@@ -177,12 +181,6 @@ class Common extends Core {
         dataSuccess: false,
       },
     };
-  };
-
-  getHtmlEditorContent = () => {
-    const { htmlEditor } = this.state;
-
-    return html == null ? '' : htmlEditor.toHTML();
   };
 
   /**
@@ -1732,7 +1730,7 @@ class Common extends Core {
       });
     }
 
-    const extraItems = this.buildEveryCardActionList({
+    const extraItems = this.buildByExtraBuildType({
       keyPrefix: `formContent_key_${cardItemKey}_extra`,
       configList: extraListData,
     });
@@ -2787,7 +2785,7 @@ class Common extends Core {
                         )
                       }
                     >
-                      {this.buildEveryCardActionList({
+                      {this.buildByExtraBuildType({
                         keyPrefix: `form_card_${contentIndex}_action_key`,
                         configList: contentItem.config || [],
                       })}
@@ -2813,7 +2811,7 @@ class Common extends Core {
     );
   };
 
-  buildEveryCardActionList = ({ keyPrefix = '', configList }) => {
+  buildByExtraBuildType = ({ keyPrefix = '', configList }) => {
     const list = [];
 
     (isArray(configList) ? configList : []).forEach((item, index) => {
@@ -2834,16 +2832,16 @@ class Common extends Core {
         };
 
         if (!hidden) {
-          const itemKey = `${keyPrefix || 'formAction'}_${index}`;
+          const itemKey = `${keyPrefix}_${index}`;
 
           let itemAdjust = item;
 
           switch (buildType) {
-            case cardConfig.extraBuildType.refresh:
+            case extraBuildType.refresh:
               itemAdjust = this.renderRefreshButton(item);
               break;
 
-            case cardConfig.extraBuildType.save:
+            case extraBuildType.save:
               itemAdjust = this.renderSaveButton(item);
               break;
 
@@ -2851,35 +2849,43 @@ class Common extends Core {
               itemAdjust = this.renderGeneralButton(item);
               break;
 
-            case cardConfig.extraBuildType.flexSelect:
+            case extraBuildType.flexSelect:
               itemAdjust = buildCustomSelect(item);
               break;
 
-            case cardConfig.extraBuildType.button:
+            case extraBuildType.button:
               itemAdjust = buildButton(item);
               break;
 
-            case cardConfig.extraBuildType.dropdown:
+            case extraBuildType.dropdown:
               itemAdjust = buildDropdown(item);
               break;
 
-            case cardConfig.extraBuildType.dropdownButton:
+            case extraBuildType.dropdownButton:
               itemAdjust = buildDropdownButton(item);
               break;
 
-            case cardConfig.extraBuildType.dropdownEllipsis:
+            case extraBuildType.dropdownEllipsis:
               itemAdjust = buildDropdownEllipsis(item);
               break;
 
-            case cardConfig.extraBuildType.iconInfo:
-              itemAdjust = <IconInfo {...item} />;
+            case extraBuildType.iconInfo:
+              itemAdjust = (
+                <div style={{ padding: '0 8px' }}>
+                  <IconInfo {...item} />
+                </div>
+              );
               break;
 
-            case cardConfig.extraBuildType.colorText:
-              itemAdjust = <ColorText {...item} />;
+            case extraBuildType.colorText:
+              itemAdjust = (
+                <div style={{ padding: '0 8px' }}>
+                  <ColorText {...item} />
+                </div>
+              );
               break;
 
-            case cardConfig.extraBuildType.component:
+            case extraBuildType.component:
               itemAdjust = componentSource || null;
               break;
 
@@ -2901,88 +2907,103 @@ class Common extends Core {
     return list;
   };
 
-  buildTabBarExtraContentItemsCore = ({ keyPrefix = '', configList }) => {
-    const list = [];
+  establishExtraActionConfig = () => null;
 
-    (isArray(configList) ? configList : []).forEach((item, index) => {
-      if ((item || null) != null) {
-        const {
-          hidden,
-          buildType,
-          component: componentSource,
-        } = {
-          ...{
-            hidden: false,
-            buildType: null,
-            icon: null,
-            text: '',
-            component: null,
-          },
-          ...item,
-        };
+  establishExtraActionGroupConfig = () => null;
 
-        if (!hidden) {
-          const itemKey = `${keyPrefix || 'tabBarExtraContentItem'}_${index}`;
+  establishExtraActionEllipsisConfig = () => null;
 
-          let itemAdjust = item;
+  buildExtraBackAction = () => null;
 
-          switch (buildType) {
-            case tabBarCollection.extraBuildType.flexSelect:
-              itemAdjust = buildCustomSelect(item);
-              break;
+  buildExtraAction = () => {
+    const { dataLoading, reloading, refreshing, showReloadButton } = this.state;
 
-            case tabBarCollection.extraBuildType.button:
-              itemAdjust = buildButton(item);
-              break;
+    const { keyPrefix, list: configList } = {
+      ...{
+        keyPrefix: '',
+        list: [],
+      },
+      ...this.establishExtraActionConfig(),
+    };
 
-            case tabBarCollection.extraBuildType.dropdown:
-              itemAdjust = buildDropdown(item);
-              break;
+    const keyPrefixAdjust = keyPrefix || 'extraActionItem';
 
-            case tabBarCollection.extraBuildType.dropdownButton:
-              itemAdjust = buildDropdownButton(item);
-              break;
-
-            case tabBarCollection.extraBuildType.dropdownEllipsis:
-              itemAdjust = buildDropdownEllipsis(item);
-              break;
-
-            case tabBarCollection.extraBuildType.iconInfo:
-              itemAdjust = (
-                <div style={{ padding: '0 8px' }}>
-                  <IconInfo {...item} />
-                </div>
-              );
-              break;
-
-            case tabBarCollection.extraBuildType.colorText:
-              itemAdjust = (
-                <div style={{ padding: '0 8px' }}>
-                  <ColorText {...item} />
-                </div>
-              );
-              break;
-
-            case tabBarCollection.extraBuildType.component:
-              itemAdjust = componentSource || null;
-              break;
-
-            default:
-              recordObject({
-                message: '未找到匹配的构建模式',
-                config: item,
-              });
-
-              itemAdjust = null;
-              break;
-          }
-
-          list.push(<Fragment key={itemKey}>{itemAdjust}</Fragment>);
-        }
-      }
+    const listAction = this.buildByExtraBuildType({
+      keyPrefix: keyPrefixAdjust,
+      configList,
     });
 
-    return list;
+    const buttonGroupData = this.establishExtraActionGroupConfig();
+
+    if ((buttonGroupData || null) != null) {
+      const buttonGroup = buildButtonGroup(buttonGroupData);
+
+      if ((buttonGroup || null) != null) {
+        listAction.push(
+          <Fragment key={`${keyPrefixAdjust}_buttonGroup`}>
+            {buttonGroup}
+          </Fragment>,
+        );
+      }
+    }
+
+    const ellipsisActionData = this.establishExtraActionEllipsisConfig();
+
+    if ((ellipsisActionData || null) != null) {
+      const dropdownEllipsis = buildDropdownEllipsis(ellipsisActionData);
+
+      if ((dropdownEllipsis || null) != null) {
+        listAction.push(
+          <Fragment key={`${keyPrefixAdjust}_dropdownEllipsis`}>
+            {dropdownEllipsis}
+          </Fragment>,
+        );
+      }
+    }
+
+    const backAction = this.buildExtraBackAction();
+
+    if ((backAction || null) != null) {
+      listAction.push(
+        <Fragment key={`${keyPrefixAdjust}_dropdownEllipsis`}>
+          {backAction}
+        </Fragment>,
+      );
+    }
+
+    if (showReloadButton) {
+      listAction.push(
+        <Fragment key={`${keyPrefixAdjust}_dropdownEllipsis`}>
+          <Tooltip placement="top" title="刷新">
+            <Button
+              disabled={dataLoading || reloading || refreshing}
+              type="dashed"
+              onClick={() => {
+                this.reloadData();
+              }}
+            >
+              {reloading || refreshing ? (
+                <LoadingOutlined />
+              ) : (
+                <ReloadOutlined />
+              )}
+            </Button>
+          </Tooltip>
+        </Fragment>,
+      );
+    }
+
+    return (
+      <Space
+        split={
+          !!this.showExtraActionDivider || false ? (
+            <Divider type="vertical" />
+          ) : null
+        }
+      >
+        {listAction.map((o) => o)}
+      </Space>
+    );
   };
 }
 

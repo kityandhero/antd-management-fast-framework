@@ -168,8 +168,8 @@ class DataTabContainer extends DataSingleView {
       return null;
     }
 
-    const listItem = this.buildTabBarExtraContentItemsCore({
-      keyPrefix,
+    const listItem = this.buildByExtraBuildType({
+      keyPrefix: keyPrefix || 'tabBarExtraContentItem',
       configList,
     });
 
@@ -239,7 +239,7 @@ class DataTabContainer extends DataSingleView {
         )}
         subTitle={this.buildPageHeaderSubTitle()}
         tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
-        extra={this.pageHeaderAction()}
+        extra={this.buildExtraAction()}
         tabActiveKey={this.getTabActiveKey()}
         content={buildPageHeaderContent(pageHeaderContentConfig)}
         extraContent={pageHeaderExtraContent(

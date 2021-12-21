@@ -1,9 +1,7 @@
 import React from 'react';
-import { Form, Tooltip, Button, Avatar, Space, BackTop } from 'antd';
+import { Form, Tooltip, Button, Avatar, BackTop } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import {
-  LoadingOutlined,
-  ReloadOutlined,
   PlusOutlined,
   RollbackOutlined,
   ContactsOutlined,
@@ -11,11 +9,7 @@ import {
 
 import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
 import { pageHeaderRenderType } from '../../../utils/constants';
-import {
-  buildButtonGroup,
-  buildDropdownEllipsis,
-  buildTagList,
-} from '../../../customComponents/FunctionComponent';
+import { buildTagList } from '../../../customComponents/FunctionComponent';
 import { avatarImageLoadResultCollection } from '../../../customComponents/DecorateAvatar';
 
 import BaseView from '../../DataOperation/BaseView';
@@ -128,14 +122,6 @@ class DataCore extends BaseView {
     });
   };
 
-  establishPageHeaderActionExtraGroupConfig = () => {
-    return null;
-  };
-
-  establishPageHeaderActionExtraEllipsisConfig = () => {
-    return null;
-  };
-
   buildPageHeaderSubTitle = () => null;
 
   pageHeaderLogo = () => <Avatar shape="square" icon={<PlusOutlined />} />;
@@ -146,7 +132,7 @@ class DataCore extends BaseView {
     return pageName;
   };
 
-  buildPageHeaderActionBack = () => {
+  buildExtraBackAction = () => {
     const { backPath } = this.state;
 
     if (!this.enableActionBack) {
@@ -173,46 +159,6 @@ class DataCore extends BaseView {
           列表页
         </Button>
       </Tooltip>
-    );
-  };
-
-  pageHeaderAction = () => {
-    const { dataLoading, reloading, refreshing, showReloadButton } = this.state;
-
-    const actionExtraGroupConfig = this.establishExtraActionConfig();
-    const actionExtraEllipsisConfig =
-      this.establishPageHeaderActionExtraEllipsisConfig();
-
-    return (
-      <Space>
-        {(actionExtraGroupConfig || null) != null
-          ? buildButtonGroup(actionExtraGroupConfig)
-          : null}
-
-        {(actionExtraEllipsisConfig || null) != null
-          ? buildDropdownEllipsis(actionExtraEllipsisConfig)
-          : null}
-
-        {this.buildPageHeaderActionBack()}
-
-        {showReloadButton ? (
-          <Tooltip placement="top" title="刷新">
-            <Button
-              disabled={dataLoading || reloading || refreshing}
-              type="dashed"
-              onClick={() => {
-                this.reloadData();
-              }}
-            >
-              {reloading || refreshing ? (
-                <LoadingOutlined />
-              ) : (
-                <ReloadOutlined />
-              )}
-            </Button>
-          </Tooltip>
-        ) : null}
-      </Space>
     );
   };
 

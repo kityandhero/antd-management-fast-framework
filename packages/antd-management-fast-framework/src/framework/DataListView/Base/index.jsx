@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
   Form,
   Row,
@@ -45,14 +45,8 @@ import {
   listViewConfig,
   cardConfig,
 } from '../../../utils/constants';
-import IconInfo from '../../../customComponents/IconInfo';
 import {
   adjustTableExpandConfig,
-  buildButton,
-  buildDropdown,
-  buildDropdownButton,
-  buildDropdownEllipsis,
-  buildButtonGroup,
   buildPageHeaderTitle,
   buildPageHeaderTagWrapper,
   buildPageHeaderContent,
@@ -817,89 +811,10 @@ class ListBase extends AuthorizationWrapper {
       return [];
     }
 
-    const components = [];
-
-    configList.forEach((item, index) => {
-      if ((item || null) != null) {
-        const {
-          hidden,
-          buildType: itemBuildType,
-          icon: itemIcon,
-          text: itemText,
-          component: itemComponent,
-        } = {
-          ...{
-            buildType: listViewConfig.dataContainerExtraActionBuildType.button,
-            hidden: false,
-            icon: null,
-            text: '',
-            component: null,
-          },
-          ...item,
-        };
-
-        let itemHidden = hidden;
-
-        if (
-          !hidden &&
-          itemBuildType ===
-            listViewConfig.dataContainerExtraActionBuildType.component &&
-          (itemComponent || null) == null
-        ) {
-          itemHidden = true;
-        }
-
-        if (!itemHidden) {
-          const itemKey = `listView_dataContainerExtraAction_key_${index}`;
-
-          let itemAdjust = item;
-
-          switch (itemBuildType) {
-            case listViewConfig.dataContainerExtraActionBuildType.generalButton:
-              itemAdjust = this.renderGeneralButton(item);
-              break;
-
-            case cardConfig.extraBuildType.flexSelect:
-              itemAdjust = buildCustomSelect(item);
-              break;
-
-            case listViewConfig.dataContainerExtraActionBuildType.button:
-              itemAdjust = buildButton(item);
-              break;
-
-            case listViewConfig.dataContainerExtraActionBuildType.dropdown:
-              itemAdjust = buildDropdown(item);
-              break;
-
-            case listViewConfig.dataContainerExtraActionBuildType
-              .dropdownButton:
-              itemAdjust = buildDropdownButton(item);
-              break;
-
-            case listViewConfig.dataContainerExtraActionBuildType
-              .dropdownEllipsis:
-              itemAdjust = buildDropdownEllipsis(item);
-              break;
-
-            case listViewConfig.dataContainerExtraActionBuildType.iconInfo:
-              itemAdjust = <IconInfo icon={itemIcon} text={itemText} />;
-              break;
-
-            case listViewConfig.dataContainerExtraActionBuildType.component:
-              itemAdjust = itemComponent || null;
-              break;
-
-            default:
-              itemAdjust = item;
-              break;
-          }
-
-          components.push(<Fragment key={itemKey}>{itemAdjust}</Fragment>);
-        }
-      }
+    return this.buildByExtraBuildType({
+      keyPrefix: 'listView_dataContainerExtraActionItem_',
+      configList,
     });
-
-    return components;
   };
 
   renderExtraActionView = () => {
@@ -1082,34 +997,6 @@ class ListBase extends AuthorizationWrapper {
     };
 
     return config;
-  };
-
-  establishPageHeaderActionExtraGroupConfig = () => null;
-
-  establishPageHeaderActionExtraEllipsisConfig = () => null;
-
-  buildPageHeaderAction = () => {
-    const buttonGroupData = this.establishPageHeaderActionExtraGroupConfig();
-    const ellipsisActionData =
-      this.establishPageHeaderActionExtraEllipsisConfig();
-
-    return (
-      <>
-        <div className={styles.buttonBox}>
-          {(buttonGroupData || null) == null
-            ? null
-            : buildButtonGroup(buttonGroupData)}
-
-          {(ellipsisActionData || null) == null ? null : (
-            <Divider type="vertical" />
-          )}
-
-          {(ellipsisActionData || null) == null
-            ? null
-            : buildDropdownEllipsis(ellipsisActionData)}
-        </div>
-      </>
-    );
   };
 
   establishPageHeaderTagCollectionConfig = () => [];
@@ -1791,7 +1678,7 @@ class ListBase extends AuthorizationWrapper {
           )}
           subTitle={this.buildPageHeaderSubTitle()}
           tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
-          extra={this.buildPageHeaderAction()}
+          extra={this.buildExtraAction()}
           tabActiveKey={this.getTabActiveKey()}
           content={this.renderPageHeaderContent()}
           extraContent={this.renderPageHeaderExtraContent()}

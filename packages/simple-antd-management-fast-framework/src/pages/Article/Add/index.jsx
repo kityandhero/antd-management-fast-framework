@@ -91,7 +91,7 @@ class Index extends BaseAddForm {
     });
   };
 
-  establishPageHeaderActionExtraGroupConfig = () => {
+  establishExtraActionGroupConfig = () => {
     const that = this;
 
     return {

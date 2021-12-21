@@ -295,7 +295,7 @@ class BaseAddForm extends DataCore {
         )}
         subTitle={this.buildPageHeaderSubTitle()}
         tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
-        extra={this.pageHeaderAction()}
+        extra={this.buildExtraAction()}
         content={buildPageHeaderContent(pageHeaderContentConfig)}
         extraContent={pageHeaderExtraContent(
           this.establishPageHeaderExtraContentConfig(),

@@ -26,6 +26,7 @@ import {
 import {
   convertCollection,
   tabBarCollection,
+  extraBuildType,
 } from 'antd-management-fast-framework/es/utils/constants';
 import DataTabContainer from 'antd-management-fast-framework/es/framework/DataTabContainer';
 import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
@@ -211,7 +212,25 @@ class Edit extends DataTabContainer {
     ];
   };
 
-  establishPageHeaderActionExtraGroupConfig = () => {
+  establishExtraActionConfig = () => {
+    return {
+      list: [
+        {
+          buildType: extraBuildType.iconInfo,
+          icon: <InfoCircleFilled />,
+          text: '一些说明',
+        },
+        {
+          buildType: extraBuildType.button,
+          icon: <FormOutlined />,
+          text: '按钮',
+          handleClick: () => {},
+        },
+      ],
+    };
+  };
+
+  establishExtraActionGroupConfig = () => {
     const { metaData, dataLoading, processing } = this.state;
 
     if (metaData == null) {
@@ -274,7 +293,7 @@ class Edit extends DataTabContainer {
     };
   };
 
-  establishPageHeaderActionExtraEllipsisConfig = () => {
+  establishExtraActionEllipsisConfig = () => {
     const { metaData, dataLoading, processing } = this.state;
 
     if ((metaData || null) == null) {

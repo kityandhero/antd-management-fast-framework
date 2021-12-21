@@ -303,51 +303,71 @@ export const sortOperate = {
   moveDown: 'moveDown',
 };
 
+/**
+ * 扩展区构建模式
+ */
+export const extraBuildType = {
+  /**
+   * 内置的刷新按钮，根据请求配置触发重新加载，一般用于详情类展示或表单初始加载
+   */
+  refresh: 'refresh',
+
+  /**
+   * 内置的保存按钮，表单上下文中将根据提交配置触发提交操作，非表单环境不要使用
+   */
+  save: 'save',
+
+  /**
+   * 根据配置项渲染按钮，事件触发需要自定义指定
+   */
+  generalButton: 'generalButton',
+
+  /**
+   * 带图标文字，图标为空或者文字为空情况下渲染方式有差异
+   */
+  iconInfo: 'iconInfo',
+
+  /**
+   * 彩色文字
+   */
+  colorText: 'colorText',
+
+  /**
+   * 自定义选择框
+   */
+  flexSelect: 'flexSelect',
+
+  /**
+   * 根据配置项渲染按钮，事件触发需要自定义指定,配置项与generalButton相仿，配置模式有所不同，最终效果类似
+   */
+  button: 'button',
+
+  /**
+   * 带扩展操作的按钮
+   */
+  dropdownButton: 'dropdownButton',
+
+  /**
+   * 带扩展操作的省略按钮，省略占位符本身不具有操作
+   */
+  dropdownEllipsis: 'dropdownEllipsis',
+
+  /**
+   * dropdown
+   */
+  dropdown: 'dropdown',
+
+  /**
+   * 指定渲染自定义组件，组件由配置传入
+   */
+  component: 'component',
+};
+
 export const drawerConfig = {
   /**
    * 扩展区构建模式
    */
-  extraBuildType: {
-    /**
-     * 带图标文字，图标为空或者文字为空情况下渲染方式有差异
-     */
-    iconInfo: 'iconInfo',
-
-    /**
-     * 彩色文字
-     */
-    colorText: 'colorText',
-
-    /**
-     * 自定义选择框
-     */
-    flexSelect: 'flexSelect',
-
-    /**
-     * 根据配置项渲染按钮，事件触发需要自定义指定,配置项与generalButton相仿，配置模式有所不同，最终效果类似
-     */
-    button: 'button',
-
-    /**
-     * 带扩展操作的按钮
-     */
-    dropdownButton: 'dropdownButton',
-
-    /**
-     * 带扩展操作的省略按钮，省略占位符本身不具有操作
-     */
-    dropdownEllipsis: 'dropdownEllipsis',
-
-    /**
-     * dropdown
-     */
-    dropdown: 'dropdown',
-
-    /**
-     * 指定渲染自定义组件，组件由配置传入
-     */
-    component: 'component',
-  },
+  extraBuildType: extraBuildType,
   bottomBarBuildType: {
     close: 'close',
     refresh: 'refresh',
@@ -389,60 +409,7 @@ export const cardConfig = {
    * 扩展区构建模式
    */
   extraBuildType: {
-    /**
-     * 内置的刷新按钮，根据请求配置触发重新加载，一般用于详情类展示或表单初始加载
-     */
-    refresh: 'refresh',
-
-    /**
-     * 内置的保存按钮，表单上下文中将根据提交配置触发提交操作，非表单环境不要使用
-     */
-    save: 'save',
-
-    /**
-     * 根据配置项渲染按钮，事件触发需要自定义指定
-     */
-    generalButton: 'generalButton',
-
-    /**
-     * 带图标文字，图标为空或者文字为空情况下渲染方式有差异
-     */
-    iconInfo: 'iconInfo',
-
-    /**
-     * 彩色文字
-     */
-    colorText: 'colorText',
-
-    /**
-     * 根据配置项渲染按钮，事件触发需要自定义指定,配置项与generalButton相仿，配置模式有所不同，最终效果类似
-     */
-    button: 'button',
-
-    /**
-     * 带扩展操作的按钮
-     */
-    dropdownButton: 'dropdownButton',
-
-    /**
-     * 带扩展操作的省略按钮，省略占位符本身不具有操作
-     */
-    dropdownEllipsis: 'dropdownEllipsis',
-
-    /**
-     * dropdown
-     */
-    dropdown: 'dropdown',
-
-    /**
-     * 自定义选择框
-     */
-    flexSelect: 'flexSelect',
-
-    /**
-     * 指定渲染自定义组件，组件由配置传入
-     */
-    component: 'component',
+    ...extraBuildType,
   },
   contentItemType: {
     /**
@@ -842,47 +809,7 @@ export const tabBarCollection = {
   /**
    * 扩展区构建模式
    */
-  extraBuildType: {
-    /**
-     * 带图标文字，图标为空或者文字为空情况下渲染方式有差异
-     */
-    iconInfo: 'iconInfo',
-
-    /**
-     * 彩色文字
-     */
-    colorText: 'colorText',
-
-    /**
-     * 自定义选择框
-     */
-    flexSelect: 'flexSelect',
-
-    /**
-     * 根据配置项渲染按钮，事件触发需要自定义指定,配置项与generalButton相仿，配置模式有所不同，最终效果类似
-     */
-    button: 'button',
-
-    /**
-     * 带扩展操作的按钮
-     */
-    dropdownButton: 'dropdownButton',
-
-    /**
-     * 带扩展操作的省略按钮，省略占位符本身不具有操作
-     */
-    dropdownEllipsis: 'dropdownEllipsis',
-
-    /**
-     * dropdown
-     */
-    dropdown: 'dropdown',
-
-    /**
-     * 指定渲染自定义组件，组件由配置传入
-     */
-    component: 'component',
-  },
+  extraBuildType: extraBuildType,
 };
 
 /**

@@ -43,6 +43,7 @@ import {
   cardConfig,
   whetherNumber,
   defaultEmptyImage,
+  extraBuildType,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
@@ -338,6 +339,24 @@ class PageList extends MultiPage {
     const { articleId } = record;
 
     this.goToPath(`/news/article/edit/load/${articleId}/key/basicInfo`);
+  };
+
+  establishExtraActionConfig = () => {
+    return {
+      list: [
+        {
+          buildType: extraBuildType.iconInfo,
+          icon: <InfoCircleFilled />,
+          text: '一些说明',
+        },
+        {
+          buildType: extraBuildType.button,
+          icon: <FormOutlined />,
+          text: '按钮',
+          handleClick: () => {},
+        },
+      ],
+    };
   };
 
   establishToolBarConfig = () => {
