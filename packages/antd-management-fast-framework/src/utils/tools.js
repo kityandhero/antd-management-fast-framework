@@ -889,12 +889,12 @@ export function getValueByKey({
   if ((formatBuilder || null) != null || (format || null) != null) {
     if (isFunction(formatBuilder)) {
       result = formatTarget({
-        target: v,
+        target: result,
         format: formatBuilder,
       });
     } else {
       result = formatTarget({
-        target: v,
+        target: result,
         format,
       });
     }
