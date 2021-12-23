@@ -1502,17 +1502,23 @@ class Common extends Core {
     }
 
     return (
-      <Space style={{ width: '100%' }} direction="vertical" size={24}>
-        {listData.map((item, index) => {
-          return this.buildCardCollectionItem({
-            mode,
-            justify: justifyGeneral,
-            align: alignGeneral,
-            config: item,
-            key: index,
-          });
-        })}
-      </Space>
+      <div
+        style={{
+          backgroundColor: '#f0f2f5',
+        }}
+      >
+        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+          {listData.map((item, index) => {
+            return this.buildCardCollectionItem({
+              mode,
+              justify: justifyGeneral,
+              align: alignGeneral,
+              config: item,
+              key: index,
+            });
+          })}
+        </Space>
+      </div>
     );
   };
 
@@ -1588,7 +1594,13 @@ class Common extends Core {
             <Sider {...siderConfig}>{siderArea}</Sider>
           ) : null}
 
-          <Content>{contentArea}</Content>
+          <Content
+            style={{
+              backgroundColor: '#fff',
+            }}
+          >
+            {contentArea}
+          </Content>
 
           {siderPosition !== 'left' ? (
             <Sider {...siderConfig}>{siderArea}</Sider>

@@ -1533,13 +1533,19 @@ class ListBase extends AuthorizationWrapper {
     }
 
     return (
-      <Space style={{ width: '100%' }} direction="vertical" size={24}>
-        <Card bordered={false} className={styles.containorSearch}>
-          <div className={styles.tableListForm}>{searchForm}</div>
-        </Card>
+      <div
+        style={{
+          backgroundColor: '#f0f2f5',
+        }}
+      >
+        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+          <Card bordered={false} className={styles.containorSearch}>
+            <div className={styles.tableListForm}>{searchForm}</div>
+          </Card>
 
-        {gridView}
-      </Space>
+          {gridView}
+        </Space>
+      </div>
     );
   };
 
@@ -1603,7 +1609,13 @@ class ListBase extends AuthorizationWrapper {
             <Sider {...siderConfig}>{siderArea}</Sider>
           ) : null}
 
-          <Content>{contentArea}</Content>
+          <Content
+            style={{
+              backgroundColor: '#fff',
+            }}
+          >
+            {contentArea}
+          </Content>
 
           {siderPosition !== 'left' ? (
             <Sider {...siderConfig}>{siderArea}</Sider>
