@@ -1612,6 +1612,7 @@ class ListBase extends AuthorizationWrapper {
           <Content
             style={{
               backgroundColor: '#fff',
+              borderRadius: '4px',
             }}
           >
             {contentArea}

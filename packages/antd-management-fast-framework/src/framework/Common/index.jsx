@@ -1597,6 +1597,7 @@ class Common extends Core {
           <Content
             style={{
               backgroundColor: '#fff',
+              borderRadius: '4px',
             }}
           >
             {contentArea}
