@@ -44,7 +44,7 @@ class ContentPreviewBox extends MobilePreviewArea {
 }
 
 ContentPreviewBox.defaultProps = {
-  data: [],
+  html: '',
 };
 
 export default ContentPreviewBox;
