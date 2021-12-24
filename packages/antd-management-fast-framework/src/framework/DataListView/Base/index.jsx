@@ -1251,7 +1251,7 @@ class ListBase extends AuthorizationWrapper {
 
     const actionOthers = this.renderListViewItemActionOthers(record, index);
 
-    let actionSelect = [];
+    let actionSelect = null;
 
     if (showListViewItemActionSelect || false) {
       actionSelect = this.renderListViewItemActionSelect(record, index);
