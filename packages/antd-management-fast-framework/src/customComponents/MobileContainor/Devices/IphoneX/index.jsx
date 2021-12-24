@@ -1,13 +1,24 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
+import { animalType } from '../../../../utils/constants';
 import ContentView from '../../ContentView';
 
 import styles from '../devices.less';
 
-class Index extends PureComponent {
+class IphoneX extends PureComponent {
   render() {
-    const { children } = this.props;
+    const {
+      alertVisible,
+      alertAnimationType,
+      alertMessage,
+      alertDescription,
+      alertIcon,
+      alertType,
+      alertButtonText,
+      afterAlertClick,
+      children,
+    } = this.props;
 
     return (
       <div className={styles.devices}>
@@ -30,7 +41,18 @@ class Index extends PureComponent {
           </div>
           <div className={styles['inner-shadow']} />
           <div className={styles.screen}>
-            <ContentView>{children}</ContentView>
+            <ContentView
+              alertVisible={alertVisible}
+              alertAnimationType={alertAnimationType}
+              alertMessage={alertMessage}
+              alertDescription={alertDescription}
+              alertIcon={alertIcon}
+              alertType={alertType}
+              alertButtonText={alertButtonText}
+              afterAlertClick={afterAlertClick}
+            >
+              {children}
+            </ContentView>
           </div>
         </div>
       </div>
@@ -38,4 +60,16 @@ class Index extends PureComponent {
   }
 }
 
-export default Index;
+IphoneX.defaultProps = {
+  alertVisible: false,
+  alertAnimationType: animalType.fade,
+  alertMessage: '',
+  alertDescription: '',
+  alertType: 'info',
+  alertIcon: true,
+  alertButtonText: '刷新',
+  afterAlertClick: null,
+  type: 'black',
+};
+
+export default IphoneX;

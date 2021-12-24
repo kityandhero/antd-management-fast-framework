@@ -51,7 +51,7 @@ export const accessWayCollection = {
       updateBasicInfo: {
         permission: '4249a324-3120-443f-87c2-67d06a8a067f',
       },
-      updateContentData: {
+      updateContentInfo: {
         permission: '7b6b9bfd-ed43-437d-bd93-08835ba09a25',
       },
       updateMediaData: {

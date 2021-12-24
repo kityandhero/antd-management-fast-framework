@@ -1,13 +1,24 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
+import { animalType } from '../../../../utils/constants';
 import ContentView from '../../ContentView';
 
 import styles from '../devices.less';
 
-class Index extends PureComponent {
+class GalaxyNote8 extends PureComponent {
   render() {
-    const { children } = this.props;
+    const {
+      alertVisible,
+      alertAnimationType,
+      alertMessage,
+      alertDescription,
+      alertIcon,
+      alertType,
+      alertButtonText,
+      children,
+      afterAlertClick,
+    } = this.props;
 
     return (
       <div className={styles.devices}>
@@ -23,7 +34,18 @@ class Index extends PureComponent {
           <div className={styles.volume} />
           <div className={styles.camera} />
           <div className={styles.screen}>
-            <ContentView>{children}</ContentView>
+            <ContentView
+              alertVisible={alertVisible}
+              alertAnimationType={alertAnimationType}
+              alertMessage={alertMessage}
+              alertDescription={alertDescription}
+              alertIcon={alertIcon}
+              alertType={alertType}
+              alertButtonText={alertButtonText}
+              afterAlertClick={afterAlertClick}
+            >
+              {children}
+            </ContentView>
           </div>
         </div>
       </div>
@@ -31,4 +53,15 @@ class Index extends PureComponent {
   }
 }
 
-export default Index;
+GalaxyNote8.defaultProps = {
+  alertVisible: false,
+  alertAnimationType: animalType.fade,
+  alertMessage: '',
+  alertDescription: '',
+  alertType: 'info',
+  alertIcon: true,
+  alertButtonText: '刷新',
+  afterAlertClick: null,
+};
+
+export default GalaxyNote8;

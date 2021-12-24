@@ -10,7 +10,7 @@ import {
 } from '../../../utils/constants';
 import BaseNeedlessLoadDrawer from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
 import VerticalBox from '../../VerticalBox';
-import RoughSketch from '../RoughSketch';
+import RoughSketch from '../Devices/RoughSketch';
 import IphoneX from '../Devices/IphoneX';
 import Iphone8plus from '../Devices/Iphone8plus';
 import Iphone8 from '../Devices/Iphone8';

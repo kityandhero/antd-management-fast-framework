@@ -54,6 +54,11 @@ class Edit extends DataTabContainer {
       tab: '基本信息',
     },
     {
+      key: 'contentInfo',
+      show: this.checkAuthority(accessWayCollection.article.get.permission),
+      tab: '图文H5信息',
+    },
+    {
       key: 'mediaInfo',
       show: this.checkAuthority(accessWayCollection.article.updateMediaData.permission),
       tab: '媒体信息',

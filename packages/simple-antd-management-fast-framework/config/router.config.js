@@ -114,6 +114,11 @@ export default [
                     component: './Article/Edit/BasicInfo',
                   },
                   {
+                    path: '/news/article/edit/:op/:id/:pageKey/contentInfo',
+                    name: 'contentInfo',
+                    component: './Article/Edit/ContentInfo',
+                  },
+                  {
                     path: '/news/article/edit/:op/:id/:pageKey/mediaInfo',
                     name: 'mediaInfo',
                     component: './Article/Edit/MediaInfo',

@@ -3,7 +3,7 @@ import { emptyLogo as emptyLogoSource } from './mediaDefault';
 /**
  * 动画类型
  */
-const animalType = {
+export const animalType = {
   none: 'none',
   fade: 'fade',
   queue: 'queue',

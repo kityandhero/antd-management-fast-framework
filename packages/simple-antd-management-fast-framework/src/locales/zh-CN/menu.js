@@ -28,6 +28,7 @@ export default {
   'menu.news.article.addBasicInfo': '新增文章',
   'menu.news.article.edit': '编辑文章',
   'menu.news.article.edit.basicInfo': '基本信息',
+  'menu.news.article.edit.contentInfo': '媒体信息',
   'menu.news.article.edit.mediaInfo': '媒体信息',
 
   'menu.marketing': '营销活动',

@@ -2,13 +2,25 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
 import { inCollection } from '../../../../utils/tools';
+import { animalType } from '../../../../utils/constants';
 import ContentView from '../../ContentView';
 
 import styles from '../devices.less';
 
-class Index extends PureComponent {
+class Iphone8plus extends PureComponent {
   render() {
-    const { type: typeSource, children } = this.props;
+    const {
+      alertVisible,
+      alertAnimationType,
+      alertMessage,
+      alertDescription,
+      alertIcon,
+      alertType,
+      alertButtonText,
+      afterAlertClick,
+      children,
+      type: typeSource,
+    } = this.props;
 
     const type = inCollection(['black', 'silver', 'gold'], typeSource)
       ? typeSource
@@ -30,7 +42,18 @@ class Index extends PureComponent {
           <div className={styles.sensor} />
           <div className={styles.speaker} />
           <div className={styles.screen}>
-            <ContentView>{children}</ContentView>
+            <ContentView
+              alertVisible={alertVisible}
+              alertAnimationType={alertAnimationType}
+              alertMessage={alertMessage}
+              alertDescription={alertDescription}
+              alertIcon={alertIcon}
+              alertType={alertType}
+              alertButtonText={alertButtonText}
+              afterAlertClick={afterAlertClick}
+            >
+              {children}
+            </ContentView>
           </div>
           <div className={styles.home} />
           <div className={styles['bottom-bar']} />
@@ -40,8 +63,16 @@ class Index extends PureComponent {
   }
 }
 
-Index.defaultProps = {
-  type: 'silver',
+Iphone8plus.defaultProps = {
+  alertVisible: false,
+  alertAnimationType: animalType.fade,
+  alertMessage: '',
+  alertDescription: '',
+  alertType: 'info',
+  alertIcon: true,
+  alertButtonText: '刷新',
+  afterAlertClick: null,
+  type: 'black',
 };
 
-export default Index;
+export default Iphone8plus;

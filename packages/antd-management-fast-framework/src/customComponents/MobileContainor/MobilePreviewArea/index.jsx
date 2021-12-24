@@ -11,10 +11,11 @@ import {
   cardConfig,
   mobileTypeCollection,
   whetherNumber,
+  animalType,
 } from '../../../utils/constants';
 import Base from '../../../framework/DataOperation/Base';
 import VerticalBox from '../../VerticalBox';
-import RoughSketch from '../RoughSketch';
+import RoughSketch from '../Devices/RoughSketch';
 import IphoneX from '../Devices/IphoneX';
 import Iphone8plus from '../Devices/Iphone8plus';
 import Iphone8 from '../Devices/Iphone8';
@@ -22,7 +23,7 @@ import IPhone5S from '../Devices/IPhone5S';
 import GalaxyNote8 from '../Devices/GalaxyNote8';
 import { buildOptionItem } from '../../FunctionComponent';
 
-class Index extends Base {
+class MobilePreviewArea extends Base {
   resetDataAfterLoad = false;
 
   constructor(props) {
@@ -54,7 +55,17 @@ class Index extends Base {
   };
 
   establishCardCollectionConfig = () => {
-    const { mobileList } = this.props;
+    const {
+      alertVisible,
+      alertAnimationType,
+      alertMessage,
+      alertDescription,
+      alertIcon,
+      alertType,
+      alertButtonText,
+      afterAlertClick,
+      mobileList,
+    } = this.props;
     const { mobileType } = this.state;
 
     const listConfig = [];
@@ -83,27 +94,105 @@ class Index extends Base {
 
     switch (mobileType) {
       case mobileTypeCollection.roughSketch.name:
-        mobileView = <RoughSketch>{this.renderInnerView()}</RoughSketch>;
+        mobileView = (
+          <RoughSketch
+            alertVisible={alertVisible}
+            alertAnimationType={alertAnimationType}
+            alertMessage={alertMessage}
+            alertDescription={alertDescription}
+            alertIcon={alertIcon}
+            alertType={alertType}
+            alertButtonText={alertButtonText}
+            afterAlertClick={afterAlertClick}
+          >
+            {this.renderInnerViewWrapper()}
+          </RoughSketch>
+        );
         break;
 
       case mobileTypeCollection.iphoneX.name:
-        mobileView = <IphoneX>{this.renderInnerView()}</IphoneX>;
+        mobileView = (
+          <IphoneX
+            alertVisible={alertVisible}
+            alertAnimationType={alertAnimationType}
+            alertMessage={alertMessage}
+            alertDescription={alertDescription}
+            alertIcon={alertIcon}
+            alertType={alertType}
+            alertButtonText={alertButtonText}
+            afterAlertClick={afterAlertClick}
+          >
+            {this.renderInnerViewWrapper()}
+          </IphoneX>
+        );
         break;
 
       case mobileTypeCollection.iphone8.name:
-        mobileView = <Iphone8>{this.renderInnerView()}</Iphone8>;
+        mobileView = (
+          <Iphone8
+            alertVisible={alertVisible}
+            alertAnimationType={alertAnimationType}
+            alertMessage={alertMessage}
+            alertDescription={alertDescription}
+            alertIcon={alertIcon}
+            alertType={alertType}
+            alertButtonText={alertButtonText}
+            afterAlertClick={afterAlertClick}
+          >
+            {this.renderInnerViewWrapper()}
+          </Iphone8>
+        );
         break;
 
       case mobileTypeCollection.iphone8plus.name:
-        mobileView = <Iphone8plus>{this.renderInnerView()}</Iphone8plus>;
+        mobileView = (
+          <Iphone8plus
+            alertVisible={alertVisible}
+            alertAnimationType={alertAnimationType}
+            alertMessage={alertMessage}
+            alertDescription={alertDescription}
+            alertIcon={alertIcon}
+            alertType={alertType}
+            alertButtonText={alertButtonText}
+            afterAlertClick={afterAlertClick}
+          >
+            {this.renderInnerViewWrapper()}
+          </Iphone8plus>
+        );
         break;
 
       case mobileTypeCollection.iPhone5S.name:
-        mobileView = <IPhone5S>{this.renderInnerView()}</IPhone5S>;
+        mobileView = (
+          <IPhone5S
+            alertVisible={alertVisible}
+            alertAnimationType={alertAnimationType}
+            alertMessage={alertMessage}
+            alertDescription={alertDescription}
+            alertIcon={alertIcon}
+            alertType={alertType}
+            alertButtonText={alertButtonText}
+            afterAlertClick={afterAlertClick}
+          >
+            {this.renderInnerViewWrapper()}
+          </IPhone5S>
+        );
         break;
 
       case mobileTypeCollection.galaxyNote8.name:
-        mobileView = <GalaxyNote8>{this.renderInnerView()}</GalaxyNote8>;
+        mobileView = (
+          <GalaxyNote8
+            alertVisible={alertVisible}
+            alertAnimationType={alertAnimationType}
+            alertMessage={alertMessage}
+            alertDescription={alertDescription}
+            alertIcon={alertIcon}
+            alertType={alertType}
+            alertButtonText={alertButtonText}
+            afterAlertClick={afterAlertClick}
+          >
+            {this.renderInnerViewWrapper()}
+          </GalaxyNote8>
+        );
         break;
 
       default:
@@ -178,13 +267,25 @@ class Index extends Base {
     return null;
   };
 
+  renderInnerViewWrapper = () => {
+    return this.renderInnerView();
+  };
+
   renderFurther() {
     return this.buildCardCollection(this.establishCardCollectionConfig());
   }
 }
 
-Index.defaultProps = {
+MobilePreviewArea.defaultProps = {
+  alertVisible: false,
+  alertAnimationType: animalType.fade,
+  alertMessage: '',
+  alertDescription: '',
+  alertType: 'info',
+  alertIcon: true,
+  alertButtonText: '刷新',
   mobileList: [],
+  afterAlertClick: null,
 };
 
-export default Index;
+export default MobilePreviewArea;
