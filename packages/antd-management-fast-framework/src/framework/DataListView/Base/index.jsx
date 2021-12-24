@@ -1261,7 +1261,9 @@ class ListBase extends AuthorizationWrapper {
       return [...(isArray(actionOthers) ? actionOthers : [])];
     }
 
-    return [...(isArray(actionOthers) ? actionOthers : []), actionSelect];
+    const list = [...(isArray(actionOthers) ? actionOthers : []), actionSelect];
+
+    return list.length === 0 ? null : list;
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
