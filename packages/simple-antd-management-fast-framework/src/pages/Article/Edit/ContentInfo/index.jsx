@@ -13,10 +13,10 @@ import {
   mobileTypeCollection,
   animalType,
 } from 'antd-management-fast-framework/es/utils/constants';
+import MobileHtmlPreviewBox from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
 
 import { accessWayCollection } from '@/customConfig/config';
 
-import ContentPreviewBox from '../../ContentPreviewBox';
 import TabPageBase from '../../TabPageBase';
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
@@ -150,7 +150,7 @@ class ContentInfo extends TabPageBase {
     const { contentPreview, contentChanged } = this.state;
 
     return (
-      <ContentPreviewBox
+      <MobileHtmlPreviewBox
         alertVisible={contentChanged}
         alertAnimationType={animalType.queue}
         alertMessage={'内容已经发生变化'}
