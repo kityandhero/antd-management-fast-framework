@@ -287,6 +287,14 @@ export function handleCommonDataAssist(state, action, callback = null) {
   };
 }
 
+/**
+ * handleListDataAssist
+ * @param {*} state
+ * @param {*} action
+ * @param {*} pretreatment
+ * @param {*} callback
+ * @returns
+ */
 export function handleListDataAssist(
   state,
   action,
