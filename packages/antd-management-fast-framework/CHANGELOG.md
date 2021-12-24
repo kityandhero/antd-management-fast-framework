@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.0](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.11.62...antd-management-fast-framework@1.12.0) (2021-12-24)
+
+### Features
+
+- 手机预览增加 alert 提示组件，调整示例 ([7ab32c1](https://github.com/kityandhero/antd-management-fast-framework/commit/7ab32c1171c15670497ae6560490e59d86d47b94))
+
 ### [1.11.62](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.11.61...antd-management-fast-framework@1.11.62) (2021-12-23)
 
 **Note:** Version bump only for package antd-management-fast-framework
