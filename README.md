@@ -73,3 +73,14 @@ npm build:f
 ## More
 
 welcome any feedback in our [github](https://github.com/kityandhero/antd-management-fast-framework).
+
+## Credits
+
+Many thanks to the following individuals, organisations and projects whose work is so important to the success of Antd Management Fast Framework (in no particular order):
+
+- Ant Design
+- Ant Design Pro
+- Umi
+- ...
+
+More dependencies are not listed, thanks all of them.
