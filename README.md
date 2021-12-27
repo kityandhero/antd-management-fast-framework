@@ -4,7 +4,7 @@ This project is a repackaging of [Ant Design](https://ant.design/) and [Ant Desi
 
 ## Environment Prepare
 
-setp 1: Install `global node_modules`:
+setp 1: Install global tools:
 
 ```bash
 npm: npm install -g husky rimraf lerna
@@ -22,16 +22,10 @@ or
 yarn: yarn add -g husky rimraf lerna
 ```
 
-setp 2: Install `node_modules`:
+setp 2: Install dependencies `node_modules`:
 
 ```bash
 npm run lerna:b
-```
-
-or
-
-```bash
-yarn
 ```
 
 ## Provided Scripts
@@ -40,10 +34,16 @@ Antd Management Fast Framework provides some useful script to help you quick sta
 
 Scripts provided in `package.json`. It's safe to modify or add additional script:
 
-### Start The Sample Project
+### Build Framework And Start The Sample Project
 
 ```bash
 npm run start:build
+```
+
+### Start The Sample Project Only
+
+```bash
+npm start
 ```
 
 Wait for execution to complete, Open your browser to browse the website http://localhost:8841, The simulated login account and password is `admin/admin`
