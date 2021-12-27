@@ -1,13 +1,13 @@
 // 该配置主要配置远程接口配置和行为,一般放到服务端
 window.appInitCustomRemote = {
-  platformName: '测试平台',
-  appName: '测试应用',
-  appDescription: '用于开发测试',
+  platformName: '示例项目',
+  appName: '示例应用',
+  appDescription: '用于开发示例',
   loginLogo: '',
   shareLogo: '',
-  shareLogoName: '测试平台',
+  shareLogoName: '示例项目',
   leftBarLogo: '',
-  leftBarText: '测试系统测试平台测试平台',
+  leftBarText: '示例项目',
   companyName: '中国***公司',
   copyright: '2020 中国****科技有限公司 技术部出品',
   apiPrefix: {
