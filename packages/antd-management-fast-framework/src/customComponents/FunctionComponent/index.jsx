@@ -19,6 +19,7 @@ import {
   InputNumber,
   Switch,
   DatePicker,
+  TimePicker,
   Badge,
   Tree,
   Alert,
@@ -2820,6 +2821,71 @@ export function buildFormDatePicker({
       ]}
     >
       <DatePicker {...otherDatePickerProps} />
+    </FormItem>
+  );
+}
+
+export function buildFormTimePicker({
+  label,
+  name,
+  required = false,
+  helper = null,
+  timePickerProps = {},
+  canOperate = true,
+  formItemLayout = {},
+}) {
+  const title = label;
+
+  const otherTimePickerProps = {
+    ...{
+      style: { width: '100%' },
+      inputReadOnly: true,
+      placeholder: buildFieldDescription(title, '选择'),
+    },
+    ...(timePickerProps || {}),
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
+  if (!canOperate) {
+    return (
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+      >
+        <TimePicker {...otherTimePickerProps} />
+      </FormItem>
+    );
+  }
+
+  return (
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <TimePicker {...otherTimePickerProps} />
     </FormItem>
   );
 }

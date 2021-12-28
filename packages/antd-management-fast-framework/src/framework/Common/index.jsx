@@ -101,6 +101,7 @@ import {
   buildFormInputNumber,
   buildFormTextArea,
   buildFormDatePicker,
+  buildFormTimePicker,
   buildButton,
   buildDropdown,
   buildDropdownButton,
@@ -1015,6 +1016,26 @@ class Common extends Core {
       required,
       helper,
       datePickerProps,
+      canOperate,
+      formItemLayout,
+    });
+  };
+
+  renderFormTimePicker = (
+    label,
+    name,
+    required = false,
+    helper = null,
+    timePickerProps = {},
+    canOperate = true,
+    formItemLayout = {},
+  ) => {
+    return buildFormTimePicker({
+      label,
+      name,
+      required,
+      helper,
+      timePickerProps,
       canOperate,
       formItemLayout,
     });
@@ -2555,6 +2576,18 @@ class Common extends Core {
 
                   {type === cardConfig.contentItemType.datePicker
                     ? this.renderFormDatePicker(
+                        fieldData.label,
+                        fieldData.name,
+                        require,
+                        fieldData.helper,
+                        { ...{}, ...(contentItem.otherProps || {}) },
+                        canOperate,
+                        formItemLayout,
+                      )
+                    : null}
+
+                  {type === cardConfig.contentItemType.timePicker
+                    ? this.renderFormTimePicker(
                         fieldData.label,
                         fieldData.name,
                         require,

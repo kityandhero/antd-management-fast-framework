@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'umi';
+import moment from 'moment';
 import {
   PictureOutlined,
   InfoCircleFilled,
@@ -360,6 +361,14 @@ class BasicInfo extends TabPageBase {
         key: fieldData.subtitle.name,
       });
 
+      values[fieldData.timePicker.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.timePicker.name,
+        convertBuilder: (v) => {
+          return moment('12:08', datetimeFormat.hourMinute);
+        },
+      });
+
       values[fieldData.description.name] = getValueByKey({
         data: metaData,
         key: fieldData.description.name,
@@ -452,6 +461,18 @@ class BasicInfo extends TabPageBase {
                 key: fieldData.articleId.name,
               }),
               canCopy: true,
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.datePicker,
+              fieldData: fieldData.datePicker,
+              require: true,
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.timePicker,
+              fieldData: fieldData.timePicker,
+              require: true,
             },
             {
               lg: 24,

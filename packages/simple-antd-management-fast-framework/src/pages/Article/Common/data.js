@@ -140,6 +140,16 @@ export const fieldData = {
       name: 'imageList',
       helper: '',
     },
+    datePicker: {
+      label: '日期选择',
+      name: 'datePicker',
+      helper: '',
+    },
+    timePicker: {
+      label: '时间选择',
+      name: 'timePicker',
+      helper: '',
+    },
   },
 };
 

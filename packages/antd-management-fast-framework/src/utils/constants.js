@@ -573,6 +573,11 @@ export const cardConfig = {
     datePicker: 'datePicker',
 
     /**
+     * 时间选择项，仅用于单页详情或表单上下文环境显示单项内容区域
+     */
+    timePicker: 'timePicker',
+
+    /**
      * json可视化展示
      */
     jsonView: 'jsonView',
