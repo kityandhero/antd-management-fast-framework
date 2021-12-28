@@ -903,6 +903,11 @@ export function getValueByKey({
   return result;
 }
 
+/**
+ * convertTarget
+ * @param {*} param0
+ * @returns
+ */
 export function convertTarget({ target, convert }) {
   if (isFunction(convert)) {
     return convert(target);
