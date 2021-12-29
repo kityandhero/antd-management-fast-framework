@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactPlayer from 'react-player';
 import { PictureOutlined } from '@ant-design/icons';
 
 import {
@@ -12,6 +11,7 @@ import {
   buildButtonGroup,
   buildDropdownEllipsis,
   buildOptionItem,
+  buildPlayer,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 
 class MediaItemPreviewDrawer extends MobilePreviewDrawer {
@@ -77,9 +77,7 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
             {record.description}
           </p>
         )}
-        {stringIsNullOrWhiteSpace(record.video) ? null : (
-          <ReactPlayer width={'100%'} height="auto" url={record.video} controls />
-        )}
+        {stringIsNullOrWhiteSpace(record.video) ? null : buildPlayer({ url: record.video })}
       </>
     );
   };

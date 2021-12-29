@@ -10,7 +10,6 @@ import {
   Divider,
   Tooltip,
 } from 'antd';
-import ReactPlayer from 'react-player';
 import {
   LoadingOutlined,
   PlayCircleOutlined,
@@ -30,6 +29,7 @@ import {
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
+import { buildPlayer } from '../../customComponents/FunctionComponent';
 
 import IconInfo from '../IconInfo';
 
@@ -391,7 +391,7 @@ class VideoUpload extends PureComponent {
           footer={null}
           onCancel={this.handleUploadCancel}
         >
-          <ReactPlayer width="100%" height="100%" url={videoUrl} controls />
+          {buildPlayer({ url: videoUrl })}
         </Modal>
 
         <Modal

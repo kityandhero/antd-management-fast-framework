@@ -1,7 +1,7 @@
 import { history } from 'umi';
 import { message } from 'antd';
-import { stringify } from 'querystring';
 
+import { queryStringify } from 'antd-management-fast-framework/es/utils/tools';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import {
   setToken,
@@ -71,7 +71,7 @@ export default {
         message.info('退出登录成功！', 0.6).then(() => {
           history.replace({
             pathname: loginPath,
-            search: stringify({
+            search: queryStringify({
               redirect: window.location.href,
             }),
           });

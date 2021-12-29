@@ -34,6 +34,7 @@ import {
   BorderOuterOutlined,
   RightCircleOutlined,
 } from '@ant-design/icons';
+import ReactPlayer from 'react-player';
 import ReactJson from 'react-json-view';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
@@ -3259,6 +3260,17 @@ export function buildColumnItem({
   }
 
   return d;
+}
+
+export function buildPlayer({
+  url,
+  width = '100%',
+  height = 'auto',
+  controls = true,
+}) {
+  return (
+    <ReactPlayer width={width} height={height} url={url} controls={controls} />
+  );
 }
 
 /**

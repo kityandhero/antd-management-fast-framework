@@ -10,7 +10,6 @@ import {
   Divider,
   Tooltip,
 } from 'antd';
-import ReactPlayer from 'react-player';
 import {
   LoadingOutlined,
   PlayCircleOutlined,
@@ -30,6 +29,7 @@ import {
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
+import { buildPlayer } from '../../customComponents/FunctionComponent';
 
 import IconInfo from '../IconInfo';
 
@@ -398,7 +398,7 @@ class AudioUpload extends PureComponent {
               width: '100%',
             }}
           >
-            <ReactPlayer width="100%" height="100%" url={audioUrl} controls />
+            {buildPlayer({ url: audioUrl })}
           </div>
         </Modal>
 

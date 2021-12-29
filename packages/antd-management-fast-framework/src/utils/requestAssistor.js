@@ -1,5 +1,6 @@
 import { message } from 'antd';
 import { history } from 'umi';
+
 import {
   isString,
   recordObject,
@@ -8,6 +9,7 @@ import {
   isUndefined,
   corsTarget,
   showInfoMessage,
+  queryStringify,
 } from './tools';
 import { getToken, clearCustomData } from './globalStorageAssist';
 import remoteRequest from './request';
@@ -17,6 +19,7 @@ import {
   apiVirtualSuccessData,
   apiVirtualFailData,
 } from './virtualRequest';
+import { isObject } from 'lodash';
 
 /**
  * 错误数据模型
@@ -374,6 +377,7 @@ export function handlePageListDataAssist(
  */
 export async function request({
   api,
+  urlParams = null,
   params = {},
   method = 'POST',
   useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest(),
@@ -404,7 +408,17 @@ export async function request({
     apiVersion = `/${apiVersion}/`;
   }
 
-  const url = `${apiVersion}${api}`.replace('//', '/');
+  let url = `${apiVersion}${api}`.replace('//', '/');
+
+  if ((urlParams || null) != null) {
+    if (isString(urlParams)) {
+      url = `url?${urlParams}`;
+    }
+
+    if (isObject(urlParams)) {
+      url = `url?${queryStringify(urlParams)}`;
+    }
+  }
 
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
 

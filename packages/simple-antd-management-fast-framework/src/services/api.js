@@ -1,5 +1,6 @@
-import { stringify } from 'qs';
 import moment from 'moment';
+
+import { queryStringify } from 'antd-management-fast-framework/es/utils/tools';
 import { request } from 'antd-management-fast-framework/es/utils/requestAssistor';
 
 export async function queryProjectNotice() {
@@ -16,7 +17,7 @@ export async function queryActivities() {
 
 export async function queryRule(params) {
   return request({
-    api: `/api/rule?${stringify(params)}`,
+    api: `/api/rule?${queryStringify(params)}`,
   });
 }
 
@@ -278,7 +279,7 @@ export async function queryAdvancedProfile() {
 
 export async function queryFakeList(params) {
   return request({
-    api: `/api/fake_list?${stringify(params)}`,
+    api: `/api/fake_list?${queryStringify(params)}`,
   });
 }
 

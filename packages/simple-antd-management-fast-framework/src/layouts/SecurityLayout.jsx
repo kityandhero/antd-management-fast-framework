@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, Redirect } from 'umi';
 import { PageLoading } from '@ant-design/pro-layout';
-import { stringify } from 'querystring';
 
+import { queryStringify } from 'antd-management-fast-framework/es/utils/tools';
 import { defaultSettings } from '@/defaultSettings';
 
 const loginPath = defaultSettings.getLoginPath();
@@ -31,7 +31,7 @@ class SecurityLayout extends React.Component {
     // 你可以把它替换成你自己的登录认证规则（比如判断 token 是否存在）
 
     const isLogin = currentUser && currentUser.userId;
-    const queryString = stringify({
+    const queryString = queryStringify({
       redirect: window.location.href,
     });
 
