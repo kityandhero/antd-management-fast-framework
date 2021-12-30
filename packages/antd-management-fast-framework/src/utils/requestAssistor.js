@@ -10,6 +10,7 @@ import {
   corsTarget,
   showInfoMessage,
   queryStringify,
+  isObject,
 } from './tools';
 import { getToken, clearCustomData } from './globalStorageAssist';
 import remoteRequest from './request';
@@ -19,7 +20,6 @@ import {
   apiVirtualSuccessData,
   apiVirtualFailData,
 } from './virtualRequest';
-import { isObject } from 'lodash';
 
 /**
  * 错误数据模型
