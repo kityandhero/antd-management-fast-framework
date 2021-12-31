@@ -1008,6 +1008,31 @@ export function getPathValue(o, path, defaultValue = null) {
 }
 
 /**
+ *计算时间间隔
+ * @param {startTime} 起始时间
+ * @param {endTime} 结束时间
+ */
+export function calculateTimeInterval(startTime, endTime) {
+  const timeBegin = startTime.getTime();
+  const timeEnd = endTime.getTime();
+  const total = (timeEnd - timeBegin) / 1000;
+
+  const day = parseInt(total / (24 * 60 * 60)); //计算整数天数
+  const afterDay = total - day * 24 * 60 * 60; //取得算出天数后剩余的秒数
+  const hour = parseInt(afterDay / (60 * 60)); //计算整数小时数
+  const afterHour = total - day * 24 * 60 * 60 - hour * 60 * 60; //取得算出小时数后剩余的秒数
+  const min = parseInt(afterHour / 60); //计算整数分
+  const afterMin = total - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60; //取得算出分后剩余的秒数
+
+  return {
+    day,
+    hour: hour,
+    minute: min,
+    second: afterMin,
+  };
+}
+
+/**
  * 格式化货币
  *
  * @export
@@ -1902,10 +1927,11 @@ export function trySendNearestLocalhostNotify({ text }) {
 /**
  * 文本缩略
  */
-export function ellipsis(value, length) {
+export function ellipsis(value, length, symbol = '...') {
   if (value && value.length > length) {
-    return `${toString(value).substr(0, length)}...`;
+    return `${toString(value).substr(0, length)}${symbol}`;
   }
+
   return toString(value);
 }
 

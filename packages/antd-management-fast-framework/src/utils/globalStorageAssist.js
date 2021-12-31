@@ -190,10 +190,10 @@ export function setToken(v) {
  * @param {*} fn
  * @returns
  */
-export function removeToken(v) {
+export function removeToken() {
   const key = storageKeyCollection.token;
 
-  return removeLocalStorage(key, v);
+  return removeLocalStorage(key);
 }
 
 export function getTokenObject() {
