@@ -412,11 +412,11 @@ export async function request({
 
   if ((urlParams || null) != null) {
     if (isString(urlParams)) {
-      url = `url?${urlParams}`;
+      url = `${url}?${urlParams}`;
     }
 
     if (isObject(urlParams)) {
-      url = `url?${queryStringify(urlParams)}`;
+      url = `${url}?${queryStringify(urlParams)}`;
     }
   }
 
