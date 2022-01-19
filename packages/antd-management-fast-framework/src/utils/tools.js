@@ -23,7 +23,6 @@ import {
   isUndefined as isUndefinedLodash,
   isNull as isNullLodash,
   isDate as isDateLodash,
-  isArray as isArrayLodash,
   isString as isStringLodash,
   remove as removeLodash,
   isObject as isObjectLodash,
@@ -1643,7 +1642,7 @@ export function isFunction(value) {
 }
 
 export function isArray(value) {
-  return isArrayLodash(value);
+  return Array.isArray(value);
 }
 
 export function isObject(o) {
