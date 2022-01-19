@@ -40,7 +40,9 @@ class SinglePage extends Base {
   handleSearchReset = () => {
     const form = this.getSearchCard();
 
-    form.resetFields();
+    if ((form || null) != null) {
+      form.resetFields();
+    }
 
     this.handleAdditionalSearchReset();
 
