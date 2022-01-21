@@ -1205,10 +1205,6 @@ export function getRandomColor({
     format,
     alpha,
   });
-
-  // return `#${`00000${((seededRandom(seed) * 0x1000000) << 0).toString(
-  //   16,
-  // )}`.substr(-6)}`;
 }
 
 function getBrowserInfoCore() {
