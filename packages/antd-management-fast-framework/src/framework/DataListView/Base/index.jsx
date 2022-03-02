@@ -1207,7 +1207,6 @@ class ListBase extends AuthorizationWrapper {
               border: 0,
             }}
             loading={refreshing}
-            loading={refreshing}
             icon={<ReloadOutlined />}
             onClick={() => {
               this.refreshData();
