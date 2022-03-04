@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { history } from 'umi';
 import nprogress from 'nprogress';
 
-import { defaultBaseState, isObject } from '../../utils/tools';
+import { defaultBaseState, getGuid, isObject } from '../../utils/tools';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -79,6 +79,11 @@ class Base extends Component {
 
   renderCount = 0;
 
+  /**
+   * 用于组件内数据循环构建 key 时附加唯一前缀，有助于提升页面执行效率
+   */
+  keyPrefix = '';
+
   constructor(props) {
     super(props);
 
@@ -87,6 +92,8 @@ class Base extends Component {
     const defaultState = defaultBaseState();
 
     this.state = defaultState;
+
+    this.keyPrefix = getGuid();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
