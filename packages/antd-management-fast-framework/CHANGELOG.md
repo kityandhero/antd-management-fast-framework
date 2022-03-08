@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.12.15](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.12.14...antd-management-fast-framework@1.12.15) (2022-03-08)
+
+**Note:** Version bump only for package antd-management-fast-framework
+
 ### [1.12.14](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-framework@1.12.13...antd-management-fast-framework@1.12.14) (2022-01-19)
 
 **Note:** Version bump only for package antd-management-fast-framework
