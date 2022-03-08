@@ -1,4 +1,4 @@
-import { buildConfig } from 'antd-management-fast-framework/src/configGroup/configGeneral';
+import { buildConfig } from 'antd-management-fast-framework/es/configGroup/configGeneral';
 
 import pageRoutes from './router.config';
 

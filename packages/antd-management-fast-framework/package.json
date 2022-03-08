@@ -54,6 +54,7 @@
     "nzh": "^1.0.8",
     "omit.js": "^2.0.2",
     "path-to-regexp": "^6.2.0",
+    "postcss-less": "^6.0.0",
     "prop-types": "^15.8.1",
     "qs": "^6.10.3",
     "queue": "^6.0.2",
