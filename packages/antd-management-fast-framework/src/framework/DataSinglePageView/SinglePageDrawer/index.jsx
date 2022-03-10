@@ -180,6 +180,10 @@ class SinglePageDrawer extends SinglePage {
     }
   };
 
+  /**
+   * 选择数据
+   * @param {*} handleData
+   */
   selectRecord = ({ handleData }) => {
     const { afterSelectSuccess, hideDrawerAfterSelect } = this.props;
 
