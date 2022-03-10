@@ -564,4 +564,10 @@ class SinglePageDrawer extends SinglePage {
   }
 }
 
+SinglePageDrawer.defaultProps = {
+  hideDrawerAfterSelect: true,
+  confirmSelect: true,
+  width: 820,
+};
+
 export default SinglePageDrawer;

@@ -41,4 +41,8 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
   };
 }
 
+SinglePageDrawer.defaultProps = {
+  width: 820,
+};
+
 export default SinglePageSelectDrawer;

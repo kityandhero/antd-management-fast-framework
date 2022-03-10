@@ -601,6 +601,7 @@ class MultiPageDrawer extends MultiPage {
 MultiPageDrawer.defaultProps = {
   hideDrawerAfterSelect: true,
   confirmSelect: true,
+  width: 820,
 };
 
 export default MultiPageDrawer;
