@@ -1,11 +1,6 @@
 export default {
   'menu.home': '首页',
 
-  'menu.dashboard': '数据中心',
-  'menu.dashboard.analysis': '统计概览',
-  'menu.dashboard.monitor': '监控页',
-  'menu.dashboard.workplace': '工作台',
-
   'menu.permission': '权限相关',
   'menu.permission.accessWay': '操作模块',
   'menu.permission.accessWay.list': '模块列表',

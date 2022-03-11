@@ -8,14 +8,6 @@ export const accessWayCollection = {
         permission: '93679cff-4891-4a34-9c0e-f4443db85e69',
       },
     },
-    dashboard: {
-      analysis: {
-        permission: 'dec09d70-04f0-4c5b-a30d-20a853a430b9',
-      },
-      getAnalysisMicroApp: {
-        permission: '1a46d551-eae8-4ad7-bd5b-4484478f8960',
-      },
-    },
     accessWay: {
       pageList: {
         paramsKey: '6ec51bf6-9656-4271-9a7a-4c01dbf795b0',

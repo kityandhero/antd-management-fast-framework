@@ -17,30 +17,6 @@ export const defaultFooterData = {
   copyright: defaultSettings.getCopyright(),
   links: [
     {
-      key: 'dataCenter',
-      title: <IconInfo icon={<DashboardOutlined />} text="数据中心" />,
-      href: '/#/dashboard/analysis',
-      blankTarget: false,
-    },
-    {
-      key: 'product',
-      title: <IconInfo icon={<ShopOutlined />} text="商品管理" />,
-      href: '/#/product/pageList',
-      blankTarget: false,
-    },
-    {
-      key: 'order',
-      title: <IconInfo icon={<ShoppingCartOutlined />} text="订单管理" />,
-      href: '/#/order/pageList',
-      blankTarget: false,
-    },
-    {
-      key: 'orderProcessing',
-      title: <IconInfo icon={<ReconciliationOutlined />} text="物流配送" />,
-      href: '/#/orderProcessing/list/1/waitDeliver',
-      blankTarget: false,
-    },
-    {
       key: 'user',
       title: <IconInfo icon={<TeamOutlined />} text="个人中心" />,
       href: '/#/person/listRegUser',
