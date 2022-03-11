@@ -85,9 +85,11 @@
   },
   "devDependencies": {
     "@ant-design/colors": "^6.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-proposal-decorators": "^7.17.2",
     "@babel/plugin-syntax-jsx": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
     "@commitlint/config-lerna-scopes": "^16.2.2",
