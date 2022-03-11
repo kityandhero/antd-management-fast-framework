@@ -11,27 +11,27 @@ import { getPageQuery } from 'antd-management-fast-framework/es/utils/utils';
 import { setAuthority } from 'antd-management-fast-framework/es/utils/authority';
 
 import { setDataFlag } from '@/utils/storageAssist';
-import { accountLogin, getFakeCaptcha } from '@/services/api';
+import { signInData, getCaptchaData } from '@/services/entrance';
 import { defaultSettings } from '@/defaultSettings';
 
 const entrancePath = defaultSettings.getEntrancePath();
 
 export default {
-  namespace: 'login',
+  namespace: 'entrance',
 
   state: {
     status: undefined,
   },
 
   effects: {
-    *login({ payload }, { call, put }) {
-      const response = yield call(accountLogin, payload);
+    *signIn({ payload }, { call, put }) {
+      const response = yield call(signInData, payload);
 
       const data = pretreatmentRemoteSingleData(response);
 
       if (data.dataSuccess) {
         yield put({
-          type: 'changeLoginStatus',
+          type: 'changeEntranceStatus',
           payload: data,
         });
 
@@ -59,7 +59,7 @@ export default {
     },
 
     *getCaptcha({ payload }, { call }) {
-      yield call(getFakeCaptcha, payload);
+      yield call(getCaptchaData, payload);
     },
 
     logout() {
@@ -81,7 +81,7 @@ export default {
   },
 
   reducers: {
-    changeLoginStatus(state, { payload }) {
+    changeEntranceStatus(state, { payload }) {
       const d = payload;
       const v = pretreatmentRemoteSingleData(d);
 

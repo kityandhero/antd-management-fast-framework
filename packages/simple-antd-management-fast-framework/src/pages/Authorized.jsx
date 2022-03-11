@@ -36,12 +36,12 @@ const AuthComponent = ({
   },
 }) => {
   const { routes = [] } = route;
-  const isLogin = (getToken() || '') !== '';
+  const hasOperator = (getToken() || '') !== '';
 
   return (
     <Authorized
       authority={getRouteAuthority(location.pathname, routes) || ''}
-      noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to={entrancePath} />}
+      noMatch={hasOperator ? <Redirect to="/exception/403" /> : <Redirect to={entrancePath} />}
     >
       {children}
     </Authorized>

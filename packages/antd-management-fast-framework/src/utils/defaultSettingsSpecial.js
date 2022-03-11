@@ -86,15 +86,15 @@ export const defaultSettingsLayoutCustom = {
 
     return showSelectLanguage || false;
   },
-  getShowLogoInLoginView: () => {
+  getShowLogoInEntrance: () => {
     const appInit = getAppInitConfigData();
 
-    const { showLogoInLoginView } = {
-      ...{ showLogoInLoginView: false },
+    const { showLogoInEntrance } = {
+      ...{ showLogoInEntrance: false },
       ...(appInit || {}),
     };
 
-    return showLogoInLoginView || false;
+    return showLogoInEntrance || false;
   },
   getEmptyLogo: () => {
     const appInit = getAppInitConfigData();
@@ -228,15 +228,15 @@ export const defaultSettingsLayoutCustom = {
 
     return appName || '';
   },
-  getLoginLogo: () => {
+  getEntranceLogo: () => {
     const appInit = getAppInitConfigData();
 
-    const { loginLogo } = {
-      ...{ loginLogo: emptyLogoImage },
+    const { entranceLogo } = {
+      ...{ entranceLogo: emptyLogoImage },
       ...(appInit || {}),
     };
 
-    return loginLogo || emptyLogoImage;
+    return entranceLogo || emptyLogoImage;
   },
   getShareLogo: () => {
     const appInit = getAppInitConfigData();

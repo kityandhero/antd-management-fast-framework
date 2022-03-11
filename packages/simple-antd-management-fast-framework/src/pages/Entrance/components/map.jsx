@@ -1,5 +1,6 @@
-import { LockTwoTone, MailTwoTone, MobileTwoTone, UserOutlined } from '@ant-design/icons';
 import React from 'react';
+import { LockTwoTone, MailTwoTone, MobileTwoTone, UserOutlined } from '@ant-design/icons';
+
 import styles from './index.less';
 
 export default {

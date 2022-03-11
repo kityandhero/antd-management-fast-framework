@@ -2,10 +2,11 @@ import React, { useState, useCallback, useEffect } from 'react';
 import omit from 'omit.js';
 import { Button, Col, Input, Row, Form, message } from 'antd';
 
-import { getFakeCaptcha } from '@/services/login';
+import { getCaptchaData } from '@/services/entrance';
 
 import ItemMap from './map';
 import EntranceContext from './EntranceContext';
+
 import styles from './index.less';
 
 const FormItem = Form.Item;
@@ -44,7 +45,7 @@ const EntranceItem = (props) => {
     ...restProps
   } = props;
   const onGetCaptcha = useCallback(async (mobile) => {
-    const result = await getFakeCaptcha(mobile);
+    const result = await getCaptchaData(mobile);
 
     if (result === false) {
       return;

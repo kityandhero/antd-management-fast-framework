@@ -59,7 +59,7 @@ const UserLayout = (props) => {
               <div className={styles.top}>
                 <div className={styles.header}>
                   <Link to="#">
-                    {defaultSettings.getShowLogoInLoginView() ? (
+                    {defaultSettings.getShowLogoInEntrance() ? (
                       <img
                         alt="logo"
                         className={styles.logo}

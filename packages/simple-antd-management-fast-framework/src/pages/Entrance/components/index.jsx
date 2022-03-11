@@ -20,12 +20,13 @@ const Entrance = (props) => {
   });
   const TabChildren = [];
   const otherChildren = [];
+
   React.Children.forEach(props.children, (child) => {
     if (!child) {
       return;
     }
 
-    if (child.type.typeName === 'LoginTab') {
+    if (child.type.typeName === 'EntranceTab') {
       TabChildren.push(child);
     } else {
       otherChildren.push(child);
@@ -54,7 +55,7 @@ const Entrance = (props) => {
         },
       }}
     >
-      <div className={classNames(className, styles.login)}>
+      <div className={classNames(className, styles.entrance)}>
         <Form
           form={props.from}
           onFinish={(values) => {

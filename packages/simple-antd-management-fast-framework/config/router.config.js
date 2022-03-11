@@ -14,28 +14,7 @@ export default [
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
     routes: [
-      { path: '/', redirect: '/dashboard/analysis' },
-      {
-        path: '/dashboard',
-        name: 'dashboard',
-        icon: 'dashboard',
-        authority: [
-          accessWayCollection.super.permission,
-          accessWayCollection.dashboard.analysis.permission,
-        ],
-        routes: [
-          {
-            path: '/dashboard/analysis',
-            name: 'analysis',
-            icon: 'area-chart',
-            authority: [
-              accessWayCollection.super.permission,
-              accessWayCollection.dashboard.analysis.permission,
-            ],
-            component: './Dashboard/Analysis',
-          },
-        ],
-      },
+      { path: '/', redirect: '/currentOperator' },
       {
         name: 'permission',
         icon: 'bar-chart',

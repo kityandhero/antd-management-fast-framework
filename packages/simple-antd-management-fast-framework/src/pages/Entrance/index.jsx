@@ -1,26 +1,13 @@
 import React, { useState } from 'react';
-import {
-  connect,
-  //  Link
-} from 'umi';
-import {
-  Alert,
-  //  Checkbox
-} from 'antd';
-// import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
+import { connect, Link } from 'umi';
+import { Alert, Checkbox } from 'antd';
+import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 
-import LoginFrom from './components/Login';
+import EntranceFrom from './components';
 
 import styles from './style.less';
 
-const {
-  // Tab,
-  UserName,
-  Password,
-  //  Mobile,
-  // Captcha,
-  Submit,
-} = LoginFrom;
+const { Tab, UserName, Password, Mobile, Captcha, Submit } = EntranceFrom;
 
 const EntranceMessage = ({ content }) => (
   <Alert
@@ -34,24 +21,23 @@ const EntranceMessage = ({ content }) => (
 );
 
 const Entrance = (props) => {
-  const { userLogin = {}, submitting } = props;
-  const { status, type: loginType } = userLogin;
-  // const [autoLogin, setAutoLogin] = useState(true);
+  const { entrance = {}, submitting } = props;
+  const { status, type: entranceType } = entrance;
   const [type, setType] = useState('account');
 
   const handleSubmit = (values) => {
     const { dispatch } = props;
     dispatch({
-      type: 'login/login',
+      type: 'entrance/signIn',
       payload: { ...values, type },
     });
   };
 
   return (
     <div className={styles.main}>
-      <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
+      <EntranceFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
         <>
-          {status === 'error' && loginType === 'account' && !submitting && (
+          {status === 'error' && entranceType === 'account' && !submitting && (
             <EntranceMessage content="账户或密码错误（admin/ant.design）" />
           )}
 
@@ -76,11 +62,11 @@ const Entrance = (props) => {
             ]}
           />
         </>
-        {/* <Tab
+        <Tab
           key="account"
           //  tab="账户密码登录"
         >
-          {status === 'error' && loginType === 'account' && !submitting && (
+          {status === 'error' && entranceType === 'account' && !submitting && (
             <EntranceMessage content="账户或密码错误（admin/ant.design）" />
           )}
 
@@ -104,9 +90,9 @@ const Entrance = (props) => {
               },
             ]}
           />
-        </Tab> */}
-        {/* <Tab key="mobile" tab="手机号登录">
-          {status === 'error' && loginType === 'mobile' && !submitting && (
+        </Tab>
+        <Tab key="mobile" tab="手机号登录">
+          {status === 'error' && entranceType === 'mobile' && !submitting && (
             <EntranceMessage content="验证码错误" />
           )}
           <Mobile
@@ -136,9 +122,9 @@ const Entrance = (props) => {
               },
             ]}
           />
-        </Tab> */}
-        {/* <div>
-          <Checkbox checked={autoLogin} onChange={(e) => setAutoLogin(e.target.checked)}>
+        </Tab>
+        <div>
+          <Checkbox checked={auto} onChange={(e) => setAuto(e.target.checked)}>
             自动登录
           </Checkbox>
           <a
@@ -148,23 +134,23 @@ const Entrance = (props) => {
           >
             忘记密码
           </a>
-        </div> */}
+        </div>
         <Submit loading={submitting}>登录</Submit>
-        {/* <div className={styles.other}>
+        <div className={styles.other}>
           其他登录方式
           <AlipayCircleOutlined className={styles.icon} />
           <TaobaoCircleOutlined className={styles.icon} />
           <WeiboCircleOutlined className={styles.icon} />
-          <Link className={styles.register} to="/user/register">
+          <Link className={styles.signUp} to="/entrance/signUp">
             注册账户
           </Link>
-        </div> */}
-      </LoginFrom>
+        </div>
+      </EntranceFrom>
     </div>
   );
 };
 
-export default connect(({ login, loading }) => ({
-  userLogin: login,
-  submitting: loading.effects['login/login'],
+export default connect(({ entrance, loading }) => ({
+  entrance,
+  submitting: loading.effects['entrance/signIn'],
 }))(Entrance);

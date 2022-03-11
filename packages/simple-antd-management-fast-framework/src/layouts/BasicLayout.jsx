@@ -25,7 +25,7 @@ const noMatch = (
     subTitle="Sorry, you are not authorized to access this page."
     extra={
       <Button type="primary">
-        <Link to={entrancePath}>Go Login</Link>
+        <Link to={entrancePath}>Go Sign In</Link>
       </Button>
     }
   />
