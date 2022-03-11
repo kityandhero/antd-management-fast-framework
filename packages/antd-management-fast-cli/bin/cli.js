@@ -9,7 +9,7 @@ process.title = "antd-fast-cli";
 program
   .version(require("../package").version)
   .usage("<command> [options]")
-  .command("generate", 'generate file from a template (short-cut alias: "g")')
+  .command("init", "init from template")
   .parse(process.argv);
 
-require("./cli-generate");
+require("./cli-init");

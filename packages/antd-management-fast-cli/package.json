@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "chalk": "4.1.2",
+    "clone-git-repo": "^0.0.2",
+    "download-git-repo": "^3.0.2",
     "terminal-kit": "^2.4.0"
   },
   "files": [
