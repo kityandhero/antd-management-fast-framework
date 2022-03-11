@@ -15,12 +15,12 @@ class AvatarDropdown extends React.Component {
   onMenuClick = (event) => {
     const { key } = event;
 
-    if (key === 'logout') {
+    if (key === 'entrance') {
       const { dispatch } = this.props;
 
       if (dispatch) {
         dispatch({
-          type: 'login/logout',
+          type: 'entrance/signOut',
         });
       }
 

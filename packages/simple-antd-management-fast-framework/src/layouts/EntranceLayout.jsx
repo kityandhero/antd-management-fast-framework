@@ -10,7 +10,7 @@ import Bubbly from 'antd-management-fast-framework/es/customComponents/Canvas/Bu
 import { formatMessage } from '@/utils/tools';
 import { defaultSettings } from '@/defaultSettings';
 
-import styles from './UserLayout.less';
+import styles from './EntranceLayout.less';
 
 const UserLayout = (props) => {
   const {
