@@ -1,7 +1,6 @@
 import { handleCommonDataAssist } from 'antd-management-fast-framework/es/utils/requestAssistor';
 
 import {
-  getCurrentData,
   getCurrentBasicInfoData,
   updateCurrentBasicInfoData,
   changeCurrentPasswordData,
@@ -13,14 +12,6 @@ export default {
   state: {},
 
   effects: {
-    *getCurrent({ payload }, { call, put }) {
-      const response = yield call(getCurrentData, payload);
-
-      yield put({
-        type: 'handleCommonData',
-        payload: response,
-      });
-    },
     *getCurrentBasicInfo({ payload }, { call, put }) {
       const response = yield call(getCurrentBasicInfoData, payload);
 
