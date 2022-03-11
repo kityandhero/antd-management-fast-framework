@@ -5,7 +5,7 @@ import { PageLoading } from '@ant-design/pro-layout';
 import { queryStringify } from 'antd-management-fast-framework/es/utils/tools';
 import { defaultSettings } from '@/defaultSettings';
 
-const loginPath = defaultSettings.getLoginPath();
+const entrancePath = defaultSettings.getEntrancePath();
 
 class SecurityLayout extends React.Component {
   state = {
@@ -39,8 +39,8 @@ class SecurityLayout extends React.Component {
       return <PageLoading />;
     }
 
-    if (!isLogin && window.location.pathname !== loginPath) {
-      return <Redirect to={`${loginPath}?${queryString}`} />;
+    if (!isLogin && window.location.pathname !== entrancePath) {
+      return <Redirect to={`${entrancePath}?${queryString}`} />;
     }
 
     return children;

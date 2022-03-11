@@ -16,7 +16,7 @@ import { defaultFooterData, menuHeaderRender } from '@/customSpecialComponents/C
 import { formatMessage } from '@/utils/tools';
 import { defaultSettings } from '@/defaultSettings';
 
-const loginPath = defaultSettings.getLoginPath();
+const entrancePath = defaultSettings.getEntrancePath();
 
 const noMatch = (
   <Result
@@ -25,7 +25,7 @@ const noMatch = (
     subTitle="Sorry, you are not authorized to access this page."
     extra={
       <Button type="primary">
-        <Link to={loginPath}>Go Login</Link>
+        <Link to={entrancePath}>Go Login</Link>
       </Button>
     }
   />

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Tabs } from 'antd';
-import LoginContext from './LoginContext';
+
+import EntranceContext from './EntranceContext';
 
 const { TabPane } = Tabs;
 
@@ -12,9 +13,9 @@ const generateId = (() => {
   };
 })();
 
-const LoginTab = (props) => {
+const EntranceTab = (props) => {
   useEffect(() => {
-    const uniqueId = generateId('login-tab-');
+    const uniqueId = generateId('entrance-tab-');
     const { tabUtil } = props;
 
     if (tabUtil) {
@@ -26,10 +27,11 @@ const LoginTab = (props) => {
 };
 
 const WrapContext = (props) => (
-  <LoginContext.Consumer>
-    {(value) => <LoginTab tabUtil={value.tabUtil} {...props} />}
-  </LoginContext.Consumer>
+  <EntranceContext.Consumer>
+    {(value) => <EntranceTab tabUtil={value.tabUtil} {...props} />}
+  </EntranceContext.Consumer>
 ); // 标志位 用来判断是不是自定义组件
 
-WrapContext.typeName = 'LoginTab';
+WrapContext.typeName = 'EntranceTab';
+
 export default WrapContext;

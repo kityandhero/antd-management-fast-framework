@@ -1,0 +1,39 @@
+{
+  "name": "antd-management-fast-cli",
+  "version": "1.0.0",
+  "description": "antd-management-fast-cli",
+  "keywords": [
+    "antd-management-fast-cli"
+  ],
+  "author": "kityandhero <kityandhero@126.com>",
+  "homepage": "https://github.com/kityandhero/antd-management-fast-framework.git",
+  "license": "MIT",
+  "main": "lib/antd-management-fast-cli.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "bin": {
+    "antd-fast-cli": "./bin/cli.js"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "fs-extra": "^10.0.1"
+  },
+  "devDependencies": {
+    "chalk": "4.1.2",
+    "terminal-kit": "^2.4.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kityandhero/antd-management-fast-framework.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/kityandhero/antd-management-fast-framework/issues"
+  }
+}

@@ -76,17 +76,17 @@ function dataExceptionNotice(d) {
       }
     }
 
-    const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+    const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
     const authenticationFailCode =
       defaultSettingsLayoutCustom.getAuthenticationFailCode();
 
     if (code === authenticationFailCode) {
-      if (stringIsNullOrWhiteSpace(loginPath)) {
+      if (stringIsNullOrWhiteSpace(entrancePath)) {
         throw new Error('缺少登录页面路径配置');
       }
 
       requestAnimationFrame(() => {
-        history.replace(loginPath);
+        history.replace(entrancePath);
       });
     }
   }
@@ -445,9 +445,9 @@ export async function request({
     }
 
     if (virtualNeedAuthorize && !verifyToken) {
-      const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+      const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
 
-      if (stringIsNullOrWhiteSpace(loginPath)) {
+      if (stringIsNullOrWhiteSpace(entrancePath)) {
         throw new Error('缺少登录页面路径配置');
       }
 
@@ -457,7 +457,7 @@ export async function request({
         message.info('登陆超时，请重新登录！', 0.6);
 
         history.replace({
-          pathname: loginPath,
+          pathname: entrancePath,
         });
       }, 400);
     } else {

@@ -160,9 +160,9 @@ request.interceptors.response.use((response) => {
       const { code } = o;
 
       if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
-        const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+        const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
 
-        if (stringIsNullOrWhiteSpace(loginPath)) {
+        if (stringIsNullOrWhiteSpace(entrancePath)) {
           throw new Error('缺少登录页面路径配置');
         }
 
@@ -172,7 +172,7 @@ request.interceptors.response.use((response) => {
           message.info('登陆超时，请重新登录！', 0.6);
 
           history.replace({
-            pathname: loginPath,
+            pathname: entrancePath,
           });
         }, 200);
       }

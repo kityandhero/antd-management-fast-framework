@@ -1,14 +1,16 @@
-import { Tabs, Form } from 'antd';
 import React, { useState } from 'react';
 import useMergeValue from 'use-merge-value';
 import classNames from 'classnames';
-import LoginContext from './LoginContext';
-import LoginItem from './LoginItem';
-import LoginSubmit from './LoginSubmit';
-import LoginTab from './LoginTab';
+import { Tabs, Form } from 'antd';
+
+import EntranceContext from './EntranceContext';
+import EntranceItem from './EntranceItem';
+import EntranceSubmit from './EntranceSubmit';
+import EntranceTab from './EntranceTab';
+
 import styles from './index.less';
 
-const Login = (props) => {
+const Entrance = (props) => {
   const { className } = props;
   const [tabs, setTabs] = useState([]);
   const [active, setActive] = useState();
@@ -31,7 +33,7 @@ const Login = (props) => {
   });
 
   return (
-    <LoginContext.Provider
+    <EntranceContext.Provider
       value={{
         tabUtil: {
           addTab: (id) => {
@@ -80,15 +82,15 @@ const Login = (props) => {
           )}
         </Form>
       </div>
-    </LoginContext.Provider>
+    </EntranceContext.Provider>
   );
 };
 
-Login.Tab = LoginTab;
-Login.Submit = LoginSubmit;
-Login.UserName = LoginItem.UserName;
-Login.Password = LoginItem.Password;
-Login.Mobile = LoginItem.Mobile;
-Login.Captcha = LoginItem.Captcha;
+Entrance.Tab = EntranceTab;
+Entrance.Submit = EntranceSubmit;
+Entrance.UserName = EntranceItem.UserName;
+Entrance.Password = EntranceItem.Password;
+Entrance.Mobile = EntranceItem.Mobile;
+Entrance.Captcha = EntranceItem.Captcha;
 
-export default Login;
+export default Entrance;

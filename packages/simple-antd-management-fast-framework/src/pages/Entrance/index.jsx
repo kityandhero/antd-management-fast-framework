@@ -1,13 +1,13 @@
-// import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
-import {
-  Alert,
-  //  Checkbox
-} from 'antd';
 import React, { useState } from 'react';
 import {
   connect,
   //  Link
 } from 'umi';
+import {
+  Alert,
+  //  Checkbox
+} from 'antd';
+// import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 
 import LoginFrom from './components/Login';
 
@@ -22,7 +22,7 @@ const {
   Submit,
 } = LoginFrom;
 
-const LoginMessage = ({ content }) => (
+const EntranceMessage = ({ content }) => (
   <Alert
     style={{
       marginBottom: 24,
@@ -33,7 +33,7 @@ const LoginMessage = ({ content }) => (
   />
 );
 
-const Login = (props) => {
+const Entrance = (props) => {
   const { userLogin = {}, submitting } = props;
   const { status, type: loginType } = userLogin;
   // const [autoLogin, setAutoLogin] = useState(true);
@@ -52,7 +52,7 @@ const Login = (props) => {
       <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
         <>
           {status === 'error' && loginType === 'account' && !submitting && (
-            <LoginMessage content="账户或密码错误（admin/ant.design）" />
+            <EntranceMessage content="账户或密码错误（admin/ant.design）" />
           )}
 
           <UserName
@@ -81,7 +81,7 @@ const Login = (props) => {
           //  tab="账户密码登录"
         >
           {status === 'error' && loginType === 'account' && !submitting && (
-            <LoginMessage content="账户或密码错误（admin/ant.design）" />
+            <EntranceMessage content="账户或密码错误（admin/ant.design）" />
           )}
 
           <UserName
@@ -107,7 +107,7 @@ const Login = (props) => {
         </Tab> */}
         {/* <Tab key="mobile" tab="手机号登录">
           {status === 'error' && loginType === 'mobile' && !submitting && (
-            <LoginMessage content="验证码错误" />
+            <EntranceMessage content="验证码错误" />
           )}
           <Mobile
             name="mobile"
@@ -167,4 +167,4 @@ const Login = (props) => {
 export default connect(({ login, loading }) => ({
   userLogin: login,
   submitting: loading.effects['login/login'],
-}))(Login);
+}))(Entrance);

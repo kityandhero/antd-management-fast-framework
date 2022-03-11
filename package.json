@@ -21,6 +21,7 @@
     "commitlint": "npx commitlint --edit",
     "lint-staged": "lint-staged",
     "lint:f": "cd packages/antd-management-fast-framework && npm run lint",
+    "cli": "cd packages/antd-management-fast-cli && node ./bin/cli generate",
     "build:fvp": "npm run build:f && npm run build:vp",
     "build:f": "cd packages/antd-management-fast-framework && npm run build && npm run delete:dts",
     "build:p": "cd packages/antd-management-fast-framework && npm publish",

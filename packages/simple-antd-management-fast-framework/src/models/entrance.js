@@ -14,7 +14,7 @@ import { setDataFlag } from '@/utils/storageAssist';
 import { accountLogin, getFakeCaptcha } from '@/services/api';
 import { defaultSettings } from '@/defaultSettings';
 
-const loginPath = defaultSettings.getLoginPath();
+const entrancePath = defaultSettings.getEntrancePath();
 
 export default {
   namespace: 'login',
@@ -65,12 +65,12 @@ export default {
     logout() {
       const { redirect } = getPageQuery(); // Note: There may be security issues, please note
 
-      if (window.location.pathname !== loginPath && !redirect) {
+      if (window.location.pathname !== entrancePath && !redirect) {
         clearCustomData();
 
         message.info('退出登录成功！', 0.6).then(() => {
           history.replace({
-            pathname: loginPath,
+            pathname: entrancePath,
             search: queryStringify({
               redirect: window.location.href,
             }),

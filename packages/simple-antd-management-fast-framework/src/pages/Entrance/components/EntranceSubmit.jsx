@@ -1,11 +1,12 @@
-import { Button, Form } from 'antd';
 import React from 'react';
 import classNames from 'classnames';
+import { Button, Form } from 'antd';
+
 import styles from './index.less';
 
 const FormItem = Form.Item;
 
-const LoginSubmit = ({ className, ...rest }) => {
+const EntranceSubmit = ({ className, ...rest }) => {
   const clsString = classNames(styles.submit, className);
   return (
     <FormItem>
@@ -14,4 +15,4 @@ const LoginSubmit = ({ className, ...rest }) => {
   );
 };
 
-export default LoginSubmit;
+export default EntranceSubmit;

@@ -58,7 +58,7 @@ export const appInitDefault = {
   leftBarLogo: emptyLogo,
   apiSuccessCode,
   authenticationFailCode,
-  loginPath: '/user/login',
+  entrancePath: '/user/login',
   showLogInConsole: false,
   showRequestInfo: false,
   useVirtualRequest: false,

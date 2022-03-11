@@ -6,7 +6,7 @@ import { getToken } from 'antd-management-fast-framework/es/utils/globalStorageA
 
 import { defaultSettings } from '@/defaultSettings';
 
-const loginPath = defaultSettings.getLoginPath();
+const entrancePath = defaultSettings.getEntrancePath();
 
 const getRouteAuthority = (path, routeData) => {
   let authorities;
@@ -41,7 +41,7 @@ const AuthComponent = ({
   return (
     <Authorized
       authority={getRouteAuthority(location.pathname, routes) || ''}
-      noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to={loginPath} />}
+      noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to={entrancePath} />}
     >
       {children}
     </Authorized>

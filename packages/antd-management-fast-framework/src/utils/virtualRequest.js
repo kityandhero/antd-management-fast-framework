@@ -128,13 +128,13 @@ export async function apiVirtualSuccessAccess({
   const { code } = result;
 
   if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
-    const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+    const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
 
-    if (stringIsNullOrWhiteSpace(loginPath)) {
+    if (stringIsNullOrWhiteSpace(entrancePath)) {
       throw new Error('缺少登录页面路径配置');
     }
 
-    history.push(loginPath);
+    history.push(entrancePath);
   }
 
   return result;
@@ -160,13 +160,13 @@ export async function apiVirtualFailAccess({
   const { code, message: messageText } = result;
 
   if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
-    const loginPath = defaultSettingsLayoutCustom.getLoginPath();
+    const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
 
-    if (stringIsNullOrWhiteSpace(loginPath)) {
+    if (stringIsNullOrWhiteSpace(entrancePath)) {
       throw new Error('缺少登录页面路径配置');
     }
 
-    history.push(loginPath);
+    history.push(entrancePath);
   } else if (code !== defaultSettingsLayoutCustom.getApiSuccessCode()) {
     message.warn(messageText);
   }

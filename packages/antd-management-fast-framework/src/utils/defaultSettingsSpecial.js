@@ -128,15 +128,15 @@ export const defaultSettingsLayoutCustom = {
 
     return authenticationFailCode || authenticationFailCodeDefault;
   },
-  getLoginPath: () => {
+  getEntrancePath: () => {
     const appInit = getAppInitConfigData();
 
-    const { loginPath } = {
-      ...{ loginPath: '' },
+    const { entrancePath } = {
+      ...{ entrancePath: '' },
       ...(appInit || {}),
     };
 
-    return loginPath || '';
+    return entrancePath || '';
   },
   getApiVersion: () => {
     const appInit = getAppInitConfigData();
