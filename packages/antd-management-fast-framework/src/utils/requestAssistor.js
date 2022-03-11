@@ -8,9 +8,9 @@ import {
   isFunction,
   isUndefined,
   corsTarget,
-  showInfoMessage,
   queryStringify,
   isObject,
+  notifyInfo,
 } from './tools';
 import { getToken, clearCustomData } from './globalStorageAssist';
 import remoteRequest from './request';
@@ -427,9 +427,7 @@ export async function request({
       setTimeout(() => {
         const text = '由虚拟访问返回';
 
-        showInfoMessage({
-          message: text,
-        });
+        notifyInfo(text);
       }, 500);
     }
 

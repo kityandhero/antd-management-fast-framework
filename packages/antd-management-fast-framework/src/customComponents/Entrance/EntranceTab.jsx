@@ -22,16 +22,18 @@ const EntranceTab = (props) => {
       tabUtil.addTab(uniqueId);
     }
   }, [props]);
+
   const { children } = props;
+
   return <TabPane {...props}>{props.active && children}</TabPane>;
 };
 
-const WrapContext = (props) => (
-  <EntranceContext.Consumer>
-    {(value) => <EntranceTab tabUtil={value.tabUtil} {...props} />}
-  </EntranceContext.Consumer>
-); // 标志位 用来判断是不是自定义组件
+// const WrapContext = (props) => (
+//   <EntranceContext.Consumer>
+//     {(value) => <EntranceTab tabUtil={value.tabUtil} {...props} />}
+//   </EntranceContext.Consumer>
+// );
 
-WrapContext.typeName = 'EntranceTab';
+// WrapContext.typeName = 'EntranceTab';
 
-export default WrapContext;
+export default EntranceTab;

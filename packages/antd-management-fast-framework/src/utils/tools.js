@@ -1941,6 +1941,21 @@ export function notifySuccess(text) {
   });
 }
 
+export function notifyInfo(text) {
+  const description = text || '';
+
+  if (stringIsNullOrWhiteSpace(description)) {
+    return;
+  }
+
+  notify({
+    type: notificationTypeCollection.info,
+    placement: 'bottomRight',
+    message: '操作结果',
+    description,
+  });
+}
+
 /**
  * 发送页面通知
  */

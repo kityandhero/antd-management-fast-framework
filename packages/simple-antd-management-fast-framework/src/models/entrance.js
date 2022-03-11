@@ -19,9 +19,7 @@ const entrancePath = defaultSettings.getEntrancePath();
 export default {
   namespace: 'entrance',
 
-  state: {
-    status: undefined,
-  },
+  state: {},
 
   effects: {
     *signIn({ payload }, { call, put }) {
@@ -62,8 +60,13 @@ export default {
       yield call(getCaptchaData, payload);
     },
 
-    logout() {
+    signOut() {
       const { redirect } = getPageQuery(); // Note: There may be security issues, please note
+
+      console.log({
+        entrancePath,
+        redirect,
+      });
 
       if (window.location.pathname !== entrancePath && !redirect) {
         clearCustomData();

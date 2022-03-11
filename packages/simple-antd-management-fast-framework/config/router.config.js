@@ -145,10 +145,6 @@ export default [
                 path: '/currentOperator/setting/password',
                 component: './CurrentOperator/Setting/Password',
               },
-              {
-                path: '/currentOperator/setting/security',
-                component: './CurrentOperator/Setting/Security',
-              },
             ],
           },
         ],

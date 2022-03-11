@@ -11,7 +11,12 @@ import styles from './index.less';
 
 const FormItem = Form.Item;
 
-const getFormItemOptions = ({ onChange, defaultValue, customProps = {}, rules }) => {
+const getFormItemOptions = ({
+  onChange,
+  defaultValue,
+  customProps = {},
+  rules,
+}) => {
   const options = {
     rules: rules || customProps.rules,
   };

@@ -5,11 +5,6 @@
     "Name": "whether"
   },
   {
-    "FunctionSegment": "Rank",
-    "Label": "商品分类",
-    "Name": "rankId"
-  },
-  {
     "FunctionSegment": "AccessWayStatus",
     "Label": "状态",
     "Name": "status"

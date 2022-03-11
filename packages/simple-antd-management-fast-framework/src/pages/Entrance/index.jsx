@@ -3,7 +3,7 @@ import { connect, Link } from 'umi';
 import { Alert, Checkbox } from 'antd';
 import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 
-import EntranceFrom from './components';
+import EntranceFrom from 'antd-management-fast-framework/es/customComponents/Entrance';
 
 import styles from './style.less';
 
@@ -24,6 +24,7 @@ const Entrance = (props) => {
   const { entrance = {}, submitting } = props;
   const { status, type: entranceType } = entrance;
   const [type, setType] = useState('account');
+  const [autoSignIn, setAutoSignIn] = useState('account');
 
   const handleSubmit = (values) => {
     const { dispatch } = props;
@@ -62,10 +63,7 @@ const Entrance = (props) => {
             ]}
           />
         </>
-        <Tab
-          key="account"
-          //  tab="账户密码登录"
-        >
+        <Tab key="signIn" tab="账户密码登录">
           {status === 'error' && entranceType === 'account' && !submitting && (
             <EntranceMessage content="账户或密码错误（admin/ant.design）" />
           )}
@@ -91,7 +89,7 @@ const Entrance = (props) => {
             ]}
           />
         </Tab>
-        <Tab key="mobile" tab="手机号登录">
+        {/* <Tab key="mobile" tab="手机号登录">
           {status === 'error' && entranceType === 'mobile' && !submitting && (
             <EntranceMessage content="验证码错误" />
           )}
@@ -124,7 +122,7 @@ const Entrance = (props) => {
           />
         </Tab>
         <div>
-          <Checkbox checked={auto} onChange={(e) => setAuto(e.target.checked)}>
+          <Checkbox checked={autoSignIn} onChange={(e) => setAutoSignIn(e.target.checked)}>
             自动登录
           </Checkbox>
           <a
@@ -134,9 +132,9 @@ const Entrance = (props) => {
           >
             忘记密码
           </a>
-        </div>
+        </div> */}
         <Submit loading={submitting}>登录</Submit>
-        <div className={styles.other}>
+        {/* <div className={styles.other}>
           其他登录方式
           <AlipayCircleOutlined className={styles.icon} />
           <TaobaoCircleOutlined className={styles.icon} />
@@ -144,7 +142,7 @@ const Entrance = (props) => {
           <Link className={styles.signUp} to="/entrance/signUp">
             注册账户
           </Link>
-        </div>
+        </div> */}
       </EntranceFrom>
     </div>
   );
