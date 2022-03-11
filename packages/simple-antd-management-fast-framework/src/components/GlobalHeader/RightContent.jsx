@@ -5,7 +5,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 
 import { defaultSettings } from '@/defaultSettings';
 
-import Avatar from './AvatarDropdown';
+import AvatarDropdown from './AvatarDropdown';
 
 import HeaderSearch from '../HeaderSearch';
 
@@ -62,7 +62,9 @@ const GlobalHeaderRight = (props) => {
           <QuestionCircleOutlined />
         </a>
       </Tooltip>
-      <Avatar />
+
+      <AvatarDropdown currentOperator={currentOperator} />
+
       {REACT_APP_ENV && (
         <span>
           <Tag color={ENVTagColor[REACT_APP_ENV]}>{REACT_APP_ENV}</Tag>
@@ -74,7 +76,9 @@ const GlobalHeaderRight = (props) => {
   );
 };
 
-export default connect(({ settings }) => ({
+export default connect(({ currentOperator, global, settings }) => ({
+  currentOperator,
+  global,
   theme: settings.navTheme,
   layout: settings.layout,
 }))(GlobalHeaderRight);

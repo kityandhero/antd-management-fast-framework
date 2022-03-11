@@ -32,7 +32,7 @@ class AvatarDropdown extends React.Component {
 
   render() {
     const {
-      global: { currentOperator = null },
+      currentOperator: { currentOperator = null },
     } = this.props;
 
     const menuItems = [];
