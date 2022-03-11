@@ -5,7 +5,7 @@ export function execBasicLayoutRemoteRequest(dispatch) {
   });
 
   dispatch({
-    type: 'global/getCurrentOperator',
+    type: 'currentOperator/getCurrentOperator',
     payload: { force: false },
   });
 }

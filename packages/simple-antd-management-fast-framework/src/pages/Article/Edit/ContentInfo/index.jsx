@@ -92,10 +92,6 @@ class ContentInfo extends TabPageBase {
   };
 
   refreshContentPreview = () => {
-    console.log({
-      contentPreview: this.htmlContent,
-    });
-
     this.setState({
       contentPreview: this.htmlContent,
       contentChanged: false,

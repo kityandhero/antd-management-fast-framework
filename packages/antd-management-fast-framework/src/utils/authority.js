@@ -171,17 +171,17 @@ function checkHasAuthorityCore(auth) {
     return true;
   }
 
-  if (isObject(auth)) {
-    console.log({
-      auth,
-      attachedTargetName:
-        (this || null) != null
-          ? (this.constructor || null) != null
-            ? this.constructor.name
-            : ''
-          : '',
-    });
-  }
+  // if (isObject(auth)) {
+  //   console.log({
+  //     auth,
+  //     attachedTargetName:
+  //       (this || null) != null
+  //         ? (this.constructor || null) != null
+  //           ? this.constructor.name
+  //           : ''
+  //         : '',
+  //   });
+  // }
 
   let result = '0';
 
@@ -220,17 +220,17 @@ function checkHasAuthorityCore(auth) {
 }
 
 export function checkHasAuthority(auth) {
-  if (isObject(auth)) {
-    console.log({
-      auth,
-      attachedTargetName:
-        (this || null) != null
-          ? (this.constructor || null) != null
-            ? this.constructor.name
-            : ''
-          : '',
-    });
-  }
+  // if (isObject(auth)) {
+  //   console.log({
+  //     auth,
+  //     attachedTargetName:
+  //       (this || null) != null
+  //         ? (this.constructor || null) != null
+  //           ? this.constructor.name
+  //           : ''
+  //         : '',
+  //   });
+  // }
 
   if (isArray(auth)) {
     return checkHasAuthorities(auth);

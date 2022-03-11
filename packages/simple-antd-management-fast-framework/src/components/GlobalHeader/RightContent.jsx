@@ -18,7 +18,7 @@ const ENVTagColor = {
 };
 
 const GlobalHeaderRight = (props) => {
-  const { theme, layout } = props;
+  const { currentOperator, theme, layout } = props;
   let className = styles.right;
 
   if (theme === 'dark' && layout === 'top') {

@@ -63,11 +63,6 @@ export default {
     signOut() {
       const { redirect } = getPageQuery(); // Note: There may be security issues, please note
 
-      console.log({
-        entrancePath,
-        redirect,
-      });
-
       if (window.location.pathname !== entrancePath && !redirect) {
         clearCustomData();
 

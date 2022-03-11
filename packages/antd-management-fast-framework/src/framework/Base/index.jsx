@@ -3,7 +3,12 @@ import { Component } from 'react';
 import { history } from 'umi';
 import nprogress from 'nprogress';
 
-import { defaultBaseState, getGuid, isObject } from '../../utils/tools';
+import {
+  defaultBaseState,
+  getGuid,
+  isObject,
+  showInfoMessage,
+} from '../../utils/tools';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -225,7 +230,11 @@ class Base extends Component {
     if (this.showRenderCountInConsole) {
       this.renderCount += 1;
 
-      console.log(`render frequency: ${this.renderCount}`);
+      const text = `render frequency: ${this.renderCount}`;
+
+      showInfoMessage({
+        message: text,
+      });
     }
   }
 

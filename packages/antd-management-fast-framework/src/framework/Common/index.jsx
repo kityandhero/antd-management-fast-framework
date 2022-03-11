@@ -451,7 +451,7 @@ class Common extends Core {
                   metaOriginalData: metaOriginalData || null,
                 });
               } catch (e) {
-                console.log(e);
+                recordObject(e);
 
                 const text = `${toString(e)},place view in the console`;
 
