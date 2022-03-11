@@ -1,5 +1,4 @@
-import { message } from 'antd';
-
+import { showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
 import {
   pretreatmentRemoteSingleData,
   handleCommonDataAssist,
@@ -55,7 +54,12 @@ const GlobalModel = {
       if (fromRemote) {
         if (showMessage) {
           requestAnimationFrame(() => {
-            message.info('初始数据正在努力加载中，需要一点点时间哦！', 0.8);
+            const text = '初始数据正在努力加载中，需要一点点时间哦！';
+
+            showInfoMessage({
+              message: text,
+              duration: 0.8,
+            });
           });
         }
 
