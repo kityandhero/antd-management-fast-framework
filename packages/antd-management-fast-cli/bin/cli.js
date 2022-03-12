@@ -6,10 +6,6 @@ const program = new Command();
 
 process.title = "antd-fast-cli";
 
-program
-  .version(require("../package").version)
-  .usage("<command> [options]")
-  .command("init", "init from template")
-  .parse(process.argv);
+program.version(require("../package").version).usage("<command> [options]");
 
 require("./cli-init");
