@@ -14,6 +14,6 @@ npm install -g antd-management-fast-cli
 antd-management-fast-cli init
 ```
 
-### Screenshot Preview
+### Screenshot
 
 [![cli](../../document/images/cli.png)](cli.png)
