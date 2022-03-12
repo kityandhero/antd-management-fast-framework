@@ -80,6 +80,12 @@ function isEmpty(v) {
   return !v;
 }
 
+/**
+ * check folder exist
+ * @param {*} directory
+ * @param {*} callback
+ * @returns
+ */
 function existDirectory(directory, callback) {
   if (!directory || typeof directory !== "string") {
     throw new TypeError(
