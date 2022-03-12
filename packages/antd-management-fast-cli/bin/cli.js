@@ -4,7 +4,7 @@ const { Command } = require("commander");
 
 const program = new Command();
 
-process.title = "antd-fast-cli";
+process.title = "antd-management-fast-cli";
 
 program.version(require("../package").version).usage("<command> [options]");
 

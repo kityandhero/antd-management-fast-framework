@@ -8,9 +8,8 @@ const program = new Command();
 program
   .command("init")
   .description("quick init your project")
-  .argument("folder", "project folder")
-  .action((folder) => {
-    init.run(folder);
+  .action(() => {
+    init.run();
   });
 
 program.parse(process.argv);
