@@ -41,6 +41,12 @@ exports.run = function () {
             download(downloadUrl, dir, { clone: false }, (err) => {
               console.log(err ? err : "download success");
 
+              if (!err) {
+                term.green(
+                  "we build a simple project repo is here: https://github.com/kityandhero/antd-management-fast-framework.git"
+                );
+              }
+
               process.exit();
             });
           }

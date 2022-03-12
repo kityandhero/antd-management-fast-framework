@@ -13,7 +13,7 @@
     "lib": "lib"
   },
   "bin": {
-    "antd-fast-cli": "./bin/cli.js"
+    "antd-management-fast-cli": "./bin/cli.js"
   },
   "dependencies": {
     "commander": "^9.0.0",
