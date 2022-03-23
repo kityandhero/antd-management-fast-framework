@@ -54,15 +54,6 @@ exports.run = function () {
       }
     }
   });
-
-  // if (currentDir.exsits(folder)) {
-  //   console.warn(folder + "文件夹已经存在于当前目录中，请更换");
-  // } else {
-  //   download(
-  //     "https://github.com/kityandhero/antd-management-fast-templete.git",
-  //     currentDir + "/" + folder
-  //   );
-  // }
 };
 
 function isEmpty(v) {
