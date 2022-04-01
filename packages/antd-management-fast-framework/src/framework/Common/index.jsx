@@ -186,8 +186,6 @@ class Common extends Core {
 
   /**
    * 处理其他需要在组件挂在之后执行的流程
-   *
-   * @memberof Index
    */
   initOther = () => {};
 
