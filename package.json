@@ -30,8 +30,9 @@
     "build:start": "npm run build:f && npm start",
     "clean:framework": "cd packages/antd-management-fast-framework && npm run clean-file",
     "clean:simple": "cd packages/simple-antd-management-fast-framework && npm run clean-file",
-    "reinstall": "npm run clean && npm run clean:framework && npm run clean:simple && npm run lerna:b",
+    "reinstall": "npm run clean && npm run clean:framework && npm run clean:simple && npm run lerna:b && npm run build:f && npm run init:start",
     "show:v": "cd packages/antd-management-fast-framework && npm version",
+    "init:start": "cd packages/simple-antd-management-fast-framework && npm run init:start",
     "start:build": "npm run build:f && npm run start",
     "start": "cd packages/simple-antd-management-fast-framework && npm start",
     "ncu:u:all": "ncu -u && npm run ncu:u:framework && npm run ncu:u:simple",
@@ -62,5 +63,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "kityandhero <kityandhero@126.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.6.4"
+  }
 }

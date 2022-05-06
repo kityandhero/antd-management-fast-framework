@@ -11,7 +11,7 @@
   "license": "MIT",
   "main": "src/index.ts",
   "scripts": {
-    "postinstall": "umi g tmp",
+    "init:start": "umi g tmp",
     "analyze-dev": "cross-env ANALYZE=1 umi dev",
     "analyze-build": "cross-env ANALYZE=1 umi build",
     "build": "cross-env UMI_ENV=production umi build",
