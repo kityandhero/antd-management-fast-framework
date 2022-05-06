@@ -4,3 +4,5 @@
 *.css eol=lf
 *.less eol=lf
 *.scss eol=lf
+commit-msg eol=lf
+pre-commit eol=lf
