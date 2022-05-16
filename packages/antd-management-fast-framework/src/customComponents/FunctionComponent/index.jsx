@@ -23,6 +23,7 @@ import {
   Badge,
   Tree,
   Alert,
+  TreeSelect,
 } from 'antd';
 import {
   EllipsisOutlined,
@@ -3417,6 +3418,32 @@ export function adjustTableExpandConfig({ list, config }) {
   }
 
   return null;
+}
+
+export function buildTreeSelect({
+  style = {},
+  value,
+  dropdownStyle = {},
+  data = [],
+  placeholder = '请选择',
+  treeDefaultExpandAll = true,
+  onChange = null,
+}) {
+  return (
+    <TreeSelect
+      style={{ ...{ width: '100%' }, ...(style || {}) }}
+      value={value}
+      dropdownStyle={dropdownStyle}
+      treeData={data}
+      placeholder={placeholder}
+      treeDefaultExpandAll={treeDefaultExpandAll}
+      onChange={(value, label, extra) => {
+        if (isFunction(onChange)) {
+          onChange({ value, label, extra });
+        }
+      }}
+    />
+  );
 }
 
 /**
