@@ -487,30 +487,74 @@ export function recordLog(record, showMode, level = logLevel.debug) {
 
   if (logShowInConsole() && level === logLevel.debug) {
     if (showModeModified === logShowMode.text) {
-      const data = { level, record };
+      const data = { record, level };
 
-      // eslint-disable-next-line no-console
-      console.log(JSON.stringify(data));
+      console.log('%c%s', 'color:#00768f;', JSON.stringify(data));
     }
 
     if (showModeModified === logShowMode.object) {
-      // eslint-disable-next-line no-console
-      console.log({ level, record });
+      console.log({ record, level });
+    }
+  }
+
+  if (logShowInConsole() && level === logLevel.warn) {
+    if (showModeModified === logShowMode.text) {
+      const data = { record, level };
+
+      console.log('%c%s', 'color:#ff4f49;', JSON.stringify(data));
+    }
+
+    if (showModeModified === logShowMode.object) {
+      console.log({ record, level });
+    }
+  }
+
+  if (logShowInConsole() && level === logLevel.info) {
+    if (showModeModified === logShowMode.text) {
+      const data = { record, level };
+
+      console.log('%c%s', 'color:#89ca78;', JSON.stringify(data));
+    }
+
+    if (showModeModified === logShowMode.object) {
+      console.log({ record, level });
     }
   }
 
   if (level === logLevel.error) {
     if (showModeModified === logShowMode.text) {
-      const data = { level, record };
+      const data = { record, level };
 
-      // eslint-disable-next-line no-console
-      console.log(JSON.stringify(data));
+      console.error(JSON.stringify(data));
     }
 
     if (showModeModified === logShowMode.object) {
-      // eslint-disable-next-line no-console
-      console.log({ level, record });
+      console.error({ record, level });
     }
+  }
+}
+
+export function recordWarn(record) {
+  if (isString(record)) {
+    recordText(record, logLevel.warn);
+  } else {
+    recordObject(record, logLevel.warn);
+  }
+}
+
+export function recordInfo(record) {
+  if (isString(record)) {
+    recordText(record, logLevel.info);
+  } else {
+    recordObject(record, logLevel.info);
+  }
+}
+
+export function recordDebug(record) {
+  if (isString(record)) {
+    recordText(record, logLevel.debug);
+  } else {
+    recordObject(record, logLevel.debug);
   }
 }
 
