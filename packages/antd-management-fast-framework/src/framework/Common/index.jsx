@@ -109,6 +109,7 @@ import {
   buildTree,
   buildCustomSelect,
   buildButtonGroup,
+  buildTreeSelect,
 } from '../../customComponents/FunctionComponent';
 import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
 
@@ -2081,6 +2082,20 @@ class Common extends Core {
                     xs={lg || xs}
                   >
                     {buildTree(contentItem)}
+                  </Col>
+                );
+              }
+
+              if (type === cardConfig.contentItemType.treeSelect) {
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg}
+                    md={lg || md}
+                    sm={lg || sm}
+                    xs={lg || xs}
+                  >
+                    {buildTreeSelect(contentItem)}
                   </Col>
                 );
               }

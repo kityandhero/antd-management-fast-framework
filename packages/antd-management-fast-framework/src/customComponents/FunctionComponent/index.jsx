@@ -3421,28 +3421,55 @@ export function adjustTableExpandConfig({ list, config }) {
 }
 
 export function buildTreeSelect({
-  style = {},
+  label,
+  name,
   value,
-  dropdownStyle = {},
-  data = [],
-  placeholder = '请选择',
-  treeDefaultExpandAll = true,
-  onChange = null,
+  required = false,
+  helper = null,
+  innerProps = {},
+  canOperate = true,
+  formItemLayout = {},
 }) {
+  const title = label;
+
+  const adjustInnerProps = {
+    ...{
+      style: { width: '100%' },
+      treeData: [],
+      placeholder: buildFieldDescription(title, '选择'),
+      disabled: !canOperate,
+    },
+    ...(innerProps || {}),
+    ...{
+      value,
+    },
+  };
+
+  const resultCheck = checkFromConfig({
+    label: title,
+    name,
+    helper,
+  });
+
   return (
-    <TreeSelect
-      style={{ ...{ width: '100%' }, ...(style || {}) }}
-      value={value}
-      dropdownStyle={dropdownStyle}
-      treeData={data}
-      placeholder={placeholder}
-      treeDefaultExpandAll={treeDefaultExpandAll}
-      onChange={(value, label, extra) => {
-        if (isFunction(onChange)) {
-          onChange({ value, label, extra });
-        }
-      }}
-    />
+    <FormItem
+      {...formItemLayout}
+      label={resultCheck.label}
+      name={resultCheck.name}
+      extra={
+        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          ? null
+          : buildFieldHelper(resultCheck.helper)
+      }
+      rules={[
+        {
+          required,
+          message: buildFieldDescription(resultCheck.label),
+        },
+      ]}
+    >
+      <TreeSelect {...adjustInnerProps} />
+    </FormItem>
   );
 }
 

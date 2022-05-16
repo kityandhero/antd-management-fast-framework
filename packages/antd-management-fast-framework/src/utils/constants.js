@@ -616,6 +616,11 @@ export const cardConfig = {
      * tinymce
      */
     tinymce: 'tinymce',
+
+    /**
+     * treeSelect
+     */
+    treeSelect: 'treeSelect',
   },
 };
 
