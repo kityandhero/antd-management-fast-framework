@@ -3429,6 +3429,8 @@ export function buildTreeSelect({
   innerProps = {},
   canOperate = true,
   formItemLayout = {},
+  listData = [],
+  dataConvert = null,
 }) {
   const title = label;
 
@@ -3445,11 +3447,38 @@ export function buildTreeSelect({
     },
   };
 
+  const listDataSource = isArray(listData) ? listData : [];
+
+  adjustInnerProps.treeData = listDataSource.map((o) => {
+    if (!isFunction(dataConvert)) {
+      return o;
+    }
+
+    return dataConvert(o);
+  });
+
   const resultCheck = checkFromConfig({
     label: title,
     name,
     helper,
   });
+
+  if (!canOperate) {
+    return (
+      <FormItem
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+      >
+        <TimePicker {...adjustInnerProps} />
+      </FormItem>
+    );
+  }
 
   return (
     <FormItem
