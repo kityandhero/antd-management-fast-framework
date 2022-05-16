@@ -96,6 +96,17 @@ class BasicInfo extends TabPageBase {
     );
   }
 
+  initOther = () => {
+    this.remoteRequest({
+      type: 'article/get',
+      payload: { id: '' },
+      modelName: 'article',
+      callback: ({ data }) => {
+        console.log(data);
+      },
+    });
+  };
+
   supplementSubmitRequestParams = (o) => {
     const d = o;
     const { articleId, image, rectangleImage, video, audio, attachment, content } = this.state;

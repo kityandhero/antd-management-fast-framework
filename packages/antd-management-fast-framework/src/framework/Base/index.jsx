@@ -7,8 +7,13 @@ import {
   defaultBaseState,
   getGuid,
   isObject,
+  recordDebug,
+  recordError,
   showInfoMessage,
+  stringIsNullOrWhiteSpace,
+  isFunction,
 } from '../../utils/tools';
+import { getApiDataCore } from '../../utils/actionAssist';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -185,6 +190,82 @@ class Base extends Component {
   beforeUnmount = () => {};
 
   afterUnmount = () => {};
+
+  getDispatch = () => {
+    if (isObject(this.props)) {
+      const { dispatch } = this.props;
+
+      if (!!dispatch && isFunction(dispatch)) {
+        return dispatch;
+      }
+    }
+
+    const text = 'please override getDispatch, and return a function';
+
+    recordError(text);
+
+    throw new Error(text);
+  };
+
+  getDispatchWrapper = () => {
+    const dispatch = this.getDispatch();
+
+    if (!isFunction(dispatch)) {
+      recordError('dispatch not a function, please check getDispatch');
+    }
+
+    return dispatch;
+  };
+
+  dispatchApi = ({ type, payload }) => {
+    const dispatch = this.getDispatchWrapper();
+
+    recordDebug(`modal access: ${type}`);
+
+    return dispatch({ type, payload });
+  };
+
+  remoteRequest = ({
+    type,
+    payload,
+    modelName = '',
+    key = 'data',
+    callback = null,
+  }) => {
+    if (stringIsNullOrWhiteSpace(modelName)) {
+      recordError(
+        `remoteRequest: modelName not allow null or white space, please params`,
+      );
+    }
+
+    return this.dispatchApi({
+      type,
+      payload,
+    }).then(() => {
+      const metaOriginalData = getApiDataCore({
+        props: this.props,
+        modelName: modelName,
+        key: key || '',
+      });
+
+      const { dataSuccess, code: remoteCode } = metaOriginalData;
+
+      if (dataSuccess) {
+        const { list, data, extra } = metaOriginalData;
+
+        if (isFunction(callback)) {
+          callback({
+            list: list || [],
+            data,
+            extra,
+            originalData,
+          });
+        }
+      } else {
+        throw new Error(remoteCode);
+      }
+    });
+  };
 
   goToPath = (path) => {
     const location = {
