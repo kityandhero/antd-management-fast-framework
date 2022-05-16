@@ -23,6 +23,16 @@ export const fieldData = {
       name: 'author',
       helper: '文章的作者',
     },
+    parentId: {
+      label: '父级文章',
+      name: 'parentId',
+      helper: '文章的父级',
+    },
+    parentName: {
+      label: '父级文章',
+      name: 'parentName',
+      helper: '文章的父级',
+    },
     sort: {
       label: '排序值',
       name: 'sort',

@@ -1695,6 +1695,54 @@ export function buildCustomSelect({
   );
 }
 
+export function buildTreeSelect({
+  value: v,
+  placeholder = '',
+  onChangeCallback = null,
+  otherProps = {},
+  listData = [],
+  dataConvert = null,
+}) {
+  const adjustOtherProps = {
+    ...{
+      style: { width: '100%' },
+      showSearch: true,
+      allowClear: true,
+      treeLine: true,
+      placeholder,
+    },
+    ...(otherProps || {}),
+    ...{
+      value: v || null,
+    },
+  };
+
+  const listDataSource = isArray(listData) ? listData : [];
+
+  const listDataAdjust = listDataSource.map((o) => {
+    if (!isFunction(dataConvert)) {
+      return o;
+    }
+
+    return dataConvert(o);
+  });
+
+  adjustOtherProps.treeData = listDataAdjust;
+  adjustOtherProps.onChange = (value, label, extra) => {
+    if (isFunction(onChangeCallback)) {
+      onChangeCallback({
+        value,
+        label,
+        extra,
+        treeData: listDataAdjust,
+        listData,
+      });
+    }
+  };
+
+  return <TreeSelect {...adjustOtherProps} />;
+}
+
 export function buildFormSelect({
   label,
   name,
@@ -3418,88 +3466,6 @@ export function adjustTableExpandConfig({ list, config }) {
   }
 
   return null;
-}
-
-export function buildTreeSelect({
-  label,
-  name,
-  value,
-  required = false,
-  helper = null,
-  innerProps = {},
-  canOperate = true,
-  formItemLayout = {},
-  listData = [],
-  dataConvert = null,
-}) {
-  const title = label;
-
-  const adjustInnerProps = {
-    ...{
-      style: { width: '100%' },
-      treeData: [],
-      placeholder: buildFieldDescription(title, '选择'),
-      disabled: !canOperate,
-    },
-    ...(innerProps || {}),
-    ...{
-      value,
-    },
-  };
-
-  const listDataSource = isArray(listData) ? listData : [];
-
-  adjustInnerProps.treeData = listDataSource.map((o) => {
-    if (!isFunction(dataConvert)) {
-      return o;
-    }
-
-    return dataConvert(o);
-  });
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  if (!canOperate) {
-    return (
-      <FormItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-      >
-        <TimePicker {...adjustInnerProps} />
-      </FormItem>
-    );
-  }
-
-  return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <TreeSelect {...adjustInnerProps} />
-    </FormItem>
-  );
 }
 
 /**

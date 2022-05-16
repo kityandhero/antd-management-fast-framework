@@ -43,6 +43,7 @@ import {
   inCollection,
   toString,
   toNumber,
+  buildFieldDescription,
 } from '../../utils/tools';
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
@@ -108,8 +109,8 @@ import {
   buildDropdownEllipsis,
   buildTree,
   buildCustomSelect,
-  buildButtonGroup,
   buildTreeSelect,
+  buildButtonGroup,
 } from '../../customComponents/FunctionComponent';
 import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
 
@@ -2086,20 +2087,6 @@ class Common extends Core {
                 );
               }
 
-              if (type === cardConfig.contentItemType.treeSelect) {
-                return (
-                  <Col
-                    key={contentItemKey}
-                    lg={lg}
-                    md={lg || md}
-                    sm={lg || sm}
-                    xs={lg || xs}
-                  >
-                    {buildTreeSelect(contentItem)}
-                  </Col>
-                );
-              }
-
               if (type === cardConfig.contentItemType.tinymce) {
                 return (
                   <Col
@@ -2333,6 +2320,55 @@ class Common extends Core {
                       <div style={imageBoxListContainorStyle}>
                         {imageListContainor}
                       </div>
+                    )}
+                  </Col>
+                );
+              }
+
+              if (type === cardConfig.contentItemType.treeSelect) {
+                const {
+                  value: treeSelectValue,
+                  onChangeCallback: onTreeSelectChangeCallback,
+                  otherProps: otherTreeSelectProps,
+                  listData: treeSelectListData,
+                  dataConvert: treeSelectDataConvertor,
+                } = {
+                  ...{
+                    value: contentItem.value || '',
+                    fileBase64: contentItem.fileBase64 || '',
+                    onChangeCallback: contentItem.onChangeCallback || null,
+                    otherProps: {
+                      ...{},
+                      ...(contentItem.otherProps || {}),
+                    },
+                    listData: contentItem.listData || [],
+                    dataConvert: contentItem.dataConvert || null,
+                  },
+                };
+
+                return (
+                  <Col
+                    key={contentItemKey}
+                    lg={lg || 6}
+                    md={md}
+                    sm={sm}
+                    xs={xs}
+                  >
+                    {this.renderFormInnerComponent(
+                      fieldData.label,
+                      buildTreeSelect({
+                        value: treeSelectValue || null,
+                        placeholder:
+                          buildFieldDescription(fieldData.label, '选择') ||
+                          '请选择',
+                        onChangeCallback: onTreeSelectChangeCallback,
+                        otherProps: otherTreeSelectProps,
+                        listData: treeSelectListData,
+                        dataConvert: treeSelectDataConvertor,
+                      }),
+                      fieldData.helper,
+                      formItemLayout,
+                      require,
                     )}
                   </Col>
                 );

@@ -82,6 +82,7 @@ class BasicInfo extends TabPageBase {
         imageList: [],
         fileList: [],
         initContent: '',
+        parentId: '1',
       },
     };
   }
@@ -392,6 +393,7 @@ class BasicInfo extends TabPageBase {
       imageList,
       fileList,
       initContent,
+      parentId,
     } = this.state;
 
     const spinning = this.checkInProgress();
@@ -473,6 +475,38 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.timePicker,
               fieldData: fieldData.timePicker,
               require: true,
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.treeSelect,
+              fieldData: fieldData.parentId,
+              value: parentId,
+              require: true,
+              listData: [
+                { label: '条目1', value: '1' },
+                { label: '条目2', value: '2' },
+              ],
+              dataConvert: (o) => {
+                const { label, value } = o;
+
+                return {
+                  title: label,
+                  value,
+                };
+              },
+              onChangeCallback: ({ value, label, extra, treeData: listDataAdjust, listData }) => {
+                // console.log({
+                //   value,
+                //   label,
+                //   extra,
+                //   treeData: listDataAdjust,
+                //   listData,
+                // });
+
+                this.setState({
+                  parentId: value,
+                });
+              },
             },
             {
               lg: 24,
