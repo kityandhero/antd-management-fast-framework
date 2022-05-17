@@ -25,7 +25,7 @@ class ChangeSortModal extends BaseUpdateModal {
     };
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       article: { data },
     } = props;

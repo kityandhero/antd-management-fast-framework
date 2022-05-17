@@ -88,7 +88,7 @@ class Edit extends DataTabContainer {
     );
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       article: { data },
     } = props;

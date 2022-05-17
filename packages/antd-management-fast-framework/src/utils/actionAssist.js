@@ -10,25 +10,34 @@ import {
   getPathValue,
   isUndefined,
   recordError,
+  isString,
+  stringIsNullOrWhiteSpace,
+  recordDebug,
 } from './tools';
 
 const { confirm } = Modal;
 
 /**
- * getApiDataCore
- * @param {*} param0
- * @returns
+ * apiDataConvertCore
  */
-export function getApiDataCore({ props, modelName }) {
+export function apiDataConvertCore({ props, modelName }) {
   if (isUndefined(props)) {
     throw new Error('props is undefined, please check params.');
+  }
+
+  if (stringIsNullOrWhiteSpace(modelName) || !isString(modelName)) {
+    throw new Error(
+      'apiDataConvertCore params: modelName must be a string, please check.',
+    );
   }
 
   const m = getPathValue(props, modelName);
 
   if ((m || null) == null) {
+    recordObject(props);
+
     recordError(
-      `getApiDataCore error: model ${modelName} is null or undefined`,
+      `apiDataConvertCore error: model ${modelName} is null or undefined`,
     );
   }
 
@@ -36,7 +45,7 @@ export function getApiDataCore({ props, modelName }) {
 
   if ((data || null) == null) {
     recordError(
-      `getApiDataCore error: key “data” in model ${modelName} is null or undefined`,
+      `apiDataConvertCore error: key “data” in model ${modelName} is null or undefined`,
     );
   }
 
@@ -114,7 +123,7 @@ export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
 export async function actionCore({
   api,
   params,
-  getApiData = null,
+  apiDataConvert = null,
   target,
   handleData,
   successCallback,
@@ -169,6 +178,8 @@ export async function actionCore({
       () => {
         // 延迟一定时间，优化界面呈现
         setTimeout(() => {
+          recordDebug(`modal access: ${api}`);
+
           dispatch({
             type: api,
             payload: params,
@@ -180,25 +191,39 @@ export async function actionCore({
                 }, 200);
               }
 
-              if (!isFunction(getApiData)) {
-                throw new Error('actionCore: getApiData must be function');
+              if (!isFunction(apiDataConvert)) {
+                throw new Error(
+                  'actionCore params: apiDataConvert must be function',
+                );
               }
 
-              const data = getApiData(target.props);
-
-              if ((data || null) == null) {
-                throw new Error('actionCore: getApiData result not allow null');
-              }
+              const data = apiDataConvert(target.props);
 
               const { dataSuccess } = data;
 
               if (dataSuccess) {
-                const { data: remoteData } = data;
+                const {
+                  list: remoteListData,
+                  data: remoteData,
+                  data: remoteExtraData,
+                } = {
+                  ...{
+                    list: [],
+                    data: null,
+                    extra: null,
+                  },
+                  ...data,
+                };
 
                 let messageText = successMessage;
 
                 if (isFunction(successMessageBuilder)) {
-                  messageText = successMessageBuilder(remoteData);
+                  messageText = successMessageBuilder({
+                    remoteListData: remoteListData || [],
+                    remoteData: remoteData || null,
+                    remoteExtraData: remoteExtraData || null,
+                    remoteOriginal: data,
+                  });
                 }
 
                 notifySuccess(messageText);
@@ -207,7 +232,10 @@ export async function actionCore({
                   successCallback({
                     target,
                     handleData,
+                    remoteListData: remoteListData || [],
                     remoteData: remoteData || null,
+                    remoteExtraData: remoteExtraData || null,
+                    remoteOriginal: data,
                   });
                 }
               }

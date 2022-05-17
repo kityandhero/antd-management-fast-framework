@@ -5,6 +5,8 @@ import { ShopOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons
 
 import { checkHasAuthority } from 'antd-management-fast-framework/es/utils/authority';
 import { defaultUserAvatar } from 'antd-management-fast-framework/es/utils/constants';
+import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
+
 import { accessWayCollection } from '@/customConfig/config';
 
 import HeaderDropdown from '../HeaderDropdown';
@@ -19,8 +21,12 @@ class AvatarDropdown extends React.Component {
       const { dispatch } = this.props;
 
       if (dispatch) {
+        const type = 'entrance/signOut';
+
+        recordDebug(`modal access: ${type}`);
+
         dispatch({
-          type: 'entrance/signOut',
+          type,
         });
       }
 

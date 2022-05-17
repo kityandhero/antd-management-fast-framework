@@ -7,6 +7,7 @@ import {
 import {
   pageListData,
   singleListData,
+  singleListTreeData,
   getData,
   addBasicInfoData,
   updateBasicInfoData,
@@ -44,6 +45,14 @@ export default {
     },
     *singleList({ payload }, { call, put }) {
       const response = yield call(singleListData, payload);
+
+      yield put({
+        type: 'handleListData',
+        payload: response,
+      });
+    },
+    *singleListTree({ payload }, { call, put }) {
+      const response = yield call(singleListTreeData, payload);
 
       yield put({
         type: 'handleListData',

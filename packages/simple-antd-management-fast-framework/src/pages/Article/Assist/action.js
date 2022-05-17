@@ -1,14 +1,31 @@
 import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
 import {
-  getApiDataCore,
+  apiDataConvertCore,
   actionCore,
   confirmActionCore,
 } from 'antd-management-fast-framework/es/utils/actionAssist';
 
 import { fieldData, mediaItemData } from '../Common/data';
 
-function getApiData(props) {
-  return getApiDataCore({ props, modelName: 'article' });
+function apiDataConvert(props) {
+  return apiDataConvertCore({ props, modelName: 'article' });
+}
+
+export function singleListTreeAction({
+  target,
+  handleData = {},
+  successCallback,
+  successMessage = null,
+}) {
+  actionCore({
+    api: 'article/singleListTree',
+    params: {},
+    apiDataConvert,
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
 }
 
 export function setOnlineAction({ target, handleData, successCallback, successMessage = null }) {
@@ -20,7 +37,7 @@ export function setOnlineAction({ target, handleData, successCallback, successMe
         key: fieldData.articleId.name,
       }),
     },
-    getApiData,
+    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -37,7 +54,7 @@ export function setOfflineAction({ target, handleData, successCallback, successM
         key: fieldData.articleId.name,
       }),
     },
-    getApiData,
+    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -59,7 +76,7 @@ export async function refreshCacheAction({
         key: fieldData.articleId.name,
       }),
     },
-    getApiData,
+    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -85,7 +102,7 @@ export function setMediaCollectionSortAction({
         key: 'ids',
       }),
     },
-    getApiData,
+    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -111,7 +128,7 @@ export async function removeMediaItemAction({
         key: mediaItemData.id.name,
       }),
     },
-    getApiData,
+    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -134,7 +151,7 @@ export async function addGalleryImageAction({
       }),
       url: handleData.url || '',
     },
-    getApiData,
+    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -156,7 +173,7 @@ export async function removeGalleryImageAction({
         key: fieldData.articleId.name,
       }),
     },
-    getApiData,
+    apiDataConvert,
     target,
     handleData,
     successCallback,

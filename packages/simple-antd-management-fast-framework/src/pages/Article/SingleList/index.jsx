@@ -89,7 +89,7 @@ class SingleList extends SinglePage {
     };
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       article: { data },
     } = props;

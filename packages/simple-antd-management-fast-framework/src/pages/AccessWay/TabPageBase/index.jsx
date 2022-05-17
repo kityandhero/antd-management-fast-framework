@@ -15,7 +15,7 @@ class BaseEditTab extends BaseUpdateFormTab {
     );
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       accessWay: { data },
     } = props;

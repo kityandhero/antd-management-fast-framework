@@ -2,7 +2,8 @@ import React from 'react';
 import { connect, Redirect } from 'umi';
 import { PageLoading } from '@ant-design/pro-layout';
 
-import { queryStringify } from 'antd-management-fast-framework/es/utils/tools';
+import { queryStringify, recordDebug } from 'antd-management-fast-framework/es/utils/tools';
+
 import { defaultSettings } from '@/defaultSettings';
 
 const entrancePath = defaultSettings.getEntrancePath();
@@ -19,8 +20,12 @@ class SecurityLayout extends React.Component {
     const { dispatch } = this.props;
 
     if (dispatch) {
+      const fetchCurrentType = 'user/fetchCurrent';
+
+      recordDebug(`modal access: ${fetchCurrentType}`);
+
       dispatch({
-        type: 'user/fetchCurrent',
+        type: fetchCurrentType,
       });
     }
   }

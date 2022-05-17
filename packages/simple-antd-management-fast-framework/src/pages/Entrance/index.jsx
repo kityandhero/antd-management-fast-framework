@@ -3,6 +3,7 @@ import { connect, Link } from 'umi';
 import { Alert, Checkbox } from 'antd';
 import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 
+import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
 import EntranceFrom from 'antd-management-fast-framework/es/customComponents/Entrance';
 
 import styles from './style.less';
@@ -28,8 +29,13 @@ const Entrance = (props) => {
 
   const handleSubmit = (values) => {
     const { dispatch } = props;
+
+    const signInType = 'entrance/signIn';
+
+    recordDebug(`modal access: ${signInType}`);
+
     dispatch({
-      type: 'entrance/signIn',
+      type: signInType,
       payload: { ...values, type },
     });
   };

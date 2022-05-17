@@ -53,7 +53,7 @@ class Index extends BaseUpdateDrawer {
     };
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       article: { data },
     } = props;

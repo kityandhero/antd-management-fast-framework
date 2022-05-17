@@ -59,7 +59,7 @@ class PageList extends MultiPage {
     };
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       accessWay: { data },
     } = props;

@@ -53,8 +53,6 @@ class Edit extends DataTabContainer {
   }
 
   loadData = () => {
-    const { dispatch } = this.props;
-
     const submitData = pretreatmentRequestParams({}, (d) => {
       const o = d;
       const { accessWayId } = this.state;
@@ -64,36 +62,40 @@ class Edit extends DataTabContainer {
       return o;
     });
 
-    this.setState(
+    const that = this;
+
+    that.setState(
       {
         dataLoading: true,
         //  loadSuccess: false,
         metaData: null,
       },
       () => {
-        dispatch({
-          type: 'accessWay/get',
-          payload: submitData,
-        }).then(() => {
-          if (this.mounted) {
-            const {
-              accessWay: { data },
-            } = this.props;
+        that
+          .dispatchApi({
+            type: 'accessWay/get',
+            payload: submitData,
+          })
+          .then(() => {
+            if (that.mounted) {
+              const {
+                accessWay: { data },
+              } = that.props;
 
-            const { dataSuccess } = data;
+              const { dataSuccess } = data;
 
-            if (dataSuccess) {
-              const { data: metaData } = data;
+              if (dataSuccess) {
+                const { data: metaData } = data;
 
-              this.setState({
-                metaData,
-                //  loadSuccess: dataSuccess
-              });
+                that.setState({
+                  metaData,
+                  //  loadSuccess: dataSuccess
+                });
+              }
+
+              that.setState({ dataLoading: false });
             }
-
-            this.setState({ dataLoading: false });
-          }
-        });
+          });
       },
     );
   };

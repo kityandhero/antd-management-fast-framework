@@ -62,9 +62,9 @@ class BasicInfo extends TabPageBase {
   };
 
   loadData = () => {
-    const { dispatch } = this.props;
+    const that = this;
 
-    this.setState({
+    that.setState({
       dataLoading: true,
       //  loadSuccess: false,
       metaData: null,
@@ -72,36 +72,38 @@ class BasicInfo extends TabPageBase {
 
     const submitData = pretreatmentRequestParams({}, (d) => {
       const o = d;
-      const { accessWayId } = this.state;
+      const { accessWayId } = that.state;
 
       o.accessWayId = accessWayId;
 
       return o;
     });
 
-    dispatch({
-      type: 'accessWay/get',
-      payload: submitData,
-    }).then(() => {
-      if (this.mounted) {
-        const {
-          accessWay: { data },
-        } = this.props;
+    that
+      .dispatchApi({
+        type: 'accessWay/get',
+        payload: submitData,
+      })
+      .then(() => {
+        if (that.mounted) {
+          const {
+            accessWay: { data },
+          } = that.props;
 
-        const { dataSuccess } = data;
+          const { dataSuccess } = data;
 
-        if (dataSuccess) {
-          const { data: metaData } = data;
+          if (dataSuccess) {
+            const { data: metaData } = data;
 
-          this.setState({
-            metaData,
-            //  loadSuccess: dataSuccess
-          });
+            that.setState({
+              metaData,
+              //  loadSuccess: dataSuccess
+            });
+          }
+
+          that.setState({ dataLoading: false });
         }
-
-        this.setState({ dataLoading: false });
-      }
-    });
+      });
   };
 
   reloadData = () => {
@@ -116,50 +118,51 @@ class BasicInfo extends TabPageBase {
     const that = this;
 
     const {
-      dispatch,
       form,
       location: { pathname },
-    } = this.props;
+    } = that.props;
 
     form.validateFields((err, values) => {
       if (!err) {
-        this.setState({ processing: true });
+        that.setState({ processing: true });
 
         const submitData = pretreatmentRequestParams(values, (d) => {
           const o = d;
-          const { accessWayId } = this.state;
+          const { accessWayId } = that.state;
 
           o.accessWayId = accessWayId;
 
           return o;
         });
 
-        dispatch({
-          type: 'accessWay/updateBasicInfo',
-          payload: submitData,
-        }).then(() => {
-          if (this.mounted) {
-            this.setState({ processing: false });
+        that
+          .dispatchApi({
+            type: 'accessWay/updateBasicInfo',
+            payload: submitData,
+          })
+          .then(() => {
+            if (that.mounted) {
+              that.setState({ processing: false });
 
-            const {
-              accessWay: { data },
-            } = this.props;
+              const {
+                accessWay: { data },
+              } = that.props;
 
-            const { dataSuccess } = data;
+              const { dataSuccess } = data;
 
-            if (dataSuccess) {
-              requestAnimationFrame(() => {
-                notification.success({
-                  placement: 'bottomRight',
-                  message: '操作结果',
-                  description: '数据已经保存成功，请进行后续操作。',
+              if (dataSuccess) {
+                requestAnimationFrame(() => {
+                  notification.success({
+                    placement: 'bottomRight',
+                    message: '操作结果',
+                    description: '数据已经保存成功，请进行后续操作。',
+                  });
                 });
-              });
-            }
+              }
 
-            that.redirectToPath(pathname.replace('/load/', '/update/'));
-          }
-        });
+              that.redirectToPath(pathname.replace('/load/', '/update/'));
+            }
+          });
       } else {
         const m = [];
 
@@ -223,53 +226,54 @@ class BasicInfo extends TabPageBase {
   };
 
   validate = () => {
+    const that = this;
+
     const {
       form: { validateFieldsAndScroll },
-      dispatch,
       location: { pathname },
-    } = this.props;
+    } = that.props;
 
     validateFieldsAndScroll((error, values) => {
       if (!error) {
-        this.setState({ processing: true });
+        that.setState({ processing: true });
 
         const submitData = pretreatmentRequestParams(values, (d) => {
           const o = d;
-          const { accessWayId } = this.state;
+          const { accessWayId } = that.state;
 
           o.accessWayId = accessWayId;
 
           return o;
         });
 
-        dispatch({
-          type: 'accessWay/updateBasicInfo',
-          payload: submitData,
-        }).then(() => {
-          if (this.mounted) {
-            const {
-              accessWay: { data },
-            } = this.props;
+        that
+          .dispatchApi({
+            type: 'accessWay/updateBasicInfo',
+            payload: submitData,
+          })
+          .then(() => {
+            if (that.mounted) {
+              const {
+                accessWay: { data },
+              } = that.props;
 
-            const { dataSuccess } = data;
+              const { dataSuccess } = data;
 
-            if (dataSuccess) {
-              requestAnimationFrame(() => {
-                notification.success({
-                  placement: 'bottomRight',
-                  message: '操作结果',
-                  description: '数据已经保存成功，请进行后续操作。',
+              if (dataSuccess) {
+                requestAnimationFrame(() => {
+                  notification.success({
+                    placement: 'bottomRight',
+                    message: '操作结果',
+                    description: '数据已经保存成功，请进行后续操作。',
+                  });
                 });
+              }
+
+              that.setState({ processing: false }, () => {
+                dispatch(that.redirectToPath(pathname.replace('/load/', '/update/')));
               });
             }
-
-            const that = this;
-
-            that.setState({ processing: false }, () => {
-              dispatch(that.redirectToPath(pathname.replace('/load/', '/update/')));
-            });
-          }
-        });
+          });
       }
     });
   };

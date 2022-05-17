@@ -60,7 +60,7 @@ class SingleListDrawer extends SinglePageDrawer {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       article: { data },
     } = props;

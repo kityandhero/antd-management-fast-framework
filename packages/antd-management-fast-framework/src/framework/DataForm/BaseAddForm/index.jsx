@@ -103,36 +103,37 @@ class BaseAddForm extends DataCore {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   validate = (e) => {
-    const { dispatch } = this.props;
-
     const form = this.getTargetForm();
 
     const { validateFields } = form;
 
-    const { submitApiPath } = this.state;
+    const that = this;
+
+    const { submitApiPath } = that.state;
 
     validateFields()
       .then((values) => {
         let submitData = pretreatmentRequestParams(values);
 
-        submitData = this.supplementSubmitRequestParams(submitData);
+        submitData = that.supplementSubmitRequestParams(submitData);
 
-        const checkResult = this.checkSubmitData(submitData);
+        const checkResult = that.checkSubmitData(submitData);
 
         if (checkResult) {
-          this.setState({ processing: true }, () => {
-            this.setState(
+          that.setState({ processing: true }, () => {
+            that.setState(
               {
                 dispatchComplete: false,
               },
               () => {
-                dispatch({
-                  type: submitApiPath,
-                  payload: submitData,
-                })
+                that
+                  .dispatchApi({
+                    type: submitApiPath,
+                    payload: submitData,
+                  })
                   .then(() => {
-                    if (this.mounted) {
-                      const remoteData = this.getApiData(this.props);
+                    if (that.mounted) {
+                      const remoteData = that.apiDataConvert(that.props);
 
                       const { dataSuccess } = remoteData;
 
@@ -143,7 +144,7 @@ class BaseAddForm extends DataCore {
                           extra: metaExtra,
                         } = remoteData;
 
-                        this.afterSubmitSuccess({
+                        that.afterSubmitSuccess({
                           singleData: metaData || null,
                           listData: metaListData || [],
                           extraData: metaExtra || null,
@@ -157,7 +158,7 @@ class BaseAddForm extends DataCore {
                       }
                     }
 
-                    this.setState({
+                    that.setState({
                       processing: false,
                       dispatchComplete: true,
                     });
@@ -165,7 +166,7 @@ class BaseAddForm extends DataCore {
                   .catch((res) => {
                     recordObject(res);
 
-                    this.setState({
+                    that.setState({
                       processing: false,
                       dispatchComplete: true,
                     });

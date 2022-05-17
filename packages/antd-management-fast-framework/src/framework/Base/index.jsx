@@ -13,7 +13,7 @@ import {
   stringIsNullOrWhiteSpace,
   isFunction,
 } from '../../utils/tools';
-import { getApiDataCore } from '../../utils/actionAssist';
+import { apiDataConvertCore } from '../../utils/actionAssist';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -195,7 +195,7 @@ class Base extends Component {
     if (isObject(this.props)) {
       const { dispatch } = this.props;
 
-      if (!!dispatch && isFunction(dispatch)) {
+      if (isFunction(dispatch)) {
         return dispatch;
       }
     }
@@ -223,48 +223,6 @@ class Base extends Component {
     recordDebug(`modal access: ${type}`);
 
     return dispatch({ type, payload });
-  };
-
-  remoteRequest = ({
-    type,
-    payload,
-    modelName = '',
-    key = 'data',
-    callback = null,
-  }) => {
-    if (stringIsNullOrWhiteSpace(modelName)) {
-      recordError(
-        `remoteRequest: modelName not allow null or white space, please params`,
-      );
-    }
-
-    return this.dispatchApi({
-      type,
-      payload,
-    }).then(() => {
-      const metaOriginalData = getApiDataCore({
-        props: this.props,
-        modelName: modelName,
-        key: key || '',
-      });
-
-      const { dataSuccess, code: remoteCode } = metaOriginalData;
-
-      if (dataSuccess) {
-        const { list, data, extra } = metaOriginalData;
-
-        if (isFunction(callback)) {
-          callback({
-            list: list || [],
-            data,
-            extra,
-            originalData,
-          });
-        }
-      } else {
-        throw new Error(remoteCode);
-      }
-    });
   };
 
   goToPath = (path) => {

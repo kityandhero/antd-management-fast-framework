@@ -3,7 +3,11 @@ import { Link, connect, FormattedMessage } from 'umi';
 import { Result, Button } from 'antd';
 import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
 
-import { getQueue, checkDevelopment } from 'antd-management-fast-framework/es/utils/tools';
+import {
+  getQueue,
+  checkDevelopment,
+  recordDebug,
+} from 'antd-management-fast-framework/es/utils/tools';
 import { proLayoutDefaultProps } from 'antd-management-fast-framework/es/utils/proLayoutCollection';
 import { setAccessWayCollectionCache } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
 import { getAuthorityFromRouter } from 'antd-management-fast-framework/es/utils/utils';
@@ -66,16 +70,24 @@ const BasicLayout = (props) => {
       setAccessWayCollectionCache(accessWayCollection);
       execBasicLayoutRemoteRequest(dispatch);
 
+      const getSettingType = 'settings/getSetting';
+
+      recordDebug(`modal access: ${getSettingType}`);
+
       dispatch({
-        type: 'settings/getSetting',
+        type: getSettingType,
       });
     }
   }, [dispatch]);
 
   const handleMenuCollapse = (payload) => {
     if (dispatch) {
+      const changeLayoutCollapsedType = 'global/changeLayoutCollapsed';
+
+      recordDebug(`modal access: ${changeLayoutCollapsedType}`);
+
       dispatch({
-        type: 'global/changeLayoutCollapsed',
+        type: changeLayoutCollapsedType,
         payload,
       });
     }
@@ -133,8 +145,12 @@ const BasicLayout = (props) => {
           settings={settings}
           disableUrlParams={true}
           onSettingChange={(config) => {
+            const changeSettingType = 'settings/changeSetting';
+
+            recordDebug(`modal access: ${changeSettingType}`);
+
             dispatch({
-              type: 'settings/changeSetting',
+              type: changeSettingType,
               payload: config,
             });
           }}

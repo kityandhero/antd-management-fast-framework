@@ -3,7 +3,11 @@ import { Tag, message } from 'antd';
 import { connect } from 'umi';
 import groupBy from 'lodash/groupBy';
 import moment from 'moment';
+
+import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
+
 import NoticeIcon from '../NoticeIcon';
+
 import styles from './index.less';
 
 class GlobalHeaderRight extends Component {
@@ -11,8 +15,12 @@ class GlobalHeaderRight extends Component {
     const { dispatch } = this.props;
 
     if (dispatch) {
+      const type = 'global/fetchNotices';
+
+      recordDebug(`modal access: ${type}`);
+
       dispatch({
-        type: 'global/fetchNotices',
+        type,
       });
     }
   }

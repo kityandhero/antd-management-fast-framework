@@ -47,7 +47,7 @@ class ChangeImageSortModal extends Base {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       article: { data },
     } = props;

@@ -117,6 +117,7 @@ import { renderFormWhetherSelect } from '../../customComponents/FunctionSuppleme
 import Core from '../Core';
 
 import styles from './index.less';
+import { CONSTANTS } from '@antv/data-set';
 
 const { Content, Sider } = Layout;
 
@@ -172,8 +173,8 @@ class Common extends Core {
 
   // 该方法必须重载覆盖
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getApiData = (props) => {
-    const text = 'getApiData 方法需要重载实现';
+  apiDataConvert = (props) => {
+    const text = 'apiDataConvert 方法需要重载实现';
 
     showRuntimeError({
       message: text,
@@ -363,9 +364,9 @@ class Common extends Core {
   loadFromApi = ({ requestData, callback }) => {
     let loadApiPath = '';
 
-    try {
-      const { dispatch } = this.props;
+    const that = this;
 
+    try {
       const requestingDataPre = this.getRequestingData();
 
       const loadApiCustomPath = this.adjustLoadApiPath();
@@ -390,12 +391,13 @@ class Common extends Core {
           payload: requestData,
         })
       ) {
-        this.setRequestingData({ type: loadApiPath, payload: requestData });
+        that.setRequestingData({ type: loadApiPath, payload: requestData });
 
-        dispatch({
-          type: loadApiPath,
-          payload: requestData,
-        })
+        that
+          .dispatchApi({
+            type: loadApiPath,
+            payload: requestData,
+          })
           .then(() => {
             let willSaveToState = {
               dataLoading: false,
@@ -407,15 +409,15 @@ class Common extends Core {
               dispatchComplete: true,
             };
 
-            const metaOriginalData = this.getApiData(this.props);
+            const metaOriginalData = that.apiDataConvert(that.props);
 
             if (isUndefined(metaOriginalData)) {
-              this.setState(willSaveToState);
+              that.setState(willSaveToState);
 
               return;
             }
 
-            this.lastLoadParams = requestData;
+            that.lastLoadParams = requestData;
 
             const { dataSuccess } = metaOriginalData;
 
@@ -444,7 +446,7 @@ class Common extends Core {
               };
 
               try {
-                this.afterLoadSuccess({
+                that.afterLoadSuccess({
                   metaData: metaData || null,
                   metaListData: metaListData || [],
                   metaExtra: metaExtra || null,
@@ -461,11 +463,11 @@ class Common extends Core {
               }
             }
 
-            const { reloading: reloadingComplete } = this.state;
+            const { reloading: reloadingComplete } = that.state;
 
             if (reloadingComplete) {
-              this.afterReloadSuccess();
-              this.afterGetReLoadRequestResult(requestData, metaOriginalData);
+              that.afterReloadSuccess();
+              that.afterGetReLoadRequestResult(requestData, metaOriginalData);
             }
 
             if (!firstLoadSuccess) {
@@ -477,26 +479,26 @@ class Common extends Core {
               };
             }
 
-            this.setState(willSaveToState);
+            that.setState(willSaveToState);
 
             if (!firstLoadSuccess) {
-              this.afterFirstLoadSuccess();
+              that.afterFirstLoadSuccess();
 
-              this.afterGetFirstRequestResult(requestData, metaOriginalData);
+              that.afterGetFirstRequestResult(requestData, metaOriginalData);
             }
 
-            this.afterGetRequestResult(requestData, metaOriginalData);
+            that.afterGetRequestResult(requestData, metaOriginalData);
 
             if (typeof callback === 'function') {
               callback();
             }
 
-            this.clearRequestingData();
+            that.clearRequestingData();
           })
           .catch((res) => {
             recordObject(res);
 
-            this.setState({
+            that.setState({
               dataLoading: false,
               loadSuccess: false,
               reloading: false,
@@ -510,7 +512,7 @@ class Common extends Core {
     } catch (error) {
       recordObject({ loadApiPath, requestData });
 
-      this.setState({
+      that.setState({
         dataLoading: false,
         loadSuccess: false,
         reloading: false,
@@ -565,9 +567,7 @@ class Common extends Core {
   };
 
   reloadGlobalData = (callback = null) => {
-    const { dispatch } = this.props;
-
-    dispatch({
+    this.dispatchApi({
       type: 'global/getMetaData',
       payload: { force: true },
     }).then(() => {

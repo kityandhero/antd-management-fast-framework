@@ -53,9 +53,7 @@ class AuthorizationWrapper extends SupplementWrapper {
   };
 
   reloadCurrentOperator = (callback = null) => {
-    const { dispatch } = this.props;
-
-    dispatch({
+    this.dispatchApi({
       type: 'global/getCurrentOperator',
       payload: { force: true },
     }).then(() => {

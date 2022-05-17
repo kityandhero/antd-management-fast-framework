@@ -54,7 +54,7 @@ class Index extends BaseAddForm {
     );
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       article: { data },
     } = props;

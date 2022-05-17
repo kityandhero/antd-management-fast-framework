@@ -15,7 +15,7 @@ class TabPageBase extends BaseUpdateFormTab {
     );
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       article: { data },
     } = props;

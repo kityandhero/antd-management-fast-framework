@@ -29,8 +29,6 @@ class BaseUpdateForm extends DataSingleView {
   afterCheckSubmitRequestParams = (o) => o;
 
   execSubmitApi = (values = {}, afterSubmitCallback) => {
-    const { dispatch } = this.props;
-
     const { submitApiPath } = this.state;
 
     if ((submitApiPath || '') === '') {
@@ -52,19 +50,22 @@ class BaseUpdateForm extends DataSingleView {
     submitData = this.afterCheckSubmitRequestParams(submitData);
 
     if (checkResult) {
-      this.setState({ processing: true }, () => {
-        this.setState(
+      const that = this;
+
+      that.setState({ processing: true }, () => {
+        that.setState(
           {
             dispatchComplete: false,
           },
           () => {
-            dispatch({
-              type: submitApiPath,
-              payload: submitData,
-            })
+            that
+              .dispatchApi({
+                type: submitApiPath,
+                payload: submitData,
+              })
               .then(() => {
-                if (this.mounted) {
-                  const remoteData = this.getApiData(this.props);
+                if (that.mounted) {
+                  const remoteData = that.apiDataConvert(that.props);
 
                   const { dataSuccess } = remoteData;
 
@@ -75,7 +76,7 @@ class BaseUpdateForm extends DataSingleView {
                       extra: metaExtra,
                     } = remoteData;
 
-                    this.afterSubmitSuccess({
+                    that.afterSubmitSuccess({
                       singleData: metaData || null,
                       listData: metaListData || [],
                       extraData: metaExtra || null,
@@ -88,7 +89,7 @@ class BaseUpdateForm extends DataSingleView {
                     afterSubmitCallback();
                   }
 
-                  this.setState({
+                  that.setState({
                     processing: false,
                     dispatchComplete: true,
                   });
@@ -97,7 +98,7 @@ class BaseUpdateForm extends DataSingleView {
               .catch((res) => {
                 recordObject(res);
 
-                this.setState({
+                that.setState({
                   processing: false,
                   dispatchComplete: true,
                 });

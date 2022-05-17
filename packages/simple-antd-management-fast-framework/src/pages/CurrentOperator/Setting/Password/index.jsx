@@ -27,7 +27,7 @@ class Password extends BaseUpdateFormContent {
     };
   }
 
-  getApiData = (props) => {
+  apiDataConvert = (props) => {
     const {
       currentOperator: { data },
     } = props;

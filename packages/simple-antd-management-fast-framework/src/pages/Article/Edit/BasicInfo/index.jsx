@@ -41,7 +41,11 @@ import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/Funct
 
 import TabPageBase from '../../TabPageBase';
 import ChangeImageSortModal from '../../ChangeImageSortModal';
-import { addGalleryImageAction, removeGalleryImageConfirmAction } from '../../Assist/action';
+import {
+  singleListTreeAction,
+  addGalleryImageAction,
+  removeGalleryImageConfirmAction,
+} from '../../Assist/action';
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
 import { fieldData } from '../../Common/data';
@@ -82,6 +86,7 @@ class BasicInfo extends TabPageBase {
         imageList: [],
         fileList: [],
         initContent: '',
+        listTreeData: [],
         parentId: '1',
       },
     };
@@ -97,12 +102,12 @@ class BasicInfo extends TabPageBase {
   }
 
   initOther = () => {
-    this.remoteRequest({
-      type: 'article/get',
-      payload: { id: '' },
-      modelName: 'article',
-      callback: ({ data }) => {
-        console.log(data);
+    singleListTreeAction({
+      target: this,
+      successCallback: ({ target, remoteListData }) => {
+        target.setState({
+          listTreeData: remoteListData,
+        });
       },
     });
   };
@@ -404,6 +409,7 @@ class BasicInfo extends TabPageBase {
       imageList,
       fileList,
       initContent,
+      listTreeData,
       parentId,
     } = this.state;
 
@@ -493,10 +499,7 @@ class BasicInfo extends TabPageBase {
               fieldData: fieldData.parentId,
               value: parentId,
               require: true,
-              listData: [
-                { label: '条目1', value: '1' },
-                { label: '条目2', value: '2' },
-              ],
+              listData: listTreeData,
               dataConvert: (o) => {
                 const { label, value } = o;
 

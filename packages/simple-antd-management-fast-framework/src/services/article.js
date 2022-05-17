@@ -284,6 +284,20 @@ export async function singleListData(params) {
   });
 }
 
+export async function singleListTreeData(params) {
+  return request({
+    api: `/article/singleListTree`,
+    params,
+    virtualSuccessResponse: {
+      list: [
+        { label: '条目1', value: '1' },
+        { label: '条目2', value: '2' },
+        { label: '条目3', value: '3' },
+      ],
+    },
+  });
+}
+
 export async function getData(params) {
   return request({
     api: `/article/get`,
