@@ -5,6 +5,7 @@ export async function getCurrentBasicInfoData() {
     api: `/currentOperator/getCurrentBasicInfo`,
     virtualSuccessResponse: {
       data: {
+        loginName: 'admin',
         name: 'Li Ma',
         avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
         email: 'Test@alipay.com',
