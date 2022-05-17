@@ -30,8 +30,12 @@ class GlobalHeaderRight extends Component {
     const { dispatch } = this.props;
 
     if (dispatch) {
+      const changeNoticeReadStateType = 'global/changeNoticeReadState';
+
+      recordDebug(`modal access: ${changeNoticeReadStateType}`);
+
       dispatch({
-        type: 'global/changeNoticeReadState',
+        type: changeNoticeReadStateType,
         payload: id,
       });
     }
@@ -42,8 +46,12 @@ class GlobalHeaderRight extends Component {
     message.success(`${'清空了'} ${title}`);
 
     if (dispatch) {
+      const clearNoticesType = 'global/clearNotices';
+
+      recordDebug(`modal access: ${clearNoticesType}`);
+
       dispatch({
-        type: 'global/clearNotices',
+        type: clearNoticesType,
         payload: key,
       });
     }
