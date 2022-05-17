@@ -135,6 +135,7 @@
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-module": "^6.0.0",
     "jest-puppeteer": "^6.1.0",
+    "jsdom": "^19.0.0",
     "jsdom-global": "^3.0.2",
     "lint-staged": "^12.4.1",
     "mockjs": "^1.1.0",

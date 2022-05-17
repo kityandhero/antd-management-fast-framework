@@ -3,9 +3,9 @@ import { connect, history } from 'umi';
 import { Avatar, Menu, Spin } from 'antd';
 import { ShopOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 
-import { checkHasAuthority } from 'antd-management-fast-framework/es/utils/authority';
-import { defaultUserAvatar } from 'antd-management-fast-framework/es/utils/constants';
 import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
+import { defaultUserAvatar } from 'antd-management-fast-framework/es/utils/constants';
+import { checkHasAuthority } from 'antd-management-fast-framework/es/utils/authority';
 
 import { accessWayCollection } from '@/customConfig/config';
 
