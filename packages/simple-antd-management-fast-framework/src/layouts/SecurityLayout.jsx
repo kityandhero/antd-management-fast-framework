@@ -20,12 +20,12 @@ class SecurityLayout extends React.Component {
     const { dispatch } = this.props;
 
     if (dispatch) {
-      const fetchCurrentType = 'user/fetchCurrent';
+      const getCurrentOperatorType = 'currentOperator/getCurrentOperator';
 
-      recordDebug(`modal access: ${fetchCurrentType}`);
+      recordDebug(`modal access: ${getCurrentOperatorType}`);
 
       dispatch({
-        type: fetchCurrentType,
+        type: getCurrentOperatorType,
       });
     }
   }
