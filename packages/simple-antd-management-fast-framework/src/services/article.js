@@ -290,9 +290,26 @@ export async function singleListTreeData(params) {
     params,
     virtualSuccessResponse: {
       list: [
-        { label: '条目1', value: '1' },
-        { label: '条目2', value: '2' },
-        { label: '条目3', value: '3' },
+        { label: '条目1', code: '1' },
+        { label: '条目2', code: '2' },
+        {
+          label: '条目3',
+          code: '3',
+          children: [
+            {
+              label: '子栏目1',
+              code: '1526849364746702848',
+            },
+            {
+              label: '子栏目2',
+              code: '1526849364746712848',
+            },
+            {
+              label: '子栏目3',
+              code: '1526849367646702848',
+            },
+          ],
+        },
       ],
     },
   });

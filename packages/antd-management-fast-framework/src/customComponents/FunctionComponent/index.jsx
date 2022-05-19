@@ -62,6 +62,7 @@ import {
   recordText,
   replaceTargetText,
   formatMoney,
+  transformListData,
 } from '../../utils/tools';
 import {
   pageHeaderRenderType,
@@ -1719,13 +1720,13 @@ export function buildTreeSelect({
 
   const listDataSource = isArray(listData) ? listData : [];
 
-  const listDataAdjust = listDataSource.map((o) => {
-    if (!isFunction(dataConvert)) {
-      return o;
-    }
-
-    return dataConvert(o);
-  });
+  const listDataAdjust = !isFunction(dataConvert)
+    ? listDataSource
+    : transformListData({
+        list: listDataSource,
+        convert: dataConvert,
+        recursiveKey: 'children',
+      });
 
   adjustOtherProps.treeData = listDataAdjust;
   adjustOtherProps.onChange = (value, label, extra) => {

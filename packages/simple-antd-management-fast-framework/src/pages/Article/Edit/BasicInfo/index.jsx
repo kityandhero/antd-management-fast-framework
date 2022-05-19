@@ -501,21 +501,16 @@ class BasicInfo extends TabPageBase {
               require: true,
               listData: listTreeData,
               dataConvert: (o) => {
-                const { label, value } = o;
+                const { label, code: value, children } = o;
 
                 return {
                   title: label,
                   value,
+                  children: children || [],
                 };
               },
-              onChangeCallback: ({ value, label, extra, treeData: listDataAdjust, listData }) => {
-                // console.log({
-                //   value,
-                //   label,
-                //   extra,
-                //   treeData: listDataAdjust,
-                //   listData,
-                // });
+              onChangeCallback: ({ value, label, extra, treeData, listData }) => {
+                console.log(treeData);
 
                 this.setState({
                   parentId: value,

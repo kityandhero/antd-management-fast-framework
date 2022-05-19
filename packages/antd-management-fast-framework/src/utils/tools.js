@@ -1389,6 +1389,46 @@ export function searchFromList(itemKey, itemValue, sourceData) {
   return result;
 }
 
+export function transformListData({
+  list = [],
+  convert = null,
+  recursiveKey = 'children',
+}) {
+  const listData = isArray(list) ? list : [list];
+
+  const l = listData.map((one) => {
+    return transformData({ data: one, convert, target: recursiveKey });
+  });
+
+  return l;
+}
+
+export function transformData({
+  data,
+  convert = null,
+  recursiveKey = 'children',
+}) {
+  if (!isFunction(convert)) {
+    return data;
+  }
+
+  const d = convert(data);
+
+  const children = data[recursiveKey];
+
+  let listData = [];
+
+  if (isArray(children)) {
+    listData = children.map((one) => {
+      return transformData({ data: one, convert, target: recursiveKey });
+    });
+  }
+
+  d[recursiveKey] = listData;
+
+  return d;
+}
+
 /**
  * 构建描述文本
  * @param {*} v
