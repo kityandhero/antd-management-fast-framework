@@ -1389,6 +1389,9 @@ export function searchFromList(itemKey, itemValue, sourceData) {
   return result;
 }
 
+/**
+ * 转换列表数据
+ */
 export function transformListData({
   list = [],
   convert = null,
@@ -1403,6 +1406,9 @@ export function transformListData({
   return l;
 }
 
+/**
+ * 转换数据
+ */
 export function transformData({
   data,
   convert = null,
