@@ -205,7 +205,7 @@ export async function actionCore({
                 const {
                   list: remoteListData,
                   data: remoteData,
-                  data: remoteExtraData,
+                  extra: remoteExtraData,
                 } = {
                   ...{
                     list: [],
@@ -226,7 +226,9 @@ export async function actionCore({
                   });
                 }
 
-                notifySuccess(messageText);
+                if (!stringIsNullOrWhiteSpace(messageText)) {
+                  notifySuccess(messageText);
+                }
 
                 if (isFunction(successCallback)) {
                   successCallback({
