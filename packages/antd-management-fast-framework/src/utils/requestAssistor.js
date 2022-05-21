@@ -382,6 +382,8 @@ export async function request({
   method = 'POST',
   useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest(),
   showUseVirtualRequestMessage = defaultSettingsLayoutCustom.getShowUseVirtualRequestMessage(),
+  showUseVirtualRequestMessageDelay = 500,
+  virtualRequestDelay = 0,
   virtualSuccessResponse = {},
   virtualFailResponse = {
     code: 1001,
@@ -424,11 +426,16 @@ export async function request({
 
   if (useVirtualRequest) {
     if (showUseVirtualRequestMessage) {
-      setTimeout(() => {
-        const text = '由虚拟访问返回';
+      setTimeout(
+        () => {
+          const text = '由虚拟访问返回';
 
-        notifyInfo(text);
-      }, 500);
+          notifyInfo(text);
+        },
+        showUseVirtualRequestMessageDelay > 0
+          ? showUseVirtualRequestMessageDelay
+          : 0,
+      );
     }
 
     let result = {};
@@ -460,6 +467,7 @@ export async function request({
       }, 400);
     } else {
       result = await apiVirtualAccess({
+        virtualRequestDelay,
         dataBuild: (resolve) => {
           if (virtualRequestResult) {
             resolve(

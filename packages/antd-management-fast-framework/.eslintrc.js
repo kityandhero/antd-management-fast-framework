@@ -1,8 +1,5 @@
 module.exports = {
-  extends: [
-    require.resolve('@umijs/fabric/dist/eslint'),
-    'plugin:react/jsx-runtime',
-  ],
+  extends: [require.resolve('@umijs/fabric/dist/eslint')],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/jsx-wrap-multilines': 0,
@@ -25,5 +22,15 @@ module.exports = {
     '@typescript-eslint/no-this-alias': ['off'],
     '@typescript-eslint/no-unused-vars': 1,
     '@typescript-eslint/no-invalid-this': 0,
+  },
+  settings: {
+    react: {
+      /**
+       * "detect" automatically picks the version you have installed.
+       * You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
+       * default to latest and warns if missing
+       */
+      version: 'detect',
+    },
   },
 };
