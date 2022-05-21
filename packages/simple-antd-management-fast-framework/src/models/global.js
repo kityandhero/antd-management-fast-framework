@@ -1,8 +1,10 @@
 import { showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import {
-  pretreatmentRemoteSingleData,
-  handleCommonDataAssist,
-} from 'antd-management-fast-framework/es/utils/requestAssistor';
+  reducerCommonCollection,
+  reducerCommonNameCollection,
+  tacitlyState,
+} from 'antd-management-fast-framework/es/utils/dva';
 import { whetherString } from 'antd-management-fast-framework/es/utils/constants';
 import { modelCollection } from 'antd-management-fast-framework/es/utils/globalModel';
 
@@ -14,6 +16,7 @@ const GlobalModel = {
   namespace: 'global',
 
   state: {
+    ...tacitlyState,
     ...(modelCollection || {}),
     ...{
       collapsed: false,
@@ -91,9 +94,6 @@ const GlobalModel = {
   },
 
   reducers: {
-    handleCommonData(state, action) {
-      return handleCommonDataAssist(state, action);
-    },
     changeMetaData(state, { payload }) {
       return {
         ...state,
@@ -141,6 +141,7 @@ const GlobalModel = {
         areaDistributionTempData: payload,
       };
     },
+    ...reducerCommonCollection,
   },
 
   subscriptions: {

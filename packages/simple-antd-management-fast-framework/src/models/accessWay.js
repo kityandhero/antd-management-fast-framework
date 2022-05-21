@@ -1,8 +1,8 @@
 import {
-  handlePageListDataAssist,
-  handleListDataAssist,
-  handleCommonDataAssist,
-} from 'antd-management-fast-framework/es/utils/requestAssistor';
+  reducerCommonCollection,
+  reducerCommonNameCollection,
+  tacitlyState,
+} from 'antd-management-fast-framework/es/utils/dva';
 
 import {
   pageListData,
@@ -15,14 +15,16 @@ import {
 export default {
   namespace: 'accessWay',
 
-  state: {},
+  state: {
+    ...tacitlyState,
+  },
 
   effects: {
     *pageList({ payload }, { call, put }) {
       const response = yield call(pageListData, payload);
 
       yield put({
-        type: 'handlePageListData',
+        type: reducerCommonNameCollection.handlePageListData,
         payload: response,
       });
     },
@@ -30,7 +32,7 @@ export default {
       const response = yield call(getData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -38,7 +40,7 @@ export default {
       const response = yield call(setOfflineData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -46,7 +48,7 @@ export default {
       const response = yield call(setOnlineData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -54,21 +56,13 @@ export default {
       const response = yield call(refreshCacheData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
   },
 
   reducers: {
-    handlePageListData(state, action) {
-      return handlePageListDataAssist(state, action);
-    },
-    handleListData(state, action) {
-      return handleListDataAssist(state, action);
-    },
-    handleCommonData(state, action) {
-      return handleCommonDataAssist(state, action);
-    },
+    ...reducerCommonCollection,
   },
 };

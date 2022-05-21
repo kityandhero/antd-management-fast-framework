@@ -1,9 +1,9 @@
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import {
-  handlePageListDataAssist,
-  handleListDataAssist,
-  handleCommonDataAssist,
-  pretreatmentRemoteSingleData,
-} from 'antd-management-fast-framework/es/utils/requestAssistor';
+  reducerCommonCollection,
+  reducerCommonNameCollection,
+  tacitlyState,
+} from 'antd-management-fast-framework/es/utils/dva';
 
 import { getCurrentOperatorCache, setCurrentOperatorCache } from '@/utils/storageAssist';
 
@@ -17,7 +17,10 @@ export default {
   namespace: 'currentOperator',
 
   state: {
-    currentOperator: null,
+    ...tacitlyState,
+    ...{
+      currentOperator: null,
+    },
   },
 
   effects: {
@@ -58,7 +61,7 @@ export default {
       const response = yield call(getCurrentBasicInfoData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -66,7 +69,7 @@ export default {
       const response = yield call(updateCurrentBasicInfoData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -74,7 +77,7 @@ export default {
       const response = yield call(changeCurrentPasswordData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -87,14 +90,6 @@ export default {
         currentOperator: payload,
       };
     },
-    handlePageListData(state, action) {
-      return handlePageListDataAssist(state, action);
-    },
-    handleListData(state, action) {
-      return handleListDataAssist(state, action);
-    },
-    handleCommonData(state, action) {
-      return handleCommonDataAssist(state, action);
-    },
+    ...reducerCommonCollection,
   },
 };

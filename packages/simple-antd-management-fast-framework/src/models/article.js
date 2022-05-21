@@ -1,8 +1,8 @@
 import {
-  handlePageListDataAssist,
-  handleListDataAssist,
-  handleCommonDataAssist,
-} from 'antd-management-fast-framework/es/utils/requestAssistor';
+  reducerCommonCollection,
+  reducerCommonNameCollection,
+  tacitlyState,
+} from 'antd-management-fast-framework/es/utils/dva';
 
 import {
   pageListData,
@@ -32,14 +32,16 @@ import {
 export default {
   namespace: 'article',
 
-  state: {},
+  state: {
+    ...tacitlyState,
+  },
 
   effects: {
     *pageList({ payload }, { call, put }) {
       const response = yield call(pageListData, payload);
 
       yield put({
-        type: 'handlePageListData',
+        type: reducerCommonNameCollection.handlePageListData,
         payload: response,
       });
     },
@@ -47,7 +49,7 @@ export default {
       const response = yield call(singleListData, payload);
 
       yield put({
-        type: 'handleListData',
+        type: reducerCommonNameCollection.handleListData,
         payload: response,
       });
     },
@@ -55,7 +57,7 @@ export default {
       const response = yield call(singleListTreeData, payload);
 
       yield put({
-        type: 'handleListData',
+        type: reducerCommonNameCollection.handleListData,
         payload: response,
       });
     },
@@ -63,7 +65,7 @@ export default {
       const response = yield call(getData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -71,7 +73,7 @@ export default {
       const response = yield call(addBasicInfoData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -79,7 +81,7 @@ export default {
       const response = yield call(updateBasicInfoData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -87,7 +89,7 @@ export default {
       const response = yield call(updateContentInfoData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -95,7 +97,7 @@ export default {
       const response = yield call(updateMediaInfoData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -103,7 +105,7 @@ export default {
       const response = yield call(updateSortData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -111,7 +113,7 @@ export default {
       const response = yield call(updateRenderTypeData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -119,7 +121,7 @@ export default {
       const response = yield call(setOnlineData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -127,7 +129,7 @@ export default {
       const response = yield call(setOfflineData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -135,7 +137,7 @@ export default {
       const response = yield call(refreshCacheData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -143,7 +145,7 @@ export default {
       const response = yield call(removeData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -151,7 +153,7 @@ export default {
       const response = yield call(getMediaItemData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -159,7 +161,7 @@ export default {
       const response = yield call(addMediaItemData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -167,7 +169,7 @@ export default {
       const response = yield call(updateMediaItemData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -175,7 +177,7 @@ export default {
       const response = yield call(setMediaCollectionSortData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -183,7 +185,7 @@ export default {
       const response = yield call(removeMediaItemData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -191,7 +193,7 @@ export default {
       const response = yield call(listImageData, payload);
 
       yield put({
-        type: 'handleListData',
+        type: reducerCommonNameCollection.handleListData,
         payload: response,
       });
     },
@@ -199,7 +201,7 @@ export default {
       const response = yield call(addImageData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
@@ -207,21 +209,13 @@ export default {
       const response = yield call(removeImageData, payload);
 
       yield put({
-        type: 'handleCommonData',
+        type: reducerCommonNameCollection.handleCommonData,
         payload: response,
       });
     },
   },
 
   reducers: {
-    handlePageListData(state, action) {
-      return handlePageListDataAssist(state, action);
-    },
-    handleListData(state, action) {
-      return handleListDataAssist(state, action);
-    },
-    handleCommonData(state, action) {
-      return handleCommonDataAssist(state, action);
-    },
+    ...reducerCommonCollection,
   },
 };

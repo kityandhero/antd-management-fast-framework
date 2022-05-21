@@ -4,6 +4,11 @@ import { message } from 'antd';
 import { queryStringify } from 'antd-management-fast-framework/es/utils/tools';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import {
+  reducerCommonCollection,
+  reducerCommonNameCollection,
+  tacitlyState,
+} from 'antd-management-fast-framework/es/utils/dva';
+import {
   setToken,
   clearCustomData,
 } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
@@ -19,7 +24,9 @@ const entrancePath = defaultSettings.getEntrancePath();
 export default {
   namespace: 'entrance',
 
-  state: {},
+  state: {
+    ...tacitlyState,
+  },
 
   effects: {
     *signIn({ payload }, { call, put }) {
@@ -95,5 +102,6 @@ export default {
         status: code,
       };
     },
+    ...reducerCommonCollection,
   },
 };
