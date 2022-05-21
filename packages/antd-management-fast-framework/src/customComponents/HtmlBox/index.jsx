@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Empty } from 'antd';
 
 import { stringIsNullOrWhiteSpace } from '../../utils/tools';

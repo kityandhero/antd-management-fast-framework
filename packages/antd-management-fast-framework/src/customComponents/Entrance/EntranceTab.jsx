@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Tabs } from 'antd';
 
-import EntranceContext from './EntranceContext';
+// import EntranceContext from './EntranceContext';
 
 const { TabPane } = Tabs;
 

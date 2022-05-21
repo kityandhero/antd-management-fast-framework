@@ -1,4 +1,3 @@
-import React from 'react';
 import { MobileOutlined } from '@ant-design/icons';
 
 import { isObject, isArray } from '../../../utils/tools';

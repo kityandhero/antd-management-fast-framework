@@ -1,7 +1,6 @@
-import React from 'react';
-import { DownOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, Button } from 'antd';
 import { ConfigConsumer } from 'antd/lib/config-provider/context';
+import { DownOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 import IconInfo from '../../../customComponents/IconInfo';
 

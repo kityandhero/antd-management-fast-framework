@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { copyToClipboard } from '../../utils/tools';
 import CustomBase from '../../framework/CustomBase';
 

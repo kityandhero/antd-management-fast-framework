@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Checkbox, Popover, Tooltip } from 'antd';
 import {
   PushpinOutlined,

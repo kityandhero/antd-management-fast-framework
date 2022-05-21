@@ -1,5 +1,3 @@
-import React from 'react';
-
 import HtmlBox from '../../HtmlBox';
 import MobilePreviewArea from '../MobilePreviewArea';
 

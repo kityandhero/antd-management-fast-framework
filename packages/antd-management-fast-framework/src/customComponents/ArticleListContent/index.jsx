@@ -1,4 +1,3 @@
-import React from 'react';
 import { Avatar } from 'antd';
 
 import { formatDatetime } from '../../utils/tools';

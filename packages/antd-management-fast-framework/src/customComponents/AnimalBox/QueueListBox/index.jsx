@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import QueueAnim from 'rc-queue-anim';
 
 import { isArray, isFunction } from '../../../utils/tools';

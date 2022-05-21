@@ -84,17 +84,7 @@ class ChartCard extends React.Component {
   };
 
   render() {
-    const {
-      loading = false,
-      contentHeight,
-      title,
-      avatar,
-      action,
-      total,
-      footer,
-      children,
-      ...rest
-    } = this.props;
+    const { loading = false, ...rest } = this.props;
     return (
       <Card
         loading={loading}

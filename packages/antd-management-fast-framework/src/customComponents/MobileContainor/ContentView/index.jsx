@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Space, Alert } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 

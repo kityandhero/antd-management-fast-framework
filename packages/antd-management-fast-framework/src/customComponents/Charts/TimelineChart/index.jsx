@@ -1,6 +1,5 @@
 import { Axis, Chart, Geom, Legend, Tooltip, Slider } from 'bizcharts';
 import DataSet from '@antv/data-set';
-import React from 'react';
 
 import AutoHeightComponent from '../autoHeight';
 import styles from './index.less';

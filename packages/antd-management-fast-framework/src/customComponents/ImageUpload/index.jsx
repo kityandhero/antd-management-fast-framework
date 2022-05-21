@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Modal, Upload, Tooltip, Space, message } from 'antd';
 import {
   LoadingOutlined,

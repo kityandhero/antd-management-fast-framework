@@ -1,4 +1,3 @@
-import React from 'react';
 import { Transfer } from 'antd';
 
 import { cardConfig } from '../../../utils/constants';

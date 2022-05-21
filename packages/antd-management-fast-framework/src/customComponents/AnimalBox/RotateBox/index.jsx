@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import TweenOne from 'rc-tween-one';
 
 import { isFunction } from '../../../utils/tools';

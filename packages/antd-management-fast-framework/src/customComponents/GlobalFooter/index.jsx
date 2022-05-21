@@ -1,5 +1,5 @@
-import React from 'react';
 import classNames from 'classnames';
+
 import styles from './index.less';
 
 const GlobalFooter = ({ className, links, copyright }) => {

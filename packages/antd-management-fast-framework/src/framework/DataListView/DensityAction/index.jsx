@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Menu, Button, Dropdown, Tooltip } from 'antd';
 import { ColumnHeightOutlined } from '@ant-design/icons';
 

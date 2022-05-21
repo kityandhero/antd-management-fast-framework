@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Space } from 'antd';
 
 import IconInfo from '../IconInfo';

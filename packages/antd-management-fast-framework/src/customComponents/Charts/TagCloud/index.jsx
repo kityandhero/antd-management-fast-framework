@@ -1,14 +1,11 @@
-import { Chart, Coordinate, Geom, registerShape, Tooltip } from 'bizcharts';
-import React, { Component } from 'react';
-import DataSet from '@antv/data-set';
-import Debounce from 'lodash.debounce';
 import classNames from 'classnames';
+import { Component } from 'react';
+import Debounce from 'lodash.debounce';
+import DataSet from '@antv/data-set';
+import { Chart, Coordinate, Geom, registerShape, Tooltip } from 'bizcharts';
 
 import AutoHeightComponent from '../autoHeight';
 import styles from './index.less';
-/* eslint no-underscore-dangle: 0 */
-
-/* eslint no-param-reassign: 0 */
 
 const imgUrl =
   'https://gw.alipayobjects.com/zos/rmsportal/gWyeGLCdFFRavBGIDzWk.png';

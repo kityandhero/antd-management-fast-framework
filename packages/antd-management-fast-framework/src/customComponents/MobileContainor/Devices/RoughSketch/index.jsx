@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 
 import { animalType } from '../../../../utils/constants';
 import ContentView from '../../ContentView';

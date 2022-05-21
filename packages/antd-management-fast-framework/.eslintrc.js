@@ -1,5 +1,8 @@
 module.exports = {
-  extends: [require.resolve('@umijs/fabric/dist/eslint')],
+  extends: [
+    require.resolve('@umijs/fabric/dist/eslint'),
+    'plugin:react/jsx-runtime',
+  ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/jsx-wrap-multilines': 0,

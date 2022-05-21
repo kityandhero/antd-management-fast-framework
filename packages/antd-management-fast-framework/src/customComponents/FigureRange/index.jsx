@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Row, Col, Input, Select } from 'antd';
 
 import { toNumber, isFunction } from '../../utils/tools';

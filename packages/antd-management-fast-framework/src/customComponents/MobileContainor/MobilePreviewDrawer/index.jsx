@@ -1,4 +1,3 @@
-import React from 'react';
 import { PictureOutlined } from '@ant-design/icons';
 
 import { isObject } from '../../../utils/tools';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Space, Divider } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { PictureOutlined } from '@ant-design/icons';

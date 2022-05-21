@@ -1,5 +1,4 @@
-import React from 'react';
-import { history, Link } from 'umi';
+import { Link } from 'umi';
 import nprogress from 'nprogress';
 
 import { showErrorMessage } from './tools';

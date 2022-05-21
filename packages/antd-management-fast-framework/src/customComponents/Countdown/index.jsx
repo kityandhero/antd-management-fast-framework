@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CustomBase from '../../framework/CustomBase';
 
 import styles from './index.less';

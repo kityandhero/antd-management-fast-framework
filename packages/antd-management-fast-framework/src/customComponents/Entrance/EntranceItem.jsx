@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import omit from 'omit.js';
 import { Button, Col, Input, Row, Form, message } from 'antd';
 
@@ -36,19 +36,7 @@ const EntranceItem = (props) => {
   const [count, setCount] = useState(props.countDown || 0);
   const [timing, setTiming] = useState(false); // 这么写是为了防止restProps中 带入 onChange, defaultValue, rules props tabUtil
 
-  const {
-    onChange,
-    customProps,
-    defaultValue,
-    rules,
-    name,
-    getCaptchaButtonText,
-    getCaptchaSecondText,
-    updateActive,
-    type,
-    tabUtil,
-    ...restProps
-  } = props;
+  const { customProps, name, type, ...restProps } = props;
   const onGetCaptcha = useCallback(async (mobile) => {
     const result = await getCaptchaData(mobile);
 

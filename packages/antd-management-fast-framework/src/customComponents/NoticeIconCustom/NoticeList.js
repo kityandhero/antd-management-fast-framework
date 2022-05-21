@@ -1,6 +1,6 @@
-import React from 'react';
-import { Avatar, List } from 'antd';
 import classNames from 'classnames';
+import { Avatar, List } from 'antd';
+
 import styles from './NoticeList.less';
 
 export default function NoticeList({

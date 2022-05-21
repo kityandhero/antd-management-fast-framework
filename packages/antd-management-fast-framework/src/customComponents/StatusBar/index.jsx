@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Row, Col, Divider } from 'antd';
 
 import { isArray, showRuntimeError } from '../../utils/tools';

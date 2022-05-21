@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link, connect, FormattedMessage } from 'umi';
 import { Result, Button } from 'antd';
 import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';

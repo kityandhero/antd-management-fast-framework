@@ -1,4 +1,3 @@
-import React from 'react';
 import TextAnimal from 'rc-texty';
 import {
   Form,

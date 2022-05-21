@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Table, Alert, Spin } from 'antd';
 
 import { listViewConfig } from '../../utils/constants';

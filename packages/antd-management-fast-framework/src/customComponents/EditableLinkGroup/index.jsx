@@ -1,4 +1,4 @@
-import React, { PureComponent, createElement } from 'react';
+import { PureComponent, createElement } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';

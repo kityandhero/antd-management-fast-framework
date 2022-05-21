@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Modal, Spin } from 'antd';
 import {
   CloseCircleOutlined,

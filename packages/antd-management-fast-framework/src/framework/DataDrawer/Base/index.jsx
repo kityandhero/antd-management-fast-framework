@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Layout, Drawer, Form, Space, Row, Col, Affix, Divider } from 'antd';
 import { FormOutlined, CloseCircleOutlined } from '@ant-design/icons';
 

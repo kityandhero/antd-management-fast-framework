@@ -1,3 +1,6 @@
+import classNames from 'classnames';
+import { Component } from 'react';
+import { Row, Col, Divider } from 'antd';
 import {
   Chart,
   registerShape,
@@ -7,9 +10,6 @@ import {
   Interval,
   Tooltip,
 } from 'bizcharts';
-import React, { Component } from 'react';
-import { Row, Col, Divider } from 'antd';
-import classNames from 'classnames';
 
 import styles from './index.less';
 

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import Animate from 'rc-animate';
 
 import styles from './index.less';

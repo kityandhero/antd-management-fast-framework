@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 
 import { recordObject, showErrorMessage, isObject } from '../../../utils/tools';
 import { mobileTypeCollection, animalType } from '../../../utils/constants';

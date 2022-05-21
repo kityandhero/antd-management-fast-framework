@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [require.resolve('@umijs/fabric/dist/eslint')],
+  extends: [require.resolve('@umijs/fabric/dist/eslint'), 'plugin:react/jsx-runtime'],
   globals: {
     page: true,
     REACT_APP_ENV: true,
@@ -24,7 +24,7 @@ module.exports = {
     'no-nested-ternary': 0,
     'compat/compat': 0,
     '@typescript-eslint/no-this-alias': ['off'],
-    '@typescript-eslint/no-unused-vars': 0,
+    '@typescript-eslint/no-unused-vars': 1,
     '@typescript-eslint/no-invalid-this': 0,
   },
 };

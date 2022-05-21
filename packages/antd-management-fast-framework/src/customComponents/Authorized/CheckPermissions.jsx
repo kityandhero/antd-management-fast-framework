@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { recordObject } from '../../utils/tools';
 
 import { CURRENT } from './renderAuthorize';

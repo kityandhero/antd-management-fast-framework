@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import {
   Row,
   Col,
@@ -117,7 +117,6 @@ import { renderFormWhetherSelect } from '../../customComponents/FunctionSuppleme
 import Core from '../Core';
 
 import styles from './index.less';
-import { CONSTANTS } from '@antv/data-set';
 
 const { Content, Sider } = Layout;
 
