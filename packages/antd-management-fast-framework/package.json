@@ -5,32 +5,47 @@
   "keywords": [
     "antd-management-fast-framework"
   ],
-  "author": "kityandhero <kityandhero@126.com>",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework.git",
+  "bugs": {
+    "url": "https://github.com/kityandhero/antd-management-fast-framework/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kityandhero/antd-management-fast-framework.git"
+  },
   "license": "MIT",
+  "author": "kityandhero <kityandhero@126.com>",
   "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test",
+    "es": "lib"
+  },
+  "files": [
+    "es"
+  ],
   "scripts": {
-    "v:p": "npm version patch && npm publish",
-    "clean-file": "rimraf ./node_modules",
+    "adjust-install": "cnpm install postcss-less",
     "build": "rimraf ./src/**/*.d.ts && rimraf ./lib && rimraf ./es && tsc -p . && father-build && rimraf ./src/**/*.d.ts",
+    "clean-file": "rimraf ./node_modules",
     "delete:dts": "rimraf ./src/**/*.d.ts",
     "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
-    "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
-    "precommit": "lint-staged",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
     "lint:style": "stylelint --fix \"./src/**/*.less\"",
+    "precommit": "lint-staged",
     "prettier": "prettier -c --write \"**/*\"",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
     "test:update": "umi-test --updateSnapshot",
-    "adjust-install": "cnpm install postcss-less"
+    "v:p": "npm version patch && npm publish"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-layout": "^6.38.2",
+    "@ant-design/pro-layout": "^6.38.4",
     "@antv/data-set": "^0.11.8",
     "@tinymce/tinymce-react": "^4.1.0",
     "antd": "^4.20.5",
@@ -85,35 +100,35 @@
   },
   "devDependencies": {
     "@ant-design/colors": "^6.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/plugin-proposal-decorators": "^7.17.9",
-    "@babel/plugin-syntax-jsx": "^7.16.7",
-    "@babel/preset-env": "^7.17.10",
-    "@babel/preset-react": "^7.16.7",
-    "@commitlint/cli": "^16.3.0",
-    "@commitlint/config-conventional": "^16.2.4",
-    "@commitlint/config-lerna-scopes": "^16.2.4",
-    "@commitlint/cz-commitlint": "^16.3.0",
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-proposal-decorators": "^7.17.12",
+    "@babel/plugin-syntax-jsx": "^7.17.12",
+    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-react": "^7.17.12",
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "@commitlint/config-lerna-scopes": "^17.0.0",
+    "@commitlint/cz-commitlint": "^17.0.0",
     "@testing-library/react": "^13.2.0",
     "@testing-library/react-hooks": "^8.0.0",
     "@types/jest": "^27.5.1",
-    "@types/node": "^17.0.33",
+    "@types/node": "^17.0.35",
     "@types/nprogress": "^0.2.0",
     "@types/numeral": "^2.0.2",
     "@types/randomcolor": "^0.5.6",
     "@types/react-document-title": "^2.0.5",
     "@types/uuid": "^8.3.4",
-    "@typescript-eslint/eslint-plugin": "^5.23.0",
-    "@umijs/fabric": "^2.10.2",
-    "@umijs/test": "^3.5.21",
-    "@umijs/test-utils": "^3.5.23",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@umijs/fabric": "^2.11.1",
+    "@umijs/test": "^3.5.24",
+    "@umijs/test-utils": "^3.5.24",
     "babel-cli": "^6.26.0",
     "babel-plugin-import": "^1.13.5",
     "babel-preset-env": "^1.7.0",
     "body-parser": "^1.20.0",
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
-    "eslint": "^8.15.0",
+    "eslint": "^8.16.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -122,7 +137,7 @@
     "eslint-plugin-jest": "^26.2.2",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-unicorn": "^42.0.0",
     "express": "^4.18.1",
@@ -133,27 +148,21 @@
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-module": "^6.0.0",
     "lint-staged": "^12.4.1",
-    "postcss": "^8.4.13",
+    "postcss": "^8.4.14",
     "postcss-less": "^6.0.0",
     "prettier": "^2.6.2",
-    "puppeteer": "^14.1.0",
+    "puppeteer": "^14.1.1",
     "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
-    "stylelint": "^14.8.2",
+    "stylelint": "^14.8.3",
     "stylelint-config-css-modules": "^4.1.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
     "test-umi-plugin": "^0.1.0",
-    "umi": "^3.5.21",
+    "umi": "^3.5.24",
     "umi-plugin-custom-extra": "^1.0.12"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "files": [
-    "es"
-  ],
   "filesOther": [
     "es",
     "lib",
@@ -162,17 +171,8 @@
     "src/framework",
     "src/utils"
   ],
-  "directories": {
-    "lib": "lib",
-    "es": "lib",
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kityandhero/antd-management-fast-framework.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kityandhero/antd-management-fast-framework/issues"
-  },
-  "gitHead": "a2c9212a8ddfbdd423f088be00d92785020053cb"
+  "gitHead": "a2c9212a8ddfbdd423f088be00d92785020053cb",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  }
 }
