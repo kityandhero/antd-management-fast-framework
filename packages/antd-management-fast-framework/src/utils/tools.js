@@ -35,6 +35,7 @@ import {
   toLower,
   endsWith as endsWithLodash,
 } from 'lodash';
+import { history } from 'umi';
 
 import {
   listViewConfig,
@@ -281,6 +282,14 @@ export function corsTarget() {
   }
 
   return corsTargetDomain;
+}
+
+export function goToPath(path) {
+  history.push(path);
+}
+
+export function redirectToPath(path) {
+  history.replace(path);
 }
 
 export function showError(text) {

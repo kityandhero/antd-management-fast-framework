@@ -1,9 +1,8 @@
-import { history } from 'umi';
-
 import {
   getDerivedStateFromPropsForUrlParams,
   isFunction,
   showRuntimeError,
+  redirectToPath,
 } from '../../utils/tools';
 import { checkHasAuthority } from '../../utils/authority';
 
@@ -34,7 +33,7 @@ class AuthorizationWrapper extends SupplementWrapper {
         message: text,
       });
 
-      history.replace('/exception/404');
+      redirectToPath('/exception/404');
     }
 
     if (needDoOther) {

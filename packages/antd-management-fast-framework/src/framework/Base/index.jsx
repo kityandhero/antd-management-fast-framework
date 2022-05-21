@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { Component } from 'react';
-import { history } from 'umi';
 import nprogress from 'nprogress';
 
 import {
@@ -11,6 +10,8 @@ import {
   recordError,
   showInfoMessage,
   isFunction,
+  goToPath as goToPathCore,
+  redirectToPath as redirectToPathCore,
 } from '../../utils/tools';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
@@ -236,7 +237,7 @@ class Base extends Component {
       }, 400);
     }
 
-    history.push(location);
+    goToPathCore(location);
   };
 
   redirectToPath = (path) => {
@@ -252,7 +253,7 @@ class Base extends Component {
       }, 400);
     }
 
-    history.replace(location);
+    redirectToPathCore(location);
   };
 
   checkHasMore = (pageNo, pageSize, total) => {

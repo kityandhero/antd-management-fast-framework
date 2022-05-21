@@ -1,5 +1,4 @@
 import { extend } from 'umi-request';
-import { history } from 'umi';
 import { message, notification } from 'antd';
 
 import {
@@ -10,6 +9,7 @@ import {
   isString,
   recordObject,
   recordError,
+  redirectToPath,
 } from './tools';
 import {
   getTokenKeyName,
@@ -171,9 +171,7 @@ request.interceptors.response.use((response) => {
 
           message.info('登陆超时，请重新登录！', 0.6);
 
-          history.replace({
-            pathname: entrancePath,
-          });
+          redirectToPath(entrancePath);
         }, 200);
       }
     })

@@ -1,14 +1,14 @@
 import { Link } from 'umi';
 import nprogress from 'nprogress';
 
-import { showErrorMessage } from './tools';
+import { goToPath, showErrorMessage } from './tools';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 
 /**
  * layout默认配置
  */
 export const proLayoutDefaultProps = {
-  onMenuHeaderClick: () => history.push('/'),
+  onMenuHeaderClick: () => goToPath('/'),
   itemRender: (route, params, routes, paths) => {
     const first = routes.indexOf(route) === 0;
 

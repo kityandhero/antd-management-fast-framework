@@ -1,13 +1,8 @@
-import { history } from 'umi';
 import { message } from 'antd';
 
-import { queryStringify } from 'antd-management-fast-framework/es/utils/tools';
+import { redirectToPath, queryStringify } from 'antd-management-fast-framework/es/utils/tools';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
-import {
-  reducerCommonCollection,
-  reducerCommonNameCollection,
-  tacitlyState,
-} from 'antd-management-fast-framework/es/utils/dva';
+import { reducerCommonCollection, tacitlyState } from 'antd-management-fast-framework/es/utils/dva';
 import {
   setToken,
   clearCustomData,
@@ -59,7 +54,7 @@ export default {
           }
         }
 
-        history.replace(redirect || '/');
+        redirectToPath(redirect || '/');
       }
     },
 
@@ -74,7 +69,7 @@ export default {
         clearCustomData();
 
         message.info('退出登录成功！', 0.6).then(() => {
-          history.replace({
+          redirectToPath({
             pathname: entrancePath,
             search: queryStringify({
               redirect: window.location.href,

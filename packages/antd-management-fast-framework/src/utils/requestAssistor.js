@@ -1,5 +1,4 @@
 import { message } from 'antd';
-import { history } from 'umi';
 
 import {
   isString,
@@ -11,6 +10,7 @@ import {
   queryStringify,
   isObject,
   notifyInfo,
+  redirectToPath,
 } from './tools';
 import { getToken, clearCustomData } from './globalStorageAssist';
 import remoteRequest from './request';
@@ -86,7 +86,7 @@ function dataExceptionNotice(d) {
       }
 
       requestAnimationFrame(() => {
-        history.replace(entrancePath);
+        redirectToPath(entrancePath);
       });
     }
   }
@@ -461,9 +461,7 @@ export async function request({
 
         message.info('登陆超时，请重新登录！', 0.6);
 
-        history.replace({
-          pathname: entrancePath,
-        });
+        redirectToPath(entrancePath);
       }, 400);
     } else {
       result = await apiVirtualAccess({

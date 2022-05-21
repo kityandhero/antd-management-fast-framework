@@ -1,10 +1,10 @@
-import { history } from 'umi';
 import { message } from 'antd';
 
 import {
   showRuntimeError,
   isFunction,
   stringIsNullOrWhiteSpace,
+  goToPath,
 } from './tools';
 import { getToken } from './globalStorageAssist';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
@@ -134,7 +134,7 @@ export async function apiVirtualSuccessAccess({
       throw new Error('缺少登录页面路径配置');
     }
 
-    history.push(entrancePath);
+    goToPath(entrancePath);
   }
 
   return result;
@@ -166,7 +166,7 @@ export async function apiVirtualFailAccess({
       throw new Error('缺少登录页面路径配置');
     }
 
-    history.push(entrancePath);
+    goToPath(entrancePath);
   } else if (code !== defaultSettingsLayoutCustom.getApiSuccessCode()) {
     message.warn(messageText);
   }
