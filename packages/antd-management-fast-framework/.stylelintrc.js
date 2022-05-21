@@ -8,6 +8,5 @@ module.exports = {
     'no-descending-specificity': null,
     'selector-class-pattern': null,
     'value-no-vendor-prefix': null,
-    'function-no-unknown': null,
   },
 };
