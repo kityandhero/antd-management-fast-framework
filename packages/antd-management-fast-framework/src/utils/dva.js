@@ -3,7 +3,6 @@ import {
   handleListDataAssist,
   handlePageListDataAssist,
 } from './requestAssistor';
-import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 
 export const reducerCommonNameCollection = {
   handleCommonData: 'handleCommonData',
@@ -28,9 +27,9 @@ export const reducerCommonCollection = {
  */
 export const tacitlyState = {
   data: {
-    code: defaultSettingsLayoutCustom.getApiSuccessCode(),
-    message: 'success',
-    dataSuccess: true,
+    code: 0,
+    message: 'tacitly state',
+    dataSuccess: false,
     data: {},
     list: [],
     extra: {},
