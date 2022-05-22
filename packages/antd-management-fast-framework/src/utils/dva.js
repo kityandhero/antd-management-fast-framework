@@ -28,7 +28,7 @@ export const reducerCommonCollection = {
 export const tacitlyState = {
   data: {
     code: 0,
-    message: 'tacitly state',
+    message: 'tacitly state scene',
     dataSuccess: false,
     data: {},
     list: [],
