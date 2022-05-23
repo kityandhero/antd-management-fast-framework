@@ -1,6 +1,6 @@
 import { logShowInConsole } from './appConfiguration';
 import { logLevel, logShowMode } from './constants';
-import { stringIsNullOrWhiteSpace } from './core';
+import { inCollection, stringIsNullOrWhiteSpace } from './core';
 import {
   getJsonFromLocalStorage,
   removeLocalStorage,
