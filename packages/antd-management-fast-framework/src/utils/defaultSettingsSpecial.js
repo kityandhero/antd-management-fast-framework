@@ -313,7 +313,3 @@ export const defaultSettingsLayoutCustom = {
 export function empty() {
   return {};
 }
-
-export default {
-  defaultSettingsLayoutCustom,
-};
