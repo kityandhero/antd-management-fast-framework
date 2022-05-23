@@ -1,18 +1,15 @@
-import React from 'react';
-import { connect } from 'umi';
-import { Row, Col, Avatar, Button, Descriptions } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { RollbackOutlined } from '@ant-design/icons';
-
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { Avatar, Button, Col, Descriptions, Row } from 'antd';
+import { DataTabContainer } from 'antd-management-fast-framework/es/framework';
+import { pretreatmentRequestParams } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import {
   formatDatetime,
   getDerivedStateFromPropsForUrlParams,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { pretreatmentRequestParams } from 'antd-management-fast-framework/es/utils/requestAssistor';
-import { DataTabContainer } from 'antd-management-fast-framework/es/framework';
-
+import React from 'react';
+import { connect } from 'umi';
 import { parseUrlParamsForSetState } from '../Assist/config';
-
 import styles from './index.less';
 
 const { Item: Description } = Descriptions;

@@ -1,6 +1,3 @@
-import moment from 'moment';
-
-import { queryStringify } from 'antd-management-fast-framework/es/utils/tools';
 import { request } from 'antd-management-fast-framework/es/utils/requestAssistor';
 
 export async function signInData(params) {

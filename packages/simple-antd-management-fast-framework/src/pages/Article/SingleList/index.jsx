@@ -1,47 +1,5 @@
-import React from 'react';
-import { connect } from 'umi';
-import { Spin, List, Space, message } from 'antd';
-import {
-  FormOutlined,
-  PlusOutlined,
-  PlayCircleTwoTone,
-  PauseCircleTwoTone,
-  ConsoleSqlOutlined,
-  ReloadOutlined,
-  EditOutlined,
-  InfoCircleFilled,
-  SortAscendingOutlined,
-} from '@ant-design/icons';
-
-import {
-  toNumber,
-  showInfoMessage,
-  getValueByKey,
-} from 'antd-management-fast-framework/es/utils/tools';
-import {
-  unlimitedWithStringFlag,
-  searchCardConfig,
-  columnFacadeMode,
-  columnPlaceholder,
-  convertCollection,
-  listViewConfig,
-  cardConfig,
-  whetherNumber,
-  extraBuildType,
-} from 'antd-management-fast-framework/es/utils/constants';
-import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
-import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePage';
-import {
-  buildRadioGroup,
-  buildCustomGrid,
-  buildDropdownButton,
-  buildButton,
-  buildDropdown,
-  buildDropdownEllipsis,
-} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-
 import { accessWayCollection } from '@/customConfig/config';
-import { colorCollection, priceColor } from '@/customConfig/constants';
+import { colorCollection } from '@/customConfig/constants';
 import {
   getArticleRenderTypeName,
   renderSearchArticleRenderTypeSelect,
@@ -50,14 +8,45 @@ import {
   getArticleStatusName,
   renderSearchArticleStatusSelect,
 } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
-import ChangeSortModal from '../ChangeSortModal';
-import SingleListDrawer from '../SingleListDrawer';
+import {
+  EditOutlined,
+  FormOutlined,
+  InfoCircleFilled,
+  PauseCircleTwoTone,
+  PlayCircleTwoTone,
+  PlusOutlined,
+  ReloadOutlined,
+  SortAscendingOutlined,
+} from '@ant-design/icons';
+import { List } from 'antd';
+import {
+  buildCustomGrid,
+  buildDropdownButton,
+  buildRadioGroup,
+} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePage';
+import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
+import {
+  cardConfig,
+  columnFacadeMode,
+  columnPlaceholder,
+  convertCollection,
+  extraBuildType,
+  listViewConfig,
+  searchCardConfig,
+  unlimitedWithStringFlag,
+  whetherNumber,
+} from 'antd-management-fast-framework/es/utils/constants';
+import { getValueByKey, showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
+import React from 'react';
+import { connect } from 'umi';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
-import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
-import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
+import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
 import { getStatusBadge } from '../Assist/tools';
+import ChangeSortModal from '../ChangeSortModal';
 import { fieldData, statusCollection } from '../Common/data';
+import SingleListDrawer from '../SingleListDrawer';
+import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 
 @connect(({ article, global, loading }) => ({
   article,

@@ -1,13 +1,10 @@
+import { accessWayCollection } from '@/customConfig/accessWayCollection';
+import { ContactsOutlined } from '@ant-design/icons';
+import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
+import { cardConfig, formatCollection } from 'antd-management-fast-framework/es/utils/constants';
+import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
 import React from 'react';
 import { connect } from 'umi';
-import { ContactsOutlined } from '@ant-design/icons';
-
-import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
-import { cardConfig, formatCollection } from 'antd-management-fast-framework/es/utils/constants';
-import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
-
-import { accessWayCollection } from '@/customConfig/accessWayCollection';
-
 import { fieldData } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({

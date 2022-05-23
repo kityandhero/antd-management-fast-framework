@@ -1,21 +1,18 @@
-import React from 'react';
-import { connect } from 'umi';
-import { Card, Row, Col, Spin, BackTop, Select, notification, Popover, message } from 'antd';
 import {
-  ProjectOutlined,
   CompressOutlined,
   ContactsOutlined,
   ExclamationCircleOutlined,
+  ProjectOutlined,
 } from '@ant-design/icons';
-
+import { BackTop, Card, Col, message, notification, Popover, Row, Select, Spin } from 'antd';
 import HtmlBox from 'antd-management-fast-framework/es/customComponents/HtmlBox';
-import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/es/utils/tools';
 import { pretreatmentRequestParams } from 'antd-management-fast-framework/es/utils/requestAssistor';
-
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/es/utils/tools';
+import React from 'react';
+import { connect } from 'umi';
 import { parseUrlParamsForSetState } from '../../Assist/config';
-import TabPageBase from '../../TabPageBase';
-
 import { fieldData } from '../../Common/data';
+import TabPageBase from '../../TabPageBase';
 import styles from './index.less';
 
 @connect(({ accessWay, global, loading }) => ({

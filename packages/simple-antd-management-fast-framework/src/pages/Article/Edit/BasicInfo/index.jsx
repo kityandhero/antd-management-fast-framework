@@ -1,54 +1,47 @@
-import React from 'react';
-import { connect } from 'umi';
-import moment from 'moment';
+import { accessWayCollection } from '@/customConfig/config';
+import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 import {
-  PictureOutlined,
-  InfoCircleFilled,
   FormOutlined,
+  InfoCircleFilled,
+  PictureOutlined,
   SortAscendingOutlined,
-  ContactsOutlined,
 } from '@ant-design/icons';
-
-import {
-  formatDatetime,
-  corsTarget,
-  getDerivedStateFromPropsForUrlParams,
-  toDatetime,
-  getValueByKey,
-  showInfoMessage,
-  formatTarget,
-  convertTarget,
-} from 'antd-management-fast-framework/es/utils/tools';
-import {
-  getTokenKeyName,
-  getToken,
-} from 'antd-management-fast-framework/es/utils/globalStorageAssist';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
-import {
-  cardConfig,
-  datetimeFormat,
-  convertCollection,
-  formatCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
-import ColorText from 'antd-management-fast-framework/es/customComponents/ColorText';
 import {
   buildColorText,
   buildCustomGrid,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-
-import { accessWayCollection } from '@/customConfig/config';
-import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
-import TabPageBase from '../../TabPageBase';
-import ChangeImageSortModal from '../../ChangeImageSortModal';
 import {
-  singleListTreeAction,
+  cardConfig,
+  convertCollection,
+  datetimeFormat,
+  formatCollection,
+} from 'antd-management-fast-framework/es/utils/constants';
+import {
+  getToken,
+  getTokenKeyName,
+} from 'antd-management-fast-framework/es/utils/globalStorageAssist';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
+import {
+  convertTarget,
+  corsTarget,
+  formatTarget,
+  getDerivedStateFromPropsForUrlParams,
+  getValueByKey,
+  showInfoMessage,
+} from 'antd-management-fast-framework/es/utils/tools';
+import moment from 'moment';
+import React from 'react';
+import { connect } from 'umi';
+import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
+import {
   addGalleryImageAction,
   removeGalleryImageConfirmAction,
+  singleListTreeAction,
 } from '../../Assist/action';
 import { parseUrlParamsForSetState } from '../../Assist/config';
-import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
+import ChangeImageSortModal from '../../ChangeImageSortModal';
 import { fieldData } from '../../Common/data';
+import TabPageBase from '../../TabPageBase';
 
 @connect(({ article, global, loading }) => ({
   article,

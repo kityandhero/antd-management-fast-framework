@@ -1,34 +1,23 @@
-import React from 'react';
-import { connect } from 'umi';
-import { Row, Col, List, Avatar, Divider, Typography } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
-
-import {
-  stringIsNullOrWhiteSpace,
-  replaceTargetText,
-  formatDatetime,
-  getValueByKey,
-} from 'antd-management-fast-framework/es/utils/tools';
-import {
-  unlimitedWithStringFlag,
-  searchCardConfig,
-  columnFacadeMode,
-  columnPlaceholder,
-  convertCollection,
-  listViewConfig,
-  cardConfig,
-  whetherNumber,
-  datetimeFormat,
-  formatCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
-import SinglePageDrawer from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePageDrawer';
-
-import { getSexName } from '@/utils/tools';
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection } from '@/customConfig/constants';
 import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
 import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Divider, List, Typography } from 'antd';
+import SinglePageDrawer from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePageDrawer';
+import {
+  columnFacadeMode,
+  columnPlaceholder,
+  formatCollection,
+  listViewConfig,
+  searchCardConfig,
+} from 'antd-management-fast-framework/es/utils/constants';
+import {
+  getValueByKey,
+  stringIsNullOrWhiteSpace,
+} from 'antd-management-fast-framework/es/utils/tools';
+import React from 'react';
+import { connect } from 'umi';
 import { fieldData, statusCollection } from '../Common/data';
 
 const { Text } = Typography;

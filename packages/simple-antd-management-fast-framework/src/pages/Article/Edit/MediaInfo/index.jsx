@@ -1,57 +1,49 @@
-import React from 'react';
-import { connect } from 'umi';
-import { Button, List, Dropdown, Space, Menu, message } from 'antd';
+import { accessWayCollection } from '@/customConfig/config';
 import {
-  ArrowUpOutlined,
   ArrowDownOutlined,
-  PlusCircleOutlined,
-  EyeOutlined,
+  ArrowUpOutlined,
   DeleteOutlined,
   EditOutlined,
+  EyeOutlined,
   InsertRowBelowOutlined,
+  PlusCircleOutlined,
   ReloadOutlined,
 } from '@ant-design/icons';
-
+import { Button, List, Space } from 'antd';
+import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
+import {
+  buildCustomGrid,
+  buildDropdownButton,
+  buildListViewItemExtra,
+} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
+import StatusBar from 'antd-management-fast-framework/es/customComponents/StatusBar';
+import {
+  cardConfig,
+  convertCollection,
+  defaultEmptyImage,
+  formatCollection,
+  mobileTypeCollection,
+  sortOperate,
+} from 'antd-management-fast-framework/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
-  toDatetime,
-  formatDatetime,
-  isArray,
   getValueByKey,
-  toString,
+  isArray,
   sortCollectionByKey,
   stringIsNullOrWhiteSpace,
+  toString,
 } from 'antd-management-fast-framework/es/utils/tools';
-import {
-  defaultEmptyImage,
-  cardConfig,
-  datetimeFormat,
-  convertCollection,
-  formatCollection,
-  sortOperate,
-  mobileTypeCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
-import ColorText from 'antd-management-fast-framework/es/customComponents/ColorText';
-import StatusBar from 'antd-management-fast-framework/es/customComponents/StatusBar';
-import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
-import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
-import { buildDropdownButton } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import {
-  buildListViewItemExtra,
-  buildDescriptionGrid,
-  buildCustomGrid,
-} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-
-import { accessWayCollection } from '@/customConfig/config';
-
-import MobilePreviewBox from '../../MobilePreviewBox';
+import React from 'react';
+import { connect } from 'umi';
 import AddMediaItemDrawer from '../../AddMediaItemDrawer';
-import UpdateMediaItemDrawer from '../../UpdateMediaItemDrawer';
-import MediaItemPreviewDrawer from '../../MediaItemPreviewDrawer';
-import TabPageBase from '../../TabPageBase';
-import { setMediaCollectionSortAction, removeMediaItemAction } from '../../Assist/action';
+import { removeMediaItemAction, setMediaCollectionSortAction } from '../../Assist/action';
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { mediaItemData } from '../../Common/data';
+import MediaItemPreviewDrawer from '../../MediaItemPreviewDrawer';
+import MobilePreviewBox from '../../MobilePreviewBox';
+import TabPageBase from '../../TabPageBase';
+import UpdateMediaItemDrawer from '../../UpdateMediaItemDrawer';
 
 @connect(({ article, global, loading }) => ({
   article,

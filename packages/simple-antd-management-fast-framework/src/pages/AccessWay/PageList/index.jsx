@@ -1,41 +1,25 @@
-import React from 'react';
-import { connect } from 'umi';
-import { Dropdown, Menu } from 'antd';
-import {
-  ReloadOutlined,
-  ReadOutlined,
-  PlusOutlined,
-  EditOutlined,
-  PlayCircleOutlined,
-  PauseCircleOutlined,
-} from '@ant-design/icons';
-
-import {
-  toNumber,
-  showInfoMessage,
-  getValueByKey,
-} from 'antd-management-fast-framework/es/utils/tools';
-import {
-  columnFacadeMode,
-  searchCardConfig,
-  columnPlaceholder,
-  unlimitedWithStringFlag,
-  convertCollection,
-  listViewConfig,
-} from 'antd-management-fast-framework/es/utils/constants';
-import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
-import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
-import { buildDropdownButton } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-
 import { accessWayCollection } from '@/customConfig/config';
 import {
   getAccessWayStatusName,
   renderSearchAccessWayStatusSelect,
 } from '@/customSpecialComponents/FunctionSupplement/AccessWayStatus';
-
-import { refreshCacheAction } from '../Assist/action';
+import { EditOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
+import { buildDropdownButton } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
+import {
+  columnFacadeMode,
+  columnPlaceholder,
+  convertCollection,
+  listViewConfig,
+  searchCardConfig,
+  unlimitedWithStringFlag,
+} from 'antd-management-fast-framework/es/utils/constants';
+import { getValueByKey, showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
+import React from 'react';
+import { connect } from 'umi';
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
-import { fieldData, statusCollection } from '../Common/data';
+import { refreshCacheAction } from '../Assist/action';
+import { fieldData } from '../Common/data';
 
 @connect(({ accessWay, global, loading }) => ({
   accessWay,

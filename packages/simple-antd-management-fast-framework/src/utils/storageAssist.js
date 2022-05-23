@@ -1,11 +1,11 @@
+import { getToken } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
 import {
-  saveStringToLocalStorage,
+  getJsonFromLocalStorage,
   getStringFromLocalStorage,
   removeLocalStorage,
-  getJsonFromLocalStorage,
   saveJsonToLocalStorage,
+  saveStringToLocalStorage,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { getToken } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
 
 const storageKeyCollection = {
   metaData: 'metaData',

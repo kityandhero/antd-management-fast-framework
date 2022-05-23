@@ -1,42 +1,29 @@
-import React from 'react';
-import { connect } from 'umi';
-import { Space, Divider } from 'antd';
+import { accessWayCollection } from '@/customConfig/config';
+import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
+import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 import {
-  UpCircleOutlined,
-  DownCircleOutlined,
-  ReloadOutlined,
-  LoadingOutlined,
   FormOutlined,
   InfoCircleFilled,
+  ReloadOutlined,
+  UpCircleOutlined,
 } from '@ant-design/icons';
-
-import {
-  stringIsNullOrWhiteSpace,
-  toDatetime,
-  getDerivedStateFromPropsForUrlParams,
-  toNumber,
-  showInfoMessage,
-  recordObject,
-  notifySuccess,
-  getValueByKey,
-  isArray,
-  isObject,
-  isBoolean,
-} from 'antd-management-fast-framework/es/utils/tools';
+import DataTabContainer from 'antd-management-fast-framework/es/framework/DataTabContainer';
 import {
   convertCollection,
-  tabBarCollection,
   extraBuildType,
+  tabBarCollection,
 } from 'antd-management-fast-framework/es/utils/constants';
-import DataTabContainer from 'antd-management-fast-framework/es/framework/DataTabContainer';
-import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
-
-import { accessWayCollection } from '@/customConfig/config';
-import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
-
-import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
-import { parseUrlParamsForSetState, checkNeedUpdateAssist } from '../Assist/config';
+import {
+  getDerivedStateFromPropsForUrlParams,
+  getValueByKey,
+  notifySuccess,
+  showInfoMessage,
+  stringIsNullOrWhiteSpace,
+} from 'antd-management-fast-framework/es/utils/tools';
+import React from 'react';
+import { connect } from 'umi';
+import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
+import { checkNeedUpdateAssist, parseUrlParamsForSetState } from '../Assist/config';
 import { fieldData, statusCollection } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({

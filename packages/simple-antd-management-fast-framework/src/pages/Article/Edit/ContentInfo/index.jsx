@@ -1,25 +1,19 @@
-import { connect } from 'umi';
+import { accessWayCollection } from '@/customConfig/config';
 import { InfoCircleFilled } from '@ant-design/icons';
-
+import MobileHtmlPreviewBox from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
+import {
+  animalType,
+  cardConfig,
+  mobileTypeCollection,
+} from 'antd-management-fast-framework/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
 } from 'antd-management-fast-framework/es/utils/tools';
-import {
-  defaultEmptyImage,
-  cardConfig,
-  convertCollection,
-  formatCollection,
-  mobileTypeCollection,
-  animalType,
-} from 'antd-management-fast-framework/es/utils/constants';
-import MobileHtmlPreviewBox from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
-
-import { accessWayCollection } from '@/customConfig/config';
-
-import TabPageBase from '../../TabPageBase';
+import { connect } from 'umi';
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
+import TabPageBase from '../../TabPageBase';
 
 @connect(({ article, loading }) => ({
   article,

@@ -1,18 +1,16 @@
+import { defaultSettings } from '@/defaultSettings';
+import { getCaptchaData, signInData } from '@/services/entrance';
+import { setDataFlag } from '@/utils/storageAssist';
 import { message } from 'antd';
-
-import { redirectToPath, queryStringify } from 'antd-management-fast-framework/es/utils/tools';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
+import { setAuthority } from 'antd-management-fast-framework/es/utils/authority';
 import { reducerCommonCollection, tacitlyState } from 'antd-management-fast-framework/es/utils/dva';
 import {
-  setToken,
   clearCustomData,
+  setToken,
 } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
+import { queryStringify, redirectToPath } from 'antd-management-fast-framework/es/utils/tools';
 import { getPageQuery } from 'antd-management-fast-framework/es/utils/utils';
-import { setAuthority } from 'antd-management-fast-framework/es/utils/authority';
-
-import { setDataFlag } from '@/utils/storageAssist';
-import { signInData, getCaptchaData } from '@/services/entrance';
-import { defaultSettings } from '@/defaultSettings';
 
 const entrancePath = defaultSettings.getEntrancePath();
 

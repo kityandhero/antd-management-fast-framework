@@ -1,10 +1,8 @@
+import { defaultSettings } from '@/defaultSettings';
+import { PageLoading } from '@ant-design/pro-layout';
+import { queryStringify, recordDebug } from 'antd-management-fast-framework/es/utils/tools';
 import React from 'react';
 import { connect, Redirect } from 'umi';
-import { PageLoading } from '@ant-design/pro-layout';
-
-import { queryStringify, recordDebug } from 'antd-management-fast-framework/es/utils/tools';
-
-import { defaultSettings } from '@/defaultSettings';
 
 const entrancePath = defaultSettings.getEntrancePath();
 

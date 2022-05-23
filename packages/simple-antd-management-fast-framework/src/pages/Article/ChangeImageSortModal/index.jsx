@@ -1,16 +1,11 @@
-import React from 'react';
-import { connect } from 'umi';
-import { Menu, Dropdown, List, message } from 'antd';
-import { RetweetOutlined, ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
-
-import { showError, sortCollectionByKey } from 'antd-management-fast-framework/es/utils/tools';
-import { sortOperate } from 'antd-management-fast-framework/es/utils/constants';
-import Base from 'antd-management-fast-framework/es/framework/DataModal/Base';
-
 import { accessWayCollection } from '@/customConfig/config';
-
+import { ArrowDownOutlined, ArrowUpOutlined, RetweetOutlined } from '@ant-design/icons';
+import { Dropdown, List, Menu } from 'antd';
+import Base from 'antd-management-fast-framework/es/framework/DataModal/Base';
+import { sortOperate } from 'antd-management-fast-framework/es/utils/constants';
+import { showError, sortCollectionByKey } from 'antd-management-fast-framework/es/utils/tools';
+import { connect } from 'umi';
 import { getArticleIdFromExternalData } from '../Assist/config';
-
 import styles from './index.less';
 
 @connect(({ article, global, loading }) => ({

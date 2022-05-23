@@ -1,18 +1,11 @@
-import React from 'react';
-import { PictureOutlined } from '@ant-design/icons';
-
+import { buildPlayer } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import MobilePreviewArea from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewArea';
 import {
   isArray,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import MobilePreviewArea from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewArea';
-import {
-  buildButtonGroup,
-  buildDropdownEllipsis,
-  buildOptionItem,
-  buildPlayer,
-} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import React from 'react';
 
 class MobilePreviewBox extends MobilePreviewArea {
   loadDataAfterMount = false;

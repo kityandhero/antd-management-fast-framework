@@ -3,13 +3,12 @@ import {
   reducerCommonNameCollection,
   tacitlyState,
 } from 'antd-management-fast-framework/es/utils/dva';
-
 import {
-  pageListData,
   getData,
+  pageListData,
+  refreshCacheData,
   setOfflineData,
   setOnlineData,
-  refreshCacheData,
 } from '../services/accessWay';
 
 export default {

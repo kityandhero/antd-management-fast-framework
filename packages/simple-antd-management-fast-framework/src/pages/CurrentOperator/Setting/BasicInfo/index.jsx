@@ -1,10 +1,8 @@
-import { connect } from 'umi';
 import { PictureOutlined } from '@ant-design/icons';
-
-import { corsTarget, getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
-import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
-
+import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { corsTarget, getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
+import { connect } from 'umi';
 import { fieldData } from '../../Common/data';
 
 @connect(({ currentOperator, global, loading }) => ({

@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import { connect, Link } from 'umi';
-import { Alert, Checkbox } from 'antd';
-import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
-
-import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
+import { Alert } from 'antd';
 import EntranceFrom from 'antd-management-fast-framework/es/customComponents/Entrance';
-
+import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
+import React, { useState } from 'react';
+import { connect } from 'umi';
 import styles from './style.less';
 
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = EntranceFrom;

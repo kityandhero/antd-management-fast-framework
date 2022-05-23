@@ -1,13 +1,10 @@
+import { LogoutOutlined } from '@ant-design/icons';
+import { Avatar, Menu, Spin } from 'antd';
+import { defaultUserAvatar } from 'antd-management-fast-framework/es/utils/constants';
+import { goToPath, recordDebug } from 'antd-management-fast-framework/es/utils/tools';
 import React from 'react';
 import { connect } from 'umi';
-import { Avatar, Menu, Spin } from 'antd';
-import { LogoutOutlined } from '@ant-design/icons';
-
-import { goToPath, recordDebug } from 'antd-management-fast-framework/es/utils/tools';
-import { defaultUserAvatar } from 'antd-management-fast-framework/es/utils/constants';
-
 import HeaderDropdown from '../HeaderDropdown';
-
 import styles from './index.less';
 
 class AvatarDropdown extends React.Component {

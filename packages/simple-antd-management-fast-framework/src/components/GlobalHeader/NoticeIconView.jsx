@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
-import { Tag, message } from 'antd';
-import { connect } from 'umi';
+import { message, Tag } from 'antd';
+import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
 import groupBy from 'lodash/groupBy';
 import moment from 'moment';
-
-import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
-
+import React, { Component } from 'react';
+import { connect } from 'umi';
 import NoticeIcon from '../NoticeIcon';
-
 import styles from './index.less';
 
 class GlobalHeaderRight extends Component {

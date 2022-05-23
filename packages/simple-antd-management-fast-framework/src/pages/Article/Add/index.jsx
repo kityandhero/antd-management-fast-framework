@@ -1,24 +1,18 @@
-import { connect, history } from 'umi';
+import { accessWayCollection } from '@/customConfig/config';
+import { FormOutlined, PictureOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
-import { PictureOutlined, FormOutlined, UnorderedListOutlined } from '@ant-design/icons';
-
-import {
-  getDerivedStateFromPropsForUrlParams,
-  corsTarget,
-  showInfoMessage,
-  isObject,
-  isArray,
-} from 'antd-management-fast-framework/es/utils/tools';
-import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
-import BaseAddForm from 'antd-management-fast-framework/es/framework/DataForm/BaseAddForm';
 import FadeBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/FadeBox';
 import QueueBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/QueueBox';
 import QueueListBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/QueueListBox';
 import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
-import { buildButton } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-
-import { accessWayCollection } from '@/customConfig/config';
-
+import BaseAddForm from 'antd-management-fast-framework/es/framework/DataForm/BaseAddForm';
+import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  corsTarget,
+  getDerivedStateFromPropsForUrlParams,
+  showInfoMessage,
+} from 'antd-management-fast-framework/es/utils/tools';
+import { connect } from 'umi';
 import { parseUrlParamsForSetState } from '../Assist/config';
 import { fieldData } from '../Common/data';
 

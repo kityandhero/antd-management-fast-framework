@@ -1,63 +1,3 @@
-import React, { Fragment } from 'react';
-import { connect } from 'umi';
-import { List, Space, Card, Table, Spin, Divider } from 'antd';
-import {
-  FormOutlined,
-  PlusOutlined,
-  PlayCircleTwoTone,
-  PauseCircleTwoTone,
-  ConsoleSqlOutlined,
-  ReloadOutlined,
-  EditOutlined,
-  InfoCircleFilled,
-  PlusCircleTwoTone,
-  MinusCircleTwoTone,
-  MinusCircleOutlined,
-  CaretDownOutlined,
-  CaretRightOutlined,
-  RightSquareOutlined,
-  BorderOuterOutlined,
-  StopOutlined,
-  AimOutlined,
-  FieldNumberOutlined,
-  PictureFilled,
-  DownOutlined,
-} from '@ant-design/icons';
-
-import {
-  toNumber,
-  showInfoMessage,
-  getValueByKey,
-  isArray,
-  getRandomColor,
-  recordObject,
-  replaceTargetText,
-} from 'antd-management-fast-framework/es/utils/tools';
-import {
-  unlimitedWithStringFlag,
-  searchCardConfig,
-  columnFacadeMode,
-  columnPlaceholder,
-  convertCollection,
-  listViewConfig,
-  cardConfig,
-  whetherNumber,
-  defaultEmptyImage,
-  extraBuildType,
-} from 'antd-management-fast-framework/es/utils/constants';
-import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
-import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
-import {
-  buildRadioGroup,
-  buildCustomGrid,
-  buildDropdownButton,
-  buildButton,
-  buildDropdown,
-  buildDropdownEllipsis,
-  buildTagList,
-  buildColorText,
-} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection } from '@/customConfig/constants';
 import {
@@ -68,14 +8,52 @@ import {
   getArticleStatusName,
   renderSearchArticleStatusSelect,
 } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
-import ArticleSelectField from '../SelectField';
-import ChangeSortModal from '../ChangeSortModal';
+import {
+  DownOutlined,
+  EditOutlined,
+  FormOutlined,
+  InfoCircleFilled,
+  PauseCircleTwoTone,
+  PictureFilled,
+  PlayCircleTwoTone,
+  PlusOutlined,
+  ReloadOutlined,
+} from '@ant-design/icons';
+import { Card, List, Table } from 'antd';
+import {
+  buildColorText,
+  buildCustomGrid,
+  buildRadioGroup,
+  buildTagList,
+} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
+import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
+import {
+  cardConfig,
+  columnFacadeMode,
+  columnPlaceholder,
+  convertCollection,
+  extraBuildType,
+  listViewConfig,
+  searchCardConfig,
+  unlimitedWithStringFlag,
+  whetherNumber,
+} from 'antd-management-fast-framework/es/utils/constants';
+import {
+  getRandomColor,
+  getValueByKey,
+  replaceTargetText,
+  showInfoMessage,
+} from 'antd-management-fast-framework/es/utils/tools';
+import React from 'react';
+import { connect } from 'umi';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
-import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
-import { setOfflineAction, setOnlineAction, refreshCacheAction } from '../Assist/action';
+import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
 import { getStatusBadge } from '../Assist/tools';
+import ChangeSortModal from '../ChangeSortModal';
 import { fieldData, mediaItemData, statusCollection } from '../Common/data';
+import ArticleSelectField from '../SelectField';
+import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 
 @connect(({ article, global, loading }) => ({
   article,

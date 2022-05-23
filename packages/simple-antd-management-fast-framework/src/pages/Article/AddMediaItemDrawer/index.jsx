@@ -1,14 +1,16 @@
-import React from 'react';
-import { connect } from 'umi';
+import { accessWayCollection } from '@/customConfig/config';
+import { mediaTypeCollection } from '@/customConfig/constants';
+import { renderFormMediaTypeSelect } from '@/customSpecialComponents/FunctionSupplement/MediaType';
 import {
-  PlusSquareOutlined,
   ContactsOutlined,
-  VideoCameraOutlined,
-  PictureOutlined,
-  SoundOutlined,
   LinkOutlined,
+  PictureOutlined,
+  PlusSquareOutlined,
+  SoundOutlined,
+  VideoCameraOutlined,
 } from '@ant-design/icons';
-
+import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
+import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 import {
   corsTarget,
   inCollection,
@@ -16,13 +18,8 @@ import {
   toNumber,
   toString,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
-import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
-
-import { accessWayCollection } from '@/customConfig/config';
-import { mediaTypeCollection } from '@/customConfig/constants';
-import { renderFormMediaTypeSelect } from '@/customSpecialComponents/FunctionSupplement/MediaType';
-
+import React from 'react';
+import { connect } from 'umi';
 import { mediaItemData } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({

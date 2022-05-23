@@ -1,31 +1,22 @@
-import React from 'react';
-import { connect } from 'umi';
-import {
-  ContactsOutlined,
-  VideoCameraOutlined,
-  PictureOutlined,
-  SoundOutlined,
-  LinkOutlined,
-} from '@ant-design/icons';
-
-import {
-  corsTarget,
-  stringIsNullOrWhiteSpace,
-  formatDatetime,
-  toDatetime,
-  getValueByKey,
-  inCollection,
-} from 'antd-management-fast-framework/es/utils/tools';
-import {
-  cardConfig,
-  datetimeFormat,
-  formatCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
-import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
-
 import { accessWayCollection } from '@/customConfig/config';
 import { mediaTypeCollection } from '@/customConfig/constants';
-
+import {
+  ContactsOutlined,
+  LinkOutlined,
+  PictureOutlined,
+  SoundOutlined,
+  VideoCameraOutlined,
+} from '@ant-design/icons';
+import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
+import { cardConfig, formatCollection } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  corsTarget,
+  getValueByKey,
+  inCollection,
+  stringIsNullOrWhiteSpace,
+} from 'antd-management-fast-framework/es/utils/tools';
+import React from 'react';
+import { connect } from 'umi';
 import { mediaItemData } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({

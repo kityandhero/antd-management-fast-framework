@@ -1,24 +1,22 @@
-import { useEffect } from 'react';
-import { Link, connect, FormattedMessage } from 'umi';
-import { Result, Button } from 'antd';
-import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
-
-import {
-  getQueue,
-  checkDevelopment,
-  recordDebug,
-} from 'antd-management-fast-framework/es/utils/tools';
-import { proLayoutDefaultProps } from 'antd-management-fast-framework/es/utils/proLayoutCollection';
-import { setAccessWayCollectionCache } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
-import { getAuthorityFromRouter } from 'antd-management-fast-framework/es/utils/utils';
-import Authorized from 'antd-management-fast-framework/es/utils/Authorized';
-
-import { accessWayCollection } from '@/customConfig/config';
 import RightContent from '@/components/GlobalHeader/RightContent';
+import { accessWayCollection } from '@/customConfig/config';
 import { execBasicLayoutRemoteRequest } from '@/customConfig/customLoad';
 import { defaultFooterData, menuHeaderRender } from '@/customSpecialComponents/CustomAssembly';
-import { formatMessage } from '@/utils/tools';
 import { defaultSettings } from '@/defaultSettings';
+import { formatMessage } from '@/utils/tools';
+import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
+import { Button, Result } from 'antd';
+import Authorized from 'antd-management-fast-framework/es/utils/Authorized';
+import { setAccessWayCollectionCache } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
+import { proLayoutDefaultProps } from 'antd-management-fast-framework/es/utils/proLayoutCollection';
+import {
+  checkDevelopment,
+  getQueue,
+  recordDebug,
+} from 'antd-management-fast-framework/es/utils/tools';
+import { getAuthorityFromRouter } from 'antd-management-fast-framework/es/utils/utils';
+import { useEffect } from 'react';
+import { connect, FormattedMessage, Link } from 'umi';
 
 const entrancePath = defaultSettings.getEntrancePath();
 

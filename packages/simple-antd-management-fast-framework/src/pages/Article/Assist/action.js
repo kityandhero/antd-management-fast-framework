@@ -1,10 +1,9 @@
-import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
 import {
-  apiDataConvertCore,
   actionCore,
+  apiDataConvertCore,
   confirmActionCore,
 } from 'antd-management-fast-framework/es/utils/actionAssist';
-
+import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
 import { fieldData, mediaItemData } from '../Common/data';
 
 function apiDataConvert(props) {

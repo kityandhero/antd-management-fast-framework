@@ -1,8 +1,7 @@
+import { defaultSettings } from '@/defaultSettings';
+import { formatMessage } from '@/utils/tools';
 import { Button, message, notification } from 'antd';
 import React from 'react';
-
-import { formatMessage } from '@/utils/tools';
-import { defaultSettings } from '@/defaultSettings';
 
 const { pwa } = defaultSettings; // if pwa is true
 

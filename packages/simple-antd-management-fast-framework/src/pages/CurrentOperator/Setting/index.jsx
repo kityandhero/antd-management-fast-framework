@@ -1,9 +1,7 @@
-import { connect } from 'umi';
-import { FormOutlined } from '@ant-design/icons';
-
-import DataMenuContainer from 'antd-management-fast-framework/es/framework/DataMenuContainer';
-
 import { accessWayCollection } from '@/customConfig/config';
+import { FormOutlined } from '@ant-design/icons';
+import DataMenuContainer from 'antd-management-fast-framework/es/framework/DataMenuContainer';
+import { connect } from 'umi';
 
 @connect(({ currentOperator }) => ({
   currentOperator,
