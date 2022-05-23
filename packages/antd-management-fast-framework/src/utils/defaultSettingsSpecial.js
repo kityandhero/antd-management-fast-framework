@@ -1,9 +1,9 @@
-import { getAppInitConfigData, stringIsNullOrWhiteSpace } from './tools';
 import {
   apiSuccessCode as apiSuccessCodeDefault,
   authenticationFailCode as authenticationFailCodeDefault,
   emptyLogo as emptyLogoImage,
 } from './constants';
+import { getAppInitConfigData, stringIsNullOrWhiteSpace } from './tools';
 
 export const defaultSettingsLayoutCustom = {
   getTinymceImagesUploadUrl: () => {
@@ -313,3 +313,7 @@ export const defaultSettingsLayoutCustom = {
 export function empty() {
   return {};
 }
+
+export default {
+  defaultSettingsLayoutCustom,
+};
