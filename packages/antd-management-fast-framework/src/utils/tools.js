@@ -18,7 +18,6 @@ import {
   isString as isStringLodash,
   isUndefined as isUndefinedLodash,
   remove as removeLodash,
-  replace as replaceLodash,
   reverse as reverseLodash,
   sortBy as sortByLodash,
   sortedUniq as sortedUniqLodash,
@@ -26,7 +25,6 @@ import {
   toLower,
   toNumber as toNumberLodash,
   toString as toStringLodash,
-  trim as trimLodash,
 } from 'lodash';
 import moment from 'moment';
 import numeral from 'numeral';
@@ -36,8 +34,8 @@ import queue from 'queue';
 import randomColor from 'randomcolor';
 import { history } from 'umi';
 import { v4 as uuidv4 } from 'uuid';
+import { getAppInitConfigData } from './appConfiguration';
 import {
-  appInitDefault,
   convertCollection,
   datetimeFormat,
   emptyDatetime,
@@ -49,34 +47,16 @@ import {
   notificationTypeCollection,
   sortOperate,
 } from './constants';
+import {
+  isBrowser,
+  replace as replaceCore,
+  stringIsNullOrWhiteSpace as stringIsNullOrWhiteSpaceCore,
+  trim as trimCore,
+} from './core';
 
 const storageKeyCollection = {
   nearestLocalhostNotify: 'nearestLocalhostNotify',
 };
-
-function isBrowser() {
-  return (
-    typeof window !== 'undefined' &&
-    typeof window.document !== 'undefined' &&
-    typeof window.document.createElement !== 'undefined'
-  );
-}
-
-export function getAppInitConfigData() {
-  let appInitConfig = appInitDefault;
-
-  if (isBrowser()) {
-    if ((window.appInitCustomLocal || null) != null) {
-      appInitConfig = { ...appInitConfig, ...window.appInitCustomLocal };
-    }
-
-    if ((window.appInitCustomRemote || null) != null) {
-      appInitConfig = { ...appInitConfig, ...window.appInitCustomRemote };
-    }
-  }
-
-  return appInitConfig;
-}
 
 export function defaultBaseState() {
   return {
@@ -1796,11 +1776,11 @@ export function reverse(array) {
 }
 
 export function trim(source) {
-  return trimLodash(source);
+  return trimCore(source);
 }
 
 export function replace(source, pattern, replacement) {
-  return replaceLodash(source, pattern, replacement);
+  return replaceCore(source, pattern, replacement);
 }
 
 export function isBoolean(value) {
@@ -1845,7 +1825,7 @@ export function removeFromArray(array, predicate) {
 }
 
 export function stringIsNullOrWhiteSpace(value) {
-  return trim(replace(value || '', ' ', '')) === '';
+  return stringIsNullOrWhiteSpaceCore(value);
 }
 
 /**
@@ -2346,6 +2326,6 @@ export function queryStringParse(data) {
  * @export
  * @returns
  */
-export function emptyExport() {
+export function empty() {
   return {};
 }

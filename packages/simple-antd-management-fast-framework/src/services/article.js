@@ -42,6 +42,8 @@ const imageFileList = [
   },
 ];
 
+const emptyLogo = defaultSettings.getEmptyLogo();
+
 const article = {
   articleId: '1430367617461391360',
   title:
@@ -71,16 +73,10 @@ const article = {
   key: '1430367617461391360',
   renderTypeNote: '媒体渲染',
   statusNote: '已下线',
-  image: defaultSettings.getEmptyLogo(),
+  image: emptyLogo,
   video: 'http://file.panduolakeji.com/1053686316.mp4',
   audio: 'http://file.panduolakeji.com/1057052295.mpeg',
-  imageList: [
-    defaultSettings.getEmptyLogo(),
-    defaultSettings.getEmptyLogo(),
-    defaultSettings.getEmptyLogo(),
-    defaultSettings.getEmptyLogo(),
-    defaultSettings.getEmptyLogo(),
-  ],
+  imageList: [emptyLogo, emptyLogo, emptyLogo, emptyLogo, emptyLogo],
   imageFileList: imageFileList,
   mediaItemList: [
     {
@@ -175,8 +171,8 @@ const articleSimple = {
   key: '',
   renderTypeNote: '媒体渲染',
   statusNote: '已下线',
-  image: defaultSettings.getEmptyLogo(),
-  imageList: [defaultSettings.getEmptyLogo(), defaultSettings.getEmptyLogo()],
+  image: emptyLogo,
+  imageList: [emptyLogo, emptyLogo],
   imageFileList: imageFileList,
   mediaItemList: [],
 };
