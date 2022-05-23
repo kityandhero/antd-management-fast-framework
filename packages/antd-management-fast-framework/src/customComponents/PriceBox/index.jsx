@@ -1,5 +1,4 @@
 import { PureComponent } from 'react';
-
 import { formatMoney, isMoney } from '../../utils/tools';
 
 class PriceBox extends PureComponent {

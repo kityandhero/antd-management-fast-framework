@@ -1,6 +1,5 @@
+import { CheckCircleFilled, ClockCircleFilled } from '@ant-design/icons';
 import classNames from 'classnames';
-import { ClockCircleFilled, CheckCircleFilled } from '@ant-design/icons';
-
 import styles from './index.less';
 
 export default function Result({

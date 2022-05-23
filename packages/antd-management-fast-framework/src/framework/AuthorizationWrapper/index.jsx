@@ -1,11 +1,10 @@
+import { checkHasAuthority } from '../../utils/authority';
 import {
   getDerivedStateFromPropsForUrlParams,
   isFunction,
-  showRuntimeError,
   redirectToPath,
+  showRuntimeError,
 } from '../../utils/tools';
-import { checkHasAuthority } from '../../utils/authority';
-
 import SupplementWrapper from '../CustomWrapper/SupplementWrapper';
 
 class AuthorizationWrapper extends SupplementWrapper {

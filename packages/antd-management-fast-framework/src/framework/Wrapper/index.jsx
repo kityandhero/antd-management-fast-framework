@@ -1,5 +1,5 @@
-import { getDerivedStateFromPropsForUrlParams } from '../../utils/tools';
 import Common from '../../framework/Common';
+import { getDerivedStateFromPropsForUrlParams } from '../../utils/tools';
 
 class Wrapper extends Common {
   static getDerivedStateFromProps(nextProps, prevState) {

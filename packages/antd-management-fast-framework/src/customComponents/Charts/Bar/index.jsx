@@ -1,6 +1,5 @@
-import { Component } from 'react';
 import { Axis, Chart, Interval, Tooltip } from 'bizcharts';
-
+import { Component } from 'react';
 import styles from '../index.less';
 
 class Bar extends Component {

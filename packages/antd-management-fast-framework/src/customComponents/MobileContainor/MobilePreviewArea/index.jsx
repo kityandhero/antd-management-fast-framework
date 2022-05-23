@@ -1,15 +1,14 @@
 import { MobileOutlined } from '@ant-design/icons';
-
-import { isObject, isArray } from '../../../utils/tools';
+import Base from '../../../framework/DataOperation/Base';
 import {
+  animalType,
   cardConfig,
   mobileTypeCollection,
   whetherNumber,
-  animalType,
 } from '../../../utils/constants';
-import Base from '../../../framework/DataOperation/Base';
-import MobileSimulation from '../MobileSimulation';
+import { isArray, isObject } from '../../../utils/tools';
 import { buildOptionItem } from '../../FunctionComponent';
+import MobileSimulation from '../MobileSimulation';
 
 class MobilePreviewArea extends Base {
   resetDataAfterLoad = false;

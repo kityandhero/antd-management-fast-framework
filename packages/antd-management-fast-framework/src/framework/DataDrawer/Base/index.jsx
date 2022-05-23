@@ -1,25 +1,22 @@
+import { CloseCircleOutlined, FormOutlined } from '@ant-design/icons';
+import { Affix, Col, Divider, Drawer, Form, Layout, Row, Space } from 'antd';
 import { Fragment } from 'react';
-import { Layout, Drawer, Form, Space, Row, Col, Affix, Divider } from 'antd';
-import { FormOutlined, CloseCircleOutlined } from '@ant-design/icons';
-
-import {
-  isUndefined,
-  isFunction,
-  defaultFormState,
-  stringIsNullOrWhiteSpace,
-} from '../../../utils/tools';
-import { cardConfig, drawerConfig } from '../../../utils/constants';
-import IconInfo from '../../../customComponents/IconInfo';
 import {
   buildButton,
-  buildDropdownEllipsis,
+  buildCustomSelect,
   buildDropdown,
   buildDropdownButton,
-  buildCustomSelect,
+  buildDropdownEllipsis,
 } from '../../../customComponents/FunctionComponent';
-
+import IconInfo from '../../../customComponents/IconInfo';
+import { cardConfig, drawerConfig } from '../../../utils/constants';
+import {
+  defaultFormState,
+  isFunction,
+  isUndefined,
+  stringIsNullOrWhiteSpace,
+} from '../../../utils/tools';
 import BaseWindow from '../../DataOperation/BaseWindow';
-
 import styles from './index.less';
 
 const { Footer, Content } = Layout;

@@ -1,36 +1,34 @@
-import { PureComponent } from 'react';
 import {
-  Input,
-  Upload,
-  Dropdown,
-  Menu,
-  Button,
-  Modal,
-  Space,
-  Divider,
-  Tooltip,
-} from 'antd';
-import {
+  CopyOutlined,
+  DeleteOutlined,
+  EllipsisOutlined,
   LoadingOutlined,
   PlayCircleOutlined,
-  UploadOutlined,
   SwapOutlined,
-  EllipsisOutlined,
-  DeleteOutlined,
-  CopyOutlined,
+  UploadOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
-
+import {
+  Button,
+  Divider,
+  Dropdown,
+  Input,
+  Menu,
+  Modal,
+  Space,
+  Tooltip,
+  Upload,
+} from 'antd';
+import { PureComponent } from 'react';
+import { buildPlayer } from '../../customComponents/FunctionComponent';
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import {
   copyToClipboard,
   isFunction,
-  showRuntimeError,
   showErrorMessage,
+  showRuntimeError,
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
-import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
-import { buildPlayer } from '../../customComponents/FunctionComponent';
-
 import IconInfo from '../IconInfo';
 
 const { TextArea } = Input;

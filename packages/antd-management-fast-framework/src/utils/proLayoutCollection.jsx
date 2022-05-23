@@ -1,8 +1,7 @@
-import { Link } from 'umi';
 import nprogress from 'nprogress';
-
-import { goToPath, showErrorMessage } from './tools';
+import { Link } from 'umi';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import { goToPath, showErrorMessage } from './tools';
 
 /**
  * layout默认配置

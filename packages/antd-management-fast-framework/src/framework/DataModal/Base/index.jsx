@@ -1,20 +1,17 @@
-import { Form, Modal, Spin } from 'antd';
 import {
   CloseCircleOutlined,
-  LoadingOutlined,
   EditOutlined,
+  LoadingOutlined,
 } from '@ant-design/icons';
-
+import { Form, Modal, Spin } from 'antd';
+import FlexText from '../../../customComponents/FlexText';
+import { cardConfig } from '../../../utils/constants';
 import {
   defaultFormState,
   isUndefined,
   stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
-import { cardConfig } from '../../../utils/constants';
-import FlexText from '../../../customComponents/FlexText';
-
 import BaseWindow from '../../DataOperation/BaseWindow';
-
 import styles from './index.less';
 
 class Base extends BaseWindow {

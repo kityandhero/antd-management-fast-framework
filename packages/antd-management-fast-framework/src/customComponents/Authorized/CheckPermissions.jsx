@@ -1,7 +1,6 @@
 import { recordObject } from '../../utils/tools';
-
-import { CURRENT } from './renderAuthorize';
 import PromiseRender from './PromiseRender';
+import { CURRENT } from './renderAuthorize';
 
 /**
  * 通用权限检查方法

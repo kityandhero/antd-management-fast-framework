@@ -1,14 +1,13 @@
 import { PureComponent } from 'react';
-
-import { recordObject, showErrorMessage, isObject } from '../../../utils/tools';
-import { mobileTypeCollection, animalType } from '../../../utils/constants';
+import { animalType, mobileTypeCollection } from '../../../utils/constants';
+import { isObject, recordObject, showErrorMessage } from '../../../utils/tools';
 import VerticalBox from '../../VerticalBox';
-import RoughSketch from '../Devices/RoughSketch';
-import IphoneX from '../Devices/IphoneX';
-import Iphone8plus from '../Devices/Iphone8plus';
-import Iphone8 from '../Devices/Iphone8';
-import IPhone5S from '../Devices/IPhone5S';
 import GalaxyNote8 from '../Devices/GalaxyNote8';
+import IPhone5S from '../Devices/IPhone5S';
+import Iphone8 from '../Devices/Iphone8';
+import Iphone8plus from '../Devices/Iphone8plus';
+import IphoneX from '../Devices/IphoneX';
+import RoughSketch from '../Devices/RoughSketch';
 
 class MobileSimulation extends PureComponent {
   buildMobileTypeArray = () => {

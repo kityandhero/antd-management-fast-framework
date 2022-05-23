@@ -1,17 +1,16 @@
-import { PureComponent } from 'react';
-import { Avatar } from 'antd';
 import {
   LoadingOutlined,
   PictureOutlined,
   ReloadOutlined,
 } from '@ant-design/icons';
-
+import { Avatar } from 'antd';
+import { PureComponent } from 'react';
+import { defaultEmptyImage } from '../../utils/constants';
 import {
-  stringIsNullOrWhiteSpace,
   isFunction,
   showRuntimeError,
+  stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
-import { defaultEmptyImage } from '../../utils/constants';
 
 export const avatarImageLoadResultCollection = {
   wait: -1,

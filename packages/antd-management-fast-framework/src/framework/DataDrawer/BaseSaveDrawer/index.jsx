@@ -1,5 +1,4 @@
 import { drawerConfig } from '../../../utils/constants';
-
 import Base from '../Base';
 
 class BaseSaveDrawer extends Base {

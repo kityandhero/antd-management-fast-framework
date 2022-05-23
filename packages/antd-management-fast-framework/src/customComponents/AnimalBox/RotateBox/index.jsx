@@ -1,6 +1,5 @@
-import { PureComponent } from 'react';
 import TweenOne from 'rc-tween-one';
-
+import { PureComponent } from 'react';
 import { isFunction } from '../../../utils/tools';
 
 class RotateBox extends PureComponent {

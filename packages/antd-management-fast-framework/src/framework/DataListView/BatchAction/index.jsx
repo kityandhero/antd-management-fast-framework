@@ -1,9 +1,7 @@
-import { Dropdown, Menu, Button } from 'antd';
-import { ConfigConsumer } from 'antd/lib/config-provider/context';
 import { DownOutlined, EllipsisOutlined } from '@ant-design/icons';
-
+import { Button, Dropdown, Menu } from 'antd';
+import { ConfigConsumer } from 'antd/lib/config-provider/context';
 import IconInfo from '../../../customComponents/IconInfo';
-
 import styles from './index.less';
 
 /**

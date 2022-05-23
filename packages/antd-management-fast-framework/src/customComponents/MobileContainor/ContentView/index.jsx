@@ -1,13 +1,11 @@
-import { PureComponent } from 'react';
-import { Space, Alert } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
-
-import { inCollection, isFunction } from '../../../utils/tools';
+import { Alert, Space } from 'antd';
+import { PureComponent } from 'react';
 import { animalType } from '../../../utils/constants';
+import { inCollection, isFunction } from '../../../utils/tools';
 import FadeBox from '../../AnimalBox/FadeBox';
 import QueueBox from '../../AnimalBox/QueueBox';
 import { buildButton } from '../../FunctionComponent';
-
 import styles from './index.less';
 
 class ConventView extends PureComponent {

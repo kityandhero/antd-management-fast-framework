@@ -1,9 +1,7 @@
-import parse from 'html-react-parser';
 import { Drawer, Empty } from 'antd';
-
-import { imageContentPreviewMode } from '../../utils/constants';
+import parse from 'html-react-parser';
 import CustomBase from '../../framework/CustomBase';
-
+import { imageContentPreviewMode } from '../../utils/constants';
 import styles from './index.less';
 
 class ImageContentPreview extends CustomBase {

@@ -1,121 +1,117 @@
-import { Fragment } from 'react';
-import {
-  Row,
-  Col,
-  Card,
-  Affix,
-  Spin,
-  Divider,
-  Button,
-  Space,
-  Tooltip,
-  Empty,
-  Layout,
-} from 'antd';
 import {
   FormOutlined,
-  SaveOutlined,
-  ReloadOutlined,
-  ToolOutlined,
-  ReadOutlined,
   LoadingOutlined,
+  ReadOutlined,
+  ReloadOutlined,
+  SaveOutlined,
+  ToolOutlined,
 } from '@ant-design/icons';
-
 import {
-  getDerivedStateFromPropsForUrlParams,
-  isEqual,
-  isFunction,
-  defaultCommonState,
-  isUndefined,
-  recordText,
-  refitCommonData,
-  stringIsNullOrWhiteSpace,
-  recordObject,
-  formatDatetime,
-  isArray,
-  showRuntimeError,
-  stringIsEmpty,
-  showErrorMessage,
-  isBoolean,
-  toDatetime,
-  isObject,
-  copyToClipboard,
-  inCollection,
-  toString,
-  toNumber,
-  buildFieldDescription,
-} from '../../utils/tools';
-import { pretreatmentRequestParams } from '../../utils/requestAssistor';
-import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
-import {
-  defaultEmptyImage,
-  cardConfig,
-  datetimeFormat,
-  contentConfig,
-  extraBuildType,
-} from '../../utils/constants';
-import FlexText from '../../customComponents/FlexText';
-import FlexBox from '../../customComponents/FlexBox';
-import ImageUpload from '../../customComponents/ImageUpload';
-import VideoUpload from '../../customComponents/VideoUpload';
-import AudioUpload from '../../customComponents/AudioUpload';
-import ImageBox from '../../customComponents/ImageBox';
-import HelpBox from '../../customComponents/HelpBox';
-import HelpCard from '../../customComponents/HelpCard';
-import IconInfo from '../../customComponents/IconInfo';
-import FileUpload from '../../customComponents/FileUpload';
-import FileBase64Upload from '../../customComponents/FileBase64Upload';
+  Affix,
+  Button,
+  Card,
+  Col,
+  Divider,
+  Empty,
+  Layout,
+  Row,
+  Space,
+  Spin,
+  Tooltip,
+} from 'antd';
+import { Fragment } from 'react';
 import FadeBox from '../../customComponents/AnimalBox/FadeBox';
 import QueueBox from '../../customComponents/AnimalBox/QueueBox';
+import AudioUpload from '../../customComponents/AudioUpload';
 import ColorText from '../../customComponents/ColorText';
-import HtmlBox from '../../customComponents/HtmlBox';
 import TinymceWrapper from '../../customComponents/Editor/TinymceWrapper';
-
+import FileBase64Upload from '../../customComponents/FileBase64Upload';
+import FileUpload from '../../customComponents/FileUpload';
+import FlexBox from '../../customComponents/FlexBox';
+import FlexText from '../../customComponents/FlexText';
 import {
-  buildCustomGrid,
-  buildRadioItem,
-  buildFormRadio,
-  buildOptionItem,
-  buildFormSelect,
-  buildSearchFormSelect,
-  buildFormNowTimeField,
-  buildFormCreateTimeField,
-  buildFormUpdateTimeField,
-  buildSearchInput,
-  buildSearchInputNumber,
-  buildFormDisplay,
-  buildFormHiddenWrapper,
-  buildFormInput,
-  buildFormInputFieldData,
-  buildFormSwitch,
-  buildFormPassword,
-  buildFormOnlyShowText,
-  buildSyntaxHighlighter,
-  buildJsonView,
-  buildFormOnlyShowSyntaxHighlighter,
-  buildFormOnlyShowTextarea,
-  buildFormText,
-  buildFormInnerComponent,
-  buildFormButton,
-  buildFormActionItem,
-  buildFormOnlyShowInput,
-  buildFormInputNumber,
-  buildFormTextArea,
-  buildFormDatePicker,
-  buildFormTimePicker,
   buildButton,
+  buildButtonGroup,
+  buildCustomGrid,
+  buildCustomSelect,
   buildDropdown,
   buildDropdownButton,
   buildDropdownEllipsis,
+  buildFormActionItem,
+  buildFormButton,
+  buildFormCreateTimeField,
+  buildFormDatePicker,
+  buildFormDisplay,
+  buildFormHiddenWrapper,
+  buildFormInnerComponent,
+  buildFormInput,
+  buildFormInputFieldData,
+  buildFormInputNumber,
+  buildFormNowTimeField,
+  buildFormOnlyShowInput,
+  buildFormOnlyShowSyntaxHighlighter,
+  buildFormOnlyShowText,
+  buildFormOnlyShowTextarea,
+  buildFormPassword,
+  buildFormRadio,
+  buildFormSelect,
+  buildFormSwitch,
+  buildFormText,
+  buildFormTextArea,
+  buildFormTimePicker,
+  buildFormUpdateTimeField,
+  buildJsonView,
+  buildOptionItem,
+  buildRadioItem,
+  buildSearchFormSelect,
+  buildSearchInput,
+  buildSearchInputNumber,
+  buildSyntaxHighlighter,
   buildTree,
-  buildCustomSelect,
   buildTreeSelect,
-  buildButtonGroup,
 } from '../../customComponents/FunctionComponent';
 import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
-
+import HelpBox from '../../customComponents/HelpBox';
+import HelpCard from '../../customComponents/HelpCard';
+import HtmlBox from '../../customComponents/HtmlBox';
+import IconInfo from '../../customComponents/IconInfo';
+import ImageBox from '../../customComponents/ImageBox';
+import ImageUpload from '../../customComponents/ImageUpload';
+import VideoUpload from '../../customComponents/VideoUpload';
+import {
+  cardConfig,
+  contentConfig,
+  datetimeFormat,
+  defaultEmptyImage,
+  extraBuildType,
+} from '../../utils/constants';
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
+import { pretreatmentRequestParams } from '../../utils/requestAssistor';
+import {
+  buildFieldDescription,
+  copyToClipboard,
+  defaultCommonState,
+  formatDatetime,
+  getDerivedStateFromPropsForUrlParams,
+  inCollection,
+  isArray,
+  isBoolean,
+  isEqual,
+  isFunction,
+  isObject,
+  isUndefined,
+  recordObject,
+  recordText,
+  refitCommonData,
+  showErrorMessage,
+  showRuntimeError,
+  stringIsEmpty,
+  stringIsNullOrWhiteSpace,
+  toDatetime,
+  toNumber,
+  toString,
+} from '../../utils/tools';
 import Core from '../Core';
-
 import styles from './index.less';
 
 const { Content, Sider } = Layout;

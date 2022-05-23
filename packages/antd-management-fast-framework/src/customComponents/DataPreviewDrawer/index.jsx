@@ -1,10 +1,8 @@
+import { ContactsOutlined, FormOutlined } from '@ant-design/icons';
 import parse from 'html-react-parser';
-import { FormOutlined, ContactsOutlined } from '@ant-design/icons';
-
-import { toNumber } from '../../utils/tools';
-import { dataTypeCollection, cardConfig } from '../../utils/constants';
 import Base from '../../framework/DataDrawer/Base';
-
+import { cardConfig, dataTypeCollection } from '../../utils/constants';
+import { toNumber } from '../../utils/tools';
 import styles from './index.less';
 
 class DataPreviewDrawer extends Base {

@@ -1,5 +1,4 @@
 import { drawerConfig } from '../../../utils/constants';
-
 import BaseLoadDrawer from '../BaseLoadDrawer';
 
 class BaseUpdateDrawer extends BaseLoadDrawer {

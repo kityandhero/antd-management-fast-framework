@@ -1,13 +1,12 @@
 import { message } from 'antd';
-
-import {
-  showRuntimeError,
-  isFunction,
-  stringIsNullOrWhiteSpace,
-  goToPath,
-} from './tools';
-import { getToken } from './globalStorageAssist';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import { getToken } from './globalStorageAssist';
+import {
+  goToPath,
+  isFunction,
+  showRuntimeError,
+  stringIsNullOrWhiteSpace,
+} from './tools';
 
 /**
  * 是否使用模拟访问

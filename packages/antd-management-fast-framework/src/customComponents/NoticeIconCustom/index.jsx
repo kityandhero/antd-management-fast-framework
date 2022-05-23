@@ -1,10 +1,9 @@
-import React, { PureComponent } from 'react';
-import { Popover, Tabs, Badge, Spin } from 'antd';
-import classNames from 'classnames';
 import { BellOutlined } from '@ant-design/icons';
-
-import List from './NoticeList';
+import { Badge, Popover, Spin, Tabs } from 'antd';
+import classNames from 'classnames';
+import React, { PureComponent } from 'react';
 import styles from './index.less';
+import List from './NoticeList';
 
 const { TabPane } = Tabs;
 

@@ -1,14 +1,14 @@
+import { getCache, hasCache, setCache } from './cacheAssist';
+import { accessWaySpecialCollection } from './constants';
 import {
-  removeLocalStorage,
+  clearLocalStorage,
   getJsonFromLocalStorage,
   getStringFromLocalStorage,
+  isArray,
+  removeLocalStorage,
   saveJsonToLocalStorage,
   saveStringToLocalStorage,
-  clearLocalStorage,
-  isArray,
 } from './tools';
-import { hasCache, setCache, getCache } from './cacheAssist';
-import { accessWaySpecialCollection } from './constants';
 
 export const storageKeyCollection = {
   token: 'token',

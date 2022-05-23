@@ -1,5 +1,4 @@
 import { Component } from 'react';
-
 import AutoHeightComponent from '../autoHeight';
 import styles from './index.less';
 

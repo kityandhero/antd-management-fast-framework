@@ -1,6 +1,6 @@
 import { Card } from 'antd';
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 import styles from './index.less';
 
 const renderTotal = (total) => {

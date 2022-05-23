@@ -1,6 +1,6 @@
-import { getStringFromLocalStorage, isArray } from './tools';
-import { storageKeyCollection } from './globalStorageAssist';
 import RenderAuthorize from '../customComponents/Authorized';
+import { storageKeyCollection } from './globalStorageAssist';
+import { getStringFromLocalStorage, isArray } from './tools';
 
 export function getAuthority(str) {
   const authorityString =

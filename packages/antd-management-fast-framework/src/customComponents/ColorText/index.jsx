@@ -1,10 +1,9 @@
 import { PureComponent } from 'react';
-
 import {
-  stringIsNullOrWhiteSpace,
   copyToClipboard,
   getRandomColor,
   isNumber,
+  stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
 
 class ColorText extends PureComponent {

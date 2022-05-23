@@ -1,23 +1,20 @@
-import React from 'react';
-import classNames from 'classnames';
-import { Row, Col, Image, Spin } from 'antd';
 import {
   EyeOutlined,
-  PictureOutlined,
   LoadingOutlined,
+  PictureOutlined,
 } from '@ant-design/icons';
-
+import { Col, Image, Row, Spin } from 'antd';
+import classNames from 'classnames';
+import React from 'react';
+import CustomBase from '../../framework/CustomBase';
+import { defaultEmptyImage } from '../../utils/constants';
 import {
   isFunction,
-  trim,
   replace,
   stringIsNullOrWhiteSpace,
+  trim,
 } from '../../utils/tools';
-import { defaultEmptyImage } from '../../utils/constants';
-import CustomBase from '../../framework/CustomBase';
-
 import IconInfo from '../IconInfo';
-
 import styles from './index.less';
 
 class ImageBox extends CustomBase {

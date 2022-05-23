@@ -1,6 +1,5 @@
+import { datetimeFormat, formNameCollection } from '../../../utils/constants';
 import { formatDatetime } from '../../../utils/tools';
-import { formNameCollection, datetimeFormat } from '../../../utils/constants';
-
 import Base from '../Base';
 
 class BaseNeedlessLoadDrawer extends Base {

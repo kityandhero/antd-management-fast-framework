@@ -1,21 +1,20 @@
-﻿import {
-  refitCommonData,
-  isInvalid,
-  searchFromList,
-  isUndefined,
-  isNull,
-} from '../../../utils/tools';
-import { modelCollection } from '../../../utils/globalModel';
+﻿import { unknownLabel } from '@/customConfig/config';
 import { unlimitedWithStringFlag } from '../../../utils/constants';
+import { modelCollection } from '../../../utils/globalModel';
 import {
-  buildRadioItem,
+  isInvalid,
+  isNull,
+  isUndefined,
+  refitCommonData,
+  searchFromList,
+} from '../../../utils/tools';
+import {
   buildFormRadio,
-  buildOptionItem,
   buildFormSelect,
+  buildOptionItem,
+  buildRadioItem,
   buildSearchFormSelect,
 } from '../../FunctionComponent';
-
-import { unknownLabel } from '@/customConfig/config';
 
 export function refitWhetherList({ withUnlimited = true }) {
   const { whetherList: list } = {

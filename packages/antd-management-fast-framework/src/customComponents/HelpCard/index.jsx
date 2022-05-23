@@ -1,6 +1,5 @@
-import { PureComponent } from 'react';
 import { Card } from 'antd';
-
+import { PureComponent } from 'react';
 import HelpBox from '../HelpBox';
 
 class HelpCard extends PureComponent {

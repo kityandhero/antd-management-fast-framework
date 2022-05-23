@@ -1,8 +1,7 @@
 import {
-  getDerivedStateFromPropsForUrlParams,
   defaultFormState,
+  getDerivedStateFromPropsForUrlParams,
 } from '../../../utils/tools';
-
 import DataCore from '../DataCore';
 
 class DataLoad extends DataCore {

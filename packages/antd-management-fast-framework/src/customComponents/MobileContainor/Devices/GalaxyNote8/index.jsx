@@ -1,9 +1,7 @@
-import { PureComponent } from 'react';
 import classNames from 'classnames';
-
+import { PureComponent } from 'react';
 import { animalType } from '../../../../utils/constants';
 import ContentView from '../../ContentView';
-
 import styles from '../devices.less';
 
 class GalaxyNote8 extends PureComponent {

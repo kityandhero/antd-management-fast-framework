@@ -1,5 +1,4 @@
 import { PureComponent } from 'react';
-
 import { isMoney, roundToTarget } from '../../utils/tools';
 
 class PercentageBox extends PureComponent {

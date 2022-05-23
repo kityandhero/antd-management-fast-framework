@@ -1,5 +1,4 @@
 import { PureComponent } from 'react';
-
 import styles from './index.less';
 
 class VerticalBox extends PureComponent {

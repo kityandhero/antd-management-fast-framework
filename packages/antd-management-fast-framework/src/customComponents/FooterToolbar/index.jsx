@@ -1,7 +1,6 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 import styles from './index.less';
 
 export default class FooterToolbar extends Component {

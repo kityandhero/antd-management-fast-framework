@@ -1,8 +1,8 @@
-import React, { createElement } from 'react';
-import classNames from 'classnames';
 import { Button } from 'antd';
-import config from './typeConfig';
+import classNames from 'classnames';
+import React, { createElement } from 'react';
 import styles from './index.less';
+import config from './typeConfig';
 
 class Exception extends React.PureComponent {
   state = {};

@@ -1,88 +1,86 @@
-import TextAnimal from 'rc-texty';
 import {
-  Form,
-  Typography,
-  Space,
-  Button,
-  Row,
-  Col,
-  Dropdown,
-  Descriptions,
-  Popconfirm,
-  Tooltip,
-  Menu,
-  Tag,
-  Radio,
-  Select,
-  Input,
-  InputNumber,
-  Switch,
-  DatePicker,
-  TimePicker,
-  Badge,
-  Tree,
-  Alert,
-  TreeSelect,
-} from 'antd';
-import {
-  EllipsisOutlined,
-  LoadingOutlined,
-  ImportOutlined,
-  FormOutlined,
-  EditOutlined,
-  InfoCircleOutlined,
   BorderOuterOutlined,
+  EditOutlined,
+  EllipsisOutlined,
+  FormOutlined,
+  ImportOutlined,
+  InfoCircleOutlined,
+  LoadingOutlined,
   RightCircleOutlined,
 } from '@ant-design/icons';
-import ReactPlayer from 'react-player';
+import {
+  Alert,
+  Badge,
+  Button,
+  Col,
+  DatePicker,
+  Descriptions,
+  Dropdown,
+  Form,
+  Input,
+  InputNumber,
+  Menu,
+  Popconfirm,
+  Radio,
+  Row,
+  Select,
+  Space,
+  Switch,
+  Tag,
+  TimePicker,
+  Tooltip,
+  Tree,
+  TreeSelect,
+  Typography,
+} from 'antd';
+import TextAnimal from 'rc-texty';
 import ReactJson from 'react-json-view';
+import ReactPlayer from 'react-player';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-
 import {
-  formatDatetime,
-  isArray,
-  copyToClipboard,
-  stringIsNullOrWhiteSpace,
-  showRuntimeError,
-  toString,
-  getGuid,
-  isFunction,
-  isNumber,
-  toNumber,
-  sortBy,
-  buildFieldHelper,
-  buildFieldDescription,
-  checkFromConfig,
-  isObject,
-  recordObject,
-  showErrorMessage,
-  isBoolean,
-  inCollection,
-  recordText,
-  replaceTargetText,
-  formatMoney,
-  transformListData,
-} from '../../utils/tools';
-import {
-  pageHeaderRenderType,
-  whetherNumber,
-  datetimeFormat,
-  menuType,
   columnFacadeMode,
+  datetimeFormat,
   defaultEmptyImage,
   listViewConfig,
+  menuType,
+  pageHeaderRenderType,
+  whetherNumber,
 } from '../../utils/constants';
-import VerticalBox from '../VerticalBox';
+import {
+  buildFieldDescription,
+  buildFieldHelper,
+  checkFromConfig,
+  copyToClipboard,
+  formatDatetime,
+  formatMoney,
+  getGuid,
+  inCollection,
+  isArray,
+  isBoolean,
+  isFunction,
+  isNumber,
+  isObject,
+  recordObject,
+  recordText,
+  replaceTargetText,
+  showErrorMessage,
+  showRuntimeError,
+  sortBy,
+  stringIsNullOrWhiteSpace,
+  toNumber,
+  toString,
+  transformListData,
+} from '../../utils/tools';
+import FadeBox from '../AnimalBox/FadeBox';
+import QueueBox from '../AnimalBox/QueueBox';
+import RotateBox from '../AnimalBox/RotateBox';
+import ColorText from '../ColorText';
 import EllipsisCustom from '../EllipsisCustom';
-import ImageBox from '../ImageBox';
-import IconInfo from '../IconInfo';
 import FlexBox from '../FlexBox';
 import FlexText from '../FlexText';
-import ColorText from '../ColorText';
-import RotateBox from '../AnimalBox/RotateBox';
-import QueueBox from '../AnimalBox/QueueBox';
-import FadeBox from '../AnimalBox/FadeBox';
-
+import IconInfo from '../IconInfo';
+import ImageBox from '../ImageBox';
+import VerticalBox from '../VerticalBox';
 import styles from './index.less';
 
 const FormItem = Form.Item;

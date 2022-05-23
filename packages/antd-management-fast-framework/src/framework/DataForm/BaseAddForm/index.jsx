@@ -1,28 +1,25 @@
-import React from 'react';
-import { Form, Avatar, BackTop, message } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { PlusOutlined } from '@ant-design/icons';
-
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { Avatar, BackTop, Form, message } from 'antd';
+import React from 'react';
+import { decorateAvatar } from '../../../customComponents/DecorateAvatar';
 import {
-  getDerivedStateFromPropsForUrlParams,
-  defaultFormState,
-  formatDatetime,
-  isUndefined,
-  showRuntimeError,
-  recordObject,
-} from '../../../utils/tools';
-import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
-import { formNameCollection, datetimeFormat } from '../../../utils/constants';
-import {
-  buildPageHeaderTitle,
-  buildPageHeaderTagWrapper,
   buildPageHeaderContent,
+  buildPageHeaderTagWrapper,
+  buildPageHeaderTitle,
   pageHeaderExtraContent,
 } from '../../../customComponents/FunctionComponent';
-import { decorateAvatar } from '../../../customComponents/DecorateAvatar';
-
+import { datetimeFormat, formNameCollection } from '../../../utils/constants';
+import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
+import {
+  defaultFormState,
+  formatDatetime,
+  getDerivedStateFromPropsForUrlParams,
+  isUndefined,
+  recordObject,
+  showRuntimeError,
+} from '../../../utils/tools';
 import DataCore from '../../DataSingleView/DataCore';
-
 import styles from './index.less';
 
 class BaseAddForm extends DataCore {

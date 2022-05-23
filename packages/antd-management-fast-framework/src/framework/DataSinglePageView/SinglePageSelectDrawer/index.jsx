@@ -1,8 +1,6 @@
 import { ImportOutlined } from '@ant-design/icons';
-
-import { isFunction } from '../../../utils/tools';
 import { buildButton } from '../../../customComponents/FunctionComponent';
-
+import { isFunction } from '../../../utils/tools';
 import SinglePageDrawer from '../SinglePageDrawer';
 
 class SinglePageSelectDrawer extends SinglePageDrawer {

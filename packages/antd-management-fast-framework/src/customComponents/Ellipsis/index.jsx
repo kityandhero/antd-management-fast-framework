@@ -1,9 +1,7 @@
-import { Component } from 'react';
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
-
+import { Component } from 'react';
 import { stringIsNullOrWhiteSpace } from '../../utils/tools';
-
 import styles from './index.less';
 
 /* eslint react/no-did-mount-set-state: 0 */

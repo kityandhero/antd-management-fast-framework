@@ -1,21 +1,21 @@
+import { reloadAuthorized } from './Authorized';
+import { flushAllCache, getCache, hasCache, setCache } from './cacheAssist';
+import {
+  getAccessWayCollectionCache,
+  storageKeyCollection,
+} from './globalStorageAssist';
 import {
   getStringFromLocalStorage,
-  saveJsonToLocalStorage,
+  getValueByKey,
   isArray,
-  recordObject,
   isObject,
   isString,
-  showErrorMessage,
   recordError,
-  getValueByKey,
+  recordObject,
+  saveJsonToLocalStorage,
+  showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from './tools';
-import { hasCache, setCache, getCache, flushAllCache } from './cacheAssist';
-import {
-  storageKeyCollection,
-  getAccessWayCollectionCache,
-} from './globalStorageAssist';
-import { reloadAuthorized } from './Authorized';
 
 const authorityCollectionCache = 'authorityCollectionCache';
 const superPermissionCacheKey = 'hasSuperPermission';

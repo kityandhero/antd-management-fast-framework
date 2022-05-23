@@ -1,12 +1,10 @@
 import { message } from 'antd';
-
+import { selectModeCollection } from '../../../../utils/constants';
 import {
   isFunction,
   showRuntimeError,
   toNumber,
 } from '../../../../utils/tools';
-import { selectModeCollection } from '../../../../utils/constants';
-
 import SelectFieldBase from '../SelectFieldBase';
 
 class SelectFieldInteractiveBase extends SelectFieldBase {

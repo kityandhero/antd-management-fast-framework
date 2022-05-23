@@ -1,6 +1,5 @@
+import { CaretDownOutlined, CaretUpFilled } from '@ant-design/icons';
 import classNames from 'classnames';
-import { CaretUpFilled, CaretDownOutlined } from '@ant-design/icons';
-
 import styles from './index.less';
 
 const NumberInfo = ({

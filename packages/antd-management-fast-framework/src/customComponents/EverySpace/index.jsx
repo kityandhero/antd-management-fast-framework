@@ -1,5 +1,4 @@
 import { PureComponent } from 'react';
-
 import { stringIsNullOrWhiteSpace } from '../../utils/tools';
 
 class EverySpace extends PureComponent {

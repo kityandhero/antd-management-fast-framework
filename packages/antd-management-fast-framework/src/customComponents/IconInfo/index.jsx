@@ -1,17 +1,14 @@
+import { Col, Row, Tooltip } from 'antd';
 import { PureComponent } from 'react';
-import { Row, Col, Tooltip } from 'antd';
-
 import {
-  stringIsNullOrWhiteSpace,
   copyToClipboard,
-  toNumber,
-  isObject,
   isFunction,
+  isObject,
   isString,
+  stringIsNullOrWhiteSpace,
+  toNumber,
 } from '../../utils/tools';
-
 import Ellipsis from '../Ellipsis';
-
 import styles from './index.less';
 
 const defaultValue = {

@@ -1,5 +1,4 @@
 import { PureComponent } from 'react';
-
 import QueueListBox from '../QueueListBox';
 
 class QueueBox extends PureComponent {

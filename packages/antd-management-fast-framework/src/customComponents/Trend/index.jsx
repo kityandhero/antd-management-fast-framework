@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-
 import styles from './index.less';
 
 const Trend = ({

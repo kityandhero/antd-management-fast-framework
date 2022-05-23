@@ -1,18 +1,16 @@
 import { message } from 'antd';
-
-import {
-  defaultPageListState,
-  stringIsNullOrWhiteSpace,
-  isUndefined,
-  showRuntimeError,
-  recordObject,
-  showWarnMessage,
-} from '../../../utils/tools';
 import {
   getParamsDataCache,
   setParamsDataCache,
 } from '../../../utils/globalStorageAssist';
-
+import {
+  defaultPageListState,
+  isUndefined,
+  recordObject,
+  showRuntimeError,
+  showWarnMessage,
+  stringIsNullOrWhiteSpace,
+} from '../../../utils/tools';
 import Base from '../../DataListView/Base';
 
 class MultiPage extends Base {

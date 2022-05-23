@@ -1,15 +1,13 @@
-import React from 'react';
 import { message } from 'antd';
-
+import React from 'react';
+import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 import {
   isFunction,
-  showRuntimeError,
   isUndefined,
-  stringIsNullOrWhiteSpace,
   recordObject,
+  showRuntimeError,
+  stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
-import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
-
 import Base from '../Base';
 
 class BaseWindow extends Base {

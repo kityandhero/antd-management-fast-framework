@@ -1,5 +1,4 @@
 import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
-
 import SupplementCore from '../SupplementCore';
 
 /**

@@ -1,13 +1,12 @@
-import { PureComponent } from 'react';
-import { Upload, Input, Button } from 'antd';
 import {
-  LoadingOutlined,
   FileOutlined,
+  LoadingOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-
-import { isFunction, showRuntimeError } from '../../utils/tools';
+import { Button, Input, Upload } from 'antd';
+import { PureComponent } from 'react';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
+import { isFunction, showRuntimeError } from '../../utils/tools';
 
 class FileBase64Upload extends PureComponent {
   constructor(props) {

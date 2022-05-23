@@ -1,6 +1,5 @@
-import classNames from 'classnames';
 import { Button, Form } from 'antd';
-
+import classNames from 'classnames';
 import styles from './index.less';
 
 const FormItem = Form.Item;

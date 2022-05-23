@@ -1,22 +1,21 @@
-import { extend } from 'umi-request';
 import { message, notification } from 'antd';
-
+import { extend } from 'umi-request';
+import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import {
+  clearCustomData,
+  getToken,
+  getTokenKeyName,
+} from './globalStorageAssist';
 import {
   corsTarget,
-  recordText,
-  trySendNearestLocalhostNotify,
-  stringIsNullOrWhiteSpace,
   isString,
-  recordObject,
   recordError,
+  recordObject,
+  recordText,
   redirectToPath,
+  stringIsNullOrWhiteSpace,
+  trySendNearestLocalhostNotify,
 } from './tools';
-import {
-  getTokenKeyName,
-  getToken,
-  clearCustomData,
-} from './globalStorageAssist';
-import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',

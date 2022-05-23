@@ -1,7 +1,5 @@
 import { SaveOutlined } from '@ant-design/icons';
-
 import { drawerConfig } from '../../../utils/constants';
-
 import BaseNeedlessLoadDrawer from '../BaseNeedlessLoadDrawer';
 
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {

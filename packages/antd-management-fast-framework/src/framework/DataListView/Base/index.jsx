@@ -1,73 +1,70 @@
-import React from 'react';
 import {
-  Form,
-  Row,
-  Col,
-  Card,
-  Alert,
-  List,
-  Tooltip,
-  Button,
-  DatePicker,
-  BackTop,
-  Divider,
-  Space,
-  Empty,
-  Spin,
-  Pagination,
-  Affix,
-  Layout,
-} from 'antd';
-import {
-  SearchOutlined,
-  ReloadOutlined,
+  FormOutlined,
   LoadingOutlined,
   PictureOutlined,
-  FormOutlined,
+  ReloadOutlined,
+  SearchOutlined,
 } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-
 import {
-  defaultListState,
-  buildFieldDescription,
-  isArray,
-  isUndefined,
-  toMoment,
-  getDerivedStateFromPropsForUrlParams,
-  showRuntimeError,
-  toNumber,
-  showWarnMessage,
-} from '../../../utils/tools';
-import {
-  searchCardConfig,
-  datetimeFormat,
-  pageHeaderRenderType,
-  listViewConfig,
-  cardConfig,
-} from '../../../utils/constants';
-import {
-  adjustTableExpandConfig,
-  buildPageHeaderTitle,
-  buildPageHeaderTagWrapper,
-  buildPageHeaderContent,
-  pageHeaderExtraContent,
-  buildTagList,
-  buildColumnList,
-  buildColumnItem,
-  buildCustomSelect,
-} from '../../../customComponents/FunctionComponent';
+  Affix,
+  Alert,
+  BackTop,
+  Button,
+  Card,
+  Col,
+  DatePicker,
+  Divider,
+  Empty,
+  Form,
+  Layout,
+  List,
+  Pagination,
+  Row,
+  Space,
+  Spin,
+  Tooltip,
+} from 'antd';
+import React from 'react';
 import {
   avatarImageLoadResultCollection,
   decorateAvatar,
 } from '../../../customComponents/DecorateAvatar';
-import StandardTableCustom from '../../../customComponents/StandardTableCustom';
-import AuthorizationWrapper from '../../AuthorizationWrapper';
 import FlexBox from '../../../customComponents/FlexBox';
-
-import DensityAction from '../DensityAction';
-import ColumnSetting from '../ColumnSetting';
+import {
+  adjustTableExpandConfig,
+  buildColumnItem,
+  buildColumnList,
+  buildCustomSelect,
+  buildPageHeaderContent,
+  buildPageHeaderTagWrapper,
+  buildPageHeaderTitle,
+  buildTagList,
+  pageHeaderExtraContent,
+} from '../../../customComponents/FunctionComponent';
+import StandardTableCustom from '../../../customComponents/StandardTableCustom';
+import {
+  cardConfig,
+  datetimeFormat,
+  listViewConfig,
+  pageHeaderRenderType,
+  searchCardConfig,
+} from '../../../utils/constants';
+import {
+  buildFieldDescription,
+  defaultListState,
+  getDerivedStateFromPropsForUrlParams,
+  isArray,
+  isUndefined,
+  showRuntimeError,
+  showWarnMessage,
+  toMoment,
+  toNumber,
+} from '../../../utils/tools';
+import AuthorizationWrapper from '../../AuthorizationWrapper';
 import BatchAction from '../BatchAction';
-
+import ColumnSetting from '../ColumnSetting';
+import DensityAction from '../DensityAction';
 import styles from './index.less';
 
 const { Content, Sider } = Layout;

@@ -19,6 +19,7 @@ module.exports = {
     'no-use-before-define': 0,
     'no-nested-ternary': 0,
     'compat/compat': 0,
+    'sort-imports': 0,
     '@typescript-eslint/no-this-alias': ['off'],
     '@typescript-eslint/no-unused-vars': 1,
     '@typescript-eslint/no-invalid-this': 0,

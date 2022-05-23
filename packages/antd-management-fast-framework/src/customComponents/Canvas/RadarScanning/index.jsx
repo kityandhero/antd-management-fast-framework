@@ -1,5 +1,4 @@
 import { requestAnimFrame } from '../../../utils/tools';
-
 import Core from '../Core';
 
 const rand = (min, max) => {

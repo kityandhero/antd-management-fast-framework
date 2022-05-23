@@ -1,19 +1,18 @@
 /* eslint-disable no-unused-vars */
-import { Component } from 'react';
 import nprogress from 'nprogress';
-
+import { Component } from 'react';
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import {
   defaultBaseState,
   getGuid,
+  goToPath as goToPathCore,
+  isFunction,
   isObject,
   recordDebug,
   recordError,
-  showInfoMessage,
-  isFunction,
-  goToPath as goToPathCore,
   redirectToPath as redirectToPathCore,
+  showInfoMessage,
 } from '../../utils/tools';
-import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 

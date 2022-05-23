@@ -1,5 +1,5 @@
+import { Alert, Table } from 'antd';
 import { PureComponent } from 'react';
-import { Table, Alert } from 'antd';
 import styles from './index.less';
 
 function initTotalList(columns) {

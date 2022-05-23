@@ -1,10 +1,9 @@
-import React, { PureComponent } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-
-import { corsTarget, isFunction } from '../../../utils/tools';
-import { pretreatmentRemoteSingleData } from '../../../utils/requestAssistor';
-import { getTokenKeyName, getToken } from '../../../utils/globalStorageAssist';
+import React, { PureComponent } from 'react';
 import { defaultSettingsLayoutCustom } from '../../../utils/defaultSettingsSpecial';
+import { getToken, getTokenKeyName } from '../../../utils/globalStorageAssist';
+import { pretreatmentRemoteSingleData } from '../../../utils/requestAssistor';
+import { corsTarget, isFunction } from '../../../utils/tools';
 
 class TinymceWrapper extends PureComponent {
   editor = React.createRef();

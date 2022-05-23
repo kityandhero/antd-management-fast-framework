@@ -1,16 +1,13 @@
-import { Menu } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
-
-import {
-  isArray,
-  stringIsNullOrWhiteSpace,
-  endsWith,
-  removeEndMatch,
-} from '../../utils/tools';
+import { Menu } from 'antd';
 import IconInfo from '../../customComponents/IconInfo';
-
+import {
+  endsWith,
+  isArray,
+  removeEndMatch,
+  stringIsNullOrWhiteSpace,
+} from '../../utils/tools';
 import AuthorizationWrapper from '../AuthorizationWrapper';
-
 import styles from './index.less';
 
 const { Item } = Menu;

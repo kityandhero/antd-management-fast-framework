@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
+import { DownOutlined, UpCircleOutlined } from '@ant-design/icons';
 import { Tag } from 'antd';
-import { UpCircleOutlined, DownOutlined } from '@ant-design/icons';
-
+import classNames from 'classnames';
+import React, { Component } from 'react';
 import styles from './index.less';
 
 const { CheckableTag } = Tag;

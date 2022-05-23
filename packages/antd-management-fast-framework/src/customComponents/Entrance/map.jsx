@@ -4,7 +4,6 @@ import {
   MobileTwoTone,
   UserOutlined,
 } from '@ant-design/icons';
-
 import styles from './index.less';
 
 export default {

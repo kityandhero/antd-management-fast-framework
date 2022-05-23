@@ -1,5 +1,5 @@
+import { Col, Row } from 'antd';
 import { PureComponent } from 'react';
-import { Row, Col } from 'antd';
 
 class FlexBox extends PureComponent {
   render() {

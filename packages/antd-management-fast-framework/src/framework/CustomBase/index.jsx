@@ -1,6 +1,5 @@
 import { Component } from 'react';
-
-import { isEqual, cloneWithoutMethod } from '../../utils/tools';
+import { cloneWithoutMethod, isEqual } from '../../utils/tools';
 
 class CustomBase extends Component {
   shouldComponentUpdate(nextProps, nextState) {

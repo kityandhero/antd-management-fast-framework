@@ -1,6 +1,6 @@
-import React from 'react';
-import range from 'lodash/range';
 import { mount } from 'enzyme';
+import range from 'lodash/range';
+import React from 'react';
 import AvatarList from './index';
 
 const renderItems = (numItems) =>

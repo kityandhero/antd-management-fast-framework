@@ -1,13 +1,11 @@
+import { Form, Tabs } from 'antd';
+import classNames from 'classnames';
 import React, { useState } from 'react';
 import useMergeValue from 'use-merge-value';
-import classNames from 'classnames';
-import { Tabs, Form } from 'antd';
-
 import EntranceContext from './EntranceContext';
 import EntranceItem from './EntranceItem';
 import EntranceSubmit from './EntranceSubmit';
 import EntranceTab from './EntranceTab';
-
 import styles from './index.less';
 
 const Entrance = (props) => {

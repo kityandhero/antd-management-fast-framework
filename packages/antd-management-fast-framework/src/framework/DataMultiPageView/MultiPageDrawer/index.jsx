@@ -1,31 +1,27 @@
-import QueueAnim from 'rc-queue-anim';
+import { ReadOutlined, ReloadOutlined } from '@ant-design/icons';
 import {
-  Drawer,
+  Button,
   Card,
+  Col,
   Divider,
+  Drawer,
   List,
+  Row,
+  Spin,
   Tag,
   Tooltip,
-  Button,
-  Row,
-  Col,
-  Spin,
 } from 'antd';
-import { ReloadOutlined, ReadOutlined } from '@ant-design/icons';
-
-import { isFunction, notify } from '../../../utils/tools';
+import QueueAnim from 'rc-queue-anim';
+import { buildListViewItemActionSelect } from '../../../customComponents/FunctionComponent';
 import {
+  contentConfig,
   listViewConfig,
   notificationTypeCollection,
-  contentConfig,
 } from '../../../utils/constants';
-import { buildListViewItemActionSelect } from '../../../customComponents/FunctionComponent';
-
-import DensityAction from '../../DataListView/DensityAction';
+import { isFunction, notify } from '../../../utils/tools';
 import ColumnSetting from '../../DataListView/ColumnSetting';
-
+import DensityAction from '../../DataListView/DensityAction';
 import MultiPage from '../MultiPage';
-
 import styles from './index.less';
 
 class MultiPageDrawer extends MultiPage {

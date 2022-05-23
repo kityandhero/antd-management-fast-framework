@@ -1,29 +1,26 @@
-import { PureComponent } from 'react';
-import { Modal, Upload, Tooltip, Space, message } from 'antd';
 import {
+  DeleteOutlined,
+  EyeOutlined,
   LoadingOutlined,
   PlusOutlined,
-  EyeOutlined,
   UploadOutlined,
-  DeleteOutlined,
 } from '@ant-design/icons';
-
+import { message, Modal, Space, Tooltip, Upload } from 'antd';
+import { PureComponent } from 'react';
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import {
+  buildFieldHelper,
   isFunction,
   showRuntimeError,
   showWarningMessage,
   stringIsNullOrWhiteSpace,
   toNumber,
-  buildFieldHelper,
 } from '../../utils/tools';
-import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
-
-import ImageBox from '../ImageBox';
-import FlexBox from '../FlexBox';
-import VerticalBox from '../VerticalBox';
 import CenterBox from '../CenterBox';
+import FlexBox from '../FlexBox';
 import IconInfo from '../IconInfo';
-
+import ImageBox from '../ImageBox';
+import VerticalBox from '../VerticalBox';
 import styles from './index.less';
 
 const { confirm } = Modal;

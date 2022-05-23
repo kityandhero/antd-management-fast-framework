@@ -1,5 +1,5 @@
-import { copyToClipboard } from '../../utils/tools';
 import CustomBase from '../../framework/CustomBase';
+import { copyToClipboard } from '../../utils/tools';
 
 class DisplayCopyData extends CustomBase {
   static defaultProps = {

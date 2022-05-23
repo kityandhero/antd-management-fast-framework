@@ -1,8 +1,6 @@
+import { Alert, Spin, Table } from 'antd';
 import { PureComponent } from 'react';
-import { Table, Alert, Spin } from 'antd';
-
 import { listViewConfig } from '../../utils/constants';
-
 import styles from './index.less';
 
 function initTotalList(columns) {

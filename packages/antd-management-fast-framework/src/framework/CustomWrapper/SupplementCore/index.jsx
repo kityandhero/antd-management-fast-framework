@@ -1,6 +1,6 @@
-import { pretreatmentRemoteSingleData } from '../../../utils/requestAssistor';
-import { getTokenObject } from '../../../utils/globalStorageAssist';
 import Common from '../../../framework/Common';
+import { getTokenObject } from '../../../utils/globalStorageAssist';
+import { pretreatmentRemoteSingleData } from '../../../utils/requestAssistor';
 
 class SupplementCore extends Common {
   getUploadTokenObject = () => {

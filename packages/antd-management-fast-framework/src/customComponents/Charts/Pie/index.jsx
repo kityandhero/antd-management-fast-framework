@@ -1,16 +1,15 @@
-import classNames from 'classnames';
-import { Component } from 'react';
-import { Row, Col, Divider } from 'antd';
+import { Col, Divider, Row } from 'antd';
 import {
-  Chart,
-  registerShape,
-  Coordinate,
   Axis,
+  Chart,
+  Coordinate,
   Interaction,
   Interval,
+  registerShape,
   Tooltip,
 } from 'bizcharts';
-
+import classNames from 'classnames';
+import { Component } from 'react';
 import styles from './index.less';
 
 const sliceNumber = 0.01; // 自定义 other 的图形，增加两条线

@@ -1,11 +1,9 @@
 import { message, notification } from 'antd';
-
 import {
-  stringIsNullOrWhiteSpace,
   isFunction,
   showRuntimeError,
+  stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
-
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {

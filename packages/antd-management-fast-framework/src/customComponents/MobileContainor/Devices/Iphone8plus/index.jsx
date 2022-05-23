@@ -1,10 +1,8 @@
-import { PureComponent } from 'react';
 import classNames from 'classnames';
-
-import { inCollection } from '../../../../utils/tools';
+import { PureComponent } from 'react';
 import { animalType } from '../../../../utils/constants';
+import { inCollection } from '../../../../utils/tools';
 import ContentView from '../../ContentView';
-
 import styles from '../devices.less';
 
 class Iphone8plus extends PureComponent {

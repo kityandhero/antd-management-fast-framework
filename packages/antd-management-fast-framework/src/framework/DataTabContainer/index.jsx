@@ -1,18 +1,15 @@
-import { Space, Divider } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { PictureOutlined } from '@ant-design/icons';
-
-import { isArray, isObject, isBoolean } from '../../utils/tools';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { Divider, Space } from 'antd';
+import { decorateAvatar } from '../../customComponents/DecorateAvatar';
 import {
-  buildPageHeaderTitle,
-  buildPageHeaderTagWrapper,
   buildPageHeaderContent,
+  buildPageHeaderTagWrapper,
+  buildPageHeaderTitle,
   pageHeaderExtraContent,
 } from '../../customComponents/FunctionComponent';
-import { decorateAvatar } from '../../customComponents/DecorateAvatar';
-
+import { isArray, isBoolean, isObject } from '../../utils/tools';
 import DataSingleView from '../DataSingleView/DataLoad';
-
 import styles from './index.less';
 
 class DataTabContainer extends DataSingleView {

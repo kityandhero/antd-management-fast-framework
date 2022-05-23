@@ -1,24 +1,23 @@
 import { message } from 'antd';
-
-import {
-  isString,
-  recordObject,
-  stringIsNullOrWhiteSpace,
-  isFunction,
-  isUndefined,
-  corsTarget,
-  queryStringify,
-  isObject,
-  notifyInfo,
-  redirectToPath,
-} from './tools';
-import { getToken, clearCustomData } from './globalStorageAssist';
-import remoteRequest from './request';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import { clearCustomData, getToken } from './globalStorageAssist';
+import remoteRequest from './request';
+import {
+  corsTarget,
+  isFunction,
+  isObject,
+  isString,
+  isUndefined,
+  notifyInfo,
+  queryStringify,
+  recordObject,
+  redirectToPath,
+  stringIsNullOrWhiteSpace,
+} from './tools';
 import {
   apiVirtualAccess,
-  apiVirtualSuccessData,
   apiVirtualFailData,
+  apiVirtualSuccessData,
 } from './virtualRequest';
 
 /**

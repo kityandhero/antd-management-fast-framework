@@ -1,6 +1,5 @@
-import classNames from 'classnames';
 import { Avatar, List } from 'antd';
-
+import classNames from 'classnames';
 import styles from './NoticeList.less';
 
 export default function NoticeList({

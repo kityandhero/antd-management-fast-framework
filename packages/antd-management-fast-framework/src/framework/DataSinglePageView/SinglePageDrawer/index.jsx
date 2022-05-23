@@ -1,26 +1,22 @@
-import QueueAnim from 'rc-queue-anim';
+import { ReadOutlined, ReloadOutlined } from '@ant-design/icons';
 import {
-  Drawer,
+  Button,
   Card,
-  List,
+  Col,
   Divider,
+  Drawer,
+  List,
+  Row,
   Tag,
   Tooltip,
-  Button,
-  Row,
-  Col,
 } from 'antd';
-import { ReloadOutlined, ReadOutlined } from '@ant-design/icons';
-
-import { isFunction } from '../../../utils/tools';
-import { listViewConfig, contentConfig } from '../../../utils/constants';
+import QueueAnim from 'rc-queue-anim';
 import { buildListViewItemActionSelect } from '../../../customComponents/FunctionComponent';
-
-import DensityAction from '../../DataListView/DensityAction';
+import { contentConfig, listViewConfig } from '../../../utils/constants';
+import { isFunction } from '../../../utils/tools';
 import ColumnSetting from '../../DataListView/ColumnSetting';
-
+import DensityAction from '../../DataListView/DensityAction';
 import SinglePage from '../SinglePage';
-
 import styles from './index.less';
 
 class SinglePageDrawer extends SinglePage {

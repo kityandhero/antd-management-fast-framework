@@ -1,7 +1,6 @@
-import { PureComponent } from 'react';
-import { Menu, Button, Dropdown, Tooltip } from 'antd';
 import { ColumnHeightOutlined } from '@ant-design/icons';
-
+import { Button, Dropdown, Menu, Tooltip } from 'antd';
+import { PureComponent } from 'react';
 import { listViewConfig } from '../../../utils/constants';
 
 class DensityAction extends PureComponent {

@@ -1,15 +1,14 @@
 import { PictureOutlined } from '@ant-design/icons';
-
-import { isObject } from '../../../utils/tools';
+import BaseNeedlessLoadDrawer from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
 import {
   cardConfig,
+  drawerConfig,
   mobileTypeCollection,
   whetherNumber,
-  drawerConfig,
 } from '../../../utils/constants';
-import BaseNeedlessLoadDrawer from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
-import MobileSimulation from '../MobileSimulation';
+import { isObject } from '../../../utils/tools';
 import { buildOptionItem } from '../../FunctionComponent';
+import MobileSimulation from '../MobileSimulation';
 
 class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
   resetDataAfterLoad = false;

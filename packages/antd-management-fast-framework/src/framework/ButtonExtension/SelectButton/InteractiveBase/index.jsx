@@ -1,10 +1,9 @@
+import { selectModeCollection } from '../../../../utils/constants';
 import {
   isFunction,
   showRuntimeError,
   toNumber,
 } from '../../../../utils/tools';
-import { selectModeCollection } from '../../../../utils/constants';
-
 import Base from '../Base';
 
 class InteractiveBase extends Base {

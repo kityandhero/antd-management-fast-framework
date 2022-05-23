@@ -1,19 +1,16 @@
-import React from 'react';
-import { Form, Tooltip, Button, Avatar, BackTop } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import {
+  ContactsOutlined,
   PlusOutlined,
   RollbackOutlined,
-  ContactsOutlined,
 } from '@ant-design/icons';
-
-import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
-import { pageHeaderRenderType } from '../../../utils/constants';
-import { buildTagList } from '../../../customComponents/FunctionComponent';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { Avatar, BackTop, Button, Form, Tooltip } from 'antd';
+import React from 'react';
 import { avatarImageLoadResultCollection } from '../../../customComponents/DecorateAvatar';
-
+import { buildTagList } from '../../../customComponents/FunctionComponent';
+import { pageHeaderRenderType } from '../../../utils/constants';
+import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
 import BaseView from '../../DataOperation/BaseView';
-
 import styles from './index.less';
 
 class DataCore extends BaseView {

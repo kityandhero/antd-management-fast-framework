@@ -1,13 +1,10 @@
-import { useState, useCallback, useEffect } from 'react';
-import omit from 'omit.js';
-import { Button, Col, Input, Row, Form, message } from 'antd';
-
 import { getCaptchaData } from '@/services/entrance';
-
-import ItemMap from './map';
+import { Button, Col, Form, Input, message, Row } from 'antd';
+import omit from 'omit.js';
+import { useCallback, useEffect, useState } from 'react';
 import EntranceContext from './EntranceContext';
-
 import styles from './index.less';
+import ItemMap from './map';
 
 const FormItem = Form.Item;
 

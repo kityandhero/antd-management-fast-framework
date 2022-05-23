@@ -1,8 +1,8 @@
+import Base from '../../framework/Base';
 import {
   defaultCoreState,
   getDerivedStateFromPropsForUrlParamsCore,
 } from '../../utils/tools';
-import Base from '../../framework/Base';
 
 class Core extends Base {
   lastLoadParams = null;

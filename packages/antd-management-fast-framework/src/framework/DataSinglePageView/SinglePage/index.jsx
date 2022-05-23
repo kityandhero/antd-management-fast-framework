@@ -1,13 +1,11 @@
 import { message } from 'antd';
-
 import {
   defaultListState,
-  stringIsNullOrWhiteSpace,
-  showRuntimeError,
   isUndefined,
+  showRuntimeError,
+  stringIsNullOrWhiteSpace,
   toNumber,
 } from '../../../utils/tools';
-
 import Base from '../../DataListView/Base';
 
 class SinglePage extends Base {

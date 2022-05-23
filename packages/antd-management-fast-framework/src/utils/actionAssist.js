@@ -1,18 +1,17 @@
-import { Modal, message } from 'antd';
-
+import { message, Modal } from 'antd';
 import {
+  getGuid,
+  getPathValue,
   isFunction,
+  isString,
+  isUndefined,
   notifySuccess,
+  recordDebug,
+  recordError,
+  recordObject,
   showErrorMessage,
   showRuntimeError,
-  getGuid,
-  recordObject,
-  getPathValue,
-  isUndefined,
-  recordError,
-  isString,
   stringIsNullOrWhiteSpace,
-  recordDebug,
 } from './tools';
 
 const { confirm } = Modal;

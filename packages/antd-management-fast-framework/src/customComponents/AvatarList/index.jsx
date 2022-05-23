@@ -1,7 +1,6 @@
-import React from 'react';
-import { Tooltip, Avatar } from 'antd';
+import { Avatar, Tooltip } from 'antd';
 import classNames from 'classnames';
-
+import React from 'react';
 import styles from './index.less';
 
 const avatarSizeToClassName = (size) =>
