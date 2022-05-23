@@ -1,7 +1,7 @@
 import RenderAuthorize from '../customComponents/Authorized';
-import { isArray } from './core';
 import { storageKeyCollection } from './globalStorageAssist';
 import { getStringFromLocalStorage } from './localStorageAssist';
+import { isArray } from './typeCheck';
 
 export function getAuthority(str) {
   const authorityString =

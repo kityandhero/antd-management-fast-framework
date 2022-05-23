@@ -1,6 +1,5 @@
 import { getCache, hasCache, setCache } from './cacheAssist';
 import { accessWaySpecialCollection } from './constants';
-import { isArray } from './core';
 import {
   clearLocalStorage,
   getJsonFromLocalStorage,
@@ -9,6 +8,7 @@ import {
   saveJsonToLocalStorage,
   saveStringToLocalStorage,
 } from './localStorageAssist';
+import { isArray } from './typeCheck';
 
 export const storageKeyCollection = {
   token: 'token',
