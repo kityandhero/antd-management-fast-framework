@@ -15,7 +15,6 @@ import {
   isFunction as isFunctionLodash,
   isNull as isNullLodash,
   isObject as isObjectLodash,
-  isString as isStringLodash,
   isUndefined as isUndefinedLodash,
   remove as removeLodash,
   reverse as reverseLodash,
@@ -41,14 +40,11 @@ import {
   emptyDatetime,
   formatCollection,
   listViewConfig,
-  logLevel,
-  logShowMode,
   messageTypeCollection,
   notificationTypeCollection,
   sortOperate,
 } from './constants';
 import {
-  isArray as isArrayCore,
   isBrowser,
   replace as replaceCore,
   stringIsNullOrWhiteSpace as stringIsNullOrWhiteSpaceCore,
@@ -56,8 +52,20 @@ import {
 } from './core';
 import {
   getNearestLocalhostNotifyCache,
+  recordDebug as recordDebugCore,
+  recordError as recordErrorCore,
+  recordInfo as recordInfoCore,
+  recordLog as recordLogCore,
+  recordObject as recordObjectCore,
+  recordText as recordTextCore,
+  recordWarn as recordWarnCore,
   setNearestLocalhostNotifyCache,
 } from './developAssist';
+import {
+  isArray as isArrayCore,
+  isNumber as isNumberCore,
+  isString as isStringCore,
+} from './typeCheck';
 
 export function defaultBaseState() {
   return {
@@ -445,149 +453,6 @@ export function showMessage({
 }
 
 /**
- * 记录日志
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function recordLog(record, showMode, level = logLevel.debug) {
-  let showModeModified =
-    (showMode || null) == null || stringIsNullOrWhiteSpace(showMode)
-      ? logShowMode.unknown
-      : showMode;
-
-  if (
-    !inCollection(
-      [logShowMode.unknown, logShowMode.text, logShowMode.object],
-      showModeModified,
-    )
-  ) {
-    throw new Error(`无效的日志显示模式:${showModeModified}`);
-  }
-
-  if (showModeModified === logShowMode.unknown) {
-    if (isString(record)) {
-      showModeModified = logShowMode.text;
-    } else {
-      showModeModified = logShowMode.object;
-    }
-  }
-
-  if (logShowInConsole() && level === logLevel.debug) {
-    if (showModeModified === logShowMode.text) {
-      const data = { record, level };
-
-      console.log('%c%s', 'color:#00768f;', JSON.stringify(data));
-    }
-
-    if (showModeModified === logShowMode.object) {
-      console.log({ record, level });
-    }
-  }
-
-  if (logShowInConsole() && level === logLevel.warn) {
-    if (showModeModified === logShowMode.text) {
-      const data = { record, level };
-
-      console.log('%c%s', 'color:#ff4f49;', JSON.stringify(data));
-    }
-
-    if (showModeModified === logShowMode.object) {
-      console.log({ record, level });
-    }
-  }
-
-  if (logShowInConsole() && level === logLevel.info) {
-    if (showModeModified === logShowMode.text) {
-      const data = { record, level };
-
-      console.log('%c%s', 'color:#89ca78;', JSON.stringify(data));
-    }
-
-    if (showModeModified === logShowMode.object) {
-      console.log({ record, level });
-    }
-  }
-
-  if (level === logLevel.error) {
-    if (showModeModified === logShowMode.text) {
-      const data = { record, level };
-
-      console.error(JSON.stringify(data));
-    }
-
-    if (showModeModified === logShowMode.object) {
-      console.error({ record, level });
-    }
-  }
-}
-
-export function recordWarn(record) {
-  if (isString(record)) {
-    recordText(record, logLevel.warn);
-  } else {
-    recordObject(record, logLevel.warn);
-  }
-}
-
-export function recordInfo(record) {
-  if (isString(record)) {
-    recordText(record, logLevel.info);
-  } else {
-    recordObject(record, logLevel.info);
-  }
-}
-
-export function recordDebug(record) {
-  if (isString(record)) {
-    recordText(record, logLevel.debug);
-  } else {
-    recordObject(record, logLevel.debug);
-  }
-}
-
-/**
- * 记录错误信息
- */
-export function recordError(record) {
-  if (isString(record)) {
-    recordText(record, logLevel.error);
-  } else {
-    recordObject(record, logLevel.error);
-  }
-}
-
-/**
- * 记录日志
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function recordText(record, level = logLevel.debug) {
-  recordLog(record, logShowMode.text, level);
-}
-
-/**
- * 记录日志
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function recordObject(record, level = logLevel.debug) {
-  recordLog(record, logShowMode.object, level);
-}
-
-function logShowInConsole() {
-  const appInit = getAppInitConfigData();
-  const result = !!(appInit.showLogInConsole || false);
-
-  return result;
-}
-
-/**
  * 获取Guid
  *
  * @export
@@ -788,15 +653,7 @@ export function isDatetime(v) {
  * @returns
  */
 export function isNumber(v) {
-  const str = `${typeof v === 'undefined' ? null : v}`;
-
-  if (str === '') {
-    return false;
-  }
-
-  const regular = /^[0-9]*$/;
-  const re = new RegExp(regular);
-  return re.test(str);
+  return isNumberCore(v);
 }
 
 /**
@@ -1651,7 +1508,7 @@ export function isDate(value) {
  * check value is string
  */
 export function isString(value) {
-  return isStringLodash(value);
+  return isStringCore(value);
 }
 
 /**
@@ -1923,6 +1780,34 @@ export function notify({
         break;
     }
   }, 600);
+}
+
+export function recordLog(record, showMode, level = logLevel.debug) {
+  recordLogCore(record, showMode, level);
+}
+
+export function recordWarn(record) {
+  recordWarnCore(record);
+}
+
+export function recordInfo(record) {
+  recordInfoCore(record);
+}
+
+export function recordDebug(record) {
+  recordDebugCore(record);
+}
+
+export function recordError(record) {
+  recordErrorCore(record);
+}
+
+export function recordText(record, level = logLevel.debug) {
+  recordTextCore(record, level);
+}
+
+export function recordObject(record, level = logLevel.debug) {
+  recordObjectCore(record, level);
 }
 
 export function checkFromConfig({ label, name, helper }) {

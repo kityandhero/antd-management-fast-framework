@@ -1,11 +1,7 @@
 import nodeCache from 'node-cache';
-import {
-  isArray,
-  isNumber,
-  isString,
-  recordError,
-  stringIsNullOrWhiteSpace,
-} from './tools';
+import { stringIsNullOrWhiteSpace } from './core';
+import { recordError } from './developAssist';
+import { isArray, isNumber, isString } from './typeCheck';
 
 function checkKey(key) {
   if (stringIsNullOrWhiteSpace(key)) {

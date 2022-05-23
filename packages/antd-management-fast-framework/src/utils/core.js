@@ -1,9 +1,5 @@
 import { replace as replaceLodash, trim as trimLodash } from 'lodash';
 
-export function isArray(value) {
-  return Array.isArray(value);
-}
-
 export function replace(source, pattern, replacement) {
   return replaceLodash(source, pattern, replacement);
 }

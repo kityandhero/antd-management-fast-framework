@@ -22,6 +22,13 @@ export function getAppInitConfigData() {
   return appInitConfig;
 }
 
+export function logShowInConsole() {
+  const appInit = getAppInitConfigData();
+  const result = !!(appInit.showLogInConsole || false);
+
+  return result;
+}
+
 export function getTinymceImagesUploadUrl() {
   const appInit = getAppInitConfigData();
 
