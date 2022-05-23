@@ -5,7 +5,7 @@ import {
   removeLocalStorage,
   saveJsonToLocalStorage,
   saveStringToLocalStorage,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-framework/es/utils/localStorageAssist';
 
 const storageKeyCollection = {
   metaData: 'metaData',

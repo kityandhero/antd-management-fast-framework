@@ -10,6 +10,6 @@ export const emptyLogo =
  * @export
  * @returns
  */
-export function emptyExport() {
+export function empty() {
   return {};
 }

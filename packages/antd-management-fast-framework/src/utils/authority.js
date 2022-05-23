@@ -6,13 +6,15 @@ import {
 } from './globalStorageAssist';
 import {
   getStringFromLocalStorage,
+  saveJsonToLocalStorage,
+} from './localStorageAssist';
+import {
   getValueByKey,
   isArray,
   isObject,
   isString,
   recordError,
   recordObject,
-  saveJsonToLocalStorage,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from './tools';

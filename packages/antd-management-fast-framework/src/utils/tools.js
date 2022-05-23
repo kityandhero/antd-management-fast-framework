@@ -48,15 +48,16 @@ import {
   sortOperate,
 } from './constants';
 import {
+  isArray as isArrayCore,
   isBrowser,
   replace as replaceCore,
   stringIsNullOrWhiteSpace as stringIsNullOrWhiteSpaceCore,
   trim as trimCore,
 } from './core';
-
-const storageKeyCollection = {
-  nearestLocalhostNotify: 'nearestLocalhostNotify',
-};
+import {
+  getNearestLocalhostNotifyCache,
+  setNearestLocalhostNotifyCache,
+} from './developAssist';
 
 export function defaultBaseState() {
   return {
@@ -1435,174 +1436,12 @@ export function buildFieldDescription(v, op, other) {
 }
 
 /**
- * 获取SessionStorage数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function getStringFromSessionStorage(key) {
-  const storage = window.sessionStorage;
-  const value = storage.getItem(key);
-
-  if (process.env.NODE_ENV === 'development') {
-    return value;
-  }
-
-  const decode = decodeBase64(value);
-  const v = encodeBase64(decode);
-
-  if (value !== v) {
-    return null;
-  }
-
-  return decode;
-}
-
-/**
- * 获取LocalStorage数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function getStringFromLocalStorage(key) {
-  const storage = window.localStorage;
-  const value = storage.getItem(key);
-
-  if (process.env.NODE_ENV === 'development') {
-    return value;
-  }
-
-  const decode = decodeBase64(value);
-  const v = encodeBase64(decode);
-
-  if (value !== v) {
-    return null;
-  }
-
-  return decode;
-}
-
-/**
- * 获取SessionStorage数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function getJsonFromSessionStorage(key) {
-  const jsonString = getStringFromSessionStorage(key);
-
-  if (jsonString) {
-    return JSON.parse(jsonString || '{}');
-  }
-
-  return null;
-}
-
-/**
- * 获取LocalStorage数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function getJsonFromLocalStorage(key) {
-  const jsonString = getStringFromLocalStorage(key);
-
-  if (jsonString) {
-    return JSON.parse(jsonString || '{}');
-  }
-
-  return null;
-}
-
-/**
- * 存储SessionStorage数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function saveStringToSessionStorage(key, value) {
-  const storage = window.sessionStorage;
-
-  if (process.env.NODE_ENV === 'development') {
-    storage.setItem(key, value);
-  } else {
-    storage.setItem(key, encodeBase64(value));
-  }
-}
-
-/**
- * 存储本地数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function saveStringToLocalStorage(key, value) {
-  const storage = window.localStorage;
-
-  if (process.env.NODE_ENV === 'development') {
-    storage.setItem(key, value);
-  } else {
-    storage.setItem(key, encodeBase64(value));
-  }
-}
-
-/**
- * 存储SessionStorage数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function saveJsonToSessionStorage(key, json) {
-  saveStringToSessionStorage(key, JSON.stringify(json || {}));
-}
-
-/**
- * 存储本地数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function saveJsonToLocalStorage(key, json) {
-  saveStringToLocalStorage(key, JSON.stringify(json || {}));
-}
-
-/**
- * 移除SessionStorage数据
- * @export
- * @param {*} key
- */
-export function removeSessionStorage(key) {
-  const storage = window.sessionStorage;
-  storage.removeItem(key);
-}
-
-/**
- * 移除LocalStorage数据
- * @export
- * @param {*} key
- */
-export function removeLocalStorage(key) {
-  const storage = window.localStorage;
-  storage.removeItem(key);
-}
-
-/**
  * 清空SessionStorage数据
  * @export
  * @param {*} key
  */
 export function clearSessionStorage() {
   const storage = window.sessionStorage;
-  storage.clear();
-}
-
-/**
- * 清空LocalStorage数据
- * @export
- * @param {*} key
- */
-export function clearLocalStorage() {
-  const storage = window.localStorage;
   storage.clear();
 }
 
@@ -1716,7 +1555,7 @@ export function isFunction(value) {
 }
 
 export function isArray(value) {
-  return Array.isArray(value);
+  return isArrayCore(value);
 }
 
 export function isObject(o) {
@@ -1924,39 +1763,6 @@ export function checkLocalhost() {
   const hostname = toLower(window.location.hostname);
 
   return hostname === '127.0.0.1' || hostname === 'localhost';
-}
-
-export function getNearestLocalhostNotifyCache() {
-  const key = storageKeyCollection.nearestLocalhostNotify;
-
-  const d = getJsonFromLocalStorage(key);
-
-  if ((d || null) == null) {
-    return null;
-  }
-
-  if ((d.nearestTime || null) == null) {
-    return null;
-  }
-
-  return d || null;
-}
-
-export function setNearestLocalhostNotifyCache() {
-  const key = storageKeyCollection.nearestLocalhostNotify;
-
-  const now = parseInt(new Date().getTime() / 1000, 10);
-
-  const d = {
-    nearestTime: now,
-  };
-
-  return saveJsonToLocalStorage(key, d);
-}
-
-export function removeNearestLocalhostNotifyCache() {
-  const key = storageKeyCollection.nearestLocalhostNotify;
-  removeLocalStorage(key);
 }
 
 /**
