@@ -45,6 +45,7 @@ import {
   sortOperate,
 } from './constants';
 import {
+  inCollection as inCollectionCore,
   isBrowser,
   replace as replaceCore,
   stringIsNullOrWhiteSpace as stringIsNullOrWhiteSpaceCore,
@@ -467,23 +468,7 @@ export function getGuid() {
  * 检测目标是否在数组址之中
  */
 export function inCollection(collection, value) {
-  let result = false;
-
-  if (!isArray(collection)) {
-    return result;
-  }
-
-  collection.some((o) => {
-    if (o === value) {
-      result = true;
-
-      return true;
-    }
-
-    return false;
-  });
-
-  return result;
+  return inCollectionCore(collection, value);
 }
 
 /**

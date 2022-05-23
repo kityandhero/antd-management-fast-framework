@@ -18,7 +18,6 @@ import {
   toNumber,
   toString,
 } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 import { connect } from 'umi';
 import { mediaItemData } from '../Common/data';
 
