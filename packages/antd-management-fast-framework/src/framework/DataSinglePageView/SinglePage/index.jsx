@@ -2,6 +2,7 @@ import { message } from 'antd';
 import {
   defaultListState,
   isUndefined,
+  recordObject,
   showRuntimeError,
   stringIsNullOrWhiteSpace,
   toNumber,
