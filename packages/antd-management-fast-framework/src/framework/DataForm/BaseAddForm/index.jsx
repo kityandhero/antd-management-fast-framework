@@ -15,6 +15,7 @@ import {
   defaultFormState,
   formatDatetime,
   getDerivedStateFromPropsForUrlParams,
+  isFunction,
   isUndefined,
   recordObject,
   showRuntimeError,

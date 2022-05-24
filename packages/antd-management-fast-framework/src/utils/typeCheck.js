@@ -1,10 +1,17 @@
-import { isString as isStringLodash } from 'lodash';
+import {
+  isFunction as isFunctionLodash,
+  isString as isStringLodash,
+} from 'lodash';
 
 /**
  * check value is string
  */
 export function isString(value) {
   return isStringLodash(value);
+}
+
+export function isFunction(value) {
+  return isFunctionLodash(value);
 }
 
 /**

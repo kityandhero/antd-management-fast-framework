@@ -12,7 +12,6 @@ import {
   isDate as isDateLodash,
   isEmpty as isEmptyLodash,
   isEqual as isEqualLodash,
-  isFunction as isFunctionLodash,
   isNull as isNullLodash,
   isObject as isObjectLodash,
   isUndefined as isUndefinedLodash,
@@ -65,6 +64,7 @@ import {
 } from './developAssist';
 import {
   isArray as isArrayCore,
+  isFunction as isFunctionCore,
   isNumber as isNumberCore,
   isString as isStringCore,
 } from './typeCheck';
@@ -1394,7 +1394,7 @@ export function cloneWithoutMethod(value) {
 }
 
 export function isFunction(value) {
-  return isFunctionLodash(value);
+  return isFunctionCore(value);
 }
 
 export function isArray(value) {
