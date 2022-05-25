@@ -95,7 +95,7 @@ class MultiPage extends Base {
 
     const { paramsKey, loadApiPath, formValues, filters, sorter } = this.state;
 
-    if ((loadApiPath || '') === '') {
+    if (stringIsNullOrWhiteSpace(loadApiPath)) {
       const text = 'loadApiPath需要配置';
 
       showRuntimeError({
@@ -108,7 +108,7 @@ class MultiPage extends Base {
     }
 
     if (this.restoreSearch && !!!this.restoreSearchComplete) {
-      if ((paramsKey || '') === '') {
+      if (stringIsNullOrWhiteSpace(paramsKey)) {
         const text = 'paramsKey需要配置';
 
         showRuntimeError({
