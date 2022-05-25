@@ -6,7 +6,7 @@ class BaseLoadModal extends Base {
     if (this.reloadWhenShow) {
       const form = this.getTargetForm();
 
-      if (form != null) {
+      if (form) {
         form.resetFields();
       }
 

@@ -88,7 +88,7 @@ class BaseAddForm extends DataCore {
   handleFormReset = () => {
     const form = this.getTargetForm();
 
-    if (form == null) {
+    if (!form) {
       return;
     }
 

@@ -174,7 +174,10 @@ class BasicInfo extends TabPageBase {
 
   handleFormReset = () => {
     const { form } = this.props;
-    form.resetFields();
+
+    if (form) {
+      form.resetFields();
+    }
 
     this.reloadData();
   };

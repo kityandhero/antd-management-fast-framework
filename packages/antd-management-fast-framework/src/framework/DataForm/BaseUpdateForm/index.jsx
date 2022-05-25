@@ -14,7 +14,7 @@ class BaseUpdateForm extends DataSingleView {
   handleFormReset = () => {
     const form = this.getTargetForm();
 
-    if (form == null) {
+    if (!form) {
       return;
     }
 

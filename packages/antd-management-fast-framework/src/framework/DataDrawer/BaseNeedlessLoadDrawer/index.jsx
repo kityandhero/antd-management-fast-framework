@@ -21,7 +21,7 @@ class BaseNeedlessLoadDrawer extends Base {
   doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
     const form = this.getTargetForm();
 
-    if (form == null) {
+    if (!form) {
       return;
     }
 
