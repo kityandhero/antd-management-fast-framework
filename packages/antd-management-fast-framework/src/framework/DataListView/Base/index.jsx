@@ -297,6 +297,14 @@ class ListBase extends AuthorizationWrapper {
 
     const form = this.getSearchCard();
 
+    if (!form) {
+      const text = '查询表单不存在';
+
+      showErrorMessage({
+        message: text,
+      });
+    }
+
     const { validateFields } = form;
 
     validateFields()

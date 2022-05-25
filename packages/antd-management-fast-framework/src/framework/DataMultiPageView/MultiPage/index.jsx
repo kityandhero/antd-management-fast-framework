@@ -7,6 +7,7 @@ import {
   defaultPageListState,
   isUndefined,
   recordObject,
+  showErrorMessage,
   showRuntimeError,
   showWarnMessage,
   stringIsNullOrWhiteSpace,
@@ -58,7 +59,9 @@ class MultiPage extends Base {
 
     const { pageSize } = this.state;
 
-    form.resetFields();
+    if (form) {
+      form.resetFields();
+    }
 
     this.handleAdditionalSearchReset();
 
@@ -188,6 +191,14 @@ class MultiPage extends Base {
     }
 
     const form = this.getSearchCard();
+
+    if (!form) {
+      const text = '查询表单不存在';
+
+      showErrorMessage({
+        message: text,
+      });
+    }
 
     const { validateFields } = form;
     const { pageSize } = this.state;

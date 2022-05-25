@@ -39,7 +39,7 @@ class SinglePage extends Base {
   handleSearchReset = () => {
     const form = this.getSearchCard();
 
-    if ((form || null) != null) {
+    if (form) {
       form.resetFields();
     }
 
@@ -114,6 +114,14 @@ class SinglePage extends Base {
     }
 
     const form = this.getSearchCard();
+
+    if (!form) {
+      const text = '查询表单不存在';
+
+      showErrorMessage({
+        message: text,
+      });
+    }
 
     const { validateFields } = form;
 
