@@ -8,8 +8,6 @@ exports.run = function (o) {
 
   const package = resolve(`./node_modules/${o}/package.json`);
 
-  console.log(package);
-
   fs.readJson(package)
     .then((packageObj) => {
       const devDependenciesList = [];
