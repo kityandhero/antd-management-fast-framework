@@ -3,6 +3,7 @@
 const { Command } = require("commander");
 const init = require("../src/init");
 const env = require("../src/env");
+const clear = require("../src/clear");
 
 const program = new Command();
 
@@ -13,18 +14,23 @@ program.version(require("../package").version).usage("<command> [options]");
 program
   .command("init")
   .description("quick init your project")
-  .parse(process.argv)
   .action(() => {
     init.run();
   });
 
 program
-  .command("env <name>")
+  .command("env")
   .description("install dev environment")
-  .parse(process.argv)
-  .option("--env <v>", "dev environment from target package")
-  .action((item) => {
-    env.run(item);
+  .option("--agent <char>", "dev environment from target package")
+  .action((a, o) => {
+    env.run(a, o);
+  });
+
+program
+  .command("clear")
+  .description("install dev environment")
+  .action((a, o) => {
+    clear.run(a, o);
   });
 
 program.parse(process.argv);
