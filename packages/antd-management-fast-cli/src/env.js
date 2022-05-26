@@ -37,7 +37,7 @@ exports.run = function (o) {
           packageProject.dependencies = dependencies;
           packageProject.devDependencies = devDependencies;
 
-          fs.writeJson(packagePath, packageProject);
+          fs.writeJson(packageProjectPath, packageProject);
 
           // const listDependencies = [];
           // const listDevDependencies = [];
