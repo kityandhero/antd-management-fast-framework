@@ -6,27 +6,58 @@ const shell = require("shelljs");
 exports.run = function (o) {
   term.green(`install develop environment by ${o}\r`);
 
-  const package = resolve(`./node_modules/${o}/package.json`);
+  const packagePath = resolve(`./node_modules/${o}/package.json`);
+  const packageProjectPath = resolve(`./package.json`);
 
-  fs.readJson(package)
-    .then((packageObj) => {
-      const list = [];
+  fs.readJson(packageProjectPath)
+    .then((packageProject) => {
+      const listDependenciesProject = [];
+      const listDevDependenciesProject = [];
 
-      const dependencies = packageObj.dependencies;
+      const dependenciesProject = packageProject.dependencies;
 
-      Object.entries(dependencies).forEach(([key, value]) => {
-        list.push(`${key}@${value}`);
+      Object.entries(dependenciesProject).forEach(([key, value]) => {
+        listDependenciesProject.push(`${key}@${value}`);
       });
 
-      const devDependencies = packageObj.devDependencies;
+      const devDependenciesProject = packageProject.devDependencies;
 
-      Object.entries(devDependencies).forEach(([key, value]) => {
-        list.push(`${key}@${value}`);
+      Object.entries(devDependenciesProject).forEach(([key, value]) => {
+        listDevDependenciesProject.push(`${key}@${value}`);
       });
 
-      shell.exec(`pnpm add ${list.join(" ")}`);
+      shell.exec(`pnpm remove ${listDependenciesProject.join(" ")} -P`);
 
-      process.exit();
+      shell.exec(`pnpm remove ${listDevDependenciesProject.join(" ")} -D`);
+
+      fs.readJson(packagePath)
+        .then((p) => {
+          const listDependencies = [];
+          const listDevDependencies = [];
+
+          const dependencies = p.dependencies;
+
+          Object.entries(dependencies).forEach(([key, value]) => {
+            listDependencies.push(`${key}@${value}`);
+          });
+
+          const devDependencies = p.devDependencies;
+
+          Object.entries(devDependencies).forEach(([key, value]) => {
+            listDevDependencies.push(`${key}@${value}`);
+          });
+
+          shell.exec(`pnpm add ${listDependencies.join(" ")} -P`);
+
+          shell.exec(`pnpm add ${listDevDependencies.join(" ")} -D`);
+
+          process.exit();
+        })
+        .catch((err) => {
+          console.error(err);
+
+          process.exit();
+        });
     })
     .catch((err) => {
       console.error(err);
