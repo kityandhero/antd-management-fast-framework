@@ -8,4 +8,4 @@ process.title = "antd-management-fast-cli";
 
 program.version(require("../package").version).usage("<command> [options]");
 
-require("./cli-init");
+require("./cli-all");
