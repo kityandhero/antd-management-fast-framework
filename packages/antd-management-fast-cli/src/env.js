@@ -37,7 +37,19 @@ exports.run = function (o) {
           packageProject.dependencies = dependencies;
           packageProject.devDependencies = devDependencies;
 
-          fs.writeJson(packageProjectPath, packageProject);
+          console.log(packageProject);
+
+          fs.writeJson(packageProjectPath, packageProject)
+            .then(() => {
+              term.green(`update package success!\r`);
+
+              process.exit();
+            })
+            .catch((err) => {
+              console.error(err);
+
+              process.exit();
+            });
 
           // const listDependencies = [];
           // const listDevDependencies = [];
@@ -53,8 +65,6 @@ exports.run = function (o) {
           // shell.exec(`pnpm add ${listDependencies.join(" ")} -P`);
 
           // shell.exec(`pnpm add ${listDevDependencies.join(" ")} -D`);
-
-          process.exit();
         })
         .catch((err) => {
           console.error(err);
