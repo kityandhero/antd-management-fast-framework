@@ -11,45 +11,48 @@ exports.run = function (o) {
 
   fs.readJson(packageProjectPath)
     .then((packageProject) => {
-      const listDependenciesProject = [];
-      const listDevDependenciesProject = [];
+      // const dependenciesProject = packageProject.dependencies;
+      // const devDependenciesProject = packageProject.devDependencies;
 
-      const dependenciesProject = packageProject.dependencies;
+      // const listDependenciesProject = [];
+      // const listDevDependenciesProject = [];
 
-      Object.entries(dependenciesProject).forEach(([key, value]) => {
-        listDependenciesProject.push(`${key}@${value}`);
-      });
+      // Object.entries(dependenciesProject).forEach(([key, value]) => {
+      //   listDependenciesProject.push(`${key}@${value}`);
+      // });
 
-      const devDependenciesProject = packageProject.devDependencies;
+      // Object.entries(devDependenciesProject).forEach(([key, value]) => {
+      //   listDevDependenciesProject.push(`${key}@${value}`);
+      // });
 
-      Object.entries(devDependenciesProject).forEach(([key, value]) => {
-        listDevDependenciesProject.push(`${key}@${value}`);
-      });
+      // shell.exec(`pnpm remove ${listDependenciesProject.join(" ")} -P`);
 
-      shell.exec(`pnpm remove ${listDependenciesProject.join(" ")} -P`);
-
-      shell.exec(`pnpm remove ${listDevDependenciesProject.join(" ")} -D`);
+      // shell.exec(`pnpm remove ${listDevDependenciesProject.join(" ")} -D`);
 
       fs.readJson(packagePath)
         .then((p) => {
-          const listDependencies = [];
-          const listDevDependencies = [];
-
           const dependencies = p.dependencies;
-
-          Object.entries(dependencies).forEach(([key, value]) => {
-            listDependencies.push(`${key}@${value}`);
-          });
-
           const devDependencies = p.devDependencies;
 
-          Object.entries(devDependencies).forEach(([key, value]) => {
-            listDevDependencies.push(`${key}@${value}`);
-          });
+          packageProject.dependencies = dependencies;
+          packageProject.devDependencies = devDependencies;
 
-          shell.exec(`pnpm add ${listDependencies.join(" ")} -P`);
+          fs.writeJson(packagePath, packageProject);
 
-          shell.exec(`pnpm add ${listDevDependencies.join(" ")} -D`);
+          // const listDependencies = [];
+          // const listDevDependencies = [];
+
+          // Object.entries(dependencies).forEach(([key, value]) => {
+          //   listDependencies.push(`${key}@${value}`);
+          // });
+
+          // Object.entries(devDependencies).forEach(([key, value]) => {
+          //   listDevDependencies.push(`${key}@${value}`);
+          // });
+
+          // shell.exec(`pnpm add ${listDependencies.join(" ")} -P`);
+
+          // shell.exec(`pnpm add ${listDevDependencies.join(" ")} -D`);
 
           process.exit();
         })
