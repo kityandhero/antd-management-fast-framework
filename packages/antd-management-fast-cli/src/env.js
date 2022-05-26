@@ -10,15 +10,21 @@ exports.run = function (o) {
 
   fs.readJson(package)
     .then((packageObj) => {
-      const devDependenciesList = [];
+      const list = [];
+
+      const dependencies = packageObj.dependencies;
+
+      Object.entries(dependencies).forEach(([key, value]) => {
+        list.push(`${key}@${value}`);
+      });
 
       const devDependencies = packageObj.devDependencies;
 
       Object.entries(devDependencies).forEach(([key, value]) => {
-        devDependenciesList.push(`${key}@${value}`);
+        list.push(`${key}@${value}`);
       });
 
-      shell.exec(`pnpm add ${devDependenciesList.join(" ")}`);
+      shell.exec(`pnpm add ${list.join(" ")}`);
 
       process.exit();
     })
