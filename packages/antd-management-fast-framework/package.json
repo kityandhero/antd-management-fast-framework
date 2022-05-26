@@ -209,6 +209,9 @@
     "umi": "^3.5.24",
     "umi-plugin-custom-extra": "^1.0.12"
   },
+  "peerDependencies": {
+    "umi-plugin-custom-extra": "^1.0.12"
+  },
   "filesOther": [
     "es",
     "lib",
