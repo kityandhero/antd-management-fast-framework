@@ -1,7 +1,6 @@
 const { resolve } = require("path");
 const fs = require("fs-extra");
 const term = require("terminal-kit").terminal;
-const mkdirp = require("mkdirp");
 const download = require("download-git-repo");
 
 const source = "kityandhero/antd-management-fast-template";
