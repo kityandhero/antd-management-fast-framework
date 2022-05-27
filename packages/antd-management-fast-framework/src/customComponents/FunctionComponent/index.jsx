@@ -439,23 +439,7 @@ export function buildDropdown({
 
     if (confirmAdjust) {
       if (isBoolean(confirmAdjust)) {
-        recordObject({
-          key,
-          type,
-          size,
-          icon,
-          text,
-          danger,
-          disabled,
-          hidden,
-          confirm,
-          handleData,
-          handleClick,
-          processing,
-          iconProcessing,
-          style,
-          showIcon,
-        });
+        recordObject(arguments[0]);
 
         throw new Error(
           'buildMenu : confirm property in menu Items not allow bool when check confirm is true.',
@@ -693,13 +677,7 @@ export function buildMenu({
 
   return (
     <Menu
-      onClick={(e) => {
-        const { key } = e;
-
-        handleMenuClick({ key, handleData: r });
-      }}
-    >
-      {listMenuItem.map((o) => {
+      items={listMenuItem.map((o) => {
         const { type, key, icon, text, disabled, hidden, confirm } = o;
 
         if (stringIsNullOrWhiteSpace(key)) {
@@ -766,7 +744,12 @@ export function buildMenu({
 
         return null;
       })}
-    </Menu>
+      onClick={(e) => {
+        const { key } = e;
+
+        handleMenuClick({ key, handleData: r });
+      }}
+    />
   );
 }
 
