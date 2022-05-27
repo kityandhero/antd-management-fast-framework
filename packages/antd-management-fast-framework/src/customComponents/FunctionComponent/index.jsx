@@ -706,12 +706,13 @@ export function buildMenu({
                 disabled={disabled}
                 overlayStyle={{ zIndex: 1060 }}
               >
-                <li
+                <Menu.Item
                   className={styles.menuItemCustom}
                   style={{
                     display: 'inherit',
                     height: '32px',
                   }}
+                  disabled={disabled}
                 >
                   <Button
                     className={styles.menuItemCustomButton}
@@ -726,7 +727,7 @@ export function buildMenu({
                   >
                     <IconInfo icon={icon || <EditOutlined />} text={text} />
                   </Button>
-                </li>
+                </Menu.Item>
               </Popconfirm>
             );
           }
