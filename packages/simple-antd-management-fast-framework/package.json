@@ -1,6 +1,6 @@
 {
   "name": "simple-antd-management-fast-framework",
-  "version": "1.7.56",
+  "version": "1.7.57",
   "private": true,
   "description": "simple-antd-management-fast-framework",
   "keywords": [
@@ -67,7 +67,7 @@
     "@types/lodash.isequal": "^4.5.6",
     "@umijs/plugin-esbuild": "^1.4.1",
     "antd": "^4.20.6",
-    "antd-management-fast-framework": "^1.12.56",
+    "antd-management-fast-framework": "^1.12.57",
     "bizcharts": "^4.1.16",
     "browserslist": "^4.20.3",
     "caniuse-lite": "^1.0.30001344",
