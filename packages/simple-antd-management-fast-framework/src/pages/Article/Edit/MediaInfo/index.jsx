@@ -34,7 +34,6 @@ import {
   stringIsNullOrWhiteSpace,
   toString,
 } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 import { connect } from 'umi';
 import AddMediaItemDrawer from '../../AddMediaItemDrawer';
 import { removeMediaItemAction, setMediaCollectionSortAction } from '../../Assist/action';
@@ -440,7 +439,7 @@ class BasicInfo extends TabPageBase {
               handleMenuClick: ({ key, handleData }) => {
                 this.handleMenuClick({ key, handleData });
               },
-              menuItems: [
+              items: [
                 {
                   key: 'insertItem',
                   icon: <InsertRowBelowOutlined />,

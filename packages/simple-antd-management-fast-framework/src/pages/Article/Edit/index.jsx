@@ -20,7 +20,6 @@ import {
   showInfoMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 import { connect } from 'umi';
 import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
 import { checkNeedUpdateAssist, parseUrlParamsForSetState } from '../Assist/config';
@@ -349,7 +348,7 @@ class Edit extends DataTabContainer {
         }
       },
       handleData: metaData,
-      menuItems: [
+      items: [
         {
           key: 'click1',
           icon: <FormOutlined />,
@@ -443,7 +442,7 @@ class Edit extends DataTabContainer {
             break;
         }
       },
-      menuItems: [
+      items: [
         {
           key: 'extraBarAction1',
           icon: <FormOutlined />,

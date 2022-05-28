@@ -15,12 +15,12 @@ import {
   Col,
   DatePicker,
   Descriptions,
-  Dropdown,
+  Divider,
   Form,
   Input,
   InputNumber,
-  Menu,
   Popconfirm,
+  Popover,
   Radio,
   Row,
   Select,
@@ -41,8 +41,8 @@ import {
   columnFacadeMode,
   datetimeFormat,
   defaultEmptyImage,
+  dropdownExpandItemType,
   listViewConfig,
-  menuType,
   pageHeaderRenderType,
   whetherNumber,
 } from '../../utils/constants';
@@ -318,7 +318,8 @@ export function buildDropdownButton({
   confirm = false,
   handleButtonClick = null,
   handleMenuClick = () => {},
-  menuItems = [],
+  items = [],
+  itemPanelTitle = '',
 }) {
   return buildDropdown({
     key,
@@ -335,7 +336,8 @@ export function buildDropdownButton({
     confirm,
     handleButtonClick,
     handleMenuClick,
-    menuItems,
+    items,
+    itemPanelTitle,
   });
 }
 
@@ -357,7 +359,7 @@ export function buildDropdownEllipsis({
   hidden = false,
   handleData: r,
   handleMenuClick = () => {},
-  menuItems = [],
+  items = [],
 }) {
   return buildDropdown({
     key,
@@ -372,7 +374,7 @@ export function buildDropdownEllipsis({
     hidden,
     handleButtonClick: null,
     handleMenuClick,
-    menuItems,
+    items,
   });
 }
 
@@ -390,7 +392,8 @@ export function buildDropdown({
   hidden = false,
   handleButtonClick = null,
   handleMenuClick = () => {},
-  menuItems = [],
+  items = [],
+  itemPanelTitle = '',
   confirm = false,
   processing = false,
   iconProcessing = <LoadingOutlined />,
@@ -417,7 +420,7 @@ export function buildDropdown({
 
   let button = null;
 
-  if (!isArray(menuItems) || menuItems.length === 0) {
+  if (!isArray(items) || items.length === 0) {
     button = buildButton({
       ...{
         type: typeSource || 'default',
@@ -471,72 +474,127 @@ export function buildDropdown({
       const { placement, title, okText, cancelText } = confirmAdjust;
 
       return (
-        <Popconfirm
-          {...otherProps}
-          placement={placement}
-          title={title || 'confirm:缺少title配置'}
-          onConfirm={() => {
-            handleButtonClick({ handleData: r });
-          }}
-          okText={okText}
-          cancelText={cancelText}
-          disabled={disabled}
-        >
-          <Dropdown.Button
-            type={typeSource || 'default'}
+        <ButtonGroup>
+          <Popconfirm
+            {...otherProps}
+            placement={placement}
+            title={title || 'confirm:缺少title配置'}
+            onConfirm={() => {
+              handleButtonClick({ handleData: r });
+            }}
+            okText={okText}
+            cancelText={cancelText}
+            disabled={disabled}
+          >
+            <Button
+              type={typeSource || 'default'}
+              size={size ?? 'default'}
+              disabled={disabled ?? false}
+            >
+              <IconInfo icon={icon || null} text={text || ''} />
+            </Button>
+          </Popconfirm>
+
+          <Popover
+            {...otherProps}
             placement={placementDropdown || 'bottomRight'}
-            size={size || 'default'}
-            disabled={disabled ?? false}
-            overlay={buildMenu({
+            arrow={arrow}
+            content={buildMenu({
               handleData: r,
               handleMenuClick,
-              menuItems,
+              items,
             })}
+            title={itemPanelTitle}
+            overlayClassName={styles.dropdownExpandOverlay}
           >
-            <IconInfo icon={icon || null} text={text || ''} />
-          </Dropdown.Button>
-        </Popconfirm>
+            <Button
+              style={{
+                height: '100%',
+                paddingTop: 0,
+                paddingBottom: 0,
+                paddingLeft: 3,
+                paddingRight: 3,
+              }}
+            >
+              <EllipsisOutlined
+                style={{
+                  fontSize: 12,
+                }}
+              />
+            </Button>
+          </Popover>
+        </ButtonGroup>
       );
     } else {
       button = (
         <>
-          <Dropdown.Button
-            {...otherProps}
-            type={typeSource || 'default'}
-            placement={placementDropdown || 'bottomRight'}
-            size={size || 'default'}
-            onClick={() => {
-              handleButtonClick({ handleData: r });
-            }}
-            disabled={disabled ?? false}
-            overlay={buildMenu({
-              handleData: r,
-              handleMenuClick,
-              menuItems,
-            })}
-          >
-            <IconInfo icon={icon || null} text={text || ''} />
-          </Dropdown.Button>
+          <ButtonGroup>
+            <Button
+              type={typeSource || 'default'}
+              size={size ?? 'default'}
+              disabled={disabled ?? false}
+              onClick={() => {
+                handleButtonClick({ handleData: r });
+              }}
+            >
+              <IconInfo icon={icon || null} text={text || ''} />
+            </Button>
+
+            <Popover
+              {...otherProps}
+              placement={placementDropdown || 'bottomRight'}
+              arrow={arrow}
+              content={buildMenu({
+                handleData: r,
+                handleMenuClick,
+                items,
+              })}
+              title={itemPanelTitle}
+              overlayClassName={styles.dropdownExpandOverlay}
+            >
+              <Button
+                style={{
+                  height: '100%',
+                  paddingTop: 0,
+                  paddingBottom: 0,
+                  paddingLeft: 3,
+                  paddingRight: 3,
+                }}
+              >
+                <VerticalBox>
+                  <EllipsisOutlined
+                    style={{
+                      fontSize: 12,
+                    }}
+                  />
+                </VerticalBox>
+              </Button>
+            </Popover>
+          </ButtonGroup>
         </>
       );
     }
   } else {
-    button = (
-      <Dropdown
+    button = disabled ? (
+      <Button type={typeSource || 'default'} size={size ?? 'default'} disabled>
+        <IconInfo icon={icon || null} text={text || ''} />
+      </Button>
+    ) : (
+      <Popover
         {...otherProps}
         placement={placementDropdown || 'bottomRight'}
         arrow={arrow}
-        disabled={disabled ?? false}
-        overlay={buildMenu({
+        content={buildMenu({
           handleData: r,
           handleMenuClick,
-          menuItems,
+          items,
         })}
+        title="Title"
       >
         <Button type={typeSource || 'default'} size={size ?? 'default'}>
           <IconInfo icon={icon || null} text={text || ''} />
         </Button>
-      </Dropdown>
+      </Popover>
     );
   }
 
@@ -572,19 +630,19 @@ export function buildDropdown({
 export function buildMenu({
   handleData: r,
   handleMenuClick = () => {},
-  menuItems = [],
+  items = [],
 }) {
   if (!isFunction(handleMenuClick)) {
     throw new Error('buildMenu : handleMenuClick must be function');
   }
 
-  if (!isArray(menuItems)) {
-    throw new Error('buildMenu : menuItems must be array');
+  if (!isArray(items)) {
+    throw new Error('buildMenu : items must be array');
   }
 
-  let listMenuItem = [];
+  let listItem = [];
 
-  (menuItems || []).forEach((o) => {
+  (items || []).forEach((o) => {
     const d = {
       ...{
         withDivider: false,
@@ -594,7 +652,7 @@ export function buildMenu({
         text: '',
         disabled: false,
         hidden: false,
-        type: menuType.menu,
+        type: dropdownExpandItemType.item,
         confirm: false,
       },
       ...(o || {}),
@@ -610,33 +668,38 @@ export function buildMenu({
       });
     }
 
-    if (inCollection([menuType.divider, menuType.menu], type)) {
-      if (withDivider && type === menuType.menu) {
+    if (
+      inCollection(
+        [dropdownExpandItemType.divider, dropdownExpandItemType.item],
+        type,
+      )
+    ) {
+      if (withDivider && type === dropdownExpandItemType.item) {
         const divider = {
           key: getGuid(),
           icon: null,
           text: '',
           disabled,
           hidden,
-          type: menuType.divider,
+          type: dropdownExpandItemType.divider,
         };
 
         if (uponDivider) {
-          listMenuItem.push(divider);
+          listItem.push(divider);
         }
 
-        listMenuItem.push(d);
+        listItem.push(d);
 
         if (!uponDivider) {
-          listMenuItem.push(divider);
+          listItem.push(divider);
         }
       } else {
-        listMenuItem.push(d);
+        listItem.push(d);
       }
     }
   });
 
-  listMenuItem = listMenuItem.map((o) => {
+  listItem = listItem.map((o) => {
     const d = { ...(o || {}) };
 
     const { confirm } = d;
@@ -676,8 +739,8 @@ export function buildMenu({
   });
 
   return (
-    <Menu
-      items={listMenuItem.map((o) => {
+    <div>
+      {listItem.map((o) => {
         const { type, key, icon, text, disabled, hidden, confirm } = o;
 
         if (stringIsNullOrWhiteSpace(key)) {
@@ -690,7 +753,7 @@ export function buildMenu({
           return null;
         }
 
-        if (type === menuType.menu) {
+        if (type === dropdownExpandItemType.item) {
           if (confirm) {
             const { placement, title, handleConfirm, okText, cancelText } =
               confirm;
@@ -706,50 +769,62 @@ export function buildMenu({
                 disabled={disabled}
                 overlayStyle={{ zIndex: 1060 }}
               >
-                <li
-                  className={styles.menuItemCustom}
+                <Button
+                  className={styles.dropdownExpandItemCustomButton}
+                  type="text"
                   style={{
-                    display: 'inherit',
+                    display: 'block',
+                    width: '100%',
+                    textAlign: 'left',
+                    padding: '5px 12px',
+                    border: 0,
                     height: '32px',
                   }}
+                  size="small"
+                  disabled={disabled}
                 >
-                  <Button
-                    className={styles.menuItemCustomButton}
-                    type="text"
-                    style={{
-                      padding: '5px 12px',
-                      border: 0,
-                      height: '32px',
-                    }}
-                    size="small"
-                    disabled={disabled}
-                  >
-                    <IconInfo icon={icon || <EditOutlined />} text={text} />
-                  </Button>
-                </li>
+                  <IconInfo icon={icon || <EditOutlined />} text={text} />
+                </Button>
               </Popconfirm>
             );
           }
 
           return (
-            <Menu.Item key={key} disabled={disabled}>
+            <Button
+              key={key}
+              className={styles.dropdownExpandItemCustomButton}
+              type="text"
+              style={{
+                display: 'block',
+                width: '100%',
+                textAlign: 'left',
+                padding: '5px 12px',
+                border: 0,
+                height: '32px',
+              }}
+              size="small"
+              disabled={disabled}
+              onClick={() => handleConfirm({ key, handleData: r })}
+            >
               <IconInfo icon={icon || <EditOutlined />} text={text} />
-            </Menu.Item>
+            </Button>
           );
         }
 
-        if (type === menuType.divider) {
-          return <Menu.Divider key={key} />;
+        if (type === dropdownExpandItemType.divider) {
+          return (
+            <Divider
+              key={key}
+              style={{
+                margin: 0,
+              }}
+            />
+          );
         }
 
         return null;
       })}
-      onClick={(e) => {
-        const { key } = e;
-
-        handleMenuClick({ key, handleData: r });
-      }}
-    />
+    </div>
   );
 }
 

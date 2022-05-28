@@ -15,7 +15,6 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { getValueByKey, showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 import { connect } from 'umi';
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { refreshCacheAction } from '../Assist/action';
@@ -244,7 +243,7 @@ class PageList extends MultiPage {
           handleMenuClick: ({ key, handleData }) => {
             this.handleMenuClick({ key, handleData });
           },
-          menuItems: [
+          items: [
             {
               key: 'refreshCache',
               icon: <ReloadOutlined />,

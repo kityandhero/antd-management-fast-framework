@@ -38,7 +38,6 @@ import {
   whetherNumber,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { getValueByKey, showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 import { connect } from 'umi';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
@@ -702,7 +701,7 @@ class SingleList extends SinglePage {
           handleMenuClick: ({ key, handleData }) => {
             this.handleMenuClick({ key, handleData });
           },
-          menuItems: [
+          items: [
             {
               key: 'showUpdateBasicInfoDrawer',
               withDivider: true,

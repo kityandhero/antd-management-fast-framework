@@ -153,9 +153,9 @@ export const formatCollection = {
   percentage: 'percentage',
 };
 
-export const menuType = {
+export const dropdownExpandItemType = {
   divider: 'divider',
-  menu: 'menu',
+  item: 'item',
 };
 
 export const imageContentPreviewMode = {

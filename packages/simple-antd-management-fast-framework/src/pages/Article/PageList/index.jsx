@@ -45,7 +45,6 @@ import {
   replaceTargetText,
   showInfoMessage,
 } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 import { connect } from 'umi';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
@@ -885,7 +884,7 @@ class PageList extends MultiPage {
           handleMenuClick: ({ key, handleData }) => {
             this.handleMenuClick({ key, handleData });
           },
-          menuItems: [
+          items: [
             {
               key: 'showUpdateBasicInfoDrawer',
               withDivider: true,
