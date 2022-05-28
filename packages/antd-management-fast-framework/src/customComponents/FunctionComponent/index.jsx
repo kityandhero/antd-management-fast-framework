@@ -360,6 +360,7 @@ export function buildDropdownEllipsis({
   handleData: r,
   handleMenuClick = () => {},
   items = [],
+  itemPanelTitle = '',
 }) {
   return buildDropdown({
     key,
@@ -375,6 +376,7 @@ export function buildDropdownEllipsis({
     handleButtonClick: null,
     handleMenuClick,
     items,
+    itemPanelTitle,
   });
 }
 
@@ -618,7 +620,8 @@ export function buildDropdown({
           handleMenuClick,
           items,
         })}
-        title="Title"
+        title={itemPanelTitle}
+        overlayClassName={styles.dropdownExpandOverlay}
       >
         <Button type={typeSource || 'default'} size={size ?? 'default'}>
           <IconInfo icon={icon || null} text={text || ''} />

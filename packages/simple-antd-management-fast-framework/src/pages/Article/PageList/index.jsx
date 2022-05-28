@@ -884,7 +884,6 @@ class PageList extends MultiPage {
           handleMenuClick: ({ key, handleData }) => {
             this.handleMenuClick({ key, handleData });
           },
-          // itemPanelTitle: '123',
           items: [
             {
               key: 'showUpdateBasicInfoDrawer',

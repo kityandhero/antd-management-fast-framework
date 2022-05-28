@@ -3,7 +3,6 @@ import { TeamOutlined } from '@ant-design/icons';
 import { buildMenuHeaderRender } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
 import { stringIsNullOrWhiteSpace } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 
 export const defaultFooterData = {
   copyright: defaultSettings.getCopyright(),
