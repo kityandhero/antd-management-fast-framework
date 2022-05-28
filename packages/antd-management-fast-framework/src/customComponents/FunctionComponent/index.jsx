@@ -473,73 +473,40 @@ export function buildDropdown({
     if (confirmAdjust) {
       const { placement, title, okText, cancelText } = confirmAdjust;
 
-      return (
-        <ButtonGroup>
-          <Popconfirm
-            {...otherProps}
-            placement={placement}
-            title={title || 'confirm:缺少title配置'}
-            onConfirm={() => {
-              handleButtonClick({ handleData: r });
-            }}
-            okText={okText}
-            cancelText={cancelText}
-            disabled={disabled}
-          >
-            <Button
-              type={typeSource || 'default'}
-              size={size ?? 'default'}
-              disabled={disabled ?? false}
-            >
-              <IconInfo icon={icon || null} text={text || ''} />
-            </Button>
-          </Popconfirm>
-
-          <Popover
-            {...otherProps}
-            placement={placementDropdown || 'bottomRight'}
-            arrow={arrow}
-            content={buildMenu({
-              handleData: r,
-              handleMenuClick,
-              items,
-            })}
-            title={itemPanelTitle}
-            overlayClassName={styles.dropdownExpandOverlay}
-          >
-            <Button
-              style={{
-                height: '100%',
-                paddingTop: 0,
-                paddingBottom: 0,
-                paddingLeft: 3,
-                paddingRight: 3,
-              }}
-            >
-              <EllipsisOutlined
-                style={{
-                  fontSize: 12,
-                }}
-              />
-            </Button>
-          </Popover>
-        </ButtonGroup>
-      );
-    } else {
       button = (
-        <>
-          <ButtonGroup>
-            <Button
-              type={typeSource || 'default'}
-              size={size ?? 'default'}
-              disabled={disabled ?? false}
-              onClick={() => {
+        <FlexBox
+          flexAuto="left"
+          style={{
+            border: '1px solid #d9d9d9',
+            borderRadius: '4px',
+          }}
+          leftStyle={{
+            borderRight: '1px solid #d9d9d9',
+          }}
+          left={
+            <Popconfirm
+              placement={placement}
+              title={title || 'confirm:缺少title配置'}
+              onConfirm={() => {
                 handleButtonClick({ handleData: r });
               }}
+              okText={okText}
+              cancelText={cancelText}
+              disabled={disabled}
             >
-              <IconInfo icon={icon || null} text={text || ''} />
-            </Button>
-
+              <Button
+                type={typeSource || 'default'}
+                style={{
+                  border: 0,
+                }}
+                size={size ?? 'default'}
+                disabled={disabled ?? false}
+              >
+                <IconInfo icon={icon || null} text={text || ''} />
+              </Button>
+            </Popconfirm>
+          }
+          right={
             <Popover
               {...otherProps}
               placement={placementDropdown || 'bottomRight'}
@@ -556,6 +523,7 @@ export function buildDropdown({
                 style={{
                   height: '100%',
                   paddingTop: 0,
+                  border: 0,
                   paddingBottom: 0,
                   paddingLeft: 3,
                   paddingRight: 3,
@@ -570,8 +538,69 @@ export function buildDropdown({
                 </VerticalBox>
               </Button>
             </Popover>
-          </ButtonGroup>
-        </>
+          }
+        />
+      );
+    } else {
+      button = (
+        <FlexBox
+          flexAuto="left"
+          style={{
+            border: '1px solid #d9d9d9',
+            borderRadius: '4px',
+          }}
+          leftStyle={{
+            borderRight: '1px solid #d9d9d9',
+          }}
+          left={
+            <Button
+              type={typeSource || 'default'}
+              style={{
+                border: 0,
+              }}
+              size={size ?? 'default'}
+              disabled={disabled ?? false}
+              onClick={() => {
+                handleButtonClick({ handleData: r });
+              }}
+            >
+              <IconInfo icon={icon || null} text={text || ''} />
+            </Button>
+          }
+          right={
+            <Popover
+              {...otherProps}
+              placement={placementDropdown || 'bottomRight'}
+              arrow={arrow}
+              content={buildMenu({
+                handleData: r,
+                handleMenuClick,
+                items,
+              })}
+              title={itemPanelTitle}
+              overlayClassName={styles.dropdownExpandOverlay}
+            >
+              <Button
+                style={{
+                  height: '100%',
+                  border: 0,
+                  paddingTop: 0,
+                  paddingBottom: 0,
+                  paddingLeft: 3,
+                  paddingRight: 3,
+                }}
+              >
+                <VerticalBox>
+                  <EllipsisOutlined
+                    style={{
+                      fontSize: 12,
+                    }}
+                  />
+                </VerticalBox>
+              </Button>
+            </Popover>
+          }
+        />
       );
     }
   } else {
@@ -740,6 +769,12 @@ export function buildMenu({
 
   return (
     <div>
+      <div
+        style={{
+          height: '4px',
+        }}
+      />
+
       {listItem.map((o) => {
         const { type, key, icon, text, disabled, hidden, confirm } = o;
 
@@ -804,7 +839,7 @@ export function buildMenu({
               }}
               size="small"
               disabled={disabled}
-              onClick={() => handleConfirm({ key, handleData: r })}
+              onClick={() => handleMenuClick({ key, handleData: r })}
             >
               <IconInfo icon={icon || <EditOutlined />} text={text} />
             </Button>
@@ -824,6 +859,12 @@ export function buildMenu({
 
         return null;
       })}
+
+      <div
+        style={{
+          height: '4px',
+        }}
+      />
     </div>
   );
 }

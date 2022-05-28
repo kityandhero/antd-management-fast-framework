@@ -884,17 +884,18 @@ class PageList extends MultiPage {
           handleMenuClick: ({ key, handleData }) => {
             this.handleMenuClick({ key, handleData });
           },
+          // itemPanelTitle: '123',
           items: [
             {
               key: 'showUpdateBasicInfoDrawer',
-              withDivider: true,
-              uponDivider: true,
               icon: <EditOutlined />,
               text: '编辑[侧拉]',
               hidden: !this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission),
             },
             {
               key: 'setOnline',
+              withDivider: true,
+              uponDivider: true,
               icon: <PlayCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
               text: '设为上线',
               hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
