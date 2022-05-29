@@ -1,4 +1,3 @@
-import { accessWayCollection } from '@/customConfig/config';
 import {
   ArrowDownOutlined,
   ArrowUpOutlined,
@@ -10,13 +9,15 @@ import {
   ReloadOutlined,
 } from '@ant-design/icons';
 import { Button, List, Space } from 'antd';
+import { connect } from 'umi';
+
 import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
 import {
   buildCustomGrid,
   buildDropdownButton,
+  buildIconInfoList,
   buildListViewItemExtra,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
 import StatusBar from 'antd-management-fast-framework/es/customComponents/StatusBar';
 import {
   cardConfig,
@@ -34,7 +35,9 @@ import {
   stringIsNullOrWhiteSpace,
   toString,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { connect } from 'umi';
+
+import { accessWayCollection } from '@/customConfig/config';
+
 import AddMediaItemDrawer from '../../AddMediaItemDrawer';
 import { removeMediaItemAction, setMediaCollectionSortAction } from '../../Assist/action';
 import { parseUrlParamsForSetState } from '../../Assist/config';
@@ -423,11 +426,23 @@ class BasicInfo extends TabPageBase {
           )}
 
           <StatusBar
-            actions={[
-              <IconInfo textPrefix={mediaItemData.id.label} text={mediaItemId} canCopy />,
-              <IconInfo textPrefix={mediaItemData.sort.label} text={toString(sort)} />,
-              <IconInfo textPrefix={mediaItemData.createTime.label} text={createTime} />,
-            ]}
+            actions={buildIconInfoList({
+              list: [
+                {
+                  textPrefix: mediaItemData.id.label,
+                  text: mediaItemId,
+                  canCopy: true,
+                },
+                {
+                  textPrefix: mediaItemData.sort.label,
+                  text: toString(sort),
+                },
+                {
+                  textPrefix: mediaItemData.createTime.label,
+                  text: createTime,
+                },
+              ],
+            })}
             extra={buildDropdownButton({
               size: 'small',
               text: '编辑',
@@ -561,7 +576,7 @@ class BasicInfo extends TabPageBase {
   };
 
   establishCardCollectionConfig = () => {
-    const { processing, dataLoading, mediaItemList } = this.state;
+    const { mediaItemList } = this.state;
 
     const spinning = this.checkInProgress();
 
