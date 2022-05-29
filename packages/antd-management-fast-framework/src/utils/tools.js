@@ -864,6 +864,10 @@ export function getPathValue(o, path, defaultValue = null) {
   }
 
   if (!isString(path)) {
+    recordError({
+      path,
+    });
+
     const text = 'getPathValue Function param path must be string';
 
     showRuntimeError({
