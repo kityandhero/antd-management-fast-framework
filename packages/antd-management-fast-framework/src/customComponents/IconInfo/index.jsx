@@ -27,7 +27,7 @@ const defaultValue = {
   text: '',
   textStyle: null,
   textFormat: null,
-  separator: '：',
+  separator: ': ',
   separatorStyle: null,
   style: null,
   ellipsisMaxWidth: 0,

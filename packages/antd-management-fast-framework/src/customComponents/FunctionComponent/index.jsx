@@ -1476,6 +1476,44 @@ export function buildTagList({ list = [] }) {
   );
 }
 
+export function buildIconInfoList({ list = [] }) {
+  if (!isArray(list)) {
+    return [];
+  }
+
+  if (list.length === 0) {
+    return [];
+  }
+
+  const l = [];
+
+  list.forEach((o, index) => {
+    const { hidden, ...other } = {
+      ...IconInfo.defaultProps,
+      ...(o || {}),
+      ...{
+        key: `icon_info_item_${index}`,
+      },
+    };
+
+    if (!hidden) {
+      l.push({
+        ...other,
+      });
+    }
+  });
+
+  if (l.length <= 0) {
+    return [];
+  }
+
+  return l.map((o) => {
+    const { key, ...other } = o;
+
+    return <IconInfo key={key} {...other} />;
+  });
+}
+
 export function buildListViewItemActionSelect({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   index,
