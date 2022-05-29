@@ -1,157 +1,106 @@
-import { Alert } from 'antd';
-import EntranceFrom from 'antd-management-fast-framework/es/customComponents/Entrance';
-import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
-import React, { useState } from 'react';
+import { LoadingOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LoginForm, ProFormText } from '@ant-design/pro-components';
+import { Button } from 'antd';
+import { PureComponent } from 'react';
 import { connect } from 'umi';
-import styles from './style.less';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = EntranceFrom;
+import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
 
-const EntranceMessage = ({ content }) => (
-  <Alert
-    style={{
-      marginBottom: 24,
-    }}
-    message={content}
-    type="error"
-    showIcon
-  />
-);
+import { signInAction } from './Assist/action';
 
-const Entrance = (props) => {
-  const { entrance = {}, submitting } = props;
-  const { status, type: entranceType } = entrance;
-  const [type, setType] = useState('account');
-  const [autoSignIn, setAutoSignIn] = useState('account');
+import { defaultSettings } from '@/defaultSettings';
 
-  const handleSubmit = (values) => {
-    const { dispatch } = props;
+@connect(({ entrance, global }) => ({
+  entrance,
+  global,
+}))
+class Entrance extends PureComponent {
+  constructor(props) {
+    super(props);
 
-    const signInType = 'entrance/signIn';
+    this.state = {
+      ...this.state,
+      ...{
+        type: 'account',
+        processing: false,
+      },
+    };
+  }
 
-    recordDebug(`modal access: ${signInType}`);
+  signIn = (values) => {
+    const that = this;
 
-    dispatch({
-      type: signInType,
-      payload: { ...values, type },
+    that.setState({ processing: true });
+
+    signInAction({
+      target: this,
+      handleData: values,
+      successCallback: () => {
+        that.setState({
+          processing: false,
+        });
+      },
     });
   };
 
-  return (
-    <div className={styles.main}>
-      <EntranceFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
-        <>
-          {status === 'error' && entranceType === 'account' && !submitting && (
-            <EntranceMessage content="账户或密码错误（admin/ant.design）" />
-          )}
+  render() {
+    const { type: loginType, processing } = this.state;
 
-          <UserName
-            name="name"
-            placeholder="用户名: admin or user"
-            rules={[
-              {
-                required: true,
-                message: '请输入用户名!',
-              },
-            ]}
-          />
-          <Password
-            name="psw"
-            placeholder="密码: ant.design"
-            rules={[
-              {
-                required: true,
-                message: '请输入密码！',
-              },
-            ]}
-          />
-        </>
-        <Tab key="signIn" tab="账户密码登录">
-          {status === 'error' && entranceType === 'account' && !submitting && (
-            <EntranceMessage content="账户或密码错误（admin/ant.design）" />
-          )}
+    return (
+      <LoginForm
+        logo={<img alt="logo" src={defaultSettings.getShareLogo()} />}
+        title={defaultSettings.getAppName() || '未设置名称'}
+        subTitle={defaultSettings.getAppDescription() || ''}
+        initialValues={{
+          autoLogin: true,
+        }}
+        submitter={!processing}
+        onFinish={(values) => {
+          this.signIn(values);
+        }}
+      >
+        {loginType === 'account' && (
+          <>
+            <ProFormText
+              name="name"
+              fieldProps={{
+                size: 'large',
+                prefix: <UserOutlined />,
+              }}
+              placeholder="用户名"
+              rules={[
+                {
+                  required: true,
+                  message: '请输入用户名!',
+                },
+              ]}
+            />
 
-          <UserName
-            name="name"
-            placeholder="用户名: admin or user"
-            rules={[
-              {
-                required: true,
-                message: '请输入用户名!',
-              },
-            ]}
-          />
-          <Password
-            name="psw"
-            placeholder="密码: ant.design"
-            rules={[
-              {
-                required: true,
-                message: '请输入密码！',
-              },
-            ]}
-          />
-        </Tab>
-        {/* <Tab key="mobile" tab="手机号登录">
-          {status === 'error' && entranceType === 'mobile' && !submitting && (
-            <EntranceMessage content="验证码错误" />
-          )}
-          <Mobile
-            name="mobile"
-            placeholder="手机号"
-            rules={[
-              {
-                required: true,
-                message: '请输入手机号！',
-              },
-              {
-                pattern: /^1\d{10}$/,
-                message: '手机号格式错误！',
-              },
-            ]}
-          />
-          <Captcha
-            name="captcha"
-            placeholder="验证码"
-            countDown={120}
-            getCaptchaButtonText=""
-            getCaptchaSecondText="秒"
-            rules={[
-              {
-                required: true,
-                message: '请输入验证码！',
-              },
-            ]}
-          />
-        </Tab>
-        <div>
-          <Checkbox checked={autoSignIn} onChange={(e) => setAutoSignIn(e.target.checked)}>
-            自动登录
-          </Checkbox>
-          <a
-            style={{
-              float: 'right',
-            }}
-          >
-            忘记密码
-          </a>
-        </div> */}
-        <Submit loading={submitting}>登录</Submit>
-        {/* <div className={styles.other}>
-          其他登录方式
-          <AlipayCircleOutlined className={styles.icon} />
-          <TaobaoCircleOutlined className={styles.icon} />
-          <WeiboCircleOutlined className={styles.icon} />
-          <Link className={styles.signUp} to="/entrance/signUp">
-            注册账户
-          </Link>
-        </div> */}
-      </EntranceFrom>
-    </div>
-  );
-};
+            <ProFormText.Password
+              name="psw"
+              fieldProps={{
+                size: 'large',
+                prefix: <LockOutlined />,
+              }}
+              placeholder="密码"
+              rules={[
+                {
+                  required: true,
+                  message: '请输入密码！',
+                },
+              ]}
+            />
+          </>
+        )}
 
-export default connect(({ entrance, loading }) => ({
-  entrance,
-  submitting: loading.effects['entrance/signIn'],
-}))(Entrance);
+        {processing ? (
+          <Button block type="primary" size="large" disabled>
+            <IconInfo icon={<LoadingOutlined />} text="登陆中" />
+          </Button>
+        ) : null}
+      </LoginForm>
+    );
+  }
+}
+
+export default Entrance;

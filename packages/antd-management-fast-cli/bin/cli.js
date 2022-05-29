@@ -21,7 +21,8 @@ program
 program
   .command("env")
   .description("install dev environment")
-  .option("--agent <char>", "dev environment from target package")
+  .option("--agent <char>", "dev environment from target remote package")
+  .option("--file <char>", "dev environment from target local package")
   .action((a, o) => {
     env.run(a, o);
   });

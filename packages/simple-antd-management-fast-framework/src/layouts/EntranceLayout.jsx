@@ -4,9 +4,9 @@ import { DefaultFooter, getMenuData, getPageTitle } from '@ant-design/pro-layout
 import Bubbly from 'antd-management-fast-framework/es/customComponents/Canvas/Bubbly';
 import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
 import VerticalBox from 'antd-management-fast-framework/es/customComponents/VerticalBox';
-import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { connect, Link } from 'umi';
+import { connect } from 'umi';
+
 import styles from './EntranceLayout.less';
 
 const UserLayout = (props) => {
@@ -53,24 +53,7 @@ const UserLayout = (props) => {
             }}
           >
             <div className={styles.content}>
-              <div className={styles.top}>
-                <div className={styles.header}>
-                  <Link to="#">
-                    {defaultSettings.getShowLogoInEntrance() ? (
-                      <img
-                        alt="logo"
-                        className={styles.logo}
-                        src={defaultSettings.getShareLogo()}
-                      />
-                    ) : null}
-                    <span className={styles.title}>
-                      {defaultSettings.getAppName() || '未设置名称'}
-                    </span>
-                  </Link>
-                </div>
-                <div className={styles.desc}>{defaultSettings.getAppDescription() || ''}</div>
-                {children}
-              </div>
+              <div className={styles.top}>{children}</div>
             </div>
           </VerticalBox>
         }

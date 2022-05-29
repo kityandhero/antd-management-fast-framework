@@ -9,36 +9,41 @@ const { HttpsProxyAgent } = agent;
 
 exports.run = async function (s, o) {
   const {
-    _optionValues: { agent },
+    _optionValues: { agent, file },
   } = o;
+
+  let packageTempPath = "";
 
   if (agent) {
     console.log(`agent: ${agent}`);
+
+    const packageUrl =
+      "https://raw.githubusercontent.com/kityandhero/antd-management-fast-framework/master/packages/antd-management-fast-framework/package.json";
+
+    await download(packageUrl, resolve(`./temp`), {
+      ...(agent
+        ? {
+            agent: {
+              https: new HttpsProxyAgent({
+                keepAlive: true,
+                keepAliveMsecs: 1000,
+                maxSockets: 256,
+                maxFreeSockets: 256,
+                scheduling: "lifo",
+                proxy: agent,
+              }),
+            },
+          }
+        : {}),
+    });
+
+    term.green(`install develop environment by repo:main\r`);
+
+    packageTempPath = resolve(`./temp/package.json`);
+  } else {
+    packageTempPath = resolve(file);
   }
 
-  const packageUrl =
-    "https://raw.githubusercontent.com/kityandhero/antd-management-fast-framework/master/packages/antd-management-fast-framework/package.json";
-
-  await download(packageUrl, resolve(`./temp`), {
-    ...(agent
-      ? {
-          agent: {
-            https: new HttpsProxyAgent({
-              keepAlive: true,
-              keepAliveMsecs: 1000,
-              maxSockets: 256,
-              maxFreeSockets: 256,
-              scheduling: "lifo",
-              proxy: agent,
-            }),
-          },
-        }
-      : {}),
-  });
-
-  term.green(`install develop environment by repo:main\r`);
-
-  const packageTempPath = resolve(`./temp/package.json`);
   const packageProjectPath = resolve(`./package.json`);
 
   fs.readJson(packageTempPath)
