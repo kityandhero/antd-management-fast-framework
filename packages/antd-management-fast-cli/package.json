@@ -36,6 +36,7 @@
     "download-git-repo": "^3.0.2",
     "fs-extra": "^10.0.1",
     "hpagent": "^1.0.0",
+    "ping": "^0.4.2",
     "shelljs": "^0.8.5",
     "terminal-kit": "^2.4.0"
   },
