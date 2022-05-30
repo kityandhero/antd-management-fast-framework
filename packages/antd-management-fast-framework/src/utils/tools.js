@@ -1530,6 +1530,11 @@ export function encodeBase64(target) {
   return encodeBase64Core(target);
 }
 
+/**
+ * 补零
+ * @param {*} val
+ * @returns
+ */
 export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
 }
