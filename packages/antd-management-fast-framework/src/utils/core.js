@@ -45,6 +45,26 @@ export function inCollection(collection, value) {
 }
 
 /**
+ * base64解码
+ */
+export function decodeBase64(target) {
+  let commonContent = (target || '').replace(/\s/g, '+');
+
+  commonContent = Buffer.from(commonContent, 'base64').toString();
+
+  return commonContent;
+}
+
+/**
+ * base64编码
+ */
+export function encodeBase64(target) {
+  const base64Content = Buffer.from(target).toString('base64');
+
+  return base64Content;
+}
+
+/**
  * 占位函数
  *
  * @export

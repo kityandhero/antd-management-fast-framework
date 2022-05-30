@@ -45,6 +45,8 @@ import {
   sortOperate,
 } from './constants';
 import {
+  decodeBase64 as decodeBase64Core,
+  encodeBase64 as encodeBase64Core,
   inCollection as inCollectionCore,
   isBrowser,
   replace as replaceCore,
@@ -1518,17 +1520,14 @@ export function stringIsNullOrWhiteSpace(value) {
  * base64解码
  */
 export function decodeBase64(target) {
-  let commonContent = (target || '').replace(/\s/g, '+');
-  commonContent = Buffer.from(commonContent, 'base64').toString();
-  return commonContent;
+  return decodeBase64Core(target);
 }
 
 /**
  * base64编码
  */
 export function encodeBase64(target) {
-  const base64Content = Buffer.from(target).toString('base64');
-  return base64Content;
+  return encodeBase64Core(target);
 }
 
 export function fixedZero(val) {

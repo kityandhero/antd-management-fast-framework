@@ -1,3 +1,5 @@
+import { decodeBase64, encodeBase64 } from './core';
+
 /**
  * 获取SessionStorage数据
  * @export
