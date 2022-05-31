@@ -64,6 +64,8 @@ import {
   ShopOutlined,
   ShoppingCartOutlined,
   ShoppingOutlined,
+  SortAscendingOutlined,
+  SortDescendingOutlined,
   SoundOutlined,
   SwapOutlined,
   SyncOutlined,
@@ -1047,6 +1049,8 @@ export const iconCollection = {
   link: <LinkOutlined />,
   checkCircle: <CheckCircleOutlined />,
   warningCircle: <ExclamationCircleOutlined />,
+  sortAscending: <SortAscendingOutlined />,
+  sortDescending: <SortDescendingOutlined />,
 };
 
 /**
