@@ -15,7 +15,6 @@ import {
   defaultFormState,
   formatDatetime,
   getDerivedStateFromPropsForUrlParams,
-  isFunction,
   isUndefined,
   recordObject,
   showRuntimeError,
@@ -149,10 +148,6 @@ class BaseAddForm extends DataCore {
                           responseOriginalData: remoteData || null,
                           submitData: submitData || null,
                         });
-                      }
-
-                      if (isFunction(afterSubmitCallback)) {
-                        afterSubmitCallback();
                       }
                     }
 
