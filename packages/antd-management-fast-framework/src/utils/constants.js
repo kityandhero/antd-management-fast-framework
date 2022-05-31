@@ -32,6 +32,7 @@ import {
   LeftCircleOutlined,
   LeftOutlined,
   LineOutlined,
+  LinkOutlined,
   LoadingOutlined,
   LockOutlined,
   LoginOutlined,
@@ -40,6 +41,7 @@ import {
   MessageOutlined,
   PauseCircleOutlined,
   PhoneOutlined,
+  PictureOutlined,
   PlayCircleOutlined,
   PlusCircleOutlined,
   PlusOutlined,
@@ -1039,6 +1041,8 @@ export const iconCollection = {
   leftCircle: <LeftCircleOutlined />,
   right: <RightOutlined />,
   rightCircle: <RightCircleOutlined />,
+  picture: <PictureOutlined />,
+  link: <LinkOutlined />,
 };
 
 /**
