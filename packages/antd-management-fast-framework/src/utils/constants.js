@@ -4,6 +4,7 @@ import {
   ArrowRightOutlined,
   ArrowUpOutlined,
   BellOutlined,
+  CheckCircleOutlined,
   ClearOutlined,
   ClockCircleOutlined,
   CloseCircleOutlined,
@@ -17,6 +18,7 @@ import {
   DownOutlined,
   EditOutlined,
   EllipsisOutlined,
+  ExclamationCircleOutlined,
   ExportOutlined,
   EyeOutlined,
   FilterOutlined,
@@ -1043,6 +1045,8 @@ export const iconCollection = {
   rightCircle: <RightCircleOutlined />,
   picture: <PictureOutlined />,
   link: <LinkOutlined />,
+  checkCircle: <CheckCircleOutlined />,
+  warningCircle: <ExclamationCircleOutlined />,
 };
 
 /**
