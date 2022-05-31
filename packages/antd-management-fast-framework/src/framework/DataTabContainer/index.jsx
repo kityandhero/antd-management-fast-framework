@@ -250,6 +250,7 @@ class DataTabContainer extends DataSingleView {
         // }}
       >
         {children}
+
         {this.renderOther()}
       </PageHeaderWrapper>
     );

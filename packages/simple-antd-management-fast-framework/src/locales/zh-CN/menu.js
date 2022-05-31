@@ -17,12 +17,11 @@ export default {
   'menu.news.article.edit.contentInfo': '媒体信息',
   'menu.news.article.edit.mediaInfo': '媒体信息',
 
-  'menu.currentSupplier': '供应商中心',
-  'menu.currentSupplier.editRedirect': '供应商中心',
-  'menu.currentSupplier.edit': '供应商中心',
-  'menu.currentSupplier.edit.basicInfo': '基本设置',
-  'menu.currentSupplier.edit.settlement': '结算记录',
-  'menu.currentSupplier.edit.settlement.pageList': '记录列表',
+  'menu.flowEditor': '流程图',
+  'menu.flowEditor.editor': '编辑器',
+
+  'menu.currentSystem': '系统设置',
+  'menu.currentSystem.basicInfo': '基本设置',
 
   'menu.currentOperator': '个人中心',
   'menu.currentOperator.center': '个人中心',

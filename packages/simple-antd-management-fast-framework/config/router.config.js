@@ -119,6 +119,50 @@ export default [
         ],
       },
       {
+        path: '/flowEditor',
+        name: 'flowEditor',
+        icon: 'tool',
+        routes: [
+          {
+            path: '/flowEditor',
+            redirect: '/flowEditor/editor',
+          },
+          {
+            path: '/flowEditor/editor',
+            name: 'editor',
+            icon: 'bars',
+            component: './FlowEditor/Editor',
+            routes: [
+              {
+                path: '/flowEditor/editor',
+                redirect: '/flowEditor/editor/design',
+              },
+              {
+                path: '/flowEditor/editor/design',
+                component: './flowEditor/Editor/Design',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: '/currentSystem',
+        name: 'currentSystem',
+        icon: 'user',
+        component: './CurrentSystem/Edit',
+        routes: [
+          {
+            path: '/currentSystem',
+            redirect: '/currentSystem/basicInfo',
+          },
+          {
+            path: '/currentSystem/basicInfo',
+            name: 'basicInfo',
+            component: './CurrentSystem/Edit/BasicInfo',
+          },
+        ],
+      },
+      {
         path: '/currentOperator',
         name: 'currentOperator',
         icon: 'user',
