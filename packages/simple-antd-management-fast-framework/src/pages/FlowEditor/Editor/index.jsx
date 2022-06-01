@@ -15,30 +15,30 @@ class Edit extends DataTabContainerSupplement {
   loadDataAfterMount = false;
 
   tabList = [
-    {
-      key: 'command',
-      tab: '工具栏',
-    },
-    {
-      key: 'detailPanel',
-      tab: '详情面板',
-    },
-    {
-      key: 'itemPanel',
-      tab: '项面板',
-    },
-    {
-      key: 'context',
-      tab: '上下文',
-    },
-    {
-      key: 'flow',
-      tab: '流程编辑',
-    },
-    {
-      key: 'mind',
-      tab: '脑图编辑',
-    },
+    // {
+    //   key: 'command',
+    //   tab: '工具栏',
+    // },
+    // {
+    //   key: 'detailPanel',
+    //   tab: '详情面板',
+    // },
+    // {
+    //   key: 'itemPanel',
+    //   tab: '项面板',
+    // },
+    // {
+    //   key: 'context',
+    //   tab: '上下文',
+    // },
+    // {
+    //   key: 'flow',
+    //   tab: '流程编辑',
+    // },
+    // {
+    //   key: 'mind',
+    //   tab: '脑图编辑',
+    // },
     {
       key: 'innerEditor',
       tab: '内置编辑器',

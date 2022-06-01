@@ -112,6 +112,7 @@ class SingleList extends SinglePage {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleItemStatus = ({ target, record, remoteData }) => {
     const articleId = getValueByKey({
       data: remoteData,

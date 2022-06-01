@@ -1,10 +1,12 @@
-import { defaultSettings } from '@/defaultSettings';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Tag, Tooltip } from 'antd';
-import React from 'react';
 import { connect, SelectLang } from 'umi';
+
+import { defaultSettings } from '@/defaultSettings';
+
 import HeaderSearch from '../HeaderSearch';
 import AvatarDropdown from './AvatarDropdown';
+
 import styles from './index.less';
 
 const ENVTagColor = {

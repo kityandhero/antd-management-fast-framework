@@ -30,8 +30,8 @@ import {
   showInfoMessage,
 } from 'antd-management-fast-framework/es/utils/tools';
 import moment from 'moment';
-import React from 'react';
 import { connect } from 'umi';
+
 import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
 import {
   addGalleryImageAction,
@@ -107,7 +107,16 @@ class BasicInfo extends TabPageBase {
 
   supplementSubmitRequestParams = (o) => {
     const d = o;
-    const { articleId, image, rectangleImage, video, audio, attachment, content } = this.state;
+    const {
+      articleId,
+      image,
+      rectangleImage,
+      video,
+      audio,
+      attachment,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      content,
+    } = this.state;
 
     d.articleId = articleId;
     d.image = image;
@@ -374,6 +383,7 @@ class BasicInfo extends TabPageBase {
       values[fieldData.timePicker.name] = getValueByKey({
         data: metaData,
         key: fieldData.timePicker.name,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         convertBuilder: (v) => {
           return moment('12:08', datetimeFormat.hourMinute);
         },
@@ -391,8 +401,6 @@ class BasicInfo extends TabPageBase {
   establishCardCollectionConfig = () => {
     const {
       metaData,
-      processing,
-      dataLoading,
       image,
       rectangleImage,
       video,
@@ -502,6 +510,7 @@ class BasicInfo extends TabPageBase {
                   children: children || [],
                 };
               },
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onChangeCallback: ({ value, label, extra, treeData, listData }) => {
                 console.log(treeData);
 

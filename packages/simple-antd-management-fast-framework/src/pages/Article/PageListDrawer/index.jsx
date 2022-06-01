@@ -1,9 +1,7 @@
-import { accessWayCollection } from '@/customConfig/config';
-import { colorCollection } from '@/customConfig/constants';
-import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
-import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Divider, List, Typography } from 'antd';
+import { connect } from 'umi';
+
 import MultiPageSelectDrawer from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPageSelectDrawer';
 import {
   columnFacadeMode,
@@ -16,8 +14,12 @@ import {
   getValueByKey,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
-import { connect } from 'umi';
+
+import { accessWayCollection } from '@/customConfig/config';
+import { colorCollection } from '@/customConfig/constants';
+import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
+import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
+
 import { fieldData, statusCollection } from '../Common/data';
 
 const { Text } = Typography;

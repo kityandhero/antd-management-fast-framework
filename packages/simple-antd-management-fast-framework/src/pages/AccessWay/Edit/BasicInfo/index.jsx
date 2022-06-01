@@ -8,8 +8,8 @@ import { BackTop, Card, Col, message, notification, Popover, Row, Select, Spin }
 import HtmlBox from 'antd-management-fast-framework/es/customComponents/HtmlBox';
 import { pretreatmentRequestParams } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 import { connect } from 'umi';
+
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';
@@ -107,6 +107,7 @@ class BasicInfo extends TabPageBase {
     this.loadData();
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleSubmit = (e) => {
     // if ((e || null) != null) {
     //   e.preventDefault();
@@ -279,7 +280,7 @@ class BasicInfo extends TabPageBase {
   };
 
   renderFurther() {
-    const { metaData, processing, dataLoading } = this.state;
+    const { metaData } = this.state;
 
     const accessWayTypeData = this.accessWayTypeList();
     const accessWayTypeOption = [];

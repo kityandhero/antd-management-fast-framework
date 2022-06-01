@@ -1,9 +1,10 @@
-import { defaultSettings } from '@/defaultSettings';
+import { pathToRegexp } from 'path-to-regexp';
+import { connect, Redirect } from 'umi';
+
 import Authorized from 'antd-management-fast-framework/es/utils/Authorized';
 import { getToken } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
-import { pathToRegexp } from 'path-to-regexp';
-import React from 'react';
-import { connect, Redirect } from 'umi';
+
+import { defaultSettings } from '@/defaultSettings';
 
 const entrancePath = defaultSettings.getEntrancePath();
 

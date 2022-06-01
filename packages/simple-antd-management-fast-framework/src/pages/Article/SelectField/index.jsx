@@ -1,6 +1,7 @@
-import SelectFieldInteractiveBase from 'antd-management-fast-framework/es/framework/FieldExtension/SelectFieldDrawer/SelectFieldDrawerBase';
-import React from 'react';
 import { connect } from 'umi';
+
+import SelectFieldInteractiveBase from 'antd-management-fast-framework/es/framework/FieldExtension/SelectFieldDrawer/SelectFieldDrawerBase';
+
 import PageListDrawer from '../PageListDrawer';
 
 @connect(({ article, global, loading }) => ({

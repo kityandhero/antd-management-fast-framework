@@ -222,7 +222,7 @@ class Edit extends DataTabContainer {
   };
 
   establishExtraActionGroupConfig = () => {
-    const { metaData, dataLoading, processing } = this.state;
+    const { metaData } = this.state;
 
     if (metaData == null) {
       return null;
@@ -285,17 +285,17 @@ class Edit extends DataTabContainer {
   };
 
   establishExtraActionEllipsisConfig = () => {
-    const { metaData, dataLoading, processing } = this.state;
+    const { metaData } = this.state;
 
     if ((metaData || null) == null) {
       return null;
     }
 
-    const status = getValueByKey({
-      data: metaData,
-      key: fieldData.status.name,
-      convert: convertCollection.number,
-    });
+    // const status = getValueByKey({
+    //   data: metaData,
+    //   key: fieldData.status.name,
+    //   convert: convertCollection.number,
+    // });
 
     const that = this;
 
@@ -413,11 +413,13 @@ class Edit extends DataTabContainer {
       text: '扩展菜单',
       handleData: metaData,
       hidden: false,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       handleButtonClick: ({ handleData }) => {
         showInfoMessage({
           message: '已点击',
         });
       },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       handleMenuClick: ({ key, handleData }) => {
         switch (key) {
           case 'extraBarAction1':

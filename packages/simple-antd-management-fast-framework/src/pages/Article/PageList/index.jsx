@@ -127,6 +127,7 @@ class PageList extends MultiPage {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleItemStatus = ({ target, record, remoteData }) => {
     const articleId = getValueByKey({
       data: remoteData,
@@ -337,8 +338,6 @@ class PageList extends MultiPage {
   };
 
   establishToolBarConfig = () => {
-    const that = this;
-
     return {
       stick: false,
       title: '工具栏',
@@ -491,6 +490,7 @@ class PageList extends MultiPage {
         borderRadius: '4px',
       },
       animalType: listViewConfig.expandAnimalType.queue,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       expandedRowRender: (record, index, indent, expanded) => {
         const columns = this.buildColumnList([
           {

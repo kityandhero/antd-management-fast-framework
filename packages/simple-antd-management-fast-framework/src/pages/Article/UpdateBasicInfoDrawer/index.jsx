@@ -1,10 +1,12 @@
-import { accessWayCollection } from '@/customConfig/accessWayCollection';
 import { ContactsOutlined } from '@ant-design/icons';
+import { connect } from 'umi';
+
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 import { cardConfig, formatCollection } from 'antd-management-fast-framework/es/utils/constants';
 import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
-import { connect } from 'umi';
+
+import { accessWayCollection } from '@/customConfig/accessWayCollection';
+
 import { fieldData } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({
@@ -94,7 +96,7 @@ class Index extends BaseUpdateDrawer {
   };
 
   establishCardCollectionConfig = () => {
-    const { metaData, processing, dataLoading } = this.state;
+    const { metaData } = this.state;
 
     const spinning = this.checkInProgress();
 

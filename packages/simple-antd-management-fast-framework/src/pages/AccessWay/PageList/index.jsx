@@ -9,12 +9,11 @@ import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPage
 import {
   columnFacadeMode,
   columnPlaceholder,
-  convertCollection,
   listViewConfig,
   searchCardConfig,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-framework/es/utils/constants';
-import { getValueByKey, showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
+import { showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
 import { connect } from 'umi';
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { refreshCacheAction } from '../Assist/action';
@@ -226,11 +225,11 @@ class PageList extends MultiPage {
       fixed: 'right',
       align: 'center',
       render: (text, r) => {
-        const itemStatus = getValueByKey({
-          data: r,
-          key: fieldData.status.name,
-          convert: convertCollection.number,
-        });
+        // const itemStatus = getValueByKey({
+        //   data: r,
+        //   key: fieldData.status.name,
+        //   convert: convertCollection.number,
+        // });
 
         return buildDropdownButton({
           size: 'small',
