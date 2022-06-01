@@ -56,6 +56,8 @@
     "array-move": "^4.0.0",
     "bizcharts": "^4.1.16",
     "browserslist": "^4.20.3",
+    "butterfly-dag": "^4.2.9",
+    "butterfly-react": "^1.0.0",
     "caniuse-lite": "^1.0.30001344",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",

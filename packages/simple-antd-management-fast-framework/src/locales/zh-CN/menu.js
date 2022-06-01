@@ -19,6 +19,7 @@ export default {
 
   'menu.flowEditor': '流程图',
   'menu.flowEditor.editor': '编辑器',
+  'menu.flowEditor.editor.innerEditor': '编辑模式',
 
   'menu.currentSystem': '系统设置',
   'menu.currentSystem.basicInfo': '基本设置',

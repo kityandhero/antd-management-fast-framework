@@ -135,11 +135,11 @@ export default [
             routes: [
               {
                 path: '/flowEditor/editor',
-                redirect: '/flowEditor/editor/design',
+                redirect: '/flowEditor/editor/innerEditor',
               },
               {
-                path: '/flowEditor/editor/design',
-                component: './flowEditor/Editor/Design',
+                path: '/flowEditor/editor/innerEditor',
+                component: './FlowEditor/Editor/InnerEditor',
               },
             ],
           },
