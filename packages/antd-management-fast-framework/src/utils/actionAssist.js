@@ -186,9 +186,11 @@ export async function actionCore({
         () => {
           delay <= 0
             ? remoteAction({
+                target,
                 dispatch,
                 api,
                 params,
+                handleData,
                 apiDataConvert,
                 successMessage,
                 successMessageBuilder,
@@ -200,9 +202,11 @@ export async function actionCore({
             : setTimeout(() => {
                 // 延迟一定时间，优化界面呈现
                 remoteAction({
+                  target,
                   dispatch,
                   api,
                   params,
+                  handleData,
                   apiDataConvert,
                   successMessage,
                   successMessageBuilder,
@@ -219,9 +223,11 @@ export async function actionCore({
     target.setState({ processing: true, dispatchComplete: false }, () => {
       delay <= 0
         ? remoteAction({
+            target,
             dispatch,
             api,
             params,
+            handleData,
             apiDataConvert,
             successMessage,
             successMessageBuilder,
@@ -233,9 +239,11 @@ export async function actionCore({
         : setTimeout(() => {
             // 延迟一定时间，优化界面呈现
             remoteAction({
+              target,
               dispatch,
               api,
               params,
+              handleData,
               apiDataConvert,
               successMessage,
               successMessageBuilder,
@@ -250,9 +258,11 @@ export async function actionCore({
 }
 
 function remoteAction({
+  target,
   dispatch,
   api,
   params,
+  handleData,
   apiDataConvert,
   successMessage,
   successMessageBuilder,
