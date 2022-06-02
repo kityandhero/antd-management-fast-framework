@@ -174,7 +174,7 @@ export async function actionCore({
   }
 
   if (isFunction(beforeProcess)) {
-    beforeProcess();
+    beforeProcess({ target, handleData });
   }
 
   if (setProgressingFirst) {
@@ -353,7 +353,7 @@ function remoteAction({
       });
 
       if (isFunction(completeProcess)) {
-        completeProcess();
+        completeProcess({ target, handleData });
       }
     });
 }
