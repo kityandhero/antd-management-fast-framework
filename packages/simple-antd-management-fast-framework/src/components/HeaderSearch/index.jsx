@@ -1,12 +1,12 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { AutoComplete, Input } from 'antd';
 import classNames from 'classnames';
-import React, { useRef } from 'react';
 import useMergeValue from 'use-merge-value';
+
 import styles from './index.less';
 
 const HeaderSearch = (props) => {
-  const { className, defaultValue, onVisibleChange, placeholder, open, defaultOpen, ...restProps } =
+  const { className, defaultValue, onVisibleChange, placeholder, defaultOpen, ...restProps } =
     props;
   const inputRef = useRef(null);
   const [value, setValue] = useMergeValue(defaultValue, {

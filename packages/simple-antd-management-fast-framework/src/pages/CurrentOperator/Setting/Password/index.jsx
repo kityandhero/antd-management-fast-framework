@@ -88,8 +88,6 @@ class Password extends BaseUpdateFormContent {
   }) => {};
 
   establishCardCollectionConfig = () => {
-    const { processing, dataLoading } = this.state;
-
     const spinning = this.checkInProgress();
 
     return {

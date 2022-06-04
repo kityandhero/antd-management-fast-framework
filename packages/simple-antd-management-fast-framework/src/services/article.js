@@ -177,16 +177,16 @@ const articleSimple = {
   mediaItemList: [],
 };
 
-const article2 = {
-  ...article,
-  ...{
-    key: '1',
-    articleId: '1',
-    mediaData: '',
-    imageList: [],
-    mediaItemList: [],
-  },
-};
+// const article2 = {
+//   ...article,
+//   ...{
+//     key: '1',
+//     articleId: '1',
+//     mediaData: '',
+//     imageList: [],
+//     mediaItemList: [],
+//   },
+// };
 
 const articleEmptyList = [
   {},

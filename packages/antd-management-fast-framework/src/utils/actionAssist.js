@@ -130,6 +130,10 @@ export async function actionCore({
   successMessageBuilder = null,
   showProcessing = true,
   textProcessing = '处理中，请稍后',
+  delay = 400,
+  setProgressingFirst = true,
+  beforeProcess = null,
+  completeProcess = null,
 }) {
   if ((handleData || null) == null) {
     const text = 'actionCore : handleData not allow null';
@@ -169,101 +173,189 @@ export async function actionCore({
     });
   }
 
-  target.setState({ processing: true }, () => {
-    target.setState(
-      {
-        dispatchComplete: false,
-      },
-      () => {
-        // 延迟一定时间，优化界面呈现
-        setTimeout(() => {
-          recordDebug(`modal access: ${api}`);
+  if (isFunction(beforeProcess)) {
+    beforeProcess({ target, handleData });
+  }
 
-          dispatch({
-            type: api,
-            payload: params,
+  if (setProgressingFirst) {
+    target.setState({ processing: true }, () => {
+      target.setState(
+        {
+          dispatchComplete: false,
+        },
+        () => {
+          delay <= 0
+            ? remoteAction({
+                target,
+                dispatch,
+                api,
+                params,
+                handleData,
+                apiDataConvert,
+                successMessage,
+                successMessageBuilder,
+                showProcessing,
+                loadingKey: key,
+                successCallback,
+                completeProcess,
+              })
+            : setTimeout(() => {
+                // 延迟一定时间，优化界面呈现
+                remoteAction({
+                  target,
+                  dispatch,
+                  api,
+                  params,
+                  handleData,
+                  apiDataConvert,
+                  successMessage,
+                  successMessageBuilder,
+                  showProcessing,
+                  loadingKey: key,
+                  successCallback,
+                  completeProcess,
+                });
+              }, delay);
+        },
+      );
+    });
+  } else {
+    target.setState({ processing: true, dispatchComplete: false }, () => {
+      delay <= 0
+        ? remoteAction({
+            target,
+            dispatch,
+            api,
+            params,
+            handleData,
+            apiDataConvert,
+            successMessage,
+            successMessageBuilder,
+            showProcessing,
+            loadingKey: key,
+            successCallback,
+            completeProcess,
           })
-            .then(() => {
-              if (showProcessing) {
-                setTimeout(() => {
-                  message.destroy(key);
-                }, 200);
-              }
-
-              if (!isFunction(apiDataConvert)) {
-                throw new Error(
-                  'actionCore params: apiDataConvert must be function',
-                );
-              }
-
-              const data = apiDataConvert(target.props);
-
-              const { dataSuccess } = data;
-
-              if (dataSuccess) {
-                const {
-                  list: remoteListData,
-                  data: remoteData,
-                  extra: remoteExtraData,
-                } = {
-                  ...{
-                    list: [],
-                    data: null,
-                    extra: null,
-                  },
-                  ...data,
-                };
-
-                let messageText = successMessage;
-
-                if (isFunction(successMessageBuilder)) {
-                  messageText = successMessageBuilder({
-                    remoteListData: remoteListData || [],
-                    remoteData: remoteData || null,
-                    remoteExtraData: remoteExtraData || null,
-                    remoteOriginal: data,
-                  });
-                }
-
-                if (!stringIsNullOrWhiteSpace(messageText)) {
-                  notifySuccess(messageText);
-                }
-
-                if (isFunction(successCallback)) {
-                  successCallback({
-                    target,
-                    handleData,
-                    remoteListData: remoteListData || [],
-                    remoteData: remoteData || null,
-                    remoteExtraData: remoteExtraData || null,
-                    remoteOriginal: data,
-                  });
-                }
-              }
-
-              target.setState({
-                processing: false,
-                dispatchComplete: true,
-              });
-            })
-            .catch((res) => {
-              recordObject(res);
-
-              if (showProcessing) {
-                setTimeout(() => {
-                  message.destroy(key);
-                }, 200);
-              }
-
-              target.setState({
-                processing: false,
-                dispatchComplete: true,
-              });
+        : setTimeout(() => {
+            // 延迟一定时间，优化界面呈现
+            remoteAction({
+              target,
+              dispatch,
+              api,
+              params,
+              handleData,
+              apiDataConvert,
+              successMessage,
+              successMessageBuilder,
+              showProcessing,
+              loadingKey: key,
+              successCallback,
+              completeProcess,
             });
-        }, 400);
-      },
-    );
-  });
+          }, delay);
+    });
+  }
+}
+
+function remoteAction({
+  target,
+  dispatch,
+  api,
+  params,
+  handleData,
+  apiDataConvert,
+  successMessage,
+  successMessageBuilder,
+  showProcessing = false,
+  loadingKey = '',
+  successCallback,
+  completeProcess = null,
+}) {
+  recordDebug(`modal access: ${api}`);
+
+  dispatch({
+    type: api,
+    payload: params,
+  })
+    .then(() => {
+      if (showProcessing) {
+        setTimeout(() => {
+          message.destroy(loadingKey);
+        }, 200);
+      }
+
+      if (!isFunction(apiDataConvert)) {
+        throw new Error('actionCore params: apiDataConvert must be function');
+      }
+
+      const data = apiDataConvert(target.props);
+
+      const { dataSuccess } = data;
+
+      if (dataSuccess) {
+        const {
+          list: remoteListData,
+          data: remoteData,
+          extra: remoteExtraData,
+        } = {
+          ...{
+            list: [],
+            data: null,
+            extra: null,
+          },
+          ...data,
+        };
+
+        let messageText = successMessage;
+
+        if (isFunction(successMessageBuilder)) {
+          messageText = successMessageBuilder({
+            remoteListData: remoteListData || [],
+            remoteData: remoteData || null,
+            remoteExtraData: remoteExtraData || null,
+            remoteOriginal: data,
+          });
+        }
+
+        if (!stringIsNullOrWhiteSpace(messageText)) {
+          notifySuccess(messageText);
+        }
+
+        if (isFunction(successCallback)) {
+          successCallback({
+            target,
+            handleData,
+            remoteListData: remoteListData || [],
+            remoteData: remoteData || null,
+            remoteExtraData: remoteExtraData || null,
+            remoteOriginal: data,
+          });
+        }
+      }
+
+      target.setState({
+        processing: false,
+        dispatchComplete: true,
+      });
+    })
+    .catch((res) => {
+      recordObject(res);
+
+      if (showProcessing) {
+        setTimeout(() => {
+          message.destroy(key);
+        }, 200);
+      }
+
+      target.setState({
+        processing: false,
+        dispatchComplete: true,
+      });
+
+      if (isFunction(completeProcess)) {
+        completeProcess({ target, handleData });
+      }
+    });
 }
 
 /**

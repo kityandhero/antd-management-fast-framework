@@ -5,7 +5,6 @@ import {
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 
 class MobilePreviewBox extends MobilePreviewArea {
   loadDataAfterMount = false;

@@ -1,4 +1,5 @@
 import { PictureOutlined } from '@ant-design/icons';
+
 import { buildPlayer } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 import MobilePreviewDrawer from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewDrawer';
 import {
@@ -6,7 +7,6 @@ import {
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
 
 class MediaItemPreviewDrawer extends MobilePreviewDrawer {
   resetDataAfterLoad = false;

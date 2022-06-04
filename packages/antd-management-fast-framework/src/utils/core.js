@@ -1,4 +1,8 @@
-import { replace as replaceLodash, trim as trimLodash } from 'lodash';
+import {
+  replace as replaceLodash,
+  trim as trimLodash,
+  upperFirst as upperFirstLodash,
+} from 'lodash';
 import { isArray } from './typeCheck';
 
 export function replace(source, pattern, replacement) {
@@ -7,6 +11,10 @@ export function replace(source, pattern, replacement) {
 
 export function trim(source) {
   return trimLodash(source);
+}
+
+export function upperFirst(source) {
+  return upperFirstLodash(source);
 }
 
 export function stringIsNullOrWhiteSpace(value) {

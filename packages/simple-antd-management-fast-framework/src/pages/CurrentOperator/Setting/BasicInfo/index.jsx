@@ -102,7 +102,7 @@ class BasicInfo extends BaseUpdateFormContent {
   };
 
   establishCardCollectionConfig = () => {
-    const { metaData, processing, dataLoading, avatar } = this.state;
+    const { metaData, avatar } = this.state;
 
     const spinning = this.checkInProgress();
 

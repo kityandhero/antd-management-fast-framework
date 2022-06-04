@@ -200,10 +200,11 @@ class ChangeImageSortModal extends Base {
             // loading={this.checkInProgress()}
             pagination={false}
             dataSource={metaListData}
-            renderItem={(item) => (
+            renderItem={(item, index) => (
               <List.Item
                 actions={[
                   <MoreBtn
+                    key={`${index}_`}
                     current={item}
                     metaListDataList={metaListData}
                     hasAuthority={this.checkAuthority(

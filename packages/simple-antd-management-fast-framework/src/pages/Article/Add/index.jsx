@@ -476,12 +476,6 @@ class Index extends BaseAddForm {
       ],
     };
   };
-
-  renderOther = () => {
-    const { fadeBoxShow } = this.state;
-
-    return null;
-  };
 }
 
 export default Index;

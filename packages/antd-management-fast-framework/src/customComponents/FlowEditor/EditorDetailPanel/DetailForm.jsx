@@ -1,5 +1,5 @@
 import { Card, Form, Input, Select } from 'antd';
-import { withPropsAPI } from 'gg-editor';
+import { withEditorContext } from 'gg-editor';
 import React from 'react';
 
 const upperFirst = (str) =>
@@ -121,4 +121,4 @@ class DetailForm extends React.Component {
   }
 }
 
-export default withPropsAPI(DetailForm);
+export default withEditorContext(DetailForm);

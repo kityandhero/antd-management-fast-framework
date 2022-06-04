@@ -52,6 +52,7 @@ import {
   replace as replaceCore,
   stringIsNullOrWhiteSpace as stringIsNullOrWhiteSpaceCore,
   trim as trimCore,
+  upperFirst as upperFirstCore,
 } from './core';
 import {
   getNearestLocalhostNotifyCache,
@@ -1501,6 +1502,10 @@ export function isDate(value) {
  */
 export function isString(value) {
   return isStringCore(value);
+}
+
+export function upperFirst(value) {
+  return upperFirstCore(value);
 }
 
 /**

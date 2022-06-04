@@ -1,5 +1,3 @@
-import { accessWayCollection } from '@/customConfig/config';
-import { mediaTypeCollection } from '@/customConfig/constants';
 import {
   ContactsOutlined,
   LinkOutlined,
@@ -7,6 +5,8 @@ import {
   SoundOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
+import { connect } from 'umi';
+
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 import { cardConfig, formatCollection } from 'antd-management-fast-framework/es/utils/constants';
 import {
@@ -15,8 +15,10 @@ import {
   inCollection,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import React from 'react';
-import { connect } from 'umi';
+
+import { accessWayCollection } from '@/customConfig/config';
+import { mediaTypeCollection } from '@/customConfig/constants';
+
 import { mediaItemData } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({
@@ -188,8 +190,7 @@ class Index extends BaseUpdateDrawer {
   };
 
   establishCardCollectionConfig = () => {
-    const { dataLoading, processing, metaData, mediaType, image, video, audio, attachment } =
-      this.state;
+    const { processing, metaData, mediaType, image, video, audio, attachment } = this.state;
 
     const spinning = this.checkInProgress();
 
