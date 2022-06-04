@@ -30,7 +30,6 @@ import {
   showInfoMessage,
 } from 'antd-management-fast-framework/es/utils/tools';
 import moment from 'moment';
-import React from 'react';
 import { connect } from 'umi';
 import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
 import {
@@ -391,8 +390,6 @@ class BasicInfo extends TabPageBase {
   establishCardCollectionConfig = () => {
     const {
       metaData,
-      processing,
-      dataLoading,
       image,
       rectangleImage,
       video,
