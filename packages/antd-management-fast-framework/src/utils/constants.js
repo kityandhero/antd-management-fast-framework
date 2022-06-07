@@ -48,6 +48,7 @@ import {
   LogoutOutlined,
   MailOutlined,
   MessageOutlined,
+  MinusCircleOutlined,
   PauseCircleOutlined,
   PhoneOutlined,
   PictureOutlined,
@@ -1075,6 +1076,7 @@ export const iconCollection = {
   rollback: <RollbackOutlined />,
   snippets: <SnippetsOutlined />,
   compress: <CompressOutlined />,
+  minusCircle: <MinusCircleOutlined />,
 };
 
 /**
