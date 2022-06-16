@@ -160,6 +160,11 @@ export const fieldData = {
       name: 'timePicker',
       helper: '',
     },
+    switch: {
+      label: '开关类型',
+      name: 'switch',
+      helper: '',
+    },
   },
 };
 

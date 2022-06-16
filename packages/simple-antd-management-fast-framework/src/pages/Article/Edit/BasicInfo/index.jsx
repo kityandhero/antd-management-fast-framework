@@ -1214,6 +1214,28 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
+            text: fieldData.switch.label,
+          },
+          spinning,
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.switch,
+              fieldData: fieldData.switch,
+              checked: true,
+              require: false,
+              otherProps: {
+                checkedChildren: '开启',
+                unCheckedChildren: '关闭',
+                onChange: (v) => {
+                  console.log(v);
+                },
+              },
+            },
+          ],
+        },
+        {
+          title: {
             text: '简介描述',
           },
           spinning,
