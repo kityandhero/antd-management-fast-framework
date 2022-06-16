@@ -1,3 +1,6 @@
+import moment from 'moment';
+import { connect } from 'umi';
+
 import { accessWayCollection } from '@/customConfig/config';
 import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 import {
@@ -29,8 +32,6 @@ import {
   getValueByKey,
   showInfoMessage,
 } from 'antd-management-fast-framework/es/utils/tools';
-import moment from 'moment';
-import { connect } from 'umi';
 
 import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
 import {
