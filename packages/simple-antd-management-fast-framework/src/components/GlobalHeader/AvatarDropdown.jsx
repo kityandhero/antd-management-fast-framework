@@ -1,4 +1,3 @@
-import { LogoutOutlined } from '@ant-design/icons';
 import { Avatar, Menu, Spin } from 'antd';
 import React from 'react';
 import { connect } from 'umi';
@@ -38,24 +37,16 @@ class AvatarDropdown extends React.Component {
       currentOperator: { currentOperator = null },
     } = this.props;
 
-    const menuItems = [];
+    const items = [
+      {
+        key: 'signOut',
+        label: '退出登录',
+        icon: iconCollection.logout,
+      },
+    ];
 
     const menuHeaderDropdown = (
-      <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
-        {menuItems.map((o) => (
-          <Menu.Item key={o.key}>
-            {o.icon}
-            {o.text}
-          </Menu.Item>
-        ))}
-
-        {menuItems.length > 0 ? <Menu.Divider /> : null}
-
-        <Menu.Item key="signOut">
-          <LogoutOutlined />
-          退出登录
-        </Menu.Item>
-      </Menu>
+      <Menu items={items} className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick} />
     );
 
     return currentOperator != null ? (

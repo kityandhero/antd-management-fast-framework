@@ -20,6 +20,7 @@ import {
   Tooltip,
 } from 'antd';
 import { Fragment } from 'react';
+import { recordWarn } from 'src/utils/developAssist';
 import FadeBox from '../../customComponents/AnimalBox/FadeBox';
 import QueueBox from '../../customComponents/AnimalBox/QueueBox';
 import AudioUpload from '../../customComponents/AudioUpload';
@@ -2980,8 +2981,11 @@ class Common extends Core {
               break;
 
             default:
+              recordWarn('');
+
               recordObject({
                 message: '未找到匹配的构建模式',
+                buildType: extraBuildType.component,
                 config: item,
               });
 
