@@ -1,7 +1,9 @@
-import { DownOutlined, UpCircleOutlined } from '@ant-design/icons';
 import { Tag } from 'antd';
 import classNames from 'classnames';
 import React, { Component } from 'react';
+
+import { iconCollection } from '../../../utils/constants';
+
 import styles from './index.less';
 
 const { CheckableTag } = Tag;
@@ -123,7 +125,7 @@ class TagSelect extends Component {
         {expandable && (
           <a className={styles.trigger} onClick={this.handleExpand}>
             {expand ? '收起' : '展开'}
-            {expand ? <UpCircleOutlined /> : <DownOutlined />}
+            {expand ? iconCollection.upCircle : iconCollection.down}
           </a>
         )}
       </div>

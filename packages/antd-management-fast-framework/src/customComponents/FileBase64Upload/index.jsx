@@ -1,10 +1,7 @@
-import {
-  FileOutlined,
-  LoadingOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
 import { Button, Input, Upload } from 'antd';
 import { PureComponent } from 'react';
+
+import { iconCollection } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import { isFunction, showRuntimeError } from '../../utils/tools';
 
@@ -100,7 +97,7 @@ class FileBase64Upload extends PureComponent {
     return (
       <Input
         readOnly
-        addonBefore={<FileOutlined />}
+        addonBefore={iconCollection.file}
         placeholder={`请选择上传${uploadText || '文件'}`}
         value={base64}
         addonAfter={
@@ -117,7 +114,7 @@ class FileBase64Upload extends PureComponent {
                 disabled={uploading}
                 title={`选择${uploadText || '文件'}`}
               >
-                {uploading ? <LoadingOutlined /> : <UploadOutlined />}
+                {uploading ? iconCollection.loading : iconCollection.upload}
                 {uploading ? '正在上传' : `选择${uploadText || '文件'}`}
               </Button>
             </Upload>

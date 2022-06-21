@@ -1,6 +1,7 @@
 import { CheckOutlined, EditOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import { PureComponent } from 'react';
+
 import styles from './index.less';
 
 export default class EditableItem extends PureComponent {

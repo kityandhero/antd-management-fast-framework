@@ -1,16 +1,13 @@
-import {
-  ContactsOutlined,
-  PlusOutlined,
-  RollbackOutlined,
-} from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Avatar, BackTop, Button, Form, Tooltip } from 'antd';
 import React from 'react';
+
 import { avatarImageLoadResultCollection } from '../../../customComponents/DecorateAvatar';
 import { buildTagList } from '../../../customComponents/FunctionComponent';
-import { pageHeaderRenderType } from '../../../utils/constants';
+import { iconCollection, pageHeaderRenderType } from '../../../utils/constants';
 import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
 import BaseView from '../../DataOperation/BaseView';
+
 import styles from './index.less';
 
 class DataCore extends BaseView {
@@ -121,7 +118,7 @@ class DataCore extends BaseView {
 
   buildPageHeaderSubTitle = () => null;
 
-  pageHeaderLogo = () => <Avatar shape="square" icon={<PlusOutlined />} />;
+  pageHeaderLogo = () => <Avatar shape="square" icon={iconCollection.plus} />;
 
   getPageName = () => {
     const { pageName } = this.state;
@@ -141,7 +138,7 @@ class DataCore extends BaseView {
     }
 
     const props = {
-      ...{ icon: <RollbackOutlined />, type: 'dashed' },
+      ...{ icon: iconCollection.rollback, type: 'dashed' },
       ...(this.actionBackProps || {}),
     };
 
@@ -168,7 +165,7 @@ class DataCore extends BaseView {
   };
 
   renderMainTitleIcon = () => {
-    return <ContactsOutlined />;
+    return iconCollection.contacts;
   };
 
   renderMainTitleText = () => {

@@ -1,11 +1,12 @@
-import { ReloadOutlined } from '@ant-design/icons';
 import { Alert, Space } from 'antd';
 import { PureComponent } from 'react';
-import { animalType } from '../../../utils/constants';
+
+import { animalType, iconCollection } from '../../../utils/constants';
 import { inCollection, isFunction } from '../../../utils/tools';
 import FadeBox from '../../AnimalBox/FadeBox';
 import QueueBox from '../../AnimalBox/QueueBox';
 import { buildButton } from '../../FunctionComponent';
+
 import styles from './index.less';
 
 class ConventView extends PureComponent {
@@ -55,7 +56,7 @@ class ConventView extends PureComponent {
             {buildButton({
               size: 'small',
               type: 'ghost',
-              icon: <ReloadOutlined />,
+              icon: iconCollection.reload,
               text: alertButtonText,
               handleClick: this.onAlertClick,
             })}

@@ -1,13 +1,4 @@
-import {
-  CopyOutlined,
-  DeleteOutlined,
-  EllipsisOutlined,
-  LoadingOutlined,
-  PlayCircleOutlined,
-  SoundOutlined,
-  SwapOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { EllipsisOutlined } from '@ant-design/icons';
 import {
   Button,
   Divider,
@@ -20,6 +11,7 @@ import {
   Upload,
 } from 'antd';
 import { PureComponent } from 'react';
+import { iconCollection } from 'src/utils/constants';
 import { buildPlayer } from '../../customComponents/FunctionComponent';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import {
@@ -285,17 +277,17 @@ class AudioUpload extends PureComponent {
     const menu = (
       <Menu onClick={this.handleMenuClick}>
         <Menu.Item key="changeUrl">
-          <IconInfo icon={<SwapOutlined />} text="更换地址" />
+          <IconInfo icon={iconCollection.swap} text="更换地址" />
         </Menu.Item>
 
         <Menu.Item key="copyUrl" disabled={stringIsNullOrWhiteSpace(audioUrl)}>
-          <IconInfo icon={<CopyOutlined />} text="复制地址" />
+          <IconInfo icon={iconCollection.copy} text="复制地址" />
         </Menu.Item>
 
         <Menu.Divider />
 
         <Menu.Item key="clearUrl" disabled={stringIsNullOrWhiteSpace(audioUrl)}>
-          <IconInfo icon={<DeleteOutlined />} text="清空音频" />
+          <IconInfo icon={iconCollection.delete} text="清空音频" />
         </Menu.Item>
       </Menu>
     );
@@ -317,7 +309,7 @@ class AudioUpload extends PureComponent {
                 this.showPreviewModal();
               }}
             >
-              <PlayCircleOutlined />
+              {iconCollection.playCircle}
               播放
             </Button>
           </Tooltip>
@@ -335,7 +327,7 @@ class AudioUpload extends PureComponent {
               }}
               disabled={uploading}
             >
-              {uploading ? <LoadingOutlined /> : <UploadOutlined />}
+              {uploading ? iconCollection.loading : iconCollection.upload}
               {uploading ? '稍后' : '上传'}
             </Button>
           </Upload>
@@ -377,14 +369,14 @@ class AudioUpload extends PureComponent {
       <>
         <Input
           disabled
-          addonBefore={<SoundOutlined />}
+          addonBefore={iconCollection.sound}
           addonAfter={addonAfter}
           value={audioUrl}
           placeholder="当前未设置音频地址"
         />
 
         <Modal
-          title={<IconInfo icon={<SoundOutlined />} text="音频预览" />}
+          title={<IconInfo icon={iconCollection.sound} text="音频预览" />}
           visible={previewVisible}
           footer={null}
           onCancel={this.handleUploadCancel}
@@ -402,7 +394,10 @@ class AudioUpload extends PureComponent {
 
         <Modal
           title={
-            <IconInfo icon={<SwapOutlined />} text="请输入将更换的音频地址" />
+            <IconInfo
+              icon={iconCollection.swap}
+              text="请输入将更换的音频地址"
+            />
           }
           visible={changeUrlVisible}
           onOk={this.handleChangeUrlOk}

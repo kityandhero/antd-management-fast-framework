@@ -1,12 +1,4 @@
 import {
-  FormOutlined,
-  LoadingOutlined,
-  ReadOutlined,
-  ReloadOutlined,
-  SaveOutlined,
-  ToolOutlined,
-} from '@ant-design/icons';
-import {
   Affix,
   Button,
   Card,
@@ -20,7 +12,7 @@ import {
   Tooltip,
 } from 'antd';
 import { Fragment } from 'react';
-import { recordWarn } from 'src/utils/developAssist';
+
 import FadeBox from '../../customComponents/AnimalBox/FadeBox';
 import QueueBox from '../../customComponents/AnimalBox/QueueBox';
 import AudioUpload from '../../customComponents/AudioUpload';
@@ -85,8 +77,10 @@ import {
   datetimeFormat,
   defaultEmptyImage,
   extraBuildType,
+  iconCollection,
 } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
+import { recordWarn } from '../../utils/developAssist';
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import {
   buildFieldDescription,
@@ -113,6 +107,7 @@ import {
   toString,
 } from '../../utils/tools';
 import Core from '../Core';
+
 import styles from './index.less';
 
 const { Content, Sider } = Layout;
@@ -688,7 +683,7 @@ class Common extends Core {
     label,
     name,
     helper = null,
-    icon = <FormOutlined />,
+    icon = iconCollection.form,
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -708,7 +703,7 @@ class Common extends Core {
     label,
     name,
     helper = null,
-    icon = <FormOutlined />,
+    icon = iconCollection.form,
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -745,7 +740,7 @@ class Common extends Core {
   renderFormInputFieldData = (
     fieldData,
     required = false,
-    icon = <FormOutlined />,
+    icon = iconCollection.form,
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -769,7 +764,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    icon = <FormOutlined />,
+    icon = iconCollection.form,
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -817,7 +812,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    icon = <FormOutlined />,
+    icon = iconCollection.form,
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -941,7 +936,7 @@ class Common extends Core {
     label,
     value,
     helper = null,
-    icon = <FormOutlined />,
+    icon = iconCollection.form,
     inputProps = { disabled: true },
     formItemLayout = {},
   ) => {
@@ -960,7 +955,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    icon = <FormOutlined />,
+    icon = iconCollection.form,
     inputNumberProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -1114,11 +1109,11 @@ class Common extends Core {
   };
 
   getSaveButtonIcon = () => {
-    return <SaveOutlined />;
+    return iconCollection.save;
   };
 
   getDisabledButtonIcon = () => {
-    return <SaveOutlined />;
+    return iconCollection.save;
   };
 
   renderDisabledButton = (text = '') => {
@@ -1215,7 +1210,7 @@ class Common extends Core {
     return buildButton({
       size,
       text,
-      icon: <ReloadOutlined />,
+      icon: iconCollection.reload,
       disabled: this.checkOperability(),
       handleClick: this.reloadData,
     });
@@ -1344,7 +1339,9 @@ class Common extends Core {
     const bar = (
       <div className={styles.cardContainor}>
         <Card
-          title={<IconInfo icon={<ToolOutlined />} text={title || '工具栏'} />}
+          title={
+            <IconInfo icon={iconCollection.tool} text={title || '工具栏'} />
+          }
           bordered={false}
           bodyStyle={{ padding: 0 }}
           extra={
@@ -1744,7 +1741,7 @@ class Common extends Core {
       ? !!hideIconWhenShowImage
         ? null
         : icon
-      : icon || <ReadOutlined />;
+      : icon || iconCollection.read;
 
     const extraListData = [];
 
@@ -2545,7 +2542,7 @@ class Common extends Core {
                         fieldData.name,
                         require,
                         fieldData.helper,
-                        contentItem.icon || <FormOutlined />,
+                        contentItem.icon || iconCollection.form,
                         { ...{}, ...(contentItem.otherProps || {}) },
                         canOperate,
                         formItemLayout,
@@ -2558,7 +2555,7 @@ class Common extends Core {
                         fieldData.name,
                         require,
                         fieldData.helper,
-                        contentItem.icon || <FormOutlined />,
+                        contentItem.icon || iconCollection.form,
                         { ...{}, ...(contentItem.otherProps || {}) },
                         canOperate,
                         formItemLayout,
@@ -2571,7 +2568,7 @@ class Common extends Core {
                         fieldData.name,
                         require,
                         fieldData.helper,
-                        contentItem.icon || <FormOutlined />,
+                        contentItem.icon || iconCollection.form,
                         { ...{}, ...(contentItem.otherProps || {}) },
                         canOperate,
                         formItemLayout,
@@ -2680,7 +2677,7 @@ class Common extends Core {
                         fieldData.label,
                         contentItem.value,
                         fieldData.helper || '',
-                        contentItem.icon || <FormOutlined />,
+                        contentItem.icon || iconCollection.form,
                         {
                           ...{},
                           ...(contentItem.otherProps || {}),
@@ -2721,7 +2718,7 @@ class Common extends Core {
                           format: datetimeFormat.yearMonthDayHourMinute,
                         }),
                         fieldData.helper || '',
-                        contentItem.icon || <FormOutlined />,
+                        contentItem.icon || iconCollection.form,
                         {
                           ...{},
                           ...(contentItem.otherProps || {}),
@@ -3076,11 +3073,9 @@ class Common extends Core {
                 this.reloadData();
               }}
             >
-              {reloading || refreshing ? (
-                <LoadingOutlined />
-              ) : (
-                <ReloadOutlined />
-              )}
+              {reloading || refreshing
+                ? iconCollection.loading
+                : iconCollection.reload}
             </Button>
           </Tooltip>
         </Fragment>,

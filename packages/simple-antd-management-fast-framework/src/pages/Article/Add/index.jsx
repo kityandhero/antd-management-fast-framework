@@ -1,18 +1,20 @@
-import { accessWayCollection } from '@/customConfig/config';
-import { FormOutlined, PictureOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
+import { connect } from 'umi';
+
 import FadeBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/FadeBox';
 import QueueBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/QueueBox';
 import QueueListBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/QueueListBox';
 import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
 import BaseAddForm from 'antd-management-fast-framework/es/framework/DataForm/BaseAddForm';
-import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig, iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 import {
   corsTarget,
   getDerivedStateFromPropsForUrlParams,
   showInfoMessage,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { connect } from 'umi';
+
+import { accessWayCollection } from '@/customConfig/config';
+
 import { parseUrlParamsForSetState } from '../Assist/config';
 import { fieldData } from '../Common/data';
 
@@ -93,7 +95,7 @@ class Index extends BaseAddForm {
         {
           key: 'goToPageList',
           text: '返回商品列表',
-          icon: <UnorderedListOutlined />,
+          icon: iconCollection.unorderedList,
           handleButtonClick: ({ handleData }) => {
             that.goToPageList(handleData);
           },
@@ -211,7 +213,7 @@ class Index extends BaseAddForm {
             list: [
               {
                 buildType: cardConfig.extraBuildType.generalButton,
-                icon: <FormOutlined />,
+                icon: iconCollection.form,
                 text: '切换FadeBox显示',
                 handleClick: () => {
                   this.toggleFadeBoxShow();
@@ -270,7 +272,7 @@ class Index extends BaseAddForm {
         },
         {
           title: {
-            icon: <PictureOutlined />,
+            icon: iconCollection.picture,
             text: '配图',
             subText: '[上传后需点击保存按钮保存！]',
           },
@@ -279,7 +281,7 @@ class Index extends BaseAddForm {
             {
               lg: 6,
               type: cardConfig.contentItemType.imageUpload,
-              icon: <PictureOutlined />,
+              icon: iconCollection.picture,
               title: fieldData.image.label,
               helper: fieldData.image.helper,
               image,
@@ -291,7 +293,7 @@ class Index extends BaseAddForm {
             {
               lg: 6,
               type: cardConfig.contentItemType.imageUpload,
-              icon: <PictureOutlined />,
+              icon: iconCollection.picture,
               title: fieldData.rectangleImage.label,
               helper: fieldData.rectangleImage.helper,
               image: rectangleImage,
@@ -397,15 +399,15 @@ class Index extends BaseAddForm {
                   <FadeBox show={fadeBoxShow}>
                     <div>
                       <Space>
-                        <IconInfo icon={<FormOutlined />} text="文字1" />
-                        <IconInfo icon={<FormOutlined />} text="文字2" />
-                        <IconInfo icon={<FormOutlined />} text="文字3" />
+                        <IconInfo icon={iconCollection.form} text="文字1" />
+                        <IconInfo icon={iconCollection.form} text="文字2" />
+                        <IconInfo icon={iconCollection.form} text="文字3" />
                       </Space>
                     </div>
                   </FadeBox>
 
                   <QueueBox show={fadeBoxShow}>
-                    <IconInfo icon={<FormOutlined />} text="QueueBox" />
+                    <IconInfo icon={iconCollection.form} text="QueueBox" />
                   </QueueBox>
 
                   <QueueListBox
@@ -420,25 +422,25 @@ class Index extends BaseAddForm {
                       {
                         hidden: true,
                         builder: () => {
-                          return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 1" />;
+                          return <IconInfo icon={iconCollection.form} text="QueueListBoxItem 1" />;
                         },
                       },
                       {
                         hidden: false,
                         builder: () => {
-                          return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 2" />;
+                          return <IconInfo icon={iconCollection.form} text="QueueListBoxItem 2" />;
                         },
                       },
                       {
                         hidden: true,
                         builder: () => {
-                          return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 3" />;
+                          return <IconInfo icon={iconCollection.form} text="QueueListBoxItem 3" />;
                         },
                       },
                       {
                         hidden: false,
                         builder: () => {
-                          return <IconInfo icon={<FormOutlined />} text="QueueListBoxItem 4" />;
+                          return <IconInfo icon={iconCollection.form} text="QueueListBoxItem 4" />;
                         },
                       },
                     ]}

@@ -1,7 +1,9 @@
-import { accessWayCollection } from '@/customConfig/config';
-import { FormOutlined } from '@ant-design/icons';
-import DataMenuContainer from 'antd-management-fast-framework/es/framework/DataMenuContainer';
 import { connect } from 'umi';
+
+import DataMenuContainer from 'antd-management-fast-framework/es/framework/DataMenuContainer';
+import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
+
+import { accessWayCollection } from '@/customConfig/config';
 
 @connect(({ currentOperator }) => ({
   currentOperator,
@@ -11,7 +13,7 @@ class Setting extends DataMenuContainer {
     {
       key: 'basicInfo',
       show: this.checkAuthority(accessWayCollection.currentOperator.updateBasicInfo.permission),
-      icon: <FormOutlined />,
+      icon: iconCollection.form,
       defaultSelect: true,
       text: '基本信息',
     },

@@ -1,6 +1,6 @@
-import { CloseCircleOutlined, FormOutlined } from '@ant-design/icons';
 import { Affix, Col, Divider, Drawer, Form, Layout, Row, Space } from 'antd';
 import { Fragment } from 'react';
+
 import {
   buildButton,
   buildCustomSelect,
@@ -9,7 +9,11 @@ import {
   buildDropdownEllipsis,
 } from '../../../customComponents/FunctionComponent';
 import IconInfo from '../../../customComponents/IconInfo';
-import { cardConfig, drawerConfig } from '../../../utils/constants';
+import {
+  cardConfig,
+  drawerConfig,
+  iconCollection,
+} from '../../../utils/constants';
 import {
   defaultFormState,
   isFunction,
@@ -17,6 +21,7 @@ import {
   stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
 import BaseWindow from '../../DataOperation/BaseWindow';
+
 import styles from './index.less';
 
 const { Footer, Content } = Layout;
@@ -64,7 +69,7 @@ class Base extends BaseWindow {
     return '';
   };
 
-  renderTitleIcon = () => <FormOutlined />;
+  renderTitleIcon = () => iconCollection.form;
 
   renderTitle = () => {
     const prevText = this.buildTitlePrevText();
@@ -128,7 +133,7 @@ class Base extends BaseWindow {
     const o = {
       ...{
         type: 'default',
-        icon: <CloseCircleOutlined />,
+        icon: iconCollection.closeCircle,
         text: '关闭',
       },
       ...(option || {}),

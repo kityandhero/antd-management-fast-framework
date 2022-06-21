@@ -1,8 +1,7 @@
-import { ContactsOutlined } from '@ant-design/icons';
 import { connect } from 'umi';
 
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
-import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig, iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
 
@@ -47,7 +46,7 @@ class Index extends BaseAddDrawer {
       list: [
         {
           title: {
-            icon: <ContactsOutlined />,
+            icon: iconCollection.contacts,
             text: '基本信息',
           },
           spinning,
@@ -75,7 +74,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: <ContactsOutlined />,
+            icon: iconCollection.contacts,
             text: '简介描述',
           },
           spinning,
@@ -117,7 +116,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: <ContactsOutlined />,
+            icon: iconCollection.contacts,
             text: '其他信息',
           },
           spinning,

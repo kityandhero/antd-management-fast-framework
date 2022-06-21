@@ -1,4 +1,3 @@
-import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Divider, List, Typography } from 'antd';
 import { connect } from 'umi';
 
@@ -7,6 +6,7 @@ import {
   columnFacadeMode,
   columnPlaceholder,
   formatCollection,
+  iconCollection,
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-framework/es/utils/constants';
@@ -128,7 +128,7 @@ class PageListDrawer extends MultiPageSelectDrawer {
         <List.Item.Meta
           avatar={
             stringIsNullOrWhiteSpace(image) ? (
-              <Avatar icon={<UserOutlined />} />
+              <Avatar icon={iconCollection.user} />
             ) : (
               <Avatar src={image} />
             )

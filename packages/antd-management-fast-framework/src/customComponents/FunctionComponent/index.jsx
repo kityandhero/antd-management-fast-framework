@@ -1,13 +1,4 @@
-import {
-  BorderOuterOutlined,
-  EditOutlined,
-  EllipsisOutlined,
-  FormOutlined,
-  ImportOutlined,
-  InfoCircleOutlined,
-  LoadingOutlined,
-  RightCircleOutlined,
-} from '@ant-design/icons';
+import { BorderOuterOutlined, EllipsisOutlined } from '@ant-design/icons';
 import {
   Alert,
   Badge,
@@ -37,11 +28,13 @@ import TextAnimal from 'rc-texty';
 import ReactJson from 'react-json-view';
 import ReactPlayer from 'react-player';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+
 import {
   columnFacadeMode,
   datetimeFormat,
   defaultEmptyImage,
   dropdownExpandItemType,
+  iconCollection,
   listViewConfig,
   pageHeaderRenderType,
   whetherNumber,
@@ -81,6 +74,7 @@ import FlexText from '../FlexText';
 import IconInfo from '../IconInfo';
 import ImageBox from '../ImageBox';
 import VerticalBox from '../VerticalBox';
+
 import styles from './index.less';
 
 const FormItem = Form.Item;
@@ -146,7 +140,7 @@ export function buildButton({
   type: typeSource = 'default',
   size: sizeSource = 'default',
   text: textSource = '按钮',
-  icon: iconSource = <FormOutlined />,
+  icon: iconSource = iconCollection.form,
   handleClick: handleClickSource = () => {},
   hidden: hiddenSource = false,
   danger: dangerSource = false,
@@ -154,7 +148,7 @@ export function buildButton({
   confirm: confirmSource = false,
   handleData: handleDataSource = null,
   processing: processingSource = false,
-  iconProcessing: iconProcessingSource = <LoadingOutlined />,
+  iconProcessing: iconProcessingSource = iconCollection.loading,
   style: styleSource = null,
   showIcon: showIconSource = true,
 }) {
@@ -182,14 +176,14 @@ export function buildButton({
       type: typeSource ?? 'default',
       size: sizeSource ?? 'default',
       text: textSource ?? '按钮',
-      icon: iconSource ?? <FormOutlined />,
+      icon: iconSource ?? iconCollection.form,
       handleClick: handleClickSource ?? null,
       danger: dangerSource ?? false,
       hidden: hiddenSource ?? false,
       disabled: disabledSource ?? false,
       confirm: confirmSource ?? false,
       processing: processingSource ?? false,
-      iconProcessing: iconProcessingSource ?? <LoadingOutlined />,
+      iconProcessing: iconProcessingSource ?? iconCollection.loading,
       handleData: handleDataSource ?? null,
       style: styleSource || null,
       showIcon: showIconSource,
@@ -249,8 +243,8 @@ export function buildButton({
   }
 
   const ico = processing
-    ? iconProcessing ?? <LoadingOutlined />
-    : icon ?? <FormOutlined />;
+    ? iconProcessing ?? iconCollection.loading
+    : icon ?? iconCollection.form;
 
   if (confirmAdjust) {
     const { placement, title, okText, cancelText } = confirmAdjust;
@@ -310,7 +304,7 @@ export function buildDropdownButton({
   type: typeSource = 'default',
   size = 'small',
   text = '按钮',
-  icon = <FormOutlined />,
+  icon = iconCollection.form,
   handleData: r,
   arrow = true,
   disabled = false,
@@ -387,7 +381,7 @@ export function buildDropdown({
   placement: placementDropdown = 'bottomRight',
   size = 'default',
   text = '按钮',
-  icon = <FormOutlined />,
+  icon = iconCollection.form,
   handleData: r,
   arrow = true,
   disabled = false,
@@ -398,7 +392,7 @@ export function buildDropdown({
   itemPanelTitle = '',
   confirm = false,
   processing = false,
-  iconProcessing = <LoadingOutlined />,
+  iconProcessing = iconCollection.loading,
 }) {
   if (hidden) {
     return null;
@@ -680,7 +674,7 @@ export function buildMenu({
         withDivider: false,
         uponDivider: true,
         key: getGuid(),
-        icon: <EditOutlined />,
+        icon: iconCollection.edit,
         text: '',
         disabled: false,
         hidden: false,
@@ -821,7 +815,7 @@ export function buildMenu({
                   size="small"
                   disabled={disabled}
                 >
-                  <IconInfo icon={icon || <EditOutlined />} text={text} />
+                  <IconInfo icon={icon || iconCollection.edit} text={text} />
                 </Button>
               </Popconfirm>
             );
@@ -844,7 +838,7 @@ export function buildMenu({
               disabled={disabled}
               onClick={() => handleMenuClick({ key, handleData: r })}
             >
-              <IconInfo icon={icon || <EditOutlined />} text={text} />
+              <IconInfo icon={icon || iconCollection.edit} text={text} />
             </Button>
           );
         }
@@ -1534,7 +1528,7 @@ export function buildListViewItemActionSelect({
       confirm,
       size: 'small',
       type: 'link',
-      icon: <ImportOutlined />,
+      icon: iconCollection.import,
       text: '选取',
       showIcon: true,
       handleClick: ({ handleData }) => {
@@ -2002,7 +1996,7 @@ export function buildFormNowTimeField({
           data: new Date(),
           format: datetimeFormat.yearMonthDayHourMinute,
         })}
-        addonBefore={<FormOutlined />}
+        addonBefore={iconCollection.form}
         disabled
         placeholder={buildFieldDescription(resultCheck.label)}
       />
@@ -2036,7 +2030,7 @@ export function buildFormCreateTimeField({
       }
     >
       <Input
-        addonBefore={<FormOutlined />}
+        addonBefore={iconCollection.form}
         disabled
         placeholder={buildFieldDescription(resultCheck.label)}
       />
@@ -2070,7 +2064,7 @@ export function buildFormUpdateTimeField({
       }
     >
       <Input
-        addonBefore={<FormOutlined />}
+        addonBefore={iconCollection.form}
         disabled
         placeholder={buildFieldDescription(resultCheck.label)}
       />
@@ -2082,7 +2076,7 @@ export function buildSearchInput({
   label,
   name,
   helper = null,
-  icon = <FormOutlined />,
+  icon = iconCollection.form,
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2140,7 +2134,7 @@ export function buildSearchInputNumber({
   label,
   name,
   helper = null,
-  icon = <FormOutlined />,
+  icon = iconCollection.form,
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2238,7 +2232,7 @@ export function buildFormHiddenWrapper({ children, hidden = true }) {
 export function buildFormInputFieldData({
   fieldData,
   required = false,
-  icon = <FormOutlined />,
+  icon = iconCollection.form,
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2273,7 +2267,7 @@ export function buildFormInput({
   name,
   required = false,
   helper = null,
-  icon = <FormOutlined />,
+  icon = iconCollection.form,
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2435,7 +2429,7 @@ export function buildFormPassword({
   name,
   required = false,
   helper = null,
-  icon = <FormOutlined />,
+  icon = iconCollection.form,
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2760,7 +2754,7 @@ export function buildFormOnlyShowInput({
   label,
   value,
   helper = null,
-  icon = <FormOutlined />,
+  icon = iconCollection.form,
   inputProps = { disabled: true },
   formItemLayout = {},
 }) {
@@ -2807,7 +2801,7 @@ export function buildFormInputNumber({
   name,
   required = false,
   helper = null,
-  icon = <FormOutlined />,
+  icon = iconCollection.form,
   inputNumberProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -3142,7 +3136,7 @@ export function buildColumnItem({
     } else {
       d.title = showHelper ? (
         <IconInfo
-          icon={<InfoCircleOutlined />}
+          icon={iconCollection.infoCircle}
           iconPosition="right"
           iconTooltip={helper}
           text={label}
@@ -3527,7 +3521,7 @@ export function adjustTableExpandConfig({ list, config }) {
         expandIconRotate: true,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         expandIcon: ({ expanded, onExpand, record }) => {
-          return <RightCircleOutlined />;
+          return iconCollection.rightCircle;
         },
         expandedRowRender: null,
       },

@@ -1,5 +1,5 @@
-import { ImportOutlined } from '@ant-design/icons';
 import { buildButton } from '../../../customComponents/FunctionComponent';
+import { iconCollection } from '../../../utils/constants';
 import { isFunction } from '../../../utils/tools';
 import SinglePageDrawer from '../SinglePageDrawer';
 
@@ -21,7 +21,7 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
   renderSelectButton = ({
     confirm = false,
     text: textSource = '选择',
-    icon: iconSource = <ImportOutlined />,
+    icon: iconSource = iconCollection.import,
     handleData = null,
     showIcon = true,
   }) => {
@@ -29,7 +29,7 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
       ...{
         confirm,
         size: 'small',
-        icon: iconSource || <ImportOutlined />,
+        icon: iconSource || iconCollection.import,
         text: textSource || '选择',
         showIcon,
         handleClick: () =>

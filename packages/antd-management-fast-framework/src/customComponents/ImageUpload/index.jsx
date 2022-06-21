@@ -1,12 +1,8 @@
-import {
-  DeleteOutlined,
-  EyeOutlined,
-  LoadingOutlined,
-  PlusOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import { message, Modal, Space, Tooltip, Upload } from 'antd';
 import { PureComponent } from 'react';
+
+import { iconCollection } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import {
   buildFieldHelper,
@@ -21,6 +17,7 @@ import FlexBox from '../FlexBox';
 import IconInfo from '../IconInfo';
 import ImageBox from '../ImageBox';
 import VerticalBox from '../VerticalBox';
+
 import styles from './index.less';
 
 const { confirm } = Modal;
@@ -201,7 +198,7 @@ class ImageUpload extends PureComponent {
 
     const uploadButton = (
       <div>
-        <PlusOutlined />
+        {iconCollection.plus}
         <div className="ant-upload-text">上传新图</div>
       </div>
     );
@@ -257,11 +254,9 @@ class ImageUpload extends PureComponent {
                       <div className={styles.imageAction}>
                         <div className={styles.icon}>
                           <CenterBox>
-                            {uploading ? (
-                              <LoadingOutlined />
-                            ) : (
-                              <UploadOutlined />
-                            )}
+                            {uploading
+                              ? iconCollection.loading
+                              : iconCollection.upload}
                           </CenterBox>
                         </div>
 

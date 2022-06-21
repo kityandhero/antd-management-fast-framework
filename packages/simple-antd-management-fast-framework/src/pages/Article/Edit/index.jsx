@@ -1,16 +1,10 @@
-import { accessWayCollection } from '@/customConfig/config';
-import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
-import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-import {
-  FormOutlined,
-  InfoCircleFilled,
-  ReloadOutlined,
-  UpCircleOutlined,
-} from '@ant-design/icons';
+import { connect } from 'umi';
+
 import DataTabContainer from 'antd-management-fast-framework/es/framework/DataTabContainer';
 import {
   convertCollection,
   extraBuildType,
+  iconCollection,
   tabBarCollection,
 } from 'antd-management-fast-framework/es/utils/constants';
 import {
@@ -20,7 +14,11 @@ import {
   showInfoMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { connect } from 'umi';
+
+import { accessWayCollection } from '@/customConfig/config';
+import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
+import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
+
 import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
 import { checkNeedUpdateAssist, parseUrlParamsForSetState } from '../Assist/config';
 import { fieldData, statusCollection } from '../Common/data';
@@ -208,12 +206,12 @@ class Edit extends DataTabContainer {
       list: [
         {
           buildType: extraBuildType.iconInfo,
-          icon: <InfoCircleFilled />,
+          icon: iconCollection.infoCircle,
           text: '一些说明',
         },
         {
           buildType: extraBuildType.button,
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           text: '按钮',
           handleClick: () => {},
         },
@@ -243,7 +241,7 @@ class Edit extends DataTabContainer {
           type: 'default',
           size: 'default',
           text: '上架',
-          icon: <UpCircleOutlined />,
+          icon: iconCollection.upCircle,
           handleButtonClick: ({ handleData }) => {
             that.setOnline(handleData);
           },
@@ -257,14 +255,14 @@ class Edit extends DataTabContainer {
           },
           handleData: metaData,
           // processing: dataLoading,
-          // iconProcessing: <LoadingOutlined />,
+          // iconProcessing: iconCollection.loading,
         },
         {
           key: 'setOffline',
           type: 'default',
           size: 'default',
           text: '下架',
-          icon: <UpCircleOutlined />,
+          icon: iconCollection.upCircle,
           handleButtonClick: ({ handleData }) => {
             that.setOffline(handleData);
           },
@@ -278,7 +276,7 @@ class Edit extends DataTabContainer {
           },
           handleData: metaData,
           // processing: dataLoading,
-          // iconProcessing: <LoadingOutlined />,
+          // iconProcessing: iconCollection.loading,
         },
       ],
     };
@@ -351,26 +349,26 @@ class Edit extends DataTabContainer {
       items: [
         {
           key: 'click1',
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           text: '按钮1',
           hidden: true,
         },
         {
           key: 'click2',
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           text: '按钮2',
           hidden: false,
           disabled: true,
         },
         {
           key: 'click21',
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           text: '按钮21',
           hidden: false,
         },
         {
           key: 'click3',
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           text: '按钮2',
           hidden: false,
           disabled: false,
@@ -385,7 +383,7 @@ class Edit extends DataTabContainer {
           key: 'refreshCache',
           withDivider: true,
           uponDivider: true,
-          icon: <ReloadOutlined />,
+          icon: iconCollection.reload,
           text: '刷新缓存',
           hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
           confirm: {
@@ -408,7 +406,7 @@ class Edit extends DataTabContainer {
 
     return {
       buildType: tabBarCollection.extraBuildType.dropdown,
-      icon: <FormOutlined />,
+      icon: iconCollection.form,
       size: 'small',
       text: '扩展菜单',
       handleData: metaData,
@@ -447,7 +445,7 @@ class Edit extends DataTabContainer {
       items: [
         {
           key: 'extraBarAction1',
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           text: '按钮1',
           hidden: false,
           confirm: {
@@ -456,13 +454,13 @@ class Edit extends DataTabContainer {
         },
         {
           key: 'extraBarAction2',
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           text: '按钮2',
           hidden: false,
         },
         {
           key: 'extraBarAction3',
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           text: '按钮3',
           hidden: true,
           confirm: {

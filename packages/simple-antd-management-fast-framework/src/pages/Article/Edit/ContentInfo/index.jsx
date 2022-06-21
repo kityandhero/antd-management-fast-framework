@@ -1,16 +1,18 @@
 import { accessWayCollection } from '@/customConfig/config';
-import { InfoCircleFilled } from '@ant-design/icons';
+import { connect } from 'umi';
+
 import MobileHtmlPreviewBox from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
 import {
   animalType,
   cardConfig,
+  iconCollection,
   mobileTypeCollection,
 } from 'antd-management-fast-framework/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { connect } from 'umi';
+
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';
@@ -107,7 +109,7 @@ class ContentInfo extends TabPageBase {
             list: [
               {
                 buildType: cardConfig.extraBuildType.iconInfo,
-                icon: <InfoCircleFilled />,
+                icon: iconCollection.infoCircle,
                 text: '编辑完后记得保存哦!',
               },
               {

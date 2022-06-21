@@ -1,6 +1,6 @@
-import { PictureOutlined } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Divider, Space } from 'antd';
+
 import { decorateAvatar } from '../../customComponents/DecorateAvatar';
 import {
   buildPageHeaderContent,
@@ -8,8 +8,10 @@ import {
   buildPageHeaderTitle,
   pageHeaderExtraContent,
 } from '../../customComponents/FunctionComponent';
+import { iconCollection } from '../../utils/constants';
 import { isArray, isBoolean, isObject } from '../../utils/tools';
 import DataSingleView from '../DataSingleView/DataLoad';
+
 import styles from './index.less';
 
 class DataTabContainer extends DataSingleView {
@@ -22,7 +24,7 @@ class DataTabContainer extends DataSingleView {
 
     this.state = {
       ...this.state,
-      defaultAvatarIcon: <PictureOutlined />,
+      defaultAvatarIcon: iconCollection.picture,
       showPageHeaderAvatar: true,
       customTabActiveKey: false,
     };

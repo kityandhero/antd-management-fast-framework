@@ -1,8 +1,13 @@
-import { ContactsOutlined, FormOutlined } from '@ant-design/icons';
 import parse from 'html-react-parser';
+
 import Base from '../../framework/DataDrawer/Base';
-import { cardConfig, dataTypeCollection } from '../../utils/constants';
+import {
+  cardConfig,
+  dataTypeCollection,
+  iconCollection,
+} from '../../utils/constants';
 import { toNumber } from '../../utils/tools';
+
 import styles from './index.less';
 
 class DataPreviewDrawer extends Base {
@@ -39,7 +44,7 @@ class DataPreviewDrawer extends Base {
     const list = [
       {
         title: {
-          icon: <ContactsOutlined />,
+          icon: iconCollection.contacts,
           text: '说明',
         },
         items: [
@@ -59,7 +64,7 @@ class DataPreviewDrawer extends Base {
     if (toNumber(dataType) === dataTypeCollection.commonValue.flag) {
       list.push({
         title: {
-          icon: <ContactsOutlined />,
+          icon: iconCollection.contacts,
           text: '操作内容',
         },
         items: [
@@ -80,7 +85,7 @@ class DataPreviewDrawer extends Base {
     ) {
       list.push({
         title: {
-          icon: <ContactsOutlined />,
+          icon: iconCollection.contacts,
           text: '数据变更',
         },
         items: [
@@ -94,7 +99,7 @@ class DataPreviewDrawer extends Base {
     } else {
       list.push({
         title: {
-          icon: <ContactsOutlined />,
+          icon: iconCollection.contacts,
           text: '操作内容',
         },
         items: [
@@ -127,7 +132,7 @@ class DataPreviewDrawer extends Base {
 
 DataPreviewDrawer.defaultProps = {
   title: '',
-  icon: <FormOutlined />,
+  icon: iconCollection.form,
   placement: 'left',
   width: 380,
   dataType: dataTypeCollection.commonValue.flag,

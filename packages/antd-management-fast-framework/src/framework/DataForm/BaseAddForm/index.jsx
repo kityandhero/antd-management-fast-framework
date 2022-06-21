@@ -1,7 +1,7 @@
-import { PlusOutlined } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Avatar, BackTop, Form, message } from 'antd';
 import React from 'react';
+
 import { decorateAvatar } from '../../../customComponents/DecorateAvatar';
 import {
   buildPageHeaderContent,
@@ -9,7 +9,11 @@ import {
   buildPageHeaderTitle,
   pageHeaderExtraContent,
 } from '../../../customComponents/FunctionComponent';
-import { datetimeFormat, formNameCollection } from '../../../utils/constants';
+import {
+  datetimeFormat,
+  formNameCollection,
+  iconCollection,
+} from '../../../utils/constants';
 import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
 import {
   defaultFormState,
@@ -20,6 +24,7 @@ import {
   showRuntimeError,
 } from '../../../utils/tools';
 import DataCore from '../../DataSingleView/DataCore';
+
 import styles from './index.less';
 
 class BaseAddForm extends DataCore {
@@ -203,7 +208,7 @@ class BaseAddForm extends DataCore {
       });
   };
 
-  pageHeaderLogo = () => <Avatar shape="square" icon={<PlusOutlined />} />;
+  pageHeaderLogo = () => <Avatar shape="square" icon={iconCollection.plus} />;
 
   buildInitialValues = () => {
     return this.fillDefaultInitialValues();

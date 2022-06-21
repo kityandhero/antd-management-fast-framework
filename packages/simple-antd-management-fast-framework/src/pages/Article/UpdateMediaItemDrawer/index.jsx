@@ -1,14 +1,11 @@
-import {
-  ContactsOutlined,
-  LinkOutlined,
-  PictureOutlined,
-  SoundOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
 import { connect } from 'umi';
 
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
-import { cardConfig, formatCollection } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  cardConfig,
+  formatCollection,
+  iconCollection,
+} from 'antd-management-fast-framework/es/utils/constants';
 import {
   corsTarget,
   getValueByKey,
@@ -198,7 +195,7 @@ class Index extends BaseUpdateDrawer {
       list: [
         {
           title: {
-            icon: <ContactsOutlined />,
+            icon: iconCollection.contacts,
             text: mediaItemData.title.label,
           },
           spinning,
@@ -212,7 +209,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: <PictureOutlined />,
+            icon: iconCollection.picture,
             text: mediaItemData.image.label,
             subText: '[上传后需点击保存按钮保存！]',
           },
@@ -262,7 +259,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: <VideoCameraOutlined />,
+            icon: iconCollection.videoCamera,
             text: mediaItemData.video.label,
           },
           spinning: processing,
@@ -283,7 +280,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: <SoundOutlined />,
+            icon: iconCollection.sound,
             text: mediaItemData.audio.label,
           },
           spinning,
@@ -304,7 +301,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: <LinkOutlined />,
+            icon: iconCollection.link,
             text: mediaItemData.attachment.label,
           },
           spinning,

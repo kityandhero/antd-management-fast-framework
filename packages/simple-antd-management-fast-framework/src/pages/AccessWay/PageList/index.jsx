@@ -1,20 +1,23 @@
-import { accessWayCollection } from '@/customConfig/config';
-import {
-  getAccessWayStatusName,
-  renderSearchAccessWayStatusSelect,
-} from '@/customSpecialComponents/FunctionSupplement/AccessWayStatus';
-import { EditOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
+import { connect } from 'umi';
+
 import { buildDropdownButton } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 import {
   columnFacadeMode,
   columnPlaceholder,
+  iconCollection,
   listViewConfig,
   searchCardConfig,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
-import { connect } from 'umi';
+
+import { accessWayCollection } from '@/customConfig/config';
+import {
+  getAccessWayStatusName,
+  renderSearchAccessWayStatusSelect,
+} from '@/customSpecialComponents/FunctionSupplement/AccessWayStatus';
+
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { refreshCacheAction } from '../Assist/action';
 import { fieldData } from '../Common/data';
@@ -98,7 +101,7 @@ class PageList extends MultiPage {
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.button,
         type: 'primary',
-        icon: <PlusOutlined />,
+        icon: iconCollection.plus,
         text: '确认按钮',
         onClick: () => {
           showInfoMessage({
@@ -114,7 +117,7 @@ class PageList extends MultiPage {
       },
       {
         type: 'primary',
-        icon: <PlusOutlined />,
+        icon: iconCollection.plus,
         text: '普通按钮',
         onClick: () => {
           showInfoMessage({
@@ -234,7 +237,7 @@ class PageList extends MultiPage {
         return buildDropdownButton({
           size: 'small',
           text: '修改',
-          icon: <EditOutlined />,
+          icon: iconCollection.edit,
           handleButtonClick: ({ handleData }) => {
             this.goToEdit(handleData);
           },
@@ -245,7 +248,7 @@ class PageList extends MultiPage {
           items: [
             {
               key: 'refreshCache',
-              icon: <ReloadOutlined />,
+              icon: iconCollection.reload,
               text: '刷新缓存',
               confirm: {
                 title: '将要刷新缓存，确定吗？',

@@ -1,11 +1,8 @@
-import {
-  LoadingOutlined,
-  PictureOutlined,
-  ReloadOutlined,
-} from '@ant-design/icons';
+import { ReloadOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { PureComponent } from 'react';
-import { defaultEmptyImage } from '../../utils/constants';
+
+import { defaultEmptyImage, iconCollection } from '../../utils/constants';
 import {
   isFunction,
   showRuntimeError,
@@ -20,7 +17,7 @@ export const avatarImageLoadResultCollection = {
 
 export function decorateAvatar(
   avatar = null,
-  defaultAvatarIcon = <PictureOutlined />,
+  defaultAvatarIcon = iconCollection.picture,
   showPageHeaderAvatar = false,
   dataLoading = false,
   reloading = false,
@@ -31,7 +28,7 @@ export function decorateAvatar(
     let currentAvatar = null;
 
     if (dataLoading) {
-      currentAvatar = { icon: <LoadingOutlined /> };
+      currentAvatar = { icon: iconCollection.loading };
     }
 
     if (reloading) {
@@ -139,7 +136,7 @@ class DecorateAvatar extends PureComponent {
 
 DecorateAvatar.defaultProps = {
   avatar: null,
-  defaultAvatarIcon: <PictureOutlined />,
+  defaultAvatarIcon: iconCollection.picture,
   showPageHeaderAvatar: false,
   dataLoading: false,
   reloading: false,

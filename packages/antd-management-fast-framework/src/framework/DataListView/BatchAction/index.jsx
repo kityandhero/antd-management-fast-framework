@@ -1,7 +1,9 @@
-import { DownOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu } from 'antd';
 import { ConfigConsumer } from 'antd/lib/config-provider/context';
+
 import IconInfo from '../../../customComponents/IconInfo';
+import { iconCollection } from '../../../utils/constants';
+
 import styles from './index.less';
 
 /**
@@ -37,7 +39,7 @@ const DropdownButton = ({
           disabled={disabled}
         >
           <Button style={style}>
-            {children} <DownOutlined />
+            {children} {iconCollection.down}
           </Button>
         </Dropdown>
       );
@@ -61,9 +63,7 @@ const BatchAction = ({ style, onSelect, menus = [], disabled }) => (
           className={styles.batchAction}
           disabled={disabled}
         >
-          <a style={style}>
-            <EllipsisOutlined />
-          </a>
+          <a style={style}>iconCollection.ellipsis</a>
         </Dropdown>
       );
     }}

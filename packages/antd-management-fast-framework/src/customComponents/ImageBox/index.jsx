@@ -6,6 +6,7 @@ import {
 import { Col, Image, Row, Spin } from 'antd';
 import classNames from 'classnames';
 import React from 'react';
+
 import CustomBase from '../../framework/CustomBase';
 import { defaultEmptyImage } from '../../utils/constants';
 import {
@@ -15,6 +16,7 @@ import {
   trim,
 } from '../../utils/tools';
 import IconInfo from '../IconInfo';
+
 import styles from './index.less';
 
 class ImageBox extends CustomBase {
@@ -304,7 +306,7 @@ class ImageBox extends CustomBase {
                 <Col>
                   <IconInfo
                     direction="vertical"
-                    icon={<PictureOutlined />}
+                    icon={iconCollection.picture}
                     text={<div className={styles.overlayText}>{errorOverlayText}</div>}
                   />
                 </Col>

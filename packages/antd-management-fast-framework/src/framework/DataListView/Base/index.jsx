@@ -1,10 +1,3 @@
-import {
-  FormOutlined,
-  LoadingOutlined,
-  PictureOutlined,
-  ReloadOutlined,
-  SearchOutlined,
-} from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import {
   Affix,
@@ -46,6 +39,7 @@ import StandardTableCustom from '../../../customComponents/StandardTableCustom';
 import {
   cardConfig,
   datetimeFormat,
+  iconCollection,
   listViewConfig,
   pageHeaderRenderType,
   searchCardConfig,
@@ -108,7 +102,7 @@ class ListBase extends AuthorizationWrapper {
         showSelect: false,
         renderPageHeaderWrapper: true,
         listTitle: '检索结果',
-        defaultAvatarIcon: <PictureOutlined />,
+        defaultAvatarIcon: iconCollection.picture,
         listViewMode: listViewConfig.viewMode.list,
         avatarImageLoadResult: avatarImageLoadResultCollection.wait,
         showPageHeaderAvatar: false,
@@ -442,7 +436,7 @@ class ListBase extends AuthorizationWrapper {
               fieldData.label,
               fieldData.name,
               showHelper ? fieldData.helper : '',
-              icon || <FormOutlined />,
+              icon || iconCollection.form,
               { ...{}, ...(contentItem.otherProps || {}) },
             )
           : null}
@@ -452,7 +446,7 @@ class ListBase extends AuthorizationWrapper {
               fieldData.label,
               fieldData.name,
               fieldData.helper,
-              icon || <FormOutlined />,
+              icon || iconCollection.form,
               {
                 ...{},
                 ...(contentItem.otherProps || {}),
@@ -488,7 +482,7 @@ class ListBase extends AuthorizationWrapper {
               fieldData.label,
               contentItem.value,
               fieldData.helper || '',
-              contentItem.icon || <FormOutlined />,
+              contentItem.icon || iconCollection.form,
               {
                 ...{},
                 ...(contentItem.otherProps || {}),
@@ -557,7 +551,7 @@ class ListBase extends AuthorizationWrapper {
             this.handleSearch(e);
           }}
         >
-          {searching ? <LoadingOutlined /> : <SearchOutlined />}
+          {searching ? iconCollection.loading : iconCollection.search}
           查询
         </Button>
         <Button
@@ -567,7 +561,7 @@ class ListBase extends AuthorizationWrapper {
             this.handleSearchReset();
           }}
         >
-          {reloading ? <LoadingOutlined /> : <ReloadOutlined />}
+          {reloading ? iconCollection.loading : iconCollection.reload}
           重置
         </Button>
       </span>
@@ -1181,7 +1175,7 @@ class ListBase extends AuthorizationWrapper {
                 border: 0,
               }}
               loading={refreshing}
-              icon={<ReloadOutlined />}
+              icon={iconCollection.reload}
               onClick={() => {
                 this.refreshData();
               }}
@@ -1212,7 +1206,7 @@ class ListBase extends AuthorizationWrapper {
               border: 0,
             }}
             loading={refreshing}
-            icon={<ReloadOutlined />}
+            icon={iconCollection.reload}
             onClick={() => {
               this.refreshData();
             }}

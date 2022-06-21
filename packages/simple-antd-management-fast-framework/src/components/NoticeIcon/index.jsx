@@ -3,9 +3,11 @@ import { Badge, Spin, Tabs } from 'antd';
 import classNames from 'classnames';
 import React from 'react';
 import useMergeValue from 'use-merge-value';
+
 import HeaderDropdown from '../HeaderDropdown';
-import styles from './index.less';
 import NoticeList from './NoticeList';
+
+import styles from './index.less';
 
 const { TabPane } = Tabs;
 

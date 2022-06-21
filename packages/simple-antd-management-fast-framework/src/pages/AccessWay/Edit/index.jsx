@@ -1,9 +1,9 @@
-import { RollbackOutlined } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Avatar, Button, Col, Descriptions, Row } from 'antd';
 import { connect } from 'umi';
 
 import { DataTabContainer } from 'antd-management-fast-framework/es/framework';
+import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 import { pretreatmentRequestParams } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import {
   formatDatetime,
@@ -168,8 +168,7 @@ class Edit extends DataTabContainer {
                   this.backToList(e);
                 }}
               >
-                <RollbackOutlined />
-                列表页
+                {iconCollection.rollback} 列表页
               </Button>
             </div>
           </>

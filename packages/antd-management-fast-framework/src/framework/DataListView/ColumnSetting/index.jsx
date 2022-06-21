@@ -1,12 +1,11 @@
-import {
-  PushpinOutlined,
-  SettingOutlined,
-  VerticalAlignMiddleOutlined,
-} from '@ant-design/icons';
+import { PushpinOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Popover, Tooltip } from 'antd';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+
+import { iconCollection } from '../../../utils/constants';
 import DnDItem from './DndItem';
+
 import styles from './index.less';
 
 const Backend = HTML5Backend;
@@ -116,7 +115,7 @@ const CheckboxListItem = ({
           title="取消固定"
           show={!!fixed}
         >
-          <VerticalAlignMiddleOutlined />
+          {iconCollection.verticalAlignMiddle}
         </ToolTipIcon>
         <ToolTipIcon
           columnKey={columnKey}
@@ -332,7 +331,7 @@ const ColumnSetting = (props) => {
               border: 0,
               color: '#000000',
             }}
-            icon={<SettingOutlined />}
+            icon={iconCollection.setting}
           />
         </Tooltip>
       </Popover>

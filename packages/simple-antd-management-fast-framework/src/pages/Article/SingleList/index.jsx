@@ -1,24 +1,6 @@
-import { accessWayCollection } from '@/customConfig/config';
-import { colorCollection } from '@/customConfig/constants';
-import {
-  getArticleRenderTypeName,
-  renderSearchArticleRenderTypeSelect,
-} from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
-import {
-  getArticleStatusName,
-  renderSearchArticleStatusSelect,
-} from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-import {
-  EditOutlined,
-  FormOutlined,
-  InfoCircleFilled,
-  PauseCircleTwoTone,
-  PlayCircleTwoTone,
-  PlusOutlined,
-  ReloadOutlined,
-  SortAscendingOutlined,
-} from '@ant-design/icons';
 import { List } from 'antd';
+import { connect } from 'umi';
+
 import {
   buildCustomGrid,
   buildDropdownButton,
@@ -32,13 +14,25 @@ import {
   columnPlaceholder,
   convertCollection,
   extraBuildType,
+  iconCollection,
   listViewConfig,
   searchCardConfig,
   unlimitedWithStringFlag,
   whetherNumber,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { getValueByKey, showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
-import { connect } from 'umi';
+
+import { accessWayCollection } from '@/customConfig/config';
+import { colorCollection } from '@/customConfig/constants';
+import {
+  getArticleRenderTypeName,
+  renderSearchArticleRenderTypeSelect,
+} from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
+import {
+  getArticleStatusName,
+  renderSearchArticleStatusSelect,
+} from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
+
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
 import { getStatusBadge } from '../Assist/tools';
@@ -312,12 +306,12 @@ class SingleList extends SinglePage {
       list: [
         {
           buildType: extraBuildType.iconInfo,
-          icon: <InfoCircleFilled />,
+          icon: iconCollection.infoCircle,
           text: '一些说明',
         },
         {
           buildType: extraBuildType.button,
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           text: '按钮',
           handleClick: () => {},
         },
@@ -482,7 +476,7 @@ class SingleList extends SinglePage {
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
-        icon: <SortAscendingOutlined />,
+        icon: iconCollection.sortAscending,
         text: '侧拉单页列表',
         handleClick: this.showSingleListDrawer,
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
@@ -490,7 +484,7 @@ class SingleList extends SinglePage {
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
-        icon: <PlusOutlined />,
+        icon: iconCollection.plus,
         text: '新增文章[侧拉]',
         handleClick: this.showAddBasicInfoDrawer,
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
@@ -498,7 +492,7 @@ class SingleList extends SinglePage {
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
-        icon: <PlusOutlined />,
+        icon: iconCollection.plus,
         text: '新增文章[页面]',
         handleClick: this.goToAdd,
         hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
@@ -522,18 +516,18 @@ class SingleList extends SinglePage {
         list: [
           {
             buildType: cardConfig.extraBuildType.iconInfo,
-            icon: <InfoCircleFilled />,
+            icon: iconCollection.infoCircle,
             text: '一些说明',
           },
           {
             buildType: cardConfig.extraBuildType.generalButton,
-            icon: <FormOutlined />,
+            icon: iconCollection.form,
             text: '一般按钮',
           },
           {
             buildType: cardConfig.extraBuildType.generalButton,
             hidden: true,
-            icon: <FormOutlined />,
+            icon: iconCollection.form,
             text: '隐藏按钮',
           },
         ],
@@ -694,7 +688,7 @@ class SingleList extends SinglePage {
         return buildDropdownButton({
           size: 'small',
           text: '编辑',
-          icon: <FormOutlined />,
+          icon: iconCollection.form,
           handleButtonClick: ({ handleData }) => {
             this.goToEdit(handleData);
           },
@@ -707,13 +701,13 @@ class SingleList extends SinglePage {
               key: 'showUpdateBasicInfoDrawer',
               withDivider: true,
               uponDivider: true,
-              icon: <EditOutlined />,
+              icon: iconCollection.edit,
               text: '编辑[侧拉]',
               hidden: !this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission),
             },
             {
               key: 'setOnline',
-              icon: <PlayCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
+              icon: iconCollection.playCircle,
               text: '设为上线',
               hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
               disabled: itemStatus === statusCollection.online,
@@ -723,7 +717,7 @@ class SingleList extends SinglePage {
             },
             {
               key: 'setOffline',
-              icon: <PauseCircleTwoTone twoToneColor={colorCollection.closeCircleColor} />,
+              icon: iconCollection.pauseCircle,
               text: '设为下线',
               hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
               disabled: itemStatus === statusCollection.offline,
@@ -735,7 +729,7 @@ class SingleList extends SinglePage {
               key: 'setSort',
               withDivider: true,
               uponDivider: true,
-              icon: <EditOutlined />,
+              icon: iconCollection.edit,
               text: '设置排序值',
               hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
             },
@@ -743,7 +737,7 @@ class SingleList extends SinglePage {
               key: 'refreshCache',
               withDivider: true,
               uponDivider: true,
-              icon: <ReloadOutlined />,
+              icon: iconCollection.reload,
               text: '刷新缓存',
               hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
               confirm: {

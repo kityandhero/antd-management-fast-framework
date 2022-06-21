@@ -1,11 +1,14 @@
-import { accessWayCollection } from '@/customConfig/config';
-import { ArrowDownOutlined, ArrowUpOutlined, RetweetOutlined } from '@ant-design/icons';
 import { Dropdown, List, Menu } from 'antd';
-import Base from 'antd-management-fast-framework/es/framework/DataModal/Base';
-import { sortOperate } from 'antd-management-fast-framework/es/utils/constants';
-import { showError, sortCollectionByKey } from 'antd-management-fast-framework/es/utils/tools';
 import { connect } from 'umi';
+
+import Base from 'antd-management-fast-framework/es/framework/DataModal/Base';
+import { iconCollection, sortOperate } from 'antd-management-fast-framework/es/utils/constants';
+import { showError, sortCollectionByKey } from 'antd-management-fast-framework/es/utils/tools';
+
+import { accessWayCollection } from '@/customConfig/config';
+
 import { getArticleIdFromExternalData } from '../Assist/config';
+
 import styles from './index.less';
 
 @connect(({ article, global, loading }) => ({
@@ -170,23 +173,20 @@ class ChangeImageSortModal extends Base {
           overlay={
             <Menu onClick={(e) => onMenuClick(e, current)}>
               <Menu.Item key={sortOperate.moveUp} disabled={current.sort === 1}>
-                <ArrowUpOutlined />
+                {iconCollection.arrowUp}
                 上移
               </Menu.Item>
               <Menu.Item
                 key={sortOperate.moveDown}
                 disabled={current.sort === (metaListDataList || []).length}
               >
-                <ArrowDownOutlined />
+                {iconCollection.arrowDown}
                 下移
               </Menu.Item>
             </Menu>
           }
         >
-          <a>
-            <RetweetOutlined />
-            排序
-          </a>
+          <a>iconCollection.retweet 排序</a>
         </Dropdown>
       );
     };

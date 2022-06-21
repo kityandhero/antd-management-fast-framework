@@ -1,6 +1,7 @@
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Tag, Tooltip } from 'antd';
 import { connect, SelectLang } from 'umi';
+
+import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 
 import { defaultSettings } from '@/defaultSettings';
 
@@ -57,7 +58,7 @@ const GlobalHeaderRight = (props) => {
           rel="noopener noreferrer"
           className={styles.action}
         >
-          <QuestionCircleOutlined />
+          {iconCollection.question}
         </a>
       </Tooltip>
 

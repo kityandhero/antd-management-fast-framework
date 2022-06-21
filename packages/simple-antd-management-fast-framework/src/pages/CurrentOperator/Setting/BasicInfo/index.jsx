@@ -1,8 +1,9 @@
-import { PictureOutlined } from '@ant-design/icons';
-import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
-import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
-import { corsTarget, getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
 import { connect } from 'umi';
+
+import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
+import { cardConfig, iconCollection } from 'antd-management-fast-framework/es/utils/constants';
+import { corsTarget, getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
+
 import { fieldData } from '../../Common/data';
 
 @connect(({ currentOperator, global, loading }) => ({
@@ -171,7 +172,7 @@ class BasicInfo extends BaseUpdateFormContent {
         },
         {
           title: {
-            icon: <PictureOutlined />,
+            icon: iconCollection.picture,
             text: '头像上传',
             subText: '[上传后需点击保存按钮保存！]',
           },

@@ -1,8 +1,3 @@
-import {
-  CloseCircleOutlined,
-  FormOutlined,
-  SearchOutlined,
-} from '@ant-design/icons';
 import { Button, Divider } from 'antd';
 import { isFunction, showRuntimeError } from '../../../../utils/tools';
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
@@ -72,7 +67,7 @@ class SelectFieldBase extends SupplementWrapper {
       label,
       (fieldText || '') === '' ? null : fieldText,
       helper || null,
-      <FormOutlined />,
+      iconCollection.form,
       {
         placeholder: `${fieldPlaceholder}${fieldTitle}`,
         readOnly: true,
@@ -90,7 +85,7 @@ class SelectFieldBase extends SupplementWrapper {
               title={`选择${fieldTitle}`}
               onClick={(e) => this.showSelect(e)}
             >
-              <SearchOutlined />
+              iconCollection.search
             </Button>
 
             {showClear ? (
@@ -116,7 +111,7 @@ class SelectFieldBase extends SupplementWrapper {
                 title="清除选择"
                 onClick={() => this.clearSelect()}
               >
-                <CloseCircleOutlined />
+                iconCollection.closeCircle
               </Button>
             ) : null}
           </>

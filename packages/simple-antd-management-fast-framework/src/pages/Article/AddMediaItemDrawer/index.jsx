@@ -1,16 +1,7 @@
-import { accessWayCollection } from '@/customConfig/config';
-import { mediaTypeCollection } from '@/customConfig/constants';
-import { renderFormMediaTypeSelect } from '@/customSpecialComponents/FunctionSupplement/MediaType';
-import {
-  ContactsOutlined,
-  LinkOutlined,
-  PictureOutlined,
-  PlusSquareOutlined,
-  SoundOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
+import { connect } from 'umi';
+
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
-import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
+import { cardConfig, iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 import {
   corsTarget,
   inCollection,
@@ -18,7 +9,11 @@ import {
   toNumber,
   toString,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { connect } from 'umi';
+
+import { accessWayCollection } from '@/customConfig/config';
+import { mediaTypeCollection } from '@/customConfig/constants';
+import { renderFormMediaTypeSelect } from '@/customSpecialComponents/FunctionSupplement/MediaType';
+
 import { mediaItemData } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({
@@ -129,7 +124,7 @@ class Index extends BaseAddDrawer {
     this.setState({ mediaType: toNumber(v) });
   };
 
-  renderTitleIcon = () => <PlusSquareOutlined />;
+  renderTitleIcon = () => iconCollection.plusSquare;
 
   renderTitle = () => {
     return '添加媒体项';
@@ -152,7 +147,7 @@ class Index extends BaseAddDrawer {
       list: [
         {
           title: {
-            icon: <ContactsOutlined />,
+            icon: iconCollection.contacts,
             text: mediaItemData.title.label,
           },
           spinning,
@@ -172,7 +167,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: <PictureOutlined />,
+            icon: iconCollection.picture,
             text: mediaItemData.image.label,
             subText: '[上传后需点击保存按钮保存]',
           },
@@ -226,7 +221,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: <VideoCameraOutlined />,
+            icon: iconCollection.videoCamera,
             text: mediaItemData.video.label,
           },
           spinning,
@@ -247,7 +242,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: <SoundOutlined />,
+            icon: iconCollection.sound,
             text: mediaItemData.audio.label,
           },
           spinning,
@@ -268,7 +263,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: <LinkOutlined />,
+            icon: iconCollection.link,
             text: mediaItemData.attachment.label,
           },
           spinning,

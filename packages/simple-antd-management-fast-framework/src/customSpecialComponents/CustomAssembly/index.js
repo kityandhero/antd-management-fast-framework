@@ -1,15 +1,16 @@
-import { defaultSettings } from '@/defaultSettings';
-import { TeamOutlined } from '@ant-design/icons';
 import { buildMenuHeaderRender } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
+import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 import { stringIsNullOrWhiteSpace } from 'antd-management-fast-framework/es/utils/tools';
+
+import { defaultSettings } from '@/defaultSettings';
 
 export const defaultFooterData = {
   copyright: defaultSettings.getCopyright(),
   links: [
     {
       key: 'user',
-      title: <IconInfo icon={<TeamOutlined />} text="个人中心" />,
+      title: <IconInfo icon={iconCollection.team} text="个人中心" />,
       href: '/#/person/listRegUser',
       blankTarget: false,
     },

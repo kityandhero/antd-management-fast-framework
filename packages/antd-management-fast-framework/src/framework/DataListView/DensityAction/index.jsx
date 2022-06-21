@@ -1,7 +1,7 @@
-import { ColumnHeightOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Tooltip } from 'antd';
 import { PureComponent } from 'react';
-import { listViewConfig } from '../../../utils/constants';
+
+import { iconCollection, listViewConfig } from '../../../utils/constants';
 
 class DensityAction extends PureComponent {
   render() {
@@ -34,7 +34,7 @@ class DensityAction extends PureComponent {
               border: 0,
               color: '#000000',
             }}
-            icon={<ColumnHeightOutlined />}
+            icon={iconCollection.columnHeight}
           />
         </Tooltip>
       </Dropdown>

@@ -1,6 +1,7 @@
-import { ImportOutlined } from '@ant-design/icons';
 import { buildButton } from '../../../customComponents/FunctionComponent';
+import { iconCollection } from '../../../utils/constants';
 import { isFunction } from '../../../utils/tools';
+
 import MultiPageDrawer from '../MultiPageDrawer';
 
 class MultiPageSelectDrawer extends MultiPageDrawer {
@@ -21,7 +22,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
   renderSelectButton = ({
     confirm = false,
     text: textSource = '选择',
-    icon: iconSource = <ImportOutlined />,
+    icon: iconSource = iconCollection.import,
     handleData = null,
     showIcon = true,
   }) => {
@@ -29,7 +30,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
       ...{
         confirm,
         size: 'small',
-        icon: iconSource || <ImportOutlined />,
+        icon: iconSource || iconCollection.import,
         text: textSource || '选择',
         showIcon,
         handleClick: () =>

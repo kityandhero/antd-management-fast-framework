@@ -1,13 +1,3 @@
-import {
-  ArrowDownOutlined,
-  ArrowUpOutlined,
-  DeleteOutlined,
-  EditOutlined,
-  EyeOutlined,
-  InsertRowBelowOutlined,
-  PlusCircleOutlined,
-  ReloadOutlined,
-} from '@ant-design/icons';
 import { Button, List, Space } from 'antd';
 import { connect } from 'umi';
 
@@ -24,6 +14,7 @@ import {
   convertCollection,
   defaultEmptyImage,
   formatCollection,
+  iconCollection,
   mobileTypeCollection,
   sortOperate,
 } from 'antd-management-fast-framework/es/utils/constants';
@@ -446,7 +437,7 @@ class BasicInfo extends TabPageBase {
             extra={buildDropdownButton({
               size: 'small',
               text: '编辑',
-              icon: <EditOutlined />,
+              icon: iconCollection.edit,
               handleButtonClick: ({ handleData }) => {
                 this.showUpdateMediaItemDrawer(handleData);
               },
@@ -457,7 +448,7 @@ class BasicInfo extends TabPageBase {
               items: [
                 {
                   key: 'insertItem',
-                  icon: <InsertRowBelowOutlined />,
+                  icon: iconCollection.insertRowBelow,
                   text: '在下方插入',
                   hidden: !this.checkAuthority(accessWayCollection.article.addMediaItem.permission),
                 },
@@ -465,14 +456,14 @@ class BasicInfo extends TabPageBase {
                   key: 'moveUp',
                   withDivider: true,
                   uponDivider: true,
-                  icon: <ArrowUpOutlined />,
+                  icon: iconCollection.arrowUp,
                   text: '向上移动',
                   hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
                   disabled: sort === 1,
                 },
                 {
                   key: 'moveDown',
-                  icon: <ArrowDownOutlined />,
+                  icon: iconCollection.arrowDown,
                   text: '向下移动',
                   hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
                   disabled: sort === (mediaItemList || []).length,
@@ -481,7 +472,7 @@ class BasicInfo extends TabPageBase {
                   key: 'refreshCache',
                   withDivider: true,
                   uponDivider: true,
-                  icon: <ReloadOutlined />,
+                  icon: iconCollection.reload,
                   text: '刷新缓存',
                   hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
                   confirm: {
@@ -492,7 +483,7 @@ class BasicInfo extends TabPageBase {
                   key: 'removeItem',
                   withDivider: true,
                   uponDivider: true,
-                  icon: <DeleteOutlined />,
+                  icon: iconCollection.delete,
                   text: '删除信息',
                   hidden: !this.checkAuthority(
                     accessWayCollection.article.removeMediaItem.permission,
@@ -537,7 +528,7 @@ class BasicInfo extends TabPageBase {
                 this.showAddMediaItemDrawer(e);
               }}
             >
-              <PlusCircleOutlined />
+              {iconCollection.plusCircle}
               新增媒体
             </Button>
           ),
@@ -551,8 +542,7 @@ class BasicInfo extends TabPageBase {
                 this.showMediaItemPreviewDrawer();
               }}
             >
-              <EyeOutlined />
-              预览
+              iconCollection.eye 预览
             </Button>
           ),
         },

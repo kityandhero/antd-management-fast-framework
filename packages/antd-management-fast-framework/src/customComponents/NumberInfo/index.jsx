@@ -1,5 +1,7 @@
-import { CaretDownOutlined, CaretUpFilled } from '@ant-design/icons';
 import classNames from 'classnames';
+
+import { iconCollection } from '../../../utils/constants';
+
 import styles from './index.less';
 
 const NumberInfo = ({
@@ -46,8 +48,8 @@ const NumberInfo = ({
       {(status || subTotal) && (
         <span className={styles.subTotal}>
           {subTotal}
-          {status === 'up' && <CaretUpFilled />}
-          {status === 'down' && <CaretDownOutlined />}
+          {status === 'up' && iconCollection.caretUp}
+          {status === 'down' && iconCollection.caretDown}
         </span>
       )}
     </div>

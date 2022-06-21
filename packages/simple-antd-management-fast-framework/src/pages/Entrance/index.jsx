@@ -1,14 +1,14 @@
-import { LoadingOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 import { Button } from 'antd';
 import { PureComponent } from 'react';
 import { connect } from 'umi';
 
 import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
-
-import { signInAction } from './Assist/action';
+import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 
 import { defaultSettings } from '@/defaultSettings';
+
+import { signInAction } from './Assist/action';
 
 @connect(({ entrance, global }) => ({
   entrance,
@@ -65,7 +65,7 @@ class Entrance extends PureComponent {
               name="name"
               fieldProps={{
                 size: 'large',
-                prefix: <UserOutlined />,
+                prefix: iconCollection.user,
               }}
               placeholder="用户名"
               rules={[
@@ -80,7 +80,7 @@ class Entrance extends PureComponent {
               name="psw"
               fieldProps={{
                 size: 'large',
-                prefix: <LockOutlined />,
+                prefix: iconCollection.lock,
               }}
               placeholder="密码"
               rules={[
@@ -95,7 +95,7 @@ class Entrance extends PureComponent {
 
         {processing ? (
           <Button block type="primary" size="large" disabled>
-            <IconInfo icon={<LoadingOutlined />} text="登陆中" />
+            <IconInfo icon={iconCollection.loading} text="登陆中" />
           </Button>
         ) : null}
       </LoginForm>

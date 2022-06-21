@@ -1,12 +1,4 @@
-import {
-  CopyOutlined,
-  DeleteOutlined,
-  EllipsisOutlined,
-  LinkOutlined,
-  LoadingOutlined,
-  SwapOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { EllipsisOutlined } from '@ant-design/icons';
 import {
   Button,
   Divider,
@@ -19,6 +11,8 @@ import {
   Upload,
 } from 'antd';
 import { PureComponent } from 'react';
+
+import { iconCollection } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import {
   copyToClipboard,
@@ -238,17 +232,17 @@ class VideoUpload extends PureComponent {
     const menu = (
       <Menu onClick={this.handleMenuClick}>
         <Menu.Item key="changeUrl">
-          <IconInfo icon={<SwapOutlined />} text="更换地址" />
+          <IconInfo icon={iconCollection.swap} text="更换地址" />
         </Menu.Item>
 
         <Menu.Item key="copyUrl" disabled={stringIsNullOrWhiteSpace(fileUrl)}>
-          <IconInfo icon={<CopyOutlined />} text="复制地址" />
+          <IconInfo icon={iconCollection.copy} text="复制地址" />
         </Menu.Item>
 
         <Menu.Divider />
 
         <Menu.Item key="clearUrl" disabled={stringIsNullOrWhiteSpace(fileUrl)}>
-          <IconInfo icon={<DeleteOutlined />} text="清空文件" />
+          <IconInfo icon={iconCollection.delete} text="清空文件" />
         </Menu.Item>
       </Menu>
     );
@@ -267,7 +261,7 @@ class VideoUpload extends PureComponent {
               }}
               disabled={uploading}
             >
-              {uploading ? <LoadingOutlined /> : <UploadOutlined />}
+              {uploading ? iconCollection.loading : iconCollection.upload}
               {uploading ? '稍后' : '上传'}
             </Button>
           </Upload>
@@ -309,7 +303,7 @@ class VideoUpload extends PureComponent {
       <>
         <Input
           disabled
-          addonBefore={<LinkOutlined />}
+          addonBefore={iconCollection.link}
           addonAfter={addonAfter}
           value={fileUrl}
           placeholder="当前未设置文件地址"
@@ -317,7 +311,10 @@ class VideoUpload extends PureComponent {
 
         <Modal
           title={
-            <IconInfo icon={<SwapOutlined />} text="请输入将更换的文件地址" />
+            <IconInfo
+              icon={iconCollection.swap}
+              text="请输入将更换的文件地址"
+            />
           }
           visible={changeUrlVisible}
           onOk={this.handleChangeUrlOk}

@@ -1,4 +1,4 @@
-import { ReadOutlined, ReloadOutlined } from '@ant-design/icons';
+import { ReadOutlined } from '@ant-design/icons';
 import {
   Button,
   Card,
@@ -12,9 +12,11 @@ import {
   Tooltip,
 } from 'antd';
 import QueueAnim from 'rc-queue-anim';
+
 import { buildListViewItemActionSelect } from '../../../customComponents/FunctionComponent';
 import {
   contentConfig,
+  iconCollection,
   listViewConfig,
   notificationTypeCollection,
 } from '../../../utils/constants';
@@ -22,6 +24,7 @@ import { isFunction, notify } from '../../../utils/tools';
 import ColumnSetting from '../../DataListView/ColumnSetting';
 import DensityAction from '../../DataListView/DensityAction';
 import MultiPage from '../MultiPage';
+
 import styles from './index.less';
 
 class MultiPageDrawer extends MultiPage {
@@ -340,7 +343,7 @@ class MultiPageDrawer extends MultiPage {
                       shape="circle"
                       className={styles.iconAction}
                       loading={refreshing}
-                      icon={<ReloadOutlined />}
+                      icon={iconCollection.reload}
                       onClick={() => {
                         this.refreshData();
                       }}

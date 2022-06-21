@@ -1,7 +1,9 @@
-import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
+
+import { iconCollection } from '../../utils/constants';
+
 import styles from './index.less';
 
 // TODO: 添加逻辑
@@ -27,7 +29,7 @@ class EditableLinkGroup extends PureComponent {
           type="primary"
           ghost
           onClick={onAdd}
-          icon={<PlusOutlined />}
+          icon={iconCollection.plus}
         >
           添加
         </Button>

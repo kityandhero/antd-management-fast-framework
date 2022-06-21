@@ -1,7 +1,6 @@
-import { PictureOutlined } from '@ant-design/icons';
-
 import { buildPlayer } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 import MobilePreviewDrawer from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewDrawer';
+import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 import {
   isArray,
   showErrorMessage,
@@ -21,7 +20,7 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
   }
 
   renderTitleIcon = () => {
-    return <PictureOutlined />;
+    return iconCollection.picture;
   };
 
   renderTitle = () => {

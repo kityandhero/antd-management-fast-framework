@@ -1,18 +1,16 @@
-import {
-  CompressOutlined,
-  ContactsOutlined,
-  ExclamationCircleOutlined,
-  ProjectOutlined,
-} from '@ant-design/icons';
+import { CompressOutlined } from '@ant-design/icons';
 import { BackTop, Card, Col, message, notification, Popover, Row, Select, Spin } from 'antd';
+import { connect } from 'umi';
+
 import HtmlBox from 'antd-management-fast-framework/es/customComponents/HtmlBox';
+import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 import { pretreatmentRequestParams } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/es/utils/tools';
-import { connect } from 'umi';
 
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';
+
 import styles from './index.less';
 
 @connect(({ accessWay, global, loading }) => ({
@@ -219,7 +217,7 @@ class BasicInfo extends TabPageBase {
           trigger="click"
           getPopupContainer={(trigger) => trigger.parentNode}
         >
-          <ExclamationCircleOutlined />
+          {iconCollection.exclamationCircle}
         </Popover>
         {errorCount}
       </span>
@@ -300,7 +298,7 @@ class BasicInfo extends TabPageBase {
           <Card
             title={
               <>
-                <ContactsOutlined />
+                iconCollection.contacts
                 <span className={styles.cardTitle}>基本信息</span>
               </>
             }
@@ -372,7 +370,7 @@ class BasicInfo extends TabPageBase {
           <Card
             title={
               <>
-                <ContactsOutlined />
+                iconCollection.contacts
                 <span className={styles.cardTitle}>异常信息</span>
               </>
             }
@@ -401,7 +399,7 @@ class BasicInfo extends TabPageBase {
           <Card
             title={
               <>
-                <ProjectOutlined />
+                {iconCollection.project}
                 <span className={styles.cardTitle}>{fieldData.stackTrace}</span>
               </>
             }

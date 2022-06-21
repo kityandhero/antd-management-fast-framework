@@ -1,8 +1,10 @@
-import { ClockCircleOutlined, MessageOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined } from '@ant-design/icons';
 import { List } from 'antd';
+
 import CustomBase from '../../framework/CustomBase';
-import { datetimeFormat } from '../../utils/constants';
+import { datetimeFormat, iconCollection } from '../../utils/constants';
 import { formatDatetime } from '../../utils/tools';
+
 import styles from './index.less';
 
 class TimeLineCustom extends CustomBase {
@@ -204,7 +206,7 @@ TimeLineCustom.defaultProps = {
   iconStyle: {},
   links: [],
   getIcon: () => {
-    return <MessageOutlined />;
+    return iconCollection.message;
   },
   getBackgroundColorKey: () => {
     return '';

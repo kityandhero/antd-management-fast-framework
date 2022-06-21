@@ -1,8 +1,8 @@
-import { PictureOutlined } from '@ant-design/icons';
 import BaseNeedlessLoadDrawer from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
 import {
   cardConfig,
   drawerConfig,
+  iconCollection,
   mobileTypeCollection,
   whetherNumber,
 } from '../../../utils/constants';
@@ -28,7 +28,7 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
   }
 
   renderTitleIcon = () => {
-    return <PictureOutlined />;
+    return iconCollection.picture;
   };
 
   renderTitle = () => {

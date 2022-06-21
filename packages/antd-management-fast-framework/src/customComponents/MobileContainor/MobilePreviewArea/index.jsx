@@ -1,8 +1,8 @@
-import { MobileOutlined } from '@ant-design/icons';
 import Base from '../../../framework/DataOperation/Base';
 import {
   animalType,
   cardConfig,
+  iconCollection,
   mobileTypeCollection,
   whetherNumber,
 } from '../../../utils/constants';
@@ -81,7 +81,7 @@ class MobilePreviewArea extends Base {
         {
           title: {
             text: '手机预览',
-            icon: <MobileOutlined />,
+            icon: iconCollection.mobile,
           },
           extra: {
             list: [

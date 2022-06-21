@@ -1,17 +1,14 @@
-import {
-  CloseCircleOutlined,
-  EditOutlined,
-  LoadingOutlined,
-} from '@ant-design/icons';
 import { Form, Modal, Spin } from 'antd';
+
 import FlexText from '../../../customComponents/FlexText';
-import { cardConfig } from '../../../utils/constants';
+import { cardConfig, iconCollection } from '../../../utils/constants';
 import {
   defaultFormState,
   isUndefined,
   stringIsNullOrWhiteSpace,
 } from '../../../utils/tools';
 import BaseWindow from '../../DataOperation/BaseWindow';
+
 import styles from './index.less';
 
 class Base extends BaseWindow {
@@ -88,7 +85,7 @@ class Base extends BaseWindow {
 
     return (
       <>
-        {buttonProcessing ? <LoadingOutlined /> : this.getSaveButtonIcon()}
+        {buttonProcessing ? iconCollection.loading : this.getSaveButtonIcon()}
         <span className={styles.buttonText}>{okText || '保存'}</span>
       </>
     );
@@ -110,7 +107,7 @@ class Base extends BaseWindow {
   buildCancelText = (saveButtonText = '') => {
     return (
       <>
-        <CloseCircleOutlined />
+        {iconCollection.closeCircle}
         <span className={styles.buttonText}>{saveButtonText || '取消'}</span>
       </>
     );
@@ -127,7 +124,7 @@ class Base extends BaseWindow {
   };
 
   buildTitleIcon = () => {
-    return <EditOutlined />;
+    return iconCollection.edit;
   };
 
   buildTitlePrevText = () => {

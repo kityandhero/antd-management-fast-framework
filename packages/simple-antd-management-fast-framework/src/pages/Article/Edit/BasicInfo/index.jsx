@@ -1,14 +1,6 @@
 import moment from 'moment';
 import { connect } from 'umi';
 
-import { accessWayCollection } from '@/customConfig/config';
-import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-import {
-  FormOutlined,
-  InfoCircleFilled,
-  PictureOutlined,
-  SortAscendingOutlined,
-} from '@ant-design/icons';
 import {
   buildColorText,
   buildCustomGrid,
@@ -18,6 +10,7 @@ import {
   convertCollection,
   datetimeFormat,
   formatCollection,
+  iconCollection,
 } from 'antd-management-fast-framework/es/utils/constants';
 import {
   getToken,
@@ -32,6 +25,9 @@ import {
   getValueByKey,
   showInfoMessage,
 } from 'antd-management-fast-framework/es/utils/tools';
+
+import { accessWayCollection } from '@/customConfig/config';
+import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
 import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
 import {
@@ -437,7 +433,7 @@ class BasicInfo extends TabPageBase {
             list: [
               {
                 buildType: cardConfig.extraBuildType.iconInfo,
-                icon: <InfoCircleFilled />,
+                icon: iconCollection.infoCircle,
                 text: '一些说明',
               },
               {
@@ -448,13 +444,13 @@ class BasicInfo extends TabPageBase {
               },
               {
                 buildType: cardConfig.extraBuildType.generalButton,
-                icon: <FormOutlined />,
+                icon: iconCollection.form,
                 text: '一般按钮',
               },
               {
                 buildType: cardConfig.extraBuildType.generalButton,
                 hidden: true,
-                icon: <FormOutlined />,
+                icon: iconCollection.form,
                 text: '隐藏按钮',
               },
               {
@@ -594,7 +590,7 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
-            icon: <PictureOutlined />,
+            icon: iconCollection.picture,
             text: '配图上传',
             subText: '[上传后需点击保存按钮保存！]',
           },
@@ -603,7 +599,7 @@ class BasicInfo extends TabPageBase {
             {
               lg: 12,
               type: cardConfig.contentItemType.imageUpload,
-              icon: <PictureOutlined />,
+              icon: iconCollection.picture,
               title: fieldData.image.label,
               helper: fieldData.image.helper,
               image,
@@ -615,7 +611,7 @@ class BasicInfo extends TabPageBase {
             {
               lg: 12,
               type: cardConfig.contentItemType.imageUpload,
-              icon: <PictureOutlined />,
+              icon: iconCollection.picture,
               title: fieldData.rectangleImage.label,
               helper: fieldData.rectangleImage.helper,
               image: rectangleImage,
@@ -640,7 +636,7 @@ class BasicInfo extends TabPageBase {
                   accessWayCollection.article.updateImageSort.permission,
                 ),
                 text: '调整图片顺序',
-                icon: <SortAscendingOutlined />,
+                icon: iconCollection.sortAscending,
                 handleClick: (e) => this.showChangeImageSortModal(e),
                 disabled: this.checkInProgress(),
               },
@@ -670,7 +666,7 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
-            icon: <PictureOutlined />,
+            icon: iconCollection.picture,
             text: '单配图纯展示',
           },
           spinning,
@@ -687,7 +683,7 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
-            icon: <PictureOutlined />,
+            icon: iconCollection.picture,
             text: '配图集合纯展示',
           },
           spinning,

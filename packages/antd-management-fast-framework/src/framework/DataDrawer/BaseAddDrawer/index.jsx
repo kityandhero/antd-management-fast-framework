@@ -1,5 +1,5 @@
-import { SaveOutlined } from '@ant-design/icons';
-import { drawerConfig } from '../../../utils/constants';
+import { drawerConfig, iconCollection } from '../../../utils/constants';
+
 import BaseNeedlessLoadDrawer from '../BaseNeedlessLoadDrawer';
 
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {
@@ -31,7 +31,7 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
       {
         buildType: drawerConfig.bottomBarBuildType.generalButton,
         type: 'primary',
-        icon: <SaveOutlined />,
+        icon: iconCollection.save,
         text: '保存',
         disabled: buttonProcessing,
         handleClick: (e) => {
