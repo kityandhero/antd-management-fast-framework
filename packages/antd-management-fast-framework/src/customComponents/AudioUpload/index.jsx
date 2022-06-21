@@ -11,8 +11,9 @@ import {
   Upload,
 } from 'antd';
 import { PureComponent } from 'react';
-import { iconCollection } from 'src/utils/constants';
+
 import { buildPlayer } from '../../customComponents/FunctionComponent';
+import { iconCollection } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import {
   copyToClipboard,
