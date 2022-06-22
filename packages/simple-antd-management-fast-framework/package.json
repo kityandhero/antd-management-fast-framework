@@ -1,6 +1,6 @@
 {
   "name": "simple-antd-management-fast-framework",
-  "version": "1.7.79",
+  "version": "1.7.80",
   "private": true,
   "description": "simple-antd-management-fast-framework",
   "keywords": [
@@ -229,8 +229,8 @@
     "umi-plugin-custom-extra": "^1.0.12"
   },
   "optionalDependencies": {
-    "antd-management-fast-cli": "^1.0.20",
-    "antd-management-fast-framework": "^1.12.79"
+    "antd-management-fast-cli": "^1.0.21",
+    "antd-management-fast-framework": "^1.12.80"
   },
   "engines": {
     "node": ">=14.0.0"
