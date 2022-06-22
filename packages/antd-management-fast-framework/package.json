@@ -185,7 +185,7 @@
     "import-sort-parser-babylon": "^6.0.0",
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-module": "^6.0.0",
-    "inquirer": "^9.0.0",
+    "inquirer": "^8.2.4",
     "jest-puppeteer": "^6.1.0",
     "jsdom": "^20.0.0",
     "jsdom-global": "^3.0.2",
