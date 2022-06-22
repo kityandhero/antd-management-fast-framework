@@ -1,6 +1,6 @@
 {
   "name": "simple-antd-management-fast-framework",
-  "version": "1.7.80",
+  "version": "1.7.81",
   "private": true,
   "description": "simple-antd-management-fast-framework",
   "keywords": [
@@ -230,7 +230,7 @@
   },
   "optionalDependencies": {
     "antd-management-fast-cli": "^1.0.21",
-    "antd-management-fast-framework": "^1.12.80"
+    "antd-management-fast-framework": "^1.12.81"
   },
   "engines": {
     "node": ">=14.0.0"
