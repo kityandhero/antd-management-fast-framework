@@ -84,6 +84,10 @@ async function handleTempPackagePath({ agent, file, packageUrl, repo }) {
 
     showMessage(`${repo} repo: ${packageUrl}`);
 
+    packageTempPath = resolve(`./temp/package.json`);
+
+    fs.rm(packageTempPath, { force: true });
+
     await download(packageUrl, resolve(`./temp`), {
       ...(agent
         ? {
@@ -102,8 +106,6 @@ async function handleTempPackagePath({ agent, file, packageUrl, repo }) {
     });
 
     showMessage(`use ${repo} repo success!`);
-
-    packageTempPath = resolve(`./temp/package.json`);
 
     showMessage(`packageTempPath: ${packageTempPath}`);
   }
