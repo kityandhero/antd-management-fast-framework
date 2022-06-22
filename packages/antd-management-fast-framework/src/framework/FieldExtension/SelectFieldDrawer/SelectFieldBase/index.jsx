@@ -1,4 +1,6 @@
 import { Button, Divider } from 'antd';
+
+import { iconCollection } from '../../../../utils/constants';
 import { isFunction, showRuntimeError } from '../../../../utils/tools';
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
 
