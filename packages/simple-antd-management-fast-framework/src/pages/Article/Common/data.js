@@ -23,6 +23,11 @@ export const fieldData = {
       name: 'author',
       helper: '文章的作者',
     },
+    select1: {
+      label: '选项列表',
+      name: 'select1',
+      helper: '选项列表示例',
+    },
     parentId: {
       label: '父级文章',
       name: 'parentId',

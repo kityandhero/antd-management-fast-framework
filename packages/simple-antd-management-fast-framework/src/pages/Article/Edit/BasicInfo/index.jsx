@@ -493,6 +493,30 @@ class BasicInfo extends TabPageBase {
             },
             {
               lg: 6,
+              type: cardConfig.contentItemType.select,
+              fieldData: fieldData.select1,
+              listData: [
+                {
+                  flag: '1',
+                  name: '选项1',
+                },
+                {
+                  flag: '2',
+                  name: '选项2',
+                },
+                {
+                  flag: '3',
+                  name: '选项3',
+                },
+              ],
+              otherProps: {
+                onChange: (v) => {
+                  console.log(v);
+                },
+              },
+            },
+            {
+              lg: 6,
               type: cardConfig.contentItemType.treeSelect,
               fieldData: fieldData.parentId,
               value: parentId,
