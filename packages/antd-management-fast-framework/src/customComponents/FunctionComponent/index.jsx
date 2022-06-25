@@ -3451,6 +3451,10 @@ export function buildColumnItem({
 
         const operateConfig = d.configBuilder(value, record, index);
 
+        if ((operateConfig || null) == null) {
+          return null;
+        }
+
         return buildDropdown(operateConfig);
       }
 

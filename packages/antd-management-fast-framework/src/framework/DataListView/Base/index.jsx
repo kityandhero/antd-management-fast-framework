@@ -19,6 +19,7 @@ import {
   Tooltip,
 } from 'antd';
 import React from 'react';
+
 import {
   avatarImageLoadResultCollection,
   decorateAvatar,
@@ -51,6 +52,7 @@ import {
   defaultListState,
   getDerivedStateFromPropsForUrlParams,
   isArray,
+  isObject,
   isUndefined,
   showRuntimeError,
   showWarnMessage,
@@ -58,9 +60,11 @@ import {
   toNumber,
 } from '../../../utils/tools';
 import AuthorizationWrapper from '../../AuthorizationWrapper';
+
 import BatchAction from '../BatchAction';
 import ColumnSetting from '../ColumnSetting';
 import DensityAction from '../DensityAction';
+
 import styles from './index.less';
 
 const { Content, Sider } = Layout;
@@ -233,7 +237,7 @@ class ListBase extends AuthorizationWrapper {
 
     return this.buildColumnList([
       ...list,
-      ...(this.columnOperateVisible
+      ...(this.columnOperateVisible && isObject()
         ? [
             {
               dataTarget: formNameCollection.customOperate,
@@ -1583,7 +1587,7 @@ class ListBase extends AuthorizationWrapper {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   establishListItemDropdownConfig = (record) => {
-    return {};
+    return null;
   };
 
   renderPageContent = () => {
