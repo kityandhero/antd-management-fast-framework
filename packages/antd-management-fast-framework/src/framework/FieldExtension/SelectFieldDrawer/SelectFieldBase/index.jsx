@@ -87,7 +87,7 @@ class SelectFieldBase extends SupplementWrapper {
               title={`选择${fieldTitle}`}
               onClick={(e) => this.showSelect(e)}
             >
-              iconCollection.search
+              {iconCollection.search}
             </Button>
 
             {showClear ? (
@@ -113,7 +113,7 @@ class SelectFieldBase extends SupplementWrapper {
                 title="清除选择"
                 onClick={() => this.clearSelect()}
               >
-                iconCollection.closeCircle
+                {iconCollection.closeCircle}
               </Button>
             ) : null}
           </>
