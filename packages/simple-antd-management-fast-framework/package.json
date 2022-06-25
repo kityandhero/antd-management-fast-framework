@@ -1,6 +1,6 @@
 {
   "name": "simple-antd-management-fast-framework",
-  "version": "1.7.82",
+  "version": "1.7.83",
   "private": true,
   "description": "simple-antd-management-fast-framework",
   "keywords": [
@@ -68,7 +68,7 @@
     "@babel/preset-typescript": "^7.17.12",
     "@tinymce/tinymce-react": "^4.1.0",
     "antd": "^4.21.3",
-    "antd-management-fast-framework": "^1.12.82",
+    "antd-management-fast-framework": "^1.12.83",
     "array-move": "^4.0.0",
     "bizcharts": "^4.1.19",
     "browserslist": "^4.21.0",
@@ -168,7 +168,7 @@
     "@umijs/preset-ui": "^2.2.9",
     "@umijs/test": "^3.5.26",
     "@umijs/test-utils": "^3.5.26",
-    "antd-management-fast-cli": "^1.0.21",
+    "antd-management-fast-cli": "^1.0.22",
     "babel-cli": "^6.26.0",
     "babel-plugin-import": "^1.13.5",
     "babel-preset-env": "^1.7.0",
