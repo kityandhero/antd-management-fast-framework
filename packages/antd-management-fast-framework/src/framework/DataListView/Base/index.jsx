@@ -38,7 +38,9 @@ import {
 import StandardTableCustom from '../../../customComponents/StandardTableCustom';
 import {
   cardConfig,
+  columnFacadeMode,
   datetimeFormat,
+  formNameCollection,
   iconCollection,
   listViewConfig,
   pageHeaderRenderType,
@@ -85,6 +87,12 @@ class ListBase extends AuthorizationWrapper {
   formRef = React.createRef();
 
   pageSizeAdditional = 0;
+
+  columnOperateVisible = true;
+
+  columnOperateWidth = 106;
+
+  columnOperateFixed = 'right';
 
   constructor(props) {
     super(props);
@@ -223,7 +231,23 @@ class ListBase extends AuthorizationWrapper {
   buildColumnFromWrapper = () => {
     const list = this.getColumnWrapper() || [];
 
-    return this.buildColumnList(list);
+    return this.buildColumnList([
+      ...list,
+      ...(this.columnOperateVisible
+        ? [
+            {
+              dataTarget: formNameCollection.customOperate,
+              width: this.columnOperateWidth,
+              fixed: this.columnOperateFixed,
+              showRichFacade: true,
+              facadeMode: columnFacadeMode.dropdown,
+              configBuilder: (val, record) => {
+                return this.establishListItemDropdownConfig(record) || null;
+              },
+            },
+          ]
+        : []),
+    ]);
   };
 
   buildColumnList = (list) => {
@@ -1554,6 +1578,11 @@ class ListBase extends AuthorizationWrapper {
   };
 
   establishPageContentLayoutConfig = () => {
+    return {};
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  establishListItemDropdownConfig = (record) => {
     return {};
   };
 

@@ -53,6 +53,7 @@ import {
   isFunction,
   isNumber,
   isObject,
+  lowerFirst,
   recordObject,
   recordText,
   replaceTargetText,
@@ -401,6 +402,13 @@ export function buildDropdown({
   const tooltipAdjust = tooltipSource;
 
   const otherProps = tooltipAdjust ? {} : { key: key || getGuid() };
+  const placementAdjust = lowerFirst(placementDropdown || 'bottomRight');
+
+  const overlayClassNameAdjust = placementAdjust.startsWith('bottom')
+    ? styles.dropdownExpandOverlayBottom
+    : placementAdjust.startsWith('top')
+    ? styles.dropdownExpandOverlayTop
+    : {};
 
   let hasHandleButtonClick = false;
 
@@ -505,7 +513,7 @@ export function buildDropdown({
           right={
             <Popover
               {...otherProps}
-              placement={placementDropdown || 'bottomRight'}
+              placement={placementAdjust}
               arrow={arrow}
               content={buildMenu({
                 handleData: r,
@@ -513,7 +521,7 @@ export function buildDropdown({
                 items,
               })}
               title={itemPanelTitle}
-              overlayClassName={styles.dropdownExpandOverlay}
+              overlayClassName={overlayClassNameAdjust}
             >
               <Button
                 style={{
@@ -566,7 +574,7 @@ export function buildDropdown({
           right={
             <Popover
               {...otherProps}
-              placement={placementDropdown || 'bottomRight'}
+              placement={placementAdjust}
               arrow={arrow}
               content={buildMenu({
                 handleData: r,
@@ -574,7 +582,7 @@ export function buildDropdown({
                 items,
               })}
               title={itemPanelTitle}
-              overlayClassName={styles.dropdownExpandOverlay}
+              overlayClassName={overlayClassNameAdjust}
             >
               <Button
                 style={{
@@ -607,7 +615,7 @@ export function buildDropdown({
     ) : (
       <Popover
         {...otherProps}
-        placement={placementDropdown || 'bottomRight'}
+        placement={placementAdjust}
         arrow={arrow}
         content={buildMenu({
           handleData: r,
@@ -615,7 +623,7 @@ export function buildDropdown({
           items,
         })}
         title={itemPanelTitle}
-        overlayClassName={styles.dropdownExpandOverlay}
+        overlayClassName={overlayClassNameAdjust}
       >
         <Button type={typeSource || 'default'} size={size ?? 'default'}>
           <IconInfo icon={icon || null} text={text || ''} />
@@ -679,6 +687,7 @@ export function buildMenu({
         disabled: false,
         hidden: false,
         type: dropdownExpandItemType.item,
+        color: null,
         confirm: false,
       },
       ...(o || {}),
@@ -773,7 +782,7 @@ export function buildMenu({
       />
 
       {listItem.map((o) => {
-        const { type, key, icon, text, disabled, hidden, confirm } = o;
+        const { type, key, icon, text, disabled, hidden, confirm, color } = o;
 
         if (stringIsNullOrWhiteSpace(key)) {
           showErrorMessage({
@@ -815,7 +824,11 @@ export function buildMenu({
                   size="small"
                   disabled={disabled}
                 >
-                  <IconInfo icon={icon || iconCollection.edit} text={text} />
+                  <IconInfo
+                    icon={icon || iconCollection.edit}
+                    text={text}
+                    style={(color || null) == null ? null : { color: color }}
+                  />
                 </Button>
               </Popconfirm>
             );
@@ -838,7 +851,11 @@ export function buildMenu({
               disabled={disabled}
               onClick={() => handleMenuClick({ key, handleData: r })}
             >
-              <IconInfo icon={icon || iconCollection.edit} text={text} />
+              <IconInfo
+                icon={icon || iconCollection.edit}
+                text={text}
+                style={(color || null) == null ? null : { color: color }}
+              />
             </Button>
           );
         }
@@ -849,6 +866,7 @@ export function buildMenu({
               key={key}
               style={{
                 margin: 0,
+                ...((color || null) == null ? {} : { borderColor: color }),
               }}
             />
           );

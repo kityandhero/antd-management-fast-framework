@@ -5,6 +5,7 @@ import {
   buildColorText,
   buildCustomGrid,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
+import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
 import {
   cardConfig,
   convertCollection,
@@ -544,6 +545,12 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.divider,
               text: '分隔线',
+            },
+
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.divider,
+              text: <IconInfo icon={iconCollection.edit} text="分隔线" ellipsis={false} />,
             },
             {
               lg: 24,

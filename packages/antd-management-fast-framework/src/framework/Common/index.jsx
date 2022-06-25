@@ -2027,8 +2027,17 @@ class Common extends Core {
                     sm={lg || sm}
                     xs={lg || xs}
                   >
-                    <Divider {...{ ...{}, ...(contentItem.otherProps || {}) }}>
-                      {stringIsNullOrWhiteSpace(contentItem.text || '')
+                    <Divider
+                      {...{
+                        ...{
+                          style: {
+                            margin: '4px 0',
+                          },
+                        },
+                        ...(contentItem.otherProps || {}),
+                      }}
+                    >
+                      {(contentItem.text || null) == null
                         ? null
                         : contentItem.text}
                     </Divider>

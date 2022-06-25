@@ -1,4 +1,5 @@
 import {
+  lowerFirst as lowerFirstLodash,
   replace as replaceLodash,
   trim as trimLodash,
   upperFirst as upperFirstLodash,
@@ -15,6 +16,10 @@ export function trim(source) {
 
 export function upperFirst(source) {
   return upperFirstLodash(source);
+}
+
+export function lowerFirst(source) {
+  return lowerFirstLodash(source);
 }
 
 export function stringIsNullOrWhiteSpace(value) {

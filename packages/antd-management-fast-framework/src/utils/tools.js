@@ -49,6 +49,7 @@ import {
   encodeBase64 as encodeBase64Core,
   inCollection as inCollectionCore,
   isBrowser,
+  lowerFirst as lowerFirstCore,
   replace as replaceCore,
   stringIsNullOrWhiteSpace as stringIsNullOrWhiteSpaceCore,
   trim as trimCore,
@@ -1506,6 +1507,10 @@ export function isString(value) {
 
 export function upperFirst(value) {
   return upperFirstCore(value);
+}
+
+export function lowerFirst(value) {
+  return lowerFirstCore(value);
 }
 
 /**
