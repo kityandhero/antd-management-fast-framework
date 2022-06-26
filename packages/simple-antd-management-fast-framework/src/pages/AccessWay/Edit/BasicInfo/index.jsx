@@ -5,9 +5,7 @@ import { connect } from 'umi';
 import HtmlBox from 'antd-management-fast-framework/es/customComponents/HtmlBox';
 import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
 import { pretreatmentRequestParams } from 'antd-management-fast-framework/es/utils/requestAssistor';
-import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/es/utils/tools';
 
-import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';
 
@@ -31,15 +29,6 @@ class BasicInfo extends TabPageBase {
       processing: false,
       accessWayId: null,
     };
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(
-      nextProps,
-      prevState,
-      { id: '' },
-      parseUrlParamsForSetState,
-    );
   }
 
   doWorkWhenDidUpdate = (preProps, preState, snapshot) => {

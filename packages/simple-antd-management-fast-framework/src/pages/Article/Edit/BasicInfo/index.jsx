@@ -22,7 +22,6 @@ import {
   convertTarget,
   corsTarget,
   formatTarget,
-  getDerivedStateFromPropsForUrlParams,
   getValueByKey,
   showInfoMessage,
 } from 'antd-management-fast-framework/es/utils/tools';
@@ -36,7 +35,6 @@ import {
   removeGalleryImageConfirmAction,
   singleListTreeAction,
 } from '../../Assist/action';
-import { parseUrlParamsForSetState } from '../../Assist/config';
 import ChangeImageSortModal from '../../ChangeImageSortModal';
 import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';
@@ -81,15 +79,6 @@ class BasicInfo extends TabPageBase {
         parentId: '1',
       },
     };
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(
-      nextProps,
-      prevState,
-      { id: '' },
-      parseUrlParamsForSetState,
-    );
   }
 
   initOther = () => {

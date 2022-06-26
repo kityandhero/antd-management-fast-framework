@@ -1,6 +1,5 @@
 import { connect } from 'umi';
 
-import DataTabContainer from 'antd-management-fast-framework/es/framework/DataTabContainer';
 import {
   convertCollection,
   extraBuildType,
@@ -16,6 +15,7 @@ import {
 } from 'antd-management-fast-framework/es/utils/tools';
 
 import { accessWayCollection } from '@/customConfig/config';
+import DataTabContainerSupplement from '@/customSpecialComponents/DataTabContainerSupplement';
 import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
 import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
@@ -28,7 +28,7 @@ import { fieldData, statusCollection } from '../Common/data';
   global,
   loading: loading.models.article,
 }))
-class Edit extends DataTabContainer {
+class Edit extends DataTabContainerSupplement {
   componentAuthority = accessWayCollection.article.get.permission;
 
   tabList = [
@@ -55,7 +55,6 @@ class Edit extends DataTabContainer {
     this.state = {
       ...this.state,
       ...{
-        pageName: '',
         loadApiPath: 'article/get',
         backPath: `/news/article/pageList/key`,
         articleId: null,
@@ -391,13 +390,6 @@ class Edit extends DataTabContainer {
           },
         },
       ],
-    };
-  };
-
-  establishTabBarExtraContentLeftConfig = () => {
-    return {
-      buildType: tabBarCollection.extraBuildType.iconInfo,
-      text: '功能导航：',
     };
   };
 

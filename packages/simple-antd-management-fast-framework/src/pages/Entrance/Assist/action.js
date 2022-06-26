@@ -15,6 +15,7 @@ export async function signInAction({ target, handleData, successCallback }) {
     target,
     handleData,
     successCallback,
+    showProcessing: false,
   });
 }
 

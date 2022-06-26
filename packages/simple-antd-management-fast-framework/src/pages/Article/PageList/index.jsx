@@ -58,7 +58,7 @@ class PageList extends MultiPage {
   // showSearchForm = false;
 
   //在控制台中显示渲染次数，仅用于调试
-  showRenderCountInConsole = true;
+  // showRenderCountInConsole = true;
 
   componentAuthority = accessWayCollection.article.pageList.permission;
 

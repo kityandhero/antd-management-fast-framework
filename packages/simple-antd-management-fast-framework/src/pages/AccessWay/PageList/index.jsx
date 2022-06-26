@@ -1,6 +1,5 @@
 import { connect } from 'umi';
 
-import { buildDropdownButton } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 import {
   columnFacadeMode,
@@ -168,6 +167,31 @@ class PageList extends MultiPage {
     };
   };
 
+  establishListItemDropdownConfig = (record) => {
+    return {
+      size: 'small',
+      text: '修改',
+      icon: iconCollection.edit,
+      handleButtonClick: ({ handleData }) => {
+        this.goToEdit(handleData);
+      },
+      handleData: record,
+      handleMenuClick: ({ key, handleData }) => {
+        this.handleMenuClick({ key, handleData });
+      },
+      items: [
+        {
+          key: 'refreshCache',
+          icon: iconCollection.reload,
+          text: '刷新缓存',
+          confirm: {
+            title: '将要刷新缓存，确定吗？',
+          },
+        },
+      ],
+    };
+  };
+
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.name,
@@ -222,42 +246,6 @@ class PageList extends MultiPage {
       emptyValue: '--',
     },
     columnPlaceholder,
-    {
-      dataTarget: fieldData.customOperate,
-      width: 106,
-      fixed: 'right',
-      align: 'center',
-      render: (text, r) => {
-        // const itemStatus = getValueByKey({
-        //   data: r,
-        //   key: fieldData.status.name,
-        //   convert: convertCollection.number,
-        // });
-
-        return buildDropdownButton({
-          size: 'small',
-          text: '修改',
-          icon: iconCollection.edit,
-          handleButtonClick: ({ handleData }) => {
-            this.goToEdit(handleData);
-          },
-          handleData: r,
-          handleMenuClick: ({ key, handleData }) => {
-            this.handleMenuClick({ key, handleData });
-          },
-          items: [
-            {
-              key: 'refreshCache',
-              icon: iconCollection.reload,
-              text: '刷新缓存',
-              confirm: {
-                title: '将要刷新缓存，确定吗？',
-              },
-            },
-          ],
-        });
-      },
-    },
   ];
 }
 

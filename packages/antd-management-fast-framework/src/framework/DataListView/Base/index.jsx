@@ -52,7 +52,6 @@ import {
   defaultListState,
   getDerivedStateFromPropsForUrlParams,
   isArray,
-  isObject,
   isUndefined,
   showRuntimeError,
   showWarnMessage,
@@ -237,7 +236,7 @@ class ListBase extends AuthorizationWrapper {
 
     return this.buildColumnList([
       ...list,
-      ...(this.columnOperateVisible && isObject()
+      ...(this.columnOperateVisible
         ? [
             {
               dataTarget: formNameCollection.customOperate,
@@ -246,7 +245,9 @@ class ListBase extends AuthorizationWrapper {
               showRichFacade: true,
               facadeMode: columnFacadeMode.dropdown,
               configBuilder: (val, record) => {
-                return this.establishListItemDropdownConfig(record) || null;
+                const o = this.establishListItemDropdownConfig(record);
+
+                return o || null;
               },
             },
           ]
