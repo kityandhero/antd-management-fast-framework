@@ -1609,7 +1609,11 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderListItemDropdown = (record) => {
-    return buildDropdown(this.establishListItemDropdownConfig(record));
+    const config = this.establishListItemDropdownConfig(record);
+
+    config.placement = 'topRight';
+
+    return buildDropdown(config);
   };
 
   renderPageContent = () => {
