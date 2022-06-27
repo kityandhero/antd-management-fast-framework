@@ -17,6 +17,10 @@ export const storageKeyCollection = {
   authorityCollection: 'authorityCollection',
 };
 
+/**
+ * getNearestLocalhostNotifyCache
+ * @returns
+ */
 export function getNearestLocalhostNotifyCache() {
   const key = storageKeyCollection.nearestLocalhostNotify;
 
