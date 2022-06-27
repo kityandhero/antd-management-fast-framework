@@ -28,8 +28,17 @@ class ContentInfo extends TabPageBase {
 
   htmlContent = '';
 
+  autoSyncPrevEnable = true;
+
+  autoSyncPrevFlag = false;
+
+  autoSyncPrevInterval = 5000;
+
+  autoSyncPrevTimer = null;
+
   constructor(props) {
     super(props);
+
     this.state = {
       ...this.state,
       ...{
@@ -51,6 +60,30 @@ class ContentInfo extends TabPageBase {
       parseUrlParamsForSetState,
     );
   }
+
+  adjustWhenDidMount = () => {
+    const that = this;
+
+    if (that.autoSyncPrevEnable) {
+      that.autoSyncPrevTimer = setInterval(() => {
+        if (that.autoSyncPrevFlag) {
+          that.setState(
+            {
+              contentPreview: that.htmlContent,
+              contentChanged: false,
+            },
+            () => {
+              that.autoSyncPrevFlag = false;
+            },
+          );
+        }
+      }, that.autoSyncPrevInterval);
+    }
+  };
+
+  beforeUnmount = () => {
+    clearInterval(this.autoSyncPrevTimer);
+  };
 
   supplementSubmitRequestParams = (o) => {
     const d = o;
@@ -79,6 +112,7 @@ class ContentInfo extends TabPageBase {
   afterHtmlChange = ({ html, text }) => {
     this.htmlContent = html;
     this.textContent = text;
+    this.autoSyncPrevFlag = true;
 
     const { contentChanged } = this.state;
 
@@ -146,7 +180,7 @@ class ContentInfo extends TabPageBase {
         alertVisible={contentChanged}
         alertAnimationType={animalType.queue}
         alertMessage={'内容已经发生变化'}
-        alertDescription={'编辑器内容已经更改,请点击刷新按钮查看最新预览.'}
+        alertDescription={'编辑器内容已经更改, 请点击刷新按钮查看最新预览, 或者更待稍后自动更新.'}
         alertType={'warning'}
         alertIcon={false}
         alertButtonText="刷新"

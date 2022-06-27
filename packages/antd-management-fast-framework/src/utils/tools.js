@@ -1701,6 +1701,36 @@ export function notifyInfo(text) {
   });
 }
 
+export function notifyWarn(text) {
+  const description = text || '';
+
+  if (stringIsNullOrWhiteSpace(description)) {
+    return;
+  }
+
+  notify({
+    type: notificationTypeCollection.warn,
+    placement: 'bottomRight',
+    message: '警告信息',
+    description,
+  });
+}
+
+export function notifyError(text) {
+  const description = text || '';
+
+  if (stringIsNullOrWhiteSpace(description)) {
+    return;
+  }
+
+  notify({
+    type: notificationTypeCollection.error,
+    placement: 'bottomRight',
+    message: '错误信息',
+    description,
+  });
+}
+
 /**
  * 发送页面通知
  */
