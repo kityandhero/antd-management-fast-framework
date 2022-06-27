@@ -3,19 +3,13 @@ import { connect } from 'umi';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 import {
   columnFacadeMode,
-  columnPlaceholder,
   iconCollection,
-  listViewConfig,
   searchCardConfig,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-framework/es/utils/constants';
-import { showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
 
 import { accessWayCollection } from '@/customConfig/config';
-import {
-  getAccessWayStatusName,
-  renderSearchAccessWayStatusSelect,
-} from '@/customSpecialComponents/FunctionSupplement/AccessWayStatus';
+import { getAccessWayStatusName } from '@/customSpecialComponents/FunctionSupplement/AccessWayStatus';
 
 import { renderSearchWebChannelSelect } from '../../../customSpecialComponents/FunctionSupplement/WebChannel';
 import { refreshCacheAction } from '../Assist/action';
@@ -28,6 +22,8 @@ import { fieldData } from '../Common/data';
 }))
 class PageList extends MultiPage {
   componentAuthority = accessWayCollection.accessWay.pageList.permission;
+
+  columnOperateWidth = 126;
 
   constructor(props) {
     super(props);
@@ -49,17 +45,6 @@ class PageList extends MultiPage {
     } = props;
 
     return data;
-  };
-
-  handleMenuClick = ({ key, handleData }) => {
-    switch (key) {
-      case 'refreshCache':
-        this.refreshCache(handleData);
-        break;
-
-      default:
-        break;
-    }
   };
 
   refreshCache = (r) => {
@@ -89,44 +74,6 @@ class PageList extends MultiPage {
     return result;
   };
 
-  goToEdit = (record) => {
-    const { accessWayId } = record;
-
-    this.goToPath(`/permission/accessWay/edit/load/${accessWayId}/key/basicInfo`);
-  };
-
-  establishDataContainerExtraActionCollectionConfig = () => {
-    return [
-      {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.button,
-        type: 'primary',
-        icon: iconCollection.plus,
-        text: '确认按钮',
-        onClick: () => {
-          showInfoMessage({
-            message: 'click confirm button',
-          });
-        },
-        confirm: {
-          placement: 'topRight',
-          title: '将要进行操作，确定吗？',
-          okText: '确定',
-          cancelText: '取消',
-        },
-      },
-      {
-        type: 'primary',
-        icon: iconCollection.plus,
-        text: '普通按钮',
-        onClick: () => {
-          showInfoMessage({
-            message: 'click button',
-          });
-        },
-      },
-    ];
-  };
-
   fillSearchCardInitialValues = () => {
     const values = {};
 
@@ -147,13 +94,6 @@ class PageList extends MultiPage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: renderSearchAccessWayStatusSelect({
-            global: this.getGlobal(),
-          }),
-        },
-        {
-          lg: 6,
-          type: searchCardConfig.contentItemType.component,
           component: renderSearchWebChannelSelect({
             global: this.getGlobal(),
           }),
@@ -170,39 +110,28 @@ class PageList extends MultiPage {
   establishListItemDropdownConfig = (record) => {
     return {
       size: 'small',
-      text: '修改',
-      icon: iconCollection.edit,
+      text: '刷新缓存',
+      icon: iconCollection.reload,
       handleButtonClick: ({ handleData }) => {
-        this.goToEdit(handleData);
+        this.refreshCache(handleData);
       },
       handleData: record,
-      handleMenuClick: ({ key, handleData }) => {
-        this.handleMenuClick({ key, handleData });
+      confirm: {
+        title: '将要刷新缓存，确定吗？',
       },
-      items: [
-        {
-          key: 'refreshCache',
-          icon: iconCollection.reload,
-          text: '刷新缓存',
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
-        },
-      ],
     };
   };
 
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.name,
-      width: 520,
+      width: 300,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
     },
     {
       dataTarget: fieldData.relativePath,
-      width: 300,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
@@ -245,7 +174,6 @@ class PageList extends MultiPage {
       facadeMode: columnFacadeMode.datetime,
       emptyValue: '--',
     },
-    columnPlaceholder,
   ];
 }
 

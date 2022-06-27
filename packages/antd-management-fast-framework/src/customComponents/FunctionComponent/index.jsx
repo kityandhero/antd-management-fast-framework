@@ -3091,12 +3091,29 @@ export function buildFormTimePicker({
 }
 
 export function buildColumnList({ columnList, attachedTargetName = '' }) {
-  return (isArray(columnList) ? columnList : []).map((o) => {
-    return buildColumnItem({
+  const list = [];
+
+  (isArray(columnList) ? columnList : []).forEach((o) => {
+    const c = buildColumnItem({
       column: o,
       attachedTargetName,
     });
+
+    if ((c || null) != null) {
+      const { hidden } = {
+        ...{
+          hidden: false,
+        },
+        ...c,
+      };
+
+      if (!hidden) {
+        list.push(c);
+      }
+    }
   });
+
+  return list;
 }
 
 export function buildColumnItem({
@@ -3453,9 +3470,9 @@ export function buildColumnItem({
 
         if ((operateConfig || null) == null) {
           return null;
+        } else {
+          return buildDropdown(operateConfig);
         }
-
-        return buildDropdown(operateConfig);
       }
 
       throw new Error(`无效的渲染模式：${facadeMode}`);

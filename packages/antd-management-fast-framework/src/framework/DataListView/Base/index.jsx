@@ -27,9 +27,9 @@ import {
 import FlexBox from '../../../customComponents/FlexBox';
 import {
   adjustTableExpandConfig,
-  buildColumnItem,
   buildColumnList,
   buildCustomSelect,
+  buildDropdown,
   buildPageHeaderContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
@@ -234,37 +234,51 @@ class ListBase extends AuthorizationWrapper {
   buildColumnFromWrapper = () => {
     const list = this.getColumnWrapper() || [];
 
+    let hasCustomOperate = false;
+
+    list.forEach((o) => {
+      const { dataTarget: dt } = {
+        ...{
+          dataTarget: {},
+        },
+        ...o,
+      };
+
+      const { name } = {
+        ...{ name: '' },
+        ...dt,
+      };
+
+      if (name === formNameCollection.customOperate.name) {
+        hasCustomOperate = true;
+      }
+    });
+
     return this.buildColumnList([
       ...list,
-      ...(this.columnOperateVisible
-        ? [
+      ...(hasCustomOperate
+        ? []
+        : [
             {
               dataTarget: formNameCollection.customOperate,
               width: this.columnOperateWidth,
               fixed: this.columnOperateFixed,
               showRichFacade: true,
               facadeMode: columnFacadeMode.dropdown,
+              hidden: !this.columnOperateVisible,
               configBuilder: (val, record) => {
                 const o = this.establishListItemDropdownConfig(record);
 
                 return o || null;
               },
             },
-          ]
-        : []),
+          ]),
     ]);
   };
 
   buildColumnList = (list) => {
     return buildColumnList({
       columnList: list,
-      attachedTargetName: this.constructor.name,
-    });
-  };
-
-  buildColumnItem = (o) => {
-    return buildColumnItem({
-      column: o,
       attachedTargetName: this.constructor.name,
     });
   };
@@ -1586,9 +1600,16 @@ class ListBase extends AuthorizationWrapper {
     return {};
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   establishListItemDropdownConfig = (record) => {
+    if ((record || null) == null) {
+      return null;
+    }
+
     return null;
+  };
+
+  renderListItemDropdown = (record) => {
+    return buildDropdown(this.establishListItemDropdownConfig(record));
   };
 
   renderPageContent = () => {
