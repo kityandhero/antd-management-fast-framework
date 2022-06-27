@@ -184,6 +184,10 @@ class BasicInfo extends TabPageBase {
     this.setState({ attachment: file });
   };
 
+  afterAttachmentChangeSuccess = (attachment) => {
+    this.setState({ attachment });
+  };
+
   afterHtmlChange = ({ html, text }) => {
     this.htmlContent = html;
     this.textContent = text;

@@ -1,7 +1,6 @@
 import { Button, Dropdown, Menu } from 'antd';
 import { ConfigConsumer } from 'antd/lib/config-provider/context';
 
-import IconInfo from '../../../customComponents/IconInfo';
 import { iconCollection } from '../../../utils/constants';
 
 import styles from './index.less';
@@ -19,17 +18,20 @@ const DropdownButton = ({
 }) => (
   <ConfigConsumer>
     {() => {
+      const items = menus.map((item) => {
+        return {
+          key: item.key,
+          label: item.name,
+          icon: item.icon,
+          disabled: (item.disabled || null) == null ? false : item.disabled,
+        };
+      });
+
       const menu = (
-        <Menu onClick={(params) => onSelect && onSelect(params.key)}>
-          {menus.map((item) => (
-            <Menu.Item
-              key={item.key}
-              disabled={(item.disabled || null) == null ? false : item.disabled}
-            >
-              <IconInfo icon={item.icon} text={item.name} />
-            </Menu.Item>
-          ))}
-        </Menu>
+        <Menu
+          items={items}
+          onClick={(params) => onSelect && onSelect(params.key)}
+        />
       );
 
       return (
@@ -50,13 +52,22 @@ const DropdownButton = ({
 const BatchAction = ({ style, onSelect, menus = [], disabled }) => (
   <ConfigConsumer>
     {() => {
+      const items = menus.map((item) => {
+        return {
+          key: item.key,
+          label: item.name,
+          icon: item.icon,
+          disabled: (item.disabled || null) == null ? false : item.disabled,
+        };
+      });
+
       const menu = (
-        <Menu onClick={(params) => onSelect && onSelect(params.key)}>
-          {menus.map((item) => (
-            <Menu.Item key={item.key}>{item.name}</Menu.Item>
-          ))}
-        </Menu>
+        <Menu
+          items={items}
+          onClick={(params) => onSelect && onSelect(params.key)}
+        />
       );
+
       return (
         <Dropdown
           overlay={menu}

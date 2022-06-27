@@ -17,6 +17,7 @@ import {
   singleListTreeData,
   updateBasicInfoData,
   updateContentInfoData,
+  updateImageSortData,
   updateMediaInfoData,
   updateMediaItemData,
   updateRenderTypeData,
@@ -102,6 +103,14 @@ export default {
     },
     *updateSort({ payload }, { call, put }) {
       const response = yield call(updateSortData, payload);
+
+      yield put({
+        type: reducerCommonNameCollection.handleCommonData,
+        payload: response,
+      });
+    },
+    *updateImageSort({ payload }, { call, put }) {
+      const response = yield call(updateImageSortData, payload);
 
       yield put({
         type: reducerCommonNameCollection.handleCommonData,

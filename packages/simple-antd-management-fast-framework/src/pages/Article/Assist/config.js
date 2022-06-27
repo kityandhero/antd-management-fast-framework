@@ -16,13 +16,13 @@ export function checkNeedUpdateAssist(currentState, preProps, preState, snapshot
 export function getArticleIdFromExternalData(state) {
   const { externalData } = state;
 
-  let productId = '';
+  let articleId = '';
 
   if ((externalData || null) != null) {
-    productId = externalData.productId || '';
+    articleId = externalData.articleId || '';
   }
 
-  return productId;
+  return articleId;
 }
 
 /**

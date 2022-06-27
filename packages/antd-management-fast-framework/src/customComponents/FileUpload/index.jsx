@@ -229,23 +229,27 @@ class VideoUpload extends PureComponent {
       headers: { ...tokenSet },
     };
 
-    const menu = (
-      <Menu onClick={this.handleMenuClick}>
-        <Menu.Item key="changeUrl">
-          <IconInfo icon={iconCollection.swap} text="更换地址" />
-        </Menu.Item>
+    const items = [
+      {
+        key: 'changeUrl',
+        label: '更换地址',
+        icon: iconCollection.swap,
+      },
+      {
+        key: 'copyUrl',
+        label: '复制地址',
+        icon: iconCollection.copy,
+        disabled: stringIsNullOrWhiteSpace(fileUrl),
+      },
+      {
+        key: 'clearUrl',
+        label: '清空视频',
+        icon: iconCollection.delete,
+        disabled: stringIsNullOrWhiteSpace(fileUrl),
+      },
+    ];
 
-        <Menu.Item key="copyUrl" disabled={stringIsNullOrWhiteSpace(fileUrl)}>
-          <IconInfo icon={iconCollection.copy} text="复制地址" />
-        </Menu.Item>
-
-        <Menu.Divider />
-
-        <Menu.Item key="clearUrl" disabled={stringIsNullOrWhiteSpace(fileUrl)}>
-          <IconInfo icon={iconCollection.delete} text="清空文件" />
-        </Menu.Item>
-      </Menu>
-    );
+    const menu = <Menu items={items} onClick={this.handleMenuClick} />;
 
     const addonAfter = (
       <Space split={<Divider type="vertical" />}>
@@ -269,6 +273,8 @@ class VideoUpload extends PureComponent {
 
         <Tooltip key="showMoreTip" placement="top" title="更多操作">
           <Dropdown
+            arrow
+            placement="bottomRight"
             overlay={menu}
             style={{
               border: '0px solid #d9d9d9',

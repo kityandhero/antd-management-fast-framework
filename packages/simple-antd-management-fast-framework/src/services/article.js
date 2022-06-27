@@ -382,6 +382,19 @@ export async function updateSortData(params) {
   });
 }
 
+export async function updateImageSortData(params) {
+  return request({
+    api: `/article/updateImageSort`,
+    params,
+    virtualSuccessResponse: {
+      data: {
+        ...findArticle(params),
+        ...params,
+      },
+    },
+  });
+}
+
 export async function updateRenderTypeData(params) {
   return request({
     api: `/article/updateRenderType`,

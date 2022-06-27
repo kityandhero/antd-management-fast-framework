@@ -7,26 +7,38 @@ class DensityAction extends PureComponent {
   render() {
     const { tableSize, setTableSize } = this.props;
 
+    const items = [
+      {
+        key: listViewConfig.tableSize.small,
+        label: '紧凑',
+      },
+      {
+        key: listViewConfig.tableSize.middle,
+        label: '中等',
+      },
+      {
+        key: listViewConfig.tableSize.large,
+        label: '宽松',
+      },
+    ];
+
+    const menu = (
+      <Menu
+        items={items}
+        selectedKeys={[tableSize]}
+        onClick={({ key }) => {
+          if (setTableSize) {
+            setTableSize(key);
+          }
+        }}
+        style={{
+          width: 80,
+        }}
+      />
+    );
+
     return (
-      <Dropdown
-        overlay={
-          <Menu
-            selectedKeys={[tableSize]}
-            onClick={({ key }) => {
-              if (setTableSize) {
-                setTableSize(key);
-              }
-            }}
-            style={{
-              width: 80,
-            }}
-          >
-            <Menu.Item key={listViewConfig.tableSize.small}>紧凑</Menu.Item>
-            <Menu.Item key={listViewConfig.tableSize.middle}>中等</Menu.Item>
-            <Menu.Item key={listViewConfig.tableSize.large}>宽松</Menu.Item>
-          </Menu>
-        }
-      >
+      <Dropdown overlay={menu}>
         <Tooltip title="表格密度">
           <Button
             shape="circle"

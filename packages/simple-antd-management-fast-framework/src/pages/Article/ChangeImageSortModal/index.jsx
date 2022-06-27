@@ -3,11 +3,18 @@ import { connect } from 'umi';
 
 import Base from 'antd-management-fast-framework/es/framework/DataModal/Base';
 import { iconCollection, sortOperate } from 'antd-management-fast-framework/es/utils/constants';
-import { showError, sortCollectionByKey } from 'antd-management-fast-framework/es/utils/tools';
+import {
+  getValueByKey,
+  isArray,
+  showError,
+  sortCollectionByKey,
+} from 'antd-management-fast-framework/es/utils/tools';
 
 import { accessWayCollection } from '@/customConfig/config';
 
+import { setMediaCollectionSortAction } from '../Assist/action';
 import { getArticleIdFromExternalData } from '../Assist/config';
+import { mediaItemData } from '../Common/data';
 
 import styles from './index.less';
 
@@ -72,6 +79,7 @@ class ChangeImageSortModal extends Base {
     d.articleId = getArticleIdFromExternalData(this.state);
 
     const list = [];
+
     (metaListData || []).forEach((item) => {
       list.push(`${item.id}|${item.sort}`);
     });
@@ -167,26 +175,26 @@ class ChangeImageSortModal extends Base {
     const MoreBtn = (props) => {
       const { current, metaListDataList, hasAuthority, onMenuClick } = props;
 
+      const items = [
+        {
+          key: sortOperate.moveUp,
+          label: '上移',
+          icon: iconCollection.arrowUp,
+          disabled: current.sort === 1,
+        },
+        {
+          key: sortOperate.moveDown,
+          label: '下移',
+          icon: iconCollection.arrowDown,
+          disabled: current.sort === (metaListDataList || []).length,
+        },
+      ];
+
+      const menu = <Menu items={items} onClick={(e) => onMenuClick(e, current)} />;
+
       return (
-        <Dropdown
-          disabled={!hasAuthority}
-          overlay={
-            <Menu onClick={(e) => onMenuClick(e, current)}>
-              <Menu.Item key={sortOperate.moveUp} disabled={current.sort === 1}>
-                {iconCollection.arrowUp}
-                上移
-              </Menu.Item>
-              <Menu.Item
-                key={sortOperate.moveDown}
-                disabled={current.sort === (metaListDataList || []).length}
-              >
-                {iconCollection.arrowDown}
-                下移
-              </Menu.Item>
-            </Menu>
-          }
-        >
-          <a>iconCollection.retweet 排序</a>
+        <Dropdown disabled={!hasAuthority} overlay={menu}>
+          <a>{iconCollection.retweet} 排序</a>
         </Dropdown>
       );
     };
@@ -208,7 +216,7 @@ class ChangeImageSortModal extends Base {
                     current={item}
                     metaListDataList={metaListData}
                     hasAuthority={this.checkAuthority(
-                      accessWayCollection.article.updateImageContentInfo,
+                      accessWayCollection.article.updateImageContentInfo.permission,
                     )}
                     onMenuClick={(e, current) => {
                       const { key } = e;
