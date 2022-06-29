@@ -97,6 +97,8 @@ class ListBase extends AuthorizationWrapper {
 
   columnOperateFixed = 'right';
 
+  showListViewItemActionSelect = false;
+
   constructor(props) {
     super(props);
 
@@ -119,7 +121,6 @@ class ListBase extends AuthorizationWrapper {
         showPageHeaderAvatar: false,
         tableSize: listViewConfig.tableSize.middle,
         counterSetColumnsOtherConfig: 0,
-        showListViewItemActionSelect: false,
       },
     };
   }
@@ -1288,13 +1289,11 @@ class ListBase extends AuthorizationWrapper {
   };
 
   renderListViewItemActions = (record, index) => {
-    const { showListViewItemActionSelect } = this.state;
-
     const actionOthers = this.renderListViewItemActionOthers(record, index);
 
     let actionSelect = null;
 
-    if (showListViewItemActionSelect || false) {
+    if (this.showListViewItemActionSelect || false) {
       actionSelect = this.renderListViewItemActionSelect(record, index);
     }
 

@@ -48,7 +48,6 @@ class MultiPageDrawer extends MultiPage {
         visible: false,
         reloadAnimalShow: false,
         listViewMode: listViewConfig.viewMode.table,
-        showListViewItemActionSelect: true,
       },
     };
   }

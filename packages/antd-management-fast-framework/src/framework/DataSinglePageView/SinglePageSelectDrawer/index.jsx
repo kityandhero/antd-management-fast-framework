@@ -4,6 +4,8 @@ import { isFunction } from '../../../utils/tools';
 import SinglePageDrawer from '../SinglePageDrawer';
 
 class SinglePageSelectDrawer extends SinglePageDrawer {
+  showListViewItemActionSelect = true;
+
   static getDerivedStateFromProps(nextProps, prevState) {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }

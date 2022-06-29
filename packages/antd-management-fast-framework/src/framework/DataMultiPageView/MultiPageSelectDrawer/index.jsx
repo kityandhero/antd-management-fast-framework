@@ -5,6 +5,8 @@ import { isFunction } from '../../../utils/tools';
 import MultiPageDrawer from '../MultiPageDrawer';
 
 class MultiPageSelectDrawer extends MultiPageDrawer {
+  showListViewItemActionSelect = true;
+
   static getDerivedStateFromProps(nextProps, prevState) {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
