@@ -3416,8 +3416,13 @@ export function buildColumnItem({
           val = d.formatValue(value, record, index);
         }
 
-        const { imageWidth, circle, previewSimpleMask } = {
-          ...{ imageWidth: '30px', circle: true, previewSimpleMask: true },
+        const { imageWidth, borderRadius, circle, previewSimpleMask } = {
+          ...{
+            imageWidth: '30px',
+            circle: true,
+            borderRadius: '3px',
+            previewSimpleMask: true,
+          },
           ...facadeConfig,
         };
 
@@ -3428,7 +3433,10 @@ export function buildColumnItem({
               <Col>
                 <div
                   style={{
-                    width: imageWidth,
+                    ...{
+                      width: imageWidth,
+                    },
+                    ...(circle ? {} : { borderRadius }),
                   }}
                 >
                   <ImageBox
