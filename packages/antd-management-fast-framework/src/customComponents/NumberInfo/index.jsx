@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { iconCollection } from '../../../utils/constants';
+import { iconCollection } from '../../utils/constants';
 
 import styles from './index.less';
 
