@@ -1303,8 +1303,12 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.syntaxHighlighterView,
               fieldData: fieldData.syntaxHighlighter,
-              value: 'SELECT ID, TITLE FROM Table1',
+              value: `SELECT * FROM (SELECT row_number() over (ORDER BY [article].[sort] DESC, [article].[create_time] DESC) AS rowId, ISNULL([article].[id],0) AS [ArticleId] FROM article WHERE 1=1 AND [article].[platform_id] = 1504634917793959936 AND [article].[business_mode] = 400 AND [article].[status] IN ('0','10') ) as t where rowId between 1 and 10`,
               language: 'sql',
+              otherProps: {
+                showLineNumbers: false,
+                wrapLines: false,
+              },
             },
           ],
           instruction: [

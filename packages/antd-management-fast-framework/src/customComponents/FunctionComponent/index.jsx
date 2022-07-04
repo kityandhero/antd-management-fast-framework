@@ -2553,30 +2553,25 @@ export function buildFormOnlyShowText({
 }
 
 export function buildSyntaxHighlighter({ language, value, other = {} }) {
+  const c = {
+    ...(other || {}),
+    showLineNumbers: false,
+    wrapLines: false,
+    wrapLongLines: true,
+    language: language,
+    style: oneDark,
+  };
+
   return (
     <>
       {isObject(value) ? (
-        <SyntaxHighlighter
-          showLineNumbers
-          wrapLines
-          wrapLongLines
-          language={language}
-          style={oneDark}
-          {...other}
-        >
+        <SyntaxHighlighter {...c}>
           {language === 'javascript'
             ? JSON.stringify(value || {}, null, '    ')
             : value}
         </SyntaxHighlighter>
       ) : (
-        <SyntaxHighlighter
-          showLineNumbers
-          wrapLines
-          wrapLongLines
-          language={language}
-          style={oneDark}
-          {...other}
-        >
+        <SyntaxHighlighter {...c}>
           {language === 'javascript'
             ? JSON.stringify(JSON.parse(value || null), null, '    ')
             : value}
