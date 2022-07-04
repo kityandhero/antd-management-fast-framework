@@ -700,6 +700,11 @@ export const cardConfig = {
     jsonView: 'jsonView',
 
     /**
+     * json可视化展示
+     */
+    syntaxHighlighterView: 'syntaxHighlighterView',
+
+    /**
      * flex类型文字
      */
     flexText: 'flexText',

@@ -170,6 +170,11 @@ export const fieldData = {
       name: 'switch',
       helper: '',
     },
+    syntaxHighlighter: {
+      label: '语法高亮区域',
+      name: 'syntaxHighlighter',
+      helper: '',
+    },
   },
 };
 

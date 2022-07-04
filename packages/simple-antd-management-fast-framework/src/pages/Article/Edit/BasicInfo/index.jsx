@@ -1287,6 +1287,33 @@ class BasicInfo extends TabPageBase {
               showNumber: true,
               list: [
                 {
+                  text: 'Html数据展示, 空白将替换为Empty',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: {
+            text: 'syntaxHighlighter',
+          },
+          spinning,
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.syntaxHighlighterView,
+              fieldData: fieldData.syntaxHighlighter,
+              value: 'SELECT ID, TITLE FROM Table1',
+              language: 'sql',
+            },
+          ],
+          instruction: [
+            {
+              title: '说明',
+              showDivider: false,
+              showNumber: true,
+              list: [
+                {
                   text: 'Html数据展示，空白将替换为Empty',
                 },
               ],

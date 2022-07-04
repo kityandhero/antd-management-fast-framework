@@ -27,7 +27,8 @@ import {
 import TextAnimal from 'rc-texty';
 import ReactJson from 'react-json-view';
 import ReactPlayer from 'react-player';
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import {
   columnFacadeMode,
@@ -2551,16 +2552,17 @@ export function buildFormOnlyShowText({
   );
 }
 
-export function buildSyntaxHighlighter({ language, value }) {
+export function buildSyntaxHighlighter({ language, value, other = {} }) {
   return (
     <>
       {isObject(value) ? (
         <SyntaxHighlighter
           showLineNumbers
           wrapLines
-          lineProps={{ style: { paddingBottom: 8 } }}
+          wrapLongLines
           language={language}
-          // style={docco}
+          style={oneDark}
+          {...other}
         >
           {language === 'javascript'
             ? JSON.stringify(value || {}, null, '    ')
@@ -2570,9 +2572,10 @@ export function buildSyntaxHighlighter({ language, value }) {
         <SyntaxHighlighter
           showLineNumbers
           wrapLines
-          lineProps={{ style: { paddingBottom: 8 } }}
+          wrapLongLines
           language={language}
-          // style={docco}
+          style={oneDark}
+          {...other}
         >
           {language === 'javascript'
             ? JSON.stringify(JSON.parse(value || null), null, '    ')
@@ -2679,10 +2682,15 @@ export function buildFormOnlyShowSyntaxHighlighter({
   helper = null,
   formItemLayout = {},
   requiredForShow = false,
+  otherProps = {},
 }) {
   return buildFormInnerComponent({
     label,
-    innerComponent: buildSyntaxHighlighter({ language, value }),
+    innerComponent: buildSyntaxHighlighter({
+      language,
+      value,
+      other: otherProps || {},
+    }),
     helper,
     formItemLayout,
     requiredForShow,

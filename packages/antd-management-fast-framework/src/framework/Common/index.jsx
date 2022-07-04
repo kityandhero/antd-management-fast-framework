@@ -845,10 +845,11 @@ class Common extends Core {
     });
   };
 
-  renderSyntaxHighlighter = (language, value) => {
+  renderSyntaxHighlighter = (language, value, other = {}) => {
     return buildSyntaxHighlighter({
       language,
       value,
+      other,
     });
   };
 
@@ -896,6 +897,7 @@ class Common extends Core {
     helper = null,
     formItemLayout = {},
     requiredForShow = false,
+    otherProps = {},
   ) => {
     return buildFormOnlyShowSyntaxHighlighter({
       language,
@@ -904,6 +906,7 @@ class Common extends Core {
       helper,
       formItemLayout,
       requiredForShow,
+      otherProps,
     });
   };
 
@@ -2895,6 +2898,18 @@ class Common extends Core {
 
                   {type === cardConfig.contentItemType.jsonView
                     ? this.renderJsonView(contentItem.value)
+                    : null}
+
+                  {type === cardConfig.contentItemType.syntaxHighlighterView
+                    ? this.renderFormOnlyShowSyntaxHighlighter(
+                        contentItem.language,
+                        fieldData.label,
+                        contentItem.value,
+                        fieldData.helper,
+                        formItemLayout,
+                        require,
+                        { ...{}, ...(contentItem.otherProps || {}) },
+                      )
                     : null}
 
                   {type === cardConfig.contentItemType.nowTime

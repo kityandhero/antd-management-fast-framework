@@ -142,6 +142,7 @@
     "@types/react": "^18.0.14",
     "@types/react-document-title": "^2.0.5",
     "@types/react-helmet": "^6.1.5",
+    "@types/react-syntax-highlighter": "^15.5.2",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@umijs/fabric": "^2.12.0",
