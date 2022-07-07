@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   ApartmentOutlined,
   ArrowDownOutlined,
@@ -115,7 +116,6 @@ import {
   VideoCameraOutlined,
   WarningOutlined,
 } from '@ant-design/icons';
-import React from 'react';
 
 import { emptyLogo as emptyLogoSource } from './mediaDefault';
 

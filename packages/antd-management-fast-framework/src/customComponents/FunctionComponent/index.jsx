@@ -1,4 +1,3 @@
-import { BorderOuterOutlined, EllipsisOutlined } from '@ant-design/icons';
 import {
   Alert,
   Badge,
@@ -29,6 +28,7 @@ import ReactJson from 'react-json-view';
 import ReactPlayer from 'react-player';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { BorderOuterOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 import {
   columnFacadeMode,
