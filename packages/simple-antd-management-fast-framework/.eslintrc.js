@@ -32,9 +32,9 @@ module.exports = {
       'error',
       {
         groups: [
-          ['^(?!taro-fast-)[a-zA-Z0-9]', '^@(?!/)'],
-          ['^(?!@/)(?!taro-fast-)(?!.)'],
-          ['^taro-fast-'],
+          ['^(?!antd-management-fast-framework)[a-zA-Z0-9]', '^@(?!/)'],
+          ['^(?!@/)(?!antd-management-fast-framework)(?!.)'],
+          ['^antd-management-fast-framework'],
           ['^((@/).*|$)'],
           ['^\\u0000'],
           ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
