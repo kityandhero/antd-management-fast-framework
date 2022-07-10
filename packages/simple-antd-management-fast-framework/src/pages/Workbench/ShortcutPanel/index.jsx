@@ -28,7 +28,13 @@ class Index extends BaseView {
               component: (
                 <Space>
                   <Button onClick={this.goToPageList}>文章管理</Button>
-                  <Button onClick={this.goToOperateCenter}>个人中心</Button>
+                  <Button
+                    onClick={() => {
+                      this.goToOperateCenter();
+                    }}
+                  >
+                    个人中心
+                  </Button>
                 </Space>
               ),
             },
