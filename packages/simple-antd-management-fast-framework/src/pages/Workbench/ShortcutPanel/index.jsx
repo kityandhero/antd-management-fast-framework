@@ -6,10 +6,12 @@ import { cardConfig } from 'antd-management-fast-framework/es/utils/constants';
 class Index extends BaseView {
   loadDataAfterMount = false;
 
-  goToPageList = (node) => {
-    const { code } = node;
+  goToPageList = () => {
+    this.goToPath(`/news/article/pageList`);
+  };
 
-    this.goToPath(`/news/article/pageList/no/${code}`);
+  goToOperateCenter = () => {
+    this.goToPath(`/currentOperator/setting`);
   };
 
   establishCardCollectionConfig = () => {
@@ -25,8 +27,8 @@ class Index extends BaseView {
               type: cardConfig.contentItemType.component,
               component: (
                 <Space>
-                  <Button>文章管理</Button>
-                  <Button>个人中心</Button>
+                  <Button onClick={this.goToPageList}>文章管理</Button>
+                  <Button onClick={this.goToOperateCenter}>个人中心</Button>
                 </Space>
               ),
             },
