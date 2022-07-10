@@ -3,6 +3,7 @@ import { connect } from 'umi';
 
 import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
+import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
 import {
   columnFacadeMode,
   convertCollection,
@@ -15,6 +16,7 @@ import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
 import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
+import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Article/Assist/action';
 import { getStatusBadge } from '../Article/Assist/tools';
 import { fieldData, statusCollection } from '../Article/Common/data';
 
@@ -54,6 +56,80 @@ class Index extends MultiPage {
     } = props;
 
     return data;
+  };
+
+  handleMenuClick = ({ key, handleData }) => {
+    switch (key) {
+      case 'setOnline':
+        this.setOnline(handleData);
+        break;
+
+      case 'setOffline':
+        this.setOffline(handleData);
+        break;
+
+      case 'refreshCache':
+        this.refreshCache(handleData);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleItemStatus = ({ target, record, remoteData }) => {
+    const articleId = getValueByKey({
+      data: remoteData,
+      key: fieldData.articleId.name,
+    });
+
+    handleItem({
+      target,
+      dataId: articleId,
+      compareDataIdHandler: (o) => {
+        const { articleId: v } = o;
+
+        return v;
+      },
+      handler: (d) => {
+        const o = d;
+
+        o[fieldData.status.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.status.name,
+        });
+
+        return d;
+      },
+    });
+  };
+
+  setOnline = (r) => {
+    setOnlineAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target, handleData, remoteData }) => {
+        target.handleItemStatus({ target, handleData, remoteData });
+      },
+    });
+  };
+
+  setOffline = (r) => {
+    setOfflineAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target, handleData, remoteData }) => {
+        target.handleItemStatus({ target, handleData, remoteData });
+      },
+    });
+  };
+
+  refreshCache = (r) => {
+    refreshCacheAction({
+      target: this,
+      handleData: r,
+    });
   };
 
   goToAdd = () => {
@@ -135,14 +211,6 @@ class Index extends MultiPage {
           confirm: {
             title: '将要设置为下线，确定吗？',
           },
-        },
-        {
-          key: 'setSort',
-          withDivider: true,
-          uponDivider: true,
-          icon: iconCollection.edit,
-          text: '设置排序值',
-          hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
         },
         {
           key: 'refreshCache',
