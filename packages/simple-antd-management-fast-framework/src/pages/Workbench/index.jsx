@@ -2,25 +2,36 @@ import { Avatar } from 'antd';
 import { connect } from 'umi';
 
 import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
-import DataLoad from 'antd-management-fast-framework/es/framework/DataSingleView/DataLoad';
+import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 import {
-  cardConfig,
+  columnFacadeMode,
+  convertCollection,
   defaultUserAvatar,
   iconCollection,
+  listViewConfig,
 } from 'antd-management-fast-framework/es/utils/constants';
 import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
+import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
-@connect(({ article, user, global }) => ({
+import { getStatusBadge } from '../Article/Assist/tools';
+import { fieldData, statusCollection } from '../Article/Common/data';
+
+import ShortcutPanel from './ShortcutPanel';
+
+@connect(({ article, user, currentOperator, global }) => ({
   article,
   user,
+  currentOperator,
   global,
 }))
-class Index extends DataLoad {
+class Index extends MultiPage {
   componentAuthority = accessWayCollection.article.pageList.permission;
 
   resetDataAfterLoad = false;
+
+  showSearchForm = false;
 
   constructor(props) {
     super(props);
@@ -29,99 +40,183 @@ class Index extends DataLoad {
       ...this.state,
       ...{
         pageName: '工作台',
+        listTitle: '新近文章列表',
         loadApiPath: 'article/pageList',
+        tableScroll: { x: 1020 },
+        pageSize: 8,
       },
     };
   }
 
   apiDataConvert = (props) => {
     const {
-      user: { data },
+      article: { data },
     } = props;
 
     return data;
   };
 
-  establishCardCollectionConfig = () => {
+  goToAdd = () => {
+    this.goToPath(`/news/article/addBasicInfo`);
+  };
+
+  goToEdit = (record) => {
+    const { articleId } = record;
+
+    this.goToPath(`/news/article/edit/load/${articleId}/key/basicInfo`);
+  };
+
+  establishPageContentLayoutSiderConfig = () => {
     return {
-      list: [
+      position: 'right',
+    };
+  };
+
+  establishDataContainerExtraActionCollectionConfig = () => {
+    return [
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'primary',
+        icon: iconCollection.plus,
+        text: '新增文章',
+        handleClick: this.goToAdd,
+        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+      },
+    ];
+  };
+
+  establishListItemDropdownConfig = (record) => {
+    const itemStatus = getValueByKey({
+      data: record,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
+    return {
+      size: 'small',
+      text: '编辑',
+      placement: 'topRight',
+      icon: iconCollection.form,
+      handleButtonClick: ({ handleData }) => {
+        this.goToEdit(handleData);
+      },
+      handleData: record,
+      confirm: {
+        title: '将要进行编辑，确定吗？',
+      },
+      handleMenuClick: ({ key, handleData }) => {
+        this.handleMenuClick({ key, handleData });
+      },
+      items: [
         {
-          title: {
-            icon: iconCollection.contacts,
-            text: '基本信息',
-          },
-          spinning: this.checkInProgress(),
-          items: [
-            {
-              lg: 6,
-              type: cardConfig.contentItemType.component,
-              component: <div>11</div>,
-            },
-          ],
+          key: 'showUpdateBasicInfoDrawer',
+          icon: iconCollection.edit,
+          text: '编辑[侧拉]',
+          hidden: !this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission),
         },
         {
-          title: {
-            icon: iconCollection.contacts,
-            text: '推荐人信息',
+          key: 'setOnline',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconCollection.playCircle,
+          text: '设为上线',
+          hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
+          disabled: itemStatus === statusCollection.online,
+          confirm: {
+            title: '将要设置为上线，确定吗？',
           },
-          spinning: this.checkInProgress(),
-          items: [
-            // {
-            //   lg: 6,
-            //   type: cardConfig.contentItemType.onlyShowTextByFlexText,
-            //   fieldData: fieldData.parentId,
-            //   value: getValueByKey({
-            //     data: metaData,
-            //     key: fieldData.parentId.name,
-            //   }),
-            // },
-            // {
-            //   lg: 6,
-            //   type: cardConfig.contentItemType.onlyShowTextByFlexText,
-            //   fieldData: fieldData.parentNickname,
-            //   value: getValueByKey({
-            //     data: metaData,
-            //     key: fieldData.parentNickname.name,
-            //   }),
-            // },
-            // {
-            //   lg: 6,
-            //   type: cardConfig.contentItemType.onlyShowTextByFlexText,
-            //   fieldData: fieldData.parentRealName,
-            //   value: getValueByKey({
-            //     data: metaData,
-            //     key: fieldData.parentRealName.name,
-            //   }),
-            // },
-          ],
         },
         {
-          title: {
-            icon: iconCollection.contacts,
-            text: '其他信息',
+          key: 'setOffline',
+          icon: iconCollection.pauseCircle,
+          text: '设为下线',
+          hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
+          disabled: itemStatus === statusCollection.offline,
+          confirm: {
+            title: '将要设置为下线，确定吗？',
           },
-          spinning: this.checkInProgress(),
-          items: [
-            {
-              type: cardConfig.contentItemType.nowTime,
-            },
-          ],
+        },
+        {
+          key: 'setSort',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconCollection.edit,
+          text: '设置排序值',
+          hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
+        },
+        {
+          key: 'refreshCache',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconCollection.reload,
+          text: '刷新缓存',
+          hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+          confirm: {
+            title: '将要刷新缓存，确定吗？',
+          },
         },
       ],
     };
   };
 
-  renderPageHeaderContent = () => {
-    console.log(this.props);
+  getColumnWrapper = () => [
+    {
+      dataTarget: fieldData.title,
+      width: 620,
+      align: 'left',
+      showRichFacade: true,
+      emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.image,
+      width: 80,
+      showRichFacade: true,
+      facadeConfig: {
+        circle: false,
+      },
+      facadeMode: columnFacadeMode.image,
+    },
+    {
+      dataTarget: fieldData.status,
+      width: 100,
+      emptyValue: '--',
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.badge,
+      facadeConfigBuilder: (val) => {
+        return {
+          status: getStatusBadge(val),
+          text: getArticleStatusName({
+            global: this.getGlobal(),
+            value: val,
+          }),
+        };
+      },
+    },
+    {
+      dataTarget: fieldData.createTime,
+      width: 160,
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.datetime,
+      emptyValue: '--',
+    },
+  ];
 
-    const currentOperator = this.getCurrentOperator();
+  renderPageHeaderContent = () => {
+    const {
+      currentOperator: { currentOperator },
+    } = this.props;
+
+    console.log(currentOperator);
 
     const avatar = getValueByKey({
       data: currentOperator,
       key: 'avatar',
     });
 
-    // console.log(article);
+    const name = getValueByKey({
+      data: currentOperator,
+      key: 'name',
+    });
 
     return (
       <>
@@ -140,12 +235,38 @@ class Index extends DataLoad {
             />
           }
           leftStyle={{
-            paddingRight: '20px',
+            paddingRight: '30px',
           }}
-          right={<FlexBox flexAuto="top" top={<div>1</div>} bottom={2} />}
+          right={
+            <FlexBox
+              flexAuto="top"
+              top={
+                <div
+                  style={{
+                    fontSize: '20px',
+                  }}
+                >{`早安，${name}，祝你开心每一天！`}</div>
+              }
+              bottom={
+                <div
+                  style={{
+                    fontSize: '14px',
+                    color: '#333',
+                    paddingBottom: '10px',
+                  }}
+                >
+                  河南省驻马店市委宣传部 — 驻马店官方发布CMS平台
+                </div>
+              }
+            />
+          }
         />
       </>
     );
+  };
+
+  renderSiderTopArea = () => {
+    return <ShortcutPanel />;
   };
 }
 

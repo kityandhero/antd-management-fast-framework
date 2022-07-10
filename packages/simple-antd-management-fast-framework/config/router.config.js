@@ -6,7 +6,10 @@ export default [
     component: '../layouts/EntranceLayout',
     routes: [
       { path: '/entrance', redirect: '/entrance/signIn' },
-      { path: '/entrance/signIn', component: './Entrance' },
+      {
+        path: '/entrance/signIn',
+        component: './Entrance',
+      },
     ],
   },
   {

@@ -1,15 +1,16 @@
 import {
-  changeCurrentPasswordData,
-  getCurrentBasicInfoData,
-  updateCurrentBasicInfoData,
-} from '@/services/currentOperator';
-import { getCurrentOperatorCache, setCurrentOperatorCache } from '@/utils/storageAssist';
-import {
   reducerCommonCollection,
   reducerCommonNameCollection,
   tacitlyState,
 } from 'antd-management-fast-framework/es/utils/dva';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
+
+import {
+  changeCurrentPasswordData,
+  getCurrentBasicInfoData,
+  updateCurrentBasicInfoData,
+} from '@/services/currentOperator';
+import { getCurrentOperatorCache, setCurrentOperatorCache } from '@/utils/storageAssist';
 
 export default {
   namespace: 'currentOperator',
