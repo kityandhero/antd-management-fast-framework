@@ -1,6 +1,6 @@
-import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import { message, Modal, Space, Tooltip, Upload } from 'antd';
 import { PureComponent } from 'react';
+import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
 import { iconCollection } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
@@ -292,6 +292,7 @@ class ImageUpload extends PureComponent {
 
                   <div className={styles.toolBar}>
                     <FlexBox
+                      flexAuto="left"
                       left={
                         <IconInfo
                           icon={icon}

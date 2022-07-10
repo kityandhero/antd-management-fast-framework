@@ -1,7 +1,39 @@
 import { Col, Row } from 'antd';
 import { PureComponent } from 'react';
 
+import { inCollection } from '../../utils/core';
+
+const flexAutoCollection = ['left', 'right', 'top', 'bottom'];
+
 class FlexBox extends PureComponent {
+  getDirection = () => {
+    const { flexAuto } = this.props;
+
+    if (!inCollection(flexAutoCollection, flexAuto)) {
+      const text = 'flexAuto 只能配置为 left/right/top/bottom';
+
+      showErrorMessage({
+        message: text,
+      });
+
+      return 'horizontal';
+    }
+
+    return inCollection(['left', 'right'], flexAuto)
+      ? 'horizontal'
+      : inCollection(['top', 'bottom'], flexAuto)
+      ? 'vertical'
+      : 'horizontal';
+  };
+
+  triggerClick = () => {
+    const { onClick } = this.props;
+
+    if (isFunction(onClick)) {
+      onClick();
+    }
+  };
+
   render() {
     const {
       style: styleSource,
@@ -13,15 +45,10 @@ class FlexBox extends PureComponent {
       rightStyle,
       top,
       bottom,
-      direction: directionSource,
       vertical,
     } = this.props;
 
-    let direction = directionSource;
-
-    if (directionSource !== 'horizontal' && directionSource !== 'vertical') {
-      direction = 'horizontal';
-    }
+    let direction = this.getDirection();
 
     if (direction === 'horizontal') {
       const flexAuto = flexAutoSource === 'left' ? 'left' : 'right';
@@ -51,6 +78,7 @@ class FlexBox extends PureComponent {
           <Col flex style={leftStyle || null}>
             {left}
           </Col>
+
           {(right || null) == null ? null : (
             <Col flex="auto" style={rightStyle || null}>
               {right}
@@ -101,7 +129,6 @@ class FlexBox extends PureComponent {
 }
 
 FlexBox.defaultProps = {
-  direction: 'horizontal',
   flexAuto: 'left',
   allowWrap: false,
   vertical: {

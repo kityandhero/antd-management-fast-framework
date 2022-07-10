@@ -1548,7 +1548,7 @@ class Common extends Core {
       return topArea;
     }
 
-    return <FlexBox direction="vertical" top={topArea} bottom={bottomArea} />;
+    return <FlexBox flexAuto="top" top={topArea} bottom={bottomArea} />;
   };
 
   establishPageContentLayoutSiderConfig = () => {

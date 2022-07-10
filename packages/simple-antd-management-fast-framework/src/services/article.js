@@ -1,7 +1,8 @@
-import { defaultSettings } from '@/defaultSettings';
 import { defaultEmptyImage } from 'antd-management-fast-framework/es/utils/constants';
 import { request } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import { getValueByKey, toString } from 'antd-management-fast-framework/es/utils/tools';
+
+import { defaultSettings } from '@/defaultSettings';
 
 const imageFileList = [
   {

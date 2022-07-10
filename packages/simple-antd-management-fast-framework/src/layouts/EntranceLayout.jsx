@@ -1,11 +1,13 @@
-import { defaultSettings } from '@/defaultSettings';
-import { formatMessage } from '@/utils/tools';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { connect } from 'umi';
 import { DefaultFooter, getMenuData, getPageTitle } from '@ant-design/pro-layout';
+
 import Bubbly from 'antd-management-fast-framework/es/customComponents/Canvas/Bubbly';
 import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
 import VerticalBox from 'antd-management-fast-framework/es/customComponents/VerticalBox';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { connect } from 'umi';
+
+import { defaultSettings } from '@/defaultSettings';
+import { formatMessage } from '@/utils/tools';
 
 import styles from './EntranceLayout.less';
 
@@ -32,6 +34,8 @@ const UserLayout = (props) => {
     ...props,
   });
 
+  console.log(children);
+
   return (
     <HelmetProvider>
       <Helmet>
@@ -40,7 +44,7 @@ const UserLayout = (props) => {
       </Helmet>
 
       <FlexBox
-        direction="vertical"
+        flexAuto="top"
         vertical={{
           bottomHeight: '180rpx',
         }}

@@ -1,6 +1,10 @@
 export default {
   'menu.home': '首页',
 
+  'menu.dashboard': '首页',
+
+  'menu.dashboard.workbench': '工作台',
+
   'menu.permission': '权限相关',
   'menu.permission.accessWay': '操作模块',
   'menu.permission.accessWay.list': '模块列表',

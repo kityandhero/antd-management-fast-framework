@@ -1,10 +1,9 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Avatar, BackTop, Form, message } from 'antd';
 import React from 'react';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 import { decorateAvatar } from '../../../customComponents/DecorateAvatar';
 import {
-  buildPageHeaderContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
   pageHeaderExtraContent,
@@ -282,8 +281,6 @@ class BaseAddForm extends DataCore {
         )
       : null;
 
-    const pageHeaderContentConfig = this.establishPageHeaderContentConfig();
-
     return (
       <PageHeaderWrapper
         className={styles.customContainor}
@@ -295,7 +292,7 @@ class BaseAddForm extends DataCore {
         subTitle={this.buildPageHeaderSubTitle()}
         tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
         extra={this.buildExtraAction()}
-        content={buildPageHeaderContent(pageHeaderContentConfig)}
+        content={this.renderPageHeaderContent()}
         extraContent={pageHeaderExtraContent(
           this.establishPageHeaderExtraContentConfig(),
         )}

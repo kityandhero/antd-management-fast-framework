@@ -2407,6 +2407,7 @@ export function buildFormSwitch({
           ]}
         >
           <FlexBox
+            flexAuto="left"
             left={`是否开启${label}:`}
             right={<Switch {...otherSwitchProps} />}
           />
@@ -2434,6 +2435,7 @@ export function buildFormSwitch({
         ]}
       >
         <FlexBox
+          flexAuto="left"
           left={`是否开启${label}：`}
           right={<Switch {...otherSwitchProps} />}
         />

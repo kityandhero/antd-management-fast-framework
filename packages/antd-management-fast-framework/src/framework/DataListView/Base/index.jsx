@@ -1,4 +1,3 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import {
   Affix,
   Alert,
@@ -19,6 +18,7 @@ import {
   Tooltip,
 } from 'antd';
 import React from 'react';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 import {
   avatarImageLoadResultCollection,
@@ -59,7 +59,6 @@ import {
   toNumber,
 } from '../../../utils/tools';
 import AuthorizationWrapper from '../../AuthorizationWrapper';
-
 import BatchAction from '../BatchAction';
 import ColumnSetting from '../ColumnSetting';
 import DensityAction from '../DensityAction';
@@ -1173,6 +1172,7 @@ class ListBase extends AuthorizationWrapper {
     const bar = (
       <FlexBox
         style={style}
+        flexAuto="left"
         right={
           <Pagination
             {...paginationConfig}

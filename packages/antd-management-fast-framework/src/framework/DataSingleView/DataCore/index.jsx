@@ -1,9 +1,18 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Avatar, BackTop, Button, Form, Tooltip } from 'antd';
 import React from 'react';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
-import { avatarImageLoadResultCollection } from '../../../customComponents/DecorateAvatar';
-import { buildTagList } from '../../../customComponents/FunctionComponent';
+import {
+  avatarImageLoadResultCollection,
+  decorateAvatar,
+} from '../../../customComponents/DecorateAvatar';
+import {
+  buildPageHeaderContent,
+  buildPageHeaderTagWrapper,
+  buildPageHeaderTitle,
+  buildTagList,
+  pageHeaderExtraContent,
+} from '../../../customComponents/FunctionComponent';
 import { iconCollection, pageHeaderRenderType } from '../../../utils/constants';
 import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
 import BaseView from '../../DataOperation/BaseView';
@@ -214,15 +223,57 @@ class DataCore extends BaseView {
     return null;
   };
 
+  renderPageHeaderContent = () => {
+    return buildPageHeaderContent(
+      this.establishPageHeaderContentConfig() || {},
+    );
+  };
+
+  renderPageHeaderExtraContent = () => {
+    return pageHeaderExtraContent(this.establishPageHeaderExtraContentConfig());
+  };
+
   formContent = () => {
     return this.buildCardCollection(this.establishCardCollectionConfig());
   };
 
   renderFurther() {
-    const { pageName } = this.state;
+    const {
+      defaultAvatarIcon,
+      showPageHeaderAvatar,
+      dataLoading,
+      reloading,
+      avatarImageLoadResult,
+    } = this.state;
+
+    const avatarProps = showPageHeaderAvatar
+      ? decorateAvatar(
+          this.establishPageHeaderAvatarConfig(),
+          defaultAvatarIcon,
+          showPageHeaderAvatar,
+          dataLoading,
+          reloading,
+          avatarImageLoadResult,
+          () => {
+            this.onPageHeaderAvatarLoadErrorCallback();
+          },
+        )
+      : null;
 
     return (
-      <PageHeaderWrapper title={pageName} logo={this.pageHeaderLogo()}>
+      <PageHeaderWrapper
+        logo={this.pageHeaderLogo()}
+        avatar={avatarProps}
+        title={buildPageHeaderTitle(
+          this.getPageName(),
+          this.establishPageHeaderTitlePrefix(),
+        )}
+        subTitle={this.buildPageHeaderSubTitle()}
+        tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
+        extra={this.buildExtraAction()}
+        content={this.renderPageHeaderContent()}
+        extraContent={this.renderPageHeaderExtraContent()}
+      >
         <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
           {this.renderFormWrapper()}
           {this.renderOther()}

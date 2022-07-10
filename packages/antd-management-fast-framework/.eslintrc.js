@@ -24,7 +24,6 @@ module.exports = {
     '@typescript-eslint/no-this-alias': ['off'],
     '@typescript-eslint/no-unused-vars': 1,
     '@typescript-eslint/no-invalid-this': 0,
-    'sort-imports': 0,
     'simple-import-sort/imports': [
       'error',
       {

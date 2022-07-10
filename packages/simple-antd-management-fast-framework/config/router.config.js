@@ -14,7 +14,25 @@ export default [
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
     routes: [
-      { path: '/', redirect: '/currentOperator' },
+      { path: '/', redirect: '/dashboard' },
+      {
+        name: 'dashboard',
+        icon: 'team',
+        path: '/dashboard',
+        hideChildrenInMenu: true,
+        routes: [
+          {
+            path: '/dashboard',
+            redirect: '/dashboard/workbench',
+          },
+          {
+            path: '/dashboard/workbench',
+            name: 'workbench',
+            icon: 'bars',
+            component: './Workbench',
+          },
+        ],
+      },
       {
         name: 'permission',
         icon: 'bar-chart',
