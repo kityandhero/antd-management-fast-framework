@@ -1,4 +1,5 @@
 import { BackTop } from 'antd';
+
 import BaseUpdateForm from '../BaseUpdateForm';
 
 class BaseUpdateFormContent extends BaseUpdateForm {

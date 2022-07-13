@@ -1,5 +1,6 @@
 import { Col, Row, Tooltip } from 'antd';
 import { PureComponent } from 'react';
+
 import {
   copyToClipboard,
   isFunction,
@@ -9,6 +10,7 @@ import {
   toNumber,
 } from '../../utils/tools';
 import Ellipsis from '../Ellipsis';
+
 import styles from './index.less';
 
 const defaultValue = {

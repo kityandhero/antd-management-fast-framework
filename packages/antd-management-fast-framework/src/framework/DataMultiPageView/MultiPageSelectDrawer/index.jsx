@@ -1,7 +1,6 @@
 import { buildButton } from '../../../customComponents/FunctionComponent';
 import { iconCollection } from '../../../utils/constants';
 import { isFunction } from '../../../utils/tools';
-
 import MultiPageDrawer from '../MultiPageDrawer';
 
 class MultiPageSelectDrawer extends MultiPageDrawer {

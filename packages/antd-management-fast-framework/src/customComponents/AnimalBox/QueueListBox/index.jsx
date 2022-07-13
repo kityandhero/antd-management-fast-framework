@@ -1,6 +1,8 @@
 import QueueAnim from 'rc-queue-anim';
 import { PureComponent } from 'react';
+
 import { isArray, isFunction } from '../../../utils/tools';
+
 import styles from './index.less';
 
 class QueueListBox extends PureComponent {

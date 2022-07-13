@@ -1,7 +1,6 @@
 import { Transfer } from 'antd';
 
 import { cardConfig } from '../../../utils/constants';
-
 import BaseUpdateModal from '../BaseUpdateModal';
 
 class BaseUpdateTransferModal extends BaseUpdateModal {

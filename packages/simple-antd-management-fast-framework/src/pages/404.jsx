@@ -1,4 +1,5 @@
 import { Button, Result } from 'antd';
+
 import { goToPath } from 'antd-management-fast-framework/es/utils/tools';
 
 const NoFoundPage = () => (

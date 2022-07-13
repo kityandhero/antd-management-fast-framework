@@ -1,5 +1,6 @@
 import Animate from 'rc-animate';
 import { PureComponent } from 'react';
+
 import styles from './index.less';
 
 class FadeBox extends PureComponent {

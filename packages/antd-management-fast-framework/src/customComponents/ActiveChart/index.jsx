@@ -1,6 +1,8 @@
 import { Component } from 'react';
+
 import { MiniArea } from '../Charts';
 import NumberInfo from '../NumberInfo';
+
 import styles from './index.less';
 
 function fixedZero(val) {

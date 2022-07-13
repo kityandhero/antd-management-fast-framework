@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+
 import { stringIsNullOrWhiteSpace } from '../../../utils/tools';
 
 class Index extends PureComponent {

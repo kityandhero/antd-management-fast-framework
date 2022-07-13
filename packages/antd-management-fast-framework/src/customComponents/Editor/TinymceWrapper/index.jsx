@@ -1,5 +1,5 @@
-import { Editor } from '@tinymce/tinymce-react';
 import React, { PureComponent } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
 
 import { defaultSettingsLayoutCustom } from '../../../utils/defaultSettingsSpecial';
 import { getToken, getTokenKeyName } from '../../../utils/globalStorageAssist';

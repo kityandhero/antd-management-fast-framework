@@ -1,4 +1,5 @@
 import { message } from 'antd';
+
 import { selectModeCollection } from '../../../../utils/constants';
 import {
   isFunction,

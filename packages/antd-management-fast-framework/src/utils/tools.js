@@ -32,6 +32,7 @@ import queue from 'queue';
 import randomColor from 'randomcolor';
 import { history } from 'umi';
 import { v4 as uuidv4 } from 'uuid';
+
 import { getAppInitConfigData } from './appConfiguration';
 import {
   convertCollection,

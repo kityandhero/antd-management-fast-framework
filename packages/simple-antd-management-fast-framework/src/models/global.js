@@ -1,8 +1,10 @@
-import { getMetaDataCache, setMetaDataCache } from '@/utils/storageAssist';
 import { reducerCommonCollection, tacitlyState } from 'antd-management-fast-framework/es/utils/dva';
 import { modelCollection } from 'antd-management-fast-framework/es/utils/globalModel';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
 import { showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
+
+import { getMetaDataCache, setMetaDataCache } from '@/utils/storageAssist';
+
 import { getData } from '../services/global';
 
 const GlobalModel = {

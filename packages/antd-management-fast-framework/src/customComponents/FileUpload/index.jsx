@@ -1,4 +1,3 @@
-import { EllipsisOutlined } from '@ant-design/icons';
 import {
   Button,
   Divider,
@@ -11,6 +10,7 @@ import {
   Upload,
 } from 'antd';
 import { PureComponent } from 'react';
+import { EllipsisOutlined } from '@ant-design/icons';
 
 import { iconCollection } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';

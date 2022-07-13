@@ -1,5 +1,4 @@
-﻿import { unknownLabel } from '@/customConfig/constants';
-import {
+﻿import {
   buildCustomRadio,
   buildCustomSelect,
   buildFormRadio,
@@ -16,6 +15,8 @@ import {
   refitCommonData,
   searchFromList,
 } from 'antd-management-fast-framework/es/utils/tools';
+
+import { unknownLabel } from '@/customConfig/constants';
 
 export function refitArticleRenderTypeList({ global, withUnlimited = true }) {
   const { articleRenderTypeList: list } = { ...{ articleRenderTypeList: [] }, ...(global || {}) };

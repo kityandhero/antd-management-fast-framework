@@ -1,7 +1,7 @@
-import { BellOutlined } from '@ant-design/icons';
 import { Badge, Popover, Spin, Tabs } from 'antd';
 import classNames from 'classnames';
 import React, { PureComponent } from 'react';
+import { BellOutlined } from '@ant-design/icons';
 
 import List from './NoticeList';
 

@@ -1,7 +1,9 @@
 import { Space } from 'antd';
 import { PureComponent } from 'react';
+
 import FlexBox from '../FlexBox';
 import IconInfo from '../IconInfo';
+
 import styles from './index.less';
 
 class FlexText extends PureComponent {

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+
 import { cloneWithoutMethod, isEqual } from '../../utils/tools';
 
 class CustomBase extends Component {

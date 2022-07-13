@@ -1,5 +1,7 @@
 import { Component } from 'react';
+
 import AutoHeightComponent from '../autoHeight';
+
 import styles from './index.less';
 
 /* eslint no-return-assign: 0 */

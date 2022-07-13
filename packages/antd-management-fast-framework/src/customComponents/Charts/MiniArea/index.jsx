@@ -1,4 +1,5 @@
 import { Area, Axis, Chart, Line, Tooltip } from 'bizcharts';
+
 import styles from '../index.less';
 
 const MiniArea = (props) => {

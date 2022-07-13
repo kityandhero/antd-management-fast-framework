@@ -1,4 +1,10 @@
 import {
+  reducerCommonCollection,
+  reducerCommonNameCollection,
+  tacitlyState,
+} from 'antd-management-fast-framework/es/utils/dva';
+
+import {
   addBasicInfoData,
   addImageData,
   addMediaItemData,
@@ -23,11 +29,6 @@ import {
   updateRenderTypeData,
   updateSortData,
 } from '@/services/article';
-import {
-  reducerCommonCollection,
-  reducerCommonNameCollection,
-  tacitlyState,
-} from 'antd-management-fast-framework/es/utils/dva';
 
 export default {
   namespace: 'article',

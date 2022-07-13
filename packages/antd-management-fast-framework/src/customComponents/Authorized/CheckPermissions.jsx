@@ -1,4 +1,5 @@
 import { recordObject } from '../../utils/tools';
+
 import PromiseRender from './PromiseRender';
 import { CURRENT } from './renderAuthorize';
 

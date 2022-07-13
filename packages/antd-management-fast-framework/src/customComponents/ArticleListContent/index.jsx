@@ -1,6 +1,8 @@
 import { Avatar } from 'antd';
+
 import { datetimeFormat } from '../../utils/constants';
 import { formatDatetime } from '../../utils/tools';
+
 import styles from './index.less';
 
 const ArticleListContent = ({

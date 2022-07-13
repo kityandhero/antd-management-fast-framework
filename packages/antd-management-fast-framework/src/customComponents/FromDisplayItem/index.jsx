@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+
 import styles from './index.less';
 
 class FromDisplayItem extends PureComponent {

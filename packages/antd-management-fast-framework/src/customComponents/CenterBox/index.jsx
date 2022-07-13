@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+
 import VerticalBox from '../VerticalBox';
 
 class CenterBox extends PureComponent {

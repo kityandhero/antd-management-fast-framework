@@ -1,4 +1,3 @@
-import { accessWayCollection } from '@/customConfig/config';
 import { connect } from 'umi';
 
 import MobileHtmlPreviewBox from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
@@ -12,6 +11,8 @@ import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
 } from 'antd-management-fast-framework/es/utils/tools';
+
+import { accessWayCollection } from '@/customConfig/config';
 
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';

@@ -10,6 +10,7 @@ import {
 } from 'bizcharts';
 import classNames from 'classnames';
 import { Component } from 'react';
+
 import styles from './index.less';
 
 const sliceNumber = 0.01; // 自定义 other 的图形，增加两条线

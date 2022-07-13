@@ -1,5 +1,4 @@
-﻿import { unknownLabel } from '@/customConfig/constants';
-import {
+﻿import {
   buildFormOptionItem,
   buildFormRadio,
   buildFormRadioItem,
@@ -14,6 +13,8 @@ import {
   refitCommonData,
   searchFromList,
 } from 'antd-management-fast-framework/es/utils/tools';
+
+import { unknownLabel } from '@/customConfig/constants';
 
 export function refitArticleStatusList({ global, withUnlimited = true }) {
   const { articleStatusList: list } = { ...{ articleStatusList: [] }, ...(global || {}) };

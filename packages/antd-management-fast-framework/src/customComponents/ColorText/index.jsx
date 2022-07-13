@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+
 import {
   copyToClipboard,
   getRandomColor,

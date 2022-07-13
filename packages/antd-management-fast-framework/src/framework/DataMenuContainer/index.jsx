@@ -1,5 +1,6 @@
-import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
+import { GridContent } from '@ant-design/pro-layout';
+
 import IconInfo from '../../customComponents/IconInfo';
 import {
   endsWith,
@@ -8,6 +9,7 @@ import {
   stringIsNullOrWhiteSpace,
 } from '../../utils/tools';
 import AuthorizationWrapper from '../AuthorizationWrapper';
+
 import styles from './index.less';
 
 const { Item } = Menu;

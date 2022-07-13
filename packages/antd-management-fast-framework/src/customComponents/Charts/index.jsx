@@ -1,4 +1,5 @@
 import numeral from 'numeral';
+
 import Bar from './Bar';
 import ChartCard from './ChartCard';
 import Field from './Field';
@@ -28,17 +29,17 @@ const Charts = {
   TimelineChart,
 };
 export {
-  Charts as default,
-  yuan,
   Bar,
-  Pie,
-  Gauge,
-  MiniBar,
-  MiniArea,
-  MiniProgress,
   ChartCard,
+  Charts as default,
   Field,
-  WaterWave,
+  Gauge,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Pie,
   TagCloud,
   TimelineChart,
+  WaterWave,
+  yuan,
 };

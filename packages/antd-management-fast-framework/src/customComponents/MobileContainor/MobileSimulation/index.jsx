@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+
 import { animalType, mobileTypeCollection } from '../../../utils/constants';
 import { isObject, recordObject, showErrorMessage } from '../../../utils/tools';
 import VerticalBox from '../../VerticalBox';

@@ -3,6 +3,7 @@ import {
   reducerCommonNameCollection,
   tacitlyState,
 } from 'antd-management-fast-framework/es/utils/dva';
+
 import { initData } from '../services/flowEditor';
 
 export default {

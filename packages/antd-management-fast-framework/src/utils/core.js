@@ -4,6 +4,7 @@ import {
   trim as trimLodash,
   upperFirst as upperFirstLodash,
 } from 'lodash';
+
 import { isArray } from './typeCheck';
 
 export function replace(source, pattern, replacement) {

@@ -1,6 +1,8 @@
 import { Col, Input, Row, Select } from 'antd';
 import { PureComponent } from 'react';
+
 import { isFunction, toNumber } from '../../utils/tools';
+
 import styles from './index.less';
 
 const { Option } = Select;

@@ -1,6 +1,8 @@
 import { PureComponent } from 'react';
+
 import { animalType } from '../../../../utils/constants';
 import ContentView from '../../ContentView';
+
 import styles from './index.less';
 
 class RoughSketch extends PureComponent {

@@ -1,4 +1,5 @@
 import { Chart, Interval, Tooltip } from 'bizcharts';
+
 import styles from '../index.less';
 
 const MiniBar = (props) => {

@@ -1,4 +1,5 @@
 import { Axis, Chart, Coordinate, Geom, Guide, registerShape } from 'bizcharts';
+
 import AutoHeightComponent from '../autoHeight';
 
 const { Arc, Html, Line } = Guide;

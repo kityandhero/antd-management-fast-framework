@@ -6,6 +6,7 @@ import { iconCollection } from 'antd-management-fast-framework/es/utils/constant
 import { defaultSettings } from '@/defaultSettings';
 
 import HeaderSearch from '../HeaderSearch';
+
 import AvatarDropdown from './AvatarDropdown';
 
 import styles from './index.less';

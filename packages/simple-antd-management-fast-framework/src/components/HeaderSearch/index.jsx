@@ -1,8 +1,8 @@
-import { SearchOutlined } from '@ant-design/icons';
 import { AutoComplete, Input } from 'antd';
 import classNames from 'classnames';
 import { useRef } from 'react';
 import useMergeValue from 'use-merge-value';
+import { SearchOutlined } from '@ant-design/icons';
 
 import styles from './index.less';
 
