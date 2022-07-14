@@ -542,7 +542,7 @@ class BasicInfo extends TabPageBase {
                 this.showMediaItemPreviewDrawer();
               }}
             >
-              iconCollection.eye 预览
+              {iconCollection.eye} 预览
             </Button>
           ),
         },
@@ -598,6 +598,8 @@ class BasicInfo extends TabPageBase {
 
     return (
       <MobilePreviewBox
+        affix
+        affixOffsetTop={20}
         mobileList={[mobileTypeCollection.roughSketch, mobileTypeCollection.iPhone5S]}
         data={mediaItemList || []}
       />

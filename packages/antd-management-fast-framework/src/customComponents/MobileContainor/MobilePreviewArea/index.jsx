@@ -1,3 +1,5 @@
+import { Affix } from 'antd';
+
 import Base from '../../../framework/DataOperation/Base';
 import {
   animalType,
@@ -140,11 +142,29 @@ class MobilePreviewArea extends Base {
   };
 
   renderFurther() {
-    return this.buildCardCollection(this.establishCardCollectionConfig());
+    const { affix, affixOffsetTop, affixOffsetBottom } = this.props;
+
+    if (!affix) {
+      return this.buildCardCollection(this.establishCardCollectionConfig());
+    }
+
+    const affixProps = {
+      ...(affixOffsetBottom > 0 ? { offsetBottom: affixOffsetBottom } : {}),
+      ...(affixOffsetTop > 0 ? { offsetTop: affixOffsetTop } : {}),
+    };
+
+    return (
+      <Affix {...affixProps}>
+        {this.buildCardCollection(this.establishCardCollectionConfig())}
+      </Affix>
+    );
   }
 }
 
 MobilePreviewArea.defaultProps = {
+  affix: false,
+  affixOffsetBottom: 0,
+  affixOffsetTop: 0,
   alertVisible: false,
   alertAnimationType: animalType.fade,
   alertMessage: '',

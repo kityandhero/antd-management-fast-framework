@@ -88,6 +88,7 @@ class TinymceWrapper extends PureComponent {
         automatic_uploads: true,
         images_upload_url: '',
         min_height: 700,
+        toolbar_sticky: true,
         images_upload_handler: this.imageUploadHandler,
       },
       ...(initConfig || {}),

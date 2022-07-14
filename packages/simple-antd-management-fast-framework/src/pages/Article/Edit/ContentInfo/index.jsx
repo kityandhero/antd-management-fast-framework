@@ -161,6 +161,7 @@ class ContentInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.tinymce,
               html: initContent,
+              initConfig: {},
               afterChange: this.afterHtmlChange,
             },
           ],
@@ -178,6 +179,8 @@ class ContentInfo extends TabPageBase {
 
     return (
       <MobileHtmlPreviewBox
+        affix
+        affixOffsetTop={20}
         alertVisible={contentChanged}
         alertAnimationType={animalType.queue}
         alertMessage={'内容已经发生变化'}
