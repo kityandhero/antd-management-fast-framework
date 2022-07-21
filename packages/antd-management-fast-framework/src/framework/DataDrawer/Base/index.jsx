@@ -317,6 +317,12 @@ class Base extends BaseWindow {
                   left={
                     <FlexBox
                       flexAuto="right"
+                      style={{
+                        height: '100%',
+                      }}
+                      leftStyle={{
+                        height: '100%',
+                      }}
                       left={
                         <Space split={<Divider type="vertical" />}>
                           {bottomBarLeftBox}
