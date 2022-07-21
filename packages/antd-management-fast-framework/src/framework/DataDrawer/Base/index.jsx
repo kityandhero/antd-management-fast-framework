@@ -324,7 +324,10 @@ class Base extends BaseWindow {
                         height: '100%',
                       }}
                       left={
-                        <Space split={<Divider type="vertical" />}>
+                        <Space
+                          split={<Divider type="vertical" />}
+                          style={{ height: '100%' }}
+                        >
                           {bottomBarLeftBox}
                         </Space>
                       }
