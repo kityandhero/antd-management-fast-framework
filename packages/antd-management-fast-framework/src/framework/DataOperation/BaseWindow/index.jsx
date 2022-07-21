@@ -258,7 +258,7 @@ class BaseWindow extends Base {
                   }
 
                   if (isFunction(afterSubmitCallback)) {
-                    afterSubmitCallback();
+                    afterSubmitCallback(remoteData);
                   }
                 }
 
@@ -281,7 +281,7 @@ class BaseWindow extends Base {
     }
   };
 
-  handleOkWithForm = () => {
+  handleOkWithForm = (successCallback) => {
     const form = this.getTargetForm();
 
     if (form == null) {
@@ -292,7 +292,11 @@ class BaseWindow extends Base {
 
     validateFields()
       .then((values) => {
-        this.execSubmitApi(values, () => {
+        this.execSubmitApi(values, (remoteData) => {
+          if (isFunction(successCallback)) {
+            successCallback(remoteData);
+          }
+
           if (this.goToUpdateWhenProcessed) {
             this.reloadByUrl();
           }
@@ -332,11 +336,11 @@ class BaseWindow extends Base {
       });
   };
 
-  handleOk = (e) => {
+  handleOk = (e, successCallback = null) => {
     if (this.submitWithForm) {
-      this.handleOkWithForm(e);
+      this.handleOkWithForm(e, successCallback);
     } else {
-      this.execSubmitApi();
+      this.execSubmitApi({}, successCallback);
     }
   };
 
