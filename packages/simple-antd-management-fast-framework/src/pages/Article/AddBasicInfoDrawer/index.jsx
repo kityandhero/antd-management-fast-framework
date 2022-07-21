@@ -1,7 +1,12 @@
+import { Checkbox } from 'antd';
 import { connect } from 'umi';
 
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
-import { cardConfig, iconCollection } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  cardConfig,
+  drawerConfig,
+  iconCollection,
+} from 'antd-management-fast-framework/es/utils/constants';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
 
@@ -33,6 +38,15 @@ class Index extends BaseAddDrawer {
     } = props;
 
     return data;
+  };
+
+  buildBottomBarInnerLeftItemConfigList = () => {
+    return [
+      {
+        buildType: drawerConfig.bottomBarBuildType.component,
+        component: <Checkbox style={{ marginLeft: '4px' }}>保存后跳转详情页</Checkbox>,
+      },
+    ];
   };
 
   renderTitle = () => {

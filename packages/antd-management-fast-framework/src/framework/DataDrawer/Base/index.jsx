@@ -180,24 +180,20 @@ class Base extends BaseWindow {
   renderBottomBarRightBox = () => {
     const rightConfigList = this.buildBottomBarInnerRightItemConfigList();
 
-    if (!isArray(rightConfigList) || rightConfigList.length <= 0) {
-      return null;
-    }
-
     return this.renderBottomBarInnerBox(rightConfigList);
   };
 
   renderBottomBarLeftBox = () => {
     const leftConfigList = this.buildBottomBarInnerLeftItemConfigList();
 
-    if (!isArray(leftConfigList) || rightConfigList.length <= 0) {
-      return null;
-    }
-
-    return this.renderBottomBarInnerBox(rightConfigList);
+    return this.renderBottomBarInnerBox(leftConfigList);
   };
 
   renderBottomBarInnerBox = (configList) => {
+    if (!isArray(configList) || configList.length <= 0) {
+      return null;
+    }
+
     const components = [];
 
     const that = this;
@@ -319,20 +315,20 @@ class Base extends BaseWindow {
                 <FlexBox
                   flexAuto="left"
                   left={
-                    <Space split={<Divider type="vertical" />}>
-                      {bottomBarLeftBox}
-                    </Space>
-                  }
-                  right={
                     <FlexBox
-                      flexAuto="left"
-                      left={<div />}
-                      right={
+                      flexAuto="right"
+                      left={
                         <Space split={<Divider type="vertical" />}>
-                          {bottomBarRightBox}
+                          {bottomBarLeftBox}
                         </Space>
                       }
+                      right={<div />}
                     />
+                  }
+                  right={
+                    <Space split={<Divider type="vertical" />}>
+                      {bottomBarRightBox}
+                    </Space>
                   }
                 />
               </Col>
