@@ -1,6 +1,6 @@
 {
   "name": "simple-antd-management-fast-framework",
-  "version": "1.7.95",
+  "version": "1.7.96",
   "private": true,
   "description": "simple-antd-management-fast-framework",
   "keywords": [
@@ -67,7 +67,7 @@
     "@babel/preset-typescript": "^7.18.6",
     "@tinymce/tinymce-react": "^4.1.0",
     "antd": "^4.21.6",
-    "antd-management-fast-framework": "^1.12.96",
+    "antd-management-fast-framework": "^1.12.97",
     "array-move": "^4.0.0",
     "bizcharts": "^4.1.19",
     "browserslist": "^4.21.2",
