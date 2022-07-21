@@ -1,6 +1,7 @@
 import { Affix, Col, Divider, Drawer, Form, Layout, Row, Space } from 'antd';
 import { Fragment } from 'react';
 
+import FlexBox from '../../../customComponents/FlexBox';
 import {
   buildButton,
   buildCustomSelect,
@@ -16,6 +17,7 @@ import {
 } from '../../../utils/constants';
 import {
   defaultFormState,
+  isArray,
   isFunction,
   isUndefined,
   stringIsNullOrWhiteSpace,
@@ -159,7 +161,11 @@ class Base extends BaseWindow {
     ];
   };
 
-  buildBottomBarInnerItemConfigList = () => {
+  buildBottomBarInnerLeftItemConfigList = () => {
+    return [];
+  };
+
+  buildBottomBarInnerRightItemConfigList = () => {
     const bottomBarInnerExtraConfigList =
       this.buildBottomBarInnerExtraConfigList();
     const bottomBarInnerDefaultConfigList =
@@ -171,10 +177,28 @@ class Base extends BaseWindow {
     ];
   };
 
-  renderBottomBarInner = () => {
-    const components = [];
+  renderBottomBarRightBox = () => {
+    const rightConfigList = this.buildBottomBarInnerRightItemConfigList();
 
-    const configList = this.buildBottomBarInnerItemConfigList();
+    if (!isArray(rightConfigList) || rightConfigList.length <= 0) {
+      return null;
+    }
+
+    return this.renderBottomBarInnerBox(rightConfigList);
+  };
+
+  renderBottomBarLeftBox = () => {
+    const leftConfigList = this.buildBottomBarInnerLeftItemConfigList();
+
+    if (!isArray(leftConfigList) || rightConfigList.length <= 0) {
+      return null;
+    }
+
+    return this.renderBottomBarInnerBox(rightConfigList);
+  };
+
+  renderBottomBarInnerBox = (configList) => {
+    const components = [];
 
     const that = this;
 
@@ -283,15 +307,34 @@ class Base extends BaseWindow {
   };
 
   renderBottomBar = () => {
+    const bottomBarLeftBox = this.renderBottomBarLeftBox();
+    const bottomBarRightBox = this.renderBottomBarRightBox();
+
     return (
       <Footer>
         <Affix offsetBottom={0}>
           <div className={styles.bottomBar}>
             <Row>
               <Col span={24} style={{ textAlign: 'right' }}>
-                <Space split={<Divider type="vertical" />}>
-                  {this.renderBottomBarInner()}
-                </Space>
+                <FlexBox
+                  flexAuto="left"
+                  left={
+                    <Space split={<Divider type="vertical" />}>
+                      {bottomBarLeftBox}
+                    </Space>
+                  }
+                  right={
+                    <FlexBox
+                      flexAuto="left"
+                      left={<div />}
+                      right={
+                        <Space split={<Divider type="vertical" />}>
+                          {bottomBarRightBox}
+                        </Space>
+                      }
+                    />
+                  }
+                />
               </Col>
             </Row>
           </div>
