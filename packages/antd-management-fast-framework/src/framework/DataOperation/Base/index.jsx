@@ -68,6 +68,10 @@ class Base extends AuthorizationWrapper {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   checkSubmitRequestParams = (o) => true;
 
+  subjoinDataOnAfterOK = () => {
+    return {};
+  };
+
   doAfterSubmitSuccess = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     singleData = null,
@@ -107,12 +111,15 @@ class Base extends AuthorizationWrapper {
     });
 
     if (isFunction(afterOK)) {
+      const subjoinData = this.subjoinDataOnAfterOK();
+
       afterOK({
         singleData,
         listData,
         extraData,
         responseOriginalData,
         submitData,
+        subjoinData: subjoinData || {},
       });
     }
   };
