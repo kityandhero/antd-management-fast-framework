@@ -1567,13 +1567,15 @@ class ListBase extends AuthorizationWrapper {
       </>
     ) : (
       <Affix offsetTop={toNumber(offsetTop)}>
-        {extraAction}
+        <div>
+          {extraAction}
 
-        {extraAction == null ? null : <Divider type="vertical" />}
+          {extraAction == null ? null : <Divider type="vertical" />}
 
-        {this.renderBatchAction()}
+          {this.renderBatchAction()}
 
-        {this.renderCardExtraAction()}
+          {this.renderCardExtraAction()}
+        </div>
       </Affix>
     );
 
