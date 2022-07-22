@@ -430,6 +430,13 @@ class SingleList extends SinglePage {
     };
   };
 
+  establishDataContainerExtraAffixConfig = () => {
+    return {
+      affix: true,
+      offsetTop: 10,
+    };
+  };
+
   establishDataContainerExtraActionCollectionConfig = () => {
     const { listViewMode } = this.state;
 

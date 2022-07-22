@@ -846,6 +846,10 @@ class ListBase extends AuthorizationWrapper {
     return [];
   };
 
+  establishDataContainerExtraAffixConfig = () => {
+    return {};
+  };
+
   buildDataContainerExtraActionCollection = () => {
     const configList = this.establishDataContainerExtraActionCollectionConfig();
 
@@ -862,17 +866,17 @@ class ListBase extends AuthorizationWrapper {
   renderExtraActionView = () => {
     const actions = this.buildDataContainerExtraActionCollection();
 
-    if (isArray(actions) && actions.length > 0) {
-      return (
-        <Space split={<Divider type="vertical" />}>
-          {actions.map((item) => {
-            return item;
-          })}
-        </Space>
-      );
+    if (!isArray(actions) || actions.length <= 0) {
+      return null;
     }
 
-    return null;
+    return (
+      <Space split={<Divider type="vertical" />}>
+        {actions.map((item) => {
+          return item;
+        })}
+      </Space>
+    );
   };
 
   renderBatchActionMenu = () => [];
@@ -1535,11 +1539,43 @@ class ListBase extends AuthorizationWrapper {
   renderContentArea = () => {
     const { listTitle } = this.state;
 
+    const affixConfig = {
+      ...{
+        affix: false,
+        offsetTop: 10,
+      },
+      ...(this.establishDataContainerExtraAffixConfig() || {}),
+    };
+
     const extraAction = this.renderExtraActionView();
 
     const searchForm = this.renderForm();
 
     const hasPagination = this.renderPaginationView() != null;
+
+    const { affix, offsetTop } = affixConfig;
+
+    const extraView = !affix ? (
+      <>
+        {extraAction}
+
+        {extraAction == null ? null : <Divider type="vertical" />}
+
+        {this.renderBatchAction()}
+
+        {this.renderCardExtraAction()}
+      </>
+    ) : (
+      <Affix offsetTop={toNumber(offsetTop)}>
+        {extraAction}
+
+        {extraAction == null ? null : <Divider type="vertical" />}
+
+        {this.renderBatchAction()}
+
+        {this.renderCardExtraAction()}
+      </Affix>
+    );
 
     var gridView = (
       <Card
@@ -1551,17 +1587,7 @@ class ListBase extends AuthorizationWrapper {
         }}
         bordered={false}
         className={styles.containorTable}
-        extra={
-          <>
-            {extraAction}
-
-            {extraAction == null ? null : <Divider type="vertical" />}
-
-            {this.renderBatchAction()}
-
-            {this.renderCardExtraAction()}
-          </>
-        }
+        extra={extraView}
       >
         <div className={styles.tableList}>
           {this.renderAboveTable()}

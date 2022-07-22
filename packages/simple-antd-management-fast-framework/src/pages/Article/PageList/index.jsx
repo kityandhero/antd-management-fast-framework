@@ -181,7 +181,9 @@ class PageList extends MultiPage {
     });
   };
 
-  afterAddBasicInfoDrawerOk = () => {
+  afterAddBasicInfoDrawerOk = ({ subjoinData }) => {
+    console.log({ subjoinData });
+
     this.refreshData({ addBasicInfoDrawerVisible: false }, null, 300);
   };
 
@@ -513,6 +515,13 @@ class PageList extends MultiPage {
           </Card>
         );
       },
+    };
+  };
+
+  establishDataContainerExtraAffixConfig = () => {
+    return {
+      affix: true,
+      offsetTop: 10,
     };
   };
 
@@ -958,8 +967,8 @@ class PageList extends MultiPage {
         <AddBasicInfoDrawer
           visible={addBasicInfoDrawerVisible}
           externalData={{ articleId }}
-          afterOK={() => {
-            this.afterAddBasicInfoDrawerOk();
+          afterOK={({ subjoinData }) => {
+            this.afterAddBasicInfoDrawerOk({ subjoinData });
           }}
           afterCancel={() => {
             this.afterAddBasicInfoDrawerCancel();

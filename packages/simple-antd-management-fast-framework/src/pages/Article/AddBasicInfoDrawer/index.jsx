@@ -40,6 +40,12 @@ class Index extends BaseAddDrawer {
     return data;
   };
 
+  subjoinDataOnAfterOK = () => {
+    return {
+      message: '这是一个增补数据, 将附加到 afterOk 方法中进行调用',
+    };
+  };
+
   buildBottomBarInnerLeftItemConfigList = () => {
     return [
       {

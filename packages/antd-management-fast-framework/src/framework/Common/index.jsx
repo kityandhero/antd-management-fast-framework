@@ -3002,8 +3002,6 @@ class Common extends Core {
               break;
 
             default:
-              recordWarn('');
-
               recordObject({
                 message: '未找到匹配的构建模式',
                 buildType: extraBuildType.component,
