@@ -48,3 +48,7 @@ yarn-error.log
 *.tar.gz
 *.txt
 *.ejs
+
+**/style/bezierEasing.less
+**/style/tinyColor.less
+**/style/colorPalette.less
