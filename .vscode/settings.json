@@ -104,6 +104,17 @@
     "ycheck",
     "ychecker"
   ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "eslint.validate": [
+    "json",
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact"
+  ],
   "eslint.workingDirectories": [
     "packages/antd-management-fast-framework",
     "packages/simple-antd-management-fast-framework"
