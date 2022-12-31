@@ -39,6 +39,7 @@ const externalCollection = [
   'babel-plugin-prismjs',
   'bizcharts',
   'cssnano',
+  'rc-animate',
   'rc-texty',
   'react',
   'react-dom',

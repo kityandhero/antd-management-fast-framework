@@ -1,6 +1,6 @@
-import { PureComponent } from 'react';
+import { PureComponent } from "react";
 
-import QueueListBox from '../QueueListBox';
+import QueueListBox from "../QueueListBox";
 
 class QueueBox extends PureComponent {
   render() {
