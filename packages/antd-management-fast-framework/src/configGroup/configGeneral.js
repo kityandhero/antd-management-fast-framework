@@ -25,9 +25,7 @@ export const configGeneral = {
     ie: 11,
   },
   title: false,
-  theme: {
-    '@border-radius-base': '4px',
-  },
+  theme: {},
   define: {
     REACT_APP_ENV: REACT_APP_ENV || false,
   },

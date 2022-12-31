@@ -108,6 +108,8 @@ export function buildConfig({
         tsconfig: 'tsconfig.json',
       }),
       postcss({
+        extensions: ['.css', '.scss', '.less'],
+        use: ['sass', ['less', { javascriptEnabled: true }]],
         plugins: [
           autoprefixer(),
           // pxtorem(pxtoremConfig),

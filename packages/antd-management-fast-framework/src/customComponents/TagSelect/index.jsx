@@ -2,7 +2,7 @@ import { Tag } from 'antd';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 
-import { iconCollection } from '../../../utils/constants';
+import { iconCollection } from '../../utils/constants';
 
 import styles from './index.less';
 

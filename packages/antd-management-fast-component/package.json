@@ -1,0 +1,29 @@
+{
+  "name": "antd-management-fast-component",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "卢志涛 <kityandhero@126.com>",
+  "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
+  "license": "ISC",
+  "main": "lib/antd-management-fast-component.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "http://localhost:4873/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://kityandhero: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@github.com/kityandhero/antd-management-fast-framework.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/antd-management-fast-component.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/kityandhero/antd-management-fast-framework/issues"
+  }
+}
