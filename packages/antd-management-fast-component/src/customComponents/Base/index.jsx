@@ -1,7 +1,7 @@
 import nprogress from 'nprogress';
 import { Component } from 'react';
 
-import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
+import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
 import {
   defaultBaseState,
   getGuid,
@@ -13,7 +13,7 @@ import {
   recordError,
   redirectToPath as redirectToPathCore,
   showInfoMessage,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
 
 function filterModel(props) {
   const result = { ...props };

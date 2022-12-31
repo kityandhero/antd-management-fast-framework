@@ -13,6 +13,7 @@ const inputFile = {
       'src/customComponents/AudioUpload/index.jsx',
     'customComponents/ArticleListContent/index':
       'src/customComponents/ArticleListContent/index.jsx',
+    'customComponents/Base/index': 'src/customComponents/Base/index.jsx',
     'customComponents/Canvas/index': 'src/customComponents/Canvas/index.jsx',
     'customComponents/AvatarList/index':
       'src/customComponents/AvatarList/index.jsx',
