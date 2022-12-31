@@ -18,6 +18,7 @@ import svgr from '@svgr/rollup';
 
 const externalCollection = [
   '@ant-design/icons',
+  '@ant-design/pro-layout',
   '@babel/runtime',
   '@babel/helpers',
   '@rollup/plugin-node-resolve',
@@ -39,8 +40,10 @@ const externalCollection = [
   'babel-plugin-prismjs',
   'bizcharts',
   'cssnano',
+  'flubber',
   'rc-animate',
   'rc-texty',
+  'rc-tween-one',
   'react',
   'react-dom',
   'react-json-view',
