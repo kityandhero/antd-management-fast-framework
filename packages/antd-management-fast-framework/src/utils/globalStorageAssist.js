@@ -1,5 +1,6 @@
+import { accessWaySpecialCollection } from '../utils/constants';
+
 import { getCache, hasCache, setCache } from './cacheAssist';
-import { accessWaySpecialCollection } from './constants';
 import {
   clearLocalStorage,
   getJsonFromLocalStorage,

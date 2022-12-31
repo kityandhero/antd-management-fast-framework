@@ -1,3 +1,4 @@
+import { ReadOutlined } from '@ant-design/icons';
 import {
   Button,
   Card,
@@ -10,7 +11,6 @@ import {
   Tooltip,
 } from 'antd';
 import QueueAnim from 'rc-queue-anim';
-import { ReadOutlined } from '@ant-design/icons';
 
 import { buildListViewItemActionSelect } from '../../../customComponents/FunctionComponent';
 import {

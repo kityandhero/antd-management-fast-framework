@@ -3,7 +3,8 @@ import {
   appInitDefault,
   authenticationFailCode as authenticationFailCodeDefault,
   emptyLogo as emptyLogoImage,
-} from './constants';
+} from '../utils/constants';
+
 import { isBrowser, stringIsNullOrWhiteSpace } from './core';
 
 export function getAppInitConfigData() {

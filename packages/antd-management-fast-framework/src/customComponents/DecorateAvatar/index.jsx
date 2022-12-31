@@ -1,6 +1,6 @@
+import { ReloadOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { PureComponent } from 'react';
-import { ReloadOutlined } from '@ant-design/icons';
 
 import { defaultEmptyImage, iconCollection } from '../../utils/constants';
 import {

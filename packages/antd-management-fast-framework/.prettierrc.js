@@ -1,7 +1,4 @@
-const fabric = require('@umijs/fabric');
-
 module.exports = {
-  ...fabric.prettier,
   pluginSearchDirs: false,
   printWidth: 80,
   singleQuote: true,
@@ -15,4 +12,5 @@ module.exports = {
       },
     },
   ],
+  plugins: ['prettier-plugin-organize-imports'],
 };

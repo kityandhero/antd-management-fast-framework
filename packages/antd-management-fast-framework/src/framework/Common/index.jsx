@@ -80,7 +80,6 @@ import {
   iconCollection,
 } from '../../utils/constants';
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
-import { recordWarn } from '../../utils/developAssist';
 import { pretreatmentRequestParams } from '../../utils/requestAssistor';
 import {
   buildFieldDescription,

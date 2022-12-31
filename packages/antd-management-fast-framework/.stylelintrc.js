@@ -1,7 +1,5 @@
-const fabric = require('@umijs/fabric');
-
 module.exports = {
-  ...fabric.stylelint,
+  extends: require.resolve('@umijs/max/stylelint'),
   customSyntax: 'postcss-less',
   rules: {
     'unicode-bom': 'never',

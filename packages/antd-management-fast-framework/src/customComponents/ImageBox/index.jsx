@@ -1,11 +1,11 @@
-import { Col, Image, Row, Spin } from 'antd';
-import classNames from 'classnames';
-import React from 'react';
 import {
   EyeOutlined,
   LoadingOutlined,
   PictureOutlined,
 } from '@ant-design/icons';
+import { Col, Image, Row, Spin } from 'antd';
+import classNames from 'classnames';
+import React from 'react';
 
 import CustomBase from '../../framework/CustomBase';
 import { defaultEmptyImage } from '../../utils/constants';

@@ -33,7 +33,6 @@ import randomColor from 'randomcolor';
 import { history } from 'umi';
 import { v4 as uuidv4 } from 'uuid';
 
-import { getAppInitConfigData } from './appConfiguration';
 import {
   convertCollection,
   datetimeFormat,
@@ -44,7 +43,9 @@ import {
   messageTypeCollection,
   notificationTypeCollection,
   sortOperate,
-} from './constants';
+} from '../utils/constants';
+
+import { getAppInitConfigData } from './appConfiguration';
 import {
   decodeBase64 as decodeBase64Core,
   encodeBase64 as encodeBase64Core,
@@ -2025,7 +2026,7 @@ export function sortCollectionByKey({
 
       break;
 
-    default:
+    default: {
       const text = `不符合的操作，允许的操作为['${sortOperate.moveUp}','${sortOperate.moveDown}']!`;
 
       showWarnMessage({
@@ -2033,6 +2034,7 @@ export function sortCollectionByKey({
       });
 
       break;
+    }
   }
 
   return result;

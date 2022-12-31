@@ -25,23 +25,7 @@
       "@@/*": ["./example/.umi/*"]
     }
   },
-  "include": [
-    "src/**/*"
-    // "lib/**/*"
-    // "es/**/*"
-    // "mock/**/*",
-    // "example/**/*",
-    // "tests/**/*",
-    // "test/**/*",
-    // "__test__/**/*",
-    // "typings/**/*",
-    // "config/**/*",
-    // ".eslintrc.js",
-    // ".stylelintrc.js",
-    // ".prettierrc.js",
-    // "jest.config.js",
-    // "mock/*"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "build",

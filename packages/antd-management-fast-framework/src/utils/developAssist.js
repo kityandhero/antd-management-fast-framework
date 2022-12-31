@@ -1,11 +1,13 @@
+import { logLevel, logShowMode } from '../utils/constants';
+
 import { logShowInConsole } from './appConfiguration';
-import { logLevel, logShowMode } from './constants';
 import { inCollection, stringIsNullOrWhiteSpace } from './core';
 import {
   getJsonFromLocalStorage,
   removeLocalStorage,
   saveJsonToLocalStorage,
 } from './localStorageAssist';
+import { isNull } from './tools';
 import { isString } from './typeCheck';
 
 const storageKeyCollection = {
@@ -21,7 +23,7 @@ const storageKeyCollection = {
  */
 export function recordLog(record, showMode, level = logLevel.debug) {
   let showModeModified =
-    (showMode || null) == null || stringIsNullOrWhiteSpace(showMode)
+    isNull(showMode) || stringIsNullOrWhiteSpace(showMode)
       ? logShowMode.unknown
       : showMode;
 
@@ -153,11 +155,11 @@ export function getNearestLocalhostNotifyCache() {
 
   const d = getJsonFromLocalStorage(key);
 
-  if ((d || null) == null) {
+  if (isNull(d)) {
     return null;
   }
 
-  if ((d.nearestTime || null) == null) {
+  if (isNull(d.nearestTime)) {
     return null;
   }
 

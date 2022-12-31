@@ -1,6 +1,6 @@
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Avatar, BackTop, Button, Form, Tooltip } from 'antd';
 import React from 'react';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 import {
   avatarImageLoadResultCollection,

@@ -1,3 +1,4 @@
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import {
   Affix,
   Alert,
@@ -18,7 +19,6 @@ import {
   Tooltip,
 } from 'antd';
 import React from 'react';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 import {
   avatarImageLoadResultCollection,
@@ -1579,7 +1579,7 @@ class ListBase extends AuthorizationWrapper {
       </Affix>
     );
 
-    var gridView = (
+    let gridView = (
       <Card
         title={listTitle}
         headStyle={{ borderBottom: '0px' }}

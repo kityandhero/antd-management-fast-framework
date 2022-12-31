@@ -1,5 +1,5 @@
-import { List } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
+import { List } from 'antd';
 
 import CustomBase from '../../framework/CustomBase';
 import { datetimeFormat, iconCollection } from '../../utils/constants';
