@@ -1,0 +1,14 @@
+/lambda/
+/scripts
+/config
+/public
+/lib
+/es
+.history
+.npmrc
+*.test.js
+*.d.ts
+*.log
+*.zip
+*.txt
+.eslintrc.js

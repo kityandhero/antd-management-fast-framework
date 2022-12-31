@@ -1,7 +1,7 @@
 import { getTinymceImagesUploadUrl, getTinymceApiKey, getUseNprogress, getFileUploadMaxSize, getAudioUploadMaxSize, getVideoUploadMaxSize, getImageUploadMaxSize, getShowSelectLanguage, getShowLogoInEntrance, getEmptyLogo, getApiSuccessCode, getAuthenticationFailCode, getEntrancePath, getApiVersion, getUseVirtualRequest, getShowUseVirtualRequestMessage, getShowLogInConsole, getShowRequestInfo, getPlatformName, getAppName, getAppDescription, getTitle, getEntranceLogo, getShareLogo, getShareLogoName, getCompanyName, getLeftBarLogo, getLeftBarText, getCopyright } from './appConfiguration.js';
 import '../constants.js';
-import '@ant-design/icons';
 import 'react';
+import '@ant-design/icons';
 import './mediaDefault.js';
 import './core.js';
 import 'lodash';

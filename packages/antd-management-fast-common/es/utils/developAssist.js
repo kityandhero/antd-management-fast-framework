@@ -2,8 +2,8 @@ import { getJsonFromLocalStorage, saveJsonToLocalStorage, removeLocalStorage } f
 import { isNull } from './typeCheck.js';
 import './core.js';
 import '../constants.js';
-import '@ant-design/icons';
 import 'react';
+import '@ant-design/icons';
 import './mediaDefault.js';
 import 'lodash';
 import 'path-to-regexp';

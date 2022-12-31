@@ -52,8 +52,8 @@ function isDate(value) {
  * @returns
  */
 function isNumber(v) {
-  var str = "".concat(typeof v === "undefined" ? null : v);
-  if (str === "") {
+  var str = "".concat(typeof v === 'undefined' ? null : v);
+  if (str === '') {
     return false;
   }
   var regular = /^[0-9]*$/;

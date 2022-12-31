@@ -2,15 +2,15 @@ import { _ as _objectSpread, f as accessWaySpecialCollection } from '../constant
 import { hasCache, getCache, setCache } from './cacheAssist.js';
 import { getJsonFromLocalStorage, saveJsonToLocalStorage, removeLocalStorage, getStringFromLocalStorage, saveStringToLocalStorage, clearLocalStorage } from './localStorageAssist.js';
 import { isArray } from './typeCheck.js';
-import '@ant-design/icons';
 import 'react';
+import '@ant-design/icons';
 import './mediaDefault.js';
 import 'node-cache';
 import './core.js';
 import 'lodash';
 import 'path-to-regexp';
 import 'qs';
-import './log.js';
+import '../log.js';
 
 var storageKeyCollection = {
   token: 'token',
