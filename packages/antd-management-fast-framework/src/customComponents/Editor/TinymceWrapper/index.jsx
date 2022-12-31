@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import React, { PureComponent } from 'react';
 
 import { defaultSettingsLayoutCustom } from '../../../utils/defaultSettingsSpecial';
 import { getToken, getTokenKeyName } from '../../../utils/globalStorageAssist';
@@ -109,7 +109,7 @@ class TinymceWrapper extends PureComponent {
 
       const images_upload_url = `${corsUrl}${imagesUploadUrl}`;
 
-      var xhr, formData;
+      let xhr, formData;
 
       xhr = new XMLHttpRequest();
 
