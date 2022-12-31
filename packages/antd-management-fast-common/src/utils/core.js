@@ -8,8 +8,7 @@ import { pathToRegexp } from 'path-to-regexp';
 import { parse } from 'qs';
 import React from 'react';
 
-import { appInitDefault } from '../utils/constants';
-
+import { appInitDefault } from './constants';
 import { isArray } from './typeCheck';
 
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);
