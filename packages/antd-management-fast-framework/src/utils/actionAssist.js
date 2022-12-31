@@ -5,7 +5,6 @@ import {
   getPathValue,
   isFunction,
   isString,
-  isUndefined,
   notifySuccess,
   recordDebug,
   recordError,
@@ -14,6 +13,7 @@ import {
   showRuntimeError,
   stringIsNullOrWhiteSpace,
 } from './tools';
+import { isUndefined } from './typeCheck';
 
 const { confirm } = Modal;
 

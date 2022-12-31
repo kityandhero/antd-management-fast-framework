@@ -3,6 +3,7 @@ import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 // import livereload from 'rollup-plugin-livereload';
 import postcss from 'rollup-plugin-postcss';
+import nodePolyfills from 'rollup-plugin-polyfill-node';
 // import serve from 'rollup-plugin-serve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
@@ -25,8 +26,11 @@ const externalCollection = [
   '@rollup/plugin-commonjs',
   '@rollup/plugin-url',
   '@svgr/rollup',
-  '@tarojs/components',
+  '@tinymce/tinymce-react',
   'antd',
+  'array-move',
+  'copy-to-clipboard',
+  'd3-voronoi',
   'rollup-plugin-typescript2',
   'rollup-plugin-postcss',
   'rollup-plugin-terser',
@@ -35,13 +39,25 @@ const externalCollection = [
   'babel-plugin-prismjs',
   'bizcharts',
   'cssnano',
+  'rc-texty',
   'react',
   'react-dom',
+  'react-json-view',
+  'react-player',
+  'react-syntax-highlighter',
   'react/jsx-runtime',
   'lodash',
+  'randomcolor',
+  'path-to-regexp',
   'qs',
+  'querystring',
+  'queue',
   'dayjs',
+  'moment',
   'node-cache',
+  'nprogress',
+  'numeral',
+  'nzh',
   'react-redux',
   'redux',
   'redux-logger',
@@ -56,6 +72,8 @@ const externalCollection = [
   'global',
   'is-plain-object',
   'redux-saga',
+  'umi',
+  'uuid',
 ];
 
 export function buildConfig({
@@ -95,6 +113,7 @@ export function buildConfig({
       resolve({
         preferBuiltins: false,
       }),
+      nodePolyfills(),
       commonjs({
         include: ['node_modules/**', '../../node_modules/**'],
       }),

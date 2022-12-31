@@ -1,7 +1,22 @@
 import {
+  isBoolean as isBooleanLodash,
+  isDate as isDateLodash,
   isFunction as isFunctionLodash,
+  isNull as isNullLodash,
+  isObject as isObjectLodash,
   isString as isStringLodash,
+  isUndefined as isUndefinedLodash,
 } from 'lodash';
+
+const reg =
+  // eslint-disable-next-line no-useless-escape
+  /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
+
+export const isUrl = (path) => reg.test(path);
+
+export function isObject(o) {
+  return isObjectLodash(o);
+}
 
 /**
  * check value is string
@@ -12,6 +27,31 @@ export function isString(value) {
 
 export function isFunction(value) {
   return isFunctionLodash(value);
+}
+
+export function isBoolean(value) {
+  return isBooleanLodash(value);
+}
+
+/**
+ * check value is undefined
+ */
+export function isUndefined(value) {
+  return isUndefinedLodash(value);
+}
+
+/**
+ * check value is null
+ */
+export function isNull(value) {
+  return isNullLodash(value);
+}
+
+/**
+ * check value is date
+ */
+export function isDate(value) {
+  return isDateLodash(value);
 }
 
 /**

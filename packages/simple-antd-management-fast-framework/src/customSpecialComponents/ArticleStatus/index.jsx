@@ -5,7 +5,10 @@
   buildFormSelect,
   buildSearchFormSelect,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import { unlimitedWithStringFlag } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  unknownLabel,
+  unlimitedWithStringFlag,
+} from 'antd-management-fast-framework/es/utils/constants';
 import {
   isInvalid,
   isNull,
@@ -14,10 +17,11 @@ import {
   searchFromList,
 } from 'antd-management-fast-framework/es/utils/tools';
 
-import { unknownLabel } from '@/customConfig/constants';
-
 export function refitArticleStatusList({ global, withUnlimited = true }) {
-  const { articleStatusList: list } = { ...{ articleStatusList: [] }, ...(global || {}) };
+  const { articleStatusList: list } = {
+    ...{ articleStatusList: [] },
+    ...(global || {}),
+  };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);

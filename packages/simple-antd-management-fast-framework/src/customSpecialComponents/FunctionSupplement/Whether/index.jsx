@@ -7,7 +7,10 @@
   buildRadioItem,
   buildSearchFormSelect,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import { unlimitedWithStringFlag } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  unknownLabel,
+  unlimitedWithStringFlag,
+} from 'antd-management-fast-framework/es/utils/constants';
 import {
   isInvalid,
   isNull,
@@ -15,8 +18,6 @@ import {
   refitCommonData,
   searchFromList,
 } from 'antd-management-fast-framework/es/utils/tools';
-
-import { unknownLabel } from '@/customConfig/constants';
 
 export function refitWhetherList({ global, withUnlimited = true }) {
   const { whetherList: list } = { ...{ whetherList: [] }, ...(global || {}) };
@@ -75,7 +76,11 @@ export function renderSearchWhetherSelect({
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderWhetherOption({ global, withUnlimited, adjustListDataCallback }),
+    options: renderWhetherOption({
+      global,
+      withUnlimited,
+      adjustListDataCallback,
+    }),
     helper,
   });
 }

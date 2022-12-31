@@ -1,4 +1,4 @@
-import React from 'react';
+import { isComponentClass } from '../../utils/core';
 
 import CheckPermissions from './CheckPermissions';
 
@@ -8,16 +8,6 @@ import CheckPermissions from './CheckPermissions';
  */
 
 const Exception403 = () => 403;
-
-export const isComponentClass = (component) => {
-  if (!component) return false;
-  const proto = Object.getPrototypeOf(component);
-  if (proto === React.Component || proto === Function.prototype) return true;
-  return isComponentClass(proto);
-}; // Determine whether the incoming component has been instantiated
-// AuthorizedRoute is already instantiated
-// Authorized  render is already instantiated, children is no instantiated
-// Secured is not instantiated
 
 const checkIsInstantiation = (target) => {
   if (isComponentClass(target)) {

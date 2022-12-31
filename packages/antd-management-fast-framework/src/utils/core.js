@@ -4,8 +4,74 @@ import {
   trim as trimLodash,
   upperFirst as upperFirstLodash,
 } from 'lodash';
+import { pathToRegexp } from 'path-to-regexp';
+import { parse } from 'qs';
+import React from 'react';
+
+import { appInitDefault } from '../utils/constants';
 
 import { isArray } from './typeCheck';
+
+export const getPageQuery = () => parse(window.location.href.split('?')[1]);
+
+/**
+ * props.route.routes
+ * @param router [{}]
+ * @param pathname string
+ */
+export const getAuthorityFromRouter = (router = [], pathname) => {
+  const authority = router.find(
+    ({ routes, path = '/' }) =>
+      (path && pathToRegexp(path).exec(pathname)) ||
+      (routes && getAuthorityFromRouter(routes, pathname)),
+  );
+  if (authority) return authority;
+  return undefined;
+};
+
+export const getRouteAuthority = (path, routeData) => {
+  let authorities;
+  routeData.forEach((route) => {
+    // match prefix
+    if (pathToRegexp(`${route.path}/(.*)`).test(`${path}/`)) {
+      if (route.authority) {
+        authorities = route.authority;
+      }
+      // exact match
+      if (route.path === path) {
+        authorities = route.authority || authorities;
+      }
+      // get children authority recursively
+      if (route.routes) {
+        authorities = getRouteAuthority(path, route.routes) || authorities;
+      }
+    }
+  });
+  return authorities;
+};
+
+export const isComponentClass = (component) => {
+  if (!component) return false;
+  const proto = Object.getPrototypeOf(component);
+  if (proto === React.Component || proto === Function.prototype) return true;
+  return isComponentClass(proto);
+};
+
+export function getAppInitConfigData() {
+  let appInitConfig = appInitDefault;
+
+  if (isBrowser()) {
+    if ((window.appInitCustomLocal || null) != null) {
+      appInitConfig = { ...appInitConfig, ...window.appInitCustomLocal };
+    }
+
+    if ((window.appInitCustomRemote || null) != null) {
+      appInitConfig = { ...appInitConfig, ...window.appInitCustomRemote };
+    }
+  }
+
+  return appInitConfig;
+}
 
 export function replace(source, pattern, replacement) {
   return replaceLodash(source, pattern, replacement);

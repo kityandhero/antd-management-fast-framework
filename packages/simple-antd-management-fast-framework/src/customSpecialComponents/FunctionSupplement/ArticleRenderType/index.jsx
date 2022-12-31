@@ -7,7 +7,10 @@
   buildRadioItem,
   buildSearchFormSelect,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import { unlimitedWithStringFlag } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  unknownLabel,
+  unlimitedWithStringFlag,
+} from 'antd-management-fast-framework/es/utils/constants';
 import {
   isInvalid,
   isNull,
@@ -16,10 +19,11 @@ import {
   searchFromList,
 } from 'antd-management-fast-framework/es/utils/tools';
 
-import { unknownLabel } from '@/customConfig/constants';
-
 export function refitArticleRenderTypeList({ global, withUnlimited = true }) {
-  const { articleRenderTypeList: list } = { ...{ articleRenderTypeList: [] }, ...(global || {}) };
+  const { articleRenderTypeList: list } = {
+    ...{ articleRenderTypeList: [] },
+    ...(global || {}),
+  };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);
@@ -75,7 +79,11 @@ export function renderSearchArticleRenderTypeSelect({
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderArticleRenderTypeOption({ global, withUnlimited, adjustListDataCallback }),
+    options: renderArticleRenderTypeOption({
+      global,
+      withUnlimited,
+      adjustListDataCallback,
+    }),
     helper,
   });
 }

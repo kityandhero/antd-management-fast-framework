@@ -1,8 +1,8 @@
 import { Spin } from 'antd';
-import isEqual from 'lodash/isEqual';
 import React from 'react';
 
-import { isComponentClass } from './Secured';
+import { isComponentClass } from '../../utils/core';
+import { isEqual } from '../../utils/tools';
 
 export default class PromiseRender extends React.Component {
   state = {

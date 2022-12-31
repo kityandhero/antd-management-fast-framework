@@ -1,64 +1,64 @@
-const path = require('path');
-const fs = require('fs');
+// const path = require('path');
+// const fs = require('fs');
 
 import { buildConfig as buildConfigCore } from '../../antd-management-fast-rollup/rollupAssist/configBuilder';
 
-var filePath = path.resolve('./src');
+// var filePath = path.resolve('./src');
 
-const rootPath = filePath.replace('/', '\\') + '/';
+// const rootPath = filePath.replace('/', '\\') + '/';
 
-var inputFiles = {};
+// var inputFiles = {};
 
-// console.log({ filePath, rootPath });
+// // console.log({ filePath, rootPath });
 
-function readDirRecur(folder, callback) {
-  fs.readdir(folder, function (err, files) {
-    var count = 0;
-    var checkEnd = function () {
-      ++count == files.length && callback();
-    };
+// function readDirRecur(folder, callback) {
+//   fs.readdir(folder, function (err, files) {
+//     var count = 0;
+//     var checkEnd = function () {
+//       ++count == files.length && callback();
+//     };
 
-    files.forEach(function (file) {
-      var fullPath = folder + '/' + file;
+//     files.forEach(function (file) {
+//       var fullPath = folder + '/' + file;
 
-      fs.stat(fullPath, function (err, stats) {
-        if (stats.isDirectory()) {
-          return readDirRecur(fullPath, checkEnd);
-        } else {
-          const p = fullPath.replace(rootPath, '');
+//       fs.stat(fullPath, function (err, stats) {
+//         if (stats.isDirectory()) {
+//           return readDirRecur(fullPath, checkEnd);
+//         } else {
+//           const p = fullPath.replace(rootPath, '');
 
-          const f = p.split('.');
+//           const f = p.split('.');
 
-          if (f.length == 2) {
-            if (f[1] == 'js' || f[1] == 'jsx') {
-              inputFiles[f[0]] = `src/${p}`;
+//           if (f.length == 2) {
+//             if (f[1] == 'js' || f[1] == 'jsx') {
+//               inputFiles[f[0]] = `src/${p}`;
 
-              // console.log(inputFiles);
-            }
-          }
+//               // console.log(inputFiles);
+//             }
+//           }
 
-          /*not use ignore files*/
-          if (file[0] == '.') {
-          } else {
-            fileList.push(fullPath);
-          }
-          checkEnd();
-        }
-      });
-    });
+//           /*not use ignore files*/
+//           if (file[0] == '.') {
+//           } else {
+//             fileList.push(fullPath);
+//           }
+//           checkEnd();
+//         }
+//       });
+//     });
 
-    //为空时直接回调
-    files.length === 0 && callback();
-  });
-}
+//     //为空时直接回调
+//     files.length === 0 && callback();
+//   });
+// }
 
-var fileList = [];
+// var fileList = [];
 
-// var timeStart = new Date();
+// // var timeStart = new Date();
 
-readDirRecur(filePath, function (filePath) {
-  fileList.push(filePath);
-});
+// readDirRecur(filePath, function (filePath) {
+//   fileList.push(filePath);
+// });
 
 // console.log('__dirname : ' + __dirname);
 // console.log('resolve   : ' + resolve('./src/utils'));
@@ -112,30 +112,23 @@ const inputFile = {
     'utils/tools': 'src/utils/tools.js',
     'utils/typeCheck': 'src/utils/typeCheck.js',
     'utils/typeConvert': 'src/utils/typeConvert.js',
-    'utils/utils': 'src/utils/utils.js',
     'utils/virtualRequest': 'src/utils/virtualRequest.js',
     'utils/Yuan': 'src/utils/Yuan.js',
+  },
+  ...{
     // 'style/bezierEasing': 'src/style/bezierEasing.less',
     // 'style/colorPalette': 'src/style/colorPalette.less',
     // 'style/tinyColor': 'src/style/tinyColor.less',
     // 'style/utils': 'src/style/utils.less',
     // 'style/variable': 'src/style/variable.less',
-    'configGroup/configGeneral': 'src/configGroup/configGeneral.js',
-    'configGroup/themeCollection': 'src/configGroup/themeCollection.js',
-    'configGroup/webpackPlugin': 'src/configGroup/webpackPlugin.js',
-    'framework/index': 'src/framework/index.js',
+  },
+  ...{
+    // 'configGroup/configGeneral': 'src/configGroup/configGeneral.js',
+    // 'configGroup/themeCollection': 'src/configGroup/themeCollection.js',
+    // 'configGroup/webpackPlugin': 'src/configGroup/webpackPlugin.js',
+  },
+  ...{
     'customComponents/index': 'src/customComponents/index.js',
-    'framework/AuthorizationWrapper/index':
-      'src/framework/AuthorizationWrapper/index.jsx',
-    'framework/Common/index': 'src/framework/Common/index.jsx',
-    'framework/Base/index': 'src/framework/Base/index.jsx',
-    'framework/CustomBase/index': 'src/framework/CustomBase/index.jsx',
-    'framework/Core/index': 'src/framework/Core/index.jsx',
-    'framework/DataMenuContainer/index':
-      'src/framework/DataMenuContainer/index.jsx',
-    'framework/DataTabContainer/index':
-      'src/framework/DataTabContainer/index.jsx',
-    'framework/Wrapper/index': 'src/framework/Wrapper/index.jsx',
     'customComponents/AMap/UIPoiPicker':
       'src/customComponents/AMap/UIPoiPicker.js',
     'customComponents/AMap/UIPositionPicker':
@@ -252,85 +245,8 @@ const inputFile = {
       'src/customComponents/VerticalBox/index.jsx',
     'customComponents/VideoUpload/index':
       'src/customComponents/VideoUpload/index.jsx',
-    'customComponents/_utils/pathTools':
-      'src/customComponents/_utils/pathTools.js',
     'customComponents/StandardTable/index':
       'src/customComponents/StandardTable/index.jsx',
-    'framework/CustomWrapper/SupplementWrapper/index':
-      'src/framework/CustomWrapper/SupplementWrapper/index.jsx',
-    'framework/CustomWrapper/SupplementCore/index':
-      'src/framework/CustomWrapper/SupplementCore/index.jsx',
-    'framework/CustomWrapper/Supplement/index':
-      'src/framework/CustomWrapper/Supplement/index.jsx',
-    'framework/DataDrawer/Base/index':
-      'src/framework/DataDrawer/Base/index.jsx',
-    'framework/DataDrawer/BaseAddDrawer/index':
-      'src/framework/DataDrawer/BaseAddDrawer/index.jsx',
-    'framework/DataDrawer/BaseNeedlessLoadDrawer/index':
-      'src/framework/DataDrawer/BaseNeedlessLoadDrawer/index.jsx',
-    'framework/DataDrawer/BaseLoadDrawer/index':
-      'src/framework/DataDrawer/BaseLoadDrawer/index.jsx',
-    'framework/DataDrawer/BaseSaveDrawer/index':
-      'src/framework/DataDrawer/BaseSaveDrawer/index.jsx',
-    'framework/DataDrawer/BaseUpdateDrawer/index':
-      'src/framework/DataDrawer/BaseUpdateDrawer/index.jsx',
-    'framework/DataListView/BatchAction/index':
-      'src/framework/DataListView/BatchAction/index.jsx',
-    'framework/DataListView/DensityAction/index':
-      'src/framework/DataListView/DensityAction/index.jsx',
-    'framework/DataListView/ColumnSetting/DndItem':
-      'src/framework/DataListView/ColumnSetting/DndItem.jsx',
-    'framework/DataListView/ColumnSetting/index':
-      'src/framework/DataListView/ColumnSetting/index.jsx',
-    'framework/DataListView/Base/index':
-      'src/framework/DataListView/Base/index.jsx',
-    'framework/DataForm/BaseAddForm/index':
-      'src/framework/DataForm/BaseAddForm/index.jsx',
-    'framework/DataForm/BaseUpdateForm/index':
-      'src/framework/DataForm/BaseUpdateForm/index.jsx',
-    'framework/DataForm/BaseUpdateFormContent/index':
-      'src/framework/DataForm/BaseUpdateFormContent/index.jsx',
-    'framework/DataForm/BaseUpdateFormTab/index':
-      'src/framework/DataForm/BaseUpdateFormTab/index.jsx',
-    'framework/DataModal/Base/index': 'src/framework/DataModal/Base/index.jsx',
-    'framework/DataModal/BaseAddModal/index':
-      'src/framework/DataModal/BaseAddModal/index.jsx',
-    'framework/DataModal/BaseSelectModal/index':
-      'src/framework/DataModal/BaseSelectModal/index.jsx',
-    'framework/DataModal/BaseLoadModal/index':
-      'src/framework/DataModal/BaseLoadModal/index.jsx',
-    'framework/DataModal/BaseNeedlessLoadModal/index':
-      'src/framework/DataModal/BaseNeedlessLoadModal/index.jsx',
-    'framework/DataModal/BaseUpdateModal/index':
-      'src/framework/DataModal/BaseUpdateModal/index.jsx',
-    'framework/DataModal/BaseUpdateTransferModal/index':
-      'src/framework/DataModal/BaseUpdateTransferModal/index.jsx',
-    'framework/DataMultiPageView/InnerMultiPage/index':
-      'src/framework/DataMultiPageView/InnerMultiPage/index.jsx',
-    'framework/DataMultiPageView/MultiPage/index':
-      'src/framework/DataMultiPageView/MultiPage/index.jsx',
-    'framework/DataMultiPageView/MultiPageDrawer/index':
-      'src/framework/DataMultiPageView/MultiPageDrawer/index.jsx',
-    'framework/DataMultiPageView/MultiPageSelectDrawer/index':
-      'src/framework/DataMultiPageView/MultiPageSelectDrawer/index.jsx',
-    'framework/DataOperation/BaseView/index':
-      'src/framework/DataOperation/BaseView/index.jsx',
-    'framework/DataOperation/BaseWindow/index':
-      'src/framework/DataOperation/BaseWindow/index.jsx',
-    'framework/DataOperation/Base/index':
-      'src/framework/DataOperation/Base/index.jsx',
-    'framework/DataSinglePageView/SinglePage/index':
-      'src/framework/DataSinglePageView/SinglePage/index.jsx',
-    'framework/DataSinglePageView/SinglePageDrawer/index':
-      'src/framework/DataSinglePageView/SinglePageDrawer/index.jsx',
-    'framework/DataSinglePageView/InnerSinglePage/index':
-      'src/framework/DataSinglePageView/InnerSinglePage/index.jsx',
-    'framework/DataSinglePageView/SinglePageSelectDrawer/index':
-      'src/framework/DataSinglePageView/SinglePageSelectDrawer/index.jsx',
-    'framework/DataSingleView/DataCore/index':
-      'src/framework/DataSingleView/DataCore/index.jsx',
-    'framework/DataSingleView/DataLoad/index':
-      'src/framework/DataSingleView/DataLoad/index.jsx',
     'customComponents/AnimalBox/FadeBox/index':
       'src/customComponents/AnimalBox/FadeBox/index.jsx',
     'customComponents/AnimalBox/QueueListBox/index':
@@ -383,14 +299,6 @@ const inputFile = {
       'src/customComponents/MobileContainor/MobileSimulation/index.jsx',
     'customComponents/MobileContainor/MobilePreviewArea/index':
       'src/customComponents/MobileContainor/MobilePreviewArea/index.jsx',
-    'framework/ButtonExtension/SelectButton/Base/index':
-      'src/framework/ButtonExtension/SelectButton/Base/index.jsx',
-    'framework/ButtonExtension/SelectButton/InteractiveBase/index':
-      'src/framework/ButtonExtension/SelectButton/InteractiveBase/index.jsx',
-    'framework/FieldExtension/SelectFieldDrawer/SelectFieldDrawerBase/index':
-      'src/framework/FieldExtension/SelectFieldDrawer/SelectFieldDrawerBase/index.jsx',
-    'framework/FieldExtension/SelectFieldDrawer/SelectFieldBase/index':
-      'src/framework/FieldExtension/SelectFieldDrawer/SelectFieldBase/index.jsx',
     'customComponents/MobileContainor/Devices/GalaxyNote8/index':
       'src/customComponents/MobileContainor/Devices/GalaxyNote8/index.jsx',
     'customComponents/MobileContainor/Devices/IPhone5S/index':
@@ -404,9 +312,103 @@ const inputFile = {
     'customComponents/MobileContainor/Devices/IphoneX/index':
       'src/customComponents/MobileContainor/Devices/IphoneX/index.jsx',
   },
-  // ...{
-  //   'customComponents/index': 'src/customComponents/index.jsx',
-  // },
+  ...{
+    // 'framework/index': 'src/framework/index.js',
+    // 'framework/AuthorizationWrapper/index':
+    //   'src/framework/AuthorizationWrapper/index.jsx',
+    // 'framework/Common/index': 'src/framework/Common/index.jsx',
+    // 'framework/Base/index': 'src/framework/Base/index.jsx',
+    // 'framework/CustomBase/index': 'src/framework/CustomBase/index.jsx',
+    // 'framework/Core/index': 'src/framework/Core/index.jsx',
+    // 'framework/DataMenuContainer/index':
+    //   'src/framework/DataMenuContainer/index.jsx',
+    // 'framework/DataTabContainer/index':
+    //   'src/framework/DataTabContainer/index.jsx',
+    // 'framework/Wrapper/index': 'src/framework/Wrapper/index.jsx',
+    // 'framework/CustomWrapper/SupplementWrapper/index':
+    //   'src/framework/CustomWrapper/SupplementWrapper/index.jsx',
+    // 'framework/CustomWrapper/SupplementCore/index':
+    //   'src/framework/CustomWrapper/SupplementCore/index.jsx',
+    // 'framework/CustomWrapper/Supplement/index':
+    //   'src/framework/CustomWrapper/Supplement/index.jsx',
+    // 'framework/DataDrawer/Base/index':
+    //   'src/framework/DataDrawer/Base/index.jsx',
+    // 'framework/DataDrawer/BaseAddDrawer/index':
+    //   'src/framework/DataDrawer/BaseAddDrawer/index.jsx',
+    // 'framework/DataDrawer/BaseNeedlessLoadDrawer/index':
+    //   'src/framework/DataDrawer/BaseNeedlessLoadDrawer/index.jsx',
+    // 'framework/DataDrawer/BaseLoadDrawer/index':
+    //   'src/framework/DataDrawer/BaseLoadDrawer/index.jsx',
+    // 'framework/DataDrawer/BaseSaveDrawer/index':
+    //   'src/framework/DataDrawer/BaseSaveDrawer/index.jsx',
+    // 'framework/DataDrawer/BaseUpdateDrawer/index':
+    //   'src/framework/DataDrawer/BaseUpdateDrawer/index.jsx',
+    // 'framework/DataListView/BatchAction/index':
+    //   'src/framework/DataListView/BatchAction/index.jsx',
+    // 'framework/DataListView/DensityAction/index':
+    //   'src/framework/DataListView/DensityAction/index.jsx',
+    // 'framework/DataListView/ColumnSetting/DndItem':
+    //   'src/framework/DataListView/ColumnSetting/DndItem.jsx',
+    // 'framework/DataListView/ColumnSetting/index':
+    //   'src/framework/DataListView/ColumnSetting/index.jsx',
+    // 'framework/DataListView/Base/index':
+    //   'src/framework/DataListView/Base/index.jsx',
+    // 'framework/DataForm/BaseAddForm/index':
+    //   'src/framework/DataForm/BaseAddForm/index.jsx',
+    // 'framework/DataForm/BaseUpdateForm/index':
+    //   'src/framework/DataForm/BaseUpdateForm/index.jsx',
+    // 'framework/DataForm/BaseUpdateFormContent/index':
+    //   'src/framework/DataForm/BaseUpdateFormContent/index.jsx',
+    // 'framework/DataForm/BaseUpdateFormTab/index':
+    //   'src/framework/DataForm/BaseUpdateFormTab/index.jsx',
+    // 'framework/DataModal/Base/index': 'src/framework/DataModal/Base/index.jsx',
+    // 'framework/DataModal/BaseAddModal/index':
+    //   'src/framework/DataModal/BaseAddModal/index.jsx',
+    // 'framework/DataModal/BaseSelectModal/index':
+    //   'src/framework/DataModal/BaseSelectModal/index.jsx',
+    // 'framework/DataModal/BaseLoadModal/index':
+    //   'src/framework/DataModal/BaseLoadModal/index.jsx',
+    // 'framework/DataModal/BaseNeedlessLoadModal/index':
+    //   'src/framework/DataModal/BaseNeedlessLoadModal/index.jsx',
+    // 'framework/DataModal/BaseUpdateModal/index':
+    //   'src/framework/DataModal/BaseUpdateModal/index.jsx',
+    // 'framework/DataModal/BaseUpdateTransferModal/index':
+    //   'src/framework/DataModal/BaseUpdateTransferModal/index.jsx',
+    // 'framework/DataMultiPageView/InnerMultiPage/index':
+    //   'src/framework/DataMultiPageView/InnerMultiPage/index.jsx',
+    // 'framework/DataMultiPageView/MultiPage/index':
+    //   'src/framework/DataMultiPageView/MultiPage/index.jsx',
+    // 'framework/DataMultiPageView/MultiPageDrawer/index':
+    //   'src/framework/DataMultiPageView/MultiPageDrawer/index.jsx',
+    // 'framework/DataMultiPageView/MultiPageSelectDrawer/index':
+    //   'src/framework/DataMultiPageView/MultiPageSelectDrawer/index.jsx',
+    // 'framework/DataOperation/BaseView/index':
+    //   'src/framework/DataOperation/BaseView/index.jsx',
+    // 'framework/DataOperation/BaseWindow/index':
+    //   'src/framework/DataOperation/BaseWindow/index.jsx',
+    // 'framework/DataOperation/Base/index':
+    //   'src/framework/DataOperation/Base/index.jsx',
+    // 'framework/DataSinglePageView/SinglePage/index':
+    //   'src/framework/DataSinglePageView/SinglePage/index.jsx',
+    // 'framework/DataSinglePageView/SinglePageDrawer/index':
+    //   'src/framework/DataSinglePageView/SinglePageDrawer/index.jsx',
+    // 'framework/DataSinglePageView/InnerSinglePage/index':
+    //   'src/framework/DataSinglePageView/InnerSinglePage/index.jsx',
+    // 'framework/DataSinglePageView/SinglePageSelectDrawer/index':
+    //   'src/framework/DataSinglePageView/SinglePageSelectDrawer/index.jsx',
+    // 'framework/DataSingleView/DataCore/index':
+    //   'src/framework/DataSingleView/DataCore/index.jsx',
+    // 'framework/DataSingleView/DataLoad/index':
+    //   'src/framework/DataSingleView/DataLoad/index.jsx',
+    // 'framework/ButtonExtension/SelectButton/Base/index':
+    //   'src/framework/ButtonExtension/SelectButton/Base/index.jsx',
+    // 'framework/ButtonExtension/SelectButton/InteractiveBase/index':
+    //   'src/framework/ButtonExtension/SelectButton/InteractiveBase/index.jsx',
+    // 'framework/FieldExtension/SelectFieldDrawer/SelectFieldDrawerBase/index':
+    //   'src/framework/FieldExtension/SelectFieldDrawer/SelectFieldDrawerBase/index.jsx',
+    // 'framework/FieldExtension/SelectFieldDrawer/SelectFieldBase/index':
+    //   'src/framework/FieldExtension/SelectFieldDrawer/SelectFieldBase/index.jsx',
+  },
 };
 
 export function buildConfig({ terser: whetherTerser = false }) {

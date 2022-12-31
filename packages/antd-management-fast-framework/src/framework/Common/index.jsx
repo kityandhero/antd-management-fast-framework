@@ -93,7 +93,6 @@ import {
   isEqual,
   isFunction,
   isObject,
-  isUndefined,
   recordObject,
   recordText,
   refitCommonData,
@@ -105,6 +104,7 @@ import {
   toNumber,
   toString,
 } from '../../utils/tools';
+import { isUndefined } from '../../utils/typeCheck';
 import Core from '../Core';
 
 import styles from './index.less';

@@ -1,14 +1,14 @@
-﻿import { unknownLabel } from '@/customConfig/config';
-
-import { unlimitedWithStringFlag } from '../../../utils/constants';
+﻿import {
+  unknownLabel,
+  unlimitedWithStringFlag,
+} from '../../../utils/constants';
 import { modelCollection } from '../../../utils/globalModel';
 import {
   isInvalid,
-  isNull,
-  isUndefined,
   refitCommonData,
   searchFromList,
 } from '../../../utils/tools';
+import { isNull, isUndefined } from '../../../utils/typeCheck';
 import {
   buildFormRadio,
   buildFormSelect,

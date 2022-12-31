@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ApartmentOutlined,
   ArrowDownOutlined,
@@ -116,8 +115,11 @@ import {
   VideoCameraOutlined,
   WarningOutlined,
 } from '@ant-design/icons';
+import React from 'react';
 
 import { emptyLogo as emptyLogoSource } from './mediaDefault';
+
+export const unknownLabel = '未知';
 
 /**
  * 动画类型

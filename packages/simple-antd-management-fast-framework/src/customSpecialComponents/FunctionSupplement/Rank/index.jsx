@@ -7,7 +7,10 @@
   buildRadioItem,
   buildSearchFormSelect,
 } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import { unlimitedWithStringFlag } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  unknownLabel,
+  unlimitedWithStringFlag,
+} from 'antd-management-fast-framework/es/utils/constants';
 import {
   isInvalid,
   isNull,
@@ -15,8 +18,6 @@ import {
   refitCommonData,
   searchFromList,
 } from 'antd-management-fast-framework/es/utils/tools';
-
-import { unknownLabel } from '@/customConfig/constants';
 
 export function refitRankList({ global, withUnlimited = true }) {
   const { rankList: list } = { ...{ rankList: [] }, ...(global || {}) };
@@ -42,13 +43,21 @@ export function getRankName({ global, value, defaultValue = '' }) {
   return item == null ? '未知' : item.name;
 }
 
-export function renderRankOption({ global, withUnlimited = true, adjustListDataCallback = null }) {
+export function renderRankOption({
+  global,
+  withUnlimited = true,
+  adjustListDataCallback = null,
+}) {
   const listData = refitRankList({ global, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderRankRadio({ global, withUnlimited = true, adjustListDataCallback = null }) {
+export function renderRankRadio({
+  global,
+  withUnlimited = true,
+  adjustListDataCallback = null,
+}) {
   const listData = refitRankList({ global, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
@@ -67,7 +76,11 @@ export function renderSearchRankSelect({
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderRankOption({ global, withUnlimited, adjustListDataCallback }),
+    options: renderRankOption({
+      global,
+      withUnlimited,
+      adjustListDataCallback,
+    }),
     helper,
   });
 }

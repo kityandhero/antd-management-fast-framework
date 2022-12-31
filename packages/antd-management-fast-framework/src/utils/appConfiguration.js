@@ -1,27 +1,10 @@
 import {
   apiSuccessCode as apiSuccessCodeDefault,
-  appInitDefault,
   authenticationFailCode as authenticationFailCodeDefault,
   emptyLogo as emptyLogoImage,
 } from '../utils/constants';
 
-import { isBrowser, stringIsNullOrWhiteSpace } from './core';
-
-export function getAppInitConfigData() {
-  let appInitConfig = appInitDefault;
-
-  if (isBrowser()) {
-    if ((window.appInitCustomLocal || null) != null) {
-      appInitConfig = { ...appInitConfig, ...window.appInitCustomLocal };
-    }
-
-    if ((window.appInitCustomRemote || null) != null) {
-      appInitConfig = { ...appInitConfig, ...window.appInitCustomRemote };
-    }
-  }
-
-  return appInitConfig;
-}
+import { getAppInitConfigData, stringIsNullOrWhiteSpace } from './core';
 
 export function logShowInConsole() {
   const appInit = getAppInitConfigData();

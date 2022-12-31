@@ -8,13 +8,13 @@ import {
   isFunction,
   isObject,
   isString,
-  isUndefined,
   notifyInfo,
   queryStringify,
   recordObject,
   redirectToPath,
   stringIsNullOrWhiteSpace,
 } from './tools';
+import { isUndefined } from './typeCheck';
 import {
   apiVirtualAccess,
   apiVirtualFailData,

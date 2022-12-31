@@ -215,6 +215,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^3.2.3",
     "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-polyfill-node": "^0.11.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-serve": "^2.0.1",
     "rollup-plugin-terser": "^7.0.2",

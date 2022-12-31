@@ -1,9 +1,13 @@
 import { Button, Result } from 'antd';
 import { useEffect } from 'react';
 import { connect, FormattedMessage, Link } from 'umi';
-import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
+import ProLayout, {
+  DefaultFooter,
+  SettingDrawer,
+} from '@ant-design/pro-layout';
 
 import Authorized from 'antd-management-fast-framework/es/utils/Authorized';
+import { getAuthorityFromRouter } from 'antd-management-fast-framework/es/utils/core';
 import { setAccessWayCollectionCache } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
 import { proLayoutDefaultProps } from 'antd-management-fast-framework/es/utils/proLayoutCollection';
 import {
@@ -11,12 +15,14 @@ import {
   getQueue,
   recordDebug,
 } from 'antd-management-fast-framework/es/utils/tools';
-import { getAuthorityFromRouter } from 'antd-management-fast-framework/es/utils/utils';
 
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { accessWayCollection } from '@/customConfig/config';
 import { execBasicLayoutRemoteRequest } from '@/customConfig/customLoad';
-import { defaultFooterData, menuHeaderRender } from '@/customSpecialComponents/CustomAssembly';
+import {
+  defaultFooterData,
+  menuHeaderRender,
+} from '@/customSpecialComponents/CustomAssembly';
 import { defaultSettings } from '@/defaultSettings';
 import { formatMessage } from '@/utils/tools';
 
@@ -46,7 +52,10 @@ const menuDataRender = (menuList) =>
   });
 
 const defaultFooterDom = (
-  <DefaultFooter copyright={defaultFooterData.copyright} links={defaultFooterData.links} />
+  <DefaultFooter
+    copyright={defaultFooterData.copyright}
+    links={defaultFooterData.links}
+  />
 );
 
 const footerRender = () => {
@@ -95,7 +104,10 @@ const BasicLayout = (props) => {
 
   getQueue();
 
-  const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
+  const authorized = getAuthorityFromRouter(
+    props.route.routes,
+    location.pathname || '/',
+  ) || {
     authority: undefined,
   };
 

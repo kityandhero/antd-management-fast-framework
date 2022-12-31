@@ -8,21 +8,14 @@ import {
   find as findLodash,
   findIndex as findIndexLodash,
   get as getLodash,
-  isBoolean as isBooleanLodash,
-  isDate as isDateLodash,
   isEmpty as isEmptyLodash,
   isEqual as isEqualLodash,
-  isNull as isNullLodash,
-  isObject as isObjectLodash,
-  isUndefined as isUndefinedLodash,
   remove as removeLodash,
   reverse as reverseLodash,
   sortBy as sortByLodash,
   sortedUniq as sortedUniqLodash,
   split as splitLodash,
   toLower,
-  toNumber as toNumberLodash,
-  toString as toStringLodash,
 } from 'lodash';
 import moment from 'moment';
 import numeral from 'numeral';
@@ -45,10 +38,10 @@ import {
   sortOperate,
 } from '../utils/constants';
 
-import { getAppInitConfigData } from './appConfiguration';
 import {
   decodeBase64 as decodeBase64Core,
   encodeBase64 as encodeBase64Core,
+  getAppInitConfigData,
   inCollection as inCollectionCore,
   isBrowser,
   lowerFirst as lowerFirstCore,
@@ -59,6 +52,9 @@ import {
 } from './core';
 import {
   getNearestLocalhostNotifyCache,
+  setNearestLocalhostNotifyCache,
+} from './developAssist';
+import {
   recordDebug as recordDebugCore,
   recordError as recordErrorCore,
   recordInfo as recordInfoCore,
@@ -66,14 +62,20 @@ import {
   recordObject as recordObjectCore,
   recordText as recordTextCore,
   recordWarn as recordWarnCore,
-  setNearestLocalhostNotifyCache,
-} from './developAssist';
+} from './log';
 import {
   isArray as isArrayCore,
+  isBoolean as isBooleanCore,
   isFunction as isFunctionCore,
   isNumber as isNumberCore,
+  isObject as isObjectCore,
   isString as isStringCore,
+  isUndefined as isUndefinedCore,
 } from './typeCheck';
+import {
+  toNumber as toNumberCore,
+  toString as toStringCore,
+} from './typeConvert';
 
 export function defaultBaseState() {
   return {
@@ -656,9 +658,7 @@ export function isNumber(v) {
  * @returns
  */
 export function toNumber(v) {
-  const value = toNumberLodash(v);
-
-  return Number.isNaN(value) ? 0 : value;
+  return toNumberCore(v);
 }
 
 /**
@@ -680,7 +680,7 @@ export function split(source, separator, limit = 1000) {
  * @returns
  */
 export function toString(value) {
-  return toStringLodash(value);
+  return toStringCore(value);
 }
 
 /**
@@ -1412,7 +1412,11 @@ export function isArray(value) {
 }
 
 export function isObject(o) {
-  return isObjectLodash(o);
+  return isObjectCore(o);
+}
+
+export function isBoolean(o) {
+  return isBooleanCore(o);
 }
 
 export function difference(array, values) {
@@ -1471,33 +1475,12 @@ export function trim(source) {
   return trimCore(source);
 }
 
+export function isUndefined(source) {
+  return isUndefinedCore(source);
+}
+
 export function replace(source, pattern, replacement) {
   return replaceCore(source, pattern, replacement);
-}
-
-export function isBoolean(value) {
-  return isBooleanLodash(value);
-}
-
-/**
- * check value is undefined
- */
-export function isUndefined(value) {
-  return isUndefinedLodash(value);
-}
-
-/**
- * check value is null
- */
-export function isNull(value) {
-  return isNullLodash(value);
-}
-
-/**
- * check value is date
- */
-export function isDate(value) {
-  return isDateLodash(value);
 }
 
 /**
