@@ -42,6 +42,7 @@ const externalCollection = [
   'cssnano',
   'flubber',
   'rc-animate',
+  'rc-queue-anim',
   'rc-texty',
   'rc-tween-one',
   'react',
