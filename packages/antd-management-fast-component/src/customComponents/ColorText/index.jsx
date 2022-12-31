@@ -5,7 +5,7 @@ import {
   getRandomColor,
   isNumber,
   stringIsNullOrWhiteSpace,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
 
 class ColorText extends PureComponent {
   copyText = () => {

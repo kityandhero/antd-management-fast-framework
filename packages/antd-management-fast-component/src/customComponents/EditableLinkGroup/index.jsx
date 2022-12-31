@@ -2,11 +2,9 @@ import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
-import { iconCollection } from '../../utils/constants';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 
 import styles from './index.less';
-
-// TODO: 添加逻辑
 
 class EditableLinkGroup extends PureComponent {
   render() {

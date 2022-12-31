@@ -1,7 +1,15 @@
 import { PureComponent } from 'react';
 
-import { animalType, mobileTypeCollection } from '../../../utils/constants';
-import { isObject, recordObject, showErrorMessage } from '../../../utils/tools';
+import {
+  animalType,
+  mobileTypeCollection,
+} from 'antd-management-fast-common/es/utils/constants';
+import {
+  isObject,
+  recordObject,
+  showErrorMessage,
+} from 'antd-management-fast-common/es/utils/tools';
+
 import VerticalBox from '../../VerticalBox';
 import GalaxyNote8 from '../Devices/GalaxyNote8';
 import IPhone5S from '../Devices/IPhone5S';
@@ -153,7 +161,7 @@ class MobileSimulation extends PureComponent {
         );
         break;
 
-      default:
+      default: {
         mobileView = null;
 
         const text = 'invalid mobile type，please check in console';
@@ -168,6 +176,7 @@ class MobileSimulation extends PureComponent {
         });
 
         break;
+      }
     }
 
     return (

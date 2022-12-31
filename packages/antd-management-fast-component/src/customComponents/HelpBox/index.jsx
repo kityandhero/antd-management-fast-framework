@@ -2,8 +2,12 @@ import { Divider } from 'antd';
 import classNames from 'classnames';
 import { PureComponent } from 'react';
 
-import { isArray, stringIsNullOrWhiteSpace, toNumber } from '../../utils/tools';
-// import ColorText from '../ColorText';
+import {
+  isArray,
+  stringIsNullOrWhiteSpace,
+  toNumber,
+} from 'antd-management-fast-common/es/utils/tools';
+
 import { buildDescriptionGrid } from '../FunctionComponent';
 
 import styles from './index.less';

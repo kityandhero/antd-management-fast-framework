@@ -8,7 +8,8 @@ import {
   isString,
   stringIsNullOrWhiteSpace,
   toNumber,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import Ellipsis from '../Ellipsis';
 
 import styles from './index.less';

@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import { PureComponent } from 'react';
 
-import { inCollection } from '../../utils/core';
+import { inCollection } from 'antd-management-fast-common/es/utils/core';
 
 const flexAutoCollection = ['left', 'right', 'top', 'bottom'];
 

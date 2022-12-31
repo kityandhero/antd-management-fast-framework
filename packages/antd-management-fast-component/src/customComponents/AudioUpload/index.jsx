@@ -1,4 +1,3 @@
-import { EllipsisOutlined } from '@ant-design/icons';
 import {
   Button,
   Divider,
@@ -11,17 +10,19 @@ import {
   Upload,
 } from 'antd';
 import { PureComponent } from 'react';
+import { EllipsisOutlined } from '@ant-design/icons';
 
-import { buildPlayer } from '../../customComponents/FunctionComponent';
-import { iconCollection } from '../../utils/constants';
-import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
 import {
   copyToClipboard,
   isFunction,
   showErrorMessage,
   showRuntimeError,
   stringIsNullOrWhiteSpace,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
+import { buildPlayer } from '../FunctionComponent';
 import IconInfo from '../IconInfo';
 
 const { TextArea } = Input;

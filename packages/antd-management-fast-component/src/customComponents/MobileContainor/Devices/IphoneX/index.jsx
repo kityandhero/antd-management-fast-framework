@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import { PureComponent } from 'react';
 
-import { animalType } from '../../../../utils/constants';
+import { animalType } from 'antd-management-fast-common/es/utils/constants';
+
 import ContentView from '../../ContentView';
 
 import styles from '../devices.less';

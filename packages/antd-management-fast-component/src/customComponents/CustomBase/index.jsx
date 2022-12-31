@@ -1,0 +1,36 @@
+import { Component } from 'react';
+
+import {
+  cloneWithoutMethod,
+  isEqual,
+} from 'antd-management-fast-common/es/utils/tools';
+
+class CustomBase extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    const sourceProps = cloneWithoutMethod(this.props);
+    const targetProps = cloneWithoutMethod(nextProps);
+
+    const isEqualProps = isEqual(sourceProps, targetProps);
+
+    if (!isEqualProps) {
+      return true;
+    }
+
+    const sourceState = cloneWithoutMethod(this.state);
+    const targetState = cloneWithoutMethod(nextState);
+
+    const isEqualState = isEqual(sourceState, targetState);
+
+    if (!isEqualState) {
+      return true;
+    }
+
+    return false;
+  }
+
+  render() {
+    return null;
+  }
+}
+
+export default CustomBase;

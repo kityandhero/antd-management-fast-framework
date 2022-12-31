@@ -1,7 +1,10 @@
 import { Col, Input, Row, Select } from 'antd';
 import { PureComponent } from 'react';
 
-import { isFunction, toNumber } from '../../utils/tools';
+import {
+  isFunction,
+  toNumber,
+} from 'antd-management-fast-common/es/utils/tools';
 
 import styles from './index.less';
 

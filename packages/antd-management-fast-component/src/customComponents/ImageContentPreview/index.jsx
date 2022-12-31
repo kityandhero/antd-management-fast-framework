@@ -1,8 +1,9 @@
 import { Drawer, Empty } from 'antd';
 import parse from 'html-react-parser';
 
-import CustomBase from '../../framework/CustomBase';
-import { imageContentPreviewMode } from '../../utils/constants';
+import { imageContentPreviewMode } from 'antd-management-fast-common/es/utils/constants';
+
+import CustomBase from '../CustomBase';
 
 import styles from './index.less';
 

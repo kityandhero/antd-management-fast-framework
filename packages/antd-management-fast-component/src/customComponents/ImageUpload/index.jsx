@@ -1,9 +1,9 @@
-import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import { message, Modal, Space, Tooltip, Upload } from 'antd';
 import { PureComponent } from 'react';
+import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
-import { iconCollection } from '../../utils/constants';
-import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
 import {
   buildFieldHelper,
   isFunction,
@@ -11,7 +11,8 @@ import {
   showWarningMessage,
   stringIsNullOrWhiteSpace,
   toNumber,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import CenterBox from '../CenterBox';
 import FlexBox from '../FlexBox';
 import IconInfo from '../IconInfo';

@@ -1,4 +1,3 @@
-import { BorderOuterOutlined, EllipsisOutlined } from '@ant-design/icons';
 import {
   Alert,
   Badge,
@@ -29,6 +28,7 @@ import ReactJson from 'react-json-view';
 import ReactPlayer from 'react-player';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { BorderOuterOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 import {
   columnFacadeMode,
@@ -39,7 +39,7 @@ import {
   listViewConfig,
   pageHeaderRenderType,
   whetherNumber,
-} from '../../utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   buildFieldDescription,
   buildFieldHelper,
@@ -65,7 +65,8 @@ import {
   toNumber,
   toString,
   transformListData,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import FadeBox from '../AnimalBox/FadeBox';
 import QueueBox from '../AnimalBox/QueueBox';
 import RotateBox from '../AnimalBox/RotateBox';

@@ -4,9 +4,6 @@ import { Component } from 'react';
 
 import styles from './index.less';
 
-/* eslint react/no-did-mount-set-state: 0 */
-/* eslint no-param-reassign: 0 */
-
 const isSupportLineClamp = document.body.style.webkitLineClamp !== undefined;
 
 const TooltipOverlayStyle = {

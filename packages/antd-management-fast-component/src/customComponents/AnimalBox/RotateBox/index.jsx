@@ -1,7 +1,7 @@
 import TweenOne from 'rc-tween-one';
 import { PureComponent } from 'react';
 
-import { isFunction } from '../../../utils/tools';
+import { isFunction } from 'antd-management-fast-common/es/utils/tools';
 
 class RotateBox extends PureComponent {
   render() {

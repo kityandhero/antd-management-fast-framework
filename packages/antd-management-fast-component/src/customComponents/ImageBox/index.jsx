@@ -1,20 +1,21 @@
+import { Col, Image, Row, Spin } from 'antd';
+import classNames from 'classnames';
+import React from 'react';
 import {
   EyeOutlined,
   LoadingOutlined,
   PictureOutlined,
 } from '@ant-design/icons';
-import { Col, Image, Row, Spin } from 'antd';
-import classNames from 'classnames';
-import React from 'react';
 
-import CustomBase from '../../framework/CustomBase';
-import { defaultEmptyImage } from '../../utils/constants';
+import { defaultEmptyImage } from 'antd-management-fast-common/es/utils/constants';
 import {
   isFunction,
   replace,
   stringIsNullOrWhiteSpace,
   trim,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
+import CustomBase from '../CustomBase';
 import IconInfo from '../IconInfo';
 
 import styles from './index.less';

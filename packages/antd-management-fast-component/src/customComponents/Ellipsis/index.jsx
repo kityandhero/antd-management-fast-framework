@@ -2,7 +2,7 @@ import { Tooltip } from 'antd';
 import classNames from 'classnames';
 import { Component } from 'react';
 
-import { stringIsNullOrWhiteSpace } from '../../utils/tools';
+import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 
 import styles from './index.less';
 

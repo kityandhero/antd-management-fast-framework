@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 
-import { stringIsNullOrWhiteSpace } from '../../utils/tools';
+import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 
 class EverySpace extends PureComponent {
   render() {

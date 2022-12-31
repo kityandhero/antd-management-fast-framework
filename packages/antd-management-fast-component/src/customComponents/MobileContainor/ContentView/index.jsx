@@ -1,8 +1,15 @@
 import { Alert, Space } from 'antd';
 import { PureComponent } from 'react';
 
-import { animalType, iconCollection } from '../../../utils/constants';
-import { inCollection, isFunction } from '../../../utils/tools';
+import {
+  animalType,
+  iconCollection,
+} from 'antd-management-fast-common/es/utils/constants';
+import {
+  inCollection,
+  isFunction,
+} from 'antd-management-fast-common/es/utils/tools';
+
 import FadeBox from '../../AnimalBox/FadeBox';
 import QueueBox from '../../AnimalBox/QueueBox';
 import { buildButton } from '../../FunctionComponent';

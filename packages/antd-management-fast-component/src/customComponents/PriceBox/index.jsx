@@ -1,6 +1,9 @@
 import { PureComponent } from 'react';
 
-import { formatMoney, isMoney } from '../../utils/tools';
+import {
+  formatMoney,
+  isMoney,
+} from 'antd-management-fast-common/es/utils/tools';
 
 class PriceBox extends PureComponent {
   render() {

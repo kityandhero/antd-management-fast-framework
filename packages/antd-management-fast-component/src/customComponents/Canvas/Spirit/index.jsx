@@ -1,4 +1,5 @@
-import { requestAnimFrame } from '../../../utils/tools';
+import { requestAnimFrame } from 'antd-management-fast-common/es/utils/tools';
+
 import Core from '../Core';
 
 class Spirit extends Core {

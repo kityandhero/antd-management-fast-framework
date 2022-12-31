@@ -1,14 +1,18 @@
 ﻿import {
   unknownLabel,
   unlimitedWithStringFlag,
-} from '../../../utils/constants';
-import { modelCollection } from '../../../utils/globalModel';
+} from 'antd-management-fast-common/es/utils/constants';
+import { modelCollection } from 'antd-management-fast-common/es/utils/globalModel';
 import {
   isInvalid,
   refitCommonData,
   searchFromList,
-} from '../../../utils/tools';
-import { isNull, isUndefined } from '../../../utils/typeCheck';
+} from 'antd-management-fast-common/es/utils/tools';
+import {
+  isNull,
+  isUndefined,
+} from 'antd-management-fast-common/es/utils/typeCheck';
+
 import {
   buildFormRadio,
   buildFormSelect,

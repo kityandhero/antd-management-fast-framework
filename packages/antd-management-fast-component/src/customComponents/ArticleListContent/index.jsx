@@ -1,7 +1,7 @@
 import { Avatar } from 'antd';
 
-import { datetimeFormat } from '../../utils/constants';
-import { formatDatetime } from '../../utils/tools';
+import { datetimeFormat } from 'antd-management-fast-common/es/utils/constants';
+import { formatDatetime } from 'antd-management-fast-common/es/utils/tools';
 
 import styles from './index.less';
 

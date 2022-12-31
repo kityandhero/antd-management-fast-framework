@@ -1,9 +1,13 @@
-import { ClockCircleOutlined } from '@ant-design/icons';
 import { List } from 'antd';
+import { ClockCircleOutlined } from '@ant-design/icons';
 
-import CustomBase from '../../framework/CustomBase';
-import { datetimeFormat, iconCollection } from '../../utils/constants';
-import { formatDatetime } from '../../utils/tools';
+import {
+  datetimeFormat,
+  iconCollection,
+} from 'antd-management-fast-common/es/utils/constants';
+import { formatDatetime } from 'antd-management-fast-common/es/utils/tools';
+
+import CustomBase from '../CustomBase';
 
 import styles from './index.less';
 

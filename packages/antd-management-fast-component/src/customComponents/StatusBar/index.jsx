@@ -1,9 +1,12 @@
 import { Col, Divider, Row } from 'antd';
 import { PureComponent } from 'react';
 
-import { isArray, showRuntimeError } from '../../utils/tools';
+import {
+  isArray,
+  showRuntimeError,
+} from 'antd-management-fast-common/es/utils/tools';
 
-class FlexText extends PureComponent {
+class StatusBar extends PureComponent {
   render() {
     const { actions: actionsValue, extra } = this.props;
 
@@ -66,9 +69,9 @@ class FlexText extends PureComponent {
   }
 }
 
-FlexText.defaultProps = {
+StatusBar.defaultProps = {
   actions: [],
   extra: null,
 };
 
-export default FlexText;
+export default StatusBar;

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { stringIsNullOrWhiteSpace } from '../../../utils/tools';
+import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 
 class Index extends PureComponent {
   constructor(props) {
