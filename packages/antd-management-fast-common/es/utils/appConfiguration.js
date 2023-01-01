@@ -19,15 +19,15 @@ function getTinymceImagesUploadUrl() {
       tinymceImagesUploadUrl: null
     }), appInit || {}),
     tinymceImagesUploadUrl = _tinymceImagesUploadU.tinymceImagesUploadUrl;
-  return tinymceImagesUploadUrl || "";
+  return tinymceImagesUploadUrl || '';
 }
 function getTinymceApiKey() {
   var appInit = getAppInitConfigData();
   var _tinymceApiKey = _objectSpread(_objectSpread({}, {
-      tinymceApiKey: ""
+      tinymceApiKey: ''
     }), appInit || {}),
     tinymceApiKey = _tinymceApiKey.tinymceApiKey;
-  return tinymceApiKey || "";
+  return tinymceApiKey || '';
 }
 function getUseNprogress() {
   var appInit = getAppInitConfigData();
@@ -112,18 +112,18 @@ function getAuthenticationFailCode() {
 function getEntrancePath() {
   var appInit = getAppInitConfigData();
   var _entrancePath = _objectSpread(_objectSpread({}, {
-      entrancePath: ""
+      entrancePath: ''
     }), appInit || {}),
     entrancePath = _entrancePath.entrancePath;
-  return entrancePath || "";
+  return entrancePath || '';
 }
 function getApiVersion() {
   var appInit = getAppInitConfigData();
   var _apiVersion = _objectSpread(_objectSpread({}, {
-      apiVersion: ""
+      apiVersion: ''
     }), appInit || {}),
     apiVersion = _apiVersion.apiVersion;
-  return apiVersion || "";
+  return apiVersion || '';
 }
 function getUseVirtualRequest() {
   var appInit = getAppInitConfigData();
@@ -160,34 +160,34 @@ function getShowRequestInfo() {
 function getPlatformName() {
   var appInit = getAppInitConfigData();
   var _platformName = _objectSpread(_objectSpread({}, {
-      platformName: ""
+      platformName: ''
     }), appInit || {}),
     platformName = _platformName.platformName;
-  return platformName || "";
+  return platformName || '';
 }
 function getAppName() {
   var appInit = getAppInitConfigData();
   var _appName = _objectSpread(_objectSpread({}, {
-      appName: ""
+      appName: ''
     }), appInit || {}),
     appName = _appName.appName;
-  return appName || "";
+  return appName || '';
 }
 function getAppDescription() {
   var appInit = getAppInitConfigData();
   var _appDescription = _objectSpread(_objectSpread({}, {
-      appDescription: ""
+      appDescription: ''
     }), appInit || {}),
     appDescription = _appDescription.appDescription;
-  return appDescription || "";
+  return appDescription || '';
 }
 function getTitle() {
   var appInit = getAppInitConfigData();
   var _appName2 = _objectSpread(_objectSpread({}, {
-      appName: ""
+      appName: ''
     }), appInit || {}),
     appName = _appName2.appName;
-  return appName || "";
+  return appName || '';
 }
 function getEntranceLogo() {
   var appInit = getAppInitConfigData();
@@ -208,18 +208,18 @@ function getShareLogo() {
 function getShareLogoName() {
   var appInit = getAppInitConfigData();
   var _shareLogoName = _objectSpread(_objectSpread({}, {
-      shareLogoName: ""
+      shareLogoName: ''
     }), appInit || {}),
     shareLogoName = _shareLogoName.shareLogoName;
-  return shareLogoName || "";
+  return shareLogoName || '';
 }
 function getCompanyName() {
   var appInit = getAppInitConfigData();
   var _companyName = _objectSpread(_objectSpread({}, {
-      companyName: ""
+      companyName: ''
     }), appInit || {}),
     companyName = _companyName.companyName;
-  return companyName || "";
+  return companyName || '';
 }
 function getLeftBarLogo(remoteLogo) {
   if (!stringIsNullOrWhiteSpace(remoteLogo || null)) {
@@ -235,18 +235,18 @@ function getLeftBarLogo(remoteLogo) {
 function getLeftBarText() {
   var appInit = getAppInitConfigData();
   var _leftBarText = _objectSpread(_objectSpread({}, {
-      leftBarText: ""
+      leftBarText: ''
     }), appInit || {}),
     leftBarText = _leftBarText.leftBarText;
-  return leftBarText || "";
+  return leftBarText || '';
 }
 function getCopyright() {
   var appInit = getAppInitConfigData();
   var _copyright = _objectSpread(_objectSpread({}, {
-      copyright: ""
+      copyright: ''
     }), appInit || {}),
     copyright = _copyright.copyright;
-  return copyright || "";
+  return copyright || '';
 }
 
 /**

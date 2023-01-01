@@ -19,6 +19,9 @@ import svgr from '@svgr/rollup';
 const externalCollection = [
   '@ant-design/icons',
   '@ant-design/pro-layout',
+  '@antv/data-set',
+  '@antv/l7',
+  '@antv/l7-maps',
   '@babel/runtime',
   '@babel/helpers',
   '@rollup/plugin-node-resolve',
@@ -52,6 +55,7 @@ const externalCollection = [
   'react-syntax-highlighter',
   'react/jsx-runtime',
   'lodash',
+  'lodash.debounce',
   'randomcolor',
   'path-to-regexp',
   'qs',

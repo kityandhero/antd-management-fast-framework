@@ -2,11 +2,6 @@ import { buildConfig as buildConfigCore } from '../../antd-management-fast-rollu
 
 const inputFile = {
   ...{
-    // 'customComponents/index': 'src/customComponents/index.js',
-    // 'customComponents/AMap/UIPoiPicker':
-    //   'src/customComponents/AMap/UIPoiPicker.js',
-    // 'customComponents/AMap/UIPositionPicker':
-    //   'src/customComponents/AMap/UIPositionPicker.js',
     'customComponents/ActiveChart/index':
       'src/customComponents/ActiveChart/index.jsx',
     'customComponents/AudioUpload/index':
@@ -22,6 +17,28 @@ const inputFile = {
     'customComponents/Charts/bizcharts':
       'src/customComponents/Charts/bizcharts.jsx',
     'customComponents/Charts/index': 'src/customComponents/Charts/index.jsx',
+    'customComponents/Charts/Bar/index':
+      'src/customComponents/Charts/Bar/index.jsx',
+    'customComponents/Charts/ChartCard/index':
+      'src/customComponents/Charts/ChartCard/index.jsx',
+    'customComponents/Charts/Field/index':
+      'src/customComponents/Charts/Field/index.jsx',
+    'customComponents/Charts/Gauge/index':
+      'src/customComponents/Charts/Gauge/index.jsx',
+    'customComponents/Charts/MiniArea/index':
+      'src/customComponents/Charts/MiniArea/index.jsx',
+    'customComponents/Charts/MiniBar/index':
+      'src/customComponents/Charts/MiniBar/index.jsx',
+    'customComponents/Charts/MiniProgress/index':
+      'src/customComponents/Charts/MiniProgress/index.jsx',
+    'customComponents/Charts/Pie/index':
+      'src/customComponents/Charts/Pie/index.jsx',
+    'customComponents/Charts/TagCloud/index':
+      'src/customComponents/Charts/TagCloud/index.jsx',
+    'customComponents/Charts/TimelineChart/index':
+      'src/customComponents/Charts/TimelineChart/index.jsx',
+    'customComponents/Charts/WaterWave/index':
+      'src/customComponents/Charts/WaterWave/index.jsx',
     'customComponents/CenterBox/index':
       'src/customComponents/CenterBox/index.jsx',
     'customComponents/DisplayCopyData/index':
@@ -120,28 +137,6 @@ const inputFile = {
       'src/customComponents/Canvas/Spirit/index.jsx',
     'customComponents/Canvas/RadarScanning/index':
       'src/customComponents/Canvas/RadarScanning/index.jsx',
-    'customComponents/Charts/Bar/index':
-      'src/customComponents/Charts/Bar/index.jsx',
-    'customComponents/Charts/ChartCard/index':
-      'src/customComponents/Charts/ChartCard/index.jsx',
-    'customComponents/Charts/Field/index':
-      'src/customComponents/Charts/Field/index.jsx',
-    'customComponents/Charts/Gauge/index':
-      'src/customComponents/Charts/Gauge/index.jsx',
-    'customComponents/Charts/MiniArea/index':
-      'src/customComponents/Charts/MiniArea/index.jsx',
-    'customComponents/Charts/MiniBar/index':
-      'src/customComponents/Charts/MiniBar/index.jsx',
-    'customComponents/Charts/MiniProgress/index':
-      'src/customComponents/Charts/MiniProgress/index.jsx',
-    'customComponents/Charts/Pie/index':
-      'src/customComponents/Charts/Pie/index.jsx',
-    'customComponents/Charts/TagCloud/index':
-      'src/customComponents/Charts/TagCloud/index.jsx',
-    'customComponents/Charts/TimelineChart/index':
-      'src/customComponents/Charts/TimelineChart/index.jsx',
-    'customComponents/Charts/WaterWave/index':
-      'src/customComponents/Charts/WaterWave/index.jsx',
     'customComponents/FunctionSupplement/Whether/index':
       'src/customComponents/FunctionSupplement/Whether/index.jsx',
     'customComponents/MobileContainor/ContentView/index':
