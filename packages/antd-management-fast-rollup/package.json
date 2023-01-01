@@ -19,6 +19,7 @@
     "autoprefixer": "^10.4.12",
     "cssnano": "^5.1.13",
     "rollup": "^3.2.3",
+    "rollup-plugin-dts": "^5.1.0",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-serve": "^2.0.1",

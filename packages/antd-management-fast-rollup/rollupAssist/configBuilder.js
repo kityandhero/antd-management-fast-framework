@@ -1,6 +1,7 @@
 // import pxtorem from 'postcss-pxtorem';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
+// import dts from 'rollup-plugin-dts';
 // import livereload from 'rollup-plugin-livereload';
 import postcss from 'rollup-plugin-postcss';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
@@ -111,12 +112,7 @@ export function buildConfig({
 
   const config = {
     external: (d) => {
-      return (
-        /^react$/.test(d) ||
-        /^@tarojs\/taro$/.test(d) ||
-        /^@tarojs\/taro-h5$/.test(d) ||
-        d.includes('@babel/runtime')
-      );
+      return /^react$/.test(d) || d.includes('@babel/runtime');
     },
     input: inputFile,
     plugins: [
@@ -133,7 +129,8 @@ export function buildConfig({
       typescript({
         // check: true,
         // verbosity: 3,
-        tsconfig: 'tsconfig.json',
+        // useTsconfigDeclarationDir: true,
+        tsconfig: './tsconfig.json',
       }),
       postcss({
         extensions: ['.css', '.scss', '.less'],
@@ -171,8 +168,19 @@ export function buildConfig({
   //   config.plugins.push(serve(whetherServe));
   // }
 
-  return config;
+  return [
+    config,
+    // {
+    //   input: ['./es/request.d.ts', './es/tools.d.ts'],
+    //   output: {
+    //     // entryFileNames: '[name].d.js',
+    //     dir: 'dts',
+    //   },
+    //   plugins: [dts.default()],
+    // },
+  ];
 }
+
 /**
  * 占位函数
  *
