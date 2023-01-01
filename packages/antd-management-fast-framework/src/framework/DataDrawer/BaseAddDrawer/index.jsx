@@ -1,4 +1,8 @@
-import { drawerConfig, iconCollection } from '../../../utils/constants';
+import {
+  drawerConfig,
+  iconCollection,
+} from 'antd-management-fast-common/es/utils/constants';
+
 import BaseNeedlessLoadDrawer from '../BaseNeedlessLoadDrawer';
 
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {

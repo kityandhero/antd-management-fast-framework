@@ -1,5 +1,3 @@
-@import url('../../style/variable.less');
-
 .avatarList {
   display: inline-block;
 
@@ -12,10 +10,10 @@
 
 .avatarItem {
   display: inline-block;
-  width: @avatar-size-base;
-  height: @avatar-size-base;
+  width: var(--amf-avatar-size-base);
+  height: var(--amf-avatar-size-base);
   margin-left: -8px;
-  font-size: @font-size-base;
+  font-size: var(--amf-font-size-base);
 
   :global {
     .ant-avatar {
@@ -25,13 +23,13 @@
 }
 
 .avatarItemLarge {
-  width: @avatar-size-lg;
-  height: @avatar-size-lg;
+  width: var(--amf-avatar-size-lg);
+  height: var(--amf-avatar-size-lg);
 }
 
 .avatarItemSmall {
-  width: @avatar-size-sm;
-  height: @avatar-size-sm;
+  width: var(--amf-avatar-size-sm);
+  height: var(--amf-avatar-size-sm);
 }
 
 .avatarItemMini {

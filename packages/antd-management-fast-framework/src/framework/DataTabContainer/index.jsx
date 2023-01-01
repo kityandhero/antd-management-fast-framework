@@ -1,15 +1,20 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Divider, Space } from 'antd';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
-import { decorateAvatar } from '../../customComponents/DecorateAvatar';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import {
+  isArray,
+  isBoolean,
+  isObject,
+} from 'antd-management-fast-common/es/utils/tools';
+import { decorateAvatar } from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
 import {
   buildPageHeaderContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
   pageHeaderExtraContent,
-} from '../../customComponents/FunctionComponent';
-import { iconCollection } from '../../utils/constants';
-import { isArray, isBoolean, isObject } from '../../utils/tools';
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+
 import DataSingleView from '../DataSingleView/DataLoad';
 
 import styles from './index.less';

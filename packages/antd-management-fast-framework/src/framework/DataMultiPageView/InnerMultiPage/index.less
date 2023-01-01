@@ -1,7 +1,4 @@
-@import url('../../../style/variable.less');
-@import url('../../../style/utils.less');
-
-@media screen and (min-width: @screen-xxl) {
+@media screen and (min-width: var(--amf-screen-xxl)) {
   .containorBox {
     .containorSearch {
       :global {
@@ -111,13 +108,13 @@
   }
 }
 
-@media screen and (max-width: @screen-lg) {
+@media screen and (max-width: var(--amf-screen-lg)) {
   .tableListForm :global(.ant-form-item) {
     margin-right: 24px;
   }
 }
 
-@media screen and (max-width: @screen-md) {
+@media screen and (max-width: var(--amf-screen-md)) {
   .tableListForm :global(.ant-form-item) {
     margin-right: 8px;
   }

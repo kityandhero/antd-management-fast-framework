@@ -1,20 +1,24 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Avatar, BackTop, Button, Form, Tooltip } from 'antd';
 import React from 'react';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
+import {
+  iconCollection,
+  pageHeaderRenderType,
+} from 'antd-management-fast-common/es/utils/constants';
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
 import {
   avatarImageLoadResultCollection,
   decorateAvatar,
-} from '../../../customComponents/DecorateAvatar';
+} from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
 import {
   buildPageHeaderContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
   buildTagList,
   pageHeaderExtraContent,
-} from '../../../customComponents/FunctionComponent';
-import { iconCollection, pageHeaderRenderType } from '../../../utils/constants';
-import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+
 import BaseView from '../../DataOperation/BaseView';
 
 import styles from './index.less';

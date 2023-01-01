@@ -4,7 +4,8 @@ import {
   isFunction,
   showRuntimeError,
   stringIsNullOrWhiteSpace,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {

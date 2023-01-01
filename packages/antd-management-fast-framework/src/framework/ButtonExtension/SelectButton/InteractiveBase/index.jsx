@@ -1,9 +1,10 @@
-import { selectModeCollection } from '../../../../utils/constants';
+import { selectModeCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   isFunction,
   showRuntimeError,
   toNumber,
-} from '../../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import Base from '../Base';
 
 class InteractiveBase extends Base {

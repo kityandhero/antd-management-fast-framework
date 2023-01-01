@@ -1,6 +1,7 @@
-import { buildButton } from '../../../customComponents/FunctionComponent';
-import { iconCollection } from '../../../utils/constants';
-import { isFunction } from '../../../utils/tools';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { isFunction } from 'antd-management-fast-common/es/utils/tools';
+import { buildButton } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+
 import MultiPageDrawer from '../MultiPageDrawer';
 
 class MultiPageSelectDrawer extends MultiPageDrawer {

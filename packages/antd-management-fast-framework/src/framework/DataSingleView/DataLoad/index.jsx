@@ -1,7 +1,8 @@
 import {
   defaultFormState,
   getDerivedStateFromPropsForUrlParams,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import DataCore from '../DataCore';
 
 class DataLoad extends DataCore {

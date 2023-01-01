@@ -1,172 +1,73 @@
-@import url('colorPalette');
+html {
+  --amf-screen-xs: 480px;
+  --amf-screen-xs-min: var(var(--amf-screen-xs));
+  --amf-screen-sm: 576px;
+  --amf-screen-sm-min: var(--amf-screen-sm);
+  --amf-screen-md: 768px;
+  --amf-screen-md-min: var(--amf-screen-md);
+  --amf-screen-lg-min: 992px;
+  --amf-screen-xl: 1200px;
+  --amf-screen-xl-min: var(--amf-screen-xl);
+  --amf-screen-xxl: 1600px;
+  --amf-screen-xxl-min: var(--amf-screen-xxl);
+  --amf-screen-xs-max: calc(var(--amf-screen-sm-min) - 1px);
+  --amf-screen-sm-max: calc(var(--amf-screen-md-min) - 1px);
+  --amf-screen-md-max: calc(var(--amf-screen-lg-min) - 1px);
+  --amf-screen-lg-max: calc(var(--amf-screen-xl-min) - 1px);
+  --amf-screen-xl-max: calc(var(--amf-screen-xxl-min) - 1px);
+  --amf-border-width-base: 1px;
+  --amf-layout-header-height: 64px;
+  --amf-font-size-base: 14px;
+  --amf-font-size-lg: calc(var(--amf-font-size-base) + 2px);
+  --amf-height-base: 32px;
+  --amf-avatar-size-base: 28px;
+  --amf-avatar-size-lg: 32px;
+  --amf-avatar-size-sm: 22px;
+  --amf-avatar-font-size-base: 16px;
+  --amf-avatar-font-size-lg: 20px;
+  --amf-avatar-font-size-sm: 12px;
+  --amf-line-height-base: 1.5715;
+  --amf-shadow-1-up: 0 -6px 16px -8px rgb(0 0 0 / 8%),
+    0 -9px 28px 0 rgb(0 0 0 / 5%), 0 -12px 48px 16px rgb(0 0 0 / 3%);
+  --amf-shadow-1-down: 0 6px 16px -8px rgb(0 0 0 / 8%),
+    0 9px 28px 0 rgb(0 0 0 / 5%), 0 12px 48px 16px rgb(0 0 0 / 3%);
+  --amf-shadow-1-left: -6px 0 16px -8px rgb(0 0 0 / 8%),
+    -9px 0 28px 0 rgb(0 0 0 / 5%), -12px 0 48px 16px rgb(0 0 0 / 3%);
+  --amf-shadow-1-right: 6px 0 16px -8px rgb(0 0 0 / 8%),
+    9px 0 28px 0 rgb(0 0 0 / 5%), 12px 0 48px 16px rgb(0 0 0 / 3%);
+  --amf-body-background: #fff;
+  --amf-layout-body-background: #f0f2f5;
+  --amf-normal-color: #d9d9d9;
+  --amf-white: #fff;
+  --amf-black: #000;
+  --amf-component-background: #fff;
+  --amf-border-color-base: #ccc; // base border outline a component
+  --amf-border-style-base: solid;
+  --amf-border-color-split: rgb(0 0 0 / 6%); // split border inside a component
+  --amf-border-radius-base: 4px;
+  --amf-border-radius-sm: 2px;
+  --amf-background-color-base: #ccc; // Default grey background color
+  --amf-red-base: #f5222d;
+  --amf-red-6: var(--amf-red-base);
+  --amf-green-base: #52c41a;
+  --amf-green-6: var(--amf-green-base);
+  --amf-blue-base: #1890ff;
+  --amf-blue-6: var(--amf-blue-base);
+  --amf-gold-base: #faad14;
+  --amf-gold-6: var(--amf-gold-base);
 
-// Media queries breakpoints
-// @screen-xs and @screen-xs-min is not used in Grid
-// smallest break point is @screen-md
-@screen-xs: 480px;
-@screen-xs-min: @screen-xs;
-// 👆 Extra small screen / phone
-
-// 👇 Small screen / tablet
-@screen-sm: 576px;
-@screen-sm-min: @screen-sm;
-
-// Medium screen / desktop
-@screen-md: 768px;
-@screen-md-min: @screen-md;
-
-// Large screen / wide desktop
-@screen-lg: 992px;
-@screen-lg-min: @screen-lg;
-
-// Extra large screen / full hd
-@screen-xl: 1200px;
-@screen-xl-min: @screen-xl;
-
-// Extra extra large screen / large desktop
-@screen-xxl: 1600px;
-@screen-xxl-min: @screen-xxl;
-
-// provide a maximum
-@screen-xs-max: (@screen-sm-min - 1px);
-@screen-sm-max: (@screen-md-min - 1px);
-@screen-md-max: (@screen-lg-min - 1px);
-@screen-lg-max: (@screen-xl-min - 1px);
-@screen-xl-max: (@screen-xxl-min - 1px);
-
-@border-width-base: 1px;
-@layout-header-height: 64px;
-@font-size-base: 14px;
-@font-size-lg: @font-size-base + 2px;
-@height-base: 32px;
-
-@avatar-size-base: 28px;
-@avatar-size-lg: 32px;
-@avatar-size-sm: 22px;
-@avatar-font-size-base: 16px;
-@avatar-font-size-lg: 20px;
-@avatar-font-size-sm: 12px;
-
-@line-height-base: 1.5715;
-
-@shadow-1-up: 0 -6px 16px -8px rgba(0, 0, 0, 0.08),
-  0 -9px 28px 0 rgba(0, 0, 0, 0.05), 0 -12px 48px 16px rgba(0, 0, 0, 0.03);
-@shadow-1-down: 0 6px 16px -8px rgba(0, 0, 0, 0.08),
-  0 9px 28px 0 rgba(0, 0, 0, 0.05), 0 12px 48px 16px rgba(0, 0, 0, 0.03);
-@shadow-1-left: -6px 0 16px -8px rgba(0, 0, 0, 0.08),
-  -9px 0 28px 0 rgba(0, 0, 0, 0.05), -12px 0 48px 16px rgba(0, 0, 0, 0.03);
-@shadow-1-right: 6px 0 16px -8px rgba(0, 0, 0, 0.08),
-  9px 0 28px 0 rgba(0, 0, 0, 0.05), 12px 0 48px 16px rgba(0, 0, 0, 0.03);
-
-@body-background: #fff;
-@layout-body-background: #f0f2f5;
-@normal-color: #d9d9d9;
-@white: #fff;
-@black: #000;
-@component-background: #fff;
-
-@border-color-base: hsv(0, 0, 85%); // base border outline a component
-@border-style-base: solid;
-@border-color-split: rgba(0, 0, 0, 0.06); // split border inside a component
-@border-radius-base: 4px;
-@border-radius-sm: 2px;
-
-@background-color-base: hsv(0, 0, 96%); // Default grey background color
-
-@red-base: #f5222d;
-@red-1: color(~`colorPalette('@{red-6}', 1) `);
-@red-2: color(~`colorPalette('@{red-6}', 2) `);
-@red-3: color(~`colorPalette('@{red-6}', 3) `);
-@red-4: color(~`colorPalette('@{red-6}', 4) `);
-@red-5: color(~`colorPalette('@{red-6}', 5) `);
-@red-6: @red-base;
-@red-7: color(~`colorPalette('@{red-6}', 7) `);
-@red-8: color(~`colorPalette('@{red-6}', 8) `);
-@red-9: color(~`colorPalette('@{red-6}', 9) `);
-@red-10: color(~`colorPalette('@{red-6}', 10) `);
-
-@green-base: #52c41a;
-@green-1: color(~`colorPalette('@{green-6}', 1) `);
-@green-2: color(~`colorPalette('@{green-6}', 2) `);
-@green-3: color(~`colorPalette('@{green-6}', 3) `);
-@green-4: color(~`colorPalette('@{green-6}', 4) `);
-@green-5: color(~`colorPalette('@{green-6}', 5) `);
-@green-6: @green-base;
-@green-7: color(~`colorPalette('@{green-6}', 7) `);
-@green-8: color(~`colorPalette('@{green-6}', 8) `);
-@green-9: color(~`colorPalette('@{green-6}', 9) `);
-@green-10: color(~`colorPalette('@{green-6}', 10) `);
-
-@blue-base: #1890ff;
-@blue-1: color(~`colorPalette('@{blue-6}', 1) `);
-@blue-2: color(~`colorPalette('@{blue-6}', 2) `);
-@blue-3: color(~`colorPalette('@{blue-6}', 3) `);
-@blue-4: color(~`colorPalette('@{blue-6}', 4) `);
-@blue-5: color(~`colorPalette('@{blue-6}', 5) `);
-@blue-6: @blue-base;
-@blue-7: color(~`colorPalette('@{blue-6}', 7) `);
-@blue-8: color(~`colorPalette('@{blue-6}', 8) `);
-@blue-9: color(~`colorPalette('@{blue-6}', 9) `);
-@blue-10: color(~`colorPalette('@{blue-6}', 10) `);
-
-@gold-base: #faad14;
-@gold-1: color(~`colorPalette('@{gold-6}', 1) `);
-@gold-2: color(~`colorPalette('@{gold-6}', 2) `);
-@gold-3: color(~`colorPalette('@{gold-6}', 3) `);
-@gold-4: color(~`colorPalette('@{gold-6}', 4) `);
-@gold-5: color(~`colorPalette('@{gold-6}', 5) `);
-@gold-6: @gold-base;
-@gold-7: color(~`colorPalette('@{gold-6}', 7) `);
-@gold-8: color(~`colorPalette('@{gold-6}', 8) `);
-@gold-9: color(~`colorPalette('@{gold-6}', 9) `);
-@gold-10: color(~`colorPalette('@{gold-6}', 10) `);
-
-// Color used by default to control hover and active backgrounds and for
-// alert info backgrounds.
-@primary-1: mix(
-  color(~`colorPalette('@{primary-color}', 8) `),
-  @component-background,
-  15%
-);
-@primary-2: mix(
-  color(~`colorPalette('@{primary-color}', 7) `),
-  @component-background,
-  25%
-);
-@primary-3: mix(@primary-color, @component-background, 30%);
-@primary-4: mix(@primary-color, @component-background, 45%);
-@primary-5: mix(@primary-color, @component-background, 65%);
-@primary-6: @primary-color;
-@primary-7: mix(
-  color(~`colorPalette('@{primary-color}', 5) `),
-  @component-background,
-  90%
-);
-@primary-8: mix(
-  color(~`colorPalette('@{primary-color}', 4) `),
-  @component-background,
-  95%
-);
-@primary-9: mix(
-  color(~`colorPalette('@{primary-color}', 3) `),
-  @component-background,
-  97%
-);
-@primary-10: mix(
-  color(~`colorPalette('@{primary-color}', 2) `),
-  @component-background,
-  98%
-);
-
-@error-color: @red-5;
-@success-color: @green-6;
-@warning-color: @gold-6;
-@primary-color: @blue-6;
-@heading-color: fade(@black, 85%);
-@text-color: fade(@black, 85%);
-@text-color-secondary: fade(@black, 45%);
-@disabled-color: fade(#000, 25%);
-
-@popover-bg: @component-background;
-
-@input-height-base: @height-base;
+  // Color used by default to control hover and active backgrounds and for
+  // alert info backgrounds.
+  --amf-primary-1: var(--amf-component-background);
+  --amf-primary-6: var(--amf-primary-color);
+  --amf-error-color: var(--amf-red-5);
+  --amf-success-color: var(--amf-green-6);
+  --amf-warning-color: var(--amf-gold-6);
+  --amf-primary-color: var(--amf-blue-6);
+  --amf-heading-color: var(--amf-black);
+  --amf-text-color: var(--amf-black);
+  --amf-text-color-secondary: var(--amf-black);
+  --amf-disabled-color: var(#000);
+  --amf-popover-bg: var(--amf-component-background);
+  --amf-input-height-base: var(--amf-height-base);
+}

@@ -1,27 +1,28 @@
 import { Affix, Col, Divider, Drawer, Form, Layout, Row, Space } from 'antd';
 import { Fragment } from 'react';
 
-import FlexBox from '../../../customComponents/FlexBox';
-import {
-  buildButton,
-  buildCustomSelect,
-  buildDropdown,
-  buildDropdownButton,
-  buildDropdownEllipsis,
-} from '../../../customComponents/FunctionComponent';
-import IconInfo from '../../../customComponents/IconInfo';
 import {
   cardConfig,
   drawerConfig,
   iconCollection,
-} from '../../../utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   defaultFormState,
   isArray,
   isFunction,
   isUndefined,
   stringIsNullOrWhiteSpace,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
+import {
+  buildButton,
+  buildCustomSelect,
+  buildDropdown,
+  buildDropdownButton,
+  buildDropdownEllipsis,
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+
 import BaseWindow from '../../DataOperation/BaseWindow';
 
 import styles from './index.less';

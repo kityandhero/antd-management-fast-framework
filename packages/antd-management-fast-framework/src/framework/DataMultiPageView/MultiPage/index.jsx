@@ -3,7 +3,7 @@ import { message } from 'antd';
 import {
   getParamsDataCache,
   setParamsDataCache,
-} from '../../../utils/globalStorageAssist';
+} from 'antd-management-fast-common/es/utils/globalStorageAssist';
 import {
   defaultPageListState,
   isUndefined,
@@ -12,7 +12,8 @@ import {
   showRuntimeError,
   showWarnMessage,
   stringIsNullOrWhiteSpace,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import Base from '../../DataListView/Base';
 
 class MultiPage extends Base {

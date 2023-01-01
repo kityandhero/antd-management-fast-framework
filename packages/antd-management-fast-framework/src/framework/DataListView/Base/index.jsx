@@ -1,4 +1,3 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import {
   Affix,
   Alert,
@@ -19,12 +18,23 @@ import {
   Tooltip,
 } from 'antd';
 import React from 'react';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
+import {
+  cardConfig,
+  columnFacadeMode,
+  datetimeFormat,
+  formNameCollection,
+  iconCollection,
+  listViewConfig,
+  pageHeaderRenderType,
+  searchCardConfig,
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   avatarImageLoadResultCollection,
   decorateAvatar,
-} from '../../../customComponents/DecorateAvatar';
-import FlexBox from '../../../customComponents/FlexBox';
+} from 'antd-management-fast-common/es/utils/DecorateAvatar';
+import FlexBox from 'antd-management-fast-common/es/utils/FlexBox';
 import {
   adjustTableExpandConfig,
   buildColumnList,
@@ -35,18 +45,8 @@ import {
   buildPageHeaderTitle,
   buildTagList,
   pageHeaderExtraContent,
-} from '../../../customComponents/FunctionComponent';
-import StandardTableCustom from '../../../customComponents/StandardTableCustom';
-import {
-  cardConfig,
-  columnFacadeMode,
-  datetimeFormat,
-  formNameCollection,
-  iconCollection,
-  listViewConfig,
-  pageHeaderRenderType,
-  searchCardConfig,
-} from '../../../utils/constants';
+} from 'antd-management-fast-common/es/utils/FunctionComponent';
+import StandardTableCustom from 'antd-management-fast-common/es/utils/StandardTableCustom';
 import {
   buildFieldDescription,
   defaultListState,
@@ -57,7 +57,8 @@ import {
   showWarnMessage,
   toMoment,
   toNumber,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 import BatchAction from '../BatchAction';
 import ColumnSetting from '../ColumnSetting';

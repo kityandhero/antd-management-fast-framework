@@ -1,19 +1,13 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Avatar, BackTop, Form, message } from 'antd';
 import React from 'react';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
-import { decorateAvatar } from '../../../customComponents/DecorateAvatar';
-import {
-  buildPageHeaderTagWrapper,
-  buildPageHeaderTitle,
-  pageHeaderExtraContent,
-} from '../../../customComponents/FunctionComponent';
 import {
   datetimeFormat,
   formNameCollection,
   iconCollection,
-} from '../../../utils/constants';
-import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
+} from 'antd-management-fast-common/es/utils/constants';
+import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   defaultFormState,
   formatDatetime,
@@ -21,7 +15,14 @@ import {
   isUndefined,
   recordObject,
   showRuntimeError,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import { decorateAvatar } from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
+import {
+  buildPageHeaderTagWrapper,
+  buildPageHeaderTitle,
+  pageHeaderExtraContent,
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+
 import DataCore from '../../DataSingleView/DataCore';
 
 import styles from './index.less';

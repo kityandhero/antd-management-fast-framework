@@ -1,12 +1,10 @@
-@import url('~antd-management-fast-framework/es/style/variable.less');
-
 .container > * {
-  background-color: @popover-bg;
+  background-color: var(--amf-popover-bg);
   border-radius: 4px;
-  box-shadow: @shadow-1-down;
+  box-shadow: var(--amf-shadow-1-down);
 }
 
-@media screen and (max-width: @screen-xs) {
+@media screen and (max-width: var(var(--amf-screen-xs))) {
   .container {
     width: 100% !important;
   }

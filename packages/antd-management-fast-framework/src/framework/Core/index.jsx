@@ -1,8 +1,8 @@
-import Base from '../../framework/Base';
 import {
   defaultCoreState,
   getDerivedStateFromPropsForUrlParamsCore,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import Base from 'antd-management-fast-component/es/customComponents/Base';
 
 class Core extends Base {
   lastLoadParams = null;

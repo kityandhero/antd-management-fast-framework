@@ -1,5 +1,9 @@
-import { datetimeFormat, formNameCollection } from '../../../utils/constants';
-import { formatDatetime } from '../../../utils/tools';
+import {
+  datetimeFormat,
+  formNameCollection,
+} from 'antd-management-fast-common/es/utils/constants';
+import { formatDatetime } from 'antd-management-fast-common/es/utils/tools';
+
 import Base from '../Base';
 
 class BaseNeedlessLoadDrawer extends Base {

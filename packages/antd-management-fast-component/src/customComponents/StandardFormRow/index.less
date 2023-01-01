@@ -1,10 +1,8 @@
-@import url('../../style/variable.less');
-
 .standardFormRow {
   display: flex;
   margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px dashed @border-color-split;
+  border-bottom: 1px dashed var(--amf-border-color-split);
 
   :global {
     .ant-form-item {
@@ -13,7 +11,7 @@
 
     .ant-form-item-label label {
       margin-right: 0;
-      color: @text-color;
+      color: var(--amf-text-color);
     }
 
     .ant-form-item-label,
@@ -26,8 +24,8 @@
   .label {
     flex: 0 0 auto;
     margin-right: 24px;
-    color: @heading-color;
-    font-size: @font-size-base;
+    color: var(--amf-heading-color);
+    font-size: var(--amf-font-size-base);
     text-align: right;
 
     & > span {

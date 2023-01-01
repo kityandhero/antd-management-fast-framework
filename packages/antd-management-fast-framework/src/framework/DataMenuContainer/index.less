@@ -1,17 +1,16 @@
-@import url('../../style/variable.less');
-
 .main {
   display: flex;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: @body-background;
+  background-color: var(--amf-body-background);
 
   .leftMenu {
     width: 224px;
     margin-top: 16px;
     margin-bottom: 16px;
-    border-right: @border-width-base @border-style-base @border-color-split;
+    border-right: var(--amf-border-width-base) var(--amf-border-style-base)
+      var(--amf-border-color-split);
 
     :global {
       .ant-menu-inline {
@@ -50,7 +49,7 @@
       color: #ff4000;
       font-size: 48px;
       line-height: 48px;
-      border-radius: @border-radius-base;
+      border-radius: var(--amf-border-radius-base);
     }
 
     .dingding {
@@ -60,31 +59,31 @@
       font-size: 32px;
       line-height: 32px;
       background-color: #2eabff;
-      border-radius: @border-radius-base;
+      border-radius: var(--amf-border-radius-base);
     }
 
     .alipay {
       color: #2eabff;
       font-size: 48px;
       line-height: 48px;
-      border-radius: @border-radius-base;
+      border-radius: var(--amf-border-radius-base);
     }
   }
 
   font.strong {
-    color: @success-color;
+    color: var(--amf-success-color);
   }
 
   font.medium {
-    color: @warning-color;
+    color: var(--amf-warning-color);
   }
 
   font.weak {
-    color: @error-color;
+    color: var(--amf-error-color);
   }
 }
 
-@media screen and (max-width: @screen-md) {
+@media screen and (max-width: var(--amf-screen-md)) {
   .main {
     flex-direction: column;
 

@@ -1,10 +1,11 @@
-import { checkHasAuthority } from '../../utils/authority';
+import { checkHasAuthority } from 'antd-management-fast-common/es/utils/authority';
 import {
   getDerivedStateFromPropsForUrlParams,
   isFunction,
   redirectToPath,
   showRuntimeError,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import SupplementWrapper from '../CustomWrapper/SupplementWrapper';
 
 class AuthorizationWrapper extends SupplementWrapper {

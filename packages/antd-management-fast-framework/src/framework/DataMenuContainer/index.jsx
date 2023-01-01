@@ -1,13 +1,14 @@
 import { Menu } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
 
-import IconInfo from '../../customComponents/IconInfo';
 import {
   endsWith,
   isArray,
   removeEndMatch,
   stringIsNullOrWhiteSpace,
-} from '../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+
 import AuthorizationWrapper from '../AuthorizationWrapper';
 
 import styles from './index.less';
@@ -125,6 +126,8 @@ class DataMenuContainer extends AuthorizationWrapper {
 
         return true;
       }
+
+      return false;
     });
 
     if (!selectKeyExist) {
@@ -163,6 +166,8 @@ class DataMenuContainer extends AuthorizationWrapper {
 
         return true;
       }
+
+      return false;
     });
 
     return result;
@@ -193,6 +198,8 @@ class DataMenuContainer extends AuthorizationWrapper {
 
         return true;
       }
+
+      return false;
     });
 
     return result || {};

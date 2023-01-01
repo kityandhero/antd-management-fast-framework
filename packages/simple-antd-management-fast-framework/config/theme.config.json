@@ -11,49 +11,49 @@
       "key": "dust",
       "fileName": "dust.css",
       "modifyVars": {
-        "@primary-color": "#F5222D"
+        "--amf-primary-color": "#F5222D"
       }
     },
     {
       "key": "volcano",
       "fileName": "volcano.css",
       "modifyVars": {
-        "@primary-color": "#FA541C"
+        "--amf-primary-color": "#FA541C"
       }
     },
     {
       "key": "sunset",
       "fileName": "sunset.css",
       "modifyVars": {
-        "@primary-color": "#FAAD14"
+        "--amf-primary-color": "#FAAD14"
       }
     },
     {
       "key": "cyan",
       "fileName": "cyan.css",
       "modifyVars": {
-        "@primary-color": "#13C2C2"
+        "--amf-primary-color": "#13C2C2"
       }
     },
     {
       "key": "green",
       "fileName": "green.css",
       "modifyVars": {
-        "@primary-color": "#52C41A"
+        "--amf-primary-color": "#52C41A"
       }
     },
     {
       "key": "geekblue",
       "fileName": "geekblue.css",
       "modifyVars": {
-        "@primary-color": "#2F54EB"
+        "--amf-primary-color": "#2F54EB"
       }
     },
     {
       "key": "purple",
       "fileName": "purple.css",
       "modifyVars": {
-        "@primary-color": "#722ED1"
+        "--amf-primary-color": "#722ED1"
       }
     },
     {
@@ -61,7 +61,7 @@
       "theme": "dark",
       "fileName": "dark-dust.css",
       "modifyVars": {
-        "@primary-color": "#F5222D"
+        "--amf-primary-color": "#F5222D"
       }
     },
     {
@@ -69,7 +69,7 @@
       "theme": "dark",
       "fileName": "dark-volcano.css",
       "modifyVars": {
-        "@primary-color": "#FA541C"
+        "--amf-primary-color": "#FA541C"
       }
     },
     {
@@ -77,7 +77,7 @@
       "theme": "dark",
       "fileName": "dark-sunset.css",
       "modifyVars": {
-        "@primary-color": "#FAAD14"
+        "--amf-primary-color": "#FAAD14"
       }
     },
     {
@@ -85,7 +85,7 @@
       "theme": "dark",
       "fileName": "dark-cyan.css",
       "modifyVars": {
-        "@primary-color": "#13C2C2"
+        "--amf-primary-color": "#13C2C2"
       }
     },
     {
@@ -93,7 +93,7 @@
       "theme": "dark",
       "fileName": "dark-green.css",
       "modifyVars": {
-        "@primary-color": "#52C41A"
+        "--amf-primary-color": "#52C41A"
       }
     },
     {
@@ -101,7 +101,7 @@
       "theme": "dark",
       "fileName": "dark-geekblue.css",
       "modifyVars": {
-        "@primary-color": "#2F54EB"
+        "--amf-primary-color": "#2F54EB"
       }
     },
     {
@@ -109,7 +109,7 @@
       "theme": "dark",
       "fileName": "dark-purple.css",
       "modifyVars": {
-        "@primary-color": "#722ED1"
+        "--amf-primary-color": "#722ED1"
       }
     }
   ]

@@ -1,9 +1,9 @@
-import { PushpinOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Popover, Tooltip } from 'antd';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { PushpinOutlined } from '@ant-design/icons';
 
-import { iconCollection } from '../../../utils/constants';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 
 import DnDItem from './DndItem';
 

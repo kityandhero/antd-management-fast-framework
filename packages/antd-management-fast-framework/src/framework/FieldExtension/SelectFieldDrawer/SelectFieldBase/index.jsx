@@ -1,7 +1,11 @@
 import { Button, Divider } from 'antd';
 
-import { iconCollection } from '../../../../utils/constants';
-import { isFunction, showRuntimeError } from '../../../../utils/tools';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import {
+  isFunction,
+  showRuntimeError,
+} from 'antd-management-fast-common/es/utils/tools';
+
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
 
 class SelectFieldBase extends SupplementWrapper {

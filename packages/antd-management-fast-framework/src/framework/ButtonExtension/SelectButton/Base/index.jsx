@@ -1,6 +1,7 @@
 import { Button } from 'antd';
 
-import { showRuntimeError } from '../../../../utils/tools';
+import { showRuntimeError } from 'antd-management-fast-common/es/utils/tools';
+
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
 
 class Base extends SupplementWrapper {

@@ -1,12 +1,16 @@
 import { Form, Modal, Spin } from 'antd';
 
-import FlexText from '../../../customComponents/FlexText';
-import { cardConfig, iconCollection } from '../../../utils/constants';
+import {
+  cardConfig,
+  iconCollection,
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   defaultFormState,
   isUndefined,
   stringIsNullOrWhiteSpace,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import FlexText from 'antd-management-fast-component/es/customComponents/FlexText';
+
 import BaseWindow from '../../DataOperation/BaseWindow';
 
 import styles from './index.less';

@@ -5,9 +5,9 @@
   word-break: break-all;
 }
 
-.textOverflowMulti(@line: 3, @bg: #fff) {
+.textOverflowMulti {
   position: relative;
-  max-height: @line * 1.5em;
+  max-height: calc(var(--amf-line) * 1.5em);
   margin-right: -1em;
   padding-right: 1em;
   overflow: hidden;

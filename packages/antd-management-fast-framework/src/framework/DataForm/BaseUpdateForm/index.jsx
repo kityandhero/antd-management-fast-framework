@@ -1,12 +1,13 @@
 import { message } from 'antd';
 
-import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
+import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   isFunction,
   isUndefined,
   recordObject,
   showRuntimeError,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import DataSingleView from '../../DataSingleView/DataLoad';
 
 class BaseUpdateForm extends DataSingleView {

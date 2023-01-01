@@ -1,5 +1,3 @@
-@import url('../../style/variable.less');
-
 .exception {
   display: flex;
   align-items: center;
@@ -49,7 +47,7 @@
 
     .desc {
       margin-bottom: 16px;
-      color: @text-color-secondary;
+      color: var(--amf-text-color-secondary);
       font-size: 20px;
       line-height: 28px;
     }
@@ -62,7 +60,7 @@
   }
 }
 
-@media screen and (max-width: @screen-xl) {
+@media screen and (max-width: var(--amf-screen-xl)) {
   .exception {
     .imgBlock {
       padding-right: 88px;
@@ -70,7 +68,7 @@
   }
 }
 
-@media screen and (max-width: @screen-sm) {
+@media screen and (max-width: var(--amf-screen-sm)) {
   .exception {
     display: block;
     text-align: center;
@@ -82,7 +80,7 @@
   }
 }
 
-@media screen and (max-width: @screen-xs) {
+@media screen and (max-width: var(var(--amf-screen-xs))) {
   .exception {
     .imgBlock {
       margin-bottom: -24px;

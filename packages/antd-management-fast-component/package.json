@@ -47,6 +47,7 @@
     "@antv/data-set": "^0.11.8",
     "@antv/l7": "^2.12.1",
     "@antv/l7-maps": "^2.12.1",
+    "@tinymce/tinymce-react": "^4.2.0",
     "@umijs/max": "^4.0.41",
     "antd": "^5.1.1",
     "antd-management-fast-common": "1.0.0",

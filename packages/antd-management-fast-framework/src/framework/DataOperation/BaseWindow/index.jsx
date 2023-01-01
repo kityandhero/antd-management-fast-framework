@@ -1,14 +1,15 @@
 import { message } from 'antd';
 import React from 'react';
 
-import { pretreatmentRequestParams } from '../../../utils/requestAssistor';
+import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   isFunction,
   isUndefined,
   recordObject,
   showRuntimeError,
   stringIsNullOrWhiteSpace,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import Base from '../Base';
 
 class BaseWindow extends Base {

@@ -1,4 +1,5 @@
-import { getDerivedStateFromPropsForUrlParams } from '../../../utils/tools';
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
+
 import SupplementCore from '../SupplementCore';
 
 /**

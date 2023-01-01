@@ -1,4 +1,5 @@
-import { isFunction } from '../../../utils/tools';
+import { isFunction } from 'antd-management-fast-common/es/utils/tools';
+
 import BaseLoadModal from '../BaseLoadModal';
 
 class BaseSelectModal extends BaseLoadModal {

@@ -1,5 +1,3 @@
-@import url('~antd-management-fast-framework/es/style/variable.less');
-
 .list {
   max-height: 400px;
   overflow: auto;
@@ -37,7 +35,7 @@
     }
 
     &:hover {
-      background: @primary-1;
+      background: var(--amf-primary-1);
     }
 
     .title {
@@ -47,27 +45,27 @@
 
     .description {
       font-size: 12px;
-      line-height: @line-height-base;
+      line-height: var(--amf-line-height-base);
     }
 
     .datetime {
       margin-top: 4px;
       font-size: 12px;
-      line-height: @line-height-base;
+      line-height: var(--amf-line-height-base);
     }
 
     .extra {
       float: right;
       margin-top: -1.5px;
       margin-right: 0;
-      color: @text-color-secondary;
+      color: var(--amf-text-color-secondary);
       font-weight: normal;
     }
   }
 
   .loadMore {
     padding: 8px 0;
-    color: @primary-6;
+    color: var(--amf-primary-6);
     text-align: center;
     cursor: pointer;
 
@@ -80,7 +78,7 @@
 
 .notFound {
   padding: 73px 0 88px;
-  color: @text-color-secondary;
+  color: var(--amf-text-color-secondary);
   text-align: center;
 
   img {
@@ -92,11 +90,11 @@
 
 .bottomBar {
   height: 46px;
-  color: @text-color;
+  color: var(--amf-text-color);
   line-height: 46px;
   text-align: center;
-  border-top: 1px solid @border-color-split;
-  border-radius: 0 0 @border-radius-base @border-radius-base;
+  border-top: 1px solid var(--amf-border-color-split);
+  border-radius: 0 0 var(--amf-border-radius-base) var(--amf-border-radius-base);
   transition: all 0.3s;
 
   div {
@@ -111,7 +109,7 @@
     }
 
     &:not(:only-child):last-child {
-      border-left: 1px solid @border-color-split;
+      border-left: 1px solid var(--amf-border-color-split);
     }
   }
 }

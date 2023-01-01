@@ -1,4 +1,5 @@
-import { drawerConfig } from '../../../utils/constants';
+import { drawerConfig } from 'antd-management-fast-common/es/utils/constants';
+
 import Base from '../Base';
 
 class BaseSaveDrawer extends Base {

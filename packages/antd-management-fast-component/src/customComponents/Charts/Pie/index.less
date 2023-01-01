@@ -1,14 +1,10 @@
-@import url('../../../style/variable.less');
-
 .pie {
   position: relative;
 
   .chart {
     position: relative;
   }
-  // &.hasLegend .chart {
-  //   width: ~'calc(100% - 240px)';
-  // }
+
   .legend {
     min-width: 200px;
     margin: 0 20px;
@@ -43,15 +39,15 @@
     width: 1px;
     height: 16px;
     margin-right: 8px;
-    background-color: @border-color-split;
+    background-color: var(--amf-border-color-split);
   }
 
   .legendTitle {
-    color: @text-color;
+    color: var(--amf-text-color);
   }
 
   .percent {
-    color: @text-color-secondary;
+    color: var(--amf-text-color-secondary);
   }
 
   .value {
@@ -74,7 +70,7 @@
     & > h4 {
       height: 22px;
       margin-bottom: 8px;
-      color: @text-color-secondary;
+      color: var(--amf-text-color-secondary);
       font-weight: normal;
       font-size: 14px;
       line-height: 22px;
@@ -83,7 +79,7 @@
     & > p {
       display: block;
       height: 32px;
-      color: @heading-color;
+      color: var(--amf-heading-color);
       font-size: 1.2em;
       line-height: 32px;
       white-space: nowrap;

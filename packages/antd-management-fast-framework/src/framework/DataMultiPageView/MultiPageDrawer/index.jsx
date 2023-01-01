@@ -1,4 +1,3 @@
-import { ReadOutlined } from '@ant-design/icons';
 import {
   Button,
   Card,
@@ -12,15 +11,17 @@ import {
   Tooltip,
 } from 'antd';
 import QueueAnim from 'rc-queue-anim';
+import { ReadOutlined } from '@ant-design/icons';
 
-import { buildListViewItemActionSelect } from '../../../customComponents/FunctionComponent';
 import {
   contentConfig,
   iconCollection,
   listViewConfig,
   notificationTypeCollection,
-} from '../../../utils/constants';
-import { isFunction, notify } from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/constants';
+import { isFunction, notify } from 'antd-management-fast-common/es/utils/tools';
+import { buildListViewItemActionSelect } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+
 import ColumnSetting from '../../DataListView/ColumnSetting';
 import DensityAction from '../../DataListView/DensityAction';
 import MultiPage from '../MultiPage';

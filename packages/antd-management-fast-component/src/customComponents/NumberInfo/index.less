@@ -1,25 +1,23 @@
-@import url('../../style/variable.less');
-
 .numberInfo {
   .suffix {
     margin-left: 4px;
-    color: @text-color;
+    color: var(--amf-text-color);
     font-size: 16px;
     font-style: normal;
   }
 
   .numberInfoTitle {
     margin-bottom: 16px;
-    color: @text-color;
-    font-size: @font-size-lg;
+    color: var(--amf-text-color);
+    font-size: var(--amf-font-size-lg);
     transition: all 0.3s;
   }
 
   .numberInfoSubTitle {
     height: 22px;
     overflow: hidden;
-    color: @text-color-secondary;
-    font-size: @font-size-base;
+    color: var(--amf-text-color-secondary);
+    font-size: var(--amf-font-size-base);
     line-height: 22px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -38,15 +36,15 @@
       display: inline-block;
       height: 32px;
       margin-right: 32px;
-      color: @heading-color;
+      color: var(--amf-heading-color);
       font-size: 24px;
       line-height: 32px;
     }
 
     .subTotal {
       margin-right: 0;
-      color: @text-color-secondary;
-      font-size: @font-size-lg;
+      color: var(--amf-text-color-secondary);
+      font-size: var(--amf-font-size-lg);
       vertical-align: top;
 
       i {
@@ -57,11 +55,11 @@
 
       :global {
         .anticon-caret-up {
-          color: @red-6;
+          color: var(--amf-red-6);
         }
 
         .anticon-caret-down {
-          color: @green-6;
+          color: var(--amf-green-6);
         }
       }
     }
@@ -71,7 +69,7 @@
 .numberInfolight {
   .numberInfoValue {
     & > span {
-      color: @text-color;
+      color: var(--amf-text-color);
     }
   }
 }

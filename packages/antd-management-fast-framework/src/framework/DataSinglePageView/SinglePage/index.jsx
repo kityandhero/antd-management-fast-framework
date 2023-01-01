@@ -7,7 +7,8 @@ import {
   showRuntimeError,
   stringIsNullOrWhiteSpace,
   toNumber,
-} from '../../../utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+
 import Base from '../../DataListView/Base';
 
 class SinglePage extends Base {

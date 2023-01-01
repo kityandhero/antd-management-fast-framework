@@ -9,6 +9,9 @@
 # production
 **/dist
 
+# publish
+**/es
+
 # idea
 **/.idea
 
@@ -39,7 +42,7 @@ functions/mock
 
 # umi
 .umi
-.umi-production 
+.umi-production
 
 # screenshot
 screenshot

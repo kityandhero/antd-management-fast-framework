@@ -1,7 +1,7 @@
 import { Button, Dropdown, Menu } from 'antd';
 import { ConfigConsumer } from 'antd/lib/config-provider/context';
 
-import { iconCollection } from '../../../utils/constants';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 
 import styles from './index.less';
 

@@ -1,6 +1,7 @@
-import Common from '../../../framework/Common';
-import { getTokenObject } from '../../../utils/globalStorageAssist';
-import { pretreatmentRemoteSingleData } from '../../../utils/requestAssistor';
+import { getTokenObject } from 'antd-management-fast-common/es/utils/globalStorageAssist';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
+
+import Common from '../../Common';
 
 class SupplementCore extends Common {
   getUploadTokenObject = () => {

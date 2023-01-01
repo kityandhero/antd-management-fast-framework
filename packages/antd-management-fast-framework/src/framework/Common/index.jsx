@@ -13,15 +13,49 @@ import {
 } from 'antd';
 import { Fragment } from 'react';
 
-import FadeBox from '../../customComponents/AnimalBox/FadeBox';
-import QueueBox from '../../customComponents/AnimalBox/QueueBox';
-import AudioUpload from '../../customComponents/AudioUpload';
-import ColorText from '../../customComponents/ColorText';
-import TinymceWrapper from '../../customComponents/Editor/TinymceWrapper';
-import FileBase64Upload from '../../customComponents/FileBase64Upload';
-import FileUpload from '../../customComponents/FileUpload';
-import FlexBox from '../../customComponents/FlexBox';
-import FlexText from '../../customComponents/FlexText';
+import {
+  cardConfig,
+  contentConfig,
+  datetimeFormat,
+  defaultEmptyImage,
+  extraBuildType,
+  iconCollection,
+} from 'antd-management-fast-common/es/utils/constants';
+import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
+import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
+import {
+  buildFieldDescription,
+  copyToClipboard,
+  defaultCommonState,
+  formatDatetime,
+  getDerivedStateFromPropsForUrlParams,
+  inCollection,
+  isArray,
+  isBoolean,
+  isEqual,
+  isFunction,
+  isObject,
+  recordObject,
+  recordText,
+  refitCommonData,
+  showErrorMessage,
+  showRuntimeError,
+  stringIsEmpty,
+  stringIsNullOrWhiteSpace,
+  toDatetime,
+  toNumber,
+  toString,
+} from 'antd-management-fast-common/es/utils/tools';
+import { isUndefined } from 'antd-management-fast-common/es/utils/typeCheck';
+import FadeBox from 'antd-management-fast-component/es/customComponents/AnimalBox/FadeBox';
+import QueueBox from 'antd-management-fast-component/es/customComponents/AnimalBox/QueueBox';
+import AudioUpload from 'antd-management-fast-component/es/customComponents/AudioUpload';
+import ColorText from 'antd-management-fast-component/es/customComponents/ColorText';
+import TinymceWrapper from 'antd-management-fast-component/es/customComponents/Editor/TinymceWrapper';
+import FileBase64Upload from 'antd-management-fast-component/es/customComponents/FileBase64Upload';
+import FileUpload from 'antd-management-fast-component/es/customComponents/FileUpload';
+import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
+import FlexText from 'antd-management-fast-component/es/customComponents/FlexText';
 import {
   buildButton,
   buildButtonGroup,
@@ -62,49 +96,16 @@ import {
   buildSyntaxHighlighter,
   buildTree,
   buildTreeSelect,
-} from '../../customComponents/FunctionComponent';
-import { renderFormWhetherSelect } from '../../customComponents/FunctionSupplement/Whether';
-import HelpBox from '../../customComponents/HelpBox';
-import HelpCard from '../../customComponents/HelpCard';
-import HtmlBox from '../../customComponents/HtmlBox';
-import IconInfo from '../../customComponents/IconInfo';
-import ImageBox from '../../customComponents/ImageBox';
-import ImageUpload from '../../customComponents/ImageUpload';
-import VideoUpload from '../../customComponents/VideoUpload';
-import {
-  cardConfig,
-  contentConfig,
-  datetimeFormat,
-  defaultEmptyImage,
-  extraBuildType,
-  iconCollection,
-} from '../../utils/constants';
-import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
-import { pretreatmentRequestParams } from '../../utils/requestAssistor';
-import {
-  buildFieldDescription,
-  copyToClipboard,
-  defaultCommonState,
-  formatDatetime,
-  getDerivedStateFromPropsForUrlParams,
-  inCollection,
-  isArray,
-  isBoolean,
-  isEqual,
-  isFunction,
-  isObject,
-  recordObject,
-  recordText,
-  refitCommonData,
-  showErrorMessage,
-  showRuntimeError,
-  stringIsEmpty,
-  stringIsNullOrWhiteSpace,
-  toDatetime,
-  toNumber,
-  toString,
-} from '../../utils/tools';
-import { isUndefined } from '../../utils/typeCheck';
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { renderFormWhetherSelect } from 'antd-management-fast-component/es/customComponents/FunctionSupplement/Whether';
+import HelpBox from 'antd-management-fast-component/es/customComponents/HelpBox';
+import HelpCard from 'antd-management-fast-component/es/customComponents/HelpCard';
+import HtmlBox from 'antd-management-fast-component/es/customComponents/HtmlBox';
+import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+import ImageBox from 'antd-management-fast-component/es/customComponents/ImageBox';
+import ImageUpload from 'antd-management-fast-component/es/customComponents/ImageUpload';
+import VideoUpload from 'antd-management-fast-component/es/customComponents/VideoUpload';
+
 import Core from '../Core';
 
 import styles from './index.less';
