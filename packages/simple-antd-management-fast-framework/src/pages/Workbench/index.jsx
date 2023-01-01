@@ -1,22 +1,26 @@
 import { Avatar } from 'antd';
 import { connect } from 'umi';
 
-import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
-import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
-import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
+import { handleItem } from 'antd-management-fast-common/es/utils/actionAssist';
 import {
   columnFacadeMode,
   convertCollection,
   defaultUserAvatar,
   iconCollection,
   listViewConfig,
-} from 'antd-management-fast-framework/es/utils/constants';
-import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/constants';
+import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
+import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
+import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
 import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
-import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Article/Assist/action';
+import {
+  refreshCacheAction,
+  setOfflineAction,
+  setOnlineAction,
+} from '../Article/Assist/action';
 import { getStatusBadge } from '../Article/Assist/tools';
 import { fieldData, statusCollection } from '../Article/Common/data';
 
@@ -151,12 +155,15 @@ class Index extends MultiPage {
   establishDataContainerExtraActionCollectionConfig = () => {
     return [
       {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconCollection.plus,
         text: '新增文章',
         handleClick: this.goToAdd,
-        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+        hidden: !this.checkAuthority(
+          accessWayCollection.article.addBasicInfo.permission,
+        ),
       },
     ];
   };
@@ -188,7 +195,9 @@ class Index extends MultiPage {
           key: 'showUpdateBasicInfoDrawer',
           icon: iconCollection.edit,
           text: '编辑[侧拉]',
-          hidden: !this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.updateBasicInfo.permission,
+          ),
         },
         {
           key: 'setOnline',
@@ -196,7 +205,9 @@ class Index extends MultiPage {
           uponDivider: true,
           icon: iconCollection.playCircle,
           text: '设为上线',
-          hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.setOnline.permission,
+          ),
           disabled: itemStatus === statusCollection.online,
           confirm: {
             title: '将要设置为上线，确定吗？',
@@ -206,7 +217,9 @@ class Index extends MultiPage {
           key: 'setOffline',
           icon: iconCollection.pauseCircle,
           text: '设为下线',
-          hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.setOffline.permission,
+          ),
           disabled: itemStatus === statusCollection.offline,
           confirm: {
             title: '将要设置为下线，确定吗？',
@@ -218,7 +231,9 @@ class Index extends MultiPage {
           uponDivider: true,
           icon: iconCollection.reload,
           text: '刷新缓存',
-          hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.refreshCache.permission,
+          ),
           confirm: {
             title: '将要刷新缓存，确定吗？',
           },

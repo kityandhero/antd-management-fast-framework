@@ -1,4 +1,5 @@
 import { buildConfig } from 'antd-management-fast-framework/es/configGroup/configGeneral';
+
 import pageRoutes from './router.config';
 
 const config = buildConfig({

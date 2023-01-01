@@ -2,9 +2,13 @@ import {
   reducerCommonCollection,
   reducerCommonNameCollection,
   tacitlyState,
-} from 'antd-management-fast-framework/es/utils/dva';
+} from 'antd-management-fast-common/es/utils/dva';
 
-import { changeNoticeReadData, clearNoticeData, singleListData } from '@/services/notice';
+import {
+  changeNoticeReadData,
+  clearNoticeData,
+  singleListData,
+} from '@/services/notice';
 
 export default {
   namespace: 'notice',

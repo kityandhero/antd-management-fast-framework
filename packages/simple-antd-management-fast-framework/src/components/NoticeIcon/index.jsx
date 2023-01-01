@@ -35,7 +35,8 @@ const NoticeIcon = (props) => {
         return;
       }
 
-      const { list, title, count, tabKey, showClear, showViewMore } = child.props;
+      const { list, title, count, tabKey, showClear, showViewMore } =
+        child.props;
       const len = list && list.length ? list.length : 0;
       const msgCount = count || count === 0 ? count : len;
       const tabTitle = msgCount > 0 ? `${title} (${msgCount})` : title;
@@ -110,7 +111,8 @@ const NoticeIcon = (props) => {
 };
 
 NoticeIcon.defaultProps = {
-  emptyImage: 'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
+  emptyImage:
+    'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
 };
 NoticeIcon.Tab = NoticeList;
 export default NoticeIcon;

@@ -2,8 +2,8 @@ import {
   actionCore,
   apiDataConvertCore,
   confirmActionCore,
-} from 'antd-management-fast-framework/es/utils/actionAssist';
-import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/actionAssist';
+import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
 
 import { fieldData, mediaItemData } from '../Common/data';
 
@@ -28,7 +28,12 @@ export function singleListTreeAction({
   });
 }
 
-export function setOnlineAction({ target, handleData, successCallback, successMessage = null }) {
+export function setOnlineAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage = null,
+}) {
   actionCore({
     api: 'article/setOnline',
     params: {
@@ -45,7 +50,12 @@ export function setOnlineAction({ target, handleData, successCallback, successMe
   });
 }
 
-export function setOfflineAction({ target, handleData, successCallback, successMessage = null }) {
+export function setOfflineAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage = null,
+}) {
   actionCore({
     api: 'article/setOffline',
     params: {
@@ -194,7 +204,12 @@ export async function removeGalleryImageConfirmAction({
     handleData,
     successCallback,
     okAction: ({ target: t, handleData: r, successCallback: sc }) => {
-      removeGalleryImageAction({ target: t, handleData: r, successCallback: sc, successMessage });
+      removeGalleryImageAction({
+        target: t,
+        handleData: r,
+        successCallback: sc,
+        successMessage,
+      });
     },
   });
 }

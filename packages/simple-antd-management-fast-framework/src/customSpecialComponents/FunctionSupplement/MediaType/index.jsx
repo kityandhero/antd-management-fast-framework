@@ -1,4 +1,15 @@
 ﻿import {
+  unknownLabel,
+  unlimitedWithStringFlag,
+} from 'antd-management-fast-common/es/utils/constants';
+import {
+  isInvalid,
+  isNull,
+  isUndefined,
+  refitCommonData,
+  searchFromList,
+} from 'antd-management-fast-common/es/utils/tools';
+import {
   buildCustomRadio,
   buildCustomSelect,
   buildFormRadio,
@@ -6,18 +17,7 @@
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
-} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import {
-  unknownLabel,
-  unlimitedWithStringFlag,
-} from 'antd-management-fast-framework/es/utils/constants';
-import {
-  isInvalid,
-  isNull,
-  isUndefined,
-  refitCommonData,
-  searchFromList,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 
 export function refitMediaTypeList({ global, withUnlimited = true }) {
   const { mediaTypeList: list } = {

@@ -1,7 +1,7 @@
 import { Tag, Tooltip } from 'antd';
 import { connect, SelectLang } from 'umi';
 
-import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 
 import { defaultSettings } from '@/defaultSettings';
 
@@ -71,7 +71,9 @@ const GlobalHeaderRight = (props) => {
         </span>
       )}
 
-      {defaultSettings.getShowSelectLanguage() ? <SelectLang className={styles.action} /> : null}
+      {defaultSettings.getShowSelectLanguage() ? (
+        <SelectLang className={styles.action} />
+      ) : null}
     </div>
   );
 };

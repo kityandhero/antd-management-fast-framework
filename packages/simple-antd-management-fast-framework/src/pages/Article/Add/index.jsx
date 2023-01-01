@@ -1,17 +1,20 @@
 import { Space } from 'antd';
 import { connect } from 'umi';
 
-import FadeBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/FadeBox';
-import QueueBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/QueueBox';
-import QueueListBox from 'antd-management-fast-framework/es/customComponents/AnimalBox/QueueListBox';
-import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
-import BaseAddForm from 'antd-management-fast-framework/es/framework/DataForm/BaseAddForm';
-import { cardConfig, iconCollection } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  cardConfig,
+  iconCollection,
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   corsTarget,
   getDerivedStateFromPropsForUrlParams,
   showInfoMessage,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import FadeBox from 'antd-management-fast-component/es/customComponents/AnimalBox/FadeBox';
+import QueueBox from 'antd-management-fast-component/es/customComponents/AnimalBox/QueueBox';
+import QueueListBox from 'antd-management-fast-component/es/customComponents/AnimalBox/QueueListBox';
+import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+import BaseAddForm from 'antd-management-fast-framework/es/framework/DataForm/BaseAddForm';
 
 import { accessWayCollection } from '@/customConfig/config';
 
@@ -198,7 +201,8 @@ class Index extends BaseAddForm {
   };
 
   establishCardCollectionConfig = () => {
-    const { fadeBoxShow, image, rectangleImage, video, audio, attachment } = this.state;
+    const { fadeBoxShow, image, rectangleImage, video, audio, attachment } =
+      this.state;
 
     const spinning = this.checkInProgress();
 
@@ -422,25 +426,45 @@ class Index extends BaseAddForm {
                       {
                         hidden: true,
                         builder: () => {
-                          return <IconInfo icon={iconCollection.form} text="QueueListBoxItem 1" />;
+                          return (
+                            <IconInfo
+                              icon={iconCollection.form}
+                              text="QueueListBoxItem 1"
+                            />
+                          );
                         },
                       },
                       {
                         hidden: false,
                         builder: () => {
-                          return <IconInfo icon={iconCollection.form} text="QueueListBoxItem 2" />;
+                          return (
+                            <IconInfo
+                              icon={iconCollection.form}
+                              text="QueueListBoxItem 2"
+                            />
+                          );
                         },
                       },
                       {
                         hidden: true,
                         builder: () => {
-                          return <IconInfo icon={iconCollection.form} text="QueueListBoxItem 3" />;
+                          return (
+                            <IconInfo
+                              icon={iconCollection.form}
+                              text="QueueListBoxItem 3"
+                            />
+                          );
                         },
                       },
                       {
                         hidden: false,
                         builder: () => {
-                          return <IconInfo icon={iconCollection.form} text="QueueListBoxItem 4" />;
+                          return (
+                            <IconInfo
+                              icon={iconCollection.form}
+                              text="QueueListBoxItem 4"
+                            />
+                          );
                         },
                       },
                     ]}

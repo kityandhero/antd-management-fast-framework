@@ -1,7 +1,6 @@
 import { Avatar, Divider, List, Typography } from 'antd';
 import { connect } from 'umi';
 
-import MultiPageSelectDrawer from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPageSelectDrawer';
 import {
   columnFacadeMode,
   columnPlaceholder,
@@ -9,11 +8,12 @@ import {
   iconCollection,
   listViewConfig,
   searchCardConfig,
-} from 'antd-management-fast-framework/es/utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   getValueByKey,
   stringIsNullOrWhiteSpace,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import MultiPageSelectDrawer from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPageSelectDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection } from '@/customConfig/constants';

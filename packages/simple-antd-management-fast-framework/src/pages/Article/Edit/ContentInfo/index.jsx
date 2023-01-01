@@ -1,16 +1,16 @@
 import { connect } from 'umi';
 
-import MobileHtmlPreviewBox from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
 import {
   animalType,
   cardConfig,
   iconCollection,
   mobileTypeCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import MobileHtmlPreviewBox from 'antd-management-fast-component/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
 
 import { accessWayCollection } from '@/customConfig/config';
 
@@ -97,7 +97,12 @@ class ContentInfo extends TabPageBase {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
+  doOtherAfterLoadSuccess = ({
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  }) => {
     const contentData = getValueByKey({
       data: metaData,
       key: fieldData.contentData.name,
@@ -184,11 +189,16 @@ class ContentInfo extends TabPageBase {
         alertVisible={contentChanged}
         alertAnimationType={animalType.queue}
         alertMessage={'内容已经发生变化'}
-        alertDescription={'编辑器内容已经更改, 请点击刷新按钮查看最新预览, 或者更待稍后自动更新.'}
+        alertDescription={
+          '编辑器内容已经更改, 请点击刷新按钮查看最新预览, 或者更待稍后自动更新.'
+        }
         alertType={'warning'}
         alertIcon={false}
         alertButtonText="刷新"
-        mobileList={[mobileTypeCollection.roughSketch, mobileTypeCollection.iPhone5S]}
+        mobileList={[
+          mobileTypeCollection.roughSketch,
+          mobileTypeCollection.iPhone5S,
+        ]}
         html={contentPreview || ''}
         afterAlertClick={() => {
           this.refreshContentPreview();

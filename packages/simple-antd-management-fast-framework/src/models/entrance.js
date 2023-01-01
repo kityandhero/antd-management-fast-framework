@@ -1,20 +1,20 @@
 import { message } from 'antd';
 
-import { setAuthority } from 'antd-management-fast-framework/es/utils/authority';
-import { getPageQuery } from 'antd-management-fast-framework/es/utils/core';
+import { setAuthority } from 'antd-management-fast-common/es/utils/authority';
+import { getPageQuery } from 'antd-management-fast-common/es/utils/core';
 import {
   reducerCommonCollection,
   tacitlyState,
-} from 'antd-management-fast-framework/es/utils/dva';
+} from 'antd-management-fast-common/es/utils/dva';
 import {
   clearCustomData,
   setToken,
-} from 'antd-management-fast-framework/es/utils/globalStorageAssist';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
+} from 'antd-management-fast-common/es/utils/globalStorageAssist';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   queryStringify,
   redirectToPath,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
 
 import { defaultSettings } from '@/defaultSettings';
 import { getCaptchaData, signInData } from '@/services/entrance';

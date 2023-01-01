@@ -1,12 +1,12 @@
 import { connect } from 'umi';
 
-import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 import {
   cardConfig,
   formatCollection,
   iconCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
-import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/constants';
+import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
+import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
 

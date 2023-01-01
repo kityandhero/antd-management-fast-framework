@@ -1,7 +1,10 @@
-import { reducerCommonCollection, tacitlyState } from 'antd-management-fast-framework/es/utils/dva';
-import { modelCollection } from 'antd-management-fast-framework/es/utils/globalModel';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
-import { showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
+import {
+  reducerCommonCollection,
+  tacitlyState,
+} from 'antd-management-fast-common/es/utils/dva';
+import { modelCollection } from 'antd-management-fast-common/es/utils/globalModel';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
+import { showInfoMessage } from 'antd-management-fast-common/es/utils/tools';
 
 import { getMetaDataCache, setMetaDataCache } from '@/utils/storageAssist';
 
@@ -61,8 +64,12 @@ const GlobalModel = {
         const { dataSuccess, data: metaData } = data;
 
         if (dataSuccess) {
-          const { mediaTypeList, webChannelList, accessWayStatusList, articleStatusList } =
-            metaData;
+          const {
+            mediaTypeList,
+            webChannelList,
+            accessWayStatusList,
+            articleStatusList,
+          } = metaData;
 
           result = {
             mediaTypeList,

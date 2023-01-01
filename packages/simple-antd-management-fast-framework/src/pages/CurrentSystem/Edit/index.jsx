@@ -1,14 +1,17 @@
 import { connect } from 'umi';
 
-import { convertCollection } from 'antd-management-fast-framework/es/utils/constants';
+import { convertCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
 
 import DataTabContainerSupplement from '@/customSpecialComponents/DataTabContainerSupplement';
 
-import { checkNeedUpdateAssist, parseUrlParamsForSetState } from '../Assist/config';
+import {
+  checkNeedUpdateAssist,
+  parseUrlParamsForSetState,
+} from '../Assist/config';
 import { fieldData } from '../Common/data';
 
 @connect(({ currentSystem, global, loading }) => ({

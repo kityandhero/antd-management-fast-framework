@@ -5,8 +5,11 @@ import { connect } from 'umi';
 import {
   defaultUserAvatar,
   iconCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
-import { goToPath, recordDebug } from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/constants';
+import {
+  goToPath,
+  recordDebug,
+} from 'antd-management-fast-common/es/utils/tools';
 
 import HeaderDropdown from '../HeaderDropdown';
 
@@ -49,7 +52,12 @@ class AvatarDropdown extends React.Component {
     ];
 
     const menuHeaderDropdown = (
-      <Menu items={items} className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick} />
+      <Menu
+        items={items}
+        className={styles.menu}
+        selectedKeys={[]}
+        onClick={this.onMenuClick}
+      />
     );
 
     return currentOperator != null ? (
@@ -61,7 +69,9 @@ class AvatarDropdown extends React.Component {
             src={currentOperator.avatar || defaultUserAvatar}
             alt="avatar"
           />
-          <span className={styles.name}>{currentOperator.loginName || '未知用户'}</span>
+          <span className={styles.name}>
+            {currentOperator.loginName || '未知用户'}
+          </span>
         </span>
       </HeaderDropdown>
     ) : (

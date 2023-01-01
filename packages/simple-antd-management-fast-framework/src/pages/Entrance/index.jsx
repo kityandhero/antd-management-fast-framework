@@ -3,8 +3,8 @@ import { PureComponent } from 'react';
 import { connect } from 'umi';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 
-import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
-import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
 import { defaultSettings } from '@/defaultSettings';
 

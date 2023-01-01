@@ -1,13 +1,7 @@
 import { List } from 'antd';
 import { connect } from 'umi';
 
-import {
-  buildCustomGrid,
-  buildDropdownButton,
-  buildRadioGroup,
-} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePage';
-import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
+import { handleItem } from 'antd-management-fast-common/es/utils/actionAssist';
 import {
   cardConfig,
   columnFacadeMode,
@@ -19,8 +13,17 @@ import {
   searchCardConfig,
   unlimitedWithStringFlag,
   whetherNumber,
-} from 'antd-management-fast-framework/es/utils/constants';
-import { getValueByKey, showInfoMessage } from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/constants';
+import {
+  getValueByKey,
+  showInfoMessage,
+} from 'antd-management-fast-common/es/utils/tools';
+import {
+  buildCustomGrid,
+  buildDropdownButton,
+  buildRadioGroup,
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePage';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection } from '@/customConfig/constants';
@@ -34,7 +37,11 @@ import {
 } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
-import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
+import {
+  refreshCacheAction,
+  setOfflineAction,
+  setOnlineAction,
+} from '../Assist/action';
 import { getStatusBadge } from '../Assist/tools';
 import ChangeSortModal from '../ChangeSortModal';
 import { fieldData, statusCollection } from '../Common/data';
@@ -481,28 +488,37 @@ class SingleList extends SinglePage {
         }),
       },
       {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconCollection.sortAscending,
         text: '侧拉单页列表',
         handleClick: this.showSingleListDrawer,
-        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+        hidden: !this.checkAuthority(
+          accessWayCollection.article.addBasicInfo.permission,
+        ),
       },
       {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconCollection.plus,
         text: '新增文章[侧拉]',
         handleClick: this.showAddBasicInfoDrawer,
-        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+        hidden: !this.checkAuthority(
+          accessWayCollection.article.addBasicInfo.permission,
+        ),
       },
       {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconCollection.plus,
         text: '新增文章[页面]',
         handleClick: this.goToAdd,
-        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+        hidden: !this.checkAuthority(
+          accessWayCollection.article.addBasicInfo.permission,
+        ),
       },
     ];
   };
@@ -710,13 +726,17 @@ class SingleList extends SinglePage {
               uponDivider: true,
               icon: iconCollection.edit,
               text: '编辑[侧拉]',
-              hidden: !this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission),
+              hidden: !this.checkAuthority(
+                accessWayCollection.article.updateBasicInfo.permission,
+              ),
             },
             {
               key: 'setOnline',
               icon: iconCollection.playCircle,
               text: '设为上线',
-              hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
+              hidden: !this.checkAuthority(
+                accessWayCollection.article.setOnline.permission,
+              ),
               disabled: itemStatus === statusCollection.online,
               confirm: {
                 title: '将要设置为上线，确定吗？',
@@ -726,7 +746,9 @@ class SingleList extends SinglePage {
               key: 'setOffline',
               icon: iconCollection.pauseCircle,
               text: '设为下线',
-              hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
+              hidden: !this.checkAuthority(
+                accessWayCollection.article.setOffline.permission,
+              ),
               disabled: itemStatus === statusCollection.offline,
               confirm: {
                 title: '将要设置为下线，确定吗？',
@@ -738,7 +760,9 @@ class SingleList extends SinglePage {
               uponDivider: true,
               icon: iconCollection.edit,
               text: '设置排序值',
-              hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
+              hidden: !this.checkAuthority(
+                accessWayCollection.article.updateSort.permission,
+              ),
             },
             {
               key: 'refreshCache',
@@ -746,7 +770,9 @@ class SingleList extends SinglePage {
               uponDivider: true,
               icon: iconCollection.reload,
               text: '刷新缓存',
-              hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+              hidden: !this.checkAuthority(
+                accessWayCollection.article.refreshCache.permission,
+              ),
               confirm: {
                 title: '将要刷新缓存，确定吗？',
               },

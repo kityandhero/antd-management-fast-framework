@@ -7,8 +7,14 @@ import { SearchOutlined } from '@ant-design/icons';
 import styles from './index.less';
 
 const HeaderSearch = (props) => {
-  const { className, defaultValue, onVisibleChange, placeholder, defaultOpen, ...restProps } =
-    props;
+  const {
+    className,
+    defaultValue,
+    onVisibleChange,
+    placeholder,
+    defaultOpen,
+    ...restProps
+  } = props;
   const inputRef = useRef(null);
   const [value, setValue] = useMergeValue(defaultValue, {
     value: props.value,

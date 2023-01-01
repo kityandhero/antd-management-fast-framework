@@ -1,8 +1,14 @@
 import { connect } from 'umi';
 
+import {
+  cardConfig,
+  iconCollection,
+} from 'antd-management-fast-common/es/utils/constants';
+import {
+  corsTarget,
+  getValueByKey,
+} from 'antd-management-fast-common/es/utils/tools';
 import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
-import { cardConfig, iconCollection } from 'antd-management-fast-framework/es/utils/constants';
-import { corsTarget, getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
 
 import { fieldData } from '../../Common/data';
 

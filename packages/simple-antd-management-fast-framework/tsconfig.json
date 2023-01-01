@@ -19,7 +19,9 @@
     "experimentalDecorators": true,
     "strict": true,
     "paths": {
-      "@antd-management-fast-framework/*": ["../management-fast-framework/src/*"],
+      "@antd-management-fast-framework/*": [
+        "../management-fast-framework/src/*"
+      ],
       "@/*": ["./src/*"],
       "@@/*": ["./src/.umi/*"]
     }
@@ -38,5 +40,13 @@
     "jest.config.js",
     "mock/*"
   ],
-  "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "scripts",
+    "src/.umi/*",
+    "webpack",
+    "jest"
+  ]
 }

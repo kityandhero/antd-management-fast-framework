@@ -1,17 +1,17 @@
 import { connect } from 'umi';
 
-import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 import {
   cardConfig,
   formatCollection,
   iconCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   corsTarget,
   getValueByKey,
   inCollection,
   stringIsNullOrWhiteSpace,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { mediaTypeCollection } from '@/customConfig/constants';
@@ -131,7 +131,12 @@ class Index extends BaseUpdateDrawer {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
+  doOtherAfterLoadSuccess = ({
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  }) => {
     const mediaType = getValueByKey({
       data: metaData,
       key: mediaItemData.mediaType.name,
@@ -187,7 +192,8 @@ class Index extends BaseUpdateDrawer {
   };
 
   establishCardCollectionConfig = () => {
-    const { processing, metaData, mediaType, image, video, audio, attachment } = this.state;
+    const { processing, metaData, mediaType, image, video, audio, attachment } =
+      this.state;
 
     const spinning = this.checkInProgress();
 

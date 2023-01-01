@@ -1,11 +1,11 @@
-import { buildPlayer } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import MobilePreviewDrawer from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewDrawer';
-import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   isArray,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import { buildPlayer } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import MobilePreviewDrawer from 'antd-management-fast-component/es/customComponents/MobileContainor/MobilePreviewDrawer';
 
 class MediaItemPreviewDrawer extends MobilePreviewDrawer {
   resetDataAfterLoad = false;
@@ -60,7 +60,9 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
 
     return (
       <>
-        {stringIsNullOrWhiteSpace(record.image) ? null : <img width="100%" src={record.image} />}
+        {stringIsNullOrWhiteSpace(record.image) ? null : (
+          <img width="100%" src={record.image} />
+        )}
         {stringIsNullOrWhiteSpace(record.description) ? null : (
           <p
             style={{
@@ -70,7 +72,9 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
             {record.description}
           </p>
         )}
-        {stringIsNullOrWhiteSpace(record.video) ? null : buildPlayer({ url: record.video })}
+        {stringIsNullOrWhiteSpace(record.video)
+          ? null
+          : buildPlayer({ url: record.video })}
       </>
     );
   };

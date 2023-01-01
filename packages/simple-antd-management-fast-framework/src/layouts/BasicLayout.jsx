@@ -6,15 +6,15 @@ import ProLayout, {
   SettingDrawer,
 } from '@ant-design/pro-layout';
 
-import Authorized from 'antd-management-fast-framework/es/utils/Authorized';
-import { getAuthorityFromRouter } from 'antd-management-fast-framework/es/utils/core';
-import { setAccessWayCollectionCache } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
-import { proLayoutDefaultProps } from 'antd-management-fast-framework/es/utils/proLayoutCollection';
+import Authorized from 'antd-management-fast-common/es/utils/Authorized';
+import { getAuthorityFromRouter } from 'antd-management-fast-common/es/utils/core';
+import { setAccessWayCollectionCache } from 'antd-management-fast-common/es/utils/globalStorageAssist';
+import { proLayoutDefaultProps } from 'antd-management-fast-common/es/utils/proLayoutCollection';
 import {
   checkDevelopment,
   getQueue,
   recordDebug,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
 
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { accessWayCollection } from '@/customConfig/config';

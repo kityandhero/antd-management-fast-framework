@@ -2,29 +2,29 @@ import moment from 'moment';
 import { connect } from 'umi';
 
 import {
-  buildColorText,
-  buildCustomGrid,
-} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
-import {
   cardConfig,
   convertCollection,
   datetimeFormat,
   formatCollection,
   iconCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   getToken,
   getTokenKeyName,
-} from 'antd-management-fast-framework/es/utils/globalStorageAssist';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-framework/es/utils/requestAssistor';
+} from 'antd-management-fast-common/es/utils/globalStorageAssist';
+import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   convertTarget,
   corsTarget,
   formatTarget,
   getValueByKey,
   showInfoMessage,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import {
+  buildColorText,
+  buildCustomGrid,
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
@@ -117,7 +117,12 @@ class BasicInfo extends TabPageBase {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
+  doOtherAfterLoadSuccess = ({
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  }) => {
     const {
       image,
       rectangleImage,
@@ -526,7 +531,13 @@ class BasicInfo extends TabPageBase {
                 };
               },
               // eslint-disable-next-line @typescript-eslint/no-unused-vars
-              onChangeCallback: ({ value, label, extra, treeData, listData }) => {
+              onChangeCallback: ({
+                value,
+                label,
+                extra,
+                treeData,
+                listData,
+              }) => {
                 console.log(treeData);
 
                 this.setState({
@@ -543,7 +554,13 @@ class BasicInfo extends TabPageBase {
             {
               lg: 24,
               type: cardConfig.contentItemType.divider,
-              text: <IconInfo icon={iconCollection.edit} text="分隔线" ellipsis={false} />,
+              text: (
+                <IconInfo
+                  icon={iconCollection.edit}
+                  text="分隔线"
+                  ellipsis={false}
+                />
+              ),
             },
             {
               lg: 24,
@@ -672,7 +689,9 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.imageUpload,
               action: `${corsTarget()}/article/uploadImage`,
-              disabled: !this.checkAuthority(accessWayCollection.article.addImage.permission),
+              disabled: !this.checkAuthority(
+                accessWayCollection.article.addImage.permission,
+              ),
               multiple: true,
               fileList,
               showUploadList: {

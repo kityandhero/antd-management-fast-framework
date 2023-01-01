@@ -1,14 +1,7 @@
 import { Card, List, Table } from 'antd';
 import { connect } from 'umi';
 
-import {
-  buildColorText,
-  buildCustomGrid,
-  buildRadioGroup,
-  buildTagList,
-} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
-import { handleItem } from 'antd-management-fast-framework/es/utils/actionAssist';
+import { handleItem } from 'antd-management-fast-common/es/utils/actionAssist';
 import {
   cardConfig,
   columnFacadeMode,
@@ -20,13 +13,20 @@ import {
   searchCardConfig,
   unlimitedWithStringFlag,
   whetherNumber,
-} from 'antd-management-fast-framework/es/utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   getRandomColor,
   getValueByKey,
   replaceTargetText,
   showInfoMessage,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import {
+  buildColorText,
+  buildCustomGrid,
+  buildRadioGroup,
+  buildTagList,
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection } from '@/customConfig/constants';
@@ -40,7 +40,11 @@ import {
 } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
-import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
+import {
+  refreshCacheAction,
+  setOfflineAction,
+  setOnlineAction,
+} from '../Assist/action';
 import { getStatusBadge } from '../Assist/tools';
 import ChangeSortModal from '../ChangeSortModal';
 import { fieldData, mediaItemData, statusCollection } from '../Common/data';
@@ -406,7 +410,13 @@ class PageList extends MultiPage {
   };
 
   establishSearchCardConfig = () => {
-    const { dataLoading, processing, loadSuccess, dateRangeFieldName, articleTitle } = this.state;
+    const {
+      dataLoading,
+      processing,
+      loadSuccess,
+      dateRangeFieldName,
+      articleTitle,
+    } = this.state;
 
     return {
       list: [
@@ -569,15 +579,19 @@ class PageList extends MultiPage {
         }),
       },
       {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconCollection.plus,
         text: '新增文章[侧拉]',
         handleClick: this.showAddBasicInfoDrawer,
-        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+        hidden: !this.checkAuthority(
+          accessWayCollection.article.addBasicInfo.permission,
+        ),
       },
       {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconCollection.plus,
         confirm: {
@@ -585,7 +599,9 @@ class PageList extends MultiPage {
         },
         text: '新增文章[页面]',
         handleClick: this.goToAdd,
-        hidden: !this.checkAuthority(accessWayCollection.article.addBasicInfo.permission),
+        hidden: !this.checkAuthority(
+          accessWayCollection.article.addBasicInfo.permission,
+        ),
       },
     ];
   };
@@ -811,7 +827,9 @@ class PageList extends MultiPage {
           key: 'showUpdateBasicInfoDrawer',
           icon: iconCollection.edit,
           text: '编辑[侧拉]',
-          hidden: !this.checkAuthority(accessWayCollection.article.updateBasicInfo.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.updateBasicInfo.permission,
+          ),
         },
         {
           key: 'setOnline',
@@ -819,7 +837,9 @@ class PageList extends MultiPage {
           uponDivider: true,
           icon: iconCollection.playCircle,
           text: '设为上线',
-          hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.setOnline.permission,
+          ),
           disabled: itemStatus === statusCollection.online,
           confirm: {
             title: '将要设置为上线，确定吗？',
@@ -829,7 +849,9 @@ class PageList extends MultiPage {
           key: 'setOffline',
           icon: iconCollection.pauseCircle,
           text: '设为下线',
-          hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.setOffline.permission,
+          ),
           disabled: itemStatus === statusCollection.offline,
           confirm: {
             title: '将要设置为下线，确定吗？',
@@ -841,7 +863,9 @@ class PageList extends MultiPage {
           uponDivider: true,
           icon: iconCollection.edit,
           text: '设置排序值',
-          hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.updateSort.permission,
+          ),
         },
         {
           key: 'refreshCache',
@@ -849,7 +873,9 @@ class PageList extends MultiPage {
           uponDivider: true,
           icon: iconCollection.reload,
           text: '刷新缓存',
-          hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.refreshCache.permission,
+          ),
           confirm: {
             title: '将要刷新缓存，确定吗？',
           },

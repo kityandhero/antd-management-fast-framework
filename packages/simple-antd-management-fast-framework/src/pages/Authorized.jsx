@@ -1,8 +1,8 @@
 import { pathToRegexp } from 'path-to-regexp';
 import { connect, Redirect } from 'umi';
 
-import Authorized from 'antd-management-fast-framework/es/utils/Authorized';
-import { getToken } from 'antd-management-fast-framework/es/utils/globalStorageAssist';
+import Authorized from 'antd-management-fast-common/es/utils/Authorized';
+import { getToken } from 'antd-management-fast-common/es/utils/globalStorageAssist';
 
 import { defaultSettings } from '@/defaultSettings';
 
@@ -41,7 +41,13 @@ const AuthComponent = ({
   return (
     <Authorized
       authority={getRouteAuthority(location.pathname, routes) || ''}
-      noMatch={hasOperator ? <Redirect to="/exception/403" /> : <Redirect to={entrancePath} />}
+      noMatch={
+        hasOperator ? (
+          <Redirect to="/exception/403" />
+        ) : (
+          <Redirect to={entrancePath} />
+        )
+      }
     >
       {children}
     </Authorized>

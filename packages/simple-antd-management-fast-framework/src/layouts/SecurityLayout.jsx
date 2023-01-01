@@ -2,7 +2,10 @@ import React from 'react';
 import { connect, Redirect } from 'umi';
 import { PageLoading } from '@ant-design/pro-layout';
 
-import { queryStringify, recordDebug } from 'antd-management-fast-framework/es/utils/tools';
+import {
+  queryStringify,
+  recordDebug,
+} from 'antd-management-fast-common/es/utils/tools';
 
 import { defaultSettings } from '@/defaultSettings';
 

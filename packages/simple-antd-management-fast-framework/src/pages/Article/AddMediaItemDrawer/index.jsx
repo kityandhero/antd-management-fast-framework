@@ -1,14 +1,17 @@
 import { connect } from 'umi';
 
-import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
-import { cardConfig, iconCollection } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  cardConfig,
+  iconCollection,
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   corsTarget,
   inCollection,
   stringIsNullOrWhiteSpace,
   toNumber,
   toString,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { mediaTypeCollection } from '@/customConfig/constants';
@@ -133,7 +136,9 @@ class Index extends BaseAddDrawer {
   fillDefaultInitialValues = () => {
     const values = {};
 
-    values[mediaItemData.mediaType.name] = toString(mediaTypeCollection.paragraph);
+    values[mediaItemData.mediaType.name] = toString(
+      mediaTypeCollection.paragraph,
+    );
 
     return values;
   };
@@ -172,7 +177,10 @@ class Index extends BaseAddDrawer {
             subText: '[上传后需点击保存按钮保存]',
           },
           spinning,
-          hidden: !inCollection([mediaTypeCollection.image, mediaTypeCollection.video], mediaType),
+          hidden: !inCollection(
+            [mediaTypeCollection.image, mediaTypeCollection.video],
+            mediaType,
+          ),
           items: [
             {
               lg: 24,

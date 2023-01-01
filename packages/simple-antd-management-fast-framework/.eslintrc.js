@@ -1,5 +1,8 @@
 module.exports = {
-  extends: [require.resolve('@umijs/fabric/dist/eslint'), 'plugin:react/jsx-runtime'],
+  extends: [
+    require.resolve('@umijs/fabric/dist/eslint'),
+    'plugin:react/jsx-runtime',
+  ],
   globals: {
     page: true,
     REACT_APP_ENV: true,
@@ -32,9 +35,9 @@ module.exports = {
       'error',
       {
         groups: [
-          ['^(?!antd-management-fast-framework)[a-zA-Z0-9]', '^@(?!/)'],
-          ['^(?!@/)(?!antd-management-fast-framework)(?!.)'],
-          ['^antd-management-fast-framework'],
+          ['^(?!antd-management-fast-)[a-zA-Z0-9]', '^@(?!/)'],
+          ['^(?!@/)(?!antd-management-fast-)(?!.)'],
+          ['^antd-management-fast-'],
           ['^((@/).*|$)'],
           ['^\\u0000'],
           ['^\\.\\.(?!/?$)', '^\\.\\./?$'],

@@ -1,7 +1,7 @@
-import { buildMenuHeaderRender } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import IconInfo from 'antd-management-fast-framework/es/customComponents/IconInfo';
-import { iconCollection } from 'antd-management-fast-framework/es/utils/constants';
-import { stringIsNullOrWhiteSpace } from 'antd-management-fast-framework/es/utils/tools';
+import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
+import { buildMenuHeaderRender } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
 import { defaultSettings } from '@/defaultSettings';
 
@@ -44,7 +44,12 @@ export function menuHeaderRender(logoDom, config) {
     settings: { navTheme },
   } = config;
 
-  return buildMenuHeaderRender({ logoDom, collapsed, navTheme, shortName: shortNameData });
+  return buildMenuHeaderRender({
+    logoDom,
+    collapsed,
+    navTheme,
+    shortName: shortNameData,
+  });
 }
 
 /**

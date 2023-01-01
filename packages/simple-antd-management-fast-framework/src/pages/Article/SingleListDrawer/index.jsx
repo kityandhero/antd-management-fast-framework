@@ -1,7 +1,6 @@
 import { Avatar, Divider, List, Typography } from 'antd';
 import { connect } from 'umi';
 
-import SinglePageDrawer from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePageDrawer';
 import {
   columnFacadeMode,
   columnPlaceholder,
@@ -9,11 +8,12 @@ import {
   iconCollection,
   listViewConfig,
   searchCardConfig,
-} from 'antd-management-fast-framework/es/utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   getValueByKey,
   stringIsNullOrWhiteSpace,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import SinglePageDrawer from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePageDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { colorCollection } from '@/customConfig/constants';

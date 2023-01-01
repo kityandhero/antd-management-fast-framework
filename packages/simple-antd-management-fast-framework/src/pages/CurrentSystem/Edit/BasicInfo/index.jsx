@@ -1,10 +1,13 @@
 import { connect } from 'umi';
 
-import { cardConfig, iconCollection } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  cardConfig,
+  iconCollection,
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
 
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';

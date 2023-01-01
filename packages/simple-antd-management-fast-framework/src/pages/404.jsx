@@ -1,6 +1,6 @@
 import { Button, Result } from 'antd';
 
-import { goToPath } from 'antd-management-fast-framework/es/utils/tools';
+import { goToPath } from 'antd-management-fast-common/es/utils/tools';
 
 const NoFoundPage = () => (
   <Result

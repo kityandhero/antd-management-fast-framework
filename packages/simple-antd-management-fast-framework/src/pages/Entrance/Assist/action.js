@@ -1,7 +1,7 @@
 import {
   actionCore,
   apiDataConvertCore,
-} from 'antd-management-fast-framework/es/utils/actionAssist';
+} from 'antd-management-fast-common/es/utils/actionAssist';
 
 function apiDataConvert(props) {
   return apiDataConvertCore({ props, modelName: 'entrance' });

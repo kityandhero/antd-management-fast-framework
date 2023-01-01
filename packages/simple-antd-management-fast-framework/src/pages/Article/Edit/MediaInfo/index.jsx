@@ -1,14 +1,6 @@
 import { Button, List, Space } from 'antd';
 import { connect } from 'umi';
 
-import FlexBox from 'antd-management-fast-framework/es/customComponents/FlexBox';
-import {
-  buildCustomGrid,
-  buildDropdownButton,
-  buildIconInfoList,
-  buildListViewItemExtra,
-} from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import StatusBar from 'antd-management-fast-framework/es/customComponents/StatusBar';
 import {
   cardConfig,
   convertCollection,
@@ -17,7 +9,7 @@ import {
   iconCollection,
   mobileTypeCollection,
   sortOperate,
-} from 'antd-management-fast-framework/es/utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
@@ -25,12 +17,23 @@ import {
   sortCollectionByKey,
   stringIsNullOrWhiteSpace,
   toString,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
+import {
+  buildCustomGrid,
+  buildDropdownButton,
+  buildIconInfoList,
+  buildListViewItemExtra,
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import StatusBar from 'antd-management-fast-component/es/customComponents/StatusBar';
 
 import { accessWayCollection } from '@/customConfig/config';
 
 import AddMediaItemDrawer from '../../AddMediaItemDrawer';
-import { removeMediaItemAction, setMediaCollectionSortAction } from '../../Assist/action';
+import {
+  removeMediaItemAction,
+  setMediaCollectionSortAction,
+} from '../../Assist/action';
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { mediaItemData } from '../../Common/data';
 import MediaItemPreviewDrawer from '../../MediaItemPreviewDrawer';
@@ -75,10 +78,20 @@ class BasicInfo extends TabPageBase {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  fillInitialValuesAfterLoad = (metaData, metaListData, metaExtra, metaOriginalData) => null;
+  fillInitialValuesAfterLoad = (
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  ) => null;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
+  doOtherAfterLoadSuccess = ({
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  }) => {
     this.setCustomData(metaData);
   };
 
@@ -450,7 +463,9 @@ class BasicInfo extends TabPageBase {
                   key: 'insertItem',
                   icon: iconCollection.insertRowBelow,
                   text: '在下方插入',
-                  hidden: !this.checkAuthority(accessWayCollection.article.addMediaItem.permission),
+                  hidden: !this.checkAuthority(
+                    accessWayCollection.article.addMediaItem.permission,
+                  ),
                 },
                 {
                   key: 'moveUp',
@@ -458,14 +473,18 @@ class BasicInfo extends TabPageBase {
                   uponDivider: true,
                   icon: iconCollection.arrowUp,
                   text: '向上移动',
-                  hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
+                  hidden: !this.checkAuthority(
+                    accessWayCollection.article.updateSort.permission,
+                  ),
                   disabled: sort === 1,
                 },
                 {
                   key: 'moveDown',
                   icon: iconCollection.arrowDown,
                   text: '向下移动',
-                  hidden: !this.checkAuthority(accessWayCollection.article.updateSort.permission),
+                  hidden: !this.checkAuthority(
+                    accessWayCollection.article.updateSort.permission,
+                  ),
                   disabled: sort === (mediaItemList || []).length,
                 },
                 {
@@ -474,7 +493,9 @@ class BasicInfo extends TabPageBase {
                   uponDivider: true,
                   icon: iconCollection.reload,
                   text: '刷新缓存',
-                  hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+                  hidden: !this.checkAuthority(
+                    accessWayCollection.article.refreshCache.permission,
+                  ),
                   confirm: {
                     title: '将要刷新缓存，确定吗？',
                   },
@@ -520,7 +541,9 @@ class BasicInfo extends TabPageBase {
             <Button
               type="primary"
               disabled={
-                !this.checkAuthority(accessWayCollection.article.addMediaItem.permission) ||
+                !this.checkAuthority(
+                  accessWayCollection.article.addMediaItem.permission,
+                ) ||
                 dataLoading ||
                 !loadSuccess
               }
@@ -600,7 +623,10 @@ class BasicInfo extends TabPageBase {
       <MobilePreviewBox
         affix
         affixOffsetTop={20}
-        mobileList={[mobileTypeCollection.roughSketch, mobileTypeCollection.iPhone5S]}
+        mobileList={[
+          mobileTypeCollection.roughSketch,
+          mobileTypeCollection.iPhone5S,
+        ]}
         data={mediaItemList || []}
       />
     );

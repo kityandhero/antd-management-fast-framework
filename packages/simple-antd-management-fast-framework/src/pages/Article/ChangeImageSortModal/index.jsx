@@ -1,14 +1,17 @@
 import { Dropdown, List, Menu } from 'antd';
 import { connect } from 'umi';
 
-import Base from 'antd-management-fast-framework/es/framework/DataModal/Base';
-import { iconCollection, sortOperate } from 'antd-management-fast-framework/es/utils/constants';
+import {
+  iconCollection,
+  sortOperate,
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   getValueByKey,
   isArray,
   showError,
   sortCollectionByKey,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import Base from 'antd-management-fast-framework/es/framework/DataModal/Base';
 
 import { accessWayCollection } from '@/customConfig/config';
 
@@ -190,7 +193,9 @@ class ChangeImageSortModal extends Base {
         },
       ];
 
-      const menu = <Menu items={items} onClick={(e) => onMenuClick(e, current)} />;
+      const menu = (
+        <Menu items={items} onClick={(e) => onMenuClick(e, current)} />
+      );
 
       return (
         <Dropdown disabled={!hasAuthority} overlay={menu}>
@@ -216,7 +221,8 @@ class ChangeImageSortModal extends Base {
                     current={item}
                     metaListDataList={metaListData}
                     hasAuthority={this.checkAuthority(
-                      accessWayCollection.article.updateImageContentInfo.permission,
+                      accessWayCollection.article.updateImageContentInfo
+                        .permission,
                     )}
                     onMenuClick={(e, current) => {
                       const { key } = e;
@@ -227,7 +233,13 @@ class ChangeImageSortModal extends Base {
                 ]}
               >
                 <List.Item.Meta
-                  avatar={<img src={item.url} className={styles.imageItem} alt={item.url} />}
+                  avatar={
+                    <img
+                      src={item.url}
+                      className={styles.imageItem}
+                      alt={item.url}
+                    />
+                  }
                   title={<a href={item.href}>图片路径:</a>}
                   description={item.url}
                 />

@@ -1,10 +1,13 @@
 import { connect } from 'umi';
 
-import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-framework/es/utils/tools';
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
 
 import DataTabContainerSupplement from '@/customSpecialComponents/DataTabContainerSupplement';
 
-import { checkNeedUpdateAssist, parseUrlParamsForSetState } from '../Assist/config';
+import {
+  checkNeedUpdateAssist,
+  parseUrlParamsForSetState,
+} from '../Assist/config';
 
 @connect(({ flowEditor, global, loading }) => ({
   flowEditor,

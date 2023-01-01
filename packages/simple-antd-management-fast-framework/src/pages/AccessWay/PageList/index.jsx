@@ -1,12 +1,12 @@
 import { connect } from 'umi';
 
-import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 import {
   columnFacadeMode,
   iconCollection,
   searchCardConfig,
   unlimitedWithStringFlag,
-} from 'antd-management-fast-framework/es/utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
+import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { getAccessWayStatusName } from '@/customSpecialComponents/FunctionSupplement/AccessWayStatus';

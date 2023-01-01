@@ -1,4 +1,4 @@
-import { request } from 'antd-management-fast-framework/es/utils/requestAssistor';
+import { request } from 'antd-management-fast-common/es/utils/requestAssistor';
 
 export async function getCurrentBasicInfoData() {
   return request({
@@ -7,7 +7,8 @@ export async function getCurrentBasicInfoData() {
       data: {
         loginName: 'admin',
         name: 'Li Ma',
-        avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+        avatar:
+          'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
         email: 'Test@alipay.com',
         signature: '海纳百川，有容乃大',
         title: '交互专家',

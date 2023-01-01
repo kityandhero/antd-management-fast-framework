@@ -1,10 +1,10 @@
-import { buildPlayer } from 'antd-management-fast-framework/es/customComponents/FunctionComponent';
-import MobilePreviewArea from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewArea';
 import {
   isArray,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
+import { buildPlayer } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import MobilePreviewArea from 'antd-management-fast-component/es/customComponents/MobileContainor/MobilePreviewArea';
 
 class MobilePreviewBox extends MobilePreviewArea {
   loadDataAfterMount = false;
@@ -53,7 +53,9 @@ class MobilePreviewBox extends MobilePreviewArea {
 
     return (
       <>
-        {stringIsNullOrWhiteSpace(record.image) ? null : <img width="100%" src={record.image} />}
+        {stringIsNullOrWhiteSpace(record.image) ? null : (
+          <img width="100%" src={record.image} />
+        )}
         {stringIsNullOrWhiteSpace(record.description) ? null : (
           <p
             style={{
@@ -63,7 +65,9 @@ class MobilePreviewBox extends MobilePreviewArea {
             {record.description}
           </p>
         )}
-        {stringIsNullOrWhiteSpace(record.video) ? null : buildPlayer({ url: record.video })}
+        {stringIsNullOrWhiteSpace(record.video)
+          ? null
+          : buildPlayer({ url: record.video })}
       </>
     );
   };

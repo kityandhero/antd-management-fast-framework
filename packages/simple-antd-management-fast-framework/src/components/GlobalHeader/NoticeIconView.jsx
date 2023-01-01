@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Component } from 'react';
 import { connect } from 'umi';
 
-import { recordDebug } from 'antd-management-fast-framework/es/utils/tools';
+import { recordDebug } from 'antd-management-fast-common/es/utils/tools';
 
 import NoticeIcon from '../NoticeIcon';
 

@@ -5,22 +5,29 @@ import {
   extraBuildType,
   iconCollection,
   tabBarCollection,
-} from 'antd-management-fast-framework/es/utils/constants';
+} from 'antd-management-fast-common/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
   notifySuccess,
   showInfoMessage,
   stringIsNullOrWhiteSpace,
-} from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/tools';
 
 import { accessWayCollection } from '@/customConfig/config';
 import DataTabContainerSupplement from '@/customSpecialComponents/DataTabContainerSupplement';
 import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
 import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
 
-import { refreshCacheAction, setOfflineAction, setOnlineAction } from '../Assist/action';
-import { checkNeedUpdateAssist, parseUrlParamsForSetState } from '../Assist/config';
+import {
+  refreshCacheAction,
+  setOfflineAction,
+  setOnlineAction,
+} from '../Assist/action';
+import {
+  checkNeedUpdateAssist,
+  parseUrlParamsForSetState,
+} from '../Assist/config';
 import { fieldData, statusCollection } from '../Common/data';
 
 @connect(({ article, global, loading }) => ({
@@ -44,7 +51,9 @@ class Edit extends DataTabContainerSupplement {
     },
     {
       key: 'mediaInfo',
-      show: this.checkAuthority(accessWayCollection.article.updateMediaData.permission),
+      show: this.checkAuthority(
+        accessWayCollection.article.updateMediaData.permission,
+      ),
       tab: '媒体信息',
     },
   ];
@@ -94,7 +103,12 @@ class Edit extends DataTabContainerSupplement {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherAfterLoadSuccess = ({ metaData, metaListData, metaExtra, metaOriginalData }) => {
+  doOtherAfterLoadSuccess = ({
+    metaData,
+    metaListData,
+    metaExtra,
+    metaOriginalData,
+  }) => {
     this.setState({
       pageName: getValueByKey({
         data: metaData,
@@ -244,8 +258,11 @@ class Edit extends DataTabContainerSupplement {
           handleButtonClick: ({ handleData }) => {
             that.setOnline(handleData);
           },
-          hidden: !this.checkAuthority(accessWayCollection.article.setOnline.permission),
-          disabled: this.checkInProgress() || status === statusCollection.online,
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.setOnline.permission,
+          ),
+          disabled:
+            this.checkInProgress() || status === statusCollection.online,
           confirm: {
             title: '设置为上架，确定吗？',
             placement: 'bottomRight',
@@ -265,8 +282,11 @@ class Edit extends DataTabContainerSupplement {
           handleButtonClick: ({ handleData }) => {
             that.setOffline(handleData);
           },
-          hidden: !this.checkAuthority(accessWayCollection.article.setOffline.permission),
-          disabled: this.checkInProgress() || status === statusCollection.offline,
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.setOffline.permission,
+          ),
+          disabled:
+            this.checkInProgress() || status === statusCollection.offline,
           confirm: {
             title: '设置为下架，确定吗？',
             placement: 'bottomRight',
@@ -384,7 +404,9 @@ class Edit extends DataTabContainerSupplement {
           uponDivider: true,
           icon: iconCollection.reload,
           text: '刷新缓存',
-          hidden: !this.checkAuthority(accessWayCollection.article.refreshCache.permission),
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.refreshCache.permission,
+          ),
           confirm: {
             title: '将要刷新缓存，确定吗？',
           },

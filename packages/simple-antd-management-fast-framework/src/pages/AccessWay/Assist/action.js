@@ -1,8 +1,8 @@
 import {
   actionCore,
   apiDataConvertCore,
-} from 'antd-management-fast-framework/es/utils/actionAssist';
-import { getValueByKey } from 'antd-management-fast-framework/es/utils/tools';
+} from 'antd-management-fast-common/es/utils/actionAssist';
+import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
 
 import { fieldData } from '../Common/data';
 
