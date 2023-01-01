@@ -58,3 +58,6 @@ screenshot
 /yarn.lock
 /package-lock.json
 /packages/antd-management-fast-common/es
+/packages/antd-management-fast-common/types
+/packages/antd-management-fast-component/types
+/packages/antd-management-fast-framework/types

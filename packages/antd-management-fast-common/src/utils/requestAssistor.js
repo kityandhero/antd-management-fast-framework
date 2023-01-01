@@ -2,7 +2,7 @@ import { message } from 'antd';
 
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 import { clearCustomData, getToken } from './globalStorageAssist';
-import remoteRequest from './request';
+import { request as remoteRequest } from './request';
 import {
   corsTarget,
   isFunction,

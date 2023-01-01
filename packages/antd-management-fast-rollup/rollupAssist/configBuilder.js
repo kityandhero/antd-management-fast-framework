@@ -129,7 +129,8 @@ export function buildConfig({
       typescript({
         // check: true,
         // verbosity: 3,
-        // useTsconfigDeclarationDir: true,
+        clean: true,
+        useTsconfigDeclarationDir: true,
         tsconfig: './tsconfig.json',
       }),
       postcss({

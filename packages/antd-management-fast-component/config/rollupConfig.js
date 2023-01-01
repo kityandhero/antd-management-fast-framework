@@ -49,6 +49,8 @@ const inputFile = {
       'src/customComponents/DecorateAvatar/index.jsx',
     'customComponents/EditableItem/index':
       'src/customComponents/EditableItem/index.jsx',
+    'customComponents/Editor/TinymceWrapper':
+      'src/customComponents/Editor/TinymceWrapper/index.jsx',
     'customComponents/EllipsisCustom/index':
       'src/customComponents/EllipsisCustom/index.jsx',
     'customComponents/Ellipsis/index':

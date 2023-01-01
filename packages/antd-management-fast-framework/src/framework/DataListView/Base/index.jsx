@@ -31,23 +31,6 @@ import {
   searchCardConfig,
 } from 'antd-management-fast-common/es/utils/constants';
 import {
-  avatarImageLoadResultCollection,
-  decorateAvatar,
-} from 'antd-management-fast-common/es/utils/DecorateAvatar';
-import FlexBox from 'antd-management-fast-common/es/utils/FlexBox';
-import {
-  adjustTableExpandConfig,
-  buildColumnList,
-  buildCustomSelect,
-  buildDropdown,
-  buildPageHeaderContent,
-  buildPageHeaderTagWrapper,
-  buildPageHeaderTitle,
-  buildTagList,
-  pageHeaderExtraContent,
-} from 'antd-management-fast-common/es/utils/FunctionComponent';
-import StandardTableCustom from 'antd-management-fast-common/es/utils/StandardTableCustom';
-import {
   buildFieldDescription,
   defaultListState,
   getDerivedStateFromPropsForUrlParams,
@@ -58,6 +41,23 @@ import {
   toMoment,
   toNumber,
 } from 'antd-management-fast-common/es/utils/tools';
+import {
+  avatarImageLoadResultCollection,
+  decorateAvatar,
+} from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
+import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
+import {
+  adjustTableExpandConfig,
+  buildColumnList,
+  buildCustomSelect,
+  buildDropdown,
+  buildPageHeaderContent,
+  buildPageHeaderTagWrapper,
+  buildPageHeaderTitle,
+  buildTagList,
+  pageHeaderExtraContent,
+} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import StandardTableCustom from 'antd-management-fast-component/es/customComponents/StandardTableCustom';
 
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 import BatchAction from '../BatchAction';

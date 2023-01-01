@@ -16,6 +16,8 @@ const inputFile = {
     'utils/tools': 'src/utils/tools.js',
     'utils/typeCheck': 'src/utils/typeCheck.js',
     'utils/typeConvert': 'src/utils/typeConvert.js',
+    'utils/authority': 'src/utils/authority.js',
+    'utils/requestAssistor': 'src/utils/requestAssistor.js',
   },
 };
 

@@ -11,6 +11,8 @@ _roadhog-api-doc
 
 # production
 ./dist
+./es
+./types
 
 # misc
 .DS_Store
@@ -40,5 +42,4 @@ screenshot
 
 build
 /lib
-/es
 /src/**/*.d.ts

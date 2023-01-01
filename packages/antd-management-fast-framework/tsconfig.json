@@ -19,6 +19,7 @@
     "experimentalDecorators": true,
     "strict": true,
     "declaration": true,
+    "declarationDir": "types",
     "emitDeclarationOnly": true,
     "paths": {
       "@/*": ["./example/*"],
