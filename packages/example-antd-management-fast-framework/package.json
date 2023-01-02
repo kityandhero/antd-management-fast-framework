@@ -1,33 +1,16 @@
 {
-  "name": "antd-management-fast-component",
+  "name": "example-antd-management-fast-framework",
   "version": "1.0.0",
-  "description": "antd-management-fast-component",
-  "keywords": [
-    "antd-management-fast-component"
-  ],
-  "homepage": "https://github.com/kityandhero/antd-management-fast-framework.git",
-  "bugs": {
-    "url": "https://github.com/kityandhero/antd-management-fast-framework/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kityandhero/antd-management-fast-framework.git"
-  },
-  "license": "MIT",
-  "author": "kityandhero <kityandhero@126.com>",
-  "main": "lib/index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "test",
-    "es": "lib"
-  },
-  "files": [
-    "es"
-  ],
+  "description": "> TODO: description",
+  "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
+  "license": "ISC",
+  "author": "卢志涛 <kityandhero@126.com>",
+  "main": "lib/example-antd-management-fast-framework.js",
   "scripts": {
-    "build:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs",
     "build": "rimraf ./es && rollup --config rollup.config.compression.js --bundleConfigAsCjs",
+    "build:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs",
     "format": "prettier --cache --write .",
+    "postinstall": "max setup",
     "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
@@ -37,31 +20,18 @@
     "lint:style": "stylelint --fix \"./src/**/*.less\"",
     "precommit": "lint-staged",
     "prepare": "husky install",
-    "postinstall": "max setup",
     "setup": "max setup",
     "v:p": "npm version patch && npm publish"
   },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
-    "@ant-design/pro-layout": "^7.4.0",
-    "@antv/data-set": "^0.11.8",
-    "@antv/l7": "^2.12.1",
-    "@antv/l7-maps": "^2.12.1",
-    "@tinymce/tinymce-react": "^4.2.0",
     "@umijs/max": "^4.0.41",
     "antd": "^5.1.1",
     "antd-management-fast-common": "^1.0.0",
-    "bizcharts": "^4.1.22",
-    "nprogress": "^0.2.0",
-    "rc-animate": "^3.1.1",
-    "rc-queue-anim": "^2.0.0",
-    "rc-texty": "^0.2.0",
-    "rc-tween-one": "^3.0.6",
+    "antd-management-fast-component": "^1.0.0",
+    "antd-management-fast-framework": "^1.12.103",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-json-view": "^1.21.3",
-    "react-player": "^2.11.0",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.7",
@@ -118,9 +88,5 @@
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.6.0"
-  },
-  "gitHead": "8f5f3fe1105991d759c5e13cd5ae898385c17c9a",
-  "gitHooks": {
-    "pre-commit": "lint-staged"
   }
 }
