@@ -2,6 +2,11 @@ import { buildConfig as buildConfigCore } from '../../antd-management-fast-rollu
 
 const inputFile = {
   ...{
+    'configGroup/configGeneral': 'src/configGroup/configGeneral.js',
+    'configGroup/themeCollection': 'src/configGroup/themeCollection.js',
+    'configGroup/webpackPlugin': 'src/configGroup/webpackPlugin.js',
+  },
+  ...{
     'framework/AuthorizationWrapper/index':
       'src/framework/AuthorizationWrapper/index.jsx',
     'framework/Common/index': 'src/framework/Common/index.jsx',
