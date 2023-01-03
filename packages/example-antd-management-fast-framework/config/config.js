@@ -2,6 +2,8 @@ import { defineConfig } from '@umijs/max';
 
 import { configDefault } from 'antd-management-fast-framework/es/configGroup/configGeneral';
 
+import pageRoutes from './router.config';
+
 const config = defineConfig({
   ...configDefault,
   ...{

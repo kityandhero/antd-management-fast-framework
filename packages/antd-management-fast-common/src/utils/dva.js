@@ -2,7 +2,7 @@ import {
   handleCommonDataAssist,
   handleListDataAssist,
   handlePageListDataAssist,
-} from '../requestAssistor';
+} from './requestAssistor';
 
 export const reducerCommonNameCollection = {
   handleCommonData: 'handleCommonData',

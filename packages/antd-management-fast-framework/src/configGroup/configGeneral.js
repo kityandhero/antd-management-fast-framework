@@ -22,6 +22,7 @@ export const configDefault = {
   request: {},
   layout: {},
   dva: {},
+  history: { type: 'hash' },
 };
 
 // export function buildConfig({
