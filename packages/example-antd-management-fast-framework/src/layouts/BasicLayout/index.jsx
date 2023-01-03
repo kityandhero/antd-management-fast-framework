@@ -6,15 +6,16 @@ import ProLayout, {
   SettingDrawer,
 } from '@ant-design/pro-layout';
 
-import Authorized from 'antd-management-fast-common/es/utils/Authorized';
 import { getAuthorityFromRouter } from 'antd-management-fast-common/es/utils/core';
 import { setAccessWayCollectionCache } from 'antd-management-fast-common/es/utils/globalStorageAssist';
 import { proLayoutDefaultProps } from 'antd-management-fast-common/es/utils/proLayoutCollection';
 import {
   checkDevelopment,
+  formatMessage,
   getQueue,
   recordDebug,
 } from 'antd-management-fast-common/es/utils/tools';
+import Authorized from 'antd-management-fast-component/es/customComponents/Authorized';
 
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { accessWayCollection } from '@/customConfig/config';
@@ -24,7 +25,6 @@ import {
   menuHeaderRender,
 } from '@/customSpecialComponents/CustomAssembly';
 import { defaultSettings } from '@/defaultSettings';
-import { formatMessage } from '@/utils/tools';
 
 const entrancePath = defaultSettings.getEntrancePath();
 
