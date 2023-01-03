@@ -1,6 +1,14 @@
 import { defineConfig } from '@umijs/max';
 
 const config = defineConfig({
+  // React 多实例问题
+  mfsu: {
+    shared: {
+      react: {
+        singleton: true,
+      },
+    },
+  },
   antd: {},
   access: {},
   model: {},

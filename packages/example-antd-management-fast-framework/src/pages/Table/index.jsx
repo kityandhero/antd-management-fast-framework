@@ -84,8 +84,7 @@ const handleRemove = async (selectedRows) => {
 
 const TableList = () => {
   const [createModalVisible, handleModalVisible] = useState(false);
-  const [updateModalVisible, handleUpdateModalVisible] =
-    useState < boolean > false;
+  const [updateModalVisible, handleUpdateModalVisible] = useState(false);
   const [stepFormValues, setStepFormValues] = useState({});
   const actionRef = useRef();
   const [row, setRow] = useState();
