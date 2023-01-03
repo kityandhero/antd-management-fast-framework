@@ -6,24 +6,37 @@
 
 // const { winPath } = utils;
 
-export const configDefault = {
-  mfsu: {
-    shared: {
-      react: {
-        singleton: true,
+// import pk from './package.json';
+
+// const deps = pk.dependencies;
+
+export function buildConfig(packageImport) {
+  const deps = packageImport.dependencies;
+
+  return {
+    mfsu: {
+      shared: {
+        react: {
+          singleton: true,
+          requiredVersion: deps['react'],
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: deps['react-dom'],
+        },
       },
     },
-  },
-  hash: true,
-  antd: {},
-  access: {},
-  model: {},
-  initialState: {},
-  request: {},
-  layout: {},
-  dva: {},
-  history: { type: 'hash' },
-};
+    hash: true,
+    antd: {},
+    access: {},
+    model: {},
+    initialState: {},
+    request: {},
+    layout: {},
+    dva: {},
+    history: { type: 'hash' },
+  };
+}
 
 // export function buildConfig({
 //   routes,
