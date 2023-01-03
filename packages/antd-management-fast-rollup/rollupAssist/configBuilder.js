@@ -156,6 +156,7 @@ export function buildConfig({
       chunkFileNames: '[name].js',
       format: 'es',
       sourcemap: false,
+      // preserveModules: true,
     },
   };
 

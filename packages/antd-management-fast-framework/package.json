@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-framework",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "> TODO: description",
   "author": "卢志涛 <kityandhero@126.com>",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
@@ -27,8 +27,8 @@
     "@ant-design/icons": "^4.8.0",
     "@umijs/max": "^4.0.41",
     "antd": "^5.1.1",
-    "antd-management-fast-common": "^1.0.0",
-    "antd-management-fast-component": "^1.0.0",
+    "antd-management-fast-common": "^2.0.0",
+    "antd-management-fast-component": "^2.0.0",
     "rc-queue-anim": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

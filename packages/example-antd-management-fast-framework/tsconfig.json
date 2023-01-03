@@ -5,7 +5,7 @@
     "target": "esnext",
     "lib": ["esnext", "dom"],
     "sourceMap": true,
-    "baseUrl": ".",
+    // "baseUrl": ".",
     "jsx": "react",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
@@ -24,10 +24,10 @@
     "importHelpers": true,
     "esModuleInterop": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"],
+      "@/*": ["./src/*"],
+      "@@/*": ["./src/.umi/*"],
       "@umijs/max": ["E:\\project\\my\\fast-framework\\node_modules\\umi"],
-      "@umijs/max/typings": ["src/.umi/typings"]
+      "@umijs/max/typings": ["./src/.umi/typings"]
     }
   },
   "include": ["src/**/*"],
