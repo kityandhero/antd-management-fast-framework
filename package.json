@@ -46,7 +46,7 @@
     "reinstall": "npm run clean && npm run clean:framework && npm run clean:simple && npm run lerna:b && npm run build:f && npm run init:start",
     "scz": "git stage -A && npm run cz && git push",
     "show:v": "cd packages/antd-management-fast-framework && npm version",
-    "start": "cd packages/simple-antd-management-fast-framework && npm start",
+    "start": "cd packages/example-antd-management-fast-framework && npm start",
     "start:build": "npm run build:f && npm run start"
   },
   "dependencies": {},
