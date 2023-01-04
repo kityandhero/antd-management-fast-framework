@@ -10,10 +10,13 @@ const inputFile = {
       'src/customComponents/AudioUpload/index.jsx',
     'customComponents/ArticleListContent/index':
       'src/customComponents/ArticleListContent/index.jsx',
-    'customComponents/Base/index': 'src/customComponents/Base/index.jsx',
+    'customComponents/BaseComponent/index':
+      'src/customComponents/BaseComponent/index.jsx',
     'customComponents/Canvas/index': 'src/customComponents/Canvas/index.jsx',
     'customComponents/AvatarList/index':
       'src/customComponents/AvatarList/index.jsx',
+
+    //#region  Charts
     'customComponents/Charts/autoHeight':
       'src/customComponents/Charts/autoHeight.jsx',
     'customComponents/Charts/bizcharts':
@@ -41,6 +44,8 @@ const inputFile = {
       'src/customComponents/Charts/TimelineChart/index.jsx',
     'customComponents/Charts/WaterWave/index':
       'src/customComponents/Charts/WaterWave/index.jsx',
+    //#endregion  Charts
+
     'customComponents/CenterBox/index':
       'src/customComponents/CenterBox/index.jsx',
     'customComponents/DisplayCopyData/index':

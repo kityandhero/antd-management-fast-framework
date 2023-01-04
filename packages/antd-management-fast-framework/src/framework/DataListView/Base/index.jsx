@@ -129,7 +129,7 @@ class ListBase extends AuthorizationWrapper {
     return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
   }
 
-  afterDidMount = () => {
+  doWorkAfterDidMount = () => {
     const { pageSize } = this.state;
 
     this.pageSizeAdditional = pageSize;

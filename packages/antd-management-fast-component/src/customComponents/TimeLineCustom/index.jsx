@@ -33,7 +33,7 @@ class TimeLineCustom extends CustomBase {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWhenGetSnapshotBeforeUpdate = (preProps, preState) => {
+  doWorkWhenGetSnapshotBeforeUpdate = (preProps, preState) => {
     this.currentTime = null;
     this.currentPageStart = true;
 

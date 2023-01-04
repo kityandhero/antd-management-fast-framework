@@ -33,12 +33,12 @@ class DataMenuContainer extends AuthorizationWrapper {
     };
   }
 
-  beforeDidMount = () => {
+  doWorkBeforeAdjustDidMount = () => {
     window.addEventListener('resize', this.resize);
     this.resize();
   };
 
-  beforeUnmount = () => {
+  doWorkBeforeUnmount = () => {
     window.removeEventListener('resize', this.resize);
   };
 

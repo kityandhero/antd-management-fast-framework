@@ -75,7 +75,7 @@ class Container extends ComponentBase {
 }
 
 Container.defaultProps = {
-  // ...BaseComponent.defaultProps,
+  ...BaseComponent.defaultProps,
   ...defaultProps,
 };
 

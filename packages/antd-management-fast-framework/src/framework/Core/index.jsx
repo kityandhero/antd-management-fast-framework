@@ -2,9 +2,9 @@ import {
   defaultCoreState,
   getDerivedStateFromPropsForUrlParamsCore,
 } from 'antd-management-fast-common/es/utils/tools';
-import Base from 'antd-management-fast-component/es/customComponents/Base';
+import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 
-class Core extends Base {
+class Core extends BaseComponent {
   lastLoadParams = null;
 
   constructor(props) {

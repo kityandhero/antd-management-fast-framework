@@ -1,8 +1,12 @@
+import nprogress from 'nprogress';
 import { Component } from 'react';
 
+import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
 import { getModelNameList } from '../../utils/modelAssist';
 import {
+  defaultBaseState,
   getGuid,
+  goToPath as goToPathCore,
   inCollection,
   recordConfig,
   recordDebug,
@@ -52,6 +56,8 @@ const defaultProps = {
 };
 
 class ComponentBase extends Component {
+  mounted = false;
+
   loadRemoteRequestAfterMount = false;
 
   /**
@@ -81,13 +87,25 @@ class ComponentBase extends Component {
   constructor(props) {
     super(props);
 
+    this.mounted = false;
+
+    const defaultState = defaultBaseState();
+
     this.state = {
-      error: null,
-      errorInfo: null,
-      counter: 0,
+      ...defaultState,
+      ...{
+        error: null,
+        errorInfo: null,
+        counter: 0,
+      },
     };
 
     this.keyPrefix = getGuid();
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return null;
   }
 
   componentDidMount() {
@@ -166,6 +184,8 @@ class ComponentBase extends Component {
   componentWillUnmount() {
     this.doWorkBeforeUnmount();
 
+    this.mounted = false;
+
     this.doWorkAfterUnmount();
 
     this.setState = () => {};
@@ -186,7 +206,11 @@ class ComponentBase extends Component {
     );
   }
 
+  doWorkBeforeAdjustDidMount = () => {};
+
   doDidMountTask = () => {
+    this.mounted = true;
+
     const checkNeedSignInDidMountResult = this.checkNeedSignInDidMount();
 
     if (!checkNeedSignInDidMountResult) {
@@ -215,6 +239,8 @@ class ComponentBase extends Component {
       }
     }
   };
+
+  doWorkAfterDidMount = () => {};
 
   checkNeedSignInDidMount = () => {
     return true;
@@ -349,6 +375,46 @@ class ComponentBase extends Component {
     return dispatch({ type, payload, alias });
   };
 
+  goToPath = (path) => {
+    const location = {
+      pathname: path,
+    };
+
+    if (defaultSettingsLayoutCustom.getUseNprogress()) {
+      nprogress.inc();
+
+      setTimeout(() => {
+        nprogress.done();
+      }, 400);
+    }
+
+    goToPathCore(location);
+  };
+
+  redirectToPath = (path) => {
+    const location = {
+      pathname: path,
+    };
+
+    if (defaultSettingsLayoutCustom.getUseNprogress()) {
+      nprogress.inc();
+
+      setTimeout(() => {
+        nprogress.done();
+      }, 400);
+    }
+
+    redirectToPathCore(location);
+  };
+
+  checkHasMore = (pageNo, pageSize, total) => {
+    if ((total || 0) <= 0) {
+      return false;
+    }
+
+    return (pageNo || 0) * (pageSize || 0) < (total || 0);
+  };
+
   /**
    * 当登录失败时调用
    * @param {*} remoteData [object] 远程返回数据
@@ -379,6 +445,36 @@ class ComponentBase extends Component {
 
       recordText(text);
     }
+  }
+
+  /**
+   * check loading progress,if loading or load fail,return false,else return true
+   * @returns bool
+   */
+  checkLoadingProgress() {
+    const { dataLoading, loadSuccess } = this.state;
+
+    return dataLoading || !loadSuccess;
+  }
+
+  /**
+   * check operability,if loading or or processing or load fail,return false,else return true
+   * @returns bool
+   */
+  checkOperability() {
+    const { dataLoading, processing, loadSuccess } = this.state;
+
+    return dataLoading || processing || !loadSuccess;
+  }
+
+  /**
+   * check in progress,if loading or or processing,return false,else return true
+   * @returns bool
+   */
+  checkInProgress() {
+    const { dataLoading, processing } = this.state;
+
+    return dataLoading || processing;
   }
 
   renderFurther() {

@@ -82,7 +82,7 @@ class ContentInfo extends TabPageBase {
     }
   };
 
-  beforeUnmount = () => {
+  doWorkBeforeUnmount = () => {
     clearInterval(this.autoSyncPrevTimer);
   };
 
