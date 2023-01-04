@@ -24,48 +24,50 @@ class Wrapper extends BaseComponent {
           <meta name="description" content={title} />
         </Helmet>
 
-        <FlexBox
-          flexAuto="top"
-          vertical={{
-            bottomHeight: '180rpx',
-          }}
-          top={
-            <VerticalBox
-              align="center"
-              alignJustify="center"
-              style={{
-                height: '100%',
-              }}
-            >
-              <div
+        <div style={{ height: '100vh' }}>
+          <FlexBox
+            flexAuto="top"
+            vertical={{
+              bottomHeight: '180rpx',
+            }}
+            top={
+              <VerticalBox
+                align="center"
+                alignJustify="center"
                 style={{
-                  flex: '1',
-                  padding: '32px 0',
+                  height: '100%',
                 }}
               >
-                <div style={{ textAlign: 'center' }}>{children}</div>
-              </div>
-            </VerticalBox>
-          }
-          bottom={
-            <DefaultFooter
-              style={{ background: 'inherit' }}
-              links={[]}
-              copyright={defaultSettings.getCopyright() || ''}
-            />
-          }
-        />
+                <div
+                  style={{
+                    flex: '1',
+                    padding: '32px 0',
+                  }}
+                >
+                  <div style={{ textAlign: 'center' }}>{children}</div>
+                </div>
+              </VerticalBox>
+            }
+            bottom={
+              <DefaultFooter
+                style={{ background: 'inherit' }}
+                links={[]}
+                copyright={defaultSettings.getCopyright() || ''}
+              />
+            }
+          />
 
-        <div
-          style={{
-            position: 'fixed',
-            width: '100%',
-            height: '100%',
-            top: 0,
-            zIndex: -1,
-          }}
-        >
-          <Bubbly />
+          <div
+            style={{
+              position: 'fixed',
+              width: '100%',
+              height: '100%',
+              top: 0,
+              zIndex: -1,
+            }}
+          >
+            <Bubbly />
+          </div>
         </div>
       </>
     );

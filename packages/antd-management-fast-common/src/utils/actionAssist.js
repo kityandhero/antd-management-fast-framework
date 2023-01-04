@@ -2,55 +2,16 @@ import { message, Modal } from 'antd';
 
 import {
   getGuid,
-  getPathValue,
   isFunction,
-  isString,
   notifySuccess,
   recordDebug,
   recordError,
-  recordObject,
   showErrorMessage,
   showRuntimeError,
   stringIsNullOrWhiteSpace,
 } from './tools';
-import { isUndefined } from './typeCheck';
 
 const { confirm } = Modal;
-
-/**
- * apiDataConvertCore
- */
-export function apiDataConvertCore({ props, modelName }) {
-  if (isUndefined(props)) {
-    throw new Error('props is undefined, please check params.');
-  }
-
-  if (stringIsNullOrWhiteSpace(modelName) || !isString(modelName)) {
-    throw new Error(
-      'apiDataConvertCore params: modelName must be a string, please check.',
-    );
-  }
-
-  const m = getPathValue(props, modelName);
-
-  if ((m || null) == null) {
-    recordObject(props);
-
-    recordError(
-      `apiDataConvertCore error: model ${modelName} is null or undefined`,
-    );
-  }
-
-  const { data } = m;
-
-  if ((data || null) == null) {
-    recordError(
-      `apiDataConvertCore error: key “data” in model ${modelName} is null or undefined`,
-    );
-  }
-
-  return data;
-}
 
 /**
  * 处理 actionCore 的异步请求结果
@@ -118,14 +79,24 @@ export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
 }
 
 /**
- * remote assess core
+ * remote assess wrapper core
+ * @param {*} api [string] remote api path.
+ * @param {*} params [object] remote api params.
+ * @param {*} target [object] target.
+ * @param {*} handleData [object] origin processing data.
+ * @param {*} failureCallback [function] remote access logic fail handler, eg. failureCallback(remoteData,whetherCauseByAuthorizeFail).
+ * @param {*} successCallback [function] remote access logic success handler.
+ * @param {*} successMessage [string] the message when remote access logic success. if successMessage not null or empty, will trigger toast notification.
+ * @param {*} successMessageBuilder [function] remote access logic success message builder, priority over successMessage.
+ * @param {*} showProcessing [bool] whether show processing toast.
+ * @param {*} textProcessing [string] processing toast text.
  */
 export async function actionCore({
   api,
   params,
-  apiDataConvert = null,
   target,
   handleData,
+  failureCallback,
   successCallback,
   successMessage = '数据已经操作成功，请进行后续操作。',
   successMessageBuilder = null,
@@ -152,12 +123,6 @@ export async function actionCore({
     throw new Error('actionCore: target.props not allow null');
   }
 
-  const { dispatch } = target.props;
-
-  if ((dispatch || null) == null) {
-    throw new Error('actionCore: dispatch not allow null');
-  }
-
   if (!isFunction(target.setState)) {
     throw new Error('actionCore: target.setState must be function');
   }
@@ -180,6 +145,8 @@ export async function actionCore({
 
   if (setProgressingFirst) {
     target.setState({ processing: true }, () => {
+      recordDebug('state dispatchComplete will set to false');
+
       target.setState(
         {
           dispatchComplete: false,
@@ -187,12 +154,11 @@ export async function actionCore({
         () => {
           delay <= 0
             ? remoteAction({
-                target,
-                dispatch,
                 api,
                 params,
+                target,
                 handleData,
-                apiDataConvert,
+                failureCallback,
                 successMessage,
                 successMessageBuilder,
                 showProcessing,
@@ -203,12 +169,11 @@ export async function actionCore({
             : setTimeout(() => {
                 // 延迟一定时间，优化界面呈现
                 remoteAction({
-                  target,
-                  dispatch,
                   api,
                   params,
+                  target,
                   handleData,
-                  apiDataConvert,
+                  failureCallback,
                   successMessage,
                   successMessageBuilder,
                   showProcessing,
@@ -224,12 +189,11 @@ export async function actionCore({
     target.setState({ processing: true, dispatchComplete: false }, () => {
       delay <= 0
         ? remoteAction({
-            target,
-            dispatch,
             api,
             params,
+            target,
             handleData,
-            apiDataConvert,
+            failureCallback,
             successMessage,
             successMessageBuilder,
             showProcessing,
@@ -240,12 +204,11 @@ export async function actionCore({
         : setTimeout(() => {
             // 延迟一定时间，优化界面呈现
             remoteAction({
-              target,
-              dispatch,
               api,
               params,
+              target,
               handleData,
-              apiDataConvert,
+              failureCallback,
               successMessage,
               successMessageBuilder,
               showProcessing,
@@ -259,12 +222,11 @@ export async function actionCore({
 }
 
 function remoteAction({
-  target,
-  dispatch,
   api,
   params,
+  target,
   handleData,
-  apiDataConvert,
+  failureCallback,
   successMessage,
   successMessageBuilder,
   showProcessing = false,
@@ -274,22 +236,22 @@ function remoteAction({
 }) {
   recordDebug(`modal access: ${api}`);
 
+  const { dispatch } = target.props;
+
+  if ((dispatch || null) == null) {
+    throw new Error('remoteAction: dispatch in target.props not allow null');
+  }
+
   dispatch({
     type: api,
     payload: params,
   })
-    .then(() => {
+    .then((data) => {
       if (showProcessing) {
         setTimeout(() => {
           message.destroy(loadingKey);
         }, 200);
       }
-
-      if (!isFunction(apiDataConvert)) {
-        throw new Error('actionCore params: apiDataConvert must be function');
-      }
-
-      const data = apiDataConvert(target.props);
 
       const { dataSuccess } = data;
 
@@ -332,6 +294,15 @@ function remoteAction({
             remoteOriginal: data,
           });
         }
+      } else {
+        if (isFunction(failureCallback)) {
+          failureCallback({
+            target,
+            handleData,
+            remoteOriginal: data,
+            error: null,
+          });
+        }
       }
 
       target.setState({
@@ -340,7 +311,7 @@ function remoteAction({
       });
     })
     .catch((res) => {
-      recordObject(res);
+      recordError(res);
 
       if (showProcessing) {
         setTimeout(() => {

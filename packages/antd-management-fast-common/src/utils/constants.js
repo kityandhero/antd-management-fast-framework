@@ -1,5 +1,17 @@
 import { emptyLogo as emptyLogoSource } from './mediaDefault';
 
+/**
+ * request method collection
+ */
+export const requestMethod = {
+  get: 'GET',
+  post: 'POST',
+  put: 'PUT',
+  delete: 'DELETE',
+  trace: 'TRACE',
+  connect: 'CONNECT',
+};
+
 export const unknownLabel = '未知';
 
 /**

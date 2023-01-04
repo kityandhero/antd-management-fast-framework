@@ -1,6 +1,7 @@
 import { message, notification } from 'antd';
 import { request as requestInner } from '@umijs/max';
 
+import { requestMethod } from './constants';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 import {
   clearCustomData,
@@ -182,7 +183,13 @@ const codeMessage = {
 //   return response;
 // });
 
-export async function request({ url, method = 'POST', data = {} }) {
+export async function request({
+  url,
+  method = requestMethod.post,
+  data = {},
+  header = [],
+  option = {},
+}) {
   const token = getToken() || 'anonymous';
 
   const corsUrl = corsTarget();
@@ -228,14 +235,14 @@ export async function request({ url, method = 'POST', data = {} }) {
   }
 
   if (showRequestInfo) {
-    recordObject({ corsUrl, api: url, urlChange, options });
+    recordObject({ corsUrl, api: url, urlChange, option });
   }
 
   return requestInner(urlChange, {
-    headers,
+    headers: { ...headers, ...header },
     method,
     params: {},
     body: data,
-    ...(options || {}),
+    ...(option || {}),
   });
 }

@@ -1,39 +1,89 @@
-import {
-  handleCommonDataAssist,
-  handleListDataAssist,
-  handlePageListDataAssist,
-} from './requestAssistor';
+import { setCache } from './cacheAssist';
+import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import { recordDebug } from './tools';
+import { isString, isUndefined } from './typeCheck';
 
-export const reducerCommonNameCollection = {
-  handleCommonData: 'handleCommonData',
-  handleListData: 'handleListData',
-  handlePageListData: 'handlePageListData',
+export const reducerNameCollection = {
+  reducerData: 'reducerData',
 };
 
-export const reducerCommonCollection = {
-  handleCommonData(state, action) {
-    return handleCommonDataAssist(state, action);
-  },
-  handleListData(state, action) {
-    return handleListDataAssist(state, action);
-  },
-  handlePageListData(state, action) {
-    return handlePageListDataAssist(state, action);
+export const reducerCollection = {
+  reducerData(state, action, namespace) {
+    return reducerDataAssist(state, action, namespace);
   },
 };
+
+function reducerDataAssist(state, action, namespace) {
+  const {
+    payload: v,
+    alias,
+    cacheData: cacheData,
+  } = {
+    ...{
+      callback: null,
+      pretreatment: null,
+      alias: null,
+      cacheData: false,
+    },
+    ...action,
+  };
+
+  let result = null;
+
+  if (isUndefined(alias) || !isString(alias)) {
+    result = {
+      ...state,
+      data: v,
+      fromRemote: true,
+    };
+  } else {
+    result = {
+      ...state,
+      fromRemote: true,
+    };
+
+    result[alias] = v;
+  }
+
+  if (cacheData) {
+    const key = `${namespace}_${alias || 'data'}`;
+
+    const cacheResult = setCache({
+      key,
+      value: v,
+    });
+
+    recordDebug(
+      `modal ${namespace} cache data, key is ${namespace}_${alias || 'data'}, ${
+        cacheResult ? 'cache success' : 'cache fail'
+      }.`,
+    );
+  }
+
+  return result;
+}
 
 /**
  * 初始化state
  */
 export const tacitlyState = {
   data: {
-    code: 0,
-    message: 'tacitly state scene',
-    dataSuccess: false,
+    code: defaultSettingsLayoutCustom.getApiSuccessCode(),
+    message: 'success',
+    dataSuccess: true,
     data: {},
     list: [],
     extra: {},
   },
+};
+
+export const reducerDefaultParams = {
+  cacheData: false,
+};
+
+export const handleDefaultParams = {
+  callback: null,
+  pretreatment: null,
 };
 
 /**

@@ -10,6 +10,7 @@ const config = defineConfig({
   ...buildConfig(pk),
   ...{
     mfsu: false,
+    styles: [`body { margin: 0; }`],
     layout: {
       title: '@umijs/max',
       onRouteChange: ({ routes, clientRoutes, location, action, basename }) => {

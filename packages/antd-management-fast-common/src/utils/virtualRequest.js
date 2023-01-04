@@ -1,13 +1,14 @@
-import { message } from 'antd';
-
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
 import { getToken } from './globalStorageAssist';
 import {
-  goToPath,
-  isFunction,
+  recordError,
+  recordTrace,
+  redirectToPath,
   showRuntimeError,
+  showWarnMessage,
   stringIsNullOrWhiteSpace,
 } from './tools';
+import { isFunction } from './typeCheck';
 
 /**
  * 是否使用模拟访问
@@ -54,7 +55,7 @@ export function apiVirtualFailData({
 
     return {
       code: defaultSettingsLayoutCustom.getAuthenticationFailCode(),
-      message: '登录失效，请重新登录',
+      message: '登录失效, 请重新登录',
       success: false,
     };
   }
@@ -65,7 +66,7 @@ export function apiVirtualFailData({
 
   return {
     code,
-    message,
+    message: messageText,
     success: false,
     ...remoteResponse,
   };
@@ -90,7 +91,7 @@ export function apiVirtualSuccessData({
 
     return {
       code: defaultSettingsLayoutCustom.getAuthenticationFailCode(),
-      message: '登录失效，请重新登录',
+      message: '登录失效, 请重新登录',
       success: false,
     };
   }
@@ -121,20 +122,26 @@ export async function apiVirtualSuccessAccess({
         }),
       );
     }, 300);
-  }).then((data) => {
-    result = data;
-  });
+  })
+    .then((data) => {
+      result = data;
+
+      return data;
+    })
+    .catch((res) => {
+      recordError(res);
+    });
 
   const { code } = result;
 
   if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
-    const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
+    const signInPath = defaultSettingsLayoutCustom.getSignInPath();
 
-    if (stringIsNullOrWhiteSpace(entrancePath)) {
+    if (stringIsNullOrWhiteSpace(signInPath)) {
       throw new Error('缺少登录页面路径配置');
     }
 
-    goToPath(entrancePath);
+    redirectToPath(signInPath);
   }
 
   return result;
@@ -153,22 +160,30 @@ export async function apiVirtualFailAccess({
     setTimeout(() => {
       resolve(apiVirtualFailData(remoteResponse, needAuthorize));
     }, 300);
-  }).then((data) => {
-    result = data;
-  });
+  })
+    .then((data) => {
+      result = data;
+
+      return data;
+    })
+    .catch((res) => {
+      recordError(res);
+    });
 
   const { code, message: messageText } = result;
 
   if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
-    const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
+    const signInPath = defaultSettingsLayoutCustom.getSignInPath();
 
-    if (stringIsNullOrWhiteSpace(entrancePath)) {
+    if (stringIsNullOrWhiteSpace(signInPath)) {
       throw new Error('缺少登录页面路径配置');
     }
 
-    goToPath(entrancePath);
+    redirectToPath(signInPath);
   } else if (code !== defaultSettingsLayoutCustom.getApiSuccessCode()) {
-    message.warn(messageText);
+    showWarnMessage({
+      message: messageText,
+    });
   }
 
   return result;
@@ -192,14 +207,24 @@ export async function apiVirtualAccess({
         virtualRequestDelay > 0 ? virtualRequestDelay : 0,
       );
     }
-  }).then((data) => {
-    result = data;
-  });
+  })
+    .then((data) => {
+      recordTrace(`api request is virtual: simulation completed.`);
+
+      result = data;
+
+      return data;
+    })
+    .catch((res) => {
+      recordError(res);
+    });
 
   const { code, message: messageText } = result;
 
   if (code !== defaultSettingsLayoutCustom.getApiSuccessCode()) {
-    message.warn(messageText);
+    showWarnMessage({
+      message: messageText,
+    });
   }
 
   return result;

@@ -1,20 +1,25 @@
-import { message } from 'antd';
-
+import { setCache } from './cacheAssist';
+import { requestMethod } from './constants';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
-import { clearCustomData, getToken } from './globalStorageAssist';
+import { getToken } from './globalStorageAssist';
 import { request as remoteRequest } from './request';
 import {
   corsTarget,
-  isFunction,
-  isObject,
-  isString,
-  notifyInfo,
   queryStringify,
+  recordDebug,
+  recordInfo,
   recordObject,
+  recordText,
+  recordTrace,
+  recordWarn,
   redirectToPath,
+  showErrorMessage,
+  showInfoMessage,
   stringIsNullOrWhiteSpace,
+  trim,
 } from './tools';
-import { isUndefined } from './typeCheck';
+import { isFunction, isObject, isString, isUndefined } from './typeCheck';
+import { toLower, toNumber, toUpper } from './typeConvert';
 import {
   apiVirtualAccess,
   apiVirtualFailData,
@@ -48,46 +53,53 @@ function dataExceptionNotice(d) {
     time: new Date().getTime(),
   };
 
-  if (code !== c.code) {
-    if ((messageText || '') !== '') {
-      const currentTime = new Date().getTime();
-      if (code === lastCustomMessage.code) {
+  const codeAdjust = toNumber(code);
+
+  if (codeAdjust !== c.code) {
+    const currentTime = new Date().getTime();
+
+    if (codeAdjust !== authenticationFailCode) {
+      recordWarn(
+        `api call failed, code: ${codeAdjust}, message: ${messageText}`,
+      );
+
+      if (codeAdjust === toNumber(lastCustomMessage.code)) {
         if (currentTime - lastCustomMessage.time > 800) {
-          requestAnimationFrame(() => {
-            message.error(messageText);
+          showErrorMessage({
+            message: messageText,
           });
 
-          window.lastCustomMessage = {
-            code,
+          taroGlobalData.lastCustomMessage = {
+            code: codeAdjust,
             message: messageText,
             time: currentTime,
           };
         }
       } else {
-        requestAnimationFrame(() => {
-          message.error(messageText);
+        showErrorMessage({
+          message: messageText,
         });
 
-        window.lastCustomMessage = {
-          code,
+        taroGlobalData.lastCustomMessage = {
+          code: codeAdjust,
           message: messageText,
           time: currentTime,
         };
       }
+    } else {
+      recordDebug(`api call failed, authentication fail`);
     }
 
-    const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
+    const signInPath = defaultSettingsLayoutCustom.getSignInPath();
     const authenticationFailCode =
       defaultSettingsLayoutCustom.getAuthenticationFailCode();
 
-    if (code === authenticationFailCode) {
-      if (stringIsNullOrWhiteSpace(entrancePath)) {
+    if (codeAdjust === authenticationFailCode) {
+      if (stringIsNullOrWhiteSpace(signInPath)) {
         throw new Error('缺少登录页面路径配置');
       }
 
-      requestAnimationFrame(() => {
-        redirectToPath(entrancePath);
-      });
+      redirectToPath(signInPath);
     }
   }
 }
@@ -96,17 +108,30 @@ function dataExceptionNotice(d) {
  * 预处理单项数据返回
  *
  * @export
- * @param {*} d
+ * @param {*} source 源数据
+ * @param {*} pretreatment 源数据预处理
+ * @param {*} successCallback 请求成功后的可回调函数
+ * @param {*} failCallback 请求失败后的可回调函数
  * @returns
  */
-export function pretreatmentRemoteSingleData(d) {
-  const { code, message: messageText } = d || errorCustomData();
+export function pretreatmentRemoteSingleData({
+  source,
+  pretreatment = null,
+  successCallback = null,
+  failCallback = null,
+}) {
+  const { code, message: messageText } = source || errorCustomData();
   let v = {};
 
   const apiSuccessCode = defaultSettingsLayoutCustom.getApiSuccessCode();
 
   if (code === apiSuccessCode) {
-    const { data, extra } = d;
+    const { data, extra } = source;
+
+    if (isFunction(pretreatment)) {
+      v = pretreatment(source);
+    }
+
     v = {
       code,
       message: messageText,
@@ -114,6 +139,10 @@ export function pretreatmentRemoteSingleData(d) {
       extra: extra || {},
       dataSuccess: true,
     };
+
+    if (isFunction(successCallback)) {
+      successCallback(v);
+    }
   } else {
     v = {
       code,
@@ -122,6 +151,10 @@ export function pretreatmentRemoteSingleData(d) {
       extra: null,
       dataSuccess: false,
     };
+
+    if (isFunction(failCallback)) {
+      failCallback(v);
+    }
 
     dataExceptionNotice(v);
   }
@@ -133,15 +166,31 @@ export function pretreatmentRemoteSingleData(d) {
  * 预处理集合数据返回
  *
  * @export
- * @param {*} d
+ * @param {*} source
+ * @param {*} pretreatment 源数据预处理
+ * @param {*} itemPretreatment 源数据项预处理
+ * @param {*} successCallback 请求成功后的可回调函数
+ * @param {*} failCallback 请求失败后的可回调函数
  * @returns
  */
-export function pretreatmentRemoteListData(d, itemHandler) {
-  const { code, message: messageText } = d || errorCustomData();
+export function pretreatmentRemoteListData({
+  source,
+  pretreatment = null,
+  itemPretreatment = null,
+  successCallback = null,
+  failCallback = null,
+}) {
+  const { code, message: messageText } = source || errorCustomData();
   let v = {};
 
   if (code === defaultSettingsLayoutCustom.getApiSuccessCode()) {
-    const { list: listData, extra: extraData } = d;
+    let sourceAdjust = source;
+
+    if (isFunction(pretreatment)) {
+      sourceAdjust = pretreatment(source);
+    }
+
+    const { list: listData, extra: extraData } = sourceAdjust;
     const list = (listData || []).map((item, index) => {
       let o = item;
 
@@ -149,9 +198,10 @@ export function pretreatmentRemoteListData(d, itemHandler) {
         o.key = `list-${index}`;
       }
 
-      if (typeof itemHandler === 'function') {
-        o = itemHandler(o);
+      if (isFunction(itemPretreatment)) {
+        o = itemPretreatment(o);
       }
+
       return o;
     });
 
@@ -163,6 +213,10 @@ export function pretreatmentRemoteListData(d, itemHandler) {
       extra: extraData,
       dataSuccess: true,
     };
+
+    if (isFunction(successCallback)) {
+      successCallback(v);
+    }
   } else {
     v = {
       code,
@@ -172,6 +226,10 @@ export function pretreatmentRemoteListData(d, itemHandler) {
       extra: null,
       dataSuccess: false,
     };
+
+    if (isFunction(failCallback)) {
+      failCallback(v);
+    }
 
     dataExceptionNotice(v);
   }
@@ -183,15 +241,35 @@ export function pretreatmentRemoteListData(d, itemHandler) {
  * 预处理分页数据返回
  *
  * @export
- * @param {*} d
+ * @param {*} source
+ * @param {*} pretreatment 源数据预处理
+ * @param {*} itemPretreatment 源数据项预处理
+ * @param {*} successCallback 请求成功后的可回调函数
+ * @param {*} failCallback 请求失败后的可回调函数
  * @returns
  */
-export function pretreatmentRemotePageListData(d, listItemHandler) {
-  const { code, message: messageText } = d || errorCustomData();
+export function pretreatmentRemotePageListData({
+  source,
+  pretreatment = null,
+  itemPretreatment = null,
+  successCallback = null,
+  failCallback = null,
+}) {
+  const { code, message: messageText } = source || errorCustomData();
   let v = {};
 
-  if (code === defaultSettingsLayoutCustom.getApiSuccessCode()) {
-    const { list: listData, extra: extraData } = d;
+  const codeAdjust = toNumber(code);
+
+  if (
+    codeAdjust === toNumber(defaultSettingsLayoutCustom.getApiSuccessCode())
+  ) {
+    let sourceAdjust = source;
+
+    if (isFunction(pretreatment)) {
+      sourceAdjust = pretreatment(source);
+    }
+
+    const { list: listData, extra: extraData } = sourceAdjust;
     const { pageNo } = extraData;
     const list = (listData || []).map((item, index) => {
       let o = item;
@@ -200,14 +278,15 @@ export function pretreatmentRemotePageListData(d, listItemHandler) {
         o.key = `${pageNo}-${index}`;
       }
 
-      if (typeof listItemHandler === 'function') {
-        o = listItemHandler(o);
+      if (isFunction(itemPretreatment)) {
+        o = itemPretreatment(o);
       }
+
       return o;
     });
 
     v = {
-      code,
+      code: codeAdjust,
       message: messageText,
       count: (list || []).length,
       list,
@@ -219,9 +298,13 @@ export function pretreatmentRemotePageListData(d, listItemHandler) {
       extra: extraData,
       dataSuccess: true,
     };
+
+    if (isFunction(successCallback)) {
+      successCallback(v);
+    }
   } else {
     v = {
-      code,
+      code: codeAdjust,
       message: messageText || '网络异常',
       count: 0,
       list: [],
@@ -233,6 +316,10 @@ export function pretreatmentRemotePageListData(d, listItemHandler) {
       },
       dataSuccess: false,
     };
+
+    if (isFunction(failCallback)) {
+      failCallback(v);
+    }
 
     dataExceptionNotice(v);
   }
@@ -257,40 +344,6 @@ export function pretreatmentRequestParams(params, customHandle) {
 }
 
 /**
- * 常规数据出库辅助方法
- * @param {*} state
- * @param {*} action
- * @param {*} callback
- * @returns
- */
-export function handleCommonDataAssist(state, action, callback = null) {
-  const { payload: d, alias } = action;
-
-  let v = pretreatmentRemoteSingleData(d);
-
-  if (isFunction(callback)) {
-    v = callback(v);
-  }
-
-  if (isUndefined(alias)) {
-    return {
-      ...state,
-      data: v,
-      fromRemote: true,
-    };
-  }
-
-  const aliasData = {};
-  aliasData[alias] = v;
-
-  return {
-    ...state,
-    ...aliasData,
-    fromRemote: true,
-  };
-}
-
-/**
  * handleListDataAssist
  * @param {*} state
  * @param {*} action
@@ -298,13 +351,8 @@ export function handleCommonDataAssist(state, action, callback = null) {
  * @param {*} callback
  * @returns
  */
-export function handleListDataAssist(
-  state,
-  action,
-  pretreatment = null,
-  callback = null,
-) {
-  const { payload: d, alias } = action;
+export function handleListDataAssist(state, action, namespace) {
+  const { payload: d, callback, pretreatment, alias, cacheData } = action;
 
   let v = pretreatmentRemoteListData(d, pretreatment);
 
@@ -312,31 +360,43 @@ export function handleListDataAssist(
     v = callback(v);
   }
 
-  if (isUndefined(alias)) {
+  let result = null;
+
+  if (isUndefined(alias) || !isString(alias)) {
     return {
       ...state,
       data: v,
       fromRemote: true,
     };
+  } else {
+    result = {
+      ...state,
+      fromRemote: true,
+    };
+
+    result[alias] = v;
   }
 
-  const aliasData = {};
-  aliasData[alias] = v;
+  if (cacheData) {
+    const key = `${namespace}_${alias || 'data'}`;
 
-  return {
-    ...state,
-    ...aliasData,
-    fromRemote: true,
-  };
+    const cacheResult = setCache({
+      key,
+      value: v,
+    });
+
+    recordDebug(
+      `modal ${namespace} cache data, key is ${namespace}_${alias || 'data'}, ${
+        cacheResult ? 'cache success' : 'cache fail'
+      }.`,
+    );
+  }
+
+  return result;
 }
 
-export function handlePageListDataAssist(
-  state,
-  action,
-  pretreatment = null,
-  callback = null,
-) {
-  const { payload: d, alias } = action;
+export function handlePageListDataAssist(state, action, namespace) {
+  const { payload: d, callback, pretreatment, alias, cacheData } = action;
 
   let v = pretreatmentRemotePageListData(d, pretreatment);
 
@@ -344,41 +404,60 @@ export function handlePageListDataAssist(
     v = callback(v);
   }
 
-  if (isUndefined(alias)) {
+  let result = null;
+
+  if (isUndefined(alias) || !isString(alias)) {
     return {
       ...state,
       data: v,
       fromRemote: true,
     };
+  } else {
+    result = {
+      ...state,
+      fromRemote: true,
+    };
+
+    result[alias] = v;
   }
 
-  const aliasData = {};
-  aliasData[alias] = v;
+  if (cacheData) {
+    const key = `${namespace}_${alias || 'data'}`;
 
-  return {
-    ...state,
-    ...aliasData,
-    fromRemote: true,
-  };
+    const cacheResult = setCache({
+      key,
+      value: v,
+    });
+
+    recordDebug(
+      `modal ${namespace} cache data, key is ${namespace}_${alias || 'data'}, ${
+        cacheResult ? 'cache success' : 'cache fail'
+      }.`,
+    );
+  }
+
+  return result;
 }
 
 /**
  * begin request（remote request / local virtual requests）
  * @param {*} api [string]: request address
  * @param {*} params [object]: request params
+ * @param {*} header [object]: request header
  * @param {*} method [string]: ’GET‘ or ’POST‘, default is ’POST‘
  * @param {*} useVirtualRequest [bool]: whether to apply virtual requests
  * @param {*} showUseVirtualRequestMessage [bool]: whether display virtual request message prompt
  * @param {*} virtualSuccessResponse [object]: virtual request success response data
  * @param {*} virtualFailResponse [object]: virtual request fail response data
  * @param {*} virtualRequestResult [object]:mandatory set virtual request result, generally used to debug
- * @param {*} virtualNeedAuthorize [object]:set virtual request whether check token， only check mull or empty, generally used to debug
+ * @param {*} virtualNeedAuthorize [object]:set virtual request whether check token,  only check mull or empty, generally used to debug
  * @returns
  */
 export async function request({
   api,
   urlParams = null,
   params = {},
+  header = {},
   method = 'POST',
   useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest(),
   showUseVirtualRequestMessage = defaultSettingsLayoutCustom.getShowUseVirtualRequestMessage(),
@@ -390,27 +469,36 @@ export async function request({
     message: '虚拟未知错误',
   },
   virtualRequestResult = true,
-  virtualNeedAuthorize = true,
+  virtualNeedAuthorize = false,
 }) {
   let apiVersion = defaultSettingsLayoutCustom.getApiVersion();
 
   if (!isString(apiVersion)) {
-    recordObject(apiVersion);
+    recordText(apiVersion);
 
     throw new Error('apiVersion is not string');
   }
 
   if (!isString(api)) {
-    recordObject(api);
+    recordText(api);
 
     throw new Error('api is not string');
   }
 
-  if (!stringIsNullOrWhiteSpace(apiVersion)) {
-    apiVersion = `/${apiVersion}/`;
-  }
+  let url = api;
 
-  let url = `${apiVersion}${api}`.replace('//', '/');
+  if (
+    toLower(url).startsWith('http://') ||
+    toLower(url).startsWith('https://')
+  ) {
+    url = api;
+  } else {
+    if (!stringIsNullOrWhiteSpace(apiVersion)) {
+      apiVersion = `/${apiVersion}/`;
+    }
+
+    url = `${apiVersion}${api}`.replace('//', '/');
+  }
 
   if ((urlParams || null) != null) {
     if (isString(urlParams)) {
@@ -425,12 +513,20 @@ export async function request({
   const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
 
   if (useVirtualRequest) {
+    recordTrace(
+      `api request is virtual: simulation start,${
+        virtualRequestDelay > 0 ? ` delay ${virtualRequestDelay}ms,` : ''
+      } api is ${api}.`,
+    );
+
     if (showUseVirtualRequestMessage) {
       setTimeout(
         () => {
           const text = '由虚拟访问返回';
 
-          notifyInfo(text);
+          showInfoMessage({
+            message: text,
+          });
         },
         showUseVirtualRequestMessageDelay > 0
           ? showUseVirtualRequestMessageDelay
@@ -450,19 +546,13 @@ export async function request({
     }
 
     if (virtualNeedAuthorize && !verifyToken) {
-      const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
+      const signInPath = defaultSettingsLayoutCustom.getSignInPath();
 
-      if (stringIsNullOrWhiteSpace(entrancePath)) {
+      if (stringIsNullOrWhiteSpace(signInPath)) {
         throw new Error('缺少登录页面路径配置');
       }
 
-      setTimeout(() => {
-        clearCustomData();
-
-        message.info('登陆超时，请重新登录！', 0.6);
-
-        redirectToPath(entrancePath);
-      }, 400);
+      redirectToPath(signInPath);
     } else {
       result = await apiVirtualAccess({
         virtualRequestDelay,
@@ -507,7 +597,39 @@ export async function request({
     });
   }
 
-  return remoteRequest({ url, method, data: params });
+  const appId = defaultSettingsLayoutCustom.getAppId() || '';
+
+  if (stringIsNullOrWhiteSpace(appId)) {
+    recordInfo('appId is header is empty');
+  }
+
+  if (trim(toUpper(method)) === 'POST') {
+    return remoteRequest.Execute({
+      url,
+      data: params,
+      header: {
+        ...{ appId },
+        ...(header || {}),
+      },
+      option: {},
+      method: requestMethod.post,
+    });
+  }
+
+  if (trim(toUpper(method)) === 'GET') {
+    return remoteRequest.Execute({
+      url,
+      data: params,
+      header: {
+        ...{ appId },
+        ...(header || {}),
+      },
+      option: {},
+      method: requestMethod.get,
+    });
+  }
+
+  throw new Error(`unsupported method:${method}`);
 }
 
 /**

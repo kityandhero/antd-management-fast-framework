@@ -3,12 +3,15 @@ import React from 'react';
 import { connect } from 'umi';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 
+import { getPageQuery } from 'antd-management-fast-common/es/utils/core';
+import { setToken } from 'antd-management-fast-common/es/utils/globalStorageAssist';
+import { redirectToPath } from 'antd-management-fast-common/es/utils/tools';
 import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
-import { defaultSettings } from '@/defaultSettings';
-
+import { defaultSettings } from '../../../defaultSettings';
+import { setDataFlag } from '../../../utils/storageAssist';
 import { signInAction } from '../Assist/action';
 
 const defaultProps = {};
@@ -38,10 +41,44 @@ class SignIn extends BaseComponent {
     signInAction({
       target: this,
       handleData: values,
-      successCallback: () => {
-        that.setState({
-          processing: false,
-        });
+      successCallback: ({ remoteData }) => {
+        that.setState(
+          {
+            processing: false,
+          },
+          () => {
+            const {
+              currentAuthority,
+              token: tokenValue,
+              dataFlag,
+            } = remoteData;
+
+            setAuthority(currentAuthority);
+            setToken(tokenValue);
+            setDataFlag(dataFlag || '');
+
+            const urlParams = new URL(window.location.href);
+            const params = getPageQuery();
+            let { redirect } = params;
+
+            if (redirect) {
+              const redirectUrlParams = new URL(redirect);
+
+              if (redirectUrlParams.origin === urlParams.origin) {
+                redirect = redirect.substr(urlParams.origin.length);
+
+                if (redirect.match(/^\/.*#/)) {
+                  redirect = redirect.substr(redirect.indexOf('#') + 1);
+                }
+              } else {
+                window.location.href = '/';
+                return;
+              }
+            }
+
+            redirectToPath(redirect || '/');
+          },
+        );
       },
     });
   };

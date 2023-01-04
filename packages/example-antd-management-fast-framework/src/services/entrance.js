@@ -28,6 +28,13 @@ export async function getCaptchaData(mobile) {
   });
 }
 
+export async function signOutData(params) {
+  return request({
+    api: `/entrance/signOut`,
+    params,
+  });
+}
+
 /**
  * 占位函数
  *
