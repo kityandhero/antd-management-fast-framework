@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'umi';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 
+import { setAuthority } from 'antd-management-fast-common/es/utils/authority';
 import { getPageQuery } from 'antd-management-fast-common/es/utils/core';
 import { setToken } from 'antd-management-fast-common/es/utils/globalStorageAssist';
 import { redirectToPath } from 'antd-management-fast-common/es/utils/tools';

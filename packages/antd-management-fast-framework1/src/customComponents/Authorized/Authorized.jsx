@@ -1,7 +1,4 @@
-import { Result } from 'antd';
-
 import { flushAllCache } from './cacheAssist';
-import check from './CheckPermissions';
 import { storageKeyCollection } from './globalStorageAssist';
 import {
   getStringFromLocalStorage,
@@ -9,21 +6,21 @@ import {
 } from './localStorageAssist';
 import { isArray } from './typeCheck';
 
-const Authorized = ({
-  children,
-  authority,
-  noMatch = (
-    <Result
-      status="403"
-      title="403"
-      subTitle="Sorry, you are not authorized to access this page."
-    />
-  ),
-}) => {
-  const childrenRender = typeof children === 'undefined' ? null : children;
-  const dom = check(authority, childrenRender, noMatch);
-  return <>{dom}</>;
-};
+// const Authorized = ({
+//   children,
+//   authority,
+//   noMatch = (
+//     <Result
+//       status="403"
+//       title="403"
+//       subTitle="Sorry, you are not authorized to access this page."
+//     />
+//   ),
+// }) => {
+//   const childrenRender = typeof children === 'undefined' ? null : children;
+//   const dom = check(authority, childrenRender, noMatch);
+//   return <>{dom}</>;
+// };
 
 /**
  * 缓存用户权限数据体
@@ -41,7 +38,7 @@ export function setAuthority(authority) {
   flushAllCache();
 
   // auto reload
-  reloadAuthorized();
+  // reloadAuthorized();
 }
 
 export function getAuthority(str) {
@@ -73,12 +70,12 @@ export function getAuthority(str) {
 
 // let Authorized = Authorized(getAuthority());
 
-const reloadAuthorized = () => {
-  Authorized = Authorized(getAuthority());
-};
+// const reloadAuthorized = () => {
+//   Authorized = Authorized(getAuthority());
+// };
 
-window.reloadAuthorized = reloadAuthorized;
+// window.reloadAuthorized = reloadAuthorized;
 
-export { reloadAuthorized };
+// export { reloadAuthorized };
 
 // export default Authorized;

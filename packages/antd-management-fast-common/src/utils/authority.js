@@ -1,9 +1,12 @@
-import { getCache, hasCache, setCache } from './cacheAssist';
+import { flushAllCache, getCache, hasCache, setCache } from './cacheAssist';
 import {
   getAccessWayCollectionCache,
   storageKeyCollection,
 } from './globalStorageAssist';
-import { getStringFromLocalStorage } from './localStorageAssist';
+import {
+  getStringFromLocalStorage,
+  saveJsonToLocalStorage,
+} from './localStorageAssist';
 import {
   getValueByKey,
   isArray,
@@ -17,6 +20,49 @@ import {
 
 const authorityCollectionCache = 'authorityCollectionCache';
 const superPermissionCacheKey = 'hasSuperPermission';
+
+/**
+ * 缓存用户权限数据体
+ * @param {*} authority
+ */
+export function setAuthority(authority) {
+  const authorityCollection =
+    typeof authority === 'string' ? [authority] : authority;
+
+  saveJsonToLocalStorage(
+    storageKeyCollection.authorityCollection,
+    authorityCollection,
+  );
+
+  flushAllCache();
+}
+
+export function getAuthority(str) {
+  const authorityString =
+    typeof str === 'undefined'
+      ? getStringFromLocalStorage(storageKeyCollection.authorityCollection)
+      : str;
+
+  let authority;
+
+  try {
+    if (authorityString) {
+      authority = JSON.parse(authorityString);
+    }
+  } catch (e) {
+    authority = authorityString;
+  }
+
+  if (typeof authority === 'string') {
+    return [authority];
+  }
+
+  if (isArray(authority)) {
+    return authority;
+  }
+
+  return [];
+}
 
 function getAllAuthorityCore() {
   let result = [];
