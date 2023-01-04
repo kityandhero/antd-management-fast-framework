@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "path": "packages/antd-management-fast-component",
+      "problemMatcher": [],
+      "label": "dev-antd-management-fast-component",
+      "detail": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch"
+    }
+  ]
+}

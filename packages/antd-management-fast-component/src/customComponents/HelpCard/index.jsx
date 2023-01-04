@@ -1,5 +1,5 @@
 import { Card } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import HelpBox from '../HelpBox';
 

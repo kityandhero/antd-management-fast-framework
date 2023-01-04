@@ -1,5 +1,5 @@
 import { Col, Input, Row, Select } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   isFunction,

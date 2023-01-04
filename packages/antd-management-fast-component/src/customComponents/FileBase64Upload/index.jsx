@@ -1,5 +1,5 @@
 import { Button, Input, Upload } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
 import {

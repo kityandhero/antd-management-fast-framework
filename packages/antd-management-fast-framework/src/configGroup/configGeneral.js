@@ -2,8 +2,6 @@
 
 // import { webpackPlugin5 } from './webpackPlugin';
 
-// const { REACT_APP_ENV } = process.env;
-
 // const { winPath } = utils;
 
 // import pk from './package.json';

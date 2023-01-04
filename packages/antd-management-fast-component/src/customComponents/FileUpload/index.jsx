@@ -9,7 +9,7 @@ import {
   Tooltip,
   Upload,
 } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 
 import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';

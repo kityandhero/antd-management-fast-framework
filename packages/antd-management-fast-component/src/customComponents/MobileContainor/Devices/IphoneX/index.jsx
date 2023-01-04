@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import { animalType } from 'antd-management-fast-common/es/utils/constants';
 

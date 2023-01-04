@@ -1,5 +1,6 @@
 import { Drawer, Empty } from 'antd';
 import parse from 'html-react-parser';
+import React from 'react';
 
 import { imageContentPreviewMode } from 'antd-management-fast-common/es/utils/constants';
 

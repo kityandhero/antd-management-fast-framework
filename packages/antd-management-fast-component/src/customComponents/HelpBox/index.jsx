@@ -1,6 +1,6 @@
 import { Divider } from 'antd';
 import classNames from 'classnames';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   isArray,

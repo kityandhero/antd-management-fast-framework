@@ -1,5 +1,5 @@
 import { message, Modal, Space, Tooltip, Upload } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
 import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';

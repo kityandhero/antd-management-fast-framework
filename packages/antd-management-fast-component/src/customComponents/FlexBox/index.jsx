@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import { inCollection } from 'antd-management-fast-common/es/utils/core';
 

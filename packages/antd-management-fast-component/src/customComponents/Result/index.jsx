@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import React from 'react';
 import { CheckCircleFilled, ClockCircleFilled } from '@ant-design/icons';
 
 import styles from './index.less';

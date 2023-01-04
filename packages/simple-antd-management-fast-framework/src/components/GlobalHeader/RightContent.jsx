@@ -65,12 +65,6 @@ const GlobalHeaderRight = (props) => {
 
       <AvatarDropdown currentOperator={currentOperator} />
 
-      {REACT_APP_ENV && (
-        <span>
-          <Tag color={ENVTagColor[REACT_APP_ENV]}>{REACT_APP_ENV}</Tag>
-        </span>
-      )}
-
       {defaultSettings.getShowSelectLanguage() ? (
         <SelectLang className={styles.action} />
       ) : null}

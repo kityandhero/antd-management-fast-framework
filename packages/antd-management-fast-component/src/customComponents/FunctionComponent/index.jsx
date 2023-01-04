@@ -24,6 +24,7 @@ import {
   Typography,
 } from 'antd';
 import TextAnimal from 'rc-texty';
+import React from 'react';
 import ReactJson from 'react-json-view';
 import ReactPlayer from 'react-player';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';

@@ -1,5 +1,5 @@
 import { Alert, Table } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import styles from './index.less';
 

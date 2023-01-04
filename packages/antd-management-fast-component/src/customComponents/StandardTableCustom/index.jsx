@@ -1,5 +1,5 @@
 import { Alert, Spin, Table } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import { listViewConfig } from 'antd-management-fast-common/es/utils/constants';
 

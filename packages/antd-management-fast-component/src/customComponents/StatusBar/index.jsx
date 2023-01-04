@@ -1,5 +1,5 @@
 import { Col, Divider, Row } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   isArray,

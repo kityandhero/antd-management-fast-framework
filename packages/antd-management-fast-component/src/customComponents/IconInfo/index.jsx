@@ -1,5 +1,5 @@
 import { Col, Row, Tooltip } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   copyToClipboard,
