@@ -55,12 +55,15 @@ import {
   setNearestLocalhostNotifyCache,
 } from './developAssist';
 import {
+  recordConfig as recordConfigCore,
   recordDebug as recordDebugCore,
   recordError as recordErrorCore,
+  recordExecute as recordExecuteCore,
   recordInfo as recordInfoCore,
   recordLog as recordLogCore,
   recordObject as recordObjectCore,
   recordText as recordTextCore,
+  recordTrace as recordTraceCore,
   recordWarn as recordWarnCore,
 } from './log';
 import {
@@ -1805,6 +1808,10 @@ export function recordLog(record, showMode, level = logLevel.debug) {
   recordLogCore(record, showMode, level);
 }
 
+export function recordTrace(record) {
+  recordTraceCore(record);
+}
+
 export function recordWarn(record) {
   recordWarnCore(record);
 }
@@ -1813,8 +1820,16 @@ export function recordInfo(record) {
   recordInfoCore(record);
 }
 
+export function recordConfig(record) {
+  recordConfigCore(record);
+}
+
 export function recordDebug(record) {
   recordDebugCore(record);
+}
+
+export function recordExecute(record) {
+  recordExecuteCore(record);
 }
 
 export function recordError(record) {

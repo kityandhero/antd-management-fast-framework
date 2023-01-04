@@ -3,11 +3,11 @@ import React, { PureComponent } from 'react';
 import Container from './Container';
 import SignIn from './SignIn';
 
+const defaultProps = {};
+
 class Entrance extends PureComponent {
   render() {
-    const { children } = this.props;
-
-    console.log(children);
+    console.log(this.props);
 
     return (
       <Container>
@@ -16,5 +16,10 @@ class Entrance extends PureComponent {
     );
   }
 }
+
+Entrance.defaultProps = {
+  // ...BaseComponent.defaultProps,
+  ...defaultProps,
+};
 
 export default Entrance;

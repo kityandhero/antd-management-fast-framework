@@ -1,6 +1,7 @@
 import {
   isBoolean as isBooleanLodash,
   isDate as isDateLodash,
+  isEqual as isEqualLodash,
   isFunction as isFunctionLodash,
   isNull as isNullLodash,
   isObject as isObjectLodash,
@@ -16,6 +17,18 @@ export const isUrl = (path) => reg.test(path);
 
 export function isObject(o) {
   return isObjectLodash(o);
+}
+
+/**
+ * 获取本地数据
+ * @export
+ * @param {value} 对比源
+ * @param {other} 对比对象
+ * 执行深比较来确定两者的值是否相等.
+ * 这个方法支持比较 arrays, array buffers, booleans, date objects, error objects, maps, numbers, Object objects, regexes, sets, strings, symbols, 以及 typed arrays. Object 对象值比较自身的属性, 不包括继承的和可枚举的属性.  不支持函数和DOM节点比较.
+ */
+export function isEqual(value, other) {
+  return isEqualLodash(value, other);
 }
 
 /**

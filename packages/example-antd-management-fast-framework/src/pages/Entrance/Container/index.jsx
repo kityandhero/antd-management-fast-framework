@@ -1,8 +1,9 @@
 import classNames from 'classnames';
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Helmet, HelmetProvider } from 'umi';
 import { DefaultFooter } from '@ant-design/pro-layout';
 
+import { ComponentBase } from 'antd-management-fast-common/es/customComponents';
 import { Bubbly } from 'antd-management-fast-component/es/customComponents/Canvas';
 import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
 import VerticalBox from 'antd-management-fast-component/es/customComponents/VerticalBox';
@@ -13,13 +14,13 @@ import './index.less';
 
 const classPrefix = `amf-entrance`;
 
-class Container extends PureComponent {
+const defaultProps = {};
+
+class Container extends ComponentBase {
   render() {
     const { children } = this.props;
 
     const title = '登录';
-
-    console.log(children);
 
     return (
       <HelmetProvider>
@@ -72,5 +73,10 @@ class Container extends PureComponent {
     );
   }
 }
+
+Container.defaultProps = {
+  // ...BaseComponent.defaultProps,
+  ...defaultProps,
+};
 
 export default Container;

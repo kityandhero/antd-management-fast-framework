@@ -727,6 +727,11 @@ export const unlimitedWithNumberFlag = {
  */
 export const logLevel = {
   /**
+   * 跟踪
+   */
+  trace: 'trace',
+
+  /**
    * 调试
    */
   debug: 'debug',
@@ -740,6 +745,21 @@ export const logLevel = {
    * 错误
    */
   error: 'error',
+
+  /**
+   * 信息
+   */
+  info: 'info',
+
+  /**
+   * 配置
+   */
+  config: 'config',
+
+  /**
+   * 执行
+   */
+  execute: 'execute',
 };
 
 export const logShowMode = {
