@@ -1,7 +1,8 @@
 import { Button, message, notification } from 'antd';
 
+import { formatMessage } from 'antd-management-fast-common/es/utils/tools';
+
 import { defaultSettings } from '@/defaultSettings';
-import { formatMessage } from '@/utils/tools';
 
 const { pwa } = defaultSettings; // if pwa is true
 

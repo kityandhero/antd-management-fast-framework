@@ -1,25 +1,3 @@
-import { useIntl } from 'umi';
-
-/**
- * 语言渲染封装器
- * @param {*} o 语言配置
- * @returns
- */
-function FormatMessageWrapper(o) {
-  const { formatMessage: formatMessageUseIntl } = useIntl();
-
-  return formatMessageUseIntl(o);
-}
-
-/**
- * 语言渲染封装器
- * @param {*} o 语言配置
- * @returns
- */
-export function formatMessage(o) {
-  return FormatMessageWrapper(o);
-}
-
 export function getSexName(value) {
   let result = '未知';
 

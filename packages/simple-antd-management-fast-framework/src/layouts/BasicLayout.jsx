@@ -11,6 +11,7 @@ import { setAccessWayCollectionCache } from 'antd-management-fast-common/es/util
 import { proLayoutDefaultProps } from 'antd-management-fast-common/es/utils/proLayoutCollection';
 import {
   checkDevelopment,
+  formatMessage,
   getQueue,
   recordDebug,
 } from 'antd-management-fast-common/es/utils/tools';
@@ -24,7 +25,6 @@ import {
   menuHeaderRender,
 } from '@/customSpecialComponents/CustomAssembly';
 import { defaultSettings } from '@/defaultSettings';
-import { formatMessage } from '@/utils/tools';
 
 const entrancePath = defaultSettings.getEntrancePath();
 

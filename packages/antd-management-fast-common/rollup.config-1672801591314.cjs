@@ -1,19 +1,21 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
+var postcss = require('rollup-plugin-postcss');
+var nodePolyfills = require('rollup-plugin-polyfill-node');
+var rollupPluginTerser = require('rollup-plugin-terser');
+var typescript = require('rollup-plugin-typescript2');
+var babelConfig = require('@rollup/plugin-babel');
+var commonjs = require('@rollup/plugin-commonjs');
+var json = require('@rollup/plugin-json');
+var resolve = require('@rollup/plugin-node-resolve');
+var url = require('@rollup/plugin-url');
+var svgr = require('@svgr/rollup');
+
 // import pxtorem from 'postcss-pxtorem';
-import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
-// import dts from 'rollup-plugin-dts';
-// import livereload from 'rollup-plugin-livereload';
-import postcss from 'rollup-plugin-postcss';
-import nodePolyfills from 'rollup-plugin-polyfill-node';
-// import serve from 'rollup-plugin-serve';
-import { terser } from 'rollup-plugin-terser';
-import typescript from 'rollup-plugin-typescript2';
-import babelConfig from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-import resolve from '@rollup/plugin-node-resolve';
-import url from '@rollup/plugin-url';
-import svgr from '@svgr/rollup';
 
 // import { pxToRemRoot } from '../../taro-fast-common/src/utils/constants';
 
@@ -91,7 +93,7 @@ const externalCollection = [
   'uuid',
 ];
 
-export function buildConfig({
+function buildConfig$1({
   inputFile,
   terser: whetherTerser = false,
   externalCollection: otherExternalCollection = [],
@@ -162,7 +164,7 @@ export function buildConfig({
   };
 
   if (whetherTerser) {
-    config.plugins.push(terser());
+    config.plugins.push(rollupPluginTerser.terser());
   }
 
   // if (whetherServe) {
@@ -190,6 +192,53 @@ export function buildConfig({
  * @export
  * @returns
  */
-export function emptyExport() {
+function emptyExport$1() {
   return {};
 }
+
+const inputFile = {
+  ...{
+    'utils/actionAssist': 'src/utils/actionAssist.js',
+    'utils/appConfiguration': 'src/utils/appConfiguration.js',
+    'utils/authority': 'src/utils/authority.js',
+    'utils/cacheAssist': 'src/utils/cacheAssist.js',
+    'utils/constants': 'src/utils/constants.js',
+    'utils/core': 'src/utils/core.js',
+    'utils/defaultSettingsSpecial': 'src/utils/defaultSettingsSpecial.js',
+    'utils/developAssist': 'src/utils/developAssist.js',
+    'utils/dva': 'src/utils/dva.js',
+    'utils/globalModel': 'src/utils/globalModel.js',
+    'utils/globalStorageAssist': 'src/utils/globalStorageAssist.js',
+    'utils/localStorageAssist': 'src/utils/localStorageAssist.js',
+    'utils/log': 'src/utils/log.js',
+    'utils/mediaDefault': 'src/utils/mediaDefault.js',
+    'utils/proLayoutCollection': 'src/utils/proLayoutCollection.jsx',
+    'utils/request': 'src/utils/request.js',
+    'utils/requestAssistor': 'src/utils/requestAssistor.js',
+    'utils/sessionStorageAssist': 'src/utils/sessionStorageAssist.js',
+    'utils/tools': 'src/utils/tools.js',
+    'utils/typeCheck': 'src/utils/typeCheck.js',
+    'utils/typeConvert': 'src/utils/typeConvert.js',
+    'utils/virtualRequest': 'src/utils/virtualRequest.js',
+  },
+};
+
+function buildConfig({ terser: whetherTerser = false }) {
+  return buildConfig$1({ inputFile, terser: whetherTerser });
+}
+
+/**
+ * 占位函数
+ *
+ * @export
+ * @returns
+ */
+function emptyExport() {
+  return {};
+}
+
+const config = buildConfig({ terser: false });
+
+console.log({ message: 'rollup.config.skipCompression.js' });
+
+exports.default = config;

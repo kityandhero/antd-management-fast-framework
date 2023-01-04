@@ -6,12 +6,12 @@ import {
   getPageTitle,
 } from '@ant-design/pro-layout';
 
+import { formatMessage } from 'antd-management-fast-common/es/utils/tools';
 import Bubbly from 'antd-management-fast-component/es/customComponents/Canvas/Bubbly';
 import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
 import VerticalBox from 'antd-management-fast-component/es/customComponents/VerticalBox';
 
 import { defaultSettings } from '@/defaultSettings';
-import { formatMessage } from '@/utils/tools';
 
 import styles from './EntranceLayout.less';
 
