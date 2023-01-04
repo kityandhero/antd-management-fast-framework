@@ -207,6 +207,9 @@ export const iconBuilder = {
   loading: (props = null) => {
     return <LoadingOutlined {...(props || {})} />;
   },
+  team: (props = null) => {
+    return <TeamOutlined {...(props || {})} />;
+  },
   users: (props = null) => {
     return <TeamOutlined {...(props || {})} />;
   },
