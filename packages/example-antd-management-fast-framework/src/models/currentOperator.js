@@ -1,6 +1,7 @@
 import {
-  reducerCommonCollection,
-  reducerCommonNameCollection,
+  reducerCollection,
+  reducerDefaultParams,
+  reducerNameCollection,
   tacitlyState,
 } from 'antd-management-fast-common/es/utils/dva';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
@@ -26,7 +27,7 @@ export default {
   },
 
   effects: {
-    *getCurrentOperator({ payload }, { call, put }) {
+    *getCurrentOperator({ payload, alias }, { call, put }) {
       const { force } = payload || { force: false };
       let result = {};
       let fromRemote = force || false;
@@ -59,29 +60,47 @@ export default {
         payload: result,
       });
     },
-    *getCurrentBasicInfo({ payload }, { call, put }) {
+    *getCurrentBasicInfo({ payload, alias }, { call, put }) {
       const response = yield call(getCurrentBasicInfoData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *updateCurrentBasicInfo({ payload }, { call, put }) {
+    *updateCurrentBasicInfo({ payload, alias }, { call, put }) {
       const response = yield call(updateCurrentBasicInfoData, payload);
 
-      yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
-      });
-    },
-    *changeCurrentPassword({ payload }, { call, put }) {
-      const response = yield call(changeCurrentPasswordData, payload);
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
+    },
+    *changeCurrentPassword({ payload, alias }, { call, put }) {
+      const response = yield call(changeCurrentPasswordData, payload);
+
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
+      yield put({
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
+      });
+
+      return dataAdjust;
     },
   },
 
@@ -92,6 +111,6 @@ export default {
         currentOperator: payload,
       };
     },
-    ...reducerCommonCollection,
+    ...reducerCollection,
   },
 };

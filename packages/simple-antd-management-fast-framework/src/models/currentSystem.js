@@ -14,17 +14,23 @@ export default {
   },
 
   effects: {
-    *get({ payload }, { call, put }) {
+    *get({ payload, alias }, { call, put }) {
       const response = yield call(getData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
   },
 
   reducers: {
-    ...reducerCommonCollection,
+    ...reducerCollection,
   },
 };

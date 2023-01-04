@@ -38,7 +38,7 @@ export default {
   },
 
   effects: {
-    *pageList({ payload }, { call, put }) {
+    *pageList({ payload, alias }, { call, put }) {
       const response = yield call(pageListData, payload);
 
       yield put({
@@ -46,185 +46,317 @@ export default {
         payload: response,
       });
     },
-    *singleList({ payload }, { call, put }) {
+    *singleList({ payload, alias }, { call, put }) {
       const response = yield call(singleListData, payload);
 
+      const dataAdjust = pretreatmentRemoteListData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleListData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *singleListTree({ payload }, { call, put }) {
+    *singleListTree({ payload, alias }, { call, put }) {
       const response = yield call(singleListTreeData, payload);
 
+      const dataAdjust = pretreatmentRemoteListData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleListData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *get({ payload }, { call, put }) {
+    *get({ payload, alias }, { call, put }) {
       const response = yield call(getData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *addBasicInfo({ payload }, { call, put }) {
+    *addBasicInfo({ payload, alias }, { call, put }) {
       const response = yield call(addBasicInfoData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *updateBasicInfo({ payload }, { call, put }) {
+    *updateBasicInfo({ payload, alias }, { call, put }) {
       const response = yield call(updateBasicInfoData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *updateContentInfo({ payload }, { call, put }) {
+    *updateContentInfo({ payload, alias }, { call, put }) {
       const response = yield call(updateContentInfoData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *updateMediaInfo({ payload }, { call, put }) {
+    *updateMediaInfo({ payload, alias }, { call, put }) {
       const response = yield call(updateMediaInfoData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *updateSort({ payload }, { call, put }) {
+    *updateSort({ payload, alias }, { call, put }) {
       const response = yield call(updateSortData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *updateImageSort({ payload }, { call, put }) {
+    *updateImageSort({ payload, alias }, { call, put }) {
       const response = yield call(updateImageSortData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *updateRenderType({ payload }, { call, put }) {
+    *updateRenderType({ payload, alias }, { call, put }) {
       const response = yield call(updateRenderTypeData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *setOnline({ payload }, { call, put }) {
+    *setOnline({ payload, alias }, { call, put }) {
       const response = yield call(setOnlineData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *setOffline({ payload }, { call, put }) {
+    *setOffline({ payload, alias }, { call, put }) {
       const response = yield call(setOfflineData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *refreshCache({ payload }, { call, put }) {
+    *refreshCache({ payload, alias }, { call, put }) {
       const response = yield call(refreshCacheData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *remove({ payload }, { call, put }) {
+    *remove({ payload, alias }, { call, put }) {
       const response = yield call(removeData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *getMediaItem({ payload }, { call, put }) {
+    *getMediaItem({ payload, alias }, { call, put }) {
       const response = yield call(getMediaItemData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *addMediaItem({ payload }, { call, put }) {
+    *addMediaItem({ payload, alias }, { call, put }) {
       const response = yield call(addMediaItemData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *updateMediaItem({ payload }, { call, put }) {
+    *updateMediaItem({ payload, alias }, { call, put }) {
       const response = yield call(updateMediaItemData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *setMediaCollectionSort({ payload }, { call, put }) {
+    *setMediaCollectionSort({ payload, alias }, { call, put }) {
       const response = yield call(setMediaCollectionSortData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *removeMediaItem({ payload }, { call, put }) {
+    *removeMediaItem({ payload, alias }, { call, put }) {
       const response = yield call(removeMediaItemData, payload);
 
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *listImage({ payload }, { call, put }) {
+    *listImage({ payload, alias }, { call, put }) {
       const response = yield call(listImageData, payload);
 
+      const dataAdjust = pretreatmentRemoteListData({ source: response });
+
       yield put({
-        type: reducerCommonNameCollection.handleListData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
-    *addImage({ payload }, { call, put }) {
+    *addImage({ payload, alias }, { call, put }) {
       const response = yield call(addImageData, payload);
 
-      yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
-      });
-    },
-    *removeImage({ payload }, { call, put }) {
-      const response = yield call(removeImageData, payload);
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
       yield put({
-        type: reducerCommonNameCollection.handleCommonData,
-        payload: response,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
+    },
+    *removeImage({ payload, alias }, { call, put }) {
+      const response = yield call(removeImageData, payload);
+
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
+      yield put({
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
+      });
+
+      return dataAdjust;
     },
   },
 
   reducers: {
-    ...reducerCommonCollection,
+    ...reducerCollection,
   },
 };

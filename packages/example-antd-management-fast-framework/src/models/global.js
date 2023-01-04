@@ -1,5 +1,5 @@
 import {
-  reducerCommonCollection,
+  reducerCollection,
   tacitlyState,
 } from 'antd-management-fast-common/es/utils/dva';
 import { modelCollection } from 'antd-management-fast-common/es/utils/globalModel';
@@ -27,7 +27,7 @@ const GlobalModel = {
   },
 
   effects: {
-    *getMetaData({ payload }, { call, put }) {
+    *getMetaData({ payload, alias }, { call, put }) {
       const { force, showMessage } = payload || {
         force: false,
         showMessage: true,
@@ -142,7 +142,7 @@ const GlobalModel = {
         areaDistributionTempData: payload,
       };
     },
-    ...reducerCommonCollection,
+    ...reducerCollection,
   },
 
   subscriptions: {

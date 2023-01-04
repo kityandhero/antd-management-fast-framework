@@ -1,14 +1,7 @@
-import {
-  actionCore,
-  apiDataConvertCore,
-} from 'antd-management-fast-common/es/utils/actionAssist';
+import { actionCore } from 'antd-management-fast-common/es/utils/actionAssist';
 import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
 
 import { fieldData } from '../Common/data';
-
-function apiDataConvert(props) {
-  return apiDataConvertCore({ props, modelName: 'accessWay' });
-}
 
 export async function refreshCacheAction({
   target,
@@ -24,7 +17,6 @@ export async function refreshCacheAction({
         key: fieldData.accessWayId.name,
       }),
     },
-    apiDataConvert,
     target,
     handleData,
     successCallback,

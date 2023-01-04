@@ -597,8 +597,6 @@ export async function request({
     });
   }
 
-  const appId = defaultSettingsLayoutCustom.getAppId() || '';
-
   if (stringIsNullOrWhiteSpace(appId)) {
     recordInfo('appId is header is empty');
   }
@@ -608,7 +606,6 @@ export async function request({
       url,
       data: params,
       header: {
-        ...{ appId },
         ...(header || {}),
       },
       option: {},

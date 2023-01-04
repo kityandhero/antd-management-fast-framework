@@ -1,17 +1,9 @@
-import {
-  actionCore,
-  apiDataConvertCore,
-} from 'antd-management-fast-common/es/utils/actionAssist';
-
-function apiDataConvert(props) {
-  return apiDataConvertCore({ props, modelName: 'entrance' });
-}
+import { actionCore } from 'antd-management-fast-common/es/utils/actionAssist';
 
 export async function signInAction({ target, handleData, successCallback }) {
   actionCore({
     api: 'entrance/signIn',
     params: handleData,
-    apiDataConvert,
     target,
     handleData,
     successCallback,

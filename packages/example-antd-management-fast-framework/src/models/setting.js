@@ -1,4 +1,4 @@
-import { defaultSettings } from '@/defaultSettings';
+import { defaultSettings } from '../defaultSettings';
 
 const SettingModel = {
   namespace: 'settings',
@@ -15,4 +15,5 @@ const SettingModel = {
     },
   },
 };
+
 export default SettingModel;

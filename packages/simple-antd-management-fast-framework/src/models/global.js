@@ -27,7 +27,7 @@ const GlobalModel = {
   },
 
   effects: {
-    *getMetaData({ payload }, { call, put }) {
+    *getMetaData({ payload, alias }, { call, put }) {
       const { force, showMessage } = payload || {
         force: false,
         showMessage: true,
@@ -142,7 +142,7 @@ const GlobalModel = {
         areaDistributionTempData: payload,
       };
     },
-    ...reducerCommonCollection,
+    ...reducerCollection,
   },
 
   subscriptions: {

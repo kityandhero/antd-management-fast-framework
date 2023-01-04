@@ -1,15 +1,10 @@
 import {
   actionCore,
-  apiDataConvertCore,
   confirmActionCore,
 } from 'antd-management-fast-common/es/utils/actionAssist';
 import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
 
 import { fieldData, mediaItemData } from '../Common/data';
-
-function apiDataConvert(props) {
-  return apiDataConvertCore({ props, modelName: 'article' });
-}
 
 export function singleListTreeAction({
   target,
@@ -20,7 +15,6 @@ export function singleListTreeAction({
   actionCore({
     api: 'article/singleListTree',
     params: {},
-    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -42,7 +36,6 @@ export function setOnlineAction({
         key: fieldData.articleId.name,
       }),
     },
-    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -64,7 +57,6 @@ export function setOfflineAction({
         key: fieldData.articleId.name,
       }),
     },
-    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -86,7 +78,6 @@ export async function refreshCacheAction({
         key: fieldData.articleId.name,
       }),
     },
-    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -112,7 +103,6 @@ export function setMediaCollectionSortAction({
         key: 'ids',
       }),
     },
-    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -138,7 +128,6 @@ export async function removeMediaItemAction({
         key: mediaItemData.id.name,
       }),
     },
-    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -161,7 +150,6 @@ export async function addGalleryImageAction({
       }),
       url: handleData.url || '',
     },
-    apiDataConvert,
     target,
     handleData,
     successCallback,
@@ -183,7 +171,6 @@ export async function removeGalleryImageAction({
         key: fieldData.articleId.name,
       }),
     },
-    apiDataConvert,
     target,
     handleData,
     successCallback,

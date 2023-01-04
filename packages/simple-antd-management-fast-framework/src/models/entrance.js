@@ -30,7 +30,7 @@ export default {
   },
 
   effects: {
-    *signIn({ payload }, { call, put }) {
+    *signIn({ payload, alias }, { call, put }) {
       const response = yield call(signInData, payload);
 
       const data = pretreatmentRemoteSingleData(response);
@@ -103,6 +103,6 @@ export default {
         status: code,
       };
     },
-    ...reducerCommonCollection,
+    ...reducerCollection,
   },
 };
