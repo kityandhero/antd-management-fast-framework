@@ -2,14 +2,12 @@ import { Avatar, Menu, Spin } from 'antd';
 import React from 'react';
 import { connect } from 'umi';
 
-import {
-  defaultUserAvatar,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { defaultUserAvatar } from 'antd-management-fast-common/es/utils/constants';
 import {
   goToPath,
   recordDebug,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import HeaderDropdown from '../HeaderDropdown';
 
@@ -47,7 +45,7 @@ class AvatarDropdown extends React.Component {
       {
         key: 'signOut',
         label: '退出登录',
-        icon: iconCollection.logout,
+        icon: iconBuilder.logout(),
       },
     ];
 

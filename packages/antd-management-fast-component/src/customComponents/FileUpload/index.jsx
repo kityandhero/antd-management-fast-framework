@@ -12,7 +12,6 @@ import {
 import { PureComponent } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
 import {
   copyToClipboard,
@@ -22,6 +21,7 @@ import {
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
+import { iconBuilder } from '../Icon';
 import IconInfo from '../IconInfo';
 
 const { TextArea } = Input;
@@ -234,18 +234,18 @@ class VideoUpload extends PureComponent {
       {
         key: 'changeUrl',
         label: '更换地址',
-        icon: iconCollection.swap,
+        icon: iconBuilder.swap(),
       },
       {
         key: 'copyUrl',
         label: '复制地址',
-        icon: iconCollection.copy,
+        icon: iconBuilder.copy(),
         disabled: stringIsNullOrWhiteSpace(fileUrl),
       },
       {
         key: 'clearUrl',
         label: '清空视频',
-        icon: iconCollection.delete,
+        icon: iconBuilder.delete(),
         disabled: stringIsNullOrWhiteSpace(fileUrl),
       },
     ];
@@ -266,7 +266,7 @@ class VideoUpload extends PureComponent {
               }}
               disabled={uploading}
             >
-              {uploading ? iconCollection.loading : iconCollection.upload}
+              {uploading ? iconBuilder.loading() : iconBuilder.upload()}
               {uploading ? '稍后' : '上传'}
             </Button>
           </Upload>
@@ -310,7 +310,7 @@ class VideoUpload extends PureComponent {
       <>
         <Input
           disabled
-          addonBefore={iconCollection.link}
+          addonBefore={iconBuilder.link()}
           addonAfter={addonAfter}
           value={fileUrl}
           placeholder="当前未设置文件地址"
@@ -318,10 +318,7 @@ class VideoUpload extends PureComponent {
 
         <Modal
           title={
-            <IconInfo
-              icon={iconCollection.swap}
-              text="请输入将更换的文件地址"
-            />
+            <IconInfo icon={iconBuilder.swap()} text="请输入将更换的文件地址" />
           }
           visible={changeUrlVisible}
           onOk={this.handleChangeUrlOk}

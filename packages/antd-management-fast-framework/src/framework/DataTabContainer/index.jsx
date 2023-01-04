@@ -1,7 +1,6 @@
 import { Divider, Space } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   isArray,
   isBoolean,
@@ -14,6 +13,7 @@ import {
   buildPageHeaderTitle,
   pageHeaderExtraContent,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import DataSingleView from '../DataSingleView/DataLoad';
 
@@ -29,7 +29,7 @@ class DataTabContainer extends DataSingleView {
 
     this.state = {
       ...this.state,
-      defaultAvatarIcon: iconCollection.picture,
+      defaultAvatarIcon: iconBuilder.picture(),
       showPageHeaderAvatar: true,
       customTabActiveKey: false,
     };

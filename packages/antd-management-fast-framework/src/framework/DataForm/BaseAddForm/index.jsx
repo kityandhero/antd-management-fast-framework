@@ -5,7 +5,6 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import {
   datetimeFormat,
   formNameCollection,
-  iconCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
@@ -22,6 +21,7 @@ import {
   buildPageHeaderTitle,
   pageHeaderExtraContent,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import DataCore from '../../DataSingleView/DataCore';
 
@@ -208,7 +208,7 @@ class BaseAddForm extends DataCore {
       });
   };
 
-  pageHeaderLogo = () => <Avatar shape="square" icon={iconCollection.plus} />;
+  pageHeaderLogo = () => <Avatar shape="square" icon={iconBuilder.plus()} />;
 
   buildInitialValues = () => {
     return this.fillDefaultInitialValues();

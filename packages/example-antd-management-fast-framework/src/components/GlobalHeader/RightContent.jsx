@@ -1,7 +1,7 @@
 import { Tag, Tooltip } from 'antd';
 import { connect, SelectLang } from 'umi';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import { defaultSettings } from '@/defaultSettings';
 
@@ -59,7 +59,7 @@ const GlobalHeaderRight = (props) => {
           rel="noopener noreferrer"
           className={styles.action}
         >
-          {iconCollection.question}
+          {iconBuilder.question()}
         </a>
       </Tooltip>
 

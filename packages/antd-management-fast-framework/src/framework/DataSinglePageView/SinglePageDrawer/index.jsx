@@ -14,11 +14,11 @@ import { ReadOutlined } from '@ant-design/icons';
 
 import {
   contentConfig,
-  iconCollection,
   listViewConfig,
 } from 'antd-management-fast-common/es/utils/constants';
 import { isFunction } from 'antd-management-fast-common/es/utils/tools';
 import { buildListViewItemActionSelect } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import ColumnSetting from '../../DataListView/ColumnSetting';
 import DensityAction from '../../DataListView/DensityAction';
@@ -327,7 +327,7 @@ class SinglePageDrawer extends SinglePage {
                       shape="circle"
                       className={styles.iconAction}
                       loading={refreshing}
-                      icon={iconCollection.reload}
+                      icon={iconBuilder.reload()}
                       onClick={() => {
                         this.refreshData();
                       }}

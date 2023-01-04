@@ -2,7 +2,7 @@ import Core from '../Core';
 
 const r = () => Math.random();
 
-class CanvasRibbon extends Core {
+class Bubbly extends Core {
   bubbleList = [];
 
   doAfterDidMount = ({ canvasContext }) => {
@@ -101,7 +101,7 @@ class CanvasRibbon extends Core {
   };
 }
 
-CanvasRibbon.defaultProps = {
+Bubbly.defaultProps = {
   shadowColor: '#fff',
   blur: 4,
   colorStart: '#2AE',
@@ -114,4 +114,4 @@ CanvasRibbon.defaultProps = {
   velocityFunc: null,
 };
 
-export default CanvasRibbon;
+export default Bubbly;

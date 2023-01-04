@@ -6,11 +6,11 @@ import {
   columnFacadeMode,
   convertCollection,
   defaultUserAvatar,
-  iconCollection,
   listViewConfig,
 } from 'antd-management-fast-common/es/utils/constants';
 import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
 import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
@@ -158,7 +158,7 @@ class Index extends MultiPage {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
-        icon: iconCollection.plus,
+        icon: iconBuilder.plus(),
         text: '新增文章',
         handleClick: this.goToAdd,
         hidden: !this.checkAuthority(
@@ -179,7 +179,7 @@ class Index extends MultiPage {
       size: 'small',
       text: '编辑',
       placement: 'topRight',
-      icon: iconCollection.form,
+      icon: iconBuilder.form(),
       handleButtonClick: ({ handleData }) => {
         this.goToEdit(handleData);
       },
@@ -193,7 +193,7 @@ class Index extends MultiPage {
       items: [
         {
           key: 'showUpdateBasicInfoDrawer',
-          icon: iconCollection.edit,
+          icon: iconBuilder.edit(),
           text: '编辑[侧拉]',
           hidden: !this.checkAuthority(
             accessWayCollection.article.updateBasicInfo.permission,
@@ -203,7 +203,7 @@ class Index extends MultiPage {
           key: 'setOnline',
           withDivider: true,
           uponDivider: true,
-          icon: iconCollection.playCircle,
+          icon: iconBuilder.playCircle(),
           text: '设为上线',
           hidden: !this.checkAuthority(
             accessWayCollection.article.setOnline.permission,
@@ -215,7 +215,7 @@ class Index extends MultiPage {
         },
         {
           key: 'setOffline',
-          icon: iconCollection.pauseCircle,
+          icon: iconBuilder.pauseCircle(),
           text: '设为下线',
           hidden: !this.checkAuthority(
             accessWayCollection.article.setOffline.permission,
@@ -229,7 +229,7 @@ class Index extends MultiPage {
           key: 'refreshCache',
           withDivider: true,
           uponDivider: true,
-          icon: iconCollection.reload,
+          icon: iconBuilder.reload(),
           text: '刷新缓存',
           hidden: !this.checkAuthority(
             accessWayCollection.article.refreshCache.permission,

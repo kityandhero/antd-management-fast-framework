@@ -307,7 +307,7 @@ class ImageBox extends CustomBase {
                 <Col>
                   <IconInfo
                     direction="vertical"
-                    icon={iconCollection.picture}
+                    icon={iconBuilder.picture()}
                     text={<div className={styles.overlayText}>{errorOverlayText}</div>}
                   />
                 </Col>

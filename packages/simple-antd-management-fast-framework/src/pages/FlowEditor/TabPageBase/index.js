@@ -1,8 +1,6 @@
-import {
-  cardConfig,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import BaseUpdateFormTab from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormTab';
 
 import {
@@ -70,7 +68,7 @@ class BaseEditTab extends BaseUpdateFormTab {
       list: [
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '基本信息',
           },
           spinning: this.checkInProgress(),

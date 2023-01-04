@@ -3,7 +3,6 @@ import { Affix } from 'antd';
 import {
   animalType,
   cardConfig,
-  iconCollection,
   mobileTypeCollection,
   whetherNumber,
 } from 'antd-management-fast-common/es/utils/constants';
@@ -84,7 +83,7 @@ class MobilePreviewArea extends Base {
         {
           title: {
             text: '手机预览',
-            icon: iconCollection.mobile,
+            icon: iconBuilder.mobile(),
           },
           extra: {
             list: [

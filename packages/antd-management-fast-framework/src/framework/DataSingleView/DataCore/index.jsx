@@ -2,10 +2,7 @@ import { Avatar, BackTop, Button, Form, Tooltip } from 'antd';
 import React from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
-import {
-  iconCollection,
-  pageHeaderRenderType,
-} from 'antd-management-fast-common/es/utils/constants';
+import { pageHeaderRenderType } from 'antd-management-fast-common/es/utils/constants';
 import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
 import {
   avatarImageLoadResultCollection,
@@ -18,6 +15,7 @@ import {
   buildTagList,
   pageHeaderExtraContent,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import BaseView from '../../DataOperation/BaseView';
 
@@ -131,7 +129,7 @@ class DataCore extends BaseView {
 
   buildPageHeaderSubTitle = () => null;
 
-  pageHeaderLogo = () => <Avatar shape="square" icon={iconCollection.plus} />;
+  pageHeaderLogo = () => <Avatar shape="square" icon={iconBuilder.plus()} />;
 
   getPageName = () => {
     const { pageName } = this.state;
@@ -151,7 +149,7 @@ class DataCore extends BaseView {
     }
 
     const props = {
-      ...{ icon: iconCollection.rollback, type: 'dashed' },
+      ...{ icon: iconBuilder.rollback(), type: 'dashed' },
       ...(this.actionBackProps || {}),
     };
 
@@ -178,7 +176,7 @@ class DataCore extends BaseView {
   };
 
   renderMainTitleIcon = () => {
-    return iconCollection.contacts;
+    return iconBuilder.contacts();
   };
 
   renderMainTitleText = () => {

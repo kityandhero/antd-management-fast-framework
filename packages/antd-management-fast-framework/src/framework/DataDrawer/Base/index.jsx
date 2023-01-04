@@ -4,7 +4,6 @@ import { Fragment } from 'react';
 import {
   cardConfig,
   drawerConfig,
-  iconCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import {
   defaultFormState,
@@ -21,6 +20,7 @@ import {
   buildDropdownButton,
   buildDropdownEllipsis,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
@@ -72,7 +72,7 @@ class Base extends BaseWindow {
     return '';
   };
 
-  renderTitleIcon = () => iconCollection.form;
+  renderTitleIcon = () => iconBuilder.form();
 
   renderTitle = () => {
     const prevText = this.buildTitlePrevText();
@@ -136,7 +136,7 @@ class Base extends BaseWindow {
     const o = {
       ...{
         type: 'default',
-        icon: iconCollection.closeCircle,
+        icon: iconBuilder.closeCircle(),
         text: '关闭',
       },
       ...(option || {}),

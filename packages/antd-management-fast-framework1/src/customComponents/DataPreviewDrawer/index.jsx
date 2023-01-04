@@ -3,7 +3,6 @@ import parse from 'html-react-parser';
 import {
   cardConfig,
   dataTypeCollection,
-  iconCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import { toNumber } from 'antd-management-fast-common/es/utils/tools';
 import Base from 'antd-management-fast-framework/es/framework/DataDrawer/Base';
@@ -44,7 +43,7 @@ class DataPreviewDrawer extends Base {
     const list = [
       {
         title: {
-          icon: iconCollection.contacts,
+          icon: iconBuilder.contacts(),
           text: '说明',
         },
         items: [
@@ -64,7 +63,7 @@ class DataPreviewDrawer extends Base {
     if (toNumber(dataType) === dataTypeCollection.commonValue.flag) {
       list.push({
         title: {
-          icon: iconCollection.contacts,
+          icon: iconBuilder.contacts(),
           text: '操作内容',
         },
         items: [
@@ -85,7 +84,7 @@ class DataPreviewDrawer extends Base {
     ) {
       list.push({
         title: {
-          icon: iconCollection.contacts,
+          icon: iconBuilder.contacts(),
           text: '数据变更',
         },
         items: [
@@ -99,7 +98,7 @@ class DataPreviewDrawer extends Base {
     } else {
       list.push({
         title: {
-          icon: iconCollection.contacts,
+          icon: iconBuilder.contacts(),
           text: '操作内容',
         },
         items: [
@@ -132,7 +131,7 @@ class DataPreviewDrawer extends Base {
 
 DataPreviewDrawer.defaultProps = {
   title: '',
-  icon: iconCollection.form,
+  icon: iconBuilder.form(),
   placement: 'left',
   width: 380,
   dataType: dataTypeCollection.commonValue.flag,

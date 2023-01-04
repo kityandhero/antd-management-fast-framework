@@ -1,16 +1,14 @@
 import { Dropdown, List, Menu } from 'antd';
 import { connect } from 'umi';
 
-import {
-  iconCollection,
-  sortOperate,
-} from 'antd-management-fast-common/es/utils/constants';
+import { sortOperate } from 'antd-management-fast-common/es/utils/constants';
 import {
   getValueByKey,
   isArray,
   showError,
   sortCollectionByKey,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import Base from 'antd-management-fast-framework/es/framework/DataModal/Base';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -182,13 +180,13 @@ class ChangeImageSortModal extends Base {
         {
           key: sortOperate.moveUp,
           label: '上移',
-          icon: iconCollection.arrowUp,
+          icon: iconBuilder.arrowUp(),
           disabled: current.sort === 1,
         },
         {
           key: sortOperate.moveDown,
           label: '下移',
-          icon: iconCollection.arrowDown,
+          icon: iconBuilder.arrowDown(),
           disabled: current.sort === (metaListDataList || []).length,
         },
       ];
@@ -199,7 +197,7 @@ class ChangeImageSortModal extends Base {
 
       return (
         <Dropdown disabled={!hasAuthority} overlay={menu}>
-          <a>{iconCollection.retweet} 排序</a>
+          <a>{iconBuilder.retweet()} 排序</a>
         </Dropdown>
       );
     };

@@ -15,12 +15,12 @@ import { ReadOutlined } from '@ant-design/icons';
 
 import {
   contentConfig,
-  iconCollection,
   listViewConfig,
   notificationTypeCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import { isFunction, notify } from 'antd-management-fast-common/es/utils/tools';
 import { buildListViewItemActionSelect } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import ColumnSetting from '../../DataListView/ColumnSetting';
 import DensityAction from '../../DataListView/DensityAction';
@@ -343,7 +343,7 @@ class MultiPageDrawer extends MultiPage {
                       shape="circle"
                       className={styles.iconAction}
                       loading={refreshing}
-                      icon={iconCollection.reload}
+                      icon={iconBuilder.reload()}
                       onClick={() => {
                         this.refreshData();
                       }}

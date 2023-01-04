@@ -1,10 +1,7 @@
 import { Alert, Space } from 'antd';
 import { PureComponent } from 'react';
 
-import {
-  animalType,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { animalType } from 'antd-management-fast-common/es/utils/constants';
 import {
   inCollection,
   isFunction,
@@ -13,6 +10,7 @@ import {
 import FadeBox from '../../AnimalBox/FadeBox';
 import QueueBox from '../../AnimalBox/QueueBox';
 import { buildButton } from '../../FunctionComponent';
+import { iconBuilder } from '../../Icon';
 
 import styles from './index.less';
 
@@ -63,7 +61,7 @@ class ConventView extends PureComponent {
             {buildButton({
               size: 'small',
               type: 'ghost',
-              icon: iconCollection.reload,
+              icon: iconBuilder.reload(),
               text: alertButtonText,
               handleClick: this.onAlertClick,
             })}

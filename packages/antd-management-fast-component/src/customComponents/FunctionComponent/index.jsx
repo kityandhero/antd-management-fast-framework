@@ -35,7 +35,6 @@ import {
   datetimeFormat,
   defaultEmptyImage,
   dropdownExpandItemType,
-  iconCollection,
   listViewConfig,
   pageHeaderRenderType,
   whetherNumber,
@@ -74,6 +73,7 @@ import ColorText from '../ColorText';
 import EllipsisCustom from '../EllipsisCustom';
 import FlexBox from '../FlexBox';
 import FlexText from '../FlexText';
+import { iconBuilder } from '../Icon';
 import IconInfo from '../IconInfo';
 import ImageBox from '../ImageBox';
 import VerticalBox from '../VerticalBox';
@@ -143,7 +143,7 @@ export function buildButton({
   type: typeSource = 'default',
   size: sizeSource = 'default',
   text: textSource = '按钮',
-  icon: iconSource = iconCollection.form,
+  icon: iconSource = iconBuilder.form(),
   handleClick: handleClickSource = () => {},
   hidden: hiddenSource = false,
   danger: dangerSource = false,
@@ -151,7 +151,7 @@ export function buildButton({
   confirm: confirmSource = false,
   handleData: handleDataSource = null,
   processing: processingSource = false,
-  iconProcessing: iconProcessingSource = iconCollection.loading,
+  iconProcessing: iconProcessingSource = iconBuilder.loading(),
   style: styleSource = null,
   showIcon: showIconSource = true,
 }) {
@@ -179,14 +179,14 @@ export function buildButton({
       type: typeSource ?? 'default',
       size: sizeSource ?? 'default',
       text: textSource ?? '按钮',
-      icon: iconSource ?? iconCollection.form,
+      icon: iconSource ?? iconBuilder.form(),
       handleClick: handleClickSource ?? null,
       danger: dangerSource ?? false,
       hidden: hiddenSource ?? false,
       disabled: disabledSource ?? false,
       confirm: confirmSource ?? false,
       processing: processingSource ?? false,
-      iconProcessing: iconProcessingSource ?? iconCollection.loading,
+      iconProcessing: iconProcessingSource ?? iconBuilder.loading(),
       handleData: handleDataSource ?? null,
       style: styleSource || null,
       showIcon: showIconSource,
@@ -246,8 +246,8 @@ export function buildButton({
   }
 
   const ico = processing
-    ? iconProcessing ?? iconCollection.loading
-    : icon ?? iconCollection.form;
+    ? iconProcessing ?? iconBuilder.loading()
+    : icon ?? iconBuilder.form();
 
   if (confirmAdjust) {
     const { placement, title, okText, cancelText } = confirmAdjust;
@@ -307,7 +307,7 @@ export function buildDropdownButton({
   type: typeSource = 'default',
   size = 'small',
   text = '按钮',
-  icon = iconCollection.form,
+  icon = iconBuilder.form(),
   handleData: r,
   arrow = true,
   disabled = false,
@@ -384,7 +384,7 @@ export function buildDropdown({
   placement: placementDropdown = 'bottomRight',
   size = 'default',
   text = '按钮',
-  icon = iconCollection.form,
+  icon = iconBuilder.form(),
   handleData: r,
   arrow = true,
   disabled = false,
@@ -395,7 +395,7 @@ export function buildDropdown({
   itemPanelTitle = '',
   confirm = false,
   processing = false,
-  iconProcessing = iconCollection.loading,
+  iconProcessing = iconBuilder.loading(),
 }) {
   if (hidden) {
     return null;
@@ -684,7 +684,7 @@ export function buildMenu({
         withDivider: false,
         uponDivider: true,
         key: getGuid(),
-        icon: iconCollection.edit,
+        icon: iconBuilder.edit(),
         text: '',
         disabled: false,
         hidden: false,
@@ -827,7 +827,7 @@ export function buildMenu({
                   disabled={disabled}
                 >
                   <IconInfo
-                    icon={icon || iconCollection.edit}
+                    icon={icon || iconBuilder.edit()}
                     text={text}
                     style={(color || null) == null ? null : { color: color }}
                   />
@@ -854,7 +854,7 @@ export function buildMenu({
               onClick={() => handleMenuClick({ key, handleData: r })}
             >
               <IconInfo
-                icon={icon || iconCollection.edit}
+                icon={icon || iconBuilder.edit()}
                 text={text}
                 style={(color || null) == null ? null : { color: color }}
               />
@@ -1548,7 +1548,7 @@ export function buildListViewItemActionSelect({
       confirm,
       size: 'small',
       type: 'link',
-      icon: iconCollection.import,
+      icon: iconBuilder.import(),
       text: '选取',
       showIcon: true,
       handleClick: ({ handleData }) => {
@@ -2016,7 +2016,7 @@ export function buildFormNowTimeField({
           data: new Date(),
           format: datetimeFormat.yearMonthDayHourMinute,
         })}
-        addonBefore={iconCollection.form}
+        addonBefore={iconBuilder.form()}
         disabled
         placeholder={buildFieldDescription(resultCheck.label)}
       />
@@ -2050,7 +2050,7 @@ export function buildFormCreateTimeField({
       }
     >
       <Input
-        addonBefore={iconCollection.form}
+        addonBefore={iconBuilder.form()}
         disabled
         placeholder={buildFieldDescription(resultCheck.label)}
       />
@@ -2084,7 +2084,7 @@ export function buildFormUpdateTimeField({
       }
     >
       <Input
-        addonBefore={iconCollection.form}
+        addonBefore={iconBuilder.form()}
         disabled
         placeholder={buildFieldDescription(resultCheck.label)}
       />
@@ -2096,7 +2096,7 @@ export function buildSearchInput({
   label,
   name,
   helper = null,
-  icon = iconCollection.form,
+  icon = iconBuilder.form(),
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2154,7 +2154,7 @@ export function buildSearchInputNumber({
   label,
   name,
   helper = null,
-  icon = iconCollection.form,
+  icon = iconBuilder.form(),
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2252,7 +2252,7 @@ export function buildFormHiddenWrapper({ children, hidden = true }) {
 export function buildFormInputFieldData({
   fieldData,
   required = false,
-  icon = iconCollection.form,
+  icon = iconBuilder.form(),
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2287,7 +2287,7 @@ export function buildFormInput({
   name,
   required = false,
   helper = null,
-  icon = iconCollection.form,
+  icon = iconBuilder.form(),
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2451,7 +2451,7 @@ export function buildFormPassword({
   name,
   required = false,
   helper = null,
-  icon = iconCollection.form,
+  icon = iconBuilder.form(),
   inputProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -2778,7 +2778,7 @@ export function buildFormOnlyShowInput({
   label,
   value,
   helper = null,
-  icon = iconCollection.form,
+  icon = iconBuilder.form(),
   inputProps = { disabled: true },
   formItemLayout = {},
 }) {
@@ -2825,7 +2825,7 @@ export function buildFormInputNumber({
   name,
   required = false,
   helper = null,
-  icon = iconCollection.form,
+  icon = iconBuilder.form(),
   inputNumberProps = {},
   canOperate = true,
   formItemLayout = {},
@@ -3177,7 +3177,7 @@ export function buildColumnItem({
     } else {
       d.title = showHelper ? (
         <IconInfo
-          icon={iconCollection.infoCircle}
+          icon={iconBuilder.infoCircle()}
           iconPosition="right"
           iconTooltip={helper}
           text={label}
@@ -3574,7 +3574,7 @@ export function adjustTableExpandConfig({ list, config }) {
         expandIconRotate: true,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         expandIcon: ({ expanded, onExpand, record }) => {
-          return iconCollection.rightCircle;
+          return iconBuilder.rightCircle();
         },
         expandedRowRender: null,
       },

@@ -8,7 +8,6 @@ import {
   columnPlaceholder,
   convertCollection,
   extraBuildType,
-  iconCollection,
   listViewConfig,
   searchCardConfig,
   unlimitedWithStringFlag,
@@ -26,6 +25,7 @@ import {
   buildRadioGroup,
   buildTagList,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -323,12 +323,12 @@ class PageList extends MultiPage {
       list: [
         {
           buildType: extraBuildType.iconInfo,
-          icon: iconCollection.infoCircle,
+          icon: iconBuilder.infoCircle(),
           text: '一些说明',
         },
         {
           buildType: extraBuildType.button,
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮',
           handleClick: () => {},
         },
@@ -582,7 +582,7 @@ class PageList extends MultiPage {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
-        icon: iconCollection.plus,
+        icon: iconBuilder.plus(),
         text: '新增文章[侧拉]',
         handleClick: this.showAddBasicInfoDrawer,
         hidden: !this.checkAuthority(
@@ -593,7 +593,7 @@ class PageList extends MultiPage {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
-        icon: iconCollection.plus,
+        icon: iconBuilder.plus(),
         confirm: {
           title: '即将跳转新增数据页面，确定吗？',
         },
@@ -614,7 +614,7 @@ class PageList extends MultiPage {
           key: fieldData.image.name,
         }),
         imageCircle: false,
-        icon: iconCollection.picture,
+        icon: iconBuilder.picture(),
         hideIcon: false,
         hideIconWhenShowImage: true,
         text: getValueByKey({
@@ -648,13 +648,13 @@ class PageList extends MultiPage {
         list: [
           {
             buildType: cardConfig.extraBuildType.iconInfo,
-            icon: iconCollection.infoCircle,
+            icon: iconBuilder.infoCircle(),
             text: '一些说明',
             canCopy: true,
           },
           {
             buildType: cardConfig.extraBuildType.iconInfo,
-            icon: iconCollection.infoCircle,
+            icon: iconBuilder.infoCircle(),
             textPrefix: '复制',
             text: '自定义',
             canCopy: true,
@@ -662,7 +662,7 @@ class PageList extends MultiPage {
           },
           {
             buildType: cardConfig.extraBuildType.iconInfo,
-            icon: iconCollection.infoCircle,
+            icon: iconBuilder.infoCircle(),
             iconPosition: 'right',
             iconTooltip: '说明',
             textPrefix: '前缀',
@@ -704,13 +704,13 @@ class PageList extends MultiPage {
           },
           {
             buildType: cardConfig.extraBuildType.generalButton,
-            icon: iconCollection.form,
+            icon: iconBuilder.form(),
             text: '一般按钮',
           },
           {
             buildType: cardConfig.extraBuildType.generalButton,
             hidden: true,
-            icon: iconCollection.form,
+            icon: iconBuilder.form(),
             text: '隐藏按钮',
           },
         ],
@@ -811,7 +811,7 @@ class PageList extends MultiPage {
       size: 'small',
       text: '编辑',
       placement: 'topRight',
-      icon: iconCollection.form,
+      icon: iconBuilder.form(),
       handleButtonClick: ({ handleData }) => {
         this.goToEdit(handleData);
       },
@@ -825,7 +825,7 @@ class PageList extends MultiPage {
       items: [
         {
           key: 'showUpdateBasicInfoDrawer',
-          icon: iconCollection.edit,
+          icon: iconBuilder.edit(),
           text: '编辑[侧拉]',
           hidden: !this.checkAuthority(
             accessWayCollection.article.updateBasicInfo.permission,
@@ -835,7 +835,7 @@ class PageList extends MultiPage {
           key: 'setOnline',
           withDivider: true,
           uponDivider: true,
-          icon: iconCollection.playCircle,
+          icon: iconBuilder.playCircle(),
           text: '设为上线',
           hidden: !this.checkAuthority(
             accessWayCollection.article.setOnline.permission,
@@ -847,7 +847,7 @@ class PageList extends MultiPage {
         },
         {
           key: 'setOffline',
-          icon: iconCollection.pauseCircle,
+          icon: iconBuilder.pauseCircle(),
           text: '设为下线',
           hidden: !this.checkAuthority(
             accessWayCollection.article.setOffline.permission,
@@ -861,7 +861,7 @@ class PageList extends MultiPage {
           key: 'setSort',
           withDivider: true,
           uponDivider: true,
-          icon: iconCollection.edit,
+          icon: iconBuilder.edit(),
           text: '设置排序值',
           hidden: !this.checkAuthority(
             accessWayCollection.article.updateSort.permission,
@@ -871,7 +871,7 @@ class PageList extends MultiPage {
           key: 'refreshCache',
           withDivider: true,
           uponDivider: true,
-          icon: iconCollection.reload,
+          icon: iconBuilder.reload(),
           text: '刷新缓存',
           hidden: !this.checkAuthority(
             accessWayCollection.article.refreshCache.permission,
@@ -1061,7 +1061,7 @@ class PageList extends MultiPage {
               lg: 24,
               type: cardConfig.contentItemType.tree,
               showLine: true,
-              switcherIcon: iconCollection.down,
+              switcherIcon: iconBuilder.down(),
               defaultExpandedKeys: ['0-0-0'],
               onSelect: () => {},
               treeData: [
@@ -1155,7 +1155,7 @@ class PageList extends MultiPage {
           items: [
             {
               buildType: cardConfig.extraBuildType.iconInfo,
-              icon: iconCollection.infoCircle,
+              icon: iconBuilder.infoCircle(),
               text: '一些说明',
             },
           ],

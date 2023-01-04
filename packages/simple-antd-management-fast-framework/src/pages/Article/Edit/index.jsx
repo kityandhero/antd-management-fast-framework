@@ -3,7 +3,6 @@ import { connect } from 'umi';
 import {
   convertCollection,
   extraBuildType,
-  iconCollection,
   tabBarCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import {
@@ -13,6 +12,7 @@ import {
   showInfoMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import { accessWayCollection } from '@/customConfig/config';
 import DataTabContainerSupplement from '@/customSpecialComponents/DataTabContainerSupplement';
@@ -219,12 +219,12 @@ class Edit extends DataTabContainerSupplement {
       list: [
         {
           buildType: extraBuildType.iconInfo,
-          icon: iconCollection.infoCircle,
+          icon: iconBuilder.infoCircle(),
           text: '一些说明',
         },
         {
           buildType: extraBuildType.button,
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮',
           handleClick: () => {},
         },
@@ -254,7 +254,7 @@ class Edit extends DataTabContainerSupplement {
           type: 'default',
           size: 'default',
           text: '上架',
-          icon: iconCollection.upCircle,
+          icon: iconBuilder.upCircle(),
           handleButtonClick: ({ handleData }) => {
             that.setOnline(handleData);
           },
@@ -271,14 +271,14 @@ class Edit extends DataTabContainerSupplement {
           },
           handleData: metaData,
           // processing: dataLoading,
-          // iconProcessing: iconCollection.loading,
+          // iconProcessing: iconBuilder.loading(),
         },
         {
           key: 'setOffline',
           type: 'default',
           size: 'default',
           text: '下架',
-          icon: iconCollection.upCircle,
+          icon: iconBuilder.upCircle(),
           handleButtonClick: ({ handleData }) => {
             that.setOffline(handleData);
           },
@@ -295,7 +295,7 @@ class Edit extends DataTabContainerSupplement {
           },
           handleData: metaData,
           // processing: dataLoading,
-          // iconProcessing: iconCollection.loading,
+          // iconProcessing: iconBuilder.loading(),
         },
       ],
     };
@@ -368,26 +368,26 @@ class Edit extends DataTabContainerSupplement {
       items: [
         {
           key: 'click1',
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮1',
           hidden: true,
         },
         {
           key: 'click2',
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮2',
           hidden: false,
           disabled: true,
         },
         {
           key: 'click21',
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮21',
           hidden: false,
         },
         {
           key: 'click3',
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮2',
           hidden: false,
           disabled: false,
@@ -402,7 +402,7 @@ class Edit extends DataTabContainerSupplement {
           key: 'refreshCache',
           withDivider: true,
           uponDivider: true,
-          icon: iconCollection.reload,
+          icon: iconBuilder.reload(),
           text: '刷新缓存',
           hidden: !this.checkAuthority(
             accessWayCollection.article.refreshCache.permission,
@@ -420,7 +420,7 @@ class Edit extends DataTabContainerSupplement {
 
     return {
       buildType: tabBarCollection.extraBuildType.dropdown,
-      icon: iconCollection.form,
+      icon: iconBuilder.form(),
       size: 'small',
       text: '扩展菜单',
       handleData: metaData,
@@ -459,7 +459,7 @@ class Edit extends DataTabContainerSupplement {
       items: [
         {
           key: 'extraBarAction1',
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮1',
           hidden: false,
           confirm: {
@@ -468,13 +468,13 @@ class Edit extends DataTabContainerSupplement {
         },
         {
           key: 'extraBarAction2',
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮2',
           hidden: false,
         },
         {
           key: 'extraBarAction3',
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮3',
           hidden: true,
           confirm: {

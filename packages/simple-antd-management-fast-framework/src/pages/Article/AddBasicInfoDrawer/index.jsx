@@ -4,8 +4,8 @@ import { connect } from 'umi';
 import {
   cardConfig,
   drawerConfig,
-  iconCollection,
 } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
@@ -68,7 +68,7 @@ class Index extends BaseAddDrawer {
       list: [
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '基本信息',
           },
           spinning,
@@ -96,7 +96,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '简介描述',
           },
           spinning,
@@ -138,7 +138,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '其他信息',
           },
           spinning,

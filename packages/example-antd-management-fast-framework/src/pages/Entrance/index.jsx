@@ -3,8 +3,8 @@ import { PureComponent } from 'react';
 import { connect } from 'umi';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+import { iconBuilder } from 'antd-management-fast-component/es/utils/icon';
 
 import { defaultSettings } from '@/defaultSettings';
 
@@ -65,7 +65,7 @@ class Entrance extends PureComponent {
               name="name"
               fieldProps={{
                 size: 'large',
-                prefix: iconCollection.user,
+                prefix: iconBuilder.user(),
               }}
               placeholder="用户名"
               rules={[
@@ -80,7 +80,7 @@ class Entrance extends PureComponent {
               name="psw"
               fieldProps={{
                 size: 'large',
-                prefix: iconCollection.lock,
+                prefix: iconBuilder.lock(),
               }}
               placeholder="密码"
               rules={[
@@ -95,7 +95,7 @@ class Entrance extends PureComponent {
 
         {processing ? (
           <Button block type="primary" size="large" disabled>
-            <IconInfo icon={iconCollection.loading} text="登陆中" />
+            <IconInfo icon={iconBuilder.loading()} text="登陆中" />
           </Button>
         ) : null}
       </LoginForm>

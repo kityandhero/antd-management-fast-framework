@@ -1,13 +1,11 @@
 import { connect } from 'umi';
 
-import {
-  cardConfig,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import { parseUrlParamsForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
@@ -75,7 +73,7 @@ class Index extends TabPageBase {
       list: [
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '基本信息',
           },
           hasExtra: true,
@@ -98,7 +96,7 @@ class Index extends TabPageBase {
         },
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '简介描述',
           },
           spinning: this.checkInProgress(),
@@ -112,7 +110,7 @@ class Index extends TabPageBase {
         },
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '其他信息',
           },
           spinning: this.checkInProgress(),

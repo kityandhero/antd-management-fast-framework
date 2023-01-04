@@ -3,9 +3,9 @@ import { connect } from 'umi';
 import {
   cardConfig,
   formatCollection,
-  iconCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
@@ -107,7 +107,7 @@ class Index extends BaseUpdateDrawer {
       list: [
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '基本信息',
           },
           hasExtra: true,
@@ -136,7 +136,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '简介描述',
           },
           spinning,
@@ -178,7 +178,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: '其他信息',
           },
           spinning,

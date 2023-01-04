@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from '../Icon';
 
 import styles from './index.less';
 
@@ -48,8 +48,8 @@ const NumberInfo = ({
       {(status || subTotal) && (
         <span className={styles.subTotal}>
           {subTotal}
-          {status === 'up' && iconCollection.caretUp}
-          {status === 'down' && iconCollection.caretDown}
+          {status === 'up' && iconBuilder.caretUp()}
+          {status === 'down' && iconBuilder.caretDown()}
         </span>
       )}
     </div>

@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from '../Icon';
 
 import styles from './index.less';
 
@@ -27,7 +27,7 @@ class EditableLinkGroup extends PureComponent {
           type="primary"
           ghost
           onClick={onAdd}
-          icon={iconCollection.plus}
+          icon={iconBuilder.plus()}
         >
           添加
         </Button>

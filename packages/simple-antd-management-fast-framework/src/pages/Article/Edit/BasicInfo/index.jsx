@@ -6,7 +6,6 @@ import {
   convertCollection,
   datetimeFormat,
   formatCollection,
-  iconCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import {
   getToken,
@@ -24,6 +23,7 @@ import {
   buildColorText,
   buildCustomGrid,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -432,7 +432,7 @@ class BasicInfo extends TabPageBase {
             list: [
               {
                 buildType: cardConfig.extraBuildType.iconInfo,
-                icon: iconCollection.infoCircle,
+                icon: iconBuilder.infoCircle(),
                 text: '一些说明',
               },
               {
@@ -443,13 +443,13 @@ class BasicInfo extends TabPageBase {
               },
               {
                 buildType: cardConfig.extraBuildType.generalButton,
-                icon: iconCollection.form,
+                icon: iconBuilder.form(),
                 text: '一般按钮',
               },
               {
                 buildType: cardConfig.extraBuildType.generalButton,
                 hidden: true,
-                icon: iconCollection.form,
+                icon: iconBuilder.form(),
                 text: '隐藏按钮',
               },
               {
@@ -556,7 +556,7 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.divider,
               text: (
                 <IconInfo
-                  icon={iconCollection.edit}
+                  icon={iconBuilder.edit()}
                   text="分隔线"
                   ellipsis={false}
                 />
@@ -631,7 +631,7 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
-            icon: iconCollection.picture,
+            icon: iconBuilder.picture(),
             text: '配图上传',
             subText: '[上传后需点击保存按钮保存！]',
           },
@@ -640,7 +640,7 @@ class BasicInfo extends TabPageBase {
             {
               lg: 12,
               type: cardConfig.contentItemType.imageUpload,
-              icon: iconCollection.picture,
+              icon: iconBuilder.picture(),
               title: fieldData.image.label,
               helper: fieldData.image.helper,
               image,
@@ -652,7 +652,7 @@ class BasicInfo extends TabPageBase {
             {
               lg: 12,
               type: cardConfig.contentItemType.imageUpload,
-              icon: iconCollection.picture,
+              icon: iconBuilder.picture(),
               title: fieldData.rectangleImage.label,
               helper: fieldData.rectangleImage.helper,
               image: rectangleImage,
@@ -677,7 +677,7 @@ class BasicInfo extends TabPageBase {
                   accessWayCollection.article.updateImageSort.permission,
                 ),
                 text: '调整图片顺序',
-                icon: iconCollection.sortAscending,
+                icon: iconBuilder.sortAscending(),
                 handleClick: (e) => this.showChangeImageSortModal(e),
                 disabled: this.checkInProgress(),
               },
@@ -709,7 +709,7 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
-            icon: iconCollection.picture,
+            icon: iconBuilder.picture(),
             text: '单配图纯展示',
           },
           spinning,
@@ -726,7 +726,7 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: {
-            icon: iconCollection.picture,
+            icon: iconBuilder.picture(),
             text: '配图集合纯展示',
           },
           spinning,

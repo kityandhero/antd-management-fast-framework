@@ -1,6 +1,6 @@
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 import { isFunction } from 'antd-management-fast-common/es/utils/tools';
 import { buildButton } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import MultiPageDrawer from '../MultiPageDrawer';
 
@@ -24,7 +24,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
   renderSelectButton = ({
     confirm = false,
     text: textSource = '选择',
-    icon: iconSource = iconCollection.import,
+    icon: iconSource = iconBuilder.import(),
     handleData = null,
     showIcon = true,
   }) => {
@@ -32,7 +32,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
       ...{
         confirm,
         size: 'small',
-        icon: iconSource || iconCollection.import,
+        icon: iconSource || iconBuilder.import(),
         text: textSource || '选择',
         showIcon,
         handleClick: () =>

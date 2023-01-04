@@ -3,7 +3,6 @@ import { connect } from 'umi';
 import {
   cardConfig,
   formatCollection,
-  iconCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import {
   corsTarget,
@@ -11,6 +10,7 @@ import {
   inCollection,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -201,7 +201,7 @@ class Index extends BaseUpdateDrawer {
       list: [
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: mediaItemData.title.label,
           },
           spinning,
@@ -215,7 +215,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: iconCollection.picture,
+            icon: iconBuilder.picture(),
             text: mediaItemData.image.label,
             subText: '[上传后需点击保存按钮保存！]',
           },
@@ -265,7 +265,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: iconCollection.videoCamera,
+            icon: iconBuilder.videoCamera(),
             text: mediaItemData.video.label,
           },
           spinning: processing,
@@ -286,7 +286,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: iconCollection.sound,
+            icon: iconBuilder.sound(),
             text: mediaItemData.audio.label,
           },
           spinning,
@@ -307,7 +307,7 @@ class Index extends BaseUpdateDrawer {
         },
         {
           title: {
-            icon: iconCollection.link,
+            icon: iconBuilder.link(),
             text: mediaItemData.attachment.label,
           },
           spinning,

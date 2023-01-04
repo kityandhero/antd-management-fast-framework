@@ -25,7 +25,6 @@ import {
   columnFacadeMode,
   datetimeFormat,
   formNameCollection,
-  iconCollection,
   listViewConfig,
   pageHeaderRenderType,
   searchCardConfig,
@@ -57,6 +56,7 @@ import {
   buildTagList,
   pageHeaderExtraContent,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import StandardTableCustom from 'antd-management-fast-component/es/customComponents/StandardTableCustom';
 
 import AuthorizationWrapper from '../../AuthorizationWrapper';
@@ -115,7 +115,7 @@ class ListBase extends AuthorizationWrapper {
         showSelect: false,
         renderPageHeaderWrapper: true,
         listTitle: '检索结果',
-        defaultAvatarIcon: iconCollection.picture,
+        defaultAvatarIcon: iconBuilder.picture(),
         listViewMode: listViewConfig.viewMode.list,
         avatarImageLoadResult: avatarImageLoadResultCollection.wait,
         showPageHeaderAvatar: false,
@@ -480,7 +480,7 @@ class ListBase extends AuthorizationWrapper {
               fieldData.label,
               fieldData.name,
               showHelper ? fieldData.helper : '',
-              icon || iconCollection.form,
+              icon || iconBuilder.form(),
               { ...{}, ...(contentItem.otherProps || {}) },
             )
           : null}
@@ -490,7 +490,7 @@ class ListBase extends AuthorizationWrapper {
               fieldData.label,
               fieldData.name,
               fieldData.helper,
-              icon || iconCollection.form,
+              icon || iconBuilder.form(),
               {
                 ...{},
                 ...(contentItem.otherProps || {}),
@@ -526,7 +526,7 @@ class ListBase extends AuthorizationWrapper {
               fieldData.label,
               contentItem.value,
               fieldData.helper || '',
-              contentItem.icon || iconCollection.form,
+              contentItem.icon || iconBuilder.form(),
               {
                 ...{},
                 ...(contentItem.otherProps || {}),
@@ -595,7 +595,7 @@ class ListBase extends AuthorizationWrapper {
             this.handleSearch(e);
           }}
         >
-          {searching ? iconCollection.loading : iconCollection.search}
+          {searching ? iconBuilder.loading() : iconBuilder.search()}
           查询
         </Button>
         <Button
@@ -605,7 +605,7 @@ class ListBase extends AuthorizationWrapper {
             this.handleSearchReset();
           }}
         >
-          {reloading ? iconCollection.loading : iconCollection.reload}
+          {reloading ? iconBuilder.loading() : iconBuilder.reload()}
           重置
         </Button>
       </span>
@@ -1224,7 +1224,7 @@ class ListBase extends AuthorizationWrapper {
                 border: 0,
               }}
               loading={refreshing}
-              icon={iconCollection.reload}
+              icon={iconBuilder.reload()}
               onClick={() => {
                 this.refreshData();
               }}
@@ -1255,7 +1255,7 @@ class ListBase extends AuthorizationWrapper {
               border: 0,
             }}
             loading={refreshing}
-            icon={iconCollection.reload}
+            icon={iconBuilder.reload()}
             onClick={() => {
               this.refreshData();
             }}

@@ -2,10 +2,10 @@ import { connect } from 'umi';
 
 import {
   columnFacadeMode,
-  iconCollection,
   searchCardConfig,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -111,7 +111,7 @@ class PageList extends MultiPage {
     return {
       size: 'small',
       text: '刷新缓存',
-      icon: iconCollection.reload,
+      icon: iconBuilder.reload(),
       handleButtonClick: ({ handleData }) => {
         this.refreshCache(handleData);
       },

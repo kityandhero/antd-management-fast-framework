@@ -8,7 +8,6 @@ import {
   columnPlaceholder,
   convertCollection,
   extraBuildType,
-  iconCollection,
   listViewConfig,
   searchCardConfig,
   unlimitedWithStringFlag,
@@ -23,6 +22,7 @@ import {
   buildDropdownButton,
   buildRadioGroup,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePage';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -313,12 +313,12 @@ class SingleList extends SinglePage {
       list: [
         {
           buildType: extraBuildType.iconInfo,
-          icon: iconCollection.infoCircle,
+          icon: iconBuilder.infoCircle(),
           text: '一些说明',
         },
         {
           buildType: extraBuildType.button,
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           text: '按钮',
           handleClick: () => {},
         },
@@ -491,7 +491,7 @@ class SingleList extends SinglePage {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
-        icon: iconCollection.sortAscending,
+        icon: iconBuilder.sortAscending(),
         text: '侧拉单页列表',
         handleClick: this.showSingleListDrawer,
         hidden: !this.checkAuthority(
@@ -502,7 +502,7 @@ class SingleList extends SinglePage {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
-        icon: iconCollection.plus,
+        icon: iconBuilder.plus(),
         text: '新增文章[侧拉]',
         handleClick: this.showAddBasicInfoDrawer,
         hidden: !this.checkAuthority(
@@ -513,7 +513,7 @@ class SingleList extends SinglePage {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
-        icon: iconCollection.plus,
+        icon: iconBuilder.plus(),
         text: '新增文章[页面]',
         handleClick: this.goToAdd,
         hidden: !this.checkAuthority(
@@ -539,18 +539,18 @@ class SingleList extends SinglePage {
         list: [
           {
             buildType: cardConfig.extraBuildType.iconInfo,
-            icon: iconCollection.infoCircle,
+            icon: iconBuilder.infoCircle(),
             text: '一些说明',
           },
           {
             buildType: cardConfig.extraBuildType.generalButton,
-            icon: iconCollection.form,
+            icon: iconBuilder.form(),
             text: '一般按钮',
           },
           {
             buildType: cardConfig.extraBuildType.generalButton,
             hidden: true,
-            icon: iconCollection.form,
+            icon: iconBuilder.form(),
             text: '隐藏按钮',
           },
         ],
@@ -711,7 +711,7 @@ class SingleList extends SinglePage {
         return buildDropdownButton({
           size: 'small',
           text: '编辑',
-          icon: iconCollection.form,
+          icon: iconBuilder.form(),
           handleButtonClick: ({ handleData }) => {
             this.goToEdit(handleData);
           },
@@ -724,7 +724,7 @@ class SingleList extends SinglePage {
               key: 'showUpdateBasicInfoDrawer',
               withDivider: true,
               uponDivider: true,
-              icon: iconCollection.edit,
+              icon: iconBuilder.edit(),
               text: '编辑[侧拉]',
               hidden: !this.checkAuthority(
                 accessWayCollection.article.updateBasicInfo.permission,
@@ -732,7 +732,7 @@ class SingleList extends SinglePage {
             },
             {
               key: 'setOnline',
-              icon: iconCollection.playCircle,
+              icon: iconBuilder.playCircle(),
               text: '设为上线',
               hidden: !this.checkAuthority(
                 accessWayCollection.article.setOnline.permission,
@@ -744,7 +744,7 @@ class SingleList extends SinglePage {
             },
             {
               key: 'setOffline',
-              icon: iconCollection.pauseCircle,
+              icon: iconBuilder.pauseCircle(),
               text: '设为下线',
               hidden: !this.checkAuthority(
                 accessWayCollection.article.setOffline.permission,
@@ -758,7 +758,7 @@ class SingleList extends SinglePage {
               key: 'setSort',
               withDivider: true,
               uponDivider: true,
-              icon: iconCollection.edit,
+              icon: iconBuilder.edit(),
               text: '设置排序值',
               hidden: !this.checkAuthority(
                 accessWayCollection.article.updateSort.permission,
@@ -768,7 +768,7 @@ class SingleList extends SinglePage {
               key: 'refreshCache',
               withDivider: true,
               uponDivider: true,
-              icon: iconCollection.reload,
+              icon: iconBuilder.reload(),
               text: '刷新缓存',
               hidden: !this.checkAuthority(
                 accessWayCollection.article.refreshCache.permission,

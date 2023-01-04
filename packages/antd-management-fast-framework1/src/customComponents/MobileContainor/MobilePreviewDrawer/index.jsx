@@ -1,7 +1,6 @@
 import {
   cardConfig,
   drawerConfig,
-  iconCollection,
   mobileTypeCollection,
   whetherNumber,
 } from 'antd-management-fast-common/es/utils/constants';
@@ -29,7 +28,7 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
   }
 
   renderTitleIcon = () => {
-    return iconCollection.picture;
+    return iconBuilder.picture();
   };
 
   renderTitle = () => {

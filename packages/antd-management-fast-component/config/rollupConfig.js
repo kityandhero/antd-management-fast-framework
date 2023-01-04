@@ -85,6 +85,7 @@ const inputFile = {
       'src/customComponents/HelpCard/index.jsx',
     'customComponents/GlobalFooter/index':
       'src/customComponents/GlobalFooter/index.jsx',
+    'customComponents/Icon/index': 'src/customComponents/Icon/index.jsx',
     'customComponents/IconFont/index': 'src/customComponents/IconFont/index.js',
     'customComponents/IconInfo/index':
       'src/customComponents/IconInfo/index.jsx',
@@ -133,6 +134,8 @@ const inputFile = {
       'src/customComponents/AnimalBox/QueueBox/index.jsx',
     'customComponents/AnimalBox/RotateBox/index':
       'src/customComponents/AnimalBox/RotateBox/index.jsx',
+    // Canvas start
+    'customComponents/Canvas/index': 'src/customComponents/Canvas/index.jsx',
     'customComponents/Canvas/Bubbly/index':
       'src/customComponents/Canvas/Bubbly/index.jsx',
     'customComponents/Canvas/Core/index':
@@ -141,6 +144,7 @@ const inputFile = {
       'src/customComponents/Canvas/Spirit/index.jsx',
     'customComponents/Canvas/RadarScanning/index':
       'src/customComponents/Canvas/RadarScanning/index.jsx',
+    // Canvas end
     'customComponents/FunctionSupplement/Whether/index':
       'src/customComponents/FunctionSupplement/Whether/index.jsx',
     'customComponents/MobileContainor/ContentView/index':

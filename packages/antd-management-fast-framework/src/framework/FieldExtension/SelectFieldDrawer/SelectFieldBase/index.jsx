@@ -1,10 +1,10 @@
 import { Button, Divider } from 'antd';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   isFunction,
   showRuntimeError,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
 
@@ -73,7 +73,7 @@ class SelectFieldBase extends SupplementWrapper {
       label,
       (fieldText || '') === '' ? null : fieldText,
       helper || null,
-      iconCollection.form,
+      iconBuilder.form(),
       {
         placeholder: `${fieldPlaceholder}${fieldTitle}`,
         readOnly: true,
@@ -91,7 +91,7 @@ class SelectFieldBase extends SupplementWrapper {
               title={`选择${fieldTitle}`}
               onClick={(e) => this.showSelect(e)}
             >
-              {iconCollection.search}
+              {iconBuilder.search()}
             </Button>
 
             {showClear ? (
@@ -117,7 +117,7 @@ class SelectFieldBase extends SupplementWrapper {
                 title="清除选择"
                 onClick={() => this.clearSelect()}
               >
-                {iconCollection.closeCircle}
+                {iconBuilder.closeCircle()}
               </Button>
             ) : null}
           </>

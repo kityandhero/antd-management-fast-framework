@@ -11,20 +11,20 @@ import { setAccessWayCollectionCache } from 'antd-management-fast-common/es/util
 import { proLayoutDefaultProps } from 'antd-management-fast-common/es/utils/proLayoutCollection';
 import {
   checkDevelopment,
-  formatMessage,
   getQueue,
   recordDebug,
 } from 'antd-management-fast-common/es/utils/tools';
 import Authorized from 'antd-management-fast-component/es/customComponents/Authorized';
 
-import RightContent from '@/components/GlobalHeader/RightContent';
-import { accessWayCollection } from '@/customConfig/config';
-import { execBasicLayoutRemoteRequest } from '@/customConfig/customLoad';
+import RightContent from '../../components/GlobalHeader/RightContent';
+import { accessWayCollection } from '../../customConfig/config';
+import { execBasicLayoutRemoteRequest } from '../../customConfig/customLoad';
 import {
   defaultFooterData,
   menuHeaderRender,
-} from '@/customSpecialComponents/CustomAssembly';
-import { defaultSettings } from '@/defaultSettings';
+} from '../../customSpecialComponents/CustomAssembly';
+import { defaultSettings } from '../../defaultSettings';
+import { formatMessage } from '../../utils/tools';
 
 const entrancePath = defaultSettings.getEntrancePath();
 
@@ -63,6 +63,8 @@ const footerRender = () => {
 };
 
 const BasicLayout = (props) => {
+  console.log({ props, accessWayCollection });
+
   const {
     dispatch,
     children,
@@ -77,15 +79,15 @@ const BasicLayout = (props) => {
   useEffect(() => {
     if (dispatch) {
       setAccessWayCollectionCache(accessWayCollection);
-      execBasicLayoutRemoteRequest(dispatch);
+      // execBasicLayoutRemoteRequest(dispatch);
 
-      const getSettingType = 'settings/getSetting';
+      // const getSettingType = 'settings/getSetting';
 
-      recordDebug(`modal access: ${getSettingType}`);
+      // recordDebug(`modal access: ${getSettingType}`);
 
-      dispatch({
-        type: getSettingType,
-      });
+      // dispatch({
+      //   type: getSettingType,
+      // });
     }
   }, [dispatch]);
 
@@ -104,12 +106,12 @@ const BasicLayout = (props) => {
 
   getQueue();
 
-  const authorized = getAuthorityFromRouter(
-    props.route.routes,
-    location.pathname || '/',
-  ) || {
-    authority: undefined,
-  };
+  // const authorized = getAuthorityFromRouter(
+  //   props.route.routes,
+  //   location.pathname || '/',
+  // ) || {
+  //   authority: undefined,
+  // };
 
   const { currentOperator } = global || {
     currentOperator: { platform: { logo: '' } },
@@ -148,9 +150,9 @@ const BasicLayout = (props) => {
         //   fontColor: 'rgba(24,144,255,0.15)',
         // }}
       >
-        <Authorized authority={authorized.authority} noMatch={noMatch}>
+        {/* <Authorized authority={authorized.authority} noMatch={noMatch}>
           {children}
-        </Authorized>
+        </Authorized> */}
       </ProLayout>
       {checkDevelopment() ? (
         <SettingDrawer

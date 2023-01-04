@@ -1,9 +1,6 @@
 import { connect } from 'umi';
 
-import {
-  cardConfig,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
   corsTarget,
   inCollection,
@@ -11,6 +8,7 @@ import {
   toNumber,
   toString,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -127,7 +125,7 @@ class Index extends BaseAddDrawer {
     this.setState({ mediaType: toNumber(v) });
   };
 
-  renderTitleIcon = () => iconCollection.plusSquare;
+  renderTitleIcon = () => iconBuilder.plusSquare();
 
   renderTitle = () => {
     return '添加媒体项';
@@ -152,7 +150,7 @@ class Index extends BaseAddDrawer {
       list: [
         {
           title: {
-            icon: iconCollection.contacts,
+            icon: iconBuilder.contacts(),
             text: mediaItemData.title.label,
           },
           spinning,
@@ -172,7 +170,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: iconCollection.picture,
+            icon: iconBuilder.picture(),
             text: mediaItemData.image.label,
             subText: '[上传后需点击保存按钮保存]',
           },
@@ -229,7 +227,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: iconCollection.videoCamera,
+            icon: iconBuilder.videoCamera(),
             text: mediaItemData.video.label,
           },
           spinning,
@@ -250,7 +248,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: iconCollection.sound,
+            icon: iconBuilder.sound(),
             text: mediaItemData.audio.label,
           },
           spinning,
@@ -271,7 +269,7 @@ class Index extends BaseAddDrawer {
         },
         {
           title: {
-            icon: iconCollection.link,
+            icon: iconBuilder.link(),
             text: mediaItemData.attachment.label,
           },
           spinning,

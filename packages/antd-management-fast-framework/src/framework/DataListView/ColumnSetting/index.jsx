@@ -3,7 +3,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { PushpinOutlined } from '@ant-design/icons';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import DnDItem from './DndItem';
 
@@ -116,7 +116,7 @@ const CheckboxListItem = ({
           title="取消固定"
           show={!!fixed}
         >
-          {iconCollection.verticalAlignMiddle}
+          {iconBuilder.verticalAlignMiddle()}
         </ToolTipIcon>
         <ToolTipIcon
           columnKey={columnKey}
@@ -332,7 +332,7 @@ const ColumnSetting = (props) => {
               border: 0,
               color: '#000000',
             }}
-            icon={iconCollection.setting}
+            icon={iconBuilder.setting()}
           />
         </Tooltip>
       </Popover>

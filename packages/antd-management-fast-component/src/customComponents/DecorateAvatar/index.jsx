@@ -2,15 +2,14 @@ import { Avatar } from 'antd';
 import { PureComponent } from 'react';
 import { ReloadOutlined } from '@ant-design/icons';
 
-import {
-  defaultEmptyImage,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { defaultEmptyImage } from 'antd-management-fast-common/es/utils/constants';
 import {
   isFunction,
   showRuntimeError,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
+
+import { iconBuilder } from '../Icon';
 
 export const avatarImageLoadResultCollection = {
   wait: -1,
@@ -20,7 +19,7 @@ export const avatarImageLoadResultCollection = {
 
 export function decorateAvatar(
   avatar = null,
-  defaultAvatarIcon = iconCollection.picture,
+  defaultAvatarIcon = iconBuilder.picture(),
   showPageHeaderAvatar = false,
   dataLoading = false,
   reloading = false,
@@ -31,7 +30,7 @@ export function decorateAvatar(
     let currentAvatar = null;
 
     if (dataLoading) {
-      currentAvatar = { icon: iconCollection.loading };
+      currentAvatar = { icon: iconBuilder.loading() };
     }
 
     if (reloading) {
@@ -139,7 +138,7 @@ class DecorateAvatar extends PureComponent {
 
 DecorateAvatar.defaultProps = {
   avatar: null,
-  defaultAvatarIcon: iconCollection.picture,
+  defaultAvatarIcon: iconBuilder.picture(),
   showPageHeaderAvatar: false,
   dataLoading: false,
   reloading: false,

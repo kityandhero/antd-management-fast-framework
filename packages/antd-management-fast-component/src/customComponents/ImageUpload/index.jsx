@@ -2,7 +2,6 @@ import { message, Modal, Space, Tooltip, Upload } from 'antd';
 import { PureComponent } from 'react';
 import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
 import {
   buildFieldHelper,
@@ -15,6 +14,7 @@ import {
 
 import CenterBox from '../CenterBox';
 import FlexBox from '../FlexBox';
+import { iconBuilder } from '../Icon';
 import IconInfo from '../IconInfo';
 import ImageBox from '../ImageBox';
 import VerticalBox from '../VerticalBox';
@@ -199,7 +199,7 @@ class ImageUpload extends PureComponent {
 
     const uploadButton = (
       <div>
-        {iconCollection.plus}
+        {iconBuilder.plus()}
         <div className="ant-upload-text">上传新图</div>
       </div>
     );
@@ -256,8 +256,8 @@ class ImageUpload extends PureComponent {
                         <div className={styles.icon}>
                           <CenterBox>
                             {uploading
-                              ? iconCollection.loading
-                              : iconCollection.upload}
+                              ? iconBuilder.loading()
+                              : iconBuilder.upload()}
                           </CenterBox>
                         </div>
 

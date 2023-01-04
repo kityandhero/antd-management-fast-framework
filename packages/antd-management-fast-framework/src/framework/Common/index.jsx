@@ -19,7 +19,6 @@ import {
   datetimeFormat,
   defaultEmptyImage,
   extraBuildType,
-  iconCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
 import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
@@ -101,6 +100,7 @@ import { renderFormWhetherSelect } from 'antd-management-fast-component/es/custo
 import HelpBox from 'antd-management-fast-component/es/customComponents/HelpBox';
 import HelpCard from 'antd-management-fast-component/es/customComponents/HelpCard';
 import HtmlBox from 'antd-management-fast-component/es/customComponents/HtmlBox';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 import ImageBox from 'antd-management-fast-component/es/customComponents/ImageBox';
 import ImageUpload from 'antd-management-fast-component/es/customComponents/ImageUpload';
@@ -683,7 +683,7 @@ class Common extends Core {
     label,
     name,
     helper = null,
-    icon = iconCollection.form,
+    icon = iconBuilder.form(),
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -703,7 +703,7 @@ class Common extends Core {
     label,
     name,
     helper = null,
-    icon = iconCollection.form,
+    icon = iconBuilder.form(),
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -740,7 +740,7 @@ class Common extends Core {
   renderFormInputFieldData = (
     fieldData,
     required = false,
-    icon = iconCollection.form,
+    icon = iconBuilder.form(),
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -764,7 +764,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    icon = iconCollection.form,
+    icon = iconBuilder.form(),
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -812,7 +812,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    icon = iconCollection.form,
+    icon = iconBuilder.form(),
     inputProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -939,7 +939,7 @@ class Common extends Core {
     label,
     value,
     helper = null,
-    icon = iconCollection.form,
+    icon = iconBuilder.form(),
     inputProps = { disabled: true },
     formItemLayout = {},
   ) => {
@@ -958,7 +958,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    icon = iconCollection.form,
+    icon = iconBuilder.form(),
     inputNumberProps = {},
     canOperate = true,
     formItemLayout = {},
@@ -1112,11 +1112,11 @@ class Common extends Core {
   };
 
   getSaveButtonIcon = () => {
-    return iconCollection.save;
+    return iconBuilder.save();
   };
 
   getDisabledButtonIcon = () => {
-    return iconCollection.save;
+    return iconBuilder.save();
   };
 
   renderDisabledButton = (text = '') => {
@@ -1213,7 +1213,7 @@ class Common extends Core {
     return buildButton({
       size,
       text,
-      icon: iconCollection.reload,
+      icon: iconBuilder.reload(),
       disabled: this.checkOperability(),
       handleClick: this.reloadData,
     });
@@ -1343,7 +1343,7 @@ class Common extends Core {
       <div className={styles.cardContainor}>
         <Card
           title={
-            <IconInfo icon={iconCollection.tool} text={title || '工具栏'} />
+            <IconInfo icon={iconBuilder.tool()} text={title || '工具栏'} />
           }
           bordered={false}
           bodyStyle={{ padding: 0 }}
@@ -1744,7 +1744,7 @@ class Common extends Core {
       ? !!hideIconWhenShowImage
         ? null
         : icon
-      : icon || iconCollection.read;
+      : icon || iconBuilder.read();
 
     const extraListData = [];
 
@@ -2554,7 +2554,7 @@ class Common extends Core {
                         fieldData.name,
                         require,
                         fieldData.helper,
-                        contentItem.icon || iconCollection.form,
+                        contentItem.icon || iconBuilder.form(),
                         { ...{}, ...(contentItem.otherProps || {}) },
                         canOperate,
                         formItemLayout,
@@ -2567,7 +2567,7 @@ class Common extends Core {
                         fieldData.name,
                         require,
                         fieldData.helper,
-                        contentItem.icon || iconCollection.form,
+                        contentItem.icon || iconBuilder.form(),
                         { ...{}, ...(contentItem.otherProps || {}) },
                         canOperate,
                         formItemLayout,
@@ -2580,7 +2580,7 @@ class Common extends Core {
                         fieldData.name,
                         require,
                         fieldData.helper,
-                        contentItem.icon || iconCollection.form,
+                        contentItem.icon || iconBuilder.form(),
                         { ...{}, ...(contentItem.otherProps || {}) },
                         canOperate,
                         formItemLayout,
@@ -2689,7 +2689,7 @@ class Common extends Core {
                         fieldData.label,
                         contentItem.value,
                         fieldData.helper || '',
-                        contentItem.icon || iconCollection.form,
+                        contentItem.icon || iconBuilder.form(),
                         {
                           ...{},
                           ...(contentItem.otherProps || {}),
@@ -2730,7 +2730,7 @@ class Common extends Core {
                           format: datetimeFormat.yearMonthDayHourMinute,
                         }),
                         fieldData.helper || '',
-                        contentItem.icon || iconCollection.form,
+                        contentItem.icon || iconBuilder.form(),
                         {
                           ...{},
                           ...(contentItem.otherProps || {}),
@@ -3096,8 +3096,8 @@ class Common extends Core {
               }}
             >
               {reloading || refreshing
-                ? iconCollection.loading
-                : iconCollection.reload}
+                ? iconBuilder.loading()
+                : iconBuilder.reload()}
             </Button>
           </Tooltip>
         </Fragment>,

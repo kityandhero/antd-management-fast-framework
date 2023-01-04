@@ -1,13 +1,11 @@
 import { List } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
 
-import {
-  datetimeFormat,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { datetimeFormat } from 'antd-management-fast-common/es/utils/constants';
 import { formatDatetime } from 'antd-management-fast-common/es/utils/tools';
 
 import CustomBase from '../CustomBase';
+import { iconBuilder } from '../Icon';
 
 import styles from './index.less';
 
@@ -210,7 +208,7 @@ TimeLineCustom.defaultProps = {
   iconStyle: {},
   links: [],
   getIcon: () => {
-    return iconCollection.message;
+    return iconBuilder.message();
   },
   getBackgroundColorKey: () => {
     return '';

@@ -1,10 +1,8 @@
 import { Button, Dropdown, Menu, Tooltip } from 'antd';
 import { PureComponent } from 'react';
 
-import {
-  iconCollection,
-  listViewConfig,
-} from 'antd-management-fast-common/es/utils/constants';
+import { listViewConfig } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 class DensityAction extends PureComponent {
   render() {
@@ -49,7 +47,7 @@ class DensityAction extends PureComponent {
               border: 0,
               color: '#000000',
             }}
-            icon={iconCollection.columnHeight}
+            icon={iconBuilder.columnHeight()}
           />
         </Tooltip>
       </Dropdown>

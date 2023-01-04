@@ -1,7 +1,5 @@
-import {
-  drawerConfig,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { drawerConfig } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import BaseNeedlessLoadDrawer from '../BaseNeedlessLoadDrawer';
 
@@ -34,7 +32,7 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
       {
         buildType: drawerConfig.bottomBarBuildType.generalButton,
         type: 'primary',
-        icon: iconCollection.save,
+        icon: iconBuilder.save(),
         text: '保存',
         disabled: buttonProcessing,
         handleClick: (e) => {

@@ -3,13 +3,13 @@ import { connect } from 'umi';
 import {
   animalType,
   cardConfig,
-  iconCollection,
   mobileTypeCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import MobileHtmlPreviewBox from 'antd-management-fast-component/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -149,7 +149,7 @@ class ContentInfo extends TabPageBase {
             list: [
               {
                 buildType: cardConfig.extraBuildType.iconInfo,
-                icon: iconCollection.infoCircle,
+                icon: iconBuilder.infoCircle(),
                 text: '编辑完后记得保存哦!',
               },
               {

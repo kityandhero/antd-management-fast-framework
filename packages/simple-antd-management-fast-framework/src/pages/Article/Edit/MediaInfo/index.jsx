@@ -6,7 +6,6 @@ import {
   convertCollection,
   defaultEmptyImage,
   formatCollection,
-  iconCollection,
   mobileTypeCollection,
   sortOperate,
 } from 'antd-management-fast-common/es/utils/constants';
@@ -25,6 +24,7 @@ import {
   buildIconInfoList,
   buildListViewItemExtra,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import StatusBar from 'antd-management-fast-component/es/customComponents/StatusBar';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -450,7 +450,7 @@ class BasicInfo extends TabPageBase {
             extra={buildDropdownButton({
               size: 'small',
               text: '编辑',
-              icon: iconCollection.edit,
+              icon: iconBuilder.edit(),
               handleButtonClick: ({ handleData }) => {
                 this.showUpdateMediaItemDrawer(handleData);
               },
@@ -461,7 +461,7 @@ class BasicInfo extends TabPageBase {
               items: [
                 {
                   key: 'insertItem',
-                  icon: iconCollection.insertRowBelow,
+                  icon: iconBuilder.insertRowBelow(),
                   text: '在下方插入',
                   hidden: !this.checkAuthority(
                     accessWayCollection.article.addMediaItem.permission,
@@ -471,7 +471,7 @@ class BasicInfo extends TabPageBase {
                   key: 'moveUp',
                   withDivider: true,
                   uponDivider: true,
-                  icon: iconCollection.arrowUp,
+                  icon: iconBuilder.arrowUp(),
                   text: '向上移动',
                   hidden: !this.checkAuthority(
                     accessWayCollection.article.updateSort.permission,
@@ -480,7 +480,7 @@ class BasicInfo extends TabPageBase {
                 },
                 {
                   key: 'moveDown',
-                  icon: iconCollection.arrowDown,
+                  icon: iconBuilder.arrowDown(),
                   text: '向下移动',
                   hidden: !this.checkAuthority(
                     accessWayCollection.article.updateSort.permission,
@@ -491,7 +491,7 @@ class BasicInfo extends TabPageBase {
                   key: 'refreshCache',
                   withDivider: true,
                   uponDivider: true,
-                  icon: iconCollection.reload,
+                  icon: iconBuilder.reload(),
                   text: '刷新缓存',
                   hidden: !this.checkAuthority(
                     accessWayCollection.article.refreshCache.permission,
@@ -504,7 +504,7 @@ class BasicInfo extends TabPageBase {
                   key: 'removeItem',
                   withDivider: true,
                   uponDivider: true,
-                  icon: iconCollection.delete,
+                  icon: iconBuilder.delete(),
                   text: '删除信息',
                   hidden: !this.checkAuthority(
                     accessWayCollection.article.removeMediaItem.permission,
@@ -551,7 +551,7 @@ class BasicInfo extends TabPageBase {
                 this.showAddMediaItemDrawer(e);
               }}
             >
-              {iconCollection.plusCircle}
+              {iconBuilder.plusCircle()}
               新增媒体
             </Button>
           ),
@@ -565,7 +565,7 @@ class BasicInfo extends TabPageBase {
                 this.showMediaItemPreviewDrawer();
               }}
             >
-              {iconCollection.eye} 预览
+              {iconBuilder.eye()} 预览
             </Button>
           ),
         },

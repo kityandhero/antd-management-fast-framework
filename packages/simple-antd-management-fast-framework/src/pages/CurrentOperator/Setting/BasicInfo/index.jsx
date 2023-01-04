@@ -1,13 +1,11 @@
 import { connect } from 'umi';
 
-import {
-  cardConfig,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
   corsTarget,
   getValueByKey,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import BaseUpdateFormContent from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormContent';
 
 import { fieldData } from '../../Common/data';
@@ -178,7 +176,7 @@ class BasicInfo extends BaseUpdateFormContent {
         },
         {
           title: {
-            icon: iconCollection.picture,
+            icon: iconBuilder.picture(),
             text: '头像上传',
             subText: '[上传后需点击保存按钮保存！]',
           },

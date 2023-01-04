@@ -5,7 +5,6 @@ import {
   columnFacadeMode,
   columnPlaceholder,
   formatCollection,
-  iconCollection,
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common/es/utils/constants';
@@ -13,6 +12,7 @@ import {
   getValueByKey,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import SinglePageDrawer from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePageDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -128,7 +128,7 @@ class SingleListDrawer extends SinglePageDrawer {
         <List.Item.Meta
           avatar={
             stringIsNullOrWhiteSpace(image) ? (
-              <Avatar icon={iconCollection.user} />
+              <Avatar icon={iconBuilder.user()} />
             ) : (
               <Avatar src={image} />
             )

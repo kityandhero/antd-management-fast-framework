@@ -1,10 +1,10 @@
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   isArray,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 import { buildPlayer } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import MobilePreviewDrawer from 'antd-management-fast-component/es/customComponents/MobileContainor/MobilePreviewDrawer';
 
 class MediaItemPreviewDrawer extends MobilePreviewDrawer {
@@ -20,7 +20,7 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
   }
 
   renderTitleIcon = () => {
-    return iconCollection.picture;
+    return iconBuilder.picture();
   };
 
   renderTitle = () => {

@@ -1,7 +1,7 @@
 import { Button, Dropdown, Menu } from 'antd';
 import { ConfigConsumer } from 'antd/lib/config-provider/context';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import styles from './index.less';
 
@@ -41,7 +41,7 @@ const DropdownButton = ({
           disabled={disabled}
         >
           <Button style={style}>
-            {children} {iconCollection.down}
+            {children} {iconBuilder.down()}
           </Button>
         </Dropdown>
       );
@@ -74,7 +74,7 @@ const BatchAction = ({ style, onSelect, menus = [], disabled }) => (
           className={styles.batchAction}
           disabled={disabled}
         >
-          <a style={style}>iconCollection.ellipsis</a>
+          <a style={style}>{iconBuilder.ellipsis()}</a>
         </Dropdown>
       );
     }}

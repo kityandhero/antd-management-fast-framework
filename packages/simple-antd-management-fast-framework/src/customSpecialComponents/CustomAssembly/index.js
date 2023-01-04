@@ -1,6 +1,6 @@
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
 import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 import { buildMenuHeaderRender } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
 import { defaultSettings } from '@/defaultSettings';
@@ -10,7 +10,7 @@ export const defaultFooterData = {
   links: [
     {
       key: 'user',
-      title: <IconInfo icon={iconCollection.team} text="个人中心" />,
+      title: <IconInfo icon={iconBuilder.team()} text="个人中心" />,
       href: '/#/person/listRegUser',
       blankTarget: false,
     },

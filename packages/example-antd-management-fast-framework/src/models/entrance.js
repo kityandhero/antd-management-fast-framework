@@ -1,6 +1,5 @@
 import { message } from 'antd';
 
-import { setAuthority } from 'antd-management-fast-common/es/utils/authority';
 import { getPageQuery } from 'antd-management-fast-common/es/utils/core';
 import {
   reducerCommonCollection,
@@ -15,10 +14,11 @@ import {
   queryStringify,
   redirectToPath,
 } from 'antd-management-fast-common/es/utils/tools';
+import { setAuthority } from 'antd-management-fast-component/es/customComponents/Authorized';
 
-import { defaultSettings } from '@/defaultSettings';
-import { getCaptchaData, signInData } from '@/services/entrance';
-import { setDataFlag } from '@/utils/storageAssist';
+import { defaultSettings } from '../defaultSettings';
+import { getCaptchaData, signInData } from '../services/entrance';
+import { setDataFlag } from '../utils/storageAssist';
 
 const entrancePath = defaultSettings.getEntrancePath();
 

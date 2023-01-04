@@ -2,7 +2,7 @@ import { Tag } from 'antd';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from '../Icon';
 
 import styles from './index.less';
 
@@ -125,7 +125,7 @@ class TagSelect extends Component {
         {expandable && (
           <a className={styles.trigger} onClick={this.handleExpand}>
             {expand ? '收起' : '展开'}
-            {expand ? iconCollection.upCircle : iconCollection.down}
+            {expand ? iconBuilder.upCircle() : iconBuilder.down()}
           </a>
         )}
       </div>

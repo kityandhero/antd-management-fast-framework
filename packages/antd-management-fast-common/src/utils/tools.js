@@ -23,7 +23,7 @@ import nzh from 'nzh';
 import { parse, stringify } from 'qs';
 import queue from 'queue';
 import randomColor from 'randomcolor';
-import { history, useIntl } from 'umi';
+import { history } from 'umi';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
@@ -2029,26 +2029,6 @@ export function queryStringify(data) {
 
 export function queryStringParse(data) {
   return parse(data);
-}
-
-/**
- * 语言渲染封装器
- * @param {*} o 语言配置
- * @returns
- */
-function FormatMessageWrapper(o) {
-  const { formatMessage: formatMessageUseIntl } = useIntl();
-
-  return formatMessageUseIntl(o);
-}
-
-/**
- * 语言渲染封装器
- * @param {*} o 语言配置
- * @returns
- */
-export function formatMessage(o) {
-  return FormatMessageWrapper(o);
 }
 
 /**

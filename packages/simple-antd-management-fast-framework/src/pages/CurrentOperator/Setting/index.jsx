@@ -1,6 +1,6 @@
 import { connect } from 'umi';
 
-import { iconCollection } from 'antd-management-fast-common/es/utils/constants';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import DataMenuContainer from 'antd-management-fast-framework/es/framework/DataMenuContainer';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -15,7 +15,7 @@ class Setting extends DataMenuContainer {
       show: this.checkAuthority(
         accessWayCollection.currentOperator.updateBasicInfo.permission,
       ),
-      icon: iconCollection.form,
+      icon: iconBuilder.form(),
       defaultSelect: true,
       text: '基本信息',
     },

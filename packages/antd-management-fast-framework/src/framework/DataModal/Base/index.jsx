@@ -1,15 +1,13 @@
 import { Form, Modal, Spin } from 'antd';
 
-import {
-  cardConfig,
-  iconCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
   defaultFormState,
   isUndefined,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 import FlexText from 'antd-management-fast-component/es/customComponents/FlexText';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
 
@@ -89,7 +87,7 @@ class Base extends BaseWindow {
 
     return (
       <>
-        {buttonProcessing ? iconCollection.loading : this.getSaveButtonIcon()}
+        {buttonProcessing ? iconBuilder.loading() : this.getSaveButtonIcon()}
         <span className={styles.buttonText}>{okText || '保存'}</span>
       </>
     );
@@ -111,7 +109,7 @@ class Base extends BaseWindow {
   buildCancelText = (saveButtonText = '') => {
     return (
       <>
-        {iconCollection.closeCircle}
+        {iconBuilder.closeCircle()}
         <span className={styles.buttonText}>{saveButtonText || '取消'}</span>
       </>
     );
@@ -128,7 +126,7 @@ class Base extends BaseWindow {
   };
 
   buildTitleIcon = () => {
-    return iconCollection.edit;
+    return iconBuilder.edit();
   };
 
   buildTitlePrevText = () => {
