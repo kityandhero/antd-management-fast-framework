@@ -23,9 +23,8 @@ import nzh from 'nzh';
 import { parse, stringify } from 'qs';
 import queue from 'queue';
 import randomColor from 'randomcolor';
-import { useIntl } from 'react-intl';
-import { history } from 'umi';
 import { v4 as uuidv4 } from 'uuid';
+import { history, useIntl } from '@umijs/max';
 
 import {
   convertCollection,
