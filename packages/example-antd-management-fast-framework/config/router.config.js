@@ -1,7 +1,7 @@
 export default [
   {
     path: '/entrance',
-    component: '../layouts/EntranceLayout',
+    layout: false,
     routes: [
       { path: '/entrance', redirect: '/entrance/signIn' },
       {
@@ -12,7 +12,7 @@ export default [
   },
   {
     path: '/',
-    component: '../layouts/BasicLayout',
+    // component: '../layouts/BasicLayout',
     routes: [
       {
         path: '/',

@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 
 import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 
-import styles from './index.less';
+import './index.less';
+
+const classPrefix = `amf-ellipsis`;
 
 /* eslint react/no-did-mount-set-state: 0 */
 /* eslint no-param-reassign: 0 */
@@ -212,9 +214,9 @@ export default class Ellipsis extends Component {
       ...restProps
     } = this.props;
 
-    const cls = classNames(styles.ellipsis, className, {
-      [styles.lines]: lines && !isSupportLineClamp,
-      [styles.lineClamp]: lines && isSupportLineClamp,
+    const cls = classNames(classPrefix, className, {
+      [`${classPrefix}_lines`]: lines && !isSupportLineClamp,
+      [`${classPrefix}_lineClamp`]: lines && isSupportLineClamp,
     });
 
     if (!lines && !length) {
@@ -281,10 +283,16 @@ export default class Ellipsis extends Component {
             title: text,
             children: childNode,
           })}
-          <div className={styles.shadow} ref={this.handleShadowChildren}>
+          <div
+            className={classNames([`${classPrefix}_lines_shadow`])}
+            ref={this.handleShadowChildren}
+          >
             {children}
           </div>
-          <div className={styles.shadow} ref={this.handleShadow}>
+          <div
+            className={classNames([`${classPrefix}_lines_shadow`])}
+            ref={this.handleShadow}
+          >
             <span>{text}</span>
           </div>
         </div>
