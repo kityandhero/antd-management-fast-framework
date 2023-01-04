@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 
-import Container from './Container';
 import SignIn from './SignIn';
+import Wrapper from './Wrapper';
 
 const defaultProps = {};
 
@@ -10,9 +10,9 @@ class Entrance extends PureComponent {
     console.log(this.props);
 
     return (
-      <Container>
+      <Wrapper>
         <SignIn />
-      </Container>
+      </Wrapper>
     );
   }
 }

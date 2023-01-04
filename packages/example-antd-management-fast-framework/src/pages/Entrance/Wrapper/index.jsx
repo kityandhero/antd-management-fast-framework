@@ -1,23 +1,19 @@
-import classNames from 'classnames';
 import React from 'react';
 import { Helmet, HelmetProvider } from 'umi';
 import { DefaultFooter } from '@ant-design/pro-layout';
 
 import { ComponentBase } from 'antd-management-fast-common/es/customComponents';
+import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 import { Bubbly } from 'antd-management-fast-component/es/customComponents/Canvas';
 import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
 import VerticalBox from 'antd-management-fast-component/es/customComponents/VerticalBox';
 
 import { defaultSettings } from '../../../defaultSettings';
 
-import './index.less';
-
-const classPrefix = `amf-entrance`;
-
 const defaultProps = {};
 
-class Container extends ComponentBase {
-  render() {
+class Wrapper extends ComponentBase {
+  renderFurther() {
     const { children } = this.props;
 
     const title = '登录';
@@ -42,10 +38,13 @@ class Container extends ComponentBase {
                 height: '100%',
               }}
             >
-              <div className={classNames(`${classPrefix}_content`)}>
-                <div className={classNames(`${classPrefix}_content_top`)}>
-                  {children}
-                </div>
+              <div
+                style={{
+                  flex: '1',
+                  padding: '32px 0',
+                }}
+              >
+                <div style={{ textAlign: 'center' }}>{children}</div>
               </div>
             </VerticalBox>
           }
@@ -74,9 +73,9 @@ class Container extends ComponentBase {
   }
 }
 
-Container.defaultProps = {
+Wrapper.defaultProps = {
   ...BaseComponent.defaultProps,
   ...defaultProps,
 };
 
-export default Container;
+export default Wrapper;
