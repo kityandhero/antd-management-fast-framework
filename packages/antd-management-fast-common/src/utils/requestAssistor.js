@@ -597,12 +597,8 @@ export async function request({
     });
   }
 
-  if (stringIsNullOrWhiteSpace(appId)) {
-    recordInfo('appId is header is empty');
-  }
-
   if (trim(toUpper(method)) === 'POST') {
-    return remoteRequest.Execute({
+    return remoteRequest({
       url,
       data: params,
       header: {
@@ -614,11 +610,10 @@ export async function request({
   }
 
   if (trim(toUpper(method)) === 'GET') {
-    return remoteRequest.Execute({
+    return remoteRequest({
       url,
       data: params,
       header: {
-        ...{ appId },
         ...(header || {}),
       },
       option: {},
