@@ -1,5 +1,5 @@
 import { Divider, Space } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 
 import {
   isArray,
@@ -233,7 +233,7 @@ class DataTabContainer extends DataSingleView {
     const pageHeaderContentConfig = this.establishPageHeaderContentConfig();
 
     return (
-      <PageHeaderWrapper
+      <PageContainer
         className={styles.customContainor}
         avatar={avatarProps}
         title={buildPageHeaderTitle(
@@ -259,7 +259,7 @@ class DataTabContainer extends DataSingleView {
         {children}
 
         {this.renderOther()}
-      </PageHeaderWrapper>
+      </PageContainer>
     );
   }
 }

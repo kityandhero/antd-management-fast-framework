@@ -18,7 +18,7 @@ import {
   Tooltip,
 } from 'antd';
 import React from 'react';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 
 import {
   cardConfig,
@@ -113,7 +113,7 @@ class ListBase extends AuthorizationWrapper {
       ...defaultState,
       ...{
         showSelect: false,
-        renderPageHeaderWrapper: true,
+        renderPageContainer: true,
         listTitle: '检索结果',
         defaultAvatarIcon: iconBuilder.picture(),
         listViewMode: listViewConfig.viewMode.list,
@@ -1744,7 +1744,7 @@ class ListBase extends AuthorizationWrapper {
 
   renderFurther() {
     const {
-      renderPageHeaderWrapper,
+      renderPageContainer,
       showPageHeaderAvatar,
       defaultAvatarIcon,
       dataLoading,
@@ -1768,9 +1768,9 @@ class ListBase extends AuthorizationWrapper {
         )
       : null;
 
-    if (renderPageHeaderWrapper || false) {
+    if (renderPageContainer || false) {
       return (
-        <PageHeaderWrapper
+        <PageContainer
           avatar={avatarProps}
           title={buildPageHeaderTitle(
             this.getPageName(),
@@ -1789,7 +1789,7 @@ class ListBase extends AuthorizationWrapper {
           {this.renderPageBody()}
 
           <BackTop />
-        </PageHeaderWrapper>
+        </PageContainer>
       );
     }
 

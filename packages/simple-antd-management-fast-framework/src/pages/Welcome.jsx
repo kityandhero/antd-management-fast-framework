@@ -1,7 +1,7 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 
 export default () => (
-  <PageHeaderWrapper>
+  <PageContainer>
     <p
       style={{
         textAlign: 'center',
@@ -17,5 +17,5 @@ export default () => (
       </a>
       。
     </p>
-  </PageHeaderWrapper>
+  </PageContainer>
 );

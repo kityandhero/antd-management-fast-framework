@@ -9,7 +9,7 @@ class InnerMultiPage extends MultiPage {
     this.state = {
       ...this.state,
       ...{
-        renderPageHeaderWrapper: false,
+        renderPageContainer: false,
       },
     };
   }

@@ -9,7 +9,7 @@ class InnerSinglePage extends SinglePage {
     this.state = {
       ...this.state,
       ...{
-        renderPageHeaderWrapper: false,
+        renderPageContainer: false,
       },
     };
   }

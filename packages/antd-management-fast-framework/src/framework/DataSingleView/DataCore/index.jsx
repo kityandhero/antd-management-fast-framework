@@ -1,6 +1,6 @@
 import { Avatar, BackTop, Button, Form, Tooltip } from 'antd';
 import React from 'react';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 
 import { pageHeaderRenderType } from 'antd-management-fast-common/es/utils/constants';
 import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
@@ -263,7 +263,7 @@ class DataCore extends BaseView {
       : null;
 
     return (
-      <PageHeaderWrapper
+      <PageContainer
         logo={this.pageHeaderLogo()}
         avatar={avatarProps}
         title={buildPageHeaderTitle(
@@ -281,7 +281,7 @@ class DataCore extends BaseView {
           {this.renderOther()}
         </div>
         <BackTop />
-      </PageHeaderWrapper>
+      </PageContainer>
     );
   }
 }

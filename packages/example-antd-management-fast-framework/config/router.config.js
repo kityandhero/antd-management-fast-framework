@@ -12,11 +12,25 @@ export default [
   },
   {
     path: '/',
-    // component: '../layouts/BasicLayout',
     routes: [
+      { path: '/', redirect: '/dashboard' },
       {
-        path: '/',
-        redirect: '/home',
+        name: 'dashboard',
+        icon: 'team',
+        path: '/dashboard',
+        hideChildrenInMenu: true,
+        routes: [
+          {
+            path: '/dashboard',
+            redirect: '/dashboard/workbench',
+          },
+          {
+            path: '/dashboard/workbench',
+            name: 'workbench',
+            icon: 'bars',
+            component: './Workbench',
+          },
+        ],
       },
     ],
   },

@@ -1,6 +1,6 @@
 import { Avatar, BackTop, Form, message } from 'antd';
 import React from 'react';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 
 import {
   datetimeFormat,
@@ -283,7 +283,7 @@ class BaseAddForm extends DataCore {
       : null;
 
     return (
-      <PageHeaderWrapper
+      <PageContainer
         className={styles.customContainor}
         avatar={avatarProps}
         title={buildPageHeaderTitle(
@@ -306,7 +306,7 @@ class BaseAddForm extends DataCore {
           {this.renderOther()}
         </div>
         <BackTop />
-      </PageHeaderWrapper>
+      </PageContainer>
     );
   }
 }

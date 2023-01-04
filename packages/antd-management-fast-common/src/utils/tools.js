@@ -70,6 +70,7 @@ import {
   isArray as isArrayCore,
   isBoolean as isBooleanCore,
   isFunction as isFunctionCore,
+  isNull as isNullCore,
   isNumber as isNumberCore,
   isObject as isObjectCore,
   isString as isStringCore,
@@ -640,6 +641,10 @@ export function isDatetime(v) {
     d.getMonth() + 1 === parseInt(result[3], 10) &&
     d.getDate() === parseInt(result[4], 10)
   );
+}
+
+export function isNull(v) {
+  return isNullCore(v);
 }
 
 /**
