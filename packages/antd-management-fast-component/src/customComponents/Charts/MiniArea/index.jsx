@@ -1,4 +1,5 @@
 import { Area, Axis, Chart, Line, Tooltip } from 'bizcharts';
+import React from 'react';
 
 import styles from '../index.less';
 

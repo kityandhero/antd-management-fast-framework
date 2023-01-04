@@ -1,8 +1,8 @@
-import { Input } from "antd";
-import { PureComponent } from "react";
-import { CheckOutlined, EditOutlined } from "@ant-design/icons";
+import { Input } from 'antd';
+import React, { PureComponent } from 'react';
+import { CheckOutlined, EditOutlined } from '@ant-design/icons';
 
-import styles from "./index.less";
+import styles from './index.less';
 
 export default class EditableItem extends PureComponent {
   constructor(props) {
@@ -46,7 +46,7 @@ export default class EditableItem extends PureComponent {
           </div>
         ) : (
           <div className={styles.wrapper}>
-            <span>{value || " "}</span>
+            <span>{value || ' '}</span>
             <EditOutlined className={styles.icon} onClick={this.edit} />
           </div>
         )}

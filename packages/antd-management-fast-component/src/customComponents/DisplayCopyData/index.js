@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { copyToClipboard } from 'antd-management-fast-common/es/utils/tools';
 
 import CustomBase from '../CustomBase';

@@ -1,7 +1,7 @@
 import { Chart, Coordinate, Geom, registerShape, Tooltip } from 'bizcharts';
 import classNames from 'classnames';
 import Debounce from 'lodash.debounce';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import DataSet from '@antv/data-set';
 
 import AutoHeightComponent from '../autoHeight';

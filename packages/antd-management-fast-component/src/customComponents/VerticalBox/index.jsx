@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 
-import styles from './index.less';
-
 class VerticalBox extends PureComponent {
   render() {
     const { style, align, alignJustify, children } = this.props;
@@ -55,18 +53,19 @@ class VerticalBox extends PureComponent {
     }
 
     const flexStyle = {
+      ...{
+        display: 'flex',
+        width: '100%',
+        height: '100%',
+      },
       ...(style || {}),
       ...{ alignItems: alignStyle, justifyContent: alignJustifyStyle },
     };
 
     return (
-      <>
-        <div className={styles.centerBox} style={style}>
-          <div className={styles.flexBox} style={flexStyle}>
-            {children}
-          </div>
-        </div>
-      </>
+      <div style={style}>
+        <div style={flexStyle}>{children}</div>
+      </div>
     );
   }
 }

@@ -1,6 +1,6 @@
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 

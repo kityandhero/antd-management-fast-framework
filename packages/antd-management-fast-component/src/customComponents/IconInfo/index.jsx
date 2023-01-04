@@ -12,8 +12,6 @@ import {
 
 import Ellipsis from '../Ellipsis';
 
-import styles from './index.less';
-
 const defaultValue = {
   direction: 'horizontal',
   responsive: false,
@@ -32,7 +30,8 @@ const defaultValue = {
   textFormat: null,
   separator: ': ',
   separatorStyle: null,
-  style: null,
+  style: {},
+  iconStyle: {},
   ellipsisMaxWidth: 0,
 };
 
@@ -43,6 +42,12 @@ class IconInfo extends PureComponent {
     if (canCopy && !stringIsNullOrWhiteSpace(copyData || text)) {
       copyToClipboard(copyData || text);
     }
+  };
+
+  getStyle = () => {
+    return {
+      display: 'inline-block',
+    };
   };
 
   render() {
@@ -65,6 +70,7 @@ class IconInfo extends PureComponent {
       onClick,
       canCopy,
       style: styleSource,
+      iconStyle: iconStyleSource,
       ellipsisMaxWidth: ellipsisMaxWidthSource,
     } = { ...defaultValue, ...(this.props || {}) };
 
@@ -72,9 +78,11 @@ class IconInfo extends PureComponent {
     const tooltip = tooltipValue || false;
     const ellipsis = ellipsisValue || false;
 
+    const styleContainer = this.getStyle();
+
     const iconItem =
       (icon || null) == null ? null : (
-        <span className={styles.iconBox}>{icon}</span>
+        <span style={iconStyleSource}>{icon}</span>
       );
 
     let direction = directionValue || 'horizontal';
@@ -159,7 +167,7 @@ class IconInfo extends PureComponent {
     if (direction === 'horizontal') {
       return (
         <>
-          <div className={styles.containor} onClick={onClick}>
+          <div style={styleContainer} onClick={onClick}>
             {responsive ? (
               (iconItem || null) == null ? (
                 <Row gutter={8}>
@@ -390,7 +398,7 @@ class IconInfo extends PureComponent {
     if (direction === 'vertical') {
       return (
         <>
-          <div className={styles.containor} onClick={onClick}>
+          <div style={styleContainer} onClick={onClick}>
             <Row justify="center">
               {(iconItem || null) == null ? null : (
                 <Col span={24}>

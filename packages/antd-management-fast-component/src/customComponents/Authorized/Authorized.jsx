@@ -1,4 +1,5 @@
 import { Result } from 'antd';
+import React from 'react';
 
 import { flushAllCache } from 'antd-management-fast-common/es/utils/cacheAssist';
 import { storageKeyCollection } from 'antd-management-fast-common/es/utils/globalStorageAssist';

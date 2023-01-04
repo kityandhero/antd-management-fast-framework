@@ -1,5 +1,5 @@
 import { Avatar } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { ReloadOutlined } from '@ant-design/icons';
 
 import { defaultEmptyImage } from 'antd-management-fast-common/es/utils/constants';

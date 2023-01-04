@@ -1,4 +1,5 @@
 import { Avatar } from 'antd';
+import React from 'react';
 
 import { datetimeFormat } from 'antd-management-fast-common/es/utils/constants';
 import { formatDatetime } from 'antd-management-fast-common/es/utils/tools';

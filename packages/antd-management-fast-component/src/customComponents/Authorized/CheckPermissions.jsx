@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { recordObject } from 'antd-management-fast-common/es/utils/log';
 
 import PromiseRender from './PromiseRender';

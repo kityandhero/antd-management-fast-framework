@@ -1,5 +1,5 @@
 import QueueAnim from 'rc-queue-anim';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   isArray,

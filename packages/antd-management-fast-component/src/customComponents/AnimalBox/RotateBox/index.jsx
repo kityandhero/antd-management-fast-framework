@@ -1,5 +1,5 @@
 import TweenOne from 'rc-tween-one';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import { isFunction } from 'antd-management-fast-common/es/utils/tools';
 

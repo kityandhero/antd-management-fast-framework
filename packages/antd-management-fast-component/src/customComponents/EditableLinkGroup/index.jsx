@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
-import { createElement, PureComponent } from 'react';
+import React, { createElement, PureComponent } from 'react';
 
 import { iconBuilder } from '../Icon';
 

@@ -1,4 +1,5 @@
 import { Axis, Chart, Coordinate, Geom, Guide, registerShape } from 'bizcharts';
+import React from 'react';
 
 import AutoHeightComponent from '../autoHeight';
 
