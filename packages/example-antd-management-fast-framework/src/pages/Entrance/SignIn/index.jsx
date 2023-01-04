@@ -1,8 +1,9 @@
 import { Button } from 'antd';
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { connect } from 'umi';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 
+import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
@@ -10,11 +11,13 @@ import { defaultSettings } from '@/defaultSettings';
 
 import { signInAction } from '../Assist/action';
 
+const defaultProps = {};
+
 @connect(({ entrance, global }) => ({
   entrance,
   global,
 }))
-class SignIn extends PureComponent {
+class SignIn extends BaseComponent {
   constructor(props) {
     super(props);
 
@@ -43,7 +46,7 @@ class SignIn extends PureComponent {
     });
   };
 
-  render() {
+  renderFurther() {
     const { type: loginType, processing } = this.state;
 
     return (
@@ -102,5 +105,10 @@ class SignIn extends PureComponent {
     );
   }
 }
+
+SignIn.defaultProps = {
+  ...BaseComponent.defaultProps,
+  ...defaultProps,
+};
 
 export default SignIn;

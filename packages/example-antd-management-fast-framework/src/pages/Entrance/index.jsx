@@ -1,14 +1,14 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+
+import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 
 import SignIn from './SignIn';
 import Wrapper from './Wrapper';
 
 const defaultProps = {};
 
-class Entrance extends PureComponent {
-  render() {
-    console.log(this.props);
-
+class Entrance extends BaseComponent {
+  renderFurther() {
     return (
       <Wrapper>
         <SignIn />
@@ -18,7 +18,7 @@ class Entrance extends PureComponent {
 }
 
 Entrance.defaultProps = {
-  // ...BaseComponent.defaultProps,
+  ...BaseComponent.defaultProps,
   ...defaultProps,
 };
 

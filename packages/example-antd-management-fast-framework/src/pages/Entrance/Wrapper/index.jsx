@@ -1,8 +1,7 @@
 import React from 'react';
-import { Helmet, HelmetProvider } from 'umi';
+import { Helmet } from 'umi';
 import { DefaultFooter } from '@ant-design/pro-layout';
 
-import { ComponentBase } from 'antd-management-fast-common/es/customComponents';
 import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 import { Bubbly } from 'antd-management-fast-component/es/customComponents/Canvas';
 import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
@@ -12,14 +11,14 @@ import { defaultSettings } from '../../../defaultSettings';
 
 const defaultProps = {};
 
-class Wrapper extends ComponentBase {
+class Wrapper extends BaseComponent {
   renderFurther() {
     const { children } = this.props;
 
     const title = '登录';
 
     return (
-      <HelmetProvider>
+      <>
         <Helmet>
           <title>{title}</title>
           <meta name="description" content={title} />
@@ -68,7 +67,7 @@ class Wrapper extends ComponentBase {
         >
           <Bubbly />
         </div>
-      </HelmetProvider>
+      </>
     );
   }
 }
