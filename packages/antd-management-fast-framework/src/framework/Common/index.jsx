@@ -159,7 +159,26 @@ class Common extends Core {
       throw new Error(text);
     }
 
-    return global;
+    const { data: remoteData } = {
+      ...{ data: { dataSuccess: false, data: {} } },
+      ...(global || {}),
+    };
+
+    const { dataSuccess, data } = {
+      ...remoteData,
+    };
+
+    if (!dataSuccess) {
+      const text = 'global load failure, please check. ';
+
+      showRuntimeError({
+        message: text,
+      });
+
+      throw new Error(text);
+    }
+
+    return data || {};
   };
 
   /**

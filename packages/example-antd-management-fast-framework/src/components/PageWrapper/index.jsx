@@ -21,21 +21,7 @@ class PageWrapper extends BaseComponent {
       target: this,
       showProcessing: false,
       successCallback: ({ remoteData }) => {
-        const {
-          mediaTypeList,
-          webChannelList,
-          accessWayStatusList,
-          articleStatusList,
-        } = remoteData;
-
-        const result = {
-          mediaTypeList,
-          webChannelList,
-          accessWayStatusList,
-          articleStatusList,
-        };
-
-        setMetaDataCache(result);
+        setMetaDataCache(remoteData);
       },
     });
 
