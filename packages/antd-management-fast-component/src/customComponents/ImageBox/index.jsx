@@ -22,6 +22,52 @@ import './index.less';
 
 export const classPrefix = `amf-imageBox`;
 
+const placeholderBoxStyle = {
+  display: 'block',
+  marginTop: '100%',
+  marginLeft: '100%',
+  content: '',
+};
+
+const overlayBoxStyle = {
+  position: 'absolute',
+  top: '0',
+  left: '0',
+  zIndex: '2',
+  width: '100%',
+  height: '100%',
+  opacity: '0.65',
+};
+
+const overlayLoadingStyle = {};
+
+const overlayTextBackgroundStyle = {
+  background: '#000',
+};
+
+const overlayErrorBackgroundStyle = {
+  background: 'rgb(71 70 70)',
+};
+
+const overlayBoxIconStyle = {
+  color: '#fff',
+  fontSize: '22px',
+};
+
+const overlayBoxTextStyle = {
+  color: '#fff',
+  fontSize: '12px',
+};
+
+const imageItemStyle = {
+  position: 'absolute',
+  top: '0',
+  left: '0',
+  zIndex: '1',
+  width: '100%',
+  height: '100%',
+};
+
 class ImageBox extends BaseComponent {
   constructor(props) {
     super(props);
@@ -89,7 +135,10 @@ class ImageBox extends BaseComponent {
 
     // eslint-disable-next-line no-constant-condition
     const borderRadiusDefaultStyle = borderRadiusValue
-      ? { borderRadius: '4px' }
+      ? {
+          borderRadius: '4px',
+          overflow: 'hidden',
+        }
       : {};
 
     const circle = circleValue || false;
@@ -215,35 +264,50 @@ class ImageBox extends BaseComponent {
       return (
         <div
           className={classNames(`${classPrefix}_boxMode`)}
-          style={{ ...imageBoxStyle }}
+          style={{
+            ...{
+              position: 'relative',
+              display: 'block',
+              width: '100%',
+              overflow: 'hidden',
+            },
+            ...imageBoxStyle,
+          }}
         >
           {aspectRatio === 1 ? (
             <div
-              className={classNames(`${classPrefix}_boxMode_placeholderBox`)}
+              style={{
+                ...placeholderBoxStyle,
+                ...imageBoxStyle,
+              }}
             />
           ) : null}
 
           {aspectRatio !== 1 ? (
             <div
-              className={classNames(`${classPrefix}_boxMode_placeholderBox`)}
-              style={{ marginTop: `${aspectRatio * 100}%` }}
+              style={{
+                ...placeholderBoxStyle,
+                ...{
+                  marginTop: `${aspectRatio * 100}%`,
+                },
+              }}
             />
           ) : null}
 
           {showOverlay ? (
             <div
-              className={classNames(
-                classNames(`${classPrefix}_boxMode_overlayBox`),
-                classNames(`${classPrefix}_boxMode_overlayTextBackground`),
-              )}
+              style={{
+                ...overlayBoxStyle,
+                ...overlayTextBackgroundStyle,
+              }}
             >
               <Row
                 type="flex"
                 align="middle"
                 justify="center"
-                className={classNames(
-                  `${classPrefix}_boxMode_overlayTextBackground_inner`,
-                )}
+                style={{
+                  height: '100%',
+                }}
               >
                 <Col>
                   <div
@@ -268,10 +332,9 @@ class ImageBox extends BaseComponent {
 
           {loadingEffect && !loadSuccess && !showOverlay ? (
             <div
-              className={classNames(
-                `${classPrefix}_boxMode_overlayBox`,
-                `${classPrefix}_boxMode_overlayLoading`,
-              )}
+              style={{
+                ...overlayBoxStyle,
+              }}
             >
               <Row
                 justify="space-around"
@@ -293,10 +356,10 @@ class ImageBox extends BaseComponent {
 
           {showErrorOverlay ? (
             <div
-              className={classNames(
-                `${classPrefix}_boxMode_overlayBox`,
-                `${classPrefix}_boxMode_overlayErrorBackground`,
-              )}
+              style={{
+                ...overlayBoxStyle,
+                ...overlayErrorBackgroundStyle,
+              }}
             >
               <Row
                 justify="space-around"
@@ -308,31 +371,15 @@ class ImageBox extends BaseComponent {
                   {showErrorIcon ? (
                     <IconInfo
                       direction="vertical"
-                      icon={
-                        <PictureOutlined
-                          className={classNames(
-                            `${classPrefix}_boxMode_overlayBox_icon`,
-                          )}
-                        />
-                      }
+                      icon={<PictureOutlined style={overlayBoxIconStyle} />}
                       text={
-                        <span
-                          className={classNames(
-                            `${classPrefix}_boxMode_overlayBox_text`,
-                          )}
-                        >
+                        <span style={overlayBoxTextStyle}>
                           {errorOverlayText}
                         </span>
                       }
                     />
                   ) : (
-                    <span
-                      className={classNames(
-                        `${classPrefix}_boxMode_overlayBox_text`,
-                      )}
-                    >
-                      {errorOverlayText}
-                    </span>
+                    <span style={overlayBoxTextStyle}>{errorOverlayText}</span>
                   )}
                 </Col>
                 <Col flex="auto" />
@@ -344,15 +391,20 @@ class ImageBox extends BaseComponent {
             <Row
               justify="space-around"
               align="middle"
-              className={classNames(
-                `${classPrefix}_boxMode_imageItem`,
-                loadingEffect && !showOverlay
+              style={{
+                ...imageItemStyle,
+                ...(loadingEffect && !showOverlay
                   ? !loadSuccess
-                    ? `${classPrefix}_boxMode_imageLoadAnimationInit`
-                    : `${classPrefix}_boxMode_imageLoadAnimation`
-                  : '',
-              )}
-              style={imageBoxStyle}
+                    ? {
+                        opacity: '0.01',
+                      }
+                    : {
+                        opacity: '1',
+                        transform: 'opacity 300ms',
+                      }
+                  : {}),
+                ...imageBoxStyle,
+              }}
             >
               <Col
                 style={
@@ -403,11 +455,17 @@ class ImageBox extends BaseComponent {
             <Image
               className={classNames(`${classPrefix}_contentMode`)}
               width="100%"
-              style={
-                imageLoadSuccess && !stringIsNullOrWhiteSpace(src) && preview
+              style={{
+                ...(imageLoadSuccess &&
+                !stringIsNullOrWhiteSpace(src) &&
+                preview
                   ? { cursor: 'pointer' }
-                  : {}
-              }
+                  : {}),
+                ...{
+                  display: 'block',
+                  width: '100%',
+                },
+              }}
               src={src}
               onError={this.onImageError}
               onClick={this.onImageClick}

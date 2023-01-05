@@ -29,6 +29,10 @@ function buildConfig() {
       styles: [`body { margin: 0; }`],
       layout: {
         title: '@umijs/max',
+        siderMenuType: 'group',
+        menu: {
+          collapsedShowGroupTitle: true,
+        },
         onRouteChange: ({
           routes,
           clientRoutes,

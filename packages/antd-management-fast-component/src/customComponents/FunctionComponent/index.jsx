@@ -3429,6 +3429,7 @@ export function buildColumnItem({
             imageWidth: '30px',
             circle: true,
             borderRadius: '3px',
+
             previewSimpleMask: true,
           },
           ...facadeConfig,
@@ -3443,6 +3444,7 @@ export function buildColumnItem({
                   style={{
                     ...{
                       width: imageWidth,
+                      overflow: 'hidden',
                     },
                     ...(circle ? {} : { borderRadius }),
                   }}

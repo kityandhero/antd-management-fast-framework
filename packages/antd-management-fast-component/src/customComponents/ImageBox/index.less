@@ -1,70 +1,5 @@
 .amf-imageBox {
   &_boxMode {
-    position: relative;
-    display: block;
-    width: 100%;
-    overflow: hidden;
-
-    &_placeholderBox {
-      display: block;
-      margin-top: 100%;
-      margin-left: 100%;
-      content: '';
-    }
-
-    &_imageItem {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-    }
-
-    &_imageLoadAnimationInit {
-      opacity: 0.01;
-    }
-
-    &_imageLoadAnimation {
-      animation: amf-image-box-opacity-change 300ms;
-    }
-
-    &_overlayBox {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      opacity: 0.65;
-
-      &_icon {
-        color: #fff;
-        font-size: 22px;
-      }
-
-      &_text {
-        color: #fff;
-        font-size: 12px;
-      }
-    }
-
-    &_overlayTextBackground {
-      background: #000;
-
-      &_inner {
-        height: 100%;
-      }
-    }
-
-    &_overlayErrorBackground {
-      background: rgb(71 70 70);
-
-      &_inner {
-        height: 100%;
-      }
-    }
-
     &_overlayLoading {
       .overlayLoadingInner {
         position: relative;
@@ -84,20 +19,5 @@
         }
       }
     }
-  }
-
-  &_contentMode {
-    display: block;
-    width: 100%;
-  }
-}
-
-@keyframes amf-image-box-opacity-change {
-  from {
-    opacity: 0.01;
-  }
-
-  to {
-    opacity: 1;
   }
 }
