@@ -4,11 +4,11 @@ import React from 'react';
 
 import { imageContentPreviewMode } from 'antd-management-fast-common/es/utils/constants';
 
-import CustomBase from '../CustomBase';
+import BaseComponent from '../BaseComponent';
 
 import styles from './index.less';
 
-class ImageContentPreview extends CustomBase {
+class ImageContentPreview extends BaseComponent {
   constructor(props) {
     super(props);
 

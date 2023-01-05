@@ -17,6 +17,7 @@ import {
   Spin,
   Tooltip,
 } from 'antd';
+import classNames from 'classnames';
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
@@ -64,7 +65,9 @@ import BatchAction from '../BatchAction';
 import ColumnSetting from '../ColumnSetting';
 import DensityAction from '../DensityAction';
 
-import styles from './index.less';
+import './index.less';
+
+const classPrefix = `amf-data-list-view-base`;
 
 const { Content, Sider } = Layout;
 const FormItem = Form.Item;
@@ -587,7 +590,9 @@ class ListBase extends AuthorizationWrapper {
     const { dataLoading, reloading, searching } = this.state;
 
     return (
-      <span className={styles.submitButtons}>
+      <span
+        className={classNames(`${classPrefix}_tableListForm_submitButtons`)}
+      >
         <Button
           disabled={dataLoading || reloading || searching}
           type="primary"
@@ -828,12 +833,32 @@ class ListBase extends AuthorizationWrapper {
     }
 
     return (
-      <div className={styles.alertContainor}>
+      <div
+        className={classNames(`${classPrefix}_containorTable_alertContainor`)}
+      >
         <Alert
           message={
-            <div className={styles.alertInfo}>
-              <div className={styles.alertContent}>{content}</div>
-              {option && <div className={styles.alertOption}>{option}</div>}
+            <div
+              className={classNames(
+                `${classPrefix}_containorTable_alertContainor_alertInfo`,
+              )}
+            >
+              <div
+                className={classNames(
+                  `${classPrefix}_containorTable_alertContainor_alertInfo_alertContent`,
+                )}
+              >
+                {content}
+              </div>
+              {option && (
+                <div
+                  className={classNames(
+                    `${classPrefix}_containorTable_alertContainor_alertInfo_alertOption`,
+                  )}
+                >
+                  {option}
+                </div>
+              )}
             </div>
           }
           type="info"
@@ -1393,7 +1418,7 @@ class ListBase extends AuthorizationWrapper {
     }
 
     return (
-      <div className={styles.tableContainor}>
+      <div>
         <StandardTableCustom {...standardTableCustomOption} />
       </div>
     );
@@ -1589,10 +1614,10 @@ class ListBase extends AuthorizationWrapper {
           paddingBottom: hasPagination ? 0 : 24,
         }}
         bordered={false}
-        className={styles.containorTable}
+        className={classNames(`${classPrefix}_containorTable`)}
         extra={extraView}
       >
-        <div className={styles.tableList}>
+        <div>
           {this.renderAboveTable()}
           {this.renderView()}
         </div>
@@ -1610,8 +1635,13 @@ class ListBase extends AuthorizationWrapper {
         }}
       >
         <Space style={{ width: '100%' }} direction="vertical" size={24}>
-          <Card bordered={false} className={styles.containorSearch}>
-            <div className={styles.tableListForm}>{searchForm}</div>
+          <Card
+            bordered={false}
+            className={classNames(`${classPrefix}_containorSearch`)}
+          >
+            <div className={classNames(`${classPrefix}_tableListForm`)}>
+              {searchForm}
+            </div>
           </Card>
 
           {gridView}
@@ -1717,7 +1747,7 @@ class ListBase extends AuthorizationWrapper {
 
     if ((toolbar || null) != null || (help || null) != null) {
       return (
-        <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
+        <div style={{ overflowX: 'hidden' }}>
           <Space style={{ width: '100%' }} direction="vertical" size={24}>
             {toolbar}
 

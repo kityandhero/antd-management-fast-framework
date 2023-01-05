@@ -1,4 +1,4 @@
-import { Avatar, BackTop, Form, message } from 'antd';
+import { Avatar, BackTop, Form } from 'antd';
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
@@ -14,6 +14,7 @@ import {
   isUndefined,
   recordObject,
   showRuntimeError,
+  showWarningMessage,
 } from 'antd-management-fast-common/es/utils/tools';
 import { decorateAvatar } from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
 import {
@@ -199,7 +200,9 @@ class BaseAddForm extends DataCore {
             errorMessage += ' ...';
           }
 
-          message.warn(errorMessage);
+          showWarningMessage({
+            message: errorMessage,
+          });
         } else {
           showRuntimeError({
             message: error,

@@ -1,4 +1,4 @@
-import { message, Modal, Space, Tooltip, Upload } from 'antd';
+import { Modal, Space, Tooltip, Upload } from 'antd';
 import React, { PureComponent } from 'react';
 import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
@@ -6,6 +6,7 @@ import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/util
 import {
   buildFieldHelper,
   isFunction,
+  showInfoMessage,
   showRuntimeError,
   showWarningMessage,
   stringIsNullOrWhiteSpace,
@@ -52,7 +53,9 @@ class ImageUpload extends PureComponent {
     const { image } = this.props;
 
     if (stringIsNullOrWhiteSpace(image)) {
-      message.info('无图片可以预览');
+      showInfoMessage({
+        message: `无图片可以预览`,
+      });
 
       return;
     }
@@ -149,7 +152,9 @@ class ImageUpload extends PureComponent {
     const { image } = this.props;
 
     if (stringIsNullOrWhiteSpace(image)) {
-      message.info('当前没有可供移除的图片');
+      showInfoMessage({
+        message: '当前没有可供移除的图片',
+      });
 
       return;
     }

@@ -2,9 +2,9 @@ import React from 'react';
 
 import { copyToClipboard } from 'antd-management-fast-common/es/utils/tools';
 
-import CustomBase from '../CustomBase';
+import BaseComponent from '../BaseComponent';
 
-class DisplayCopyData extends CustomBase {
+class DisplayCopyData extends BaseComponent {
   static defaultProps = {
     label: '',
     data: null,

@@ -1,8 +1,10 @@
-import { message, notification } from 'antd';
+import { notification } from 'antd';
 
 import {
   isFunction,
   showRuntimeError,
+  showSuccessMessage,
+  showWarningMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
@@ -168,11 +170,15 @@ class Base extends AuthorizationWrapper {
       setTimeout(() => {
         requestAnimationFrame(() => {
           if (type === 'success') {
-            message.success(text);
+            showSuccessMessage({
+              message: text,
+            });
           }
 
           if (type === 'warn') {
-            message.warn(text);
+            showWarningMessage({
+              message: text,
+            });
           }
         });
       }, 700);

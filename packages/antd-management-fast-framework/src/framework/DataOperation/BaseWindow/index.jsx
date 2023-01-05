@@ -1,4 +1,3 @@
-import { message } from 'antd';
 import React from 'react';
 
 import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
@@ -7,6 +6,7 @@ import {
   isUndefined,
   recordObject,
   showRuntimeError,
+  showWarningMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
@@ -328,7 +328,7 @@ class BaseWindow extends Base {
             errorMessage += ' ...';
           }
 
-          message.warn(errorMessage);
+          showWarningMessage({ message: errorMessage });
         } else {
           showRuntimeError({
             message: error,

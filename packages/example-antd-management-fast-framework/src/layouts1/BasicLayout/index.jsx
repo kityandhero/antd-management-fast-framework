@@ -15,8 +15,8 @@ import {
   getQueue,
   recordDebug,
 } from 'antd-management-fast-common/es/utils/tools';
-import Authorized from 'antd-management-fast-component/es/customComponents/Authorized';
 
+// import Authorized from 'antd-management-fast-component/es/customComponents/Authorized';
 import RightContent from '../../components/GlobalHeader/RightContent';
 import { accessWayCollection } from '../../customConfig/config';
 import { execBasicLayoutRemoteRequest } from '../../customConfig/customLoad';
@@ -48,7 +48,9 @@ const menuDataRender = (menuList) =>
       children: item.children ? menuDataRender(item.children) : [],
     };
 
-    return Authorized.check(item.authority, localItem, null);
+    return null;
+
+    // return Authorized.check(item.authority, localItem, null);
   });
 
 const defaultFooterDom = (
@@ -83,7 +85,7 @@ const BasicLayout = (props) => {
 
       // const getSettingType = 'settings/getSetting';
 
-      // recordDebug(`modal access: ${getSettingType}`);
+      // recordDebug(`model access: ${getSettingType}`);
 
       // dispatch({
       //   type: getSettingType,
@@ -95,7 +97,7 @@ const BasicLayout = (props) => {
     if (dispatch) {
       const changeLayoutCollapsedType = 'global/changeLayoutCollapsed';
 
-      recordDebug(`modal access: ${changeLayoutCollapsedType}`);
+      recordDebug(`model access: ${changeLayoutCollapsedType}`);
 
       dispatch({
         type: changeLayoutCollapsedType,
@@ -161,7 +163,7 @@ const BasicLayout = (props) => {
           onSettingChange={(config) => {
             const changeSettingType = 'settings/changeSetting';
 
-            recordDebug(`modal access: ${changeSettingType}`);
+            recordDebug(`model access: ${changeSettingType}`);
 
             dispatch({
               type: changeSettingType,

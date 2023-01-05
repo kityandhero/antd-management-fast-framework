@@ -234,7 +234,7 @@ function remoteAction({
   successCallback,
   completeProcess = null,
 }) {
-  recordDebug(`modal access: ${api}`);
+  recordDebug(`model access: ${api}`);
 
   const { dispatch } = target.props;
 

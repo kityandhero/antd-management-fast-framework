@@ -1,10 +1,9 @@
-import { message } from 'antd';
-
 import {
   defaultListState,
   isUndefined,
   recordObject,
   showRuntimeError,
+  showWarningMessage,
   stringIsNullOrWhiteSpace,
   toNumber,
 } from 'antd-management-fast-common/es/utils/tools';
@@ -161,7 +160,9 @@ class SinglePage extends Base {
             errorMessage += ' ...';
           }
 
-          message.warn(errorMessage);
+          showWarningMessage({
+            message: errorMessage,
+          });
         } else {
           showRuntimeError({
             message: error,

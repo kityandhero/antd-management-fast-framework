@@ -1,11 +1,10 @@
-import { message } from 'antd';
-
 import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   isFunction,
   isUndefined,
   recordObject,
   showRuntimeError,
+  showWarningMessage,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import DataSingleView from '../../DataSingleView/DataLoad';
@@ -153,7 +152,9 @@ class BaseUpdateForm extends DataSingleView {
             errorMessage += ' ...';
           }
 
-          message.warn(errorMessage);
+          showWarningMessage({
+            message: errorMessage,
+          });
         } else {
           showRuntimeError({
             message: error,

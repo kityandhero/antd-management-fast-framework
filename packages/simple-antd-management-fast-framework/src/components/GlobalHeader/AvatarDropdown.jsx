@@ -23,7 +23,7 @@ class AvatarDropdown extends React.Component {
       if (dispatch) {
         const signOutType = 'entrance/signOut';
 
-        recordDebug(`modal access: ${signOutType}`);
+        recordDebug(`model access: ${signOutType}`);
 
         dispatch({
           type: signOutType,

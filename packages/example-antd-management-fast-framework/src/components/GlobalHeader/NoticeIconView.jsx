@@ -1,10 +1,14 @@
-import { message, Tag } from 'antd';
+import { Tag } from 'antd';
 import groupBy from 'lodash/groupBy';
 import moment from 'moment';
 import { Component } from 'react';
 import { connect } from 'umi';
 
-import { recordDebug } from 'antd-management-fast-common/es/utils/tools';
+import {
+  recordDebug,
+  showInfoMessage,
+  showSuccessMessage,
+} from 'antd-management-fast-common/es/utils/tools';
 
 import NoticeIcon from '../NoticeIcon';
 
@@ -17,7 +21,7 @@ class GlobalHeaderRight extends Component {
     if (dispatch) {
       const type = 'global/fetchNotices';
 
-      recordDebug(`modal access: ${type}`);
+      recordDebug(`model access: ${type}`);
 
       dispatch({
         type,
@@ -32,7 +36,7 @@ class GlobalHeaderRight extends Component {
     if (dispatch) {
       const changeNoticeReadStateType = 'global/changeNoticeReadState';
 
-      recordDebug(`modal access: ${changeNoticeReadStateType}`);
+      recordDebug(`model access: ${changeNoticeReadStateType}`);
 
       dispatch({
         type: changeNoticeReadStateType,
@@ -43,12 +47,15 @@ class GlobalHeaderRight extends Component {
 
   handleNoticeClear = (title, key) => {
     const { dispatch } = this.props;
-    message.success(`${'清空了'} ${title}`);
+
+    showSuccessMessage({
+      message: `${'清空了'} ${title}`,
+    });
 
     if (dispatch) {
       const clearNoticesType = 'global/clearNotices';
 
-      recordDebug(`modal access: ${clearNoticesType}`);
+      recordDebug(`model access: ${clearNoticesType}`);
 
       dispatch({
         type: clearNoticesType,
@@ -131,7 +138,11 @@ class GlobalHeaderRight extends Component {
         viewMoreText="查看更多"
         onClear={this.handleNoticeClear}
         onPopupVisibleChange={onNoticeVisibleChange}
-        onViewMore={() => message.info('Click on view more')}
+        onViewMore={() =>
+          showInfoMessage({
+            message: 'Click on view more',
+          })
+        }
         clearClose
       >
         <NoticeIcon.Tab

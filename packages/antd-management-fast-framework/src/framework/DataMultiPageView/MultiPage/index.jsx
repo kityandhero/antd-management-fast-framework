@@ -1,5 +1,3 @@
-import { message } from 'antd';
-
 import {
   getParamsDataCache,
   setParamsDataCache,
@@ -10,6 +8,7 @@ import {
   recordObject,
   showErrorMessage,
   showRuntimeError,
+  showWarningMessage,
   showWarnMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
@@ -239,7 +238,9 @@ class MultiPage extends Base {
             errorMessage += ' ...';
           }
 
-          message.warn(errorMessage);
+          showWarningMessage({
+            message: errorMessage,
+          });
         } else {
           showRuntimeError({
             message: error,

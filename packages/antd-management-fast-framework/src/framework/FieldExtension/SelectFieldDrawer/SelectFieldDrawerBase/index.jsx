@@ -1,9 +1,8 @@
-import { message } from 'antd';
-
 import { selectModeCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   isFunction,
   showRuntimeError,
+  showWarningMessage,
   toNumber,
 } from 'antd-management-fast-common/es/utils/tools';
 
@@ -79,7 +78,9 @@ class SelectFieldInteractiveBase extends SelectFieldBase {
         fieldPlaceholder: '请选择',
       };
 
-      message.warn(`${fieldPlaceholder}${fieldTitle}`);
+      showWarningMessage({
+        message: `${fieldPlaceholder}${fieldTitle}`,
+      });
 
       return;
     }

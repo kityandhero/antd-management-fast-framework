@@ -15,12 +15,12 @@ import {
   trim,
 } from 'antd-management-fast-common/es/utils/tools';
 
-import CustomBase from '../CustomBase';
+import BaseComponent from '../BaseComponent';
 import IconInfo from '../IconInfo';
 
 import styles from './index.less';
 
-class ImageBox extends CustomBase {
+class ImageBox extends BaseComponent {
   constructor(props) {
     super(props);
 

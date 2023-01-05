@@ -19,7 +19,6 @@ const inputFile = {
     'utils/localStorageAssist': 'src/utils/localStorageAssist.js',
     'utils/log': 'src/utils/log.js',
     'utils/mediaDefault': 'src/utils/mediaDefault.js',
-    'utils/modelAssist': 'src/utils/modelAssist.js',
     'utils/proLayoutCollection': 'src/utils/proLayoutCollection.jsx',
     'utils/request': 'src/utils/request.js',
     'utils/requestAssistor': 'src/utils/requestAssistor.js',

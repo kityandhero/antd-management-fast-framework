@@ -1,17 +1,22 @@
 import { Alert, Spin, Table } from 'antd';
+import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 
 import { listViewConfig } from 'antd-management-fast-common/es/utils/constants';
 
-import styles from './index.less';
+import './index.less';
+
+const classPrefix = `amf-standardTableCustom`;
 
 function initTotalList(columns) {
   const totalList = [];
+
   columns.forEach((column) => {
     if (column.needTotal) {
       totalList.push({ ...column, total: 0 });
     }
   });
+
   return totalList;
 }
 
@@ -105,7 +110,7 @@ class StandardTableCustom extends PureComponent {
       rowSelection === null ? (
         ''
       ) : (
-        <div className={styles.tableAlert}>
+        <div className={classNames(`${classPrefix}_tableAlert`)}>
           <Alert
             message={
               <>
@@ -132,7 +137,7 @@ class StandardTableCustom extends PureComponent {
         </div>
       );
     return (
-      <div className={styles.standardTableCustom}>
+      <div className={classPrefix}>
         {rowSelectionMessage}
         <Spin spinning={loading}>
           <Table

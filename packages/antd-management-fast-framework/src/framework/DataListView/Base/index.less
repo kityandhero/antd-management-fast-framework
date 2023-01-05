@@ -1,6 +1,6 @@
 @media screen and (min-width: var(--amf-screen-lg)) {
   .amf-data-list-view-base {
-    .containorSearch {
+    &_containorSearch {
       :global {
         .ant-card-body {
           padding-bottom: 0;
@@ -12,7 +12,7 @@
 
 @media screen and (min-width: var(--amf-screen-md)) {
   .amf-data-list-view-base {
-    .containorSearch {
+    &_containorSearch {
       :global {
         .ant-card-body {
           padding-bottom: 0;
@@ -24,7 +24,7 @@
 
 @media screen and (min-width: var(--amf-screen-xl)) {
   .amf-data-list-view-base {
-    .containorSearch {
+    &_containorSearch {
       :global {
         .ant-card-body {
           padding-bottom: 0;
@@ -36,7 +36,7 @@
 
 @media screen and (min-width: var(--amf-screen-xxl)) {
   .amf-data-list-view-base {
-    .containorSearch {
+    &_containorSearch {
       :global {
         .ant-card-body {
           padding-bottom: 0;
@@ -47,19 +47,19 @@
 }
 
 .amf-data-list-view-base {
-  .containorTable {
-    .alertContainor {
+  &_containorTable {
+    &_alertContainor {
       margin: 0;
       margin-bottom: 16px;
 
-      .alertInfo {
+      &_alertInfo {
         display: flex;
 
-        .alertContent {
+        &_alertContent {
           flex: 1;
         }
 
-        .alertOption {
+        &_alertOption {
           min-width: 48px;
           padding-left: 16px;
         }
@@ -67,48 +67,7 @@
     }
   }
 
-  .tableList {
-    .tableListOperator {
-      margin-bottom: 16px;
-
-      button {
-        margin-right: 8px;
-      }
-    }
-
-    .price {
-      color: #267cb7;
-    }
-
-    .actionButton {
-      margin: 0 5px;
-    }
-
-    .orange {
-      color: orange;
-    }
-  }
-
-  .editButton {
-    margin-right: 3px;
-  }
-
-  .img {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #eceaea;
-  }
-
-  .pointer {
-    color: #267cb7;
-    cursor: pointer;
-  }
-
-  .topButton {
-    margin-right: 8px;
-  }
-
-  .tableListForm {
+  &_tableListForm {
     :global {
       .ant-form-item {
         display: flex;
@@ -128,7 +87,7 @@
       }
     }
 
-    .submitButtons {
+    &_submitButtons {
       margin-bottom: 24px;
       white-space: nowrap;
     }

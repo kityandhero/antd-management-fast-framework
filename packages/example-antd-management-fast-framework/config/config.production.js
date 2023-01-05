@@ -1,20 +1,29 @@
-import { defineConfig } from '@umijs/max';
-
 import { headScripts as headScriptsSource } from './extraScript.production';
 
 const corsTargetDomain = '';
 
 const headScripts = [
+  ...headScriptsSource,
   ...[
     {
       src: `${corsTargetDomain}/interactionConfig/initRemote.js`,
     },
   ],
-  ...headScriptsSource,
 ];
 
-export default defineConfig({
-  favicon: `${corsTargetDomain}/assists/image/favicon.ico`,
+const config = {
+  favicons: [`${corsTargetDomain}/assists/image/favicon.ico`],
   headScripts,
-  esbuild: {},
-});
+};
+
+export { config };
+
+/**
+ * 占位函数
+ *
+ * @export
+ * @returns
+ */
+export function empty() {
+  return {};
+}

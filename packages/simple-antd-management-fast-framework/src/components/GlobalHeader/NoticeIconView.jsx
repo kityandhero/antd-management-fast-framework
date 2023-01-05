@@ -17,7 +17,7 @@ class GlobalHeaderRight extends Component {
     if (dispatch) {
       const type = 'global/fetchNotices';
 
-      recordDebug(`modal access: ${type}`);
+      recordDebug(`model access: ${type}`);
 
       dispatch({
         type,
@@ -32,7 +32,7 @@ class GlobalHeaderRight extends Component {
     if (dispatch) {
       const changeNoticeReadStateType = 'global/changeNoticeReadState';
 
-      recordDebug(`modal access: ${changeNoticeReadStateType}`);
+      recordDebug(`model access: ${changeNoticeReadStateType}`);
 
       dispatch({
         type: changeNoticeReadStateType,
@@ -48,7 +48,7 @@ class GlobalHeaderRight extends Component {
     if (dispatch) {
       const clearNoticesType = 'global/clearNotices';
 
-      recordDebug(`modal access: ${clearNoticesType}`);
+      recordDebug(`model access: ${clearNoticesType}`);
 
       dispatch({
         type: clearNoticesType,

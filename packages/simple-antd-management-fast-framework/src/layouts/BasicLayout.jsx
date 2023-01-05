@@ -81,7 +81,7 @@ const BasicLayout = (props) => {
 
       const getSettingType = 'settings/getSetting';
 
-      recordDebug(`modal access: ${getSettingType}`);
+      recordDebug(`model access: ${getSettingType}`);
 
       dispatch({
         type: getSettingType,
@@ -93,7 +93,7 @@ const BasicLayout = (props) => {
     if (dispatch) {
       const changeLayoutCollapsedType = 'global/changeLayoutCollapsed';
 
-      recordDebug(`modal access: ${changeLayoutCollapsedType}`);
+      recordDebug(`model access: ${changeLayoutCollapsedType}`);
 
       dispatch({
         type: changeLayoutCollapsedType,
@@ -159,7 +159,7 @@ const BasicLayout = (props) => {
           onSettingChange={(config) => {
             const changeSettingType = 'settings/changeSetting';
 
-            recordDebug(`modal access: ${changeSettingType}`);
+            recordDebug(`model access: ${changeSettingType}`);
 
             dispatch({
               type: changeSettingType,

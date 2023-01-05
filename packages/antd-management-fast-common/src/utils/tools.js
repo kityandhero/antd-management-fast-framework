@@ -186,11 +186,17 @@ export function copyToClipboard(text, showCopyText = true, otherShowText = '') {
   copy(text);
 
   if (showCopyText) {
-    message.success(`已经将 ${text} 复制到剪贴板！`);
+    showSuccessMessage({
+      message: `已经将 ${text} 复制到剪贴板！`,
+    });
   } else if (stringIsNullOrWhiteSpace(otherShowText)) {
-    message.success('已经复制到剪贴板！');
+    showSuccessMessage({
+      message: '已经复制到剪贴板！',
+    });
   } else {
-    message.success(`已经将${otherShowText}复制到剪贴板！`);
+    showSuccessMessage({
+      message: `已经将${otherShowText}复制到剪贴板！`,
+    });
   }
 }
 
@@ -434,7 +440,7 @@ export function showMessage({
         break;
 
       case messageTypeCollection.error:
-        message.warn(messageText, duration, onClose);
+        message.error(messageText, duration, onClose);
 
         break;
 
@@ -449,7 +455,7 @@ export function showMessage({
         break;
 
       case messageTypeCollection.warn:
-        message.warn(messageText, duration, onClose);
+        message.warning(messageText, duration, onClose);
 
         break;
 

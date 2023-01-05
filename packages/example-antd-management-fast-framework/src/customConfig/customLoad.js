@@ -3,7 +3,7 @@ import { recordDebug } from 'antd-management-fast-common/es/utils/tools';
 export function execBasicLayoutRemoteRequest(dispatch) {
   const metaDataType = 'global/getMetaData';
 
-  recordDebug(`modal access: ${metaDataType}`);
+  recordDebug(`model access: ${metaDataType}`);
 
   dispatch({
     type: metaDataType,
@@ -12,7 +12,7 @@ export function execBasicLayoutRemoteRequest(dispatch) {
 
   const currentOperatorType = 'currentOperator/getCurrentOperator';
 
-  recordDebug(`modal access: ${currentOperatorType}`);
+  recordDebug(`model access: ${currentOperatorType}`);
 
   dispatch({
     type: currentOperatorType,

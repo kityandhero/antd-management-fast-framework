@@ -25,7 +25,7 @@ class SecurityLayout extends React.Component {
     if (dispatch) {
       const getCurrentOperatorType = 'currentOperator/getCurrentOperator';
 
-      recordDebug(`modal access: ${getCurrentOperatorType}`);
+      recordDebug(`model access: ${getCurrentOperatorType}`);
 
       dispatch({
         type: getCurrentOperatorType,

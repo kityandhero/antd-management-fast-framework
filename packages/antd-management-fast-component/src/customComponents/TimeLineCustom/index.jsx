@@ -5,12 +5,12 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 import { datetimeFormat } from 'antd-management-fast-common/es/utils/constants';
 import { formatDatetime } from 'antd-management-fast-common/es/utils/tools';
 
-import CustomBase from '../CustomBase';
+import BaseComponent from '../BaseComponent';
 import { iconBuilder } from '../Icon';
 
 import styles from './index.less';
 
-class TimeLineCustom extends CustomBase {
+class TimeLineCustom extends BaseComponent {
   constructor(props) {
     super(props);
 

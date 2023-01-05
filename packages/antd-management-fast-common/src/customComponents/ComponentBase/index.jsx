@@ -2,7 +2,6 @@ import nprogress from 'nprogress';
 import { Component } from 'react';
 
 import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
-import { getModelNameList } from '../../utils/modelAssist';
 import {
   defaultBaseState,
   getGuid,
@@ -350,27 +349,7 @@ class ComponentBase extends Component {
   dispatchApi = ({ type, payload, alias = 'data' }) => {
     const dispatch = this.getDispatchWrapper();
 
-    recordDebug(`modal access: ${type}`);
-
-    if (!stringIsNullOrWhiteSpace(type)) {
-      const l = split(type, '/');
-
-      if (l.length === 2) {
-        const modelName = l[0];
-
-        const ml = getModelNameList();
-
-        const modelNameList = split(ml, ',');
-
-        if (!inCollection(modelNameList, modelName)) {
-          recordInfo(`current modelNameList: ${ml}`);
-
-          recordError(
-            `${modelName} not in modelNameList, please check model config`,
-          );
-        }
-      }
-    }
+    recordDebug(`model access: ${type}`);
 
     return dispatch({ type, payload, alias });
   };
