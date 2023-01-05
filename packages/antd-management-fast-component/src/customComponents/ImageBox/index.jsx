@@ -1,5 +1,5 @@
 import { Col, Image, Row, Spin } from 'antd';
-import classNames from 'classnames';
+import Animate from 'rc-animate';
 import React from 'react';
 import {
   EyeOutlined,
@@ -18,10 +18,6 @@ import {
 import BaseComponent from '../BaseComponent';
 import IconInfo from '../IconInfo';
 
-import './index.less';
-
-export const classPrefix = `amf-imageBox`;
-
 const placeholderBoxStyle = {
   display: 'block',
   marginTop: '100%',
@@ -38,8 +34,6 @@ const overlayBoxStyle = {
   height: '100%',
   opacity: '0.65',
 };
-
-const overlayLoadingStyle = {};
 
 const overlayTextBackgroundStyle = {
   background: '#000',
@@ -263,7 +257,6 @@ class ImageBox extends BaseComponent {
     if (showMode === 'loading' || showMode === 'box') {
       return (
         <div
-          className={classNames(`${classPrefix}_boxMode`)}
           style={{
             ...{
               position: 'relative',
@@ -274,176 +267,175 @@ class ImageBox extends BaseComponent {
             ...imageBoxStyle,
           }}
         >
-          {aspectRatio === 1 ? (
-            <div
-              style={{
-                ...placeholderBoxStyle,
-                ...imageBoxStyle,
-              }}
-            />
-          ) : null}
-
-          {aspectRatio !== 1 ? (
-            <div
-              style={{
-                ...placeholderBoxStyle,
-                ...{
-                  marginTop: `${aspectRatio * 100}%`,
-                },
-              }}
-            />
-          ) : null}
-
-          {showOverlay ? (
-            <div
-              style={{
-                ...overlayBoxStyle,
-                ...overlayTextBackgroundStyle,
-              }}
-            >
-              <Row
-                type="flex"
-                align="middle"
-                justify="center"
+          <Animate transitionName="fade" transitionAppear>
+            {aspectRatio === 1 ? (
+              <div
+                key="aspectRatio_1"
                 style={{
-                  height: '100%',
+                  ...placeholderBoxStyle,
+                  ...imageBoxStyle,
+                }}
+              />
+            ) : null}
+
+            {aspectRatio !== 1 ? (
+              <div
+                key="aspectRatio_0"
+                style={{
+                  ...placeholderBoxStyle,
+                  ...{
+                    marginTop: `${aspectRatio * 100}%`,
+                  },
+                }}
+              />
+            ) : null}
+
+            {showOverlay ? (
+              <div
+                key="showOverlay_1"
+                style={{
+                  ...overlayBoxStyle,
+                  ...overlayTextBackgroundStyle,
                 }}
               >
-                <Col>
-                  <div
-                    className={classNames(
-                      `${classPrefix}_boxMode_overlayBox_text`,
-                    )}
-                  >
-                    {overlayText}
-                  </div>
-                </Col>
-              </Row>
-            </div>
-          ) : null}
+                <Row
+                  type="flex"
+                  align="middle"
+                  justify="center"
+                  style={{
+                    height: '100%',
+                  }}
+                >
+                  <Col>
+                    <div style={overlayBoxTextStyle}>{overlayText}</div>
+                  </Col>
+                </Row>
+              </div>
+            ) : null}
 
-          {showMode === 'loading' ? (
-            <div>
-              <Spin
-                indicator={<LoadingOutlined style={{ fontSize: 18 }} spin />}
-              />
-            </div>
-          ) : null}
+            {showMode === 'loading' ? (
+              <div key="loading_1">
+                <Spin
+                  indicator={<LoadingOutlined style={{ fontSize: 18 }} spin />}
+                />
+              </div>
+            ) : null}
 
-          {loadingEffect && !loadSuccess && !showOverlay ? (
-            <div
-              style={{
-                ...overlayBoxStyle,
-              }}
-            >
-              <Row
-                justify="space-around"
-                align="middle"
-                style={{ height: '100%' }}
+            {loadingEffect && !loadSuccess && !showOverlay ? (
+              <div
+                key="loading_2"
+                style={{
+                  ...overlayBoxStyle,
+                }}
               >
-                <Col flex="auto" />
-                <Col>
-                  <Spin
-                    indicator={
-                      <LoadingOutlined style={{ fontSize: 18 }} spin />
-                    }
-                  />
-                </Col>
-                <Col flex="auto" />
-              </Row>
-            </div>
-          ) : null}
-
-          {showErrorOverlay ? (
-            <div
-              style={{
-                ...overlayBoxStyle,
-                ...overlayErrorBackgroundStyle,
-              }}
-            >
-              <Row
-                justify="space-around"
-                align="middle"
-                style={{ height: '100%' }}
-              >
-                <Col flex="auto" />
-                <Col>
-                  {showErrorIcon ? (
-                    <IconInfo
-                      direction="vertical"
-                      icon={<PictureOutlined style={overlayBoxIconStyle} />}
-                      text={
-                        <span style={overlayBoxTextStyle}>
-                          {errorOverlayText}
-                        </span>
+                <Row
+                  justify="space-around"
+                  align="middle"
+                  style={{ height: '100%' }}
+                >
+                  <Col flex="auto" />
+                  <Col>
+                    <Spin
+                      indicator={
+                        <LoadingOutlined style={{ fontSize: 18 }} spin />
                       }
                     />
-                  ) : (
-                    <span style={overlayBoxTextStyle}>{errorOverlayText}</span>
-                  )}
-                </Col>
-                <Col flex="auto" />
-              </Row>
-            </div>
-          ) : null}
+                  </Col>
+                  <Col flex="auto" />
+                </Row>
+              </div>
+            ) : null}
 
-          {showMode === 'box' ? (
-            <Row
-              justify="space-around"
-              align="middle"
-              style={{
-                ...imageItemStyle,
-                ...(loadingEffect && !showOverlay
-                  ? !loadSuccess
-                    ? {
-                        opacity: '0.01',
-                      }
-                    : {
-                        opacity: '1',
-                        transform: 'opacity 300ms',
-                      }
-                  : {}),
-                ...imageBoxStyle,
-              }}
-            >
-              <Col
-                style={
-                  fillHeight
-                    ? { height: '100%', width: '100%' }
-                    : { width: '100%' }
-                }
+            {showErrorOverlay ? (
+              <div
+                key="showErrorOverlay_1"
+                style={{
+                  ...overlayBoxStyle,
+                  ...overlayErrorBackgroundStyle,
+                }}
               >
-                <Image
-                  className={
-                    fillHeight
-                      ? classNames(`${classPrefix}_boxMode_fullHeight`)
-                      : null
-                  }
+                <Row
+                  justify="space-around"
+                  align="middle"
+                  style={{ height: '100%' }}
+                >
+                  <Col flex="auto" />
+                  <Col>
+                    {showErrorIcon ? (
+                      <IconInfo
+                        direction="vertical"
+                        icon={<PictureOutlined style={overlayBoxIconStyle} />}
+                        text={
+                          <span style={overlayBoxTextStyle}>
+                            {errorOverlayText}
+                          </span>
+                        }
+                      />
+                    ) : (
+                      <span style={overlayBoxTextStyle}>
+                        {errorOverlayText}
+                      </span>
+                    )}
+                  </Col>
+                  <Col flex="auto" />
+                </Row>
+              </div>
+            ) : null}
+
+            {showMode === 'box' ? (
+              <Row
+                key="box_1"
+                justify="space-around"
+                align="middle"
+                style={{
+                  ...imageItemStyle,
+                  ...(loadingEffect && !showOverlay
+                    ? !loadSuccess
+                      ? {
+                          opacity: '0.01',
+                        }
+                      : {
+                          opacity: '1',
+                          transform: 'opacity 300ms',
+                        }
+                    : {}),
+                  ...imageBoxStyle,
+                }}
+              >
+                <Col
                   style={
-                    imageLoadSuccess &&
-                    !stringIsNullOrWhiteSpace(src) &&
-                    preview
-                      ? { cursor: 'pointer' }
-                      : {}
+                    fillHeight
+                      ? { height: '100%', width: '100%' }
+                      : { width: '100%' }
                   }
-                  width="100%"
-                  height={fillHeight ? '100%' : null}
-                  src={src}
-                  onLoad={() => {
-                    this.onImageLoadSuccess();
-                  }}
-                  onError={() => {
-                    this.onImageError();
-                  }}
-                  onClick={() => {
-                    this.onImageClick();
-                  }}
-                  alt=""
-                  preview={previewConfig}
-                />
-              </Col>
-            </Row>
-          ) : null}
+                >
+                  <Image
+                    style={
+                      imageLoadSuccess &&
+                      !stringIsNullOrWhiteSpace(src) &&
+                      preview
+                        ? { cursor: 'pointer' }
+                        : {}
+                    }
+                    width="100%"
+                    height={fillHeight ? '100%' : null}
+                    src={src}
+                    onLoad={() => {
+                      this.onImageLoadSuccess();
+                    }}
+                    onError={() => {
+                      this.onImageError();
+                    }}
+                    onClick={() => {
+                      this.onImageClick();
+                    }}
+                    alt=""
+                    preview={previewConfig}
+                  />
+                </Col>
+              </Row>
+            ) : null}
+          </Animate>
         </div>
       );
     }
@@ -453,7 +445,6 @@ class ImageBox extends BaseComponent {
         <div style={imageBoxStyle}>
           <div>
             <Image
-              className={classNames(`${classPrefix}_contentMode`)}
               width="100%"
               style={{
                 ...(imageLoadSuccess &&
