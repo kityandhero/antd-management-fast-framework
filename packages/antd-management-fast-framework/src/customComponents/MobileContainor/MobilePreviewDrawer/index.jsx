@@ -6,9 +6,9 @@ import {
 } from 'antd-management-fast-common/es/utils/constants';
 import { isObject } from 'antd-management-fast-common/es/utils/tools';
 import { buildOptionItem } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import BaseNeedlessLoadDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseNeedlessLoadDrawer';
+import MobileSimulation from 'antd-management-fast-component/es/customComponents/MobileContainor/MobileSimulation';
 
-import MobileSimulation from '../MobileSimulation';
+import BaseNeedlessLoadDrawer from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
 
 class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
   resetDataAfterLoad = false;

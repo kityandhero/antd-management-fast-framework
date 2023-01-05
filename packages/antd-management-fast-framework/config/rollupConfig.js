@@ -7,6 +7,14 @@ const inputFile = {
     'configGroup/webpackPlugin': 'src/configGroup/webpackPlugin.js',
   },
   ...{
+    'customComponents/DataPreviewDrawer/index':
+      'src/customComponents/DataPreviewDrawer/index.jsx',
+    'customComponents/MobileContainor/MobilePreviewArea/index':
+      'src/customComponents/MobileContainor/MobilePreviewArea/index.jsx',
+    'customComponents/MobileContainor/MobilePreviewDrawer/index':
+      'src/customComponents/MobileContainor/MobilePreviewDrawer/index.jsx',
+  },
+  ...{
     'framework/AuthorizationWrapper/index':
       'src/framework/AuthorizationWrapper/index.jsx',
     'framework/Common/index': 'src/framework/Common/index.jsx',

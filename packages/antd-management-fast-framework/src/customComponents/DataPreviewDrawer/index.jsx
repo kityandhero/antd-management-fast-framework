@@ -5,7 +5,8 @@ import {
   dataTypeCollection,
 } from 'antd-management-fast-common/es/utils/constants';
 import { toNumber } from 'antd-management-fast-common/es/utils/tools';
-import Base from 'antd-management-fast-framework/es/framework/DataDrawer/Base';
+
+import Base from '../../framework/DataDrawer/Base';
 
 import styles from './index.less';
 

@@ -8,9 +8,9 @@ import {
 } from 'antd-management-fast-common/es/utils/constants';
 import { isArray, isObject } from 'antd-management-fast-common/es/utils/tools';
 import { buildOptionItem } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import Base from 'antd-management-fast-framework/es/framework/DataOperation/Base';
+import MobileSimulation from 'antd-management-fast-component/es/customComponents/MobileContainor/MobileSimulation';
 
-import MobileSimulation from '../MobileSimulation';
+import Base from '../../../framework/DataDrawer/Base';
 
 class MobilePreviewArea extends Base {
   resetDataAfterLoad = false;
