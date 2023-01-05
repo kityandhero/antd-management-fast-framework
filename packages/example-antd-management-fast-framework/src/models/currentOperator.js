@@ -28,37 +28,18 @@ export default {
 
   effects: {
     *getCurrentOperator({ payload, alias }, { call, put }) {
-      const { force } = payload || { force: false };
-      let result = {};
-      let fromRemote = force || false;
+      const response = yield call(getCurrentBasicInfoData, payload);
 
-      if (!force) {
-        result = getCurrentOperatorCache();
-
-        if ((result || null) == null) {
-          fromRemote = true;
-          result = {};
-        }
-      }
-
-      if (fromRemote) {
-        const response = yield call(getCurrentBasicInfoData, payload);
-
-        const data = pretreatmentRemoteSingleData(response);
-
-        const { dataSuccess, data: metaData } = data;
-
-        if (dataSuccess) {
-          result = metaData;
-
-          setCurrentOperatorCache(result);
-        }
-      }
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
       yield put({
-        type: 'changeCurrentOperator',
-        payload: result,
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
       });
+
+      return dataAdjust;
     },
     *getCurrentBasicInfo({ payload, alias }, { call, put }) {
       const response = yield call(getCurrentBasicInfoData, payload);

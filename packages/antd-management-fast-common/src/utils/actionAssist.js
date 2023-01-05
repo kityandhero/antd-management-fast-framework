@@ -6,7 +6,6 @@ import {
   notifySuccess,
   recordDebug,
   recordError,
-  showErrorMessage,
   showRuntimeError,
   stringIsNullOrWhiteSpace,
 } from './tools';
@@ -15,7 +14,10 @@ const { confirm } = Modal;
 
 /**
  * 处理 actionCore 的异步请求结果
- * @param {*} param0
+ * @param {*} target 目标调用对象
+ * @param {*} target 数据标记
+ * @param {*} compareDataIdHandler 对比函数
+ * @param {*} handler 处理函数
  * @returns
  */
 export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
@@ -83,7 +85,6 @@ export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
  * @param {*} api [string] remote api path.
  * @param {*} params [object] remote api params.
  * @param {*} target [object] target.
- * @param {*} handleData [object] origin processing data.
  * @param {*} failureCallback [function] remote access logic fail handler, eg. failureCallback(remoteData,whetherCauseByAuthorizeFail).
  * @param {*} successCallback [function] remote access logic success handler.
  * @param {*} successMessage [string] the message when remote access logic success. if successMessage not null or empty, will trigger toast notification.
@@ -95,7 +96,6 @@ export async function actionCore({
   api,
   params,
   target,
-  handleData,
   failureCallback,
   successCallback,
   successMessage = '数据已经操作成功，请进行后续操作。',
@@ -107,14 +107,6 @@ export async function actionCore({
   beforeProcess = null,
   completeProcess = null,
 }) {
-  if ((handleData || null) == null) {
-    const text = 'actionCore : handleData not allow null';
-
-    showErrorMessage({
-      message: text,
-    });
-  }
-
   if ((target || null) == null) {
     throw new Error('actionCore: target not allow null');
   }
@@ -140,7 +132,7 @@ export async function actionCore({
   }
 
   if (isFunction(beforeProcess)) {
-    beforeProcess({ target, handleData });
+    beforeProcess({ target, params });
   }
 
   if (setProgressingFirst) {
@@ -157,7 +149,6 @@ export async function actionCore({
                 api,
                 params,
                 target,
-                handleData,
                 failureCallback,
                 successMessage,
                 successMessageBuilder,
@@ -172,7 +163,6 @@ export async function actionCore({
                   api,
                   params,
                   target,
-                  handleData,
                   failureCallback,
                   successMessage,
                   successMessageBuilder,
@@ -192,7 +182,6 @@ export async function actionCore({
             api,
             params,
             target,
-            handleData,
             failureCallback,
             successMessage,
             successMessageBuilder,
@@ -207,7 +196,6 @@ export async function actionCore({
               api,
               params,
               target,
-              handleData,
               failureCallback,
               successMessage,
               successMessageBuilder,
@@ -225,7 +213,6 @@ function remoteAction({
   api,
   params,
   target,
-  handleData,
   failureCallback,
   successMessage,
   successMessageBuilder,
@@ -287,7 +274,7 @@ function remoteAction({
         if (isFunction(successCallback)) {
           successCallback({
             target,
-            handleData,
+            params,
             remoteListData: remoteListData || [],
             remoteData: remoteData || null,
             remoteExtraData: remoteExtraData || null,
@@ -298,7 +285,7 @@ function remoteAction({
         if (isFunction(failureCallback)) {
           failureCallback({
             target,
-            handleData,
+            params,
             remoteOriginal: data,
             error: null,
           });
@@ -325,7 +312,7 @@ function remoteAction({
       });
 
       if (isFunction(completeProcess)) {
-        completeProcess({ target, handleData });
+        completeProcess({ target, params });
       }
     });
 }
@@ -335,13 +322,13 @@ function remoteAction({
  * @param {*} param0
  */
 export async function confirmActionCore({
+  target,
+  params,
   title,
   content,
   okText = '确定',
   okType = 'danger',
   cancelText = '取消',
-  target,
-  handleData,
   successCallback,
   okAction = null,
   successMessage = '数据已经操作成功，请进行后续操作。',
@@ -364,7 +351,7 @@ export async function confirmActionCore({
     onOk() {
       okAction({
         target,
-        handleData,
+        params,
         successCallback,
         successMessage,
         successMessageBuilder,

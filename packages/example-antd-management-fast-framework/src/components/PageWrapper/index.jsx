@@ -1,13 +1,56 @@
-import classNames from 'classnames';
-import { Outlet } from 'umi';
+import { connect, Outlet } from 'umi';
 import { SettingDrawer } from '@ant-design/pro-components';
 
+import { actionCore } from 'antd-management-fast-common/es/utils/actionAssist';
 import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 
-class PageWrapper extends BaseComponent {
-  renderFurther() {
-    console.log(this);
+import {
+  setCurrentOperatorCache,
+  setMetaDataCache,
+} from '../../utils/storageAssist';
 
+@connect(({ currentOperator, global }) => ({
+  currentOperator,
+  global,
+}))
+class PageWrapper extends BaseComponent {
+  doWorkBeforeAdjustDidMount = () => {
+    actionCore({
+      api: 'global/getMetaData',
+      params: { force: true },
+      target: this,
+      showProcessing: false,
+      successCallback: ({ remoteData }) => {
+        const {
+          mediaTypeList,
+          webChannelList,
+          accessWayStatusList,
+          articleStatusList,
+        } = remoteData;
+
+        const result = {
+          mediaTypeList,
+          webChannelList,
+          accessWayStatusList,
+          articleStatusList,
+        };
+
+        setMetaDataCache(result);
+      },
+    });
+
+    actionCore({
+      api: 'currentOperator/getCurrentOperator',
+      params: { force: true },
+      target: this,
+      showProcessing: false,
+      successCallback: ({ remoteData }) => {
+        setCurrentOperatorCache(remoteData);
+      },
+    });
+  };
+
+  renderFurther() {
     return (
       <>
         <div

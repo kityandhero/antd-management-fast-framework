@@ -7,7 +7,9 @@ class BaseUpdateFormContent extends BaseUpdateForm {
     return (
       <>
         {this.renderFormWrapper()}
+
         {this.renderOther()}
+
         <BackTop />
       </>
     );

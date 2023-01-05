@@ -1,5 +1,7 @@
 import {
   reducerCollection,
+  reducerDefaultParams,
+  reducerNameCollection,
   tacitlyState,
 } from 'antd-management-fast-common/es/utils/dva';
 import { modelCollection } from 'antd-management-fast-common/es/utils/globalModel';
@@ -7,7 +9,6 @@ import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/uti
 import { showInfoMessage } from 'antd-management-fast-common/es/utils/tools';
 
 import { getData } from '../services/global';
-import { getMetaDataCache, setMetaDataCache } from '../utils/storageAssist';
 
 const GlobalModel = {
   namespace: 'global',
@@ -28,63 +29,46 @@ const GlobalModel = {
 
   effects: {
     *getMetaData({ payload, alias }, { call, put }) {
-      const { force, showMessage } = payload || {
+      let dataAdjust = {};
+
+      const { force } = payload || {
         force: false,
-        showMessage: true,
       };
       let result = {};
       let fromRemote = force || false;
 
       if (!force) {
-        result = getMetaDataCache();
+        dataAdjust = getMetaDataCache();
 
         if ((result || null) == null) {
           fromRemote = true;
-          result = {};
+          dataAdjust = {};
         }
       }
 
       if (fromRemote) {
-        if (showMessage) {
-          requestAnimationFrame(() => {
-            const text = '初始数据正在努力加载中，需要一点点时间哦！';
+        requestAnimationFrame(() => {
+          const text = '初始数据正在努力加载中，需要一点点时间哦！';
 
-            showInfoMessage({
-              message: text,
-              duration: 0.8,
-            });
+          showInfoMessage({
+            message: text,
+            duration: 0.8,
           });
-        }
+        });
 
         const response = yield call(getData, payload);
 
-        const data = pretreatmentRemoteSingleData(response);
+        dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
-        const { dataSuccess, data: metaData } = data;
-
-        if (dataSuccess) {
-          const {
-            mediaTypeList,
-            webChannelList,
-            accessWayStatusList,
-            articleStatusList,
-          } = metaData;
-
-          result = {
-            mediaTypeList,
-            webChannelList,
-            accessWayStatusList,
-            articleStatusList,
-          };
-
-          setMetaDataCache(result);
-        }
+        yield put({
+          type: reducerNameCollection.reducerData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParams,
+        });
       }
 
-      yield put({
-        type: 'changeMetaData',
-        payload: result,
-      });
+      return dataAdjust;
     },
     *setAMapObject({ payload }, { put }) {
       yield put({

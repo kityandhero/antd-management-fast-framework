@@ -218,7 +218,7 @@ class ImageBox extends BaseComponent {
     }
   }
 
-  render() {
+  renderFurther() {
     const { fillHeight, preview, previewSimpleMask } = this.props;
 
     const {

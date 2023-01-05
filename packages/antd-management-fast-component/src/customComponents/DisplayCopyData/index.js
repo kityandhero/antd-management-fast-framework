@@ -11,7 +11,7 @@ class DisplayCopyData extends BaseComponent {
     copyMode: 'button',
   };
 
-  render() {
+  renderFurther() {
     const { data, copyMode } = this.props;
 
     if (copyMode === 'click') {
