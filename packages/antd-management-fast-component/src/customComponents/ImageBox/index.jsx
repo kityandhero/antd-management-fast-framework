@@ -18,7 +18,9 @@ import {
 import BaseComponent from '../BaseComponent';
 import IconInfo from '../IconInfo';
 
-import styles from './index.less';
+import './index.less';
+
+export const classPrefix = `amf-imageBox`;
 
 class ImageBox extends BaseComponent {
   constructor(props) {
@@ -211,12 +213,19 @@ class ImageBox extends BaseComponent {
 
     if (showMode === 'loading' || showMode === 'box') {
       return (
-        <div className={styles.imageBox} style={{ ...imageBoxStyle }}>
-          {aspectRatio === 1 ? <div className={styles.placeholderBox} /> : null}
+        <div
+          className={classNames(`${classPrefix}_boxMode`)}
+          style={{ ...imageBoxStyle }}
+        >
+          {aspectRatio === 1 ? (
+            <div
+              className={classNames(`${classPrefix}_boxMode_placeholderBox`)}
+            />
+          ) : null}
 
           {aspectRatio !== 1 ? (
             <div
-              className={styles.placeholderBox}
+              className={classNames(`${classPrefix}_boxMode_placeholderBox`)}
               style={{ marginTop: `${aspectRatio * 100}%` }}
             />
           ) : null}
@@ -224,18 +233,26 @@ class ImageBox extends BaseComponent {
           {showOverlay ? (
             <div
               className={classNames(
-                styles.overlayBox,
-                styles.overlayTextBackground,
+                classNames(`${classPrefix}_boxMode_overlayBox`),
+                classNames(`${classPrefix}_boxMode_overlayTextBackground`),
               )}
             >
               <Row
                 type="flex"
                 align="middle"
                 justify="center"
-                className={styles.overlayTextInner}
+                className={classNames(
+                  `${classPrefix}_boxMode_overlayTextBackground_inner`,
+                )}
               >
                 <Col>
-                  <div className={styles.overlayText}>{overlayText}</div>
+                  <div
+                    className={classNames(
+                      `${classPrefix}_boxMode_overlayBox_text`,
+                    )}
+                  >
+                    {overlayText}
+                  </div>
                 </Col>
               </Row>
             </div>
@@ -251,7 +268,10 @@ class ImageBox extends BaseComponent {
 
           {loadingEffect && !loadSuccess && !showOverlay ? (
             <div
-              className={classNames(styles.overlayBox, styles.overlayLoading)}
+              className={classNames(
+                `${classPrefix}_boxMode_overlayBox`,
+                `${classPrefix}_boxMode_overlayLoading`,
+              )}
             >
               <Row
                 justify="space-around"
@@ -274,8 +294,8 @@ class ImageBox extends BaseComponent {
           {showErrorOverlay ? (
             <div
               className={classNames(
-                styles.overlayBox,
-                styles.overlayErrorBackground,
+                `${classPrefix}_boxMode_overlayBox`,
+                `${classPrefix}_boxMode_overlayErrorBackground`,
               )}
             >
               <Row
@@ -288,30 +308,35 @@ class ImageBox extends BaseComponent {
                   {showErrorIcon ? (
                     <IconInfo
                       direction="vertical"
-                      icon={<PictureOutlined className={styles.overlayIcon} />}
+                      icon={
+                        <PictureOutlined
+                          className={classNames(
+                            `${classPrefix}_boxMode_overlayBox_icon`,
+                          )}
+                        />
+                      }
                       text={
-                        <span className={styles.overlayText}>
+                        <span
+                          className={classNames(
+                            `${classPrefix}_boxMode_overlayBox_text`,
+                          )}
+                        >
                           {errorOverlayText}
                         </span>
                       }
                     />
                   ) : (
-                    <span className={styles.overlayText}>
+                    <span
+                      className={classNames(
+                        `${classPrefix}_boxMode_overlayBox_text`,
+                      )}
+                    >
                       {errorOverlayText}
                     </span>
                   )}
                 </Col>
                 <Col flex="auto" />
               </Row>
-              {/* <Row type="flex" align="middle" justify="center" className={styles.overlayTextInner}>
-                <Col>
-                  <IconInfo
-                    direction="vertical"
-                    icon={iconBuilder.picture()}
-                    text={<div className={styles.overlayText}>{errorOverlayText}</div>}
-                  />
-                </Col>
-              </Row> */}
             </div>
           ) : null}
 
@@ -320,11 +345,11 @@ class ImageBox extends BaseComponent {
               justify="space-around"
               align="middle"
               className={classNames(
-                styles.imageItem,
+                `${classPrefix}_boxMode_imageItem`,
                 loadingEffect && !showOverlay
                   ? !loadSuccess
-                    ? styles.imageLoadAnimationInit
-                    : styles.imageLoadAnimation
+                    ? `${classPrefix}_boxMode_imageLoadAnimationInit`
+                    : `${classPrefix}_boxMode_imageLoadAnimation`
                   : '',
               )}
               style={imageBoxStyle}
@@ -337,7 +362,11 @@ class ImageBox extends BaseComponent {
                 }
               >
                 <Image
-                  className={fillHeight ? styles.fullHeight : null}
+                  className={
+                    fillHeight
+                      ? classNames(`${classPrefix}_boxMode_fullHeight`)
+                      : null
+                  }
                   style={
                     imageLoadSuccess &&
                     !stringIsNullOrWhiteSpace(src) &&
@@ -366,12 +395,13 @@ class ImageBox extends BaseComponent {
         </div>
       );
     }
+
     if (showMode === 'contentImage') {
       return (
         <div style={imageBoxStyle}>
-          <div className={fillHeight ? styles.fullHeight : null}>
+          <div>
             <Image
-              className={styles.contentImage}
+              className={classNames(`${classPrefix}_contentMode`)}
               width="100%"
               style={
                 imageLoadSuccess && !stringIsNullOrWhiteSpace(src) && preview

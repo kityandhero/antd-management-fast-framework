@@ -159,6 +159,7 @@ export function buildConfig({
         ],
         inject: { insertAt: 'top' },
         extract: true,
+        modules: true,
       }),
       babelConfig({
         extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', 'ts', 'tsx'],

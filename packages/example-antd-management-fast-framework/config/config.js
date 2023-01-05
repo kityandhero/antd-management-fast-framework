@@ -18,6 +18,13 @@ function buildConfig() {
     ...{
       mfsu: false,
       hash: true,
+      antd: {
+        theme: {
+          token: {
+            colorPrimary: '#00b96b',
+          },
+        },
+      },
       history: { type: 'browser' },
       styles: [`body { margin: 0; }`],
       layout: {

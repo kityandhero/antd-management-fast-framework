@@ -23,6 +23,7 @@ import {
   TreeSelect,
   Typography,
 } from 'antd';
+import classNames from 'classnames';
 import TextAnimal from 'rc-texty';
 import React from 'react';
 import ReactJson from 'react-json-view';
@@ -408,9 +409,9 @@ export function buildDropdown({
   const placementAdjust = lowerFirst(placementDropdown || 'bottomRight');
 
   const overlayClassNameAdjust = placementAdjust.startsWith('bottom')
-    ? styles.dropdownExpandOverlayBottom
+    ? classNames(`amf-dropdownExpandOverlayBottom`)
     : placementAdjust.startsWith('top')
-    ? styles.dropdownExpandOverlayTop
+    ? classNames(`amf-dropdownExpandOverlayTop`)
     : {};
 
   let hasHandleButtonClick = false;
@@ -777,7 +778,7 @@ export function buildMenu({
   });
 
   return (
-    <div>
+    <div className={classNames('amf-dropdownExpandItemCustom')}>
       <div
         style={{
           height: '4px',
@@ -814,7 +815,7 @@ export function buildMenu({
                 overlayStyle={{ zIndex: 1060 }}
               >
                 <Button
-                  className={styles.dropdownExpandItemCustomButton}
+                  className={classNames('amf-dropdownExpandItemCustom_button')}
                   type="text"
                   style={{
                     display: 'block',
@@ -840,7 +841,7 @@ export function buildMenu({
           return (
             <Button
               key={key}
-              className={styles.dropdownExpandItemCustomButton}
+              className={classNames('amf-dropdownExpandItemCustom_button')}
               type="text"
               style={{
                 display: 'block',
