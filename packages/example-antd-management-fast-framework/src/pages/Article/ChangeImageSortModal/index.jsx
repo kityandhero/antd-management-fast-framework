@@ -53,13 +53,6 @@ class ChangeImageSortModal extends Base {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
-  apiDataConvert = (props) => {
-    const {
-      article: { data },
-    } = props;
-    return data;
-  };
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
     this.reloadData();

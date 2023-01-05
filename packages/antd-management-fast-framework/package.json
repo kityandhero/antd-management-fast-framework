@@ -2,15 +2,17 @@
   "name": "antd-management-fast-framework",
   "version": "2.0.0",
   "description": "> TODO: description",
-  "author": "卢志涛 <kityandhero@126.com>",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
   "license": "ISC",
+  "author": "卢志涛 <kityandhero@126.com>",
   "main": "lib/antd-management-fast-framework.js",
   "scripts": {
-    "build:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs",
     "build": "rimraf ./es && rollup --config rollup.config.compression.js --bundleConfigAsCjs",
+    "build:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs",
+    "clean-file": "rimraf ./src/.umi && rimraf ./node_modules",
     "dev": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch",
     "format": "prettier --cache --write .",
+    "postinstall": "max setup",
     "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
@@ -20,7 +22,6 @@
     "lint:style": "stylelint --fix \"./src/**/*.less\"",
     "precommit": "lint-staged",
     "prepare": "husky install",
-    "postinstall": "max setup",
     "setup": "max setup",
     "v:p": "npm version patch && npm publish"
   },
@@ -32,9 +33,9 @@
     "antd-management-fast-component": "^2.0.0",
     "rc-queue-anim": "^2.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1"
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -78,6 +79,7 @@
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "prettier-plugin-organize-imports": "^3",
+    "prettier-plugin-packagejson": "^2",
     "rollup": "^3.9.1",
     "rollup-plugin-dts": "^5.1.0",
     "rollup-plugin-livereload": "^2.0.5",

@@ -1,4 +1,4 @@
-import { ComponentBase } from 'antd-management-fast-common/es/customComponents';
+import ComponentBase from 'antd-management-fast-common/es/customComponents/ComponentBase';
 
 const defaultProps = {};
 

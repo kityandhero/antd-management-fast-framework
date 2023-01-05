@@ -2,7 +2,8 @@ import { buildConfig as buildConfigCore } from '../../antd-management-fast-rollu
 
 const inputFile = {
   ...{
-    'customComponents/index': 'src/customComponents/index.jsx',
+    'customComponents/ComponentBase/index':
+      'src/customComponents/ComponentBase/index.jsx',
   },
   ...{
     'utils/actionAssist': 'src/utils/actionAssist.js',

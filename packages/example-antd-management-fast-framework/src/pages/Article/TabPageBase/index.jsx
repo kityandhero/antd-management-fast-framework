@@ -18,14 +18,6 @@ class TabPageBase extends BaseUpdateFormTab {
     );
   }
 
-  apiDataConvert = (props) => {
-    const {
-      article: { data },
-    } = props;
-
-    return data;
-  };
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   checkNeedUpdate = (preProps, preState, snapshot) => {
     return checkNeedUpdateAssist(this.state, preProps, preState, snapshot);

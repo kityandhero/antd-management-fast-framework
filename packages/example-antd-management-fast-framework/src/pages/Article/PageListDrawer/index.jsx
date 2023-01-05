@@ -51,14 +51,6 @@ class PageListDrawer extends MultiPageSelectDrawer {
     return super.getDerivedStateFromProps(nextProps, prevState);
   }
 
-  apiDataConvert = (props) => {
-    const {
-      article: { data },
-    } = props;
-
-    return data;
-  };
-
   getPageName = () => {
     return '请选择文章';
   };

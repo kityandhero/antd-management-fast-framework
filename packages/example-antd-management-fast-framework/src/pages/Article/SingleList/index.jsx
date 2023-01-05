@@ -78,14 +78,6 @@ class SingleList extends SinglePage {
     };
   }
 
-  apiDataConvert = (props) => {
-    const {
-      article: { data },
-    } = props;
-
-    return data;
-  };
-
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
       case 'showUpdateBasicInfoDrawer':

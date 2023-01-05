@@ -63,10 +63,8 @@ class BaseUpdateForm extends DataSingleView {
                 type: submitApiPath,
                 payload: submitData,
               })
-              .then(() => {
+              .then((remoteData) => {
                 if (that.mounted) {
-                  const remoteData = that.apiDataConvert(that.props);
-
                   const { dataSuccess } = remoteData;
 
                   if (dataSuccess) {

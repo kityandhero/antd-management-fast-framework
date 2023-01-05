@@ -51,14 +51,6 @@ class Index extends BaseAddForm {
     );
   }
 
-  apiDataConvert = (props) => {
-    const {
-      article: { data },
-    } = props;
-
-    return data;
-  };
-
   afterImageUploadSuccess = (image) => {
     this.setState({ image });
   };

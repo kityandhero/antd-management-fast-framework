@@ -162,22 +162,6 @@ class Common extends Core {
     return global;
   };
 
-  // 该方法必须重载覆盖
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  apiDataConvert = (props) => {
-    const text = 'apiDataConvert 方法需要重载实现';
-
-    showRuntimeError({
-      message: text,
-    });
-
-    return {
-      metaOriginalData: {
-        dataSuccess: false,
-      },
-    };
-  };
-
   /**
    * 处理其他需要在组件挂在之后执行的流程
    */
@@ -389,7 +373,7 @@ class Common extends Core {
             type: loadApiPath,
             payload: requestData,
           })
-          .then(() => {
+          .then((metaOriginalData) => {
             let willSaveToState = {
               dataLoading: false,
               loadSuccess: false,
@@ -399,8 +383,6 @@ class Common extends Core {
               paging: false,
               dispatchComplete: true,
             };
-
-            const metaOriginalData = that.apiDataConvert(that.props);
 
             if (isUndefined(metaOriginalData)) {
               that.setState(willSaveToState);

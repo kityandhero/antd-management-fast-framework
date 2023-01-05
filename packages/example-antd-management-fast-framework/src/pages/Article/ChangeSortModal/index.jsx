@@ -28,13 +28,6 @@ class ChangeSortModal extends BaseUpdateModal {
     };
   }
 
-  apiDataConvert = (props) => {
-    const {
-      article: { data },
-    } = props;
-    return data;
-  };
-
   supplementLoadRequestParams = (o) => {
     const d = o;
     const { externalData } = this.state;

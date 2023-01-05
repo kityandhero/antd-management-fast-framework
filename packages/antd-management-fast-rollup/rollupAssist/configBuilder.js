@@ -125,6 +125,17 @@ export function buildConfig({
       url(),
       svgr(),
       resolve({
+        extensions: [
+          '.js',
+          '.jsx',
+          '.es6',
+          '.es',
+          '.mjs',
+          'ts',
+          'tsx',
+          '.mjs',
+          '.node',
+        ],
         preferBuiltins: false,
       }),
       nodePolyfills(),
@@ -132,7 +143,7 @@ export function buildConfig({
         include: ['node_modules/**', '../../node_modules/**'],
       }),
       typescript({
-        // check: true,
+        check: true,
         // verbosity: 3,
         clean: true,
         useTsconfigDeclarationDir: true,

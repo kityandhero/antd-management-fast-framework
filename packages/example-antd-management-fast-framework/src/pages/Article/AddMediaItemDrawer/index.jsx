@@ -44,14 +44,6 @@ class Index extends BaseAddDrawer {
     };
   }
 
-  apiDataConvert = (props) => {
-    const {
-      article: { data },
-    } = props;
-
-    return data;
-  };
-
   executeOtherAfterDoOtherWhenChangeVisible = (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     preProps,

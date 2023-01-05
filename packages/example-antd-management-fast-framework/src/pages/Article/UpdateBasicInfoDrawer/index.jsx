@@ -34,14 +34,6 @@ class Index extends BaseUpdateDrawer {
     };
   }
 
-  apiDataConvert = (props) => {
-    const {
-      article: { data },
-    } = props;
-
-    return data;
-  };
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
