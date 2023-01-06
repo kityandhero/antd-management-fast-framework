@@ -1,7 +1,6 @@
 import { applicationInit } from 'antd-management-fast-framework/es/utils/bootstrap';
-import { loadMetaData } from 'antd-management-fast-framework/es/utils/metaDataAssist';
 
-import { getLogo } from './utils/tools';
+import { getLogo, getTitle } from './utils/tools';
 
 // 运行时配置
 
@@ -16,6 +15,7 @@ export const layout = () => {
 
   return {
     logo: getLogo(),
+    title: getTitle(),
     menu: {
       locale: false,
     },

@@ -6,7 +6,7 @@ import pk from '../package.json';
 
 import { config as configDevelopment } from './config.development';
 import { config as configProduction } from './config.production';
-import pageRoutes from './router.config';
+import routes from './router.config';
 
 function checkDevelopment() {
   return process.env.NODE_ENV === 'development';
@@ -27,23 +27,18 @@ function buildConfig() {
       },
       history: { type: 'browser' },
       styles: [`body { margin: 0; }`],
-      layout: {
-        title: '@umijs/max',
-        siderMenuType: 'group',
-        menu: {
-          collapsedShowGroupTitle: true,
-        },
-        onRouteChange: ({
-          routes,
-          clientRoutes,
-          location,
-          action,
-          basename,
-        }) => {
-          console.log(routes);
-        },
-      },
-      routes: pageRoutes,
+      routes: routes,
+      // routes: [
+      //   {
+      //     path: '/',
+      //     redirect: '/home',
+      //   },
+      //   {
+      //     name: '首页',
+      //     path: '/home',
+      //     // component: './Home',
+      //   },
+      // ],
     },
     ...(checkDevelopment() ? configDevelopment : configProduction),
   };

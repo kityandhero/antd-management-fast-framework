@@ -10,30 +10,29 @@ export default [
       },
     ],
   },
+  { path: '/', redirect: '/dashboard' },
   {
-    path: '/',
-    wrappers: ['../components/PageWrapper'],
-    // component: '../layouts/BasicLayout',
+    path: '/dashboard',
+    name: 'dashboard',
+    icon: 'team',
+    hideChildrenInMenu: true,
     routes: [
-      { path: '/', redirect: '/dashboard' },
       {
-        name: 'dashboard',
-        icon: 'team',
         path: '/dashboard',
-        hideChildrenInMenu: true,
-        routes: [
-          {
-            path: '/dashboard',
-            redirect: '/dashboard/workbench',
-          },
-          {
-            path: '/dashboard/workbench',
-            name: 'workbench',
-            icon: 'bars',
-            component: './Workbench',
-          },
-        ],
+        redirect: '/dashboard/workbench',
+      },
+      {
+        path: '/dashboard/workbench',
+        name: 'workbench',
+        icon: 'bars',
+        component: './Workbench',
       },
     ],
   },
+  // {
+  //   path: '/',
+  //   // wrappers: ['../components/PageWrapper'],
+  //   // component: '../layouts/BasicLayout',
+  //   routes: [],
+  // },
 ];

@@ -1,4 +1,5 @@
 import { getModelRemoteData } from 'antd-management-fast-common/es/utils/dva';
+import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 
 import { defaultSettings } from '../defaultSettings';
 
@@ -44,6 +45,35 @@ export function getLogo() {
   };
 
   return defaultSettings.getLeftBarLogo(logo);
+}
+
+export function getTitle() {
+  const { data } = {
+    ...{
+      data: {},
+    },
+    ...getModelRemoteData('global'),
+  };
+
+  const { platform } = {
+    ...{
+      platform: { logo: '' },
+    },
+    ...(data || {}),
+  };
+
+  const { shortName } = {
+    ...{
+      shortName: '',
+    },
+    ...(platform || {}),
+  };
+
+  if (stringIsNullOrWhiteSpace(shortName)) {
+    return defaultSettings.getLeftBarText();
+  }
+
+  return shortName;
 }
 
 /**
