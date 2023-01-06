@@ -25,7 +25,7 @@ export function buildConfig(packageImport) {
     locale: {
       // 默认使用 src/locales/zh-CN.ts 作为多语言文件
       default: 'zh-CN',
-      baseSeparator: '-',
+      // baseSeparator: '-',
     },
     layout: {},
   };

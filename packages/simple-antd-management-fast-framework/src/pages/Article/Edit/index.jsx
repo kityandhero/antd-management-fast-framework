@@ -196,7 +196,7 @@ class Edit extends DataTabContainerSupplement {
     });
 
     const statusNote = getArticleStatusName({
-      global: this.getGlobal(),
+      metaData: this.getMetaData(),
       value: status,
     });
 
@@ -491,7 +491,7 @@ class Edit extends DataTabContainerSupplement {
     return {
       textLabel: fieldData.status.label,
       text: getArticleStatusName({
-        global: this.getGlobal(),
+        metaData: this.getMetaData(),
         value: getValueByKey({
           data: metaData,
           key: fieldData.status.name,
@@ -522,7 +522,7 @@ class Edit extends DataTabContainerSupplement {
       {
         label: fieldData.renderTypeNote.label,
         value: getArticleRenderTypeName({
-          global: this.getGlobal(),
+          metaData: this.getMetaData(),
           value: getValueByKey({
             data: metaData,
             key: fieldData.renderType.name,

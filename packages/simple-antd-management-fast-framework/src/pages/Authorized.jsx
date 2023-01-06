@@ -54,7 +54,7 @@ const AuthComponent = ({
   );
 };
 
-export default connect(({ global, currentOperator }) => ({
-  global,
+export default connect(({ metaData, currentOperator }) => ({
+  metaData,
   currentOperator,
 }))(AuthComponent);

@@ -5,9 +5,12 @@ import {
 import { modelCollection } from 'antd-management-fast-common/es/utils/globalModel';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
 import { showInfoMessage } from 'antd-management-fast-common/es/utils/tools';
+import {
+  getMetaDataCache,
+  setMetaDataCache,
+} from 'antd-management-fast-framework/es/utils/storageAssist';
 
 import { getData } from '../services/global';
-import { getMetaDataCache, setMetaDataCache } from '../utils/storageAssist';
 
 const GlobalModel = {
   namespace: 'global',

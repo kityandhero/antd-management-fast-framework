@@ -108,6 +108,17 @@ const inputFile = {
     'framework/FieldExtension/SelectFieldDrawer/SelectFieldBase/index':
       'src/framework/FieldExtension/SelectFieldDrawer/SelectFieldBase/index.jsx',
   },
+  ...{
+    'models/schedulingControl': 'src/models/schedulingControl.js',
+  },
+  ...{
+    'services/schedulingControl': 'src/services/schedulingControl.js',
+  },
+  ...{
+    'utils/metaDataAssist': 'src/utils/metaDataAssist.js',
+    'utils/storageAssist': 'src/utils/storageAssist.js',
+    'utils/bootstrap': 'src/utils/bootstrap.js',
+  },
 };
 
 export function buildConfig({ terser: whetherTerser = false }) {

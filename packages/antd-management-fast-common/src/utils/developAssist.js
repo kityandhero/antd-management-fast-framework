@@ -9,6 +9,16 @@ const storageKeyCollection = {
   nearestLocalhostNotify: 'nearestLocalhostNotify',
 };
 
+/**
+ * 显示开发辅助信息, 仅 develop 模式下有效
+ * @returns
+ */
+export function showDevelopData() {
+  if (process.env.NODE_ENV === 'development') {
+    return;
+  }
+}
+
 export function getNearestLocalhostNotifyCache() {
   const key = storageKeyCollection.nearestLocalhostNotify;
 

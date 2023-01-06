@@ -438,7 +438,7 @@ class BasicInfo extends TabPageBase {
               {
                 buildType: cardConfig.extraBuildType.component,
                 component: renderCustomArticleStatusSelect({
-                  global: this.getGlobal(),
+                  metaData: this.getMetaData(),
                 }),
               },
               {

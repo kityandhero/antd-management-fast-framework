@@ -12,7 +12,8 @@ export default [
   },
   {
     path: '/',
-
+    wrappers: ['../components/PageWrapper'],
+    // component: '../layouts/BasicLayout',
     routes: [
       { path: '/', redirect: '/dashboard' },
       {
@@ -20,7 +21,6 @@ export default [
         icon: 'team',
         path: '/dashboard',
         hideChildrenInMenu: true,
-
         routes: [
           {
             path: '/dashboard',
@@ -30,7 +30,6 @@ export default [
             path: '/dashboard/workbench',
             name: 'workbench',
             icon: 'bars',
-            wrappers: ['../components/PageWrapper'],
             component: './Workbench',
           },
         ],

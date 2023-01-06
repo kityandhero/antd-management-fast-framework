@@ -7,7 +7,6 @@ import {
   corsTarget,
   queryStringify,
   recordDebug,
-  recordInfo,
   recordObject,
   recordText,
   recordTrace,

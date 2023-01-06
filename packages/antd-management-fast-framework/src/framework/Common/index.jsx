@@ -106,6 +106,7 @@ import ImageBox from 'antd-management-fast-component/es/customComponents/ImageBo
 import ImageUpload from 'antd-management-fast-component/es/customComponents/ImageUpload';
 import VideoUpload from 'antd-management-fast-component/es/customComponents/VideoUpload';
 
+import { getMetaData } from '../../utils/metaDataAssist';
 import Core from '../Core';
 
 import styles from './index.less';
@@ -146,39 +147,8 @@ class Common extends Core {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   checkNeedUpdate = (preProps, preState, snapshot) => false;
 
-  getGlobal = () => {
-    const { global } = this.props;
-
-    if ((global || null) == null) {
-      const text = 'global is null, function getGlobal need override. ';
-
-      showRuntimeError({
-        message: text,
-      });
-
-      throw new Error(text);
-    }
-
-    const { data: remoteData } = {
-      ...{ data: { dataSuccess: false, data: {} } },
-      ...(global || {}),
-    };
-
-    const { dataSuccess, data } = {
-      ...remoteData,
-    };
-
-    if (!dataSuccess) {
-      const text = 'global load failure, please check. ';
-
-      showRuntimeError({
-        message: text,
-      });
-
-      throw new Error(text);
-    }
-
-    return data || {};
+  getMetaData = () => {
+    return getMetaData();
   };
 
   /**

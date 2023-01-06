@@ -19,10 +19,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 
-export function refitMediaTypeList({ global, withUnlimited = true }) {
+export function refitMediaTypeList({ metaData, withUnlimited = true }) {
   const { mediaTypeList: list } = {
     ...{ mediaTypeList: [] },
-    ...(global || {}),
+    ...(metaData || {}),
   };
 
   if (withUnlimited) {
@@ -32,7 +32,7 @@ export function refitMediaTypeList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getMediaTypeName({ global, value, defaultValue = '' }) {
+export function getMediaTypeName({ metaData, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -40,34 +40,34 @@ export function getMediaTypeName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitMediaTypeList({ global, withUnlimited: false }),
+    refitMediaTypeList({ metaData, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderMediaTypeOption({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitMediaTypeList({ global, withUnlimited });
+  const listData = refitMediaTypeList({ metaData, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderMediaTypeRadio({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitMediaTypeList({ global, withUnlimited });
+  const listData = refitMediaTypeList({ metaData, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchMediaTypeSelect({
-  global = null,
+  metaData = null,
   withUnlimited = true,
   label = '媒体类型',
   name = 'mediaType',
@@ -80,7 +80,7 @@ export function renderSearchMediaTypeSelect({
     label: title,
     name,
     options: renderMediaTypeOption({
-      global,
+      metaData,
       withUnlimited,
       adjustListDataCallback,
     }),
@@ -89,7 +89,7 @@ export function renderSearchMediaTypeSelect({
 }
 
 export function renderCustomMediaTypeSelect({
-  global = null,
+  metaData = null,
   label = '媒体类型',
   value = null,
   separator = '：',
@@ -105,7 +105,7 @@ export function renderCustomMediaTypeSelect({
     size,
     renderItemFunction: () => {
       return renderMediaTypeOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -116,7 +116,7 @@ export function renderCustomMediaTypeSelect({
 }
 
 export function renderFormMediaTypeSelect({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '媒体类型',
@@ -133,7 +133,7 @@ export function renderFormMediaTypeSelect({
     name,
     renderItemFunction: () => {
       return renderMediaTypeOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -147,7 +147,7 @@ export function renderFormMediaTypeSelect({
 }
 
 export function renderCustomMediaTypeRadio({
-  global = null,
+  metaData = null,
   label = '媒体类型',
   value = null,
   separator = '：',
@@ -163,7 +163,7 @@ export function renderCustomMediaTypeRadio({
     size,
     renderItemFunction: () => {
       return renderMediaTypeRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -174,7 +174,7 @@ export function renderCustomMediaTypeRadio({
 }
 
 export function renderFormMediaTypeRadio({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '媒体类型',
@@ -191,7 +191,7 @@ export function renderFormMediaTypeRadio({
     name,
     renderItemFunction: () => {
       return renderMediaTypeRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });

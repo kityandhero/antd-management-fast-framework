@@ -6,6 +6,10 @@ import {
 } from 'antd-management-fast-common/es/utils/dva';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
 import { showInfoMessage } from 'antd-management-fast-common/es/utils/tools';
+import {
+  getMetaDataCache,
+  setMetaDataCache,
+} from 'antd-management-fast-framework/es/utils/storageAssist';
 
 import { getData } from '../services/global';
 
@@ -55,6 +59,8 @@ const GlobalModel = {
           alias,
           ...reducerDefaultParams,
         });
+
+        setMetaDataCache(dataAdjust);
       }
 
       return dataAdjust;

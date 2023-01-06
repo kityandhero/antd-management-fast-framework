@@ -71,6 +71,8 @@ export const appInitDefault = {
   apiSuccessCode,
   authenticationFailCode,
   entrancePath: '/entrance/signIn',
+  metaDataPath: '',
+  metaDataLocal: {},
   showLogInConsole: false,
   showRequestInfo: false,
   useVirtualRequest: false,

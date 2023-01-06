@@ -95,7 +95,7 @@ class PageList extends MultiPage {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
           component: renderSearchWebChannelSelect({
-            global: this.getGlobal(),
+            metaData: this.getMetaData(),
           }),
         },
         {
@@ -152,7 +152,7 @@ class PageList extends MultiPage {
         return {
           status: this.getStatusBadge(val),
           text: getAccessWayStatusName({
-            global: this.getGlobal(),
+            metaData: this.getMetaData(),
             value: val,
           }),
         };

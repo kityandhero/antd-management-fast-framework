@@ -413,7 +413,7 @@ class SingleList extends SinglePage {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
           component: renderSearchArticleRenderTypeSelect({
-            global: this.getGlobal(),
+            metaData: this.getMetaData(),
           }),
         },
         {
@@ -425,7 +425,7 @@ class SingleList extends SinglePage {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
           component: renderSearchArticleStatusSelect({
-            global: this.getGlobal(),
+            metaData: this.getMetaData(),
           }),
         },
         {
@@ -662,7 +662,7 @@ class SingleList extends SinglePage {
       },
       formatValue: (val) => {
         return getArticleRenderTypeName({
-          global: this.getGlobal(),
+          metaData: this.getMetaData(),
           value: val,
         });
       },
@@ -677,7 +677,7 @@ class SingleList extends SinglePage {
         return {
           status: getStatusBadge(val),
           text: getArticleStatusName({
-            global: this.getGlobal(),
+            metaData: this.getMetaData(),
             value: val,
           }),
         };

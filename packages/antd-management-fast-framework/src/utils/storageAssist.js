@@ -1,67 +1,15 @@
 import { getToken } from 'antd-management-fast-common/es/utils/globalStorageAssist';
 import {
   getJsonFromLocalStorage,
-  getStringFromLocalStorage,
   removeLocalStorage,
   saveJsonToLocalStorage,
-  saveStringToLocalStorage,
 } from 'antd-management-fast-common/es/utils/localStorageAssist';
+import { recordExecute } from 'antd-management-fast-common/es/utils/tools';
 
 const storageKeyCollection = {
   metaData: 'metaData',
-  dataFlag: 'dataFlag',
   currentOperator: 'currentOperator',
 };
-
-/**
- * 获取DataFlag键名
- *
- * @export
- * @param {*} fn
- * @returns
- */
-export function getDataFlagKeyName() {
-  return storageKeyCollection.dataFlag;
-}
-
-/**
- * 获取DataFlag
- *
- * @export
- * @param {*} fn
- * @returns
- */
-export function getDataFlag() {
-  const key = storageKeyCollection.dataFlag;
-
-  return getStringFromLocalStorage(key);
-}
-
-/**
- * 设置DataFlag
- *
- * @export
- * @param {*} fn
- * @returns
- */
-export function setDataFlag(v) {
-  const key = storageKeyCollection.dataFlag;
-
-  return saveStringToLocalStorage(key, v);
-}
-
-/**
- * 移除DataFlag
- *
- * @export
- * @param {*} fn
- * @returns
- */
-export function removeDataFlag(v) {
-  const key = storageKeyCollection.dataFlag;
-
-  return removeLocalStorage(key, v);
-}
 
 /**
  * 获取metaData缓存
@@ -79,21 +27,7 @@ export function getMetaDataCache() {
     return null;
   }
 
-  if ((d.dataVersion || '') === '') {
-    return null;
-  }
-
-  const now = parseInt(new Date().getTime() / 1000 / 60 / 5, 10);
-
-  if (d.dataVersion < now) {
-    return null;
-  }
-
-  if (d.dataFlag === '' || d.dataFlag !== getDataFlag()) {
-    return null;
-  }
-
-  return d.metaData || null;
+  return d;
 }
 
 /**
@@ -104,17 +38,15 @@ export function getMetaDataCache() {
  * @returns
  */
 export function setMetaDataCache(o) {
+  recordExecute('setMetaDataCache');
+
+  if ((o || null) == null) {
+    return;
+  }
+
   const key = storageKeyCollection.metaData;
 
-  const now = parseInt(new Date().getTime() / 1000 / 60 / 30, 10);
-
-  const d = {
-    metaData: o || null,
-    dataVersion: now,
-    dataFlag: getDataFlag() || '',
-  };
-
-  return saveJsonToLocalStorage(key, d);
+  return saveJsonToLocalStorage(key, o);
 }
 
 /**
@@ -125,7 +57,10 @@ export function setMetaDataCache(o) {
  * @returns
  */
 export function removeMetaDataCache() {
+  recordExecute('removeMetaDataCache');
+
   const key = storageKeyCollection.metaData;
+
   removeLocalStorage(key);
 }
 
@@ -137,6 +72,8 @@ export function removeMetaDataCache() {
  * @returns
  */
 export function getCurrentOperatorCache() {
+  recordExecute('getCurrentOperatorCache');
+
   const key = storageKeyCollection.currentOperator;
 
   const d = getJsonFromLocalStorage(key);
@@ -160,6 +97,8 @@ export function getCurrentOperatorCache() {
  * @returns
  */
 export function setCurrentOperatorCache(o) {
+  recordExecute('setCurrentOperatorCache');
+
   const key = storageKeyCollection.currentOperator;
 
   const d = {
@@ -178,7 +117,10 @@ export function setCurrentOperatorCache(o) {
  * @returns
  */
 export function removeCurrentOperatorCache() {
+  recordExecute('removeCurrentOperatorCache');
+
   const key = storageKeyCollection.currentOperator;
+
   removeLocalStorage(key);
 }
 

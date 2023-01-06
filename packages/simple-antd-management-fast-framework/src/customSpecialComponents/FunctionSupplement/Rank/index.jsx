@@ -19,7 +19,7 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 
-export function refitRankList({ global, withUnlimited = true }) {
+export function refitRankList({ metaData, withUnlimited = true }) {
   const { rankList: list } = { ...{ rankList: [] }, ...(global || {}) };
 
   if (withUnlimited) {
@@ -29,7 +29,7 @@ export function refitRankList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getRankName({ global, value, defaultValue = '' }) {
+export function getRankName({ metaData, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -37,34 +37,34 @@ export function getRankName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitRankList({ global, withUnlimited: false }),
+    refitRankList({ metaData, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderRankOption({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitRankList({ global, withUnlimited });
+  const listData = refitRankList({ metaData, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderRankRadio({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitRankList({ global, withUnlimited });
+  const listData = refitRankList({ metaData, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchRankSelect({
-  global = null,
+  metaData = null,
   withUnlimited = true,
   label = '商品分类',
   name = 'rankId',
@@ -77,7 +77,7 @@ export function renderSearchRankSelect({
     label: title,
     name,
     options: renderRankOption({
-      global,
+      metaData,
       withUnlimited,
       adjustListDataCallback,
     }),
@@ -86,7 +86,7 @@ export function renderSearchRankSelect({
 }
 
 export function renderCustomRankSelect({
-  global = null,
+  metaData = null,
   label = '商品分类',
   separator = '：',
   size = 'middle',
@@ -100,7 +100,7 @@ export function renderCustomRankSelect({
     size,
     renderItemFunction: () => {
       return renderRankOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -111,7 +111,7 @@ export function renderCustomRankSelect({
 }
 
 export function renderFormRankSelect({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '商品分类',
@@ -128,7 +128,7 @@ export function renderFormRankSelect({
     name,
     renderItemFunction: () => {
       return renderRankOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -142,7 +142,7 @@ export function renderFormRankSelect({
 }
 
 export function renderCustomRankRadio({
-  global = null,
+  metaData = null,
   label = '商品分类',
   separator = '：',
   size = 'middle',
@@ -156,7 +156,7 @@ export function renderCustomRankRadio({
     size,
     renderItemFunction: () => {
       return renderRankRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -167,7 +167,7 @@ export function renderCustomRankRadio({
 }
 
 export function renderFormRankRadio({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '商品分类',
@@ -184,7 +184,7 @@ export function renderFormRankRadio({
     name,
     renderItemFunction: () => {
       return renderRankRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });

@@ -12,7 +12,6 @@ import { iconBuilder } from 'antd-management-fast-component/es/customComponents/
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
 import { defaultSettings } from '../../../defaultSettings';
-import { setDataFlag } from '../../../utils/storageAssist';
 import { signInAction } from '../Assist/action';
 
 const defaultProps = {};
@@ -48,15 +47,10 @@ class SignIn extends BaseComponent {
             processing: false,
           },
           () => {
-            const {
-              currentAuthority,
-              token: tokenValue,
-              dataFlag,
-            } = remoteData;
+            const { currentAuthority, token: tokenValue } = remoteData;
 
             setAuthority(currentAuthority);
             setToken(tokenValue);
-            setDataFlag(dataFlag || '');
 
             const urlParams = new URL(window.location.href);
             const params = getPageQuery();

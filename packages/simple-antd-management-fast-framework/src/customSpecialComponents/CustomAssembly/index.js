@@ -23,7 +23,7 @@ export function menuHeaderRender(logoDom, config) {
     ...{
       currentOperator: { platform: { shortName: '' } },
     },
-    ...(global || {}),
+    ...(metaData || {}),
   };
 
   const { platform } = {

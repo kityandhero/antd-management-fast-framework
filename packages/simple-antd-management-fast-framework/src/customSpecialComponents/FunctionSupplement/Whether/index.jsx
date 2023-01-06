@@ -19,7 +19,7 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 
-export function refitWhetherList({ global, withUnlimited = true }) {
+export function refitWhetherList({ metaData, withUnlimited = true }) {
   const { whetherList: list } = { ...{ whetherList: [] }, ...(global || {}) };
 
   if (withUnlimited) {
@@ -29,7 +29,7 @@ export function refitWhetherList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getWhetherName({ global, value, defaultValue = '' }) {
+export function getWhetherName({ metaData, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -37,34 +37,34 @@ export function getWhetherName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitWhetherList({ global, withUnlimited: false }),
+    refitWhetherList({ metaData, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderWhetherOption({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitWhetherList({ global, withUnlimited });
+  const listData = refitWhetherList({ metaData, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderWhetherRadio({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitWhetherList({ global, withUnlimited });
+  const listData = refitWhetherList({ metaData, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchWhetherSelect({
-  global = null,
+  metaData = null,
   withUnlimited = true,
   label = '调用时设置',
   name = 'whether',
@@ -77,7 +77,7 @@ export function renderSearchWhetherSelect({
     label: title,
     name,
     options: renderWhetherOption({
-      global,
+      metaData,
       withUnlimited,
       adjustListDataCallback,
     }),
@@ -86,7 +86,7 @@ export function renderSearchWhetherSelect({
 }
 
 export function renderCustomWhetherSelect({
-  global = null,
+  metaData = null,
   label = '调用时设置',
   separator = '：',
   size = 'middle',
@@ -100,7 +100,7 @@ export function renderCustomWhetherSelect({
     size,
     renderItemFunction: () => {
       return renderWhetherOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -111,7 +111,7 @@ export function renderCustomWhetherSelect({
 }
 
 export function renderFormWhetherSelect({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '调用时设置',
@@ -128,7 +128,7 @@ export function renderFormWhetherSelect({
     name,
     renderItemFunction: () => {
       return renderWhetherOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -142,7 +142,7 @@ export function renderFormWhetherSelect({
 }
 
 export function renderCustomWhetherRadio({
-  global = null,
+  metaData = null,
   label = '调用时设置',
   separator = '：',
   size = 'middle',
@@ -156,7 +156,7 @@ export function renderCustomWhetherRadio({
     size,
     renderItemFunction: () => {
       return renderWhetherRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -167,7 +167,7 @@ export function renderCustomWhetherRadio({
 }
 
 export function renderFormWhetherRadio({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '调用时设置',
@@ -184,7 +184,7 @@ export function renderFormWhetherRadio({
     name,
     renderItemFunction: () => {
       return renderWhetherRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });

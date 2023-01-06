@@ -87,5 +87,5 @@ class AvatarDropdown extends React.Component {
 }
 
 export default connect(({ global }) => ({
-  global,
+  metaData,
 }))(AvatarDropdown);

@@ -158,6 +158,28 @@ export function getEntrancePath() {
   return entrancePath || '';
 }
 
+export function getMetaDataPath() {
+  const appInit = getAppInitConfigData();
+
+  const { metaDataPath } = {
+    ...{ metaDataPath: '' },
+    ...(appInit || {}),
+  };
+
+  return metaDataPath || '';
+}
+
+export function getMetaDataLocal() {
+  const appInit = getAppInitConfigData();
+
+  const { metaDataLocal } = {
+    ...{ metaDataLocal: '' },
+    ...(appInit || {}),
+  };
+
+  return metaDataLocal || {};
+}
+
 export function getApiVersion() {
   const appInit = getAppInitConfigData();
 

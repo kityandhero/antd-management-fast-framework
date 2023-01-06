@@ -209,6 +209,125 @@ export async function actionCore({
   }
 }
 
+export function apiRequest({
+  api,
+  params,
+  dispatch,
+  beforeProcess = null,
+  failureCallback,
+  successCallback,
+  successMessage,
+  successMessageBuilder,
+  showProcessing = false,
+  textProcessing = '',
+  completeProcess = null,
+}) {
+  recordDebug(`model access: ${api}`);
+
+  if ((dispatch || null) == null) {
+    throw new Error('apiRequest: dispatch in params not allow null');
+  }
+
+  let paramsAdjust = {};
+
+  if (isFunction(beforeProcess)) {
+    paramsAdjust = beforeProcess({ api, dispatch, params }) || params;
+  }
+
+  let key = '';
+
+  if (showProcessing) {
+    key = getGuid();
+
+    message.loading({
+      key,
+      content: stringIsNullOrWhiteSpace(textProcessing)
+        ? '处理中，请稍后'
+        : textProcessing,
+      duration: 0,
+    });
+  }
+
+  dispatch({
+    type: api,
+    payload: paramsAdjust,
+  })
+    .then((data) => {
+      if (showProcessing) {
+        setTimeout(() => {
+          message.destroy(key);
+        }, 200);
+      }
+
+      const { dataSuccess } = data;
+
+      if (dataSuccess) {
+        const {
+          list: remoteListData,
+          data: remoteData,
+          extra: remoteExtraData,
+        } = {
+          ...{
+            list: [],
+            data: null,
+            extra: null,
+          },
+          ...data,
+        };
+
+        let messageText = successMessage;
+
+        if (isFunction(successMessageBuilder)) {
+          messageText = successMessageBuilder({
+            remoteListData: remoteListData || [],
+            remoteData: remoteData || null,
+            remoteExtraData: remoteExtraData || null,
+            remoteOriginal: data,
+          });
+        }
+
+        if (!stringIsNullOrWhiteSpace(messageText)) {
+          notifySuccess(messageText);
+        }
+
+        if (isFunction(successCallback)) {
+          successCallback({
+            api,
+            params,
+            dispatch,
+            remoteListData: remoteListData || [],
+            remoteData: remoteData || null,
+            remoteExtraData: remoteExtraData || null,
+            remoteOriginal: data,
+          });
+        }
+      } else {
+        if (isFunction(failureCallback)) {
+          failureCallback({
+            api,
+            params,
+            dispatch,
+            remoteOriginal: data,
+            error: null,
+          });
+        }
+      }
+    })
+    .catch((res) => {
+      recordError(res);
+
+      if (showProcessing) {
+        setTimeout(() => {
+          message.destroy(key);
+        }, 200);
+      }
+
+      if (isFunction(completeProcess)) {
+        completeProcess({ api, params, dispatch, params });
+      }
+    });
+}
+
 function remoteAction({
   api,
   params,
@@ -302,7 +421,7 @@ function remoteAction({
 
       if (showProcessing) {
         setTimeout(() => {
-          message.destroy(key);
+          message.destroy(loadingKey);
         }, 200);
       }
 

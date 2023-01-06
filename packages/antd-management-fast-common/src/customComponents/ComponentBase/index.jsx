@@ -306,22 +306,12 @@ class ComponentBase extends Component {
 
   doWorkAfterUnmount = () => {};
 
-  getGlobal = () => {
-    const text = 'please override getGlobal, and return a object';
+  getMetaData = () => {
+    const text = 'please override getMetaData, and return a object';
 
     recordLog(text);
 
     throw new Error(text);
-  };
-
-  getGlobalWrapper = () => {
-    const global = this.getGlobal();
-
-    if ((global || null) == null) {
-      recordError('global not allow null, please check getGlobal');
-    }
-
-    return global;
   };
 
   getDispatch = () => {

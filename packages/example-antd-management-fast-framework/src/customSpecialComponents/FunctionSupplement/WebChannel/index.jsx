@@ -19,10 +19,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 
-export function refitWebChannelList({ global, withUnlimited = true }) {
+export function refitWebChannelList({ metaData, withUnlimited = true }) {
   const { webChannelList: list } = {
     ...{ webChannelList: [] },
-    ...(global || {}),
+    ...(metaData || {}),
   };
 
   if (withUnlimited) {
@@ -32,7 +32,7 @@ export function refitWebChannelList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getWebChannelName({ global, value, defaultValue = '' }) {
+export function getWebChannelName({ metaData, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -40,34 +40,34 @@ export function getWebChannelName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitWebChannelList({ global, withUnlimited: false }),
+    refitWebChannelList({ metaData, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderWebChannelOption({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitWebChannelList({ global, withUnlimited });
+  const listData = refitWebChannelList({ metaData, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderWebChannelRadio({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitWebChannelList({ global, withUnlimited });
+  const listData = refitWebChannelList({ metaData, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchWebChannelSelect({
-  global = null,
+  metaData = null,
   withUnlimited = true,
   label = 'Web渠道',
   name = 'channel',
@@ -80,7 +80,7 @@ export function renderSearchWebChannelSelect({
     label: title,
     name,
     options: renderWebChannelOption({
-      global,
+      metaData,
       withUnlimited,
       adjustListDataCallback,
     }),
@@ -89,7 +89,7 @@ export function renderSearchWebChannelSelect({
 }
 
 export function renderCustomWebChannelSelect({
-  global = null,
+  metaData = null,
   label = 'Web渠道',
   separator = '：',
   size = 'middle',
@@ -103,7 +103,7 @@ export function renderCustomWebChannelSelect({
     size,
     renderItemFunction: () => {
       return renderWebChannelOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -114,7 +114,7 @@ export function renderCustomWebChannelSelect({
 }
 
 export function renderFormWebChannelSelect({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = 'Web渠道',
@@ -131,7 +131,7 @@ export function renderFormWebChannelSelect({
     name,
     renderItemFunction: () => {
       return renderWebChannelOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -145,7 +145,7 @@ export function renderFormWebChannelSelect({
 }
 
 export function renderCustomWebChannelRadio({
-  global = null,
+  metaData = null,
   label = 'Web渠道',
   separator = '：',
   size = 'middle',
@@ -159,7 +159,7 @@ export function renderCustomWebChannelRadio({
     size,
     renderItemFunction: () => {
       return renderWebChannelRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -170,7 +170,7 @@ export function renderCustomWebChannelRadio({
 }
 
 export function renderFormWebChannelRadio({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = 'Web渠道',
@@ -187,7 +187,7 @@ export function renderFormWebChannelRadio({
     name,
     renderItemFunction: () => {
       return renderWebChannelRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });

@@ -4,37 +4,26 @@ import { SettingDrawer } from '@ant-design/pro-components';
 import { actionCore } from 'antd-management-fast-common/es/utils/actionAssist';
 import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 
-import {
-  setCurrentOperatorCache,
-  setMetaDataCache,
-} from '../../utils/storageAssist';
-
 @connect(({ currentOperator, global }) => ({
   currentOperator,
   global,
 }))
 class PageWrapper extends BaseComponent {
-  doWorkBeforeAdjustDidMount = () => {
-    actionCore({
-      api: 'global/getMetaData',
-      params: { force: true },
-      target: this,
-      showProcessing: false,
-      successCallback: ({ remoteData }) => {
-        setMetaDataCache(remoteData);
-      },
-    });
+  // doWorkBeforeAdjustDidMount = () => {
+  //   actionCore({
+  //     api: 'global/getMetaData',
+  //     params: { force: true },
+  //     target: this,
+  //     showProcessing: false,
+  //   });
 
-    actionCore({
-      api: 'currentOperator/getCurrentOperator',
-      params: { force: true },
-      target: this,
-      showProcessing: false,
-      successCallback: ({ remoteData }) => {
-        setCurrentOperatorCache(remoteData);
-      },
-    });
-  };
+  //   actionCore({
+  //     api: 'currentOperator/getCurrentOperator',
+  //     params: { force: true },
+  //     target: this,
+  //     showProcessing: false,
+  //   });
+  // };
 
   renderFurther() {
     return (

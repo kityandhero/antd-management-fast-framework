@@ -19,10 +19,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 
-export function refitAccessWayStatusList({ global, withUnlimited = true }) {
+export function refitAccessWayStatusList({ metaData, withUnlimited = true }) {
   const { accessWayStatusList: list } = {
     ...{ accessWayStatusList: [] },
-    ...(global || {}),
+    ...(metaData || {}),
   };
 
   if (withUnlimited) {
@@ -32,7 +32,7 @@ export function refitAccessWayStatusList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getAccessWayStatusName({ global, value, defaultValue = '' }) {
+export function getAccessWayStatusName({ metaData, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -40,34 +40,34 @@ export function getAccessWayStatusName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitAccessWayStatusList({ global, withUnlimited: false }),
+    refitAccessWayStatusList({ metaData, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderAccessWayStatusOption({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitAccessWayStatusList({ global, withUnlimited });
+  const listData = refitAccessWayStatusList({ metaData, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderAccessWayStatusRadio({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitAccessWayStatusList({ global, withUnlimited });
+  const listData = refitAccessWayStatusList({ metaData, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchAccessWayStatusSelect({
-  global = null,
+  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -80,7 +80,7 @@ export function renderSearchAccessWayStatusSelect({
     label: title,
     name,
     options: renderAccessWayStatusOption({
-      global,
+      metaData,
       withUnlimited,
       adjustListDataCallback,
     }),
@@ -89,7 +89,7 @@ export function renderSearchAccessWayStatusSelect({
 }
 
 export function renderCustomAccessWayStatusSelect({
-  global = null,
+  metaData = null,
   label = '状态',
   separator = '：',
   size = 'middle',
@@ -103,7 +103,7 @@ export function renderCustomAccessWayStatusSelect({
     size,
     renderItemFunction: () => {
       return renderAccessWayStatusOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -114,7 +114,7 @@ export function renderCustomAccessWayStatusSelect({
 }
 
 export function renderFormAccessWayStatusSelect({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '状态',
@@ -131,7 +131,7 @@ export function renderFormAccessWayStatusSelect({
     name,
     renderItemFunction: () => {
       return renderAccessWayStatusOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -145,7 +145,7 @@ export function renderFormAccessWayStatusSelect({
 }
 
 export function renderCustomAccessWayStatusRadio({
-  global = null,
+  metaData = null,
   label = '状态',
   separator = '：',
   size = 'middle',
@@ -159,7 +159,7 @@ export function renderCustomAccessWayStatusRadio({
     size,
     renderItemFunction: () => {
       return renderAccessWayStatusRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -170,7 +170,7 @@ export function renderCustomAccessWayStatusRadio({
 }
 
 export function renderFormAccessWayStatusRadio({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '状态',
@@ -187,7 +187,7 @@ export function renderFormAccessWayStatusRadio({
     name,
     renderItemFunction: () => {
       return renderAccessWayStatusRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });

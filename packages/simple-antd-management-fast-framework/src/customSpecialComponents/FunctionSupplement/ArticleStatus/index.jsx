@@ -19,10 +19,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 
-export function refitArticleStatusList({ global, withUnlimited = true }) {
+export function refitArticleStatusList({ metaData, withUnlimited = true }) {
   const { articleStatusList: list } = {
     ...{ articleStatusList: [] },
-    ...(global || {}),
+    ...(metaData || {}),
   };
 
   if (withUnlimited) {
@@ -32,7 +32,7 @@ export function refitArticleStatusList({ global, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getArticleStatusName({ global, value, defaultValue = '' }) {
+export function getArticleStatusName({ metaData, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -40,34 +40,34 @@ export function getArticleStatusName({ global, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitArticleStatusList({ global, withUnlimited: false }),
+    refitArticleStatusList({ metaData, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderArticleStatusOption({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleStatusList({ global, withUnlimited });
+  const listData = refitArticleStatusList({ metaData, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderArticleStatusRadio({
-  global,
+  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleStatusList({ global, withUnlimited });
+  const listData = refitArticleStatusList({ metaData, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchArticleStatusSelect({
-  global = null,
+  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -80,7 +80,7 @@ export function renderSearchArticleStatusSelect({
     label: title,
     name,
     options: renderArticleStatusOption({
-      global,
+      metaData,
       withUnlimited,
       adjustListDataCallback,
     }),
@@ -89,7 +89,7 @@ export function renderSearchArticleStatusSelect({
 }
 
 export function renderCustomArticleStatusSelect({
-  global = null,
+  metaData = null,
   label = '状态',
   separator = '：',
   size = 'middle',
@@ -103,7 +103,7 @@ export function renderCustomArticleStatusSelect({
     size,
     renderItemFunction: () => {
       return renderArticleStatusOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -114,7 +114,7 @@ export function renderCustomArticleStatusSelect({
 }
 
 export function renderFormArticleStatusSelect({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '状态',
@@ -131,7 +131,7 @@ export function renderFormArticleStatusSelect({
     name,
     renderItemFunction: () => {
       return renderArticleStatusOption({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -145,7 +145,7 @@ export function renderFormArticleStatusSelect({
 }
 
 export function renderCustomArticleStatusRadio({
-  global = null,
+  metaData = null,
   label = '状态',
   separator = '：',
   size = 'middle',
@@ -159,7 +159,7 @@ export function renderCustomArticleStatusRadio({
     size,
     renderItemFunction: () => {
       return renderArticleStatusRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });
@@ -170,7 +170,7 @@ export function renderCustomArticleStatusRadio({
 }
 
 export function renderFormArticleStatusRadio({
-  global = null,
+  metaData = null,
   helper = null,
   onChangeCallback,
   label = '状态',
@@ -187,7 +187,7 @@ export function renderFormArticleStatusRadio({
     name,
     renderItemFunction: () => {
       return renderArticleStatusRadio({
-        global,
+        metaData,
         withUnlimited: false,
         adjustListDataCallback,
       });

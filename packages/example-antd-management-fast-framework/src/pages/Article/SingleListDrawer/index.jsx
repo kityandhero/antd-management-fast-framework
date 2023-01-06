@@ -168,7 +168,7 @@ class SingleListDrawer extends SinglePageDrawer {
       },
       formatValue: (val) => {
         return getArticleRenderTypeName({
-          global: this.getGlobal(),
+          metaData: this.getMetaData(),
           value: val,
         });
       },
@@ -183,7 +183,7 @@ class SingleListDrawer extends SinglePageDrawer {
         return {
           status: this.getStatusBadge(val),
           text: getArticleStatusName({
-            global: this.getGlobal(),
+            metaData: this.getMetaData(),
             value: val,
           }),
         };

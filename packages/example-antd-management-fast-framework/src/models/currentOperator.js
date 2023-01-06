@@ -5,39 +5,57 @@ import {
   tacitlyState,
 } from 'antd-management-fast-common/es/utils/dva';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
+import {
+  getCurrentOperatorCache,
+  setCurrentOperatorCache,
+} from 'antd-management-fast-framework/es/utils/storageAssist';
 
 import {
   changeCurrentPasswordData,
   getCurrentBasicInfoData,
   updateCurrentBasicInfoData,
 } from '@/services/currentOperator';
-import {
-  getCurrentOperatorCache,
-  setCurrentOperatorCache,
-} from '@/utils/storageAssist';
 
 export default {
   namespace: 'currentOperator',
 
   state: {
     ...tacitlyState,
-    ...{
-      currentOperator: null,
-    },
   },
 
   effects: {
     *getCurrentOperator({ payload, alias }, { call, put }) {
-      const response = yield call(getCurrentBasicInfoData, payload);
+      let dataAdjust = {};
 
-      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+      const { force } = payload || {
+        force: false,
+      };
+      let result = {};
+      let fromRemote = force || false;
 
-      yield put({
-        type: reducerNameCollection.reducerData,
-        payload: dataAdjust,
-        alias,
-        ...reducerDefaultParams,
-      });
+      if (!force) {
+        dataAdjust = getCurrentOperatorCache();
+
+        if ((result || null) == null) {
+          fromRemote = true;
+          dataAdjust = {};
+        }
+      }
+
+      if (fromRemote) {
+        const response = yield call(getCurrentBasicInfoData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
+        yield put({
+          type: reducerNameCollection.reducerData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParams,
+        });
+
+        setCurrentOperatorCache(dataAdjust);
+      }
 
       return dataAdjust;
     },
@@ -86,12 +104,6 @@ export default {
   },
 
   reducers: {
-    changeCurrentOperator(state, { payload }) {
-      return {
-        ...state,
-        currentOperator: payload,
-      };
-    },
     ...reducerCollection,
   },
 };
