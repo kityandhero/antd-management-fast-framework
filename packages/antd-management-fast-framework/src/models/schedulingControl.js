@@ -55,7 +55,7 @@ export default {
         ...reducerDefaultParams,
       });
 
-      return dataAdjust;
+      return payload;
     },
   },
 

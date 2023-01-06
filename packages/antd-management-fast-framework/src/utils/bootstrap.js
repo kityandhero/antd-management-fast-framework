@@ -18,8 +18,6 @@ export function applicationInit({ setting }) {
     return;
   }
 
-  configSetting(setting || {});
-
   requestAnimationFrame(() => {
     const text = '初始数据正在努力加载中，需要一点点时间哦！';
 
@@ -32,6 +30,8 @@ export function applicationInit({ setting }) {
   applicationInitComplete = true;
 
   recordExecute('applicationInit');
+
+  configSetting(setting || {});
 
   if (!showModelNameList) {
     recordInfo(`current modelNameList: ${getModelNameList().join()}`);
