@@ -47,6 +47,16 @@ export default {
 
       return dataAdjust;
     },
+    *configSetting({ payload, alias }, { call, put }) {
+      yield put({
+        type: reducerNameCollection.reducerData,
+        payload: payload,
+        alias,
+        ...reducerDefaultParams,
+      });
+
+      return dataAdjust;
+    },
   },
 
   reducers: {

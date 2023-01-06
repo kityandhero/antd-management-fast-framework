@@ -2,7 +2,7 @@ import { getDvaApp } from 'umi';
 
 import { setCache } from './cacheAssist';
 import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
-import { recordDebug } from './tools';
+import { recordDebug } from './log';
 import { isString, isUndefined } from './typeCheck';
 
 export function getDispatch() {
@@ -31,6 +31,8 @@ export function getModelRemoteData(name) {
 }
 
 export function getModelState(name) {
+  // recordExecute(`getModelState(${name})`);
+
   const m = getModel(name);
 
   return m.state;

@@ -6,16 +6,19 @@ import {
 } from 'antd-management-fast-common/es/utils/tools';
 
 import { loadMetaData } from './metaDataAssist';
+import { configSetting } from './settingAssist';
 import { removeMetaDataCache } from './storageAssist';
 
 let applicationInitComplete = false;
 let showModelNameList = false;
 let metaDataFirstLoadSuccess = false;
 
-export function applicationInit() {
+export function applicationInit({ setting }) {
   if (applicationInitComplete) {
     return;
   }
+
+  configSetting(setting || {});
 
   requestAnimationFrame(() => {
     const text = '初始数据正在努力加载中，需要一点点时间哦！';

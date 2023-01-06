@@ -10,11 +10,15 @@ export default [
       },
     ],
   },
-  { path: '/', redirect: '/dashboard' },
+  {
+    path: '/',
+    redirect: '/dashboard',
+  },
   {
     path: '/dashboard',
     name: 'dashboard',
     icon: 'team',
+
     hideChildrenInMenu: true,
     routes: [
       {
@@ -25,6 +29,7 @@ export default [
         path: '/dashboard/workbench',
         name: 'workbench',
         icon: 'bars',
+        wrappers: ['../components/PageWrapper'],
         component: './Workbench',
       },
     ],
