@@ -12,7 +12,7 @@ import {
 import React, { PureComponent } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 
-import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
   copyToClipboard,
   isFunction,
@@ -164,8 +164,7 @@ class VideoUpload extends PureComponent {
     }
 
     const isLt3M =
-      file.size / 1024 / 1024 <
-      defaultSettingsLayoutCustom.getVideoUploadMaxSize();
+      file.size / 1024 / 1024 < runtimeSettings.getVideoUploadMaxSize();
 
     if (!isLt3M) {
       const text = '视频文件不能超过3MB!';

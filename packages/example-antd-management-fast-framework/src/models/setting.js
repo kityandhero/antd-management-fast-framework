@@ -1,10 +1,10 @@
-import { defaultSettings } from '../defaultSettings';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 
 const SettingModel = {
   namespace: 'settings',
-  state: defaultSettings,
+  state: runtimeSettings,
   reducers: {
-    changeSetting(state = defaultSettings, { payload }) {
+    changeSetting(state = runtimeSettings, { payload }) {
       const { contentWidth } = payload;
 
       if (state.contentWidth !== contentWidth && window.dispatchEvent) {

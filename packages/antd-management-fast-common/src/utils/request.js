@@ -2,7 +2,7 @@ import { message, notification } from 'antd';
 import { request as requestInner } from '@umijs/max';
 
 import { requestMethod } from './constants';
-import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import { runtimeSettings } from './dynamicSetting';
 import {
   clearCustomData,
   getToken,
@@ -113,7 +113,7 @@ const codeMessage = {
 //       throw new Error('urlChange is not string');
 //     }
 
-//     const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
+//     const showRequestInfo = runtimeSettings.getShowRequestInfo();
 
 //     if (token) {
 //       const headers = {
@@ -160,8 +160,8 @@ const codeMessage = {
 //     .then((o) => {
 //       const { code } = o;
 
-//       if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
-//         const entrancePath = defaultSettingsLayoutCustom.getEntrancePath();
+//       if (code === runtimeSettings.getAuthenticationFailCode()) {
+//         const entrancePath = runtimeSettings.getEntrancePath();
 
 //         if (stringIsNullOrWhiteSpace(entrancePath)) {
 //           throw new Error('缺少登录页面路径配置');
@@ -224,7 +224,7 @@ export async function request({
     throw new Error('urlChange is not string');
   }
 
-  const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
+  const showRequestInfo = runtimeSettings.getShowRequestInfo();
 
   const headers = {};
 

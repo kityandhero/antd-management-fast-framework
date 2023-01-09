@@ -5,13 +5,13 @@ import { LoginForm, ProFormText } from '@ant-design/pro-components';
 
 import { setAuthority } from 'antd-management-fast-common/es/utils/authority';
 import { getPageQuery } from 'antd-management-fast-common/es/utils/core';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import { setToken } from 'antd-management-fast-common/es/utils/globalStorageAssist';
 import { redirectToPath } from 'antd-management-fast-common/es/utils/tools';
 import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
-import { defaultSettings } from '../../../defaultSettings';
 import { signInAction } from '../Assist/action';
 
 const defaultProps = {};
@@ -83,9 +83,9 @@ class SignIn extends BaseComponent {
 
     return (
       <LoginForm
-        logo={<img alt="logo" src={defaultSettings.getShareLogo()} />}
-        title={defaultSettings.getAppName() || '未设置名称'}
-        subTitle={defaultSettings.getAppDescription() || ''}
+        logo={<img alt="logo" src={runtimeSettings.getShareLogo()} />}
+        title={runtimeSettings.getAppName() || '未设置名称'}
+        subTitle={runtimeSettings.getAppDescription() || ''}
         initialValues={{
           autoLogin: true,
         }}

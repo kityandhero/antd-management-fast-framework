@@ -20,7 +20,7 @@ import {
   defaultEmptyImage,
   extraBuildType,
 } from 'antd-management-fast-common/es/utils/constants';
-import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   buildFieldDescription,
@@ -2075,7 +2075,7 @@ class Common extends Core {
                     <TinymceWrapper
                       apiKey={
                         stringIsNullOrWhiteSpace(contentItem.apiKey || '')
-                          ? defaultSettingsLayoutCustom.getTinymceApiKey()
+                          ? runtimeSettings.getTinymceApiKey()
                           : contentItem.apiKey
                       }
                       content={contentItem.html || ''}
@@ -2085,7 +2085,7 @@ class Common extends Core {
                         stringIsNullOrWhiteSpace(
                           contentItem.imagesUploadUrl || '',
                         )
-                          ? defaultSettingsLayoutCustom.getTinymceImagesUploadUrl()
+                          ? runtimeSettings.getTinymceImagesUploadUrl()
                           : contentItem.imagesUploadUrl
                       }
                     />

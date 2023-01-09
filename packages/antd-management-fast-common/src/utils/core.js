@@ -67,6 +67,19 @@ export function getAppInitConfigData() {
     if ((window.appInitCustomRemote || null) != null) {
       appInitConfig = { ...appInitConfig, ...window.appInitCustomRemote };
     }
+
+    appInitConfig = {
+      ...appInitDefault,
+      ...((window.appInitCustomLocalCore || null) != null
+        ? window.appInitCustomLocalCore
+        : {}),
+      ...((window.appInitCustomLocalSpecial || null) != null
+        ? window.appInitCustomLocalSpecial
+        : {}),
+      ...((window.appInitCustomRemote || null) != null
+        ? window.appInitCustomRemote
+        : {}),
+    };
   }
 
   return appInitConfig;

@@ -13,7 +13,7 @@ let applicationInitComplete = false;
 let showModelNameList = false;
 let metaDataFirstLoadSuccess = false;
 
-export function applicationInit({ setting }) {
+export function applicationInit() {
   if (applicationInitComplete) {
     return;
   }
@@ -31,7 +31,7 @@ export function applicationInit({ setting }) {
 
   recordExecute('applicationInit');
 
-  configSetting(setting || {});
+  configSetting();
 
   if (!showModelNameList) {
     recordInfo(`current modelNameList: ${getModelNameList().join()}`);

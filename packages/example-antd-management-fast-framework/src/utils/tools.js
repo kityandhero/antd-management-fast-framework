@@ -1,7 +1,6 @@
 import { getModelRemoteData } from 'antd-management-fast-common/es/utils/dva';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
-
-import { defaultSettings } from '../defaultSettings';
 
 export function getSexName(value) {
   let result = '未知';
@@ -44,7 +43,7 @@ export function getLogo() {
     ...(platform || {}),
   };
 
-  return defaultSettings.getLeftBarLogo(logo);
+  return runtimeSettings.getLeftBarLogo(logo);
 }
 
 export function getTitle() {
@@ -70,7 +69,7 @@ export function getTitle() {
   };
 
   if (stringIsNullOrWhiteSpace(shortName)) {
-    return defaultSettings.getLeftBarText();
+    return runtimeSettings.getLeftBarText();
   }
 
   return shortName;

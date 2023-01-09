@@ -1,7 +1,7 @@
 import nprogress from 'nprogress';
 import { Component } from 'react';
 
-import { defaultSettingsLayoutCustom } from '../../utils/defaultSettingsSpecial';
+import { runtimeSettings } from '../../utils/dynamicSetting';
 import {
   defaultBaseState,
   getGuid,
@@ -345,7 +345,7 @@ class ComponentBase extends Component {
       pathname: path,
     };
 
-    if (defaultSettingsLayoutCustom.getUseNprogress()) {
+    if (runtimeSettings.getUseNprogress()) {
       nprogress.inc();
 
       setTimeout(() => {
@@ -361,7 +361,7 @@ class ComponentBase extends Component {
       pathname: path,
     };
 
-    if (defaultSettingsLayoutCustom.getUseNprogress()) {
+    if (runtimeSettings.getUseNprogress()) {
       nprogress.inc();
 
       setTimeout(() => {

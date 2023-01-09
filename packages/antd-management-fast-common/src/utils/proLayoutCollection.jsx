@@ -1,7 +1,7 @@
 import nprogress from 'nprogress';
 import { Link } from 'umi';
 
-import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import { runtimeSettings } from './dynamicSetting';
 import { goToPath, showErrorMessage } from './tools';
 
 /**
@@ -35,7 +35,7 @@ export const proLayoutDefaultProps = {
       <Link
         to={menuItemProps.path}
         onClick={() => {
-          if (defaultSettingsLayoutCustom.getUseNprogress()) {
+          if (runtimeSettings.getUseNprogress()) {
             if ((nprogress || null) == null) {
               const text = 'nprogress need install';
 

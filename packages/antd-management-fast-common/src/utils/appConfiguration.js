@@ -268,17 +268,6 @@ export function getAppDescription() {
   return appDescription || '';
 }
 
-export function getTitle() {
-  const appInit = getAppInitConfigData();
-
-  const { appName } = {
-    ...{ appName: '' },
-    ...(appInit || {}),
-  };
-
-  return appName || '';
-}
-
 export function getEntranceLogo() {
   const appInit = getAppInitConfigData();
 
@@ -358,6 +347,30 @@ export function getCopyright() {
   };
 
   return copyright || '';
+}
+
+export function getLayoutSetting() {
+  const appInit = getAppInitConfigData();
+
+  const { layoutSetting } = {
+    ...{
+      layoutSetting: {},
+    },
+    ...(appInit || {}),
+  };
+
+  return layoutSetting || {};
+}
+
+export function getTitle() {
+  const appInit = getAppInitConfigData();
+
+  const { appName } = {
+    ...{ appName: '' },
+    ...(appInit || {}),
+  };
+
+  return appName || '';
 }
 
 /**

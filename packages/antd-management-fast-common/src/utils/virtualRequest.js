@@ -1,4 +1,4 @@
-import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import { runtimeSettings } from './dynamicSetting';
 import { getToken } from './globalStorageAssist';
 import {
   recordError,
@@ -17,7 +17,7 @@ import { isFunction } from './typeCheck';
  * @returns
  */
 export function transferToVirtualAccess() {
-  return defaultSettingsLayoutCustom.getUseVirtualRequest();
+  return runtimeSettings.getUseVirtualRequest();
 }
 
 /**
@@ -54,7 +54,7 @@ export function apiVirtualFailData({
     }
 
     return {
-      code: defaultSettingsLayoutCustom.getAuthenticationFailCode(),
+      code: runtimeSettings.getAuthenticationFailCode(),
       message: '登录失效, 请重新登录',
       success: false,
     };
@@ -82,7 +82,7 @@ export function apiVirtualSuccessData({
   if (needAuthorize) {
     if (apiVirtualAuthorize()) {
       return {
-        code: defaultSettingsLayoutCustom.getApiSuccessCode(),
+        code: runtimeSettings.getApiSuccessCode(),
         message: 'success',
         success: true,
         ...remoteResponse,
@@ -90,14 +90,14 @@ export function apiVirtualSuccessData({
     }
 
     return {
-      code: defaultSettingsLayoutCustom.getAuthenticationFailCode(),
+      code: runtimeSettings.getAuthenticationFailCode(),
       message: '登录失效, 请重新登录',
       success: false,
     };
   }
 
   return {
-    code: defaultSettingsLayoutCustom.getApiSuccessCode(),
+    code: runtimeSettings.getApiSuccessCode(),
     message: 'success',
     success: true,
     ...remoteResponse,
@@ -134,8 +134,8 @@ export async function apiVirtualSuccessAccess({
 
   const { code } = result;
 
-  if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
-    const signInPath = defaultSettingsLayoutCustom.getSignInPath();
+  if (code === runtimeSettings.getAuthenticationFailCode()) {
+    const signInPath = runtimeSettings.getSignInPath();
 
     if (stringIsNullOrWhiteSpace(signInPath)) {
       throw new Error('缺少登录页面路径配置');
@@ -172,15 +172,15 @@ export async function apiVirtualFailAccess({
 
   const { code, message: messageText } = result;
 
-  if (code === defaultSettingsLayoutCustom.getAuthenticationFailCode()) {
-    const signInPath = defaultSettingsLayoutCustom.getSignInPath();
+  if (code === runtimeSettings.getAuthenticationFailCode()) {
+    const signInPath = runtimeSettings.getSignInPath();
 
     if (stringIsNullOrWhiteSpace(signInPath)) {
       throw new Error('缺少登录页面路径配置');
     }
 
     redirectToPath(signInPath);
-  } else if (code !== defaultSettingsLayoutCustom.getApiSuccessCode()) {
+  } else if (code !== runtimeSettings.getApiSuccessCode()) {
     showWarnMessage({
       message: messageText,
     });
@@ -221,7 +221,7 @@ export async function apiVirtualAccess({
 
   const { code, message: messageText } = result;
 
-  if (code !== defaultSettingsLayoutCustom.getApiSuccessCode()) {
+  if (code !== runtimeSettings.getApiSuccessCode()) {
     showWarnMessage({
       message: messageText,
     });

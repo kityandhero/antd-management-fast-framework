@@ -2,7 +2,7 @@ import { Modal, Space, Tooltip, Upload } from 'antd';
 import React, { PureComponent } from 'react';
 import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
-import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
   buildFieldHelper,
   isFunction,
@@ -95,8 +95,7 @@ class ImageUpload extends PureComponent {
     }
 
     const isLt2M =
-      file.size / 1024 / 1024 <
-      defaultSettingsLayoutCustom.getImageUploadMaxSize();
+      file.size / 1024 / 1024 < runtimeSettings.getImageUploadMaxSize();
 
     if (!isLt2M) {
       const text = '图片文件不能超过2MB!';

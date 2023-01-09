@@ -12,7 +12,7 @@ const inputFile = {
     'utils/cacheAssist': 'src/utils/cacheAssist.js',
     'utils/constants': 'src/utils/constants.js',
     'utils/core': 'src/utils/core.js',
-    'utils/defaultSettingsSpecial': 'src/utils/defaultSettingsSpecial.js',
+    'utils/dynamicSetting': 'src/utils/dynamicSetting.js',
     'utils/developAssist': 'src/utils/developAssist.js',
     'utils/dva': 'src/utils/dva.js',
     'utils/globalModel': 'src/utils/globalModel.js',

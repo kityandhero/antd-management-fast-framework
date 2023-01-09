@@ -1,5 +1,5 @@
 import { datetimeFormat } from 'antd-management-fast-common/es/utils/constants';
-import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import { request } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   formatDatetime,
@@ -9,7 +9,7 @@ import {
 
 export async function getMetaDataData(params) {
   return request({
-    api: defaultSettingsLayoutCustom.getMetaDataPath(),
+    api: runtimeSettings.getMetaDataPath(),
     params,
   });
 }

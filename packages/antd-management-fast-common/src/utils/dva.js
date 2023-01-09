@@ -1,7 +1,7 @@
 import { getDvaApp } from 'umi';
 
 import { setCache } from './cacheAssist';
-import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import { runtimeSettings } from './dynamicSetting';
 import { recordDebug } from './log';
 import { isString, isUndefined } from './typeCheck';
 
@@ -129,7 +129,7 @@ function reducerDataAssist(state, action, namespace) {
  */
 export const tacitlyState = {
   data: {
-    code: defaultSettingsLayoutCustom.getApiSuccessCode(),
+    code: runtimeSettings.getApiSuccessCode(),
     message: 'success',
     dataSuccess: true,
     data: {},

@@ -2,16 +2,17 @@ import {
   getDispatch,
   getModelState,
 } from 'antd-management-fast-common/es/utils/dva';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import { recordExecute } from 'antd-management-fast-common/es/utils/tools';
 
-export function configSetting(setting) {
+export function configSetting() {
   recordExecute('configSetting');
 
   const dispatch = getDispatch();
 
   dispatch({
     type: 'schedulingControl/configSetting',
-    payload: setting,
+    payload: runtimeSettings,
     alias: 'setting',
   });
 }

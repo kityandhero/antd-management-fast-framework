@@ -85,6 +85,7 @@ export const appInitDefault = {
   useNprogress: true,
   tinymceApiKey: '',
   tinymceImagesUploadUrl: '',
+  layoutSetting: {},
 };
 
 /**

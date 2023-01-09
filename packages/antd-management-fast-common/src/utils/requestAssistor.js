@@ -1,6 +1,6 @@
 import { setCache } from './cacheAssist';
 import { requestMethod } from './constants';
-import { defaultSettingsLayoutCustom } from './defaultSettingsSpecial';
+import { runtimeSettings } from './dynamicSetting';
 import { getToken } from './globalStorageAssist';
 import { request as remoteRequest } from './request';
 import {
@@ -89,9 +89,8 @@ function dataExceptionNotice(d) {
       recordDebug(`api call failed, authentication fail`);
     }
 
-    const signInPath = defaultSettingsLayoutCustom.getSignInPath();
-    const authenticationFailCode =
-      defaultSettingsLayoutCustom.getAuthenticationFailCode();
+    const signInPath = runtimeSettings.getSignInPath();
+    const authenticationFailCode = runtimeSettings.getAuthenticationFailCode();
 
     if (codeAdjust === authenticationFailCode) {
       if (stringIsNullOrWhiteSpace(signInPath)) {
@@ -122,7 +121,7 @@ export function pretreatmentRemoteSingleData({
   const { code, message: messageText } = source || errorCustomData();
   let v = {};
 
-  const apiSuccessCode = defaultSettingsLayoutCustom.getApiSuccessCode();
+  const apiSuccessCode = runtimeSettings.getApiSuccessCode();
 
   if (code === apiSuccessCode) {
     const { data, extra } = source;
@@ -182,7 +181,7 @@ export function pretreatmentRemoteListData({
   const { code, message: messageText } = source || errorCustomData();
   let v = {};
 
-  if (code === defaultSettingsLayoutCustom.getApiSuccessCode()) {
+  if (code === runtimeSettings.getApiSuccessCode()) {
     let sourceAdjust = source;
 
     if (isFunction(pretreatment)) {
@@ -259,9 +258,7 @@ export function pretreatmentRemotePageListData({
 
   const codeAdjust = toNumber(code);
 
-  if (
-    codeAdjust === toNumber(defaultSettingsLayoutCustom.getApiSuccessCode())
-  ) {
+  if (codeAdjust === toNumber(runtimeSettings.getApiSuccessCode())) {
     let sourceAdjust = source;
 
     if (isFunction(pretreatment)) {
@@ -458,8 +455,8 @@ export async function request({
   params = {},
   header = {},
   method = 'POST',
-  useVirtualRequest = defaultSettingsLayoutCustom.getUseVirtualRequest(),
-  showUseVirtualRequestMessage = defaultSettingsLayoutCustom.getShowUseVirtualRequestMessage(),
+  useVirtualRequest = runtimeSettings.getUseVirtualRequest(),
+  showUseVirtualRequestMessage = runtimeSettings.getShowUseVirtualRequestMessage(),
   showUseVirtualRequestMessageDelay = 500,
   virtualRequestDelay = 0,
   virtualSuccessResponse = {},
@@ -470,7 +467,7 @@ export async function request({
   virtualRequestResult = true,
   virtualNeedAuthorize = false,
 }) {
-  let apiVersion = defaultSettingsLayoutCustom.getApiVersion();
+  let apiVersion = runtimeSettings.getApiVersion();
 
   if (!isString(apiVersion)) {
     recordText(apiVersion);
@@ -509,7 +506,7 @@ export async function request({
     }
   }
 
-  const showRequestInfo = defaultSettingsLayoutCustom.getShowRequestInfo();
+  const showRequestInfo = runtimeSettings.getShowRequestInfo();
 
   if (useVirtualRequest) {
     recordTrace(
@@ -545,7 +542,7 @@ export async function request({
     }
 
     if (virtualNeedAuthorize && !verifyToken) {
-      const signInPath = defaultSettingsLayoutCustom.getSignInPath();
+      const signInPath = runtimeSettings.getSignInPath();
 
       if (stringIsNullOrWhiteSpace(signInPath)) {
         throw new Error('缺少登录页面路径配置');
@@ -627,7 +624,7 @@ export async function request({
  * 获取配置的 api 版本号
  */
 export function getApiVersion() {
-  const version = defaultSettingsLayoutCustom.getApiVersion();
+  const version = runtimeSettings.getApiVersion();
 
   return version;
 }

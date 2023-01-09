@@ -1,7 +1,7 @@
 import { Button, Input, Upload } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
   isFunction,
   showRuntimeError,
@@ -33,10 +33,9 @@ class FileBase64Upload extends PureComponent {
 
   beforeUpload = (file) => {
     const isLt1M =
-      file.size / 1024 / 1024 <
-      defaultSettingsLayoutCustom.getFileUploadMaxSize();
+      file.size / 1024 / 1024 < runtimeSettings.getFileUploadMaxSize();
     if (!isLt1M) {
-      const text = `文件不能超过${defaultSettingsLayoutCustom.getFileUploadMaxSize()}MB!`;
+      const text = `文件不能超过${runtimeSettings.getFileUploadMaxSize()}MB!`;
 
       showRuntimeError({
         message: text,

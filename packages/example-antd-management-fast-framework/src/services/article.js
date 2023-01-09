@@ -1,11 +1,10 @@
 import { defaultEmptyImage } from 'antd-management-fast-common/es/utils/constants';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import { request } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   getValueByKey,
   toString,
 } from 'antd-management-fast-common/es/utils/tools';
-
-import { defaultSettings } from '@/defaultSettings';
 
 const imageFileList = [
   {
@@ -46,7 +45,7 @@ const imageFileList = [
   },
 ];
 
-const emptyLogo = defaultSettings.getEmptyLogo();
+const emptyLogo = runtimeSettings.getEmptyLogo();
 
 const article = {
   articleId: '1430367617461391360',

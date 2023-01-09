@@ -1,10 +1,10 @@
 import defaultSettingsLayout from '@ant-design/pro-layout/lib/defaultSettings';
 
-import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 
 export const defaultSettings = {
   ...defaultSettingsLayout,
-  ...defaultSettingsLayoutCustom,
+  ...runtimeSettings,
   ...{
     title: '标题',
     // navTheme: 'light',

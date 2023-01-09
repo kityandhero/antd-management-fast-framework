@@ -1,6 +1,6 @@
 import { apiRequest } from 'antd-management-fast-common/es/utils/actionAssist';
-import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
 import { getDispatch } from 'antd-management-fast-common/es/utils/dva';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
   isFunction,
   recordDebug,
@@ -23,7 +23,7 @@ export function loadMetaData({ successCallback = null }) {
 
   const dispatch = getDispatch();
 
-  const metaDataPath = defaultSettingsLayoutCustom.getMetaDataPath();
+  const metaDataPath = runtimeSettings.getMetaDataPath();
 
   const api = stringIsNullOrWhiteSpace(metaDataPath)
     ? 'schedulingControl/getMetaDataSimulation'
@@ -35,7 +35,7 @@ export function loadMetaData({ successCallback = null }) {
     dispatch: dispatch,
     successCallback: ({ remoteData }) => {
       const data = {
-        ...(defaultSettingsLayoutCustom.getMetaDataLocal() || {}),
+        ...(runtimeSettings.getMetaDataLocal() || {}),
         ...remoteData,
       };
 

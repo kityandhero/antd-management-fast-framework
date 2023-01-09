@@ -1,22 +1,12 @@
 import React from 'react';
-import {
-  PageContainer,
-  ProCard,
-  ProConfigProvider,
-  ProLayout,
-  SettingDrawer,
-} from '@ant-design/pro-components';
+import { SettingDrawer } from '@ant-design/pro-components';
 
-import { applicationInit } from 'antd-management-fast-framework/es/utils/bootstrap';
+import { getSetting } from 'antd-management-fast-framework/es/utils/settingAssist';
 
+import Bootstrap from './components/Bootstrap';
 import { getLogo, getTitle } from './utils/tools';
-import { defaultSettings } from './defaultSettings';
 
-let setting = {
-  fixSiderbar: true,
-  layout: 'mix',
-  splitMenus: true,
-};
+let setting = {};
 
 // 运行时配置
 
@@ -26,34 +16,35 @@ export async function getInitialState() {
   return { name: '@umijs/max' };
 }
 
-export function rootContainer(container) {
-  return React.createElement(
-    ProConfigProvider,
-    null,
-    container,
-    <SettingDrawer
-      // pathname={pathname}
-      enableDarkTheme
-      // getContainer={() => document.getElementById('test-pro-layout')}
-      settings={setting}
-      onSettingChange={(changeSetting) => {
-        // setSetting(changeSetting);
-
-        setting = changeSetting;
-      }}
-      disableUrlParams={false}
-    />,
-  );
-}
-
 export const layout = () => {
-  applicationInit(defaultSettings);
-
   return {
     logo: getLogo(),
     title: getTitle(),
     menu: {
       locale: false,
+    },
+    childrenRender: (children, props) => {
+      // if (initialState?.loading) return <PageLoading />;
+      return (
+        <>
+          {children}
+
+          <Bootstrap />
+
+          {!props.location?.pathname?.includes('/login') && (
+            <SettingDrawer
+              enableDarkTheme
+              settings={getSetting()}
+              // onSettingChange={(settings) => {
+              //   setInitialState((preInitialState) => ({
+              //     ...preInitialState,
+              //     settings,
+              //   }));
+              // }}
+            />
+          )}
+        </>
+      );
     },
     ...setting,
   };

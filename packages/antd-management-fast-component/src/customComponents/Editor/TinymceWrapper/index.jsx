@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-import { defaultSettingsLayoutCustom } from 'antd-management-fast-common/es/utils/defaultSettingsSpecial';
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
   getToken,
   getTokenKeyName,
@@ -212,10 +212,10 @@ class TinymceWrapper extends PureComponent {
 }
 
 TinymceWrapper.defaultProps = {
-  apiKey: defaultSettingsLayoutCustom.getTinymceApiKey(),
+  apiKey: runtimeSettings.getTinymceApiKey(),
   content: '',
   initConfig: null,
-  imagesUploadUrl: defaultSettingsLayoutCustom.getTinymceImagesUploadUrl(),
+  imagesUploadUrl: runtimeSettings.getTinymceImagesUploadUrl(),
 };
 
 export default TinymceWrapper;
