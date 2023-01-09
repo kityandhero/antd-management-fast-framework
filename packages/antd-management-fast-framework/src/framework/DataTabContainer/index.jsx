@@ -233,7 +233,6 @@ class DataTabContainer extends DataSingleView {
       reloading,
       avatarImageLoadResult,
     } = this.state;
-    const { children } = this.props;
 
     const tabListAvailable = this.getTabListAvailable();
 
@@ -260,6 +259,7 @@ class DataTabContainer extends DataSingleView {
       // }}
       >
         <PageContainer
+          className={styles.customContainor}
           header={{
             ghost: false,
             style: {
