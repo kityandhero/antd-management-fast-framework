@@ -1,4 +1,5 @@
 import { Button, Divider } from 'antd';
+import React from 'react';
 
 import {
   isFunction,

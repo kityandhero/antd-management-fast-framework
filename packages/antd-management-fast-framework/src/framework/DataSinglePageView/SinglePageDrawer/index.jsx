@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from 'antd';
 import QueueAnim from 'rc-queue-anim';
+import React from 'react';
 import { ReadOutlined } from '@ant-design/icons';
 
 import {

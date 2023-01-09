@@ -1,5 +1,5 @@
 import { Affix, Col, Divider, Drawer, Form, Layout, Row, Space } from 'antd';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 import {
   cardConfig,
