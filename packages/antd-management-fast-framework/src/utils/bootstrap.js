@@ -1,5 +1,7 @@
+import { getAppInitConfigData } from 'antd-management-fast-common/es/utils/core';
 import { getModelNameList } from 'antd-management-fast-common/es/utils/dva';
 import {
+  recordConfig,
   recordExecute,
   recordInfo,
   showInfoMessage,
@@ -18,6 +20,8 @@ export function applicationInit() {
   if (applicationInitComplete) {
     return;
   }
+
+  recordConfig(getAppInitConfigData());
 
   requestAnimationFrame(() => {
     const text = '初始数据正在努力加载中，需要一点点时间哦！';

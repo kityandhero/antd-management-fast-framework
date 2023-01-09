@@ -53,7 +53,14 @@ export function getAppListData() {
 
   const appListDataCatch = getAppListDataCache();
 
-  return appListDataCatch;
+  return appListDataCatch.map((o, index) => {
+    return {
+      ...{
+        key: `app_list_data_${index}`,
+      },
+      ...o,
+    };
+  });
 }
 
 /**

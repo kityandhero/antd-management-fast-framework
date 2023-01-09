@@ -39,6 +39,7 @@ import {
 } from '../utils/constants';
 
 import {
+  checkDevelopment as checkDevelopmentCore,
   decodeBase64 as decodeBase64Core,
   encodeBase64 as encodeBase64Core,
   getAppInitConfigData,
@@ -265,7 +266,7 @@ export function replaceTargetText(
 }
 
 export function checkDevelopment() {
-  return process.env.NODE_ENV === 'development';
+  return checkDevelopmentCore();
 }
 
 /**

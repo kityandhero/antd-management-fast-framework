@@ -11,7 +11,14 @@ import React from 'react';
 import { appInitDefault } from './constants';
 import { isArray } from './typeCheck';
 
+let appConfigureMerge = {};
+let appConfigureMergeComplete = false;
+
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);
+
+export function checkDevelopment() {
+  return process.env.NODE_ENV === 'development';
+}
 
 /**
  * props.route.routes
@@ -57,6 +64,10 @@ export const isComponentClass = (component) => {
 };
 
 export function getAppInitConfigData() {
+  if (appConfigureMergeComplete) {
+    return appConfigureMerge;
+  }
+
   let appInitConfig = appInitDefault;
 
   if (isBrowser()) {
@@ -80,9 +91,34 @@ export function getAppInitConfigData() {
         ? window.appInitCustomRemote
         : {}),
     };
+
+    appInitConfig.appListData = [
+      ...(isArray(appInitDefault.appListData)
+        ? appInitDefault.appListData
+        : []),
+      ...((window.appInitCustomLocalCore || null) != null
+        ? isArray(window.appInitCustomLocalCore.appListData)
+          ? window.appInitCustomLocalCore.appListData
+          : []
+        : []),
+      ...((window.appInitCustomLocalSpecial || null) != null
+        ? isArray(window.appInitCustomLocalSpecial.appListData)
+          ? window.appInitCustomLocalSpecial.appListData
+          : []
+        : []),
+      ...((window.appInitCustomRemote || null) != null
+        ? isArray(window.appInitCustomRemote.appListData)
+          ? window.appInitCustomRemote.appListData
+          : []
+        : []),
+    ];
   }
 
-  return appInitConfig;
+  appConfigureMerge = appInitConfig;
+
+  appConfigureMergeComplete = true;
+
+  return appConfigureMerge;
 }
 
 export function replace(source, pattern, replacement) {

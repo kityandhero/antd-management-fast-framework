@@ -3,16 +3,15 @@ window.appInitCustomLocalCore = {
     fixSiderbar: true,
     layout: 'mix',
     splitMenus: true,
-    appList: [
-      {
-        key: 'app1',
-        icon: '/noImageSmall.png',
-        title: '本地导航1',
-        desc: '跨站点本地导航1',
-        url: 'https://ant.design',
-      },
-    ],
   },
+  appListData: [
+    {
+      icon: '/noImageSmall.png',
+      title: '本地导航',
+      desc: '跨站点本地导航',
+      url: 'https://ant.design',
+    },
+  ],
   metaData: {
     mediaTypeList: [
       {

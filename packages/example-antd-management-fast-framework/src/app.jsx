@@ -217,6 +217,8 @@ export async function getInitialState() {
 export const layout = () => {
   const settings = getSetting();
 
+  console.log(getAppListData());
+
   return {
     logo: getLogo(),
     title: getTitle(),

@@ -20,4 +20,12 @@ window.appInitCustomRemote = {
   apiVersion: 'v1',
   tinymceApiKey: 'al3poaukm85tca809x2fsl7hnw3vau5i4s5zx3fv3rforr5h',
   tinymceImagesUploadUrl: '/editor/uploadImage',
+  appListData: [
+    {
+      icon: '/noImageSmall.png',
+      title: '远程配置导航',
+      desc: '跨站点远程配置导航',
+      url: 'https://ant.design',
+    },
+  ],
 };

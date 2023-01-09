@@ -60,7 +60,7 @@ export function recordLog(record, showMode, level = logLevel.debug) {
         '%c%s',
         'color:#00768f;',
         JSON.stringify({
-          debug: 'check the following data',
+          debug: 'check the following debug data',
         }),
       );
 
@@ -112,7 +112,15 @@ export function recordLog(record, showMode, level = logLevel.debug) {
     }
 
     if (showModeModified === logShowMode.object) {
-      console.log({ config: record });
+      console.log(
+        '%c%s',
+        'color:#F8C471;',
+        JSON.stringify({
+          config: 'check the following config data',
+        }),
+      );
+
+      console.log(record);
     }
   }
 
