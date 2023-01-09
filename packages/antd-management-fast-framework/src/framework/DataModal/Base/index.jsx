@@ -1,4 +1,5 @@
 import { Form, Modal, Spin } from 'antd';
+import React from 'react';
 
 import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
@@ -212,7 +213,7 @@ class Base extends BaseWindow {
         title={this.buildTitle()}
         width={width}
         bodyStyle={this.getModalBodyStyle()}
-        visible={visible}
+        open={visible}
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         zIndex={1001}
         okButtonProps={this.buildOkButtonProps()}

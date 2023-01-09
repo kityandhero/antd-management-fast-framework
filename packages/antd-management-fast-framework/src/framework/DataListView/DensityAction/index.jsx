@@ -1,5 +1,5 @@
 import { Button, Dropdown, Menu, Tooltip } from 'antd';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import { listViewConfig } from 'antd-management-fast-common/es/utils/constants';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
@@ -39,7 +39,7 @@ class DensityAction extends PureComponent {
     );
 
     return (
-      <Dropdown overlay={menu}>
+      <Dropdown menu={menu}>
         <Tooltip title="表格密度">
           <Button
             shape="circle"

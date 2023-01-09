@@ -1,4 +1,5 @@
 import { Transfer } from 'antd';
+import React from 'react';
 
 import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 

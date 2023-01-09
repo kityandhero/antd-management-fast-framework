@@ -13,6 +13,7 @@ import {
   recordLog,
   recordObject,
   recordText,
+  redirectToPath as redirectToPathCore,
   showErrorMessage,
 } from '../../utils/tools';
 import { isEqual, isFunction, isNumber, isObject } from '../../utils/typeCheck';

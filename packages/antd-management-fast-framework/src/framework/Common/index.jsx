@@ -11,7 +11,7 @@ import {
   Spin,
   Tooltip,
 } from 'antd';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 import {
   cardConfig,

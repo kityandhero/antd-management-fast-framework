@@ -1,4 +1,4 @@
-import { Avatar, BackTop, Form } from 'antd';
+import { Avatar, FloatButton, Form } from 'antd';
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
@@ -27,6 +27,8 @@ import { iconBuilder } from 'antd-management-fast-component/es/customComponents/
 import DataCore from '../../DataSingleView/DataCore';
 
 import styles from './index.less';
+
+const { BackTop } = FloatButton;
 
 class BaseAddForm extends DataCore {
   loadDataAfterMount = false;

@@ -202,6 +202,9 @@ export const iconBuilder = {
   video: (props = null) => {
     return <VideoCameraOutlined {...(props || {})} />;
   },
+  videoCamera: (props = null) => {
+    return <VideoCameraOutlined {...(props || {})} />;
+  },
   videoCameraAdd: (props = null) => {
     return <VideoCameraAddOutlined {...(props || {})} />;
   },

@@ -1,10 +1,13 @@
 import { Button, Divider, Input, Popover, theme } from 'antd';
+import nprogress from 'nprogress';
 import React from 'react';
 import { Link } from 'umi';
 import { SettingDrawer } from '@ant-design/pro-components';
 import { css } from '@emotion/css';
 
+import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import Bootstrap from 'antd-management-fast-framework/es/customComponents/Bootstrap';
+import { setCurrentLocation } from 'antd-management-fast-framework/es/utils/applicationAssist';
 import { getAppListData } from 'antd-management-fast-framework/es/utils/appListDataAssist';
 import { getLayoutSetting } from 'antd-management-fast-framework/es/utils/layoutSettingAssist';
 
@@ -215,16 +218,23 @@ export async function getInitialState() {
 //   );
 // }
 
-export const antd = (memo) => {
-  memo.theme = {
-    token: {
-      colorPrimary: '#00b96b',
-    },
-    algorithm: theme.darkAlgorithm,
-  };
+export function onRouteChange({
+  location,
+  clientRoutes,
+  routes,
+  action,
+  basename,
+}) {
+  console.log({
+    location,
+    clientRoutes,
+    routes,
+    action,
+    basename,
+  });
 
-  return memo;
-};
+  setCurrentLocation(location);
+}
 
 export const layout = () => {
   const layoutSettings = getLayoutSetting();
@@ -232,108 +242,110 @@ export const layout = () => {
   console.log(layoutSettings);
 
   return {
-    logo: getLogo(),
-    title: getTitle(),
-    menu: {
-      locale: false,
+    ...(layoutSettings || {}),
+    ...{
+      logo: getLogo(),
+      title: getTitle(),
+      menu: {
+        locale: false,
+      },
+      disableContentMargin: false,
+      menu: {
+        collapsedShowGroupTitle: true,
+      },
+      siderMenuType: 'group',
+      waterMarkProps: {
+        content: 'test',
+      },
+      avatarProps: {
+        src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
+        size: 'small',
+        title: '七妮妮',
+      },
+      appList: getAppListData(),
+      headerTitleRender: (logo, title, _) => {
+        const defaultDom = (
+          <a>
+            {logo}
+            {title}
+          </a>
+        );
+
+        if (document.body.clientWidth < 1400) {
+          return defaultDom;
+        }
+
+        if (_.isMobile) return defaultDom;
+
+        return (
+          <>
+            {defaultDom}
+
+            <MenuCard />
+          </>
+        );
+      },
+      menuItemRender: (item, dom) => {
+        const { children: childrenArray } = item.children || {
+          children: [],
+        };
+
+        if (item.isUrl || (childrenArray || []).length > 0 || !item.path) {
+          return dom;
+        }
+
+        return (
+          <Link
+            to={item.path}
+            onClick={() => {
+              if (runtimeSettings.getUseNprogress()) {
+                if ((nprogress || null) == null) {
+                  const text = 'nprogress need install';
+
+                  showErrorMessage({
+                    message: text,
+                  });
+                }
+
+                nprogress.inc();
+
+                setTimeout(() => {
+                  nprogress.done();
+                }, 400);
+              }
+            }}
+          >
+            {dom}
+          </Link>
+        );
+      },
+      childrenRender: (children, props) => {
+        // if (initialState?.loading) return <PageLoading />;
+        return (
+          <>
+            {children}
+
+            <Bootstrap />
+
+            {!props.location?.pathname?.includes('/login') && (
+              <SettingDrawer
+                enableDarkTheme
+                settings={layoutSettings}
+                // onSettingChange={(settings) => {
+                //   setInitialState((preInitialState) => ({
+                //     ...preInitialState,
+                //     settings,
+                //   }));
+                // }}
+              />
+            )}
+          </>
+        );
+      },
+      footerRender: () => <Footer />,
+      onPageChange: (location) => {
+        console.log(location);
+      },
     },
-    disableContentMargin: false,
-    menu: {
-      collapsedShowGroupTitle: true,
-    },
-    siderMenuType: 'group',
-    waterMarkProps: {
-      content: 'test',
-    },
-    avatarProps: {
-      src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
-      size: 'small',
-      title: '七妮妮',
-    },
-    location: {
-      pathname: '/',
-    },
-    appList: getAppListData(),
-    headerTitleRender: (logo, title, _) => {
-      const defaultDom = (
-        <a>
-          {logo}
-          {title}
-        </a>
-      );
-
-      if (document.body.clientWidth < 1400) {
-        return defaultDom;
-      }
-
-      if (_.isMobile) return defaultDom;
-
-      return (
-        <>
-          {defaultDom}
-
-          <MenuCard />
-        </>
-      );
-    },
-    // menuItemRender: (item, dom) => {
-    //   const { children: childrenArray } = item.children || {
-    //     children: [],
-    //   };
-
-    //   if (item.isUrl || (childrenArray || []).length > 0 || !item.path) {
-    //     return dom;
-    //   }
-
-    //   return (
-    //     <Link
-    //       to={item.path}
-    //       onClick={() => {
-    //         if (runtimeSettings.getUseNprogress()) {
-    //           if ((nprogress || null) == null) {
-    //             const text = 'nprogress need install';
-
-    //             showErrorMessage({
-    //               message: text,
-    //             });
-    //           }
-
-    //           nprogress.inc();
-
-    //           setTimeout(() => {
-    //             nprogress.done();
-    //           }, 400);
-    //         }
-    //       }}
-    //     >
-    //       {dom}
-    //     </Link>
-    //   );
-    // },
-    childrenRender: (children, props) => {
-      // if (initialState?.loading) return <PageLoading />;
-      return (
-        <>
-          {children}
-
-          <Bootstrap />
-
-          {!props.location?.pathname?.includes('/login') && (
-            <SettingDrawer
-              enableDarkTheme
-              settings={layoutSettings}
-              // onSettingChange={(settings) => {
-              //   setInitialState((preInitialState) => ({
-              //     ...preInitialState,
-              //     settings,
-              //   }));
-              // }}
-            />
-          )}
-        </>
-      );
-    },
-    footerRender: () => <Footer />,
-    // ...(layoutSettings || {}),
   };
 };

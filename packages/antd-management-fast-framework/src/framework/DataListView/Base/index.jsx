@@ -1,13 +1,13 @@
 import {
   Affix,
   Alert,
-  BackTop,
   Button,
   Card,
   Col,
   DatePicker,
   Divider,
   Empty,
+  FloatButton,
   Form,
   Layout,
   List,
@@ -60,6 +60,7 @@ import {
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import StandardTableCustom from 'antd-management-fast-component/es/customComponents/StandardTableCustom';
 
+import { getCurrentLocation } from '../../../utils/applicationAssist';
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 import BatchAction from '../BatchAction';
 import ColumnSetting from '../ColumnSetting';
@@ -72,6 +73,7 @@ const classPrefix = `amf-data-list-view-base`;
 const { Content, Sider } = Layout;
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
+const { BackTop } = FloatButton;
 
 class ListBase extends AuthorizationWrapper {
   /**
@@ -973,15 +975,17 @@ class ListBase extends AuthorizationWrapper {
   };
 
   getTabActiveKey = () => {
-    const {
-      match,
-      location: { pathname },
-    } = this.props;
+    const { pathname } = getCurrentLocation();
 
-    return pathname
-      .replace(/\//g, '-')
-      .replace(`${match.url.replace(/\//g, '-')}-`, '')
-      .replace(/-/g, '/');
+    const list = pathname.split('/');
+
+    console.log({ list });
+
+    if (list.length > 1) {
+      return list[list.length - 1];
+    }
+
+    return '';
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

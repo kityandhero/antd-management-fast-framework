@@ -1,4 +1,5 @@
 import { Affix } from 'antd';
+import React from 'react';
 
 import {
   animalType,
@@ -8,6 +9,7 @@ import {
 } from 'antd-management-fast-common/es/utils/constants';
 import { isArray, isObject } from 'antd-management-fast-common/es/utils/tools';
 import { buildOptionItem } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import MobileSimulation from 'antd-management-fast-component/es/customComponents/MobileContainor/MobileSimulation';
 
 import Base from '../../../framework/DataDrawer/Base';

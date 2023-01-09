@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   isArray,
   showErrorMessage,
@@ -5,7 +7,7 @@ import {
 } from 'antd-management-fast-common/es/utils/tools';
 import { buildPlayer } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import MobilePreviewDrawer from 'antd-management-fast-component/es/customComponents/MobileContainor/MobilePreviewDrawer';
+import MobilePreviewDrawer from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewDrawer';
 
 class MediaItemPreviewDrawer extends MobilePreviewDrawer {
   resetDataAfterLoad = false;

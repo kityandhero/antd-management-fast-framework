@@ -1,4 +1,4 @@
-import { Avatar, BackTop, Button, Form, Tooltip } from 'antd';
+import { Avatar, Button, FloatButton, Form, Tooltip } from 'antd';
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
@@ -20,6 +20,8 @@ import { iconBuilder } from 'antd-management-fast-component/es/customComponents/
 import BaseView from '../../DataOperation/BaseView';
 
 import styles from './index.less';
+
+const { BackTop } = FloatButton;
 
 class DataCore extends BaseView {
   enableActionBack = true;

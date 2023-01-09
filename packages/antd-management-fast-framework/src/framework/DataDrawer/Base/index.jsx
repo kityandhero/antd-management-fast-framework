@@ -373,7 +373,7 @@ class Base extends BaseWindow {
         width={width}
         height={height}
         placement={placement}
-        visible={visible || false}
+        open={visible || false}
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         onClose={this.onClose}
         bodyStyle={{

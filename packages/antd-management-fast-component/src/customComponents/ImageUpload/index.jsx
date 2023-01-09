@@ -334,7 +334,7 @@ class ImageUpload extends PureComponent {
             )}
 
             <Modal
-              visible={previewVisible}
+              open={previewVisible}
               footer={null}
               onCancel={this.handleUploadCancel}
               bodyStyle={{

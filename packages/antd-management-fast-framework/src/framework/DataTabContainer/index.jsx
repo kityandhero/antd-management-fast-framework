@@ -1,4 +1,6 @@
 import { Divider, Space } from 'antd';
+import React from 'react';
+import { Outlet } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 
 import {
@@ -15,6 +17,7 @@ import {
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
+import { getCurrentLocation } from '../../utils/applicationAssist';
 import DataSingleView from '../DataSingleView/DataLoad';
 
 import styles from './index.less';
@@ -72,29 +75,47 @@ class DataTabContainer extends DataSingleView {
   };
 
   handleTabChange = (key) => {
-    const { match } = this.props;
+    const { pathname } = getCurrentLocation();
 
-    (this.tabList || []).forEach((item) => {
-      if (item.key === key) {
-        this.redirectToPath(
-          `${match.url.replace('/update', '/load')}/${item.key}`,
-        );
-      }
-    });
+    const list = pathname.split('/');
+
+    if (list.length <= 1) {
+      return '';
+    }
+
+    list[list.length - 1] = key;
+
+    const path = list.join('/');
+
+    const lastIndex = path.lastIndexOf('/update');
+
+    if (lastIndex >= 0) {
+      this.redirectToPath(`${path.replace('/update', '/load')}`);
+    } else {
+      this.redirectToPath(path);
+    }
+
+    // (this.tabList || []).forEach((item) => {
+    //   if (item.key === key) {
+    //     this.redirectToPath(
+    //       `${match.url.replace('/update', '/load')}/${item.key}`,
+    //     );
+    //   }
+    // });
   };
 
   adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
 
   getTabActiveKey = () => {
-    const {
-      match,
-      location: { pathname },
-    } = this.props;
+    const { pathname } = getCurrentLocation();
 
-    return pathname
-      .replace(/\//g, '-')
-      .replace(`${match.url.replace(/\//g, '-')}-`, '')
-      .replace(/-/g, '/');
+    const list = pathname.split('/');
+
+    if (list.length > 1) {
+      return list[list.length - 1];
+    }
+
+    return '';
   };
 
   fillInitialValuesAfterLoad = ({
@@ -233,33 +254,51 @@ class DataTabContainer extends DataSingleView {
     const pageHeaderContentConfig = this.establishPageHeaderContentConfig();
 
     return (
-      <PageContainer
-        className={styles.customContainor}
-        avatar={avatarProps}
-        title={buildPageHeaderTitle(
-          this.getPageName(),
-          this.establishPageHeaderTitlePrefix(),
-        )}
-        subTitle={this.buildPageHeaderSubTitle()}
-        tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
-        extra={this.buildExtraAction()}
-        tabActiveKey={this.getTabActiveKey()}
-        content={buildPageHeaderContent(pageHeaderContentConfig)}
-        extraContent={pageHeaderExtraContent(
-          this.establishPageHeaderExtraContentConfig(),
-        )}
-        tabList={tabListAvailable}
-        tabBarExtraContent={this.buildTabBarExtraContent()}
-        onTabChange={this.handleTabChange}
-        tabProps={this.buildOtherTabProps()}
-        // onBack={() => {
-        //   this.backToList();
-        // }}
+      <div
+      // style={{
+      //   background: '#fff',
+      // }}
       >
-        {children}
+        <PageContainer
+          header={{
+            ghost: false,
+            style: {
+              backgroundColor: '#fff',
+              paddingBottom: '0',
+              paddingLeft: '24px',
+              paddingRight: '24px',
+            },
+          }}
+          childrenContentStyle={{
+            padding: '24px',
+          }}
+          // className={styles.customContainor}
+          avatar={avatarProps}
+          title={buildPageHeaderTitle(
+            this.getPageName(),
+            this.establishPageHeaderTitlePrefix(),
+          )}
+          subTitle={this.buildPageHeaderSubTitle()}
+          tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
+          extra={this.buildExtraAction()}
+          tabActiveKey={this.getTabActiveKey()}
+          content={buildPageHeaderContent(pageHeaderContentConfig)}
+          extraContent={pageHeaderExtraContent(
+            this.establishPageHeaderExtraContentConfig(),
+          )}
+          tabList={tabListAvailable}
+          tabBarExtraContent={this.buildTabBarExtraContent()}
+          onTabChange={this.handleTabChange}
+          tabProps={this.buildOtherTabProps()}
+          // onBack={() => {
+          //   this.backToList();
+          // }}
+        >
+          <Outlet />
 
-        {this.renderOther()}
-      </PageContainer>
+          {this.renderOther()}
+        </PageContainer>
+      </div>
     );
   }
 }

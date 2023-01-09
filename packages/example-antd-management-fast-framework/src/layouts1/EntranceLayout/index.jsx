@@ -37,8 +37,6 @@ const EntranceLayout = (props) => {
     ...props,
   });
 
-  console.log(children);
-
   return (
     <HelmetProvider>
       <Helmet>

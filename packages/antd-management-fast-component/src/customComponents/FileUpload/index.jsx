@@ -275,7 +275,7 @@ class VideoUpload extends PureComponent {
           <Dropdown
             arrow
             placement="bottomRight"
-            overlay={menu}
+            menu={menu}
             style={{
               border: '0px solid #d9d9d9',
               backgroundColor: '#fafafa',
@@ -319,7 +319,7 @@ class VideoUpload extends PureComponent {
           title={
             <IconInfo icon={iconBuilder.swap()} text="请输入将更换的文件地址" />
           }
-          visible={changeUrlVisible}
+          open={changeUrlVisible}
           onOk={this.handleChangeUrlOk}
           onCancel={this.handleChangeUrlCancel}
         >

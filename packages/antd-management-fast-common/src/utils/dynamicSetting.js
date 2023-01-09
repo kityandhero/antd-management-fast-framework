@@ -77,6 +77,9 @@ export const layoutSettings = {
   ...defaultSettingsLayout,
   ...{
     onMenuHeaderClick: () => {},
+    contentStyle: {
+      padding: '0',
+    },
   },
   ...(getLayoutSetting() || {}),
 };

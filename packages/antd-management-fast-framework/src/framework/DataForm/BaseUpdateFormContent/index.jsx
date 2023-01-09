@@ -1,6 +1,9 @@
-import { BackTop } from 'antd';
+import { FloatButton } from 'antd';
+import React from 'react';
 
 import BaseUpdateForm from '../BaseUpdateForm';
+
+const { BackTop } = FloatButton;
 
 class BaseUpdateFormContent extends BaseUpdateForm {
   renderFurther() {

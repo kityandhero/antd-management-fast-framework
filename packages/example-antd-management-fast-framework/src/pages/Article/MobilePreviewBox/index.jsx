@@ -1,10 +1,12 @@
+import React from 'react';
+
 import {
   isArray,
   showErrorMessage,
   stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 import { buildPlayer } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import MobilePreviewArea from 'antd-management-fast-component/es/customComponents/MobileContainor/MobilePreviewArea';
+import MobilePreviewArea from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewArea';
 
 class MobilePreviewBox extends MobilePreviewArea {
   loadDataAfterMount = false;

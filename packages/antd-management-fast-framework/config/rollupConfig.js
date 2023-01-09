@@ -13,6 +13,8 @@ const inputFile = {
       'src/customComponents/MobileContainor/MobilePreviewArea/index.jsx',
     'customComponents/MobileContainor/MobilePreviewDrawer/index':
       'src/customComponents/MobileContainor/MobilePreviewDrawer/index.jsx',
+    'customComponents/MobileContainor/MobileHtmlPreviewBox/index':
+      'src/customComponents/MobileContainor/MobileHtmlPreviewBox/index.jsx',
     'customComponents/Bootstrap/index':
       'src/customComponents/Bootstrap/index.jsx',
   },
@@ -122,6 +124,7 @@ const inputFile = {
     'utils/storageAssist': 'src/utils/storageAssist.js',
     'utils/bootstrap': 'src/utils/bootstrap.js',
     'utils/layoutSettingAssist': 'src/utils/layoutSettingAssist.js',
+    'utils/applicationAssist': 'src/utils/applicationAssist.js',
   },
 };
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { connect } from 'umi';
 
 import {
@@ -10,7 +11,7 @@ import {
   getValueByKey,
 } from 'antd-management-fast-common/es/utils/tools';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import MobileHtmlPreviewBox from 'antd-management-fast-component/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
+import MobileHtmlPreviewBox from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
 
 import { accessWayCollection } from '@/customConfig/config';
 

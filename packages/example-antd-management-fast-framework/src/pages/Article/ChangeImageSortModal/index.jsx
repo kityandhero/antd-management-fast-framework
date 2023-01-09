@@ -189,7 +189,7 @@ class ChangeImageSortModal extends Base {
       );
 
       return (
-        <Dropdown disabled={!hasAuthority} overlay={menu}>
+        <Dropdown disabled={!hasAuthority} menu={menu}>
           <a>{iconBuilder.retweet()} 排序</a>
         </Dropdown>
       );

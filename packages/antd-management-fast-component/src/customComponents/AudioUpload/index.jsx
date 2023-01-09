@@ -342,7 +342,7 @@ class AudioUpload extends PureComponent {
           <Dropdown
             arrow
             placement="bottomRight"
-            overlay={menu}
+            menu={menu}
             style={{
               border: '0px solid #d9d9d9',
               backgroundColor: '#fafafa',
@@ -384,7 +384,7 @@ class AudioUpload extends PureComponent {
 
         <Modal
           title={<IconInfo icon={iconBuilder.sound()} text="音频预览" />}
-          visible={previewVisible}
+          open={previewVisible}
           footer={null}
           onCancel={this.handleUploadCancel}
         >
@@ -403,7 +403,7 @@ class AudioUpload extends PureComponent {
           title={
             <IconInfo icon={iconBuilder.swap()} text="请输入将更换的音频地址" />
           }
-          visible={changeUrlVisible}
+          open={changeUrlVisible}
           onOk={this.handleChangeUrlOk}
           onCancel={this.handleChangeUrlCancel}
         >

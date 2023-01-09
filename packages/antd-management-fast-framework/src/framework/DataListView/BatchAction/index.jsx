@@ -1,5 +1,6 @@
 import { Button, Dropdown, Menu } from 'antd';
 import { ConfigConsumer } from 'antd/lib/config-provider/context';
+import React from 'react';
 
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
@@ -36,7 +37,7 @@ const DropdownButton = ({
 
       return (
         <Dropdown
-          overlay={menu}
+          menu={menu}
           className={styles.batchAction}
           disabled={disabled}
         >
@@ -70,7 +71,7 @@ const BatchAction = ({ style, onSelect, menus = [], disabled }) => (
 
       return (
         <Dropdown
-          overlay={menu}
+          menu={menu}
           className={styles.batchAction}
           disabled={disabled}
         >

@@ -55,7 +55,7 @@ class ImageContentPreview extends BaseComponent {
           title="图片详情预览"
           width={380}
           placement="left"
-          visible={visible}
+          open={visible}
           closable
           onClose={this.onClose}
         >
@@ -86,7 +86,7 @@ class ImageContentPreview extends BaseComponent {
           title="图片详情预览"
           width={380}
           placement="left"
-          visible={visible}
+          open={visible}
           closable
           onClose={this.onClose}
         >
@@ -111,7 +111,7 @@ class ImageContentPreview extends BaseComponent {
           title="图片详情预览"
           width={380}
           placement="left"
-          visible={visible}
+          open={visible}
           closable
           onClose={this.onClose}
         >
@@ -134,7 +134,7 @@ class ImageContentPreview extends BaseComponent {
         title="图片详情预览"
         width={380}
         placement="left"
-        visible={visible}
+        open={visible}
         closable
         onClose={this.onClose}
       >

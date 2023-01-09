@@ -38,8 +38,6 @@ const UserLayout = (props) => {
     ...props,
   });
 
-  console.log(children);
-
   return (
     <HelmetProvider>
       <Helmet>

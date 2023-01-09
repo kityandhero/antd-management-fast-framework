@@ -1,6 +1,5 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-
 // export interface CardProps {
 //   id: any;
 //   index: number;
