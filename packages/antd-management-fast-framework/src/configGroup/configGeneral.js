@@ -15,7 +15,9 @@ export function buildConfig(packageImport) {
       },
     },
     hash: true,
-    antd: {},
+    antd: {
+      import: true,
+    },
     access: {},
     model: {},
     initialState: {},

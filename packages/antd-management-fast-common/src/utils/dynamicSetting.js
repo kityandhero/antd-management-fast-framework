@@ -75,6 +75,9 @@ export const runtimeSettings = {
 
 export const layoutSettings = {
   ...defaultSettingsLayout,
+  ...{
+    onMenuHeaderClick: () => {},
+  },
   ...(getLayoutSetting() || {}),
 };
 

@@ -1,11 +1,12 @@
 import { Button, Divider, Input, Popover, theme } from 'antd';
 import React from 'react';
+import { Link } from 'umi';
 import { SettingDrawer } from '@ant-design/pro-components';
 import { css } from '@emotion/css';
 
 import Bootstrap from 'antd-management-fast-framework/es/customComponents/Bootstrap';
 import { getAppListData } from 'antd-management-fast-framework/es/utils/appListDataAssist';
-import { getSetting } from 'antd-management-fast-framework/es/utils/settingAssist';
+import { getLayoutSetting } from 'antd-management-fast-framework/es/utils/layoutSettingAssist';
 
 import Footer from './components/Footer';
 import { getLogo, getTitle } from './utils/tools';
@@ -214,10 +215,21 @@ export async function getInitialState() {
 //   );
 // }
 
-export const layout = () => {
-  const settings = getSetting();
+export const antd = (memo) => {
+  memo.theme = {
+    token: {
+      colorPrimary: '#00b96b',
+    },
+    algorithm: theme.darkAlgorithm,
+  };
 
-  console.log(getAppListData());
+  return memo;
+};
+
+export const layout = () => {
+  const layoutSettings = getLayoutSetting();
+
+  console.log(layoutSettings);
 
   return {
     logo: getLogo(),
@@ -237,6 +249,9 @@ export const layout = () => {
       src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
       size: 'small',
       title: '七妮妮',
+    },
+    location: {
+      pathname: '/',
     },
     appList: getAppListData(),
     headerTitleRender: (logo, title, _) => {
@@ -261,6 +276,40 @@ export const layout = () => {
         </>
       );
     },
+    // menuItemRender: (item, dom) => {
+    //   const { children: childrenArray } = item.children || {
+    //     children: [],
+    //   };
+
+    //   if (item.isUrl || (childrenArray || []).length > 0 || !item.path) {
+    //     return dom;
+    //   }
+
+    //   return (
+    //     <Link
+    //       to={item.path}
+    //       onClick={() => {
+    //         if (runtimeSettings.getUseNprogress()) {
+    //           if ((nprogress || null) == null) {
+    //             const text = 'nprogress need install';
+
+    //             showErrorMessage({
+    //               message: text,
+    //             });
+    //           }
+
+    //           nprogress.inc();
+
+    //           setTimeout(() => {
+    //             nprogress.done();
+    //           }, 400);
+    //         }
+    //       }}
+    //     >
+    //       {dom}
+    //     </Link>
+    //   );
+    // },
     childrenRender: (children, props) => {
       // if (initialState?.loading) return <PageLoading />;
       return (
@@ -272,7 +321,7 @@ export const layout = () => {
           {!props.location?.pathname?.includes('/login') && (
             <SettingDrawer
               enableDarkTheme
-              settings={settings}
+              settings={layoutSettings}
               // onSettingChange={(settings) => {
               //   setInitialState((preInitialState) => ({
               //     ...preInitialState,
@@ -285,7 +334,6 @@ export const layout = () => {
       );
     },
     footerRender: () => <Footer />,
-
-    ...(settings || {}),
+    // ...(layoutSettings || {}),
   };
 };

@@ -121,7 +121,7 @@ const inputFile = {
     'utils/appListDataAssist': 'src/utils/appListDataAssist.js',
     'utils/storageAssist': 'src/utils/storageAssist.js',
     'utils/bootstrap': 'src/utils/bootstrap.js',
-    'utils/settingAssist': 'src/utils/settingAssist.js',
+    'utils/layoutSettingAssist': 'src/utils/layoutSettingAssist.js',
   },
 };
 

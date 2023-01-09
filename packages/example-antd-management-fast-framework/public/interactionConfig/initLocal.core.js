@@ -6,10 +6,28 @@ window.appInitCustomLocalCore = {
   },
   appListData: [
     {
-      icon: '/noImageSmall.png',
+      key: '11',
       title: '本地导航',
-      desc: '跨站点本地导航',
-      url: 'https://ant.design',
+      url: 'javascript:void(0)',
+      target: '_blank',
+      children: [
+        {
+          key: '121',
+          icon: '/noImageSmall.png',
+          title: '本地导航1',
+          desc: '跨站点本地导航1',
+          url: 'https://ant.design',
+          target: '_blank',
+        },
+        {
+          key: '122',
+          icon: '/noImageSmall.png',
+          title: '本地导航2',
+          desc: '跨站点本地导航2',
+          url: 'https://ant.design',
+          target: '_blank',
+        },
+      ],
     },
   ],
   metaData: {

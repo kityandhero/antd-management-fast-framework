@@ -2,13 +2,13 @@ import nprogress from 'nprogress';
 import { Link } from 'umi';
 
 import { runtimeSettings } from './dynamicSetting';
-import { goToPath, showErrorMessage } from './tools';
+import { showErrorMessage } from './tools';
 
 /**
  * layout默认配置
  */
 export const proLayoutDefaultProps = {
-  onMenuHeaderClick: () => goToPath('/'),
+  onMenuHeaderClick: () => {},
   itemRender: (route, params, routes, paths) => {
     const first = routes.indexOf(route) === 0;
 
@@ -18,22 +18,18 @@ export const proLayoutDefaultProps = {
       <span>{route.breadcrumbName}</span>
     );
   },
-  menuItemRender: (menuItemProps, defaultDom) => {
-    const { children: childrenArray } = menuItemProps.children || {
+  menuItemRender: (item, dom) => {
+    const { children: childrenArray } = item.children || {
       children: [],
     };
 
-    if (
-      menuItemProps.isUrl ||
-      (childrenArray || []).length > 0 ||
-      !menuItemProps.path
-    ) {
-      return defaultDom;
+    if (item.isUrl || (childrenArray || []).length > 0 || !item.path) {
+      return dom;
     }
 
     return (
       <Link
-        to={menuItemProps.path}
+        to={item.path}
         onClick={() => {
           if (runtimeSettings.getUseNprogress()) {
             if ((nprogress || null) == null) {
@@ -52,7 +48,7 @@ export const proLayoutDefaultProps = {
           }
         }}
       >
-        {defaultDom}
+        {dom}
       </Link>
     );
   },

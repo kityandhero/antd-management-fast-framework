@@ -80,7 +80,7 @@ export default {
 
       return dataAdjust;
     },
-    *configSetting({ payload, alias }, { put }) {
+    *configLayoutSetting({ payload, alias }, { put }) {
       yield put({
         type: reducerNameCollection.reducerData,
         payload: payload,

@@ -8,10 +8,10 @@ import {
   recordExecute,
 } from 'antd-management-fast-common/es/utils/tools';
 
-let configSettingComplete = false;
+let configLayoutSettingComplete = false;
 
-export function configSetting() {
-  recordExecute('configSetting');
+export function configLayoutSetting() {
+  recordExecute('configLayoutSetting');
 
   const dispatch = getDispatch();
 
@@ -20,20 +20,20 @@ export function configSetting() {
   });
 
   dispatch({
-    type: 'schedulingControl/configSetting',
+    type: 'schedulingControl/configLayoutSetting',
     payload: layoutSettings,
     alias: 'setting',
   });
 }
 
-export function getSetting() {
-  if (!configSettingComplete) {
-    configSetting();
+export function getLayoutSetting() {
+  if (!configLayoutSettingComplete) {
+    configLayoutSetting();
 
-    configSettingComplete = true;
+    configLayoutSettingComplete = true;
   }
 
-  recordExecute('getSetting');
+  recordExecute('getLayoutSetting');
 
   const state = getModelState('schedulingControl');
 

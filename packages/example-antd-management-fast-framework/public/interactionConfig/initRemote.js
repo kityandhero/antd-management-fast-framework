@@ -22,10 +22,21 @@ window.appInitCustomRemote = {
   tinymceImagesUploadUrl: '/editor/uploadImage',
   appListData: [
     {
-      icon: '/noImageSmall.png',
       title: '远程配置导航',
-      desc: '跨站点远程配置导航',
-      url: 'https://ant.design',
+      children: [
+        {
+          icon: '/noImageSmall.png',
+          title: '远程配置导航1',
+          desc: '跨站点远程配置导航1',
+          url: 'https://ant.design',
+        },
+        {
+          icon: '/noImageSmall.png',
+          title: '远程配置导航2',
+          desc: '跨站点远程配置导航2',
+          url: 'https://ant.design',
+        },
+      ],
     },
   ],
 };
