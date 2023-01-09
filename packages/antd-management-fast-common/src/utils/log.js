@@ -56,7 +56,15 @@ export function recordLog(record, showMode, level = logLevel.debug) {
     }
 
     if (showModeModified === logShowMode.object) {
-      console.log({ debug: record });
+      console.log(
+        '%c%s',
+        'color:#00768f;',
+        JSON.stringify({
+          debug: 'check the following data',
+        }),
+      );
+
+      console.log(record);
     }
   }
 

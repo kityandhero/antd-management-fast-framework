@@ -1,9 +1,9 @@
 import React from 'react';
 import { SettingDrawer } from '@ant-design/pro-components';
 
+import Bootstrap from 'antd-management-fast-framework/es/customComponents/Bootstrap';
 import { getSetting } from 'antd-management-fast-framework/es/utils/settingAssist';
 
-import Bootstrap from './components/Bootstrap';
 import { getLogo, getTitle } from './utils/tools';
 
 let setting = {};
@@ -15,6 +15,15 @@ let setting = {};
 export async function getInitialState() {
   return { name: '@umijs/max' };
 }
+
+// export function rootContainer(container) {
+//   return React.createElement(
+//     ProConfigProvider,
+//     null,
+//     <BootstrapLayout />,
+//     container,
+//   );
+// }
 
 export const layout = () => {
   return {

@@ -13,6 +13,8 @@ const inputFile = {
       'src/customComponents/MobileContainor/MobilePreviewArea/index.jsx',
     'customComponents/MobileContainor/MobilePreviewDrawer/index':
       'src/customComponents/MobileContainor/MobilePreviewDrawer/index.jsx',
+    'customComponents/Bootstrap/index':
+      'src/customComponents/Bootstrap/index.jsx',
   },
   ...{
     'framework/AuthorizationWrapper/index':

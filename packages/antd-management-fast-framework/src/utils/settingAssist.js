@@ -2,28 +2,43 @@ import {
   getDispatch,
   getModelState,
 } from 'antd-management-fast-common/es/utils/dva';
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import { recordExecute } from 'antd-management-fast-common/es/utils/tools';
+import { layoutSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
+import {
+  recordDebug,
+  recordExecute,
+} from 'antd-management-fast-common/es/utils/tools';
+
+let configSettingComplete = false;
 
 export function configSetting() {
   recordExecute('configSetting');
 
   const dispatch = getDispatch();
 
+  recordDebug({
+    layoutSettings,
+  });
+
   dispatch({
     type: 'schedulingControl/configSetting',
-    payload: runtimeSettings,
+    payload: layoutSettings,
     alias: 'setting',
   });
 }
 
 export function getSetting() {
+  if (!configSettingComplete) {
+    configSetting();
+
+    configSettingComplete = true;
+  }
+
   recordExecute('getSetting');
 
   const state = getModelState('schedulingControl');
 
   const { setting } = {
-    ...{ setting: {} },
+    ...{ setting: layoutSettings },
     ...state,
   };
 

@@ -6,7 +6,6 @@ import {
 } from 'antd-management-fast-common/es/utils/tools';
 
 import { loadMetaData } from './metaDataAssist';
-import { configSetting } from './settingAssist';
 import { removeMetaDataCache } from './storageAssist';
 
 let applicationInitComplete = false;
@@ -30,8 +29,6 @@ export function applicationInit() {
   applicationInitComplete = true;
 
   recordExecute('applicationInit');
-
-  configSetting();
 
   if (!showModelNameList) {
     recordInfo(`current modelNameList: ${getModelNameList().join()}`);
