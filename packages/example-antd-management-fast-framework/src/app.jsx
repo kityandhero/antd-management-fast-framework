@@ -4,6 +4,7 @@ import { SettingDrawer } from '@ant-design/pro-components';
 import Bootstrap from 'antd-management-fast-framework/es/customComponents/Bootstrap';
 import { getSetting } from 'antd-management-fast-framework/es/utils/settingAssist';
 
+import Footer from './components/Footer';
 import { getLogo, getTitle } from './utils/tools';
 
 let setting = {};
@@ -32,6 +33,7 @@ export const layout = () => {
     menu: {
       locale: false,
     },
+    footerRender: () => <Footer />,
     childrenRender: (children, props) => {
       // if (initialState?.loading) return <PageLoading />;
       return (
