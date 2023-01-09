@@ -14,7 +14,7 @@ export async function getMetaDataData(params) {
   });
 }
 
-export async function getMetaDataSimulationData(params) {
+export async function getMetaDataSimulation(params) {
   const simulation = {
     ...{
       time: formatDatetime(getNow(), datetimeFormat.monthDayHourMinuteSecond),
@@ -22,9 +22,7 @@ export async function getMetaDataSimulationData(params) {
   };
 
   recordDebug(
-    `getMetaDataData simulation meta data silent data: ${JSON.stringify(
-      simulation,
-    )}`,
+    `getMetaDataData use simulation mode, if need set it from api, please config getMetaDataPath.`,
   );
 
   return request({
@@ -34,6 +32,31 @@ export async function getMetaDataSimulationData(params) {
     virtualNeedAuthorize: false,
     virtualSuccessResponse: {
       data: simulation,
+      list: [],
+      extra: {},
+    },
+  });
+}
+
+export async function singleListAppListData(params) {
+  return request({
+    api: runtimeSettings.getAppListDataPath(),
+    params,
+  });
+}
+
+export async function singleListAppListDataSimulation(params) {
+  recordDebug(
+    `singleListAppList use simulation mode, if need set it from api, please config getAppListDataPath.`,
+  );
+
+  return request({
+    api: `/schedulingControl/singleListAppListDataSimulation`,
+    params,
+    useVirtualRequest: true,
+    virtualNeedAuthorize: false,
+    virtualSuccessResponse: {
+      data: {},
       list: [],
       extra: {},
     },

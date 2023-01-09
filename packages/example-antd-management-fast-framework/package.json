@@ -27,6 +27,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
     "@ant-design/pro-components": "^2.3.50",
+    "@emotion/css": "11.10.5",
     "@umijs/max": "^4.0.41",
     "antd": "^5.1.2",
     "antd-management-fast-common": "^2.0.0",

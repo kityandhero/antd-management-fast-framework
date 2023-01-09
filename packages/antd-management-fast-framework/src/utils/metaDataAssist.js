@@ -35,7 +35,7 @@ export function loadMetaData({ successCallback = null }) {
     dispatch: dispatch,
     successCallback: ({ remoteData }) => {
       const data = {
-        ...(runtimeSettings.getMetaDataLocal() || {}),
+        ...(runtimeSettings.getMetaData() || {}),
         ...remoteData,
       };
 
@@ -49,6 +49,8 @@ export function loadMetaData({ successCallback = null }) {
 }
 
 export function getMetaData() {
+  recordExecute('getMetaData');
+
   const metaDataCatch = getMetaDataCache();
 
   return metaDataCatch;

@@ -4,11 +4,16 @@ import {
   reducerNameCollection,
   tacitlyState,
 } from 'antd-management-fast-common/es/utils/dva';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
+import {
+  pretreatmentRemoteListData,
+  pretreatmentRemoteSingleData,
+} from 'antd-management-fast-common/es/utils/requestAssistor';
 
 import {
   getMetaDataData,
-  getMetaDataSimulationData,
+  getMetaDataSimulation,
+  singleListAppListData,
+  singleListAppListDataSimulation,
 } from '../services/schedulingControl';
 
 export default {
@@ -19,6 +24,34 @@ export default {
   },
 
   effects: {
+    *singleListAppList({ payload, alias }, { call, put }) {
+      const response = yield call(singleListAppListData, payload);
+
+      const dataAdjust = pretreatmentRemoteListData({ source: response });
+
+      yield put({
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
+      });
+
+      return dataAdjust;
+    },
+    *singleListAppListSimulation({ payload, alias }, { call, put }) {
+      const response = yield call(singleListAppListDataSimulation, payload);
+
+      const dataAdjust = pretreatmentRemoteListData({ source: response });
+
+      yield put({
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParams,
+      });
+
+      return dataAdjust;
+    },
     *getMetaData({ payload, alias }, { call, put }) {
       const response = yield call(getMetaDataData, payload);
 
@@ -34,7 +67,7 @@ export default {
       return dataAdjust;
     },
     *getMetaDataSimulation({ payload, alias }, { call, put }) {
-      const response = yield call(getMetaDataSimulationData, payload);
+      const response = yield call(getMetaDataSimulation, payload);
 
       const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 

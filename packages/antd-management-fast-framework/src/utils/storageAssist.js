@@ -7,9 +7,65 @@ import {
 import { recordExecute } from 'antd-management-fast-common/es/utils/tools';
 
 const storageKeyCollection = {
+  appListData: 'appListData',
   metaData: 'metaData',
   currentOperator: 'currentOperator',
 };
+
+/**
+ * 获取 appListData 缓存
+ *
+ * @export
+ * @param {*} fn
+ * @returns
+ */
+export function getAppListDataCache() {
+  recordExecute('getAppListDataCache');
+
+  const key = storageKeyCollection.appListData;
+
+  const d = getJsonFromLocalStorage(key);
+
+  if ((d || null) == null) {
+    return null;
+  }
+
+  return d;
+}
+
+/**
+ * 设置 appListData 缓存
+ *
+ * @export
+ * @param {o} metaData数据
+ * @returns
+ */
+export function setAppListDataCache(o) {
+  recordExecute('setAppListDataCache');
+
+  if ((o || null) == null) {
+    return;
+  }
+
+  const key = storageKeyCollection.appListData;
+
+  return saveJsonToLocalStorage(key, o);
+}
+
+/**
+ * 移除信息
+ *
+ * @export
+ * @param {*} fn
+ * @returns
+ */
+export function removeAppListDataCache() {
+  recordExecute('removeAppListDataCache');
+
+  const key = storageKeyCollection.appListData;
+
+  removeLocalStorage(key);
+}
 
 /**
  * 获取metaData缓存
@@ -19,6 +75,8 @@ const storageKeyCollection = {
  * @returns
  */
 export function getMetaDataCache() {
+  recordExecute('getMetaDataCache');
+
   const key = storageKeyCollection.metaData;
 
   const d = getJsonFromLocalStorage(key);

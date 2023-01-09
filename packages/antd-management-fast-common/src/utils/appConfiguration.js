@@ -5,6 +5,7 @@ import {
 } from '../utils/constants';
 
 import { getAppInitConfigData, stringIsNullOrWhiteSpace } from './core';
+import { isArray } from './typeCheck';
 
 export function logShowInConsole() {
   const appInit = getAppInitConfigData();
@@ -158,6 +159,28 @@ export function getEntrancePath() {
   return entrancePath || '';
 }
 
+export function getAppListDataPath() {
+  const appInit = getAppInitConfigData();
+
+  const { appListDataPath } = {
+    ...{ appListDataPath: '' },
+    ...(appInit || {}),
+  };
+
+  return appListDataPath || '';
+}
+
+export function getAppListData() {
+  const appInit = getAppInitConfigData();
+
+  const { appListData } = {
+    ...{ appListData: '' },
+    ...(appInit || {}),
+  };
+
+  return isArray(appListData) ? appListData : [];
+}
+
 export function getMetaDataPath() {
   const appInit = getAppInitConfigData();
 
@@ -169,15 +192,15 @@ export function getMetaDataPath() {
   return metaDataPath || '';
 }
 
-export function getMetaDataLocal() {
+export function getMetaData() {
   const appInit = getAppInitConfigData();
 
-  const { metaDataLocal } = {
-    ...{ metaDataLocal: '' },
+  const { metaData } = {
+    ...{ metaData: '' },
     ...(appInit || {}),
   };
 
-  return metaDataLocal || {};
+  return metaData || {};
 }
 
 export function getApiVersion() {

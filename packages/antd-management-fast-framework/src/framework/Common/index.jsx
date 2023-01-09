@@ -113,6 +113,8 @@ import styles from './index.less';
 
 const { Content, Sider } = Layout;
 
+let metaData = {};
+
 class Common extends Core {
   showExtraActionDivider = false;
 
@@ -132,6 +134,8 @@ class Common extends Core {
         showReloadButton: false,
       },
     };
+
+    metaData = getMetaData();
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -148,7 +152,7 @@ class Common extends Core {
   checkNeedUpdate = (preProps, preState, snapshot) => false;
 
   getMetaData = () => {
-    return getMetaData();
+    return metaData;
   };
 
   /**

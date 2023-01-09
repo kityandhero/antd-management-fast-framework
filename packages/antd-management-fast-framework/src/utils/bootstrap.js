@@ -5,12 +5,14 @@ import {
   showInfoMessage,
 } from 'antd-management-fast-common/es/utils/tools';
 
+import { loadAppListData } from './appListDataAssist';
 import { loadMetaData } from './metaDataAssist';
-import { removeMetaDataCache } from './storageAssist';
+import { removeAppListDataCache, removeMetaDataCache } from './storageAssist';
 
 let applicationInitComplete = false;
 let showModelNameList = false;
 let metaDataFirstLoadSuccess = false;
+let appListDataFirstLoadSuccess = false;
 
 export function applicationInit() {
   if (applicationInitComplete) {
@@ -42,6 +44,16 @@ export function applicationInit() {
     loadMetaData({
       successCallback: () => {
         metaDataFirstLoadSuccess = true;
+      },
+    });
+  }
+
+  if (!appListDataFirstLoadSuccess) {
+    removeAppListDataCache();
+
+    loadAppListData({
+      successCallback: () => {
+        appListDataFirstLoadSuccess = true;
       },
     });
   }
