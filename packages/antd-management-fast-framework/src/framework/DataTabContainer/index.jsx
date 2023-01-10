@@ -1,9 +1,7 @@
 import { Divider, Space, Tabs } from 'antd';
 import React from 'react';
-import { Outlet, useParams } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 
-import { getCurrentLocation } from 'antd-management-fast-common/es/utils/routeAssist';
 import {
   isArray,
   isBoolean,

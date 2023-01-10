@@ -15,7 +15,8 @@
   },
   "license": "MIT",
   "author": "kityandhero <kityandhero@126.com>",
-  "main": "lib/index.js",
+  "main": "./es/index.js",
+  "types": "./es/types/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test",
@@ -25,8 +26,8 @@
     "es"
   ],
   "scripts": {
-    "build": "rimraf ./es && rollup --config rollup.config.compression.js --bundleConfigAsCjs",
-    "build:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs",
+    "build": "rimraf ./es && rollup --config rollup.config.compression.js --bundleConfigAsCjs && tsc -v && tsc -p ./tsconfig.types.json",
+    "build:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs && tsc -v && tsc -p ./tsconfig.types.json",
     "clean-file": "rimraf ./src/.umi && rimraf ./node_modules",
     "dev": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch",
     "format": "prettier --cache --write .",
@@ -107,6 +108,7 @@
     "prettier": "^2.8.2",
     "prettier-plugin-organize-imports": "^3",
     "prettier-plugin-packagejson": "^2",
+    "prop-types": "^15.8.1",
     "rollup": "^3.9.1",
     "rollup-plugin-dts": "^5.1.1",
     "rollup-plugin-livereload": "^2.0.5",
