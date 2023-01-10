@@ -19,10 +19,16 @@ const defaultFooterData = {
 
 const Footer = () => {
   return (
-    <DefaultFooter
-      copyright={defaultFooterData.copyright}
-      links={defaultFooterData.links}
-    />
+    <div
+      style={{
+        backgroundColor: '#f0f2f5',
+      }}
+    >
+      <DefaultFooter
+        copyright={defaultFooterData.copyright}
+        links={defaultFooterData.links}
+      />
+    </div>
   );
 };
 

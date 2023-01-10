@@ -2,6 +2,9 @@ import { buildConfig as buildConfigCore } from '../../antd-management-fast-rollu
 
 const inputFile = {
   ...{
+    index: 'src/index.jsx',
+  },
+  ...{
     'customComponents/ActiveChart/index':
       'src/customComponents/ActiveChart/index.jsx',
     'customComponents/AudioUpload/index':

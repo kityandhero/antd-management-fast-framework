@@ -94,6 +94,7 @@ const externalCollection = [
   ],
   ...[
     'antd-management-fast-common',
+    'antd-management-fast-common/es/customComponents',
     'antd-management-fast-common/es/customComponents/ComponentBase',
     'antd-management-fast-common/es/utils/actionAssist',
     'antd-management-fast-common/es/utils/appConfiguration',

@@ -254,9 +254,9 @@ class DataTabContainer extends DataSingleView {
 
     return (
       <div
-      // style={{
-      //   background: '#fff',
-      // }}
+        style={{
+          background: '#f0f2f5',
+        }}
       >
         <PageContainer
           className={styles.customContainor}
