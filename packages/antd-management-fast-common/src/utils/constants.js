@@ -1,5 +1,11 @@
 import { emptyLogo as emptyLogoSource } from './mediaDefault';
 
+const animalTypeCollection = {
+  none: 'none',
+  fade: 'fade',
+  queue: 'queue',
+};
+
 /**
  * request method collection
  */
@@ -17,11 +23,7 @@ export const unknownLabel = '未知';
 /**
  * 动画类型
  */
-export const animalType = {
-  none: 'none',
-  fade: 'fade',
-  queue: 'queue',
-};
+export const animalType = animalTypeCollection;
 
 export const zeroString = '0';
 
@@ -306,9 +308,9 @@ export const listViewConfig = {
     large: 'large',
   },
   expandAnimalType: {
-    none: animalType.none,
-    fade: animalType.fade,
-    queue: animalType.queue,
+    none: animalTypeCollection.none,
+    fade: animalTypeCollection.fade,
+    queue: animalTypeCollection.queue,
   },
 };
 
@@ -417,9 +419,9 @@ export const cardConfig = {
    * 动画支持
    */
   animalType: {
-    none: animalType.none,
-    fade: animalType.fade,
-    queue: animalType.queue,
+    none: animalTypeCollection.none,
+    fade: animalTypeCollection.fade,
+    queue: animalTypeCollection.queue,
   },
 
   /**

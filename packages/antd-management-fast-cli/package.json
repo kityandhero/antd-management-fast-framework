@@ -31,7 +31,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "commander": "^9.4.1",
+    "commander": "^9.5.0",
     "download": "^8.0.0",
     "download-git-repo": "^3.0.2",
     "fs-extra": "^11.1.0",
@@ -41,7 +41,7 @@
     "terminal-kit": "^3.0.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "^9.0.13",
+    "@types/fs-extra": "^11.0.0",
     "@types/shelljs": "^0.8.11"
   }
 }

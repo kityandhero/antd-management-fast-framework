@@ -14,6 +14,7 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
+import { DEFAULT_EXTENSIONS } from '@babel/core';
 
 // import { pxToRemRoot } from '../../taro-fast-common/src/utils/constants';
 
@@ -245,8 +246,8 @@ export function buildConfig({
           '.es6',
           '.es',
           '.mjs',
-          'ts',
-          'tsx',
+          '.ts',
+          '.tsx',
           '.mjs',
           '.node',
         ],
@@ -257,11 +258,11 @@ export function buildConfig({
         include: ['node_modules/**', '../../node_modules/**'],
       }),
       typescript({
-        check: true,
+        // check: true,
         // verbosity: 3,
-        clean: true,
+        // clean: true,
         useTsconfigDeclarationDir: true,
-        tsconfig: './tsconfig.json',
+        tsconfig: 'tsconfig.json',
       }),
       postcss({
         extensions: ['.css', '.scss', '.less'],
@@ -276,7 +277,7 @@ export function buildConfig({
         modules: true,
       }),
       babelConfig({
-        extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', 'ts', 'tsx'],
+        extensions: [...DEFAULT_EXTENSIONS, ...['ts', 'tsx']],
         babelHelpers: 'runtime',
       }),
     ],
@@ -303,6 +304,14 @@ export function buildConfig({
 
   return [
     config,
+    // {
+    //   input: inputFile,
+    //   plugins: [dts.default()],
+    //   output: {
+    //     format: 'esm',
+    //     file: 'dist/index.d.ts',
+    //   },
+    // },
     // {
     //   input: ['./es/request.d.ts', './es/tools.d.ts'],
     //   output: {

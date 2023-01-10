@@ -143,5 +143,6 @@
     "**/.settings": true,
     "**/.factorypath": true
   },
-  "explorerExclude.backup": null
+  "explorerExclude.backup": null,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

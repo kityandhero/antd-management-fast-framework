@@ -6,6 +6,9 @@
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
   "license": "ISC",
   "main": "lib/antd-management-fast-rollup.js",
+  "scripts": {
+    "clean-file": "rimraf ./src/.umi && rimraf ./node_modules"
+  },
   "devDependencies": {
     "@rollup/plugin-alias": "^4.0.2",
     "@rollup/plugin-babel": "6.0.3",
@@ -19,7 +22,7 @@
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
     "rollup": "^3.9.1",
-    "rollup-plugin-dts": "^5.1.0",
+    "rollup-plugin-dts": "^5.1.1",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-serve": "^2.0.2",
