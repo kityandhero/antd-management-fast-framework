@@ -191,12 +191,14 @@ class ChangeImageSortModal extends Base {
         },
       ];
 
-      const menu = (
-        <Menu items={items} onClick={(e) => onMenuClick(e, current)} />
-      );
-
       return (
-        <Dropdown disabled={!hasAuthority} menu={menu}>
+        <Dropdown
+          disabled={!hasAuthority}
+          menu={{
+            items: items,
+            onClick: (e) => onMenuClick(e, current),
+          }}
+        >
           <a>{iconBuilder.retweet()} 排序</a>
         </Dropdown>
       );

@@ -29,27 +29,29 @@
       .text {
         margin-top: 4px;
         margin-bottom: 4px;
-        color: #666;
+        // color: #666;
       }
     }
 
-    :global(.ant-upload.ant-upload-select-picture-card) {
-      width: 100%;
-      height: auto;
-      margin-right: 0;
-      margin-bottom: 0;
-      border-bottom: 0;
+    :global {
+      .ant-upload.ant-upload-select {
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+        margin-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .ant-upload-select i {
+        color: #999;
+        font-size: 32px;
+      }
+
+      .ant-upload-select .ant-upload-text {
+        margin-top: 8px;
+        color: #666;
+      }
     }
-  }
-
-  .ant-upload-select-picture-card i {
-    color: #999;
-    font-size: 32px;
-  }
-
-  .ant-upload-select-picture-card .ant-upload-text {
-    margin-top: 8px;
-    color: #666;
   }
 
   .toolBar {

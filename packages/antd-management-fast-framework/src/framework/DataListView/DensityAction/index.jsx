@@ -39,7 +39,20 @@ class DensityAction extends PureComponent {
     );
 
     return (
-      <Dropdown menu={menu}>
+      <Dropdown
+        menu={{
+          items: items,
+          selectedKeys: [tableSize],
+          onClick: ({ key }) => {
+            if (setTableSize) {
+              setTableSize(key);
+            }
+          },
+          style: {
+            width: 80,
+          },
+        }}
+      >
         <Tooltip title="表格密度">
           <Button
             shape="circle"

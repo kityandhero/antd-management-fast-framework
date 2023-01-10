@@ -638,6 +638,28 @@ class BasicInfo extends TabPageBase {
           spinning,
           items: [
             {
+              lg: 24,
+              type: cardConfig.contentItemType.imageUpload,
+              icon: iconBuilder.picture(),
+              title: fieldData.image.label,
+              helper: fieldData.image.helper,
+              image,
+              action: `${corsTarget()}/article/uploadImage`,
+              afterUploadSuccess: (imageData) => {
+                this.afterImageUploadSuccess(imageData);
+              },
+            },
+          ],
+        },
+        {
+          title: {
+            icon: iconBuilder.picture(),
+            text: '配图上传',
+            subText: '[上传后需点击保存按钮保存！]',
+          },
+          spinning,
+          items: [
+            {
               lg: 12,
               type: cardConfig.contentItemType.imageUpload,
               icon: iconBuilder.picture(),

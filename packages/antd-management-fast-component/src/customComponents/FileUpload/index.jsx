@@ -275,7 +275,10 @@ class VideoUpload extends PureComponent {
           <Dropdown
             arrow
             placement="bottomRight"
-            menu={menu}
+            menu={{
+              items: items,
+              onClick: this.handleMenuClick,
+            }}
             style={{
               border: '0px solid #d9d9d9',
               backgroundColor: '#fafafa',
