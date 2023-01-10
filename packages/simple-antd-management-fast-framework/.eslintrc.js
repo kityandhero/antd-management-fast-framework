@@ -5,6 +5,7 @@ module.exports = {
   },
   plugins: ['simple-import-sort', 'import', 'prettier'],
   rules: {
+    eqeqeq: 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/jsx-wrap-multilines': 0,
     'react/prop-types': 0,

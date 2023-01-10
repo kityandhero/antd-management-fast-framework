@@ -116,11 +116,13 @@ class BasicInfo extends TabPageBase {
     return d;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({
     metaData,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaListData,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaExtra,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaOriginalData,
   }) => {
     const {
@@ -1262,7 +1264,7 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.switch,
               fieldData: fieldData.switch,
-              checked: true,
+              initialValue: true,
               require: false,
               otherProps: {
                 checkedChildren: '开启',

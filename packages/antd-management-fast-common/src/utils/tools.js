@@ -80,6 +80,7 @@ import {
   isUndefined as isUndefinedCore,
 } from './typeCheck';
 import {
+  toBoolean as toBooleanCore,
   toNumber as toNumberCore,
   toString as toStringCore,
 } from './typeConvert';
@@ -679,6 +680,17 @@ export function toNumber(v) {
 }
 
 /**
+ * 转换为 bool
+ *
+ * @export
+ * @param {*} v value
+ * @returns
+ */
+export function toBoolean(v) {
+  return toBooleanCore(v);
+}
+
+/**
  * 转换为数字
  *
  * @export
@@ -836,6 +848,9 @@ export function convertTarget({ target, convert }) {
           : isArray(target)
           ? target
           : [target];
+
+      case convertCollection.boolean:
+        return toBoolean(target);
 
       default:
         return target;

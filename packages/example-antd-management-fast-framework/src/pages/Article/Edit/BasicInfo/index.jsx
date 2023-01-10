@@ -201,9 +201,8 @@ class BasicInfo extends TabPageBase {
     this.textContent = text;
   };
 
-  handleSwitchChange = (v) => {
-    this.setState({ switchValue: v });
-  };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleSwitchChange = (v) => {};
 
   handleGalleryUploadChange = ({ file, fileList }) => {
     this.setState({ fileList: [...fileList] });
@@ -399,7 +398,8 @@ class BasicInfo extends TabPageBase {
 
       values[fieldData.switch.name] = getValueByKey({
         data: metaData,
-        key: fieldData.description.name,
+        key: fieldData.switch.name,
+        convert: convertCollection.boolean,
       });
     }
 
@@ -420,7 +420,6 @@ class BasicInfo extends TabPageBase {
       initContent,
       listTreeData,
       parentId,
-      switchValue,
     } = this.state;
 
     const spinning = this.checkInProgress();
@@ -1299,7 +1298,6 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.switch,
               fieldData: fieldData.switch,
-              checked: switchValue,
               require: false,
               otherProps: {
                 checkedChildren: '开启',

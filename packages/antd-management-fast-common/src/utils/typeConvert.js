@@ -37,6 +37,10 @@ export function toLower(value) {
   return toLowerLodash(value);
 }
 
+export function toBoolean(value) {
+  return !!value;
+}
+
 /**
  * 占位函数
  *

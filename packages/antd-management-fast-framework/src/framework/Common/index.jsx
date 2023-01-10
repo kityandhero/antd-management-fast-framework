@@ -2569,9 +2569,7 @@ class Common extends Core {
                         require,
                         fieldData.helper,
                         {
-                          ...{},
                           ...(contentItem.otherProps || {}),
-                          ...{ checked: contentItem.checked || false },
                         },
                         canOperate,
                         formItemLayout,

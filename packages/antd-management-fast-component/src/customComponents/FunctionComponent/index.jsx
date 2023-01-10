@@ -75,6 +75,7 @@ import ColorText from '../ColorText';
 import EllipsisCustom from '../EllipsisCustom';
 import FlexBox from '../FlexBox';
 import FlexText from '../FlexText';
+import FormCustomItem from '../FormCustom/FormCustomItem';
 import { iconBuilder } from '../Icon';
 import IconInfo from '../IconInfo';
 import ImageBox from '../ImageBox';
@@ -2169,6 +2170,7 @@ export function buildSearchInputNumber({
       style: { width: '100%' },
       min: 0,
       placeholder: buildFieldDescription(title, '输入'),
+      disabled: !canOperate,
     },
     ...(inputProps || {}),
   };
@@ -2178,23 +2180,6 @@ export function buildSearchInputNumber({
     name,
     helper,
   });
-
-  if (!canOperate) {
-    return (
-      <FormItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-      >
-        <InputNumber {...otherInputProps} />
-      </FormItem>
-    );
-  }
 
   return (
     <FormItem
@@ -2315,32 +2300,6 @@ export function buildFormInput({
     helper,
   });
 
-  if (!canOperate) {
-    return buildFormHiddenWrapper({
-      children: (
-        <FormItem
-          {...formItemLayout}
-          label={resultCheck.label}
-          name={resultCheck.name}
-          extra={
-            stringIsNullOrWhiteSpace(resultCheck.helper || '')
-              ? null
-              : buildFieldHelper(resultCheck.helper)
-          }
-          rules={[
-            {
-              required,
-              message: buildFieldDescription(resultCheck.label),
-            },
-          ]}
-        >
-          <Input {...otherInputProps} />
-        </FormItem>
-      ),
-      hidden,
-    });
-  }
-
   return buildFormHiddenWrapper({
     children: (
       <FormItem
@@ -2391,40 +2350,13 @@ export function buildFormSwitch({
     helper,
   });
 
-  if (!canOperate) {
-    return buildFormHiddenWrapper({
-      children: (
-        <FormItem
-          {...formItemLayout}
-          label={resultCheck.label}
-          extra={
-            stringIsNullOrWhiteSpace(resultCheck.helper || '')
-              ? null
-              : buildFieldHelper(resultCheck.helper)
-          }
-          rules={[
-            {
-              required,
-              message: buildFieldDescription(resultCheck.label),
-            },
-          ]}
-        >
-          <FlexBox
-            flexAuto="left"
-            left={`是否开启${label}:`}
-            right={<Switch {...otherSwitchProps} />}
-          />
-        </FormItem>
-      ),
-      hidden,
-    });
-  }
-
   return buildFormHiddenWrapper({
     children: (
-      <FormItem
+      <FormCustomItem
         {...formItemLayout}
         label={resultCheck.label}
+        name={resultCheck.name}
+        valuePropName="checked"
         extra={
           stringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
@@ -2436,13 +2368,16 @@ export function buildFormSwitch({
             message: buildFieldDescription(resultCheck.label),
           },
         ]}
+        render={(children) => (
+          <FlexBox
+            flexAuto="left"
+            left={`是否开启${label}: `}
+            right={children}
+          />
+        )}
       >
-        <FlexBox
-          flexAuto="left"
-          left={`是否开启${label}：`}
-          right={<Switch {...otherSwitchProps} />}
-        />
-      </FormItem>
+        <Switch {...otherSwitchProps} />
+      </FormCustomItem>
     ),
     hidden,
   });

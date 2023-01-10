@@ -147,6 +147,8 @@ export const convertCollection = {
    * 数组
    */
   array: 'array',
+
+  boolean: 'boolean',
 };
 
 /**

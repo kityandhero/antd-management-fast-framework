@@ -82,6 +82,14 @@ const inputFile = {
       'src/customComponents/FlexText/index.jsx',
     'customComponents/FooterToolbar/index':
       'src/customComponents/FooterToolbar/index.jsx',
+
+    //#region  FormCustom
+    'customComponents/FormCustom/FormCustomItem/index':
+      'src/customComponents/FormCustom/FormCustomItem/index.jsx',
+    'customComponents/FormCustom/FormCustomItemChildren/index':
+      'src/customComponents/FormCustom/FormCustomItemChildren/index.jsx',
+    //#endregion  FormCustom
+
     'customComponents/FromDisplayItem/index':
       'src/customComponents/FromDisplayItem/index.jsx',
     'customComponents/FunctionComponent/index':
