@@ -77,6 +77,7 @@ class BasicInfo extends TabPageBase {
         initContent: '',
         listTreeData: [],
         parentId: '1',
+        switchValue: true,
       },
     };
   }
@@ -196,6 +197,10 @@ class BasicInfo extends TabPageBase {
   afterHtmlChange = ({ html, text }) => {
     this.htmlContent = html;
     this.textContent = text;
+  };
+
+  handleSwitchChange = (v) => {
+    this.setState({ switchValue: v });
   };
 
   handleGalleryUploadChange = ({ file, fileList }) => {
@@ -389,6 +394,11 @@ class BasicInfo extends TabPageBase {
         data: metaData,
         key: fieldData.description.name,
       });
+
+      values[fieldData.switch.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.description.name,
+      });
     }
 
     return values;
@@ -408,6 +418,7 @@ class BasicInfo extends TabPageBase {
       initContent,
       listTreeData,
       parentId,
+      switchValue,
     } = this.state;
 
     const spinning = this.checkInProgress();
@@ -530,12 +541,14 @@ class BasicInfo extends TabPageBase {
                   children: children || [],
                 };
               },
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onChangeCallback: ({
                 value,
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 label,
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 extra,
                 treeData,
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 listData,
               }) => {
                 console.log(treeData);
@@ -1284,13 +1297,13 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.switch,
               fieldData: fieldData.switch,
-              checked: true,
+              checked: switchValue,
               require: false,
               otherProps: {
                 checkedChildren: '开启',
                 unCheckedChildren: '关闭',
                 onChange: (v) => {
-                  console.log(v);
+                  this.handleSwitchChange(v);
                 },
               },
             },
