@@ -36,6 +36,7 @@ functions/mock
 # lock
 /yarn.lock
 /package-lock.json
+/pnpm-lock.yaml
 
 # log
 *.log
