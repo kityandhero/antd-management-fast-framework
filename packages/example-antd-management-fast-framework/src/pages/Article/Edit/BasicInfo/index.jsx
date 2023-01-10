@@ -117,11 +117,13 @@ class BasicInfo extends TabPageBase {
     return d;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({
     metaData,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaListData,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaExtra,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaOriginalData,
   }) => {
     const {
