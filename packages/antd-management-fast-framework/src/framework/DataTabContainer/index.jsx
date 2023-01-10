@@ -20,17 +20,10 @@ import DataSingleView from '../DataSingleView/DataLoad';
 
 import styles from './index.less';
 
-let currentKey = '';
-
-// const TestParams = (props) => {
-//   const params = useParams();
-
-//   console.log(params);
-//   return <>{props.children({routeParams:params})}</>;
-// };
-
 class DataTabContainer extends DataSingleView {
   resetDataAfterLoad = false;
+
+  currentKey = '';
 
   tabList = [];
 
@@ -39,9 +32,11 @@ class DataTabContainer extends DataSingleView {
 
     this.state = {
       ...this.state,
-      defaultAvatarIcon: iconBuilder.picture(),
-      showPageHeaderAvatar: true,
-      customTabActiveKey: false,
+      ...{
+        defaultAvatarIcon: iconBuilder.picture(),
+        showPageHeaderAvatar: true,
+        customTabActiveKey: false,
+      },
     };
   }
 
@@ -82,53 +77,13 @@ class DataTabContainer extends DataSingleView {
   };
 
   handleTabChange = (key) => {
-    console.log({ key });
-
-    currentKey = key;
-
-    // const { pathname } = getCurrentLocation();
-
-    // const list = pathname.split('/');
-
-    // if (list.length <= 1) {
-    //   return '';
-    // }
-
-    // list[list.length - 1] = key;
-
-    // const path = list.join('/');
-
-    // const lastIndex = path.lastIndexOf('/update');
-
-    // if (lastIndex >= 0) {
-    //   this.redirectToPath(`${path.replace('/update', '/load')}`);
-    // } else {
-    //   this.redirectToPath(path);
-    // }
-
-    // (this.tabList || []).forEach((item) => {
-    //   if (item.key === key) {
-    //     this.redirectToPath(
-    //       `${match.url.replace('/update', '/load')}/${item.key}`,
-    //     );
-    //   }
-    // });
+    this.currentKey = key;
   };
 
   adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
 
   getTabActiveKey = () => {
-    return currentKey;
-
-    // const { pathname } = getCurrentLocation();
-
-    // const list = pathname.split('/');
-
-    // if (list.length > 1) {
-    //   return list[list.length - 1];
-    // }
-
-    // return '';
+    return this.currentKey;
   };
 
   fillInitialValuesAfterLoad = ({
@@ -167,9 +122,29 @@ class DataTabContainer extends DataSingleView {
         size: 'small',
         tabBarStyle: {
           marginBottom: 0,
+          backgroundColor: '#fff',
+          paddingTop: '16px',
+          paddingLeft: '24px',
+          paddingRight: '24px',
         },
         tabBarGutter: 3,
-        // items: tabListAvailable,
+        animated: {
+          inkBar: true,
+          tabPane: true,
+        },
+        // activeKey: this.getTabActiveKey(),
+        tabBarExtraContent: this.buildTabBarExtraContent(),
+        items: tabListAvailable.map((o) => {
+          return {
+            ...{
+              style: {
+                padding: '24px',
+              },
+            },
+            ...o,
+          };
+        }),
+        onChange: this.handleTabChange(),
       };
     }
 
@@ -248,8 +223,6 @@ class DataTabContainer extends DataSingleView {
       avatarImageLoadResult,
     } = this.state;
 
-    const tabListAvailable = this.getTabListAvailable();
-
     const avatarProps = showPageHeaderAvatar
       ? decorateAvatar(
           this.establishPageHeaderAvatarConfig(),
@@ -286,7 +259,6 @@ class DataTabContainer extends DataSingleView {
           childrenContentStyle={{
             padding: '0px',
           }}
-          // className={styles.customContainor}
           avatar={avatarProps}
           title={buildPageHeaderTitle(
             this.getPageName(),
@@ -295,44 +267,15 @@ class DataTabContainer extends DataSingleView {
           subTitle={this.buildPageHeaderSubTitle()}
           tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
           extra={this.buildExtraAction()}
-          // tabActiveKey={this.getTabActiveKey()}
           content={buildPageHeaderContent(pageHeaderContentConfig)}
           extraContent={pageHeaderExtraContent(
             this.establishPageHeaderExtraContentConfig(),
           )}
-          // tabList={tabListAvailable}
-          // tabBarExtraContent={this.buildTabBarExtraContent()}
-          // onTabChange={this.handleTabChange}
-          // tabProps={this.buildOtherTabProps()}
           // onBack={() => {
           //   this.backToList();
           // }}
         >
-          {/* <Outlet /> */}
-
-          <Tabs
-            type="card"
-            size="small"
-            tabBarStyle={{
-              marginBottom: 0,
-              backgroundColor: '#fff',
-              paddingTop: '16px',
-              paddingLeft: '24px',
-              paddingRight: '24px',
-            }}
-            tabBarGutter={3}
-            tabBarExtraContent={this.buildTabBarExtraContent()}
-            items={tabListAvailable.map((o) => {
-              return {
-                ...{
-                  style: {
-                    padding: '24px',
-                  },
-                },
-                ...o,
-              };
-            })}
-          />
+          <Tabs {...this.buildOtherTabProps()} />
 
           {this.renderOther()}
         </PageContainer>
