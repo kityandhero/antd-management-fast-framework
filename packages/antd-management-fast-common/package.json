@@ -52,6 +52,7 @@
     "antd": "^5.1.4",
     "array-move": "^4.0.0",
     "copy-to-clipboard": "^3.3.3",
+    "dayjs": "^1.11.7",
     "lodash": "^4.17.21",
     "lodash-decorators": "^6.0.1",
     "lodash.debounce": "^4.0.8",

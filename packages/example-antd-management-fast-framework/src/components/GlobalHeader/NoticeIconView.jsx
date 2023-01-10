@@ -1,6 +1,6 @@
 import { Tag } from 'antd';
 import groupBy from 'lodash/groupBy';
-import moment from 'moment';
+// import moment from 'moment';
 import { Component } from 'react';
 import { connect } from 'umi';
 
@@ -74,9 +74,9 @@ class GlobalHeaderRight extends Component {
     const newNotices = notices.map((notice) => {
       const newNotice = { ...notice };
 
-      if (newNotice.datetime) {
-        newNotice.datetime = moment(notice.datetime).utcOffset(8).fromNow();
-      }
+      // if (newNotice.datetime) {
+      //   newNotice.datetime = moment(notice.datetime).utcOffset(8).fromNow();
+      // }
 
       if (newNotice.id) {
         newNotice.key = newNotice.id;

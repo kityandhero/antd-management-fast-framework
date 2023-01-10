@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { connect } from 'umi';
 
 import {
@@ -388,7 +388,7 @@ class BasicInfo extends TabPageBase {
         key: fieldData.timePicker.name,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         convertBuilder: (v) => {
-          return moment('12:08', datetimeFormat.hourMinute);
+          return dayjs('12:08', datetimeFormat.hourMinute);
         },
       });
 
