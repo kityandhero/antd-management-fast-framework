@@ -13,8 +13,6 @@ const AnalysisRouteParams = () => {
   try {
     const location = useLocation();
 
-    console.log(location);
-
     setCurrentLocation(location);
   } catch (error) {
     console.log(error);
@@ -24,8 +22,6 @@ const AnalysisRouteParams = () => {
 
   try {
     const routeParams = useParams();
-
-    console.log(routeParams);
 
     setCurrentParams(routeParams);
   } catch (error) {

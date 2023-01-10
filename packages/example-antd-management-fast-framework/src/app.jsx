@@ -1,4 +1,4 @@
-import { Button, Divider, Input, Popover, theme } from 'antd';
+import { Divider, Popover, theme } from 'antd';
 import nprogress from 'nprogress';
 import React from 'react';
 import { Link } from 'umi';
@@ -6,7 +6,6 @@ import { SettingDrawer } from '@ant-design/pro-components';
 import { css } from '@emotion/css';
 
 import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import { setCurrentLocation } from 'antd-management-fast-common/es/utils/routeAssist';
 import Bootstrap from 'antd-management-fast-framework/es/customComponents/Bootstrap';
 import { getAppListData } from 'antd-management-fast-framework/es/utils/appListDataAssist';
 import { getLayoutSetting } from 'antd-management-fast-framework/es/utils/layoutSettingAssist';
@@ -343,9 +342,7 @@ export const layout = () => {
         );
       },
       footerRender: () => <Footer />,
-      onPageChange: (location) => {
-        console.log(location);
-      },
+      onPageChange: (location) => {},
     },
   };
 };

@@ -313,7 +313,6 @@ class DataTabContainer extends DataSingleView {
           {/* <Outlet /> */}
 
           <Tabs
-            destroyInactiveTabPane
             type="card"
             size="small"
             tabBarStyle={{
