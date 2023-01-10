@@ -30,6 +30,7 @@ import {
   pageHeaderRenderType,
   searchCardConfig,
 } from 'antd-management-fast-common/es/utils/constants';
+import { getCurrentLocation } from 'antd-management-fast-common/es/utils/routeAssist';
 import {
   buildFieldDescription,
   defaultListState,
@@ -60,7 +61,6 @@ import {
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import StandardTableCustom from 'antd-management-fast-component/es/customComponents/StandardTableCustom';
 
-import { getCurrentLocation } from '../../../utils/applicationAssist';
 import AuthorizationWrapper from '../../AuthorizationWrapper';
 import BatchAction from '../BatchAction';
 import ColumnSetting from '../ColumnSetting';

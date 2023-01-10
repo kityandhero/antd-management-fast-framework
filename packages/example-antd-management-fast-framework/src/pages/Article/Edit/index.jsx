@@ -30,6 +30,10 @@ import {
 } from '../Assist/config';
 import { fieldData, statusCollection } from '../Common/data';
 
+import BasicInfo from './BasicInfo';
+import ContentInfo from './ContentInfo';
+import MediaInfo from './MediaInfo';
+
 @connect(({ article, global, loading }) => ({
   article,
   global,
@@ -43,11 +47,15 @@ class Edit extends DataTabContainerSupplement {
       key: 'basicInfo',
       show: this.checkAuthority(accessWayCollection.article.get.permission),
       tab: '基本信息',
+      label: '基本信息',
+      children: <BasicInfo />,
     },
     {
       key: 'contentInfo',
       show: this.checkAuthority(accessWayCollection.article.get.permission),
       tab: '图文H5信息',
+      label: '图文H5信息',
+      children: <ContentInfo />,
     },
     {
       key: 'mediaInfo',
@@ -55,6 +63,8 @@ class Edit extends DataTabContainerSupplement {
         accessWayCollection.article.updateMediaData.permission,
       ),
       tab: '媒体信息',
+      label: '媒体信息',
+      children: <MediaInfo />,
     },
   ];
 

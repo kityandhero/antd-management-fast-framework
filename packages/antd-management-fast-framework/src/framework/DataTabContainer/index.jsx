@@ -1,8 +1,9 @@
-import { Divider, Space } from 'antd';
+import { Divider, Space, Tabs } from 'antd';
 import React from 'react';
-import { Outlet } from 'umi';
+import { Outlet, useParams } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 
+import { getCurrentLocation } from 'antd-management-fast-common/es/utils/routeAssist';
 import {
   isArray,
   isBoolean,
@@ -17,10 +18,18 @@ import {
 } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
-import { getCurrentLocation } from '../../utils/applicationAssist';
 import DataSingleView from '../DataSingleView/DataLoad';
 
 import styles from './index.less';
+
+let currentKey = '';
+
+// const TestParams = (props) => {
+//   const params = useParams();
+
+//   console.log(params);
+//   return <>{props.children({routeParams:params})}</>;
+// };
 
 class DataTabContainer extends DataSingleView {
   resetDataAfterLoad = false;
@@ -75,25 +84,29 @@ class DataTabContainer extends DataSingleView {
   };
 
   handleTabChange = (key) => {
-    const { pathname } = getCurrentLocation();
+    console.log({ key });
 
-    const list = pathname.split('/');
+    currentKey = key;
 
-    if (list.length <= 1) {
-      return '';
-    }
+    // const { pathname } = getCurrentLocation();
 
-    list[list.length - 1] = key;
+    // const list = pathname.split('/');
 
-    const path = list.join('/');
+    // if (list.length <= 1) {
+    //   return '';
+    // }
 
-    const lastIndex = path.lastIndexOf('/update');
+    // list[list.length - 1] = key;
 
-    if (lastIndex >= 0) {
-      this.redirectToPath(`${path.replace('/update', '/load')}`);
-    } else {
-      this.redirectToPath(path);
-    }
+    // const path = list.join('/');
+
+    // const lastIndex = path.lastIndexOf('/update');
+
+    // if (lastIndex >= 0) {
+    //   this.redirectToPath(`${path.replace('/update', '/load')}`);
+    // } else {
+    //   this.redirectToPath(path);
+    // }
 
     // (this.tabList || []).forEach((item) => {
     //   if (item.key === key) {
@@ -107,15 +120,17 @@ class DataTabContainer extends DataSingleView {
   adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
 
   getTabActiveKey = () => {
-    const { pathname } = getCurrentLocation();
+    return currentKey;
 
-    const list = pathname.split('/');
+    // const { pathname } = getCurrentLocation();
 
-    if (list.length > 1) {
-      return list[list.length - 1];
-    }
+    // const list = pathname.split('/');
 
-    return '';
+    // if (list.length > 1) {
+    //   return list[list.length - 1];
+    // }
+
+    // return '';
   };
 
   fillInitialValuesAfterLoad = ({
@@ -156,6 +171,7 @@ class DataTabContainer extends DataSingleView {
           marginBottom: 0,
         },
         tabBarGutter: 3,
+        // items: tabListAvailable,
       };
     }
 
@@ -270,7 +286,7 @@ class DataTabContainer extends DataSingleView {
             },
           }}
           childrenContentStyle={{
-            padding: '24px',
+            padding: '0px',
           }}
           // className={styles.customContainor}
           avatar={avatarProps}
@@ -281,20 +297,45 @@ class DataTabContainer extends DataSingleView {
           subTitle={this.buildPageHeaderSubTitle()}
           tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
           extra={this.buildExtraAction()}
-          tabActiveKey={this.getTabActiveKey()}
+          // tabActiveKey={this.getTabActiveKey()}
           content={buildPageHeaderContent(pageHeaderContentConfig)}
           extraContent={pageHeaderExtraContent(
             this.establishPageHeaderExtraContentConfig(),
           )}
-          tabList={tabListAvailable}
-          tabBarExtraContent={this.buildTabBarExtraContent()}
-          onTabChange={this.handleTabChange}
-          tabProps={this.buildOtherTabProps()}
+          // tabList={tabListAvailable}
+          // tabBarExtraContent={this.buildTabBarExtraContent()}
+          // onTabChange={this.handleTabChange}
+          // tabProps={this.buildOtherTabProps()}
           // onBack={() => {
           //   this.backToList();
           // }}
         >
-          <Outlet />
+          {/* <Outlet /> */}
+
+          <Tabs
+            destroyInactiveTabPane
+            type="card"
+            size="small"
+            tabBarStyle={{
+              marginBottom: 0,
+              backgroundColor: '#fff',
+              paddingTop: '16px',
+              paddingLeft: '24px',
+              paddingRight: '24px',
+            }}
+            tabBarGutter={3}
+            tabBarExtraContent={this.buildTabBarExtraContent()}
+            items={tabListAvailable.map((o) => {
+              return {
+                ...{
+                  style: {
+                    padding: '24px',
+                  },
+                },
+                ...o,
+              };
+            })}
+          />
 
           {this.renderOther()}
         </PageContainer>

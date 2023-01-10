@@ -31,6 +31,7 @@ const inputFile = {
     'utils/typeCheck': 'src/utils/typeCheck.js',
     'utils/typeConvert': 'src/utils/typeConvert.js',
     'utils/virtualRequest': 'src/utils/virtualRequest.js',
+    'utils/routeAssist': 'src/utils/routeAssist.js',
   },
 };
 

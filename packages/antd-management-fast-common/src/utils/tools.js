@@ -67,9 +67,11 @@ import {
   recordTrace as recordTraceCore,
   recordWarn as recordWarnCore,
 } from './log';
+import { getCurrentParams } from './routeAssist';
 import {
   isArray as isArrayCore,
   isBoolean as isBooleanCore,
+  isDate,
   isFunction as isFunctionCore,
   isNull as isNullCore,
   isNumber as isNumberCore,
@@ -1352,18 +1354,10 @@ export function getQueue() {
  * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state，
  * @export
  */
-export function getDerivedStateFromPropsForUrlParamsCore(nextProps) {
-  const { match } = nextProps;
+export function getDerivedStateFromPropsForUrlParamsCore() {
+  const params = getCurrentParams();
 
-  if ((match || null) != null) {
-    const { params } = match;
-
-    if ((params || null) != null) {
-      return { urlParams: params };
-    }
-  }
-
-  return null;
+  return { urlParams: params };
 }
 
 /**
@@ -1376,10 +1370,7 @@ export function getDerivedStateFromPropsForUrlParams(
   defaultUrlParams = { id: '' },
   parseUrlParamsForSetState = null,
 ) {
-  let stateUrlParams = getDerivedStateFromPropsForUrlParamsCore(
-    nextProps,
-    prevState,
-  );
+  let stateUrlParams = getDerivedStateFromPropsForUrlParamsCore();
 
   stateUrlParams = stateUrlParams || { urlParams: defaultUrlParams };
 

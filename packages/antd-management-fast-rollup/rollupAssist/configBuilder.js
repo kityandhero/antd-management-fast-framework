@@ -117,6 +117,7 @@ const externalCollection = [
     'antd-management-fast-common/es/utils/typeCheck',
     'antd-management-fast-common/es/utils/typeConvert',
     'antd-management-fast-common/es/utils/virtualRequest',
+    'antd-management-fast-common/es/utils/routeAssist',
   ],
   ...[
     'antd-management-fast-component',

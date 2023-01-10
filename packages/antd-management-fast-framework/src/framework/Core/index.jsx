@@ -21,7 +21,7 @@ class Core extends BaseComponent {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParamsCore(nextProps, prevState);
+    return getDerivedStateFromPropsForUrlParamsCore();
   }
 
   doDidMountTask = () => {
