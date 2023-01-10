@@ -32,6 +32,7 @@
     "antd": "^5.1.4",
     "antd-management-fast-common": "^2.0.0",
     "antd-management-fast-component": "^2.0.0",
+    "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
     "nprogress": "^0.2.0",
     "rc-queue-anim": "^2.0.0",
