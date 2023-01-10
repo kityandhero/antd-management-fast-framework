@@ -19,7 +19,7 @@
     "experimentalDecorators": true,
     "strict": true,
     "declaration": true,
-    "declarationDir": "es/types",
+    "declarationDir": "es",
     "emitDeclarationOnly": true
   },
   "include": ["src/**/*"],

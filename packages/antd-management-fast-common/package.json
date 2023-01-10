@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "build": "rimraf ./es && rollup --config rollup.config.compression.js --bundleConfigAsCjs && tsc -v && tsc -p ./tsconfig.types.json",
-    "build:skipCompression": "rimraf ./es rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs && tsc -v && tsc -p ./tsconfig.types.json",
+    "build:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs && tsc -v && tsc -p ./tsconfig.types.json",
     "clean-file": "rimraf ./src/.umi && rimraf ./node_modules",
     "dev": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch",
     "format": "prettier --cache --write .",

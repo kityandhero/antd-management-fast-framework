@@ -2,12 +2,15 @@
   "name": "antd-management-fast-rollup",
   "version": "1.0.0",
   "description": "> TODO: description",
-  "author": "卢志涛 <kityandhero@126.com>",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
   "license": "ISC",
+  "author": "卢志涛 <kityandhero@126.com>",
   "main": "lib/antd-management-fast-rollup.js",
   "scripts": {
     "clean-file": "rimraf ./src/.umi && rimraf ./node_modules"
+  },
+  "dependencies": {
+    "@umijs/max": "^4.0.42"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^4.0.2",

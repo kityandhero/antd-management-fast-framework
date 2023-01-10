@@ -1,8 +1,5 @@
 module.exports = {
-  extends: [
-    require.resolve('@umijs/fabric/dist/eslint'),
-    'plugin:react/jsx-runtime',
-  ],
+  extends: [require.resolve('@umijs/max/eslint')],
   globals: {
     page: true,
   },
