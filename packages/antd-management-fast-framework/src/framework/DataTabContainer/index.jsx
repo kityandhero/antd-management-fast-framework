@@ -118,6 +118,7 @@ class DataTabContainer extends DataSingleView {
 
     if (tabListAvailable.length > 0) {
       return {
+        // destroyInactiveTabPane: true,
         type: 'card',
         size: 'small',
         tabBarStyle: {
