@@ -1,21 +1,28 @@
 import { emptyLogo as emptyLogoSource } from './mediaDefault';
 
+export const whetherList = [
+  {
+    key: 'b24a21cf-a45c-4b6a-9993-f6953d7eb1ee',
+    flag: '0',
+    name: '否',
+    alias: '否',
+    description: '',
+    availability: 1,
+  },
+  {
+    key: 'ea1b8b1e-7b78-4b29-bbce-57ef0b25e23c',
+    flag: '1',
+    name: '是',
+    alias: '是',
+    description: '',
+    availability: 1,
+  },
+];
+
 const animalTypeCollection = {
   none: 'none',
   fade: 'fade',
   queue: 'queue',
-};
-
-/**
- * request method collection
- */
-export const requestMethod = {
-  get: 'GET',
-  post: 'POST',
-  put: 'PUT',
-  delete: 'DELETE',
-  trace: 'TRACE',
-  connect: 'CONNECT',
 };
 
 export const unknownLabel = '未知';
@@ -24,10 +31,6 @@ export const unknownLabel = '未知';
  * 动画类型
  */
 export const animalType = animalTypeCollection;
-
-export const zeroString = '0';
-
-export const zeroInt = 0;
 
 /**
  * 鉴权失败码
@@ -38,11 +41,6 @@ export const authenticationFailCode = 2001;
  * Api请求成功码
  */
 export const apiSuccessCode = 200;
-
-/**
- * 1970-01-01 00:00
- */
-export const emptyDatetime = '1970-01-01 00:00';
 
 /**
  * 用户默认图
@@ -114,68 +112,6 @@ export const formNameCollection = {
   },
 };
 
-/**
- * 转换集合
- */
-export const convertCollection = {
-  /**
-   * 数字
-   */
-  number: 'number',
-
-  /**
-   * 日期 date
-   */
-  datetime: 'datetime',
-
-  /**
-   * 字符串
-   */
-  string: 'string',
-
-  /**
-   * moment日期
-   */
-  moment: 'moment',
-
-  /**
-   * 金额
-   */
-  money: 'money',
-
-  /**
-   * 数组
-   */
-  array: 'array',
-
-  boolean: 'boolean',
-};
-
-/**
- * 格式化集合
- */
-export const formatCollection = {
-  /**
-   * 金额 ￥ 0.00
-   */
-  money: 'money',
-
-  /**
-   * 格式化日期 YYYY-MM-DD hh:mm:ss
-   */
-  datetime: 'datetime',
-
-  /**
-   * 中文金额
-   */
-  chineseMoney: 'chineseMoney',
-
-  /**
-   * 百分比
-   */
-  percentage: 'percentage',
-};
-
 export const dropdownExpandItemType = {
   divider: 'divider',
   item: 'item',
@@ -185,19 +121,6 @@ export const imageContentPreviewMode = {
   html: 1,
   listItem: 2,
   imageList: 3,
-};
-
-export const datetimeFormat = {
-  yearMonthDayHourMinuteSecond: 'YYYY-MM-DD HH:mm:ss',
-  yearMonthDayHourMinute: 'YYYY-MM-DD HH:mm',
-  yearMonthDay: 'YYYY-MM-DD',
-  yearMonth: 'YYYY-MM',
-  year: 'YYYY',
-  monthDayHourMinuteSecond: 'YYYY-MM-DD HH:mm:ss',
-  monthDayHourMinute: 'MM-DD HH:mm',
-  monthDay: 'MM-DD',
-  hourMinute: 'HH:mm',
-  hourMinuteSecond: 'HH:mm:ss',
 };
 
 export const selectModeCollection = {
@@ -314,14 +237,6 @@ export const listViewConfig = {
     fade: animalTypeCollection.fade,
     queue: animalTypeCollection.queue,
   },
-};
-
-/**
- * 排序动作
- */
-export const sortOperate = {
-  moveUp: 'moveUp',
-  moveDown: 'moveDown',
 };
 
 /**
@@ -842,25 +757,6 @@ export const dataTypeCollection = {
   },
 };
 
-export const notificationTypeCollection = {
-  success: 'success',
-  error: 'error',
-  info: 'info',
-  warning: 'warning',
-  warn: 'warn',
-  open: 'open',
-};
-
-export const messageTypeCollection = {
-  success: 'success',
-  error: 'error',
-  info: 'info',
-  warning: 'warning',
-  warn: 'warn',
-  loading: 'loading',
-  open: 'open',
-};
-
 export const tabBarCollection = {
   /**
    * 扩展区构建模式
@@ -926,13 +822,3 @@ export const mobileTypeCollection = {
     helper: '',
   },
 };
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

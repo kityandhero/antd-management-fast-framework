@@ -196,13 +196,3 @@ export function renderFormRankRadio({
     otherProps,
   });
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

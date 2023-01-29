@@ -494,13 +494,3 @@ export const iconBuilder = {
     return <ExclamationCircleOutlined {...(props || {})} />;
   },
 };
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

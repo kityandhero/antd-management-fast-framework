@@ -110,13 +110,3 @@ export const layoutSettings = {
   },
   ...(getLayoutSetting() || {}),
 };
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

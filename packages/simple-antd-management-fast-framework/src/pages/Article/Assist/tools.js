@@ -19,13 +19,3 @@ export function getStatusBadge(status) {
 
   return result;
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

@@ -85,13 +85,3 @@ export function clearSessionStorage() {
   const storage = window.sessionStorage;
   storage.clear();
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

@@ -229,13 +229,3 @@ export async function apiVirtualAccess({
 
   return result;
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

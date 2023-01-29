@@ -199,13 +199,3 @@ export function renderFormAccessWayStatusRadio({
     otherProps,
   });
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

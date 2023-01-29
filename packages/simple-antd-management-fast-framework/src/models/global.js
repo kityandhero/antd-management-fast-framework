@@ -1,5 +1,4 @@
 import { tacitlyState } from 'antd-management-fast-common/es/utils/dva';
-import { modelCollection } from 'antd-management-fast-common/es/utils/globalModel';
 import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
 import { showInfoMessage } from 'antd-management-fast-common/es/utils/tools';
 import {
@@ -14,7 +13,6 @@ const GlobalModel = {
 
   state: {
     ...tacitlyState,
-    ...(modelCollection || {}),
     ...{
       collapsed: false,
       amapObject: null,

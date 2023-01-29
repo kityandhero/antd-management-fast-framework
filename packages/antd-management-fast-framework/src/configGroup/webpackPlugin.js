@@ -173,13 +173,3 @@ export const webpackPlugin5 = (config, { env }) => {
     },
   });
 };
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

@@ -66,13 +66,3 @@ export const statusCollection = {
    */
   offline: 0,
 };
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

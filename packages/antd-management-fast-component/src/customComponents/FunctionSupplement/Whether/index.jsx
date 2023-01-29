@@ -1,8 +1,8 @@
 ﻿import {
   unknownLabel,
   unlimitedWithStringFlag,
+  whetherList,
 } from 'antd-management-fast-common/es/utils/constants';
-import { modelCollection } from 'antd-management-fast-common/es/utils/globalModel';
 import {
   isInvalid,
   refitCommonData,
@@ -23,8 +23,7 @@ import {
 
 export function refitWhetherList({ withUnlimited = true }) {
   const { whetherList: list } = {
-    ...{ whetherList: [] },
-    ...(modelCollection || {}),
+    ...{ whetherList: whetherList },
   };
 
   if (withUnlimited) {
@@ -130,14 +129,4 @@ export function renderFormWhetherRadio({
     required,
     otherProps,
   });
-}
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
 }

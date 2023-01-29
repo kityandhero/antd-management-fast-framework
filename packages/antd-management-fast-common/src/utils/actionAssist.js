@@ -13,74 +13,6 @@ import {
 const { confirm } = Modal;
 
 /**
- * 处理 actionCore 的异步请求结果
- * @param {*} target 目标调用对象
- * @param {*} target 数据标记
- * @param {*} compareDataIdHandler 对比函数
- * @param {*} handler 处理函数
- * @returns
- */
-export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
-  if ((target || null) == null) {
-    throw new Error('actionCore: target not allow null');
-  }
-
-  if ((target.state || null) == null) {
-    throw new Error('actionCore: target.state not allow null');
-  }
-
-  const { metaOriginalData } = target.state;
-
-  if ((metaOriginalData || null) == null) {
-    throw new Error('actionCore: target.state.metaOriginalData not allow null');
-  }
-
-  let indexData = -1;
-
-  if (!isFunction(compareDataIdHandler)) {
-    const text = `compareDataIdHandler mast be function`;
-
-    showRuntimeError({
-      message: text,
-    });
-
-    return;
-  }
-
-  if (!isFunction(handler)) {
-    const text = `handler mast be function`;
-
-    showRuntimeError({
-      message: text,
-    });
-
-    return;
-  }
-
-  if ((metaOriginalData.list || null) == null) {
-    throw new Error(
-      'actionCore: target.state.metaOriginalData.list must be array',
-    );
-  }
-
-  metaOriginalData.list.forEach((o, index) => {
-    const compareDataId = compareDataIdHandler(o);
-
-    if (compareDataId === dataId) {
-      indexData = index;
-    }
-  });
-
-  if (indexData >= 0) {
-    metaOriginalData.list[indexData] = handler(
-      metaOriginalData.list[indexData],
-    );
-
-    target.setState({ metaOriginalData });
-  }
-}
-
-/**
  * remote assess wrapper core
  * @param {*} api [string] remote api path.
  * @param {*} params [object] remote api params.
@@ -479,14 +411,4 @@ export async function confirmActionCore({
     },
     onCancel() {},
   });
-}
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
 }

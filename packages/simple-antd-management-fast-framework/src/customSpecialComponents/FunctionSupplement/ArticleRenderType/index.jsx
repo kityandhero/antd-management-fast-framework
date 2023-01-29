@@ -203,13 +203,3 @@ export function renderFormArticleRenderTypeRadio({
     otherProps,
   });
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

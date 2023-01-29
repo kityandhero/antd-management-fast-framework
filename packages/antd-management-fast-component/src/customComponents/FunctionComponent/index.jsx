@@ -3591,13 +3591,3 @@ export function adjustTableExpandConfig({ list, config }) {
 
   return null;
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

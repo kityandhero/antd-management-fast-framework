@@ -1,89 +1,23 @@
 import { message, notification } from 'antd';
 import { arrayMoveImmutable, arrayMoveMutable } from 'array-move';
 import copy from 'copy-to-clipboard';
-import {
-  difference as differenceLodash,
-  endsWith as endsWithLodash,
-  filter as filterLodash,
-  find as findLodash,
-  findIndex as findIndexLodash,
-  get as getLodash,
-  isEmpty as isEmptyLodash,
-  isEqual as isEqualLodash,
-  remove as removeLodash,
-  reverse as reverseLodash,
-  sortBy as sortByLodash,
-  sortedUniq as sortedUniqLodash,
-  split as splitLodash,
-  toLower,
-} from 'lodash';
+import { toLower } from 'lodash';
 import moment from 'moment';
 import numeral from 'numeral';
-import nzh from 'nzh';
-import { parse, stringify } from 'qs';
 import queue from 'queue';
 import randomColor from 'randomcolor';
 import { v4 as uuidv4 } from 'uuid';
 import { history, useIntl } from '@umijs/max';
 
-import {
-  convertCollection,
-  datetimeFormat,
-  emptyDatetime,
-  formatCollection,
-  listViewConfig,
-  logLevel,
-  messageTypeCollection,
-  notificationTypeCollection,
-  sortOperate,
-} from '../utils/constants';
+import { emptyDatetime, isBrowser, isDate, isString } from 'easy-soft-utility';
 
-import {
-  checkDevelopment as checkDevelopmentCore,
-  decodeBase64 as decodeBase64Core,
-  encodeBase64 as encodeBase64Core,
-  getAppInitConfigData,
-  inCollection as inCollectionCore,
-  isBrowser,
-  lowerFirst as lowerFirstCore,
-  replace as replaceCore,
-  stringIsNullOrWhiteSpace as stringIsNullOrWhiteSpaceCore,
-  trim as trimCore,
-  upperFirst as upperFirstCore,
-} from './core';
+import { getAppInitConfigData } from './core';
 import {
   getNearestLocalhostNotifyCache,
   setNearestLocalhostNotifyCache,
 } from './developAssist';
-import {
-  recordConfig as recordConfigCore,
-  recordDebug as recordDebugCore,
-  recordError as recordErrorCore,
-  recordExecute as recordExecuteCore,
-  recordInfo as recordInfoCore,
-  recordLog as recordLogCore,
-  recordObject as recordObjectCore,
-  recordText as recordTextCore,
-  recordTrace as recordTraceCore,
-  recordWarn as recordWarnCore,
-} from './log';
+import { setLocalStorageHandler } from './localStorageAssist';
 import { getCurrentParams } from './routeAssist';
-import {
-  isArray as isArrayCore,
-  isBoolean as isBooleanCore,
-  isDate,
-  isFunction as isFunctionCore,
-  isNull as isNullCore,
-  isNumber as isNumberCore,
-  isObject as isObjectCore,
-  isString as isStringCore,
-  isUndefined as isUndefinedCore,
-} from './typeCheck';
-import {
-  toBoolean as toBooleanCore,
-  toNumber as toNumberCore,
-  toString as toStringCore,
-} from './typeConvert';
 
 export function defaultBaseState() {
   return {
@@ -175,12 +109,6 @@ export function defaultFormState() {
   return data;
 }
 
-export function getValue(obj) {
-  return Object.keys(obj)
-    .map((key) => obj[key])
-    .join(',');
-}
-
 /**
  * 复制到剪贴板
  * @param {*} text
@@ -205,74 +133,6 @@ export function copyToClipboard(text, showCopyText = true, otherShowText = '') {
 }
 
 /**
- * 复制到剪贴板
- * @param {*} text
- */
-export function stringIsEmpty(text) {
-  return isEmptyLodash(toString(text || '').replace(' ', ''));
-}
-
-/**
- *替换指定字符串
- *
- * @export
- * @param {*} text
- * @param {*} replaceText
- * @param {*} beforeKeepNumber
- * @param {*} afterKeepNumber
- * @returns
- */
-export function replaceTargetText(
-  text,
-  replaceText,
-  beforeKeepNumber,
-  afterKeepNumber,
-) {
-  let result = toString(text);
-
-  const textLength = (text || '').length;
-  if (textLength > 0 && (beforeKeepNumber >= 0 || afterKeepNumber >= 0)) {
-    if (
-      beforeKeepNumber >= textLength ||
-      afterKeepNumber >= textLength ||
-      (beforeKeepNumber || 0) + (afterKeepNumber || 0) >= textLength
-    ) {
-      result = text;
-    } else {
-      const beforeKeep = text.substr(0, beforeKeepNumber);
-
-      const afterKeep = text.substr(
-        textLength - afterKeepNumber,
-        afterKeepNumber,
-      );
-
-      // const replaceTargetLength = textLength - (beforeKeepNumber || 0) - (afterKeepNumber || 0);
-
-      // const replaceTarget = text.substring(
-      //   (beforeKeepNumber || 0) <= 0 ? 0 : beforeKeepNumber - 1,
-      //   textLength - (beforeKeepNumber || 0) - (afterKeepNumber || 0)
-      // );
-
-      // const replaced = [];
-
-      // let i = 1;
-      // while (i <= replaceTargetLength) {
-      //   replaced.push(replaceText);
-      //   i += 1;
-      // }
-
-      result = beforeKeep + replaceText + afterKeep;
-    }
-  }
-
-  return result || '';
-}
-
-export function checkDevelopment() {
-  return checkDevelopmentCore();
-}
-
-/**
  * corsTarget
  * 跨域域名配置
  * @export
@@ -294,14 +154,6 @@ export function corsTarget() {
   }
 
   return corsTargetDomain;
-}
-
-export function goToPath(path) {
-  history.push(path);
-}
-
-export function redirectToPath(path) {
-  history.replace(path);
 }
 
 export function showError(text) {
@@ -488,76 +340,6 @@ export function getGuid() {
 }
 
 /**
- * 检测目标是否在数组址之中
- */
-export function inCollection(collection, value) {
-  return inCollectionCore(collection, value);
-}
-
-/**
- * 格式化时间
- *
- * @export
- * @param {*} v
- * @returns
- */
-export function isInvalid(v) {
-  return typeof v === 'undefined';
-}
-
-export function toDatetime(v) {
-  if ((v || null) == null) {
-    return null;
-  }
-
-  if (isDate(v)) {
-    return v;
-  }
-
-  if (isString(v)) {
-    const i = v.indexOf('T');
-
-    if (i < 0) {
-      // eslint-disable-next-line no-useless-escape
-      const value = v.replace(/\-/g, '/');
-      const result = new Date(value);
-
-      return result;
-    }
-  }
-
-  return new Date(v);
-}
-
-/**
- * 格式化时间
- *
- * @export
- * @param {*} v
- * @returns
- */
-export function formatDatetime({
-  data,
-  format = datetimeFormat.yearMonthDayHourMinuteSecond,
-  defaultValue = '',
-  timeZone = 8,
-}) {
-  if ((data || '') === '') {
-    return defaultValue;
-  }
-
-  const m = moment(
-    typeof data === 'object' ? data : new Date(data.replace('/', '-')),
-  ).utcOffset(timeZone);
-
-  if (m.isSame(emptyDatetime)) {
-    return defaultValue;
-  }
-
-  return m.format(format);
-}
-
-/**
  * 格式化数字
  */
 export function numeralFormat(v, formatString) {
@@ -631,498 +413,6 @@ export function dateToMoment({ data, timeZone = 8 }) {
 }
 
 /**
- * 判断是否是时间字符串
- *
- * @export
- * @param {*} v
- * @returns
- */
-export function isDatetime(v) {
-  const date = `${typeof v === 'undefined' ? null : v}`;
-  const result = date.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
-
-  if (result == null) {
-    return false;
-  }
-
-  const d = new Date(result[1], result[3] - 1, result[4]);
-  return (
-    d.getFullYear() === parseInt(result[1], 10) &&
-    d.getMonth() + 1 === parseInt(result[3], 10) &&
-    d.getDate() === parseInt(result[4], 10)
-  );
-}
-
-export function isNull(v) {
-  return isNullCore(v);
-}
-
-/**
- * 判断是否是数字字符串
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function isNumber(v) {
-  return isNumberCore(v);
-}
-
-/**
- * 转换为数字
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function toNumber(v) {
-  return toNumberCore(v);
-}
-
-/**
- * 转换为 bool
- *
- * @export
- * @param {*} v value
- * @returns
- */
-export function toBoolean(v) {
-  return toBooleanCore(v);
-}
-
-/**
- * 转换为数字
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function split(source, separator, limit = 1000) {
-  return splitLodash(source, separator, limit);
-}
-
-/**
- * 转换为文本
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function toString(value) {
-  return toStringCore(value);
-}
-
-/**
- * 去除重复数据并排序（升序）
- */
-export function sortedUnique(array) {
-  return sortedUniqLodash(array);
-}
-
-/**
- *
- *@param  val 值 len保留小数位数
- *
- */
-export function roundToTarget(v, len) {
-  if (!isMoney(v)) {
-    return 0;
-  }
-
-  const temp = 10 ** len;
-
-  return Math.round(toMoney(v) * temp) / temp;
-}
-
-/**
- * 判断是否是数字字符串
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function isMoney(v) {
-  const str = `${typeof v === 'undefined' ? null : v}`;
-
-  if (str === '') {
-    return false;
-  }
-
-  const regular = /^([1-9][\d]{0,15}|0)(\.[\d]{1,2})?$/;
-  const re = new RegExp(regular);
-  return re.test(str);
-}
-
-/**
- * 转换为数字
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function toMoney(v) {
-  if (isMoney(v)) {
-    return parseFloat(v, 10);
-  }
-
-  return 0;
-}
-
-/**
- * 通过 key 获取对应得值
- */
-export function getValueByKey({
-  data,
-  key,
-  defaultValue = null,
-  convert = null,
-  convertBuilder = null,
-  format = null,
-  formatBuilder = null,
-}) {
-  const v = getPathValue(data, key, defaultValue);
-
-  let result = v;
-
-  if ((convertBuilder || null) != null || (convert || null) != null) {
-    if (isFunction(convertBuilder)) {
-      result = convertTarget({
-        target: v,
-        convert: convertBuilder,
-      });
-    } else {
-      result = convertTarget({
-        target: v,
-        convert,
-      });
-    }
-  }
-
-  if ((formatBuilder || null) != null || (format || null) != null) {
-    if (isFunction(formatBuilder)) {
-      result = formatTarget({
-        target: result,
-        format: formatBuilder,
-      });
-    } else {
-      result = formatTarget({
-        target: result,
-        format,
-      });
-    }
-  }
-
-  return result;
-}
-
-/**
- * convertTarget
- * @param {*} param0
- * @returns
- */
-export function convertTarget({ target, convert }) {
-  if (isFunction(convert)) {
-    return convert(target);
-  }
-
-  if (isString(convert)) {
-    switch (convert) {
-      case convertCollection.number:
-        return toNumber(target);
-
-      case convertCollection.datetime:
-        return toDatetime(target);
-
-      case convertCollection.string:
-        return toString(target);
-
-      case convertCollection.moment:
-        return toMoment({ data: toString(target) });
-
-      case convertCollection.money:
-        return toMoney(target);
-
-      case convertCollection.array:
-        return (target || null) == null
-          ? []
-          : isArray(target)
-          ? target
-          : [target];
-
-      case convertCollection.boolean:
-        return toBoolean(target);
-
-      default:
-        return target;
-    }
-  }
-
-  return target;
-}
-
-export function formatTarget({ target, format, option = {} }) {
-  if (isFunction(format)) {
-    return format(target);
-  }
-
-  if (isString(format)) {
-    switch (format) {
-      case formatCollection.money:
-        return formatMoney(target);
-
-      case formatCollection.datetime:
-        return formatDatetime({
-          data: target,
-        });
-
-      case formatCollection.chineseMoney:
-        return formatMoneyToChinese({ target, option });
-
-      case formatCollection.percentage:
-        return `${roundToTarget(target * 100, 1)}%`;
-
-      default:
-        return target;
-    }
-  }
-
-  return target;
-}
-
-/**
- * 通过 path 获取对应得值
- */
-export function getPathValue(o, path, defaultValue = null) {
-  if (isUndefined(o)) {
-    return null || defaultValue;
-  }
-
-  if (o == null) {
-    return null || defaultValue;
-  }
-
-  if (!isString(path)) {
-    recordError({
-      path,
-    });
-
-    const text = 'getPathValue Function param path must be string';
-
-    showRuntimeError({
-      message: text,
-    });
-
-    return null;
-  }
-
-  const v = getLodash(o, path, defaultValue);
-
-  if (isUndefined(defaultValue) || isNull(defaultValue)) {
-    return v;
-  }
-
-  return v || defaultValue;
-}
-
-/**
- *计算时间间隔
- * @param {startTime} 起始时间
- * @param {endTime} 结束时间
- */
-export function calculateTimeInterval(startTime, endTime) {
-  const timeBegin = startTime.getTime();
-  const timeEnd = endTime.getTime();
-  const total = (timeEnd - timeBegin) / 1000;
-
-  const day = parseInt(total / (24 * 60 * 60)); //计算整数天数
-  const afterDay = total - day * 24 * 60 * 60; //取得算出天数后剩余的秒数
-  const hour = parseInt(afterDay / (60 * 60)); //计算整数小时数
-  const afterHour = total - day * 24 * 60 * 60 - hour * 60 * 60; //取得算出小时数后剩余的秒数
-  const min = parseInt(afterHour / 60); //计算整数分
-  const afterMin = total - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60; //取得算出分后剩余的秒数
-
-  return {
-    day,
-    hour: hour,
-    minute: min,
-    second: afterMin,
-  };
-}
-
-export function addHour(datetime, value) {
-  const t = toDatetime(datetime);
-
-  return t.setHours(t.getHours() + value);
-}
-
-export function addMinute(datetime, value) {
-  const t = toDatetime(datetime);
-
-  return t.setMinutes(t.getMinutes() + value);
-}
-
-export function addSecond(datetime, value) {
-  const t = toDatetime(datetime);
-
-  return t.setSeconds(t.getSeconds() + value);
-}
-
-export function getNow() {
-  return new Date();
-}
-
-/**
- * 格式化货币
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function formatDecimal(
-  numberSource,
-  placesSource = 2,
-  thousandSource = ',',
-  decimalSource = '.',
-) {
-  return formatMoney(
-    numberSource,
-    placesSource,
-    '',
-    thousandSource,
-    decimalSource,
-  );
-}
-
-/**
- * 格式化货币
- *
- * @export
- * @param {*} str
- * @returns
- */
-export function formatMoney(
-  numberSource,
-  symbolSource = '￥',
-  format = '0,0.00',
-) {
-  return `${symbolSource}${numeral(numberSource).format(format)}`;
-}
-
-export function toPercentage(val, format = '0,0.00') {
-  return `${numeral(toNumber(numeral(val).value() * 1000) / 10).format(
-    format,
-  )}%`;
-}
-
-/**
- * 检查字符串string是否以给定的target字符串结尾
- */
-export function endsWith(source, target, position) {
-  return endsWithLodash(source, target, position);
-}
-
-/**
- * 如果字符串末尾匹配目标字符串，则从源字符串末尾移除匹配项
- */
-export function removeEndMatch(source, target) {
-  if (!isString(source)) {
-    throw new Error('removeEndMatch only use for string source');
-  }
-
-  if (!isString(target)) {
-    throw new Error('removeEndMatch only use for string target');
-  }
-
-  if (stringIsNullOrWhiteSpace(source)) {
-    return source;
-  }
-
-  if (stringIsNullOrWhiteSpace(target)) {
-    return source;
-  }
-
-  const lastIndex = source.lastIndexOf(target);
-
-  if (lastIndex >= 0 && source.length === lastIndex + target.length) {
-    return source.substr(lastIndex, target.length);
-  }
-
-  return source;
-}
-
-/**
- * 从源字符串移除最后一个匹配项
- */
-export function removeLastMatch(source, target) {
-  if (!isString(source)) {
-    throw new Error('removeEndMatch only use for string source');
-  }
-
-  if (!isString(target)) {
-    throw new Error('removeEndMatch only use for string target');
-  }
-
-  if (stringIsNullOrWhiteSpace(source)) {
-    return source;
-  }
-
-  if (stringIsNullOrWhiteSpace(target)) {
-    return source;
-  }
-
-  const lastIndex = source.lastIndexOf(target);
-
-  if (lastIndex >= 0) {
-    return source.substr(lastIndex, target.length);
-  }
-
-  return source;
-}
-
-/**
- * 转换金额为人民币大写
- *
- * @export
- * @param {*} target 转换的目标
- * @param {*} option 转换配置, 参看Nzh包
- * @returns
- */
-export function formatMoneyToChinese({ target, option = {} }) {
-  const o = {
-    ...{
-      mode: 'cn',
-      complete: false,
-      outSymbol: true,
-    },
-    ...(option || {}),
-  };
-
-  const { mode } = o;
-
-  let nzhLocal = nzh.cn;
-
-  switch (mode) {
-    case 'hk':
-      nzhLocal = nzh.hk;
-      break;
-
-    default:
-      break;
-  }
-
-  return nzhLocal.toMoney(target, o);
-}
-
-export function seededRandom({ seed, min, max }) {
-  const maxValue = max || 1;
-  const minValue = min || 0;
-  const seedValue = (seed * 9301 + 49297) % 233280;
-  const rnd = seedValue / 233280.0;
-
-  return minValue + rnd * (maxValue - minValue);
-}
-
-/**
  * 通过种子等配置返回随机颜色值
  *
  * @export
@@ -1145,40 +435,6 @@ export function getRandomColor({
     format,
     alpha,
   });
-}
-
-function getBrowserInfoCore() {
-  const getBrowserVersion = () => {
-    const u = navigator.userAgent;
-    return {
-      // 移动终端浏览器版本信息
-      trident: u.indexOf('Trident') > -1, // IE内核
-      presto: u.indexOf('Presto') > -1, // opera内核
-      webKit: u.indexOf('AppleWebKit') > -1, // 苹果、谷歌内核
-      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') === -1, // 火狐内核
-      mobile: !!u.match(/AppleWebKit.*Mobile.*/), // 是否为移动终端
-      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
-      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, // android 终端或uc浏览器
-      iPhone: u.indexOf('iPhone') > -1, // 是否为 iPhone 或者 QQHD 浏览器
-      iPad: u.indexOf('iPad') > -1, // 是否iPad
-      webApp: u.indexOf('Safari') === -1, // 是否web应该程序，没有头部与底部
-    };
-  };
-
-  return {
-    versions: getBrowserVersion(),
-    language: (navigator.browserLanguage || navigator.language).toLowerCase(),
-  };
-}
-
-/**
- * 获取浏览器信息
- *
- * @export
- * @returns
- */
-export function getBrowserInfo() {
-  return getBrowserInfoCore();
 }
 
 /**
@@ -1420,164 +676,6 @@ export function arrayMoveMutate(array, from, to) {
 }
 
 /**
- * 获取本地数据
- * @export
- * @param {value} 对比源
- * @param {other} 对比对象
- * 执行深比较来确定两者的值是否相等。
- * 这个方法支持比较 arrays, array buffers, booleans, date objects, error objects, maps, numbers, Object objects, regexes, sets, strings, symbols, 以及 typed arrays. Object 对象值比较自身的属性，不包括继承的和可枚举的属性。 不支持函数和DOM节点比较。
- */
-export function isEqual(value, other) {
-  return isEqualLodash(value, other);
-}
-
-export function isEqualBySerialize(value, other) {
-  const d1 = JSON.stringify(value || {});
-  const d2 = JSON.stringify(other || {});
-
-  return d1 === d2;
-}
-
-export function cloneWithoutMethod(value) {
-  if (value == null) {
-    return null;
-  }
-
-  return JSON.parse(JSON.stringify(value));
-}
-
-export function isFunction(value) {
-  return isFunctionCore(value);
-}
-
-export function isArray(value) {
-  return isArrayCore(value);
-}
-
-export function isObject(o) {
-  return isObjectCore(o);
-}
-
-export function isBoolean(o) {
-  return isBooleanCore(o);
-}
-
-export function difference(array, values) {
-  return differenceLodash(array, values);
-}
-
-/**
- * 筛选需要的集合
- * @param {collection} 可筛选的对象，例如数组
- * @param {predicateFunction} 每次迭代调用的筛选函数
- */
-export function filter(collection, predicateFunction) {
-  return filterLodash(collection, predicateFunction);
-}
-
-/**
- * 创建一个元素数组。 以 iteratee 处理的结果升序排序。 这个方法执行稳定排序，也就是说相同元素会保持原始排序。 iteratees 调用1个参数： (value)。
- * @param {collection}  (Array|Object), 用来迭代的集合。
- * @param {predicateFunction} 这个函数决定排序
- */
-export function sortBy(collection, predicateFunction) {
-  return sortByLodash(collection, predicateFunction);
-}
-
-/**
- * 该方法返回第一个通过 predicateFunction 判断为真值的元素的索引值（index），而不是元素本身。
- * @param {array} (Array): 要搜索的数组。
- * @param {predicateFunction} 这个函数会在每一次迭代调用
- * @param {fromIndex} (number): The index to search from.
- */
-export function findIndex(array, predicateFunction, fromIndex = 0) {
-  return findIndexLodash(array, predicateFunction, fromIndex);
-}
-
-/**
- * 该方法返回第一个通过 predicateFunction 判断为真值的元素的索引值（index），而不是元素本身,返回匹配元素，否则返回 undefined。。
- * @param {array} (Array): 要搜索的数组。
- * @param {predicateFunction} 这个函数会在每一次迭代调用
- * @param {fromIndex} (number): The index to search from.
- */
-export function find(array, predicateFunction, fromIndex = 0) {
-  return findLodash(array, predicateFunction, fromIndex);
-}
-
-export function checkExist(array, predicateFunction, fromIndex = 0) {
-  const result = find(array, predicateFunction, fromIndex);
-
-  return !isUndefined(result);
-}
-
-export function reverse(array) {
-  return reverseLodash(array);
-}
-
-export function trim(source) {
-  return trimCore(source);
-}
-
-export function isUndefined(source) {
-  return isUndefinedCore(source);
-}
-
-export function replace(source, pattern, replacement) {
-  return replaceCore(source, pattern, replacement);
-}
-
-/**
- * check value is string
- */
-export function isString(value) {
-  return isStringCore(value);
-}
-
-export function upperFirst(value) {
-  return upperFirstCore(value);
-}
-
-export function lowerFirst(value) {
-  return lowerFirstCore(value);
-}
-
-/**
- * 移除数组中predicate（断言）返回为真值的所有元素，并返回移除元素组成的数组。predicate（断言） 会传入3个参数： (value, index, array)。
- * @param {*} array
- * @param {*} predicate (Array|Function|Object|string): 每次迭代调用的函数
- */
-export function removeFromArray(array, predicate) {
-  return removeLodash(array, predicate);
-}
-
-export function stringIsNullOrWhiteSpace(value) {
-  return stringIsNullOrWhiteSpaceCore(value);
-}
-
-/**
- * base64解码
- */
-export function decodeBase64(target) {
-  return decodeBase64Core(target);
-}
-
-/**
- * base64编码
- */
-export function encodeBase64(target) {
-  return encodeBase64Core(target);
-}
-
-/**
- * 补零
- * @param {*} val
- * @returns
- */
-export function fixedZero(val) {
-  return val * 1 < 10 ? `0${val}` : val;
-}
-
-/**
  * getTimeDistance
  */
 export function getTimeDistance(type) {
@@ -1632,6 +730,7 @@ export function getTimeDistance(type) {
   }
 
   const year = now.getFullYear();
+
   return [
     moment(`${year}-01-01 00:00:00`).utcOffset(8),
     moment(`${year}-12-31 23:59:59`).utcOffset(8),
@@ -1844,94 +943,6 @@ export function notify({
   }, 600);
 }
 
-export function recordLog(record, showMode, level = logLevel.debug) {
-  recordLogCore(record, showMode, level);
-}
-
-export function recordTrace(record) {
-  recordTraceCore(record);
-}
-
-export function recordWarn(record) {
-  recordWarnCore(record);
-}
-
-export function recordInfo(record) {
-  recordInfoCore(record);
-}
-
-export function recordConfig(record) {
-  recordConfigCore(record);
-}
-
-export function recordDebug(record) {
-  recordDebugCore(record);
-}
-
-export function recordExecute(record) {
-  recordExecuteCore(record);
-}
-
-export function recordError(record) {
-  recordErrorCore(record);
-}
-
-export function recordText(record, level = logLevel.debug) {
-  recordTextCore(record, level);
-}
-
-export function recordObject(record, level = logLevel.debug) {
-  recordObjectCore(record, level);
-}
-
-export function checkFromConfig({ label, name, helper }) {
-  let labelText = 'object';
-  let nameText = 'object';
-  let helperText = 'object';
-
-  if (isObject(label)) {
-    const text = 'label必须为文本';
-
-    showRuntimeError({
-      message: text,
-    });
-
-    recordObject(label);
-  } else {
-    labelText = label;
-  }
-
-  if (isObject(name)) {
-    const text = 'name必须为文本';
-
-    showRuntimeError({
-      message: text,
-    });
-
-    recordObject(name);
-  } else {
-    nameText = name;
-  }
-
-  if (isObject(helper)) {
-    const text = 'helper必须为文本';
-
-    showRuntimeError({
-      message: text,
-    });
-
-    recordObject(helper);
-  } else {
-    helperText = helper;
-  }
-
-  return {
-    label: labelText,
-    name: nameText,
-    helper: helperText,
-  };
-}
-
 const requestAnimFrameCustom = (() => {
   if (isBrowser()) {
     return (
@@ -1950,141 +961,6 @@ const requestAnimFrameCustom = (() => {
 })();
 
 export const requestAnimFrame = requestAnimFrameCustom;
-
-/**
- * 依照某个键的值进行排序，请确保键的值为数字型
- */
-export function sortCollectionByKey({
-  operate,
-  item,
-  list,
-  sortKey,
-  sortMin = 0,
-}) {
-  if ((item || null) == null) {
-    return list;
-  }
-
-  const beforeList = [];
-  const afterList = [];
-  let result = [];
-
-  if ((list || []).length <= 1) {
-    const text = '无需排序!';
-
-    showWarnMessage({
-      message: text,
-    });
-
-    return list;
-  }
-
-  const itemSort = getValueByKey({
-    data: item,
-    key: sortKey,
-    convert: convertCollection.number,
-  });
-
-  (list || []).forEach((o) => {
-    const sort = getValueByKey({
-      data: o,
-      key: sortKey,
-      convert: convertCollection.number,
-    });
-
-    if (sort < itemSort) {
-      beforeList.push(o);
-    }
-
-    if (sort > itemSort) {
-      afterList.push(o);
-    }
-  });
-
-  switch (operate) {
-    case sortOperate.moveUp:
-      if (itemSort === sortMin) {
-        const text = '已经排在首位!';
-
-        showWarnMessage({
-          message: text,
-        });
-
-        return list;
-      }
-
-      (beforeList || []).forEach((o, index) => {
-        if (index < beforeList.length - 1) {
-          result.push(o);
-        } else {
-          const o1 = item;
-          o1[sortKey] -= 1;
-
-          result.push(o1);
-
-          const o2 = o;
-          o2[sortKey] += 1;
-
-          result.push(o2);
-        }
-      });
-
-      result = result.concat(afterList);
-
-      break;
-
-    case sortOperate.moveDown:
-      if (itemSort === (list || []).length + sortMin - 1) {
-        const text = '已经排在末位!';
-
-        showWarnMessage({
-          message: text,
-        });
-
-        return list;
-      }
-
-      result = result.concat(beforeList);
-
-      (afterList || []).forEach((o, index) => {
-        if (index === 0) {
-          const o2 = o;
-          o2[sortKey] -= 1;
-
-          result.push(o2);
-
-          const o1 = item;
-          o1[sortKey] += 1;
-
-          result.push(o1);
-        } else {
-          result.push(o);
-        }
-      });
-
-      break;
-
-    default: {
-      const text = `不符合的操作，允许的操作为['${sortOperate.moveUp}','${sortOperate.moveDown}']!`;
-
-      showWarnMessage({
-        message: text,
-      });
-
-      break;
-    }
-  }
-
-  return result;
-}
-
-export function queryStringify(data) {
-  return stringify(data);
-}
-
-export function queryStringParse(data) {
-  return parse(data);
-}
 
 /**
  * 语言渲染封装器
@@ -2106,12 +982,51 @@ export function formatMessage(o) {
   return FormatMessageWrapper(o);
 }
 
+function navigateTo(o) {
+  const location = isString(o)
+    ? {
+        pathname: o,
+      }
+    : o;
+
+  if (runtimeSettings.getUseNprogress()) {
+    nprogress.inc();
+
+    setTimeout(() => {
+      nprogress.done();
+    }, 400);
+  }
+
+  history.push(location);
+}
+
+function redirectTo(o) {
+  const location = isString(o)
+    ? {
+        pathname: o,
+      }
+    : o;
+
+  if (runtimeSettings.getUseNprogress()) {
+    nprogress.inc();
+
+    setTimeout(() => {
+      nprogress.done();
+    }, 400);
+  }
+
+  history.replace(location);
+}
+
 /**
- * 占位函数
- *
- * @export
- * @returns
+ * 设置 Navigation 处理器
  */
-export function empty() {
-  return {};
+export function setNavigationHandler() {
+  setNavigator(navigateTo);
+  setRedirector(redirectTo);
+}
+
+export function setEasySoftUtilityHandler() {
+  setLocalStorageHandler();
+  setNavigationHandler();
 }

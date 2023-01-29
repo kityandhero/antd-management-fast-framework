@@ -29,7 +29,9 @@ module.exports = {
       'error',
       {
         groups: [
-          ['^(?!antd-management-fast-)[a-zA-Z0-9]', '^@(?!/)'],
+          ['^(?!antd-management-fast-)(?!easy-soft-)[a-zA-Z0-9]', '^@(?!/)'],
+          ['^(?!@/)(?!easy-soft-)(?!.)'],
+          ['^easy-soft-'],
           ['^(?!@/)(?!antd-management-fast-)(?!.)'],
           ['^antd-management-fast-'],
           ['^((@/).*|$)'],

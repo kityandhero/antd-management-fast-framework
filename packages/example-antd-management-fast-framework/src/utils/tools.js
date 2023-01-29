@@ -74,13 +74,3 @@ export function getTitle() {
 
   return shortName;
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

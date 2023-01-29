@@ -146,13 +146,3 @@ export const handleDefaultParams = {
   callback: null,
   pretreatment: null,
 };
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

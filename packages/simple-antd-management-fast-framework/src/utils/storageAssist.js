@@ -181,13 +181,3 @@ export function removeCurrentOperatorCache() {
   const key = storageKeyCollection.currentOperator;
   removeLocalStorage(key);
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

@@ -643,13 +643,3 @@ export function corsTargetWithApiVersion() {
 
   return path;
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}

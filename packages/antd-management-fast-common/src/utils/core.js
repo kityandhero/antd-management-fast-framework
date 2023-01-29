@@ -1,9 +1,3 @@
-import {
-  lowerFirst as lowerFirstLodash,
-  replace as replaceLodash,
-  trim as trimLodash,
-  upperFirst as upperFirstLodash,
-} from 'lodash';
 import { pathToRegexp } from 'path-to-regexp';
 import { parse } from 'qs';
 import React from 'react';
@@ -15,10 +9,6 @@ let appConfigureMerge = {};
 let appConfigureMergeComplete = false;
 
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);
-
-export function checkDevelopment() {
-  return process.env.NODE_ENV === 'development';
-}
 
 /**
  * props.route.routes
@@ -58,8 +48,11 @@ export const getRouteAuthority = (path, routeData) => {
 
 export const isComponentClass = (component) => {
   if (!component) return false;
+
   const proto = Object.getPrototypeOf(component);
+
   if (proto === React.Component || proto === Function.prototype) return true;
+
   return isComponentClass(proto);
 };
 
@@ -119,85 +112,4 @@ export function getAppInitConfigData() {
   appConfigureMergeComplete = true;
 
   return appConfigureMerge;
-}
-
-export function replace(source, pattern, replacement) {
-  return replaceLodash(source, pattern, replacement);
-}
-
-export function trim(source) {
-  return trimLodash(source);
-}
-
-export function upperFirst(source) {
-  return upperFirstLodash(source);
-}
-
-export function lowerFirst(source) {
-  return lowerFirstLodash(source);
-}
-
-export function stringIsNullOrWhiteSpace(value) {
-  return trim(replace(value || '', ' ', '')) === '';
-}
-
-export function isBrowser() {
-  return (
-    typeof window !== 'undefined' &&
-    typeof window.document !== 'undefined' &&
-    typeof window.document.createElement !== 'undefined'
-  );
-}
-
-/**
- * 检测目标是否在数组址之中
- */
-export function inCollection(collection, value) {
-  let result = false;
-
-  if (!isArray(collection)) {
-    return result;
-  }
-
-  collection.some((o) => {
-    if (o === value) {
-      result = true;
-
-      return true;
-    }
-
-    return false;
-  });
-
-  return result;
-}
-
-/**
- * base64解码
- */
-export function decodeBase64(target) {
-  let commonContent = (target || '').replace(/\s/g, '+');
-
-  commonContent = Buffer.from(commonContent, 'base64').toString();
-
-  return commonContent;
-}
-
-/**
- * base64编码
- */
-export function encodeBase64(target) {
-  const base64Content = Buffer.from(target).toString('base64');
-
-  return base64Content;
-}
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
 }

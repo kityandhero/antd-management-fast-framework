@@ -1,4 +1,4 @@
-import { decodeBase64, encodeBase64 } from './core';
+import { decodeBase64, encodeBase64 } from 'easy-soft-utility';
 
 /**
  * 获取LocalStorage数据
@@ -6,7 +6,7 @@ import { decodeBase64, encodeBase64 } from './core';
  * @param {*} key
  * @param {*} value
  */
-export function getStringFromLocalStorage(key) {
+function getFromLocalStorage(key) {
   const storage = window.localStorage;
   const value = storage.getItem(key);
 
@@ -25,28 +25,12 @@ export function getStringFromLocalStorage(key) {
 }
 
 /**
- * 获取LocalStorage数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function getJsonFromLocalStorage(key) {
-  const jsonString = getStringFromLocalStorage(key);
-
-  if (jsonString) {
-    return JSON.parse(jsonString || '{}');
-  }
-
-  return null;
-}
-
-/**
  * 存储本地数据
  * @export
  * @param {*} key
  * @param {*} value
  */
-export function saveStringToLocalStorage(key, value) {
+function saveToLocalStorage(key, value) {
   const storage = window.localStorage;
 
   if (process.env.NODE_ENV === 'development') {
@@ -57,22 +41,13 @@ export function saveStringToLocalStorage(key, value) {
 }
 
 /**
- * 存储本地数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function saveJsonToLocalStorage(key, json) {
-  saveStringToLocalStorage(key, JSON.stringify(json || {}));
-}
-
-/**
  * 移除LocalStorage数据
  * @export
  * @param {*} key
  */
-export function removeLocalStorage(key) {
+function removeLocalStorage(key) {
   const storage = window.localStorage;
+
   storage.removeItem(key);
 }
 
@@ -81,17 +56,18 @@ export function removeLocalStorage(key) {
  * @export
  * @param {*} key
  */
-export function clearLocalStorage() {
+function flushLocalStorage() {
   const storage = window.localStorage;
+
   storage.clear();
 }
 
 /**
- * 占位函数
- *
- * @export
- * @returns
+ * 设置 Local Storage 处理器
  */
-export function empty() {
-  return {};
+export function setLocalStorageHandler() {
+  setLocalStorageGetter(getFromLocalStorage);
+  setLocalStorageSetter(saveToLocalStorage);
+  setLocalStorageRemover(removeLocalStorage);
+  setLocalStorageFlusher(flushLocalStorage);
 }

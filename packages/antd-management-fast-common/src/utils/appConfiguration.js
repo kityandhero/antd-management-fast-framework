@@ -395,13 +395,3 @@ export function getTitle() {
 
   return appName || '';
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export function empty() {
-  return {};
-}
