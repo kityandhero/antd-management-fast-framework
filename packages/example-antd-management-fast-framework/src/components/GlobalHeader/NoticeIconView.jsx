@@ -5,7 +5,7 @@ import { Component } from 'react';
 import { connect } from 'umi';
 
 import {
-  recordDebug,
+  logDebug,
   showInfoMessage,
   showSuccessMessage,
 } from 'antd-management-fast-common/es/utils/tools';
@@ -21,7 +21,7 @@ class GlobalHeaderRight extends Component {
     if (dispatch) {
       const type = 'global/fetchNotices';
 
-      recordDebug(`model access: ${type}`);
+      logDebug(`model access: ${type}`);
 
       dispatch({
         type,
@@ -36,7 +36,7 @@ class GlobalHeaderRight extends Component {
     if (dispatch) {
       const changeNoticeReadStateType = 'global/changeNoticeReadState';
 
-      recordDebug(`model access: ${changeNoticeReadStateType}`);
+      logDebug(`model access: ${changeNoticeReadStateType}`);
 
       dispatch({
         type: changeNoticeReadStateType,
@@ -55,7 +55,7 @@ class GlobalHeaderRight extends Component {
     if (dispatch) {
       const clearNoticesType = 'global/clearNotices';
 
-      recordDebug(`model access: ${clearNoticesType}`);
+      logDebug(`model access: ${clearNoticesType}`);
 
       dispatch({
         type: clearNoticesType,

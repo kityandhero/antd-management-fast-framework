@@ -4,14 +4,13 @@ import {
   copyToClipboard,
   getRandomColor,
   isNumber,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
 class ColorText extends PureComponent {
   copyText = () => {
     const { canCopy, text } = this.props;
 
-    if (canCopy && !stringIsNullOrWhiteSpace(text)) {
+    if (canCopy && !checkStringIsNullOrWhiteSpace(text)) {
       copyToClipboard(text);
     }
   };
@@ -46,7 +45,9 @@ class ColorText extends PureComponent {
     };
 
     const textStyle = {
-      ...(!stringIsNullOrWhiteSpace(colorValue) ? { color: colorValue } : {}),
+      ...(!checkStringIsNullOrWhiteSpace(colorValue)
+        ? { color: colorValue }
+        : {}),
     };
 
     return (
@@ -56,12 +57,12 @@ class ColorText extends PureComponent {
           this.copyText();
         }}
       >
-        {stringIsNullOrWhiteSpace(textPrefix) ? (
+        {checkStringIsNullOrWhiteSpace(textPrefix) ? (
           ''
         ) : (
           <>
             <span style={textPrefixStyle || null}>{textPrefix}</span>
-            {stringIsNullOrWhiteSpace(separator) ? null : (
+            {checkStringIsNullOrWhiteSpace(separator) ? null : (
               <span style={separatorStyle || null}>{separator}</span>
             )}
           </>

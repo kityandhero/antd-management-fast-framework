@@ -1,23 +1,10 @@
 import nprogress from 'nprogress';
 import { Component } from 'react';
 
+import { navigateTo } from 'easy-soft-utility';
+
 import { runtimeSettings } from '../../utils/dynamicSetting';
-import {
-  defaultBaseState,
-  getGuid,
-  goToPath as goToPathCore,
-  recordConfig,
-  recordDebug,
-  recordError,
-  recordExecute,
-  recordLog,
-  recordObject,
-  recordText,
-  redirectToPath as redirectToPathCore,
-  showErrorMessage,
-} from '../../utils/tools';
-import { isEqual, isFunction, isNumber, isObject } from '../../utils/typeCheck';
-import { toNumber } from '../../utils/typeConvert';
+import { defaultBaseState, getGuid } from '../../utils/tools';
 
 function filterModel(props) {
   const result = { ...props };
@@ -146,7 +133,7 @@ class ComponentBase extends Component {
     const compareResult = comparePropsResult || compareStateResult;
 
     if (this.showRenderCountInConsole && compareResult) {
-      recordObject({
+      logObject({
         message: 'shouldComponentUpdate:true',
         nextPropsIgnoreModel,
         currentPropsIgnoreModel,
@@ -247,15 +234,15 @@ class ComponentBase extends Component {
   };
 
   doWorkWhenCheckNeedSignInDidMountFail = () => {
-    recordExecute('doWorkWhenCheckNeedSignInDidMountFail');
-    recordConfig(
+    logExecute('doWorkWhenCheckNeedSignInDidMountFail');
+    logConfig(
       'doWorkWhenCheckNeedSignInDidMountFail do nothing,if you need,you can override it: doWorkWhenCheckNeedSignInDidMountFail = () => {}',
     );
   };
 
   doWorkWhenCheckPermissionFail = () => {
-    recordExecute('doWorkWhenCheckPermissionFail');
-    recordConfig(
+    logExecute('doWorkWhenCheckPermissionFail');
+    logConfig(
       'doWorkWhenCheckPermissionFail do nothing,if you need,you can override it: doWorkWhenCheckPermissionFail = () => {}',
     );
   };
@@ -297,7 +284,7 @@ class ComponentBase extends Component {
       message: 'error occurred, please view in console.',
     });
 
-    recordError({
+    logError({
       error,
       info,
     });
@@ -318,7 +305,7 @@ class ComponentBase extends Component {
   getDispatch = () => {
     const text = 'please override getDispatch, and return a function';
 
-    recordError(text);
+    logError(text);
 
     throw new Error(text);
   };
@@ -327,7 +314,7 @@ class ComponentBase extends Component {
     const dispatch = this.getDispatch();
 
     if (!isFunction(dispatch)) {
-      recordError('dispatch not a function, please check getDispatch');
+      logError('dispatch not a function, please check getDispatch');
     }
 
     return dispatch;
@@ -336,7 +323,7 @@ class ComponentBase extends Component {
   dispatchApi = ({ type, payload, alias = 'data' }) => {
     const dispatch = this.getDispatchWrapper();
 
-    recordDebug(`model access: ${type}`);
+    logDebug(`model access: ${type}`);
 
     return dispatch({ type, payload, alias });
   };
@@ -354,7 +341,7 @@ class ComponentBase extends Component {
       }, 400);
     }
 
-    goToPathCore(location);
+    navigateTo(location);
   };
 
   redirectToPath = (path) => {
@@ -370,7 +357,7 @@ class ComponentBase extends Component {
       }, 400);
     }
 
-    redirectToPathCore(location);
+    navigateTo(location);
   };
 
   checkHasMore = (pageNo, pageSize, total) => {
@@ -409,7 +396,7 @@ class ComponentBase extends Component {
 
       const text = `${this.constructor.name},renderFrequency:${this.renderCount}`;
 
-      recordText(text);
+      logText(text);
     }
   }
 

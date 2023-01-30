@@ -2,7 +2,7 @@ import { Tooltip } from 'antd';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 
-import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
+import { checkStringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 
 import './index.less';
 
@@ -263,7 +263,7 @@ export default class Ellipsis extends Component {
           title: title || children,
           children: node,
         },
-        ...(stringIsNullOrWhiteSpace(color) ? {} : { color }),
+        ...(checkStringIsNullOrWhiteSpace(color) ? {} : { color }),
       });
     }
 

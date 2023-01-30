@@ -1,6 +1,6 @@
 import { getModelRemoteData } from 'antd-management-fast-common/es/utils/dva';
 import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
+import { checkStringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 
 export function getSexName(value) {
   let result = '未知';
@@ -68,7 +68,7 @@ export function getTitle() {
     ...(platform || {}),
   };
 
-  if (stringIsNullOrWhiteSpace(shortName)) {
+  if (checkStringIsNullOrWhiteSpace(shortName)) {
     return runtimeSettings.getLeftBarText();
   }
 

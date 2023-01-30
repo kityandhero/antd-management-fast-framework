@@ -1,10 +1,7 @@
 import { Col, Divider, Row } from 'antd';
 import React, { PureComponent } from 'react';
 
-import {
-  isArray,
-  showRuntimeError,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isArray } from 'antd-management-fast-common/es/utils/tools';
 
 class StatusBar extends PureComponent {
   render() {

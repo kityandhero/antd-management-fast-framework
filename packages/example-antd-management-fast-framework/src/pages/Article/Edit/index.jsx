@@ -10,7 +10,6 @@ import {
   getValueByKey,
   notifySuccess,
   showInfoMessage,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
@@ -175,7 +174,7 @@ class Edit extends DataTabContainerSupplement {
       key: fieldData.image.name,
     });
 
-    if (!stringIsNullOrWhiteSpace(image || '')) {
+    if (!checkStringIsNullOrWhiteSpace(image || '')) {
       return { src: image };
     }
 

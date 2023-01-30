@@ -1,4 +1,3 @@
-import { flushAllCache, getCache, hasCache, setCache } from './cacheAssist';
 import {
   getAccessWayCollectionCache,
   storageKeyCollection,
@@ -12,10 +11,8 @@ import {
   isArray,
   isObject,
   isString,
-  recordError,
-  recordObject,
+  logObject,
   showErrorMessage,
-  stringIsNullOrWhiteSpace,
 } from './tools';
 
 const authorityCollectionCache = 'authorityCollectionCache';
@@ -148,7 +145,7 @@ export function checkIsSuper() {
 
   const superPermission = getSuperPermission();
 
-  if (!stringIsNullOrWhiteSpace(superPermission)) {
+  if (!checkStringIsNullOrWhiteSpace(superPermission)) {
     const list = getAllAuthority();
     const isSuper = (list || []).find((o) => o === superPermission) || '';
 
@@ -193,7 +190,7 @@ function checkHasAuthorities(authCollection) {
     message: text,
   });
 
-  recordError({ auth });
+  logError({ auth });
 
   return result;
 }
@@ -234,7 +231,7 @@ function checkHasAuthorityCore(auth) {
   const v = (list || []).find((o) => o === auth);
 
   if ((v ?? null) == null) {
-    recordObject({
+    logObject({
       checkAuthority: auth,
       listAuthority: list,
       accessWayCollection,
@@ -272,7 +269,7 @@ export function checkHasAuthority(auth) {
     return checkHasAuthorityCore(auth);
   }
 
-  recordObject({
+  logObject({
     auth,
   });
 

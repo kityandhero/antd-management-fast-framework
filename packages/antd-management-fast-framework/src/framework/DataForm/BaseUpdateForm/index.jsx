@@ -2,8 +2,7 @@ import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/
 import {
   isFunction,
   isUndefined,
-  recordObject,
-  showRuntimeError,
+  logObject,
   showWarningMessage,
 } from 'antd-management-fast-common/es/utils/tools';
 
@@ -94,7 +93,7 @@ class BaseUpdateForm extends DataSingleView {
                 }
               })
               .catch((res) => {
-                recordObject(res);
+                logObject(res);
 
                 that.setState({
                   processing: false,

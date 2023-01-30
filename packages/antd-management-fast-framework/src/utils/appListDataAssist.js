@@ -3,20 +3,19 @@ import { getDispatch } from 'antd-management-fast-common/es/utils/dva';
 import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
   isFunction,
-  recordDebug,
-  recordExecute,
-  stringIsNullOrWhiteSpace,
+  logDebug,
+  logExecute,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import { getAppListDataCache, setAppListDataCache } from './storageAssist';
 
 export function loadAppListData({ successCallback = null }) {
-  recordExecute('loadAppListData');
+  logExecute('loadAppListData');
 
   const appListDataCatch = getAppListDataCache();
 
   if ((appListDataCatch || null) != null) {
-    recordDebug('app list data first load success, ignore load');
+    logDebug('app list data first load success, ignore load');
 
     return;
   }
@@ -25,7 +24,7 @@ export function loadAppListData({ successCallback = null }) {
 
   const appListDataPath = runtimeSettings.getAppListDataPath();
 
-  const api = stringIsNullOrWhiteSpace(appListDataPath)
+  const api = checkStringIsNullOrWhiteSpace(appListDataPath)
     ? 'schedulingControl/singleListAppListSimulation'
     : 'schedulingControl/singleListAppList';
 
@@ -49,7 +48,7 @@ export function loadAppListData({ successCallback = null }) {
 }
 
 export function getAppListData() {
-  recordExecute('getAppListData');
+  logExecute('getAppListData');
 
   const appListDataCatch = getAppListDataCache();
 

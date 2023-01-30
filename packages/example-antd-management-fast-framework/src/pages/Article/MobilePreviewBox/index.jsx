@@ -3,7 +3,6 @@ import React from 'react';
 import {
   isArray,
   showErrorMessage,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 import { buildPlayer } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 import MobilePreviewArea from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewArea';
@@ -55,10 +54,10 @@ class MobilePreviewBox extends MobilePreviewArea {
 
     return (
       <>
-        {stringIsNullOrWhiteSpace(record.image) ? null : (
+        {checkStringIsNullOrWhiteSpace(record.image) ? null : (
           <img width="100%" src={record.image} />
         )}
-        {stringIsNullOrWhiteSpace(record.description) ? null : (
+        {checkStringIsNullOrWhiteSpace(record.description) ? null : (
           <p
             style={{
               textIndent: '28px',
@@ -67,7 +66,7 @@ class MobilePreviewBox extends MobilePreviewArea {
             {record.description}
           </p>
         )}
-        {stringIsNullOrWhiteSpace(record.video)
+        {checkStringIsNullOrWhiteSpace(record.video)
           ? null
           : buildPlayer({ url: record.video })}
       </>

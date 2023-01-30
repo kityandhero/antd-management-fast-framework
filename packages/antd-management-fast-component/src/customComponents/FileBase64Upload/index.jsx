@@ -2,10 +2,7 @@ import { Button, Input, Upload } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import {
-  isFunction,
-  showRuntimeError,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isFunction } from 'antd-management-fast-common/es/utils/tools';
 
 import { iconBuilder } from '../Icon';
 

@@ -55,14 +55,12 @@ import {
   isFunction,
   isNumber,
   isObject,
+  logObject,
+  logText,
   lowerFirst,
-  recordObject,
-  recordText,
   replaceTargetText,
   showErrorMessage,
-  showRuntimeError,
   sortBy,
-  stringIsNullOrWhiteSpace,
   toNumber,
   toString,
   transformListData,
@@ -204,7 +202,7 @@ export function buildButton({
 
   if (confirmAdjust) {
     if (isBoolean(confirmAdjust)) {
-      recordObject({
+      logObject({
         key,
         type,
         size,
@@ -451,7 +449,7 @@ export function buildDropdown({
 
     if (confirmAdjust) {
       if (isBoolean(confirmAdjust)) {
-        recordObject(arguments[0]);
+        logObject(arguments[0]);
 
         throw new Error(
           'buildMenu : confirm property in menu Items not allow bool when check confirm is true.',
@@ -700,8 +698,8 @@ export function buildMenu({
 
     const { key, disabled, hidden, withDivider, type, uponDivider } = d;
 
-    if (stringIsNullOrWhiteSpace(key)) {
-      recordObject(d);
+    if (checkStringIsNullOrWhiteSpace(key)) {
+      logObject(d);
 
       showErrorMessage({
         message: 'key is not allow empty',
@@ -789,7 +787,7 @@ export function buildMenu({
       {listItem.map((o) => {
         const { type, key, icon, text, disabled, hidden, confirm, color } = o;
 
-        if (stringIsNullOrWhiteSpace(key)) {
+        if (checkStringIsNullOrWhiteSpace(key)) {
           showErrorMessage({
             message: 'key is not allow empty',
           });
@@ -991,7 +989,7 @@ export function buildCustomGrid({ key = null, list, props }) {
         }
       : {};
 
-    const titleComponent = stringIsNullOrWhiteSpace(title) ? null : (
+    const titleComponent = checkStringIsNullOrWhiteSpace(title) ? null : (
       <div
         style={{
           marginBottom: '8px',
@@ -1172,9 +1170,13 @@ export function buildDescriptionGrid({ key = null, list, props }) {
               {item.canCopy && (item.canCopy || null) != null ? (
                 <a
                   style={{ marginLeft: '10px' }}
-                  disabled={stringIsNullOrWhiteSpace(item.value || emptyValue)}
+                  disabled={checkStringIsNullOrWhiteSpace(
+                    item.value || emptyValue,
+                  )}
                   onClick={() => {
-                    if (!stringIsNullOrWhiteSpace(item.value || emptyValue)) {
+                    if (
+                      !checkStringIsNullOrWhiteSpace(item.value || emptyValue)
+                    ) {
                       copyToClipboard(item.copyData || item.value);
                     }
                   }}
@@ -1248,7 +1250,7 @@ export function buildPageHeaderContent({ list }) {
           return (
             <div key={`${o.key}_paragraph_container`}>
               {listParagraph.map((item) => {
-                if (stringIsNullOrWhiteSpace(item.paragraph)) {
+                if (checkStringIsNullOrWhiteSpace(item.paragraph)) {
                   return null;
                 }
 
@@ -1667,7 +1669,7 @@ export function buildCustomRadio({
     <FlexBox
       flexAuto="right"
       left={
-        stringIsNullOrWhiteSpace(label || '') ? null : (
+        checkStringIsNullOrWhiteSpace(label || '') ? null : (
           <VerticalBox
             align="center"
             alignJustify="start"
@@ -1723,7 +1725,7 @@ export function buildFormRadio({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -1763,7 +1765,7 @@ export function buildOptionItem({ list, adjustListDataCallback = null }) {
         ...(item || {}),
       };
 
-      if (stringIsNullOrWhiteSpace(toString(name))) {
+      if (checkStringIsNullOrWhiteSpace(toString(name))) {
         const text = 'name 不能为空';
 
         showRuntimeError({
@@ -1771,7 +1773,7 @@ export function buildOptionItem({ list, adjustListDataCallback = null }) {
         });
       }
 
-      if (stringIsNullOrWhiteSpace(toString(flag))) {
+      if (checkStringIsNullOrWhiteSpace(toString(flag))) {
         const text = 'flag 不能为空';
 
         showRuntimeError({
@@ -1783,7 +1785,7 @@ export function buildOptionItem({ list, adjustListDataCallback = null }) {
         <Option
           key={`${flag}_${name}`}
           title={`${alias || name}${
-            stringIsNullOrWhiteSpace(description || '')
+            checkStringIsNullOrWhiteSpace(description || '')
               ? ''
               : `[${description}]`
           }`}
@@ -1829,7 +1831,7 @@ export function buildCustomSelect({
     <FlexBox
       flexAuto="right"
       left={
-        stringIsNullOrWhiteSpace(label || '') ? null : (
+        checkStringIsNullOrWhiteSpace(label || '') ? null : (
           <VerticalBox
             align="center"
             alignJustify="start"
@@ -1933,7 +1935,7 @@ export function buildFormSelect({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -1969,7 +1971,7 @@ export function buildSearchFormSelect({ label, name, options, helper = null }) {
         },
       ]}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2009,7 +2011,7 @@ export function buildFormNowTimeField({
       {...(formItemLayoutChanged || {})}
       label={resultCheck.label}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2047,7 +2049,7 @@ export function buildFormCreateTimeField({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2081,7 +2083,7 @@ export function buildFormUpdateTimeField({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2127,7 +2129,7 @@ export function buildSearchInput({
         label={resultCheck.label}
         name={resultCheck.name}
         extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
@@ -2143,7 +2145,7 @@ export function buildSearchInput({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2187,7 +2189,7 @@ export function buildSearchInputNumber({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2214,7 +2216,7 @@ export function buildFormDisplay({
       message: text,
     });
 
-    recordObject(label);
+    logObject(label);
   } else {
     labelText = title;
   }
@@ -2307,7 +2309,7 @@ export function buildFormInput({
         label={resultCheck.label}
         name={resultCheck.name}
         extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
@@ -2358,7 +2360,7 @@ export function buildFormSwitch({
         name={resultCheck.name}
         valuePropName="checked"
         extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
@@ -2416,7 +2418,7 @@ export function buildFormPassword({
         label={resultCheck.label}
         name={resultCheck.name}
         extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
@@ -2438,7 +2440,7 @@ export function buildFormPassword({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2476,7 +2478,7 @@ export function buildFormOnlyShowText({
       className={requiredForShow ? styles.formItemOnlyShowText : null}
       // style={{ marginBottom: 0 }}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2568,7 +2570,7 @@ export function buildFormInnerComponent({
       label={resultCheck.label}
       className={requiredForShow ? styles.formItemOnlyShowText : null}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2644,7 +2646,7 @@ export function buildFormOnlyShowTextarea({
   const otherTextAreaProps = {
     ...{
       placeholder: '暂无数据',
-      value: stringIsNullOrWhiteSpace(value || '') ? '' : value,
+      value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
     },
     ...(textAreaProps || {}),
   };
@@ -2660,7 +2662,7 @@ export function buildFormOnlyShowTextarea({
       {...formItemLayout}
       label={resultCheck.label}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2695,7 +2697,7 @@ export function buildFormText({
       {...formItemLayout}
       label={resultCheck.label}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2725,7 +2727,7 @@ export function buildFormOnlyShowInput({
     ...{
       addonBefore: icon,
       placeholder: '暂无数据',
-      value: stringIsNullOrWhiteSpace(value || '') ? '' : value,
+      value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
     },
     ...(inputProps || {}),
   };
@@ -2741,7 +2743,7 @@ export function buildFormOnlyShowInput({
       {...formItemLayout}
       label={resultCheck.label}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2793,7 +2795,7 @@ export function buildFormInputNumber({
         label={resultCheck.label}
         name={resultCheck.name}
         extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
@@ -2815,7 +2817,7 @@ export function buildFormInputNumber({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2863,7 +2865,7 @@ export function buildFormTextArea({
         label={resultCheck.label}
         name={resultCheck.name}
         extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
@@ -2885,7 +2887,7 @@ export function buildFormTextArea({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -2936,7 +2938,7 @@ export function buildFormDatePicker({
         label={resultCheck.label}
         name={resultCheck.name}
         extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
@@ -2952,7 +2954,7 @@ export function buildFormDatePicker({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -3001,7 +3003,7 @@ export function buildFormTimePicker({
         label={resultCheck.label}
         name={resultCheck.name}
         extra={
-          stringIsNullOrWhiteSpace(resultCheck.helper || '')
+          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
@@ -3017,7 +3019,7 @@ export function buildFormTimePicker({
       label={resultCheck.label}
       name={resultCheck.name}
       extra={
-        stringIsNullOrWhiteSpace(resultCheck.helper || '')
+        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
           ? null
           : buildFieldHelper(resultCheck.helper)
       }
@@ -3076,7 +3078,7 @@ export function buildColumnItem({
 
   if ((dataTarget || null) == null) {
     const text = `错误的列配置,缺少dataTarget:${JSON.stringify(
-      stringIsNullOrWhiteSpace(attachedTargetName)
+      checkStringIsNullOrWhiteSpace(attachedTargetName)
         ? {
             column: columnConfig,
           }
@@ -3090,13 +3092,13 @@ export function buildColumnItem({
       message: text,
     });
 
-    recordText(text);
+    logText(text);
   } else {
     const { label, name, helper } = dataTarget;
 
     if ((label || null) == null || (name || null) == null) {
       const text = `错误的列配置，dataTarget内容缺失:${JSON.stringify(
-        stringIsNullOrWhiteSpace(attachedTargetName)
+        checkStringIsNullOrWhiteSpace(attachedTargetName)
           ? {
               column: columnConfig,
             }
@@ -3110,7 +3112,7 @@ export function buildColumnItem({
         message: text,
       });
 
-      recordText(text);
+      logText(text);
     } else {
       d.title = showHelper ? (
         <IconInfo
@@ -3174,7 +3176,9 @@ export function buildColumnItem({
       if (isFunction(facadeModeBuilder)) {
         facadeMode = facadeModeBuilder(value, record, index) || facadeMode;
 
-        facadeMode = stringIsNullOrWhiteSpace(facadeMode) ? '' : facadeMode;
+        facadeMode = checkStringIsNullOrWhiteSpace(facadeMode)
+          ? ''
+          : facadeMode;
       }
 
       let facadeConfig = facadeConfigSource || {};
@@ -3222,14 +3226,14 @@ export function buildColumnItem({
       let styleMerge = {};
 
       if (
-        stringIsNullOrWhiteSpace(facadeMode) ||
+        checkStringIsNullOrWhiteSpace(facadeMode) ||
         facadeMode === columnFacadeMode.ellipsis
       ) {
         if (isFunction(d.formatValue)) {
           val = d.formatValue(value, record, index);
         }
 
-        if (stringIsNullOrWhiteSpace(val)) {
+        if (checkStringIsNullOrWhiteSpace(val)) {
           return emptyValue;
         }
 
@@ -3293,7 +3297,7 @@ export function buildColumnItem({
           ...((color || null) == null ? {} : { color }),
         };
 
-        val = stringIsNullOrWhiteSpace(val)
+        val = checkStringIsNullOrWhiteSpace(val)
           ? ''
           : formatDatetime({
               data: val,
@@ -3329,7 +3333,7 @@ export function buildColumnItem({
           ...((color || null) == null ? {} : { color }),
         };
 
-        val = stringIsNullOrWhiteSpace(val) ? '' : val;
+        val = checkStringIsNullOrWhiteSpace(val) ? '' : val;
 
         return (
           <>
@@ -3391,7 +3395,7 @@ export function buildColumnItem({
                     errorOverlayVisible
                     showErrorIcon={false}
                     alt=""
-                    preview={!stringIsNullOrWhiteSpace(val)}
+                    preview={!checkStringIsNullOrWhiteSpace(val)}
                     previewSimpleMask={previewSimpleMask}
                   />
                 </div>

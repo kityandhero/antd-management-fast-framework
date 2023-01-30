@@ -1,24 +1,19 @@
-import { setCache } from './cacheAssist';
-import { requestMethod } from './constants';
 import { runtimeSettings } from './dynamicSetting';
 import { getToken } from './globalStorageAssist';
 import { request as remoteRequest } from './request';
 import {
   corsTarget,
+  logDebug,
+  logObject,
+  logText,
   queryStringify,
-  recordDebug,
-  recordObject,
-  recordText,
   recordTrace,
   recordWarn,
   redirectToPath,
   showErrorMessage,
   showInfoMessage,
-  stringIsNullOrWhiteSpace,
   trim,
 } from './tools';
-import { isFunction, isObject, isString, isUndefined } from './typeCheck';
-import { toLower, toNumber, toUpper } from './typeConvert';
 import {
   apiVirtualAccess,
   apiVirtualFailData,
@@ -86,14 +81,14 @@ function dataExceptionNotice(d) {
         };
       }
     } else {
-      recordDebug(`api call failed, authentication fail`);
+      logDebug(`api call failed, authentication fail`);
     }
 
     const signInPath = runtimeSettings.getSignInPath();
     const authenticationFailCode = runtimeSettings.getAuthenticationFailCode();
 
     if (codeAdjust === authenticationFailCode) {
-      if (stringIsNullOrWhiteSpace(signInPath)) {
+      if (checkStringIsNullOrWhiteSpace(signInPath)) {
         throw new Error('缺少登录页面路径配置');
       }
 
@@ -381,7 +376,7 @@ export function handleListDataAssist(state, action, namespace) {
       value: v,
     });
 
-    recordDebug(
+    logDebug(
       `modal ${namespace} cache data, key is ${namespace}_${alias || 'data'}, ${
         cacheResult ? 'cache success' : 'cache fail'
       }.`,
@@ -425,7 +420,7 @@ export function handlePageListDataAssist(state, action, namespace) {
       value: v,
     });
 
-    recordDebug(
+    logDebug(
       `modal ${namespace} cache data, key is ${namespace}_${alias || 'data'}, ${
         cacheResult ? 'cache success' : 'cache fail'
       }.`,
@@ -470,13 +465,13 @@ export async function request({
   let apiVersion = runtimeSettings.getApiVersion();
 
   if (!isString(apiVersion)) {
-    recordText(apiVersion);
+    logText(apiVersion);
 
     throw new Error('apiVersion is not string');
   }
 
   if (!isString(api)) {
-    recordText(api);
+    logText(api);
 
     throw new Error('api is not string');
   }
@@ -489,7 +484,7 @@ export async function request({
   ) {
     url = api;
   } else {
-    if (!stringIsNullOrWhiteSpace(apiVersion)) {
+    if (!checkStringIsNullOrWhiteSpace(apiVersion)) {
       apiVersion = `/${apiVersion}/`;
     }
 
@@ -536,7 +531,7 @@ export async function request({
     if (virtualNeedAuthorize) {
       const token = getToken();
 
-      if (!stringIsNullOrWhiteSpace(token)) {
+      if (!checkStringIsNullOrWhiteSpace(token)) {
         verifyToken = true;
       }
     }
@@ -544,7 +539,7 @@ export async function request({
     if (virtualNeedAuthorize && !verifyToken) {
       const signInPath = runtimeSettings.getSignInPath();
 
-      if (stringIsNullOrWhiteSpace(signInPath)) {
+      if (checkStringIsNullOrWhiteSpace(signInPath)) {
         throw new Error('缺少登录页面路径配置');
       }
 
@@ -573,7 +568,7 @@ export async function request({
     }
 
     if (showRequestInfo) {
-      recordObject({
+      logObject({
         url,
         useVirtualRequest,
         virtualResponse: result,
@@ -585,7 +580,7 @@ export async function request({
   }
 
   if (showRequestInfo) {
-    recordObject({
+    logObject({
       api,
       apiVersion,
       apiChange: url,
@@ -635,7 +630,7 @@ export function getApiVersion() {
 export function corsTargetWithApiVersion() {
   let apiVersion = getApiVersion();
 
-  if (!stringIsNullOrWhiteSpace(apiVersion)) {
+  if (!checkStringIsNullOrWhiteSpace(apiVersion)) {
     apiVersion = `/${apiVersion}`;
   }
 

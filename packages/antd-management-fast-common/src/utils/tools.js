@@ -12,10 +12,6 @@ import { history, useIntl } from '@umijs/max';
 import { emptyDatetime, isBrowser, isDate, isString } from 'easy-soft-utility';
 
 import { getAppInitConfigData } from './core';
-import {
-  getNearestLocalhostNotifyCache,
-  setNearestLocalhostNotifyCache,
-} from './developAssist';
 import { setLocalStorageHandler } from './localStorageAssist';
 import { getCurrentParams } from './routeAssist';
 
@@ -121,7 +117,7 @@ export function copyToClipboard(text, showCopyText = true, otherShowText = '') {
     showSuccessMessage({
       message: `已经将 ${text} 复制到剪贴板！`,
     });
-  } else if (stringIsNullOrWhiteSpace(otherShowText)) {
+  } else if (checkStringIsNullOrWhiteSpace(otherShowText)) {
     showSuccessMessage({
       message: '已经复制到剪贴板！',
     });
@@ -164,7 +160,7 @@ export function showError(text) {
 
 export function showRuntimeError({ message: messageText, showStack = true }) {
   try {
-    if (!stringIsNullOrWhiteSpace(messageText || '')) {
+    if (!checkStringIsNullOrWhiteSpace(messageText || '')) {
       showErrorMessage({
         message: messageText,
       });
@@ -173,7 +169,7 @@ export function showRuntimeError({ message: messageText, showStack = true }) {
     if (showStack) {
       throw new Error(
         `${
-          stringIsNullOrWhiteSpace(messageText || '')
+          checkStringIsNullOrWhiteSpace(messageText || '')
             ? ''
             : `${toString(messageText)},`
         }调用堆栈:`,
@@ -388,7 +384,7 @@ export function stringToMoment({ data, timeZone = 8 }) {
 
   const d = (data || '').toString();
 
-  if (stringIsNullOrWhiteSpace(d)) {
+  if (checkStringIsNullOrWhiteSpace(d)) {
     return null;
   }
 
@@ -816,7 +812,7 @@ export function notifySuccess(text) {
 export function notifyInfo(text) {
   const description = text || '';
 
-  if (stringIsNullOrWhiteSpace(description)) {
+  if (checkStringIsNullOrWhiteSpace(description)) {
     return;
   }
 
@@ -831,7 +827,7 @@ export function notifyInfo(text) {
 export function notifyWarn(text) {
   const description = text || '';
 
-  if (stringIsNullOrWhiteSpace(description)) {
+  if (checkStringIsNullOrWhiteSpace(description)) {
     return;
   }
 
@@ -846,7 +842,7 @@ export function notifyWarn(text) {
 export function notifyError(text) {
   const description = text || '';
 
-  if (stringIsNullOrWhiteSpace(description)) {
+  if (checkStringIsNullOrWhiteSpace(description)) {
     return;
   }
 

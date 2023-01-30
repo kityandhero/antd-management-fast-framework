@@ -3,10 +3,7 @@ import React from 'react';
 import { connect } from 'umi';
 
 import { defaultUserAvatar } from 'antd-management-fast-common/es/utils/constants';
-import {
-  goToPath,
-  recordDebug,
-} from 'antd-management-fast-common/es/utils/tools';
+import { goToPath, logDebug } from 'antd-management-fast-common/es/utils/tools';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import HeaderDropdown from '../HeaderDropdown';
@@ -23,7 +20,7 @@ class AvatarDropdown extends React.Component {
       if (dispatch) {
         const signOutType = 'entrance/signOut';
 
-        recordDebug(`model access: ${signOutType}`);
+        logDebug(`model access: ${signOutType}`);
 
         dispatch({
           type: signOutType,

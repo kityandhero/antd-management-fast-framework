@@ -2,44 +2,22 @@
 
 # dependencies
 **/node_modules
-# roadhog-api-doc ignore
-/src/utils/request-temp.js
-_roadhog-api-doc
 
-# history
-/.history
+# ignore dir
+**/dist
+**/es
+**/.umi
+**/.umi-production
+**/.idea
+**/.history
 
-# production
-./dist
-./es
-./types
-
-# misc
-.DS_Store
-npm-debug.log*
-yarn-error.log
-
-/coverage
-.idea
-./yarn.lock
-./package-lock.json
-*bak
-
-# visual studio code
+# ignore file
 *.log
+*.d.ts
+*.bak
 
-functions/mock
-.temp/**
-
-# umi
-.umi
-.umi-production
-
-# screenshot
-screenshot
+# ignore special
+yarn.lock
+package-lock.json
 .firebase
 .eslintcache
-
-build
-/lib
-/src/**/*.d.ts

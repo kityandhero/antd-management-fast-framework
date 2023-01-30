@@ -6,7 +6,6 @@ import {
   endsWith,
   isArray,
   removeEndMatch,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
 
@@ -132,7 +131,7 @@ class DataMenuContainer extends AuthorizationWrapper {
     });
 
     if (!selectKeyExist) {
-      if (!stringIsNullOrWhiteSpace(defaultKey || '')) {
+      if (!checkStringIsNullOrWhiteSpace(defaultKey || '')) {
         result = defaultKey;
       }
     }
@@ -179,7 +178,7 @@ class DataMenuContainer extends AuthorizationWrapper {
 
     const selectMenuKey = this.getMenuActiveKey();
 
-    if (stringIsNullOrWhiteSpace(selectMenuKey)) {
+    if (checkStringIsNullOrWhiteSpace(selectMenuKey)) {
       return '';
     }
 

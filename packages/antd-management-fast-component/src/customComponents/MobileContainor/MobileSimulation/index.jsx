@@ -6,7 +6,7 @@ import {
 } from 'antd-management-fast-common/es/utils/constants';
 import {
   isObject,
-  recordObject,
+  logObject,
   showErrorMessage,
 } from 'antd-management-fast-common/es/utils/tools';
 
@@ -170,7 +170,7 @@ class MobileSimulation extends PureComponent {
           message: text,
         });
 
-        recordObject({
+        logObject({
           message: 'available mobile type list',
           mobileTypeCollection,
         });

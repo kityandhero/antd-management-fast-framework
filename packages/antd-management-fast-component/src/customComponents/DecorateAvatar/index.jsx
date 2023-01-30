@@ -3,11 +3,7 @@ import React, { PureComponent } from 'react';
 import { ReloadOutlined } from '@ant-design/icons';
 
 import { defaultEmptyImage } from 'antd-management-fast-common/es/utils/constants';
-import {
-  isFunction,
-  showRuntimeError,
-  stringIsNullOrWhiteSpace,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isFunction } from 'antd-management-fast-common/es/utils/tools';
 
 import { iconBuilder } from '../Icon';
 
@@ -45,7 +41,7 @@ export function decorateAvatar(
       } else {
         const { src } = currentAvatar;
 
-        if (stringIsNullOrWhiteSpace(src || '')) {
+        if (checkStringIsNullOrWhiteSpace(src || '')) {
           currentAvatar = { icon: defaultAvatarIcon };
         } else {
           if (avatarImageLoadResult === avatarImageLoadResultCollection.wait) {

@@ -1,16 +1,118 @@
 import { message, Modal } from 'antd';
 
-import {
-  getGuid,
-  isFunction,
-  notifySuccess,
-  recordDebug,
-  recordError,
-  showRuntimeError,
-  stringIsNullOrWhiteSpace,
-} from './tools';
+import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
+
+import { getGuid, notifySuccess } from './tools';
 
 const { confirm } = Modal;
+
+function remoteAction({
+  api,
+  params,
+  target,
+  failureCallback,
+  successMessage,
+  successMessageBuilder,
+  showProcessing = false,
+  loadingKey = '',
+  successCallback,
+  completeProcess = null,
+}) {
+  logDebug(`model access: ${api}`);
+
+  const { dispatch } = target.props;
+
+  if ((dispatch || null) == null) {
+    throw new Error('remoteAction: dispatch in target.props not allow null');
+  }
+
+  dispatch({
+    type: api,
+    payload: params,
+  })
+    .then((data) => {
+      if (showProcessing) {
+        setTimeout(() => {
+          message.destroy(loadingKey);
+        }, 200);
+      }
+
+      const { dataSuccess } = data;
+
+      if (dataSuccess) {
+        const {
+          list: remoteListData,
+          data: remoteData,
+          extra: remoteExtraData,
+        } = {
+          ...{
+            list: [],
+            data: null,
+            extra: null,
+          },
+          ...data,
+        };
+
+        let messageText = successMessage;
+
+        if (isFunction(successMessageBuilder)) {
+          messageText = successMessageBuilder({
+            remoteListData: remoteListData || [],
+            remoteData: remoteData || null,
+            remoteExtraData: remoteExtraData || null,
+            remoteOriginal: data,
+          });
+        }
+
+        if (!checkStringIsNullOrWhiteSpace(messageText)) {
+          notifySuccess(messageText);
+        }
+
+        if (isFunction(successCallback)) {
+          successCallback({
+            target,
+            params,
+            remoteListData: remoteListData || [],
+            remoteData: remoteData || null,
+            remoteExtraData: remoteExtraData || null,
+            remoteOriginal: data,
+          });
+        }
+      } else {
+        if (isFunction(failureCallback)) {
+          failureCallback({
+            target,
+            params,
+            remoteOriginal: data,
+            error: null,
+          });
+        }
+      }
+
+      target.setState({
+        processing: false,
+        dispatchComplete: true,
+      });
+    })
+    .catch((res) => {
+      logError(res);
+
+      if (showProcessing) {
+        setTimeout(() => {
+          message.destroy(loadingKey);
+        }, 200);
+      }
+
+      target.setState({
+        processing: false,
+        dispatchComplete: true,
+      });
+
+      if (isFunction(completeProcess)) {
+        completeProcess({ target, params });
+      }
+    });
+}
 
 /**
  * remote assess wrapper core
@@ -69,7 +171,7 @@ export async function actionCore({
 
   if (setProgressingFirst) {
     target.setState({ processing: true }, () => {
-      recordDebug('state dispatchComplete will set to false');
+      logDebug('state dispatchComplete will set to false');
 
       target.setState(
         {
@@ -154,7 +256,7 @@ export function apiRequest({
   textProcessing = '',
   completeProcess = null,
 }) {
-  recordDebug(`model access: ${api}`);
+  logDebug(`model access: ${api}`);
 
   if ((dispatch || null) == null) {
     throw new Error('apiRequest: dispatch in params not allow null');
@@ -173,7 +275,7 @@ export function apiRequest({
 
     message.loading({
       key,
-      content: stringIsNullOrWhiteSpace(textProcessing)
+      content: checkStringIsNullOrWhiteSpace(textProcessing)
         ? '处理中，请稍后'
         : textProcessing,
       duration: 0,
@@ -218,7 +320,7 @@ export function apiRequest({
           });
         }
 
-        if (!stringIsNullOrWhiteSpace(messageText)) {
+        if (!checkStringIsNullOrWhiteSpace(messageText)) {
           notifySuccess(messageText);
         }
 
@@ -246,7 +348,7 @@ export function apiRequest({
       }
     })
     .catch((res) => {
-      recordError(res);
+      logError(res);
 
       if (showProcessing) {
         setTimeout(() => {
@@ -256,114 +358,6 @@ export function apiRequest({
 
       if (isFunction(completeProcess)) {
         completeProcess({ api, params, dispatch, params });
-      }
-    });
-}
-
-function remoteAction({
-  api,
-  params,
-  target,
-  failureCallback,
-  successMessage,
-  successMessageBuilder,
-  showProcessing = false,
-  loadingKey = '',
-  successCallback,
-  completeProcess = null,
-}) {
-  recordDebug(`model access: ${api}`);
-
-  const { dispatch } = target.props;
-
-  if ((dispatch || null) == null) {
-    throw new Error('remoteAction: dispatch in target.props not allow null');
-  }
-
-  dispatch({
-    type: api,
-    payload: params,
-  })
-    .then((data) => {
-      if (showProcessing) {
-        setTimeout(() => {
-          message.destroy(loadingKey);
-        }, 200);
-      }
-
-      const { dataSuccess } = data;
-
-      if (dataSuccess) {
-        const {
-          list: remoteListData,
-          data: remoteData,
-          extra: remoteExtraData,
-        } = {
-          ...{
-            list: [],
-            data: null,
-            extra: null,
-          },
-          ...data,
-        };
-
-        let messageText = successMessage;
-
-        if (isFunction(successMessageBuilder)) {
-          messageText = successMessageBuilder({
-            remoteListData: remoteListData || [],
-            remoteData: remoteData || null,
-            remoteExtraData: remoteExtraData || null,
-            remoteOriginal: data,
-          });
-        }
-
-        if (!stringIsNullOrWhiteSpace(messageText)) {
-          notifySuccess(messageText);
-        }
-
-        if (isFunction(successCallback)) {
-          successCallback({
-            target,
-            params,
-            remoteListData: remoteListData || [],
-            remoteData: remoteData || null,
-            remoteExtraData: remoteExtraData || null,
-            remoteOriginal: data,
-          });
-        }
-      } else {
-        if (isFunction(failureCallback)) {
-          failureCallback({
-            target,
-            params,
-            remoteOriginal: data,
-            error: null,
-          });
-        }
-      }
-
-      target.setState({
-        processing: false,
-        dispatchComplete: true,
-      });
-    })
-    .catch((res) => {
-      recordError(res);
-
-      if (showProcessing) {
-        setTimeout(() => {
-          message.destroy(loadingKey);
-        }, 200);
-      }
-
-      target.setState({
-        processing: false,
-        dispatchComplete: true,
-      });
-
-      if (isFunction(completeProcess)) {
-        completeProcess({ target, params });
       }
     });
 }

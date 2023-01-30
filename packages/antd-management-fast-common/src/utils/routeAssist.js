@@ -1,5 +1,3 @@
-import { getCache, setCache } from './cacheAssist';
-
 const cacheKeyCollection = {
   currentLocation: 'currentLocation',
   currentParams: 'currentParams',

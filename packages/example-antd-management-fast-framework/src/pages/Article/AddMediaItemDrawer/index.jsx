@@ -4,7 +4,6 @@ import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
   corsTarget,
   inCollection,
-  stringIsNullOrWhiteSpace,
   toNumber,
   toString,
 } from 'antd-management-fast-common/es/utils/tools';
@@ -86,11 +85,11 @@ class Index extends BaseAddDrawer {
       ...(externalData || {}),
     };
 
-    if (!stringIsNullOrWhiteSpace(articleId)) {
+    if (!checkStringIsNullOrWhiteSpace(articleId)) {
       d.articleId = articleId;
     }
 
-    if (!stringIsNullOrWhiteSpace(forwardId)) {
+    if (!checkStringIsNullOrWhiteSpace(forwardId)) {
       d.forwardId = forwardId;
     }
 

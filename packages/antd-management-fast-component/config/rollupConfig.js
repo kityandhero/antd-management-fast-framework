@@ -1,4 +1,4 @@
-import { buildConfig as buildConfigCore } from '../../antd-management-fast-rollup/rollupAssist/configBuilder';
+import { buildConfig as buildConfigCore } from '../../../developConfig/rollup/configBuilder';
 
 const inputFile = {
   ...{

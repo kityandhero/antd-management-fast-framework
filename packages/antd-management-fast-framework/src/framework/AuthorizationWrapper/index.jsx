@@ -3,7 +3,6 @@ import {
   getDerivedStateFromPropsForUrlParams,
   isFunction,
   redirectToPath,
-  showRuntimeError,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import SupplementWrapper from '../CustomWrapper/SupplementWrapper';

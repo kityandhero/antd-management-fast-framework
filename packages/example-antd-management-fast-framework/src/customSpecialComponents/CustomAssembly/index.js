@@ -1,4 +1,4 @@
-import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
+import { checkStringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 import { buildMenuHeaderRender } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
@@ -35,7 +35,7 @@ export function menuHeaderRender(logoDom, config) {
 
   let shortNameData = shortName;
 
-  if (stringIsNullOrWhiteSpace(shortNameData)) {
+  if (checkStringIsNullOrWhiteSpace(shortNameData)) {
     shortNameData = defaultSettings.getLeftBarText();
   }
 

@@ -4,8 +4,7 @@ import {
   emptyLogo as emptyLogoImage,
 } from '../utils/constants';
 
-import { getAppInitConfigData, stringIsNullOrWhiteSpace } from './core';
-import { isArray } from './typeCheck';
+import { checkStringIsNullOrWhiteSpace, getAppInitConfigData } from './core';
 
 export function logShowInConsole() {
   const appInit = getAppInitConfigData();
@@ -336,7 +335,7 @@ export function getCompanyName() {
 }
 
 export function getLeftBarLogo(remoteLogo) {
-  if (!stringIsNullOrWhiteSpace(remoteLogo || null)) {
+  if (!checkStringIsNullOrWhiteSpace(remoteLogo || null)) {
     return remoteLogo;
   }
 

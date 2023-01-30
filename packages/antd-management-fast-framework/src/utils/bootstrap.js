@@ -1,8 +1,8 @@
 import { getAppInitConfigData } from 'antd-management-fast-common/es/utils/core';
 import { getModelNameList } from 'antd-management-fast-common/es/utils/dva';
 import {
-  recordConfig,
-  recordExecute,
+  logConfig,
+  logExecute,
   recordInfo,
   showInfoMessage,
 } from 'antd-management-fast-common/es/utils/tools';
@@ -21,7 +21,7 @@ export function applicationInit() {
     return;
   }
 
-  recordConfig(getAppInitConfigData());
+  logConfig(getAppInitConfigData());
 
   requestAnimationFrame(() => {
     const text = '初始数据正在努力加载中，需要一点点时间哦！';
@@ -34,7 +34,7 @@ export function applicationInit() {
 
   applicationInitComplete = true;
 
-  recordExecute('applicationInit');
+  logExecute('applicationInit');
 
   if (!showModelNameList) {
     recordInfo(`current modelNameList: ${getModelNameList().join()}`);

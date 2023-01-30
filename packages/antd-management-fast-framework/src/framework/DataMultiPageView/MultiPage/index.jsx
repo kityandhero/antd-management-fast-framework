@@ -5,12 +5,10 @@ import {
 import {
   defaultPageListState,
   isUndefined,
-  recordObject,
+  logObject,
   showErrorMessage,
-  showRuntimeError,
   showWarningMessage,
   showWarnMessage,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import Base from '../../DataListView/Base';
@@ -96,20 +94,20 @@ class MultiPage extends Base {
 
     const { paramsKey, loadApiPath, formValues, filters, sorter } = this.state;
 
-    if (stringIsNullOrWhiteSpace(loadApiPath)) {
+    if (checkStringIsNullOrWhiteSpace(loadApiPath)) {
       const text = 'loadApiPath需要配置';
 
       showRuntimeError({
         message: text,
       });
 
-      recordObject(this);
+      logObject(this);
 
       return d;
     }
 
     if (this.restoreSearch && !!!this.restoreSearchComplete) {
-      if (stringIsNullOrWhiteSpace(paramsKey)) {
+      if (checkStringIsNullOrWhiteSpace(paramsKey)) {
         const text = 'paramsKey需要配置';
 
         showRuntimeError({
@@ -134,16 +132,16 @@ class MultiPage extends Base {
         endTime,
       } = this.state;
 
-      if (!stringIsNullOrWhiteSpace(startTime)) {
-        if (!stringIsNullOrWhiteSpace(startTimeAlias)) {
+      if (!checkStringIsNullOrWhiteSpace(startTime)) {
+        if (!checkStringIsNullOrWhiteSpace(startTimeAlias)) {
           d[startTimeAlias] = startTime;
         } else {
           d.startTime = startTime;
         }
       }
 
-      if (!stringIsNullOrWhiteSpace(endTime)) {
-        if (!stringIsNullOrWhiteSpace(endTimeAlias)) {
+      if (!checkStringIsNullOrWhiteSpace(endTime)) {
+        if (!checkStringIsNullOrWhiteSpace(endTimeAlias)) {
           d[endTimeAlias] = endTime;
         } else {
           d.endTime = endTime;
@@ -181,7 +179,7 @@ class MultiPage extends Base {
   afterGetRequestResult = () => {
     const { paramsKey } = this.state;
 
-    if (!stringIsNullOrWhiteSpace(paramsKey)) {
+    if (!checkStringIsNullOrWhiteSpace(paramsKey)) {
       setParamsDataCache(paramsKey, this.lastLoadParams);
     }
   };

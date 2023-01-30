@@ -4,7 +4,7 @@ import {
   removeLocalStorage,
   saveJsonToLocalStorage,
 } from 'antd-management-fast-common/es/utils/localStorageAssist';
-import { recordExecute } from 'antd-management-fast-common/es/utils/tools';
+import { logExecute } from 'antd-management-fast-common/es/utils/tools';
 
 const storageKeyCollection = {
   appListData: 'appListData',
@@ -20,7 +20,7 @@ const storageKeyCollection = {
  * @returns
  */
 export function getAppListDataCache() {
-  recordExecute('getAppListDataCache');
+  logExecute('getAppListDataCache');
 
   const key = storageKeyCollection.appListData;
 
@@ -41,7 +41,7 @@ export function getAppListDataCache() {
  * @returns
  */
 export function setAppListDataCache(o) {
-  recordExecute('setAppListDataCache');
+  logExecute('setAppListDataCache');
 
   if ((o || null) == null) {
     return;
@@ -60,7 +60,7 @@ export function setAppListDataCache(o) {
  * @returns
  */
 export function removeAppListDataCache() {
-  recordExecute('removeAppListDataCache');
+  logExecute('removeAppListDataCache');
 
   const key = storageKeyCollection.appListData;
 
@@ -75,7 +75,7 @@ export function removeAppListDataCache() {
  * @returns
  */
 export function getMetaDataCache() {
-  recordExecute('getMetaDataCache');
+  logExecute('getMetaDataCache');
 
   const key = storageKeyCollection.metaData;
 
@@ -96,7 +96,7 @@ export function getMetaDataCache() {
  * @returns
  */
 export function setMetaDataCache(o) {
-  recordExecute('setMetaDataCache');
+  logExecute('setMetaDataCache');
 
   if ((o || null) == null) {
     return;
@@ -115,7 +115,7 @@ export function setMetaDataCache(o) {
  * @returns
  */
 export function removeMetaDataCache() {
-  recordExecute('removeMetaDataCache');
+  logExecute('removeMetaDataCache');
 
   const key = storageKeyCollection.metaData;
 
@@ -130,7 +130,7 @@ export function removeMetaDataCache() {
  * @returns
  */
 export function getCurrentOperatorCache() {
-  recordExecute('getCurrentOperatorCache');
+  logExecute('getCurrentOperatorCache');
 
   const key = storageKeyCollection.currentOperator;
 
@@ -155,7 +155,7 @@ export function getCurrentOperatorCache() {
  * @returns
  */
 export function setCurrentOperatorCache(o) {
-  recordExecute('setCurrentOperatorCache');
+  logExecute('setCurrentOperatorCache');
 
   const key = storageKeyCollection.currentOperator;
 
@@ -175,7 +175,7 @@ export function setCurrentOperatorCache(o) {
  * @returns
  */
 export function removeCurrentOperatorCache() {
-  recordExecute('removeCurrentOperatorCache');
+  logExecute('removeCurrentOperatorCache');
 
   const key = storageKeyCollection.currentOperator;
 

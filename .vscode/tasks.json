@@ -6,7 +6,7 @@
       "script": "dev",
       "path": "packages/antd-management-fast-component",
       "problemMatcher": [],
-      "label": "dev-antd-management-fast-component",
+      "label": "dev-component",
       "detail": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch"
     },
     {
@@ -14,7 +14,7 @@
       "script": "dev",
       "path": "packages/antd-management-fast-common",
       "problemMatcher": [],
-      "label": "dev-antd-management-fast-common",
+      "label": "dev-common",
       "detail": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch"
     },
     {
@@ -22,7 +22,7 @@
       "script": "dev",
       "path": "packages/antd-management-fast-framework",
       "problemMatcher": [],
-      "label": "dev-antd-management-fast-framework",
+      "label": "dev-framework",
       "detail": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch"
     }
   ]

@@ -17,8 +17,6 @@ import {
   copyToClipboard,
   isFunction,
   showErrorMessage,
-  showRuntimeError,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import { buildPlayer } from '../FunctionComponent';
@@ -67,7 +65,7 @@ class AudioUpload extends PureComponent {
   showPreviewModal = () => {
     const { audioUrl } = this.state;
 
-    if (stringIsNullOrWhiteSpace(audioUrl)) {
+    if (checkStringIsNullOrWhiteSpace(audioUrl)) {
       const text = '无效的音频源';
 
       showErrorMessage({
@@ -234,7 +232,7 @@ class AudioUpload extends PureComponent {
         break;
 
       case 'copyUrl':
-        if (stringIsNullOrWhiteSpace(audioUrl)) {
+        if (checkStringIsNullOrWhiteSpace(audioUrl)) {
           const text = '当前未设置音频地址';
 
           showErrorMessage({
@@ -285,13 +283,13 @@ class AudioUpload extends PureComponent {
         key: 'copyUrl',
         label: '复制地址',
         icon: iconBuilder.copy(),
-        disabled: stringIsNullOrWhiteSpace(audioUrl),
+        disabled: checkStringIsNullOrWhiteSpace(audioUrl),
       },
       {
         key: 'clearUrl',
         label: '清空视频',
         icon: iconBuilder.delete(),
-        disabled: stringIsNullOrWhiteSpace(audioUrl),
+        disabled: checkStringIsNullOrWhiteSpace(audioUrl),
       },
     ];
 
@@ -307,7 +305,7 @@ class AudioUpload extends PureComponent {
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
-              disabled={uploading || stringIsNullOrWhiteSpace(audioUrl)}
+              disabled={uploading || checkStringIsNullOrWhiteSpace(audioUrl)}
               onClick={() => {
                 this.showPreviewModal();
               }}

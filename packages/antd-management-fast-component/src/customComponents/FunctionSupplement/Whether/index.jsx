@@ -8,10 +8,6 @@ import {
   refitCommonData,
   searchFromList,
 } from 'antd-management-fast-common/es/utils/tools';
-import {
-  isNull,
-  isUndefined,
-} from 'antd-management-fast-common/es/utils/typeCheck';
 
 import {
   buildFormRadio,

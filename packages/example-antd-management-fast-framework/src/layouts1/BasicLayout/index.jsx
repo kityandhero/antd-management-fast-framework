@@ -13,7 +13,7 @@ import {
   checkDevelopment,
   formatMessage,
   getQueue,
-  recordDebug,
+  logDebug,
 } from 'antd-management-fast-common/es/utils/tools';
 import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
 
@@ -91,7 +91,7 @@ class BasicLayout extends BaseComponent {
 
     //     // const getSettingType = 'settings/getSetting';
 
-    //     // recordDebug(`model access: ${getSettingType}`);
+    //     // logDebug(`model access: ${getSettingType}`);
 
     //     // dispatch({
     //     //   type: getSettingType,
@@ -103,7 +103,7 @@ class BasicLayout extends BaseComponent {
       if (dispatch) {
         const changeLayoutCollapsedType = 'global/changeLayoutCollapsed';
 
-        recordDebug(`model access: ${changeLayoutCollapsedType}`);
+        logDebug(`model access: ${changeLayoutCollapsedType}`);
 
         dispatch({
           type: changeLayoutCollapsedType,
@@ -263,7 +263,7 @@ class BasicLayout extends BaseComponent {
             onSettingChange={(config) => {
               const changeSettingType = 'settings/changeSetting';
 
-              recordDebug(`model access: ${changeSettingType}`);
+              logDebug(`model access: ${changeSettingType}`);
 
               dispatch({
                 type: changeSettingType,

@@ -34,18 +34,15 @@ import {
   isEqual,
   isFunction,
   isObject,
-  recordObject,
-  recordText,
+  logObject,
+  logText,
   refitCommonData,
   showErrorMessage,
-  showRuntimeError,
   stringIsEmpty,
-  stringIsNullOrWhiteSpace,
   toDatetime,
   toNumber,
   toString,
 } from 'antd-management-fast-common/es/utils/tools';
-import { isUndefined } from 'antd-management-fast-common/es/utils/typeCheck';
 import FadeBox from 'antd-management-fast-component/es/customComponents/AnimalBox/FadeBox';
 import QueueBox from 'antd-management-fast-component/es/customComponents/AnimalBox/QueueBox';
 import AudioUpload from 'antd-management-fast-component/es/customComponents/AudioUpload';
@@ -231,7 +228,7 @@ class Common extends Core {
           message: text,
         });
 
-        recordObject(this);
+        logObject(this);
 
         this.setState({
           dataLoading: false,
@@ -299,7 +296,7 @@ class Common extends Core {
         );
       });
     } catch (error) {
-      recordText({ loadApiPath });
+      logText({ loadApiPath });
 
       throw error;
     }
@@ -339,7 +336,7 @@ class Common extends Core {
 
       const loadApiCustomPath = this.adjustLoadApiPath();
 
-      const loadApiPathCustom = stringIsNullOrWhiteSpace(loadApiCustomPath)
+      const loadApiPathCustom = checkStringIsNullOrWhiteSpace(loadApiCustomPath)
         ? {}
         : {
             loadApiPath: loadApiCustomPath,
@@ -419,7 +416,7 @@ class Common extends Core {
                   metaOriginalData: metaOriginalData || null,
                 });
               } catch (e) {
-                recordObject(e);
+                logObject(e);
 
                 const text = `${toString(e)},place view in the console`;
 
@@ -462,7 +459,7 @@ class Common extends Core {
             that.clearRequestingData();
           })
           .catch((res) => {
-            recordObject(res);
+            logObject(res);
 
             that.setState({
               dataLoading: false,
@@ -476,7 +473,7 @@ class Common extends Core {
           });
       }
     } catch (error) {
-      recordObject({ loadApiPath, requestData });
+      logObject({ loadApiPath, requestData });
 
       that.setState({
         dataLoading: false,
@@ -1305,7 +1302,7 @@ class Common extends Core {
         message: text,
       });
 
-      recordObject(config);
+      logObject(config);
 
       return null;
     }
@@ -1397,7 +1394,7 @@ class Common extends Core {
         message: text,
       });
 
-      recordObject(config);
+      logObject(config);
 
       return null;
     }
@@ -1711,7 +1708,7 @@ class Common extends Core {
       ...(extra || {}),
     };
 
-    const imageVisible = !stringIsNullOrWhiteSpace(image);
+    const imageVisible = !checkStringIsNullOrWhiteSpace(image);
 
     const iconAdjust = !!hideIcon
       ? null
@@ -2078,7 +2075,7 @@ class Common extends Core {
                   >
                     <TinymceWrapper
                       apiKey={
-                        stringIsNullOrWhiteSpace(contentItem.apiKey || '')
+                        checkStringIsNullOrWhiteSpace(contentItem.apiKey || '')
                           ? runtimeSettings.getTinymceApiKey()
                           : contentItem.apiKey
                       }
@@ -2086,7 +2083,7 @@ class Common extends Core {
                       afterChange={contentItem.afterChange}
                       initConfig={contentItem.initConfig || null}
                       imagesUploadUrl={
-                        stringIsNullOrWhiteSpace(
+                        checkStringIsNullOrWhiteSpace(
                           contentItem.imagesUploadUrl || '',
                         )
                           ? runtimeSettings.getTinymceImagesUploadUrl()
@@ -2242,7 +2239,7 @@ class Common extends Core {
                   const imageKey = `contentItem_${contentIndex}_imageList_item_${imageIndex}`;
 
                   if (ignoreEmpty) {
-                    if (!stringIsNullOrWhiteSpace(imageOne)) {
+                    if (!checkStringIsNullOrWhiteSpace(imageOne)) {
                       imageItemShowList.push({
                         key: imageKey,
                         imageBoxContainorStyle,
@@ -2680,7 +2677,7 @@ class Common extends Core {
                                   },
                                   icon: null,
                                   showIcon: false,
-                                  disabled: stringIsNullOrWhiteSpace(
+                                  disabled: checkStringIsNullOrWhiteSpace(
                                     contentItem.value || '',
                                   ),
                                   text: '点击复制',
@@ -2975,7 +2972,7 @@ class Common extends Core {
               break;
 
             default:
-              recordObject({
+              logObject({
                 message: '未找到匹配的构建模式',
                 buildType: extraBuildType.component,
                 config: item,

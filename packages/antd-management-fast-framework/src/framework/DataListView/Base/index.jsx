@@ -37,7 +37,6 @@ import {
   getDerivedStateFromPropsForUrlParams,
   isArray,
   isUndefined,
-  showRuntimeError,
   showWarnMessage,
   toMoment,
   toNumber,

@@ -1,14 +1,6 @@
 import { runtimeSettings } from './dynamicSetting';
 import { getToken } from './globalStorageAssist';
-import {
-  recordError,
-  recordTrace,
-  redirectToPath,
-  showRuntimeError,
-  showWarnMessage,
-  stringIsNullOrWhiteSpace,
-} from './tools';
-import { isFunction } from './typeCheck';
+import { recordTrace, redirectToPath, showWarnMessage } from './tools';
 
 /**
  * 是否使用模拟访问
@@ -129,7 +121,7 @@ export async function apiVirtualSuccessAccess({
       return data;
     })
     .catch((res) => {
-      recordError(res);
+      logError(res);
     });
 
   const { code } = result;
@@ -137,7 +129,7 @@ export async function apiVirtualSuccessAccess({
   if (code === runtimeSettings.getAuthenticationFailCode()) {
     const signInPath = runtimeSettings.getSignInPath();
 
-    if (stringIsNullOrWhiteSpace(signInPath)) {
+    if (checkStringIsNullOrWhiteSpace(signInPath)) {
       throw new Error('缺少登录页面路径配置');
     }
 
@@ -167,7 +159,7 @@ export async function apiVirtualFailAccess({
       return data;
     })
     .catch((res) => {
-      recordError(res);
+      logError(res);
     });
 
   const { code, message: messageText } = result;
@@ -175,7 +167,7 @@ export async function apiVirtualFailAccess({
   if (code === runtimeSettings.getAuthenticationFailCode()) {
     const signInPath = runtimeSettings.getSignInPath();
 
-    if (stringIsNullOrWhiteSpace(signInPath)) {
+    if (checkStringIsNullOrWhiteSpace(signInPath)) {
       throw new Error('缺少登录页面路径配置');
     }
 
@@ -216,7 +208,7 @@ export async function apiVirtualAccess({
       return data;
     })
     .catch((res) => {
-      recordError(res);
+      logError(res);
     });
 
   const { code, message: messageText } = result;

@@ -1,7 +1,6 @@
 import { selectModeCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   isFunction,
-  showRuntimeError,
   showWarningMessage,
   toNumber,
 } from 'antd-management-fast-common/es/utils/tools';

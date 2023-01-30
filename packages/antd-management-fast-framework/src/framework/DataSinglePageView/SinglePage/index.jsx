@@ -1,10 +1,8 @@
 import {
   defaultListState,
   isUndefined,
-  recordObject,
-  showRuntimeError,
+  logObject,
   showWarningMessage,
-  stringIsNullOrWhiteSpace,
   toNumber,
 } from 'antd-management-fast-common/es/utils/tools';
 
@@ -72,23 +70,23 @@ class SinglePage extends Base {
         message: text,
       });
 
-      recordObject(this);
+      logObject(this);
 
       return d;
     }
 
     const { startTimeAlias, endTimeAlias, startTime, endTime } = this.state;
 
-    if (!stringIsNullOrWhiteSpace(startTime)) {
-      if (!stringIsNullOrWhiteSpace(startTimeAlias)) {
+    if (!checkStringIsNullOrWhiteSpace(startTime)) {
+      if (!checkStringIsNullOrWhiteSpace(startTimeAlias)) {
         d[startTimeAlias] = startTime;
       } else {
         d.startTime = startTime;
       }
     }
 
-    if (!stringIsNullOrWhiteSpace(endTime)) {
-      if (!stringIsNullOrWhiteSpace(endTimeAlias)) {
+    if (!checkStringIsNullOrWhiteSpace(endTime)) {
+      if (!checkStringIsNullOrWhiteSpace(endTimeAlias)) {
         d[endTimeAlias] = endTime;
       } else {
         d.endTime = endTime;

@@ -6,7 +6,6 @@ import {
   isFunction,
   isObject,
   isString,
-  stringIsNullOrWhiteSpace,
   toNumber,
 } from 'antd-management-fast-common/es/utils/tools';
 
@@ -39,7 +38,7 @@ class IconInfo extends PureComponent {
   copyDataToClipboard = () => {
     const { canCopy, text, copyData } = this.props;
 
-    if (canCopy && !stringIsNullOrWhiteSpace(copyData || text)) {
+    if (canCopy && !checkStringIsNullOrWhiteSpace(copyData || text)) {
       copyToClipboard(copyData || text);
     }
   };
@@ -118,7 +117,7 @@ class IconInfo extends PureComponent {
       <span style={textStyle}>{text || ''}</span>
     );
 
-    if (stringIsNullOrWhiteSpace(textPrefix)) {
+    if (checkStringIsNullOrWhiteSpace(textPrefix)) {
       textMerge = textAfterFormatForShow;
 
       tooltipTitle = textAfterFormatForTooltip;
@@ -129,7 +128,7 @@ class IconInfo extends PureComponent {
         <span style={textPrefixStyle}>{textPrefix || ''}</span>
       );
 
-      const separatorAdjust = stringIsNullOrWhiteSpace(separator) ? (
+      const separatorAdjust = checkStringIsNullOrWhiteSpace(separator) ? (
         ''
       ) : !isObject(separatorStyle) ? (
         separator || '：'
@@ -213,7 +212,7 @@ class IconInfo extends PureComponent {
                 <Row gutter={8}>
                   {iconPosition === 'left' ? (
                     <Col xl={4} lg={6} md={8} sm={24} xs={24}>
-                      {stringIsNullOrWhiteSpace(iconTooltip) ? (
+                      {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
                         iconItem
                       ) : (
                         <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
@@ -266,7 +265,7 @@ class IconInfo extends PureComponent {
 
                   {iconPosition !== 'left' ? (
                     <Col xl={4} lg={6} md={8} sm={24} xs={24}>
-                      {stringIsNullOrWhiteSpace(iconTooltip) ? (
+                      {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
                         iconItem
                       ) : (
                         <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
@@ -317,9 +316,9 @@ class IconInfo extends PureComponent {
               </Row>
             ) : (
               <Row gutter={8} wrap={false}>
-                {stringIsNullOrWhiteSpace(textMerge) ? (
+                {checkStringIsNullOrWhiteSpace(textMerge) ? (
                   <Col>
-                    {stringIsNullOrWhiteSpace(iconTooltip) ? (
+                    {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
                       iconItem
                     ) : (
                       <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
@@ -327,10 +326,10 @@ class IconInfo extends PureComponent {
                   </Col>
                 ) : null}
 
-                {!stringIsNullOrWhiteSpace(textMerge) &&
+                {!checkStringIsNullOrWhiteSpace(textMerge) &&
                 iconPosition === 'left' ? (
                   <Col flex="auto">
-                    {stringIsNullOrWhiteSpace(iconTooltip) ? (
+                    {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
                       iconItem
                     ) : (
                       <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
@@ -338,7 +337,7 @@ class IconInfo extends PureComponent {
                   </Col>
                 ) : null}
 
-                {!stringIsNullOrWhiteSpace(textMerge) ? (
+                {!checkStringIsNullOrWhiteSpace(textMerge) ? (
                   <Col
                     style={styleMerge}
                     onClick={() => {
@@ -378,10 +377,10 @@ class IconInfo extends PureComponent {
                   </Col>
                 ) : null}
 
-                {!stringIsNullOrWhiteSpace(textMerge) &&
+                {!checkStringIsNullOrWhiteSpace(textMerge) &&
                 iconPosition !== 'left' ? (
                   <Col flex="auto">
-                    {stringIsNullOrWhiteSpace(iconTooltip) ? (
+                    {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
                       iconItem
                     ) : (
                       <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
@@ -410,7 +409,7 @@ class IconInfo extends PureComponent {
                         this.copyDataToClipboard();
                       }}
                     >
-                      {stringIsNullOrWhiteSpace(iconTooltip) ? (
+                      {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
                         iconItem
                       ) : (
                         <Tooltip title={iconTooltip}>{iconItem}</Tooltip>

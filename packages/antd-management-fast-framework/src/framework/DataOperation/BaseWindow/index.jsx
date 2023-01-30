@@ -4,10 +4,8 @@ import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/
 import {
   isFunction,
   isUndefined,
-  recordObject,
-  showRuntimeError,
+  logObject,
   showWarningMessage,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import Base from '../Base';
@@ -267,7 +265,7 @@ class BaseWindow extends Base {
                 });
               })
               .catch((res) => {
-                recordObject(res);
+                logObject(res);
 
                 that.setState({
                   processing: false,
@@ -382,7 +380,7 @@ class BaseWindow extends Base {
     return (
       dataLoading ||
       processing ||
-      (!stringIsNullOrWhiteSpace(loadApiPath || '') && !loadSuccess)
+      (!checkStringIsNullOrWhiteSpace(loadApiPath || '') && !loadSuccess)
     );
   };
 }

@@ -1,16 +1,16 @@
-const { resolve } = require("path");
-const fs = require("fs-extra");
-const term = require("terminal-kit").terminal;
-const download = require("download-git-repo");
+const { resolve } = require('path');
+const fs = require('fs-extra');
+const term = require('terminal-kit').terminal;
+const download = require('download-git-repo');
 
-const source = "kityandhero/antd-management-fast-template";
+const source = 'kityandhero/antd-management-fast-template';
 
 const gitUrl = `https://github.com/${source}`;
 
 const downloadUrl = `direct:https://codeload.github.com/${source}/zip/main`;
 
 exports.run = function () {
-  term("Please enter project name: ");
+  term('Please enter project name: ');
 
   term.inputField({}, function (error, input) {
     if (error) {
@@ -21,7 +21,7 @@ exports.run = function () {
       let folder = input;
 
       if (isEmpty(folder)) {
-        console.log("project name not allow empty");
+        console.log('project name not allow empty');
 
         process.exit();
       } else {
@@ -29,20 +29,20 @@ exports.run = function () {
 
         existDirectory(dir, (error, result) => {
           if (result) {
-            term.red("\rproject dir already exist, please choose another");
+            term.red('\rproject dir already exist, please choose another');
 
             process.exit();
           } else {
             console.log(`\rtemplate url:${gitUrl}`);
             console.log(`target folder:${dir}`);
-            console.log("will start download, please wait a moment...");
+            console.log('will start download, please wait a moment...');
 
             download(downloadUrl, dir, { clone: false }, (err) => {
-              console.log(err ? err : "download success");
+              console.log(err ? err : 'download success');
 
               if (!err) {
                 term.green(
-                  "we build a simple project repo is here: https://github.com/kityandhero/antd-management-fast-framework.git"
+                  'we build a simple project repo is here: https://github.com/kityandhero/antd-management-fast-framework.git',
                 );
               }
 
@@ -55,16 +55,16 @@ exports.run = function () {
   });
 };
 
-function isEmpty(v) {
-  v = v
+function isEmpty(value) {
+  const v = value
     .trim()
-    .replace(/\t/g, " ")
-    .replace(/\r/g, " ")
-    .replace(/\n/g, " ")
-    .replace(/\s*/g, "");
+    .replace(/\t/g, ' ')
+    .replace(/\r/g, ' ')
+    .replace(/\n/g, ' ')
+    .replace(/\s*/g, '');
 
-  while (v.indexOf("  ") >= 0) {
-    v = v.replace(/  /g, " ");
+  while (v.indexOf('  ') >= 0) {
+    v = v.replace(/  /g, ' ');
   }
 
   return !v;
@@ -77,13 +77,13 @@ function isEmpty(v) {
  * @returns
  */
 function existDirectory(directory, callback) {
-  if (!directory || typeof directory !== "string") {
+  if (!directory || typeof directory !== 'string') {
     throw new TypeError(
-      "directory-exists expects a non-empty string as its first argument"
+      'directory-exists expects a non-empty string as its first argument',
     );
   }
 
-  if (typeof callback === "undefined") {
+  if (typeof callback === 'undefined') {
     return new Promise(function (resolve, reject) {
       fs.stat(resolve(directory), function (err, stat) {
         if (err) {

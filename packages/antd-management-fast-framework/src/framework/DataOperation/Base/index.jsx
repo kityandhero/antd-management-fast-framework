@@ -2,10 +2,8 @@ import { notification } from 'antd';
 
 import {
   isFunction,
-  showRuntimeError,
   showSuccessMessage,
   showWarningMessage,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import AuthorizationWrapper from '../../AuthorizationWrapper';
@@ -166,7 +164,7 @@ class Base extends AuthorizationWrapper {
       }),
     };
 
-    if (!stringIsNullOrWhiteSpace(text)) {
+    if (!checkStringIsNullOrWhiteSpace(text)) {
       setTimeout(() => {
         requestAnimationFrame(() => {
           if (type === 'success') {
@@ -266,7 +264,7 @@ class Base extends AuthorizationWrapper {
       },
     };
 
-    if (!stringIsNullOrWhiteSpace(description)) {
+    if (!checkStringIsNullOrWhiteSpace(description)) {
       setTimeout(() => {
         requestAnimationFrame(() => {
           if (type === 'info') {

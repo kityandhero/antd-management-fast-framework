@@ -8,7 +8,6 @@ import {
   corsTarget,
   getValueByKey,
   inCollection,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
@@ -111,11 +110,11 @@ class Index extends BaseUpdateDrawer {
       ...(externalData || {}),
     };
 
-    if (!stringIsNullOrWhiteSpace(articleId)) {
+    if (!checkStringIsNullOrWhiteSpace(articleId)) {
       d.articleId = articleId;
     }
 
-    if (!stringIsNullOrWhiteSpace(id)) {
+    if (!checkStringIsNullOrWhiteSpace(id)) {
       d.id = id;
     }
 

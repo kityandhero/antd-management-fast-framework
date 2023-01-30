@@ -1,7 +1,7 @@
 import { Empty } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
+import { checkStringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 
 import styles from './index.less';
 
@@ -28,7 +28,7 @@ class HtmlBox extends PureComponent {
   render() {
     const { useEmpty, html } = this.props;
 
-    if (!!useEmpty && stringIsNullOrWhiteSpace(html)) {
+    if (!!useEmpty && checkStringIsNullOrWhiteSpace(html)) {
       return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
     }
 

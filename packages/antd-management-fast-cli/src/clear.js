@@ -1,6 +1,6 @@
-const { resolve } = require("path");
-const fs = require("fs-extra");
-const term = require("terminal-kit").terminal;
+const { resolve } = require('path');
+const fs = require('fs-extra');
+const term = require('terminal-kit').terminal;
 
 exports.run = async function (s, o) {
   term.green(`adjust develop environment\r`);

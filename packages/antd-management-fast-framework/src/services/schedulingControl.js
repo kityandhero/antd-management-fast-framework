@@ -4,7 +4,7 @@ import { request } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   formatDatetime,
   getNow,
-  recordDebug,
+  logDebug,
 } from 'antd-management-fast-common/es/utils/tools';
 
 export async function getMetaDataData(params) {
@@ -21,7 +21,7 @@ export async function getMetaDataSimulation(params) {
     },
   };
 
-  recordDebug(
+  logDebug(
     `getMetaDataData use simulation mode, if need set it from api, please config getMetaDataPath.`,
   );
 
@@ -46,7 +46,7 @@ export async function singleListAppListData(params) {
 }
 
 export async function singleListAppListDataSimulation(params) {
-  recordDebug(
+  logDebug(
     `singleListAppList use simulation mode, if need set it from api, please config getAppListDataPath.`,
   );
 

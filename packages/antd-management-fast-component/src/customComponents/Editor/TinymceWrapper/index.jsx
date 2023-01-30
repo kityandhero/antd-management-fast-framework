@@ -10,8 +10,8 @@ import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/uti
 import {
   corsTarget,
   isFunction,
+  logObject,
   notifyError,
-  recordObject,
 } from 'antd-management-fast-common/es/utils/tools';
 
 class TinymceWrapper extends PureComponent {
@@ -97,7 +97,7 @@ class TinymceWrapper extends PureComponent {
       ...(initConfig || {}),
     };
 
-    recordObject({
+    logObject({
       tinymceCustomConfig: initConfig || {},
       tinymceMergeConfig: config,
     });

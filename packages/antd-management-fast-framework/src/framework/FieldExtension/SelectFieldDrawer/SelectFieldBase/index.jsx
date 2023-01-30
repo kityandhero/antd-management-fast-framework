@@ -1,10 +1,7 @@
 import { Button, Divider } from 'antd';
 import React from 'react';
 
-import {
-  isFunction,
-  showRuntimeError,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isFunction } from 'antd-management-fast-common/es/utils/tools';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
 
 import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';

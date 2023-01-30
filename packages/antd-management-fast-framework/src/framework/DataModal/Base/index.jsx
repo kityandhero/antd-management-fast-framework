@@ -5,7 +5,6 @@ import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
   defaultFormState,
   isUndefined,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 import FlexText from 'antd-management-fast-component/es/customComponents/FlexText';
 import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
@@ -147,7 +146,7 @@ class Base extends BaseWindow {
   buildTitle = () => {
     const subText = this.buildTitleSubText();
 
-    const subInfo = stringIsNullOrWhiteSpace(subText) ? null : (
+    const subInfo = checkStringIsNullOrWhiteSpace(subText) ? null : (
       <FlexText
         flexAuto="right"
         addonBefore={'【'}

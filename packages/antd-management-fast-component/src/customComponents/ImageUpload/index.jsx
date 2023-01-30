@@ -7,9 +7,7 @@ import {
   buildFieldHelper,
   isFunction,
   showInfoMessage,
-  showRuntimeError,
   showWarningMessage,
-  stringIsNullOrWhiteSpace,
   toNumber,
 } from 'antd-management-fast-common/es/utils/tools';
 
@@ -52,7 +50,7 @@ class ImageUpload extends PureComponent {
   handleImagePreview = () => {
     const { image } = this.props;
 
-    if (stringIsNullOrWhiteSpace(image)) {
+    if (checkStringIsNullOrWhiteSpace(image)) {
       showInfoMessage({
         message: `无图片可以预览`,
       });
@@ -150,7 +148,7 @@ class ImageUpload extends PureComponent {
   clearImage = () => {
     const { image } = this.props;
 
-    if (stringIsNullOrWhiteSpace(image)) {
+    if (checkStringIsNullOrWhiteSpace(image)) {
       showInfoMessage({
         message: '当前没有可供移除的图片',
       });
@@ -301,7 +299,9 @@ class ImageUpload extends PureComponent {
                       left={
                         <IconInfo
                           icon={icon}
-                          text={stringIsNullOrWhiteSpace(title) ? '' : title}
+                          text={
+                            checkStringIsNullOrWhiteSpace(title) ? '' : title
+                          }
                         />
                       }
                       right={
@@ -365,7 +365,7 @@ class ImageUpload extends PureComponent {
           </div>
         </div>
 
-        {stringIsNullOrWhiteSpace(helper) ? null : (
+        {checkStringIsNullOrWhiteSpace(helper) ? null : (
           <div className={styles.helper}>{buildFieldHelper(helper)}</div>
         )}
       </>

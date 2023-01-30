@@ -3,20 +3,19 @@ import { getDispatch } from 'antd-management-fast-common/es/utils/dva';
 import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
   isFunction,
-  recordDebug,
-  recordExecute,
-  stringIsNullOrWhiteSpace,
+  logDebug,
+  logExecute,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import { getMetaDataCache, setMetaDataCache } from './storageAssist';
 
 export function loadMetaData({ successCallback = null }) {
-  recordExecute('loadMetaData');
+  logExecute('loadMetaData');
 
   const metaDataCatch = getMetaDataCache();
 
   if ((metaDataCatch || null) != null) {
-    recordDebug('meta data first load success, ignore load');
+    logDebug('meta data first load success, ignore load');
 
     return;
   }
@@ -25,7 +24,7 @@ export function loadMetaData({ successCallback = null }) {
 
   const metaDataPath = runtimeSettings.getMetaDataPath();
 
-  const api = stringIsNullOrWhiteSpace(metaDataPath)
+  const api = checkStringIsNullOrWhiteSpace(metaDataPath)
     ? 'schedulingControl/getMetaDataSimulation'
     : 'schedulingControl/getMetaData';
 
@@ -49,7 +48,7 @@ export function loadMetaData({ successCallback = null }) {
 }
 
 export function getMetaData() {
-  recordExecute('getMetaData');
+  logExecute('getMetaData');
 
   const metaDataCatch = getMetaDataCache();
 

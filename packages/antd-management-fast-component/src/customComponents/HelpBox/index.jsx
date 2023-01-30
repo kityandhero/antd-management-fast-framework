@@ -2,11 +2,7 @@ import { Divider } from 'antd';
 import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 
-import {
-  isArray,
-  stringIsNullOrWhiteSpace,
-  toNumber,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isArray, toNumber } from 'antd-management-fast-common/es/utils/tools';
 
 import { buildDescriptionGrid } from '../FunctionComponent';
 
@@ -135,7 +131,7 @@ class HelpBox extends PureComponent {
 
             return {
               key: key,
-              label: stringIsNullOrWhiteSpace(label)
+              label: checkStringIsNullOrWhiteSpace(label)
                 ? showNumber
                   ? no
                   : '•'

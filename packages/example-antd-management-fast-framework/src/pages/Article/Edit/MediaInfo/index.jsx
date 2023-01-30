@@ -15,7 +15,6 @@ import {
   getValueByKey,
   isArray,
   sortCollectionByKey,
-  stringIsNullOrWhiteSpace,
   toString,
 } from 'antd-management-fast-common/es/utils/tools';
 import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
@@ -354,32 +353,32 @@ class BasicInfo extends TabPageBase {
         {
           label: mediaItemData.image.label,
           value: image,
-          hidden: stringIsNullOrWhiteSpace(image),
+          hidden: checkStringIsNullOrWhiteSpace(image),
         },
         {
           label: mediaItemData.description.label,
           value: description,
-          hidden: stringIsNullOrWhiteSpace(description),
+          hidden: checkStringIsNullOrWhiteSpace(description),
         },
         {
           label: mediaItemData.link.label,
           value: link,
-          hidden: stringIsNullOrWhiteSpace(link),
+          hidden: checkStringIsNullOrWhiteSpace(link),
         },
         {
           label: mediaItemData.video.label,
           value: video,
-          hidden: stringIsNullOrWhiteSpace(video),
+          hidden: checkStringIsNullOrWhiteSpace(video),
         },
         {
           label: mediaItemData.audio.label,
           value: audio,
-          hidden: stringIsNullOrWhiteSpace(audio),
+          hidden: checkStringIsNullOrWhiteSpace(audio),
         },
         {
           label: mediaItemData.attachment.label,
           value: attachment,
-          hidden: stringIsNullOrWhiteSpace(attachment),
+          hidden: checkStringIsNullOrWhiteSpace(attachment),
         },
       ],
       props: {
@@ -399,13 +398,13 @@ class BasicInfo extends TabPageBase {
     return (
       <>
         <Space direction="vertical" style={{ width: '100%' }}>
-          {stringIsNullOrWhiteSpace(image) ? (
+          {checkStringIsNullOrWhiteSpace(image) ? (
             grid
           ) : (
             <FlexBox
               flexAuto="right"
               left={
-                stringIsNullOrWhiteSpace(image)
+                checkStringIsNullOrWhiteSpace(image)
                   ? null
                   : buildListViewItemExtra({
                       index,

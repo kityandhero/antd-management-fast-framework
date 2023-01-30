@@ -17,8 +17,6 @@ import {
   copyToClipboard,
   isFunction,
   showErrorMessage,
-  showRuntimeError,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import { iconBuilder } from '../Icon';
@@ -194,7 +192,7 @@ class VideoUpload extends PureComponent {
         break;
 
       case 'copyUrl':
-        if (stringIsNullOrWhiteSpace(fileUrl)) {
+        if (checkStringIsNullOrWhiteSpace(fileUrl)) {
           const text = '当前未设置文件地址';
 
           showErrorMessage({
@@ -239,13 +237,13 @@ class VideoUpload extends PureComponent {
         key: 'copyUrl',
         label: '复制地址',
         icon: iconBuilder.copy(),
-        disabled: stringIsNullOrWhiteSpace(fileUrl),
+        disabled: checkStringIsNullOrWhiteSpace(fileUrl),
       },
       {
         key: 'clearUrl',
         label: '清空视频',
         icon: iconBuilder.delete(),
-        disabled: stringIsNullOrWhiteSpace(fileUrl),
+        disabled: checkStringIsNullOrWhiteSpace(fileUrl),
       },
     ];
 

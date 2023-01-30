@@ -1,25 +1,25 @@
-const { resolve } = require("path");
-const fs = require("fs-extra");
-const term = require("terminal-kit").terminal;
-const shell = require("shelljs");
-const download = require("download");
-const agent = require("hpagent");
-const ping = require("ping");
+const { resolve } = require('path');
+const fs = require('fs-extra');
+const term = require('terminal-kit').terminal;
+const shell = require('shelljs');
+const download = require('download');
+const agent = require('hpagent');
+const ping = require('ping');
 
 const { HttpsProxyAgent } = agent;
 
 const packageUrlGithub =
-  "https://raw.githubusercontent.com/kityandhero/antd-management-fast-framework/master/packages/simple-antd-management-fast-framework/package.json";
+  'https://raw.githubusercontent.com/kityandhero/antd-management-fast-framework/master/packages/simple-antd-management-fast-framework/package.json';
 
 const packageUrlGitee =
-  "https://gitee.com/lzt/antd-management-fast-framework/raw/master/packages/simple-antd-management-fast-framework/package.json";
+  'https://gitee.com/lzt/antd-management-fast-framework/raw/master/packages/simple-antd-management-fast-framework/package.json';
 
 exports.run = async function (s, o) {
   const {
     _optionValues: { agent, file },
   } = o;
 
-  let packageTempPath = "";
+  let packageTempPath = '';
 
   showMessage(`prepare to update package.json: `);
 
@@ -30,23 +30,23 @@ exports.run = async function (s, o) {
       agent,
       file,
       packageUrl: packageUrlGithub,
-      repo: "github",
+      repo: 'github',
     });
   } catch (error) {
     showLine();
 
     showWarn(
-      `use github repo failure! switch to gitee, gitee repo possible update delay.`
+      `use github repo failure! switch to gitee, gitee repo possible update delay.`,
     );
 
     showLine();
 
     try {
       packageTempPath = await handleTempPackagePath({
-        agent: "",
+        agent: '',
         file,
         packageUrl: packageUrlGitee,
-        repo: "gitee",
+        repo: 'gitee',
       });
     } catch (error) {
       showLine();
@@ -55,7 +55,7 @@ exports.run = async function (s, o) {
 
       showLine();
 
-      showWarn("download error, please check network");
+      showWarn('download error, please check network');
 
       process.exit();
     }
@@ -65,7 +65,7 @@ exports.run = async function (s, o) {
 };
 
 async function handleTempPackagePath({ agent, file, packageUrl, repo }) {
-  let packageTempPath = "";
+  let packageTempPath = '';
 
   if (file) {
     showMessage(`use local referential package.json`);
@@ -97,7 +97,7 @@ async function handleTempPackagePath({ agent, file, packageUrl, repo }) {
                 keepAliveMsecs: 1000,
                 maxSockets: 256,
                 maxFreeSockets: 256,
-                scheduling: "lifo",
+                scheduling: 'lifo',
                 proxy: agent,
               }),
             },
@@ -164,5 +164,5 @@ function showWarn(message) {
 }
 
 function showLine() {
-  term.gray("------------------------------------\r\n");
+  term.gray('------------------------------------\r\n');
 }

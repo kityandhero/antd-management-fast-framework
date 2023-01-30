@@ -6,8 +6,7 @@ import { getToken, getTokenKeyName } from './globalStorageAssist';
 import {
   corsTarget,
   isString,
-  recordObject,
-  stringIsNullOrWhiteSpace,
+  logObject,
   trySendNearestLocalhostNotify,
 } from './tools';
 
@@ -23,20 +22,20 @@ export async function request({
   const corsUrl = corsTarget();
 
   if (!isString(corsUrl)) {
-    recordObject(corsUrl);
+    logObject(corsUrl);
 
     throw new Error('corsUrl is not string');
   }
 
   if (!isString(url)) {
-    recordObject({ url });
+    logObject({ url });
 
     throw new Error('url is not string');
   }
 
   let urlChange = url;
 
-  if (!stringIsNullOrWhiteSpace(corsUrl)) {
+  if (!checkStringIsNullOrWhiteSpace(corsUrl)) {
     if (url.indexOf(corsUrl) >= 0) {
       urlChange = url;
     } else {
@@ -47,7 +46,7 @@ export async function request({
   trySendNearestLocalhostNotify({ text: corsUrl });
 
   if (!isString(urlChange)) {
-    recordObject({ urlChange });
+    logObject({ urlChange });
 
     throw new Error('urlChange is not string');
   }
@@ -63,7 +62,7 @@ export async function request({
   }
 
   if (showRequestInfo) {
-    recordObject({ corsUrl, api: url, urlChange, option });
+    logObject({ corsUrl, api: url, urlChange, option });
   }
 
   return requestInner(urlChange, {

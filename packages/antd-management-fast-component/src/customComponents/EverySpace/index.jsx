@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { stringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
+import { checkStringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
 
 class EverySpace extends PureComponent {
   render() {
@@ -17,11 +17,13 @@ class EverySpace extends PureComponent {
 
     const customStyle = {
       ...{},
-      ...(stringIsNullOrWhiteSpace(backgroundColor || '')
+      ...(checkStringIsNullOrWhiteSpace(backgroundColor || '')
         ? {}
         : { backgroundColor }),
-      ...(stringIsNullOrWhiteSpace(margin || '') ? {} : { margin }),
-      ...(stringIsNullOrWhiteSpace(borderRadius || '') ? {} : { borderRadius }),
+      ...(checkStringIsNullOrWhiteSpace(margin || '') ? {} : { margin }),
+      ...(checkStringIsNullOrWhiteSpace(borderRadius || '')
+        ? {}
+        : { borderRadius }),
     };
 
     return (

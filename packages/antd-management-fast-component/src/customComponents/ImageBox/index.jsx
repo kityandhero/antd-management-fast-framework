@@ -11,7 +11,6 @@ import { defaultEmptyImage } from 'antd-management-fast-common/es/utils/constant
 import {
   isFunction,
   replace,
-  stringIsNullOrWhiteSpace,
   trim,
 } from 'antd-management-fast-common/es/utils/tools';
 
@@ -242,7 +241,7 @@ class ImageBox extends BaseComponent {
     }
 
     const previewConfig =
-      imageLoadSuccess && !stringIsNullOrWhiteSpace(src) && preview
+      imageLoadSuccess && !checkStringIsNullOrWhiteSpace(src) && preview
         ? previewSimpleMask
           ? {
               mask: React.createElement(
@@ -412,7 +411,7 @@ class ImageBox extends BaseComponent {
                   <Image
                     style={
                       imageLoadSuccess &&
-                      !stringIsNullOrWhiteSpace(src) &&
+                      !checkStringIsNullOrWhiteSpace(src) &&
                       preview
                         ? { cursor: 'pointer' }
                         : {}
@@ -448,7 +447,7 @@ class ImageBox extends BaseComponent {
               width="100%"
               style={{
                 ...(imageLoadSuccess &&
-                !stringIsNullOrWhiteSpace(src) &&
+                !checkStringIsNullOrWhiteSpace(src) &&
                 preview
                   ? { cursor: 'pointer' }
                   : {}),

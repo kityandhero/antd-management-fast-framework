@@ -17,8 +17,6 @@ import {
   copyToClipboard,
   isFunction,
   showErrorMessage,
-  showRuntimeError,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 
 import { buildPlayer } from '../FunctionComponent';
@@ -67,7 +65,7 @@ class VideoUpload extends PureComponent {
   showPreviewModal = () => {
     const { videoUrl } = this.state;
 
-    if (stringIsNullOrWhiteSpace(videoUrl)) {
+    if (checkStringIsNullOrWhiteSpace(videoUrl)) {
       const text = '无效的视频源';
 
       showErrorMessage({
@@ -234,7 +232,7 @@ class VideoUpload extends PureComponent {
         break;
 
       case 'copyUrl':
-        if (stringIsNullOrWhiteSpace(videoUrl)) {
+        if (checkStringIsNullOrWhiteSpace(videoUrl)) {
           const text = '当前未设置视频地址';
 
           showErrorMessage({
@@ -285,13 +283,13 @@ class VideoUpload extends PureComponent {
         key: 'copyUrl',
         label: '复制地址',
         icon: iconBuilder.copy(),
-        disabled: stringIsNullOrWhiteSpace(videoUrl),
+        disabled: checkStringIsNullOrWhiteSpace(videoUrl),
       },
       {
         key: 'clearUrl',
         label: '清空视频',
         icon: iconBuilder.delete(),
-        disabled: stringIsNullOrWhiteSpace(videoUrl),
+        disabled: checkStringIsNullOrWhiteSpace(videoUrl),
       },
     ];
 
@@ -307,7 +305,7 @@ class VideoUpload extends PureComponent {
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
-              disabled={uploading || stringIsNullOrWhiteSpace(videoUrl)}
+              disabled={uploading || checkStringIsNullOrWhiteSpace(videoUrl)}
               onClick={() => {
                 this.showPreviewModal();
               }}

@@ -3,7 +3,6 @@ import { parse } from 'qs';
 import React from 'react';
 
 import { appInitDefault } from './constants';
-import { isArray } from './typeCheck';
 
 let appConfigureMerge = {};
 let appConfigureMergeComplete = false;

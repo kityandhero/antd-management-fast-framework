@@ -19,10 +19,6 @@
   "bin": {
     "antd-management-fast-cli": "./bin/cli.js"
   },
-  "scripts": {
-    "clean-file": "rimraf ./src/.umi && rimraf ./node_modules",
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "directories": {
     "lib": "lib",
     "src": "src"
@@ -31,8 +27,12 @@
     "lib",
     "src"
   ],
+  "scripts": {
+    "clean-file": "rimraf ./src/.umi && rimraf ./node_modules",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
   "dependencies": {
-    "commander": "^9.5.0",
+    "commander": "^10.0.0",
     "download": "^8.0.0",
     "download-git-repo": "^3.0.2",
     "fs-extra": "^11.1.0",
@@ -42,7 +42,8 @@
     "terminal-kit": "^3.0.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.0",
-    "@types/shelljs": "^0.8.11"
+    "@types/fs-extra": "^11.0.1",
+    "@types/shelljs": "^0.8.11",
+    "npm-check-updates": "^16.6.3"
   }
 }

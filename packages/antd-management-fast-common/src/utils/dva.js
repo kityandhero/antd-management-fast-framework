@@ -1,9 +1,6 @@
 import { getDvaApp } from 'umi';
 
-import { setCache } from './cacheAssist';
 import { runtimeSettings } from './dynamicSetting';
-import { recordDebug } from './log';
-import { isString, isUndefined } from './typeCheck';
 
 export function getDispatch() {
   const app = getDvaApp();
@@ -31,7 +28,7 @@ export function getModelRemoteData(name) {
 }
 
 export function getModelState(name) {
-  // recordExecute(`getModelState(${name})`);
+  // logExecute(`getModelState(${name})`);
 
   const m = getModel(name);
 
@@ -114,7 +111,7 @@ function reducerDataAssist(state, action, namespace) {
       value: v,
     });
 
-    recordDebug(
+    logDebug(
       `modal ${namespace} cache data, key is ${namespace}_${alias || 'data'}, ${
         cacheResult ? 'cache success' : 'cache fail'
       }.`,

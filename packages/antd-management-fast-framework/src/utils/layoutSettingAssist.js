@@ -4,18 +4,18 @@ import {
 } from 'antd-management-fast-common/es/utils/dva';
 import { layoutSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
-  recordDebug,
-  recordExecute,
+  logDebug,
+  logExecute,
 } from 'antd-management-fast-common/es/utils/tools';
 
 let configLayoutSettingComplete = false;
 
 export function configLayoutSetting() {
-  recordExecute('configLayoutSetting');
+  logExecute('configLayoutSetting');
 
   const dispatch = getDispatch();
 
-  recordDebug({
+  logDebug({
     layoutSettings,
   });
 
@@ -33,7 +33,7 @@ export function getLayoutSetting() {
     configLayoutSettingComplete = true;
   }
 
-  recordExecute('getLayoutSetting');
+  logExecute('getLayoutSetting');
 
   const state = getModelState('schedulingControl');
 

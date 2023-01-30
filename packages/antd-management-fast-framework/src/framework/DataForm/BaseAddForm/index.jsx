@@ -12,8 +12,7 @@ import {
   formatDatetime,
   getDerivedStateFromPropsForUrlParams,
   isUndefined,
-  recordObject,
-  showRuntimeError,
+  logObject,
   showWarningMessage,
 } from 'antd-management-fast-common/es/utils/tools';
 import { decorateAvatar } from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
@@ -163,7 +162,7 @@ class BaseAddForm extends DataCore {
                     });
                   })
                   .catch((res) => {
-                    recordObject(res);
+                    logObject(res);
 
                     that.setState({
                       processing: false,

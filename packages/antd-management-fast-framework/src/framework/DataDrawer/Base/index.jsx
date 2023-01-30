@@ -10,7 +10,6 @@ import {
   isArray,
   isFunction,
   isUndefined,
-  stringIsNullOrWhiteSpace,
 } from 'antd-management-fast-common/es/utils/tools';
 import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
 import {
@@ -78,7 +77,7 @@ class Base extends BaseWindow {
     const prevText = this.buildTitlePrevText();
     let subText = this.buildTitleSubText();
 
-    subText = stringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`;
+    subText = checkStringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`;
 
     return `${prevText}${this.buildTitleText() || '信息详情'}${subText}`;
   };
