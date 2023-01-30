@@ -51,13 +51,3 @@ export function menuHeaderRender(logoDom, config) {
     shortName: shortNameData,
   });
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export async function empty() {
-  return {};
-}

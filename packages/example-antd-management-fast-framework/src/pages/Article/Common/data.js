@@ -262,13 +262,3 @@ export const statusCollection = {
    */
   online: 1,
 };
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export async function empty() {
-  return {};
-}

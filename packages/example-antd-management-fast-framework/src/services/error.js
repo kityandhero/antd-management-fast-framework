@@ -5,13 +5,3 @@ export default async function queryError(code) {
     api: `/api/${code}`,
   });
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export async function empty() {
-  return {};
-}

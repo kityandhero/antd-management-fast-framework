@@ -10,13 +10,3 @@ export async function signInAction({ target, handleData, successCallback }) {
     showProcessing: false,
   });
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export async function empty() {
-  return {};
-}

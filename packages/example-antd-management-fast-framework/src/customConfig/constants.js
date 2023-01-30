@@ -39,13 +39,3 @@ export const mediaTypeCollection = {
 };
 
 export const defaultPoint = [113.672108, 34.749387];
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export async function empty() {
-  return {};
-}

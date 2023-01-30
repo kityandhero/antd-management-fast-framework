@@ -24,13 +24,3 @@ export function setCurrentParams(params) {
 export function getCurrentParams() {
   return getCache({ key: cacheKeyCollection.currentParams }) || {};
 }
-
-/**
- * 占位函数
- *
- * @export
- * @returns
- */
-export async function empty() {
-  return {};
-}
