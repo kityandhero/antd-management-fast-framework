@@ -1,5 +1,7 @@
-var fs = require('fs');
-var dayjs = require('dayjs');
+/* eslint-disable import/no-commonjs */
+
+let fs = require('fs');
+let dayjs = require('dayjs');
 
 function prompt(err) {
   if (err) {
@@ -9,7 +11,7 @@ function prompt(err) {
   console.log('cz.flag.json update success');
 }
 
-var content = JSON.stringify({
+let content = JSON.stringify({
   datetime: dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss'),
 });
 

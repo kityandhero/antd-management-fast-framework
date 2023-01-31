@@ -1,3 +1,5 @@
+import { showSimpleErrorMessage } from 'easy-soft-utility';
+
 import { runtimeSettings } from './dynamicSetting';
 import { getToken } from './globalStorageAssist';
 import { request as remoteRequest } from './request';
@@ -59,9 +61,7 @@ function dataExceptionNotice(d) {
 
       if (codeAdjust === toNumber(lastCustomMessage.code)) {
         if (currentTime - lastCustomMessage.time > 800) {
-          showErrorMessage({
-            message: messageText,
-          });
+          showSimpleErrorMessage(messageText);
 
           taroGlobalData.lastCustomMessage = {
             code: codeAdjust,
@@ -70,9 +70,7 @@ function dataExceptionNotice(d) {
           };
         }
       } else {
-        showErrorMessage({
-          message: messageText,
-        });
+        showSimpleErrorMessage(messageText);
 
         taroGlobalData.lastCustomMessage = {
           code: codeAdjust,

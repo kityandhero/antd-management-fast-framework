@@ -32,6 +32,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { BorderOuterOutlined, EllipsisOutlined } from '@ant-design/icons';
 
+import { getGuid } from 'easy-soft-utility';
+
 import {
   columnFacadeMode,
   datetimeFormat,
@@ -48,7 +50,6 @@ import {
   copyToClipboard,
   formatDatetime,
   formatMoney,
-  getGuid,
   inCollection,
   isArray,
   isBoolean,

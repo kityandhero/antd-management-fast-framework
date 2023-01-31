@@ -126,6 +126,7 @@ importers:
       download-git-repo: ^3.0.2
       fs-extra: ^11.1.0
       hpagent: ^1.2.0
+      lint-staged: ^13.1.0
       npm-check-updates: ^16.6.3
       ping: ^0.4.2
       shelljs: ^0.8.5
@@ -142,6 +143,7 @@ importers:
     devDependencies:
       '@types/fs-extra': 11.0.1
       '@types/shelljs': 0.8.11
+      lint-staged: 13.1.0
       npm-check-updates: 16.6.3
 
   packages/antd-management-fast-common:
@@ -178,7 +180,7 @@ importers:
       array-move: ^4.0.0
       copy-to-clipboard: ^3.3.3
       dayjs: ^1.11.7
-      easy-soft-utility: ^2.4.3
+      easy-soft-utility: ^2.4.8
       eslint: ^8.33.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -237,7 +239,7 @@ importers:
       array-move: 4.0.0
       copy-to-clipboard: 3.3.3
       dayjs: 1.11.7
-      easy-soft-utility: 2.4.3
+      easy-soft-utility: 2.4.8
       lodash: 4.17.21
       lodash-decorators: 6.0.1_lodash@4.17.21
       lodash.debounce: 4.0.8
@@ -354,7 +356,7 @@ importers:
       bizcharts: ^4.1.22
       classnames: ^2.3.2
       dayjs: ^1.11.7
-      easy-soft-utility: ^2.4.3
+      easy-soft-utility: ^2.4.8
       eslint: ^8.33.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -412,7 +414,7 @@ importers:
       bizcharts: 4.1.22_2exiyaescjxorpwwmy4ejghgte
       classnames: 2.3.2
       dayjs: 1.11.7
-      easy-soft-utility: 2.4.3
+      easy-soft-utility: 2.4.8
       nprogress: 0.2.0
       rc-animate: 3.1.1_biqbaboplfbrettd7655fr4n2y
       rc-queue-anim: 2.0.0_biqbaboplfbrettd7655fr4n2y
@@ -10832,6 +10834,18 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /easy-soft-utility/2.4.8:
+    resolution: {integrity: sha512-pefYkbSdjR06b1PpD1NDy3iIkdyKoS706g19KGtrGI6vQ7nnbe+5krMbPUjbjBbX2YlCsoqhJgttq/Mp/ge4og==}
+    dependencies:
+      dayjs: 1.11.7
+      js-base64: 3.7.4
+      lodash: 4.17.21
+      node-cache: 5.1.2
+      object-hash: 3.0.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /ejs/3.1.8:
     resolution: {integrity: sha512-/sXZeMlhS0ArkfX2Aw780gJzXSMPnKjtspYZv+f3NiKLlubezAHDU5+9xz6gd3/NhG3txQCo6xlglmTS+oTGEQ==}
     engines: {node: '>=0.10.0'}
@@ -13220,7 +13234,7 @@ packages:
     engines: {node: '>= 4'}
 
   /image-size/0.5.5:
-    resolution: {integrity: sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=}
+    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
     hasBin: true
     requiresBuild: true
@@ -21713,7 +21727,7 @@ packages:
     optional: true
 
   /uglify-to-browserify/1.0.2:
-    resolution: {integrity: sha1-bgkk1r2mta/jSeOabWMoUKD4grc=}
+    resolution: {integrity: sha512-vb2s1lYx2xBtUgy+ta+b2J/GLVUR+wmpINwHePmPRhOsIVCG2wDzKJ0n14GslH1BifsqVzSOwQhRaCAsZ/nI4Q==}
     requiresBuild: true
     dev: false
     optional: true

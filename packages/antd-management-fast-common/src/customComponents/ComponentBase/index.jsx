@@ -1,10 +1,10 @@
 import nprogress from 'nprogress';
 import { Component } from 'react';
 
-import { navigateTo } from 'easy-soft-utility';
+import { getGuid, navigateTo, showSimpleErrorMessage } from 'easy-soft-utility';
 
 import { runtimeSettings } from '../../utils/dynamicSetting';
-import { defaultBaseState, getGuid } from '../../utils/tools';
+import { defaultBaseState } from '../../utils/meta';
 
 function filterModel(props) {
   const result = { ...props };
@@ -280,9 +280,7 @@ class ComponentBase extends Component {
   };
 
   doWhenCatchError = (error, info) => {
-    showErrorMessage({
-      message: 'error occurred, please view in console.',
-    });
+    showSimpleErrorMessage('error occurred, please view in console.');
 
     logError({
       error,

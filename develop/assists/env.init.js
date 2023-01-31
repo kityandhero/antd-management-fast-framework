@@ -1,3 +1,5 @@
+/* eslint-disable import/no-commonjs */
+
 let fs = require('fs');
 const { resolve } = require('path');
 
@@ -9,32 +11,38 @@ function prompt(err, message) {
   console.log(message);
 }
 
-let rootEslintContent = `let { generalConfig } = require('./developConfig/eslint/config');
+let rootEslintContent = `/* eslint-disable import/no-commonjs */
+let { generalConfig } = require('./develop/config/eslint/config');
 
 module.exports = generalConfig;
 `;
 
-let packageEslintContent = `let { generalConfig } = require('../../developConfig/eslint/config');
+let packageEslintContent = `/* eslint-disable import/no-commonjs */
+let { generalConfig } = require('../../develop/config/eslint/config');
 
 module.exports = generalConfig;
 `;
 
-let rootPrettierContent = `let { generalConfig } = require('./developConfig/prettier/config');
+let rootPrettierContent = `/* eslint-disable import/no-commonjs */
+let { generalConfig } = require('./develop/config/prettier/config');
 
 module.exports = generalConfig;
 `;
 
-let packagePrettierContent = `var { generalConfig } = require("../../developConfig/prettier/config");
+let packagePrettierContent = `/* eslint-disable import/no-commonjs */
+var { generalConfig } = require("../../develop/config/prettier/config");
 
 module.exports = generalConfig;
 `;
 
-let rootStylelintContent = `let { generalConfig } = require('./developConfig/stylelint/config');
+let rootStylelintContent = `/* eslint-disable import/no-commonjs */
+let { generalConfig } = require('./develop/config/stylelint/config');
 
 module.exports = generalConfig;
 `;
 
-let packageStylelintContent = `let { generalConfig } = require('../../developConfig/stylelint/config');
+let packageStylelintContent = `/* eslint-disable import/no-commonjs */
+let { generalConfig } = require('../../develop/config/stylelint/config');
 
 module.exports = generalConfig;
 `;
@@ -69,6 +77,8 @@ let eslintIgnoreContent = `**/public
 *.zip
 *.txt
 *.7z
+*.min.js
+rollup.config-*.cjs
 `;
 
 let prettierIgnoreContent = `# ignore dir
@@ -102,6 +112,7 @@ let prettierIgnoreContent = `# ignore dir
 *.text
 *.ejs
 *.svg
+*.min.js
 
 # ignore special
 .prettierrc.js
@@ -117,6 +128,7 @@ let prettierIgnoreContent = `# ignore dir
 .editorconfig
 .czrc
 .ga
+rollup.config-*.cjs
 pnpm-lock.yaml
 CNAME
 LICENSE
@@ -149,6 +161,7 @@ let gitIgnoreContent = `# See https://help.github.com/articles/ignoring-files/ f
 *.bak
 
 # ignore special
+rollup.config-*.cjs
 yarn.lock
 package-lock.json
 .firebase

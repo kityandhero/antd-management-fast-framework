@@ -1,4 +1,4 @@
-import { buildConfig as buildConfigCore } from '../../../developConfig/rollup/configBuilder';
+import { buildConfig as buildConfigCore } from '../../../develop/config/rollup/configBuilder';
 
 const inputFile = {
   ...{

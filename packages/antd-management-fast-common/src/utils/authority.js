@@ -1,19 +1,18 @@
 import {
-  getAccessWayCollectionCache,
-  storageKeyCollection,
-} from './globalStorageAssist';
-import {
   getStringFromLocalStorage,
-  saveJsonToLocalStorage,
-} from './localStorageAssist';
-import {
   getValueByKey,
-  isArray,
   isObject,
   isString,
   logObject,
+  saveJsonToLocalStorage,
   showErrorMessage,
-} from './tools';
+  showSimpleErrorMessage,
+} from 'easy-soft-utility';
+
+import {
+  getAccessWayCollectionCache,
+  storageKeyCollection,
+} from './globalStorageAssist';
 
 const authorityCollectionCache = 'authorityCollectionCache';
 const superPermissionCacheKey = 'hasSuperPermission';
@@ -186,9 +185,7 @@ function checkHasAuthorities(authCollection) {
 
   const text = '无效的待验证权限';
 
-  showErrorMessage({
-    message: text,
-  });
+  showSimpleErrorMessage(text);
 
   logError({ auth });
 

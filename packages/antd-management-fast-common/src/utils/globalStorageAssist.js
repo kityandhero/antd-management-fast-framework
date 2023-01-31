@@ -1,13 +1,10 @@
-import { accessWaySpecialCollection } from '../utils/constants';
-
 import {
-  clearLocalStorage,
   getJsonFromLocalStorage,
-  getStringFromLocalStorage,
-  removeLocalStorage,
+  isArray,
   saveJsonToLocalStorage,
-  saveStringToLocalStorage,
-} from './localStorageAssist';
+} from 'easy-soft-utility';
+
+import { accessWaySpecialCollection } from '../utils/constants';
 
 export const storageKeyCollection = {
   token: 'token',

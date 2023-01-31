@@ -1,10 +1,12 @@
+import { isArray } from 'easy-soft-utility';
+
 import {
   apiSuccessCode as apiSuccessCodeDefault,
   authenticationFailCode as authenticationFailCodeDefault,
   emptyLogo as emptyLogoImage,
 } from '../utils/constants';
 
-import { checkStringIsNullOrWhiteSpace, getAppInitConfigData } from './core';
+import { getAppInitConfigData } from './core';
 
 export function logShowInConsole() {
   const appInit = getAppInitConfigData();

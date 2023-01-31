@@ -86,10 +86,13 @@
     "postclean",
     "postcz",
     "postprettier",
+    "postpublish",
     "Poweroff",
     "powerpaste",
     "precommit",
     "precz",
+    "prelerna",
+    "prencu",
     "prestart",
     "prettierrc",
     "prismjs",
@@ -135,10 +138,6 @@
     "typescript",
     "typescriptreact",
     "javascriptreact"
-  ],
-  "eslint.workingDirectories": [
-    "packages/antd-management-fast-framework",
-    "packages/simple-antd-management-fast-framework"
   ],
   "eslint.packageManager": "yarn",
   "git.ignoreLimitWarning": true,

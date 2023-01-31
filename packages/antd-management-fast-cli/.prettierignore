@@ -29,6 +29,7 @@
 *.text
 *.ejs
 *.svg
+*.min.js
 
 # ignore special
 .prettierrc.js
@@ -44,6 +45,7 @@
 .editorconfig
 .czrc
 .ga
+rollup.config-*.cjs
 pnpm-lock.yaml
 CNAME
 LICENSE

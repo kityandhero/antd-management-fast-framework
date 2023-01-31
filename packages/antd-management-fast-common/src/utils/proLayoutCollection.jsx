@@ -1,8 +1,9 @@
 import nprogress from 'nprogress';
 import { Link } from 'umi';
 
+import { showSimpleErrorMessage } from 'easy-soft-utility';
+
 import { runtimeSettings } from './dynamicSetting';
-import { showErrorMessage } from './tools';
 
 /**
  * layout默认配置
@@ -35,9 +36,7 @@ export const proLayoutDefaultProps = {
             if ((nprogress || null) == null) {
               const text = 'nprogress need install';
 
-              showErrorMessage({
-                message: text,
-              });
+              showSimpleErrorMessage(text);
             }
 
             nprogress.inc();

@@ -2,6 +2,8 @@ import { pathToRegexp } from 'path-to-regexp';
 import { parse } from 'qs';
 import React from 'react';
 
+import { isArray } from 'easy-soft-utility';
+
 import { appInitDefault } from './constants';
 
 let appConfigureMerge = {};

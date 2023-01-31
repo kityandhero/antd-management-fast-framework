@@ -1,8 +1,8 @@
 import { message, Modal } from 'antd';
 
-import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
+import { checkStringIsNullOrWhiteSpace, getGuid } from 'easy-soft-utility';
 
-import { getGuid, notifySuccess } from './tools';
+import { notifySuccess } from './tools';
 
 const { confirm } = Modal;
 

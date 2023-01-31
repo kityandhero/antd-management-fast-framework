@@ -1,20 +1,20 @@
 // import pxtorem from 'postcss-pxtorem';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
+import nodePolyfills from 'rollup-plugin-polyfill-node';
 // import dts from 'rollup-plugin-dts';
 // import livereload from 'rollup-plugin-livereload';
 import postcss from 'rollup-plugin-postcss';
-import nodePolyfills from 'rollup-plugin-polyfill-node';
 // import serve from 'rollup-plugin-serve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
+import { DEFAULT_EXTENSIONS } from '@babel/core';
 import babelConfig from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
-import { DEFAULT_EXTENSIONS } from '@babel/core';
 
 // import { pxToRemRoot } from '../../taro-fast-common/src/utils/constants';
 

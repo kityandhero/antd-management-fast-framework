@@ -9,10 +9,10 @@ const ping = require('ping');
 const { HttpsProxyAgent } = agent;
 
 const packageUrlGithub =
-  'https://raw.githubusercontent.com/kityandhero/antd-management-fast-framework/master/packages/simple-antd-management-fast-framework/package.json';
+  'https://raw.githubusercontent.com/kityandhero/antd-management-fast-framework/master/packages/example-antd-management-fast-framework/package.json';
 
 const packageUrlGitee =
-  'https://gitee.com/lzt/antd-management-fast-framework/raw/master/packages/simple-antd-management-fast-framework/package.json';
+  'https://gitee.com/lzt/antd-management-fast-framework/raw/master/packages/example-antd-management-fast-framework/package.json';
 
 exports.run = async function (s, o) {
   const {

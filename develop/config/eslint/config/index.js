@@ -1,3 +1,5 @@
+/* eslint-disable import/no-commonjs */
+
 let recommendRules = require('../rules');
 
 let generalRules = recommendRules.generalRules;

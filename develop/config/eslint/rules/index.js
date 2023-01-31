@@ -1,3 +1,5 @@
+/* eslint-disable import/no-commonjs */
+
 module.exports = {
   generalRules: {
     eqeqeq: 'off',
@@ -15,7 +17,7 @@ module.exports = {
     'generator-star-spacing': 0,
     'operator-linebreak': 0,
     'object-curly-newline': 0,
-    'no-use-before-define': 0,
+    'no-use-before-define': 1,
     'no-nested-ternary': 0,
     'compat/compat': 0,
     '@typescript-eslint/no-this-alias': ['off'],
