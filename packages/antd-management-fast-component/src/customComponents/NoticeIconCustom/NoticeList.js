@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from './NoticeList.less';
 
-export default function NoticeList({
+export function NoticeList({
   data = [],
   onClick,
   onClear,

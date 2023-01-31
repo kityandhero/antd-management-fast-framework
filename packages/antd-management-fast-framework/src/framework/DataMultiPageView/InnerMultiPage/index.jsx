@@ -1,4 +1,4 @@
-import MultiPage from '../MultiPage';
+import { MultiPage } from '../MultiPage';
 
 class InnerMultiPage extends MultiPage {
   restoreSearch = false;
@@ -15,4 +15,4 @@ class InnerMultiPage extends MultiPage {
   }
 }
 
-export default InnerMultiPage;
+export { InnerMultiPage };

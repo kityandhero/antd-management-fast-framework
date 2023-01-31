@@ -47,4 +47,4 @@ const MiniBar = (props) => {
   );
 };
 
-export default MiniBar;
+export { MiniBar };

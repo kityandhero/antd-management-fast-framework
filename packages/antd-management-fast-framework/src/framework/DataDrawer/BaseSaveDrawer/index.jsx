@@ -1,6 +1,6 @@
-import { drawerConfig } from 'antd-management-fast-common/es/utils/constants';
+import { drawerConfig } from 'antd-management-fast-common';
 
-import Base from '../Base';
+import { Base } from '../Base';
 
 class BaseSaveDrawer extends Base {
   constructor(props) {
@@ -34,4 +34,4 @@ class BaseSaveDrawer extends Base {
   };
 }
 
-export default BaseSaveDrawer;
+export { BaseSaveDrawer };

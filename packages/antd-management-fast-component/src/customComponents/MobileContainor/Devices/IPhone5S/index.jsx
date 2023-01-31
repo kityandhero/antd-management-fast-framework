@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 
-import { animalType } from 'antd-management-fast-common/es/utils/constants';
-import { inCollection } from 'antd-management-fast-common/es/utils/tools';
+import { checkInCollection } from 'easy-soft-utility';
 
-import ContentView from '../../ContentView';
+import { animalType } from 'antd-management-fast-common';
+
+import { ContentView } from '../../ContentView';
 
 import styles from '../devices.less';
 
@@ -23,7 +24,7 @@ class IPhone5S extends PureComponent {
       afterAlertClick,
     } = this.props;
 
-    const type = inCollection(['black', 'silver', 'gold'], typeSource)
+    const type = checkInCollection(['black', 'silver', 'gold'], typeSource)
       ? typeSource
       : 'silver';
 
@@ -76,4 +77,4 @@ IPhone5S.defaultProps = {
   type: 'black',
 };
 
-export default IPhone5S;
+export { IPhone5S };

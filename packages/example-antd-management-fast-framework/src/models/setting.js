@@ -1,4 +1,4 @@
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
+import { runtimeSettings } from 'antd-management-fast-common';
 
 const SettingModel = {
   namespace: 'settings',

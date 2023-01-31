@@ -2,11 +2,13 @@ import React from 'react';
 import { Helmet } from 'umi';
 import { DefaultFooter } from '@ant-design/pro-layout';
 
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
-import { Bubbly } from 'antd-management-fast-component/es/customComponents/Canvas';
-import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
-import VerticalBox from 'antd-management-fast-component/es/customComponents/VerticalBox';
+import { runtimeSettings } from 'antd-management-fast-common';
+import {
+  BaseComponent,
+  Bubbly,
+  FlexBox,
+  VerticalBox,
+} from 'antd-management-fast-component';
 
 const defaultProps = {};
 

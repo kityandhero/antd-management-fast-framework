@@ -1,13 +1,12 @@
 import { Form, Modal, Spin } from 'antd';
 import React from 'react';
 
-import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
+  cardConfig,
   defaultFormState,
   isUndefined,
-} from 'antd-management-fast-common/es/utils/tools';
-import FlexText from 'antd-management-fast-component/es/customComponents/FlexText';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+} from 'antd-management-fast-common';
+import { FlexText, iconBuilder } from 'antd-management-fast-component';
 
 import BaseWindow from '../../DataOperation/BaseWindow';
 
@@ -234,4 +233,4 @@ class Base extends BaseWindow {
   }
 }
 
-export default Base;
+export { Base };

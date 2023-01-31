@@ -17,4 +17,4 @@ function FormCustomItemChildren(props) {
   return _children;
 }
 
-export default FormCustomItemChildren;
+export { FormCustomItemChildren };

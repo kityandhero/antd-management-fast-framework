@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import styles from './index.less';
 
-export default class FooterToolbar extends Component {
+class FooterToolbar extends Component {
   static contextTypes = {
     isMobile: PropTypes.bool,
   };
@@ -50,3 +50,5 @@ export default class FooterToolbar extends Component {
     );
   }
 }
+
+export { FooterToolbar };

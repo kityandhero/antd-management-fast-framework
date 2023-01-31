@@ -1,21 +1,19 @@
 ﻿import {
-  unknownLabel,
-  unlimitedWithStringFlag,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
   isInvalid,
   isNull,
   isUndefined,
   refitCommonData,
   searchFromList,
-} from 'antd-management-fast-common/es/utils/tools';
+  unknownLabel,
+  unlimitedWithStringFlag,
+} from 'antd-management-fast-common';
 import {
   buildFormOptionItem,
   buildFormRadio,
   buildFormRadioItem,
   buildFormSelect,
   buildSearchFormSelect,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+} from 'antd-management-fast-component';
 
 export function refitArticleStatusList({ metaData, withUnlimited = true }) {
   const { articleStatusList: list } = {

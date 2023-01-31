@@ -1,6 +1,26 @@
 import { getDvaApp } from 'umi';
 
+import { isString, isUndefined, logDebug } from 'easy-soft-utility';
+
 import { runtimeSettings } from './dynamicSetting';
+
+export function getModel(name) {
+  const app = getDvaApp();
+
+  const models = app._models;
+
+  const list = models.filter((o) => o.namespace === name);
+
+  if (list.length > 0) {
+    return list[0];
+  }
+
+  throw new Error(
+    `${name} not in dva models, current models is ${models
+      .map((o) => o.namespace)
+      .join()}`,
+  );
+}
 
 export function getDispatch() {
   const app = getDvaApp();
@@ -43,32 +63,8 @@ export function getModelNameList() {
   return models.map((o) => o.namespace);
 }
 
-export function getModel(name) {
-  const app = getDvaApp();
-
-  const models = app._models;
-
-  const list = models.filter((o) => o.namespace === name);
-
-  if (list.length > 0) {
-    return list[0];
-  }
-
-  throw new Error(
-    `${name} not in dva models, current models is ${models
-      .map((o) => o.namespace)
-      .join()}`,
-  );
-}
-
 export const reducerNameCollection = {
   reducerData: 'reducerData',
-};
-
-export const reducerCollection = {
-  reducerData(state, action, namespace) {
-    return reducerDataAssist(state, action, namespace);
-  },
 };
 
 function reducerDataAssist(state, action, namespace) {
@@ -120,6 +116,12 @@ function reducerDataAssist(state, action, namespace) {
 
   return result;
 }
+
+export const reducerCollection = {
+  reducerData(state, action, namespace) {
+    return reducerDataAssist(state, action, namespace);
+  },
+};
 
 /**
  * 初始化state

@@ -4,9 +4,9 @@ import {
   logObject,
   showWarningMessage,
   toNumber,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import Base from '../../DataListView/Base';
+import { Base } from '../../DataListView/Base';
 
 class SinglePage extends Base {
   /**
@@ -272,4 +272,4 @@ class SinglePage extends Base {
   };
 }
 
-export default SinglePage;
+export { SinglePage };

@@ -1,6 +1,14 @@
+import {
+  checkStringIsNullOrWhiteSpace,
+  logError,
+  logTrace,
+  redirectTo,
+  showSimpleWarningMessage,
+  showSimpleWarnMessage,
+} from 'easy-soft-utility';
+
 import { runtimeSettings } from './dynamicSetting';
-import { getToken } from './globalStorageAssist';
-import { recordTrace, redirectToPath, showWarnMessage } from './tools';
+import { getToken } from './tokenAssist';
 
 /**
  * 是否使用模拟访问
@@ -8,8 +16,8 @@ import { recordTrace, redirectToPath, showWarnMessage } from './tools';
  * @export
  * @returns
  */
-export function transferToVirtualAccess() {
-  return runtimeSettings.getUseVirtualRequest();
+export function transferToSimulateRequest() {
+  return runtimeSettings.getUseSimulateRequest();
 }
 
 /**
@@ -17,7 +25,7 @@ export function transferToVirtualAccess() {
  *
  * @returns
  */
-function apiVirtualAuthorize() {
+function simulateApiAuthorize() {
   const tokenValue = getToken;
   return (tokenValue || '') !== '';
 }
@@ -25,14 +33,14 @@ function apiVirtualAuthorize() {
 /**
  * 封装模拟的错误返回
  */
-export function apiVirtualFailData({
+export function buildApiRequestFailSimulationData({
   remoteResponse,
   code,
   message: messageText,
   needAuthorize = true,
 }) {
   if (needAuthorize) {
-    if (apiVirtualAuthorize()) {
+    if (simulateApiAuthorize()) {
       showRuntimeError({
         message: messageText,
       });
@@ -67,12 +75,12 @@ export function apiVirtualFailData({
 /**
  * 封装模拟的正确返回
  */
-export function apiVirtualSuccessData({
+export function buildApiRequestSuccessSimulationData({
   remoteResponse,
   needAuthorize = true,
 }) {
   if (needAuthorize) {
-    if (apiVirtualAuthorize()) {
+    if (simulateApiAuthorize()) {
       return {
         code: runtimeSettings.getApiSuccessCode(),
         message: 'success',
@@ -99,7 +107,7 @@ export function apiVirtualSuccessData({
 /**
  * 封装正确的虚拟访问
  */
-export async function apiVirtualSuccessAccess({
+export async function simulateApiSuccessRequest({
   remoteResponse,
   needAuthorize = true,
 }) {
@@ -108,7 +116,7 @@ export async function apiVirtualSuccessAccess({
   await new Promise((resolve) => {
     setTimeout(() => {
       resolve(
-        apiVirtualSuccessData({
+        buildApiRequestSuccessSimulationData({
           remoteResponse,
           needAuthorize,
         }),
@@ -133,7 +141,7 @@ export async function apiVirtualSuccessAccess({
       throw new Error('缺少登录页面路径配置');
     }
 
-    redirectToPath(signInPath);
+    redirectTo(signInPath);
   }
 
   return result;
@@ -142,7 +150,7 @@ export async function apiVirtualSuccessAccess({
 /**
  * 封装失败的虚拟访问
  */
-export async function apiVirtualFailAccess({
+export async function simulateApiFailRequest({
   remoteResponse,
   needAuthorize = true,
 }) {
@@ -150,7 +158,7 @@ export async function apiVirtualFailAccess({
 
   await new Promise((resolve) => {
     setTimeout(() => {
-      resolve(apiVirtualFailData(remoteResponse, needAuthorize));
+      resolve(buildApiRequestFailSimulationData(remoteResponse, needAuthorize));
     }, 300);
   })
     .then((data) => {
@@ -171,11 +179,9 @@ export async function apiVirtualFailAccess({
       throw new Error('缺少登录页面路径配置');
     }
 
-    redirectToPath(signInPath);
+    redirectTo(signInPath);
   } else if (code !== runtimeSettings.getApiSuccessCode()) {
-    showWarnMessage({
-      message: messageText,
-    });
+    showSimpleWarnMessage(messageText);
   }
 
   return result;
@@ -184,7 +190,7 @@ export async function apiVirtualFailAccess({
 /**
  * 封装模拟访问
  */
-export async function apiVirtualAccess({
+export async function simulateApiRequest({
   virtualRequestDelay = 200,
   dataBuild,
 }) {
@@ -201,7 +207,7 @@ export async function apiVirtualAccess({
     }
   })
     .then((data) => {
-      recordTrace(`api request is virtual: simulation completed.`);
+      logTrace(`api request is virtual: simulation completed.`);
 
       result = data;
 
@@ -214,9 +220,7 @@ export async function apiVirtualAccess({
   const { code, message: messageText } = result;
 
   if (code !== runtimeSettings.getApiSuccessCode()) {
-    showWarnMessage({
-      message: messageText,
-    });
+    showSimpleWarningMessage(messageText);
   }
 
   return result;

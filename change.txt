@@ -1,7 +1,7 @@
 handleItem
 queryStringify
-queryStringParse 
+queryStringParse
 formatMoney
 convertTarget
 roundToTarget
-replaceTargetText
+replaceWithKeep

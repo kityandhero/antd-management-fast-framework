@@ -1,10 +1,10 @@
-import { selectModeCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   isFunction,
+  selectModeCollection,
   toNumber,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import Base from '../Base';
+import { Base } from '../Base';
 
 class InteractiveBase extends Base {
   constructor(props) {
@@ -126,4 +126,4 @@ InteractiveBase.defaultProps = {
   selectMode: selectModeCollection.drawer,
 };
 
-export default InteractiveBase;
+export { InteractiveBase };

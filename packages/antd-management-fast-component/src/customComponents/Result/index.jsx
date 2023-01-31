@@ -4,7 +4,7 @@ import { CheckCircleFilled, ClockCircleFilled } from '@ant-design/icons';
 
 import styles from './index.less';
 
-export default function Result({
+export function Result({
   className,
   type,
   title,

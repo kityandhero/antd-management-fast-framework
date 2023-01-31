@@ -1,6 +1,6 @@
-import { isFunction } from 'antd-management-fast-common/es/utils/tools';
+import { isFunction } from 'antd-management-fast-common';
 
-import BaseLoadModal from '../BaseLoadModal';
+import { BaseLoadModal } from '../BaseLoadModal';
 
 class BaseSelectModal extends BaseLoadModal {
   constructor(props) {
@@ -25,4 +25,4 @@ class BaseSelectModal extends BaseLoadModal {
   };
 }
 
-export default BaseSelectModal;
+export { BaseSelectModal };

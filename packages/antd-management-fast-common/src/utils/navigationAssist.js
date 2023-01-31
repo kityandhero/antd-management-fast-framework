@@ -1,3 +1,5 @@
+import { isString } from 'easy-soft-utility';
+
 function navigateTo(o) {
   const location = isString(o)
     ? {

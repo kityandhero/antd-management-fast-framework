@@ -1,10 +1,10 @@
 import { Button, Divider } from 'antd';
 import React from 'react';
 
-import { isFunction } from 'antd-management-fast-common/es/utils/tools';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { isFunction } from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 
-import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
+import { SupplementWrapper } from '../../../CustomWrapper/SupplementWrapper';
 
 class SelectFieldBase extends SupplementWrapper {
   loadDataAfterMount = false;
@@ -144,4 +144,4 @@ SelectFieldBase.defaultProps = {
   showClear: true,
 };
 
-export default SelectFieldBase;
+export { SelectFieldBase };

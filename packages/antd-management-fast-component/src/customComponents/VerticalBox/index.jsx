@@ -77,4 +77,4 @@ VerticalBox.defaultProps = {
   alignJustify: 'flex-start',
 };
 
-export default VerticalBox;
+export { VerticalBox };

@@ -9,4 +9,4 @@ const Field = ({ label, value, ...rest }) => (
   </div>
 );
 
-export default Field;
+export { Field };

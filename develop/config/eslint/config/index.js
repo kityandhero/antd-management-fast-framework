@@ -1,12 +1,11 @@
 /* eslint-disable import/no-commonjs */
 
-let recommendRules = require('../rules');
+let { generalRules, sortRules } = require('../rules');
 
-let generalRules = recommendRules.generalRules;
-
-let sortRules = recommendRules.sortRules;
-
-let rules = Object.assign(generalRules, sortRules, {});
+const rules = {
+  ...generalRules,
+  ...sortRules,
+};
 
 module.exports = {
   generalConfig: {

@@ -22,4 +22,4 @@ const StandardFormRow = ({ title, children, last, block, grid, ...rest }) => {
   );
 };
 
-export default StandardFormRow;
+export { StandardFormRow };

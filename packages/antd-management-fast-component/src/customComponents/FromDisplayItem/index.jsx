@@ -20,4 +20,4 @@ FromDisplayItem.defaultProps = {
   empty: '',
 };
 
-export default FromDisplayItem;
+export { FromDisplayItem };

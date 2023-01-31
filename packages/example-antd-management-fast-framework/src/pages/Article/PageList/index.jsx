@@ -1,31 +1,32 @@
 import { Card, List, Table } from 'antd';
 import { connect } from 'umi';
 
-import { handleItem } from 'antd-management-fast-common/es/utils/actionAssist';
+import {
+  convertCollection,
+  extraBuildType,
+  getValueByKey,
+  handleItem,
+  replaceWithKeep,
+  showInfoMessage,
+  whetherNumber,
+} from 'easy-soft-utility';
+
 import {
   cardConfig,
   columnFacadeMode,
   columnPlaceholder,
-  convertCollection,
-  extraBuildType,
+  getRandomColor,
   listViewConfig,
   searchCardConfig,
   unlimitedWithStringFlag,
-  whetherNumber,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
-  getRandomColor,
-  getValueByKey,
-  replaceTargetText,
-  showInfoMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 import {
   buildColorText,
   buildCustomGrid,
   buildRadioGroup,
   buildTagList,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+  iconBuilder,
+} from 'antd-management-fast-component';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -670,7 +671,7 @@ class PageList extends MultiPage {
               color: 'blue',
             },
             textFormat: (v) => {
-              return replaceTargetText(v, '***', 2, 6);
+              return replaceWithKeep(v, '***', 2, 6);
             },
             tooltip: true,
             tooltipColor: '#cdbda0',

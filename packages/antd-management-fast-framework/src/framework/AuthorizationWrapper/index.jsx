@@ -1,11 +1,11 @@
-import { checkHasAuthority } from 'antd-management-fast-common/es/utils/authority';
 import {
+  checkHasAuthority,
   getDerivedStateFromPropsForUrlParams,
   isFunction,
   redirectToPath,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import SupplementWrapper from '../CustomWrapper/SupplementWrapper';
+import { SupplementWrapper } from '../CustomWrapper/SupplementWrapper';
 
 class AuthorizationWrapper extends SupplementWrapper {
   componentAuthority = null;
@@ -62,4 +62,4 @@ class AuthorizationWrapper extends SupplementWrapper {
   };
 }
 
-export default AuthorizationWrapper;
+export { AuthorizationWrapper };

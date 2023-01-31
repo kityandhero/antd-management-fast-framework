@@ -1,13 +1,11 @@
 import {
+  pretreatmentRemotePageListData,
+  pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParams,
   reducerNameCollection,
   tacitlyState,
-} from 'antd-management-fast-common/es/utils/dva';
-import {
-  pretreatmentRemotePageListData,
-  pretreatmentRemoteSingleData,
-} from 'antd-management-fast-common/es/utils/requestAssistor';
+} from 'antd-management-fast-common';
 
 import {
   getData,

@@ -3,9 +3,9 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { PushpinOutlined } from '@ant-design/icons';
 
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { iconBuilder } from 'antd-management-fast-component';
 
-import DnDItem from './DndItem';
+import { DnDItem } from './DndItem';
 
 import styles from './index.less';
 
@@ -340,4 +340,4 @@ const ColumnSetting = (props) => {
   );
 };
 
-export default ColumnSetting;
+export { ColumnSetting };

@@ -1,8 +1,8 @@
 import {
   defaultCoreState,
   getDerivedStateFromPropsForUrlParamsCore,
-} from 'antd-management-fast-common/es/utils/tools';
-import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
+} from 'antd-management-fast-common';
+import { BaseComponent } from 'antd-management-fast-component';
 
 class Core extends BaseComponent {
   lastLoadParams = null;
@@ -31,4 +31,4 @@ class Core extends BaseComponent {
   adjustWhenDidMount = () => {};
 }
 
-export default Core;
+export { Core };

@@ -1,26 +1,27 @@
-import { showSimpleErrorMessage } from 'easy-soft-utility';
+import {
+  buildQueryStringify,
+  isString,
+  isUndefined,
+  logDebug,
+  logObject,
+  logText,
+  logTrace,
+  redirectTo,
+  requestMethod,
+  showInfoMessage,
+  showSimpleErrorMessage,
+  trim,
+} from 'easy-soft-utility';
 
 import { runtimeSettings } from './dynamicSetting';
 import { getToken } from './globalStorageAssist';
 import { request as remoteRequest } from './request';
 import {
-  corsTarget,
-  logDebug,
-  logObject,
-  logText,
-  queryStringify,
-  recordTrace,
-  recordWarn,
-  redirectToPath,
-  showErrorMessage,
-  showInfoMessage,
-  trim,
-} from './tools';
-import {
-  apiVirtualAccess,
-  apiVirtualFailData,
-  apiVirtualSuccessData,
-} from './virtualRequest';
+  buildApiRequestFailSimulationData,
+  buildApiRequestSuccessSimulationData,
+  simulateApiRequest,
+} from './simulateRequest';
+import { corsTarget } from './tools';
 
 /**
  * 错误数据模型
@@ -48,6 +49,8 @@ function dataExceptionNotice(d) {
     message: '',
     time: new Date().getTime(),
   };
+
+  const authenticationFailCode = runtimeSettings.getAuthenticationFailCode();
 
   const codeAdjust = toNumber(code);
 
@@ -83,14 +86,13 @@ function dataExceptionNotice(d) {
     }
 
     const signInPath = runtimeSettings.getSignInPath();
-    const authenticationFailCode = runtimeSettings.getAuthenticationFailCode();
 
     if (codeAdjust === authenticationFailCode) {
       if (checkStringIsNullOrWhiteSpace(signInPath)) {
         throw new Error('缺少登录页面路径配置');
       }
 
-      redirectToPath(signInPath);
+      redirectTo(signInPath);
     }
   }
 }
@@ -448,7 +450,7 @@ export async function request({
   params = {},
   header = {},
   method = 'POST',
-  useVirtualRequest = runtimeSettings.getUseVirtualRequest(),
+  useVirtualRequest = runtimeSettings.getUseSimulateRequest(),
   showUseVirtualRequestMessage = runtimeSettings.getShowUseVirtualRequestMessage(),
   showUseVirtualRequestMessageDelay = 500,
   virtualRequestDelay = 0,
@@ -495,14 +497,14 @@ export async function request({
     }
 
     if (isObject(urlParams)) {
-      url = `${url}?${queryStringify(urlParams)}`;
+      url = `${url}?${buildQueryStringify(urlParams)}`;
     }
   }
 
   const showRequestInfo = runtimeSettings.getShowRequestInfo();
 
   if (useVirtualRequest) {
-    recordTrace(
+    logTrace(
       `api request is virtual: simulation start,${
         virtualRequestDelay > 0 ? ` delay ${virtualRequestDelay}ms,` : ''
       } api is ${api}.`,
@@ -541,21 +543,21 @@ export async function request({
         throw new Error('缺少登录页面路径配置');
       }
 
-      redirectToPath(signInPath);
+      redirectTo(signInPath);
     } else {
-      result = await apiVirtualAccess({
+      result = await simulateApiRequest({
         virtualRequestDelay,
         dataBuild: (resolve) => {
           if (virtualRequestResult) {
             resolve(
-              apiVirtualSuccessData({
+              buildApiRequestSuccessSimulationData({
                 remoteResponse: virtualSuccessResponse,
                 needAuthorize: virtualNeedAuthorize,
               }),
             );
           } else {
             resolve(
-              apiVirtualFailData({
+              buildApiRequestFailSimulationData({
                 ...(virtualFailResponse || {}),
                 ...{ needAuthorize: virtualNeedAuthorize },
               }),

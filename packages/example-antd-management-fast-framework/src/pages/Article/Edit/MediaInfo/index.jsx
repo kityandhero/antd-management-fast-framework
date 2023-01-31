@@ -7,25 +7,22 @@ import {
   convertCollection,
   defaultEmptyImage,
   formatCollection,
-  mobileTypeCollection,
-  sortOperate,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
   isArray,
+  mobileTypeCollection,
   sortCollectionByKey,
+  sortOperate,
   toString,
-} from 'antd-management-fast-common/es/utils/tools';
-import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
-import {
+} from 'antd-management-fast-common';
+import StatusBar, {
   buildCustomGrid,
   buildDropdownButton,
   buildIconInfoList,
   buildListViewItemExtra,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import StatusBar from 'antd-management-fast-component/es/customComponents/StatusBar';
+  FlexBox,
+  iconBuilder,
+} from 'antd-management-fast-component';
 
 import { accessWayCollection } from '@/customConfig/config';
 

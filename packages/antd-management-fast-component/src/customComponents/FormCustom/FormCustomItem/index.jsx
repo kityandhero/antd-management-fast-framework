@@ -1,7 +1,7 @@
 import { Form } from 'antd';
 import React from 'react';
 
-import FormCustomItemChildren from '../FormCustomItemChildren';
+import { FormCustomItemChildren } from '../FormCustomItemChildren';
 
 function FormCustomItem(props) {
   const { render, children, ...rest } = props;
@@ -19,4 +19,4 @@ function FormCustomItem(props) {
   );
 }
 
-export default FormCustomItem;
+export { FormCustomItem };

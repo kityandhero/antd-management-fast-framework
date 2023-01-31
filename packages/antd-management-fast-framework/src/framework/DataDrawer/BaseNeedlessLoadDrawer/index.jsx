@@ -1,10 +1,10 @@
 import {
   datetimeFormat,
+  formatDatetime,
   formNameCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import { formatDatetime } from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import Base from '../Base';
+import { Base } from '../Base';
 
 class BaseNeedlessLoadDrawer extends Base {
   resetDataAfterLoad = false;
@@ -48,4 +48,4 @@ class BaseNeedlessLoadDrawer extends Base {
   };
 }
 
-export default BaseNeedlessLoadDrawer;
+export { BaseNeedlessLoadDrawer };

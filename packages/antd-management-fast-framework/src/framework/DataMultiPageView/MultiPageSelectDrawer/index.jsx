@@ -1,8 +1,7 @@
-import { isFunction } from 'antd-management-fast-common/es/utils/tools';
-import { buildButton } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { isFunction } from 'antd-management-fast-common';
+import { buildButton, iconBuilder } from 'antd-management-fast-component';
 
-import MultiPageDrawer from '../MultiPageDrawer';
+import { MultiPageDrawer } from '../MultiPageDrawer';
 
 class MultiPageSelectDrawer extends MultiPageDrawer {
   showListViewItemActionSelect = true;
@@ -42,4 +41,4 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
   };
 }
 
-export default MultiPageSelectDrawer;
+export { MultiPageSelectDrawer };

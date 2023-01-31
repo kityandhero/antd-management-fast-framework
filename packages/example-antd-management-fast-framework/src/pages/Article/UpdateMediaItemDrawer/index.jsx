@@ -2,14 +2,12 @@ import { connect } from 'umi';
 
 import {
   cardConfig,
-  formatCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
+  checkInCollection,
   corsTarget,
+  formatCollection,
   getValueByKey,
-  inCollection,
-} from 'antd-management-fast-common/es/utils/tools';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+} from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -260,7 +258,7 @@ class Index extends BaseUpdateDrawer {
             text: mediaItemData.video.label,
           },
           spinning: processing,
-          hidden: !inCollection([mediaTypeCollection.video], mediaType),
+          hidden: !checkInCollection([mediaTypeCollection.video], mediaType),
           items: [
             {
               lg: 24,
@@ -281,7 +279,7 @@ class Index extends BaseUpdateDrawer {
             text: mediaItemData.audio.label,
           },
           spinning,
-          hidden: !inCollection([mediaTypeCollection.audio], mediaType),
+          hidden: !checkInCollection([mediaTypeCollection.audio], mediaType),
           items: [
             {
               lg: 24,
@@ -302,7 +300,10 @@ class Index extends BaseUpdateDrawer {
             text: mediaItemData.attachment.label,
           },
           spinning,
-          hidden: !inCollection([mediaTypeCollection.attachment], mediaType),
+          hidden: !checkInCollection(
+            [mediaTypeCollection.attachment],
+            mediaType,
+          ),
           items: [
             {
               lg: 24,

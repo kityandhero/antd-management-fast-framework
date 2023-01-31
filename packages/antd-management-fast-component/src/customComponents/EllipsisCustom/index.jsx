@@ -11,7 +11,7 @@ const TooltipOverlayStyle = {
   wordWrap: 'break-word',
 };
 
-export const getStrFullLength = (str = '') =>
+const getStrFullLength = (str = '') =>
   str.split('').reduce((pre, cur) => {
     const charCode = cur.charCodeAt(0);
     if (charCode >= 0 && charCode <= 128) {
@@ -20,7 +20,7 @@ export const getStrFullLength = (str = '') =>
     return pre + 2;
   }, 0);
 
-export const cutStrByFullLength = (str = '', maxLength) => {
+const cutStrByFullLength = (str = '', maxLength) => {
   let showLength = 0;
   return str.split('').reduce((pre, cur) => {
     const charCode = cur.charCodeAt(0);
@@ -81,7 +81,7 @@ const EllipsisText = ({
   );
 };
 
-export default class EllipsisCustom extends Component {
+class EllipsisCustom extends Component {
   state = {
     text: '',
     targetCount: 0,
@@ -289,3 +289,5 @@ export default class EllipsisCustom extends Component {
     );
   }
 }
+
+export { EllipsisCustom };

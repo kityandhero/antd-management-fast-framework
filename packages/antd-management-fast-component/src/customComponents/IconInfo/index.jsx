@@ -1,15 +1,11 @@
 import { Col, Row, Tooltip } from 'antd';
 import React, { PureComponent } from 'react';
 
-import {
-  copyToClipboard,
-  isFunction,
-  isObject,
-  isString,
-  toNumber,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isFunction, isObject, isString, toNumber } from 'easy-soft-utility';
 
-import Ellipsis from '../Ellipsis';
+import { copyToClipboard } from 'antd-management-fast-common';
+
+import { Ellipsis } from '../Ellipsis';
 
 const defaultValue = {
   direction: 'horizontal',
@@ -474,4 +470,4 @@ class IconInfo extends PureComponent {
 
 IconInfo.defaultProps = defaultValue;
 
-export default IconInfo;
+export { IconInfo };

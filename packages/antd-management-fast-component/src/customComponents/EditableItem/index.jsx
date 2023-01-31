@@ -4,7 +4,7 @@ import { CheckOutlined, EditOutlined } from '@ant-design/icons';
 
 import styles from './index.less';
 
-export default class EditableItem extends PureComponent {
+class EditableItem extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,3 +54,5 @@ export default class EditableItem extends PureComponent {
     );
   }
 }
+
+export { EditableItem };

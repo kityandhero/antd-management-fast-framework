@@ -2,29 +2,28 @@ import dayjs from 'dayjs';
 import { connect } from 'umi';
 
 import {
-  cardConfig,
   convertCollection,
   datetimeFormat,
   formatCollection,
-} from 'antd-management-fast-common/es/utils/constants';
+  getValueByKey,
+} from 'easy-soft-utility';
+
 import {
-  getToken,
-  getTokenKeyName,
-} from 'antd-management-fast-common/es/utils/globalStorageAssist';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
-import {
+  cardConfig,
   convertTarget,
   corsTarget,
   formatTarget,
-  getValueByKey,
+  getToken,
+  getTokenKeyName,
+  pretreatmentRemoteSingleData,
   showInfoMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 import {
   buildColorText,
   buildCustomGrid,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+  iconBuilder,
+  IconInfo,
+} from 'antd-management-fast-component';
 
 import { accessWayCollection } from '@/customConfig/config';
 import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';

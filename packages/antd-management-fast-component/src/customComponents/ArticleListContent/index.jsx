@@ -1,8 +1,7 @@
 import { Avatar } from 'antd';
 import React from 'react';
 
-import { datetimeFormat } from 'antd-management-fast-common/es/utils/constants';
-import { formatDatetime } from 'antd-management-fast-common/es/utils/tools';
+import { datetimeFormat, formatDatetime } from 'easy-soft-utility';
 
 import styles from './index.less';
 
@@ -24,4 +23,4 @@ const ArticleListContent = ({
   </div>
 );
 
-export default ArticleListContent;
+export { ArticleListContent };

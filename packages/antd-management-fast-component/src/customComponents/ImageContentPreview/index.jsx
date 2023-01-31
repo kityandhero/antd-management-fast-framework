@@ -2,9 +2,9 @@ import { Drawer, Empty } from 'antd';
 import parse from 'html-react-parser';
 import React from 'react';
 
-import { imageContentPreviewMode } from 'antd-management-fast-common/es/utils/constants';
+import { imageContentPreviewMode } from 'antd-management-fast-common';
 
-import BaseComponent from '../BaseComponent';
+import { BaseComponent } from '../BaseComponent';
 
 import styles from './index.less';
 
@@ -144,4 +144,4 @@ class ImageContentPreview extends BaseComponent {
   }
 }
 
-export default ImageContentPreview;
+export { ImageContentPreview };

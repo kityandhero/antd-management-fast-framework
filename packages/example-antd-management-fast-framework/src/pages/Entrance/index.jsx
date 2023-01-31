@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
+import { BaseComponent } from 'antd-management-fast-component';
 
 import SignIn from './SignIn';
 import Wrapper from './Wrapper';

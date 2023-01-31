@@ -43,4 +43,4 @@ const MiniProgress = ({
   </div>
 );
 
-export default MiniProgress;
+export { MiniProgress };

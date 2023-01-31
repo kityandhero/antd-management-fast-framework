@@ -64,4 +64,4 @@ class Bar extends Component {
   }
 }
 
-export default Bar;
+export { Bar };

@@ -1,11 +1,8 @@
 import { Checkbox } from 'antd';
 import { connect } from 'umi';
 
-import {
-  cardConfig,
-  drawerConfig,
-} from 'antd-management-fast-common/es/utils/constants';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { cardConfig, drawerConfig } from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';

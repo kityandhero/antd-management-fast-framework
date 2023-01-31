@@ -1,8 +1,8 @@
-import { Button, Dropdown, Menu } from 'antd';
+import { Button, Dropdown } from 'antd';
 import { ConfigConsumer } from 'antd/lib/config-provider/context';
 import React from 'react';
 
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { iconBuilder } from 'antd-management-fast-component';
 
 import styles from './index.less';
 
@@ -76,4 +76,4 @@ const BatchAction = ({ style, onSelect, menus = [], disabled }) => (
 
 BatchAction.Button = DropdownButton;
 
-export default BatchAction;
+export { BatchAction };

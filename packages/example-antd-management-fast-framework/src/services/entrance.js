@@ -1,4 +1,4 @@
-import { request } from 'antd-management-fast-common/es/utils/requestAssistor';
+import { request } from 'antd-management-fast-common';
 
 export async function signInData(params) {
   return request({

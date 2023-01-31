@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import {
-  formatMoney,
-  isMoney,
-} from 'antd-management-fast-common/es/utils/tools';
+import { formatMoney, isMoney } from 'easy-soft-utility';
 
 class PriceBox extends PureComponent {
   render() {
@@ -73,4 +70,4 @@ PriceBox.defaultProps = {
   decimalPartStyle: {},
 };
 
-export default PriceBox;
+export { PriceBox };

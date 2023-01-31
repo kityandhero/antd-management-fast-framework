@@ -1,11 +1,11 @@
-import { datetimeFormat } from 'antd-management-fast-common/es/utils/constants';
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import { request } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
+  datetimeFormat,
   formatDatetime,
   getNow,
   logDebug,
-} from 'antd-management-fast-common/es/utils/tools';
+  request,
+  runtimeSettings,
+} from 'antd-management-fast-common';
 
 export async function getMetaDataData(params) {
   return request({

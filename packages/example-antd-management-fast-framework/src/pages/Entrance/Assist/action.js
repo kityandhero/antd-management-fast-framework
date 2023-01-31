@@ -1,4 +1,4 @@
-import { actionCore } from 'antd-management-fast-common/es/utils/actionAssist';
+import { actionCore } from 'antd-management-fast-common';
 
 export async function signInAction({ target, handleData, successCallback }) {
   actionCore({

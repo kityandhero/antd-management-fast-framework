@@ -124,4 +124,4 @@ class StandardTable extends PureComponent {
   }
 }
 
-export default StandardTable;
+export { StandardTable };

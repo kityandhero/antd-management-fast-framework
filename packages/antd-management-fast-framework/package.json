@@ -8,22 +8,27 @@
   "main": "./es/index.js",
   "types": "./es/types/index.d.ts",
   "scripts": {
-    "build": "rimraf ./es && rollup --config rollup.config.compression.js --bundleConfigAsCjs && tsc -v && tsc -p ./tsconfig.types.json",
-    "build:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs && tsc -v && tsc -p ./tsconfig.types.json",
+    "build": "npx rimraf ./es && rollup --config rollup.config.compression.js --bundleConfigAsCjs",
+    "postbuild": "npm run tsc:build",
+    "build:skipCompression": "npx rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs",
+    "postbuild:skipCompression": "npm run tsc:build",
     "clean-file": "rimraf ./src/.umi && rimraf ./node_modules",
-    "dev": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch",
-    "format": "prettier --cache --write .",
+    "dev": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch --watch.onBundleEnd=\"npm run tsc:build\"",
     "postinstall": "max setup",
-    "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint-staged": "npx lint-staged",
-    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
-    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
-    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
-    "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
-    "lint:style": "stylelint --fix \"./src/**/*.less\"",
+    "lint-staged:js": "npx eslint --ext .js,.jsx,.ts,.tsx",
+    "lint:change": "npx eslint --cache --ext .js,.jsx,.ts,.tsx ./src",
+    "lint:fix:all": "npx eslint --fix --ext .js,.jsx,.ts,.tsx ./src && npm run lint:fix:style",
+    "postlint:fix:all": "npm run prettier:format:all",
+    "lint:fix:change": "npx eslint --fix --cache --ext .js,.jsx,.ts,.tsx ./src && npm run lint:fix:style",
+    "postlint:fix:change": "npm run prettier:format:change",
+    "lint:fix:style": "stylelint --fix \"./src/**/*.less\"",
+    "lint:style": "stylelint \"./src/**/*.less\"",
     "precommit": "lint-staged",
+    "prettier:format:all": "npx prettier --write .",
+    "prettier:format:change": "npx prettier --cache --write .",
     "setup": "max setup",
-    "v:p": "npm version patch && npm publish"
+    "tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -100,6 +105,6 @@
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.6.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   }
 }

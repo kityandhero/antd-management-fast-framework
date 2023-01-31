@@ -1,9 +1,9 @@
 import { Transfer } from 'antd';
 import React from 'react';
 
-import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-common';
 
-import BaseUpdateModal from '../BaseUpdateModal';
+import { BaseUpdateModal } from '../BaseUpdateModal';
 
 class BaseUpdateTransferModal extends BaseUpdateModal {
   constructor(props) {
@@ -100,4 +100,4 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
   };
 }
 
-export default BaseUpdateTransferModal;
+export { BaseUpdateTransferModal };

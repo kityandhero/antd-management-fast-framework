@@ -1,13 +1,13 @@
 import { connect } from 'umi';
 
-import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
+  cardConfig,
+  checkInCollection,
   corsTarget,
-  inCollection,
   toNumber,
   toString,
-} from 'antd-management-fast-common/es/utils/tools';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+} from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';
@@ -166,7 +166,7 @@ class Index extends BaseAddDrawer {
             subText: '[上传后需点击保存按钮保存]',
           },
           spinning,
-          hidden: !inCollection(
+          hidden: !checkInCollection(
             [mediaTypeCollection.image, mediaTypeCollection.video],
             mediaType,
           ),
@@ -193,7 +193,10 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.description.label,
           },
           spinning,
-          hidden: !inCollection([mediaTypeCollection.paragraph], mediaType),
+          hidden: !checkInCollection(
+            [mediaTypeCollection.paragraph],
+            mediaType,
+          ),
           items: [
             {
               lg: 24,
@@ -207,7 +210,7 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.link.label,
           },
           spinning,
-          hidden: !inCollection([mediaTypeCollection.link], mediaType),
+          hidden: !checkInCollection([mediaTypeCollection.link], mediaType),
           items: [
             {
               lg: 24,
@@ -222,7 +225,7 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.video.label,
           },
           spinning,
-          hidden: !inCollection([mediaTypeCollection.video], mediaType),
+          hidden: !checkInCollection([mediaTypeCollection.video], mediaType),
           items: [
             {
               lg: 24,
@@ -243,7 +246,7 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.audio.label,
           },
           spinning,
-          hidden: !inCollection([mediaTypeCollection.audio], mediaType),
+          hidden: !checkInCollection([mediaTypeCollection.audio], mediaType),
           items: [
             {
               lg: 24,
@@ -264,7 +267,10 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.attachment.label,
           },
           spinning,
-          hidden: !inCollection([mediaTypeCollection.attachment], mediaType),
+          hidden: !checkInCollection(
+            [mediaTypeCollection.attachment],
+            mediaType,
+          ),
           items: [
             {
               lg: 24,

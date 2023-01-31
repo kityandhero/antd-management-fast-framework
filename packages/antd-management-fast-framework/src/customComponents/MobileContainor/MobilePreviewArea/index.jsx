@@ -4,15 +4,18 @@ import React from 'react';
 import {
   animalType,
   cardConfig,
+  isArray,
+  isObject,
   mobileTypeCollection,
   whetherNumber,
-} from 'antd-management-fast-common/es/utils/constants';
-import { isArray, isObject } from 'antd-management-fast-common/es/utils/tools';
-import { buildOptionItem } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import MobileSimulation from 'antd-management-fast-component/es/customComponents/MobileContainor/MobileSimulation';
+} from 'antd-management-fast-common';
+import {
+  buildOptionItem,
+  iconBuilder,
+  MobileSimulation,
+} from 'antd-management-fast-component';
 
-import Base from '../../../framework/DataDrawer/Base';
+import { Base } from '../../../framework/DataDrawer/Base';
 
 class MobilePreviewArea extends Base {
   resetDataAfterLoad = false;
@@ -178,4 +181,4 @@ MobilePreviewArea.defaultProps = {
   afterAlertClick: null,
 };
 
-export default MobilePreviewArea;
+export { MobilePreviewArea };

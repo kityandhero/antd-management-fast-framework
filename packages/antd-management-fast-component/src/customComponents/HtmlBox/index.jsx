@@ -1,7 +1,7 @@
 import { Empty } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { checkStringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
+import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
 import styles from './index.less';
 
@@ -48,4 +48,4 @@ HtmlBox.defaultProps = {
   html: '',
 };
 
-export default HtmlBox;
+export { HtmlBox };

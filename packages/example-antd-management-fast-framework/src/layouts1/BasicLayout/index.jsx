@@ -6,19 +6,19 @@ import ProLayout, {
   SettingDrawer,
 } from '@ant-design/pro-layout';
 
-import { getAuthorityFromRouter } from 'antd-management-fast-common/es/utils/core';
-import { setAccessWayCollectionCache } from 'antd-management-fast-common/es/utils/globalStorageAssist';
-import { proLayoutDefaultProps } from 'antd-management-fast-common/es/utils/proLayoutCollection';
 import {
   checkDevelopment,
   formatMessage,
+  getAuthorityFromRouter,
   getQueue,
   logDebug,
-} from 'antd-management-fast-common/es/utils/tools';
-import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
+  proLayoutDefaultProps,
+  setAccessWayCollectionCache,
+} from 'antd-management-fast-common';
+import { BaseComponent } from 'antd-management-fast-component';
 
 import pageRoutes from '../../../config/router.config';
-// import Authorized from 'antd-management-fast-component/es/customComponents/Authorized';
+// import Authorized from 'antd-management-fast-component';
 import RightContent from '../../components/GlobalHeader/RightContent';
 import { accessWayCollection } from '../../customConfig/config';
 import { execBasicLayoutRemoteRequest } from '../../customConfig/customLoad';

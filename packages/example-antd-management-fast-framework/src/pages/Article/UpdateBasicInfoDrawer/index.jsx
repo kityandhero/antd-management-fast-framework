@@ -3,9 +3,9 @@ import { connect } from 'umi';
 import {
   cardConfig,
   formatCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+  getValueByKey,
+} from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';

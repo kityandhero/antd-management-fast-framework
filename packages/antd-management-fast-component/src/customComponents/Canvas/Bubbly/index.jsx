@@ -1,4 +1,4 @@
-import Core from '../Core';
+import { Core } from '../Core';
 
 const r = () => Math.random();
 
@@ -114,4 +114,4 @@ Bubbly.defaultProps = {
   velocityFunc: null,
 };
 
-export default Bubbly;
+export { Bubbly };

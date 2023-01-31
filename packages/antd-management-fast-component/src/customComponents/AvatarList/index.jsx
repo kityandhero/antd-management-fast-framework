@@ -66,4 +66,4 @@ const Item = ({ src, size, tips, onClick = () => {} }) => {
 
 AvatarList.Item = Item;
 
-export default AvatarList;
+export { AvatarList };

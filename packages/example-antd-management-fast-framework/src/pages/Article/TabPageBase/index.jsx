@@ -1,4 +1,4 @@
-import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common';
 import BaseUpdateFormTab from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormTab';
 
 import {

@@ -7,15 +7,12 @@ import {
   PictureOutlined,
 } from '@ant-design/icons';
 
-import { defaultEmptyImage } from 'antd-management-fast-common/es/utils/constants';
-import {
-  isFunction,
-  replace,
-  trim,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isFunction, replace, trim } from 'easy-soft-utility';
 
-import BaseComponent from '../BaseComponent';
-import IconInfo from '../IconInfo';
+import { defaultEmptyImage } from 'antd-management-fast-common';
+
+import { BaseComponent } from '../BaseComponent';
+import { IconInfo } from '../IconInfo';
 
 const placeholderBoxStyle = {
   display: 'block',
@@ -477,4 +474,4 @@ ImageBox.defaultProps = {
   previewSimpleMask: false,
 };
 
-export default ImageBox;
+export { ImageBox };

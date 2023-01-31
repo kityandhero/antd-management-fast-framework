@@ -1,8 +1,7 @@
-import { isFunction } from 'antd-management-fast-common/es/utils/tools';
-import { buildButton } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { isFunction } from 'antd-management-fast-common';
+import { buildButton, iconBuilder } from 'antd-management-fast-component';
 
-import SinglePageDrawer from '../SinglePageDrawer';
+import { SinglePageDrawer } from '../SinglePageDrawer';
 
 class SinglePageSelectDrawer extends SinglePageDrawer {
   showListViewItemActionSelect = true;
@@ -46,4 +45,4 @@ SinglePageDrawer.defaultProps = {
   width: 820,
 };
 
-export default SinglePageSelectDrawer;
+export { SinglePageSelectDrawer };

@@ -1,10 +1,7 @@
 import QueueAnim from 'rc-queue-anim';
 import React, { PureComponent } from 'react';
 
-import {
-  isArray,
-  isFunction,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isArray, isFunction } from 'easy-soft-utility';
 
 import styles from './index.less';
 
@@ -72,4 +69,4 @@ QueueListBox.defaultProps = {
   itemStyle: null,
 };
 
-export default QueueListBox;
+export { QueueListBox };

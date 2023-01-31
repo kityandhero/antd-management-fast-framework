@@ -2,21 +2,22 @@ import { Modal, Space, Tooltip, Upload } from 'antd';
 import React, { PureComponent } from 'react';
 import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
   buildFieldHelper,
   isFunction,
   showInfoMessage,
   showWarningMessage,
   toNumber,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'easy-soft-utility';
 
-import CenterBox from '../CenterBox';
-import FlexBox from '../FlexBox';
+import { runtimeSettings } from 'antd-management-fast-common';
+
+import { CenterBox } from '../CenterBox';
+import { FlexBox } from '../FlexBox';
 import { iconBuilder } from '../Icon';
-import IconInfo from '../IconInfo';
-import ImageBox from '../ImageBox';
-import VerticalBox from '../VerticalBox';
+import { IconInfo } from '../IconInfo';
+import { ImageBox } from '../ImageBox';
+import { VerticalBox } from '../VerticalBox';
 
 import styles from './index.less';
 
@@ -398,4 +399,4 @@ ImageUpload.defaultProps = {
   fileListCapacity: defaultCapacity,
 };
 
-export default ImageUpload;
+export { ImageUpload };

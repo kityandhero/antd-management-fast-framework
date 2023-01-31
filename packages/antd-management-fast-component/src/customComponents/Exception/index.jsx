@@ -1,12 +1,12 @@
 import { Button } from 'antd';
 import classNames from 'classnames';
-import React, { createElement } from 'react';
+import React, { createElement, PureComponent } from 'react';
 
 import config from './typeConfig';
 
 import styles from './index.less';
 
-class Exception extends React.PureComponent {
+class Exception extends PureComponent {
   state = {};
 
   render() {
@@ -52,4 +52,4 @@ class Exception extends React.PureComponent {
   }
 }
 
-export default Exception;
+export { Exception };

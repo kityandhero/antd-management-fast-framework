@@ -1,22 +1,16 @@
 import React, { PureComponent } from 'react';
 
-import {
-  animalType,
-  mobileTypeCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
-  isObject,
-  logObject,
-  showErrorMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isObject, logObject, showErrorMessage } from 'easy-soft-utility';
 
-import VerticalBox from '../../VerticalBox';
-import GalaxyNote8 from '../Devices/GalaxyNote8';
-import IPhone5S from '../Devices/IPhone5S';
-import Iphone8 from '../Devices/Iphone8';
-import Iphone8plus from '../Devices/Iphone8plus';
-import IphoneX from '../Devices/IphoneX';
-import RoughSketch from '../Devices/RoughSketch';
+import { animalType, mobileTypeCollection } from 'antd-management-fast-common';
+
+import { VerticalBox } from '../../VerticalBox';
+import { GalaxyNote8 } from '../Devices/GalaxyNote8';
+import { IPhone5S } from '../Devices/IPhone5S';
+import { Iphone8 } from '../Devices/Iphone8';
+import { Iphone8plus } from '../Devices/Iphone8plus';
+import { IphoneX } from '../Devices/IphoneX';
+import { RoughSketch } from '../Devices/RoughSketch';
 
 class MobileSimulation extends PureComponent {
   buildMobileTypeArray = () => {
@@ -207,4 +201,4 @@ MobileSimulation.defaultProps = {
   afterAlertClick: null,
 };
 
-export default MobileSimulation;
+export { MobileSimulation };

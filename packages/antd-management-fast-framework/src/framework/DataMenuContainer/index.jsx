@@ -2,14 +2,10 @@ import { Menu } from 'antd';
 import React from 'react';
 import { GridContent } from '@ant-design/pro-layout';
 
-import {
-  endsWith,
-  isArray,
-  removeEndMatch,
-} from 'antd-management-fast-common/es/utils/tools';
-import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+import { endsWith, isArray, removeEndMatch } from 'antd-management-fast-common';
+import { IconInfo } from 'antd-management-fast-component';
 
-import AuthorizationWrapper from '../AuthorizationWrapper';
+import { AuthorizationWrapper } from '../AuthorizationWrapper';
 
 import styles from './index.less';
 
@@ -308,4 +304,4 @@ class DataMenuContainer extends AuthorizationWrapper {
   }
 }
 
-export default DataMenuContainer;
+export { DataMenuContainer };

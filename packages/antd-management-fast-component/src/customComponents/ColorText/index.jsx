@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 
+import { isNumber } from 'easy-soft-utility';
+
 import {
+  buildRandomHexColor,
   copyToClipboard,
-  getRandomColor,
-  isNumber,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
 class ColorText extends PureComponent {
   copyText = () => {
@@ -34,7 +35,7 @@ class ColorText extends PureComponent {
     const randomColorValue = randomColor || false;
 
     if (randomColorValue) {
-      colorValue = getRandomColor({
+      colorValue = buildRandomHexColor({
         seed: randomSeed + (isNumber(seedOffset) ? Math.abs(seedOffset) : 0),
       });
     }
@@ -86,4 +87,4 @@ ColorText.defaultProps = {
   separatorStyle: null,
 };
 
-export default ColorText;
+export { ColorText };

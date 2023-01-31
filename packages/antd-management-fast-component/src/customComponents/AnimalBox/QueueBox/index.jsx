@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import QueueListBox from '../QueueListBox';
+import { QueueListBox } from '../QueueListBox';
 
 class QueueBox extends PureComponent {
   render() {
@@ -26,4 +26,4 @@ QueueBox.defaultProps = {
   show: true,
 };
 
-export default QueueBox;
+export { QueueBox };

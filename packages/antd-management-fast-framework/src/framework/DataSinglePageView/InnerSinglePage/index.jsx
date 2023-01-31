@@ -1,4 +1,4 @@
-import SinglePage from '../SinglePage';
+import { SinglePage } from '../SinglePage';
 
 class InnerSinglePage extends SinglePage {
   restoreSearch = false;
@@ -15,4 +15,4 @@ class InnerSinglePage extends SinglePage {
   }
 }
 
-export default InnerSinglePage;
+export { InnerSinglePage };

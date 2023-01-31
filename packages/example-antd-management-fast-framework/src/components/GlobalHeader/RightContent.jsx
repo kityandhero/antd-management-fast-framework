@@ -1,7 +1,7 @@
 import { Tag, Tooltip } from 'antd';
 import { connect, SelectLang } from 'umi';
 
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { iconBuilder } from 'antd-management-fast-component';
 
 import { defaultSettings } from '@/defaultSettings';
 

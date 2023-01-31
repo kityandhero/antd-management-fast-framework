@@ -38,7 +38,7 @@ const defaultProps = {
   hidden: false,
 };
 
-class ComponentBase extends Component {
+class AbstractComponent extends Component {
   mounted = false;
 
   loadRemoteRequestAfterMount = false;
@@ -449,8 +449,8 @@ class ComponentBase extends Component {
   }
 }
 
-ComponentBase.defaultProps = {
+AbstractComponent.defaultProps = {
   ...defaultProps,
 };
 
-export default ComponentBase;
+export { AbstractComponent };

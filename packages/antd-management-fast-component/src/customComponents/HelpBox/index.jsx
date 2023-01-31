@@ -2,7 +2,7 @@ import { Divider } from 'antd';
 import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 
-import { isArray, toNumber } from 'antd-management-fast-common/es/utils/tools';
+import { isArray, toNumber } from 'easy-soft-utility';
 
 import { buildDescriptionGrid } from '../FunctionComponent';
 
@@ -178,4 +178,4 @@ HelpBox.defaultProps = {
   hidden: false,
 };
 
-export default HelpBox;
+export { HelpBox };

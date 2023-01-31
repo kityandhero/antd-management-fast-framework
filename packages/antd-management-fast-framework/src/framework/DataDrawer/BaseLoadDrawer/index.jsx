@@ -1,4 +1,4 @@
-import Base from '../Base';
+import { Base } from '../Base';
 
 class BaseLoadDrawer extends Base {
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -11,4 +11,4 @@ class BaseLoadDrawer extends Base {
   };
 }
 
-export default BaseLoadDrawer;
+export { BaseLoadDrawer };

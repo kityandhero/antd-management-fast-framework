@@ -3,7 +3,6 @@ import {
   Divider,
   Dropdown,
   Input,
-  Menu,
   Modal,
   Space,
   Tooltip,
@@ -12,19 +11,16 @@ import {
 import React, { PureComponent } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import {
-  copyToClipboard,
-  isFunction,
-  showErrorMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isFunction, showErrorMessage } from 'easy-soft-utility';
+
+import { copyToClipboard, runtimeSettings } from 'antd-management-fast-common';
 
 import { iconBuilder } from '../Icon';
-import IconInfo from '../IconInfo';
+import { IconInfo } from '../IconInfo';
 
 const { TextArea } = Input;
 
-class VideoUpload extends PureComponent {
+class FileUpload extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -247,8 +243,6 @@ class VideoUpload extends PureComponent {
       },
     ];
 
-    const menu = <Menu items={items} onClick={this.handleMenuClick} />;
-
     const addonAfter = (
       <Space split={<Divider type="vertical" />}>
         <Tooltip key="showChangeUrlTip" placement="top" title="上传文件">
@@ -336,7 +330,7 @@ class VideoUpload extends PureComponent {
   }
 }
 
-VideoUpload.defaultProps = {
+FileUpload.defaultProps = {
   action: '',
   disabled: false,
   tokenSet: {},
@@ -345,4 +339,4 @@ VideoUpload.defaultProps = {
   afterChangeSuccess: () => {},
 };
 
-export default VideoUpload;
+export { FileUpload };

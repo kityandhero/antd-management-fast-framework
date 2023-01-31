@@ -1,17 +1,15 @@
 import {
-  getParamsDataCache,
-  setParamsDataCache,
-} from 'antd-management-fast-common/es/utils/globalStorageAssist';
-import {
   defaultPageListState,
+  getParamsDataCache,
   isUndefined,
   logObject,
+  setParamsDataCache,
   showErrorMessage,
   showWarningMessage,
   showWarnMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import Base from '../../DataListView/Base';
+import { Base } from '../../DataListView/Base';
 
 class MultiPage extends Base {
   /**
@@ -325,4 +323,4 @@ class MultiPage extends Base {
   };
 }
 
-export default MultiPage;
+export { MultiPage };

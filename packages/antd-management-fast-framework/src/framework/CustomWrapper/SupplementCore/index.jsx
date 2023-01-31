@@ -1,7 +1,9 @@
-import { getTokenObject } from 'antd-management-fast-common/es/utils/globalStorageAssist';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
+import {
+  getTokenObject,
+  pretreatmentRemoteSingleData,
+} from 'antd-management-fast-common';
 
-import Common from '../../Common';
+import { Common } from '../../Common';
 
 class SupplementCore extends Common {
   getUploadTokenObject = () => {
@@ -99,4 +101,4 @@ class SupplementCore extends Common {
   };
 }
 
-export default SupplementCore;
+export { SupplementCore };

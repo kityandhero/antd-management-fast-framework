@@ -1,4 +1,4 @@
-import BaseNeedlessLoadModal from '../BaseNeedlessLoadModal';
+import { BaseNeedlessLoadModal } from '../BaseNeedlessLoadModal';
 
 class BaseAddModal extends BaseNeedlessLoadModal {
   constructor(props) {
@@ -14,4 +14,4 @@ class BaseAddModal extends BaseNeedlessLoadModal {
   }
 }
 
-export default BaseAddModal;
+export { BaseAddModal };

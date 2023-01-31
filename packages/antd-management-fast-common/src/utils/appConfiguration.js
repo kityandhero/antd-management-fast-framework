@@ -4,8 +4,7 @@ import {
   apiSuccessCode as apiSuccessCodeDefault,
   authenticationFailCode as authenticationFailCodeDefault,
   emptyLogo as emptyLogoImage,
-} from '../utils/constants';
-
+} from './constants';
 import { getAppInitConfigData } from './core';
 
 export function logShowInConsole() {

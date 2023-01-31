@@ -1,19 +1,20 @@
 // import { message } from 'antd';
 
-// import { getPageQuery } from 'antd-management-fast-common/es/utils/core';
+// import { getPageQuery } from 'antd-management-fast-common';
+// import { flushLocalStorage } from 'easy-soft-utility';
+
 import {
+  pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParams,
   reducerNameCollection,
   tacitlyState,
-} from 'antd-management-fast-common/es/utils/dva';
-// import { clearCustomData } from 'antd-management-fast-common/es/utils/globalStorageAssist';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
+} from 'antd-management-fast-common';
 
 // import {
 //   queryStringify,
 //   redirectToPath,
-// } from 'antd-management-fast-common/es/utils/tools';
+// } from 'antd-management-fast-common';
 // import { defaultSettings } from '../defaultSettings';
 import { getCaptchaData, signInData, signOutData } from '../services/entrance';
 
@@ -61,7 +62,7 @@ export default {
       // const { redirect } = getPageQuery(); // Note: There may be security issues, please note
 
       // if (window.location.pathname !== entrancePath && !redirect) {
-      //   clearCustomData();
+      //   flushLocalStorage();
 
       //   message.info('退出登录成功！', 0.6).then(() => {
       //     redirectToPath({

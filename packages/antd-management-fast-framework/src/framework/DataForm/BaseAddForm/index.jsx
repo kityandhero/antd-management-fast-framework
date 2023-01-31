@@ -4,24 +4,22 @@ import { PageContainer } from '@ant-design/pro-layout';
 
 import {
   datetimeFormat,
-  formNameCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
-import {
   defaultFormState,
   formatDatetime,
+  formNameCollection,
   getDerivedStateFromPropsForUrlParams,
   isUndefined,
   logObject,
+  pretreatmentRequestParams,
   showWarningMessage,
-} from 'antd-management-fast-common/es/utils/tools';
-import { decorateAvatar } from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
+} from 'antd-management-fast-common';
 import {
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
+  decorateAvatar,
+  iconBuilder,
   pageHeaderExtraContent,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+} from 'antd-management-fast-component';
 
 import DataCore from '../../DataSingleView/DataCore';
 
@@ -313,4 +311,4 @@ class BaseAddForm extends DataCore {
   }
 }
 
-export default BaseAddForm;
+export { BaseAddForm };

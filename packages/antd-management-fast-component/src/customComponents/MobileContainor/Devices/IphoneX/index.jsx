@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 
-import { animalType } from 'antd-management-fast-common/es/utils/constants';
+import { animalType } from 'antd-management-fast-common';
 
-import ContentView from '../../ContentView';
+import { ContentView } from '../../ContentView';
 
 import styles from '../devices.less';
 
@@ -73,4 +73,4 @@ IphoneX.defaultProps = {
   type: 'black',
 };
 
-export default IphoneX;
+export { IphoneX };

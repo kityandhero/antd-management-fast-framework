@@ -1,16 +1,18 @@
 import { Avatar } from 'antd';
 import { connect } from 'umi';
 
-import { handleItem } from 'antd-management-fast-common/es/utils/actionAssist';
+import {
+  convertCollection,
+  getValueByKey,
+  handleItem,
+} from 'easy-soft-utility';
+
 import {
   columnFacadeMode,
-  convertCollection,
   defaultUserAvatar,
   listViewConfig,
-} from 'antd-management-fast-common/es/utils/constants';
-import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
-import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+} from 'antd-management-fast-common';
+import { FlexBox, iconBuilder } from 'antd-management-fast-component';
 import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';

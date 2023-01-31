@@ -3,10 +3,10 @@ import parse from 'html-react-parser';
 import {
   cardConfig,
   dataTypeCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import { toNumber } from 'antd-management-fast-common/es/utils/tools';
+  toNumber,
+} from 'antd-management-fast-common';
 
-import Base from '../../framework/DataDrawer/Base';
+import { Base } from '../../framework/DataDrawer/Base';
 
 import styles from './index.less';
 
@@ -138,4 +138,4 @@ DataPreviewDrawer.defaultProps = {
   dataType: dataTypeCollection.commonValue.flag,
 };
 
-export default DataPreviewDrawer;
+export { DataPreviewDrawer };

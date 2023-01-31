@@ -1,6 +1,6 @@
-import { drawerConfig } from 'antd-management-fast-common/es/utils/constants';
+import { drawerConfig } from 'antd-management-fast-common';
 
-import BaseLoadDrawer from '../BaseLoadDrawer';
+import { BaseLoadDrawer } from '../BaseLoadDrawer';
 
 class BaseUpdateDrawer extends BaseLoadDrawer {
   constructor(props) {
@@ -30,4 +30,4 @@ class BaseUpdateDrawer extends BaseLoadDrawer {
   };
 }
 
-export default BaseUpdateDrawer;
+export { BaseUpdateDrawer };

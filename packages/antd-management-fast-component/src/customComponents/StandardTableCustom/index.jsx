@@ -1,7 +1,7 @@
 import { Alert, Spin, Table } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { listViewConfig } from 'antd-management-fast-common/es/utils/constants';
+import { listViewConfig } from 'antd-management-fast-common';
 
 function initTotalList(columns) {
   const totalList = [];
@@ -168,4 +168,4 @@ StandardTableCustom.defaultProps = {
   showPagination: true,
 };
 
-export default StandardTableCustom;
+export { StandardTableCustom };

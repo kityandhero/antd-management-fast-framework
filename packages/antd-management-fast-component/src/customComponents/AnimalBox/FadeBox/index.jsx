@@ -23,4 +23,4 @@ FadeBox.defaultProps = {
   bodyStyle: null,
 };
 
-export default FadeBox;
+export { FadeBox };

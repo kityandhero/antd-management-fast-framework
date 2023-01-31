@@ -1,8 +1,8 @@
 import { Space } from 'antd';
 import React, { PureComponent } from 'react';
 
-import FlexBox from '../FlexBox';
-import IconInfo from '../IconInfo';
+import { FlexBox } from '../FlexBox';
+import { IconInfo } from '../IconInfo';
 
 import styles from './index.less';
 
@@ -67,4 +67,4 @@ FlexText.defaultProps = {
   style: null,
 };
 
-export default FlexText;
+export { FlexText };

@@ -1,4 +1,4 @@
-import Base from '../Base';
+import { Base } from '../Base';
 
 class BaseLoadModal extends Base {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -19,4 +19,4 @@ class BaseLoadModal extends Base {
   };
 }
 
-export default BaseLoadModal;
+export { BaseLoadModal };

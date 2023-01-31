@@ -3,14 +3,16 @@ import React from 'react';
 import {
   cardConfig,
   drawerConfig,
+  isObject,
   mobileTypeCollection,
   whetherNumber,
-} from 'antd-management-fast-common/es/utils/constants';
-import { isObject } from 'antd-management-fast-common/es/utils/tools';
-import { buildOptionItem } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import MobileSimulation from 'antd-management-fast-component/es/customComponents/MobileContainor/MobileSimulation';
+} from 'antd-management-fast-common';
+import {
+  buildOptionItem,
+  MobileSimulation,
+} from 'antd-management-fast-component';
 
-import BaseNeedlessLoadDrawer from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
+import { BaseNeedlessLoadDrawer } from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
 
 class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
   resetDataAfterLoad = false;
@@ -135,4 +137,4 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
 
 MobilePreviewDrawer.defaultProps = {};
 
-export default MobilePreviewDrawer;
+export { MobilePreviewDrawer };

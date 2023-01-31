@@ -101,4 +101,4 @@ const Card = ({ id, end, move, children, index }) => {
   );
 };
 
-export default Card;
+export { Card };

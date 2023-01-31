@@ -132,7 +132,14 @@ const inputFile = {
 };
 
 export function buildConfig({ terser: whetherTerser = false }) {
-  return buildConfigCore({ inputFile, terser: whetherTerser });
+  return buildConfigCore({
+    inputFile,
+    terser: whetherTerser,
+    externalCollection: [
+      'antd-management-fast-common',
+      'antd-management-fast-component',
+    ],
+  });
 }
 
 /**

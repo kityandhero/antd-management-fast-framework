@@ -1,4 +1,4 @@
-import Base from '../Base';
+import { Base } from '../Base';
 
 class BaseView extends Base {
   afterSubmitSuccess = ({
@@ -23,4 +23,4 @@ class BaseView extends Base {
   };
 }
 
-export default BaseView;
+export { BaseView };

@@ -3,14 +3,18 @@ import React from 'react';
 import { connect } from 'umi';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 
-import { setAuthority } from 'antd-management-fast-common/es/utils/authority';
-import { getPageQuery } from 'antd-management-fast-common/es/utils/core';
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import { setToken } from 'antd-management-fast-common/es/utils/globalStorageAssist';
-import { redirectToPath } from 'antd-management-fast-common/es/utils/tools';
-import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+import {
+  getPageQuery,
+  redirectToPath,
+  runtimeSettings,
+  setAuthority,
+  setToken,
+} from 'antd-management-fast-common';
+import {
+  BaseComponent,
+  iconBuilder,
+  IconInfo,
+} from 'antd-management-fast-component';
 
 import { signInAction } from '../Assist/action';
 

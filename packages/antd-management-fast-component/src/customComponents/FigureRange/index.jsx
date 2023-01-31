@@ -1,10 +1,7 @@
 import { Col, Input, Row, Select } from 'antd';
 import React, { PureComponent } from 'react';
 
-import {
-  isFunction,
-  toNumber,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isFunction, toNumber } from 'easy-soft-utility';
 
 import styles from './index.less';
 
@@ -290,4 +287,4 @@ FigureRange.defaultProps = {
   value: null,
 };
 
-export default FigureRange;
+export { FigureRange };

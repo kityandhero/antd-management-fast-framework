@@ -4,8 +4,8 @@ import { useLocation, useParams } from 'umi';
 import {
   setCurrentLocation,
   setCurrentParams,
-} from 'antd-management-fast-common/es/utils/routeAssist';
-import BaseComponent from 'antd-management-fast-component/es/customComponents/BaseComponent';
+} from 'antd-management-fast-common';
+import { BaseComponent } from 'antd-management-fast-component';
 
 import { applicationInit } from '../../utils/bootstrap';
 
@@ -47,4 +47,4 @@ class Bootstrap extends BaseComponent {
   }
 }
 
-export default Bootstrap;
+export { Bootstrap };

@@ -139,4 +139,4 @@ TagSelect.defaultProps = {
 
 TagSelect.Option = TagSelectOption;
 
-export default TagSelect;
+export { TagSelect };

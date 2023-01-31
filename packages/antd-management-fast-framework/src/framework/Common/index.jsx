@@ -14,21 +14,17 @@ import {
 import React, { Fragment } from 'react';
 
 import {
+  buildFieldDescription,
   cardConfig,
+  checkInCollection,
   contentConfig,
+  copyToClipboard,
   datetimeFormat,
+  defaultCommonState,
   defaultEmptyImage,
   extraBuildType,
-} from 'antd-management-fast-common/es/utils/constants';
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
-import {
-  buildFieldDescription,
-  copyToClipboard,
-  defaultCommonState,
   formatDatetime,
   getDerivedStateFromPropsForUrlParams,
-  inCollection,
   isArray,
   isBoolean,
   isEqual,
@@ -36,23 +32,17 @@ import {
   isObject,
   logObject,
   logText,
+  pretreatmentRequestParams,
   refitCommonData,
+  runtimeSettings,
   showErrorMessage,
   stringIsEmpty,
   toDatetime,
   toNumber,
   toString,
-} from 'antd-management-fast-common/es/utils/tools';
-import FadeBox from 'antd-management-fast-component/es/customComponents/AnimalBox/FadeBox';
-import QueueBox from 'antd-management-fast-component/es/customComponents/AnimalBox/QueueBox';
-import AudioUpload from 'antd-management-fast-component/es/customComponents/AudioUpload';
-import ColorText from 'antd-management-fast-component/es/customComponents/ColorText';
-import TinymceWrapper from 'antd-management-fast-component/es/customComponents/Editor/TinymceWrapper';
-import FileBase64Upload from 'antd-management-fast-component/es/customComponents/FileBase64Upload';
-import FileUpload from 'antd-management-fast-component/es/customComponents/FileUpload';
-import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
-import FlexText from 'antd-management-fast-component/es/customComponents/FlexText';
+} from 'antd-management-fast-common';
 import {
+  AudioUpload,
   buildButton,
   buildButtonGroup,
   buildCustomGrid,
@@ -92,19 +82,27 @@ import {
   buildSyntaxHighlighter,
   buildTree,
   buildTreeSelect,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { renderFormWhetherSelect } from 'antd-management-fast-component/es/customComponents/FunctionSupplement/Whether';
-import HelpBox from 'antd-management-fast-component/es/customComponents/HelpBox';
-import HelpCard from 'antd-management-fast-component/es/customComponents/HelpCard';
-import HtmlBox from 'antd-management-fast-component/es/customComponents/HtmlBox';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
-import ImageBox from 'antd-management-fast-component/es/customComponents/ImageBox';
-import ImageUpload from 'antd-management-fast-component/es/customComponents/ImageUpload';
-import VideoUpload from 'antd-management-fast-component/es/customComponents/VideoUpload';
+  ColorText,
+  FadeBox,
+  FileBase64Upload,
+  FileUpload,
+  FlexBox,
+  FlexText,
+  HelpBox,
+  HelpCard,
+  HtmlBox,
+  iconBuilder,
+  IconInfo,
+  ImageBox,
+  ImageUpload,
+  QueueBox,
+  renderFormWhetherSelect,
+  TinymceWrapper,
+  VideoUpload,
+} from 'antd-management-fast-component';
 
 import { getMetaData } from '../../utils/metaDataAssist';
-import Core from '../Core';
+import { Core } from '../Core';
 
 import styles from './index.less';
 
@@ -1905,7 +1903,7 @@ class Common extends Core {
 
         {!isBoolean(useAnimal) ||
         (isBoolean(useAnimal) &&
-          !inCollection(
+          !checkInCollection(
             [cardConfig.animalType.fade, cardConfig.animalType.queue],
             animalType,
           ))
@@ -3088,4 +3086,4 @@ class Common extends Core {
   };
 }
 
-export default Common;
+export { Common };

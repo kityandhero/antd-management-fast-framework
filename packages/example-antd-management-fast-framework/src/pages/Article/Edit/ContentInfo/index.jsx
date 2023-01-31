@@ -4,13 +4,11 @@ import { connect } from 'umi';
 import {
   animalType,
   cardConfig,
-  mobileTypeCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
-} from 'antd-management-fast-common/es/utils/tools';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+  mobileTypeCollection,
+} from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 import MobileHtmlPreviewBox from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
 
 import { accessWayCollection } from '@/customConfig/config';

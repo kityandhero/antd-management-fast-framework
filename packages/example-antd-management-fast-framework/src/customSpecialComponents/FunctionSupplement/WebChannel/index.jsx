@@ -1,14 +1,15 @@
 ﻿import {
-  unknownLabel,
-  unlimitedWithStringFlag,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
   isInvalid,
   isNull,
   isUndefined,
   refitCommonData,
   searchFromList,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'easy-soft-utility';
+
+import {
+  unknownLabel,
+  unlimitedWithStringFlag,
+} from 'antd-management-fast-common';
 import {
   buildCustomRadio,
   buildCustomSelect,
@@ -17,7 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
+} from 'antd-management-fast-component';
 
 export function refitWebChannelList({ metaData, withUnlimited = true }) {
   const { webChannelList: list } = {

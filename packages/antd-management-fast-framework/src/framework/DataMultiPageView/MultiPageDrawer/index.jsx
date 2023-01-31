@@ -16,16 +16,19 @@ import { ReadOutlined } from '@ant-design/icons';
 
 import {
   contentConfig,
+  isFunction,
   listViewConfig,
   notificationTypeCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import { isFunction, notify } from 'antd-management-fast-common/es/utils/tools';
-import { buildListViewItemActionSelect } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+  notify,
+} from 'antd-management-fast-common';
+import {
+  buildListViewItemActionSelect,
+  iconBuilder,
+} from 'antd-management-fast-component';
 
-import ColumnSetting from '../../DataListView/ColumnSetting';
-import DensityAction from '../../DataListView/DensityAction';
-import MultiPage from '../MultiPage';
+import { ColumnSetting } from '../../DataListView/ColumnSetting';
+import { DensityAction } from '../../DataListView/DensityAction';
+import { MultiPage } from '../MultiPage';
 
 import styles from './index.less';
 
@@ -603,4 +606,4 @@ MultiPageDrawer.defaultProps = {
   width: 820,
 };
 
-export default MultiPageDrawer;
+export { MultiPageDrawer };

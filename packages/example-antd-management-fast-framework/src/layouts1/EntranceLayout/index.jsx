@@ -5,10 +5,8 @@ import {
   getPageTitle,
 } from '@ant-design/pro-layout';
 
-import { formatMessage } from 'antd-management-fast-common/es/utils/tools';
-import { Bubbly } from 'antd-management-fast-component/es/customComponents/Canvas';
-import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
-import VerticalBox from 'antd-management-fast-component/es/customComponents/VerticalBox';
+import { formatMessage } from 'antd-management-fast-common';
+import { Bubbly, FlexBox, VerticalBox } from 'antd-management-fast-component';
 
 import { defaultSettings } from '../../defaultSettings';
 

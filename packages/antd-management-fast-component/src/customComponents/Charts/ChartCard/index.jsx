@@ -100,4 +100,4 @@ class ChartCard extends React.Component {
   }
 }
 
-export default ChartCard;
+export { ChartCard };

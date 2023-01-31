@@ -1,7 +1,7 @@
 import { FloatButton } from 'antd';
 import React from 'react';
 
-import BaseUpdateForm from '../BaseUpdateForm';
+import { BaseUpdateForm } from '../BaseUpdateForm';
 
 const { BackTop } = FloatButton;
 
@@ -19,4 +19,4 @@ class BaseUpdateFormContent extends BaseUpdateForm {
   }
 }
 
-export default BaseUpdateFormContent;
+export { BaseUpdateFormContent };

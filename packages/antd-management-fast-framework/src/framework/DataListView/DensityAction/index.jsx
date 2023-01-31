@@ -1,8 +1,8 @@
 import { Button, Dropdown, Menu, Tooltip } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { listViewConfig } from 'antd-management-fast-common/es/utils/constants';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { listViewConfig } from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 
 class DensityAction extends PureComponent {
   render() {
@@ -68,4 +68,4 @@ class DensityAction extends PureComponent {
   }
 }
 
-export default DensityAction;
+export { DensityAction };

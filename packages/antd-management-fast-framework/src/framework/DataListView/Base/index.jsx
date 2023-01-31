@@ -22,32 +22,26 @@ import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
 import {
+  buildFieldDescription,
   cardConfig,
   columnFacadeMode,
   datetimeFormat,
-  formNameCollection,
-  listViewConfig,
-  pageHeaderRenderType,
-  searchCardConfig,
-} from 'antd-management-fast-common/es/utils/constants';
-import { getCurrentLocation } from 'antd-management-fast-common/es/utils/routeAssist';
-import {
-  buildFieldDescription,
   defaultListState,
+  formNameCollection,
+  getCurrentLocation,
   getDerivedStateFromPropsForUrlParams,
   isArray,
   isUndefined,
+  listViewConfig,
+  pageHeaderRenderType,
+  searchCardConfig,
   showWarnMessage,
   toMoment,
   toNumber,
-} from 'antd-management-fast-common/es/utils/tools';
-import {
-  avatarImageLoadResultCollection,
-  decorateAvatar,
-} from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
-import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
+} from 'antd-management-fast-common';
 import {
   adjustTableExpandConfig,
+  avatarImageLoadResultCollection,
   buildColumnList,
   buildCustomSelect,
   buildDropdown,
@@ -55,15 +49,17 @@ import {
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
   buildTagList,
+  decorateAvatar,
+  FlexBox,
+  iconBuilder,
   pageHeaderExtraContent,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import StandardTableCustom from 'antd-management-fast-component/es/customComponents/StandardTableCustom';
+  StandardTableCustom,
+} from 'antd-management-fast-component';
 
-import AuthorizationWrapper from '../../AuthorizationWrapper';
-import BatchAction from '../BatchAction';
-import ColumnSetting from '../ColumnSetting';
-import DensityAction from '../DensityAction';
+import { AuthorizationWrapper } from '../../AuthorizationWrapper';
+import { BatchAction } from '../BatchAction';
+import { ColumnSetting } from '../ColumnSetting';
+import { DensityAction } from '../DensityAction';
 
 import './index.less';
 
@@ -1836,4 +1832,4 @@ class ListBase extends AuthorizationWrapper {
   }
 }
 
-export default ListBase;
+export { ListBase };

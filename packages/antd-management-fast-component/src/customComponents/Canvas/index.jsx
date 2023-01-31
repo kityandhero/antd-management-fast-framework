@@ -1,13 +1,3 @@
-import BubblySource from './Bubbly';
-import RadarScanningSource from './RadarScanning';
-import SpiritSource from './Spirit';
-
-export const Bubbly = BubblySource;
-export const RadarScanning = RadarScanningSource;
-export const Spirit = SpiritSource;
-
-export default {
-  Bubbly,
-  RadarScanning,
-  Spirit,
-};
+export * from './Bubbly';
+export * from './RadarScanning';
+export * from './Spirit';

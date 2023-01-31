@@ -1,8 +1,8 @@
-import ComponentBase from 'antd-management-fast-common/es/customComponents/ComponentBase';
+import { AbstractComponent } from 'antd-management-fast-common';
 
 const defaultProps = {};
 
-class BaseComponent extends ComponentBase {
+class BaseComponent extends AbstractComponent {
   getDispatch = () => {
     const { dispatch } = this.props;
 
@@ -30,4 +30,4 @@ BaseComponent.defaultProps = {
   ...defaultProps,
 };
 
-export default BaseComponent;
+export { BaseComponent };

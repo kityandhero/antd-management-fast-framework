@@ -1,13 +1,10 @@
-﻿import {
+﻿import { isInvalid, refitCommonData, searchFromList } from 'easy-soft-utility';
+
+import {
   unknownLabel,
   unlimitedWithStringFlag,
   whetherList,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
-  isInvalid,
-  refitCommonData,
-  searchFromList,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
 import {
   buildFormRadio,

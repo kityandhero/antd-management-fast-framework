@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { copyToClipboard } from 'antd-management-fast-common/es/utils/tools';
+import { copyToClipboard } from 'antd-management-fast-common';
 
-import BaseComponent from '../BaseComponent';
+import { BaseComponent } from '../BaseComponent';
 
 class DisplayCopyData extends BaseComponent {
   static defaultProps = {
@@ -48,4 +48,4 @@ class DisplayCopyData extends BaseComponent {
   }
 }
 
-export default DisplayCopyData;
+export { DisplayCopyData };

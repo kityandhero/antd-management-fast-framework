@@ -2,22 +2,22 @@ import { Avatar, Button, FloatButton, Form, Tooltip } from 'antd';
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
-import { pageHeaderRenderType } from 'antd-management-fast-common/es/utils/constants';
-import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
+import {
+  getDerivedStateFromPropsForUrlParams,
+  pageHeaderRenderType,
+} from 'antd-management-fast-common';
 import {
   avatarImageLoadResultCollection,
-  decorateAvatar,
-} from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
-import {
   buildPageHeaderContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
   buildTagList,
+  decorateAvatar,
+  iconBuilder,
   pageHeaderExtraContent,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+} from 'antd-management-fast-component';
 
-import BaseView from '../../DataOperation/BaseView';
+import { BaseView } from '../../DataOperation/BaseView';
 
 import styles from './index.less';
 
@@ -288,4 +288,4 @@ class DataCore extends BaseView {
   }
 }
 
-export default DataCore;
+export { DataCore };

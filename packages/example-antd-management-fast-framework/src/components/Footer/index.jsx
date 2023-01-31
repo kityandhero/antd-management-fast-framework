@@ -1,9 +1,8 @@
 import React from 'react';
 import { DefaultFooter } from '@ant-design/pro-components';
 
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+import { runtimeSettings } from 'antd-management-fast-common';
+import { iconBuilder, IconInfo } from 'antd-management-fast-component';
 
 const defaultFooterData = {
   copyright: runtimeSettings.getCopyright(),

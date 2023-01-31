@@ -8,7 +8,7 @@ import {
   logDebug,
   showInfoMessage,
   showSuccessMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
 import NoticeIcon from '../NoticeIcon';
 

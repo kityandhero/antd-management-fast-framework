@@ -1,6 +1,6 @@
 import { Button, Space } from 'antd';
 
-import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
+import { cardConfig } from 'antd-management-fast-common';
 import BaseView from 'antd-management-fast-framework/es/framework/DataOperation/BaseView';
 
 class Index extends BaseView {

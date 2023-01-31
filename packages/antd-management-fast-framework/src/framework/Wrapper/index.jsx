@@ -1,6 +1,6 @@
-import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common';
 
-import Common from '../Common';
+import { Common } from '../Common';
 
 class Wrapper extends Common {
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -8,4 +8,4 @@ class Wrapper extends Common {
   }
 }
 
-export default Wrapper;
+export { Wrapper };

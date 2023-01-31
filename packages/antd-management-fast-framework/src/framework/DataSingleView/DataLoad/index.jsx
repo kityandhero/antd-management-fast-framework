@@ -1,9 +1,9 @@
 import {
   defaultFormState,
   getDerivedStateFromPropsForUrlParams,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import DataCore from '../DataCore';
+import { DataCore } from '../DataCore';
 
 class DataLoad extends DataCore {
   constructor(props) {
@@ -124,4 +124,4 @@ class DataLoad extends DataCore {
   }) => {};
 }
 
-export default DataLoad;
+export { DataLoad };

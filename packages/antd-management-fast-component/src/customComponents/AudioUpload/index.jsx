@@ -3,7 +3,6 @@ import {
   Divider,
   Dropdown,
   Input,
-  Menu,
   Modal,
   Space,
   Tooltip,
@@ -12,16 +11,13 @@ import {
 import React, { PureComponent } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import {
-  copyToClipboard,
-  isFunction,
-  showErrorMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+import { isFunction, showErrorMessage } from 'easy-soft-utility';
+
+import { copyToClipboard, runtimeSettings } from 'antd-management-fast-common';
 
 import { buildPlayer } from '../FunctionComponent';
 import { iconBuilder } from '../Icon';
-import IconInfo from '../IconInfo';
+import { IconInfo } from '../IconInfo';
 
 const { TextArea } = Input;
 

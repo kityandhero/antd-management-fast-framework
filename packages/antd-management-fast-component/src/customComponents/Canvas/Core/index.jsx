@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 
-import { checkStringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
+import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
-class Index extends PureComponent {
+class Core extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -115,8 +115,8 @@ class Index extends PureComponent {
   }
 }
 
-Index.defaultProps = {
+Core.defaultProps = {
   backgroundImage: '',
 };
 
-export default Index;
+export { Core };

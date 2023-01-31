@@ -2,21 +2,17 @@ import { Divider, Space, Tabs } from 'antd';
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
-import {
-  isArray,
-  isBoolean,
-  isObject,
-} from 'antd-management-fast-common/es/utils/tools';
-import { decorateAvatar } from 'antd-management-fast-component/es/customComponents/DecorateAvatar';
+import { isArray, isBoolean, isObject } from 'antd-management-fast-common';
 import {
   buildPageHeaderContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
+  decorateAvatar,
+  iconBuilder,
   pageHeaderExtraContent,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+} from 'antd-management-fast-component';
 
-import DataSingleView from '../DataSingleView/DataLoad';
+import { DataSingleView } from '../DataSingleView/DataLoad';
 
 import styles from './index.less';
 
@@ -285,4 +281,4 @@ class DataTabContainer extends DataSingleView {
   }
 }
 
-export default DataTabContainer;
+export { DataTabContainer };

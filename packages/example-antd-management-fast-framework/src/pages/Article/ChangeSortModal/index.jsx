@@ -3,8 +3,8 @@ import { connect } from 'umi';
 import {
   cardConfig,
   convertCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
+  getValueByKey,
+} from 'antd-management-fast-common';
 import BaseUpdateModal from 'antd-management-fast-framework/es/framework/DataModal/BaseUpdateModal';
 
 import { fieldData } from '../Common/data';

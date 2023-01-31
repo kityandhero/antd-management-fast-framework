@@ -149,4 +149,4 @@ const TimelineChart = (props) => {
   );
 };
 
-export default TimelineChart;
+export { TimelineChart };

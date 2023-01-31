@@ -97,4 +97,4 @@ const MiniArea = (props) => {
   );
 };
 
-export default MiniArea;
+export { MiniArea };

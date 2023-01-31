@@ -1,7 +1,7 @@
 import { Col, Divider, Row } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { isArray } from 'antd-management-fast-common/es/utils/tools';
+import { isArray } from 'easy-soft-utility';
 
 class StatusBar extends PureComponent {
   render() {
@@ -71,4 +71,4 @@ StatusBar.defaultProps = {
   extra: null,
 };
 
-export default StatusBar;
+export { StatusBar };

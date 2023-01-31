@@ -1,10 +1,10 @@
-import { defaultEmptyImage } from 'antd-management-fast-common/es/utils/constants';
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import { request } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
+  defaultEmptyImage,
   getValueByKey,
+  request,
+  runtimeSettings,
   toString,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
 const imageFileList = [
   {

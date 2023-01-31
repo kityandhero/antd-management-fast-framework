@@ -1,20 +1,18 @@
 import { Alert, Space } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { animalType } from 'antd-management-fast-common/es/utils/constants';
-import {
-  inCollection,
-  isFunction,
-} from 'antd-management-fast-common/es/utils/tools';
+import { checkInCollection, isFunction } from 'easy-soft-utility';
 
-import FadeBox from '../../AnimalBox/FadeBox';
-import QueueBox from '../../AnimalBox/QueueBox';
+import { animalType } from 'antd-management-fast-common';
+
+import { FadeBox } from '../../AnimalBox/FadeBox';
+import { QueueBox } from '../../AnimalBox/QueueBox';
 import { buildButton } from '../../FunctionComponent';
 import { iconBuilder } from '../../Icon';
 
 import styles from './index.less';
 
-class ConventView extends PureComponent {
+class ContentView extends PureComponent {
   onAlertClick = () => {
     const { afterAlertClick } = this.props;
 
@@ -35,14 +33,14 @@ class ConventView extends PureComponent {
       children,
     } = this.props;
 
-    const alertType = inCollection(
+    const alertType = checkInCollection(
       ['success', 'info', 'warning', 'error'],
       alertTypeSource,
     )
       ? alertTypeSource
       : 'info';
 
-    const alertAnimationType = inCollection(
+    const alertAnimationType = checkInCollection(
       [animalType.none, animalType.fade, animalType.queue],
       alertAnimationTypeSource,
     )
@@ -99,7 +97,7 @@ class ConventView extends PureComponent {
   }
 }
 
-ConventView.defaultProps = {
+ContentView.defaultProps = {
   alertVisible: false,
   alertAnimationType: animalType.fade,
   alertMessage: '',
@@ -110,4 +108,4 @@ ConventView.defaultProps = {
   afterAlertClick: null,
 };
 
-export default ConventView;
+export { ContentView as ContentView };

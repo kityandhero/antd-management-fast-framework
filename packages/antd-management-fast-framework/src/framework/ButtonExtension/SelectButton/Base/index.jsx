@@ -1,8 +1,8 @@
 import { Button } from 'antd';
 
-import { showRuntimeError } from 'antd-management-fast-common/es/utils/tools';
+import { showRuntimeError } from 'antd-management-fast-common';
 
-import SupplementWrapper from '../../../CustomWrapper/SupplementWrapper';
+import { SupplementWrapper } from '../../../CustomWrapper/SupplementWrapper';
 
 class Base extends SupplementWrapper {
   loadDataAfterMount = false;
@@ -64,4 +64,4 @@ class Base extends SupplementWrapper {
   }
 }
 
-export default Base;
+export { Base };

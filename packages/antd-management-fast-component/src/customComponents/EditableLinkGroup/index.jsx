@@ -48,4 +48,4 @@ EditableLinkGroup.defaultProps = {
   linkElement: 'a',
 };
 
-export default EditableLinkGroup;
+export { EditableLinkGroup };

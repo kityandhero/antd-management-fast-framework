@@ -1,103 +1,82 @@
 import { message } from 'antd';
 
-import { messageTypeCollection } from 'easy-soft-utility';
+import {
+  messageTypeCollection,
+  setErrorMessageDisplayMonitor,
+  setInfoMessageDisplayMonitor,
+  setLoadingMessageDisplayMonitor,
+  setOpenMessageDisplayMonitor,
+  setSuccessMessageDisplayMonitor,
+  setWarningMessageDisplayMonitor,
+  setWarnMessageDisplayMonitor,
+} from 'easy-soft-utility';
 
-function showMessage({
-  type,
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+function showMessage({ type, duration = 3, text, onClose = () => {} }) {
   requestAnimationFrame(() => {
     switch (type) {
-      case messageTypeCollection.success:
-        message.success(messageText, duration, onClose);
+      case messageTypeCollection.open: {
+        message.open(text, duration, onClose);
 
         break;
+      }
 
-      case messageTypeCollection.error:
-        message.error(messageText, duration, onClose);
-
-        break;
-
-      case messageTypeCollection.info:
-        message.info(messageText, duration, onClose);
+      case messageTypeCollection.loading: {
+        message.loading(text, duration, onClose);
 
         break;
+      }
 
-      case messageTypeCollection.warning:
-        message.warning(messageText, duration, onClose);
-
-        break;
-
-      case messageTypeCollection.warn:
-        message.warning(messageText, duration, onClose);
+      case messageTypeCollection.info: {
+        message.info(text, duration, onClose);
 
         break;
+      }
 
-      case messageTypeCollection.loading:
-        message.loading(messageText, duration, onClose);
+      case messageTypeCollection.warn: {
+        message.warning(text, duration, onClose);
 
         break;
+      }
+
+      case messageTypeCollection.warning: {
+        message.warning(text, duration, onClose);
+
+        break;
+      }
+
+      case messageTypeCollection.success: {
+        message.success(text, duration, onClose);
+
+        break;
+      }
+
+      case messageTypeCollection.error: {
+        message.error(text, duration, onClose);
+
+        break;
+      }
 
       default:
-        message.open(messageText, duration, onClose);
+        message.info(text, duration, onClose);
 
         break;
     }
   });
 }
 
-export function showSuccessMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+function showOpenMessage({ duration = 3, text, onClose = () => {} }) {
   showMessage({
-    type: messageTypeCollection.success,
-    message: messageText,
+    type: messageTypeCollection.open,
+    text: text,
     duration,
     onClose,
   });
 }
 
-export function showErrorMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+function showLoadingMessage({ duration = 3, text, onClose = () => {} }) {
   showMessage({
-    type: messageTypeCollection.error,
-    message: messageText,
-    duration,
-    onClose,
-  });
-}
-
-export function showWarnMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
-  showMessage({
-    type: messageTypeCollection.warn,
-    message: messageText,
-    duration,
-    onClose,
-  });
-}
-
-/**
- * 显示警告信息框
- */
-export function showWarningMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
-  showMessage({
-    type: messageTypeCollection.warning,
-    message: messageText,
+    type: messageTypeCollection.loading,
+    text: text,
     duration,
     onClose,
   });
@@ -106,41 +85,63 @@ export function showWarningMessage({
 /**
  * 显示消息信息
  */
-export function showInfoMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+function showInfoMessage({ duration = 3, text, onClose = () => {} }) {
   showMessage({
     type: messageTypeCollection.info,
-    message: messageText,
+    text: text,
     duration,
     onClose,
   });
 }
 
-export function showLoadingMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+function showSuccessMessage({ duration = 3, text, onClose = () => {} }) {
   showMessage({
-    type: messageTypeCollection.loading,
-    message: messageText,
+    type: messageTypeCollection.success,
+    text: text,
     duration,
     onClose,
   });
 }
 
-export function showOpenMessage({
-  duration = 3,
-  message: messageText,
-  onClose = () => {},
-}) {
+function showErrorMessage({ duration = 3, text, onClose = () => {} }) {
   showMessage({
-    type: messageTypeCollection.open,
-    message: messageText,
+    type: messageTypeCollection.error,
+    text: text,
     duration,
     onClose,
   });
+}
+
+function showWarnMessage({ duration = 3, text, onClose = () => {} }) {
+  showMessage({
+    type: messageTypeCollection.warn,
+    text: text,
+    duration,
+    onClose,
+  });
+}
+
+/**
+ * 显示警告信息框
+ */
+function showWarningMessage({ duration = 3, text, onClose = () => {} }) {
+  showMessage({
+    type: messageTypeCollection.warning,
+    text: text,
+    duration,
+    onClose,
+  });
+}
+
+/**
+ * 设置 MessageDisplayMonitor 显示处理
+ */
+export function setMessageDisplayMonitor() {
+  setInfoMessageDisplayMonitor(showInfoMessage);
+  setOpenMessageDisplayMonitor(showOpenMessage);
+  setLoadingMessageDisplayMonitor(showLoadingMessage);
+  setWarnMessageDisplayMonitor(showWarnMessage);
+  setWarningMessageDisplayMonitor(showWarningMessage);
+  setSuccessMessageDisplayMonitor(showSuccessMessage);
+  setErrorMessageDisplayMonitor(showErrorMessage);
 }

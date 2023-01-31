@@ -1,6 +1,6 @@
-import { requestAnimFrame } from 'antd-management-fast-common/es/utils/tools';
+import { requestAnimFrame } from 'antd-management-fast-common';
 
-import Core from '../Core';
+import { Core } from '../Core';
 
 const rand = (min, max) => {
   return ~~(Math.random() * (max - min + 1) + min);
@@ -185,4 +185,4 @@ RadarScanning.defaultProps = {
   trail: true,
 };
 
-export default RadarScanning;
+export { RadarScanning };

@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   isFunction,
   isUndefined,
   logObject,
+  pretreatmentRequestParams,
   showWarningMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import Base from '../Base';
+import { Base } from '../Base';
 
 class BaseWindow extends Base {
   reloadWhenShow = false;
@@ -385,4 +385,4 @@ class BaseWindow extends Base {
   };
 }
 
-export default BaseWindow;
+export { BaseWindow };

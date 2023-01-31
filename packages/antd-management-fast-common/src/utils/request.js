@@ -1,14 +1,15 @@
 import { request as requestInner } from '@umijs/max';
 
-import { requestMethod } from './constants';
-import { runtimeSettings } from './dynamicSetting';
-import { getToken, getTokenKeyName } from './globalStorageAssist';
 import {
-  corsTarget,
   isString,
   logObject,
+  requestMethod,
   trySendNearestLocalhostNotify,
-} from './tools';
+} from 'easy-soft-utility';
+
+import { corsTarget } from './common';
+import { runtimeSettings } from './dynamicSetting';
+import { getToken, getTokenKeyName } from './tokenAssist';
 
 export async function request({
   url,

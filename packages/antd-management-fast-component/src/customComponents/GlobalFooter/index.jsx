@@ -27,4 +27,4 @@ const GlobalFooter = ({ className, links, copyright }) => {
   );
 };
 
-export default GlobalFooter;
+export { GlobalFooter };

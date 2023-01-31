@@ -1,15 +1,15 @@
-import { Dropdown, List, Menu } from 'antd';
+import { Dropdown, List } from 'antd';
 import { connect } from 'umi';
 
-import { sortOperate } from 'antd-management-fast-common/es/utils/constants';
 import {
   getValueByKey,
   isArray,
   showError,
   sortCollectionByKey,
-} from 'antd-management-fast-common/es/utils/tools';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import Base from 'antd-management-fast-framework/es/framework/DataModal/Base';
+  sortOperate,
+} from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
+import { Base } from 'antd-management-fast-framework/es/framework/DataModal/Base';
 
 import { accessWayCollection } from '@/customConfig/config';
 

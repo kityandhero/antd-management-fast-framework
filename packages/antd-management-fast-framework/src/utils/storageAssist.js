@@ -1,10 +1,10 @@
-import { getToken } from 'antd-management-fast-common/es/utils/globalStorageAssist';
 import {
   getJsonFromLocalStorage,
+  getToken,
+  logExecute,
   removeLocalStorage,
   saveJsonToLocalStorage,
-} from 'antd-management-fast-common/es/utils/localStorageAssist';
-import { logExecute } from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
 const storageKeyCollection = {
   appListData: 'appListData',

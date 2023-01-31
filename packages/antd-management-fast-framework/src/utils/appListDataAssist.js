@@ -1,11 +1,11 @@
-import { apiRequest } from 'antd-management-fast-common/es/utils/actionAssist';
-import { getDispatch } from 'antd-management-fast-common/es/utils/dva';
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
+  apiRequest,
+  getDispatch,
   isFunction,
   logDebug,
   logExecute,
-} from 'antd-management-fast-common/es/utils/tools';
+  runtimeSettings,
+} from 'antd-management-fast-common';
 
 import { getAppListDataCache, setAppListDataCache } from './storageAssist';
 

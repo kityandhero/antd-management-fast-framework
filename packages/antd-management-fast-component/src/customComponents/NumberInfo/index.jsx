@@ -57,4 +57,4 @@ const NumberInfo = ({
   </div>
 );
 
-export default NumberInfo;
+export { NumberInfo };

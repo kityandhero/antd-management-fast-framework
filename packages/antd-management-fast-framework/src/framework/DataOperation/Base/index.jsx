@@ -4,9 +4,9 @@ import {
   isFunction,
   showSuccessMessage,
   showWarningMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import AuthorizationWrapper from '../../AuthorizationWrapper';
+import { AuthorizationWrapper } from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {
   resetDataAfterLoad = true;
@@ -331,4 +331,4 @@ class Base extends AuthorizationWrapper {
   };
 }
 
-export default Base;
+export { Base };

@@ -1,8 +1,9 @@
 import { Button, Input, Upload } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import { isFunction } from 'antd-management-fast-common/es/utils/tools';
+import { isFunction } from 'easy-soft-utility';
+
+import { runtimeSettings } from 'antd-management-fast-common';
 
 import { iconBuilder } from '../Icon';
 
@@ -135,4 +136,4 @@ FileBase64Upload.defaultProps = {
   afterUploadSuccess: () => {},
 };
 
-export default FileBase64Upload;
+export { FileBase64Upload };

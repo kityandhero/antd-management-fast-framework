@@ -195,4 +195,4 @@ class TagCloud extends Component {
   }
 }
 
-export default TagCloud;
+export { TagCloud };

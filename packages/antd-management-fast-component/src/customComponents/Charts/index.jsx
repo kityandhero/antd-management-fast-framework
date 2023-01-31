@@ -1,14 +1,14 @@
-import Bar from './Bar';
-import ChartCard from './ChartCard';
-import Field from './Field';
-import Gauge from './Gauge';
-import MiniArea from './MiniArea';
-import MiniBar from './MiniBar';
-import MiniProgress from './MiniProgress';
-import Pie from './Pie';
-import TagCloud from './TagCloud';
-import TimelineChart from './TimelineChart';
-import WaterWave from './WaterWave';
+import { Bar } from './Bar';
+import { ChartCard } from './ChartCard';
+import { Field } from './Field';
+import { Gauge } from './Gauge';
+import { MiniArea } from './MiniArea';
+import { MiniBar } from './MiniBar';
+import { MiniProgress } from './MiniProgress';
+import { Pie } from './Pie';
+import { TagCloud } from './TagCloud';
+import { TimelineChart } from './TimelineChart';
+import { WaterWave } from './WaterWave';
 
 const Charts = {
   Bar,
@@ -23,17 +23,5 @@ const Charts = {
   TagCloud,
   TimelineChart,
 };
-export {
-  Bar,
-  ChartCard,
-  Charts as default,
-  Field,
-  Gauge,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Pie,
-  TagCloud,
-  TimelineChart,
-  WaterWave,
-};
+
+export { Charts };

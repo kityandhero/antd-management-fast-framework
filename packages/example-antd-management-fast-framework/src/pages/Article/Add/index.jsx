@@ -1,17 +1,18 @@
 import { Space } from 'antd';
 import { connect } from 'umi';
 
-import { cardConfig } from 'antd-management-fast-common/es/utils/constants';
 import {
+  cardConfig,
   corsTarget,
   getDerivedStateFromPropsForUrlParams,
   showInfoMessage,
-} from 'antd-management-fast-common/es/utils/tools';
-import FadeBox from 'antd-management-fast-component/es/customComponents/AnimalBox/FadeBox';
-import QueueBox from 'antd-management-fast-component/es/customComponents/AnimalBox/QueueBox';
-import QueueListBox from 'antd-management-fast-component/es/customComponents/AnimalBox/QueueListBox';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+} from 'antd-management-fast-common';
+import QueueListBox, {
+  FadeBox,
+  iconBuilder,
+  IconInfo,
+  QueueBox,
+} from 'antd-management-fast-component';
 import BaseAddForm from 'antd-management-fast-framework/es/framework/DataForm/BaseAddForm';
 
 import { accessWayCollection } from '@/customConfig/config';

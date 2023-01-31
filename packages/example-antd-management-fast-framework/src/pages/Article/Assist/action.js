@@ -1,8 +1,8 @@
 import {
   actionCore,
   confirmActionCore,
-} from 'antd-management-fast-common/es/utils/actionAssist';
-import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
+  getValueByKey,
+} from 'antd-management-fast-common';
 
 import { fieldData, mediaItemData } from '../Common/data';
 

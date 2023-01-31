@@ -2,9 +2,12 @@ import { Avatar, Menu, Spin } from 'antd';
 import React from 'react';
 import { connect } from 'umi';
 
-import { defaultUserAvatar } from 'antd-management-fast-common/es/utils/constants';
-import { goToPath, logDebug } from 'antd-management-fast-common/es/utils/tools';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import {
+  defaultUserAvatar,
+  goToPath,
+  logDebug,
+} from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 
 import HeaderDropdown from '../HeaderDropdown';
 

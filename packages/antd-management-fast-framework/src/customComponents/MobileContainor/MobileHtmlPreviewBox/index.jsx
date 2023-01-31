@@ -1,8 +1,8 @@
 import React from 'react';
 
-import HtmlBox from 'antd-management-fast-component/es/customComponents/HtmlBox';
+import { HtmlBox } from 'antd-management-fast-component';
 
-import MobilePreviewArea from '../MobilePreviewArea';
+import { MobilePreviewArea } from '../MobilePreviewArea';
 
 class MobileHtmlPreviewBox extends MobilePreviewArea {
   loadDataAfterMount = false;
@@ -33,4 +33,4 @@ MobileHtmlPreviewBox.defaultProps = {
   html: '',
 };
 
-export default MobileHtmlPreviewBox;
+export { MobileHtmlPreviewBox };

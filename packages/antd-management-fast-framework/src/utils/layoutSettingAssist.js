@@ -1,12 +1,10 @@
 import {
   getDispatch,
   getModelState,
-} from 'antd-management-fast-common/es/utils/dva';
-import { layoutSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
-import {
+  layoutSettings,
   logDebug,
   logExecute,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
 let configLayoutSettingComplete = false;
 

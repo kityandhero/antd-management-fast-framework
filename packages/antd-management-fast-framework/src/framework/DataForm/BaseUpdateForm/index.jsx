@@ -1,12 +1,12 @@
-import { pretreatmentRequestParams } from 'antd-management-fast-common/es/utils/requestAssistor';
 import {
   isFunction,
   isUndefined,
   logObject,
+  pretreatmentRequestParams,
   showWarningMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import DataSingleView from '../../DataSingleView/DataLoad';
+import { DataSingleView } from '../../DataSingleView/DataLoad';
 
 class BaseUpdateForm extends DataSingleView {
   goToUpdateWhenProcessed = false;
@@ -161,4 +161,4 @@ class BaseUpdateForm extends DataSingleView {
   };
 }
 
-export default BaseUpdateForm;
+export { BaseUpdateForm };

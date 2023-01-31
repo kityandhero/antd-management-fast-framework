@@ -1,8 +1,13 @@
 import { message, Modal } from 'antd';
 
-import { checkStringIsNullOrWhiteSpace, getGuid } from 'easy-soft-utility';
-
-import { notifySuccess } from './tools';
+import {
+  checkStringIsNullOrWhiteSpace,
+  getGuid,
+  isFunction,
+  logDebug,
+  logError,
+  showSimpleSuccessNotification,
+} from 'easy-soft-utility';
 
 const { confirm } = Modal;
 
@@ -65,7 +70,7 @@ function remoteAction({
         }
 
         if (!checkStringIsNullOrWhiteSpace(messageText)) {
-          notifySuccess(messageText);
+          showSimpleSuccessNotification(messageText);
         }
 
         if (isFunction(successCallback)) {
@@ -321,7 +326,7 @@ export function apiRequest({
         }
 
         if (!checkStringIsNullOrWhiteSpace(messageText)) {
-          notifySuccess(messageText);
+          showSimpleSuccessNotification(messageText);
         }
 
         if (isFunction(successCallback)) {

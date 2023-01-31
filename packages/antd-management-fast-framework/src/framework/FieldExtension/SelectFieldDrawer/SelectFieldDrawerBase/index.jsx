@@ -1,11 +1,11 @@
-import { selectModeCollection } from 'antd-management-fast-common/es/utils/constants';
 import {
   isFunction,
+  selectModeCollection,
   showWarningMessage,
   toNumber,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
-import SelectFieldBase from '../SelectFieldBase';
+import { SelectFieldBase } from '../SelectFieldBase';
 
 class SelectFieldInteractiveBase extends SelectFieldBase {
   constructor(props) {
@@ -137,4 +137,4 @@ SelectFieldInteractiveBase.defaultProps = {
   selectMode: selectModeCollection.drawer,
 };
 
-export default SelectFieldInteractiveBase;
+export { SelectFieldInteractiveBase };

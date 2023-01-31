@@ -1,11 +1,11 @@
-import { getAppInitConfigData } from 'antd-management-fast-common/es/utils/core';
-import { getModelNameList } from 'antd-management-fast-common/es/utils/dva';
 import {
+  getAppInitConfigData,
+  getModelNameList,
   logConfig,
   logExecute,
   recordInfo,
   showInfoMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 
 import { loadAppListData } from './appListDataAssist';
 import { loadMetaData } from './metaDataAssist';

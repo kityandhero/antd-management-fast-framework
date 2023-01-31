@@ -32,4 +32,4 @@ const Trend = ({
   );
 };
 
-export default Trend;
+export { Trend };

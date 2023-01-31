@@ -56,7 +56,7 @@ export const runtimeSettings = {
   getMetaDataPath: getMetaDataPath,
   getMetaData: getMetaData,
   getApiVersion: getApiVersion,
-  getUseVirtualRequest: getUseVirtualRequest,
+  getUseSimulateRequest: getUseVirtualRequest,
   getShowUseVirtualRequestMessage: getShowUseVirtualRequestMessage,
   getShowLogInConsole: getShowLogInConsole,
   getShowRequestInfo: getShowRequestInfo,

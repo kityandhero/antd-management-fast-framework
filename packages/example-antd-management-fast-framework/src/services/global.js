@@ -1,4 +1,4 @@
-import { request } from 'antd-management-fast-common/es/utils/requestAssistor';
+import { request } from 'antd-management-fast-common';
 
 /**
  * 综合数据

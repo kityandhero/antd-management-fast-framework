@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { checkStringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
+import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
 class EverySpace extends PureComponent {
   render() {
@@ -63,4 +63,4 @@ EverySpace.defaultProps = {
   borderRadius: '',
 };
 
-export default EverySpace;
+export { EverySpace };

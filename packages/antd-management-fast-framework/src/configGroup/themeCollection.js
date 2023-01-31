@@ -1,4 +1,4 @@
-export const configGeneral = {
+export const themeCollection = {
   list: [
     {
       key: 'dark',

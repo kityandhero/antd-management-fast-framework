@@ -15,15 +15,17 @@ import { ReadOutlined } from '@ant-design/icons';
 
 import {
   contentConfig,
+  isFunction,
   listViewConfig,
-} from 'antd-management-fast-common/es/utils/constants';
-import { isFunction } from 'antd-management-fast-common/es/utils/tools';
-import { buildListViewItemActionSelect } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+} from 'antd-management-fast-common';
+import {
+  buildListViewItemActionSelect,
+  iconBuilder,
+} from 'antd-management-fast-component';
 
-import ColumnSetting from '../../DataListView/ColumnSetting';
-import DensityAction from '../../DataListView/DensityAction';
-import SinglePage from '../SinglePage';
+import { ColumnSetting } from '../../DataListView/ColumnSetting';
+import { DensityAction } from '../../DataListView/DensityAction';
+import { SinglePage } from '../SinglePage';
 
 import styles from './index.less';
 
@@ -576,4 +578,4 @@ SinglePageDrawer.defaultProps = {
   width: 820,
 };
 
-export default SinglePageDrawer;
+export { SinglePageDrawer };

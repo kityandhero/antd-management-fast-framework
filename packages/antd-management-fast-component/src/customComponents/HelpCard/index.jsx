@@ -1,7 +1,7 @@
 import { Card } from 'antd';
 import React, { PureComponent } from 'react';
 
-import HelpBox from '../HelpBox';
+import { HelpBox } from '../HelpBox';
 
 class HelpCard extends PureComponent {
   render() {
@@ -45,4 +45,4 @@ HelpCard.defaultProps = {
   },
 };
 
-export default HelpCard;
+export { HelpCard };

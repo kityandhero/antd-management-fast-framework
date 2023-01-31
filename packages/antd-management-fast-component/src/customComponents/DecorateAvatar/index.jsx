@@ -2,8 +2,9 @@ import { Avatar } from 'antd';
 import React, { PureComponent } from 'react';
 import { ReloadOutlined } from '@ant-design/icons';
 
-import { defaultEmptyImage } from 'antd-management-fast-common/es/utils/constants';
-import { isFunction } from 'antd-management-fast-common/es/utils/tools';
+import { isFunction } from 'easy-soft-utility';
+
+import { defaultEmptyImage } from 'antd-management-fast-common';
 
 import { iconBuilder } from '../Icon';
 
@@ -140,4 +141,4 @@ DecorateAvatar.defaultProps = {
   reloading: false,
 };
 
-export default DecorateAvatar;
+export { DecorateAvatar };

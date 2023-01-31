@@ -1,7 +1,7 @@
-import { drawerConfig } from 'antd-management-fast-common/es/utils/constants';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { drawerConfig } from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 
-import BaseNeedlessLoadDrawer from '../BaseNeedlessLoadDrawer';
+import { BaseNeedlessLoadDrawer } from '../BaseNeedlessLoadDrawer';
 
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   constructor(props) {
@@ -46,4 +46,4 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   };
 }
 
-export default BaseAddDrawer;
+export { BaseAddDrawer };

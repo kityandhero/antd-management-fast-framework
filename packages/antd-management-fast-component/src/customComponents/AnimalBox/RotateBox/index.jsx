@@ -1,7 +1,7 @@
 import TweenOne from 'rc-tween-one';
 import React, { PureComponent } from 'react';
 
-import { isFunction } from 'antd-management-fast-common/es/utils/tools';
+import { isFunction } from 'easy-soft-utility';
 
 class RotateBox extends PureComponent {
   render() {
@@ -39,4 +39,4 @@ RotateBox.defaultProps = {
   onClick: null,
 };
 
-export default RotateBox;
+export { RotateBox };

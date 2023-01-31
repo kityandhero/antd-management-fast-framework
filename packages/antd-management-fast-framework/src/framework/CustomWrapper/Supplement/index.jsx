@@ -1,6 +1,6 @@
-import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common/es/utils/tools';
+import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common';
 
-import SupplementCore from '../SupplementCore';
+import { SupplementCore } from '../SupplementCore';
 
 /**
  * 该类作为特有项目的补充，视具体项目进行增部方法
@@ -14,4 +14,4 @@ class Supplement extends SupplementCore {
   }
 }
 
-export default Supplement;
+export { Supplement };

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
-import { MiniArea } from '../Charts';
-import NumberInfo from '../NumberInfo';
+import { Charts } from '../Charts';
+import { NumberInfo } from '../NumberInfo';
 
 import styles from './index.less';
+
+const { MiniArea } = Charts;
 
 function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
@@ -20,7 +22,7 @@ function getActiveData() {
   return activeData;
 }
 
-export default class ActiveChart extends Component {
+class ActiveChart extends Component {
   state = {
     activeData: getActiveData(),
   };
@@ -105,3 +107,5 @@ export default class ActiveChart extends Component {
     );
   }
 }
+
+export { ActiveChart };

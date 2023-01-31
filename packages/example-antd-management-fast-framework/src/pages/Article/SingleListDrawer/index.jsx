@@ -5,11 +5,11 @@ import {
   columnFacadeMode,
   columnPlaceholder,
   formatCollection,
+  getValueByKey,
   listViewConfig,
   searchCardConfig,
-} from 'antd-management-fast-common/es/utils/constants';
-import { getValueByKey } from 'antd-management-fast-common/es/utils/tools';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+} from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 import SinglePageDrawer from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePageDrawer';
 
 import { accessWayCollection } from '@/customConfig/config';

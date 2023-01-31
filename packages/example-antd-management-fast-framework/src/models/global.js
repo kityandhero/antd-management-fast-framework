@@ -1,11 +1,11 @@
 import {
+  pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParams,
   reducerNameCollection,
+  showInfoMessage,
   tacitlyState,
-} from 'antd-management-fast-common/es/utils/dva';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
-import { showInfoMessage } from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 import {
   getMetaDataCache,
   setMetaDataCache,

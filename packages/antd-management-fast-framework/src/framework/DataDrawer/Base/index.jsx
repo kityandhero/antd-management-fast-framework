@@ -3,26 +3,24 @@ import React, { Fragment } from 'react';
 
 import {
   cardConfig,
-  drawerConfig,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
   defaultFormState,
+  drawerConfig,
   isArray,
   isFunction,
   isUndefined,
-} from 'antd-management-fast-common/es/utils/tools';
-import FlexBox from 'antd-management-fast-component/es/customComponents/FlexBox';
+} from 'antd-management-fast-common';
 import {
   buildButton,
   buildCustomSelect,
   buildDropdown,
   buildDropdownButton,
   buildDropdownEllipsis,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+  FlexBox,
+  iconBuilder,
+  IconInfo,
+} from 'antd-management-fast-component';
 
-import BaseWindow from '../../DataOperation/BaseWindow';
+import { BaseWindow } from '../../DataOperation/BaseWindow';
 
 import styles from './index.less';
 
@@ -394,4 +392,4 @@ class Base extends BaseWindow {
   }
 }
 
-export default Base;
+export { Base };

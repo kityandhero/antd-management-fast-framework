@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { inCollection } from 'antd-management-fast-common/es/utils/core';
+import { checkInCollection } from 'easy-soft-utility';
 
 const flexAutoCollection = ['left', 'right', 'top', 'bottom'];
 
@@ -9,7 +9,7 @@ class FlexBox extends PureComponent {
   getDirection = () => {
     const { flexAuto } = this.props;
 
-    if (!inCollection(flexAutoCollection, flexAuto)) {
+    if (!checkInCollection(flexAutoCollection, flexAuto)) {
       const text = 'flexAuto 只能配置为 left/right/top/bottom';
 
       showErrorMessage({
@@ -19,9 +19,9 @@ class FlexBox extends PureComponent {
       return 'horizontal';
     }
 
-    return inCollection(['left', 'right'], flexAuto)
+    return checkInCollection(['left', 'right'], flexAuto)
       ? 'horizontal'
-      : inCollection(['top', 'bottom'], flexAuto)
+      : checkInCollection(['top', 'bottom'], flexAuto)
       ? 'vertical'
       : 'horizontal';
   };
@@ -142,4 +142,4 @@ FlexBox.defaultProps = {
   style: null,
 };
 
-export default FlexBox;
+export { FlexBox };

@@ -1,6 +1,4 @@
 import { pathToRegexp } from 'path-to-regexp';
-import { parse } from 'qs';
-import React from 'react';
 
 import { isArray } from 'easy-soft-utility';
 
@@ -8,8 +6,6 @@ import { appInitDefault } from './constants';
 
 let appConfigureMerge = {};
 let appConfigureMergeComplete = false;
-
-export const getPageQuery = () => parse(window.location.href.split('?')[1]);
 
 /**
  * props.route.routes
@@ -46,17 +42,7 @@ export const getRouteAuthority = (path, routeData) => {
   });
   return authorities;
 };
-
-export const isComponentClass = (component) => {
-  if (!component) return false;
-
-  const proto = Object.getPrototypeOf(component);
-
-  if (proto === React.Component || proto === Function.prototype) return true;
-
-  return isComponentClass(proto);
-};
-
+0;
 export function getAppInitConfigData() {
   if (appConfigureMergeComplete) {
     return appConfigureMerge;

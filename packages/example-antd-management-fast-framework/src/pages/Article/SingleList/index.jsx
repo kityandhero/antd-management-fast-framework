@@ -1,28 +1,29 @@
 import { List } from 'antd';
 import { connect } from 'umi';
 
-import { handleItem } from 'antd-management-fast-common/es/utils/actionAssist';
+import {
+  convertCollection,
+  getValueByKey,
+  handleItem,
+  showInfoMessage,
+  whetherNumber,
+} from 'easy-soft-utility';
+
 import {
   cardConfig,
   columnFacadeMode,
   columnPlaceholder,
-  convertCollection,
   extraBuildType,
   listViewConfig,
   searchCardConfig,
   unlimitedWithStringFlag,
-  whetherNumber,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
-  getValueByKey,
-  showInfoMessage,
-} from 'antd-management-fast-common/es/utils/tools';
+} from 'antd-management-fast-common';
 import {
   buildCustomGrid,
   buildDropdownButton,
   buildRadioGroup,
-} from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+  iconBuilder,
+} from 'antd-management-fast-component';
 import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePage';
 
 import { accessWayCollection } from '@/customConfig/config';

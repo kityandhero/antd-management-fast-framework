@@ -1,6 +1,6 @@
-import { requestAnimFrame } from 'antd-management-fast-common/es/utils/tools';
+import { requestAnimFrame } from 'antd-management-fast-common';
 
-import Core from '../Core';
+import { Core } from '../Core';
 
 class Spirit extends Core {
   circles = [];
@@ -72,4 +72,4 @@ class Spirit extends Core {
 
 Spirit.defaultProps = {};
 
-export default Spirit;
+export { Spirit };

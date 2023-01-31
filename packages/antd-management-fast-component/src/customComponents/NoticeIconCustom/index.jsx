@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 import { BellOutlined } from '@ant-design/icons';
 
-import List from './NoticeList';
+import { NoticeList } from './NoticeList';
 
 import styles from './index.less';
 
@@ -34,7 +34,7 @@ class NoticeIcon extends PureComponent {
           : child.props.title;
       return (
         <TabPane tab={title} key={child.props.name}>
-          <List
+          <NoticeList
             {...child.props}
             data={child.props.list}
             onClick={(item) => this.onItemClick(item, child.props)}

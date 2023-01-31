@@ -256,4 +256,4 @@ class WaterWave extends Component {
   }
 }
 
-export default WaterWave;
+export { WaterWave };

@@ -3,15 +3,13 @@ import { connect } from 'umi';
 import {
   convertCollection,
   extraBuildType,
-  tabBarCollection,
-} from 'antd-management-fast-common/es/utils/constants';
-import {
   getDerivedStateFromPropsForUrlParams,
   getValueByKey,
   notifySuccess,
   showInfoMessage,
-} from 'antd-management-fast-common/es/utils/tools';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+  tabBarCollection,
+} from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '@/customConfig/config';
 import DataTabContainerSupplement from '@/customSpecialComponents/DataTabContainerSupplement';

@@ -2,10 +2,9 @@ import { List } from 'antd';
 import React from 'react';
 import { ClockCircleOutlined } from '@ant-design/icons';
 
-import { datetimeFormat } from 'antd-management-fast-common/es/utils/constants';
-import { formatDatetime } from 'antd-management-fast-common/es/utils/tools';
+import { datetimeFormat, formatDatetime } from 'easy-soft-utility';
 
-import BaseComponent from '../BaseComponent';
+import { BaseComponent } from '../BaseComponent';
 import { iconBuilder } from '../Icon';
 
 import styles from './index.less';
@@ -234,4 +233,4 @@ TimeLineCustom.defaultProps = {
   },
 };
 
-export default TimeLineCustom;
+export { TimeLineCustom };

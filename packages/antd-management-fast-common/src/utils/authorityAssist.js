@@ -5,14 +5,13 @@ import {
   isString,
   logObject,
   saveJsonToLocalStorage,
-  showErrorMessage,
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
 
 import {
   getAccessWayCollectionCache,
   storageKeyCollection,
-} from './globalStorageAssist';
+} from './accessWayAssist';
 
 const authorityCollectionCache = 'authorityCollectionCache';
 const superPermissionCacheKey = 'hasSuperPermission';
@@ -166,32 +165,6 @@ export function checkIsSuper() {
   return false;
 }
 
-function checkHasAuthorities(authCollection) {
-  let result = false;
-
-  if (isArray(authCollection)) {
-    result = authCollection.some((auth) => {
-      return checkHasAuthorityCore(auth);
-    });
-
-    return result;
-  }
-
-  if (isString(authCollection)) {
-    result = checkHasAuthorityCore(authCollection);
-
-    return result;
-  }
-
-  const text = '无效的待验证权限';
-
-  showSimpleErrorMessage(text);
-
-  logError({ auth });
-
-  return result;
-}
-
 function checkHasAuthorityCore(auth) {
   if (checkIsSuper()) {
     return true;
@@ -243,6 +216,32 @@ function checkHasAuthorityCore(auth) {
   });
 
   return result !== '0';
+}
+
+function checkHasAuthorities(authCollection) {
+  let result = false;
+
+  if (isArray(authCollection)) {
+    result = authCollection.some((auth) => {
+      return checkHasAuthorityCore(auth);
+    });
+
+    return result;
+  }
+
+  if (isString(authCollection)) {
+    result = checkHasAuthorityCore(authCollection);
+
+    return result;
+  }
+
+  const text = '无效的待验证权限';
+
+  showSimpleErrorMessage(text);
+
+  logError({ auth });
+
+  return result;
 }
 
 export function checkHasAuthority(auth) {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import VerticalBox from '../VerticalBox';
+import { VerticalBox } from '../VerticalBox';
 
 class CenterBox extends PureComponent {
   render() {
@@ -21,4 +21,4 @@ class CenterBox extends PureComponent {
   }
 }
 
-export default CenterBox;
+export { CenterBox };

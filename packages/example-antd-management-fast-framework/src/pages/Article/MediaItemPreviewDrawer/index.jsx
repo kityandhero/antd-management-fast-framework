@@ -1,11 +1,7 @@
 import React from 'react';
 
-import {
-  isArray,
-  showErrorMessage,
-} from 'antd-management-fast-common/es/utils/tools';
-import { buildPlayer } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
+import { isArray, showErrorMessage } from 'antd-management-fast-common';
+import { buildPlayer, iconBuilder } from 'antd-management-fast-component';
 import MobilePreviewDrawer from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewDrawer';
 
 class MediaItemPreviewDrawer extends MobilePreviewDrawer {

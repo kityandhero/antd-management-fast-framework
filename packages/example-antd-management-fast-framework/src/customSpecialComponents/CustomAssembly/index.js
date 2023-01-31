@@ -1,7 +1,10 @@
-import { checkStringIsNullOrWhiteSpace } from 'antd-management-fast-common/es/utils/tools';
-import { buildMenuHeaderRender } from 'antd-management-fast-component/es/customComponents/FunctionComponent';
-import { iconBuilder } from 'antd-management-fast-component/es/customComponents/Icon';
-import IconInfo from 'antd-management-fast-component/es/customComponents/IconInfo';
+import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
+
+import {
+  buildMenuHeaderRender,
+  iconBuilder,
+  IconInfo,
+} from 'antd-management-fast-component';
 
 import { defaultSettings } from '@/defaultSettings';
 

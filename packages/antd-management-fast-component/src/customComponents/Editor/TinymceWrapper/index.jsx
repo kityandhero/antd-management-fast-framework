@@ -1,18 +1,19 @@
 import React, { PureComponent } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-import { runtimeSettings } from 'antd-management-fast-common/es/utils/dynamicSetting';
 import {
-  getToken,
-  getTokenKeyName,
-} from 'antd-management-fast-common/es/utils/globalStorageAssist';
-import { pretreatmentRemoteSingleData } from 'antd-management-fast-common/es/utils/requestAssistor';
-import {
-  corsTarget,
   isFunction,
   logObject,
-  notifyError,
-} from 'antd-management-fast-common/es/utils/tools';
+  showSimpleErrorNotification,
+} from 'easy-soft-utility';
+
+import {
+  corsTarget,
+  getToken,
+  getTokenKeyName,
+  pretreatmentRemoteSingleData,
+  runtimeSettings,
+} from 'antd-management-fast-common';
 
 class TinymceWrapper extends PureComponent {
   editor = React.createRef();
@@ -145,7 +146,7 @@ class TinymceWrapper extends PureComponent {
         } catch (e) {
           reject(`图片上传失败, 返回数据非Json格式, 请检查`);
 
-          notifyError(xhr.responseText);
+          showSimpleErrorNotification(xhr.responseText);
 
           return;
         }
@@ -218,4 +219,4 @@ TinymceWrapper.defaultProps = {
   imagesUploadUrl: runtimeSettings.getTinymceImagesUploadUrl(),
 };
 
-export default TinymceWrapper;
+export { TinymceWrapper };

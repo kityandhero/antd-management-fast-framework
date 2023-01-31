@@ -1,4 +1,11 @@
-import { decodeBase64, encodeBase64 } from './core';
+import {
+  decodeBase64,
+  encodeBase64,
+  setSessionStorageFlusher,
+  setSessionStorageGetter,
+  setSessionStorageRemover,
+  setSessionStorageSetter,
+} from 'easy-soft-utility';
 
 /**
  * 获取SessionStorage数据
@@ -6,7 +13,7 @@ import { decodeBase64, encodeBase64 } from './core';
  * @param {*} key
  * @param {*} value
  */
-export function getStringFromSessionStorage(key) {
+function getFromSessionStorage(key) {
   const storage = window.sessionStorage;
   const value = storage.getItem(key);
 
@@ -25,28 +32,12 @@ export function getStringFromSessionStorage(key) {
 }
 
 /**
- * 获取SessionStorage数据
+ * 存储本地数据
  * @export
  * @param {*} key
  * @param {*} value
  */
-export function getJsonFromSessionStorage(key) {
-  const jsonString = getStringFromSessionStorage(key);
-
-  if (jsonString) {
-    return JSON.parse(jsonString || '{}');
-  }
-
-  return null;
-}
-
-/**
- * 存储SessionStorage数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function saveStringToSessionStorage(key, value) {
+function saveToSessionStorage(key, value) {
   const storage = window.sessionStorage;
 
   if (process.env.NODE_ENV === 'development') {
@@ -57,22 +48,13 @@ export function saveStringToSessionStorage(key, value) {
 }
 
 /**
- * 存储SessionStorage数据
- * @export
- * @param {*} key
- * @param {*} value
- */
-export function saveJsonToSessionStorage(key, json) {
-  saveStringToSessionStorage(key, JSON.stringify(json || {}));
-}
-
-/**
  * 移除SessionStorage数据
  * @export
  * @param {*} key
  */
-export function removeSessionStorage(key) {
+function removeSessionStorage(key) {
   const storage = window.sessionStorage;
+
   storage.removeItem(key);
 }
 
@@ -81,7 +63,18 @@ export function removeSessionStorage(key) {
  * @export
  * @param {*} key
  */
-export function clearSessionStorage() {
+function flushSessionStorage() {
   const storage = window.sessionStorage;
+
   storage.clear();
+}
+
+/**
+ * 设置 Session Storage 处理器
+ */
+export function setSessionStorageHandler() {
+  setSessionStorageGetter(getFromSessionStorage);
+  setSessionStorageSetter(saveToSessionStorage);
+  setSessionStorageRemover(removeSessionStorage);
+  setSessionStorageFlusher(flushSessionStorage);
 }
