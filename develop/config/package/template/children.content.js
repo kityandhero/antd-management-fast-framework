@@ -23,7 +23,7 @@ const lintScript = {
   'lint:script:change:fix':
     'npx eslint --fix --cache --ext .js,.jsx,.ts,.tsx ./src && npm run lint:style:fix',
   'postlint:script:change:fix': 'npm run prettier:format:change',
-  'lint:staged': 'npx lint-staged -p 20',
+  'lint:staged': 'npx lint-staged',
   'lint:style:all': 'npx stylelint "./src/**/*.less"',
   'lint:style:all:fix': 'npx stylelint --fix "./src/**/*.less"',
   'postlint:style:all:fix': 'npm run prettier:format:all',
