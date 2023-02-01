@@ -37,6 +37,7 @@ importers:
       eslint-plugin-react-hooks: ^4.6.0
       eslint-plugin-simple-import-sort: ^10.0.0
       eslint-plugin-unicorn: ^45.0.2
+      fs-extra: ^11.1.0
       husky: ^8.0.3
       lerna: ^6.4.1
       lint-staged: ^13.1.0
@@ -55,6 +56,7 @@ importers:
       rollup-plugin-serve: ^2.0.2
       rollup-plugin-terser: ^7.0.2
       rollup-plugin-typescript2: ^0.34.1
+      shelljs: ^0.8.5
       stylelint: ^14.16.1
       stylelint-config-css-modules: ^4.1.0
       stylelint-config-prettier: ^9.0.4
@@ -97,6 +99,7 @@ importers:
       eslint-plugin-react-hooks: 4.6.0_eslint@8.33.0
       eslint-plugin-simple-import-sort: 10.0.0_eslint@8.33.0
       eslint-plugin-unicorn: 45.0.2_eslint@8.33.0
+      fs-extra: 11.1.0
       husky: 8.0.3
       lerna: 6.4.1
       lint-staged: 13.1.0
@@ -113,6 +116,7 @@ importers:
       rollup-plugin-serve: 2.0.2
       rollup-plugin-terser: 7.0.2_rollup@3.12.0
       rollup-plugin-typescript2: 0.34.1_rollup@3.12.0
+      shelljs: 0.8.5
       stylelint: 14.16.1
       stylelint-config-css-modules: 4.1.0_stylelint@14.16.1
       stylelint-config-prettier: 9.0.4_stylelint@14.16.1
@@ -13864,7 +13868,6 @@ packages:
   /interpret/1.4.0:
     resolution: {integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==}
     engines: {node: '>= 0.10'}
-    dev: false
 
   /intl-format-cache/4.3.1:
     resolution: {integrity: sha512-OEUYNA7D06agqPOYhbTkl0T8HA3QKSuwWh1HiClEnpd9vw7N+3XsQt5iZ0GUEchp5CW1fQk/tary+NsbF3yQ1Q==}
@@ -20225,7 +20228,6 @@ packages:
     engines: {node: '>= 0.10'}
     dependencies:
       resolve: 1.22.1
-    dev: false
 
   /redent/3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
@@ -20970,7 +20972,6 @@ packages:
       glob: 7.2.3
       interpret: 1.4.0
       rechoir: 0.6.2
-    dev: false
 
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}

@@ -9,52 +9,6 @@ const gitUrl = `https://github.com/${source}`;
 
 const downloadUrl = `direct:https://codeload.github.com/${source}/zip/main`;
 
-exports.run = function () {
-  term('Please enter project name: ');
-
-  term.inputField({}, function (error, input) {
-    if (error) {
-      console.log(error);
-
-      process.exit();
-    } else {
-      let folder = input;
-
-      if (isEmpty(folder)) {
-        console.log('project name not allow empty');
-
-        process.exit();
-      } else {
-        const dir = resolve(`./${folder}`);
-
-        existDirectory(dir, (error, result) => {
-          if (result) {
-            term.red('\rproject dir already exist, please choose another');
-
-            process.exit();
-          } else {
-            console.log(`\rtemplate url:${gitUrl}`);
-            console.log(`target folder:${dir}`);
-            console.log('will start download, please wait a moment...');
-
-            download(downloadUrl, dir, { clone: false }, (err) => {
-              console.log(err ? err : 'download success');
-
-              if (!err) {
-                term.green(
-                  'we build a simple project repo is here: https://github.com/kityandhero/antd-management-fast-framework.git',
-                );
-              }
-
-              process.exit();
-            });
-          }
-        });
-      }
-    }
-  });
-};
-
 function isEmpty(value) {
   const v = value
     .trim()
@@ -103,3 +57,49 @@ function existDirectory(directory, callback) {
     });
   }
 }
+
+exports.run = function () {
+  term('Please enter project name: ');
+
+  term.inputField({}, function (error, input) {
+    if (error) {
+      console.log(error);
+
+      process.exit();
+    } else {
+      let folder = input;
+
+      if (isEmpty(folder)) {
+        console.log('project name not allow empty');
+
+        process.exit();
+      } else {
+        const dir = resolve(`./${folder}`);
+
+        existDirectory(dir, (error, result) => {
+          if (result) {
+            term.red('\rproject dir already exist, please choose another');
+
+            process.exit();
+          } else {
+            console.log(`\rtemplate url:${gitUrl}`);
+            console.log(`target folder:${dir}`);
+            console.log('will start download, please wait a moment...');
+
+            download(downloadUrl, dir, { clone: false }, (err) => {
+              console.log(err ? err : 'download success');
+
+              if (!err) {
+                term.green(
+                  'we build a simple project repo is here: https://github.com/kityandhero/antd-management-fast-framework.git',
+                );
+              }
+
+              process.exit();
+            });
+          }
+        });
+      }
+    }
+  });
+};

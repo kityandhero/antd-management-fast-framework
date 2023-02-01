@@ -1,2 +1,9 @@
-export * from './FormCustomItem';
-export * from './FormCustomItemChildren';
+import { FormCustomItem } from './FormCustomItem';
+import { FormCustomItemChildren } from './FormCustomItemChildren';
+
+const FormCustom = {
+  FormCustomItem,
+  FormCustomItemChildren,
+};
+
+export { FormCustom };

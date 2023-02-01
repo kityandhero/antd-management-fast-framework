@@ -3,7 +3,7 @@ import React from 'react';
 
 import { FormCustomItemChildren } from '../FormCustomItemChildren';
 
-function FormCustomItem(props) {
+export function FormCustomItem(props) {
   const { render, children, ...rest } = props;
 
   return (
@@ -18,5 +18,3 @@ function FormCustomItem(props) {
     </Form.Item>
   );
 }
-
-export { FormCustomItem };

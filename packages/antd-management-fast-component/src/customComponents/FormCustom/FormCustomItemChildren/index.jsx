@@ -1,7 +1,7 @@
 import composeProps from 'rc-util/es/composeProps';
 import React from 'react';
 
-function FormCustomItemChildren(props) {
+export function FormCustomItemChildren(props) {
   const { render, children, ...rest } = props;
 
   // composeProps 合并执行 Form.Item 传的 onChange 以及组件本身的方法
@@ -16,5 +16,3 @@ function FormCustomItemChildren(props) {
 
   return _children;
 }
-
-export { FormCustomItemChildren };

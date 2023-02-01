@@ -22,6 +22,7 @@ module.exports = {
     'no-spaced-func': 2,
     'no-this-before-super': 0,
     'no-var': 2,
+    'no-undef': 'error',
     'compat/compat': 0,
     '@typescript-eslint/no-this-alias': ['off'],
     '@typescript-eslint/no-unused-vars': 0,
