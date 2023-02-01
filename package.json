@@ -59,6 +59,8 @@
     "prepublish-npm-all": "npm run change-nrm-npm",
     "publish-npm-all": "nrm ls && npm run publish:npm-all",
     "postpublish-npm-all": "npm run change-nrm-local && nrm ls",
+    "prepublish:build": "pnpm install && npm run cz && npm run build:all",
+    "publish:build": "npm run publish:lerna",
     "prepublish:lerna": "npm run change-nrm-npm",
     "publish:lerna": "lerna updated && npm run lerna:publish",
     "postpublish:lerna": "npm run change-nrm-local && npm run publish-npm-all",

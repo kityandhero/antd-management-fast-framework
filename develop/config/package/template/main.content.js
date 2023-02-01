@@ -32,6 +32,8 @@ const lintScript = {
   'sleep:change-nrm': 'node ./develop/assists/sleep.js',
   'lint:staged': 'npx lint-staged',
   'postconfig:env': 'npm run prettier:package.json:all',
+  'prepublish:build': 'pnpm install && npm run cz && npm run build:all',
+  'publish:build': 'npm run publish:lerna',
 };
 
 const prettierScript = {

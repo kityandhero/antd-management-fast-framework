@@ -1,4 +1,8 @@
-import { isString } from 'easy-soft-utility';
+import nprogress from 'nprogress';
+
+import { isString, setNavigator, setRedirector } from 'easy-soft-utility';
+
+import { runtimeSettings } from './dynamicSetting';
 
 function navigateTo(o) {
   const location = isString(o)

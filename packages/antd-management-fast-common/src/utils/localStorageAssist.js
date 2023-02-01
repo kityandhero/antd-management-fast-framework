@@ -1,4 +1,11 @@
-import { decodeBase64, encodeBase64 } from 'easy-soft-utility';
+import {
+  decodeBase64,
+  encodeBase64,
+  setLocalStorageFlusher,
+  setLocalStorageGetter,
+  setLocalStorageRemover,
+  setLocalStorageSetter,
+} from 'easy-soft-utility';
 
 /**
  * 获取LocalStorage数据

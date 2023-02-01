@@ -1,6 +1,7 @@
 import { request as requestInner } from '@umijs/max';
 
 import {
+  checkStringIsNullOrWhiteSpace,
   isString,
   logObject,
   requestMethod,

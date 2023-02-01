@@ -1,15 +1,23 @@
 import {
   buildQueryStringify,
+  checkStringIsNullOrWhiteSpace,
+  isFunction,
+  isObject,
   isString,
   isUndefined,
   logDebug,
   logObject,
   logText,
   logTrace,
+  logWarn,
   redirectTo,
   requestMethod,
+  setCache,
   showInfoMessage,
   showSimpleErrorMessage,
+  toLower,
+  toNumber,
+  toUpper,
   trim,
 } from 'easy-soft-utility';
 
@@ -58,15 +66,13 @@ function dataExceptionNotice(d) {
     const currentTime = new Date().getTime();
 
     if (codeAdjust !== authenticationFailCode) {
-      recordWarn(
-        `api call failed, code: ${codeAdjust}, message: ${messageText}`,
-      );
+      logWarn(`api call failed, code: ${codeAdjust}, message: ${messageText}`);
 
       if (codeAdjust === toNumber(lastCustomMessage.code)) {
         if (currentTime - lastCustomMessage.time > 800) {
           showSimpleErrorMessage(messageText);
 
-          taroGlobalData.lastCustomMessage = {
+          window.lastCustomMessage = {
             code: codeAdjust,
             message: messageText,
             time: currentTime,
@@ -75,7 +81,7 @@ function dataExceptionNotice(d) {
       } else {
         showSimpleErrorMessage(messageText);
 
-        taroGlobalData.lastCustomMessage = {
+        window.lastCustomMessage = {
           code: codeAdjust,
           message: messageText,
           time: currentTime,

@@ -7,6 +7,8 @@ import { useIntl } from '@umijs/max';
 
 import { isBrowser, parseQueryString } from 'easy-soft-utility';
 
+import { listViewConfig } from './constants';
+
 export function defaultBaseState() {
   return {
     dataLoading: false,

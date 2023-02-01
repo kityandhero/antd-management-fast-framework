@@ -4,6 +4,14 @@ import {
   checkStringIsNullOrWhiteSpace,
   isNumber,
   logWarn,
+  notificationTypeCollection,
+  setErrorNotificationDisplayMonitor,
+  setInfoNotificationDisplayMonitor,
+  setLoadingNotificationDisplayMonitor,
+  setOpenNotificationDisplayMonitor,
+  setSuccessNotificationDisplayMonitor,
+  setWarningNotificationDisplayMonitor,
+  setWarnNotificationDisplayMonitor,
 } from 'easy-soft-utility';
 
 function adjustPlacement(o) {

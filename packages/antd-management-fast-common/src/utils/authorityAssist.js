@@ -1,10 +1,17 @@
 import {
+  checkStringIsNullOrWhiteSpace,
+  flushAllCache,
+  getCache,
   getStringFromLocalStorage,
   getValueByKey,
+  hasCache,
+  isArray,
   isObject,
   isString,
+  logError,
   logObject,
   saveJsonToLocalStorage,
+  setCache,
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
 
@@ -239,7 +246,7 @@ function checkHasAuthorities(authCollection) {
 
   showSimpleErrorMessage(text);
 
-  logError({ auth });
+  logError(`auth fail on "${authCollection.join()}"`);
 
   return result;
 }

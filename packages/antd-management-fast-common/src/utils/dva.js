@@ -1,6 +1,6 @@
 import { getDvaApp } from '@umijs/max';
 
-import { isString, isUndefined, logDebug } from 'easy-soft-utility';
+import { isString, isUndefined, logDebug, setCache } from 'easy-soft-utility';
 
 import { runtimeSettings } from './dynamicSetting';
 

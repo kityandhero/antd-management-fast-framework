@@ -1,7 +1,22 @@
 import nprogress from 'nprogress';
 import { Component } from 'react';
 
-import { getGuid, navigateTo, showSimpleErrorMessage } from 'easy-soft-utility';
+import {
+  getGuid,
+  isEqual,
+  isFunction,
+  isNumber,
+  isObject,
+  logConfig,
+  logDebug,
+  logError,
+  logExecute,
+  logObject,
+  logText,
+  navigateTo,
+  showSimpleErrorMessage,
+  toNumber,
+} from 'easy-soft-utility';
 
 import { runtimeSettings } from '../../utils/dynamicSetting';
 import { defaultBaseState } from '../../utils/meta';
@@ -295,7 +310,7 @@ class AbstractComponent extends Component {
   getMetaData = () => {
     const text = 'please override getMetaData, and return a object';
 
-    recordLog(text);
+    logError(text);
 
     throw new Error(text);
   };

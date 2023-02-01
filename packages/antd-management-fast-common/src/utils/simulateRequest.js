@@ -1,8 +1,10 @@
 import {
   checkStringIsNullOrWhiteSpace,
+  isFunction,
   logError,
   logTrace,
   redirectTo,
+  showRuntimeError,
   showSimpleWarningMessage,
   showSimpleWarnMessage,
 } from 'easy-soft-utility';

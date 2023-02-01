@@ -1,4 +1,4 @@
-import { isArray } from 'easy-soft-utility';
+import { checkStringIsNullOrWhiteSpace, isArray } from 'easy-soft-utility';
 
 import {
   apiSuccessCode as apiSuccessCodeDefault,

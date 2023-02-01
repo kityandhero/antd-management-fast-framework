@@ -1,6 +1,6 @@
 import { pathToRegexp } from 'path-to-regexp';
 
-import { isArray } from 'easy-soft-utility';
+import { isArray, isBrowser } from 'easy-soft-utility';
 
 import { appInitDefault } from './constants';
 

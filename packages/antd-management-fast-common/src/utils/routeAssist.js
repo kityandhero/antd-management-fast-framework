@@ -1,3 +1,5 @@
+import { getCache, setCache } from 'easy-soft-utility';
+
 const cacheKeyCollection = {
   currentLocation: 'currentLocation',
   currentParams: 'currentParams',

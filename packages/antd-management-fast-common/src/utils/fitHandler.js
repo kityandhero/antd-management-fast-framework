@@ -1,3 +1,5 @@
+import { setLoggerDisplaySwitch } from 'easy-soft-utility';
+
 import { runtimeSettings } from './dynamicSetting';
 import { setLocalStorageHandler } from './localStorageAssist';
 import { setMessageDisplayMonitor } from './messageAssist';
