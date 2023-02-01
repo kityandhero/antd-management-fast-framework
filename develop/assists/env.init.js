@@ -219,8 +219,6 @@ function adjustMainPackageJson() {
         .writeJson(mainProjectPath, packageJson)
         .then(() => {
           console.log('adjust main package.json success');
-
-          shell.exec('npm run prettier:package.json');
         })
         .catch((err) => {
           console.error(err);
@@ -260,8 +258,6 @@ function adjustChildrenPackageJson() {
               .writeJson(childPackageJsonPath, packageJson)
               .then(() => {
                 console.log('adjust child package.json success');
-
-                shell.exec('npm run prettier:package.json:all');
               })
               .catch((err) => {
                 console.error(err);

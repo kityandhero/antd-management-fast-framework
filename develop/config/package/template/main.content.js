@@ -31,6 +31,7 @@ const lintScript = {
   reinstall: 'npm run lerna:bootstrap',
   'sleep:change-nrm': 'node ./develop/assists/sleep.js',
   'lint:staged': 'npx lint-staged',
+  'postconfig:env': 'npm run prettier:package.json:all',
 };
 
 const prettierScript = {

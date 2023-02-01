@@ -23,6 +23,7 @@
     "cli": "cd packages/antd-management-fast-cli && node ./bin/cli",
     "commitlint": "npx commitlint --edit",
     "config:env": "node ./develop/assists/env.init.js",
+    "postconfig:env": "npm run prettier:package.json:all",
     "precz": "npm run update:cz:flag && git stage -A",
     "cz": "cz",
     "postcz": "git push",
