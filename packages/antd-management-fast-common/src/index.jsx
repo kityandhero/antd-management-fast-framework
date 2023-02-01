@@ -8,6 +8,7 @@ export * from './utils/authorityAssist';
 export * from './utils/common';
 export * from './utils/constants';
 export * from './utils/core';
+export * from './utils/dynamicSetting';
 export * from './utils/fitHandler';
 export * from './utils/localStorageAssist';
 export * from './utils/messageAssist';

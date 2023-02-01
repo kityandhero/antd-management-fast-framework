@@ -210,9 +210,9 @@ function adjustMainPackageJson() {
     .readJson(mainProjectPath)
     .then((packageJson) => {
       packageJson.scripts = {
+        ...(packageJson.scripts || {}),
         ...mainPackageFile.lintScript,
         ...mainPackageFile.prettierScript,
-        ...(packageJson.scripts || {}),
       };
 
       fsExtra
@@ -249,9 +249,9 @@ function adjustChildrenPackageJson() {
           .readJson(childPackageJsonPath)
           .then((packageJson) => {
             packageJson.scripts = {
+              ...(packageJson.scripts || {}),
               ...childrenPackageFile.lintScript,
               ...childrenPackageFile.prettierScript,
-              ...(packageJson.scripts || {}),
             };
 
             fsExtra

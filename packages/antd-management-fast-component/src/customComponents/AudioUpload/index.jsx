@@ -11,7 +11,12 @@ import {
 import React, { PureComponent } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 
-import { isFunction, showErrorMessage } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isFunction,
+  showErrorMessage,
+  showSimpleRuntimeError,
+} from 'easy-soft-utility';
 
 import { copyToClipboard, runtimeSettings } from 'antd-management-fast-common';
 
@@ -110,9 +115,7 @@ class AudioUpload extends PureComponent {
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
-          showRuntimeError({
-            message: text,
-          });
+          showSimpleRuntimeError(text);
         }
       },
     );
@@ -138,9 +141,7 @@ class AudioUpload extends PureComponent {
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
-          showRuntimeError({
-            message: text,
-          });
+          showSimpleRuntimeError(text);
         }
       },
     );
@@ -198,18 +199,14 @@ class AudioUpload extends PureComponent {
             } else {
               const text = 'afterChangeSuccess 配置无效';
 
-              showRuntimeError({
-                message: text,
-              });
+              showSimpleRuntimeError(text);
             }
           },
         );
       } else {
         const text = 'pretreatmentRemoteResponse 配置无效';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
       }
     }
   };
