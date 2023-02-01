@@ -30,7 +30,7 @@ const lintScript = {
   'lint:style:change': 'npx stylelint --cache "./src/**/*.less"',
   'lint:style:change:fix': 'npx stylelint --cache --fix "./src/**/*.less"',
   'postlint:style:change:fix': 'npm run prettier:format:change',
-  precommit: 'npx lint-staged',
+  precommit: 'npm run lint:staged',
   'tsc:build':
     'echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete',
 };

@@ -284,3 +284,5 @@ console.log(
 );
 
 adjustMainPackageJson();
+
+adjustChildrenPackageJson();

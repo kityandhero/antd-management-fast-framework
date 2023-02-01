@@ -53,6 +53,8 @@
     "prettier:format:all": "npx prettier --write .",
     "prettier:format:change": "npx prettier --cache --write .",
     "prettier:package.json": "npx prettier --write ./package.json",
+    "prettier:package.json:all": "npx prettier --write ./**/package.json",
+    "prettier:package.json:current": "npx prettier --write ./package.json",
     "prepublish-npm-all": "npm run change-nrm-npm",
     "publish-npm-all": "nrm ls && npm run publish:npm-all",
     "postpublish-npm-all": "npm run change-nrm-local && nrm ls",
