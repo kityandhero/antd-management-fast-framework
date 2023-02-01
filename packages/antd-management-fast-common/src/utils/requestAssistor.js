@@ -13,15 +13,15 @@ import {
   trim,
 } from 'easy-soft-utility';
 
+import { corsTarget } from './common';
 import { runtimeSettings } from './dynamicSetting';
-import { getToken } from './globalStorageAssist';
 import { request as remoteRequest } from './request';
 import {
   buildApiRequestFailSimulationData,
   buildApiRequestSuccessSimulationData,
   simulateApiRequest,
 } from './simulateRequest';
-import { corsTarget } from './tools';
+import { getToken } from './tokenAssist';
 
 /**
  * 错误数据模型

@@ -1,9 +1,6 @@
 {
   "*.{md,json}": ["npx prettier --cache --write"],
-  "*.{js,jsx}": [
-    "max lint --fix --eslint-only",
-    "npx prettier --cache --write"
-  ],
+  "*.{js,jsx}": ["max lint --fix --eslint-only", "npx prettier --cache --write"],
   "*.{css,less}": [
     "max lint --fix --stylelint-only",
     "npx prettier --cache --write"

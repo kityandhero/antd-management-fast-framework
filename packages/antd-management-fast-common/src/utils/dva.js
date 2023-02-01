@@ -1,4 +1,4 @@
-import { getDvaApp } from 'umi';
+import { getDvaApp } from '@umijs/max';
 
 import { isString, isUndefined, logDebug } from 'easy-soft-utility';
 

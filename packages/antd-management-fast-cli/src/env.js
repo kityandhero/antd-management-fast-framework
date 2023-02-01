@@ -14,55 +14,59 @@ const packageUrlGithub =
 const packageUrlGitee =
   'https://gitee.com/lzt/antd-management-fast-framework/raw/master/packages/example-antd-management-fast-framework/package.json';
 
-exports.run = async function (s, o) {
-  const {
-    _optionValues: { agent, file },
-  } = o;
+function showLine() {
+  term.gray('------------------------------------\r\n');
+}
 
-  let packageTempPath = '';
+function showMessage(message) {
+  term.green(`${message}\r\n`);
+}
 
-  showMessage(`prepare to update package.json: `);
+function showWarn(message) {
+  term.red(`${message}\r\n`);
+}
 
-  showLine();
+function handlePackage(packageTempPath) {
+  showMessage(`referential package.json :${packageTempPath}`);
 
-  try {
-    packageTempPath = await handleTempPackagePath({
-      agent,
-      file,
-      packageUrl: packageUrlGithub,
-      repo: 'github',
-    });
-  } catch (error) {
-    showLine();
+  const packageProjectPath = resolve(`./package.json`);
 
-    showWarn(
-      `use github repo failure! switch to gitee, gitee repo possible update delay.`,
-    );
+  fs.readJson(packageTempPath)
+    .then((packageTemp) => {
+      fs.readJson(packageProjectPath)
+        .then((p) => {
+          const dependencies = packageTemp.dependencies;
+          const devDependencies = packageTemp.devDependencies;
 
-    showLine();
+          p.dependencies = dependencies;
+          p.devDependencies = devDependencies;
 
-    try {
-      packageTempPath = await handleTempPackagePath({
-        agent: '',
-        file,
-        packageUrl: packageUrlGitee,
-        repo: 'gitee',
-      });
-    } catch (error) {
-      showLine();
+          fs.writeJson(packageProjectPath, p)
+            .then(() => {
+              showMessage(`update package.json success!`);
 
-      console.error(error);
+              showLine();
 
-      showLine();
+              process.exit();
+            })
+            .catch((err) => {
+              console.error(err);
 
-      showWarn('download error, please check network');
+              process.exit();
+            });
+        })
+        .catch((err) => {
+          console.error(err);
+
+          process.exit();
+        });
+    })
+    .catch((err) => {
+      console.error(err);
 
       process.exit();
-    }
-  }
-
-  handlePackage(packageTempPath);
-};
+    });
+}
 
 async function handleTempPackagePath({ agent, file, packageUrl, repo }) {
   let packageTempPath = '';
@@ -113,56 +117,52 @@ async function handleTempPackagePath({ agent, file, packageUrl, repo }) {
   return packageTempPath;
 }
 
-function handlePackage(packageTempPath) {
-  showMessage(`referential package.json :${packageTempPath}`);
+exports.run = async function (s, o) {
+  const {
+    _optionValues: { agent, file },
+  } = o;
 
-  const packageProjectPath = resolve(`./package.json`);
+  let packageTempPath = '';
 
-  fs.readJson(packageTempPath)
-    .then((packageTemp) => {
-      fs.readJson(packageProjectPath)
-        .then((p) => {
-          const dependencies = packageTemp.dependencies;
-          const devDependencies = packageTemp.devDependencies;
+  showMessage(`prepare to update package.json: `);
 
-          p.dependencies = dependencies;
-          p.devDependencies = devDependencies;
+  showLine();
 
-          fs.writeJson(packageProjectPath, p)
-            .then(() => {
-              showMessage(`update package.json success!`);
+  try {
+    packageTempPath = await handleTempPackagePath({
+      agent,
+      file,
+      packageUrl: packageUrlGithub,
+      repo: 'github',
+    });
+  } catch (error) {
+    showLine();
 
-              showLine();
+    showWarn(
+      `use github repo failure! switch to gitee, gitee repo possible update delay.`,
+    );
 
-              process.exit();
-            })
-            .catch((err) => {
-              console.error(err);
+    showLine();
 
-              process.exit();
-            });
-        })
-        .catch((err) => {
-          console.error(err);
+    try {
+      packageTempPath = await handleTempPackagePath({
+        agent: '',
+        file,
+        packageUrl: packageUrlGitee,
+        repo: 'gitee',
+      });
+    } catch (error) {
+      showLine();
 
-          process.exit();
-        });
-    })
-    .catch((err) => {
-      console.error(err);
+      console.error(error);
+
+      showLine();
+
+      showWarn('download error, please check network');
 
       process.exit();
-    });
-}
+    }
+  }
 
-function showMessage(message) {
-  term.green(`${message}\r\n`);
-}
-
-function showWarn(message) {
-  term.red(`${message}\r\n`);
-}
-
-function showLine() {
-  term.gray('------------------------------------\r\n');
-}
+  handlePackage(packageTempPath);
+};

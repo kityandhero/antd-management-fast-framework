@@ -26,16 +26,20 @@ module.exports = {
     '@typescript-eslint/no-this-alias': ['off'],
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/no-invalid-this': 0,
+    'import/named': 'error',
+    'import/export': 'error',
     'import/first': 'error',
     'import/newline-after-import': 'error',
     'import/no-duplicates': 'error',
-    'import/no-absolute-path': 1,
-    'import/no-cycle': 0,
-    'import/no-useless-path-segments': 1,
+    'import/no-absolute-path': 'error',
+    'import/no-cycle': 'error',
+    'import/no-deprecated': 'error',
+    'import/no-useless-path-segments': 'error',
+    'import/no-unresolved': 'error',
+    'import/no-unused-modules': 'error',
   },
   sortRules: {
     'import/order': 0,
-    'sort-imports': 0,
     'simple-import-sort/imports': [
       'error',
       {
@@ -54,6 +58,7 @@ module.exports = {
       },
     ],
     'simple-import-sort/exports': 'error',
+    'sort-imports': 0,
   },
   settings: {
     react: {

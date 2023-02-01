@@ -1,5 +1,5 @@
 import nprogress from 'nprogress';
-import { Link } from 'umi';
+import { Link } from '@umijs/max';
 
 import { showSimpleErrorMessage } from 'easy-soft-utility';
 
