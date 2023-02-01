@@ -31,7 +31,7 @@
     "lint:script:change": "npx eslint --cache --ext .js,.jsx,.ts,.tsx ./src",
     "lint:script:change:fix": "npx eslint --fix --cache --ext .js,.jsx,.ts,.tsx ./src && npm run lint:style:fix",
     "postlint:script:change:fix": "npm run prettier:format:change",
-    "lint:staged": "npx lint-staged -p 20",
+    "lint:staged": "npx lint-staged --quiet",
     "lint:style": "npx stylelint \"./src/**/*.less\"",
     "lint:style:all": "npx stylelint \"./src/**/*.less\"",
     "lint:style:all:fix": "npx stylelint --fix \"./src/**/*.less\"",
