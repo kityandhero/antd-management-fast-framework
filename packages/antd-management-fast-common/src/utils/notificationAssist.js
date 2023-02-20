@@ -15,13 +15,11 @@ import {
 } from 'easy-soft-utility';
 
 function adjustPlacement(o) {
-  const oAdjust = { ...(o || {}) };
+  const oAdjust = { ...o };
 
   const { placement = 'bottomRight' } = {
-    ...{
-      placement: 'bottomRight',
-    },
-    ...(oAdjust || {}),
+    placement: 'bottomRight',
+    ...oAdjust,
   };
 
   if (checkStringIsNullOrWhiteSpace(placement)) {
@@ -32,13 +30,11 @@ function adjustPlacement(o) {
 }
 
 function adjustDuration(o) {
-  const oAdjust = { ...(o || {}) };
+  const oAdjust = { ...o };
 
   const { duration = 3000 } = {
-    ...{
-      duration: 3000,
-    },
-    ...(oAdjust || {}),
+    duration: 3000,
+    ...oAdjust,
   };
 
   if (!isNumber(duration) || duration <= 0) {
@@ -126,7 +122,7 @@ export function notify({
         break;
       }
 
-      case notificationTypeCollection.warning:
+      case notificationTypeCollection.warning: {
         notification.warning({
           message: title,
           description,
@@ -136,8 +132,9 @@ export function notify({
         });
 
         break;
+      }
 
-      case notificationTypeCollection.success:
+      case notificationTypeCollection.success: {
         notification.success({
           message: title,
           description,
@@ -147,8 +144,9 @@ export function notify({
         });
 
         break;
+      }
 
-      case notificationTypeCollection.error:
+      case notificationTypeCollection.error: {
         notification.error({
           message: title,
           description,
@@ -158,8 +156,9 @@ export function notify({
         });
 
         break;
+      }
 
-      default:
+      default: {
         notification.open({
           message: title,
           description,
@@ -169,6 +168,7 @@ export function notify({
         });
 
         break;
+      }
     }
   }, 600);
 }

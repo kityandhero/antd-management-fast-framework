@@ -10,12 +10,12 @@ class HelpCard extends PureComponent {
     return (
       <Card
         style={
-          !border
-            ? {
+          border
+            ? {}
+            : {
                 borderTop: '0',
                 borderBottom: '0',
               }
-            : {}
         }
         bodyStyle={
           compact

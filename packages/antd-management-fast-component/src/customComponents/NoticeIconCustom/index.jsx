@@ -12,9 +12,9 @@ const { TabPane } = Tabs;
 class NoticeIcon extends PureComponent {
   static Tab = TabPane;
 
-  onItemClick = (item, tabProps) => {
+  onItemClick = (item, tabProperties) => {
     const { onItemClick } = this.props;
-    onItemClick(item, tabProps);
+    onItemClick(item, tabProperties);
   };
 
   onTabChange = (tabType) => {
@@ -80,9 +80,9 @@ class NoticeIcon extends PureComponent {
     if (!notificationBox) {
       return trigger;
     }
-    const popoverProps = {};
+    const popoverProperties = {};
     if ('popupVisible' in this.props) {
-      popoverProps.visible = popupVisible;
+      popoverProperties.visible = popupVisible;
     }
     return (
       <Popover
@@ -93,7 +93,7 @@ class NoticeIcon extends PureComponent {
         arrowPointAtCenter
         popupAlign={popupAlign}
         onVisibleChange={onPopupVisibleChange}
-        {...popoverProps}
+        {...popoverProperties}
       >
         {trigger}
       </Popover>

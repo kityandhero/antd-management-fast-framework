@@ -15,31 +15,38 @@ import React, { Fragment } from 'react';
 
 import {
   buildFieldDescription,
-  cardConfig,
   checkInCollection,
-  contentConfig,
-  copyToClipboard,
+  checkStringIsNullOrWhiteSpace,
   datetimeFormat,
-  defaultCommonState,
-  defaultEmptyImage,
-  extraBuildType,
   formatDatetime,
-  getDerivedStateFromPropsForUrlParams,
   isArray,
   isBoolean,
   isEqual,
   isFunction,
   isObject,
+  isUndefined,
+  logException,
   logObject,
   logText,
-  pretreatmentRequestParams,
+  pretreatmentRequestParameters,
   refitCommonData,
-  runtimeSettings,
   showErrorMessage,
-  stringIsEmpty,
+  showSimpleRuntimeError,
   toDatetime,
   toNumber,
   toString,
+} from 'easy-soft-utility';
+
+import {
+  cardConfig,
+  contentConfig,
+  copyToClipboard,
+  defaultCommonState,
+  defaultEmptyImage,
+  extraBuildType,
+  getDerivedStateFromPropertiesForUrlParameters,
+  getTinymceApiKey,
+  getTinymceImagesUploadUrl,
 } from 'antd-management-fast-common';
 import {
   AudioUpload,
@@ -83,11 +90,13 @@ import {
   buildTree,
   buildTreeSelect,
   ColorText,
+  Editor,
   FadeBox,
   FileBase64Upload,
   FileUpload,
   FlexBox,
   FlexText,
+  FunctionSupplement,
   HelpBox,
   HelpCard,
   HtmlBox,
@@ -96,8 +105,6 @@ import {
   ImageBox,
   ImageUpload,
   QueueBox,
-  renderFormWhetherSelect,
-  TinymceWrapper,
   VideoUpload,
 } from 'antd-management-fast-component';
 
@@ -107,6 +114,8 @@ import { Core } from '../Core';
 import styles from './index.less';
 
 const { Content, Sider } = Layout;
+const { TinymceWrapper } = Editor;
+const { renderFormWhetherSelect } = FunctionSupplement;
 
 let metaData = {};
 
@@ -117,24 +126,26 @@ class Common extends Core {
 
   lastRequestingData = { type: '', payload: {} };
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     const defaultState = defaultCommonState();
 
     this.state = {
       ...defaultState,
-      ...{
-        backPath: '',
-        showReloadButton: false,
-      },
+
+      backPath: '',
+      showReloadButton: false,
     };
 
     metaData = getMetaData();
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
+    );
   }
 
   doDidMountTask = () => {
@@ -143,8 +154,8 @@ class Common extends Core {
     this.init();
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  checkNeedUpdate = (preProps, preState, snapshot) => false;
+  // eslint-disable-next-line no-unused-vars
+  checkNeedUpdate = (preProperties, preState, snapshot) => false;
 
   getMetaData = () => {
     return metaData;
@@ -163,33 +174,33 @@ class Common extends Core {
     this.initOther();
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   beforeFirstLoadRequest = (submitData) => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   beforeReLoadRequest = (submitData) => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   beforeRequest = (submitData) => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   afterGetFirstRequestResult = (submitData, responseData) => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   afterGetRequestResult = (submitData, responseData) => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   afterGetReLoadRequestResult = (submitData, responseData) => {};
 
   getRequestingData() {
     return this.lastRequestingData;
   }
 
-  setRequestingData(params, callback) {
+  setRequestingData(parameters, callback) {
     const d =
-      params == null
+      parameters == null
         ? { type: '', payload: {} }
-        : { ...{ type: '', payload: {} }, ...params };
+        : { type: '', payload: {}, ...parameters };
 
     this.lastRequestingData = d;
 
@@ -206,7 +217,7 @@ class Common extends Core {
 
   supplementLoadRequestParams = (o) => o || {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   checkLoadRequestParams = (o) => {
     return true;
   };
@@ -222,9 +233,7 @@ class Common extends Core {
       if ((loadApiPath || '') === '') {
         const text = 'loadApiPath需要配置';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
 
         logObject(this);
 
@@ -242,11 +251,9 @@ class Common extends Core {
       }
 
       const willSaveState = {
-        ...{
-          dataLoading: true,
-          loadSuccess: false,
-        },
-        ...(otherState || {}),
+        dataLoading: true,
+        loadSuccess: false,
+        ...otherState,
       };
 
       this.setState(willSaveState, () => {
@@ -257,7 +264,7 @@ class Common extends Core {
           () => {
             let submitData = this.initLoadRequestParams() || {};
 
-            submitData = pretreatmentRequestParams(submitData || {});
+            submitData = pretreatmentRequestParameters(submitData || {});
 
             submitData = this.supplementLoadRequestParams(submitData || {});
 
@@ -384,9 +391,8 @@ class Common extends Core {
 
             willSaveToState = {
               ...willSaveToState,
-              ...{
-                loadSuccess: dataSuccess,
-              },
+
+              loadSuccess: dataSuccess,
             };
 
             if (dataSuccess) {
@@ -397,12 +403,10 @@ class Common extends Core {
               } = metaOriginalData;
 
               willSaveToState = {
-                ...{
-                  metaData: metaData || null,
-                  metaExtra: metaExtra || null,
-                  metaListData: metaListData || [],
-                  metaOriginalData,
-                },
+                metaData: metaData || null,
+                metaExtra: metaExtra || null,
+                metaListData: metaListData || [],
+                metaOriginalData,
                 ...willSaveToState,
               };
 
@@ -413,10 +417,10 @@ class Common extends Core {
                   metaExtra: metaExtra || null,
                   metaOriginalData: metaOriginalData || null,
                 });
-              } catch (e) {
-                logObject(e);
+              } catch (error_) {
+                logObject(error_);
 
-                const text = `${toString(e)},place view in the console`;
+                const text = `${toString(error_)},place view in the console`;
 
                 showErrorMessage({
                   message: text,
@@ -434,9 +438,8 @@ class Common extends Core {
             if (!firstLoadSuccess) {
               willSaveToState = {
                 ...willSaveToState,
-                ...{
-                  firstLoadSuccess: true,
-                },
+
+                firstLoadSuccess: true,
               };
             }
 
@@ -450,14 +453,17 @@ class Common extends Core {
 
             that.afterGetRequestResult(requestData, metaOriginalData);
 
-            if (typeof callback === 'function') {
+            if (isFunction(callback)) {
+              // eslint-disable-next-line promise/no-callback-in-promise
               callback();
             }
 
             that.clearRequestingData();
+
+            return;
           })
-          .catch((res) => {
-            logObject(res);
+          .catch((error) => {
+            logObject(error);
 
             that.setState({
               dataLoading: false,
@@ -488,7 +494,7 @@ class Common extends Core {
   };
 
   pageListData = (otherState, callback = null, delay = 0) => {
-    const s = { ...(otherState || {}), ...{ paging: true } };
+    const s = { ...otherState, paging: true };
 
     this.initLoad({
       otherState: s,
@@ -498,7 +504,7 @@ class Common extends Core {
   };
 
   reloadData = (otherState, callback = null, delay = 0) => {
-    const s = { ...(otherState || {}), ...{ reloading: true } };
+    const s = { ...otherState, reloading: true };
 
     this.initLoad({
       otherState: s,
@@ -508,7 +514,7 @@ class Common extends Core {
   };
 
   searchData = (otherState, callback = null, delay = 0) => {
-    const s = { ...(otherState || {}), ...{ searching: true } };
+    const s = { ...otherState, searching: true };
 
     this.initLoad({
       otherState: s,
@@ -518,7 +524,7 @@ class Common extends Core {
   };
 
   refreshData = (otherState, callback = null, delay = 0) => {
-    const s = { ...(otherState || {}), ...{ refreshing: true } };
+    const s = { ...otherState, refreshing: true };
 
     this.initLoad({
       otherState: s,
@@ -531,23 +537,30 @@ class Common extends Core {
     this.dispatchApi({
       type: 'global/getMetaData',
       payload: { force: true },
-    }).then(() => {
-      if (isFunction(callback)) {
-        callback();
-      }
-    });
+    })
+      .then(() => {
+        if (isFunction(callback)) {
+          // eslint-disable-next-line promise/no-callback-in-promise
+          callback();
+        }
+
+        return;
+      })
+      .catch((error) => {
+        logException(error);
+      });
   };
 
   afterFirstLoadSuccess = () => {};
 
   afterLoadSuccess = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {};
 
@@ -603,8 +616,10 @@ class Common extends Core {
 
   renderFormNowTimeField = (data) => {
     const { label, helper, formItemLayout } = {
-      ...{ helper: '数据的添加时间', label: '添加时间', formItemLayout: null },
-      ...(data || {}),
+      helper: '数据的添加时间',
+      label: '添加时间',
+      formItemLayout: null,
+      ...data,
     };
 
     return buildFormNowTimeField({ label, helper, formItemLayout });
@@ -654,7 +669,7 @@ class Common extends Core {
     name,
     helper = null,
     icon = iconBuilder.form(),
-    inputProps = {},
+    inputProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -663,7 +678,7 @@ class Common extends Core {
       name,
       helper,
       icon,
-      inputProps,
+      inputProps: inputProperties,
       canOperate,
       formItemLayout,
     });
@@ -674,7 +689,7 @@ class Common extends Core {
     name,
     helper = null,
     icon = iconBuilder.form(),
-    inputProps = {},
+    inputProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -683,7 +698,7 @@ class Common extends Core {
       name,
       helper,
       icon,
-      inputProps,
+      inputProps: inputProperties,
       canOperate,
       formItemLayout,
     });
@@ -711,7 +726,7 @@ class Common extends Core {
     fieldData,
     required = false,
     icon = iconBuilder.form(),
-    inputProps = {},
+    inputProperties = {},
     canOperate = true,
     formItemLayout = {},
     reminderPrefix = '输入',
@@ -721,7 +736,7 @@ class Common extends Core {
       fieldData,
       required,
       icon,
-      inputProps,
+      inputProps: inputProperties,
       canOperate,
       formItemLayout,
       reminderPrefix,
@@ -735,7 +750,7 @@ class Common extends Core {
     required = false,
     helper = null,
     icon = iconBuilder.form(),
-    inputProps = {},
+    inputProperties = {},
     canOperate = true,
     formItemLayout = {},
     reminderPrefix = '输入',
@@ -747,7 +762,7 @@ class Common extends Core {
       required,
       helper,
       icon,
-      inputProps,
+      inputProps: inputProperties,
       canOperate,
       formItemLayout,
       reminderPrefix,
@@ -760,7 +775,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    otherProps = {},
+    otherProperties = {},
     canOperate = true,
     formItemLayout = {},
     hidden = false,
@@ -770,7 +785,7 @@ class Common extends Core {
       name,
       required,
       helper,
-      otherProps,
+      otherProps: otherProperties,
       canOperate,
       formItemLayout,
       hidden,
@@ -783,7 +798,7 @@ class Common extends Core {
     required = false,
     helper = null,
     icon = iconBuilder.form(),
-    inputProps = {},
+    inputProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -793,7 +808,7 @@ class Common extends Core {
       required,
       helper,
       icon,
-      inputProps,
+      inputProps: inputProperties,
       canOperate,
       formItemLayout,
     });
@@ -867,7 +882,7 @@ class Common extends Core {
     helper = null,
     formItemLayout = {},
     requiredForShow = false,
-    otherProps = {},
+    otherProperties = {},
   ) => {
     return buildFormOnlyShowSyntaxHighlighter({
       language,
@@ -876,7 +891,7 @@ class Common extends Core {
       helper,
       formItemLayout,
       requiredForShow,
-      otherProps,
+      otherProps: otherProperties,
     });
   };
 
@@ -884,14 +899,14 @@ class Common extends Core {
     label,
     value,
     helper = null,
-    textAreaProps = { disabled: true },
+    textAreaProperties = null,
     formItemLayout = {},
   ) => {
     return buildFormOnlyShowTextarea({
       label,
       value,
       helper,
-      textAreaProps,
+      textAreaProps: textAreaProperties || { disabled: true },
       formItemLayout,
     });
   };
@@ -910,7 +925,7 @@ class Common extends Core {
     value,
     helper = null,
     icon = iconBuilder.form(),
-    inputProps = { disabled: true },
+    inputProperties = null,
     formItemLayout = {},
   ) => {
     return buildFormOnlyShowInput({
@@ -918,7 +933,7 @@ class Common extends Core {
       value,
       helper,
       icon,
-      inputProps,
+      inputProps: inputProperties || { disabled: true },
       formItemLayout,
     });
   };
@@ -929,7 +944,7 @@ class Common extends Core {
     required = false,
     helper = null,
     icon = iconBuilder.form(),
-    inputNumberProps = {},
+    inputNumberProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -939,7 +954,7 @@ class Common extends Core {
       required,
       helper,
       icon,
-      inputNumberProps,
+      inputNumberProps: inputNumberProperties,
       canOperate,
       formItemLayout,
     });
@@ -950,7 +965,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    textAreaProps = {},
+    textAreaProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -959,7 +974,7 @@ class Common extends Core {
       name,
       required,
       helper,
-      textAreaProps,
+      textAreaProps: textAreaProperties,
       canOperate,
       formItemLayout,
     });
@@ -970,7 +985,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    datePickerProps = {},
+    datePickerProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -979,7 +994,7 @@ class Common extends Core {
       name,
       required,
       helper,
-      datePickerProps,
+      datePickerProps: datePickerProperties,
       canOperate,
       formItemLayout,
     });
@@ -990,7 +1005,7 @@ class Common extends Core {
     name,
     required = false,
     helper = null,
-    timePickerProps = {},
+    timePickerProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -999,7 +1014,7 @@ class Common extends Core {
       name,
       required,
       helper,
-      timePickerProps,
+      timePickerProps: timePickerProperties,
       canOperate,
       formItemLayout,
     });
@@ -1013,7 +1028,7 @@ class Common extends Core {
     onChangeCallback = null,
     formItemLayout = null,
     required = false,
-    otherProps = null,
+    otherProperties = null,
   ) => {
     return buildFormSelect({
       label,
@@ -1023,7 +1038,7 @@ class Common extends Core {
       onChangeCallback,
       formItemLayout,
       required,
-      otherProps,
+      otherProps: otherProperties,
     });
   };
 
@@ -1035,7 +1050,7 @@ class Common extends Core {
     onChangeCallback = null,
     formItemLayout = null,
     required = false,
-    otherProps = null,
+    otherProperties = null,
   ) => {
     return buildFormRadio({
       label,
@@ -1045,7 +1060,7 @@ class Common extends Core {
       onChangeCallback,
       formItemLayout,
       required,
-      otherProps,
+      otherProps: otherProperties,
     });
   };
 
@@ -1119,11 +1134,11 @@ class Common extends Core {
       hidden,
       disabled: disabled || buttonDisabled,
       processing: processing || buttonProcessing,
-      handleClick: (e) => {
+      handleClick: (error) => {
         if (isFunction(handleClick)) {
-          handleClick(e);
+          handleClick(error);
         } else {
-          that.validate(e);
+          that.validate(error);
         }
       },
     });
@@ -1171,13 +1186,11 @@ class Common extends Core {
     return {};
   };
 
-  renderRefreshButton = (props = null) => {
+  renderRefreshButton = (properties = null) => {
     const { size, text } = {
-      ...{
-        size: 'default',
-        text: '刷新',
-      },
-      ...(props || {}),
+      size: 'default',
+      text: '刷新',
+      ...properties,
     };
 
     return buildButton({
@@ -1192,9 +1205,7 @@ class Common extends Core {
   getUploadTokenObject = () => {
     const text = '需要在继承中重新实现 getUploadTokenObject';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     throw new Error(text);
   };
@@ -1205,74 +1216,60 @@ class Common extends Core {
     if (!isVideo) {
       const text = '请上传视频文件!';
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
     }
     const isLt3M = file.size / 1024 / 1024 < 3;
     if (!isLt3M) {
       const text = '视频文件不能超过3MB!';
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
     }
 
     return isVideo && isLt3M;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   pretreatmentImageUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentImageUploadRemoteResponse';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     throw new Error(text);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   pretreatmentFileBase64UploadRemoteResponse = (response) => {
     const text =
       '需要在继承中重新实现 pretreatmentFileBase64UploadRemoteResponse';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     throw new Error(text);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   pretreatmentVideoUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentVideoUploadRemoteResponse';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     throw new Error(text);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   pretreatmentAudioUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentAudioUploadRemoteResponse';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     throw new Error(text);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   pretreatmentFileUploadRemoteResponse = (response) => {
     const text = '需要在继承中重新实现 pretreatmentFileUploadRemoteResponse';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     throw new Error(text);
   };
@@ -1289,7 +1286,9 @@ class Common extends Core {
     }
 
     const { stick, title, tools } = {
-      ...{ stick: false, title: '工具栏', tools: [] },
+      stick: false,
+      title: '工具栏',
+      tools: [],
       ...config,
     };
 
@@ -1306,7 +1305,7 @@ class Common extends Core {
     }
 
     const toolList = tools.map((o, index) => {
-      return { ...o, ...{ key: `toolItem_${index}` } };
+      return { ...o, key: `toolItem_${index}` };
     });
 
     const bar = (
@@ -1320,7 +1319,7 @@ class Common extends Core {
           extra={
             <Space split={<Divider type="vertical" />}>
               {toolList.map((o) => {
-                const { hidden } = { ...{ hidden: false }, ...(o ?? {}) };
+                const { hidden } = { hidden: false, ...o };
 
                 if (hidden) {
                   return null;
@@ -1369,8 +1368,8 @@ class Common extends Core {
     };
 
     const configData = {
-      ...{ mode: contentConfig.wrapperType.page },
-      ...(wrapperTypeConfig || {}),
+      mode: contentConfig.wrapperType.page,
+      ...wrapperTypeConfig,
     };
     const { mode } = configData;
 
@@ -1381,7 +1380,9 @@ class Common extends Core {
     }
 
     const { title, showNumber, list } = {
-      ...{ title: '操作帮助', showNumber: true, list: [] },
+      title: '操作帮助',
+      showNumber: true,
+      list: [],
       ...config,
     };
 
@@ -1460,14 +1461,12 @@ class Common extends Core {
       mode: cardConfig.wrapperType.page,
     };
     const configData = {
-      ...{
-        mode: cardConfig.wrapperType.page,
-        justify: 'start',
-        align: 'top',
-      },
-      ...(formContentWrapperTypeConfig || {}),
-      ...{ list: [] },
-      ...(config || {}),
+      mode: cardConfig.wrapperType.page,
+      justify: 'start',
+      align: 'top',
+      ...formContentWrapperTypeConfig,
+      list: [],
+      ...config,
     };
     const {
       mode,
@@ -1479,13 +1478,13 @@ class Common extends Core {
     const listData = [];
 
     if (isArray(list)) {
-      list.forEach((co, ci) => {
+      for (const [ci, co] of list.entries()) {
         listData.push(co);
 
         if (ci !== list.length - 1) {
           listData.push('');
         }
-      });
+      }
     }
 
     return (
@@ -1537,39 +1536,31 @@ class Common extends Core {
     let layoutConfig = this.establishPageContentLayoutConfig();
 
     const { position: siderPosition } = {
-      ...{
-        position: 'left',
-      },
-      ...(layoutSiderConfig || {}),
+      position: 'left',
+      ...layoutSiderConfig,
     };
 
     const siderConfig = {
-      ...{
-        width: 300,
-        style: {
-          ...{
-            backgroundColor: '#fff',
-            borderRadius: '4px',
-            overflowX: 'auto',
-            overflowY: 'hidden',
-          },
-          ...(siderPosition === 'left'
-            ? { marginRight: '24px' }
-            : { marginLeft: '24px' }),
-        },
+      width: 300,
+      style: {
+        backgroundColor: '#fff',
+        borderRadius: '4px',
+        overflowX: 'auto',
+        overflowY: 'hidden',
+        ...(siderPosition === 'left'
+          ? { marginRight: '24px' }
+          : { marginLeft: '24px' }),
       },
-      ...(layoutSiderConfig || {}),
+      ...layoutSiderConfig,
     };
 
     layoutConfig = {
-      ...{
-        breakpoint: 'sm',
-        style: {
-          backgroundColor: '#f0f2f5',
-          minHeight: 'auto',
-        },
+      breakpoint: 'sm',
+      style: {
+        backgroundColor: '#f0f2f5',
+        minHeight: 'auto',
       },
-      ...(layoutConfig || {}),
+      ...layoutConfig,
     };
 
     const inner =
@@ -1590,9 +1581,9 @@ class Common extends Core {
             {contentArea}
           </Content>
 
-          {siderPosition !== 'left' ? (
+          {siderPosition === 'left' ? null : (
             <Sider {...siderConfig}>{siderArea}</Sider>
-          ) : null}
+          )}
         </Layout>
       );
 
@@ -1611,8 +1602,6 @@ class Common extends Core {
         </Space>
       </>
     );
-
-    return inner;
   };
 
   buildCardCollectionItem = ({
@@ -1646,24 +1635,22 @@ class Common extends Core {
       justify: justifyRow,
       align: alignRow,
     } = {
-      ...{
-        title: '',
-        size: 'default',
-        bordered: false,
-        useAnimal: false,
-        animalType: cardConfig.animalType.none,
-        extra: null,
-        hidden: false,
-        cardType: cardConfig.renderType.normal,
-        cardBodyStyle: {},
-        items: [],
-        otherComponent: null,
-        formItemLayout: null,
-        instruction: null,
-        justify: 'start',
-        align: 'top',
-      },
-      ...(cardItemConfig || {}),
+      title: '',
+      size: 'default',
+      bordered: false,
+      useAnimal: false,
+      animalType: cardConfig.animalType.none,
+      extra: null,
+      hidden: false,
+      cardType: cardConfig.renderType.normal,
+      cardBodyStyle: {},
+      items: [],
+      otherComponent: null,
+      formItemLayout: null,
+      instruction: null,
+      justify: 'start',
+      align: 'top',
+      ...cardItemConfig,
     };
 
     if (hidden || false) {
@@ -1682,19 +1669,17 @@ class Common extends Core {
       addonBefore: titleAddonBefore,
       addonAfter: titleAddonAfter,
     } = {
-      ...{
-        image: '',
-        imageCircle: true,
-        icon: null,
-        hideIcon: false,
-        hideIconWhenShowImage: true,
-        text: '',
-        textEllipsisMaxWidth: 0,
-        subText: '',
-        addonBefore: null,
-        addonAfter: null,
-      },
-      ...(title || {}),
+      image: '',
+      imageCircle: true,
+      icon: null,
+      hideIcon: false,
+      hideIconWhenShowImage: true,
+      text: '',
+      textEllipsisMaxWidth: 0,
+      subText: '',
+      addonBefore: null,
+      addonAfter: null,
+      ...title,
     };
 
     const {
@@ -1702,16 +1687,18 @@ class Common extends Core {
       split,
       list: extraItemList,
     } = {
-      ...{ affix: false, split: false, list: [] },
-      ...(extra || {}),
+      affix: false,
+      split: false,
+      list: [],
+      ...extra,
     };
 
     const imageVisible = !checkStringIsNullOrWhiteSpace(image);
 
-    const iconAdjust = !!hideIcon
+    const iconAdjust = hideIcon
       ? null
       : imageVisible
-      ? !!hideIconWhenShowImage
+      ? hideIconWhenShowImage
         ? null
         : icon
       : icon || iconBuilder.read();
@@ -1719,7 +1706,7 @@ class Common extends Core {
     const extraListData = [];
 
     if (isArray(extraItemList)) {
-      extraItemList.forEach((eo, ei) => {
+      for (const [ei, eo] of extraItemList.entries()) {
         if ((eo || null) != null) {
           extraListData.push(eo);
 
@@ -1727,7 +1714,7 @@ class Common extends Core {
             extraListData.push('');
           }
         }
-      });
+      }
     }
 
     const extraItems = this.buildByExtraBuildType({
@@ -1818,15 +1805,14 @@ class Common extends Core {
         bodyStyle={
           mode === cardConfig.wrapperType.model
             ? {
-                ...(cardBodyStyle || {}),
-                ...(cardTypeBodyStyle || {}),
-                ...{
-                  paddingBottom: 0,
-                },
+                ...cardBodyStyle,
+                ...cardTypeBodyStyle,
+
+                paddingBottom: 0,
               }
             : {
-                ...(cardBodyStyle || {}),
-                ...(cardTypeBodyStyle || {}),
+                ...cardBodyStyle,
+                ...cardTypeBodyStyle,
               }
         }
       >
@@ -1840,7 +1826,7 @@ class Common extends Core {
                 ? contentItems.map((o) => {
                     return {
                       ...o,
-                      ...{ formItemLayout: formItemLayout || null },
+                      formItemLayout: formItemLayout || null,
                     };
                   })
                 : [],
@@ -1939,23 +1925,21 @@ class Common extends Core {
                 canOperate,
                 formItemLayout,
               } = {
-                ...{
-                  lg: 6,
-                  md: 12,
-                  sm: 24,
-                  xs: 24,
-                  require: false,
-                  type: '',
-                  fieldData: {
-                    label: '',
-                    name: '',
-                    helper: '',
-                  },
-                  hidden: false,
-                  canOperate: true,
-                  formItemLayout: null,
+                lg: 6,
+                md: 12,
+                sm: 24,
+                xs: 24,
+                require: false,
+                type: '',
+                fieldData: {
+                  label: '',
+                  name: '',
+                  helper: '',
                 },
-                ...(contentItem || {}),
+                hidden: false,
+                canOperate: true,
+                formItemLayout: null,
+                ...contentItem,
               };
 
               if (hidden) {
@@ -1963,12 +1947,10 @@ class Common extends Core {
               }
 
               const fieldData = {
-                ...{
-                  label: '',
-                  name: '',
-                  helper: '',
-                },
-                ...(fieldDataValue || {}),
+                label: '',
+                name: '',
+                helper: '',
+                ...fieldDataValue,
               };
 
               let lg =
@@ -2002,12 +1984,10 @@ class Common extends Core {
                   >
                     <Divider
                       {...{
-                        ...{
-                          style: {
-                            margin: '4px 0',
-                          },
+                        style: {
+                          margin: '4px 0',
                         },
-                        ...(contentItem.otherProps || {}),
+                        ...contentItem.otherProps,
                       }}
                     >
                       {(contentItem.text || null) == null
@@ -2030,18 +2010,16 @@ class Common extends Core {
                     {buildCustomGrid({
                       list: isArray(contentItem.list) ? contentItem.list : [],
                       props: {
-                        ...{
-                          bordered: true,
-                          column: 3,
-                          emptyStyle: {
-                            color: '#cccccc',
-                          },
-                          emptyValue: '暂无',
-                          labelStyle: {
-                            width: '100px',
-                          },
+                        bordered: true,
+                        column: 3,
+                        emptyStyle: {
+                          color: '#cccccc',
                         },
-                        ...(contentItem.props || {}),
+                        emptyValue: '暂无',
+                        labelStyle: {
+                          width: '100px',
+                        },
+                        ...contentItem.props,
                       },
                     })}
                   </Col>
@@ -2074,7 +2052,7 @@ class Common extends Core {
                     <TinymceWrapper
                       apiKey={
                         checkStringIsNullOrWhiteSpace(contentItem.apiKey || '')
-                          ? runtimeSettings.getTinymceApiKey()
+                          ? getTinymceApiKey()
                           : contentItem.apiKey
                       }
                       content={contentItem.html || ''}
@@ -2084,7 +2062,7 @@ class Common extends Core {
                         checkStringIsNullOrWhiteSpace(
                           contentItem.imagesUploadUrl || '',
                         )
-                          ? runtimeSettings.getTinymceImagesUploadUrl()
+                          ? getTinymceImagesUploadUrl()
                           : contentItem.imagesUploadUrl
                       }
                     />
@@ -2114,21 +2092,19 @@ class Common extends Core {
               }
 
               if (type === cardConfig.contentItemType.imageUpload) {
-                const uploadProps = {
-                  ...{
-                    icon: contentItem.icon || null,
-                    title: contentItem.title || '',
-                    helper: contentItem.helper || '',
-                    image: contentItem.image || '',
-                    action: contentItem.action || '',
-                    tokenSet: this.getUploadTokenObject(),
-                    multiple: contentItem.multiple || false,
-                    fileList: contentItem.fileList || [],
-                    showUploadList: contentItem.showUploadList || false,
-                    listType: contentItem.listType || 'picture-card',
-                    disabled: contentItem.disabled || false,
-                  },
-                  ...(contentItem.uploadProps || {}),
+                const uploadProperties = {
+                  icon: contentItem.icon || null,
+                  title: contentItem.title || '',
+                  helper: contentItem.helper || '',
+                  image: contentItem.image || '',
+                  action: contentItem.action || '',
+                  tokenSet: this.getUploadTokenObject(),
+                  multiple: contentItem.multiple || false,
+                  fileList: contentItem.fileList || [],
+                  showUploadList: contentItem.showUploadList || false,
+                  listType: contentItem.listType || 'picture-card',
+                  disabled: contentItem.disabled || false,
+                  ...contentItem.uploadProps,
                 };
 
                 return (
@@ -2140,7 +2116,7 @@ class Common extends Core {
                     xs={xs}
                   >
                     <ImageUpload
-                      {...uploadProps}
+                      {...uploadProperties}
                       pretreatmentRemoteResponse={
                         this.pretreatmentImageUploadRemoteResponse
                       }
@@ -2157,31 +2133,29 @@ class Common extends Core {
               }
 
               if (type === cardConfig.contentItemType.imageShow) {
-                const imageBoxProps = {
-                  ...{
-                    loadingEffect: true,
-                    errorOverlayVisible: true,
-                    showErrorIcon: false,
-                    alt: '',
-                  },
-                  ...(contentItem.imageBoxProps || {}),
+                const imageBoxProperties = {
+                  loadingEffect: true,
+                  errorOverlayVisible: true,
+                  showErrorIcon: false,
+                  alt: '',
+                  ...contentItem.imageBoxProps,
                 };
 
                 const imageBoxContainorStyle = {
-                  ...{
-                    width: '100px',
-                    border: '1px solid #d9d9d9',
-                    borderRadius: '4px',
-                    padding: '8px',
-                  },
-                  ...(contentItem.imageBoxContainorStyle || {}),
+                  width: '100px',
+                  border: '1px solid #d9d9d9',
+                  borderRadius: '4px',
+                  padding: '8px',
+                  ...contentItem.imageBoxContainorStyle,
                 };
 
                 const imageBox = (
                   <ImageBox
                     src={contentItem.image || defaultEmptyImage}
-                    preview={!stringIsEmpty(contentItem.image || '')}
-                    {...imageBoxProps}
+                    preview={
+                      !checkStringIsNullOrWhiteSpace(contentItem.image || '')
+                    }
+                    {...imageBoxProperties}
                   />
                 );
 
@@ -2201,14 +2175,12 @@ class Common extends Core {
               if (type === cardConfig.contentItemType.imageListShow) {
                 let imageBoxListContainorStyle = null;
 
-                const imageBoxProps = {
-                  ...{
-                    loadingEffect: true,
-                    errorOverlayVisible: true,
-                    showErrorIcon: false,
-                    alt: '',
-                  },
-                  ...(contentItem.imageBoxProps || {}),
+                const imageBoxProperties = {
+                  loadingEffect: true,
+                  errorOverlayVisible: true,
+                  showErrorIcon: false,
+                  alt: '',
+                  ...contentItem.imageBoxProps,
                 };
 
                 if ((contentItem.imageBoxListContainorStyle || null) != null) {
@@ -2217,23 +2189,23 @@ class Common extends Core {
                 }
 
                 const imageBoxContainorStyle = {
-                  ...{
-                    width: '100px',
-                    border: '1px solid #d9d9d9',
-                    borderRadius: '4px',
-                    padding: '8px',
-                  },
-                  ...(contentItem.imageBoxContainorStyle || {}),
+                  width: '100px',
+                  border: '1px solid #d9d9d9',
+                  borderRadius: '4px',
+                  padding: '8px',
+                  ...contentItem.imageBoxContainorStyle,
                 };
 
                 const imageItemShowList = [];
 
                 const ignoreEmpty = contentItem.ignoreEmpty || false;
 
-                (isArray(contentItem.imageList)
+                for (const [imageIndex, imageOne] of (isArray(
+                  contentItem.imageList,
+                )
                   ? contentItem.imageList
                   : []
-                ).forEach((imageOne, imageIndex) => {
+                ).entries()) {
                   const imageKey = `contentItem_${contentIndex}_imageList_item_${imageIndex}`;
 
                   if (ignoreEmpty) {
@@ -2244,8 +2216,10 @@ class Common extends Core {
                         component: (
                           <ImageBox
                             src={imageOne || defaultEmptyImage}
-                            preview={!stringIsEmpty(imageOne || '')}
-                            {...imageBoxProps}
+                            preview={
+                              !checkStringIsNullOrWhiteSpace(imageOne || '')
+                            }
+                            {...imageBoxProperties}
                           />
                         ),
                       });
@@ -2257,13 +2231,15 @@ class Common extends Core {
                       component: (
                         <ImageBox
                           src={imageOne || defaultEmptyImage}
-                          preview={!stringIsEmpty(imageOne || '')}
-                          {...imageBoxProps}
+                          preview={
+                            !checkStringIsNullOrWhiteSpace(imageOne || '')
+                          }
+                          {...imageBoxProperties}
                         />
                       ),
                     });
                   }
-                });
+                }
 
                 const imageListContainor = (
                   <Space>
@@ -2304,21 +2280,18 @@ class Common extends Core {
                 const {
                   value: treeSelectValue,
                   onChangeCallback: onTreeSelectChangeCallback,
-                  otherProps: otherTreeSelectProps,
+                  otherProps: otherTreeSelectProperties,
                   listData: treeSelectListData,
                   dataConvert: treeSelectDataConvertor,
                 } = {
-                  ...{
-                    value: contentItem.value || '',
-                    fileBase64: contentItem.fileBase64 || '',
-                    onChangeCallback: contentItem.onChangeCallback || null,
-                    otherProps: {
-                      ...{},
-                      ...(contentItem.otherProps || {}),
-                    },
-                    listData: contentItem.listData || [],
-                    dataConvert: contentItem.dataConvert || null,
+                  value: contentItem.value || '',
+                  fileBase64: contentItem.fileBase64 || '',
+                  onChangeCallback: contentItem.onChangeCallback || null,
+                  otherProps: {
+                    ...contentItem.otherProps,
                   },
+                  listData: contentItem.listData || [],
+                  dataConvert: contentItem.dataConvert || null,
                 };
 
                 return (
@@ -2337,7 +2310,7 @@ class Common extends Core {
                           buildFieldDescription(fieldData.label, '选择') ||
                           '请选择',
                         onChangeCallback: onTreeSelectChangeCallback,
-                        otherProps: otherTreeSelectProps,
+                        otherProps: otherTreeSelectProperties,
                         listData: treeSelectListData,
                         dataConvert: treeSelectDataConvertor,
                       }),
@@ -2350,13 +2323,12 @@ class Common extends Core {
               }
 
               if (type === cardConfig.contentItemType.fileBase64Upload) {
-                const uploadProps = {
-                  ...(contentItem.uploadProps || {}),
-                  ...{
-                    fileBase64: contentItem.fileBase64 || '',
-                    action: contentItem.action || '',
-                    tokenSet: this.getUploadTokenObject(),
-                  },
+                const uploadProperties = {
+                  ...contentItem.uploadProps,
+
+                  fileBase64: contentItem.fileBase64 || '',
+                  action: contentItem.action || '',
+                  tokenSet: this.getUploadTokenObject(),
                 };
 
                 return (
@@ -2370,7 +2342,7 @@ class Common extends Core {
                     {this.renderFormInnerComponent(
                       fieldData.label,
                       <FileBase64Upload
-                        {...uploadProps}
+                        {...uploadProperties}
                         pretreatmentRemoteResponse={
                           this.pretreatmentFileBase64UploadRemoteResponse
                         }
@@ -2389,14 +2361,13 @@ class Common extends Core {
               }
 
               if (type === cardConfig.contentItemType.videoUpload) {
-                const uploadProps = {
-                  ...(contentItem.uploadProps || {}),
-                  ...{
-                    video: contentItem.video || '',
-                    showPreview: contentItem.showPreview || false,
-                    action: contentItem.action || '',
-                    tokenSet: this.getUploadTokenObject(),
-                  },
+                const uploadProperties = {
+                  ...contentItem.uploadProps,
+
+                  video: contentItem.video || '',
+                  showPreview: contentItem.showPreview || false,
+                  action: contentItem.action || '',
+                  tokenSet: this.getUploadTokenObject(),
                 };
 
                 return (
@@ -2410,7 +2381,7 @@ class Common extends Core {
                     {this.renderFormInnerComponent(
                       fieldData.label,
                       <VideoUpload
-                        {...uploadProps}
+                        {...uploadProperties}
                         pretreatmentRemoteResponse={
                           this.pretreatmentVideoUploadRemoteResponse
                         }
@@ -2429,13 +2400,12 @@ class Common extends Core {
               }
 
               if (type === cardConfig.contentItemType.fileUpload) {
-                const uploadProps = {
-                  ...(contentItem.uploadProps || {}),
-                  ...{
-                    file: contentItem.file || '',
-                    action: contentItem.action || '',
-                    tokenSet: this.getUploadTokenObject(),
-                  },
+                const uploadProperties = {
+                  ...contentItem.uploadProps,
+
+                  file: contentItem.file || '',
+                  action: contentItem.action || '',
+                  tokenSet: this.getUploadTokenObject(),
                 };
 
                 return (
@@ -2449,7 +2419,7 @@ class Common extends Core {
                     {this.renderFormInnerComponent(
                       fieldData.label,
                       <FileUpload
-                        {...uploadProps}
+                        {...uploadProperties}
                         pretreatmentRemoteResponse={
                           this.pretreatmentFileUploadRemoteResponse
                         }
@@ -2468,14 +2438,13 @@ class Common extends Core {
               }
 
               if (type === cardConfig.contentItemType.audioUpload) {
-                const uploadProps = {
-                  ...(contentItem.uploadProps || {}),
-                  ...{
-                    audio: contentItem.audio || '',
-                    showPreview: contentItem.showPreview || false,
-                    action: contentItem.action || '',
-                    tokenSet: this.getUploadTokenObject(),
-                  },
+                const uploadProperties = {
+                  ...contentItem.uploadProps,
+
+                  audio: contentItem.audio || '',
+                  showPreview: contentItem.showPreview || false,
+                  action: contentItem.action || '',
+                  tokenSet: this.getUploadTokenObject(),
                 };
 
                 return (
@@ -2489,7 +2458,7 @@ class Common extends Core {
                     {this.renderFormInnerComponent(
                       fieldData.label,
                       <AudioUpload
-                        {...uploadProps}
+                        {...uploadProperties}
                         pretreatmentRemoteResponse={
                           this.pretreatmentAudioUploadRemoteResponse
                         }
@@ -2525,7 +2494,7 @@ class Common extends Core {
                         require,
                         fieldData.helper,
                         contentItem.icon || iconBuilder.form(),
-                        { ...{}, ...(contentItem.otherProps || {}) },
+                        { ...contentItem.otherProps },
                         canOperate,
                         formItemLayout,
                       )
@@ -2538,7 +2507,7 @@ class Common extends Core {
                         require,
                         fieldData.helper,
                         contentItem.icon || iconBuilder.form(),
-                        { ...{}, ...(contentItem.otherProps || {}) },
+                        { ...contentItem.otherProps },
                         canOperate,
                         formItemLayout,
                       )
@@ -2551,7 +2520,7 @@ class Common extends Core {
                         require,
                         fieldData.helper,
                         contentItem.icon || iconBuilder.form(),
-                        { ...{}, ...(contentItem.otherProps || {}) },
+                        { ...contentItem.otherProps },
                         canOperate,
                         formItemLayout,
                       )
@@ -2564,7 +2533,7 @@ class Common extends Core {
                         require,
                         fieldData.helper,
                         {
-                          ...(contentItem.otherProps || {}),
+                          ...contentItem.otherProps,
                         },
                         canOperate,
                         formItemLayout,
@@ -2574,12 +2543,10 @@ class Common extends Core {
                   {type === cardConfig.contentItemType.flexText ? (
                     <FlexText
                       {...{
-                        ...{
-                          style: {
-                            margin: '5px 0',
-                          },
+                        style: {
+                          margin: '5px 0',
                         },
-                        ...(contentItem.flexTextProps || {}),
+                        ...contentItem.flexTextProps,
                       }}
                     />
                   ) : null}
@@ -2602,7 +2569,7 @@ class Common extends Core {
                         fieldData.name,
                         require,
                         fieldData.helper,
-                        { ...{}, ...(contentItem.otherProps || {}) },
+                        { ...contentItem.otherProps },
                         canOperate,
                         formItemLayout,
                       )
@@ -2614,7 +2581,7 @@ class Common extends Core {
                         fieldData.name,
                         require,
                         fieldData.helper,
-                        { ...{}, ...(contentItem.otherProps || {}) },
+                        { ...contentItem.otherProps },
                         canOperate,
                         formItemLayout,
                       )
@@ -2627,8 +2594,8 @@ class Common extends Core {
                         require,
                         fieldData.helper,
                         {
-                          ...{ autoSize: { minRows: 3, maxRows: 5 } },
-                          ...(contentItem.otherProps || {}),
+                          autoSize: { minRows: 3, maxRows: 5 },
+                          ...contentItem.otherProps,
                         },
                         canOperate,
                         formItemLayout,
@@ -2641,12 +2608,11 @@ class Common extends Core {
                         contentItem.value,
                         fieldData.helper || '',
                         {
-                          ...{ autoSize: { minRows: 3, maxRows: 5 } },
-                          ...(contentItem.otherProps || {}),
-                          ...{
-                            disabled: true,
-                            placeholder: `暂无${fieldData.label}信息`,
-                          },
+                          autoSize: { minRows: 3, maxRows: 5 },
+                          ...contentItem.otherProps,
+
+                          disabled: true,
+                          placeholder: `暂无${fieldData.label}信息`,
                         },
                         formItemLayout,
                       )
@@ -2659,12 +2625,10 @@ class Common extends Core {
                         fieldData.helper || '',
                         contentItem.icon || iconBuilder.form(),
                         {
-                          ...{},
-                          ...(contentItem.otherProps || {}),
-                          ...{
-                            disabled: true,
-                            placeholder: `暂无${fieldData.label}信息`,
-                          },
+                          ...contentItem.otherProps,
+
+                          disabled: true,
+                          placeholder: `暂无${fieldData.label}信息`,
                           ...(contentItem.canCopy || false
                             ? {
                                 addonAfter: this.renderGeneralButton({
@@ -2700,12 +2664,10 @@ class Common extends Core {
                         fieldData.helper || '',
                         contentItem.icon || iconBuilder.form(),
                         {
-                          ...{},
-                          ...(contentItem.otherProps || {}),
-                          ...{
-                            disabled: true,
-                            placeholder: `暂无${fieldData.label}信息`,
-                          },
+                          ...contentItem.otherProps,
+
+                          disabled: true,
+                          placeholder: `暂无${fieldData.label}信息`,
                         },
                         formItemLayout,
                       )
@@ -2736,7 +2698,7 @@ class Common extends Core {
                           : null,
                         formItemLayout,
                         true,
-                        { ...{}, ...(contentItem.otherProps || {}) },
+                        { ...contentItem.otherProps },
                       )
                     : null}
 
@@ -2749,8 +2711,7 @@ class Common extends Core {
                         formItemLayout,
                         required: true,
                         otherProps: {
-                          ...{},
-                          ...(contentItem.otherProps || {}),
+                          ...contentItem.otherProps,
                         },
                       })
                     : null}
@@ -2782,7 +2743,7 @@ class Common extends Core {
                           : null,
                         formItemLayout,
                         true,
-                        { ...{}, ...(contentItem.otherProps || {}) },
+                        { ...contentItem.otherProps },
                       )
                     : null}
 
@@ -2794,7 +2755,7 @@ class Common extends Core {
                         contentItem.onChangeCallback,
                         formItemLayout,
                         true,
-                        { ...{}, ...(contentItem.otherProps || {}) },
+                        { ...contentItem.otherProps },
                       )
                     : null}
 
@@ -2876,7 +2837,7 @@ class Common extends Core {
                         fieldData.helper,
                         formItemLayout,
                         require,
-                        { ...{}, ...(contentItem.otherProps || {}) },
+                        { ...contentItem.otherProps },
                       )
                     : null}
 
@@ -2894,20 +2855,22 @@ class Common extends Core {
   buildByExtraBuildType = ({ keyPrefix = '', configList }) => {
     const list = [];
 
-    (isArray(configList) ? configList : []).forEach((item, index) => {
+    for (const [index, item] of (isArray(configList)
+      ? configList
+      : []
+    ).entries()) {
       if ((item || null) != null) {
         const {
           hidden,
           buildType,
           component: componentSource,
         } = {
-          ...{
-            hidden: false,
-            buildType: null,
-            icon: null,
-            text: '',
-            component: null,
-          },
+          hidden: false,
+          buildType: null,
+          icon: null,
+          text: '',
+          component: null,
+
           ...item,
         };
 
@@ -2917,59 +2880,70 @@ class Common extends Core {
           let itemAdjust = item;
 
           switch (buildType) {
-            case extraBuildType.refresh:
+            case extraBuildType.refresh: {
               itemAdjust = this.renderRefreshButton(item);
               break;
+            }
 
-            case extraBuildType.save:
+            case extraBuildType.save: {
               itemAdjust = this.renderSaveButton(item);
               break;
+            }
 
-            case cardConfig.extraBuildType.generalButton:
+            case cardConfig.extraBuildType.generalButton: {
               itemAdjust = this.renderGeneralButton(item);
               break;
+            }
 
-            case extraBuildType.flexSelect:
+            case extraBuildType.flexSelect: {
               itemAdjust = buildCustomSelect(item);
               break;
+            }
 
-            case extraBuildType.button:
+            case extraBuildType.button: {
               itemAdjust = buildButton(item);
               break;
+            }
 
-            case extraBuildType.dropdown:
+            case extraBuildType.dropdown: {
               itemAdjust = buildDropdown(item);
               break;
+            }
 
-            case extraBuildType.dropdownButton:
+            case extraBuildType.dropdownButton: {
               itemAdjust = buildDropdownButton(item);
               break;
+            }
 
-            case extraBuildType.dropdownEllipsis:
+            case extraBuildType.dropdownEllipsis: {
               itemAdjust = buildDropdownEllipsis(item);
               break;
+            }
 
-            case extraBuildType.iconInfo:
+            case extraBuildType.iconInfo: {
               itemAdjust = (
                 <div style={{ padding: '0 8px' }}>
                   <IconInfo {...item} />
                 </div>
               );
               break;
+            }
 
-            case extraBuildType.colorText:
+            case extraBuildType.colorText: {
               itemAdjust = (
                 <div style={{ padding: '0 8px' }}>
                   <ColorText {...item} />
                 </div>
               );
               break;
+            }
 
-            case extraBuildType.component:
+            case extraBuildType.component: {
               itemAdjust = componentSource || null;
               break;
+            }
 
-            default:
+            default: {
               logObject({
                 message: '未找到匹配的构建模式',
                 buildType: extraBuildType.component,
@@ -2978,12 +2952,13 @@ class Common extends Core {
 
               itemAdjust = null;
               break;
+            }
           }
 
           list.push(<Fragment key={itemKey}>{itemAdjust}</Fragment>);
         }
       }
-    });
+    }
 
     return list;
   };
@@ -3000,10 +2975,8 @@ class Common extends Core {
     const { dataLoading, reloading, refreshing, showReloadButton } = this.state;
 
     const { keyPrefix, list: configList } = {
-      ...{
-        keyPrefix: '',
-        list: [],
-      },
+      keyPrefix: '',
+      list: [],
       ...this.establishExtraActionConfig(),
     };
 

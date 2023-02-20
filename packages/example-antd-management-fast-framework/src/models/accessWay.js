@@ -1,11 +1,11 @@
 import {
+  getTacitlyState,
   pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
-  reducerDefaultParams,
+  reducerDefaultParameters,
   reducerNameCollection,
-  tacitlyState,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
 
 import {
   getData,
@@ -19,7 +19,7 @@ export default {
   namespace: 'accessWay',
 
   state: {
-    ...tacitlyState,
+    ...getTacitlyState(),
   },
 
   effects: {
@@ -32,7 +32,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;
@@ -46,7 +46,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;
@@ -60,7 +60,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;
@@ -74,7 +74,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;
@@ -88,7 +88,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;

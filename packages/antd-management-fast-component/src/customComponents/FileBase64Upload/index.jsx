@@ -1,28 +1,27 @@
 import { Button, Input, Upload } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { isFunction } from 'easy-soft-utility';
+import { isFunction, showSimpleRuntimeError } from 'easy-soft-utility';
 
-import { runtimeSettings } from 'antd-management-fast-common';
+import { getFileUploadMaxSize } from 'antd-management-fast-common';
 
 import { iconBuilder } from '../Icon';
 
 class FileBase64Upload extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        uploading: false,
-        base64: '',
-      },
+
+      uploading: false,
+      base64: '',
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { fileBase64 } = nextProps;
+  // eslint-disable-next-line no-unused-vars
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    const { fileBase64 } = nextProperties;
 
     return { base64: fileBase64 };
   }
@@ -30,14 +29,11 @@ class FileBase64Upload extends PureComponent {
   handleUploadCancel = () => this.setState({ previewVisible: false });
 
   beforeUpload = (file) => {
-    const isLt1M =
-      file.size / 1024 / 1024 < runtimeSettings.getFileUploadMaxSize();
+    const isLt1M = file.size / 1024 / 1024 < getFileUploadMaxSize();
     if (!isLt1M) {
-      const text = `文件不能超过${runtimeSettings.getFileUploadMaxSize()}MB!`;
+      const text = `文件不能超过${getFileUploadMaxSize()}MB!`;
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
     }
 
     return isLt1M;
@@ -67,16 +63,12 @@ class FileBase64Upload extends PureComponent {
         } else {
           const text = 'afterUploadSuccess 配置无效';
 
-          showRuntimeError({
-            message: text,
-          });
+          showSimpleRuntimeError(text);
         }
       } else {
         const text = 'pretreatmentRemoteResponse 配置无效';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
       }
     }
   };
@@ -85,7 +77,7 @@ class FileBase64Upload extends PureComponent {
     const { action, disabled, uploadText, tokenSet } = this.props;
     const { uploading, base64 } = this.state;
 
-    const uploadProps = {
+    const uploadProperties = {
       disabled,
       action,
       listType: 'text',
@@ -103,7 +95,7 @@ class FileBase64Upload extends PureComponent {
         value={base64}
         addonAfter={
           <>
-            <Upload {...uploadProps}>
+            <Upload {...uploadProperties}>
               <Button
                 style={{
                   border: '0px solid #d9d9d9',

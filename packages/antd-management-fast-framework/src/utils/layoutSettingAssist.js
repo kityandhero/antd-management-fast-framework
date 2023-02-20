@@ -1,15 +1,17 @@
+import { logDebug, logExecute } from 'easy-soft-utility';
+
 import {
   getDispatch,
+  getLayoutSettings,
   getModelState,
-  layoutSettings,
-  logDebug,
-  logExecute,
 } from 'antd-management-fast-common';
 
 let configLayoutSettingComplete = false;
 
 export function configLayoutSetting() {
   logExecute('configLayoutSetting');
+
+  const layoutSettings = getLayoutSettings();
 
   const dispatch = getDispatch();
 
@@ -36,7 +38,7 @@ export function getLayoutSetting() {
   const state = getModelState('schedulingControl');
 
   const { setting } = {
-    ...{ setting: layoutSettings },
+    setting: getLayoutSettings(),
     ...state,
   };
 

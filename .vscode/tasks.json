@@ -12,6 +12,14 @@
     {
       "type": "npm",
       "script": "dev:rollup",
+      "path": "packages/antd-management-fast-charts",
+      "problemMatcher": [],
+      "label": "dev:core-charts",
+      "detail": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch"
+    },
+    {
+      "type": "npm",
+      "script": "dev:rollup",
       "path": "packages/antd-management-fast-common",
       "problemMatcher": [],
       "label": "dev:core-common",

@@ -7,59 +7,68 @@ class VerticalBox extends PureComponent {
     let alignStyle = 'center';
 
     switch (align) {
-      case 'top':
+      case 'top': {
         alignStyle = 'flex-start';
         break;
+      }
 
-      case 'center':
+      case 'center': {
         alignStyle = 'center';
         break;
+      }
 
-      case 'bottom':
+      case 'bottom': {
         alignStyle = 'flex-end';
         break;
+      }
 
-      default:
+      default: {
         alignStyle = 'center';
         break;
+      }
     }
 
     let alignJustifyStyle = 'flex-start';
 
     switch (alignJustify) {
-      case 'start':
+      case 'start': {
         alignJustifyStyle = 'flex-start';
         break;
+      }
 
-      case 'center':
+      case 'center': {
         alignJustifyStyle = 'center';
         break;
+      }
 
-      case 'end':
+      case 'end': {
         alignJustifyStyle = 'flex-end';
         break;
+      }
 
-      case 'between':
+      case 'between': {
         alignJustifyStyle = 'space-between';
         break;
+      }
 
-      case 'around':
+      case 'around': {
         alignJustifyStyle = 'space-around';
         break;
+      }
 
-      default:
+      default: {
         alignJustifyStyle = 'flex-start';
         break;
+      }
     }
 
     const flexStyle = {
-      ...{
-        display: 'flex',
-        width: '100%',
-        height: '100%',
-      },
-      ...(style || {}),
-      ...{ alignItems: alignStyle, justifyContent: alignJustifyStyle },
+      display: 'flex',
+      width: '100%',
+      height: '100%',
+      ...style,
+      alignItems: alignStyle,
+      justifyContent: alignJustifyStyle,
     };
 
     return (

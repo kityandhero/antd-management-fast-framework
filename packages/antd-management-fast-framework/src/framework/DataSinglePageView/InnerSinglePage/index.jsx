@@ -3,14 +3,12 @@ import { SinglePage } from '../SinglePage';
 class InnerSinglePage extends SinglePage {
   restoreSearch = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        renderPageContainer: false,
-      },
+      renderPageContainer: false,
     };
   }
 }

@@ -1,8 +1,12 @@
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
-import SelectFieldInteractiveBase from 'antd-management-fast-framework/es/framework/FieldExtension/SelectFieldDrawer/SelectFieldDrawerBase';
+import { FieldExtension } from 'antd-management-fast-framework';
 
 import PageListDrawer from '../PageListDrawer';
+
+const {
+  SelectFieldDrawer: { SelectFieldInteractiveBase },
+} = FieldExtension;
 
 @connect(({ article, global, loading }) => ({
   article,

@@ -1,13 +1,13 @@
 import {
   defaultFormState,
-  getDerivedStateFromPropsForUrlParams,
+  getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 
 import { DataCore } from '../DataCore';
 
 class DataLoad extends DataCore {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.lastLoadParams = null;
 
@@ -15,41 +15,43 @@ class DataLoad extends DataCore {
 
     this.state = {
       ...defaultState,
-      ...{
-        showReloadButton: true,
-      },
+
+      showReloadButton: true,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
+    );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
     const { urlParams } = this.state;
 
-    const { urlParams: urlParamsPrev } = preState;
+    const { urlParams: urlParametersPrevious } = preState;
 
-    if ((urlParams || null) == null || (urlParamsPrev || null) == null) {
+    if (
+      (urlParams || null) == null ||
+      (urlParametersPrevious || null) == null
+    ) {
       return;
     }
 
     const { op } = urlParams;
 
-    const { op: prevOp } = urlParamsPrev;
+    const { op: previousOp } = urlParametersPrevious;
 
     const { dataLoading } = this.state;
 
-    if (!dataLoading) {
-      if (
-        (prevOp === 'load' && op === 'update') ||
-        this.checkNeedUpdate(preProps, preState, snapshot)
-      ) {
-        if (this.reloadByUrlOp) {
-          this.reloadData();
-        }
-      }
+    if (
+      !dataLoading &&
+      ((previousOp === 'load' && op === 'update') ||
+        this.checkNeedUpdate(preProperties, preState, snapshot)) &&
+      this.reloadByUrlOp
+    ) {
+      this.reloadData();
     }
   };
 
@@ -75,13 +77,13 @@ class DataLoad extends DataCore {
   };
 
   doOtherAfterLoadSuccess = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {};
 
@@ -113,13 +115,13 @@ class DataLoad extends DataCore {
   };
 
   afterFillForm = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {};
 }

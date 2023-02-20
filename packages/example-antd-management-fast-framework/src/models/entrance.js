@@ -4,12 +4,12 @@
 // import { flushLocalStorage } from 'easy-soft-utility';
 
 import {
+  getTacitlyState,
   pretreatmentRemoteSingleData,
   reducerCollection,
-  reducerDefaultParams,
+  reducerDefaultParameters,
   reducerNameCollection,
-  tacitlyState,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
 
 // import {
 //   queryStringify,
@@ -18,13 +18,13 @@ import {
 // import { defaultSettings } from '../defaultSettings';
 import { getCaptchaData, signInData, signOutData } from '../services/entrance';
 
-// const entrancePath = defaultSettings.getEntrancePath();
+// const entranceApi = defaultSettings.getEntranceApi();
 
 export default {
   namespace: 'entrance',
 
   state: {
-    ...tacitlyState,
+    ...getTacitlyState(),
   },
 
   effects: {
@@ -37,7 +37,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;
@@ -45,7 +45,7 @@ export default {
     *getCaptcha({ payload }, { call }) {
       yield call(getCaptchaData, payload);
     },
-    *signOut() {
+    *signOut({ payload, alias }, { call, put }) {
       const response = yield call(signOutData, payload);
 
       const dataAdjust = pretreatmentRemoteSingleData({ source: response });
@@ -54,19 +54,19 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;
 
       // const { redirect } = getPageQuery(); // Note: There may be security issues, please note
 
-      // if (window.location.pathname !== entrancePath && !redirect) {
+      // if (window.location.pathname !== entranceApi && !redirect) {
       //   flushLocalStorage();
 
       //   message.info('退出登录成功！', 0.6).then(() => {
       //     redirectToPath({
-      //       pathname: entrancePath,
+      //       pathname: entranceApi,
       //       search: queryStringify({
       //         redirect: window.location.href,
       //       }),

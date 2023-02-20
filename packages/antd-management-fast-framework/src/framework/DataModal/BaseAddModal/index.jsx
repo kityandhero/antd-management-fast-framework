@@ -1,16 +1,16 @@
 import { BaseNeedlessLoadModal } from '../BaseNeedlessLoadModal';
 
 class BaseAddModal extends BaseNeedlessLoadModal {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 }
 

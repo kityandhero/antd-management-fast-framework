@@ -1,5 +1,5 @@
 import { Avatar } from 'antd';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import {
   convertCollection,
@@ -13,11 +13,10 @@ import {
   listViewConfig,
 } from 'antd-management-fast-common';
 import { FlexBox, iconBuilder } from 'antd-management-fast-component';
-import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
+import { DataMultiPageView } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/accessWayCollection';
-import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
+import { accessWayCollection } from '../../customConfig/accessWayCollection';
+import { getArticleStatusName } from '../../customSpecialComponents/FunctionSupplement/ArticleStatus';
 import {
   refreshCacheAction,
   setOfflineAction,
@@ -27,6 +26,8 @@ import { getStatusBadge } from '../Article/Assist/tools';
 import { fieldData, statusCollection } from '../Article/Common/data';
 
 import ShortcutPanel from './ShortcutPanel';
+
+const { MultiPage } = DataMultiPageView;
 
 @connect(({ article, user, currentOperator, global }) => ({
   article,
@@ -41,41 +42,43 @@ class Index extends MultiPage {
 
   showSearchForm = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        pageName: '工作台',
-        listTitle: '新近文章列表',
-        loadApiPath: 'article/pageList',
-        tableScroll: { x: 1020 },
-        pageSize: 8,
-      },
+      pageName: '工作台',
+      listTitle: '新近文章列表',
+      loadApiPath: 'article/pageList',
+      tableScroll: { x: 1020 },
+      pageSize: 8,
     };
   }
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
-      case 'setOnline':
+      case 'setOnline': {
         this.setOnline(handleData);
         break;
+      }
 
-      case 'setOffline':
+      case 'setOffline': {
         this.setOffline(handleData);
         break;
+      }
 
-      case 'refreshCache':
+      case 'refreshCache': {
         this.refreshCache(handleData);
         break;
+      }
 
-      default:
+      default: {
         break;
+      }
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   handleItemStatus = ({ target, record, remoteData }) => {
     const articleId = getValueByKey({
       data: remoteData,
@@ -259,12 +262,12 @@ class Index extends MultiPage {
       emptyValue: '--',
       showRichFacade: true,
       facadeMode: columnFacadeMode.badge,
-      facadeConfigBuilder: (val) => {
+      facadeConfigBuilder: (value) => {
         return {
-          status: getStatusBadge(val),
+          status: getStatusBadge(value),
           text: getArticleStatusName({
             metaData: this.getMetaData(),
-            value: val,
+            value: value,
           }),
         };
       },

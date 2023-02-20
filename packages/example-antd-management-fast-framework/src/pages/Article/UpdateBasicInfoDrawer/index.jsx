@@ -1,16 +1,15 @@
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
-import {
-  cardConfig,
-  formatCollection,
-  getValueByKey,
-} from 'antd-management-fast-common';
+import { formatCollection, getValueByKey } from 'easy-soft-utility';
+
+import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
+import { DataDrawer } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/accessWayCollection';
-
+import { accessWayCollection } from '../../../customConfig/accessWayCollection';
 import { fieldData } from '../Common/data';
+
+const { BaseUpdateDrawer } = DataDrawer;
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -20,29 +19,26 @@ import { fieldData } from '../Common/data';
 class Index extends BaseUpdateDrawer {
   componentAuthority = accessWayCollection.article.updateBasicInfo.permission;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        loadApiPath: 'article/get',
-        submitApiPath: 'article/updateBasicInfo',
-        imageUrl: '',
-        appHeadImage: '',
-      },
+
+      loadApiPath: 'article/get',
+      submitApiPath: 'article/updateBasicInfo',
+      imageUrl: '',
+      appHeadImage: '',
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   fillInitialValuesAfterLoad = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {
     const values = {};

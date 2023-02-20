@@ -1,48 +1,48 @@
 import { Affix } from 'antd';
 import React from 'react';
 
+import { isArray, isObject } from 'easy-soft-utility';
+
 import {
   animalType,
   cardConfig,
-  isArray,
-  isObject,
   mobileTypeCollection,
   whetherNumber,
 } from 'antd-management-fast-common';
 import {
   buildOptionItem,
   iconBuilder,
-  MobileSimulation,
+  MobileContainor,
 } from 'antd-management-fast-component';
 
 import { Base } from '../../../framework/DataDrawer/Base';
 
+const { MobileSimulation } = MobileContainor;
+
 class MobilePreviewArea extends Base {
   resetDataAfterLoad = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        placement: 'top',
-        height: '100vh',
-        mobileType: mobileTypeCollection.roughSketch.name,
-      },
+      placement: 'top',
+      height: '100vh',
+      mobileType: mobileTypeCollection.roughSketch.name,
     };
   }
 
   buildMobileTypeArray = () => {
     const list = [];
 
-    Object.entries(mobileTypeCollection).forEach((o) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    for (const o of Object.entries(mobileTypeCollection)) {
+      // eslint-disable-next-line no-unused-vars
       const [k, v] = o;
       if (isObject(v)) {
         list.push(v);
       }
-    });
+    }
 
     return list;
   };
@@ -68,7 +68,7 @@ class MobilePreviewArea extends Base {
         ? this.buildMobileTypeArray()
         : mobileList;
 
-    mobileCollection.forEach((o, index) => {
+    for (const [index, o] of mobileCollection.entries()) {
       if (isObject(o)) {
         const key = `mobileType_${index}`;
 
@@ -81,7 +81,7 @@ class MobilePreviewArea extends Base {
           availability: whetherNumber.yes,
         });
       }
-    });
+    }
 
     return {
       list: [
@@ -153,13 +153,13 @@ class MobilePreviewArea extends Base {
       return this.buildCardCollection(this.establishCardCollectionConfig());
     }
 
-    const affixProps = {
+    const affixProperties = {
       ...(affixOffsetBottom > 0 ? { offsetBottom: affixOffsetBottom } : {}),
       ...(affixOffsetTop > 0 ? { offsetTop: affixOffsetTop } : {}),
     };
 
     return (
-      <Affix {...affixProps}>
+      <Affix {...affixProperties}>
         {this.buildCardCollection(this.establishCardCollectionConfig())}
       </Affix>
     );

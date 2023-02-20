@@ -1,18 +1,22 @@
 import {
-  apiRequest,
-  getDispatch,
+  checkStringIsNullOrWhiteSpace,
+  getLocalMetaData,
   isFunction,
   logDebug,
   logExecute,
-  runtimeSettings,
-} from 'antd-management-fast-common';
+  setLocalMetaData,
+} from 'easy-soft-utility';
 
-import { getMetaDataCache, setMetaDataCache } from './storageAssist';
+import {
+  apiRequest,
+  getDispatch,
+  getMetaDataApi,
+} from 'antd-management-fast-common';
 
 export function loadMetaData({ successCallback = null }) {
   logExecute('loadMetaData');
 
-  const metaDataCatch = getMetaDataCache();
+  const metaDataCatch = getLocalMetaData();
 
   if ((metaDataCatch || null) != null) {
     logDebug('meta data first load success, ignore load');
@@ -22,9 +26,9 @@ export function loadMetaData({ successCallback = null }) {
 
   const dispatch = getDispatch();
 
-  const metaDataPath = runtimeSettings.getMetaDataPath();
+  const metaDataApi = getMetaDataApi();
 
-  const api = checkStringIsNullOrWhiteSpace(metaDataPath)
+  const api = checkStringIsNullOrWhiteSpace(metaDataApi)
     ? 'schedulingControl/getMetaDataSimulation'
     : 'schedulingControl/getMetaData';
 
@@ -34,11 +38,11 @@ export function loadMetaData({ successCallback = null }) {
     dispatch: dispatch,
     successCallback: ({ remoteData }) => {
       const data = {
-        ...(runtimeSettings.getMetaData() || {}),
+        ...getMetaData(),
         ...remoteData,
       };
 
-      setMetaDataCache(data);
+      setLocalMetaData(data);
 
       if (isFunction(successCallback)) {
         successCallback();
@@ -50,7 +54,7 @@ export function loadMetaData({ successCallback = null }) {
 export function getMetaData() {
   logExecute('getMetaData');
 
-  const metaDataCatch = getMetaDataCache();
+  const metaDataCatch = getLocalMetaData();
 
   return metaDataCatch;
 }

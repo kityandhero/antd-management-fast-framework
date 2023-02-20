@@ -7,7 +7,12 @@ import {
   PictureOutlined,
 } from '@ant-design/icons';
 
-import { isFunction, replace, trim } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isFunction,
+  replace,
+  trim,
+} from 'easy-soft-utility';
 
 import { defaultEmptyImage } from 'antd-management-fast-common';
 
@@ -59,36 +64,34 @@ const imageItemStyle = {
 };
 
 class ImageBox extends BaseComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        src: '',
-        aspectRatio: 1,
-        borderRadiusDefaultStyle: {},
-        imageBoxStyle: {},
-        borderRadius: false,
-        showMode: 'box',
-        circle: false,
-        backgroundColor: {},
-        showOverlay: false,
-        overlayText: '',
-        loadingEffect: false,
-        hide: false,
-        loadSuccess: false,
-        imageLoadSuccess: false,
-        errorOverlayVisible: false,
-        errorOverlayText: '加载失败',
-        showErrorOverlay: false,
-        showErrorIcon: true,
-      },
+
+      src: '',
+      aspectRatio: 1,
+      borderRadiusDefaultStyle: {},
+      imageBoxStyle: {},
+      borderRadius: false,
+      showMode: 'box',
+      circle: false,
+      backgroundColor: {},
+      showOverlay: false,
+      overlayText: '',
+      loadingEffect: false,
+      hide: false,
+      loadSuccess: false,
+      imageLoadSuccess: false,
+      errorOverlayVisible: false,
+      errorOverlayText: '加载失败',
+      showErrorOverlay: false,
+      showErrorIcon: true,
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProperties, previousState) {
     const {
       src,
       aspectRatio,
@@ -103,9 +106,9 @@ class ImageBox extends BaseComponent {
       errorOverlayVisible: errorOverlayVisibleValue,
       errorOverlayText: errorOverlayTextValue,
       showErrorIcon: showErrorIconValue,
-    } = nextProps;
+    } = nextProperties;
 
-    let imageSrc = src || '';
+    let imageSource = src || '';
 
     let aspectRatioVerify = aspectRatio || 1;
 
@@ -137,8 +140,8 @@ class ImageBox extends BaseComponent {
       borderRadiusDefaultStyle.borderRadius = '50%';
     }
 
-    if (trim(replace(imageSrc || '', ' ', '')) === '') {
-      imageSrc = defaultEmptyImage;
+    if (trim(replace(imageSource || '', ' ', '')) === '') {
+      imageSource = defaultEmptyImage;
     }
 
     const imageBoxStyleMerge = {
@@ -155,7 +158,7 @@ class ImageBox extends BaseComponent {
     const showMode = showModeValue || 'box';
 
     const result = {
-      src: imageSrc,
+      src: imageSource,
       aspectRatio: aspectRatioVerify,
       showOverlay,
       loadingEffect,
@@ -170,11 +173,11 @@ class ImageBox extends BaseComponent {
       showErrorIcon,
     };
 
-    const { src: srcPre, showErrorOverlay } = prevState;
+    const { src: sourcePre, showErrorOverlay } = previousState;
 
     return {
       ...result,
-      ...{ showErrorOverlay: srcPre === imageSrc ? showErrorOverlay : false },
+      showErrorOverlay: sourcePre === imageSource ? showErrorOverlay : false,
     };
   }
 
@@ -254,12 +257,10 @@ class ImageBox extends BaseComponent {
       return (
         <div
           style={{
-            ...{
-              position: 'relative',
-              display: 'block',
-              width: '100%',
-              overflow: 'hidden',
-            },
+            position: 'relative',
+            display: 'block',
+            width: '100%',
+            overflow: 'hidden',
             ...imageBoxStyle,
           }}
         >
@@ -274,17 +275,16 @@ class ImageBox extends BaseComponent {
               />
             ) : null}
 
-            {aspectRatio !== 1 ? (
+            {aspectRatio === 1 ? null : (
               <div
                 key="aspectRatio_0"
                 style={{
                   ...placeholderBoxStyle,
-                  ...{
-                    marginTop: `${aspectRatio * 100}%`,
-                  },
+
+                  marginTop: `${aspectRatio * 100}%`,
                 }}
               />
-            ) : null}
+            )}
 
             {showOverlay ? (
               <div
@@ -386,13 +386,13 @@ class ImageBox extends BaseComponent {
                 style={{
                   ...imageItemStyle,
                   ...(loadingEffect && !showOverlay
-                    ? !loadSuccess
+                    ? loadSuccess
                       ? {
-                          opacity: '0.01',
-                        }
-                      : {
                           opacity: '1',
                           transform: 'opacity 300ms',
+                        }
+                      : {
+                          opacity: '0.01',
                         }
                     : {}),
                   ...imageBoxStyle,
@@ -448,10 +448,9 @@ class ImageBox extends BaseComponent {
                 preview
                   ? { cursor: 'pointer' }
                   : {}),
-                ...{
-                  display: 'block',
-                  width: '100%',
-                },
+
+                display: 'block',
+                width: '100%',
               }}
               src={src}
               onError={this.onImageError}

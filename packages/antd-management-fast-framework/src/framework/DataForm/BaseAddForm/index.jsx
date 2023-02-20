@@ -4,14 +4,18 @@ import { PageContainer } from '@ant-design/pro-layout';
 
 import {
   datetimeFormat,
-  defaultFormState,
   formatDatetime,
-  formNameCollection,
-  getDerivedStateFromPropsForUrlParams,
   isUndefined,
   logObject,
-  pretreatmentRequestParams,
-  showWarningMessage,
+  pretreatmentRequestParameters,
+  showSimpleRuntimeError,
+  showSimpleWarningMessage,
+} from 'easy-soft-utility';
+
+import {
+  defaultFormState,
+  formNameCollection,
+  getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 import {
   buildPageHeaderTagWrapper,
@@ -21,7 +25,7 @@ import {
   pageHeaderExtraContent,
 } from 'antd-management-fast-component';
 
-import DataCore from '../../DataSingleView/DataCore';
+import { DataCore } from '../../DataSingleView/DataCore';
 
 import styles from './index.less';
 
@@ -34,21 +38,23 @@ class BaseAddForm extends DataCore {
 
   formRef = React.createRef();
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     const defaultState = defaultFormState();
 
     this.state = {
       ...defaultState,
-      ...{
-        dataLoading: false,
-      },
+
+      dataLoading: false,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
+    );
   }
 
   adjustWhenDidMount = () => {
@@ -73,7 +79,7 @@ class BaseAddForm extends DataCore {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   afterFillForm = (initialValues) => {};
 
   setFormFieldsValue = (v) => {
@@ -86,8 +92,8 @@ class BaseAddForm extends DataCore {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterSetFieldsValue = (v) => {};
+  // eslint-disable-next-line no-unused-vars
+  afterSetFieldsValue = (values) => {};
 
   handleFormReset = () => {
     const form = this.getTargetForm();
@@ -103,8 +109,8 @@ class BaseAddForm extends DataCore {
 
   supplementSubmitRequestParams = (o) => o;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  validate = (e) => {
+  // eslint-disable-next-line no-unused-vars
+  validate = (event) => {
     const form = this.getTargetForm();
 
     const { validateFields } = form;
@@ -115,7 +121,7 @@ class BaseAddForm extends DataCore {
 
     validateFields()
       .then((values) => {
-        let submitData = pretreatmentRequestParams(values);
+        let submitData = pretreatmentRequestParameters(values);
 
         submitData = that.supplementSubmitRequestParams(submitData);
 
@@ -158,29 +164,38 @@ class BaseAddForm extends DataCore {
                       processing: false,
                       dispatchComplete: true,
                     });
+
+                    return remoteData;
                   })
-                  .catch((res) => {
-                    logObject(res);
+                  // eslint-disable-next-line promise/no-nesting
+                  .catch((error) => {
+                    logObject(error);
 
                     that.setState({
                       processing: false,
                       dispatchComplete: true,
                     });
+
+                    return;
                   });
               },
             );
           });
         }
+
+        return values;
       })
       .catch((error) => {
         const { errorFields } = error;
 
-        if (!isUndefined(errorFields)) {
+        if (isUndefined(errorFields)) {
+          showSimpleRuntimeError(error);
+        } else {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          for (const o of Object.values(errorFields)) {
             m.push(o.errors[0]);
-          });
+          }
 
           const maxLength = 5;
           let beyondMax = false;
@@ -197,14 +212,10 @@ class BaseAddForm extends DataCore {
             errorMessage += ' ...';
           }
 
-          showWarningMessage({
-            message: errorMessage,
-          });
-        } else {
-          showRuntimeError({
-            message: error,
-          });
+          showSimpleWarningMessage(errorMessage);
         }
+
+        return;
       });
   };
 
@@ -229,7 +240,7 @@ class BaseAddForm extends DataCore {
     const initialValues = this.buildInitialValues();
 
     const formLayout = this.buildFormLayout();
-    const otherFormProps = this.establishFormAdditionalConfig();
+    const otherFormProperties = this.establishFormAdditionalConfig();
 
     return (
       <Form
@@ -237,7 +248,7 @@ class BaseAddForm extends DataCore {
         layout={formLayout}
         initialValues={initialValues}
         className={this.getFormClassName()}
-        {...otherFormProps}
+        {...otherFormProperties}
       >
         {this.formContent()}
       </Form>
@@ -245,15 +256,15 @@ class BaseAddForm extends DataCore {
   };
 
   buildNotificationDescription = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     submitData = null,
   }) => {
     return `数据已经保存成功，请进行下一步操作。`;
@@ -268,7 +279,7 @@ class BaseAddForm extends DataCore {
       avatarImageLoadResult,
     } = this.state;
 
-    const avatarProps = showPageHeaderAvatar
+    const avatarProperties = showPageHeaderAvatar
       ? decorateAvatar(
           this.establishPageHeaderAvatarConfig(),
           defaultAvatarIcon,
@@ -285,7 +296,7 @@ class BaseAddForm extends DataCore {
     return (
       <PageContainer
         className={styles.customContainor}
-        avatar={avatarProps}
+        avatar={avatarProperties}
         title={buildPageHeaderTitle(
           this.getPageName(),
           this.establishPageHeaderTitlePrefix(),

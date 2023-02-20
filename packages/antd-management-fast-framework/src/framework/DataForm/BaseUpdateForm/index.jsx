@@ -2,13 +2,14 @@ import {
   isFunction,
   isUndefined,
   logObject,
-  pretreatmentRequestParams,
-  showWarningMessage,
-} from 'antd-management-fast-common';
+  pretreatmentRequestParameters,
+  showSimpleRuntimeError,
+  showSimpleWarningMessage,
+} from 'easy-soft-utility';
 
-import { DataSingleView } from '../../DataSingleView/DataLoad';
+import { DataLoad } from '../../DataSingleView/DataLoad';
 
-class BaseUpdateForm extends DataSingleView {
+class BaseUpdateForm extends DataLoad {
   goToUpdateWhenProcessed = false;
 
   handleFormReset = () => {
@@ -33,14 +34,12 @@ class BaseUpdateForm extends DataSingleView {
     if ((submitApiPath || '') === '') {
       const text = `缺少 submitApiPath 配置！`;
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
 
       return;
     }
 
-    let submitData = pretreatmentRequestParams(values || {});
+    let submitData = pretreatmentRequestParameters(values || {});
 
     submitData = this.supplementSubmitRequestParams(submitData);
 
@@ -91,14 +90,18 @@ class BaseUpdateForm extends DataSingleView {
                     dispatchComplete: true,
                   });
                 }
+
+                return remoteData;
               })
-              .catch((res) => {
-                logObject(res);
+              .catch((error_) => {
+                logObject(error_);
 
                 that.setState({
                   processing: false,
                   dispatchComplete: true,
                 });
+
+                return;
               });
           },
         );
@@ -106,8 +109,8 @@ class BaseUpdateForm extends DataSingleView {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  validate = (e) => {
+  // eslint-disable-next-line no-unused-vars
+  validate = (event) => {
     const form = this.getTargetForm();
 
     if (form == null) {
@@ -123,16 +126,20 @@ class BaseUpdateForm extends DataSingleView {
             this.reloadByUrl();
           }
         });
+
+        return values;
       })
       .catch((error) => {
         const { errorFields } = error;
 
-        if (!isUndefined(errorFields)) {
+        if (isUndefined(errorFields)) {
+          showSimpleRuntimeError(error);
+        } else {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          for (const o of Object.values(errorFields)) {
             m.push(o.errors[0]);
-          });
+          }
 
           const maxLength = 5;
           let beyondMax = false;
@@ -149,13 +156,7 @@ class BaseUpdateForm extends DataSingleView {
             errorMessage += ' ...';
           }
 
-          showWarningMessage({
-            message: errorMessage,
-          });
-        } else {
-          showRuntimeError({
-            message: error,
-          });
+          showSimpleWarningMessage(errorMessage);
         }
       });
   };

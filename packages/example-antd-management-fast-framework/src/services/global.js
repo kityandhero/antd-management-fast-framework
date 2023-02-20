@@ -1,14 +1,15 @@
-import { request } from 'antd-management-fast-common';
+import { request, requestMode } from 'easy-soft-utility';
 
 /**
  * 综合数据
  * @param {*} params
  */
-export async function getData(params) {
+export async function getData(parameters) {
   return request({
     api: `/metaData/get`,
-    params,
-    virtualSuccessResponse: {
+    params: parameters,
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
       data: {
         mediaTypeList: [
           {

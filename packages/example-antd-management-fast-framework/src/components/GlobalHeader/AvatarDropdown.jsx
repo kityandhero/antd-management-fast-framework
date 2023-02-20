@@ -1,12 +1,10 @@
 import { Avatar, Menu, Spin } from 'antd';
 import React from 'react';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
-import {
-  defaultUserAvatar,
-  goToPath,
-  logDebug,
-} from 'antd-management-fast-common';
+import { logDebug, navigateTo } from 'easy-soft-utility';
+
+import { defaultUserAvatar } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
 import HeaderDropdown from '../HeaderDropdown';
@@ -33,7 +31,7 @@ class AvatarDropdown extends React.Component {
       return;
     }
 
-    goToPath(`/entrance/${key}`);
+    navigateTo(`/entrance/${key}`);
   };
 
   render() {
@@ -58,7 +56,17 @@ class AvatarDropdown extends React.Component {
       />
     );
 
-    return currentOperator != null ? (
+    return currentOperator == null ? (
+      <div className="unknownBox">
+        <Spin
+          size="small"
+          style={{
+            marginLeft: 8,
+            marginRight: 8,
+          }}
+        />
+      </div>
+    ) : (
       <HeaderDropdown overlay={menuHeaderDropdown}>
         <span className={`${styles.action} ${styles.account}`}>
           <Avatar
@@ -72,20 +80,10 @@ class AvatarDropdown extends React.Component {
           </span>
         </span>
       </HeaderDropdown>
-    ) : (
-      <div className="unknownBox">
-        <Spin
-          size="small"
-          style={{
-            marginLeft: 8,
-            marginRight: 8,
-          }}
-        />
-      </div>
     );
   }
 }
 
 export default connect(({ global }) => ({
-  metaData,
+  global,
 }))(AvatarDropdown);

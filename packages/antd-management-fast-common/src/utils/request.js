@@ -9,7 +9,7 @@ import {
 } from 'easy-soft-utility';
 
 import { corsTarget } from './common';
-import { runtimeSettings } from './dynamicSetting';
+import { getShowRequestInfo } from './settingAssist';
 import { getToken, getTokenKeyName } from './tokenAssist';
 
 export async function request({
@@ -38,11 +38,7 @@ export async function request({
   let urlChange = url;
 
   if (!checkStringIsNullOrWhiteSpace(corsUrl)) {
-    if (url.indexOf(corsUrl) >= 0) {
-      urlChange = url;
-    } else {
-      urlChange = `${corsUrl}${url}`;
-    }
+    urlChange = url.includes(corsUrl) ? url : `${corsUrl}${url}`;
   }
 
   trySendNearestLocalhostNotify({ text: corsUrl });
@@ -53,7 +49,7 @@ export async function request({
     throw new Error('urlChange is not string');
   }
 
-  const showRequestInfo = runtimeSettings.getShowRequestInfo();
+  const showRequestInfo = getShowRequestInfo();
 
   const headers = {};
 
@@ -72,6 +68,13 @@ export async function request({
     method,
     params: {},
     body: data,
-    ...(option || {}),
+    ...option,
   });
+}
+
+/**
+ * 设置 Request 处理器
+ */
+export function setRequestHandler() {
+  setRequestHandler(request);
 }

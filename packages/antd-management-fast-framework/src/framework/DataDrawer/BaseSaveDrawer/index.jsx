@@ -3,19 +3,18 @@ import { drawerConfig } from 'antd-management-fast-common';
 import { Base } from '../Base';
 
 class BaseSaveDrawer extends Base {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        showBottomBar: true,
-      },
+
+      showBottomBar: true,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   adjustWhenDidMount = () => {

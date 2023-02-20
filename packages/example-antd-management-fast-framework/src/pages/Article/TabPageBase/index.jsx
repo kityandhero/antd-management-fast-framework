@@ -1,26 +1,27 @@
-import { getDerivedStateFromPropsForUrlParams } from 'antd-management-fast-common';
-import BaseUpdateFormTab from 'antd-management-fast-framework/es/framework/DataForm/BaseUpdateFormTab';
+import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
+import { DataForm } from 'antd-management-fast-framework';
 
 import {
   checkNeedUpdateAssist,
-  parseUrlParamsForSetState,
+  parseUrlParametersForSetState as parseUrlParametersForSetState,
 } from '../Assist/config';
+
+const { BaseUpdateFormTab } = DataForm;
 
 class TabPageBase extends BaseUpdateFormTab {
   goToUpdateWhenProcessed = true;
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(
-      nextProps,
-      prevState,
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
       { id: '' },
-      parseUrlParamsForSetState,
+      parseUrlParametersForSetState,
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  checkNeedUpdate = (preProps, preState, snapshot) => {
-    return checkNeedUpdateAssist(this.state, preProps, preState, snapshot);
+  checkNeedUpdate = (preProperties, preState, snapshot) => {
+    return checkNeedUpdateAssist(this.state, preProperties, preState, snapshot);
   };
 
   supplementLoadRequestParams = (o) => {

@@ -1,5 +1,5 @@
 import { List } from 'antd';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import {
   convertCollection,
@@ -24,19 +24,18 @@ import {
   buildRadioGroup,
   iconBuilder,
 } from 'antd-management-fast-component';
-import SinglePage from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePage';
+import { DataSinglePageView } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/config';
-import { colorCollection } from '@/customConfig/constants';
+import { accessWayCollection } from '../../../customConfig/config';
+import { colorCollection } from '../../../customConfig/constants';
 import {
   getArticleRenderTypeName,
   renderSearchArticleRenderTypeSelect,
-} from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
+} from '../../../customSpecialComponents/FunctionSupplement/ArticleRenderType';
 import {
   getArticleStatusName,
   renderSearchArticleStatusSelect,
-} from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
+} from '../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
   refreshCacheAction,
@@ -49,6 +48,8 @@ import { fieldData, statusCollection } from '../Common/data';
 import SingleListDrawer from '../SingleListDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 
+const { SinglePage } = DataSinglePageView;
+
 @connect(({ article, global, loading }) => ({
   article,
   global,
@@ -59,54 +60,59 @@ class SingleList extends SinglePage {
 
   componentAuthority = accessWayCollection.article.singleList.permission;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        pageSize: 8,
-        pageName: '文章单页列表',
-        paramsKey: accessWayCollection.article.singleList.permission,
-        loadApiPath: 'article/singleList',
-        listViewMode: listViewConfig.viewMode.table,
-        changeSortModalVisible: false,
-        addBasicInfoDrawerVisible: false,
-        updateBasicInfoDrawerVisible: false,
-        singleListDrawerVisible: false,
-        currentRecord: null,
-      },
+
+      pageSize: 8,
+      pageName: '文章单页列表',
+      paramsKey: accessWayCollection.article.singleList.permission,
+      loadApiPath: 'article/singleList',
+      listViewMode: listViewConfig.viewMode.table,
+      changeSortModalVisible: false,
+      addBasicInfoDrawerVisible: false,
+      updateBasicInfoDrawerVisible: false,
+      singleListDrawerVisible: false,
+      currentRecord: null,
     };
   }
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
-      case 'showUpdateBasicInfoDrawer':
+      case 'showUpdateBasicInfoDrawer': {
         this.showUpdateBasicInfoDrawer(handleData);
         break;
+      }
 
-      case 'setOnline':
+      case 'setOnline': {
         this.setOnline(handleData);
         break;
+      }
 
-      case 'setOffline':
+      case 'setOffline': {
         this.setOffline(handleData);
         break;
+      }
 
-      case 'setSort':
+      case 'setSort': {
         this.showChangeSortModal(handleData);
         break;
+      }
 
-      case 'refreshCache':
+      case 'refreshCache': {
         this.refreshCache(handleData);
         break;
+      }
 
-      default:
+      default: {
         break;
+      }
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   handleItemStatus = ({ target, record, remoteData }) => {
     const articleId = getValueByKey({
       data: remoteData,
@@ -240,18 +246,20 @@ class SingleList extends SinglePage {
 
   afterChangeSortModalOk = ({
     singleData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     listData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     extraData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     responseOriginalData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     submitData,
   }) => {
     const that = this;
 
-    if (singleData != null) {
+    if (singleData == null) {
+      that.reloadData();
+    } else {
       const articleId = getValueByKey({
         data: singleData,
         key: fieldData.articleId.name,
@@ -276,8 +284,6 @@ class SingleList extends SinglePage {
           return d;
         },
       });
-    } else {
-      that.reloadData();
     }
 
     that.setState({
@@ -468,10 +474,10 @@ class SingleList extends SinglePage {
               availability: whetherNumber.no,
             },
           ],
-          onChange: (e) => {
+          onChange: (event) => {
             const {
               target: { value: v },
-            } = e;
+            } = event;
 
             this.setState({
               listViewMode: v,
@@ -613,7 +619,7 @@ class SingleList extends SinglePage {
     };
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemInner = (r, index) => {
     return (
       <>
@@ -653,10 +659,10 @@ class SingleList extends SinglePage {
       facadeConfig: {
         color: colorCollection.price,
       },
-      formatValue: (val) => {
+      formatValue: (value) => {
         return getArticleRenderTypeName({
           metaData: this.getMetaData(),
-          value: val,
+          value: value,
         });
       },
     },
@@ -666,12 +672,12 @@ class SingleList extends SinglePage {
       emptyValue: '--',
       showRichFacade: true,
       facadeMode: columnFacadeMode.badge,
-      facadeConfigBuilder: (val) => {
+      facadeConfigBuilder: (value) => {
         return {
-          status: getStatusBadge(val),
+          status: getStatusBadge(value),
           text: getArticleStatusName({
             metaData: this.getMetaData(),
-            value: val,
+            value: value,
           }),
         };
       },

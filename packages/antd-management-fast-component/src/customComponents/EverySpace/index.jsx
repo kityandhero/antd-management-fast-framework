@@ -16,7 +16,6 @@ class EverySpace extends PureComponent {
     }
 
     const customStyle = {
-      ...{},
       ...(checkStringIsNullOrWhiteSpace(backgroundColor || '')
         ? {}
         : { backgroundColor }),
@@ -31,9 +30,7 @@ class EverySpace extends PureComponent {
         {direction === 'horizontal' ? (
           <div
             style={{
-              ...{
-                height: `${size}px`,
-              },
+              height: `${size}px`,
               ...customStyle,
             }}
           />
@@ -42,10 +39,8 @@ class EverySpace extends PureComponent {
         {direction === 'vertical' ? (
           <div
             style={{
-              ...{
-                height: `100%`,
-                width: `${size}px`,
-              },
+              height: `100%`,
+              width: `${size}px`,
               ...customStyle,
             }}
           />

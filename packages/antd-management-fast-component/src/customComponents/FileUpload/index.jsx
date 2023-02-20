@@ -11,9 +11,17 @@ import {
 import React, { PureComponent } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 
-import { isFunction, showErrorMessage } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isFunction,
+  showErrorMessage,
+  showSimpleRuntimeError,
+} from 'easy-soft-utility';
 
-import { copyToClipboard, runtimeSettings } from 'antd-management-fast-common';
+import {
+  copyToClipboard,
+  getFileUploadMaxSize,
+} from 'antd-management-fast-common';
 
 import { iconBuilder } from '../Icon';
 import { IconInfo } from '../IconInfo';
@@ -21,26 +29,25 @@ import { IconInfo } from '../IconInfo';
 const { TextArea } = Input;
 
 class FileUpload extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        fileSource: '',
-        fileUrl: '',
-        fileUrlTemp: '',
-        uploading: false,
-        changeUrlVisible: false,
-      },
+
+      fileSource: '',
+      fileUrl: '',
+      fileUrlTemp: '',
+      uploading: false,
+      changeUrlVisible: false,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { file: fileNext } = nextProps;
-    const { fileSource: filePrev } = prevState;
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    const { file: fileNext } = nextProperties;
+    const { fileSource: filePrevious } = previousState;
 
-    if ((fileNext || '') !== (filePrev || '')) {
+    if ((fileNext || '') !== (filePrevious || '')) {
       return {
         fileSource: fileNext,
         fileUrl: fileNext,
@@ -59,10 +66,10 @@ class FileUpload extends PureComponent {
     });
   };
 
-  handleUrlChange = (e) => {
+  handleUrlChange = (event) => {
     const {
       target: { value: v },
-    } = e;
+    } = event;
 
     this.setState({
       fileUrlTemp: v,
@@ -84,7 +91,7 @@ class FileUpload extends PureComponent {
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
-          showRuntimeError({
+          showSimpleRuntimeError({
             message: text,
           });
         }
@@ -112,20 +119,19 @@ class FileUpload extends PureComponent {
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
-          showRuntimeError({
-            message: text,
-          });
+          showSimpleRuntimeError(text);
         }
       },
     );
   };
 
   beforeUpload = (file) => {
-    const isLt3M =
-      file.size / 1024 / 1024 < runtimeSettings.getFileUploadMaxSize();
+    const maxSize = getFileUploadMaxSize();
+
+    const isLt3M = file.size / 1024 / 1024 < maxSize;
 
     if (!isLt3M) {
-      const text = `文件不能超过${runtimeSettings.getFileUploadMaxSize()}MB!`;
+      const text = `文件不能超过${maxSize}MB!`;
 
       showErrorMessage({
         message: text,
@@ -162,32 +168,29 @@ class FileUpload extends PureComponent {
             } else {
               const text = 'afterChangeSuccess 配置无效';
 
-              showRuntimeError({
-                message: text,
-              });
+              showSimpleRuntimeError(text);
             }
           },
         );
       } else {
         const text = 'pretreatmentRemoteResponse 配置无效';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
       }
     }
   };
 
-  handleMenuClick = (e) => {
-    const { key } = e;
+  handleMenuClick = (event) => {
+    const { key } = event;
     const { fileUrl } = this.state;
 
     switch (key) {
-      case 'changeUrl':
+      case 'changeUrl': {
         this.showChangeUrlModal();
         break;
+      }
 
-      case 'copyUrl':
+      case 'copyUrl': {
         if (checkStringIsNullOrWhiteSpace(fileUrl)) {
           const text = '当前未设置文件地址';
 
@@ -199,13 +202,16 @@ class FileUpload extends PureComponent {
         }
 
         break;
+      }
 
-      case 'clearUrl':
+      case 'clearUrl': {
         this.clearUrl();
         break;
+      }
 
-      default:
+      default: {
         break;
+      }
     }
   };
 
@@ -213,7 +219,7 @@ class FileUpload extends PureComponent {
     const { action, disabled, tokenSet } = this.props;
     const { uploading, changeUrlVisible, fileUrlTemp, fileUrl } = this.state;
 
-    const uploadProps = {
+    const uploadProperties = {
       disabled,
       action,
       listType: 'text',
@@ -246,7 +252,7 @@ class FileUpload extends PureComponent {
     const addonAfter = (
       <Space split={<Divider type="vertical" />}>
         <Tooltip key="showChangeUrlTip" placement="top" title="上传文件">
-          <Upload {...uploadProps}>
+          <Upload {...uploadProperties}>
             <Button
               style={{
                 border: '0px solid #d9d9d9',

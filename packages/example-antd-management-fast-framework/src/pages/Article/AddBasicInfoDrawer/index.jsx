@@ -1,13 +1,15 @@
 import { Checkbox } from 'antd';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import { cardConfig, drawerConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
+import { DataDrawer } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '@/customConfig/accessWayCollection';
 
 import { fieldData } from '../Common/data';
+
+const { BaseAddDrawer } = DataDrawer;
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -17,15 +19,14 @@ import { fieldData } from '../Common/data';
 class Index extends BaseAddDrawer {
   componentAuthority = accessWayCollection.article.addBasicInfo.permission;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        loadApiPath: 'article/get',
-        submitApiPath: 'article/addBasicInfo',
-      },
+
+      loadApiPath: 'article/get',
+      submitApiPath: 'article/addBasicInfo',
     };
   }
 

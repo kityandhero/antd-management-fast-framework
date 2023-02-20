@@ -1,10 +1,11 @@
 import { Avatar, List } from 'antd';
 import classNames from 'classnames';
+import React from 'react';
 
 import styles from './NoticeList.less';
 
 const NoticeList = ({
-  data = [],
+  list = [],
   onClick,
   onClear,
   title,
@@ -15,7 +16,7 @@ const NoticeList = ({
   viewMoreText,
   showViewMore = false,
 }) => {
-  if (data.length === 0) {
+  if (!list || list.length === 0) {
     return (
       <div className={styles.notFound}>
         <img
@@ -26,17 +27,16 @@ const NoticeList = ({
       </div>
     );
   }
-
   return (
     <div>
       <List
         className={styles.list}
-        dataSource={data}
-        renderItem={(item, i) => {
+        dataSource={list}
+        renderItem={(item, index) => {
           const itemCls = classNames(styles.item, {
             [styles.read]: item.read,
-          }); // eslint-disable-next-line no-nested-ternary
-
+          });
+          // eslint-disable-next-line no-nested-ternary
           const leftIcon = item.avatar ? (
             typeof item.avatar === 'string' ? (
               <Avatar className={styles.avatar} src={item.avatar} />
@@ -44,11 +44,14 @@ const NoticeList = ({
               <span className={styles.iconElement}>{item.avatar}</span>
             )
           ) : null;
+
           return (
             <List.Item
               className={itemCls}
-              key={item.key || i}
-              onClick={() => onClick && onClick(item)}
+              key={item.key || index}
+              onClick={() => {
+                onClick?.(item);
+              }}
             >
               <List.Item.Meta
                 className={styles.meta}
@@ -78,9 +81,9 @@ const NoticeList = ({
         ) : null}
         {showViewMore ? (
           <div
-            onClick={(e) => {
+            onClick={(event) => {
               if (onViewMore) {
-                onViewMore(e);
+                onViewMore(event);
               }
             }}
           >

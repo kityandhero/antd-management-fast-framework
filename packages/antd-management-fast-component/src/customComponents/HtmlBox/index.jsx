@@ -35,8 +35,8 @@ class HtmlBox extends PureComponent {
     return (
       <span
         className={styles.richTextBox}
-        ref={(ref) => {
-          this.main = ref;
+        ref={(reference) => {
+          this.main = reference;
         }}
       />
     );

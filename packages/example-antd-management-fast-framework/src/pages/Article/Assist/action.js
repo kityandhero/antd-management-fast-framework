@@ -1,8 +1,6 @@
-import {
-  actionCore,
-  confirmActionCore,
-  getValueByKey,
-} from 'antd-management-fast-common';
+import { getValueByKey } from 'easy-soft-utility';
+
+import { actionCore, confirmActionCore } from 'antd-management-fast-common';
 
 import { fieldData, mediaItemData } from '../Common/data';
 

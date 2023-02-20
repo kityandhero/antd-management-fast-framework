@@ -6,33 +6,31 @@ import { cardConfig } from 'antd-management-fast-common';
 import { BaseUpdateModal } from '../BaseUpdateModal';
 
 class BaseUpdateTransferModal extends BaseUpdateModal {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        width: 712,
-        targetKeys: [],
-        selectedKeys: [],
-      },
+
+      width: 712,
+      targetKeys: [],
+      selectedKeys: [],
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  buildTargetKeys = (preProps, preState, snapshot) => {
+  // eslint-disable-next-line no-unused-vars
+  buildTargetKeys = (preProperties, preState, snapshot) => {
     throw new Error('buildTargetKeys need overload');
   };
 
-  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
     this.setState(
       {
-        targetKeys: this.buildTargetKeys(preProps, preState, snapshot),
+        targetKeys: this.buildTargetKeys(preProperties, preState, snapshot),
       },
       () => {
         this.reloadData();
@@ -58,7 +56,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
     return ['未拥有', '已拥有'];
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   buildItem = (o) => {
     throw new Error('buildItem need overload');
   };

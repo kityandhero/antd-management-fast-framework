@@ -1,4 +1,4 @@
-import { emptyLogo as emptyLogoSource } from './mediaDefault';
+import { emptyLogo } from './mediaDefault';
 
 export const whetherList = [
   {
@@ -49,8 +49,6 @@ export const defaultUserAvatar = '/user.png';
 
 export const defaultEmptyImage = '/noImageSmall.png';
 
-export const emptyLogo = emptyLogoSource;
-
 export const appInitDefault = {
   platformName: '平台名称',
   appName: '应用名称',
@@ -66,19 +64,19 @@ export const appInitDefault = {
   },
   showSelectLanguage: false,
   showLogoInEntrance: true,
-  emptyLogo,
+  emptyLogo: emptyLogo,
   leftBarLogo: emptyLogo,
   apiSuccessCode,
   authenticationFailCode,
-  entrancePath: '/entrance/signIn',
-  appListDataPath: '',
-  appListData: [],
-  metaDataPath: '',
+  entranceApi: '/entrance/signIn',
+  applicationListDataApi: '',
+  applicationListData: [],
+  metaDataApi: '',
   metaData: {},
   showLogInConsole: false,
   showRequestInfo: false,
-  useVirtualRequest: false,
-  showUseVirtualRequestMessage: false,
+  useSimulateRequest: false,
+  promptSimulation: false,
   apiVersion: '',
   imageUploadMaxSize: 2,
   audioUploadMaxSize: 4,
@@ -88,15 +86,6 @@ export const appInitDefault = {
   tinymceApiKey: '',
   tinymceImagesUploadUrl: '',
   layoutSetting: {},
-};
-
-/**
- * accessWaySpecialCollection
- */
-export const accessWaySpecialCollection = {
-  super: {
-    permission: 'super',
-  },
 };
 
 export const formNameCollection = {
@@ -653,9 +642,9 @@ export const unlimitedWithStringFlag = {
  * 数字类型不限【-10000】
  */
 export const unlimitedWithNumberFlag = {
-  key: -10000,
+  key: -10_000,
   name: '不限',
-  flag: -10000,
+  flag: -10_000,
 };
 
 /**

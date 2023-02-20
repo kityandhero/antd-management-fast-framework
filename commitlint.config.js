@@ -1,3 +1,7 @@
+/* eslint-disable no-undef */
+/* eslint-disable unicorn/prefer-module */
+/* eslint-disable no-useless-escape */
+
 module.exports = {
   extends: [
     '@commitlint/config-conventional',
@@ -9,7 +13,7 @@ module.exports = {
       skip: '[可跳过]',
       max: '[字数上限: %d]',
       min: '[字数下限: %d]',
-      emptyWarning: '此为必填项目，不能为空白',
+      emptyWarning: '此为必填项目, 不能为空白',
       upperLimitWarning: '超过最大限制',
       lowerLimitWarning: '低于最小限制',
     },
@@ -89,7 +93,7 @@ module.exports = {
         description: '有什么突破性的变化吗?',
       },
       breakingBody: {
-        description: '中断变更提交需要一个主体。请输入提交本身的更长的描述',
+        description: '中断变更提交需要一个主体. 请输入提交本身的更长的描述',
       },
       breaking: {
         description: '描述突破性的变化',
@@ -99,10 +103,10 @@ module.exports = {
       },
       issuesBody: {
         description:
-          '如果问题被关闭，则提交需要一个主体。请输入提交本身的更长的描述',
+          '如果问题被关闭, 则提交需要一个主体. 请输入提交本身的更长的描述',
       },
       issues: {
-        description: '添加问题引用(例如:"fix #123"， "re #123".)',
+        description: '添加问题引用(例如:"fix #123",  "re #123".)',
       },
     },
   },

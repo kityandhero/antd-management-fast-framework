@@ -11,9 +11,17 @@ import {
 import React, { PureComponent } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 
-import { isFunction, showErrorMessage } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isFunction,
+  showErrorMessage,
+  showSimpleRuntimeError,
+} from 'easy-soft-utility';
 
-import { copyToClipboard, runtimeSettings } from 'antd-management-fast-common';
+import {
+  copyToClipboard,
+  getVideoUploadMaxSize,
+} from 'antd-management-fast-common';
 
 import { buildPlayer } from '../FunctionComponent';
 import { iconBuilder } from '../Icon';
@@ -22,27 +30,26 @@ import { IconInfo } from '../IconInfo';
 const { TextArea } = Input;
 
 class VideoUpload extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        videoSource: '',
-        videoUrl: '',
-        videoUrlTemp: '',
-        uploading: false,
-        previewVisible: false,
-        changeUrlVisible: false,
-      },
+
+      videoSource: '',
+      videoUrl: '',
+      videoUrlTemp: '',
+      uploading: false,
+      previewVisible: false,
+      changeUrlVisible: false,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { video: videoNext } = nextProps;
-    const { videoSource: videoPrev } = prevState;
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    const { video: videoNext } = nextProperties;
+    const { videoSource: videoPrevious } = previousState;
 
-    if ((videoNext || '') !== (videoPrev || '')) {
+    if ((videoNext || '') !== (videoPrevious || '')) {
       return {
         videoSource: videoNext,
         videoUrl: videoNext,
@@ -85,10 +92,10 @@ class VideoUpload extends PureComponent {
     });
   };
 
-  handleUrlChange = (e) => {
+  handleUrlChange = (event) => {
     const {
       target: { value: v },
-    } = e;
+    } = event;
 
     this.setState({
       videoUrlTemp: v,
@@ -110,9 +117,7 @@ class VideoUpload extends PureComponent {
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
-          showRuntimeError({
-            message: text,
-          });
+          showSimpleRuntimeError(text);
         }
       },
     );
@@ -138,9 +143,7 @@ class VideoUpload extends PureComponent {
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
-          showRuntimeError({
-            message: text,
-          });
+          showSimpleRuntimeError(text);
         }
       },
     );
@@ -157,8 +160,7 @@ class VideoUpload extends PureComponent {
       });
     }
 
-    const isLt3M =
-      file.size / 1024 / 1024 < runtimeSettings.getVideoUploadMaxSize();
+    const isLt3M = file.size / 1024 / 1024 < getVideoUploadMaxSize();
 
     if (!isLt3M) {
       const text = '视频文件不能超过3MB!';
@@ -198,36 +200,34 @@ class VideoUpload extends PureComponent {
             } else {
               const text = 'afterChangeSuccess 配置无效';
 
-              showRuntimeError({
-                message: text,
-              });
+              showSimpleRuntimeError(text);
             }
           },
         );
       } else {
         const text = 'pretreatmentRemoteResponse 配置无效';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
       }
     }
   };
 
-  handleMenuClick = (e) => {
-    const { key } = e;
+  handleMenuClick = (event) => {
+    const { key } = event;
     const { videoUrl } = this.state;
 
     switch (key) {
-      case 'changeUrl':
+      case 'changeUrl': {
         this.showChangeUrlModal();
         break;
+      }
 
-      case 'showPreview':
+      case 'showPreview': {
         this.showPreviewModal();
         break;
+      }
 
-      case 'copyUrl':
+      case 'copyUrl': {
         if (checkStringIsNullOrWhiteSpace(videoUrl)) {
           const text = '当前未设置视频地址';
 
@@ -239,13 +239,16 @@ class VideoUpload extends PureComponent {
         }
 
         break;
+      }
 
-      case 'clearUrl':
+      case 'clearUrl': {
         this.clearUrl();
         break;
+      }
 
-      default:
+      default: {
         break;
+      }
     }
   };
 
@@ -259,7 +262,7 @@ class VideoUpload extends PureComponent {
       videoUrl,
     } = this.state;
 
-    const uploadProps = {
+    const uploadProperties = {
       disabled,
       action,
       listType: 'text',
@@ -313,7 +316,7 @@ class VideoUpload extends PureComponent {
         ) : null}
 
         <Tooltip key="showChangeUrlTip" placement="top" title="上传视频">
-          <Upload {...uploadProps}>
+          <Upload {...uploadProperties}>
             <Button
               style={{
                 border: '0px solid #d9d9d9',

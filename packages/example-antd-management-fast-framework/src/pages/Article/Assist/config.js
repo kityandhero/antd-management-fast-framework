@@ -1,14 +1,14 @@
-export function parseUrlParamsForSetState({ urlParams }) {
+export function parseUrlParametersForSetState({ urlParams }) {
   const { id } = urlParams;
 
   return { articleId: id };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function checkNeedUpdateAssist(
   currentState,
-  preProps,
+  preProperties,
   preState,
+  // eslint-disable-next-line no-unused-vars
   snapshot,
 ) {
   const { articleId } = currentState;

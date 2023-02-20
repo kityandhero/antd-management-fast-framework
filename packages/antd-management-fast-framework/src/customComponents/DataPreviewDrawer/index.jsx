@@ -1,10 +1,9 @@
 import parse from 'html-react-parser';
 
-import {
-  cardConfig,
-  dataTypeCollection,
-  toNumber,
-} from 'antd-management-fast-common';
+import { toNumber } from 'easy-soft-utility';
+
+import { cardConfig, dataTypeCollection } from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 
 import { Base } from '../../framework/DataDrawer/Base';
 
@@ -15,14 +14,12 @@ class DataPreviewDrawer extends Base {
 
   resetDataAfterLoad = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        showBottomBar: true,
-      },
+      showBottomBar: true,
     };
   }
 

@@ -38,4 +38,4 @@ export const mediaTypeCollection = {
   link: 100,
 };
 
-export const defaultPoint = [113.672108, 34.749387];
+export const defaultPoint = [113.672_108, 34.749_387];

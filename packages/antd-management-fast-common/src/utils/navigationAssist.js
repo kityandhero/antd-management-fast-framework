@@ -1,8 +1,9 @@
 import nprogress from 'nprogress';
+import { history } from '@umijs/max';
 
 import { isString, setNavigator, setRedirector } from 'easy-soft-utility';
 
-import { runtimeSettings } from './dynamicSetting';
+import { getUseNprogress } from './settingAssist';
 
 function navigateTo(o) {
   const location = isString(o)
@@ -11,7 +12,7 @@ function navigateTo(o) {
       }
     : o;
 
-  if (runtimeSettings.getUseNprogress()) {
+  if (getUseNprogress()) {
     nprogress.inc();
 
     setTimeout(() => {
@@ -29,7 +30,7 @@ function redirectTo(o) {
       }
     : o;
 
-  if (runtimeSettings.getUseNprogress()) {
+  if (getUseNprogress()) {
     nprogress.inc();
 
     setTimeout(() => {

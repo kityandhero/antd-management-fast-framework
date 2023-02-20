@@ -1,4 +1,4 @@
-import Whether from './Whether';
+import * as Whether from './Whether';
 
 const FunctionSupplement = {
   Whether,

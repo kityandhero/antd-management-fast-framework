@@ -36,13 +36,13 @@ class FooterToolbar extends Component {
   };
 
   render() {
-    const { children, className, extra, ...restProps } = this.props;
+    const { children, className, extra, ...restProperties } = this.props;
     const { width } = this.state;
     return (
       <div
         className={classNames(className, styles.toolbar)}
         style={{ width }}
-        {...restProps}
+        {...restProperties}
       >
         <div className={styles.left}>{extra}</div>
         <div className={styles.right}>{children}</div>

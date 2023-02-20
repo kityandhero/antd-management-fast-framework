@@ -1,9 +1,10 @@
-import { request } from 'antd-management-fast-common';
+import { request, requestMode } from 'easy-soft-utility';
 
 export async function getCurrentBasicInfoData() {
   return request({
     api: `/currentOperator/getCurrentBasicInfo`,
-    virtualSuccessResponse: {
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
       data: {
         loginName: 'admin',
         name: 'Li Ma',
@@ -58,16 +59,16 @@ export async function getCurrentBasicInfoData() {
   });
 }
 
-export async function updateCurrentBasicInfoData(params) {
+export async function updateCurrentBasicInfoData(parameters) {
   return request({
     api: `/currentOperator/updateCurrentBasicInfo`,
-    params,
+    params: parameters,
   });
 }
 
-export async function changeCurrentPasswordData(params) {
+export async function changeCurrentPasswordData(parameters) {
   return request({
     api: `/currentOperator/changeCurrentPassword`,
-    params,
+    params: parameters,
   });
 }

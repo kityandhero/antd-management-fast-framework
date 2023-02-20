@@ -11,7 +11,7 @@ export function Result({
   description,
   extra,
   actions,
-  ...restProps
+  ...restProperties
 }) {
   const iconMap = {
     error: <ClockCircleFilled className={styles.error} />,
@@ -19,7 +19,7 @@ export function Result({
   };
   const clsString = classNames(styles.result, className);
   return (
-    <div className={clsString} {...restProps}>
+    <div className={clsString} {...restProperties}>
       <div className={styles.icon}>{iconMap[type]}</div>
       <div className={styles.title}>{title}</div>
       {description && <div className={styles.description}>{description}</div>}

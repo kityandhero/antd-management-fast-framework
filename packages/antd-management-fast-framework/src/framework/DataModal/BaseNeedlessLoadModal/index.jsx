@@ -1,31 +1,28 @@
-import {
-  datetimeFormat,
-  formatDatetime,
-  formNameCollection,
-} from 'antd-management-fast-common';
+import { datetimeFormat, formatDatetime } from 'easy-soft-utility';
+
+import { formNameCollection } from 'antd-management-fast-common';
 
 import { Base } from '../Base';
 
-class BaseAddModal extends Base {
+class BaseNeedlessLoadModal extends Base {
   reloadWhenShow = false;
 
   resetDataAfterLoad = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        visible: false,
-        needReset: false,
-      },
+
+      visible: false,
+      needReset: false,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { visible } = nextProps;
-    const { visible: visiblePre, externalData } = prevState;
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    const { visible } = nextProperties;
+    const { visible: visiblePre, externalData } = previousState;
 
     let needReset = false;
 
@@ -36,8 +33,8 @@ class BaseAddModal extends Base {
     return { visible, needReset, externalData };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
+  // eslint-disable-next-line no-unused-vars
+  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
     const form = this.getTargetForm();
 
     if (!form) {
@@ -63,4 +60,4 @@ class BaseAddModal extends Base {
   };
 }
 
-export { BaseAddModal };
+export { BaseNeedlessLoadModal };

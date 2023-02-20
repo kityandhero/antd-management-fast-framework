@@ -1,33 +1,35 @@
 import {
-  getAppInitConfigData,
-  getModelNameList,
+  getApplicationMergeConfig,
   logConfig,
   logExecute,
-  recordInfo,
+  logInfo,
+  removeLocalMetaData,
   showInfoMessage,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
 
-import { loadAppListData } from './appListDataAssist';
+import { getModelNameList } from 'antd-management-fast-common';
+
+import { loadApplicationListData } from './applicationListDataAssist';
+import { removeApplicationListDataCache } from './applicationListDataCacheAssist';
 import { loadMetaData } from './metaDataAssist';
-import { removeAppListDataCache, removeMetaDataCache } from './storageAssist';
 
 let applicationInitComplete = false;
 let showModelNameList = false;
 let metaDataFirstLoadSuccess = false;
-let appListDataFirstLoadSuccess = false;
+let applicationListDataFirstLoadSuccess = false;
 
 export function applicationInit() {
   if (applicationInitComplete) {
     return;
   }
 
-  logConfig(getAppInitConfigData());
+  logConfig(getApplicationMergeConfig());
 
   requestAnimationFrame(() => {
     const text = '初始数据正在努力加载中，需要一点点时间哦！';
 
     showInfoMessage({
-      message: text,
+      text: text,
       duration: 0.8,
     });
   });
@@ -37,13 +39,13 @@ export function applicationInit() {
   logExecute('applicationInit');
 
   if (!showModelNameList) {
-    recordInfo(`current modelNameList: ${getModelNameList().join()}`);
+    logInfo(`current modelNameList: ${getModelNameList().join(',')}`);
 
     showModelNameList = true;
   }
 
   if (!metaDataFirstLoadSuccess) {
-    removeMetaDataCache();
+    removeLocalMetaData();
 
     loadMetaData({
       successCallback: () => {
@@ -52,12 +54,12 @@ export function applicationInit() {
     });
   }
 
-  if (!appListDataFirstLoadSuccess) {
-    removeAppListDataCache();
+  if (!applicationListDataFirstLoadSuccess) {
+    removeApplicationListDataCache();
 
-    loadAppListData({
+    loadApplicationListData({
       successCallback: () => {
-        appListDataFirstLoadSuccess = true;
+        applicationListDataFirstLoadSuccess = true;
       },
     });
   }

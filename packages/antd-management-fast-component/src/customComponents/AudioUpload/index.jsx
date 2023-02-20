@@ -18,7 +18,8 @@ import {
   showSimpleRuntimeError,
 } from 'easy-soft-utility';
 
-import { copyToClipboard, runtimeSettings } from 'antd-management-fast-common';
+import { copyToClipboard } from 'antd-management-fast-common';
+import { getAudioUploadMaxSize } from 'antd-management-fast-common/src';
 
 import { buildPlayer } from '../FunctionComponent';
 import { iconBuilder } from '../Icon';
@@ -27,27 +28,26 @@ import { IconInfo } from '../IconInfo';
 const { TextArea } = Input;
 
 class AudioUpload extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        audioSource: '',
-        audioUrl: '',
-        audioUrlTemp: '',
-        uploading: false,
-        previewVisible: false,
-        changeUrlVisible: false,
-      },
+
+      audioSource: '',
+      audioUrl: '',
+      audioUrlTemp: '',
+      uploading: false,
+      previewVisible: false,
+      changeUrlVisible: false,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { audio: audioNext } = nextProps;
-    const { audioSource: audioPrev } = prevState;
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    const { audio: audioNext } = nextProperties;
+    const { audioSource: audioPrevious } = previousState;
 
-    if ((audioNext || '') !== (audioPrev || '')) {
+    if ((audioNext || '') !== (audioPrevious || '')) {
       return {
         audioSource: audioNext,
         audioUrl: audioNext,
@@ -90,10 +90,10 @@ class AudioUpload extends PureComponent {
     });
   };
 
-  handleUrlChange = (e) => {
+  handleUrlChange = (event) => {
     const {
       target: { value: v },
-    } = e;
+    } = event;
 
     this.setState({
       audioUrlTemp: v,
@@ -158,8 +158,7 @@ class AudioUpload extends PureComponent {
       });
     }
 
-    const isLt3M =
-      file.size / 1024 / 1024 < runtimeSettings.getAudioUploadMaxSize();
+    const isLt3M = file.size / 1024 / 1024 < getAudioUploadMaxSize();
 
     if (!isLt3M) {
       const text = '音频文件不能超过3MB!';
@@ -211,20 +210,22 @@ class AudioUpload extends PureComponent {
     }
   };
 
-  handleMenuClick = (e) => {
-    const { key } = e;
+  handleMenuClick = (event) => {
+    const { key } = event;
     const { audioUrl } = this.state;
 
     switch (key) {
-      case 'changeUrl':
+      case 'changeUrl': {
         this.showChangeUrlModal();
         break;
+      }
 
-      case 'showPreview':
+      case 'showPreview': {
         this.showPreviewModal();
         break;
+      }
 
-      case 'copyUrl':
+      case 'copyUrl': {
         if (checkStringIsNullOrWhiteSpace(audioUrl)) {
           const text = '当前未设置音频地址';
 
@@ -236,13 +237,16 @@ class AudioUpload extends PureComponent {
         }
 
         break;
+      }
 
-      case 'clearUrl':
+      case 'clearUrl': {
         this.clearUrl();
         break;
+      }
 
-      default:
+      default: {
         break;
+      }
     }
   };
 
@@ -256,7 +260,7 @@ class AudioUpload extends PureComponent {
       audioUrl,
     } = this.state;
 
-    const uploadProps = {
+    const uploadProperties = {
       disabled,
       action,
       listType: 'text',
@@ -310,7 +314,7 @@ class AudioUpload extends PureComponent {
         ) : null}
 
         <Tooltip key="showChangeUrlTip" placement="top" title="上传音频">
-          <Upload {...uploadProps}>
+          <Upload {...uploadProperties}>
             <Button
               style={{
                 border: '0px solid #d9d9d9',
@@ -421,4 +425,4 @@ AudioUpload.defaultProps = {
   afterChangeSuccess: () => {},
 };
 
-export default AudioUpload;
+export { AudioUpload };

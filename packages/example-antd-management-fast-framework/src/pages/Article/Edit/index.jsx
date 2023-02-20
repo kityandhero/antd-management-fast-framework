@@ -1,21 +1,24 @@
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import {
+  checkStringIsNullOrWhiteSpace,
   convertCollection,
-  extraBuildType,
-  getDerivedStateFromPropsForUrlParams,
   getValueByKey,
-  notifySuccess,
-  showInfoMessage,
+  showSimpleInfoMessage,
+  showSimpleSuccessNotification,
+} from 'easy-soft-utility';
+
+import {
+  extraBuildType,
+  getDerivedStateFromPropertiesForUrlParameters,
   tabBarCollection,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { accessWayCollection } from '@/customConfig/config';
-import DataTabContainerSupplement from '@/customSpecialComponents/DataTabContainerSupplement';
-import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
-import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
+import { accessWayCollection } from '../../../customConfig/config';
+import DataTabContainerSupplement from '../../../customSpecialComponents/DataTabContainerSupplement';
+import { getArticleRenderTypeName } from '../../../customSpecialComponents/FunctionSupplement/ArticleRenderType';
+import { getArticleStatusName } from '../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
 import {
   refreshCacheAction,
   setOfflineAction,
@@ -23,7 +26,7 @@ import {
 } from '../Assist/action';
 import {
   checkNeedUpdateAssist,
-  parseUrlParamsForSetState,
+  parseUrlParametersForSetState as parseUrlParametersForSetState,
 } from '../Assist/config';
 import { fieldData, statusCollection } from '../Common/data';
 
@@ -65,31 +68,29 @@ class Edit extends DataTabContainerSupplement {
     },
   ];
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        loadApiPath: 'article/get',
-        backPath: `/news/article/pageList/key`,
-        articleId: null,
-      },
+
+      loadApiPath: 'article/get',
+      backPath: `/news/article/pageList/key`,
+      articleId: null,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(
-      nextProps,
-      prevState,
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
       { id: '' },
-      parseUrlParamsForSetState,
+      parseUrlParametersForSetState,
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  checkNeedUpdate = (preProps, preState, snapshot) => {
-    return checkNeedUpdateAssist(this.state, preProps, preState, snapshot);
+  checkNeedUpdate = (preProperties, preState, snapshot) => {
+    return checkNeedUpdateAssist(this.state, preProperties, preState, snapshot);
   };
 
   supplementLoadRequestParams = (o) => {
@@ -101,11 +102,13 @@ class Edit extends DataTabContainerSupplement {
     return d;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({
     metaData,
+    // eslint-disable-next-line no-unused-vars
     metaListData,
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   }) => {
     this.setState({
@@ -323,44 +326,42 @@ class Edit extends DataTabContainerSupplement {
       hidden: false,
       handleMenuClick: ({ key, handleData }) => {
         switch (key) {
-          case 'click1':
-            showInfoMessage({
-              message: `click ${key}`,
-            });
+          case 'click1': {
+            showSimpleInfoMessage(`click ${key}`);
 
-            notifySuccess(JSON.stringify(handleData));
+            showSimpleSuccessNotification(JSON.stringify(handleData));
             break;
+          }
 
-          case 'click2':
-            showInfoMessage({
-              message: `click ${key}`,
-            });
+          case 'click2': {
+            showSimpleInfoMessage(`click ${key}`);
 
-            notifySuccess(JSON.stringify(handleData));
+            showSimpleSuccessNotification(JSON.stringify(handleData));
             break;
+          }
 
-          case 'click21':
-            showInfoMessage({
-              message: `click ${key}`,
-            });
+          case 'click21': {
+            showSimpleInfoMessage(`click ${key}`);
 
-            notifySuccess(JSON.stringify(handleData));
+            showSimpleSuccessNotification(JSON.stringify(handleData));
             break;
+          }
 
-          case 'click3':
-            showInfoMessage({
-              message: `click ${key}`,
-            });
+          case 'click3': {
+            showSimpleInfoMessage(`click ${key}`);
 
-            notifySuccess(JSON.stringify(handleData));
+            showSimpleSuccessNotification(JSON.stringify(handleData));
             break;
+          }
 
-          case 'refreshCache':
+          case 'refreshCache': {
             that.refreshCache(handleData);
             break;
+          }
 
-          default:
+          default: {
             break;
+          }
         }
       },
       handleData: metaData,
@@ -424,35 +425,30 @@ class Edit extends DataTabContainerSupplement {
       text: '扩展菜单',
       handleData: metaData,
       hidden: false,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line no-unused-vars
       handleButtonClick: ({ handleData }) => {
-        showInfoMessage({
-          message: '已点击',
-        });
+        showSimpleInfoMessage('已点击');
       },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line no-unused-vars
       handleMenuClick: ({ key, handleData }) => {
         switch (key) {
-          case 'extraBarAction1':
-            showInfoMessage({
-              message: `click ${key}`,
-            });
+          case 'extraBarAction1': {
+            showSimpleInfoMessage(`click ${key}`);
 
             break;
+          }
 
-          case 'extraBarAction2':
-            showInfoMessage({
-              message: `click ${key}`,
-            });
-
-            break;
-
-          case 'extraBarAction3':
-            showInfoMessage({
-              message: `click ${key}`,
-            });
+          case 'extraBarAction2': {
+            showSimpleInfoMessage(`click ${key}`);
 
             break;
+          }
+
+          case 'extraBarAction3': {
+            showSimpleInfoMessage(`click ${key}`);
+
+            break;
+          }
         }
       },
       items: [

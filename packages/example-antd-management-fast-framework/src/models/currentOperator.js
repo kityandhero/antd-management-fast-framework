@@ -1,26 +1,24 @@
 import {
+  getCurrentOperatorCache,
+  getTacitlyState,
   pretreatmentRemoteSingleData,
   reducerCollection,
-  reducerDefaultParams,
+  reducerDefaultParameters,
   reducerNameCollection,
-  tacitlyState,
-} from 'antd-management-fast-common';
-import {
-  getCurrentOperatorCache,
   setCurrentOperatorCache,
-} from 'antd-management-fast-framework/es/utils/storageAssist';
+} from 'easy-soft-utility';
 
 import {
   changeCurrentPasswordData,
   getCurrentBasicInfoData,
   updateCurrentBasicInfoData,
-} from '@/services/currentOperator';
+} from '../services/currentOperator';
 
 export default {
   namespace: 'currentOperator',
 
   state: {
-    ...tacitlyState,
+    ...getTacitlyState(),
   },
 
   effects: {
@@ -51,7 +49,7 @@ export default {
           type: reducerNameCollection.reducerData,
           payload: dataAdjust,
           alias,
-          ...reducerDefaultParams,
+          ...reducerDefaultParameters,
         });
 
         setCurrentOperatorCache(dataAdjust);
@@ -68,7 +66,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;
@@ -82,7 +80,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;
@@ -96,7 +94,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;

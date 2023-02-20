@@ -1,8 +1,8 @@
-import { request } from 'antd-management-fast-common';
+import { request } from 'easy-soft-utility';
 
-export async function getData(params) {
+export async function getData(parameters) {
   return request({
     api: `/CurrentSystem/get`,
-    params,
+    params: parameters,
   });
 }

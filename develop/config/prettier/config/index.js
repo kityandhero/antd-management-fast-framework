@@ -1,4 +1,6 @@
-/* eslint-disable import/no-commonjs */
+/* eslint-disable no-undef */
+/* eslint-disable unicorn/prefer-module */
+/* eslint-disable no-useless-escape */
 
 module.exports = {
   generalConfig: {
@@ -7,6 +9,7 @@ module.exports = {
     singleQuote: true,
     trailingComma: 'all',
     proseWrap: 'never',
+    semi: true,
     overrides: [
       {
         files: '.prettierrc',

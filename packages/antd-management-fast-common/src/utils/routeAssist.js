@@ -16,13 +16,13 @@ export function getCurrentLocation() {
   return getCache({ key: cacheKeyCollection.currentLocation }) || {};
 }
 
-export function setCurrentParams(params) {
+export function setCurrentParameters(parameters) {
   setCache({
     key: cacheKeyCollection.currentParams,
-    value: params || {},
+    value: parameters || {},
   });
 }
 
-export function getCurrentParams() {
+export function getCurrentParameters() {
   return getCache({ key: cacheKeyCollection.currentParams }) || {};
 }

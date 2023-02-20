@@ -1,5 +1,5 @@
 import { tabBarCollection } from 'antd-management-fast-common';
-import DataTabContainer from 'antd-management-fast-framework/es/framework/DataTabContainer';
+import { DataTabContainer } from 'antd-management-fast-framework';
 
 class DataTabContainerSupplement extends DataTabContainer {
   establishTabBarExtraContentLeftConfig = () => {

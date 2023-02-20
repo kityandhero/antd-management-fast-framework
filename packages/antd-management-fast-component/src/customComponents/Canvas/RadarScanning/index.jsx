@@ -3,18 +3,18 @@ import { requestAnimFrame } from 'antd-management-fast-common';
 import { Core } from '../Core';
 
 const rand = (min, max) => {
-  return ~~(Math.random() * (max - min + 1) + min);
+  return Math.trunc(Math.random() * (max - min + 1) + min);
 };
 
 class RadarScanning extends Core {
   orbs = [];
 
   doAfterDidMount = ({ canvasContext }) => {
-    const { number } = { ...{ number: 100, ...(this.props || {}) } };
+    const { number } = { number: 100, ...this.props };
 
-    const ctx = canvasContext;
+    const context = canvasContext;
 
-    ctx.lineCap = 'round';
+    context.lineCap = 'round';
 
     let count = number;
 
@@ -28,7 +28,7 @@ class RadarScanning extends Core {
   };
 
   getTrail = () => {
-    const { trail } = { ...{ trail: true, ...(this.props || {}) } };
+    const { trail } = { trail: true, ...this.props };
 
     return trail;
   };
@@ -45,11 +45,11 @@ class RadarScanning extends Core {
     c.removeEventListener('mousemove', this.orbGo, false);
   };
 
-  orbGo = (e) => {
+  orbGo = (event) => {
     const c = this.getCanvas();
 
-    const mx = e.pageX - c.offsetLeft;
-    const my = e.pageY - c.offsetTop;
+    const mx = event.pageX - c.offsetLeft;
+    const my = event.pageY - c.offsetTop;
 
     this.createOrb(mx, my);
   };
@@ -61,22 +61,22 @@ class RadarScanning extends Core {
   loop = () => {
     requestAnimFrame(this.loop);
 
-    const ctx = this.getCanvasContext();
+    const context = this.getCanvasContext();
 
-    if (ctx != null) {
+    if (context != null) {
       const trail = this.getTrail();
 
       if (trail) {
-        ctx.fillStyle = 'rgba(0,0,0,.1)';
-        ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+        context.fillStyle = 'rgba(0,0,0,.1)';
+        context.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
       } else {
-        ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
       }
 
-      let i = this.orbs.length;
+      let index = this.orbs.length;
 
-      while (i) {
-        const orb = this.orbs[i];
+      while (index) {
+        const orb = this.orbs[index];
 
         if ((orb || null) != null) {
           let updateCount = 3;
@@ -84,13 +84,13 @@ class RadarScanning extends Core {
           while (updateCount) {
             const o = this.createOrbByExist(orb);
 
-            this.drawOrb(ctx, o);
+            this.drawOrb(context, o);
 
             updateCount -= 1;
           }
         }
 
-        i -= 1;
+        index -= 1;
       }
     }
   };
@@ -98,7 +98,7 @@ class RadarScanning extends Core {
   createOrb = (mx, my) => {
     const dx = this.canvasWidth / 2 - mx;
     const dy = this.canvasHeight / 2 - my;
-    const dist = Math.sqrt(dx * dx + dy * dy);
+    const distribution = Math.sqrt(dx * dx + dy * dy);
     const angle = Math.atan2(dy, dx);
 
     const o = {
@@ -113,21 +113,21 @@ class RadarScanning extends Core {
       size: rand(1, 3) / 2,
       centerX: this.canvasWidth / 2,
       centerY: this.canvasHeight / 2,
-      radius: dist,
-      speed: (rand(5, 10) / 1000) * (dist / 750) + 0.015 - 0.009,
-      alpha: 1 - Math.abs(dist) / this.canvasWidth,
+      radius: distribution,
+      speed: (rand(5, 10) / 1000) * (distribution / 750) + 0.015 - 0.009,
+      alpha: 1 - Math.abs(distribution) / this.canvasWidth,
     };
 
     this.orbs.push(o);
   };
 
-  drawOrb = (ctx, orb) => {
-    ctx.strokeStyle = `hsla(${orb.colorAngle},100%,50%,1)`;
-    ctx.lineWidth = orb.size;
-    ctx.beginPath();
-    ctx.moveTo(orb.lastX, orb.lastY);
-    ctx.lineTo(orb.x, orb.y);
-    ctx.stroke();
+  drawOrb = (context, orb) => {
+    context.strokeStyle = `hsla(${orb.colorAngle},100%,50%,1)`;
+    context.lineWidth = orb.size;
+    context.beginPath();
+    context.moveTo(orb.lastX, orb.lastY);
+    context.lineTo(orb.x, orb.y);
+    context.stroke();
   };
 
   createOrbByExist = (o) => {
@@ -156,10 +156,10 @@ class RadarScanning extends Core {
     if (x2 > x1 && y2 > y1) {
       angleH += 360;
     }
-    if (y2 < y1 && slope === -Infinity) {
+    if (y2 < y1 && slope === Number.NEGATIVE_INFINITY) {
       angleH = 90;
     }
-    if (y2 > y1 && slope === Infinity) {
+    if (y2 > y1 && slope === Number.POSITIVE_INFINITY) {
       angleH = 270;
     }
     if (x2 < x1 && slope === 0) {

@@ -2,12 +2,16 @@ import { Affix, Col, Divider, Drawer, Form, Layout, Row, Space } from 'antd';
 import React, { Fragment } from 'react';
 
 import {
-  cardConfig,
-  defaultFormState,
-  drawerConfig,
+  checkStringIsNullOrWhiteSpace,
   isArray,
   isFunction,
   isUndefined,
+} from 'easy-soft-utility';
+
+import {
+  cardConfig,
+  defaultFormState,
+  drawerConfig,
 } from 'antd-management-fast-common';
 import {
   buildButton,
@@ -27,23 +31,22 @@ import styles from './index.less';
 const { Footer, Content } = Layout;
 
 class Base extends BaseWindow {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     const defaultState = defaultFormState();
 
     this.state = {
       ...defaultState,
-      ...{
-        title: '',
-        width: 820,
-        height: 256,
-        visible: false,
-        dataLoading: false,
-        showBottomBar: false,
-        submitApiPath: '',
-        placement: 'right',
-      },
+
+      title: '',
+      width: 820,
+      height: 256,
+      visible: false,
+      dataLoading: false,
+      showBottomBar: false,
+      submitApiPath: '',
+      placement: 'right',
     };
   }
 
@@ -72,12 +75,12 @@ class Base extends BaseWindow {
   renderTitleIcon = () => iconBuilder.form();
 
   renderTitle = () => {
-    const prevText = this.buildTitlePrevText();
+    const previousText = this.buildTitlePrevText();
     let subText = this.buildTitleSubText();
 
     subText = checkStringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`;
 
-    return `${prevText}${this.buildTitleText() || '信息详情'}${subText}`;
+    return `${previousText}${this.buildTitleText() || '信息详情'}${subText}`;
   };
 
   buildFormLayout = () => {
@@ -98,7 +101,7 @@ class Base extends BaseWindow {
       metaOriginalData,
     });
 
-    const otherFormProps = this.establishFormAdditionalConfig();
+    const otherFormProperties = this.establishFormAdditionalConfig();
 
     return (
       <Form
@@ -106,7 +109,7 @@ class Base extends BaseWindow {
         initialValues={initialValues}
         className={this.getFormClassName()}
         layout={this.buildFormLayout()}
-        {...otherFormProps}
+        {...otherFormProperties}
       >
         {this.formContent()}
       </Form>
@@ -131,16 +134,13 @@ class Base extends BaseWindow {
 
   renderCloseButton = (option) => {
     const o = {
-      ...{
-        type: 'default',
-        icon: iconBuilder.closeCircle(),
-        text: '关闭',
-      },
-      ...(option || {}),
-      ...{
-        handleClick: () => {
-          this.onClose();
-        },
+      type: 'default',
+      icon: iconBuilder.closeCircle(),
+      text: '关闭',
+      ...option,
+
+      handleClick: () => {
+        this.onClose();
       },
     };
 
@@ -196,7 +196,7 @@ class Base extends BaseWindow {
 
     const that = this;
 
-    configList.forEach((item, index) => {
+    for (const [index, item] of configList.entries()) {
       if ((item || null) != null) {
         const {
           hidden,
@@ -205,13 +205,11 @@ class Base extends BaseWindow {
           text: itemText,
           component: itemComponent,
         } = {
-          ...{
-            hidden: false,
-            buildType: null,
-            icon: null,
-            text: '',
-            component: null,
-          },
+          hidden: false,
+          buildType: null,
+          icon: null,
+          text: '',
+          component: null,
           ...item,
         };
 
@@ -231,71 +229,80 @@ class Base extends BaseWindow {
           let itemAdjust = item;
 
           switch (itemBuildType) {
-            case drawerConfig.bottomBarBuildType.close:
+            case drawerConfig.bottomBarBuildType.close: {
               itemAdjust = this.renderCloseButton(item);
               break;
+            }
 
-            case drawerConfig.bottomBarBuildType.save:
+            case drawerConfig.bottomBarBuildType.save: {
               itemAdjust = this.renderSaveButton({
                 ...item,
-                ...{
-                  handleClick: (e) => {
-                    that.handleOk(e);
-                  },
+                handleClick: (error) => {
+                  that.handleOk(error);
                 },
               });
               break;
+            }
 
-            case drawerConfig.bottomBarBuildType.generalButton:
+            case drawerConfig.bottomBarBuildType.generalButton: {
               itemAdjust = this.renderGeneralButton(item);
               break;
+            }
 
-            case cardConfig.extraBuildType.flexSelect:
+            case cardConfig.extraBuildType.flexSelect: {
               itemAdjust = buildCustomSelect(item);
               break;
+            }
 
-            case drawerConfig.bottomBarBuildType.button:
+            case drawerConfig.bottomBarBuildType.button: {
               itemAdjust = buildButton(item);
               break;
+            }
 
-            case drawerConfig.bottomBarBuildType.dropdown:
+            case drawerConfig.bottomBarBuildType.dropdown: {
               itemAdjust = buildDropdown({
                 ...item,
-                ...{ placement: 'topRight' },
+                placement: 'topRight',
               });
               break;
+            }
 
-            case drawerConfig.bottomBarBuildType.dropdownButton:
+            case drawerConfig.bottomBarBuildType.dropdownButton: {
               itemAdjust = buildDropdownButton({
                 ...item,
-                ...{ placement: 'topRight' },
+                placement: 'topRight',
               });
               break;
+            }
 
-            case drawerConfig.bottomBarBuildType.dropdownEllipsis:
+            case drawerConfig.bottomBarBuildType.dropdownEllipsis: {
               itemAdjust = buildDropdownEllipsis({
                 ...item,
-                ...{ placement: 'topRight' },
+                placement: 'topRight',
               });
               break;
+            }
 
-            case drawerConfig.bottomBarBuildType.iconInfo:
+            case drawerConfig.bottomBarBuildType.iconInfo: {
               itemAdjust = <IconInfo icon={itemIcon} text={itemText} />;
               break;
+            }
 
-            case drawerConfig.bottomBarBuildType.component:
+            case drawerConfig.bottomBarBuildType.component: {
               itemAdjust = itemComponent || null;
               break;
+            }
 
-            default:
+            default: {
               itemAdjust = item;
               break;
+            }
           }
 
           components.push(<Fragment key={itemKey}>{itemAdjust}</Fragment>);
         }
       }
-    });
+    }
 
     return components;
   };

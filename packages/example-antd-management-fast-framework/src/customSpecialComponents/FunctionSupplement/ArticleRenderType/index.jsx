@@ -22,8 +22,8 @@ import {
 
 export function refitArticleRenderTypeList({ metaData, withUnlimited = true }) {
   const { articleRenderTypeList: list } = {
-    ...{ articleRenderTypeList: [] },
-    ...(metaData || {}),
+     articleRenderTypeList: [] ,
+    ...metaData,
   };
 
   if (withUnlimited) {
@@ -99,7 +99,7 @@ export function renderCustomArticleRenderTypeSelect({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomSelect({
@@ -114,7 +114,7 @@ export function renderCustomArticleRenderTypeSelect({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -126,7 +126,7 @@ export function renderFormArticleRenderTypeSelect({
   formItemLayout = null,
   required = true,
   name = 'renderType',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -145,7 +145,7 @@ export function renderFormArticleRenderTypeSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -155,7 +155,7 @@ export function renderCustomArticleRenderTypeRadio({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomRadio({
@@ -170,7 +170,7 @@ export function renderCustomArticleRenderTypeRadio({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -182,7 +182,7 @@ export function renderFormArticleRenderTypeRadio({
   formItemLayout = null,
   required = true,
   name = 'renderType',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -201,6 +201,6 @@ export function renderFormArticleRenderTypeRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }

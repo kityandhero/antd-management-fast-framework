@@ -14,11 +14,11 @@ import QueueAnim from 'rc-queue-anim';
 import React from 'react';
 import { ReadOutlined } from '@ant-design/icons';
 
+import { isFunction, notificationTypeCollection } from 'easy-soft-utility';
+
 import {
   contentConfig,
-  isFunction,
   listViewConfig,
-  notificationTypeCollection,
   notify,
 } from 'antd-management-fast-common';
 import {
@@ -39,8 +39,8 @@ class MultiPageDrawer extends MultiPage {
 
   reloadWhenShow = true;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.restoreSearch = false;
 
@@ -49,53 +49,56 @@ class MultiPageDrawer extends MultiPage {
 
     this.state = {
       ...s,
-      ...{
-        visible: false,
-        reloadAnimalShow: false,
-        listViewMode: listViewConfig.viewMode.table,
-      },
+
+      visible: false,
+      reloadAnimalShow: false,
+      listViewMode: listViewConfig.viewMode.table,
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { visible, externalData } = nextProps;
+  // eslint-disable-next-line no-unused-vars
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    const { visible, externalData } = nextProperties;
 
     return { visible: visible || false, externalData: externalData || null };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
+  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
     const { visible: visiblePre } = preState;
     const { visible } = this.state;
 
     if (visiblePre !== visible) {
-      this.doOtherWhenChangeVisible(preProps, preState, snapshot, visible);
+      this.doOtherWhenChangeVisible(preProperties, preState, snapshot, visible);
     }
   };
 
   /**
    * 当可见性发生变化时执行
    */
-  doOtherWhenChangeVisible = (preProps, preState, snapshot, currentVisible) => {
+  doOtherWhenChangeVisible = (
+    preProperties,
+    preState,
+    snapshot,
+    currentVisible,
+  ) => {
     if (currentVisible) {
-      this.doOtherWhenChangeVisibleToShow(preProps, preState, snapshot);
+      this.doOtherWhenChangeVisibleToShow(preProperties, preState, snapshot);
       this.executeAfterDoOtherWhenChangeVisibleToShow(
-        preProps,
+        preProperties,
         preState,
         snapshot,
       );
     } else {
-      this.doOtherWhenChangeVisibleToHide(preProps, preState, snapshot);
+      this.doOtherWhenChangeVisibleToHide(preProperties, preState, snapshot);
       this.executeAfterDoOtherWhenChangeVisibleToHide(
-        preProps,
+        preProperties,
         preState,
         snapshot,
       );
     }
 
     this.executeOtherAfterDoOtherWhenChangeVisible(
-      preProps,
+      preProperties,
       preState,
       snapshot,
     );
@@ -107,8 +110,8 @@ class MultiPageDrawer extends MultiPage {
    * @param {*} preState
    * @param {*} snapshot
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
+  // eslint-disable-next-line no-unused-vars
+  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
     const { firstLoadSuccess } = this.state;
 
     // 未加载数据过数据的时候，进行加载
@@ -135,11 +138,11 @@ class MultiPageDrawer extends MultiPage {
    * @param {*} snapshot
    */
   executeAfterDoOtherWhenChangeVisibleToShow = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    preProps,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
+    preProperties,
+    // eslint-disable-next-line no-unused-vars
     preState,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     snapshot,
   ) => {};
 
@@ -149,8 +152,8 @@ class MultiPageDrawer extends MultiPage {
    * @param {*} preState
    * @param {*} snapshot
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisibleToHide = (preProps, preState, snapshot) => {};
+  // eslint-disable-next-line no-unused-vars
+  doOtherWhenChangeVisibleToHide = (preProperties, preState, snapshot) => {};
 
   /**
    * 当可见性变为显示后附加的执行
@@ -159,11 +162,11 @@ class MultiPageDrawer extends MultiPage {
    * @param {*} snapshot
    */
   executeAfterDoOtherWhenChangeVisibleToHide = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    preProps,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
+    preProperties,
+    // eslint-disable-next-line no-unused-vars
     preState,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     snapshot,
   ) => {};
 
@@ -174,11 +177,11 @@ class MultiPageDrawer extends MultiPage {
    * @param {*} snapshot
    */
   executeOtherAfterDoOtherWhenChangeVisible = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    preProps,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
+    preProperties,
+    // eslint-disable-next-line no-unused-vars
     preState,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     snapshot,
   ) => {};
 
@@ -358,8 +361,8 @@ class MultiPageDrawer extends MultiPage {
                     <ColumnSetting
                       columns={this.getColumn()}
                       columnsMap={this.getColumnsMap()}
-                      setColumnsMap={(e) => {
-                        this.setColumnsMap(e);
+                      setColumnsMap={(event) => {
+                        this.setColumnsMap(event);
                       }}
                       setSortKeyColumns={(key) => {
                         this.setSortKeyColumns(key);
@@ -430,9 +433,8 @@ class MultiPageDrawer extends MultiPage {
               }
             : { paddingBottom: 0 }),
           ...(this.showSearchForm ? {} : { paddingTop: 0 }),
-          ...{
-            backgroundColor: '#fff',
-          },
+
+          backgroundColor: '#fff',
         }}
       >
         {this.renderViewContainor()}

@@ -1,118 +1,118 @@
-import { Badge, Spin, Tabs } from 'antd';
-import classNames from 'classnames';
+import { message, Tag } from 'antd';
 import React from 'react';
-import useMergeValue from 'use-merge-value';
-import { BellOutlined } from '@ant-design/icons';
+import { useModel } from '@umijs/max';
 
-import HeaderDropdown from '../HeaderDropdown';
+import { formatDateIntervalWithNow, groupBy } from 'easy-soft-utility';
 
-import NoticeList from './NoticeList';
+import NoticeIcon from './NoticeIcon';
 
 import styles from './index.less';
 
-const { TabPane } = Tabs;
-
-const NoticeIcon = (props) => {
-  const getNotificationBox = () => {
-    const {
-      children,
-      loading,
-      onClear,
-      onTabChange,
-      onItemClick,
-      onViewMore,
-      clearText,
-      viewMoreText,
-    } = props;
-
-    if (!children) {
-      return null;
-    }
-
-    const panes = [];
-    React.Children.forEach(children, (child) => {
-      if (!child) {
-        return;
-      }
-
-      const { list, title, count, tabKey, showClear, showViewMore } =
-        child.props;
-      const len = list && list.length ? list.length : 0;
-      const msgCount = count || count === 0 ? count : len;
-      const tabTitle = msgCount > 0 ? `${title} (${msgCount})` : title;
-      panes.push(
-        <TabPane tab={tabTitle} key={tabKey}>
-          <NoticeList
-            clearText={clearText}
-            viewMoreText={viewMoreText}
-            data={list}
-            onClear={() => onClear && onClear(title, tabKey)}
-            onClick={(item) => onItemClick && onItemClick(item, child.props)}
-            onViewMore={(event) => onViewMore && onViewMore(child.props, event)}
-            showClear={showClear}
-            showViewMore={showViewMore}
-            title={title}
-            {...child.props}
-          />
-        </TabPane>,
-      );
-    });
-    return (
-      <Spin spinning={loading} delay={300}>
-        <Tabs className={styles.tabs} onChange={onTabChange}>
-          {panes}
-        </Tabs>
-      </Spin>
-    );
-  };
-
-  const { className, count, bell } = props;
-  const [visible, setVisible] = useMergeValue(false, {
-    value: props.popupVisible,
-    onChange: props.onPopupVisibleChange,
-  });
-  const noticeButtonClass = classNames(className, styles.noticeButton);
-  const notificationBox = getNotificationBox();
-  const NoticeBellIcon = bell || <BellOutlined className={styles.icon} />;
-  const trigger = (
-    <span
-      className={classNames(noticeButtonClass, {
-        opened: visible,
-      })}
-    >
-      <Badge
-        count={count}
-        style={{
-          boxShadow: 'none',
-        }}
-        className={styles.badge}
-      >
-        {NoticeBellIcon}
-      </Badge>
-    </span>
-  );
-
-  if (!notificationBox) {
-    return trigger;
+const getNoticeData = (notices) => {
+  if (!notices || notices.length === 0 || !Array.isArray(notices)) {
+    return {};
   }
 
+  const newNotices = notices.map((notice) => {
+    const newNotice = { ...notice };
+
+    if (newNotice.datetime) {
+      newNotice.datetime = formatDateIntervalWithNow(notice.datetime);
+    }
+
+    if (newNotice.id) {
+      newNotice.key = newNotice.id;
+    }
+
+    if (newNotice.extra && newNotice.status) {
+      const color = {
+        todo: '',
+        processing: 'blue',
+        urgent: 'red',
+        doing: 'gold',
+      }[newNotice.status];
+      newNotice.extra = (
+        <Tag
+          color={color}
+          style={{
+            marginRight: 0,
+          }}
+        >
+          {newNotice.extra}
+        </Tag>
+      );
+    }
+
+    return newNotice;
+  });
+  return groupBy(newNotices, 'type');
+};
+
+const getUnreadData = (noticeData) => {
+  const unreadMessage = {};
+  for (const key of Object.keys(noticeData)) {
+    const value = noticeData[key];
+
+    if (!unreadMessage[key]) {
+      unreadMessage[key] = 0;
+    }
+
+    if (Array.isArray(value)) {
+      unreadMessage[key] = value.filter((item) => !item.read).length;
+    }
+  }
+  return unreadMessage;
+};
+
+const NoticeIconView = () => {
+  const { initialState } = useModel('@@initialState');
+  const { currentUser } = initialState || {};
+
+  const notices = [];
+
+  const noticeData = getNoticeData(notices);
+  const unreadMessage = getUnreadData(noticeData || {});
+
   return (
-    <HeaderDropdown
-      placement="bottomRight"
-      overlay={notificationBox}
-      overlayClassName={styles.popover}
-      trigger={['click']}
-      visible={visible}
-      onVisibleChange={setVisible}
+    <NoticeIcon
+      className={styles.action}
+      count={currentUser && currentUser.unreadCount}
+      onItemClick={(item) => {
+        console.log(item);
+      }}
+      onClear={(title, key) => console.log({ title, key })}
+      loading={false}
+      clearText="清空"
+      viewMoreText="查看更多"
+      onViewMore={() => message.info('Click on view more')}
+      clearClose
     >
-      {trigger}
-    </HeaderDropdown>
+      <NoticeIcon.Tab
+        tabKey="notification"
+        count={unreadMessage.notification}
+        list={noticeData.notification}
+        title="通知"
+        emptyText="你已查看所有通知"
+        showViewMore
+      />
+      <NoticeIcon.Tab
+        tabKey="message"
+        count={unreadMessage.message}
+        list={noticeData.message}
+        title="消息"
+        emptyText="您已读完所有消息"
+        showViewMore
+      />
+      <NoticeIcon.Tab
+        tabKey="event"
+        title="待办"
+        emptyText="你已完成所有待办"
+        count={unreadMessage.event}
+        list={noticeData.event}
+        showViewMore
+      />
+    </NoticeIcon>
   );
 };
 
-NoticeIcon.defaultProps = {
-  emptyImage:
-    'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
-};
-NoticeIcon.Tab = NoticeList;
-export default NoticeIcon;
+export default NoticeIconView;

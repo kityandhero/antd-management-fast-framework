@@ -1,7 +1,8 @@
 import { Button, Divider } from 'antd';
 import React from 'react';
 
-import { isFunction } from 'antd-management-fast-common';
+import { isFunction, showSimpleRuntimeError } from 'easy-soft-utility';
+
 import { iconBuilder } from 'antd-management-fast-component';
 
 import { SupplementWrapper } from '../../../CustomWrapper/SupplementWrapper';
@@ -9,19 +10,17 @@ import { SupplementWrapper } from '../../../CustomWrapper/SupplementWrapper';
 class SelectFieldBase extends SupplementWrapper {
   loadDataAfterMount = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        selectData: null,
-      },
+      selectData: null,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   clearSelect = () => {
@@ -37,9 +36,7 @@ class SelectFieldBase extends SupplementWrapper {
   showSelect = () => {
     const text = 'showSelect 方法需要在上层进行实现';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
   };
 
   getFieldData = () => {
@@ -87,7 +84,7 @@ class SelectFieldBase extends SupplementWrapper {
               }}
               disabled={dataLoading || processing || !loadSuccess}
               title={`选择${fieldTitle}`}
-              onClick={(e) => this.showSelect(e)}
+              onClick={(event) => this.showSelect(event)}
             >
               {iconBuilder.search()}
             </Button>

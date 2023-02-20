@@ -1,7 +1,11 @@
 import { Col, Row } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { checkInCollection } from 'easy-soft-utility';
+import {
+  checkInCollection,
+  isFunction,
+  showSimpleErrorMessage,
+} from 'easy-soft-utility';
 
 const flexAutoCollection = ['left', 'right', 'top', 'bottom'];
 
@@ -12,9 +16,7 @@ class FlexBox extends PureComponent {
     if (!checkInCollection(flexAutoCollection, flexAuto)) {
       const text = 'flexAuto 只能配置为 left/right/top/bottom';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
 
       return 'horizontal';
     }
@@ -54,8 +56,8 @@ class FlexBox extends PureComponent {
       const flexAuto = flexAutoSource === 'left' ? 'left' : 'right';
 
       const style = {
-        ...(styleSource || {}),
-        ...(!(allowWrap || false) ? { flexWrap: 'nowrap' } : {}),
+        ...styleSource,
+        ...(allowWrap || false ? {} : { flexWrap: 'nowrap' }),
       };
 
       if (flexAuto === 'left') {
@@ -92,10 +94,8 @@ class FlexBox extends PureComponent {
       // minHeight,
       bottomHeight,
     } = {
-      ...{
-        bottomHeight: '180rpx',
-      },
-      ...(vertical || {}),
+      bottomHeight: '180rpx',
+      ...vertical,
     };
 
     const style = {

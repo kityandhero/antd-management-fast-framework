@@ -22,8 +22,8 @@ import {
 
 export function refitArticleStatusList({ metaData, withUnlimited = true }) {
   const { articleStatusList: list } = {
-    ...{ articleStatusList: [] },
-    ...(metaData || {}),
+     articleStatusList: [] ,
+    ...metaData,
   };
 
   if (withUnlimited) {
@@ -95,7 +95,7 @@ export function renderCustomArticleStatusSelect({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomSelect({
@@ -110,7 +110,7 @@ export function renderCustomArticleStatusSelect({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -122,7 +122,7 @@ export function renderFormArticleStatusSelect({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -141,7 +141,7 @@ export function renderFormArticleStatusSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -151,7 +151,7 @@ export function renderCustomArticleStatusRadio({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomRadio({
@@ -166,7 +166,7 @@ export function renderCustomArticleStatusRadio({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -178,7 +178,7 @@ export function renderFormArticleStatusRadio({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -197,6 +197,6 @@ export function renderFormArticleStatusRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }

@@ -18,24 +18,25 @@ const AvatarList = ({
   excessItemsStyle,
   ...other
 }) => {
-  const numOfChildren = React.Children.count(children);
-  const numToShow = maxLength >= numOfChildren ? numOfChildren : maxLength;
+  const numberOfChildren = React.Children.count(children);
+  const numberToShow =
+    maxLength >= numberOfChildren ? numberOfChildren : maxLength;
 
-  const childrenWithProps = React.Children.toArray(children)
-    .slice(0, numToShow)
+  const childrenWithProperties = React.Children.toArray(children)
+    .slice(0, numberToShow)
     .map((child) =>
       React.cloneElement(child, {
         size,
       }),
     );
 
-  if (numToShow < numOfChildren) {
+  if (numberToShow < numberOfChildren) {
     const cls = avatarSizeToClassName(size);
 
-    childrenWithProps.push(
+    childrenWithProperties.push(
       <li key="exceed" className={cls}>
         <Avatar size={size} style={excessItemsStyle}>{`+${
-          numOfChildren - maxLength
+          numberOfChildren - maxLength
         }`}</Avatar>
       </li>,
     );
@@ -43,7 +44,7 @@ const AvatarList = ({
 
   return (
     <div {...other} className={styles.avatarList}>
-      <ul> {childrenWithProps} </ul>
+      <ul> {childrenWithProperties} </ul>
     </div>
   );
 };

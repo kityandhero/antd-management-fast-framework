@@ -1,7 +1,6 @@
-import {
-  getTokenObject,
-  pretreatmentRemoteSingleData,
-} from 'antd-management-fast-common';
+import { pretreatmentRemoteSingleData } from 'easy-soft-utility';
+
+import { getTokenObject } from 'antd-management-fast-common';
 
 import { Common } from '../../Common';
 

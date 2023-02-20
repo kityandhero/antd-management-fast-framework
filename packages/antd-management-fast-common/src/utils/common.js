@@ -2,58 +2,56 @@ import copy from 'copy-to-clipboard';
 
 import {
   checkStringIsNullOrWhiteSpace,
+  getApplicationMergeConfig,
   isEqualBySerialize,
   isFunction,
   showSimpleSuccessMessage,
 } from 'easy-soft-utility';
 
-import { getAppInitConfigData } from './core';
-import { getCurrentParams } from './routeAssist';
+import { getCurrentParameters as getCurrentParameters } from './routeAssist';
 
 /**
  * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state，
  * @export
  */
-export function getDerivedStateFromPropsForUrlParamsCore() {
-  const params = getCurrentParams();
+export function getDerivedStateFromPropertiesForUrlParametersCore() {
+  const parameters = getCurrentParameters();
 
-  return { urlParams: params };
+  return { urlParams: parameters };
 }
 
 /**
  * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state,如果值重复，则返回null，
- * @export
  */
-export function getDerivedStateFromPropsForUrlParams(
-  nextProps,
-  prevState,
-  defaultUrlParams = { id: '' },
-  parseUrlParamsForSetState = null,
+export function getDerivedStateFromPropertiesForUrlParameters(
+  nextProperties,
+  previousState,
+  defaultUrlParameters = null,
+  parseUrlParametersForSetState = null,
 ) {
-  let stateUrlParams = getDerivedStateFromPropsForUrlParamsCore();
+  let stateUrlParameters = getDerivedStateFromPropertiesForUrlParametersCore();
 
-  stateUrlParams = stateUrlParams || { urlParams: defaultUrlParams };
+  stateUrlParameters = {
+    urlParams: { id: '' },
+    ...defaultUrlParameters,
+    ...stateUrlParameters,
+  };
 
-  const { urlParams: urlParamsPrev } = prevState;
+  const { urlParams: urlParametersPrevious } = previousState;
 
-  const { urlParams } = stateUrlParams;
+  const { urlParams } = stateUrlParameters;
 
-  if (
-    isEqualBySerialize(
-      { ...(urlParamsPrev || {}), ...{} },
-      { ...(urlParams || {}), ...{} },
-    )
-  ) {
-    return prevState;
+  if (isEqualBySerialize({ ...urlParametersPrevious }, { ...urlParams })) {
+    return previousState;
   }
 
-  if (isFunction(parseUrlParamsForSetState)) {
-    const data = parseUrlParamsForSetState(stateUrlParams);
+  if (isFunction(parseUrlParametersForSetState)) {
+    const data = parseUrlParametersForSetState(stateUrlParameters);
 
-    return { ...prevState, ...stateUrlParams, ...data };
+    return { ...previousState, ...stateUrlParameters, ...data };
   }
 
-  return { ...prevState, ...stateUrlParams };
+  return { ...previousState, ...stateUrlParameters };
 }
 
 /**
@@ -81,17 +79,16 @@ export function copyToClipboard(text, showCopyText = true, otherShowText = '') {
  * @returns
  */
 export function corsTarget() {
-  const appInit = getAppInitConfigData();
+  const appInit = getApplicationMergeConfig();
+
   let corsTargetDomain = '';
 
-  if (appInit.apiPrefix != null) {
-    if (appInit.apiPrefix.corsTargetDomain != null) {
-      const {
-        apiPrefix: { corsTargetDomain: corsTargetDomainRemote },
-      } = appInit;
+  if (appInit.apiPrefix != null && appInit.apiPrefix.corsTargetDomain != null) {
+    const {
+      apiPrefix: { corsTargetDomain: corsTargetDomainRemote },
+    } = appInit;
 
-      corsTargetDomain = corsTargetDomainRemote;
-    }
+    corsTargetDomain = corsTargetDomainRemote;
   }
 
   return corsTargetDomain;

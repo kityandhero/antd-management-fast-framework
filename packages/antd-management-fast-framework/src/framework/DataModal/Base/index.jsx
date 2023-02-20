@@ -1,33 +1,29 @@
 import { Form, Modal, Spin } from 'antd';
 import React from 'react';
 
-import {
-  cardConfig,
-  defaultFormState,
-  isUndefined,
-} from 'antd-management-fast-common';
+import { checkStringIsNullOrWhiteSpace, isUndefined } from 'easy-soft-utility';
+
+import { cardConfig, defaultFormState } from 'antd-management-fast-common';
 import { FlexText, iconBuilder } from 'antd-management-fast-component';
 
-import BaseWindow from '../../DataOperation/BaseWindow';
+import { BaseWindow } from '../../DataOperation/BaseWindow';
 
 import styles from './index.less';
 
 class Base extends BaseWindow {
   reloadWhenShow = true;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     const defaultState = defaultFormState();
 
     this.state = {
       ...defaultState,
-      ...{
-        visible: false,
-        dataLoading: false,
+      visible: false,
+      dataLoading: false,
 
-        width: 520,
-      },
+      width: 520,
     };
   }
 
@@ -121,7 +117,7 @@ class Base extends BaseWindow {
   getModalBodyStyle = () => {
     const otherModalBodyStyle = this.buildModalBodyStyle();
 
-    return { ...{ padding: 0 }, ...(otherModalBodyStyle || {}) };
+    return { padding: 0, ...otherModalBodyStyle };
   };
 
   buildTitleIcon = () => {
@@ -179,7 +175,7 @@ class Base extends BaseWindow {
       metaOriginalData,
     });
 
-    const otherFormProps = this.establishFormAdditionalConfig();
+    const otherFormProperties = this.establishFormAdditionalConfig();
 
     return (
       <Form
@@ -187,7 +183,7 @@ class Base extends BaseWindow {
         layout={this.buildFormLayout()}
         initialValues={initialValues}
         className={this.getFormClassName()}
-        {...otherFormProps}
+        {...otherFormProperties}
       >
         {this.formContent()}
       </Form>
@@ -215,8 +211,8 @@ class Base extends BaseWindow {
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         zIndex={1001}
         okButtonProps={this.buildOkButtonProps()}
-        onOk={(e) => {
-          this.handleOk(e);
+        onOk={(event) => {
+          this.handleOk(event);
         }}
         okText={this.buildOkTextWrapper()}
         cancelButtonProps={this.buildCancelButtonProps()}

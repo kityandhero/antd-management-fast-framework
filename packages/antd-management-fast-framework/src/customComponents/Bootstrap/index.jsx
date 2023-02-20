@@ -1,15 +1,15 @@
 import React from 'react';
-import { useLocation, useParams } from 'umi';
+import { useLocation, useParams } from '@umijs/max';
 
 import {
   setCurrentLocation,
-  setCurrentParams,
+  setCurrentParameters,
 } from 'antd-management-fast-common';
 import { BaseComponent } from 'antd-management-fast-component';
 
 import { applicationInit } from '../../utils/bootstrap';
 
-const AnalysisRouteParams = () => {
+const AnalysisRouteParameters = () => {
   try {
     const location = useLocation();
 
@@ -21,13 +21,13 @@ const AnalysisRouteParams = () => {
   }
 
   try {
-    const routeParams = useParams();
+    const routeParameters = useParams();
 
-    setCurrentParams(routeParams);
+    setCurrentParameters(routeParameters);
   } catch (error) {
     console.log(error);
 
-    setCurrentParams({});
+    setCurrentParameters({});
   }
 
   return <></>;
@@ -41,7 +41,7 @@ class Bootstrap extends BaseComponent {
   renderFurther() {
     return (
       <>
-        <AnalysisRouteParams />
+        <AnalysisRouteParameters />
       </>
     );
   }

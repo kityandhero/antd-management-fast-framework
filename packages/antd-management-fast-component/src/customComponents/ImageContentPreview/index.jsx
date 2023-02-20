@@ -9,24 +9,23 @@ import { BaseComponent } from '../BaseComponent';
 import styles from './index.less';
 
 class ImageContentPreview extends BaseComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        visible: false,
-        htmlContent: '',
-        imageList: [],
-        listItem: [],
-        mode: imageContentPreviewMode.html,
-      },
+
+      visible: false,
+      htmlContent: '',
+      imageList: [],
+      listItem: [],
+      mode: imageContentPreviewMode.html,
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { visible, mode, imageList, listItem, htmlContent } = nextProps;
+  // eslint-disable-next-line no-unused-vars
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    const { visible, mode, imageList, listItem, htmlContent } = nextProperties;
 
     return {
       visible,

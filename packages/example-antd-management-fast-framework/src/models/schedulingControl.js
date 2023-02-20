@@ -1,7 +1,6 @@
-import schedulingControl from 'antd-management-fast-framework/es/models/schedulingControl';
+import { buildSchedulingControlModel } from 'antd-management-fast-framework';
 
 export default {
-  namespace: schedulingControl.namespace,
-
-  ...schedulingControl,
+  namespace: 'schedulingControl',
+  ...buildSchedulingControlModel(),
 };

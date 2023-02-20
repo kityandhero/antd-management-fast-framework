@@ -3,7 +3,7 @@ import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
 import {
-  getDerivedStateFromPropsForUrlParams,
+  getDerivedStateFromPropertiesForUrlParameters,
   pageHeaderRenderType,
 } from 'antd-management-fast-common';
 import {
@@ -32,8 +32,8 @@ class DataCore extends BaseView {
 
   formRef = React.createRef();
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
@@ -41,8 +41,11 @@ class DataCore extends BaseView {
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
+    );
   }
 
   setFormFieldsValue = (v) => {
@@ -55,8 +58,8 @@ class DataCore extends BaseView {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterSetFieldsValue = (v) => {};
+  // eslint-disable-next-line no-unused-vars
+  afterSetFieldsValue = (value) => {};
 
   getTargetForm = () => {
     return this.formRef.current;
@@ -150,17 +153,18 @@ class DataCore extends BaseView {
       return null;
     }
 
-    const props = {
-      ...{ icon: iconBuilder.rollback(), type: 'dashed' },
-      ...(this.actionBackProps || {}),
+    const properties = {
+      icon: iconBuilder.rollback(),
+      type: 'dashed',
+      ...this.actionBackProps,
     };
 
     return (
       <Tooltip placement="top" title="返回列表页">
         <Button
-          {...props}
-          onClick={(e) => {
-            this.backToList(e);
+          {...properties}
+          onClick={(event) => {
+            this.backToList(event);
           }}
         >
           列表页
@@ -208,7 +212,7 @@ class DataCore extends BaseView {
       metaOriginalData,
     });
 
-    const otherFormProps = this.establishFormAdditionalConfig();
+    const otherFormProperties = this.establishFormAdditionalConfig();
 
     return (
       <Form
@@ -216,7 +220,7 @@ class DataCore extends BaseView {
         initialValues={initialValues}
         className={this.getFormClassName()}
         layout={this.buildFormLayout()}
-        {...otherFormProps}
+        {...otherFormProperties}
       >
         {this.formContent()}
       </Form>
@@ -250,7 +254,7 @@ class DataCore extends BaseView {
       avatarImageLoadResult,
     } = this.state;
 
-    const avatarProps = showPageHeaderAvatar
+    const avatarProperties = showPageHeaderAvatar
       ? decorateAvatar(
           this.establishPageHeaderAvatarConfig(),
           defaultAvatarIcon,
@@ -267,7 +271,7 @@ class DataCore extends BaseView {
     return (
       <PageContainer
         logo={this.pageHeaderLogo()}
-        avatar={avatarProps}
+        avatar={avatarProperties}
         title={buildPageHeaderTitle(
           this.getPageName(),
           this.establishPageHeaderTitlePrefix(),

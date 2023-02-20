@@ -4,13 +4,15 @@ import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
 import {
   buildFieldHelper,
+  checkStringIsNullOrWhiteSpace,
   isFunction,
   showInfoMessage,
+  showSimpleRuntimeError,
   showWarningMessage,
   toNumber,
 } from 'easy-soft-utility';
 
-import { runtimeSettings } from 'antd-management-fast-common';
+import { getImageUploadMaxSize } from 'antd-management-fast-common';
 
 import { CenterBox } from '../CenterBox';
 import { FlexBox } from '../FlexBox';
@@ -26,16 +28,15 @@ const { confirm } = Modal;
 const defaultCapacity = 8;
 
 class ImageUpload extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        uploading: false,
-        previewVisible: false,
-        previewImage: '',
-      },
+
+      uploading: false,
+      previewVisible: false,
+      previewImage: '',
     };
   }
 
@@ -88,20 +89,15 @@ class ImageUpload extends PureComponent {
     if (!isPic) {
       const text = '请上传图片文件!';
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
     }
 
-    const isLt2M =
-      file.size / 1024 / 1024 < runtimeSettings.getImageUploadMaxSize();
+    const isLt2M = file.size / 1024 / 1024 < getImageUploadMaxSize();
 
     if (!isLt2M) {
       const text = '图片文件不能超过2MB!';
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
     }
 
     return isPic && isLt2M;
@@ -132,16 +128,12 @@ class ImageUpload extends PureComponent {
         } else {
           const text = 'afterUploadSuccess 配置无效';
 
-          showRuntimeError({
-            message: text,
-          });
+          showSimpleRuntimeError(text);
         }
       } else {
         const text = 'pretreatmentRemoteResponse 配置无效';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
       }
     }
   };
@@ -174,9 +166,7 @@ class ImageUpload extends PureComponent {
     } else {
       const text = 'afterUploadSuccess 配置无效';
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
     }
   };
 
@@ -211,7 +201,7 @@ class ImageUpload extends PureComponent {
 
     const listCapacity = capacity <= 0 ? defaultCapacity : capacity;
 
-    const uploadProps = {
+    const uploadProperties = {
       disabled,
       multiple,
       action,
@@ -219,32 +209,35 @@ class ImageUpload extends PureComponent {
       showUploadList,
       onPreview: this.handleFilePreview,
       beforeUpload: this.beforeUpload,
-      onChange: !(showUploadList || false)
-        ? this.handleUploadChange
-        : isFunction(onItemChange)
-        ? onItemChange
-        : null,
+      onChange:
+        showUploadList || false
+          ? isFunction(onItemChange)
+            ? onItemChange
+            : null
+          : this.handleUploadChange,
       onRemove: isFunction(onItemRemove) ? onItemRemove : null,
       headers: { ...tokenSet },
     };
 
     if (showUploadList) {
-      uploadProps.fileList = fileList || [];
+      uploadProperties.fileList = fileList || [];
     }
 
     const { width, emptyImage } = {
-      ...{
-        width: '240px',
-        emptyImage: '',
-      },
-      ...(singleModeSource || {}),
+      width: '240px',
+      emptyImage: '',
+      ...singleModeSource,
     };
 
     return (
       <>
         <div className={styles.containor}>
           <div className="clearfix">
-            {!(showUploadList || false) ? (
+            {showUploadList || false ? (
+              <Upload {...uploadProperties}>
+                {(fileList || []).length >= listCapacity ? null : uploadButton}
+              </Upload>
+            ) : (
               <>
                 <div
                   className={styles.imageBox}
@@ -253,7 +246,7 @@ class ImageUpload extends PureComponent {
                     width,
                   }}
                 >
-                  <Upload {...uploadProps}>
+                  <Upload {...uploadProperties}>
                     <Tooltip title="上传图片">
                       <div className={styles.imageAction}>
                         <div className={styles.icon}>
@@ -328,10 +321,6 @@ class ImageUpload extends PureComponent {
                   </div>
                 </div>
               </>
-            ) : (
-              <Upload {...uploadProps}>
-                {(fileList || []).length >= listCapacity ? null : uploadButton}
-              </Upload>
             )}
 
             <Modal
@@ -392,9 +381,11 @@ ImageUpload.defaultProps = {
   helper: '',
   pretreatmentRemoteResponse: () => {},
   afterUploadSuccess: () => {},
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+  // eslint-disable-next-line no-unused-vars
   onItemChange: ({ file, fileList }) => {},
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+  // eslint-disable-next-line no-unused-vars
   onItemRemove: (file) => {},
   fileListCapacity: defaultCapacity,
 };

@@ -18,9 +18,9 @@ class Spirit extends Core {
   };
 
   animate = () => {
-    const ctx = this.getCanvasContext();
+    const context = this.getCanvasContext();
 
-    ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
     this.circles = (this.circles || []).map((o) => {
       if (o.alpha <= 0) {
@@ -30,9 +30,9 @@ class Spirit extends Core {
       return o;
     });
 
-    (this.circles || []).forEach((o) => {
-      this.drawCircle(ctx, o);
-    });
+    for (const o of this.circles || []) {
+      this.drawCircle(context, o);
+    }
 
     requestAnimFrame(this.animate);
   };
@@ -51,16 +51,16 @@ class Spirit extends Core {
     return o;
   };
 
-  drawCircle = (ctx, circle) => {
+  drawCircle = (context, circle) => {
     const o = circle;
 
     o.pos.y -= o.velocity;
     o.alpha -= 0.0005;
 
-    ctx.beginPath();
-    ctx.arc(o.pos.x, o.pos.y, o.scale * 10, 0, 2 * Math.PI, false);
-    ctx.fillStyle = `rgba(255,255,255,${o.alpha})`;
-    ctx.fill();
+    context.beginPath();
+    context.arc(o.pos.x, o.pos.y, o.scale * 10, 0, 2 * Math.PI, false);
+    context.fillStyle = `rgba(255,255,255,${o.alpha})`;
+    context.fill();
   };
 
   buildContainorStyle = () => {

@@ -17,12 +17,12 @@ const ItemTypes = {
   CARD: 'card',
 };
 
-const Card = ({ id, end, move, children, index }) => {
-  const ref = useRef(null);
+const DnDItem = ({ id, end, move, children, index }) => {
+  const reference = useRef(null);
   const [, drop] = useDrop({
     accept: ItemTypes.CARD,
     hover(item, monitor) {
-      if (!ref.current) {
+      if (!reference.current) {
         return;
       }
       const dragIndex = item.index;
@@ -34,7 +34,7 @@ const Card = ({ id, end, move, children, index }) => {
       }
 
       // Determine rectangle on screen
-      const hoverBoundingRect = ref.current.getBoundingClientRect();
+      const hoverBoundingRect = reference.current.getBoundingClientRect();
 
       // Get vertical middle
       const hoverMiddleY =
@@ -93,12 +93,12 @@ const Card = ({ id, end, move, children, index }) => {
   });
 
   const opacity = isDragging ? 0 : 1;
-  drag(drop(ref));
+  drag(drop(reference));
   return (
-    <div ref={ref} style={{ opacity }}>
+    <div ref={reference} style={{ opacity }}>
       {children}
     </div>
   );
 };
 
-export { Card };
+export { DnDItem };

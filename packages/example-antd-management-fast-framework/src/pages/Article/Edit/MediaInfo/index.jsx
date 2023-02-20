@@ -1,37 +1,40 @@
 import { Button, List, Space } from 'antd';
 import React from 'react';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
+
+import {
+  checkStringIsNullOrWhiteSpace,
+  convertCollection,
+  formatCollection,
+  getValueByKey,
+  isArray,
+  sortCollectionByKey,
+  sortOperate,
+} from 'easy-soft-utility';
 
 import {
   cardConfig,
-  convertCollection,
   defaultEmptyImage,
-  formatCollection,
-  getDerivedStateFromPropsForUrlParams,
-  getValueByKey,
-  isArray,
+  getDerivedStateFromPropertiesForUrlParameters,
   mobileTypeCollection,
-  sortCollectionByKey,
-  sortOperate,
-  toString,
 } from 'antd-management-fast-common';
-import StatusBar, {
+import {
   buildCustomGrid,
   buildDropdownButton,
   buildIconInfoList,
   buildListViewItemExtra,
   FlexBox,
   iconBuilder,
+  StatusBar,
 } from 'antd-management-fast-component';
 
-import { accessWayCollection } from '@/customConfig/config';
-
+import { accessWayCollection } from '../../../../customConfig/config';
 import AddMediaItemDrawer from '../../AddMediaItemDrawer';
 import {
   removeMediaItemAction,
   setMediaCollectionSortAction,
 } from '../../Assist/action';
-import { parseUrlParamsForSetState } from '../../Assist/config';
+import { parseUrlParametersForSetState as parseUrlParametersForSetState } from '../../Assist/config';
 import { mediaItemData } from '../../Common/data';
 import MediaItemPreviewDrawer from '../../MediaItemPreviewDrawer';
 import MobilePreviewBox from '../../MobilePreviewBox';
@@ -46,47 +49,51 @@ import UpdateMediaItemDrawer from '../../UpdateMediaItemDrawer';
 class BasicInfo extends TabPageBase {
   componentAuthority = accessWayCollection.article.get.permission;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        loadApiPath: 'article/get',
-        articleId: null,
-        mediaItemList: [],
-        mediaItemCount: 0,
-        addMediaItemDrawerVisible: false,
-        updateMediaItemDrawerVisible: false,
-        mediaItemPreviewDrawerVisible: false,
-        currentMediaItem: null,
-        selectForwardId: '',
-      },
+
+      loadApiPath: 'article/get',
+      articleId: null,
+      mediaItemList: [],
+      mediaItemCount: 0,
+      addMediaItemDrawerVisible: false,
+      updateMediaItemDrawerVisible: false,
+      mediaItemPreviewDrawerVisible: false,
+      currentMediaItem: null,
+      selectForwardId: '',
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(
-      nextProps,
-      prevState,
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
       { id: '' },
-      parseUrlParamsForSetState,
+      parseUrlParametersForSetState,
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   fillInitialValuesAfterLoad = (
+    // eslint-disable-next-line no-unused-vars
     metaData,
+    // eslint-disable-next-line no-unused-vars
     metaListData,
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   ) => null;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({
     metaData,
+    // eslint-disable-next-line no-unused-vars
     metaListData,
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   }) => {
     this.setCustomData(metaData);
@@ -97,17 +104,16 @@ class BasicInfo extends TabPageBase {
 
     const mediaItemList = [];
 
-    (mediaItemSourceList || []).forEach((item) => {
+    for (const item of mediaItemSourceList || []) {
       const o = {
         ...item,
-        ...{
-          key: item.id,
-          sort: item.sort + 1,
-        },
+
+        key: item.id,
+        sort: item.sort + 1,
       };
 
       mediaItemList.push(o);
-    });
+    }
 
     this.setState({
       metaData,
@@ -203,30 +209,35 @@ class BasicInfo extends TabPageBase {
     const { articleId } = this.state;
 
     switch (key) {
-      case 'insertItem':
+      case 'insertItem': {
         this.showInsertMediaItemDrawer(handleData);
         break;
+      }
 
-      case sortOperate.moveUp:
+      case sortOperate.moveUp: {
         this.changeSort(key, handleData);
         break;
+      }
 
-      case sortOperate.moveDown:
+      case sortOperate.moveDown: {
         this.changeSort(key, handleData);
         break;
+      }
 
-      case 'removeItem':
+      case 'removeItem': {
         removeMediaItemAction({
           target: this,
-          handleData: { ...(handleData || {}), ...{ articleId } },
+          handleData: { ...handleData, articleId },
           successCallback: ({ target, remoteData }) => {
             target.setCustomData(remoteData);
           },
         });
         break;
+      }
 
-      default:
+      default: {
         break;
+      }
     }
   };
 
@@ -257,7 +268,7 @@ class BasicInfo extends TabPageBase {
 
           return v;
         })
-        .join();
+        .join(',');
 
       setMediaCollectionSortAction({
         target: this,
@@ -544,8 +555,8 @@ class BasicInfo extends TabPageBase {
                 dataLoading ||
                 !loadSuccess
               }
-              onClick={(e) => {
-                this.showAddMediaItemDrawer(e);
+              onClick={(event) => {
+                this.showAddMediaItemDrawer(event);
               }}
             >
               {iconBuilder.plusCircle()}
@@ -661,7 +672,7 @@ class BasicInfo extends TabPageBase {
 
         <UpdateMediaItemDrawer
           visible={updateMediaItemDrawerVisible}
-          externalData={{ ...(currentMediaItem || {}), ...{ articleId } }}
+          externalData={{ ...currentMediaItem, articleId }}
           afterOK={() => {
             this.afterUpdateMediaItemDrawerOk();
           }}

@@ -6,20 +6,20 @@ import { listViewConfig } from 'antd-management-fast-common';
 function initTotalList(columns) {
   const totalList = [];
 
-  columns.forEach((column) => {
+  for (const column of columns) {
     if (column.needTotal) {
       totalList.push({ ...column, total: 0 });
     }
-  });
+  }
 
   return totalList;
 }
 
 class StandardTableCustom extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
-    const { columns } = props;
+    const { columns } = properties;
     const needTotalList = initTotalList(columns);
 
     this.state = {
@@ -28,10 +28,10 @@ class StandardTableCustom extends PureComponent {
     };
   }
 
-  static getDerivedStateFromProps(nextProps) {
+  static getDerivedStateFromProps(nextProperties) {
     // clean state
-    if ((nextProps.selectedRows || []).length === 0) {
-      const needTotalList = initTotalList(nextProps.columns);
+    if ((nextProperties.selectedRows || []).length === 0) {
+      const needTotalList = initTotalList(nextProperties.columns);
       return {
         selectedRowKeys: [],
         needTotalList,
@@ -45,7 +45,7 @@ class StandardTableCustom extends PureComponent {
     needTotalList = needTotalList.map((item) => ({
       ...item,
       total: (selectedRows || []).reduce(
-        (sum, val) => sum + parseFloat(val[item.dataIndex], 10),
+        (sum, value) => sum + Number.parseFloat(value[item.dataIndex], 10),
         0,
       ),
     }));
@@ -80,7 +80,7 @@ class StandardTableCustom extends PureComponent {
       ...rest
     } = this.props;
 
-    const paginationProps = showPagination
+    const paginationProperties = showPagination
       ? {
           showSizeChanger: true,
           showQuickJumper: true,
@@ -153,7 +153,7 @@ class StandardTableCustom extends PureComponent {
             size={size || listViewConfig.tableSize.middle}
             rowSelection={rowSelection}
             dataSource={list}
-            pagination={paginationProps}
+            pagination={paginationProperties}
             onChange={this.handleTableChange}
             defaultExpandAllRows
             {...rest}

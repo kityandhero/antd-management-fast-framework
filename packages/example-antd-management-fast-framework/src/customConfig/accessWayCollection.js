@@ -1,5 +1,5 @@
 export const accessWayCollection = {
-  ...{
+  
     super: {
       permission: 'super',
     },
@@ -94,6 +94,6 @@ export const accessWayCollection = {
       updateImageSort: {
         permission: 'd4d861d70d7b4503ac1b0516591b7b15',
       },
-    },
-  },
+    }
+  ,
 };

@@ -2,7 +2,11 @@ import { Avatar } from 'antd';
 import React, { PureComponent } from 'react';
 import { ReloadOutlined } from '@ant-design/icons';
 
-import { isFunction } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isFunction,
+  showSimpleRuntimeError,
+} from 'easy-soft-utility';
 
 import { defaultEmptyImage } from 'antd-management-fast-common';
 
@@ -70,9 +74,7 @@ export function decorateAvatar(
               onError: () => {
                 const text = '加载默认图片失败';
 
-                showRuntimeError({
-                  message: text,
-                });
+                showSimpleRuntimeError(text);
 
                 return true;
               },
@@ -89,8 +91,8 @@ export function decorateAvatar(
 }
 
 class DecorateAvatar extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       avatarImageLoadResult: avatarImageLoadResultCollection.wait,

@@ -1,23 +1,21 @@
 import {
+  getLocalMetaData,
+  getTacitlyState,
   pretreatmentRemoteSingleData,
   reducerCollection,
-  reducerDefaultParams,
+  reducerDefaultParameters,
   reducerNameCollection,
+  setLocalMetaData,
   showInfoMessage,
-  tacitlyState,
-} from 'antd-management-fast-common';
-import {
-  getMetaDataCache,
-  setMetaDataCache,
-} from 'antd-management-fast-framework/es/utils/storageAssist';
+} from 'easy-soft-utility';
 
 import { getData } from '../services/global';
 
-const GlobalModel = {
+export default {
   namespace: 'global',
 
   state: {
-    ...tacitlyState,
+    ...getTacitlyState(),
   },
 
   effects: {
@@ -31,7 +29,7 @@ const GlobalModel = {
       let fromRemote = force || false;
 
       if (!force) {
-        dataAdjust = getMetaDataCache();
+        dataAdjust = getLocalMetaData();
 
         if ((result || null) == null) {
           fromRemote = true;
@@ -57,10 +55,10 @@ const GlobalModel = {
           type: reducerNameCollection.reducerData,
           payload: dataAdjust,
           alias,
-          ...reducerDefaultParams,
+          ...reducerDefaultParameters,
         });
 
-        setMetaDataCache(dataAdjust);
+        setLocalMetaData(dataAdjust);
       }
 
       return dataAdjust;
@@ -86,15 +84,15 @@ const GlobalModel = {
         amapObject: payload,
       };
     },
-    changeLayoutCollapsed(
-      state = {
-        notices: [],
-        collapsed: true,
-      },
-      { payload },
-    ) {
-      return { ...state, collapsed: payload };
-    },
+    // changeLayoutCollapsed(
+    //   state = {
+    //     notices: [],
+    //     collapsed: true,
+    //   },
+    //   { payload },
+    // ) {
+    //   return { ...state, collapsed: payload };
+    // },
     saveNotices(state, { payload }) {
       return {
         collapsed: false,
@@ -102,19 +100,19 @@ const GlobalModel = {
         notices: payload,
       };
     },
-    saveClearedNotices(
-      state = {
-        notices: [],
-        collapsed: true,
-      },
-      { payload },
-    ) {
-      return {
-        collapsed: false,
-        ...state,
-        notices: state.notices.filter((item) => item.type !== payload),
-      };
-    },
+    // saveClearedNotices(
+    //   state = {
+    //     notices: [],
+    //     collapsed: true,
+    //   },
+    //   { payload },
+    // ) {
+    //   return {
+    //     collapsed: false,
+    //     ...state,
+    //     notices: state.notices.filter((item) => item.type !== payload),
+    //   };
+    // },
     changeAreaDistributionTempData(state, { payload }) {
       return {
         ...state,
@@ -128,12 +126,10 @@ const GlobalModel = {
     setup({ history }) {
       // Subscribe history(url) change, trigger `load` action if pathname is `/`
       return history.listen(({ pathname, search }) => {
-        if (typeof window.ga !== 'undefined') {
+        if (window.ga !== undefined) {
           window.ga('send', 'pageview', pathname + search);
         }
       });
     },
   },
 };
-
-export default GlobalModel;

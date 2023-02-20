@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { isNumber } from 'easy-soft-utility';
+import { checkStringIsNullOrWhiteSpace, isNumber } from 'easy-soft-utility';
 
 import {
   buildRandomHexColor,
@@ -41,14 +41,14 @@ class ColorText extends PureComponent {
     }
 
     const style = {
-      ...{ color: 'rgba(0, 0, 0, 0.85)' },
+      color: 'rgba(0, 0, 0, 0.85)',
       ...(canCopy ? { cursor: 'pointer' } : {}),
     };
 
     const textStyle = {
-      ...(!checkStringIsNullOrWhiteSpace(colorValue)
-        ? { color: colorValue }
-        : {}),
+      ...(checkStringIsNullOrWhiteSpace(colorValue)
+        ? {}
+        : { color: colorValue }),
     };
 
     return (

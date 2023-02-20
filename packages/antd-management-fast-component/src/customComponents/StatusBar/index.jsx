@@ -1,7 +1,7 @@
 import { Col, Divider, Row } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { isArray } from 'easy-soft-utility';
+import { isArray, showSimpleRuntimeError } from 'easy-soft-utility';
 
 class StatusBar extends PureComponent {
   render() {
@@ -12,9 +12,7 @@ class StatusBar extends PureComponent {
     if (!isArray(actionList)) {
       const text = 'actions 必须为数组';
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
 
       actionList = [];
     }
@@ -22,7 +20,7 @@ class StatusBar extends PureComponent {
     const actionCount = actionList.length;
 
     actionList = actionList.map((o, index) => {
-      return { ...o, ...{ key: `status_bar_action_${index}` } };
+      return { ...o, key: `status_bar_action_${index}` };
     });
 
     return (

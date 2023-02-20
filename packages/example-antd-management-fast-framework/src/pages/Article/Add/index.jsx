@@ -1,24 +1,27 @@
 import { Space } from 'antd';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
+
+import { showSimpleInfoMessage } from 'easy-soft-utility';
 
 import {
   cardConfig,
   corsTarget,
-  getDerivedStateFromPropsForUrlParams,
-  showInfoMessage,
+  getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
-import QueueListBox, {
+import {
   FadeBox,
   iconBuilder,
   IconInfo,
   QueueBox,
+  QueueListBox,
 } from 'antd-management-fast-component';
-import BaseAddForm from 'antd-management-fast-framework/es/framework/DataForm/BaseAddForm';
+import { DataForm } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/config';
-
-import { parseUrlParamsForSetState } from '../Assist/config';
+import { accessWayCollection } from '../../../customConfig/config';
+import { parseUrlParametersForSetState as parseUrlParametersForSetState } from '../Assist/config';
 import { fieldData } from '../Common/data';
+
+const { BaseAddForm } = DataForm;
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -28,27 +31,26 @@ import { fieldData } from '../Common/data';
 class Index extends BaseAddForm {
   componentAuthority = accessWayCollection.article.addBasicInfo.permission;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        dataLoading: false,
-        pageName: '发布文章',
-        submitApiPath: 'article/addBasicInfo',
-        image: '',
-        fadeBoxShow: true,
-      },
+
+      dataLoading: false,
+      pageName: '发布文章',
+      submitApiPath: 'article/addBasicInfo',
+      image: '',
+      fadeBoxShow: true,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(
-      nextProps,
-      prevState,
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
       { id: '' },
-      parseUrlParamsForSetState,
+      parseUrlParametersForSetState,
     );
   }
 
@@ -57,15 +59,14 @@ class Index extends BaseAddForm {
   };
 
   doAfterSubmitSuccess = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     submitData = null,
   }) => {
     const { articleId } = singleData;
@@ -113,9 +114,7 @@ class Index extends BaseAddForm {
           component: this.renderGeneralButton({
             text: '按钮1',
             handleClick: () => {
-              showInfoMessage({
-                message: 'click button 4',
-              });
+              showSimpleInfoMessage('click button 4');
             },
             disabled: false,
           }),
@@ -126,9 +125,7 @@ class Index extends BaseAddForm {
           component: this.renderGeneralButton({
             text: '按钮2',
             handleClick: () => {
-              showInfoMessage({
-                message: 'click button 4',
-              });
+              showSimpleInfoMessage('click button 4');
             },
           }),
         },
@@ -138,9 +135,7 @@ class Index extends BaseAddForm {
           component: this.renderGeneralButton({
             text: '按钮2',
             handleClick: () => {
-              showInfoMessage({
-                message: 'click button 4',
-              });
+              showSimpleInfoMessage('click button 4');
             },
             processing: true,
           }),
@@ -151,9 +146,7 @@ class Index extends BaseAddForm {
           component: this.renderGeneralButton({
             text: '按钮4',
             handleClick: () => {
-              showInfoMessage({
-                message: 'click button 4',
-              });
+              showSimpleInfoMessage('click button 4');
             },
             confirm: {
               placement: 'topRight',
@@ -475,20 +468,6 @@ class Index extends BaseAddForm {
               type: cardConfig.contentItemType.nowTime,
             },
           ],
-        },
-      ],
-    };
-  };
-
-  establishHelpConfig = () => {
-    return {
-      title: '操作提示',
-      list: [
-        {
-          text: '简要说明：这里可以显示需要提示的信息。',
-        },
-        {
-          text: '简要说明：这里可以显示需要提示的信息。',
         },
       ],
     };

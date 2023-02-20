@@ -1,10 +1,10 @@
 import {
+  getTacitlyState,
   pretreatmentRemoteSingleData,
   reducerCollection,
-  reducerDefaultParams,
+  reducerDefaultParameters,
   reducerNameCollection,
-  tacitlyState,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
 
 import { initData } from '../services/flowEditor';
 
@@ -12,7 +12,7 @@ export default {
   namespace: 'flowEditor',
 
   state: {
-    ...tacitlyState,
+    ...getTacitlyState(),
   },
 
   effects: {
@@ -25,7 +25,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;

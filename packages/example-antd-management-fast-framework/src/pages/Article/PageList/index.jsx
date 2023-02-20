@@ -1,9 +1,9 @@
 import { Card, List, Table } from 'antd';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import {
+  buildRandomHexColor,
   convertCollection,
-  extraBuildType,
   getValueByKey,
   handleItem,
   replaceWithKeep,
@@ -15,7 +15,7 @@ import {
   cardConfig,
   columnFacadeMode,
   columnPlaceholder,
-  getRandomColor,
+  extraBuildType,
   listViewConfig,
   searchCardConfig,
   unlimitedWithStringFlag,
@@ -27,19 +27,18 @@ import {
   buildTagList,
   iconBuilder,
 } from 'antd-management-fast-component';
-import MultiPage from 'antd-management-fast-framework/es/framework/DataMultiPageView/MultiPage';
+import { DataMultiPageView } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/config';
-import { colorCollection } from '@/customConfig/constants';
+import { accessWayCollection } from '../../../customConfig/config';
+import { colorCollection } from '../../../customConfig/constants';
 import {
   getArticleRenderTypeName,
   renderSearchArticleRenderTypeSelect,
-} from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
+} from '../../../customSpecialComponents/FunctionSupplement/ArticleRenderType';
 import {
   getArticleStatusName,
   renderSearchArticleStatusSelect,
-} from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
+} from '../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
   refreshCacheAction,
@@ -51,6 +50,8 @@ import ChangeSortModal from '../ChangeSortModal';
 import { fieldData, mediaItemData, statusCollection } from '../Common/data';
 import ArticleSelectField from '../SelectField';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
+
+const { MultiPage } = DataMultiPageView;
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -67,57 +68,62 @@ class PageList extends MultiPage {
 
   componentAuthority = accessWayCollection.article.pageList.permission;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        showSelect: true,
-        pageName: '文章列表',
-        paramsKey: accessWayCollection.article.pageList.paramsKey,
-        listViewMode: listViewConfig.viewMode.table,
-        pageSize: 8,
-        tableScroll: { x: 1620 },
-        loadApiPath: 'article/pageList',
-        changeSortModalVisible: false,
-        addBasicInfoDrawerVisible: false,
-        updateBasicInfoDrawerVisible: false,
-        currentRecord: null,
-        articleId: '',
-        articleTitle: '',
-      },
+
+      showSelect: true,
+      pageName: '文章列表',
+      paramsKey: accessWayCollection.article.pageList.paramsKey,
+      listViewMode: listViewConfig.viewMode.table,
+      pageSize: 8,
+      tableScroll: { x: 1620 },
+      loadApiPath: 'article/pageList',
+      changeSortModalVisible: false,
+      addBasicInfoDrawerVisible: false,
+      updateBasicInfoDrawerVisible: false,
+      currentRecord: null,
+      articleId: '',
+      articleTitle: '',
     };
   }
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
-      case 'showUpdateBasicInfoDrawer':
+      case 'showUpdateBasicInfoDrawer': {
         this.showUpdateBasicInfoDrawer(handleData);
         break;
+      }
 
-      case 'setOnline':
+      case 'setOnline': {
         this.setOnline(handleData);
         break;
+      }
 
-      case 'setOffline':
+      case 'setOffline': {
         this.setOffline(handleData);
         break;
+      }
 
-      case 'setSort':
+      case 'setSort': {
         this.showChangeSortModal(handleData);
         break;
+      }
 
-      case 'refreshCache':
+      case 'refreshCache': {
         this.refreshCache(handleData);
         break;
+      }
 
-      default:
+      default: {
         break;
+      }
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   handleItemStatus = ({ target, record, remoteData }) => {
     const articleId = getValueByKey({
       data: remoteData,
@@ -216,19 +222,22 @@ class PageList extends MultiPage {
   };
 
   afterChangeSortModalOk = ({
+    // eslint-disable-next-line no-unused-vars
     singleData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     listData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     extraData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     responseOriginalData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     submitData,
   }) => {
     const that = this;
 
-    if (singleData != null) {
+    if (singleData == null) {
+      that.reloadData();
+    } else {
       const articleId = getValueByKey({
         data: singleData,
         key: fieldData.articleId.name,
@@ -253,8 +262,6 @@ class PageList extends MultiPage {
           return d;
         },
       });
-    } else {
-      that.reloadData();
     }
 
     that.setState({
@@ -488,7 +495,7 @@ class PageList extends MultiPage {
         borderRadius: '4px',
       },
       animalType: listViewConfig.expandAnimalType.queue,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line no-unused-vars
       expandedRowRender: (record, index, indent, expanded) => {
         const columns = this.buildColumnList([
           {
@@ -559,10 +566,10 @@ class PageList extends MultiPage {
               availability: whetherNumber.no,
             },
           ],
-          onChange: (e) => {
+          onChange: (event) => {
             const {
               target: { value: v },
-            } = e;
+            } = event;
 
             this.setState({
               listViewMode: v,
@@ -775,17 +782,17 @@ class PageList extends MultiPage {
     };
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  renderListViewItemInner = (r, index) => {
+  // eslint-disable-next-line no-unused-vars
+  renderListViewItemInner = (data, index) => {
     return (
       <>
         <List.Item.Meta
           title={getValueByKey({
-            data: r,
+            data: data,
             key: fieldData.title.name,
           })}
           description={getValueByKey({
-            data: r,
+            data: data,
             key: fieldData.description.name,
           })}
         />
@@ -898,10 +905,10 @@ class PageList extends MultiPage {
       dataTarget: fieldData.sort,
       width: 100,
       showRichFacade: true,
-      facadeConfigBuilder: (val) => {
+      facadeConfigBuilder: (value) => {
         return {
-          color: getRandomColor({
-            seed: val,
+          color: buildRandomHexColor({
+            seed: value,
           }),
         };
       },
@@ -915,10 +922,10 @@ class PageList extends MultiPage {
       facadeConfig: {
         color: colorCollection.price,
       },
-      formatValue: (val) => {
+      formatValue: (value) => {
         return getArticleRenderTypeName({
           metaData: this.getMetaData(),
-          value: val,
+          value: value,
         });
       },
     },
@@ -928,12 +935,12 @@ class PageList extends MultiPage {
       emptyValue: '--',
       showRichFacade: true,
       facadeMode: columnFacadeMode.badge,
-      facadeConfigBuilder: (val) => {
+      facadeConfigBuilder: (value) => {
         return {
-          status: getStatusBadge(val),
+          status: getStatusBadge(value),
           text: getArticleStatusName({
             metaData: this.getMetaData(),
-            value: val,
+            value: value,
           }),
         };
       },

@@ -1,4 +1,4 @@
-import { AbstractComponent } from 'antd-management-fast-common';
+import { AbstractComponent } from '../AbstractComponent';
 
 const defaultProps = {};
 
@@ -15,18 +15,16 @@ class BaseComponent extends AbstractComponent {
     return dispatch;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  adjustShowRenderCountInConsole = (nextProps, nextState) => {
-    {
-      const { showRenderCount } = nextProps;
+  // eslint-disable-next-line no-unused-vars
+  adjustShowRenderCountInConsole = (nextProperties, nextState) => {
+    const { showRenderCount } = nextProperties;
 
-      this.showRenderCountInConsole = !!showRenderCount || false;
-    }
+    this.showRenderCountInConsole = !!showRenderCount || false;
   };
 }
 
 BaseComponent.defaultProps = {
-  ...ComponentBase.defaultProps,
+  ...AbstractComponent.defaultProps,
   ...defaultProps,
 };
 

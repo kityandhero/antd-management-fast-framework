@@ -1,4 +1,4 @@
-import { logDebug } from 'antd-management-fast-common';
+import { logDebug } from 'easy-soft-utility';
 
 export function execBasicLayoutRemoteRequest(dispatch) {
   const metaDataType = 'global/getMetaData';

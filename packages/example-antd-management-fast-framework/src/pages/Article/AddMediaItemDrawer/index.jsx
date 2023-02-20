@@ -1,20 +1,21 @@
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import {
-  cardConfig,
   checkInCollection,
-  corsTarget,
+  checkStringIsNullOrWhiteSpace,
   toNumber,
-  toString,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
+
+import { cardConfig, corsTarget } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import BaseAddDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseAddDrawer';
+import { DataDrawer } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/config';
-import { mediaTypeCollection } from '@/customConfig/constants';
-import { renderFormMediaTypeSelect } from '@/customSpecialComponents/FunctionSupplement/MediaType';
-
+import { accessWayCollection } from '../../../customConfig/config';
+import { mediaTypeCollection } from '../../../customConfig/constants';
+import { renderFormMediaTypeSelect } from '../../../customSpecialComponents/FunctionSupplement/MediaType';
 import { mediaItemData } from '../Common/data';
+
+const { BaseAddDrawer } = DataDrawer;
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -24,31 +25,30 @@ import { mediaItemData } from '../Common/data';
 class Index extends BaseAddDrawer {
   componentAuthority = accessWayCollection.article.addMediaItem.permission;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        dataLoading: false,
-        loadDataAfterMount: false,
-        pageName: '新增媒体',
-        submitApiPath: 'article/addMediaItem',
-        mediaType: mediaTypeCollection.paragraph,
-        image: '',
-        video: '',
-        audio: '',
-        attachment: '',
-      },
+
+      dataLoading: false,
+      loadDataAfterMount: false,
+      pageName: '新增媒体',
+      submitApiPath: 'article/addMediaItem',
+      mediaType: mediaTypeCollection.paragraph,
+      image: '',
+      video: '',
+      audio: '',
+      attachment: '',
     };
   }
 
   executeOtherAfterDoOtherWhenChangeVisible = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    preProps,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
+    preProperties,
+    // eslint-disable-next-line no-unused-vars
     preState,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     snapshot,
   ) => {
     this.setState({
@@ -63,13 +63,12 @@ class Index extends BaseAddDrawer {
     const { image, video, audio, attachment } = this.state;
 
     return {
-      ...(this.supplementRequestParams(o) || {}),
-      ...{
-        image,
-        video,
-        audio,
-        attachment,
-      },
+      ...this.supplementRequestParams(o),
+
+      image,
+      video,
+      audio,
+      attachment,
     };
   };
 
@@ -78,11 +77,9 @@ class Index extends BaseAddDrawer {
     const { externalData } = this.state;
 
     const { articleId, forwardId } = {
-      ...{
-        articleId: '',
-        forwardId: '',
-      },
-      ...(externalData || {}),
+      articleId: '',
+      forwardId: '',
+      ...externalData,
     };
 
     if (!checkStringIsNullOrWhiteSpace(articleId)) {
@@ -151,8 +148,8 @@ class Index extends BaseAddDrawer {
               type: cardConfig.contentItemType.component,
               component: renderFormMediaTypeSelect({
                 metaData: this.getMetaData(),
-                onChangeCallback: (e) => {
-                  this.onTypeChange(e);
+                onChangeCallback: (event) => {
+                  this.onTypeChange(event);
                 },
               }),
               require: true,

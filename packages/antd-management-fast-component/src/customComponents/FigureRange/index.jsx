@@ -9,7 +9,7 @@ const { Option } = Select;
 
 export const figureRangeType = {
   unlimited: {
-    flag: -10000,
+    flag: -10_000,
     text: '不限',
   },
   zero: {
@@ -49,8 +49,8 @@ export const figureRangeType = {
 class FigureRange extends PureComponent {
   rangeType = figureRangeType;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       type: figureRangeType.unlimited.flag,
@@ -60,14 +60,14 @@ class FigureRange extends PureComponent {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
+  // eslint-disable-next-line no-unused-vars
+  static getDerivedStateFromProps(nextProperties, previousState) {
     const {
       type: typeData,
       min: minData,
       max: maxData,
       value: valueData,
-    } = nextProps;
+    } = nextProperties;
 
     const type = toNumber(typeData);
     const min = toNumber(minData);
@@ -116,9 +116,9 @@ class FigureRange extends PureComponent {
     this.onDataChange(d, min, max, value);
   };
 
-  onValueChange = (e) => {
+  onValueChange = (event) => {
     const { type, min, max } = this.state;
-    const { value: v } = e.target;
+    const { value: v } = event.target;
 
     const d = toNumber(v);
 
@@ -127,9 +127,9 @@ class FigureRange extends PureComponent {
     this.onDataChange(type, min, max, d);
   };
 
-  onMinChange = (e) => {
+  onMinChange = (event) => {
     const { type, max, value } = this.state;
-    const { value: v } = e.target;
+    const { value: v } = event.target;
 
     const d = toNumber(v);
 
@@ -138,9 +138,9 @@ class FigureRange extends PureComponent {
     this.onDataChange(type, d, max, value);
   };
 
-  onMaxChange = (e) => {
+  onMaxChange = (event) => {
     const { type, min, value } = this.state;
-    const { value: v } = e.target;
+    const { value: v } = event.target;
 
     const d = toNumber(v);
 
@@ -174,8 +174,8 @@ class FigureRange extends PureComponent {
               style={{ width: '100%' }}
               defaultValue={`${type}`}
               value={`${type}`}
-              onChange={(e) => {
-                this.onTypeChange(e);
+              onChange={(event) => {
+                this.onTypeChange(event);
               }}
             >
               <Option value={`${figureRangeType.unlimited.flag}`}>

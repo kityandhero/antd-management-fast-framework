@@ -1,19 +1,21 @@
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import {
-  cardConfig,
   checkInCollection,
-  corsTarget,
+  checkStringIsNullOrWhiteSpace,
   formatCollection,
   getValueByKey,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
+
+import { cardConfig, corsTarget } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import BaseUpdateDrawer from 'antd-management-fast-framework/es/framework/DataDrawer/BaseUpdateDrawer';
+import { DataDrawer } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/config';
-import { mediaTypeCollection } from '@/customConfig/constants';
-
+import { accessWayCollection } from '../../../customConfig/config';
+import { mediaTypeCollection } from '../../../customConfig/constants';
 import { mediaItemData } from '../Common/data';
+
+const { BaseUpdateDrawer } = DataDrawer;
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -23,31 +25,29 @@ import { mediaItemData } from '../Common/data';
 class Index extends BaseUpdateDrawer {
   componentAuthority = accessWayCollection.article.getMediaItem.permission;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        pageName: '修改媒体',
-        loadApiPath: 'article/getMediaItem',
-        submitApiPath: 'article/updateMediaItem',
-        image: '',
-        video: '',
-        audio: '',
-        attachment: '',
-      },
+
+      pageName: '修改媒体',
+      loadApiPath: 'article/getMediaItem',
+      submitApiPath: 'article/updateMediaItem',
+      image: '',
+      video: '',
+      audio: '',
+      attachment: '',
     };
   }
 
   fillInitialValuesAfterLoad = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {
     const values = {};
@@ -85,14 +85,13 @@ class Index extends BaseUpdateDrawer {
     const { mediaType, image, video, audio, attachment } = this.state;
 
     return {
-      ...(this.supplementRequestParams(o) || {}),
-      ...{
-        mediaType,
-        image,
-        video,
-        audio,
-        attachment,
-      },
+      ...this.supplementRequestParams(o),
+
+      mediaType,
+      image,
+      video,
+      audio,
+      attachment,
     };
   };
 
@@ -101,11 +100,9 @@ class Index extends BaseUpdateDrawer {
     const { externalData } = this.state;
 
     const { articleId, id } = {
-      ...{
-        articleId: '',
-        id: '',
-      },
-      ...(externalData || {}),
+      articleId: '',
+      id: '',
+      ...externalData,
     };
 
     if (!checkStringIsNullOrWhiteSpace(articleId)) {
@@ -119,11 +116,13 @@ class Index extends BaseUpdateDrawer {
     return d;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({
     metaData,
+    // eslint-disable-next-line no-unused-vars
     metaListData,
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   }) => {
     const mediaType = getValueByKey({

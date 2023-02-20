@@ -2,7 +2,13 @@ import { Menu } from 'antd';
 import React from 'react';
 import { GridContent } from '@ant-design/pro-layout';
 
-import { endsWith, isArray, removeEndMatch } from 'antd-management-fast-common';
+import {
+  checkStringIsNullOrWhiteSpace,
+  endsWith,
+  isArray,
+  removeEndMatch,
+} from 'easy-soft-utility';
+
 import { IconInfo } from 'antd-management-fast-component';
 
 import { AuthorizationWrapper } from '../AuthorizationWrapper';
@@ -18,14 +24,13 @@ class DataMenuContainer extends AuthorizationWrapper {
 
   menuList = [];
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        menuMode: 'inline',
-      },
+
+      menuMode: 'inline',
     };
   }
 
@@ -38,35 +43,36 @@ class DataMenuContainer extends AuthorizationWrapper {
     window.removeEventListener('resize', this.resize);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
+  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
     const { urlParams } = this.state;
 
-    const { urlParams: urlParamsPrev } = preState;
+    const { urlParams: urlParametersPrevious } = preState;
 
-    if ((urlParams || null) == null || (urlParamsPrev || null) == null) {
+    if (
+      (urlParams || null) == null ||
+      (urlParametersPrevious || null) == null
+    ) {
       return;
     }
 
     const { op } = urlParams;
 
-    const { op: prevOp } = urlParamsPrev;
+    const { op: previousOp } = urlParametersPrevious;
 
     const { dataLoading } = this.state;
 
-    if (!dataLoading) {
-      if (
-        (prevOp === 'load' && op === 'update') ||
-        this.checkNeedUpdate(preProps, preState, snapshot)
-      ) {
-        this.reloadData();
+    if (
+      !dataLoading &&
+      ((previousOp === 'load' && op === 'update') ||
+        this.checkNeedUpdate(preProperties, preState, snapshot))
+    ) {
+      this.reloadData();
 
-        const {
-          location: { pathname },
-        } = this.props;
+      const {
+        location: { pathname },
+      } = this.props;
 
-        this.redirectToPath(`${pathname.replace('/update/', '/load/')}`);
-      }
+      this.redirectToPath(`${pathname.replace('/update/', '/load/')}`);
     }
   };
 
@@ -75,13 +81,13 @@ class DataMenuContainer extends AuthorizationWrapper {
   getMenuListAvailable = () => {
     const tabListAvailable = [];
 
-    (this.menuList || []).forEach((o) => {
-      const v = typeof o.show === 'undefined' ? true : o.show === true;
+    for (const o of this.menuList || []) {
+      const v = o.show === undefined ? true : o.show === true;
 
       if (v) {
         tabListAvailable.push(o);
       }
-    });
+    }
 
     return this.adjustTabListAvailable(tabListAvailable);
   };
@@ -112,8 +118,8 @@ class DataMenuContainer extends AuthorizationWrapper {
 
     menuListAvailable.some((o) => {
       const { key } = {
-        ...{ key: '' },
-        ...(o || {}),
+        key: '',
+        ...o,
       };
 
       if (key === selectKey) {
@@ -126,10 +132,8 @@ class DataMenuContainer extends AuthorizationWrapper {
       return false;
     });
 
-    if (!selectKeyExist) {
-      if (!checkStringIsNullOrWhiteSpace(defaultKey || '')) {
-        result = defaultKey;
-      }
+    if (!selectKeyExist && !checkStringIsNullOrWhiteSpace(defaultKey || '')) {
+      result = defaultKey;
     }
 
     return result;
@@ -153,8 +157,9 @@ class DataMenuContainer extends AuthorizationWrapper {
 
     menuListAvailable.some((o) => {
       const { defaultSelect, key } = {
-        ...{ defaultSelect: false, key: '' },
-        ...(o || {}),
+        defaultSelect: false,
+        key: '',
+        ...o,
       };
 
       if (defaultSelect) {
@@ -182,8 +187,8 @@ class DataMenuContainer extends AuthorizationWrapper {
 
     menuListAvailable.some((o) => {
       const { key, icon, text } = {
-        ...{ key: '' },
-        ...(o || {}),
+        key: '',
+        ...o,
       };
 
       if (key === selectMenuKey) {
@@ -234,11 +239,9 @@ class DataMenuContainer extends AuthorizationWrapper {
 
     const currentKey = this.getMenuActiveKeyCore('');
 
-    if (endsWith(match.url, '/' + currentKey)) {
-      path = removeEndMatch(match.url, '/' + currentKey) + '/' + key;
-    } else {
-      path = match.url + '/' + key;
-    }
+    path = endsWith(match.url, '/' + currentKey)
+      ? removeEndMatch(match.url, '/' + currentKey) + '/' + key
+      : match.url + '/' + key;
 
     this.goToPath(path);
   };
@@ -255,12 +258,14 @@ class DataMenuContainer extends AuthorizationWrapper {
         const { offsetWidth } = this.main;
 
         if (offsetWidth != null) {
-          if (this.main.offsetWidth < 641 && offsetWidth > 400) {
+          if (offsetWidth < 641 && offsetWidth > 400) {
             menuMode = 'horizontal';
           }
+
           if (window.innerWidth < 768 && offsetWidth > 400) {
             menuMode = 'horizontal';
           }
+
           this.setState({
             menuMode,
           });
@@ -284,8 +289,8 @@ class DataMenuContainer extends AuthorizationWrapper {
       <GridContent>
         <div
           className={styles.main}
-          ref={(ref) => {
-            this.main = ref;
+          ref={(reference) => {
+            this.main = reference;
           }}
         >
           <div className={styles.leftMenu}>

@@ -3,8 +3,8 @@ import React from 'react';
 
 import { FormCustomItemChildren } from '../FormCustomItemChildren';
 
-export function FormCustomItem(props) {
-  const { render, children, ...rest } = props;
+export function FormCustomItem(properties) {
+  const { render, children, ...rest } = properties;
 
   return (
     <Form.Item {...rest}>

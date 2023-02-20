@@ -1,28 +1,26 @@
-import {
-  datetimeFormat,
-  formatDatetime,
-  formNameCollection,
-} from 'antd-management-fast-common';
+import { datetimeFormat, formatDatetime } from 'easy-soft-utility';
+
+import { formNameCollection } from 'antd-management-fast-common';
 
 import { Base } from '../Base';
 
 class BaseNeedlessLoadDrawer extends Base {
   resetDataAfterLoad = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
+  // eslint-disable-next-line no-unused-vars
+  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
     const form = this.getTargetForm();
 
     if (!form) {

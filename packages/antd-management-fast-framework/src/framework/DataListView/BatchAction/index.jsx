@@ -32,7 +32,7 @@ const DropdownButton = ({
         <Dropdown
           menu={{
             items: items,
-            onClick: (params) => onSelect && onSelect(params.key),
+            onClick: (parameters) => onSelect && onSelect(parameters.key),
           }}
           className={styles.batchAction}
           disabled={disabled}
@@ -62,7 +62,7 @@ const BatchAction = ({ style, onSelect, menus = [], disabled }) => (
         <Dropdown
           menu={{
             items: items,
-            onClick: (params) => onSelect && onSelect(params.key),
+            onClick: (parameters) => onSelect && onSelect(parameters.key),
           }}
           className={styles.batchAction}
           disabled={disabled}

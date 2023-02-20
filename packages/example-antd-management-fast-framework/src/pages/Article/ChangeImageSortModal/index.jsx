@@ -1,23 +1,25 @@
 import { Dropdown, List } from 'antd';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import {
   getValueByKey,
   isArray,
-  showError,
+  showSimpleErrorMessage,
   sortCollectionByKey,
   sortOperate,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
+
 import { iconBuilder } from 'antd-management-fast-component';
-import { Base } from 'antd-management-fast-framework/es/framework/DataModal/Base';
+import { DataModal } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/config';
-
+import { accessWayCollection } from '../../../customConfig/config';
 import { setMediaCollectionSortAction } from '../Assist/action';
 import { getArticleIdFromExternalData } from '../Assist/config';
 import { mediaItemData } from '../Common/data';
 
 import styles from './index.less';
+
+const { Base } = DataModal;
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -27,34 +29,32 @@ import styles from './index.less';
 class ChangeImageSortModal extends Base {
   resetDataAfterLoad = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        pageName: '变更图片顺序',
-        loadApiPath: 'article/listImage',
-        submitApiPath: 'article/updateImageSort',
-        width: 700,
-        articleId: '',
-        videoUrl: '',
-        sorts: '',
-        bodyStyle: {
-          height: '300px',
-          overflow: 'auto',
-        },
+
+      pageName: '变更图片顺序',
+      loadApiPath: 'article/listImage',
+      submitApiPath: 'article/updateImageSort',
+      width: 700,
+      articleId: '',
+      videoUrl: '',
+      sorts: '',
+      bodyStyle: {
+        height: '300px',
+        overflow: 'auto',
       },
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {
+  // eslint-disable-next-line no-unused-vars
+  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
     this.reloadData();
   };
 
@@ -74,25 +74,25 @@ class ChangeImageSortModal extends Base {
 
     const list = [];
 
-    (metaListData || []).forEach((item) => {
+    for (const item of metaListData || []) {
       list.push(`${item.id}|${item.sort}`);
-    });
+    }
 
-    d.sorts = list.join();
+    d.sorts = list.join(',');
 
     return d;
   };
 
   buildNotificationDescription = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     submitData = null,
   }) => {
     return ` 图片顺序已经更改成功。`;
@@ -100,12 +100,12 @@ class ChangeImageSortModal extends Base {
 
   checkSubmitRequestParams = (o) => {
     if ((o.articleId || '') === '') {
-      showError('请提交产品标识!');
+      showSimpleErrorMessage('请提交产品标识!');
       return false;
     }
 
     if ((o.sorts || '') === '') {
-      showError('请提交产品图片排序序列!');
+      showSimpleErrorMessage('请提交产品图片排序序列!');
       return false;
     }
 
@@ -139,7 +139,7 @@ class ChangeImageSortModal extends Base {
 
           return v;
         })
-        .join();
+        .join(',');
 
       setMediaCollectionSortAction({
         target: this,
@@ -166,8 +166,9 @@ class ChangeImageSortModal extends Base {
       </div>
     );
 
-    const MoreBtn = (props) => {
-      const { current, metaListDataList, hasAuthority, onMenuClick } = props;
+    const MoreButton = (properties) => {
+      const { current, metaListDataList, hasAuthority, onMenuClick } =
+        properties;
 
       const items = [
         {
@@ -189,7 +190,7 @@ class ChangeImageSortModal extends Base {
           disabled={!hasAuthority}
           menu={{
             items: items,
-            onClick: (e) => onMenuClick(e, current),
+            onClick: (event) => onMenuClick(event, current),
           }}
         >
           <a>{iconBuilder.retweet()} 排序</a>
@@ -209,7 +210,7 @@ class ChangeImageSortModal extends Base {
             renderItem={(item, index) => (
               <List.Item
                 actions={[
-                  <MoreBtn
+                  <MoreButton
                     key={`${index}_`}
                     current={item}
                     metaListDataList={metaListData}
@@ -217,8 +218,8 @@ class ChangeImageSortModal extends Base {
                       accessWayCollection.article.updateImageContentInfo
                         .permission,
                     )}
-                    onMenuClick={(e, current) => {
-                      const { key } = e;
+                    onMenuClick={(event, current) => {
+                      const { key } = event;
 
                       this.changeSort(key, current);
                     }}

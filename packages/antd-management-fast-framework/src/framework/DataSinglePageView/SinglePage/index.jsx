@@ -1,10 +1,14 @@
 import {
-  defaultListState,
+  checkStringIsNullOrWhiteSpace,
   isUndefined,
   logObject,
-  showWarningMessage,
+  showSimpleErrorMessage,
+  showSimpleRuntimeError,
+  showSimpleWarningMessage,
   toNumber,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
+
+import { defaultListState } from 'antd-management-fast-common';
 
 import { Base } from '../../DataListView/Base';
 
@@ -19,8 +23,8 @@ class SinglePage extends Base {
    */
   useFrontendPagination = true;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.lastLoadParams = null;
 
@@ -29,9 +33,8 @@ class SinglePage extends Base {
     this.state = {
       ...this.state,
       ...defaultState,
-      ...{
-        frontendPageNo: 1,
-      },
+
+      frontendPageNo: 1,
     };
   }
 
@@ -66,9 +69,7 @@ class SinglePage extends Base {
     if ((loadApiPath || '') === '') {
       const text = 'loadApiPath需要配置';
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
 
       logObject(this);
 
@@ -78,28 +79,27 @@ class SinglePage extends Base {
     const { startTimeAlias, endTimeAlias, startTime, endTime } = this.state;
 
     if (!checkStringIsNullOrWhiteSpace(startTime)) {
-      if (!checkStringIsNullOrWhiteSpace(startTimeAlias)) {
-        d[startTimeAlias] = startTime;
-      } else {
+      if (checkStringIsNullOrWhiteSpace(startTimeAlias)) {
         d.startTime = startTime;
+      } else {
+        d[startTimeAlias] = startTime;
       }
     }
 
     if (!checkStringIsNullOrWhiteSpace(endTime)) {
-      if (!checkStringIsNullOrWhiteSpace(endTimeAlias)) {
-        d[endTimeAlias] = endTime;
-      } else {
+      if (checkStringIsNullOrWhiteSpace(endTimeAlias)) {
         d.endTime = endTime;
+      } else {
+        d[endTimeAlias] = endTime;
       }
     }
 
     d = {
       ...d,
-      ...{
-        ...(formValues || {}),
-        ...(filters || {}),
-        ...(sorter || {}),
-      },
+
+      ...formValues,
+      ...filters,
+      ...sorter,
     };
 
     delete d.dateRange;
@@ -117,9 +117,7 @@ class SinglePage extends Base {
     if (!form) {
       const text = '查询表单不存在';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
     }
 
     const { validateFields } = form;
@@ -128,6 +126,7 @@ class SinglePage extends Base {
       .then((fieldsValue) => {
         const values = {
           ...fieldsValue,
+          // eslint-disable-next-line promise/always-return
           updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
         };
 
@@ -136,12 +135,14 @@ class SinglePage extends Base {
       .catch((error) => {
         const { errorFields } = error;
 
-        if (!isUndefined(errorFields)) {
+        if (isUndefined(errorFields)) {
+          showSimpleRuntimeError(error);
+        } else {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          for (const o of Object.values(errorFields)) {
             m.push(o.errors[0]);
-          });
+          }
 
           const maxLength = 5;
           let beyondMax = false;
@@ -158,13 +159,7 @@ class SinglePage extends Base {
             errorMessage += ' ...';
           }
 
-          showWarningMessage({
-            message: errorMessage,
-          });
-        } else {
-          showRuntimeError({
-            message: error,
-          });
+          showSimpleWarningMessage(errorMessage);
         }
       });
   };
@@ -177,8 +172,8 @@ class SinglePage extends Base {
     const { metaOriginalData } = this.state;
 
     const { list } = {
-      ...{ list: [] },
-      ...(metaOriginalData || {}),
+      list: [],
+      ...metaOriginalData,
     };
 
     return list;
@@ -196,7 +191,7 @@ class SinglePage extends Base {
   buildFrontendPaginationListData = ({ pageNo, pageSize }) => {
     const list = this.adjustViewDataSource();
 
-    const listData = !!this.getCanUseFrontendPagination()
+    const listData = this.getCanUseFrontendPagination()
       ? list.slice((pageNo - 1) * pageSize, pageNo * pageSize)
       : list;
 
@@ -214,10 +209,6 @@ class SinglePage extends Base {
   /**
    * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
    */
-  establishViewPaginationConfig = () => {
-    return null;
-  };
-
   establishViewPaginationConfig = () => {
     const list = this.establishViewDataSource();
 
@@ -244,8 +235,14 @@ class SinglePage extends Base {
    * @param {*} filtersArg
    * @param {*} sorter
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleAdditionalStandardTableChange = (pagination, filtersArg, sorter) => {
+
+  handleAdditionalStandardTableChange = (
+    pagination,
+    // eslint-disable-next-line no-unused-vars
+    filtersArgument,
+    // eslint-disable-next-line no-unused-vars
+    sorter,
+  ) => {
     const { current: frontendPageNoSource } = pagination;
 
     const frontendPageNo = toNumber(frontendPageNoSource);
@@ -264,7 +261,7 @@ class SinglePage extends Base {
   };
 
   renderPaginationView = () => {
-    if (!!!this.getCanUseFrontendPagination()) {
+    if (!this.getCanUseFrontendPagination()) {
       return null;
     }
 

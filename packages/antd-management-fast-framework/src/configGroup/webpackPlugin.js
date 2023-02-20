@@ -1,16 +1,19 @@
+// eslint-disable-next-line unicorn/prefer-node-protocol
 import path from 'path';
 
 function getModulePackageName(module) {
   if (!module.context) return null;
+  // eslint-disable-next-line unicorn/prefer-module
   const nodeModulesPath = path.join(__dirname, '../node_modules/');
 
+  // eslint-disable-next-line unicorn/prefer-string-slice
   if (module.context.substring(0, nodeModulesPath.length) !== nodeModulesPath) {
     return null;
   }
 
-  const moduleRelativePath = module.context.substring(nodeModulesPath.length);
-  const [moduleDirName] = moduleRelativePath.split(path.sep);
-  let packageName = moduleDirName; // handle tree shaking
+  const moduleRelativePath = module.context.slice(nodeModulesPath.length);
+  const [moduleDirectionName] = moduleRelativePath.split(path.sep);
+  let packageName = moduleDirectionName; // handle tree shaking
 
   if (packageName && packageName.match('^_')) {
     // eslint-disable-next-line prefer-destructuring
@@ -40,7 +43,7 @@ export const webpackPlugin = (config) => {
       // minChunks: 1, // 模块被引用>=1次，便分割
       // maxAsyncRequests: 5, // 异步加载chunk的并发请求数量<=5
       // maxInitialRequests: 3, // 一个入口并发加载的chunk数量<=3
-      maxInitialRequests: Infinity,
+      maxInitialRequests: Number.POSITIVE_INFINITY,
       cacheGroups: {
         // default: {
         //   // 模块缓存规则，设置为false，默认缓存组将禁用
@@ -72,19 +75,18 @@ export const webpackPlugin = (config) => {
           },
           name(module) {
             const packageName = getModulePackageName(module);
-            if (packageName) {
-              if (
-                [
-                  'bizcharts',
-                  '@antv/data-set',
-                  '@ant-design/icons',
-                  '@antv/l7',
-                  '@antv/l7-maps',
-                  'gg-editor',
-                ].indexOf(packageName) >= 0
-              ) {
-                return 'viz'; // visualization package
-              }
+            if (
+              packageName &&
+              [
+                'bizcharts',
+                '@antv/data-set',
+                '@ant-design/icons',
+                '@antv/l7',
+                '@antv/l7-maps',
+                'gg-editor',
+              ].includes(packageName)
+            ) {
+              return 'viz'; // visualization package
             }
             return 'misc';
           },

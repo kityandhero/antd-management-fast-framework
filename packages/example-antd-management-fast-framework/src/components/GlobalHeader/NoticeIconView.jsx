@@ -2,13 +2,13 @@ import { Tag } from 'antd';
 import groupBy from 'lodash/groupBy';
 // import moment from 'moment';
 import { Component } from 'react';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import {
   logDebug,
   showInfoMessage,
   showSuccessMessage,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
 
 import NoticeIcon from '../NoticeIcon';
 
@@ -107,25 +107,25 @@ class GlobalHeaderRight extends Component {
   };
 
   getUnreadData = (noticeData) => {
-    const unreadMsg = {};
-    Object.keys(noticeData).forEach((key) => {
+    const unreadMessage = {};
+    for (const key of Object.keys(noticeData)) {
       const value = noticeData[key];
 
-      if (!unreadMsg[key]) {
-        unreadMsg[key] = 0;
+      if (!unreadMessage[key]) {
+        unreadMessage[key] = 0;
       }
 
       if (Array.isArray(value)) {
-        unreadMsg[key] = value.filter((item) => !item.read).length;
+        unreadMessage[key] = value.filter((item) => !item.read).length;
       }
-    });
-    return unreadMsg;
+    }
+    return unreadMessage;
   };
 
   render() {
     const { fetchingNotices, onNoticeVisibleChange } = this.props;
     const noticeData = this.getNoticeData();
-    const unreadMsg = this.getUnreadData(noticeData);
+    const unreadMessage = this.getUnreadData(noticeData);
     return (
       <NoticeIcon
         className={styles.action}
@@ -147,7 +147,7 @@ class GlobalHeaderRight extends Component {
       >
         <NoticeIcon.Tab
           tabKey="notification"
-          count={unreadMsg.notification}
+          count={unreadMessage.notification}
           list={noticeData.notification}
           title="通知"
           emptyText="你已查看所有通知"
@@ -155,7 +155,7 @@ class GlobalHeaderRight extends Component {
         />
         <NoticeIcon.Tab
           tabKey="message"
-          count={unreadMsg.message}
+          count={unreadMessage.message}
           list={noticeData.message}
           title="消息"
           emptyText="您已读完所有消息"
@@ -165,7 +165,7 @@ class GlobalHeaderRight extends Component {
           tabKey="event"
           title="待办"
           emptyText="你已完成所有待办"
-          count={unreadMsg.event}
+          count={unreadMessage.event}
           list={noticeData.event}
           showViewMore
         />

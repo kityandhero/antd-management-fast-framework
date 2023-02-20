@@ -1,13 +1,16 @@
 import { Button } from 'antd';
 import React from 'react';
-import { connect } from 'umi';
+// eslint-disable-next-line import/named
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
+import { connect } from '@umijs/max';
+
+import { redirectTo, setAuthority } from 'easy-soft-utility';
 
 import {
+  getAppDescription,
+  getAppName,
   getPageQuery,
-  redirectToPath,
-  runtimeSettings,
-  setAuthority,
+  getShareLogo,
   setToken,
 } from 'antd-management-fast-common';
 import {
@@ -25,15 +28,14 @@ const defaultProps = {};
   global,
 }))
 class SignIn extends BaseComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        type: 'account',
-        processing: false,
-      },
+
+      type: 'account',
+      processing: false,
     };
   }
 
@@ -56,18 +58,18 @@ class SignIn extends BaseComponent {
             setAuthority(currentAuthority);
             setToken(tokenValue);
 
-            const urlParams = new URL(window.location.href);
-            const params = getPageQuery();
-            let { redirect } = params;
+            const urlParameters = new URL(window.location.href);
+            const parameters = getPageQuery();
+            let { redirect } = parameters;
 
             if (redirect) {
-              const redirectUrlParams = new URL(redirect);
+              const redirectUrlParameters = new URL(redirect);
 
-              if (redirectUrlParams.origin === urlParams.origin) {
-                redirect = redirect.substr(urlParams.origin.length);
+              if (redirectUrlParameters.origin === urlParameters.origin) {
+                redirect = redirect.slice(urlParameters.origin.length);
 
-                if (redirect.match(/^\/.*#/)) {
-                  redirect = redirect.substr(redirect.indexOf('#') + 1);
+                if (/^\/.*#/.test(redirect)) {
+                  redirect = redirect.slice(redirect.indexOf('#') + 1);
                 }
               } else {
                 window.location.href = '/';
@@ -75,7 +77,7 @@ class SignIn extends BaseComponent {
               }
             }
 
-            redirectToPath(redirect || '/');
+            redirectTo(redirect || '/');
           },
         );
       },
@@ -87,9 +89,9 @@ class SignIn extends BaseComponent {
 
     return (
       <LoginForm
-        logo={<img alt="logo" src={runtimeSettings.getShareLogo()} />}
-        title={runtimeSettings.getAppName() || '未设置名称'}
-        subTitle={runtimeSettings.getAppDescription() || ''}
+        logo={<img alt="logo" src={getShareLogo()} />}
+        title={getAppName() || '未设置名称'}
+        subTitle={getAppDescription() || ''}
         initialValues={{
           autoLogin: true,
         }}

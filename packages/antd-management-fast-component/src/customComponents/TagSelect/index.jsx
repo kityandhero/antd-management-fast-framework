@@ -21,17 +21,17 @@ const TagSelectOption = ({ children, checked, onChange, value }) => (
 TagSelectOption.isTagSelectOption = true;
 
 class TagSelect extends Component {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
     this.state = {
       expand: false,
-      value: props.value || props.defaultValue || [],
+      value: properties.value || properties.defaultValue || [],
     };
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    if ('value' in nextProps) {
-      return { value: nextProps.value || [] };
+  static getDerivedStateFromProps(nextProperties) {
+    if ('value' in nextProperties) {
+      return { value: nextProperties.value || [] };
     }
     return null;
   }
@@ -116,7 +116,7 @@ class TagSelect extends Component {
               return React.cloneElement(child, {
                 key: `tag-select-${child.props.value}`,
                 value: child.props.value,
-                checked: value.indexOf(child.props.value) > -1,
+                checked: value.includes(child.props.value),
                 onChange: this.handleTagChange,
               });
             }

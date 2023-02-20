@@ -1,15 +1,14 @@
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
+import { getCopyright, getLeftBarText } from 'antd-management-fast-common';
 import {
   buildMenuHeaderRender,
   iconBuilder,
   IconInfo,
 } from 'antd-management-fast-component';
 
-import { defaultSettings } from '@/defaultSettings';
-
 export const defaultFooterData = {
-  copyright: defaultSettings.getCopyright(),
+  copyright: getCopyright(),
   links: [
     {
       key: 'user',
@@ -21,25 +20,21 @@ export const defaultFooterData = {
 };
 
 export function menuHeaderRender(logoDom, config) {
-  const { global } = config;
   const { currentOperator } = {
-    ...{
-      currentOperator: { platform: { shortName: '' } },
-    },
-    ...(metaData || {}),
+    currentOperator: { platform: { shortName: '' } },
   };
 
   const { platform } = {
-    ...{ platform: { shortName: '' } },
-    ...(currentOperator || {}),
+    platform: { shortName: '' },
+    ...currentOperator,
   };
 
-  const { shortName } = { ...{ shortName: '' }, ...(platform || {}) };
+  const { shortName } = { shortName: '', ...platform };
 
   let shortNameData = shortName;
 
   if (checkStringIsNullOrWhiteSpace(shortNameData)) {
-    shortNameData = defaultSettings.getLeftBarText();
+    shortNameData = getLeftBarText();
   }
 
   const {

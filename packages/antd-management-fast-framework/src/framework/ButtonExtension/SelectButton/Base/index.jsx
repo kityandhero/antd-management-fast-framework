@@ -1,33 +1,29 @@
 import { Button } from 'antd';
 
-import { showRuntimeError } from 'antd-management-fast-common';
+import { showSimpleRuntimeError } from 'easy-soft-utility';
 
 import { SupplementWrapper } from '../../../CustomWrapper/SupplementWrapper';
 
 class Base extends SupplementWrapper {
   loadDataAfterMount = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        selectData: null,
-      },
+      selectData: null,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   showSelect = () => {
     const text = 'showSelect 方法需要在上层进行实现';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
   };
 
   getFieldData = () => {
@@ -43,10 +39,9 @@ class Base extends SupplementWrapper {
 
     const p = {
       ...(buttonProps || []),
-      ...{
-        onClick: () => {
-          this.showSelect();
-        },
+
+      onClick: () => {
+        this.showSelect();
       },
     };
 

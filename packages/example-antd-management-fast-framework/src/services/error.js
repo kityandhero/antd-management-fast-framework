@@ -1,4 +1,4 @@
-import { request } from 'antd-management-fast-common';
+import { request } from 'easy-soft-utility';
 
 export default async function queryError(code) {
   return request({

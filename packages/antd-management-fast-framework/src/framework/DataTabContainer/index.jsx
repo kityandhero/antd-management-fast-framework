@@ -2,7 +2,8 @@ import { Divider, Space, Tabs } from 'antd';
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
-import { isArray, isBoolean, isObject } from 'antd-management-fast-common';
+import { isArray, isBoolean, isObject } from 'easy-soft-utility';
+
 import {
   buildPageHeaderContent,
   buildPageHeaderTagWrapper,
@@ -12,63 +13,63 @@ import {
   pageHeaderExtraContent,
 } from 'antd-management-fast-component';
 
-import { DataSingleView } from '../DataSingleView/DataLoad';
+import { DataLoad } from '../DataSingleView/DataLoad';
 
 import styles from './index.less';
 
-class DataTabContainer extends DataSingleView {
+class DataTabContainer extends DataLoad {
   resetDataAfterLoad = false;
 
   currentKey = '';
 
   tabList = [];
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        defaultAvatarIcon: iconBuilder.picture(),
-        showPageHeaderAvatar: true,
-        customTabActiveKey: false,
-      },
+
+      defaultAvatarIcon: iconBuilder.picture(),
+      showPageHeaderAvatar: true,
+      customTabActiveKey: false,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
+  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
     const { urlParams } = this.state;
 
-    const { urlParams: urlParamsPrev } = preState;
+    const { urlParams: urlParametersPrevious } = preState;
 
-    if ((urlParams || null) == null || (urlParamsPrev || null) == null) {
+    if (
+      (urlParams || null) == null ||
+      (urlParametersPrevious || null) == null
+    ) {
       return;
     }
 
     const { op } = urlParams;
 
-    const { op: prevOp } = urlParamsPrev;
+    const { op: previousOp } = urlParametersPrevious;
 
     const { dataLoading } = this.state;
 
-    if (!dataLoading) {
-      if (
-        (prevOp === 'load' && op === 'update') ||
-        this.checkNeedUpdate(preProps, preState, snapshot)
-      ) {
-        this.reloadData();
+    if (
+      !dataLoading &&
+      ((previousOp === 'load' && op === 'update') ||
+        this.checkNeedUpdate(preProperties, preState, snapshot))
+    ) {
+      this.reloadData();
 
-        const {
-          location: { pathname },
-        } = this.props;
+      const {
+        location: { pathname },
+      } = this.props;
 
-        this.redirectToPath(`${pathname.replace('/update/', '/load/')}`);
-      }
+      this.redirectToPath(`${pathname.replace('/update/', '/load/')}`);
     }
   };
 
@@ -83,13 +84,13 @@ class DataTabContainer extends DataSingleView {
   };
 
   fillInitialValuesAfterLoad = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {
     return null;
@@ -98,13 +99,13 @@ class DataTabContainer extends DataSingleView {
   getTabListAvailable = () => {
     const tabListAvailable = [];
 
-    (this.tabList || []).forEach((o) => {
-      const v = typeof o.show === 'undefined' ? true : o.show === true;
+    for (const o of this.tabList || []) {
+      const v = o.show === undefined ? true : o.show === true;
 
       if (v) {
         tabListAvailable.push(o);
       }
-    });
+    }
 
     return this.adjustTabListAvailable(tabListAvailable);
   };
@@ -133,10 +134,8 @@ class DataTabContainer extends DataSingleView {
         tabBarExtraContent: this.buildTabBarExtraContent(),
         items: tabListAvailable.map((o) => {
           return {
-            ...{
-              style: {
-                padding: '24px',
-              },
+            style: {
+              padding: '24px',
             },
             ...o,
           };
@@ -162,14 +161,8 @@ class DataTabContainer extends DataSingleView {
     split: splitSource = false,
   }) => {
     const { split, list } = {
-      ...{
-        split: false,
-        list: [],
-      },
-      ...{
-        split: splitSource,
-        list: configListSource,
-      },
+      split: splitSource || false,
+      list: configListSource || [],
     };
 
     const configList = isArray(list) ? list : isObject(list) ? [list] : [];
@@ -220,7 +213,7 @@ class DataTabContainer extends DataSingleView {
       avatarImageLoadResult,
     } = this.state;
 
-    const avatarProps = showPageHeaderAvatar
+    const avatarProperties = showPageHeaderAvatar
       ? decorateAvatar(
           this.establishPageHeaderAvatarConfig(),
           defaultAvatarIcon,
@@ -256,7 +249,7 @@ class DataTabContainer extends DataSingleView {
           childrenContentStyle={{
             padding: '0px',
           }}
-          avatar={avatarProps}
+          avatar={avatarProperties}
           title={buildPageHeaderTitle(
             this.getPageName(),
             this.establishPageHeaderTitlePrefix(),

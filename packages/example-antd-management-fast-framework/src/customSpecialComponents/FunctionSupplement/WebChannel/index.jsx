@@ -22,8 +22,8 @@ import {
 
 export function refitWebChannelList({ metaData, withUnlimited = true }) {
   const { webChannelList: list } = {
-    ...{ webChannelList: [] },
-    ...(metaData || {}),
+     webChannelList: [] ,
+    ...metaData,
   };
 
   if (withUnlimited) {
@@ -95,7 +95,7 @@ export function renderCustomWebChannelSelect({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomSelect({
@@ -110,7 +110,7 @@ export function renderCustomWebChannelSelect({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -122,7 +122,7 @@ export function renderFormWebChannelSelect({
   formItemLayout = null,
   required = true,
   name = 'channel',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -141,7 +141,7 @@ export function renderFormWebChannelSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -151,7 +151,7 @@ export function renderCustomWebChannelRadio({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomRadio({
@@ -166,7 +166,7 @@ export function renderCustomWebChannelRadio({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -178,7 +178,7 @@ export function renderFormWebChannelRadio({
   formItemLayout = null,
   required = true,
   name = 'channel',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -197,6 +197,6 @@ export function renderFormWebChannelRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }

@@ -1,10 +1,12 @@
 import { notification } from 'antd';
 
 import {
+  checkStringIsNullOrWhiteSpace,
   isFunction,
+  showSimpleRuntimeError,
   showSuccessMessage,
   showWarningMessage,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
 
 import { AuthorizationWrapper } from '../../AuthorizationWrapper';
 
@@ -32,33 +34,28 @@ class Base extends AuthorizationWrapper {
   };
 
   fillInitialValuesAfterLoad = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {
     const text =
       "if property “resetDataAfterLoad” is true, fillInitialValuesAfterLoad need overload to fill from,if you don't want to do this,need set “resetDataAfterLoad” to false 。";
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     return {};
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   checkSubmitData = (o) => {
     if ((o || null) == null) {
       const text = '提交的数据不能为空';
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
 
       return false;
     }
@@ -66,7 +63,7 @@ class Base extends AuthorizationWrapper {
     return this.checkSubmitRequestParams(o);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   checkSubmitRequestParams = (o) => true;
 
   subjoinDataOnAfterOK = () => {
@@ -74,15 +71,14 @@ class Base extends AuthorizationWrapper {
   };
 
   doAfterSubmitSuccess = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     submitData = null,
   }) => {
     const { afterOK } = this.props;
@@ -126,35 +122,28 @@ class Base extends AuthorizationWrapper {
   };
 
   doOtherAfterSubmitSuccess = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     submitData = null,
   }) => {};
 
   sendSubmitSuccessMessage = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     submitData = null,
   }) => {
     const { type, text } = {
-      ...{
-        type: 'success',
-        text: '',
-      },
+      type: 'success',
+      text: '',
       ...this.buildMessage({
         singleData,
         listData,
@@ -184,15 +173,14 @@ class Base extends AuthorizationWrapper {
   };
 
   buildMessage = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     submitData = null,
   }) => {
     return {
@@ -212,30 +200,25 @@ class Base extends AuthorizationWrapper {
   };
 
   buildMessageText = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     submitData = null,
   }) => {
     return '';
   };
 
   sendSubmitSuccessNotification = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     submitData = null,
   }) => {
     const {
@@ -244,24 +227,16 @@ class Base extends AuthorizationWrapper {
       message: messageText,
       description,
     } = {
-      ...{
-        type: 'success',
-        placement: 'bottomRight',
-        message: '操作执行通知',
-        description: '',
-      },
-      ...{
-        type: this.buildNotificationType(),
-        placement: this.buildNotificationPlacement(),
-        message: this.buildNotificationMessage(),
-        description: this.buildNotificationDescription({
-          singleData,
-          listData,
-          extraData,
-          responseOriginalData,
-          submitData,
-        }),
-      },
+      type: this.buildNotificationType(),
+      placement: this.buildNotificationPlacement(),
+      message: this.buildNotificationMessage(),
+      description: this.buildNotificationDescription({
+        singleData,
+        listData,
+        extraData,
+        responseOriginalData,
+        submitData,
+      }),
     };
 
     if (!checkStringIsNullOrWhiteSpace(description)) {
@@ -316,15 +291,15 @@ class Base extends AuthorizationWrapper {
   };
 
   buildNotificationDescription = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     submitData = null,
   }) => {
     return `已成功更新信息，请继续其他操作。`;

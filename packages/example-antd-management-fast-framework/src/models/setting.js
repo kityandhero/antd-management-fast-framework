@@ -1,19 +1,21 @@
-import { runtimeSettings } from 'antd-management-fast-common';
+// import { runtimeSettings } from 'antd-management-fast-common';
 
-const SettingModel = {
+export default {
   namespace: 'settings',
-  state: runtimeSettings,
-  reducers: {
-    changeSetting(state = runtimeSettings, { payload }) {
-      const { contentWidth } = payload;
+  // state: runtimeSettings,
+  state: {},
 
-      if (state.contentWidth !== contentWidth && window.dispatchEvent) {
-        window.dispatchEvent(new Event('resize'));
-      }
+  effects: {},
 
-      return { ...state, ...payload };
-    },
-  },
+  reducers: {},
+  // reducers: {
+  //   changeSetting(state = {}, { payload }) {
+  //     const { contentWidth } = payload;
+
+  //     if (state.contentWidth !== contentWidth && window.dispatchEvent) {
+  //       window.dispatchEvent(new Event('resize'));
+  //     }
+  //     return { ...state, ...payload };
+  //   },
+  // },
 };
-
-export default SettingModel;

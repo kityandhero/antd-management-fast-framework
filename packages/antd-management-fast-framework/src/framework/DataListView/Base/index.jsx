@@ -23,21 +23,26 @@ import { PageContainer } from '@ant-design/pro-layout';
 
 import {
   buildFieldDescription,
+  createDayJsDatetime,
+  datetimeFormat,
+  isArray,
+  isUndefined,
+  showSimpleErrorMessage,
+  showSimpleRuntimeError,
+  showWarnMessage,
+  toNumber,
+} from 'easy-soft-utility';
+
+import {
   cardConfig,
   columnFacadeMode,
-  datetimeFormat,
   defaultListState,
   formNameCollection,
   getCurrentLocation,
-  getDerivedStateFromPropsForUrlParams,
-  isArray,
-  isUndefined,
+  getDerivedStateFromPropertiesForUrlParameters,
   listViewConfig,
   pageHeaderRenderType,
   searchCardConfig,
-  showWarnMessage,
-  toMoment,
-  toNumber,
 } from 'antd-management-fast-common';
 import {
   adjustTableExpandConfig,
@@ -70,7 +75,7 @@ const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
 const { BackTop } = FloatButton;
 
-class ListBase extends AuthorizationWrapper {
+class Base extends AuthorizationWrapper {
   /**
    * 使用远端分页
    */
@@ -79,8 +84,6 @@ class ListBase extends AuthorizationWrapper {
   /**
    * 使用前台模拟分页，有助于优化长列表页面交互操作导致的延迟
    */
-  useFrontendPagination = false;
-
   useFrontendPagination = false;
 
   showSearchForm = true;
@@ -99,8 +102,8 @@ class ListBase extends AuthorizationWrapper {
 
   showListViewItemActionSelect = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.lastLoadParams = null;
 
@@ -111,22 +114,24 @@ class ListBase extends AuthorizationWrapper {
     this.state = {
       ...this.state,
       ...defaultState,
-      ...{
-        showSelect: false,
-        renderPageContainer: true,
-        listTitle: '检索结果',
-        defaultAvatarIcon: iconBuilder.picture(),
-        listViewMode: listViewConfig.viewMode.list,
-        avatarImageLoadResult: avatarImageLoadResultCollection.wait,
-        showPageHeaderAvatar: false,
-        tableSize: listViewConfig.tableSize.middle,
-        counterSetColumnsOtherConfig: 0,
-      },
+
+      showSelect: false,
+      renderPageContainer: true,
+      listTitle: '检索结果',
+      defaultAvatarIcon: iconBuilder.picture(),
+      listViewMode: listViewConfig.viewMode.list,
+      avatarImageLoadResult: avatarImageLoadResultCollection.wait,
+      showPageHeaderAvatar: false,
+      tableSize: listViewConfig.tableSize.middle,
+      counterSetColumnsOtherConfig: 0,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
+    );
   }
 
   doWorkAfterDidMount = () => {
@@ -150,13 +155,13 @@ class ListBase extends AuthorizationWrapper {
   };
 
   doOtherAfterLoadSuccess = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {};
 
@@ -180,7 +185,7 @@ class ListBase extends AuthorizationWrapper {
   };
 
   getCanUseFrontendPagination = () => {
-    return !!this.useRemotePagination ? false : !!this.useFrontendPagination;
+    return this.useRemotePagination ? false : !!this.useFrontendPagination;
   };
 
   getSearchFormFieldsValue = (nameList, filter) => {
@@ -213,8 +218,8 @@ class ListBase extends AuthorizationWrapper {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterSetSearchFormFieldsValue = (v) => {};
+  // eslint-disable-next-line no-unused-vars
+  afterSetSearchFormFieldsValue = (value) => {};
 
   getPageName = () => {
     const { pageName } = this.state;
@@ -225,9 +230,7 @@ class ListBase extends AuthorizationWrapper {
   getColumnWrapper = () => {
     const text = 'getColumnWrapper 需要重载实现';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     return [];
   };
@@ -237,23 +240,21 @@ class ListBase extends AuthorizationWrapper {
 
     let hasCustomOperate = false;
 
-    list.forEach((o) => {
+    for (const o of list) {
       const { dataTarget: dt } = {
-        ...{
-          dataTarget: {},
-        },
+        dataTarget: {},
         ...o,
       };
 
       const { name } = {
-        ...{ name: '' },
+        name: '',
         ...dt,
       };
 
       if (name === formNameCollection.customOperate.name) {
         hasCustomOperate = true;
       }
-    });
+    }
 
     return this.buildColumnList([
       ...list,
@@ -267,7 +268,7 @@ class ListBase extends AuthorizationWrapper {
               showRichFacade: true,
               facadeMode: columnFacadeMode.dropdown,
               hidden: !this.columnOperateVisible,
-              configBuilder: (val, record) => {
+              configBuilder: (value, record) => {
                 const o = this.establishListItemDropdownConfig(record);
 
                 return o || null;
@@ -297,10 +298,8 @@ class ListBase extends AuthorizationWrapper {
 
     if (isArray(columnsOtherConfigArray)) {
       if (columnsOtherConfigArray.length > 0) {
-        if (columnsSource.length !== columnsOtherConfigArray.length) {
-          this.restoreColumnsOtherConfigArray();
-        } else {
-          columnsSource.forEach((item, index) => {
+        if (columnsSource.length === columnsOtherConfigArray.length) {
+          for (const [index, item] of columnsSource.entries()) {
             const c = { ...item, ...columnsOtherConfigArray[index] };
 
             const { show } = c || { show: true };
@@ -308,7 +307,9 @@ class ListBase extends AuthorizationWrapper {
             if (show) {
               columns.push(c);
             }
-          });
+          }
+        } else {
+          this.restoreColumnsOtherConfigArray();
         }
       } else {
         this.restoreColumnsOtherConfigArray();
@@ -338,9 +339,7 @@ class ListBase extends AuthorizationWrapper {
     if (!form) {
       const text = '查询表单不存在';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
     }
 
     const { validateFields } = form;
@@ -353,16 +352,20 @@ class ListBase extends AuthorizationWrapper {
         };
 
         this.searchData({ formValues: values });
+
+        return values;
       })
       .catch((error) => {
         const { errorFields } = error;
 
-        if (!isUndefined(errorFields)) {
+        if (isUndefined(errorFields)) {
+          showSimpleRuntimeError(error);
+        } else {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          for (const o of Object.values(errorFields)) {
             m.push(o.errors[0]);
-          });
+          }
 
           const maxLength = 5;
           let beyondMax = false;
@@ -382,10 +385,6 @@ class ListBase extends AuthorizationWrapper {
           showWarnMessage({
             message: errorMessage,
           });
-        } else {
-          showRuntimeError({
-            message: error,
-          });
         }
       });
   };
@@ -400,17 +399,18 @@ class ListBase extends AuthorizationWrapper {
     }
 
     const configData = {
-      ...{ otherComponent: null, list: [] },
-      ...(config || {}),
+      otherComponent: null,
+      list: [],
+      ...config,
     };
     const { otherComponent, list } = configData;
 
     const listData = [];
 
     if (isArray(list)) {
-      list.forEach((co) => {
+      for (const co of list) {
         listData.push(co);
-      });
+      }
     }
 
     return (
@@ -441,32 +441,28 @@ class ListBase extends AuthorizationWrapper {
       component,
       otherProps,
     } = {
-      ...{
-        lg: 6,
-        md: 12,
-        sm: 24,
-        xs: 24,
-        type: '',
-        icon: null,
-        fieldData: {
-          label: '',
-          name: '',
-          helper: '',
-        },
-        showHelper: false,
-        component: null,
-        otherProps: null,
-      },
-      ...(contentItem || {}),
-    };
-
-    const fieldData = {
-      ...{
+      lg: 6,
+      md: 12,
+      sm: 24,
+      xs: 24,
+      type: '',
+      icon: null,
+      fieldData: {
         label: '',
         name: '',
         helper: '',
       },
-      ...(fieldDataValue || {}),
+      showHelper: false,
+      component: null,
+      otherProps: null,
+      ...contentItem,
+    };
+
+    const fieldData = {
+      label: '',
+      name: '',
+      helper: '',
+      ...fieldDataValue,
     };
 
     let lg = (lgValue || 6) <= 0 ? 6 : lgValue;
@@ -481,7 +477,7 @@ class ListBase extends AuthorizationWrapper {
               fieldData.name,
               showHelper ? fieldData.helper : '',
               icon || iconBuilder.form(),
-              { ...{}, ...(contentItem.otherProps || {}) },
+              { ...contentItem.otherProps },
             )
           : null}
 
@@ -492,8 +488,7 @@ class ListBase extends AuthorizationWrapper {
               fieldData.helper,
               icon || iconBuilder.form(),
               {
-                ...{},
-                ...(contentItem.otherProps || {}),
+                ...contentItem.otherProps,
               },
             )
           : null}
@@ -505,8 +500,7 @@ class ListBase extends AuthorizationWrapper {
               false,
               fieldData.helper,
               {
-                ...{},
-                ...(otherProps || {}),
+                ...otherProps,
               },
             )
           : null}
@@ -515,8 +509,7 @@ class ListBase extends AuthorizationWrapper {
           ? this.buildSearchCardRangePickerCore(
               contentItem.dateRangeFieldName,
               {
-                ...{},
-                ...(otherProps || {}),
+                ...otherProps,
               },
             )
           : null}
@@ -528,9 +521,8 @@ class ListBase extends AuthorizationWrapper {
               fieldData.helper || '',
               contentItem.icon || iconBuilder.form(),
               {
-                ...{},
-                ...(contentItem.otherProps || {}),
-                ...{ disabled: true },
+                ...contentItem.otherProps,
+                disabled: true,
               },
             )
           : null}
@@ -593,8 +585,8 @@ class ListBase extends AuthorizationWrapper {
         <Button
           disabled={dataLoading || reloading || searching}
           type="primary"
-          onClick={(e) => {
-            this.handleSearch(e);
+          onClick={(event) => {
+            this.handleSearch(event);
           }}
         >
           {searching ? iconBuilder.loading() : iconBuilder.search()}
@@ -624,32 +616,32 @@ class ListBase extends AuthorizationWrapper {
 
   buildSearchCardRangePickerCore = (
     dateRangeFieldName,
-    rangePickerProps = null,
+    rangePickerProperties = null,
   ) => {
     const { startTime, endTime } = this.state;
 
     const valueList = [];
 
     if ((startTime || null) != null) {
-      valueList.push(toMoment({ data: startTime }));
+      valueList.push(
+        createDayJsDatetime(startTime, datetimeFormat.yearMonthDay),
+      );
     }
 
     if ((endTime || null) != null) {
-      valueList.push(toMoment({ data: endTime }));
+      valueList.push(createDayJsDatetime(endTime, datetimeFormat.yearMonthDay));
     }
 
     const p = {
-      ...{
-        style: { width: '100%' },
-        showTime: { format: 'HH:mm' },
-        value: valueList,
-        format: datetimeFormat.yearMonthDayHourMinute,
-        placeholder: ['开始时间', '结束时间'],
-        onChange: (dates, dateStrings) => {
-          this.onDateRangeChange(dates, dateStrings);
-        },
-        ...(rangePickerProps || {}),
+      style: { width: '100%' },
+      showTime: { format: 'HH:mm' },
+      value: valueList,
+      format: datetimeFormat.yearMonthDayHourMinute,
+      placeholder: ['开始时间', '结束时间'],
+      onChange: (dates, dateStrings) => {
+        this.onDateRangeChange(dates, dateStrings);
       },
+      ...rangePickerProperties,
     };
 
     return (
@@ -670,13 +662,13 @@ class ListBase extends AuthorizationWrapper {
   buildSearchCardRangePicker = (
     dateRangeFieldName,
     colLg = 8,
-    rangePickerProps = null,
+    rangePickerProperties = null,
   ) => {
     return (
       <Col lg={colLg} md={12} sm={24} xs={24}>
         {this.buildSearchCardRangePickerCore(
           dateRangeFieldName,
-          rangePickerProps,
+          rangePickerProperties,
         )}
       </Col>
     );
@@ -697,9 +689,9 @@ class ListBase extends AuthorizationWrapper {
   };
 
   buildSearchCard = () => {
-    const el = this.buildSearchCardRow();
+    const element = this.buildSearchCardRow();
 
-    if ((el || null) == null) {
+    if ((element || null) == null) {
       return null;
     }
 
@@ -710,7 +702,7 @@ class ListBase extends AuthorizationWrapper {
         onSubmit={this.handleSearch}
         layout="horizontal"
       >
-        {el}
+        {element}
       </Form>
     );
   };
@@ -758,8 +750,8 @@ class ListBase extends AuthorizationWrapper {
     this.setState({ tableSize: key });
   };
 
-  setColumnsMap = (e) => {
-    if (Object.keys(e || {}).length === 0) {
+  setColumnsMap = (event) => {
+    if (Object.keys(event || {}).length === 0) {
       this.restoreColumnsOtherConfigArray();
     } else {
       const columnsOtherConfigArrayChanged = (
@@ -767,8 +759,8 @@ class ListBase extends AuthorizationWrapper {
       ).map((item) => {
         const { dataIndex } = item;
 
-        if (!isUndefined(e[dataIndex])) {
-          const d = e[dataIndex];
+        if (!isUndefined(event[dataIndex])) {
+          const d = event[dataIndex];
 
           d.show = isUndefined(d.show) ? true : d.show;
 
@@ -788,31 +780,31 @@ class ListBase extends AuthorizationWrapper {
     });
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setSortKeyColumns = (e) => {};
+  // eslint-disable-next-line no-unused-vars
+  setSortKeyColumns = (event) => {};
 
   getColumnsMap = () => {
     const o = {};
 
-    (this.columnsOtherConfig || []).forEach((item) => {
+    for (const item of this.columnsOtherConfig || []) {
       const { dataIndex } = item;
 
-      const temp = { ...{}, ...item };
+      const temporary = { ...item };
 
-      if (temp.delete) {
-        temp.delete('dataIndex');
+      if (temporary.delete) {
+        temporary.delete('dataIndex');
       }
 
-      o[`${dataIndex}`] = temp;
-    });
+      o[`${dataIndex}`] = temporary;
+    }
 
     return o;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   onBatchActionSelect = (key) => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderTable = (config) => null;
 
   renderAlertContent = () => {
@@ -958,13 +950,13 @@ class ListBase extends AuthorizationWrapper {
   getTabListAvailable = () => {
     const tabListAvailable = [];
 
-    (this.tabList || []).forEach((o) => {
-      const v = typeof o.show === 'undefined' ? true : o.show === true;
+    for (const o of this.tabList || []) {
+      const v = o.show === undefined ? true : o.show === true;
 
       if (v) {
         tabListAvailable.push(o);
       }
-    });
+    }
 
     return this.adjustTabListAvailable(tabListAvailable);
   };
@@ -983,7 +975,7 @@ class ListBase extends AuthorizationWrapper {
     return '';
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   handleTabChange = (key) => {};
 
   onPageHeaderAvatarLoadErrorCallback = () => {
@@ -995,9 +987,7 @@ class ListBase extends AuthorizationWrapper {
   establishViewDataSource = () => {
     const text = 'establishViewDataSource 需要重载实现用来构建列表数据源';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     return null;
   };
@@ -1010,13 +1000,11 @@ class ListBase extends AuthorizationWrapper {
     return this.adjustViewDataSource();
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   establishCardCollectionViewItemConfig = (record) => {
     const text = 'establishCardCollectionViewItemConfig 需要重载实现';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     return null;
   };
@@ -1051,20 +1039,17 @@ class ListBase extends AuthorizationWrapper {
     const { pageNo, pageSize } = this.state;
 
     const config = {
-      ...{
-        size: 'default',
-        showSizeChanger: true,
-        showQuickJumper: true,
-        showTotal: (total, range) => {
-          return `${range[0]}-${range[1]} 共 ${total} 条信息`;
-        },
-        pageSizeOptions: this.buildPageSizeOptionList(),
+      size: 'default',
+      showSizeChanger: true,
+      showQuickJumper: true,
+      showTotal: (total, range) => {
+        return `${range[0]}-${range[1]} 共 ${total} 条信息`;
       },
+      pageSizeOptions: this.buildPageSizeOptionList(),
       ...this.establishViewPaginationConfig(),
-      ...{
-        current: pageNo,
-        pageSize: pageSize,
-      },
+
+      current: pageNo,
+      pageSize: pageSize,
     };
 
     return config;
@@ -1144,8 +1129,12 @@ class ListBase extends AuthorizationWrapper {
    * @param {*} filtersArg
    * @param {*} sorter
    */
-  handleStandardTableChange = (pagination, filtersArg, sorter) => {
-    this.handleAdditionalStandardTableChange(pagination, filtersArg, sorter);
+  handleStandardTableChange = (pagination, filtersArgument, sorter) => {
+    this.handleAdditionalStandardTableChange(
+      pagination,
+      filtersArgument,
+      sorter,
+    );
   };
 
   /**
@@ -1154,8 +1143,15 @@ class ListBase extends AuthorizationWrapper {
    * @param {*} filtersArg
    * @param {*} sorter
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleAdditionalStandardTableChange = (pagination, filtersArg, sorter) => {};
+
+  handleAdditionalStandardTableChange = (
+    // eslint-disable-next-line no-unused-vars
+    pagination,
+    // eslint-disable-next-line no-unused-vars
+    filtersArgument,
+    // eslint-disable-next-line no-unused-vars
+    sorter,
+  ) => {};
 
   /**
    * 配置Pagination切换页面时需要引发的事项,用于listView/cardView
@@ -1173,10 +1169,10 @@ class ListBase extends AuthorizationWrapper {
    * @param {*} filtersArg
    * @param {*} sorter
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   handleAdditionalPaginationChange = (page, pageSize) => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   handlePaginationShowSizeChange = (current, size) => {
     this.setState({ pageNo: 1 });
   };
@@ -1258,8 +1254,8 @@ class ListBase extends AuthorizationWrapper {
           <ColumnSetting
             columns={this.getColumn()}
             columnsMap={this.getColumnsMap()}
-            setColumnsMap={(e) => {
-              this.setColumnsMap(e);
+            setColumnsMap={(event) => {
+              this.setColumnsMap(event);
             }}
             setSortKeyColumns={(key) => {
               this.setSortKeyColumns(key);
@@ -1289,7 +1285,6 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   renderListViewItem = (record, index) => {
     return (
       <List.Item
@@ -1301,18 +1296,16 @@ class ListBase extends AuthorizationWrapper {
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemInner = (record, index) => {
     const text = 'renderListViewItemInner 需要重载实现';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     return null;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemExtra = (record, index) => {
     return null;
   };
@@ -1335,12 +1328,12 @@ class ListBase extends AuthorizationWrapper {
     return list.length === 0 ? null : list;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemActionOthers = (record, index) => {
     return null;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemActionSelect = (record, index) => {
     return null;
   };
@@ -1468,9 +1461,7 @@ class ListBase extends AuthorizationWrapper {
       if (showSelect) {
         const text = 'MultiListView显示模式下不支持选择';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
       }
 
       return this.renderListView();
@@ -1480,9 +1471,7 @@ class ListBase extends AuthorizationWrapper {
       if (showSelect) {
         const text = 'MultiListView显示模式下不支持选择';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
       }
 
       return this.renderCardCollectionView();
@@ -1490,9 +1479,7 @@ class ListBase extends AuthorizationWrapper {
 
     const text = '未知的显示模式';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     return null;
   };
@@ -1506,14 +1493,12 @@ class ListBase extends AuthorizationWrapper {
       mode: cardConfig.wrapperType.page,
     };
     const configData = {
-      ...{
-        mode: cardConfig.wrapperType.page,
-        justify: 'start',
-        align: 'top',
-      },
-      ...(formContentWrapperTypeConfig || {}),
-      ...{ list: [] },
-      ...(config || {}),
+      mode: cardConfig.wrapperType.page,
+      justify: 'start',
+      align: 'top',
+      ...formContentWrapperTypeConfig,
+      list: [],
+      ...config,
     };
     const {
       mode,
@@ -1525,13 +1510,13 @@ class ListBase extends AuthorizationWrapper {
     const listData = [];
 
     if (isArray(list)) {
-      list.forEach((co, ci) => {
+      for (const [ci, co] of list.entries()) {
         listData.push(co);
 
         if (ci !== list.length - 1) {
           listData.push('');
         }
-      });
+      }
     }
 
     return (
@@ -1565,11 +1550,9 @@ class ListBase extends AuthorizationWrapper {
     const { listTitle } = this.state;
 
     const affixConfig = {
-      ...{
-        affix: false,
-        offsetTop: 10,
-      },
-      ...(this.establishDataContainerExtraAffixConfig() || {}),
+      affix: false,
+      offsetTop: 10,
+      ...this.establishDataContainerExtraAffixConfig(),
     };
 
     const extraAction = this.renderExtraActionView();
@@ -1580,17 +1563,7 @@ class ListBase extends AuthorizationWrapper {
 
     const { affix, offsetTop } = affixConfig;
 
-    const extraView = !affix ? (
-      <>
-        {extraAction}
-
-        {extraAction == null ? null : <Divider type="vertical" />}
-
-        {this.renderBatchAction()}
-
-        {this.renderCardExtraAction()}
-      </>
-    ) : (
+    const extraView = affix ? (
       <Affix offsetTop={toNumber(offsetTop)}>
         <div>
           {extraAction}
@@ -1602,6 +1575,16 @@ class ListBase extends AuthorizationWrapper {
           {this.renderCardExtraAction()}
         </div>
       </Affix>
+    ) : (
+      <>
+        {extraAction}
+
+        {extraAction == null ? null : <Divider type="vertical" />}
+
+        {this.renderBatchAction()}
+
+        {this.renderCardExtraAction()}
+      </>
     );
 
     let gridView = (
@@ -1681,39 +1664,31 @@ class ListBase extends AuthorizationWrapper {
     let layoutConfig = this.establishPageContentLayoutConfig();
 
     const { position: siderPosition } = {
-      ...{
-        position: 'left',
-      },
-      ...(layoutSiderConfig || {}),
+      position: 'left',
+      ...layoutSiderConfig,
     };
 
     const siderConfig = {
-      ...{
-        width: 300,
-        style: {
-          ...{
-            backgroundColor: '#fff',
-            borderRadius: '4px',
-            overflowX: 'auto',
-            overflowY: 'hidden',
-          },
-          ...(siderPosition === 'left'
-            ? { marginRight: '24px' }
-            : { marginLeft: '24px' }),
-        },
+      width: 300,
+      style: {
+        backgroundColor: '#fff',
+        borderRadius: '4px',
+        overflowX: 'auto',
+        overflowY: 'hidden',
+        ...(siderPosition === 'left'
+          ? { marginRight: '24px' }
+          : { marginLeft: '24px' }),
       },
-      ...(layoutSiderConfig || {}),
+      ...layoutSiderConfig,
     };
 
     layoutConfig = {
-      ...{
-        breakpoint: 'sm',
-        style: {
-          backgroundColor: '#f0f2f5',
-          minHeight: 'auto',
-        },
+      breakpoint: 'sm',
+      style: {
+        backgroundColor: '#f0f2f5',
+        minHeight: 'auto',
       },
-      ...(layoutConfig || {}),
+      ...layoutConfig,
     };
 
     const inner =
@@ -1734,9 +1709,9 @@ class ListBase extends AuthorizationWrapper {
             {contentArea}
           </Content>
 
-          {siderPosition !== 'left' ? (
+          {siderPosition === 'left' ? null : (
             <Sider {...siderConfig}>{siderArea}</Sider>
-          ) : null}
+          )}
         </Layout>
       );
 
@@ -1783,7 +1758,7 @@ class ListBase extends AuthorizationWrapper {
 
     const tabListAvailable = this.getTabListAvailable();
 
-    const avatarProps = showPageHeaderAvatar
+    const avatarProperties = showPageHeaderAvatar
       ? decorateAvatar(
           this.establishPageHeaderAvatarConfig(),
           defaultAvatarIcon,
@@ -1800,7 +1775,7 @@ class ListBase extends AuthorizationWrapper {
     if (renderPageContainer || false) {
       return (
         <PageContainer
-          avatar={avatarProps}
+          avatar={avatarProperties}
           title={buildPageHeaderTitle(
             this.getPageName(),
             this.establishPageHeaderTitlePrefix(),
@@ -1832,4 +1807,4 @@ class ListBase extends AuthorizationWrapper {
   }
 }
 
-export { ListBase };
+export { Base };

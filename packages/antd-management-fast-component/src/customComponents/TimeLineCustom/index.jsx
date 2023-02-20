@@ -10,8 +10,8 @@ import { iconBuilder } from '../Icon';
 import styles from './index.less';
 
 class TimeLineCustom extends BaseComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.currentTime = null;
     this.currentPageStart = true;
@@ -22,17 +22,17 @@ class TimeLineCustom extends BaseComponent {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
+  // eslint-disable-next-line no-unused-vars
+  static getDerivedStateFromProps(nextProperties, previousState) {
     const {
       data: { list, pagination },
-    } = nextProps;
+    } = nextProperties;
 
     return { list, pagination };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenGetSnapshotBeforeUpdate = (preProps, preState) => {
+  // eslint-disable-next-line no-unused-vars
+  doWorkWhenGetSnapshotBeforeUpdate = (preProperties, preState) => {
     this.currentTime = null;
     this.currentPageStart = true;
 
@@ -159,10 +159,10 @@ class TimeLineCustom extends BaseComponent {
     const { loading, getDateLabel, showPagination } = this.props;
     const { list, pagination } = this.state;
 
-    let paginationProps = false;
+    let paginationProperties = false;
 
     if (showPagination) {
-      paginationProps = {
+      paginationProperties = {
         showSizeChanger: true,
         showQuickJumper: true,
         ...pagination,
@@ -177,7 +177,7 @@ class TimeLineCustom extends BaseComponent {
             loading={loading}
             itemLayout="vertical"
             size="large"
-            pagination={paginationProps}
+            pagination={paginationProperties}
             dataSource={list}
             renderItem={(item) => (
               <List.Item

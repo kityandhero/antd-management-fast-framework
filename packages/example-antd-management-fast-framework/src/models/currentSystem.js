@@ -1,18 +1,18 @@
 import {
+  getTacitlyState,
   pretreatmentRemoteSingleData,
   reducerCollection,
-  reducerDefaultParams,
+  reducerDefaultParameters,
   reducerNameCollection,
-  tacitlyState,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
 
-import { getData } from '@/services/currentSystem';
+import { getData } from '../services/currentSystem';
 
 export default {
   namespace: 'currentSystem',
 
   state: {
-    ...tacitlyState,
+    ...getTacitlyState(),
   },
 
   effects: {
@@ -25,7 +25,7 @@ export default {
         type: reducerNameCollection.reducerData,
         payload: dataAdjust,
         alias,
-        ...reducerDefaultParams,
+        ...reducerDefaultParameters,
       });
 
       return dataAdjust;

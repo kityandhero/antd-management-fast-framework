@@ -26,9 +26,9 @@ class Bubbly extends Core {
     const nrBubbles = bubbles || Math.floor((width + height) * 0.02);
     this.bubbleList = [];
 
-    let i = 0;
+    let index = 0;
 
-    while (i < nrBubbles) {
+    while (index < nrBubbles) {
       this.bubbleList.push({
         f: (bubbleFunc || (() => `hsla(0, 0%, 100%, ${r() * 0.1})`)).call(), // fillStyle
         x: r() * width, // x-position
@@ -38,7 +38,7 @@ class Bubbly extends Core {
         v: (velocityFunc || (() => 0.1 + r() * 0.5)).call(), // velocity
       });
 
-      i += 1;
+      index += 1;
     }
 
     this.draw();

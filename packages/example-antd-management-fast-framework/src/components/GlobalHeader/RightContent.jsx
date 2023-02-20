@@ -1,9 +1,8 @@
-import { Tag, Tooltip } from 'antd';
-import { connect, SelectLang } from 'umi';
+import { Tooltip } from 'antd';
+import { connect, SelectLang } from '@umijs/max';
 
+import { getShowSelectLanguage } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-
-import { defaultSettings } from '@/defaultSettings';
 
 import HeaderSearch from '../HeaderSearch';
 
@@ -11,14 +10,8 @@ import AvatarDropdown from './AvatarDropdown';
 
 import styles from './index.less';
 
-const ENVTagColor = {
-  dev: 'orange',
-  test: 'green',
-  pre: '#87d068',
-};
-
-const GlobalHeaderRight = (props) => {
-  const { currentOperator, theme, layout } = props;
+const GlobalHeaderRight = (properties) => {
+  const { currentOperator, theme, layout } = properties;
   let className = styles.right;
 
   if (theme === 'dark' && layout === 'top') {
@@ -65,7 +58,7 @@ const GlobalHeaderRight = (props) => {
 
       <AvatarDropdown currentOperator={currentOperator} />
 
-      {defaultSettings.getShowSelectLanguage() ? (
+      {getShowSelectLanguage() ? (
         <SelectLang className={styles.action} />
       ) : null}
     </div>

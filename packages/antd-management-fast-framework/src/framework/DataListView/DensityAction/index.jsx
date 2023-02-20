@@ -1,4 +1,4 @@
-import { Button, Dropdown, Menu, Tooltip } from 'antd';
+import { Button, Dropdown, Tooltip } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { listViewConfig } from 'antd-management-fast-common';
@@ -22,21 +22,6 @@ class DensityAction extends PureComponent {
         label: '宽松',
       },
     ];
-
-    const menu = (
-      <Menu
-        items={items}
-        selectedKeys={[tableSize]}
-        onClick={({ key }) => {
-          if (setTableSize) {
-            setTableSize(key);
-          }
-        }}
-        style={{
-          width: 80,
-        }}
-      />
-    );
 
     return (
       <Dropdown

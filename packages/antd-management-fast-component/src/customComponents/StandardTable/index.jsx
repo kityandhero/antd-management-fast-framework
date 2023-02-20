@@ -5,18 +5,18 @@ import styles from './index.less';
 
 function initTotalList(columns) {
   const totalList = [];
-  columns.forEach((column) => {
+  for (const column of columns) {
     if (column.needTotal) {
       totalList.push({ ...column, total: 0 });
     }
-  });
+  }
   return totalList;
 }
 
 class StandardTable extends PureComponent {
-  constructor(props) {
-    super(props);
-    const { columns } = props;
+  constructor(properties) {
+    super(properties);
+    const { columns } = properties;
     const needTotalList = initTotalList(columns);
 
     this.state = {
@@ -25,10 +25,10 @@ class StandardTable extends PureComponent {
     };
   }
 
-  static getDerivedStateFromProps(nextProps) {
+  static getDerivedStateFromProps(nextProperties) {
     // clean state
-    if (nextProps.selectedRows.length === 0) {
-      const needTotalList = initTotalList(nextProps.columns);
+    if (nextProperties.selectedRows.length === 0) {
+      const needTotalList = initTotalList(nextProperties.columns);
       return {
         selectedRowKeys: [],
         needTotalList,
@@ -42,7 +42,7 @@ class StandardTable extends PureComponent {
     needTotalList = needTotalList.map((item) => ({
       ...item,
       total: selectedRows.reduce(
-        (sum, val) => sum + parseFloat(val[item.dataIndex], 10),
+        (sum, value) => sum + Number.parseFloat(value[item.dataIndex], 10),
         0,
       ),
     }));
@@ -70,7 +70,7 @@ class StandardTable extends PureComponent {
     const { data = {}, rowKey, ...rest } = this.props;
     const { list = [], pagination } = data;
 
-    const paginationProps = {
+    const paginationProperties = {
       showSizeChanger: true,
       showQuickJumper: true,
       ...pagination,
@@ -115,7 +115,7 @@ class StandardTable extends PureComponent {
           rowKey={rowKey || 'key'}
           rowSelection={rowSelection}
           dataSource={list}
-          pagination={paginationProps}
+          pagination={paginationProperties}
           onChange={this.handleTableChange}
           {...rest}
         />

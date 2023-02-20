@@ -1,33 +1,35 @@
 import React from 'react';
 
+import { isObject } from 'easy-soft-utility';
+
 import {
   cardConfig,
   drawerConfig,
-  isObject,
   mobileTypeCollection,
   whetherNumber,
 } from 'antd-management-fast-common';
 import {
   buildOptionItem,
-  MobileSimulation,
+  iconBuilder,
+  MobileContainor,
 } from 'antd-management-fast-component';
 
 import { BaseNeedlessLoadDrawer } from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
 
+const { MobileSimulation } = MobileContainor;
+
 class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
   resetDataAfterLoad = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        placement: 'top',
-        height: '100vh',
-        showBottomBar: false,
-        mobileType: mobileTypeCollection.roughSketch.name,
-      },
+      placement: 'top',
+      height: '100vh',
+      showBottomBar: false,
+      mobileType: mobileTypeCollection.roughSketch.name,
     };
   }
 
@@ -44,7 +46,7 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
 
     const listConfig = [];
 
-    Object.entries(mobileTypeCollection).forEach((o, index) => {
+    for (const [index, o] of Object.entries(mobileTypeCollection).entries()) {
       const [k, v] = o;
 
       if (isObject(v)) {
@@ -59,7 +61,7 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
           availability: whetherNumber.yes,
         });
       }
-    });
+    }
 
     return {
       list: [

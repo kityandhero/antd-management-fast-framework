@@ -22,8 +22,8 @@ import {
 
 export function refitAccessWayStatusList({ metaData, withUnlimited = true }) {
   const { accessWayStatusList: list } = {
-    ...{ accessWayStatusList: [] },
-    ...(metaData || {}),
+     accessWayStatusList: [] ,
+    ...metaData,
   };
 
   if (withUnlimited) {
@@ -95,7 +95,7 @@ export function renderCustomAccessWayStatusSelect({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomSelect({
@@ -110,7 +110,7 @@ export function renderCustomAccessWayStatusSelect({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -122,7 +122,7 @@ export function renderFormAccessWayStatusSelect({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -141,7 +141,7 @@ export function renderFormAccessWayStatusSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -151,7 +151,7 @@ export function renderCustomAccessWayStatusRadio({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomRadio({
@@ -166,7 +166,7 @@ export function renderCustomAccessWayStatusRadio({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -178,7 +178,7 @@ export function renderFormAccessWayStatusRadio({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -197,6 +197,6 @@ export function renderFormAccessWayStatusRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }

@@ -1,8 +1,8 @@
 import { formNameCollection } from 'antd-management-fast-common';
 
 export const fieldData = {
-  ...(formNameCollection || {}),
-  ...{
+  ...formNameCollection,
+  
     articleImageId: {
       label: '数据标识',
       name: 'articleImageId',
@@ -12,6 +12,6 @@ export const fieldData = {
       label: '文章标识',
       name: 'articleId',
       helper: '',
-    },
-  },
+    }
+  ,
 };

@@ -2,7 +2,11 @@ import { Divider } from 'antd';
 import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 
-import { isArray, toNumber } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isArray,
+  toNumber,
+} from 'easy-soft-utility';
 
 import { buildDescriptionGrid } from '../FunctionComponent';
 
@@ -20,17 +24,15 @@ class HelpBox extends PureComponent {
       useBackground,
       hidden,
     } = {
-      ...{
-        title: '',
-        showTitle: true,
-        showNumber: true,
-        showDivider: true,
-        labelWidth: null,
-        list: [],
-        useBackground: false,
-        hidden: false,
-      },
-      ...(this.props || {}),
+      title: '',
+      showTitle: true,
+      showNumber: true,
+      showDivider: true,
+      labelWidth: null,
+      list: [],
+      useBackground: false,
+      hidden: false,
+      ...this.props,
     };
 
     if (hidden) {
@@ -43,16 +45,14 @@ class HelpBox extends PureComponent {
     if (isArray(listData)) {
       list = listData.map((o, index) => {
         const d = {
-          ...{
-            key: '',
-            label: '',
-            text: '',
-            span: 1,
-            labelStyle: null,
-            contentStyle: null,
-            canCopy: false,
-            copyData: null,
-          },
+          key: '',
+          label: '',
+          text: '',
+          span: 1,
+          labelStyle: null,
+          contentStyle: null,
+          canCopy: false,
+          copyData: null,
           ...o,
         };
 

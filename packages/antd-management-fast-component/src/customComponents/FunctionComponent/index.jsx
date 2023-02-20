@@ -37,6 +37,7 @@ import {
   buildFieldHelper,
   checkFromConfig,
   checkInCollection,
+  checkStringIsNullOrWhiteSpace,
   datetimeFormat,
   formatDatetime,
   formatMoney,
@@ -50,6 +51,7 @@ import {
   logText,
   replaceWithKeep,
   showErrorMessage,
+  showSimpleRuntimeError,
   sortBy,
   toLowerFirst,
   toNumber,
@@ -90,24 +92,20 @@ const { Paragraph } = Typography;
 const ButtonGroup = Button.Group;
 const { Item: Description } = Descriptions;
 
-export function buildPageHeaderTitle(pageName, headerTitlePrefix) {
-  const headerTitlePrefixValue = headerTitlePrefix || '';
-
+export function buildPageHeaderTitle(pageName, headerTitlePrefixValue = '') {
   let nameList = [];
 
-  if (isArray(pageName)) {
-    nameList = pageName.map((o, index) => ({
-      key: `pageName_${index}`,
-      text: toString(o),
-    }));
-  } else {
-    nameList = [
-      {
-        key: `pageName_1`,
-        text: toString(pageName),
-      },
-    ];
-  }
+  nameList = isArray(pageName)
+    ? pageName.map((o, index) => ({
+        key: `pageName_${index}`,
+        text: toString(o),
+      }))
+    : [
+        {
+          key: `pageName_1`,
+          text: toString(pageName),
+        },
+      ];
 
   return (
     <span
@@ -176,23 +174,21 @@ export function buildButton({
     style,
     showIcon,
   } = {
-    ...{
-      key: keySource ?? null,
-      type: typeSource ?? 'default',
-      size: sizeSource ?? 'default',
-      text: textSource ?? '按钮',
-      icon: iconSource ?? iconBuilder.form(),
-      handleClick: handleClickSource ?? null,
-      danger: dangerSource ?? false,
-      hidden: hiddenSource ?? false,
-      disabled: disabledSource ?? false,
-      confirm: confirmSource ?? false,
-      processing: processingSource ?? false,
-      iconProcessing: iconProcessingSource ?? iconBuilder.loading(),
-      handleData: handleDataSource ?? null,
-      style: styleSource || null,
-      showIcon: showIconSource,
-    },
+    key: keySource ?? null,
+    type: typeSource ?? 'default',
+    size: sizeSource ?? 'default',
+    text: textSource ?? '按钮',
+    icon: iconSource ?? iconBuilder.form(),
+    handleClick: handleClickSource ?? null,
+    danger: dangerSource ?? false,
+    hidden: hiddenSource ?? false,
+    disabled: disabledSource ?? false,
+    confirm: confirmSource ?? false,
+    processing: processingSource ?? false,
+    iconProcessing: iconProcessingSource ?? iconBuilder.loading(),
+    handleData: handleDataSource ?? null,
+    style: styleSource || null,
+    showIcon: showIconSource,
   };
 
   if (hidden) {
@@ -227,12 +223,10 @@ export function buildButton({
     }
 
     const { placement, title, handleConfirm, okText, cancelText } = {
-      ...{
-        placement: 'topRight',
-        title: '将要进行操作，确定吗？',
-        okText: '确定',
-        cancelText: '取消',
-      },
+      placement: 'topRight',
+      title: '将要进行操作，确定吗？',
+      okText: '确定',
+      cancelText: '取消',
       ...(isObject(confirmAdjust) ? confirmAdjust : {}),
     };
 
@@ -281,7 +275,7 @@ export function buildButton({
           danger={danger}
           disabled={disabled}
         >
-          {!showIcon ? text : <IconInfo icon={ico} text={text} />}
+          {showIcon ? <IconInfo icon={ico} text={text} /> : text}
         </Button>
       </Popconfirm>
     );
@@ -297,7 +291,7 @@ export function buildButton({
       disabled={disabled}
       onClick={() => handleClick({ handleData: handleData ?? null })}
     >
-      {!showIcon ? text : <IconInfo icon={ico} text={text} />}
+      {showIcon ? <IconInfo icon={ico} text={text} /> : text}
     </Button>
   );
 }
@@ -317,21 +311,19 @@ export function buildMenu({
 
   let listItem = [];
 
-  (items || []).forEach((o) => {
+  for (const o of items || []) {
     const d = {
-      ...{
-        withDivider: false,
-        uponDivider: true,
-        key: getGuid(),
-        icon: iconBuilder.edit(),
-        text: '',
-        disabled: false,
-        hidden: false,
-        type: dropdownExpandItemType.item,
-        color: null,
-        confirm: false,
-      },
-      ...(o || {}),
+      withDivider: false,
+      uponDivider: true,
+      key: getGuid(),
+      icon: iconBuilder.edit(),
+      text: '',
+      disabled: false,
+      hidden: false,
+      type: dropdownExpandItemType.item,
+      color: null,
+      confirm: false,
+      ...o,
     };
 
     const { key, disabled, hidden, withDivider, type, uponDivider } = d;
@@ -373,10 +365,10 @@ export function buildMenu({
         listItem.push(d);
       }
     }
-  });
+  }
 
   listItem = listItem.map((o) => {
-    const d = { ...(o || {}) };
+    const d = { ...o };
 
     const { confirm } = d;
 
@@ -388,15 +380,13 @@ export function buildMenu({
       }
 
       const { placement, title, handleConfirm, okText, cancelText } = {
-        ...{
-          placement: 'topRight',
-          title: '将要进行操作，确定吗？',
-          handleConfirm: ({ key, handleData }) => {
-            handleMenuClick({ key, handleData });
-          },
-          okText: '确定',
-          cancelText: '取消',
+        placement: 'topRight',
+        title: '将要进行操作，确定吗？',
+        handleConfirm: ({ key, handleData }) => {
+          handleMenuClick({ key, handleData });
         },
+        okText: '确定',
+        cancelText: '取消',
         ...(isObject(confirm) ? confirm : {}),
       };
 
@@ -551,7 +541,7 @@ export function buildDropdown({
 
   const tooltipAdjust = tooltipSource;
 
-  const otherProps = tooltipAdjust ? {} : { key: key || getGuid() };
+  const otherProperties = tooltipAdjust ? {} : { key: key || getGuid() };
   const placementAdjust = toLowerFirst(placementDropdown || 'bottomRight');
 
   const overlayClassNameAdjust = placementAdjust.startsWith('bottom')
@@ -576,20 +566,18 @@ export function buildDropdown({
 
   if (!isArray(items) || items.length === 0) {
     button = buildButton({
-      ...{
-        type: typeSource || 'default',
-        size,
-        text,
-        icon,
-        handleClick: handleButtonClick,
-        hidden,
-        disabled,
-        confirm,
-        handleData: r,
-        processing,
-        iconProcessing,
-      },
-      ...otherProps,
+      type: typeSource || 'default',
+      size,
+      text,
+      icon,
+      handleClick: handleButtonClick,
+      hidden,
+      disabled,
+      confirm,
+      handleData: r,
+      processing,
+      iconProcessing,
+      ...otherProperties,
     });
   } else if (hasHandleButtonClick) {
     let confirmAdjust = confirm;
@@ -604,12 +592,10 @@ export function buildDropdown({
       }
 
       const { placement, title, handleConfirm, okText, cancelText } = {
-        ...{
-          placement: 'topLeft',
-          title: '将要进行操作，确定吗？',
-          okText: '确定',
-          cancelText: '取消',
-        },
+        placement: 'topLeft',
+        title: '将要进行操作，确定吗？',
+        okText: '确定',
+        cancelText: '取消',
         ...(isObject(confirmAdjust) ? confirmAdjust : {}),
       };
 
@@ -662,7 +648,7 @@ export function buildDropdown({
           }
           right={
             <Popover
-              {...otherProps}
+              {...otherProperties}
               placement={placementAdjust}
               arrow={arrow}
               content={buildMenu({
@@ -723,7 +709,7 @@ export function buildDropdown({
           }
           right={
             <Popover
-              {...otherProps}
+              {...otherProperties}
               placement={placementAdjust}
               arrow={arrow}
               content={buildMenu({
@@ -764,7 +750,7 @@ export function buildDropdown({
       </Button>
     ) : (
       <Popover
-        {...otherProps}
+        {...otherProperties}
         placement={placementAdjust}
         arrow={arrow}
         content={buildMenu({
@@ -790,10 +776,8 @@ export function buildDropdown({
     }
 
     const { placement: placementTooltip, title } = {
-      ...{
-        placement: 'top',
-        title: 'tooltip title need set',
-      },
+      placement: 'top',
+      title: 'tooltip title need set',
       ...(isObject(tooltipAdjust) ? tooltipAdjust : {}),
     };
 
@@ -888,22 +872,22 @@ export function buildDropdownEllipsis({
   });
 }
 
-export function buildTree(props) {
-  return <Tree {...props} />;
+export function buildTree(properties) {
+  return <Tree {...properties} />;
 }
 
-export function buildAlert(props) {
-  return <Alert {...props} />;
+export function buildAlert(properties) {
+  return <Alert {...properties} />;
 }
 
 export function buildCustomGrid({ key = null, list, props }) {
   if (isArray(list)) {
     const dataList = list.map((o, index) => {
-      const d = { ...{}, ...o };
+      const d = { ...o };
 
       d.key = `item_${index}`;
 
-      return { ...{ canCopy: false }, ...d };
+      return { canCopy: false, ...d };
     });
 
     let column = 3;
@@ -920,19 +904,17 @@ export function buildCustomGrid({ key = null, list, props }) {
       size: sizeSource,
       ellipsis,
     } = {
-      ...{
-        title: '',
-        column: 3,
-        labelStyle: {},
-        contentStyle: {},
-        emptyValue: null,
-        emptyStyle: null,
-        bordered: false,
-        colon: true,
-        size: null,
-        ellipsis: true,
-      },
-      ...(props || {}),
+      title: '',
+      column: 3,
+      labelStyle: {},
+      contentStyle: {},
+      emptyValue: null,
+      emptyStyle: null,
+      bordered: false,
+      colon: true,
+      size: null,
+      ellipsis: true,
+      ...props,
     };
 
     if (!isNumber(columnSource)) {
@@ -973,20 +955,15 @@ export function buildCustomGrid({ key = null, list, props }) {
       : null;
 
     const labelStyle = {
-      ...{
-        width: '180px',
-      },
-      ...(labelStyleSource || {}),
+      width: '180px',
+      ...labelStyleSource,
       ...(bordered ? { margin } : {}),
     };
 
     const contentStyle = bordered
       ? {
-          ...{
-            margin: '16px 24px',
-          },
-          ...(contentStyleSource || {}),
-          ...{ margin },
+          margin: '16px 24px',
+          ...contentStyleSource,
         }
       : {};
 
@@ -1011,7 +988,7 @@ export function buildCustomGrid({ key = null, list, props }) {
 
         <Row style={containorStyle}>
           {dataList.map((item) => {
-            const { hidden } = { ...{ hidden: false }, ...(item || {}) };
+            const { hidden } = { hidden: false, ...item };
 
             if (hidden) {
               return null;
@@ -1035,20 +1012,18 @@ export function buildCustomGrid({ key = null, list, props }) {
               span: itemSpan,
               canCopy: itemCanCopy,
               copyData: itemCopyData,
-              props: itemProps,
+              props: itemProperties,
             } = {
-              ...{
-                key: getGuid(),
-                label: '',
-                value: '',
-                emptyValue: null,
-                emptyStyle: null,
-                span: 1,
-                canCopy: false,
-                copyData: null,
-                props: null,
-              },
-              ...(item || {}),
+              key: getGuid(),
+              label: '',
+              value: '',
+              emptyValue: null,
+              emptyStyle: null,
+              span: 1,
+              canCopy: false,
+              copyData: null,
+              props: null,
+              ...item,
             };
 
             const v = itemValue || itemEmptyValue || globalEmptyValue;
@@ -1063,7 +1038,7 @@ export function buildCustomGrid({ key = null, list, props }) {
                 style={itemStyle}
                 label={itemLabel}
                 span={columnSpan * (toNumber(itemSpan) || 1)}
-                {...(itemProps || {})}
+                {...(itemProperties || {})}
               >
                 <FlexBox
                   flexAuto="right"
@@ -1073,7 +1048,7 @@ export function buildCustomGrid({ key = null, list, props }) {
                     }`}</div>
                   }
                   leftStyle={{
-                    ...{ backgroundColor },
+                    backgroundColor,
                     ...(bordered ? { borderRight: '1px solid #f0f0f0' } : {}),
                   }}
                   right={
@@ -1082,14 +1057,13 @@ export function buildCustomGrid({ key = null, list, props }) {
                         ...contentStyle,
                         ...(isEmpty ? globalEmptyStyle || {} : {}),
                         ...(isEmpty ? itemEmptyStyle || {} : {}),
-                        ...{
-                          WebkitBoxOrient: 'vertical',
-                          overflow: 'hidden',
-                          display: '-webkit-box',
-                          textOverflow: 'ellipsis',
-                          wordBreak: 'break-all',
-                          whiteSpace: 'normal',
-                        },
+
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        display: '-webkit-box',
+                        textOverflow: 'ellipsis',
+                        wordBreak: 'break-all',
+                        whiteSpace: 'normal',
                         ...(ellipsis ? { WebkitLineClamp: '1' } : {}),
                       }}
                     >
@@ -1121,14 +1095,15 @@ export function buildCustomGrid({ key = null, list, props }) {
 export function buildDescriptionGrid({ key = null, list, props }) {
   if (isArray(list)) {
     const dataList = list.map((o, index) => {
-      const d = { ...{ key: `item_${index}` }, ...o };
+      const d = { key: `item_${index}`, ...o };
 
-      return { ...{ canCopy: false }, ...d };
+      return { canCopy: false, ...d };
     });
 
     const { labelStyle: globalLabelStyle, contentStyle: globalContentStyle } = {
-      ...{ labelStyle: null, contentStyle: null },
-      ...(props || {}),
+      labelStyle: null,
+      contentStyle: null,
+      ...props,
     };
 
     return (
@@ -1142,13 +1117,11 @@ export function buildDescriptionGrid({ key = null, list, props }) {
             contentStyle,
             emptyValue,
           } = {
-            ...{
-              label: '',
-              span: 1,
-              labelStyle: null,
-              contentStyle: null,
-              emptyValue: '',
-            },
+            label: '',
+            span: 1,
+            labelStyle: null,
+            contentStyle: null,
+            emptyValue: '',
             ...item,
           };
 
@@ -1158,12 +1131,12 @@ export function buildDescriptionGrid({ key = null, list, props }) {
               label={label}
               span={span || 1}
               labelStyle={{
-                ...(globalLabelStyle || {}),
-                ...(labelStyle || {}),
+                ...globalLabelStyle,
+                ...labelStyle,
               }}
               contentStyle={{
-                ...(globalContentStyle || {}),
-                ...(contentStyle || {}),
+                ...globalContentStyle,
+                ...contentStyle,
               }}
               // style={{ ...itemStyle, ...(item.style || null) }}
             >
@@ -1201,7 +1174,7 @@ export function buildPageHeaderContent({ list }) {
   }
 
   let listData = list.map((o) => {
-    const d = { ...{ sort: 10000 }, ...o };
+    const d = { sort: 10_000, ...o };
 
     return { ...d };
   });
@@ -1209,7 +1182,7 @@ export function buildPageHeaderContent({ list }) {
   listData = sortBy(listData, (o) => o.sort);
 
   listData = listData.map((o, index) => {
-    const d = { ...{}, ...o };
+    const d = { ...o };
 
     d.key = `pageHeaderContentItemContainer_${index}`;
 
@@ -1219,7 +1192,7 @@ export function buildPageHeaderContent({ list }) {
   return (
     <>
       {listData.map((o) => {
-        const { type, list: listItem } = o;
+        const { type, list: listItem, key } = o;
 
         if (!isArray(listItem)) {
           return null;
@@ -1228,13 +1201,13 @@ export function buildPageHeaderContent({ list }) {
         if (type === pageHeaderRenderType.descriptionGrid) {
           const listGridData = listItem.map((one, index) => {
             return {
-              ...{ key: `${o.key}_descriptionGridItem_${index}` },
+              key: `${key}_descriptionGridItem_${index}`,
               ...one,
             };
           });
 
           return buildDescriptionGrid({
-            key: `${o.key}_descriptionGrid`,
+            key: `${key}_descriptionGrid`,
             list: listGridData,
             props: {
               style: { marginBottom: '4px' },
@@ -1245,11 +1218,11 @@ export function buildPageHeaderContent({ list }) {
 
         if (type === pageHeaderRenderType.paragraph) {
           const listParagraph = listItem.map((one, index) => {
-            return { ...{ key: `${o.key}_paragraph_${index}` }, ...one };
+            return { key: `${key}_paragraph_${index}`, ...one };
           });
 
           return (
-            <div key={`${o.key}_paragraph_container`}>
+            <div key={`${key}_paragraph_container`}>
               {listParagraph.map((item) => {
                 if (checkStringIsNullOrWhiteSpace(item.paragraph)) {
                   return null;
@@ -1263,11 +1236,11 @@ export function buildPageHeaderContent({ list }) {
 
         if (type === pageHeaderRenderType.action) {
           const listAction = listItem.map((one, index) => {
-            return { ...{ key: `${o.key}_action_${index}` }, ...one };
+            return { key: `${key}_action_${index}`, ...one };
           });
 
           return (
-            <Space key={`${o.key}_space`}>
+            <Space key={`${key}_space`}>
               {listAction.map((item) => {
                 return item.action;
               })}
@@ -1304,7 +1277,10 @@ export function pageHeaderExtraContent(data) {
   }
 
   const v = {
-    ...{ textLabel: '描述', text: '', tileLabel: '时间', time: new Date() },
+    textLabel: '描述',
+    text: '',
+    tileLabel: '时间',
+    time: new Date(),
     ...data,
   };
 
@@ -1363,16 +1339,14 @@ export function buildMenuHeaderRender({
             >
               <div
                 style={{
-                  ...{
-                    margin: ' 0 0 0 12px',
-                    fontSize: '20px',
-                    color: 'white',
-                    fontWeight: '600',
-                    lineHeight: '32px',
-                    overflow: 'hidden',
-                    height: '100%',
-                    whiteSpace: 'nowrap',
-                  },
+                  margin: ' 0 0 0 12px',
+                  fontSize: '20px',
+                  color: 'white',
+                  fontWeight: '600',
+                  lineHeight: '32px',
+                  overflow: 'hidden',
+                  height: '100%',
+                  whiteSpace: 'nowrap',
                   ...(navTheme === 'light' ? { color: '#000000d9' } : {}),
                 }}
               >
@@ -1394,7 +1368,7 @@ export function buildButtonGroup({ buttons = [] }) {
   return (
     <ButtonGroup>
       {buttons.map((item) => {
-        const { hidden } = { ...{ hidden: false }, ...item };
+        const { hidden } = { hidden: false, ...item };
 
         if (hidden) {
           return null;
@@ -1408,8 +1382,6 @@ export function buildButtonGroup({ buttons = [] }) {
 
 export function buildListViewItemExtra({
   align,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  index,
   imageUrl,
   emptyImageUrl,
   width = '100px',
@@ -1455,15 +1427,13 @@ export function buildTagList({ list = [] }) {
 
   const tagList = [];
 
-  list.forEach((o, index) => {
+  for (const [index, o] of list.entries()) {
     const { key, color, text, hidden } = {
-      ...{
-        key: `pageHeaderTag_${index}`,
-        color: '#000',
-        text: '未知',
-        hidden: false,
-      },
-      ...(o || {}),
+      key: `pageHeaderTag_${index}`,
+      color: '#000',
+      text: '未知',
+      hidden: false,
+      ...o,
     };
 
     if (!hidden) {
@@ -1473,7 +1443,7 @@ export function buildTagList({ list = [] }) {
         text,
       });
     }
-  });
+  }
 
   if (tagList.length <= 0) {
     return null;
@@ -1507,13 +1477,12 @@ export function buildIconInfoList({ list = [] }) {
 
   const l = [];
 
-  list.forEach((o, index) => {
+  for (const [index, o] of list.entries()) {
     const { hidden, ...other } = {
       ...IconInfo.defaultProps,
-      ...(o || {}),
-      ...{
-        key: `icon_info_item_${index}`,
-      },
+      ...o,
+
+      key: `icon_info_item_${index}`,
     };
 
     if (!hidden) {
@@ -1521,7 +1490,7 @@ export function buildIconInfoList({ list = [] }) {
         ...other,
       });
     }
-  });
+  }
 
   if (l.length <= 0) {
     return [];
@@ -1535,8 +1504,6 @@ export function buildIconInfoList({ list = [] }) {
 }
 
 export function buildListViewItemActionSelect({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  index,
   confirm = false,
   selectData,
   selectCallback,
@@ -1544,26 +1511,22 @@ export function buildListViewItemActionSelect({
   if (!isFunction(selectCallback)) {
     const text = 'selectCallback 不是有效的回调函数';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
   }
 
   return buildButton({
-    ...{
-      confirm,
-      size: 'small',
-      type: 'link',
-      icon: iconBuilder.import(),
-      text: '选取',
-      showIcon: true,
-      handleClick: ({ handleData }) => {
-        if (isFunction(selectCallback)) {
-          selectCallback(handleData);
-        }
-      },
-      handleData: selectData,
+    confirm,
+    size: 'small',
+    type: 'link',
+    icon: iconBuilder.import(),
+    text: '选取',
+    showIcon: true,
+    handleClick: ({ handleData }) => {
+      if (isFunction(selectCallback)) {
+        selectCallback(handleData);
+      }
     },
+    handleData: selectData,
   });
 }
 
@@ -1581,10 +1544,12 @@ export function buildRadioItem({
   const listRadio = [];
 
   if (listData.length > 0) {
-    listData.forEach((item) => {
+    for (const item of listData) {
       const { name, flag, availability } = {
-        ...{ name: '', flag: '', availability: whetherNumber.yes },
-        ...(item || {}),
+        name: '',
+        flag: '',
+        availability: whetherNumber.yes,
+        ...item,
       };
 
       const key = `${flag}_${name}`;
@@ -1608,7 +1573,7 @@ export function buildRadioItem({
       );
 
       listRadio.push(radio);
-    });
+    }
 
     return listRadio;
   }
@@ -1649,21 +1614,19 @@ export function buildCustomRadio({
   size = 'middle',
   renderItemFunction,
   onChangeCallback = null,
-  otherProps = null,
+  otherProps: otherProperties = null,
 }) {
-  const otherRadioProps = {
-    ...{
-      placeholder: buildFieldDescription(label, '选择'),
-      style: { width: '100%' },
-      size,
-      value,
-      onChange: (e) => {
-        if (isFunction(onChangeCallback)) {
-          onChangeCallback(e);
-        }
-      },
+  const otherRadioProperties = {
+    placeholder: buildFieldDescription(label, '选择'),
+    style: { width: '100%' },
+    size,
+    value,
+    onChange: (event) => {
+      if (isFunction(onChangeCallback)) {
+        onChangeCallback(event);
+      }
     },
-    ...(otherProps || {}),
+    ...otherProperties,
   };
 
   return (
@@ -1683,7 +1646,7 @@ export function buildCustomRadio({
         )
       }
       right={
-        <RadioGroup {...otherRadioProps}>
+        <RadioGroup {...otherRadioProperties}>
           {isFunction(renderItemFunction) ? renderItemFunction() : null}
         </RadioGroup>
       }
@@ -1699,19 +1662,17 @@ export function buildFormRadio({
   onChangeCallback = null,
   formItemLayout = null,
   required = false,
-  otherProps = null,
+  otherProps: otherProperties = null,
 }) {
-  const otherRadioProps = {
-    ...{
-      placeholder: buildFieldDescription(label, '选择'),
-      style: { width: '100%' },
-      onChange: (e) => {
-        if (isFunction(onChangeCallback)) {
-          onChangeCallback(e);
-        }
-      },
+  const otherRadioProperties = {
+    placeholder: buildFieldDescription(label, '选择'),
+    style: { width: '100%' },
+    onChange: (event) => {
+      if (isFunction(onChangeCallback)) {
+        onChangeCallback(event);
+      }
     },
-    ...(otherProps || {}),
+    ...otherProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -1737,7 +1698,7 @@ export function buildFormRadio({
         },
       ]}
     >
-      <RadioGroup {...otherRadioProps}>
+      <RadioGroup {...otherRadioProperties}>
         {isFunction(renderItemFunction) ? renderItemFunction() : null}
       </RadioGroup>
     </FormItem>
@@ -1754,32 +1715,26 @@ export function buildOptionItem({ list, adjustListDataCallback = null }) {
   const listOption = [];
 
   if (listData.length > 0) {
-    listData.forEach((item) => {
+    for (const item of listData) {
       const { name, flag, alias, description, availability } = {
-        ...{
-          name: '',
-          flag: '',
-          description: '',
-          alias: '',
-          availability: whetherNumber.yes,
-        },
-        ...(item || {}),
+        name: '',
+        flag: '',
+        description: '',
+        alias: '',
+        availability: whetherNumber.yes,
+        ...item,
       };
 
       if (checkStringIsNullOrWhiteSpace(toString(name))) {
         const text = 'name 不能为空';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
       }
 
       if (checkStringIsNullOrWhiteSpace(toString(flag))) {
         const text = 'flag 不能为空';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
       }
 
       listOption.push(
@@ -1796,7 +1751,7 @@ export function buildOptionItem({ list, adjustListDataCallback = null }) {
           {name}
         </Option>,
       );
-    });
+    }
 
     return listOption;
   }
@@ -1811,21 +1766,19 @@ export function buildCustomSelect({
   size = 'middle',
   renderItemFunction,
   onChangeCallback = null,
-  otherProps = null,
+  otherProps: otherProperties = null,
 }) {
-  const otherSelectProps = {
-    ...{
-      placeholder: buildFieldDescription(label, '选择') || '请选择',
-      size,
-      value,
-      style: { width: '100%' },
-      onChange: (v, option) => {
-        if (isFunction(onChangeCallback)) {
-          onChangeCallback(v, option);
-        }
-      },
+  const otherSelectProperties = {
+    placeholder: buildFieldDescription(label, '选择') || '请选择',
+    size,
+    value,
+    style: { width: '100%' },
+    onChange: (v, option) => {
+      if (isFunction(onChangeCallback)) {
+        onChangeCallback(v, option);
+      }
     },
-    ...(otherProps || {}),
+    ...otherProperties,
   };
 
   return (
@@ -1845,7 +1798,7 @@ export function buildCustomSelect({
         )
       }
       right={
-        <Select {...otherSelectProps}>
+        <Select {...otherSelectProperties}>
           {isFunction(renderItemFunction) ? renderItemFunction() : null}
         </Select>
       }
@@ -1857,36 +1810,33 @@ export function buildTreeSelect({
   value: v,
   placeholder = '',
   onChangeCallback = null,
-  otherProps = {},
+  otherProps: otherProperties = {},
   listData = [],
   dataConvert = null,
 }) {
-  const adjustOtherProps = {
-    ...{
-      style: { width: '100%' },
-      showSearch: true,
-      allowClear: true,
-      treeLine: true,
-      placeholder,
-    },
-    ...(otherProps || {}),
-    ...{
-      value: v || null,
-    },
+  const adjustOtherProperties = {
+    style: { width: '100%' },
+    showSearch: true,
+    allowClear: true,
+    treeLine: true,
+    placeholder,
+    ...otherProperties,
+
+    value: v || null,
   };
 
   const listDataSource = isArray(listData) ? listData : [];
 
-  const listDataAdjust = !isFunction(dataConvert)
-    ? listDataSource
-    : transformListData({
+  const listDataAdjust = isFunction(dataConvert)
+    ? transformListData({
         list: listDataSource,
         convert: dataConvert,
         recursiveKey: 'children',
-      });
+      })
+    : listDataSource;
 
-  adjustOtherProps.treeData = listDataAdjust;
-  adjustOtherProps.onChange = (value, label, extra) => {
+  adjustOtherProperties.treeData = listDataAdjust;
+  adjustOtherProperties.onChange = (value, label, extra) => {
     if (isFunction(onChangeCallback)) {
       onChangeCallback({
         value,
@@ -1898,7 +1848,7 @@ export function buildTreeSelect({
     }
   };
 
-  return <TreeSelect {...adjustOtherProps} />;
+  return <TreeSelect {...adjustOtherProperties} />;
 }
 
 export function buildFormSelect({
@@ -1909,19 +1859,17 @@ export function buildFormSelect({
   onChangeCallback = null,
   formItemLayout = null,
   required = false,
-  otherProps = null,
+  otherProps: otherProperties = null,
 }) {
-  const otherSelectProps = {
-    ...{
-      placeholder: buildFieldDescription(label, '选择') || '请选择',
-      style: { width: '100%' },
-      onChange: (v, option) => {
-        if (isFunction(onChangeCallback)) {
-          onChangeCallback(v, option);
-        }
-      },
+  const otherSelectProperties = {
+    placeholder: buildFieldDescription(label, '选择') || '请选择',
+    style: { width: '100%' },
+    onChange: (v, option) => {
+      if (isFunction(onChangeCallback)) {
+        onChangeCallback(v, option);
+      }
     },
-    ...(otherProps || {}),
+    ...otherProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -1947,7 +1895,7 @@ export function buildFormSelect({
         },
       ]}
     >
-      <Select {...otherSelectProps}>
+      <Select {...otherSelectProperties}>
         {isFunction(renderItemFunction) ? renderItemFunction() : null}
       </Select>
     </FormItem>
@@ -1997,8 +1945,9 @@ export function buildFormNowTimeField({
     helper: helperChanged,
     formItemLayout: formItemLayoutChanged,
   } = {
-    ...{ helper: '数据的添加时间', label: '添加时间', formItemLayout: null },
-    ...{ label, helper, formItemLayout },
+    helper: helper || '数据的添加时间',
+    label: label || '添加时间',
+    formItemLayout: formItemLayout || null,
   };
 
   const resultCheck = checkFromConfig({
@@ -2103,18 +2052,16 @@ export function buildSearchInput({
   name,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps = {},
+  inputProps: inputProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
   const title = label;
 
-  const otherInputProps = {
-    ...{
-      addonBefore: icon,
-      placeholder: buildFieldDescription(title, '输入'),
-    },
-    ...(inputProps || {}),
+  const otherInputProperties = {
+    addonBefore: icon,
+    placeholder: buildFieldDescription(title, '输入'),
+    ...inputProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2135,7 +2082,7 @@ export function buildSearchInput({
             : buildFieldHelper(resultCheck.helper)
         }
       >
-        <Input {...otherInputProps} />
+        <Input {...otherInputProperties} />
       </FormItem>
     );
   }
@@ -2151,7 +2098,7 @@ export function buildSearchInput({
           : buildFieldHelper(resultCheck.helper)
       }
     >
-      <Input {...otherInputProps} />
+      <Input {...otherInputProperties} />
     </FormItem>
   );
 }
@@ -2161,21 +2108,19 @@ export function buildSearchInputNumber({
   name,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps = {},
+  inputProps: inputProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
   const title = label;
 
-  const otherInputProps = {
-    ...{
-      addonBefore: icon,
-      style: { width: '100%' },
-      min: 0,
-      placeholder: buildFieldDescription(title, '输入'),
-      disabled: !canOperate,
-    },
-    ...(inputProps || {}),
+  const otherInputProperties = {
+    addonBefore: icon,
+    style: { width: '100%' },
+    min: 0,
+    placeholder: buildFieldDescription(title, '输入'),
+    disabled: !canOperate,
+    ...inputProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2195,7 +2140,7 @@ export function buildSearchInputNumber({
           : buildFieldHelper(resultCheck.helper)
       }
     >
-      <InputNumber {...otherInputProps} />
+      <InputNumber {...otherInputProperties} />
     </FormItem>
   );
 }
@@ -2213,9 +2158,7 @@ export function buildFormDisplay({
   if (isObject(title)) {
     const text = 'label必须为文本';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     logObject(label);
   } else {
@@ -2245,7 +2188,7 @@ export function buildFormInput({
   required = false,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps = {},
+  inputProps: inputProperties = {},
   canOperate = true,
   formItemLayout = {},
   reminderPrefix = '输入',
@@ -2253,15 +2196,13 @@ export function buildFormInput({
 }) {
   const title = label;
 
-  const otherInputProps = {
-    ...{
-      addonBefore: icon,
-      placeholder: canOperate
-        ? buildFieldDescription(title, reminderPrefix)
-        : '暂无数据',
-      disabled: !canOperate,
-    },
-    ...(inputProps || {}),
+  const otherInputProperties = {
+    addonBefore: icon,
+    placeholder: canOperate
+      ? buildFieldDescription(title, reminderPrefix)
+      : '暂无数据',
+    disabled: !canOperate,
+    ...inputProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2288,7 +2229,7 @@ export function buildFormInput({
           },
         ]}
       >
-        <Input {...otherInputProps} />
+        <Input {...otherInputProperties} />
       </FormItem>
     ),
     hidden,
@@ -2299,19 +2240,17 @@ export function buildFormInputFieldData({
   fieldData,
   required = false,
   icon = iconBuilder.form(),
-  inputProps = {},
+  inputProps: inputProperties = {},
   canOperate = true,
   formItemLayout = {},
   reminderPrefix = '输入',
   hidden = false,
 }) {
   const { label, name, helper } = {
-    ...{
-      label: null,
-      name: null,
-      helper: null,
-    },
-    ...(fieldData || {}),
+    label: null,
+    name: null,
+    helper: null,
+    ...fieldData,
   };
 
   return buildFormInput({
@@ -2320,7 +2259,7 @@ export function buildFormInputFieldData({
     required,
     helper: helper || null,
     icon,
-    inputProps,
+    inputProps: inputProperties,
     canOperate,
     formItemLayout,
     reminderPrefix,
@@ -2333,18 +2272,16 @@ export function buildFormSwitch({
   name,
   required = false,
   helper = null,
-  otherProps = {},
+  otherProps: otherProperties = {},
   canOperate = true,
   formItemLayout = {},
   hidden = false,
 }) {
   const title = label;
 
-  const otherSwitchProps = {
-    ...{
-      disabled: !canOperate,
-    },
-    ...(otherProps || {}),
+  const otherSwitchProperties = {
+    disabled: !canOperate,
+    ...otherProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2379,7 +2316,7 @@ export function buildFormSwitch({
           />
         )}
       >
-        <Switch {...otherSwitchProps} />
+        <Switch {...otherSwitchProperties} />
       </FormCustomItem>
     ),
     hidden,
@@ -2392,18 +2329,16 @@ export function buildFormPassword({
   required = false,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps = {},
+  inputProps: inputProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
   const title = label;
 
-  const otherInputProps = {
-    ...{
-      addonBefore: icon,
-      placeholder: buildFieldDescription(title, '输入'),
-    },
-    ...(inputProps || {}),
+  const otherInputProperties = {
+    addonBefore: icon,
+    placeholder: buildFieldDescription(title, '输入'),
+    ...inputProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2430,7 +2365,7 @@ export function buildFormPassword({
           },
         ]}
       >
-        <Password {...otherInputProps} />
+        <Password {...otherInputProperties} />
       </FormItem>
     );
   }
@@ -2452,7 +2387,7 @@ export function buildFormPassword({
         },
       ]}
     >
-      <Password {...otherInputProps} />
+      <Password {...otherInputProperties} />
     </FormItem>
   );
 }
@@ -2497,7 +2432,7 @@ export function buildFormOnlyShowText({
 
 export function buildSyntaxHighlighter({ language, value, other = {} }) {
   const c = {
-    ...(other || {}),
+    ...other,
     showLineNumbers: false,
     wrapLines: false,
     wrapLongLines: true,
@@ -2593,10 +2528,7 @@ export function buildFormActionItem({ component, formItemLayout = {} }) {
   }
 
   return (
-    <FormItem
-      {...{ ...(formItemLayout || {}), ...{ colon: false } }}
-      label={<div />}
-    >
+    <FormItem {...{ ...formItemLayout, colon: false }} label={<div />}>
       {component}
     </FormItem>
   );
@@ -2604,10 +2536,7 @@ export function buildFormActionItem({ component, formItemLayout = {} }) {
 
 export function buildFormButton({ config, formItemLayout = {} }) {
   return (
-    <FormItem
-      {...{ ...(formItemLayout || {}), ...{ colon: false } }}
-      label={<div />}
-    >
+    <FormItem {...{ ...formItemLayout, colon: false }} label={<div />}>
       {buildButton(config)}
     </FormItem>
   );
@@ -2620,14 +2549,14 @@ export function buildFormOnlyShowSyntaxHighlighter({
   helper = null,
   formItemLayout = {},
   requiredForShow = false,
-  otherProps = {},
+  otherProps: otherProperties = {},
 }) {
   return buildFormInnerComponent({
     label,
     innerComponent: buildSyntaxHighlighter({
       language,
       value,
-      other: otherProps || {},
+      other: otherProperties || {},
     }),
     helper,
     formItemLayout,
@@ -2639,17 +2568,15 @@ export function buildFormOnlyShowTextarea({
   label,
   value,
   helper = null,
-  textAreaProps = { disabled: true },
+  textAreaProps: textAreaProperties = { disabled: true },
   formItemLayout = {},
 }) {
   const title = label;
 
-  const otherTextAreaProps = {
-    ...{
-      placeholder: '暂无数据',
-      value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
-    },
-    ...(textAreaProps || {}),
+  const otherTextAreaProperties = {
+    placeholder: '暂无数据',
+    value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
+    ...textAreaProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2674,7 +2601,7 @@ export function buildFormOnlyShowTextarea({
         },
       ]}
     >
-      <TextArea {...otherTextAreaProps} />
+      <TextArea {...otherTextAreaProperties} />
     </FormItem>
   );
 }
@@ -2719,18 +2646,16 @@ export function buildFormOnlyShowInput({
   value,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps = { disabled: true },
+  inputProps: inputProperties = { disabled: true },
   formItemLayout = {},
 }) {
   const title = label;
 
-  const otherInputProps = {
-    ...{
-      addonBefore: icon,
-      placeholder: '暂无数据',
-      value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
-    },
-    ...(inputProps || {}),
+  const otherInputProperties = {
+    addonBefore: icon,
+    placeholder: '暂无数据',
+    value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
+    ...inputProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2755,7 +2680,7 @@ export function buildFormOnlyShowInput({
         },
       ]}
     >
-      <Input {...otherInputProps} />
+      <Input {...otherInputProperties} />
     </FormItem>
   );
 }
@@ -2766,21 +2691,19 @@ export function buildFormInputNumber({
   required = false,
   helper = null,
   icon = iconBuilder.form(),
-  inputNumberProps = {},
+  inputNumberProps: inputNumberProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
   const title = label;
 
-  const otherInputNumberProps = {
-    ...{
-      addonBefore: icon,
-      style: { width: '100%' },
-      min: 0,
-      placeholder: buildFieldDescription(title, '输入'),
-      disabled: !canOperate,
-    },
-    ...(inputNumberProps || {}),
+  const otherInputNumberProperties = {
+    addonBefore: icon,
+    style: { width: '100%' },
+    min: 0,
+    placeholder: buildFieldDescription(title, '输入'),
+    disabled: !canOperate,
+    ...inputNumberProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2807,7 +2730,7 @@ export function buildFormInputNumber({
           },
         ]}
       >
-        <InputNumber {...otherInputNumberProps} />
+        <InputNumber {...otherInputNumberProperties} />
       </FormItem>
     );
   }
@@ -2829,7 +2752,7 @@ export function buildFormInputNumber({
         },
       ]}
     >
-      <InputNumber {...otherInputNumberProps} />
+      <InputNumber {...otherInputNumberProperties} />
     </FormItem>
   );
 }
@@ -2839,18 +2762,16 @@ export function buildFormTextArea({
   name,
   required = false,
   helper = null,
-  textAreaProps = {},
+  textAreaProps: textAreaProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
   const title = label;
 
-  const otherTextAreaProps = {
-    ...{
-      placeholder: buildFieldDescription(title, '输入'),
-      disabled: !canOperate,
-    },
-    ...(textAreaProps || {}),
+  const otherTextAreaProperties = {
+    placeholder: buildFieldDescription(title, '输入'),
+    disabled: !canOperate,
+    ...textAreaProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2877,7 +2798,7 @@ export function buildFormTextArea({
           },
         ]}
       >
-        <TextArea {...otherTextAreaProps} />
+        <TextArea {...otherTextAreaProperties} />
       </FormItem>
     );
   }
@@ -2899,7 +2820,7 @@ export function buildFormTextArea({
         },
       ]}
     >
-      <TextArea {...otherTextAreaProps} />
+      <TextArea {...otherTextAreaProperties} />
     </FormItem>
   );
 }
@@ -2909,21 +2830,19 @@ export function buildFormDatePicker({
   name,
   required = false,
   helper = null,
-  datePickerProps = {},
+  datePickerProps: datePickerProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
   const title = label;
 
-  const otherDatePickerProps = {
-    ...{
-      style: { width: '100%' },
-      showTime: true,
-      format: 'YYYY-MM-DD HH:mm:ss',
-      inputReadOnly: true,
-      placeholder: buildFieldDescription(title, '选择'),
-    },
-    ...(datePickerProps || {}),
+  const otherDatePickerProperties = {
+    style: { width: '100%' },
+    showTime: true,
+    format: 'YYYY-MM-DD HH:mm:ss',
+    inputReadOnly: true,
+    placeholder: buildFieldDescription(title, '选择'),
+    ...datePickerProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -2944,7 +2863,7 @@ export function buildFormDatePicker({
             : buildFieldHelper(resultCheck.helper)
         }
       >
-        <DatePicker {...otherDatePickerProps} />
+        <DatePicker {...otherDatePickerProperties} />
       </FormItem>
     );
   }
@@ -2966,7 +2885,7 @@ export function buildFormDatePicker({
         },
       ]}
     >
-      <DatePicker {...otherDatePickerProps} />
+      <DatePicker {...otherDatePickerProperties} />
     </FormItem>
   );
 }
@@ -2976,19 +2895,17 @@ export function buildFormTimePicker({
   name,
   required = false,
   helper = null,
-  timePickerProps = {},
+  timePickerProps: timePickerProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
   const title = label;
 
-  const otherTimePickerProps = {
-    ...{
-      style: { width: '100%' },
-      inputReadOnly: true,
-      placeholder: buildFieldDescription(title, '选择'),
-    },
-    ...(timePickerProps || {}),
+  const otherTimePickerProperties = {
+    style: { width: '100%' },
+    inputReadOnly: true,
+    placeholder: buildFieldDescription(title, '选择'),
+    ...timePickerProperties,
   };
 
   const resultCheck = checkFromConfig({
@@ -3009,7 +2926,7 @@ export function buildFormTimePicker({
             : buildFieldHelper(resultCheck.helper)
         }
       >
-        <TimePicker {...otherTimePickerProps} />
+        <TimePicker {...otherTimePickerProperties} />
       </FormItem>
     );
   }
@@ -3031,7 +2948,7 @@ export function buildFormTimePicker({
         },
       ]}
     >
-      <TimePicker {...otherTimePickerProps} />
+      <TimePicker {...otherTimePickerProperties} />
     </FormItem>
   );
 }
@@ -3043,8 +2960,10 @@ export function buildColumnItem({
   const d = { ...columnConfig };
 
   const { dataTarget, showHelper, placeholder } = {
-    ...{ showHelper: false, placeholder: false, ellipsis: true },
-    ...(columnConfig || {}),
+    showHelper: false,
+    placeholder: false,
+    ellipsis: true,
+    ...columnConfig,
   };
 
   if (placeholder || false) {
@@ -3063,9 +2982,7 @@ export function buildColumnItem({
           },
     )}`;
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     logText(text);
   } else {
@@ -3083,9 +3000,7 @@ export function buildColumnItem({
             },
       )}`;
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
 
       logText(text);
     } else {
@@ -3112,15 +3027,13 @@ export function buildColumnItem({
     facadeConfigBuilder,
     sorter,
   } = {
-    ...{
-      align: 'center',
-      showRichFacade: false,
-      facadeMode: null,
-      facadeModeBuilder: null,
-      facadeConfig: {},
-      facadeConfigBuilder: () => {},
-      sorter: false,
-    },
+    align: 'center',
+    showRichFacade: false,
+    facadeMode: null,
+    facadeModeBuilder: null,
+    facadeConfig: {},
+    facadeConfigBuilder: () => {},
+    sorter: false,
     ...d,
   };
 
@@ -3129,7 +3042,9 @@ export function buildColumnItem({
 
   if (!isFunction(d.render) && showRichFacade) {
     const { canCopy, copyPrompt, emptyValue } = {
-      ...{ canCopy: false, copyPrompt: '[点击复制]', emptyValue: null },
+      canCopy: false,
+      copyPrompt: '[点击复制]',
+      emptyValue: null,
       ...d,
     };
 
@@ -3144,7 +3059,7 @@ export function buildColumnItem({
     }
 
     d.render = (value, record, index) => {
-      let val = value;
+      let value_ = value;
 
       let facadeMode = facadeModeSource || '';
 
@@ -3161,7 +3076,7 @@ export function buildColumnItem({
       if (isFunction(facadeConfigBuilder)) {
         facadeConfig = {
           ...facadeConfig,
-          ...(facadeConfigBuilder(value, record, index) || {}),
+          ...facadeConfigBuilder(value, record, index),
         };
       }
 
@@ -3180,21 +3095,19 @@ export function buildColumnItem({
         status,
         text,
       } = {
-        ...{
-          color: null,
-          valPrefix: '',
-          valPrefixStyle: null,
-          valStyle: null,
-          separator: '：',
-          separatorStyle: null,
-          icon: null,
-          iconPosition: 'left',
-          addonAfter: null,
-          addonBefore: null,
-          datetimeFormat: datetimeFormat.yearMonthDayHourMinuteSecond,
-          status: 'default',
-          text: '',
-        },
+        color: null,
+        valPrefix: '',
+        valPrefixStyle: null,
+        valStyle: null,
+        separator: '：',
+        separatorStyle: null,
+        icon: null,
+        iconPosition: 'left',
+        addonAfter: null,
+        addonBefore: null,
+        datetimeFormat: datetimeFormat.yearMonthDayHourMinuteSecond,
+        status: 'default',
+        text: '',
         ...facadeConfig,
       };
 
@@ -3205,10 +3118,10 @@ export function buildColumnItem({
         facadeMode === columnFacadeMode.ellipsis
       ) {
         if (isFunction(d.formatValue)) {
-          val = d.formatValue(value, record, index);
+          value_ = d.formatValue(value, record, index);
         }
 
-        if (checkStringIsNullOrWhiteSpace(val)) {
+        if (checkStringIsNullOrWhiteSpace(value_)) {
           return emptyValue;
         }
 
@@ -3229,15 +3142,15 @@ export function buildColumnItem({
                   <>
                     <a
                       onClick={() => {
-                        copyToClipboard(val);
+                        copyToClipboard(value_);
                       }}
                     >
-                      {replaceWithKeep(val, '***', 2, 6)}
+                      {replaceWithKeep(value_, '***', 2, 6)}
                     </a>
                   </>
                 }
               >
-                {val || emptyValue} {copyPrompt || '[点击复制]'}
+                {value_ || emptyValue} {copyPrompt || '[点击复制]'}
               </EllipsisCustom>
             </>
           );
@@ -3250,7 +3163,7 @@ export function buildColumnItem({
             <IconInfo
               icon={icon || null}
               iconPosition={iconPosition || 'left'}
-              text={val || emptyValue}
+              text={value_ || emptyValue}
               textStyle={valStyle || null}
               textPrefix={valPrefix}
               textPrefixStyle={valPrefixStyle || null}
@@ -3272,10 +3185,10 @@ export function buildColumnItem({
           ...((color || null) == null ? {} : { color }),
         };
 
-        val = checkStringIsNullOrWhiteSpace(val)
+        value_ = checkStringIsNullOrWhiteSpace(value_)
           ? ''
           : formatDatetime({
-              data: val,
+              data: value_,
               format: datetimeFormatValue,
             }) || '';
 
@@ -3286,7 +3199,7 @@ export function buildColumnItem({
             <IconInfo
               icon={icon || null}
               iconPosition={iconPosition || 'left'}
-              text={val || emptyValue}
+              text={value_ || emptyValue}
               textStyle={valStyle || null}
               textPrefix={valPrefix}
               textPrefixStyle={valPrefixStyle || null}
@@ -3308,7 +3221,7 @@ export function buildColumnItem({
           ...((color || null) == null ? {} : { color }),
         };
 
-        val = checkStringIsNullOrWhiteSpace(val) ? '' : val;
+        value_ = checkStringIsNullOrWhiteSpace(value_) ? '' : value_;
 
         return (
           <>
@@ -3317,7 +3230,7 @@ export function buildColumnItem({
             <IconInfo
               icon={icon || null}
               iconPosition={iconPosition || 'left'}
-              text={formatMoney(val) || emptyValue}
+              text={formatMoney(value_) || emptyValue}
               textStyle={valStyle || null}
               textPrefix={valPrefix}
               textPrefixStyle={valPrefixStyle || null}
@@ -3335,17 +3248,15 @@ export function buildColumnItem({
 
       if (facadeMode === columnFacadeMode.image) {
         if (isFunction(d.formatValue)) {
-          val = d.formatValue(value, record, index);
+          value_ = d.formatValue(value, record, index);
         }
 
         const { imageWidth, borderRadius, circle, previewSimpleMask } = {
-          ...{
-            imageWidth: '30px',
-            circle: true,
-            borderRadius: '3px',
+          imageWidth: '30px',
+          circle: true,
+          borderRadius: '3px',
 
-            previewSimpleMask: true,
-          },
+          previewSimpleMask: true,
           ...facadeConfig,
         };
 
@@ -3356,21 +3267,19 @@ export function buildColumnItem({
               <Col>
                 <div
                   style={{
-                    ...{
-                      width: imageWidth,
-                      overflow: 'hidden',
-                    },
+                    width: imageWidth,
+                    overflow: 'hidden',
                     ...(circle ? {} : { borderRadius }),
                   }}
                 >
                   <ImageBox
-                    src={val || defaultEmptyImage}
+                    src={value_ || defaultEmptyImage}
                     circle={circle}
                     loadingEffect
                     errorOverlayVisible
                     showErrorIcon={false}
                     alt=""
-                    preview={!checkStringIsNullOrWhiteSpace(val)}
+                    preview={!checkStringIsNullOrWhiteSpace(value_)}
                     previewSimpleMask={previewSimpleMask}
                   />
                 </div>
@@ -3383,7 +3292,7 @@ export function buildColumnItem({
 
       if (facadeMode === columnFacadeMode.badge) {
         if (isFunction(d.formatValue)) {
-          val = d.formatValue(value, record, index);
+          value_ = d.formatValue(value, record, index);
         }
 
         return (
@@ -3400,11 +3309,9 @@ export function buildColumnItem({
 
         const operateConfig = d.configBuilder(value, record, index);
 
-        if ((operateConfig || null) == null) {
-          return null;
-        } else {
-          return buildDropdown(operateConfig);
-        }
+        return (operateConfig || null) == null
+          ? null
+          : buildDropdown(operateConfig);
       }
 
       throw new Error(`无效的渲染模式：${facadeMode}`);
@@ -3417,7 +3324,7 @@ export function buildColumnItem({
 export function buildColumnList({ columnList, attachedTargetName = '' }) {
   const list = [];
 
-  (isArray(columnList) ? columnList : []).forEach((o) => {
+  for (const o of isArray(columnList) ? columnList : []) {
     const c = buildColumnItem({
       column: o,
       attachedTargetName,
@@ -3425,9 +3332,7 @@ export function buildColumnList({ columnList, attachedTargetName = '' }) {
 
     if ((c || null) != null) {
       const { hidden } = {
-        ...{
-          hidden: false,
-        },
+        hidden: false,
         ...c,
       };
 
@@ -3435,7 +3340,7 @@ export function buildColumnList({ columnList, attachedTargetName = '' }) {
         list.push(c);
       }
     }
-  });
+  }
 
   return list;
 }
@@ -3501,27 +3406,25 @@ export function adjustTableExpandConfig({ list, config }) {
       expandIcon: expandIconCustom,
       expandedRowRender: expandedRowRenderCustom,
     } = {
-      ...{
-        // 判断当前列表数据，如若列表所有数据都不需要显示展开按钮，则忽略其他配置
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        checkNeedExpander: null,
-        rowExpandable: false,
-        expandPlaceholderIcon: (
-          <BorderOuterOutlined
-            style={{
-              color: '#ccc',
-            }}
-          />
-        ),
-        expanderStyle: null,
-        animalType: listViewConfig.expandAnimalType.none,
-        expandIconRotate: true,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        expandIcon: ({ expanded, onExpand, record }) => {
-          return iconBuilder.rightCircle();
-        },
-        expandedRowRender: null,
+      // 判断当前列表数据，如若列表所有数据都不需要显示展开按钮，则忽略其他配置
+
+      checkNeedExpander: null,
+      rowExpandable: false,
+      expandPlaceholderIcon: (
+        <BorderOuterOutlined
+          style={{
+            color: '#ccc',
+          }}
+        />
+      ),
+      expanderStyle: null,
+      animalType: listViewConfig.expandAnimalType.none,
+      expandIconRotate: true,
+      // eslint-disable-next-line no-unused-vars
+      expandIcon: ({ expanded, onExpand, record }) => {
+        return iconBuilder.rightCircle();
       },
+      expandedRowRender: null,
       ...(config || null),
     };
 
@@ -3557,7 +3460,7 @@ export function adjustTableExpandConfig({ list, config }) {
                 <RotateBox
                   rotate={expanded ? 90 : 0}
                   duration={200}
-                  onClick={(e) => onExpand(record, e)}
+                  onClick={(event) => onExpand(record, event)}
                 >
                   {expandIconCustom({ expanded, onExpand, record })}
                 </RotateBox>

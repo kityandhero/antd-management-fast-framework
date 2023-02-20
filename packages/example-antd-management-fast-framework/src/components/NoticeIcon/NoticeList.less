@@ -1,11 +1,11 @@
+@import (reference) '~antd/es/style/themes/index';
+
 .list {
   max-height: 400px;
   overflow: auto;
-
   &::-webkit-scrollbar {
     display: none;
   }
-
   .item {
     padding-right: 24px;
     padding-left: 24px;
@@ -19,9 +19,8 @@
 
     .avatar {
       margin-top: 4px;
-      background: #fff;
+      background: @component-background;
     }
-
     .iconElement {
       font-size: 32px;
     }
@@ -29,48 +28,40 @@
     &.read {
       opacity: 0.4;
     }
-
     &:last-child {
       border-bottom: 0;
     }
-
     &:hover {
-      background: var(--amf-primary-1);
+      background: @primary-1;
     }
-
     .title {
       margin-bottom: 8px;
       font-weight: normal;
     }
-
     .description {
       font-size: 12px;
-      line-height: var(--amf-line-height-base);
+      line-height: @line-height-base;
     }
-
     .datetime {
       margin-top: 4px;
       font-size: 12px;
-      line-height: var(--amf-line-height-base);
+      line-height: @line-height-base;
     }
-
     .extra {
       float: right;
       margin-top: -1.5px;
       margin-right: 0;
-      color: var(--amf-text-color-secondary);
+      color: @text-color-secondary;
       font-weight: normal;
     }
   }
-
   .loadMore {
     padding: 8px 0;
-    color: var(--amf-primary-6);
+    color: @primary-6;
     text-align: center;
     cursor: pointer;
-
     &.loadedAll {
-      color: rgb(0 0 0 / 25%);
+      color: rgba(0, 0, 0, 0.25);
       cursor: unset;
     }
   }
@@ -78,9 +69,8 @@
 
 .notFound {
   padding: 73px 0 88px;
-  color: var(--amf-text-color-secondary);
+  color: @text-color-secondary;
   text-align: center;
-
   img {
     display: inline-block;
     height: 76px;
@@ -90,13 +80,12 @@
 
 .bottomBar {
   height: 46px;
-  color: var(--amf-text-color);
+  color: @text-color;
   line-height: 46px;
   text-align: center;
-  border-top: 1px solid var(--amf-border-color-split);
-  border-radius: 0 0 var(--amf-border-radius-base) var(--amf-border-radius-base);
+  border-top: 1px solid @border-color-split;
+  border-radius: 0 0 @border-radius-base @border-radius-base;
   transition: all 0.3s;
-
   div {
     display: inline-block;
     width: 50%;
@@ -107,9 +96,8 @@
     &:only-child {
       width: 100%;
     }
-
     &:not(:only-child):last-child {
-      border-left: 1px solid var(--amf-border-color-split);
+      border-left: 1px solid @border-color-split;
     }
   }
 }

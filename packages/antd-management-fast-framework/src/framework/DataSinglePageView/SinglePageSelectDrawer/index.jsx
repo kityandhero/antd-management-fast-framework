@@ -1,4 +1,5 @@
-import { isFunction } from 'antd-management-fast-common';
+import { isFunction } from 'easy-soft-utility';
+
 import { buildButton, iconBuilder } from 'antd-management-fast-component';
 
 import { SinglePageDrawer } from '../SinglePageDrawer';
@@ -6,8 +7,8 @@ import { SinglePageDrawer } from '../SinglePageDrawer';
 class SinglePageSelectDrawer extends SinglePageDrawer {
   showListViewItemActionSelect = true;
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   selectRecord = ({ handleData }) => {
@@ -28,15 +29,12 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
     showIcon = true,
   }) => {
     return buildButton({
-      ...{
-        confirm,
-        size: 'small',
-        icon: iconSource || iconBuilder.import(),
-        text: textSource || '选择',
-        showIcon,
-        handleClick: () =>
-          this.selectRecord({ handleData: handleData || null }),
-      },
+      confirm,
+      size: 'small',
+      icon: iconSource || iconBuilder.import(),
+      text: textSource || '选择',
+      showIcon,
+      handleClick: () => this.selectRecord({ handleData: handleData || null }),
     });
   };
 }

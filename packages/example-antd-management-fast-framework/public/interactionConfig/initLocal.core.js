@@ -4,7 +4,7 @@ window.appInitCustomLocalCore = {
     layout: 'mix',
     splitMenus: true,
   },
-  appListData: [
+  applicationListData: [
     {
       key: '11',
       title: '本地导航',

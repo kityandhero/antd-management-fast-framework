@@ -1,20 +1,26 @@
 import React from 'react';
 
-import { isArray, showErrorMessage } from 'antd-management-fast-common';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isArray,
+  showSimpleErrorMessage,
+} from 'easy-soft-utility';
+
 import { buildPlayer } from 'antd-management-fast-component';
-import MobilePreviewArea from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobilePreviewArea';
+import { MobileContainor } from 'antd-management-fast-framework';
+
+const { MobilePreviewArea } = MobileContainor;
 
 class MobilePreviewBox extends MobilePreviewArea {
   loadDataAfterMount = false;
 
   resetDataAfterLoad = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{},
     };
   }
 
@@ -24,15 +30,13 @@ class MobilePreviewBox extends MobilePreviewArea {
     if (!isArray(data)) {
       const text = '预览数据格式无效';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
 
       return null;
     }
 
     const list = data.map((item, index) => {
-      return { ...item, ...{ key: `data_${index}` } };
+      return { ...item, key: `data_${index}` };
     });
 
     return (

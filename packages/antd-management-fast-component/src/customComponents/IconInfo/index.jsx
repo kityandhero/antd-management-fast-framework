@@ -1,7 +1,13 @@
 import { Col, Row, Tooltip } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { isFunction, isObject, isString, toNumber } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isFunction,
+  isObject,
+  isString,
+  toNumber,
+} from 'easy-soft-utility';
 
 import { copyToClipboard } from 'antd-management-fast-common';
 
@@ -67,7 +73,7 @@ class IconInfo extends PureComponent {
       style: styleSource,
       iconStyle: iconStyleSource,
       ellipsisMaxWidth: ellipsisMaxWidthSource,
-    } = { ...defaultValue, ...(this.props || {}) };
+    } = { ...defaultValue, ...this.props };
 
     const responsive = responsiveValue || false;
     const tooltip = tooltipValue || false;
@@ -91,7 +97,7 @@ class IconInfo extends PureComponent {
     ellipsisMaxWidth = ellipsisMaxWidth <= 0 ? 0 : ellipsisMaxWidth;
 
     const styleMerge = {
-      ...(styleSource || {}),
+      ...styleSource,
       ...(canCopy || isFunction(onClick) ? { cursor: 'pointer' } : {}),
     };
 
@@ -101,16 +107,16 @@ class IconInfo extends PureComponent {
       ? textFormat(text)
       : text;
 
-    const textAfterFormatForShow = !isObject(textStyle) ? (
-      textAfterFormat || ''
-    ) : (
+    const textAfterFormatForShow = isObject(textStyle) ? (
       <span style={textStyle}>{textAfterFormat || ''}</span>
+    ) : (
+      textAfterFormat || ''
     );
 
-    const textAfterFormatForTooltip = !isObject(textStyle) ? (
-      text || ''
-    ) : (
+    const textAfterFormatForTooltip = isObject(textStyle) ? (
       <span style={textStyle}>{text || ''}</span>
+    ) : (
+      text || ''
     );
 
     if (checkStringIsNullOrWhiteSpace(textPrefix)) {
@@ -118,18 +124,18 @@ class IconInfo extends PureComponent {
 
       tooltipTitle = textAfterFormatForTooltip;
     } else {
-      const textPrefixAdjust = !isObject(textPrefixStyle) ? (
-        textPrefix || ''
-      ) : (
+      const textPrefixAdjust = isObject(textPrefixStyle) ? (
         <span style={textPrefixStyle}>{textPrefix || ''}</span>
+      ) : (
+        textPrefix || ''
       );
 
       const separatorAdjust = checkStringIsNullOrWhiteSpace(separator) ? (
         ''
-      ) : !isObject(separatorStyle) ? (
-        separator || '：'
-      ) : (
+      ) : isObject(separatorStyle) ? (
         <span style={separatorStyle}>{separator || '：'}</span>
+      ) : (
+        separator || '：'
       );
 
       if (
@@ -259,7 +265,7 @@ class IconInfo extends PureComponent {
                     )}
                   </Col>
 
-                  {iconPosition !== 'left' ? (
+                  {iconPosition === 'left' ? null : (
                     <Col xl={4} lg={6} md={8} sm={24} xs={24}>
                       {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
                         iconItem
@@ -267,7 +273,7 @@ class IconInfo extends PureComponent {
                         <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
                       )}
                     </Col>
-                  ) : null}
+                  )}
                 </Row>
               )
             ) : (iconItem || null) == null ? (
@@ -333,7 +339,7 @@ class IconInfo extends PureComponent {
                   </Col>
                 ) : null}
 
-                {!checkStringIsNullOrWhiteSpace(textMerge) ? (
+                {checkStringIsNullOrWhiteSpace(textMerge) ? null : (
                   <Col
                     style={styleMerge}
                     onClick={() => {
@@ -371,7 +377,7 @@ class IconInfo extends PureComponent {
                       textMerge
                     )}
                   </Col>
-                ) : null}
+                )}
 
                 {!checkStringIsNullOrWhiteSpace(textMerge) &&
                 iconPosition !== 'left' ? (

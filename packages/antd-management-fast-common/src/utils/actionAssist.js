@@ -3,11 +3,14 @@ import { message, Modal } from 'antd';
 import {
   checkStringIsNullOrWhiteSpace,
   getGuid,
+  isArray,
   isFunction,
   logDebug,
   logError,
   showSimpleSuccessNotification,
 } from 'easy-soft-utility';
+
+import { getDispatch } from './dvaCore';
 
 const { confirm } = Modal;
 
@@ -25,10 +28,10 @@ function remoteAction({
 }) {
   logDebug(`model access: ${api}`);
 
-  const { dispatch } = target.props;
+  const dispatch = getDispatch();
 
   if ((dispatch || null) == null) {
-    throw new Error('remoteAction: dispatch in target.props not allow null');
+    throw new Error('remoteAction: dispatch not allow null');
   }
 
   dispatch({
@@ -50,11 +53,9 @@ function remoteAction({
           data: remoteData,
           extra: remoteExtraData,
         } = {
-          ...{
-            list: [],
-            data: null,
-            extra: null,
-          },
+          list: [],
+          data: null,
+          extra: null,
           ...data,
         };
 
@@ -62,7 +63,7 @@ function remoteAction({
 
         if (isFunction(successMessageBuilder)) {
           messageText = successMessageBuilder({
-            remoteListData: remoteListData || [],
+            remoteListData: isArray(remoteListData) ? remoteListData : [],
             remoteData: remoteData || null,
             remoteExtraData: remoteExtraData || null,
             remoteOriginal: data,
@@ -77,7 +78,7 @@ function remoteAction({
           successCallback({
             target,
             params,
-            remoteListData: remoteListData || [],
+            remoteListData: isArray(remoteListData) ? remoteListData : [],
             remoteData: remoteData || null,
             remoteExtraData: remoteExtraData || null,
             remoteOriginal: data,
@@ -98,9 +99,11 @@ function remoteAction({
         processing: false,
         dispatchComplete: true,
       });
+
+      return data;
     })
-    .catch((res) => {
-      logError(res);
+    .catch((error_) => {
+      logError(error_);
 
       if (showProcessing) {
         setTimeout(() => {
@@ -251,7 +254,6 @@ export async function actionCore({
 export function apiRequest({
   api,
   params,
-  dispatch,
   beforeProcess = null,
   failureCallback,
   successCallback,
@@ -263,14 +265,12 @@ export function apiRequest({
 }) {
   logDebug(`model access: ${api}`);
 
-  if ((dispatch || null) == null) {
-    throw new Error('apiRequest: dispatch in params not allow null');
-  }
+  const dispatch = getDispatch();
 
-  let paramsAdjust = {};
+  let parametersAdjust = {};
 
   if (isFunction(beforeProcess)) {
-    paramsAdjust = beforeProcess({ api, dispatch, params }) || params;
+    parametersAdjust = beforeProcess({ api, dispatch, params }) || params;
   }
 
   let key = '';
@@ -289,7 +289,7 @@ export function apiRequest({
 
   dispatch({
     type: api,
-    payload: paramsAdjust,
+    payload: parametersAdjust,
   })
     .then((data) => {
       if (showProcessing) {
@@ -306,11 +306,9 @@ export function apiRequest({
           data: remoteData,
           extra: remoteExtraData,
         } = {
-          ...{
-            list: [],
-            data: null,
-            extra: null,
-          },
+          list: [],
+          data: null,
+          extra: null,
           ...data,
         };
 
@@ -318,7 +316,7 @@ export function apiRequest({
 
         if (isFunction(successMessageBuilder)) {
           messageText = successMessageBuilder({
-            remoteListData: remoteListData || [],
+            remoteListData: isArray(remoteListData) ? remoteListData : [],
             remoteData: remoteData || null,
             remoteExtraData: remoteExtraData || null,
             remoteOriginal: data,
@@ -334,7 +332,7 @@ export function apiRequest({
             api,
             params,
             dispatch,
-            remoteListData: remoteListData || [],
+            remoteListData: isArray(remoteListData) ? remoteListData : [],
             remoteData: remoteData || null,
             remoteExtraData: remoteExtraData || null,
             remoteOriginal: data,
@@ -351,9 +349,11 @@ export function apiRequest({
           });
         }
       }
+
+      return data;
     })
-    .catch((res) => {
-      logError(res);
+    .catch((error_) => {
+      logError(error_);
 
       if (showProcessing) {
         setTimeout(() => {
@@ -362,7 +362,7 @@ export function apiRequest({
       }
 
       if (isFunction(completeProcess)) {
-        completeProcess({ api, params, dispatch, params });
+        completeProcess({ api, params, dispatch });
       }
     });
 }

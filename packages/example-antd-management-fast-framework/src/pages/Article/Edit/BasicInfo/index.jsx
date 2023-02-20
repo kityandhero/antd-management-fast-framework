@@ -1,22 +1,22 @@
 import dayjs from 'dayjs';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
 import {
   convertCollection,
   datetimeFormat,
   formatCollection,
+  formatTarget,
   getValueByKey,
+  pretreatmentRemoteSingleData,
+  showInfoMessage,
+  to,
 } from 'easy-soft-utility';
 
 import {
   cardConfig,
-  convertTarget,
   corsTarget,
-  formatTarget,
   getToken,
   getTokenKeyName,
-  pretreatmentRemoteSingleData,
-  showInfoMessage,
 } from 'antd-management-fast-common';
 import {
   buildColorText,
@@ -25,9 +25,8 @@ import {
   IconInfo,
 } from 'antd-management-fast-component';
 
-import { accessWayCollection } from '@/customConfig/config';
-import { renderCustomArticleStatusSelect } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
+import { accessWayCollection } from '../../../../customConfig/config';
+import { renderCustomArticleStatusSelect } from '../../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
 import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
 import {
   addGalleryImageAction,
@@ -50,8 +49,8 @@ class BasicInfo extends TabPageBase {
 
   textContent = '';
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     const tokenSetObject = {};
 
@@ -59,25 +58,24 @@ class BasicInfo extends TabPageBase {
 
     this.state = {
       ...this.state,
-      ...{
-        loadApiPath: 'article/get',
-        submitApiPath: 'article/updateBasicInfo',
-        tokenSet: tokenSetObject,
-        changeImageSortModalVisible: false,
-        articleId: null,
-        attachmentBase64: '',
-        image: '',
-        rectangleImage: '',
-        video: '',
-        audio: '',
-        attachment: '',
-        imageList: [],
-        fileList: [],
-        initContent: '',
-        listTreeData: [],
-        parentId: '1',
-        switchValue: true,
-      },
+
+      loadApiPath: 'article/get',
+      submitApiPath: 'article/updateBasicInfo',
+      tokenSet: tokenSetObject,
+      changeImageSortModalVisible: false,
+      articleId: null,
+      attachmentBase64: '',
+      image: '',
+      rectangleImage: '',
+      video: '',
+      audio: '',
+      attachment: '',
+      imageList: [],
+      fileList: [],
+      initContent: '',
+      listTreeData: [],
+      parentId: '1',
+      switchValue: true,
     };
   }
 
@@ -94,16 +92,8 @@ class BasicInfo extends TabPageBase {
 
   supplementSubmitRequestParams = (o) => {
     const d = o;
-    const {
-      articleId,
-      image,
-      rectangleImage,
-      video,
-      audio,
-      attachment,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      content,
-    } = this.state;
+    const { articleId, image, rectangleImage, video, audio, attachment } =
+      this.state;
 
     d.articleId = articleId;
     d.image = image;
@@ -118,11 +108,11 @@ class BasicInfo extends TabPageBase {
 
   doOtherAfterLoadSuccess = ({
     metaData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   }) => {
     const {
@@ -139,7 +129,7 @@ class BasicInfo extends TabPageBase {
 
     const fileList = [];
 
-    (imageFileList || []).forEach((item) => {
+    for (const item of imageFileList || []) {
       const o = {
         uid: item.id,
         name: '',
@@ -150,7 +140,7 @@ class BasicInfo extends TabPageBase {
       o[fieldDataArticleImage.articleImageId.name] = item.id;
 
       fileList.push(o);
-    });
+    }
 
     this.htmlContent = content;
 
@@ -200,8 +190,8 @@ class BasicInfo extends TabPageBase {
     this.textContent = text;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleSwitchChange = (v) => {};
+  // eslint-disable-next-line no-unused-vars
+  handleSwitchChange = (value) => {};
 
   handleGalleryUploadChange = ({ file, fileList }) => {
     this.setState({ fileList: [...fileList] });
@@ -228,16 +218,16 @@ class BasicInfo extends TabPageBase {
 
     addGalleryImageAction({
       target: this,
-      handleData: { ...(metaData || {}), ...{ url: imageUrl } },
+      handleData: { ...metaData, url: imageUrl },
       successCallback: ({ target, remoteData }) => {
-        (fileList || []).forEach((item) => {
+        for (const item of fileList || []) {
           if (item.uid === file.uid) {
             item[fieldDataArticleImage.articleImageId.name] = getValueByKey({
               data: remoteData,
               key: fieldDataArticleImage.articleImageId.name,
             });
           }
-        });
+        }
 
         target.setState({ fileList: [...fileList] });
       },
@@ -258,7 +248,7 @@ class BasicInfo extends TabPageBase {
 
         const list = [];
 
-        (fileList || []).forEach((item) => {
+        for (const item of fileList || []) {
           const itemProductImageId = getValueByKey({
             data: item,
             key: fieldDataArticleImage.articleImageId.name,
@@ -267,7 +257,7 @@ class BasicInfo extends TabPageBase {
           if (itemProductImageId !== articleImageId) {
             list.push(item);
           }
-        });
+        }
 
         target.setState({ fileList: [...list] });
       },
@@ -359,13 +349,12 @@ class BasicInfo extends TabPageBase {
   };
 
   fillInitialValuesAfterLoad = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {
     const values = {};
@@ -384,8 +373,8 @@ class BasicInfo extends TabPageBase {
       values[fieldData.timePicker.name] = getValueByKey({
         data: metaData,
         key: fieldData.timePicker.name,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        convertBuilder: (v) => {
+        // eslint-disable-next-line no-unused-vars
+        convertBuilder: (value) => {
           return dayjs('12:08', datetimeFormat.hourMinute);
         },
       });
@@ -543,12 +532,12 @@ class BasicInfo extends TabPageBase {
               },
               onChangeCallback: ({
                 value,
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                // eslint-disable-next-line no-unused-vars
                 label,
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                // eslint-disable-next-line no-unused-vars
                 extra,
                 treeData,
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                // eslint-disable-next-line no-unused-vars
                 listData,
               }) => {
                 console.log(treeData);
@@ -713,7 +702,7 @@ class BasicInfo extends TabPageBase {
                 ),
                 text: '调整图片顺序',
                 icon: iconBuilder.sortAscending(),
-                handleClick: (e) => this.showChangeImageSortModal(e),
+                handleClick: (event) => this.showChangeImageSortModal(event),
                 disabled: this.checkInProgress(),
               },
             ],
@@ -843,7 +832,7 @@ class BasicInfo extends TabPageBase {
                   },
                   {
                     label: '类型转换',
-                    value: convertTarget({
+                    value: to({
                       target: 0.24,
                       convert: convertCollection.string,
                     }),
@@ -959,7 +948,7 @@ class BasicInfo extends TabPageBase {
                 },
                 {
                   label: '类型转换',
-                  value: convertTarget({
+                  value: to({
                     target: 0.24,
                     convert: convertCollection.string,
                   }),
@@ -1071,7 +1060,7 @@ class BasicInfo extends TabPageBase {
                 },
                 {
                   label: '类型转换',
-                  value: convertTarget({
+                  value: to({
                     target: 0.24,
                     convert: convertCollection.string,
                   }),
@@ -1183,7 +1172,7 @@ class BasicInfo extends TabPageBase {
                 },
                 {
                   label: '类型转换',
-                  value: convertTarget({
+                  value: to({
                     target: 0.24,
                     convert: convertCollection.string,
                   }),

@@ -1,26 +1,27 @@
 import {
   isFunction,
-  selectModeCollection,
+  showSimpleRuntimeError,
   toNumber,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
+
+import { selectModeCollection } from 'antd-management-fast-common';
 
 import { Base } from '../Base';
 
 class InteractiveBase extends Base {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        drawerVisible: false,
-        modalVisible: false,
-      },
+
+      drawerVisible: false,
+      modalVisible: false,
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   showSelect = () => {
@@ -88,17 +89,13 @@ class InteractiveBase extends Base {
   renderSelectDrawer = () => {
     const text = '需要实现 renderSelectDrawer 方法';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
   };
 
   renderSelectModal = () => {
     const text = '需要实现 renderSelectModal 方法';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
   };
 
   renderOther = () => {
@@ -114,9 +111,7 @@ class InteractiveBase extends Base {
 
     const text = '无效的选择项渲染模式';
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     return null;
   };

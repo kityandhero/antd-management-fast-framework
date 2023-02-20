@@ -1,4 +1,8 @@
-import { isFunction, showError } from 'antd-management-fast-common';
+import {
+  isFunction,
+  showSimpleErrorMessage,
+  showSimpleRuntimeError,
+} from 'easy-soft-utility';
 
 export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   const { metaOriginalData } = target.state;
@@ -7,9 +11,7 @@ export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   if (!isFunction(compareDataIdHandler)) {
     const text = `compareDataIdHandler mast be function`;
 
-    showRuntimeError({
-      message: text,
-    });
+    showSimpleRuntimeError(text);
 
     return;
   }
@@ -17,18 +19,18 @@ export function handleItem({ target, dataId, compareDataIdHandler, handler }) {
   if (!isFunction(handler)) {
     const text = `handler mast be function`;
 
-    showError(text);
+    showSimpleErrorMessage(text);
 
     return;
   }
 
-  metaOriginalData.list.forEach((o, index) => {
+  for (const [index, o] of metaOriginalData.list.entries()) {
     const compareDataId = compareDataIdHandler(o);
 
     if (compareDataId === dataId) {
       indexData = index;
     }
-  });
+  }
 
   if (indexData >= 0) {
     metaOriginalData.list[indexData] = handler(

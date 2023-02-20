@@ -4,17 +4,20 @@ export function getStatusBadge(status) {
   let result = 'default';
 
   switch (status) {
-    case statusCollection.online:
+    case statusCollection.online: {
       result = 'processing';
       break;
+    }
 
-    case statusCollection.offline:
+    case statusCollection.offline: {
       result = 'warning';
       break;
+    }
 
-    default:
+    default: {
       result = 'default';
       break;
+    }
   }
 
   return result;

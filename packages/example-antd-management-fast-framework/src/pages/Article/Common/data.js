@@ -1,8 +1,8 @@
 import { formNameCollection } from 'antd-management-fast-common';
 
 export const fieldData = {
-  ...(formNameCollection || {}),
-  ...{
+  ...formNameCollection,
+  
     articleId: {
       label: '数据标识',
       name: 'articleId',
@@ -147,9 +147,9 @@ export const fieldData = {
       label: '更新人标识',
       name: 'updateUserId',
       helper: '',
-    },
-  },
-  ...{
+    }
+  ,
+  
     imageList: {
       label: '图片集合',
       name: 'imageList',
@@ -174,12 +174,12 @@ export const fieldData = {
       label: '语法高亮区域',
       name: 'syntaxHighlighter',
       helper: '',
-    },
-  },
+    }
+  ,
 };
 
 export const mediaItemData = {
-  ...{
+  
     id: {
       label: '数据标识',
       name: 'id',
@@ -239,8 +239,8 @@ export const mediaItemData = {
       label: '最后更新时间',
       name: 'updateTime',
       helper: '',
-    },
-  },
+    }
+  ,
 };
 
 export const statusCollection = {

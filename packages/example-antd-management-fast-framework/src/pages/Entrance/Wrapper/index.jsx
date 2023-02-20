@@ -1,8 +1,8 @@
 import React from 'react';
-import { Helmet } from 'umi';
 import { DefaultFooter } from '@ant-design/pro-layout';
+import { Helmet } from '@umijs/max';
 
-import { runtimeSettings } from 'antd-management-fast-common';
+import { getCopyright } from 'antd-management-fast-common';
 import {
   BaseComponent,
   Bubbly,
@@ -53,7 +53,7 @@ class Wrapper extends BaseComponent {
               <DefaultFooter
                 style={{ background: 'inherit' }}
                 links={[]}
-                copyright={runtimeSettings.getCopyright() || ''}
+                copyright={getCopyright() || ''}
               />
             }
           />

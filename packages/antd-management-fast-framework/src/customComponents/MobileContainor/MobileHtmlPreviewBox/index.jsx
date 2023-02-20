@@ -9,12 +9,11 @@ class MobileHtmlPreviewBox extends MobilePreviewArea {
 
   resetDataAfterLoad = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{},
     };
   }
 

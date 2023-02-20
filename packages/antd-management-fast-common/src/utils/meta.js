@@ -25,7 +25,7 @@ export function defaultBaseState() {
 }
 
 export function defaultCoreState() {
-  const data = { ...defaultBaseState(), ...{ dataLoading: true } };
+  const data = { ...defaultBaseState(), dataLoading: true };
 
   return data;
 }
@@ -33,14 +33,13 @@ export function defaultCoreState() {
 export function defaultCommonState() {
   const data = {
     ...defaultCoreState(),
-    ...{
-      loadApiPath: '',
-      pageName: '',
-      metaData: null,
-      metaExtra: null,
-      metaListData: [],
-      metaOriginalData: null,
-    },
+
+    loadApiPath: '',
+    pageName: '',
+    metaData: null,
+    metaExtra: null,
+    metaListData: [],
+    metaOriginalData: null,
   };
 
   return data;
@@ -49,20 +48,19 @@ export function defaultCommonState() {
 export function defaultListState() {
   const data = {
     ...defaultCommonState(),
-    ...{
-      dateRangeFieldName: '发生时间',
-      tableScroll: { x: 1520 },
-      formValues: {},
-      pageNo: 1,
-      pageSize: 10,
-      startTimeAlias: '',
-      endTimeAlias: '',
-      startTime: '',
-      endTime: '',
-      listViewMode: listViewConfig.viewMode.table,
-      showSelect: false,
-      selectedDataTableDataRows: [],
-    },
+
+    dateRangeFieldName: '发生时间',
+    tableScroll: { x: 1520 },
+    formValues: {},
+    pageNo: 1,
+    pageSize: 10,
+    startTimeAlias: '',
+    endTimeAlias: '',
+    startTime: '',
+    endTime: '',
+    listViewMode: listViewConfig.viewMode.table,
+    showSelect: false,
+    selectedDataTableDataRows: [],
   };
 
   return data;
@@ -71,20 +69,19 @@ export function defaultListState() {
 export function defaultPageListState() {
   const data = {
     ...defaultCommonState(),
-    ...{
-      paramsKey: '',
-      loadApiPath: '',
-      dateRangeFieldName: '发生时间',
-      tableScroll: { x: 1520 },
-      formValues: {},
-      pageNo: 1,
-      pageSize: 10,
-      startTime: '',
-      endTime: '',
-      listViewMode: listViewConfig.viewMode.table,
-      showSelect: false,
-      selectedDataTableDataRows: [],
-    },
+
+    paramsKey: '',
+    loadApiPath: '',
+    dateRangeFieldName: '发生时间',
+    tableScroll: { x: 1520 },
+    formValues: {},
+    pageNo: 1,
+    pageSize: 10,
+    startTime: '',
+    endTime: '',
+    listViewMode: listViewConfig.viewMode.table,
+    showSelect: false,
+    selectedDataTableDataRows: [],
   };
 
   return data;
@@ -93,7 +90,8 @@ export function defaultPageListState() {
 export function defaultFormState() {
   const data = {
     ...defaultCommonState(),
-    ...{ errorFieldName: '', submitApiPath: '' },
+    errorFieldName: '',
+    submitApiPath: '',
   };
 
   return data;
@@ -151,7 +149,7 @@ export function arrayMoveMutate(array, from, to) {
  * @export
  */
 export function getQueue() {
-  if (typeof window.queue === 'undefined') {
+  if (window.queue === undefined) {
     window.queueCustom = queue({ concurrency: 3 });
     window.queueCustom.start();
   }

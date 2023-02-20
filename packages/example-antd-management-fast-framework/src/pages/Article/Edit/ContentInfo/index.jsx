@@ -1,21 +1,23 @@
 import React from 'react';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
+
+import { getValueByKey } from 'easy-soft-utility';
 
 import {
   animalType,
   cardConfig,
-  getDerivedStateFromPropsForUrlParams,
-  getValueByKey,
+  getDerivedStateFromPropertiesForUrlParameters,
   mobileTypeCollection,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import MobileHtmlPreviewBox from 'antd-management-fast-framework/es/customComponents/MobileContainor/MobileHtmlPreviewBox';
+import { MobileContainor } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/config';
-
-import { parseUrlParamsForSetState } from '../../Assist/config';
+import { accessWayCollection } from '../../../../customConfig/config';
+import { parseUrlParametersForSetState as parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';
+
+const { MobileHtmlPreviewBox } = MobileContainor;
 
 @connect(({ article, loading }) => ({
   article,
@@ -36,28 +38,27 @@ class ContentInfo extends TabPageBase {
 
   autoSyncPrevTimer = null;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        loadApiPath: 'article/get',
-        submitApiPath: 'article/updateContentInfo',
-        articleId: null,
-        initContent: '',
-        contentChanged: false,
-        contentPreview: '',
-      },
+
+      loadApiPath: 'article/get',
+      submitApiPath: 'article/updateContentInfo',
+      articleId: null,
+      initContent: '',
+      contentChanged: false,
+      contentPreview: '',
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(
-      nextProps,
-      prevState,
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
       { id: '' },
-      parseUrlParamsForSetState,
+      parseUrlParametersForSetState,
     );
   }
 
@@ -95,11 +96,13 @@ class ContentInfo extends TabPageBase {
     return d;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   doOtherAfterLoadSuccess = ({
     metaData,
+    // eslint-disable-next-line no-unused-vars
     metaListData,
+    // eslint-disable-next-line no-unused-vars
     metaExtra,
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData,
   }) => {
     const contentData = getValueByKey({

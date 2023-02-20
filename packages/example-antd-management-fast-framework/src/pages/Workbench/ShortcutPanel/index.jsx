@@ -1,7 +1,9 @@
 import { Button, Space } from 'antd';
 
 import { cardConfig } from 'antd-management-fast-common';
-import BaseView from 'antd-management-fast-framework/es/framework/DataOperation/BaseView';
+import { DataOperation } from 'antd-management-fast-framework';
+
+const { BaseView } = DataOperation;
 
 class Index extends BaseView {
   loadDataAfterMount = false;

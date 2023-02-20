@@ -3,10 +3,10 @@ import classNames from 'classnames';
 
 import styles from './index.less';
 
-const HeaderDropdown = ({ overlayClassName: cls, ...restProps }) => (
+const HeaderDropdown = ({ overlayClassName: cls, ...restProperties }) => (
   <Dropdown
     overlayClassName={classNames(styles.container, cls)}
-    {...restProps}
+    {...restProperties}
     arrow
     placement="bottomRight"
   />

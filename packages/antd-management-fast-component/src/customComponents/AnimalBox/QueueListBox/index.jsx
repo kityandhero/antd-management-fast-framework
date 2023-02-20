@@ -13,44 +13,39 @@ class QueueListBox extends PureComponent {
 
     const listItem = [];
 
-    listData.forEach((o, index) => {
+    for (const [index, o] of listData.entries()) {
       const {
         key,
         builder,
         hidden,
         style: liStyle,
       } = {
-        ...{
-          builder: () => {
-            return null;
-          },
-          hidden: false,
-          style: null,
+        builder: () => {
+          return null;
         },
+        hidden: false,
+        style: null,
         ...o,
-        ...{
-          key: `queue_box_item_${index}`,
-        },
+
+        key: `queue_box_item_${index}`,
       };
 
-      if (!hidden) {
-        if (isFunction(builder)) {
-          const item = builder(key);
+      if (!hidden && isFunction(builder)) {
+        const item = builder(key);
 
-          listItem.push(
-            <li
-              key={key}
-              style={{
-                ...(itemStyle || {}),
-                ...(liStyle || {}),
-              }}
-            >
-              {item}
-            </li>,
-          );
-        }
+        listItem.push(
+          <li
+            key={key}
+            style={{
+              ...itemStyle,
+              ...liStyle,
+            }}
+          >
+            {item}
+          </li>,
+        );
       }
-    });
+    }
 
     return (
       <div className={styles.queueBox} style={style || null}>

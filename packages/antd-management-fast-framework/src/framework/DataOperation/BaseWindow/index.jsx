@@ -1,12 +1,14 @@
 import React from 'react';
 
 import {
+  checkStringIsNullOrWhiteSpace,
   isFunction,
   isUndefined,
   logObject,
-  pretreatmentRequestParams,
-  showWarningMessage,
-} from 'antd-management-fast-common';
+  pretreatmentRequestParameters,
+  showSimpleRuntimeError,
+  showSimpleWarningMessage,
+} from 'easy-soft-utility';
 
 import { Base } from '../Base';
 
@@ -21,45 +23,49 @@ class BaseWindow extends Base {
 
   goToUpdateWhenProcessed = false;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { visible, externalData } = nextProps;
+  // eslint-disable-next-line no-unused-vars
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    const { visible, externalData } = nextProperties;
 
     return { visible, externalData };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doWorkWhenDidUpdate = (preProps, preState, snapshot) => {
+  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
     const { visible: visiblePre } = preState;
     const { visible } = this.state;
 
     if (visiblePre !== visible) {
-      this.doOtherWhenChangeVisible(preProps, preState, snapshot, visible);
+      this.doOtherWhenChangeVisible(preProperties, preState, snapshot, visible);
     }
   };
 
   /**
    * 当可见性发生变化时执行
    */
-  doOtherWhenChangeVisible = (preProps, preState, snapshot, currentVisible) => {
+  doOtherWhenChangeVisible = (
+    preProperties,
+    preState,
+    snapshot,
+    currentVisible,
+  ) => {
     if (currentVisible) {
-      this.doOtherWhenChangeVisibleToShow(preProps, preState, snapshot);
+      this.doOtherWhenChangeVisibleToShow(preProperties, preState, snapshot);
       this.executeAfterDoOtherWhenChangeVisibleToShow(
-        preProps,
+        preProperties,
         preState,
         snapshot,
       );
     } else {
-      this.doOtherWhenChangeVisibleToHide(preProps, preState, snapshot);
+      this.doOtherWhenChangeVisibleToHide(preProperties, preState, snapshot);
       this.executeAfterDoOtherWhenChangeVisibleToHide(
-        preProps,
+        preProperties,
         preState,
         snapshot,
       );
     }
 
     this.executeOtherAfterDoOtherWhenChangeVisible(
-      preProps,
+      preProperties,
       preState,
       snapshot,
     );
@@ -71,8 +77,8 @@ class BaseWindow extends Base {
    * @param {*} preState
    * @param {*} snapshot
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProps, preState, snapshot) => {};
+  // eslint-disable-next-line no-unused-vars
+  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {};
 
   /**
    * 当可见性变为显示时附加的执行
@@ -81,11 +87,11 @@ class BaseWindow extends Base {
    * @param {*} snapshot
    */
   executeAfterDoOtherWhenChangeVisibleToShow = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    preProps,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
+    preProperties,
+    // eslint-disable-next-line no-unused-vars
     preState,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     snapshot,
   ) => {};
 
@@ -95,8 +101,8 @@ class BaseWindow extends Base {
    * @param {*} preState
    * @param {*} snapshot
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  doOtherWhenChangeVisibleToHide = (preProps, preState, snapshot) => {};
+  // eslint-disable-next-line no-unused-vars
+  doOtherWhenChangeVisibleToHide = (preProperties, preState, snapshot) => {};
 
   /**
    * 当可见性变为显示后附加的执行
@@ -105,11 +111,11 @@ class BaseWindow extends Base {
    * @param {*} snapshot
    */
   executeAfterDoOtherWhenChangeVisibleToHide = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    preProps,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
+    preProperties,
+    // eslint-disable-next-line no-unused-vars
     preState,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     snapshot,
   ) => {};
 
@@ -120,11 +126,11 @@ class BaseWindow extends Base {
    * @param {*} snapshot
    */
   executeOtherAfterDoOtherWhenChangeVisible = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    preProps,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
+    preProperties,
+    // eslint-disable-next-line no-unused-vars
     preState,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     snapshot,
   ) => {};
 
@@ -156,13 +162,13 @@ class BaseWindow extends Base {
   };
 
   doOtherAfterLoadSuccess = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {};
 
@@ -194,8 +200,8 @@ class BaseWindow extends Base {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  afterSetFieldsValue = (v) => {};
+  // eslint-disable-next-line no-unused-vars
+  afterSetFieldsValue = (value) => {};
 
   afterCheckSubmitRequestParams = (o) => o;
 
@@ -205,14 +211,12 @@ class BaseWindow extends Base {
     if ((submitApiPath || '') === '') {
       const text = `缺少 submitApiPath 配置！`;
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
 
       return;
     }
 
-    let submitData = pretreatmentRequestParams(values || {});
+    let submitData = pretreatmentRequestParameters(values || {});
 
     submitData = this.supplementSubmitRequestParams(submitData);
 
@@ -263,9 +267,11 @@ class BaseWindow extends Base {
                   processing: false,
                   dispatchComplete: true,
                 });
+
+                return remoteData;
               })
-              .catch((res) => {
-                logObject(res);
+              .catch((error) => {
+                logObject(error);
 
                 that.setState({
                   processing: false,
@@ -298,16 +304,20 @@ class BaseWindow extends Base {
             this.reloadByUrl();
           }
         });
+
+        return values;
       })
       .catch((error) => {
         const { errorFields } = error;
 
-        if (!isUndefined(errorFields)) {
+        if (isUndefined(errorFields)) {
+          showSimpleRuntimeError(error);
+        } else {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          for (const o of Object.values(errorFields)) {
             m.push(o.errors[0]);
-          });
+          }
 
           const maxLength = 5;
           let beyondMax = false;
@@ -324,33 +334,28 @@ class BaseWindow extends Base {
             errorMessage += ' ...';
           }
 
-          showWarningMessage({ message: errorMessage });
-        } else {
-          showRuntimeError({
-            message: error,
-          });
+          showSimpleWarningMessage(errorMessage);
         }
       });
   };
 
-  handleOk = (e, successCallback = null) => {
+  handleOk = (event, successCallback = null) => {
     if (this.submitWithForm) {
-      this.handleOkWithForm(e, successCallback);
+      this.handleOkWithForm(event, successCallback);
     } else {
       this.execSubmitApi({}, successCallback);
     }
   };
 
   afterSubmitSuccess = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     singleData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     listData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     extraData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     responseOriginalData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     submitData = null,
   }) => {
     this.doAfterSubmitSuccess({

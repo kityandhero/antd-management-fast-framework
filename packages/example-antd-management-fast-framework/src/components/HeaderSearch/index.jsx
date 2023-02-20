@@ -6,22 +6,22 @@ import { SearchOutlined } from '@ant-design/icons';
 
 import styles from './index.less';
 
-const HeaderSearch = (props) => {
+const HeaderSearch = (properties) => {
   const {
     className,
     defaultValue,
     onVisibleChange,
     placeholder,
     defaultOpen,
-    ...restProps
-  } = props;
-  const inputRef = useRef(null);
+    ...restProperties
+  } = properties;
+  const inputReference = useRef(null);
   const [value, setValue] = useMergeValue(defaultValue, {
-    value: props.value,
-    onChange: props.onChange,
+    value: properties.value,
+    onChange: properties.onChange,
   });
   const [searchMode, setSearchMode] = useMergeValue(defaultOpen || false, {
-    value: props.open,
+    value: properties.open,
     onChange: onVisibleChange,
   });
   const inputClass = classNames(styles.input, {
@@ -33,15 +33,13 @@ const HeaderSearch = (props) => {
       onClick={() => {
         setSearchMode(true);
 
-        if (searchMode && inputRef.current) {
-          inputRef.current.focus();
+        if (searchMode && inputReference.current) {
+          inputReference.current.focus();
         }
       }}
       onTransitionEnd={({ propertyName }) => {
-        if (propertyName === 'width' && !searchMode) {
-          if (onVisibleChange) {
-            onVisibleChange(searchMode);
-          }
+        if (propertyName === 'width' && !searchMode && onVisibleChange) {
+          onVisibleChange(searchMode);
         }
       }}
     >
@@ -59,19 +57,17 @@ const HeaderSearch = (props) => {
           height: 28,
           marginTop: -6,
         }}
-        options={restProps.options}
+        options={restProperties.options}
         onChange={setValue}
       >
         <Input
-          ref={inputRef}
+          ref={inputReference}
           defaultValue={defaultValue}
           aria-label={placeholder}
           placeholder={placeholder}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              if (restProps.onSearch) {
-                restProps.onSearch(value);
-              }
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' && restProperties.onSearch) {
+              restProperties.onSearch(value);
             }
           }}
           onBlur={() => {

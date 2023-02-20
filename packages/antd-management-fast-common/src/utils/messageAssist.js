@@ -56,10 +56,11 @@ function showMessage({ type, duration = 3, text, onClose = () => {} }) {
         break;
       }
 
-      default:
+      default: {
         message.info(text, duration, onClose);
 
         break;
+      }
     }
   });
 }

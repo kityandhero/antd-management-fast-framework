@@ -26,7 +26,7 @@ export const genColumnKey = (key, dataIndex) => {
     }
     return dataIndex;
   }
-  return undefined;
+  return;
 };
 
 const ToolTipIcon = ({
@@ -74,15 +74,17 @@ const CheckboxListItem = ({
     <span className={styles.item} key={columnKey}>
       <Checkbox
         className={styles.checkbox}
-        onChange={(e) => {
+        onChange={(event) => {
           if (columnKey) {
-            const tempConfig = columnsCollection[columnKey || ''] || {};
-            const newSetting = { ...tempConfig };
-            if (e.target.checked) {
+            const temporaryConfig = columnsCollection[columnKey || ''] || {};
+            const newSetting = { ...temporaryConfig };
+
+            if (event.target.checked) {
               delete newSetting.show;
             } else {
               newSetting.show = false;
             }
+
             const columnKeyMap = {
               ...columnsCollection,
               [columnKey]: newSetting,
@@ -149,7 +151,7 @@ const CheckboxList = ({
   const move = (id, targetIndex) => {
     const newColumns = [...sortKeyColumns];
 
-    const findIndex = newColumns.findIndex((columnKey) => columnKey === id);
+    const findIndex = newColumns.indexOf(id);
 
     const key = newColumns[findIndex];
     newColumns.splice(findIndex, 1);
@@ -204,18 +206,18 @@ const GroupCheckboxList = ({
   const leftList = [];
   const list = [];
 
-  localColumns.forEach((item) => {
+  for (const item of localColumns) {
     const { fixed } = item;
     if (fixed === 'left') {
       leftList.push(item);
-      return;
+      continue;
     }
     if (fixed === 'right') {
       rightList.push(item);
-      return;
+      continue;
     }
     list.push(item);
-  });
+  }
   const showRight = rightList && rightList.length > 0;
   const showLeft = leftList && leftList.length > 0;
   return (
@@ -248,9 +250,9 @@ const GroupCheckboxList = ({
   );
 };
 
-const ColumnSetting = (props) => {
-  const localColumns = props.columns || [];
-  const { columnsMap, setColumnsMap, setSortKeyColumns } = props;
+const ColumnSetting = (properties) => {
+  const localColumns = properties.columns || [];
+  const { columnsMap, setColumnsMap, setSortKeyColumns } = properties;
 
   /**
    * 设置全部选中，或全部未选中
@@ -258,7 +260,7 @@ const ColumnSetting = (props) => {
    */
   const setAllSelectAction = (show = true) => {
     const columnKeyMap = {};
-    localColumns.forEach(({ key, fixed, dataIndex }) => {
+    for (const { key, fixed, dataIndex } of localColumns) {
       const columnKey = genColumnKey(key, dataIndex);
       if (columnKey) {
         columnKeyMap[columnKey] = {
@@ -266,7 +268,7 @@ const ColumnSetting = (props) => {
           fixed,
         };
       }
-    });
+    }
 
     if (setColumnsMap) {
       setColumnsMap(columnKeyMap);
@@ -292,8 +294,8 @@ const ColumnSetting = (props) => {
                 selectKeys.length === 0 &&
                 selectKeys.length !== localColumns.length
               }
-              onChange={(e) => {
-                if (e.target.checked) {
+              onChange={(event) => {
+                if (event.target.checked) {
                   setAllSelectAction();
                 } else {
                   setAllSelectAction(false);

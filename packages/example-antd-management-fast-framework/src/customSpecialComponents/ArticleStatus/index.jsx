@@ -4,21 +4,24 @@
   isUndefined,
   refitCommonData,
   searchFromList,
+} from 'easy-soft-utility';
+
+import {
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
-  buildFormOptionItem,
   buildFormRadio,
-  buildFormRadioItem,
   buildFormSelect,
+  buildOptionItem,
+  buildRadioItem,
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
 export function refitArticleStatusList({ metaData, withUnlimited = true }) {
   const { articleStatusList: list } = {
-    ...{ articleStatusList: [] },
-    ...(metaData || {}),
+    articleStatusList: [],
+    ...metaData,
   };
 
   if (withUnlimited) {
@@ -49,7 +52,7 @@ export function renderArticleStatusOption({
 }) {
   const listData = refitArticleStatusList({ metaData, withUnlimited });
 
-  return buildFormOptionItem({ list: listData, adjustListDataCallback });
+  return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderArticleStatusRadio({
@@ -59,7 +62,7 @@ export function renderArticleStatusRadio({
 }) {
   const listData = refitArticleStatusList({ metaData, withUnlimited });
 
-  return buildFormRadioItem({ list: listData, adjustListDataCallback });
+  return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchArticleStatusSelect({
@@ -87,7 +90,7 @@ export function renderFormArticleStatusSelect({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps = null,
+  otherProps: otherProperties = null,
 }) {
   const title = label || unknownLabel;
 
@@ -101,7 +104,7 @@ export function renderFormArticleStatusSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -113,7 +116,7 @@ export function renderFormArticleStatusRadio({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps = null,
+  otherProps: otherProperties = null,
 }) {
   const title = label || unknownLabel;
 
@@ -127,6 +130,6 @@ export function renderFormArticleStatusRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }

@@ -1,12 +1,12 @@
-import { request } from 'antd-management-fast-common';
+import { request, requestMode } from 'easy-soft-utility';
 
-export async function signInData(params) {
+export async function signInData(parameters) {
   return request({
     api: '/entrance/signIn',
-    params,
-    useVirtualRequest: true,
-    virtualNeedAuthorize: false,
-    virtualSuccessResponse: {
+    params: parameters,
+    mode: requestMode.simulation,
+    simulativeAuthorize: false,
+    simulativeSuccessResponse: {
       data: {
         token: 'e03c9a65-6537-4a44-acf4-bbf472fdd0fe',
         name: '张三',
@@ -16,10 +16,10 @@ export async function signInData(params) {
   });
 }
 
-export async function signUpData(params) {
+export async function signUpData(parameters) {
   return request({
     api: `/entrance/signUp`,
-    params,
+    params: parameters,
   });
 }
 
@@ -29,9 +29,9 @@ export async function getCaptchaData(mobile) {
   });
 }
 
-export async function signOutData(params) {
+export async function signOutData(parameters) {
   return request({
     api: `/entrance/signOut`,
-    params,
+    params: parameters,
   });
 }

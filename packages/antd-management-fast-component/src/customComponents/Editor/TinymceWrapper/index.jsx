@@ -4,6 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import {
   isFunction,
   logObject,
+  pretreatmentRemoteSingleData,
   showSimpleErrorNotification,
 } from 'easy-soft-utility';
 
@@ -11,8 +12,6 @@ import {
   corsTarget,
   getToken,
   getTokenKeyName,
-  pretreatmentRemoteSingleData,
-  runtimeSettings,
 } from 'antd-management-fast-common';
 
 class TinymceWrapper extends PureComponent {
@@ -22,80 +21,78 @@ class TinymceWrapper extends PureComponent {
     const { initConfig } = this.props;
 
     const config = {
-      ...{
-        language: 'zh_CN',
-        height: 690,
-        // plugins_ignore:
-        //   'tinydrive powerpaste imagetools advcode formatpainter pageembed permanentpen casechange checklist advtable export tinymcespellchecker linkchecker mentions tinycomments toc',
+      language: 'zh_CN',
+      height: 690,
+      // plugins_ignore:
+      //   'tinydrive powerpaste imagetools advcode formatpainter pageembed permanentpen casechange checklist advtable export tinymcespellchecker linkchecker mentions tinycomments toc',
+      plugins:
+        'preview  importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample code table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons autoresize',
+      mobile: {
         plugins:
-          'preview  importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample code table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons autoresize',
-        mobile: {
-          plugins:
-            'preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample code table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons autoresize',
-        },
-        menu: {
-          tc: {
-            title: 'Comments',
-            items: 'addcomment showcomments deleteallconversations',
-          },
-        },
-        menubar: 'file edit view insert format tools table tc help',
-        toolbar:
-          'undo redo bold italic underline strikethrough fontselect fontsizeselect formatselect alignleft aligncenter alignright alignjustify outdent indent numlist bullist forecolor backcolor  removeformat visualblocks visualchars table tabledelete tableprops tablerowprops tablecellprops tableinsertrowbefore tableinsertrowafter tabledeleterow tableinsertcolbefore tableinsertcolafter tabledeletecol searchreplace pagebreak nonbreaking charmap emoticons fullscreen  preview wordcount save insertdatetime insertfile image media template link anchor codesample code ltr rtl showcomments addcomment restoredraft help',
-        autosave_ask_before_unload: true,
-        autosave_interval: '30s',
-        autosave_prefix: '{path}{query}-{id}-',
-        autosave_restore_when_empty: false,
-        autosave_retention: '2m',
-        image_advtab: true,
-        // link_list: [],
-        // image_list: [],
-        // 启用image_class_list 配置后,该值不能为空数组，否则将发生错误
-        // image_class_list: ['image'],
-        importcss_append: true,
-        templates: [
-          {
-            title: '新建表格',
-            description: 'creates a new table',
-            content:
-              '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>',
-          },
-          {
-            title: 'Starting my story',
-            description: 'A cure for writers block',
-            content: 'Once upon a time...',
-          },
-          {
-            title: '附带日期的清单',
-            description: '附带日期的清单',
-            content:
-              '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>',
-          },
-        ],
-        template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
-        template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
-        image_caption: true,
-        quickbars_selection_toolbar:
-          'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
-        noneditable_noneditable_class: 'mceNonEditable',
-        toolbar_mode: 'sliding',
-        // spellchecker_ignore_list: ['Ephox', 'Moxiecode'],
-        // tinycomments_mode: 'embedded',
-        content_style: '.mymention{ color: gray; }',
-        // contextmenu_ignore: 'imagetools configurepermanentpen',
-        contextmenu: 'link image table',
-        a11y_advanced_options: true,
-        skin: 'oxide',
-        content_css: 'default',
-        // mentions_selector: '.mymention',
-        // mentions_item_type: 'profile',
-        automatic_uploads: true,
-        images_upload_url: '',
-        min_height: 700,
-        toolbar_sticky: true,
-        images_upload_handler: this.imageUploadHandler,
+          'preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample code table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons autoresize',
       },
-      ...(initConfig || {}),
+      menu: {
+        tc: {
+          title: 'Comments',
+          items: 'addcomment showcomments deleteallconversations',
+        },
+      },
+      menubar: 'file edit view insert format tools table tc help',
+      toolbar:
+        'undo redo bold italic underline strikethrough fontselect fontsizeselect formatselect alignleft aligncenter alignright alignjustify outdent indent numlist bullist forecolor backcolor  removeformat visualblocks visualchars table tabledelete tableprops tablerowprops tablecellprops tableinsertrowbefore tableinsertrowafter tabledeleterow tableinsertcolbefore tableinsertcolafter tabledeletecol searchreplace pagebreak nonbreaking charmap emoticons fullscreen  preview wordcount save insertdatetime insertfile image media template link anchor codesample code ltr rtl showcomments addcomment restoredraft help',
+      autosave_ask_before_unload: true,
+      autosave_interval: '30s',
+      autosave_prefix: '{path}{query}-{id}-',
+      autosave_restore_when_empty: false,
+      autosave_retention: '2m',
+      image_advtab: true,
+      // link_list: [],
+      // image_list: [],
+      // 启用image_class_list 配置后,该值不能为空数组，否则将发生错误
+      // image_class_list: ['image'],
+      importcss_append: true,
+      templates: [
+        {
+          title: '新建表格',
+          description: 'creates a new table',
+          content:
+            '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>',
+        },
+        {
+          title: 'Starting my story',
+          description: 'A cure for writers block',
+          content: 'Once upon a time...',
+        },
+        {
+          title: '附带日期的清单',
+          description: '附带日期的清单',
+          content:
+            '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>',
+        },
+      ],
+      template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+      template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+      image_caption: true,
+      quickbars_selection_toolbar:
+        'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+      noneditable_noneditable_class: 'mceNonEditable',
+      toolbar_mode: 'sliding',
+      // spellchecker_ignore_list: ['Ephox', 'Moxiecode'],
+      // tinycomments_mode: 'embedded',
+      content_style: '.mymention{ color: gray; }',
+      // contextmenu_ignore: 'imagetools configurepermanentpen',
+      contextmenu: 'link image table',
+      a11y_advanced_options: true,
+      skin: 'oxide',
+      content_css: 'default',
+      // mentions_selector: '.mymention',
+      // mentions_item_type: 'profile',
+      automatic_uploads: true,
+      images_upload_url: '',
+      min_height: 700,
+      toolbar_sticky: true,
+      images_upload_handler: this.imageUploadHandler,
+      ...initConfig,
     };
 
     logObject({
@@ -122,11 +119,11 @@ class TinymceWrapper extends PureComponent {
 
       xhr.setRequestHeader(getTokenKeyName(), getToken() || 'anonymous');
 
-      xhr.upload.onprogress = function (e) {
-        progress((e.loaded / e.total) * 100);
-      };
+      xhr.upload.addEventListener('progress', function (event) {
+        progress((event.loaded / event.total) * 100);
+      });
 
-      xhr.onload = function () {
+      xhr.addEventListener('load', function () {
         if (xhr.status === 403) {
           reject({ message: 'HTTP Error: ' + xhr.status, remove: true });
 
@@ -143,7 +140,7 @@ class TinymceWrapper extends PureComponent {
 
         try {
           json = JSON.parse(xhr.responseText);
-        } catch (e) {
+        } catch {
           reject(`图片上传失败, 返回数据非Json格式, 请检查`);
 
           showSimpleErrorNotification(xhr.responseText);
@@ -168,8 +165,9 @@ class TinymceWrapper extends PureComponent {
         } = v;
 
         resolve(imageUrl || '');
-      };
+      });
 
+      // eslint-disable-next-line unicorn/prefer-add-event-listener
       xhr.onerror = function () {
         reject('图片上传失败，请确认上传地址有效可用. Code: ' + xhr.status);
       };
@@ -202,7 +200,7 @@ class TinymceWrapper extends PureComponent {
       >
         <Editor
           apiKey={apiKey}
-          onInit={(evt, editor) => (this.editor.current = editor)}
+          onInit={(event_, editor) => (this.editor.current = editor)}
           initialValue={content}
           init={this.buildConfig()}
           onEditorChange={this.handleEditorChange}
@@ -213,10 +211,10 @@ class TinymceWrapper extends PureComponent {
 }
 
 TinymceWrapper.defaultProps = {
-  apiKey: runtimeSettings.getTinymceApiKey(),
+  apiKey: '',
   content: '',
   initConfig: null,
-  imagesUploadUrl: runtimeSettings.getTinymceImagesUploadUrl(),
+  imagesUploadUrl: '',
 };
 
 export { TinymceWrapper };

@@ -24,7 +24,7 @@ export function NoticeList({
   return (
     <div>
       <List className={styles.list}>
-        {data.map((item, i) => {
+        {data.map((item, index) => {
           const itemCls = classNames(styles.item, {
             [styles.read]: item.read,
           });
@@ -40,7 +40,7 @@ export function NoticeList({
           return (
             <List.Item
               className={itemCls}
-              key={item.key || i}
+              key={item.key || index}
               onClick={() => onClick(item)}
             >
               <List.Item.Meta

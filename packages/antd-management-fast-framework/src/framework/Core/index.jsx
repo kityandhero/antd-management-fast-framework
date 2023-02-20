@@ -1,14 +1,14 @@
 import {
   defaultCoreState,
-  getDerivedStateFromPropsForUrlParamsCore,
+  getDerivedStateFromPropertiesForUrlParametersCore,
 } from 'antd-management-fast-common';
 import { BaseComponent } from 'antd-management-fast-component';
 
 class Core extends BaseComponent {
   lastLoadParams = null;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.lastLoadParams = null;
 
@@ -19,9 +19,9 @@ class Core extends BaseComponent {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParamsCore();
+  // eslint-disable-next-line no-unused-vars
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParametersCore();
   }
 
   doDidMountTask = () => {

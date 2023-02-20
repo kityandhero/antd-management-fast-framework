@@ -16,13 +16,13 @@ class MobileSimulation extends PureComponent {
   buildMobileTypeArray = () => {
     const list = [];
 
-    Object.entries(mobileTypeCollection).forEach((o) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    for (const o of Object.entries(mobileTypeCollection)) {
+      // eslint-disable-next-line no-unused-vars
       const [k, v] = o;
       if (isObject(v)) {
         list.push(v);
       }
-    });
+    }
 
     return list;
   };
@@ -53,7 +53,7 @@ class MobileSimulation extends PureComponent {
     let mobileView = null;
 
     switch (mobileType) {
-      case mobileTypeCollection.roughSketch.name:
+      case mobileTypeCollection.roughSketch.name: {
         mobileView = (
           <RoughSketch
             alertVisible={alertVisible}
@@ -69,8 +69,9 @@ class MobileSimulation extends PureComponent {
           </RoughSketch>
         );
         break;
+      }
 
-      case mobileTypeCollection.iphoneX.name:
+      case mobileTypeCollection.iphoneX.name: {
         mobileView = (
           <IphoneX
             alertVisible={alertVisible}
@@ -86,8 +87,9 @@ class MobileSimulation extends PureComponent {
           </IphoneX>
         );
         break;
+      }
 
-      case mobileTypeCollection.iphone8.name:
+      case mobileTypeCollection.iphone8.name: {
         mobileView = (
           <Iphone8
             alertVisible={alertVisible}
@@ -103,8 +105,9 @@ class MobileSimulation extends PureComponent {
           </Iphone8>
         );
         break;
+      }
 
-      case mobileTypeCollection.iphone8plus.name:
+      case mobileTypeCollection.iphone8plus.name: {
         mobileView = (
           <Iphone8plus
             alertVisible={alertVisible}
@@ -120,8 +123,9 @@ class MobileSimulation extends PureComponent {
           </Iphone8plus>
         );
         break;
+      }
 
-      case mobileTypeCollection.iPhone5S.name:
+      case mobileTypeCollection.iPhone5S.name: {
         mobileView = (
           <IPhone5S
             alertVisible={alertVisible}
@@ -137,8 +141,9 @@ class MobileSimulation extends PureComponent {
           </IPhone5S>
         );
         break;
+      }
 
-      case mobileTypeCollection.galaxyNote8.name:
+      case mobileTypeCollection.galaxyNote8.name: {
         mobileView = (
           <GalaxyNote8
             alertVisible={alertVisible}
@@ -154,6 +159,7 @@ class MobileSimulation extends PureComponent {
           </GalaxyNote8>
         );
         break;
+      }
 
       default: {
         mobileView = null;

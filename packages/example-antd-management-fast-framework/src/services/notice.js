@@ -1,9 +1,10 @@
-import { request } from 'antd-management-fast-common';
+import { request, requestMode } from 'easy-soft-utility';
 
 export async function singleListData() {
   return request({
     api: `/notice/singleList`,
-    virtualSuccessResponse: {
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
       list: [],
     },
   });
@@ -12,7 +13,8 @@ export async function singleListData() {
 export async function changeNoticeReadData() {
   return request({
     api: `/notice/getCurrent`,
-    virtualSuccessResponse: {
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
       data: {},
     },
   });
@@ -21,7 +23,8 @@ export async function changeNoticeReadData() {
 export async function clearNoticeData() {
   return request({
     api: `/notice/clearNotice`,
-    virtualSuccessResponse: {
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
       data: {},
     },
   });

@@ -1,13 +1,17 @@
 import {
-  defaultPageListState,
-  getParamsDataCache,
+  checkStringIsNullOrWhiteSpace,
+  getParametersDataCache,
+  getValue,
   isUndefined,
   logObject,
-  setParamsDataCache,
+  setParametersDataCache,
   showErrorMessage,
-  showWarningMessage,
+  showSimpleRuntimeError,
+  showSimpleWarningMessage,
   showWarnMessage,
-} from 'antd-management-fast-common';
+} from 'easy-soft-utility';
+
+import { defaultPageListState } from 'antd-management-fast-common';
 
 import { Base } from '../../DataListView/Base';
 
@@ -34,8 +38,8 @@ class MultiPage extends Base {
    */
   restoreSearchComplete = false;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     const defaultState = defaultPageListState();
 
@@ -46,10 +50,8 @@ class MultiPage extends Base {
   }
 
   handleSearchReset = (checkWorkDoing = true, delay = 0) => {
-    if (checkWorkDoing) {
-      if (this.checkWorkDoing()) {
-        return;
-      }
+    if (checkWorkDoing && this.checkWorkDoing()) {
+      return;
     }
 
     const form = this.getSearchCard();
@@ -95,27 +97,23 @@ class MultiPage extends Base {
     if (checkStringIsNullOrWhiteSpace(loadApiPath)) {
       const text = 'loadApiPath需要配置';
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
 
       logObject(this);
 
       return d;
     }
 
-    if (this.restoreSearch && !!!this.restoreSearchComplete) {
+    if (this.restoreSearch && !this.restoreSearchComplete) {
       if (checkStringIsNullOrWhiteSpace(paramsKey)) {
         const text = 'paramsKey需要配置';
 
-        showRuntimeError({
-          message: text,
-        });
+        showSimpleRuntimeError(text);
 
         return d;
       }
 
-      d = getParamsDataCache(paramsKey);
+      d = getParametersDataCache(paramsKey);
 
       this.restoreSearchComplete = true;
 
@@ -131,29 +129,29 @@ class MultiPage extends Base {
       } = this.state;
 
       if (!checkStringIsNullOrWhiteSpace(startTime)) {
-        if (!checkStringIsNullOrWhiteSpace(startTimeAlias)) {
-          d[startTimeAlias] = startTime;
-        } else {
+        if (checkStringIsNullOrWhiteSpace(startTimeAlias)) {
           d.startTime = startTime;
+        } else {
+          d[startTimeAlias] = startTime;
         }
       }
 
       if (!checkStringIsNullOrWhiteSpace(endTime)) {
-        if (!checkStringIsNullOrWhiteSpace(endTimeAlias)) {
-          d[endTimeAlias] = endTime;
-        } else {
+        if (checkStringIsNullOrWhiteSpace(endTimeAlias)) {
           d.endTime = endTime;
+        } else {
+          d[endTimeAlias] = endTime;
         }
       }
 
       d = {
         ...d,
-        ...{
-          ...(formValues || {}),
-          ...(filters || {}),
-          ...{ pageNo, pageSize },
-          ...(sorter || {}),
-        },
+
+        ...formValues,
+        ...filters,
+        pageNo,
+        pageSize,
+        ...sorter,
       };
 
       delete d.dateRange;
@@ -162,11 +160,11 @@ class MultiPage extends Base {
     return this.adjustLoadRequestParams(d);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   restoreQueryDataBeforeFirstRequest = (d) => {
     setTimeout(() => {
       const text =
-        '启用恢复之前查询状态功能需要重新实现 ”restoreQueryDataBeforeFirstRequest“ 方法,通过该方法填充视图中的各项查询条件 ';
+        '启用恢复之前查询状态功能需要重新实现 "restoreQueryDataBeforeFirstRequest" 方法,通过该方法填充视图中的各项查询条件 ';
 
       showWarnMessage({
         message: text,
@@ -178,7 +176,7 @@ class MultiPage extends Base {
     const { paramsKey } = this.state;
 
     if (!checkStringIsNullOrWhiteSpace(paramsKey)) {
-      setParamsDataCache(paramsKey, this.lastLoadParams);
+      setParametersDataCache(paramsKey, this.lastLoadParams);
     }
   };
 
@@ -204,6 +202,7 @@ class MultiPage extends Base {
       .then((fieldsValue) => {
         const values = {
           ...fieldsValue,
+          // eslint-disable-next-line promise/always-return
           updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
         };
 
@@ -212,12 +211,14 @@ class MultiPage extends Base {
       .catch((error) => {
         const { errorFields } = error;
 
-        if (!isUndefined(errorFields)) {
+        if (isUndefined(errorFields)) {
+          showSimpleRuntimeError(error);
+        } else {
           const m = [];
 
-          Object.values(errorFields).forEach((o) => {
+          for (const o of Object.values(errorFields)) {
             m.push(o.errors[0]);
-          });
+          }
 
           const maxLength = 5;
           let beyondMax = false;
@@ -234,13 +235,7 @@ class MultiPage extends Base {
             errorMessage += ' ...';
           }
 
-          showWarningMessage({
-            message: errorMessage,
-          });
-        } else {
-          showRuntimeError({
-            message: error,
-          });
+          showSimpleWarningMessage(errorMessage);
         }
       });
   };
@@ -251,20 +246,21 @@ class MultiPage extends Base {
    * @param {*} filtersArg
    * @param {*} sorter
    */
-  handleStandardTableChange = (pagination, filtersArg, sorter) => {
+  handleStandardTableChange = (pagination, filtersArgument, sorter) => {
     if (this.checkWorkDoing()) {
       return;
     }
 
     const { formValues } = this.state;
 
-    const filters = Object.keys(filtersArg).reduce((obj, key) => {
-      const newObj = { ...obj };
-      newObj[key] = getValue(filtersArg[key]);
-      return newObj;
+    // eslint-disable-next-line unicorn/no-array-reduce
+    const filters = Object.keys(filtersArgument).reduce((object, key) => {
+      const newObject = { ...object };
+      newObject[key] = getValue(filtersArgument[key]);
+      return newObject;
     }, {});
 
-    const params = {
+    const parameters = {
       pageNo: pagination.current,
       pageSize: pagination.pageSize,
       formValues,
@@ -272,12 +268,16 @@ class MultiPage extends Base {
     };
 
     if (sorter.field) {
-      params.sorter = { sorter: `${sorter.field}_${sorter.order}` };
+      parameters.sorter = { sorter: `${sorter.field}_${sorter.order}` };
     }
 
-    this.pageListData(params);
+    this.pageListData(parameters);
 
-    this.handleAdditionalStandardTableChange(pagination, filtersArg, sorter);
+    this.handleAdditionalStandardTableChange(
+      pagination,
+      filtersArgument,
+      sorter,
+    );
   };
 
   handlePaginationChange = (page, pageSize) => {
@@ -287,13 +287,13 @@ class MultiPage extends Base {
 
     const { formValues } = this.state;
 
-    const params = {
+    const parameters = {
       pageNo: page,
       pageSize,
       formValues,
     };
 
-    this.pageListData(params);
+    this.pageListData(parameters);
 
     this.handleAdditionalPaginationChange(page, pageSize);
   };
@@ -302,8 +302,8 @@ class MultiPage extends Base {
     const { metaOriginalData } = this.state;
 
     const { list } = {
-      ...{ list: [] },
-      ...(metaOriginalData || {}),
+      list: [],
+      ...metaOriginalData,
     };
 
     return list;
@@ -313,8 +313,8 @@ class MultiPage extends Base {
     const { metaOriginalData } = this.state;
 
     const { pagination } = {
-      ...{ pagination: {} },
-      ...(metaOriginalData || {}),
+      pagination: {},
+      ...metaOriginalData,
     };
 
     const paginationConfig = { ...pagination };

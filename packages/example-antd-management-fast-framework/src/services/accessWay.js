@@ -1,10 +1,11 @@
-import { request } from 'antd-management-fast-common';
+import { request, requestMode } from 'easy-soft-utility';
 
-export async function pageListData(params) {
+export async function pageListData(parameters) {
   return request({
     api: `/accessWay/pageList`,
-    params,
-    virtualSuccessResponse: {
+    params: parameters,
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
       extra: {
         pageNo: 1,
         pageSize: 10,
@@ -38,11 +39,12 @@ export async function pageListData(params) {
   });
 }
 
-export async function getData(params) {
+export async function getData(parameters) {
   return request({
     api: `/accessWay/get`,
-    params,
-    virtualSuccessResponse: {
+    params: parameters,
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
       data: {
         accessWayId: '145236987121',
         name: '模块1',
@@ -58,11 +60,12 @@ export async function getData(params) {
   });
 }
 
-export async function setOnlineData(params) {
+export async function setOnlineData(parameters) {
   return request({
     api: `/accessWay/setOnline`,
-    params,
-    virtualSuccessResponse: {
+    params: parameters,
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
       data: {
         accessWayId: '145236987121',
         status: 1,
@@ -71,11 +74,12 @@ export async function setOnlineData(params) {
   });
 }
 
-export async function setOfflineData(params) {
+export async function setOfflineData(parameters) {
   return request({
     api: `/accessWay/setOffline`,
-    params,
-    virtualSuccessResponse: {
+    params: parameters,
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
       data: {
         accessWayId: '145236987121',
         status: 0,
@@ -84,9 +88,16 @@ export async function setOfflineData(params) {
   });
 }
 
-export async function refreshCacheData(params) {
+export async function refreshCacheData(parameters) {
   return request({
     api: `/accessWay/refreshCache`,
-    params,
+    params: parameters,
+    mode: requestMode.simulation,
+    simulativeSuccessResponse: {
+      data: {
+        accessWayId: '145236987121',
+        status: 0,
+      },
+    },
   });
 }

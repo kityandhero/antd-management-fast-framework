@@ -1,14 +1,18 @@
 import { Divider, Popover, theme } from 'antd';
 import nprogress from 'nprogress';
 import React from 'react';
-import { Link } from 'umi';
 import { SettingDrawer } from '@ant-design/pro-components';
 import { css } from '@emotion/css';
+import { Link } from '@umijs/max';
 
-import { runtimeSettings } from 'antd-management-fast-common';
-import Bootstrap from 'antd-management-fast-framework/es/customComponents/Bootstrap';
-import { getAppListData } from 'antd-management-fast-framework/es/utils/appListDataAssist';
-import { getLayoutSetting } from 'antd-management-fast-framework/es/utils/layoutSettingAssist';
+import { showSimpleErrorMessage } from 'easy-soft-utility';
+
+import { getUseNprogress } from 'antd-management-fast-common';
+import {
+  Bootstrap,
+  getApplicationListData,
+  getLayoutSetting,
+} from 'antd-management-fast-framework';
 
 import Footer from './components/Footer';
 import { getLogo, getTitle } from './utils/tools';
@@ -65,49 +69,51 @@ const MenuCard = () => {
               >
                 热门产品
               </div>
-              {new Array(3).fill(1).map((name, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={css`
-                      border-radius: 4px;
-                      padding: 16px;
-                      margin-top: 4px;
-                      display: flex;
-                      cursor: pointer;
-                      &:hover {
-                        background-color: ${token.colorBgTextHover};
-                      }
-                    `}
-                  >
-                    <img src="https://gw.alipayobjects.com/zos/antfincdn/6FTGmLLmN/bianzu%25252013.svg" />
+              {Array.from({ length: 3 })
+                .fill(1)
+                .map((name, index) => {
+                  return (
                     <div
-                      style={{
-                        marginInlineStart: 14,
-                      }}
+                      key={index}
+                      className={css`
+                        border-radius: 4px;
+                        padding: 16px;
+                        margin-top: 4px;
+                        display: flex;
+                        cursor: pointer;
+                        &:hover {
+                          background-color: ${token.colorBgTextHover};
+                        }
+                      `}
                     >
+                      <img src="https://gw.alipayobjects.com/zos/antfincdn/6FTGmLLmN/bianzu%25252013.svg" />
                       <div
-                        className={css`
-                          font-size: 14px;
-                          color: ${token.colorText};
-                          line-height: 22px;
-                        `}
+                        style={{
+                          marginInlineStart: 14,
+                        }}
                       >
-                        Ant Design
-                      </div>
-                      <div
-                        className={css`
-                          font-size: 12px;
-                          color: ${token.colorTextSecondary};
-                          line-height: 20px;
-                        `}
-                      >
-                        杭州市较知名的 UI 设计语言
+                        <div
+                          className={css`
+                            font-size: 14px;
+                            color: ${token.colorText};
+                            line-height: 22px;
+                          `}
+                        >
+                          Ant Design
+                        </div>
+                        <div
+                          className={css`
+                            font-size: 12px;
+                            color: ${token.colorTextSecondary};
+                            line-height: 20px;
+                          `}
+                        >
+                          杭州市较知名的 UI 设计语言
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           </div>
         }
@@ -137,7 +143,7 @@ const MenuCard = () => {
   );
 };
 
-const Item = (props) => {
+const Item = (properties) => {
   const { token } = theme.useToken();
   return (
     <div
@@ -155,7 +161,7 @@ const Item = (props) => {
         width: '33.33%',
       }}
     >
-      {props.children}
+      {properties.children}
       {/* <DoubleRightOutlined
         style={{
           marginInlineStart: 4,
@@ -165,14 +171,14 @@ const Item = (props) => {
   );
 };
 
-const List = (props) => {
+const List = (properties) => {
   const { token } = theme.useToken();
 
   return (
     <div
       style={{
         width: '100%',
-        ...props.style,
+        ...properties.style,
       }}
     >
       <div
@@ -184,7 +190,7 @@ const List = (props) => {
           marginBlockEnd: 16,
         }}
       >
-        {props.title}
+        {properties.title}
       </div>
       <div
         style={{
@@ -192,9 +198,11 @@ const List = (props) => {
           flexWrap: 'wrap',
         }}
       >
-        {new Array(6).fill(1).map((_, index) => {
-          return <Item key={index}>具体的解决方案-{index}</Item>;
-        })}
+        {Array.from({ length: 6 })
+          .fill(1)
+          .map((_, index) => {
+            return <Item key={index}>具体的解决方案-{index}</Item>;
+          })}
       </div>
     </div>
   );
@@ -238,111 +246,105 @@ export async function getInitialState() {
 export const layout = () => {
   const layoutSettings = getLayoutSetting();
 
-  console.log(layoutSettings);
+  // console.log(layoutSettings);
 
   return {
-    ...(layoutSettings || {}),
-    ...{
-      logo: getLogo(),
-      title: getTitle(),
-      menu: {
-        locale: false,
-      },
-      disableContentMargin: false,
-      menu: {
-        collapsedShowGroupTitle: true,
-      },
-      siderMenuType: 'group',
-      waterMarkProps: {
-        content: 'test',
-      },
-      avatarProps: {
-        src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
-        size: 'small',
-        title: '七妮妮',
-      },
-      appList: getAppListData(),
-      headerTitleRender: (logo, title, _) => {
-        const defaultDom = (
-          <a>
-            {logo}
-            {title}
-          </a>
-        );
-
-        if (document.body.clientWidth < 1400) {
-          return defaultDom;
-        }
-
-        if (_.isMobile) return defaultDom;
-
-        return (
-          <>
-            {defaultDom}
-
-            <MenuCard />
-          </>
-        );
-      },
-      menuItemRender: (item, dom) => {
-        const { children: childrenArray } = item.children || {
-          children: [],
-        };
-
-        if (item.isUrl || (childrenArray || []).length > 0 || !item.path) {
-          return dom;
-        }
-
-        return (
-          <Link
-            to={item.path}
-            onClick={() => {
-              if (runtimeSettings.getUseNprogress()) {
-                if ((nprogress || null) == null) {
-                  const text = 'nprogress need install';
-
-                  showErrorMessage({
-                    message: text,
-                  });
-                }
-
-                nprogress.inc();
-
-                setTimeout(() => {
-                  nprogress.done();
-                }, 400);
-              }
-            }}
-          >
-            {dom}
-          </Link>
-        );
-      },
-      childrenRender: (children, props) => {
-        // if (initialState?.loading) return <PageLoading />;
-        return (
-          <>
-            {children}
-
-            <Bootstrap />
-
-            {!props.location?.pathname?.includes('/login') && (
-              <SettingDrawer
-                enableDarkTheme
-                settings={layoutSettings}
-                // onSettingChange={(settings) => {
-                //   setInitialState((preInitialState) => ({
-                //     ...preInitialState,
-                //     settings,
-                //   }));
-                // }}
-              />
-            )}
-          </>
-        );
-      },
-      footerRender: () => <Footer />,
-      // onPageChange: (location) => {},
+    ...layoutSettings,
+    logo: getLogo(),
+    title: getTitle(),
+    disableContentMargin: false,
+    menu: {
+      locale: false,
+      collapsedShowGroupTitle: true,
     },
+    siderMenuType: 'group',
+    waterMarkProps: {
+      content: 'test',
+    },
+    avatarProps: {
+      src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
+      size: 'small',
+      title: '七妮妮',
+    },
+    appList: getApplicationListData(),
+    headerTitleRender: (logo, title, _) => {
+      const defaultDom = (
+        <a>
+          {logo}
+          {title}
+        </a>
+      );
+
+      if (document.body.clientWidth < 1400) {
+        return defaultDom;
+      }
+
+      if (_.isMobile) return defaultDom;
+
+      return (
+        <>
+          {defaultDom}
+
+          <MenuCard />
+        </>
+      );
+    },
+    menuItemRender: (item, dom) => {
+      const { children: childrenArray } = item.children || {
+        children: [],
+      };
+
+      if (item.isUrl || (childrenArray || []).length > 0 || !item.path) {
+        return dom;
+      }
+
+      return (
+        <Link
+          to={item.path}
+          onClick={() => {
+            if (getUseNprogress()) {
+              if ((nprogress || null) == null) {
+                const text = 'nprogress need install';
+
+                showSimpleErrorMessage(text);
+              }
+
+              nprogress.inc();
+
+              setTimeout(() => {
+                nprogress.done();
+              }, 400);
+            }
+          }}
+        >
+          {dom}
+        </Link>
+      );
+    },
+    childrenRender: (children, properties) => {
+      // if (initialState?.loading) return <PageLoading />;
+      return (
+        <>
+          {children}
+
+          <Bootstrap />
+
+          {!properties.location?.pathname?.includes('/login') && (
+            <SettingDrawer
+              enableDarkTheme
+              settings={layoutSettings}
+              // onSettingChange={(settings) => {
+              //   setInitialState((preInitialState) => ({
+              //     ...preInitialState,
+              //     settings,
+              //   }));
+              // }}
+            />
+          )}
+        </>
+      );
+    },
+    footerRender: () => <Footer />,
+    // onPageChange: (location) => {},
   };
 };

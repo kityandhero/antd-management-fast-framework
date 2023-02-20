@@ -118,379 +118,376 @@ import {
 } from '@ant-design/icons';
 
 export const iconBuilder = {
-  help: (props = null) => {
-    return <InfoCircleOutlined {...(props || {})} />;
+  help: (properties = null) => {
+    return <InfoCircleOutlined {...(properties || {})} />;
   },
-  add: (props = null) => {
-    return <PlusOutlined {...(props || {})} />;
+  add: (properties = null) => {
+    return <PlusOutlined {...(properties || {})} />;
   },
-  plus: (props = null) => {
-    return <PlusOutlined {...(props || {})} />;
+  plus: (properties = null) => {
+    return <PlusOutlined {...(properties || {})} />;
   },
-  addCircle: (props = null) => {
-    return <PlusCircleOutlined {...(props || {})} />;
+  addCircle: (properties = null) => {
+    return <PlusCircleOutlined {...(properties || {})} />;
   },
-  plusCircle: (props = null) => {
-    return <PlusCircleOutlined {...(props || {})} />;
+  plusCircle: (properties = null) => {
+    return <PlusCircleOutlined {...(properties || {})} />;
   },
-  reload: (props = null) => {
-    return <ReloadOutlined {...(props || {})} />;
+  reload: (properties = null) => {
+    return <ReloadOutlined {...(properties || {})} />;
   },
-  edit: (props = null) => {
-    return <EditOutlined {...(props || {})} />;
+  edit: (properties = null) => {
+    return <EditOutlined {...(properties || {})} />;
   },
-  enable: (props = null) => {
-    return <PlayCircleOutlined {...(props || {})} />;
+  enable: (properties = null) => {
+    return <PlayCircleOutlined {...(properties || {})} />;
   },
-  disable: (props = null) => {
-    return <PauseCircleOutlined {...(props || {})} />;
+  disable: (properties = null) => {
+    return <PauseCircleOutlined {...(properties || {})} />;
   },
-  playCircle: (props = null) => {
-    return <PlayCircleOutlined {...(props || {})} />;
+  playCircle: (properties = null) => {
+    return <PlayCircleOutlined {...(properties || {})} />;
   },
-  pauseCircle: (props = null) => {
-    return <PauseCircleOutlined {...(props || {})} />;
+  pauseCircle: (properties = null) => {
+    return <PauseCircleOutlined {...(properties || {})} />;
   },
-  delete: (props = null) => {
-    return <DeleteOutlined {...(props || {})} />;
+  delete: (properties = null) => {
+    return <DeleteOutlined {...(properties || {})} />;
   },
-  clock: (props = null) => {
-    return <ClockCircleOutlined {...(props || {})} />;
+  clock: (properties = null) => {
+    return <ClockCircleOutlined {...(properties || {})} />;
   },
-  close: (props = null) => {
-    return <CloseCircleOutlined {...(props || {})} />;
+  close: (properties = null) => {
+    return <CloseCircleOutlined {...(properties || {})} />;
   },
-  closeCircle: (props = null) => {
-    return <CloseCircleOutlined {...(props || {})} />;
+  closeCircle: (properties = null) => {
+    return <CloseCircleOutlined {...(properties || {})} />;
   },
-  copy: (props = null) => {
-    return <CopyOutlined {...(props || {})} />;
+  copy: (properties = null) => {
+    return <CopyOutlined {...(properties || {})} />;
   },
-  eye: (props = null) => {
-    return <EyeOutlined {...(props || {})} />;
+  eye: (properties = null) => {
+    return <EyeOutlined {...(properties || {})} />;
   },
-  export: (props = null) => {
-    return <ExportOutlined {...(props || {})} />;
+  export: (properties = null) => {
+    return <ExportOutlined {...(properties || {})} />;
   },
-  home: (props = null) => {
-    return <HomeOutlined {...(props || {})} />;
+  home: (properties = null) => {
+    return <HomeOutlined {...(properties || {})} />;
   },
-  import: (props = null) => {
-    return <ImportOutlined {...(props || {})} />;
+  import: (properties = null) => {
+    return <ImportOutlined {...(properties || {})} />;
   },
-  idCard: (props = null) => {
-    return <IdcardOutlined {...(props || {})} />;
+  idCard: (properties = null) => {
+    return <IdcardOutlined {...(properties || {})} />;
   },
-  search: (props = null) => {
-    return <SearchOutlined {...(props || {})} />;
+  search: (properties = null) => {
+    return <SearchOutlined {...(properties || {})} />;
   },
-  setting: (props = null) => {
-    return <SettingOutlined {...(props || {})} />;
+  setting: (properties = null) => {
+    return <SettingOutlined {...(properties || {})} />;
   },
-  tag: (props = null) => {
-    return <TagOutlined {...(props || {})} />;
+  tag: (properties = null) => {
+    return <TagOutlined {...(properties || {})} />;
   },
-  tags: (props = null) => {
-    return <TagsOutlined {...(props || {})} />;
+  tags: (properties = null) => {
+    return <TagsOutlined {...(properties || {})} />;
   },
-  upload: (props = null) => {
-    return <UploadOutlined {...(props || {})} />;
+  upload: (properties = null) => {
+    return <UploadOutlined {...(properties || {})} />;
   },
-  user: (props = null) => {
-    return <UserOutlined {...(props || {})} />;
+  user: (properties = null) => {
+    return <UserOutlined {...(properties || {})} />;
   },
-  video: (props = null) => {
-    return <VideoCameraOutlined {...(props || {})} />;
+  video: (properties = null) => {
+    return <VideoCameraOutlined {...(properties || {})} />;
   },
-  videoCamera: (props = null) => {
-    return <VideoCameraOutlined {...(props || {})} />;
+  videoCamera: (properties = null) => {
+    return <VideoCameraOutlined {...(properties || {})} />;
   },
-  videoCameraAdd: (props = null) => {
-    return <VideoCameraAddOutlined {...(props || {})} />;
+  videoCameraAdd: (properties = null) => {
+    return <VideoCameraAddOutlined {...(properties || {})} />;
   },
-  loading: (props = null) => {
-    return <LoadingOutlined {...(props || {})} />;
+  loading: (properties = null) => {
+    return <LoadingOutlined {...(properties || {})} />;
   },
-  team: (props = null) => {
-    return <TeamOutlined {...(props || {})} />;
+  team: (properties = null) => {
+    return <TeamOutlined {...(properties || {})} />;
   },
-  users: (props = null) => {
-    return <TeamOutlined {...(props || {})} />;
+  users: (properties = null) => {
+    return <TeamOutlined {...(properties || {})} />;
   },
-  tool: (props = null) => {
-    return <ToolOutlined {...(props || {})} />;
+  tool: (properties = null) => {
+    return <ToolOutlined {...(properties || {})} />;
   },
-  sync: (props = null) => {
-    return <SyncOutlined {...(props || {})} />;
+  sync: (properties = null) => {
+    return <SyncOutlined {...(properties || {})} />;
   },
-  sound: (props = null) => {
-    return <SoundOutlined {...(props || {})} />;
+  sound: (properties = null) => {
+    return <SoundOutlined {...(properties || {})} />;
   },
-  shop: (props = null) => {
-    return <ShopOutlined {...(props || {})} />;
+  shop: (properties = null) => {
+    return <ShopOutlined {...(properties || {})} />;
   },
-  shoppingCart: (props = null) => {
-    return <ShoppingCartOutlined {...(props || {})} />;
+  shoppingCart: (properties = null) => {
+    return <ShoppingCartOutlined {...(properties || {})} />;
   },
-  shopping: (props = null) => {
-    return <ShoppingOutlined {...(props || {})} />;
+  shopping: (properties = null) => {
+    return <ShoppingOutlined {...(properties || {})} />;
   },
-  schedule: (props = null) => {
-    return <ScheduleOutlined {...(props || {})} />;
+  schedule: (properties = null) => {
+    return <ScheduleOutlined {...(properties || {})} />;
   },
-  scan: (props = null) => {
-    return <ScanOutlined {...(props || {})} />;
+  scan: (properties = null) => {
+    return <ScanOutlined {...(properties || {})} />;
   },
-  read: (props = null) => {
-    return <ReadOutlined {...(props || {})} />;
+  read: (properties = null) => {
+    return <ReadOutlined {...(properties || {})} />;
   },
-  qrCode: (props = null) => {
-    return <QrcodeOutlined {...(props || {})} />;
+  qrCode: (properties = null) => {
+    return <QrcodeOutlined {...(properties || {})} />;
   },
-  powerOff: (props = null) => {
-    return <PoweroffOutlined {...(props || {})} />;
+  powerOff: (properties = null) => {
+    return <PoweroffOutlined {...(properties || {})} />;
   },
-  phone: (props = null) => {
-    return <PhoneOutlined {...(props || {})} />;
+  phone: (properties = null) => {
+    return <PhoneOutlined {...(properties || {})} />;
   },
-  profile: (props = null) => {
-    return <ProfileOutlined {...(props || {})} />;
+  profile: (properties = null) => {
+    return <ProfileOutlined {...(properties || {})} />;
   },
-  project: (props = null) => {
-    return <ProjectOutlined {...(props || {})} />;
+  project: (properties = null) => {
+    return <ProjectOutlined {...(properties || {})} />;
   },
-  message: (props = null) => {
-    return <MessageOutlined {...(props || {})} />;
+  message: (properties = null) => {
+    return <MessageOutlined {...(properties || {})} />;
   },
-  lock: (props = null) => {
-    return <LockOutlined {...(props || {})} />;
+  lock: (properties = null) => {
+    return <LockOutlined {...(properties || {})} />;
   },
-  unlock: (props = null) => {
-    return <UnlockOutlined {...(props || {})} />;
+  unlock: (properties = null) => {
+    return <UnlockOutlined {...(properties || {})} />;
   },
-  mail: (props = null) => {
-    return <MailOutlined {...(props || {})} />;
+  mail: (properties = null) => {
+    return <MailOutlined {...(properties || {})} />;
   },
-  line: (props = null) => {
-    return <LineOutlined {...(props || {})} />;
+  line: (properties = null) => {
+    return <LineOutlined {...(properties || {})} />;
   },
-  key: (props = null) => {
-    return <KeyOutlined {...(props || {})} />;
+  key: (properties = null) => {
+    return <KeyOutlined {...(properties || {})} />;
   },
-  history: (props = null) => {
-    return <HistoryOutlined {...(props || {})} />;
+  history: (properties = null) => {
+    return <HistoryOutlined {...(properties || {})} />;
   },
-  gift: (props = null) => {
-    return <GiftOutlined {...(props || {})} />;
+  gift: (properties = null) => {
+    return <GiftOutlined {...(properties || {})} />;
   },
-  folder: (props = null) => {
-    return <FolderOutlined {...(props || {})} />;
+  folder: (properties = null) => {
+    return <FolderOutlined {...(properties || {})} />;
   },
-  filter: (props = null) => {
-    return <FilterOutlined {...(props || {})} />;
+  filter: (properties = null) => {
+    return <FilterOutlined {...(properties || {})} />;
   },
-  download: (props = null) => {
-    return <DownloadOutlined {...(props || {})} />;
+  download: (properties = null) => {
+    return <DownloadOutlined {...(properties || {})} />;
   },
-  ellipsis: (props = null) => {
-    return <EllipsisOutlined {...(props || {})} />;
+  ellipsis: (properties = null) => {
+    return <EllipsisOutlined {...(properties || {})} />;
   },
-  desktop: (props = null) => {
-    return <DesktopOutlined {...(props || {})} />;
+  desktop: (properties = null) => {
+    return <DesktopOutlined {...(properties || {})} />;
   },
-  dashboard: (props = null) => {
-    return <DashboardOutlined {...(props || {})} />;
+  dashboard: (properties = null) => {
+    return <DashboardOutlined {...(properties || {})} />;
   },
-  contacts: (props = null) => {
-    return <ContactsOutlined {...(props || {})} />;
+  contacts: (properties = null) => {
+    return <ContactsOutlined {...(properties || {})} />;
   },
-  clear: (props = null) => {
-    return <ClearOutlined {...(props || {})} />;
+  clear: (properties = null) => {
+    return <ClearOutlined {...(properties || {})} />;
   },
-  bell: (props = null) => {
-    return <BellOutlined {...(props || {})} />;
+  bell: (properties = null) => {
+    return <BellOutlined {...(properties || {})} />;
   },
-  undo: (props = null) => {
-    return <UndoOutlined {...(props || {})} />;
+  undo: (properties = null) => {
+    return <UndoOutlined {...(properties || {})} />;
   },
-  redo: (props = null) => {
-    return <RedoOutlined {...(props || {})} />;
+  redo: (properties = null) => {
+    return <RedoOutlined {...(properties || {})} />;
   },
-  form: (props = null) => {
-    return <FormOutlined {...(props || {})} />;
+  form: (properties = null) => {
+    return <FormOutlined {...(properties || {})} />;
   },
-  warning: (props = null) => {
-    return <WarningOutlined {...(props || {})} />;
+  warning: (properties = null) => {
+    return <WarningOutlined {...(properties || {})} />;
   },
-  question: (props = null) => {
-    return <QuestionCircleFilled {...(props || {})} />;
+  question: (properties = null) => {
+    return <QuestionCircleFilled {...(properties || {})} />;
   },
-  logout: (props = null) => {
-    return <LogoutOutlined {...(props || {})} />;
+  logout: (properties = null) => {
+    return <LogoutOutlined {...(properties || {})} />;
   },
-  login: (props = null) => {
-    return <LoginOutlined {...(props || {})} />;
+  login: (properties = null) => {
+    return <LoginOutlined {...(properties || {})} />;
   },
-  arrowUp: (props = null) => {
-    return <ArrowUpOutlined {...(props || {})} />;
+  arrowUp: (properties = null) => {
+    return <ArrowUpOutlined {...(properties || {})} />;
   },
-  arrowDown: (props = null) => {
-    return <ArrowDownOutlined {...(props || {})} />;
+  arrowDown: (properties = null) => {
+    return <ArrowDownOutlined {...(properties || {})} />;
   },
-  arrowLeft: (props = null) => {
-    return <ArrowLeftOutlined {...(props || {})} />;
+  arrowLeft: (properties = null) => {
+    return <ArrowLeftOutlined {...(properties || {})} />;
   },
-  arrowRight: (props = null) => {
-    return <ArrowRightOutlined {...(props || {})} />;
+  arrowRight: (properties = null) => {
+    return <ArrowRightOutlined {...(properties || {})} />;
   },
-  swap: (props = null) => {
-    return <SwapOutlined {...(props || {})} />;
+  swap: (properties = null) => {
+    return <SwapOutlined {...(properties || {})} />;
   },
-  online: (props = null) => {
-    return <VerticalAlignTopOutlined {...(props || {})} />;
+  online: (properties = null) => {
+    return <VerticalAlignTopOutlined {...(properties || {})} />;
   },
-  offline: (props = null) => {
-    return <VerticalAlignBottomOutlined {...(props || {})} />;
+  offline: (properties = null) => {
+    return <VerticalAlignBottomOutlined {...(properties || {})} />;
   },
-  up: (props = null) => {
-    return <UpOutlined {...(props || {})} />;
+  up: (properties = null) => {
+    return <UpOutlined {...(properties || {})} />;
   },
-  upCircle: (props = null) => {
-    return <UpCircleOutlined {...(props || {})} />;
+  upCircle: (properties = null) => {
+    return <UpCircleOutlined {...(properties || {})} />;
   },
-  down: (props = null) => {
-    return <DownOutlined {...(props || {})} />;
+  down: (properties = null) => {
+    return <DownOutlined {...(properties || {})} />;
   },
-  downCircle: (props = null) => {
-    return <DownCircleOutlined {...(props || {})} />;
+  downCircle: (properties = null) => {
+    return <DownCircleOutlined {...(properties || {})} />;
   },
-  left: (props = null) => {
-    return <LeftOutlined {...(props || {})} />;
+  left: (properties = null) => {
+    return <LeftOutlined {...(properties || {})} />;
   },
-  leftCircle: (props = null) => {
-    return <LeftCircleOutlined {...(props || {})} />;
+  leftCircle: (properties = null) => {
+    return <LeftCircleOutlined {...(properties || {})} />;
   },
-  right: (props = null) => {
-    return <RightOutlined {...(props || {})} />;
+  right: (properties = null) => {
+    return <RightOutlined {...(properties || {})} />;
   },
-  rightCircle: (props = null) => {
-    return <RightCircleOutlined {...(props || {})} />;
+  rightCircle: (properties = null) => {
+    return <RightCircleOutlined {...(properties || {})} />;
   },
-  picture: (props = null) => {
-    return <PictureOutlined {...(props || {})} />;
+  picture: (properties = null) => {
+    return <PictureOutlined {...(properties || {})} />;
   },
-  link: (props = null) => {
-    return <LinkOutlined {...(props || {})} />;
+  link: (properties = null) => {
+    return <LinkOutlined {...(properties || {})} />;
   },
-  checkCircle: (props = null) => {
-    return <CheckCircleOutlined {...(props || {})} />;
+  checkCircle: (properties = null) => {
+    return <CheckCircleOutlined {...(properties || {})} />;
   },
-  warningCircle: (props = null) => {
-    return <ExclamationCircleOutlined {...(props || {})} />;
+  warningCircle: (properties = null) => {
+    return <ExclamationCircleOutlined {...(properties || {})} />;
   },
-  sortAscending: (props = null) => {
-    return <SortAscendingOutlined {...(props || {})} />;
+  sortAscending: (properties = null) => {
+    return <SortAscendingOutlined {...(properties || {})} />;
   },
-  sortDescending: (props = null) => {
-    return <SortDescendingOutlined {...(props || {})} />;
+  sortDescending: (properties = null) => {
+    return <SortDescendingOutlined {...(properties || {})} />;
   },
-  infoCircle: (props = null) => {
-    return <InfoCircleOutlined {...(props || {})} />;
+  infoCircle: (properties = null) => {
+    return <InfoCircleOutlined {...(properties || {})} />;
   },
-  instagram: (props = null) => {
-    return <InstagramOutlined {...(props || {})} />;
+  instagram: (properties = null) => {
+    return <InstagramOutlined {...(properties || {})} />;
   },
-  disconnect: (props = null) => {
-    return <DisconnectOutlined {...(props || {})} />;
+  disconnect: (properties = null) => {
+    return <DisconnectOutlined {...(properties || {})} />;
   },
-  insertRowAbove: (props = null) => {
-    return <InsertRowAboveOutlined {...(props || {})} />;
+  insertRowAbove: (properties = null) => {
+    return <InsertRowAboveOutlined {...(properties || {})} />;
   },
-  insertRowBelow: (props = null) => {
-    return <InsertRowBelowOutlined {...(props || {})} />;
+  insertRowBelow: (properties = null) => {
+    return <InsertRowBelowOutlined {...(properties || {})} />;
   },
-  insertRowLeft: (props = null) => {
-    return <InsertRowLeftOutlined {...(props || {})} />;
+  insertRowLeft: (properties = null) => {
+    return <InsertRowLeftOutlined {...(properties || {})} />;
   },
-  insertRowRight: (props = null) => {
-    return <InsertRowRightOutlined {...(props || {})} />;
+  insertRowRight: (properties = null) => {
+    return <InsertRowRightOutlined {...(properties || {})} />;
   },
-  rollback: (props = null) => {
-    return <RollbackOutlined {...(props || {})} />;
+  rollback: (properties = null) => {
+    return <RollbackOutlined {...(properties || {})} />;
   },
-  snippets: (props = null) => {
-    return <SnippetsOutlined {...(props || {})} />;
+  snippets: (properties = null) => {
+    return <SnippetsOutlined {...(properties || {})} />;
   },
-  compress: (props = null) => {
-    return <CompressOutlined {...(props || {})} />;
+  compress: (properties = null) => {
+    return <CompressOutlined {...(properties || {})} />;
   },
-  minusCircle: (props = null) => {
-    return <MinusCircleOutlined {...(props || {})} />;
+  minusCircle: (properties = null) => {
+    return <MinusCircleOutlined {...(properties || {})} />;
   },
-  select: (props = null) => {
-    return <SelectOutlined {...(props || {})} />;
+  select: (properties = null) => {
+    return <SelectOutlined {...(properties || {})} />;
   },
-  plusSquare: (props = null) => {
-    return <PlusSquareOutlined {...(props || {})} />;
+  plusSquare: (properties = null) => {
+    return <PlusSquareOutlined {...(properties || {})} />;
   },
-  unorderedList: (props = null) => {
-    return <UnorderedListOutlined {...(props || {})} />;
+  unorderedList: (properties = null) => {
+    return <UnorderedListOutlined {...(properties || {})} />;
   },
-  fork: (props = null) => {
-    return <ForkOutlined {...(props || {})} />;
+  fork: (properties = null) => {
+    return <ForkOutlined {...(properties || {})} />;
   },
-  bug: (props = null) => {
-    return <BugOutlined {...(props || {})} />;
+  bug: (properties = null) => {
+    return <BugOutlined {...(properties || {})} />;
   },
-  cloudDownload: (props = null) => {
-    return <CloudDownloadOutlined {...(props || {})} />;
+  cloudDownload: (properties = null) => {
+    return <CloudDownloadOutlined {...(properties || {})} />;
   },
-  reconciliation: (props = null) => {
-    return <ReconciliationOutlined {...(props || {})} />;
+  reconciliation: (properties = null) => {
+    return <ReconciliationOutlined {...(properties || {})} />;
   },
-  apartment: (props = null) => {
-    return <ApartmentOutlined {...(props || {})} />;
+  apartment: (properties = null) => {
+    return <ApartmentOutlined {...(properties || {})} />;
   },
-  dingDing: (props = null) => {
-    return <DingdingOutlined {...(props || {})} />;
+  dingDing: (properties = null) => {
+    return <DingdingOutlined {...(properties || {})} />;
   },
-  macCommand: (props = null) => {
-    return <MacCommandOutlined {...(props || {})} />;
+  macCommand: (properties = null) => {
+    return <MacCommandOutlined {...(properties || {})} />;
   },
-  inbox: (props = null) => {
-    return <InboxOutlined {...(props || {})} />;
+  inbox: (properties = null) => {
+    return <InboxOutlined {...(properties || {})} />;
   },
-  save: (props = null) => {
-    return <SaveOutlined {...(props || {})} />;
+  save: (properties = null) => {
+    return <SaveOutlined {...(properties || {})} />;
   },
-  file: (props = null) => {
-    return <FileOutlined {...(props || {})} />;
+  file: (properties = null) => {
+    return <FileOutlined {...(properties || {})} />;
   },
-  tool: (props = null) => {
-    return <ToolOutlined {...(props || {})} />;
+  mobile: (properties = null) => {
+    return <MobileOutlined {...(properties || {})} />;
   },
-  mobile: (props = null) => {
-    return <MobileOutlined {...(props || {})} />;
+  borderOuter: (properties = null) => {
+    return <BorderOuterOutlined {...(properties || {})} />;
   },
-  borderOuter: (props = null) => {
-    return <BorderOuterOutlined {...(props || {})} />;
+  columnHeight: (properties = null) => {
+    return <ColumnHeightOutlined {...(properties || {})} />;
   },
-  columnHeight: (props = null) => {
-    return <ColumnHeightOutlined {...(props || {})} />;
+  verticalAlignMiddle: (properties = null) => {
+    return <VerticalAlignMiddleOutlined {...(properties || {})} />;
   },
-  verticalAlignMiddle: (props = null) => {
-    return <VerticalAlignMiddleOutlined {...(props || {})} />;
+  caretUp: (properties = null) => {
+    return <CaretUpOutlined {...(properties || {})} />;
   },
-  caretUp: (props = null) => {
-    return <CaretUpOutlined {...(props || {})} />;
+  caretDown: (properties = null) => {
+    return <CaretDownOutlined {...(properties || {})} />;
   },
-  caretDown: (props = null) => {
-    return <CaretDownOutlined {...(props || {})} />;
+  retweet: (properties = null) => {
+    return <RetweetOutlined {...(properties || {})} />;
   },
-  retweet: (props = null) => {
-    return <RetweetOutlined {...(props || {})} />;
-  },
-  exclamationCircle: (props = null) => {
-    return <ExclamationCircleOutlined {...(props || {})} />;
+  exclamationCircle: (properties = null) => {
+    return <ExclamationCircleOutlined {...(properties || {})} />;
   },
 };

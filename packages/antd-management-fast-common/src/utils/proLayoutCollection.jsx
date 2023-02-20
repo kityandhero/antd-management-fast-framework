@@ -3,14 +3,14 @@ import { Link } from '@umijs/max';
 
 import { showSimpleErrorMessage } from 'easy-soft-utility';
 
-import { runtimeSettings } from './dynamicSetting';
+import { getUseNprogress } from './settingAssist';
 
 /**
  * layout默认配置
  */
-export const proLayoutDefaultProps = {
+export const proLayoutDefaultProperties = {
   onMenuHeaderClick: () => {},
-  itemRender: (route, params, routes, paths) => {
+  itemRender: (route, parameters, routes, paths) => {
     const first = routes.indexOf(route) === 0;
 
     return first ? (
@@ -32,7 +32,7 @@ export const proLayoutDefaultProps = {
       <Link
         to={item.path}
         onClick={() => {
-          if (runtimeSettings.getUseNprogress()) {
+          if (getUseNprogress()) {
             if ((nprogress || null) == null) {
               const text = 'nprogress need install';
 

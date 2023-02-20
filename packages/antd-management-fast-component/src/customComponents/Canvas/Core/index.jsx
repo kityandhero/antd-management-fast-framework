@@ -3,8 +3,8 @@ import React, { PureComponent } from 'react';
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
 class Core extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {};
   }
@@ -60,7 +60,7 @@ class Core extends PureComponent {
     return c.getContext('2d');
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   doAfterDidMount = ({ canvasContext }) => {};
 
   resize = () => {
@@ -78,8 +78,8 @@ class Core extends PureComponent {
 
   buildContainorStyle = () => {
     const { backgroundImage } = {
-      ...{ backgroundImage: '' },
-      ...(this.props || {}),
+      backgroundImage: '',
+      ...this.props,
     };
 
     return {
@@ -95,11 +95,10 @@ class Core extends PureComponent {
     return (
       <div
         style={{
-          ...(containorStyle || {}),
-          ...{
-            width: '100%',
-            height: '100%',
-          },
+          ...containorStyle,
+
+          width: '100%',
+          height: '100%',
         }}
         ref={this.canvasContainerRef}
       >

@@ -22,7 +22,7 @@ import {
 
 export function refitWhetherList({ withUnlimited = true }) {
   const { whetherList: list } = {
-    ...{ whetherList: whetherList },
+    whetherList: whetherList,
   };
 
   if (withUnlimited) {
@@ -87,7 +87,7 @@ export function renderFormWhetherSelect({
   formItemLayout = null,
   required = true,
   name = 'whether',
-  otherProps = null,
+  otherProps: otherProperties = null,
 }) {
   const title = label || unknownLabel;
 
@@ -101,7 +101,7 @@ export function renderFormWhetherSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -112,7 +112,7 @@ export function renderFormWhetherRadio({
   formItemLayout = null,
   required = true,
   name = 'whether',
-  otherProps = null,
+  otherProps: otherProperties = null,
 }) {
   const title = label || unknownLabel;
 
@@ -126,6 +126,6 @@ export function renderFormWhetherRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }

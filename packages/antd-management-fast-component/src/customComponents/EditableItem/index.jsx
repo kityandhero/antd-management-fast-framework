@@ -5,16 +5,16 @@ import { CheckOutlined, EditOutlined } from '@ant-design/icons';
 import styles from './index.less';
 
 class EditableItem extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
     this.state = {
-      value: props.value,
+      value: properties.value,
       editable: false,
     };
   }
 
-  handleChange = (e) => {
-    const { value } = e.target;
+  handleChange = (event) => {
+    const { value } = event.target;
     this.setState({ value });
   };
 

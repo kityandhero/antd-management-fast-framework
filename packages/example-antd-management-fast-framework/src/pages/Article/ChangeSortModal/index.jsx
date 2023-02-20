@@ -1,13 +1,13 @@
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
 
-import {
-  cardConfig,
-  convertCollection,
-  getValueByKey,
-} from 'antd-management-fast-common';
-import BaseUpdateModal from 'antd-management-fast-framework/es/framework/DataModal/BaseUpdateModal';
+import { convertCollection, getValueByKey } from 'easy-soft-utility';
+
+import { cardConfig } from 'antd-management-fast-common';
+import { DataModal } from 'antd-management-fast-framework';
 
 import { fieldData } from '../Common/data';
+
+const { BaseUpdateModal } = DataModal;
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -15,16 +15,15 @@ import { fieldData } from '../Common/data';
   loading: loading.models.article,
 }))
 class ChangeSortModal extends BaseUpdateModal {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        pageName: '排序值设置',
-        loadApiPath: 'article/get',
-        submitApiPath: 'article/updateSort',
-      },
+
+      pageName: '排序值设置',
+      loadApiPath: 'article/get',
+      submitApiPath: 'article/updateSort',
     };
   }
 
@@ -54,15 +53,15 @@ class ChangeSortModal extends BaseUpdateModal {
   };
 
   buildNotificationDescription = (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     singleData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     listData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     extraData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     responseOriginalData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     submitData,
   ) => {
     return `排序值更新成功。`;
@@ -89,13 +88,12 @@ class ChangeSortModal extends BaseUpdateModal {
   };
 
   fillInitialValuesAfterLoad = ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     metaData = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {
     const values = {};

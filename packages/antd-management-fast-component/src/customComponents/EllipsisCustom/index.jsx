@@ -11,26 +11,25 @@ const TooltipOverlayStyle = {
   wordWrap: 'break-word',
 };
 
-const getStrFullLength = (str = '') =>
-  str.split('').reduce((pre, cur) => {
-    const charCode = cur.charCodeAt(0);
+const getStringFullLength = (v = '') =>
+  // eslint-disable-next-line unicorn/prefer-spread, unicorn/no-array-reduce
+  v.split('').reduce((pre, current) => {
+    const charCode = current.codePointAt(0);
     if (charCode >= 0 && charCode <= 128) {
       return pre + 1;
     }
     return pre + 2;
   }, 0);
 
-const cutStrByFullLength = (str = '', maxLength) => {
+const cutStringByFullLength = (v = '', maxLength) => {
   let showLength = 0;
-  return str.split('').reduce((pre, cur) => {
-    const charCode = cur.charCodeAt(0);
-    if (charCode >= 0 && charCode <= 128) {
-      showLength += 1;
-    } else {
-      showLength += 2;
-    }
+
+  // eslint-disable-next-line unicorn/prefer-spread, unicorn/no-array-reduce
+  return v.split('').reduce((pre, current) => {
+    const charCode = current.codePointAt(0);
+    showLength += charCode >= 0 && charCode <= 128 ? 1 : 2;
     if (showLength <= maxLength) {
-      return pre + cur;
+      return pre + current;
     }
     return pre;
   }, '');
@@ -44,10 +43,10 @@ const EllipsisText = ({
   ...other
 }) => {
   if (typeof text !== 'string') {
-    throw new Error('Ellipsis children must be string.');
+    throw new TypeError('Ellipsis children must be string.');
   }
   const textLength = fullWidthRecognition
-    ? getStrFullLength(text)
+    ? getStringFullLength(text)
     : text.length;
   if (textLength <= length || length < 0) {
     return <span {...other}>{text}</span>;
@@ -58,7 +57,7 @@ const EllipsisText = ({
     displayText = '';
   } else {
     displayText = fullWidthRecognition
-      ? cutStrByFullLength(text, length)
+      ? cutStringByFullLength(text, length)
       : text.slice(0, length);
   }
 
@@ -93,9 +92,9 @@ class EllipsisCustom extends Component {
     }
   }
 
-  componentDidUpdate(perProps) {
+  componentDidUpdate(perProperties) {
     const { lines } = this.props;
-    if (lines !== perProps.lines) {
+    if (lines !== perProperties.lines) {
       this.computeLine();
     }
   }
@@ -104,8 +103,12 @@ class EllipsisCustom extends Component {
     const { lines } = this.props;
     if (lines && !isSupportLineClamp) {
       const text =
+        // eslint-disable-next-line unicorn/prefer-dom-node-text-content
         this.shadowChildren.innerText || this.shadowChildren.textContent;
-      const lineHeight = parseInt(getComputedStyle(this.root).lineHeight, 10);
+      const lineHeight = Number.parseInt(
+        getComputedStyle(this.root).lineHeight,
+        10,
+      );
       const targetHeight = lines * lineHeight;
       this.content.style.height = `${targetHeight}px`;
       const totalHeight = this.shadowChildren.offsetHeight;
@@ -120,10 +123,17 @@ class EllipsisCustom extends Component {
       }
 
       // bisection
-      const len = text.length;
-      const mid = Math.ceil(len / 2);
+      const length_ = text.length;
+      const mid = Math.ceil(length_ / 2);
 
-      const count = this.bisection(targetHeight, mid, 0, len, text, shadowNode);
+      const count = this.bisection(
+        targetHeight,
+        mid,
+        0,
+        length_,
+        text,
+        shadowNode,
+      );
 
       this.setState({
         text,
@@ -132,32 +142,30 @@ class EllipsisCustom extends Component {
     }
   };
 
+  // eslint-disable-next-line unicorn/prevent-abbreviations
   bisection = (th, m, b, e, text, shadowNode) => {
     const suffix = '...';
     let mid = m;
     let end = e;
     let begin = b;
-    shadowNode.innerHTML = text.substring(0, mid) + suffix;
+    shadowNode.innerHTML = text.slice(0, Math.max(0, mid)) + suffix;
     let sh = shadowNode.offsetHeight;
 
     if (sh <= th) {
-      shadowNode.innerHTML = text.substring(0, mid + 1) + suffix;
+      shadowNode.innerHTML = text.slice(0, Math.max(0, mid + 1)) + suffix;
       sh = shadowNode.offsetHeight;
       if (sh > th || mid === begin) {
         return mid;
       }
       begin = mid;
-      if (end - begin === 1) {
-        mid = 1 + begin;
-      } else {
-        mid = Math.floor((end - begin) / 2) + begin;
-      }
+      mid =
+        end - begin === 1 ? 1 + begin : Math.floor((end - begin) / 2) + begin;
       return this.bisection(th, mid, begin, end, text, shadowNode);
     }
     if (mid - 1 < 0) {
       return mid;
     }
-    shadowNode.innerHTML = text.substring(0, mid - 1) + suffix;
+    shadowNode.innerHTML = text.slice(0, Math.max(0, mid - 1)) + suffix;
     sh = shadowNode.offsetHeight;
     if (sh <= th) {
       return mid - 1;
@@ -198,7 +206,7 @@ class EllipsisCustom extends Component {
       fullWidthRecognition,
       removeChildren,
       extraContent,
-      ...restProps
+      ...restProperties
     } = this.props;
 
     const cls = classNames(styles.ellipsis, className, {
@@ -208,7 +216,7 @@ class EllipsisCustom extends Component {
 
     if (!lines && !length) {
       return (
-        <span className={cls} {...restProps}>
+        <span className={cls} {...restProperties}>
           {children}
         </span>
       );
@@ -223,12 +231,12 @@ class EllipsisCustom extends Component {
           text={children || ''}
           tooltip={tooltip}
           fullWidthRecognition={fullWidthRecognition}
-          {...restProps}
+          {...restProperties}
         />
       );
     }
 
-    const id = `antd-pro-ellipsis-${`${new Date().getTime()}${Math.floor(
+    const id = `antd-pro-ellipsis-${`${Date.now()}${Math.floor(
       Math.random() * 100,
     )}`}`;
 
@@ -237,7 +245,7 @@ class EllipsisCustom extends Component {
       const style = `#${id}{-webkit-line-clamp:${lines};-webkit-box-orient: vertical;}`;
 
       const node = (
-        <div id={id} className={cls} {...restProps}>
+        <div id={id} className={cls} {...restProperties}>
           <style>{style}</style>
           {removeChildren ? null : children}
           {extraContent}
@@ -259,13 +267,13 @@ class EllipsisCustom extends Component {
 
     const childNode = (
       <span ref={this.handleNode}>
-        {targetCount > 0 && text.substring(0, targetCount)}
+        {targetCount > 0 && text.slice(0, Math.max(0, targetCount))}
         {targetCount > 0 && targetCount < text.length && '...'}
       </span>
     );
 
     return (
-      <div {...restProps} ref={this.handleRoot} className={cls}>
+      <div {...restProperties} ref={this.handleRoot} className={cls}>
         <div ref={this.handleContent}>
           {tooltip ? (
             <Tooltip

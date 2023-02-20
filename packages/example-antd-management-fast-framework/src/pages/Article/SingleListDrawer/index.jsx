@@ -1,25 +1,29 @@
 import { Avatar, Divider, List, Typography } from 'antd';
-import { connect } from 'umi';
+import { connect } from '@umijs/max';
+
+import {
+  checkStringIsNullOrWhiteSpace,
+  formatCollection,
+  getValueByKey,
+} from 'easy-soft-utility';
 
 import {
   columnFacadeMode,
   columnPlaceholder,
-  formatCollection,
-  getValueByKey,
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import SinglePageDrawer from 'antd-management-fast-framework/es/framework/DataSinglePageView/SinglePageDrawer';
+import { DataSinglePageView } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/config';
-import { colorCollection } from '@/customConfig/constants';
-import { getArticleRenderTypeName } from '@/customSpecialComponents/FunctionSupplement/ArticleRenderType';
-import { getArticleStatusName } from '@/customSpecialComponents/FunctionSupplement/ArticleStatus';
-
+import { accessWayCollection } from '../../../customConfig/config';
+import { colorCollection } from '../../../customConfig/constants';
+import { getArticleRenderTypeName } from '../../../customSpecialComponents/FunctionSupplement/ArticleRenderType';
+import { getArticleStatusName } from '../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
 import { fieldData, statusCollection } from '../Common/data';
 
 const { Text } = Typography;
+const { SinglePageDrawer } = DataSinglePageView;
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -31,21 +35,20 @@ class SingleListDrawer extends SinglePageDrawer {
 
   componentAuthority = accessWayCollection.article.singleList.permission;
 
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        loadApiPath: 'article/singleList',
-        listViewMode: listViewConfig.viewMode.list,
-        tableScroll: { y: 600 },
-      },
+
+      loadApiPath: 'article/singleList',
+      listViewMode: listViewConfig.viewMode.list,
+      tableScroll: { y: 600 },
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return super.getDerivedStateFromProps(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   getPageName = () => {
@@ -56,17 +59,20 @@ class SingleListDrawer extends SinglePageDrawer {
     let result = 'default';
 
     switch (v) {
-      case statusCollection.online:
+      case statusCollection.online: {
         result = 'processing';
         break;
+      }
 
-      case statusCollection.offline:
+      case statusCollection.offline: {
         result = 'warning';
         break;
+      }
 
-      default:
+      default: {
         result = 'default';
         break;
+      }
     }
 
     return result;
@@ -89,7 +95,7 @@ class SingleListDrawer extends SinglePageDrawer {
     };
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   renderListViewItemInner = (item, index) => {
     const articleId = getValueByKey({
       data: item,
@@ -163,10 +169,10 @@ class SingleListDrawer extends SinglePageDrawer {
       facadeConfig: {
         color: colorCollection.price,
       },
-      formatValue: (val) => {
+      formatValue: (value) => {
         return getArticleRenderTypeName({
           metaData: this.getMetaData(),
-          value: val,
+          value: value,
         });
       },
     },
@@ -176,12 +182,12 @@ class SingleListDrawer extends SinglePageDrawer {
       emptyValue: '--',
       showRichFacade: true,
       facadeMode: columnFacadeMode.badge,
-      facadeConfigBuilder: (val) => {
+      facadeConfigBuilder: (value) => {
         return {
-          status: this.getStatusBadge(val),
+          status: this.getStatusBadge(value),
           text: getArticleStatusName({
             metaData: this.getMetaData(),
-            value: val,
+            value: value,
           }),
         };
       },

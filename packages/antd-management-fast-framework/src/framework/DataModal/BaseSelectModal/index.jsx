@@ -1,16 +1,14 @@
-import { isFunction } from 'antd-management-fast-common';
+import { isFunction } from 'easy-soft-utility';
 
 import { BaseLoadModal } from '../BaseLoadModal';
 
 class BaseSelectModal extends BaseLoadModal {
-  constructor(props) {
-    super(props);
+  constructor(properties) {
+    super(properties);
 
     this.state = {
       ...this.state,
-      ...{
-        currentRecord: null,
-      },
+      currentRecord: null,
     };
   }
 

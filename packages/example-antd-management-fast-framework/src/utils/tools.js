@@ -1,24 +1,28 @@
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
 import {
+  getLeftBarLogo,
+  getLeftBarText,
   getModelRemoteData,
-  runtimeSettings,
 } from 'antd-management-fast-common';
 
 export function getSexName(value) {
   let result = '未知';
 
   switch (`${value}`) {
-    case '1':
+    case '1': {
       result = '男';
       break;
+    }
 
-    case '2':
+    case '2': {
       result = '女';
       break;
+    }
 
-    default:
+    default: {
       break;
+    }
   }
 
   return result;
@@ -26,53 +30,41 @@ export function getSexName(value) {
 
 export function getLogo() {
   const { data } = {
-    ...{
-      data: {},
-    },
+    data: {},
     ...getModelRemoteData('global'),
   };
 
   const { platform } = {
-    ...{
-      platform: { logo: '' },
-    },
-    ...(data || {}),
+    platform: { logo: '' },
+    ...data,
   };
 
   const { logo } = {
-    ...{
-      logo: '',
-    },
-    ...(platform || {}),
+    logo: '',
+    ...platform,
   };
 
-  return runtimeSettings.getLeftBarLogo(logo);
+  return getLeftBarLogo(logo);
 }
 
 export function getTitle() {
   const { data } = {
-    ...{
-      data: {},
-    },
+    data: {},
     ...getModelRemoteData('global'),
   };
 
   const { platform } = {
-    ...{
-      platform: { logo: '' },
-    },
-    ...(data || {}),
+    platform: { logo: '' },
+    ...data,
   };
 
   const { shortName } = {
-    ...{
-      shortName: '',
-    },
-    ...(platform || {}),
+    shortName: '',
+    ...platform,
   };
 
   if (checkStringIsNullOrWhiteSpace(shortName)) {
-    return runtimeSettings.getLeftBarText();
+    return getLeftBarText();
   }
 
   return shortName;

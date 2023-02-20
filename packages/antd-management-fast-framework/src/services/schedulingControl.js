@@ -4,33 +4,36 @@ import {
   getNow,
   logDebug,
   request,
-  runtimeSettings,
+  requestMode,
+} from 'easy-soft-utility';
+
+import {
+  getApplicationListDataApi,
+  getMetaDataApi,
 } from 'antd-management-fast-common';
 
-export async function getMetaDataData(params) {
+export async function getMetaDataData(parameters) {
   return request({
-    api: runtimeSettings.getMetaDataPath(),
-    params,
+    api: getMetaDataApi(),
+    params: parameters,
   });
 }
 
-export async function getMetaDataSimulation(params) {
+export async function getMetaDataSimulation(parameters) {
   const simulation = {
-    ...{
-      time: formatDatetime(getNow(), datetimeFormat.monthDayHourMinuteSecond),
-    },
+    time: formatDatetime(getNow(), datetimeFormat.monthDayHourMinuteSecond),
   };
 
   logDebug(
-    `getMetaDataData use simulation mode, if need set it from api, please config getMetaDataPath.`,
+    `getMetaDataData use simulation mode, if need set it from api, please config getMetaDataApi.`,
   );
 
   return request({
     api: `/schedulingControl/getMetaDataSimulation`,
-    params,
-    useVirtualRequest: true,
-    virtualNeedAuthorize: false,
-    virtualSuccessResponse: {
+    params: parameters,
+    mode: requestMode.simulation,
+    simulativeAuthorize: false,
+    simulativeSuccessResponse: {
       data: simulation,
       list: [],
       extra: {},
@@ -38,24 +41,24 @@ export async function getMetaDataSimulation(params) {
   });
 }
 
-export async function singleListAppListData(params) {
+export async function singleListApplicationListData(parameters) {
   return request({
-    api: runtimeSettings.getAppListDataPath(),
-    params,
+    api: getApplicationListDataApi(),
+    params: parameters,
   });
 }
 
-export async function singleListAppListDataSimulation(params) {
+export async function singleListApplicationListDataSimulation(parameters) {
   logDebug(
-    `singleListAppList use simulation mode, if need set it from api, please config getAppListDataPath.`,
+    `singleListAppList use simulation mode, if need set it from api, please config getApplicationListDataApi.`,
   );
 
   return request({
-    api: `/schedulingControl/singleListAppListDataSimulation`,
-    params,
-    useVirtualRequest: true,
-    virtualNeedAuthorize: false,
-    virtualSuccessResponse: {
+    api: `/schedulingControl/singleListApplicationListDataSimulation`,
+    params: parameters,
+    mode: requestMode.simulation,
+    simulativeAuthorize: false,
+    simulativeSuccessResponse: {
       data: {},
       list: [],
       extra: {},

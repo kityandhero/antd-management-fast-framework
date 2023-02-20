@@ -1,17 +1,23 @@
 import {
   checkHasAuthority,
-  getDerivedStateFromPropsForUrlParams,
   isFunction,
-  redirectToPath,
-} from 'antd-management-fast-common';
+  logException,
+  redirectTo,
+  showSimpleRuntimeError,
+} from 'easy-soft-utility';
+
+import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
 
 import { SupplementWrapper } from '../CustomWrapper/SupplementWrapper';
 
 class AuthorizationWrapper extends SupplementWrapper {
   componentAuthority = null;
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return getDerivedStateFromPropsForUrlParams(nextProps, prevState);
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    return getDerivedStateFromPropertiesForUrlParameters(
+      nextProperties,
+      previousState,
+    );
   }
 
   doDidMountTask = () => {
@@ -28,11 +34,9 @@ class AuthorizationWrapper extends SupplementWrapper {
     } else {
       const text = `缺少权限：${this.componentAuthority}`;
 
-      showRuntimeError({
-        message: text,
-      });
+      showSimpleRuntimeError(text);
 
-      redirectToPath('/exception/404');
+      redirectTo('/exception/404');
     }
 
     if (needDoOther) {
@@ -54,11 +58,18 @@ class AuthorizationWrapper extends SupplementWrapper {
     this.dispatchApi({
       type: 'global/getCurrentOperator',
       payload: { force: true },
-    }).then(() => {
-      if (isFunction(callback)) {
-        callback();
-      }
-    });
+    })
+      .then(() => {
+        if (isFunction(callback)) {
+          // eslint-disable-next-line promise/no-callback-in-promise
+          callback();
+        }
+
+        return;
+      })
+      .catch((error) => {
+        logException(error);
+      });
   };
 }
 

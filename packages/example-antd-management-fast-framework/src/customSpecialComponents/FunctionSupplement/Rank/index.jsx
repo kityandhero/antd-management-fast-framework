@@ -20,8 +20,9 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
+// eslint-disable-next-line no-unused-vars
 export function refitRankList({ metaData, withUnlimited = true }) {
-  const { rankList: list } = { ...{ rankList: [] }, ...(global || {}) };
+  const { rankList: list } = { rankList: [], ...global };
 
   if (withUnlimited) {
     return refitCommonData(list, unlimitedWithStringFlag);
@@ -92,7 +93,7 @@ export function renderCustomRankSelect({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomSelect({
@@ -107,7 +108,7 @@ export function renderCustomRankSelect({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -119,7 +120,7 @@ export function renderFormRankSelect({
   formItemLayout = null,
   required = true,
   name = 'rankId',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -138,7 +139,7 @@ export function renderFormRankSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -148,7 +149,7 @@ export function renderCustomRankRadio({
   separator = '：',
   size = 'middle',
   onChangeCallback,
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildCustomRadio({
@@ -163,7 +164,7 @@ export function renderCustomRankRadio({
       });
     },
     onChangeCallback,
-    otherProps,
+    otherProps: otherProperties,
   });
 }
 
@@ -175,7 +176,7 @@ export function renderFormRankRadio({
   formItemLayout = null,
   required = true,
   name = 'rankId',
-  otherProps = null,
+  otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -194,6 +195,6 @@ export function renderFormRankRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps,
+    otherProps: otherProperties,
   });
 }

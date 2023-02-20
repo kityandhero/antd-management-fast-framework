@@ -4,11 +4,9 @@ const corsTargetDomain = '';
 
 const headScripts = [
   ...headScriptsSource,
-  ...[
-    {
-      src: `${corsTargetDomain}/interactionConfig/initRemote.js`,
-    },
-  ],
+  {
+    src: `${corsTargetDomain}/interactionConfig/initRemote.js`,
+  },
 ];
 
 const config = {

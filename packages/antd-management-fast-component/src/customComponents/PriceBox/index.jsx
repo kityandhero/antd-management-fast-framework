@@ -15,10 +15,9 @@ class PriceBox extends PureComponent {
     } = this.props;
 
     const commonStyle = {
-      ...(generalStyle || {}),
-      ...{
-        verticalAlign: 'bottom',
-      },
+      ...generalStyle,
+
+      verticalAlign: 'bottom',
     };
 
     if (!isMoney(price)) {
@@ -46,14 +45,10 @@ class PriceBox extends PureComponent {
             lineHeight: 1,
           }}
         >
-          <div style={{ ...commonStyle, ...(prefixStyle || {}) }}>{prefix}</div>
-          <div style={{ ...commonStyle, ...(integerPartStyle || {}) }}>
-            {integer}
-          </div>
-          <div style={{ ...commonStyle, ...(pointStyle || {}) }}>.</div>
-          <div style={{ ...commonStyle, ...(decimalPartStyle || {}) }}>
-            {decimal}
-          </div>
+          <div style={{ ...commonStyle, ...prefixStyle }}>{prefix}</div>
+          <div style={{ ...commonStyle, ...integerPartStyle }}>{integer}</div>
+          <div style={{ ...commonStyle, ...pointStyle }}>.</div>
+          <div style={{ ...commonStyle, ...decimalPartStyle }}>{decimal}</div>
         </div>
       </div>
     );
