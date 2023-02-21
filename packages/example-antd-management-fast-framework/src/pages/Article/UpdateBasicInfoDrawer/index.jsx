@@ -82,7 +82,7 @@ class Index extends BaseUpdateDrawer {
     return d;
   };
 
-  renderTitle = () => {
+  renderPresetTitle = () => {
     return '编辑选项信息';
   };
 

@@ -332,7 +332,7 @@ class SingleList extends SinglePage {
       tools: [
         {
           title: '按钮提示1',
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮1',
             handleClick: () => {
               showInfoMessage({
@@ -345,7 +345,7 @@ class SingleList extends SinglePage {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -357,7 +357,7 @@ class SingleList extends SinglePage {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -370,7 +370,7 @@ class SingleList extends SinglePage {
         {
           title: '按钮提示4',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮4',
             handleClick: () => {
               showInfoMessage({
@@ -620,7 +620,7 @@ class SingleList extends SinglePage {
   };
 
   // eslint-disable-next-line no-unused-vars
-  renderListViewItemInner = (r, index) => {
+  renderPresetListViewItemInner = (r, index) => {
     return (
       <>
         <List.Item.Meta
@@ -796,7 +796,7 @@ class SingleList extends SinglePage {
     };
   };
 
-  renderOther = () => {
+  renderPresetOther = () => {
     const {
       articleId,
       singleListDrawerVisible,

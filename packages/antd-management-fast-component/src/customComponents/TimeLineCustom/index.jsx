@@ -56,7 +56,7 @@ class TimeLineCustom extends BaseComponent {
     onChange(pageNo, pageSize);
   };
 
-  renderDateLabel = (v) => {
+  renderPresetDateLabel = (v) => {
     this.currentTime = this.currentTime || v;
     const preTime = this.currentTime || v;
     if (
@@ -77,7 +77,7 @@ class TimeLineCustom extends BaseComponent {
     );
   };
 
-  renderInfo = (item) => {
+  renderPresetInfo = (item) => {
     const {
       // iconStyle: iconStyleValue,
       // getBackgroundColorKey,
@@ -190,8 +190,8 @@ class TimeLineCustom extends BaseComponent {
                 }}
               >
                 <div>
-                  {this.renderDateLabel(getDateLabel(item))}
-                  {this.renderInfo(item)}
+                  {this.renderPresetDateLabel(getDateLabel(item))}
+                  {this.renderPresetInfo(item)}
                 </div>
               </List.Item>
             )}

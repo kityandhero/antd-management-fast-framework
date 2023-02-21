@@ -74,7 +74,7 @@ class MobilePreviewBox extends MobilePreviewArea {
     );
   };
 
-  renderInnerView = () => {
+  renderPresetInnerView = () => {
     return this.buildArticle();
   };
 }

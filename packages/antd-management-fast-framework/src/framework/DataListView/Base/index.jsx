@@ -50,6 +50,7 @@ import {
   buildColumnList,
   buildCustomSelect,
   buildDropdown,
+  builderPageHeaderExtraContent,
   buildPageHeaderContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
@@ -57,7 +58,6 @@ import {
   decorateAvatar,
   FlexBox,
   iconBuilder,
-  pageHeaderExtraContent,
   StandardTableCustom,
 } from 'antd-management-fast-component';
 
@@ -221,7 +221,7 @@ class Base extends AuthorizationWrapper {
   // eslint-disable-next-line no-unused-vars
   afterSetSearchFormFieldsValue = (value) => {};
 
-  getPageName = () => {
+  getPresetPageName = () => {
     const { pageName } = this.state;
 
     return pageName;
@@ -472,7 +472,7 @@ class Base extends AuthorizationWrapper {
     return (
       <Col key={contentItemKey} lg={lg || 6} md={md} sm={sm} xs={xs}>
         {type === searchCardConfig.contentItemType.input
-          ? this.renderSearchInput(
+          ? this.renderPresetSearchInput(
               fieldData.label,
               fieldData.name,
               showHelper ? fieldData.helper : '',
@@ -482,7 +482,7 @@ class Base extends AuthorizationWrapper {
           : null}
 
         {type === searchCardConfig.contentItemType.inputNumber
-          ? this.renderSearchInputNumber(
+          ? this.renderPresetSearchInputNumber(
               fieldData.label,
               fieldData.name,
               fieldData.helper,
@@ -494,7 +494,7 @@ class Base extends AuthorizationWrapper {
           : null}
 
         {type === searchCardConfig.contentItemType.datePicker
-          ? this.renderFormDatePicker(
+          ? this.renderPresetFormDatePicker(
               fieldData.label,
               fieldData.name,
               false,
@@ -515,7 +515,7 @@ class Base extends AuthorizationWrapper {
           : null}
 
         {type === searchCardConfig.contentItemType.onlyShowInput
-          ? this.renderFormOnlyShowInput(
+          ? this.renderPresetFormOnlyShowInput(
               fieldData.label,
               contentItem.value,
               fieldData.helper || '',
@@ -540,7 +540,7 @@ class Base extends AuthorizationWrapper {
           : null}
 
         {type === searchCardConfig.contentItemType.innerComponent
-          ? this.renderFormInnerComponent(
+          ? this.renderPresetFormInnerComponent(
               fieldData.label,
               component,
               fieldData.helper,
@@ -707,7 +707,7 @@ class Base extends AuthorizationWrapper {
     );
   };
 
-  renderForm = () => this.buildSearchCard();
+  renderPresetForm = () => this.buildSearchCard();
 
   // eslint-disable-next-line arrow-body-style
   establishTableAdditionalConfig = () => {
@@ -805,17 +805,17 @@ class Base extends AuthorizationWrapper {
   onBatchActionSelect = (key) => {};
 
   // eslint-disable-next-line no-unused-vars
-  renderTable = (config) => null;
+  renderPresetTable = (config) => null;
 
-  renderAlertContent = () => {
+  renderPresetAlertContent = () => {
     return '';
   };
 
-  renderAlertOption = () => {};
+  renderPresetAlertOption = () => {};
 
-  renderAboveTable = () => {
-    const content = this.renderAlertContent();
-    const option = this.renderAlertOption();
+  renderPresetAboveTable = () => {
+    const content = this.renderPresetAlertContent();
+    const option = this.renderPresetAlertOption();
 
     if (!content && !option) {
       return null;
@@ -878,7 +878,7 @@ class Base extends AuthorizationWrapper {
     });
   };
 
-  renderExtraActionView = () => {
+  renderPresetExtraActionView = () => {
     const actions = this.buildDataContainerExtraActionCollection();
 
     if (!isArray(actions) || actions.length <= 0) {
@@ -894,9 +894,9 @@ class Base extends AuthorizationWrapper {
     );
   };
 
-  renderBatchActionMenu = () => [];
+  renderPresetBatchActionMenu = () => [];
 
-  renderBatchAction = () => {
+  renderPresetBatchAction = () => {
     const { showSelect, selectedDataTableDataRows } = this.state;
 
     const selectRows = isArray(selectedDataTableDataRows)
@@ -904,7 +904,7 @@ class Base extends AuthorizationWrapper {
       : [];
 
     if (showSelect) {
-      const batchActionMenu = this.renderBatchActionMenu();
+      const batchActionMenu = this.renderPresetBatchActionMenu();
 
       if ((batchActionMenu || []).length > 0) {
         return (
@@ -1177,7 +1177,7 @@ class Base extends AuthorizationWrapper {
     this.setState({ pageNo: 1 });
   };
 
-  renderPageHeaderContent = () => {
+  renderPresetPageHeaderContent = () => {
     return buildPageHeaderContent(
       this.establishPageHeaderContentConfig() || {},
     );
@@ -1185,8 +1185,10 @@ class Base extends AuthorizationWrapper {
 
   establishPageHeaderExtraContentConfig = () => null;
 
-  renderPageHeaderExtraContent = () => {
-    return pageHeaderExtraContent(this.establishPageHeaderExtraContentConfig());
+  renderPresetPageHeaderExtraContent = () => {
+    return builderPageHeaderExtraContent(
+      this.establishPageHeaderExtraContentConfig(),
+    );
   };
 
   buildPaginationBar = () => {
@@ -1223,7 +1225,7 @@ class Base extends AuthorizationWrapper {
     return bar;
   };
 
-  renderCardExtraAction = () => {
+  renderPresetCardExtraAction = () => {
     const { listViewMode, tableSize, refreshing } = this.state;
 
     if (listViewMode === listViewConfig.viewMode.table) {
@@ -1285,20 +1287,20 @@ class Base extends AuthorizationWrapper {
     );
   };
 
-  renderListViewItem = (record, index) => {
+  renderPresetListViewItem = (record, index) => {
     return (
       <List.Item
-        actions={this.renderListViewItemActions(record, index)}
-        extra={this.renderListViewItemExtra(record, index)}
+        actions={this.renderPresetListViewItemActions(record, index)}
+        extra={this.renderPresetListViewItemExtra(record, index)}
       >
-        {this.renderListViewItemInner(record, index)}
+        {this.renderPresetListViewItemInner(record, index)}
       </List.Item>
     );
   };
 
   // eslint-disable-next-line no-unused-vars
-  renderListViewItemInner = (record, index) => {
-    const text = 'renderListViewItemInner 需要重载实现';
+  renderPresetListViewItemInner = (record, index) => {
+    const text = 'renderPresetListViewItemInner 需要重载实现';
 
     showSimpleRuntimeError(text);
 
@@ -1306,17 +1308,20 @@ class Base extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line no-unused-vars
-  renderListViewItemExtra = (record, index) => {
+  renderPresetListViewItemExtra = (record, index) => {
     return null;
   };
 
-  renderListViewItemActions = (record, index) => {
-    const actionOthers = this.renderListViewItemActionOthers(record, index);
+  renderPresetListViewItemActions = (record, index) => {
+    const actionOthers = this.renderPresetListViewItemActionOthers(
+      record,
+      index,
+    );
 
     let actionSelect = null;
 
     if (this.showListViewItemActionSelect || false) {
-      actionSelect = this.renderListViewItemActionSelect(record, index);
+      actionSelect = this.renderPresetListViewItemActionSelect(record, index);
     }
 
     if (actionSelect == null) {
@@ -1329,31 +1334,31 @@ class Base extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line no-unused-vars
-  renderListViewItemActionOthers = (record, index) => {
+  renderPresetListViewItemActionOthers = (record, index) => {
     return null;
   };
 
   // eslint-disable-next-line no-unused-vars
-  renderListViewItemActionSelect = (record, index) => {
+  renderPresetListViewItemActionSelect = (record, index) => {
     return null;
   };
 
-  renderListViewItemLayout = () => {
+  renderPresetListViewItemLayout = () => {
     return 'horizontal';
   };
 
-  renderListViewSize = () => {
+  renderPresetListViewSize = () => {
     return 'default';
   };
 
-  renderListView = () => {
+  renderPresetListView = () => {
     const { dataLoading, reloading, processing } = this.state;
 
     return (
       <Spin spinning={dataLoading || reloading || processing}>
         <List
-          itemLayout={this.renderListViewItemLayout()}
-          size={this.renderListViewSize()}
+          itemLayout={this.renderPresetListViewItemLayout()}
+          size={this.renderPresetListViewSize()}
           dataSource={
             this.getCanUseFrontendPagination()
               ? this.adjustFrontendPaginationViewDataSource()
@@ -1361,11 +1366,11 @@ class Base extends AuthorizationWrapper {
           }
           pagination={false}
           renderItem={(item, index) => {
-            return this.renderListViewItem(item, index);
+            return this.renderPresetListViewItem(item, index);
           }}
         />
 
-        {this.renderPaginationView()}
+        {this.renderPresetPaginationView()}
       </Spin>
     );
   };
@@ -1374,7 +1379,7 @@ class Base extends AuthorizationWrapper {
    * 构建分页视图
    * frontendPagination配置仅用在前台模拟分页时
    */
-  renderTableView = () => {
+  renderPresetTableView = () => {
     const { metaListData, tableScroll, showSelect, selectedDataTableDataRows } =
       this.state;
 
@@ -1416,7 +1421,7 @@ class Base extends AuthorizationWrapper {
     );
   };
 
-  renderCardCollectionView = () => {
+  renderPresetCardCollectionView = () => {
     const { dataLoading, reloading, processing } = this.state;
 
     const listItem = this.getCanUseFrontendPagination()
@@ -1441,20 +1446,20 @@ class Base extends AuthorizationWrapper {
           )}
         </Space>
 
-        {this.renderPaginationView()}
+        {this.renderPresetPaginationView()}
       </Spin>
     );
   };
 
-  renderPaginationView = () => {
+  renderPresetPaginationView = () => {
     return this.buildPaginationBar();
   };
 
-  renderView = () => {
+  renderPresetListMainView = () => {
     const { showSelect, listViewMode } = this.state;
 
     if (listViewMode === listViewConfig.viewMode.table) {
-      return this.renderTableView();
+      return this.renderPresetTableView();
     }
 
     if (listViewMode === listViewConfig.viewMode.list) {
@@ -1464,7 +1469,7 @@ class Base extends AuthorizationWrapper {
         showSimpleRuntimeError(text);
       }
 
-      return this.renderListView();
+      return this.renderPresetListView();
     }
 
     if (listViewMode === listViewConfig.viewMode.cardCollectionView) {
@@ -1474,7 +1479,7 @@ class Base extends AuthorizationWrapper {
         showSimpleRuntimeError(text);
       }
 
-      return this.renderCardCollectionView();
+      return this.renderPresetCardCollectionView();
     }
 
     const text = '未知的显示模式';
@@ -1534,10 +1539,10 @@ class Base extends AuthorizationWrapper {
     );
   };
 
-  renderSiderArea = () => {
-    const topArea = this.renderSiderTopArea();
+  renderPresetSiderArea = () => {
+    const topArea = this.renderPresetSiderTopArea();
 
-    const bottomArea = this.renderSiderBottomArea();
+    const bottomArea = this.renderPresetSiderBottomArea();
 
     if ((bottomArea || null) == null) {
       return topArea;
@@ -1546,7 +1551,7 @@ class Base extends AuthorizationWrapper {
     return <FlexBox direction="vertical" top={topArea} bottom={bottomArea} />;
   };
 
-  renderContentArea = () => {
+  renderPresetContentArea = () => {
     const { listTitle } = this.state;
 
     const affixConfig = {
@@ -1555,11 +1560,11 @@ class Base extends AuthorizationWrapper {
       ...this.establishDataContainerExtraAffixConfig(),
     };
 
-    const extraAction = this.renderExtraActionView();
+    const extraAction = this.renderPresetExtraActionView();
 
-    const searchForm = this.renderForm();
+    const searchForm = this.renderPresetForm();
 
-    const hasPagination = this.renderPaginationView() != null;
+    const hasPagination = this.renderPresetPaginationView() != null;
 
     const { affix, offsetTop } = affixConfig;
 
@@ -1570,9 +1575,9 @@ class Base extends AuthorizationWrapper {
 
           {extraAction == null ? null : <Divider type="vertical" />}
 
-          {this.renderBatchAction()}
+          {this.renderPresetBatchAction()}
 
-          {this.renderCardExtraAction()}
+          {this.renderPresetCardExtraAction()}
         </div>
       </Affix>
     ) : (
@@ -1581,9 +1586,9 @@ class Base extends AuthorizationWrapper {
 
         {extraAction == null ? null : <Divider type="vertical" />}
 
-        {this.renderBatchAction()}
+        {this.renderPresetBatchAction()}
 
-        {this.renderCardExtraAction()}
+        {this.renderPresetCardExtraAction()}
       </>
     );
 
@@ -1600,8 +1605,9 @@ class Base extends AuthorizationWrapper {
         extra={extraView}
       >
         <div>
-          {this.renderAboveTable()}
-          {this.renderView()}
+          {this.renderPresetAboveTable()}
+
+          {this.renderPresetListMainView()}
         </div>
       </Card>
     );
@@ -1648,7 +1654,7 @@ class Base extends AuthorizationWrapper {
     return null;
   };
 
-  renderListItemDropdown = (record) => {
+  renderPresetListItemDropdown = (record) => {
     const config = this.establishListItemDropdownConfig(record);
 
     config.placement = 'topRight';
@@ -1656,9 +1662,9 @@ class Base extends AuthorizationWrapper {
     return buildDropdown(config);
   };
 
-  renderPageContent = () => {
-    const siderArea = this.renderSiderArea();
-    const contentArea = this.renderContentArea();
+  renderPresetPageContent = () => {
+    const siderArea = this.renderPresetSiderArea();
+    const contentArea = this.renderPresetContentArea();
 
     const layoutSiderConfig = this.establishPageContentLayoutSiderConfig();
     let layoutConfig = this.establishPageContentLayoutConfig();
@@ -1736,12 +1742,12 @@ class Base extends AuthorizationWrapper {
     return inner;
   };
 
-  renderPageBody = () => {
+  renderPresetPageBody = () => {
     return (
       <>
-        {this.renderPageContent()}
+        {this.renderPresetPageContent()}
 
-        {this.renderOther()}
+        {this.renderPresetOther()}
       </>
     );
   };
@@ -1777,20 +1783,20 @@ class Base extends AuthorizationWrapper {
         <PageContainer
           avatar={avatarProperties}
           title={buildPageHeaderTitle(
-            this.getPageName(),
+            this.getPresetPageName(),
             this.establishPageHeaderTitlePrefix(),
           )}
           subTitle={this.buildPageHeaderSubTitle()}
           tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
           extra={this.buildExtraAction()}
           tabActiveKey={this.getTabActiveKey()}
-          content={this.renderPageHeaderContent()}
-          extraContent={this.renderPageHeaderExtraContent()}
+          content={this.renderPresetPageHeaderContent()}
+          extraContent={this.renderPresetPageHeaderExtraContent()}
           tabList={tabListAvailable}
           onTabChange={this.handleTabChange}
           tabProps={this.buildOtherTabProps()}
         >
-          {this.renderPageBody()}
+          {this.renderPresetPageBody()}
 
           <BackTop />
         </PageContainer>
@@ -1799,7 +1805,7 @@ class Base extends AuthorizationWrapper {
 
     return (
       <>
-        {this.renderPageBody()}
+        {this.renderPresetPageBody()}
 
         <BackTop />
       </>

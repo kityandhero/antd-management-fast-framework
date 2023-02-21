@@ -610,11 +610,11 @@ class Common extends Core {
     this.redirectToPath(pathname.replace('/load/', '/update/'));
   }
 
-  renderOther = () => {
+  renderPresetOther = () => {
     return null;
   };
 
-  renderFormNowTimeField = (data) => {
+  renderPresetFormNowTimeField = (data) => {
     const { label, helper, formItemLayout } = {
       helper: '数据的添加时间',
       label: '添加时间',
@@ -625,7 +625,7 @@ class Common extends Core {
     return buildFormNowTimeField({ label, helper, formItemLayout });
   };
 
-  renderFormCreateTimeField = (
+  renderPresetFormCreateTimeField = (
     name = 'createTime',
     helper = '数据的添加时间',
     label = '添加时间',
@@ -639,7 +639,7 @@ class Common extends Core {
     });
   };
 
-  renderFormUpdateTimeField = (
+  renderPresetFormUpdateTimeField = (
     name = 'updateTime',
     helper = '数据的最后修改时间',
     label = '最后修改时间',
@@ -653,18 +653,24 @@ class Common extends Core {
     });
   };
 
-  renderFormRadioCore = (listDataSource, adjustListDataCallback = null) => {
+  renderPresetFormRadioCore = (
+    listDataSource,
+    adjustListDataCallback = null,
+  ) => {
     return buildRadioItem({ list: listDataSource, adjustListDataCallback });
   };
 
-  renderFormOptionCore = (listDataSource, adjustListDataCallback = null) => {
+  renderPresetFormOptionCore = (
+    listDataSource,
+    adjustListDataCallback = null,
+  ) => {
     return buildOptionItem({
       list: listDataSource,
       adjustListDataCallback,
     });
   };
 
-  renderSearchInput = (
+  renderPresetSearchInput = (
     label,
     name,
     helper = null,
@@ -684,7 +690,7 @@ class Common extends Core {
     });
   };
 
-  renderSearchInputNumber = (
+  renderPresetSearchInputNumber = (
     label,
     name,
     helper = null,
@@ -704,7 +710,7 @@ class Common extends Core {
     });
   };
 
-  renderFormDisplay = (
+  renderPresetFormDisplay = (
     label,
     content,
     formItemLayout = {},
@@ -718,11 +724,11 @@ class Common extends Core {
     });
   };
 
-  renderFormHiddenWrapper = (children, hidden = true) => {
+  renderPresetFormHiddenWrapper = (children, hidden = true) => {
     return buildFormHiddenWrapper({ children, hidden });
   };
 
-  renderFormInputFieldData = (
+  renderPresetFormInputFieldData = (
     fieldData,
     required = false,
     icon = iconBuilder.form(),
@@ -744,7 +750,7 @@ class Common extends Core {
     });
   };
 
-  renderFormInput = (
+  renderPresetFormInput = (
     label,
     name,
     required = false,
@@ -770,7 +776,7 @@ class Common extends Core {
     });
   };
 
-  renderFormSwitch = (
+  renderPresetFormSwitch = (
     label,
     name,
     required = false,
@@ -792,7 +798,7 @@ class Common extends Core {
     });
   };
 
-  renderFormPassword = (
+  renderPresetFormPassword = (
     label,
     name,
     required = false,
@@ -814,7 +820,7 @@ class Common extends Core {
     });
   };
 
-  renderFormOnlyShowText = (
+  renderPresetFormOnlyShowText = (
     label,
     value,
     helper = null,
@@ -830,7 +836,7 @@ class Common extends Core {
     });
   };
 
-  renderSyntaxHighlighter = (language, value, other = {}) => {
+  renderPresetSyntaxHighlighter = (language, value, other = {}) => {
     return buildSyntaxHighlighter({
       language,
       value,
@@ -838,14 +844,14 @@ class Common extends Core {
     });
   };
 
-  renderJsonView = (value, theme = 'monokai') => {
+  renderPresetJsonView = (value, theme = 'monokai') => {
     return buildJsonView({
       value,
       theme,
     });
   };
 
-  renderFormInnerComponent = (
+  renderPresetFormInnerComponent = (
     label,
     innerComponent,
     helper = null,
@@ -861,21 +867,21 @@ class Common extends Core {
     });
   };
 
-  renderFormButton = (config, formItemLayout = {}) => {
+  renderPresetFormButton = (config, formItemLayout = {}) => {
     return buildFormButton({
       config,
       formItemLayout,
     });
   };
 
-  renderFormActionItem = (component, formItemLayout = {}) => {
+  renderPresetFormActionItem = (component, formItemLayout = {}) => {
     return buildFormActionItem({
       component: component || null,
       formItemLayout,
     });
   };
 
-  renderFormOnlyShowSyntaxHighlighter = (
+  renderPresetFormOnlyShowSyntaxHighlighter = (
     language,
     label,
     value,
@@ -895,7 +901,7 @@ class Common extends Core {
     });
   };
 
-  renderFormOnlyShowTextarea = (
+  renderPresetFormOnlyShowTextarea = (
     label,
     value,
     helper = null,
@@ -911,7 +917,7 @@ class Common extends Core {
     });
   };
 
-  renderFormText = (label, value, helper = null, formItemLayout = {}) => {
+  renderPresetFormText = (label, value, helper = null, formItemLayout = {}) => {
     return buildFormText({
       label,
       value,
@@ -920,7 +926,7 @@ class Common extends Core {
     });
   };
 
-  renderFormOnlyShowInput = (
+  renderPresetFormOnlyShowInput = (
     label,
     value,
     helper = null,
@@ -938,7 +944,7 @@ class Common extends Core {
     });
   };
 
-  renderFormInputNumber = (
+  renderPresetFormInputNumber = (
     label,
     name,
     required = false,
@@ -960,7 +966,7 @@ class Common extends Core {
     });
   };
 
-  renderFormTextArea = (
+  renderPresetFormTextArea = (
     label,
     name,
     required = false,
@@ -980,7 +986,7 @@ class Common extends Core {
     });
   };
 
-  renderFormDatePicker = (
+  renderPresetFormDatePicker = (
     label,
     name,
     required = false,
@@ -1000,7 +1006,7 @@ class Common extends Core {
     });
   };
 
-  renderFormTimePicker = (
+  renderPresetFormTimePicker = (
     label,
     name,
     required = false,
@@ -1020,7 +1026,7 @@ class Common extends Core {
     });
   };
 
-  renderFormSelect = (
+  renderPresetFormSelect = (
     label,
     name,
     renderItemFunction,
@@ -1042,7 +1048,7 @@ class Common extends Core {
     });
   };
 
-  renderFormRadio = (
+  renderPresetFormRadio = (
     label,
     name,
     renderItemFunction,
@@ -1064,7 +1070,7 @@ class Common extends Core {
     });
   };
 
-  renderSearchFormSelect = (label, name, options, helper = null) => {
+  renderPresetSearchFormSelect = (label, name, options, helper = null) => {
     return buildSearchFormSelect({ label, name, options, helper });
   };
 
@@ -1104,7 +1110,7 @@ class Common extends Core {
     return iconBuilder.save();
   };
 
-  renderDisabledButton = (text = '') => {
+  renderPresetDisabledButton = (text = '') => {
     return (
       <Button type="primary" disabled>
         {this.getDisabledButtonIcon()}
@@ -1113,7 +1119,7 @@ class Common extends Core {
     );
   };
 
-  renderSaveButton = ({
+  renderPresetSaveButton = ({
     icon,
     text,
     handleClick,
@@ -1127,7 +1133,7 @@ class Common extends Core {
     const buttonProcessing = this.getSaveButtonProcessing();
     const ico = (icon || null) == null ? this.getSaveButtonIcon() : icon;
 
-    return this.renderGeneralButton({
+    return this.renderPresetGeneralButton({
       type: 'primary',
       text: text || '保存',
       icon: ico,
@@ -1144,7 +1150,7 @@ class Common extends Core {
     });
   };
 
-  renderGeneralButton = ({
+  renderPresetGeneralButton = ({
     key = null,
     type,
     size,
@@ -1186,7 +1192,7 @@ class Common extends Core {
     return {};
   };
 
-  renderRefreshButton = (properties = null) => {
+  renderPresetRefreshButton = (properties = null) => {
     const { size, text } = {
       size: 'default',
       text: '刷新',
@@ -1428,7 +1434,7 @@ class Common extends Core {
     return null;
   };
 
-  renderSiderTopArea = () => {
+  renderPresetSiderTopArea = () => {
     const config = this.establishSiderTopAreaConfig();
 
     if (config == null) {
@@ -1442,7 +1448,7 @@ class Common extends Core {
     return null;
   };
 
-  renderSiderBottomArea = () => {
+  renderPresetSiderBottomArea = () => {
     const config = this.establishSiderBottomAreaConfig();
 
     if (config == null) {
@@ -1508,10 +1514,10 @@ class Common extends Core {
     );
   };
 
-  renderSiderArea = () => {
-    const topArea = this.renderSiderTopArea();
+  renderPresetSiderArea = () => {
+    const topArea = this.renderPresetSiderTopArea();
 
-    const bottomArea = this.renderSiderBottomArea();
+    const bottomArea = this.renderPresetSiderBottomArea();
 
     if ((bottomArea || null) == null) {
       return topArea;
@@ -1529,7 +1535,7 @@ class Common extends Core {
   };
 
   buildCardCollection = (config) => {
-    const siderArea = this.renderSiderArea();
+    const siderArea = this.renderPresetSiderArea();
     const contentArea = this.buildCardCollectionArea(config);
 
     const layoutSiderConfig = this.establishPageContentLayoutSiderConfig();
@@ -2302,7 +2308,7 @@ class Common extends Core {
                     sm={sm}
                     xs={xs}
                   >
-                    {this.renderFormInnerComponent(
+                    {this.renderPresetFormInnerComponent(
                       fieldData.label,
                       buildTreeSelect({
                         value: treeSelectValue || null,
@@ -2339,7 +2345,7 @@ class Common extends Core {
                     sm={sm}
                     xs={xs}
                   >
-                    {this.renderFormInnerComponent(
+                    {this.renderPresetFormInnerComponent(
                       fieldData.label,
                       <FileBase64Upload
                         {...uploadProperties}
@@ -2378,7 +2384,7 @@ class Common extends Core {
                     sm={sm}
                     xs={xs}
                   >
-                    {this.renderFormInnerComponent(
+                    {this.renderPresetFormInnerComponent(
                       fieldData.label,
                       <VideoUpload
                         {...uploadProperties}
@@ -2416,7 +2422,7 @@ class Common extends Core {
                     sm={sm}
                     xs={xs}
                   >
-                    {this.renderFormInnerComponent(
+                    {this.renderPresetFormInnerComponent(
                       fieldData.label,
                       <FileUpload
                         {...uploadProperties}
@@ -2455,7 +2461,7 @@ class Common extends Core {
                     sm={sm}
                     xs={xs}
                   >
-                    {this.renderFormInnerComponent(
+                    {this.renderPresetFormInnerComponent(
                       fieldData.label,
                       <AudioUpload
                         {...uploadProperties}
@@ -2479,7 +2485,7 @@ class Common extends Core {
               return (
                 <Col key={contentItemKey} lg={lg || 6} md={md} sm={sm} xs={xs}>
                   {type === cardConfig.contentItemType.text
-                    ? this.renderFormText(
+                    ? this.renderPresetFormText(
                         fieldData.label,
                         contentItem.value || '',
                         fieldData.helper,
@@ -2488,7 +2494,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.input
-                    ? this.renderFormInput(
+                    ? this.renderPresetFormInput(
                         fieldData.label,
                         fieldData.name,
                         require,
@@ -2501,7 +2507,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.password
-                    ? this.renderFormPassword(
+                    ? this.renderPresetFormPassword(
                         fieldData.label,
                         fieldData.name,
                         require,
@@ -2514,7 +2520,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.inputNumber
-                    ? this.renderFormInputNumber(
+                    ? this.renderPresetFormInputNumber(
                         fieldData.label,
                         fieldData.name,
                         require,
@@ -2527,7 +2533,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.switch
-                    ? this.renderFormSwitch(
+                    ? this.renderPresetFormSwitch(
                         fieldData.label,
                         fieldData.name,
                         require,
@@ -2564,7 +2570,7 @@ class Common extends Core {
                   ) : null}
 
                   {type === cardConfig.contentItemType.datePicker
-                    ? this.renderFormDatePicker(
+                    ? this.renderPresetFormDatePicker(
                         fieldData.label,
                         fieldData.name,
                         require,
@@ -2576,7 +2582,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.timePicker
-                    ? this.renderFormTimePicker(
+                    ? this.renderPresetFormTimePicker(
                         fieldData.label,
                         fieldData.name,
                         require,
@@ -2588,7 +2594,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.textarea
-                    ? this.renderFormTextArea(
+                    ? this.renderPresetFormTextArea(
                         fieldData.label,
                         fieldData.name,
                         require,
@@ -2603,7 +2609,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.onlyShowTextarea
-                    ? this.renderFormOnlyShowTextarea(
+                    ? this.renderPresetFormOnlyShowTextarea(
                         fieldData.label,
                         contentItem.value,
                         fieldData.helper || '',
@@ -2619,7 +2625,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.onlyShowInput
-                    ? this.renderFormOnlyShowInput(
+                    ? this.renderPresetFormOnlyShowInput(
                         fieldData.label,
                         contentItem.value,
                         fieldData.helper || '',
@@ -2631,7 +2637,7 @@ class Common extends Core {
                           placeholder: `暂无${fieldData.label}信息`,
                           ...(contentItem.canCopy || false
                             ? {
-                                addonAfter: this.renderGeneralButton({
+                                addonAfter: this.renderPresetGeneralButton({
                                   style: {
                                     border: '0px solid #d9d9d9',
                                     backgroundColor: '#fafafa',
@@ -2655,7 +2661,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.onlyShowInputDatetime
-                    ? this.renderFormOnlyShowInput(
+                    ? this.renderPresetFormOnlyShowInput(
                         fieldData.label,
                         formatDatetime({
                           data: toDatetime(contentItem.value),
@@ -2674,11 +2680,11 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.select
-                    ? this.renderFormSelect(
+                    ? this.renderPresetFormSelect(
                         fieldData.label,
                         fieldData.name,
                         () => {
-                          return this.renderFormOptionCore(
+                          return this.renderPresetFormOptionCore(
                             refitCommonData(
                               isFunction(contentItem.pretreatmentData)
                                 ? contentItem.pretreatmentData(
@@ -2725,11 +2731,11 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.radio
-                    ? this.renderFormSelect(
+                    ? this.renderPresetFormSelect(
                         fieldData.label,
                         fieldData.name,
                         () => {
-                          return this.renderFormRadioCore(
+                          return this.renderPresetFormRadioCore(
                             refitCommonData(
                               isArray(contentItem.listData)
                                 ? contentItem.listData
@@ -2764,7 +2770,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.onlyShowText
-                    ? this.renderFormOnlyShowText(
+                    ? this.renderPresetFormOnlyShowText(
                         fieldData.label,
                         contentItem.value,
                         (
@@ -2779,7 +2785,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.innerComponent
-                    ? this.renderFormInnerComponent(
+                    ? this.renderPresetFormInnerComponent(
                         fieldData.label,
                         contentItem.component,
                         fieldData.helper,
@@ -2789,14 +2795,14 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.save
-                    ? this.renderFormActionItem(
-                        this.renderSaveButton(contentItem.config || {}),
+                    ? this.renderPresetFormActionItem(
+                        this.renderPresetSaveButton(contentItem.config || {}),
                         formItemLayout,
                       )
                     : null}
 
                   {type === cardConfig.contentItemType.button
-                    ? this.renderFormButton(
+                    ? this.renderPresetFormButton(
                         contentItem.config || {},
                         formItemLayout,
                       )
@@ -2826,11 +2832,11 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.jsonView
-                    ? this.renderJsonView(contentItem.value)
+                    ? this.renderPresetJsonView(contentItem.value)
                     : null}
 
                   {type === cardConfig.contentItemType.syntaxHighlighterView
-                    ? this.renderFormOnlyShowSyntaxHighlighter(
+                    ? this.renderPresetFormOnlyShowSyntaxHighlighter(
                         contentItem.language,
                         fieldData.label,
                         contentItem.value,
@@ -2842,7 +2848,7 @@ class Common extends Core {
                     : null}
 
                   {type === cardConfig.contentItemType.nowTime
-                    ? this.renderFormNowTimeField({ formItemLayout })
+                    ? this.renderPresetFormNowTimeField({ formItemLayout })
                     : null}
                 </Col>
               );
@@ -2881,17 +2887,17 @@ class Common extends Core {
 
           switch (buildType) {
             case extraBuildType.refresh: {
-              itemAdjust = this.renderRefreshButton(item);
+              itemAdjust = this.renderPresetRefreshButton(item);
               break;
             }
 
             case extraBuildType.save: {
-              itemAdjust = this.renderSaveButton(item);
+              itemAdjust = this.renderPresetSaveButton(item);
               break;
             }
 
             case cardConfig.extraBuildType.generalButton: {
-              itemAdjust = this.renderGeneralButton(item);
+              itemAdjust = this.renderPresetGeneralButton(item);
               break;
             }
 

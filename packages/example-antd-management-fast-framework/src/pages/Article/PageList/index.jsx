@@ -343,7 +343,7 @@ class PageList extends MultiPage {
       tools: [
         {
           title: '按钮提示1',
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮1',
             handleClick: () => {
               showInfoMessage({
@@ -356,7 +356,7 @@ class PageList extends MultiPage {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -368,7 +368,7 @@ class PageList extends MultiPage {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -381,7 +381,7 @@ class PageList extends MultiPage {
         {
           title: '按钮提示4',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮4',
             handleClick: () => {
               showInfoMessage({
@@ -783,7 +783,7 @@ class PageList extends MultiPage {
   };
 
   // eslint-disable-next-line no-unused-vars
-  renderListViewItemInner = (data, index) => {
+  renderPresetListViewItemInner = (data, index) => {
     return (
       <>
         <List.Item.Meta
@@ -975,7 +975,7 @@ class PageList extends MultiPage {
     };
   };
 
-  renderOther = () => {
+  renderPresetOther = () => {
     const {
       articleId,
       addBasicInfoDrawerVisible,

@@ -5,12 +5,12 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { isArray, isBoolean, isObject } from 'easy-soft-utility';
 
 import {
+  builderPageHeaderExtraContent,
   buildPageHeaderContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
   decorateAvatar,
   iconBuilder,
-  pageHeaderExtraContent,
 } from 'antd-management-fast-component';
 
 import { DataLoad } from '../DataSingleView/DataLoad';
@@ -251,14 +251,14 @@ class DataTabContainer extends DataLoad {
           }}
           avatar={avatarProperties}
           title={buildPageHeaderTitle(
-            this.getPageName(),
+            this.getPresetPageName(),
             this.establishPageHeaderTitlePrefix(),
           )}
           subTitle={this.buildPageHeaderSubTitle()}
           tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
           extra={this.buildExtraAction()}
           content={buildPageHeaderContent(pageHeaderContentConfig)}
-          extraContent={pageHeaderExtraContent(
+          extraContent={builderPageHeaderExtraContent(
             this.establishPageHeaderExtraContentConfig(),
           )}
           // onBack={() => {
@@ -267,7 +267,7 @@ class DataTabContainer extends DataLoad {
         >
           <Tabs {...this.buildOtherTabProps()} />
 
-          {this.renderOther()}
+          {this.renderPresetOther()}
         </PageContainer>
       </div>
     );

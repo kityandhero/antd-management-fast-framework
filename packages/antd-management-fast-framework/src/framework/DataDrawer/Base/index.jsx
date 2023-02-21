@@ -72,9 +72,9 @@ class Base extends BaseWindow {
     return '';
   };
 
-  renderTitleIcon = () => iconBuilder.form();
+  renderPresetTitleIcon = () => iconBuilder.form();
 
-  renderTitle = () => {
+  renderPresetTitle = () => {
     const previousText = this.buildTitlePrevText();
     let subText = this.buildTitleSubText();
 
@@ -91,7 +91,7 @@ class Base extends BaseWindow {
     return `bottomLeft`;
   };
 
-  renderForm = () => {
+  renderPresetForm = () => {
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
     const initialValues = this.buildInitialValues({
@@ -111,7 +111,7 @@ class Base extends BaseWindow {
         layout={this.buildFormLayout()}
         {...otherFormProperties}
       >
-        {this.formContent()}
+        {this.renderPresetFormContent()}
       </Form>
     );
   };
@@ -124,15 +124,17 @@ class Base extends BaseWindow {
     return { mode: cardConfig.wrapperType.drawer };
   };
 
-  formContent = () => {
+  renderPresetFormContent = () => {
     return this.buildCardCollection(this.establishCardCollectionConfig());
   };
 
-  renderContentContainor = () => {
-    return <div className={styles.contentContainor}>{this.renderForm()}</div>;
+  renderPresetContentContainor = () => {
+    return (
+      <div className={styles.contentContainor}>{this.renderPresetForm()}</div>
+    );
   };
 
-  renderCloseButton = (option) => {
+  renderPresetCloseButton = (option) => {
     const o = {
       type: 'default',
       icon: iconBuilder.closeCircle(),
@@ -144,7 +146,7 @@ class Base extends BaseWindow {
       },
     };
 
-    return this.renderGeneralButton(o);
+    return this.renderPresetGeneralButton(o);
   };
 
   buildBottomBarInnerExtraConfigList = () => {
@@ -175,19 +177,19 @@ class Base extends BaseWindow {
     ];
   };
 
-  renderBottomBarRightBox = () => {
+  renderPresetBottomBarRightBox = () => {
     const rightConfigList = this.buildBottomBarInnerRightItemConfigList();
 
-    return this.renderBottomBarInnerBox(rightConfigList);
+    return this.renderPresetBottomBarInnerBox(rightConfigList);
   };
 
-  renderBottomBarLeftBox = () => {
+  renderPresetBottomBarLeftBox = () => {
     const leftConfigList = this.buildBottomBarInnerLeftItemConfigList();
 
-    return this.renderBottomBarInnerBox(leftConfigList);
+    return this.renderPresetBottomBarInnerBox(leftConfigList);
   };
 
-  renderBottomBarInnerBox = (configList) => {
+  renderPresetBottomBarInnerBox = (configList) => {
     if (!isArray(configList) || configList.length <= 0) {
       return null;
     }
@@ -230,12 +232,12 @@ class Base extends BaseWindow {
 
           switch (itemBuildType) {
             case drawerConfig.bottomBarBuildType.close: {
-              itemAdjust = this.renderCloseButton(item);
+              itemAdjust = this.renderPresetCloseButton(item);
               break;
             }
 
             case drawerConfig.bottomBarBuildType.save: {
-              itemAdjust = this.renderSaveButton({
+              itemAdjust = this.renderPresetSaveButton({
                 ...item,
                 handleClick: (error) => {
                   that.handleOk(error);
@@ -245,7 +247,7 @@ class Base extends BaseWindow {
             }
 
             case drawerConfig.bottomBarBuildType.generalButton: {
-              itemAdjust = this.renderGeneralButton(item);
+              itemAdjust = this.renderPresetGeneralButton(item);
               break;
             }
 
@@ -307,9 +309,9 @@ class Base extends BaseWindow {
     return components;
   };
 
-  renderBottomBar = () => {
-    const bottomBarLeftBox = this.renderBottomBarLeftBox();
-    const bottomBarRightBox = this.renderBottomBarRightBox();
+  renderPresetBottomBar = () => {
+    const bottomBarLeftBox = this.renderPresetBottomBarLeftBox();
+    const bottomBarRightBox = this.renderPresetBottomBarRightBox();
 
     return (
       <Footer>
@@ -357,7 +359,7 @@ class Base extends BaseWindow {
     const { visible, width, height, showBottomBar, placement } = this.state;
     const { maskClosable } = this.props;
 
-    const titleIcon = this.renderTitleIcon();
+    const titleIcon = this.renderPresetTitleIcon();
 
     return (
       <Drawer
@@ -366,10 +368,10 @@ class Base extends BaseWindow {
             {titleIcon}
             {titleIcon ? (
               <>
-                <span className={styles.titleText} /> {this.renderTitle()}
+                <span className={styles.titleText} /> {this.renderPresetTitle()}
               </>
             ) : (
-              this.renderTitle()
+              this.renderPresetTitle()
             )}
           </span>
         }
@@ -388,11 +390,11 @@ class Base extends BaseWindow {
         <div className={styles.mainContainor}>
           <Layout>
             {/* <Header>Header</Header> */}
-            <Content>{this.renderContentContainor()}</Content>
-            {showBottomBar ? this.renderBottomBar() : null}
+            <Content>{this.renderPresetContentContainor()}</Content>
+            {showBottomBar ? this.renderPresetBottomBar() : null}
           </Layout>
 
-          {this.renderOther()}
+          {this.renderPresetOther()}
         </div>
       </Drawer>
     );

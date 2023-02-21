@@ -161,11 +161,11 @@ class Base extends BaseWindow {
     );
   };
 
-  formContent = () => {
+  renderPresetFormContent = () => {
     return this.buildCardCollection(this.establishCardCollectionConfig());
   };
 
-  renderForm = () => {
+  renderPresetForm = () => {
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
     const initialValues = this.buildInitialValues({
@@ -185,17 +185,17 @@ class Base extends BaseWindow {
         className={this.getFormClassName()}
         {...otherFormProperties}
       >
-        {this.formContent()}
+        {this.renderPresetFormContent()}
       </Form>
     );
   };
 
-  renderFormWrapper = () => {
-    return this.renderForm();
+  renderPresetFormWrapper = () => {
+    return this.renderPresetForm();
   };
 
-  renderModalInner = () => {
-    return this.renderFormWrapper();
+  renderPresetModalInner = () => {
+    return this.renderPresetFormWrapper();
   };
 
   renderFurther() {
@@ -220,10 +220,10 @@ class Base extends BaseWindow {
         onCancel={this.handleCancel}
       >
         <Spin spinning={processing || dataLoading}>
-          {this.renderModalInner()}
+          {this.renderPresetModalInner()}
         </Spin>
 
-        {this.renderOther()}
+        {this.renderPresetOther()}
       </Modal>
     );
   }

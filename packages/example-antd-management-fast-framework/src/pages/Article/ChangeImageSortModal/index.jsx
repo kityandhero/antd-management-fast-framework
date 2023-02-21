@@ -151,7 +151,7 @@ class ChangeImageSortModal extends Base {
     });
   };
 
-  formContent = () => {
+  renderPresetFormContent = () => {
     const { metaListData } = this.state;
 
     const ListContent = ({ data: { sort } }) => (

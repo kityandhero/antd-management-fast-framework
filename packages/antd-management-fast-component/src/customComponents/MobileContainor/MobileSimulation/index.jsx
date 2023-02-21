@@ -27,14 +27,14 @@ class MobileSimulation extends PureComponent {
     return list;
   };
 
-  renderInnerView = () => {
+  renderPresetInnerView = () => {
     const { children } = this.props;
 
     return children;
   };
 
-  renderInnerViewWrapper = () => {
-    return this.renderInnerView();
+  renderPresetInnerViewWrapper = () => {
+    return this.renderPresetInnerView();
   };
 
   render() {
@@ -65,7 +65,7 @@ class MobileSimulation extends PureComponent {
             alertButtonText={alertButtonText}
             afterAlertClick={afterAlertClick}
           >
-            {this.renderInnerViewWrapper()}
+            {this.renderPresetInnerViewWrapper()}
           </RoughSketch>
         );
         break;
@@ -83,7 +83,7 @@ class MobileSimulation extends PureComponent {
             alertButtonText={alertButtonText}
             afterAlertClick={afterAlertClick}
           >
-            {this.renderInnerViewWrapper()}
+            {this.renderPresetInnerViewWrapper()}
           </IphoneX>
         );
         break;
@@ -101,7 +101,7 @@ class MobileSimulation extends PureComponent {
             alertButtonText={alertButtonText}
             afterAlertClick={afterAlertClick}
           >
-            {this.renderInnerViewWrapper()}
+            {this.renderPresetInnerViewWrapper()}
           </Iphone8>
         );
         break;
@@ -119,7 +119,7 @@ class MobileSimulation extends PureComponent {
             alertButtonText={alertButtonText}
             afterAlertClick={afterAlertClick}
           >
-            {this.renderInnerViewWrapper()}
+            {this.renderPresetInnerViewWrapper()}
           </Iphone8plus>
         );
         break;
@@ -137,7 +137,7 @@ class MobileSimulation extends PureComponent {
             alertButtonText={alertButtonText}
             afterAlertClick={afterAlertClick}
           >
-            {this.renderInnerViewWrapper()}
+            {this.renderPresetInnerViewWrapper()}
           </IPhone5S>
         );
         break;
@@ -155,7 +155,7 @@ class MobileSimulation extends PureComponent {
             alertButtonText={alertButtonText}
             afterAlertClick={afterAlertClick}
           >
-            {this.renderInnerViewWrapper()}
+            {this.renderPresetInnerViewWrapper()}
           </GalaxyNote8>
         );
         break;

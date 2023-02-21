@@ -18,11 +18,11 @@ import {
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 import {
+  builderPageHeaderExtraContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
   decorateAvatar,
   iconBuilder,
-  pageHeaderExtraContent,
 } from 'antd-management-fast-component';
 
 import { DataCore } from '../../DataSingleView/DataCore';
@@ -236,7 +236,7 @@ class BaseAddForm extends DataCore {
     return initialValues;
   };
 
-  renderModalInner = () => {
+  renderPresetModalInner = () => {
     const initialValues = this.buildInitialValues();
 
     const formLayout = this.buildFormLayout();
@@ -250,7 +250,7 @@ class BaseAddForm extends DataCore {
         className={this.getFormClassName()}
         {...otherFormProperties}
       >
-        {this.formContent()}
+        {this.renderPresetFormContent()}
       </Form>
     );
   };
@@ -298,14 +298,14 @@ class BaseAddForm extends DataCore {
         className={styles.customContainor}
         avatar={avatarProperties}
         title={buildPageHeaderTitle(
-          this.getPageName(),
+          this.getPresetPageName(),
           this.establishPageHeaderTitlePrefix(),
         )}
         subTitle={this.buildPageHeaderSubTitle()}
         tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
         extra={this.buildExtraAction()}
-        content={this.renderPageHeaderContent()}
-        extraContent={pageHeaderExtraContent(
+        content={this.renderPresetPageHeaderContent()}
+        extraContent={builderPageHeaderExtraContent(
           this.establishPageHeaderExtraContentConfig(),
         )}
         // onBack={() => {
@@ -313,8 +313,8 @@ class BaseAddForm extends DataCore {
         // }}
       >
         <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
-          {this.renderFormWrapper()}
-          {this.renderOther()}
+          {this.renderPresetFormWrapper()}
+          {this.renderPresetOther()}
         </div>
         <BackTop />
       </PageContainer>

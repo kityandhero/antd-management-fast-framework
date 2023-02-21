@@ -280,24 +280,26 @@ class BasicInfo extends TabPageBase {
     });
   };
 
-  renderListView = (list) => {
+  renderPresetListView = (list) => {
     return (
       <List
         itemLayout="vertical"
         size="small"
         dataSource={list}
         renderItem={(item, index) => {
-          return this.renderListViewItem(item, index);
+          return this.renderPresetListViewItem(item, index);
         }}
       />
     );
   };
 
-  renderListViewItem = (record, index) => {
-    return <List.Item>{this.renderListViewItemInner(record, index)}</List.Item>;
+  renderPresetListViewItem = (record, index) => {
+    return (
+      <List.Item>{this.renderPresetListViewItemInner(record, index)}</List.Item>
+    );
   };
 
-  renderListViewItemInner = (record, index) => {
+  renderPresetListViewItemInner = (record, index) => {
     const { mediaItemList } = this.state;
 
     const mediaItemId = getValueByKey({
@@ -579,7 +581,7 @@ class BasicInfo extends TabPageBase {
         },
         {
           title: '刷新数据',
-          component: this.renderRefreshButton(),
+          component: this.renderPresetRefreshButton(),
         },
       ],
     };
@@ -612,7 +614,7 @@ class BasicInfo extends TabPageBase {
             {
               lg: 24,
               type: cardConfig.contentItemType.component,
-              component: this.renderListView(mediaItemList),
+              component: this.renderPresetListView(mediaItemList),
             },
           ],
         },
@@ -624,7 +626,7 @@ class BasicInfo extends TabPageBase {
     return { width: 400 };
   };
 
-  renderSiderTopArea = () => {
+  renderPresetSiderTopArea = () => {
     const { mediaItemList } = this.state;
 
     return (
@@ -640,7 +642,7 @@ class BasicInfo extends TabPageBase {
     );
   };
 
-  renderOther = () => {
+  renderPresetOther = () => {
     const {
       articleId,
       mediaItemList,

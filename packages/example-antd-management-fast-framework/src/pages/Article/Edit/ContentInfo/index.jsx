@@ -181,7 +181,7 @@ class ContentInfo extends TabPageBase {
     return { width: 400 };
   };
 
-  renderSiderTopArea = () => {
+  renderPresetSiderTopArea = () => {
     const { contentPreview, contentChanged } = this.state;
 
     return (

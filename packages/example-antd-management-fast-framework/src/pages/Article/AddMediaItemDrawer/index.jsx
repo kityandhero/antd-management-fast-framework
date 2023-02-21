@@ -113,9 +113,9 @@ class Index extends BaseAddDrawer {
     this.setState({ mediaType: toNumber(v) });
   };
 
-  renderTitleIcon = () => iconBuilder.plusSquare();
+  renderPresetTitleIcon = () => iconBuilder.plusSquare();
 
-  renderTitle = () => {
+  renderPresetTitle = () => {
     return '添加媒体项';
   };
 

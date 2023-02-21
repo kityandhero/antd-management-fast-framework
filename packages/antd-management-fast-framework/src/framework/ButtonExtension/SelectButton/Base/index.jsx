@@ -34,7 +34,7 @@ class Base extends SupplementWrapper {
     };
   };
 
-  renderButton = () => {
+  renderPresetButton = () => {
     const { children, buttonProps } = this.props;
 
     const p = {
@@ -51,9 +51,9 @@ class Base extends SupplementWrapper {
   renderFurther() {
     return (
       <>
-        {this.renderButton()}
+        {this.renderPresetButton()}
 
-        {this.renderOther()}
+        {this.renderPresetOther()}
       </>
     );
   }

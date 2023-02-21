@@ -95,27 +95,27 @@ class SelectFieldInteractiveBase extends SelectFieldBase {
     }
   };
 
-  renderSelectDrawer = () => {
-    const text = '需要实现 renderSelectDrawer 方法';
+  renderPresetSelectDrawer = () => {
+    const text = '需要实现 renderPresetSelectDrawer 方法';
 
     showSimpleRuntimeError(text);
   };
 
-  renderSelectModal = () => {
-    const text = '需要实现 renderSelectModal 方法';
+  renderPresetSelectModal = () => {
+    const text = '需要实现 renderPresetSelectModal 方法';
 
     showSimpleRuntimeError(text);
   };
 
-  renderOther = () => {
+  renderPresetOther = () => {
     const { selectMode } = this.props;
 
     if (toNumber(selectMode) === selectModeCollection.drawer) {
-      return this.renderSelectDrawer();
+      return this.renderPresetSelectDrawer();
     }
 
     if (toNumber(selectMode) === selectModeCollection.modal) {
-      return this.renderSelectModal();
+      return this.renderPresetSelectModal();
     }
 
     const text = '无效的选择项渲染模式';

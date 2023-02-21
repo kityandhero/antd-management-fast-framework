@@ -274,7 +274,7 @@ class DataMenuContainer extends AuthorizationWrapper {
     });
   };
 
-  renderRightTitle = () => {
+  renderPresetRightTitle = () => {
     return this.buildRightTitle(this.getRightTitleConfig());
   };
 

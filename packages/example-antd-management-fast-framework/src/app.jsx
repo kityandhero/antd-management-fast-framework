@@ -324,7 +324,7 @@ export const layout = () => {
     childrenRender: (children, properties) => {
       // if (initialState?.loading) return <PageLoading />;
       return (
-        <>
+        <div style={{ padding: '24px' }}>
           {children}
 
           <Bootstrap />
@@ -341,7 +341,7 @@ export const layout = () => {
               // }}
             />
           )}
-        </>
+        </div>
       );
     },
     footerRender: () => <Footer />,

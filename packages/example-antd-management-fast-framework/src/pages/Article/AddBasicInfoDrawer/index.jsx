@@ -47,7 +47,7 @@ class Index extends BaseAddDrawer {
     ];
   };
 
-  renderTitle = () => {
+  renderPresetTitle = () => {
     return '新增选项';
   };
 

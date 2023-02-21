@@ -23,13 +23,13 @@ class DataPreviewDrawer extends Base {
     };
   }
 
-  renderTitleIcon = () => {
+  renderPresetTitleIcon = () => {
     const { icon } = this.props;
 
     return icon;
   };
 
-  renderTitle = () => {
+  renderPresetTitle = () => {
     const { title } = this.props;
 
     return title || '';
@@ -116,14 +116,16 @@ class DataPreviewDrawer extends Base {
     return { list };
   };
 
-  renderContentContainor = () => {
+  renderPresetContentContainor = () => {
     const { dataType, data } = this.props;
 
     if (dataType === dataTypeCollection.html.flag) {
       return <div className={styles.previewContainor}>{parse(data)}</div>;
     }
 
-    return <div className={styles.contentContainor}>{this.renderForm()}</div>;
+    return (
+      <div className={styles.contentContainor}>{this.renderPresetForm()}</div>
+    );
   };
 }
 

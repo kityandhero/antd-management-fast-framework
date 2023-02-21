@@ -9,9 +9,9 @@ class BaseUpdateFormContent extends BaseUpdateForm {
   renderFurther() {
     return (
       <>
-        {this.renderFormWrapper()}
+        {this.renderPresetFormWrapper()}
 
-        {this.renderOther()}
+        {this.renderPresetOther()}
 
         <BackTop />
       </>

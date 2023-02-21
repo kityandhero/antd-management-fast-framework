@@ -14,7 +14,7 @@ const {
   loading: loading.models.article,
 }))
 class SelectField extends SelectFieldInteractiveBase {
-  renderSelectDrawer = () => {
+  renderPresetSelectDrawer = () => {
     const { drawerVisible } = this.state;
 
     return (

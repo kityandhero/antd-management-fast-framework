@@ -1271,7 +1271,7 @@ export function buildPageHeaderTagWrapper(Tags) {
   );
 }
 
-export function pageHeaderExtraContent(data) {
+export function builderPageHeaderExtraContent(data) {
   if ((data || null) == null) {
     return null;
   }

@@ -8,13 +8,13 @@ import {
 } from 'antd-management-fast-common';
 import {
   avatarImageLoadResultCollection,
+  builderPageHeaderExtraContent,
   buildPageHeaderContent,
   buildPageHeaderTagWrapper,
   buildPageHeaderTitle,
   buildTagList,
   decorateAvatar,
   iconBuilder,
-  pageHeaderExtraContent,
 } from 'antd-management-fast-component';
 
 import { BaseView } from '../../DataOperation/BaseView';
@@ -136,7 +136,7 @@ class DataCore extends BaseView {
 
   pageHeaderLogo = () => <Avatar shape="square" icon={iconBuilder.plus()} />;
 
-  getPageName = () => {
+  getPresetPageName = () => {
     const { pageName } = this.state;
 
     return pageName;
@@ -181,28 +181,31 @@ class DataCore extends BaseView {
     return null;
   };
 
-  renderMainTitleIcon = () => {
+  renderPresetMainTitleIcon = () => {
     return iconBuilder.contacts();
   };
 
-  renderMainTitleText = () => {
+  renderPresetMainTitleText = () => {
     return '基本信息';
   };
 
-  renderMainTitle = () => {
+  renderPresetMainTitle = () => {
     return (
       <>
-        {this.renderMainTitleIcon()}
-        <span className={styles.cardTitle}> {this.renderMainTitleText()}</span>
+        {this.renderPresetMainTitleIcon()}
+
+        <span className={styles.cardTitle}>
+          {this.renderPresetMainTitleText()}
+        </span>
       </>
     );
   };
 
-  renderFormWrapper = () => {
-    return this.renderForm();
+  renderPresetFormWrapper = () => {
+    return this.renderPresetForm();
   };
 
-  renderForm = () => {
+  renderPresetForm = () => {
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
     const initialValues = this.buildInitialValues({
@@ -222,7 +225,7 @@ class DataCore extends BaseView {
         layout={this.buildFormLayout()}
         {...otherFormProperties}
       >
-        {this.formContent()}
+        {this.renderPresetFormContent()}
       </Form>
     );
   };
@@ -231,17 +234,19 @@ class DataCore extends BaseView {
     return null;
   };
 
-  renderPageHeaderContent = () => {
+  renderPresetPageHeaderContent = () => {
     return buildPageHeaderContent(
       this.establishPageHeaderContentConfig() || {},
     );
   };
 
-  renderPageHeaderExtraContent = () => {
-    return pageHeaderExtraContent(this.establishPageHeaderExtraContentConfig());
+  renderPresetPageHeaderExtraContent = () => {
+    return builderPageHeaderExtraContent(
+      this.establishPageHeaderExtraContentConfig(),
+    );
   };
 
-  formContent = () => {
+  renderPresetFormContent = () => {
     return this.buildCardCollection(this.establishCardCollectionConfig());
   };
 
@@ -273,18 +278,18 @@ class DataCore extends BaseView {
         logo={this.pageHeaderLogo()}
         avatar={avatarProperties}
         title={buildPageHeaderTitle(
-          this.getPageName(),
+          this.getPresetPageName(),
           this.establishPageHeaderTitlePrefix(),
         )}
         subTitle={this.buildPageHeaderSubTitle()}
         tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
         extra={this.buildExtraAction()}
-        content={this.renderPageHeaderContent()}
-        extraContent={this.renderPageHeaderExtraContent()}
+        content={this.renderPresetPageHeaderContent()}
+        extraContent={this.renderPresetPageHeaderExtraContent()}
       >
         <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
-          {this.renderFormWrapper()}
-          {this.renderOther()}
+          {this.renderPresetFormWrapper()}
+          {this.renderPresetOther()}
         </div>
         <BackTop />
       </PageContainer>

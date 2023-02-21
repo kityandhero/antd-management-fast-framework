@@ -260,7 +260,7 @@ class SinglePage extends Base {
     return toNumber(frontendPageNo);
   };
 
-  renderPaginationView = () => {
+  renderPresetPaginationView = () => {
     if (!this.getCanUseFrontendPagination()) {
       return null;
     }

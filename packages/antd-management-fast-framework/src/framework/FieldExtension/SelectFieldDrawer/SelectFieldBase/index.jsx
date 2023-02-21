@@ -47,7 +47,7 @@ class SelectFieldBase extends SupplementWrapper {
     };
   };
 
-  renderField = () => {
+  renderPresetField = () => {
     const {
       dataLoading,
       processing,
@@ -64,7 +64,7 @@ class SelectFieldBase extends SupplementWrapper {
       fieldPlaceholder: '请选择',
     };
 
-    return this.renderFormOnlyShowInput(
+    return this.renderPresetFormOnlyShowInput(
       label,
       (fieldText || '') === '' ? null : fieldText,
       helper || null,
@@ -125,9 +125,9 @@ class SelectFieldBase extends SupplementWrapper {
   renderFurther() {
     return (
       <>
-        {this.renderField()}
+        {this.renderPresetField()}
 
-        {this.renderOther()}
+        {this.renderPresetOther()}
       </>
     );
   }

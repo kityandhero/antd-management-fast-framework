@@ -51,7 +51,7 @@ class SingleListDrawer extends SinglePageDrawer {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
-  getPageName = () => {
+  getPresetPageName = () => {
     return '请选择文章';
   };
 
@@ -96,7 +96,7 @@ class SingleListDrawer extends SinglePageDrawer {
   };
 
   // eslint-disable-next-line no-unused-vars
-  renderListViewItemInner = (item, index) => {
+  renderPresetListViewItemInner = (item, index) => {
     const articleId = getValueByKey({
       data: item,
       key: fieldData.articleId.name,
@@ -211,7 +211,7 @@ class SingleListDrawer extends SinglePageDrawer {
       width: 106,
       fixed: 'right',
       render: (text, record) => {
-        return this.renderSelectButton({
+        return this.renderPresetSelectButton({
           handleData: record,
         });
       },

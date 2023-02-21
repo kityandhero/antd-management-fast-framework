@@ -281,12 +281,12 @@ class Index extends MultiPage {
     },
   ];
 
-  renderPageHeaderContent = () => {
+  renderPresetPageHeaderContent = () => {
     const {
       currentOperator: { currentOperator },
     } = this.props;
 
-    console.log(currentOperator);
+    console.log({ currentOperator });
 
     const avatar = getValueByKey({
       data: currentOperator,
@@ -345,7 +345,7 @@ class Index extends MultiPage {
     );
   };
 
-  renderSiderTopArea = () => {
+  renderPresetSiderTopArea = () => {
     return <ShortcutPanel />;
   };
 }

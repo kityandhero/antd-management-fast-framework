@@ -291,7 +291,7 @@ class BasicInfo extends TabPageBase {
       tools: [
         {
           title: '按钮提示1',
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮1',
             handleClick: () => {
               showInfoMessage({
@@ -304,7 +304,7 @@ class BasicInfo extends TabPageBase {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -316,7 +316,7 @@ class BasicInfo extends TabPageBase {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -329,7 +329,7 @@ class BasicInfo extends TabPageBase {
         {
           title: '按钮提示4',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮4',
             handleClick: () => {
               showInfoMessage({
@@ -1463,7 +1463,7 @@ class BasicInfo extends TabPageBase {
     };
   };
 
-  renderOther = () => {
+  renderPresetOther = () => {
     const { metaData, changeImageSortModalVisible } = this.state;
 
     return (

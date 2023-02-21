@@ -23,7 +23,7 @@ class MobileHtmlPreviewBox extends MobilePreviewArea {
     return <HtmlBox html={html} />;
   };
 
-  renderInnerView = () => {
+  renderPresetInnerView = () => {
     return this.buildContent();
   };
 }

@@ -433,7 +433,10 @@ class AbstractComponent extends Component {
     return null;
   }
 
-  renderView() {
+  /**
+   * render the practical view
+   */
+  renderPracticalView() {
     return this.renderFurther();
   }
 
@@ -446,7 +449,7 @@ class AbstractComponent extends Component {
 
     this.showRenderCount();
 
-    return this.renderView();
+    return this.renderPracticalView();
   }
 }
 

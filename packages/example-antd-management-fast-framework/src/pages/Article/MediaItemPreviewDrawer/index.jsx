@@ -22,11 +22,11 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
     };
   }
 
-  renderTitleIcon = () => {
+  renderPresetTitleIcon = () => {
     return iconBuilder.picture();
   };
 
-  renderTitle = () => {
+  renderPresetTitle = () => {
     return '媒体图文预览';
   };
 
@@ -80,7 +80,7 @@ class MediaItemPreviewDrawer extends MobilePreviewDrawer {
     );
   };
 
-  renderInnerView = () => {
+  renderPresetInnerView = () => {
     return this.buildArticle();
   };
 }

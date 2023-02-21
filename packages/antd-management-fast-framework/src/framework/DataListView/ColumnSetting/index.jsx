@@ -1,4 +1,5 @@
 import { Button, Checkbox, Popover, Tooltip } from 'antd';
+import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { PushpinOutlined } from '@ant-design/icons';
@@ -285,7 +286,7 @@ const ColumnSetting = (properties) => {
   return (
     <span className={styles.columnSetting}>
       <Popover
-        arrowPointAtCenter
+        arrow
         title={
           <div className={styles.topTitle}>
             <Checkbox

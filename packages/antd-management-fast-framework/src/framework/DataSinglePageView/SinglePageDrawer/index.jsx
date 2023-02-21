@@ -201,7 +201,7 @@ class SinglePageDrawer extends SinglePage {
     }
   };
 
-  renderTitleIcon = () => <ReadOutlined className={styles.titleIcon} />;
+  renderPresetTitleIcon = () => <ReadOutlined className={styles.titleIcon} />;
 
   hideDrawer = () => {
     this.onClose();
@@ -211,12 +211,12 @@ class SinglePageDrawer extends SinglePage {
     return { mode: contentConfig.wrapperType.drawer };
   };
 
-  renderViewContainor = () => {
+  renderPresetListMainViewContainor = () => {
     const { reloadAnimalShow, listTitle, tableSize, refreshing, listViewMode } =
       this.state;
 
-    const extraAction = this.renderExtraActionView();
-    const searchForm = this.renderForm();
+    const extraAction = this.renderPresetExtraActionView();
+    const searchForm = this.renderPresetForm();
 
     return (
       <div
@@ -253,7 +253,9 @@ class SinglePageDrawer extends SinglePage {
                   padding: 0,
                 }}
               >
-                <div className={styles.tableListForm}>{this.renderForm()}</div>
+                <div className={styles.tableListForm}>
+                  {this.renderPresetForm()}
+                </div>
               </Card>
 
               <div style={{ height: '1px', backgroundColor: '#f0f2f5' }} />
@@ -315,7 +317,7 @@ class SinglePageDrawer extends SinglePage {
 
                   {extraAction == null ? null : <Divider type="vertical" />}
 
-                  {this.renderBatchAction()}
+                  {this.renderPresetBatchAction()}
 
                   {listViewMode === listViewConfig.viewMode.table ? (
                     <DensityAction
@@ -372,7 +374,7 @@ class SinglePageDrawer extends SinglePage {
                       : {}
                   }
                 >
-                  {this.renderAboveTable()}
+                  {this.renderPresetAboveTable()}
                 </div>
 
                 <div
@@ -382,19 +384,19 @@ class SinglePageDrawer extends SinglePage {
                       : {}
                   }
                 >
-                  {this.renderView()}
+                  {this.renderPresetListMainView()}
                 </div>
               </div>
             </Card>
           </div>
         </div>
 
-        {this.renderOther()}
+        {this.renderPresetOther()}
       </div>
     );
   };
 
-  renderContentContainor = () => {
+  renderPresetContentContainor = () => {
     const { listViewMode } = this.state;
 
     return (
@@ -413,12 +415,12 @@ class SinglePageDrawer extends SinglePage {
           backgroundColor: '#fff',
         }}
       >
-        {this.renderViewContainor()}
+        {this.renderPresetListMainViewContainor()}
       </div>
     );
   };
 
-  renderDrawerInner = () => {
+  renderPresetDrawerInner = () => {
     const { listViewMode } = this.state;
 
     return (
@@ -430,19 +432,19 @@ class SinglePageDrawer extends SinglePage {
             : {}
         }
       >
-        {this.renderContentContainor()}
+        {this.renderPresetContentContainor()}
       </div>
     );
   };
 
-  renderListView = () => {
+  renderPresetListView = () => {
     const { dataLoading, listViewMode } = this.state;
 
     const list = this.getCanUseFrontendPagination()
       ? this.adjustFrontendPaginationViewDataSource()
       : this.adjustViewDataSource();
 
-    const bottomBar = this.renderPaginationView();
+    const bottomBar = this.renderPresetPaginationView();
 
     return (
       <div
@@ -471,10 +473,10 @@ class SinglePageDrawer extends SinglePage {
                 : {}
             }
             loading={dataLoading}
-            itemLayout={this.renderListViewItemLayout()}
+            itemLayout={this.renderPresetListViewItemLayout()}
             dataSource={list}
             renderItem={(item, index) => {
-              return this.renderListViewItem(item, index);
+              return this.renderPresetListViewItem(item, index);
             }}
           />
         </div>
@@ -512,7 +514,7 @@ class SinglePageDrawer extends SinglePage {
     );
   };
 
-  renderListViewItemActionSelect = (item, index) => {
+  renderPresetListViewItemActionSelect = (item, index) => {
     const that = this;
 
     return buildListViewItemActionSelect({
@@ -530,8 +532,8 @@ class SinglePageDrawer extends SinglePage {
       <Drawer
         title={
           <span>
-            {this.renderTitleIcon()}
-            {this.getPageName()}
+            {this.renderPresetTitleIcon()}
+            {this.getPresetPageName()}
           </span>
         }
         destroyOnClose={false}
@@ -550,7 +552,7 @@ class SinglePageDrawer extends SinglePage {
               height: 'calc(100vh - 55px)',
             }}
           >
-            {this.renderDrawerInner()}
+            {this.renderPresetDrawerInner()}
           </div>
         ) : null}
 
@@ -560,12 +562,12 @@ class SinglePageDrawer extends SinglePage {
               height: 'calc(100vh - 55px)',
             }}
           >
-            {this.renderDrawerInner()}
+            {this.renderPresetDrawerInner()}
           </div>
         ) : null}
 
         {listViewMode === listViewConfig.viewMode.table
-          ? this.renderDrawerInner()
+          ? this.renderPresetDrawerInner()
           : null}
       </Drawer>
     );

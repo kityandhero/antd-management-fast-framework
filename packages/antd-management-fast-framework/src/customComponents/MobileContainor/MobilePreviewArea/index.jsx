@@ -127,7 +127,7 @@ class MobilePreviewArea extends Base {
                     afterAlertClick={afterAlertClick}
                     mobileType={mobileType}
                   >
-                    {this.renderInnerViewWrapper()}
+                    {this.renderPresetInnerViewWrapper()}
                   </MobileSimulation>
                 </div>
               ),
@@ -138,12 +138,12 @@ class MobilePreviewArea extends Base {
     };
   };
 
-  renderInnerView = () => {
+  renderPresetInnerView = () => {
     return null;
   };
 
-  renderInnerViewWrapper = () => {
-    return this.renderInnerView();
+  renderPresetInnerViewWrapper = () => {
+    return this.renderPresetInnerView();
   };
 
   renderFurther() {

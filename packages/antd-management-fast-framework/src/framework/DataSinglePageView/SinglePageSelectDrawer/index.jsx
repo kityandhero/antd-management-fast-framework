@@ -21,7 +21,7 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
     this.hideDrawer();
   };
 
-  renderSelectButton = ({
+  renderPresetSelectButton = ({
     confirm = false,
     text: textSource = '选择',
     icon: iconSource = iconBuilder.import(),

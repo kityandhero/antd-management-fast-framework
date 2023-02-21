@@ -193,7 +193,7 @@ class MultiPageDrawer extends MultiPage {
     }
   };
 
-  renderTitleIcon = () => <ReadOutlined className={styles.titleIcon} />;
+  renderPresetTitleIcon = () => <ReadOutlined className={styles.titleIcon} />;
 
   hideDrawer = () => {
     this.onClose();
@@ -222,7 +222,7 @@ class MultiPageDrawer extends MultiPage {
     return { mode: contentConfig.wrapperType.drawer };
   };
 
-  renderViewContainor = () => {
+  renderPresetListMainViewContainor = () => {
     const {
       reloadAnimalShow,
       listTitle,
@@ -234,8 +234,8 @@ class MultiPageDrawer extends MultiPage {
       listViewMode,
     } = this.state;
 
-    const extraAction = this.renderExtraActionView();
-    const searchForm = this.renderForm();
+    const extraAction = this.renderPresetExtraActionView();
+    const searchForm = this.renderPresetForm();
 
     return (
       <div
@@ -272,7 +272,9 @@ class MultiPageDrawer extends MultiPage {
                   padding: 0,
                 }}
               >
-                <div className={styles.tableListForm}>{this.renderForm()}</div>
+                <div className={styles.tableListForm}>
+                  {this.renderPresetForm()}
+                </div>
               </Card>
 
               <div style={{ height: '1px', backgroundColor: '#f0f2f5' }} />
@@ -334,7 +336,7 @@ class MultiPageDrawer extends MultiPage {
 
                   {extraAction == null ? null : <Divider type="vertical" />}
 
-                  {this.renderBatchAction()}
+                  {this.renderPresetBatchAction()}
 
                   {listViewMode === listViewConfig.viewMode.table ? (
                     <DensityAction
@@ -395,7 +397,7 @@ class MultiPageDrawer extends MultiPage {
                         : {}
                     }
                   >
-                    {this.renderAboveTable()}
+                    {this.renderPresetAboveTable()}
                   </div>
 
                   <div
@@ -405,7 +407,7 @@ class MultiPageDrawer extends MultiPage {
                         : {}
                     }
                   >
-                    {this.renderView()}
+                    {this.renderPresetListMainView()}
                   </div>
                 </div>
               </Spin>
@@ -413,12 +415,12 @@ class MultiPageDrawer extends MultiPage {
           </div>
         </div>
 
-        {this.renderOther()}
+        {this.renderPresetOther()}
       </div>
     );
   };
 
-  renderContentContainor = () => {
+  renderPresetContentContainor = () => {
     const { listViewMode } = this.state;
 
     return (
@@ -437,12 +439,12 @@ class MultiPageDrawer extends MultiPage {
           backgroundColor: '#fff',
         }}
       >
-        {this.renderViewContainor()}
+        {this.renderPresetListMainViewContainor()}
       </div>
     );
   };
 
-  renderDrawerInner = () => {
+  renderPresetDrawerInner = () => {
     const { listViewMode } = this.state;
 
     return (
@@ -454,7 +456,7 @@ class MultiPageDrawer extends MultiPage {
             : {}
         }
       >
-        {this.renderContentContainor()}
+        {this.renderPresetContentContainor()}
       </div>
     );
   };
@@ -466,7 +468,7 @@ class MultiPageDrawer extends MultiPage {
     };
   };
 
-  renderListView = () => {
+  renderPresetListView = () => {
     const { listViewMode } = this.state;
 
     return (
@@ -496,7 +498,7 @@ class MultiPageDrawer extends MultiPage {
                 : {}
             }
             className={styles.list}
-            itemLayout={this.renderListViewItemLayout()}
+            itemLayout={this.renderPresetListViewItemLayout()}
             dataSource={
               this.getCanUseFrontendPagination()
                 ? this.adjustFrontendPaginationViewDataSource()
@@ -504,7 +506,7 @@ class MultiPageDrawer extends MultiPage {
             }
             pagination={false}
             renderItem={(item, index) => {
-              return this.renderListViewItem(item, index);
+              return this.renderPresetListViewItem(item, index);
             }}
           />
         </div>
@@ -535,14 +537,14 @@ class MultiPageDrawer extends MultiPage {
               }
             />
 
-            {this.renderPaginationView()}
+            {this.renderPresetPaginationView()}
           </div>
         </div>
       </div>
     );
   };
 
-  renderListViewItemActionSelect = (item, index) => {
+  renderPresetListViewItemActionSelect = (item, index) => {
     const that = this;
 
     return buildListViewItemActionSelect({
@@ -560,8 +562,8 @@ class MultiPageDrawer extends MultiPage {
       <Drawer
         title={
           <span>
-            {this.renderTitleIcon()}
-            {this.getPageName()}
+            {this.renderPresetTitleIcon()}
+            {this.getPresetPageName()}
           </span>
         }
         destroyOnClose={false}
@@ -580,7 +582,7 @@ class MultiPageDrawer extends MultiPage {
               height: 'calc(100vh - 55px)',
             }}
           >
-            {this.renderDrawerInner()}
+            {this.renderPresetDrawerInner()}
           </div>
         ) : null}
 
@@ -590,12 +592,12 @@ class MultiPageDrawer extends MultiPage {
               height: 'calc(100vh - 55px)',
             }}
           >
-            {this.renderDrawerInner()}
+            {this.renderPresetDrawerInner()}
           </div>
         ) : null}
 
         {listViewMode === listViewConfig.viewMode.table
-          ? this.renderDrawerInner()
+          ? this.renderPresetDrawerInner()
           : null}
       </Drawer>
     );

@@ -111,7 +111,7 @@ class Index extends BaseAddForm {
       tools: [
         {
           title: '按钮提示1',
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮1',
             handleClick: () => {
               showSimpleInfoMessage('click button 4');
@@ -122,7 +122,7 @@ class Index extends BaseAddForm {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮2',
             handleClick: () => {
               showSimpleInfoMessage('click button 4');
@@ -132,7 +132,7 @@ class Index extends BaseAddForm {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮2',
             handleClick: () => {
               showSimpleInfoMessage('click button 4');
@@ -143,7 +143,7 @@ class Index extends BaseAddForm {
         {
           title: '按钮提示4',
           hidden: false,
-          component: this.renderGeneralButton({
+          component: this.renderPresetGeneralButton({
             text: '按钮4',
             handleClick: () => {
               showSimpleInfoMessage('click button 4');

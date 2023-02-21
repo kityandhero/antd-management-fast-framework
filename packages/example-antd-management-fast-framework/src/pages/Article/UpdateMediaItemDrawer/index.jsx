@@ -175,7 +175,7 @@ class Index extends BaseUpdateDrawer {
     this.setState({ attachment });
   };
 
-  renderTitle = () => {
+  renderPresetTitle = () => {
     return '编辑媒体项';
   };
 

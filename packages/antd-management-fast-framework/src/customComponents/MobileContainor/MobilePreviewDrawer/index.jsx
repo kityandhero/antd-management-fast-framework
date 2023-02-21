@@ -33,11 +33,11 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
     };
   }
 
-  renderTitleIcon = () => {
+  renderPresetTitleIcon = () => {
     return iconBuilder.picture();
   };
 
-  renderTitle = () => {
+  renderPresetTitle = () => {
     return '设备预览';
   };
 
@@ -117,7 +117,7 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
                     afterAlertClick={afterAlertClick}
                     mobileType={mobileType}
                   >
-                    {this.renderInnerViewWrapper()}
+                    {this.renderPresetInnerViewWrapper()}
                   </MobileSimulation>
                 </div>
               ),
@@ -128,12 +128,12 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
     };
   };
 
-  renderInnerView = () => {
+  renderPresetInnerView = () => {
     return null;
   };
 
-  renderInnerViewWrapper = () => {
-    return this.renderInnerView();
+  renderPresetInnerViewWrapper = () => {
+    return this.renderPresetInnerView();
   };
 }
 
