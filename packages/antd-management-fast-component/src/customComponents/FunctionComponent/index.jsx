@@ -658,6 +658,7 @@ export function buildDropdown({
               })}
               title={itemPanelTitle}
               overlayClassName={overlayClassNameAdjust}
+              overlayInnerStyle={{ padding: 0 }}
             >
               <Button
                 style={{
@@ -719,6 +720,7 @@ export function buildDropdown({
               })}
               title={itemPanelTitle}
               overlayClassName={overlayClassNameAdjust}
+              overlayInnerStyle={{ padding: 0 }}
             >
               <Button
                 style={{
@@ -760,6 +762,7 @@ export function buildDropdown({
         })}
         title={itemPanelTitle}
         overlayClassName={overlayClassNameAdjust}
+        overlayInnerStyle={{ padding: 0 }}
       >
         <Button type={typeSource || 'default'} size={size ?? 'default'}>
           <IconInfo icon={icon || null} text={text || ''} />

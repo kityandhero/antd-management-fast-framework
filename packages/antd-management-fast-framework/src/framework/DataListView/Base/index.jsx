@@ -15,6 +15,7 @@ import {
   Row,
   Space,
   Spin,
+  Tabs,
   Tooltip,
 } from 'antd';
 import classNames from 'classnames';
@@ -931,18 +932,46 @@ class Base extends AuthorizationWrapper {
   buildOtherTabProps = () => {
     const tabListAvailable = this.getTabListAvailable();
 
+    const tabBarMarginBottomStyle = {
+      marginBottom: 0,
+    };
+
     if (tabListAvailable.length > 0) {
       return {
+        // destroyInactiveTabPane: true,
         type: 'card',
         size: 'small',
         tabBarStyle: {
-          marginBottom: 0,
+          ...tabBarMarginBottomStyle,
+          backgroundColor: '#fff',
+          paddingTop: '16px',
+          paddingLeft: '24px',
+          paddingRight: '24px',
         },
         tabBarGutter: 3,
+        animated: {
+          inkBar: true,
+          tabPane: true,
+        },
+        // activeKey: this.getTabActiveKey(),
+        tabBarExtraContent: this.buildTabBarExtraContent(),
+        items: tabListAvailable.map((o) => {
+          return {
+            style: {
+              padding: '24px',
+            },
+            ...o,
+          };
+        }),
+        onChange: this.handleTabChange(),
       };
     }
 
-    return null;
+    return {
+      tabBarStyle: {
+        ...tabBarMarginBottomStyle,
+      },
+    };
   };
 
   adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
@@ -1744,11 +1773,15 @@ class Base extends AuthorizationWrapper {
 
   renderPresetPageBody = () => {
     return (
-      <>
+      <div
+        style={{
+          padding: '20px 24px',
+        }}
+      >
         {this.renderPresetPageContent()}
 
         {this.renderPresetOther()}
-      </>
+      </div>
     );
   };
 
@@ -1761,8 +1794,6 @@ class Base extends AuthorizationWrapper {
       reloading,
       avatarImageLoadResult,
     } = this.state;
-
-    const tabListAvailable = this.getTabListAvailable();
 
     const avatarProperties = showPageHeaderAvatar
       ? decorateAvatar(
@@ -1780,26 +1811,45 @@ class Base extends AuthorizationWrapper {
 
     if (renderPageContainer || false) {
       return (
-        <PageContainer
-          avatar={avatarProperties}
-          title={buildPageHeaderTitle(
-            this.getPresetPageName(),
-            this.establishPageHeaderTitlePrefix(),
-          )}
-          subTitle={this.buildPageHeaderSubTitle()}
-          tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
-          extra={this.buildExtraAction()}
-          tabActiveKey={this.getTabActiveKey()}
-          content={this.renderPresetPageHeaderContent()}
-          extraContent={this.renderPresetPageHeaderExtraContent()}
-          tabList={tabListAvailable}
-          onTabChange={this.handleTabChange}
-          tabProps={this.buildOtherTabProps()}
+        <div
+          style={{
+            background: '#f0f2f5',
+          }}
         >
-          {this.renderPresetPageBody()}
+          <PageContainer
+            header={{
+              ghost: false,
+              style: {
+                backgroundColor: '#fff',
+                paddingBottom: '24px',
+                paddingLeft: '24px',
+                paddingRight: '24px',
+              },
+            }}
+            childrenContentStyle={{
+              padding: '0px',
+            }}
+            avatar={avatarProperties}
+            title={buildPageHeaderTitle(
+              this.getPresetPageName(),
+              this.establishPageHeaderTitlePrefix(),
+            )}
+            subTitle={this.buildPageHeaderSubTitle()}
+            tags={buildPageHeaderTagWrapper(
+              this.establishPageHeaderTagConfig(),
+            )}
+            extra={this.buildExtraAction()}
+            tabActiveKey={this.getTabActiveKey()}
+            content={this.renderPresetPageHeaderContent()}
+            extraContent={this.renderPresetPageHeaderExtraContent()}
+          >
+            <Tabs {...this.buildOtherTabProps()} />
 
-          <BackTop />
-        </PageContainer>
+            {this.renderPresetPageBody()}
+
+            <BackTop />
+          </PageContainer>
+        </div>
       );
     }
 
