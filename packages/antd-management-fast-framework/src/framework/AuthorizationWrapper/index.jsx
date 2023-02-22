@@ -1,5 +1,6 @@
 import {
   checkHasAuthority,
+  isArray,
   isFunction,
   logException,
   redirectTo,
@@ -54,15 +55,39 @@ class AuthorizationWrapper extends SupplementWrapper {
     return currentOperator;
   };
 
-  reloadCurrentOperator = (callback = null) => {
-    this.dispatchApi({
-      type: 'global/getCurrentOperator',
-      payload: { force: true },
-    })
-      .then(() => {
-        if (isFunction(callback)) {
-          // eslint-disable-next-line promise/no-callback-in-promise
-          callback();
+  reloadCurrentOperator = ({ successCallback = null, failCallback = null }) => {
+    const that = this;
+
+    that
+      .dispatchApi({
+        type: 'global/getCurrentOperator',
+        payload: { force: true },
+      })
+      .then((remoteData) => {
+        const { dataSuccess } = remoteData;
+
+        if (dataSuccess) {
+          const { list, data, extra } = {
+            data: {},
+            list: [],
+            extra: {},
+            ...remoteData,
+          };
+
+          if (isFunction(successCallback)) {
+            // eslint-disable-next-line promise/no-callback-in-promise
+            successCallback({
+              data: data || {},
+              list: isArray(list) ? list : [],
+              extra: extra || {},
+              originalData: remoteData || {},
+            });
+          }
+        } else {
+          if (isFunction(failCallback)) {
+            // eslint-disable-next-line promise/no-callback-in-promise
+            failCallback({ originalData: remoteData || {} });
+          }
         }
 
         return;

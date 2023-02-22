@@ -39,7 +39,9 @@ export function buildConfig(packageImport) {
     locale: {
       // 默认使用 src/locales/zh-CN.ts 作为多语言文件
       default: 'zh-CN',
-      // baseSeparator: '-',
+      antd: true,
+      // default true, when it is true, will use `navigator.language` overwrite default
+      baseNavigator: true,
     },
     layout: {},
   };

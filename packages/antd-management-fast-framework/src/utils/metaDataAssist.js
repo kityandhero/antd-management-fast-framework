@@ -1,9 +1,12 @@
 import {
   checkStringIsNullOrWhiteSpace,
+  getApplicationMergeConfig,
   getLocalMetaData,
   isFunction,
+  logConfig,
   logDebug,
   logExecute,
+  logInfo,
   setLocalMetaData,
 } from 'easy-soft-utility';
 
@@ -19,7 +22,7 @@ export function loadMetaData({ successCallback = null }) {
   const metaDataCatch = getLocalMetaData();
 
   if ((metaDataCatch || null) != null) {
-    logDebug('meta data first load success, ignore load');
+    logDebug('meta data first load success, ignore load.');
 
     return;
   }
@@ -27,6 +30,12 @@ export function loadMetaData({ successCallback = null }) {
   const dispatch = getDispatch();
 
   const metaDataApi = getMetaDataApi();
+
+  if (checkStringIsNullOrWhiteSpace(metaDataApi)) {
+    logConfig(
+      'metaDataApi has not set, if need use it by api, please set it in applicationConfig with key "metaDataApi".',
+    );
+  }
 
   const api = checkStringIsNullOrWhiteSpace(metaDataApi)
     ? 'schedulingControl/getMetaDataSimulation'
@@ -37,7 +46,17 @@ export function loadMetaData({ successCallback = null }) {
     params: {},
     dispatch: dispatch,
     successCallback: ({ remoteData }) => {
+      const { metaData } = {
+        metaData: {},
+        ...getApplicationMergeConfig(),
+      };
+
+      logInfo(
+        'applicationConfig.metaData will merge in to final metaData, it value is lower priority, may be covered by dynamic data.',
+      );
+
       const data = {
+        ...metaData,
         ...getMetaData(),
         ...remoteData,
       };

@@ -1,6 +1,4 @@
 import {
-  getApplicationMergeConfig,
-  logConfig,
   logExecute,
   logInfo,
   removeLocalMetaData,
@@ -13,30 +11,31 @@ import { loadApplicationListData } from './applicationListDataAssist';
 import { removeApplicationListDataCache } from './applicationListDataCacheAssist';
 import { loadMetaData } from './metaDataAssist';
 
-let applicationInitComplete = false;
+let loadApplicationInitialDataComplete = false;
 let showModelNameList = false;
 let metaDataFirstLoadSuccess = false;
 let applicationListDataFirstLoadSuccess = false;
 
-export function applicationInit() {
-  if (applicationInitComplete) {
+/**
+ * Load application initial data after sign in, make sure to call after sign in
+ */
+export function loadApplicationInitialData() {
+  if (loadApplicationInitialDataComplete) {
     return;
   }
-
-  logConfig(getApplicationMergeConfig());
 
   requestAnimationFrame(() => {
     const text = '初始数据正在努力加载中，需要一点点时间哦！';
 
     showInfoMessage({
       text: text,
-      duration: 0.8,
+      duration: 2,
     });
   });
 
-  applicationInitComplete = true;
+  loadApplicationInitialDataComplete = true;
 
-  logExecute('applicationInit');
+  logExecute('loadApplicationInitialData');
 
   if (!showModelNameList) {
     logInfo(`current modelNameList: ${getModelNameList().join(',')}`);

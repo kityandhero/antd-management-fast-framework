@@ -1,30 +1,19 @@
-import classNames from 'classnames';
-import React from 'react';
-import { CheckCircleFilled, ClockCircleFilled } from '@ant-design/icons';
+import { Forbidden } from './Forbidden';
+import { Info } from './Info';
+import { LocalError } from './LocalError';
+import { NotFound } from './NotFound';
+import { ServerError } from './ServerError';
+import { Success } from './Success';
+import { Warn } from './Warn';
 
-import styles from './index.less';
+const Result = {
+  Forbidden,
+  Info,
+  LocalError,
+  NotFound,
+  ServerError,
+  Success,
+  Warn: Warn,
+};
 
-export function Result({
-  className,
-  type,
-  title,
-  description,
-  extra,
-  actions,
-  ...restProperties
-}) {
-  const iconMap = {
-    error: <ClockCircleFilled className={styles.error} />,
-    success: <CheckCircleFilled className={styles.success} />,
-  };
-  const clsString = classNames(styles.result, className);
-  return (
-    <div className={clsString} {...restProperties}>
-      <div className={styles.icon}>{iconMap[type]}</div>
-      <div className={styles.title}>{title}</div>
-      {description && <div className={styles.description}>{description}</div>}
-      {extra && <div className={styles.extra}>{extra}</div>}
-      {actions && <div className={styles.actions}>{actions}</div>}
-    </div>
-  );
-}
+export { Result };

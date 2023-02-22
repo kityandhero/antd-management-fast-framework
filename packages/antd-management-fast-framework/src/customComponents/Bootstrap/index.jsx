@@ -1,13 +1,15 @@
 import React from 'react';
 import { useLocation, useParams } from '@umijs/max';
 
+import { logError } from 'easy-soft-utility';
+
 import {
   setCurrentLocation,
   setCurrentParameters,
 } from 'antd-management-fast-common';
 import { BaseComponent } from 'antd-management-fast-component';
 
-import { applicationInit } from '../../utils/bootstrap';
+import { loadApplicationInitialData } from '../../utils/bootstrap';
 
 const AnalysisRouteParameters = () => {
   try {
@@ -15,7 +17,7 @@ const AnalysisRouteParameters = () => {
 
     setCurrentLocation(location);
   } catch (error) {
-    console.log(error);
+    logError(error);
 
     setCurrentLocation({});
   }
@@ -25,7 +27,7 @@ const AnalysisRouteParameters = () => {
 
     setCurrentParameters(routeParameters);
   } catch (error) {
-    console.log(error);
+    logError(error);
 
     setCurrentParameters({});
   }
@@ -35,7 +37,7 @@ const AnalysisRouteParameters = () => {
 
 class Bootstrap extends BaseComponent {
   doWorkBeforeAdjustDidMount = () => {
-    applicationInit();
+    loadApplicationInitialData();
   };
 
   renderFurther() {

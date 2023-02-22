@@ -570,7 +570,7 @@ class MultiPageDrawer extends MultiPage {
         className={styles.containorBox}
         width={widthDrawer}
         placement="right"
-        visible={visible || false}
+        open={visible || false}
         onClose={this.onClose}
         bodyStyle={{
           padding: 0,

@@ -254,7 +254,7 @@ class AbstractComponent extends Component {
   };
 
   // eslint-disable-next-line no-unused-vars
-  adjustShowRenderCountInConsole = (_nextProperties, _nextState) => {};
+  adjustShowRenderCountInConsole = (nextProperties, nextState) => {};
 
   doWorkBeforeAdjustDidMount = () => {};
 
@@ -271,17 +271,17 @@ class AbstractComponent extends Component {
   doOtherWorkAfterDidMount = () => {};
 
   // eslint-disable-next-line no-unused-vars
-  doWorkBeforeUpdate = (_nextProperties, _nextState) => {};
+  doWorkBeforeUpdate = (nextProperties, nextState) => {};
 
   // eslint-disable-next-line no-unused-vars
-  doWorkWhenDidUpdate = (_preProperties, _preState, _snapshot) => {};
+  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {};
 
   doOtherCheckComponentUpdate = () => {
     return null;
   };
 
   // eslint-disable-next-line no-unused-vars
-  doWorkWhenGetSnapshotBeforeUpdate = (_preProperties, _preState) => {
+  doWorkWhenGetSnapshotBeforeUpdate = (preProperties, preState) => {
     return null;
   };
 

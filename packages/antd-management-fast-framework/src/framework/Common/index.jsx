@@ -30,6 +30,7 @@ import {
   logText,
   pretreatmentRequestParameters,
   refitCommonData,
+  setLocalMetaData,
   showErrorMessage,
   showSimpleRuntimeError,
   toDatetime,
@@ -533,15 +534,38 @@ class Common extends Core {
     });
   };
 
-  reloadGlobalData = (callback = null) => {
+  reloadGlobalData = ({ successCallback = null, failCallback = null }) => {
     this.dispatchApi({
       type: 'global/getMetaData',
       payload: { force: true },
     })
-      .then(() => {
-        if (isFunction(callback)) {
-          // eslint-disable-next-line promise/no-callback-in-promise
-          callback();
+      .then((remoteData) => {
+        const { dataSuccess } = remoteData;
+
+        if (dataSuccess) {
+          const { list, data, extra } = {
+            data: {},
+            list: [],
+            extra: {},
+            ...remoteData,
+          };
+
+          if (isFunction(successCallback)) {
+            // eslint-disable-next-line promise/no-callback-in-promise
+            successCallback({
+              data: data || {},
+              list: isArray(list) ? list : [],
+              extra: extra || {},
+              originalData: remoteData || {},
+            });
+
+            setLocalMetaData(data || {});
+          }
+        } else {
+          if (isFunction(failCallback)) {
+            // eslint-disable-next-line promise/no-callback-in-promise
+            failCallback({ originalData: remoteData || {} });
+          }
         }
 
         return;

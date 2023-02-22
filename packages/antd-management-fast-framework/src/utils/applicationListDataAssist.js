@@ -17,7 +17,7 @@ import {
 } from './applicationListDataCacheAssist';
 
 export function loadApplicationListData({ successCallback = null }) {
-  logExecute('loadapplicationListData');
+  logExecute('loadApplicationListData');
 
   const applicationListDataCatch = getApplicationListDataCache();
 

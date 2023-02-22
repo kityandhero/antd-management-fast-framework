@@ -115,10 +115,63 @@ export default [
       },
     ],
   },
-  // {
-  //   path: '/',
-  //   // wrappers: ['../components/PageWrapper'],
-  //   // component: '../layouts/BasicLayout',
-  //   routes: [],
-  // },
+  {
+    path: '/simplePage',
+    name: 'simplePage',
+    icon: 'team',
+    // hideChildrenInMenu: true,
+    routes: [
+      {
+        path: '/simplePage',
+        redirect: '/simplePage/result',
+      },
+      {
+        path: '/simplePage/result',
+        name: 'result',
+        icon: 'bars',
+        routes: [
+          {
+            path: '/simplePage/result',
+            redirect: '/simplePage/result/forbidden',
+          },
+          {
+            path: '/simplePage/result/forbidden',
+            name: 'forbidden',
+            component: './Result/Forbidden',
+          },
+          {
+            path: '/simplePage/result/serverError',
+            name: 'serverError',
+            component: './Result/ServerError',
+          },
+          {
+            path: '/simplePage/result/localError',
+            name: 'localError',
+            component: './Result/LocalError',
+          },
+          {
+            path: '/simplePage/result/success',
+            name: 'success',
+            component: './Result/Success',
+          },
+          {
+            path: '/simplePage/result/info',
+            name: 'info',
+            component: './Result/Info',
+          },
+          {
+            path: '/simplePage/result/warn',
+            name: 'warn',
+            component: './Result/Warn',
+          },
+          {
+            path: '/simplePage/result/notFound',
+            name: 'notFound',
+            component: './Result/NotFound',
+          },
+        ],
+      },
+    ],
+  },
+  { path: '/*', component: './Result/NotFound' },
 ];

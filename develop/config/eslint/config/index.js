@@ -10,9 +10,7 @@ const { settings } = require('./items/settings');
 
 module.exports = {
   generalConfig: {
-    extends: [
-      ...extendCollection,
-    ],
+    extends: [...extendCollection],
     env: {
       es6: true,
       browser: true,
@@ -22,10 +20,8 @@ module.exports = {
       shelljs: true,
       node: true,
     },
-    plugins: [
-      ...pluginCollection,
-    ],
-    parser: '@babel/eslint-parser',
+    plugins: [...pluginCollection],
+    parser: '@typescript-eslint/parser',
     parserOptions: parserOptions,
     rules: rules,
     settings: settings,

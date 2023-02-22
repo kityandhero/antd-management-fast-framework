@@ -16,7 +16,6 @@ export * from './Editor';
 export * from './Ellipsis';
 export * from './EllipsisCustom';
 export * from './EverySpace';
-export * from './Exception';
 export * from './FigureRange';
 export * from './FigureRange';
 export * from './FileBase64Upload';

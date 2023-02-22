@@ -4,6 +4,7 @@
 
 const parserOptions = {
   requireConfigFile: false,
+  parser: 'babel-eslint',
   babelOptions: {
     presets: ['@babel/preset-react'],
     plugins: [

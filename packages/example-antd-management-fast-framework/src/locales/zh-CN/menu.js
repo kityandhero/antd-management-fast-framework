@@ -32,9 +32,17 @@ export default {
   'menu.currentOperator.center': '个人中心',
   'menu.currentOperator.setting': '个人设置',
 
-  'menu.result': '结果页',
-  'menu.result.success': '成功页',
-  'menu.result.fail': '失败页',
+  'menu.simplePage': '示例页面',
+
+  'menu.simplePage.result': '结果页',
+
+  'menu.simplePage.result.forbidden': '禁止页',
+  'menu.simplePage.result.info': '信息页',
+  'menu.simplePage.result.serverError': '服务器错误页',
+  'menu.simplePage.result.localError': '本地错误页',
+  'menu.simplePage.result.warn': '警告页',
+  'menu.simplePage.result.success': '成功页',
+  'menu.simplePage.result.notFound': '404页',
 
   'menu.exception': '异常页',
   'menu.exception.not-permission': '403',

@@ -7,8 +7,4 @@ export default (api: IApi) => {
   }));
 
   api.addEntryCodeAhead(() => `configEnvironment()`);
-
-  // api.onStart(() => {
-  //   console.log(1121212);
-  // });
 };

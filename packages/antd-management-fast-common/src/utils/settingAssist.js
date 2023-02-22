@@ -172,6 +172,15 @@ export function getMetaData() {
   return metaData || {};
 }
 
+export function getCurrentOperatorApi() {
+  const { currentOperatorApi } = {
+    currentOperatorApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return currentOperatorApi || '';
+}
+
 export function getApiVersion() {
   const { apiVersion } = {
     apiVersion: '',
