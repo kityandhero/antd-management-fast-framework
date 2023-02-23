@@ -34,7 +34,7 @@ importers:
       cssnano: ^5.1.15
       dayjs: ^1.11.7
       documentation: ^14.0.1
-      easy-soft-develop: ^2.0.160
+      easy-soft-develop: ^2.0.161
       eslint: ^8.34.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -55,7 +55,7 @@ importers:
       husky: ^8.0.3
       lerna: ^6.5.1
       lint-staged: ^13.1.2
-      npm-check-updates: ^16.7.5
+      npm-check-updates: ^16.7.9
       postcss: ^8.4.21
       postcss-less: ^6.0.0
       prettier: ^2.8.4
@@ -107,7 +107,7 @@ importers:
       cssnano: 5.1.15_postcss@8.4.21
       dayjs: 1.11.7
       documentation: 14.0.1
-      easy-soft-develop: 2.0.160
+      easy-soft-develop: 2.0.161
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
       eslint-config-airbnb-typescript: 17.0.0_hoous2ynskqxiu76q2estycm24
@@ -128,7 +128,7 @@ importers:
       husky: 8.0.3
       lerna: 6.5.1
       lint-staged: 13.1.2
-      npm-check-updates: 16.7.5
+      npm-check-updates: 16.7.9
       postcss: 8.4.21
       postcss-less: 6.0.0_postcss@8.4.21
       prettier: 2.8.4
@@ -199,7 +199,7 @@ importers:
       copy-to-clipboard: ^3.3.3
       cssnano: ^5.1.15
       documentation: ^14.0.1
-      easy-soft-develop: ^2.0.160
+      easy-soft-develop: ^2.0.161
       easy-soft-utility: ^2.4.59
       eslint: ^8.34.0
       eslint-config-airbnb: ^19.0.4
@@ -220,7 +220,7 @@ importers:
       husky: ^8.0.3
       lint-staged: ^13.1.2
       lodash.debounce: ^4.0.8
-      npm-check-updates: ^16.7.5
+      npm-check-updates: ^16.7.9
       numeral: ^2.0.6
       path-to-regexp: ^6.2.1
       prettier: ^2.8.4
@@ -304,7 +304,7 @@ importers:
       conventional-changelog-conventionalcommits: 5.0.0
       cssnano: 5.1.15_postcss@8.4.21
       documentation: 14.0.1
-      easy-soft-develop: 2.0.160
+      easy-soft-develop: 2.0.161
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
       eslint-config-airbnb-typescript: 17.0.0_hoous2ynskqxiu76q2estycm24
@@ -323,7 +323,7 @@ importers:
       eslint-plugin-unicorn: 45.0.2_eslint@8.34.0
       husky: 8.0.3
       lint-staged: 13.1.2
-      npm-check-updates: 16.7.5
+      npm-check-updates: 16.7.9
       prettier: 2.8.4
       prettier-plugin-organize-imports: 3.2.2_silln3pw57har7jydmecgzoypa
       prettier-plugin-packagejson: 2.3.0_prettier@2.8.4
@@ -392,7 +392,7 @@ importers:
       cssnano: ^5.1.15
       dayjs: ^1.11.7
       documentation: ^14.0.1
-      easy-soft-develop: ^2.0.160
+      easy-soft-develop: ^2.0.161
       easy-soft-utility: ^2.4.59
       eslint: ^8.34.0
       eslint-config-airbnb: ^19.0.4
@@ -417,7 +417,7 @@ importers:
       lodash.isequal: ^4.5.0
       moment: ^2.29.4
       node-cache: ^5.1.2
-      npm-check-updates: ^16.7.5
+      npm-check-updates: ^16.7.9
       nprogress: ^0.2.0
       numeral: ^2.0.6
       nzh: ^1.0.8
@@ -511,7 +511,7 @@ importers:
       conventional-changelog-conventionalcommits: 5.0.0
       cssnano: 5.1.15_postcss@8.4.21
       documentation: 14.0.1
-      easy-soft-develop: 2.0.160
+      easy-soft-develop: 2.0.161
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
       eslint-config-airbnb-typescript: 17.0.0_hoous2ynskqxiu76q2estycm24
@@ -530,7 +530,7 @@ importers:
       eslint-plugin-unicorn: 45.0.2_eslint@8.34.0
       husky: 8.0.3
       lint-staged: 13.1.2
-      npm-check-updates: 16.7.5
+      npm-check-updates: 16.7.9
       prettier: 2.8.4
       prettier-plugin-organize-imports: 3.2.1_silln3pw57har7jydmecgzoypa
       prettier-plugin-packagejson: 2.3.0_prettier@2.8.4
@@ -603,7 +603,7 @@ importers:
       cssnano: ^5.1.15
       dayjs: ^1.11.7
       documentation: ^14.0.1
-      easy-soft-develop: ^2.0.160
+      easy-soft-develop: ^2.0.161
       easy-soft-utility: ^2.4.59
       eslint: ^8.34.0
       eslint-config-airbnb: ^19.0.4
@@ -625,7 +625,7 @@ importers:
       husky: ^8.0.3
       lint-staged: ^13.1.2
       lodash.debounce: ^4.0.8
-      npm-check-updates: ^16.7.5
+      npm-check-updates: ^16.7.9
       nprogress: ^0.2.0
       numeral: ^2.0.6
       path-to-regexp: ^6.2.1
@@ -730,7 +730,7 @@ importers:
       conventional-changelog-conventionalcommits: 5.0.0
       cssnano: 5.1.15_postcss@8.4.21
       documentation: 14.0.1
-      easy-soft-develop: 2.0.160
+      easy-soft-develop: 2.0.161
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
       eslint-config-airbnb-typescript: 17.0.0_hoous2ynskqxiu76q2estycm24
@@ -749,7 +749,7 @@ importers:
       eslint-plugin-unicorn: 45.0.2_eslint@8.34.0
       husky: 8.0.3
       lint-staged: 13.1.2
-      npm-check-updates: 16.7.5
+      npm-check-updates: 16.7.9
       prettier: 2.8.4
       prettier-plugin-organize-imports: 3.2.1_silln3pw57har7jydmecgzoypa
       prettier-plugin-packagejson: 2.3.0_prettier@2.8.4
@@ -792,7 +792,7 @@ importers:
       commitizen: ^4.3.0
       conventional-changelog-conventionalcommits: ^5.0.0
       documentation: ^14.0.1
-      easy-soft-develop: ^2.0.160
+      easy-soft-develop: ^2.0.161
       eslint: ^8.34.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -840,7 +840,7 @@ importers:
       commitizen: 4.3.0
       conventional-changelog-conventionalcommits: 5.0.0
       documentation: 14.0.1
-      easy-soft-develop: 2.0.160
+      easy-soft-develop: 2.0.161
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
       eslint-config-airbnb-typescript: 17.0.0_hoous2ynskqxiu76q2estycm24
@@ -916,7 +916,7 @@ importers:
       cssnano: ^5.1.15
       dayjs: ^1.11.7
       documentation: ^14.0.1
-      easy-soft-develop: ^2.0.160
+      easy-soft-develop: ^2.0.161
       easy-soft-utility: ^2.4.59
       eslint: ^8.34.0
       eslint-config-airbnb: ^19.0.4
@@ -937,7 +937,7 @@ importers:
       html-react-parser: ^3.0.9
       husky: ^8.0.3
       lint-staged: ^13.1.2
-      npm-check-updates: ^16.7.5
+      npm-check-updates: ^16.7.9
       nprogress: ^0.2.0
       prettier: ^2.8.4
       prettier-plugin-organize-imports: ^3
@@ -1021,7 +1021,7 @@ importers:
       conventional-changelog-conventionalcommits: 5.0.0
       cssnano: 5.1.15_postcss@8.4.21
       documentation: 14.0.1
-      easy-soft-develop: 2.0.160
+      easy-soft-develop: 2.0.161
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
       eslint-config-airbnb-typescript: 17.0.0_hoous2ynskqxiu76q2estycm24
@@ -1040,7 +1040,7 @@ importers:
       eslint-plugin-unicorn: 45.0.2_eslint@8.34.0
       husky: 8.0.3
       lint-staged: 13.1.2
-      npm-check-updates: 16.7.5
+      npm-check-updates: 16.7.9
       prettier: 2.8.4
       prettier-plugin-organize-imports: 3.2.1_silln3pw57har7jydmecgzoypa
       prettier-plugin-packagejson: 2.3.0_prettier@2.8.4
@@ -1093,7 +1093,7 @@ importers:
       commitizen: ^4.3.0
       conventional-changelog-conventionalcommits: ^5.0.0
       documentation: ^14.0.1
-      easy-soft-develop: ^2.0.160
+      easy-soft-develop: ^2.0.161
       eslint: ^8.34.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -1113,7 +1113,7 @@ importers:
       husky: ^8.0.3
       jest: ^29.4.3
       lint-staged: ^13.1.2
-      npm-check-updates: ^16.7.5
+      npm-check-updates: ^16.7.9
       prettier: ^2.8.4
       prettier-plugin-organize-imports: ^3
       prettier-plugin-packagejson: ^2
@@ -1156,7 +1156,7 @@ importers:
       commitizen: 4.3.0
       conventional-changelog-conventionalcommits: 5.0.0
       documentation: 14.0.1
-      easy-soft-develop: 2.0.160
+      easy-soft-develop: 2.0.161
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
       eslint-config-airbnb-typescript: 17.0.0_hoous2ynskqxiu76q2estycm24
@@ -1176,7 +1176,7 @@ importers:
       husky: 8.0.3
       jest: 29.4.3_zfha7dvnw4nti6zkbsmhmn6xo4
       lint-staged: 13.1.2
-      npm-check-updates: 16.7.5
+      npm-check-updates: 16.7.9
       prettier: 2.8.4
       prettier-plugin-organize-imports: 3.2.1_silln3pw57har7jydmecgzoypa
       prettier-plugin-packagejson: 2.3.0_prettier@2.8.4
@@ -1231,7 +1231,7 @@ importers:
       conventional-changelog-conventionalcommits: ^5.0.0
       dayjs: ^1.11.7
       documentation: ^14.0.1
-      easy-soft-develop: ^2.0.160
+      easy-soft-develop: ^2.0.161
       easy-soft-utility: ^2.4.59
       eslint: ^8.34.0
       eslint-config-airbnb: ^19.0.4
@@ -1252,7 +1252,7 @@ importers:
       husky: ^8.0.3
       jest: ^29.4.3
       lint-staged: ^13.1.2
-      npm-check-updates: ^16.7.5
+      npm-check-updates: ^16.7.9
       nprogress: ^0.2.0
       prettier: ^2.8.4
       prettier-plugin-organize-imports: ^3
@@ -1315,7 +1315,7 @@ importers:
       commitizen: 4.3.0
       conventional-changelog-conventionalcommits: 5.0.0
       documentation: 14.0.1
-      easy-soft-develop: 2.0.160
+      easy-soft-develop: 2.0.161
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
       eslint-config-airbnb-typescript: 17.0.0_hoous2ynskqxiu76q2estycm24
@@ -1335,7 +1335,7 @@ importers:
       husky: 8.0.3
       jest: 29.4.3_zfha7dvnw4nti6zkbsmhmn6xo4
       lint-staged: 13.1.2
-      npm-check-updates: 16.7.5
+      npm-check-updates: 16.7.9
       prettier: 2.8.4
       prettier-plugin-organize-imports: 3.2.1_silln3pw57har7jydmecgzoypa
       prettier-plugin-packagejson: 2.3.0_prettier@2.8.4
@@ -10856,8 +10856,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /easy-soft-develop/2.0.160:
-    resolution: {integrity: sha512-7uRT6taxhPWqCf7JAZrSDZpYcwmuWrNcz2baMcgdw7b+xq0ixAap2Xfu00xb79ebcNcb+2MeES1clBfEPnknNg==}
+  /easy-soft-develop/2.0.161:
+    resolution: {integrity: sha512-gQspKib0wJLIWC3L31+m5fzH9y/4IdSTvjsk8uecoMhMHMSsmCpE1cUp6DoTz4rHEUD3wgfoDOeDpC1lT0Uq9Q==}
     hasBin: true
     dependencies:
       commander: 10.0.0
@@ -16400,8 +16400,8 @@ packages:
       npm-normalize-package-bin: 3.0.0
     dev: true
 
-  /npm-check-updates/16.7.5:
-    resolution: {integrity: sha512-g+U/cxA0iTvU/syX0EjXWtV10joEKQlN5s6DCFdvpv6eXSGbSYpOjOtifiyopSekdPnjogVuIDtxNlVdJECR8w==}
+  /npm-check-updates/16.7.9:
+    resolution: {integrity: sha512-2/T9PB0W1uABB1N11jdnPauqNLXMhPUyC0DBeeGlUktcGl/412f40iqFsnNGCqIAag/C37SjLNiW2/yuD7Salw==}
     engines: {node: '>=14.14'}
     hasBin: true
     dependencies:

@@ -17,3 +17,5 @@ rollup.config-*.cjs
 .prettierrc.js
 .stylelintrc.js
 .lintstagedrc
+
+plugin.ts
