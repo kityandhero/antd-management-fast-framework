@@ -23,12 +23,6 @@ class Core extends BaseComponent {
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParametersCore();
   }
-
-  doDidMountTask = () => {
-    this.adjustWhenDidMount();
-  };
-
-  adjustWhenDidMount = () => {};
 }
 
 export { Core };

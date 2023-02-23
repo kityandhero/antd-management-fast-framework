@@ -6,18 +6,15 @@ import {
   datetimeFormat,
   formatCollection,
   formatTarget,
+  getToken,
+  getTokenKeyName,
   getValueByKey,
   pretreatmentRemoteSingleData,
   showInfoMessage,
   to,
 } from 'easy-soft-utility';
 
-import {
-  cardConfig,
-  corsTarget,
-  getToken,
-  getTokenKeyName,
-} from 'antd-management-fast-common';
+import { cardConfig, corsTarget } from 'antd-management-fast-common';
 import {
   buildColorText,
   buildCustomGrid,
@@ -79,7 +76,7 @@ class BasicInfo extends TabPageBase {
     };
   }
 
-  initOther = () => {
+  doOtherRemoteRequest = () => {
     singleListTreeAction({
       target: this,
       successCallback: ({ target, remoteListData }) => {

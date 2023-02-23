@@ -73,7 +73,7 @@ export const appInitDefault = {
   applicationListData: [],
   metaDataApi: '',
   metaData: {},
-  currentOperatorApi: '',
+  currentOperatorDispatchType: '',
   showLogInConsole: false,
   showRequestInfo: false,
   useSimulateRequest: false,

@@ -5,7 +5,7 @@ import { showSimpleRuntimeError } from 'easy-soft-utility';
 import { SupplementWrapper } from '../../../CustomWrapper/SupplementWrapper';
 
 class Base extends SupplementWrapper {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   constructor(properties) {
     super(properties);

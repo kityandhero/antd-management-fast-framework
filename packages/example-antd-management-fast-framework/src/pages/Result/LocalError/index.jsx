@@ -12,7 +12,7 @@ const { LocalError } = Result;
   schedulingControl,
 }))
 class Index extends AuthorizationWrapper {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   renderFurther() {
     return (

@@ -1,12 +1,13 @@
-import { pretreatmentRemoteSingleData } from 'easy-soft-utility';
-
-import { getTokenObject } from 'antd-management-fast-common';
+import {
+  buildTokenData,
+  pretreatmentRemoteSingleData,
+} from 'easy-soft-utility';
 
 import { Common } from '../../Common';
 
 class SupplementCore extends Common {
   getUploadTokenObject = () => {
-    return getTokenObject();
+    return buildTokenData();
   };
 
   pretreatmentImageUploadRemoteResponse = (response) => {

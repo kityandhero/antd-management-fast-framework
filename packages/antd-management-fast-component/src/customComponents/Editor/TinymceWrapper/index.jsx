@@ -2,17 +2,15 @@ import React, { PureComponent } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
 import {
+  getToken,
+  getTokenKeyName,
   isFunction,
   logObject,
   pretreatmentRemoteSingleData,
   showSimpleErrorNotification,
 } from 'easy-soft-utility';
 
-import {
-  corsTarget,
-  getToken,
-  getTokenKeyName,
-} from 'antd-management-fast-common';
+import { corsTarget } from 'antd-management-fast-common';
 
 class TinymceWrapper extends PureComponent {
   editor = React.createRef();

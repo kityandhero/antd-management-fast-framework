@@ -57,7 +57,7 @@
     "@commitlint/cz-commitlint": "^17.4.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@typescript-eslint/parser": "^5.53.0",
-    "@umijs/max": "^4.0.52",
+    "@umijs/max": "^4.0.53",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "documentation": "^14.0.1",

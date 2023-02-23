@@ -33,7 +33,7 @@ import { MultiPage } from '../MultiPage';
 import styles from './index.less';
 
 class MultiPageDrawer extends MultiPage {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
 

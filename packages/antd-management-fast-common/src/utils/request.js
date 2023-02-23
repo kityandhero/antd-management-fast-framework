@@ -2,6 +2,8 @@ import { request as requestInner } from '@umijs/max';
 
 import {
   checkStringIsNullOrWhiteSpace,
+  getToken,
+  getTokenKeyName,
   isString,
   logObject,
   requestMethod,
@@ -10,7 +12,6 @@ import {
 
 import { corsTarget } from './common';
 import { getShowRequestInfo } from './settingAssist';
-import { getToken, getTokenKeyName } from './tokenAssist';
 
 export async function request({
   url,

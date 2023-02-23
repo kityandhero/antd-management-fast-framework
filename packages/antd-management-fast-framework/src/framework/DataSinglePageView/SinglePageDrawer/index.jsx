@@ -28,7 +28,7 @@ import { SinglePage } from '../SinglePage';
 import styles from './index.less';
 
 class SinglePageDrawer extends SinglePage {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
 

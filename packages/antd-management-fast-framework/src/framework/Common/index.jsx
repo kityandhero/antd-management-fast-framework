@@ -123,7 +123,7 @@ let metaData = {};
 class Common extends Core {
   showExtraActionDivider = false;
 
-  loadDataAfterMount = true;
+  loadRemoteRequestAfterMount = true;
 
   lastRequestingData = { type: '', payload: {} };
 
@@ -149,12 +149,6 @@ class Common extends Core {
     );
   }
 
-  doDidMountTask = () => {
-    this.adjustWhenDidMount();
-
-    this.init();
-  };
-
   // eslint-disable-next-line no-unused-vars
   checkNeedUpdate = (preProperties, preState, snapshot) => false;
 
@@ -162,17 +156,8 @@ class Common extends Core {
     return metaData;
   };
 
-  /**
-   * 处理其他需要在组件挂在之后执行的流程
-   */
-  initOther = () => {};
-
-  init = () => {
-    if (this.loadDataAfterMount) {
-      this.initLoad({});
-    }
-
-    this.initOther();
+  doLoadRemoteRequest = () => {
+    this.initLoad({});
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -1105,7 +1090,7 @@ class Common extends Core {
   getSaveButtonDisabled = () => {
     const { processing } = this.state;
 
-    if (this.loadDataAfterMount) {
+    if (this.loadRemoteRequestAfterMount) {
       return this.checkOperability();
     }
 
@@ -1113,11 +1098,11 @@ class Common extends Core {
   };
 
   getSaveButtonLoading = () => {
-    if (this.loadDataAfterMount) {
+    if (this.loadRemoteRequestAfterMount) {
       return this.checkLoadingProgress();
     }
 
-    return this.loadDataAfterMount;
+    return this.loadRemoteRequestAfterMount;
   };
 
   getSaveButtonProcessing = () => {

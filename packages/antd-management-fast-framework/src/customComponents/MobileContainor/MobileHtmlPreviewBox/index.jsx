@@ -5,7 +5,7 @@ import { HtmlBox } from 'antd-management-fast-component';
 import { MobilePreviewArea } from '../MobilePreviewArea';
 
 class MobileHtmlPreviewBox extends MobilePreviewArea {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
 

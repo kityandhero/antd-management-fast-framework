@@ -15,4 +15,3 @@ export * from './proLayoutCollection';
 export * from './routeAssist';
 export * from './sessionStorageAssist';
 export * from './settingAssist';
-export * from './tokenAssist';

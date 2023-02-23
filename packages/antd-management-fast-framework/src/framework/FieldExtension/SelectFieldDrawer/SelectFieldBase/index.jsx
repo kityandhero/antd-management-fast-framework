@@ -8,7 +8,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 import { SupplementWrapper } from '../../../CustomWrapper/SupplementWrapper';
 
 class SelectFieldBase extends SupplementWrapper {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   constructor(properties) {
     super(properties);

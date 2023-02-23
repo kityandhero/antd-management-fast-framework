@@ -173,12 +173,12 @@ export function getMetaData() {
 }
 
 export function getCurrentOperatorApi() {
-  const { currentOperatorApi } = {
-    currentOperatorApi: '',
+  const { currentOperatorDispatchType } = {
+    currentOperatorDispatchType: '',
     ...getApplicationMergeConfig(),
   };
 
-  return currentOperatorApi || '';
+  return currentOperatorDispatchType || '';
 }
 
 export function getApiVersion() {

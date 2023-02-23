@@ -6,7 +6,7 @@ import { DataOperation } from 'antd-management-fast-framework';
 const { BaseView } = DataOperation;
 
 class Index extends BaseView {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   goToPageList = () => {
     this.goToPath(`/news/article/pageList`);

@@ -1,9 +1,10 @@
 import {
   checkHasAuthority,
+  checkStringIsNullOrWhiteSpace,
+  getToken,
   isArray,
   isFunction,
   logException,
-  redirectTo,
   showSimpleRuntimeError,
 } from 'easy-soft-utility';
 
@@ -21,27 +22,22 @@ class AuthorizationWrapper extends SupplementWrapper {
     );
   }
 
-  doDidMountTask = () => {
-    let needDoOther = false;
+  checkAuthentication = () => {
+    return !checkStringIsNullOrWhiteSpace(getToken());
+  };
 
-    if (this.componentAuthority == null) {
-      this.init();
-
-      needDoOther = true;
-    } else if (this.checkAuthority(this.componentAuthority)) {
-      this.init();
-
-      needDoOther = true;
+  checkAuthorization = () => {
+    if (
+      checkStringIsNullOrWhiteSpace(this.componentAuthority) ||
+      this.checkAuthority(this.componentAuthority)
+    ) {
+      return true;
     } else {
       const text = `缺少权限：${this.componentAuthority}`;
 
       showSimpleRuntimeError(text);
 
-      redirectTo('/exception/404');
-    }
-
-    if (needDoOther) {
-      this.adjustWhenDidMount();
+      return false;
     }
   };
 

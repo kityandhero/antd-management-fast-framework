@@ -32,7 +32,7 @@ import styles from './index.less';
 const { BackTop } = FloatButton;
 
 class BaseAddForm extends DataCore {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
 

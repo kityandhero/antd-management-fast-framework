@@ -13,7 +13,10 @@ import {
   listViewConfig,
 } from 'antd-management-fast-common';
 import { FlexBox, iconBuilder } from 'antd-management-fast-component';
-import { DataMultiPageView } from 'antd-management-fast-framework';
+import {
+  DataMultiPageView,
+  getCurrentOperator,
+} from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../customConfig/accessWayCollection';
 import { getArticleStatusName } from '../../customSpecialComponents/FunctionSupplement/ArticleStatus';
@@ -52,8 +55,19 @@ class Index extends MultiPage {
       loadApiPath: 'article/pageList',
       tableScroll: { x: 1020 },
       pageSize: 8,
+      currentOperator: null,
     };
   }
+
+  doWorkAdjustDidMount = () => {
+    const that = this;
+
+    getCurrentOperator({
+      successCallback: (data) => {
+        that.setState({ currentOperator: data });
+      },
+    });
+  };
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
@@ -282,9 +296,7 @@ class Index extends MultiPage {
   ];
 
   renderPresetPageHeaderContent = () => {
-    const {
-      currentOperator: { currentOperator },
-    } = this.props;
+    const { currentOperator } = this.state;
 
     console.log({ currentOperator });
 
@@ -296,6 +308,7 @@ class Index extends MultiPage {
     const name = getValueByKey({
       data: currentOperator,
       key: 'name',
+      defaultValue: '--',
     });
 
     return (

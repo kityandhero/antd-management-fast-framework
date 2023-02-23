@@ -202,12 +202,12 @@ class AbstractComponent extends Component {
   doDidMountTask = () => {
     this.mounted = true;
 
-    const checkNeedSignInDidMountResult = this.checkNeedSignInDidMount();
+    const checkAuthenticationResult = this.checkAuthentication();
 
-    if (checkNeedSignInDidMountResult) {
-      const checkPermissionResult = this.checkPermission();
+    if (checkAuthenticationResult) {
+      const checkAuthorizationResult = this.checkAuthorization();
 
-      if (checkPermissionResult) {
+      if (checkAuthorizationResult) {
         this.doWorkBeforeAdjustDidMount();
 
         this.doWorkAdjustDidMount();
@@ -231,11 +231,11 @@ class AbstractComponent extends Component {
     }
   };
 
-  checkNeedSignInDidMount = () => {
+  checkAuthentication = () => {
     return true;
   };
 
-  checkPermission = () => {
+  checkAuthorization = () => {
     return true;
   };
 

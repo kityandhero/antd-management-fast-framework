@@ -15,7 +15,7 @@ import { Base } from '../Base';
 class BaseWindow extends Base {
   reloadWhenShow = false;
 
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   formRef = React.createRef();
 

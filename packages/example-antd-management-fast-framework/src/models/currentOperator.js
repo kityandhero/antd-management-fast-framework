@@ -1,11 +1,9 @@
 import {
-  getCurrentOperatorCache,
   getTacitlyState,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
-  setCurrentOperatorCache,
 } from 'easy-soft-utility';
 
 import {
@@ -23,37 +21,16 @@ export default {
 
   effects: {
     *getCurrentOperator({ payload, alias }, { call, put }) {
-      let dataAdjust = {};
+      const response = yield call(getCurrentBasicInfoData, payload);
 
-      const { force } = payload || {
-        force: false,
-      };
-      let result = {};
-      let fromRemote = force || false;
+      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
-      if (!force) {
-        dataAdjust = getCurrentOperatorCache();
-
-        if ((result || null) == null) {
-          fromRemote = true;
-          dataAdjust = {};
-        }
-      }
-
-      if (fromRemote) {
-        const response = yield call(getCurrentBasicInfoData, payload);
-
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
-
-        yield put({
-          type: reducerNameCollection.reducerData,
-          payload: dataAdjust,
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        setCurrentOperatorCache(dataAdjust);
-      }
+      yield put({
+        type: reducerNameCollection.reducerData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParameters,
+      });
 
       return dataAdjust;
     },

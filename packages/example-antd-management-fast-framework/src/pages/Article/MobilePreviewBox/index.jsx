@@ -12,7 +12,7 @@ import { MobileContainor } from 'antd-management-fast-framework';
 const { MobilePreviewArea } = MobileContainor;
 
 class MobilePreviewBox extends MobilePreviewArea {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
 

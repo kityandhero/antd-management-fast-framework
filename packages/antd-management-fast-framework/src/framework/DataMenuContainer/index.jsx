@@ -18,7 +18,7 @@ import styles from './index.less';
 const { Item } = Menu;
 
 class DataMenuContainer extends AuthorizationWrapper {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
 

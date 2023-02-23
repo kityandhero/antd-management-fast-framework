@@ -4,14 +4,13 @@ import React from 'react';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 import { connect } from '@umijs/max';
 
-import { redirectTo, setAuthority } from 'easy-soft-utility';
+import { redirectTo, setAuthority, setToken } from 'easy-soft-utility';
 
 import {
   getAppDescription,
   getAppName,
   getPageQuery,
   getShareLogo,
-  setToken,
 } from 'antd-management-fast-common';
 import {
   BaseComponent,

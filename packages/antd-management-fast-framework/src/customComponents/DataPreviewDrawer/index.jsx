@@ -10,7 +10,7 @@ import { Base } from '../../framework/DataDrawer/Base';
 import styles from './index.less';
 
 class DataPreviewDrawer extends Base {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
 
