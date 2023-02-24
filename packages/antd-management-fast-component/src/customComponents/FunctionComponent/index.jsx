@@ -50,7 +50,7 @@ import {
   logObject,
   logText,
   replaceWithKeep,
-  showErrorMessage,
+  showSimpleErrorMessage,
   showSimpleRuntimeError,
   sortBy,
   toLowerFirst,
@@ -259,9 +259,7 @@ export function buildButton({
           } else {
             const messageText = 'buildButton : handleClick is not function';
 
-            showErrorMessage({
-              message: messageText,
-            });
+            showSimpleErrorMessage(messageText);
           }
         }}
         okText={okText}
@@ -331,9 +329,7 @@ export function buildMenu({
     if (checkStringIsNullOrWhiteSpace(key)) {
       logObject(d);
 
-      showErrorMessage({
-        message: 'key is not allow empty',
-      });
+      showSimpleErrorMessage('key is not allow empty');
     }
 
     if (
@@ -416,9 +412,7 @@ export function buildMenu({
         const { type, key, icon, text, disabled, hidden, confirm, color } = o;
 
         if (checkStringIsNullOrWhiteSpace(key)) {
-          showErrorMessage({
-            message: 'key is not allow empty',
-          });
+          showSimpleErrorMessage('key is not allow empty');
         }
 
         if (hidden) {

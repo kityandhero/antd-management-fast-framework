@@ -292,7 +292,7 @@ class BasicInfo extends TabPageBase {
             text: '按钮1',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
             disabled: false,
@@ -305,7 +305,7 @@ class BasicInfo extends TabPageBase {
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
           }),
@@ -317,7 +317,7 @@ class BasicInfo extends TabPageBase {
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
             processing: true,
@@ -330,7 +330,7 @@ class BasicInfo extends TabPageBase {
             text: '按钮4',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
             confirm: {

@@ -5,10 +5,10 @@ import {
   isUndefined,
   logObject,
   setParametersDataCache,
-  showErrorMessage,
+  showSimpleErrorMessage,
   showSimpleRuntimeError,
   showSimpleWarningMessage,
-  showWarnMessage,
+  showSimpleWarnMessage,
 } from 'easy-soft-utility';
 
 import { defaultPageListState } from 'antd-management-fast-common';
@@ -166,9 +166,7 @@ class MultiPage extends Base {
       const text =
         '启用恢复之前查询状态功能需要重新实现 "restoreQueryDataBeforeFirstRequest" 方法,通过该方法填充视图中的各项查询条件 ';
 
-      showWarnMessage({
-        message: text,
-      });
+      showSimpleWarnMessage(text);
     }, 1500);
   };
 
@@ -190,9 +188,7 @@ class MultiPage extends Base {
     if (!form) {
       const text = '查询表单不存在';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
     }
 
     const { validateFields } = form;

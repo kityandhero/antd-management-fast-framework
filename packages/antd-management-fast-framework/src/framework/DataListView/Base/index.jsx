@@ -30,7 +30,7 @@ import {
   isUndefined,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
-  showWarnMessage,
+  showSimpleWarnMessage,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -383,9 +383,7 @@ class Base extends AuthorizationWrapper {
             errorMessage += ' ...';
           }
 
-          showWarnMessage({
-            message: errorMessage,
-          });
+          showSimpleWarnMessage(errorMessage);
         }
       });
   };

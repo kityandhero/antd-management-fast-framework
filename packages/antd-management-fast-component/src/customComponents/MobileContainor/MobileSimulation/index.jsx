@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { isObject, logObject, showErrorMessage } from 'easy-soft-utility';
+import { isObject, logObject, showSimpleErrorMessage } from 'easy-soft-utility';
 
 import { animalType, mobileTypeCollection } from 'antd-management-fast-common';
 
@@ -166,9 +166,7 @@ class MobileSimulation extends PureComponent {
 
         const text = 'invalid mobile type，please check in console';
 
-        showErrorMessage({
-          message: text,
-        });
+        showSimpleErrorMessage(text);
 
         logObject({
           message: 'available mobile type list',

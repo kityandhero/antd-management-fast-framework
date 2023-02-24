@@ -31,7 +31,7 @@ import {
   pretreatmentRequestParameters,
   refitCommonData,
   setLocalMetaData,
-  showErrorMessage,
+  showSimpleErrorMessage,
   showSimpleRuntimeError,
   toDatetime,
   toNumber,
@@ -408,9 +408,7 @@ class Common extends Core {
 
                 const text = `${toString(error_)},place view in the console`;
 
-                showErrorMessage({
-                  message: text,
-                });
+                showSimpleErrorMessage(text);
               }
             }
 
@@ -601,9 +599,7 @@ class Common extends Core {
     ) {
       const text = '数据正在处理中，请稍等一下再点哦';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
 
       return true;
     }
@@ -1310,9 +1306,7 @@ class Common extends Core {
     if (!isArray(tools)) {
       const text = '工具栏配置数据无效';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
 
       logObject(config);
 
@@ -1404,9 +1398,7 @@ class Common extends Core {
     if (!isArray(list)) {
       const text = '帮助条目数据无效';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
 
       logObject(config);
 

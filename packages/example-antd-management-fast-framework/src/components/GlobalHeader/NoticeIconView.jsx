@@ -6,8 +6,8 @@ import { connect } from '@umijs/max';
 
 import {
   logDebug,
-  showInfoMessage,
-  showSuccessMessage,
+  showSimpleInfoMessage,
+  showSimpleSuccessMessage,
 } from 'easy-soft-utility';
 
 import NoticeIcon from '../NoticeIcon';
@@ -48,9 +48,7 @@ class GlobalHeaderRight extends Component {
   handleNoticeClear = (title, key) => {
     const { dispatch } = this.props;
 
-    showSuccessMessage({
-      message: `${'清空了'} ${title}`,
-    });
+    showSimpleSuccessMessage(`${'清空了'} ${title}`);
 
     if (dispatch) {
       const clearNoticesType = 'global/clearNotices';
@@ -138,11 +136,7 @@ class GlobalHeaderRight extends Component {
         viewMoreText="查看更多"
         onClear={this.handleNoticeClear}
         onPopupVisibleChange={onNoticeVisibleChange}
-        onViewMore={() =>
-          showInfoMessage({
-            message: 'Click on view more',
-          })
-        }
+        onViewMore={() => showSimpleInfoMessage('Click on view more')}
         clearClose
       >
         <NoticeIcon.Tab

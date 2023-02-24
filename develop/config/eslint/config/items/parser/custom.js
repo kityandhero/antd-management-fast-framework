@@ -2,8 +2,11 @@
 /* eslint-disable unicorn/prefer-module */
 /* eslint-disable no-useless-escape */
 
-const parserOptions = {};
+const parserJsOptions = {};
+
+const parserTsOptions = {};
 
 module.exports = {
-  parserOptions: { ...parserOptions },
+  parserJsOptions: { ...parserJsOptions },
+  parserTsOptions: { ...parserTsOptions },
 };

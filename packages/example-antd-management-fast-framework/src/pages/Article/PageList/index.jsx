@@ -347,7 +347,7 @@ class PageList extends MultiPage {
             text: '按钮1',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
             disabled: false,
@@ -360,7 +360,7 @@ class PageList extends MultiPage {
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
           }),
@@ -372,7 +372,7 @@ class PageList extends MultiPage {
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
             processing: true,
@@ -385,7 +385,7 @@ class PageList extends MultiPage {
             text: '按钮4',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
             confirm: {
@@ -686,7 +686,7 @@ class PageList extends MultiPage {
             // ellipsisMaxWidth: 180,
             onClick: () => {
               showInfoMessage({
-                message: 'onClick',
+                text: 'onClick',
               });
             },
           },

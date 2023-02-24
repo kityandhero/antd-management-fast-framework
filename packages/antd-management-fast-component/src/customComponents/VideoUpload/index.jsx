@@ -14,7 +14,7 @@ import { EllipsisOutlined } from '@ant-design/icons';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
-  showErrorMessage,
+  showSimpleErrorMessage,
   showSimpleRuntimeError,
 } from 'easy-soft-utility';
 
@@ -71,9 +71,7 @@ class VideoUpload extends PureComponent {
     if (checkStringIsNullOrWhiteSpace(videoUrl)) {
       const text = '无效的视频源';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
 
       return;
     }
@@ -155,9 +153,7 @@ class VideoUpload extends PureComponent {
     if (!isVideo) {
       const text = '请上传视频文件(*.mp4)!';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
     }
 
     const isLt3M = file.size / 1024 / 1024 < getVideoUploadMaxSize();
@@ -165,9 +161,7 @@ class VideoUpload extends PureComponent {
     if (!isLt3M) {
       const text = '视频文件不能超过3MB!';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
     }
 
     return isVideo && isLt3M;
@@ -231,9 +225,7 @@ class VideoUpload extends PureComponent {
         if (checkStringIsNullOrWhiteSpace(videoUrl)) {
           const text = '当前未设置视频地址';
 
-          showErrorMessage({
-            message: text,
-          });
+          showSimpleErrorMessage(text);
         } else {
           copyToClipboard(videoUrl);
         }

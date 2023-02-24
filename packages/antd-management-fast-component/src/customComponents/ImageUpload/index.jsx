@@ -6,9 +6,9 @@ import {
   buildFieldHelper,
   checkStringIsNullOrWhiteSpace,
   isFunction,
-  showInfoMessage,
+  showSimpleInfoMessage,
   showSimpleRuntimeError,
-  showWarningMessage,
+  showSimpleWarnMessage,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -53,9 +53,7 @@ class ImageUpload extends PureComponent {
     const { image } = this.props;
 
     if (checkStringIsNullOrWhiteSpace(image)) {
-      showInfoMessage({
-        message: `无图片可以预览`,
-      });
+      showSimpleInfoMessage(`无图片可以预览`);
 
       return;
     }
@@ -76,9 +74,7 @@ class ImageUpload extends PureComponent {
     if ((fileList || []).length > listCapacity) {
       const text = `上传不能超过${listCapacity}`;
 
-      showWarningMessage({
-        message: text,
-      });
+      showSimpleWarnMessage(text);
     }
 
     const isPic =
@@ -142,9 +138,7 @@ class ImageUpload extends PureComponent {
     const { image } = this.props;
 
     if (checkStringIsNullOrWhiteSpace(image)) {
-      showInfoMessage({
-        message: '当前没有可供移除的图片',
-      });
+      showSimpleInfoMessage('当前没有可供移除的图片');
 
       return;
     }

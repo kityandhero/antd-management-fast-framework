@@ -14,7 +14,7 @@ import { EllipsisOutlined } from '@ant-design/icons';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
-  showErrorMessage,
+  showSimpleErrorMessage,
   showSimpleRuntimeError,
 } from 'easy-soft-utility';
 
@@ -133,9 +133,7 @@ class FileUpload extends PureComponent {
     if (!isLt3M) {
       const text = `文件不能超过${maxSize}MB!`;
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
     }
 
     return isLt3M;
@@ -194,9 +192,7 @@ class FileUpload extends PureComponent {
         if (checkStringIsNullOrWhiteSpace(fileUrl)) {
           const text = '当前未设置文件地址';
 
-          showErrorMessage({
-            message: text,
-          });
+          showSimpleErrorMessage(text);
         } else {
           copyToClipboard(fileUrl);
         }

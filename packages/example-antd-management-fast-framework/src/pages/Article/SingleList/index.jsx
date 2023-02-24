@@ -336,7 +336,7 @@ class SingleList extends SinglePage {
             text: '按钮1',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
             disabled: false,
@@ -349,7 +349,7 @@ class SingleList extends SinglePage {
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
           }),
@@ -361,7 +361,7 @@ class SingleList extends SinglePage {
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
             processing: true,
@@ -374,7 +374,7 @@ class SingleList extends SinglePage {
             text: '按钮4',
             handleClick: () => {
               showInfoMessage({
-                message: 'click button 4',
+                text: 'click button 4',
               });
             },
             confirm: {

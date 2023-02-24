@@ -1,7 +1,7 @@
 import {
   isFunction,
   showSimpleRuntimeError,
-  showWarningMessage,
+  showSimpleWarnMessage,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -77,9 +77,7 @@ class SelectFieldInteractiveBase extends SelectFieldBase {
         fieldPlaceholder: '请选择',
       };
 
-      showWarningMessage({
-        message: `${fieldPlaceholder}${fieldTitle}`,
-      });
+      showSimpleWarnMessage(`${fieldPlaceholder}${fieldTitle}`);
 
       return;
     }

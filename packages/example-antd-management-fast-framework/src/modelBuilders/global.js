@@ -43,7 +43,7 @@ export function buildGlobalModel() {
             const text = '初始数据正在努力加载中，需要一点点时间哦！';
 
             showInfoMessage({
-              message: text,
+              text: text,
               duration: 0.8,
             });
           });

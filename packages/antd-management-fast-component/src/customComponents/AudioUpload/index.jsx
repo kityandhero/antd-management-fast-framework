@@ -14,7 +14,7 @@ import { EllipsisOutlined } from '@ant-design/icons';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
-  showErrorMessage,
+  showSimpleErrorMessage,
   showSimpleRuntimeError,
 } from 'easy-soft-utility';
 
@@ -69,9 +69,7 @@ class AudioUpload extends PureComponent {
     if (checkStringIsNullOrWhiteSpace(audioUrl)) {
       const text = '无效的音频源';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
 
       return;
     }
@@ -153,9 +151,7 @@ class AudioUpload extends PureComponent {
     if (!isAudio) {
       const text = '请上传音频文件(*.mp3)!';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
     }
 
     const isLt3M = file.size / 1024 / 1024 < getAudioUploadMaxSize();
@@ -163,9 +159,7 @@ class AudioUpload extends PureComponent {
     if (!isLt3M) {
       const text = '音频文件不能超过3MB!';
 
-      showErrorMessage({
-        message: text,
-      });
+      showSimpleErrorMessage(text);
     }
 
     return isAudio && isLt3M;
@@ -229,9 +223,7 @@ class AudioUpload extends PureComponent {
         if (checkStringIsNullOrWhiteSpace(audioUrl)) {
           const text = '当前未设置音频地址';
 
-          showErrorMessage({
-            message: text,
-          });
+          showSimpleErrorMessage(text);
         } else {
           copyToClipboard(audioUrl);
         }

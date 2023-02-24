@@ -4,8 +4,8 @@ import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
   showSimpleRuntimeError,
-  showSuccessMessage,
-  showWarningMessage,
+  showSimpleSuccessMessage,
+  showSimpleWarningMessage,
 } from 'easy-soft-utility';
 
 import { AuthorizationWrapper } from '../../AuthorizationWrapper';
@@ -157,15 +157,11 @@ class Base extends AuthorizationWrapper {
       setTimeout(() => {
         requestAnimationFrame(() => {
           if (type === 'success') {
-            showSuccessMessage({
-              message: text,
-            });
+            showSimpleSuccessMessage(text);
           }
 
           if (type === 'warn') {
-            showWarningMessage({
-              message: text,
-            });
+            showSimpleWarningMessage(text);
           }
         });
       }, 700);
