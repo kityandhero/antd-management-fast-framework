@@ -1,7 +1,10 @@
 import { message } from 'antd';
 
 import {
+  logDevelop,
+  messagePromptAssist,
   messageTypeCollection,
+  setDurationConversionRatio,
   setErrorMessageDisplayMonitor,
   setInfoMessageDisplayMonitor,
   setLoadingMessageDisplayMonitor,
@@ -138,6 +141,12 @@ function showWarningMessage({ duration = 3, text, onClose = () => {} }) {
  * 设置 MessageDisplayMonitor 显示处理
  */
 export function setMessageDisplayMonitor() {
+  setDurationConversionRatio(1000);
+
+  logDevelop(
+    `current durationConversionRatio: ${messagePromptAssist.durationConversionRatio}`,
+  );
+
   setInfoMessageDisplayMonitor(showInfoMessage);
   setOpenMessageDisplayMonitor(showOpenMessage);
   setLoadingMessageDisplayMonitor(showLoadingMessage);

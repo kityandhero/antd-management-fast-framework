@@ -55,7 +55,7 @@
     "antd-management-fast-component": "^2.0.0",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
-    "easy-soft-utility": "^2.4.69",
+    "easy-soft-utility": "^2.4.71",
     "html-react-parser": "^3.0.9",
     "nprogress": "^0.2.0",
     "rc-animate": "^3.1.1",
