@@ -49,6 +49,19 @@ class MultiPage extends Base {
     };
   }
 
+  supplementPageLoadRequestParams = () => {};
+
+  supplementLoadRequestParams = (o) => {
+    const d = o;
+
+    const { pageNo, pageSize } = this.state;
+
+    d.pageNo = pageNo;
+    d.pageSize = pageSize;
+
+    return { ...d, ...this.supplementPageLoadRequestParams() };
+  };
+
   handleSearchReset = (checkWorkDoing = true, delay = 0) => {
     if (checkWorkDoing && this.checkWorkDoing()) {
       return;

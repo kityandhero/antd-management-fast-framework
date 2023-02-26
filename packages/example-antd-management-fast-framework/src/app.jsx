@@ -1,4 +1,4 @@
-import { Divider, Popover, theme } from 'antd';
+import { Divider, FloatButton, Popover, theme } from 'antd';
 import nprogress from 'nprogress';
 import React from 'react';
 import { SettingDrawer } from '@ant-design/pro-components';
@@ -8,6 +8,7 @@ import { Link } from '@umijs/max';
 import { showSimpleErrorMessage } from 'easy-soft-utility';
 
 import { getUseNprogress } from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 import {
   Bootstrap,
   getApplicationListData,
@@ -352,6 +353,16 @@ export const layout = () => {
           {children}
 
           <Bootstrap />
+
+          <FloatButton.Group
+            trigger="click"
+            type="primary"
+            style={{ right: 24 }}
+            icon={iconBuilder.layout()}
+          >
+            <FloatButton />
+            {/* <FloatButton icon={<CommentOutlined />} /> */}
+          </FloatButton.Group>
 
           {!properties.location?.pathname?.includes('/login') && (
             <SettingDrawer

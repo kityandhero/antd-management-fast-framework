@@ -50,6 +50,7 @@ import {
   InsertRowRightOutlined,
   InstagramOutlined,
   KeyOutlined,
+  LayoutOutlined,
   LeftCircleOutlined,
   LeftOutlined,
   LineOutlined,
@@ -261,6 +262,9 @@ export const iconBuilder = {
   },
   message: (properties = null) => {
     return <MessageOutlined {...(properties || {})} />;
+  },
+  layout: (properties = null) => {
+    return <LayoutOutlined {...(properties || {})} />;
   },
   lock: (properties = null) => {
     return <LockOutlined {...(properties || {})} />;

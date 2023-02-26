@@ -73,7 +73,6 @@ class PageList extends MultiPage {
 
     this.state = {
       ...this.state,
-
       showSelect: true,
       pageName: '文章列表',
       paramsKey: accessWayCollection.article.pageList.paramsKey,

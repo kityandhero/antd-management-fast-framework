@@ -298,8 +298,6 @@ class Index extends MultiPage {
   renderPresetPageHeaderContent = () => {
     const { currentOperator } = this.state;
 
-    console.log({ currentOperator });
-
     const avatar = getValueByKey({
       data: currentOperator,
       key: 'avatar',

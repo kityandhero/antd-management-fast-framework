@@ -103,10 +103,6 @@ export const webpackPlugin5 = (config, { env }) => {
 
   config.optimization.store.delete('noEmitOnErrors');
 
-  console.log({
-    currentEnv: env,
-  });
-
   config.merge({
     // mode: 'development',
     optimization: {

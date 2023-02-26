@@ -993,8 +993,6 @@ class Base extends AuthorizationWrapper {
 
     const list = pathname.split('/');
 
-    console.log({ list });
-
     if (list.length > 1) {
       return list[list.length - 1];
     }
@@ -1575,7 +1573,14 @@ class Base extends AuthorizationWrapper {
       return topArea;
     }
 
-    return <FlexBox direction="vertical" top={topArea} bottom={bottomArea} />;
+    return (
+      <FlexBox
+        direction="vertical"
+        flexAuto="top"
+        top={topArea}
+        bottom={bottomArea}
+      />
+    );
   };
 
   renderPresetContentArea = () => {

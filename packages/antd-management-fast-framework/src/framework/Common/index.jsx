@@ -1464,9 +1464,11 @@ class Common extends Core {
       return null;
     }
 
-    const formContentWrapperTypeConfig = this.establishWrapperTypeConfig() || {
+    const formContentWrapperTypeConfig = {
       mode: cardConfig.wrapperType.page,
+      ...this.establishWrapperTypeConfig(),
     };
+
     const configData = {
       mode: cardConfig.wrapperType.page,
       justify: 'start',
@@ -1475,6 +1477,7 @@ class Common extends Core {
       list: [],
       ...config,
     };
+
     const {
       mode,
       justify: justifyGeneral,
@@ -1506,7 +1509,7 @@ class Common extends Core {
               mode,
               justify: justifyGeneral,
               align: alignGeneral,
-              config: item,
+              config: { bordered: false, ...item },
               key: index,
             });
           })}
@@ -1762,7 +1765,11 @@ class Common extends Core {
             </>
           )
         }
-        style={imageVisible ? { position: 'relative' } : {}}
+        style={{
+          boxShadow: 'none',
+          borderRadius: 0,
+          ...(imageVisible ? { position: 'relative' } : {}),
+        }}
         headStyle={
           imageVisible
             ? {
