@@ -2,12 +2,14 @@ import { Space, Tag } from 'antd';
 import TextAnimal from 'rc-texty';
 import React from 'react';
 
-import { isArray } from 'easy-soft-utility';
+import { isArray, logExecute } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../BaseComponent';
 
 class AmfTagList extends BaseComponent {
   renderFurther() {
+    logExecute('renderFurther', 'AmfTagList');
+
     const { list } = this.props;
 
     if (!isArray(list)) {

@@ -5,6 +5,7 @@ import {
   isBoolean,
   isFunction,
   isObject,
+  logExecute,
   // logObject,
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
@@ -15,6 +16,8 @@ import { IconInfo } from '../../IconInfo';
 
 class AmfButton extends BaseComponent {
   renderFurther() {
+    logExecute('renderFurther', 'AmfButton');
+
     const {
       type: typeSource = 'default',
       size: sizeSource = 'default',

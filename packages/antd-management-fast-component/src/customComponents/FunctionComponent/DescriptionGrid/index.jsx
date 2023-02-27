@@ -1,7 +1,11 @@
 import { Descriptions } from 'antd';
 import React from 'react';
 
-import { checkStringIsNullOrWhiteSpace, isArray } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isArray,
+  logExecute,
+} from 'easy-soft-utility';
 
 import { copyToClipboard } from 'antd-management-fast-common';
 
@@ -11,6 +15,8 @@ const { Item: Description } = Descriptions;
 
 class AmfDescriptionGrid extends BaseComponent {
   renderFurther() {
+    logExecute('renderFurther', 'AmfDescriptionGrid');
+
     const { list, config } = this.props;
 
     if (!isArray(list)) {

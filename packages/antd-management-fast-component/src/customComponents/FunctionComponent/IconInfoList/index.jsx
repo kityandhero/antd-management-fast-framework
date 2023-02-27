@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { isArray } from 'easy-soft-utility';
+import { isArray, logExecute } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../BaseComponent';
 import { IconInfo } from '../../IconInfo';
 
 class AmfIconInfoList extends BaseComponent {
   renderFurther() {
+    logExecute('renderFurther', 'AmfIconInfoList');
+
     const { list } = this.props;
 
     if (!isArray(list)) {

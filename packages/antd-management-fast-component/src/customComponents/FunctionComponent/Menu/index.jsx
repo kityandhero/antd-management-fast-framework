@@ -10,6 +10,7 @@ import {
   isBoolean,
   isFunction,
   isObject,
+  logExecute,
   logObject,
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
@@ -20,8 +21,12 @@ import { BaseComponent } from '../../BaseComponent';
 import { iconBuilder } from '../../Icon';
 import { IconInfo } from '../../IconInfo';
 
+import './index.less';
+
 class AmfMenu extends BaseComponent {
   renderFurther() {
+    logExecute('renderFurther', 'AmfMenu');
+
     const { handleData: r, items, handleMenuClick } = this.props;
 
     if (!isFunction(handleMenuClick)) {

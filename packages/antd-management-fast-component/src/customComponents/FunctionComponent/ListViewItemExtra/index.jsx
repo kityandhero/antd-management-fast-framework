@@ -1,11 +1,15 @@
 import React from 'react';
 
+import { logExecute } from 'easy-soft-utility';
+
 import { BaseComponent } from '../../BaseComponent';
 import { ImageBox } from '../../ImageBox';
 import { VerticalBox } from '../../VerticalBox';
 
 class AmfListViewItemExtra extends BaseComponent {
   renderFurther() {
+    logExecute('renderFurther', 'AmfListViewItemExtra');
+
     const { align, imageUrl, emptyImageUrl, width } = this.props;
 
     return (

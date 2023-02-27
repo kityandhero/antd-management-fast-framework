@@ -6,6 +6,7 @@ import {
   getGuid,
   isArray,
   isNumber,
+  logExecute,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -17,6 +18,8 @@ import { FlexText } from '../../FlexText';
 
 class AmfCustomGrid extends BaseComponent {
   renderFurther() {
+    logExecute('renderFurther', 'AmfCustomGrid');
+
     const { list, config } = this.props;
 
     if (!isArray(list)) {

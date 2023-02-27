@@ -8,6 +8,7 @@ import {
   isBoolean,
   isFunction,
   isObject,
+  logExecute,
   logObject,
   toLowerFirst,
 } from 'easy-soft-utility';
@@ -20,8 +21,12 @@ import { VerticalBox } from '../../VerticalBox';
 import { AmfButton } from '../Button';
 import { AmfMenu } from '../Menu';
 
+import './index.less';
+
 class AmfDropdown extends BaseComponent {
   renderFurther() {
+    logExecute('renderFurther', 'AmfDropdown');
+
     const {
       tooltip: tooltipSource = false,
       type: typeSource = 'default',
