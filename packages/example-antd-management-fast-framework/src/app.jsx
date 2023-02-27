@@ -244,7 +244,7 @@ export async function getInitialState() {
 //   setCurrentLocation(location);
 // }
 
-export const layout = () => {
+export const layout = ({ initialState, setInitialState }) => {
   const layoutSettings = getLayoutSetting();
 
   // console.log(layoutSettings);
@@ -277,6 +277,7 @@ export const layout = () => {
     // },
     logo: getLogo(),
     title: getTitle(),
+    ...initialState?.settings,
     disableContentMargin: false,
     menu: {},
     // menuProps: {
@@ -367,7 +368,14 @@ export const layout = () => {
           {!properties.location?.pathname?.includes('/login') && (
             <SettingDrawer
               enableDarkTheme
-              settings={layoutSettings}
+              settings={initialState?.settings}
+              onSettingChange={(settings) => {
+                setInitialState((preInitialState) => ({
+                  ...preInitialState,
+                  settings,
+                }));
+              }}
+              // settings={layoutSettings}
               // onSettingChange={(settings) => {
               //   setInitialState((preInitialState) => ({
               //     ...preInitialState,
