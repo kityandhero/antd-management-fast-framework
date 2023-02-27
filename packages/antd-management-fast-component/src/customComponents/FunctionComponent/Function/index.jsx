@@ -4,7 +4,6 @@ import {
   Button,
   Col,
   DatePicker,
-  Descriptions,
   Divider,
   Form,
   Input,
@@ -78,6 +77,7 @@ import { IconInfo } from '../../IconInfo';
 import { ImageBox } from '../../ImageBox';
 import { VerticalBox } from '../../VerticalBox';
 import { AmfCustomGrid } from '../CustomGrid';
+import { AmfDescriptionGrid } from '../DescriptionGrid';
 import { AmfIconInfoList } from '../IconInfoList';
 import { AmfListViewItemExtra } from '../ListViewItemExtra';
 import { AmfTagList } from '../TagList';
@@ -90,7 +90,6 @@ const { Option } = Select;
 const RadioGroup = Radio.Group;
 const { Paragraph } = Typography;
 const ButtonGroup = Button.Group;
-const { Item: Description } = Descriptions;
 
 export function buildPageHeaderTitle(pageName, headerTitlePrefixValue = '') {
   let nameList = [];
@@ -882,79 +881,7 @@ export function buildCustomGrid({ key = null, list, props }) {
 }
 
 export function buildDescriptionGrid({ key = null, list, props }) {
-  if (isArray(list)) {
-    const dataList = list.map((o, index) => {
-      const d = { key: `item_${index}`, ...o };
-
-      return { canCopy: false, ...d };
-    });
-
-    const { labelStyle: globalLabelStyle, contentStyle: globalContentStyle } = {
-      labelStyle: null,
-      contentStyle: null,
-      ...props,
-    };
-
-    return (
-      <Descriptions key={key} {...(props || {})}>
-        {dataList.map((item) => {
-          const {
-            key: itemKey,
-            label,
-            span,
-            labelStyle,
-            contentStyle,
-            emptyValue,
-          } = {
-            label: '',
-            span: 1,
-            labelStyle: null,
-            contentStyle: null,
-            emptyValue: '',
-            ...item,
-          };
-
-          return (
-            <Description
-              key={itemKey}
-              label={label}
-              span={span || 1}
-              labelStyle={{
-                ...globalLabelStyle,
-                ...labelStyle,
-              }}
-              contentStyle={{
-                ...globalContentStyle,
-                ...contentStyle,
-              }}
-              // style={{ ...itemStyle, ...(item.style || null) }}
-            >
-              {item.value || emptyValue}
-              {item.canCopy && (item.canCopy || null) != null ? (
-                <a
-                  style={{ marginLeft: '10px' }}
-                  disabled={checkStringIsNullOrWhiteSpace(
-                    item.value || emptyValue,
-                  )}
-                  onClick={() => {
-                    if (
-                      !checkStringIsNullOrWhiteSpace(item.value || emptyValue)
-                    ) {
-                      copyToClipboard(item.copyData || item.value);
-                    }
-                  }}
-                >
-                  [复制]
-                </a>
-              ) : null}
-            </Description>
-          );
-        })}
-      </Descriptions>
-    );
-  }
-
-  return null;
+  return <AmfDescriptionGrid key={key} list={list} config={props} />;
 }
 
 export function buildPageHeaderContent({ list }) {

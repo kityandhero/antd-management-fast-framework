@@ -233,7 +233,7 @@ class AmfCustomGrid extends BaseComponent {
 
 AmfCustomGrid.defaultProps = {
   list: [],
-  props: {},
+  config: {},
 };
 
 export { AmfCustomGrid };
