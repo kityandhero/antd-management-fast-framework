@@ -18,7 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
-} from '../../FunctionComponent';
+} from '../../FunctionComponent/Function';
 
 export function refitWhetherList({ withUnlimited = true }) {
   const { whetherList: list } = {

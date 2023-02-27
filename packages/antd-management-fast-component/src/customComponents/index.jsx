@@ -25,7 +25,7 @@ export * from './FlexText';
 export * from './FooterToolbar';
 export * from './FormCustom';
 export * from './FromDisplayItem';
-export * from './FunctionComponent';
+export * from './FunctionComponent/Function';
 export * from './FunctionSupplement';
 export * from './GlobalFooter';
 export * from './HelpBox';

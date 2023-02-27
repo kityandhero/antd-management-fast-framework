@@ -1,4 +1,3 @@
-import { Avatar } from 'antd';
 import { connect } from '@umijs/max';
 
 import {
@@ -7,12 +6,8 @@ import {
   handleItem,
 } from 'easy-soft-utility';
 
-import {
-  columnFacadeMode,
-  defaultUserAvatar,
-  listViewConfig,
-} from 'antd-management-fast-common';
-import { FlexBox, iconBuilder } from 'antd-management-fast-component';
+import { columnFacadeMode, listViewConfig } from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 import {
   DataMultiPageView,
   getCurrentOperator,
@@ -28,6 +23,7 @@ import {
 import { getStatusBadge } from '../Article/Assist/tools';
 import { fieldData, statusCollection } from '../Article/Common/data';
 
+import { PageHeaderContent } from './PageHeaderContent';
 import ShortcutPanel from './ShortcutPanel';
 
 const { MultiPage } = DataMultiPageView;
@@ -309,51 +305,7 @@ class Index extends MultiPage {
       defaultValue: '--',
     });
 
-    return (
-      <>
-        <FlexBox
-          flexAuto="right"
-          left={
-            <Avatar
-              size="small"
-              style={{
-                width: '70px',
-                height: '70px',
-              }}
-              // className={styles.avatar}
-              src={avatar || defaultUserAvatar}
-              alt="avatar"
-            />
-          }
-          leftStyle={{
-            paddingRight: '30px',
-          }}
-          right={
-            <FlexBox
-              flexAuto="top"
-              top={
-                <div
-                  style={{
-                    fontSize: '20px',
-                  }}
-                >{`早安，${name}，祝你开心每一天！`}</div>
-              }
-              bottom={
-                <div
-                  style={{
-                    fontSize: '14px',
-                    color: '#333',
-                    paddingBottom: '10px',
-                  }}
-                >
-                  河南省驻马店市委宣传部 — 驻马店官方发布CMS平台
-                </div>
-              }
-            />
-          }
-        />
-      </>
-    );
+    return <PageHeaderContent avatar={avatar} name={name} />;
   };
 
   renderPresetSiderTopArea = () => {

@@ -25,8 +25,6 @@ class TabPageBase extends BaseUpdateFormTab {
   };
 
   supplementLoadRequestParams = (o) => {
-    console.log(this.state);
-
     const d = o;
     const { articleId } = this.state;
 

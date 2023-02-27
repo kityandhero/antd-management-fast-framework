@@ -21,7 +21,7 @@ import {
 import { copyToClipboard } from 'antd-management-fast-common';
 import { getAudioUploadMaxSize } from 'antd-management-fast-common/src';
 
-import { buildPlayer } from '../FunctionComponent';
+import { buildPlayer } from '../FunctionComponent/Function';
 import { iconBuilder } from '../Icon';
 import { IconInfo } from '../IconInfo';
 

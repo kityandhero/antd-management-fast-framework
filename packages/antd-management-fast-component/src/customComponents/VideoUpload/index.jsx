@@ -23,7 +23,7 @@ import {
   getVideoUploadMaxSize,
 } from 'antd-management-fast-common';
 
-import { buildPlayer } from '../FunctionComponent';
+import { buildPlayer } from '../FunctionComponent/Function';
 import { iconBuilder } from '../Icon';
 import { IconInfo } from '../IconInfo';
 
