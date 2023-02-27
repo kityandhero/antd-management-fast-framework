@@ -4,24 +4,19 @@ import {
   Button,
   Col,
   DatePicker,
-  Divider,
   Form,
   Input,
   InputNumber,
-  Popconfirm,
-  Popover,
   Radio,
   Row,
   Select,
   Space,
   Switch,
   TimePicker,
-  Tooltip,
   Tree,
   TreeSelect,
   Typography,
 } from 'antd';
-import classNames from 'classnames';
 import React from 'react';
 import ReactJson from 'react-json-view';
 import ReactPlayer from 'react-player';
@@ -33,7 +28,6 @@ import {
   buildFieldDescription,
   buildFieldHelper,
   checkFromConfig,
-  checkInCollection,
   checkStringIsNullOrWhiteSpace,
   datetimeFormat,
   formatDatetime,
@@ -46,10 +40,8 @@ import {
   logObject,
   logText,
   replaceWithKeep,
-  showSimpleErrorMessage,
   showSimpleRuntimeError,
   sortBy,
-  toLowerFirst,
   toNumber,
   toString,
   transformListData,
@@ -60,7 +52,6 @@ import {
   columnFacadeMode,
   copyToClipboard,
   defaultEmptyImage,
-  dropdownExpandItemType,
   listViewConfig,
   pageHeaderRenderType,
 } from 'antd-management-fast-common';
@@ -76,10 +67,13 @@ import { iconBuilder } from '../../Icon';
 import { IconInfo } from '../../IconInfo';
 import { ImageBox } from '../../ImageBox';
 import { VerticalBox } from '../../VerticalBox';
+import { AmfButton } from '../Button';
 import { AmfCustomGrid } from '../CustomGrid';
 import { AmfDescriptionGrid } from '../DescriptionGrid';
+import { AmfDropdown } from '../Dropdown';
 import { AmfIconInfoList } from '../IconInfoList';
 import { AmfListViewItemExtra } from '../ListViewItemExtra';
+import { AmfMenu } from '../Menu';
 import { AmfTagList } from '../TagList';
 
 import styles from './index.less';
@@ -138,158 +132,38 @@ export function buildPageHeaderTitle(pageName, headerTitlePrefixValue = '') {
  * 构建按钮
  */
 export function buildButton({
-  key: keySource = null,
-  type: typeSource = 'default',
-  size: sizeSource = 'default',
-  text: textSource = '按钮',
-  icon: iconSource = iconBuilder.form(),
-  handleClick: handleClickSource = () => {},
-  hidden: hiddenSource = false,
-  danger: dangerSource = false,
-  disabled: disabledSource = false,
-  confirm: confirmSource = false,
-  handleData: handleDataSource = null,
-  processing: processingSource = false,
-  iconProcessing: iconProcessingSource = iconBuilder.loading(),
-  style: styleSource = null,
-  showIcon: showIconSource = true,
+  type = 'default',
+  size = 'default',
+  text = '按钮',
+  icon = iconBuilder.form(),
+  handleClick = () => {},
+  hidden = false,
+  danger = false,
+  disabled = false,
+  confirm = false,
+  handleData = null,
+  processing = false,
+  iconProcessing = iconBuilder.loading(),
+  style = null,
+  showIcon = true,
 }) {
-  let confirmAdjust = false;
-
-  const {
-    key,
-    type,
-    size,
-    icon,
-    text,
-    danger,
-    disabled,
-    hidden,
-    confirm,
-    handleData,
-    handleClick,
-    processing,
-    iconProcessing,
-    style,
-    showIcon,
-  } = {
-    key: keySource ?? null,
-    type: typeSource ?? 'default',
-    size: sizeSource ?? 'default',
-    text: textSource ?? '按钮',
-    icon: iconSource ?? iconBuilder.form(),
-    handleClick: handleClickSource ?? null,
-    danger: dangerSource ?? false,
-    hidden: hiddenSource ?? false,
-    disabled: disabledSource ?? false,
-    confirm: confirmSource ?? false,
-    processing: processingSource ?? false,
-    iconProcessing: iconProcessingSource ?? iconBuilder.loading(),
-    handleData: handleDataSource ?? null,
-    style: styleSource || null,
-    showIcon: showIconSource,
-  };
-
-  if (hidden) {
-    return null;
-  }
-
-  confirmAdjust = confirm;
-
-  if (confirmAdjust) {
-    if (isBoolean(confirmAdjust)) {
-      logObject({
-        key,
-        type,
-        size,
-        icon,
-        text,
-        danger,
-        disabled,
-        hidden,
-        confirm,
-        handleData,
-        handleClick,
-        processing,
-        iconProcessing,
-        style,
-        showIcon,
-      });
-
-      throw new Error(
-        'buildMenu : confirm property in menu Items not allow bool when check confirm is true.',
-      );
-    }
-
-    const { placement, title, handleConfirm, okText, cancelText } = {
-      placement: 'topRight',
-      title: '将要进行操作，确定吗？',
-      okText: '确定',
-      cancelText: '取消',
-      ...(isObject(confirmAdjust) ? confirmAdjust : {}),
-    };
-
-    confirmAdjust = {
-      placement,
-      title,
-      handleConfirm,
-      okText,
-      cancelText,
-    };
-  } else {
-    confirmAdjust = false;
-  }
-
-  const ico = processing
-    ? iconProcessing ?? iconBuilder.loading()
-    : icon ?? iconBuilder.form();
-
-  if (confirmAdjust) {
-    const { placement, title, okText, cancelText } = confirmAdjust;
-
-    return (
-      <Popconfirm
-        key={key ?? undefined}
-        placement={placement}
-        title={title || 'confirm:缺少title配置'}
-        onConfirm={() => {
-          if (isFunction(handleClick)) {
-            handleClick({ handleData: handleData ?? null });
-          } else {
-            const messageText = 'buildButton : handleClick is not function';
-
-            showSimpleErrorMessage(messageText);
-          }
-        }}
-        okText={okText}
-        cancelText={cancelText}
-        disabled={disabled}
-      >
-        <Button
-          type={type}
-          size={size}
-          style={style || null}
-          danger={danger}
-          disabled={disabled}
-        >
-          {showIcon ? <IconInfo icon={ico} text={text} /> : text}
-        </Button>
-      </Popconfirm>
-    );
-  }
-
   return (
-    <Button
-      key={key ?? undefined}
-      style={style || null}
+    <AmfButton
       type={type}
       size={size}
+      text={text}
+      icon={icon}
+      handleClick={handleClick}
+      hidden={hidden}
       danger={danger}
       disabled={disabled}
-      onClick={() => handleClick({ handleData: handleData ?? null })}
-    >
-      {showIcon ? <IconInfo icon={ico} text={text} /> : text}
-    </Button>
+      confirm={confirm}
+      handleData={handleData}
+      processing={processing}
+      iconProcessing={iconProcessing}
+      style={style}
+      showIcon={showIcon}
+    />
   );
 }
 
@@ -298,225 +172,20 @@ export function buildMenu({
   handleMenuClick = () => {},
   items = [],
 }) {
-  if (!isFunction(handleMenuClick)) {
-    throw new Error('buildMenu : handleMenuClick must be function');
-  }
-
-  if (!isArray(items)) {
-    throw new Error('buildMenu : items must be array');
-  }
-
-  let listItem = [];
-
-  for (const o of items || []) {
-    const d = {
-      withDivider: false,
-      uponDivider: true,
-      key: getGuid(),
-      icon: iconBuilder.edit(),
-      text: '',
-      disabled: false,
-      hidden: false,
-      type: dropdownExpandItemType.item,
-      color: null,
-      confirm: false,
-      ...o,
-    };
-
-    const { key, disabled, hidden, withDivider, type, uponDivider } = d;
-
-    if (checkStringIsNullOrWhiteSpace(key)) {
-      logObject(d);
-
-      showSimpleErrorMessage('key is not allow empty');
-    }
-
-    if (
-      checkInCollection(
-        [dropdownExpandItemType.divider, dropdownExpandItemType.item],
-        type,
-      )
-    ) {
-      if (withDivider && type === dropdownExpandItemType.item) {
-        const divider = {
-          key: getGuid(),
-          icon: null,
-          text: '',
-          disabled,
-          hidden,
-          type: dropdownExpandItemType.divider,
-        };
-
-        if (uponDivider) {
-          listItem.push(divider);
-        }
-
-        listItem.push(d);
-
-        if (!uponDivider) {
-          listItem.push(divider);
-        }
-      } else {
-        listItem.push(d);
-      }
-    }
-  }
-
-  listItem = listItem.map((o) => {
-    const d = { ...o };
-
-    const { confirm } = d;
-
-    if (confirm) {
-      if (isBoolean(confirm)) {
-        throw new Error(
-          'buildMenu : confirm property in menu Items not allow bool when check confirm is true.',
-        );
-      }
-
-      const { placement, title, handleConfirm, okText, cancelText } = {
-        placement: 'topRight',
-        title: '将要进行操作，确定吗？',
-        handleConfirm: ({ key, handleData }) => {
-          handleMenuClick({ key, handleData });
-        },
-        okText: '确定',
-        cancelText: '取消',
-        ...(isObject(confirm) ? confirm : {}),
-      };
-
-      d.confirm = {
-        placement,
-        title,
-        handleConfirm,
-        okText,
-        cancelText,
-      };
-    } else {
-      d.confirm = false;
-    }
-
-    return d;
-  });
-
   return (
-    <div className={classNames('amf-dropdownExpandItemCustom')}>
-      <div
-        style={{
-          height: '4px',
-        }}
-      />
-
-      {listItem.map((o) => {
-        const { type, key, icon, text, disabled, hidden, confirm, color } = o;
-
-        if (checkStringIsNullOrWhiteSpace(key)) {
-          showSimpleErrorMessage('key is not allow empty');
-        }
-
-        if (hidden) {
-          return null;
-        }
-
-        if (type === dropdownExpandItemType.item) {
-          if (confirm) {
-            const { placement, title, handleConfirm, okText, cancelText } =
-              confirm;
-
-            return (
-              <Popconfirm
-                key={key}
-                placement={placement}
-                title={title}
-                onConfirm={() => handleConfirm({ key, handleData: r })}
-                okText={okText}
-                cancelText={cancelText}
-                disabled={disabled}
-                overlayStyle={{ zIndex: 1060 }}
-              >
-                <Button
-                  className={classNames('amf-dropdownExpandItemCustom_button')}
-                  type="text"
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    textAlign: 'left',
-                    padding: '5px 12px',
-                    border: 0,
-                    height: '32px',
-                  }}
-                  size="small"
-                  disabled={disabled}
-                >
-                  <IconInfo
-                    icon={icon || iconBuilder.edit()}
-                    text={text}
-                    style={(color || null) == null ? null : { color: color }}
-                  />
-                </Button>
-              </Popconfirm>
-            );
-          }
-
-          return (
-            <Button
-              key={key}
-              className={classNames('amf-dropdownExpandItemCustom_button')}
-              type="text"
-              style={{
-                display: 'block',
-                width: '100%',
-                textAlign: 'left',
-                padding: '5px 12px',
-                border: 0,
-                height: '32px',
-              }}
-              size="small"
-              disabled={disabled}
-              onClick={() => handleMenuClick({ key, handleData: r })}
-            >
-              <IconInfo
-                icon={icon || iconBuilder.edit()}
-                text={text}
-                style={(color || null) == null ? null : { color: color }}
-              />
-            </Button>
-          );
-        }
-
-        if (type === dropdownExpandItemType.divider) {
-          return (
-            <Divider
-              key={key}
-              style={{
-                margin: 0,
-                ...((color || null) == null ? {} : { borderColor: color }),
-              }}
-            />
-          );
-        }
-
-        return null;
-      })}
-
-      <div
-        style={{
-          height: '4px',
-        }}
-      />
-    </div>
+    <AmfMenu handleData={r} handleMenuClick={handleMenuClick} items={items} />
   );
 }
 
 export function buildDropdown({
-  key = getGuid(),
-  tooltip: tooltipSource = false,
-  type: typeSource = 'default',
-  placement: placementDropdown = 'bottomRight',
+  key = null,
+  tooltip = false,
+  type = 'default',
+  placement = 'bottomRight',
   size = 'default',
   text = '按钮',
   icon = iconBuilder.form(),
-  handleData: r,
+  handleData,
   arrow = true,
   disabled = false,
   hidden = false,
@@ -528,271 +197,31 @@ export function buildDropdown({
   processing = false,
   iconProcessing = iconBuilder.loading(),
 }) {
-  if (hidden) {
-    return null;
-  }
-
-  const tooltipAdjust = tooltipSource;
-
-  const otherProperties = tooltipAdjust ? {} : { key: key || getGuid() };
-  const placementAdjust = toLowerFirst(placementDropdown || 'bottomRight');
-
-  const overlayClassNameAdjust = placementAdjust.startsWith('bottom')
-    ? classNames(`amf-dropdownExpandOverlayBottom`)
-    : placementAdjust.startsWith('top')
-    ? classNames(`amf-dropdownExpandOverlayTop`)
-    : {};
-
-  let hasHandleButtonClick = false;
-
-  if ((handleButtonClick || null) != null) {
-    if (!isFunction(handleButtonClick)) {
-      throw new Error(
-        'buildDropdown(framework) : handleButtonClick must be function',
-      );
-    }
-
-    hasHandleButtonClick = true;
-  }
-
-  let button = null;
-
-  if (!isArray(items) || items.length === 0) {
-    button = buildButton({
-      type: typeSource || 'default',
-      size,
-      text,
-      icon,
-      handleClick: handleButtonClick,
-      hidden,
-      disabled,
-      confirm,
-      handleData: r,
-      processing,
-      iconProcessing,
-      ...otherProperties,
-    });
-  } else if (hasHandleButtonClick) {
-    let confirmAdjust = confirm;
-
-    if (confirmAdjust) {
-      if (isBoolean(confirmAdjust)) {
-        logObject(arguments[0]);
-
-        throw new Error(
-          'buildMenu : confirm property in menu Items not allow bool when check confirm is true.',
-        );
-      }
-
-      const { placement, title, handleConfirm, okText, cancelText } = {
-        placement: 'topLeft',
-        title: '将要进行操作，确定吗？',
-        okText: '确定',
-        cancelText: '取消',
-        ...(isObject(confirmAdjust) ? confirmAdjust : {}),
-      };
-
-      confirmAdjust = {
-        placement,
-        title,
-        handleConfirm,
-        okText,
-        cancelText,
-      };
-    } else {
-      confirmAdjust = false;
-    }
-
-    if (confirmAdjust) {
-      const { placement, title, okText, cancelText } = confirmAdjust;
-
-      button = (
-        <FlexBox
-          flexAuto="left"
-          style={{
-            border: '1px solid #d9d9d9',
-            borderRadius: '4px',
-          }}
-          leftStyle={{
-            borderRight: '1px solid #d9d9d9',
-          }}
-          left={
-            <Popconfirm
-              placement={placement}
-              title={title || 'confirm:缺少title配置'}
-              onConfirm={() => {
-                handleButtonClick({ handleData: r });
-              }}
-              okText={okText}
-              cancelText={cancelText}
-              disabled={disabled}
-            >
-              <Button
-                type={typeSource || 'default'}
-                style={{
-                  border: 0,
-                }}
-                size={size ?? 'default'}
-                disabled={disabled ?? false}
-              >
-                <IconInfo icon={icon || null} text={text || ''} />
-              </Button>
-            </Popconfirm>
-          }
-          right={
-            <Popover
-              {...otherProperties}
-              placement={placementAdjust}
-              arrow={arrow}
-              content={buildMenu({
-                handleData: r,
-                handleMenuClick,
-                items,
-              })}
-              title={itemPanelTitle}
-              overlayClassName={overlayClassNameAdjust}
-              overlayInnerStyle={{ padding: 0 }}
-            >
-              <Button
-                style={{
-                  height: '100%',
-                  paddingTop: 0,
-                  border: 0,
-                  paddingBottom: 0,
-                  paddingLeft: 3,
-                  paddingRight: 3,
-                }}
-              >
-                <VerticalBox>
-                  <EllipsisOutlined
-                    style={{
-                      fontSize: 12,
-                    }}
-                  />
-                </VerticalBox>
-              </Button>
-            </Popover>
-          }
-        />
-      );
-    } else {
-      button = (
-        <FlexBox
-          flexAuto="left"
-          style={{
-            border: '1px solid #d9d9d9',
-            borderRadius: '4px',
-          }}
-          leftStyle={{
-            borderRight: '1px solid #d9d9d9',
-          }}
-          left={
-            <Button
-              type={typeSource || 'default'}
-              style={{
-                border: 0,
-              }}
-              size={size ?? 'default'}
-              disabled={disabled ?? false}
-              onClick={() => {
-                handleButtonClick({ handleData: r });
-              }}
-            >
-              <IconInfo icon={icon || null} text={text || ''} />
-            </Button>
-          }
-          right={
-            <Popover
-              {...otherProperties}
-              placement={placementAdjust}
-              arrow={arrow}
-              content={buildMenu({
-                handleData: r,
-                handleMenuClick,
-                items,
-              })}
-              title={itemPanelTitle}
-              overlayClassName={overlayClassNameAdjust}
-              overlayInnerStyle={{ padding: 0 }}
-            >
-              <Button
-                style={{
-                  height: '100%',
-                  border: 0,
-                  paddingTop: 0,
-                  paddingBottom: 0,
-                  paddingLeft: 3,
-                  paddingRight: 3,
-                }}
-              >
-                <VerticalBox>
-                  <EllipsisOutlined
-                    style={{
-                      fontSize: 12,
-                    }}
-                  />
-                </VerticalBox>
-              </Button>
-            </Popover>
-          }
-        />
-      );
-    }
-  } else {
-    button = disabled ? (
-      <Button type={typeSource || 'default'} size={size ?? 'default'} disabled>
-        <IconInfo icon={icon || null} text={text || ''} />
-      </Button>
-    ) : (
-      <Popover
-        {...otherProperties}
-        placement={placementAdjust}
-        arrow={arrow}
-        content={buildMenu({
-          handleData: r,
-          handleMenuClick,
-          items,
-        })}
-        title={itemPanelTitle}
-        overlayClassName={overlayClassNameAdjust}
-        overlayInnerStyle={{ padding: 0 }}
-      >
-        <Button type={typeSource || 'default'} size={size ?? 'default'}>
-          <IconInfo icon={icon || null} text={text || ''} />
-        </Button>
-      </Popover>
-    );
-  }
-
-  if (tooltipAdjust) {
-    if (isBoolean(tooltipAdjust)) {
-      throw new Error(
-        'buildDropdown(framework) : tooltip property in menu Items not allow bool when check tooltip is true.',
-      );
-    }
-
-    const { placement: placementTooltip, title } = {
-      placement: 'top',
-      title: 'tooltip title need set',
-      ...(isObject(tooltipAdjust) ? tooltipAdjust : {}),
-    };
-
-    return (
-      <Tooltip
-        key={key || getGuid()}
-        placement={placementTooltip || 'top'}
-        title={title}
-      >
-        {button}
-      </Tooltip>
-    );
-  }
-
-  return button;
+  return (
+    <AmfDropdown
+      tooltip={tooltip}
+      type={type}
+      placement={placement}
+      size={size}
+      text={text}
+      icon={icon}
+      handleData={handleData}
+      arrow={arrow}
+      disabled={disabled}
+      hidden={hidden}
+      confirm={confirm}
+      handleButtonClick={handleButtonClick}
+      handleMenuClick={handleMenuClick}
+      items={items}
+      itemPanelTitle={itemPanelTitle}
+      processing={processing}
+      iconProcessing={iconProcessing}
+      {...(key ? { key: key } : {})}
+    />
+  );
 }
 
 export function buildDropdownButton({
-  key = getGuid(),
   tooltip = false,
   placement = 'bottomRight',
   type: typeSource = 'default',
@@ -810,7 +239,6 @@ export function buildDropdownButton({
   itemPanelTitle = '',
 }) {
   return buildDropdown({
-    key,
     tooltip,
     type: typeSource,
     placement,
@@ -830,7 +258,6 @@ export function buildDropdownButton({
 }
 
 export function buildDropdownEllipsis({
-  key = getGuid(),
   tooltip = { placement: 'top', title: '更多操作' },
   type: typeSource = 'default',
   size = 'default',
@@ -851,7 +278,6 @@ export function buildDropdownEllipsis({
   itemPanelTitle = '',
 }) {
   return buildDropdown({
-    key,
     tooltip,
     type: typeSource,
     size,
@@ -876,11 +302,11 @@ export function buildAlert(properties) {
   return <Alert {...properties} />;
 }
 
-export function buildCustomGrid({ key = null, list, props }) {
+export function buildCustomGrid({ key = getGuid(), list, props }) {
   return <AmfCustomGrid key={key} list={list} config={props} />;
 }
 
-export function buildDescriptionGrid({ key = null, list, props }) {
+export function buildDescriptionGrid({ key = getGuid(), list, props }) {
   return <AmfDescriptionGrid key={key} list={list} config={props} />;
 }
 
@@ -1083,11 +509,15 @@ export function buildButtonGroup({ buttons = [] }) {
 
   return (
     <ButtonGroup>
-      {buttons.map((item) => {
+      {buttons.map((item, index) => {
         const { hidden } = { hidden: false, ...item };
 
         if (hidden) {
           return null;
+        }
+
+        if (!item.key) {
+          item.key = `button_group_${index}`;
         }
 
         return buildDropdown(item);
