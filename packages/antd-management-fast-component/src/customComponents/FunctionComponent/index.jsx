@@ -3419,7 +3419,7 @@ export function adjustTableExpandConfig({ list, config }) {
       expandIconRotate: true,
       // eslint-disable-next-line no-unused-vars
       expandIcon: ({ expanded, onExpand, record }) => {
-        return iconBuilder.rightCircle({ style: { cursor: 'pointor' } });
+        return iconBuilder.rightCircle({ style: { cursor: 'pointer' } });
       },
       expandedRowRender: null,
       ...(config || null),
