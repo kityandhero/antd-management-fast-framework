@@ -1,15 +1,8 @@
-import {
-  buildTokenData,
-  pretreatmentRemoteSingleData,
-} from 'easy-soft-utility';
+import { pretreatmentRemoteSingleData } from 'easy-soft-utility';
 
 import { Common } from '../../Common';
 
 class SupplementCore extends Common {
-  getUploadTokenObject = () => {
-    return buildTokenData();
-  };
-
   pretreatmentImageUploadRemoteResponse = (response) => {
     let result = { image: '' };
 

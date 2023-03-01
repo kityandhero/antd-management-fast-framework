@@ -20,9 +20,9 @@ import {
 import {
   builderPageHeaderExtraContent,
   buildPageHeaderTagWrapper,
-  buildPageHeaderTitle,
   decorateAvatar,
   iconBuilder,
+  PageExtra,
 } from 'antd-management-fast-component';
 
 import { DataCore } from '../../DataSingleView/DataCore';
@@ -30,6 +30,7 @@ import { DataCore } from '../../DataSingleView/DataCore';
 import styles from './index.less';
 
 const { BackTop } = FloatButton;
+const { HeaderTitle } = PageExtra;
 
 class BaseAddForm extends DataCore {
   loadRemoteRequestAfterMount = false;
@@ -297,10 +298,12 @@ class BaseAddForm extends DataCore {
       <PageContainer
         className={styles.customContainor}
         avatar={avatarProperties}
-        title={buildPageHeaderTitle(
-          this.getPresetPageName(),
-          this.establishPageHeaderTitlePrefix(),
-        )}
+        title={
+          <HeaderTitle
+            title={this.getPresetPageName()}
+            titlePrefix={this.establishPageHeaderTitlePrefix()}
+          />
+        }
         subTitle={this.buildPageHeaderSubTitle()}
         tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
         extra={this.buildExtraAction()}

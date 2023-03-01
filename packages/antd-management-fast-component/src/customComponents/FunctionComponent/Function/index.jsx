@@ -2,25 +2,18 @@ import {
   Alert,
   Button,
   Col,
-  DatePicker,
   Form,
   Input,
   InputNumber,
   Radio,
   Row,
   Select,
-  Space,
-  Switch,
-  TimePicker,
   Tree,
   TreeSelect,
-  Typography,
 } from 'antd';
 import React from 'react';
 import ReactJson from 'react-json-view';
 import ReactPlayer from 'react-player';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { BorderOuterOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 import {
@@ -30,46 +23,40 @@ import {
   checkStringIsNullOrWhiteSpace,
   datetimeFormat,
   formatDatetime,
-  getGuid,
   isArray,
   isBoolean,
   isFunction,
   isObject,
   logObject,
   showSimpleRuntimeError,
-  sortBy,
   toNumber,
   toString,
   transformListData,
   whetherNumber,
 } from 'easy-soft-utility';
 
-import {
-  listViewConfig,
-  pageHeaderRenderType,
-} from 'antd-management-fast-common';
+import { listViewConfig } from 'antd-management-fast-common';
 
 import { FadeBox } from '../../AnimalBox/FadeBox';
 import { QueueBox } from '../../AnimalBox/QueueBox';
 import { RotateBox } from '../../AnimalBox/RotateBox';
 import { ColorText } from '../../ColorText';
+import { CustomGrid } from '../../CustomGrid';
+import { DescriptionGrid } from '../../DescriptionGrid';
+import { ElasticityButton } from '../../ElasticityButton';
+import { ElasticityDropdown } from '../../ElasticityDropdown';
+import { ElasticityListViewItemExtra } from '../../ElasticityListViewItemExtra';
+import { ElasticityMenu } from '../../ElasticityMenu';
+import { ElasticityMenuHeader } from '../../ElasticityMenuHeader';
+import { ElasticityRadioGroup } from '../../ElasticityRadioGroup';
+import { ElasticityRadioItem } from '../../ElasticityRadioItem';
+import { ElasticityTagList } from '../../ElasticityTagList';
 import { FlexBox } from '../../FlexBox';
-import { FormCustomItem } from '../../FormCustom/FormCustomItem';
+import { FormExtra } from '../../FormExtra';
+import { HiddenWrapper } from '../../HiddenWrapper';
 import { iconBuilder } from '../../Icon';
 import { IconInfo } from '../../IconInfo';
 import { VerticalBox } from '../../VerticalBox';
-import { AmfButton } from '../Button';
-import { AmfColumnItem } from '../ColumnItem';
-import { AmfColumnList } from '../ColumnList';
-import { AmfCustomGrid } from '../CustomGrid';
-import { AmfDescriptionGrid } from '../DescriptionGrid';
-import { AmfDropdown } from '../Dropdown';
-import { AmfIconInfoList } from '../IconInfoList';
-import { AmfListViewItemExtra } from '../ListViewItemExtra';
-import { AmfMenu } from '../Menu';
-import { AmfRadioGroup } from '../RadioGroup';
-import { AmfRadioItem } from '../RadioItem';
-import { AmfTagList } from '../TagList';
 
 import styles from './index.less';
 
@@ -77,51 +64,20 @@ const FormItem = Form.Item;
 const { TextArea, Password } = Input;
 const { Option } = Select;
 const RadioGroup = Radio.Group;
-const { Paragraph } = Typography;
 const ButtonGroup = Button.Group;
 
-export function buildPageHeaderTitle(pageName, headerTitlePrefixValue = '') {
-  let nameList = [];
-
-  nameList = isArray(pageName)
-    ? pageName.map((o, index) => ({
-        key: `pageName_${index}`,
-        text: toString(o),
-      }))
-    : [
-        {
-          key: `pageName_1`,
-          text: toString(pageName),
-        },
-      ];
-
-  return (
-    <span
-      style={{
-        display: 'block',
-        maxWidth: '700px',
-        height: '32px',
-        overflow: 'hidden',
-        fontSize: '18px',
-        lineHeight: '32px',
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
-      }}
-    >
-      <IconInfo
-        textPrefix={headerTitlePrefixValue}
-        text={
-          <>
-            {nameList.map((o) => (
-              <span key={o.key}>{o.text}</span>
-            ))}
-          </>
-        }
-        ellipsis
-      />
-    </span>
-  );
-}
+const {
+  DatePickerItem,
+  ComponentItem,
+  InputItem,
+  InputNumberItem,
+  OnlyShowInputItem,
+  SyntaxHighlighterItem,
+  SelectItem,
+  TextAreaItem,
+  TimePickerItem,
+  SwitchItem,
+} = FormExtra;
 
 /**
  * 构建按钮
@@ -143,7 +99,7 @@ export function buildButton({
   showIcon = true,
 }) {
   return (
-    <AmfButton
+    <ElasticityButton
       type={type}
       size={size}
       text={text}
@@ -168,7 +124,11 @@ export function buildMenu({
   items = [],
 }) {
   return (
-    <AmfMenu handleData={r} handleMenuClick={handleMenuClick} items={items} />
+    <ElasticityMenu
+      handleData={r}
+      handleMenuClick={handleMenuClick}
+      items={items}
+    />
   );
 }
 
@@ -193,7 +153,7 @@ export function buildDropdown({
   iconProcessing = iconBuilder.loading(),
 }) {
   return (
-    <AmfDropdown
+    <ElasticityDropdown
       tooltip={tooltip}
       type={type}
       placement={placement}
@@ -297,97 +257,23 @@ export function buildAlert(properties) {
   return <Alert {...properties} />;
 }
 
-export function buildCustomGrid({ key = getGuid(), list, props }) {
-  return <AmfCustomGrid key={key} list={list} config={props} />;
-}
-
-export function buildDescriptionGrid({ key = getGuid(), list, props }) {
-  return <AmfDescriptionGrid key={key} list={list} config={props} />;
-}
-
-export function buildPageHeaderContent({ list }) {
-  if (!isArray(list)) {
-    return null;
-  }
-
-  let listData = list.map((o) => {
-    const d = { sort: 10_000, ...o };
-
-    return { ...d };
-  });
-
-  listData = sortBy(listData, (o) => o.sort);
-
-  listData = listData.map((o, index) => {
-    const d = { ...o };
-
-    d.key = `pageHeaderContentItemContainer_${index}`;
-
-    return { ...d };
-  });
-
+export function buildCustomGrid({ key = null, list, props }) {
   return (
-    <>
-      {listData.map((o) => {
-        const { type, list: listItem, key } = o;
+    <CustomGrid
+      {...(checkStringIsNullOrWhiteSpace(key) ? {} : { key })}
+      list={list}
+      config={props}
+    />
+  );
+}
 
-        if (!isArray(listItem)) {
-          return null;
-        }
-
-        if (type === pageHeaderRenderType.descriptionGrid) {
-          const listGridData = listItem.map((one, index) => {
-            return {
-              key: `${key}_descriptionGridItem_${index}`,
-              ...one,
-            };
-          });
-
-          return buildDescriptionGrid({
-            key: `${key}_descriptionGrid`,
-            list: listGridData,
-            props: {
-              style: { marginBottom: '4px' },
-              size: 'small',
-            },
-          });
-        }
-
-        if (type === pageHeaderRenderType.paragraph) {
-          const listParagraph = listItem.map((one, index) => {
-            return { key: `${key}_paragraph_${index}`, ...one };
-          });
-
-          return (
-            <div key={`${key}_paragraph_container`}>
-              {listParagraph.map((item) => {
-                if (checkStringIsNullOrWhiteSpace(item.paragraph)) {
-                  return null;
-                }
-
-                return <Paragraph key={item.key}>{item.paragraph}</Paragraph>;
-              })}
-            </div>
-          );
-        }
-
-        if (type === pageHeaderRenderType.action) {
-          const listAction = listItem.map((one, index) => {
-            return { key: `${key}_action_${index}`, ...one };
-          });
-
-          return (
-            <Space key={`${key}_space`}>
-              {listAction.map((item) => {
-                return item.action;
-              })}
-            </Space>
-          );
-        }
-
-        return null;
-      })}
-    </>
+export function buildDescriptionGrid({ key = null, list, props }) {
+  return (
+    <DescriptionGrid
+      {...(checkStringIsNullOrWhiteSpace(key) ? {} : { key })}
+      list={list}
+      config={props}
+    />
   );
 }
 
@@ -457,43 +343,12 @@ export function buildMenuHeaderRender({
   shortName,
 }) {
   return (
-    <div
-      style={{
-        overflow: 'hidden',
-      }}
-    >
-      <FlexBox
-        flexAuto="right"
-        left={logoDom}
-        right={
-          collapsed ? null : (
-            <VerticalBox
-              align="center"
-              alignJustify="start"
-              style={{
-                height: '100%',
-              }}
-            >
-              <div
-                style={{
-                  margin: ' 0 0 0 12px',
-                  fontSize: '20px',
-                  color: 'white',
-                  fontWeight: '600',
-                  lineHeight: '32px',
-                  overflow: 'hidden',
-                  height: '100%',
-                  whiteSpace: 'nowrap',
-                  ...(navTheme === 'light' ? { color: '#000000d9' } : {}),
-                }}
-              >
-                {shortName || '应用简称'}
-              </div>
-            </VerticalBox>
-          )
-        }
-      />
-    </div>
+    <ElasticityMenuHeader
+      logoDom={logoDom}
+      collapsed={collapsed}
+      navTheme={navTheme}
+      shortName={shortName}
+    />
   );
 }
 
@@ -528,16 +383,51 @@ export function buildListViewItemExtra({
   width = '100px',
 }) {
   return (
-    <AmfListViewItemExtra {...{ align, imageUrl, emptyImageUrl, width }} />
+    <ElasticityListViewItemExtra
+      {...{ align, imageUrl, emptyImageUrl, width }}
+    />
   );
 }
 
 export function buildTagList({ list = [] }) {
-  return <AmfTagList list={list} />;
+  return <ElasticityTagList list={list} />;
 }
 
 export function buildIconInfoList({ list = [] }) {
-  return <AmfIconInfoList list={list} />;
+  if (!isArray(list)) {
+    return [];
+  }
+
+  if (list.length === 0) {
+    return [];
+  }
+
+  const l = [];
+
+  for (const [index, o] of list.entries()) {
+    const { hidden, ...other } = {
+      ...IconInfo.defaultProps,
+      ...o,
+
+      key: `icon_info_item_${index}`,
+    };
+
+    if (!hidden) {
+      l.push({
+        ...other,
+      });
+    }
+  }
+
+  if (l.length <= 0) {
+    return [];
+  }
+
+  return l.map((o) => {
+    const { key, ...other } = o;
+
+    return <IconInfo key={key} {...other} />;
+  });
 }
 
 export function buildListViewItemActionSelect({
@@ -573,7 +463,7 @@ export function buildRadioItem({
   adjustListDataCallback = null,
 }) {
   return (
-    <AmfRadioItem
+    <ElasticityRadioItem
       button={button}
       list={list}
       adjustListDataCallback={adjustListDataCallback}
@@ -592,7 +482,7 @@ export function buildRadioGroup({
   onChange = null,
 }) {
   return (
-    <AmfRadioGroup
+    <ElasticityRadioGroup
       value={value}
       defaultValue={defaultValue}
       style={style}
@@ -862,44 +752,17 @@ export function buildFormSelect({
   required = false,
   otherProps: otherProperties = null,
 }) {
-  const otherSelectProperties = {
-    placeholder: buildFieldDescription(label, '选择') || '请选择',
-    style: { width: '100%' },
-    onChange: (v, option) => {
-      if (isFunction(onChangeCallback)) {
-        onChangeCallback(v, option);
-      }
-    },
-    ...otherProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label,
-    name,
-    helper,
-  });
-
   return (
-    <FormItem
-      {...(formItemLayout || {})}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required,
-          message: buildFieldDescription(resultCheck.label, '选择'),
-        },
-      ]}
-    >
-      <Select {...otherSelectProperties}>
-        {isFunction(renderItemFunction) ? renderItemFunction() : null}
-      </Select>
-    </FormItem>
+    <SelectItem
+      label={label}
+      name={name}
+      renderItemFunction={renderItemFunction}
+      helper={helper}
+      onChangeCallback={onChangeCallback}
+      formItemLayout={formItemLayout}
+      required={required}
+      otherProps={otherProperties}
+    />
   );
 }
 
@@ -1176,11 +1039,7 @@ export function buildFormDisplay({
 }
 
 export function buildFormHiddenWrapper({ children, hidden = true }) {
-  if (hidden) {
-    return <div style={{ display: 'hidden' }}>{children}</div>;
-  }
-
-  return <>{children}</>;
+  return <HiddenWrapper hidden={hidden}>{children}</HiddenWrapper>;
 }
 
 export function buildFormInput({
@@ -1195,46 +1054,20 @@ export function buildFormInput({
   reminderPrefix = '输入',
   hidden = false,
 }) {
-  const title = label;
-
-  const otherInputProperties = {
-    addonBefore: icon,
-    placeholder: canOperate
-      ? buildFieldDescription(title, reminderPrefix)
-      : '暂无数据',
-    disabled: !canOperate,
-    ...inputProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  return buildFormHiddenWrapper({
-    children: (
-      <FormItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-        rules={[
-          {
-            required,
-            message: buildFieldDescription(resultCheck.label),
-          },
-        ]}
-      >
-        <Input {...otherInputProperties} />
-      </FormItem>
-    ),
-    hidden,
-  });
+  return (
+    <InputItem
+      label={label}
+      name={name}
+      required={required}
+      helper={helper}
+      icon={icon}
+      inputProps={inputProperties}
+      canOperate={canOperate}
+      formItemLayout={formItemLayout}
+      reminderPrefix={reminderPrefix}
+      hidden={hidden}
+    />
+  );
 }
 
 export function buildFormInputFieldData({
@@ -1254,18 +1087,20 @@ export function buildFormInputFieldData({
     ...fieldData,
   };
 
-  return buildFormInput({
-    label: label || null,
-    name: name || null,
-    required,
-    helper: helper || null,
-    icon,
-    inputProps: inputProperties,
-    canOperate,
-    formItemLayout,
-    reminderPrefix,
-    hidden,
-  });
+  return (
+    <InputItem
+      label={label}
+      name={name}
+      required={required}
+      helper={helper}
+      icon={icon}
+      inputProps={inputProperties}
+      canOperate={canOperate}
+      formItemLayout={formItemLayout}
+      reminderPrefix={reminderPrefix}
+      hidden={hidden}
+    />
+  );
 }
 
 export function buildFormSwitch({
@@ -1278,50 +1113,18 @@ export function buildFormSwitch({
   formItemLayout = {},
   hidden = false,
 }) {
-  const title = label;
-
-  const otherSwitchProperties = {
-    disabled: !canOperate,
-    ...otherProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  return buildFormHiddenWrapper({
-    children: (
-      <FormCustomItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        valuePropName="checked"
-        extra={
-          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-        rules={[
-          {
-            required,
-            message: buildFieldDescription(resultCheck.label),
-          },
-        ]}
-        render={(children) => (
-          <FlexBox
-            flexAuto="left"
-            left={`是否开启${label}: `}
-            right={children}
-          />
-        )}
-      >
-        <Switch {...otherSwitchProperties} />
-      </FormCustomItem>
-    ),
-    hidden,
-  });
+  return (
+    <SwitchItem
+      label={label}
+      name={name}
+      helper={helper}
+      required={required}
+      otherProps={otherProperties}
+      canOperate={canOperate}
+      formItemLayout={formItemLayout}
+      hidden={hidden}
+    />
+  );
 }
 
 export function buildFormPassword({
@@ -1431,35 +1234,6 @@ export function buildFormOnlyShowText({
   );
 }
 
-export function buildSyntaxHighlighter({ language, value, other = {} }) {
-  const c = {
-    ...other,
-    showLineNumbers: false,
-    wrapLines: false,
-    wrapLongLines: true,
-    language: language,
-    style: oneDark,
-  };
-
-  return (
-    <>
-      {isObject(value) ? (
-        <SyntaxHighlighter {...c}>
-          {language === 'javascript'
-            ? JSON.stringify(value || {}, null, '    ')
-            : value}
-        </SyntaxHighlighter>
-      ) : (
-        <SyntaxHighlighter {...c}>
-          {language === 'javascript'
-            ? JSON.stringify(JSON.parse(value || null), null, '    ')
-            : value}
-        </SyntaxHighlighter>
-      )}
-    </>
-  );
-}
-
 export function buildJsonView({ value, theme = 'monokai' }) {
   return (
     <>
@@ -1493,33 +1267,14 @@ export function buildFormInnerComponent({
   formItemLayout = {},
   requiredForShow = false,
 }) {
-  const title = label;
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name: '',
-    helper,
-  });
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      className={requiredForShow ? styles.formItemOnlyShowText : null}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required: false,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      {innerComponent}
-    </FormItem>
+    <ComponentItem
+      label={label}
+      innerComponent={innerComponent}
+      helper={helper}
+      formItemLayout={formItemLayout}
+      requiredForShow={requiredForShow}
+    />
   );
 }
 
@@ -1552,17 +1307,17 @@ export function buildFormOnlyShowSyntaxHighlighter({
   requiredForShow = false,
   otherProps: otherProperties = {},
 }) {
-  return buildFormInnerComponent({
-    label,
-    innerComponent: buildSyntaxHighlighter({
-      language,
-      value,
-      other: otherProperties || {},
-    }),
-    helper,
-    formItemLayout,
-    requiredForShow,
-  });
+  return (
+    <SyntaxHighlighterItem
+      language={language}
+      label={label}
+      value={value}
+      helper={helper}
+      formItemLayout={formItemLayout}
+      requiredForShow={requiredForShow}
+      otherProps={otherProperties}
+    />
+  );
 }
 
 export function buildFormOnlyShowTextarea({
@@ -1650,39 +1405,15 @@ export function buildFormOnlyShowInput({
   inputProps: inputProperties = { disabled: true },
   formItemLayout = {},
 }) {
-  const title = label;
-
-  const otherInputProperties = {
-    addonBefore: icon,
-    placeholder: '暂无数据',
-    value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
-    ...inputProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name: '',
-    helper,
-  });
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required: false,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <Input {...otherInputProperties} />
-    </FormItem>
+    <OnlyShowInputItem
+      label={label}
+      value={value}
+      helper={helper}
+      icon={icon}
+      inputProps={inputProperties}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 
@@ -1696,65 +1427,17 @@ export function buildFormInputNumber({
   canOperate = true,
   formItemLayout = {},
 }) {
-  const title = label;
-
-  const otherInputNumberProperties = {
-    addonBefore: icon,
-    style: { width: '100%' },
-    min: 0,
-    placeholder: buildFieldDescription(title, '输入'),
-    disabled: !canOperate,
-    ...inputNumberProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  if (!canOperate) {
-    return (
-      <FormItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-        rules={[
-          {
-            required,
-            message: buildFieldDescription(resultCheck.label),
-          },
-        ]}
-      >
-        <InputNumber {...otherInputNumberProperties} />
-      </FormItem>
-    );
-  }
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <InputNumber {...otherInputNumberProperties} />
-    </FormItem>
+    <InputNumberItem
+      label={label}
+      name={name}
+      required={required}
+      helper={helper}
+      icon={icon}
+      inputNumberProps={inputNumberProperties}
+      canOperate={canOperate}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 export function buildFormTextArea({
@@ -1766,62 +1449,16 @@ export function buildFormTextArea({
   canOperate = true,
   formItemLayout = {},
 }) {
-  const title = label;
-
-  const otherTextAreaProperties = {
-    placeholder: buildFieldDescription(title, '输入'),
-    disabled: !canOperate,
-    ...textAreaProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  if (!canOperate) {
-    return (
-      <FormItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-        rules={[
-          {
-            required,
-            message: buildFieldDescription(resultCheck.label),
-          },
-        ]}
-      >
-        <TextArea {...otherTextAreaProperties} />
-      </FormItem>
-    );
-  }
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <TextArea {...otherTextAreaProperties} />
-    </FormItem>
+    <TextAreaItem
+      label={label}
+      name={name}
+      required={required}
+      helper={helper}
+      textAreaProps={textAreaProperties}
+      canOperate={canOperate}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 
@@ -1834,59 +1471,16 @@ export function buildFormDatePicker({
   canOperate = true,
   formItemLayout = {},
 }) {
-  const title = label;
-
-  const otherDatePickerProperties = {
-    style: { width: '100%' },
-    showTime: true,
-    format: 'YYYY-MM-DD HH:mm:ss',
-    inputReadOnly: true,
-    placeholder: buildFieldDescription(title, '选择'),
-    ...datePickerProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  if (!canOperate) {
-    return (
-      <FormItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-      >
-        <DatePicker {...otherDatePickerProperties} />
-      </FormItem>
-    );
-  }
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <DatePicker {...otherDatePickerProperties} />
-    </FormItem>
+    <DatePickerItem
+      label={label}
+      name={name}
+      required={required}
+      helper={helper}
+      datePickerProps={datePickerProperties}
+      canOperate={canOperate}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 
@@ -1899,77 +1493,15 @@ export function buildFormTimePicker({
   canOperate = true,
   formItemLayout = {},
 }) {
-  const title = label;
-
-  const otherTimePickerProperties = {
-    style: { width: '100%' },
-    inputReadOnly: true,
-    placeholder: buildFieldDescription(title, '选择'),
-    ...timePickerProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  if (!canOperate) {
-    return (
-      <FormItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-      >
-        <TimePicker {...otherTimePickerProperties} />
-      </FormItem>
-    );
-  }
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <TimePicker {...otherTimePickerProperties} />
-    </FormItem>
-  );
-}
-
-export function buildColumnItem({
-  column: columnConfig,
-  attachedTargetName = '',
-}) {
-  return (
-    <AmfColumnItem
-      columnConfig={columnConfig}
-      attachedTargetName={attachedTargetName}
-    />
-  );
-}
-
-export function buildColumnList({ columnList, attachedTargetName = '' }) {
-  return (
-    <AmfColumnList
-      columnList={columnList}
-      attachedTargetName={attachedTargetName}
+    <TimePickerItem
+      label={label}
+      name={name}
+      required={required}
+      helper={helper}
+      datePickerProps={timePickerProperties}
+      canOperate={canOperate}
+      formItemLayout={formItemLayout}
     />
   );
 }

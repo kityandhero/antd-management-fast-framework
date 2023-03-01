@@ -276,7 +276,7 @@ class AudioUpload extends PureComponent {
       },
       {
         key: 'clearUrl',
-        label: '清空视频',
+        label: '清空音频',
         icon: iconBuilder.delete(),
         disabled: checkStringIsNullOrWhiteSpace(audioUrl),
       },

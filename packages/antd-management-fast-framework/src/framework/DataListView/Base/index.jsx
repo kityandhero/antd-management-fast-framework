@@ -52,13 +52,13 @@ import {
   buildCustomSelect,
   buildDropdown,
   builderPageHeaderExtraContent,
-  buildPageHeaderContent,
   buildPageHeaderTagWrapper,
-  buildPageHeaderTitle,
   buildTagList,
   decorateAvatar,
   FlexBox,
+  FormExtra,
   iconBuilder,
+  PageExtra,
   StandardTableCustom,
 } from 'antd-management-fast-component';
 
@@ -72,9 +72,11 @@ import './index.less';
 const classPrefix = `amf-data-list-view-base`;
 
 const { Content, Sider } = Layout;
-const FormItem = Form.Item;
+const { Item: FormItem } = Form;
 const { RangePicker } = DatePicker;
 const { BackTop } = FloatButton;
+const { HeaderTitle, HeaderContent } = PageExtra;
+const { DatePickerItem, ComponentItem, OnlyShowInputItem } = FormExtra;
 
 class Base extends AuthorizationWrapper {
   /**
@@ -492,17 +494,15 @@ class Base extends AuthorizationWrapper {
             )
           : null}
 
-        {type === searchCardConfig.contentItemType.datePicker
-          ? this.renderPresetFormDatePicker(
-              fieldData.label,
-              fieldData.name,
-              false,
-              fieldData.helper,
-              {
-                ...otherProps,
-              },
-            )
-          : null}
+        {type === searchCardConfig.contentItemType.datePicker ? (
+          <DatePickerItem
+            label={fieldData.label}
+            name={fieldData.name}
+            required={false}
+            helper={fieldData.helper}
+            datePickerProps={{ ...otherProps }}
+          />
+        ) : null}
 
         {type === searchCardConfig.contentItemType.customRangePicker
           ? this.buildSearchCardRangePickerCore(
@@ -513,18 +513,18 @@ class Base extends AuthorizationWrapper {
             )
           : null}
 
-        {type === searchCardConfig.contentItemType.onlyShowInput
-          ? this.renderPresetFormOnlyShowInput(
-              fieldData.label,
-              contentItem.value,
-              fieldData.helper || '',
-              contentItem.icon || iconBuilder.form(),
-              {
-                ...contentItem.otherProps,
-                disabled: true,
-              },
-            )
-          : null}
+        {type === searchCardConfig.contentItemType.onlyShowInput ? (
+          <OnlyShowInputItem
+            label={fieldData.label}
+            value={contentItem.value}
+            helper={fieldData.helper || ''}
+            icon={contentItem.icon || iconBuilder.form()}
+            inputProps={{
+              ...contentItem.otherProps,
+              disabled: true,
+            }}
+          />
+        ) : null}
 
         {type === searchCardConfig.contentItemType.customSelect
           ? contentItem.component
@@ -538,15 +538,15 @@ class Base extends AuthorizationWrapper {
           ? contentItem.component
           : null}
 
-        {type === searchCardConfig.contentItemType.innerComponent
-          ? this.renderPresetFormInnerComponent(
-              fieldData.label,
-              component,
-              fieldData.helper,
-              null,
-              false,
-            )
-          : null}
+        {type === searchCardConfig.contentItemType.innerComponent ? (
+          <ComponentItem
+            label={fieldData.label}
+            innerComponent={component}
+            helper={fieldData.helper}
+            formItemLayout={null}
+            requiredForShow={false}
+          />
+        ) : null}
 
         {type === searchCardConfig.contentItemType.component
           ? component || null
@@ -1203,8 +1203,8 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetPageHeaderContent = () => {
-    return buildPageHeaderContent(
-      this.establishPageHeaderContentConfig() || {},
+    return (
+      <HeaderContent {...(this.establishPageHeaderContentConfig() || {})} />
     );
   };
 
@@ -1833,10 +1833,12 @@ class Base extends AuthorizationWrapper {
               padding: '0px',
             }}
             avatar={avatarProperties}
-            title={buildPageHeaderTitle(
-              this.getPresetPageName(),
-              this.establishPageHeaderTitlePrefix(),
-            )}
+            title={
+              <HeaderTitle
+                title={this.getPresetPageName()}
+                titlePrefix={this.establishPageHeaderTitlePrefix()}
+              />
+            }
             subTitle={this.buildPageHeaderSubTitle()}
             tags={buildPageHeaderTagWrapper(
               this.establishPageHeaderTagConfig(),

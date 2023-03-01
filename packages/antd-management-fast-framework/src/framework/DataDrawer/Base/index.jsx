@@ -146,7 +146,7 @@ class Base extends BaseWindow {
       },
     };
 
-    return this.renderPresetGeneralButton(o);
+    return buildButton(o);
   };
 
   buildBottomBarInnerExtraConfigList = () => {
@@ -247,7 +247,7 @@ class Base extends BaseWindow {
             }
 
             case drawerConfig.bottomBarBuildType.generalButton: {
-              itemAdjust = this.renderPresetGeneralButton(item);
+              itemAdjust = buildButton(item);
               break;
             }
 

@@ -9,6 +9,7 @@ import {
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 import {
+  buildButton,
   FadeBox,
   iconBuilder,
   IconInfo,
@@ -111,7 +112,7 @@ class Index extends BaseAddForm {
       tools: [
         {
           title: '按钮提示1',
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮1',
             handleClick: () => {
               showSimpleInfoMessage('click button 4');
@@ -122,7 +123,7 @@ class Index extends BaseAddForm {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮2',
             handleClick: () => {
               showSimpleInfoMessage('click button 4');
@@ -132,7 +133,7 @@ class Index extends BaseAddForm {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮2',
             handleClick: () => {
               showSimpleInfoMessage('click button 4');
@@ -143,7 +144,7 @@ class Index extends BaseAddForm {
         {
           title: '按钮提示4',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮4',
             handleClick: () => {
               showSimpleInfoMessage('click button 4');

@@ -9,12 +9,11 @@ import {
 import {
   avatarImageLoadResultCollection,
   builderPageHeaderExtraContent,
-  buildPageHeaderContent,
   buildPageHeaderTagWrapper,
-  buildPageHeaderTitle,
   buildTagList,
   decorateAvatar,
   iconBuilder,
+  PageExtra,
 } from 'antd-management-fast-component';
 
 import { BaseView } from '../../DataOperation/BaseView';
@@ -22,6 +21,7 @@ import { BaseView } from '../../DataOperation/BaseView';
 import styles from './index.less';
 
 const { BackTop } = FloatButton;
+const { HeaderTitle, HeaderContent } = PageExtra;
 
 class DataCore extends BaseView {
   enableActionBack = true;
@@ -235,8 +235,8 @@ class DataCore extends BaseView {
   };
 
   renderPresetPageHeaderContent = () => {
-    return buildPageHeaderContent(
-      this.establishPageHeaderContentConfig() || {},
+    return (
+      <HeaderContent {...(this.establishPageHeaderContentConfig() || {})} />
     );
   };
 
@@ -277,10 +277,12 @@ class DataCore extends BaseView {
       <PageContainer
         logo={this.pageHeaderLogo()}
         avatar={avatarProperties}
-        title={buildPageHeaderTitle(
-          this.getPresetPageName(),
-          this.establishPageHeaderTitlePrefix(),
-        )}
+        title={
+          <HeaderTitle
+            title={this.getPresetPageName()}
+            titlePrefix={this.establishPageHeaderTitlePrefix()}
+          />
+        }
         subTitle={this.buildPageHeaderSubTitle()}
         tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
         extra={this.buildExtraAction()}

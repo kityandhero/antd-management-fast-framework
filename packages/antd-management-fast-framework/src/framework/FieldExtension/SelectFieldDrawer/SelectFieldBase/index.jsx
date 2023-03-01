@@ -3,9 +3,11 @@ import React from 'react';
 
 import { isFunction, showSimpleRuntimeError } from 'easy-soft-utility';
 
-import { iconBuilder } from 'antd-management-fast-component';
+import { iconBuilder, PageExtra } from 'antd-management-fast-component';
 
 import { SupplementWrapper } from '../../../CustomWrapper/SupplementWrapper';
+
+const { OnlyShowInputItem } = PageExtra;
 
 class SelectFieldBase extends SupplementWrapper {
   loadRemoteRequestAfterMount = false;
@@ -64,42 +66,17 @@ class SelectFieldBase extends SupplementWrapper {
       fieldPlaceholder: '请选择',
     };
 
-    return this.renderPresetFormOnlyShowInput(
-      label,
-      (fieldText || '') === '' ? null : fieldText,
-      helper || null,
-      iconBuilder.form(),
-      {
-        placeholder: `${fieldPlaceholder}${fieldTitle}`,
-        readOnly: true,
-        addonAfter: (
-          <>
-            <Button
-              style={{
-                border: '0px solid #d9d9d9',
-                backgroundColor: '#fafafa',
-                height: '30px',
-                paddingLeft: 0,
-                paddingRight: 0,
-              }}
-              disabled={dataLoading || processing || !loadSuccess}
-              title={`选择${fieldTitle}`}
-              onClick={(event) => this.showSelect(event)}
-            >
-              {iconBuilder.search()}
-            </Button>
-
-            {showClear ? (
-              <Divider
-                type="vertical"
-                style={{
-                  paddingLeft: 2,
-                  paddingRight: 2,
-                }}
-              />
-            ) : null}
-
-            {showClear ? (
+    return (
+      <OnlyShowInputItem
+        label={label}
+        value={(fieldText || '') === '' ? null : fieldText}
+        helper={helper || null}
+        icon={iconBuilder.form()}
+        inputProps={{
+          placeholder: `${fieldPlaceholder}${fieldTitle}`,
+          readOnly: true,
+          addonAfter: (
+            <>
               <Button
                 style={{
                   border: '0px solid #d9d9d9',
@@ -109,16 +86,43 @@ class SelectFieldBase extends SupplementWrapper {
                   paddingRight: 0,
                 }}
                 disabled={dataLoading || processing || !loadSuccess}
-                title="清除选择"
-                onClick={() => this.clearSelect()}
+                title={`选择${fieldTitle}`}
+                onClick={(event) => this.showSelect(event)}
               >
-                {iconBuilder.closeCircle()}
+                {iconBuilder.search()}
               </Button>
-            ) : null}
-          </>
-        ),
-      },
-      formItemLayout,
+
+              {showClear ? (
+                <Divider
+                  type="vertical"
+                  style={{
+                    paddingLeft: 2,
+                    paddingRight: 2,
+                  }}
+                />
+              ) : null}
+
+              {showClear ? (
+                <Button
+                  style={{
+                    border: '0px solid #d9d9d9',
+                    backgroundColor: '#fafafa',
+                    height: '30px',
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                  }}
+                  disabled={dataLoading || processing || !loadSuccess}
+                  title="清除选择"
+                  onClick={() => this.clearSelect()}
+                >
+                  {iconBuilder.closeCircle()}
+                </Button>
+              ) : null}
+            </>
+          ),
+        }}
+        formItemLayout={formItemLayout}
+      />
     );
   };
 

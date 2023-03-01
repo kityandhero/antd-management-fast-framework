@@ -16,6 +16,7 @@ import {
 
 import { cardConfig, corsTarget } from 'antd-management-fast-common';
 import {
+  buildButton,
   buildColorText,
   buildCustomGrid,
   iconBuilder,
@@ -288,7 +289,7 @@ class BasicInfo extends TabPageBase {
       tools: [
         {
           title: '按钮提示1',
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮1',
             handleClick: () => {
               showInfoMessage({
@@ -301,7 +302,7 @@ class BasicInfo extends TabPageBase {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -313,7 +314,7 @@ class BasicInfo extends TabPageBase {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -326,7 +327,7 @@ class BasicInfo extends TabPageBase {
         {
           title: '按钮提示4',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮4',
             handleClick: () => {
               showInfoMessage({
@@ -816,7 +817,7 @@ class BasicInfo extends TabPageBase {
                   {
                     label: '日期格式化',
                     value: formatTarget({
-                      target: new Date(),
+                      target: new Date('2023-03-01 10:35:54'),
                       format: formatCollection.datetime,
                     }),
                   },
@@ -932,7 +933,7 @@ class BasicInfo extends TabPageBase {
                 {
                   label: '日期格式化',
                   value: formatTarget({
-                    target: new Date(),
+                    target: new Date('2023-03-01 10:35:54'),
                     format: formatCollection.datetime,
                   }),
                 },
@@ -1044,7 +1045,7 @@ class BasicInfo extends TabPageBase {
                 {
                   label: '日期格式化',
                   value: formatTarget({
-                    target: new Date(),
+                    target: new Date('2023-03-01 10:35:54'),
                     format: formatCollection.datetime,
                   }),
                 },
@@ -1156,7 +1157,7 @@ class BasicInfo extends TabPageBase {
                 {
                   label: '日期格式化',
                   value: formatTarget({
-                    target: new Date(),
+                    target: new Date('2023-03-01 10:35:54'),
                     format: formatCollection.datetime,
                   }),
                 },
@@ -1416,12 +1417,15 @@ class BasicInfo extends TabPageBase {
             {
               lg: 24,
               type: cardConfig.contentItemType.save,
+              config: {
+                text: '底部单行保存按钮',
+              },
             },
             {
               lg: 24,
               type: cardConfig.contentItemType.button,
               config: {
-                text: '一般按钮',
+                text: '底部一般单行按钮',
               },
             },
             {
@@ -1430,13 +1434,15 @@ class BasicInfo extends TabPageBase {
               config: [
                 {
                   buildType: cardConfig.extraBuildType.refresh,
+                  text: '底部刷新按钮',
                 },
                 {
                   buildType: cardConfig.extraBuildType.save,
+                  text: '底部保存按钮',
                 },
                 {
                   buildType: cardConfig.extraBuildType.generalButton,
-                  text: '一般按钮',
+                  text: '底部一般按钮',
                 },
               ],
             },

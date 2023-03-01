@@ -1,0 +1,84 @@
+import { InputNumber } from 'antd';
+import React from 'react';
+
+import {
+  buildFieldDescription,
+  buildFieldHelper,
+  checkFromConfig,
+  checkStringIsNullOrWhiteSpace,
+} from 'easy-soft-utility';
+
+import { BaseComponent } from '../../BaseComponent';
+import { iconBuilder } from '../../Icon';
+import { Item } from '../Item';
+
+class InputNumberItem extends BaseComponent {
+  ignoreComparePropertyKeyCollection = ['icon'];
+
+  renderFurther() {
+    const {
+      label,
+      name,
+      required = false,
+      helper = null,
+      icon = iconBuilder.form(),
+      inputNumberProps: inputNumberProperties = {},
+      canOperate = true,
+      formItemLayout = {},
+      hidden = true,
+    } = this.props;
+
+    const title = label;
+
+    const otherInputNumberProperties = {
+      addonBefore: icon,
+      style: { width: '100%' },
+      min: 0,
+      placeholder: buildFieldDescription(title, '输入'),
+      disabled: !canOperate,
+      ...inputNumberProperties,
+    };
+
+    const resultCheck = checkFromConfig({
+      label: title,
+      name,
+      helper,
+    });
+
+    return (
+      <Item
+        {...formItemLayout}
+        label={resultCheck.label}
+        name={resultCheck.name}
+        extra={
+          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
+            ? null
+            : buildFieldHelper(resultCheck.helper)
+        }
+        rules={[
+          {
+            required,
+            message: buildFieldDescription(resultCheck.label),
+          },
+        ]}
+        hidden={hidden}
+      >
+        <InputNumber {...otherInputNumberProperties} />
+      </Item>
+    );
+  }
+}
+
+InputNumberItem.defaultProps = {
+  label: '',
+  name: '',
+  required: false,
+  helper: null,
+  icon: iconBuilder.form(),
+  inputNumberProps: {},
+  canOperate: true,
+  formItemLayout: {},
+  hidden: false,
+};
+
+export { InputNumberItem };

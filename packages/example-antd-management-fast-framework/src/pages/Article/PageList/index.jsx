@@ -21,6 +21,7 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
+  buildButton,
   buildColorText,
   buildCustomGrid,
   buildRadioGroup,
@@ -342,7 +343,7 @@ class PageList extends MultiPage {
       tools: [
         {
           title: '按钮提示1',
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮1',
             handleClick: () => {
               showInfoMessage({
@@ -355,7 +356,7 @@ class PageList extends MultiPage {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -367,7 +368,7 @@ class PageList extends MultiPage {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -380,7 +381,7 @@ class PageList extends MultiPage {
         {
           title: '按钮提示4',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮4',
             handleClick: () => {
               showInfoMessage({

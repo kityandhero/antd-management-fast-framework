@@ -4,47 +4,27 @@ import { Component } from 'react';
 import {
   checkHasMore as checkHasMoreCore,
   getGuid,
-  isEqual,
   isFunction,
   isNumber,
-  isObject,
   logConfig,
   logDebug,
   logError,
   logExecute,
-  logObject,
-  logText,
+  logTrace,
+  mergeTextMessage,
   navigateTo,
   showSimpleErrorMessage,
   toNumber,
 } from 'easy-soft-utility';
 
-import { defaultBaseState, getUseNprogress } from 'antd-management-fast-common';
-
-function filterModel(properties) {
-  const result = { ...properties };
-
-  delete result.loading;
-
-  for (const o of Object.entries(result)) {
-    const [k, v] = o;
-
-    if (isObject(v) && !!v.fromRemote) {
-      delete result[k];
-    }
-  }
-
-  return result;
-}
-
-/**
- * Performs equality by iterating through keys on an object and returning false.
- * when any key has values which are not strictly equal between the arguments.
- * Returns true when the values of all keys are strictly equal.
- */
-function shallowEqual(a, b) {
-  return isEqual(a, b);
-}
+import {
+  defaultBaseState,
+  filterUpdateModel,
+  getUseNprogress,
+  logRenderFurther,
+  shallowUpdateEqual,
+  shouldComponentUpdateResultShowType,
+} from 'antd-management-fast-common';
 
 const defaultProps = {
   showRenderCount: false,
@@ -60,6 +40,8 @@ class AbstractComponent extends Component {
    *显示render次数开关, 用于开发时候调试页面渲染性能
    */
   showRenderCountInConsole = false;
+
+  showShouldComponentUpdateInConsole = shouldComponentUpdateResultShowType.none;
 
   renderCount = 0;
 
@@ -79,6 +61,8 @@ class AbstractComponent extends Component {
    * 权限数据
    */
   componentAuthority = null;
+
+  ignoreComparePropertyKeyCollection = [];
 
   constructor(properties) {
     super(properties);
@@ -130,28 +114,86 @@ class AbstractComponent extends Component {
       return !!checkComponentUpdate;
     }
 
-    const nextPropertiesIgnoreModel = filterModel(nextProperties);
-    const currentPropertiesIgnoreModel = filterModel(this.props);
+    const nextPropertiesIgnoreModel = filterUpdateModel(
+      nextProperties,
+      this.ignoreComparePropertyKeyCollection,
+    );
+    const currentPropertiesIgnoreModel = filterUpdateModel(
+      this.props,
+      this.ignoreComparePropertyKeyCollection,
+    );
 
-    const comparePropertiesResult = !shallowEqual(
+    const comparePropertiesResult = !shallowUpdateEqual(
       nextPropertiesIgnoreModel,
       currentPropertiesIgnoreModel,
     );
 
-    const compareStateResult = !shallowEqual(nextState, this.state);
+    const compareStateResult = !shallowUpdateEqual(nextState, this.state);
 
     const compareResult = comparePropertiesResult || compareStateResult;
 
-    if (this.showRenderCountInConsole && compareResult) {
-      logObject({
-        message: 'shouldComponentUpdate:true',
-        nextPropsIgnoreModel: nextPropertiesIgnoreModel,
-        currentPropsIgnoreModel: currentPropertiesIgnoreModel,
-        comparePropsResult: comparePropertiesResult,
-        nextState,
-        currentState: this.state,
-        compareStateResult,
-      });
+    switch (this.showShouldComponentUpdateInConsole) {
+      case shouldComponentUpdateResultShowType.none: {
+        break;
+      }
+
+      case shouldComponentUpdateResultShowType.all: {
+        logTrace(
+          {
+            propsHaveChanges: comparePropertiesResult,
+            stateHaveChanges: compareStateResult,
+            currentProps: currentPropertiesIgnoreModel,
+            nextProps: nextPropertiesIgnoreModel,
+            currentState: this.state,
+            nextState,
+          },
+          `${this.constructor.name}::shouldComponentUpdate -> ${
+            compareResult ? 'true' : 'false'
+          } -> ${compareResult ? 'will render' : 'ignore render'}`,
+        );
+
+        break;
+      }
+
+      case shouldComponentUpdateResultShowType.willRender: {
+        if (compareResult) {
+          logTrace(
+            {
+              propsHaveChanges: comparePropertiesResult,
+              stateHaveChanges: compareStateResult,
+              currentProps: currentPropertiesIgnoreModel,
+              nextProps: nextPropertiesIgnoreModel,
+              currentState: this.state,
+              nextState,
+            },
+            `${this.constructor.name}::shouldComponentUpdate -> true -> will render`,
+          );
+        }
+
+        break;
+      }
+
+      case shouldComponentUpdateResultShowType.ignoreRender: {
+        if (!compareResult) {
+          logTrace(
+            {
+              propsHaveChanges: comparePropertiesResult,
+              stateHaveChanges: compareStateResult,
+              currentProps: currentPropertiesIgnoreModel,
+              nextProps: nextPropertiesIgnoreModel,
+              currentState: this.state,
+              nextState,
+            },
+            `${this.constructor.name}::shouldComponentUpdate -> false -> ignore render`,
+          );
+        }
+
+        break;
+      }
+
+      default: {
+        break;
+      }
     }
 
     if (compareResult) {
@@ -391,11 +433,12 @@ class AbstractComponent extends Component {
     if (this.showRenderCountInConsole) {
       this.renderCount += 1;
 
-      this.constructor.name;
+      const text = mergeTextMessage(
+        `renderFrequency: ${this.renderCount}`,
+        this.constructor.name,
+      );
 
-      const text = `${this.constructor.name},renderFrequency:${this.renderCount}`;
-
-      logText(text);
+      logTrace(text);
     }
   }
 
@@ -437,6 +480,8 @@ class AbstractComponent extends Component {
    * render the practical view
    */
   renderPracticalView() {
+    logRenderFurther(this.constructor.name);
+
     return this.renderFurther();
   }
 

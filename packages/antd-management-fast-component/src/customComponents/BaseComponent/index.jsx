@@ -19,7 +19,8 @@ class BaseComponent extends AbstractComponent {
   adjustShowRenderCountInConsole = (nextProperties, nextState) => {
     const { showRenderCount } = nextProperties;
 
-    this.showRenderCountInConsole = !!showRenderCount || false;
+    this.showRenderCountInConsole =
+      this.showRenderCountInConsole || !!showRenderCount || false;
   };
 }
 

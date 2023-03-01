@@ -6,16 +6,17 @@ import { isArray, isBoolean, isObject } from 'easy-soft-utility';
 
 import {
   builderPageHeaderExtraContent,
-  buildPageHeaderContent,
   buildPageHeaderTagWrapper,
-  buildPageHeaderTitle,
   decorateAvatar,
   iconBuilder,
+  PageExtra,
 } from 'antd-management-fast-component';
 
 import { DataLoad } from '../DataSingleView/DataLoad';
 
 import styles from './index.less';
+
+const { HeaderTitle, HeaderContent } = PageExtra;
 
 class DataTabContainer extends DataLoad {
   resetDataAfterLoad = false;
@@ -250,14 +251,16 @@ class DataTabContainer extends DataLoad {
             padding: '0px',
           }}
           avatar={avatarProperties}
-          title={buildPageHeaderTitle(
-            this.getPresetPageName(),
-            this.establishPageHeaderTitlePrefix(),
-          )}
+          title={
+            <HeaderTitle
+              title={this.getPresetPageName()}
+              titlePrefix={this.establishPageHeaderTitlePrefix()}
+            />
+          }
           subTitle={this.buildPageHeaderSubTitle()}
           tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
           extra={this.buildExtraAction()}
-          content={buildPageHeaderContent(pageHeaderContentConfig)}
+          content={<HeaderContent {...pageHeaderContentConfig} />}
           extraContent={builderPageHeaderExtraContent(
             this.establishPageHeaderExtraContentConfig(),
           )}

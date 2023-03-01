@@ -239,7 +239,7 @@ class FileUpload extends PureComponent {
       },
       {
         key: 'clearUrl',
-        label: '清空视频',
+        label: '清空文件',
         icon: iconBuilder.delete(),
         disabled: checkStringIsNullOrWhiteSpace(fileUrl),
       },

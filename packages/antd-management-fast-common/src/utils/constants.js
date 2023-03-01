@@ -1,5 +1,12 @@
 import { emptyLogo } from './mediaDefault';
 
+export const shouldComponentUpdateResultShowType = {
+  none: 'none',
+  all: 'all',
+  willRender: 'willRender',
+  ignoreRender: 'ignoreRender',
+};
+
 export const whetherList = [
   {
     key: 'b24a21cf-a45c-4b6a-9993-f6953d7eb1ee',

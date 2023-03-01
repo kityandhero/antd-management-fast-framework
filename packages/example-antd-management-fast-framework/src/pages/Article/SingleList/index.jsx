@@ -19,6 +19,7 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
+  buildButton,
   buildCustomGrid,
   buildDropdownButton,
   buildRadioGroup,
@@ -332,7 +333,7 @@ class SingleList extends SinglePage {
       tools: [
         {
           title: '按钮提示1',
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮1',
             handleClick: () => {
               showInfoMessage({
@@ -345,7 +346,7 @@ class SingleList extends SinglePage {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -357,7 +358,7 @@ class SingleList extends SinglePage {
         {
           title: '按钮提示2',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮2',
             handleClick: () => {
               showInfoMessage({
@@ -370,7 +371,7 @@ class SingleList extends SinglePage {
         {
           title: '按钮提示4',
           hidden: false,
-          component: this.renderPresetGeneralButton({
+          component: buildButton({
             text: '按钮4',
             handleClick: () => {
               showInfoMessage({
