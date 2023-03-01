@@ -19,7 +19,6 @@ import {
 } from 'antd-management-fast-common';
 import {
   builderPageHeaderExtraContent,
-  buildPageHeaderTagWrapper,
   decorateAvatar,
   iconBuilder,
   PageExtra,
@@ -30,7 +29,7 @@ import { DataCore } from '../../DataSingleView/DataCore';
 import styles from './index.less';
 
 const { BackTop } = FloatButton;
-const { HeaderTitle } = PageExtra;
+const { HeaderTitle, HeaderTagWrapper } = PageExtra;
 
 class BaseAddForm extends DataCore {
   loadRemoteRequestAfterMount = false;
@@ -305,7 +304,11 @@ class BaseAddForm extends DataCore {
           />
         }
         subTitle={this.buildPageHeaderSubTitle()}
-        tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
+        tags={
+          <HeaderTagWrapper
+            list={this.establishPageHeaderTagCollectionConfig()}
+          />
+        }
         extra={this.buildExtraAction()}
         content={this.renderPresetPageHeaderContent()}
         extraContent={builderPageHeaderExtraContent(

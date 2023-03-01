@@ -52,8 +52,6 @@ import {
   buildCustomSelect,
   buildDropdown,
   builderPageHeaderExtraContent,
-  buildPageHeaderTagWrapper,
-  buildTagList,
   decorateAvatar,
   FlexBox,
   FormExtra,
@@ -75,7 +73,7 @@ const { Content, Sider } = Layout;
 const { Item: FormItem } = Form;
 const { RangePicker } = DatePicker;
 const { BackTop } = FloatButton;
-const { HeaderTitle, HeaderContent } = PageExtra;
+const { HeaderTitle, HeaderContent, HeaderTagWrapper } = PageExtra;
 const { DatePickerItem, ComponentItem, OnlyShowInputItem } = FormExtra;
 
 class Base extends AuthorizationWrapper {
@@ -1082,12 +1080,6 @@ class Base extends AuthorizationWrapper {
 
   establishPageHeaderTagCollectionConfig = () => [];
 
-  establishPageHeaderTagConfig = () => {
-    return buildTagList({
-      list: this.establishPageHeaderTagCollectionConfig(),
-    });
-  };
-
   establishPageHeaderAvatarConfig = () => {
     return null;
   };
@@ -1840,9 +1832,11 @@ class Base extends AuthorizationWrapper {
               />
             }
             subTitle={this.buildPageHeaderSubTitle()}
-            tags={buildPageHeaderTagWrapper(
-              this.establishPageHeaderTagConfig(),
-            )}
+            tags={
+              <HeaderTagWrapper
+                list={this.establishPageHeaderTagCollectionConfig()}
+              />
+            }
             extra={this.buildExtraAction()}
             tabActiveKey={this.getTabActiveKey()}
             content={this.renderPresetPageHeaderContent()}

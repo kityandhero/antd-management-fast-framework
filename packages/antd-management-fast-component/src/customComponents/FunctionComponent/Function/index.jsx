@@ -277,23 +277,6 @@ export function buildDescriptionGrid({ key = null, list, props }) {
   );
 }
 
-export function buildPageHeaderTagWrapper(Tags) {
-  return (
-    <>
-      <div
-        style={{
-          position: 'relative',
-          height: '24px',
-          padding: '0 14px 0 0',
-          lineHeight: '24px',
-        }}
-      >
-        {Tags}
-      </div>
-    </>
-  );
-}
-
 export function builderPageHeaderExtraContent(data) {
   if ((data || null) == null) {
     return null;

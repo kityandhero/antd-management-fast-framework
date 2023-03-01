@@ -9,8 +9,6 @@ import {
 import {
   avatarImageLoadResultCollection,
   builderPageHeaderExtraContent,
-  buildPageHeaderTagWrapper,
-  buildTagList,
   decorateAvatar,
   iconBuilder,
   PageExtra,
@@ -21,7 +19,7 @@ import { BaseView } from '../../DataOperation/BaseView';
 import styles from './index.less';
 
 const { BackTop } = FloatButton;
-const { HeaderTitle, HeaderContent } = PageExtra;
+const { HeaderTitle, HeaderContent, HeaderTagWrapper } = PageExtra;
 
 class DataCore extends BaseView {
   enableActionBack = true;
@@ -124,12 +122,6 @@ class DataCore extends BaseView {
 
   establishPageHeaderTitlePrefix = () => {
     return '';
-  };
-
-  establishPageHeaderTagConfig = () => {
-    return buildTagList({
-      list: this.establishPageHeaderTagCollectionConfig(),
-    });
   };
 
   buildPageHeaderSubTitle = () => null;
@@ -284,7 +276,11 @@ class DataCore extends BaseView {
           />
         }
         subTitle={this.buildPageHeaderSubTitle()}
-        tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
+        tags={
+          <HeaderTagWrapper
+            list={this.establishPageHeaderTagCollectionConfig()}
+          />
+        }
         extra={this.buildExtraAction()}
         content={this.renderPresetPageHeaderContent()}
         extraContent={this.renderPresetPageHeaderExtraContent()}

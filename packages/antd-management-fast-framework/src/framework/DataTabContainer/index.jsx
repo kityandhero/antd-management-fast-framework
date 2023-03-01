@@ -6,7 +6,6 @@ import { isArray, isBoolean, isObject } from 'easy-soft-utility';
 
 import {
   builderPageHeaderExtraContent,
-  buildPageHeaderTagWrapper,
   decorateAvatar,
   iconBuilder,
   PageExtra,
@@ -16,7 +15,7 @@ import { DataLoad } from '../DataSingleView/DataLoad';
 
 import styles from './index.less';
 
-const { HeaderTitle, HeaderContent } = PageExtra;
+const { HeaderTitle, HeaderContent, HeaderTagWrapper } = PageExtra;
 
 class DataTabContainer extends DataLoad {
   resetDataAfterLoad = false;
@@ -258,7 +257,11 @@ class DataTabContainer extends DataLoad {
             />
           }
           subTitle={this.buildPageHeaderSubTitle()}
-          tags={buildPageHeaderTagWrapper(this.establishPageHeaderTagConfig())}
+          tags={
+            <HeaderTagWrapper
+              list={this.establishPageHeaderTagCollectionConfig()}
+            />
+          }
           extra={this.buildExtraAction()}
           content={<HeaderContent {...pageHeaderContentConfig} />}
           extraContent={builderPageHeaderExtraContent(
