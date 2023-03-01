@@ -1,4 +1,4 @@
-import { Select } from 'antd';
+import { Radio } from 'antd';
 import React from 'react';
 
 import {
@@ -12,7 +12,9 @@ import {
 import { BaseComponent } from '../../BaseComponent';
 import { Item } from '../Item';
 
-class SelectItem extends BaseComponent {
+const { Group: RadioGroup } = Radio;
+
+class RadioItem extends BaseComponent {
   renderFurther() {
     const {
       label,
@@ -35,12 +37,12 @@ class SelectItem extends BaseComponent {
             return dataConvert(o);
           });
 
-    const otherSelectProperties = {
-      placeholder: buildFieldDescription(label, '选择') || '请选择',
+    const otherRadioProperties = {
+      placeholder: buildFieldDescription(label, '选择'),
       style: { width: '100%' },
-      onChange: (v, option) => {
+      onChange: (event) => {
         if (isFunction(onChangeCallback)) {
-          onChangeCallback(v, option);
+          onChangeCallback(event);
         }
       },
       ...otherProperties,
@@ -75,19 +77,19 @@ class SelectItem extends BaseComponent {
         ]}
         hidden={hidden}
       >
-        <Select {...otherSelectProperties}>
+        <RadioGroup {...otherRadioProperties}>
           {isFunction(renderItem)
             ? listAdjust.map((o, index) => {
                 return renderItem(o, index);
               })
             : null}
-        </Select>
+        </RadioGroup>
       </Item>
     );
   }
 }
 
-SelectItem.defaultProps = {
+RadioItem.defaultProps = {
   label: '',
   name: '',
   helper: null,
@@ -101,4 +103,4 @@ SelectItem.defaultProps = {
   hidden: false,
 };
 
-export { SelectItem };
+export { RadioItem };

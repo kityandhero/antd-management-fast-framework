@@ -22,7 +22,7 @@ import {
 
 export function refitWebChannelList({ metaData, withUnlimited = true }) {
   const { webChannelList: list } = {
-     webChannelList: [] ,
+    webChannelList: [],
     ...metaData,
   };
 
@@ -102,7 +102,7 @@ export function renderCustomWebChannelSelect({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWebChannelOption({
         metaData,
         withUnlimited: false,
@@ -130,7 +130,7 @@ export function renderFormWebChannelSelect({
   return buildFormSelect({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWebChannelOption({
         metaData,
         withUnlimited: false,
@@ -158,7 +158,7 @@ export function renderCustomWebChannelRadio({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWebChannelRadio({
         metaData,
         withUnlimited: false,
@@ -186,7 +186,7 @@ export function renderFormWebChannelRadio({
   return buildFormRadio({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWebChannelRadio({
         metaData,
         withUnlimited: false,

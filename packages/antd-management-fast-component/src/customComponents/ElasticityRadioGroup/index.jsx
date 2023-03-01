@@ -1,8 +1,9 @@
 import { Radio } from 'antd';
 import React from 'react';
 
+import { isFunction } from 'easy-soft-utility';
+
 import { BaseComponent } from '../BaseComponent';
-import { ElasticityRadioItem } from '../ElasticityRadioItem';
 
 class ElasticityRadioGroup extends BaseComponent {
   renderFurther() {
@@ -12,10 +13,30 @@ class ElasticityRadioGroup extends BaseComponent {
       style,
       button,
       buttonStyle,
-      list,
-      adjustListDataCallback,
+      list = [],
+      dataConvert = null,
+      renderItem,
       onChange,
     } = this.props;
+
+    const listMerge = list.map((o) => {
+      return { ...o, button: !!button };
+    });
+
+    const listAdjust =
+      (dataConvert || null) == null
+        ? listMerge
+        : listMerge.map((o) => {
+            return dataConvert(o);
+          });
+
+    const otherProperties = {
+      ...(isFunction(renderItem)
+        ? {}
+        : {
+            options: listAdjust,
+          }),
+    };
 
     return (
       <Radio.Group
@@ -24,12 +45,13 @@ class ElasticityRadioGroup extends BaseComponent {
         defaultValue={defaultValue || null}
         buttonStyle={buttonStyle || null}
         style={style || null}
+        {...otherProperties}
       >
-        <ElasticityRadioItem
-          button={button}
-          list={list}
-          adjustListDataCallback={adjustListDataCallback}
-        />
+        {isFunction(renderItem)
+          ? listAdjust.map((o, index) => {
+              return renderItem(o, index);
+            })
+          : null}
       </Radio.Group>
     );
   }
@@ -42,7 +64,8 @@ ElasticityRadioGroup.defaultProps = {
   button: false,
   buttonStyle: null,
   list: [],
-  adjustListDataCallback: null,
+  dataConvert: null,
+  renderItem: null,
   onChange: null,
 };
 

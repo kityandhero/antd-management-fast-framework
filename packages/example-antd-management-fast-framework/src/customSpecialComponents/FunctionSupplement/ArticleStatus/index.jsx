@@ -22,7 +22,7 @@ import {
 
 export function refitArticleStatusList({ metaData, withUnlimited = true }) {
   const { articleStatusList: list } = {
-     articleStatusList: [] ,
+    articleStatusList: [],
     ...metaData,
   };
 
@@ -102,7 +102,7 @@ export function renderCustomArticleStatusSelect({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderArticleStatusOption({
         metaData,
         withUnlimited: false,
@@ -130,7 +130,7 @@ export function renderFormArticleStatusSelect({
   return buildFormSelect({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderArticleStatusOption({
         metaData,
         withUnlimited: false,
@@ -158,7 +158,7 @@ export function renderCustomArticleStatusRadio({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderArticleStatusRadio({
         metaData,
         withUnlimited: false,
@@ -186,7 +186,7 @@ export function renderFormArticleStatusRadio({
   return buildFormRadio({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderArticleStatusRadio({
         metaData,
         withUnlimited: false,

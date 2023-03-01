@@ -5,7 +5,6 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { isArray, isBoolean, isObject } from 'easy-soft-utility';
 
 import {
-  builderPageHeaderExtraContent,
   decorateAvatar,
   iconBuilder,
   PageExtra,
@@ -15,7 +14,8 @@ import { DataLoad } from '../DataSingleView/DataLoad';
 
 import styles from './index.less';
 
-const { HeaderTitle, HeaderContent, HeaderTagWrapper } = PageExtra;
+const { HeaderTitle, HeaderContent, HeaderTagWrapper, HeaderExtraContent } =
+  PageExtra;
 
 class DataTabContainer extends DataLoad {
   resetDataAfterLoad = false;
@@ -264,9 +264,11 @@ class DataTabContainer extends DataLoad {
           }
           extra={this.buildExtraAction()}
           content={<HeaderContent {...pageHeaderContentConfig} />}
-          extraContent={builderPageHeaderExtraContent(
-            this.establishPageHeaderExtraContentConfig(),
-          )}
+          extraContent={
+            <HeaderExtraContent
+              {...this.establishPageHeaderExtraContentConfig()}
+            />
+          }
           // onBack={() => {
           //   this.backToList();
           // }}

@@ -18,7 +18,6 @@ import {
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 import {
-  builderPageHeaderExtraContent,
   decorateAvatar,
   iconBuilder,
   PageExtra,
@@ -29,7 +28,7 @@ import { DataCore } from '../../DataSingleView/DataCore';
 import styles from './index.less';
 
 const { BackTop } = FloatButton;
-const { HeaderTitle, HeaderTagWrapper } = PageExtra;
+const { HeaderTitle, HeaderTagWrapper, HeaderExtraContent } = PageExtra;
 
 class BaseAddForm extends DataCore {
   loadRemoteRequestAfterMount = false;
@@ -311,9 +310,11 @@ class BaseAddForm extends DataCore {
         }
         extra={this.buildExtraAction()}
         content={this.renderPresetPageHeaderContent()}
-        extraContent={builderPageHeaderExtraContent(
-          this.establishPageHeaderExtraContentConfig(),
-        )}
+        extraContent={
+          <HeaderExtraContent
+            {...this.establishPageHeaderExtraContentConfig()}
+          />
+        }
         // onBack={() => {
         //   this.backToList();
         // }}

@@ -18,7 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
-} from '../../FunctionComponent/Function';
+} from '../../FunctionComponent';
 
 export function refitWhetherList({ withUnlimited = true }) {
   const { whetherList: list } = {
@@ -94,7 +94,7 @@ export function renderFormWhetherSelect({
   return buildFormSelect({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWhetherOption({ withUnlimited: false });
     },
     helper,
@@ -119,7 +119,7 @@ export function renderFormWhetherRadio({
   return buildFormRadio({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWhetherRadio({ withUnlimited: false });
     },
     helper,

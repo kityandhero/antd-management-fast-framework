@@ -39,7 +39,6 @@ import {
   buildFormRadio,
   buildFormText,
   buildFormUpdateTimeField,
-  buildJsonView,
   buildRadioItem,
   buildSearchFormSelect,
   buildSearchInput,
@@ -747,13 +746,6 @@ class InternalFlow extends Core {
     });
   };
 
-  renderPresetJsonView = (value, theme = 'monokai') => {
-    return buildJsonView({
-      value,
-      theme,
-    });
-  };
-
   renderPresetFormButton = (config, formItemLayout = {}) => {
     return buildFormButton({
       config,
@@ -796,7 +788,7 @@ class InternalFlow extends Core {
   renderPresetFormRadio = (
     label,
     name,
-    renderItemFunction,
+    renderItem,
     helper = null,
     onChangeCallback = null,
     formItemLayout = null,
@@ -806,7 +798,7 @@ class InternalFlow extends Core {
     return buildFormRadio({
       label,
       name,
-      renderItemFunction,
+      renderItem,
       helper,
       onChangeCallback,
       formItemLayout,

@@ -8,7 +8,6 @@ import {
 } from 'antd-management-fast-common';
 import {
   avatarImageLoadResultCollection,
-  builderPageHeaderExtraContent,
   decorateAvatar,
   iconBuilder,
   PageExtra,
@@ -19,7 +18,8 @@ import { BaseView } from '../../DataOperation/BaseView';
 import styles from './index.less';
 
 const { BackTop } = FloatButton;
-const { HeaderTitle, HeaderContent, HeaderTagWrapper } = PageExtra;
+const { HeaderTitle, HeaderContent, HeaderTagWrapper, HeaderExtraContent } =
+  PageExtra;
 
 class DataCore extends BaseView {
   enableActionBack = true;
@@ -232,12 +232,6 @@ class DataCore extends BaseView {
     );
   };
 
-  renderPresetPageHeaderExtraContent = () => {
-    return builderPageHeaderExtraContent(
-      this.establishPageHeaderExtraContentConfig(),
-    );
-  };
-
   renderPresetFormContent = () => {
     return this.buildCardCollection(this.establishCardCollectionConfig());
   };
@@ -283,7 +277,11 @@ class DataCore extends BaseView {
         }
         extra={this.buildExtraAction()}
         content={this.renderPresetPageHeaderContent()}
-        extraContent={this.renderPresetPageHeaderExtraContent()}
+        extraContent={
+          <HeaderExtraContent
+            {...this.establishPageHeaderExtraContentConfig()}
+          />
+        }
       >
         <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
           {this.renderPresetFormWrapper()}

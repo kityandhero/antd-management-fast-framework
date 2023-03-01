@@ -8,7 +8,7 @@ import {
   toNumber,
 } from 'easy-soft-utility';
 
-import { buildDescriptionGrid } from '../FunctionComponent/Function';
+import { buildDescriptionGrid } from '../FunctionComponent';
 
 import styles from './index.less';
 

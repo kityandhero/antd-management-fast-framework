@@ -97,7 +97,7 @@ export function renderFormArticleStatusSelect({
   return buildFormSelect({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderArticleStatusOption({ metaData, withUnlimited: false });
     },
     helper,
@@ -123,7 +123,7 @@ export function renderFormArticleStatusRadio({
   return buildFormRadio({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderArticleStatusRadio({ metaData, withUnlimited: false });
     },
     helper,

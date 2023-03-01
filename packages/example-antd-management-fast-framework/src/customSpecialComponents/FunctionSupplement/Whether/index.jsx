@@ -100,7 +100,7 @@ export function renderCustomWhetherSelect({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWhetherOption({
         metaData,
         withUnlimited: false,
@@ -128,7 +128,7 @@ export function renderFormWhetherSelect({
   return buildFormSelect({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWhetherOption({
         metaData,
         withUnlimited: false,
@@ -156,7 +156,7 @@ export function renderCustomWhetherRadio({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWhetherRadio({
         metaData,
         withUnlimited: false,
@@ -184,7 +184,7 @@ export function renderFormWhetherRadio({
   return buildFormRadio({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderWhetherRadio({
         metaData,
         withUnlimited: false,

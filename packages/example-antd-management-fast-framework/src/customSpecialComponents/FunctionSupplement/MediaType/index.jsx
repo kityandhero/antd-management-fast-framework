@@ -22,7 +22,7 @@ import {
 
 export function refitMediaTypeList({ metaData, withUnlimited = true }) {
   const { mediaTypeList: list } = {
-     mediaTypeList: [] ,
+    mediaTypeList: [],
     ...metaData,
   };
 
@@ -104,7 +104,7 @@ export function renderCustomMediaTypeSelect({
     value,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderMediaTypeOption({
         metaData,
         withUnlimited: false,
@@ -132,7 +132,7 @@ export function renderFormMediaTypeSelect({
   return buildFormSelect({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderMediaTypeOption({
         metaData,
         withUnlimited: false,
@@ -162,7 +162,7 @@ export function renderCustomMediaTypeRadio({
     value,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderMediaTypeRadio({
         metaData,
         withUnlimited: false,
@@ -190,7 +190,7 @@ export function renderFormMediaTypeRadio({
   return buildFormRadio({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderMediaTypeRadio({
         metaData,
         withUnlimited: false,

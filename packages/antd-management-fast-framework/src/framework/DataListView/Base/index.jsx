@@ -51,7 +51,6 @@ import {
   buildColumnList,
   buildCustomSelect,
   buildDropdown,
-  builderPageHeaderExtraContent,
   decorateAvatar,
   FlexBox,
   FormExtra,
@@ -73,7 +72,8 @@ const { Content, Sider } = Layout;
 const { Item: FormItem } = Form;
 const { RangePicker } = DatePicker;
 const { BackTop } = FloatButton;
-const { HeaderTitle, HeaderContent, HeaderTagWrapper } = PageExtra;
+const { HeaderTitle, HeaderContent, HeaderTagWrapper, HeaderExtraContent } =
+  PageExtra;
 const { DatePickerItem, ComponentItem, OnlyShowInputItem } = FormExtra;
 
 class Base extends AuthorizationWrapper {
@@ -1202,12 +1202,6 @@ class Base extends AuthorizationWrapper {
 
   establishPageHeaderExtraContentConfig = () => null;
 
-  renderPresetPageHeaderExtraContent = () => {
-    return builderPageHeaderExtraContent(
-      this.establishPageHeaderExtraContentConfig(),
-    );
-  };
-
   buildPaginationBar = () => {
     const paginationConfig = this.supplementPaginationConfig();
 
@@ -1840,7 +1834,11 @@ class Base extends AuthorizationWrapper {
             extra={this.buildExtraAction()}
             tabActiveKey={this.getTabActiveKey()}
             content={this.renderPresetPageHeaderContent()}
-            extraContent={this.renderPresetPageHeaderExtraContent()}
+            extraContent={
+              <HeaderExtraContent
+                {...this.establishPageHeaderExtraContentConfig()}
+              />
+            }
           >
             <Tabs {...this.buildOtherTabProps()} />
 

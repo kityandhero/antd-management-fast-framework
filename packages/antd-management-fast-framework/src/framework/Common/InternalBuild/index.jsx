@@ -50,6 +50,7 @@ import {
   buildDropdownEllipsis,
   buildFormInput,
   buildOptionItem,
+  buildRadioItem,
   buildTree,
   buildTreeSelect,
   ColorText,
@@ -69,6 +70,7 @@ import {
   IconInfo,
   ImageBox,
   ImageUpload,
+  JsonView,
   QueueBox,
   VideoUpload,
 } from 'antd-management-fast-component';
@@ -89,6 +91,7 @@ const {
   SelectItem,
   SwitchItem,
   TimePickerItem,
+  RadioItem,
 } = FormExtra;
 
 const {
@@ -1452,20 +1455,20 @@ class InternalBuild extends InternalFlow {
                       label={fieldData.label}
                       name={fieldData.name}
                       helper={fieldData.helper}
-                      renderItemFunction={() => {
-                        return buildOptionItem({
-                          list: refitCommonData(
-                            isFunction(contentItem.pretreatmentData)
-                              ? contentItem.pretreatmentData(
-                                  isArray(contentItem.listData)
-                                    ? contentItem.listData
-                                    : [],
-                                )
-                              : isArray(contentItem.listData)
-                              ? contentItem.listData
-                              : [],
-                          ),
-                        });
+                      list={refitCommonData(
+                        isFunction(contentItem.pretreatmentData)
+                          ? contentItem.pretreatmentData(
+                              isArray(contentItem.listData)
+                                ? contentItem.listData
+                                : [],
+                            )
+                          : isArray(contentItem.listData)
+                          ? contentItem.listData
+                          : [],
+                      )}
+                      dataConvert={null}
+                      renderItem={(item, index) => {
+                        return buildOptionItem(item, index);
                       }}
                       onChangeCallback={
                         isFunction(contentItem.onChangeCallback)
@@ -1501,18 +1504,24 @@ class InternalBuild extends InternalFlow {
                     : null}
 
                   {type === cardConfig.contentItemType.radio ? (
-                    <SelectItem
+                    <RadioItem
                       label={fieldData.label}
                       name={fieldData.name}
                       helper={fieldData.helper}
-                      renderItemFunction={() => {
-                        return this.renderPresetFormRadioCore(
-                          refitCommonData(
-                            isArray(contentItem.listData)
-                              ? contentItem.listData
-                              : [],
-                          ),
-                        );
+                      list={refitCommonData(
+                        isFunction(contentItem.pretreatmentData)
+                          ? contentItem.pretreatmentData(
+                              isArray(contentItem.listData)
+                                ? contentItem.listData
+                                : [],
+                            )
+                          : isArray(contentItem.listData)
+                          ? contentItem.listData
+                          : [],
+                      )}
+                      dataConvert={null}
+                      renderItem={(item, index) => {
+                        return buildRadioItem(item, index);
                       }}
                       onChangeCallback={
                         isFunction(contentItem.onChangeCallback)
@@ -1603,9 +1612,9 @@ class InternalBuild extends InternalFlow {
                     ? contentItem.component || null
                     : null}
 
-                  {type === cardConfig.contentItemType.jsonView
-                    ? this.renderPresetJsonView(contentItem.value)
-                    : null}
+                  {type === cardConfig.contentItemType.jsonView ? (
+                    <JsonView value={contentItem.value} />
+                  ) : null}
 
                   {type === cardConfig.contentItemType.syntaxHighlighterView ? (
                     <SyntaxHighlighterItem

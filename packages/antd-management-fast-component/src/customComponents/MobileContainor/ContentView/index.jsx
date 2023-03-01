@@ -7,7 +7,7 @@ import { animalType } from 'antd-management-fast-common';
 
 import { FadeBox } from '../../AnimalBox/FadeBox';
 import { QueueBox } from '../../AnimalBox/QueueBox';
-import { buildButton } from '../../FunctionComponent/Function';
+import { buildButton } from '../../FunctionComponent';
 import { iconBuilder } from '../../Icon';
 
 import styles from './index.less';

@@ -22,7 +22,7 @@ import {
 
 export function refitAccessWayStatusList({ metaData, withUnlimited = true }) {
   const { accessWayStatusList: list } = {
-     accessWayStatusList: [] ,
+    accessWayStatusList: [],
     ...metaData,
   };
 
@@ -102,7 +102,7 @@ export function renderCustomAccessWayStatusSelect({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderAccessWayStatusOption({
         metaData,
         withUnlimited: false,
@@ -130,7 +130,7 @@ export function renderFormAccessWayStatusSelect({
   return buildFormSelect({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderAccessWayStatusOption({
         metaData,
         withUnlimited: false,
@@ -158,7 +158,7 @@ export function renderCustomAccessWayStatusRadio({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderAccessWayStatusRadio({
         metaData,
         withUnlimited: false,
@@ -186,7 +186,7 @@ export function renderFormAccessWayStatusRadio({
   return buildFormRadio({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderAccessWayStatusRadio({
         metaData,
         withUnlimited: false,

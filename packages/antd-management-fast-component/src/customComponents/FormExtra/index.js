@@ -5,6 +5,7 @@ import { InputItem } from './InputItem';
 import { InputNumberItem } from './InputNumberItem';
 import { Item } from './Item';
 import { OnlyShowInputItem } from './OnlyShowInputItem';
+import { RadioItem } from './RadioItem';
 import { SelectItem } from './SelectItem';
 import { SwitchItem } from './SwitchItem';
 import { SyntaxHighlighterItem } from './SyntaxHighlighterItem';
@@ -24,6 +25,7 @@ const FormExtra = {
   TextAreaItem,
   TimePickerItem,
   InputNumberItem,
+  RadioItem,
 };
 
 export { FormExtra };

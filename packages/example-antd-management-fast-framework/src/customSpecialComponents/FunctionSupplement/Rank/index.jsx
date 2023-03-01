@@ -100,7 +100,7 @@ export function renderCustomRankSelect({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderRankOption({
         metaData,
         withUnlimited: false,
@@ -128,7 +128,7 @@ export function renderFormRankSelect({
   return buildFormSelect({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderRankOption({
         metaData,
         withUnlimited: false,
@@ -156,7 +156,7 @@ export function renderCustomRankRadio({
     label,
     separator,
     size,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderRankRadio({
         metaData,
         withUnlimited: false,
@@ -184,7 +184,7 @@ export function renderFormRankRadio({
   return buildFormRadio({
     label: title,
     name,
-    renderItemFunction: () => {
+    renderItem: () => {
       return renderRankRadio({
         metaData,
         withUnlimited: false,

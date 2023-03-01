@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { isObject } from 'easy-soft-utility';
+import { isObject, whetherNumber } from 'easy-soft-utility';
 
 import {
   cardConfig,
   drawerConfig,
   mobileTypeCollection,
-  whetherNumber,
 } from 'antd-management-fast-common';
 import {
   buildOptionItem,
@@ -69,7 +68,7 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
           buildType: drawerConfig.extraBuildType.flexSelect,
           label: '模拟设备',
           value: mobileType,
-          renderItemFunction: () => {
+          renderItem: () => {
             return buildOptionItem({
               list: listConfig,
             });

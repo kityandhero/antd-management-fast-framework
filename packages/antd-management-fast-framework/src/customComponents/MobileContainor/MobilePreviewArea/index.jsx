@@ -1,13 +1,12 @@
 import { Affix } from 'antd';
 import React from 'react';
 
-import { isArray, isObject } from 'easy-soft-utility';
+import { isArray, isObject, whetherNumber } from 'easy-soft-utility';
 
 import {
   animalType,
   cardConfig,
   mobileTypeCollection,
-  whetherNumber,
 } from 'antd-management-fast-common';
 import {
   buildOptionItem,
@@ -97,7 +96,7 @@ class MobilePreviewArea extends Base {
                 size: 'small',
                 label: '模拟设备',
                 value: mobileType,
-                renderItemFunction: () => {
+                renderItem: () => {
                   return buildOptionItem({
                     list: listConfig,
                   });
