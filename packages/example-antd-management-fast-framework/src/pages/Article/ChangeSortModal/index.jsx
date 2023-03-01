@@ -9,10 +9,9 @@ import { fieldData } from '../Common/data';
 
 const { BaseUpdateModal } = DataModal;
 
-@connect(({ article, global, loading }) => ({
+@connect(({ article, global }) => ({
   article,
   global,
-  loading: loading.models.article,
 }))
 class ChangeSortModal extends BaseUpdateModal {
   constructor(properties) {

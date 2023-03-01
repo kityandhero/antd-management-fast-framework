@@ -60,6 +60,7 @@ import {
   FileBase64Upload,
   FileUpload,
   FlexText,
+  FormExtra,
   FunctionSupplement,
   HelpBox,
   HelpCard,
@@ -68,7 +69,6 @@ import {
   IconInfo,
   ImageBox,
   ImageUpload,
-  PageExtra,
   QueueBox,
   VideoUpload,
 } from 'antd-management-fast-component';
@@ -89,7 +89,7 @@ const {
   SelectItem,
   SwitchItem,
   TimePickerItem,
-} = PageExtra;
+} = FormExtra;
 
 const {
   Whether: { renderFormWhetherSelect },

@@ -3,11 +3,11 @@ import React from 'react';
 
 import { isFunction, showSimpleRuntimeError } from 'easy-soft-utility';
 
-import { iconBuilder, PageExtra } from 'antd-management-fast-component';
+import { FormExtra, iconBuilder } from 'antd-management-fast-component';
 
 import { SupplementWrapper } from '../../../CustomWrapper/SupplementWrapper';
 
-const { OnlyShowInputItem } = PageExtra;
+const { OnlyShowInputItem } = FormExtra;
 
 class SelectFieldBase extends SupplementWrapper {
   loadRemoteRequestAfterMount = false;

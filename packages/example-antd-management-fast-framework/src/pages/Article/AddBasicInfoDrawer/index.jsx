@@ -5,8 +5,7 @@ import { cardConfig, drawerConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import { DataDrawer } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '@/customConfig/accessWayCollection';
-
+import { accessWayCollection } from '../../../customConfig/accessWayCollection';
 import { fieldData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;
