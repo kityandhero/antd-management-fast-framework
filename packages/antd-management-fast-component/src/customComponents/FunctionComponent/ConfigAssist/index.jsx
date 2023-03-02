@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { isArray, isBoolean, isFunction } from 'easy-soft-utility';
 
 import { listViewConfig } from 'antd-management-fast-common';

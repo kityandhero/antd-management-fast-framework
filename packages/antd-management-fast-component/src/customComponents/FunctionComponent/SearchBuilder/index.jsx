@@ -1,4 +1,5 @@
 import { Form, Input, InputNumber, Select } from 'antd';
+import React from 'react';
 
 import {
   buildFieldDescription,

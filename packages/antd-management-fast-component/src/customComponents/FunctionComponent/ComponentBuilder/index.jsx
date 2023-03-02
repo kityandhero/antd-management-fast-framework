@@ -1,4 +1,5 @@
 import { Alert, Button, Radio, Select, Tree, TreeSelect } from 'antd';
+import React from 'react';
 import ReactPlayer from 'react-player';
 
 import {
