@@ -11,8 +11,8 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
-  buildCustomRadio,
-  buildCustomSelect,
+  buildFlexRadio,
+  buildFlexSelect,
   buildFormRadio,
   buildFormSelect,
   buildOptionItem,
@@ -90,13 +90,13 @@ export function renderSearchWhetherSelect({
 export function renderCustomWhetherSelect({
   metaData = null,
   label = '调用时设置',
-  separator = '：',
+  separator = ':',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
-  return buildCustomSelect({
+  return buildFlexSelect({
     label,
     separator,
     size,
@@ -146,13 +146,13 @@ export function renderFormWhetherSelect({
 export function renderCustomWhetherRadio({
   metaData = null,
   label = '调用时设置',
-  separator = '：',
+  separator = ':',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
-  return buildCustomRadio({
+  return buildFlexRadio({
     label,
     separator,
     size,

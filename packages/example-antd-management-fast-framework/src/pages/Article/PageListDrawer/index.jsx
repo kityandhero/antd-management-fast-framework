@@ -135,10 +135,10 @@ class PageListDrawer extends MultiPageSelectDrawer {
           }
           description={
             <>
-              <Text>{fieldData.articleId.label}：</Text>
+              <Text>{fieldData.articleId.label}:</Text>
               <Text copyable>{articleId}</Text>
               <Divider type="vertical" />
-              <Text>{fieldData.createTime.label}：</Text>
+              <Text>{fieldData.createTime.label}:</Text>
               <Text>{createTime}</Text>
             </>
           }

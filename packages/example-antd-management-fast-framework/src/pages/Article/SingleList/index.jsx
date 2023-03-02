@@ -22,7 +22,7 @@ import {
   buildButton,
   buildCustomGrid,
   buildDropdownButton,
-  buildRadioGroup,
+  buildFlexRadio,
   iconBuilder,
 } from 'antd-management-fast-component';
 import { DataSinglePageView } from 'antd-management-fast-framework';
@@ -450,8 +450,10 @@ class SingleList extends SinglePage {
     return [
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.component,
-        component: buildRadioGroup({
-          value: listViewMode,
+        component: buildFlexRadio({
+          label: '显示模式',
+          size: 'small',
+          defaultValue: listViewMode,
           button: true,
           list: [
             {
@@ -475,11 +477,12 @@ class SingleList extends SinglePage {
               availability: whetherNumber.no,
             },
           ],
-          onChange: (event) => {
-            const {
-              target: { value: v },
-            } = event;
+          dataConvert: (o) => {
+            const { flag, name } = o;
 
+            return { label: name, value: flag, disabled: false, ...o };
+          },
+          onChange: (v) => {
             this.setState({
               listViewMode: v,
               showSelect: v === listViewConfig.viewMode.table,
@@ -788,10 +791,10 @@ class SingleList extends SinglePage {
       title: '操作提示',
       list: [
         {
-          text: '分页模式：单页数据默认会启用前台模拟分页，分页试图有助于解决长列表渲染情况下的页面卡顿情况。',
+          text: '分页模式:单页数据默认会启用前台模拟分页，分页试图有助于解决长列表渲染情况下的页面卡顿情况。',
         },
         {
-          text: '模式变更：如若不需要模拟分页展示，可以通过设置 this.useFrontendPagination = false 来关闭。',
+          text: '模式变更:如若不需要模拟分页展示，可以通过设置 this.useFrontendPagination = false 来关闭。',
         },
       ],
     };

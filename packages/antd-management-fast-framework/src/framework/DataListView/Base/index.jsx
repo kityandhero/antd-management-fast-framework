@@ -49,8 +49,8 @@ import {
   adjustTableExpandConfig,
   avatarImageLoadResultCollection,
   buildColumnList,
-  buildCustomSelect,
   buildDropdown,
+  buildFlexSelect,
   decorateAvatar,
   FlexBox,
   FormExtra,
@@ -529,7 +529,7 @@ class Base extends AuthorizationWrapper {
           : null}
 
         {type === cardConfig.contentItemType.flexSelect
-          ? buildCustomSelect(contentItem)
+          ? buildFlexSelect(contentItem)
           : null}
 
         {type === searchCardConfig.contentItemType.customRadio

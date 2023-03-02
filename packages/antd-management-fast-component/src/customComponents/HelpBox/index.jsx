@@ -102,7 +102,7 @@ class HelpBox extends PureComponent {
                 height: '22px',
               }}
             >
-              {title}：
+              {title}:
             </div>
           )
         ) : null}
@@ -157,9 +157,6 @@ class HelpBox extends PureComponent {
             },
             contentStyle: {
               color: '#999',
-            },
-            itemStyle: {
-              paddingBottom: '4px',
             },
           },
         })}

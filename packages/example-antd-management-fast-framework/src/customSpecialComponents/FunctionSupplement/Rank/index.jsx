@@ -11,8 +11,8 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
-  buildCustomRadio,
-  buildCustomSelect,
+  buildFlexRadio,
+  buildFlexSelect,
   buildFormRadio,
   buildFormSelect,
   buildOptionItem,
@@ -90,13 +90,13 @@ export function renderSearchRankSelect({
 export function renderCustomRankSelect({
   metaData = null,
   label = '商品分类',
-  separator = '：',
+  separator = ':',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
-  return buildCustomSelect({
+  return buildFlexSelect({
     label,
     separator,
     size,
@@ -146,13 +146,13 @@ export function renderFormRankSelect({
 export function renderCustomRankRadio({
   metaData = null,
   label = '商品分类',
-  separator = '：',
+  separator = ':',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
-  return buildCustomRadio({
+  return buildFlexRadio({
     label,
     separator,
     size,

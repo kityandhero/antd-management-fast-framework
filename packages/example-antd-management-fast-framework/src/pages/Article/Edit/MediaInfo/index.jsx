@@ -541,7 +541,7 @@ class BasicInfo extends TabPageBase {
           title: '当前信息总数',
           component: (
             <>
-              <span>当前信息总数：{mediaItemCount}</span>
+              <span>当前信息总数:{mediaItemCount}</span>
             </>
           ),
         },

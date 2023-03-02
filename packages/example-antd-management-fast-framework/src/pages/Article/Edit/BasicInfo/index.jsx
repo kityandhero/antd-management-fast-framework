@@ -28,7 +28,10 @@ import {
 } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../../customConfig/config';
-import { renderCustomArticleStatusSelect } from '../../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
+import {
+  renderCustomArticleStatusRadio,
+  renderCustomArticleStatusSelect,
+} from '../../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
 import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
 import {
   addGalleryImageAction,
@@ -464,10 +467,25 @@ class BasicInfo extends TabPageBase {
                 text: '一些说明',
               },
               {
+                buildType: cardConfig.extraBuildType.divider,
+              },
+              {
+                buildType: cardConfig.extraBuildType.component,
+                component: renderCustomArticleStatusRadio({
+                  metaData: this.getMetaData(),
+                }),
+              },
+              {
+                buildType: cardConfig.extraBuildType.divider,
+              },
+              {
                 buildType: cardConfig.extraBuildType.component,
                 component: renderCustomArticleStatusSelect({
                   metaData: this.getMetaData(),
                 }),
+              },
+              {
+                buildType: cardConfig.extraBuildType.divider,
               },
               {
                 buildType: cardConfig.extraBuildType.generalButton,
@@ -563,42 +581,6 @@ class BasicInfo extends TabPageBase {
             },
             {
               lg: 6,
-              type: cardConfig.contentItemType.select,
-              fieldData: fieldData.select1,
-              listData: optionList,
-              dataConvert: dataConvert,
-              onChange: (v, option) => {
-                logDebug(option, `selectValue -> ${v}`);
-              },
-            },
-            {
-              lg: 6,
-              type: cardConfig.contentItemType.select,
-              fieldData: fieldData.select2,
-              listData: optionList,
-              dataConvert: dataConvert,
-              renderItem: (item, index) => {
-                const { label, value, disabled = false } = item;
-
-                return (
-                  <Select.Option
-                    key={`radio_${index}`}
-                    value={value}
-                    disabled={disabled}
-                  >
-                    <ColorText
-                      text={label}
-                      color={buildRandomHexColor({ seed: index * 10 })}
-                    />
-                  </Select.Option>
-                );
-              },
-              onChange: (v, option) => {
-                logDebug(option, `selectValue -> ${v}`);
-              },
-            },
-            {
-              lg: 6,
               type: cardConfig.contentItemType.radio,
               fieldData: fieldData.radio1,
               listData: optionList,
@@ -662,6 +644,42 @@ class BasicInfo extends TabPageBase {
               dataConvert: dataConvert,
               onChange: (v) => {
                 logDebug({ selectValue: v });
+              },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.select,
+              fieldData: fieldData.select1,
+              listData: optionList,
+              dataConvert: dataConvert,
+              onChange: (v, option) => {
+                logDebug(option, `selectValue -> ${v}`);
+              },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.select,
+              fieldData: fieldData.select2,
+              listData: optionList,
+              dataConvert: dataConvert,
+              renderItem: (item, index) => {
+                const { label, value, disabled = false } = item;
+
+                return (
+                  <Select.Option
+                    key={`radio_${index}`}
+                    value={value}
+                    disabled={disabled}
+                  >
+                    <ColorText
+                      text={label}
+                      color={buildRandomHexColor({ seed: index * 10 })}
+                    />
+                  </Select.Option>
+                );
+              },
+              onChange: (v, option) => {
+                logDebug(option, `selectValue -> ${v}`);
               },
             },
             {
@@ -1565,10 +1583,10 @@ class BasicInfo extends TabPageBase {
       title: '操作提示',
       list: [
         {
-          text: '简要说明：这里可以显示需要提示的信息。',
+          text: '简要说明:这里可以显示需要提示的信息。',
         },
         {
-          text: '简要说明：这里可以显示需要提示的信息。',
+          text: '简要说明:这里可以显示需要提示的信息。',
         },
       ],
     };

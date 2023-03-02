@@ -11,8 +11,8 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
-  buildCustomRadio,
-  buildCustomSelect,
+  buildFlexRadio,
+  buildFlexSelect,
   buildFormRadio,
   buildFormSelect,
   buildOptionItem,
@@ -92,13 +92,13 @@ export function renderSearchWebChannelSelect({
 export function renderCustomWebChannelSelect({
   metaData = null,
   label = 'Web渠道',
-  separator = '：',
+  separator = ':',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
-  return buildCustomSelect({
+  return buildFlexSelect({
     label,
     separator,
     size,
@@ -148,13 +148,13 @@ export function renderFormWebChannelSelect({
 export function renderCustomWebChannelRadio({
   metaData = null,
   label = 'Web渠道',
-  separator = '：',
+  separator = ':',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
-  return buildCustomRadio({
+  return buildFlexRadio({
     label,
     separator,
     size,

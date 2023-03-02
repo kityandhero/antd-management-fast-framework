@@ -24,7 +24,7 @@ import {
   buildButton,
   buildColorText,
   buildCustomGrid,
-  buildRadioGroup,
+  buildFlexRadio,
   buildTagList,
   iconBuilder,
 } from 'antd-management-fast-component';
@@ -541,8 +541,10 @@ class PageList extends MultiPage {
     return [
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.component,
-        component: buildRadioGroup({
-          value: listViewMode,
+        component: buildFlexRadio({
+          label: '显示模式',
+          size: 'small',
+          defaultValue: listViewMode,
           button: true,
           list: [
             {
@@ -566,11 +568,12 @@ class PageList extends MultiPage {
               availability: whetherNumber.no,
             },
           ],
-          onChange: (event) => {
-            const {
-              target: { value: v },
-            } = event;
+          dataConvert: (o) => {
+            const { flag, name } = o;
 
+            return { label: name, value: flag, disabled: false, ...o };
+          },
+          onChange: (v) => {
             this.setState({
               listViewMode: v,
               showSelect: v === listViewConfig.viewMode.table,
@@ -966,10 +969,10 @@ class PageList extends MultiPage {
       title: '操作提示',
       list: [
         {
-          text: '简要说明：这里可以显示需要提示的信息。',
+          text: '简要说明:这里可以显示需要提示的信息。',
         },
         {
-          text: '简要说明：这里可以显示需要提示的信息。',
+          text: '简要说明:这里可以显示需要提示的信息。',
         },
       ],
     };

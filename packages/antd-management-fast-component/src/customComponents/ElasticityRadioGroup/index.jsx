@@ -1,9 +1,10 @@
 import { Radio } from 'antd';
 import React from 'react';
 
-import { isFunction } from 'easy-soft-utility';
+import { filter, isFunction } from 'easy-soft-utility';
 
 import { BaseComponent } from '../BaseComponent';
+import { buildRadioItem } from '../Function';
 
 class ElasticityRadioGroup extends BaseComponent {
   renderFurther() {
@@ -13,10 +14,11 @@ class ElasticityRadioGroup extends BaseComponent {
       style,
       button,
       buttonStyle,
+      size = 'middle',
       list = [],
       dataConvert = null,
       renderItem,
-      onChange,
+      onChange: onChangeCallback = null,
     } = this.props;
 
     const listMerge = list.map((o) => {
@@ -26,32 +28,46 @@ class ElasticityRadioGroup extends BaseComponent {
     const listAdjust =
       (dataConvert || null) == null
         ? listMerge
-        : listMerge.map((o) => {
-            return dataConvert(o);
+        : listMerge.map((o, index) => {
+            return dataConvert(o, index);
           });
 
-    const otherProperties = {
-      ...(isFunction(renderItem)
-        ? {}
-        : {
-            options: listAdjust,
-          }),
+    const mergeProperties = {
+      defaultValue,
+      size,
+      buttonStyle,
+      style,
+      onChange: (event) => {
+        if (isFunction(onChangeCallback)) {
+          const {
+            target: { value: v },
+          } = event;
+
+          const selectList = filter(listAdjust, (one) => {
+            const { value } = one;
+
+            return v === value;
+          });
+
+          onChangeCallback(
+            v,
+            selectList.length == 1 ? selectList[0] : selectList,
+            event,
+          );
+        }
+      },
+      ...((value || null) == null ? {} : { value }),
     };
 
     return (
-      <Radio.Group
-        value={value || null}
-        onChange={onChange || null}
-        defaultValue={defaultValue || null}
-        buttonStyle={buttonStyle || null}
-        style={style || null}
-        {...otherProperties}
-      >
+      <Radio.Group {...mergeProperties}>
         {isFunction(renderItem)
           ? listAdjust.map((o, index) => {
               return renderItem(o, index);
             })
-          : null}
+          : listAdjust.map((o, index) => {
+              return buildRadioItem({ ...o, button: !!button }, index);
+            })}
       </Radio.Group>
     );
   }
@@ -62,6 +78,7 @@ ElasticityRadioGroup.defaultProps = {
   defaultValue: null,
   style: null,
   button: false,
+  size: 'middle',
   buttonStyle: null,
   list: [],
   dataConvert: null,

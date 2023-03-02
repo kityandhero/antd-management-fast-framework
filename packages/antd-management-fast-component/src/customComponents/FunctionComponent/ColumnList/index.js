@@ -171,7 +171,7 @@ export function buildColumnItem({
         valPrefix: '',
         valPrefixStyle: null,
         valStyle: null,
-        separator: '：',
+        separator: ':',
         separatorStyle: null,
         icon: null,
         iconPosition: 'left',
@@ -386,7 +386,7 @@ export function buildColumnItem({
         );
       }
 
-      throw new Error(`无效的渲染模式：${facadeMode}`);
+      throw new Error(`无效的渲染模式:${facadeMode}`);
     };
   }
 

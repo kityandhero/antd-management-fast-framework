@@ -11,8 +11,8 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
-  buildCustomRadio,
-  buildCustomSelect,
+  buildFlexRadio,
+  buildFlexSelect,
   buildFormRadio,
   buildFormSelect,
   buildOptionItem,
@@ -73,43 +73,40 @@ export function renderSearchArticleStatusSelect({
   label = '状态',
   name = 'status',
   helper = null,
-  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
   return buildSearchFormSelect({
     label: title,
     name,
-    options: renderArticleStatusOption({
-      metaData,
-      withUnlimited,
-      adjustListDataCallback,
-    }),
     helper,
+    list: refitArticleStatusList({ metaData, withUnlimited }),
+    dataConvert: (o) => o,
   });
 }
 
 export function renderCustomArticleStatusSelect({
   metaData = null,
   label = '状态',
-  separator = '：',
+  separator = ':',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
-  adjustListDataCallback = null,
 }) {
-  return buildCustomSelect({
+  return buildFlexSelect({
     label,
+    defaultValue: null,
     separator,
     size,
-    renderItem: () => {
-      return renderArticleStatusOption({
-        metaData,
-        withUnlimited: false,
-        adjustListDataCallback,
-      });
+    list: refitArticleStatusList({ metaData, withUnlimited: true }),
+    // eslint-disable-next-line no-unused-vars
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { label: name, value: flag, disabled: false, ...o };
     },
-    onChangeCallback,
+    renderItem: null,
+    onChange: onChangeCallback,
     otherProps: otherProperties,
   });
 }
@@ -123,22 +120,21 @@ export function renderFormArticleStatusSelect({
   required = true,
   name = 'status',
   otherProps: otherProperties = null,
-  adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
 
   return buildFormSelect({
     label: title,
     name,
-    renderItem: () => {
-      return renderArticleStatusOption({
-        metaData,
-        withUnlimited: false,
-        adjustListDataCallback,
-      });
-    },
     helper,
-    onChangeCallback,
+    list: refitArticleStatusList({ metaData, withUnlimited: false }),
+    // eslint-disable-next-line no-unused-vars
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { label: name, value: flag, disabled: false, ...o };
+    },
+    onChange: onChangeCallback,
     formItemLayout,
     required,
     otherProps: otherProperties,
@@ -148,24 +144,25 @@ export function renderFormArticleStatusSelect({
 export function renderCustomArticleStatusRadio({
   metaData = null,
   label = '状态',
-  separator = '：',
+  separator = ': ',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
-  adjustListDataCallback = null,
 }) {
-  return buildCustomRadio({
+  return buildFlexRadio({
     label,
+    defaultValue: null,
     separator,
     size,
-    renderItem: () => {
-      return renderArticleStatusRadio({
-        metaData,
-        withUnlimited: false,
-        adjustListDataCallback,
-      });
+    list: refitArticleStatusList({ metaData, withUnlimited: true }),
+    // eslint-disable-next-line no-unused-vars
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { label: name, value: flag, disabled: false, ...o };
     },
-    onChangeCallback,
+    renderItem: null,
+    onChange: onChangeCallback,
     otherProps: otherProperties,
   });
 }

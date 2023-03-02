@@ -5,7 +5,7 @@ class DataTabContainerSupplement extends DataTabContainer {
   establishTabBarExtraContentLeftConfig = () => {
     return {
       buildType: tabBarCollection.extraBuildType.iconInfo,
-      text: '功能导航：',
+      text: '功能导航:',
     };
   };
 }

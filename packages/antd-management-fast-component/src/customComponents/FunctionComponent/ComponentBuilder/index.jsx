@@ -1,9 +1,8 @@
-import { Alert, Button, Radio, Select, Tree, TreeSelect } from 'antd';
+import { Alert, Button, Tree, TreeSelect } from 'antd';
 import React from 'react';
 import ReactPlayer from 'react-player';
 
 import {
-  buildFieldDescription,
   checkStringIsNullOrWhiteSpace,
   isArray,
   isFunction,
@@ -21,12 +20,11 @@ import { ElasticityMenu } from '../../ElasticityMenu';
 import { ElasticityMenuHeader } from '../../ElasticityMenuHeader';
 import { ElasticityRadioGroup } from '../../ElasticityRadioGroup';
 import { ElasticityTagList } from '../../ElasticityTagList';
-import { FlexBox } from '../../FlexBox';
+import { FlexRadio } from '../../FlexRadio';
+import { FlexSelect } from '../../FlexSelect';
 import { iconBuilder } from '../../Icon';
-import { VerticalBox } from '../../VerticalBox';
 
 const ButtonGroup = Button.Group;
-const RadioGroup = Radio.Group;
 
 export function buildMenu({
   handleData: r,
@@ -300,7 +298,7 @@ export function buildColorText({
   textPrefix = null,
   textPrefixStyle = null,
   text = '',
-  separator = '：',
+  separator = ':',
   separatorStyle = null,
   wrapperBuilder = null,
 }) {
@@ -314,7 +312,7 @@ export function buildColorText({
       textPrefix={textPrefix || null}
       textPrefixStyle={textPrefixStyle || null}
       text={text || ''}
-      separator={separator || '：'}
+      separator={separator || ':'}
       separatorStyle={separatorStyle || null}
     />
   );
@@ -382,49 +380,28 @@ export function buildTreeSelect({
   return <TreeSelect {...adjustOtherProperties} />;
 }
 
-export function buildCustomSelect({
-  label,
-  value = null,
-  separator = '：',
+export function buildFlexSelect({
+  label = '',
+  defaultValue = null,
+  separator = ':',
   size = 'middle',
-  renderItem,
-  onChangeCallback = null,
+  list = [],
+  dataConvert = null,
+  renderItem = null,
+  onChange: onChangeCallback = null,
   otherProps: otherProperties = null,
 }) {
-  const otherSelectProperties = {
-    placeholder: buildFieldDescription(label, '选择') || '请选择',
-    size,
-    value,
-    style: { width: '100%' },
-    onChange: (v, option) => {
-      if (isFunction(onChangeCallback)) {
-        onChangeCallback(v, option);
-      }
-    },
-    ...otherProperties,
-  };
-
   return (
-    <FlexBox
-      flexAuto="right"
-      left={
-        checkStringIsNullOrWhiteSpace(label || '') ? null : (
-          <VerticalBox
-            align="center"
-            alignJustify="start"
-            style={{
-              height: '100%',
-            }}
-          >
-            {`${label}${separator}`}
-          </VerticalBox>
-        )
-      }
-      right={
-        <Select {...otherSelectProperties}>
-          {isFunction(renderItem) ? renderItem() : null}
-        </Select>
-      }
+    <FlexSelect
+      label={label}
+      defaultValue={defaultValue}
+      separator={separator}
+      size={size}
+      list={list}
+      dataConvert={dataConvert}
+      renderItem={renderItem}
+      onChange={onChangeCallback}
+      otherProps={otherProperties}
     />
   );
 }
@@ -432,49 +409,30 @@ export function buildCustomSelect({
 /**
  *build custom radio group
  */
-export function buildCustomRadio({
-  label,
-  value = null,
-  separator = '：',
+export function buildFlexRadio({
+  label = '',
+  defaultValue = null,
+  separator = ':',
   size = 'middle',
-  renderItem,
-  onChangeCallback = null,
+  button = false,
+  list = [],
+  dataConvert = null,
+  renderItem = null,
+  onChange: onChangeCallback = null,
   otherProps: otherProperties = null,
 }) {
-  const otherRadioProperties = {
-    placeholder: buildFieldDescription(label, '选择'),
-    style: { width: '100%' },
-    size,
-    value,
-    onChange: (event) => {
-      if (isFunction(onChangeCallback)) {
-        onChangeCallback(event);
-      }
-    },
-    ...otherProperties,
-  };
-
   return (
-    <FlexBox
-      flexAuto="right"
-      left={
-        checkStringIsNullOrWhiteSpace(label || '') ? null : (
-          <VerticalBox
-            align="center"
-            alignJustify="start"
-            style={{
-              height: '100%',
-            }}
-          >
-            {`${label}${separator}`}
-          </VerticalBox>
-        )
-      }
-      right={
-        <RadioGroup {...otherRadioProperties}>
-          {isFunction(renderItem) ? renderItem() : null}
-        </RadioGroup>
-      }
+    <FlexRadio
+      label={label}
+      defaultValue={defaultValue}
+      separator={separator}
+      size={size}
+      button={button}
+      list={list}
+      dataConvert={dataConvert}
+      renderItem={renderItem}
+      onChange={onChangeCallback}
+      otherProps={otherProperties}
     />
   );
 }

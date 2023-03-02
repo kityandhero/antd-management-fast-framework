@@ -133,9 +133,9 @@ class IconInfo extends PureComponent {
       const separatorAdjust = checkStringIsNullOrWhiteSpace(separator) ? (
         ''
       ) : isObject(separatorStyle) ? (
-        <span style={separatorStyle}>{separator || '：'}</span>
+        <span style={separatorStyle}>{separator || ':'}</span>
       ) : (
-        separator || '：'
+        separator || ':'
       );
 
       if (

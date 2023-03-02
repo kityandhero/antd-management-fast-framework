@@ -33,7 +33,7 @@ class AuthorizationWrapper extends SupplementWrapper {
     ) {
       return true;
     } else {
-      const text = `缺少权限：${this.componentAuthority}`;
+      const text = `缺少权限:${this.componentAuthority}`;
 
       showSimpleRuntimeError(text);
 

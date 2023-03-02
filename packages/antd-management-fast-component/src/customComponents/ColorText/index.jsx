@@ -83,7 +83,7 @@ ColorText.defaultProps = {
   textPrefix: null,
   textPrefixStyle: null,
   text: '',
-  separator: '：',
+  separator: ':',
   separatorStyle: null,
 };
 

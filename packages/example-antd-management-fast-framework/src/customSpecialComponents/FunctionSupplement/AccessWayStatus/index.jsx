@@ -11,8 +11,8 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
-  buildCustomRadio,
-  buildCustomSelect,
+  buildFlexRadio,
+  buildFlexSelect,
   buildFormRadio,
   buildFormSelect,
   buildOptionItem,
@@ -92,13 +92,13 @@ export function renderSearchAccessWayStatusSelect({
 export function renderCustomAccessWayStatusSelect({
   metaData = null,
   label = '状态',
-  separator = '：',
+  separator = ':',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
-  return buildCustomSelect({
+  return buildFlexSelect({
     label,
     separator,
     size,
@@ -148,13 +148,13 @@ export function renderFormAccessWayStatusSelect({
 export function renderCustomAccessWayStatusRadio({
   metaData = null,
   label = '状态',
-  separator = '：',
+  separator = ':',
   size = 'middle',
   onChangeCallback,
   otherProps: otherProperties = null,
   adjustListDataCallback = null,
 }) {
-  return buildCustomRadio({
+  return buildFlexRadio({
     label,
     separator,
     size,

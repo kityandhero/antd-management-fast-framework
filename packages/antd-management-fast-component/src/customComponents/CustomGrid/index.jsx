@@ -185,7 +185,7 @@ class CustomGrid extends BaseComponent {
                   flexAuto="right"
                   left={
                     <div style={labelStyle}>{`${itemLabel}${
-                      colon ? '：' : ''
+                      colon ? ':' : ''
                     }`}</div>
                   }
                   leftStyle={{

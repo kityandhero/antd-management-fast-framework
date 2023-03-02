@@ -44,10 +44,10 @@ import {
   AudioUpload,
   buildButton,
   buildButtonGroup,
-  buildCustomSelect,
   buildDropdown,
   buildDropdownButton,
   buildDropdownEllipsis,
+  buildFlexSelect,
   buildFormInput,
   buildTree,
   buildTreeSelect,
@@ -1498,7 +1498,7 @@ class InternalBuild extends InternalFlow {
                     : null}
 
                   {type === cardConfig.contentItemType.flexSelect
-                    ? buildCustomSelect(contentItem)
+                    ? buildFlexSelect(contentItem)
                     : null}
 
                   {type === cardConfig.contentItemType.radio ? (
@@ -1675,13 +1675,13 @@ class InternalBuild extends InternalFlow {
               break;
             }
 
-            case cardConfig.extraBuildType.generalButton: {
+            case extraBuildType.generalButton: {
               itemAdjust = buildButton(item);
               break;
             }
 
             case extraBuildType.flexSelect: {
-              itemAdjust = buildCustomSelect(item);
+              itemAdjust = buildFlexSelect(item);
               break;
             }
 
@@ -1720,6 +1720,11 @@ class InternalBuild extends InternalFlow {
                   <ColorText {...item} />
                 </div>
               );
+              break;
+            }
+
+            case extraBuildType.divider: {
+              itemAdjust = <Divider type="vertical" />;
               break;
             }
 

@@ -15,10 +15,10 @@ import {
 } from 'antd-management-fast-common';
 import {
   buildButton,
-  buildCustomSelect,
   buildDropdown,
   buildDropdownButton,
   buildDropdownEllipsis,
+  buildFlexSelect,
   FlexBox,
   iconBuilder,
   IconInfo,
@@ -78,7 +78,7 @@ class Base extends BaseWindow {
     const previousText = this.buildTitlePrevText();
     let subText = this.buildTitleSubText();
 
-    subText = checkStringIsNullOrWhiteSpace(subText) ? '' : `：【${subText}】`;
+    subText = checkStringIsNullOrWhiteSpace(subText) ? '' : `:【${subText}】`;
 
     return `${previousText}${this.buildTitleText() || '信息详情'}${subText}`;
   };
@@ -252,7 +252,7 @@ class Base extends BaseWindow {
             }
 
             case cardConfig.extraBuildType.flexSelect: {
-              itemAdjust = buildCustomSelect(item);
+              itemAdjust = buildFlexSelect(item);
               break;
             }
 
@@ -287,6 +287,11 @@ class Base extends BaseWindow {
 
             case drawerConfig.bottomBarBuildType.iconInfo: {
               itemAdjust = <IconInfo icon={itemIcon} text={itemText} />;
+              break;
+            }
+
+            case drawerConfig.bottomBarBuildType.divider: {
+              itemAdjust = <Divider type="vertical" />;
               break;
             }
 

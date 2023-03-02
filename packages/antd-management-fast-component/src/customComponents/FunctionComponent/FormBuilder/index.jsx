@@ -628,7 +628,7 @@ export function buildFormSelect({
   list = [],
   dataConvert = null,
   renderItem = null,
-  onChangeCallback = null,
+  onChange: onChangeCallback = null,
   formItemLayout = null,
   required = false,
   otherProps: otherProperties = null,
@@ -642,7 +642,7 @@ export function buildFormSelect({
       dataConvert={dataConvert}
       renderItem={renderItem}
       helper={helper}
-      onChangeCallback={onChangeCallback}
+      onChange={onChangeCallback}
       formItemLayout={formItemLayout}
       required={required}
       otherProps={otherProperties}
