@@ -4,17 +4,16 @@ import React from 'react';
 import {
   checkStringIsNullOrWhiteSpace,
   showSimpleWarnMessage,
-  toNumber,
-  whetherNumber,
+  toBoolean,
 } from 'easy-soft-utility';
 
 export function buildRadioItem(item, index) {
-  const { label, value, alias, description, availability, button } = {
+  const { label, value, alias, description, disabled, button } = {
     label: '',
     value: '',
     description: '',
     alias: '',
-    availability: whetherNumber.yes,
+    disabled: false,
     button: false,
     ...item,
   };
@@ -35,9 +34,9 @@ export function buildRadioItem(item, index) {
             : `[${description}]`
         }`}
         value={value}
-        disabled={toNumber(availability) !== whetherNumber.yes}
+        disabled={toBoolean(disabled)}
       >
-        {label}
+        {alias || label}
       </Radio.Button>
     );
   }
@@ -51,9 +50,9 @@ export function buildRadioItem(item, index) {
           : `[${description}]`
       }`}
       value={value}
-      disabled={toNumber(availability) !== whetherNumber.yes}
+      disabled={toBoolean(disabled)}
     >
-      {label}
+      {alias || label}
     </Radio>
   );
 }

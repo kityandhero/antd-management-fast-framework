@@ -33,6 +33,7 @@ export * from './FlexBox';
 export * from './FlexText';
 export * from './FooterToolbar';
 export * from './FormExtra';
+export * from './Function';
 export * from './FunctionComponent';
 export * from './FunctionSupplement';
 export * from './GlobalFooter';

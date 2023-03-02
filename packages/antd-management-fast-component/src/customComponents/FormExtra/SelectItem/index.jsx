@@ -10,6 +10,7 @@ import {
 } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../BaseComponent';
+import { buildOptionItem } from '../../Function';
 import { Item } from '../Item';
 
 class SelectItem extends BaseComponent {
@@ -21,7 +22,7 @@ class SelectItem extends BaseComponent {
       list = [],
       dataConvert = null,
       renderItem,
-      onChangeCallback = null,
+      onChange: onChangeCallback = null,
       formItemLayout = null,
       required = false,
       otherProps: otherProperties = null,
@@ -31,8 +32,8 @@ class SelectItem extends BaseComponent {
     const listAdjust =
       (dataConvert || null) == null
         ? list
-        : list.map((o) => {
-            return dataConvert(o);
+        : list.map((o, index) => {
+            return dataConvert(o, index);
           });
 
     const otherSelectProperties = {
@@ -80,7 +81,9 @@ class SelectItem extends BaseComponent {
             ? listAdjust.map((o, index) => {
                 return renderItem(o, index);
               })
-            : null}
+            : listAdjust.map((o, index) => {
+                return buildOptionItem(o, index);
+              })}
         </Select>
       </Item>
     );
@@ -94,7 +97,7 @@ SelectItem.defaultProps = {
   list: [],
   dataConvert: null,
   renderItem: null,
-  onChangeCallback: null,
+  onChange: null,
   formItemLayout: null,
   required: false,
   otherProps: null,

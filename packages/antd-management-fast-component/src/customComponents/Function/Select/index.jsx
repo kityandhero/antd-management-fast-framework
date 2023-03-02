@@ -4,19 +4,18 @@ import React from 'react';
 import {
   checkStringIsNullOrWhiteSpace,
   showSimpleWarnMessage,
-  toNumber,
-  whetherNumber,
+  toBoolean,
 } from 'easy-soft-utility';
 
 const { Option } = Select;
 
 export function buildOptionItem(item, index) {
-  const { label, value, alias, description, availability } = {
+  const { label, value, alias, description, disabled } = {
     label: '',
     value: '',
     description: '',
     alias: '',
-    availability: whetherNumber.yes,
+    disabled: false,
     ...item,
   };
 
@@ -35,7 +34,7 @@ export function buildOptionItem(item, index) {
           : `[${description}]`
       }`}
       value={value}
-      disabled={toNumber(availability) !== whetherNumber.yes}
+      disabled={toBoolean(disabled)}
     >
       {label}
     </Option>

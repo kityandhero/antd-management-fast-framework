@@ -10,6 +10,7 @@ import {
 } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../BaseComponent';
+import { buildRadioItem } from '../../Function';
 import { Item } from '../Item';
 
 const { Group: RadioGroup } = Radio;
@@ -23,18 +24,19 @@ class RadioItem extends BaseComponent {
       list = [],
       dataConvert = null,
       renderItem,
-      onChangeCallback = null,
+      onChange: onChangeCallback = null,
       formItemLayout = null,
       required = false,
       otherProps: otherProperties = null,
+      button = false,
       hidden = false,
     } = this.props;
 
     const listAdjust =
       (dataConvert || null) == null
         ? list
-        : list.map((o) => {
-            return dataConvert(o);
+        : list.map((o, index) => {
+            return dataConvert(o, index);
           });
 
     const otherRadioProperties = {
@@ -42,15 +44,14 @@ class RadioItem extends BaseComponent {
       style: { width: '100%' },
       onChange: (event) => {
         if (isFunction(onChangeCallback)) {
-          onChangeCallback(event);
+          const {
+            target: { value },
+          } = event;
+
+          onChangeCallback(value, event);
         }
       },
       ...otherProperties,
-      ...(isFunction(renderItem)
-        ? {}
-        : {
-            options: listAdjust,
-          }),
     };
 
     const resultCheck = checkFromConfig({
@@ -82,7 +83,9 @@ class RadioItem extends BaseComponent {
             ? listAdjust.map((o, index) => {
                 return renderItem(o, index);
               })
-            : null}
+            : listAdjust.map((o, index) => {
+                return buildRadioItem({ ...o, button: !!button }, index);
+              })}
         </RadioGroup>
       </Item>
     );
@@ -96,7 +99,7 @@ RadioItem.defaultProps = {
   list: [],
   dataConvert: null,
   renderItem: null,
-  onChangeCallback: null,
+  onChange: null,
   formItemLayout: null,
   required: false,
   otherProps: null,

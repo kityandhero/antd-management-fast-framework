@@ -26,8 +26,8 @@ import {
   isObject,
   isUndefined,
   logObject,
-  refitCommonData,
   showSimpleErrorMessage,
+  toBoolean,
   toDatetime,
 } from 'easy-soft-utility';
 
@@ -49,8 +49,6 @@ import {
   buildDropdownButton,
   buildDropdownEllipsis,
   buildFormInput,
-  buildOptionItem,
-  buildRadioItem,
   buildTree,
   buildTreeSelect,
   ColorText,
@@ -1455,24 +1453,24 @@ class InternalBuild extends InternalFlow {
                       label={fieldData.label}
                       name={fieldData.name}
                       helper={fieldData.helper}
-                      list={refitCommonData(
-                        isFunction(contentItem.pretreatmentData)
-                          ? contentItem.pretreatmentData(
-                              isArray(contentItem.listData)
-                                ? contentItem.listData
-                                : [],
-                            )
-                          : isArray(contentItem.listData)
+                      list={
+                        isArray(contentItem.listData)
                           ? contentItem.listData
-                          : [],
-                      )}
-                      dataConvert={null}
-                      renderItem={(item, index) => {
-                        return buildOptionItem(item, index);
-                      }}
-                      onChangeCallback={
-                        isFunction(contentItem.onChangeCallback)
-                          ? contentItem.onChangeCallback
+                          : []
+                      }
+                      dataConvert={
+                        isFunction(contentItem.dataConvert)
+                          ? contentItem.dataConvert
+                          : null
+                      }
+                      renderItem={
+                        isFunction(contentItem.renderItem)
+                          ? contentItem.renderItem
+                          : null
+                      }
+                      onChange={
+                        isFunction(contentItem.onChange)
+                          ? contentItem.onChange
                           : null
                       }
                       required={true}
@@ -1508,26 +1506,27 @@ class InternalBuild extends InternalFlow {
                       label={fieldData.label}
                       name={fieldData.name}
                       helper={fieldData.helper}
-                      list={refitCommonData(
-                        isFunction(contentItem.pretreatmentData)
-                          ? contentItem.pretreatmentData(
-                              isArray(contentItem.listData)
-                                ? contentItem.listData
-                                : [],
-                            )
-                          : isArray(contentItem.listData)
+                      list={
+                        isArray(contentItem.listData)
                           ? contentItem.listData
-                          : [],
-                      )}
-                      dataConvert={null}
-                      renderItem={(item, index) => {
-                        return buildRadioItem(item, index);
-                      }}
-                      onChangeCallback={
-                        isFunction(contentItem.onChangeCallback)
-                          ? contentItem.onChangeCallback
+                          : []
+                      }
+                      dataConvert={
+                        isFunction(contentItem.dataConvert)
+                          ? contentItem.dataConvert
                           : null
                       }
+                      renderItem={
+                        isFunction(contentItem.renderItem)
+                          ? contentItem.renderItem
+                          : null
+                      }
+                      onChange={
+                        isFunction(contentItem.onChange)
+                          ? contentItem.onChange
+                          : null
+                      }
+                      button={toBoolean(contentItem.button || false)}
                       required={true}
                       formItemLayout={formItemLayout}
                       otherProps={{ ...contentItem.otherProps }}

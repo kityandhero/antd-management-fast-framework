@@ -52,8 +52,28 @@ export const fieldData = {
     helper: '文章的作者',
   },
   select1: {
-    label: '选项列表',
+    label: 'Select选项列表',
     name: 'select1',
+    helper: '选项列表示例',
+  },
+  radio1: {
+    label: 'Radio选项列表',
+    name: 'radio1',
+    helper: '选项列表示例',
+  },
+  radio2: {
+    label: 'Radio-Button选项列表',
+    name: 'radio2',
+    helper: '选项列表示例',
+  },
+  radio3: {
+    label: 'Radio-Custom选项列表',
+    name: 'radio3',
+    helper: '选项列表示例',
+  },
+  radio4: {
+    label: 'Radio丰富选项列表',
+    name: 'radio4',
     helper: '选项列表示例',
   },
   parentId: {

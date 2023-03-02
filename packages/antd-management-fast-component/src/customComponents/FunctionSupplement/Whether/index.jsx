@@ -12,11 +12,10 @@ import {
   whetherList,
 } from 'antd-management-fast-common';
 
+import { buildOptionItem, buildRadioItem } from '../../Function';
 import {
   buildFormRadio,
   buildFormSelect,
-  buildOptionItem,
-  buildRadioItem,
   buildSearchFormSelect,
 } from '../../FunctionComponent';
 

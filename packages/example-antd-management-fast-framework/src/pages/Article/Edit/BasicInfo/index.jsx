@@ -1,7 +1,9 @@
+import { Radio } from 'antd';
 import dayjs from 'dayjs';
 import { connect } from '@umijs/max';
 
 import {
+  buildRandomHexColor,
   convertCollection,
   datetimeFormat,
   formatCollection,
@@ -9,6 +11,7 @@ import {
   getToken,
   getTokenKeyName,
   getValueByKey,
+  logDebug,
   pretreatmentRemoteSingleData,
   showInfoMessage,
   to,
@@ -19,6 +22,7 @@ import {
   buildButton,
   buildColorText,
   buildCustomGrid,
+  ColorText,
   iconBuilder,
   IconInfo,
 } from 'antd-management-fast-component';
@@ -488,30 +492,7 @@ class BasicInfo extends TabPageBase {
               fieldData: fieldData.timePicker,
               require: true,
             },
-            {
-              lg: 6,
-              type: cardConfig.contentItemType.select,
-              fieldData: fieldData.select1,
-              listData: [
-                {
-                  flag: '1',
-                  name: '选项1',
-                },
-                {
-                  flag: '2',
-                  name: '选项2',
-                },
-                {
-                  flag: '3',
-                  name: '选项3',
-                },
-              ],
-              otherProps: {
-                onChange: (v) => {
-                  console.log(v);
-                },
-              },
-            },
+
             {
               lg: 6,
               type: cardConfig.contentItemType.treeSelect,
@@ -543,6 +524,168 @@ class BasicInfo extends TabPageBase {
                 this.setState({
                   parentId: value,
                 });
+              },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.select,
+              fieldData: fieldData.select1,
+              listData: [
+                {
+                  flag: '1',
+                  name: '选项1',
+                },
+                {
+                  flag: '2',
+                  name: '选项2',
+                },
+                {
+                  flag: '3',
+                  name: '选项3',
+                },
+              ],
+              dataConvert: (o) => {
+                const { flag, name } = o;
+
+                return { label: name, value: flag };
+              },
+              onChange: (v, event) => {
+                logDebug(event, `selectValue -> ${v}`);
+              },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.radio,
+              fieldData: fieldData.radio1,
+              listData: [
+                {
+                  flag: '1',
+                  name: '选项1',
+                },
+                {
+                  flag: '2',
+                  name: '选项2',
+                },
+                {
+                  flag: '3',
+                  name: '选项3',
+                  disabled: true,
+                },
+              ],
+              dataConvert: (o) => {
+                const { flag, name, disabled = false } = o;
+
+                return { label: name, value: flag, disabled };
+              },
+              onChange: (v, event) => {
+                logDebug(event, `selectValue -> ${v}`);
+              },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.radio,
+              fieldData: fieldData.radio4,
+              listData: [
+                {
+                  flag: '1',
+                  name: '选项1',
+                },
+                {
+                  flag: '2',
+                  name: '选项2',
+                },
+                {
+                  flag: '3',
+                  name: '选项3',
+                  disabled: true,
+                },
+              ],
+              dataConvert: (o, index) => {
+                const { flag, name, disabled = false } = o;
+
+                return {
+                  label: name,
+                  value: flag,
+                  alias: `alias${index}`,
+                  disabled,
+                };
+              },
+              renderItem: (item, index) => {
+                const { label, value, disabled = false } = item;
+
+                return (
+                  <Radio
+                    key={`radio_${index}`}
+                    value={value}
+                    disabled={disabled}
+                  >
+                    {buildRandomHexColor({ seed: index * 10 })}
+                    <ColorText
+                      text={label}
+                      color={buildRandomHexColor({ seed: index * 10 })}
+                    />
+                  </Radio>
+                );
+              },
+              onChange: (v) => {
+                logDebug({ selectValue: v });
+              },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.radio,
+              fieldData: fieldData.radio2,
+              button: true,
+              listData: [
+                {
+                  flag: '1',
+                  name: '选项1',
+                },
+                {
+                  flag: '2',
+                  name: '选项2',
+                },
+                {
+                  flag: '3',
+                  name: '选项3',
+                  disabled: true,
+                },
+              ],
+              dataConvert: (o) => {
+                const { flag, name, disabled = false } = o;
+
+                return { label: name, value: flag, disabled };
+              },
+              onChange: (v) => {
+                logDebug({ selectValue: v });
+              },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.radio,
+              fieldData: fieldData.radio3,
+              listData: [
+                {
+                  flag: '1',
+                  name: '选项1',
+                },
+                {
+                  flag: '2',
+                  name: '选项2',
+                },
+                {
+                  flag: '3',
+                  name: '选项3',
+                  disabled: true,
+                },
+              ],
+              dataConvert: (o) => {
+                const { flag, name, disabled = false } = o;
+
+                return { label: name, value: flag, disabled };
+              },
+              onChange: (v) => {
+                logDebug({ selectValue: v });
               },
             },
             {
