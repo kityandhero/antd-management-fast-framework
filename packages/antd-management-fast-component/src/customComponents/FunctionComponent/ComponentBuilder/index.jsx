@@ -44,6 +44,11 @@ export function buildMenu({
  * 构建按钮
  */
 export function buildButton({
+  confirm = false,
+  title = '',
+  placement = 'topRight',
+  okText = '确定',
+  cancelText = '取消',
   type = 'default',
   size = 'default',
   text = '按钮',
@@ -52,7 +57,6 @@ export function buildButton({
   hidden = false,
   danger = false,
   disabled = false,
-  confirm = false,
   handleData = null,
   processing = false,
   iconProcessing = iconBuilder.loading(),
@@ -61,6 +65,11 @@ export function buildButton({
 }) {
   return (
     <ElasticityButton
+      confirm={confirm}
+      title={title}
+      placement={placement}
+      okText={okText}
+      cancelText={cancelText}
       type={type}
       size={size}
       text={text}
@@ -69,7 +78,6 @@ export function buildButton({
       hidden={hidden}
       danger={danger}
       disabled={disabled}
-      confirm={confirm}
       handleData={handleData}
       processing={processing}
       iconProcessing={iconProcessing}
@@ -81,9 +89,13 @@ export function buildButton({
 
 export function buildDropdown({
   key = null,
-  tooltip = false,
-  type = 'default',
+  ellipsisMode = false,
+  confirm = false,
+  title = '',
   placement = 'bottomRight',
+  okText = '确定',
+  cancelText = '取消',
+  type = 'default',
   size = 'default',
   text = '按钮',
   icon = iconBuilder.form(),
@@ -95,15 +107,18 @@ export function buildDropdown({
   handleMenuClick = () => {},
   items = [],
   itemPanelTitle = '',
-  confirm = false,
   processing = false,
   iconProcessing = iconBuilder.loading(),
 }) {
   return (
     <ElasticityDropdown
-      tooltip={tooltip}
-      type={type}
+      ellipsisMode={ellipsisMode}
+      confirm={confirm}
+      title={title}
       placement={placement}
+      okText={okText}
+      cancelText={cancelText}
+      type={type}
       size={size}
       text={text}
       icon={icon}
@@ -111,7 +126,6 @@ export function buildDropdown({
       arrow={arrow}
       disabled={disabled}
       hidden={hidden}
-      confirm={confirm}
       handleButtonClick={handleButtonClick}
       handleMenuClick={handleMenuClick}
       items={items}
@@ -124,8 +138,11 @@ export function buildDropdown({
 }
 
 export function buildDropdownButton({
-  tooltip = false,
+  confirm = false,
+  title = '',
   placement = 'bottomRight',
+  okText = '确定',
+  cancelText = '取消',
   type: typeSource = 'default',
   size = 'small',
   text = '按钮',
@@ -134,16 +151,18 @@ export function buildDropdownButton({
   arrow = true,
   disabled = false,
   hidden = false,
-  confirm = false,
   handleButtonClick = null,
   handleMenuClick = () => {},
   items = [],
   itemPanelTitle = '',
 }) {
   return buildDropdown({
-    tooltip,
-    type: typeSource,
+    ellipsisMode: false,
+    title: title,
     placement,
+    okText: okText,
+    cancelText: cancelText,
+    type: typeSource,
     size,
     text,
     icon,
@@ -160,7 +179,7 @@ export function buildDropdownButton({
 }
 
 export function buildDropdownEllipsis({
-  tooltip = { placement: 'top', title: '更多操作' },
+  placement = 'bottomRight',
   type: typeSource = 'default',
   size = 'default',
   icon = iconBuilder.ellipsis({
@@ -178,7 +197,8 @@ export function buildDropdownEllipsis({
   itemPanelTitle = '',
 }) {
   return buildDropdown({
-    tooltip,
+    ellipsisMode: true,
+    placement,
     type: typeSource,
     size,
     text: '',

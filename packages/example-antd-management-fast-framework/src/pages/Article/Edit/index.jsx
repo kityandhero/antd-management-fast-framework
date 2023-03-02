@@ -265,12 +265,11 @@ class Edit extends DataTabContainerSupplement {
           ),
           disabled:
             this.checkInProgress() || status === statusCollection.online,
-          confirm: {
-            title: '设置为上架，确定吗？',
-            placement: 'bottomRight',
-            okText: '确定',
-            cancelText: '取消',
-          },
+          confirm: true,
+          title: '设置为上架，确定吗？',
+          placement: 'bottomRight',
+          okText: '确定',
+          cancelText: '取消',
           handleData: metaData,
           // processing: dataLoading,
           // iconProcessing: iconBuilder.loading(),
@@ -289,12 +288,11 @@ class Edit extends DataTabContainerSupplement {
           ),
           disabled:
             this.checkInProgress() || status === statusCollection.offline,
-          confirm: {
-            title: '设置为下架，确定吗？',
-            placement: 'bottomRight',
-            okText: '确定',
-            cancelText: '取消',
-          },
+          confirm: true,
+          title: '设置为下架，确定吗？',
+          placement: 'bottomRight',
+          okText: '确定',
+          cancelText: '取消',
           handleData: metaData,
           // processing: dataLoading,
           // iconProcessing: iconBuilder.loading(),
@@ -320,8 +318,7 @@ class Edit extends DataTabContainerSupplement {
 
     return {
       size: 'default',
-      placement: 'top',
-      title: '更多操作',
+      placement: 'bottom',
       disabled: false,
       hidden: false,
       handleMenuClick: ({ key, handleData }) => {
@@ -391,12 +388,11 @@ class Edit extends DataTabContainerSupplement {
           text: '按钮2',
           hidden: false,
           disabled: false,
-          confirm: {
-            title: '确认操作，确定吗？',
-            placement: 'bottomRight',
-            okText: '确定',
-            cancelText: '取消',
-          },
+          confirm: true,
+          title: '确认操作，确定吗？',
+          placement: 'bottomRight',
+          okText: '确定',
+          cancelText: '取消',
         },
         {
           key: 'refreshCache',
@@ -407,9 +403,8 @@ class Edit extends DataTabContainerSupplement {
           hidden: !this.checkAuthority(
             accessWayCollection.article.refreshCache.permission,
           ),
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
         },
       ],
     };
@@ -457,9 +452,8 @@ class Edit extends DataTabContainerSupplement {
           icon: iconBuilder.form(),
           text: '按钮1',
           hidden: false,
-          confirm: {
-            title: `即将点击按钮，确定吗？`,
-          },
+          confirm: true,
+          title: `即将点击按钮，确定吗？`,
         },
         {
           key: 'extraBarAction2',
@@ -472,9 +466,8 @@ class Edit extends DataTabContainerSupplement {
           icon: iconBuilder.form(),
           text: '按钮3',
           hidden: true,
-          confirm: {
-            title: `即将点击按钮3，确定吗？`,
-          },
+          confirm: true,
+          title: `即将点击按钮3，确定吗？`,
         },
       ],
     };

@@ -899,6 +899,8 @@ class InternalFlow extends Core {
     };
 
     return buildButton({
+      title: '刷新当前数据',
+      placement: 'top',
       size,
       text,
       icon: iconBuilder.reload(),

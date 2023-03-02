@@ -506,9 +506,8 @@ class BasicInfo extends TabPageBase {
                   hidden: !this.checkAuthority(
                     accessWayCollection.article.refreshCache.permission,
                   ),
-                  confirm: {
-                    title: '将要刷新缓存，确定吗？',
-                  },
+                  confirm: true,
+                  title: '将要刷新缓存，确定吗？',
                 },
                 {
                   key: 'removeItem',
@@ -519,9 +518,8 @@ class BasicInfo extends TabPageBase {
                   hidden: !this.checkAuthority(
                     accessWayCollection.article.removeMediaItem.permission,
                   ),
-                  confirm: {
-                    title: '将要删除信息，确定吗？',
-                  },
+                  confirm: true,
+                  title: '将要删除信息，确定吗？',
                 },
               ],
             })}

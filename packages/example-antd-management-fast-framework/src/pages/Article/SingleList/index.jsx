@@ -378,12 +378,11 @@ class SingleList extends SinglePage {
                 text: 'click button 4',
               });
             },
-            confirm: {
-              placement: 'topRight',
-              title: '将要进行操作，确定吗？',
-              okText: '确定',
-              cancelText: '取消',
-            },
+            confirm: true,
+            placement: 'topRight',
+            title: '将要进行操作，确定吗？',
+            okText: '确定',
+            cancelText: '取消',
           }),
         },
       ],
@@ -741,9 +740,8 @@ class SingleList extends SinglePage {
                 accessWayCollection.article.setOnline.permission,
               ),
               disabled: itemStatus === statusCollection.online,
-              confirm: {
-                title: '将要设置为上线，确定吗？',
-              },
+              confirm: true,
+              title: '将要设置为上线，确定吗？',
             },
             {
               key: 'setOffline',
@@ -753,9 +751,8 @@ class SingleList extends SinglePage {
                 accessWayCollection.article.setOffline.permission,
               ),
               disabled: itemStatus === statusCollection.offline,
-              confirm: {
-                title: '将要设置为下线，确定吗？',
-              },
+              confirm: true,
+              title: '将要设置为下线，确定吗？',
             },
             {
               key: 'setSort',
@@ -776,9 +773,8 @@ class SingleList extends SinglePage {
               hidden: !this.checkAuthority(
                 accessWayCollection.article.refreshCache.permission,
               ),
-              confirm: {
-                title: '将要刷新缓存，确定吗？',
-              },
+              confirm: true,
+              title: '将要刷新缓存，确定吗？',
             },
           ],
         });

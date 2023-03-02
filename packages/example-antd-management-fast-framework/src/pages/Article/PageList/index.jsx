@@ -388,12 +388,11 @@ class PageList extends MultiPage {
                 text: 'click button 4',
               });
             },
-            confirm: {
-              placement: 'topRight',
-              title: '将要进行操作，确定吗？',
-              okText: '确定',
-              cancelText: '取消',
-            },
+            confirm: true,
+            placement: 'topRight',
+            title: '将要进行操作，确定吗？',
+            okText: '确定',
+            cancelText: '取消',
           }),
         },
       ],
@@ -597,9 +596,8 @@ class PageList extends MultiPage {
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconBuilder.plus(),
-        confirm: {
-          title: '即将跳转新增数据页面，确定吗？',
-        },
+        confirm: true,
+        title: '即将跳转新增数据页面，确定吗？',
         text: '新增文章[页面]',
         handleClick: this.goToAdd,
         hidden: !this.checkAuthority(
@@ -819,9 +817,8 @@ class PageList extends MultiPage {
         this.goToEdit(handleData);
       },
       handleData: record,
-      confirm: {
-        title: '将要进行编辑，确定吗？',
-      },
+      confirm: true,
+      title: '将要进行编辑，确定吗？',
       handleMenuClick: ({ key, handleData }) => {
         this.handleMenuClick({ key, handleData });
       },
@@ -844,9 +841,8 @@ class PageList extends MultiPage {
             accessWayCollection.article.setOnline.permission,
           ),
           disabled: itemStatus === statusCollection.online,
-          confirm: {
-            title: '将要设置为上线，确定吗？',
-          },
+          confirm: true,
+          title: '将要设置为上线，确定吗？',
         },
         {
           key: 'setOffline',
@@ -856,9 +852,8 @@ class PageList extends MultiPage {
             accessWayCollection.article.setOffline.permission,
           ),
           disabled: itemStatus === statusCollection.offline,
-          confirm: {
-            title: '将要设置为下线，确定吗？',
-          },
+          confirm: true,
+          title: '将要设置为下线，确定吗？',
         },
         {
           key: 'setSort',
@@ -879,9 +874,8 @@ class PageList extends MultiPage {
           hidden: !this.checkAuthority(
             accessWayCollection.article.refreshCache.permission,
           ),
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
         },
       ],
     };

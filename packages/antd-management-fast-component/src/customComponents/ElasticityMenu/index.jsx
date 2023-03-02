@@ -1,4 +1,4 @@
-import { Button, Divider, Popconfirm } from 'antd';
+import { Divider } from 'antd';
 import classNames from 'classnames';
 import React from 'react';
 
@@ -7,9 +7,7 @@ import {
   checkStringIsNullOrWhiteSpace,
   getGuid,
   isArray,
-  isBoolean,
   isFunction,
-  isObject,
   logObject,
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
@@ -17,8 +15,8 @@ import {
 import { dropdownExpandItemType } from 'antd-management-fast-common';
 
 import { BaseComponent } from '../BaseComponent';
+import { ElasticityButton } from '../ElasticityButton';
 import { iconBuilder } from '../Icon';
-import { IconInfo } from '../IconInfo';
 
 import './index.less';
 
@@ -90,43 +88,6 @@ class ElasticityMenu extends BaseComponent {
       }
     }
 
-    listItem = listItem.map((o) => {
-      const d = { ...o };
-
-      const { confirm } = d;
-
-      if (confirm) {
-        if (isBoolean(confirm)) {
-          throw new Error(
-            'buildMenu : confirm property in menu Items not allow bool when check confirm is true.',
-          );
-        }
-
-        const { placement, title, handleConfirm, okText, cancelText } = {
-          placement: 'topRight',
-          title: '将要进行操作，确定吗？',
-          handleConfirm: ({ key, handleData }) => {
-            handleMenuClick({ key, handleData });
-          },
-          okText: '确定',
-          cancelText: '取消',
-          ...(isObject(confirm) ? confirm : {}),
-        };
-
-        d.confirm = {
-          placement,
-          title,
-          handleConfirm,
-          okText,
-          cancelText,
-        };
-      } else {
-        d.confirm = false;
-      }
-
-      return d;
-    });
-
     return (
       <div className={classNames('amf-dropdownExpandItemCustom')}>
         <div
@@ -136,7 +97,29 @@ class ElasticityMenu extends BaseComponent {
         />
 
         {listItem.map((o) => {
-          const { type, key, icon, text, disabled, hidden, confirm, color } = o;
+          const {
+            title,
+            placement,
+            okText,
+            cancelText,
+            type,
+            key,
+            icon,
+            text,
+            disabled,
+            hidden,
+            confirm,
+            color,
+          } = {
+            confirm: false,
+            title: '',
+            placement: 'topRight',
+            className: '',
+            okText: '确定',
+            cancelText: '取消',
+            overlayStyle: {},
+            ...o,
+          };
 
           console.log({ key });
 
@@ -149,51 +132,16 @@ class ElasticityMenu extends BaseComponent {
           }
 
           if (type === dropdownExpandItemType.item) {
-            if (confirm) {
-              const { placement, title, handleConfirm, okText, cancelText } =
-                confirm;
-
-              return (
-                <Popconfirm
-                  key={key}
-                  placement={placement}
-                  title={title}
-                  onConfirm={() => handleConfirm({ key, handleData: r })}
-                  okText={okText}
-                  cancelText={cancelText}
-                  disabled={disabled}
-                  overlayStyle={{ zIndex: 1060 }}
-                >
-                  <Button
-                    className={classNames(
-                      'amf-dropdownExpandItemCustom_button',
-                    )}
-                    type="text"
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      textAlign: 'left',
-                      padding: '5px 12px',
-                      border: 0,
-                      height: '32px',
-                    }}
-                    size="small"
-                    disabled={disabled}
-                  >
-                    <IconInfo
-                      icon={icon || iconBuilder.edit()}
-                      text={text}
-                      style={(color || null) == null ? null : { color: color }}
-                    />
-                  </Button>
-                </Popconfirm>
-              );
-            }
-
             return (
-              <Button
+              <ElasticityButton
                 key={key}
-                className={classNames('amf-dropdownExpandItemCustom_button')}
+                confirm={confirm}
+                placement={placement}
+                title={title}
+                okText={okText}
+                cancelText={cancelText}
+                overlayStyle={{ zIndex: 1060 }}
+                disabled={disabled ?? false}
                 type="text"
                 style={{
                   display: 'block',
@@ -204,15 +152,15 @@ class ElasticityMenu extends BaseComponent {
                   height: '32px',
                 }}
                 size="small"
-                disabled={disabled}
-                onClick={() => handleMenuClick({ key, handleData: r })}
-              >
-                <IconInfo
-                  icon={icon || iconBuilder.edit()}
-                  text={text}
-                  style={(color || null) == null ? null : { color: color }}
-                />
-              </Button>
+                className={classNames('amf-dropdownExpandItemCustom_button')}
+                icon={icon || iconBuilder.edit()}
+                text={text || ''}
+                handleClick={() => {
+                  if (isFunction(handleMenuClick)) {
+                    handleMenuClick({ handleData: r });
+                  }
+                }}
+              />
             );
           }
 

@@ -191,9 +191,8 @@ class Index extends MultiPage {
         this.goToEdit(handleData);
       },
       handleData: record,
-      confirm: {
-        title: '将要进行编辑，确定吗？',
-      },
+      confirm: true,
+      title: '将要进行编辑，确定吗？',
       handleMenuClick: ({ key, handleData }) => {
         this.handleMenuClick({ key, handleData });
       },
@@ -216,9 +215,8 @@ class Index extends MultiPage {
             accessWayCollection.article.setOnline.permission,
           ),
           disabled: itemStatus === statusCollection.online,
-          confirm: {
-            title: '将要设置为上线，确定吗？',
-          },
+          confirm: true,
+          title: '将要设置为上线，确定吗？',
         },
         {
           key: 'setOffline',
@@ -228,9 +226,8 @@ class Index extends MultiPage {
             accessWayCollection.article.setOffline.permission,
           ),
           disabled: itemStatus === statusCollection.offline,
-          confirm: {
-            title: '将要设置为下线，确定吗？',
-          },
+          confirm: true,
+          title: '将要设置为下线，确定吗？',
         },
         {
           key: 'refreshCache',
@@ -241,9 +238,8 @@ class Index extends MultiPage {
           hidden: !this.checkAuthority(
             accessWayCollection.article.refreshCache.permission,
           ),
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
         },
       ],
     };

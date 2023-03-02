@@ -1,6 +1,5 @@
 import {
   Affix,
-  Button,
   Card,
   Col,
   Divider,
@@ -1812,19 +1811,20 @@ class InternalBuild extends InternalFlow {
     if (showReloadButton) {
       listAction.push(
         <Fragment key={`${keyPrefixAdjust}_dropdownEllipsis`}>
-          <Tooltip placement="top" title="刷新">
-            <Button
-              disabled={dataLoading || reloading || refreshing}
-              type="dashed"
-              onClick={() => {
-                this.reloadData();
-              }}
-            >
-              {reloading || refreshing
+          <ElasticityButton
+            title="刷新当前数据"
+            disabled={dataLoading || reloading || refreshing}
+            type="dashed"
+            text=""
+            icon={
+              reloading || refreshing
                 ? iconBuilder.loading()
-                : iconBuilder.reload()}
-            </Button>
-          </Tooltip>
+                : iconBuilder.reload()
+            }
+            handleClick={() => {
+              this.reloadData();
+            }}
+          />
         </Fragment>,
       );
     }

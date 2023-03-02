@@ -5,7 +5,6 @@ import {
   getToken,
   getTokenKeyName,
   isFunction,
-  logObject,
   pretreatmentRemoteSingleData,
   showSimpleErrorNotification,
 } from 'easy-soft-utility';
@@ -92,11 +91,6 @@ class TinymceWrapper extends PureComponent {
       images_upload_handler: this.imageUploadHandler,
       ...initConfig,
     };
-
-    logObject({
-      tinymceCustomConfig: initConfig || {},
-      tinymceMergeConfig: config,
-    });
 
     return config;
   };

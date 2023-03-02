@@ -367,12 +367,11 @@ class BasicInfo extends TabPageBase {
                 text: 'click button 4',
               });
             },
-            confirm: {
-              placement: 'topRight',
-              title: '将要进行操作，确定吗？',
-              okText: '确定',
-              cancelText: '取消',
-            },
+            confirm: true,
+            placement: 'topRight',
+            title: '将要进行操作，确定吗？',
+            okText: '确定',
+            cancelText: '取消',
           }),
         },
       ],
