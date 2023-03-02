@@ -1,4 +1,4 @@
-import { Radio } from 'antd';
+import { Radio, Select } from 'antd';
 import dayjs from 'dayjs';
 import { connect } from '@umijs/max';
 
@@ -38,6 +38,32 @@ import {
 import ChangeImageSortModal from '../../ChangeImageSortModal';
 import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';
+
+const optionList = [
+  {
+    flag: '1',
+    name: '选项1',
+    description: '描述1',
+  },
+  {
+    flag: '2',
+    name: '选项2',
+    description: '描述3',
+  },
+  {
+    flag: '3',
+    name: '选项3',
+    disabled: true,
+    description: '描述3',
+  },
+];
+
+// eslint-disable-next-line no-unused-vars
+function dataConvert(o, index) {
+  const { flag, name } = o;
+
+  return { label: name, value: flag, disabled: false, ...o };
+}
 
 @connect(({ article, global, loading }) => ({
   article,
@@ -492,7 +518,6 @@ class BasicInfo extends TabPageBase {
               fieldData: fieldData.timePicker,
               require: true,
             },
-
             {
               lg: 6,
               type: cardConfig.contentItemType.treeSelect,
@@ -528,55 +553,56 @@ class BasicInfo extends TabPageBase {
             },
             {
               lg: 6,
+              type: cardConfig.contentItemType.inputNumber,
+              fieldData: fieldData.sort,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.divider,
+              text: '分隔线',
+            },
+            {
+              lg: 6,
               type: cardConfig.contentItemType.select,
               fieldData: fieldData.select1,
-              listData: [
-                {
-                  flag: '1',
-                  name: '选项1',
-                },
-                {
-                  flag: '2',
-                  name: '选项2',
-                },
-                {
-                  flag: '3',
-                  name: '选项3',
-                },
-              ],
-              dataConvert: (o) => {
-                const { flag, name } = o;
-
-                return { label: name, value: flag };
+              listData: optionList,
+              dataConvert: dataConvert,
+              onChange: (v, option) => {
+                logDebug(option, `selectValue -> ${v}`);
               },
-              onChange: (v, event) => {
-                logDebug(event, `selectValue -> ${v}`);
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.select,
+              fieldData: fieldData.select2,
+              listData: optionList,
+              dataConvert: dataConvert,
+              renderItem: (item, index) => {
+                const { label, value, disabled = false } = item;
+
+                return (
+                  <Select.Option
+                    key={`radio_${index}`}
+                    value={value}
+                    disabled={disabled}
+                  >
+                    <ColorText
+                      text={label}
+                      color={buildRandomHexColor({ seed: index * 10 })}
+                    />
+                  </Select.Option>
+                );
+              },
+              onChange: (v, option) => {
+                logDebug(option, `selectValue -> ${v}`);
               },
             },
             {
               lg: 6,
               type: cardConfig.contentItemType.radio,
               fieldData: fieldData.radio1,
-              listData: [
-                {
-                  flag: '1',
-                  name: '选项1',
-                },
-                {
-                  flag: '2',
-                  name: '选项2',
-                },
-                {
-                  flag: '3',
-                  name: '选项3',
-                  disabled: true,
-                },
-              ],
-              dataConvert: (o) => {
-                const { flag, name, disabled = false } = o;
-
-                return { label: name, value: flag, disabled };
-              },
+              listData: optionList,
+              dataConvert: dataConvert,
               onChange: (v, event) => {
                 logDebug(event, `selectValue -> ${v}`);
               },
@@ -585,29 +611,16 @@ class BasicInfo extends TabPageBase {
               lg: 6,
               type: cardConfig.contentItemType.radio,
               fieldData: fieldData.radio4,
-              listData: [
-                {
-                  flag: '1',
-                  name: '选项1',
-                },
-                {
-                  flag: '2',
-                  name: '选项2',
-                },
-                {
-                  flag: '3',
-                  name: '选项3',
-                  disabled: true,
-                },
-              ],
+              listData: optionList,
               dataConvert: (o, index) => {
-                const { flag, name, disabled = false } = o;
+                const { flag, name } = o;
 
                 return {
                   label: name,
                   value: flag,
+                  disabled: false,
                   alias: `alias${index}`,
-                  disabled,
+                  ...o,
                 };
               },
               renderItem: (item, index) => {
@@ -619,7 +632,6 @@ class BasicInfo extends TabPageBase {
                     value={value}
                     disabled={disabled}
                   >
-                    {buildRandomHexColor({ seed: index * 10 })}
                     <ColorText
                       text={label}
                       color={buildRandomHexColor({ seed: index * 10 })}
@@ -636,26 +648,8 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.radio,
               fieldData: fieldData.radio2,
               button: true,
-              listData: [
-                {
-                  flag: '1',
-                  name: '选项1',
-                },
-                {
-                  flag: '2',
-                  name: '选项2',
-                },
-                {
-                  flag: '3',
-                  name: '选项3',
-                  disabled: true,
-                },
-              ],
-              dataConvert: (o) => {
-                const { flag, name, disabled = false } = o;
-
-                return { label: name, value: flag, disabled };
-              },
+              listData: optionList,
+              dataConvert: dataConvert,
               onChange: (v) => {
                 logDebug({ selectValue: v });
               },
@@ -664,36 +658,12 @@ class BasicInfo extends TabPageBase {
               lg: 6,
               type: cardConfig.contentItemType.radio,
               fieldData: fieldData.radio3,
-              listData: [
-                {
-                  flag: '1',
-                  name: '选项1',
-                },
-                {
-                  flag: '2',
-                  name: '选项2',
-                },
-                {
-                  flag: '3',
-                  name: '选项3',
-                  disabled: true,
-                },
-              ],
-              dataConvert: (o) => {
-                const { flag, name, disabled = false } = o;
-
-                return { label: name, value: flag, disabled };
-              },
+              listData: optionList,
+              dataConvert: dataConvert,
               onChange: (v) => {
                 logDebug({ selectValue: v });
               },
             },
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.divider,
-              text: '分隔线',
-            },
-
             {
               lg: 24,
               type: cardConfig.contentItemType.divider,
@@ -709,11 +679,6 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.subtitle,
-            },
-            {
-              lg: 6,
-              type: cardConfig.contentItemType.inputNumber,
-              fieldData: fieldData.sort,
             },
             {
               lg: 18,

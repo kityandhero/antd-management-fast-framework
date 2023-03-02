@@ -6,6 +6,7 @@ import {
   buildFieldHelper,
   checkFromConfig,
   checkStringIsNullOrWhiteSpace,
+  filter,
   isFunction,
 } from 'easy-soft-utility';
 
@@ -41,15 +42,20 @@ class SelectItem extends BaseComponent {
       style: { width: '100%' },
       onChange: (v, option) => {
         if (isFunction(onChangeCallback)) {
-          onChangeCallback(v, option);
+          const selectList = filter(listAdjust, (one) => {
+            const { value } = one;
+
+            return v === value;
+          });
+
+          onChangeCallback(
+            v,
+            selectList.length == 1 ? selectList[0] : selectList,
+            option,
+          );
         }
       },
       ...otherProperties,
-      ...(isFunction(renderItem)
-        ? {}
-        : {
-            options: listAdjust,
-          }),
     };
 
     const resultCheck = checkFromConfig({

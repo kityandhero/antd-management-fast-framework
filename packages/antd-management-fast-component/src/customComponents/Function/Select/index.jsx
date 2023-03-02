@@ -7,6 +7,8 @@ import {
   toBoolean,
 } from 'easy-soft-utility';
 
+import { FlexText } from '../../FlexText';
+
 const { Option } = Select;
 
 export function buildOptionItem(item, index) {
@@ -28,15 +30,10 @@ export function buildOptionItem(item, index) {
   return (
     <Option
       key={`option_${index}`}
-      title={`${alias || label}${
-        checkStringIsNullOrWhiteSpace(description || '')
-          ? ''
-          : `[${description}]`
-      }`}
       value={value}
       disabled={toBoolean(disabled)}
     >
-      {label}
+      <FlexText text={alias || label} subText={description} />
     </Option>
   );
 }

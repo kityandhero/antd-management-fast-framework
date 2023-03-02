@@ -7,6 +7,8 @@ import {
   toBoolean,
 } from 'easy-soft-utility';
 
+import { FlexText } from '../../FlexText';
+
 export function buildRadioItem(item, index) {
   const { label, value, alias, description, disabled, button } = {
     label: '',
@@ -28,31 +30,17 @@ export function buildRadioItem(item, index) {
     return (
       <Radio.Button
         key={`radio_${index}`}
-        title={`${alias || label}${
-          checkStringIsNullOrWhiteSpace(description || '')
-            ? ''
-            : `[${description}]`
-        }`}
         value={value}
         disabled={toBoolean(disabled)}
       >
-        {alias || label}
+        <FlexText text={alias || label} subText={description} />
       </Radio.Button>
     );
   }
 
   return (
-    <Radio
-      key={`radio_${index}`}
-      title={`${alias || label}${
-        checkStringIsNullOrWhiteSpace(description || '')
-          ? ''
-          : `[${description}]`
-      }`}
-      value={value}
-      disabled={toBoolean(disabled)}
-    >
-      {alias || label}
+    <Radio key={`radio_${index}`} value={value} disabled={toBoolean(disabled)}>
+      <FlexText text={alias || label} subText={description} />
     </Radio>
   );
 }

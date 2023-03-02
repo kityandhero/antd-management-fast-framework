@@ -6,6 +6,7 @@ import {
   buildFieldHelper,
   checkFromConfig,
   checkStringIsNullOrWhiteSpace,
+  filter,
   isFunction,
 } from 'easy-soft-utility';
 
@@ -45,10 +46,20 @@ class RadioItem extends BaseComponent {
       onChange: (event) => {
         if (isFunction(onChangeCallback)) {
           const {
-            target: { value },
+            target: { value: v },
           } = event;
 
-          onChangeCallback(value, event);
+          const selectList = filter(listAdjust, (one) => {
+            const { value } = one;
+
+            return v === value;
+          });
+
+          onChangeCallback(
+            v,
+            selectList.length == 1 ? selectList[0] : selectList,
+            event,
+          );
         }
       },
       ...otherProperties,
