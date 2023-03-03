@@ -1,14 +1,4 @@
-import {
-  Affix,
-  Card,
-  Col,
-  Divider,
-  Empty,
-  Row,
-  Space,
-  Spin,
-  Tooltip,
-} from 'antd';
+import { Affix, Card, Col, Divider, Empty, Row, Space, Spin } from 'antd';
 import React, { Fragment } from 'react';
 
 import {
@@ -24,14 +14,12 @@ import {
   isObject,
   isUndefined,
   logObject,
-  showSimpleErrorMessage,
   toBoolean,
   toDatetime,
 } from 'easy-soft-utility';
 
 import {
   cardConfig,
-  contentConfig,
   copyToClipboard,
   defaultEmptyImage,
   extraBuildType,
@@ -60,7 +48,6 @@ import {
   FormExtra,
   FunctionSupplement,
   HelpBox,
-  HelpCard,
   HtmlBox,
   iconBuilder,
   IconInfo,
@@ -94,155 +81,15 @@ const {
 } = FunctionSupplement;
 
 class InternalBuild extends InternalFlow {
-  buildToolBar = () => {
-    const config = this.establishToolBarConfig();
-
-    if ((config || null) == null) {
-      return null;
-    }
-
-    const { stick, title, tools } = {
-      stick: false,
-      title: '工具栏',
-      tools: [],
-      ...config,
-    };
-
-    if (!isArray(tools)) {
-      const text = '工具栏配置数据无效';
-
-      showSimpleErrorMessage(text);
-
-      logObject(config);
-
-      return null;
-    }
-
-    const toolList = tools.map((o, index) => {
-      return { ...o, key: `toolItem_${index}` };
-    });
-
-    const bar = (
-      <div className={styles.cardContainor}>
-        <Card
-          title={
-            <IconInfo icon={iconBuilder.tool()} text={title || '工具栏'} />
-          }
-          bordered={false}
-          bodyStyle={{ padding: 0 }}
-          extra={
-            <Space split={<Divider type="vertical" />}>
-              {toolList.map((o) => {
-                const { hidden } = { hidden: false, ...o };
-
-                if (hidden) {
-                  return null;
-                }
-
-                return (
-                  <Tooltip key={o.key} title={o.title || ''}>
-                    {o.component}
-                  </Tooltip>
-                );
-              })}
-            </Space>
-          }
-        />
-      </div>
-    );
-
-    if (isBoolean(stick) && stick) {
-      return <Affix offsetTop={0}>{bar}</Affix>;
-    }
-
-    return bar;
-  };
-
-  buildToolBarWrapper = () => {
-    const toolBar = this.buildToolBar();
-
-    if ((toolBar || null) == null) {
-      return null;
-    }
-
-    return toolBar;
-  };
-
-  buildHelp = () => {
-    const wrapperTypeConfig = this.establishWrapperTypeConfig() || {
-      mode: contentConfig.wrapperType.page,
-    };
-
-    const configData = {
-      mode: contentConfig.wrapperType.page,
-      ...wrapperTypeConfig,
-    };
-    const { mode } = configData;
-
-    const config = this.establishHelpConfig();
-
-    if ((config || null) == null) {
-      return null;
-    }
-
-    const { title, showNumber, list } = {
-      title: '操作帮助',
-      showNumber: true,
-      list: [],
-      ...config,
-    };
-
-    if (!isArray(list)) {
-      const text = '帮助条目数据无效';
-
-      showSimpleErrorMessage(text);
-
-      logObject(config);
-
-      return null;
-    }
-
-    return (
-      <HelpCard
-        border={
-          mode !== contentConfig.wrapperType.model &&
-          mode !== contentConfig.wrapperType.drawer
-        }
-        compact={mode === contentConfig.wrapperType.model}
-        helpBoxProps={{
-          title: title || '操作帮助',
-          showNumber: showNumber || false,
-          list,
-        }}
-      />
-    );
-  };
-
-  buildHelpWrapper = () => {
-    const help = this.buildHelp();
-
-    if ((help || null) == null) {
-      return null;
-    }
-
-    return help;
-  };
-
   buildCardCollectionArea = (config = null) => {
     if (config == null) {
       return null;
     }
 
-    const formContentWrapperTypeConfig = {
-      mode: cardConfig.wrapperType.page,
-      ...this.establishWrapperTypeConfig(),
-    };
-
     const configData = {
-      mode: cardConfig.wrapperType.page,
+      mode: this.contentWrapperType,
       justify: 'start',
       align: 'top',
-      ...formContentWrapperTypeConfig,
       list: [],
       ...config,
     };

@@ -3,7 +3,7 @@ import React from 'react';
 
 import { checkStringIsNullOrWhiteSpace, isUndefined } from 'easy-soft-utility';
 
-import { cardConfig, defaultFormState } from 'antd-management-fast-common';
+import { contentConfig, defaultFormState } from 'antd-management-fast-common';
 import { FlexText, iconBuilder } from 'antd-management-fast-component';
 
 import { BaseWindow } from '../../DataOperation/BaseWindow';
@@ -11,6 +11,8 @@ import { BaseWindow } from '../../DataOperation/BaseWindow';
 import styles from './index.less';
 
 class Base extends BaseWindow {
+  contentWrapperType = contentConfig.wrapperType.model;
+
   reloadWhenShow = true;
 
   constructor(properties) {
@@ -44,10 +46,6 @@ class Base extends BaseWindow {
 
   establishCardCollectionConfig = () => {
     return null;
-  };
-
-  establishWrapperTypeConfig = () => {
-    return { mode: cardConfig.wrapperType.model };
   };
 
   getSaveButtonDisabled = () => {

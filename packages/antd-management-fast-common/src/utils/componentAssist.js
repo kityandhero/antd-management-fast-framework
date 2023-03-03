@@ -18,12 +18,16 @@ export function filterUpdateModel(properties, ignoreCompareKeyCollection = []) {
 
     if (
       isFunction(v) ||
-      React.isValidElement(v) ||
+      // React.isValidElement(v) ||
       checkInCollection(ignoreCompareKeyCollection, k) ||
       (isObject(v) && !!v.fromRemote)
     ) {
       delete result[k];
 
+      continue;
+    }
+
+    if (React.isValidElement(v)) {
       continue;
     }
 

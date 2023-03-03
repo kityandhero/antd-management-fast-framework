@@ -33,6 +33,8 @@ import { MultiPage } from '../MultiPage';
 import styles from './index.less';
 
 class MultiPageDrawer extends MultiPage {
+  contentWrapperType = contentConfig.wrapperType.drawer;
+
   loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
@@ -216,10 +218,6 @@ class MultiPageDrawer extends MultiPage {
         description: '选择成功',
       });
     }
-  };
-
-  establishWrapperTypeConfig = () => {
-    return { mode: contentConfig.wrapperType.drawer };
   };
 
   renderPresetListMainViewContainor = () => {

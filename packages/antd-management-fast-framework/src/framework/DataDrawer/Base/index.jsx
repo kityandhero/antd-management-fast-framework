@@ -10,6 +10,7 @@ import {
 
 import {
   cardConfig,
+  contentConfig,
   defaultFormState,
   drawerConfig,
 } from 'antd-management-fast-common';
@@ -31,6 +32,8 @@ import styles from './index.less';
 const { Footer, Content } = Layout;
 
 class Base extends BaseWindow {
+  contentWrapperType = contentConfig.wrapperType.drawer;
+
   constructor(properties) {
     super(properties);
 
@@ -118,10 +121,6 @@ class Base extends BaseWindow {
 
   establishCardCollectionConfig = () => {
     return null;
-  };
-
-  establishWrapperTypeConfig = () => {
-    return { mode: cardConfig.wrapperType.drawer };
   };
 
   renderPresetFormContent = () => {

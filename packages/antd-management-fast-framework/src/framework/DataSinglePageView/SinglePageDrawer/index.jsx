@@ -28,6 +28,8 @@ import { SinglePage } from '../SinglePage';
 import styles from './index.less';
 
 class SinglePageDrawer extends SinglePage {
+  contentWrapperType = contentConfig.wrapperType.drawer;
+
   loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
@@ -205,10 +207,6 @@ class SinglePageDrawer extends SinglePage {
 
   hideDrawer = () => {
     this.onClose();
-  };
-
-  establishWrapperTypeConfig = () => {
-    return { mode: contentConfig.wrapperType.drawer };
   };
 
   renderPresetListMainViewContainor = () => {

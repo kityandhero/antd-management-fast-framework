@@ -53,6 +53,8 @@ import { Core } from '../../Core';
 let metaData = {};
 
 class InternalFlow extends Core {
+  contentWrapperType = contentConfig.wrapperType.page;
+
   showExtraActionDivider = false;
 
   loadRemoteRequestAfterMount = true;
@@ -978,10 +980,6 @@ class InternalFlow extends Core {
 
   establishToolBarConfig = () => {
     return null;
-  };
-
-  establishWrapperTypeConfig = () => {
-    return { mode: contentConfig.wrapperType.page };
   };
 
   establishHelpConfig = () => {

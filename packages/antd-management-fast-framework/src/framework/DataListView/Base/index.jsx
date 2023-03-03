@@ -1504,14 +1504,10 @@ class Base extends AuthorizationWrapper {
       return null;
     }
 
-    const formContentWrapperTypeConfig = this.establishWrapperTypeConfig() || {
-      mode: cardConfig.wrapperType.page,
-    };
     const configData = {
-      mode: cardConfig.wrapperType.page,
+      mode: this.contentWrapperType,
       justify: 'start',
       align: 'top',
-      ...formContentWrapperTypeConfig,
       list: [],
       ...config,
     };
@@ -1546,25 +1542,6 @@ class Base extends AuthorizationWrapper {
           });
         })}
       </Space>
-    );
-  };
-
-  renderPresetSiderArea = () => {
-    const topArea = this.renderPresetSiderTopArea();
-
-    const bottomArea = this.renderPresetSiderBottomArea();
-
-    if ((bottomArea || null) == null) {
-      return topArea;
-    }
-
-    return (
-      <FlexBox
-        direction="vertical"
-        flexAuto="top"
-        top={topArea}
-        bottom={bottomArea}
-      />
     );
   };
 

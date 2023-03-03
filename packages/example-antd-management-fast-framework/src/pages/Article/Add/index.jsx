@@ -115,7 +115,7 @@ class Index extends BaseAddForm {
           component: buildButton({
             text: '按钮1',
             handleClick: () => {
-              showSimpleInfoMessage('click button 4');
+              showSimpleInfoMessage('click button 1');
             },
             disabled: false,
           }),
@@ -124,9 +124,10 @@ class Index extends BaseAddForm {
           title: '按钮提示2',
           hidden: false,
           component: buildButton({
+            title: '按钮2的提示',
             text: '按钮2',
             handleClick: () => {
-              showSimpleInfoMessage('click button 4');
+              showSimpleInfoMessage('click button 2');
             },
           }),
         },
@@ -134,20 +135,18 @@ class Index extends BaseAddForm {
           title: '按钮提示2',
           hidden: false,
           component: buildButton({
-            text: '按钮2',
-            handleClick: () => {
-              showSimpleInfoMessage('click button 4');
-            },
+            text: '加载中',
+            disabled: true,
             processing: true,
           }),
         },
         {
-          title: '按钮提示4',
+          title: '按钮提示3',
           hidden: false,
           component: buildButton({
-            text: '按钮4',
+            text: '按钮3',
             handleClick: () => {
-              showSimpleInfoMessage('click button 4');
+              showSimpleInfoMessage('click button 3');
             },
             confirm: true,
             placement: 'topRight',

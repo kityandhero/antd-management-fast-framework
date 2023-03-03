@@ -1,11 +1,12 @@
-import { Layout, Space } from 'antd';
 import React from 'react';
 
-import { FlexBox } from 'antd-management-fast-component';
+import { logExecute } from 'easy-soft-utility';
+
+import { PageExtra } from 'antd-management-fast-component';
 
 import { InternalBuild } from '../InternalBuild';
 
-const { Content, Sider } = Layout;
+const { ContentBox, BodyContent, SiderBox, ToolBar, HelpContent } = PageExtra;
 
 class InternalLayout extends InternalBuild {
   renderPresetSiderTopArea = () => {
@@ -28,111 +29,41 @@ class InternalLayout extends InternalBuild {
     return this.buildCardCollectionArea(config);
   };
 
-  renderPresetSiderArea = () => {
-    const topArea = this.renderPresetSiderTopArea();
-
-    const bottomArea = this.renderPresetSiderBottomArea();
-
-    if ((bottomArea || null) == null) {
-      return topArea;
-    }
-
-    return <FlexBox flexAuto="top" top={topArea} bottom={bottomArea} />;
-  };
-
-  renderPresetContentArea = () => null;
+  renderPresetContentArea = () => {};
 
   renderPresetPageContent = () => {
-    const siderArea = this.renderPresetSiderArea();
-    const contentArea = this.renderPresetContentArea();
+    logExecute('renderPresetPageContent');
 
-    const layoutSiderConfig = this.establishPageContentLayoutSiderConfig();
-    let layoutConfig = this.establishPageContentLayoutConfig();
-
-    const { position: siderPosition } = {
-      position: 'left',
-      ...layoutSiderConfig,
-    };
-
-    const siderConfig = {
-      width: 300,
-      style: {
-        backgroundColor: '#fff',
-        borderRadius: '4px',
-        overflowX: 'auto',
-        overflowY: 'hidden',
-        ...(siderPosition === 'left'
-          ? { marginRight: '24px' }
-          : { marginLeft: '24px' }),
-      },
-      ...layoutSiderConfig,
-    };
-
-    layoutConfig = {
-      breakpoint: 'sm',
-      style: {
-        backgroundColor: '#f0f2f5',
-        minHeight: 'auto',
-      },
-      ...layoutConfig,
-    };
-
-    const inner =
-      siderArea == null ? (
-        contentArea
-      ) : (
-        <Layout {...layoutConfig}>
-          {siderPosition === 'left' ? (
-            <Sider {...siderConfig}>{siderArea}</Sider>
-          ) : null}
-
-          <Content
-            style={{
-              backgroundColor: '#fff',
-              borderRadius: '4px',
-            }}
-          >
-            {contentArea}
-          </Content>
-
-          {siderPosition === 'left' ? null : (
-            <Sider {...siderConfig}>{siderArea}</Sider>
-          )}
-        </Layout>
-      );
-
-    const toolbar = this.buildToolBarWrapper();
-
-    const help = this.buildHelpWrapper();
-
-    if ((toolbar || null) != null || (help || null) != null) {
-      return (
-        <div style={{ overflowX: 'hidden' }}>
-          <Space style={{ width: '100%' }} direction="vertical" size={24}>
-            {toolbar}
-
-            {inner}
-
-            {help}
-          </Space>
-        </div>
-      );
-    }
-
-    return inner;
+    return (
+      <ContentBox
+        layoutConfig={this.establishPageContentLayoutConfig()}
+        siderConfig={this.establishPageContentLayoutSiderConfig()}
+        siderBody={
+          <SiderBox
+            top={this.renderPresetSiderTopArea()}
+            bottom={this.renderPresetSiderBottomArea()}
+          />
+        }
+        toolbar={<ToolBar {...this.establishToolBarConfig()} />}
+        contentBody={this.renderPresetContentArea()}
+        bottom={
+          <HelpContent
+            wrapperType={this.contentWrapperType}
+            {...this.establishHelpConfig()}
+          />
+        }
+      />
+    );
   };
 
   renderPresetPageBody = () => {
-    return (
-      <div
-        style={{
-          padding: '20px 24px',
-        }}
-      >
-        {this.renderPresetPageContent()}
+    logExecute('renderPresetPageBody');
 
-        {this.renderPresetOther()}
-      </div>
+    return (
+      <BodyContent
+        body={this.renderPresetPageContent()}
+        bottom={this.renderPresetOther()}
+      />
     );
   };
 }
