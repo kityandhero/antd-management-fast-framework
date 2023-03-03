@@ -58,7 +58,7 @@ import {
   VideoUpload,
 } from 'antd-management-fast-component';
 
-import { InternalFlow } from '../InternalFlow';
+import { InternalTabFlow } from '../InternalTabFlow';
 
 import styles from './index.less';
 
@@ -80,7 +80,7 @@ const {
   Whether: { renderFormWhetherSelect },
 } = FunctionSupplement;
 
-class InternalBuild extends InternalFlow {
+class InternalBuild extends InternalTabFlow {
   buildCardCollectionArea = (config = null) => {
     if (config == null) {
       return null;
@@ -119,7 +119,7 @@ class InternalBuild extends InternalFlow {
           backgroundColor: '#f0f2f5',
         }}
       >
-        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+        <Space style={{ width: '100%' }} direction="vertical" size={16}>
           {listData.map((item, index) => {
             return this.buildCardCollectionItem({
               mode,
@@ -263,6 +263,69 @@ class InternalBuild extends InternalFlow {
       };
     }
 
+    const cardContent = this.buildCardCollectionItemContent({
+      mode,
+      justify: justifyRow || justifyGeneral,
+      align: alignRow || alignGeneral,
+      items: isArray(contentItems)
+        ? contentItems.map((o) => {
+            return {
+              ...o,
+              formItemLayout: formItemLayout || null,
+            };
+          })
+        : [],
+      index: cardItemKey,
+    });
+
+    const helpArea =
+      isObject(instruction ?? false) || isArray(instruction ?? false) ? (
+        isArray(instruction ?? false) ? (
+          instruction.map((o, indexHelpBox) => {
+            if ((o ?? null) == null) {
+              return null;
+            }
+
+            const keyHelpBox = `${key}_HelpBox_$${indexHelpBox}`;
+
+            return <HelpBox key={keyHelpBox} {...o} />;
+          })
+        ) : (
+          <HelpBox {...instruction} />
+        )
+      ) : null;
+
+    const imageArea = imageVisible ? (
+      <div
+        style={{
+          position: 'absolute',
+          width: '32px',
+          left: '22px',
+          top: '15px',
+        }}
+      >
+        <ImageBox
+          src={image}
+          circle={imageCircle}
+          lazyLoad
+          errorOverlayVisible
+          showErrorOverlay
+          loadingEffect
+          preview
+          previewSimpleMask
+        />
+      </div>
+    ) : null;
+
+    if (
+      (cardContent == null || cardContent._self == null) &&
+      otherComponent == null &&
+      helpArea == null &&
+      imageArea == null
+    ) {
+      return null;
+    }
+
     const card = (
       <Card
         title={
@@ -286,8 +349,8 @@ class InternalBuild extends InternalFlow {
           )
         }
         style={{
-          boxShadow: 'none',
-          borderRadius: 0,
+          // boxShadow: 'none',
+          // borderRadius: 0,
           ...(imageVisible ? { position: 'relative' } : {}),
         }}
         headStyle={
@@ -341,7 +404,6 @@ class InternalBuild extends InternalFlow {
             ? {
                 ...cardBodyStyle,
                 ...cardTypeBodyStyle,
-
                 paddingBottom: 0,
               }
             : {
@@ -352,62 +414,15 @@ class InternalBuild extends InternalFlow {
       >
         <Spin spinning={spinning || false}>
           <>
-            {this.buildCardCollectionItemContent({
-              mode,
-              justify: justifyRow || justifyGeneral,
-              align: alignRow || alignGeneral,
-              items: isArray(contentItems)
-                ? contentItems.map((o) => {
-                    return {
-                      ...o,
-                      formItemLayout: formItemLayout || null,
-                    };
-                  })
-                : [],
-              index: cardItemKey,
-            })}
+            {cardContent}
 
             {otherComponent || null}
 
-            {isObject(instruction ?? false) || isArray(instruction ?? false) ? (
-              isArray(instruction ?? false) ? (
-                instruction.map((o, indexHelpBox) => {
-                  if ((o ?? null) == null) {
-                    return null;
-                  }
-
-                  const keyHelpBox = `${key}_HelpBox_$${indexHelpBox}`;
-
-                  return <HelpBox key={keyHelpBox} {...o} />;
-                })
-              ) : (
-                <HelpBox {...instruction} />
-              )
-            ) : null}
+            {helpArea}
           </>
         </Spin>
 
-        {imageVisible ? (
-          <div
-            style={{
-              position: 'absolute',
-              width: '32px',
-              left: '22px',
-              top: '15px',
-            }}
-          >
-            <ImageBox
-              src={image}
-              circle={imageCircle}
-              lazyLoad
-              errorOverlayVisible
-              showErrorOverlay
-              loadingEffect
-              preview
-              previewSimpleMask
-            />
-          </div>
-        ) : null}
+        {imageArea}
       </Card>
     );
 
@@ -1610,6 +1625,8 @@ class InternalBuild extends InternalFlow {
       </Space>
     );
   };
+
+  buildPageHeaderSubTitle = () => null;
 }
 
 export { InternalBuild };

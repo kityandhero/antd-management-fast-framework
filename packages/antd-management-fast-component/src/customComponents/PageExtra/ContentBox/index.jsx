@@ -1,7 +1,7 @@
 import { Layout, Space } from 'antd';
 import React from 'react';
 
-import { checkObjectIsNullOrEmpty } from 'easy-soft-utility';
+import { checkInCollection, checkObjectIsNullOrEmpty } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../BaseComponent';
 
@@ -18,10 +18,14 @@ class ContentBox extends BaseComponent {
       bottom,
     } = this.props;
 
-    const { position: siderPosition } = {
+    const { position: positionSource } = {
       position: 'left',
       ...siderConfig,
     };
+
+    const siderPosition = checkInCollection(['left', 'right'], positionSource)
+      ? positionSource
+      : 'left';
 
     const siderConfigAdjust = {
       width: 300,
@@ -47,7 +51,7 @@ class ContentBox extends BaseComponent {
     };
 
     const inner =
-      siderBody == null ? (
+      siderBody == null || siderBody._self == null ? (
         contentBody
       ) : (
         <Layout {...layoutConfigAdjust}>
@@ -73,7 +77,7 @@ class ContentBox extends BaseComponent {
     if ((toolbar || null) != null || (bottom || null) != null) {
       return (
         <div style={{ overflowX: 'hidden' }}>
-          <Space style={{ width: '100%' }} direction="vertical" size={24}>
+          <Space style={{ width: '100%' }} direction="vertical" size={14}>
             {toolbar}
 
             {inner}

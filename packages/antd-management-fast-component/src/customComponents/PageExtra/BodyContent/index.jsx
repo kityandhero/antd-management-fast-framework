@@ -9,7 +9,7 @@ class BodyContent extends BaseComponent {
     return (
       <div
         style={{
-          padding: '20px 24px',
+          padding: '14px 16px',
         }}
       >
         {body}

@@ -1,6 +1,5 @@
-import { Avatar, FloatButton, Form } from 'antd';
+import { Avatar, Form } from 'antd';
 import React from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
 
 import {
   datetimeFormat,
@@ -17,16 +16,9 @@ import {
   formNameCollection,
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
-import {
-  decorateAvatar,
-  iconBuilder,
-  PageExtra,
-} from 'antd-management-fast-component';
+import { iconBuilder } from 'antd-management-fast-component';
 
 import { DataCore } from '../../DataSingleView/DataCore';
-
-const { BackTop } = FloatButton;
-const { HeaderTitle, HeaderTagWrapper, HeaderExtraContent } = PageExtra;
 
 class BaseAddForm extends DataCore {
   loadRemoteRequestAfterMount = false;
@@ -266,80 +258,6 @@ class BaseAddForm extends DataCore {
   }) => {
     return `数据已经保存成功，请进行下一步操作。`;
   };
-
-  renderFurther() {
-    const {
-      defaultAvatarIcon,
-      showPageHeaderAvatar,
-      dataLoading,
-      reloading,
-      avatarImageLoadResult,
-    } = this.state;
-
-    const avatarProperties = showPageHeaderAvatar
-      ? decorateAvatar(
-          this.establishPageHeaderAvatarConfig(),
-          defaultAvatarIcon,
-          showPageHeaderAvatar,
-          dataLoading,
-          reloading,
-          avatarImageLoadResult,
-          () => {
-            this.onPageHeaderAvatarLoadErrorCallback();
-          },
-        )
-      : null;
-
-    return (
-      <div
-        style={{
-          background: '#f0f2f5',
-        }}
-      >
-        <PageContainer
-          header={{
-            ghost: false,
-            style: {
-              backgroundColor: '#fff',
-              paddingBottom: '24px',
-              paddingLeft: '24px',
-              paddingRight: '24px',
-            },
-          }}
-          childrenContentStyle={{
-            padding: '0px',
-          }}
-          avatar={avatarProperties}
-          title={
-            <HeaderTitle
-              title={this.getPresetPageName()}
-              titlePrefix={this.establishPageHeaderTitlePrefix()}
-            />
-          }
-          subTitle={this.buildPageHeaderSubTitle()}
-          tags={
-            <HeaderTagWrapper
-              list={this.establishPageHeaderTagCollectionConfig()}
-            />
-          }
-          extra={this.buildExtraAction()}
-          content={this.renderPresetPageHeaderContent()}
-          extraContent={
-            <HeaderExtraContent
-              {...this.establishPageHeaderExtraContentConfig()}
-            />
-          }
-          // onBack={() => {
-          //   this.backToList();
-          // }}
-        >
-          {this.renderPresetPageBody()}
-
-          <BackTop />
-        </PageContainer>
-      </div>
-    );
-  }
 }
 
 export { BaseAddForm };

@@ -1,6 +1,5 @@
-import { Avatar, Button, FloatButton, Form, Tooltip } from 'antd';
+import { Avatar, Button, Form, Tooltip } from 'antd';
 import React from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
 
 import {
   getDerivedStateFromPropertiesForUrlParameters,
@@ -8,18 +7,12 @@ import {
 } from 'antd-management-fast-common';
 import {
   avatarImageLoadResultCollection,
-  decorateAvatar,
   iconBuilder,
-  PageExtra,
 } from 'antd-management-fast-component';
 
 import { BaseView } from '../../DataOperation/BaseView';
 
 import styles from './index.less';
-
-const { BackTop } = FloatButton;
-const { HeaderTitle, HeaderContent, HeaderTagWrapper, HeaderExtraContent } =
-  PageExtra;
 
 class DataCore extends BaseView {
   enableActionBack = true;
@@ -63,7 +56,7 @@ class DataCore extends BaseView {
     return this.formRef.current;
   };
 
-  onPageHeaderAvatarLoadErrorCallback = () => {
+  onPageHeaderAvatarLoadError = () => {
     this.setState({
       avatarImageLoadResult: avatarImageLoadResultCollection.fail,
     });
@@ -123,8 +116,6 @@ class DataCore extends BaseView {
   establishPageHeaderTitlePrefix = () => {
     return '';
   };
-
-  buildPageHeaderSubTitle = () => null;
 
   pageHeaderLogo = () => <Avatar shape="square" icon={iconBuilder.plus()} />;
 
@@ -230,71 +221,9 @@ class DataCore extends BaseView {
     return null;
   };
 
-  renderPresetPageHeaderContent = () => {
-    return (
-      <HeaderContent {...(this.establishPageHeaderContentConfig() || {})} />
-    );
-  };
-
   renderPresetFormContent = () => {
     return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };
-
-  renderFurther() {
-    const {
-      defaultAvatarIcon,
-      showPageHeaderAvatar,
-      dataLoading,
-      reloading,
-      avatarImageLoadResult,
-    } = this.state;
-
-    const avatarProperties = showPageHeaderAvatar
-      ? decorateAvatar(
-          this.establishPageHeaderAvatarConfig(),
-          defaultAvatarIcon,
-          showPageHeaderAvatar,
-          dataLoading,
-          reloading,
-          avatarImageLoadResult,
-          () => {
-            this.onPageHeaderAvatarLoadErrorCallback();
-          },
-        )
-      : null;
-
-    return (
-      <PageContainer
-        logo={this.pageHeaderLogo()}
-        avatar={avatarProperties}
-        title={
-          <HeaderTitle
-            title={this.getPresetPageName()}
-            titlePrefix={this.establishPageHeaderTitlePrefix()}
-          />
-        }
-        subTitle={this.buildPageHeaderSubTitle()}
-        tags={
-          <HeaderTagWrapper
-            list={this.establishPageHeaderTagCollectionConfig()}
-          />
-        }
-        extra={this.buildExtraAction()}
-        content={this.renderPresetPageHeaderContent()}
-        extraContent={
-          <HeaderExtraContent
-            {...this.establishPageHeaderExtraContentConfig()}
-          />
-        }
-      >
-        <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
-          {this.renderPresetFormWrapper()}
-          {this.renderPresetOther()}
-        </div>
-        <BackTop />
-      </PageContainer>
-    );
-  }
 }
 
 export { DataCore };

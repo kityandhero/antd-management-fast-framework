@@ -53,6 +53,10 @@ import { Core } from '../../Core';
 let metaData = {};
 
 class InternalFlow extends Core {
+  showPageHeader = true;
+
+  contentTabMode = false;
+
   contentWrapperType = contentConfig.wrapperType.page;
 
   showExtraActionDivider = false;

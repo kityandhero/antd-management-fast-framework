@@ -7,26 +7,22 @@ import {
   DatePicker,
   Divider,
   Empty,
-  FloatButton,
   Form,
   List,
   Pagination,
   Row,
   Space,
   Spin,
-  Tabs,
   Tooltip,
 } from 'antd';
 import classNames from 'classnames';
 import React from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
 
 import {
   buildFieldDescription,
   createDayJsDatetime,
   datetimeFormat,
   isArray,
-  isNull,
   isUndefined,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
@@ -51,11 +47,9 @@ import {
   buildColumnList,
   buildDropdown,
   buildFlexSelect,
-  decorateAvatar,
   FlexBox,
   FormExtra,
   iconBuilder,
-  PageExtra,
   StandardTableCustom,
 } from 'antd-management-fast-component';
 
@@ -70,9 +64,6 @@ const classPrefix = `amf-data-list-view-base`;
 
 const { Item: FormItem } = Form;
 const { RangePicker } = DatePicker;
-const { BackTop } = FloatButton;
-const { HeaderTitle, HeaderContent, HeaderTagWrapper, HeaderExtraContent } =
-  PageExtra;
 const { DatePickerItem, ComponentItem, OnlyShowInputItem } = FormExtra;
 
 class Base extends AuthorizationWrapper {
@@ -116,7 +107,6 @@ class Base extends AuthorizationWrapper {
       ...defaultState,
 
       showSelect: false,
-      renderPageContainer: true,
       listTitle: '检索结果',
       defaultAvatarIcon: iconBuilder.picture(),
       listViewMode: listViewConfig.viewMode.list,
@@ -924,51 +914,6 @@ class Base extends AuthorizationWrapper {
     return null;
   };
 
-  buildOtherTabProps = () => {
-    const tabListAvailable = this.getTabListAvailable();
-
-    const tabBarMarginBottomStyle = {
-      marginBottom: 0,
-    };
-
-    if (tabListAvailable.length > 0) {
-      return {
-        // destroyInactiveTabPane: true,
-        type: 'card',
-        size: 'small',
-        tabBarStyle: {
-          ...tabBarMarginBottomStyle,
-          backgroundColor: '#fff',
-          paddingTop: '16px',
-          paddingLeft: '24px',
-          paddingRight: '24px',
-        },
-        tabBarGutter: 3,
-        animated: {
-          inkBar: true,
-          tabPane: true,
-        },
-        // activeKey: this.getTabActiveKey(),
-        tabBarExtraContent: this.buildTabBarExtraContent(),
-        items: tabListAvailable.map((o) => {
-          return {
-            style: {
-              padding: '24px',
-            },
-            ...o,
-          };
-        }),
-        onChange: this.handleTabChange(),
-      };
-    }
-
-    return {
-      tabBarStyle: {
-        ...tabBarMarginBottomStyle,
-      },
-    };
-  };
-
   adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
 
   getTabListAvailable = () => {
@@ -1000,7 +945,7 @@ class Base extends AuthorizationWrapper {
   // eslint-disable-next-line no-unused-vars
   handleTabChange = (key) => {};
 
-  onPageHeaderAvatarLoadErrorCallback = () => {
+  onPageHeaderAvatarLoadError = () => {
     this.setState({
       avatarImageLoadResult: avatarImageLoadResultCollection.fail,
     });
@@ -1086,8 +1031,6 @@ class Base extends AuthorizationWrapper {
   establishPageHeaderTitlePrefix = () => {
     return '';
   };
-
-  buildPageHeaderSubTitle = () => null;
 
   establishPageHeaderContentGridCollectionConfig = () => {
     return [];
@@ -1191,12 +1134,6 @@ class Base extends AuthorizationWrapper {
   // eslint-disable-next-line no-unused-vars
   handlePaginationShowSizeChange = (current, size) => {
     this.setState({ pageNo: 1 });
-  };
-
-  renderPresetPageHeaderContent = () => {
-    return (
-      <HeaderContent {...(this.establishPageHeaderContentConfig() || {})} />
-    );
   };
 
   establishPageHeaderExtraContentConfig = () => null;
@@ -1651,96 +1588,6 @@ class Base extends AuthorizationWrapper {
 
     return buildDropdown(config);
   };
-
-  renderFurther() {
-    const {
-      renderPageContainer,
-      showPageHeaderAvatar,
-      defaultAvatarIcon,
-      dataLoading,
-      reloading,
-      avatarImageLoadResult,
-    } = this.state;
-
-    const avatarProperties = showPageHeaderAvatar
-      ? decorateAvatar(
-          this.establishPageHeaderAvatarConfig(),
-          defaultAvatarIcon,
-          showPageHeaderAvatar,
-          dataLoading,
-          reloading,
-          avatarImageLoadResult,
-          () => {
-            this.onPageHeaderAvatarLoadErrorCallback();
-          },
-        )
-      : null;
-
-    if (renderPageContainer || false) {
-      const headerExtraContentConfig =
-        this.establishPageHeaderExtraContentConfig();
-
-      return (
-        <div
-          style={{
-            background: '#f0f2f5',
-          }}
-        >
-          <PageContainer
-            header={{
-              ghost: false,
-              style: {
-                backgroundColor: '#fff',
-                paddingBottom: '24px',
-                paddingLeft: '24px',
-                paddingRight: '24px',
-              },
-            }}
-            childrenContentStyle={{
-              padding: '0px',
-            }}
-            avatar={avatarProperties}
-            title={
-              <HeaderTitle
-                title={this.getPresetPageName()}
-                titlePrefix={this.establishPageHeaderTitlePrefix()}
-              />
-            }
-            subTitle={this.buildPageHeaderSubTitle()}
-            tags={
-              <HeaderTagWrapper
-                list={this.establishPageHeaderTagCollectionConfig()}
-              />
-            }
-            extra={this.buildExtraAction()}
-            tabActiveKey={this.getTabActiveKey()}
-            content={this.renderPresetPageHeaderContent()}
-            extraContent={
-              isNull(headerExtraContentConfig) ? null : (
-                <HeaderExtraContent
-                  {...this.establishPageHeaderExtraContentConfig()}
-                />
-              )
-            }
-          >
-            <Tabs {...this.buildOtherTabProps()} />
-
-            {this.renderPresetPageBody()}
-
-            <BackTop />
-          </PageContainer>
-        </div>
-      );
-    }
-
-    return (
-      <>
-        {this.renderPresetPageBody()}
-
-        <BackTop />
-      </>
-    );
-  }
 }
 
 export { Base };

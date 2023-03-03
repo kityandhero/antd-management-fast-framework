@@ -1,16 +1,9 @@
 import { SinglePage } from '../SinglePage';
 
 class InnerSinglePage extends SinglePage {
+  showPageHeader = false;
+
   restoreSearch = false;
-
-  constructor(properties) {
-    super(properties);
-
-    this.state = {
-      ...this.state,
-      renderPageContainer: false,
-    };
-  }
 }
 
 export { InnerSinglePage };

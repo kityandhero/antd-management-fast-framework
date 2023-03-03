@@ -6,7 +6,16 @@ import { PageExtra } from 'antd-management-fast-component';
 
 import { InternalBuild } from '../InternalBuild';
 
-const { ContentBox, BodyContent, SiderBox, ToolBar, HelpContent } = PageExtra;
+const {
+  ContentBox,
+  BodyContent,
+  SiderBox,
+  ToolBar,
+  HelpContent,
+  PageWrapper,
+  ContentTabBox,
+  TabBarExtraBox,
+} = PageExtra;
 
 class InternalLayout extends InternalBuild {
   renderPresetSiderTopArea = () => {
@@ -59,6 +68,33 @@ class InternalLayout extends InternalBuild {
   renderPresetPageBody = () => {
     logExecute('renderPresetPageBody');
 
+    if (this.contentTabMode) {
+      return (
+        <ContentTabBox
+          list={this.getTabListAvailable()}
+          extraContent={{
+            left: (
+              <TabBarExtraBox
+                list={this.buildByExtraBuildType({
+                  keyPrefix: 'data_tab_container_tab_bar_left_action_key',
+                  list: this.establishTabBarExtraContentLeftConfig(),
+                })}
+              />
+            ),
+            right: (
+              <TabBarExtraBox
+                list={this.buildByExtraBuildType({
+                  keyPrefix: 'data_tab_container_tab_bar_right_action_key',
+                  list: this.establishTabBarExtraContentRightConfig(),
+                })}
+              />
+            ),
+          }}
+          onTabChange={this.handleTabChange()}
+        />
+      );
+    }
+
     return (
       <BodyContent
         body={this.renderPresetPageContent()}
@@ -66,6 +102,40 @@ class InternalLayout extends InternalBuild {
       />
     );
   };
+
+  renderFurther() {
+    const {
+      showPageHeaderAvatar,
+      defaultAvatarIcon,
+      dataLoading,
+      reloading,
+      avatarImageLoadResult,
+    } = this.state;
+
+    return (
+      <PageWrapper
+        dataLoading={dataLoading}
+        reloading={reloading}
+        showHeader={this.showPageHeader}
+        title={this.getPresetPageName()}
+        titlePrefix={this.establishPageHeaderTitlePrefix()}
+        subTitle={this.buildPageHeaderSubTitle()}
+        showAvatar={showPageHeaderAvatar}
+        avatarConfig={this.establishPageHeaderAvatarConfig()}
+        avatarDefaultIcon={defaultAvatarIcon}
+        avatarImageLoadResult={avatarImageLoadResult}
+        onAvatarLoadError={() => {
+          this.onPageHeaderAvatarLoadError();
+        }}
+        tagList={this.establishPageHeaderTagCollectionConfig()}
+        extraAction={this.buildExtraAction()}
+        content={this.establishPageHeaderContentConfig()}
+        extraContentConfig={this.establishPageHeaderExtraContentConfig()}
+      >
+        {this.renderPresetPageBody()}
+      </PageWrapper>
+    );
+  }
 }
 
 export { InternalLayout };
