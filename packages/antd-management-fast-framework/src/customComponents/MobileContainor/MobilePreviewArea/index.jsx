@@ -149,7 +149,7 @@ class MobilePreviewArea extends Base {
     const { affix, affixOffsetTop, affixOffsetBottom } = this.props;
 
     if (!affix) {
-      return this.buildCardCollection(this.establishCardCollectionConfig());
+      return this.buildCardCollectionArea(this.establishCardCollectionConfig());
     }
 
     const affixProperties = {
@@ -159,7 +159,7 @@ class MobilePreviewArea extends Base {
 
     return (
       <Affix {...affixProperties}>
-        {this.buildCardCollection(this.establishCardCollectionConfig())}
+        {this.buildCardCollectionArea(this.establishCardCollectionConfig())}
       </Affix>
     );
   }

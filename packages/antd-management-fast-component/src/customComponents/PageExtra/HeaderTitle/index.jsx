@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isArray } from 'easy-soft-utility';
+import { isArray, toString } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../BaseComponent';
 import { IconInfo } from '../../IconInfo';

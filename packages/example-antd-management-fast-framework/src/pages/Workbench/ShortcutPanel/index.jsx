@@ -47,7 +47,7 @@ class Index extends BaseView {
   };
 
   renderFurther() {
-    return this.buildCardCollection(this.establishCardCollectionConfig());
+    return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   }
 }
 

@@ -64,10 +64,13 @@ class AbstractComponent extends Component {
 
   ignoreComparePropertyKeyCollection = [];
 
+  componentName = '';
+
   constructor(properties) {
     super(properties);
 
     this.mounted = false;
+    this.componentName = this.constructor.name;
 
     const defaultState = defaultBaseState();
 

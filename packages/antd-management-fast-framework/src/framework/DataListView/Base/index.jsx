@@ -9,7 +9,6 @@ import {
   Empty,
   FloatButton,
   Form,
-  Layout,
   List,
   Pagination,
   Row,
@@ -27,6 +26,7 @@ import {
   createDayJsDatetime,
   datetimeFormat,
   isArray,
+  isNull,
   isUndefined,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
@@ -68,7 +68,6 @@ import './index.less';
 
 const classPrefix = `amf-data-list-view-base`;
 
-const { Content, Sider } = Layout;
 const { Item: FormItem } = Form;
 const { RangePicker } = DatePicker;
 const { BackTop } = FloatButton;
@@ -1656,10 +1655,6 @@ class Base extends AuthorizationWrapper {
     );
   };
 
-  establishPageContentLayoutSiderConfig = () => {
-    return {};
-  };
-
   establishPageContentLayoutConfig = () => {
     return {};
   };
@@ -1678,100 +1673,6 @@ class Base extends AuthorizationWrapper {
     config.placement = 'topRight';
 
     return buildDropdown(config);
-  };
-
-  renderPresetPageContent = () => {
-    const siderArea = this.renderPresetSiderArea();
-    const contentArea = this.renderPresetContentArea();
-
-    const layoutSiderConfig = this.establishPageContentLayoutSiderConfig();
-    let layoutConfig = this.establishPageContentLayoutConfig();
-
-    const { position: siderPosition } = {
-      position: 'left',
-      ...layoutSiderConfig,
-    };
-
-    const siderConfig = {
-      width: 300,
-      style: {
-        backgroundColor: '#fff',
-        borderRadius: '4px',
-        overflowX: 'auto',
-        overflowY: 'hidden',
-        ...(siderPosition === 'left'
-          ? { marginRight: '24px' }
-          : { marginLeft: '24px' }),
-      },
-      ...layoutSiderConfig,
-    };
-
-    layoutConfig = {
-      breakpoint: 'sm',
-      style: {
-        backgroundColor: '#f0f2f5',
-        minHeight: 'auto',
-      },
-      ...layoutConfig,
-    };
-
-    const inner =
-      siderArea == null ? (
-        contentArea
-      ) : (
-        <Layout {...layoutConfig}>
-          {siderPosition === 'left' ? (
-            <Sider {...siderConfig}>{siderArea}</Sider>
-          ) : null}
-
-          <Content
-            style={{
-              backgroundColor: '#fff',
-              borderRadius: '4px',
-            }}
-          >
-            {contentArea}
-          </Content>
-
-          {siderPosition === 'left' ? null : (
-            <Sider {...siderConfig}>{siderArea}</Sider>
-          )}
-        </Layout>
-      );
-
-    const toolbar = this.buildToolBarWrapper();
-
-    const help = this.buildHelpWrapper();
-
-    if ((toolbar || null) != null || (help || null) != null) {
-      return (
-        <div style={{ overflowX: 'hidden' }}>
-          <Space style={{ width: '100%' }} direction="vertical" size={24}>
-            {toolbar}
-
-            {inner}
-
-            {help}
-          </Space>
-        </div>
-      );
-    }
-
-    return inner;
-  };
-
-  renderPresetPageBody = () => {
-    return (
-      <div
-        style={{
-          padding: '20px 24px',
-        }}
-      >
-        {this.renderPresetPageContent()}
-
-        {this.renderPresetOther()}
-      </div>
-    );
   };
 
   renderFurther() {
@@ -1799,6 +1700,9 @@ class Base extends AuthorizationWrapper {
       : null;
 
     if (renderPageContainer || false) {
+      const headerExtraContentConfig =
+        this.establishPageHeaderExtraContentConfig();
+
       return (
         <div
           style={{
@@ -1835,9 +1739,11 @@ class Base extends AuthorizationWrapper {
             tabActiveKey={this.getTabActiveKey()}
             content={this.renderPresetPageHeaderContent()}
             extraContent={
-              <HeaderExtraContent
-                {...this.establishPageHeaderExtraContentConfig()}
-              />
+              isNull(headerExtraContentConfig) ? null : (
+                <HeaderExtraContent
+                  {...this.establishPageHeaderExtraContentConfig()}
+                />
+              )
             }
           >
             <Tabs {...this.buildOtherTabProps()} />

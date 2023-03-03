@@ -4,7 +4,6 @@ import {
   Col,
   Divider,
   Empty,
-  Layout,
   Row,
   Space,
   Spin,
@@ -76,7 +75,6 @@ import { InternalFlow } from '../InternalFlow';
 
 import styles from './index.less';
 
-const { Content, Sider } = Layout;
 const { TinymceWrapper } = Editor;
 const {
   SyntaxHighlighterItem,
@@ -286,82 +284,6 @@ class InternalBuild extends InternalFlow {
           })}
         </Space>
       </div>
-    );
-  };
-
-  buildCardCollection = (config) => {
-    const siderArea = this.renderPresetSiderArea();
-    const contentArea = this.buildCardCollectionArea(config);
-
-    const layoutSiderConfig = this.establishPageContentLayoutSiderConfig();
-    let layoutConfig = this.establishPageContentLayoutConfig();
-
-    const { position: siderPosition } = {
-      position: 'left',
-      ...layoutSiderConfig,
-    };
-
-    const siderConfig = {
-      width: 300,
-      style: {
-        backgroundColor: '#fff',
-        borderRadius: '4px',
-        overflowX: 'auto',
-        overflowY: 'hidden',
-        ...(siderPosition === 'left'
-          ? { marginRight: '24px' }
-          : { marginLeft: '24px' }),
-      },
-      ...layoutSiderConfig,
-    };
-
-    layoutConfig = {
-      breakpoint: 'sm',
-      style: {
-        backgroundColor: '#f0f2f5',
-        minHeight: 'auto',
-      },
-      ...layoutConfig,
-    };
-
-    const inner =
-      siderArea == null ? (
-        contentArea
-      ) : (
-        <Layout {...layoutConfig}>
-          {siderPosition === 'left' ? (
-            <Sider {...siderConfig}>{siderArea}</Sider>
-          ) : null}
-
-          <Content
-            style={{
-              backgroundColor: '#fff',
-              borderRadius: '4px',
-            }}
-          >
-            {contentArea}
-          </Content>
-
-          {siderPosition === 'left' ? null : (
-            <Sider {...siderConfig}>{siderArea}</Sider>
-          )}
-        </Layout>
-      );
-
-    const toolbar = this.buildToolBarWrapper();
-
-    const help = this.buildHelpWrapper();
-
-    return (
-      <>
-        <Space style={{ width: '100%' }} direction="vertical" size={24}>
-          {toolbar}
-
-          {inner}
-
-          {help}
-        </Space>
-      </>
     );
   };
 

@@ -322,32 +322,54 @@ class Edit extends DataTabContainerSupplement {
       disabled: false,
       hidden: false,
       handleMenuClick: ({ key, handleData }) => {
+        console.log({ key, handleData });
+
         switch (key) {
           case 'click1': {
             showSimpleInfoMessage(`click ${key}`);
 
-            showSimpleSuccessNotification(JSON.stringify(handleData));
+            const { title = '' } = handleData;
+
+            if (!checkStringIsNullOrWhiteSpace(title)) {
+              showSimpleSuccessNotification(title);
+            }
+
             break;
           }
 
           case 'click2': {
             showSimpleInfoMessage(`click ${key}`);
 
-            showSimpleSuccessNotification(JSON.stringify(handleData));
+            const { title = '' } = handleData;
+
+            if (!checkStringIsNullOrWhiteSpace(title)) {
+              showSimpleSuccessNotification(title);
+            }
+
             break;
           }
 
           case 'click21': {
             showSimpleInfoMessage(`click ${key}`);
 
-            showSimpleSuccessNotification(JSON.stringify(handleData));
+            const { title = '' } = handleData;
+
+            if (!checkStringIsNullOrWhiteSpace(title)) {
+              showSimpleSuccessNotification(title);
+            }
+
             break;
           }
 
           case 'click3': {
             showSimpleInfoMessage(`click ${key}`);
 
-            showSimpleSuccessNotification(JSON.stringify(handleData));
+            const { title = '' } = handleData;
+
+            if (!checkStringIsNullOrWhiteSpace(title)) {
+              showSimpleSuccessNotification(title);
+            }
+
             break;
           }
 

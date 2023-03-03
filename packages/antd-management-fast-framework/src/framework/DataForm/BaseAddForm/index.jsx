@@ -25,8 +25,6 @@ import {
 
 import { DataCore } from '../../DataSingleView/DataCore';
 
-import styles from './index.less';
-
 const { BackTop } = FloatButton;
 const { HeaderTitle, HeaderTagWrapper, HeaderExtraContent } = PageExtra;
 
@@ -293,38 +291,53 @@ class BaseAddForm extends DataCore {
       : null;
 
     return (
-      <PageContainer
-        className={styles.customContainor}
-        avatar={avatarProperties}
-        title={
-          <HeaderTitle
-            title={this.getPresetPageName()}
-            titlePrefix={this.establishPageHeaderTitlePrefix()}
-          />
-        }
-        subTitle={this.buildPageHeaderSubTitle()}
-        tags={
-          <HeaderTagWrapper
-            list={this.establishPageHeaderTagCollectionConfig()}
-          />
-        }
-        extra={this.buildExtraAction()}
-        content={this.renderPresetPageHeaderContent()}
-        extraContent={
-          <HeaderExtraContent
-            {...this.establishPageHeaderExtraContentConfig()}
-          />
-        }
-        // onBack={() => {
-        //   this.backToList();
-        // }}
+      <div
+        style={{
+          background: '#f0f2f5',
+        }}
       >
-        <div className={styles.containorBox} style={{ overflowX: 'hidden' }}>
-          {this.renderPresetFormWrapper()}
-          {this.renderPresetOther()}
-        </div>
-        <BackTop />
-      </PageContainer>
+        <PageContainer
+          header={{
+            ghost: false,
+            style: {
+              backgroundColor: '#fff',
+              paddingBottom: '24px',
+              paddingLeft: '24px',
+              paddingRight: '24px',
+            },
+          }}
+          childrenContentStyle={{
+            padding: '0px',
+          }}
+          avatar={avatarProperties}
+          title={
+            <HeaderTitle
+              title={this.getPresetPageName()}
+              titlePrefix={this.establishPageHeaderTitlePrefix()}
+            />
+          }
+          subTitle={this.buildPageHeaderSubTitle()}
+          tags={
+            <HeaderTagWrapper
+              list={this.establishPageHeaderTagCollectionConfig()}
+            />
+          }
+          extra={this.buildExtraAction()}
+          content={this.renderPresetPageHeaderContent()}
+          extraContent={
+            <HeaderExtraContent
+              {...this.establishPageHeaderExtraContentConfig()}
+            />
+          }
+          // onBack={() => {
+          //   this.backToList();
+          // }}
+        >
+          {this.renderPresetPageBody()}
+
+          <BackTop />
+        </PageContainer>
+      </div>
     );
   }
 }

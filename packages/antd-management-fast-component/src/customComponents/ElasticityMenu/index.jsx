@@ -121,8 +121,6 @@ class ElasticityMenu extends BaseComponent {
             ...o,
           };
 
-          console.log({ key });
-
           if (checkStringIsNullOrWhiteSpace(key)) {
             showSimpleErrorMessage('key is not allow empty');
           }
@@ -157,7 +155,7 @@ class ElasticityMenu extends BaseComponent {
                 text={text || ''}
                 handleClick={() => {
                   if (isFunction(handleMenuClick)) {
-                    handleMenuClick({ handleData: r });
+                    handleMenuClick({ key, handleData: r });
                   }
                 }}
               />

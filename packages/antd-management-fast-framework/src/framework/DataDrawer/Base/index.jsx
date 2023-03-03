@@ -125,7 +125,7 @@ class Base extends BaseWindow {
   };
 
   renderPresetFormContent = () => {
-    return this.buildCardCollection(this.establishCardCollectionConfig());
+    return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };
 
   renderPresetContentContainor = () => {

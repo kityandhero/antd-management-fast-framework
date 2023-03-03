@@ -7,6 +7,7 @@ import {
   isEqual,
   isFunction,
   isUndefined,
+  logDevelop,
   logException,
   logObject,
   logText,
@@ -506,7 +507,9 @@ class InternalFlow extends Core {
     metaExtra = null,
     // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
-  }) => {};
+  }) => {
+    logDevelop(this.componentName, 'afterLoadSuccess do nothing, ');
+  };
 
   afterReloadSuccess = () => {};
 

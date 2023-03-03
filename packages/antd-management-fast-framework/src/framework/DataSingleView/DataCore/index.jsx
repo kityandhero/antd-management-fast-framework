@@ -197,6 +197,10 @@ class DataCore extends BaseView {
     return this.renderPresetForm();
   };
 
+  renderPresetContentArea = () => {
+    return this.renderPresetFormWrapper();
+  };
+
   renderPresetForm = () => {
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
@@ -233,7 +237,7 @@ class DataCore extends BaseView {
   };
 
   renderPresetFormContent = () => {
-    return this.buildCardCollection(this.establishCardCollectionConfig());
+    return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };
 
   renderFurther() {
