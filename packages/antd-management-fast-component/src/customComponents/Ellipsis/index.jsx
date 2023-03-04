@@ -1,12 +1,7 @@
 import { Tooltip } from 'antd';
-import classNames from 'classnames';
 import React, { Component } from 'react';
 
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
-
-import './index.less';
-
-const classPrefix = `amf-ellipsis`;
 
 /* eslint react/no-did-mount-set-state: 0 */
 /* eslint no-param-reassign: 0 */
@@ -214,7 +209,6 @@ class Ellipsis extends Component {
       children,
       lines,
       length,
-      className,
       tooltip,
       fullWidthRecognition,
       title,
@@ -222,14 +216,37 @@ class Ellipsis extends Component {
       ...restProperties
     } = this.props;
 
-    const cls = classNames(classPrefix, className, {
-      [`${classPrefix}_lines`]: lines && !isSupportLineClamp,
-      [`${classPrefix}_lineClamp`]: lines && isSupportLineClamp,
-    });
+    const mainStyle = {
+      display: 'inline-block',
+      width: '100%',
+      overflow: 'hidden',
+      whiteSpace: 'normal',
+      wordBreak: 'break-all',
+      ...(lines
+        ? isSupportLineClamp
+          ? {
+              position: 'relative',
+              display: 'flex',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              lineClamp: lines,
+            }
+          : { position: 'relative' }
+        : {}),
+    };
+
+    const shadowStyle = {
+      position: 'absolute',
+      zIndex: '-999',
+      display: 'block',
+      color: 'transparent',
+      opacity: 0,
+    };
 
     if (!lines && !length) {
       return (
-        <span className={cls} {...restProperties}>
+        <span style={mainStyle} {...restProperties}>
           {children}
         </span>
       );
@@ -239,7 +256,7 @@ class Ellipsis extends Component {
     if (!lines) {
       return (
         <EllipsisText
-          className={cls}
+          style={mainStyle}
           length={length}
           text={children || ''}
           tooltip={tooltip}
@@ -249,17 +266,10 @@ class Ellipsis extends Component {
       );
     }
 
-    const id = `antd-pro-ellipsis-${`${Date.now()}${Math.floor(
-      Math.random() * 100,
-    )}`}`;
-
     // support document.body.style.webkitLineClamp
     if (isSupportLineClamp) {
-      const style = `#${id}{-webkit-line-clamp:${lines};-webkit-box-orient: vertical;}`;
-
       const node = (
-        <div id={id} className={cls} {...restProperties}>
-          <style>{style}</style>
+        <div style={mainStyle} {...restProperties}>
           {children}
         </div>
       );
@@ -281,7 +291,7 @@ class Ellipsis extends Component {
     );
 
     return (
-      <div {...restProperties} ref={this.handleRoot} className={cls}>
+      <div {...restProperties} ref={this.handleRoot} style={mainStyle}>
         <div ref={this.handleContent}>
           {getTooltip({
             tooltip,
@@ -289,16 +299,12 @@ class Ellipsis extends Component {
             title: text,
             children: childNode,
           })}
-          <div
-            className={classNames([`${classPrefix}_lines_shadow`])}
-            ref={this.handleShadowChildren}
-          >
+
+          <div ref={this.handleShadowChildren} style={shadowStyle}>
             {children}
           </div>
-          <div
-            className={classNames([`${classPrefix}_lines_shadow`])}
-            ref={this.handleShadow}
-          >
+
+          <div ref={this.handleShadow} style={shadowStyle}>
             <span>{text}</span>
           </div>
         </div>

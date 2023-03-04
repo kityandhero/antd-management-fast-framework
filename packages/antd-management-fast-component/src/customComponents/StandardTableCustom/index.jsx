@@ -106,7 +106,7 @@ class StandardTableCustom extends PureComponent {
       rowSelection === null ? (
         ''
       ) : (
-        <div>
+        <div style={{ paddingBottom: '10px' }}>
           <Alert
             message={
               <>

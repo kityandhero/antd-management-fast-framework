@@ -111,6 +111,7 @@ class StandardTable extends PureComponent {
             showIcon
           />
         </div>
+
         <Table
           rowKey={rowKey || 'key'}
           rowSelection={rowSelection}

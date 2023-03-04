@@ -1378,7 +1378,7 @@ class Base extends AuthorizationWrapper {
 
     return (
       <Spin spinning={dataLoading || reloading || processing}>
-        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+        <Space style={{ width: '100%' }} direction="vertical" size={14}>
           {itemCount > 0 ? (
             listItem.map((o, index) => {
               return this.buildCardCollectionItem({
@@ -1468,7 +1468,7 @@ class Base extends AuthorizationWrapper {
     }
 
     return (
-      <Space style={{ width: '100%' }} direction="vertical" size={24}>
+      <Space style={{ width: '100%' }} direction="vertical" size={14}>
         {listData.map((item, index) => {
           return this.buildCardCollectionItem({
             mode,
@@ -1553,7 +1553,7 @@ class Base extends AuthorizationWrapper {
           backgroundColor: '#f0f2f5',
         }}
       >
-        <Space style={{ width: '100%' }} direction="vertical" size={24}>
+        <Space style={{ width: '100%' }} direction="vertical" size={14}>
           <Card
             bordered={false}
             className={classNames(`${classPrefix}_containorSearch`)}

@@ -1,4 +1,4 @@
-import { Card, List, Table } from 'antd';
+import { List } from 'antd';
 import { connect } from '@umijs/max';
 
 import {
@@ -27,6 +27,7 @@ import {
   buildFlexRadio,
   buildTagList,
   iconBuilder,
+  RowExpandTable,
 } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
@@ -514,14 +515,13 @@ class PageList extends MultiPage {
         ]);
 
         return (
-          <Card>
-            <Table
-              // scroll={{ x: 1460 }}
-              columns={columns}
-              dataSource={record.mediaItemList}
-              pagination={false}
-            />
-          </Card>
+          <RowExpandTable
+            tableConfig={{
+              columns: columns,
+              dataSource: record.mediaItemList,
+              pagination: false,
+            }}
+          />
         );
       },
     };
@@ -891,7 +891,7 @@ class PageList extends MultiPage {
     },
     {
       dataTarget: fieldData.image,
-      width: 80,
+      width: 100,
       showRichFacade: true,
       facadeConfig: {
         circle: false,
@@ -945,6 +945,7 @@ class PageList extends MultiPage {
     {
       dataTarget: fieldData.articleId,
       width: 140,
+      align: 'center',
       showRichFacade: true,
       canCopy: true,
     },

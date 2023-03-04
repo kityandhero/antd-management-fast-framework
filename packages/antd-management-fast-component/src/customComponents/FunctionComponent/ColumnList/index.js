@@ -131,7 +131,7 @@ export function buildColumnItem({
     }
 
     d.render = (value, record, index) => {
-      let value_ = value;
+      let v = value;
 
       let facadeMode = facadeModeSource || '';
 
@@ -190,10 +190,10 @@ export function buildColumnItem({
         facadeMode === columnFacadeMode.ellipsis
       ) {
         if (isFunction(d.formatValue)) {
-          value_ = d.formatValue(value, record, index);
+          v = d.formatValue(value, record, index);
         }
 
-        if (checkStringIsNullOrWhiteSpace(value_)) {
+        if (checkStringIsNullOrWhiteSpace(v)) {
           return emptyValue;
         }
 
@@ -213,29 +213,31 @@ export function buildColumnItem({
                 extraContent={
                   <>
                     <a
+                      style={{ width: '100%' }}
                       onClick={() => {
-                        copyToClipboard(value_);
+                        copyToClipboard(v);
                       }}
                     >
-                      {replaceWithKeep(value_, '***', 2, 6)}
+                      {replaceWithKeep(v, '***', 2, 6)}
                     </a>
                   </>
                 }
               >
-                {value_ || emptyValue} {copyPrompt || '[点击复制]'}
+                {v || emptyValue} {copyPrompt || '[点击复制]'}
               </EllipsisCustom>
             </>
           );
         }
 
         return (
-          <>
+          <div>
             {(addonBefore || null) == null ? null : addonBefore}
 
             <IconInfo
+              block
               icon={icon || null}
               iconPosition={iconPosition || 'left'}
-              text={value_ || emptyValue}
+              text={v || emptyValue}
               textStyle={valStyle || null}
               textPrefix={valPrefix}
               textPrefixStyle={valPrefixStyle || null}
@@ -247,7 +249,7 @@ export function buildColumnItem({
             />
 
             {(addonAfter || null) == null ? null : addonAfter}
-          </>
+          </div>
         );
       }
 
@@ -257,10 +259,10 @@ export function buildColumnItem({
           ...((color || null) == null ? {} : { color }),
         };
 
-        value_ = checkStringIsNullOrWhiteSpace(value_)
+        v = checkStringIsNullOrWhiteSpace(v)
           ? ''
           : formatDatetime({
-              data: value_,
+              data: v,
               format: datetimeFormatValue,
             }) || '';
 
@@ -271,7 +273,7 @@ export function buildColumnItem({
             <IconInfo
               icon={icon || null}
               iconPosition={iconPosition || 'left'}
-              text={value_ || emptyValue}
+              text={v || emptyValue}
               textStyle={valStyle || null}
               textPrefix={valPrefix}
               textPrefixStyle={valPrefixStyle || null}
@@ -293,7 +295,7 @@ export function buildColumnItem({
           ...((color || null) == null ? {} : { color }),
         };
 
-        value_ = checkStringIsNullOrWhiteSpace(value_) ? '' : value_;
+        v = checkStringIsNullOrWhiteSpace(v) ? '' : v;
 
         return (
           <>
@@ -302,7 +304,7 @@ export function buildColumnItem({
             <IconInfo
               icon={icon || null}
               iconPosition={iconPosition || 'left'}
-              text={formatMoney(value_) || emptyValue}
+              text={formatMoney(v) || emptyValue}
               textStyle={valStyle || null}
               textPrefix={valPrefix}
               textPrefixStyle={valPrefixStyle || null}
@@ -320,7 +322,7 @@ export function buildColumnItem({
 
       if (facadeMode === columnFacadeMode.image) {
         if (isFunction(d.formatValue)) {
-          value_ = d.formatValue(value, record, index);
+          v = d.formatValue(value, record, index);
         }
 
         const { imageWidth, borderRadius, circle, previewSimpleMask } = {
@@ -345,13 +347,13 @@ export function buildColumnItem({
                   }}
                 >
                   <ImageBox
-                    src={value_ || defaultEmptyImage}
+                    src={v || defaultEmptyImage}
                     circle={circle}
                     loadingEffect
                     errorOverlayVisible
                     showErrorIcon={false}
                     alt=""
-                    preview={!checkStringIsNullOrWhiteSpace(value_)}
+                    preview={!checkStringIsNullOrWhiteSpace(v)}
                     previewSimpleMask={previewSimpleMask}
                   />
                 </div>
@@ -364,7 +366,7 @@ export function buildColumnItem({
 
       if (facadeMode === columnFacadeMode.badge) {
         if (isFunction(d.formatValue)) {
-          value_ = d.formatValue(value, record, index);
+          v = d.formatValue(value, record, index);
         }
 
         return (

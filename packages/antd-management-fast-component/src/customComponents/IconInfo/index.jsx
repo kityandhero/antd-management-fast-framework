@@ -1,4 +1,4 @@
-import { Col, Row, Tooltip } from 'antd';
+import { Col, Row, Tooltip, Typography } from 'antd';
 import React, { PureComponent } from 'react';
 
 import {
@@ -11,11 +11,12 @@ import {
 
 import { copyToClipboard } from 'antd-management-fast-common';
 
-import { Ellipsis } from '../Ellipsis';
+const { Text } = Typography;
 
 const defaultValue = {
   direction: 'horizontal',
   responsive: false,
+  block: false,
   tooltip: false,
   tooltipColor: null,
   ellipsis: true,
@@ -46,8 +47,10 @@ class IconInfo extends PureComponent {
   };
 
   getStyle = () => {
+    const { block } = this.props;
+
     return {
-      display: 'inline-block',
+      display: block ? 'block' : 'inline-block',
     };
   };
 
@@ -165,6 +168,29 @@ class IconInfo extends PureComponent {
       }
     }
 
+    const textCore = (
+      <Text
+        ellipsis={{
+          rows: 1,
+          // expandable: true,
+          // suffix: '--William Shakespeare',
+          // onEllipsis: (ellipsis) => {
+          //   console.log('Ellipsis changed:', ellipsis);
+          // },
+        }}
+      >
+        {textMerge}
+      </Text>
+    );
+
+    const textArea = tooltip ? (
+      <Tooltip title={tooltipTitle} color={tooltipColor}>
+        {textCore}
+      </Tooltip>
+    ) : (
+      textCore
+    );
+
     if (direction === 'horizontal') {
       return (
         <>
@@ -186,24 +212,10 @@ class IconInfo extends PureComponent {
                             maxWidth: `${ellipsisMaxWidth}px`,
                           }}
                         >
-                          <Ellipsis
-                            tooltip={tooltip}
-                            lines={1}
-                            title={tooltipTitle}
-                            color={tooltipColor}
-                          >
-                            {textMerge}
-                          </Ellipsis>
+                          {textArea}
                         </div>
                       ) : (
-                        <Ellipsis
-                          tooltip={tooltip}
-                          lines={1}
-                          title={tooltipTitle}
-                          color={tooltipColor}
-                        >
-                          {textMerge}
-                        </Ellipsis>
+                        textArea
                       )
                     ) : (
                       textMerge
@@ -241,24 +253,10 @@ class IconInfo extends PureComponent {
                             maxWidth: `${ellipsisMaxWidth}px`,
                           }}
                         >
-                          <Ellipsis
-                            tooltip={tooltip}
-                            lines={1}
-                            title={tooltipTitle}
-                            color={tooltipColor}
-                          >
-                            {textMerge}
-                          </Ellipsis>
+                          {textArea}
                         </div>
                       ) : (
-                        <Ellipsis
-                          tooltip={tooltip}
-                          lines={1}
-                          title={tooltipTitle}
-                          color={tooltipColor}
-                        >
-                          {textMerge}
-                        </Ellipsis>
+                        textArea
                       )
                     ) : (
                       textMerge
@@ -292,24 +290,10 @@ class IconInfo extends PureComponent {
                           maxWidth: `${ellipsisMaxWidth}px`,
                         }}
                       >
-                        <Ellipsis
-                          tooltip={tooltip}
-                          lines={1}
-                          title={tooltipTitle}
-                          color={tooltipColor}
-                        >
-                          {textMerge}
-                        </Ellipsis>
+                        {textArea}
                       </div>
                     ) : (
-                      <Ellipsis
-                        tooltip={tooltip}
-                        lines={1}
-                        title={tooltipTitle}
-                        color={tooltipColor}
-                      >
-                        {textMerge}
-                      </Ellipsis>
+                      textArea
                     )
                   ) : (
                     textMerge
@@ -354,24 +338,10 @@ class IconInfo extends PureComponent {
                             maxWidth: `${ellipsisMaxWidth}px`,
                           }}
                         >
-                          <Ellipsis
-                            tooltip={tooltip}
-                            lines={1}
-                            title={tooltipTitle}
-                            color={tooltipColor}
-                          >
-                            {textMerge}
-                          </Ellipsis>
+                          {textArea}
                         </div>
                       ) : (
-                        <Ellipsis
-                          tooltip={tooltip}
-                          lines={1}
-                          title={tooltipTitle}
-                          color={tooltipColor}
-                        >
-                          {textMerge}
-                        </Ellipsis>
+                        textArea
                       )
                     ) : (
                       textMerge
@@ -438,24 +408,10 @@ class IconInfo extends PureComponent {
                             maxWidth: `${ellipsisMaxWidth}px`,
                           }}
                         >
-                          <Ellipsis
-                            tooltip={tooltip}
-                            lines={1}
-                            title={tooltipTitle}
-                            color={tooltipColor}
-                          >
-                            {textMerge}
-                          </Ellipsis>
+                          {textArea}
                         </div>
                       ) : (
-                        <Ellipsis
-                          tooltip={tooltip}
-                          lines={1}
-                          title={tooltipTitle}
-                          color={tooltipColor}
-                        >
-                          {textMerge}
-                        </Ellipsis>
+                        textArea
                       )
                     ) : (
                       textMerge
