@@ -78,7 +78,9 @@ class ElasticityButton extends BaseComponent {
               icon={showIcon ? ico : null}
               text={text}
               style={
-                checkStringIsNullOrWhiteSpace(color) ? {} : { color: color }
+                checkStringIsNullOrWhiteSpace(color)
+                  ? { color: 'inherit' }
+                  : { color: color }
               }
             />
           </Button>
@@ -98,7 +100,11 @@ class ElasticityButton extends BaseComponent {
         <IconInfo
           icon={showIcon ? ico : null}
           text={text}
-          style={checkStringIsNullOrWhiteSpace(color) ? {} : { color: color }}
+          style={
+            checkStringIsNullOrWhiteSpace(color)
+              ? { color: 'inherit' }
+              : { color: color }
+          }
         />
       </Button>
     );

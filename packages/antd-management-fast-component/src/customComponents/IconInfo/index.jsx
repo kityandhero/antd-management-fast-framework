@@ -6,6 +6,7 @@ import {
   isFunction,
   isObject,
   isString,
+  logWarn,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -95,6 +96,17 @@ class IconInfo extends PureComponent {
       direction = 'horizontal';
     }
 
+    if (
+      ellipsis &&
+      (isObject(textPrefixStyle) ||
+        isObject(separatorStyle) ||
+        isObject(textStyle))
+    ) {
+      logWarn(
+        `${this.componentName} ellipsis option can not use with textPrefixStyle/separatorStyle/textStyle`,
+      );
+    }
+
     let ellipsisMaxWidth = toNumber(ellipsisMaxWidthSource);
 
     ellipsisMaxWidth = ellipsisMaxWidth <= 0 ? 0 : ellipsisMaxWidth;
@@ -111,24 +123,37 @@ class IconInfo extends PureComponent {
       : text;
 
     const textAfterFormatForShow = isObject(textStyle) ? (
-      <span style={textStyle}>{textAfterFormat || ''}</span>
+      <Text style={{ ...textMerge, ...textStyle }}>
+        {textAfterFormat || ''}
+      </Text>
     ) : (
       textAfterFormat || ''
     );
 
     const textAfterFormatForTooltip = isObject(textStyle) ? (
-      <span style={textStyle}>{text || ''}</span>
+      <Text style={{ ...textMerge, ...textStyle }}>{text || ''}</Text>
     ) : (
       text || ''
     );
 
     if (checkStringIsNullOrWhiteSpace(textPrefix)) {
-      textMerge = textAfterFormatForShow;
+      textMerge = (
+        <Text
+          style={styleMerge}
+          ellipsis={{
+            rows: 1,
+          }}
+        >
+          {textAfterFormatForShow}
+        </Text>
+      );
 
       tooltipTitle = textAfterFormatForTooltip;
     } else {
       const textPrefixAdjust = isObject(textPrefixStyle) ? (
-        <span style={textPrefixStyle}>{textPrefix || ''}</span>
+        <Text style={{ ...textMerge, ...textPrefixStyle }}>
+          {textPrefix || ''}
+        </Text>
       ) : (
         textPrefix || ''
       );
@@ -136,7 +161,9 @@ class IconInfo extends PureComponent {
       const separatorAdjust = checkStringIsNullOrWhiteSpace(separator) ? (
         ''
       ) : isObject(separatorStyle) ? (
-        <span style={separatorStyle}>{separator || ':'}</span>
+        <Text style={{ ...textMerge, ...separatorStyle }}>
+          {separator || ':'}
+        </Text>
       ) : (
         separator || ':'
       );
@@ -146,7 +173,14 @@ class IconInfo extends PureComponent {
         isString(separatorAdjust) &&
         isString(textAfterFormatForShow)
       ) {
-        textMerge = `${textPrefixAdjust}${separatorAdjust}${textAfterFormatForShow}`;
+        textMerge = (
+          <Text
+            style={styleMerge}
+            ellipsis={{
+              rows: 1,
+            }}
+          >{`${textPrefixAdjust}${separatorAdjust}${textAfterFormatForShow}`}</Text>
+        );
 
         tooltipTitle = `${textPrefixAdjust}${separatorAdjust}${textAfterFormatForTooltip}`;
       } else {
@@ -168,23 +202,10 @@ class IconInfo extends PureComponent {
       }
     }
 
-    const textCore = (
-      <Text
-        ellipsis={{
-          rows: 1,
-          // expandable: true,
-          // suffix: '--William Shakespeare',
-          // onEllipsis: (ellipsis) => {
-          //   console.log('Ellipsis changed:', ellipsis);
-          // },
-        }}
-      >
-        {textMerge}
-      </Text>
-    );
+    const textCore = textMerge;
 
     const textArea = tooltip ? (
-      <Tooltip title={tooltipTitle} color={tooltipColor}>
+      <Tooltip title={tooltipTitle} color={tooltipColor} placement="topLeft">
         {textCore}
       </Tooltip>
     ) : (
