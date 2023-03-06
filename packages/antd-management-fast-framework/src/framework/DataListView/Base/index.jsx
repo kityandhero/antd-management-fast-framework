@@ -914,22 +914,6 @@ class Base extends AuthorizationWrapper {
     return null;
   };
 
-  adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
-
-  getTabListAvailable = () => {
-    const tabListAvailable = [];
-
-    for (const o of this.tabList || []) {
-      const v = o.show === undefined ? true : o.show === true;
-
-      if (v) {
-        tabListAvailable.push(o);
-      }
-    }
-
-    return this.adjustTabListAvailable(tabListAvailable);
-  };
-
   getTabActiveKey = () => {
     const { pathname } = getCurrentLocation();
 
@@ -941,9 +925,6 @@ class Base extends AuthorizationWrapper {
 
     return '';
   };
-
-  // eslint-disable-next-line no-unused-vars
-  handleTabChange = (key) => {};
 
   onPageHeaderAvatarLoadError = () => {
     this.setState({

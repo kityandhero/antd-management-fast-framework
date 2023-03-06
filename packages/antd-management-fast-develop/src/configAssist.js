@@ -32,7 +32,9 @@ export function buildConfig(packageImport) {
     antd: {},
     access: {},
     model: {},
-    initialState: {},
+    initialState: {
+      loading: '@/components/PageLoading',
+    },
     request: {},
     dva: {},
     history: { type: 'hash' },

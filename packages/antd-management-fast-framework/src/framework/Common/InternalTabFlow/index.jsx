@@ -1,9 +1,20 @@
+import { checkStringIsNullOrWhiteSpace, logDevelop } from 'easy-soft-utility';
+
+import { getCurrentParameters } from 'antd-management-fast-common';
+
 import { InternalFlow } from '../InternalFlow';
 
 class InternalTabFlow extends InternalFlow {
-  currentKey = '';
-
   tabList = [];
+
+  constructor(properties) {
+    super(properties);
+
+    this.state = {
+      ...this.state,
+      currentTabKey: '',
+    };
+  }
 
   establishTabBarExtraContentLeftConfig = () => {
     return null;
@@ -16,7 +27,24 @@ class InternalTabFlow extends InternalFlow {
   adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
 
   getTabActiveKey = () => {
-    return this.currentKey;
+    const { currentTabKey } = this.state;
+
+    if (checkStringIsNullOrWhiteSpace(currentTabKey)) {
+      const currentKey = this.analysisTabKey(getCurrentParameters());
+
+      if (!checkStringIsNullOrWhiteSpace(currentKey)) {
+        this.setState({ currentTabKey: currentKey });
+      }
+    }
+  };
+
+  analysisTabKey = (o) => {
+    logDevelop(
+      { urlParams: o },
+      'analysisTabKey need overload to analysis tab current key',
+    );
+
+    return '';
   };
 
   getTabListAvailable = () => {
@@ -34,7 +62,9 @@ class InternalTabFlow extends InternalFlow {
   };
 
   handleTabChange = (key) => {
-    this.currentKey = key;
+    // this.currentKey = key;
+
+    this.setState({ currentTabKey: key });
   };
 }
 

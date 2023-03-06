@@ -79,27 +79,27 @@ export default [
             component: './Article/Add',
           },
           {
-            path: '/news/article/edit/:op/:id/:pageKey',
+            path: '/news/article/edit/:op/:id/:pageKey/:tab',
             name: 'edit',
-            hideInMenu: true,
+            // hideInMenu: true,
             component: './Article/Edit',
-            routes: [
-              {
-                path: '/news/article/edit/:op/:id/:pageKey/basicInfo',
-                name: 'basicInfo',
-                component: './Article/Edit/BasicInfo',
-              },
-              {
-                path: '/news/article/edit/:op/:id/:pageKey/contentInfo',
-                name: 'contentInfo',
-                component: './Article/Edit/ContentInfo',
-              },
-              {
-                path: '/news/article/edit/:op/:id/:pageKey/mediaInfo',
-                name: 'mediaInfo',
-                component: './Article/Edit/MediaInfo',
-              },
-            ],
+            // routes: [
+            //   {
+            //     path: '/news/article/edit/:op/:id/:pageKey/basicInfo',
+            //     name: 'basicInfo',
+            //     component: './Article/Edit/BasicInfo',
+            //   },
+            //   {
+            //     path: '/news/article/edit/:op/:id/:pageKey/contentInfo',
+            //     name: 'contentInfo',
+            //     component: './Article/Edit/ContentInfo',
+            //   },
+            //   {
+            //     path: '/news/article/edit/:op/:id/:pageKey/mediaInfo',
+            //     name: 'mediaInfo',
+            //     component: './Article/Edit/MediaInfo',
+            //   },
+            // ],
           },
         ],
       },

@@ -76,8 +76,6 @@ class DataMenuContainer extends AuthorizationWrapper {
     }
   };
 
-  adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
-
   getMenuListAvailable = () => {
     const tabListAvailable = [];
 

@@ -8,7 +8,7 @@ import { BaseComponent } from '../../BaseComponent';
 class TabBarExtraBox extends BaseComponent {
   renderFurther() {
     const { list, split } = this.props;
-    console.log({ list });
+
     const listItem = isArray(list) ? list : isObject(list) ? [list] : [];
 
     if (listItem.length <= 0) {

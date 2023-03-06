@@ -142,12 +142,7 @@ class IconInfo extends PureComponent {
       textMerge = checkStringIsNullOrWhiteSpace(
         textAfterFormatForShow,
       ) ? null : (
-        <Text
-          style={styleMerge}
-          ellipsis={{
-            rows: 1,
-          }}
-        >
+        <Text style={styleMerge} ellipsis>
           {textAfterFormatForShow}
         </Text>
       );
@@ -182,9 +177,7 @@ class IconInfo extends PureComponent {
         textMerge = checkStringIsNullOrWhiteSpace(t) ? null : (
           <Text
             style={styleMerge}
-            ellipsis={{
-              rows: 1,
-            }}
+            ellipsis
           >{`${textPrefixAdjust}${separatorAdjust}${textAfterFormatForShow}`}</Text>
         );
 

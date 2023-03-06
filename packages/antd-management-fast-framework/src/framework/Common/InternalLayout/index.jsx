@@ -68,9 +68,12 @@ class InternalLayout extends InternalBuild {
   renderPresetPageBody = () => {
     logExecute('renderPresetPageBody');
 
+    const { currentTabKey } = this.state;
+
     if (this.contentTabMode) {
       return (
         <ContentTabBox
+          activeKey={currentTabKey}
           list={this.getTabListAvailable()}
           extraContent={{
             left: (
@@ -90,7 +93,7 @@ class InternalLayout extends InternalBuild {
               />
             ),
           }}
-          onTabChange={this.handleTabChange()}
+          onTabChange={this.handleTabChange}
         />
       );
     }

@@ -119,6 +119,15 @@ class Edit extends DataTabContainerSupplement {
     });
   };
 
+  analysisTabKey = (o) => {
+    const { tab } = {
+      tab: '',
+      ...o,
+    };
+
+    return tab || '';
+  };
+
   setOnline = (r) => {
     setOnlineAction({
       target: this,
