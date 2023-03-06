@@ -1,4 +1,5 @@
 import { BodyContent } from './BodyContent';
+import { CardCollectionItemContent } from './CardCollectionItemContent';
 import { ContentBox } from './ContentBox';
 import { ContentTabBox } from './ContentTabBox';
 import { HeaderContent } from './HeaderContent';
@@ -24,6 +25,7 @@ const PageExtra = {
   PageWrapper,
   ContentTabBox,
   TabBarExtraBox,
+  CardCollectionItemContent,
 };
 
 export { PageExtra };

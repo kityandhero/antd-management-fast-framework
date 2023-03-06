@@ -90,7 +90,7 @@ export function renderFormArticleStatusSelect({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
 }) {
   const title = label || unknownLabel;
 
@@ -104,7 +104,7 @@ export function renderFormArticleStatusSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -116,7 +116,7 @@ export function renderFormArticleStatusRadio({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
 }) {
   const title = label || unknownLabel;
 
@@ -130,6 +130,6 @@ export function renderFormArticleStatusRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }

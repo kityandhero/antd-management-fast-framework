@@ -1,4 +1,4 @@
-import { Alert, Button, Tree, TreeSelect } from 'antd';
+import { Alert, Button, Tree } from 'antd';
 import React from 'react';
 import ReactPlayer from 'react-player';
 
@@ -7,7 +7,6 @@ import {
   isArray,
   isFunction,
   showSimpleRuntimeError,
-  transformListData,
 } from 'easy-soft-utility';
 
 import { ColorText } from '../../ColorText';
@@ -20,6 +19,7 @@ import { ElasticityMenu } from '../../ElasticityMenu';
 import { ElasticityMenuHeader } from '../../ElasticityMenuHeader';
 import { ElasticityRadioGroup } from '../../ElasticityRadioGroup';
 import { ElasticityTagList } from '../../ElasticityTagList';
+import { ElasticityTreeSelect } from '../../ElasticityTreeSelect';
 import { FlexRadio } from '../../FlexRadio';
 import { FlexSelect } from '../../FlexSelect';
 import { iconBuilder } from '../../Icon';
@@ -358,46 +358,21 @@ export function buildPlayer({
 export function buildTreeSelect({
   value: v,
   placeholder = '',
-  onChangeCallback = null,
-  otherProps: otherProperties = {},
+  onChange: onChangeCallback = null,
+  innerProps: innerProperties = {},
   listData = [],
   dataConvert = null,
 }) {
-  const adjustOtherProperties = {
-    style: { width: '100%' },
-    showSearch: true,
-    allowClear: true,
-    treeLine: true,
-    placeholder,
-    ...otherProperties,
-
-    value: v || null,
-  };
-
-  const listDataSource = isArray(listData) ? listData : [];
-
-  const listDataAdjust = isFunction(dataConvert)
-    ? transformListData({
-        list: listDataSource,
-        convert: dataConvert,
-        recursiveKey: 'children',
-      })
-    : listDataSource;
-
-  adjustOtherProperties.treeData = listDataAdjust;
-  adjustOtherProperties.onChange = (value, label, extra) => {
-    if (isFunction(onChangeCallback)) {
-      onChangeCallback({
-        value,
-        label,
-        extra,
-        treeData: listDataAdjust,
-        listData,
-      });
-    }
-  };
-
-  return <TreeSelect {...adjustOtherProperties} />;
+  return (
+    <ElasticityTreeSelect
+      value={v}
+      placeholder={placeholder}
+      onChange={onChangeCallback}
+      innerProps={innerProperties}
+      listData={listData}
+      dataConvert={dataConvert}
+    />
+  );
 }
 
 export function buildFlexSelect({
@@ -409,7 +384,7 @@ export function buildFlexSelect({
   dataConvert = null,
   renderItem = null,
   onChange: onChangeCallback = null,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
 }) {
   return (
     <FlexSelect
@@ -421,7 +396,7 @@ export function buildFlexSelect({
       dataConvert={dataConvert}
       renderItem={renderItem}
       onChange={onChangeCallback}
-      otherProps={otherProperties}
+      innerProps={innerProperties}
     />
   );
 }
@@ -439,7 +414,7 @@ export function buildFlexRadio({
   dataConvert = null,
   renderItem = null,
   onChange: onChangeCallback = null,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
 }) {
   return (
     <FlexRadio
@@ -452,7 +427,7 @@ export function buildFlexRadio({
       dataConvert={dataConvert}
       renderItem={renderItem}
       onChange={onChangeCallback}
-      otherProps={otherProperties}
+      innerProps={innerProperties}
     />
   );
 }

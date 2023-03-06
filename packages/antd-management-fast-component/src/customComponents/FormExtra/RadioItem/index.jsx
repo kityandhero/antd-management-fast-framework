@@ -28,7 +28,7 @@ class RadioItem extends BaseComponent {
       onChange: onChangeCallback = null,
       formItemLayout = null,
       required = false,
-      otherProps: otherProperties = null,
+      innerProps: innerProperties = null,
       button = false,
       hidden = false,
     } = this.props;
@@ -62,7 +62,7 @@ class RadioItem extends BaseComponent {
           );
         }
       },
-      ...otherProperties,
+      ...innerProperties,
     };
 
     const resultCheck = checkFromConfig({
@@ -113,7 +113,7 @@ RadioItem.defaultProps = {
   onChange: null,
   formItemLayout: null,
   required: false,
-  otherProps: null,
+  innerProps: null,
   hidden: false,
 };
 

@@ -29,7 +29,6 @@ import {
   buildFormActionItem,
   buildFormButton,
   buildFormCreateTimeField,
-  buildFormDisplay,
   buildFormHiddenWrapper,
   buildFormInput,
   buildFormInputFieldData,
@@ -616,7 +615,7 @@ class InternalFlow extends Core {
     name,
     helper = null,
     icon = iconBuilder.form(),
-    inputProperties = {},
+    innerProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -625,7 +624,7 @@ class InternalFlow extends Core {
       name,
       helper,
       icon,
-      inputProps: inputProperties,
+      innerProps: innerProperties,
       canOperate,
       formItemLayout,
     });
@@ -636,7 +635,7 @@ class InternalFlow extends Core {
     name,
     helper = null,
     icon = iconBuilder.form(),
-    inputProperties = {},
+    innerProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -645,23 +644,18 @@ class InternalFlow extends Core {
       name,
       helper,
       icon,
-      inputProps: inputProperties,
+      innerProps: innerProperties,
       canOperate,
       formItemLayout,
     });
   };
 
-  renderPresetFormDisplay = (
-    label,
-    content,
-    formItemLayout = {},
-    useDisplayBoxStyle = true,
-  ) => {
-    return buildFormDisplay({
+  renderPresetFormDisplay = (label, content, formItemLayout = {}) => {
+    return buildFormOnlyShowText({
       label,
-      content,
+      value: content,
+      helper: '',
       formItemLayout,
-      useDisplayBoxStyle,
     });
   };
 
@@ -673,7 +667,7 @@ class InternalFlow extends Core {
     fieldData,
     required = false,
     icon = iconBuilder.form(),
-    inputProperties = {},
+    innerProperties = {},
     canOperate = true,
     formItemLayout = {},
     reminderPrefix = '输入',
@@ -683,7 +677,7 @@ class InternalFlow extends Core {
       fieldData,
       required,
       icon,
-      inputProps: inputProperties,
+      innerProps: innerProperties,
       canOperate,
       formItemLayout,
       reminderPrefix,
@@ -697,7 +691,7 @@ class InternalFlow extends Core {
     required = false,
     helper = null,
     icon = iconBuilder.form(),
-    inputProperties = {},
+    innerProperties = {},
     canOperate = true,
     formItemLayout = {},
     reminderPrefix = '输入',
@@ -709,7 +703,7 @@ class InternalFlow extends Core {
       required,
       helper,
       icon,
-      inputProps: inputProperties,
+      innerProps: innerProperties,
       canOperate,
       formItemLayout,
       reminderPrefix,
@@ -723,7 +717,7 @@ class InternalFlow extends Core {
     required = false,
     helper = null,
     icon = iconBuilder.form(),
-    inputProperties = {},
+    innerProperties = {},
     canOperate = true,
     formItemLayout = {},
   ) => {
@@ -733,7 +727,7 @@ class InternalFlow extends Core {
       required,
       helper,
       icon,
-      inputProps: inputProperties,
+      innerProps: innerProperties,
       canOperate,
       formItemLayout,
     });
@@ -780,7 +774,7 @@ class InternalFlow extends Core {
       label,
       value,
       helper,
-      textAreaProps: textAreaProperties || { disabled: true },
+      innerProps: textAreaProperties || { disabled: true },
       formItemLayout,
     });
   };
@@ -802,7 +796,7 @@ class InternalFlow extends Core {
     onChangeCallback = null,
     formItemLayout = null,
     required = false,
-    otherProperties = null,
+    innerProperties = null,
   ) => {
     return buildFormRadio({
       label,
@@ -812,7 +806,7 @@ class InternalFlow extends Core {
       onChangeCallback,
       formItemLayout,
       required,
-      otherProps: otherProperties,
+      innerProps: innerProperties,
     });
   };
 

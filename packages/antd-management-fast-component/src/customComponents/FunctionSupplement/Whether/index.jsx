@@ -12,14 +12,15 @@ import {
   whetherList,
 } from 'antd-management-fast-common';
 
-import { buildOptionItem, buildRadioItem } from '../../Function';
 import {
+  buildFlexRadio,
+  buildFlexSelect,
   buildFormRadio,
   buildFormSelect,
   buildSearchFormSelect,
 } from '../../FunctionComponent';
 
-export function refitWhetherList({ withUnlimited = true }) {
+function refitWhetherList({ withUnlimited = true }) {
   const { whetherList: list } = {
     whetherList: whetherList,
   };
@@ -45,86 +46,125 @@ export function getWhetherName({ value, defaultValue = '' }) {
   return item == null ? '未知' : item.name;
 }
 
-export function renderWhetherOption({
-  withUnlimited = true,
-  adjustListDataCallback = null,
-}) {
-  const listData = refitWhetherList({ withUnlimited });
-
-  return buildOptionItem({ list: listData, adjustListDataCallback });
-}
-
-export function renderWhetherRadio({
-  withUnlimited = true,
-  adjustListDataCallback = null,
-}) {
-  const listData = refitWhetherList({ withUnlimited });
-
-  return buildRadioItem({ list: listData, adjustListDataCallback });
-}
-
 export function renderSearchWhetherSelect({
   withUnlimited = true,
   label = '调用时设置',
   name = 'whether',
   helper = null,
 }) {
-  const title = label || unknownLabel;
-
   return buildSearchFormSelect({
-    label: title,
+    label: label || unknownLabel,
     name,
-    options: renderWhetherOption({ withUnlimited }),
     helper,
+    list: refitWhetherList({ withUnlimited }),
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { index, label: name, value: flag, disabled: false, ...o };
+    },
+  });
+}
+
+export function renderCustomWhetherSelect({
+  label = '调用时设置',
+  separator = ':',
+  size = 'middle',
+  onChange: onChangeCallback,
+  innerProps: innerProperties = null,
+}) {
+  return buildFlexSelect({
+    label,
+    defaultValue: null,
+    separator,
+    size,
+    list: refitWhetherList({ withUnlimited: true }),
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { index, label: name, value: flag, disabled: false, ...o };
+    },
+    renderItem: null,
+    onChange: onChangeCallback,
+    innerProps: innerProperties,
   });
 }
 
 export function renderFormWhetherSelect({
   helper = null,
-  onChangeCallback,
+  onChange: onChangeCallback,
   label = '调用时设置',
   formItemLayout = null,
   required = true,
   name = 'whether',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
 }) {
   const title = label || unknownLabel;
 
   return buildFormSelect({
     label: title,
     name,
-    renderItem: () => {
-      return renderWhetherOption({ withUnlimited: false });
-    },
     helper,
-    onChangeCallback,
+    list: refitWhetherList({ withUnlimited: false }),
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { index, label: name, value: flag, disabled: false, ...o };
+    },
+    onChange: onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
+  });
+}
+
+export function renderCustomWhetherRadio({
+  label = '调用时设置',
+  separator = ': ',
+  size = 'middle',
+  onChange: onChangeCallback,
+  innerProps: innerProperties = null,
+}) {
+  return buildFlexRadio({
+    label,
+    defaultValue: null,
+    separator,
+    size,
+    list: refitWhetherList({ withUnlimited: true }),
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { index, label: name, value: flag, disabled: false, ...o };
+    },
+    renderItem: null,
+    onChange: onChangeCallback,
+    innerProps: innerProperties,
   });
 }
 
 export function renderFormWhetherRadio({
   helper = null,
-  onChangeCallback,
+  onChange: onChangeCallback,
   label = '调用时设置',
   formItemLayout = null,
   required = true,
   name = 'whether',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
 }) {
   const title = label || unknownLabel;
 
   return buildFormRadio({
     label: title,
     name,
-    renderItem: () => {
-      return renderWhetherRadio({ withUnlimited: false });
-    },
     helper,
-    onChangeCallback,
+    list: refitWhetherList({ withUnlimited: false }),
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { index, label: name, value: flag, disabled: false, ...o };
+    },
+    onChange: onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }

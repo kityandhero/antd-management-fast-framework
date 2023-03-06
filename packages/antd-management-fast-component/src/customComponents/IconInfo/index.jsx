@@ -12,6 +12,8 @@ import {
 
 import { copyToClipboard } from 'antd-management-fast-common';
 
+import { VerticalBox } from '../VerticalBox';
+
 const { Text } = Typography;
 
 const defaultValue = {
@@ -137,7 +139,9 @@ class IconInfo extends PureComponent {
     );
 
     if (checkStringIsNullOrWhiteSpace(textPrefix)) {
-      textMerge = (
+      textMerge = checkStringIsNullOrWhiteSpace(
+        textAfterFormatForShow,
+      ) ? null : (
         <Text
           style={styleMerge}
           ellipsis={{
@@ -173,7 +177,9 @@ class IconInfo extends PureComponent {
         isString(separatorAdjust) &&
         isString(textAfterFormatForShow)
       ) {
-        textMerge = (
+        const t = `${textPrefixAdjust}${separatorAdjust}${textAfterFormatForShow}`;
+
+        textMerge = checkStringIsNullOrWhiteSpace(t) ? null : (
           <Text
             style={styleMerge}
             ellipsis={{
@@ -202,7 +208,7 @@ class IconInfo extends PureComponent {
       }
     }
 
-    const textCore = textMerge;
+    const textCore = <VerticalBox>{textMerge}</VerticalBox>;
 
     const textArea = tooltip ? (
       <Tooltip title={tooltipTitle} color={tooltipColor} placement="topLeft">

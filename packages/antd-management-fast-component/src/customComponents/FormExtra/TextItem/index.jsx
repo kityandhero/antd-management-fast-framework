@@ -1,4 +1,3 @@
-import { Input } from 'antd';
 import React from 'react';
 
 import {
@@ -11,32 +10,19 @@ import {
 import { BaseComponent } from '../../BaseComponent';
 import { Item } from '../Item';
 
-const { TextArea } = Input;
-
-class TextAreaItem extends BaseComponent {
+class TextItem extends BaseComponent {
   renderFurther() {
     const {
       label,
-      name,
-      required = false,
+      value,
       helper = null,
-      innerProps: innerProperties = {},
-      canOperate = true,
-      formItemLayout = {},
+      formItemLayout = null,
       hidden = false,
     } = this.props;
 
-    const title = label;
-
-    const otherInnerProperties = {
-      placeholder: buildFieldDescription(title, '输入'),
-      disabled: !canOperate,
-      ...innerProperties,
-    };
-
     const resultCheck = checkFromConfig({
-      label: title,
-      name,
+      label,
+      name: '',
       helper,
     });
 
@@ -44,7 +30,6 @@ class TextAreaItem extends BaseComponent {
       <Item
         {...formItemLayout}
         label={resultCheck.label}
-        name={resultCheck.name}
         extra={
           checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
@@ -52,27 +37,25 @@ class TextAreaItem extends BaseComponent {
         }
         rules={[
           {
-            required,
+            required: false,
             message: buildFieldDescription(resultCheck.label),
           },
         ]}
         hidden={hidden}
       >
-        <TextArea {...otherInnerProperties} />
+        {value}
       </Item>
     );
   }
 }
 
-TextAreaItem.defaultProps = {
+TextItem.defaultProps = {
   label: '',
-  name: '',
-  required: false,
+  value: '',
   helper: null,
-  innerProps: {},
-  canOperate: true,
-  formItemLayout: {},
+  list: [],
+  formItemLayout: null,
   hidden: false,
 };
 
-export { TextAreaItem };
+export { TextItem };

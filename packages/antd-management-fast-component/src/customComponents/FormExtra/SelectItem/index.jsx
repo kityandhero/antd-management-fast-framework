@@ -26,7 +26,7 @@ class SelectItem extends BaseComponent {
       onChange: onChangeCallback = null,
       formItemLayout = null,
       required = false,
-      otherProps: otherProperties = null,
+      innerProps: innerProperties = null,
       hidden = false,
     } = this.props;
 
@@ -55,7 +55,7 @@ class SelectItem extends BaseComponent {
           );
         }
       },
-      ...otherProperties,
+      ...innerProperties,
     };
 
     const resultCheck = checkFromConfig({
@@ -106,7 +106,7 @@ SelectItem.defaultProps = {
   onChange: null,
   formItemLayout: null,
   required: false,
-  otherProps: null,
+  innerProps: null,
   hidden: false,
 };
 

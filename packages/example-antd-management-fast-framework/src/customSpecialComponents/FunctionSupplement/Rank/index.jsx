@@ -93,7 +93,7 @@ export function renderCustomRankSelect({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexSelect({
@@ -108,7 +108,7 @@ export function renderCustomRankSelect({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -120,7 +120,7 @@ export function renderFormRankSelect({
   formItemLayout = null,
   required = true,
   name = 'rankId',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -139,7 +139,7 @@ export function renderFormRankSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -149,7 +149,7 @@ export function renderCustomRankRadio({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexRadio({
@@ -164,7 +164,7 @@ export function renderCustomRankRadio({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -176,7 +176,7 @@ export function renderFormRankRadio({
   formItemLayout = null,
   required = true,
   name = 'rankId',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -195,6 +195,6 @@ export function renderFormRankRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }

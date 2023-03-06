@@ -25,7 +25,7 @@ class FlexSelect extends BaseComponent {
       dataConvert = null,
       renderItem = null,
       onChange: onChangeCallback = null,
-      otherProps: otherProperties = null,
+      innerProps: innerProperties = null,
     } = this.props;
 
     const listAdjust =
@@ -55,7 +55,7 @@ class FlexSelect extends BaseComponent {
           );
         }
       },
-      ...otherProperties,
+      ...innerProperties,
     };
 
     return (
@@ -103,7 +103,7 @@ FlexSelect.defaultProps = {
   dataConvert: null,
   renderItem: null,
   onChange: null,
-  otherProps: null,
+  innerProps: null,
 };
 
 export { FlexSelect };

@@ -693,12 +693,12 @@ class BasicInfo extends TabPageBase {
               ),
             },
             {
-              lg: 24,
+              lg: 12,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.subtitle,
             },
             {
-              lg: 18,
+              lg: 12,
               type: cardConfig.contentItemType.videoUpload,
               fieldData: fieldData.video,
               video,
@@ -1410,7 +1410,7 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.switch,
               fieldData: fieldData.switch,
               require: false,
-              otherProps: {
+              innerProps: {
                 checkedChildren: '开启',
                 unCheckedChildren: '关闭',
                 onChange: (v) => {
@@ -1470,7 +1470,7 @@ class BasicInfo extends TabPageBase {
               fieldData: fieldData.syntaxHighlighter,
               value: `SELECT * FROM (SELECT row_number() over (ORDER BY [article].[sort] DESC, [article].[create_time] DESC) AS rowId, ISNULL([article].[id],0) AS [ArticleId] FROM article WHERE 1=1 AND [article].[platform_id] = 1504634917793959936 AND [article].[business_mode] = 400 AND [article].[status] IN ('0','10') ) as t where rowId between 1 and 10`,
               language: 'sql',
-              otherProps: {
+              innerProps: {
                 showLineNumbers: false,
                 wrapLines: false,
               },

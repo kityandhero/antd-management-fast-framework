@@ -13,8 +13,6 @@ import { iconBuilder } from '../../Icon';
 import { Item } from '../Item';
 
 class OnlyShowInputItem extends BaseComponent {
-  ignoreComparePropertyKeyCollection = ['icon'];
-
   renderFurther() {
     const {
       label,

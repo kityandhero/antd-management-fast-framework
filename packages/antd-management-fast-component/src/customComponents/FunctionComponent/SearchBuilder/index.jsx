@@ -1,70 +1,33 @@
-import { Form, Input, InputNumber, Select } from 'antd';
 import React from 'react';
 
-import {
-  buildFieldDescription,
-  buildFieldHelper,
-  checkFromConfig,
-  checkStringIsNullOrWhiteSpace,
-} from 'easy-soft-utility';
-
+import { FormExtra } from '../../FormExtra';
 import { iconBuilder } from '../../Icon';
 
-const { Item: FormItem } = Form;
+const { InputItem, InputNumberItem, SelectItem } = FormExtra;
 
 export function buildSearchInput({
   label,
   name,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps: inputProperties = {},
+  innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
+  reminderPrefix = '输入',
+  hidden = false,
 }) {
-  const title = label;
-
-  const otherInputProperties = {
-    addonBefore: icon,
-    placeholder: buildFieldDescription(title, '输入'),
-    ...inputProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  if (!canOperate) {
-    return (
-      <FormItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-      >
-        <Input {...otherInputProperties} />
-      </FormItem>
-    );
-  }
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-    >
-      <Input {...otherInputProperties} />
-    </FormItem>
+    <InputItem
+      label={label}
+      name={name}
+      helper={helper}
+      icon={icon}
+      innerProps={innerProperties}
+      canOperate={canOperate}
+      formItemLayout={formItemLayout}
+      reminderPrefix={reminderPrefix}
+      hidden={hidden}
+    />
   );
 }
 
@@ -73,72 +36,45 @@ export function buildSearchInputNumber({
   name,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps: inputProperties = {},
+  innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
-  const title = label;
-
-  const otherInputProperties = {
-    addonBefore: icon,
-    style: { width: '100%' },
-    min: 0,
-    placeholder: buildFieldDescription(title, '输入'),
-    disabled: !canOperate,
-    ...inputProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-    >
-      <InputNumber {...otherInputProperties} />
-    </FormItem>
+    <InputNumberItem
+      label={label}
+      name={name}
+      helper={helper}
+      icon={icon}
+      innerProps={innerProperties}
+      canOperate={canOperate}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 
-export function buildSearchFormSelect({ label, name, options, helper = null }) {
-  const resultCheck = checkFromConfig({
-    label,
-    name,
-    helper,
-  });
-
+export function buildSearchFormSelect({
+  label,
+  name,
+  helper = null,
+  list = [],
+  dataConvert = null,
+  renderItem = null,
+  onChange: onChangeCallback = null,
+  innerProps: innerProperties = null,
+  hidden = false,
+}) {
   return (
-    <FormItem
-      label={resultCheck.label}
-      name={resultCheck.name}
-      rules={[
-        {
-          required: false,
-          message: buildFieldDescription(resultCheck.label, '选择'),
-        },
-      ]}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-    >
-      <Select
-        placeholder={buildFieldDescription(resultCheck.label, '选择')}
-        style={{ width: '100%' }}
-      >
-        {options}
-      </Select>
-    </FormItem>
+    <SelectItem
+      label={label}
+      name={name}
+      list={list}
+      dataConvert={dataConvert}
+      renderItem={renderItem}
+      helper={helper}
+      onChange={onChangeCallback}
+      innerProps={innerProperties}
+      hidden={hidden}
+    />
   );
 }

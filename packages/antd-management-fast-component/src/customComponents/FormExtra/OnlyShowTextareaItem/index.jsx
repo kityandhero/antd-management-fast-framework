@@ -9,35 +9,27 @@ import {
 } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../BaseComponent';
-import { iconBuilder } from '../../Icon';
 import { Item } from '../Item';
 
-class InputItem extends BaseComponent {
-  ignoreComparePropertyKeyCollection = ['icon'];
+const { TextArea } = Input;
 
+class OnlyShowTextareaItem extends BaseComponent {
   renderFurther() {
     const {
       label,
-      name,
-      required,
-      helper,
-      icon,
-      innerProps: innerProperties,
-      canOperate,
-      formItemLayout,
-      reminderPrefix,
+      value,
+      helper = null,
+      innerProps: innerProperties = {},
+      formItemLayout = {},
       hidden = false,
     } = this.props;
 
     const title = label;
 
     const otherInnerProperties = {
-      addonBefore: icon,
-      placeholder: canOperate
-        ? buildFieldDescription(title, reminderPrefix)
-        : '暂无数据',
-      disabled: !canOperate,
+      placeholder: `暂无${label}信息`,
       ...innerProperties,
+      disabled: true,
     };
 
     const resultCheck = checkFromConfig({
@@ -58,29 +50,26 @@ class InputItem extends BaseComponent {
         }
         rules={[
           {
-            required,
+            required: false,
             message: buildFieldDescription(resultCheck.label),
           },
         ]}
         hidden={hidden}
       >
-        <Input {...otherInnerProperties} />
+        <TextArea {...otherInnerProperties} value={value} />
       </Item>
     );
   }
 }
 
-InputItem.defaultProps = {
+OnlyShowTextareaItem.defaultProps = {
   label: '',
-  name: '',
-  required: false,
+  value: '',
   helper: null,
-  icon: iconBuilder.form(),
   innerProps: {},
   canOperate: true,
   formItemLayout: {},
-  reminderPrefix: '输入',
   hidden: false,
 };
 
-export { InputItem };
+export { OnlyShowTextareaItem };

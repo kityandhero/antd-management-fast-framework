@@ -96,7 +96,7 @@ export function renderCustomMediaTypeSelect({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexSelect({
@@ -112,7 +112,7 @@ export function renderCustomMediaTypeSelect({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -124,7 +124,7 @@ export function renderFormMediaTypeSelect({
   formItemLayout = null,
   required = true,
   name = 'mediaType',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -143,7 +143,7 @@ export function renderFormMediaTypeSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -154,7 +154,7 @@ export function renderCustomMediaTypeRadio({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexRadio({
@@ -170,7 +170,7 @@ export function renderCustomMediaTypeRadio({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -182,7 +182,7 @@ export function renderFormMediaTypeRadio({
   formItemLayout = null,
   required = true,
   name = 'mediaType',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -201,6 +201,6 @@ export function renderFormMediaTypeRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }

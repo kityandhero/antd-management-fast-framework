@@ -13,7 +13,7 @@ class SyntaxHighlighterItem extends BaseComponent {
       helper = null,
       formItemLayout = {},
       requiredForShow = false,
-      otherProps: otherProperties = {},
+      innerProps: innerProperties = {},
       hidden = false,
     } = this.props;
 
@@ -25,7 +25,7 @@ class SyntaxHighlighterItem extends BaseComponent {
           <SyntaxHighlighter
             language={language}
             value={value}
-            other={otherProperties || {}}
+            other={innerProperties || {}}
           />
         }
         requiredForShow={requiredForShow}
@@ -43,7 +43,7 @@ SyntaxHighlighterItem.defaultProps = {
   helper: null,
   formItemLayout: {},
   requiredForShow: false,
-  otherProps: {},
+  innerProps: {},
   hidden: false,
 };
 

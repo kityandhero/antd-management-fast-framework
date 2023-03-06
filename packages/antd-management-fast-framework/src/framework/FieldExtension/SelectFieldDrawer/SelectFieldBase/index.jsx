@@ -72,7 +72,7 @@ class SelectFieldBase extends SupplementWrapper {
         value={(fieldText || '') === '' ? null : fieldText}
         helper={helper || null}
         icon={iconBuilder.form()}
-        inputProps={{
+        innerProps={{
           placeholder: `${fieldPlaceholder}${fieldTitle}`,
           readOnly: true,
           addonAfter: (

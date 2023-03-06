@@ -99,7 +99,7 @@ export function renderCustomArticleRenderTypeSelect({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexSelect({
@@ -114,7 +114,7 @@ export function renderCustomArticleRenderTypeSelect({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -126,7 +126,7 @@ export function renderFormArticleRenderTypeSelect({
   formItemLayout = null,
   required = true,
   name = 'renderType',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -145,7 +145,7 @@ export function renderFormArticleRenderTypeSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -155,7 +155,7 @@ export function renderCustomArticleRenderTypeRadio({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexRadio({
@@ -170,7 +170,7 @@ export function renderCustomArticleRenderTypeRadio({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -182,7 +182,7 @@ export function renderFormArticleRenderTypeRadio({
   formItemLayout = null,
   required = true,
   name = 'renderType',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -201,6 +201,6 @@ export function renderFormArticleRenderTypeRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }

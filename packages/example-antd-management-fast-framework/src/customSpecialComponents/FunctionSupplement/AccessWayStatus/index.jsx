@@ -95,7 +95,7 @@ export function renderCustomAccessWayStatusSelect({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexSelect({
@@ -110,7 +110,7 @@ export function renderCustomAccessWayStatusSelect({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -122,7 +122,7 @@ export function renderFormAccessWayStatusSelect({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -141,7 +141,7 @@ export function renderFormAccessWayStatusSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -151,7 +151,7 @@ export function renderCustomAccessWayStatusRadio({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexRadio({
@@ -166,7 +166,7 @@ export function renderCustomAccessWayStatusRadio({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -178,7 +178,7 @@ export function renderFormAccessWayStatusRadio({
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -197,6 +197,6 @@ export function renderFormAccessWayStatusRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }

@@ -12,36 +12,29 @@ import { BaseComponent } from '../../BaseComponent';
 import { iconBuilder } from '../../Icon';
 import { Item } from '../Item';
 
-class InputItem extends BaseComponent {
-  ignoreComparePropertyKeyCollection = ['icon'];
+const { Password } = Input;
 
+class PasswordItem extends BaseComponent {
   renderFurther() {
     const {
       label,
       name,
-      required,
       helper,
       icon,
-      innerProps: innerProperties,
-      canOperate,
       formItemLayout,
-      reminderPrefix,
+      required,
+      innerProps: innerProperties,
       hidden = false,
     } = this.props;
 
-    const title = label;
-
     const otherInnerProperties = {
       addonBefore: icon,
-      placeholder: canOperate
-        ? buildFieldDescription(title, reminderPrefix)
-        : '暂无数据',
-      disabled: !canOperate,
+      placeholder: buildFieldDescription(label, '输入'),
       ...innerProperties,
     };
 
     const resultCheck = checkFromConfig({
-      label: title,
+      label,
       name,
       helper,
     });
@@ -64,23 +57,21 @@ class InputItem extends BaseComponent {
         ]}
         hidden={hidden}
       >
-        <Input {...otherInnerProperties} />
+        <Password {...otherInnerProperties} />
       </Item>
     );
   }
 }
 
-InputItem.defaultProps = {
+PasswordItem.defaultProps = {
   label: '',
   name: '',
-  required: false,
   helper: null,
+  required: false,
   icon: iconBuilder.form(),
   innerProps: {},
-  canOperate: true,
   formItemLayout: {},
-  reminderPrefix: '输入',
   hidden: false,
 };
 
-export { InputItem };
+export { PasswordItem };

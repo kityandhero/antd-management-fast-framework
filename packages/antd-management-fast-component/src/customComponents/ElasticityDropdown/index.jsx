@@ -62,7 +62,7 @@ class ElasticityDropdown extends BaseComponent {
       );
     }
 
-    const otherProperties = {};
+    const innerProperties = {};
     const placementAdjust = toLowerFirst(placementDropdown || 'bottomRight');
 
     const overlayClassNameAdjust =
@@ -97,7 +97,7 @@ class ElasticityDropdown extends BaseComponent {
             handleData: r,
             processing,
             iconProcessing,
-            ...otherProperties,
+            ...innerProperties,
           }}
         />
       );
@@ -139,7 +139,7 @@ class ElasticityDropdown extends BaseComponent {
 
     const popover = (
       <Popover
-        {...otherProperties}
+        {...innerProperties}
         placement={placementAdjust}
         arrow={arrow}
         content={

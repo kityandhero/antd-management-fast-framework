@@ -22,7 +22,7 @@ class InputNumberItem extends BaseComponent {
       required = false,
       helper = null,
       icon = iconBuilder.form(),
-      inputNumberProps: inputNumberProperties = {},
+      innerProps: innerProperties = {},
       canOperate = true,
       formItemLayout = {},
       hidden = true,
@@ -30,13 +30,13 @@ class InputNumberItem extends BaseComponent {
 
     const title = label;
 
-    const otherInputNumberProperties = {
+    const otherInnerProperties = {
       addonBefore: icon,
       style: { width: '100%' },
       min: 0,
       placeholder: buildFieldDescription(title, '输入'),
       disabled: !canOperate,
-      ...inputNumberProperties,
+      ...innerProperties,
     };
 
     const resultCheck = checkFromConfig({
@@ -63,7 +63,7 @@ class InputNumberItem extends BaseComponent {
         ]}
         hidden={hidden}
       >
-        <InputNumber {...otherInputNumberProperties} />
+        <InputNumber {...otherInnerProperties} />
       </Item>
     );
   }
@@ -75,7 +75,7 @@ InputNumberItem.defaultProps = {
   required: false,
   helper: null,
   icon: iconBuilder.form(),
-  inputNumberProps: {},
+  innerProps: {},
   canOperate: true,
   formItemLayout: {},
   hidden: false,

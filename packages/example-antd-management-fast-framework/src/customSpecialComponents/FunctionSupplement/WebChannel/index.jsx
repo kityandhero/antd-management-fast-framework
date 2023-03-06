@@ -95,7 +95,7 @@ export function renderCustomWebChannelSelect({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexSelect({
@@ -110,7 +110,7 @@ export function renderCustomWebChannelSelect({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -122,7 +122,7 @@ export function renderFormWebChannelSelect({
   formItemLayout = null,
   required = true,
   name = 'channel',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -141,7 +141,7 @@ export function renderFormWebChannelSelect({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -151,7 +151,7 @@ export function renderCustomWebChannelRadio({
   separator = ':',
   size = 'middle',
   onChangeCallback,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   return buildFlexRadio({
@@ -166,7 +166,7 @@ export function renderCustomWebChannelRadio({
       });
     },
     onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -178,7 +178,7 @@ export function renderFormWebChannelRadio({
   formItemLayout = null,
   required = true,
   name = 'channel',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
@@ -197,6 +197,6 @@ export function renderFormWebChannelRadio({
     onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }

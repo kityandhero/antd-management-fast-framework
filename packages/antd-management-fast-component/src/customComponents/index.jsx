@@ -22,6 +22,7 @@ export * from './ElasticityMenu';
 export * from './ElasticityMenuHeader';
 export * from './ElasticityRadioGroup';
 export * from './ElasticityTagList';
+export * from './ElasticityTreeSelect';
 export * from './Ellipsis';
 export * from './EllipsisCustom';
 export * from './EverySpace';

@@ -427,7 +427,7 @@ class Base extends AuthorizationWrapper {
       icon,
       showHelper,
       component,
-      otherProps,
+      innerProps,
     } = {
       lg: 6,
       md: 12,
@@ -442,7 +442,7 @@ class Base extends AuthorizationWrapper {
       },
       showHelper: false,
       component: null,
-      otherProps: null,
+      innerProps: null,
       ...contentItem,
     };
 
@@ -465,7 +465,7 @@ class Base extends AuthorizationWrapper {
               fieldData.name,
               showHelper ? fieldData.helper : '',
               icon || iconBuilder.form(),
-              { ...contentItem.otherProps },
+              { ...contentItem.innerProps },
             )
           : null}
 
@@ -476,7 +476,7 @@ class Base extends AuthorizationWrapper {
               fieldData.helper,
               icon || iconBuilder.form(),
               {
-                ...contentItem.otherProps,
+                ...contentItem.innerProps,
               },
             )
           : null}
@@ -487,7 +487,7 @@ class Base extends AuthorizationWrapper {
             name={fieldData.name}
             required={false}
             helper={fieldData.helper}
-            datePickerProps={{ ...otherProps }}
+            datePickerProps={{ ...innerProps }}
           />
         ) : null}
 
@@ -495,7 +495,7 @@ class Base extends AuthorizationWrapper {
           ? this.buildSearchCardRangePickerCore(
               contentItem.dateRangeFieldName,
               {
-                ...otherProps,
+                ...innerProps,
               },
             )
           : null}
@@ -506,8 +506,8 @@ class Base extends AuthorizationWrapper {
             value={contentItem.value}
             helper={fieldData.helper || ''}
             icon={contentItem.icon || iconBuilder.form()}
-            inputProps={{
-              ...contentItem.otherProps,
+            innerProps={{
+              ...contentItem.innerProps,
               disabled: true,
             }}
           />

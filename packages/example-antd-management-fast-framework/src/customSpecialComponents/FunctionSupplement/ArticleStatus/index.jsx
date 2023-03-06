@@ -90,8 +90,8 @@ export function renderCustomArticleStatusSelect({
   label = '状态',
   separator = ':',
   size = 'middle',
-  onChangeCallback,
-  otherProps: otherProperties = null,
+  onChange: onChangeCallback,
+  innerProps: innerProperties = null,
 }) {
   return buildFlexSelect({
     label,
@@ -107,19 +107,19 @@ export function renderCustomArticleStatusSelect({
     },
     renderItem: null,
     onChange: onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
 export function renderFormArticleStatusSelect({
   metaData = null,
   helper = null,
-  onChangeCallback,
+  onChange: onChangeCallback,
   label = '状态',
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
 }) {
   const title = label || unknownLabel;
 
@@ -137,7 +137,7 @@ export function renderFormArticleStatusSelect({
     onChange: onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
@@ -146,8 +146,8 @@ export function renderCustomArticleStatusRadio({
   label = '状态',
   separator = ': ',
   size = 'middle',
-  onChangeCallback,
-  otherProps: otherProperties = null,
+  onChange: onChangeCallback,
+  innerProps: innerProperties = null,
 }) {
   return buildFlexRadio({
     label,
@@ -155,45 +155,42 @@ export function renderCustomArticleStatusRadio({
     separator,
     size,
     list: refitArticleStatusList({ metaData, withUnlimited: true }),
-    // eslint-disable-next-line no-unused-vars
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
-      return { label: name, value: flag, disabled: false, ...o };
+      return { index, label: name, value: flag, disabled: false, ...o };
     },
     renderItem: null,
     onChange: onChangeCallback,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }
 
 export function renderFormArticleStatusRadio({
   metaData = null,
   helper = null,
-  onChangeCallback,
+  onChange: onChangeCallback,
   label = '状态',
   formItemLayout = null,
   required = true,
   name = 'status',
-  otherProps: otherProperties = null,
-  adjustListDataCallback = null,
+  innerProps: innerProperties = null,
 }) {
   const title = label || unknownLabel;
 
   return buildFormRadio({
     label: title,
     name,
-    renderItem: () => {
-      return renderArticleStatusRadio({
-        metaData,
-        withUnlimited: false,
-        adjustListDataCallback,
-      });
-    },
     helper,
-    onChangeCallback,
+    list: refitArticleStatusList({ metaData, withUnlimited: false }),
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { index, label: name, value: flag, disabled: false, ...o };
+    },
+    onChange: onChangeCallback,
     formItemLayout,
     required,
-    otherProps: otherProperties,
+    innerProps: innerProperties,
   });
 }

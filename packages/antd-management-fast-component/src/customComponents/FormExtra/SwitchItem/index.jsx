@@ -19,7 +19,7 @@ class SwitchItem extends BaseComponent {
       name,
       required = false,
       helper = null,
-      otherProps: otherProperties = {},
+      innerProps: innerProperties = {},
       canOperate = true,
       formItemLayout = {},
       hidden = false,
@@ -29,7 +29,7 @@ class SwitchItem extends BaseComponent {
 
     const otherSwitchProperties = {
       disabled: !canOperate,
-      ...otherProperties,
+      ...innerProperties,
     };
 
     const resultCheck = checkFromConfig({
@@ -75,7 +75,7 @@ SwitchItem.defaultProps = {
   name: '',
   required: false,
   helper: null,
-  otherProps: {},
+  innerProps: {},
   canOperate: true,
   formItemLayout: {},
   hidden: false,

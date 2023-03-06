@@ -1,28 +1,9 @@
-import { Form, Input } from 'antd';
 import React from 'react';
-
-import {
-  buildFieldDescription,
-  buildFieldHelper,
-  checkFromConfig,
-  checkStringIsNullOrWhiteSpace,
-  datetimeFormat,
-  formatDatetime,
-  isObject,
-  logObject,
-  showSimpleRuntimeError,
-} from 'easy-soft-utility';
 
 import { ElasticityButton } from '../../ElasticityButton';
 import { FormExtra } from '../../FormExtra';
 import { HiddenWrapper } from '../../HiddenWrapper';
 import { iconBuilder } from '../../Icon';
-
-import styles from './index.less';
-
-const { Item: FormItem } = Form;
-
-const { TextArea, Password } = Input;
 
 const {
   DatePickerItem,
@@ -36,6 +17,12 @@ const {
   TimePickerItem,
   SwitchItem,
   RadioItem,
+  TextItem,
+  PasswordItem,
+  NowTimeItem,
+  OnlyShowDatetimeItem,
+  ActionItem,
+  Item,
 } = FormExtra;
 
 export function buildFormOnlyShowInput({
@@ -43,7 +30,7 @@ export function buildFormOnlyShowInput({
   value,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps: inputProperties = { disabled: true },
+  innerProps: innerProperties = { disabled: true },
   formItemLayout = {},
 }) {
   return (
@@ -52,7 +39,7 @@ export function buildFormOnlyShowInput({
       value={value}
       helper={helper}
       icon={icon}
-      inputProps={inputProperties}
+      innerProps={innerProperties}
       formItemLayout={formItemLayout}
     />
   );
@@ -64,7 +51,7 @@ export function buildFormInputNumber({
   required = false,
   helper = null,
   icon = iconBuilder.form(),
-  inputNumberProps: inputNumberProperties = {},
+  innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
@@ -75,7 +62,7 @@ export function buildFormInputNumber({
       required={required}
       helper={helper}
       icon={icon}
-      inputNumberProps={inputNumberProperties}
+      innerProps={innerProperties}
       canOperate={canOperate}
       formItemLayout={formItemLayout}
     />
@@ -86,7 +73,7 @@ export function buildFormTextArea({
   name,
   required = false,
   helper = null,
-  textAreaProps: textAreaProperties = {},
+  innerProps: textAreaProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
@@ -96,7 +83,7 @@ export function buildFormTextArea({
       name={name}
       required={required}
       helper={helper}
-      textAreaProps={textAreaProperties}
+      innerProps={textAreaProperties}
       canOperate={canOperate}
       formItemLayout={formItemLayout}
     />
@@ -153,32 +140,13 @@ export function buildFormText({
   helper = null,
   formItemLayout = {},
 }) {
-  const title = label;
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name: '',
-    helper,
-  });
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required: false,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      {value}
-    </FormItem>
+    <TextItem
+      label={label}
+      value={value}
+      helper={helper}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 
@@ -186,41 +154,18 @@ export function buildFormOnlyShowTextarea({
   label,
   value,
   helper = null,
-  textAreaProps: textAreaProperties = { disabled: true },
+  innerProps: innerProperties = {},
   formItemLayout = {},
 }) {
-  const title = label;
-
-  const otherTextAreaProperties = {
-    placeholder: '暂无数据',
-    value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
-    ...textAreaProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name: '',
-    helper,
-  });
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required: false,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <TextArea {...otherTextAreaProperties} />
-    </FormItem>
+    <TextAreaItem
+      label={label}
+      value={value}
+      helper={helper}
+      canOperate={false}
+      innerProps={innerProperties}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 
@@ -248,17 +193,17 @@ export function buildFormActionItem({ component, formItemLayout = {} }) {
   }
 
   return (
-    <FormItem {...{ ...formItemLayout, colon: false }} label={<div />}>
+    <ActionItem action={component} formItemLayout={formItemLayout}>
       {component}
-    </FormItem>
+    </ActionItem>
   );
 }
 
 export function buildFormButton({ config, formItemLayout = {} }) {
   return (
-    <FormItem {...{ ...formItemLayout, colon: false }} label={<div />}>
+    <Item {...{ ...formItemLayout, colon: false }} label={<div />}>
       <ElasticityButton {...config} />
-    </FormItem>
+    </Item>
   );
 }
 
@@ -269,7 +214,7 @@ export function buildFormOnlyShowSyntaxHighlighter({
   helper = null,
   formItemLayout = {},
   requiredForShow = false,
-  otherProps: otherProperties = {},
+  innerProps: innerProperties = {},
 }) {
   return (
     <SyntaxHighlighterItem
@@ -279,7 +224,7 @@ export function buildFormOnlyShowSyntaxHighlighter({
       helper={helper}
       formItemLayout={formItemLayout}
       requiredForShow={requiredForShow}
-      otherProps={otherProperties}
+      innerProps={innerProperties}
     />
   );
 }
@@ -289,7 +234,7 @@ export function buildFormSwitch({
   name,
   required = false,
   helper = null,
-  otherProps: otherProperties = {},
+  innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
   hidden = false,
@@ -300,7 +245,7 @@ export function buildFormSwitch({
       name={name}
       helper={helper}
       required={required}
-      otherProps={otherProperties}
+      innerProps={innerProperties}
       canOperate={canOperate}
       formItemLayout={formItemLayout}
       hidden={hidden}
@@ -314,66 +259,21 @@ export function buildFormPassword({
   required = false,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps: inputProperties = {},
-  canOperate = true,
+  innerProps: innerProperties = {},
+  hidden = false,
   formItemLayout = {},
 }) {
-  const title = label;
-
-  const otherInputProperties = {
-    addonBefore: icon,
-    placeholder: buildFieldDescription(title, '输入'),
-    ...inputProperties,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  if (!canOperate) {
-    return (
-      <FormItem
-        {...formItemLayout}
-        label={resultCheck.label}
-        name={resultCheck.name}
-        extra={
-          checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-            ? null
-            : buildFieldHelper(resultCheck.helper)
-        }
-        rules={[
-          {
-            required,
-            message: buildFieldDescription(resultCheck.label),
-          },
-        ]}
-      >
-        <Password {...otherInputProperties} />
-      </FormItem>
-    );
-  }
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      <Password {...otherInputProperties} />
-    </FormItem>
+    <PasswordItem
+      label={label}
+      name={name}
+      helper={helper}
+      required={required}
+      icon={icon}
+      innerProps={innerProperties}
+      formItemLayout={formItemLayout}
+      hidden={hidden}
+    />
   );
 }
 
@@ -382,65 +282,14 @@ export function buildFormOnlyShowText({
   value,
   helper = null,
   formItemLayout = {},
-  requiredForShow = false,
 }) {
-  const title = label;
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name: '',
-    helper,
-  });
-
   return (
-    <FormItem
-      {...formItemLayout}
-      label={resultCheck.label}
-      className={requiredForShow ? styles.formItemOnlyShowText : null}
-      // style={{ marginBottom: 0 }}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-      rules={[
-        {
-          required: false,
-          message: buildFieldDescription(resultCheck.label),
-        },
-      ]}
-    >
-      {value}
-    </FormItem>
-  );
-}
-
-export function buildFormDisplay({
-  label,
-  content,
-  formItemLayout = {},
-  useDisplayBoxStyle = true,
-}) {
-  const title = label;
-
-  let labelText = 'object';
-
-  if (isObject(title)) {
-    const text = 'label必须为文本';
-
-    showSimpleRuntimeError(text);
-
-    logObject(label);
-  } else {
-    labelText = title;
-  }
-
-  return (
-    <FormItem {...formItemLayout} label={labelText}>
-      <div style={useDisplayBoxStyle ? { padding: '4px 0 4px 0' } : {}}>
-        {content}
-      </div>
-    </FormItem>
+    <TextItem
+      label={label}
+      value={value}
+      helper={helper}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 
@@ -454,7 +303,7 @@ export function buildFormInput({
   required = false,
   helper = null,
   icon = iconBuilder.form(),
-  inputProps: inputProperties = {},
+  innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
   reminderPrefix = '输入',
@@ -467,7 +316,7 @@ export function buildFormInput({
       required={required}
       helper={helper}
       icon={icon}
-      inputProps={inputProperties}
+      innerProps={innerProperties}
       canOperate={canOperate}
       formItemLayout={formItemLayout}
       reminderPrefix={reminderPrefix}
@@ -480,7 +329,7 @@ export function buildFormInputFieldData({
   fieldData,
   required = false,
   icon = iconBuilder.form(),
-  inputProps: inputProperties = {},
+  innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
   reminderPrefix = '输入',
@@ -500,11 +349,27 @@ export function buildFormInputFieldData({
       required={required}
       helper={helper}
       icon={icon}
-      inputProps={inputProperties}
+      innerProps={innerProperties}
       canOperate={canOperate}
       formItemLayout={formItemLayout}
       reminderPrefix={reminderPrefix}
       hidden={hidden}
+    />
+  );
+}
+
+export function buildFormCreateTimeField({
+  name = 'createTime',
+  helper = '数据的添加时间',
+  label = '添加时间',
+  formItemLayout = null,
+}) {
+  return (
+    <OnlyShowDatetimeItem
+      label={label}
+      name={name}
+      helper={helper}
+      formItemLayout={formItemLayout}
     />
   );
 }
@@ -515,109 +380,27 @@ export function buildFormUpdateTimeField({
   label = '最后修改时间',
   formItemLayout = null,
 }) {
-  const title = label || '最后修改时间';
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
   return (
-    <FormItem
-      {...(formItemLayout || {})}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-    >
-      <Input
-        addonBefore={iconBuilder.form()}
-        disabled
-        placeholder={buildFieldDescription(resultCheck.label)}
-      />
-    </FormItem>
-  );
-}
-
-export function buildFormCreateTimeField({
-  name = 'createTime',
-  helper = '数据的添加时间',
-  label = '添加时间',
-  formItemLayout = null,
-}) {
-  const title = label || '添加时间';
-
-  const resultCheck = checkFromConfig({
-    label: title,
-    name,
-    helper,
-  });
-
-  return (
-    <FormItem
-      {...(formItemLayout || {})}
-      label={resultCheck.label}
-      name={resultCheck.name}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-    >
-      <Input
-        addonBefore={iconBuilder.form()}
-        disabled
-        placeholder={buildFieldDescription(resultCheck.label)}
-      />
-    </FormItem>
+    <OnlyShowDatetimeItem
+      label={label}
+      name={name}
+      helper={helper}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 
 export function buildFormNowTimeField({
-  label = '添加时间',
-  helper = '数据的添加时间',
+  label = '当前时间',
+  helper = '操作的当前时间',
   formItemLayout = null,
 }) {
-  const {
-    label: labelChanged,
-    helper: helperChanged,
-    formItemLayout: formItemLayoutChanged,
-  } = {
-    helper: helper || '数据的添加时间',
-    label: label || '添加时间',
-    formItemLayout: formItemLayout || null,
-  };
-
-  const resultCheck = checkFromConfig({
-    label: labelChanged || '添加时间',
-    name: '',
-    helper: helperChanged,
-  });
-
   return (
-    <FormItem
-      {...(formItemLayoutChanged || {})}
-      label={resultCheck.label}
-      extra={
-        checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-          ? null
-          : buildFieldHelper(resultCheck.helper)
-      }
-    >
-      <Input
-        value={formatDatetime({
-          data: new Date(),
-          format: datetimeFormat.yearMonthDayHourMinute,
-        })}
-        addonBefore={iconBuilder.form()}
-        disabled
-        placeholder={buildFieldDescription(resultCheck.label)}
-      />
-    </FormItem>
+    <NowTimeItem
+      label={label}
+      helper={helper}
+      formItemLayout={formItemLayout}
+    />
   );
 }
 
@@ -631,7 +414,7 @@ export function buildFormSelect({
   onChange: onChangeCallback = null,
   formItemLayout = null,
   required = false,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   hidden = false,
 }) {
   return (
@@ -645,7 +428,7 @@ export function buildFormSelect({
       onChange={onChangeCallback}
       formItemLayout={formItemLayout}
       required={required}
-      otherProps={otherProperties}
+      innerProps={innerProperties}
       hidden={hidden}
     />
   );
@@ -661,7 +444,7 @@ export function buildFormRadio({
   onChangeCallback = null,
   formItemLayout = null,
   required = false,
-  otherProps: otherProperties = null,
+  innerProps: innerProperties = null,
   hidden = false,
 }) {
   return (
@@ -675,7 +458,7 @@ export function buildFormRadio({
       onChangeCallback={onChangeCallback}
       formItemLayout={formItemLayout}
       required={required}
-      otherProps={otherProperties}
+      innerProps={innerProperties}
       hidden={hidden}
     />
   );
