@@ -98,6 +98,11 @@ class PageList extends MultiPage {
         break;
       }
 
+      case 'contentInfo': {
+        this.goToEditContent(handleData);
+        break;
+      }
+
       case 'setOnline': {
         this.setOnline(handleData);
         break;
@@ -317,6 +322,12 @@ class PageList extends MultiPage {
     const { articleId } = record;
 
     this.goToPath(`/news/article/edit/load/${articleId}/key/basicInfo`);
+  };
+
+  goToEditContent = (record) => {
+    const { articleId } = record;
+
+    this.goToPath(`/news/article/edit/load/${articleId}/key/contentInfo`);
   };
 
   establishExtraActionConfig = () => {
@@ -829,6 +840,14 @@ class PageList extends MultiPage {
           text: '编辑[侧拉]',
           hidden: !this.checkAuthority(
             accessWayCollection.article.updateBasicInfo.permission,
+          ),
+        },
+        {
+          key: 'contentInfo',
+          icon: iconBuilder.edit(),
+          text: '编辑图文',
+          hidden: !this.checkAuthority(
+            accessWayCollection.article.updateContentInfo.permission,
           ),
         },
         {

@@ -31,18 +31,17 @@ class InternalTabFlow extends InternalFlow {
     if (checkStringIsNullOrWhiteSpace(this.currentInitialTabKey)) {
       const routeParameters = getCurrentParameters();
 
-      console.log({ routeParameters });
-
-      this.currentInitialTabKey = this.analysisTabKey(routeParameters);
+      this.currentInitialTabKey =
+        this.analysisInitialTabActiveKey(routeParameters);
     }
 
     return this.currentInitialTabKey;
   };
 
-  analysisTabKey = (o) => {
+  analysisInitialTabActiveKey = (o) => {
     logDevelop(
       { urlParams: o },
-      'analysisTabKey need overload to analysis tab current initial active key',
+      'analysisInitialTabActiveKey need overload to analysis tab current initial active key',
     );
 
     return '';

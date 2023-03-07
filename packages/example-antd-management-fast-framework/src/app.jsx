@@ -7,7 +7,7 @@ import { Link } from '@umijs/max';
 
 import { showSimpleErrorMessage } from 'easy-soft-utility';
 
-import { getUseNprogress } from 'antd-management-fast-common';
+import { analysisRoute, getUseNprogress } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import {
   Bootstrap,
@@ -226,23 +226,21 @@ export async function getInitialState() {
 //   );
 // }
 
-// export function onRouteChange({
-//   location,
-//   clientRoutes,
-//   routes,
-//   action,
-//   basename,
-// }) {
-//   console.log({
-//     location,
-//     clientRoutes,
-//     routes,
-//     action,
-//     basename,
-//   });
-
-//   setCurrentLocation(location);
-// }
+export function onRouteChange({
+  location,
+  clientRoutes,
+  routes,
+  action,
+  basename,
+}) {
+  analysisRoute({
+    location,
+    clientRoutes,
+    routes,
+    action,
+    basename,
+  });
+}
 
 export const layout = ({ initialState, setInitialState }) => {
   const layoutSettings = getLayoutSetting();

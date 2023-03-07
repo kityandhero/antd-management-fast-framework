@@ -119,13 +119,11 @@ class Edit extends DataTabContainerSupplement {
     });
   };
 
-  analysisTabKey = (o) => {
+  analysisInitialTabActiveKey = (o) => {
     const { tab } = {
       tab: '',
       ...o,
     };
-
-    console.log({ tab });
 
     return tab || '';
   };
@@ -333,8 +331,6 @@ class Edit extends DataTabContainerSupplement {
       disabled: false,
       hidden: false,
       handleMenuClick: ({ key, handleData }) => {
-        console.log({ key, handleData });
-
         switch (key) {
           case 'click1': {
             showSimpleInfoMessage(`click ${key}`);
