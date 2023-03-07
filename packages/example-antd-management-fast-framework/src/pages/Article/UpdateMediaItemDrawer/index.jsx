@@ -31,7 +31,7 @@ class Index extends BaseUpdateDrawer {
     this.state = {
       ...this.state,
 
-      pageName: '修改媒体',
+      pageTitle: '修改媒体',
       loadApiPath: 'article/getMediaItem',
       submitApiPath: 'article/updateMediaItem',
       image: '',

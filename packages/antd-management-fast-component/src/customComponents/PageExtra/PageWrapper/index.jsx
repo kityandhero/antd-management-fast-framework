@@ -2,12 +2,18 @@ import { FloatButton } from 'antd';
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
-import { isEmptyObject, isFunction, isObject } from 'easy-soft-utility';
+import {
+  isEmptyObject,
+  isFunction,
+  isObject,
+  isString,
+} from 'easy-soft-utility';
 
 import { BaseComponent } from '../../BaseComponent';
 import { decorateAvatar } from '../../DecorateAvatar';
 import { HeaderContent } from '../HeaderContent';
 import { HeaderExtraContent } from '../HeaderExtraContent';
+import { HeaderSubTitle } from '../HeaderSubTitle';
 import { HeaderTagWrapper } from '../HeaderTagWrapper';
 import { HeaderTitle } from '../HeaderTitle';
 
@@ -71,8 +77,10 @@ class PageWrapper extends BaseComponent {
               padding: '0px',
             }}
             avatar={avatarProperties}
-            title={<HeaderTitle title={title} titlePrefix={titlePrefix} />}
-            subTitle={subTitle}
+            title={<HeaderTitle title={title} titlePrefix={titlePrefix} sp />}
+            subTitle={
+              isString(subTitle) ? <HeaderSubTitle text={subTitle} /> : subTitle
+            }
             tags={<HeaderTagWrapper list={tagList} />}
             extra={extraAction}
             content={<HeaderContent {...(contentConfig || {})} />}

@@ -11,6 +11,9 @@ class PageHeaderContent extends BaseComponent {
       <>
         <FlexBox
           flexAuto="right"
+          style={{
+            paddingTop: '6px',
+          }}
           left={
             <Avatar
               size="small"
@@ -33,6 +36,7 @@ class PageHeaderContent extends BaseComponent {
                 <div
                   style={{
                     fontSize: '20px',
+                    paddingTop: '4px',
                   }}
                 >{`早安，${name}，祝你开心每一天！`}</div>
               }
@@ -41,7 +45,7 @@ class PageHeaderContent extends BaseComponent {
                   style={{
                     fontSize: '14px',
                     color: '#333',
-                    paddingBottom: '10px',
+                    paddingBottom: '4px',
                   }}
                 >
                   河南省驻马店市委宣传部 — 驻马店官方发布CMS平台

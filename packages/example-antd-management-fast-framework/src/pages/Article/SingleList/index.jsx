@@ -68,7 +68,7 @@ class SingleList extends SinglePage {
       ...this.state,
 
       pageSize: 8,
-      pageName: '文章单页列表',
+      pageTitle: '文章单页列表',
       paramsKey: accessWayCollection.article.singleList.permission,
       loadApiPath: 'article/singleList',
       listViewMode: listViewConfig.viewMode.table,

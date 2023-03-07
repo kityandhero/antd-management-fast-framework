@@ -35,7 +35,7 @@ class ChangeImageSortModal extends Base {
     this.state = {
       ...this.state,
 
-      pageName: '变更图片顺序',
+      pageTitle: '变更图片顺序',
       loadApiPath: 'article/listImage',
       submitApiPath: 'article/updateImageSort',
       width: 700,

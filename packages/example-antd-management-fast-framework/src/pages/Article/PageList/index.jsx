@@ -76,7 +76,7 @@ class PageList extends MultiPage {
     this.state = {
       ...this.state,
       showSelect: true,
-      pageName: '文章列表',
+      pageTitle: '文章列表',
       paramsKey: accessWayCollection.article.pageList.paramsKey,
       listViewMode: listViewConfig.viewMode.table,
       pageSize: 8,

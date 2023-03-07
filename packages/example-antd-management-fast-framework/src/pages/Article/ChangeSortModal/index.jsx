@@ -20,7 +20,7 @@ class ChangeSortModal extends BaseUpdateModal {
     this.state = {
       ...this.state,
 
-      pageName: '排序值设置',
+      pageTitle: '排序值设置',
       loadApiPath: 'article/get',
       submitApiPath: 'article/updateSort',
     };

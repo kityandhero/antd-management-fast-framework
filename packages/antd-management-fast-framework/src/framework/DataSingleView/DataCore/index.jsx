@@ -1,10 +1,7 @@
 import { Avatar, Button, Form, Tooltip } from 'antd';
 import React from 'react';
 
-import {
-  getDerivedStateFromPropertiesForUrlParameters,
-  pageHeaderRenderType,
-} from 'antd-management-fast-common';
+import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
 import {
   avatarImageLoadResultCollection,
   iconBuilder,
@@ -66,63 +63,16 @@ class DataCore extends BaseView {
     return null;
   };
 
-  establishPageHeaderContentGridConfig = () => {
-    return [];
-  };
-
-  establishPageHeaderContentCollectionGridConfig = () => {
-    return {
-      type: pageHeaderRenderType.descriptionGrid,
-      list: this.establishPageHeaderContentGridConfig(),
-    };
-  };
-
-  establishPageHeaderContentParagraphCollectionConfig = () => {
-    return [];
-  };
-
-  establishPageHeaderContentParagraphConfig = () => {
-    return {
-      type: pageHeaderRenderType.paragraph,
-      list: this.establishPageHeaderContentParagraphCollectionConfig(),
-    };
-  };
-
-  establishPageHeaderContentActionCollectionConfig = () => {
-    return [];
-  };
-
-  establishPageHeaderContentActionConfig = () => {
-    return {
-      type: pageHeaderRenderType.action,
-      list: this.establishPageHeaderContentActionCollectionConfig(),
-    };
-  };
-
-  establishPageHeaderContentConfig = () => {
-    return {
-      list: [
-        this.establishPageHeaderContentCollectionGridConfig(),
-        this.establishPageHeaderContentParagraphConfig(),
-        this.establishPageHeaderContentActionConfig(),
-      ],
-    };
-  };
-
   establishPageHeaderTagCollectionConfig = () => [];
 
   establishPageHeaderExtraContentConfig = () => null;
 
-  establishPageHeaderTitlePrefix = () => {
-    return '';
-  };
-
   pageHeaderLogo = () => <Avatar shape="square" icon={iconBuilder.plus()} />;
 
   getPresetPageName = () => {
-    const { pageName } = this.state;
+    const { pageTitle } = this.state;
 
-    return pageName;
+    return pageTitle;
   };
 
   buildExtraBackAction = () => {

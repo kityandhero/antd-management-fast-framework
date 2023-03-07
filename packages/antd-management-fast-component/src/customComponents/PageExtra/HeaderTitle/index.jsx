@@ -30,13 +30,15 @@ class HeaderTitle extends BaseComponent {
           maxWidth: '700px',
           height: '32px',
           overflow: 'hidden',
-          fontSize: '18px',
           lineHeight: '32px',
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
         }}
       >
         <IconInfo
+          style={{
+            fontSize: '18px',
+          }}
           textPrefix={titlePrefix}
           text={
             <>
@@ -45,6 +47,9 @@ class HeaderTitle extends BaseComponent {
               ))}
             </>
           }
+          separatorStyle={{
+            paddingRight: '5px',
+          }}
           ellipsis
         />
       </span>

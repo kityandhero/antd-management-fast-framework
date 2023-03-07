@@ -112,7 +112,7 @@ class Edit extends DataTabContainerSupplement {
     metaOriginalData,
   }) => {
     this.setState({
-      pageName: getValueByKey({
+      pageTitle: getValueByKey({
         data: metaData,
         key: fieldData.title.name,
       }),

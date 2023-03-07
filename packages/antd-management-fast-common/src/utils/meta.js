@@ -33,9 +33,9 @@ export function defaultCoreState() {
 export function defaultCommonState() {
   const data = {
     ...defaultCoreState(),
-
     loadApiPath: '',
-    pageName: '',
+    pageTitle: '',
+    pageSubTitle: '',
     metaData: null,
     metaExtra: null,
     metaListData: [],

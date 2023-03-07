@@ -35,8 +35,8 @@ class ContentBox extends BaseComponent {
         overflowX: 'auto',
         overflowY: 'hidden',
         ...(siderPosition === 'left'
-          ? { marginRight: '24px' }
-          : { marginLeft: '24px' }),
+          ? { marginRight: '16px' }
+          : { marginLeft: '16px' }),
       },
       ...(checkObjectIsNullOrEmpty(siderConfig) ? {} : siderConfig),
     };
@@ -51,7 +51,7 @@ class ContentBox extends BaseComponent {
     };
 
     const inner =
-      siderBody == null || siderBody._self == null ? (
+      siderBody == null ? (
         contentBody
       ) : (
         <Layout {...layoutConfigAdjust}>

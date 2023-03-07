@@ -125,7 +125,7 @@ class IconInfo extends PureComponent {
       : text;
 
     const textAfterFormatForShow = isObject(textStyle) ? (
-      <Text style={{ ...textMerge, ...textStyle }}>
+      <Text style={{ ...styleMerge, ...textStyle }}>
         {textAfterFormat || ''}
       </Text>
     ) : (
@@ -133,7 +133,7 @@ class IconInfo extends PureComponent {
     );
 
     const textAfterFormatForTooltip = isObject(textStyle) ? (
-      <Text style={{ ...textMerge, ...textStyle }}>{text || ''}</Text>
+      <Text style={{ ...styleMerge, ...textStyle }}>{text || ''}</Text>
     ) : (
       text || ''
     );
@@ -150,7 +150,7 @@ class IconInfo extends PureComponent {
       tooltipTitle = textAfterFormatForTooltip;
     } else {
       const textPrefixAdjust = isObject(textPrefixStyle) ? (
-        <Text style={{ ...textMerge, ...textPrefixStyle }}>
+        <Text style={{ ...styleMerge, ...textPrefixStyle }}>
           {textPrefix || ''}
         </Text>
       ) : (
@@ -160,7 +160,7 @@ class IconInfo extends PureComponent {
       const separatorAdjust = checkStringIsNullOrWhiteSpace(separator) ? (
         ''
       ) : isObject(separatorStyle) ? (
-        <Text style={{ ...textMerge, ...separatorStyle }}>
+        <Text style={{ ...styleMerge, ...separatorStyle }}>
           {separator || ':'}
         </Text>
       ) : (

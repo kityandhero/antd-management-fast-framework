@@ -188,12 +188,6 @@ export const contentConfig = {
   },
 };
 
-export const pageHeaderRenderType = {
-  descriptionGrid: 'descriptionGrid',
-  paragraph: 'paragraph ',
-  action: 'action ',
-};
-
 export const listViewConfig = {
   dataContainerExtraActionBuildType: {
     generalButton: 'generalButton',

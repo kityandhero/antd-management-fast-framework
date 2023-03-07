@@ -33,7 +33,7 @@ class Index extends BaseAddDrawer {
 
       dataLoading: false,
       loadRemoteRequestAfterMount: false,
-      pageName: '新增媒体',
+      pageTitle: '新增媒体',
       submitApiPath: 'article/addMediaItem',
       mediaType: mediaTypeCollection.paragraph,
       image: '',

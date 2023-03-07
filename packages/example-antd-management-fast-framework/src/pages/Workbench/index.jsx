@@ -46,7 +46,7 @@ class Index extends MultiPage {
 
     this.state = {
       ...this.state,
-      pageName: '工作台',
+      pageTitle: '工作台',
       listTitle: '新近文章列表',
       loadApiPath: 'article/pageList',
       tableScroll: { x: 1020 },
@@ -151,6 +151,14 @@ class Index extends MultiPage {
     const { articleId } = record;
 
     this.goToPath(`/news/article/edit/load/${articleId}/key/basicInfo`);
+  };
+
+  establishPageHeaderTitlePrefix = () => {
+    return '标题';
+  };
+
+  establishPageHeaderSubTitle = () => {
+    return '副标题';
   };
 
   establishPageContentLayoutSiderConfig = () => {
@@ -287,7 +295,14 @@ class Index extends MultiPage {
     },
   ];
 
-  renderPresetPageHeaderContent = () => {
+  // establishPageHeaderContentParagraphConfig = () => {
+  //   return {
+  //     paragraph:
+  //       '经过上述讨论， 文章标题，到底应该如何实现。 总结的来说， 一般来说， 这样看来， 佚名在不经意间这样说过，感激每一个新的挑战，因为它会锻造你的意志和品格。这句话语虽然很短，但令我浮想联翩。 我们一般认为，抓住了问题的关键，其他一切则会迎刃而解。 就我个人来说，文章标题对我的意义，不能不说非常重大。 我们不得不面对一个非常尴尬的事实，那就是， 克劳斯·莫瑟爵士曾经提到过，教育需要花费钱，而无知也是一样。这不禁令我深思。',
+  //   };
+  // };
+
+  establishPageHeaderContentComponentConfig = () => {
     const { currentOperator } = this.state;
 
     const avatar = getValueByKey({
@@ -301,10 +316,12 @@ class Index extends MultiPage {
       defaultValue: '--',
     });
 
-    return <PageHeaderContent avatar={avatar} name={name} />;
+    return {
+      component: <PageHeaderContent avatar={avatar} name={name} />,
+    };
   };
 
-  renderPresetSiderTopArea = () => {
+  establishSiderTopAreaConfig = () => {
     return <ShortcutPanel />;
   };
 }

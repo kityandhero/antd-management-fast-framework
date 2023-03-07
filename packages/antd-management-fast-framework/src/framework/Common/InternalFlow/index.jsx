@@ -1000,6 +1000,32 @@ class InternalFlow extends Core {
     return {};
   };
 
+  establishPageHeaderTitlePrefix = () => '';
+
+  establishPageHeaderSubTitle = () => '';
+
+  establishPageHeaderContentGridConfig = () => {
+    return {
+      gridConfig: null,
+    };
+  };
+
+  establishPageHeaderContentParagraphConfig = () => {
+    return { paragraph: null };
+  };
+
+  establishPageHeaderContentActionConfig = () => {
+    return {
+      actions: [],
+    };
+  };
+
+  establishPageHeaderContentComponentConfig = () => {
+    return {
+      component: null,
+    };
+  };
+
   establishExtraActionConfig = () => null;
 
   establishExtraActionGroupConfig = () => null;

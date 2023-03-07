@@ -77,6 +77,12 @@ class InternalBuild extends InternalTabFlow {
       >
         <Space style={{ width: '100%' }} direction="vertical" size={16}>
           {listData.map((item, index) => {
+            if (React.isValidElement(item)) {
+              return (
+                <Fragment key={`item_component_${index}`}>{item}</Fragment>
+              );
+            }
+
             return this.buildCardCollectionItem({
               mode,
               justify: justifyGeneral,

@@ -38,7 +38,6 @@ import {
   getCurrentLocation,
   getDerivedStateFromPropertiesForUrlParameters,
   listViewConfig,
-  pageHeaderRenderType,
   searchCardConfig,
 } from 'antd-management-fast-common';
 import {
@@ -212,9 +211,9 @@ class Base extends AuthorizationWrapper {
   afterSetSearchFormFieldsValue = (value) => {};
 
   getPresetPageName = () => {
-    const { pageName } = this.state;
+    const { pageTitle } = this.state;
 
-    return pageName;
+    return pageTitle;
   };
 
   getColumnWrapper = () => {
@@ -1009,53 +1008,6 @@ class Base extends AuthorizationWrapper {
     return null;
   };
 
-  establishPageHeaderTitlePrefix = () => {
-    return '';
-  };
-
-  establishPageHeaderContentGridCollectionConfig = () => {
-    return [];
-  };
-
-  establishPageHeaderContentGridConfig = () => {
-    return {
-      type: pageHeaderRenderType.descriptionGrid,
-      list: this.establishPageHeaderContentGridCollectionConfig(),
-    };
-  };
-
-  establishPageHeaderContentParagraphCollectionConfig = () => {
-    return [];
-  };
-
-  establishPageHeaderContentParagraphConfig = () => {
-    return {
-      type: pageHeaderRenderType.paragraph,
-      list: this.establishPageHeaderContentParagraphCollectionConfig(),
-    };
-  };
-
-  establishPageHeaderContentActionCollectionConfig = () => {
-    return [];
-  };
-
-  establishPageHeaderContentActionConfig = () => {
-    return {
-      type: pageHeaderRenderType.paragraph,
-      list: this.establishPageHeaderContentActionCollectionConfig(),
-    };
-  };
-
-  establishPageHeaderContentConfig = () => {
-    return {
-      list: [
-        this.establishPageHeaderContentGridConfig(),
-        this.establishPageHeaderContentParagraphConfig(),
-        this.establishPageHeaderContentActionConfig(),
-      ],
-    };
-  };
-
   establishPaginationViewStyle = () => {
     return {
       paddingTop: 16,
@@ -1415,52 +1367,6 @@ class Base extends AuthorizationWrapper {
     showSimpleRuntimeError(text);
 
     return null;
-  };
-
-  buildCardCollectionArea = (config = null) => {
-    if (config == null) {
-      return null;
-    }
-
-    const configData = {
-      mode: this.contentWrapperType,
-      justify: 'start',
-      align: 'top',
-      list: [],
-      ...config,
-    };
-    const {
-      mode,
-      justify: justifyGeneral,
-      align: alignGeneral,
-      list,
-    } = configData;
-
-    const listData = [];
-
-    if (isArray(list)) {
-      for (const [ci, co] of list.entries()) {
-        listData.push(co);
-
-        if (ci !== list.length - 1) {
-          listData.push('');
-        }
-      }
-    }
-
-    return (
-      <Space style={{ width: '100%' }} direction="vertical" size={14}>
-        {listData.map((item, index) => {
-          return this.buildCardCollectionItem({
-            mode,
-            justify: justifyGeneral,
-            align: alignGeneral,
-            config: item,
-            key: index,
-          });
-        })}
-      </Space>
-    );
   };
 
   renderPresetContentArea = () => {

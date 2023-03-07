@@ -4,6 +4,7 @@ import { ContentBox } from './ContentBox';
 import { ContentTabBox } from './ContentTabBox';
 import { HeaderContent } from './HeaderContent';
 import { HeaderExtraContent } from './HeaderExtraContent';
+import { HeaderSubTitle } from './HeaderSubTitle';
 import { HeaderTagWrapper } from './HeaderTagWrapper';
 import { HeaderTitle } from './HeaderTitle';
 import { HelpContent } from './HelpContent';
@@ -26,6 +27,7 @@ const PageExtra = {
   ContentTabBox,
   TabBarExtraBox,
   CardCollectionItemContent,
+  HeaderSubTitle,
 };
 
 export { PageExtra };

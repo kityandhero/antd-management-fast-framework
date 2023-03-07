@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { logExecute } from 'easy-soft-utility';
+import { isArray, logExecute } from 'easy-soft-utility';
 
 import { PageExtra } from 'antd-management-fast-component';
 
@@ -19,13 +19,17 @@ const {
 
 class InternalLayout extends InternalBuild {
   renderPresetSiderTopArea = () => {
-    const config = this.establishSiderTopAreaConfig();
+    const configOrComponent = this.establishSiderTopAreaConfig();
 
-    if (config == null) {
+    if (configOrComponent == null) {
       return null;
     }
 
-    return this.buildCardCollectionArea(config);
+    if (React.isValidElement(configOrComponent)) {
+      return configOrComponent;
+    }
+
+    return this.buildCardCollectionArea(configOrComponent);
   };
 
   renderPresetSiderBottomArea = () => {
@@ -40,8 +44,8 @@ class InternalLayout extends InternalBuild {
 
   renderPresetContentArea = () => {};
 
-  renderPresetPageContent = () => {
-    logExecute('renderPresetPageContent');
+  renderPresetPageBodyContent = () => {
+    logExecute('renderPresetPageBodyContent');
 
     return (
       <ContentBox
@@ -98,7 +102,7 @@ class InternalLayout extends InternalBuild {
 
     return (
       <BodyContent
-        body={this.renderPresetPageContent()}
+        body={this.renderPresetPageBodyContent()}
         bottom={this.renderPresetOther()}
       />
     );
@@ -113,6 +117,19 @@ class InternalLayout extends InternalBuild {
       avatarImageLoadResult,
     } = this.state;
 
+    let contentGridConfig = this.establishPageHeaderContentGridConfig();
+
+    if (isArray(contentGridConfig)) {
+      contentGridConfig = { gridConfig: { list: contentGridConfig } };
+    }
+
+    const contentConfig = {
+      ...this.establishPageHeaderContentParagraphConfig(),
+      ...contentGridConfig,
+      ...this.establishPageHeaderContentActionConfig(),
+      ...this.establishPageHeaderContentComponentConfig(),
+    };
+
     return (
       <PageWrapper
         dataLoading={dataLoading}
@@ -120,7 +137,7 @@ class InternalLayout extends InternalBuild {
         showHeader={this.showPageHeader}
         title={this.getPresetPageName()}
         titlePrefix={this.establishPageHeaderTitlePrefix()}
-        subTitle={this.buildPageHeaderSubTitle()}
+        subTitle={this.establishPageHeaderSubTitle()}
         showAvatar={showPageHeaderAvatar}
         avatarConfig={this.establishPageHeaderAvatarConfig()}
         avatarDefaultIcon={defaultAvatarIcon}
@@ -130,7 +147,7 @@ class InternalLayout extends InternalBuild {
         }}
         tagList={this.establishPageHeaderTagCollectionConfig()}
         extraAction={this.buildExtraAction()}
-        content={this.establishPageHeaderContentConfig()}
+        contentConfig={contentConfig}
         extraContentConfig={this.establishPageHeaderExtraContentConfig()}
       >
         {this.renderPresetPageBody()}

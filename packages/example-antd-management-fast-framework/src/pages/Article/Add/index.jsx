@@ -39,7 +39,7 @@ class Index extends BaseAddForm {
       ...this.state,
 
       dataLoading: false,
-      pageName: '发布文章',
+      pageTitle: '发布文章',
       submitApiPath: 'article/addBasicInfo',
       image: '',
       fadeBoxShow: true,
