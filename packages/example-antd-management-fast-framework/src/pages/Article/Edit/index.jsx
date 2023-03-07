@@ -125,6 +125,8 @@ class Edit extends DataTabContainerSupplement {
       ...o,
     };
 
+    console.log({ tab });
+
     return tab || '';
   };
 

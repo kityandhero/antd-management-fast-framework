@@ -68,12 +68,10 @@ class InternalLayout extends InternalBuild {
   renderPresetPageBody = () => {
     logExecute('renderPresetPageBody');
 
-    const { currentTabKey } = this.state;
-
     if (this.contentTabMode) {
       return (
         <ContentTabBox
-          activeKey={currentTabKey}
+          defaultActiveKey={this.getInitialTabActiveKey()}
           list={this.getTabListAvailable()}
           extraContent={{
             left: (

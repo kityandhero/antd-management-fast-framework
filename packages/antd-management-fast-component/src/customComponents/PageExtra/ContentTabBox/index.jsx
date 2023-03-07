@@ -9,9 +9,7 @@ import styles from './index.less';
 
 class ContentTabBox extends BaseComponent {
   renderFurther() {
-    const { activeKey, list, extraContent, onTabChange } = this.props;
-
-    console.log({ activeKey });
+    const { defaultActiveKey, list, extraContent, onTabChange } = this.props;
 
     const listAdjust = isArray(list) ? list : [];
 
@@ -33,13 +31,10 @@ class ContentTabBox extends BaseComponent {
               inkBar: true,
               tabPane: true,
             },
-            activeKey: activeKey,
+            defaultActiveKey: defaultActiveKey || '',
             tabBarExtraContent: extraContent,
             items: listAdjust.map((o) => {
               return {
-                // style: {
-                //   padding: '24px',
-                // },
                 ...o,
               };
             }),
@@ -60,7 +55,7 @@ class ContentTabBox extends BaseComponent {
 }
 
 ContentTabBox.defaultProps = {
-  activeKey: '',
+  defaultActiveKey: '',
   list: [],
   extraContent: null,
   onTabChange: null,

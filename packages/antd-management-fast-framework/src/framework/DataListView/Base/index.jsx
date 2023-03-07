@@ -914,7 +914,7 @@ class Base extends AuthorizationWrapper {
     return null;
   };
 
-  getTabActiveKey = () => {
+  getInitialTabActiveKey = () => {
     const { pathname } = getCurrentLocation();
 
     const list = pathname.split('/');

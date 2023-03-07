@@ -7,12 +7,13 @@ import { InternalFlow } from '../InternalFlow';
 class InternalTabFlow extends InternalFlow {
   tabList = [];
 
+  currentInitialTabKey = '';
+
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-      currentTabKey: '',
     };
   }
 
@@ -26,22 +27,22 @@ class InternalTabFlow extends InternalFlow {
 
   adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
 
-  getTabActiveKey = () => {
-    const { currentTabKey } = this.state;
+  getInitialTabActiveKey = () => {
+    if (checkStringIsNullOrWhiteSpace(this.currentInitialTabKey)) {
+      const routeParameters = getCurrentParameters();
 
-    if (checkStringIsNullOrWhiteSpace(currentTabKey)) {
-      const currentKey = this.analysisTabKey(getCurrentParameters());
+      console.log({ routeParameters });
 
-      if (!checkStringIsNullOrWhiteSpace(currentKey)) {
-        this.setState({ currentTabKey: currentKey });
-      }
+      this.currentInitialTabKey = this.analysisTabKey(routeParameters);
     }
+
+    return this.currentInitialTabKey;
   };
 
   analysisTabKey = (o) => {
     logDevelop(
       { urlParams: o },
-      'analysisTabKey need overload to analysis tab current key',
+      'analysisTabKey need overload to analysis tab current initial active key',
     );
 
     return '';
@@ -62,9 +63,7 @@ class InternalTabFlow extends InternalFlow {
   };
 
   handleTabChange = (key) => {
-    // this.currentKey = key;
-
-    this.setState({ currentTabKey: key });
+    this.currentInitialTabKey = key;
   };
 }
 
