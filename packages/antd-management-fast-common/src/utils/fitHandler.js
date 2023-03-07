@@ -8,6 +8,7 @@ import {
   setApplicationInitialConfig,
   setLoggerDisplaySwitch,
   setRuntimeDataStorage,
+  setUrlGlobalPrefix,
 } from 'easy-soft-utility';
 
 import { appInitDefault } from './constants';
@@ -15,7 +16,9 @@ import { setLocalStorageHandler } from './localStorageAssist';
 import { setMessageDisplayMonitor } from './messageAssist';
 import { setNavigationHandler } from './navigationAssist';
 import { setNotificationDisplayMonitor } from './notificationAssist';
+import { setRequestHandler } from './requestAssist';
 import { setSessionStorageHandler } from './sessionStorageAssist';
+import { getApiVersion } from './settingAssist';
 
 function getShowLogInConsole() {
   const { showLogInConsole } = {
@@ -95,4 +98,8 @@ export function setEasySoftUtilityHandler() {
   setMessageDisplayMonitor();
 
   setNotificationDisplayMonitor();
+
+  setUrlGlobalPrefix(getApiVersion());
+
+  setRequestHandler();
 }

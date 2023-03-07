@@ -5,14 +5,9 @@ import {
   getApplicationMergeConfig,
   logConfig,
   logDebug,
-  setRequestHandler,
-  setUrlGlobalPrefix,
 } from 'easy-soft-utility';
 
-import {
-  getApiVersion,
-  setEasySoftUtilityHandler,
-} from 'antd-management-fast-common';
+import { setEasySoftUtilityHandler } from 'antd-management-fast-common';
 
 import { modulePackageName } from './definition';
 
@@ -29,10 +24,6 @@ export function configEnvironment() {
   }
 
   setEasySoftUtilityHandler();
-
-  setUrlGlobalPrefix(getApiVersion());
-
-  setRequestHandler();
 
   logDebug(
     buildPromptModuleInfo(

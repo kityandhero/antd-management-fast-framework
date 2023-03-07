@@ -61,6 +61,11 @@ export const fieldData = {
     name: 'select2',
     helper: '选项列表示例',
   },
+  selectWhether: {
+    label: 'selectWhether选项列表',
+    name: 'selectWhether',
+    helper: 'selectWhether开关选择示例',
+  },
   radio1: {
     label: 'Radio选项列表',
     name: 'radio1',

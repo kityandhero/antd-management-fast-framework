@@ -1,8 +1,6 @@
 import { message } from 'antd';
 
 import {
-  logDevelop,
-  messagePromptAssist,
   messageTypeCollection,
   setDurationConversionRatio,
   setErrorMessageDisplayMonitor,
@@ -142,10 +140,6 @@ function showWarningMessage({ duration = 3, text, onClose = () => {} }) {
  */
 export function setMessageDisplayMonitor() {
   setDurationConversionRatio(1000);
-
-  logDevelop(
-    `current durationConversionRatio: ${messagePromptAssist.durationConversionRatio}`,
-  );
 
   setInfoMessageDisplayMonitor(showInfoMessage);
   setOpenMessageDisplayMonitor(showOpenMessage);

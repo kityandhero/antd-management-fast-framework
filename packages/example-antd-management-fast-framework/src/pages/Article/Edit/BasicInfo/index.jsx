@@ -682,6 +682,16 @@ class BasicInfo extends TabPageBase {
               },
             },
             {
+              lg: 6,
+              type: cardConfig.contentItemType.whetherSelect,
+              fieldData: fieldData.selectWhether,
+              // listData: optionList,
+              // dataConvert: dataConvert,
+              // onChange: (v, option) => {
+              //   logDebug(option, `selectValue -> ${v}`);
+              // },
+            },
+            {
               lg: 24,
               type: cardConfig.contentItemType.divider,
               text: (

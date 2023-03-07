@@ -7,6 +7,8 @@ import {
   isString,
   logObject,
   requestMethod,
+  setRequestHandler as setRequestHandlerCore,
+  setRequestInfoDisplaySwitch,
   trySendNearestLocalhostNotify,
 } from 'easy-soft-utility';
 
@@ -50,18 +52,12 @@ export async function request({
     throw new Error('urlChange is not string');
   }
 
-  const showRequestInfo = getShowRequestInfo();
-
   const headers = {};
 
   if (token) {
     headers['Content-Type'] = 'application/json';
     headers['Accept'] = 'application/json';
     headers[`${getTokenKeyName()}`] = token;
-  }
-
-  if (showRequestInfo) {
-    logObject({ corsUrl, api: url, urlChange, option });
   }
 
   return requestInner(urlChange, {
@@ -77,5 +73,6 @@ export async function request({
  * 设置 Request 处理器
  */
 export function setRequestHandler() {
-  setRequestHandler(request);
+  setRequestInfoDisplaySwitch(getShowRequestInfo());
+  setRequestHandlerCore(request);
 }
