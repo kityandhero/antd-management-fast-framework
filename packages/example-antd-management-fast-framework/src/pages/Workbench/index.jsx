@@ -159,7 +159,7 @@ class Index extends MultiPage {
   };
 
   establishPageHeaderSubTitle = () => {
-    return '副标题';
+    return '在这里可以快速开展任务作业';
   };
 
   establishPageContentLayoutSiderConfig = () => {

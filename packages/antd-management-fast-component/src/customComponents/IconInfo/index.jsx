@@ -6,8 +6,6 @@ import {
   isFunction,
   isObject,
   isString,
-  logStack,
-  logWarn,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -100,26 +98,6 @@ class IconInfo extends BaseComponent {
       direction = 'horizontal';
     }
 
-    if (
-      ellipsis &&
-      (isObject(textPrefixStyle) ||
-        isObject(separatorStyle) ||
-        isObject(textStyle))
-    ) {
-      logWarn(
-        `${this.componentName} ellipsis option can not use with textPrefixStyle/separatorStyle/textStyle`,
-      );
-
-      logStack(
-        {
-          textPrefixStyle,
-          separatorStyle,
-          textStyle,
-        },
-        `${this.componentName} ellipsis check`,
-      );
-    }
-
     let ellipsisMaxWidth = toNumber(ellipsisMaxWidthSource);
 
     ellipsisMaxWidth = ellipsisMaxWidth <= 0 ? 0 : ellipsisMaxWidth;
@@ -153,7 +131,7 @@ class IconInfo extends BaseComponent {
       textMerge = checkStringIsNullOrWhiteSpace(
         textAfterFormatForShow,
       ) ? null : (
-        <Text style={styleMerge} ellipsis>
+        <Text style={styleMerge} ellipsis={ellipsis}>
           {textAfterFormatForShow}
         </Text>
       );
@@ -188,7 +166,7 @@ class IconInfo extends BaseComponent {
         textMerge = checkStringIsNullOrWhiteSpace(t) ? null : (
           <Text
             style={styleMerge}
-            ellipsis
+            ellipsis={ellipsis}
           >{`${textPrefixAdjust}${separatorAdjust}${textAfterFormatForShow}`}</Text>
         );
 
@@ -212,7 +190,9 @@ class IconInfo extends BaseComponent {
       }
     }
 
-    const textCore = <VerticalBox>{textMerge}</VerticalBox>;
+    const textCore = (
+      <VerticalBox style={{ width: '100%' }}>{textMerge}</VerticalBox>
+    );
 
     const textArea = tooltip ? (
       <Tooltip title={tooltipTitle} color={tooltipColor} placement="topLeft">
