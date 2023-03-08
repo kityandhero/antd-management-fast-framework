@@ -1,17 +1,19 @@
 import { Col, Row, Tooltip, Typography } from 'antd';
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
   isObject,
   isString,
+  logStack,
   logWarn,
   toNumber,
 } from 'easy-soft-utility';
 
 import { copyToClipboard } from 'antd-management-fast-common';
 
+import { BaseComponent } from '../BaseComponent';
 import { VerticalBox } from '../VerticalBox';
 
 const { Text } = Typography;
@@ -40,7 +42,7 @@ const defaultValue = {
   ellipsisMaxWidth: 0,
 };
 
-class IconInfo extends PureComponent {
+class IconInfo extends BaseComponent {
   copyDataToClipboard = () => {
     const { canCopy, text, copyData } = this.props;
 
@@ -106,6 +108,15 @@ class IconInfo extends PureComponent {
     ) {
       logWarn(
         `${this.componentName} ellipsis option can not use with textPrefixStyle/separatorStyle/textStyle`,
+      );
+
+      logStack(
+        {
+          textPrefixStyle,
+          separatorStyle,
+          textStyle,
+        },
+        `${this.componentName} ellipsis check`,
       );
     }
 

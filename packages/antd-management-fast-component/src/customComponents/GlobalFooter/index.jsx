@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import { Link } from '../Link';
+import { AnchorLink } from '../AnchorLink';
 
 import styles from './index.less';
 
@@ -12,7 +12,7 @@ const GlobalFooter = ({ className, links, copyright }) => {
       {links && (
         <div className={styles.links}>
           {links.map((link) => (
-            <Link
+            <AnchorLink
               key={link.key}
               title={link.key}
               target={link.blankTarget ? '_blank' : '_self'}
@@ -20,7 +20,7 @@ const GlobalFooter = ({ className, links, copyright }) => {
               rel="noreferrer"
             >
               {link.title}
-            </Link>
+            </AnchorLink>
           ))}
         </div>
       )}

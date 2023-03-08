@@ -2,8 +2,8 @@ import { Tag } from 'antd';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 
+import { AnchorLink } from '../AnchorLink';
 import { iconBuilder } from '../Icon';
-import { Link } from '../Link';
 
 import styles from './index.less';
 
@@ -124,10 +124,10 @@ class TagSelect extends Component {
             return child;
           })}
         {expandable && (
-          <Link className={styles.trigger} onClick={this.handleExpand}>
+          <AnchorLink className={styles.trigger} onClick={this.handleExpand}>
             {expand ? '收起' : '展开'}
             {expand ? iconBuilder.upCircle() : iconBuilder.down()}
-          </Link>
+          </AnchorLink>
         )}
       </div>
     );

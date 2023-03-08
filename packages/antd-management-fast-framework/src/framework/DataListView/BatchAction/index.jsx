@@ -2,7 +2,7 @@ import { Button, Dropdown } from 'antd';
 import { ConfigConsumer } from 'antd/lib/config-provider/context';
 import React from 'react';
 
-import { iconBuilder, Link } from 'antd-management-fast-component';
+import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
 
 import styles from './index.less';
 
@@ -67,7 +67,7 @@ const BatchAction = ({ style, onSelect, menus = [], disabled }) => (
           className={styles.batchAction}
           disabled={disabled}
         >
-          <Link style={style}>{iconBuilder.ellipsis()}</Link>
+          <AnchorLink style={style}>{iconBuilder.ellipsis()}</AnchorLink>
         </Dropdown>
       );
     }}

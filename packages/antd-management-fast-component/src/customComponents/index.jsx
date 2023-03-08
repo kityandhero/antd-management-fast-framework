@@ -1,4 +1,5 @@
 export * from './AbstractComponent';
+export * from './AnchorLink';
 export * from './AnimalBox';
 export * from './ArticleListContent';
 export * from './AudioUpload';
@@ -50,7 +51,6 @@ export * from './ImageBox';
 export * from './ImageContentPreview';
 export * from './ImageUpload';
 export * from './JsonView';
-export * from './Link';
 export * from './MemoFunction';
 export * from './MobileContainor';
 export * from './NoticeIconCustom';

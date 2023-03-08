@@ -3,12 +3,12 @@ import nprogress from 'nprogress';
 import React from 'react';
 import { SettingDrawer } from '@ant-design/pro-components';
 import { css } from '@emotion/css';
-import {} from '@umijs/max';
+import { Link } from '@umijs/max';
 
 import { showSimpleErrorMessage } from 'easy-soft-utility';
 
 import { analysisRoute, getUseNprogress } from 'antd-management-fast-common';
-import { iconBuilder, Link } from 'antd-management-fast-component';
+import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
 import {
   Bootstrap,
   getApplicationListData,
@@ -293,10 +293,10 @@ export const layout = ({ initialState, setInitialState }) => {
     appList: getApplicationListData(),
     headerTitleRender: (logo, title, _) => {
       const defaultDom = (
-        <Link>
+        <AnchorLink>
           {logo}
           {title}
-        </Link>
+        </AnchorLink>
       );
 
       if (document.body.clientWidth < 1400) {

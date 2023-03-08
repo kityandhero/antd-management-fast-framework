@@ -19,12 +19,12 @@ import {
   defaultEmptyImage,
 } from 'antd-management-fast-common';
 
+import { AnchorLink } from '../../AnchorLink';
 import { ElasticityDropdown } from '../../ElasticityDropdown';
 import { EllipsisCustom } from '../../EllipsisCustom';
 import { iconBuilder } from '../../Icon';
 import { IconInfo } from '../../IconInfo';
 import { ImageBox } from '../../ImageBox';
-import { Link } from '../../Link';
 
 export function buildColumnItem({
   column: columnConfig,
@@ -213,14 +213,14 @@ export function buildColumnItem({
                 removeChildren
                 extraContent={
                   <>
-                    <Link
+                    <AnchorLink
                       style={{ width: '100%' }}
                       onClick={() => {
                         copyToClipboard(v);
                       }}
                     >
                       {replaceWithKeep(v, '***', 2, 6)}
-                    </Link>
+                    </AnchorLink>
                   </>
                 }
               >

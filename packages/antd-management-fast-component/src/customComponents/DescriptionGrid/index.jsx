@@ -5,8 +5,8 @@ import { checkStringIsNullOrWhiteSpace, isArray } from 'easy-soft-utility';
 
 import { copyToClipboard } from 'antd-management-fast-common';
 
+import { AnchorLink } from '../AnchorLink';
 import { BaseComponent } from '../BaseComponent';
-import { Link } from '../Link';
 
 const { Item: Description } = Descriptions;
 
@@ -66,7 +66,7 @@ class DescriptionGrid extends BaseComponent {
             >
               {item.value || emptyValue}
               {item.canCopy && (item.canCopy || null) != null ? (
-                <Link
+                <AnchorLink
                   style={{ marginLeft: '10px' }}
                   disabled={checkStringIsNullOrWhiteSpace(
                     item.value || emptyValue,
@@ -80,7 +80,7 @@ class DescriptionGrid extends BaseComponent {
                   }}
                 >
                   [复制]
-                </Link>
+                </AnchorLink>
               ) : null}
             </Description>
           );

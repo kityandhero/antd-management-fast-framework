@@ -2,7 +2,7 @@ import { Tooltip } from 'antd';
 import { connect, SelectLang } from '@umijs/max';
 
 import { getShowSelectLanguage } from 'antd-management-fast-common';
-import { iconBuilder, Link } from 'antd-management-fast-component';
+import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
 
 import HeaderSearch from '../HeaderSearch';
 
@@ -27,20 +27,30 @@ const GlobalHeaderRight = (properties) => {
         options={[
           {
             label: (
-              <Link href="https://umijs.org/zh/guide/umi-ui.html">umi ui</Link>
+              <AnchorLink href="https://umijs.org/zh/guide/umi-ui.html">
+                umi ui
+              </AnchorLink>
             ),
             value: 'umi ui',
           },
           {
-            label: <Link href="next.ant.design">Ant Design</Link>,
+            label: <AnchorLink href="next.ant.design">Ant Design</AnchorLink>,
             value: 'Ant Design',
           },
           {
-            label: <Link href="https://protable.ant.design/">Pro Table</Link>,
+            label: (
+              <AnchorLink href="https://protable.ant.design/">
+                Pro Table
+              </AnchorLink>
+            ),
             value: 'Pro Table',
           },
           {
-            label: <Link href="https://prolayout.ant.design/">Pro Layout</Link>,
+            label: (
+              <AnchorLink href="https://prolayout.ant.design/">
+                Pro Layout
+              </AnchorLink>
+            ),
             value: 'Pro Layout',
           },
         ]} // onSearch={value => {
@@ -48,14 +58,14 @@ const GlobalHeaderRight = (properties) => {
         // }}
       />
       <Tooltip title="使用文档">
-        <Link
+        <AnchorLink
           target="_blank"
           href="https://pro.ant.design/docs/getting-started"
           rel="noopener noreferrer"
           className={styles.action}
         >
           {iconBuilder.question()}
-        </Link>
+        </AnchorLink>
       </Tooltip>
 
       <AvatarDropdown currentOperator={currentOperator} />

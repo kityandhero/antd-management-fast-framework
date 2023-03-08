@@ -1,7 +1,7 @@
 import { Alert, Table } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { Link } from '../Link';
+import { AnchorLink } from '../AnchorLink';
 
 import styles from './index.less';
 
@@ -93,9 +93,9 @@ class StandardTable extends PureComponent {
             message={
               <>
                 已选择{' '}
-                <Link style={{ fontWeight: 600 }}>
+                <AnchorLink style={{ fontWeight: 600 }}>
                   {selectedRowKeys.length}
-                </Link>{' '}
+                </AnchorLink>{' '}
                 项&nbsp;&nbsp;
                 {needTotalList.map((item) => (
                   <span style={{ marginLeft: 8 }} key={item.dataIndex}>
@@ -106,12 +106,12 @@ class StandardTable extends PureComponent {
                     </span>
                   </span>
                 ))}
-                <Link
+                <AnchorLink
                   onClick={this.cleanSelectedKeys}
                   style={{ marginLeft: 24 }}
                 >
                   清空
-                </Link>
+                </AnchorLink>
               </>
             }
             type="info"

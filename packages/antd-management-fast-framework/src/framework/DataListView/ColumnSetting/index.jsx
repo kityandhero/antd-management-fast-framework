@@ -4,7 +4,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { PushpinOutlined } from '@ant-design/icons';
 
-import { iconBuilder, Link } from 'antd-management-fast-component';
+import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
 
 import { DnDItem } from './DndItem';
 
@@ -306,14 +306,14 @@ const ColumnSetting = (properties) => {
               列展示
             </Checkbox>
 
-            <Link
+            <AnchorLink
               onClick={() => {
                 setColumnsMap({});
                 setSortKeyColumns([]);
               }}
             >
               重置
-            </Link>
+            </AnchorLink>
           </div>
         }
         trigger="click"

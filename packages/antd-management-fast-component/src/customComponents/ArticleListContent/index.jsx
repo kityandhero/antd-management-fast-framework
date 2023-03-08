@@ -3,7 +3,7 @@ import React from 'react';
 
 import { datetimeFormat, formatDatetime } from 'easy-soft-utility';
 
-import { Link } from '../Link';
+import { AnchorLink } from '../AnchorLink';
 
 import styles from './index.less';
 
@@ -14,7 +14,8 @@ const ArticleListContent = ({
     <div className={styles.description}>{content}</div>
     <div className={styles.extra}>
       <Avatar src={avatar} size="small" />
-      <Link href={href}>{owner}</Link> 发布在 <Link href={href}>{href}</Link>
+      <AnchorLink href={href}>{owner}</AnchorLink> 发布在{' '}
+      <AnchorLink href={href}>{href}</AnchorLink>
       <em>
         {formatDatetime({
           data: updatedAt,

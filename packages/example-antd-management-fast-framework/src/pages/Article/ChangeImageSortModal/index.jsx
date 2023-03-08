@@ -9,7 +9,7 @@ import {
   sortOperate,
 } from 'easy-soft-utility';
 
-import { iconBuilder, Link } from 'antd-management-fast-component';
+import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
 import { DataModal } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig/config';
@@ -192,7 +192,7 @@ class ChangeImageSortModal extends Base {
             onClick: (event) => onMenuClick(event, current),
           }}
         >
-          <Link>{iconBuilder.retweet()} 排序</Link>
+          <AnchorLink>{iconBuilder.retweet()} 排序</AnchorLink>
         </Dropdown>
       );
     };
@@ -233,7 +233,7 @@ class ChangeImageSortModal extends Base {
                       alt={item.url}
                     />
                   }
-                  title={<Link href={item.href}>图片路径:</Link>}
+                  title={<AnchorLink href={item.href}>图片路径:</AnchorLink>}
                   description={item.url}
                 />
                 <ListContent data={item} />
