@@ -1,6 +1,6 @@
 import { headScripts as headScriptsSource } from './extraScript.development';
 
-const corsTargetDomain = '';
+const corsTargetDomain = 'http://zwapi.1010101.cc';
 
 const headScripts = [
   ...headScriptsSource,

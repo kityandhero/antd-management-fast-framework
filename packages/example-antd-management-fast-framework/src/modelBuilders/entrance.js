@@ -35,7 +35,7 @@ export function buildEntranceModel() {
         const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
         yield put({
-          type: reducerNameCollection.reducerData,
+          type: reducerNameCollection.reducerRemoteData,
           payload: dataAdjust,
           alias,
           ...reducerDefaultParameters,
@@ -52,7 +52,7 @@ export function buildEntranceModel() {
         const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
         yield put({
-          type: reducerNameCollection.reducerData,
+          type: reducerNameCollection.reducerRemoteData,
           payload: dataAdjust,
           alias,
           ...reducerDefaultParameters,

@@ -3,6 +3,7 @@ import React from 'react';
 import { copyToClipboard } from 'antd-management-fast-common';
 
 import { BaseComponent } from '../BaseComponent';
+import { Link } from '../Link';
 
 class DisplayCopyData extends BaseComponent {
   static defaultProps = {
@@ -31,14 +32,14 @@ class DisplayCopyData extends BaseComponent {
         <>
           {data}
           {(data || null) === null ? null : (
-            <a
+            <Link
               style={{ marginLeft: '10px' }}
               onClick={() => {
                 copyToClipboard(data);
               }}
             >
               [复制]
-            </a>
+            </Link>
           )}
         </>
       );

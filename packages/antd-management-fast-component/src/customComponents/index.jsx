@@ -50,6 +50,8 @@ export * from './ImageBox';
 export * from './ImageContentPreview';
 export * from './ImageUpload';
 export * from './JsonView';
+export * from './Link';
+export * from './MemoFunction';
 export * from './MobileContainor';
 export * from './NoticeIconCustom';
 export * from './NumberInfo';

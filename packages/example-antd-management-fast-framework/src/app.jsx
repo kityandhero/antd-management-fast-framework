@@ -3,12 +3,12 @@ import nprogress from 'nprogress';
 import React from 'react';
 import { SettingDrawer } from '@ant-design/pro-components';
 import { css } from '@emotion/css';
-import { Link } from '@umijs/max';
+import {} from '@umijs/max';
 
 import { showSimpleErrorMessage } from 'easy-soft-utility';
 
 import { analysisRoute, getUseNprogress } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import { iconBuilder, Link } from 'antd-management-fast-component';
 import {
   Bootstrap,
   getApplicationListData,
@@ -293,10 +293,10 @@ export const layout = ({ initialState, setInitialState }) => {
     appList: getApplicationListData(),
     headerTitleRender: (logo, title, _) => {
       const defaultDom = (
-        <a>
+        <Link>
           {logo}
           {title}
-        </a>
+        </Link>
       );
 
       if (document.body.clientWidth < 1400) {
@@ -373,13 +373,6 @@ export const layout = ({ initialState, setInitialState }) => {
                   settings,
                 }));
               }}
-              // settings={layoutSettings}
-              // onSettingChange={(settings) => {
-              //   setInitialState((preInitialState) => ({
-              //     ...preInitialState,
-              //     settings,
-              //   }));
-              // }}
             />
           )}
         </>

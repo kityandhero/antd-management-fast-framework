@@ -2,7 +2,7 @@ import { Tooltip } from 'antd';
 import { connect, SelectLang } from '@umijs/max';
 
 import { getShowSelectLanguage } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import { iconBuilder, Link } from 'antd-management-fast-component';
 
 import HeaderSearch from '../HeaderSearch';
 
@@ -26,19 +26,21 @@ const GlobalHeaderRight = (properties) => {
         defaultValue="umi ui"
         options={[
           {
-            label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>,
+            label: (
+              <Link href="https://umijs.org/zh/guide/umi-ui.html">umi ui</Link>
+            ),
             value: 'umi ui',
           },
           {
-            label: <a href="next.ant.design">Ant Design</a>,
+            label: <Link href="next.ant.design">Ant Design</Link>,
             value: 'Ant Design',
           },
           {
-            label: <a href="https://protable.ant.design/">Pro Table</a>,
+            label: <Link href="https://protable.ant.design/">Pro Table</Link>,
             value: 'Pro Table',
           },
           {
-            label: <a href="https://prolayout.ant.design/">Pro Layout</a>,
+            label: <Link href="https://prolayout.ant.design/">Pro Layout</Link>,
             value: 'Pro Layout',
           },
         ]} // onSearch={value => {
@@ -46,14 +48,14 @@ const GlobalHeaderRight = (properties) => {
         // }}
       />
       <Tooltip title="使用文档">
-        <a
+        <Link
           target="_blank"
           href="https://pro.ant.design/docs/getting-started"
           rel="noopener noreferrer"
           className={styles.action}
         >
           {iconBuilder.question()}
-        </a>
+        </Link>
       </Tooltip>
 
       <AvatarDropdown currentOperator={currentOperator} />

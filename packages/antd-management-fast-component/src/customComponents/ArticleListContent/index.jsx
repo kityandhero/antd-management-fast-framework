@@ -3,6 +3,8 @@ import React from 'react';
 
 import { datetimeFormat, formatDatetime } from 'easy-soft-utility';
 
+import { Link } from '../Link';
+
 import styles from './index.less';
 
 const ArticleListContent = ({
@@ -12,7 +14,7 @@ const ArticleListContent = ({
     <div className={styles.description}>{content}</div>
     <div className={styles.extra}>
       <Avatar src={avatar} size="small" />
-      <a href={href}>{owner}</a> 发布在 <a href={href}>{href}</a>
+      <Link href={href}>{owner}</Link> 发布在 <Link href={href}>{href}</Link>
       <em>
         {formatDatetime({
           data: updatedAt,

@@ -1,9 +1,34 @@
+import {
+  getGuid,
+  getTacitlyState,
+  reducerCollection,
+  reducerDefaultParameters,
+  reducerNameCollection,
+} from 'easy-soft-utility';
+
 export default {
   namespace: 'testModel',
 
-  state: {},
+  state: {
+    ...getTacitlyState(),
+  },
 
-  effects: {},
+  effects: {
+    *changeValue({ alias }, { put }) {
+      const dataAdjust = { value: getGuid() };
 
-  reducers: {},
+      yield put({
+        type: reducerNameCollection.reducerRemoteData,
+        payload: dataAdjust,
+        alias,
+        ...reducerDefaultParameters,
+      });
+
+      return dataAdjust;
+    },
+  },
+
+  reducers: {
+    ...reducerCollection,
+  },
 };

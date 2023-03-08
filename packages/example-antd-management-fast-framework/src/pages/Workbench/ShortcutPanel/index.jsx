@@ -3,10 +3,16 @@ import { Button, Space } from 'antd';
 import { cardConfig } from 'antd-management-fast-common';
 import { DataOperation } from 'antd-management-fast-framework';
 
+import { changeTestValue } from '../Assist/action';
+
 const { BaseView } = DataOperation;
 
 class Index extends BaseView {
   loadRemoteRequestAfterMount = false;
+
+  changeValue = () => {
+    changeTestValue();
+  };
 
   goToPageList = () => {
     this.goToPath(`/news/article/pageList`);
@@ -37,6 +43,7 @@ class Index extends BaseView {
                   >
                     个人中心
                   </Button>
+                  <Button onClick={this.changeValue}>ChangeValue</Button>
                 </Space>
               ),
             },

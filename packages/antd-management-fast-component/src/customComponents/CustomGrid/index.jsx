@@ -14,6 +14,7 @@ import { copyToClipboard } from 'antd-management-fast-common';
 import { BaseComponent } from '../BaseComponent';
 import { FlexBox } from '../FlexBox';
 import { FlexText } from '../FlexText';
+import { Link } from '../Link';
 
 class CustomGrid extends BaseComponent {
   renderFurther() {
@@ -210,14 +211,14 @@ class CustomGrid extends BaseComponent {
                     >
                       {v}
                       {itemCanCopy && (itemCanCopy || null) != null ? (
-                        <a
+                        <Link
                           style={{ marginLeft: '10px' }}
                           onClick={() => {
                             copyToClipboard(itemCopyData || itemValue);
                           }}
                         >
                           [复制]
-                        </a>
+                        </Link>
                       ) : null}
                     </div>
                   }

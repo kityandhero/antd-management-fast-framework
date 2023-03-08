@@ -9,7 +9,7 @@ import {
   sortOperate,
 } from 'easy-soft-utility';
 
-import { iconBuilder } from 'antd-management-fast-component';
+import { iconBuilder, Link } from 'antd-management-fast-component';
 import { DataModal } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig/config';
@@ -34,7 +34,6 @@ class ChangeImageSortModal extends Base {
 
     this.state = {
       ...this.state,
-
       pageTitle: '变更图片顺序',
       loadApiPath: 'article/listImage',
       submitApiPath: 'article/updateImageSort',
@@ -193,7 +192,7 @@ class ChangeImageSortModal extends Base {
             onClick: (event) => onMenuClick(event, current),
           }}
         >
-          <a>{iconBuilder.retweet()} 排序</a>
+          <Link>{iconBuilder.retweet()} 排序</Link>
         </Dropdown>
       );
     };
@@ -234,7 +233,7 @@ class ChangeImageSortModal extends Base {
                       alt={item.url}
                     />
                   }
-                  title={<a href={item.href}>图片路径:</a>}
+                  title={<Link href={item.href}>图片路径:</Link>}
                   description={item.url}
                 />
                 <ListContent data={item} />

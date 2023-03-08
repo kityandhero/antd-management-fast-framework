@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import React, { Component } from 'react';
 
 import { iconBuilder } from '../Icon';
+import { Link } from '../Link';
 
 import styles from './index.less';
 
@@ -123,10 +124,10 @@ class TagSelect extends Component {
             return child;
           })}
         {expandable && (
-          <a className={styles.trigger} onClick={this.handleExpand}>
+          <Link className={styles.trigger} onClick={this.handleExpand}>
             {expand ? '收起' : '展开'}
             {expand ? iconBuilder.upCircle() : iconBuilder.down()}
-          </a>
+          </Link>
         )}
       </div>
     );

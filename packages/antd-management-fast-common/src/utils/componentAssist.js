@@ -13,15 +13,12 @@ export function filterUpdateModel(properties, ignoreCompareKeyCollection = []) {
 
   delete result.loading;
 
+  delete result.children;
+
   for (const o of Object.entries(result)) {
     const [k, v] = o;
 
-    if (
-      isFunction(v) ||
-      // React.isValidElement(v) ||
-      checkInCollection(ignoreCompareKeyCollection, k) ||
-      (isObject(v) && !!v.fromRemote)
-    ) {
+    if (isFunction(v) || checkInCollection(ignoreCompareKeyCollection, k)) {
       delete result[k];
 
       continue;

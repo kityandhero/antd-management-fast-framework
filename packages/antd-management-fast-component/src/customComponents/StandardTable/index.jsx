@@ -1,6 +1,8 @@
 import { Alert, Table } from 'antd';
 import React, { PureComponent } from 'react';
 
+import { Link } from '../Link';
+
 import styles from './index.less';
 
 function initTotalList(columns) {
@@ -91,7 +93,9 @@ class StandardTable extends PureComponent {
             message={
               <>
                 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a>{' '}
+                <Link style={{ fontWeight: 600 }}>
+                  {selectedRowKeys.length}
+                </Link>{' '}
                 项&nbsp;&nbsp;
                 {needTotalList.map((item) => (
                   <span style={{ marginLeft: 8 }} key={item.dataIndex}>
@@ -102,9 +106,12 @@ class StandardTable extends PureComponent {
                     </span>
                   </span>
                 ))}
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                <Link
+                  onClick={this.cleanSelectedKeys}
+                  style={{ marginLeft: 24 }}
+                >
                   清空
-                </a>
+                </Link>
               </>
             }
             type="info"

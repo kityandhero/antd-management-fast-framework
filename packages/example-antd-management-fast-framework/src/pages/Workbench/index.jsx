@@ -13,6 +13,7 @@ import {
   getCurrentOperator,
 } from 'antd-management-fast-framework';
 
+import { TestComponent } from '../../components/TestComponent';
 import { accessWayCollection } from '../../customConfig/accessWayCollection';
 import { getArticleStatusName } from '../../customSpecialComponents/FunctionSupplement/ArticleStatus';
 import {
@@ -322,7 +323,12 @@ class Index extends MultiPage {
   };
 
   establishSiderTopAreaConfig = () => {
-    return <ShortcutPanel />;
+    return (
+      <>
+        <TestComponent />
+        <ShortcutPanel />
+      </>
+    );
   };
 }
 

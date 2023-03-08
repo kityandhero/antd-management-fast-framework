@@ -2,7 +2,7 @@ import { Button, Typography } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { connect } from '@umijs/max';
 
-import { Result } from 'antd-management-fast-component';
+import { Link, Result } from 'antd-management-fast-component';
 import { AuthorizationWrapper } from 'antd-management-fast-framework';
 
 const { Paragraph, Text } = Typography;
@@ -33,12 +33,12 @@ class Index extends AuthorizationWrapper {
             </Paragraph>
             <Paragraph>
               <CloseCircleOutlined />
-              Your account has been frozen. <a>Thaw immediately &gt;</a>
+              Your account has been frozen. <Link>Thaw immediately &gt;</Link>
             </Paragraph>
             <Paragraph>
               <CloseCircleOutlined />
               Your account is not yet eligible to apply.
-              <a>Apply Unlock &gt;</a>
+              <Link>Apply Unlock &gt;</Link>
             </Paragraph>
           </>
         }

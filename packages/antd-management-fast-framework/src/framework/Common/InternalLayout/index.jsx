@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { isArray, logExecute } from 'easy-soft-utility';
+import {
+  checkObjectIsNullOrEmpty,
+  isArray,
+  logExecute,
+} from 'easy-soft-utility';
 
 import { PageExtra } from 'antd-management-fast-component';
 
@@ -47,15 +51,18 @@ class InternalLayout extends InternalBuild {
   renderPresetPageBodyContent = () => {
     logExecute('renderPresetPageBodyContent');
 
+    const top = this.renderPresetSiderTopArea();
+    const bottom = this.renderPresetSiderBottomArea();
+
     return (
       <ContentBox
         layoutConfig={this.establishPageContentLayoutConfig()}
         siderConfig={this.establishPageContentLayoutSiderConfig()}
         siderBody={
-          <SiderBox
-            top={this.renderPresetSiderTopArea()}
-            bottom={this.renderPresetSiderBottomArea()}
-          />
+          checkObjectIsNullOrEmpty(top) &&
+          checkObjectIsNullOrEmpty(bottom) ? null : (
+            <SiderBox top={top} bottom={bottom} />
+          )
         }
         toolbar={<ToolBar {...this.establishToolBarConfig()} />}
         contentBody={this.renderPresetContentArea()}
