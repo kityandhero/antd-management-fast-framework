@@ -2,20 +2,9 @@
 /* eslint-disable unicorn/prefer-module */
 /* eslint-disable no-useless-escape */
 
-const content = `**/public
-**/lib
-**/es
-**/.history
-**/.husky
-**/.vs
-
-*.d.ts
-*.log
-*.zip
-*.txt
-*.7z
-*.min.js
-rollup.config-*.cjs
+const content = `test('jest simple', () => {
+  expect(true).toBe(true);
+});
 `;
 
 module.exports = {

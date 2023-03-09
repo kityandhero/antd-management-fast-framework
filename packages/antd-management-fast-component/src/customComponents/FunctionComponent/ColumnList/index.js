@@ -245,7 +245,8 @@ export function buildColumnItem({
               separator={separator || ''}
               separatorStyle={separatorStyle || null}
               style={styleMerge}
-              tooltip={{ placement: tooltipPlacement }}
+              tooltip
+              tooltipPlacement={tooltipPlacement}
               ellipsis
             />
 
@@ -281,7 +282,8 @@ export function buildColumnItem({
               separator={separator || ''}
               separatorStyle={separatorStyle || null}
               style={styleMerge}
-              tooltip={{ placement: tooltipPlacement }}
+              tooltip
+              tooltipPlacement={tooltipPlacement}
               ellipsis
             />
 
@@ -312,7 +314,8 @@ export function buildColumnItem({
               separator={separator || ''}
               separatorStyle={separatorStyle || null}
               style={styleMerge}
-              tooltip={{ placement: tooltipPlacement }}
+              tooltip
+              tooltipPlacement={tooltipPlacement}
               ellipsis
             />
 

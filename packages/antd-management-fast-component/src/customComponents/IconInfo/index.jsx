@@ -16,30 +16,6 @@ import { VerticalBox } from '../VerticalBox';
 
 const { Text } = Typography;
 
-const defaultValue = {
-  direction: 'horizontal',
-  responsive: false,
-  block: false,
-  tooltip: false,
-  tooltipColor: null,
-  ellipsis: true,
-  icon: null,
-  iconPosition: 'left',
-  iconTooltip: '',
-  canCopy: false,
-  copyData: null,
-  textPrefix: '',
-  textPrefixStyle: null,
-  text: '',
-  textStyle: null,
-  textFormat: null,
-  separator: ': ',
-  separatorStyle: null,
-  style: {},
-  iconStyle: {},
-  ellipsisMaxWidth: 0,
-};
-
 class IconInfo extends BaseComponent {
   copyDataToClipboard = () => {
     const { canCopy, text, copyData } = this.props;
@@ -63,6 +39,7 @@ class IconInfo extends BaseComponent {
       responsive: responsiveValue,
       tooltip: tooltipValue,
       tooltipColor,
+      tooltipPlacement,
       ellipsis: ellipsisValue,
       textPrefix,
       textPrefixStyle,
@@ -79,7 +56,7 @@ class IconInfo extends BaseComponent {
       style: styleSource,
       iconStyle: iconStyleSource,
       ellipsisMaxWidth: ellipsisMaxWidthSource,
-    } = { ...defaultValue, ...this.props };
+    } = this.props;
 
     const responsive = responsiveValue || false;
     const tooltip = tooltipValue || false;
@@ -194,8 +171,18 @@ class IconInfo extends BaseComponent {
       <VerticalBox style={{ width: '100%' }}>{textMerge}</VerticalBox>
     );
 
+    console.log({
+      tooltip,
+      tooltipPlacement,
+      p: this.props,
+    });
+
     const textArea = tooltip ? (
-      <Tooltip title={tooltipTitle} color={tooltipColor} placement="topLeft">
+      <Tooltip
+        title={tooltipTitle}
+        color={tooltipColor}
+        placement={tooltipPlacement}
+      >
         {textCore}
       </Tooltip>
     ) : (
@@ -441,6 +428,29 @@ class IconInfo extends BaseComponent {
   }
 }
 
-IconInfo.defaultProps = defaultValue;
+IconInfo.defaultProps = {
+  direction: 'horizontal',
+  responsive: false,
+  block: false,
+  tooltip: false,
+  tooltipColor: null,
+  tooltipPlacement: 'top',
+  ellipsis: true,
+  icon: null,
+  iconPosition: 'left',
+  iconTooltip: '',
+  canCopy: false,
+  copyData: null,
+  textPrefix: '',
+  textPrefixStyle: null,
+  text: '',
+  textStyle: null,
+  textFormat: null,
+  separator: ': ',
+  separatorStyle: null,
+  style: {},
+  iconStyle: {},
+  ellipsisMaxWidth: 0,
+};
 
 export { IconInfo };
