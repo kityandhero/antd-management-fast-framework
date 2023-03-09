@@ -171,17 +171,13 @@ class IconInfo extends BaseComponent {
       <VerticalBox style={{ width: '100%' }}>{textMerge}</VerticalBox>
     );
 
-    console.log({
-      tooltip,
-      tooltipPlacement,
-      p: this.props,
-    });
-
     const textArea = tooltip ? (
       <Tooltip
         title={tooltipTitle}
-        color={tooltipColor}
         placement={tooltipPlacement}
+        {...(checkStringIsNullOrWhiteSpace(tooltipColor)
+          ? {}
+          : { color: tooltipPlacement })}
       >
         {textCore}
       </Tooltip>
@@ -189,242 +185,254 @@ class IconInfo extends BaseComponent {
       textCore
     );
 
+    let innerComponent = null;
+
     if (direction === 'horizontal') {
-      return (
-        <>
-          <div style={styleContainer} onClick={onClick}>
-            {responsive ? (
-              (iconItem || null) == null ? (
-                <Row gutter={8}>
-                  <Col
-                    style={styleMerge}
-                    onClick={() => {
-                      this.copyDataToClipboard();
+      innerComponent = responsive ? (
+        (iconItem || null) == null ? (
+          <Row gutter={8}>
+            <Col
+              style={styleMerge}
+              onClick={() => {
+                this.copyDataToClipboard();
+              }}
+            >
+              {ellipsis ? (
+                ellipsisMaxWidth > 0 ? (
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      maxWidth: `${ellipsisMaxWidth}px`,
                     }}
                   >
-                    {ellipsis ? (
-                      ellipsisMaxWidth > 0 ? (
-                        <div
-                          style={{
-                            display: 'inline-flex',
-                            maxWidth: `${ellipsisMaxWidth}px`,
-                          }}
-                        >
-                          {textArea}
-                        </div>
-                      ) : (
-                        textArea
-                      )
-                    ) : (
-                      textMerge
-                    )}
-                  </Col>
-                </Row>
+                    {textArea}
+                  </div>
+                ) : (
+                  textArea
+                )
               ) : (
-                <Row gutter={8}>
-                  {iconPosition === 'left' ? (
-                    <Col xl={4} lg={6} md={8} sm={24} xs={24}>
-                      {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
-                        iconItem
-                      ) : (
-                        <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
-                      )}
-                    </Col>
-                  ) : null}
+                textMerge
+              )}
+            </Col>
+          </Row>
+        ) : (
+          <Row gutter={8}>
+            {iconPosition === 'left' ? (
+              <Col xl={4} lg={6} md={8} sm={24} xs={24}>
+                {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
+                  iconItem
+                ) : (
+                  <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
+                )}
+              </Col>
+            ) : null}
 
-                  <Col
-                    xl={20}
-                    lg={18}
-                    md={16}
-                    sm={24}
-                    xs={24}
-                    style={styleMerge}
-                    onClick={() => {
-                      this.copyDataToClipboard();
+            <Col
+              xl={20}
+              lg={18}
+              md={16}
+              sm={24}
+              xs={24}
+              style={styleMerge}
+              onClick={() => {
+                this.copyDataToClipboard();
+              }}
+            >
+              {ellipsis ? (
+                ellipsisMaxWidth > 0 ? (
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      maxWidth: `${ellipsisMaxWidth}px`,
                     }}
                   >
-                    {ellipsis ? (
-                      ellipsisMaxWidth > 0 ? (
-                        <div
-                          style={{
-                            display: 'inline-flex',
-                            maxWidth: `${ellipsisMaxWidth}px`,
-                          }}
-                        >
-                          {textArea}
-                        </div>
-                      ) : (
-                        textArea
-                      )
-                    ) : (
-                      textMerge
-                    )}
-                  </Col>
+                    {textArea}
+                  </div>
+                ) : (
+                  textArea
+                )
+              ) : (
+                textMerge
+              )}
+            </Col>
 
-                  {iconPosition === 'left' ? null : (
-                    <Col xl={4} lg={6} md={8} sm={24} xs={24}>
-                      {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
-                        iconItem
-                      ) : (
-                        <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
-                      )}
-                    </Col>
-                  )}
-                </Row>
+            {iconPosition === 'left' ? null : (
+              <Col xl={4} lg={6} md={8} sm={24} xs={24}>
+                {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
+                  iconItem
+                ) : (
+                  <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
+                )}
+              </Col>
+            )}
+          </Row>
+        )
+      ) : (iconItem || null) == null ? (
+        <Row gutter={8}>
+          <Col
+            style={styleMerge}
+            onClick={() => {
+              this.copyDataToClipboard();
+            }}
+          >
+            {ellipsis ? (
+              ellipsisMaxWidth > 0 ? (
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    maxWidth: `${ellipsisMaxWidth}px`,
+                  }}
+                >
+                  {textArea}
+                </div>
+              ) : (
+                textArea
               )
-            ) : (iconItem || null) == null ? (
-              <Row gutter={8}>
+            ) : (
+              textMerge
+            )}
+          </Col>
+        </Row>
+      ) : (
+        <Row gutter={8} wrap={false}>
+          {checkStringIsNullOrWhiteSpace(textMerge) ? (
+            <Col>
+              {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
+                iconItem
+              ) : (
+                <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
+              )}
+            </Col>
+          ) : null}
+
+          {!checkStringIsNullOrWhiteSpace(textMerge) &&
+          iconPosition === 'left' ? (
+            <Col flex="auto">
+              {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
+                iconItem
+              ) : (
+                <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
+              )}
+            </Col>
+          ) : null}
+
+          {checkStringIsNullOrWhiteSpace(textMerge) ? null : (
+            <Col
+              style={styleMerge}
+              onClick={() => {
+                this.copyDataToClipboard();
+              }}
+            >
+              {ellipsis ? (
+                ellipsisMaxWidth > 0 ? (
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      maxWidth: `${ellipsisMaxWidth}px`,
+                    }}
+                  >
+                    {textArea}
+                  </div>
+                ) : (
+                  textArea
+                )
+              ) : (
+                textMerge
+              )}
+            </Col>
+          )}
+
+          {!checkStringIsNullOrWhiteSpace(textMerge) &&
+          iconPosition !== 'left' ? (
+            <Col flex="auto">
+              {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
+                iconItem
+              ) : (
+                <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
+              )}
+            </Col>
+          ) : null}
+        </Row>
+      );
+    }
+
+    if (direction === 'vertical') {
+      innerComponent = (
+        <Row justify="center">
+          {(iconItem || null) == null ? null : (
+            <Col span={24}>
+              <Row>
+                <Col flex="auto" />
                 <Col
                   style={styleMerge}
                   onClick={() => {
                     this.copyDataToClipboard();
                   }}
                 >
-                  {ellipsis ? (
-                    ellipsisMaxWidth > 0 ? (
-                      <div
-                        style={{
-                          display: 'inline-flex',
-                          maxWidth: `${ellipsisMaxWidth}px`,
-                        }}
-                      >
-                        {textArea}
-                      </div>
-                    ) : (
-                      textArea
-                    )
+                  {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
+                    iconItem
                   ) : (
-                    textMerge
+                    <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
                   )}
                 </Col>
+                <Col flex="auto" />
               </Row>
-            ) : (
-              <Row gutter={8} wrap={false}>
-                {checkStringIsNullOrWhiteSpace(textMerge) ? (
-                  <Col>
-                    {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
-                      iconItem
-                    ) : (
-                      <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
-                    )}
-                  </Col>
-                ) : null}
-
-                {!checkStringIsNullOrWhiteSpace(textMerge) &&
-                iconPosition === 'left' ? (
-                  <Col flex="auto">
-                    {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
-                      iconItem
-                    ) : (
-                      <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
-                    )}
-                  </Col>
-                ) : null}
-
-                {checkStringIsNullOrWhiteSpace(textMerge) ? null : (
-                  <Col
-                    style={styleMerge}
-                    onClick={() => {
-                      this.copyDataToClipboard();
-                    }}
-                  >
-                    {ellipsis ? (
-                      ellipsisMaxWidth > 0 ? (
-                        <div
-                          style={{
-                            display: 'inline-flex',
-                            maxWidth: `${ellipsisMaxWidth}px`,
-                          }}
-                        >
-                          {textArea}
-                        </div>
-                      ) : (
-                        textArea
-                      )
-                    ) : (
-                      textMerge
-                    )}
-                  </Col>
-                )}
-
-                {!checkStringIsNullOrWhiteSpace(textMerge) &&
-                iconPosition !== 'left' ? (
-                  <Col flex="auto">
-                    {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
-                      iconItem
-                    ) : (
-                      <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
-                    )}
-                  </Col>
-                ) : null}
-              </Row>
-            )}
-          </div>
-        </>
-      );
-    }
-
-    if (direction === 'vertical') {
-      return (
-        <>
-          <div style={styleContainer} onClick={onClick}>
-            <Row justify="center">
-              {(iconItem || null) == null ? null : (
-                <Col span={24}>
-                  <Row>
-                    <Col flex="auto" />
-                    <Col
-                      style={styleMerge}
-                      onClick={() => {
-                        this.copyDataToClipboard();
+            </Col>
+          )}
+          <Col span={24}>
+            <Row>
+              <Col flex="auto" />
+              <Col
+                style={styleMerge}
+                onClick={() => {
+                  this.copyDataToClipboard();
+                }}
+              >
+                {ellipsis ? (
+                  ellipsisMaxWidth > 0 ? (
+                    <div
+                      style={{
+                        display: 'inline-flex',
+                        maxWidth: `${ellipsisMaxWidth}px`,
                       }}
                     >
-                      {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
-                        iconItem
-                      ) : (
-                        <Tooltip title={iconTooltip}>{iconItem}</Tooltip>
-                      )}
-                    </Col>
-                    <Col flex="auto" />
-                  </Row>
-                </Col>
-              )}
-              <Col span={24}>
-                <Row>
-                  <Col flex="auto" />
-                  <Col
-                    style={styleMerge}
-                    onClick={() => {
-                      this.copyDataToClipboard();
-                    }}
-                  >
-                    {ellipsis ? (
-                      ellipsisMaxWidth > 0 ? (
-                        <div
-                          style={{
-                            display: 'inline-flex',
-                            maxWidth: `${ellipsisMaxWidth}px`,
-                          }}
-                        >
-                          {textArea}
-                        </div>
-                      ) : (
-                        textArea
-                      )
-                    ) : (
-                      textMerge
-                    )}
-                  </Col>
-                  <Col flex="auto" />
-                </Row>
+                      {textArea}
+                    </div>
+                  ) : (
+                    textArea
+                  )
+                ) : (
+                  textMerge
+                )}
               </Col>
+              <Col flex="auto" />
             </Row>
-          </div>
-        </>
+          </Col>
+        </Row>
       );
     }
 
-    return null;
+    if (innerComponent == null) {
+      return null;
+    }
+
+    return (
+      <div style={styleContainer} onClick={onClick}>
+        {tooltip ? (
+          <Tooltip
+            title={tooltipTitle}
+            placement={tooltipPlacement}
+            {...(checkStringIsNullOrWhiteSpace(tooltipColor)
+              ? {}
+              : { color: tooltipPlacement })}
+          >
+            {innerComponent}
+          </Tooltip>
+        ) : (
+          innerComponent
+        )}
+      </div>
+    );
   }
 }
 
