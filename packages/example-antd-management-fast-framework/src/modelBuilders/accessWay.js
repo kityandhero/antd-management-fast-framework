@@ -15,7 +15,7 @@ import {
   setOnlineData,
 } from '../services/accessWay';
 
-export function buildAccessWayModel() {
+export function buildModel() {
   return {
     namespace: 'accessWay',
 

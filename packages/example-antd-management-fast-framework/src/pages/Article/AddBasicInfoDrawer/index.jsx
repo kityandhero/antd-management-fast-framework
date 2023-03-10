@@ -1,5 +1,6 @@
 import { Checkbox } from 'antd';
-import { connect } from '@umijs/max';
+
+import { connect } from 'easy-soft-dva';
 
 import { cardConfig, drawerConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';

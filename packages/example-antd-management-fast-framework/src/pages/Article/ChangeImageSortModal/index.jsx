@@ -1,6 +1,6 @@
 import { Dropdown, List } from 'antd';
-import { connect } from '@umijs/max';
 
+import { connect } from 'easy-soft-dva';
 import {
   getValueByKey,
   isArray,

@@ -1,3 +1,4 @@
+import { getDispatch } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   getCurrentOperatorCache,
@@ -8,11 +9,7 @@ import {
   showSimpleWarnMessage,
 } from 'easy-soft-utility';
 
-import {
-  apiRequest,
-  getCurrentOperatorApi,
-  getDispatch,
-} from 'antd-management-fast-common';
+import { apiRequest, getCurrentOperatorApi } from 'antd-management-fast-common';
 
 export function getCurrentOperator({ force = true, successCallback = null }) {
   logExecute('getCurrentOperator');

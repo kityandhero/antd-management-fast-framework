@@ -1,5 +1,6 @@
 import { Button } from 'antd';
-import { connect } from '@umijs/max';
+
+import { connect } from 'easy-soft-dva';
 
 import { Result } from 'antd-management-fast-component';
 import { AuthorizationWrapper } from 'antd-management-fast-framework';

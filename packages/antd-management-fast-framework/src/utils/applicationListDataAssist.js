@@ -1,3 +1,4 @@
+import { getDispatch } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
@@ -8,7 +9,6 @@ import {
 import {
   apiRequest,
   getApplicationListDataApi,
-  getDispatch,
 } from 'antd-management-fast-common';
 
 import {

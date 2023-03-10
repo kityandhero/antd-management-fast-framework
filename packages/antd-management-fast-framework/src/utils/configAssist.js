@@ -1,14 +1,18 @@
 import {
+  initializeApplication,
+  setApplicationInitialOption,
+} from 'easy-soft-dva';
+import {
   buildPromptModuleInfo,
   getApplicationExternalConfigList,
   getApplicationInitialConfig,
   getApplicationMergeConfig,
-  logConfig,
-  logDebug,
+  logDevelop,
 } from 'easy-soft-utility';
 
 import { setEasySoftUtilityHandler } from 'antd-management-fast-common';
 
+import { loadApplicationInitialData } from './bootstrap';
 import { modulePackageName } from './definition';
 
 let configEnvironmentComplete = false;
@@ -25,7 +29,7 @@ export function configEnvironment() {
 
   setEasySoftUtilityHandler();
 
-  logDebug(
+  logDevelop(
     buildPromptModuleInfo(
       modulePackageName,
       'configEnvironment -> config complete',
@@ -33,12 +37,24 @@ export function configEnvironment() {
     ),
   );
 
-  logConfig(getApplicationInitialConfig(), 'initialConfig');
+  logDevelop('--------------------------------------------');
 
-  logConfig(
+  logDevelop(getApplicationInitialConfig(), 'initialConfig info');
+
+  logDevelop(
     { externalConfigs: getApplicationExternalConfigList() },
-    'externalConfigs',
+    'externalConfigs info',
   );
 
-  logConfig(getApplicationMergeConfig(), 'combinedConfig');
+  logDevelop(getApplicationMergeConfig(), 'combinedConfig info');
+
+  logDevelop('--------------------------------------------');
+
+  setApplicationInitialOption();
+
+  initializeApplication();
+
+  logDevelop('--------------------------------------------');
+
+  loadApplicationInitialData();
 }

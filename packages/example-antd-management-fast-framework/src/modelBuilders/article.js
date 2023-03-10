@@ -34,7 +34,7 @@ import {
   updateSortData,
 } from '../services/article';
 
-export function buildArticleModel() {
+export function buildModel() {
   return {
     namespace: 'article',
 

@@ -2,8 +2,8 @@ import { Button } from 'antd';
 import React from 'react';
 // eslint-disable-next-line import/named
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
-import { connect } from '@umijs/max';
 
+import { connect } from 'easy-soft-dva';
 import { redirectTo, setAuthority, setToken } from 'easy-soft-utility';
 
 import {

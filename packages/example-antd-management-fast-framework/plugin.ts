@@ -2,9 +2,9 @@ import { IApi } from '@umijs/max';
 
 export default (api: IApi) => {
   api.addEntryImports(() => ({
-    source: 'antd-management-fast-framework',
-    specifier: '{configEnvironment}',
+    source: '../utils/init',
+    specifier: '{ initializeDvaApplication }',
   }));
 
-  api.addEntryCodeAhead(() => `configEnvironment()`);
+  api.addEntryCodeAhead(() => `initializeDvaApplication()`);
 };

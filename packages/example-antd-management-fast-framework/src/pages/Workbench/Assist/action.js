@@ -1,7 +1,19 @@
-import { getDispatch } from 'antd-management-fast-common';
+import { getDispatch } from 'easy-soft-dva';
+
+import { schedulingControlAssist } from 'antd-management-fast-framework';
+
+// export function changeTestValue() {
+//   schedulingControlAssist.startRemoteLoading();
+// }
 
 export function changeTestValue() {
-  const dispatch = getDispatch();
+  schedulingControlAssist.startRemoteLoading();
 
-  dispatch({ type: 'testModel/changeValue', alias: 'data1' });
+  setTimeout(() => {
+    const dispatch = getDispatch;
+    console.log(1_111_111);
+    dispatch({
+      type: 'testModel/changeValue',
+    });
+  }, 400);
 }

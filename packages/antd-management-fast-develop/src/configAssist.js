@@ -2,7 +2,11 @@ export function checkDevelopment() {
   return process.env.NODE_ENV === 'development';
 }
 
-export function buildConfig(packageImport) {
+export const configAssist = {
+  showInfoComplete: false,
+};
+
+export function buildConfig({ packageJson: packageImport, config = {} }) {
   const deps = packageImport.dependencies;
 
   let mfsu = {};
@@ -26,7 +30,7 @@ export function buildConfig(packageImport) {
     mfsu.shared = shared;
   }
 
-  return {
+  const mergeConfig = {
     mfsu,
     hash: true,
     antd: {},
@@ -44,5 +48,15 @@ export function buildConfig(packageImport) {
       baseNavigator: true,
     },
     layout: {},
+    ...config,
   };
+
+  if (!configAssist.showInfoComplete) {
+    console.log(mergeConfig);
+    console.log('---------------------------------');
+
+    configAssist.showInfoComplete = true;
+  }
+
+  return mergeConfig;
 }

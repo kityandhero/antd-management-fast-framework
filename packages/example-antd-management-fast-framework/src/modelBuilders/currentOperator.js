@@ -14,7 +14,7 @@ import {
   updateCurrentBasicInfoData,
 } from '../services/currentOperator';
 
-export function buildCurrentOperatorModel() {
+export function buildModel() {
   return {
     namespace: 'currentOperator',
 

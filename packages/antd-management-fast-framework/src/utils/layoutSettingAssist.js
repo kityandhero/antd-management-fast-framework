@@ -1,10 +1,7 @@
+import { getDispatch, getModelState } from 'easy-soft-dva';
 import { logDebug, logExecute } from 'easy-soft-utility';
 
-import {
-  getDispatch,
-  getLayoutSettings,
-  getModelState,
-} from 'antd-management-fast-common';
+import { getLayoutSettings } from 'antd-management-fast-common';
 
 let configLayoutSettingComplete = false;
 

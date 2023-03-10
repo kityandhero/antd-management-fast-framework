@@ -1,29 +1,25 @@
 import {
+  getGuid,
   getTacitlyState,
-  pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
 } from 'easy-soft-utility';
 
-import { getData } from '../services/currentSystem';
-
 export function buildModel() {
   return {
-    namespace: 'currentSystem',
+    namespace: 'testModel',
 
     state: {
       ...getTacitlyState(),
     },
 
     effects: {
-      *get({ payload, alias }, { call, put }) {
-        const response = yield call(getData, payload);
-
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+      *changeValue({ alias }, { put }) {
+        const dataAdjust = { simpleText: getGuid() };
 
         yield put({
-          type: reducerNameCollection.reducerRemoteData,
+          type: reducerNameCollection.reducerNormalData,
           payload: dataAdjust,
           alias,
           ...reducerDefaultParameters,

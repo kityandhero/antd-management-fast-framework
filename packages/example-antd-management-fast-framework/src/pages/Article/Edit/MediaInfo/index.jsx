@@ -1,7 +1,7 @@
 import { Button, List, Space } from 'antd';
 import React from 'react';
-import { connect } from '@umijs/max';
 
+import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   convertCollection,

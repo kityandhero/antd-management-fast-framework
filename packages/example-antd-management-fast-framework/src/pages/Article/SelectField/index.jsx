@@ -1,4 +1,4 @@
-import { connect } from '@umijs/max';
+import { connect } from 'easy-soft-dva';
 
 import { FieldExtension } from 'antd-management-fast-framework';
 

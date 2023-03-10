@@ -1,10 +1,7 @@
+import { getModelRemoteData } from 'easy-soft-dva';
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
-import {
-  getLeftBarLogo,
-  getLeftBarText,
-  getModelRemoteData,
-} from 'antd-management-fast-common';
+import { getLeftBarLogo, getLeftBarText } from 'antd-management-fast-common';
 
 export function getSexName(value) {
   let result = '未知';

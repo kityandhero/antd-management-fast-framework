@@ -2,8 +2,8 @@ import { Tag } from 'antd';
 import groupBy from 'lodash/groupBy';
 // import moment from 'moment';
 import { Component } from 'react';
-import { connect } from '@umijs/max';
 
+import { connect } from 'easy-soft-dva';
 import {
   logDebug,
   showSimpleInfoMessage,

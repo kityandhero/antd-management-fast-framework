@@ -20,7 +20,7 @@ import { getCaptchaData, signInData, signOutData } from '../services/entrance';
 
 // const entranceApi = defaultSettings.getEntranceApi();
 
-export function buildEntranceModel() {
+export function buildModel() {
   return {
     namespace: 'entrance',
 

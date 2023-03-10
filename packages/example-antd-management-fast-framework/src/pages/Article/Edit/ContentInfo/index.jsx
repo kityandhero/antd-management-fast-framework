@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from '@umijs/max';
 
+import { connect } from 'easy-soft-dva';
 import { getValueByKey } from 'easy-soft-utility';
 
 import {

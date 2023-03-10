@@ -1,7 +1,7 @@
 import { Avatar, Menu, Spin } from 'antd';
 import React from 'react';
-import { connect } from '@umijs/max';
 
+import { connect } from 'easy-soft-dva';
 import { logDebug, navigateTo } from 'easy-soft-utility';
 
 import { defaultUserAvatar } from 'antd-management-fast-common';

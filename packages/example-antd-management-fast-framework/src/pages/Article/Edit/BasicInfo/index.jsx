@@ -1,7 +1,7 @@
 import { Radio, Select } from 'antd';
 import dayjs from 'dayjs';
-import { connect } from '@umijs/max';
 
+import { connect } from 'easy-soft-dva';
 import {
   buildRandomHexColor,
   convertCollection,

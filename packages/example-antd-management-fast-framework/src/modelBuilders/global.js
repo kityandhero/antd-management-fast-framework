@@ -11,7 +11,7 @@ import {
 
 import { getData } from '../services/global';
 
-export function buildGlobalModel() {
+export function buildModel() {
   return {
     namespace: 'global',
 
@@ -121,17 +121,6 @@ export function buildGlobalModel() {
         };
       },
       ...reducerCollection,
-    },
-
-    subscriptions: {
-      setup({ history }) {
-        // Subscribe history(url) change, trigger `load` action if pathname is `/`
-        return history.listen(({ pathname, search }) => {
-          if (window.ga !== undefined) {
-            window.ga('send', 'pageview', pathname + search);
-          }
-        });
-      },
     },
   };
 }

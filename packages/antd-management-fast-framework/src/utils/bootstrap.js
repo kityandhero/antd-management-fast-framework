@@ -1,11 +1,8 @@
 import {
   logExecute,
-  logInfo,
   removeLocalMetaData,
   showInfoMessage,
 } from 'easy-soft-utility';
-
-import { getModelNameList } from 'antd-management-fast-common';
 
 import { loadApplicationListData } from './applicationListDataAssist';
 import { removeApplicationListDataCache } from './applicationListDataCacheAssist';
@@ -38,8 +35,6 @@ export function loadApplicationInitialData() {
   logExecute('loadApplicationInitialData');
 
   if (!showModelNameList) {
-    logInfo(`current modelNameList: ${getModelNameList().join(',')}`);
-
     showModelNameList = true;
   }
 

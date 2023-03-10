@@ -1,8 +1,13 @@
 // import { runtimeSettings } from 'antd-management-fast-common';
 
-export function buildSettingsModel() {
+export function buildModel() {
   return {
     namespace: 'settings',
+    state: {},
+
+    effects: {},
+
+    reducers: {},
     // state: runtimeSettings,
     // reducers: {
     //   changeSetting(state = runtimeSettings, { payload }) {

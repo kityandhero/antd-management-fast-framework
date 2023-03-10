@@ -10,6 +10,7 @@ import { showSimpleErrorMessage } from 'easy-soft-utility';
 import { analysisRoute, getUseNprogress } from 'antd-management-fast-common';
 import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
 import {
+  ApplicationWrapper,
   Bootstrap,
   getApplicationListData,
   getLayoutSetting,
@@ -217,14 +218,9 @@ export async function getInitialState() {
   return { name: '@umijs/max' };
 }
 
-// export function rootContainer(container) {
-//   return React.createElement(
-//     ProConfigProvider,
-//     null,
-//     <BootstrapLayout />,
-//     container,
-//   );
-// }
+export function rootContainer(container) {
+  return React.createElement(ApplicationWrapper, null, container);
+}
 
 export function onRouteChange({
   location,

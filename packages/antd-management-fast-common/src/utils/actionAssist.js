@@ -1,5 +1,6 @@
 import { message, Modal } from 'antd';
 
+import { getDispatch } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   getGuid,
@@ -10,15 +11,13 @@ import {
   showSimpleSuccessNotification,
 } from 'easy-soft-utility';
 
-import { getDispatch } from './dvaCore';
-
 const { confirm } = Modal;
 
 function remoteAction({
   api,
   params,
   target,
-  failureCallback,
+  failCallback,
   successMessage,
   successMessageBuilder,
   showProcessing = false,
@@ -85,8 +84,8 @@ function remoteAction({
           });
         }
       } else {
-        if (isFunction(failureCallback)) {
-          failureCallback({
+        if (isFunction(failCallback)) {
+          failCallback({
             target,
             params,
             remoteOriginal: data,
@@ -127,7 +126,7 @@ function remoteAction({
  * @param {*} api [string] remote api path.
  * @param {*} params [object] remote api params.
  * @param {*} target [object] target.
- * @param {*} failureCallback [function] remote access logic fail handler, eg. failureCallback(remoteData,whetherCauseByAuthorizeFail).
+ * @param {*} failCallback [function] remote access logic fail handler, eg. failCallback(remoteData,whetherCauseByAuthorizeFail).
  * @param {*} successCallback [function] remote access logic success handler.
  * @param {*} successMessage [string] the message when remote access logic success. if successMessage not null or empty, will trigger toast notification.
  * @param {*} successMessageBuilder [function] remote access logic success message builder, priority over successMessage.
@@ -138,7 +137,7 @@ export async function actionCore({
   api,
   params,
   target,
-  failureCallback,
+  failCallback,
   successCallback,
   successMessage = '数据已经操作成功，请进行后续操作。',
   successMessageBuilder = null,
@@ -191,7 +190,7 @@ export async function actionCore({
                 api,
                 params,
                 target,
-                failureCallback,
+                failCallback,
                 successMessage,
                 successMessageBuilder,
                 showProcessing,
@@ -205,7 +204,7 @@ export async function actionCore({
                   api,
                   params,
                   target,
-                  failureCallback,
+                  failCallback,
                   successMessage,
                   successMessageBuilder,
                   showProcessing,
@@ -224,7 +223,7 @@ export async function actionCore({
             api,
             params,
             target,
-            failureCallback,
+            failCallback,
             successMessage,
             successMessageBuilder,
             showProcessing,
@@ -238,7 +237,7 @@ export async function actionCore({
               api,
               params,
               target,
-              failureCallback,
+              failCallback,
               successMessage,
               successMessageBuilder,
               showProcessing,
@@ -255,7 +254,7 @@ export function apiRequest({
   api,
   params,
   beforeProcess = null,
-  failureCallback,
+  failCallback,
   successCallback,
   successMessage,
   successMessageBuilder,
@@ -339,8 +338,8 @@ export function apiRequest({
           });
         }
       } else {
-        if (isFunction(failureCallback)) {
-          failureCallback({
+        if (isFunction(failCallback)) {
+          failCallback({
             api,
             params,
             dispatch,

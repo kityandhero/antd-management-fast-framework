@@ -1,6 +1,6 @@
 import { Avatar, Divider, List, Typography } from 'antd';
-import { connect } from '@umijs/max';
 
+import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   formatCollection,

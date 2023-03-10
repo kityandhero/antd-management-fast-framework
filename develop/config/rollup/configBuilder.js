@@ -161,6 +161,10 @@ export function buildConfig({
         modules: true,
       }),
       babelConfig({
+        plugins: [
+          ['@babel/plugin-proposal-decorators', { legacy: true }],
+          ['@babel/plugin-proposal-class-properties', { loose: true }],
+        ],
         extensions: [...DEFAULT_EXTENSIONS, 'ts', 'tsx'],
         babelHelpers: 'runtime',
       }),

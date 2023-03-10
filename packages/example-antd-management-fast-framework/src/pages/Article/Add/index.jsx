@@ -1,6 +1,6 @@
 import { Space } from 'antd';
-import { connect } from '@umijs/max';
 
+import { connect } from 'easy-soft-dva';
 import { showSimpleInfoMessage } from 'easy-soft-utility';
 
 import {

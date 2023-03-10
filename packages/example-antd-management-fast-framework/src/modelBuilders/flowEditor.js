@@ -8,7 +8,7 @@ import {
 
 import { initData } from '../services/flowEditor';
 
-export function buildFlowEditorModel() {
+export function buildModel() {
   return {
     namespace: 'flowEditor',
 

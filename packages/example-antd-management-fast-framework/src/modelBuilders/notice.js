@@ -13,7 +13,7 @@ import {
   singleListData,
 } from '../services/notice';
 
-export function buildNoticeModel() {
+export function buildModel() {
   return {
     namespace: 'notice',
 

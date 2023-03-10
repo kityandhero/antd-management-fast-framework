@@ -3,7 +3,6 @@ export * from './common';
 export * from './componentAssist';
 export * from './constants';
 export * from './core';
-export * from './dvaCore';
 export * from './fitHandler';
 export * from './layoutSettingAssist';
 export * from './localStorageAssist';

@@ -2,15 +2,16 @@ import { appendEmbedBuilder, appendExtraBuilder } from 'easy-soft-utility';
 
 import { buildSchedulingControlModel } from 'antd-management-fast-framework';
 
-import { buildAccessWayModel } from './accessWay';
-import { buildArticleModel } from './article';
-import { buildCurrentOperatorModel } from './currentOperator';
-import { buildCurrentSystemModel } from './currentSystem';
-import { buildEntranceModel } from './entrance';
-import { buildFlowEditorModel } from './flowEditor';
-import { buildGlobalModel } from './global';
-import { buildNoticeModel } from './notice';
-import { buildSettingsModel } from './setting';
+import { buildModel as buildAccessWayModel } from './accessWay';
+import { buildModel as buildArticleModel } from './article';
+import { buildModel as buildCurrentOperatorModel } from './currentOperator';
+import { buildModel as buildCurrentSystemModel } from './currentSystem';
+import { buildModel as buildEntranceModel } from './entrance';
+import { buildModel as buildFlowEditorModel } from './flowEditor';
+import { buildModel as buildGlobalModel } from './global';
+import { buildModel as buildNoticeModel } from './notice';
+import { buildModel as buildSettingsModel } from './setting';
+import { buildModel as buildTestModel } from './testModel';
 
 function collectModelBuilder() {
   appendEmbedBuilder(buildSchedulingControlModel);
@@ -24,6 +25,7 @@ function collectModelBuilder() {
   appendExtraBuilder(buildGlobalModel);
   appendExtraBuilder(buildNoticeModel);
   appendExtraBuilder(buildSettingsModel);
+  appendExtraBuilder(buildTestModel);
 }
 
 collectModelBuilder();

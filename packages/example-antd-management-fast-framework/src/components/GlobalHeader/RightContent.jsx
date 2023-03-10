@@ -1,5 +1,7 @@
 import { Tooltip } from 'antd';
-import { connect, SelectLang } from '@umijs/max';
+import { SelectLang } from '@umijs/max';
+
+import { connect } from 'easy-soft-dva';
 
 import { getShowSelectLanguage } from 'antd-management-fast-common';
 import { AnchorLink, iconBuilder } from 'antd-management-fast-component';

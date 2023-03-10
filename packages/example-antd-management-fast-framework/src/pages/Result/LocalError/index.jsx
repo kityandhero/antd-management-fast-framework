@@ -1,6 +1,7 @@
 import { Button, Typography } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { connect } from '@umijs/max';
+
+import { connect } from 'easy-soft-dva';
 
 import { AnchorLink, Result } from 'antd-management-fast-component';
 import { AuthorizationWrapper } from 'antd-management-fast-framework';

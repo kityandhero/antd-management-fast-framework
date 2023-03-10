@@ -1,3 +1,4 @@
+import { getDispatch } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   getApplicationMergeConfig,
@@ -10,13 +11,9 @@ import {
   setLocalMetaData,
 } from 'easy-soft-utility';
 
-import {
-  apiRequest,
-  getDispatch,
-  getMetaDataApi,
-} from 'antd-management-fast-common';
+import { apiRequest, getMetaDataApi } from 'antd-management-fast-common';
 
-export function loadMetaData({ successCallback = null }) {
+export function loadMetaData({ successCallback = null, failCallback = null }) {
   logExecute('loadMetaData');
 
   const metaDataCatch = getLocalMetaData();
@@ -67,6 +64,7 @@ export function loadMetaData({ successCallback = null }) {
         successCallback();
       }
     },
+    failCallback,
   });
 }
 

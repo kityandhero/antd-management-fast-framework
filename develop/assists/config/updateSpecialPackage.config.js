@@ -5,6 +5,7 @@
 const updateSpecialPackageCollection = [
   'easy-soft-develop',
   'easy-soft-utility',
+  'easy-soft-dva',
 ];
 
 module.exports = {

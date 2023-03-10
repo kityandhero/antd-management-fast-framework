@@ -1,10 +1,12 @@
 import {
   getTacitlyState,
+  logDebug,
   pretreatmentRemoteListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
+  toString,
 } from 'easy-soft-utility';
 
 import {
@@ -20,6 +22,7 @@ export function buildSchedulingControlModel() {
 
     state: {
       ...getTacitlyState(),
+      remoteLoading: false,
     },
 
     effects: {
@@ -91,6 +94,44 @@ export function buildSchedulingControlModel() {
         });
 
         return payload;
+      },
+      *startRemoteLoading({ alias }, { put }) {
+        const remoteLoading = true;
+
+        const data = { remoteLoading };
+
+        yield put({
+          type: reducerNameCollection.reducerNormalData,
+          payload: data,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        logDebug(
+          'startRemoteLoading',
+          `remoteLoading change to ${toString(remoteLoading)}`,
+        );
+
+        return data;
+      },
+      *stopRemoteLoading({ alias }, { put }) {
+        const remoteLoading = false;
+
+        const data = { remoteLoading };
+
+        yield put({
+          type: reducerNameCollection.reducerNormalData,
+          payload: data,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        logDebug(
+          'stopRemoteLoading',
+          `remoteLoading change to ${toString(remoteLoading)}`,
+        );
+
+        return data;
       },
     },
 
