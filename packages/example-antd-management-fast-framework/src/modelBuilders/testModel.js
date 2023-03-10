@@ -6,6 +6,8 @@ import {
   reducerNameCollection,
 } from 'easy-soft-utility';
 
+import { schedulingControlAssist } from 'antd-management-fast-framework';
+
 export function buildModel() {
   return {
     namespace: 'testModel',
@@ -24,6 +26,8 @@ export function buildModel() {
           alias,
           ...reducerDefaultParameters,
         });
+
+        schedulingControlAssist.stopRemoteLoading();
 
         return dataAdjust;
       },

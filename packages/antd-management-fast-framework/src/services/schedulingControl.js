@@ -2,7 +2,6 @@ import {
   datetimeFormat,
   formatDatetime,
   getNow,
-  logDebug,
   request,
   requestMode,
 } from 'easy-soft-utility';
@@ -23,10 +22,6 @@ export async function getMetaDataSimulation(parameters) {
   const simulation = {
     time: formatDatetime(getNow(), datetimeFormat.monthDayHourMinuteSecond),
   };
-
-  logDebug(
-    `getMetaDataData use simulation mode, if need set it from api, please config getMetaDataApi.`,
-  );
 
   return request({
     api: `/schedulingControl/getMetaDataSimulation`,
@@ -49,12 +44,8 @@ export async function singleListApplicationListData(parameters) {
 }
 
 export async function singleListApplicationListDataSimulation(parameters) {
-  logDebug(
-    `singleListAppList use simulation mode, if need set it from api, please config getApplicationListDataApi.`,
-  );
-
   return request({
-    api: `/schedulingControl/singleListApplicationListDataSimulation`,
+    api: `/schedulingControl/getApplicationListDataSimulation`,
     params: parameters,
     mode: requestMode.simulation,
     simulativeAuthorize: false,

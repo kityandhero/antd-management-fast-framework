@@ -26,7 +26,7 @@ export function buildSchedulingControlModel() {
     },
 
     effects: {
-      *singleListAppList({ payload, alias }, { call, put }) {
+      *getApplicationListData({ payload, alias }, { call, put }) {
         const response = yield call(singleListApplicationListData, payload);
 
         const dataAdjust = pretreatmentRemoteListData({ source: response });
@@ -40,7 +40,7 @@ export function buildSchedulingControlModel() {
 
         return dataAdjust;
       },
-      *singleListApplicationListSimulation({ payload, alias }, { call, put }) {
+      *getApplicationListDataSimulation({ payload, alias }, { call, put }) {
         const response = yield call(
           singleListApplicationListDataSimulation,
           payload,

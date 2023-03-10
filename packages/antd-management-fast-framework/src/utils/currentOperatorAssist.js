@@ -11,7 +11,11 @@ import {
 
 import { apiRequest, getCurrentOperatorApi } from 'antd-management-fast-common';
 
-export function getCurrentOperator({ force = true, successCallback = null }) {
+export function getCurrentOperator({
+  force = true,
+  successCallback = null,
+  failCallback = null,
+}) {
   logExecute('getCurrentOperator');
 
   if (!force) {
@@ -34,8 +38,13 @@ export function getCurrentOperator({ force = true, successCallback = null }) {
 
   if (checkStringIsNullOrWhiteSpace(currentOperatorDispatchType)) {
     showSimpleWarnMessage(
-      'currentOperatorDispatchType has not set, if need use it by api, please set it in applicationConfig with key "currentOperatorDispatchType".',
+      'currentOperatorDispatchType has not set, if need use it by api, please set it in applicationConfig with key "currentOperatorDispatchType", it must be like "modelName/effect".',
+      'ignore exec',
     );
+
+    if (isFunction(failCallback)) {
+      failCallback();
+    }
 
     return;
   }
@@ -55,5 +64,6 @@ export function getCurrentOperator({ force = true, successCallback = null }) {
         successCallback(data);
       }
     },
+    failCallback: failCallback,
   });
 }

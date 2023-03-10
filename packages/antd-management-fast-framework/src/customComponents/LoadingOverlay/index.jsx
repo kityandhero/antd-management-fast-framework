@@ -15,6 +15,8 @@ class LoadingOverlay extends BaseComponent {
       children,
     } = this.props;
 
+    console.log(this.props);
+
     return <Spin spinning={remoteLoading}>{children}</Spin>;
   }
 }

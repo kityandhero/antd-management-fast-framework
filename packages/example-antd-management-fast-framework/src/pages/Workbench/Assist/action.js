@@ -1,4 +1,4 @@
-import { getDispatch } from 'easy-soft-dva';
+import { dispatchModel } from 'easy-soft-dva';
 
 import { schedulingControlAssist } from 'antd-management-fast-framework';
 
@@ -10,10 +10,9 @@ export function changeTestValue() {
   schedulingControlAssist.startRemoteLoading();
 
   setTimeout(() => {
-    const dispatch = getDispatch;
-    console.log(1_111_111);
-    dispatch({
-      type: 'testModel/changeValue',
+    dispatchModel({
+      model: 'testModel',
+      effect: 'changeValue',
     });
-  }, 400);
+  }, 800);
 }

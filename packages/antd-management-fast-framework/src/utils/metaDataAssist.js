@@ -28,15 +28,18 @@ export function loadMetaData({ successCallback = null, failCallback = null }) {
 
   const metaDataApi = getMetaDataApi();
 
+  let api = '';
+
   if (checkStringIsNullOrWhiteSpace(metaDataApi)) {
     logConfig(
-      'metaDataApi has not set, if need use it by api, please set it in applicationConfig with key "metaDataApi".',
+      'metaDataApi has not set, if need use it by api, please set it in applicationConfig with key "metaDataApi", it must be like "modelName/effect"',
+      'current use simulation mode',
     );
-  }
 
-  const api = checkStringIsNullOrWhiteSpace(metaDataApi)
-    ? 'schedulingControl/getMetaDataSimulation'
-    : 'schedulingControl/getMetaData';
+    api = 'schedulingControl/getMetaDataSimulation';
+  } else {
+    api = 'schedulingControl/getMetaData';
+  }
 
   apiRequest({
     api: api,

@@ -2,6 +2,7 @@ import { getDispatch } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
+  logConfig,
   logDebug,
   logExecute,
 } from 'easy-soft-utility';
@@ -31,9 +32,18 @@ export function loadApplicationListData({ successCallback = null }) {
 
   const applicationListDataApi = getApplicationListDataApi();
 
-  const api = checkStringIsNullOrWhiteSpace(applicationListDataApi)
-    ? 'schedulingControl/singleListApplicationListSimulation'
-    : 'schedulingControl/singleListApplicationList';
+  let api = '';
+
+  if (checkStringIsNullOrWhiteSpace(applicationListDataApi)) {
+    logConfig(
+      'getApplicationListDataApi has not set, if need use it by api, please set it in applicationConfig with key "getApplicationListDataApi", it must be like "modelName/effect"',
+      'current use simulation mode',
+    );
+
+    api = 'schedulingControl/getApplicationListDataSimulation';
+  } else {
+    api = 'schedulingControl/getApplicationListData';
+  }
 
   apiRequest({
     api: api,

@@ -1,13 +1,13 @@
 import nprogress from 'nprogress';
 import { Component } from 'react';
 
+import { dispatch } from 'easy-soft-dva';
 import {
   checkHasMore as checkHasMoreCore,
   getGuid,
   isFunction,
   isNumber,
   logConfig,
-  logDebug,
   logError,
   logExecute,
   logTrace,
@@ -351,29 +351,7 @@ class AbstractComponent extends Component {
     throw new Error(text);
   };
 
-  getDispatch = () => {
-    const text = 'please override getDispatch, and return a function';
-
-    logError(text);
-
-    throw new Error(text);
-  };
-
-  getDispatchWrapper = () => {
-    const dispatch = this.getDispatch();
-
-    if (!isFunction(dispatch)) {
-      logError('dispatch not a function, please check getDispatch');
-    }
-
-    return dispatch;
-  };
-
   dispatchApi = ({ type, payload, alias = 'data' }) => {
-    const dispatch = this.getDispatchWrapper();
-
-    logDebug(`model access: ${type}`);
-
     return dispatch({ type, payload, alias });
   };
 
