@@ -10,7 +10,7 @@ import {
 
 import { contentConfig } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 import { HelpCard } from '../../HelpCard';
 
 class HelpContent extends BaseComponent {

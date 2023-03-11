@@ -2,7 +2,7 @@ import React from 'react';
 
 import { isArray, toString } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 import { IconInfo } from '../../IconInfo';
 
 class HeaderTitle extends BaseComponent {

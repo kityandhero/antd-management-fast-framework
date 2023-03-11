@@ -2,7 +2,7 @@ import React from 'react';
 
 import { checkObjectIsNullOrEmpty } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 import { FlexBox } from '../../FlexBox';
 
 class SiderBox extends BaseComponent {

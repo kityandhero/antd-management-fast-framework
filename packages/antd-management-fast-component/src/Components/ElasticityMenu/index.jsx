@@ -14,7 +14,7 @@ import {
 
 import { dropdownExpandItemType } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 import { ElasticityButton } from '../ElasticityButton';
 import { iconBuilder } from '../Icon';
 

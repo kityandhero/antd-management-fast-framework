@@ -8,7 +8,7 @@ import {
   isString,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 import { DescriptionGrid } from '../../DescriptionGrid';
 
 const { Paragraph } = Typography;

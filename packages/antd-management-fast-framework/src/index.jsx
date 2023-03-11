@@ -1,7 +1,7 @@
 import './index.less';
 
-export * from './configGroup';
-export * from './customComponents';
+export * from './components';
+export * from './configs';
 export * from './framework';
 export * from './modelBuilders';
 export * from './utils';

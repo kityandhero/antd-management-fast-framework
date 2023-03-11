@@ -4,7 +4,7 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 
 import { datetimeFormat, formatDatetime } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 import { iconBuilder } from '../Icon';
 
 import styles from './index.less';

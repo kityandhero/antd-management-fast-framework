@@ -11,7 +11,7 @@ import {
 
 import { copyToClipboard } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 import { AnchorLink } from '../AnchorLink';
 import { FlexBox } from '../FlexBox';
 import { FlexText } from '../FlexText';

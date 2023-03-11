@@ -3,7 +3,7 @@ import React from 'react';
 
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 import { VerticalBox } from '../../VerticalBox';
 
 const { Text } = Typography;

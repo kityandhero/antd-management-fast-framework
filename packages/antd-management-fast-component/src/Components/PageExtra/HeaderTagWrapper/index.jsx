@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 import { ElasticityTagList } from '../../ElasticityTagList';
 
 class HeaderTagWrapper extends BaseComponent {

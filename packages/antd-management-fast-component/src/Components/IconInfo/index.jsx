@@ -11,7 +11,7 @@ import {
 
 import { copyToClipboard } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 import { VerticalBox } from '../VerticalBox';
 
 const { Text } = Typography;

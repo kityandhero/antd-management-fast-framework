@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 
 import styles from './index.less';
 

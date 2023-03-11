@@ -9,7 +9,7 @@ import {
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 import { iconBuilder } from '../../Icon';
 import { IconInfo } from '../../IconInfo';
 

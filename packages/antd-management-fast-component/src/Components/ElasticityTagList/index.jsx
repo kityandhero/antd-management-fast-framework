@@ -4,7 +4,7 @@ import React from 'react';
 
 import { isArray } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 
 class ElasticityTagList extends BaseComponent {
   renderFurther() {

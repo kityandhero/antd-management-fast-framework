@@ -3,7 +3,7 @@ import React from 'react';
 
 import { isArray, isFunction, transformListData } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 
 class ElasticityTreeSelect extends BaseComponent {
   renderFurther() {

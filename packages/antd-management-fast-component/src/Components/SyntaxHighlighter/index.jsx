@@ -4,7 +4,7 @@ import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import { isObject } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 
 class SyntaxHighlighter extends BaseComponent {
   renderFurther() {

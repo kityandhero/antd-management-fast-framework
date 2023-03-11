@@ -5,7 +5,7 @@ import { checkStringIsNullOrWhiteSpace, isArray } from 'easy-soft-utility';
 
 import { copyToClipboard } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 import { AnchorLink } from '../AnchorLink';
 
 const { Item: Description } = Descriptions;

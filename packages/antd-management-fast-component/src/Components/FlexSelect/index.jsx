@@ -8,7 +8,7 @@ import {
   isFunction,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 import { ColorText } from '../ColorText';
 import { FlexBox } from '../FlexBox';
 import { buildOptionItem } from '../Function';

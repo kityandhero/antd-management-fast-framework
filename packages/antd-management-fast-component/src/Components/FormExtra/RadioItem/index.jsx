@@ -10,7 +10,7 @@ import {
   isFunction,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 import { buildRadioItem } from '../../Function';
 import { Item } from '../Item';
 

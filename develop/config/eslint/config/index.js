@@ -10,9 +10,7 @@ const { settings } = require('./items/settings');
 
 module.exports = {
   generalConfig: {
-    extends: [
-      ...extendCollection,
-    ],
+    extends: [...extendCollection],
     env: {
       es6: true,
       browser: true,

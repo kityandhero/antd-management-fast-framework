@@ -3,7 +3,7 @@ import ReactJson from 'react-json-view';
 
 import { isObject } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 
 class JsonView extends BaseComponent {
   render() {

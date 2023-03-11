@@ -23,7 +23,7 @@ import {
   getTinymceImagesUploadUrl,
 } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 import { AudioUpload } from '../../AudioUpload';
 import { CustomGrid } from '../../CustomGrid';
 import { TinymceWrapper } from '../../Editor/TinymceWrapper';

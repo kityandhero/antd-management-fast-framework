@@ -3,7 +3,7 @@ import React from 'react';
 
 import { filter, isFunction } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 import { buildRadioItem } from '../Function';
 
 class ElasticityRadioGroup extends BaseComponent {

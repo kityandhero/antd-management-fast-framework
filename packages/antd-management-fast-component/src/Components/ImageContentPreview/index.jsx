@@ -4,7 +4,7 @@ import React from 'react';
 
 import { imageContentPreviewMode } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 
 import styles from './index.less';
 

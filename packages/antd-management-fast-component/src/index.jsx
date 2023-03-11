@@ -1,4 +1,4 @@
 import './index.less';
 
-export * from './BasicComponents';
-export * from './Components';
+export * from './bases';
+export * from './components';

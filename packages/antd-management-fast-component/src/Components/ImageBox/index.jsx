@@ -16,7 +16,7 @@ import {
 
 import { defaultEmptyImage } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../BasicComponents';
+import { BaseComponent } from '../../bases';
 import { IconInfo } from '../IconInfo';
 
 const placeholderBoxStyle = {

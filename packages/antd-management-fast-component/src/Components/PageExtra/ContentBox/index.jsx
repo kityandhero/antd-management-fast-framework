@@ -3,7 +3,7 @@ import React from 'react';
 
 import { checkInCollection, checkObjectIsNullOrEmpty } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 
 const { Content, Sider } = Layout;
 

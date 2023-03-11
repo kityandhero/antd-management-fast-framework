@@ -3,7 +3,7 @@ import React from 'react';
 
 import { formatDatetime } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../BasicComponents';
+import { BaseComponent } from '../../../bases';
 
 class HeaderExtraContent extends BaseComponent {
   renderFurther() {
