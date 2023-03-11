@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-charts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "antd-management-fast-charts",
   "keywords": [
     "antd-management-fast-charts"
@@ -62,8 +62,8 @@
     "@antv/data-set": "^0.11.8",
     "@umijs/max": "^4.0.57",
     "antd": "^5.3.0",
-    "antd-management-fast-common": "^2.1.0",
-    "antd-management-fast-component": "^2.1.0",
+    "antd-management-fast-common": "^2.1.1",
+    "antd-management-fast-component": "^2.1.1",
     "array-move": "^4.0.0",
     "bizcharts": "^4.1.22",
     "classnames": "^2.3.2",

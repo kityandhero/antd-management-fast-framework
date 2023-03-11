@@ -198,8 +198,8 @@ importers:
       '@typescript-eslint/parser': ^5.54.1
       '@umijs/max': ^4.0.57
       antd: ^5.3.0
-      antd-management-fast-common: ^2.1.0
-      antd-management-fast-component: ^2.1.0
+      antd-management-fast-common: ^2.1.1
+      antd-management-fast-component: ^2.1.1
       array-move: ^4.0.0
       autoprefixer: ^10.4.14
       bizcharts: ^4.1.22
@@ -620,7 +620,7 @@ importers:
       '@typescript-eslint/parser': ^5.54.1
       '@umijs/max': ^4.0.57
       antd: ^5.3.0
-      antd-management-fast-common: ^2.1.0
+      antd-management-fast-common: ^2.1.1
       array-move: ^4.0.0
       autoprefixer: ^10.4.14
       bizcharts: ^4.1.22
@@ -953,8 +953,8 @@ importers:
       '@typescript-eslint/parser': ^5.54.1
       '@umijs/max': ^4.0.57
       antd: ^5.3.0
-      antd-management-fast-common: ^2.1.0
-      antd-management-fast-component: ^2.1.0
+      antd-management-fast-common: ^2.1.1
+      antd-management-fast-component: ^2.1.1
       autoprefixer: ^10.4.14
       classnames: ^2.3.2
       commitizen: ^4.3.0
@@ -1150,10 +1150,10 @@ importers:
       '@typescript-eslint/parser': ^5.54.1
       '@umijs/max': ^4.0.57
       antd: ^5.3.0
-      antd-management-fast-common: ^2.1.0
-      antd-management-fast-component: ^2.1.0
-      antd-management-fast-develop: ^1.0.3
-      antd-management-fast-framework: ^2.1.0
+      antd-management-fast-common: ^2.1.1
+      antd-management-fast-component: ^2.1.1
+      antd-management-fast-develop: ^1.0.4
+      antd-management-fast-framework: ^2.1.1
       babel-jest: ^29.5.0
       classnames: ^2.3.2
       commitizen: ^4.3.0
