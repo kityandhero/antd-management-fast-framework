@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -41,7 +41,6 @@
     "z:test": "cross-env NODE_ENV=test jest",
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/eslint-parser": "^7.19.1",

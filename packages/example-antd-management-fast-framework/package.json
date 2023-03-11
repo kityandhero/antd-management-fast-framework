@@ -1,6 +1,6 @@
 {
   "name": "example-antd-management-fast-framework",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "> TODO: description",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
@@ -47,9 +47,9 @@
     "@emotion/css": "11.10.6",
     "@umijs/max": "^4.0.57",
     "antd": "^5.3.0",
-    "antd-management-fast-common": "^2.0.0",
-    "antd-management-fast-component": "^2.0.0",
-    "antd-management-fast-framework": "^2.0.0",
+    "antd-management-fast-common": "^2.1.0",
+    "antd-management-fast-component": "^2.1.0",
+    "antd-management-fast-framework": "^2.1.0",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
     "easy-soft-dva": "^3.6.120",
@@ -86,7 +86,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/shelljs": "^0.8.11",
     "@typescript-eslint/parser": "^5.54.1",
-    "antd-management-fast-develop": "^1.0.2",
+    "antd-management-fast-develop": "^1.0.3",
     "babel-jest": "^29.5.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
@@ -124,6 +124,5 @@
     "stylelint-config-standard": "^30.0.1",
     "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
     "typescript": "^4.9.5"
-  },
-  "peerDependencies": {}
+  }
 }
