@@ -41,7 +41,7 @@
     "test:antd-management-fast-framework": "cd packages/antd-management-fast-framework && npm run z:test",
     "test:antd-management-fast-test": "cd packages/antd-management-fast-test && npm run z:test",
     "test:example-antd-management-fast-framework": "cd packages/example-antd-management-fast-framework && npm run z:test",
-    "z:build:all": "echo please supplement build all packages commend",
+    "z:build:all": "npm run build:all",
     "z:change:npm:registry:local": "nrm use local",
     "z:change:npm:registry:npm": "nrm use npm",
     "z:check:all-package-version": "easy-soft-develop check-all-package-version",
