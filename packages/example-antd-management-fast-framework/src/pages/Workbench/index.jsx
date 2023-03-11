@@ -1,6 +1,7 @@
 import { connect } from 'easy-soft-dva';
 import {
   convertCollection,
+  getGuid,
   getValueByKey,
   handleItem,
 } from 'easy-soft-utility';
@@ -324,7 +325,7 @@ class Index extends MultiPage {
   establishSiderTopAreaConfig = () => {
     return (
       <>
-        <TestComponent />
+        <TestComponent text={getGuid()} />
         <ShortcutPanel />
       </>
     );

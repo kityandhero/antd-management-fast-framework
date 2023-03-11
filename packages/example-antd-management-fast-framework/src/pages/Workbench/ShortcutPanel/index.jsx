@@ -1,17 +1,29 @@
 import { Button, Space } from 'antd';
 
+import { connect } from 'easy-soft-dva';
+
 import { cardConfig } from 'antd-management-fast-common';
 import { DataOperation } from 'antd-management-fast-framework';
 
-import { changeTestValue } from '../Assist/action';
+import {
+  changeSimpleValue,
+  changeSimpleValueWithLoading,
+} from '../Assist/action';
 
 const { BaseView } = DataOperation;
 
-class Index extends BaseView {
+@connect(({ testModel }) => ({
+  testModel,
+}))
+class ShortcutPanel extends BaseView {
   loadRemoteRequestAfterMount = false;
 
-  changeValue = () => {
-    changeTestValue();
+  changeSimple = () => {
+    changeSimpleValue();
+  };
+
+  changeSimpleWithLoading = () => {
+    changeSimpleValueWithLoading();
   };
 
   goToPageList = () => {
@@ -34,7 +46,7 @@ class Index extends BaseView {
               lg: 24,
               type: cardConfig.contentItemType.component,
               component: (
-                <Space>
+                <Space style={{ width: '100%' }} direction="vertical">
                   <Button onClick={this.goToPageList}>文章管理</Button>
                   <Button
                     onClick={() => {
@@ -43,7 +55,12 @@ class Index extends BaseView {
                   >
                     个人中心
                   </Button>
-                  <Button onClick={this.changeValue}>ChangeValue</Button>
+
+                  <Button onClick={this.changeSimple}>ChangeValue</Button>
+
+                  <Button onClick={this.changeSimpleWithLoading}>
+                    changeSimpleWithLoading
+                  </Button>
                 </Space>
               ),
             },
@@ -58,4 +75,4 @@ class Index extends BaseView {
   }
 }
 
-export default Index;
+export default ShortcutPanel;

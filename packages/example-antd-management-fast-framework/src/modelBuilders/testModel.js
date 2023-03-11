@@ -1,6 +1,7 @@
 import {
   getGuid,
   getTacitlyState,
+  logTrace,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
@@ -14,11 +15,14 @@ export function buildModel() {
 
     state: {
       ...getTacitlyState(),
+      simpleText: '',
     },
 
     effects: {
-      *changeValue({ alias }, { put }) {
-        const dataAdjust = { simpleText: getGuid() };
+      *changeSimpleValue({ alias }, { put }) {
+        const simpleText = getGuid();
+
+        const dataAdjust = { simpleText };
 
         yield put({
           type: reducerNameCollection.reducerNormalData,
@@ -26,6 +30,24 @@ export function buildModel() {
           alias,
           ...reducerDefaultParameters,
         });
+
+        logTrace(`simpleText change to ${simpleText}`);
+
+        return dataAdjust;
+      },
+      *changeSimpleValueWithLoading({ alias }, { put }) {
+        const simpleText = getGuid();
+
+        const dataAdjust = { simpleText };
+
+        yield put({
+          type: reducerNameCollection.reducerNormalData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        logTrace(`simpleText change to ${simpleText}`);
 
         schedulingControlAssist.stopRemoteLoading();
 

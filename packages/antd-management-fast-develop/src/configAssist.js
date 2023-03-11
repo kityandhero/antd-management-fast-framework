@@ -38,7 +38,6 @@ export function buildConfig({ packageJson: packageImport, config = {} }) {
     model: {},
     initialState: {},
     request: {},
-    dva: {},
     history: { type: 'hash' },
     locale: {
       // 默认使用 src/locales/zh-CN.ts 作为多语言文件
@@ -50,6 +49,10 @@ export function buildConfig({ packageJson: packageImport, config = {} }) {
     layout: {},
     ...config,
   };
+
+  // delete mergeConfig.initialState;
+  // delete mergeConfig.model;
+  delete mergeConfig.dva;
 
   if (!configAssist.showInfoComplete) {
     console.log(mergeConfig);
