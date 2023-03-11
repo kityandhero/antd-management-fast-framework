@@ -1,3 +1,3 @@
 import './index.less';
 
-export * from './customComponents';
+export * from './components';
