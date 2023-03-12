@@ -3,13 +3,12 @@ import { Editor } from '@tinymce/tinymce-react';
 
 import {
   getToken,
-  getTokenKeyName,
   isFunction,
   pretreatmentRemoteSingleData,
   showSimpleErrorNotification,
 } from 'easy-soft-utility';
 
-import { corsTarget } from 'antd-management-fast-common';
+import { corsTarget, getTokenName } from 'antd-management-fast-common';
 
 class TinymceWrapper extends PureComponent {
   editor = React.createRef();
@@ -109,7 +108,7 @@ class TinymceWrapper extends PureComponent {
       xhr.withCredentials = false;
       xhr.open('POST', images_upload_url);
 
-      xhr.setRequestHeader(getTokenKeyName(), getToken() || 'anonymous');
+      xhr.setRequestHeader(getTokenName(), getToken() || 'anonymous');
 
       xhr.upload.addEventListener('progress', function (event) {
         progress((event.loaded / event.total) * 100);

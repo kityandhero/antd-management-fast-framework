@@ -12,6 +12,8 @@ import {
 
 import { setEasySoftUtilityHandler } from 'antd-management-fast-common';
 
+import { appendEmbedModelBuilder } from '../modelBuilders';
+
 import { loadApplicationInitialData } from './bootstrap';
 import { modulePackageName } from './definition';
 
@@ -49,6 +51,8 @@ export function configEnvironment() {
   logDevelop(getApplicationMergeConfig(), 'combinedConfig info');
 
   logDevelop('--------------------------------------------');
+
+  appendEmbedModelBuilder();
 
   setApplicationInitialOption();
 

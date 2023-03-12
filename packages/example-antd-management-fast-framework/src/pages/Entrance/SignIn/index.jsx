@@ -4,7 +4,7 @@ import React from 'react';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 
 import { connect } from 'easy-soft-dva';
-import { redirectTo, setAuthority, setToken } from 'easy-soft-utility';
+import { redirectTo } from 'easy-soft-utility';
 
 import {
   getAppDescription,
@@ -17,8 +17,7 @@ import {
   iconBuilder,
   IconInfo,
 } from 'antd-management-fast-component';
-
-import { signInAction } from '../Assist/action';
+import { signInAction } from 'antd-management-fast-framework';
 
 const defaultProps = {};
 
@@ -46,17 +45,12 @@ class SignIn extends BaseComponent {
     signInAction({
       target: this,
       handleData: values,
-      successCallback: ({ remoteData }) => {
-        that.setState(
+      successCallback: ({ target }) => {
+        target.setState(
           {
             processing: false,
           },
           () => {
-            const { currentAuthority, token: tokenValue } = remoteData;
-
-            setAuthority(currentAuthority);
-            setToken(tokenValue);
-
             const urlParameters = new URL(window.location.href);
             const parameters = getPageQuery();
             let { redirect } = parameters;

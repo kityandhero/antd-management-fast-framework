@@ -16,7 +16,7 @@ import {
   singleListApplicationListDataSimulation,
 } from '../services/schedulingControl';
 
-export function buildSchedulingControlModel() {
+export function buildModel() {
   return {
     namespace: 'schedulingControl',
 
@@ -84,16 +84,6 @@ export function buildSchedulingControlModel() {
         });
 
         return dataAdjust;
-      },
-      *configLayoutSetting({ payload, alias }, { put }) {
-        yield put({
-          type: reducerNameCollection.reducerRemoteData,
-          payload: payload,
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        return payload;
       },
       *startRemoteLoading({ alias }, { put }) {
         const remoteLoading = true;

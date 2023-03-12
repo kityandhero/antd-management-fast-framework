@@ -52,9 +52,6 @@ export const apiSuccessCode = 200;
 /**
  * 用户默认图
  */
-export const defaultUserAvatar = '/user.png';
-
-export const defaultEmptyImage = '/noImageSmall.png';
 
 export const appInitDefault = {
   platformName: '平台名称',
@@ -75,12 +72,16 @@ export const appInitDefault = {
   leftBarLogo: emptyLogo,
   apiSuccessCode,
   authenticationFailCode,
-  entranceApi: '/entrance/signIn',
+  tokenName: 'token',
+  signInApi: '/entrance/signIn',
+  signInCaptchaApi: '',
+  signInSimulationData: {},
+  signOutApi: '/entrance/signOut',
   applicationListDataApi: '',
   applicationListData: [],
   metaDataApi: '',
   metaData: {},
-  currentOperatorDispatchType: '',
+  currentOperatorApi: '',
   showLogInConsole: false,
   showRequestInfo: false,
   useSimulateRequest: false,
@@ -810,3 +811,8 @@ export const mobileTypeCollection = {
     helper: '',
   },
 };
+
+export {
+  emptyImage as defaultEmptyImage,
+  userAvatar as defaultUserAvatar,
+} from './mediaDefault';

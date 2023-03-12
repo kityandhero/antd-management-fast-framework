@@ -89,6 +89,15 @@ class AbstractComponent extends Component {
     this.keyPrefix = getGuid();
   }
 
+  // eslint-disable-next-line no-unused-vars
+  static getDerivedStateFromProps(_nextProperties, _previousState) {
+    return null;
+  }
+
+  componentDidMount() {
+    this.doDidMountTask();
+  }
+
   shouldComponentUpdate(nextProperties, nextState) {
     const { dispatchComplete } = {
       dispatchComplete: true,
@@ -207,15 +216,6 @@ class AbstractComponent extends Component {
     }
 
     return compareResult;
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  static getDerivedStateFromProps(_nextProperties, _previousState) {
-    return null;
-  }
-
-  componentDidMount() {
-    this.doDidMountTask();
   }
 
   componentDidCatchError(error, info) {

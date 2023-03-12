@@ -1,5 +1,5 @@
 window.appInitCustomLocalCore = {
-  currentOperatorDispatchType: 'currentOperator/getCurrentOperator',
+  currentOperatorApi: 'currentOperator/getCurrentOperator',
   layoutSetting: {
     fixSiderbar: true,
     layout: 'mix',

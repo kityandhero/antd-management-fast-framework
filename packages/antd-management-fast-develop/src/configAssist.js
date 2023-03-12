@@ -50,8 +50,6 @@ export function buildConfig({ packageJson: packageImport, config = {} }) {
     ...config,
   };
 
-  // delete mergeConfig.initialState;
-  // delete mergeConfig.model;
   delete mergeConfig.dva;
 
   if (!configAssist.showInfoComplete) {

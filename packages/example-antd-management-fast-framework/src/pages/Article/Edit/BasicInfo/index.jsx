@@ -9,7 +9,6 @@ import {
   formatCollection,
   formatTarget,
   getToken,
-  getTokenKeyName,
   getValueByKey,
   logDebug,
   pretreatmentRemoteSingleData,
@@ -17,7 +16,11 @@ import {
   to,
 } from 'easy-soft-utility';
 
-import { cardConfig, corsTarget } from 'antd-management-fast-common';
+import {
+  cardConfig,
+  corsTarget,
+  getTokenName,
+} from 'antd-management-fast-common';
 import {
   buildButton,
   buildColorText,
@@ -85,7 +88,7 @@ class BasicInfo extends TabPageBase {
 
     const tokenSetObject = {};
 
-    tokenSetObject[`${getTokenKeyName()}`] = getToken() || '';
+    tokenSetObject[`${getTokenName()}`] = getToken() || '';
 
     this.state = {
       ...this.state,

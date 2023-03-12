@@ -1,7 +1,10 @@
+import { defaultSettings as defaultInterfaceSettings } from '@ant-design/pro-layout/lib/defaultSettings';
+
 import {
   checkStringIsNullOrWhiteSpace,
   getApplicationMergeConfig,
   isArray,
+  isObject,
 } from 'easy-soft-utility';
 
 import {
@@ -136,13 +139,49 @@ export function getAuthenticationFailCode() {
   return authenticationFailCode || authenticationFailCodeDefault;
 }
 
-export function getEntranceApi() {
-  const { entranceApi } = {
-    entranceApi: '',
+export function getTokenName() {
+  const { tokenName } = {
+    tokenName: 'token',
     ...getApplicationMergeConfig(),
   };
 
-  return entranceApi || '';
+  return tokenName || 'token';
+}
+
+export function getSignInApi() {
+  const { signInApi } = {
+    signInApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return signInApi || '';
+}
+
+export function getSignInCaptchaApi() {
+  const { signInCaptchaApi } = {
+    signInCaptchaApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return signInCaptchaApi || '';
+}
+
+export function getSignOutApi() {
+  const { signOutApi } = {
+    signOutApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return signOutApi || '';
+}
+
+export function getSignInSimulationData() {
+  const { signInSimulationData } = {
+    signInSimulationData: {},
+    ...getApplicationMergeConfig(),
+  };
+
+  return isObject(signInSimulationData) ? signInSimulationData : {};
 }
 
 export function getApplicationListDataApi() {
@@ -182,12 +221,12 @@ export function getMetaData() {
 }
 
 export function getCurrentOperatorApi() {
-  const { currentOperatorDispatchType } = {
-    currentOperatorDispatchType: '',
+  const { currentOperatorApi } = {
+    currentOperatorApi: '',
     ...getApplicationMergeConfig(),
   };
 
-  return currentOperatorDispatchType || '';
+  return currentOperatorApi || '';
 }
 
 export function getApiVersion() {
@@ -335,7 +374,10 @@ export function getLayoutSetting() {
     ...getApplicationMergeConfig(),
   };
 
-  return layoutSetting || {};
+  return {
+    ...defaultInterfaceSettings,
+    ...layoutSetting,
+  };
 }
 
 export function getTitle() {

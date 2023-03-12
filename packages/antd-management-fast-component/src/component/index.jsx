@@ -32,6 +32,7 @@ export * from './FileUpload';
 export * from './FlexBox';
 export * from './FlexSelect';
 export * from './FlexText';
+export * from './Footer';
 export * from './FooterToolbar';
 export * from './FormExtra';
 export * from './Function';

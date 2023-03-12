@@ -1,8 +1,6 @@
 import { getModelRemoteData } from 'easy-soft-dva';
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
-import { getLeftBarLogo, getLeftBarText } from 'antd-management-fast-common';
-
 export function getSexName(value) {
   let result = '未知';
 
@@ -41,7 +39,7 @@ export function getLogo() {
     ...platform,
   };
 
-  return getLeftBarLogo(logo);
+  return logo;
 }
 
 export function getTitle() {
@@ -61,7 +59,7 @@ export function getTitle() {
   };
 
   if (checkStringIsNullOrWhiteSpace(shortName)) {
-    return getLeftBarText();
+    return '';
   }
 
   return shortName;

@@ -3,7 +3,6 @@ import { request as requestInner } from '@umijs/max';
 import {
   checkStringIsNullOrWhiteSpace,
   getToken,
-  getTokenKeyName,
   isString,
   logObject,
   requestMethod,
@@ -13,7 +12,7 @@ import {
 } from 'easy-soft-utility';
 
 import { corsTarget } from './common';
-import { getShowRequestInfo } from './settingAssist';
+import { getShowRequestInfo, getTokenName } from './settingAssist';
 
 export async function request({
   url,
@@ -57,7 +56,7 @@ export async function request({
   if (token) {
     headers['Content-Type'] = 'application/json';
     headers['Accept'] = 'application/json';
-    headers[`${getTokenKeyName()}`] = token;
+    headers[`${getTokenName()}`] = token;
   }
 
   return requestInner(urlChange, {
