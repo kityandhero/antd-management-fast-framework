@@ -2,7 +2,7 @@ import { appendExtraBuilder } from 'easy-soft-utility';
 
 import { buildModel as buildAccessWayModel } from './accessWay';
 import { buildModel as buildArticleModel } from './article';
-import { buildModel as buildCurrentOperatorModel } from './currentOperator';
+import { buildModel as buildCurrentOperatorModel } from './currentAccount';
 import { buildModel as buildCurrentSystemModel } from './currentSystem';
 import { buildModel as buildFlowEditorModel } from './flowEditor';
 import { buildModel as buildGlobalModel } from './global';

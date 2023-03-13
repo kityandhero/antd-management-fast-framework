@@ -82,6 +82,7 @@ export const appInitDefault = {
   metaDataApi: '',
   metaData: {},
   currentOperatorApi: '',
+  currentOperatorSimulationData: {},
   showLogInConsole: false,
   showRequestInfo: false,
   useSimulateRequest: false,

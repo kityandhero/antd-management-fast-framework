@@ -33,7 +33,7 @@ export function loadMetaData({ successCallback = null, failCallback = null }) {
   if (checkStringIsNullOrWhiteSpace(metaDataApi)) {
     logConfig(
       'metaDataApi has not set, if need use it by api, please set it in applicationConfig with key "metaDataApi", it must be like "modelName/effect"',
-      'current use simulation mode',
+      'current use simulation request mode',
     );
 
     api = 'schedulingControl/getMetaDataSimulation';

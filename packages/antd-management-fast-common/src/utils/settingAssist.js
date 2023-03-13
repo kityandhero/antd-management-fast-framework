@@ -229,6 +229,17 @@ export function getCurrentOperatorApi() {
   return currentOperatorApi || '';
 }
 
+export function getCurrentOperatorSimulationData() {
+  const { currentOperatorSimulationData } = {
+    currentOperatorSimulationData: {},
+    ...getApplicationMergeConfig(),
+  };
+
+  return isObject(currentOperatorSimulationData)
+    ? currentOperatorSimulationData
+    : {};
+}
+
 export function getApiVersion() {
   const { apiVersion } = {
     apiVersion: '',

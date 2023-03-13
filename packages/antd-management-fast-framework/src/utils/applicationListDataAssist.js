@@ -37,7 +37,7 @@ export function loadApplicationListData({ successCallback = null }) {
   if (checkStringIsNullOrWhiteSpace(applicationListDataApi)) {
     logConfig(
       'getApplicationListDataApi has not set, if need use it by api, please set it in applicationConfig with key "getApplicationListDataApi", it must be like "modelName/effect"',
-      'current use simulation mode',
+      'current use simulation request mode',
     );
 
     api = 'schedulingControl/getApplicationListDataSimulation';

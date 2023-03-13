@@ -1,6 +1,7 @@
 import {
   checkInCollection,
   checkStringIsNullOrWhiteSpace,
+  flushAllCache,
   getTacitlyState,
   logDebug,
   logDevelop,
@@ -8,6 +9,8 @@ import {
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
+  removeCurrentOperatorCache,
+  removeLocalMetaData,
   removeToken,
   setAuthority,
   setToken,
@@ -34,7 +37,6 @@ export function buildModel() {
 
     state: {
       ...getTacitlyState(),
-      remoteLoading: false,
     },
 
     effects: {
@@ -44,7 +46,7 @@ export function buildModel() {
         if (checkStringIsNullOrWhiteSpace(signInApi)) {
           showSimpleWarnMessage(
             'signInApi has not set, please set it in applicationConfig with key "signInApi", it must be absolute or relative http url like "/user/signIn"',
-            'use simulation mode',
+            'use simulation request mode',
           );
         }
 
@@ -92,7 +94,7 @@ export function buildModel() {
         if (checkStringIsNullOrWhiteSpace(signInCaptchaApi)) {
           showSimpleWarnMessage(
             'signInCaptchaApi has not set, please set it in applicationConfig with key "signInCaptchaApi", it must be absolute or relative http url like "/entrance/getCaptcha"',
-            'use simulation mode',
+            'use simulation request mode',
           );
         }
 
@@ -120,7 +122,7 @@ export function buildModel() {
         if (checkStringIsNullOrWhiteSpace(signOutApi)) {
           showSimpleWarnMessage(
             'signOutApi has not set, please set it in applicationConfig with key "signOutApi", it must be absolute or relative http url like "/user/signOut"',
-            'use simulation mode',
+            'use simulation request mode',
           );
         }
 
@@ -140,7 +142,10 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
+        removeCurrentOperatorCache();
         removeToken();
+        removeLocalMetaData();
+        flushAllCache();
 
         return dataAdjust;
       },

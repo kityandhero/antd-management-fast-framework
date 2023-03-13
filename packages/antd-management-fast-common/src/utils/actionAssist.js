@@ -123,15 +123,20 @@ function remoteAction({
 
 /**
  * remote assess wrapper core
- * @param {*} api [string] remote api path.
- * @param {*} params [object] remote api params.
- * @param {*} target [object] target.
- * @param {*} failCallback [function] remote access logic fail handler, eg. failCallback(remoteData,whetherCauseByAuthorizeFail).
- * @param {*} successCallback [function] remote access logic success handler.
- * @param {*} successMessage [string] the message when remote access logic success. if successMessage not null or empty, will trigger toast notification.
- * @param {*} successMessageBuilder [function] remote access logic success message builder, priority over successMessage.
- * @param {*} showProcessing [bool] whether show processing toast.
- * @param {*} textProcessing [string] processing toast text.
+ * @param {Object} option option
+ * @param {string} option.api dva model effect like "modelName/effect"
+ * @param {Object} option.params request params.
+ * @param {Object} option.target the passed appendage object，eg "component".
+ * @param {Function} option.failCallback  if it is function, it will exec when request fail.
+ * @param {Function} option.successCallback if it is function, it will exec when request success.
+ * @param {String} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
+ * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
+ * @param {Boolean} option.showProcessing whether show processing prompt.
+ * @param {String} option.processingPrompt prompt text when show processing.
+ * @param {Number} option.delay  delay millisecond before request.
+ * @param {String} option.completeProcess request complete callback.
+ * @param {Boolean} option.setProgressingFirst set state.processing to true before request
+ * @param {Function} option.beforeProcess preprocessing of requests.
  */
 export async function actionCore({
   api,
@@ -142,7 +147,7 @@ export async function actionCore({
   successMessage = '数据已经操作成功，请进行后续操作。',
   successMessageBuilder = null,
   showProcessing = true,
-  textProcessing = '处理中，请稍后',
+  processingPrompt = '处理中，请稍后',
   delay = 400,
   setProgressingFirst = true,
   beforeProcess = null,
@@ -167,7 +172,7 @@ export async function actionCore({
 
     message.loading({
       key,
-      content: textProcessing || '处理中，请稍后',
+      content: processingPrompt || '处理中，请稍后',
       duration: 0,
     });
   }
@@ -250,16 +255,30 @@ export async function actionCore({
   }
 }
 
+/**
+ *
+ * @param {Object} option request option
+ * @param {string} option.api dva model effect like "modelName/effect"
+ * @param {Object} option.params request params.
+ * @param {Function} option.beforeProcess preprocessing of requests.
+ * @param {Function} option.failCallback  if it is function, it will exec when request fail.
+ * @param {Function} option.successCallback if it is function, it will exec when request success.
+ * @param {String} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
+ * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
+ * @param {Boolean} option.showProcessing whether show processing prompt.
+ * @param {String} option.processingPrompt prompt text when show processing.
+ * @param {Object} option.completeProcess request complete callback.
+ */
 export function apiRequest({
   api,
   params,
   beforeProcess = null,
-  failCallback,
-  successCallback,
-  successMessage,
-  successMessageBuilder,
+  failCallback = null,
+  successCallback = null,
+  successMessage = '',
+  successMessageBuilder = null,
   showProcessing = false,
-  textProcessing = '',
+  processingPrompt = '',
   completeProcess = null,
 }) {
   logDebug(`model access: ${api}`);
@@ -279,9 +298,9 @@ export function apiRequest({
 
     message.loading({
       key,
-      content: checkStringIsNullOrWhiteSpace(textProcessing)
+      content: checkStringIsNullOrWhiteSpace(processingPrompt)
         ? '处理中，请稍后'
-        : textProcessing,
+        : processingPrompt,
       duration: 0,
     });
   }
@@ -297,7 +316,10 @@ export function apiRequest({
         }, 200);
       }
 
-      const { dataSuccess } = data;
+      const { dataSuccess } = {
+        dataSuccess: false,
+        ...data,
+      };
 
       if (dataSuccess) {
         const {
@@ -349,10 +371,14 @@ export function apiRequest({
         }
       }
 
+      if (isFunction(completeProcess)) {
+        completeProcess({ api, params, dispatch, remoteOriginal: data });
+      }
+
       return data;
     })
-    .catch((error_) => {
-      logError(error_);
+    .catch((error) => {
+      logError(error);
 
       if (showProcessing) {
         setTimeout(() => {

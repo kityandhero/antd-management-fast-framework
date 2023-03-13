@@ -12,11 +12,11 @@ import {
   changeCurrentPasswordData,
   getCurrentBasicInfoData,
   updateCurrentBasicInfoData,
-} from '../services/currentOperator';
+} from '../services/currentAccount';
 
 export function buildModel() {
   return {
-    namespace: 'currentOperator',
+    namespace: 'currentAccount',
 
     state: {
       ...getTacitlyState(),

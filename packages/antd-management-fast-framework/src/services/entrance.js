@@ -52,7 +52,7 @@ export async function getCaptchaDataSimulation(parameters) {
 
   simulation[getTokenName()] = getGuid();
 
-  logDebug(simulation, 'signIn simulation data');
+  logDebug(simulation, 'getCaptcha simulation data');
 
   return request({
     api: `/entrance/getCaptchaSimulation`,

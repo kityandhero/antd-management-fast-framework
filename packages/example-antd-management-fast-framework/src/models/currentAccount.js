@@ -10,30 +10,16 @@ import {
   changeCurrentPasswordData,
   getCurrentBasicInfoData,
   updateCurrentBasicInfoData,
-} from '../services/currentOperator';
+} from '../services/currentAccount';
 
 export default {
-  namespace: 'currentOperator',
+  namespace: 'currentAccount',
 
   state: {
     ...getTacitlyState(),
   },
 
   effects: {
-    *getCurrentOperator({ payload, alias }, { call, put }) {
-      const response = yield call(getCurrentBasicInfoData, payload);
-
-      const dataAdjust = pretreatmentRemoteSingleData({ source: response });
-
-      yield put({
-        type: reducerNameCollection.reducerRemoteData,
-        payload: dataAdjust,
-        alias,
-        ...reducerDefaultParameters,
-      });
-
-      return dataAdjust;
-    },
     *getCurrentBasicInfo({ payload, alias }, { call, put }) {
       const response = yield call(getCurrentBasicInfoData, payload);
 
