@@ -4,6 +4,7 @@ import { SettingDrawer } from '@ant-design/pro-layout';
 import { Link } from '@umijs/max';
 
 import {
+  checkObjectIsNullOrEmpty,
   checkStringIsNullOrWhiteSpace,
   isEmptyObject,
   logExecute,
@@ -11,6 +12,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  defaultUserAvatar,
   getApplicationListData,
   getLeftBarLogo,
   getLeftBarText,
@@ -32,13 +34,22 @@ export function getLayoutSetting({
   footerLinks = [],
   initialState,
   setInitialState,
+  themeToken = {},
   config,
 }) {
   logExecute('getLayoutSetting');
 
-  let { settings = {} } = {
+  let { settings = {}, layoutAvatar = {} } = {
     settings: {},
+    layoutAvatar: {},
     ...initialState,
+  };
+
+  const layoutAvatarAdjust = {
+    src: defaultUserAvatar,
+    title: 'nickname',
+    ...layoutAvatar,
+    size: 'small',
   };
 
   if (isEmptyObject(settings)) {
@@ -58,6 +69,7 @@ export function getLayoutSetting({
           content: water,
         },
     appList: getApplicationListData(),
+    avatarProps: layoutAvatarAdjust,
     headerTitleRender: (logo, title, _) => {
       const defaultDom = (
         <AnchorLink>
@@ -107,13 +119,14 @@ export function getLayoutSetting({
       );
     },
     footerRender: () => <Footer links={footerLinks} />,
+    ...(checkObjectIsNullOrEmpty(themeToken) ? {} : { token: themeToken }),
     ...config,
     childrenRender: (children, properties) => {
       return (
         <>
           {children}
 
-          <Bootstrap />
+          <Bootstrap setInitialState={setInitialState} />
 
           {!properties.location?.pathname?.includes('/login') && (
             <SettingDrawer

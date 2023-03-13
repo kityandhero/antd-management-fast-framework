@@ -1,7 +1,6 @@
 import {
   getGuid,
   getTacitlyState,
-  logTrace,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
@@ -31,7 +30,7 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        logTrace(`simpleText change to ${simpleText}`);
+        // logTrace(`simpleText change to ${simpleText}`);
 
         return dataAdjust;
       },
@@ -47,7 +46,7 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        logTrace(`simpleText change to ${simpleText}`);
+        // logTrace(`simpleText change to ${simpleText}`);
 
         schedulingControlAssist.stopRemoteLoading();
 

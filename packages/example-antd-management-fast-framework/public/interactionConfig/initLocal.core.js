@@ -1,5 +1,10 @@
 window.appInitCustomLocalCore = {
   currentOperatorApi: '',
+  currentOperatorSimulationData: {
+    avatar:
+      'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
+    name: '七妮妮',
+  },
   layoutSetting: {
     fixSiderbar: true,
     layout: 'mix',

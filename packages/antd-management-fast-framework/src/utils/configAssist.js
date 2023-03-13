@@ -3,11 +3,13 @@ import {
   setApplicationInitialOption,
 } from 'easy-soft-dva';
 import {
-  buildPromptModuleInfo,
   getApplicationExternalConfigList,
   getApplicationInitialConfig,
   getApplicationMergeConfig,
+  isFunction,
   logDevelop,
+  removeCurrentOperatorCache,
+  removeLocalMetaData,
 } from 'easy-soft-utility';
 
 import { setEasySoftUtilityHandler } from 'antd-management-fast-common';
@@ -15,29 +17,22 @@ import { setEasySoftUtilityHandler } from 'antd-management-fast-common';
 import { appendEmbedModelBuilder } from '../modelBuilders';
 
 import { loadApplicationInitialData } from './bootstrap';
-import { modulePackageName } from './definition';
 
 let configEnvironmentComplete = false;
 
-/**
- * Module Name.
- */
-const moduleName = 'configAssist';
-
-export function configEnvironment() {
+export function configEnvironment(otherConfigHandler = null) {
   if (configEnvironmentComplete) {
     return;
   }
+  logDevelop('--------------------------------------------');
 
   setEasySoftUtilityHandler();
 
-  logDevelop(
-    buildPromptModuleInfo(
-      modulePackageName,
-      'configEnvironment -> config complete',
-      moduleName,
-    ),
-  );
+  if (isFunction(otherConfigHandler)) {
+    otherConfigHandler();
+  }
+
+  logDevelop('configEnvironment', 'config complete');
 
   logDevelop('--------------------------------------------');
 
@@ -59,6 +54,9 @@ export function configEnvironment() {
   initializeApplication();
 
   logDevelop('--------------------------------------------');
+
+  removeCurrentOperatorCache();
+  removeLocalMetaData();
 
   loadApplicationInitialData();
 }

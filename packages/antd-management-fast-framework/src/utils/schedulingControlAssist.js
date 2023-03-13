@@ -21,8 +21,6 @@ const schedulingControlAssist = {
    * Set current operator request is processing
    */
   setCurrentOperatorRequestProcessing(value) {
-    console.log({ currentOperatorRequestProcessing: toBoolean(value) });
-
     setCache({
       key: cacheKeyCollection.currentOperatorRequestProcessing,
       value: toBoolean(value),

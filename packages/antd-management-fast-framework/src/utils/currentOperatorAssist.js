@@ -1,15 +1,92 @@
 import { getDispatch } from 'easy-soft-dva';
 import {
+  buildPromptModuleInfo,
   getCurrentOperatorCache,
   isFunction,
   logDebug,
+  logDevelop,
   logExecute,
+  logTrace,
+  mergeTextMessage,
+  promptTextBuilder,
   setCurrentOperatorCache,
 } from 'easy-soft-utility';
 
 import { apiRequest } from 'antd-management-fast-common';
 
+import { modulePackageName } from './definition';
 import { schedulingControlAssist } from './schedulingControlAssist';
+
+/**
+ * Module Name.
+ * @private
+ */
+const moduleName = 'currentOperatorAssist';
+
+function buildPromptModuleInfoText(text, ancillaryInformation = '') {
+  return buildPromptModuleInfo(
+    modulePackageName,
+    mergeTextMessage(text, ancillaryInformation),
+    moduleName,
+  );
+}
+
+/**
+ * Simulation Configuration
+ */
+export const currentOperatorAssistConfigure = {
+  handleTransferLayoutAvatar: ({ currentOperator }) => currentOperator,
+  transferLayoutAvatarSetComplete: false,
+};
+
+/**
+ * Set transfer layout avatar handler
+ * @param {Function} handler handle transfer layout avatar
+ */
+export function setTransferLayoutAvatarHandler(handler) {
+  if (currentOperatorAssistConfigure.transferLayoutAvatarSetComplete) {
+    logDevelop(
+      'setTransferLayoutAvatarHandler',
+      'reset is not allowed, it can be set only once',
+    );
+
+    return;
+  }
+
+  if (isFunction(handler)) {
+    logDevelop('setTransferLayoutAvatarHandler', typeof handler);
+  } else {
+    throw new Error(
+      buildPromptModuleInfoText(
+        'setTransferLayoutAvatarHandler',
+        promptTextBuilder.buildMustFunction({}),
+      ),
+    );
+  }
+
+  currentOperatorAssistConfigure.handleTransferLayoutAvatar = handler;
+  currentOperatorAssistConfigure.transferLayoutAvatarSetComplete = true;
+}
+
+export function transferLayoutAvatar({ currentOperator }) {
+  const layoutAvatar =
+    currentOperatorAssistConfigure.handleTransferLayoutAvatar({
+      currentOperator,
+    });
+
+  logTrace(
+    {
+      currentOperator,
+      layoutAvatar,
+    },
+    mergeTextMessage(
+      'trigger transferLayoutAvatar which setTransferLayoutAvatarHandler set it',
+      'currentOperator to layoutAvatar',
+    ),
+  );
+
+  return layoutAvatar;
+}
 
 function refreshCurrentOperator({
   successCallback = null,
@@ -69,13 +146,20 @@ export function getCurrentOperator({
   failCallback = null,
 }) {
   if (schedulingControlAssist.getCurrentOperatorRequestProcessing()) {
+    const delayTime = 200;
+
+    logTrace(
+      'call getCurrentOperator high frequency, use recursion delay mode',
+      `delay ${delayTime}ms`,
+    );
+
     setTimeout(() => {
       getCurrentOperator({
         force: false,
         successCallback,
         failCallback,
       });
-    }, 200);
+    }, delayTime);
 
     return;
   }

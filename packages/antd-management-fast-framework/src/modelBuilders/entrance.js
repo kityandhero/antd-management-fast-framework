@@ -3,6 +3,7 @@ import {
   checkStringIsNullOrWhiteSpace,
   flushAllCache,
   getTacitlyState,
+  logConfig,
   logDebug,
   logDevelop,
   pretreatmentRemoteSingleData,
@@ -14,7 +15,6 @@ import {
   removeToken,
   setAuthority,
   setToken,
-  showSimpleWarnMessage,
 } from 'easy-soft-utility';
 
 import {
@@ -44,7 +44,7 @@ export function buildModel() {
         const signInApi = getSignInApi();
 
         if (checkStringIsNullOrWhiteSpace(signInApi)) {
-          showSimpleWarnMessage(
+          logConfig(
             'signInApi has not set, please set it in applicationConfig with key "signInApi", it must be absolute or relative http url like "/user/signIn"',
             'use simulation request mode',
           );
@@ -92,7 +92,7 @@ export function buildModel() {
         const signInCaptchaApi = getSignInCaptchaApi();
 
         if (checkStringIsNullOrWhiteSpace(signInCaptchaApi)) {
-          showSimpleWarnMessage(
+          logConfig(
             'signInCaptchaApi has not set, please set it in applicationConfig with key "signInCaptchaApi", it must be absolute or relative http url like "/entrance/getCaptcha"',
             'use simulation request mode',
           );
@@ -120,7 +120,7 @@ export function buildModel() {
         const signOutApi = getSignOutApi();
 
         if (checkStringIsNullOrWhiteSpace(signOutApi)) {
-          showSimpleWarnMessage(
+          logConfig(
             'signOutApi has not set, please set it in applicationConfig with key "signOutApi", it must be absolute or relative http url like "/user/signOut"',
             'use simulation request mode',
           );

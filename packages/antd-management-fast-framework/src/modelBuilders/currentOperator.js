@@ -1,12 +1,12 @@
 import {
   checkStringIsNullOrWhiteSpace,
   getTacitlyState,
+  logConfig,
   logTrace,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
-  showSimpleWarnMessage,
 } from 'easy-soft-utility';
 
 import { getCurrentOperatorApi } from 'antd-management-fast-common';
@@ -29,7 +29,7 @@ export function buildModel() {
         const currentOperatorApi = getCurrentOperatorApi();
 
         if (checkStringIsNullOrWhiteSpace(currentOperatorApi)) {
-          showSimpleWarnMessage(
+          logConfig(
             'currentOperatorApi has not set, please set it in applicationConfig with key "currentOperatorApi", it must be absolute or relative http url like "/currentOperator/getCurrentOperator"',
             'use simulation request mode',
           );

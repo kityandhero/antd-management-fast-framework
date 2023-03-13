@@ -1,10 +1,35 @@
 import { BaseComponent } from 'antd-management-fast-component';
 
-import { getCurrentOperator } from '../../utils/currentOperatorAssist';
+import {
+  getCurrentOperator,
+  transferLayoutAvatar,
+} from '../../utils/currentOperatorAssist';
 
 class Bootstrap extends BaseComponent {
   doOtherWorkAfterDidMount = () => {
-    getCurrentOperator({});
+    const { setInitialState } = this.props;
+
+    getCurrentOperator({
+      successCallback: (data) => {
+        const layoutAvatar = transferLayoutAvatar({
+          currentOperator: data,
+        });
+
+        setInitialState((preInitialState) => {
+          let { layoutAvatar: preLayoutAvatar = {} } = {
+            layoutAvatar: {},
+            ...preInitialState,
+          };
+
+          const v = {
+            ...preLayoutAvatar,
+            layoutAvatar,
+          };
+
+          return v;
+        });
+      },
+    });
   };
 
   renderFurther() {
