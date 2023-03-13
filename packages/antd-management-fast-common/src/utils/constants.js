@@ -85,8 +85,6 @@ export const appInitDefault = {
   currentOperatorSimulationData: {},
   showLogInConsole: false,
   showRequestInfo: false,
-  useSimulateRequest: false,
-  promptSimulation: false,
   apiVersion: '',
   imageUploadMaxSize: 2,
   audioUploadMaxSize: 4,

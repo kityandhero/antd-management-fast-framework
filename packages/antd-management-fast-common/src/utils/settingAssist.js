@@ -249,24 +249,6 @@ export function getApiVersion() {
   return apiVersion || '';
 }
 
-export function getUseSimulateRequest() {
-  const { useSimulateRequest } = {
-    useSimulateRequest: false,
-    ...getApplicationMergeConfig(),
-  };
-
-  return useSimulateRequest || false;
-}
-
-export function getPromptSimulateRequestScene() {
-  const { promptSimulation } = {
-    promptSimulation: false,
-    ...getApplicationMergeConfig(),
-  };
-
-  return promptSimulation || false;
-}
-
 export function getShowLogInConsole() {
   const { showLogInConsole } = {
     showLogInConsole: false,
