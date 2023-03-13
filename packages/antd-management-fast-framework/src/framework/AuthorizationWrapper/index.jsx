@@ -5,7 +5,6 @@ import {
   isArray,
   isFunction,
   logException,
-  showSimpleRuntimeError,
 } from 'easy-soft-utility';
 
 import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
@@ -27,21 +26,11 @@ class AuthorizationWrapper extends SupplementWrapper {
   };
 
   checkAuthorization = () => {
-    if (
-      checkStringIsNullOrWhiteSpace(this.componentAuthority) ||
-      this.checkAuthority(this.componentAuthority)
-    ) {
-      return true;
-    } else {
-      const text = `缺少权限:${this.componentAuthority}`;
-
-      showSimpleRuntimeError(text);
-
-      return false;
-    }
+    return checkStringIsNullOrWhiteSpace(this.componentAuthority) ||
+      checkHasAuthority(this.componentAuthority)
+      ? true
+      : false;
   };
-
-  checkAuthority = (auth) => checkHasAuthority(auth);
 
   getCurrentOperator = () => {
     const {

@@ -3,6 +3,7 @@ import React from 'react';
 
 import { connect } from 'easy-soft-dva';
 import {
+  checkHasAuthority,
   checkStringIsNullOrWhiteSpace,
   convertCollection,
   formatCollection,
@@ -473,7 +474,7 @@ class BasicInfo extends TabPageBase {
                   key: 'insertItem',
                   icon: iconBuilder.insertRowBelow(),
                   text: '在下方插入',
-                  hidden: !this.checkAuthority(
+                  hidden: !checkHasAuthority(
                     accessWayCollection.article.addMediaItem.permission,
                   ),
                 },
@@ -483,7 +484,7 @@ class BasicInfo extends TabPageBase {
                   uponDivider: true,
                   icon: iconBuilder.arrowUp(),
                   text: '向上移动',
-                  hidden: !this.checkAuthority(
+                  hidden: !checkHasAuthority(
                     accessWayCollection.article.updateSort.permission,
                   ),
                   disabled: sort === 1,
@@ -492,7 +493,7 @@ class BasicInfo extends TabPageBase {
                   key: 'moveDown',
                   icon: iconBuilder.arrowDown(),
                   text: '向下移动',
-                  hidden: !this.checkAuthority(
+                  hidden: !checkHasAuthority(
                     accessWayCollection.article.updateSort.permission,
                   ),
                   disabled: sort === (mediaItemList || []).length,
@@ -503,7 +504,7 @@ class BasicInfo extends TabPageBase {
                   uponDivider: true,
                   icon: iconBuilder.reload(),
                   text: '刷新缓存',
-                  hidden: !this.checkAuthority(
+                  hidden: !checkHasAuthority(
                     accessWayCollection.article.refreshCache.permission,
                   ),
                   confirm: true,
@@ -515,7 +516,7 @@ class BasicInfo extends TabPageBase {
                   uponDivider: true,
                   icon: iconBuilder.delete(),
                   text: '删除信息',
-                  hidden: !this.checkAuthority(
+                  hidden: !checkHasAuthority(
                     accessWayCollection.article.removeMediaItem.permission,
                   ),
                   confirm: true,
@@ -549,7 +550,7 @@ class BasicInfo extends TabPageBase {
             <Button
               type="primary"
               disabled={
-                !this.checkAuthority(
+                !checkHasAuthority(
                   accessWayCollection.article.addMediaItem.permission,
                 ) ||
                 dataLoading ||

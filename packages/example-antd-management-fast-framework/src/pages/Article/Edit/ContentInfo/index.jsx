@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'easy-soft-dva';
-import { getValueByKey } from 'easy-soft-utility';
+import { checkHasAuthority, getValueByKey } from 'easy-soft-utility';
 
 import {
   animalType,
@@ -156,7 +156,7 @@ class ContentInfo extends TabPageBase {
               },
               {
                 buildType: cardConfig.extraBuildType.save,
-                hidden: !this.checkAuthority(
+                hidden: !checkHasAuthority(
                   accessWayCollection.article.updateContentInfo.permission,
                 ),
               },

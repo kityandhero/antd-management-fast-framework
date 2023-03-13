@@ -1,5 +1,6 @@
 import { connect } from 'easy-soft-dva';
 import {
+  checkHasAuthority,
   checkStringIsNullOrWhiteSpace,
   convertCollection,
   getValueByKey,
@@ -44,21 +45,21 @@ class Edit extends DataTabContainerSupplement {
   tabList = [
     {
       key: 'basicInfo',
-      show: this.checkAuthority(accessWayCollection.article.get.permission),
+      show: checkHasAuthority(accessWayCollection.article.get.permission),
       tab: '基本信息',
       label: '基本信息',
       children: <BasicInfo />,
     },
     {
       key: 'contentInfo',
-      show: this.checkAuthority(accessWayCollection.article.get.permission),
+      show: checkHasAuthority(accessWayCollection.article.get.permission),
       tab: '图文H5信息',
       label: '图文H5信息',
       children: <ContentInfo />,
     },
     {
       key: 'mediaInfo',
-      show: this.checkAuthority(
+      show: checkHasAuthority(
         accessWayCollection.article.updateMediaData.permission,
       ),
       tab: '媒体信息',
@@ -268,7 +269,7 @@ class Edit extends DataTabContainerSupplement {
           handleButtonClick: ({ handleData }) => {
             that.setOnline(handleData);
           },
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.setOnline.permission,
           ),
           disabled:
@@ -291,7 +292,7 @@ class Edit extends DataTabContainerSupplement {
           handleButtonClick: ({ handleData }) => {
             that.setOffline(handleData);
           },
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.setOffline.permission,
           ),
           disabled:
@@ -428,7 +429,7 @@ class Edit extends DataTabContainerSupplement {
           uponDivider: true,
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.refreshCache.permission,
           ),
           confirm: true,

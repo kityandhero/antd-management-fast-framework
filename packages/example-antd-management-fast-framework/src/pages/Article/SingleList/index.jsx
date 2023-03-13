@@ -2,6 +2,7 @@ import { List } from 'antd';
 
 import { connect } from 'easy-soft-dva';
 import {
+  checkHasAuthority,
   convertCollection,
   getValueByKey,
   handleItem,
@@ -496,7 +497,7 @@ class SingleList extends SinglePage {
         icon: iconBuilder.sortAscending(),
         text: '侧拉单页列表',
         handleClick: this.showSingleListDrawer,
-        hidden: !this.checkAuthority(
+        hidden: !checkHasAuthority(
           accessWayCollection.article.addBasicInfo.permission,
         ),
       },
@@ -507,7 +508,7 @@ class SingleList extends SinglePage {
         icon: iconBuilder.plus(),
         text: '新增文章[侧拉]',
         handleClick: this.showAddBasicInfoDrawer,
-        hidden: !this.checkAuthority(
+        hidden: !checkHasAuthority(
           accessWayCollection.article.addBasicInfo.permission,
         ),
       },
@@ -518,7 +519,7 @@ class SingleList extends SinglePage {
         icon: iconBuilder.plus(),
         text: '新增文章[页面]',
         handleClick: this.goToAdd,
-        hidden: !this.checkAuthority(
+        hidden: !checkHasAuthority(
           accessWayCollection.article.addBasicInfo.permission,
         ),
       },
@@ -728,7 +729,7 @@ class SingleList extends SinglePage {
               uponDivider: true,
               icon: iconBuilder.edit(),
               text: '编辑[侧拉]',
-              hidden: !this.checkAuthority(
+              hidden: !checkHasAuthority(
                 accessWayCollection.article.updateBasicInfo.permission,
               ),
             },
@@ -736,7 +737,7 @@ class SingleList extends SinglePage {
               key: 'setOnline',
               icon: iconBuilder.playCircle(),
               text: '设为上线',
-              hidden: !this.checkAuthority(
+              hidden: !checkHasAuthority(
                 accessWayCollection.article.setOnline.permission,
               ),
               disabled: itemStatus === statusCollection.online,
@@ -747,7 +748,7 @@ class SingleList extends SinglePage {
               key: 'setOffline',
               icon: iconBuilder.pauseCircle(),
               text: '设为下线',
-              hidden: !this.checkAuthority(
+              hidden: !checkHasAuthority(
                 accessWayCollection.article.setOffline.permission,
               ),
               disabled: itemStatus === statusCollection.offline,
@@ -760,7 +761,7 @@ class SingleList extends SinglePage {
               uponDivider: true,
               icon: iconBuilder.edit(),
               text: '设置排序值',
-              hidden: !this.checkAuthority(
+              hidden: !checkHasAuthority(
                 accessWayCollection.article.updateSort.permission,
               ),
             },
@@ -770,7 +771,7 @@ class SingleList extends SinglePage {
               uponDivider: true,
               icon: iconBuilder.reload(),
               text: '刷新缓存',
-              hidden: !this.checkAuthority(
+              hidden: !checkHasAuthority(
                 accessWayCollection.article.refreshCache.permission,
               ),
               confirm: true,
@@ -806,7 +807,7 @@ class SingleList extends SinglePage {
       currentRecord,
     } = this.state;
 
-    const renderChangeSortModal = this.checkAuthority(
+    const renderChangeSortModal = checkHasAuthority(
       accessWayCollection.article.updateSort.permission,
     );
 

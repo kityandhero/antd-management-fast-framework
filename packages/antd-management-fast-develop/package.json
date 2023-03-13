@@ -57,7 +57,7 @@
     "@commitlint/cz-commitlint": "^17.4.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@types/jest": "^29.4.0",
-    "@types/node": "^18.15.0",
+    "@types/node": "^18.15.1",
     "@typescript-eslint/parser": "^5.54.1",
     "@umijs/max": "^4.0.57",
     "commitizen": "^4.3.0",

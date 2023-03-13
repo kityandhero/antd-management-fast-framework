@@ -2,6 +2,7 @@ import { Dropdown, List } from 'antd';
 
 import { connect } from 'easy-soft-dva';
 import {
+  checkHasAuthority,
   getValueByKey,
   isArray,
   showSimpleErrorMessage,
@@ -213,7 +214,7 @@ class ChangeImageSortModal extends Base {
                     key={`${index}_`}
                     current={item}
                     metaListDataList={metaListData}
-                    hasAuthority={this.checkAuthority(
+                    hasAuthority={checkHasAuthority(
                       accessWayCollection.article.updateImageContentInfo
                         .permission,
                     )}

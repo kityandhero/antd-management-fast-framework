@@ -1,5 +1,6 @@
 import { connect } from 'easy-soft-dva';
 import {
+  checkHasAuthority,
   convertCollection,
   getGuid,
   getValueByKey,
@@ -177,7 +178,7 @@ class Index extends MultiPage {
         icon: iconBuilder.plus(),
         text: '新增文章',
         handleClick: this.goToAdd,
-        hidden: !this.checkAuthority(
+        hidden: !checkHasAuthority(
           accessWayCollection.article.addBasicInfo.permission,
         ),
       },
@@ -210,7 +211,7 @@ class Index extends MultiPage {
           key: 'showUpdateBasicInfoDrawer',
           icon: iconBuilder.edit(),
           text: '编辑[侧拉]',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.updateBasicInfo.permission,
           ),
         },
@@ -220,7 +221,7 @@ class Index extends MultiPage {
           uponDivider: true,
           icon: iconBuilder.playCircle(),
           text: '设为上线',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.setOnline.permission,
           ),
           disabled: itemStatus === statusCollection.online,
@@ -231,7 +232,7 @@ class Index extends MultiPage {
           key: 'setOffline',
           icon: iconBuilder.pauseCircle(),
           text: '设为下线',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.setOffline.permission,
           ),
           disabled: itemStatus === statusCollection.offline,
@@ -244,7 +245,7 @@ class Index extends MultiPage {
           uponDivider: true,
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.refreshCache.permission,
           ),
           confirm: true,

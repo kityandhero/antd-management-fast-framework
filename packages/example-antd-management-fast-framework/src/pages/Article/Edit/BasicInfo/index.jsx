@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import { connect } from 'easy-soft-dva';
 import {
   buildRandomHexColor,
+  checkHasAuthority,
   convertCollection,
   datetimeFormat,
   formatCollection,
@@ -833,7 +834,7 @@ class BasicInfo extends TabPageBase {
             list: [
               {
                 buildType: cardConfig.extraBuildType.generalButton,
-                hidden: !this.checkAuthority(
+                hidden: !checkHasAuthority(
                   accessWayCollection.article.updateImageSort.permission,
                 ),
                 text: '调整图片顺序',
@@ -849,7 +850,7 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.imageUpload,
               action: `${corsTarget()}/article/uploadImage`,
-              disabled: !this.checkAuthority(
+              disabled: !checkHasAuthority(
                 accessWayCollection.article.addImage.permission,
               ),
               multiple: true,
@@ -857,7 +858,7 @@ class BasicInfo extends TabPageBase {
               showUploadList: {
                 showPreviewIcon: true,
                 showDownloadIcon: true,
-                showRemoveIcon: this.checkAuthority(
+                showRemoveIcon: checkHasAuthority(
                   accessWayCollection.article.removeImage.permission,
                 ),
               },

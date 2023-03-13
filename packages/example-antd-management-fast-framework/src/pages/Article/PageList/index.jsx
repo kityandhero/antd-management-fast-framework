@@ -3,6 +3,7 @@ import { List } from 'antd';
 import { connect } from 'easy-soft-dva';
 import {
   buildRandomHexColor,
+  checkHasAuthority,
   convertCollection,
   getValueByKey,
   handleItem,
@@ -598,7 +599,7 @@ class PageList extends MultiPage {
         icon: iconBuilder.plus(),
         text: '新增文章[侧拉]',
         handleClick: this.showAddBasicInfoDrawer,
-        hidden: !this.checkAuthority(
+        hidden: !checkHasAuthority(
           accessWayCollection.article.addBasicInfo.permission,
         ),
       },
@@ -611,7 +612,7 @@ class PageList extends MultiPage {
         title: '即将跳转新增数据页面，确定吗？',
         text: '新增文章[页面]',
         handleClick: this.goToAdd,
-        hidden: !this.checkAuthority(
+        hidden: !checkHasAuthority(
           accessWayCollection.article.addBasicInfo.permission,
         ),
       },
@@ -838,7 +839,7 @@ class PageList extends MultiPage {
           key: 'showUpdateBasicInfoDrawer',
           icon: iconBuilder.edit(),
           text: '编辑[侧拉]',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.updateBasicInfo.permission,
           ),
         },
@@ -846,7 +847,7 @@ class PageList extends MultiPage {
           key: 'contentInfo',
           icon: iconBuilder.edit(),
           text: '编辑图文',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.updateContentInfo.permission,
           ),
         },
@@ -856,7 +857,7 @@ class PageList extends MultiPage {
           uponDivider: true,
           icon: iconBuilder.playCircle(),
           text: '设为上线',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.setOnline.permission,
           ),
           disabled: itemStatus === statusCollection.online,
@@ -867,7 +868,7 @@ class PageList extends MultiPage {
           key: 'setOffline',
           icon: iconBuilder.pauseCircle(),
           text: '设为下线',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.setOffline.permission,
           ),
           disabled: itemStatus === statusCollection.offline,
@@ -880,7 +881,7 @@ class PageList extends MultiPage {
           uponDivider: true,
           icon: iconBuilder.edit(),
           text: '设置排序值',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.updateSort.permission,
           ),
         },
@@ -890,7 +891,7 @@ class PageList extends MultiPage {
           uponDivider: true,
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          hidden: !this.checkAuthority(
+          hidden: !checkHasAuthority(
             accessWayCollection.article.refreshCache.permission,
           ),
           confirm: true,
@@ -1001,7 +1002,7 @@ class PageList extends MultiPage {
       currentRecord,
     } = this.state;
 
-    const renderChangeSortModal = this.checkAuthority(
+    const renderChangeSortModal = checkHasAuthority(
       accessWayCollection.article.updateSort.permission,
     );
 

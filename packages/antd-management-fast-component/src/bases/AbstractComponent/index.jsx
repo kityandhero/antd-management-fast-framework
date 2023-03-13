@@ -288,7 +288,7 @@ class AbstractComponent extends Component {
 
         this.doOtherWorkAfterDidMount();
       } else {
-        this.doWorkWhenCheckPermission();
+        this.doWorkWhenCheckPermissionFail();
       }
     } else {
       this.doWorkWhenCheckNeedSignInDidMountFail();
@@ -312,6 +312,7 @@ class AbstractComponent extends Component {
 
   doWorkWhenCheckPermissionFail = () => {
     logExecute('doWorkWhenCheckPermissionFail');
+
     logConfig(
       'doWorkWhenCheckPermissionFail do nothing,if you need,you can override it: doWorkWhenCheckPermissionFail = () => {}',
     );
