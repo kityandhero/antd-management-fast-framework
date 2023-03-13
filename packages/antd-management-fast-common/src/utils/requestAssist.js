@@ -1,9 +1,10 @@
-import { request as requestInner } from '@umijs/max';
+import axios from 'axios';
 
 import {
   checkStringIsNullOrWhiteSpace,
   getToken,
   isString,
+  logException,
   logObject,
   requestMethod,
   setRequestHandler as setRequestHandlerCore,
@@ -59,13 +60,20 @@ export async function request({
     headers[`${getTokenName()}`] = token;
   }
 
-  return requestInner(urlChange, {
-    headers: { ...headers, ...header },
-    method,
-    params: {},
-    body: data,
-    ...option,
-  });
+  try {
+    const response = await axios.request({
+      url: urlChange,
+      headers: { ...headers, ...header },
+      method,
+      params: {},
+      data: data,
+      ...option,
+    });
+
+    return response;
+  } catch (error) {
+    logException(error);
+  }
 }
 
 /**

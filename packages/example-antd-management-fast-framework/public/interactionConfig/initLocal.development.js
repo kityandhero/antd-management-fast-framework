@@ -1,6 +1,6 @@
 window.appInitCustomLocalSpecial = {
   showLogInConsole: true,
-  showRequestInfo: false,
+  showRequestInfo: true,
   showLogRenderFurther: false,
   useSimulateRequest: true,
   promptSimulation: true,

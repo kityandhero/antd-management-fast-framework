@@ -37,6 +37,7 @@ const externalCollection = [
   'antd',
   'antd/lib/config-provider/context',
   'array-move',
+  'axios',
   'copy-to-clipboard',
   'easy-soft-dva',
   'easy-soft-utility',

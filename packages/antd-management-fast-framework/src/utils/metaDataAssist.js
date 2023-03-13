@@ -1,17 +1,15 @@
 import { getDispatch } from 'easy-soft-dva';
 import {
-  checkStringIsNullOrWhiteSpace,
   getApplicationMergeConfig,
   getLocalMetaData,
   isFunction,
-  logConfig,
   logDebug,
   logExecute,
   logInfo,
   setLocalMetaData,
 } from 'easy-soft-utility';
 
-import { apiRequest, getMetaDataApi } from 'antd-management-fast-common';
+import { apiRequest } from 'antd-management-fast-common';
 
 export function loadMetaData({ successCallback = null, failCallback = null }) {
   logExecute('loadMetaData');
@@ -24,27 +22,10 @@ export function loadMetaData({ successCallback = null, failCallback = null }) {
     return;
   }
 
-  const dispatch = getDispatch();
-
-  const metaDataApi = getMetaDataApi();
-
-  let api = '';
-
-  if (checkStringIsNullOrWhiteSpace(metaDataApi)) {
-    logConfig(
-      'metaDataApi has not set, if need use it by api, please set it in applicationConfig with key "metaDataApi", it must be like "modelName/effect"',
-      'current use simulation request mode',
-    );
-
-    api = 'schedulingControl/getMetaDataSimulation';
-  } else {
-    api = 'schedulingControl/getMetaData';
-  }
-
   apiRequest({
-    api: api,
+    api: 'schedulingControl/getMetaData',
     params: {},
-    dispatch: dispatch,
+    dispatch: getDispatch(),
     successCallback: ({ remoteData }) => {
       const { metaData } = {
         metaData: {},

@@ -1,11 +1,16 @@
 import {
+  checkStringIsNullOrWhiteSpace,
   getTacitlyState,
+  logConfig,
+  logTrace,
   pretreatmentRemoteListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
 } from 'easy-soft-utility';
+
+import { getMetaDataApi } from 'antd-management-fast-common';
 
 import {
   getMetaDataData,
@@ -56,21 +61,23 @@ export function buildModel() {
         return dataAdjust;
       },
       *getMetaData({ payload, alias }, { call, put }) {
-        const response = yield call(getMetaDataData, payload);
+        const metaDataApi = getMetaDataApi();
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        if (checkStringIsNullOrWhiteSpace(metaDataApi)) {
+          logConfig(
+            'metaDataApi has not set, please set it in applicationConfig with key "metaDataApi", it must be absolute or relative http url like "/metaData/get"',
+            'use simulation request mode',
+          );
+        } else {
+          logTrace('metaDataApi has been set', 'use real request mode');
+        }
 
-        yield put({
-          type: reducerNameCollection.reducerRemoteData,
-          payload: dataAdjust,
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        return dataAdjust;
-      },
-      *getMetaDataSimulation({ payload, alias }, { call, put }) {
-        const response = yield call(getMetaDataSimulation, payload);
+        const response = yield call(
+          checkStringIsNullOrWhiteSpace(metaDataApi)
+            ? getMetaDataSimulation
+            : getMetaDataData,
+          payload,
+        );
 
         const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 

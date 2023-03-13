@@ -11,7 +11,6 @@ export * from './messageAssist';
 export * from './meta';
 export * from './navigationAssist';
 export * from './notificationAssist';
-export * from './proLayoutCollection';
 export * from './routeAssist';
 export * from './sessionStorageAssist';
 export * from './settingAssist';
