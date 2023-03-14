@@ -1,4 +1,5 @@
-import { toast } from 'react-toastify';
+import React from 'react';
+import { Flip, toast } from 'react-toastify';
 
 import {
   messageTypeCollection,
@@ -15,59 +16,86 @@ import {
 function showMessage({ type, duration = 3, text, onClose = () => {} }) {
   requestAnimationFrame(() => {
     const options = {
-      position: 'top-right',
+      position: 'top-center',
       autoClose: duration * 1000,
       hideProgressBar: true,
-      transition: 'flip',
+      transition: Flip,
       closeButton: false,
+      style: {
+        paddingTop: 0,
+        paddingBottom: 0,
+        '--toastify-toast-min-height': '40px',
+        '--toastify-toast-width': 'auto',
+        minWidth: '200px',
+        maxWidth: '600px',
+        fontSize: '14px',
+        borderRadius: '8px',
+      },
+      bodyStyle: {
+        paddingTop: 0,
+        paddingBottom: 0,
+        marginTop: 0,
+        marginBottom: 0,
+      },
       onClose,
     };
 
+    const content = (
+      <div
+        style={{
+          paddingTop: '4px',
+          paddingBottom: '4px',
+        }}
+      >
+        {text}
+      </div>
+    );
+
     switch (type) {
       case messageTypeCollection.open: {
-        toast(text, options);
+        toast(content, options);
 
         break;
       }
 
       case messageTypeCollection.loading: {
-        toast.loading(text, options);
+        toast.loading(content, options);
 
         break;
       }
 
       case messageTypeCollection.info: {
-        toast.info(text, options);
+        toast.info(content, options);
 
         break;
       }
 
       case messageTypeCollection.warn: {
-        toast.warn(text, options);
+        toast.warn(content, options);
 
         break;
       }
 
       case messageTypeCollection.warning: {
-        toast.warning(text, options);
+        toast.warning(content, options);
 
         break;
       }
 
       case messageTypeCollection.success: {
-        toast.success(text, options);
+        toast.success(content, options);
 
         break;
       }
 
       case messageTypeCollection.error: {
-        toast.error(text, options);
+        toast.error(content, options);
 
         break;
       }
 
       default: {
-        toast(text, options);
+        toast(content, options);
 
         break;
       }

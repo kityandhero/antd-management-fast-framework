@@ -21,7 +21,7 @@ export function loadApplicationInitialData() {
   }
 
   requestAnimationFrame(() => {
-    const text = '初始数据正在努力加载中，需要一点点时间哦！';
+    const text = '数据正在初始化，需要一点点时间哦！';
 
     showInfoMessage({
       text: text,

@@ -1,7 +1,10 @@
 import { Button, Space } from 'antd';
 
 import { connect } from 'easy-soft-dva';
-import { showInfoNotification, showSimpleInfoMessage } from 'easy-soft-utility';
+import {
+  showInfoNotification,
+  showSimpleLoadingMessage,
+} from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { DataOperation } from 'antd-management-fast-framework';
@@ -67,7 +70,7 @@ class ShortcutPanel extends BaseView {
 
                   <Button
                     onClick={() => {
-                      showSimpleInfoMessage('some message');
+                      showSimpleLoadingMessage('some message some message');
                     }}
                   >
                     Message

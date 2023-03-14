@@ -1,9 +1,11 @@
-import { message, Modal } from 'antd';
+import { Modal } from 'antd';
+import React from 'react';
+import { Flip, toast } from 'react-toastify';
 
 import { getDispatch } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
-  getGuid,
+  // getGuid,
   isArray,
   isFunction,
   logDebug,
@@ -12,6 +14,43 @@ import {
 } from 'easy-soft-utility';
 
 const { confirm } = Modal;
+
+const toastOptions = {
+  position: 'top-center',
+  hideProgressBar: true,
+  transition: Flip,
+  closeButton: false,
+  autoClose: false,
+  style: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    '--toastify-toast-min-height': '40px',
+    '--toastify-toast-width': 'auto',
+    minWidth: '200px',
+    maxWidth: '600px',
+    fontSize: '14px',
+    borderRadius: '8px',
+  },
+  bodyStyle: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    marginTop: 0,
+    marginBottom: 0,
+  },
+};
+
+function ToastContent({ text }) {
+  return (
+    <div
+      style={{
+        paddingTop: '4px',
+        paddingBottom: '4px',
+      }}
+    >
+      {text}
+    </div>
+  );
+}
 
 function remoteAction({
   api,
@@ -40,7 +79,7 @@ function remoteAction({
     .then((data) => {
       if (showProcessing) {
         setTimeout(() => {
-          message.destroy(loadingKey);
+          toast.dismiss(loadingKey);
         }, 200);
       }
 
@@ -106,7 +145,7 @@ function remoteAction({
 
       if (showProcessing) {
         setTimeout(() => {
-          message.destroy(loadingKey);
+          toast.dismiss(loadingKey);
         }, 200);
       }
 
@@ -168,13 +207,26 @@ export async function actionCore({
   let key = '';
 
   if (showProcessing) {
-    key = getGuid();
+    // key = getGuid();
 
-    message.loading({
-      key,
-      content: processingPrompt || '处理中，请稍后',
-      duration: 0,
-    });
+    key = toast.loading(
+      <ToastContent
+        text={
+          checkStringIsNullOrWhiteSpace(processingPrompt)
+            ? '处理中，请稍后'
+            : processingPrompt
+        }
+      />,
+      {
+        ...toastOptions,
+      },
+    );
+
+    // toast.loading({
+    //   key,
+    //   content: processingPrompt || '处理中，请稍后',
+    //   duration: 0,
+    // });
   }
 
   if (isFunction(beforeProcess)) {
@@ -294,15 +346,28 @@ export function apiRequest({
   let key = '';
 
   if (showProcessing) {
-    key = getGuid();
+    // key = getGuid();
 
-    message.loading({
-      key,
-      content: checkStringIsNullOrWhiteSpace(processingPrompt)
-        ? '处理中，请稍后'
-        : processingPrompt,
-      duration: 0,
-    });
+    key = toast.loading(
+      <ToastContent
+        text={
+          checkStringIsNullOrWhiteSpace(processingPrompt)
+            ? '处理中，请稍后'
+            : processingPrompt
+        }
+      />,
+      {
+        ...toastOptions,
+      },
+    );
+
+    // message.loading({
+    //   key,
+    //   content: checkStringIsNullOrWhiteSpace(processingPrompt)
+    //     ? '处理中，请稍后'
+    //     : processingPrompt,
+    //   duration: 0,
+    // });
   }
 
   dispatch({
@@ -312,7 +377,7 @@ export function apiRequest({
     .then((data) => {
       if (showProcessing) {
         setTimeout(() => {
-          message.destroy(key);
+          toast.dismiss(key);
         }, 200);
       }
 
@@ -382,7 +447,7 @@ export function apiRequest({
 
       if (showProcessing) {
         setTimeout(() => {
-          message.destroy(key);
+          toast.dismiss(key);
         }, 200);
       }
 

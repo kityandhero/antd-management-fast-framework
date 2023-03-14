@@ -118,7 +118,7 @@ export function notify({
       }
 
       case notificationTypeCollection.loading: {
-        toast.loading(content, options);
+        toast(content, options);
 
         break;
       }
@@ -136,19 +136,19 @@ export function notify({
       }
 
       case notificationTypeCollection.warning: {
-        toast(content, options);
+        toast.warning(content, options);
 
         break;
       }
 
       case notificationTypeCollection.success: {
-        toast(content, options);
+        toast.success(content, options);
 
         break;
       }
 
       case notificationTypeCollection.error: {
-        toast(content, options);
+        toast.error(content, options);
 
         break;
       }
