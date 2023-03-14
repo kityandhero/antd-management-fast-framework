@@ -6,7 +6,7 @@ import {
   getValueByKey,
 } from 'easy-soft-utility';
 
-import { cardConfig, corsTarget } from 'antd-management-fast-common';
+import { cardConfig, getCorsDomain } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import { DataDrawer } from 'antd-management-fast-framework';
 
@@ -217,7 +217,7 @@ class Index extends BaseUpdateDrawer {
                   emptyImage: '',
                 },
               },
-              action: `${corsTarget()}/article/uploadImage`,
+              action: `${getCorsDomain()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
                 this.afterImageUploadSuccess(imageData);
               },
@@ -264,7 +264,7 @@ class Index extends BaseUpdateDrawer {
               fieldData: mediaItemData.video,
               video,
               showPreview: true,
-              action: `${corsTarget()}/article/uploadVideo`,
+              action: `${getCorsDomain()}/article/uploadVideo`,
               afterChangeSuccess: (videoData) => {
                 this.afterVideoChangeSuccess(videoData);
               },
@@ -285,7 +285,7 @@ class Index extends BaseUpdateDrawer {
               fieldData: mediaItemData.audio,
               audio,
               showPreview: true,
-              action: `${corsTarget()}/article/uploadAudio`,
+              action: `${getCorsDomain()}/article/uploadAudio`,
               afterChangeSuccess: (audioData) => {
                 this.afterAudioChangeSuccess(audioData);
               },
@@ -309,7 +309,7 @@ class Index extends BaseUpdateDrawer {
               fieldData: mediaItemData.attachment,
               file: attachment,
               showPreview: true,
-              action: `${corsTarget()}/article/uploadFile`,
+              action: `${getCorsDomain()}/article/uploadFile`,
               afterChangeSuccess: (attachmentData) => {
                 this.afterAttachmentChangeSuccess(attachmentData);
               },

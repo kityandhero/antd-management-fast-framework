@@ -1,6 +1,14 @@
-import { isFunction, logDebug, logExecute } from 'easy-soft-utility';
+import {
+  checkInCollection,
+  isFunction,
+  logDebug,
+  logDevelop,
+  logExecute,
+  setAuthority,
+  setToken,
+} from 'easy-soft-utility';
 
-import { actionCore } from 'antd-management-fast-common';
+import { actionCore, getTokenName } from 'antd-management-fast-common';
 
 import { loadApplicationInitialData } from './bootstrap';
 import { getCurrentOperator } from './currentOperatorAssist';
@@ -17,10 +25,30 @@ export function signInAction({
     params: handleData,
     showProcessing: false,
     successCallback: ({ target, remoteData }) => {
-      logDebug(remoteData, 'response original data on signIn success');
+      // logTrace(remoteData, 'response original data on signIn success');
 
-      loadApplicationInitialData();
-      getCurrentOperator();
+      if (!checkInCollection(Object.keys(remoteData), getTokenName())) {
+        logDevelop(remoteData, 'signIn data');
+
+        throw new Error(
+          `token key name "${getTokenName()}" not exist in signIn data`,
+        );
+      }
+
+      const { currentAuthority } = {
+        currentAuthority: [],
+        ...remoteData,
+      };
+
+      const token = remoteData[getTokenName()];
+
+      setAuthority(currentAuthority);
+      setToken(token);
+
+      // ----------------------------
+
+      loadApplicationInitialData({});
+      getCurrentOperator({});
 
       if (isFunction(successCallback)) {
         logExecute('singIn', 'successCallback');

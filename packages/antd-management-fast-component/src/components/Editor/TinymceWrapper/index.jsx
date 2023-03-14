@@ -8,7 +8,7 @@ import {
   showSimpleErrorNotification,
 } from 'easy-soft-utility';
 
-import { corsTarget, getTokenName } from 'antd-management-fast-common';
+import { getCorsDomain, getTokenName } from 'antd-management-fast-common';
 
 class TinymceWrapper extends PureComponent {
   editor = React.createRef();
@@ -97,7 +97,7 @@ class TinymceWrapper extends PureComponent {
   imageUploadHandler = (blobInfo, progress) =>
     new Promise((resolve, reject) => {
       const { imagesUploadUrl } = this.props;
-      const corsUrl = corsTarget();
+      const corsUrl = getCorsDomain();
 
       const images_upload_url = `${corsUrl}${imagesUploadUrl}`;
 

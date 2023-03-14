@@ -2,7 +2,6 @@ import copy from 'copy-to-clipboard';
 
 import {
   checkStringIsNullOrWhiteSpace,
-  getApplicationMergeConfig,
   isEqualBySerialize,
   isFunction,
   showSimpleSuccessMessage,
@@ -69,27 +68,4 @@ export function copyToClipboard(text, showCopyText = true, otherShowText = '') {
   } else {
     showSimpleSuccessMessage(`已经将${otherShowText}复制到剪贴板！`);
   }
-}
-
-/**
- * corsTarget
- * 跨域域名配置
- * @export
- * @param {*} v
- * @returns
- */
-export function corsTarget() {
-  const appInit = getApplicationMergeConfig();
-
-  let corsTargetDomain = '';
-
-  if (appInit.apiPrefix != null && appInit.apiPrefix.corsTargetDomain != null) {
-    const {
-      apiPrefix: { corsTargetDomain: corsTargetDomainRemote },
-    } = appInit;
-
-    corsTargetDomain = corsTargetDomainRemote;
-  }
-
-  return corsTargetDomain;
 }

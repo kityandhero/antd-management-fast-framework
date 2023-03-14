@@ -52,6 +52,10 @@ export function getLayoutSetting({
     size: 'small',
   };
 
+  if (checkStringIsNullOrWhiteSpace(layoutAvatar.src)) {
+    layoutAvatar.src = defaultUserAvatar;
+  }
+
   if (isEmptyObject(settings)) {
     settings = getInterfaceSetting();
   }

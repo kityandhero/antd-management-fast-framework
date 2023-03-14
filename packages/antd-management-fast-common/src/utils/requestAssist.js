@@ -12,8 +12,11 @@ import {
   trySendNearestLocalhostNotify,
 } from 'easy-soft-utility';
 
-import { corsTarget } from './common';
-import { getShowRequestInfo, getTokenName } from './settingAssist';
+import {
+  getCorsDomain,
+  getShowRequestInfo,
+  getTokenName,
+} from './settingAssist';
 
 export async function request({
   url,
@@ -24,7 +27,7 @@ export async function request({
 }) {
   const token = getToken() || 'anonymous';
 
-  const corsUrl = corsTarget();
+  const corsUrl = getCorsDomain();
 
   if (!isString(corsUrl)) {
     logObject(corsUrl);
@@ -70,7 +73,9 @@ export async function request({
       ...option,
     });
 
-    return response;
+    const { data: responseData } = response;
+
+    return responseData;
   } catch (error) {
     logException(error);
   }

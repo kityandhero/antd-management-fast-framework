@@ -1,11 +1,8 @@
 import {
-  checkInCollection,
   checkStringIsNullOrWhiteSpace,
   flushAllCache,
   getTacitlyState,
   logConfig,
-  logDebug,
-  logDevelop,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -13,15 +10,12 @@ import {
   removeCurrentOperatorCache,
   removeLocalMetaData,
   removeToken,
-  setAuthority,
-  setToken,
 } from 'easy-soft-utility';
 
 import {
   getSignInApi,
   getSignInCaptchaApi,
   getSignOutApi,
-  getTokenName,
 } from 'antd-management-fast-common';
 
 import {
@@ -65,26 +59,6 @@ export function buildModel() {
           alias,
           ...reducerDefaultParameters,
         });
-
-        if (!checkInCollection(Object.keys(dataAdjust), getTokenName())) {
-          logDevelop(dataAdjust, 'signIn data');
-
-          throw new Error(
-            `token key name "${getTokenName()}" not exist in signIn data`,
-          );
-        }
-
-        const { currentAuthority } = {
-          currentAuthority: [],
-          ...dataAdjust,
-        };
-
-        const token = dataAdjust[getTokenName()];
-
-        logDebug(currentAuthority, 'current authority collection');
-
-        setAuthority(currentAuthority);
-        setToken(token);
 
         return dataAdjust;
       },

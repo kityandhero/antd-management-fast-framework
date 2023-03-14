@@ -19,7 +19,7 @@ import {
 
 import {
   cardConfig,
-  corsTarget,
+  getCorsDomain,
   getTokenName,
 } from 'antd-management-fast-common';
 import {
@@ -717,7 +717,7 @@ class BasicInfo extends TabPageBase {
               fieldData: fieldData.video,
               video,
               showPreview: true,
-              action: `${corsTarget()}/article/uploadVideo`,
+              action: `${getCorsDomain()}/article/uploadVideo`,
               afterChangeSuccess: (data) => {
                 this.afterVideoChangeSuccess(data);
               },
@@ -728,7 +728,7 @@ class BasicInfo extends TabPageBase {
               fieldData: fieldData.audio,
               audio,
               showPreview: true,
-              action: `${corsTarget()}/article/uploadAudio`,
+              action: `${getCorsDomain()}/article/uploadAudio`,
               afterChangeSuccess: (data) => {
                 this.afterAudioChangeSuccess(data);
               },
@@ -738,7 +738,7 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.fileBase64Upload,
               fieldData: fieldData.fileBase64,
               fileBase64: attachmentBase64,
-              action: `${corsTarget()}/application/uploadFileBase64`,
+              action: `${getCorsDomain()}/application/uploadFileBase64`,
               afterUploadSuccess: (data) => {
                 this.afterFileBase64UploadSuccess(data);
               },
@@ -748,7 +748,7 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.fileUpload,
               fieldData: fieldData.file,
               file: attachment,
-              action: `${corsTarget()}/application/uploadFile`,
+              action: `${getCorsDomain()}/application/uploadFile`,
               afterUploadSuccess: (data) => {
                 this.afterFileUploadSuccess(data);
               },
@@ -783,7 +783,7 @@ class BasicInfo extends TabPageBase {
               title: fieldData.image.label,
               helper: fieldData.image.helper,
               image,
-              action: `${corsTarget()}/article/uploadImage`,
+              action: `${getCorsDomain()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
                 this.afterImageUploadSuccess(imageData);
               },
@@ -805,7 +805,7 @@ class BasicInfo extends TabPageBase {
               title: fieldData.image.label,
               helper: fieldData.image.helper,
               image,
-              action: `${corsTarget()}/article/uploadImage`,
+              action: `${getCorsDomain()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
                 this.afterImageUploadSuccess(imageData);
               },
@@ -817,7 +817,7 @@ class BasicInfo extends TabPageBase {
               title: fieldData.rectangleImage.label,
               helper: fieldData.rectangleImage.helper,
               image: rectangleImage,
-              action: `${corsTarget()}/article/uploadImage`,
+              action: `${getCorsDomain()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
                 this.afterRectangleImageUploadSuccess(imageData);
               },
@@ -849,7 +849,7 @@ class BasicInfo extends TabPageBase {
             {
               lg: 24,
               type: cardConfig.contentItemType.imageUpload,
-              action: `${corsTarget()}/article/uploadImage`,
+              action: `${getCorsDomain()}/article/uploadImage`,
               disabled: !checkHasAuthority(
                 accessWayCollection.article.addImage.permission,
               ),
@@ -1357,7 +1357,7 @@ class BasicInfo extends TabPageBase {
               fieldData: fieldData.video,
               video: video,
               showPreview: true,
-              action: `${corsTarget()}/article/uploadVideo`,
+              action: `${getCorsDomain()}/article/uploadVideo`,
               afterChangeSuccess: (videoData) => {
                 this.afterVideoChangeSuccess(videoData);
               },
@@ -1368,7 +1368,7 @@ class BasicInfo extends TabPageBase {
               fieldData: fieldData.audio,
               audio: audio,
               showPreview: true,
-              action: `${corsTarget()}/article/uploadAudio`,
+              action: `${getCorsDomain()}/article/uploadAudio`,
               afterChangeSuccess: (audioData) => {
                 this.afterAudioChangeSuccess(audioData);
               },
@@ -1378,7 +1378,7 @@ class BasicInfo extends TabPageBase {
               type: cardConfig.contentItemType.fileUpload,
               fieldData: fieldData.attachment,
               file: attachment,
-              action: `${corsTarget()}/article/uploadFile`,
+              action: `${getCorsDomain()}/article/uploadFile`,
               afterChangeSuccess: (file) => {
                 this.afterAttachmentChangeSuccess(file);
               },

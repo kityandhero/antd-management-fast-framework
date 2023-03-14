@@ -1,11 +1,8 @@
 import React from 'react';
 
-import {
-  checkObjectIsNullOrEmpty,
-  isArray,
-  logExecute,
-} from 'easy-soft-utility';
+import { checkObjectIsNullOrEmpty, isArray } from 'easy-soft-utility';
 
+import { logRender } from 'antd-management-fast-common';
 import { PageExtra } from 'antd-management-fast-component';
 
 import { InternalBuild } from '../InternalBuild';
@@ -49,7 +46,7 @@ class InternalLayout extends InternalBuild {
   renderPresetContentArea = () => {};
 
   renderPresetPageBodyContent = () => {
-    logExecute('renderPresetPageBodyContent');
+    logRender('renderPresetPageBodyContent');
 
     const top = this.renderPresetSiderTopArea();
     const bottom = this.renderPresetSiderBottomArea();
@@ -77,7 +74,7 @@ class InternalLayout extends InternalBuild {
   };
 
   renderPresetPageBody = () => {
-    logExecute('renderPresetPageBody');
+    logRender('renderPresetPageBody');
 
     if (this.contentTabMode) {
       return (

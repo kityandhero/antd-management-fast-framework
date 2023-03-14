@@ -105,10 +105,10 @@ function refreshCurrentOperator({
         ...remoteData,
       };
 
-      logDebug(
-        remoteData,
-        'response original data on refreshCurrentOperator success',
-      );
+      // logTrace(
+      //   remoteData,
+      //   'response original data on refreshCurrentOperator success',
+      // );
 
       setCurrentOperatorCache(data);
 
@@ -171,8 +171,8 @@ export function getCurrentOperator({
 
     if ((currentOperatorCache || null) != null) {
       logDebug(
-        currentOperatorCache,
-        'current operator get from cache success, ignore fetch from api.',
+        'current operator get from cache success',
+        'ignore fetch from api',
       );
 
       if (isFunction(successCallback)) {

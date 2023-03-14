@@ -13,9 +13,6 @@ window.appInitCustomRemote = {
   apiPrefix: {
     corsTargetDomain: '',
   },
-  apiSuccessCode: 200,
-  authenticationFailCode: 2001,
-  signInApi: '/entrance/signIn',
   metaDataApi: '',
   apiVersion: 'v1',
   tinymceApiKey: 'al3poaukm85tca809x2fsl7hnw3vau5i4s5zx3fv3rforr5h',

@@ -1,4 +1,8 @@
 window.appInitCustomLocalCore = {
+  signInRoutePath: '/entrance/signIn',
+  successCode: 200,
+  authenticationFailCode: 2001,
+  signInApi: '/entrance/signIn',
   metaDataApi: '/metaData/get',
   metaData: {},
   currentOperatorApi: '/currentOperator/getCurrentBasicInfo',

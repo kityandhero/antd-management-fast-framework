@@ -8,10 +8,29 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  apiSuccessCode as apiSuccessCodeDefault,
+  appInitDefault,
   authenticationFailCode as authenticationFailCodeDefault,
 } from './constants';
 import { emptyLogo as emptyLogoImage } from './mediaDefault';
+
+/**
+ * get cors domain
+ */
+export function getCorsDomain() {
+  const appInit = getApplicationMergeConfig();
+
+  let corsTargetDomain = '';
+
+  if (appInit.apiPrefix != null && appInit.apiPrefix.corsTargetDomain != null) {
+    const {
+      apiPrefix: { corsTargetDomain: corsTargetDomainRemote },
+    } = appInit;
+
+    corsTargetDomain = corsTargetDomainRemote;
+  }
+
+  return corsTargetDomain;
+}
 
 export function logShowInConsole() {
   const { showLogInConsole } = {
@@ -121,15 +140,6 @@ export function getEmptyLogo() {
   return emptyLogo || emptyLogoImage;
 }
 
-export function getApiSuccessCode() {
-  const { apiSuccessCode } = {
-    apiSuccessCode: apiSuccessCodeDefault,
-    ...getApplicationMergeConfig(),
-  };
-
-  return apiSuccessCode || apiSuccessCodeDefault;
-}
-
 export function getAuthenticationFailCode() {
   const { authenticationFailCode } = {
     authenticationFailCode: authenticationFailCodeDefault,
@@ -146,6 +156,15 @@ export function getTokenName() {
   };
 
   return tokenName || 'token';
+}
+
+export function getSignInRoutePath() {
+  const { signInRoutePath } = {
+    signInRoutePath: appInitDefault.signInRoutePath,
+    ...getApplicationMergeConfig(),
+  };
+
+  return signInRoutePath || appInitDefault.signInRoutePath;
 }
 
 export function getSignInApi() {

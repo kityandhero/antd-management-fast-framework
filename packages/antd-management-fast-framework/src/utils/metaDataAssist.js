@@ -24,6 +24,8 @@ function refreshMetaData({ successCallback = null, failCallback = null }) {
     params: {},
     dispatch: getDispatch(),
     successCallback: ({ remoteData }) => {
+      // logTrace(remoteData, 'response original data on refreshMetaData success');
+
       const { metaData } = {
         metaData: {},
         ...getApplicationMergeConfig(),
@@ -89,7 +91,7 @@ export function loadMetaData({ successCallback = null, failCallback = null }) {
   const metaDataCatch = getLocalMetaData();
 
   if ((metaDataCatch || null) != null) {
-    logDebug('meta data first load success, ignore load.');
+    logDebug('meta data get from cache success', 'ignore fetch from api');
 
     if (isFunction(successCallback)) {
       logExecute('loadMetaData', 'successCallback');

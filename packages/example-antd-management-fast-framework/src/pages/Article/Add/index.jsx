@@ -5,7 +5,7 @@ import { showSimpleInfoMessage } from 'easy-soft-utility';
 
 import {
   cardConfig,
-  corsTarget,
+  getCorsDomain,
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 import {
@@ -272,7 +272,7 @@ class Index extends BaseAddForm {
               title: fieldData.image.label,
               helper: fieldData.image.helper,
               image,
-              action: `${corsTarget()}/article/uploadImage`,
+              action: `${getCorsDomain()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
                 this.afterImageUploadSuccess(imageData);
               },
@@ -284,7 +284,7 @@ class Index extends BaseAddForm {
               title: fieldData.rectangleImage.label,
               helper: fieldData.rectangleImage.helper,
               image: rectangleImage,
-              action: `${corsTarget()}/article/uploadImage`,
+              action: `${getCorsDomain()}/article/uploadImage`,
               afterUploadSuccess: (imageData) => {
                 this.afterRectangleImageUploadSuccess(imageData);
               },
@@ -344,7 +344,7 @@ class Index extends BaseAddForm {
               fieldData: fieldData.video,
               video: video,
               showPreview: true,
-              action: `${corsTarget()}/article/uploadVideo`,
+              action: `${getCorsDomain()}/article/uploadVideo`,
               afterChangeSuccess: (videoData) => {
                 this.afterVideoChangeSuccess(videoData);
               },
@@ -355,7 +355,7 @@ class Index extends BaseAddForm {
               fieldData: fieldData.audio,
               audio: audio,
               showPreview: true,
-              action: `${corsTarget()}/article/uploadAudio`,
+              action: `${getCorsDomain()}/article/uploadAudio`,
               afterChangeSuccess: (audioData) => {
                 this.afterAudioChangeSuccess(audioData);
               },
@@ -365,7 +365,7 @@ class Index extends BaseAddForm {
               type: cardConfig.contentItemType.fileUpload,
               fieldData: fieldData.attachment,
               file: attachment,
-              action: `${corsTarget()}/article/uploadFile`,
+              action: `${getCorsDomain()}/article/uploadFile`,
               afterChangeSuccess: (fileData) => {
                 this.afterAttachmentChangeSuccess(fileData);
               },

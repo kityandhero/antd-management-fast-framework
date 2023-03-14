@@ -26,10 +26,10 @@ function refreshApplicationListData(
 
       setApplicationListDataCache(listData);
 
-      logDebug(
-        listData,
-        'response original data on refreshApplicationListData success',
-      );
+      // logTrace(
+      //   remoteListData,
+      //   'response original data on refreshApplicationListData success',
+      // );
 
       if (isFunction(successCallback)) {
         logExecute('refreshApplicationListData', 'successCallback');
@@ -93,7 +93,7 @@ export function loadApplicationListData({
   const applicationListDataCatch = getApplicationListDataCache();
 
   if ((applicationListDataCatch || null) != null) {
-    logDebug('app list data first load success, ignore load');
+    logDebug('app list data get from cache success', 'ignore fetch from api');
 
     if (isFunction(successCallback)) {
       logExecute('loadApplicationListData', 'successCallback');
