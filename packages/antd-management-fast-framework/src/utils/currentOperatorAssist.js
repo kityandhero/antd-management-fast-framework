@@ -97,7 +97,7 @@ function refreshCurrentOperator({
   schedulingControlAssist.setCurrentOperatorRequestProcessing(true);
 
   apiRequest({
-    api: 'currentOperator/getCurrentOperator',
+    api: 'currentOperator/refreshCurrentOperator',
     params: {},
     dispatch: getDispatch(),
     successCallback: ({ remoteData }) => {
@@ -107,31 +107,31 @@ function refreshCurrentOperator({
 
       logDebug(
         remoteData,
-        'response original data on getCurrentOperator success',
+        'response original data on refreshCurrentOperator success',
       );
 
       setCurrentOperatorCache(data);
 
       if (isFunction(successCallback)) {
-        logExecute('getCurrentOperator', 'successCallback');
+        logExecute('refreshCurrentOperator', 'successCallback');
 
         successCallback(data);
       } else {
-        logExecute('getCurrentOperator', 'successCallback not set, ignore');
+        logExecute('refreshCurrentOperator', 'successCallback not set, ignore');
       }
     },
     failCallback: ({ remoteOriginal }) => {
       logDebug(
         remoteOriginal,
-        'response original data on getCurrentOperator fail',
+        'response original data on refreshCurrentOperator fail',
       );
 
       if (isFunction(failCallback)) {
-        logExecute('getCurrentOperator', 'failCallback');
+        logExecute('refreshCurrentOperator', 'failCallback');
 
         failCallback();
       } else {
-        logExecute('getCurrentOperator', 'failCallback not set, ignore');
+        logExecute('refreshCurrentOperator', 'failCallback not set, ignore');
       }
     },
     completeProcess: () => {

@@ -1,23 +1,93 @@
 import { getDispatch } from 'easy-soft-dva';
-import {
-  checkStringIsNullOrWhiteSpace,
-  isFunction,
-  logConfig,
-  logDebug,
-  logExecute,
-} from 'easy-soft-utility';
+import { isFunction, logDebug, logExecute, logTrace } from 'easy-soft-utility';
 
-import {
-  apiRequest,
-  getApplicationListDataApi,
-} from 'antd-management-fast-common';
+import { apiRequest } from 'antd-management-fast-common';
 
 import {
   getApplicationListDataCache,
   setApplicationListDataCache,
 } from './applicationListDataCacheAssist';
+import { schedulingControlAssist } from './schedulingControlAssist';
 
-export function loadApplicationListData({ successCallback = null }) {
+function refreshApplicationListData(
+  successCallback = null,
+  failCallback = null,
+) {
+  logExecute('refreshApplicationListData');
+
+  schedulingControlAssist.setApplicationListDataProcessing(true);
+
+  apiRequest({
+    api: 'schedulingControl/refreshApplicationListData',
+    params: {},
+    dispatch: getDispatch(),
+    successCallback: ({ remoteListData }) => {
+      const listData = [...(getApplicationListData() || []), ...remoteListData];
+
+      setApplicationListDataCache(listData);
+
+      logDebug(
+        listData,
+        'response original data on refreshApplicationListData success',
+      );
+
+      if (isFunction(successCallback)) {
+        logExecute('refreshApplicationListData', 'successCallback');
+
+        successCallback(listData);
+      } else {
+        logExecute(
+          'refreshApplicationListData',
+          'successCallback not set, ignore',
+        );
+      }
+    },
+    failCallback: ({ remoteOriginal }) => {
+      logDebug(
+        remoteOriginal,
+        'response original data on refreshApplicationListData fail',
+      );
+
+      if (isFunction(failCallback)) {
+        logExecute('refreshApplicationListData', 'failCallback');
+
+        failCallback();
+      } else {
+        logExecute(
+          'refreshApplicationListData',
+          'failCallback not set, ignore',
+        );
+      }
+    },
+    completeProcess: () => {
+      schedulingControlAssist.setApplicationListDataProcessing(false);
+    },
+  });
+}
+
+export function loadApplicationListData({
+  successCallback = null,
+  failCallback = null,
+}) {
+  if (schedulingControlAssist.getApplicationListDataProcessing()) {
+    const delayTime = 200;
+
+    logTrace(
+      'call loadApplicationListData high frequency, use recursion delay mode',
+      `delay ${delayTime}ms`,
+    );
+
+    setTimeout(() => {
+      loadApplicationListData({
+        force: false,
+        successCallback,
+        failCallback,
+      });
+    }, delayTime);
+
+    return;
+  }
+
   logExecute('loadApplicationListData');
 
   const applicationListDataCatch = getApplicationListDataCache();
@@ -25,39 +95,20 @@ export function loadApplicationListData({ successCallback = null }) {
   if ((applicationListDataCatch || null) != null) {
     logDebug('app list data first load success, ignore load');
 
+    if (isFunction(successCallback)) {
+      logExecute('loadApplicationListData', 'successCallback');
+
+      successCallback(applicationListDataCatch);
+    } else {
+      logExecute('loadApplicationListData', 'successCallback not set, ignore');
+    }
+
     return;
   }
 
-  const dispatch = getDispatch();
-
-  const applicationListDataApi = getApplicationListDataApi();
-
-  let api = '';
-
-  if (checkStringIsNullOrWhiteSpace(applicationListDataApi)) {
-    logConfig(
-      'getApplicationListDataApi has not set, if need use it by api, please set it in applicationConfig with key "getApplicationListDataApi", it must be like "modelName/effect"',
-      'current use simulation request mode',
-    );
-
-    api = 'schedulingControl/getApplicationListDataSimulation';
-  } else {
-    api = 'schedulingControl/getApplicationListData';
-  }
-
-  apiRequest({
-    api: api,
-    params: {},
-    dispatch: dispatch,
-    successCallback: ({ remoteListData }) => {
-      const listData = [...(getApplicationListData() || []), ...remoteListData];
-
-      setApplicationListDataCache(listData);
-
-      if (isFunction(successCallback)) {
-        successCallback();
-      }
-    },
+  refreshApplicationListData({
+    successCallback,
+    failCallback,
   });
 }
 

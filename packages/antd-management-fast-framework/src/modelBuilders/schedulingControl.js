@@ -10,13 +10,16 @@ import {
   reducerNameCollection,
 } from 'easy-soft-utility';
 
-import { getMetaDataApi } from 'antd-management-fast-common';
+import {
+  getApplicationListDataApi,
+  getMetaDataApi,
+} from 'antd-management-fast-common';
 
 import {
-  getMetaDataData,
-  getMetaDataSimulation,
-  singleListApplicationListData,
-  singleListApplicationListDataSimulation,
+  refreshMetaDataData,
+  refreshMetaDataSimulation,
+  refreshSingleListApplicationListData,
+  refreshSingleListApplicationListDataSimulation,
 } from '../services/schedulingControl';
 
 export function buildModel() {
@@ -29,23 +32,25 @@ export function buildModel() {
     },
 
     effects: {
-      *getApplicationListData({ payload, alias }, { call, put }) {
-        const response = yield call(singleListApplicationListData, payload);
+      *refreshApplicationListData({ payload, alias }, { call, put }) {
+        const applicationListDataApi = getApplicationListDataApi();
 
-        const dataAdjust = pretreatmentRemoteListData({ source: response });
+        if (checkStringIsNullOrWhiteSpace(applicationListDataApi)) {
+          logConfig(
+            'applicationListDataApi has not set, please set it in applicationConfig with key "applicationListDataApi", it must be absolute or relative http url like "/metaData/refreshApplicationListData"',
+            'use simulation request mode',
+          );
+        } else {
+          logTrace(
+            'applicationListDataApi has been set',
+            'use real request mode',
+          );
+        }
 
-        yield put({
-          type: reducerNameCollection.reducerRemoteData,
-          payload: dataAdjust,
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        return dataAdjust;
-      },
-      *getApplicationListDataSimulation({ payload, alias }, { call, put }) {
         const response = yield call(
-          singleListApplicationListDataSimulation,
+          checkStringIsNullOrWhiteSpace(applicationListDataApi)
+            ? refreshSingleListApplicationListDataSimulation
+            : refreshSingleListApplicationListData,
           payload,
         );
 
@@ -60,12 +65,12 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *getMetaData({ payload, alias }, { call, put }) {
+      *refreshMetaData({ payload, alias }, { call, put }) {
         const metaDataApi = getMetaDataApi();
 
         if (checkStringIsNullOrWhiteSpace(metaDataApi)) {
           logConfig(
-            'metaDataApi has not set, please set it in applicationConfig with key "metaDataApi", it must be absolute or relative http url like "/metaData/get"',
+            'metaDataApi has not set, please set it in applicationConfig with key "metaDataApi", it must be absolute or relative http url like "/metaData/refresh"',
             'use simulation request mode',
           );
         } else {
@@ -74,8 +79,8 @@ export function buildModel() {
 
         const response = yield call(
           checkStringIsNullOrWhiteSpace(metaDataApi)
-            ? getMetaDataSimulation
-            : getMetaDataData,
+            ? refreshMetaDataSimulation
+            : refreshMetaDataData,
           payload,
         );
 

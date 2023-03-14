@@ -6,32 +6,21 @@ import {
   logDebug,
   logExecute,
   logInfo,
+  logTrace,
   setLocalMetaData,
 } from 'easy-soft-utility';
 
 import { apiRequest } from 'antd-management-fast-common';
 
-export function loadMetaData({ successCallback = null, failCallback = null }) {
-  logExecute('loadMetaData');
+import { schedulingControlAssist } from './schedulingControlAssist';
 
-  const metaDataCatch = getLocalMetaData();
+function refreshMetaData({ successCallback = null, failCallback = null }) {
+  logExecute('refreshMetaData');
 
-  if ((metaDataCatch || null) != null) {
-    logDebug('meta data first load success, ignore load.');
-
-    if (isFunction(successCallback)) {
-      logExecute('loadMetaData', 'successCallback');
-
-      successCallback(metaDataCatch);
-    } else {
-      logExecute('loadMetaData', 'successCallback not set, ignore');
-    }
-
-    return;
-  }
+  schedulingControlAssist.setMetaDataRequestProcessing(true);
 
   apiRequest({
-    api: 'schedulingControl/getMetaData',
+    api: 'schedulingControl/refreshMetaData',
     params: {},
     dispatch: getDispatch(),
     successCallback: ({ remoteData }) => {
@@ -56,6 +45,65 @@ export function loadMetaData({ successCallback = null, failCallback = null }) {
         successCallback();
       }
     },
+    failCallback: ({ remoteOriginal }) => {
+      logDebug(
+        remoteOriginal,
+        'response original data on refreshMetaData fail',
+      );
+
+      if (isFunction(failCallback)) {
+        logExecute('refreshMetaData', 'failCallback');
+
+        failCallback();
+      } else {
+        logExecute('refreshMetaData', 'failCallback not set, ignore');
+      }
+    },
+    completeProcess: () => {
+      schedulingControlAssist.setMetaDataRequestProcessing(false);
+    },
+  });
+}
+
+export function loadMetaData({ successCallback = null, failCallback = null }) {
+  if (schedulingControlAssist.getMetaDataRequestProcessing()) {
+    const delayTime = 200;
+
+    logTrace(
+      'call loadMetaData high frequency, use recursion delay mode',
+      `delay ${delayTime}ms`,
+    );
+
+    setTimeout(() => {
+      loadMetaData({
+        successCallback,
+        failCallback,
+      });
+    }, delayTime);
+
+    return;
+  }
+
+  logExecute('loadMetaData');
+
+  const metaDataCatch = getLocalMetaData();
+
+  if ((metaDataCatch || null) != null) {
+    logDebug('meta data first load success, ignore load.');
+
+    if (isFunction(successCallback)) {
+      logExecute('loadMetaData', 'successCallback');
+
+      successCallback(metaDataCatch);
+    } else {
+      logExecute('loadMetaData', 'successCallback not set, ignore');
+    }
+
+    return;
+  }
+
+  refreshMetaData({
+    successCallback,
     failCallback,
   });
 }

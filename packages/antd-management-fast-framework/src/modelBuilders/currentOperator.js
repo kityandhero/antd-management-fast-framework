@@ -12,8 +12,8 @@ import {
 import { getCurrentOperatorApi } from 'antd-management-fast-common';
 
 import {
-  getCurrentOperatorData,
-  getCurrentOperatorDataSimulation,
+  refreshCurrentOperatorData,
+  refreshCurrentOperatorDataSimulation,
 } from '../services/currentOperator';
 
 export function buildModel() {
@@ -25,12 +25,12 @@ export function buildModel() {
     },
 
     effects: {
-      *getCurrentOperator({ payload, alias }, { call, put }) {
+      *refreshCurrentOperator({ payload, alias }, { call, put }) {
         const currentOperatorApi = getCurrentOperatorApi();
 
         if (checkStringIsNullOrWhiteSpace(currentOperatorApi)) {
           logConfig(
-            'currentOperatorApi has not set, please set it in applicationConfig with key "currentOperatorApi", it must be absolute or relative http url like "/currentOperator/getCurrentOperator"',
+            'currentOperatorApi has not set, please set it in applicationConfig with key "currentOperatorApi", it must be absolute or relative http url like "/currentOperator/refreshCurrentOperator"',
             'use simulation request mode',
           );
         } else {
@@ -39,8 +39,8 @@ export function buildModel() {
 
         const response = yield call(
           checkStringIsNullOrWhiteSpace(currentOperatorApi)
-            ? getCurrentOperatorDataSimulation
-            : getCurrentOperatorData,
+            ? refreshCurrentOperatorDataSimulation
+            : refreshCurrentOperatorData,
           payload,
         );
 

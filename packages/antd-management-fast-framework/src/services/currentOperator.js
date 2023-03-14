@@ -5,20 +5,20 @@ import {
   getCurrentOperatorSimulationData,
 } from 'antd-management-fast-common';
 
-export async function getCurrentOperatorData(parameters) {
+export async function refreshCurrentOperatorData(parameters) {
   return request({
     api: getCurrentOperatorApi(),
     params: parameters,
   });
 }
 
-export async function getCurrentOperatorDataSimulation(parameters) {
+export async function refreshCurrentOperatorDataSimulation(parameters) {
   const simulation = {
     ...getCurrentOperatorSimulationData(),
   };
 
   return request({
-    api: `/currentOperator/getCurrentOperatorSimulation`,
+    api: `/currentOperator/refreshCurrentOperatorSimulation`,
     params: parameters,
     mode: requestMode.simulation,
     simulativeAuthorize: false,

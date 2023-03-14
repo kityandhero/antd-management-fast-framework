@@ -11,20 +11,20 @@ import {
   getMetaDataApi,
 } from 'antd-management-fast-common';
 
-export async function getMetaDataData(parameters) {
+export async function refreshMetaDataData(parameters) {
   return request({
     api: getMetaDataApi(),
     params: parameters,
   });
 }
 
-export async function getMetaDataSimulation(parameters) {
+export async function refreshMetaDataSimulation(parameters) {
   const simulation = {
     time: formatDatetime(getNow(), datetimeFormat.monthDayHourMinuteSecond),
   };
 
   return request({
-    api: `/schedulingControl/getMetaDataSimulation`,
+    api: `/schedulingControl/refreshMetaDataSimulation`,
     params: parameters,
     mode: requestMode.simulation,
     simulativeAuthorize: false,
@@ -36,16 +36,18 @@ export async function getMetaDataSimulation(parameters) {
   });
 }
 
-export async function singleListApplicationListData(parameters) {
+export async function refreshSingleListApplicationListData(parameters) {
   return request({
     api: getApplicationListDataApi(),
     params: parameters,
   });
 }
 
-export async function singleListApplicationListDataSimulation(parameters) {
+export async function refreshSingleListApplicationListDataSimulation(
+  parameters,
+) {
   return request({
-    api: `/schedulingControl/getApplicationListDataSimulation`,
+    api: `/schedulingControl/refreshApplicationListDataSimulation`,
     params: parameters,
     mode: requestMode.simulation,
     simulativeAuthorize: false,
