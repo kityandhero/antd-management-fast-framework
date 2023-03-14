@@ -11,13 +11,14 @@ import {
   setSuccessMessageDisplayMonitor,
   setWarningMessageDisplayMonitor,
   setWarnMessageDisplayMonitor,
+  toNumber,
 } from 'easy-soft-utility';
 
 function showMessage({ type, duration = 3, text, onClose = () => {} }) {
   requestAnimationFrame(() => {
     const options = {
       position: 'top-center',
-      autoClose: duration * 1000,
+      autoClose: toNumber(duration * 1000),
       hideProgressBar: true,
       transition: Flip,
       closeButton: false,
