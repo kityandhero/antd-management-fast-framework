@@ -19,6 +19,14 @@ export function loadMetaData({ successCallback = null, failCallback = null }) {
   if ((metaDataCatch || null) != null) {
     logDebug('meta data first load success, ignore load.');
 
+    if (isFunction(successCallback)) {
+      logExecute('loadMetaData', 'successCallback');
+
+      successCallback(metaDataCatch);
+    } else {
+      logExecute('loadMetaData', 'successCallback not set, ignore');
+    }
+
     return;
   }
 

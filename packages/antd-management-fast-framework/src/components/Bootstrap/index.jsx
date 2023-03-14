@@ -1,5 +1,6 @@
 import { BaseComponent } from 'antd-management-fast-component';
 
+import { loadApplicationInitialData } from '../../utils/bootstrap';
 import {
   getCurrentOperator,
   transferLayoutAvatar,
@@ -8,6 +9,8 @@ import {
 class Bootstrap extends BaseComponent {
   doOtherWorkAfterDidMount = () => {
     const { setInitialState } = this.props;
+
+    loadApplicationInitialData();
 
     getCurrentOperator({
       successCallback: (data) => {

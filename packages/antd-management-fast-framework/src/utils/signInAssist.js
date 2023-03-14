@@ -2,6 +2,7 @@ import { isFunction, logDebug, logExecute } from 'easy-soft-utility';
 
 import { actionCore } from 'antd-management-fast-common';
 
+import { loadApplicationInitialData } from './bootstrap';
 import { getCurrentOperator } from './currentOperatorAssist';
 
 export function signInAction({
@@ -18,6 +19,7 @@ export function signInAction({
     successCallback: ({ target, remoteData }) => {
       logDebug(remoteData, 'response original data on signIn success');
 
+      loadApplicationInitialData();
       getCurrentOperator();
 
       if (isFunction(successCallback)) {

@@ -9,7 +9,6 @@ import { removeApplicationListDataCache } from './applicationListDataCacheAssist
 import { loadMetaData } from './metaDataAssist';
 
 let loadApplicationInitialDataComplete = false;
-let showModelNameList = false;
 let metaDataFirstLoadSuccess = false;
 let applicationListDataFirstLoadSuccess = false;
 
@@ -33,10 +32,6 @@ export function loadApplicationInitialData() {
   loadApplicationInitialDataComplete = true;
 
   logExecute('loadApplicationInitialData');
-
-  if (!showModelNameList) {
-    showModelNameList = true;
-  }
 
   if (!metaDataFirstLoadSuccess) {
     removeLocalMetaData();
