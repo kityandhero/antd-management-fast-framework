@@ -1,4 +1,4 @@
-import { message } from 'antd';
+import { toast } from 'react-toastify';
 
 import {
   messageTypeCollection,
@@ -14,51 +14,60 @@ import {
 
 function showMessage({ type, duration = 3, text, onClose = () => {} }) {
   requestAnimationFrame(() => {
+    const options = {
+      position: 'top-right',
+      autoClose: duration * 1000,
+      hideProgressBar: true,
+      transition: 'flip',
+      closeButton: false,
+      onClose,
+    };
+
     switch (type) {
       case messageTypeCollection.open: {
-        message.open(text, duration, onClose);
+        toast(text, options);
 
         break;
       }
 
       case messageTypeCollection.loading: {
-        message.loading(text, duration, onClose);
+        toast.loading(text, options);
 
         break;
       }
 
       case messageTypeCollection.info: {
-        message.info(text, duration, onClose);
+        toast.info(text, options);
 
         break;
       }
 
       case messageTypeCollection.warn: {
-        message.warning(text, duration, onClose);
+        toast.warn(text, options);
 
         break;
       }
 
       case messageTypeCollection.warning: {
-        message.warning(text, duration, onClose);
+        toast.warning(text, options);
 
         break;
       }
 
       case messageTypeCollection.success: {
-        message.success(text, duration, onClose);
+        toast.success(text, options);
 
         break;
       }
 
       case messageTypeCollection.error: {
-        message.error(text, duration, onClose);
+        toast.error(text, options);
 
         break;
       }
 
       default: {
-        message.info(text, duration, onClose);
+        toast(text, options);
 
         break;
       }

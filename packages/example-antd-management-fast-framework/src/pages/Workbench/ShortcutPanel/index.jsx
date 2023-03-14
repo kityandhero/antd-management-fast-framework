@@ -1,6 +1,7 @@
 import { Button, Space } from 'antd';
 
 import { connect } from 'easy-soft-dva';
+import { showInfoNotification, showSimpleInfoMessage } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { DataOperation } from 'antd-management-fast-framework';
@@ -54,6 +55,22 @@ class ShortcutPanel extends BaseView {
                     }}
                   >
                     个人中心
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      showInfoNotification({ title: 'notify some text' });
+                    }}
+                  >
+                    Notify
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      showSimpleInfoMessage('some message');
+                    }}
+                  >
+                    Message
                   </Button>
 
                   <Button onClick={this.changeSimple}>ChangeValue</Button>

@@ -83,7 +83,8 @@
     "randomcolor": "^0.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-intl": "^6.2.10"
+    "react-intl": "^6.2.10",
+    "react-toastify": "^9.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

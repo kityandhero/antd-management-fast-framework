@@ -63,6 +63,7 @@ const externalCollection = [
   'react-json-view',
   'react-player',
   'react-syntax-highlighter',
+  'react-toastify',
   'react/jsx-runtime',
   'lodash',
   'lodash.debounce',
