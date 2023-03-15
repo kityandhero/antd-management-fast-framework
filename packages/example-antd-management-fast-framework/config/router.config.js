@@ -47,6 +47,16 @@ export default [
         redirect: '/simple/singleList',
       },
       {
+        path: '/simple/addBasicInfo',
+        name: 'addBasicInfo',
+        icon: 'plusSquare',
+        // authority: [
+        //   accessWayCollection.super.permission.permission,
+        //   accessWayCollection.article.addBasicInfo.permission,
+        // ],
+        component: './Simple/Add',
+      },
+      {
         path: '/simple/singleList',
         name: 'singleList',
         icon: 'bars',
@@ -58,6 +68,8 @@ export default [
       },
       {
         path: '/simple/pageList',
+        name: 'pageList',
+        icon: 'bars',
         redirect: '/simple/pageList/no',
       },
       {
@@ -66,18 +78,9 @@ export default [
         component: './Simple/PageList',
       },
       {
-        path: '/simple/addBasicInfo',
-        name: 'addBasicInfo',
-        icon: 'plus-square',
-        // authority: [
-        //   accessWayCollection.super.permission.permission,
-        //   accessWayCollection.article.addBasicInfo.permission,
-        // ],
-        component: './Simple/Add',
-      },
-      {
         path: '/simple/edit/:op/:id/:pageKey/:tab',
         name: 'edit',
+        hideInMenu: true,
         component: './Simple/Edit',
       },
     ],
