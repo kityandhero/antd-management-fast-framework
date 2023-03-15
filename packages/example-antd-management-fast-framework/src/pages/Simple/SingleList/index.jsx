@@ -31,13 +31,13 @@ import { DataSinglePageView } from 'antd-management-fast-framework';
 import { accessWayCollection } from '../../../customConfig/config';
 import { colorCollection } from '../../../customConfig/constants';
 import {
-  getArticleRenderTypeName,
-  renderSearchArticleRenderTypeSelect,
-} from '../../../customSpecialComponents/FunctionSupplement/ArticleRenderType';
+  getSimpleRenderTypeName,
+  renderSearchSimpleRenderTypeSelect,
+} from '../../../customSpecialComponents/FunctionSupplement/SimpleRenderType';
 import {
-  getArticleStatusName,
-  renderSearchArticleStatusSelect,
-} from '../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
+  getSimpleStatusName,
+  renderSearchSimpleStatusSelect,
+} from '../../../customSpecialComponents/FunctionSupplement/SimpleStatus';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
   refreshCacheAction,
@@ -411,7 +411,7 @@ class SingleList extends SinglePage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: renderSearchArticleRenderTypeSelect({
+          component: renderSearchSimpleRenderTypeSelect({
             metaData: this.getMetaData(),
           }),
         },
@@ -423,7 +423,7 @@ class SingleList extends SinglePage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: renderSearchArticleStatusSelect({
+          component: renderSearchSimpleStatusSelect({
             metaData: this.getMetaData(),
           }),
         },
@@ -663,7 +663,7 @@ class SingleList extends SinglePage {
         color: colorCollection.price,
       },
       formatValue: (value) => {
-        return getArticleRenderTypeName({
+        return getSimpleRenderTypeName({
           metaData: this.getMetaData(),
           value: value,
         });
@@ -678,7 +678,7 @@ class SingleList extends SinglePage {
       facadeConfigBuilder: (value) => {
         return {
           status: getStatusBadge(value),
-          text: getArticleStatusName({
+          text: getSimpleStatusName({
             metaData: this.getMetaData(),
             value: value,
           }),

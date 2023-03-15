@@ -17,8 +17,8 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../customConfig/config';
 import DataTabContainerSupplement from '../../../customSpecialComponents/DataTabContainerSupplement';
-import { getArticleRenderTypeName } from '../../../customSpecialComponents/FunctionSupplement/ArticleRenderType';
-import { getArticleStatusName } from '../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
+import { getSimpleRenderTypeName } from '../../../customSpecialComponents/FunctionSupplement/SimpleRenderType';
+import { getSimpleStatusName } from '../../../customSpecialComponents/FunctionSupplement/SimpleStatus';
 import {
   refreshCacheAction,
   setOfflineAction,
@@ -205,7 +205,7 @@ class Edit extends DataTabContainerSupplement {
       convert: convertCollection.number,
     });
 
-    const statusNote = getArticleStatusName({
+    const statusNote = getSimpleStatusName({
       metaData: this.getMetaData(),
       value: status,
     });
@@ -506,7 +506,7 @@ class Edit extends DataTabContainerSupplement {
 
     return {
       textLabel: fieldData.status.label,
-      text: getArticleStatusName({
+      text: getSimpleStatusName({
         metaData: this.getMetaData(),
         value: getValueByKey({
           data: metaData,
@@ -537,7 +537,7 @@ class Edit extends DataTabContainerSupplement {
       },
       {
         label: fieldData.renderTypeNote.label,
-        value: getArticleRenderTypeName({
+        value: getSimpleRenderTypeName({
           metaData: this.getMetaData(),
           value: getValueByKey({
             data: metaData,

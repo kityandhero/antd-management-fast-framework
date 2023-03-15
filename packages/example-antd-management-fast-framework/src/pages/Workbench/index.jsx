@@ -16,7 +16,7 @@ import {
 
 import { TestComponent } from '../../components/TestComponent';
 import { accessWayCollection } from '../../customConfig/accessWayCollection';
-import { getArticleStatusName } from '../../customSpecialComponents/FunctionSupplement/ArticleStatus';
+import { getSimpleStatusName } from '../../customSpecialComponents/FunctionSupplement/SimpleStatus';
 import {
   refreshCacheAction,
   setOfflineAction,
@@ -281,7 +281,7 @@ class Index extends MultiPage {
       facadeConfigBuilder: (value) => {
         return {
           status: getStatusBadge(value),
-          text: getArticleStatusName({
+          text: getSimpleStatusName({
             metaData: this.getMetaData(),
             value: value,
           }),

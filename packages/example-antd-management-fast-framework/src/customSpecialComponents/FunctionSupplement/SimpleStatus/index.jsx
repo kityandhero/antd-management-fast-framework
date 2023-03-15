@@ -20,9 +20,9 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitArticleStatusList({ metaData, withUnlimited = true }) {
-  const { articleStatusList: list } = {
-    articleStatusList: [],
+export function refitSimpleStatusList({ metaData, withUnlimited = true }) {
+  const { simpleStatusList: list } = {
+    simpleStatusList: [],
     ...metaData,
   };
 
@@ -33,7 +33,7 @@ export function refitArticleStatusList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getArticleStatusName({ metaData, value, defaultValue = '' }) {
+export function getSimpleStatusName({ metaData, value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,33 +41,33 @@ export function getArticleStatusName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitArticleStatusList({ metaData, withUnlimited: false }),
+    refitSimpleStatusList({ metaData, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
-export function renderArticleStatusOption({
+export function renderSimpleStatusOption({
   metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleStatusList({ metaData, withUnlimited });
+  const listData = refitSimpleStatusList({ metaData, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderArticleStatusRadio({
+export function renderSimpleStatusRadio({
   metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleStatusList({ metaData, withUnlimited });
+  const listData = refitSimpleStatusList({ metaData, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderSearchArticleStatusSelect({
+export function renderSearchSimpleStatusSelect({
   metaData = null,
   withUnlimited = true,
   label = '状态',
@@ -80,12 +80,12 @@ export function renderSearchArticleStatusSelect({
     label: title,
     name,
     helper,
-    list: refitArticleStatusList({ metaData, withUnlimited }),
+    list: refitSimpleStatusList({ metaData, withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
-export function renderCustomArticleStatusSelect({
+export function renderCustomSimpleStatusSelect({
   metaData = null,
   label = '状态',
   separator = ':',
@@ -98,7 +98,7 @@ export function renderCustomArticleStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitArticleStatusList({ metaData, withUnlimited: true }),
+    list: refitSimpleStatusList({ metaData, withUnlimited: true }),
     // eslint-disable-next-line no-unused-vars
     dataConvert: (o, index) => {
       const { flag, name } = o;
@@ -111,7 +111,7 @@ export function renderCustomArticleStatusSelect({
   });
 }
 
-export function renderFormArticleStatusSelect({
+export function renderFormSimpleStatusSelect({
   metaData = null,
   helper = null,
   onChange: onChangeCallback,
@@ -127,7 +127,7 @@ export function renderFormArticleStatusSelect({
     label: title,
     name,
     helper,
-    list: refitArticleStatusList({ metaData, withUnlimited: false }),
+    list: refitSimpleStatusList({ metaData, withUnlimited: false }),
     // eslint-disable-next-line no-unused-vars
     dataConvert: (o, index) => {
       const { flag, name } = o;
@@ -141,7 +141,7 @@ export function renderFormArticleStatusSelect({
   });
 }
 
-export function renderCustomArticleStatusRadio({
+export function renderCustomSimpleStatusRadio({
   metaData = null,
   label = '状态',
   separator = ': ',
@@ -154,7 +154,7 @@ export function renderCustomArticleStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitArticleStatusList({ metaData, withUnlimited: true }),
+    list: refitSimpleStatusList({ metaData, withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -166,7 +166,7 @@ export function renderCustomArticleStatusRadio({
   });
 }
 
-export function renderFormArticleStatusRadio({
+export function renderFormSimpleStatusRadio({
   metaData = null,
   helper = null,
   onChange: onChangeCallback,
@@ -182,7 +182,7 @@ export function renderFormArticleStatusRadio({
     label: title,
     name,
     helper,
-    list: refitArticleStatusList({ metaData, withUnlimited: false }),
+    list: refitSimpleStatusList({ metaData, withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

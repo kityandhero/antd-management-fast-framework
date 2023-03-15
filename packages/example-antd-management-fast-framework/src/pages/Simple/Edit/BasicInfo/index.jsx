@@ -33,10 +33,10 @@ import {
 
 import { accessWayCollection } from '../../../../customConfig/config';
 import {
-  renderCustomArticleStatusRadio,
-  renderCustomArticleStatusSelect,
-} from '../../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
-import { fieldData as fieldDataArticleImage } from '../../../ArticleImage/Common/data';
+  renderCustomSimpleStatusRadio,
+  renderCustomSimpleStatusSelect,
+} from '../../../../customSpecialComponents/FunctionSupplement/SimpleStatus';
+import { fieldData as fieldDataSimpleImage } from '../../../SimpleImage/Common/data';
 import {
   addGalleryImageAction,
   removeGalleryImageConfirmAction,
@@ -171,7 +171,7 @@ class BasicInfo extends TabPageBase {
         url: item.url,
       };
 
-      o[fieldDataArticleImage.simpleImageId.name] = item.id;
+      o[fieldDataSimpleImage.simpleImageId.name] = item.id;
 
       fileList.push(o);
     }
@@ -256,9 +256,9 @@ class BasicInfo extends TabPageBase {
       successCallback: ({ target, remoteData }) => {
         for (const item of fileList || []) {
           if (item.uid === file.uid) {
-            item[fieldDataArticleImage.simpleImageId.name] = getValueByKey({
+            item[fieldDataSimpleImage.simpleImageId.name] = getValueByKey({
               data: remoteData,
-              key: fieldDataArticleImage.simpleImageId.name,
+              key: fieldDataSimpleImage.simpleImageId.name,
             });
           }
         }
@@ -271,7 +271,7 @@ class BasicInfo extends TabPageBase {
   onGalleryRemove = (file) => {
     const simpleImageId = getValueByKey({
       data: file,
-      key: fieldDataArticleImage.simpleImageId.name,
+      key: fieldDataSimpleImage.simpleImageId.name,
     });
 
     removeGalleryImageConfirmAction({
@@ -285,7 +285,7 @@ class BasicInfo extends TabPageBase {
         for (const item of fileList || []) {
           const itemProductImageId = getValueByKey({
             data: item,
-            key: fieldDataArticleImage.simpleImageId.name,
+            key: fieldDataSimpleImage.simpleImageId.name,
           });
 
           if (itemProductImageId !== simpleImageId) {
@@ -473,7 +473,7 @@ class BasicInfo extends TabPageBase {
               },
               {
                 buildType: cardConfig.extraBuildType.component,
-                component: renderCustomArticleStatusRadio({
+                component: renderCustomSimpleStatusRadio({
                   metaData: this.getMetaData(),
                 }),
               },
@@ -482,7 +482,7 @@ class BasicInfo extends TabPageBase {
               },
               {
                 buildType: cardConfig.extraBuildType.component,
-                component: renderCustomArticleStatusSelect({
+                component: renderCustomSimpleStatusSelect({
                   metaData: this.getMetaData(),
                 }),
               },
@@ -1481,7 +1481,7 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.syntaxHighlighterView,
               fieldData: fieldData.syntaxHighlighter,
-              value: `SELECT * FROM (SELECT row_number() over (ORDER BY [simple].[sort] DESC, [simple].[create_time] DESC) AS rowId, ISNULL([simple].[id],0) AS [ArticleId] FROM simple WHERE 1=1 AND [simple].[platform_id] = 1504634917793959936 AND [simple].[business_mode] = 400 AND [simple].[status] IN ('0','10') ) as t where rowId between 1 and 10`,
+              value: `SELECT * FROM (SELECT row_number() over (ORDER BY [simple].[sort] DESC, [simple].[create_time] DESC) AS rowId, ISNULL([simple].[id],0) AS [SimpleId] FROM simple WHERE 1=1 AND [simple].[platform_id] = 1504634917793959936 AND [simple].[business_mode] = 400 AND [simple].[status] IN ('0','10') ) as t where rowId between 1 and 10`,
               language: 'sql',
               innerProps: {
                 showLineNumbers: false,

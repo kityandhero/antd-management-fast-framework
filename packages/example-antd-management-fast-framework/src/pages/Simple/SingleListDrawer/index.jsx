@@ -18,8 +18,8 @@ import { DataSinglePageView } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig/config';
 import { colorCollection } from '../../../customConfig/constants';
-import { getArticleRenderTypeName } from '../../../customSpecialComponents/FunctionSupplement/ArticleRenderType';
-import { getArticleStatusName } from '../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
+import { getSimpleRenderTypeName } from '../../../customSpecialComponents/FunctionSupplement/SimpleRenderType';
+import { getSimpleStatusName } from '../../../customSpecialComponents/FunctionSupplement/SimpleStatus';
 import { fieldData, statusCollection } from '../Common/data';
 
 const { Text } = Typography;
@@ -169,7 +169,7 @@ class SingleListDrawer extends SinglePageDrawer {
         color: colorCollection.price,
       },
       formatValue: (value) => {
-        return getArticleRenderTypeName({
+        return getSimpleRenderTypeName({
           metaData: this.getMetaData(),
           value: value,
         });
@@ -184,7 +184,7 @@ class SingleListDrawer extends SinglePageDrawer {
       facadeConfigBuilder: (value) => {
         return {
           status: this.getStatusBadge(value),
-          text: getArticleStatusName({
+          text: getSimpleStatusName({
             metaData: this.getMetaData(),
             value: value,
           }),

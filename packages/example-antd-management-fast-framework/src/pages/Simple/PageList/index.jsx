@@ -36,13 +36,13 @@ import { DataMultiPageView } from 'antd-management-fast-framework';
 import { accessWayCollection } from '../../../customConfig/config';
 import { colorCollection } from '../../../customConfig/constants';
 import {
-  getArticleRenderTypeName,
-  renderSearchArticleRenderTypeSelect,
-} from '../../../customSpecialComponents/FunctionSupplement/ArticleRenderType';
+  getSimpleRenderTypeName,
+  renderSearchSimpleRenderTypeSelect,
+} from '../../../customSpecialComponents/FunctionSupplement/SimpleRenderType';
 import {
-  getArticleStatusName,
-  renderSearchArticleStatusSelect,
-} from '../../../customSpecialComponents/FunctionSupplement/ArticleStatus';
+  getSimpleStatusName,
+  renderSearchSimpleStatusSelect,
+} from '../../../customSpecialComponents/FunctionSupplement/SimpleStatus';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
   refreshCacheAction,
@@ -52,7 +52,7 @@ import {
 import { getStatusBadge } from '../Assist/tools';
 import ChangeSortModal from '../ChangeSortModal';
 import { fieldData, mediaItemData, statusCollection } from '../Common/data';
-import ArticleSelectField from '../SelectField';
+import SimpleSelectField from '../SelectField';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 
 const { MultiPage } = DataMultiPageView;
@@ -282,7 +282,7 @@ class PageList extends MultiPage {
     });
   };
 
-  afterArticleSelect = (d) => {
+  afterSimpleSelect = (d) => {
     const { simpleId, title } = d;
 
     this.setState({
@@ -296,7 +296,7 @@ class PageList extends MultiPage {
     });
   };
 
-  afterArticleClearSelect = () => {
+  afterSimpleClearSelect = () => {
     this.setState({
       simpleId: '',
       simpleTitle: '',
@@ -440,7 +440,7 @@ class PageList extends MultiPage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: renderSearchArticleRenderTypeSelect({
+          component: renderSearchSimpleRenderTypeSelect({
             metaData: this.getMetaData(),
           }),
         },
@@ -457,7 +457,7 @@ class PageList extends MultiPage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: renderSearchArticleStatusSelect({
+          component: renderSearchSimpleStatusSelect({
             metaData: this.getMetaData(),
           }),
         },
@@ -466,7 +466,7 @@ class PageList extends MultiPage {
           type: searchCardConfig.contentItemType.component,
           component: (
             <>
-              <ArticleSelectField
+              <SimpleSelectField
                 dataLoading={dataLoading}
                 processing={processing}
                 loadSuccess={loadSuccess}
@@ -474,10 +474,10 @@ class PageList extends MultiPage {
                 title={simpleTitle || null}
                 // helper={fieldData.title.helper}
                 afterSelect={(d) => {
-                  this.afterArticleSelect(d);
+                  this.afterSimpleSelect(d);
                 }}
                 afterClearSelect={() => {
-                  this.afterArticleClearSelect();
+                  this.afterSimpleClearSelect();
                 }}
               />
             </>
@@ -952,7 +952,7 @@ class PageList extends MultiPage {
         color: colorCollection.price,
       },
       formatValue: (value) => {
-        return getArticleRenderTypeName({
+        return getSimpleRenderTypeName({
           metaData: this.getMetaData(),
           value: value,
         });
@@ -967,7 +967,7 @@ class PageList extends MultiPage {
       facadeConfigBuilder: (value) => {
         return {
           status: getStatusBadge(value),
-          text: getArticleStatusName({
+          text: getSimpleStatusName({
             metaData: this.getMetaData(),
             value: value,
           }),
