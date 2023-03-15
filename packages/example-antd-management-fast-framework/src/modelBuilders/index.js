@@ -8,6 +8,7 @@ import { buildModel as buildFlowEditorModel } from './flowEditor';
 import { buildModel as buildGlobalModel } from './global';
 import { buildModel as buildNoticeModel } from './notice';
 import { buildModel as buildSettingsModel } from './setting';
+import { buildModel as buildSimpleModel } from './simple';
 import { buildModel as buildTestModel } from './testModel';
 
 function collectModelBuilder() {
@@ -19,6 +20,7 @@ function collectModelBuilder() {
   appendExtraBuilder(buildGlobalModel);
   appendExtraBuilder(buildNoticeModel);
   appendExtraBuilder(buildSettingsModel);
+  appendExtraBuilder(buildSimpleModel);
   appendExtraBuilder(buildTestModel);
 }
 

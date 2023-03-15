@@ -55,7 +55,7 @@ function createEmptyList(size) {
 
 function buildAbundantArticle() {
   return {
-    articleId: '1430367617461391360',
+    simpleId: '1430367617461391360',
     title:
       '标题很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的',
     subtitle:
@@ -165,7 +165,7 @@ function buildAbundantArticle() {
 
 function buildSimpleArticle() {
   return {
-    articleId: '',
+    simpleId: '',
     title: '标题',
     subtitle: '副标题',
     description: '简介描述',
@@ -204,7 +204,7 @@ function buildArticleList() {
 
     return {
       ...simpleData,
-      articleId: no,
+      simpleId: no,
       key: no,
       title: simpleData.title + no,
       subtitle: simpleData.subtitle + no,
@@ -222,7 +222,7 @@ let abundantArticle = null;
 
 let simpleArticle = null;
 
-let articleList = [];
+let simpleList = [];
 
 function getAbundantArticle() {
   if (abundantArticle == null) {
@@ -241,23 +241,23 @@ export function getSimpleArticle() {
 }
 
 export function getArticleList() {
-  if (articleList.length <= 0) {
-    articleList = buildArticleList();
+  if (simpleList.length <= 0) {
+    simpleList = buildArticleList();
   }
 
-  return articleList;
+  return simpleList;
 }
 
-export function findArticle({ articleId }) {
+export function findArticle({ simpleId }) {
   let result = null;
 
   getArticleList().some((o) => {
     const itemArticleId = getValueByKey({
       data: o,
-      key: 'articleId',
+      key: 'simpleId',
     });
 
-    if (toString(itemArticleId) === toString(articleId)) {
+    if (toString(itemArticleId) === toString(simpleId)) {
       result = o;
 
       return true;

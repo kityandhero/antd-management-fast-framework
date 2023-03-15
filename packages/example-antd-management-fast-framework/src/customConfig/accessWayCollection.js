@@ -25,7 +25,7 @@ export const accessWayCollection = {
       permission: '8393b5e09b2d49679479857964f7c098',
     },
   },
-  article: {
+  simple: {
     pageList: {
       paramsKey: 'a1b398d90bf740df9f2b4bb15d69f970',
       permission: '3c11653937294459b4bdc23fbbc66c52',

@@ -33,139 +33,105 @@ export default [
     ],
   },
   {
-    path: '/news',
-    name: 'news',
-    icon: 'team',
+    path: '/simple',
+    name: 'simple',
+    icon: 'bars',
     // authority: [
     //   accessWayCollection.super.permission,
     //   accessWayCollection.article.pageList.permission,
     // ],
+    // hideChildrenInMenu: true,
     routes: [
       {
-        path: '/news',
-        redirect: '/news/article',
+        path: '/simple',
+        redirect: '/simple/singleList',
       },
       {
-        path: '/news/article',
-        name: 'article',
-        icon: 'bars',
-        // authority: [
-        //   accessWayCollection.super.permission,
-        //   accessWayCollection.article.pageList.permission,
-        // ],
-        hideChildrenInMenu: true,
-        routes: [
-          {
-            path: '/news/article',
-            redirect: '/news/article/pageList',
-          },
-          {
-            path: '/news/article/pageList',
-            redirect: '/news/article/pageList/no',
-          },
-          {
-            path: '/news/article/pageList/:pageKey',
-            hideInMenu: true,
-            component: './Article/PageList',
-          },
-          {
-            path: '/news/article/addBasicInfo',
-            name: 'addBasicInfo',
-            icon: 'plus-square',
-            // authority: [
-            //   accessWayCollection.super.permission.permission,
-            //   accessWayCollection.article.addBasicInfo.permission,
-            // ],
-            component: './Article/Add',
-          },
-          {
-            path: '/news/article/edit/:op/:id/:pageKey/:tab',
-            name: 'edit',
-            // hideInMenu: true,
-            component: './Article/Edit',
-            // routes: [
-            //   {
-            //     path: '/news/article/edit/:op/:id/:pageKey/basicInfo',
-            //     name: 'basicInfo',
-            //     component: './Article/Edit/BasicInfo',
-            //   },
-            //   {
-            //     path: '/news/article/edit/:op/:id/:pageKey/contentInfo',
-            //     name: 'contentInfo',
-            //     component: './Article/Edit/ContentInfo',
-            //   },
-            //   {
-            //     path: '/news/article/edit/:op/:id/:pageKey/mediaInfo',
-            //     name: 'mediaInfo',
-            //     component: './Article/Edit/MediaInfo',
-            //   },
-            // ],
-          },
-        ],
-      },
-      {
-        path: '/news/articleSingleList',
-        name: 'articleSingleList',
+        path: '/simple/singleList',
+        name: 'singleList',
         icon: 'bars',
         // authority: [
         //   accessWayCollection.super.permission,
         //   accessWayCollection.article.singleList.permission,
         // ],
-        component: './Article/SingleList',
+        component: './Simple/SingleList',
+      },
+      {
+        path: '/simple/pageList',
+        redirect: '/simple/pageList/no',
+      },
+      {
+        path: '/simple/pageList/:pageKey',
+        hideInMenu: true,
+        component: './Simple/PageList',
+      },
+      {
+        path: '/simple/addBasicInfo',
+        name: 'addBasicInfo',
+        icon: 'plus-square',
+        // authority: [
+        //   accessWayCollection.super.permission.permission,
+        //   accessWayCollection.article.addBasicInfo.permission,
+        // ],
+        component: './Simple/Add',
+      },
+      {
+        path: '/simple/edit/:op/:id/:pageKey/:tab',
+        name: 'edit',
+        component: './Simple/Edit',
       },
     ],
   },
   {
-    path: '/simplePage',
-    name: 'simplePage',
-    icon: 'team',
-    // hideChildrenInMenu: true,
+    path: '/common',
+    name: 'common',
+    icon: 'bars',
     routes: [
       {
-        path: '/simplePage',
-        redirect: '/simplePage/result',
+        path: '/common',
+        redirect: '/common/result',
       },
       {
-        path: '/simplePage/result',
+        path: '/common/result',
         name: 'result',
         icon: 'bars',
         routes: [
           {
-            path: '/simplePage/result',
-            redirect: '/simplePage/result/forbidden',
+            path: '/common/result',
+            redirect: '/common/result/forbidden',
           },
           {
-            path: '/simplePage/result/forbidden',
+            path: '/common/result/forbidden',
             name: 'forbidden',
             component: './Result/Forbidden',
           },
           {
-            path: '/simplePage/result/serverError',
+            path: '/common/result/serverError',
             name: 'serverError',
             component: './Result/ServerError',
           },
           {
-            path: '/simplePage/result/localError',
+            path: '/common/result/localError',
             name: 'localError',
             component: './Result/LocalError',
           },
           {
-            path: '/simplePage/result/success',
+            path: '/common/result/success',
             name: 'success',
             component: './Result/Success',
           },
           {
-            path: '/simplePage/result/info',
+            path: '/common/result/info',
             name: 'info',
             component: './Result/Info',
           },
           {
-            path: '/simplePage/result/warn',
+            path: '/common/result/warn',
             name: 'warn',
             component: './Result/Warn',
           },
           {
-            path: '/simplePage/result/notFound',
+            path: '/common/result/notFound',
             name: 'notFound',
             component: './Result/NotFound',
           },

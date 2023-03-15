@@ -21,23 +21,23 @@ import {
   refreshCacheAction,
   setOfflineAction,
   setOnlineAction,
-} from '../Article/Assist/action';
-import { getStatusBadge } from '../Article/Assist/tools';
-import { fieldData, statusCollection } from '../Article/Common/data';
+} from '../Simple/Assist/action';
+import { getStatusBadge } from '../Simple/Assist/tools';
+import { fieldData, statusCollection } from '../Simple/Common/data';
 
 import { PageHeaderContent } from './PageHeaderContent';
 import ShortcutPanel from './ShortcutPanel';
 
 const { MultiPage } = DataMultiPageView;
 
-@connect(({ article, user, currentOperator, global }) => ({
-  article,
+@connect(({ simple, user, currentOperator, schedulingControl }) => ({
+  simple,
   user,
   currentOperator,
-  global,
+  schedulingControl,
 }))
 class Index extends MultiPage {
-  componentAuthority = accessWayCollection.article.pageList.permission;
+  componentAuthority = accessWayCollection.simple.pageList.permission;
 
   resetDataAfterLoad = false;
 
@@ -49,8 +49,8 @@ class Index extends MultiPage {
     this.state = {
       ...this.state,
       pageTitle: '工作台',
-      listTitle: '新近文章列表',
-      loadApiPath: 'article/pageList',
+      listTitle: '新近列表',
+      loadApiPath: 'simple/pageList',
       tableScroll: { x: 1020 },
       pageSize: 8,
       currentOperator: null,
@@ -92,16 +92,16 @@ class Index extends MultiPage {
 
   // eslint-disable-next-line no-unused-vars
   handleItemStatus = ({ target, record, remoteData }) => {
-    const articleId = getValueByKey({
+    const simpleId = getValueByKey({
       data: remoteData,
-      key: fieldData.articleId.name,
+      key: fieldData.simpleId.name,
     });
 
     handleItem({
       target,
-      dataId: articleId,
+      dataId: simpleId,
       compareDataIdHandler: (o) => {
-        const { articleId: v } = o;
+        const { simpleId: v } = o;
 
         return v;
       },
@@ -146,13 +146,13 @@ class Index extends MultiPage {
   };
 
   goToAdd = () => {
-    this.goToPath(`/news/article/addBasicInfo`);
+    this.goToPath(`/news/simple/addBasicInfo`);
   };
 
   goToEdit = (record) => {
-    const { articleId } = record;
+    const { simpleId } = record;
 
-    this.goToPath(`/news/article/edit/load/${articleId}/key/basicInfo`);
+    this.goToPath(`/news/simple/edit/load/${simpleId}/key/basicInfo`);
   };
 
   establishPageHeaderTitlePrefix = () => {
@@ -179,7 +179,7 @@ class Index extends MultiPage {
         text: '新增文章',
         handleClick: this.goToAdd,
         hidden: !checkHasAuthority(
-          accessWayCollection.article.addBasicInfo.permission,
+          accessWayCollection.simple.addBasicInfo.permission,
         ),
       },
     ];
@@ -212,7 +212,7 @@ class Index extends MultiPage {
           icon: iconBuilder.edit(),
           text: '编辑[侧拉]',
           hidden: !checkHasAuthority(
-            accessWayCollection.article.updateBasicInfo.permission,
+            accessWayCollection.simple.updateBasicInfo.permission,
           ),
         },
         {
@@ -222,7 +222,7 @@ class Index extends MultiPage {
           icon: iconBuilder.playCircle(),
           text: '设为上线',
           hidden: !checkHasAuthority(
-            accessWayCollection.article.setOnline.permission,
+            accessWayCollection.simple.setOnline.permission,
           ),
           disabled: itemStatus === statusCollection.online,
           confirm: true,
@@ -233,7 +233,7 @@ class Index extends MultiPage {
           icon: iconBuilder.pauseCircle(),
           text: '设为下线',
           hidden: !checkHasAuthority(
-            accessWayCollection.article.setOffline.permission,
+            accessWayCollection.simple.setOffline.permission,
           ),
           disabled: itemStatus === statusCollection.offline,
           confirm: true,
@@ -246,7 +246,7 @@ class Index extends MultiPage {
           icon: iconBuilder.reload(),
           text: '刷新缓存',
           hidden: !checkHasAuthority(
-            accessWayCollection.article.refreshCache.permission,
+            accessWayCollection.simple.refreshCache.permission,
           ),
           confirm: true,
           title: '将要刷新缓存，确定吗？',
