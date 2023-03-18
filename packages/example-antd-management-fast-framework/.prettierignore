@@ -27,7 +27,6 @@
 *.log
 *.txt
 *.text
-*.ejs
 *.svg
 *.min.js
 

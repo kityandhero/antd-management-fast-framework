@@ -1,1 +1,1 @@
-export * from './configAssist';
+console.log('this is an empty entry point');

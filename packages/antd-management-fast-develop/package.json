@@ -1,17 +1,24 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "license": "ISC",
   "author": "",
   "main": "src/index.js",
+  "types": "types/index.d.ts",
+  "bin": {
+    "antd-management-fast-develop": "./bin/cli.js"
+  },
   "directories": {
-    "src": "src"
+    "src": "src",
+    "types": "types"
   },
   "files": [
-    "src/"
+    "src/",
+    "types/"
   ],
   "scripts": {
+    "ejs:test": "node ./bin/cli.js generate --dataPath ./src/data.json",
     "precommit": "npm run z:lint:staged:quiet",
     "publish:npm": "npm publish --registry https://registry.npmjs.org/",
     "prez:documentation:generate": "npx rimraf ./docs && npm run z:documentation:lint",
@@ -41,6 +48,10 @@
     "z:test": "cross-env NODE_ENV=test jest",
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
+  "dependencies": {
+    "commander": "^10.0.0",
+    "ejs": "^3.1.9"
+  },
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/eslint-parser": "^7.21.3",
@@ -56,15 +67,15 @@
     "@commitlint/config-lerna-scopes": "^17.4.2",
     "@commitlint/cz-commitlint": "^17.4.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
-    "@types/jest": "^29.4.2",
+    "@types/jest": "^29.5.0",
     "@types/node": "^18.15.3",
     "@typescript-eslint/parser": "^5.55.0",
-    "@umijs/max": "^4.0.59",
+    "@umijs/max": "^4.0.61",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "cross-env": "^7.0.3",
     "documentation": "^14.0.1",
-    "easy-soft-develop": "^2.0.175",
+    "easy-soft-develop": "^2.0.177",
     "eslint": "^8.36.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -90,8 +101,8 @@
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "rimraf": "^4.4.0",
-    "stylelint": "^15.2.0",
+    "stylelint": "^15.3.0",
     "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-standard": "^30.0.1"
+    "stylelint-config-standard": "^31.0.0"
   }
 }

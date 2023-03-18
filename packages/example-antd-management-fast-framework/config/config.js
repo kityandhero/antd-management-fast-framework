@@ -3,7 +3,7 @@ import { defineConfig } from '@umijs/max';
 import {
   buildConfig as buildConfigCore,
   checkDevelopment,
-} from 'antd-management-fast-develop';
+} from 'antd-management-fast-config';
 
 import pk from '../package.json';
 
