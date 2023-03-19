@@ -11,7 +11,7 @@ import { DataDrawer } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig/config';
 import { mediaTypeCollection } from '../../../customConfig/constants';
-import { renderFormMediaTypeSelect } from '../../../customSpecialComponents/FunctionSupplement/MediaType';
+import { renderFormMediaTypeSelect } from '../../../customSpecialComponents/FunctionExtra/MediaType';
 import { mediaItemData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;

@@ -8,6 +8,7 @@ const {
   readJsonFileSync,
   isObject,
   exit,
+  promptInfo,
 } = require('easy-soft-develop');
 const { generate } = require('../tools/generate');
 
@@ -26,6 +27,8 @@ exports.run = function (s, o) {
 
   if (isObject(data)) {
     if (Array.isArray(data.list)) {
+      promptInfo('File will generate, please wait a moment');
+
       generate(data.list, relativeFolder);
     } else {
       const simple = {

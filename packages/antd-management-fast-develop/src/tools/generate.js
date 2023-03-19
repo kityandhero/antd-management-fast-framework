@@ -7,18 +7,22 @@ const {
   writeFileSync,
   mkdirSync,
   promptSuccess,
+  promptWarn,
+  promptEmptyLine,
 } = require('easy-soft-develop');
 
 let { templateContent } = require('../template');
 
-mkdirSync('./FunctionExtra', {
-  recursive: true,
-});
-
 function generate(dataSource, relativeFolder) {
+  mkdirSync(`${relativeFolder}/FunctionExtra`, {
+    recursive: true,
+  });
+
   const dataAdjust = dataSource.map((o) => adjustSource(o));
 
   for (const o of dataAdjust) {
+    checkDataItem(o);
+
     let content = compile(templateContent)({ o });
 
     mkdirSync(`${relativeFolder}/FunctionExtra/${o.functionSegment}`);
@@ -32,13 +36,25 @@ function generate(dataSource, relativeFolder) {
     );
 
     promptSuccess(
-      `generate "${relativeFolder}/FunctionExtra/${o.functionSegment}/index.jsx" complete`,
+      `Generate "${relativeFolder}/FunctionExtra/${o.functionSegment}/index.jsx" complete`,
     );
   }
 }
 
 function adjustSource(o) {
   const d = { ...o };
+
+  const functionSegment = d.functionSegment;
+
+  if (functionSegment === undefined) {
+    promptWarn('data has error, check item: ');
+
+    console.log(d);
+
+    promptEmptyLine();
+
+    throw new Error('data has not key "functionSegment"');
+  }
 
   d.defineName = toLowerFirst(d.functionSegment);
 
@@ -47,6 +63,48 @@ function adjustSource(o) {
 
 function toLowerFirst(o) {
   return `${o.charAt(0)}`.toLowerCase() + o.slice(1);
+}
+
+function checkDataItem(item) {
+  if (item.functionSegment === undefined) {
+    promptWarn('data has error, check item: ');
+
+    console.log(item);
+
+    promptEmptyLine();
+
+    throw new Error('data has not key "functionSegment"');
+  }
+
+  if (item.defineName === undefined) {
+    promptWarn('data has error, check item: ');
+
+    console.log(item);
+
+    promptEmptyLine();
+
+    throw new Error('data has not key "defineName"');
+  }
+
+  if (item.label === undefined) {
+    promptWarn('data has error, check item: ');
+
+    console.log(item);
+
+    promptEmptyLine();
+
+    throw new Error('data has not key "label"');
+  }
+
+  if (item.name === undefined) {
+    promptWarn('data has error, check item: ');
+
+    console.log(item);
+
+    promptEmptyLine();
+
+    throw new Error('data has not key "name"');
+  }
 }
 
 module.exports = {

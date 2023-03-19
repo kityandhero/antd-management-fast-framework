@@ -38,11 +38,11 @@ import { colorCollection } from '../../../customConfig/constants';
 import {
   getSimpleRenderTypeName,
   renderSearchSimpleRenderTypeSelect,
-} from '../../../customSpecialComponents/FunctionSupplement/SimpleRenderType';
+} from '../../../customSpecialComponents/FunctionExtra/SimpleRenderType';
 import {
   getSimpleStatusName,
   renderSearchSimpleStatusSelect,
-} from '../../../customSpecialComponents/FunctionSupplement/SimpleStatus';
+} from '../../../customSpecialComponents/FunctionExtra/SimpleStatus';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
   refreshCacheAction,

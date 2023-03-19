@@ -74,6 +74,9 @@ export function getLayoutSetting({
         },
     appList: getApplicationListData(),
     avatarProps: layoutAvatarAdjust,
+    contentStyle: {
+      padding: '0',
+    },
     headerTitleRender: (logo, title, _) => {
       const defaultDom = (
         <AnchorLink>

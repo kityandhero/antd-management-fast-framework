@@ -1,4 +1,4 @@
-﻿import {
+import {
   isInvalid,
   isNull,
   isUndefined,
@@ -20,9 +20,9 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitSimpleStatusList({ metaData, withUnlimited = true }) {
-  const { simpleStatusList: list } = {
-    simpleStatusList: [],
+export function refitSimpleRenderTypeList({ metaData, withUnlimited = true }) {
+  const { simpleRenderTypeList: list } = {
+    simpleRenderTypeList: [],
     ...metaData,
   };
 
@@ -33,7 +33,11 @@ export function refitSimpleStatusList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getSimpleStatusName({ metaData, value, defaultValue = '' }) {
+export function getSimpleRenderTypeName({
+  metaData,
+  value,
+  defaultValue = '',
+}) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,37 +45,37 @@ export function getSimpleStatusName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitSimpleStatusList({ metaData, withUnlimited: false }),
+    refitSimpleRenderTypeList({ metaData, withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
-export function renderSimpleStatusOption({
+export function renderSimpleRenderTypeOption({
   metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitSimpleStatusList({ metaData, withUnlimited });
+  const listData = refitSimpleRenderTypeList({ metaData, withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderSimpleStatusRadio({
+export function renderSimpleRenderTypeRadio({
   metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitSimpleStatusList({ metaData, withUnlimited });
+  const listData = refitSimpleRenderTypeList({ metaData, withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
-export function renderSearchSimpleStatusSelect({
+export function renderSearchSimpleRenderTypeSelect({
   metaData = null,
   withUnlimited = true,
-  label = '状态',
-  name = 'status',
+  label = '渲染模式',
+  name = 'renderType',
   helper = null,
 }) {
   const title = label || unknownLabel;
@@ -80,14 +84,14 @@ export function renderSearchSimpleStatusSelect({
     label: title,
     name,
     helper,
-    list: refitSimpleStatusList({ metaData, withUnlimited }),
+    list: refitSimpleRenderTypeList({ metaData, withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
-export function renderCustomSimpleStatusSelect({
+export function renderCustomSimpleRenderTypeSelect({
   metaData = null,
-  label = '状态',
+  label = '渲染模式',
   separator = ':',
   size = 'middle',
   onChange: onChangeCallback,
@@ -98,63 +102,7 @@ export function renderCustomSimpleStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitSimpleStatusList({ metaData, withUnlimited: true }),
-    // eslint-disable-next-line no-unused-vars
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { label: name, value: flag, disabled: false, ...o };
-    },
-    renderItem: null,
-    onChange: onChangeCallback,
-    innerProps: innerProperties,
-  });
-}
-
-export function renderFormSimpleStatusSelect({
-  metaData = null,
-  helper = null,
-  onChange: onChangeCallback,
-  label = '状态',
-  formItemLayout = null,
-  required = true,
-  name = 'status',
-  innerProps: innerProperties = null,
-}) {
-  const title = label || unknownLabel;
-
-  return buildFormSelect({
-    label: title,
-    name,
-    helper,
-    list: refitSimpleStatusList({ metaData, withUnlimited: false }),
-    // eslint-disable-next-line no-unused-vars
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { label: name, value: flag, disabled: false, ...o };
-    },
-    onChange: onChangeCallback,
-    formItemLayout,
-    required,
-    innerProps: innerProperties,
-  });
-}
-
-export function renderCustomSimpleStatusRadio({
-  metaData = null,
-  label = '状态',
-  separator = ': ',
-  size = 'middle',
-  onChange: onChangeCallback,
-  innerProps: innerProperties = null,
-}) {
-  return buildFlexRadio({
-    label,
-    defaultValue: null,
-    separator,
-    size,
-    list: refitSimpleStatusList({ metaData, withUnlimited: true }),
+    list: refitSimpleRenderTypeList({ metaData, withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -166,14 +114,68 @@ export function renderCustomSimpleStatusRadio({
   });
 }
 
-export function renderFormSimpleStatusRadio({
+export function renderFormSimpleRenderTypeSelect({
   metaData = null,
   helper = null,
   onChange: onChangeCallback,
-  label = '状态',
+  label = '渲染模式',
   formItemLayout = null,
   required = true,
-  name = 'status',
+  name = 'renderType',
+  innerProps: innerProperties = null,
+}) {
+  const title = label || unknownLabel;
+
+  return buildFormSelect({
+    label: title,
+    name,
+    helper,
+    list: refitSimpleRenderTypeList({ metaData, withUnlimited: false }),
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { index, label: name, value: flag, disabled: false, ...o };
+    },
+    onChange: onChangeCallback,
+    formItemLayout,
+    required,
+    innerProps: innerProperties,
+  });
+}
+
+export function renderCustomSimpleRenderTypeRadio({
+  metaData = null,
+  label = '渲染模式',
+  separator = ': ',
+  size = 'middle',
+  onChange: onChangeCallback,
+  innerProps: innerProperties = null,
+}) {
+  return buildFlexRadio({
+    label,
+    defaultValue: null,
+    separator,
+    size,
+    list: refitSimpleRenderTypeList({ metaData, withUnlimited: true }),
+    dataConvert: (o, index) => {
+      const { flag, name } = o;
+
+      return { index, label: name, value: flag, disabled: false, ...o };
+    },
+    renderItem: null,
+    onChange: onChangeCallback,
+    innerProps: innerProperties,
+  });
+}
+
+export function renderFormSimpleRenderTypeRadio({
+  metaData = null,
+  helper = null,
+  onChange: onChangeCallback,
+  label = '渲染模式',
+  formItemLayout = null,
+  required = true,
+  name = 'renderType',
   innerProps: innerProperties = null,
 }) {
   const title = label || unknownLabel;
@@ -182,7 +184,7 @@ export function renderFormSimpleStatusRadio({
     label: title,
     name,
     helper,
-    list: refitSimpleStatusList({ metaData, withUnlimited: false }),
+    list: refitSimpleRenderTypeList({ metaData, withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

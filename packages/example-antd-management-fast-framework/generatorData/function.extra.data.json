@@ -1,6 +1,16 @@
 {
   "list": [
     {
+      "functionSegment": "SimpleStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "SimpleRenderType",
+      "label": "渲染模式",
+      "name": "renderType"
+    },
+    {
       "functionSegment": "Whether",
       "label": "调用时设置",
       "name": "whether"

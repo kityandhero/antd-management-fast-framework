@@ -35,7 +35,7 @@ import { accessWayCollection } from '../../../../customConfig/config';
 import {
   renderCustomSimpleStatusRadio,
   renderCustomSimpleStatusSelect,
-} from '../../../../customSpecialComponents/FunctionSupplement/SimpleStatus';
+} from '../../../../customSpecialComponents/FunctionExtra/SimpleStatus';
 import { fieldData as fieldDataSimpleImage } from '../../../SimpleImage/Common/data';
 import {
   addGalleryImageAction,

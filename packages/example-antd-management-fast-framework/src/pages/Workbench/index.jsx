@@ -16,7 +16,7 @@ import {
 
 import { TestComponent } from '../../components/TestComponent';
 import { accessWayCollection } from '../../customConfig/accessWayCollection';
-import { getSimpleStatusName } from '../../customSpecialComponents/FunctionSupplement/SimpleStatus';
+import { getSimpleStatusName } from '../../customSpecialComponents/FunctionExtra/SimpleStatus';
 import {
   refreshCacheAction,
   setOfflineAction,
