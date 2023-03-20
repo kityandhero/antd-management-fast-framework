@@ -16,7 +16,7 @@ import {
 import { iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../customConfig/config';
-import DataTabContainerSupplement from '../../../customSpecialComponents/DataTabContainerSupplement';
+import { DataTabContainerSupplement } from '../../../customSpecialComponents';
 import { getSimpleRenderTypeName } from '../../../customSpecialComponents/FunctionExtra/SimpleRenderType';
 import { getSimpleStatusName } from '../../../customSpecialComponents/FunctionExtra/SimpleStatus';
 import {

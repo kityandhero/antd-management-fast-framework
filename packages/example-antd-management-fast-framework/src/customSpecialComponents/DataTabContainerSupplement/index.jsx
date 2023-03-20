@@ -10,4 +10,4 @@ class DataTabContainerSupplement extends DataTabContainer {
   };
 }
 
-export default DataTabContainerSupplement;
+export { DataTabContainerSupplement };

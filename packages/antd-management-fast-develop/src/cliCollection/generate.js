@@ -34,7 +34,7 @@ exports.run = function (s, o) {
 
       promptInfo('Format generated file:');
 
-      exec(`npx prettier --write ${relativeFolder}/**`);
+      exec(`npx prettier --write ${relativeFolder}/**/*`);
     } else {
       const simple = {
         list: [

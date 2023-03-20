@@ -20,6 +20,8 @@ function generate(dataSource, relativeFolder) {
 
   const dataAdjust = dataSource.map((o) => adjustSource(o));
 
+  const exportList = [];
+
   for (const o of dataAdjust) {
     checkDataItem(o);
 
@@ -37,6 +39,18 @@ function generate(dataSource, relativeFolder) {
 
     promptSuccess(
       `Generate "${relativeFolder}/FunctionExtra/${o.functionSegment}/index.jsx" complete`,
+    );
+
+    exportList.push(`export * from './${o.functionSegment}';`);
+  }
+
+  if (exportList.length > 0) {
+    writeFileSync(
+      `${relativeFolder}/FunctionExtra/index.jsx`,
+      exportList.join(''),
+      {
+        coverFile: true,
+      },
     );
   }
 }
