@@ -28,16 +28,13 @@ import {
 } from 'antd-management-fast-component';
 import { DataSinglePageView } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '../../../customConfig/config';
-import { colorCollection } from '../../../customConfig/constants';
+import { accessWayCollection, colorCollection } from '../../../customConfig';
 import {
   getSimpleRenderTypeName,
-  renderSearchSimpleRenderTypeSelect,
-} from '../../../customSpecialComponents/FunctionExtra/SimpleRenderType';
-import {
   getSimpleStatusName,
+  renderSearchSimpleRenderTypeSelect,
   renderSearchSimpleStatusSelect,
-} from '../../../customSpecialComponents/FunctionExtra/SimpleStatus';
+} from '../../../customSpecialComponents';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
   refreshCacheAction,

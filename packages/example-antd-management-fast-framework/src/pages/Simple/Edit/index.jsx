@@ -15,10 +15,12 @@ import {
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { accessWayCollection } from '../../../customConfig/config';
-import { DataTabContainerSupplement } from '../../../customSpecialComponents';
-import { getSimpleRenderTypeName } from '../../../customSpecialComponents/FunctionExtra/SimpleRenderType';
-import { getSimpleStatusName } from '../../../customSpecialComponents/FunctionExtra/SimpleStatus';
+import { accessWayCollection } from '../../../customConfig';
+import {
+  DataTabContainerSupplement,
+  getSimpleRenderTypeName,
+  getSimpleStatusName,
+} from '../../../customSpecialComponents';
 import {
   refreshCacheAction,
   setOfflineAction,

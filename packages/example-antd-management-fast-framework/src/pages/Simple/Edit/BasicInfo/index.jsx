@@ -31,11 +31,11 @@ import {
   IconInfo,
 } from 'antd-management-fast-component';
 
-import { accessWayCollection } from '../../../../customConfig/config';
+import { accessWayCollection } from '../../../../customConfig';
 import {
   renderCustomSimpleStatusRadio,
   renderCustomSimpleStatusSelect,
-} from '../../../../customSpecialComponents/FunctionExtra/SimpleStatus';
+} from '../../../../customSpecialComponents';
 import { fieldData as fieldDataSimpleImage } from '../../../SimpleImage/Common/data';
 import {
   addGalleryImageAction,

@@ -18,8 +18,10 @@ import { DataMultiPageView } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig/config';
 import { colorCollection } from '../../../customConfig/constants';
-import { getSimpleRenderTypeName } from '../../../customSpecialComponents/FunctionExtra/SimpleRenderType';
-import { getSimpleStatusName } from '../../../customSpecialComponents/FunctionExtra/SimpleStatus';
+import {
+  getSimpleRenderTypeName,
+  getSimpleStatusName,
+} from '../../../customSpecialComponents';
 import { fieldData, statusCollection } from '../Common/data';
 
 const { Text } = Typography;

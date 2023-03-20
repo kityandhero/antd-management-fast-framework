@@ -37,12 +37,10 @@ import { accessWayCollection } from '../../../customConfig/config';
 import { colorCollection } from '../../../customConfig/constants';
 import {
   getSimpleRenderTypeName,
-  renderSearchSimpleRenderTypeSelect,
-} from '../../../customSpecialComponents/FunctionExtra/SimpleRenderType';
-import {
   getSimpleStatusName,
+  renderSearchSimpleRenderTypeSelect,
   renderSearchSimpleStatusSelect,
-} from '../../../customSpecialComponents/FunctionExtra/SimpleStatus';
+} from '../../../customSpecialComponents';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
   refreshCacheAction,

@@ -9,9 +9,11 @@ import { cardConfig, getCorsDomain } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import { DataDrawer } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '../../../customConfig/config';
-import { mediaTypeCollection } from '../../../customConfig/constants';
-import { renderFormMediaTypeSelect } from '../../../customSpecialComponents/FunctionExtra/MediaType';
+import {
+  accessWayCollection,
+  mediaTypeCollection,
+} from '../../../customConfig';
+import { renderFormMediaTypeSelect } from '../../../customSpecialComponents';
 import { mediaItemData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;

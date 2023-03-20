@@ -16,10 +16,11 @@ import {
 import { iconBuilder } from 'antd-management-fast-component';
 import { DataSinglePageView } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '../../../customConfig/config';
-import { colorCollection } from '../../../customConfig/constants';
-import { getSimpleRenderTypeName } from '../../../customSpecialComponents/FunctionExtra/SimpleRenderType';
-import { getSimpleStatusName } from '../../../customSpecialComponents/FunctionExtra/SimpleStatus';
+import { accessWayCollection, colorCollection } from '../../../customConfig';
+import {
+  getSimpleRenderTypeName,
+  getSimpleStatusName,
+} from '../../../customSpecialComponents';
 import { fieldData, statusCollection } from '../Common/data';
 
 const { Text } = Typography;

@@ -15,8 +15,8 @@ import {
 } from 'antd-management-fast-framework';
 
 import { TestComponent } from '../../components/TestComponent';
-import { accessWayCollection } from '../../customConfig/accessWayCollection';
-import { getSimpleStatusName } from '../../customSpecialComponents/FunctionExtra/SimpleStatus';
+import { accessWayCollection } from '../../customConfig';
+import { getSimpleStatusName } from '../../customSpecialComponents';
 import {
   refreshCacheAction,
   setOfflineAction,
