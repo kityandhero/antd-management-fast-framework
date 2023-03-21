@@ -360,14 +360,6 @@ class AbstractComponent extends Component {
 
   doWorkAfterUnmount = () => {};
 
-  getMetaData = () => {
-    const text = 'please override getMetaData, and return a object';
-
-    logError(text);
-
-    throw new Error(text);
-  };
-
   dispatchApi = ({ type, payload, alias = 'data' }) => {
     return dispatch({ type, payload, alias });
   };

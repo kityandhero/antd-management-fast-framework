@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitGenderList({ metaData, withUnlimited = true }) {
+export function refitGenderList({ withUnlimited = true }) {
   const { genderList: list } = {
     genderList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitGenderList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getGenderName({ metaData, value, defaultValue = '' }) {
+export function getGenderName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getGenderName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitGenderList({ metaData, withUnlimited: false }),
+    refitGenderList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderGenderOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGenderList({ metaData, withUnlimited });
+  const listData = refitGenderList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderGenderRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGenderList({ metaData, withUnlimited });
+  const listData = refitGenderList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchGenderSelect({
-  metaData = null,
   withUnlimited = true,
   label = '性别',
   name = 'gender',
@@ -80,13 +78,12 @@ export function renderSearchGenderSelect({
     label: title,
     name,
     helper,
-    list: refitGenderList({ metaData, withUnlimited }),
+    list: refitGenderList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomGenderSelect({
-  metaData = null,
   label = '性别',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomGenderSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitGenderList({ metaData, withUnlimited: true }),
+    list: refitGenderList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomGenderSelect({
 }
 
 export function renderFormGenderSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '性别',
@@ -126,7 +122,7 @@ export function renderFormGenderSelect({
     label: title,
     name,
     helper,
-    list: refitGenderList({ metaData, withUnlimited: false }),
+    list: refitGenderList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormGenderSelect({
 }
 
 export function renderCustomGenderRadio({
-  metaData = null,
   label = '性别',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomGenderRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitGenderList({ metaData, withUnlimited: true }),
+    list: refitGenderList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomGenderRadio({
 }
 
 export function renderFormGenderRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '性别',
@@ -180,7 +174,7 @@ export function renderFormGenderRadio({
     label: title,
     name,
     helper,
-    list: refitGenderList({ metaData, withUnlimited: false }),
+    list: refitGenderList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

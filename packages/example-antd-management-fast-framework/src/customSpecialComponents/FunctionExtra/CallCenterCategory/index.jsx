@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,13 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitCallCenterCategoryList({
-  metaData,
-  withUnlimited = true,
-}) {
+export function refitCallCenterCategoryList({ withUnlimited = true }) {
   const { callCenterCategoryList: list } = {
     callCenterCategoryList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -36,11 +34,7 @@ export function refitCallCenterCategoryList({
   return refitCommonData(list);
 }
 
-export function getCallCenterCategoryName({
-  metaData,
-  value,
-  defaultValue = '',
-}) {
+export function getCallCenterCategoryName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -48,34 +42,31 @@ export function getCallCenterCategoryName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitCallCenterCategoryList({ metaData, withUnlimited: false }),
+    refitCallCenterCategoryList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderCallCenterCategoryOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitCallCenterCategoryList({ metaData, withUnlimited });
+  const listData = refitCallCenterCategoryList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderCallCenterCategoryRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitCallCenterCategoryList({ metaData, withUnlimited });
+  const listData = refitCallCenterCategoryList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchCallCenterCategorySelect({
-  metaData = null,
   withUnlimited = true,
   label = '类别',
   name = 'category',
@@ -87,13 +78,12 @@ export function renderSearchCallCenterCategorySelect({
     label: title,
     name,
     helper,
-    list: refitCallCenterCategoryList({ metaData, withUnlimited }),
+    list: refitCallCenterCategoryList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomCallCenterCategorySelect({
-  metaData = null,
   label = '类别',
   separator = ':',
   size = 'middle',
@@ -105,7 +95,7 @@ export function renderCustomCallCenterCategorySelect({
     defaultValue: null,
     separator,
     size,
-    list: refitCallCenterCategoryList({ metaData, withUnlimited: true }),
+    list: refitCallCenterCategoryList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -118,7 +108,6 @@ export function renderCustomCallCenterCategorySelect({
 }
 
 export function renderFormCallCenterCategorySelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '类别',
@@ -133,7 +122,7 @@ export function renderFormCallCenterCategorySelect({
     label: title,
     name,
     helper,
-    list: refitCallCenterCategoryList({ metaData, withUnlimited: false }),
+    list: refitCallCenterCategoryList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -147,7 +136,6 @@ export function renderFormCallCenterCategorySelect({
 }
 
 export function renderCustomCallCenterCategoryRadio({
-  metaData = null,
   label = '类别',
   separator = ': ',
   size = 'middle',
@@ -159,7 +147,7 @@ export function renderCustomCallCenterCategoryRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitCallCenterCategoryList({ metaData, withUnlimited: true }),
+    list: refitCallCenterCategoryList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -172,7 +160,6 @@ export function renderCustomCallCenterCategoryRadio({
 }
 
 export function renderFormCallCenterCategoryRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '类别',
@@ -187,7 +174,7 @@ export function renderFormCallCenterCategoryRadio({
     label: title,
     name,
     helper,
-    list: refitCallCenterCategoryList({ metaData, withUnlimited: false }),
+    list: refitCallCenterCategoryList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

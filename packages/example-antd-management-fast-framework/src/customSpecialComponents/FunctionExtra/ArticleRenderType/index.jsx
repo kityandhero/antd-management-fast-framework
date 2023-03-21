@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitArticleRenderTypeList({ metaData, withUnlimited = true }) {
+export function refitArticleRenderTypeList({ withUnlimited = true }) {
   const { articleRenderTypeList: list } = {
     articleRenderTypeList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,11 +34,7 @@ export function refitArticleRenderTypeList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getArticleRenderTypeName({
-  metaData,
-  value,
-  defaultValue = '',
-}) {
+export function getArticleRenderTypeName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -45,34 +42,31 @@ export function getArticleRenderTypeName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitArticleRenderTypeList({ metaData, withUnlimited: false }),
+    refitArticleRenderTypeList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderArticleRenderTypeOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleRenderTypeList({ metaData, withUnlimited });
+  const listData = refitArticleRenderTypeList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderArticleRenderTypeRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleRenderTypeList({ metaData, withUnlimited });
+  const listData = refitArticleRenderTypeList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchArticleRenderTypeSelect({
-  metaData = null,
   withUnlimited = true,
   label = '渲染模式',
   name = 'renderType',
@@ -84,13 +78,12 @@ export function renderSearchArticleRenderTypeSelect({
     label: title,
     name,
     helper,
-    list: refitArticleRenderTypeList({ metaData, withUnlimited }),
+    list: refitArticleRenderTypeList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomArticleRenderTypeSelect({
-  metaData = null,
   label = '渲染模式',
   separator = ':',
   size = 'middle',
@@ -102,7 +95,7 @@ export function renderCustomArticleRenderTypeSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitArticleRenderTypeList({ metaData, withUnlimited: true }),
+    list: refitArticleRenderTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -115,7 +108,6 @@ export function renderCustomArticleRenderTypeSelect({
 }
 
 export function renderFormArticleRenderTypeSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '渲染模式',
@@ -130,7 +122,7 @@ export function renderFormArticleRenderTypeSelect({
     label: title,
     name,
     helper,
-    list: refitArticleRenderTypeList({ metaData, withUnlimited: false }),
+    list: refitArticleRenderTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -144,7 +136,6 @@ export function renderFormArticleRenderTypeSelect({
 }
 
 export function renderCustomArticleRenderTypeRadio({
-  metaData = null,
   label = '渲染模式',
   separator = ': ',
   size = 'middle',
@@ -156,7 +147,7 @@ export function renderCustomArticleRenderTypeRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitArticleRenderTypeList({ metaData, withUnlimited: true }),
+    list: refitArticleRenderTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -169,7 +160,6 @@ export function renderCustomArticleRenderTypeRadio({
 }
 
 export function renderFormArticleRenderTypeRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '渲染模式',
@@ -184,7 +174,7 @@ export function renderFormArticleRenderTypeRadio({
     label: title,
     name,
     helper,
-    list: refitArticleRenderTypeList({ metaData, withUnlimited: false }),
+    list: refitArticleRenderTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

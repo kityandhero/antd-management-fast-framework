@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitCallCenterStatusList({ metaData, withUnlimited = true }) {
+export function refitCallCenterStatusList({ withUnlimited = true }) {
   const { callCenterStatusList: list } = {
     callCenterStatusList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,11 +34,7 @@ export function refitCallCenterStatusList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getCallCenterStatusName({
-  metaData,
-  value,
-  defaultValue = '',
-}) {
+export function getCallCenterStatusName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -45,34 +42,31 @@ export function getCallCenterStatusName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitCallCenterStatusList({ metaData, withUnlimited: false }),
+    refitCallCenterStatusList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderCallCenterStatusOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitCallCenterStatusList({ metaData, withUnlimited });
+  const listData = refitCallCenterStatusList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderCallCenterStatusRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitCallCenterStatusList({ metaData, withUnlimited });
+  const listData = refitCallCenterStatusList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchCallCenterStatusSelect({
-  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -84,13 +78,12 @@ export function renderSearchCallCenterStatusSelect({
     label: title,
     name,
     helper,
-    list: refitCallCenterStatusList({ metaData, withUnlimited }),
+    list: refitCallCenterStatusList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomCallCenterStatusSelect({
-  metaData = null,
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -102,7 +95,7 @@ export function renderCustomCallCenterStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitCallCenterStatusList({ metaData, withUnlimited: true }),
+    list: refitCallCenterStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -115,7 +108,6 @@ export function renderCustomCallCenterStatusSelect({
 }
 
 export function renderFormCallCenterStatusSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -130,7 +122,7 @@ export function renderFormCallCenterStatusSelect({
     label: title,
     name,
     helper,
-    list: refitCallCenterStatusList({ metaData, withUnlimited: false }),
+    list: refitCallCenterStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -144,7 +136,6 @@ export function renderFormCallCenterStatusSelect({
 }
 
 export function renderCustomCallCenterStatusRadio({
-  metaData = null,
   label = '状态',
   separator = ': ',
   size = 'middle',
@@ -156,7 +147,7 @@ export function renderCustomCallCenterStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitCallCenterStatusList({ metaData, withUnlimited: true }),
+    list: refitCallCenterStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -169,7 +160,6 @@ export function renderCustomCallCenterStatusRadio({
 }
 
 export function renderFormCallCenterStatusRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -184,7 +174,7 @@ export function renderFormCallCenterStatusRadio({
     label: title,
     name,
     helper,
-    list: refitCallCenterStatusList({ metaData, withUnlimited: false }),
+    list: refitCallCenterStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

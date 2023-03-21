@@ -622,14 +622,6 @@ export const searchCardConfig = {
 };
 
 /**
- * 字符串类型 ‘0’/'1'
- */
-export const whetherString = {
-  no: '0',
-  yes: '1',
-};
-
-/**
  * 文本类型不限【-10000】
  */
 export const unlimitedWithStringFlag = {

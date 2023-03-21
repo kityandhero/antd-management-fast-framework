@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitQrCodeStatusList({ metaData, withUnlimited = true }) {
+export function refitQrCodeStatusList({ withUnlimited = true }) {
   const { qrCodeStatusList: list } = {
     qrCodeStatusList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitQrCodeStatusList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getQrCodeStatusName({ metaData, value, defaultValue = '' }) {
+export function getQrCodeStatusName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getQrCodeStatusName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitQrCodeStatusList({ metaData, withUnlimited: false }),
+    refitQrCodeStatusList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderQrCodeStatusOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitQrCodeStatusList({ metaData, withUnlimited });
+  const listData = refitQrCodeStatusList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderQrCodeStatusRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitQrCodeStatusList({ metaData, withUnlimited });
+  const listData = refitQrCodeStatusList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchQrCodeStatusSelect({
-  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -80,13 +78,12 @@ export function renderSearchQrCodeStatusSelect({
     label: title,
     name,
     helper,
-    list: refitQrCodeStatusList({ metaData, withUnlimited }),
+    list: refitQrCodeStatusList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomQrCodeStatusSelect({
-  metaData = null,
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomQrCodeStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitQrCodeStatusList({ metaData, withUnlimited: true }),
+    list: refitQrCodeStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomQrCodeStatusSelect({
 }
 
 export function renderFormQrCodeStatusSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -126,7 +122,7 @@ export function renderFormQrCodeStatusSelect({
     label: title,
     name,
     helper,
-    list: refitQrCodeStatusList({ metaData, withUnlimited: false }),
+    list: refitQrCodeStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormQrCodeStatusSelect({
 }
 
 export function renderCustomQrCodeStatusRadio({
-  metaData = null,
   label = '状态',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomQrCodeStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitQrCodeStatusList({ metaData, withUnlimited: true }),
+    list: refitQrCodeStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomQrCodeStatusRadio({
 }
 
 export function renderFormQrCodeStatusRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -180,7 +174,7 @@ export function renderFormQrCodeStatusRadio({
     label: title,
     name,
     helper,
-    list: refitQrCodeStatusList({ metaData, withUnlimited: false }),
+    list: refitQrCodeStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

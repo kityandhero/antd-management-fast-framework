@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitSimpleStatusList({ metaData, withUnlimited = true }) {
+export function refitSimpleStatusList({ withUnlimited = true }) {
   const { simpleStatusList: list } = {
     simpleStatusList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitSimpleStatusList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getSimpleStatusName({ metaData, value, defaultValue = '' }) {
+export function getSimpleStatusName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getSimpleStatusName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitSimpleStatusList({ metaData, withUnlimited: false }),
+    refitSimpleStatusList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderSimpleStatusOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitSimpleStatusList({ metaData, withUnlimited });
+  const listData = refitSimpleStatusList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSimpleStatusRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitSimpleStatusList({ metaData, withUnlimited });
+  const listData = refitSimpleStatusList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchSimpleStatusSelect({
-  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -80,13 +78,12 @@ export function renderSearchSimpleStatusSelect({
     label: title,
     name,
     helper,
-    list: refitSimpleStatusList({ metaData, withUnlimited }),
+    list: refitSimpleStatusList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomSimpleStatusSelect({
-  metaData = null,
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomSimpleStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitSimpleStatusList({ metaData, withUnlimited: true }),
+    list: refitSimpleStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomSimpleStatusSelect({
 }
 
 export function renderFormSimpleStatusSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -126,7 +122,7 @@ export function renderFormSimpleStatusSelect({
     label: title,
     name,
     helper,
-    list: refitSimpleStatusList({ metaData, withUnlimited: false }),
+    list: refitSimpleStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormSimpleStatusSelect({
 }
 
 export function renderCustomSimpleStatusRadio({
-  metaData = null,
   label = '状态',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomSimpleStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitSimpleStatusList({ metaData, withUnlimited: true }),
+    list: refitSimpleStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomSimpleStatusRadio({
 }
 
 export function renderFormSimpleStatusRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -180,7 +174,7 @@ export function renderFormSimpleStatusRadio({
     label: title,
     name,
     helper,
-    list: refitSimpleStatusList({ metaData, withUnlimited: false }),
+    list: refitSimpleStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

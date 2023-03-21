@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,13 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitUserScoreOrderStatusList({
-  metaData,
-  withUnlimited = true,
-}) {
+export function refitUserScoreOrderStatusList({ withUnlimited = true }) {
   const { userScoreOrderStatusList: list } = {
     userScoreOrderStatusList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -36,11 +34,7 @@ export function refitUserScoreOrderStatusList({
   return refitCommonData(list);
 }
 
-export function getUserScoreOrderStatusName({
-  metaData,
-  value,
-  defaultValue = '',
-}) {
+export function getUserScoreOrderStatusName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -48,34 +42,31 @@ export function getUserScoreOrderStatusName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitUserScoreOrderStatusList({ metaData, withUnlimited: false }),
+    refitUserScoreOrderStatusList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderUserScoreOrderStatusOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitUserScoreOrderStatusList({ metaData, withUnlimited });
+  const listData = refitUserScoreOrderStatusList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderUserScoreOrderStatusRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitUserScoreOrderStatusList({ metaData, withUnlimited });
+  const listData = refitUserScoreOrderStatusList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchUserScoreOrderStatusSelect({
-  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -87,13 +78,12 @@ export function renderSearchUserScoreOrderStatusSelect({
     label: title,
     name,
     helper,
-    list: refitUserScoreOrderStatusList({ metaData, withUnlimited }),
+    list: refitUserScoreOrderStatusList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomUserScoreOrderStatusSelect({
-  metaData = null,
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -105,7 +95,7 @@ export function renderCustomUserScoreOrderStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitUserScoreOrderStatusList({ metaData, withUnlimited: true }),
+    list: refitUserScoreOrderStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -118,7 +108,6 @@ export function renderCustomUserScoreOrderStatusSelect({
 }
 
 export function renderFormUserScoreOrderStatusSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -133,7 +122,7 @@ export function renderFormUserScoreOrderStatusSelect({
     label: title,
     name,
     helper,
-    list: refitUserScoreOrderStatusList({ metaData, withUnlimited: false }),
+    list: refitUserScoreOrderStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -147,7 +136,6 @@ export function renderFormUserScoreOrderStatusSelect({
 }
 
 export function renderCustomUserScoreOrderStatusRadio({
-  metaData = null,
   label = '状态',
   separator = ': ',
   size = 'middle',
@@ -159,7 +147,7 @@ export function renderCustomUserScoreOrderStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitUserScoreOrderStatusList({ metaData, withUnlimited: true }),
+    list: refitUserScoreOrderStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -172,7 +160,6 @@ export function renderCustomUserScoreOrderStatusRadio({
 }
 
 export function renderFormUserScoreOrderStatusRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -187,7 +174,7 @@ export function renderFormUserScoreOrderStatusRadio({
     label: title,
     name,
     helper,
-    list: refitUserScoreOrderStatusList({ metaData, withUnlimited: false }),
+    list: refitUserScoreOrderStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

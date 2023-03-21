@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitBusinessModeList({ metaData, withUnlimited = true }) {
+export function refitBusinessModeList({ withUnlimited = true }) {
   const { businessModeList: list } = {
     businessModeList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitBusinessModeList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getBusinessModeName({ metaData, value, defaultValue = '' }) {
+export function getBusinessModeName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getBusinessModeName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitBusinessModeList({ metaData, withUnlimited: false }),
+    refitBusinessModeList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderBusinessModeOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitBusinessModeList({ metaData, withUnlimited });
+  const listData = refitBusinessModeList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderBusinessModeRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitBusinessModeList({ metaData, withUnlimited });
+  const listData = refitBusinessModeList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchBusinessModeSelect({
-  metaData = null,
   withUnlimited = true,
   label = '业务范围',
   name = 'businessMode',
@@ -80,13 +78,12 @@ export function renderSearchBusinessModeSelect({
     label: title,
     name,
     helper,
-    list: refitBusinessModeList({ metaData, withUnlimited }),
+    list: refitBusinessModeList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomBusinessModeSelect({
-  metaData = null,
   label = '业务范围',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomBusinessModeSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitBusinessModeList({ metaData, withUnlimited: true }),
+    list: refitBusinessModeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomBusinessModeSelect({
 }
 
 export function renderFormBusinessModeSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '业务范围',
@@ -126,7 +122,7 @@ export function renderFormBusinessModeSelect({
     label: title,
     name,
     helper,
-    list: refitBusinessModeList({ metaData, withUnlimited: false }),
+    list: refitBusinessModeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormBusinessModeSelect({
 }
 
 export function renderCustomBusinessModeRadio({
-  metaData = null,
   label = '业务范围',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomBusinessModeRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitBusinessModeList({ metaData, withUnlimited: true }),
+    list: refitBusinessModeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomBusinessModeRadio({
 }
 
 export function renderFormBusinessModeRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '业务范围',
@@ -180,7 +174,7 @@ export function renderFormBusinessModeRadio({
     label: title,
     name,
     helper,
-    list: refitBusinessModeList({ metaData, withUnlimited: false }),
+    list: refitBusinessModeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitScoreRankStatusList({ metaData, withUnlimited = true }) {
+export function refitScoreRankStatusList({ withUnlimited = true }) {
   const { scoreRankStatusList: list } = {
     scoreRankStatusList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitScoreRankStatusList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getScoreRankStatusName({ metaData, value, defaultValue = '' }) {
+export function getScoreRankStatusName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getScoreRankStatusName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitScoreRankStatusList({ metaData, withUnlimited: false }),
+    refitScoreRankStatusList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderScoreRankStatusOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitScoreRankStatusList({ metaData, withUnlimited });
+  const listData = refitScoreRankStatusList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderScoreRankStatusRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitScoreRankStatusList({ metaData, withUnlimited });
+  const listData = refitScoreRankStatusList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchScoreRankStatusSelect({
-  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -80,13 +78,12 @@ export function renderSearchScoreRankStatusSelect({
     label: title,
     name,
     helper,
-    list: refitScoreRankStatusList({ metaData, withUnlimited }),
+    list: refitScoreRankStatusList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomScoreRankStatusSelect({
-  metaData = null,
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomScoreRankStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitScoreRankStatusList({ metaData, withUnlimited: true }),
+    list: refitScoreRankStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomScoreRankStatusSelect({
 }
 
 export function renderFormScoreRankStatusSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -126,7 +122,7 @@ export function renderFormScoreRankStatusSelect({
     label: title,
     name,
     helper,
-    list: refitScoreRankStatusList({ metaData, withUnlimited: false }),
+    list: refitScoreRankStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormScoreRankStatusSelect({
 }
 
 export function renderCustomScoreRankStatusRadio({
-  metaData = null,
   label = '状态',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomScoreRankStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitScoreRankStatusList({ metaData, withUnlimited: true }),
+    list: refitScoreRankStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomScoreRankStatusRadio({
 }
 
 export function renderFormScoreRankStatusRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -180,7 +174,7 @@ export function renderFormScoreRankStatusRadio({
     label: title,
     name,
     helper,
-    list: refitScoreRankStatusList({ metaData, withUnlimited: false }),
+    list: refitScoreRankStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

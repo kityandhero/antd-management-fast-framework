@@ -12,6 +12,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -25,10 +26,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refit<%= o.functionSegment %>List({ metaData, withUnlimited = true }) {
+export function refit<%= o.functionSegment %>List({ withUnlimited = true }) {
   const { <%= o.defineName %>List: list } = {
     <%= o.defineName %>List: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -38,7 +39,7 @@ export function refit<%= o.functionSegment %>List({ metaData, withUnlimited = tr
   return refitCommonData(list);
 }
 
-export function get<%= o.functionSegment %>Name({ metaData, value, defaultValue = '' }) {
+export function get<%= o.functionSegment %>Name({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -46,34 +47,31 @@ export function get<%= o.functionSegment %>Name({ metaData, value, defaultValue 
   const item = searchFromList(
     'flag',
     \`\${isNull(isUndefined(value) ? null : value) ? '' : value}\`,
-    refit<%= o.functionSegment %>List({ metaData, withUnlimited: false }),
+    refit<%= o.functionSegment %>List({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function render<%= o.functionSegment %>Option({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refit<%= o.functionSegment %>List({ metaData, withUnlimited });
+  const listData = refit<%= o.functionSegment %>List({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function render<%= o.functionSegment %>Radio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refit<%= o.functionSegment %>List({ metaData, withUnlimited });
+  const listData = refit<%= o.functionSegment %>List({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearch<%= o.functionSegment %>Select({
-  metaData = null,
   withUnlimited = true,
   label = '<%= o.label %>',
   name = '<%= o.name %>',
@@ -85,13 +83,12 @@ export function renderSearch<%= o.functionSegment %>Select({
     label: title,
     name,
     helper,
-    list: refit<%= o.functionSegment %>List({ metaData, withUnlimited }),
+    list: refit<%= o.functionSegment %>List({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustom<%= o.functionSegment %>Select({
-  metaData = null,
   label = '<%= o.label %>',
   separator = ':',
   size = 'middle',
@@ -103,7 +100,7 @@ export function renderCustom<%= o.functionSegment %>Select({
     defaultValue: null,
     separator,
     size,
-    list: refit<%= o.functionSegment %>List({ metaData, withUnlimited: true }),
+    list: refit<%= o.functionSegment %>List({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -116,7 +113,6 @@ export function renderCustom<%= o.functionSegment %>Select({
 }
 
 export function renderForm<%= o.functionSegment %>Select({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '<%= o.label %>',
@@ -131,7 +127,7 @@ export function renderForm<%= o.functionSegment %>Select({
     label: title,
     name,
     helper,
-    list: refit<%= o.functionSegment %>List({ metaData, withUnlimited: false }),
+    list: refit<%= o.functionSegment %>List({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -145,7 +141,6 @@ export function renderForm<%= o.functionSegment %>Select({
 }
 
 export function renderCustom<%= o.functionSegment %>Radio({
-  metaData = null,
   label = '<%= o.label %>',
   separator = ': ',
   size = 'middle',
@@ -157,7 +152,7 @@ export function renderCustom<%= o.functionSegment %>Radio({
     defaultValue: null,
     separator,
     size,
-    list: refit<%= o.functionSegment %>List({ metaData, withUnlimited: true }),
+    list: refit<%= o.functionSegment %>List({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -170,7 +165,6 @@ export function renderCustom<%= o.functionSegment %>Radio({
 }
 
 export function renderForm<%= o.functionSegment %>Radio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '<%= o.label %>',
@@ -185,7 +179,7 @@ export function renderForm<%= o.functionSegment %>Radio({
     label: title,
     name,
     helper,
-    list: refit<%= o.functionSegment %>List({ metaData, withUnlimited: false }),
+    list: refit<%= o.functionSegment %>List({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

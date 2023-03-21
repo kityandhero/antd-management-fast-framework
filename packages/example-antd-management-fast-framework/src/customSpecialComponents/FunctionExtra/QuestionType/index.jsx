@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitQuestionTypeList({ metaData, withUnlimited = true }) {
+export function refitQuestionTypeList({ withUnlimited = true }) {
   const { questionTypeList: list } = {
     questionTypeList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitQuestionTypeList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getQuestionTypeName({ metaData, value, defaultValue = '' }) {
+export function getQuestionTypeName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getQuestionTypeName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitQuestionTypeList({ metaData, withUnlimited: false }),
+    refitQuestionTypeList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderQuestionTypeOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitQuestionTypeList({ metaData, withUnlimited });
+  const listData = refitQuestionTypeList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderQuestionTypeRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitQuestionTypeList({ metaData, withUnlimited });
+  const listData = refitQuestionTypeList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchQuestionTypeSelect({
-  metaData = null,
   withUnlimited = true,
   label = '类型',
   name = 'type',
@@ -80,13 +78,12 @@ export function renderSearchQuestionTypeSelect({
     label: title,
     name,
     helper,
-    list: refitQuestionTypeList({ metaData, withUnlimited }),
+    list: refitQuestionTypeList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomQuestionTypeSelect({
-  metaData = null,
   label = '类型',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomQuestionTypeSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitQuestionTypeList({ metaData, withUnlimited: true }),
+    list: refitQuestionTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomQuestionTypeSelect({
 }
 
 export function renderFormQuestionTypeSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '类型',
@@ -126,7 +122,7 @@ export function renderFormQuestionTypeSelect({
     label: title,
     name,
     helper,
-    list: refitQuestionTypeList({ metaData, withUnlimited: false }),
+    list: refitQuestionTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormQuestionTypeSelect({
 }
 
 export function renderCustomQuestionTypeRadio({
-  metaData = null,
   label = '类型',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomQuestionTypeRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitQuestionTypeList({ metaData, withUnlimited: true }),
+    list: refitQuestionTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomQuestionTypeRadio({
 }
 
 export function renderFormQuestionTypeRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '类型',
@@ -180,7 +174,7 @@ export function renderFormQuestionTypeRadio({
     label: title,
     name,
     helper,
-    list: refitQuestionTypeList({ metaData, withUnlimited: false }),
+    list: refitQuestionTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

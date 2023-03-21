@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,13 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitArticleCommentStatusList({
-  metaData,
-  withUnlimited = true,
-}) {
+export function refitArticleCommentStatusList({ withUnlimited = true }) {
   const { articleCommentStatusList: list } = {
     articleCommentStatusList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -36,11 +34,7 @@ export function refitArticleCommentStatusList({
   return refitCommonData(list);
 }
 
-export function getArticleCommentStatusName({
-  metaData,
-  value,
-  defaultValue = '',
-}) {
+export function getArticleCommentStatusName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -48,34 +42,31 @@ export function getArticleCommentStatusName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitArticleCommentStatusList({ metaData, withUnlimited: false }),
+    refitArticleCommentStatusList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderArticleCommentStatusOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleCommentStatusList({ metaData, withUnlimited });
+  const listData = refitArticleCommentStatusList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderArticleCommentStatusRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleCommentStatusList({ metaData, withUnlimited });
+  const listData = refitArticleCommentStatusList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchArticleCommentStatusSelect({
-  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -87,13 +78,12 @@ export function renderSearchArticleCommentStatusSelect({
     label: title,
     name,
     helper,
-    list: refitArticleCommentStatusList({ metaData, withUnlimited }),
+    list: refitArticleCommentStatusList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomArticleCommentStatusSelect({
-  metaData = null,
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -105,7 +95,7 @@ export function renderCustomArticleCommentStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitArticleCommentStatusList({ metaData, withUnlimited: true }),
+    list: refitArticleCommentStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -118,7 +108,6 @@ export function renderCustomArticleCommentStatusSelect({
 }
 
 export function renderFormArticleCommentStatusSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -133,7 +122,7 @@ export function renderFormArticleCommentStatusSelect({
     label: title,
     name,
     helper,
-    list: refitArticleCommentStatusList({ metaData, withUnlimited: false }),
+    list: refitArticleCommentStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -147,7 +136,6 @@ export function renderFormArticleCommentStatusSelect({
 }
 
 export function renderCustomArticleCommentStatusRadio({
-  metaData = null,
   label = '状态',
   separator = ': ',
   size = 'middle',
@@ -159,7 +147,7 @@ export function renderCustomArticleCommentStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitArticleCommentStatusList({ metaData, withUnlimited: true }),
+    list: refitArticleCommentStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -172,7 +160,6 @@ export function renderCustomArticleCommentStatusRadio({
 }
 
 export function renderFormArticleCommentStatusRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -187,7 +174,7 @@ export function renderFormArticleCommentStatusRadio({
     label: title,
     name,
     helper,
-    list: refitArticleCommentStatusList({ metaData, withUnlimited: false }),
+    list: refitArticleCommentStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

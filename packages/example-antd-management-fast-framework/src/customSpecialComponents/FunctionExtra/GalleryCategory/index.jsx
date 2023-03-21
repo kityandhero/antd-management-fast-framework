@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitGalleryCategoryList({ metaData, withUnlimited = true }) {
+export function refitGalleryCategoryList({ withUnlimited = true }) {
   const { galleryCategoryList: list } = {
     galleryCategoryList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitGalleryCategoryList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getGalleryCategoryName({ metaData, value, defaultValue = '' }) {
+export function getGalleryCategoryName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getGalleryCategoryName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitGalleryCategoryList({ metaData, withUnlimited: false }),
+    refitGalleryCategoryList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderGalleryCategoryOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGalleryCategoryList({ metaData, withUnlimited });
+  const listData = refitGalleryCategoryList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderGalleryCategoryRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGalleryCategoryList({ metaData, withUnlimited });
+  const listData = refitGalleryCategoryList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchGalleryCategorySelect({
-  metaData = null,
   withUnlimited = true,
   label = '所属分类',
   name = 'category',
@@ -80,13 +78,12 @@ export function renderSearchGalleryCategorySelect({
     label: title,
     name,
     helper,
-    list: refitGalleryCategoryList({ metaData, withUnlimited }),
+    list: refitGalleryCategoryList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomGalleryCategorySelect({
-  metaData = null,
   label = '所属分类',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomGalleryCategorySelect({
     defaultValue: null,
     separator,
     size,
-    list: refitGalleryCategoryList({ metaData, withUnlimited: true }),
+    list: refitGalleryCategoryList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomGalleryCategorySelect({
 }
 
 export function renderFormGalleryCategorySelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '所属分类',
@@ -126,7 +122,7 @@ export function renderFormGalleryCategorySelect({
     label: title,
     name,
     helper,
-    list: refitGalleryCategoryList({ metaData, withUnlimited: false }),
+    list: refitGalleryCategoryList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormGalleryCategorySelect({
 }
 
 export function renderCustomGalleryCategoryRadio({
-  metaData = null,
   label = '所属分类',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomGalleryCategoryRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitGalleryCategoryList({ metaData, withUnlimited: true }),
+    list: refitGalleryCategoryList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomGalleryCategoryRadio({
 }
 
 export function renderFormGalleryCategoryRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '所属分类',
@@ -180,7 +174,7 @@ export function renderFormGalleryCategoryRadio({
     label: title,
     name,
     helper,
-    list: refitGalleryCategoryList({ metaData, withUnlimited: false }),
+    list: refitGalleryCategoryList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

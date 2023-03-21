@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitGalleryTypeList({ metaData, withUnlimited = true }) {
+export function refitGalleryTypeList({ withUnlimited = true }) {
   const { galleryTypeList: list } = {
     galleryTypeList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitGalleryTypeList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getGalleryTypeName({ metaData, value, defaultValue = '' }) {
+export function getGalleryTypeName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getGalleryTypeName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitGalleryTypeList({ metaData, withUnlimited: false }),
+    refitGalleryTypeList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderGalleryTypeOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGalleryTypeList({ metaData, withUnlimited });
+  const listData = refitGalleryTypeList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderGalleryTypeRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGalleryTypeList({ metaData, withUnlimited });
+  const listData = refitGalleryTypeList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchGalleryTypeSelect({
-  metaData = null,
   withUnlimited = true,
   label = '类型',
   name = 'type',
@@ -80,13 +78,12 @@ export function renderSearchGalleryTypeSelect({
     label: title,
     name,
     helper,
-    list: refitGalleryTypeList({ metaData, withUnlimited }),
+    list: refitGalleryTypeList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomGalleryTypeSelect({
-  metaData = null,
   label = '类型',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomGalleryTypeSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitGalleryTypeList({ metaData, withUnlimited: true }),
+    list: refitGalleryTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomGalleryTypeSelect({
 }
 
 export function renderFormGalleryTypeSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '类型',
@@ -126,7 +122,7 @@ export function renderFormGalleryTypeSelect({
     label: title,
     name,
     helper,
-    list: refitGalleryTypeList({ metaData, withUnlimited: false }),
+    list: refitGalleryTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormGalleryTypeSelect({
 }
 
 export function renderCustomGalleryTypeRadio({
-  metaData = null,
   label = '类型',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomGalleryTypeRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitGalleryTypeList({ metaData, withUnlimited: true }),
+    list: refitGalleryTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomGalleryTypeRadio({
 }
 
 export function renderFormGalleryTypeRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '类型',
@@ -180,7 +174,7 @@ export function renderFormGalleryTypeRadio({
     label: title,
     name,
     helper,
-    list: refitGalleryTypeList({ metaData, withUnlimited: false }),
+    list: refitGalleryTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

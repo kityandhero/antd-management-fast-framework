@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -21,12 +22,11 @@ import {
 } from 'antd-management-fast-component';
 
 export function refitGovernmentAffairRoleCreateModeList({
-  metaData,
   withUnlimited = true,
 }) {
   const { governmentAffairRoleCreateModeList: list } = {
     governmentAffairRoleCreateModeList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -37,7 +37,6 @@ export function refitGovernmentAffairRoleCreateModeList({
 }
 
 export function getGovernmentAffairRoleCreateModeName({
-  metaData,
   value,
   defaultValue = '',
 }) {
@@ -48,40 +47,31 @@ export function getGovernmentAffairRoleCreateModeName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitGovernmentAffairRoleCreateModeList({ metaData, withUnlimited: false }),
+    refitGovernmentAffairRoleCreateModeList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderGovernmentAffairRoleCreateModeOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGovernmentAffairRoleCreateModeList({
-    metaData,
-    withUnlimited,
-  });
+  const listData = refitGovernmentAffairRoleCreateModeList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderGovernmentAffairRoleCreateModeRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGovernmentAffairRoleCreateModeList({
-    metaData,
-    withUnlimited,
-  });
+  const listData = refitGovernmentAffairRoleCreateModeList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchGovernmentAffairRoleCreateModeSelect({
-  metaData = null,
   withUnlimited = true,
   label = '创建模式',
   name = 'createMode',
@@ -93,13 +83,12 @@ export function renderSearchGovernmentAffairRoleCreateModeSelect({
     label: title,
     name,
     helper,
-    list: refitGovernmentAffairRoleCreateModeList({ metaData, withUnlimited }),
+    list: refitGovernmentAffairRoleCreateModeList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomGovernmentAffairRoleCreateModeSelect({
-  metaData = null,
   label = '创建模式',
   separator = ':',
   size = 'middle',
@@ -111,10 +100,7 @@ export function renderCustomGovernmentAffairRoleCreateModeSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitGovernmentAffairRoleCreateModeList({
-      metaData,
-      withUnlimited: true,
-    }),
+    list: refitGovernmentAffairRoleCreateModeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -127,7 +113,6 @@ export function renderCustomGovernmentAffairRoleCreateModeSelect({
 }
 
 export function renderFormGovernmentAffairRoleCreateModeSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '创建模式',
@@ -142,10 +127,7 @@ export function renderFormGovernmentAffairRoleCreateModeSelect({
     label: title,
     name,
     helper,
-    list: refitGovernmentAffairRoleCreateModeList({
-      metaData,
-      withUnlimited: false,
-    }),
+    list: refitGovernmentAffairRoleCreateModeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -159,7 +141,6 @@ export function renderFormGovernmentAffairRoleCreateModeSelect({
 }
 
 export function renderCustomGovernmentAffairRoleCreateModeRadio({
-  metaData = null,
   label = '创建模式',
   separator = ': ',
   size = 'middle',
@@ -171,10 +152,7 @@ export function renderCustomGovernmentAffairRoleCreateModeRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitGovernmentAffairRoleCreateModeList({
-      metaData,
-      withUnlimited: true,
-    }),
+    list: refitGovernmentAffairRoleCreateModeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -187,7 +165,6 @@ export function renderCustomGovernmentAffairRoleCreateModeRadio({
 }
 
 export function renderFormGovernmentAffairRoleCreateModeRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '创建模式',
@@ -202,10 +179,7 @@ export function renderFormGovernmentAffairRoleCreateModeRadio({
     label: title,
     name,
     helper,
-    list: refitGovernmentAffairRoleCreateModeList({
-      metaData,
-      withUnlimited: false,
-    }),
+    list: refitGovernmentAffairRoleCreateModeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

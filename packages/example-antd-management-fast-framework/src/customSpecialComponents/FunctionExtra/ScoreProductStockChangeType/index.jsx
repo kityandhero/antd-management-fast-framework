@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,13 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitScoreProductStockChangeTypeList({
-  metaData,
-  withUnlimited = true,
-}) {
+export function refitScoreProductStockChangeTypeList({ withUnlimited = true }) {
   const { scoreProductStockChangeTypeList: list } = {
     scoreProductStockChangeTypeList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -37,7 +35,6 @@ export function refitScoreProductStockChangeTypeList({
 }
 
 export function getScoreProductStockChangeTypeName({
-  metaData,
   value,
   defaultValue = '',
 }) {
@@ -48,40 +45,31 @@ export function getScoreProductStockChangeTypeName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitScoreProductStockChangeTypeList({ metaData, withUnlimited: false }),
+    refitScoreProductStockChangeTypeList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderScoreProductStockChangeTypeOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitScoreProductStockChangeTypeList({
-    metaData,
-    withUnlimited,
-  });
+  const listData = refitScoreProductStockChangeTypeList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderScoreProductStockChangeTypeRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitScoreProductStockChangeTypeList({
-    metaData,
-    withUnlimited,
-  });
+  const listData = refitScoreProductStockChangeTypeList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchScoreProductStockChangeTypeSelect({
-  metaData = null,
   withUnlimited = true,
   label = '变更类型',
   name = 'changeType',
@@ -93,13 +81,12 @@ export function renderSearchScoreProductStockChangeTypeSelect({
     label: title,
     name,
     helper,
-    list: refitScoreProductStockChangeTypeList({ metaData, withUnlimited }),
+    list: refitScoreProductStockChangeTypeList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomScoreProductStockChangeTypeSelect({
-  metaData = null,
   label = '变更类型',
   separator = ':',
   size = 'middle',
@@ -111,10 +98,7 @@ export function renderCustomScoreProductStockChangeTypeSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitScoreProductStockChangeTypeList({
-      metaData,
-      withUnlimited: true,
-    }),
+    list: refitScoreProductStockChangeTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -127,7 +111,6 @@ export function renderCustomScoreProductStockChangeTypeSelect({
 }
 
 export function renderFormScoreProductStockChangeTypeSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '变更类型',
@@ -142,10 +125,7 @@ export function renderFormScoreProductStockChangeTypeSelect({
     label: title,
     name,
     helper,
-    list: refitScoreProductStockChangeTypeList({
-      metaData,
-      withUnlimited: false,
-    }),
+    list: refitScoreProductStockChangeTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -159,7 +139,6 @@ export function renderFormScoreProductStockChangeTypeSelect({
 }
 
 export function renderCustomScoreProductStockChangeTypeRadio({
-  metaData = null,
   label = '变更类型',
   separator = ': ',
   size = 'middle',
@@ -171,10 +150,7 @@ export function renderCustomScoreProductStockChangeTypeRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitScoreProductStockChangeTypeList({
-      metaData,
-      withUnlimited: true,
-    }),
+    list: refitScoreProductStockChangeTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -187,7 +163,6 @@ export function renderCustomScoreProductStockChangeTypeRadio({
 }
 
 export function renderFormScoreProductStockChangeTypeRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '变更类型',
@@ -202,10 +177,7 @@ export function renderFormScoreProductStockChangeTypeRadio({
     label: title,
     name,
     helper,
-    list: refitScoreProductStockChangeTypeList({
-      metaData,
-      withUnlimited: false,
-    }),
+    list: refitScoreProductStockChangeTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitScoreBusinessModeList({ metaData, withUnlimited = true }) {
+export function refitScoreBusinessModeList({ withUnlimited = true }) {
   const { scoreBusinessModeList: list } = {
     scoreBusinessModeList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,11 +34,7 @@ export function refitScoreBusinessModeList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getScoreBusinessModeName({
-  metaData,
-  value,
-  defaultValue = '',
-}) {
+export function getScoreBusinessModeName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -45,34 +42,31 @@ export function getScoreBusinessModeName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitScoreBusinessModeList({ metaData, withUnlimited: false }),
+    refitScoreBusinessModeList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderScoreBusinessModeOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitScoreBusinessModeList({ metaData, withUnlimited });
+  const listData = refitScoreBusinessModeList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderScoreBusinessModeRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitScoreBusinessModeList({ metaData, withUnlimited });
+  const listData = refitScoreBusinessModeList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchScoreBusinessModeSelect({
-  metaData = null,
   withUnlimited = true,
   label = '业务范围',
   name = 'businessMode',
@@ -84,13 +78,12 @@ export function renderSearchScoreBusinessModeSelect({
     label: title,
     name,
     helper,
-    list: refitScoreBusinessModeList({ metaData, withUnlimited }),
+    list: refitScoreBusinessModeList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomScoreBusinessModeSelect({
-  metaData = null,
   label = '业务范围',
   separator = ':',
   size = 'middle',
@@ -102,7 +95,7 @@ export function renderCustomScoreBusinessModeSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitScoreBusinessModeList({ metaData, withUnlimited: true }),
+    list: refitScoreBusinessModeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -115,7 +108,6 @@ export function renderCustomScoreBusinessModeSelect({
 }
 
 export function renderFormScoreBusinessModeSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '业务范围',
@@ -130,7 +122,7 @@ export function renderFormScoreBusinessModeSelect({
     label: title,
     name,
     helper,
-    list: refitScoreBusinessModeList({ metaData, withUnlimited: false }),
+    list: refitScoreBusinessModeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -144,7 +136,6 @@ export function renderFormScoreBusinessModeSelect({
 }
 
 export function renderCustomScoreBusinessModeRadio({
-  metaData = null,
   label = '业务范围',
   separator = ': ',
   size = 'middle',
@@ -156,7 +147,7 @@ export function renderCustomScoreBusinessModeRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitScoreBusinessModeList({ metaData, withUnlimited: true }),
+    list: refitScoreBusinessModeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -169,7 +160,6 @@ export function renderCustomScoreBusinessModeRadio({
 }
 
 export function renderFormScoreBusinessModeRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '业务范围',
@@ -184,7 +174,7 @@ export function renderFormScoreBusinessModeRadio({
     label: title,
     name,
     helper,
-    list: refitScoreBusinessModeList({ metaData, withUnlimited: false }),
+    list: refitScoreBusinessModeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

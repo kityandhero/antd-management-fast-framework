@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitScoreRankList({ metaData, withUnlimited = true }) {
+export function refitScoreRankList({ withUnlimited = true }) {
   const { scoreRankList: list } = {
     scoreRankList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitScoreRankList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getScoreRankName({ metaData, value, defaultValue = '' }) {
+export function getScoreRankName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getScoreRankName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitScoreRankList({ metaData, withUnlimited: false }),
+    refitScoreRankList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderScoreRankOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitScoreRankList({ metaData, withUnlimited });
+  const listData = refitScoreRankList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderScoreRankRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitScoreRankList({ metaData, withUnlimited });
+  const listData = refitScoreRankList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchScoreRankSelect({
-  metaData = null,
   withUnlimited = true,
   label = '商品分类',
   name = 'scoreRankId',
@@ -80,13 +78,12 @@ export function renderSearchScoreRankSelect({
     label: title,
     name,
     helper,
-    list: refitScoreRankList({ metaData, withUnlimited }),
+    list: refitScoreRankList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomScoreRankSelect({
-  metaData = null,
   label = '商品分类',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomScoreRankSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitScoreRankList({ metaData, withUnlimited: true }),
+    list: refitScoreRankList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomScoreRankSelect({
 }
 
 export function renderFormScoreRankSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '商品分类',
@@ -126,7 +122,7 @@ export function renderFormScoreRankSelect({
     label: title,
     name,
     helper,
-    list: refitScoreRankList({ metaData, withUnlimited: false }),
+    list: refitScoreRankList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormScoreRankSelect({
 }
 
 export function renderCustomScoreRankRadio({
-  metaData = null,
   label = '商品分类',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomScoreRankRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitScoreRankList({ metaData, withUnlimited: true }),
+    list: refitScoreRankList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomScoreRankRadio({
 }
 
 export function renderFormScoreRankRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '商品分类',
@@ -180,7 +174,7 @@ export function renderFormScoreRankRadio({
     label: title,
     name,
     helper,
-    list: refitScoreRankList({ metaData, withUnlimited: false }),
+    list: refitScoreRankList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

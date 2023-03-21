@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitSimpleRenderTypeList({ metaData, withUnlimited = true }) {
+export function refitSimpleRenderTypeList({ withUnlimited = true }) {
   const { simpleRenderTypeList: list } = {
     simpleRenderTypeList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,11 +34,7 @@ export function refitSimpleRenderTypeList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getSimpleRenderTypeName({
-  metaData,
-  value,
-  defaultValue = '',
-}) {
+export function getSimpleRenderTypeName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -45,34 +42,31 @@ export function getSimpleRenderTypeName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitSimpleRenderTypeList({ metaData, withUnlimited: false }),
+    refitSimpleRenderTypeList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderSimpleRenderTypeOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitSimpleRenderTypeList({ metaData, withUnlimited });
+  const listData = refitSimpleRenderTypeList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSimpleRenderTypeRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitSimpleRenderTypeList({ metaData, withUnlimited });
+  const listData = refitSimpleRenderTypeList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchSimpleRenderTypeSelect({
-  metaData = null,
   withUnlimited = true,
   label = '渲染模式',
   name = 'renderType',
@@ -84,13 +78,12 @@ export function renderSearchSimpleRenderTypeSelect({
     label: title,
     name,
     helper,
-    list: refitSimpleRenderTypeList({ metaData, withUnlimited }),
+    list: refitSimpleRenderTypeList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomSimpleRenderTypeSelect({
-  metaData = null,
   label = '渲染模式',
   separator = ':',
   size = 'middle',
@@ -102,7 +95,7 @@ export function renderCustomSimpleRenderTypeSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitSimpleRenderTypeList({ metaData, withUnlimited: true }),
+    list: refitSimpleRenderTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -115,7 +108,6 @@ export function renderCustomSimpleRenderTypeSelect({
 }
 
 export function renderFormSimpleRenderTypeSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '渲染模式',
@@ -130,7 +122,7 @@ export function renderFormSimpleRenderTypeSelect({
     label: title,
     name,
     helper,
-    list: refitSimpleRenderTypeList({ metaData, withUnlimited: false }),
+    list: refitSimpleRenderTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -144,7 +136,6 @@ export function renderFormSimpleRenderTypeSelect({
 }
 
 export function renderCustomSimpleRenderTypeRadio({
-  metaData = null,
   label = '渲染模式',
   separator = ': ',
   size = 'middle',
@@ -156,7 +147,7 @@ export function renderCustomSimpleRenderTypeRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitSimpleRenderTypeList({ metaData, withUnlimited: true }),
+    list: refitSimpleRenderTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -169,7 +160,6 @@ export function renderCustomSimpleRenderTypeRadio({
 }
 
 export function renderFormSimpleRenderTypeRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '渲染模式',
@@ -184,7 +174,7 @@ export function renderFormSimpleRenderTypeRadio({
     label: title,
     name,
     helper,
-    list: refitSimpleRenderTypeList({ metaData, withUnlimited: false }),
+    list: refitSimpleRenderTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

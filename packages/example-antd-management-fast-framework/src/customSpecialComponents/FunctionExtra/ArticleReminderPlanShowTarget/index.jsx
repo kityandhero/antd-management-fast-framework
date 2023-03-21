@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -21,12 +22,11 @@ import {
 } from 'antd-management-fast-component';
 
 export function refitArticleReminderPlanShowTargetList({
-  metaData,
   withUnlimited = true,
 }) {
   const { articleReminderPlanShowTargetList: list } = {
     articleReminderPlanShowTargetList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -37,7 +37,6 @@ export function refitArticleReminderPlanShowTargetList({
 }
 
 export function getArticleReminderPlanShowTargetName({
-  metaData,
   value,
   defaultValue = '',
 }) {
@@ -48,40 +47,31 @@ export function getArticleReminderPlanShowTargetName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitArticleReminderPlanShowTargetList({ metaData, withUnlimited: false }),
+    refitArticleReminderPlanShowTargetList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderArticleReminderPlanShowTargetOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleReminderPlanShowTargetList({
-    metaData,
-    withUnlimited,
-  });
+  const listData = refitArticleReminderPlanShowTargetList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderArticleReminderPlanShowTargetRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitArticleReminderPlanShowTargetList({
-    metaData,
-    withUnlimited,
-  });
+  const listData = refitArticleReminderPlanShowTargetList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchArticleReminderPlanShowTargetSelect({
-  metaData = null,
   withUnlimited = true,
   label = '显示目标',
   name = 'showTarget',
@@ -93,13 +83,12 @@ export function renderSearchArticleReminderPlanShowTargetSelect({
     label: title,
     name,
     helper,
-    list: refitArticleReminderPlanShowTargetList({ metaData, withUnlimited }),
+    list: refitArticleReminderPlanShowTargetList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomArticleReminderPlanShowTargetSelect({
-  metaData = null,
   label = '显示目标',
   separator = ':',
   size = 'middle',
@@ -111,10 +100,7 @@ export function renderCustomArticleReminderPlanShowTargetSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitArticleReminderPlanShowTargetList({
-      metaData,
-      withUnlimited: true,
-    }),
+    list: refitArticleReminderPlanShowTargetList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -127,7 +113,6 @@ export function renderCustomArticleReminderPlanShowTargetSelect({
 }
 
 export function renderFormArticleReminderPlanShowTargetSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '显示目标',
@@ -142,10 +127,7 @@ export function renderFormArticleReminderPlanShowTargetSelect({
     label: title,
     name,
     helper,
-    list: refitArticleReminderPlanShowTargetList({
-      metaData,
-      withUnlimited: false,
-    }),
+    list: refitArticleReminderPlanShowTargetList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -159,7 +141,6 @@ export function renderFormArticleReminderPlanShowTargetSelect({
 }
 
 export function renderCustomArticleReminderPlanShowTargetRadio({
-  metaData = null,
   label = '显示目标',
   separator = ': ',
   size = 'middle',
@@ -171,10 +152,7 @@ export function renderCustomArticleReminderPlanShowTargetRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitArticleReminderPlanShowTargetList({
-      metaData,
-      withUnlimited: true,
-    }),
+    list: refitArticleReminderPlanShowTargetList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -187,7 +165,6 @@ export function renderCustomArticleReminderPlanShowTargetRadio({
 }
 
 export function renderFormArticleReminderPlanShowTargetRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '显示目标',
@@ -202,10 +179,7 @@ export function renderFormArticleReminderPlanShowTargetRadio({
     label: title,
     name,
     helper,
-    list: refitArticleReminderPlanShowTargetList({
-      metaData,
-      withUnlimited: false,
-    }),
+    list: refitArticleReminderPlanShowTargetList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

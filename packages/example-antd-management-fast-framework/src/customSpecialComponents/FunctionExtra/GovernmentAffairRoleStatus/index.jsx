@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,13 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitGovernmentAffairRoleStatusList({
-  metaData,
-  withUnlimited = true,
-}) {
+export function refitGovernmentAffairRoleStatusList({ withUnlimited = true }) {
   const { governmentAffairRoleStatusList: list } = {
     governmentAffairRoleStatusList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -37,7 +35,6 @@ export function refitGovernmentAffairRoleStatusList({
 }
 
 export function getGovernmentAffairRoleStatusName({
-  metaData,
   value,
   defaultValue = '',
 }) {
@@ -48,40 +45,31 @@ export function getGovernmentAffairRoleStatusName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitGovernmentAffairRoleStatusList({ metaData, withUnlimited: false }),
+    refitGovernmentAffairRoleStatusList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderGovernmentAffairRoleStatusOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGovernmentAffairRoleStatusList({
-    metaData,
-    withUnlimited,
-  });
+  const listData = refitGovernmentAffairRoleStatusList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderGovernmentAffairRoleStatusRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGovernmentAffairRoleStatusList({
-    metaData,
-    withUnlimited,
-  });
+  const listData = refitGovernmentAffairRoleStatusList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchGovernmentAffairRoleStatusSelect({
-  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -93,13 +81,12 @@ export function renderSearchGovernmentAffairRoleStatusSelect({
     label: title,
     name,
     helper,
-    list: refitGovernmentAffairRoleStatusList({ metaData, withUnlimited }),
+    list: refitGovernmentAffairRoleStatusList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomGovernmentAffairRoleStatusSelect({
-  metaData = null,
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -111,10 +98,7 @@ export function renderCustomGovernmentAffairRoleStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitGovernmentAffairRoleStatusList({
-      metaData,
-      withUnlimited: true,
-    }),
+    list: refitGovernmentAffairRoleStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -127,7 +111,6 @@ export function renderCustomGovernmentAffairRoleStatusSelect({
 }
 
 export function renderFormGovernmentAffairRoleStatusSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -142,10 +125,7 @@ export function renderFormGovernmentAffairRoleStatusSelect({
     label: title,
     name,
     helper,
-    list: refitGovernmentAffairRoleStatusList({
-      metaData,
-      withUnlimited: false,
-    }),
+    list: refitGovernmentAffairRoleStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -159,7 +139,6 @@ export function renderFormGovernmentAffairRoleStatusSelect({
 }
 
 export function renderCustomGovernmentAffairRoleStatusRadio({
-  metaData = null,
   label = '状态',
   separator = ': ',
   size = 'middle',
@@ -171,10 +150,7 @@ export function renderCustomGovernmentAffairRoleStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitGovernmentAffairRoleStatusList({
-      metaData,
-      withUnlimited: true,
-    }),
+    list: refitGovernmentAffairRoleStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -187,7 +163,6 @@ export function renderCustomGovernmentAffairRoleStatusRadio({
 }
 
 export function renderFormGovernmentAffairRoleStatusRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -202,10 +177,7 @@ export function renderFormGovernmentAffairRoleStatusRadio({
     label: title,
     name,
     helper,
-    list: refitGovernmentAffairRoleStatusList({
-      metaData,
-      withUnlimited: false,
-    }),
+    list: refitGovernmentAffairRoleStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

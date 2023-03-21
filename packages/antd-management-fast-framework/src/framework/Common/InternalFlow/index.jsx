@@ -43,10 +43,8 @@ import {
   iconBuilder,
 } from 'antd-management-fast-component';
 
-import { getMetaData, loadMetaData } from '../../../utils/metaDataAssist';
+import { loadMetaData } from '../../../utils/metaDataAssist';
 import { Core } from '../../Core';
-
-let metaData = {};
 
 class InternalFlow extends Core {
   showPageHeader = true;
@@ -72,8 +70,6 @@ class InternalFlow extends Core {
       backPath: '',
       showReloadButton: false,
     };
-
-    metaData = getMetaData();
   }
 
   static getDerivedStateFromProps(nextProperties, previousState) {
@@ -85,10 +81,6 @@ class InternalFlow extends Core {
 
   // eslint-disable-next-line no-unused-vars
   checkNeedUpdate = (preProperties, preState, snapshot) => false;
-
-  getMetaData = () => {
-    return metaData;
-  };
 
   doLoadRemoteRequest = () => {
     this.initLoad({});

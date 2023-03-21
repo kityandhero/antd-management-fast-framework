@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,13 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitQuestionnaireStatusList({
-  metaData,
-  withUnlimited = true,
-}) {
+export function refitQuestionnaireStatusList({ withUnlimited = true }) {
   const { questionnaireStatusList: list } = {
     questionnaireStatusList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -36,11 +34,7 @@ export function refitQuestionnaireStatusList({
   return refitCommonData(list);
 }
 
-export function getQuestionnaireStatusName({
-  metaData,
-  value,
-  defaultValue = '',
-}) {
+export function getQuestionnaireStatusName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -48,34 +42,31 @@ export function getQuestionnaireStatusName({
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitQuestionnaireStatusList({ metaData, withUnlimited: false }),
+    refitQuestionnaireStatusList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderQuestionnaireStatusOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitQuestionnaireStatusList({ metaData, withUnlimited });
+  const listData = refitQuestionnaireStatusList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderQuestionnaireStatusRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitQuestionnaireStatusList({ metaData, withUnlimited });
+  const listData = refitQuestionnaireStatusList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchQuestionnaireStatusSelect({
-  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -87,13 +78,12 @@ export function renderSearchQuestionnaireStatusSelect({
     label: title,
     name,
     helper,
-    list: refitQuestionnaireStatusList({ metaData, withUnlimited }),
+    list: refitQuestionnaireStatusList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomQuestionnaireStatusSelect({
-  metaData = null,
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -105,7 +95,7 @@ export function renderCustomQuestionnaireStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitQuestionnaireStatusList({ metaData, withUnlimited: true }),
+    list: refitQuestionnaireStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -118,7 +108,6 @@ export function renderCustomQuestionnaireStatusSelect({
 }
 
 export function renderFormQuestionnaireStatusSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -133,7 +122,7 @@ export function renderFormQuestionnaireStatusSelect({
     label: title,
     name,
     helper,
-    list: refitQuestionnaireStatusList({ metaData, withUnlimited: false }),
+    list: refitQuestionnaireStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -147,7 +136,6 @@ export function renderFormQuestionnaireStatusSelect({
 }
 
 export function renderCustomQuestionnaireStatusRadio({
-  metaData = null,
   label = '状态',
   separator = ': ',
   size = 'middle',
@@ -159,7 +147,7 @@ export function renderCustomQuestionnaireStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitQuestionnaireStatusList({ metaData, withUnlimited: true }),
+    list: refitQuestionnaireStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -172,7 +160,6 @@ export function renderCustomQuestionnaireStatusRadio({
 }
 
 export function renderFormQuestionnaireStatusRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -187,7 +174,7 @@ export function renderFormQuestionnaireStatusRadio({
     label: title,
     name,
     helper,
-    list: refitQuestionnaireStatusList({ metaData, withUnlimited: false }),
+    list: refitQuestionnaireStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

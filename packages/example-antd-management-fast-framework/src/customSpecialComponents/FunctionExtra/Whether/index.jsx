@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitWhetherList({ metaData, withUnlimited = true }) {
+export function refitWhetherList({ withUnlimited = true }) {
   const { whetherList: list } = {
     whetherList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitWhetherList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getWhetherName({ metaData, value, defaultValue = '' }) {
+export function getWhetherName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getWhetherName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitWhetherList({ metaData, withUnlimited: false }),
+    refitWhetherList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderWhetherOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitWhetherList({ metaData, withUnlimited });
+  const listData = refitWhetherList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderWhetherRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitWhetherList({ metaData, withUnlimited });
+  const listData = refitWhetherList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchWhetherSelect({
-  metaData = null,
   withUnlimited = true,
   label = '调用时设置',
   name = 'whether',
@@ -80,13 +78,12 @@ export function renderSearchWhetherSelect({
     label: title,
     name,
     helper,
-    list: refitWhetherList({ metaData, withUnlimited }),
+    list: refitWhetherList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomWhetherSelect({
-  metaData = null,
   label = '调用时设置',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomWhetherSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitWhetherList({ metaData, withUnlimited: true }),
+    list: refitWhetherList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomWhetherSelect({
 }
 
 export function renderFormWhetherSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '调用时设置',
@@ -126,7 +122,7 @@ export function renderFormWhetherSelect({
     label: title,
     name,
     helper,
-    list: refitWhetherList({ metaData, withUnlimited: false }),
+    list: refitWhetherList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormWhetherSelect({
 }
 
 export function renderCustomWhetherRadio({
-  metaData = null,
   label = '调用时设置',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomWhetherRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitWhetherList({ metaData, withUnlimited: true }),
+    list: refitWhetherList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomWhetherRadio({
 }
 
 export function renderFormWhetherRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '调用时设置',
@@ -180,7 +174,7 @@ export function renderFormWhetherRadio({
     label: title,
     name,
     helper,
-    list: refitWhetherList({ metaData, withUnlimited: false }),
+    list: refitWhetherList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

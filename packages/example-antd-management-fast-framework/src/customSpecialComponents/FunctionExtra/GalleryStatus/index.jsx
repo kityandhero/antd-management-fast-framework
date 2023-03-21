@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitGalleryStatusList({ metaData, withUnlimited = true }) {
+export function refitGalleryStatusList({ withUnlimited = true }) {
   const { galleryStatusList: list } = {
     galleryStatusList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitGalleryStatusList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getGalleryStatusName({ metaData, value, defaultValue = '' }) {
+export function getGalleryStatusName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getGalleryStatusName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitGalleryStatusList({ metaData, withUnlimited: false }),
+    refitGalleryStatusList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderGalleryStatusOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGalleryStatusList({ metaData, withUnlimited });
+  const listData = refitGalleryStatusList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderGalleryStatusRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitGalleryStatusList({ metaData, withUnlimited });
+  const listData = refitGalleryStatusList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchGalleryStatusSelect({
-  metaData = null,
   withUnlimited = true,
   label = '状态',
   name = 'status',
@@ -80,13 +78,12 @@ export function renderSearchGalleryStatusSelect({
     label: title,
     name,
     helper,
-    list: refitGalleryStatusList({ metaData, withUnlimited }),
+    list: refitGalleryStatusList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomGalleryStatusSelect({
-  metaData = null,
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomGalleryStatusSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitGalleryStatusList({ metaData, withUnlimited: true }),
+    list: refitGalleryStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomGalleryStatusSelect({
 }
 
 export function renderFormGalleryStatusSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -126,7 +122,7 @@ export function renderFormGalleryStatusSelect({
     label: title,
     name,
     helper,
-    list: refitGalleryStatusList({ metaData, withUnlimited: false }),
+    list: refitGalleryStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormGalleryStatusSelect({
 }
 
 export function renderCustomGalleryStatusRadio({
-  metaData = null,
   label = '状态',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomGalleryStatusRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitGalleryStatusList({ metaData, withUnlimited: true }),
+    list: refitGalleryStatusList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomGalleryStatusRadio({
 }
 
 export function renderFormGalleryStatusRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '状态',
@@ -180,7 +174,7 @@ export function renderFormGalleryStatusRadio({
     label: title,
     name,
     helper,
-    list: refitGalleryStatusList({ metaData, withUnlimited: false }),
+    list: refitGalleryStatusList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

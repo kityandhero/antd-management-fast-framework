@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitClientTypeList({ metaData, withUnlimited = true }) {
+export function refitClientTypeList({ withUnlimited = true }) {
   const { clientTypeList: list } = {
     clientTypeList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitClientTypeList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getClientTypeName({ metaData, value, defaultValue = '' }) {
+export function getClientTypeName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getClientTypeName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitClientTypeList({ metaData, withUnlimited: false }),
+    refitClientTypeList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderClientTypeOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitClientTypeList({ metaData, withUnlimited });
+  const listData = refitClientTypeList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderClientTypeRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitClientTypeList({ metaData, withUnlimited });
+  const listData = refitClientTypeList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchClientTypeSelect({
-  metaData = null,
   withUnlimited = true,
   label = '终端类型',
   name = 'clientType',
@@ -80,13 +78,12 @@ export function renderSearchClientTypeSelect({
     label: title,
     name,
     helper,
-    list: refitClientTypeList({ metaData, withUnlimited }),
+    list: refitClientTypeList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomClientTypeSelect({
-  metaData = null,
   label = '终端类型',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomClientTypeSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitClientTypeList({ metaData, withUnlimited: true }),
+    list: refitClientTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomClientTypeSelect({
 }
 
 export function renderFormClientTypeSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '终端类型',
@@ -126,7 +122,7 @@ export function renderFormClientTypeSelect({
     label: title,
     name,
     helper,
-    list: refitClientTypeList({ metaData, withUnlimited: false }),
+    list: refitClientTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormClientTypeSelect({
 }
 
 export function renderCustomClientTypeRadio({
-  metaData = null,
   label = '终端类型',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomClientTypeRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitClientTypeList({ metaData, withUnlimited: true }),
+    list: refitClientTypeList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomClientTypeRadio({
 }
 
 export function renderFormClientTypeRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = '终端类型',
@@ -180,7 +174,7 @@ export function renderFormClientTypeRadio({
     label: title,
     name,
     helper,
-    list: refitClientTypeList({ metaData, withUnlimited: false }),
+    list: refitClientTypeList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 

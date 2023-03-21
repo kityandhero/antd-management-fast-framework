@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,10 +21,10 @@ import {
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
 
-export function refitWebChannelList({ metaData, withUnlimited = true }) {
+export function refitWebChannelList({ withUnlimited = true }) {
   const { webChannelList: list } = {
     webChannelList: [],
-    ...metaData,
+    ...getMetaData(),
   };
 
   if (withUnlimited) {
@@ -33,7 +34,7 @@ export function refitWebChannelList({ metaData, withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getWebChannelName({ metaData, value, defaultValue = '' }) {
+export function getWebChannelName({ value, defaultValue = '' }) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -41,34 +42,31 @@ export function getWebChannelName({ metaData, value, defaultValue = '' }) {
   const item = searchFromList(
     'flag',
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
-    refitWebChannelList({ metaData, withUnlimited: false }),
+    refitWebChannelList({ withUnlimited: false }),
   );
 
   return item == null ? '未知' : item.name;
 }
 
 export function renderWebChannelOption({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitWebChannelList({ metaData, withUnlimited });
+  const listData = refitWebChannelList({ withUnlimited });
 
   return buildOptionItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderWebChannelRadio({
-  metaData,
   withUnlimited = true,
   adjustListDataCallback = null,
 }) {
-  const listData = refitWebChannelList({ metaData, withUnlimited });
+  const listData = refitWebChannelList({ withUnlimited });
 
   return buildRadioItem({ list: listData, adjustListDataCallback });
 }
 
 export function renderSearchWebChannelSelect({
-  metaData = null,
   withUnlimited = true,
   label = 'Web渠道',
   name = 'webChannelId',
@@ -80,13 +78,12 @@ export function renderSearchWebChannelSelect({
     label: title,
     name,
     helper,
-    list: refitWebChannelList({ metaData, withUnlimited }),
+    list: refitWebChannelList({ withUnlimited }),
     dataConvert: (o) => o,
   });
 }
 
 export function renderCustomWebChannelSelect({
-  metaData = null,
   label = 'Web渠道',
   separator = ':',
   size = 'middle',
@@ -98,7 +95,7 @@ export function renderCustomWebChannelSelect({
     defaultValue: null,
     separator,
     size,
-    list: refitWebChannelList({ metaData, withUnlimited: true }),
+    list: refitWebChannelList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -111,7 +108,6 @@ export function renderCustomWebChannelSelect({
 }
 
 export function renderFormWebChannelSelect({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = 'Web渠道',
@@ -126,7 +122,7 @@ export function renderFormWebChannelSelect({
     label: title,
     name,
     helper,
-    list: refitWebChannelList({ metaData, withUnlimited: false }),
+    list: refitWebChannelList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -140,7 +136,6 @@ export function renderFormWebChannelSelect({
 }
 
 export function renderCustomWebChannelRadio({
-  metaData = null,
   label = 'Web渠道',
   separator = ': ',
   size = 'middle',
@@ -152,7 +147,7 @@ export function renderCustomWebChannelRadio({
     defaultValue: null,
     separator,
     size,
-    list: refitWebChannelList({ metaData, withUnlimited: true }),
+    list: refitWebChannelList({ withUnlimited: true }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
@@ -165,7 +160,6 @@ export function renderCustomWebChannelRadio({
 }
 
 export function renderFormWebChannelRadio({
-  metaData = null,
   helper = null,
   onChange: onChangeCallback,
   label = 'Web渠道',
@@ -180,7 +174,7 @@ export function renderFormWebChannelRadio({
     label: title,
     name,
     helper,
-    list: refitWebChannelList({ metaData, withUnlimited: false }),
+    list: refitWebChannelList({ withUnlimited: false }),
     dataConvert: (o, index) => {
       const { flag, name } = o;
 
