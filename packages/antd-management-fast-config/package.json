@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-config",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -64,7 +64,7 @@
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "cross-env": "^7.0.3",
     "documentation": "^14.0.1",
-    "easy-soft-develop": "^2.0.189",
+    "easy-soft-develop": "^2.0.191",
     "eslint": "^8.36.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
