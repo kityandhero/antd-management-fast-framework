@@ -1,11 +1,7 @@
-// import pxtorem from 'postcss-pxtorem';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
-// import dts from 'rollup-plugin-dts';
-// import livereload from 'rollup-plugin-livereload';
 import postcss from 'rollup-plugin-postcss';
-// import serve from 'rollup-plugin-serve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
@@ -15,8 +11,6 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
-
-// import { pxToRemRoot } from '../../taro-fast-common/src/utils/constants';
 
 const externalCollection = [
   '@ant-design/icons',
@@ -103,21 +97,15 @@ export function buildConfig({
   inputFile,
   terser: whetherTerser = false,
   externalCollection: otherExternalCollection = [],
-  // serve: whetherServe = false,
+  babelConfig: babelExtraConfig = {},
 }) {
   const externals = [...externalCollection, ...(otherExternalCollection || [])];
 
-  // const pxtoremConfig = {
-  //   rootValue: pxToRemRoot,
-  //   propList: ['*'],
-  // };
-
-  console.log({
-    inputFile,
-    terser: whetherTerser,
-    externals,
-    // pxtorem: pxtoremConfig,
-  });
+  // console.log({
+  //   inputFile,
+  //   terser: whetherTerser,
+  //   externals,
+  // });
 
   const config = {
     input: inputFile,
@@ -169,6 +157,7 @@ export function buildConfig({
         ],
         extensions: [...DEFAULT_EXTENSIONS, 'ts', 'tsx'],
         babelHelpers: 'runtime',
+        ...babelExtraConfig,
       }),
     ],
     external: externals,

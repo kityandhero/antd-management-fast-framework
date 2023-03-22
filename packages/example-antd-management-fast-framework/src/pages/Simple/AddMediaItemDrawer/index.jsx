@@ -147,7 +147,6 @@ class Index extends BaseAddDrawer {
               lg: 24,
               type: cardConfig.contentItemType.component,
               component: renderFormMediaTypeSelect({
-                metaData: this.getMetaData(),
                 onChangeCallback: (event) => {
                   this.onTypeChange(event);
                 },

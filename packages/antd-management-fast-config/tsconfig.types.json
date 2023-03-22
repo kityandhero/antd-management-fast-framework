@@ -19,7 +19,7 @@
     "experimentalDecorators": true,
     "strict": true,
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "es",
     "emitDeclarationOnly": true,
     "ignoreDeprecations": "5.0"
   },

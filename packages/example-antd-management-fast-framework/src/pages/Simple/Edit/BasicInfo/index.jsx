@@ -473,18 +473,14 @@ class BasicInfo extends TabPageBase {
               },
               {
                 buildType: cardConfig.extraBuildType.component,
-                component: renderCustomSimpleStatusRadio({
-                  metaData: this.getMetaData(),
-                }),
+                component: renderCustomSimpleStatusRadio({}),
               },
               {
                 buildType: cardConfig.extraBuildType.divider,
               },
               {
                 buildType: cardConfig.extraBuildType.component,
-                component: renderCustomSimpleStatusSelect({
-                  metaData: this.getMetaData(),
-                }),
+                component: renderCustomSimpleStatusSelect({}),
               },
               {
                 buildType: cardConfig.extraBuildType.divider,

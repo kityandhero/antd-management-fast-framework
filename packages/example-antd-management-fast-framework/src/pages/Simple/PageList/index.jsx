@@ -438,9 +438,7 @@ class PageList extends MultiPage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: renderSearchSimpleRenderTypeSelect({
-            metaData: this.getMetaData(),
-          }),
+          component: renderSearchSimpleRenderTypeSelect({}),
         },
         {
           lg: 12,
@@ -455,9 +453,7 @@ class PageList extends MultiPage {
         {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
-          component: renderSearchSimpleStatusSelect({
-            metaData: this.getMetaData(),
-          }),
+          component: renderSearchSimpleStatusSelect({}),
         },
         {
           lg: 6,
@@ -951,7 +947,6 @@ class PageList extends MultiPage {
       },
       formatValue: (value) => {
         return getSimpleRenderTypeName({
-          metaData: this.getMetaData(),
           value: value,
         });
       },
@@ -966,7 +961,6 @@ class PageList extends MultiPage {
         return {
           status: getStatusBadge(value),
           text: getSimpleStatusName({
-            metaData: this.getMetaData(),
             value: value,
           }),
         };

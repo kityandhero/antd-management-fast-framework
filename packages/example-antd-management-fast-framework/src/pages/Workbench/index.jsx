@@ -282,7 +282,6 @@ class Index extends MultiPage {
         return {
           status: getStatusBadge(value),
           text: getSimpleStatusName({
-            metaData: this.getMetaData(),
             value: value,
           }),
         };

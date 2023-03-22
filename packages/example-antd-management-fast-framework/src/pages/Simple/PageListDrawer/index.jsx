@@ -172,7 +172,6 @@ class PageListDrawer extends MultiPageSelectDrawer {
       },
       formatValue: (value) => {
         return getSimpleRenderTypeName({
-          metaData: this.getMetaData(),
           value: value,
         });
       },
@@ -187,7 +186,6 @@ class PageListDrawer extends MultiPageSelectDrawer {
         return {
           status: this.getStatusBadge(value),
           text: getSimpleStatusName({
-            metaData: this.getMetaData(),
             value: value,
           }),
         };
