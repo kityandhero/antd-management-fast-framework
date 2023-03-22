@@ -1,6 +1,6 @@
 {
   "name": "example-antd-management-fast-framework",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "private": true,
   "description": "> TODO: description",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
@@ -90,7 +90,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/shelljs": "^0.8.11",
     "@typescript-eslint/parser": "^5.56.0",
-    "antd-management-fast-config": "^1.0.5",
+    "antd-management-fast-config": "^1.0.6",
     "antd-management-fast-develop": "^1.0.11",
     "babel-jest": "^29.5.0",
     "commitizen": "^4.3.0",
