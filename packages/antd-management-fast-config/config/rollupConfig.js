@@ -10,7 +10,7 @@ export function buildConfig({ terser: whetherTerser = false }) {
     terser: whetherTerser,
     externalCollection: [],
     babelConfig: {
-      babelHelpers: 'inline',
+      // babelHelpers: 'inline',
     },
   });
 }
