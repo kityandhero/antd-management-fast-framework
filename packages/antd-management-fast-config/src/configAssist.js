@@ -1,12 +1,12 @@
-export function checkDevelopment() {
+/* eslint-disable no-undef */
+/* eslint-disable unicorn/prefer-module */
+/* eslint-disable no-useless-escape */
+
+function checkDevelopment() {
   return process.env.NODE_ENV === 'development';
 }
 
-export const configAssist = {
-  showInfoComplete: false,
-};
-
-export function buildConfig({ packageJson: packageImport, config = {} }) {
+function buildConfig({ packageJson: packageImport, config = {} }) {
   const deps = packageImport.dependencies;
 
   let mfsu = {};
@@ -52,12 +52,7 @@ export function buildConfig({ packageJson: packageImport, config = {} }) {
 
   delete mergeConfig.dva;
 
-  if (!configAssist.showInfoComplete) {
-    console.log(mergeConfig);
-    console.log('---------------------------------');
-
-    configAssist.showInfoComplete = true;
-  }
-
   return mergeConfig;
 }
+
+module.exports = { checkDevelopment, buildConfig };
