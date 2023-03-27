@@ -19,6 +19,8 @@ import {
 } from 'antd-management-fast-component';
 import { signInAction } from 'antd-management-fast-framework';
 
+import { setTokenDeadline } from '../../../utils';
+
 const defaultProps = {};
 
 @connect(({ entrance, schedulingControl }) => ({
@@ -51,6 +53,8 @@ class SignIn extends BaseComponent {
             processing: false,
           },
           () => {
+            setTokenDeadline();
+
             const urlParameters = new URL(window.location.href);
             const parameters = getPageQuery();
             let { redirect } = parameters;

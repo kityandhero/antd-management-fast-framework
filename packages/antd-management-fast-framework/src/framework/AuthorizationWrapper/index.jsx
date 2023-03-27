@@ -2,6 +2,7 @@ import {
   checkHasAuthority,
   checkStringIsNullOrWhiteSpace,
   getToken,
+  handleSimulationAuthorizeExtra,
   isArray,
   isFunction,
   logException,
@@ -22,7 +23,10 @@ class AuthorizationWrapper extends SupplementWrapper {
   }
 
   checkAuthentication = () => {
-    return !checkStringIsNullOrWhiteSpace(getToken());
+    return (
+      !checkStringIsNullOrWhiteSpace(getToken()) &&
+      handleSimulationAuthorizeExtra()
+    );
   };
 
   checkAuthorization = () => {

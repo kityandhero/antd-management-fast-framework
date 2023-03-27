@@ -2,7 +2,7 @@ import { IApi } from '@umijs/max';
 
 export default (api: IApi) => {
   api.addEntryImports(() => ({
-    source: '../utils/init',
+    source: '../utils',
     specifier: '{ initializeDvaApplication }',
   }));
 
