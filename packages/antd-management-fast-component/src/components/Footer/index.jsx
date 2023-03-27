@@ -6,9 +6,11 @@ import { getCopyright } from 'antd-management-fast-common/src';
 const Footer = ({ links }) => {
   return (
     <div
-      style={{
-        backgroundColor: '#f0f2f5',
-      }}
+      style={
+        {
+          // backgroundColor: '#f0f2f5',
+        }
+      }
     >
       <DefaultFooter copyright={getCopyright()} links={links} />
     </div>

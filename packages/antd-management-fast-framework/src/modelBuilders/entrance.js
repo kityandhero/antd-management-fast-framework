@@ -122,21 +122,18 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        const text = [
-          getTokenKeyName(),
-          getLocalMetaDataCacheKey(),
-          getCurrentOperatorCacheKey(),
-          'all runtime cache',
-        ]
-          .map((o) => `"${o}"`)
-          .join(',');
-
-        logTrace('sign out', `clear ${text} and all runtime cache`);
-
         removeCurrentOperatorCache();
         removeToken();
         removeLocalMetaData();
         flushAllCache();
+
+        const text = [
+          getTokenKeyName(),
+          getLocalMetaDataCacheKey(),
+          getCurrentOperatorCacheKey(),
+        ].join(',');
+
+        logTrace('sign out', `clear ${text} and all runtime cache`);
 
         return dataAdjust;
       },

@@ -83,8 +83,6 @@ export async function signOutData(parameters) {
 export async function signOutDataSimulation(parameters) {
   const simulation = {};
 
-  logDebug(simulation, 'signOut simulation data');
-
   return request({
     api: `/entrance/signOutSimulation`,
     params: parameters,

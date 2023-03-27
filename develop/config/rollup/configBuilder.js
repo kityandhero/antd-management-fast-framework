@@ -101,12 +101,6 @@ export function buildConfig({
 }) {
   const externals = [...externalCollection, ...(otherExternalCollection || [])];
 
-  // console.log({
-  //   inputFile,
-  //   terser: whetherTerser,
-  //   externals,
-  // });
-
   const config = {
     input: inputFile,
     plugins: [

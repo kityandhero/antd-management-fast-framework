@@ -76,7 +76,7 @@ export const appInitDefault = {
   signInApi: '',
   signInCaptchaApi: '',
   signInSimulationData: {},
-  signOutApi: '/entrance/signOut',
+  signOutApi: '',
   applicationListDataApi: '',
   applicationListData: [],
   metaDataApi: '',

@@ -27,6 +27,7 @@ import {
 
 import { Bootstrap } from '../components';
 
+import { signOutAction } from './entranceAssist';
 import {
   getInterfaceSetting,
   setInterfaceSetting,
@@ -57,10 +58,11 @@ export function getLayoutSetting({
       key: 'logout',
       icon: iconBuilder.logout(),
       label: '退出登录',
+      onClick: () => {
+        signOutAction({});
+      },
     },
   ];
-
-  console.log(avatarMenuItemsAdjust);
 
   const layoutAvatarAdjust = {
     src: defaultUserAvatar,
