@@ -1,8 +1,12 @@
 import {
   checkStringIsNullOrWhiteSpace,
   flushAllCache,
+  getCurrentOperatorCacheKey,
+  getLocalMetaDataCacheKey,
   getTacitlyState,
+  getTokenKeyName,
   logConfig,
+  logTrace,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -117,6 +121,17 @@ export function buildModel() {
           alias,
           ...reducerDefaultParameters,
         });
+
+        const text = [
+          getTokenKeyName(),
+          getLocalMetaDataCacheKey(),
+          getCurrentOperatorCacheKey(),
+          'all runtime cache',
+        ]
+          .map((o) => `"${o}"`)
+          .join(',');
+
+        logTrace('sign out', `clear ${text} and all runtime cache`);
 
         removeCurrentOperatorCache();
         removeToken();

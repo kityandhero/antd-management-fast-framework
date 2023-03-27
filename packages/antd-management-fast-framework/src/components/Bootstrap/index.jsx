@@ -28,7 +28,7 @@ class Bootstrap extends BaseComponent {
             ...preLayoutAvatar,
             layoutAvatar,
           };
-
+          console.log(v);
           return v;
         });
       },

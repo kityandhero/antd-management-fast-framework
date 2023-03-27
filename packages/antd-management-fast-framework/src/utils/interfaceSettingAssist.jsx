@@ -1,3 +1,4 @@
+import { Dropdown } from 'antd';
 import nprogress from 'nprogress';
 import React from 'react';
 import { SettingDrawer } from '@ant-design/pro-layout';
@@ -18,7 +19,11 @@ import {
   getLeftBarText,
   getUseNprogress,
 } from 'antd-management-fast-common';
-import { AnchorLink, Footer } from 'antd-management-fast-component';
+import {
+  AnchorLink,
+  Footer,
+  iconBuilder,
+} from 'antd-management-fast-component';
 
 import { Bootstrap } from '../components';
 
@@ -35,6 +40,7 @@ export function getLayoutSetting({
   initialState,
   setInitialState,
   themeToken = {},
+  avatarMenuItems = [],
   config,
 }) {
   logExecute('getLayoutSetting');
@@ -45,11 +51,33 @@ export function getLayoutSetting({
     ...initialState,
   };
 
+  const avatarMenuItemsAdjust = [
+    ...avatarMenuItems,
+    {
+      key: 'logout',
+      icon: iconBuilder.logout(),
+      label: '退出登录',
+    },
+  ];
+
+  console.log(avatarMenuItemsAdjust);
+
   const layoutAvatarAdjust = {
     src: defaultUserAvatar,
     title: 'nickname',
     ...layoutAvatar,
     size: 'small',
+    render: (properties, dom) => {
+      return (
+        <Dropdown
+          menu={{
+            items: avatarMenuItemsAdjust,
+          }}
+        >
+          {dom}
+        </Dropdown>
+      );
+    },
   };
 
   if (checkStringIsNullOrWhiteSpace(layoutAvatar.src)) {
@@ -154,7 +182,10 @@ export function getLayoutSetting({
 
                   setInterfaceSetting(v);
 
-                  return v;
+                  return {
+                    ...preInitialState,
+                    settings: v,
+                  };
                 });
               }}
             />

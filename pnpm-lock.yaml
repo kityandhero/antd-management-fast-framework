@@ -211,7 +211,7 @@ importers:
       cssnano: ^5.1.15
       documentation: ^14.0.1
       easy-soft-develop: ^2.0.198
-      easy-soft-utility: ^2.4.112
+      easy-soft-utility: ^2.4.113
       eslint: ^8.36.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -269,7 +269,7 @@ importers:
       bizcharts: 4.1.22_ogvc6ewgr3qq5z6tmbtquhqyui
       classnames: 2.3.2
       copy-to-clipboard: 3.3.3
-      easy-soft-utility: 2.4.112
+      easy-soft-utility: 2.4.113
       lodash.debounce: 4.0.8
       numeral: 2.0.6
       path-to-regexp: 6.2.1
@@ -413,8 +413,8 @@ importers:
       dayjs: ^1.11.7
       documentation: ^14.0.1
       easy-soft-develop: ^2.0.198
-      easy-soft-dva: ^3.6.141
-      easy-soft-utility: ^2.4.112
+      easy-soft-dva: ^3.6.142
+      easy-soft-utility: ^2.4.113
       eslint: ^8.36.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -480,8 +480,8 @@ importers:
       axios: 1.3.4
       copy-to-clipboard: 3.3.3
       dayjs: 1.11.7
-      easy-soft-dva: 3.6.141_hqb2jc6bbxyt4unzbunbyxvgem
-      easy-soft-utility: 2.4.112
+      easy-soft-dva: 3.6.142_hqb2jc6bbxyt4unzbunbyxvgem
+      easy-soft-utility: 2.4.113
       lodash: 4.17.21
       lodash-decorators: 6.0.1_lodash@4.17.21
       lodash.isequal: 4.5.0
@@ -638,8 +638,8 @@ importers:
       dayjs: ^1.11.7
       documentation: ^14.0.1
       easy-soft-develop: ^2.0.198
-      easy-soft-dva: ^3.6.141
-      easy-soft-utility: ^2.4.112
+      easy-soft-dva: ^3.6.142
+      easy-soft-utility: ^2.4.113
       eslint: ^8.36.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -711,8 +711,8 @@ importers:
       classnames: 2.3.2
       copy-to-clipboard: 3.3.3
       dayjs: 1.11.7
-      easy-soft-dva: 3.6.141_hqb2jc6bbxyt4unzbunbyxvgem
-      easy-soft-utility: 2.4.112
+      easy-soft-dva: 3.6.142_hqb2jc6bbxyt4unzbunbyxvgem
+      easy-soft-utility: 2.4.113
       html-react-parser: 3.0.15_react@18.2.0
       lodash.debounce: 4.0.8
       nprogress: 0.2.0
@@ -1085,8 +1085,8 @@ importers:
       dayjs: ^1.11.7
       documentation: ^14.0.1
       easy-soft-develop: ^2.0.198
-      easy-soft-dva: ^3.6.141
-      easy-soft-utility: ^2.4.112
+      easy-soft-dva: ^3.6.142
+      easy-soft-utility: ^2.4.113
       eslint: ^8.36.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -1147,8 +1147,8 @@ importers:
       axios: 1.3.4
       classnames: 2.3.2
       dayjs: 1.11.7
-      easy-soft-dva: 3.6.141_hqb2jc6bbxyt4unzbunbyxvgem
-      easy-soft-utility: 2.4.112
+      easy-soft-dva: 3.6.142_hqb2jc6bbxyt4unzbunbyxvgem
+      easy-soft-utility: 2.4.113
       html-react-parser: 3.0.15_react@18.2.0
       nprogress: 0.2.0
       rc-animate: 3.1.1_biqbaboplfbrettd7655fr4n2y
@@ -1289,8 +1289,8 @@ importers:
       dayjs: ^1.11.7
       documentation: ^14.0.1
       easy-soft-develop: ^2.0.198
-      easy-soft-dva: ^3.6.141
-      easy-soft-utility: ^2.4.112
+      easy-soft-dva: ^3.6.142
+      easy-soft-utility: ^2.4.113
       eslint: ^8.36.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-airbnb-typescript: ^17.0.0
@@ -1340,8 +1340,8 @@ importers:
       axios: 1.3.4
       classnames: 2.3.2
       dayjs: 1.11.7
-      easy-soft-dva: 3.6.141_hqb2jc6bbxyt4unzbunbyxvgem
-      easy-soft-utility: 2.4.112
+      easy-soft-dva: 3.6.142_hqb2jc6bbxyt4unzbunbyxvgem
+      easy-soft-utility: 2.4.113
       nprogress: 0.2.0
       rc-util: 5.29.2_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
@@ -11562,14 +11562,14 @@ packages:
       terminal-kit: 3.0.0
     dev: true
 
-  /easy-soft-dva/3.6.141_hqb2jc6bbxyt4unzbunbyxvgem:
-    resolution: {integrity: sha512-RZVdaG6c6eWaedl3fZCqL1k5WunIyryF+BbHHUMLp6Gc5qDAkvcKUh7dyfzbgwQaIxGRDMiKHNCt7z/3t6f8vA==}
+  /easy-soft-dva/3.6.142_hqb2jc6bbxyt4unzbunbyxvgem:
+    resolution: {integrity: sha512-dIvUj8/FYRIVJ1cfH1Th3sVRyrUwP3hAOAYCC7HmHb17Lem7IeWtWHx4IUTdYXZltAM36EH6bDUfVs6AnrKfRg==}
     peerDependencies:
       redux: 4.x
     dependencies:
       '@babel/runtime': 7.21.0
       '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
-      easy-soft-utility: 2.4.112
+      easy-soft-utility: 2.4.113
       flatten: 1.0.3
       global: 4.4.0
       invariant: 2.2.4
@@ -11586,8 +11586,8 @@ packages:
       - react-native
     dev: false
 
-  /easy-soft-utility/2.4.112:
-    resolution: {integrity: sha512-NvtP9zxi1fW+z7KhH3szgvJ56DHk9dq+5iEeOvGFEjNRbuhdXDaqTjMa4urneyAPJWgyaCg+ZEZdqMj+AJplLg==}
+  /easy-soft-utility/2.4.113:
+    resolution: {integrity: sha512-pNV2or7WUhFZsrmq7R1uF4U/MJU+rXhyMeAc+U9mAY1+z+FLMusQ+8aRCWVY6tamwnwBHQ28nvpdfQaZ8b4Oww==}
     dependencies:
       dayjs: 1.11.7
       js-base64: 3.7.5
