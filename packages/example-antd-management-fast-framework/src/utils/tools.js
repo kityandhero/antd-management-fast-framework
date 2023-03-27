@@ -26,7 +26,7 @@ export function getSexName(value) {
 export function getLogo() {
   const { data } = {
     data: {},
-    ...getModelRemoteData('global'),
+    ...getModelRemoteData('currentAccount'),
   };
 
   const { platform } = {
@@ -45,7 +45,7 @@ export function getLogo() {
 export function getTitle() {
   const { data } = {
     data: {},
-    ...getModelRemoteData('global'),
+    ...getModelRemoteData('currentAccount'),
   };
 
   const { platform } = {

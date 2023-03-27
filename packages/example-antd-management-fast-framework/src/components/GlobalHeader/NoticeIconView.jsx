@@ -168,10 +168,7 @@ class GlobalHeaderRight extends Component {
   }
 }
 
-export default connect(({ currentOperator, global, loading }) => ({
-  currentOperator: currentOperator.currentOperator || null,
-  collapsed: global.collapsed,
-  fetchingMoreNotices: loading.effects['global/fetchMoreNotices'],
-  fetchingNotices: loading.effects['global/fetchNotices'],
-  notices: global.notices,
+export default connect(({ currentOperator, schedulingControl }) => ({
+  currentOperator,
+  schedulingControl,
 }))(GlobalHeaderRight);

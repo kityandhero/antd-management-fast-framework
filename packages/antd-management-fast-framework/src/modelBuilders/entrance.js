@@ -23,6 +23,8 @@ import {
   getCaptchaDataSimulation,
   signInData,
   signInDataSimulation,
+  signOutData,
+  signOutDataSimulation,
 } from '../services/entrance';
 
 export function buildModel() {
@@ -102,8 +104,8 @@ export function buildModel() {
 
         const response = yield call(
           checkStringIsNullOrWhiteSpace(signOutApi)
-            ? signInDataSimulation
-            : signInData,
+            ? signOutDataSimulation
+            : signOutData,
           payload,
         );
 

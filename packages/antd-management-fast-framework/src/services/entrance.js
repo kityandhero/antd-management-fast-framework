@@ -1,4 +1,10 @@
-import { getGuid, logDebug, request, requestMode } from 'easy-soft-utility';
+import {
+  getGuid,
+  getTimeStamp,
+  logDebug,
+  request,
+  requestMode,
+} from 'easy-soft-utility';
 
 import {
   getSignInApi,
@@ -50,7 +56,7 @@ export async function getCaptchaDataSimulation(parameters) {
     image: '',
   };
 
-  simulation[getTokenName()] = getGuid();
+  simulation[getTokenName()] = getTimeStamp(new Date());
 
   logDebug(simulation, 'getCaptcha simulation data');
 
@@ -76,8 +82,6 @@ export async function signOutData(parameters) {
 
 export async function signOutDataSimulation(parameters) {
   const simulation = {};
-
-  simulation[getTokenName()] = getGuid();
 
   logDebug(simulation, 'signOut simulation data');
 

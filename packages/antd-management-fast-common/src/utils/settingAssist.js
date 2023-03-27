@@ -7,10 +7,7 @@ import {
   isObject,
 } from 'easy-soft-utility';
 
-import {
-  appInitDefault,
-  authenticationFailCode as authenticationFailCodeDefault,
-} from './constants';
+import { authenticationFailCode as authenticationFailCodeDefault } from './constants';
 import { emptyLogo as emptyLogoImage } from './mediaDefault';
 
 /**
@@ -158,15 +155,6 @@ export function getTokenName() {
   return tokenName || 'token';
 }
 
-export function getSignInRoutePath() {
-  const { signInRoutePath } = {
-    signInRoutePath: appInitDefault.signInRoutePath,
-    ...getApplicationMergeConfig(),
-  };
-
-  return signInRoutePath || appInitDefault.signInRoutePath;
-}
-
 export function getSignInApi() {
   const { signInApi } = {
     signInApi: '',
@@ -266,6 +254,24 @@ export function getApiVersion() {
   };
 
   return apiVersion || '';
+}
+
+export function getAuthenticationFailRedirectPath() {
+  const { authenticationFailRedirectPath } = {
+    authenticationFailRedirectPath: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return authenticationFailRedirectPath || '';
+}
+
+export function getAuthorizationFailRedirectPath() {
+  const { authorizationFailRedirectPath } = {
+    authorizationFailRedirectPath: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return authorizationFailRedirectPath || '';
 }
 
 export function getShowLogInConsole() {

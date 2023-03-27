@@ -31,7 +31,7 @@ export default {
   'menu.currentOperator.center': '个人中心',
   'menu.currentOperator.setting': '个人设置',
 
-  'menu.common': '常用页面',
+  'menu.common': '通用页面',
 
   'menu.common.result': '结果页',
 

@@ -93,6 +93,7 @@ export function getLayoutSetting({
 
       return <>{defaultDom}</>;
     },
+    itemRender: (route) => route.breadcrumbName,
     menuItemRender: (item, dom) => {
       const { children: childrenArray } = item.children || {
         children: [],

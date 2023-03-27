@@ -5,9 +5,10 @@ import { dispatch } from 'easy-soft-dva';
 import {
   checkHasMore as checkHasMoreCore,
   getGuid,
+  handleAuthenticationFail,
+  handleAuthorizationFail,
   isFunction,
   isNumber,
-  logConfig,
   logError,
   logExecute,
   logTrace,
@@ -288,10 +289,10 @@ class AbstractComponent extends Component {
 
         this.doOtherWorkAfterDidMount();
       } else {
-        this.doWorkWhenCheckPermissionFail();
+        this.doWorkWhenCheckAuthorizationFail();
       }
     } else {
-      this.doWorkWhenCheckNeedSignInDidMountFail();
+      this.doWorkWhenCheckAuthenticationFail();
     }
   };
 
@@ -303,19 +304,16 @@ class AbstractComponent extends Component {
     return true;
   };
 
-  doWorkWhenCheckNeedSignInDidMountFail = () => {
-    logExecute('doWorkWhenCheckNeedSignInDidMountFail');
-    logConfig(
-      'doWorkWhenCheckNeedSignInDidMountFail do nothing,if you need,you can override it: doWorkWhenCheckNeedSignInDidMountFail = () => {}',
-    );
+  doWorkWhenCheckAuthenticationFail = () => {
+    logExecute('doWorkWhenCheckAuthenticationFail');
+
+    handleAuthenticationFail();
   };
 
-  doWorkWhenCheckPermissionFail = () => {
-    logExecute('doWorkWhenCheckPermissionFail');
+  doWorkWhenCheckAuthorizationFail = () => {
+    logExecute('doWorkWhenCheckAuthorizationFail');
 
-    logConfig(
-      'doWorkWhenCheckPermissionFail do nothing,if you need,you can override it: doWorkWhenCheckPermissionFail = () => {}',
-    );
+    handleAuthorizationFail();
   };
 
   doOtherCheckComponentUpdate = () => {
@@ -471,6 +469,10 @@ class AbstractComponent extends Component {
    */
   renderPracticalView() {
     logRenderFurther(this.constructor.name);
+
+    if (!this.checkAuthentication() || !this.checkAuthorization()) {
+      return null;
+    }
 
     return this.renderFurther();
   }

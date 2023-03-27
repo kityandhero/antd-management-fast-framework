@@ -21,9 +21,9 @@ import { signInAction } from 'antd-management-fast-framework';
 
 const defaultProps = {};
 
-@connect(({ entrance, global }) => ({
+@connect(({ entrance, schedulingControl }) => ({
   entrance,
-  global,
+  schedulingControl,
 }))
 class SignIn extends BaseComponent {
   constructor(properties) {

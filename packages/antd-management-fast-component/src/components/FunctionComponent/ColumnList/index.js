@@ -20,6 +20,7 @@ import {
 } from 'antd-management-fast-common';
 
 import { AnchorLink } from '../../AnchorLink';
+import { CenterBox } from '../../CenterBox';
 import { ElasticityDropdown } from '../../ElasticityDropdown';
 import { EllipsisCustom } from '../../EllipsisCustom';
 import { iconBuilder } from '../../Icon';
@@ -230,7 +231,7 @@ export function buildColumnItem({
           );
         }
 
-        return (
+        const component = (
           <div>
             {(addonBefore || null) == null ? null : addonBefore}
 
@@ -252,6 +253,12 @@ export function buildColumnItem({
 
             {(addonAfter || null) == null ? null : addonAfter}
           </div>
+        );
+
+        return align === 'center' ? (
+          <CenterBox>{component}</CenterBox>
+        ) : (
+          component
         );
       }
 

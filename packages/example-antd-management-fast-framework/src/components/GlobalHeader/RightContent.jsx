@@ -79,9 +79,7 @@ const GlobalHeaderRight = (properties) => {
   );
 };
 
-export default connect(({ currentOperator, global, settings }) => ({
+export default connect(({ currentOperator, schedulingControl }) => ({
   currentOperator,
-  global,
-  theme: settings.navTheme,
-  layout: settings.layout,
+  schedulingControl,
 }))(GlobalHeaderRight);

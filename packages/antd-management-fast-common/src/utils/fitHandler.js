@@ -11,6 +11,7 @@ import {
   setApplicationInitialConfig,
   setAuthenticationFailCode,
   setAuthenticationFailHandler,
+  setAuthorizationFailHandler,
   setLoggerDisplaySwitch,
   setRuntimeDataStorage,
   setSuccessCode,
@@ -25,7 +26,11 @@ import { setNavigationHandler } from './navigationAssist';
 import { setNotificationDisplayMonitor } from './notificationAssist';
 import { setRequestHandler } from './requestAssist';
 import { setSessionStorageHandler } from './sessionStorageAssist';
-import { getApiVersion, getSignInRoutePath } from './settingAssist';
+import {
+  getApiVersion,
+  getAuthenticationFailRedirectPath,
+  getAuthorizationFailRedirectPath,
+} from './settingAssist';
 
 function getShowLogInConsole() {
   const { showLogInConsole } = {
@@ -99,6 +104,40 @@ function getExternalConfigs() {
   return list;
 }
 
+function handleAuthenticationFail() {
+  const authenticationFailRedirectPath = getAuthenticationFailRedirectPath();
+
+  if (checkStringIsNullOrWhiteSpace(authenticationFailRedirectPath)) {
+    logError(
+      'handleAuthenticationFail',
+      'authenticationFailRedirectPath has not set yet, please set it in applicationConfig with key "authenticationFailRedirectPath"',
+    );
+
+    return;
+  }
+
+  setTimeout(() => {
+    redirectTo(authenticationFailRedirectPath);
+  }, 100);
+}
+
+function handleAuthorizationFail() {
+  const authorizationFailRedirectPath = getAuthorizationFailRedirectPath();
+
+  if (checkStringIsNullOrWhiteSpace(authorizationFailRedirectPath)) {
+    logError(
+      'handleAuthorizationFail',
+      'authorizationFailRedirectPath has not set yet, please set it in applicationConfig with key "authorizationFailRedirectPath"',
+    );
+
+    return;
+  }
+
+  setTimeout(() => {
+    redirectTo(authorizationFailRedirectPath);
+  }, 100);
+}
+
 /**
  * 设置 easy-soft-utility 处理器
  */
@@ -127,18 +166,10 @@ export function setEasySoftUtilityHandler() {
   setNotificationDisplayMonitor();
 
   setSuccessCode(getSuccessCode());
+
   setAuthenticationFailCode(getAuthenticationFailCode());
-  setAuthenticationFailHandler(() => {
-    const signInRoutePath = getSignInRoutePath();
-
-    if (checkStringIsNullOrWhiteSpace(signInRoutePath)) {
-      logError(
-        'signInRoutePath has not set yet, please set it in applicationConfig with key "signInRoutePath"',
-      );
-    }
-
-    redirectTo(signInRoutePath);
-  });
+  setAuthenticationFailHandler(handleAuthenticationFail);
+  setAuthorizationFailHandler(handleAuthorizationFail);
 
   setUrlGlobalPrefix(getApiVersion());
 

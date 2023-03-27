@@ -84,6 +84,6 @@ class AvatarDropdown extends React.Component {
   }
 }
 
-export default connect(({ global }) => ({
-  global,
+export default connect(({ schedulingControl }) => ({
+  schedulingControl,
 }))(AvatarDropdown);
