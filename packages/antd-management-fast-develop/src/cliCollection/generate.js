@@ -32,9 +32,17 @@ exports.run = function (s, o) {
 
       generate(data.list, relativeFolder);
 
-      promptInfo('Format generated file:');
+      const cmdEslint = `npx eslint --fix --cache --ext .js,.jsx,.ts,.tsx ${relativeFolder}/`;
 
-      exec(`npx prettier --write ${relativeFolder}/`);
+      promptInfo(`Eslint generated file: ${cmdEslint}`);
+
+      exec(cmdEslint);
+
+      const cmdFormat = `npx prettier --cache --write ${relativeFolder}/`;
+
+      promptInfo(`Format generated file: ${cmdFormat}`);
+
+      exec(cmdFormat);
     } else {
       const simple = {
         list: [
