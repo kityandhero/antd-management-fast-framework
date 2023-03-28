@@ -6,7 +6,7 @@ import {
   logDebug,
   logDevelop,
   logExecute,
-  setAuthority,
+  setLocalAuthorityCollection,
   setToken,
 } from 'easy-soft-utility';
 
@@ -48,7 +48,7 @@ export function signInAction({
 
       const token = remoteData[getTokenName()];
 
-      setAuthority(currentAuthority);
+      setLocalAuthorityCollection(currentAuthority);
       setToken(token);
 
       // ----------------------------

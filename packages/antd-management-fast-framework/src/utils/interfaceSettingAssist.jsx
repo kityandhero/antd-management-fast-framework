@@ -1,6 +1,6 @@
 import { Dropdown } from 'antd';
 import nprogress from 'nprogress';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { SettingDrawer } from '@ant-design/pro-layout';
 import { Link } from '@umijs/max';
 
@@ -8,6 +8,7 @@ import {
   checkObjectIsNullOrEmpty,
   checkStringIsNullOrWhiteSpace,
   isEmptyObject,
+  isFunction,
   logExecute,
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
@@ -42,6 +43,7 @@ export function getLayoutSetting({
   setInitialState,
   themeToken = {},
   avatarMenuItems = [],
+  actionItems = [],
   config,
 }) {
   logExecute('getLayoutSetting');
@@ -157,6 +159,29 @@ export function getLayoutSetting({
       );
     },
     footerRender: () => <Footer links={footerLinks} />,
+    logout: null,
+    rightContentRender: false,
+    actionsRender: (properties) => {
+      if (properties.isMobile) return [];
+
+      const actionItemsAdjust = actionItems.map((o, index) => {
+        let item = null;
+
+        const { layout } = properties;
+
+        item = isFunction(o) ? o({ layout }) : o;
+
+        if ((item || null) == null) {
+          return null;
+        }
+
+        return <Fragment key={`actionItems_${index}`}>{item}</Fragment>;
+      });
+
+      return [...actionItemsAdjust];
+    },
+    // eslint-disable-next-line no-unused-vars
+    menuFooterRender: (properties) => null,
     ...(checkObjectIsNullOrEmpty(themeToken) ? {} : { token: themeToken }),
     ...config,
     childrenRender: (children, properties) => {

@@ -12,6 +12,7 @@ import {
   reducerDefaultParameters,
   reducerNameCollection,
   removeCurrentOperatorCache,
+  removeLocalAuthorityCollection,
   removeLocalMetaData,
   removeToken,
 } from 'easy-soft-utility';
@@ -125,6 +126,7 @@ export function buildModel() {
         removeCurrentOperatorCache();
         removeToken();
         removeLocalMetaData();
+        removeLocalAuthorityCollection();
         flushAllCache();
 
         const text = [

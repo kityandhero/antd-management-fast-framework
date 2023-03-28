@@ -98,6 +98,12 @@ export const appInitDefault = {
   layoutSetting: {},
 };
 
+export const layoutCollection = {
+  top: 'top',
+  side: 'side',
+  mix: 'mix',
+};
+
 export const formNameCollection = {
   createTime: {
     label: '创建时间',

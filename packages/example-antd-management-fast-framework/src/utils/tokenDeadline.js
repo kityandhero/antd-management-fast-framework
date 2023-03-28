@@ -7,7 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 const storageKeyCollection = {
-  tokenDeadline: 'tokenDeadline',
+  tokenDeadline: 'amf-tokenDeadline',
 };
 
 /**

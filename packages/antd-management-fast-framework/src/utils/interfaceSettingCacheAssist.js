@@ -7,7 +7,7 @@ import {
 import { getLayoutSetting } from 'antd-management-fast-common';
 
 const storageKeyCollection = {
-  interfaceSetting: 'interfaceSetting',
+  interfaceSetting: 'amf-interfaceSetting',
 };
 
 /**

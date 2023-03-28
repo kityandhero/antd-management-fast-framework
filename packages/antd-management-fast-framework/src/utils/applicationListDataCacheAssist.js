@@ -6,7 +6,7 @@ import {
 } from 'easy-soft-utility';
 
 const storageKeyCollection = {
-  applicationListData: 'applicationListData',
+  applicationListData: 'amf-applicationListData',
 };
 
 /**

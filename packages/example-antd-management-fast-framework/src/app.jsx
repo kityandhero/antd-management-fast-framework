@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { analysisRoute } from 'antd-management-fast-common';
-import { AnchorLink } from 'antd-management-fast-component';
+import { analysisRoute, layoutCollection } from 'antd-management-fast-common';
+import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
 import {
   ApplicationWrapper,
   getLayoutSetting,
@@ -41,6 +41,34 @@ export const layout = ({ initialState, setInitialState }) => {
     logo: getLogo(),
     title: getTitle(),
     water: 'test',
+    actionItems: [
+      ({ layout: layoutValue }) => {
+        if (layoutValue === layoutCollection.side) {
+          return iconBuilder.search({
+            style: {
+              color: '#868686',
+            },
+          });
+        }
+
+        return iconBuilder.infoCircle(
+          {
+            style: {
+              color: '#868686',
+            },
+          },
+          true,
+        );
+      },
+      iconBuilder.infoCircle(
+        {
+          style: {
+            color: '#868686',
+          },
+        },
+        true,
+      ),
+    ],
     initialState: initialState || {},
     setInitialState,
     // themeToken: {
