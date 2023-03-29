@@ -58,6 +58,7 @@ export * from './PageExtra';
 export * from './PageLoading';
 export * from './PercentageBox';
 export * from './PriceBox';
+export * from './ProgressBar';
 export * from './Result';
 export * from './RowExpandTable';
 export * from './StandardFormRow';

@@ -1,4 +1,3 @@
-import { getDispatch } from 'easy-soft-dva';
 import { getCache, setCache, toBoolean } from 'easy-soft-utility';
 
 const cacheKeyCollection = {
@@ -61,22 +60,6 @@ const schedulingControlAssist = {
       key: cacheKeyCollection.currentOperatorRequestProcessing,
       value: toBoolean(value),
     });
-  },
-  /**
-   * start remote loading
-   */
-  startRemoteLoading() {
-    const dispatch = getDispatch();
-
-    dispatch({ type: 'schedulingControl/startRemoteLoading' });
-  },
-  /**
-   * stop remote loading
-   */
-  stopRemoteLoading() {
-    const dispatch = getDispatch();
-
-    dispatch({ type: 'schedulingControl/stopRemoteLoading' });
   },
 };
 

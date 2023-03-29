@@ -54,6 +54,8 @@ const { SinglePage } = DataSinglePageView;
   schedulingControl,
 }))
 class SingleList extends SinglePage {
+  loadRemoteRequestDelay = 3000;
+
   useFrontendPagination = true;
 
   componentAuthority = accessWayCollection.simple.singleList.permission;
@@ -63,7 +65,6 @@ class SingleList extends SinglePage {
 
     this.state = {
       ...this.state,
-
       pageSize: 8,
       pageTitle: '文章单页列表',
       paramsKey: accessWayCollection.simple.singleList.permission,

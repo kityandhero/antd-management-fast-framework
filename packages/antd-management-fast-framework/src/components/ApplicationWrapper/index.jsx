@@ -5,10 +5,14 @@ import { ApplicationProvider } from 'easy-soft-dva';
 
 import { BaseComponent } from 'antd-management-fast-component';
 
+import { TopProgressBar } from '../TopProgressBar';
+
 class ApplicationWrapper extends BaseComponent {
   renderFurther() {
     return (
       <ApplicationProvider>
+        <TopProgressBar />
+
         {this.props.children}
 
         <ToastContainer />
@@ -17,8 +21,6 @@ class ApplicationWrapper extends BaseComponent {
   }
 }
 
-ApplicationWrapper.defaultProps = {
-  prepareModel: null,
-};
+ApplicationWrapper.defaultProps = {};
 
 export { ApplicationWrapper };

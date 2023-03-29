@@ -6,7 +6,7 @@ import {
   reducerNameCollection,
 } from 'easy-soft-utility';
 
-import { schedulingControlAssist } from 'antd-management-fast-framework';
+import { remoteLoadingControlAssist } from 'antd-management-fast-framework';
 
 export function buildModel() {
   return {
@@ -48,7 +48,7 @@ export function buildModel() {
 
         // logTrace(`simpleText change to ${simpleText}`);
 
-        schedulingControlAssist.stopRemoteLoading();
+        remoteLoadingControlAssist.stopRemoteLoading();
 
         return dataAdjust;
       },

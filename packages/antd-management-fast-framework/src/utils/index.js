@@ -7,4 +7,6 @@ export * from './entranceAssist';
 export * from './interfaceSettingAssist';
 export * from './interfaceSettingCacheAssist';
 export * from './metaDataAssist';
+export * from './progressControlAssist';
+export * from './remoteLoadingControlAssist';
 export * from './schedulingControlAssist';

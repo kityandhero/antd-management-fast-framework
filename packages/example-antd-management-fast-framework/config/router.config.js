@@ -50,6 +50,7 @@ export default [
         path: '/simple/addBasicInfo',
         name: 'addBasicInfo',
         icon: 'plusSquare',
+        useMini: true,
         // authority: [
         //   accessWayCollection.super.permission.permission,
         //   accessWayCollection.article.addBasicInfo.permission,

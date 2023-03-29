@@ -9,6 +9,7 @@ import {
   logDevelop,
   logObject,
   logText,
+  logTrace,
   pretreatmentRequestParameters,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
@@ -44,6 +45,7 @@ import {
 } from 'antd-management-fast-component';
 
 import { loadMetaData } from '../../../utils/metaDataAssist';
+import { progressControlAssist } from '../../../utils/progressControlAssist';
 import { Core } from '../../Core';
 
 class InternalFlow extends Core {
@@ -56,6 +58,8 @@ class InternalFlow extends Core {
   showExtraActionDivider = false;
 
   loadRemoteRequestAfterMount = true;
+
+  loadRemoteRequestDelay = 0;
 
   lastRequestingData = { type: '', payload: {} };
 
@@ -83,7 +87,18 @@ class InternalFlow extends Core {
   checkNeedUpdate = (preProperties, preState, snapshot) => false;
 
   doLoadRemoteRequest = () => {
-    this.initLoad({});
+    progressControlAssist.startProgressing();
+
+    if (this.loadRemoteRequestDelay > 0) {
+      logTrace('load remote request delay', this.loadRemoteRequestDelay);
+    }
+
+    this.initLoad({
+      delay: this.loadRemoteRequestDelay,
+      completeCallback: () => {
+        progressControlAssist.stopProgressing();
+      },
+    });
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -134,7 +149,13 @@ class InternalFlow extends Core {
     return true;
   };
 
-  initLoad = ({ otherState = {}, delay = 0, callback = null }) => {
+  initLoad = ({
+    otherState = {},
+    delay = 0,
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
     const {
       loadApiPath,
       firstLoadSuccess,
@@ -142,7 +163,7 @@ class InternalFlow extends Core {
     } = this.state;
 
     try {
-      if ((loadApiPath || '') === '') {
+      if (checkStringIsNullOrWhiteSpace(loadApiPath)) {
         const text = 'loadApiPath需要配置';
 
         showSimpleRuntimeError(text);
@@ -158,6 +179,10 @@ class InternalFlow extends Core {
           paging: false,
           dispatchComplete: true,
         });
+
+        if (isFunction(completeCallback)) {
+          completeCallback();
+        }
 
         return;
       }
@@ -196,7 +221,9 @@ class InternalFlow extends Core {
               this.initLoadCore({
                 requestData: submitData || {},
                 delay,
-                callback,
+                successCallback,
+                failCallback,
+                completeCallback,
               });
             } else {
               this.setState({
@@ -223,13 +250,21 @@ class InternalFlow extends Core {
     return '';
   };
 
-  initLoadCore = ({ requestData, delay = 0, callback }) => {
+  initLoadCore = ({
+    requestData,
+    delay = 0,
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
     const delayTime = toNumber(delay);
 
     if (delayTime <= 0) {
       this.loadFromApi({
         requestData,
-        callback,
+        successCallback,
+        failCallback,
+        completeCallback,
       });
     } else {
       const that = this;
@@ -237,13 +272,20 @@ class InternalFlow extends Core {
       setTimeout(() => {
         that.loadFromApi({
           requestData,
-          callback,
+          successCallback,
+          failCallback,
+          completeCallback,
         });
       }, delayTime);
     }
   };
 
-  loadFromApi = ({ requestData, callback }) => {
+  loadFromApi = ({
+    requestData,
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
     let loadApiPath = '';
 
     const that = this;
@@ -363,17 +405,28 @@ class InternalFlow extends Core {
 
             that.afterGetRequestResult(requestData, metaOriginalData);
 
-            if (isFunction(callback)) {
-              // eslint-disable-next-line promise/no-callback-in-promise
-              callback();
+            if (isFunction(successCallback)) {
+              successCallback(metaOriginalData);
             }
 
             that.clearRequestingData();
+
+            if (isFunction(completeCallback)) {
+              completeCallback();
+            }
 
             return;
           })
           .catch((error) => {
             logObject(error);
+
+            if (isFunction(failCallback)) {
+              failCallback(error);
+            }
+
+            if (isFunction(completeCallback)) {
+              completeCallback();
+            }
 
             that.setState({
               dataLoading: false,
@@ -389,6 +442,10 @@ class InternalFlow extends Core {
     } catch (error) {
       logObject({ loadApiPath, requestData });
 
+      if (isFunction(completeCallback)) {
+        completeCallback();
+      }
+
       that.setState({
         dataLoading: false,
         loadSuccess: false,
@@ -403,17 +460,25 @@ class InternalFlow extends Core {
     }
   };
 
-  pageListData = (otherState, callback = null, delay = 0) => {
+  pageListData = ({
+    otherState,
+    delay = 0,
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
     const s = { ...otherState, paging: true };
 
     this.initLoad({
       otherState: s,
       delay: delay || 0,
-      callback: callback || null,
+      successCallback: successCallback || null,
+      failCallback: failCallback || null,
+      completeCallback: completeCallback || null,
     });
   };
 
-  reloadData = (otherState, callback = null, delay = 0) => {
+  reloadData = (otherState, successCallback = null, delay = 0) => {
     const s = {
       ...otherState,
       reloading: true,
@@ -422,21 +487,21 @@ class InternalFlow extends Core {
     this.initLoad({
       otherState: s,
       delay: delay || 0,
-      callback: callback || null,
+      successCallback: successCallback || null,
     });
   };
 
-  searchData = (otherState, callback = null, delay = 0) => {
+  searchData = (otherState, successCallback = null, delay = 0) => {
     const s = { ...otherState, searching: true };
 
     this.initLoad({
       otherState: s,
       delay: delay || 0,
-      callback,
+      successCallback: successCallback || null,
     });
   };
 
-  refreshData = (otherState, callback = null, delay = 0) => {
+  refreshData = (otherState, successCallback = null, delay = 0) => {
     const s = {
       ...otherState,
       refreshing: true,
@@ -445,7 +510,7 @@ class InternalFlow extends Core {
     this.initLoad({
       otherState: s,
       delay: delay || 0,
-      callback,
+      successCallback: successCallback || null,
     });
   };
 

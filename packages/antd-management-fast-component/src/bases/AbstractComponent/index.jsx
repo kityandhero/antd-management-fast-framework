@@ -1,4 +1,3 @@
-import nprogress from 'nprogress';
 import { Component } from 'react';
 
 import { dispatch } from 'easy-soft-dva';
@@ -14,6 +13,7 @@ import {
   logTrace,
   mergeTextMessage,
   navigateTo,
+  redirectTo,
   showSimpleErrorMessage,
   toNumber,
 } from 'easy-soft-utility';
@@ -21,7 +21,7 @@ import {
 import {
   defaultBaseState,
   filterUpdateModel,
-  getUseNprogress,
+  logRender,
   logRenderFurther,
   shallowUpdateEqual,
   shouldComponentUpdateResultShowType,
@@ -81,7 +81,6 @@ class AbstractComponent extends Component {
 
     this.state = {
       ...defaultState,
-
       error: null,
       errorInfo: null,
       counter: 0,
@@ -362,36 +361,20 @@ class AbstractComponent extends Component {
     return dispatch({ type, payload, alias });
   };
 
-  goToPath = (path) => {
+  goToPath = (path, withProgress = false) => {
     const location = {
       pathname: path,
     };
 
-    if (getUseNprogress()) {
-      nprogress.inc();
-
-      setTimeout(() => {
-        nprogress.done();
-      }, 400);
-    }
-
-    navigateTo(location);
+    navigateTo({ ...location, withProgress });
   };
 
-  redirectToPath = (path) => {
+  redirectToPath = (path, withProgress = false) => {
     const location = {
       pathname: path,
     };
 
-    if (getUseNprogress()) {
-      nprogress.inc();
-
-      setTimeout(() => {
-        nprogress.done();
-      }, 400);
-    }
-
-    navigateTo(location);
+    redirectTo({ ...location, withProgress });
   };
 
   checkHasMore = (pageNo, pageSize, total) => {
@@ -458,6 +441,10 @@ class AbstractComponent extends Component {
     const { dataLoading, processing } = this.state;
 
     return dataLoading || processing;
+  }
+
+  logRender(message) {
+    logRender(this.constructor.name, message);
   }
 
   renderFurther() {

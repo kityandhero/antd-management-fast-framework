@@ -10,7 +10,6 @@ import {
  * 使用者可以自行实现compare方法
  * @param {*} prepProps
  * @param {*} nextProps
- * @returns
  */
 function defaultCompareFunction(prepProperties, nextProperties) {
   try {
@@ -35,7 +34,6 @@ function Container(properties) {
  *
  * @param {*} component 要缓存的组件
  * @param {*} compare 缓存的方法,不传则使用默认比较方法
- * @returns
  */
 function MemoFunction(component, compare = defaultCompareFunction) {
   const memoComponent = React.memo(component, compare);

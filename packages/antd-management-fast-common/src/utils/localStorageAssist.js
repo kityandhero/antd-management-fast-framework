@@ -9,7 +9,6 @@ import {
 
 /**
  * 获取LocalStorage数据
- * @export
  * @param {*} key
  * @param {*} value
  */
@@ -33,7 +32,6 @@ function getFromLocalStorage(key) {
 
 /**
  * 存储本地数据
- * @export
  * @param {*} key
  * @param {*} value
  */
@@ -49,7 +47,6 @@ function saveToLocalStorage(key, value) {
 
 /**
  * 移除LocalStorage数据
- * @export
  * @param {*} key
  */
 function removeLocalStorage(key) {
@@ -60,7 +57,6 @@ function removeLocalStorage(key) {
 
 /**
  * 清空LocalStorage数据
- * @export
  * @param {*} key
  */
 function flushLocalStorage() {

@@ -11,7 +11,6 @@ import { getCurrentParameters as getCurrentParameters } from './routeAssist';
 
 /**
  * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state，
- * @export
  */
 export function getDerivedStateFromPropertiesForUrlParametersCore() {
   const parameters = getCurrentParameters();

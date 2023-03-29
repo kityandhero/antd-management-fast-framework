@@ -92,10 +92,13 @@ export const appInitDefault = {
   audioUploadMaxSize: 4,
   videoUploadMaxSize: 4,
   fileUploadMaxSize: 2,
-  useNprogress: true,
   tinymceApiKey: '',
   tinymceImagesUploadUrl: '',
-  layoutSetting: {},
+  layoutSetting: {
+    fixSiderbar: true,
+    layout: 'mix',
+    splitMenus: true,
+  },
 };
 
 export const layoutCollection = {

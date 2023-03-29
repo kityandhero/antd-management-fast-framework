@@ -69,7 +69,6 @@ export function defaultListState() {
 export function defaultPageListState() {
   const data = {
     ...defaultCommonState(),
-
     paramsKey: '',
     loadApiPath: '',
     dateRangeFieldName: '发生时间',
@@ -119,7 +118,6 @@ export const requestAnimFrame = requestAnimFrameCustom;
 /**
  * 语言渲染封装器
  * @param {*} o 语言配置
- * @returns
  */
 function FormatMessageWrapper(o) {
   const { formatMessage: formatMessageUseIntl } = useIntl();
@@ -130,7 +128,6 @@ function FormatMessageWrapper(o) {
 /**
  * 语言渲染封装器
  * @param {*} o 语言配置
- * @returns
  */
 export function formatMessage(o) {
   return FormatMessageWrapper(o);
@@ -146,7 +143,6 @@ export function arrayMoveMutate(array, from, to) {
 
 /**
  * 获取工作队列
- * @export
  */
 export function getQueue() {
   if (window.queue === undefined) {
@@ -160,9 +156,7 @@ export function getQueue() {
 /**
  * 通过种子等配置返回随机颜色值
  *
- * @export
  * @param {*} seed
- * @returns
  */
 export function buildRandomHexColor({
   seed,

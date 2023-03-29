@@ -3,13 +3,13 @@ import React, { PureComponent } from 'react';
 
 import { connect } from 'easy-soft-dva';
 
-@connect(({ schedulingControl }) => ({
-  schedulingControl,
+@connect(({ remoteLoadingControl }) => ({
+  remoteLoadingControl,
 }))
 class LoadingOverlay extends PureComponent {
   render() {
     const {
-      schedulingControl: { remoteLoading },
+      remoteLoadingControl: { remoteLoading },
       children,
     } = this.props;
 

@@ -26,6 +26,7 @@ const externalCollection = [
   '@rollup/plugin-commonjs',
   '@rollup/plugin-url',
   '@svgr/rollup',
+  '@tanem/react-nprogress',
   '@tinymce/tinymce-react',
   '@umijs/max',
   'antd',
@@ -71,7 +72,6 @@ const externalCollection = [
   'dayjs',
   'moment',
   'node-cache',
-  'nprogress',
   'numeral',
   'nzh',
   'rc-util/es/hooks/useMergedState',
@@ -199,8 +199,6 @@ export function buildConfig({
 /**
  * 占位函数
  *
- * @export
- * @returns
  */
 export function emptyExport() {
   return {};

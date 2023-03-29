@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 
 class VerticalBox extends PureComponent {
   render() {
-    const { style, align, alignJustify, children } = this.props;
+    const { className, style, bodyStyle, align, alignJustify, children } =
+      this.props;
 
     let alignStyle = 'center';
 
@@ -63,16 +64,16 @@ class VerticalBox extends PureComponent {
     }
 
     const flexStyle = {
+      ...bodyStyle,
       display: 'flex',
       width: '100%',
       height: '100%',
-      ...style,
       alignItems: alignStyle,
       justifyContent: alignJustifyStyle,
     };
 
     return (
-      <div style={style}>
+      <div style={style} className={className}>
         <div style={flexStyle}>{children}</div>
       </div>
     );
@@ -82,6 +83,7 @@ class VerticalBox extends PureComponent {
 VerticalBox.defaultProps = {
   fitWidth: true,
   style: {},
+  bodyStyle: {},
   align: 'center',
   alignJustify: 'flex-start',
 };

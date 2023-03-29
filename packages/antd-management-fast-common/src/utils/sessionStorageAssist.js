@@ -9,7 +9,6 @@ import {
 
 /**
  * 获取SessionStorage数据
- * @export
  * @param {*} key
  * @param {*} value
  */
@@ -33,7 +32,6 @@ function getFromSessionStorage(key) {
 
 /**
  * 存储本地数据
- * @export
  * @param {*} key
  * @param {*} value
  */
@@ -49,7 +47,6 @@ function saveToSessionStorage(key, value) {
 
 /**
  * 移除SessionStorage数据
- * @export
  * @param {*} key
  */
 function removeSessionStorage(key) {
@@ -60,7 +57,6 @@ function removeSessionStorage(key) {
 
 /**
  * 清空SessionStorage数据
- * @export
  * @param {*} key
  */
 function flushSessionStorage() {

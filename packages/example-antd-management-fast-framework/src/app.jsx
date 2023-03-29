@@ -1,14 +1,13 @@
 import React from 'react';
 
-import { analysisRoute, layoutCollection } from 'antd-management-fast-common';
-import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
+import { analysisRoute } from 'antd-management-fast-common';
 import {
   ApplicationWrapper,
-  getLayoutSetting,
+  mergeLayoutSetting,
 } from 'antd-management-fast-framework';
 
 import { MenuCard } from './components/MenuCard';
-import { getLogo, getTitle } from './utils/tools';
+import { buildActionItems, getLogo, getTitle, themeToken } from './utils/tools';
 
 // 全局初始化数据配置，用于 Layout 用户信息和权限初始化
 // 更多信息见文档:https://next.umijs.org/docs/api/runtime-config#getinitialstate
@@ -37,87 +36,36 @@ export function onRouteChange({
 }
 
 export const layout = ({ initialState, setInitialState }) => {
-  return getLayoutSetting({
+  return mergeLayoutSetting({
     logo: getLogo(),
     title: getTitle(),
     water: 'test',
-    actionItems: [
-      ({ layout: layoutValue }) => {
-        if (layoutValue === layoutCollection.side) {
-          return iconBuilder.search({
-            style: {
-              color: '#868686',
-            },
-          });
-        }
-
-        return iconBuilder.infoCircle(
-          {
-            style: {
-              color: '#868686',
-            },
-          },
-          true,
-        );
-      },
-      iconBuilder.infoCircle(
-        {
-          style: {
-            color: '#868686',
-          },
-        },
-        true,
-      ),
-    ],
+    actionItems: buildActionItems(),
     initialState: initialState || {},
     setInitialState,
-    // themeToken: {
-    //   colorBgAppListIconHover: 'rgba(0,0,0,0.06)',
-    //   colorTextAppListIconHover: 'rgba(255,255,255,0.95)',
-    //   colorTextAppListIcon: 'rgba(255,255,255,0.85)',
-    //   sider: {
-    //     colorBgCollapsedButton: '#fff',
-    //     colorTextCollapsedButtonHover: 'rgba(0,0,0,0.65)',
-    //     colorTextCollapsedButton: 'rgba(0,0,0,0.45)',
-    //     colorMenuBackground: '#004FD9',
-    //     colorBgMenuItemCollapsedHover: 'rgba(0,0,0,0.06)',
-    //     colorBgMenuItemCollapsedSelected: 'rgba(0,0,0,0.15)',
-    //     colorBgMenuItemCollapsedElevated: 'rgba(0,0,0,0.85)',
-    //     colorMenuItemDivider: 'rgba(255,255,255,0.15)',
-    //     colorBgMenuItemHover: 'rgba(0,0,0,0.06)',
-    //     colorBgMenuItemSelected: 'rgba(0,0,0,0.15)',
-    //     colorTextMenuSelected: '#fff',
-    //     colorTextMenuItemHover: 'rgba(255,255,255,0.75)',
-    //     colorTextMenu: 'rgba(255,255,255,0.75)',
-    //     colorTextMenuSecondary: 'rgba(255,255,255,0.65)',
-    //     colorTextMenuTitle: 'rgba(255,255,255,0.95)',
-    //     colorTextMenuActive: 'rgba(255,255,255,0.95)',
-    //     colorTextSubMenuSelected: '#fff',
-    //   },
-    // },
-    config: {
-      headerTitleRender: (logo, title, _) => {
-        const defaultDom = (
-          <AnchorLink>
-            {logo}
-            {title}
-          </AnchorLink>
-        );
-
-        if (document.body.clientWidth < 1400) {
-          return defaultDom;
-        }
-
-        if (_.isMobile) return defaultDom;
-
-        return (
-          <>
-            {defaultDom}
-
-            <MenuCard />
-          </>
-        );
+    themeToken: themeToken,
+    keepCollapsed: true,
+    groupMenu: true,
+    collapsedShowTitle: true,
+    backgroundImageItems: [
+      {
+        src: 'https://img.alicdn.com/imgextra/i3/O1CN018NxReL1shX85Yz6Cx_!!6000000005798-2-tps-884-496.png',
+        bottom: 0,
+        left: 0,
+        width: '331px',
       },
-    },
+    ],
+    menuFooter: (
+      <div
+        style={{
+          textAlign: 'center',
+          paddingBlockStart: 12,
+        }}
+      >
+        <div>Menu Footer</div>
+      </div>
+    ),
+    miniMenu: <MenuCard />,
+    config: {},
   });
 };

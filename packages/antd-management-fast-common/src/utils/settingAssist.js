@@ -1,5 +1,3 @@
-import { defaultSettings as defaultInterfaceSettings } from '@ant-design/pro-layout/lib/defaultSettings';
-
 import {
   checkStringIsNullOrWhiteSpace,
   getApplicationMergeConfig,
@@ -63,15 +61,6 @@ export function getTinymceApiKey() {
   };
 
   return tinymceApiKey || '';
-}
-
-export function getUseNprogress() {
-  const { useNprogress } = {
-    useNprogress: true,
-    ...getApplicationMergeConfig(),
-  };
-
-  return useNprogress;
 }
 
 export function getFileUploadMaxSize() {
@@ -393,7 +382,6 @@ export function getLayoutSetting() {
   };
 
   return {
-    ...defaultInterfaceSettings,
     ...layoutSetting,
   };
 }

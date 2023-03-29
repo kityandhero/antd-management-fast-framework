@@ -1,16 +1,15 @@
 import { Dropdown } from 'antd';
-import nprogress from 'nprogress';
 import React, { Fragment } from 'react';
 import { SettingDrawer } from '@ant-design/pro-layout';
-import { Link } from '@umijs/max';
 
 import {
   checkObjectIsNullOrEmpty,
   checkStringIsNullOrWhiteSpace,
+  endsWith,
   isEmptyObject,
   isFunction,
   logExecute,
-  showSimpleErrorMessage,
+  toNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -18,12 +17,13 @@ import {
   getApplicationListData,
   getLeftBarLogo,
   getLeftBarText,
-  getUseNprogress,
+  layoutCollection,
 } from 'antd-management-fast-common';
 import {
   AnchorLink,
   Footer,
   iconBuilder,
+  VerticalBox,
 } from 'antd-management-fast-component';
 
 import { Bootstrap } from '../components';
@@ -33,8 +33,32 @@ import {
   getInterfaceSetting,
   setInterfaceSetting,
 } from './interfaceSettingCacheAssist';
+import {
+  getLocalInterfaceSetting,
+  setLocalInterfaceSetting,
+} from './interfaceSettingLocalAssist';
 
-export function getLayoutSetting({
+/**
+ * merge layout runtime config
+ * @param {Object} options
+ * @param {string} options.logo logo
+ * @param {string} options.title title
+ * @param {water} options.water water
+ * @param {Array} options.footerLinks footerLinks
+ * @param {Object} options.initialState initialState
+ * @param {Function} options.setInitialState initialState setter
+ * @param {Object} options.themeToken theme token
+ * @param {Array} options.avatarMenuItems avatar menu items in dropdown
+ * @param {Array} options.actionItems action items in header
+ * @param {null|Object} options.menuFooter menu footer, it only take effect on collapsed
+ * @param {null|Object} options.miniMenu header mini card menu
+ * @param {Array} options.backgroundImageItems layout background image items
+ * @param {boolean} options.keepCollapsed memory collapsed statue and use this status when reopen, default is false
+ * @param {boolean} options.groupMenu take menu to group type, default is false
+ * @param {boolean} options.collapsedShowTitle show title when collapsed, it will trigger more render
+ * @param {Object} options.config other layout config
+ */
+export function mergeLayoutSetting({
   logo = '',
   title = '',
   water = '',
@@ -44,6 +68,12 @@ export function getLayoutSetting({
   themeToken = {},
   avatarMenuItems = [],
   actionItems = [],
+  menuFooter = null,
+  miniMenu = null,
+  backgroundImageItems = [],
+  keepCollapsed = false,
+  groupMenu = false,
+  collapsedShowTitle = false,
   config,
 }) {
   logExecute('getLayoutSetting');
@@ -92,19 +122,37 @@ export function getLayoutSetting({
     settings = getInterfaceSetting();
   }
 
+  const { collapsed } = {
+    collapsed: false,
+    ...getLocalInterfaceSetting(),
+  };
+
+  const keepCollapsedSetting = {};
+
+  if (keepCollapsed) {
+    keepCollapsedSetting.breakpoint = false;
+    keepCollapsedSetting.defaultCollapsed = collapsed;
+  }
+
+  const { layout: layoutCurrentValue } = settings;
+
   return {
     ...settings,
     disableContentMargin: false,
     logo: getLeftBarLogo(logo),
     title: checkStringIsNullOrWhiteSpace(title) ? getLeftBarText() : title,
-    menu: {},
-    siderMenuType: 'group',
+    menu: {
+      ...(collapsed ? {} : groupMenu ? { type: 'group' } : {}),
+      ...(collapsed ? { collapsedShowTitle: collapsedShowTitle } : {}),
+    },
+    menuProps: {},
     waterMarkProps: checkStringIsNullOrWhiteSpace(title)
       ? {}
       : {
           content: water,
         },
     appList: getApplicationListData(),
+    bgLayoutImgList: backgroundImageItems,
     avatarProps: layoutAvatarAdjust,
     contentStyle: {
       padding: '0',
@@ -113,7 +161,15 @@ export function getLayoutSetting({
       const defaultDom = (
         <AnchorLink>
           {logo}
-          {title}
+
+          <VerticalBox
+            className="amf-header-logo-title-box"
+            style={{
+              marginLeft: '6px',
+            }}
+          >
+            {title}
+          </VerticalBox>
         </AnchorLink>
       );
 
@@ -123,40 +179,43 @@ export function getLayoutSetting({
 
       if (_.isMobile) return defaultDom;
 
-      return <>{defaultDom}</>;
-    },
-    itemRender: (route) => route.breadcrumbName,
-    menuItemRender: (item, dom) => {
-      const { children: childrenArray } = item.children || {
-        children: [],
-      };
-
-      if (item.isUrl || (childrenArray || []).length > 0 || !item.path) {
-        return dom;
-      }
+      if (!miniMenu) return defaultDom;
 
       return (
-        <Link
-          to={item.path}
-          onClick={() => {
-            if (getUseNprogress()) {
-              if ((nprogress || null) == null) {
-                const text = 'nprogress need install';
+        <>
+          {defaultDom}
 
-                showSimpleErrorMessage(text);
-              }
-
-              nprogress.inc();
-
-              setTimeout(() => {
-                nprogress.done();
-              }, 400);
-            }
-          }}
-        >
-          {dom}
-        </Link>
+          {miniMenu}
+        </>
       );
+    },
+    itemRender: (route) => route.breadcrumbName,
+    postMenuData: (d) => {
+      if (!collapsedShowTitle) {
+        return d;
+      }
+
+      if (collapsed) {
+        for (const o of d) {
+          if (
+            layoutCurrentValue === layoutCollection.mix &&
+            o.parentId === 'ant-design-pro-layout'
+          ) {
+            continue;
+          }
+
+          if (!endsWith(o.locale, '-mini')) {
+            o.locale = `${o.locale}-mini`;
+          }
+        }
+      }
+
+      return d;
+    },
+    menuFooterRender: (properties) => {
+      if (properties?.collapsed) return;
+
+      return menuFooter;
     },
     footerRender: () => <Footer links={footerLinks} />,
     logout: null,
@@ -180,10 +239,37 @@ export function getLayoutSetting({
 
       return [...actionItemsAdjust];
     },
-    // eslint-disable-next-line no-unused-vars
-    menuFooterRender: (properties) => null,
     ...(checkObjectIsNullOrEmpty(themeToken) ? {} : { token: themeToken }),
     ...config,
+    ...keepCollapsedSetting,
+    onCollapse: (collapsed) => {
+      if (!keepCollapsed) {
+        return;
+      }
+
+      const v = {
+        ...getLocalInterfaceSetting(),
+        collapsed: collapsed || false,
+      };
+
+      setLocalInterfaceSetting(v);
+
+      if (!collapsedShowTitle) {
+        return;
+      }
+
+      setInitialState((preInitialState) => {
+        const { updateCount: preUpdateCount = {} } = {
+          updateCount: 0,
+          ...preInitialState,
+        };
+
+        return {
+          ...preInitialState,
+          updateCount: toNumber(preUpdateCount) + 1,
+        };
+      });
+    },
     childrenRender: (children, properties) => {
       return (
         <>
@@ -197,7 +283,7 @@ export function getLayoutSetting({
               settings={settings}
               onSettingChange={(settings) => {
                 setInitialState((preInitialState) => {
-                  let { settings: preSettings = {} } = {
+                  const { settings: preSettings = {} } = {
                     settings: {},
                     ...preInitialState,
                   };

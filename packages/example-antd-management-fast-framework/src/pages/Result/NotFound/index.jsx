@@ -1,6 +1,7 @@
 import { Button } from 'antd';
 
 import { connect } from 'easy-soft-dva';
+import { redirectTo } from 'easy-soft-utility';
 
 import { Result } from 'antd-management-fast-component';
 import { AuthorizationWrapper } from 'antd-management-fast-framework';
@@ -18,7 +19,16 @@ class Index extends AuthorizationWrapper {
       <NotFound
         title="404"
         subTitle="Sorry, the page you visited does not exist."
-        extra={<Button type="primary">Back Home</Button>}
+        extra={
+          <Button
+            type="primary"
+            onClick={() => {
+              redirectTo({ pathname: '/', withProgress: true });
+            }}
+          >
+            Back Home
+          </Button>
+        }
       />
     );
   }

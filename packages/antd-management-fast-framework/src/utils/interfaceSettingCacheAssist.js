@@ -25,7 +25,6 @@ export function getInterfaceSetting() {
 /**
  * Set interfaceSetting catch
  * @param {String} value
- * @returns
  */
 export function setInterfaceSetting(value) {
   const key = storageKeyCollection.interfaceSetting;
@@ -36,9 +35,7 @@ export function setInterfaceSetting(value) {
 /**
  * Remove interfaceSetting catch
  *
- * @export
  * @param {*} fn
- * @returns
  */
 export function removeInterfaceSetting() {
   const key = storageKeyCollection.interfaceSetting;

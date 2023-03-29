@@ -10,6 +10,8 @@ import {
   logDevelop,
   removeCurrentOperatorCache,
   removeLocalMetaData,
+  setProgressStartHandler,
+  setProgressStopHandler,
 } from 'easy-soft-utility';
 
 import { setEasySoftUtilityHandler } from 'antd-management-fast-common';
@@ -17,6 +19,7 @@ import { setEasySoftUtilityHandler } from 'antd-management-fast-common';
 import { appendEmbedModelBuilder } from '../modelBuilders';
 
 import { loadApplicationInitialData } from './bootstrap';
+import { progressControlAssist } from './progressControlAssist';
 
 let configEnvironmentComplete = false;
 
@@ -27,6 +30,14 @@ export function configEnvironment(otherConfigHandler = null) {
   logDevelop('--------------------------------------------');
 
   setEasySoftUtilityHandler();
+
+  setProgressStartHandler(() => {
+    progressControlAssist.startProgressing();
+  });
+
+  setProgressStopHandler(() => {
+    progressControlAssist.stopProgressing();
+  });
 
   if (isFunction(otherConfigHandler)) {
     otherConfigHandler();
