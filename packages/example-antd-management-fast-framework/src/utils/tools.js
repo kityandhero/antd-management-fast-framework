@@ -1,4 +1,4 @@
-import { Input } from 'antd';
+import { Input, Space } from 'antd';
 
 import { getModelRemoteData } from 'easy-soft-dva';
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
@@ -131,4 +131,50 @@ export function buildActionItems() {
       true,
     ),
   ];
+}
+
+export function buildSiderMenuExtra() {
+  return (
+    <div
+      style={{
+        paddingTop: '5px',
+      }}
+    >
+      <Space align="center">
+        <Input
+          style={{
+            borderRadius: 4,
+            backgroundColor: 'rgba(0,0,0,0.03)',
+          }}
+          prefix={iconBuilder.search({
+            style: {
+              color: 'rgba(0, 0, 0, 0.15)',
+            },
+          })}
+          placeholder="搜索方案"
+          bordered={false}
+        />
+
+        {iconBuilder.search({
+          style: {
+            color: 'var(--ant-primary-color)',
+            fontSize: 18,
+          },
+        })}
+      </Space>
+    </div>
+  );
+}
+
+export function buildSiderMenuFooter() {
+  return (
+    <div
+      style={{
+        textAlign: 'center',
+        paddingBlockStart: 12,
+      }}
+    >
+      <div>Menu Footer</div>
+    </div>
+  );
 }

@@ -68,6 +68,7 @@ export function mergeLayoutSetting({
   themeToken = {},
   avatarMenuItems = [],
   actionItems = [],
+  menuExtra = null,
   menuFooter = null,
   miniMenu = null,
   backgroundImageItems = [],
@@ -211,6 +212,13 @@ export function mergeLayoutSetting({
       }
 
       return d;
+    },
+    menuExtraRender: ({ collapsed }) => {
+      if (collapsed || (menuExtra || null) == null) {
+        return null;
+      }
+
+      return menuExtra;
     },
     menuFooterRender: (properties) => {
       if (properties?.collapsed) return;

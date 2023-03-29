@@ -7,7 +7,14 @@ import {
 } from 'antd-management-fast-framework';
 
 import { MenuCard } from './components/MenuCard';
-import { buildActionItems, getLogo, getTitle, themeToken } from './utils/tools';
+import {
+  buildActionItems,
+  buildSiderMenuExtra,
+  buildSiderMenuFooter,
+  getLogo,
+  getTitle,
+  themeToken,
+} from './utils/tools';
 
 // 全局初始化数据配置，用于 Layout 用户信息和权限初始化
 // 更多信息见文档:https://next.umijs.org/docs/api/runtime-config#getinitialstate
@@ -55,16 +62,8 @@ export const layout = ({ initialState, setInitialState }) => {
         width: '331px',
       },
     ],
-    menuFooter: (
-      <div
-        style={{
-          textAlign: 'center',
-          paddingBlockStart: 12,
-        }}
-      >
-        <div>Menu Footer</div>
-      </div>
-    ),
+    menuExtra: buildSiderMenuExtra(),
+    menuFooter: buildSiderMenuFooter(),
     miniMenu: <MenuCard />,
     config: {},
   });
