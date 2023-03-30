@@ -17,7 +17,7 @@ export function convertOptionOrRadioData(o, index) {
     index,
     label: name,
     value: flag,
-    disabled: !!availability,
+    disabled: !availability,
     ...o,
   };
 }
