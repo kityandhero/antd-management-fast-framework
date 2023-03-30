@@ -18,6 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
+  convertOptionOrRadioData,
 } from 'antd-management-fast-component';
 import { getMergeMetaData } from 'antd-management-fast-framework';
 
@@ -79,7 +80,7 @@ export function renderSearchScoreRankSelect({
     name,
     helper,
     list: refitScoreRankList({ withUnlimited }),
-    dataConvert: (o) => o,
+    dataConvert: convertOptionOrRadioData,
   });
 }
 
@@ -96,11 +97,7 @@ export function renderCustomScoreRankSelect({
     separator,
     size,
     list: refitScoreRankList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -123,11 +120,7 @@ export function renderFormScoreRankSelect({
     name,
     helper,
     list: refitScoreRankList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
@@ -148,11 +141,7 @@ export function renderCustomScoreRankRadio({
     separator,
     size,
     list: refitScoreRankList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -175,11 +164,7 @@ export function renderFormScoreRankRadio({
     name,
     helper,
     list: refitScoreRankList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,

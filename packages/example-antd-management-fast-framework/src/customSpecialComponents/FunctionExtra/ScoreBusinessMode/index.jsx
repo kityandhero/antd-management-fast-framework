@@ -18,6 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
+  convertOptionOrRadioData,
 } from 'antd-management-fast-component';
 import { getMergeMetaData } from 'antd-management-fast-framework';
 
@@ -79,7 +80,7 @@ export function renderSearchScoreBusinessModeSelect({
     name,
     helper,
     list: refitScoreBusinessModeList({ withUnlimited }),
-    dataConvert: (o) => o,
+    dataConvert: convertOptionOrRadioData,
   });
 }
 
@@ -96,11 +97,7 @@ export function renderCustomScoreBusinessModeSelect({
     separator,
     size,
     list: refitScoreBusinessModeList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -123,11 +120,7 @@ export function renderFormScoreBusinessModeSelect({
     name,
     helper,
     list: refitScoreBusinessModeList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
@@ -148,11 +141,7 @@ export function renderCustomScoreBusinessModeRadio({
     separator,
     size,
     list: refitScoreBusinessModeList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -175,11 +164,7 @@ export function renderFormScoreBusinessModeRadio({
     name,
     helper,
     list: refitScoreBusinessModeList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,

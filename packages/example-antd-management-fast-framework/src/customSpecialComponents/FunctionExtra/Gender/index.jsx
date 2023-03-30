@@ -18,6 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
+  convertOptionOrRadioData,
 } from 'antd-management-fast-component';
 import { getMergeMetaData } from 'antd-management-fast-framework';
 
@@ -79,7 +80,7 @@ export function renderSearchGenderSelect({
     name,
     helper,
     list: refitGenderList({ withUnlimited }),
-    dataConvert: (o) => o,
+    dataConvert: convertOptionOrRadioData,
   });
 }
 
@@ -96,11 +97,7 @@ export function renderCustomGenderSelect({
     separator,
     size,
     list: refitGenderList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -123,11 +120,7 @@ export function renderFormGenderSelect({
     name,
     helper,
     list: refitGenderList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
@@ -148,11 +141,7 @@ export function renderCustomGenderRadio({
     separator,
     size,
     list: refitGenderList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -175,11 +164,7 @@ export function renderFormGenderRadio({
     name,
     helper,
     list: refitGenderList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,

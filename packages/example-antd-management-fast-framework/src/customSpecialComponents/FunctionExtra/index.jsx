@@ -27,4 +27,3 @@ export * from './SimpleRenderType';
 export * from './SimpleStatus';
 export * from './UserScoreOrderStatus';
 export * from './WebChannel';
-export * from './Whether';

@@ -12,6 +12,7 @@ import {
   whetherList,
 } from 'antd-management-fast-common';
 
+import { convertOptionOrRadioData } from '../../Function/Assist';
 import {
   buildFlexRadio,
   buildFlexSelect,
@@ -57,11 +58,7 @@ export function renderSearchWhetherSelect({
     name,
     helper,
     list: refitWhetherList({ withUnlimited }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
   });
 }
 
@@ -78,11 +75,7 @@ export function renderCustomWhetherSelect({
     separator,
     size,
     list: refitWhetherList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -105,11 +98,7 @@ export function renderFormWhetherSelect({
     name,
     helper,
     list: refitWhetherList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
@@ -130,11 +119,7 @@ export function renderCustomWhetherRadio({
     separator,
     size,
     list: refitWhetherList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -157,11 +142,7 @@ export function renderFormWhetherRadio({
     name,
     helper,
     list: refitWhetherList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,

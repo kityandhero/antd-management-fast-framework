@@ -18,6 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
+  convertOptionOrRadioData,
 } from 'antd-management-fast-component';
 import { getMergeMetaData } from 'antd-management-fast-framework';
 
@@ -84,7 +85,7 @@ export function renderSearchGovernmentAffairRoleCreateModeSelect({
     name,
     helper,
     list: refitGovernmentAffairRoleCreateModeList({ withUnlimited }),
-    dataConvert: (o) => o,
+    dataConvert: convertOptionOrRadioData,
   });
 }
 
@@ -101,11 +102,7 @@ export function renderCustomGovernmentAffairRoleCreateModeSelect({
     separator,
     size,
     list: refitGovernmentAffairRoleCreateModeList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -128,11 +125,7 @@ export function renderFormGovernmentAffairRoleCreateModeSelect({
     name,
     helper,
     list: refitGovernmentAffairRoleCreateModeList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
@@ -153,11 +146,7 @@ export function renderCustomGovernmentAffairRoleCreateModeRadio({
     separator,
     size,
     list: refitGovernmentAffairRoleCreateModeList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -180,11 +169,7 @@ export function renderFormGovernmentAffairRoleCreateModeRadio({
     name,
     helper,
     list: refitGovernmentAffairRoleCreateModeList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,

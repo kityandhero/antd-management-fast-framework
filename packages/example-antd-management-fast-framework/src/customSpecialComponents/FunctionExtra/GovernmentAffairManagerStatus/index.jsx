@@ -18,6 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
+  convertOptionOrRadioData,
 } from 'antd-management-fast-component';
 import { getMergeMetaData } from 'antd-management-fast-framework';
 
@@ -84,7 +85,7 @@ export function renderSearchGovernmentAffairManagerStatusSelect({
     name,
     helper,
     list: refitGovernmentAffairManagerStatusList({ withUnlimited }),
-    dataConvert: (o) => o,
+    dataConvert: convertOptionOrRadioData,
   });
 }
 
@@ -101,11 +102,7 @@ export function renderCustomGovernmentAffairManagerStatusSelect({
     separator,
     size,
     list: refitGovernmentAffairManagerStatusList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -128,11 +125,7 @@ export function renderFormGovernmentAffairManagerStatusSelect({
     name,
     helper,
     list: refitGovernmentAffairManagerStatusList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
@@ -153,11 +146,7 @@ export function renderCustomGovernmentAffairManagerStatusRadio({
     separator,
     size,
     list: refitGovernmentAffairManagerStatusList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -180,11 +169,7 @@ export function renderFormGovernmentAffairManagerStatusRadio({
     name,
     helper,
     list: refitGovernmentAffairManagerStatusList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,

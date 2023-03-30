@@ -18,6 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
+  convertOptionOrRadioData,
 } from 'antd-management-fast-component';
 import { getMergeMetaData } from 'antd-management-fast-framework';
 
@@ -84,7 +85,7 @@ export function renderSearchArticleReminderPlanShowTargetSelect({
     name,
     helper,
     list: refitArticleReminderPlanShowTargetList({ withUnlimited }),
-    dataConvert: (o) => o,
+    dataConvert: convertOptionOrRadioData,
   });
 }
 
@@ -101,11 +102,7 @@ export function renderCustomArticleReminderPlanShowTargetSelect({
     separator,
     size,
     list: refitArticleReminderPlanShowTargetList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -128,11 +125,7 @@ export function renderFormArticleReminderPlanShowTargetSelect({
     name,
     helper,
     list: refitArticleReminderPlanShowTargetList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
@@ -153,11 +146,7 @@ export function renderCustomArticleReminderPlanShowTargetRadio({
     separator,
     size,
     list: refitArticleReminderPlanShowTargetList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -180,11 +169,7 @@ export function renderFormArticleReminderPlanShowTargetRadio({
     name,
     helper,
     list: refitArticleReminderPlanShowTargetList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,

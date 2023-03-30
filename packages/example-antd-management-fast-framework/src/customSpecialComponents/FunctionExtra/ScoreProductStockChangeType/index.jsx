@@ -18,6 +18,7 @@ import {
   buildOptionItem,
   buildRadioItem,
   buildSearchFormSelect,
+  convertOptionOrRadioData,
 } from 'antd-management-fast-component';
 import { getMergeMetaData } from 'antd-management-fast-framework';
 
@@ -82,7 +83,7 @@ export function renderSearchScoreProductStockChangeTypeSelect({
     name,
     helper,
     list: refitScoreProductStockChangeTypeList({ withUnlimited }),
-    dataConvert: (o) => o,
+    dataConvert: convertOptionOrRadioData,
   });
 }
 
@@ -99,11 +100,7 @@ export function renderCustomScoreProductStockChangeTypeSelect({
     separator,
     size,
     list: refitScoreProductStockChangeTypeList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -126,11 +123,7 @@ export function renderFormScoreProductStockChangeTypeSelect({
     name,
     helper,
     list: refitScoreProductStockChangeTypeList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
@@ -151,11 +144,7 @@ export function renderCustomScoreProductStockChangeTypeRadio({
     separator,
     size,
     list: refitScoreProductStockChangeTypeList({ withUnlimited: true }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
@@ -178,11 +167,7 @@ export function renderFormScoreProductStockChangeTypeRadio({
     name,
     helper,
     list: refitScoreProductStockChangeTypeList({ withUnlimited: false }),
-    dataConvert: (o, index) => {
-      const { flag, name } = o;
-
-      return { index, label: name, value: flag, disabled: false, ...o };
-    },
+    dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,

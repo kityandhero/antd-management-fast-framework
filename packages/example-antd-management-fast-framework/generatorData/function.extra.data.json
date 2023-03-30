@@ -11,11 +11,6 @@
       "name": "renderType"
     },
     {
-      "functionSegment": "Whether",
-      "label": "调用时设置",
-      "name": "whether"
-    },
-    {
       "functionSegment": "MediaType",
       "label": "媒体类型",
       "name": "mediaType"
