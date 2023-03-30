@@ -7,7 +7,6 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,13 +19,14 @@ import {
   buildRadioItem,
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
+import { getMergeMetaData } from 'antd-management-fast-framework';
 
 export function refitArticleReminderPlanShowTargetList({
   withUnlimited = true,
 }) {
   const { articleReminderPlanShowTargetList: list } = {
     articleReminderPlanShowTargetList: [],
-    ...getMetaData(),
+    ...getMergeMetaData(),
   };
 
   if (withUnlimited) {

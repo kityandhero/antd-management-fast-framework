@@ -207,7 +207,7 @@ export function getMetaDataApi() {
   return metaDataApi || '';
 }
 
-export function getMetaData() {
+export function getPresetMetaData() {
   const { metaData } = {
     metaData: '',
     ...getApplicationMergeConfig(),

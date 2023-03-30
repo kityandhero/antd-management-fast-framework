@@ -12,7 +12,6 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -25,11 +24,12 @@ import {
   buildRadioItem,
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
+import { getMergeMetaData } from 'antd-management-fast-framework';
 
 export function refit<%= o.functionSegment %>List({ withUnlimited = true }) {
   const { <%= o.defineName %>List: list } = {
     <%= o.defineName %>List: [],
-    ...getMetaData(),
+    ...getMergeMetaData(),
   };
 
   if (withUnlimited) {

@@ -2,6 +2,7 @@ import { connect } from 'easy-soft-dva';
 import {
   checkHasAuthority,
   convertCollection,
+  getCurrentOperatorCache,
   getGuid,
   getValueByKey,
   handleItem,
@@ -304,7 +305,7 @@ class Index extends MultiPage {
   // };
 
   establishPageHeaderContentComponentConfig = () => {
-    const { currentOperator } = this.state;
+    const currentOperator = getCurrentOperatorCache();
 
     const avatar = getValueByKey({
       data: currentOperator,

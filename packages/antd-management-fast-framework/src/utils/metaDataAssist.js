@@ -1,6 +1,5 @@
 import { getDispatch } from 'easy-soft-dva';
 import {
-  getApplicationMergeConfig,
   getLocalMetaData,
   isFunction,
   logDebug,
@@ -10,7 +9,7 @@ import {
   setLocalMetaData,
 } from 'easy-soft-utility';
 
-import { apiRequest } from 'antd-management-fast-common';
+import { apiRequest, getPresetMetaData } from 'antd-management-fast-common';
 
 import { schedulingControlAssist } from './schedulingControlAssist';
 
@@ -26,20 +25,16 @@ function refreshMetaData({ successCallback = null, failCallback = null }) {
     successCallback: ({ remoteData }) => {
       // logTrace(remoteData, 'response original data on refreshMetaData success');
 
-      const { metaData } = {
-        metaData: {},
-        ...getApplicationMergeConfig(),
-      };
-
       logInfo(
         'applicationConfig.metaData will merge in to final metaData, it value is lower priority, may be covered by dynamic data.',
       );
 
       const data = {
-        ...metaData,
-        ...getMetaData(),
+        ...getPresetMetaData(),
         ...remoteData,
       };
+
+      logTrace(data, 'merger local and remote meta data');
 
       setLocalMetaData(data);
 
@@ -110,9 +105,7 @@ export function loadMetaData({ successCallback = null, failCallback = null }) {
   });
 }
 
-export function getMetaData() {
-  logExecute('getMetaData');
-
+export function getMergeMetaData() {
   const metaDataCatch = getLocalMetaData();
 
   return metaDataCatch;

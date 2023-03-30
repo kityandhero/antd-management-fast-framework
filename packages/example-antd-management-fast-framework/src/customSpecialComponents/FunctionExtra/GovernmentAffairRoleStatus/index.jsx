@@ -7,7 +7,6 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  getMetaData,
   unknownLabel,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
@@ -20,11 +19,12 @@ import {
   buildRadioItem,
   buildSearchFormSelect,
 } from 'antd-management-fast-component';
+import { getMergeMetaData } from 'antd-management-fast-framework';
 
 export function refitGovernmentAffairRoleStatusList({ withUnlimited = true }) {
   const { governmentAffairRoleStatusList: list } = {
     governmentAffairRoleStatusList: [],
-    ...getMetaData(),
+    ...getMergeMetaData(),
   };
 
   if (withUnlimited) {
