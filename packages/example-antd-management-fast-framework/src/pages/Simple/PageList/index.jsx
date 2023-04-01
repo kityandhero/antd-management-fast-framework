@@ -60,6 +60,9 @@ const { MultiPage } = DataMultiPageView;
   schedulingControl,
 }))
 class PageList extends MultiPage {
+  loadRemoteRequestDelay = 100;
+  pageRemoteRequestDelay = 100;
+
   restoreSearch = true;
 
   // showSearchForm = false;
@@ -68,6 +71,7 @@ class PageList extends MultiPage {
   // showRenderCountInConsole = true;
 
   componentAuthority = accessWayCollection.simple.pageList.permission;
+  paramsKey = accessWayCollection.simple.pageList.paramsKey;
 
   constructor(properties) {
     super(properties);
@@ -76,7 +80,6 @@ class PageList extends MultiPage {
       ...this.state,
       showSelect: true,
       pageTitle: '文章列表',
-      paramsKey: accessWayCollection.simple.pageList.paramsKey,
       listViewMode: listViewConfig.viewMode.table,
       pageSize: 8,
       tableScroll: { x: 1620 },

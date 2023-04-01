@@ -1,9 +1,11 @@
-import { Alert, Spin, Table } from 'antd';
+import { Alert, Table } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { listViewConfig } from 'antd-management-fast-common';
+import { AnchorLink } from 'antd-management-fast-component';
 
-import { AnchorLink } from '../AnchorLink';
+import { standardTableLoadingFlag } from '../../customConfig';
+import { LoadingOverlay } from '../LoadingOverlay';
 
 function initTotalList(columns) {
   const totalList = [];
@@ -17,7 +19,7 @@ function initTotalList(columns) {
   return totalList;
 }
 
-class StandardTableCustom extends PureComponent {
+class StandardTable extends PureComponent {
   constructor(properties) {
     super(properties);
 
@@ -44,6 +46,7 @@ class StandardTableCustom extends PureComponent {
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
     let { needTotalList } = this.state;
+
     needTotalList = needTotalList.map((item) => ({
       ...item,
       total: (selectedRows || []).reduce(
@@ -51,7 +54,9 @@ class StandardTableCustom extends PureComponent {
         0,
       ),
     }));
+
     const { onSelectRow } = this.props;
+
     if (onSelectRow) {
       onSelectRow(selectedRows || []);
     }
@@ -59,10 +64,11 @@ class StandardTableCustom extends PureComponent {
     this.setState({ selectedRowKeys, needTotalList });
   };
 
-  handleTableChange = (pagination, filters, sorter) => {
+  handleTableChange = (pagination, filters, sorter, extra) => {
     const { onChange } = this.props;
+
     if (onChange) {
-      onChange(pagination, filters, sorter);
+      onChange(pagination, filters, sorter, extra);
     }
   };
 
@@ -74,7 +80,6 @@ class StandardTableCustom extends PureComponent {
     const { selectedRowKeys, needTotalList } = this.state;
     const {
       data: { list, pagination },
-      loading,
       rowKey,
       size,
       showSelect: showSelectOption,
@@ -148,15 +153,13 @@ class StandardTableCustom extends PureComponent {
           paddingRight: '12px',
           paddingTop: '10px',
           borderRadius: '8px',
-          overflow: 'hidden',
         }}
       >
-        {rowSelectionMessage}
+        <LoadingOverlay flag={standardTableLoadingFlag}>
+          {rowSelectionMessage}
 
-        <Spin spinning={loading}>
           <Table
             rowKey={rowKey || 'key'}
-            // loading={loading}
             size={size || listViewConfig.tableSize.middle}
             rowSelection={rowSelection}
             dataSource={list}
@@ -164,15 +167,16 @@ class StandardTableCustom extends PureComponent {
             onChange={this.handleTableChange}
             defaultExpandAllRows
             {...rest}
+            loading={false}
           />
-        </Spin>
+        </LoadingOverlay>
       </div>
     );
   }
 }
 
-StandardTableCustom.defaultProps = {
+StandardTable.defaultProps = {
   showPagination: true,
 };
 
-export { StandardTableCustom };
+export { StandardTable };

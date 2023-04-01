@@ -18,16 +18,3 @@ export function logRenderFurther(componentName) {
     ancillaryInformation: componentName,
   });
 }
-
-export function logRender(text, ancillaryInformation = '') {
-  if (!getShowLogInConsole()) {
-    return;
-  }
-
-  displayTextMessage({
-    text: text,
-    color: '#7093f4',
-    dataDescription: 'render',
-    ancillaryInformation: ancillaryInformation,
-  });
-}

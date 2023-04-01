@@ -67,7 +67,6 @@ class SingleList extends SinglePage {
       ...this.state,
       pageSize: 8,
       pageTitle: '文章单页列表',
-      paramsKey: accessWayCollection.simple.singleList.permission,
       loadApiPath: 'simple/singleList',
       listViewMode: listViewConfig.viewMode.table,
       changeSortModalVisible: false,
@@ -177,7 +176,7 @@ class SingleList extends SinglePage {
       const that = this;
 
       setTimeout(() => {
-        that.refreshData();
+        that.refreshData({});
       }, 500);
     });
   };
@@ -201,7 +200,7 @@ class SingleList extends SinglePage {
       const that = this;
 
       setTimeout(() => {
-        that.refreshData();
+        that.refreshData({});
       }, 500);
     });
   };
@@ -226,7 +225,7 @@ class SingleList extends SinglePage {
       const that = this;
 
       setTimeout(() => {
-        that.refreshData();
+        that.refreshData({});
       }, 500);
     });
   };

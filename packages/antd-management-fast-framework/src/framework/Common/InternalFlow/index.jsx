@@ -10,6 +10,7 @@ import {
   logObject,
   logText,
   logTrace,
+  mergeTextMessage,
   pretreatmentRequestParameters,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
@@ -44,6 +45,7 @@ import {
   iconBuilder,
 } from 'antd-management-fast-component';
 
+import { listViewControlAssist } from '../../../utils/loadingControlAssist';
 import { loadMetaData } from '../../../utils/metaDataAssist';
 import { progressControlAssist } from '../../../utils/progressControlAssist';
 import { Core } from '../../Core';
@@ -60,6 +62,8 @@ class InternalFlow extends Core {
   loadRemoteRequestAfterMount = true;
 
   loadRemoteRequestDelay = 0;
+
+  pageRemoteRequestDelay = 0;
 
   lastRequestingData = { type: '', payload: {} };
 
@@ -87,15 +91,19 @@ class InternalFlow extends Core {
   checkNeedUpdate = (preProperties, preState, snapshot) => false;
 
   doLoadRemoteRequest = () => {
-    progressControlAssist.startProgressing();
+    this.logCallTrack({}, 'doLoadRemoteRequest');
 
-    if (this.loadRemoteRequestDelay > 0) {
-      logTrace('load remote request delay', this.loadRemoteRequestDelay);
-    }
+    this.openPreventRender();
+
+    listViewControlAssist.startLoading();
+    progressControlAssist.startProgressing();
 
     this.initLoad({
       delay: this.loadRemoteRequestDelay,
       completeCallback: () => {
+        this.closePreventRender();
+
+        listViewControlAssist.stopLoading();
         progressControlAssist.stopProgressing();
       },
     });
@@ -150,6 +158,7 @@ class InternalFlow extends Core {
   };
 
   initLoad = ({
+    requestData: requestDataSource = {},
     otherState = {},
     delay = 0,
     successCallback = null,
@@ -170,6 +179,10 @@ class InternalFlow extends Core {
 
         logObject(this);
 
+        if (isFunction(completeCallback)) {
+          completeCallback();
+        }
+
         this.setState({
           dataLoading: false,
           loadSuccess: false,
@@ -179,10 +192,6 @@ class InternalFlow extends Core {
           paging: false,
           dispatchComplete: true,
         });
-
-        if (isFunction(completeCallback)) {
-          completeCallback();
-        }
 
         return;
       }
@@ -199,7 +208,8 @@ class InternalFlow extends Core {
             dispatchComplete: false,
           },
           () => {
-            let submitData = this.initLoadRequestParams() || {};
+            let submitData =
+              this.initLoadRequestParams(requestDataSource) || {};
 
             submitData = pretreatmentRequestParameters(submitData || {});
 
@@ -218,6 +228,18 @@ class InternalFlow extends Core {
 
               this.beforeRequest(submitData || {});
 
+              this.logCallTrack(
+                {
+                  parameter: {
+                    requestData: requestDataSource,
+                    otherState,
+                    delay,
+                  },
+                  submitData,
+                },
+                mergeTextMessage('Common::InternalFlow', 'initLoad'),
+              );
+
               this.initLoadCore({
                 requestData: submitData || {},
                 delay,
@@ -235,6 +257,10 @@ class InternalFlow extends Core {
                 paging: false,
                 dispatchComplete: true,
               });
+
+              if (isFunction(completeCallback)) {
+                completeCallback();
+              }
             }
           },
         );
@@ -267,6 +293,10 @@ class InternalFlow extends Core {
         completeCallback,
       });
     } else {
+      if (delayTime > 0) {
+        logTrace('load from api delay', delayTime);
+      }
+
       const that = this;
 
       setTimeout(() => {
@@ -316,6 +346,14 @@ class InternalFlow extends Core {
         })
       ) {
         that.setRequestingData({ type: loadApiPath, payload: requestData });
+
+        this.logCallTrack(
+          {
+            loadApiPath,
+            requestData,
+          },
+          mergeTextMessage('Common::InternalFlow', 'loadFromApi'),
+        );
 
         that
           .dispatchApi({
@@ -460,16 +498,33 @@ class InternalFlow extends Core {
     }
   };
 
+  /**
+   * query page list data
+   * @param {*} options
+   */
   pageListData = ({
-    otherState,
+    otherState = {},
+    requestData = {},
     delay = 0,
     successCallback = null,
     failCallback = null,
     completeCallback = null,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: { otherState, requestData, delay },
+      },
+      mergeTextMessage('Common::InternalFlow', 'pageListData'),
+    );
+
+    this.openPreventRender();
+
+    listViewControlAssist.startLoading();
+
     const s = { ...otherState, paging: true };
 
     this.initLoad({
+      requestData,
       otherState: s,
       delay: delay || 0,
       successCallback: successCallback || null,
@@ -478,14 +533,20 @@ class InternalFlow extends Core {
     });
   };
 
-  reloadData = (otherState, successCallback = null, delay = 0) => {
-    const s = {
-      ...otherState,
-      reloading: true,
-    };
+  reloadData = (otherState = {}, successCallback = null, delay = 0) => {
+    this.logCallTrack(
+      {
+        parameter: { otherState, delay },
+      },
+      mergeTextMessage('Common::InternalFlow', 'reloadData'),
+    );
+
+    this.openPreventRender();
+
+    listViewControlAssist.startLoading();
 
     this.initLoad({
-      otherState: s,
+      otherState,
       delay: delay || 0,
       successCallback: successCallback || null,
     });
@@ -501,16 +562,34 @@ class InternalFlow extends Core {
     });
   };
 
-  refreshData = (otherState, successCallback = null, delay = 0) => {
-    const s = {
-      ...otherState,
-      refreshing: true,
-    };
+  refreshData = (
+    otherState = {},
+    delay = 0,
+    successCallback = null,
+    failCallback = null,
+  ) => {
+    this.logCallTrack(
+      {
+        parameter: { otherState, delay },
+      },
+      mergeTextMessage('Common::InternalFlow', 'refreshData'),
+    );
+
+    this.openPreventRender();
+
+    listViewControlAssist.startLoading();
 
     this.initLoad({
-      otherState: s,
+      otherState,
       delay: delay || 0,
       successCallback: successCallback || null,
+      failCallback: failCallback || null,
+      completeCallback: () => {
+        this.closePreventRender();
+
+        listViewControlAssist.stopLoading();
+        progressControlAssist.stopProgressing();
+      },
     });
   };
 

@@ -352,7 +352,7 @@ class MultiPageDrawer extends MultiPage {
                       loading={refreshing}
                       icon={iconBuilder.reload()}
                       onClick={() => {
-                        this.refreshData();
+                        this.refreshData({});
                       }}
                     />
                   </Tooltip>

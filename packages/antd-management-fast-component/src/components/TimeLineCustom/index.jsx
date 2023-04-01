@@ -53,6 +53,7 @@ class TimeLineCustom extends BaseComponent {
 
   handleTableChange = (pageNo, pageSize) => {
     const { onChange } = this.props;
+
     onChange(pageNo, pageSize);
   };
 

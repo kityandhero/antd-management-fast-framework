@@ -11,6 +11,7 @@ export async function pageListData(parameters) {
     api: `/simple/pageList`,
     params: parameters,
     mode: requestMode.simulation,
+    simulateRequestDelay: 100,
     simulativeSuccessResponse: {
       extra: {
         pageNo: pageNo,

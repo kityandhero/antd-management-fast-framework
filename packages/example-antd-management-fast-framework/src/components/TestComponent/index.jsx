@@ -4,6 +4,8 @@ import { connect } from 'easy-soft-dva';
 
 import { LoadingOverlay } from 'antd-management-fast-framework';
 
+import { testModelLoadingFlag } from '../../customConfig';
+
 @connect(({ testModel }) => ({
   testModel,
 }))
@@ -14,7 +16,7 @@ class TestComponent extends PureComponent {
     } = this.props;
 
     return (
-      <LoadingOverlay>
+      <LoadingOverlay flag={testModelLoadingFlag}>
         <div>{simpleText}</div>
       </LoadingOverlay>
     );

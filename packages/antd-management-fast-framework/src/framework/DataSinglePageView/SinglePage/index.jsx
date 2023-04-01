@@ -2,6 +2,7 @@ import {
   checkStringIsNullOrWhiteSpace,
   isUndefined,
   logObject,
+  mergeTextMessage,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
   showSimpleWarningMessage,
@@ -13,6 +14,8 @@ import { defaultListState } from 'antd-management-fast-common';
 import { Base } from '../../DataListView/Base';
 
 class SinglePage extends Base {
+  showCallTrack = true;
+
   /**
    * 使用远端分页
    */
@@ -33,8 +36,6 @@ class SinglePage extends Base {
     this.state = {
       ...this.state,
       ...defaultState,
-
-      frontendPageNo: 1,
     };
   }
 
@@ -47,11 +48,15 @@ class SinglePage extends Base {
 
     this.handleAdditionalSearchReset();
 
-    this.reloadData({
-      formValues: {},
+    this.filterFormValues = {};
+    this.filterNoFormValues = {};
+    this.filterExtraValues = {
+      ...this.filterExtraValues,
       startTime: '',
       endTime: '',
-    });
+    };
+
+    this.reloadData({});
   };
 
   /**
@@ -64,7 +69,9 @@ class SinglePage extends Base {
   initLoadRequestParams = (o = {}) => {
     let d = o;
 
-    const { loadApiPath, formValues, filters, sorter } = this.state;
+    const { loadApiPath } = this.state;
+
+    const { sorter } = this.sorterValues;
 
     if ((loadApiPath || '') === '') {
       const text = 'loadApiPath需要配置';
@@ -76,7 +83,23 @@ class SinglePage extends Base {
       return d;
     }
 
-    const { startTimeAlias, endTimeAlias, startTime, endTime } = this.state;
+    this.logCallTrack(
+      {
+        parameter: o,
+        paramsKey: this.paramsKey,
+        filterFormValues: this.filterFormValues,
+        filterNoFormValues: this.filterNoFormValues,
+        sorterValues: this.sorterValues,
+        pageValues: this.pageValues,
+      },
+      mergeTextMessage(
+        'DataMultiPageView::SinglePage',
+        'initLoadRequestParams',
+      ),
+    );
+
+    const { startTimeAlias, endTimeAlias, startTime, endTime } =
+      this.filterFormValues;
 
     if (!checkStringIsNullOrWhiteSpace(startTime)) {
       if (checkStringIsNullOrWhiteSpace(startTimeAlias)) {
@@ -96,9 +119,8 @@ class SinglePage extends Base {
 
     d = {
       ...d,
-
-      ...formValues,
-      ...filters,
+      ...this.filterFormValues,
+      ...this.filterNoFormValues,
       ...sorter,
     };
 
@@ -180,7 +202,7 @@ class SinglePage extends Base {
   };
 
   adjustFrontendPaginationViewDataSource = () => {
-    const { pageNo, pageSize } = this.state;
+    const { pageNo, pageSize } = this.pageValues;
 
     return this.buildFrontendPaginationListData({
       pageNo,
@@ -191,9 +213,26 @@ class SinglePage extends Base {
   buildFrontendPaginationListData = ({ pageNo, pageSize }) => {
     const list = this.adjustViewDataSource();
 
-    const listData = this.getCanUseFrontendPagination()
+    const useFrontendPagination = this.getCanUseFrontendPagination();
+
+    const listData = useFrontendPagination
       ? list.slice((pageNo - 1) * pageSize, pageNo * pageSize)
       : list;
+
+    this.logCallTrack(
+      {
+        parameter: {
+          pageNo,
+          pageSize,
+        },
+        useFrontendPagination,
+        listData,
+      },
+      mergeTextMessage(
+        'DataSinglePageView::SinglePage',
+        'buildFrontendPaginationListData',
+      ),
+    );
 
     return listData;
   };
@@ -223,10 +262,28 @@ class SinglePage extends Base {
    * @param {*} filtersArg
    * @param {*} sorter
    */
-  handlePaginationChange = (page, pageSize) => {
-    this.setState({ pageNo: page, frontendPageNo: page });
+  handlePaginationChange = (page, size) => {
+    this.logCallTrack(
+      {
+        parameter: { page, size },
+      },
+      mergeTextMessage(
+        'DataSinglePageView::SinglePage',
+        'handlePaginationChange',
+      ),
+    );
 
-    this.handleAdditionalPaginationChange(page, pageSize);
+    this.setPageValue({
+      pageNo: page,
+      pageSize: size,
+      frontendPageNo: page,
+    });
+
+    this.handleAdditionalPaginationChange(page, size);
+
+    if (this.getCanUseFrontendPagination()) {
+      this.increaseCounter();
+    }
   };
 
   /**
@@ -235,19 +292,34 @@ class SinglePage extends Base {
    * @param {*} filtersArg
    * @param {*} sorter
    */
-
   handleAdditionalStandardTableChange = (
     pagination,
-    // eslint-disable-next-line no-unused-vars
     filtersArgument,
-    // eslint-disable-next-line no-unused-vars
     sorter,
+    extra,
   ) => {
     const { current: frontendPageNoSource } = pagination;
 
     const frontendPageNo = toNumber(frontendPageNoSource);
 
-    this.setState({ pageNo: frontendPageNo, frontendPageNo });
+    this.logCallTrack(
+      {
+        frontendPageNo,
+        pagination,
+        filtersArgument,
+        sorter,
+        extra,
+      },
+      mergeTextMessage(
+        'DataSinglePageView::SinglePage',
+        'handleAdditionalStandardTableChange',
+      ),
+    );
+
+    this.setPageValue({
+      pageNo: frontendPageNo,
+      frontendPageNo,
+    });
   };
 
   /**
@@ -255,12 +327,22 @@ class SinglePage extends Base {
    * @returns
    */
   getFrontendPageNo = () => {
-    const { frontendPageNo } = this.state;
+    const { frontendPageNo } = this.pageValues;
 
     return toNumber(frontendPageNo);
   };
 
   renderPresetPaginationView = () => {
+    this.logCallTrack(
+      {
+        parameter: {},
+      },
+      mergeTextMessage(
+        'DataSinglePageView::SinglePage',
+        'renderPresetPaginationView',
+      ),
+    );
+
     if (!this.getCanUseFrontendPagination()) {
       return null;
     }

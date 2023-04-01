@@ -39,6 +39,7 @@ class FlexBox extends PureComponent {
   render() {
     const {
       style: styleSource,
+      className,
       allowWrap,
       flexAuto: flexAutoSource,
       left,
@@ -62,7 +63,7 @@ class FlexBox extends PureComponent {
 
       if (flexAuto === 'left') {
         return (
-          <Row style={style}>
+          <Row style={style} className={className}>
             <Col flex="auto" style={leftStyle || null}>
               {left}
             </Col>
@@ -76,7 +77,7 @@ class FlexBox extends PureComponent {
       }
 
       return (
-        <Row style={style}>
+        <Row style={style} className={className}>
           <Col flex style={leftStyle || null}>
             {left}
           </Col>
@@ -107,7 +108,7 @@ class FlexBox extends PureComponent {
     };
 
     return (
-      <div style={style}>
+      <div style={style} className={className}>
         <div
           style={{
             flex: '1 1 auto',
@@ -140,6 +141,7 @@ FlexBox.defaultProps = {
   top: null,
   bottom: null,
   style: null,
+  className: null,
 };
 
 export { FlexBox };

@@ -12,7 +12,6 @@ import {
   Pagination,
   Row,
   Space,
-  Spin,
   Tooltip,
 } from 'antd';
 import classNames from 'classnames';
@@ -24,6 +23,7 @@ import {
   datetimeFormat,
   isArray,
   isUndefined,
+  mergeTextMessage,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
   showSimpleWarnMessage,
@@ -49,9 +49,10 @@ import {
   FlexBox,
   FormExtra,
   iconBuilder,
-  StandardTableCustom,
 } from 'antd-management-fast-component';
 
+import { LoadingOverlay, StandardTable } from '../../../components';
+import { listViewLoadingFlag } from '../../../customConfig';
 import { AuthorizationWrapper } from '../../AuthorizationWrapper';
 import { BatchAction } from '../BatchAction';
 import { ColumnSetting } from '../ColumnSetting';
@@ -104,7 +105,6 @@ class Base extends AuthorizationWrapper {
     this.state = {
       ...this.state,
       ...defaultState,
-
       showSelect: false,
       listTitle: '检索结果',
       defaultAvatarIcon: iconBuilder.picture(),
@@ -124,7 +124,7 @@ class Base extends AuthorizationWrapper {
   }
 
   doWorkAfterDidMount = () => {
-    const { pageSize } = this.state;
+    const { pageSize } = this.pageValues;
 
     this.pageSizeAdditional = pageSize;
   };
@@ -340,7 +340,9 @@ class Base extends AuthorizationWrapper {
           updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
         };
 
-        this.searchData({ formValues: values });
+        this.filterFormValues = values;
+
+        this.searchData({});
 
         return values;
       })
@@ -542,7 +544,7 @@ class Base extends AuthorizationWrapper {
   };
 
   establishSearchCardConfig = () => {
-    const { dateRangeFieldName } = this.state;
+    const { dateRangeFieldName } = this.fieldConfig;
 
     return {
       list: [
@@ -603,7 +605,7 @@ class Base extends AuthorizationWrapper {
     dateRangeFieldName,
     rangePickerProperties = null,
   ) => {
-    const { startTime, endTime } = this.state;
+    const { startTime, endTime } = this.filterExtraValues;
 
     const valueList = [];
 
@@ -983,7 +985,10 @@ class Base extends AuthorizationWrapper {
    * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
    */
   supplementPaginationConfig = () => {
-    const { pageNo, pageSize } = this.state;
+    const { pageNo, pageSize } = this.pageValues;
+
+    const pageSizeOptions = this.buildPageSizeOptionList();
+    const paginationConfig = this.establishViewPaginationConfig();
 
     const config = {
       size: 'default',
@@ -992,12 +997,21 @@ class Base extends AuthorizationWrapper {
       showTotal: (total, range) => {
         return `${range[0]}-${range[1]} 共 ${total} 条信息`;
       },
-      pageSizeOptions: this.buildPageSizeOptionList(),
-      ...this.establishViewPaginationConfig(),
-
-      current: pageNo,
-      pageSize: pageSize,
+      pageSizeOptions,
+      ...paginationConfig,
+      defaultCurrent: pageNo,
+      defaultPageSize: pageSize,
     };
+
+    this.logCallTrack(
+      {
+        pageValues: this.pageValues,
+        pageSizeOptions,
+        paginationConfig,
+        config,
+      },
+      mergeTextMessage('DataListView::Base', 'supplementPaginationConfig'),
+    );
 
     return config;
   };
@@ -1020,12 +1034,19 @@ class Base extends AuthorizationWrapper {
    * @param {*} pagination
    * @param {*} filtersArg
    * @param {*} sorter
+   * @param {*} extra
    */
-  handleStandardTableChange = (pagination, filtersArgument, sorter) => {
+  handleStandardTableChange = (pagination, filtersArgument, sorter, extra) => {
+    this.logCallTrack(
+      { pagination, filtersArgument, sorter, extra },
+      mergeTextMessage('DataListView::Base', 'handleStandardTableChange'),
+    );
+
     this.handleAdditionalStandardTableChange(
       pagination,
       filtersArgument,
       sorter,
+      extra,
     );
   };
 
@@ -1034,8 +1055,8 @@ class Base extends AuthorizationWrapper {
    * @param {*} pagination
    * @param {*} filtersArg
    * @param {*} sorter
+   * @param {*} extra
    */
-
   handleAdditionalStandardTableChange = (
     // eslint-disable-next-line no-unused-vars
     pagination,
@@ -1043,16 +1064,17 @@ class Base extends AuthorizationWrapper {
     filtersArgument,
     // eslint-disable-next-line no-unused-vars
     sorter,
+    // eslint-disable-next-line no-unused-vars
+    extra,
   ) => {};
 
   /**
    * 配置Pagination切换页面时需要引发的事项,用于listView/cardView
-   * @param {*} pagination
-   * @param {*} filtersArg
-   * @param {*} sorter
+   * @param {*} page
+   * @param {*} size
    */
-  handlePaginationChange = (page, pageSize) => {
-    this.handleAdditionalPaginationChange(page, pageSize);
+  handlePaginationChange = (page, size) => {
+    this.handleAdditionalPaginationChange(page, size);
   };
 
   /**
@@ -1062,11 +1084,20 @@ class Base extends AuthorizationWrapper {
    * @param {*} sorter
    */
   // eslint-disable-next-line no-unused-vars
-  handleAdditionalPaginationChange = (page, pageSize) => {};
+  handleAdditionalPaginationChange = (page, size) => {};
 
-  // eslint-disable-next-line no-unused-vars
   handlePaginationShowSizeChange = (current, size) => {
-    this.setState({ pageNo: 1 });
+    this.logCallTrack(
+      {
+        parameter: {
+          current,
+          size,
+        },
+      },
+      mergeTextMessage('DataListView::Base', 'handlePaginationShowSizeChange'),
+    );
+
+    this.setPageValue({ pageNo: 1 });
   };
 
   establishPageHeaderExtraContentConfig = () => null;
@@ -1075,6 +1106,14 @@ class Base extends AuthorizationWrapper {
     const paginationConfig = this.supplementPaginationConfig();
 
     const style = this.establishPaginationViewStyle();
+
+    this.logCallTrack(
+      {
+        paginationConfig,
+        style,
+      },
+      mergeTextMessage('DataListView::Base', 'buildPaginationBar'),
+    );
 
     const bar = (
       <FlexBox
@@ -1128,7 +1167,7 @@ class Base extends AuthorizationWrapper {
               loading={refreshing}
               icon={iconBuilder.reload()}
               onClick={() => {
-                this.refreshData();
+                this.refreshData({});
               }}
             />
           </Tooltip>
@@ -1159,7 +1198,7 @@ class Base extends AuthorizationWrapper {
             loading={refreshing}
             icon={iconBuilder.reload()}
             onClick={() => {
-              this.refreshData();
+              this.refreshData({});
             }}
           />
         </Tooltip>
@@ -1232,10 +1271,8 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetListView = () => {
-    const { dataLoading, reloading, processing } = this.state;
-
     return (
-      <Spin spinning={dataLoading || reloading || processing}>
+      <LoadingOverlay flag={listViewLoadingFlag}>
         <List
           itemLayout={this.renderPresetListViewItemLayout()}
           size={this.renderPresetListViewSize()}
@@ -1251,7 +1288,7 @@ class Base extends AuthorizationWrapper {
         />
 
         {this.renderPresetPaginationView()}
-      </Spin>
+      </LoadingOverlay>
     );
   };
 
@@ -1294,15 +1331,28 @@ class Base extends AuthorizationWrapper {
       standardTableCustomOption.scroll = tableScroll;
     }
 
+    this.logCallTrack(
+      {
+        metaListData,
+        tableScroll,
+        showSelect,
+        selectedDataTableDataRows,
+        standardTableCustomOption,
+      },
+      mergeTextMessage('DataListView::Base', 'renderPresetTableView'),
+    );
+
     return (
       <div>
-        <StandardTableCustom {...standardTableCustomOption} />
+        <LoadingOverlay flag={listViewLoadingFlag}>
+          <StandardTable {...standardTableCustomOption} />
+        </LoadingOverlay>
       </div>
     );
   };
 
   renderPresetCardCollectionView = () => {
-    const { dataLoading, reloading, processing } = this.state;
+    const { dataLoading, reloading } = this.state;
 
     const listItem = this.getCanUseFrontendPagination()
       ? this.adjustFrontendPaginationViewDataSource()
@@ -1310,7 +1360,7 @@ class Base extends AuthorizationWrapper {
     const itemCount = listItem.length;
 
     return (
-      <Spin spinning={dataLoading || reloading || processing}>
+      <LoadingOverlay flag={listViewLoadingFlag}>
         <Space style={{ width: '100%' }} direction="vertical" size={14}>
           {itemCount > 0 ? (
             listItem.map((o, index) => {
@@ -1327,11 +1377,18 @@ class Base extends AuthorizationWrapper {
         </Space>
 
         {this.renderPresetPaginationView()}
-      </Spin>
+      </LoadingOverlay>
     );
   };
 
   renderPresetPaginationView = () => {
+    this.logCallTrack(
+      {
+        parameter: {},
+      },
+      mergeTextMessage('DataListView::Base', 'renderPresetPaginationView'),
+    );
+
     return this.buildPaginationBar();
   };
 

@@ -1,5 +1,5 @@
 window.appInitCustomLocalSpecial = {
   showLogInConsole: true,
-  showRequestInfo: false,
+  showRequestInfo: true,
   showLogRenderFurther: false,
 };

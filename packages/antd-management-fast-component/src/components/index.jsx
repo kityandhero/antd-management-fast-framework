@@ -62,8 +62,6 @@ export * from './ProgressBar';
 export * from './Result';
 export * from './RowExpandTable';
 export * from './StandardFormRow';
-export * from './StandardTable';
-export * from './StandardTableCustom';
 export * from './StatusBar';
 export * from './TagSelect';
 export * from './TimeLineCustom';

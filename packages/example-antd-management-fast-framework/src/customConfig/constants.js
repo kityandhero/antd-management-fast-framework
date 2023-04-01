@@ -2,6 +2,8 @@ export const unknownLabel = '未知';
 
 export const amapkey = 'bff966857f8311eb68ea03dcbac869ad';
 
+export const testModelLoadingFlag = '7805f7ede3614152b3d9603f52f29b1a';
+
 export const goodsTypeCollection = {
   product: 1,
   simpleTicket: 2,

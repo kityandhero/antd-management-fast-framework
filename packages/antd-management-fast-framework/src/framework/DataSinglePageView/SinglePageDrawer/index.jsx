@@ -333,7 +333,7 @@ class SinglePageDrawer extends SinglePage {
                       loading={refreshing}
                       icon={iconBuilder.reload()}
                       onClick={() => {
-                        this.refreshData();
+                        this.refreshData({});
                       }}
                     />
                   </Tooltip>

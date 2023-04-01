@@ -1,6 +1,6 @@
 import {
   getTacitlyState,
-  logDebug,
+  logTrace,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
@@ -29,7 +29,7 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        logDebug(
+        logTrace(
           'startProgressing',
           `progressing change to ${toString(progressing)}`,
         );
@@ -48,7 +48,7 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        logDebug(
+        logTrace(
           'stopProgressing',
           `progressing change to ${toString(progressing)}`,
         );

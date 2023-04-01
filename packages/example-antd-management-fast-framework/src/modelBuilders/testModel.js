@@ -6,7 +6,9 @@ import {
   reducerNameCollection,
 } from 'easy-soft-utility';
 
-import { remoteLoadingControlAssist } from 'antd-management-fast-framework';
+import { loadingControlAssist } from 'antd-management-fast-framework';
+
+import { testModelLoadingFlag } from '../customConfig';
 
 export function buildModel() {
   return {
@@ -48,7 +50,7 @@ export function buildModel() {
 
         // logTrace(`simpleText change to ${simpleText}`);
 
-        remoteLoadingControlAssist.stopRemoteLoading();
+        loadingControlAssist.stopLoading(testModelLoadingFlag);
 
         return dataAdjust;
       },

@@ -164,7 +164,7 @@ class BasicInfo extends TabPageBase {
       selectForwardId: '',
     });
 
-    this.refreshData();
+    this.refreshData({});
   };
 
   afterUpdateMediaItemDrawerOk = () => {
@@ -176,7 +176,7 @@ class BasicInfo extends TabPageBase {
         const that = this;
 
         setTimeout(() => {
-          that.refreshData();
+          that.refreshData({});
         }, 300);
       },
     );

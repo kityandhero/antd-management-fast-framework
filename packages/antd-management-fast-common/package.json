@@ -62,14 +62,14 @@
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-layout": "^7.10.3",
-    "@umijs/max": "^4.0.63",
+    "@umijs/max": "^4.0.64",
     "antd": "^5.3.3",
     "array-move": "^4.0.0",
     "axios": "^1.3.4",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.7",
-    "easy-soft-dva": "^3.6.146",
-    "easy-soft-utility": "^2.4.117",
+    "easy-soft-dva": "^3.6.148",
+    "easy-soft-utility": "^2.4.119",
     "lodash": "^4.17.21",
     "lodash-decorators": "^6.0.1",
     "lodash.isequal": "^4.5.0",
@@ -167,7 +167,7 @@
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^31.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.3"
   },
   "gitHead": "8f5f3fe1105991d759c5e13cd5ae898385c17c9a"
 }

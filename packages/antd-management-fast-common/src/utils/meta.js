@@ -48,16 +48,9 @@ export function defaultCommonState() {
 export function defaultListState() {
   const data = {
     ...defaultCommonState(),
-
-    dateRangeFieldName: '发生时间',
     tableScroll: { x: 1520 },
-    formValues: {},
-    pageNo: 1,
-    pageSize: 10,
     startTimeAlias: '',
     endTimeAlias: '',
-    startTime: '',
-    endTime: '',
     listViewMode: listViewConfig.viewMode.table,
     showSelect: false,
     selectedDataTableDataRows: [],
@@ -69,15 +62,8 @@ export function defaultListState() {
 export function defaultPageListState() {
   const data = {
     ...defaultCommonState(),
-    paramsKey: '',
     loadApiPath: '',
-    dateRangeFieldName: '发生时间',
     tableScroll: { x: 1520 },
-    formValues: {},
-    pageNo: 1,
-    pageSize: 10,
-    startTime: '',
-    endTime: '',
     listViewMode: listViewConfig.viewMode.table,
     showSelect: false,
     selectedDataTableDataRows: [],

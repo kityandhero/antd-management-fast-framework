@@ -8,8 +8,10 @@ import {
   handleAuthorizationFail,
   isFunction,
   isNumber,
+  logCallTrack as logCallTrackCore,
   logError,
   logExecute,
+  logRender as logRenderCore,
   logTrace,
   mergeTextMessage,
   navigateTo,
@@ -21,7 +23,6 @@ import {
 import {
   defaultBaseState,
   filterUpdateModel,
-  logRender,
   logRenderFurther,
   shallowUpdateEqual,
   shouldComponentUpdateResultShowType,
@@ -38,7 +39,11 @@ const defaultProps = {
 class AbstractComponent extends Component {
   mounted = false;
 
+  preventRender = false;
+
   forceUpdateWhenChildrenChange = true;
+
+  //#region develop assist
 
   /**
    *显示render次数开关, 用于开发时候调试页面渲染性能
@@ -48,6 +53,10 @@ class AbstractComponent extends Component {
   showShouldComponentUpdateInConsole = shouldComponentUpdateResultShowType.none;
 
   renderCount = 0;
+
+  showCallTrack = false;
+
+  //#endregion
 
   /**
    * 用于组件内数据循环构建 key 时附加唯一前缀，有助于提升页面执行效率
@@ -70,6 +79,47 @@ class AbstractComponent extends Component {
 
   componentName = '';
   ignoreComparePropertyKeyCollection = [];
+
+  //#region fieldConfig
+
+  fieldConfig = {
+    dateRangeFieldName: '发生时间',
+  };
+
+  //#endregion
+
+  //#region filter values
+
+  paramsKey = '';
+
+  filterFormValues = {};
+
+  filterNoFormValues = {};
+
+  filterExtraValues = {
+    startTimeAlias: '',
+    startTime: '',
+    endTimeAlias: '',
+    endTime: '',
+  };
+
+  //#endregion
+
+  //#region sorter values
+
+  sorterValues = {};
+
+  //#endregion
+
+  //#region page Values
+
+  pageValues = {
+    pageNo: 1,
+    frontendPageNo: 1,
+    pageSize: 10,
+  };
+
+  //#endregion
 
   constructor(properties) {
     super(properties);
@@ -99,12 +149,17 @@ class AbstractComponent extends Component {
   }
 
   shouldComponentUpdate(nextProperties, nextState) {
-    const { dispatchComplete } = {
+    const { dispatchComplete = true } = {
       dispatchComplete: true,
       ...nextState,
     };
 
-    if (!dispatchComplete) {
+    if (this.preventRender || !dispatchComplete) {
+      logTrace(
+        'ignore render',
+        `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}`,
+      );
+
       return false;
     }
 
@@ -253,7 +308,7 @@ class AbstractComponent extends Component {
 
     this.setState(
       {
-        counter: isNumber(counter) ? toNumber(counter) : 0 + 1,
+        counter: (isNumber(counter) ? toNumber(counter) : 0) + 1,
       },
       () => {
         if (isFunction(callback)) {
@@ -261,6 +316,8 @@ class AbstractComponent extends Component {
         }
       },
     );
+
+    logExecute('increaseCounter', `counter: ${counter}`);
   }
 
   doDidMountTask = () => {
@@ -444,11 +501,51 @@ class AbstractComponent extends Component {
   }
 
   logRender(message) {
-    logRender(this.constructor.name, message);
+    logRenderCore(this.constructor.name, message);
+  }
+
+  /**
+   * log call track
+   * @param {*} message
+   * @returns
+   */
+  logCallTrack(data, message) {
+    if (!this.showCallTrack) {
+      return;
+    }
+
+    logCallTrackCore(data, message);
   }
 
   renderFurther() {
     return null;
+  }
+
+  setPageValue(o) {
+    this.pageValues = {
+      ...this.pageValues,
+      ...o,
+    };
+
+    this.logCallTrack(this.pageValues, 'setPageValue');
+  }
+
+  openPreventRender() {
+    this.preventRender = true;
+
+    logTrace(
+      'openPreventRender',
+      `preventRender change to ${this.preventRender}`,
+    );
+  }
+
+  closePreventRender() {
+    this.preventRender = false;
+
+    logTrace(
+      'closePreventRender',
+      `preventRender change to ${this.preventRender}`,
+    );
   }
 
   /**

@@ -4,6 +4,7 @@ import {
   getValue,
   isUndefined,
   logObject,
+  mergeTextMessage,
   setParametersDataCache,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
@@ -13,9 +14,12 @@ import {
 
 import { defaultPageListState } from 'antd-management-fast-common';
 
+import { listViewControlAssist } from '../../../utils';
 import { Base } from '../../DataListView/Base';
 
 class MultiPage extends Base {
+  showCallTrack = true;
+
   /**
    * 使用远端分页
    */
@@ -52,14 +56,20 @@ class MultiPage extends Base {
   supplementPageLoadRequestParams = () => {};
 
   supplementLoadRequestParams = (o) => {
-    const d = o;
+    const result = { ...o, ...this.supplementPageLoadRequestParams() };
 
-    const { pageNo, pageSize } = this.state;
+    this.logCallTrack(
+      {
+        parameter: o,
+        result,
+      },
+      mergeTextMessage(
+        'DataMultiPageView::MultiPage',
+        'supplementLoadRequestParams',
+      ),
+    );
 
-    d.pageNo = pageNo;
-    d.pageSize = pageSize;
-
-    return { ...d, ...this.supplementPageLoadRequestParams() };
+    return result;
   };
 
   handleSearchReset = (checkWorkDoing = true, delay = 0) => {
@@ -67,9 +77,14 @@ class MultiPage extends Base {
       return;
     }
 
-    const form = this.getSearchCard();
+    this.logCallTrack(
+      {
+        parameter: { checkWorkDoing, delay },
+      },
+      mergeTextMessage('DataMultiPageView::MultiPage', 'handleSearchReset'),
+    );
 
-    const { pageSize } = this.state;
+    const form = this.getSearchCard();
 
     if (form) {
       form.resetFields();
@@ -77,17 +92,17 @@ class MultiPage extends Base {
 
     this.handleAdditionalSearchReset();
 
-    this.reloadData(
-      {
-        formValues: {},
-        startTime: '',
-        endTime: '',
-        pageNo: 1,
-        pageSize,
-      },
-      null,
-      delay,
-    );
+    this.setPageValue({ pageNo: 1 });
+
+    this.filterFormValues = {};
+    this.filterNoFormValues = {};
+    this.filterExtraValues = {
+      ...this.filterExtraValues,
+      startTime: '',
+      endTime: '',
+    };
+
+    this.reloadData({}, null, delay);
   };
 
   /**
@@ -105,7 +120,7 @@ class MultiPage extends Base {
   initLoadRequestParams = (o) => {
     let d = o || {};
 
-    const { paramsKey, loadApiPath, formValues, filters, sorter } = this.state;
+    const { loadApiPath } = this.state;
 
     if (checkStringIsNullOrWhiteSpace(loadApiPath)) {
       const text = 'loadApiPath需要配置';
@@ -117,8 +132,20 @@ class MultiPage extends Base {
       return d;
     }
 
+    this.logCallTrack(
+      {
+        parameter: o,
+        paramsKey: this.paramsKey,
+        filterFormValues: this.filterFormValues,
+        filterNoFormValues: this.filterNoFormValues,
+        sorterValues: this.sorterValues,
+        pageValues: this.pageValues,
+      },
+      mergeTextMessage('DataMultiPageView::MultiPage', 'initLoadRequestParams'),
+    );
+
     if (this.restoreSearch && !this.restoreSearchComplete) {
-      if (checkStringIsNullOrWhiteSpace(paramsKey)) {
+      if (checkStringIsNullOrWhiteSpace(this.paramsKey)) {
         const text = 'paramsKey需要配置';
 
         showSimpleRuntimeError(text);
@@ -126,20 +153,14 @@ class MultiPage extends Base {
         return d;
       }
 
-      d = getParametersDataCache(paramsKey);
+      d = getParametersDataCache(this.paramsKey);
 
       this.restoreSearchComplete = true;
 
       this.restoreQueryDataBeforeFirstRequest(d);
     } else {
-      const {
-        startTimeAlias,
-        endTimeAlias,
-        pageNo,
-        pageSize,
-        startTime,
-        endTime,
-      } = this.state;
+      const { startTimeAlias, endTimeAlias, startTime, endTime } =
+        this.filterExtraValues;
 
       if (!checkStringIsNullOrWhiteSpace(startTime)) {
         if (checkStringIsNullOrWhiteSpace(startTimeAlias)) {
@@ -159,12 +180,10 @@ class MultiPage extends Base {
 
       d = {
         ...d,
-
-        ...formValues,
-        ...filters,
-        pageNo,
-        pageSize,
-        ...sorter,
+        ...this.filterFormValues,
+        ...this.filterNoFormValues,
+        ...this.sorterValues,
+        ...this.pageValues,
       };
 
       delete d.dateRange;
@@ -184,10 +203,8 @@ class MultiPage extends Base {
   };
 
   afterGetRequestResult = () => {
-    const { paramsKey } = this.state;
-
-    if (!checkStringIsNullOrWhiteSpace(paramsKey)) {
-      setParametersDataCache(paramsKey, this.lastLoadParams);
+    if (!checkStringIsNullOrWhiteSpace(this.paramsKey)) {
+      setParametersDataCache(this.paramsKey, this.lastLoadParams);
     }
   };
 
@@ -195,6 +212,13 @@ class MultiPage extends Base {
     if (this.checkWorkDoing()) {
       return;
     }
+
+    this.logCallTrack(
+      {
+        parameter: {},
+      },
+      mergeTextMessage('DataListView::Base', 'handleSearch'),
+    );
 
     const form = this.getSearchCard();
 
@@ -205,7 +229,6 @@ class MultiPage extends Base {
     }
 
     const { validateFields } = form;
-    const { pageSize } = this.state;
 
     validateFields()
       .then((fieldsValue) => {
@@ -215,7 +238,11 @@ class MultiPage extends Base {
           updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
         };
 
-        this.searchData({ formValues: values, pageNo: 1, pageSize });
+        this.setPageValue({ pageNo: 1 });
+
+        this.filterNoFormValues = values;
+
+        this.searchData({});
       })
       .catch((error) => {
         const { errorFields } = error;
@@ -255,12 +282,10 @@ class MultiPage extends Base {
    * @param {*} filtersArg
    * @param {*} sorter
    */
-  handleStandardTableChange = (pagination, filtersArgument, sorter) => {
+  handleStandardTableChange = (pagination, filtersArgument, sorter, extra) => {
     if (this.checkWorkDoing()) {
       return;
     }
-
-    const { formValues } = this.state;
 
     // eslint-disable-next-line unicorn/no-array-reduce
     const filters = Object.keys(filtersArgument).reduce((object, key) => {
@@ -269,23 +294,59 @@ class MultiPage extends Base {
       return newObject;
     }, {});
 
-    const parameters = {
+    this.filterNoFormValues = filters;
+
+    const parameterAdjust = {
+      ...this.filterFormValues,
+      ...this.filterNoFormValues,
       pageNo: pagination.current,
       pageSize: pagination.pageSize,
-      formValues,
-      filters,
     };
 
     if (sorter.field) {
-      parameters.sorter = { sorter: `${sorter.field}_${sorter.order}` };
+      parameterAdjust.sorter = {
+        sorter: `${sorter.field}_${sorter.order}` || '',
+      };
+
+      this.sorterValues = parameterAdjust.sorter;
     }
 
-    this.pageListData(parameters);
+    this.logCallTrack(
+      {
+        parameter: {
+          pagination,
+          filtersArgument,
+          sorter,
+          extra,
+        },
+        requestData: parameterAdjust,
+      },
+      mergeTextMessage(
+        'DataMultiPageView::MultiPage',
+        'handleStandardTableChange',
+      ),
+    );
+
+    this.setPageValue({
+      pageNo: pagination.current,
+      pageSize: pagination.pageSize,
+    });
+
+    this.pageListData({
+      requestData: parameterAdjust,
+      delay: this.pageRemoteRequestDelay,
+      completeCallback: () => {
+        this.closePreventRender();
+
+        listViewControlAssist.stopLoading();
+      },
+    });
 
     this.handleAdditionalStandardTableChange(
       pagination,
       filtersArgument,
       sorter,
+      extra,
     );
   };
 
@@ -294,15 +355,40 @@ class MultiPage extends Base {
       return;
     }
 
-    const { formValues } = this.state;
-
-    const parameters = {
+    const requestData = {
       pageNo: page,
       pageSize,
-      formValues,
+      ...this.filterFormValues,
     };
 
-    this.pageListData(parameters);
+    this.logCallTrack(
+      {
+        parameter: {
+          page,
+          pageSize,
+        },
+        requestData,
+      },
+      mergeTextMessage(
+        'DataMultiPageView::MultiPage',
+        'handlePaginationChange',
+      ),
+    );
+
+    this.setPageValue({
+      pageNo: page,
+      pageSize,
+    });
+
+    this.pageListData({
+      requestData,
+      delay: this.pageRemoteRequestDelay,
+      completeCallback: () => {
+        this.closePreventRender();
+
+        listViewControlAssist.stopLoading();
+      },
+    });
 
     this.handleAdditionalPaginationChange(page, pageSize);
   };
@@ -327,6 +413,19 @@ class MultiPage extends Base {
     };
 
     const paginationConfig = { ...pagination };
+
+    delete paginationConfig.current;
+    delete paginationConfig.pageSize;
+
+    this.logCallTrack(
+      {
+        paginationConfig,
+      },
+      mergeTextMessage(
+        'DataMultiPageView::MultiPage',
+        'establishViewPaginationConfig',
+      ),
+    );
 
     return paginationConfig;
   };

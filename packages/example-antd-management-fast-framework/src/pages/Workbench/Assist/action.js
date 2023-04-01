@@ -1,6 +1,8 @@
 import { dispatchModel } from 'easy-soft-dva';
 
-import { remoteLoadingControlAssist } from 'antd-management-fast-framework';
+import { loadingControlAssist } from 'antd-management-fast-framework';
+
+import { testModelLoadingFlag } from '../../../customConfig';
 
 export function changeSimpleValue() {
   dispatchModel({
@@ -10,7 +12,7 @@ export function changeSimpleValue() {
 }
 
 export function changeSimpleValueWithLoading() {
-  remoteLoadingControlAssist.startRemoteLoading();
+  loadingControlAssist.startLoading(testModelLoadingFlag);
 
   setTimeout(() => {
     dispatchModel({
