@@ -1,5 +1,5 @@
 import { Space, Typography } from 'antd';
-import React, { Fragment } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 
 import {
   checkObjectIsNullOrEmpty,
@@ -8,13 +8,12 @@ import {
   isString,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { DescriptionGrid } from '../../DescriptionGrid';
 
 const { Paragraph } = Typography;
 
-class HeaderContent extends BaseComponent {
-  renderFurther() {
+class HeaderContent extends PureComponent {
+  render() {
     const { paragraph, gridConfig, component, actions } = this.props;
 
     const list = [];

@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-import { BaseComponent } from '../../../bases';
 import { ElasticityTagList } from '../../ElasticityTagList';
 
-class HeaderTagWrapper extends BaseComponent {
-  renderFurther() {
+class HeaderTagWrapper extends PureComponent {
+  render() {
     const { list } = this.props;
 
     return (

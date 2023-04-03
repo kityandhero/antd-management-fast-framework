@@ -9,8 +9,8 @@ class BaseNeedlessLoadModal extends Base {
 
   resetDataAfterLoad = false;
 
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

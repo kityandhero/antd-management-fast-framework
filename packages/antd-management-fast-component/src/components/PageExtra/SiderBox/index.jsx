@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import { checkObjectIsNullOrEmpty } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { FlexBox } from '../../FlexBox';
 
 import styles from './index.less';
 
-class SiderBox extends BaseComponent {
-  renderFurther() {
+class SiderBox extends PureComponent {
+  render() {
     const { top, bottom } = this.props;
 
     if (checkObjectIsNullOrEmpty(top) && checkObjectIsNullOrEmpty(bottom)) {

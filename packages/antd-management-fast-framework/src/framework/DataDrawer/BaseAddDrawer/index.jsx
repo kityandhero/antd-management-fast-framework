@@ -4,8 +4,8 @@ import { iconBuilder } from 'antd-management-fast-component';
 import { BaseNeedlessLoadDrawer } from '../BaseNeedlessLoadDrawer';
 
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

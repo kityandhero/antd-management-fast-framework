@@ -3,8 +3,8 @@ import { isFunction } from 'easy-soft-utility';
 import { BaseLoadModal } from '../BaseLoadModal';
 
 class BaseSelectModal extends BaseLoadModal {
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

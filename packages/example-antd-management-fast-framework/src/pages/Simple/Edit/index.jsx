@@ -41,6 +41,8 @@ import MediaInfo from './MediaInfo';
   schedulingControl,
 }))
 class Edit extends DataTabContainerSupplement {
+  showCallTrack = true;
+
   componentAuthority = accessWayCollection.simple.get.permission;
 
   tabList = [
@@ -74,9 +76,8 @@ class Edit extends DataTabContainerSupplement {
 
     this.state = {
       ...this.state,
-
       loadApiPath: 'simple/get',
-      backPath: `/news/simple/pageList/key`,
+      backPath: `/simple/pageList/key`,
       simpleId: null,
     };
   }
@@ -168,7 +169,7 @@ class Edit extends DataTabContainerSupplement {
       target: this,
       handleData: r,
       successCallback: ({ target }) => {
-        target.reloadData();
+        target.reloadData({});
       },
     });
   };
@@ -496,7 +497,7 @@ class Edit extends DataTabContainerSupplement {
           text: '按钮3',
           hidden: true,
           confirm: true,
-          title: `即将点击按钮3，确定吗？`,
+          title: `即将点击按钮3, 确定吗?`,
         },
       ],
     };
@@ -505,7 +506,7 @@ class Edit extends DataTabContainerSupplement {
   establishPageHeaderExtraContentConfig = () => {
     const { metaData } = this.state;
 
-    return {
+    const result = {
       textLabel: fieldData.status.label,
       text: getSimpleStatusName({
         value: getValueByKey({
@@ -521,6 +522,8 @@ class Edit extends DataTabContainerSupplement {
         convert: convertCollection.datetime,
       }),
     };
+
+    return result;
   };
 
   establishPageHeaderContentGridConfig = () => {

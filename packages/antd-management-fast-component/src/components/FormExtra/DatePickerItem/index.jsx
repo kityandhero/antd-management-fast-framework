@@ -1,5 +1,5 @@
 import { DatePicker } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   buildFieldDescription,
@@ -8,11 +8,10 @@ import {
   checkStringIsNullOrWhiteSpace,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { Item } from '../Item';
 
-class DatePickerItem extends BaseComponent {
-  renderFurther() {
+class DatePickerItem extends PureComponent {
+  render() {
     const {
       label,
       name,

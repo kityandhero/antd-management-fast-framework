@@ -4,13 +4,13 @@ import { connect } from 'easy-soft-dva';
 
 import { BaseComponent, ProgressBar } from 'antd-management-fast-component';
 
-@connect(({ progressControl }) => ({
-  progressControl,
+@connect(({ progressBarControl }) => ({
+  progressBarControl,
 }))
 class TopProgressBar extends BaseComponent {
   renderFurther() {
     const {
-      progressControl: { progressing },
+      progressBarControl: { progressing },
     } = this.props;
 
     return (

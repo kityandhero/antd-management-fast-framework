@@ -21,7 +21,7 @@ class BaseUpdateForm extends DataLoad {
 
     form.resetFields();
 
-    this.reloadData();
+    this.reloadData({});
   };
 
   supplementSubmitRequestParams = (o) => o;

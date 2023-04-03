@@ -6,8 +6,8 @@ import { cardConfig } from 'antd-management-fast-common';
 import { BaseUpdateModal } from '../BaseUpdateModal';
 
 class BaseUpdateTransferModal extends BaseUpdateModal {
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
@@ -33,7 +33,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
         targetKeys: this.buildTargetKeys(preProperties, preState, snapshot),
       },
       () => {
-        this.reloadData();
+        this.reloadData({});
       },
     );
   };

@@ -15,8 +15,8 @@ class Base extends BaseWindow {
 
   reloadWhenShow = true;
 
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     const defaultState = defaultFormState();
 

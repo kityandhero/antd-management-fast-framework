@@ -11,12 +11,6 @@ import { listViewConfig } from './constants';
 
 export function defaultBaseState() {
   return {
-    dataLoading: false,
-    processing: false,
-    reloading: false,
-    searching: false,
-    refreshing: false,
-    paging: false,
     firstLoadSuccess: false,
     loadSuccess: false,
     urlParams: null,

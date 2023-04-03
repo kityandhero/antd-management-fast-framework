@@ -19,7 +19,7 @@ import { setEasySoftUtilityHandler } from 'antd-management-fast-common';
 import { appendEmbedModelBuilder } from '../modelBuilders';
 
 import { loadApplicationInitialData } from './bootstrap';
-import { progressControlAssist } from './progressControlAssist';
+import { progressBarControlAssist } from './progressBarControlAssist';
 
 let configEnvironmentComplete = false;
 
@@ -32,11 +32,11 @@ export function configEnvironment(otherConfigHandler = null) {
   setEasySoftUtilityHandler();
 
   setProgressStartHandler(() => {
-    progressControlAssist.startProgressing();
+    progressBarControlAssist.start();
   });
 
   setProgressStopHandler(() => {
-    progressControlAssist.stopProgressing();
+    progressBarControlAssist.stop();
   });
 
   if (isFunction(otherConfigHandler)) {

@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-import { BaseComponent } from '../../../bases';
 import { Item } from '../Item';
 
-class ActionItem extends BaseComponent {
-  renderFurther() {
+class ActionItem extends PureComponent {
+  render() {
     const { action, formItemLayout = {}, hidden = false } = this.props;
 
     return (

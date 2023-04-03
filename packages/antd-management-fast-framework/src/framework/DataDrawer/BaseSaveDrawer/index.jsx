@@ -3,8 +3,8 @@ import { drawerConfig } from 'antd-management-fast-common';
 import { Base } from '../Base';
 
 class BaseSaveDrawer extends Base {
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

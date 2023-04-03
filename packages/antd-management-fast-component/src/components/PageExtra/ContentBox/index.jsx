@@ -1,14 +1,12 @@
 import { Layout, Space } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import { checkInCollection, checkObjectIsNullOrEmpty } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
-
 const { Content, Sider } = Layout;
 
-class ContentBox extends BaseComponent {
-  renderFurther() {
+class ContentBox extends PureComponent {
+  render() {
     const {
       layoutConfig = null,
       siderConfig = null,

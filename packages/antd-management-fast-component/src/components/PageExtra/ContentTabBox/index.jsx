@@ -1,14 +1,12 @@
 import { Tabs } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import { isArray } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
-
 import styles from './index.less';
 
-class ContentTabBox extends BaseComponent {
-  renderFurther() {
+class ContentTabBox extends PureComponent {
+  render() {
     const { defaultActiveKey, list, extraContent, onTabChange } = this.props;
 
     const listAdjust = isArray(list) ? list : [];

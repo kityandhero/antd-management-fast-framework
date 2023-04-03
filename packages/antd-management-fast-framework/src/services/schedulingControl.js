@@ -20,7 +20,10 @@ export async function refreshMetaDataData(parameters) {
 
 export async function refreshMetaDataSimulation(parameters) {
   const simulation = {
-    time: formatDatetime(getNow(), datetimeFormat.monthDayHourMinuteSecond),
+    time: formatDatetime({
+      data: getNow(),
+      format: datetimeFormat.monthDayHourMinuteSecond,
+    }),
   };
 
   return request({

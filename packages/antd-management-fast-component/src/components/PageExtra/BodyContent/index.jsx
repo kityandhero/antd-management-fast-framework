@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-import { BaseComponent } from '../../../bases';
-
-class BodyContent extends BaseComponent {
-  renderFurther() {
+class BodyContent extends PureComponent {
+  render() {
     const { body, bottom } = this.props;
 
     return (

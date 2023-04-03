@@ -1,3 +1,5 @@
+import { mergeTextMessage } from 'easy-soft-utility';
+
 import {
   defaultFormState,
   getDerivedStateFromPropertiesForUrlParameters,
@@ -51,7 +53,7 @@ class DataLoad extends DataCore {
         this.checkNeedUpdate(preProperties, preState, snapshot)) &&
       this.reloadByUrlOp
     ) {
-      this.reloadData();
+      this.reloadData({});
     }
   };
 
@@ -61,6 +63,18 @@ class DataLoad extends DataCore {
     metaExtra,
     metaOriginalData,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          metaData,
+          metaListData,
+          metaExtra,
+          metaOriginalData,
+        },
+      },
+      mergeTextMessage('DataSingleView::DataLoad', 'afterLoadSuccess'),
+    );
+
     this.fillData({
       metaData,
       metaListData,
@@ -93,6 +107,18 @@ class DataLoad extends DataCore {
     metaExtra = null,
     metaOriginalData = null,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          metaData,
+          metaListData,
+          metaExtra,
+          metaOriginalData,
+        },
+      },
+      mergeTextMessage('DataSingleView::DataLoad', 'fillData'),
+    );
+
     const initialValues = this.buildInitialValues({
       metaData,
       metaListData,

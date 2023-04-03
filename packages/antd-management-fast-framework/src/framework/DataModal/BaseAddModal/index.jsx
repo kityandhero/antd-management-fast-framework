@@ -1,8 +1,8 @@
 import { BaseNeedlessLoadModal } from '../BaseNeedlessLoadModal';
 
 class BaseAddModal extends BaseNeedlessLoadModal {
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

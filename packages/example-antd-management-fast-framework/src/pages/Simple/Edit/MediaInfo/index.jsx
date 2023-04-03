@@ -28,6 +28,7 @@ import {
   iconBuilder,
   StatusBar,
 } from 'antd-management-fast-component';
+import { switchControlAssist } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../../customConfig/config';
 import AddMediaItemDrawer from '../../AddMediaItemDrawer';
@@ -41,6 +42,8 @@ import MediaItemPreviewDrawer from '../../MediaItemPreviewDrawer';
 import MobilePreviewBox from '../../MobilePreviewBox';
 import TabPageBase from '../../TabPageBase';
 import UpdateMediaItemDrawer from '../../UpdateMediaItemDrawer';
+
+const flagAddMediaItemDrawer = 'd1c674d387ec4b238cee44df9be3f165';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
@@ -58,7 +61,6 @@ class BasicInfo extends TabPageBase {
       simpleId: null,
       mediaItemList: [],
       mediaItemCount: 0,
-      addMediaItemDrawerVisible: false,
       updateMediaItemDrawerVisible: false,
       mediaItemPreviewDrawerVisible: false,
       currentMediaItem: null,
@@ -135,7 +137,6 @@ class BasicInfo extends TabPageBase {
 
   showInsertMediaItemDrawer = (record) => {
     this.setState({
-      addMediaItemDrawerVisible: true,
       selectForwardId: getValueByKey({
         data: record,
         key: mediaItemData.id.name,
@@ -144,8 +145,9 @@ class BasicInfo extends TabPageBase {
   };
 
   showAddMediaItemDrawer = () => {
+    switchControlAssist.open(flagAddMediaItemDrawer);
+
     this.setState({
-      addMediaItemDrawerVisible: true,
       selectForwardId: '',
     });
   };
@@ -159,8 +161,9 @@ class BasicInfo extends TabPageBase {
   };
 
   afterAddMediaItemDrawerOk = () => {
+    switchControlAssist.close(flagAddMediaItemDrawer);
+
     this.setState({
-      addMediaItemDrawerVisible: false,
       selectForwardId: '',
     });
 
@@ -184,7 +187,6 @@ class BasicInfo extends TabPageBase {
 
   afterAddMediaItemDrawerCancel = () => {
     this.setState({
-      addMediaItemDrawerVisible: false,
       selectForwardId: '',
     });
   };
@@ -195,7 +197,6 @@ class BasicInfo extends TabPageBase {
 
   afterAddMediaItemDrawerClose = () => {
     this.setState({
-      addMediaItemDrawerVisible: false,
       selectForwardId: '',
     });
   };
@@ -644,7 +645,6 @@ class BasicInfo extends TabPageBase {
       simpleId,
       mediaItemList,
       currentMediaItem,
-      addMediaItemDrawerVisible,
       updateMediaItemDrawerVisible,
       mediaItemPreviewDrawerVisible,
       selectForwardId,
@@ -653,7 +653,7 @@ class BasicInfo extends TabPageBase {
     return (
       <>
         <AddMediaItemDrawer
-          visible={addMediaItemDrawerVisible}
+          flag={flagAddMediaItemDrawer}
           externalData={{
             simpleId,
             forwardId: selectForwardId,

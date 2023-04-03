@@ -71,7 +71,7 @@ class Index extends BaseAddForm {
   }) => {
     const { simpleId } = singleData;
 
-    this.goToPath(`/news/simple/edit/load/${simpleId}/1/basicInfo`);
+    this.goToPath(`/simple/edit/load/${simpleId}/1/basicInfo`);
   };
 
   toggleFadeBoxShow = () => {
@@ -101,7 +101,7 @@ class Index extends BaseAddForm {
   };
 
   goToPageList = () => {
-    this.goToPath(`/news/simple/pageList/key`);
+    this.goToPath(`/simple/pageList/key`);
   };
 
   establishToolBarConfig = () => {

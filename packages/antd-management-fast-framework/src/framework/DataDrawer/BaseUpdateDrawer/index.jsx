@@ -3,8 +3,8 @@ import { drawerConfig } from 'antd-management-fast-common';
 import { BaseLoadDrawer } from '../BaseLoadDrawer';
 
 class BaseUpdateDrawer extends BaseLoadDrawer {
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

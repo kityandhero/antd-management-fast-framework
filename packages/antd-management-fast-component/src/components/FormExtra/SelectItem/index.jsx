@@ -1,5 +1,5 @@
 import { Select } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   buildFieldDescription,
@@ -10,12 +10,11 @@ import {
   isFunction,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { buildOptionItem } from '../../Function';
 import { Item } from '../Item';
 
-class SelectItem extends BaseComponent {
-  renderFurther() {
+class SelectItem extends PureComponent {
+  render() {
     const {
       label,
       name,

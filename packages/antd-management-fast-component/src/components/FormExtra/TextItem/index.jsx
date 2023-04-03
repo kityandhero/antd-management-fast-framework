@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   buildFieldDescription,
@@ -7,11 +7,10 @@ import {
   checkStringIsNullOrWhiteSpace,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { Item } from '../Item';
 
-class TextItem extends BaseComponent {
-  renderFurther() {
+class TextItem extends PureComponent {
+  render() {
     const {
       label,
       value,

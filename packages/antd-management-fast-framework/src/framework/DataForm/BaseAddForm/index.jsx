@@ -93,7 +93,7 @@ class BaseAddForm extends DataCore {
 
     form.resetFields();
 
-    this.reloadData();
+    this.reloadData({});
   };
 
   supplementSubmitRequestParams = (o) => o;

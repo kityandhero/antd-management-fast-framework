@@ -5,14 +5,18 @@ import {
   isFunction,
   isUndefined,
   logObject,
+  mergeTextMessage,
   pretreatmentRequestParameters,
   showSimpleRuntimeError,
   showSimpleWarningMessage,
 } from 'easy-soft-utility';
 
+import { switchControlAssist } from '../../../utils/switchControlAssist';
 import { Base } from '../Base';
 
 class BaseWindow extends Base {
+  visibleFlag = '';
+
   reloadWhenShow = false;
 
   loadRemoteRequestAfterMount = false;
@@ -22,6 +26,12 @@ class BaseWindow extends Base {
   submitWithForm = true;
 
   goToUpdateWhenProcessed = false;
+
+  constructor(properties, visibleFlag) {
+    super(properties);
+
+    this.visibleFlag = visibleFlag;
+  }
 
   // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProperties, previousState) {
@@ -146,6 +156,18 @@ class BaseWindow extends Base {
     metaExtra,
     metaOriginalData,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          metaData,
+          metaListData,
+          metaExtra,
+          metaOriginalData,
+        },
+      },
+      mergeTextMessage('DataOperation::BaseWindow', 'afterLoadSuccess'),
+    );
+
     this.fillData({
       metaData,
       metaListData,
@@ -172,12 +194,34 @@ class BaseWindow extends Base {
     metaOriginalData = null,
   }) => {};
 
+  onClose = () => {
+    switchControlAssist.close(this.getVisibleFlag());
+
+    const { afterClose } = this.props;
+
+    if (isFunction(afterClose)) {
+      afterClose();
+    }
+  };
+
   fillData = ({
     metaData = null,
     metaListData = [],
     metaExtra = null,
     metaOriginalData = null,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          metaData,
+          metaListData,
+          metaExtra,
+          metaOriginalData,
+        },
+      },
+      mergeTextMessage('DataOperation::BaseWindow', 'fillData'),
+    );
+
     const initialValues = this.buildInitialValues({
       metaData,
       metaListData,
@@ -239,28 +283,28 @@ class BaseWindow extends Base {
                 payload: submitData,
               })
               .then((remoteData) => {
-                if (that.mounted) {
-                  const { dataSuccess } = remoteData;
+                const { dataSuccess } = remoteData;
 
-                  if (dataSuccess) {
-                    const {
-                      list: metaListData,
-                      data: metaData,
-                      extra: metaExtra,
-                    } = remoteData;
+                if (dataSuccess) {
+                  switchControlAssist.close(this.getVisibleFlag());
 
-                    that.afterSubmitSuccess({
-                      singleData: metaData || null,
-                      listData: metaListData || [],
-                      extraData: metaExtra || null,
-                      responseOriginalData: remoteData || null,
-                      submitData: submitData || null,
-                    });
-                  }
+                  const {
+                    list: metaListData,
+                    data: metaData,
+                    extra: metaExtra,
+                  } = remoteData;
 
-                  if (isFunction(afterSubmitCallback)) {
-                    afterSubmitCallback(remoteData);
-                  }
+                  that.afterSubmitSuccess({
+                    singleData: metaData || null,
+                    listData: metaListData || [],
+                    extraData: metaExtra || null,
+                    responseOriginalData: remoteData || null,
+                    submitData: submitData || null,
+                  });
+                }
+
+                if (isFunction(afterSubmitCallback)) {
+                  afterSubmitCallback(remoteData);
                 }
 
                 that.setState({
@@ -296,6 +340,8 @@ class BaseWindow extends Base {
     validateFields()
       .then((values) => {
         this.execSubmitApi(values, (remoteData) => {
+          switchControlAssist.close(this.getVisibleFlag());
+
           if (isFunction(successCallback)) {
             successCallback(remoteData);
           }
@@ -379,6 +425,12 @@ class BaseWindow extends Base {
     return null;
   };
 
+  getVisibleFlag() {
+    const { flag } = this.props;
+
+    return flag || this.visibleFlag;
+  }
+
   getSaveButtonDisabled = () => {
     const { loadApiPath, dataLoading, processing, loadSuccess } = this.state;
 
@@ -389,5 +441,9 @@ class BaseWindow extends Base {
     );
   };
 }
+
+BaseWindow.defaultProps = {
+  flag: '',
+};
 
 export { BaseWindow };

@@ -1,5 +1,5 @@
 import { Input } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   buildFieldDescription,
@@ -8,14 +8,13 @@ import {
   checkStringIsNullOrWhiteSpace,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { iconBuilder } from '../../Icon';
 import { Item } from '../Item';
 
 const { Password } = Input;
 
-class PasswordItem extends BaseComponent {
-  renderFurther() {
+class PasswordItem extends PureComponent {
+  render() {
     const {
       label,
       name,

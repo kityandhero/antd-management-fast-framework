@@ -309,7 +309,7 @@ class BasicInfo extends TabPageBase {
       changeImageSortModalVisible: false,
     });
 
-    this.reloadData();
+    this.reloadData({});
   };
 
   afterChangeImageSortModalCancel = () => {

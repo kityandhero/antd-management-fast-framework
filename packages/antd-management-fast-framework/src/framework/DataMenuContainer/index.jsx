@@ -66,7 +66,7 @@ class DataMenuContainer extends AuthorizationWrapper {
       ((previousOp === 'load' && op === 'update') ||
         this.checkNeedUpdate(preProperties, preState, snapshot))
     ) {
-      this.reloadData();
+      this.reloadData({});
 
       const {
         location: { pathname },

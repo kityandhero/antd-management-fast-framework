@@ -1,6 +1,10 @@
 import { Base } from '../Base';
 
 class BaseLoadDrawer extends Base {
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
+  }
+
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }

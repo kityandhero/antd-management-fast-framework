@@ -1,12 +1,10 @@
 import { Divider, Space } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import { isArray, isBoolean, isObject } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
-
-class TabBarExtraBox extends BaseComponent {
-  renderFurther() {
+class TabBarExtraBox extends PureComponent {
+  render() {
     const { list, split } = this.props;
 
     const listItem = isArray(list) ? list : isObject(list) ? [list] : [];

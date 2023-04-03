@@ -14,12 +14,10 @@ import {
 
 import { defaultPageListState } from 'antd-management-fast-common';
 
-import { listViewControlAssist } from '../../../utils';
+import { viewControlAssist } from '../../../utils';
 import { Base } from '../../DataListView/Base';
 
 class MultiPage extends Base {
-  showCallTrack = true;
-
   /**
    * 使用远端分页
    */
@@ -338,7 +336,7 @@ class MultiPage extends Base {
       completeCallback: () => {
         this.closePreventRender();
 
-        listViewControlAssist.stopLoading();
+        viewControlAssist.stopLoading();
       },
     });
 
@@ -386,7 +384,7 @@ class MultiPage extends Base {
       completeCallback: () => {
         this.closePreventRender();
 
-        listViewControlAssist.stopLoading();
+        viewControlAssist.stopLoading();
       },
     });
 

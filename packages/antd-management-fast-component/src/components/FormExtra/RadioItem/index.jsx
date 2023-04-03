@@ -1,5 +1,5 @@
 import { Radio } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   buildFieldDescription,
@@ -10,14 +10,13 @@ import {
   isFunction,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { buildRadioItem } from '../../Function';
 import { Item } from '../Item';
 
 const { Group: RadioGroup } = Radio;
 
-class RadioItem extends BaseComponent {
-  renderFurther() {
+class RadioItem extends PureComponent {
+  render() {
     const {
       label,
       name,

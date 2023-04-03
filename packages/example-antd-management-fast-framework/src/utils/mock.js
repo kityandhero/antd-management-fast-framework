@@ -1,4 +1,9 @@
-import { getValueByKey } from 'easy-soft-utility';
+import {
+  datetimeFormat,
+  formatDatetime,
+  getNow,
+  getValueByKey,
+} from 'easy-soft-utility';
 
 import { defaultEmptyImage, getEmptyLogo } from 'antd-management-fast-common';
 
@@ -73,9 +78,15 @@ function buildAbundantArticle() {
     accessCount: 0,
     businessMode: 10,
     createUserId: '1385411903626547200',
-    createTime: '2021-08-25 11:13:09',
+    createTime: formatDatetime({
+      data: getNow(),
+      format: datetimeFormat.monthDayHourMinuteSecond,
+    }),
     updateUserId: '1385411903626547200',
-    updateTime: '2021-08-25 17:08:41',
+    updateTime: formatDatetime({
+      data: getNow(),
+      format: datetimeFormat.monthDayHourMinuteSecond,
+    }),
     systemId: 0,
     areaAgentId: '1385411903530078208',
     cityCode: '410100000000',
@@ -178,9 +189,15 @@ function buildSimpleArticle() {
     accessCount: 0,
     businessMode: 10,
     createUserId: '1385411903626547200',
-    createTime: '2021-08-25 11:13:09',
+    createTime: formatDatetime({
+      data: getNow(),
+      format: datetimeFormat.monthDayHourMinuteSecond,
+    }),
     updateUserId: '1385411903626547200',
-    updateTime: '2021-08-25 17:08:41',
+    updateTime: formatDatetime({
+      data: getNow(),
+      format: datetimeFormat.monthDayHourMinuteSecond,
+    }),
     systemId: 0,
     areaAgentId: '1385411903530078208',
     cityCode: '410100000000',

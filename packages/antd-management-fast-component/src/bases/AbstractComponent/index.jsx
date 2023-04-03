@@ -13,6 +13,7 @@ import {
   logExecute,
   logRender as logRenderCore,
   logTrace,
+  mergeArrowText,
   mergeTextMessage,
   navigateTo,
   redirectTo,
@@ -155,12 +156,29 @@ class AbstractComponent extends Component {
     };
 
     if (this.preventRender || !dispatchComplete) {
-      logTrace(
-        'ignore render',
-        `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}`,
+      this.logCallTrack(
+        {
+          parameter: { nextProperties, nextState },
+        },
+        mergeArrowText(
+          'AbstractComponent',
+          'shouldComponentUpdate',
+          `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, force ignore render`,
+        ),
       );
 
       return false;
+    } else {
+      this.logCallTrack(
+        {
+          parameter: { nextProperties, nextState },
+        },
+        mergeArrowText(
+          'AbstractComponent',
+          'shouldComponentUpdate',
+          `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, use normal render check`,
+        ),
+      );
     }
 
     // compare the children ref or value changed
@@ -303,12 +321,21 @@ class AbstractComponent extends Component {
     return this.showRenderCountInConsole || !!showRenderCount || false;
   };
 
-  increaseCounter(callback) {
+  increaseCounter({ callback = null }) {
     const { counter } = this.state;
+
+    const nextCounter = (isNumber(counter) ? toNumber(counter) : 0) + 1;
+
+    this.logCallTrack(
+      {},
+      'AbstractComponent',
+      'increaseCounter',
+      `next counter: ${nextCounter}`,
+    );
 
     this.setState(
       {
-        counter: (isNumber(counter) ? toNumber(counter) : 0) + 1,
+        counter: nextCounter,
       },
       () => {
         if (isFunction(callback)) {
@@ -316,8 +343,6 @@ class AbstractComponent extends Component {
         }
       },
     );
-
-    logExecute('increaseCounter', `counter: ${counter}`);
   }
 
   doDidMountTask = () => {
@@ -485,9 +510,9 @@ class AbstractComponent extends Component {
    * @returns bool
    */
   checkOperability() {
-    const { dataLoading, processing, loadSuccess } = this.state;
+    const { loadSuccess } = this.state;
 
-    return dataLoading || processing || !loadSuccess;
+    return !loadSuccess;
   }
 
   /**
@@ -509,12 +534,12 @@ class AbstractComponent extends Component {
    * @param {*} message
    * @returns
    */
-  logCallTrack(data, message) {
+  logCallTrack(data, ...messages) {
     if (!this.showCallTrack) {
       return;
     }
 
-    logCallTrackCore(data, message);
+    logCallTrackCore(data, mergeArrowText(this.componentName, ...messages));
   }
 
   renderFurther() {

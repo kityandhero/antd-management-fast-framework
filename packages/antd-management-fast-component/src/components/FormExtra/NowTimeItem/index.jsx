@@ -1,5 +1,5 @@
 import { Input } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   buildFieldDescription,
@@ -12,10 +12,9 @@ import {
 
 import { iconBuilder } from '../../Icon';
 import { Item } from '../Item';
-import { OnlyShowDatetimeItem } from '../OnlyShowDatetimeItem';
 
-class NowTimeItem extends OnlyShowDatetimeItem {
-  renderFurther() {
+class NowTimeItem extends PureComponent {
+  render() {
     const { label, helper, formItemLayout } = this.props;
 
     const {

@@ -1,10 +1,8 @@
-import React from 'react';
-
-import { BaseComponent } from '../../../bases';
+import React, { PureComponent } from 'react';
 
 import styles from './index.less';
 
-class DisplayItem extends BaseComponent {
+class DisplayItem extends PureComponent {
   render() {
     const { name, value, empty } = this.props;
 

@@ -45,9 +45,9 @@ import {
   iconBuilder,
 } from 'antd-management-fast-component';
 
-import { listViewControlAssist } from '../../../utils/loadingControlAssist';
 import { loadMetaData } from '../../../utils/metaDataAssist';
-import { progressControlAssist } from '../../../utils/progressControlAssist';
+import { progressBarControlAssist } from '../../../utils/progressBarControlAssist';
+import { viewControlAssist } from '../../../utils/viewControlAssist';
 import { Core } from '../../Core';
 
 class InternalFlow extends Core {
@@ -91,20 +91,20 @@ class InternalFlow extends Core {
   checkNeedUpdate = (preProperties, preState, snapshot) => false;
 
   doLoadRemoteRequest = () => {
-    this.logCallTrack({}, 'doLoadRemoteRequest');
+    this.logCallTrack({}, 'Common::InternalFlow', 'doLoadRemoteRequest');
 
     this.openPreventRender();
 
-    listViewControlAssist.startLoading();
-    progressControlAssist.startProgressing();
+    viewControlAssist.startLoading();
+    progressBarControlAssist.start();
 
     this.initLoad({
       delay: this.loadRemoteRequestDelay,
       completeCallback: () => {
         this.closePreventRender();
 
-        listViewControlAssist.stopLoading();
-        progressControlAssist.stopProgressing();
+        viewControlAssist.stopLoading();
+        progressBarControlAssist.stop();
       },
     });
   };
@@ -517,10 +517,6 @@ class InternalFlow extends Core {
       mergeTextMessage('Common::InternalFlow', 'pageListData'),
     );
 
-    this.openPreventRender();
-
-    listViewControlAssist.startLoading();
-
     const s = { ...otherState, paging: true };
 
     this.initLoad({
@@ -533,7 +529,13 @@ class InternalFlow extends Core {
     });
   };
 
-  reloadData = (otherState = {}, successCallback = null, delay = 0) => {
+  reloadData = ({
+    otherState = {},
+    delay = 0,
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
     this.logCallTrack(
       {
         parameter: { otherState, delay },
@@ -541,14 +543,12 @@ class InternalFlow extends Core {
       mergeTextMessage('Common::InternalFlow', 'reloadData'),
     );
 
-    this.openPreventRender();
-
-    listViewControlAssist.startLoading();
-
     this.initLoad({
       otherState,
       delay: delay || 0,
       successCallback: successCallback || null,
+      failCallback: failCallback || null,
+      completeCallback: completeCallback || null,
     });
   };
 
@@ -567,6 +567,7 @@ class InternalFlow extends Core {
     delay = 0,
     successCallback = null,
     failCallback = null,
+    completeCallback = null,
   ) => {
     this.logCallTrack(
       {
@@ -575,21 +576,12 @@ class InternalFlow extends Core {
       mergeTextMessage('Common::InternalFlow', 'refreshData'),
     );
 
-    this.openPreventRender();
-
-    listViewControlAssist.startLoading();
-
     this.initLoad({
       otherState,
       delay: delay || 0,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
-      completeCallback: () => {
-        this.closePreventRender();
-
-        listViewControlAssist.stopLoading();
-        progressControlAssist.stopProgressing();
-      },
+      completeCallback: completeCallback || null,
     });
   };
 
@@ -603,15 +595,23 @@ class InternalFlow extends Core {
   afterFirstLoadSuccess = () => {};
 
   afterLoadSuccess = ({
-    // eslint-disable-next-line no-unused-vars
     metaData = null,
-    // eslint-disable-next-line no-unused-vars
     metaListData = [],
-    // eslint-disable-next-line no-unused-vars
     metaExtra = null,
-    // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          metaData,
+          metaListData,
+          metaExtra,
+          metaOriginalData,
+        },
+      },
+      mergeTextMessage('Common::InternalFlow', 'afterLoadSuccess'),
+    );
+
     logDevelop(this.componentName, 'afterLoadSuccess do nothing, ');
   };
 

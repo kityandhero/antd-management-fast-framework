@@ -14,8 +14,6 @@ import { defaultListState } from 'antd-management-fast-common';
 import { Base } from '../../DataListView/Base';
 
 class SinglePage extends Base {
-  showCallTrack = true;
-
   /**
    * 使用远端分页
    */
@@ -282,7 +280,7 @@ class SinglePage extends Base {
     this.handleAdditionalPaginationChange(page, size);
 
     if (this.getCanUseFrontendPagination()) {
-      this.increaseCounter();
+      this.increaseCounter({});
     }
   };
 

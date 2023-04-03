@@ -1,18 +1,15 @@
 import {
   Affix,
   Alert,
-  Button,
   Card,
   Col,
   DatePicker,
   Divider,
-  Empty,
   Form,
   List,
   Pagination,
   Row,
   Space,
-  Tooltip,
 } from 'antd';
 import classNames from 'classnames';
 import React from 'react';
@@ -52,11 +49,15 @@ import {
 } from 'antd-management-fast-component';
 
 import { LoadingOverlay, StandardTable } from '../../../components';
-import { listViewLoadingFlag } from '../../../customConfig';
+import { viewLoadingFlag } from '../../../customConfig';
 import { AuthorizationWrapper } from '../../AuthorizationWrapper';
 import { BatchAction } from '../BatchAction';
 import { ColumnSetting } from '../ColumnSetting';
 import { DensityAction } from '../DensityAction';
+import { EmptyCardCollection } from '../EmptyCardCollection';
+import { RefreshButton } from '../RefreshButton';
+import { ResetButton } from '../ResetButton';
+import { SearchButton } from '../SearchButton';
 
 import './index.less';
 
@@ -135,6 +136,18 @@ class Base extends AuthorizationWrapper {
     metaExtra,
     metaOriginalData,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          metaData,
+          metaListData,
+          metaExtra,
+          metaOriginalData,
+        },
+      },
+      mergeTextMessage('DataListView::Base', 'afterLoadSuccess'),
+    );
+
     this.doOtherAfterLoadSuccess({
       metaData,
       metaListData,
@@ -563,32 +576,20 @@ class Base extends AuthorizationWrapper {
   };
 
   buildSearchCardButtonCore = () => {
-    const { dataLoading, reloading, searching } = this.state;
-
     return (
       <span
         className={classNames(`${classPrefix}_tableListForm_submitButtons`)}
       >
-        <Button
-          disabled={dataLoading || reloading || searching}
-          type="primary"
-          onClick={(event) => {
+        <SearchButton
+          onSearch={(event) => {
             this.handleSearch(event);
           }}
-        >
-          {searching ? iconBuilder.loading() : iconBuilder.search()}
-          查询
-        </Button>
-        <Button
-          disabled={dataLoading || reloading || searching}
-          style={{ marginLeft: 8 }}
-          onClick={() => {
-            this.handleSearchReset();
+        />
+        <ResetButton
+          onReset={(event) => {
+            this.handleSearchReset(event);
           }}
-        >
-          {reloading ? iconBuilder.loading() : iconBuilder.reload()}
-          重置
-        </Button>
+        />
       </span>
     );
   };
@@ -1145,7 +1146,7 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetCardExtraAction = () => {
-    const { listViewMode, tableSize, refreshing } = this.state;
+    const { listViewMode, tableSize } = this.state;
 
     if (listViewMode === listViewConfig.viewMode.table) {
       return (
@@ -1157,20 +1158,11 @@ class Base extends AuthorizationWrapper {
             }}
           />
 
-          <Tooltip title="刷新本页">
-            <Button
-              shape="circle"
-              style={{
-                color: '#000',
-                border: 0,
-              }}
-              loading={refreshing}
-              icon={iconBuilder.reload()}
-              onClick={() => {
-                this.refreshData({});
-              }}
-            />
-          </Tooltip>
+          <RefreshButton
+            onRefresh={() => {
+              this.refreshData({});
+            }}
+          />
 
           <ColumnSetting
             columns={this.getColumn()}
@@ -1187,22 +1179,11 @@ class Base extends AuthorizationWrapper {
     }
 
     return (
-      <>
-        <Tooltip title="刷新本页">
-          <Button
-            shape="circle"
-            style={{
-              color: '#000',
-              border: 0,
-            }}
-            loading={refreshing}
-            icon={iconBuilder.reload()}
-            onClick={() => {
-              this.refreshData({});
-            }}
-          />
-        </Tooltip>
-      </>
+      <RefreshButton
+        onRefresh={() => {
+          this.refreshData({});
+        }}
+      />
     );
   };
 
@@ -1272,7 +1253,7 @@ class Base extends AuthorizationWrapper {
 
   renderPresetListView = () => {
     return (
-      <LoadingOverlay flag={listViewLoadingFlag}>
+      <LoadingOverlay flag={viewLoadingFlag}>
         <List
           itemLayout={this.renderPresetListViewItemLayout()}
           size={this.renderPresetListViewSize()}
@@ -1344,7 +1325,7 @@ class Base extends AuthorizationWrapper {
 
     return (
       <div>
-        <LoadingOverlay flag={listViewLoadingFlag}>
+        <LoadingOverlay flag={viewLoadingFlag}>
           <StandardTable {...standardTableCustomOption} />
         </LoadingOverlay>
       </div>
@@ -1352,15 +1333,13 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetCardCollectionView = () => {
-    const { dataLoading, reloading } = this.state;
-
     const listItem = this.getCanUseFrontendPagination()
       ? this.adjustFrontendPaginationViewDataSource()
       : this.adjustViewDataSource();
     const itemCount = listItem.length;
 
     return (
-      <LoadingOverlay flag={listViewLoadingFlag}>
+      <LoadingOverlay flag={viewLoadingFlag}>
         <Space style={{ width: '100%' }} direction="vertical" size={14}>
           {itemCount > 0 ? (
             listItem.map((o, index) => {
@@ -1369,10 +1348,8 @@ class Base extends AuthorizationWrapper {
                 key: index,
               });
             })
-          ) : dataLoading || reloading ? (
-            <div style={{ height: '130px' }} />
           ) : (
-            <Empty />
+            <EmptyCardCollection />
           )}
         </Space>
 

@@ -1,6 +1,10 @@
 import { Base } from '../Base';
 
 class BaseLoadModal extends Base {
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
+  }
+
   // eslint-disable-next-line no-unused-vars
   doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
     if (this.reloadWhenShow) {

@@ -1,5 +1,5 @@
 import { Affix, Card, Divider, Space, Tooltip } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   isArray,
@@ -9,12 +9,11 @@ import {
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { iconBuilder } from '../../Icon';
 import { IconInfo } from '../../IconInfo';
 
-class ToolBar extends BaseComponent {
-  renderFurther() {
+class ToolBar extends PureComponent {
+  render() {
     const { stick, title, tools } = this.props;
 
     if (!isArray(tools)) {

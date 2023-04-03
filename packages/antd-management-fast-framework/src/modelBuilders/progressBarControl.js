@@ -4,12 +4,11 @@ import {
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
-  toString,
 } from 'easy-soft-utility';
 
 export function buildModel() {
   return {
-    namespace: 'progressControl',
+    namespace: 'progressBarControl',
 
     state: {
       ...getTacitlyState(),
@@ -17,7 +16,7 @@ export function buildModel() {
     },
 
     effects: {
-      *startProgressing({ alias }, { put }) {
+      *start({ alias }, { put }) {
         const progressing = true;
 
         const data = { progressing };
@@ -29,14 +28,11 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        logTrace(
-          'startProgressing',
-          `progressing change to ${toString(progressing)}`,
-        );
+        logTrace(`progressingBar start`);
 
         return data;
       },
-      *stopProgressing({ alias }, { put }) {
+      *stop({ alias }, { put }) {
         const progressing = false;
 
         const data = { progressing };
@@ -48,10 +44,7 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        logTrace(
-          'stopProgressing',
-          `progressing change to ${toString(progressing)}`,
-        );
+        logTrace(`progressingBar stop`);
 
         return data;
       },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   checkInCollection,
@@ -10,11 +10,10 @@ import {
 
 import { contentConfig } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../../bases';
 import { HelpCard } from '../../HelpCard';
 
-class HelpContent extends BaseComponent {
-  renderFurther() {
+class HelpContent extends PureComponent {
+  render() {
     const { wrapperType: mode, title, showNumber, list } = this.props;
 
     if (!isArray(list)) {

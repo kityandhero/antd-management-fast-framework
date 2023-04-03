@@ -1,15 +1,14 @@
 import { Typography } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { VerticalBox } from '../../VerticalBox';
 
 const { Text } = Typography;
 
-class HeaderSubTitle extends BaseComponent {
-  renderFurther() {
+class HeaderSubTitle extends PureComponent {
+  render() {
     const { text } = this.props;
 
     if (checkStringIsNullOrWhiteSpace(text)) {

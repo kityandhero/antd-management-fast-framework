@@ -3,16 +3,16 @@ import React, { PureComponent } from 'react';
 
 import { connect } from 'easy-soft-dva';
 
-@connect(({ loadingControl }) => ({
-  loadingControl,
+@connect(({ switchControl }) => ({
+  switchControl,
 }))
 class LoadingOverlay extends PureComponent {
   render() {
-    const { flag, loadingControl, children } = this.props;
+    const { flag, switchControl, children } = this.props;
 
-    const loading = !!loadingControl[flag];
+    const v = !!switchControl[flag];
 
-    return <Spin spinning={loading}>{children}</Spin>;
+    return <Spin spinning={v}>{children}</Spin>;
   }
 }
 

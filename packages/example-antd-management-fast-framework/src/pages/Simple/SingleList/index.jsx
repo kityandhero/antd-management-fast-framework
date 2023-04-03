@@ -54,6 +54,8 @@ const { SinglePage } = DataSinglePageView;
   schedulingControl,
 }))
 class SingleList extends SinglePage {
+  showCallTrack = true;
+
   loadRemoteRequestDelay = 3000;
 
   useFrontendPagination = true;
@@ -256,7 +258,7 @@ class SingleList extends SinglePage {
     const that = this;
 
     if (singleData == null) {
-      that.reloadData();
+      that.reloadData({});
     } else {
       const simpleId = getValueByKey({
         data: singleData,
@@ -296,13 +298,13 @@ class SingleList extends SinglePage {
   };
 
   goToAdd = () => {
-    this.goToPath(`/news/simple/addBasicInfo`);
+    this.goToPath(`/simple/addBasicInfo`);
   };
 
   goToEdit = (record) => {
     const { simpleId } = record;
 
-    this.goToPath(`/news/simple/edit/load/${simpleId}/key/basicInfo`);
+    this.goToPath(`/simple/edit/load/${simpleId}/key/basicInfo`);
   };
 
   establishExtraActionConfig = () => {

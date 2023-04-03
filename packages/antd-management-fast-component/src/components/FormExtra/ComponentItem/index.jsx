@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   buildFieldDescription,
@@ -7,15 +7,12 @@ import {
   checkStringIsNullOrWhiteSpace,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { Item } from '../Item';
 
 import styles from './index.less';
 
-class ComponentItem extends BaseComponent {
-  ignoreComparePropertyKeyCollection = ['innerComponent'];
-
-  renderFurther() {
+class ComponentItem extends PureComponent {
+  render() {
     const {
       label,
       innerComponent,

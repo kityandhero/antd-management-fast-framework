@@ -19,6 +19,8 @@ const {
 
 class InternalLayout extends InternalBuild {
   renderPresetSiderTopArea = () => {
+    this.logCallTrack({}, 'Common::InternalLayout', 'renderPresetSiderTopArea');
+
     const configOrComponent = this.establishSiderTopAreaConfig();
 
     if (configOrComponent == null) {
@@ -33,6 +35,12 @@ class InternalLayout extends InternalBuild {
   };
 
   renderPresetSiderBottomArea = () => {
+    this.logCallTrack(
+      {},
+      'Common::InternalLayout',
+      'renderPresetSiderBottomArea',
+    );
+
     const config = this.establishSiderBottomAreaConfig();
 
     if (config == null) {
@@ -45,7 +53,11 @@ class InternalLayout extends InternalBuild {
   renderPresetContentArea = () => {};
 
   renderPresetPageBodyContent = () => {
-    this.logRender('renderPresetPageBodyContent');
+    this.logCallTrack(
+      {},
+      'Common::InternalLayout',
+      'renderPresetPageBodyContent',
+    );
 
     const top = this.renderPresetSiderTopArea();
     const bottom = this.renderPresetSiderBottomArea();
@@ -73,7 +85,7 @@ class InternalLayout extends InternalBuild {
   };
 
   renderPresetPageBody = () => {
-    this.logRender('renderPresetPageBody');
+    this.logCallTrack({}, 'Common::InternalLayout', 'renderPresetPageBody');
 
     if (this.contentTabMode) {
       return (
@@ -112,6 +124,8 @@ class InternalLayout extends InternalBuild {
   };
 
   renderFurther() {
+    this.logCallTrack({}, 'Common::InternalLayout', 'renderFurther');
+
     const {
       showPageHeaderAvatar,
       defaultAvatarIcon,

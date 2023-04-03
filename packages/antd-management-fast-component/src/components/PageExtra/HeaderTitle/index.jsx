@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import { isArray, toString } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { IconInfo } from '../../IconInfo';
 
-class HeaderTitle extends BaseComponent {
-  renderFurther() {
+class HeaderTitle extends PureComponent {
+  render() {
     const { title, titlePrefix } = this.props;
 
     let nameList = [];

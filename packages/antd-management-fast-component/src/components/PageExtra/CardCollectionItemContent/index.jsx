@@ -1,5 +1,5 @@
 import { Col, Divider, Empty, Row, Space, Tree } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   buildFieldDescription,
@@ -23,7 +23,6 @@ import {
   getTinymceImagesUploadUrl,
 } from 'antd-management-fast-common';
 
-import { BaseComponent } from '../../../bases';
 import { AudioUpload } from '../../AudioUpload';
 import { CustomGrid } from '../../CustomGrid';
 import { TinymceWrapper } from '../../Editor/TinymceWrapper';
@@ -65,8 +64,8 @@ const {
   ActionItem,
 } = FormExtra;
 
-class CardCollectionItemContent extends BaseComponent {
-  renderFurther() {
+class CardCollectionItemContent extends PureComponent {
+  render() {
     const {
       wrapperType: mode,
       justify,

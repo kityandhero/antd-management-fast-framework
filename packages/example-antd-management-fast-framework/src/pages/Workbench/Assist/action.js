@@ -1,6 +1,6 @@
 import { dispatchModel } from 'easy-soft-dva';
 
-import { loadingControlAssist } from 'antd-management-fast-framework';
+import { switchControlAssist } from 'antd-management-fast-framework';
 
 import { testModelLoadingFlag } from '../../../customConfig';
 
@@ -12,7 +12,7 @@ export function changeSimpleValue() {
 }
 
 export function changeSimpleValueWithLoading() {
-  loadingControlAssist.startLoading(testModelLoadingFlag);
+  switchControlAssist.open(testModelLoadingFlag);
 
   setTimeout(() => {
     dispatchModel({

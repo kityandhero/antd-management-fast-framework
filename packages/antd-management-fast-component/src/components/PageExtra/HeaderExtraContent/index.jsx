@@ -1,12 +1,10 @@
 import { Col, Row } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import { formatDatetime } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
-
-class HeaderExtraContent extends BaseComponent {
-  renderFurther() {
+class HeaderExtraContent extends PureComponent {
+  render() {
     const {
       textLabel = '描述',
       text = '',

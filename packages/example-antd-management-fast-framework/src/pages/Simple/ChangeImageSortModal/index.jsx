@@ -54,7 +54,7 @@ class ChangeImageSortModal extends Base {
 
   // eslint-disable-next-line no-unused-vars
   doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
-    this.reloadData();
+    this.reloadData({});
   };
 
   supplementLoadRequestParams = (o) => {

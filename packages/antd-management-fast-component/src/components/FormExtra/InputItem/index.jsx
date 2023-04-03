@@ -1,5 +1,5 @@
 import { Input } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   buildFieldDescription,
@@ -8,14 +8,11 @@ import {
   checkStringIsNullOrWhiteSpace,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { iconBuilder } from '../../Icon';
 import { Item } from '../Item';
 
-class InputItem extends BaseComponent {
-  ignoreComparePropertyKeyCollection = ['icon'];
-
-  renderFurther() {
+class InputItem extends PureComponent {
+  render() {
     const {
       label,
       name,

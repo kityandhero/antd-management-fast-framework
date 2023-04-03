@@ -60,6 +60,8 @@ const { MultiPage } = DataMultiPageView;
   schedulingControl,
 }))
 class PageList extends MultiPage {
+  showCallTrack = true;
+
   loadRemoteRequestDelay = 100;
   pageRemoteRequestDelay = 100;
 
@@ -85,7 +87,6 @@ class PageList extends MultiPage {
       tableScroll: { x: 1620 },
       loadApiPath: 'simple/pageList',
       changeSortModalVisible: false,
-      addBasicInfoDrawerVisible: false,
       updateBasicInfoDrawerVisible: false,
       currentRecord: null,
       simpleId: '',
@@ -187,24 +188,18 @@ class PageList extends MultiPage {
   };
 
   showAddBasicInfoDrawer = () => {
-    this.setState({
-      addBasicInfoDrawerVisible: true,
-    });
+    AddBasicInfoDrawer.open();
   };
 
   afterAddBasicInfoDrawerOk = ({ subjoinData }) => {
     console.log({ subjoinData });
 
-    this.refreshData({ addBasicInfoDrawerVisible: false }, null, 300);
+    this.refreshData({}, null, 300);
   };
 
-  afterAddBasicInfoDrawerCancel = () => {
-    this.setState({ addBasicInfoDrawerVisible: false });
-  };
+  afterAddBasicInfoDrawerCancel = () => {};
 
-  afterAddBasicInfoDrawerClose = () => {
-    this.setState({ addBasicInfoDrawerVisible: false });
-  };
+  afterAddBasicInfoDrawerClose = () => {};
 
   showUpdateBasicInfoDrawer = (r) => {
     this.setState({
@@ -244,7 +239,7 @@ class PageList extends MultiPage {
     const that = this;
 
     if (singleData == null) {
-      that.reloadData();
+      that.reloadData({});
     } else {
       const simpleId = getValueByKey({
         data: singleData,
@@ -317,19 +312,19 @@ class PageList extends MultiPage {
   };
 
   goToAdd = () => {
-    this.goToPath(`/news/simple/addBasicInfo`);
+    this.goToPath(`/simple/addBasicInfo`);
   };
 
   goToEdit = (record) => {
     const { simpleId } = record;
 
-    this.goToPath(`/news/simple/edit/load/${simpleId}/key/basicInfo`);
+    this.goToPath(`/simple/edit/load/${simpleId}/key/basicInfo`);
   };
 
   goToEditContent = (record) => {
     const { simpleId } = record;
 
-    this.goToPath(`/news/simple/edit/load/${simpleId}/key/contentInfo`);
+    this.goToPath(`/simple/edit/load/${simpleId}/key/contentInfo`);
   };
 
   establishExtraActionConfig = () => {
@@ -1003,7 +998,6 @@ class PageList extends MultiPage {
   renderPresetOther = () => {
     const {
       simpleId,
-      addBasicInfoDrawerVisible,
       updateBasicInfoDrawerVisible,
       changeSortModalVisible,
       currentRecord,
@@ -1016,7 +1010,6 @@ class PageList extends MultiPage {
     return (
       <>
         <AddBasicInfoDrawer
-          visible={addBasicInfoDrawerVisible}
           externalData={{ simpleId }}
           afterOK={({ subjoinData }) => {
             this.afterAddBasicInfoDrawerOk({ subjoinData });

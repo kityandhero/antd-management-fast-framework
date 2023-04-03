@@ -1,4 +1,4 @@
-import { Affix, Card, Divider, Space, Spin } from 'antd';
+import { Affix, Card, Divider, Space } from 'antd';
 import React, { Fragment } from 'react';
 
 import {
@@ -19,7 +19,6 @@ import {
   buildDropdownEllipsis,
   buildFlexSelect,
   ColorText,
-  ElasticityButton,
   FadeBox,
   FlexText,
   HelpBox,
@@ -30,7 +29,14 @@ import {
   QueueBox,
 } from 'antd-management-fast-component';
 
+import { LoadingOverlay } from '../../../components/LoadingOverlay';
+import { viewProcessingFlag } from '../../../customConfig';
+import { switchControlAssist } from '../../../utils/switchControlAssist';
 import { InternalTabFlow } from '../InternalTabFlow';
+import {
+  ReloadActionButton,
+  ReloadActionButtonLoadingFlag,
+} from '../ReloadActionButton';
 
 import styles from './index.less';
 
@@ -119,7 +125,6 @@ class InternalBuild extends InternalTabFlow {
       hidden,
       cardType,
       cardBodyStyle,
-      spinning,
       items: contentItems,
       otherComponent,
       formItemLayout,
@@ -374,15 +379,13 @@ class InternalBuild extends InternalTabFlow {
               }
         }
       >
-        <Spin spinning={spinning || false}>
-          <>
-            {cardContent}
+        <LoadingOverlay flag={viewProcessingFlag}>
+          {cardContent}
 
-            {otherComponent || null}
+          {otherComponent || null}
 
-            {helpArea}
-          </>
-        </Spin>
+          {helpArea}
+        </LoadingOverlay>
 
         {imageArea}
       </Card>
@@ -570,7 +573,7 @@ class InternalBuild extends InternalTabFlow {
   buildExtraBackAction = () => null;
 
   buildExtraAction = () => {
-    const { dataLoading, reloading, refreshing, showReloadButton } = this.state;
+    const { showReloadButton } = this.state;
 
     const { keyPrefix, list: configList } = {
       keyPrefix: '',
@@ -579,6 +582,8 @@ class InternalBuild extends InternalTabFlow {
     };
 
     const keyPrefixAdjust = keyPrefix || 'extraActionItem';
+
+    const that = this;
 
     const listAction = this.buildByExtraBuildType({
       keyPrefix: keyPrefixAdjust,
@@ -626,18 +631,21 @@ class InternalBuild extends InternalTabFlow {
     if (showReloadButton) {
       listAction.push(
         <Fragment key={`${keyPrefixAdjust}_dropdownEllipsis`}>
-          <ElasticityButton
-            title="刷新当前数据"
-            disabled={dataLoading || reloading || refreshing}
-            type="dashed"
-            text=""
-            icon={
-              reloading || refreshing
-                ? iconBuilder.loading()
-                : iconBuilder.reload()
-            }
-            handleClick={() => {
-              this.reloadData();
+          <ReloadActionButton
+            onReload={() => {
+              switchControlAssist.open(ReloadActionButtonLoadingFlag);
+
+              that.openPreventRender();
+
+              that.reloadData({
+                completeCallback: () => {
+                  that.closePreventRender();
+
+                  switchControlAssist.close(ReloadActionButtonLoadingFlag);
+
+                  that.increaseCounter({});
+                },
+              });
             }}
           />
         </Fragment>,

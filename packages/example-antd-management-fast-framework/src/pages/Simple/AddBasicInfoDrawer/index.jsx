@@ -4,22 +4,31 @@ import { connect } from 'easy-soft-dva';
 
 import { cardConfig, drawerConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import { DataDrawer } from 'antd-management-fast-framework';
+import {
+  DataDrawer,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig/accessWayCollection';
 import { fieldData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;
 
+const visibleFlag = 'e5c655904024446199b71884b6e8993f';
+
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
 class Index extends BaseAddDrawer {
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
+
   componentAuthority = accessWayCollection.simple.addBasicInfo.permission;
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

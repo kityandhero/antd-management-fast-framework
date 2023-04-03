@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-import { BaseComponent } from '../../../bases';
 import { SyntaxHighlighter } from '../../SyntaxHighlighter';
 import { ComponentItem } from '../ComponentItem';
 
-class SyntaxHighlighterItem extends BaseComponent {
-  renderFurther() {
+class SyntaxHighlighterItem extends PureComponent {
+  render() {
     const {
       language,
       label,

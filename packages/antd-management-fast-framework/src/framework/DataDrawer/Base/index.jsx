@@ -1,10 +1,9 @@
-import { Affix, Col, Divider, Drawer, Form, Layout, Row, Space } from 'antd';
+import { Affix, Col, Divider, Form, Layout, Row, Space } from 'antd';
 import React, { Fragment } from 'react';
 
 import {
   checkStringIsNullOrWhiteSpace,
   isArray,
-  isFunction,
   isUndefined,
 } from 'easy-soft-utility';
 
@@ -25,6 +24,7 @@ import {
   IconInfo,
 } from 'antd-management-fast-component';
 
+import { DrawerExtra } from '../../../components/DrawerExtra';
 import { BaseWindow } from '../../DataOperation/BaseWindow';
 
 import styles from './index.less';
@@ -34,8 +34,8 @@ const { Footer, Content } = Layout;
 class Base extends BaseWindow {
   contentWrapperType = contentConfig.wrapperType.drawer;
 
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     const defaultState = defaultFormState();
 
@@ -52,14 +52,6 @@ class Base extends BaseWindow {
       placement: 'right',
     };
   }
-
-  onClose = () => {
-    const { afterClose } = this.props;
-
-    if (isFunction(afterClose)) {
-      afterClose();
-    }
-  };
 
   buildTitlePrevText = () => {
     return '';
@@ -360,13 +352,14 @@ class Base extends BaseWindow {
   };
 
   renderFurther() {
-    const { visible, width, height, showBottomBar, placement } = this.state;
+    const { width, height, showBottomBar, placement } = this.state;
     const { maskClosable } = this.props;
 
     const titleIcon = this.renderPresetTitleIcon();
 
     return (
-      <Drawer
+      <DrawerExtra
+        flag={this.getVisibleFlag()}
         title={
           <span>
             {titleIcon}
@@ -383,7 +376,6 @@ class Base extends BaseWindow {
         width={width}
         height={height}
         placement={placement}
-        open={visible || false}
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         onClose={this.onClose}
         bodyStyle={{
@@ -400,9 +392,13 @@ class Base extends BaseWindow {
 
           {this.renderPresetOther()}
         </div>
-      </Drawer>
+      </DrawerExtra>
     );
   }
 }
+
+Base.defaultProps = {
+  flag: '',
+};
 
 export { Base };

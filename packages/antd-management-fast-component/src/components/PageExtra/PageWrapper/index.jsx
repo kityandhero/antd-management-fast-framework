@@ -1,5 +1,5 @@
 import { FloatButton } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 
 import {
@@ -9,7 +9,6 @@ import {
   isString,
 } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../../bases';
 import { decorateAvatar } from '../../DecorateAvatar';
 import { HeaderContent } from '../HeaderContent';
 import { HeaderExtraContent } from '../HeaderExtraContent';
@@ -19,8 +18,8 @@ import { HeaderTitle } from '../HeaderTitle';
 
 const { BackTop } = FloatButton;
 
-class PageWrapper extends BaseComponent {
-  renderFurther() {
+class PageWrapper extends PureComponent {
+  render() {
     const {
       dataLoading,
       reloading,
@@ -68,7 +67,7 @@ class PageWrapper extends BaseComponent {
               ghost: false,
               style: {
                 backgroundColor: '#fff',
-                paddingBottom: '24px',
+                paddingBottom: '0px',
                 paddingLeft: '24px',
                 paddingRight: '24px',
               },

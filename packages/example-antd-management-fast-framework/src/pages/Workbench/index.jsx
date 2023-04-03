@@ -147,13 +147,13 @@ class Index extends MultiPage {
   };
 
   goToAdd = () => {
-    this.goToPath(`/news/simple/addBasicInfo`);
+    this.goToPath(`/simple/addBasicInfo`);
   };
 
   goToEdit = (record) => {
     const { simpleId } = record;
 
-    this.goToPath(`/news/simple/edit/load/${simpleId}/key/basicInfo`);
+    this.goToPath(`/simple/edit/load/${simpleId}/key/basicInfo`);
   };
 
   establishPageHeaderTitlePrefix = () => {
