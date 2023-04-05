@@ -5,7 +5,6 @@ export * from './constants';
 export * from './core';
 export * from './fitHandler';
 export * from './localStorageAssist';
-export * from './logAssist';
 export * from './mediaDefault';
 export * from './messageAssist';
 export * from './meta';

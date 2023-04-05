@@ -213,7 +213,7 @@ class MultiPageDrawer extends MultiPage {
     } else {
       notify({
         type: notificationTypeCollection.success,
-        placement: 'bottomLeft',
+        placement: 'bottom-left',
         message: '操作结果',
         description: '选择成功',
       });

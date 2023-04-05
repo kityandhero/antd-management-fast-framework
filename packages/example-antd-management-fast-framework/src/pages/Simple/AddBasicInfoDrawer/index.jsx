@@ -20,10 +20,12 @@ const visibleFlag = 'e5c655904024446199b71884b6e8993f';
   simple,
   schedulingControl,
 }))
-class Index extends BaseAddDrawer {
+class AddBasicInfoDrawer extends BaseAddDrawer {
   static open() {
     switchControlAssist.open(visibleFlag);
   }
+
+  showCallProcess = true;
 
   componentAuthority = accessWayCollection.simple.addBasicInfo.permission;
 
@@ -165,4 +167,4 @@ class Index extends BaseAddDrawer {
   };
 }
 
-export default Index;
+export default AddBasicInfoDrawer;

@@ -1,6 +1,9 @@
+import React from 'react';
+
 import { drawerConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
+import { SaveButton } from '../../Common/SaveButton';
 import { BaseNeedlessLoadDrawer } from '../BaseNeedlessLoadDrawer';
 
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {
@@ -23,20 +26,21 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   };
 
   buildBottomBarInnerDefaultConfigList = () => {
-    const buttonProcessing = this.getSaveButtonProcessing();
-
     const that = this;
 
     return [
       {
-        buildType: drawerConfig.bottomBarBuildType.generalButton,
-        type: 'primary',
-        icon: iconBuilder.save(),
-        text: '保存',
-        disabled: buttonProcessing,
-        handleClick: (event) => {
-          that.handleOk(event);
-        },
+        buildType: drawerConfig.bottomBarBuildType.component,
+        component: (
+          <SaveButton
+            type="primary"
+            text="保存"
+            icon={iconBuilder.save()}
+            handleClick={({ completeCallback }) => {
+              that.handleOk({ completeCallback });
+            }}
+          />
+        ),
       },
       {
         buildType: drawerConfig.bottomBarBuildType.close,

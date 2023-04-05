@@ -146,6 +146,53 @@ export function buildModel() {
 
         return data;
       },
+      *remove({ payload, alias }, { put }) {
+        const { flag } = { flag: '', ...payload };
+
+        if (checkObjectIsNullOrEmpty(flag)) {
+          throw new Error(
+            mergeTextMessage(
+              'switchControl::remove',
+              promptTextBuilder.buildMustString({ name: 'payload.flag' }),
+              'disallow empty string',
+            ),
+          );
+        }
+
+        yield put({
+          type: reducerNameCollection.reducerRemoveKey,
+          payload: flag,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        logTrace('switchControl::remove', `switch flag "${flag}" will remove`);
+      },
+      *removeMulti({ payload, alias }, { put }) {
+        const { flags } = { flags: [], ...payload };
+
+        if (!isArray(flags) || isEmptyArray(flags)) {
+          throw new Error(
+            mergeTextMessage(
+              'switchControl::removeMulti',
+              promptTextBuilder.buildMustArray({ name: 'payload.flags' }),
+              'must be string array, disallow empty array',
+            ),
+          );
+        }
+
+        yield put({
+          type: reducerNameCollection.reducerRemoveKey,
+          payload: flags,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        logTrace(
+          'switchControl::removeMulti',
+          `switch flags "${flags.join(',')}" will remove`,
+        );
+      },
     },
 
     reducers: {

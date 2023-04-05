@@ -2,7 +2,6 @@ import {
   checkStringIsNullOrWhiteSpace,
   isUndefined,
   logObject,
-  mergeTextMessage,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
   showSimpleWarningMessage,
@@ -90,10 +89,8 @@ class SinglePage extends Base {
         sorterValues: this.sorterValues,
         pageValues: this.pageValues,
       },
-      mergeTextMessage(
-        'DataMultiPageView::SinglePage',
-        'initLoadRequestParams',
-      ),
+      'DataMultiPageView::SinglePage',
+      'initLoadRequestParams',
     );
 
     const { startTimeAlias, endTimeAlias, startTime, endTime } =
@@ -226,10 +223,8 @@ class SinglePage extends Base {
         useFrontendPagination,
         listData,
       },
-      mergeTextMessage(
-        'DataSinglePageView::SinglePage',
-        'buildFrontendPaginationListData',
-      ),
+      'DataSinglePageView::SinglePage',
+      'buildFrontendPaginationListData',
     );
 
     return listData;
@@ -265,10 +260,8 @@ class SinglePage extends Base {
       {
         parameter: { page, size },
       },
-      mergeTextMessage(
-        'DataSinglePageView::SinglePage',
-        'handlePaginationChange',
-      ),
+      'DataSinglePageView::SinglePage',
+      'handlePaginationChange',
     );
 
     this.setPageValue({
@@ -308,10 +301,8 @@ class SinglePage extends Base {
         sorter,
         extra,
       },
-      mergeTextMessage(
-        'DataSinglePageView::SinglePage',
-        'handleAdditionalStandardTableChange',
-      ),
+      'DataSinglePageView::SinglePage',
+      'handleAdditionalStandardTableChange',
     );
 
     this.setPageValue({
@@ -335,10 +326,8 @@ class SinglePage extends Base {
       {
         parameter: {},
       },
-      mergeTextMessage(
-        'DataSinglePageView::SinglePage',
-        'renderPresetPaginationView',
-      ),
+      'DataSinglePageView::SinglePage',
+      'renderPresetPaginationView',
     );
 
     if (!this.getCanUseFrontendPagination()) {

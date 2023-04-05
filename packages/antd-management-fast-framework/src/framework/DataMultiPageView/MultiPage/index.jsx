@@ -4,7 +4,6 @@ import {
   getValue,
   isUndefined,
   logObject,
-  mergeTextMessage,
   setParametersDataCache,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
@@ -14,7 +13,6 @@ import {
 
 import { defaultPageListState } from 'antd-management-fast-common';
 
-import { viewControlAssist } from '../../../utils';
 import { Base } from '../../DataListView/Base';
 
 class MultiPage extends Base {
@@ -61,10 +59,8 @@ class MultiPage extends Base {
         parameter: o,
         result,
       },
-      mergeTextMessage(
-        'DataMultiPageView::MultiPage',
-        'supplementLoadRequestParams',
-      ),
+      'DataMultiPageView::MultiPage',
+      'supplementLoadRequestParams',
     );
 
     return result;
@@ -79,7 +75,8 @@ class MultiPage extends Base {
       {
         parameter: { checkWorkDoing, delay },
       },
-      mergeTextMessage('DataMultiPageView::MultiPage', 'handleSearchReset'),
+      'DataMultiPageView::MultiPage',
+      'handleSearchReset',
     );
 
     const form = this.getSearchCard();
@@ -139,7 +136,8 @@ class MultiPage extends Base {
         sorterValues: this.sorterValues,
         pageValues: this.pageValues,
       },
-      mergeTextMessage('DataMultiPageView::MultiPage', 'initLoadRequestParams'),
+      'DataMultiPageView::MultiPage',
+      'initLoadRequestParams',
     );
 
     if (this.restoreSearch && !this.restoreSearchComplete) {
@@ -215,7 +213,8 @@ class MultiPage extends Base {
       {
         parameter: {},
       },
-      mergeTextMessage('DataListView::Base', 'handleSearch'),
+      'DataListView::Base',
+      'handleSearch',
     );
 
     const form = this.getSearchCard();
@@ -319,10 +318,9 @@ class MultiPage extends Base {
         },
         requestData: parameterAdjust,
       },
-      mergeTextMessage(
-        'DataMultiPageView::MultiPage',
-        'handleStandardTableChange',
-      ),
+
+      'DataMultiPageView::MultiPage',
+      'handleStandardTableChange',
     );
 
     this.setPageValue({
@@ -336,7 +334,7 @@ class MultiPage extends Base {
       completeCallback: () => {
         this.closePreventRender();
 
-        viewControlAssist.stopLoading();
+        this.stopLoading();
       },
     });
 
@@ -367,10 +365,8 @@ class MultiPage extends Base {
         },
         requestData,
       },
-      mergeTextMessage(
-        'DataMultiPageView::MultiPage',
-        'handlePaginationChange',
-      ),
+      'DataMultiPageView::MultiPage',
+      'handlePaginationChange',
     );
 
     this.setPageValue({
@@ -384,7 +380,7 @@ class MultiPage extends Base {
       completeCallback: () => {
         this.closePreventRender();
 
-        viewControlAssist.stopLoading();
+        this.stopLoading();
       },
     });
 
@@ -419,10 +415,8 @@ class MultiPage extends Base {
       {
         paginationConfig,
       },
-      mergeTextMessage(
-        'DataMultiPageView::MultiPage',
-        'establishViewPaginationConfig',
-      ),
+      'DataMultiPageView::MultiPage',
+      'establishViewPaginationConfig',
     );
 
     return paginationConfig;

@@ -77,6 +77,8 @@ function dataConvert(o, index) {
   schedulingControl,
 }))
 class BasicInfo extends TabPageBase {
+  showCallProcess = true;
+
   componentAuthority = accessWayCollection.simple.get.permission;
 
   htmlContent = '';
@@ -1344,7 +1346,7 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
-              require: true,
+              require: false,
             },
             {
               lg: 24,

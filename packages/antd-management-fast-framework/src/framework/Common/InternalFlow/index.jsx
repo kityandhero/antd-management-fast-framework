@@ -10,7 +10,6 @@ import {
   logObject,
   logText,
   logTrace,
-  mergeTextMessage,
   pretreatmentRequestParameters,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
@@ -47,8 +46,8 @@ import {
 
 import { loadMetaData } from '../../../utils/metaDataAssist';
 import { progressBarControlAssist } from '../../../utils/progressBarControlAssist';
-import { viewControlAssist } from '../../../utils/viewControlAssist';
 import { Core } from '../../Core';
+import { SaveButton } from '../SaveButton';
 
 class InternalFlow extends Core {
   showPageHeader = true;
@@ -93,17 +92,21 @@ class InternalFlow extends Core {
   doLoadRemoteRequest = () => {
     this.logCallTrack({}, 'Common::InternalFlow', 'doLoadRemoteRequest');
 
-    this.openPreventRender();
+    const that = this;
 
-    viewControlAssist.startLoading();
+    that.openPreventRender();
+
+    that.startLoading();
+
     progressBarControlAssist.start();
 
-    this.initLoad({
-      delay: this.loadRemoteRequestDelay,
+    that.initLoad({
+      delay: that.loadRemoteRequestDelay,
       completeCallback: () => {
-        this.closePreventRender();
+        that.closePreventRender();
 
-        viewControlAssist.stopLoading();
+        that.stopLoading();
+
         progressBarControlAssist.stop();
       },
     });
@@ -237,7 +240,8 @@ class InternalFlow extends Core {
                   },
                   submitData,
                 },
-                mergeTextMessage('Common::InternalFlow', 'initLoad'),
+                'Common::InternalFlow',
+                'initLoad',
               );
 
               this.initLoadCore({
@@ -352,7 +356,8 @@ class InternalFlow extends Core {
             loadApiPath,
             requestData,
           },
-          mergeTextMessage('Common::InternalFlow', 'loadFromApi'),
+          'Common::InternalFlow',
+          'loadFromApi',
         );
 
         that
@@ -514,7 +519,8 @@ class InternalFlow extends Core {
       {
         parameter: { otherState, requestData, delay },
       },
-      mergeTextMessage('Common::InternalFlow', 'pageListData'),
+      'Common::InternalFlow',
+      'pageListData',
     );
 
     const s = { ...otherState, paging: true };
@@ -534,21 +540,25 @@ class InternalFlow extends Core {
     delay = 0,
     successCallback = null,
     failCallback = null,
-    completeCallback = null,
   }) => {
     this.logCallTrack(
       {
         parameter: { otherState, delay },
       },
-      mergeTextMessage('Common::InternalFlow', 'reloadData'),
+      'Common::InternalFlow',
+      'reloadData',
     );
+
+    this.startReloading();
 
     this.initLoad({
       otherState,
       delay: delay || 0,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
-      completeCallback: completeCallback || null,
+      completeCallback: () => {
+        this.stopReloading();
+      },
     });
   };
 
@@ -567,21 +577,25 @@ class InternalFlow extends Core {
     delay = 0,
     successCallback = null,
     failCallback = null,
-    completeCallback = null,
   ) => {
     this.logCallTrack(
       {
         parameter: { otherState, delay },
       },
-      mergeTextMessage('Common::InternalFlow', 'refreshData'),
+      'Common::InternalFlow',
+      'refreshData',
     );
+
+    this.startRefreshing();
 
     this.initLoad({
       otherState,
       delay: delay || 0,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
-      completeCallback: completeCallback || null,
+      completeCallback: () => {
+        this.stopRefreshing();
+      },
     });
   };
 
@@ -609,7 +623,8 @@ class InternalFlow extends Core {
           metaOriginalData,
         },
       },
-      mergeTextMessage('Common::InternalFlow', 'afterLoadSuccess'),
+      'Common::InternalFlow',
+      'afterLoadSuccess',
     );
 
     logDevelop(this.componentName, 'afterLoadSuccess do nothing, ');
@@ -963,30 +978,29 @@ class InternalFlow extends Core {
     text,
     handleClick,
     disabled = false,
-    processing = false,
     hidden = false,
   }) => {
     const that = this;
 
     const buttonDisabled = this.getSaveButtonDisabled();
-    const buttonProcessing = this.getSaveButtonProcessing();
     const ico = (icon || null) == null ? this.getSaveButtonIcon() : icon;
 
-    return buildButton({
-      type: 'primary',
-      text: text || '保存',
-      icon: ico,
-      hidden,
-      disabled: disabled || buttonDisabled,
-      processing: processing || buttonProcessing,
-      handleClick: (error) => {
-        if (isFunction(handleClick)) {
-          handleClick(error);
-        } else {
-          that.validate(error);
-        }
-      },
-    });
+    return (
+      <SaveButton
+        type="primary"
+        text={text || '保存'}
+        icon={ico}
+        hidden={hidden}
+        disabled={disabled || buttonDisabled}
+        handleClick={({ completeCallback }) => {
+          if (isFunction(handleClick)) {
+            handleClick({ completeCallback });
+          } else {
+            that.validate({ completeCallback });
+          }
+        }}
+      />
+    );
   };
 
   establishFormAdditionalConfig = () => {

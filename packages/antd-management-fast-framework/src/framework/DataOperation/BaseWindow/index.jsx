@@ -5,7 +5,6 @@ import {
   isFunction,
   isUndefined,
   logObject,
-  mergeTextMessage,
   pretreatmentRequestParameters,
   showSimpleRuntimeError,
   showSimpleWarningMessage,
@@ -165,7 +164,8 @@ class BaseWindow extends Base {
           metaOriginalData,
         },
       },
-      mergeTextMessage('DataOperation::BaseWindow', 'afterLoadSuccess'),
+      'DataOperation::BaseWindow',
+      'afterLoadSuccess',
     );
 
     this.fillData({
@@ -195,11 +195,15 @@ class BaseWindow extends Base {
   }) => {};
 
   onClose = () => {
+    this.logCallTrack({}, 'DataOperation::BaseWindow', 'onClose');
+
     switchControlAssist.close(this.getVisibleFlag());
 
     const { afterClose } = this.props;
 
     if (isFunction(afterClose)) {
+      this.logCallTrace({}, 'DataOperation::BaseWindow', 'afterClose');
+
       afterClose();
     }
   };
@@ -219,7 +223,8 @@ class BaseWindow extends Base {
           metaOriginalData,
         },
       },
-      mergeTextMessage('DataOperation::BaseWindow', 'fillData'),
+      'DataOperation::BaseWindow',
+      'fillData',
     );
 
     const initialValues = this.buildInitialValues({
@@ -249,8 +254,23 @@ class BaseWindow extends Base {
 
   afterCheckSubmitRequestParams = (o) => o;
 
-  execSubmitApi = (values = {}, afterSubmitCallback) => {
-    const { submitApiPath } = this.state;
+  execSubmitApi = ({
+    values = {},
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
+    const that = this;
+
+    that.logCallTrack(
+      {
+        parameter: { values },
+      },
+      'DataOperation::BaseWindow',
+      'execSubmitApi',
+    );
+
+    const { submitApiPath } = that.state;
 
     if ((submitApiPath || '') === '') {
       const text = `缺少 submitApiPath 配置！`;
@@ -262,74 +282,142 @@ class BaseWindow extends Base {
 
     let submitData = pretreatmentRequestParameters(values || {});
 
-    submitData = this.supplementSubmitRequestParams(submitData);
+    submitData = that.supplementSubmitRequestParams(submitData);
 
-    const checkResult = this.checkSubmitData(submitData);
+    const checkResult = that.checkSubmitData(submitData);
 
-    submitData = this.afterCheckSubmitRequestParams(submitData);
+    submitData = that.afterCheckSubmitRequestParams(submitData);
 
     if (checkResult) {
-      const that = this;
+      that.startProcessing();
+      that.openPreventRender();
 
-      that.setState({ processing: true }, () => {
-        that.setState(
-          {
-            dispatchComplete: false,
-          },
-          () => {
-            that
-              .dispatchApi({
-                type: submitApiPath,
-                payload: submitData,
-              })
-              .then((remoteData) => {
-                const { dataSuccess } = remoteData;
+      that
+        .dispatchApi({
+          type: submitApiPath,
+          payload: submitData,
+        })
+        .then((remoteData) => {
+          that.stopProcessing();
 
-                if (dataSuccess) {
-                  switchControlAssist.close(this.getVisibleFlag());
+          const { dataSuccess } = remoteData;
 
-                  const {
-                    list: metaListData,
-                    data: metaData,
-                    extra: metaExtra,
-                  } = remoteData;
+          if (dataSuccess) {
+            switchControlAssist.close(this.getVisibleFlag());
 
-                  that.afterSubmitSuccess({
-                    singleData: metaData || null,
-                    listData: metaListData || [],
-                    extraData: metaExtra || null,
-                    responseOriginalData: remoteData || null,
-                    submitData: submitData || null,
-                  });
-                }
+            const {
+              list: metaListData,
+              data: metaData,
+              extra: metaExtra,
+            } = remoteData;
 
-                if (isFunction(afterSubmitCallback)) {
-                  afterSubmitCallback(remoteData);
-                }
+            that.afterSubmitSuccess({
+              singleData: metaData || null,
+              listData: metaListData || [],
+              extraData: metaExtra || null,
+              responseOriginalData: remoteData || null,
+              submitData: submitData || null,
+            });
 
-                that.setState({
-                  processing: false,
-                  dispatchComplete: true,
-                });
+            if (isFunction(successCallback)) {
+              this.logCallTrack(
+                {
+                  parameter: { values },
+                },
+                'DataOperation::BaseWindow',
+                'execSubmitApi',
+                'successCallback',
+              );
 
-                return remoteData;
-              })
-              .catch((error) => {
-                logObject(error);
+              successCallback(remoteData);
+            }
+          }
 
-                that.setState({
-                  processing: false,
-                  dispatchComplete: true,
-                });
-              });
-          },
+          if (isFunction(completeCallback)) {
+            this.logCallTrack(
+              {
+                parameter: { values },
+              },
+              'DataOperation::BaseWindow',
+              'execSubmitApi',
+              'completeCallback',
+            );
+
+            completeCallback();
+          }
+
+          that.closePreventRender();
+
+          return remoteData;
+        })
+        .catch((error) => {
+          that.stopProcessing();
+
+          logObject(error);
+
+          if (isFunction(failCallback)) {
+            this.logCallTrack(
+              {
+                parameter: { values },
+              },
+              'DataOperation::BaseWindow',
+              'execSubmitApi',
+              'failCallback',
+            );
+
+            failCallback(error);
+          }
+
+          if (isFunction(completeCallback)) {
+            this.logCallTrack(
+              {
+                parameter: { values },
+              },
+              'DataOperation::BaseWindow',
+              'execSubmitApi',
+              'completeCallback',
+            );
+
+            completeCallback();
+          }
+
+          that.closePreventRender();
+
+          return;
+        });
+    } else {
+      that.logCallTrace(
+        {},
+        'DataOperation::BaseWindow',
+        'validate',
+        'check submit data fail',
+      );
+
+      if (isFunction(completeCallback)) {
+        that.logCallTrace(
+          {},
+          'DataOperation::BaseWindow',
+          'validate',
+          'completeCallback',
         );
-      });
+
+        completeCallback();
+      }
+
+      that.closePreventRender();
     }
   };
 
-  handleOkWithForm = (successCallback) => {
-    const form = this.getTargetForm();
+  handleOkWithForm = ({
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
+    this.logCallTrack({}, 'DataOperation::BaseWindow', 'handleOkWithForm');
+
+    const that = this;
+
+    const form = that.getTargetForm();
 
     if (form == null) {
       return;
@@ -339,21 +427,18 @@ class BaseWindow extends Base {
 
     validateFields()
       .then((values) => {
-        this.execSubmitApi(values, (remoteData) => {
-          switchControlAssist.close(this.getVisibleFlag());
-
-          if (isFunction(successCallback)) {
-            successCallback(remoteData);
-          }
-
-          if (this.goToUpdateWhenProcessed) {
-            this.reloadByUrl();
-          }
+        that.execSubmitApi({
+          values,
+          successCallback,
+          failCallback,
+          completeCallback,
         });
 
         return values;
       })
       .catch((error) => {
+        that.stopProcessing();
+
         const { errorFields } = error;
 
         if (isUndefined(errorFields)) {
@@ -382,14 +467,51 @@ class BaseWindow extends Base {
 
           showSimpleWarningMessage(errorMessage);
         }
+
+        if (isFunction(failCallback)) {
+          this.logCallTrack(
+            {},
+            'DataOperation::BaseWindow',
+            'execSubmitApi',
+            'failCallback',
+          );
+
+          failCallback(error);
+        }
+
+        if (isFunction(completeCallback)) {
+          this.logCallTrack(
+            {},
+            'DataOperation::BaseWindow',
+            'execSubmitApi',
+            'completeCallback',
+          );
+
+          completeCallback();
+        }
       });
   };
 
-  handleOk = (event, successCallback = null) => {
+  handleOk = ({
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
+    this.logCallTrack({}, 'DataOperation::BaseWindow', 'handleOk');
+
     if (this.submitWithForm) {
-      this.handleOkWithForm(event, successCallback);
+      this.handleOkWithForm({
+        successCallback,
+        failCallback,
+        completeCallback,
+      });
     } else {
-      this.execSubmitApi({}, successCallback);
+      this.execSubmitApi({
+        values: {},
+        successCallback,
+        failCallback,
+        completeCallback,
+      });
     }
   };
 

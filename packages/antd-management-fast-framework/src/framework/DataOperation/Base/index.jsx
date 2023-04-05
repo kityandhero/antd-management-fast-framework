@@ -1,11 +1,13 @@
-import { notification } from 'antd';
-
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
+  showErrorNotification,
+  showInfoNotification,
   showSimpleRuntimeError,
   showSimpleSuccessMessage,
   showSimpleWarningMessage,
+  showSuccessNotification,
+  showWarnNotification,
 } from 'easy-soft-utility';
 
 import { AuthorizationWrapper } from '../../AuthorizationWrapper';
@@ -52,6 +54,8 @@ class Base extends AuthorizationWrapper {
   };
 
   checkSubmitData = (o) => {
+    this.logCallTrack({}, 'DataOperation::Base', 'checkSubmitData');
+
     if ((o || null) == null) {
       const text = '提交的数据不能为空';
 
@@ -217,12 +221,7 @@ class Base extends AuthorizationWrapper {
     responseOriginalData = null,
     submitData = null,
   }) => {
-    const {
-      type,
-      placement,
-      message: messageText,
-      description,
-    } = {
+    const { type, placement, message, description } = {
       type: this.buildNotificationType(),
       placement: this.buildNotificationPlacement(),
       message: this.buildNotificationMessage(),
@@ -239,35 +238,19 @@ class Base extends AuthorizationWrapper {
       setTimeout(() => {
         requestAnimationFrame(() => {
           if (type === 'info') {
-            notification.info({
-              placement,
-              message: messageText,
-              description,
-            });
+            showInfoNotification({ title: message, description, placement });
           }
 
           if (type === 'success') {
-            notification.success({
-              placement,
-              message: messageText,
-              description,
-            });
+            showSuccessNotification({ title: message, description, placement });
           }
 
           if (type === 'warning') {
-            notification.warning({
-              placement,
-              message: messageText,
-              description,
-            });
+            showWarnNotification({ title: message, description, placement });
           }
 
           if (type === 'error') {
-            notification.error({
-              placement,
-              message: messageText,
-              description,
-            });
+            showErrorNotification({ title: message, description, placement });
           }
         });
       }, 700);

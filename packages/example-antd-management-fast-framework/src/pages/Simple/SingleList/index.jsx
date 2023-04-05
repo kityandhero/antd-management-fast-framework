@@ -54,7 +54,7 @@ const { SinglePage } = DataSinglePageView;
   schedulingControl,
 }))
 class SingleList extends SinglePage {
-  showCallTrack = true;
+  // showCallProcess = true;
 
   loadRemoteRequestDelay = 3000;
 

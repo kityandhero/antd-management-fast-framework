@@ -79,7 +79,7 @@ export async function getData(parameters) {
     api: `/simple/get`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 100,
+    simulateRequestDelay: 300,
     simulativeSuccessResponse: {
       data: findArticle(parameters),
     },

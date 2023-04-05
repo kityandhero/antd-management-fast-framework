@@ -41,7 +41,7 @@ import MediaInfo from './MediaInfo';
   schedulingControl,
 }))
 class Edit extends DataTabContainerSupplement {
-  showCallTrack = true;
+  showCallProcess = true;
 
   componentAuthority = accessWayCollection.simple.get.permission;
 

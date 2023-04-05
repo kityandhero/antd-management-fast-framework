@@ -8,6 +8,7 @@ import {
   handleAuthorizationFail,
   isFunction,
   isNumber,
+  logCallTrace as logCallTraceCore,
   logCallTrack as logCallTrackCore,
   logError,
   logExecute,
@@ -24,7 +25,6 @@ import {
 import {
   defaultBaseState,
   filterUpdateModel,
-  logRenderFurther,
   shallowUpdateEqual,
   shouldComponentUpdateResultShowType,
 } from 'antd-management-fast-common';
@@ -40,9 +40,13 @@ const defaultProps = {
 class AbstractComponent extends Component {
   mounted = false;
 
+  //#region view control
+
   preventRender = false;
 
   forceUpdateWhenChildrenChange = true;
+
+  //#endregion
 
   //#region develop assist
 
@@ -55,7 +59,10 @@ class AbstractComponent extends Component {
 
   renderCount = 0;
 
-  showCallTrack = false;
+  /**
+   * show process call information，display call track and call trace in console
+   */
+  showCallProcess = false;
 
   //#endregion
 
@@ -160,11 +167,10 @@ class AbstractComponent extends Component {
         {
           parameter: { nextProperties, nextState },
         },
-        mergeArrowText(
-          'AbstractComponent',
-          'shouldComponentUpdate',
-          `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, force ignore render`,
-        ),
+
+        'AbstractComponent',
+        'shouldComponentUpdate',
+        `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, force ignore render`,
       );
 
       return false;
@@ -173,11 +179,10 @@ class AbstractComponent extends Component {
         {
           parameter: { nextProperties, nextState },
         },
-        mergeArrowText(
-          'AbstractComponent',
-          'shouldComponentUpdate',
-          `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, use normal render check`,
-        ),
+
+        'AbstractComponent',
+        'shouldComponentUpdate',
+        `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, use normal render check`,
       );
     }
 
@@ -312,6 +317,8 @@ class AbstractComponent extends Component {
     this.doWorkAfterUnmount();
 
     this.setState = () => {};
+
+    logTrace(this.componentName, 'Unmount');
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -468,7 +475,6 @@ class AbstractComponent extends Component {
    * @param {*} remoteData [object] 远程返回数据
    * @param {*} callback [function] 登录失败回调函数
    */
-  // eslint-disable-next-line no-unused-vars
   doWhenAuthorizeFail = (remoteData, callback) => {
     if (isFunction(callback)) {
       callback(remoteData);
@@ -497,7 +503,6 @@ class AbstractComponent extends Component {
 
   /**
    * check loading progress,if loading or load fail,return false,else return true
-   * @returns bool
    */
   checkLoadingProgress() {
     const { dataLoading, loadSuccess } = this.state;
@@ -507,7 +512,6 @@ class AbstractComponent extends Component {
 
   /**
    * check operability,if loading or or processing or load fail,return false,else return true
-   * @returns bool
    */
   checkOperability() {
     const { loadSuccess } = this.state;
@@ -517,7 +521,6 @@ class AbstractComponent extends Component {
 
   /**
    * check in progress,if loading or or processing,return false,else return true
-   * @returns bool
    */
   checkInProgress() {
     const { dataLoading, processing } = this.state;
@@ -532,14 +535,25 @@ class AbstractComponent extends Component {
   /**
    * log call track
    * @param {*} message
-   * @returns
    */
   logCallTrack(data, ...messages) {
-    if (!this.showCallTrack) {
+    if (!this.showCallProcess) {
       return;
     }
 
     logCallTrackCore(data, mergeArrowText(this.componentName, ...messages));
+  }
+
+  /**
+   * log call trace
+   * @param {*} message
+   */
+  logCallTrace(data, ...messages) {
+    if (!this.showCallProcess) {
+      return;
+    }
+
+    logCallTraceCore(data, mergeArrowText(this.componentName, ...messages));
   }
 
   renderFurther() {
@@ -558,7 +572,7 @@ class AbstractComponent extends Component {
   openPreventRender() {
     this.preventRender = true;
 
-    logTrace(
+    this.logCallTrace(
       'openPreventRender',
       `preventRender change to ${this.preventRender}`,
     );
@@ -567,7 +581,7 @@ class AbstractComponent extends Component {
   closePreventRender() {
     this.preventRender = false;
 
-    logTrace(
+    this.logCallTrace(
       'closePreventRender',
       `preventRender change to ${this.preventRender}`,
     );
@@ -577,11 +591,11 @@ class AbstractComponent extends Component {
    * render the practical view
    */
   renderPracticalView() {
-    logRenderFurther(this.constructor.name);
-
     if (!this.checkAuthentication() || !this.checkAuthorization()) {
       return null;
     }
+
+    this.logCallTrace('renderFurther');
 
     return this.renderFurther();
   }

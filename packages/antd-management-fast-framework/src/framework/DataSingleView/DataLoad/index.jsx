@@ -1,5 +1,3 @@
-import { mergeTextMessage } from 'easy-soft-utility';
-
 import {
   defaultFormState,
   getDerivedStateFromPropertiesForUrlParameters,
@@ -72,7 +70,8 @@ class DataLoad extends DataCore {
           metaOriginalData,
         },
       },
-      mergeTextMessage('DataSingleView::DataLoad', 'afterLoadSuccess'),
+      'DataSingleView::DataLoad',
+      'afterLoadSuccess',
     );
 
     this.fillData({
@@ -116,7 +115,8 @@ class DataLoad extends DataCore {
           metaOriginalData,
         },
       },
-      mergeTextMessage('DataSingleView::DataLoad', 'fillData'),
+      'DataSingleView::DataLoad',
+      'fillData',
     );
 
     const initialValues = this.buildInitialValues({

@@ -10,4 +10,3 @@ export * from './metaDataAssist';
 export * from './progressBarControlAssist';
 export * from './schedulingControlAssist';
 export * from './switchControlAssist';
-export * from './viewControlAssist';

@@ -36,15 +36,6 @@ export function logShowInConsole() {
   return showLogInConsole || false;
 }
 
-export function getShowLogRenderFurther() {
-  const { showLogRenderFurther } = {
-    showLogRenderFurther: false,
-    ...getApplicationMergeConfig(),
-  };
-
-  return showLogRenderFurther || false;
-}
-
 export function getTinymceImagesUploadUrl() {
   const { tinymceImagesUploadUrl } = {
     tinymceImagesUploadUrl: null,

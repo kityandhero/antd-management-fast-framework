@@ -60,7 +60,7 @@ const { MultiPage } = DataMultiPageView;
   schedulingControl,
 }))
 class PageList extends MultiPage {
-  showCallTrack = true;
+  // showCallProcess = true;
 
   loadRemoteRequestDelay = 100;
   pageRemoteRequestDelay = 100;
@@ -194,7 +194,7 @@ class PageList extends MultiPage {
   afterAddBasicInfoDrawerOk = ({ subjoinData }) => {
     console.log({ subjoinData });
 
-    this.refreshData({}, null, 300);
+    this.refreshData({ delay: 300 });
   };
 
   afterAddBasicInfoDrawerCancel = () => {};
@@ -203,22 +203,17 @@ class PageList extends MultiPage {
 
   showUpdateBasicInfoDrawer = (r) => {
     this.setState({
-      updateBasicInfoDrawerVisible: true,
       currentRecord: r,
     });
   };
 
   afterUpdateBasicInfoDrawerOk = () => {
-    this.refreshData({ updateBasicInfoDrawerVisible: false }, null, 300);
+    this.refreshData({ delay: 300 });
   };
 
-  afterUpdateBasicInfoDrawerCancel = () => {
-    this.setState({ updateBasicInfoDrawerVisible: false });
-  };
+  afterUpdateBasicInfoDrawerCancel = () => {};
 
-  afterUpdateBasicInfoDrawerClose = () => {
-    this.setState({ updateBasicInfoDrawerVisible: false });
-  };
+  afterUpdateBasicInfoDrawerClose = () => {};
 
   showChangeSortModal = (currentRecord) => {
     this.setState({ changeSortModalVisible: true, currentRecord });

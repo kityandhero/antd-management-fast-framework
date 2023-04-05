@@ -2,17 +2,42 @@ import { Empty } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { connect } from 'easy-soft-dva';
-
-import { viewLoadingFlag } from '../../../customConfig';
+import { isArray, isString } from 'easy-soft-utility';
 
 @connect(({ switchControl }) => ({
   switchControl,
 }))
 class EmptyCardCollection extends PureComponent {
-  render() {
-    const { switchControl } = this.props;
+  getCheckResult() {
+    const { switchControl, flag } = this.props;
 
-    const loading = !!switchControl[viewLoadingFlag];
+    if (isArray(flag)) {
+      let result = false;
+
+      for (const o of flag) {
+        if (!isString(o)) {
+          continue;
+        }
+
+        result = !!switchControl[o];
+
+        if (result) {
+          break;
+        }
+      }
+
+      return result;
+    } else {
+      if (!isString(flag)) {
+        return false;
+      }
+
+      return !!switchControl[flag];
+    }
+  }
+
+  render() {
+    const loading = this.getCheckResult();
 
     return loading ? <div style={{ height: '130px' }} /> : <Empty />;
   }

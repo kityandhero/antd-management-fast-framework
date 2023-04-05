@@ -4,6 +4,7 @@ import React from 'react';
 import {
   datetimeFormat,
   formatDatetime,
+  isFunction,
   isUndefined,
   logObject,
   pretreatmentRequestParameters,
@@ -85,6 +86,8 @@ class BaseAddForm extends DataCore {
   afterSetFieldsValue = (values) => {};
 
   handleFormReset = () => {
+    this.logCallTrack({}, 'DataForm::BaseAddForm', 'handleFormReset');
+
     const form = this.getTargetForm();
 
     if (!form) {
@@ -98,8 +101,13 @@ class BaseAddForm extends DataCore {
 
   supplementSubmitRequestParams = (o) => o;
 
-  // eslint-disable-next-line no-unused-vars
-  validate = (event) => {
+  validate = ({
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
+    this.logCallTrack({}, 'DataForm::BaseAddForm', 'validate');
+
     const form = this.getTargetForm();
 
     const { validateFields } = form;
@@ -117,64 +125,122 @@ class BaseAddForm extends DataCore {
         const checkResult = that.checkSubmitData(submitData);
 
         if (checkResult) {
-          that.setState({ processing: true }, () => {
-            that.setState(
-              {
-                dispatchComplete: false,
-              },
-              () => {
-                that
-                  .dispatchApi({
-                    type: submitApiPath,
-                    payload: submitData,
-                  })
-                  .then((remoteData) => {
-                    if (that.mounted) {
-                      const { dataSuccess } = remoteData;
+          that
+            .dispatchApi({
+              type: submitApiPath,
+              payload: submitData,
+            })
+            .then((remoteData) => {
+              that.stopProcessing();
 
-                      if (dataSuccess) {
-                        const {
-                          list: metaListData,
-                          data: metaData,
-                          extra: metaExtra,
-                        } = remoteData;
+              const { dataSuccess } = remoteData;
 
-                        that.afterSubmitSuccess({
-                          singleData: metaData || null,
-                          listData: metaListData || [],
-                          extraData: metaExtra || null,
-                          responseOriginalData: remoteData || null,
-                          submitData: submitData || null,
-                        });
-                      }
-                    }
+              if (dataSuccess) {
+                const {
+                  list: metaListData,
+                  data: metaData,
+                  extra: metaExtra,
+                } = remoteData;
 
-                    that.setState({
-                      processing: false,
-                      dispatchComplete: true,
-                    });
+                that.afterSubmitSuccess({
+                  singleData: metaData || null,
+                  listData: metaListData || [],
+                  extraData: metaExtra || null,
+                  responseOriginalData: remoteData || null,
+                  submitData: submitData || null,
+                });
 
-                    return remoteData;
-                  })
-                  // eslint-disable-next-line promise/no-nesting
-                  .catch((error) => {
-                    logObject(error);
+                if (isFunction(successCallback)) {
+                  this.logCallTrace(
+                    {},
+                    'DataForm::BaseAddForm',
+                    'validate',
+                    'successCallback',
+                  );
 
-                    that.setState({
-                      processing: false,
-                      dispatchComplete: true,
-                    });
+                  successCallback(remoteData);
+                }
+              }
 
-                    return;
-                  });
-              },
+              if (isFunction(completeCallback)) {
+                this.logCallTrace(
+                  {},
+                  'DataForm::BaseAddForm',
+                  'validate',
+                  'completeCallback',
+                );
+
+                completeCallback();
+              }
+
+              that.closePreventRender();
+
+              return remoteData;
+            })
+            // eslint-disable-next-line promise/no-nesting
+            .catch((error) => {
+              that.stopProcessing();
+
+              logObject(error);
+
+              if (isFunction(failCallback)) {
+                this.logCallTrace(
+                  {},
+                  'DataForm::BaseAddForm',
+                  'validate',
+                  'failCallback',
+                );
+
+                failCallback(error);
+              }
+
+              if (isFunction(completeCallback)) {
+                this.logCallTrace(
+                  {},
+                  'DataForm::BaseAddForm',
+                  'validate',
+                  'completeCallback',
+                );
+
+                completeCallback();
+              }
+
+              that.closePreventRender();
+
+              return;
+            });
+        } else {
+          this.logCallTrace(
+            {},
+            'DataForm::BaseAddForm',
+            'validate',
+            'check submit data fail',
+          );
+
+          if (isFunction(completeCallback)) {
+            this.logCallTrace(
+              {},
+              'DataForm::BaseAddForm',
+              'validate',
+              'completeCallback',
             );
-          });
+
+            completeCallback();
+          }
+
+          that.closePreventRender();
         }
 
         return values;
       })
       .catch((error) => {
+        that.logCallTrace(
+          {},
+          'DataForm::BaseAddForm',
+          'validate',
+          'validate fail',
+        );
+
         const { errorFields } = error;
 
         if (isUndefined(errorFields)) {
@@ -204,6 +270,30 @@ class BaseAddForm extends DataCore {
           showSimpleWarningMessage(errorMessage);
         }
 
+        if (isFunction(failCallback)) {
+          this.logCallTrace(
+            {},
+            'DataForm::BaseAddForm',
+            'validate',
+            'failCallback',
+          );
+
+          failCallback(error);
+        }
+
+        if (isFunction(completeCallback)) {
+          this.logCallTrace(
+            {},
+            'DataForm::BaseAddForm',
+            'validate',
+            'completeCallback',
+          );
+
+          completeCallback();
+        }
+
+        that.closePreventRender();
+
         return;
       });
   };
@@ -226,6 +316,8 @@ class BaseAddForm extends DataCore {
   };
 
   renderPresetModalInner = () => {
+    this.logCallTrack({}, 'DataForm::BaseAddForm', 'renderPresetModalInner');
+
     const initialValues = this.buildInitialValues();
 
     const formLayout = this.buildFormLayout();

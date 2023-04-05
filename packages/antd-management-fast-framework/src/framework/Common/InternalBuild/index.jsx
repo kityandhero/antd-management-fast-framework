@@ -30,7 +30,6 @@ import {
 } from 'antd-management-fast-component';
 
 import { LoadingOverlay } from '../../../components/LoadingOverlay';
-import { viewProcessingFlag } from '../../../customConfig';
 import { switchControlAssist } from '../../../utils/switchControlAssist';
 import { InternalTabFlow } from '../InternalTabFlow';
 import {
@@ -379,7 +378,13 @@ class InternalBuild extends InternalTabFlow {
               }
         }
       >
-        <LoadingOverlay flag={viewProcessingFlag}>
+        <LoadingOverlay
+          flag={[
+            this.viewLoadingFlag,
+            this.viewReloadingFlag,
+            this.viewProcessingFlag,
+          ]}
+        >
           {cardContent}
 
           {otherComponent || null}

@@ -37,6 +37,14 @@ class DataCore extends BaseView {
   }
 
   setFormFieldsValue = (v) => {
+    this.logCallTrack(
+      {
+        parameter: v,
+      },
+      'DataSingleView::DataCore',
+      'setFormFieldsValue',
+    );
+
     const form = this.getTargetForm();
 
     if (form != null) {
@@ -76,6 +84,8 @@ class DataCore extends BaseView {
   };
 
   buildExtraBackAction = () => {
+    this.logCallTrack({}, 'DataSingleView::DataCore', 'buildExtraBackAction');
+
     const { backPath } = this.state;
 
     if (!this.enableActionBack) {
@@ -123,6 +133,8 @@ class DataCore extends BaseView {
   };
 
   renderPresetMainTitle = () => {
+    this.logCallTrack({}, 'DataSingleView::DataCore', 'renderPresetMainTitle');
+
     return (
       <>
         {this.renderPresetMainTitleIcon()}
@@ -135,14 +147,28 @@ class DataCore extends BaseView {
   };
 
   renderPresetFormWrapper = () => {
+    this.logCallTrack(
+      {},
+      'DataSingleView::DataCore',
+      'renderPresetFormWrapper',
+    );
+
     return this.renderPresetForm();
   };
 
   renderPresetContentArea = () => {
+    this.logCallTrack(
+      {},
+      'DataSingleView::DataCore',
+      'renderPresetContentArea',
+    );
+
     return this.renderPresetFormWrapper();
   };
 
   renderPresetForm = () => {
+    this.logCallTrack({}, 'DataSingleView::DataCore', 'renderPresetForm');
+
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
     const initialValues = this.buildInitialValues({
@@ -172,6 +198,12 @@ class DataCore extends BaseView {
   };
 
   renderPresetFormContent = () => {
+    this.logCallTrack(
+      {},
+      'DataSingleView::DataCore',
+      'renderPresetFormContent',
+    );
+
     return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };
 }

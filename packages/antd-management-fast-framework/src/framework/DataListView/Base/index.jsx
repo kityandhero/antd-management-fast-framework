@@ -20,7 +20,6 @@ import {
   datetimeFormat,
   isArray,
   isUndefined,
-  mergeTextMessage,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
   showSimpleWarnMessage,
@@ -49,7 +48,6 @@ import {
 } from 'antd-management-fast-component';
 
 import { LoadingOverlay, StandardTable } from '../../../components';
-import { viewLoadingFlag } from '../../../customConfig';
 import { AuthorizationWrapper } from '../../AuthorizationWrapper';
 import { BatchAction } from '../BatchAction';
 import { ColumnSetting } from '../ColumnSetting';
@@ -145,7 +143,8 @@ class Base extends AuthorizationWrapper {
           metaOriginalData,
         },
       },
-      mergeTextMessage('DataListView::Base', 'afterLoadSuccess'),
+      'DataListView::Base',
+      'afterLoadSuccess',
     );
 
     this.doOtherAfterLoadSuccess({
@@ -581,11 +580,15 @@ class Base extends AuthorizationWrapper {
         className={classNames(`${classPrefix}_tableListForm_submitButtons`)}
       >
         <SearchButton
+          loadingFlag={this.viewLoadingFlag}
+          searchingFlag={this.viewSearchingFlag}
           onSearch={(event) => {
             this.handleSearch(event);
           }}
         />
         <ResetButton
+          loadingFlag={this.viewLoadingFlag}
+          searchingFlag={this.viewSearchingFlag}
           onReset={(event) => {
             this.handleSearchReset(event);
           }}
@@ -1011,7 +1014,8 @@ class Base extends AuthorizationWrapper {
         paginationConfig,
         config,
       },
-      mergeTextMessage('DataListView::Base', 'supplementPaginationConfig'),
+      'DataListView::Base',
+      'supplementPaginationConfig',
     );
 
     return config;
@@ -1039,8 +1043,14 @@ class Base extends AuthorizationWrapper {
    */
   handleStandardTableChange = (pagination, filtersArgument, sorter, extra) => {
     this.logCallTrack(
-      { pagination, filtersArgument, sorter, extra },
-      mergeTextMessage('DataListView::Base', 'handleStandardTableChange'),
+      {
+        pagination,
+        filtersArgument,
+        sorter,
+        extra,
+      },
+      'DataListView::Base',
+      'handleStandardTableChange',
     );
 
     this.handleAdditionalStandardTableChange(
@@ -1095,7 +1105,8 @@ class Base extends AuthorizationWrapper {
           size,
         },
       },
-      mergeTextMessage('DataListView::Base', 'handlePaginationShowSizeChange'),
+      'DataListView::Base',
+      'handlePaginationShowSizeChange',
     );
 
     this.setPageValue({ pageNo: 1 });
@@ -1113,7 +1124,8 @@ class Base extends AuthorizationWrapper {
         paginationConfig,
         style,
       },
-      mergeTextMessage('DataListView::Base', 'buildPaginationBar'),
+      'DataListView::Base',
+      'buildPaginationBar',
     );
 
     const bar = (
@@ -1253,7 +1265,7 @@ class Base extends AuthorizationWrapper {
 
   renderPresetListView = () => {
     return (
-      <LoadingOverlay flag={viewLoadingFlag}>
+      <LoadingOverlay flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}>
         <List
           itemLayout={this.renderPresetListViewItemLayout()}
           size={this.renderPresetListViewSize()}
@@ -1320,12 +1332,13 @@ class Base extends AuthorizationWrapper {
         selectedDataTableDataRows,
         standardTableCustomOption,
       },
-      mergeTextMessage('DataListView::Base', 'renderPresetTableView'),
+      'DataListView::Base',
+      'renderPresetTableView',
     );
 
     return (
       <div>
-        <LoadingOverlay flag={viewLoadingFlag}>
+        <LoadingOverlay flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}>
           <StandardTable {...standardTableCustomOption} />
         </LoadingOverlay>
       </div>
@@ -1339,7 +1352,7 @@ class Base extends AuthorizationWrapper {
     const itemCount = listItem.length;
 
     return (
-      <LoadingOverlay flag={viewLoadingFlag}>
+      <LoadingOverlay flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}>
         <Space style={{ width: '100%' }} direction="vertical" size={14}>
           {itemCount > 0 ? (
             listItem.map((o, index) => {
@@ -1349,7 +1362,9 @@ class Base extends AuthorizationWrapper {
               });
             })
           ) : (
-            <EmptyCardCollection />
+            <EmptyCardCollection
+              flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}
+            />
           )}
         </Space>
 
@@ -1363,7 +1378,8 @@ class Base extends AuthorizationWrapper {
       {
         parameter: {},
       },
-      mergeTextMessage('DataListView::Base', 'renderPresetPaginationView'),
+      'DataListView::Base',
+      'renderPresetPaginationView',
     );
 
     return this.buildPaginationBar();

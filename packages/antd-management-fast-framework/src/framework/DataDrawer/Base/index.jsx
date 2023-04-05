@@ -41,7 +41,6 @@ class Base extends BaseWindow {
 
     this.state = {
       ...defaultState,
-
       title: '',
       width: 820,
       height: 256,
@@ -70,6 +69,8 @@ class Base extends BaseWindow {
   renderPresetTitleIcon = () => iconBuilder.form();
 
   renderPresetTitle = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetTitle');
+
     const previousText = this.buildTitlePrevText();
     let subText = this.buildTitleSubText();
 
@@ -83,10 +84,12 @@ class Base extends BaseWindow {
   };
 
   buildNotificationPlacement = () => {
-    return `bottomLeft`;
+    return `bottom-left`;
   };
 
   renderPresetForm = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetForm');
+
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
     const initialValues = this.buildInitialValues({
@@ -157,6 +160,12 @@ class Base extends BaseWindow {
   };
 
   buildBottomBarInnerRightItemConfigList = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::Base',
+      'buildBottomBarInnerRightItemConfigList',
+    );
+
     const bottomBarInnerExtraConfigList =
       this.buildBottomBarInnerExtraConfigList();
     const bottomBarInnerDefaultConfigList =
@@ -169,18 +178,30 @@ class Base extends BaseWindow {
   };
 
   renderPresetBottomBarRightBox = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetBottomBarRightBox');
+
     const rightConfigList = this.buildBottomBarInnerRightItemConfigList();
 
     return this.renderPresetBottomBarInnerBox(rightConfigList);
   };
 
   renderPresetBottomBarLeftBox = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetBottomBarLeftBox');
+
     const leftConfigList = this.buildBottomBarInnerLeftItemConfigList();
 
     return this.renderPresetBottomBarInnerBox(leftConfigList);
   };
 
   renderPresetBottomBarInnerBox = (configList) => {
+    this.logCallTrack(
+      {
+        parameter: configList,
+      },
+      'DataDrawer::Base',
+      'renderPresetBottomBarInnerBox',
+    );
+
     if (!isArray(configList) || configList.length <= 0) {
       return null;
     }
@@ -230,8 +251,8 @@ class Base extends BaseWindow {
             case drawerConfig.bottomBarBuildType.save: {
               itemAdjust = this.renderPresetSaveButton({
                 ...item,
-                handleClick: (error) => {
-                  that.handleOk(error);
+                handleClick: ({ completeCallback }) => {
+                  that.handleOk({ completeCallback });
                 },
               });
               break;
@@ -387,6 +408,7 @@ class Base extends BaseWindow {
           <Layout>
             {/* <Header>Header</Header> */}
             <Content>{this.renderPresetContentContainor()}</Content>
+
             {showBottomBar ? this.renderPresetBottomBar() : null}
           </Layout>
 

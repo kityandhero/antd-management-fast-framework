@@ -6,17 +6,16 @@ import { isFunction } from 'easy-soft-utility';
 
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { viewLoadingFlag, viewSearchingFlag } from '../../../customConfig';
-
 @connect(({ switchControl }) => ({
   switchControl,
 }))
 class ResetButton extends PureComponent {
   render() {
-    const { switchControl, text, onReset } = this.props;
+    const { switchControl, loadingFlag, searchingFlag, text, onReset } =
+      this.props;
 
-    const loading = !!switchControl[viewLoadingFlag];
-    const searching = !!switchControl[viewSearchingFlag];
+    const loading = !!switchControl[loadingFlag];
+    const searching = !!switchControl[searchingFlag];
 
     return (
       <Button

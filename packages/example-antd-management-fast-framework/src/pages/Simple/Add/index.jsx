@@ -28,7 +28,9 @@ const { BaseAddForm } = DataForm;
   simple,
   schedulingControl,
 }))
-class Index extends BaseAddForm {
+class Add extends BaseAddForm {
+  showCallProcess = true;
+
   componentAuthority = accessWayCollection.simple.addBasicInfo.permission;
 
   constructor(properties) {
@@ -335,7 +337,7 @@ class Index extends BaseAddForm {
               lg: 24,
               type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
-              require: true,
+              require: false,
             },
             {
               lg: 24,
@@ -472,4 +474,4 @@ class Index extends BaseAddForm {
   };
 }
 
-export default Index;
+export default Add;
