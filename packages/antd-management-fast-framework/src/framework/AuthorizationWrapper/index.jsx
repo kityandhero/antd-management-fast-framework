@@ -82,7 +82,9 @@ class AuthorizationWrapper extends SupplementWrapper {
         return;
       })
       .catch((error) => {
-        logException(error);
+        const { message } = error;
+
+        logException(message);
       });
   };
 }

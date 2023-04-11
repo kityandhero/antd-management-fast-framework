@@ -15,7 +15,7 @@ export const switchControlAssist = {
    * open switch
    * @param {string} flag switch flag
    */
-  open(flag) {
+  open(flag, ...message) {
     if (checkObjectIsNullOrEmpty(flag)) {
       throw new Error(
         mergeTextMessage(
@@ -30,14 +30,14 @@ export const switchControlAssist = {
 
     dispatch({
       type: 'switchControl/open',
-      payload: { flag },
+      payload: { flag, message },
     });
   },
   /**
    * close switch
    * @param {string} flag switch flag
    */
-  close(flag) {
+  close(flag, ...message) {
     if (checkObjectIsNullOrEmpty(flag)) {
       throw new Error(
         mergeTextMessage(
@@ -52,14 +52,14 @@ export const switchControlAssist = {
 
     dispatch({
       type: 'switchControl/close',
-      payload: { flag },
+      payload: { flag, message },
     });
   },
   /**
    * remove switch
    * @param {string} flag switch flag
    */
-  remove(flag) {
+  remove(flag, ...message) {
     if (checkObjectIsNullOrEmpty(flag)) {
       throw new Error(
         mergeTextMessage(
@@ -74,14 +74,14 @@ export const switchControlAssist = {
 
     dispatch({
       type: 'switchControl/remove',
-      payload: { flag },
+      payload: { flag, message },
     });
   },
   /**
    * open multi switch
    * @param {Array} flags switch flag
    */
-  openMulti(flags) {
+  openMulti(flags, ...message) {
     if (!isArray(flags) || isEmptyArray(flags)) {
       throw new Error(
         mergeTextMessage(
@@ -96,14 +96,14 @@ export const switchControlAssist = {
 
     dispatch({
       type: 'switchControl/openMulti',
-      payload: { flags },
+      payload: { flags, message },
     });
   },
   /**
    * close multi switch
    * @param {Array} flags switch flag
    */
-  closeMulti(flags) {
+  closeMulti(flags, ...message) {
     if (!isArray(flags) || isEmptyArray(flags)) {
       throw new Error(
         mergeTextMessage(
@@ -118,14 +118,14 @@ export const switchControlAssist = {
 
     dispatch({
       type: 'switchControl/closeMulti',
-      payload: { flags },
+      payload: { flags, message },
     });
   },
   /**
    * remove multi switch
    * @param {Array} flags switch flag
    */
-  removeMulti(flags) {
+  removeMulti(flags, ...message) {
     if (!isArray(flags) || isEmptyArray(flags)) {
       throw new Error(
         mergeTextMessage(
@@ -140,7 +140,7 @@ export const switchControlAssist = {
 
     dispatch({
       type: 'switchControl/removeMulti',
-      payload: { flags },
+      payload: { flags, message },
     });
   },
 };

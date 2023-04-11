@@ -60,82 +60,104 @@ class Core extends BaseComponent {
     switchControlAssist.removeMulti(list);
   };
 
-  startLoading() {
+  startLoading(...message) {
     this.logCallTrack({}, 'Core', 'startLoading');
 
-    switchControlAssist.open(this.viewLoadingFlag);
+    switchControlAssist.open(
+      this.viewLoadingFlag,
+      this.componentName,
+      ...message,
+    );
   }
 
-  stopLoading() {
+  stopLoading(...message) {
     this.logCallTrack({}, 'Core', 'stopLoading');
 
-    switchControlAssist.close(this.viewLoadingFlag);
+    switchControlAssist.close(
+      this.viewLoadingFlag,
+      this.componentName,
+      ...message,
+    );
   }
 
-  startSearching() {
+  startSearching(...message) {
     this.logCallTrack({}, 'Core', 'startSearching');
 
-    switchControlAssist.openMulti([
-      this.viewSearchingFlag,
-      this.viewLoadingFlag,
-    ]);
+    switchControlAssist.openMulti(
+      [this.viewSearchingFlag, this.viewLoadingFlag],
+      this.componentName,
+      ...message,
+    );
   }
 
-  stopSearching() {
+  stopSearching(...message) {
     this.logCallTrack({}, 'Core', 'stopSearching');
 
-    switchControlAssist.closeMulti([
-      this.viewSearchingFlag,
-      this.viewLoadingFlag,
-    ]);
+    switchControlAssist.closeMulti(
+      [this.viewSearchingFlag, this.viewLoadingFlag],
+      this.componentName,
+      ...message,
+    );
   }
 
-  startRefreshing() {
+  startRefreshing(...message) {
     this.logCallTrack({}, 'Core', 'startRefreshing');
 
-    switchControlAssist.openMulti([
-      this.viewLoadingFlag,
-      this.viewRefreshingFlag,
-    ]);
+    switchControlAssist.openMulti(
+      [this.viewLoadingFlag, this.viewRefreshingFlag],
+      this.componentName,
+      ...message,
+    );
   }
 
-  stopRefreshing() {
+  stopRefreshing(...message) {
     this.logCallTrack({}, 'Core', 'stopRefreshing');
 
-    switchControlAssist.closeMulti([
-      this.viewLoadingFlag,
-      this.viewRefreshingFlag,
-    ]);
+    switchControlAssist.closeMulti(
+      [this.viewLoadingFlag, this.viewRefreshingFlag],
+      this.componentName,
+      ...message,
+    );
   }
 
-  startReloading() {
+  startReloading(...message) {
     this.logCallTrack({}, 'Core', 'startReloading');
 
-    switchControlAssist.openMulti([
-      this.viewLoadingFlag,
-      this.viewReloadingFlag,
-    ]);
+    switchControlAssist.openMulti(
+      [this.viewLoadingFlag, this.viewReloadingFlag],
+      this.componentName,
+      ...message,
+    );
   }
 
-  stopReloading() {
+  stopReloading(...message) {
     this.logCallTrack({}, 'Core', 'stopReloading');
 
-    switchControlAssist.closeMulti([
-      this.viewLoadingFlag,
-      this.viewReloadingFlag,
-    ]);
+    switchControlAssist.closeMulti(
+      [this.viewLoadingFlag, this.viewReloadingFlag],
+      this.componentName,
+      ...message,
+    );
   }
 
-  startProcessing() {
+  startProcessing(...message) {
     this.logCallTrack({}, 'Core', 'startProcessing');
 
-    switchControlAssist.open(this.viewProcessingFlag);
+    switchControlAssist.open(
+      this.viewProcessingFlag,
+      this.componentName,
+      ...message,
+    );
   }
 
-  stopProcessing() {
+  stopProcessing(...message) {
     this.logCallTrack({}, 'Core', 'stopProcessing');
 
-    switchControlAssist.close(this.viewProcessingFlag);
+    switchControlAssist.close(
+      this.viewProcessingFlag,
+      this.componentName,
+      ...message,
+    );
   }
 }
 

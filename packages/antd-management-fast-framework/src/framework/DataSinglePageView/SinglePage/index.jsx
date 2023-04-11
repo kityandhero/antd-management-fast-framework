@@ -1,6 +1,7 @@
 import {
   checkStringIsNullOrWhiteSpace,
   isUndefined,
+  logException,
   logObject,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
@@ -150,7 +151,9 @@ class SinglePage extends Base {
         this.searchData({ formValues: values });
       })
       .catch((error) => {
-        const { errorFields } = error;
+        const { errorFields, message } = error;
+
+        logException(message);
 
         if (isUndefined(errorFields)) {
           showSimpleRuntimeError(error);

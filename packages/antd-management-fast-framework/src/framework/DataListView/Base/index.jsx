@@ -20,6 +20,7 @@ import {
   datetimeFormat,
   isArray,
   isUndefined,
+  logException,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
   showSimpleWarnMessage,
@@ -359,7 +360,9 @@ class Base extends AuthorizationWrapper {
         return values;
       })
       .catch((error) => {
-        const { errorFields } = error;
+        const { errorFields, message } = error;
+
+        logException(message);
 
         if (isUndefined(errorFields)) {
           showSimpleRuntimeError(error);

@@ -3,6 +3,7 @@ import {
   getParametersDataCache,
   getValue,
   isUndefined,
+  logException,
   logObject,
   setParametersDataCache,
   showSimpleErrorMessage,
@@ -242,7 +243,9 @@ class MultiPage extends Base {
         this.searchData({});
       })
       .catch((error) => {
-        const { errorFields } = error;
+        const { errorFields, message } = error;
+
+        logException(message);
 
         if (isUndefined(errorFields)) {
           showSimpleRuntimeError(error);
@@ -331,11 +334,6 @@ class MultiPage extends Base {
     this.pageListData({
       requestData: parameterAdjust,
       delay: this.pageRemoteRequestDelay,
-      completeCallback: () => {
-        this.closePreventRender();
-
-        this.stopLoading();
-      },
     });
 
     this.handleAdditionalStandardTableChange(
@@ -351,23 +349,22 @@ class MultiPage extends Base {
       return;
     }
 
-    const requestData = {
-      pageNo: page,
-      pageSize,
-      ...this.filterFormValues,
-    };
-
     this.logCallTrack(
       {
         parameter: {
           page,
           pageSize,
         },
-        requestData,
       },
       'DataMultiPageView::MultiPage',
       'handlePaginationChange',
     );
+
+    const requestData = {
+      pageNo: page,
+      pageSize,
+      ...this.filterFormValues,
+    };
 
     this.setPageValue({
       pageNo: page,
@@ -377,11 +374,6 @@ class MultiPage extends Base {
     this.pageListData({
       requestData,
       delay: this.pageRemoteRequestDelay,
-      completeCallback: () => {
-        this.closePreventRender();
-
-        this.stopLoading();
-      },
     });
 
     this.handleAdditionalPaginationChange(page, pageSize);

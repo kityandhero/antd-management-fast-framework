@@ -5,11 +5,10 @@ import { Flip, toast } from 'react-toastify';
 import { getDispatch } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
-  // getGuid,
   isArray,
   isFunction,
   logDebug,
-  logError,
+  logException,
   showSimpleSuccessNotification,
 } from 'easy-soft-utility';
 
@@ -140,8 +139,10 @@ function remoteAction({
 
       return data;
     })
-    .catch((error_) => {
-      logError(error_);
+    .catch((error) => {
+      const { message } = error;
+
+      logException(message);
 
       if (showProcessing) {
         setTimeout(() => {
@@ -443,7 +444,9 @@ export function apiRequest({
       return data;
     })
     .catch((error) => {
-      logError(error);
+      const { message } = error;
+
+      logException(message);
 
       if (showProcessing) {
         setTimeout(() => {

@@ -25,11 +25,11 @@ class SaveButton extends PureComponent {
         processing={flag}
         handleClick={() => {
           if (isFunction(handleClick)) {
-            switchControlAssist.open(processingFlag);
+            switchControlAssist.open(processingFlag, 'Common::SaveButton');
 
             handleClick({
               completeCallback: () => {
-                switchControlAssist.close(processingFlag);
+                switchControlAssist.close(processingFlag, 'Common::SaveButton');
               },
             });
           }

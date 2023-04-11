@@ -640,15 +640,9 @@ class InternalBuild extends InternalTabFlow {
             onReload={() => {
               switchControlAssist.open(ReloadActionButtonLoadingFlag);
 
-              that.openPreventRender();
-
               that.reloadData({
                 completeCallback: () => {
-                  that.closePreventRender();
-
                   switchControlAssist.close(ReloadActionButtonLoadingFlag);
-
-                  that.increaseCounter({});
                 },
               });
             }}

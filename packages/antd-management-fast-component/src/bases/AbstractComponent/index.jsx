@@ -26,7 +26,6 @@ import {
   defaultBaseState,
   filterUpdateModel,
   shallowUpdateEqual,
-  shouldComponentUpdateResultShowType,
 } from 'antd-management-fast-common';
 
 const defaultProps = {
@@ -54,8 +53,6 @@ class AbstractComponent extends Component {
    *显示render次数开关, 用于开发时候调试页面渲染性能
    */
   showRenderCountInConsole = false;
-
-  showShouldComponentUpdateInConsole = shouldComponentUpdateResultShowType.none;
 
   renderCount = 0;
 
@@ -164,10 +161,7 @@ class AbstractComponent extends Component {
 
     if (this.preventRender || !dispatchComplete) {
       this.logCallTrack(
-        {
-          parameter: { nextProperties, nextState },
-        },
-
+        {},
         'AbstractComponent',
         'shouldComponentUpdate',
         `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, force ignore render`,
@@ -179,7 +173,6 @@ class AbstractComponent extends Component {
         {
           parameter: { nextProperties, nextState },
         },
-
         'AbstractComponent',
         'shouldComponentUpdate',
         `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, use normal render check`,
@@ -223,14 +216,9 @@ class AbstractComponent extends Component {
 
     const compareResult = comparePropertiesResult || compareStateResult;
 
-    switch (this.showShouldComponentUpdateInConsole) {
-      case shouldComponentUpdateResultShowType.none: {
-        break;
-      }
-
-      case shouldComponentUpdateResultShowType.all: {
-        logTrace(
-          {
+    this.logCallTrace(
+      compareResult
+        ? {
             propsHaveChanges: comparePropertiesResult,
             stateHaveChanges: compareStateResult,
             currentProps: currentPropertiesIgnoreModel,
@@ -238,56 +226,13 @@ class AbstractComponent extends Component {
             currentState: this.state,
             nextState,
             childrenChanged,
-          },
-          `${this.constructor.name}::shouldComponentUpdate -> ${
-            compareResult ? 'true' : 'false'
-          } -> ${compareResult ? 'will render' : 'ignore render'}`,
-        );
-
-        break;
-      }
-
-      case shouldComponentUpdateResultShowType.willRender: {
-        if (compareResult) {
-          logTrace(
-            {
-              propsHaveChanges: comparePropertiesResult,
-              stateHaveChanges: compareStateResult,
-              currentProps: currentPropertiesIgnoreModel,
-              nextProps: nextPropertiesIgnoreModel,
-              currentState: this.state,
-              nextState,
-              childrenChanged,
-            },
-            `${this.constructor.name}::shouldComponentUpdate -> true -> will render`,
-          );
-        }
-
-        break;
-      }
-
-      case shouldComponentUpdateResultShowType.ignoreRender: {
-        if (!compareResult) {
-          logTrace(
-            {
-              propsHaveChanges: comparePropertiesResult,
-              stateHaveChanges: compareStateResult,
-              currentProps: currentPropertiesIgnoreModel,
-              nextProps: nextPropertiesIgnoreModel,
-              currentState: this.state,
-              nextState,
-            },
-            `${this.constructor.name}::shouldComponentUpdate -> false -> ignore render`,
-          );
-        }
-
-        break;
-      }
-
-      default: {
-        break;
-      }
-    }
+          }
+        : {},
+      'AbstractComponent',
+      'shouldComponentUpdate',
+      compareResult ? 'true' : 'false',
+      compareResult ? 'will render' : 'ignore render',
+    );
 
     if (compareResult) {
       this.doWorkBeforeUpdate(nextProperties, nextState);
@@ -595,9 +540,13 @@ class AbstractComponent extends Component {
       return null;
     }
 
-    this.logCallTrace('renderFurther');
+    this.logCallTrace({}, '-------------render start----------------');
 
-    return this.renderFurther();
+    const c = this.renderFurther();
+
+    this.logCallTrace({}, '-------------render end------------------');
+
+    return c;
   }
 
   render() {

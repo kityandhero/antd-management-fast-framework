@@ -1,13 +1,12 @@
 import {
   isFunction,
   isUndefined,
-  logObject,
+  logException,
   pretreatmentRequestParameters,
   showSimpleRuntimeError,
   showSimpleWarningMessage,
 } from 'easy-soft-utility';
 
-import { switchControlAssist } from '../../../utils';
 import { DataLoad } from '../../DataSingleView/DataLoad';
 
 class BaseUpdateForm extends DataLoad {
@@ -80,8 +79,6 @@ class BaseUpdateForm extends DataLoad {
           const { dataSuccess } = remoteData;
 
           if (dataSuccess) {
-            switchControlAssist.close(this.getVisibleFlag());
-
             const {
               list: metaListData,
               data: metaData,
@@ -101,7 +98,7 @@ class BaseUpdateForm extends DataLoad {
                 {
                   parameter: { values },
                 },
-                'DataOperation::BaseWindow',
+                'DataForm::BaseUpdateForm',
                 'execSubmitApi',
                 'successCallback',
               );
@@ -111,11 +108,11 @@ class BaseUpdateForm extends DataLoad {
           }
 
           if (isFunction(completeCallback)) {
-            this.logCallTrack(
+            this.logCallTrace(
               {
                 parameter: { values },
               },
-              'DataOperation::BaseWindow',
+              'DataForm::BaseUpdateForm',
               'execSubmitApi',
               'completeCallback',
             );
@@ -128,16 +125,18 @@ class BaseUpdateForm extends DataLoad {
           return remoteData;
         })
         .catch((error) => {
-          that.stopProcessing();
+          const { message } = error;
 
-          logObject(error);
+          logException(message);
+
+          that.stopProcessing();
 
           if (isFunction(failCallback)) {
             this.logCallTrack(
               {
                 parameter: { values },
               },
-              'DataOperation::BaseWindow',
+              'DataForm::BaseUpdateForm',
               'execSubmitApi',
               'failCallback',
             );
@@ -150,7 +149,7 @@ class BaseUpdateForm extends DataLoad {
               {
                 parameter: { values },
               },
-              'DataOperation::BaseWindow',
+              'DataForm::BaseUpdateForm',
               'execSubmitApi',
               'completeCallback',
             );
@@ -165,7 +164,7 @@ class BaseUpdateForm extends DataLoad {
     } else {
       that.logCallTrace(
         {},
-        'DataOperation::BaseWindow',
+        'DataForm::BaseUpdateForm',
         'validate',
         'check submit data fail',
       );
@@ -173,7 +172,7 @@ class BaseUpdateForm extends DataLoad {
       if (isFunction(completeCallback)) {
         that.logCallTrace(
           {},
-          'DataOperation::BaseWindow',
+          'DataForm::BaseUpdateForm',
           'validate',
           'completeCallback',
         );
@@ -214,9 +213,13 @@ class BaseUpdateForm extends DataLoad {
         return values;
       })
       .catch((error) => {
+        const { message } = error;
+
+        logException(message);
+
         that.logCallTrace(
           {},
-          'DataForm::BaseAddForm',
+          'DataForm::BaseUpdateForm',
           'validate',
           'validate fail',
         );
@@ -253,7 +256,7 @@ class BaseUpdateForm extends DataLoad {
         if (isFunction(failCallback)) {
           this.logCallTrace(
             {},
-            'DataForm::BaseAddForm',
+            'DataForm::BaseUpdateForm',
             'validate',
             'failCallback',
           );
@@ -264,7 +267,7 @@ class BaseUpdateForm extends DataLoad {
         if (isFunction(completeCallback)) {
           this.logCallTrace(
             {},
-            'DataForm::BaseAddForm',
+            'DataForm::BaseUpdateForm',
             'validate',
             'completeCallback',
           );

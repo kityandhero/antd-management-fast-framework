@@ -8,6 +8,18 @@ class BaseView extends Base {
     responseOriginalData = null,
     submitData = null,
   }) => {
+    this.logCallTrack(
+      {
+        singleData,
+        listData,
+        extraData,
+        responseOriginalData,
+        submitData,
+      },
+      'DataOperation::BaseView',
+      'afterSubmitSuccess',
+    );
+
     this.doAfterSubmitSuccess({
       singleData,
       listData,

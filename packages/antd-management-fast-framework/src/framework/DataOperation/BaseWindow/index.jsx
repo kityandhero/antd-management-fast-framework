@@ -4,7 +4,7 @@ import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
   isUndefined,
-  logObject,
+  logException,
   pretreatmentRequestParameters,
   showSimpleRuntimeError,
   showSimpleWarningMessage,
@@ -320,7 +320,7 @@ class BaseWindow extends Base {
             });
 
             if (isFunction(successCallback)) {
-              this.logCallTrack(
+              this.logCallTrace(
                 {
                   parameter: { values },
                 },
@@ -334,7 +334,7 @@ class BaseWindow extends Base {
           }
 
           if (isFunction(completeCallback)) {
-            this.logCallTrack(
+            this.logCallTrace(
               {
                 parameter: { values },
               },
@@ -351,12 +351,14 @@ class BaseWindow extends Base {
           return remoteData;
         })
         .catch((error) => {
+          const { message } = error;
+
+          logException(message);
+
           that.stopProcessing();
 
-          logObject(error);
-
           if (isFunction(failCallback)) {
-            this.logCallTrack(
+            this.logCallTrace(
               {
                 parameter: { values },
               },
@@ -369,7 +371,7 @@ class BaseWindow extends Base {
           }
 
           if (isFunction(completeCallback)) {
-            this.logCallTrack(
+            this.logCallTrace(
               {
                 parameter: { values },
               },
@@ -437,9 +439,11 @@ class BaseWindow extends Base {
         return values;
       })
       .catch((error) => {
-        that.stopProcessing();
+        const { errorFields, message } = error;
 
-        const { errorFields } = error;
+        logException(message);
+
+        that.stopProcessing();
 
         if (isUndefined(errorFields)) {
           showSimpleRuntimeError(error);
@@ -469,7 +473,7 @@ class BaseWindow extends Base {
         }
 
         if (isFunction(failCallback)) {
-          this.logCallTrack(
+          this.logCallTrace(
             {},
             'DataOperation::BaseWindow',
             'execSubmitApi',
@@ -480,7 +484,7 @@ class BaseWindow extends Base {
         }
 
         if (isFunction(completeCallback)) {
-          this.logCallTrack(
+          this.logCallTrace(
             {},
             'DataOperation::BaseWindow',
             'execSubmitApi',
@@ -517,15 +521,23 @@ class BaseWindow extends Base {
 
   afterSubmitSuccess = ({
     singleData = null,
-
     listData = [],
-
     extraData = null,
-
     responseOriginalData = null,
-
     submitData = null,
   }) => {
+    this.logCallTrack(
+      {
+        singleData,
+        listData,
+        extraData,
+        responseOriginalData,
+        submitData,
+      },
+      'DataOperation::BaseWindow',
+      'afterSubmitSuccess',
+    );
+
     this.doAfterSubmitSuccess({
       singleData,
       listData,

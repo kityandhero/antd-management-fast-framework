@@ -3,18 +3,18 @@ import React from 'react';
 
 import {
   checkStringIsNullOrWhiteSpace,
+  isEmptyObject,
   isEqual,
   isFunction,
   isUndefined,
   logDevelop,
+  logException,
   logObject,
-  logText,
-  logTrace,
   pretreatmentRequestParameters,
+  showErrorMessage,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
   toNumber,
-  toString,
 } from 'easy-soft-utility';
 
 import {
@@ -168,111 +168,100 @@ class InternalFlow extends Core {
     failCallback = null,
     completeCallback = null,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          requestData: requestDataSource,
+          otherState,
+          delay,
+        },
+      },
+      'Common::InternalFlow',
+      'initLoad',
+    );
+
     const {
       loadApiPath,
       firstLoadSuccess,
       reloading: reloadingBefore,
     } = this.state;
 
-    try {
-      if (checkStringIsNullOrWhiteSpace(loadApiPath)) {
-        const text = 'loadApiPath需要配置';
+    if (checkStringIsNullOrWhiteSpace(loadApiPath)) {
+      const text = 'loadApiPath需要配置';
 
-        showSimpleRuntimeError(text);
+      showSimpleRuntimeError(text);
 
-        logObject(this);
+      if (isFunction(completeCallback)) {
+        this.logCallTrace(
+          {},
+          'Common::InternalFlow',
+          'initLoad',
+          'check loadApiPath fail',
+          'completeCallback',
+        );
 
-        if (isFunction(completeCallback)) {
-          completeCallback();
-        }
-
-        this.setState({
-          dataLoading: false,
-          loadSuccess: false,
-          reloading: false,
-          searching: false,
-          refreshing: false,
-          paging: false,
-          dispatchComplete: true,
-        });
-
-        return;
+        completeCallback();
       }
 
-      const willSaveState = {
-        dataLoading: true,
-        loadSuccess: false,
-        ...otherState,
-      };
+      return;
+    }
 
-      this.setState(willSaveState, () => {
-        this.setState(
-          {
-            dispatchComplete: false,
-          },
-          () => {
-            let submitData =
-              this.initLoadRequestParams(requestDataSource) || {};
+    let submitData = this.initLoadRequestParams(requestDataSource) || {};
 
-            submitData = pretreatmentRequestParameters(submitData || {});
+    submitData = pretreatmentRequestParameters(submitData || {});
 
-            submitData = this.supplementLoadRequestParams(submitData || {});
+    submitData = this.supplementLoadRequestParams(submitData || {});
 
-            const checkResult = this.checkLoadRequestParams(submitData || {});
+    const checkResult = this.checkLoadRequestParams(submitData || {});
 
-            if (checkResult) {
-              if (!firstLoadSuccess) {
-                this.beforeFirstLoadRequest(submitData || {});
-              }
+    if (!checkResult) {
+      showErrorMessage('check load request params fail');
 
-              if (reloadingBefore) {
-                this.beforeReLoadRequest(submitData || {});
-              }
-
-              this.beforeRequest(submitData || {});
-
-              this.logCallTrack(
-                {
-                  parameter: {
-                    requestData: requestDataSource,
-                    otherState,
-                    delay,
-                  },
-                  submitData,
-                },
-                'Common::InternalFlow',
-                'initLoad',
-              );
-
-              this.initLoadCore({
-                requestData: submitData || {},
-                delay,
-                successCallback,
-                failCallback,
-                completeCallback,
-              });
-            } else {
-              this.setState({
-                dataLoading: false,
-                loadSuccess: false,
-                reloading: false,
-                searching: false,
-                refreshing: false,
-                paging: false,
-                dispatchComplete: true,
-              });
-
-              if (isFunction(completeCallback)) {
-                completeCallback();
-              }
-            }
-          },
+      if (isFunction(completeCallback)) {
+        this.logCallTrace(
+          {},
+          'Common::InternalFlow',
+          'initLoad',
+          'check load request params fail',
+          'completeCallback',
         );
-      });
-    } catch (error) {
-      logText({ loadApiPath });
 
-      throw error;
+        completeCallback();
+      }
+    }
+
+    if (!firstLoadSuccess) {
+      this.beforeFirstLoadRequest(submitData || {});
+    }
+
+    if (reloadingBefore) {
+      this.beforeReLoadRequest(submitData || {});
+    }
+
+    this.beforeRequest(submitData || {});
+
+    const willSaveState = {
+      ...otherState,
+    };
+
+    if (isEmptyObject(willSaveState)) {
+      this.initLoadCore({
+        requestData: submitData || {},
+        delay,
+        successCallback,
+        failCallback,
+        completeCallback,
+      });
+    } else {
+      this.setState(willSaveState, () => {
+        this.initLoadCore({
+          requestData: submitData || {},
+          delay,
+          successCallback,
+          failCallback,
+          completeCallback,
+        });
+      });
     }
   };
 
@@ -287,6 +276,17 @@ class InternalFlow extends Core {
     failCallback = null,
     completeCallback = null,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          requestData,
+          delay,
+        },
+      },
+      'Common::InternalFlow',
+      'initLoadCore',
+    );
+
     const delayTime = toNumber(delay);
 
     if (delayTime <= 0) {
@@ -298,7 +298,18 @@ class InternalFlow extends Core {
       });
     } else {
       if (delayTime > 0) {
-        logTrace('load from api delay', delayTime);
+        this.logCallTrace(
+          {
+            parameter: {
+              requestData,
+              delay,
+            },
+          },
+          'Common::InternalFlow',
+          'initLoadCore',
+          'load from api delay',
+          delayTime,
+        );
       }
 
       const that = this;
@@ -372,7 +383,6 @@ class InternalFlow extends Core {
               reloading: false,
               searching: false,
               refreshing: false,
-              paging: false,
               dispatchComplete: true,
             };
 
@@ -407,20 +417,12 @@ class InternalFlow extends Core {
                 ...willSaveToState,
               };
 
-              try {
-                that.afterLoadSuccess({
-                  metaData: metaData || null,
-                  metaListData: metaListData || [],
-                  metaExtra: metaExtra || null,
-                  metaOriginalData: metaOriginalData || null,
-                });
-              } catch (error_) {
-                logObject(error_);
-
-                const text = `${toString(error_)},place view in the console`;
-
-                showSimpleErrorMessage(text);
-              }
+              that.afterLoadSuccess({
+                metaData: metaData || null,
+                metaListData: metaListData || [],
+                metaExtra: metaExtra || null,
+                metaOriginalData: metaOriginalData || null,
+              });
             }
 
             const { reloading: reloadingComplete } = that.state;
@@ -455,37 +457,73 @@ class InternalFlow extends Core {
             that.clearRequestingData();
 
             if (isFunction(completeCallback)) {
+              that.logCallTrace(
+                {
+                  parameter: {
+                    requestData,
+                  },
+                },
+                'Common::InternalFlow',
+                'loadFromApi',
+                'completeCallback',
+              );
+
               completeCallback();
             }
 
-            return;
+            return metaOriginalData;
           })
           .catch((error) => {
-            logObject(error);
+            const { message } = error;
+
+            logException(message);
 
             if (isFunction(failCallback)) {
+              this.logCallTrace(
+                {
+                  parameter: {
+                    requestData,
+                  },
+                },
+                'Common::InternalFlow',
+                'loadFromApi',
+                'failCallback',
+              );
+
               failCallback(error);
             }
 
             if (isFunction(completeCallback)) {
+              this.logCallTrace(
+                {
+                  parameter: {
+                    requestData,
+                  },
+                },
+                'Common::InternalFlow',
+                'loadFromApi',
+                'completeCallback',
+              );
+
               completeCallback();
             }
-
-            that.setState({
-              dataLoading: false,
-              loadSuccess: false,
-              reloading: false,
-              searching: false,
-              refreshing: false,
-              paging: false,
-              dispatchComplete: true,
-            });
           });
       }
     } catch (error) {
       logObject({ loadApiPath, requestData });
 
       if (isFunction(completeCallback)) {
+        this.logCallTrace(
+          {
+            parameter: {
+              requestData,
+            },
+          },
+          'Common::InternalFlow',
+          'loadFromApi',
+          'completeCallback',
+        );
+
         completeCallback();
       }
 
@@ -495,7 +533,6 @@ class InternalFlow extends Core {
         reloading: false,
         searching: false,
         refreshing: false,
-        paging: false,
         dispatchComplete: true,
       });
 
@@ -513,7 +550,7 @@ class InternalFlow extends Core {
     delay = 0,
     successCallback = null,
     failCallback = null,
-    completeCallback = null,
+    completeCallback: completeCallbackSource = null,
   }) => {
     this.logCallTrack(
       {
@@ -523,15 +560,31 @@ class InternalFlow extends Core {
       'pageListData',
     );
 
-    const s = { ...otherState, paging: true };
+    const that = this;
 
-    this.initLoad({
+    that.openPreventRender();
+
+    that.startLoading();
+
+    const s = { ...otherState };
+
+    that.initLoad({
       requestData,
       otherState: s,
       delay: delay || 0,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
-      completeCallback: completeCallback || null,
+      completeCallback: () => {
+        that.stopLoading();
+
+        if (isFunction(completeCallbackSource)) {
+          completeCallbackSource();
+        }
+
+        that.closePreventRender();
+
+        that.increaseCounter({});
+      },
     });
   };
 
@@ -540,6 +593,7 @@ class InternalFlow extends Core {
     delay = 0,
     successCallback = null,
     failCallback = null,
+    completeCallback: completeCallbackSource = null,
   }) => {
     this.logCallTrack(
       {
@@ -549,15 +603,27 @@ class InternalFlow extends Core {
       'reloadData',
     );
 
-    this.startReloading();
+    const that = this;
 
-    this.initLoad({
+    that.openPreventRender();
+
+    that.startReloading();
+
+    that.initLoad({
       otherState,
       delay: delay || 0,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
       completeCallback: () => {
-        this.stopReloading();
+        that.stopReloading();
+
+        if (isFunction(completeCallbackSource)) {
+          completeCallbackSource();
+        }
+
+        that.closePreventRender();
+
+        that.increaseCounter({});
       },
     });
   };
@@ -572,12 +638,13 @@ class InternalFlow extends Core {
     });
   };
 
-  refreshData = (
+  refreshData = ({
     otherState = {},
     delay = 0,
     successCallback = null,
     failCallback = null,
-  ) => {
+    completeCallback: completeCallbackSource = null,
+  }) => {
     this.logCallTrack(
       {
         parameter: { otherState, delay },
@@ -586,15 +653,27 @@ class InternalFlow extends Core {
       'refreshData',
     );
 
-    this.startRefreshing();
+    const that = this;
 
-    this.initLoad({
+    that.openPreventRender();
+
+    that.startRefreshing();
+
+    that.initLoad({
       otherState,
       delay: delay || 0,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
       completeCallback: () => {
-        this.stopRefreshing();
+        that.stopRefreshing();
+
+        if (isFunction(completeCallbackSource)) {
+          completeCallbackSource();
+        }
+
+        that.closePreventRender();
+
+        that.increaseCounter({});
       },
     });
   };
@@ -639,23 +718,10 @@ class InternalFlow extends Core {
   };
 
   checkWorkDoing() {
-    const {
-      dataLoading,
-      reloading,
-      searching,
-      refreshing,
-      paging,
-      processing,
-    } = this.state;
+    const { dataLoading, reloading, searching, refreshing, processing } =
+      this.state;
 
-    if (
-      dataLoading ||
-      reloading ||
-      searching ||
-      refreshing ||
-      paging ||
-      processing
-    ) {
+    if (dataLoading || reloading || searching || refreshing || processing) {
       const text = '数据正在处理中，请稍等一下再点哦';
 
       showSimpleErrorMessage(text);

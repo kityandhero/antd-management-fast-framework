@@ -6,6 +6,7 @@ import {
   formatDatetime,
   isFunction,
   isUndefined,
+  logException,
   logObject,
   pretreatmentRequestParameters,
   showSimpleRuntimeError,
@@ -56,6 +57,8 @@ class BaseAddForm extends DataCore {
   };
 
   fillData = () => {
+    this.logCallTrack({}, 'DataForm::BaseAddForm', 'fillData');
+
     const initialValues = this.buildInitialValues();
 
     if (initialValues == null) {
@@ -73,6 +76,8 @@ class BaseAddForm extends DataCore {
   afterFillForm = (initialValues) => {};
 
   setFormFieldsValue = (v) => {
+    this.logCallTrack({}, 'DataForm::BaseAddForm', 'setFormFieldsValue');
+
     const form = this.getTargetForm();
 
     if (form != null) {
@@ -101,6 +106,192 @@ class BaseAddForm extends DataCore {
 
   supplementSubmitRequestParams = (o) => o;
 
+  afterCheckSubmitRequestParams = (o) => o;
+
+  execSubmitApi = ({
+    values = {},
+    successCallback = null,
+    failCallback = null,
+    completeCallback = null,
+  }) => {
+    this.logCallTrack(
+      {
+        parameter: { values },
+      },
+      'DataForm::BaseAddForm',
+      'execSubmitApi',
+    );
+
+    const that = this;
+
+    const { submitApiPath } = this.state;
+
+    if ((submitApiPath || '') === '') {
+      const text = `缺少 submitApiPath 配置！`;
+
+      showSimpleRuntimeError(text);
+
+      return;
+    }
+
+    let submitData = pretreatmentRequestParameters(values || {});
+
+    submitData = this.supplementSubmitRequestParams(submitData);
+
+    const checkResult = this.checkSubmitData(submitData);
+
+    submitData = this.afterCheckSubmitRequestParams(submitData);
+
+    if (checkResult) {
+      that.startProcessing();
+      that.openPreventRender();
+
+      that
+        .dispatchApi({
+          type: submitApiPath,
+          payload: submitData,
+        })
+        .then((remoteData) => {
+          that.stopProcessing('on dispatch api success');
+
+          const { dataSuccess } = remoteData;
+
+          if (dataSuccess) {
+            const {
+              list: metaListData,
+              data: metaData,
+              extra: metaExtra,
+            } = remoteData;
+
+            if (isFunction(successCallback)) {
+              this.logCallTrace(
+                {
+                  parameter: { values },
+                },
+                'DataForm::BaseAddForm',
+                'execSubmitApi',
+                'successCallback',
+              );
+
+              successCallback(remoteData);
+            }
+
+            if (isFunction(completeCallback)) {
+              this.logCallTrace(
+                {
+                  parameter: { values },
+                },
+                'DataForm::BaseAddForm',
+                'execSubmitApi',
+                'completeCallback',
+              );
+
+              completeCallback();
+            }
+
+            that.closePreventRender();
+
+            that.afterSubmitSuccess({
+              singleData: metaData || null,
+              listData: metaListData || [],
+              extraData: metaExtra || null,
+              responseOriginalData: remoteData || null,
+              submitData: submitData || null,
+            });
+          } else {
+            if (isFunction(failCallback)) {
+              this.logCallTrace(
+                {
+                  parameter: { values },
+                },
+                'DataForm::BaseAddForm',
+                'execSubmitApi',
+                'failCallback',
+              );
+
+              failCallback(remoteData);
+            }
+
+            if (isFunction(completeCallback)) {
+              this.logCallTrace(
+                {
+                  parameter: { values },
+                },
+                'DataForm::BaseAddForm',
+                'execSubmitApi',
+                'completeCallback',
+              );
+
+              completeCallback();
+            }
+
+            that.closePreventRender();
+          }
+
+          return remoteData;
+        })
+        .catch((error) => {
+          const { message } = error;
+
+          logException(message);
+
+          that.stopProcessing('on dispatch api fail');
+
+          logObject(error);
+
+          if (isFunction(failCallback)) {
+            this.logCallTrace(
+              {
+                parameter: { values },
+              },
+              'DataForm::BaseAddForm',
+              'execSubmitApi',
+              'failCallback',
+            );
+
+            failCallback(error);
+          }
+
+          if (isFunction(completeCallback)) {
+            this.logCallTrace(
+              {
+                parameter: { values },
+              },
+              'DataForm::BaseAddForm',
+              'execSubmitApi',
+              'completeCallback',
+            );
+
+            completeCallback();
+          }
+
+          that.closePreventRender();
+
+          return;
+        });
+    } else {
+      that.logCallTrace(
+        {},
+        'DataForm::BaseAddForm',
+        'validate',
+        'check submit data fail',
+      );
+
+      if (isFunction(completeCallback)) {
+        that.logCallTrace(
+          {},
+          'DataForm::BaseAddForm',
+          'validate',
+          'completeCallback',
+        );
+
+        completeCallback();
+      }
+
+      that.closePreventRender();
+    }
+  };
+
   validate = ({
     successCallback = null,
     failCallback = null,
@@ -114,126 +305,22 @@ class BaseAddForm extends DataCore {
 
     const that = this;
 
-    const { submitApiPath } = that.state;
-
     validateFields()
       .then((values) => {
-        let submitData = pretreatmentRequestParameters(values);
-
-        submitData = that.supplementSubmitRequestParams(submitData);
-
-        const checkResult = that.checkSubmitData(submitData);
-
-        if (checkResult) {
-          that
-            .dispatchApi({
-              type: submitApiPath,
-              payload: submitData,
-            })
-            .then((remoteData) => {
-              that.stopProcessing();
-
-              const { dataSuccess } = remoteData;
-
-              if (dataSuccess) {
-                const {
-                  list: metaListData,
-                  data: metaData,
-                  extra: metaExtra,
-                } = remoteData;
-
-                that.afterSubmitSuccess({
-                  singleData: metaData || null,
-                  listData: metaListData || [],
-                  extraData: metaExtra || null,
-                  responseOriginalData: remoteData || null,
-                  submitData: submitData || null,
-                });
-
-                if (isFunction(successCallback)) {
-                  this.logCallTrace(
-                    {},
-                    'DataForm::BaseAddForm',
-                    'validate',
-                    'successCallback',
-                  );
-
-                  successCallback(remoteData);
-                }
-              }
-
-              if (isFunction(completeCallback)) {
-                this.logCallTrace(
-                  {},
-                  'DataForm::BaseAddForm',
-                  'validate',
-                  'completeCallback',
-                );
-
-                completeCallback();
-              }
-
-              that.closePreventRender();
-
-              return remoteData;
-            })
-            // eslint-disable-next-line promise/no-nesting
-            .catch((error) => {
-              that.stopProcessing();
-
-              logObject(error);
-
-              if (isFunction(failCallback)) {
-                this.logCallTrace(
-                  {},
-                  'DataForm::BaseAddForm',
-                  'validate',
-                  'failCallback',
-                );
-
-                failCallback(error);
-              }
-
-              if (isFunction(completeCallback)) {
-                this.logCallTrace(
-                  {},
-                  'DataForm::BaseAddForm',
-                  'validate',
-                  'completeCallback',
-                );
-
-                completeCallback();
-              }
-
-              that.closePreventRender();
-
-              return;
-            });
-        } else {
-          this.logCallTrace(
-            {},
-            'DataForm::BaseAddForm',
-            'validate',
-            'check submit data fail',
-          );
-
-          if (isFunction(completeCallback)) {
-            this.logCallTrace(
-              {},
-              'DataForm::BaseAddForm',
-              'validate',
-              'completeCallback',
-            );
-
-            completeCallback();
-          }
-
-          that.closePreventRender();
-        }
+        that.execSubmitApi({
+          values,
+          successCallback,
+          failCallback,
+          completeCallback,
+        });
 
         return values;
       })
       .catch((error) => {
+        const { message } = error;
+
+        logException(message);
+
         that.logCallTrace(
           {},
           'DataForm::BaseAddForm',

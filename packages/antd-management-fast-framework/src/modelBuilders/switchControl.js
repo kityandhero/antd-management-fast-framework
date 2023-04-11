@@ -4,6 +4,7 @@ import {
   isArray,
   isEmptyArray,
   logTrace,
+  mergeArrowText,
   mergeTextMessage,
   promptTextBuilder,
   reducerCollection,
@@ -22,7 +23,7 @@ export function buildModel() {
 
     effects: {
       *open({ payload, alias }, { put }) {
-        const { flag } = { flag: '', ...payload };
+        const { flag, message } = { flag: '', message: [], ...payload };
 
         if (checkObjectIsNullOrEmpty(flag)) {
           throw new Error(
@@ -45,12 +46,15 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        logTrace('switchControl::open', `switch flag "${flag}" change to true`);
+        logTrace(
+          mergeArrowText(...message, 'switchControl::open'),
+          `switch flag "${flag}" change to true`,
+        );
 
         return data;
       },
       *close({ payload, alias }, { put }) {
-        const { flag } = { flag: '', ...payload };
+        const { flag, message } = { flag: '', message: [], ...payload };
 
         if (checkObjectIsNullOrEmpty(flag)) {
           throw new Error(
@@ -74,14 +78,14 @@ export function buildModel() {
         });
 
         logTrace(
-          'switchControl::close',
+          mergeArrowText(...message, 'switchControl::close'),
           `switch flag "${flag}" change to false`,
         );
 
         return data;
       },
       *openMulti({ payload, alias }, { put }) {
-        const { flags } = { flags: [], ...payload };
+        const { flags, message } = { flags: [], message: [], ...payload };
 
         if (!isArray(flags) || isEmptyArray(flags)) {
           throw new Error(
@@ -107,14 +111,14 @@ export function buildModel() {
         });
 
         logTrace(
-          'switchControl::openMulti',
+          mergeArrowText(...message, 'switchControl::openMulti'),
           `switch flags "${flags.join(',')}" change to true`,
         );
 
         return data;
       },
       *closeMulti({ payload, alias }, { put }) {
-        const { flags } = { flags: [], ...payload };
+        const { flags, message } = { flags: [], message: [], ...payload };
 
         if (!isArray(flags) || isEmptyArray(flags)) {
           throw new Error(
@@ -140,14 +144,14 @@ export function buildModel() {
         });
 
         logTrace(
-          'switchControl::closeMulti',
+          mergeArrowText(...message, 'switchControl::closeMulti'),
           `switch flags "${flags.join(',')}" change to false`,
         );
 
         return data;
       },
       *remove({ payload, alias }, { put }) {
-        const { flag } = { flag: '', ...payload };
+        const { flag, message } = { flag: '', message: [], ...payload };
 
         if (checkObjectIsNullOrEmpty(flag)) {
           throw new Error(
@@ -166,10 +170,13 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        logTrace('switchControl::remove', `switch flag "${flag}" will remove`);
+        logTrace(
+          mergeArrowText(...message, 'switchControl::remove'),
+          `switch flag "${flag}" will remove`,
+        );
       },
       *removeMulti({ payload, alias }, { put }) {
-        const { flags } = { flags: [], ...payload };
+        const { flags, message } = { flags: [], message: [], ...payload };
 
         if (!isArray(flags) || isEmptyArray(flags)) {
           throw new Error(
@@ -189,7 +196,7 @@ export function buildModel() {
         });
 
         logTrace(
-          'switchControl::removeMulti',
+          mergeArrowText(...message, 'switchControl::removeMulti'),
           `switch flags "${flags.join(',')}" will remove`,
         );
       },

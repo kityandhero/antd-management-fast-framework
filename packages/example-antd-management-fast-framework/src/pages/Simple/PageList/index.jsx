@@ -60,7 +60,7 @@ const { MultiPage } = DataMultiPageView;
   schedulingControl,
 }))
 class PageList extends MultiPage {
-  // showCallProcess = true;
+  showCallProcess = true;
 
   loadRemoteRequestDelay = 100;
   pageRemoteRequestDelay = 100;
