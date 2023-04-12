@@ -233,7 +233,9 @@ class BaseAddForm extends DataCore {
         .catch((error) => {
           const { message } = error;
 
-          logException(message);
+          if (!isUndefined()) {
+            logException(message);
+          }
 
           that.stopProcessing('on dispatch api fail');
 
@@ -319,7 +321,9 @@ class BaseAddForm extends DataCore {
       .catch((error) => {
         const { message } = error;
 
-        logException(message);
+        if (!isUndefined()) {
+          logException(message);
+        }
 
         that.logCallTrace(
           {},

@@ -25,7 +25,10 @@
       "@@/*": ["./example/.umi/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "../antd-management-fast-component/src/components/StandardTable"
+  ],
   "exclude": [
     "node_modules",
     "build",

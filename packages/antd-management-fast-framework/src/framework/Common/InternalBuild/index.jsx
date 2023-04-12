@@ -30,12 +30,8 @@ import {
 } from 'antd-management-fast-component';
 
 import { LoadingOverlay } from '../../../components/LoadingOverlay';
-import { switchControlAssist } from '../../../utils/switchControlAssist';
 import { InternalTabFlow } from '../InternalTabFlow';
-import {
-  ReloadActionButton,
-  ReloadActionButtonLoadingFlag,
-} from '../ReloadActionButton';
+import { ReloadActionButton } from '../ReloadActionButton';
 
 import styles from './index.less';
 
@@ -382,6 +378,7 @@ class InternalBuild extends InternalTabFlow {
           flag={[
             this.viewLoadingFlag,
             this.viewReloadingFlag,
+            this.viewRefreshingFlag,
             this.viewProcessingFlag,
           ]}
         >
@@ -637,14 +634,9 @@ class InternalBuild extends InternalTabFlow {
       listAction.push(
         <Fragment key={`${keyPrefixAdjust}_dropdownEllipsis`}>
           <ReloadActionButton
+            flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
             onReload={() => {
-              switchControlAssist.open(ReloadActionButtonLoadingFlag);
-
-              that.reloadData({
-                completeCallback: () => {
-                  switchControlAssist.close(ReloadActionButtonLoadingFlag);
-                },
-              });
+              that.reloadData({});
             }}
           />
         </Fragment>,

@@ -46,9 +46,10 @@ import {
   FlexBox,
   FormExtra,
   iconBuilder,
+  StandardTable,
 } from 'antd-management-fast-component';
 
-import { LoadingOverlay, StandardTable } from '../../../components';
+import { LoadingOverlay } from '../../../components';
 import { AuthorizationWrapper } from '../../AuthorizationWrapper';
 import { BatchAction } from '../BatchAction';
 import { ColumnSetting } from '../ColumnSetting';
@@ -362,7 +363,9 @@ class Base extends AuthorizationWrapper {
       .catch((error) => {
         const { errorFields, message } = error;
 
-        logException(message);
+        if (!isUndefined()) {
+          logException(message);
+        }
 
         if (isUndefined(errorFields)) {
           showSimpleRuntimeError(error);
@@ -1174,6 +1177,7 @@ class Base extends AuthorizationWrapper {
           />
 
           <RefreshButton
+            flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
             onRefresh={() => {
               this.refreshData({});
             }}
@@ -1195,6 +1199,7 @@ class Base extends AuthorizationWrapper {
 
     return (
       <RefreshButton
+        flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
         onRefresh={() => {
           this.refreshData({});
         }}

@@ -6,16 +6,18 @@ import { isFunction } from 'easy-soft-utility';
 
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { viewRefreshingFlag } from '../../../customConfig';
+import { switchControlAssist } from '../../../utils/switchControlAssist';
 
 @connect(({ switchControl }) => ({
   switchControl,
 }))
 class RefreshButton extends PureComponent {
   render() {
-    const { switchControl, title, onRefresh } = this.props;
+    const { switchControl, flag, title, onRefresh } = this.props;
 
-    const refreshing = !!switchControl[viewRefreshingFlag];
+    console.log({ switchControl, flag });
+
+    const refreshing = switchControlAssist.check(switchControl, flag);
 
     return (
       <Tooltip title={title}>

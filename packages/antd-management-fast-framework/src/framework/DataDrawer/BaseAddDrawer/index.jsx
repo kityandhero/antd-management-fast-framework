@@ -3,7 +3,7 @@ import React from 'react';
 import { drawerConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { SaveButton } from '../../Common/SaveButton';
+import { ElasticityExtraButton } from '../../../components/ElasticityExtraButton';
 import { BaseNeedlessLoadDrawer } from '../BaseNeedlessLoadDrawer';
 
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {
@@ -32,7 +32,13 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
       {
         buildType: drawerConfig.bottomBarBuildType.component,
         component: (
-          <SaveButton
+          <ElasticityExtraButton
+            flag={[
+              this.viewLoadingFlag,
+              this.viewReloadingFlag,
+              this.viewRefreshingFlag,
+              this.viewProcessingFlag,
+            ]}
             type="primary"
             text="保存"
             icon={iconBuilder.save()}

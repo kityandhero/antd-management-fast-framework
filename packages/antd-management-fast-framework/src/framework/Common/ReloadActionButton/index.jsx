@@ -5,24 +5,24 @@ import { isFunction } from 'easy-soft-utility';
 
 import { ElasticityButton, iconBuilder } from 'antd-management-fast-component';
 
-export const ReloadActionButtonLoadingFlag = '72a989153e5b433fa53408cf88db5c42';
+import { switchControlAssist } from '../../../utils/switchControlAssist';
 
 @connect(({ switchControl }) => ({
   switchControl,
 }))
 class ReloadActionButton extends PureComponent {
   render() {
-    const { switchControl, title, onReload } = this.props;
+    const { switchControl, flag, title, onReload } = this.props;
 
-    const flag = !!switchControl[ReloadActionButtonLoadingFlag];
+    const checkResult = switchControlAssist.check(switchControl, flag);
 
     return (
       <ElasticityButton
         title={title}
-        disabled={flag}
+        disabled={checkResult}
         type="dashed"
         text=""
-        icon={flag ? iconBuilder.loading() : iconBuilder.reload()}
+        icon={checkResult ? iconBuilder.loading() : iconBuilder.reload()}
         handleClick={(event) => {
           if (isFunction(onReload)) {
             onReload(event);

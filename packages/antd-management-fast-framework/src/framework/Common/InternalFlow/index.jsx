@@ -23,7 +23,6 @@ import {
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 import {
-  buildButton,
   buildFormActionItem,
   buildFormButton,
   buildFormCreateTimeField,
@@ -44,10 +43,10 @@ import {
   iconBuilder,
 } from 'antd-management-fast-component';
 
+import { ElasticityExtraButton } from '../../../components/ElasticityExtraButton';
 import { loadMetaData } from '../../../utils/metaDataAssist';
 import { progressBarControlAssist } from '../../../utils/progressBarControlAssist';
 import { Core } from '../../Core';
-import { SaveButton } from '../SaveButton';
 
 class InternalFlow extends Core {
   showPageHeader = true;
@@ -476,7 +475,9 @@ class InternalFlow extends Core {
           .catch((error) => {
             const { message } = error;
 
-            logException(message);
+            if (!isUndefined()) {
+              logException(message);
+            }
 
             if (isFunction(failCallback)) {
               this.logCallTrace(
@@ -1052,7 +1053,13 @@ class InternalFlow extends Core {
     const ico = (icon || null) == null ? this.getSaveButtonIcon() : icon;
 
     return (
-      <SaveButton
+      <ElasticityExtraButton
+        flag={[
+          this.viewLoadingFlag,
+          this.viewReloadingFlag,
+          this.viewRefreshingFlag,
+          this.viewProcessingFlag,
+        ]}
         type="primary"
         text={text || '保存'}
         icon={ico}
@@ -1080,15 +1087,26 @@ class InternalFlow extends Core {
       ...properties,
     };
 
-    return buildButton({
-      title: '刷新当前数据',
-      placement: 'top',
-      size,
-      text,
-      icon: iconBuilder.reload(),
-      disabled: this.checkOperability(),
-      handleClick: this.reloadData,
-    });
+    return (
+      <ElasticityExtraButton
+        flag={[
+          this.viewLoadingFlag,
+          this.viewReloadingFlag,
+          this.viewRefreshingFlag,
+          this.viewProcessingFlag,
+        ]}
+        title="刷新当前数据"
+        placement="top"
+        size={size}
+        text={text}
+        icon={iconBuilder.reload()}
+        interimIcon={iconBuilder.loading()}
+        disabled={this.checkOperability()}
+        handleClick={() => {
+          this.reloadData({});
+        }}
+      />
+    );
   };
 
   beforeVideoUpload = (file) => {

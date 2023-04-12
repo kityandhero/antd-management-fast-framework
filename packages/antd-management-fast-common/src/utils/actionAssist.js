@@ -7,6 +7,7 @@ import {
   checkStringIsNullOrWhiteSpace,
   isArray,
   isFunction,
+  isUndefined,
   logDebug,
   logException,
   showSimpleSuccessNotification,
@@ -142,7 +143,9 @@ function remoteAction({
     .catch((error) => {
       const { message } = error;
 
-      logException(message);
+      if (!isUndefined()) {
+        logException(message);
+      }
 
       if (showProcessing) {
         setTimeout(() => {
@@ -446,7 +449,9 @@ export function apiRequest({
     .catch((error) => {
       const { message } = error;
 
-      logException(message);
+      if (!isUndefined()) {
+        logException(message);
+      }
 
       if (showProcessing) {
         setTimeout(() => {

@@ -3,6 +3,7 @@ import {
   checkObjectIsNullOrEmpty,
   isArray,
   isEmptyArray,
+  isString,
   mergeTextMessage,
   promptTextBuilder,
 } from 'easy-soft-utility';
@@ -11,6 +12,36 @@ import {
  * switch control assist
  */
 export const switchControlAssist = {
+  /**
+   * check switch
+   * @param {object} switchControl switch model
+   * @param {string} flag switch flag
+   */
+  check(switchControl, flag) {
+    if (isArray(flag)) {
+      let result = false;
+
+      for (const o of flag) {
+        if (!isString(o)) {
+          continue;
+        }
+
+        result = !!switchControl[o];
+
+        if (result) {
+          break;
+        }
+      }
+
+      return result;
+    } else {
+      if (!isString(flag)) {
+        return false;
+      }
+
+      return !!switchControl[flag];
+    }
+  },
   /**
    * open switch
    * @param {string} flag switch flag

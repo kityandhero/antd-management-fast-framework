@@ -2,10 +2,8 @@ import { Alert, Table } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { listViewConfig } from 'antd-management-fast-common';
-import { AnchorLink } from 'antd-management-fast-component';
 
-import { standardTableLoadingFlag } from '../../customConfig';
-import { LoadingOverlay } from '../LoadingOverlay';
+import { AnchorLink } from '../AnchorLink';
 
 function initTotalList(columns) {
   const totalList = [];
@@ -155,21 +153,19 @@ class StandardTable extends PureComponent {
           borderRadius: '8px',
         }}
       >
-        <LoadingOverlay flag={standardTableLoadingFlag}>
-          {rowSelectionMessage}
+        {rowSelectionMessage}
 
-          <Table
-            rowKey={rowKey || 'key'}
-            size={size || listViewConfig.tableSize.middle}
-            rowSelection={rowSelection}
-            dataSource={list}
-            pagination={paginationProperties}
-            onChange={this.handleTableChange}
-            defaultExpandAllRows
-            {...rest}
-            loading={false}
-          />
-        </LoadingOverlay>
+        <Table
+          rowKey={rowKey || 'key'}
+          size={size || listViewConfig.tableSize.middle}
+          rowSelection={rowSelection}
+          dataSource={list}
+          pagination={paginationProperties}
+          onChange={this.handleTableChange}
+          defaultExpandAllRows
+          {...rest}
+          loading={false}
+        />
       </div>
     );
   }

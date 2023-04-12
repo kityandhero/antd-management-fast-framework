@@ -446,33 +446,6 @@ class AbstractComponent extends Component {
     }
   }
 
-  /**
-   * check loading progress,if loading or load fail,return false,else return true
-   */
-  checkLoadingProgress() {
-    const { dataLoading, loadSuccess } = this.state;
-
-    return dataLoading || !loadSuccess;
-  }
-
-  /**
-   * check operability,if loading or or processing or load fail,return false,else return true
-   */
-  checkOperability() {
-    const { loadSuccess } = this.state;
-
-    return !loadSuccess;
-  }
-
-  /**
-   * check in progress,if loading or or processing,return false,else return true
-   */
-  checkInProgress() {
-    const { dataLoading, processing } = this.state;
-
-    return dataLoading || processing;
-  }
-
   logRender(message) {
     logRenderCore(this.constructor.name, message);
   }

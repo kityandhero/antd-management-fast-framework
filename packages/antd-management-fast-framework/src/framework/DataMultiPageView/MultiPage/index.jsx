@@ -245,7 +245,9 @@ class MultiPage extends Base {
       .catch((error) => {
         const { errorFields, message } = error;
 
-        logException(message);
+        if (!isUndefined()) {
+          logException(message);
+        }
 
         if (isUndefined(errorFields)) {
           showSimpleRuntimeError(error);

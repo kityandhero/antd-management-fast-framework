@@ -5,6 +5,7 @@ import {
   handleSimulationAuthorizeExtra,
   isArray,
   isFunction,
+  isUndefined,
   logException,
 } from 'easy-soft-utility';
 
@@ -84,7 +85,9 @@ class AuthorizationWrapper extends SupplementWrapper {
       .catch((error) => {
         const { message } = error;
 
-        logException(message);
+        if (!isUndefined()) {
+          logException(message);
+        }
       });
   };
 }
