@@ -63,7 +63,7 @@
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
     "@typescript-eslint/parser": "^5.58.0",
-    "@umijs/max": "^4.0.64",
+    "@umijs/max": "^4.0.65",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "cross-env": "^7.0.3",
