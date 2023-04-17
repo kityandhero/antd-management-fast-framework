@@ -3,8 +3,6 @@ import { iconBuilder } from 'antd-management-fast-component';
 import { DataLoad } from '../DataSingleView/DataLoad';
 
 class DataTabContainer extends DataLoad {
-  contentTabMode = true;
-
   resetDataAfterLoad = false;
 
   constructor(properties) {
@@ -14,7 +12,6 @@ class DataTabContainer extends DataLoad {
       ...this.state,
       defaultAvatarIcon: iconBuilder.picture(),
       showPageHeaderAvatar: true,
-      customTabActiveKey: false,
     };
   }
 

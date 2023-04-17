@@ -1,13 +1,17 @@
-import { checkStringIsNullOrWhiteSpace, logDevelop } from 'easy-soft-utility';
+import React from 'react';
 
-import { getCurrentParameters } from 'antd-management-fast-common';
+import {
+  getCurrentLocation,
+  getCurrentRoute,
+} from 'antd-management-fast-common';
+import { PageExtra } from 'antd-management-fast-component';
 
 import { InternalFlow } from '../InternalFlow';
 
+const { TabBarExtraBox } = PageExtra;
+
 class InternalTabFlow extends InternalFlow {
   tabList = [];
-
-  currentInitialTabKey = '';
 
   constructor(properties) {
     super(properties);
@@ -16,6 +20,22 @@ class InternalTabFlow extends InternalFlow {
       ...this.state,
     };
   }
+
+  doOtherWorkAfterDidMount = () => {
+    this.logCallTrack(
+      {},
+      'Common::InternalTabFlow',
+      'doOtherWorkAfterDidMount',
+    );
+
+    const tabListAvailable = this.getTabListAvailable();
+
+    if (tabListAvailable.length > 0) {
+      const { name } = getCurrentRoute();
+
+      this.setTabActiveKey(name);
+    }
+  };
 
   establishTabBarExtraContentLeftConfig = () => {
     return null;
@@ -27,27 +47,9 @@ class InternalTabFlow extends InternalFlow {
 
   adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
 
-  getInitialTabActiveKey = () => {
-    if (checkStringIsNullOrWhiteSpace(this.currentInitialTabKey)) {
-      const routeParameters = getCurrentParameters();
-
-      this.currentInitialTabKey =
-        this.analysisInitialTabActiveKey(routeParameters);
-    }
-
-    return this.currentInitialTabKey;
-  };
-
-  analysisInitialTabActiveKey = (o) => {
-    logDevelop(
-      { urlParams: o },
-      'analysisInitialTabActiveKey need overload to analysis tab current initial active key',
-    );
-
-    return '';
-  };
-
   getTabListAvailable = () => {
+    this.logCallTrack({}, 'Common::InternalTabFlow', 'getTabListAvailable');
+
     const tabListAvailable = [];
 
     for (const o of this.tabList || []) {
@@ -62,7 +64,70 @@ class InternalTabFlow extends InternalFlow {
   };
 
   handleTabChange = (key) => {
-    this.currentInitialTabKey = key;
+    this.logCallTrack(
+      {
+        parameter: { key },
+      },
+      'Common::InternalTabFlow',
+      'getTabListAvailable',
+    );
+
+    const { name } = getCurrentRoute();
+    const { pathname } = getCurrentLocation();
+
+    for (const item of this.tabList || []) {
+      if (item.key === key) {
+        let path = pathname
+          .replace('/update', '/load')
+          .replace(`/${name}`, '/');
+
+        path = `${path}${item.key}`;
+
+        this.setTabActiveKey(key);
+
+        this.redirectToPath(path);
+
+        break;
+      }
+    }
+  };
+
+  buildTabBarExtraContent = () => {
+    return {
+      left: (
+        <TabBarExtraBox
+          list={this.buildByExtraBuildType({
+            keyPrefix: 'data_tab_container_tab_bar_left_action_key',
+            list: this.establishTabBarExtraContentLeftConfig(),
+          })}
+        />
+      ),
+      right: (
+        <TabBarExtraBox
+          list={this.buildByExtraBuildType({
+            keyPrefix: 'data_tab_container_tab_bar_right_action_key',
+            list: this.establishTabBarExtraContentRightConfig(),
+          })}
+        />
+      ),
+    };
+  };
+
+  buildOtherTabProps = () => {
+    const tabListAvailable = this.getTabListAvailable();
+
+    if (tabListAvailable.length > 0) {
+      return {
+        type: 'card',
+        size: 'small',
+        tabBarStyle: {
+          marginBottom: 0,
+        },
+        tabBarGutter: 3,
+      };
+    }
+
+    return null;
   };
 }
 

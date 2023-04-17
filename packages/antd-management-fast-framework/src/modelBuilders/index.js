@@ -5,6 +5,7 @@ import { buildModel as buildEntranceModel } from './entrance';
 import { buildModel as buildProgressBarControlModel } from './progressBarControl';
 import { buildModel as buildSchedulingControlModel } from './schedulingControl';
 import { buildModel as buildSwitchControlModel } from './switchControl';
+import { buildModel as buildTabControlModel } from './tabControl';
 
 export function appendEmbedModelBuilder() {
   appendEmbedBuilder(buildEntranceModel);
@@ -12,4 +13,5 @@ export function appendEmbedModelBuilder() {
   appendEmbedBuilder(buildProgressBarControlModel);
   appendEmbedBuilder(buildSchedulingControlModel);
   appendEmbedBuilder(buildSwitchControlModel);
+  appendEmbedBuilder(buildTabControlModel);
 }

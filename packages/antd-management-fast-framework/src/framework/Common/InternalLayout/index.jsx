@@ -4,18 +4,10 @@ import { checkObjectIsNullOrEmpty, isArray } from 'easy-soft-utility';
 
 import { PageExtra } from 'antd-management-fast-component';
 
+import { PageExtraWrapper } from '../../../components/PageExtraWrapper';
 import { InternalBuild } from '../InternalBuild';
 
-const {
-  ContentBox,
-  BodyContent,
-  SiderBox,
-  ToolBar,
-  HelpContent,
-  PageWrapper,
-  ContentTabBox,
-  TabBarExtraBox,
-} = PageExtra;
+const { ContentBox, BodyContent, SiderBox, ToolBar, HelpContent } = PageExtra;
 
 class InternalLayout extends InternalBuild {
   renderPresetSiderTopArea = () => {
@@ -87,34 +79,6 @@ class InternalLayout extends InternalBuild {
   renderPresetPageBody = () => {
     this.logCallTrack({}, 'Common::InternalLayout', 'renderPresetPageBody');
 
-    if (this.contentTabMode) {
-      return (
-        <ContentTabBox
-          defaultActiveKey={this.getInitialTabActiveKey()}
-          list={this.getTabListAvailable()}
-          extraContent={{
-            left: (
-              <TabBarExtraBox
-                list={this.buildByExtraBuildType({
-                  keyPrefix: 'data_tab_container_tab_bar_left_action_key',
-                  list: this.establishTabBarExtraContentLeftConfig(),
-                })}
-              />
-            ),
-            right: (
-              <TabBarExtraBox
-                list={this.buildByExtraBuildType({
-                  keyPrefix: 'data_tab_container_tab_bar_right_action_key',
-                  list: this.establishTabBarExtraContentRightConfig(),
-                })}
-              />
-            ),
-          }}
-          onTabChange={this.handleTabChange}
-        />
-      );
-    }
-
     return (
       <BodyContent
         body={this.renderPresetPageBodyContent()}
@@ -126,13 +90,8 @@ class InternalLayout extends InternalBuild {
   renderFurther() {
     this.logCallTrack({}, 'Common::InternalLayout', 'renderFurther');
 
-    const {
-      showPageHeaderAvatar,
-      defaultAvatarIcon,
-      dataLoading,
-      reloading,
-      avatarImageLoadResult,
-    } = this.state;
+    const { showPageHeaderAvatar, defaultAvatarIcon, avatarImageLoadResult } =
+      this.state;
 
     let contentGridConfig = this.establishPageHeaderContentGridConfig();
 
@@ -148,9 +107,9 @@ class InternalLayout extends InternalBuild {
     };
 
     return (
-      <PageWrapper
-        dataLoading={dataLoading}
-        reloading={reloading}
+      <PageExtraWrapper
+        tabFlag={this.viewTabFlag}
+        flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
         showHeader={this.showPageHeader}
         title={this.getPresetPageName()}
         titlePrefix={this.establishPageHeaderTitlePrefix()}
@@ -166,9 +125,13 @@ class InternalLayout extends InternalBuild {
         extraAction={this.buildExtraAction()}
         contentConfig={contentConfig}
         extraContentConfig={this.establishPageHeaderExtraContentConfig()}
+        tabList={this.getTabListAvailable()}
+        tabBarExtraContent={this.buildTabBarExtraContent()}
+        onTabChange={this.handleTabChange}
+        tabProps={this.buildOtherTabProps()}
       >
         {this.renderPresetPageBody()}
-      </PageWrapper>
+      </PageExtraWrapper>
     );
   }
 }

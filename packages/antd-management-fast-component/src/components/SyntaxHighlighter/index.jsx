@@ -2,7 +2,7 @@ import React from 'react';
 import { Prism } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-import { isObject } from 'easy-soft-utility';
+import { isObject, stringifyJson } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../bases';
 
@@ -24,13 +24,13 @@ class SyntaxHighlighter extends BaseComponent {
         {isObject(value) ? (
           <Prism {...c}>
             {language === 'javascript'
-              ? JSON.stringify(value || {}, null, '    ')
+              ? stringifyJson(value || {}, null, '    ')
               : value}
           </Prism>
         ) : (
           <Prism {...c}>
             {language === 'javascript'
-              ? JSON.stringify(JSON.parse(value || null), null, '    ')
+              ? stringifyJson(JSON.parse(value || null), null, '    ')
               : value}
           </Prism>
         )}

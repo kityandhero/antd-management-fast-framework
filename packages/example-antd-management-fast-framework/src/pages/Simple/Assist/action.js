@@ -17,6 +17,7 @@ export function singleListTreeAction({
     handleData,
     successCallback,
     successMessage,
+    showProcessing: false,
   });
 }
 

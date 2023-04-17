@@ -79,10 +79,27 @@ export default [
         component: './Simple/PageList',
       },
       {
-        path: '/simple/edit/:op/:id/:pageKey/:tab',
+        path: '/simple/edit/:op/:id/:pageKey',
         name: 'edit',
         hideInMenu: true,
         component: './Simple/Edit',
+        routes: [
+          {
+            path: '/simple/edit/:op/:id/:pageKey/basicInfo',
+            name: 'basicInfo',
+            component: './Simple/Edit/BasicInfo',
+          },
+          {
+            path: '/simple/edit/:op/:id/:pageKey/contentInfo',
+            name: 'contentInfo',
+            component: './Simple/Edit/ContentInfo',
+          },
+          {
+            path: '/simple/edit/:op/:id/:pageKey/mediaInfo',
+            name: 'mediaInfo',
+            component: './Simple/Edit/MediaInfo',
+          },
+        ],
       },
     ],
   },

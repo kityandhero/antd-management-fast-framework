@@ -11,7 +11,6 @@ import {
   logCallTrace as logCallTraceCore,
   logCallTrack as logCallTrackCore,
   logError,
-  logExecute,
   logRender as logRenderCore,
   logTrace,
   mergeArrowText,
@@ -298,14 +297,32 @@ class AbstractComponent extends Component {
   }
 
   doDidMountTask = () => {
+    this.logCallTrack({}, 'AbstractComponent', 'doDidMountTask');
+
     this.mounted = true;
 
     const checkAuthenticationResult = this.checkAuthentication();
 
     if (checkAuthenticationResult) {
+      this.logCallTrace(
+        {},
+        'AbstractComponent',
+        'doDidMountTask',
+        'checkAuthenticationResult',
+        true,
+      );
+
       const checkAuthorizationResult = this.checkAuthorization();
 
       if (checkAuthorizationResult) {
+        this.logCallTrace(
+          {},
+          'AbstractComponent',
+          'doDidMountTask',
+          'checkAuthorizationResult',
+          true,
+        );
+
         this.doWorkBeforeAdjustDidMount();
 
         this.doWorkAdjustDidMount();
@@ -322,9 +339,25 @@ class AbstractComponent extends Component {
 
         this.doOtherWorkAfterDidMount();
       } else {
+        this.logCallTrace(
+          {},
+          'AbstractComponent',
+          'doDidMountTask',
+          'checkAuthorizationResult',
+          false,
+        );
+
         this.doWorkWhenCheckAuthorizationFail();
       }
     } else {
+      this.logCallTrace(
+        {},
+        'AbstractComponent',
+        'doDidMountTask',
+        'checkAuthenticationResult',
+        false,
+      );
+
       this.doWorkWhenCheckAuthenticationFail();
     }
   };
@@ -338,13 +371,21 @@ class AbstractComponent extends Component {
   };
 
   doWorkWhenCheckAuthenticationFail = () => {
-    logExecute('doWorkWhenCheckAuthenticationFail');
+    this.logCallTrack(
+      {},
+      'AbstractComponent',
+      'doWorkWhenCheckAuthenticationFail',
+    );
 
     handleAuthenticationFail();
   };
 
   doWorkWhenCheckAuthorizationFail = () => {
-    logExecute('doWorkWhenCheckAuthorizationFail');
+    this.logCallTrack(
+      {},
+      'AbstractComponent',
+      'doWorkWhenCheckAuthorizationFail',
+    );
 
     handleAuthorizationFail();
   };

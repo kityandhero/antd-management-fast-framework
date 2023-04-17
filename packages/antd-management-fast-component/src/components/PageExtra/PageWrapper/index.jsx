@@ -1,5 +1,6 @@
 import { FloatButton } from 'antd';
 import React, { PureComponent } from 'react';
+import { Outlet } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 
 import {
@@ -36,6 +37,11 @@ class PageWrapper extends PureComponent {
       extraAction,
       contentConfig,
       extraContentConfig,
+      tabActiveKey,
+      tabList,
+      tabBarExtraContent,
+      tabProps,
+      onTabChange,
       children,
     } = this.props;
 
@@ -90,7 +96,14 @@ class PageWrapper extends PureComponent {
                 )
               ) : null
             }
+            tabActiveKey={tabActiveKey}
+            tabList={tabList}
+            tabBarExtraContent={tabBarExtraContent}
+            onTabChange={onTabChange}
+            tabProps={tabProps}
           >
+            <Outlet />
+
             {children}
 
             <BackTop />
@@ -101,6 +114,8 @@ class PageWrapper extends PureComponent {
 
     return (
       <>
+        <Outlet />
+
         {children}
 
         <BackTop />

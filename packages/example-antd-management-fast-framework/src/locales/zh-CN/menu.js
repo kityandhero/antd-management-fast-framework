@@ -23,7 +23,7 @@ export default {
   'menu.simple.addBasicInfo-mini': '新增',
   'menu.simple.edit': '编辑示例',
   'menu.simple.edit.basicInfo': '基本信息',
-  'menu.simple.edit.contentInfo': '媒体信息',
+  'menu.simple.edit.contentInfo': '图文H5信息',
   'menu.simple.edit.mediaInfo': '媒体信息',
 
   'menu.flowEditor': '流程图',

@@ -10,6 +10,9 @@ import {
   isUndefined,
   logDebug,
   logException,
+  logExecute,
+  logTrace,
+  mergeArrowText,
   showSimpleSuccessNotification,
 } from 'easy-soft-utility';
 
@@ -64,7 +67,7 @@ function remoteAction({
   successCallback,
   completeProcess = null,
 }) {
-  logDebug(`model access: ${api}`);
+  logExecute('remoteAction', `model access: ${api}`);
 
   const dispatch = getDispatch();
 
@@ -196,6 +199,8 @@ export async function actionCore({
   beforeProcess = null,
   completeProcess = null,
 }) {
+  logExecute('actionCore', `api:"${api}"`);
+
   if ((target || null) == null) {
     throw new Error('actionCore: target not allow null');
   }
@@ -211,7 +216,10 @@ export async function actionCore({
   let key = '';
 
   if (showProcessing) {
-    // key = getGuid();
+    logTrace(
+      'actionCore',
+      mergeArrowText(`api:"${api}"`, 'showProcessing', true),
+    );
 
     key = toast.loading(
       <ToastContent
@@ -225,12 +233,6 @@ export async function actionCore({
         ...toastOptions,
       },
     );
-
-    // toast.loading({
-    //   key,
-    //   content: processingPrompt || '处理中，请稍后',
-    //   duration: 0,
-    // });
   }
 
   if (isFunction(beforeProcess)) {
@@ -337,7 +339,7 @@ export function apiRequest({
   processingPrompt = '',
   completeProcess = null,
 }) {
-  logDebug(`model access: ${api}`);
+  logExecute('apiRequest', `model access: ${api}`);
 
   const dispatch = getDispatch();
 
@@ -350,7 +352,7 @@ export function apiRequest({
   let key = '';
 
   if (showProcessing) {
-    // key = getGuid();
+    logTrace('apiRequest', mergeArrowText('showProcessing', true));
 
     key = toast.loading(
       <ToastContent
@@ -364,14 +366,6 @@ export function apiRequest({
         ...toastOptions,
       },
     );
-
-    // message.loading({
-    //   key,
-    //   content: checkStringIsNullOrWhiteSpace(processingPrompt)
-    //     ? '处理中，请稍后'
-    //     : processingPrompt,
-    //   duration: 0,
-    // });
   }
 
   dispatch({
@@ -483,8 +477,10 @@ export async function confirmActionCore({
   successMessageBuilder = null,
   showProcessing = true,
 }) {
+  logExecute('confirmActionCore');
+
   if (!isFunction(okAction)) {
-    throw new Error('actionCore: okAction must be function');
+    throw new Error('confirmActionCore: okAction must be function');
   }
 
   const { processing } = target.state;

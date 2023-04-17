@@ -7,6 +7,7 @@ import {
 import { BaseComponent } from 'antd-management-fast-component';
 
 import { switchControlAssist } from '../../utils/switchControlAssist';
+import { tabControlAssist } from '../../utils/tabControlAssist';
 
 class Core extends BaseComponent {
   lastLoadParams = null;
@@ -22,6 +23,8 @@ class Core extends BaseComponent {
   viewReloadingFlag = '';
 
   viewProcessingFlag = '';
+
+  viewTabFlag = '';
 
   //#endregion
 
@@ -41,6 +44,7 @@ class Core extends BaseComponent {
     this.viewRefreshingFlag = getGuid();
     this.viewReloadingFlag = getGuid();
     this.viewProcessingFlag = getGuid();
+    this.viewTabFlag = getGuid();
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -58,7 +62,20 @@ class Core extends BaseComponent {
     ];
 
     switchControlAssist.removeMulti(list);
+    tabControlAssist.remove(this.viewTabFlag);
   };
+
+  setTabActiveKey(key) {
+    this.logCallTrack(
+      {
+        parameter: { key },
+      },
+      'Core',
+      'setTabActiveKey',
+    );
+
+    tabControlAssist.setActiveKey(this.viewTabFlag, key);
+  }
 
   startLoading(...message) {
     this.logCallTrack({}, 'Core', 'startLoading');
@@ -66,6 +83,7 @@ class Core extends BaseComponent {
     switchControlAssist.open(
       this.viewLoadingFlag,
       this.componentName,
+      'viewLoadingFlag',
       ...message,
     );
   }
@@ -76,6 +94,7 @@ class Core extends BaseComponent {
     switchControlAssist.close(
       this.viewLoadingFlag,
       this.componentName,
+      'viewLoadingFlag',
       ...message,
     );
   }
@@ -86,6 +105,7 @@ class Core extends BaseComponent {
     switchControlAssist.openMulti(
       [this.viewSearchingFlag, this.viewLoadingFlag],
       this.componentName,
+      ['viewSearchingFlag', 'viewLoadingFlag'],
       ...message,
     );
   }
@@ -96,6 +116,7 @@ class Core extends BaseComponent {
     switchControlAssist.closeMulti(
       [this.viewSearchingFlag, this.viewLoadingFlag],
       this.componentName,
+      ['viewSearchingFlag', 'viewLoadingFlag'],
       ...message,
     );
   }
@@ -106,6 +127,7 @@ class Core extends BaseComponent {
     switchControlAssist.openMulti(
       [this.viewLoadingFlag, this.viewRefreshingFlag],
       this.componentName,
+      ['viewLoadingFlag', 'viewRefreshingFlag'],
       ...message,
     );
   }
@@ -116,6 +138,7 @@ class Core extends BaseComponent {
     switchControlAssist.closeMulti(
       [this.viewLoadingFlag, this.viewRefreshingFlag],
       this.componentName,
+      ['viewLoadingFlag', 'viewRefreshingFlag'],
       ...message,
     );
   }
@@ -126,6 +149,7 @@ class Core extends BaseComponent {
     switchControlAssist.openMulti(
       [this.viewLoadingFlag, this.viewReloadingFlag],
       this.componentName,
+      ['viewLoadingFlag', 'viewReloadingFlag'],
       ...message,
     );
   }
@@ -136,6 +160,7 @@ class Core extends BaseComponent {
     switchControlAssist.closeMulti(
       [this.viewLoadingFlag, this.viewReloadingFlag],
       this.componentName,
+      ['viewLoadingFlag', 'viewReloadingFlag'],
       ...message,
     );
   }
@@ -146,6 +171,7 @@ class Core extends BaseComponent {
     switchControlAssist.open(
       this.viewProcessingFlag,
       this.componentName,
+      'viewProcessingFlag',
       ...message,
     );
   }
@@ -156,6 +182,7 @@ class Core extends BaseComponent {
     switchControlAssist.close(
       this.viewProcessingFlag,
       this.componentName,
+      'viewProcessingFlag',
       ...message,
     );
   }

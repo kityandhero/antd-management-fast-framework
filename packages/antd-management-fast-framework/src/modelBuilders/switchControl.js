@@ -18,7 +18,6 @@ export function buildModel() {
 
     state: {
       ...getTacitlyState(),
-      flags: {},
     },
 
     effects: {

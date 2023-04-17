@@ -4,6 +4,8 @@ import Debounce from 'lodash.debounce';
 import React, { Component } from 'react';
 import DataSet from '@antv/data-set';
 
+import { stringifyJson } from 'easy-soft-utility';
+
 import { AutoHeightComponent } from '../autoHeight';
 
 import styles from './index.less';
@@ -57,7 +59,7 @@ class TagCloud extends Component {
 
     if (
       preProperties &&
-      JSON.stringify(preProperties.data) !== JSON.stringify(data)
+      stringifyJson(preProperties.data) !== stringifyJson(data)
     ) {
       this.renderChart(this.props);
     }

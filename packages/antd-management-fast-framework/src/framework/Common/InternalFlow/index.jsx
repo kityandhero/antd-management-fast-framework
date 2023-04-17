@@ -51,8 +51,6 @@ import { Core } from '../../Core';
 class InternalFlow extends Core {
   showPageHeader = true;
 
-  contentTabMode = false;
-
   contentWrapperType = contentConfig.wrapperType.page;
 
   showExtraActionDivider = false;
@@ -93,11 +91,11 @@ class InternalFlow extends Core {
 
     const that = this;
 
-    that.openPreventRender();
+    progressBarControlAssist.start();
 
     that.startLoading();
 
-    progressBarControlAssist.start();
+    that.openPreventRender();
 
     that.initLoad({
       delay: that.loadRemoteRequestDelay,

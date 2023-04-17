@@ -32,7 +32,6 @@ import {
   columnFacadeMode,
   defaultListState,
   formNameCollection,
-  getCurrentLocation,
   getDerivedStateFromPropertiesForUrlParameters,
   listViewConfig,
   searchCardConfig,
@@ -923,18 +922,6 @@ class Base extends AuthorizationWrapper {
     }
 
     return null;
-  };
-
-  getInitialTabActiveKey = () => {
-    const { pathname } = getCurrentLocation();
-
-    const list = pathname.split('/');
-
-    if (list.length > 1) {
-      return list[list.length - 1];
-    }
-
-    return '';
   };
 
   onPageHeaderAvatarLoadError = () => {

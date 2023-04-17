@@ -50,8 +50,10 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "commander": "^10.0.0",
-    "ejs": "^3.1.9"
+    "@umijs/max": "^4.0.65",
+    "commander": "^10.0.1",
+    "ejs": "^3.1.9",
+    "umi": "^4.0.65"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
@@ -63,15 +65,14 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
     "@babel/runtime": "^7.21.0",
-    "@commitlint/cli": "^17.5.1",
-    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@commitlint/config-lerna-scopes": "^17.4.2",
     "@commitlint/cz-commitlint": "^17.5.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
     "@typescript-eslint/parser": "^5.58.0",
-    "@umijs/max": "^4.0.65",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "cross-env": "^7.0.3",
@@ -102,8 +103,8 @@
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "rimraf": "^5.0.0",
-    "stylelint": "^15.4.0",
+    "stylelint": "^15.5.0",
     "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-standard": "^32.0.0"
+    "stylelint-config-standard": "^33.0.0"
   }
 }

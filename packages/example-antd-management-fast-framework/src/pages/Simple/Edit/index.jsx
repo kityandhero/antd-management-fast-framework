@@ -32,16 +32,16 @@ import {
 } from '../Assist/config';
 import { fieldData, statusCollection } from '../Common/data';
 
-import BasicInfo from './BasicInfo';
-import ContentInfo from './ContentInfo';
-import MediaInfo from './MediaInfo';
+// import BasicInfo from './BasicInfo';
+// import ContentInfo from './ContentInfo';
+// import MediaInfo from './MediaInfo';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
 class Edit extends DataTabContainerSupplement {
-  // showCallProcess = true;
+  showCallProcess = true;
 
   componentAuthority = accessWayCollection.simple.get.permission;
 
@@ -51,14 +51,14 @@ class Edit extends DataTabContainerSupplement {
       show: checkHasAuthority(accessWayCollection.simple.get.permission),
       tab: '基本信息',
       label: '基本信息',
-      children: <BasicInfo />,
+      // children: <BasicInfo />,
     },
     {
       key: 'contentInfo',
       show: checkHasAuthority(accessWayCollection.simple.get.permission),
       tab: '图文H5信息',
       label: '图文H5信息',
-      children: <ContentInfo />,
+      // children: <ContentInfo />,
     },
     {
       key: 'mediaInfo',
@@ -67,7 +67,7 @@ class Edit extends DataTabContainerSupplement {
       ),
       tab: '媒体信息',
       label: '媒体信息',
-      children: <MediaInfo />,
+      // children: <MediaInfo />,
     },
   ];
 
@@ -119,15 +119,6 @@ class Edit extends DataTabContainerSupplement {
         key: fieldData.title.name,
       }),
     });
-  };
-
-  analysisInitialTabActiveKey = (o) => {
-    const { tab } = {
-      tab: '',
-      ...o,
-    };
-
-    return tab || '';
   };
 
   setOnline = (r) => {
