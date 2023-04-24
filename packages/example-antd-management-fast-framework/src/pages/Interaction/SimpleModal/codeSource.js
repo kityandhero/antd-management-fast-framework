@@ -1,14 +1,14 @@
-import { connect } from 'easy-soft-dva';
+export const code = `import { connect } from 'easy-soft-dva';
 import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
-import { fieldData } from '../Common/data';
+import { fieldData } from '../../Simple/Common/data';
 
 const { BaseUpdateModal } = DataModal;
 
-const visibleFlag = '264ccc0c4d5647d5a1c491dc5d799366';
+const visibleFlag = '417979e2-93ce-46e9-97c2-15ff20365f95';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
@@ -67,7 +67,7 @@ class ChangeSortModal extends BaseUpdateModal {
     // eslint-disable-next-line no-unused-vars
     submitData,
   ) => {
-    return `排序值更新成功。`;
+    return \`排序值更新成功。\`;
   };
 
   buildTitleSubText = () => {
@@ -130,3 +130,4 @@ class ChangeSortModal extends BaseUpdateModal {
 }
 
 export default ChangeSortModal;
+`;

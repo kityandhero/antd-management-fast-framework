@@ -26,6 +26,14 @@ export default {
   'menu.simple.edit.contentInfo': '图文H5信息',
   'menu.simple.edit.mediaInfo': '媒体信息',
 
+  'menu.interaction': '交互示例',
+  'menu.interaction-mini': '交互',
+  'menu.interaction.modelView': 'Model 示例',
+  'menu.interaction.modelView-mini': 'Model',
+
+  'menu.interaction.drawerView': 'Drawer 示例',
+  'menu.interaction.drawerView-mini': 'Drawer',
+
   'menu.flowEditor': '流程图',
   'menu.flowEditor-mini': '流程图',
   'menu.flowEditor.editor': '编辑器',

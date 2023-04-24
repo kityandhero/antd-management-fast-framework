@@ -9,11 +9,19 @@ const {
   promptSuccess,
   promptWarn,
   promptEmptyLine,
+  exec,
+  promptInfo,
 } = require('easy-soft-develop');
 
 let { templateContent } = require('../template');
 
 function generate(dataSource, relativeFolder) {
+  const removeCmd = `npx rimraf ${relativeFolder}/FunctionExtra`;
+
+  promptInfo(`remove FunctionExtra: ${removeCmd}`);
+
+  exec(removeCmd);
+
   mkdirSync(`${relativeFolder}/FunctionExtra`, {
     recursive: true,
   });

@@ -104,6 +104,31 @@ export default [
     ],
   },
   {
+    path: '/interaction',
+    name: 'interaction',
+    icon: 'bars',
+    routes: [
+      {
+        path: '/interaction',
+        redirect: '/interaction/modelView',
+      },
+      {
+        path: '/interaction/modelView',
+        name: 'modelView',
+        icon: 'bars',
+        useMini: true,
+        component: './Interaction/ModelView',
+      },
+      {
+        path: '/interaction/drawerView',
+        name: 'drawerView',
+        icon: 'bars',
+        useMini: true,
+        component: './Interaction/DrawerView',
+      },
+    ],
+  },
+  {
     path: '/common',
     name: 'common',
     icon: 'bars',

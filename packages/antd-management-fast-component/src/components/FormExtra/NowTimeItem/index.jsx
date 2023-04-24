@@ -15,7 +15,7 @@ import { Item } from '../Item';
 
 class NowTimeItem extends PureComponent {
   render() {
-    const { label, helper, formItemLayout } = this.props;
+    const { label, helper, formItemLayout, hidden = false } = this.props;
 
     const {
       label: labelChanged,
@@ -29,9 +29,11 @@ class NowTimeItem extends PureComponent {
 
     const resultCheck = checkFromConfig({
       label: labelChanged || '当前时间',
-      name: '',
+      name: '32',
       helper: helperChanged,
     });
+
+    console.log(resultCheck);
 
     return (
       <Item
@@ -42,6 +44,13 @@ class NowTimeItem extends PureComponent {
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
+        rules={[
+          {
+            required: false,
+            message: buildFieldDescription(resultCheck.label),
+          },
+        ]}
+        hidden={hidden}
       >
         <Input
           value={formatDatetime({

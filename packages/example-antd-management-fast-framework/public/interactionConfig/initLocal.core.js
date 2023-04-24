@@ -102,7 +102,7 @@ window.appInitCustomLocalCore = {
         availability: 1,
       },
     ],
-    articleStatusList: [
+    simpleStatusList: [
       {
         flag: '-1',
         name: '未知',
