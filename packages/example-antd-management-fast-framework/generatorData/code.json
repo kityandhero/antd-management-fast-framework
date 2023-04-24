@@ -7,6 +7,10 @@
     {
       "sourceFilePath": "./src/pages/Interaction/SimpleAddDrawer/index.jsx",
       "codeFilePath": "./src/pages/Interaction/SimpleAddDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleEditDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleEditDrawer/codeSource.js"
     }
   ]
 }

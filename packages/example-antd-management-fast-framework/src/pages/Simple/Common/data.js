@@ -188,12 +188,12 @@ export const fieldData = {
   createTime: {
     label: '发布时间',
     name: 'createTime',
-    helper: '',
+    helper: '数据得发布时间',
   },
   updateTime: {
     label: '最后更新时间',
     name: 'updateTime',
-    helper: '',
+    helper: '数据得最后更新时间',
   },
   createUserId: {
     label: '创建人标识',

@@ -1,6 +1,7 @@
 export const code = `import { Checkbox } from 'antd';
 
 import { connect } from 'easy-soft-dva';
+import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig, drawerConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
@@ -11,15 +12,15 @@ import {
 
 import { fieldData } from '../../Simple/Common/data';
 
-const { BaseAddDrawer } = DataDrawer;
+const { BaseUpdateDrawer } = DataDrawer;
 
-const visibleFlag = '35f84a341e49444a994b61add41acf9b';
+const visibleFlag = '7476eba9e3bf442ab7655e7b41c40360';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SimpleAddDrawer extends BaseAddDrawer {
+class SimpleEditDrawer extends BaseUpdateDrawer {
   static open() {
     switchControlAssist.open(visibleFlag);
   }
@@ -29,6 +30,7 @@ class SimpleAddDrawer extends BaseAddDrawer {
 
     this.state = {
       ...this.state,
+      loadApiPath: 'simple/get',
       submitApiPath: 'simple/addBasicInfo',
     };
   }
@@ -51,10 +53,38 @@ class SimpleAddDrawer extends BaseAddDrawer {
   };
 
   renderPresetTitle = () => {
-    return '新增信息';
+    return '编辑信息';
+  };
+
+  fillInitialValuesAfterLoad = ({
+    metaData = null,
+    // eslint-disable-next-line no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line no-unused-vars
+    metaOriginalData = null,
+  }) => {
+    const values = {};
+
+    if (metaData != null) {
+      values[fieldData.title.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.title.name,
+      });
+
+      values[fieldData.description.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.description.name,
+      });
+    }
+
+    return values;
   };
 
   establishCardCollectionConfig = () => {
+    const { metaData } = this.stat;
+
     return {
       list: [
         {
@@ -132,7 +162,22 @@ class SimpleAddDrawer extends BaseAddDrawer {
           },
           items: [
             {
+              type: cardConfig.contentItemType.onlyShowInputDatetime,
+              fieldData: fieldData.createTime,
+              value: getValueByKey({
+                data: metaData,
+                key: fieldData.createTime.name,
+                convert: convertCollection.datetime,
+              }),
+            },
+            {
               type: cardConfig.contentItemType.nowTime,
+              fieldData: fieldData.updateTime,
+              value: getValueByKey({
+                data: metaData,
+                key: fieldData.updateTime.name,
+                convert: convertCollection.datetime,
+              }),
             },
           ],
         },
@@ -155,5 +200,5 @@ class SimpleAddDrawer extends BaseAddDrawer {
   };
 }
 
-export default SimpleAddDrawer;
+export default SimpleEditDrawer;
 `;

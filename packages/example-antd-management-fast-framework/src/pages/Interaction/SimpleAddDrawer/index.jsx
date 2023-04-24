@@ -9,7 +9,6 @@ import {
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '../../../customConfig/accessWayCollection';
 import { fieldData } from '../../Simple/Common/data';
 
 const { BaseAddDrawer } = DataDrawer;
@@ -20,21 +19,16 @@ const visibleFlag = '35f84a341e49444a994b61add41acf9b';
   simple,
   schedulingControl,
 }))
-class AddBasicInfoDrawer extends BaseAddDrawer {
+class SimpleAddDrawer extends BaseAddDrawer {
   static open() {
     switchControlAssist.open(visibleFlag);
   }
-
-  showCallProcess = true;
-
-  componentAuthority = accessWayCollection.simple.addBasicInfo.permission;
 
   constructor(properties) {
     super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
-      loadApiPath: 'simple/get',
       submitApiPath: 'simple/addBasicInfo',
     };
   }
@@ -57,7 +51,7 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
   };
 
   renderPresetTitle = () => {
-    return '新增选项';
+    return '新增信息';
   };
 
   establishCardCollectionConfig = () => {
@@ -161,4 +155,4 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
   };
 }
 
-export default AddBasicInfoDrawer;
+export default SimpleAddDrawer;
