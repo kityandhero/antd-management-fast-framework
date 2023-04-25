@@ -1,4 +1,4 @@
-export const code = `import { connect } from 'easy-soft-dva';
+import { connect } from 'easy-soft-dva';
 import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
@@ -8,13 +8,13 @@ import { fieldData } from '../../Simple/Common/data';
 
 const { BaseUpdateModal } = DataModal;
 
-const visibleFlag = '417979e2-93ce-46e9-97c2-15ff20365f95';
+const visibleFlag = 'e87f8a4afd2e407a9d5d90a3ced69585';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class ChangeSortModal extends BaseUpdateModal {
+class SimpleEditModal extends BaseUpdateModal {
   static open() {
     switchControlAssist.open(visibleFlag);
   }
@@ -26,7 +26,7 @@ class ChangeSortModal extends BaseUpdateModal {
       ...this.state,
       pageTitle: '排序值设置',
       loadApiPath: 'simple/get',
-      submitApiPath: 'simple/updateSort',
+      submitApiPath: 'simple/updateBasicInfo',
     };
   }
 
@@ -67,7 +67,7 @@ class ChangeSortModal extends BaseUpdateModal {
     // eslint-disable-next-line no-unused-vars
     submitData,
   ) => {
-    return \`排序值更新成功。\`;
+    return `排序值更新成功。`;
   };
 
   buildTitleSubText = () => {
@@ -129,5 +129,4 @@ class ChangeSortModal extends BaseUpdateModal {
   };
 }
 
-export default ChangeSortModal;
-`;
+export default SimpleEditModal;

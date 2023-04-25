@@ -1,8 +1,12 @@
 {
   "list": [
     {
-      "sourceFilePath": "./src/pages/Interaction/SimpleModal/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleModal/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/SimpleAddModal/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleAddModal/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleEditModal/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleEditModal/codeSource.js"
     },
     {
       "sourceFilePath": "./src/pages/Interaction/SimpleAddDrawer/index.jsx",

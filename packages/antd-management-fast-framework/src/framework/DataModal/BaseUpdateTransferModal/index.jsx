@@ -22,15 +22,14 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
-  // eslint-disable-next-line no-unused-vars
-  buildTargetKeys = (preProperties, preState, snapshot) => {
+  buildTargetKeys = () => {
     throw new Error('buildTargetKeys need overload');
   };
 
-  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = () => {
     this.setState(
       {
-        targetKeys: this.buildTargetKeys(preProperties, preState, snapshot),
+        targetKeys: this.buildTargetKeys(),
       },
       () => {
         this.reloadData({});

@@ -23,6 +23,7 @@ import {
 
 import {
   defaultBaseState,
+  emptyLogic,
   filterUpdateModel,
   shallowUpdateEqual,
 } from 'antd-management-fast-common';
@@ -59,6 +60,8 @@ class AbstractComponent extends Component {
    * show process call information，display call track and call trace in console
    */
   showCallProcess = false;
+
+  showCallProcessSwitchPromptComplete = false;
 
   //#endregion
 
@@ -409,13 +412,34 @@ class AbstractComponent extends Component {
   doOtherWorkAfterDidMount = () => {};
 
   // eslint-disable-next-line no-unused-vars
-  doWorkBeforeUpdate = (nextProperties, nextState) => {};
+  doWorkBeforeUpdate = (nextProperties, nextState) => {
+    this.logCallTrack(
+      {},
+      'bases::AbstractComponent',
+      'doWorkBeforeUpdate',
+      emptyLogic,
+    );
+  };
 
   // eslint-disable-next-line no-unused-vars
-  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {};
+  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
+    this.logCallTrack(
+      {},
+      'bases::AbstractComponent',
+      'doWorkWhenDidUpdate',
+      emptyLogic,
+    );
+  };
 
   // eslint-disable-next-line no-unused-vars
   doWorkWhenGetSnapshotBeforeUpdate = (preProperties, preState) => {
+    this.logCallTrack(
+      {},
+      'bases::AbstractComponent',
+      'doWorkWhenGetSnapshotBeforeUpdate',
+      emptyLogic,
+    );
+
     return null;
   };
 
@@ -491,12 +515,16 @@ class AbstractComponent extends Component {
     logRenderCore(this.constructor.name, message);
   }
 
+  promptCallProcessSwitch = () => {};
+
   /**
    * log call track
    * @param {*} message
    */
   logCallTrack(data, ...messages) {
     if (!this.showCallProcess) {
+      this.promptCallProcessSwitch();
+
       return;
     }
 
@@ -509,6 +537,8 @@ class AbstractComponent extends Component {
    */
   logCallTrace(data, ...messages) {
     if (!this.showCallProcess) {
+      this.promptCallProcessSwitch();
+
       return;
     }
 

@@ -17,6 +17,12 @@ class BaseUpdateDrawer extends BaseLoadDrawer {
   }
 
   buildBottomBarInnerDefaultConfigList = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::BaseUpdateDrawer',
+      'buildBottomBarInnerDefaultConfigList',
+    );
+
     return [
       {
         buildType: drawerConfig.bottomBarBuildType.save,

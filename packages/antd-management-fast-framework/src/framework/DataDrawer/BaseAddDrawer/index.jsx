@@ -22,10 +22,18 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   }
 
   adjustWhenDidMount = () => {
+    this.logCallTrack({}, 'DataDrawer::BaseAddDrawer', 'adjustWhenDidMount');
+
     this.fillData({});
   };
 
   buildBottomBarInnerDefaultConfigList = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::BaseAddDrawer',
+      'buildBottomBarInnerDefaultConfigList',
+    );
+
     const that = this;
 
     return [

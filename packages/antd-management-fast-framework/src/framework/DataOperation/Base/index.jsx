@@ -10,12 +10,23 @@ import {
   showWarnNotification,
 } from 'easy-soft-utility';
 
+import { emptyLogic } from 'antd-management-fast-common';
+
 import { AuthorizationWrapper } from '../../AuthorizationWrapper';
 
 class Base extends AuthorizationWrapper {
   resetDataAfterLoad = true;
 
-  supplementLoadRequestParams = (o) => o;
+  supplementLoadRequestParams = (o) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::Base',
+      'supplementLoadRequestParams',
+      emptyLogic,
+    );
+
+    return o;
+  };
 
   buildInitialValues = ({
     metaData = null,
@@ -23,6 +34,14 @@ class Base extends AuthorizationWrapper {
     metaExtra = null,
     metaOriginalData = null,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: { metaData, metaListData, metaExtra, metaOriginalData },
+      },
+      'DataOperation::Base',
+      'buildInitialValues',
+    );
+
     if (this.resetDataAfterLoad || false) {
       return this.fillInitialValuesAfterLoad({
         metaData,
@@ -54,7 +73,13 @@ class Base extends AuthorizationWrapper {
   };
 
   checkSubmitData = (o) => {
-    this.logCallTrack({}, 'DataOperation::Base', 'checkSubmitData');
+    this.logCallTrack(
+      {
+        parameter: { o },
+      },
+      'DataOperation::Base',
+      'checkSubmitData',
+    );
 
     if ((o || null) == null) {
       const text = '提交的数据不能为空';
@@ -68,9 +93,25 @@ class Base extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line no-unused-vars
-  checkSubmitRequestParams = (o) => true;
+  checkSubmitRequestParams = (o) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::Base',
+      'checkSubmitRequestParams',
+      emptyLogic,
+    );
+
+    return true;
+  };
 
   subjoinDataOnAfterOK = () => {
+    this.logCallTrack(
+      {},
+      'DataOperation::Base',
+      'doAfterSubmitSuccess',
+      emptyLogic,
+    );
+
     return {};
   };
 
@@ -85,6 +126,8 @@ class Base extends AuthorizationWrapper {
 
     submitData = null,
   }) => {
+    this.logCallTrack({}, 'DataOperation::Base', 'doAfterSubmitSuccess');
+
     const { afterOK } = this.props;
 
     this.doOtherAfterSubmitSuccess({
@@ -136,7 +179,14 @@ class Base extends AuthorizationWrapper {
     responseOriginalData = null,
     // eslint-disable-next-line no-unused-vars
     submitData = null,
-  }) => {};
+  }) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::Base',
+      'doOtherAfterSubmitSuccess',
+      emptyLogic,
+    );
+  };
 
   sendSubmitSuccessMessage = ({
     singleData = null,
@@ -145,6 +195,8 @@ class Base extends AuthorizationWrapper {
     responseOriginalData = null,
     submitData = null,
   }) => {
+    this.logCallTrack({}, 'DataOperation::Base', 'sendSubmitSuccessMessage');
+
     const { type, text } = {
       type: 'success',
       text: '',
@@ -183,6 +235,8 @@ class Base extends AuthorizationWrapper {
 
     submitData = null,
   }) => {
+    this.logCallTrack({}, 'DataOperation::Base', 'buildMessage');
+
     return {
       type: this.buildMessageType(),
       text: this.buildMessageText({
@@ -196,6 +250,8 @@ class Base extends AuthorizationWrapper {
   };
 
   buildMessageType = () => {
+    this.logCallTrack({}, 'DataOperation::Base', 'buildMessageType');
+
     return 'success';
   };
 
@@ -211,6 +267,13 @@ class Base extends AuthorizationWrapper {
     // eslint-disable-next-line no-unused-vars
     submitData = null,
   }) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::Base',
+      'buildMessageText',
+      emptyLogic,
+    );
+
     return '';
   };
 
@@ -221,6 +284,12 @@ class Base extends AuthorizationWrapper {
     responseOriginalData = null,
     submitData = null,
   }) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::Base',
+      'sendSubmitSuccessNotification',
+    );
+
     const { type, placement, message, description } = {
       type: this.buildNotificationType(),
       placement: this.buildNotificationPlacement(),
@@ -258,14 +327,20 @@ class Base extends AuthorizationWrapper {
   };
 
   buildNotificationType = () => {
+    this.logCallTrack({}, 'DataOperation::Base', 'buildNotificationType');
+
     return `success`;
   };
 
   buildNotificationPlacement = () => {
+    this.logCallTrack({}, 'DataOperation::Base', 'buildNotificationPlacement');
+
     return `bottomRight`;
   };
 
   buildNotificationMessage = () => {
+    this.logCallTrack({}, 'DataOperation::Base', 'buildNotificationMessage');
+
     return `操作执行通知`;
   };
 
@@ -281,6 +356,12 @@ class Base extends AuthorizationWrapper {
     // eslint-disable-next-line no-unused-vars
     submitData = null,
   }) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::Base',
+      'buildNotificationDescription',
+    );
+
     return `已成功更新信息，请继续其他操作。`;
   };
 }

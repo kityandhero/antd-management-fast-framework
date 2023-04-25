@@ -33,8 +33,6 @@ class NowTimeItem extends PureComponent {
       helper: helperChanged,
     });
 
-    console.log(resultCheck);
-
     return (
       <Item
         {...(formItemLayoutChanged || {})}

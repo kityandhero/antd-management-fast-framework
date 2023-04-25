@@ -52,8 +52,7 @@ class ChangeImageSortModal extends Base {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = () => {
     this.reloadData({});
   };
 

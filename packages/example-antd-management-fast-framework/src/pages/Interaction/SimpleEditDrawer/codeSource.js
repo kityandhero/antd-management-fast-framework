@@ -5,14 +5,11 @@ import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig, drawerConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import {
-  DataDrawer,
-  switchControlAssist,
-} from 'antd-management-fast-framework';
+import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
 import { fieldData } from '../../Simple/Common/data';
 
-const { BaseUpdateDrawer } = DataDrawer;
+const { BaseUpdateModel } = DataModal;
 
 const visibleFlag = '7476eba9e3bf442ab7655e7b41c40360';
 
@@ -20,7 +17,9 @@ const visibleFlag = '7476eba9e3bf442ab7655e7b41c40360';
   simple,
   schedulingControl,
 }))
-class SimpleEditDrawer extends BaseUpdateDrawer {
+class SimpleEditModel extends BaseUpdateModel {
+  showCallProcess = true;
+
   static open() {
     switchControlAssist.open(visibleFlag);
   }
@@ -31,7 +30,7 @@ class SimpleEditDrawer extends BaseUpdateDrawer {
     this.state = {
       ...this.state,
       loadApiPath: 'simple/get',
-      submitApiPath: 'simple/addBasicInfo',
+      submitApiPath: 'simple/updateBasicInfo',
     };
   }
 
@@ -83,7 +82,7 @@ class SimpleEditDrawer extends BaseUpdateDrawer {
   };
 
   establishCardCollectionConfig = () => {
-    const { metaData } = this.stat;
+    const { metaData } = this.state;
 
     return {
       list: [
@@ -200,5 +199,5 @@ class SimpleEditDrawer extends BaseUpdateDrawer {
   };
 }
 
-export default SimpleEditDrawer;
+export default SimpleEditModel;
 `;

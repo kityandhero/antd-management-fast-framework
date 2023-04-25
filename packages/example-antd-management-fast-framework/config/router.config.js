@@ -117,7 +117,7 @@ export default [
         name: 'modelView',
         icon: 'bars',
         useMini: true,
-        component: './Interaction/ModelView',
+        component: './Interaction/ModalView',
       },
       {
         path: '/interaction/drawerView',

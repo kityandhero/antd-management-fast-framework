@@ -33,8 +33,7 @@ class BaseNeedlessLoadModal extends Base {
     return { visible, needReset, externalData };
   }
 
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = () => {
     const form = this.getTargetForm();
 
     if (!form) {

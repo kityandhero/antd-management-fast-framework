@@ -1,5 +1,7 @@
 import { emptyLogo } from './mediaDefault';
 
+export const emptyLogic = 'empty-logic';
+
 export const whetherList = [
   {
     key: 'b24a21cf-a45c-4b6a-9993-f6953d7eb1ee',

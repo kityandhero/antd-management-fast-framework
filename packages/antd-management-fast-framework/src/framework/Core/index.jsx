@@ -1,4 +1,4 @@
-import { getGuid } from 'easy-soft-utility';
+import { getGuid, logDebug, mergeArrowText, toString } from 'easy-soft-utility';
 
 import {
   defaultCoreState,
@@ -51,6 +51,21 @@ class Core extends BaseComponent {
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParametersCore();
   }
+
+  promptCallProcessSwitch = () => {
+    if (!this.showCallProcessSwitchPromptComplete) {
+      logDebug(
+        {},
+        mergeArrowText(
+          this.componentName,
+          'showCallProcess',
+          toString(this.showCallProcess),
+        ),
+      );
+
+      this.showCallProcessSwitchPromptComplete = true;
+    }
+  };
 
   doWorkAfterUnmount = () => {
     const list = [

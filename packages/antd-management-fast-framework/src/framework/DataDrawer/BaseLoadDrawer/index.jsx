@@ -3,6 +3,10 @@ import { Base } from '../Base';
 class BaseLoadDrawer extends Base {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
+
+    this.state = {
+      ...this.state,
+    };
   }
 
   static getDerivedStateFromProps(nextProperties, previousState) {
@@ -10,8 +14,14 @@ class BaseLoadDrawer extends Base {
   }
 
   // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
-    this.reloadData({ dataLoading: true }, null, 300);
+  doOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::BaseLoadDrawer',
+      'doOtherWhenChangeVisibleToShow',
+    );
+
+    this.reloadData({});
   };
 }
 

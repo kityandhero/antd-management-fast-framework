@@ -51,8 +51,6 @@ class MultiPageDrawer extends MultiPage {
 
     this.state = {
       ...s,
-
-      visible: false,
       reloadAnimalShow: false,
       listViewMode: listViewConfig.viewMode.table,
     };
@@ -60,50 +58,24 @@ class MultiPageDrawer extends MultiPage {
 
   // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProperties, previousState) {
-    const { visible, externalData } = nextProperties;
+    const { externalData } = nextProperties;
 
-    return { visible: visible || false, externalData: externalData || null };
+    return { externalData: externalData || null };
   }
-
-  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
-    const { visible: visiblePre } = preState;
-    const { visible } = this.state;
-
-    if (visiblePre !== visible) {
-      this.doOtherWhenChangeVisible(preProperties, preState, snapshot, visible);
-    }
-  };
 
   /**
    * 当可见性发生变化时执行
    */
-  doOtherWhenChangeVisible = (
-    preProperties,
-    preState,
-    snapshot,
-    currentVisible,
-  ) => {
+  doOtherWhenChangeVisible = (currentVisible) => {
     if (currentVisible) {
-      this.doOtherWhenChangeVisibleToShow(preProperties, preState, snapshot);
-      this.executeAfterDoOtherWhenChangeVisibleToShow(
-        preProperties,
-        preState,
-        snapshot,
-      );
+      this.doOtherWhenChangeVisibleToShow();
+      this.executeAfterDoOtherWhenChangeVisibleToShow();
     } else {
-      this.doOtherWhenChangeVisibleToHide(preProperties, preState, snapshot);
-      this.executeAfterDoOtherWhenChangeVisibleToHide(
-        preProperties,
-        preState,
-        snapshot,
-      );
+      this.doOtherWhenChangeVisibleToHide();
+      this.executeAfterDoOtherWhenChangeVisibleToHide();
     }
 
-    this.executeOtherAfterDoOtherWhenChangeVisible(
-      preProperties,
-      preState,
-      snapshot,
-    );
+    this.executeOtherAfterDoOtherWhenChangeVisible(currentVisible);
   };
 
   /**
@@ -112,8 +84,7 @@ class MultiPageDrawer extends MultiPage {
    * @param {*} preState
    * @param {*} snapshot
    */
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = () => {
     const { firstLoadSuccess } = this.state;
 
     // 未加载数据过数据的时候，进行加载

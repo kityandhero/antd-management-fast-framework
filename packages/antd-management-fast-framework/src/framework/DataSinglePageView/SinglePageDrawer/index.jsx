@@ -53,60 +53,30 @@ class SinglePageDrawer extends SinglePage {
 
   // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProperties, previousState) {
-    const { visible, externalData } = nextProperties;
+    const { externalData } = nextProperties;
 
-    return { visible, externalData };
+    return { externalData };
   }
-
-  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
-    const { visible: visiblePre } = preState;
-    const { visible } = this.state;
-
-    if (visiblePre !== visible) {
-      this.doOtherWhenChangeVisible(preProperties, preState, snapshot, visible);
-    }
-  };
 
   /**
    * 当可见性发生变化时执行
    */
-  doOtherWhenChangeVisible = (
-    preProperties,
-    preState,
-    snapshot,
-    currentVisible,
-  ) => {
+  doOtherWhenChangeVisible = (currentVisible) => {
     if (currentVisible) {
-      this.doOtherWhenChangeVisibleToShow(preProperties, preState, snapshot);
-      this.executeAfterDoOtherWhenChangeVisibleToShow(
-        preProperties,
-        preState,
-        snapshot,
-      );
+      this.doOtherWhenChangeVisibleToShow();
+      this.executeAfterDoOtherWhenChangeVisibleToShow();
     } else {
-      this.doOtherWhenChangeVisibleToHide(preProperties, preState, snapshot);
-      this.executeAfterDoOtherWhenChangeVisibleToHide(
-        preProperties,
-        preState,
-        snapshot,
-      );
+      this.doOtherWhenChangeVisibleToHide();
+      this.executeAfterDoOtherWhenChangeVisibleToHide();
     }
 
-    this.executeOtherAfterDoOtherWhenChangeVisible(
-      preProperties,
-      preState,
-      snapshot,
-    );
+    this.executeOtherAfterDoOtherWhenChangeVisible(currentVisible);
   };
 
   /**
    * 当可见性变为显示时执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
    */
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = () => {
     const { firstLoadSuccess } = this.state;
 
     // 未加载数据过数据的时候，进行加载
@@ -128,57 +98,23 @@ class SinglePageDrawer extends SinglePage {
 
   /**
    * 当可见性变为显示时附加的执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
    */
-  executeAfterDoOtherWhenChangeVisibleToShow = (
-    // eslint-disable-next-line no-unused-vars
-    preProperties,
-    // eslint-disable-next-line no-unused-vars
-    preState,
-    // eslint-disable-next-line no-unused-vars
-    snapshot,
-  ) => {};
+  executeAfterDoOtherWhenChangeVisibleToShow = () => {};
 
   /**
    * 当可见性变为隐藏时执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
    */
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToHide = (preProperties, preState, snapshot) => {};
+  doOtherWhenChangeVisibleToHide = () => {};
 
   /**
    * 当可见性变为显示后附加的执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
    */
-  executeAfterDoOtherWhenChangeVisibleToHide = (
-    // eslint-disable-next-line no-unused-vars
-    preProperties,
-    // eslint-disable-next-line no-unused-vars
-    preState,
-    // eslint-disable-next-line no-unused-vars
-    snapshot,
-  ) => {};
+  executeAfterDoOtherWhenChangeVisibleToHide = () => {};
 
   /**
    * 当可见性变更后的附加执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
    */
-  executeOtherAfterDoOtherWhenChangeVisible = (
-    // eslint-disable-next-line no-unused-vars
-    preProperties,
-    // eslint-disable-next-line no-unused-vars
-    preState,
-    // eslint-disable-next-line no-unused-vars
-    snapshot,
-  ) => {};
+  executeOtherAfterDoOtherWhenChangeVisible = () => {};
 
   onClose = () => {
     const { afterClose } = this.props;

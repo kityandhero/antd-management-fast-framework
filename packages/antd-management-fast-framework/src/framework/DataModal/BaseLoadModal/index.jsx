@@ -5,8 +5,13 @@ class BaseLoadModal extends Base {
     super(properties, visibleFlag);
   }
 
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      'DataModal::BaseLoadModal',
+      'doOtherWhenChangeVisibleToShow',
+    );
+
     if (this.reloadWhenShow) {
       const form = this.getTargetForm();
 

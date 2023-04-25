@@ -19,8 +19,13 @@ class BaseNeedlessLoadDrawer extends Base {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {
+  doOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::BaseNeedlessLoadDrawer',
+      'doOtherWhenChangeVisibleToShow',
+    );
+
     const form = this.getTargetForm();
 
     if (!form) {
@@ -31,10 +36,22 @@ class BaseNeedlessLoadDrawer extends Base {
   };
 
   buildInitialValues = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::BaseNeedlessLoadDrawer',
+      'buildInitialValues',
+    );
+
     return this.fillDefaultInitialValues();
   };
 
   fillDefaultInitialValues = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::BaseNeedlessLoadDrawer',
+      'fillDefaultInitialValues',
+    );
+
     const initialValues = {};
 
     initialValues[formNameCollection.createTime.name] = formatDatetime({

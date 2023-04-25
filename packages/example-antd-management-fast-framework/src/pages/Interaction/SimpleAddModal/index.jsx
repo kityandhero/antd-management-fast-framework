@@ -6,15 +6,15 @@ import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
 import { fieldData } from '../../Simple/Common/data';
 
-const { BaseUpdateModal } = DataModal;
+const { BaseAddModal } = DataModal;
 
-const visibleFlag = '417979e2-93ce-46e9-97c2-15ff20365f95';
+const visibleFlag = 'ac1ba58aad2447848347c745828491a7';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class ChangeSortModal extends BaseUpdateModal {
+class ChangeSortModal extends BaseAddModal {
   static open() {
     switchControlAssist.open(visibleFlag);
   }

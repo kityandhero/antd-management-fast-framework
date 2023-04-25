@@ -20,7 +20,9 @@ const visibleFlag = '7476eba9e3bf442ab7655e7b41c40360';
   simple,
   schedulingControl,
 }))
-class SimpleEditDrawer extends BaseUpdateDrawer {
+class SimpleEditModel extends BaseUpdateDrawer {
+  showCallProcess = true;
+
   static open() {
     switchControlAssist.open(visibleFlag);
   }
@@ -31,7 +33,7 @@ class SimpleEditDrawer extends BaseUpdateDrawer {
     this.state = {
       ...this.state,
       loadApiPath: 'simple/get',
-      submitApiPath: 'simple/addBasicInfo',
+      submitApiPath: 'simple/updateBasicInfo',
     };
   }
 
@@ -200,4 +202,4 @@ class SimpleEditDrawer extends BaseUpdateDrawer {
   };
 }
 
-export default SimpleEditDrawer;
+export default SimpleEditModel;

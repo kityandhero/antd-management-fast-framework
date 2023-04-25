@@ -10,6 +10,8 @@ import {
   showSimpleWarningMessage,
 } from 'easy-soft-utility';
 
+import { emptyLogic } from 'antd-management-fast-common';
+
 import { switchControlAssist } from '../../../utils/switchControlAssist';
 import { Base } from '../Base';
 
@@ -34,120 +36,110 @@ class BaseWindow extends Base {
 
   // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProperties, previousState) {
-    const { visible, externalData } = nextProperties;
+    const { externalData } = nextProperties;
 
-    return { visible, externalData };
+    return { externalData };
   }
 
-  doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
-    const { visible: visiblePre } = preState;
-    const { visible } = this.state;
+  /**
+   * 当可见性变为显示时执行
+   */
+  doOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'doOtherWhenChangeVisibleToShow',
+      emptyLogic,
+    );
+  };
 
-    if (visiblePre !== visible) {
-      this.doOtherWhenChangeVisible(preProperties, preState, snapshot, visible);
-    }
+  /**
+   * 当可见性变为显示时附加的执行
+   */
+  executeAfterDoOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'executeAfterDoOtherWhenChangeVisibleToShow',
+      emptyLogic,
+    );
+  };
+
+  /**
+   * 当可见性变为隐藏时执行
+   */
+  doOtherWhenChangeVisibleToHide = () => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'doOtherWhenChangeVisibleToHide',
+      emptyLogic,
+    );
+  };
+
+  /**
+   * 当可见性变为显示后附加的执行
+   */
+  executeAfterDoOtherWhenChangeVisibleToHide = () => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'executeAfterDoOtherWhenChangeVisibleToHide',
+      emptyLogic,
+    );
+  };
+
+  /**
+   * 当可见性变更后的附加执行
+   */
+  executeOtherAfterDoOtherWhenChangeVisible = () => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'executeOtherAfterDoOtherWhenChangeVisible',
+      emptyLogic,
+    );
   };
 
   /**
    * 当可见性发生变化时执行
    */
-  doOtherWhenChangeVisible = (
-    preProperties,
-    preState,
-    snapshot,
-    currentVisible,
-  ) => {
+  doOtherWhenChangeVisible = (currentVisible) => {
+    this.logCallTrack(
+      {
+        parameter: { currentVisible },
+      },
+      'DataOperation::BaseWindow',
+      'doOtherWhenChangeVisible',
+    );
+
     if (currentVisible) {
-      this.doOtherWhenChangeVisibleToShow(preProperties, preState, snapshot);
-      this.executeAfterDoOtherWhenChangeVisibleToShow(
-        preProperties,
-        preState,
-        snapshot,
-      );
+      this.doOtherWhenChangeVisibleToShow();
+      this.executeAfterDoOtherWhenChangeVisibleToShow();
     } else {
-      this.doOtherWhenChangeVisibleToHide(preProperties, preState, snapshot);
-      this.executeAfterDoOtherWhenChangeVisibleToHide(
-        preProperties,
-        preState,
-        snapshot,
-      );
+      this.doOtherWhenChangeVisibleToHide();
+      this.executeAfterDoOtherWhenChangeVisibleToHide();
     }
 
-    this.executeOtherAfterDoOtherWhenChangeVisible(
-      preProperties,
-      preState,
-      snapshot,
-    );
+    this.executeOtherAfterDoOtherWhenChangeVisible(currentVisible);
   };
 
-  /**
-   * 当可见性变为显示时执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToShow = (preProperties, preState, snapshot) => {};
-
-  /**
-   * 当可见性变为显示时附加的执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  executeAfterDoOtherWhenChangeVisibleToShow = (
-    // eslint-disable-next-line no-unused-vars
-    preProperties,
-    // eslint-disable-next-line no-unused-vars
-    preState,
-    // eslint-disable-next-line no-unused-vars
-    snapshot,
-  ) => {};
-
-  /**
-   * 当可见性变为隐藏时执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToHide = (preProperties, preState, snapshot) => {};
-
-  /**
-   * 当可见性变为显示后附加的执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  executeAfterDoOtherWhenChangeVisibleToHide = (
-    // eslint-disable-next-line no-unused-vars
-    preProperties,
-    // eslint-disable-next-line no-unused-vars
-    preState,
-    // eslint-disable-next-line no-unused-vars
-    snapshot,
-  ) => {};
-
-  /**
-   * 当可见性变更后的附加执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  executeOtherAfterDoOtherWhenChangeVisible = (
-    // eslint-disable-next-line no-unused-vars
-    preProperties,
-    // eslint-disable-next-line no-unused-vars
-    preState,
-    // eslint-disable-next-line no-unused-vars
-    snapshot,
-  ) => {};
-
   getTargetForm = () => {
+    this.logCallTrack({}, 'DataOperation::BaseWindow', 'getTargetForm');
+
     return this.formRef.current;
   };
 
-  supplementSubmitRequestParams = (o) => o;
+  supplementSubmitRequestParams = (o) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'supplementSubmitRequestParams',
+      emptyLogic,
+    );
+
+    return o;
+  };
 
   afterLoadSuccess = ({
     metaData,
@@ -192,7 +184,14 @@ class BaseWindow extends Base {
     metaExtra = null,
     // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
-  }) => {};
+  }) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'doOtherAfterLoadSuccess',
+      emptyLogic,
+    );
+  };
 
   onClose = () => {
     this.logCallTrack({}, 'DataOperation::BaseWindow', 'onClose');
@@ -240,6 +239,8 @@ class BaseWindow extends Base {
   };
 
   setFormFieldsValue = (v) => {
+    this.logCallTrack({}, 'DataOperation::BaseWindow', 'setFormFieldsValue');
+
     const form = this.getTargetForm();
 
     if (form != null) {
@@ -250,9 +251,25 @@ class BaseWindow extends Base {
   };
 
   // eslint-disable-next-line no-unused-vars
-  afterSetFieldsValue = (value) => {};
+  afterSetFieldsValue = (value) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'afterSetFieldsValue',
+      emptyLogic,
+    );
+  };
 
-  afterCheckSubmitRequestParams = (o) => o;
+  afterCheckSubmitRequestParams = (o) => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'afterCheckSubmitRequestParams',
+      emptyLogic,
+    );
+
+    return o;
+  };
 
   execSubmitApi = ({
     values = {},
@@ -552,6 +569,8 @@ class BaseWindow extends Base {
   };
 
   handleCancel = () => {
+    this.logCallTrack({}, 'DataOperation::BaseWindow', 'handleCancel');
+
     const { afterCancel } = this.props;
 
     if (isFunction(afterCancel)) {
@@ -560,16 +579,27 @@ class BaseWindow extends Base {
   };
 
   getFormClassName = () => {
+    this.logCallTrack(
+      {},
+      'DataOperation::BaseWindow',
+      'getFormClassName',
+      emptyLogic,
+    );
+
     return null;
   };
 
   getVisibleFlag() {
+    this.logCallTrack({}, 'DataOperation::BaseWindow', 'getVisibleFlag');
+
     const { flag } = this.props;
 
     return flag || this.visibleFlag;
   }
 
   getSaveButtonDisabled = () => {
+    this.logCallTrack({}, 'DataOperation::BaseWindow', 'getSaveButtonDisabled');
+
     const { loadApiPath, dataLoading, processing, loadSuccess } = this.state;
 
     return (

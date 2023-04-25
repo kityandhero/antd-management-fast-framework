@@ -12,6 +12,7 @@ import {
   contentConfig,
   defaultFormState,
   drawerConfig,
+  emptyLogic,
 } from 'antd-management-fast-common';
 import {
   buildButton,
@@ -53,20 +54,30 @@ class Base extends BaseWindow {
   }
 
   buildTitlePrevText = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitlePrevText', emptyLogic);
+
     return '';
   };
 
   buildTitleText = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleText', emptyLogic);
+
     const { pageTitle } = this.state;
 
     return pageTitle;
   };
 
   buildTitleSubText = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleSubText', emptyLogic);
+
     return '';
   };
 
-  renderPresetTitleIcon = () => iconBuilder.form();
+  renderPresetTitleIcon = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetTitleIcon');
+
+    return iconBuilder.form();
+  };
 
   renderPresetTitle = () => {
     this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetTitle');
@@ -80,10 +91,19 @@ class Base extends BaseWindow {
   };
 
   buildFormLayout = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildFormLayout', emptyLogic);
+
     return 'vertical';
   };
 
   buildNotificationPlacement = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::Base',
+      'buildNotificationPlacement',
+      emptyLogic,
+    );
+
     return `bottom-left`;
   };
 
@@ -115,20 +135,44 @@ class Base extends BaseWindow {
   };
 
   establishCardCollectionConfig = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::Base',
+      'establishCardCollectionConfig',
+      emptyLogic,
+    );
+
     return null;
   };
 
   renderPresetFormContent = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetFormContent');
+
     return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };
 
   renderPresetContentContainor = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::Base',
+      'renderPresetContentContainor',
+      emptyLogic,
+    );
+
     return (
       <div className={styles.contentContainor}>{this.renderPresetForm()}</div>
     );
   };
 
   renderPresetCloseButton = (option) => {
+    this.logCallTrack(
+      {
+        parameter: { option },
+      },
+      'DataDrawer::Base',
+      'renderPresetCloseButton',
+    );
+
     const o = {
       type: 'default',
       icon: iconBuilder.closeCircle(),
@@ -144,10 +188,23 @@ class Base extends BaseWindow {
   };
 
   buildBottomBarInnerExtraConfigList = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::Base',
+      'buildBottomBarInnerExtraConfigList',
+      emptyLogic,
+    );
+
     return [];
   };
 
   buildBottomBarInnerDefaultConfigList = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::Base',
+      'buildBottomBarInnerDefaultConfigList',
+    );
+
     return [
       {
         buildType: drawerConfig.bottomBarBuildType.close,
@@ -156,6 +213,13 @@ class Base extends BaseWindow {
   };
 
   buildBottomBarInnerLeftItemConfigList = () => {
+    this.logCallTrack(
+      {},
+      'DataDrawer::Base',
+      'buildBottomBarInnerLeftItemConfigList',
+      emptyLogic,
+    );
+
     return [];
   };
 
@@ -327,6 +391,8 @@ class Base extends BaseWindow {
   };
 
   renderPresetBottomBar = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetBottomBar');
+
     const bottomBarLeftBox = this.renderPresetBottomBarLeftBox();
     const bottomBarRightBox = this.renderPresetBottomBarRightBox();
 
@@ -378,6 +444,8 @@ class Base extends BaseWindow {
 
     const titleIcon = this.renderPresetTitleIcon();
 
+    const that = this;
+
     return (
       <DrawerExtra
         flag={this.getVisibleFlag()}
@@ -403,6 +471,9 @@ class Base extends BaseWindow {
           padding: 0,
         }}
         extra={this.buildExtraAction()}
+        afterOpenChange={(v) => {
+          that.doOtherWhenChangeVisible(v);
+        }}
       >
         <div className={styles.mainContainor}>
           <Layout>
