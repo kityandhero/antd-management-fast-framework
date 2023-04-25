@@ -1369,13 +1369,7 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetPaginationView = () => {
-    this.logCallTrack(
-      {
-        parameter: {},
-      },
-      'DataListView::Base',
-      'renderPresetPaginationView',
-    );
+    this.logCallTrack({}, 'DataListView::Base', 'renderPresetPaginationView');
 
     return this.buildPaginationBar();
   };

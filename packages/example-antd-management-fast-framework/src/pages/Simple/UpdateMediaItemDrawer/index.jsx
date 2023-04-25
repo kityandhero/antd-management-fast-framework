@@ -20,7 +20,7 @@ const { BaseUpdateDrawer } = DataDrawer;
   simple,
   schedulingControl,
 }))
-class Index extends BaseUpdateDrawer {
+class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
   componentAuthority = accessWayCollection.simple.getMediaItem.permission;
 
   constructor(properties) {
@@ -346,4 +346,4 @@ class Index extends BaseUpdateDrawer {
   };
 }
 
-export default Index;
+export default UpdateBasicInfoDrawer;

@@ -8,7 +8,7 @@ import { fieldData } from '../Common/data';
 
 const { BaseUpdateModal } = DataModal;
 
-const visibleFlag = '264ccc0c4d5647d5a1c491dc5d799366';
+const visibleFlag = '71f19a07c7ac4be289685c9b5fabb456';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
@@ -20,7 +20,7 @@ class ChangeSortModal extends BaseUpdateModal {
   }
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

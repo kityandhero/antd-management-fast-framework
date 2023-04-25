@@ -10,6 +10,8 @@ import { fieldData } from '../Common/data';
 
 const { BaseUpdateDrawer } = DataDrawer;
 
+const visibleFlag = 'b6ee74db71ab4c0c88da4ceaf2f7138e';
+
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
@@ -18,7 +20,7 @@ class Index extends BaseUpdateDrawer {
   componentAuthority = accessWayCollection.simple.updateBasicInfo.permission;
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

@@ -18,6 +18,8 @@ import { mediaItemData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;
 
+const visibleFlag = '7e84caa4d70d4f039b06eb5f0a84839e';
+
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
@@ -26,7 +28,7 @@ class Index extends BaseAddDrawer {
   componentAuthority = accessWayCollection.simple.addMediaItem.permission;
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

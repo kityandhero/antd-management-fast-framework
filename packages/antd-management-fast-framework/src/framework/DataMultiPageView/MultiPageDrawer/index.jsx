@@ -3,7 +3,6 @@ import {
   Card,
   Col,
   Divider,
-  Drawer,
   List,
   Row,
   Spin,
@@ -12,12 +11,17 @@ import {
 } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import React from 'react';
-import { ReadOutlined } from '@ant-design/icons';
 
-import { isFunction, notificationTypeCollection } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isFunction,
+  mergeArrowText,
+  notificationTypeCollection,
+} from 'easy-soft-utility';
 
 import {
   contentConfig,
+  emptyLogic,
   listViewConfig,
   notify,
 } from 'antd-management-fast-common';
@@ -26,6 +30,8 @@ import {
   iconBuilder,
 } from 'antd-management-fast-component';
 
+import { DrawerExtra } from '../../../components/DrawerExtra';
+import { switchControlAssist } from '../../../utils/switchControlAssist';
 import { ColumnSetting } from '../../DataListView/ColumnSetting';
 import { DensityAction } from '../../DataListView/DensityAction';
 import { MultiPage } from '../MultiPage';
@@ -33,6 +39,8 @@ import { MultiPage } from '../MultiPage';
 import styles from './index.less';
 
 class MultiPageDrawer extends MultiPage {
+  visibleFlag = '';
+
   contentWrapperType = contentConfig.wrapperType.drawer;
 
   loadRemoteRequestAfterMount = false;
@@ -41,19 +49,23 @@ class MultiPageDrawer extends MultiPage {
 
   reloadWhenShow = true;
 
-  constructor(properties) {
+  constructor(properties, visibleFlag) {
     super(properties);
 
-    this.restoreSearch = false;
-
-    const s = this.state;
-    s.dataLoading = false;
+    if (checkStringIsNullOrWhiteSpace(visibleFlag || '')) {
+      throw new Error(
+        mergeArrowText(this.componentName, `visibleFlag disallow empty`),
+      );
+    }
 
     this.state = {
-      ...s,
+      ...this.state,
       reloadAnimalShow: false,
       listViewMode: listViewConfig.viewMode.table,
     };
+
+    this.restoreSearch = false;
+    this.visibleFlag = visibleFlag;
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -63,10 +75,98 @@ class MultiPageDrawer extends MultiPage {
     return { externalData: externalData || null };
   }
 
+  getVisibleFlag() {
+    this.logCallTrack(
+      {},
+      'DataMultiPageView::MultiPageDrawer',
+      'getVisibleFlag',
+    );
+
+    const { flag } = this.props;
+
+    return flag || this.visibleFlag;
+  }
+
+  /**
+   * 当可见性变为显示时执行
+   */
+  doOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      'DataMultiPageView::MultiPageDrawer',
+      'doOtherWhenChangeVisibleToShow',
+    );
+
+    const { firstLoadSuccess } = this.state;
+
+    // 未加载数据过数据的时候，进行加载
+    if (!firstLoadSuccess) {
+      this.handleSearchReset(false, 700);
+    } else if (this.reloadWhenShow) {
+      this.reloadData({});
+    }
+  };
+
+  /**
+   * 当可见性变为显示时附加的执行
+   */
+  executeAfterDoOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      'DataMultiPageView::MultiPageDrawer',
+      'executeAfterDoOtherWhenChangeVisibleToShow',
+      emptyLogic,
+    );
+  };
+
+  /**
+   * 当可见性变为隐藏时执行
+   */
+  doOtherWhenChangeVisibleToHide = () => {
+    this.logCallTrack(
+      {},
+      'DataMultiPageView::MultiPageDrawer',
+      'doOtherWhenChangeVisibleToHide',
+      emptyLogic,
+    );
+  };
+
+  /**
+   * 当可见性变为显示后附加的执行
+   */
+  executeAfterDoOtherWhenChangeVisibleToHide = () => {
+    this.logCallTrack(
+      {},
+      'DataMultiPageView::MultiPageDrawer',
+      'executeAfterDoOtherWhenChangeVisibleToHide',
+      emptyLogic,
+    );
+  };
+
+  /**
+   * 当可见性变更后的附加执行
+   */
+  executeOtherAfterDoOtherWhenChangeVisible = () => {
+    this.logCallTrack(
+      {},
+      'DataMultiPageView::MultiPageDrawer',
+      'executeOtherAfterDoOtherWhenChangeVisible',
+      emptyLogic,
+    );
+  };
+
   /**
    * 当可见性发生变化时执行
    */
   doOtherWhenChangeVisible = (currentVisible) => {
+    this.logCallTrack(
+      {
+        parameter: { currentVisible },
+      },
+      'DataMultiPageView::MultiPageDrawer',
+      'doOtherWhenChangeVisible',
+    );
+
     if (currentVisible) {
       this.doOtherWhenChangeVisibleToShow();
       this.executeAfterDoOtherWhenChangeVisibleToShow();
@@ -78,94 +178,18 @@ class MultiPageDrawer extends MultiPage {
     this.executeOtherAfterDoOtherWhenChangeVisible(currentVisible);
   };
 
-  /**
-   * 当可见性变为显示时执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  doOtherWhenChangeVisibleToShow = () => {
-    const { firstLoadSuccess } = this.state;
-
-    // 未加载数据过数据的时候，进行加载
-    if (!firstLoadSuccess) {
-      // 设置界面效果为加载中，减少用户误解
-      this.setState({ dataLoading: true });
-
-      this.handleSearchReset(false, 700);
-    } else if (this.reloadWhenShow) {
-      this.reloadData(
-        { reloadAnimalShow: true },
-        () => {
-          this.setState({ reloadAnimalShow: false });
-        },
-        700,
-      );
-    }
-  };
-
-  /**
-   * 当可见性变为显示时附加的执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  executeAfterDoOtherWhenChangeVisibleToShow = (
-    // eslint-disable-next-line no-unused-vars
-    preProperties,
-    // eslint-disable-next-line no-unused-vars
-    preState,
-    // eslint-disable-next-line no-unused-vars
-    snapshot,
-  ) => {};
-
-  /**
-   * 当可见性变为隐藏时执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  // eslint-disable-next-line no-unused-vars
-  doOtherWhenChangeVisibleToHide = (preProperties, preState, snapshot) => {};
-
-  /**
-   * 当可见性变为显示后附加的执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  executeAfterDoOtherWhenChangeVisibleToHide = (
-    // eslint-disable-next-line no-unused-vars
-    preProperties,
-    // eslint-disable-next-line no-unused-vars
-    preState,
-    // eslint-disable-next-line no-unused-vars
-    snapshot,
-  ) => {};
-
-  /**
-   * 当可见性变更后的附加执行
-   * @param {*} preProps
-   * @param {*} preState
-   * @param {*} snapshot
-   */
-  executeOtherAfterDoOtherWhenChangeVisible = (
-    // eslint-disable-next-line no-unused-vars
-    preProperties,
-    // eslint-disable-next-line no-unused-vars
-    preState,
-    // eslint-disable-next-line no-unused-vars
-    snapshot,
-  ) => {};
-
   onClose = () => {
+    this.logCallTrack({}, 'DataMultiPageView::MultiPageDrawer', 'onClose');
+
+    switchControlAssist.close(this.getVisibleFlag());
+
     const { afterClose } = this.props;
 
-    if (typeof afterClose === 'function') {
+    if (isFunction(afterClose)) {
       this.logCallTrace(
         {},
         'DataMultiPageView::MultiPageDrawer',
-        'doAfterSubmitSuccess',
+        'onClose',
         'afterClose',
       );
 
@@ -174,20 +198,38 @@ class MultiPageDrawer extends MultiPage {
       this.logCallTrace(
         {},
         'DataMultiPageView::MultiPageDrawer',
-        'doAfterSubmitSuccess',
+        'onClose',
         'afterClose',
         'afterClose not set, ignore',
       );
     }
   };
 
-  renderPresetTitleIcon = () => <ReadOutlined className={styles.titleIcon} />;
+  renderPresetTitleIcon = () => {
+    this.logCallTrack(
+      {},
+      'DataMultiPageView::MultiPageDrawer',
+      'renderPresetTitleIcon',
+    );
+
+    return iconBuilder.read();
+  };
 
   hideDrawer = () => {
+    this.logCallTrack({}, 'DataMultiPageView::MultiPageDrawer', 'hideDrawer');
+
     this.onClose();
   };
 
   selectRecord = ({ handleData }) => {
+    this.logCallTrack(
+      {
+        parameter: { handleData },
+      },
+      'DataMultiPageView::MultiPageDrawer',
+      'selectRecord',
+    );
+
     const { afterSelectSuccess, hideDrawerAfterSelect } = this.props;
 
     if (isFunction(afterSelectSuccess)) {
@@ -207,6 +249,12 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderPresetListMainViewContainor = () => {
+    this.logCallTrack(
+      {},
+      'DataMultiPageView::MultiPageDrawer',
+      'renderPresetListMainViewContainor',
+    );
+
     const {
       reloadAnimalShow,
       listTitle,
@@ -540,10 +588,15 @@ class MultiPageDrawer extends MultiPage {
 
   renderFurther() {
     const { width: widthDrawer } = this.props;
-    const { visible, listViewMode } = this.state;
+    const { listViewMode } = this.state;
+
+    const that = this;
+
+    console.log(this.getVisibleFlag());
 
     return (
-      <Drawer
+      <DrawerExtra
+        flag={this.getVisibleFlag()}
         title={
           <span>
             {this.renderPresetTitleIcon()}
@@ -554,10 +607,12 @@ class MultiPageDrawer extends MultiPage {
         className={styles.containorBox}
         width={widthDrawer}
         placement="right"
-        open={visible || false}
         onClose={this.onClose}
         bodyStyle={{
           padding: 0,
+        }}
+        afterOpenChange={(v) => {
+          that.doOtherWhenChangeVisible(v);
         }}
       >
         {listViewMode === listViewConfig.viewMode.list ? (
@@ -583,7 +638,7 @@ class MultiPageDrawer extends MultiPage {
         {listViewMode === listViewConfig.viewMode.table
           ? this.renderPresetDrawerInner()
           : null}
-      </Drawer>
+      </DrawerExtra>
     );
   }
 }

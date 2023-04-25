@@ -472,7 +472,6 @@ class Base extends BaseWindow {
       >
         <div className={styles.mainContainor}>
           <Layout>
-            {/* <Header>Header</Header> */}
             <Content>{this.renderPresetContentContainor()}</Content>
 
             {showBottomBar ? this.renderPresetBottomBar() : null}

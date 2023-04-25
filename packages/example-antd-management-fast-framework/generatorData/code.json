@@ -24,6 +24,14 @@
     {
       "sourceFilePath": "./src/pages/Interaction/SimpleEditDrawer/index.jsx",
       "codeFilePath": "./src/pages/Interaction/SimpleEditDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleMultiPageDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleMultiPageDrawer/codeSource.js"
     }
   ]
 }

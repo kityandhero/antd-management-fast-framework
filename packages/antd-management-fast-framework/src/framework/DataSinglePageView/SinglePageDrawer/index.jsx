@@ -1,26 +1,25 @@
-import {
-  Button,
-  Card,
-  Col,
-  Divider,
-  Drawer,
-  List,
-  Row,
-  Tag,
-  Tooltip,
-} from 'antd';
+import { Button, Card, Col, Divider, List, Row, Tag, Tooltip } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import React from 'react';
-import { ReadOutlined } from '@ant-design/icons';
 
-import { isFunction } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isFunction,
+  mergeArrowText,
+} from 'easy-soft-utility';
 
-import { contentConfig, listViewConfig } from 'antd-management-fast-common';
+import {
+  contentConfig,
+  emptyLogic,
+  listViewConfig,
+} from 'antd-management-fast-common';
 import {
   buildListViewItemActionSelect,
   iconBuilder,
 } from 'antd-management-fast-component';
 
+import { DrawerExtra } from '../../../components/DrawerExtra';
+import { switchControlAssist } from '../../../utils/switchControlAssist';
 import { ColumnSetting } from '../../DataListView/ColumnSetting';
 import { DensityAction } from '../../DataListView/DensityAction';
 import { SinglePage } from '../SinglePage';
@@ -28,6 +27,8 @@ import { SinglePage } from '../SinglePage';
 import styles from './index.less';
 
 class SinglePageDrawer extends SinglePage {
+  visibleFlag = '';
+
   contentWrapperType = contentConfig.wrapperType.drawer;
 
   loadRemoteRequestAfterMount = false;
@@ -36,19 +37,22 @@ class SinglePageDrawer extends SinglePage {
 
   reloadWhenShow = true;
 
-  constructor(properties) {
+  constructor(properties, visibleFlag) {
     super(properties);
 
-    const s = this.state;
-    s.dataLoading = false;
+    if (checkStringIsNullOrWhiteSpace(visibleFlag || '')) {
+      throw new Error(
+        mergeArrowText(this.componentName, `visibleFlag disallow empty`),
+      );
+    }
 
     this.state = {
-      ...s,
-
-      visible: false,
+      ...this.state,
       reloadAnimalShow: false,
       listViewMode: listViewConfig.viewMode.table,
     };
+
+    this.visibleFlag = visibleFlag;
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -58,10 +62,99 @@ class SinglePageDrawer extends SinglePage {
     return { externalData };
   }
 
+  getVisibleFlag() {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'getVisibleFlag',
+    );
+
+    const { flag } = this.props;
+
+    return flag || this.visibleFlag;
+  }
+
+  /**
+   * 当可见性变为显示时执行
+   */
+  doOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'doOtherWhenChangeVisibleToShow',
+    );
+
+    const { firstLoadSuccess } = this.state;
+
+    // 未加载数据过数据的时候，进行加载
+    if (!firstLoadSuccess) {
+      // 设置界面效果为加载中，减少用户误解
+      this.handleSearchReset(false, 700);
+    } else if (this.reloadWhenShow) {
+      this.reloadData({});
+    }
+  };
+
+  /**
+   * 当可见性变为显示时附加的执行
+   */
+  executeAfterDoOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'executeAfterDoOtherWhenChangeVisibleToShow',
+      emptyLogic,
+    );
+  };
+
+  /**
+   * 当可见性变为隐藏时执行
+   */
+  doOtherWhenChangeVisibleToHide = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'doOtherWhenChangeVisibleToHide',
+      emptyLogic,
+    );
+  };
+
+  /**
+   * 当可见性变为显示后附加的执行
+   */
+  executeAfterDoOtherWhenChangeVisibleToHide = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'executeAfterDoOtherWhenChangeVisibleToHide',
+      emptyLogic,
+    );
+  };
+
+  /**
+   * 当可见性变更后的附加执行
+   */
+  executeOtherAfterDoOtherWhenChangeVisible = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'executeOtherAfterDoOtherWhenChangeVisible',
+      emptyLogic,
+    );
+  };
+
   /**
    * 当可见性发生变化时执行
    */
   doOtherWhenChangeVisible = (currentVisible) => {
+    this.logCallTrack(
+      {
+        parameter: { currentVisible },
+      },
+      'DataSinglePageView::SinglePageDrawer',
+      'doOtherWhenChangeVisible',
+    );
+
     if (currentVisible) {
       this.doOtherWhenChangeVisibleToShow();
       this.executeAfterDoOtherWhenChangeVisibleToShow();
@@ -73,53 +166,30 @@ class SinglePageDrawer extends SinglePage {
     this.executeOtherAfterDoOtherWhenChangeVisible(currentVisible);
   };
 
-  /**
-   * 当可见性变为显示时执行
-   */
-  doOtherWhenChangeVisibleToShow = () => {
-    const { firstLoadSuccess } = this.state;
-
-    // 未加载数据过数据的时候，进行加载
-    if (!firstLoadSuccess) {
-      // 设置界面效果为加载中，减少用户误解
-      this.setState({ dataLoading: true });
-
-      this.handleSearchReset(false, 700);
-    } else if (this.reloadWhenShow) {
-      this.reloadData(
-        { reloadAnimalShow: true },
-        () => {
-          this.setState({ reloadAnimalShow: false });
-        },
-        700,
-      );
-    }
-  };
-
-  /**
-   * 当可见性变为显示时附加的执行
-   */
-  executeAfterDoOtherWhenChangeVisibleToShow = () => {};
-
-  /**
-   * 当可见性变为隐藏时执行
-   */
-  doOtherWhenChangeVisibleToHide = () => {};
-
-  /**
-   * 当可见性变为显示后附加的执行
-   */
-  executeAfterDoOtherWhenChangeVisibleToHide = () => {};
-
-  /**
-   * 当可见性变更后的附加执行
-   */
-  executeOtherAfterDoOtherWhenChangeVisible = () => {};
-
   onClose = () => {
+    this.logCallTrack({}, 'DataSinglePageView::SinglePageDrawer', 'onClose');
+
+    switchControlAssist.close(this.getVisibleFlag());
+
     const { afterClose } = this.props;
-    if (typeof afterClose === 'function') {
+
+    if (isFunction(afterClose)) {
+      this.logCallTrace(
+        {},
+        'DataSinglePageView::SinglePageDrawer',
+        'onClose',
+        'afterClose',
+      );
+
       afterClose();
+    } else {
+      this.logCallTrace(
+        {},
+        'DataSinglePageView::SinglePageDrawer',
+        'onClose',
+        'afterClose',
+        'afterClose not set, ignore',
+      );
     }
   };
 
@@ -128,6 +198,14 @@ class SinglePageDrawer extends SinglePage {
    * @param {*} handleData
    */
   selectRecord = ({ handleData }) => {
+    this.logCallTrack(
+      {
+        parameter: { handleData },
+      },
+      'DataSinglePageView::SinglePageDrawer',
+      'selectRecord',
+    );
+
     const { afterSelectSuccess, hideDrawerAfterSelect } = this.props;
 
     if (isFunction(afterSelectSuccess)) {
@@ -139,13 +217,29 @@ class SinglePageDrawer extends SinglePage {
     }
   };
 
-  renderPresetTitleIcon = () => <ReadOutlined className={styles.titleIcon} />;
+  renderPresetTitleIcon = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'renderPresetTitleIcon',
+    );
+
+    return iconBuilder.read();
+  };
 
   hideDrawer = () => {
+    this.logCallTrack({}, 'DataSinglePageView::SinglePageDrawer', 'hideDrawer');
+
     this.onClose();
   };
 
   renderPresetListMainViewContainor = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'renderPresetListMainViewContainor',
+    );
+
     const { reloadAnimalShow, listTitle, tableSize, refreshing, listViewMode } =
       this.state;
 
@@ -331,6 +425,12 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetContentContainor = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'renderPresetContentContainor',
+    );
+
     const { listViewMode } = this.state;
 
     return (
@@ -355,6 +455,12 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetDrawerInner = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'renderPresetDrawerInner',
+    );
+
     const { listViewMode } = this.state;
 
     return (
@@ -372,6 +478,12 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetListView = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'renderPresetListView',
+    );
+
     const { dataLoading, listViewMode } = this.state;
 
     const list = this.getCanUseFrontendPagination()
@@ -449,6 +561,12 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetListViewItemActionSelect = (item, index) => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePageDrawer',
+      'renderPresetListViewItemActionSelect',
+    );
+
     const that = this;
 
     return buildListViewItemActionSelect({
@@ -459,11 +577,14 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderFurther() {
-    const { width: widthDrawer } = this.props;
-    const { visible, listViewMode } = this.state;
+    const { width } = this.props;
+    const { listViewMode } = this.state;
+
+    const that = this;
 
     return (
-      <Drawer
+      <DrawerExtra
+        flag={this.getVisibleFlag()}
         title={
           <span>
             {this.renderPresetTitleIcon()}
@@ -472,12 +593,14 @@ class SinglePageDrawer extends SinglePage {
         }
         destroyOnClose={false}
         className={styles.containorBox}
-        width={widthDrawer}
+        width={width}
         placement="right"
-        open={visible || false}
         onClose={this.onClose}
         bodyStyle={{
           padding: 0,
+        }}
+        afterOpenChange={(v) => {
+          that.doOtherWhenChangeVisible(v);
         }}
       >
         {listViewMode === listViewConfig.viewMode.list ? (
@@ -503,7 +626,7 @@ class SinglePageDrawer extends SinglePage {
         {listViewMode === listViewConfig.viewMode.table
           ? this.renderPresetDrawerInner()
           : null}
-      </Drawer>
+      </DrawerExtra>
     );
   }
 }

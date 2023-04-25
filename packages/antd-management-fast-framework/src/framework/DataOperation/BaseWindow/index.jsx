@@ -5,6 +5,7 @@ import {
   isFunction,
   isUndefined,
   logException,
+  mergeArrowText,
   pretreatmentRequestParameters,
   showSimpleRuntimeError,
   showSimpleWarningMessage,
@@ -32,7 +33,9 @@ class BaseWindow extends Base {
     super(properties);
 
     if (checkStringIsNullOrWhiteSpace(visibleFlag || '')) {
-      throw new Error('visibleFlag disallow empty');
+      throw new Error(
+        mergeArrowText(this.componentName, `visibleFlag disallow empty`),
+      );
     }
 
     this.visibleFlag = visibleFlag;

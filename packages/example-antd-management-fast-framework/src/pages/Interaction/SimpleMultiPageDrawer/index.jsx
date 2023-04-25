@@ -14,44 +14,49 @@ import {
   searchCardConfig,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import { DataSinglePageView } from 'antd-management-fast-framework';
+import {
+  DataMultiPageView,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
-import { accessWayCollection, colorCollection } from '../../../customConfig';
+import { colorCollection } from '../../../customConfig';
 import {
   getSimpleRenderTypeName,
   getSimpleStatusName,
 } from '../../../customSpecialComponents';
-import { fieldData, statusCollection } from '../Common/data';
+import { fieldData, statusCollection } from '../../Simple/Common/data';
 
 const { Text } = Typography;
-const { SinglePageDrawer } = DataSinglePageView;
+const { MultiPageDrawer } = DataMultiPageView;
+
+const visibleFlag = 'eced74e7982a48adbb394fd8257c6018';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SingleListDrawer extends SinglePageDrawer {
+class SimpleMultiPageDrawer extends MultiPageDrawer {
+  showCallProcess = true;
+
   reloadWhenShow = true;
 
-  componentAuthority = accessWayCollection.simple.singleList.permission;
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
-      loadApiPath: 'simple/singleList',
+      loadApiPath: 'simple/pageList',
       listViewMode: listViewConfig.viewMode.list,
       tableScroll: { y: 600 },
     };
   }
 
-  static getDerivedStateFromProps(nextProperties, previousState) {
-    return super.getDerivedStateFromProps(nextProperties, previousState);
-  }
-
   getPresetPageName = () => {
-    return '请选择文章';
+    return '数据分页列表';
   };
 
   getStatusBadge = (v) => {
@@ -216,4 +221,4 @@ class SingleListDrawer extends SinglePageDrawer {
   ];
 }
 
-export default SingleListDrawer;
+export default SimpleMultiPageDrawer;

@@ -14,29 +14,38 @@ import {
   searchCardConfig,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import { DataSinglePageView } from 'antd-management-fast-framework';
+import {
+  DataSinglePageView,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
-import { accessWayCollection, colorCollection } from '../../../customConfig';
+import { colorCollection } from '../../../customConfig';
 import {
   getSimpleRenderTypeName,
   getSimpleStatusName,
 } from '../../../customSpecialComponents';
-import { fieldData, statusCollection } from '../Common/data';
+import { fieldData, statusCollection } from '../../Simple/Common/data';
 
 const { Text } = Typography;
 const { SinglePageDrawer } = DataSinglePageView;
+
+const visibleFlag = 'b354b02508d747ecacedc90e6c86c4a1';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SingleListDrawer extends SinglePageDrawer {
+class SimpleSinglePageDrawer extends SinglePageDrawer {
+  showCallProcess = true;
+
   reloadWhenShow = true;
 
-  componentAuthority = accessWayCollection.simple.singleList.permission;
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
@@ -46,12 +55,8 @@ class SingleListDrawer extends SinglePageDrawer {
     };
   }
 
-  static getDerivedStateFromProps(nextProperties, previousState) {
-    return super.getDerivedStateFromProps(nextProperties, previousState);
-  }
-
   getPresetPageName = () => {
-    return '请选择文章';
+    return '数据单页列表';
   };
 
   getStatusBadge = (v) => {
@@ -216,4 +221,4 @@ class SingleListDrawer extends SinglePageDrawer {
   ];
 }
 
-export default SingleListDrawer;
+export default SimpleSinglePageDrawer;

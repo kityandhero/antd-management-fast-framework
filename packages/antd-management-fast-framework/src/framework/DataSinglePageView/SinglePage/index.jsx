@@ -328,9 +328,7 @@ class SinglePage extends Base {
 
   renderPresetPaginationView = () => {
     this.logCallTrack(
-      {
-        parameter: {},
-      },
+      {},
       'DataSinglePageView::SinglePage',
       'renderPresetPaginationView',
     );

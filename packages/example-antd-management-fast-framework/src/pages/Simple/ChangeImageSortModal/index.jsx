@@ -22,6 +22,8 @@ import styles from './index.less';
 
 const { Base } = DataModal;
 
+const visibleFlag = 'b47b4b567e1643b585f1f7c69a323cba';
+
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
@@ -30,7 +32,7 @@ class ChangeImageSortModal extends Base {
   resetDataAfterLoad = false;
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

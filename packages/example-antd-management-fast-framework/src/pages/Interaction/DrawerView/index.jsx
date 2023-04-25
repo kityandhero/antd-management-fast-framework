@@ -15,6 +15,8 @@ import SimpleAddDrawer from '../SimpleAddDrawer';
 import { code as codeSimpleAddDrawer } from '../SimpleAddDrawer/codeSource';
 import SimpleEditDrawer from '../SimpleEditDrawer';
 import { code as codeSimpleEditDrawer } from '../SimpleEditDrawer/codeSource';
+import SimpleMultiPageDrawer from '../SimpleMultiPageDrawer';
+import SimpleSinglePageDrawer from '../SimpleSinglePageDrawer';
 
 @connect(({ schedulingControl }) => ({
   schedulingControl,
@@ -37,12 +39,29 @@ class DrawerView extends BaseView {
       tools: [
         {
           component: buildButton({
+            title: '点击显示 SinglePageDrawer',
+            text: '显示 SinglePageDrawer',
+            handleClick: () => {
+              SimpleSinglePageDrawer.open();
+            },
+          }),
+        },
+        {
+          component: buildButton({
+            title: '点击显示 MultiPageDrawer',
+            text: '显示 MultiPageDrawer',
+            handleClick: () => {
+              SimpleMultiPageDrawer.open();
+            },
+          }),
+        },
+        {
+          component: buildButton({
             title: '点击显示 AddDrawer',
             text: '显示 AddDrawer',
             handleClick: () => {
               SimpleAddDrawer.open();
             },
-            disabled: false,
           }),
         },
         {
@@ -52,7 +71,6 @@ class DrawerView extends BaseView {
             handleClick: () => {
               SimpleEditDrawer.open();
             },
-            disabled: false,
           }),
         },
         {
@@ -63,7 +81,6 @@ class DrawerView extends BaseView {
             handleClick: () => {
               DrawerCodeView.open();
             },
-            disabled: false,
           }),
         },
       ],
@@ -145,6 +162,10 @@ class DrawerView extends BaseView {
   renderPresetOther = () => {
     return (
       <>
+        <SimpleSinglePageDrawer />
+
+        <SimpleMultiPageDrawer />
+
         <DrawerCodeView />
 
         <SimpleAddDrawer
