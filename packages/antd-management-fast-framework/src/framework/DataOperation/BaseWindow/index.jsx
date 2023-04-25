@@ -28,8 +28,12 @@ class BaseWindow extends Base {
 
   goToUpdateWhenProcessed = false;
 
-  constructor(properties, visibleFlag) {
+  constructor(properties, visibleFlag = '') {
     super(properties);
+
+    if (checkStringIsNullOrWhiteSpace(visibleFlag || '')) {
+      throw new Error('visibleFlag disallow empty');
+    }
 
     this.visibleFlag = visibleFlag;
   }
@@ -583,6 +587,8 @@ class BaseWindow extends Base {
 
   handleCancel = () => {
     this.logCallTrack({}, 'DataOperation::BaseWindow', 'handleCancel');
+
+    switchControlAssist.close(this.getVisibleFlag());
 
     const { afterCancel } = this.props;
 

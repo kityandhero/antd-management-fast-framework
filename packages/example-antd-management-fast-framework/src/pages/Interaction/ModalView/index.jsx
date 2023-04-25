@@ -10,6 +10,7 @@ import { buildButton, iconBuilder } from 'antd-management-fast-component';
 
 import { interactionModeCollection } from '../../../constants';
 import BaseView from '../BaseView';
+import ModalCodeView from '../ModalCodeView';
 import SimpleAddModal from '../SimpleAddModal';
 import { code as codeSimpleAddModal } from '../SimpleAddModal/codeSource';
 import SimpleEditModal from '../SimpleEditModal';
@@ -50,6 +51,17 @@ class ModalView extends BaseView {
             text: '显示 EditModal',
             handleClick: () => {
               SimpleEditModal.open();
+            },
+            disabled: false,
+          }),
+        },
+        {
+          component: buildButton({
+            title: '点击显示页面代码',
+            text: '显示页面代码',
+            type: 'dashed',
+            handleClick: () => {
+              ModalCodeView.open();
             },
             disabled: false,
           }),
@@ -133,15 +145,14 @@ class ModalView extends BaseView {
   renderPresetOther = () => {
     return (
       <>
+        <ModalCodeView />
+
         <SimpleAddModal
           afterOK={({ subjoinData }) => {
             logDebug(subjoinData, 'trigger afterOK');
           }}
           afterCancel={() => {
             logDebug({}, 'trigger afterCancel');
-          }}
-          afterClose={() => {
-            logDebug({}, 'trigger afterClose');
           }}
         />
 
@@ -152,9 +163,6 @@ class ModalView extends BaseView {
           }}
           afterCancel={() => {
             logDebug({}, 'trigger afterCancel');
-          }}
-          afterClose={() => {
-            logDebug({}, 'trigger afterClose');
           }}
         />
       </>

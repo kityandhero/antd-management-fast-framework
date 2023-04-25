@@ -1,5 +1,5 @@
 export const code = `import { connect } from 'easy-soft-dva';
-import { convertCollection, getValueByKey } from 'easy-soft-utility';
+import { getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
@@ -15,6 +15,8 @@ const visibleFlag = '6620aec829e94ded955b58002a1c02ff';
   schedulingControl,
 }))
 class SimpleEditModal extends BaseUpdateModal {
+  showCallProcess = true;
+
   static open() {
     switchControlAssist.open(visibleFlag);
   }
@@ -24,7 +26,7 @@ class SimpleEditModal extends BaseUpdateModal {
 
     this.state = {
       ...this.state,
-      pageTitle: '排序值设置',
+      pageTitle: '编辑信息',
       loadApiPath: 'simple/get',
       submitApiPath: 'simple/updateBasicInfo',
     };
@@ -67,7 +69,7 @@ class SimpleEditModal extends BaseUpdateModal {
     // eslint-disable-next-line no-unused-vars
     submitData,
   ) => {
-    return \`排序值更新成功。\`;
+    return \`信息更新成功。\`;
   };
 
   buildTitleSubText = () => {
@@ -102,10 +104,9 @@ class SimpleEditModal extends BaseUpdateModal {
     const values = {};
 
     if (metaData != null) {
-      values[fieldData.sort.name] = getValueByKey({
+      values[fieldData.title.name] = getValueByKey({
         data: metaData,
-        key: fieldData.sort.name,
-        convert: convertCollection.number,
+        key: fieldData.title.name,
       });
     }
 
@@ -119,8 +120,9 @@ class SimpleEditModal extends BaseUpdateModal {
           items: [
             {
               lg: 24,
-              type: cardConfig.contentItemType.inputNumber,
-              fieldData: fieldData.sort,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.title,
+              require: true,
             },
           ],
         },

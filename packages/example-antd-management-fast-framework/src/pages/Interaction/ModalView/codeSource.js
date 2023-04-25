@@ -1,4 +1,4 @@
-import { connect } from 'easy-soft-dva';
+export const code = `import { connect } from 'easy-soft-dva';
 import {
   logDebug,
   mergeArrowText,
@@ -10,22 +10,22 @@ import { buildButton, iconBuilder } from 'antd-management-fast-component';
 
 import { interactionModeCollection } from '../../../constants';
 import BaseView from '../BaseView';
-import DrawerCodeView from '../DrawerCodeView';
-import SimpleAddDrawer from '../SimpleAddDrawer';
-import { code as codeSimpleAddDrawer } from '../SimpleAddDrawer/codeSource';
-import SimpleEditDrawer from '../SimpleEditDrawer';
-import { code as codeSimpleEditDrawer } from '../SimpleEditDrawer/codeSource';
+import ModalCodeView from '../ModalCodeView';
+import SimpleAddModal from '../SimpleAddModal';
+import { code as codeSimpleAddModal } from '../SimpleAddModal/codeSource';
+import SimpleEditModal from '../SimpleEditModal';
+import { code as codeSimpleEditModal } from '../SimpleEditModal/codeSource';
 
 @connect(({ schedulingControl }) => ({
   schedulingControl,
 }))
-class DrawerView extends BaseView {
+class ModalView extends BaseView {
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-      pageTitle: 'Drawer 交互示例',
+      pageTitle: 'Modal 交互示例',
       interactionMode: interactionModeCollection.add,
     };
   }
@@ -37,20 +37,20 @@ class DrawerView extends BaseView {
       tools: [
         {
           component: buildButton({
-            title: '点击显示 AddDrawer',
-            text: '显示 AddDrawer',
+            title: '点击显示 AddModal',
+            text: '显示 AddModal',
             handleClick: () => {
-              SimpleAddDrawer.open();
+              SimpleAddModal.open();
             },
             disabled: false,
           }),
         },
         {
           component: buildButton({
-            title: '点击显示 EditDrawer',
-            text: '显示 EditDrawer',
+            title: '点击显示 EditModal',
+            text: '显示 EditModal',
             handleClick: () => {
-              SimpleEditDrawer.open();
+              SimpleEditModal.open();
             },
             disabled: false,
           }),
@@ -61,7 +61,7 @@ class DrawerView extends BaseView {
             text: '显示页面代码',
             type: 'dashed',
             handleClick: () => {
-              DrawerCodeView.open();
+              ModalCodeView.open();
             },
             disabled: false,
           }),
@@ -83,8 +83,8 @@ class DrawerView extends BaseView {
             subText: mergeArrowText(
               'Code',
               interactionMode === interactionModeCollection.add
-                ? 'SimpleAddDrawer'
-                : 'SimpleEditDrawer',
+                ? 'SimpleAddModal'
+                : 'SimpleEditModal',
             ),
           },
           extra: {
@@ -94,7 +94,7 @@ class DrawerView extends BaseView {
               {
                 buildType: cardConfig.extraBuildType.generalButton,
                 icon: iconBuilder.form(),
-                text: 'SimpleAddDrawer 源代码',
+                text: 'SimpleAddModal 源代码',
                 size: 'small',
                 type: 'link',
                 handleClick: () => {
@@ -102,13 +102,13 @@ class DrawerView extends BaseView {
                     interactionMode: interactionModeCollection.add,
                   });
 
-                  showSimpleInfoMessage('当前显示 SimpleAddDrawer 源代码');
+                  showSimpleInfoMessage('当前显示 SimpleAddModal 源代码');
                 },
               },
               {
                 buildType: cardConfig.extraBuildType.generalButton,
                 icon: iconBuilder.form(),
-                text: 'SimpleEditDrawer 源代码',
+                text: 'SimpleEditModal 源代码',
                 size: 'small',
                 type: 'link',
                 handleClick: () => {
@@ -116,7 +116,7 @@ class DrawerView extends BaseView {
                     interactionMode: interactionModeCollection.edit,
                   });
 
-                  showSimpleInfoMessage('当前显示 SimpleEditDrawer 源代码');
+                  showSimpleInfoMessage('当前显示 SimpleEditModal 源代码');
                 },
               },
             ],
@@ -128,8 +128,8 @@ class DrawerView extends BaseView {
               fieldData: 'syntaxHighlighter',
               value:
                 interactionMode === interactionModeCollection.add
-                  ? codeSimpleAddDrawer
-                  : codeSimpleEditDrawer,
+                  ? codeSimpleAddModal
+                  : codeSimpleEditModal,
               language: 'js',
               innerProps: {
                 showLineNumbers: false,
@@ -145,24 +145,24 @@ class DrawerView extends BaseView {
   renderPresetOther = () => {
     return (
       <>
-        <DrawerCodeView />
+        <ModalCodeView />
 
-        <SimpleAddDrawer
+        <SimpleAddModal
           afterOK={({ subjoinData }) => {
             logDebug(subjoinData, 'trigger afterOK');
           }}
-          afterClose={() => {
-            logDebug({}, 'trigger afterClose');
+          afterCancel={() => {
+            logDebug({}, 'trigger afterCancel');
           }}
         />
 
-        <SimpleEditDrawer
+        <SimpleEditModal
           externalData={{ simpleId: 1 }}
           afterOK={({ subjoinData }) => {
             logDebug(subjoinData, 'trigger afterOK');
           }}
-          afterClose={() => {
-            logDebug({}, 'trigger afterClose');
+          afterCancel={() => {
+            logDebug({}, 'trigger afterCancel');
           }}
         />
       </>
@@ -170,4 +170,5 @@ class DrawerView extends BaseView {
   };
 }
 
-export default DrawerView;
+export default ModalView;
+`;

@@ -1,4 +1,4 @@
-import { Form } from 'antd';
+import { Alert, Form } from 'antd';
 import React from 'react';
 
 import { checkStringIsNullOrWhiteSpace, isUndefined } from 'easy-soft-utility';
@@ -137,24 +137,12 @@ class Base extends BaseWindow {
   };
 
   buildTitle = () => {
-    const subText = this.buildTitleSubText();
-
-    const subInfo = checkStringIsNullOrWhiteSpace(subText) ? null : (
-      <FlexText
-        flexAuto="right"
-        addonBefore={'【'}
-        text={subText}
-        addonAfter={'】'}
-      />
-    );
-
     return (
       <FlexText
         flexAuto="right"
         icon={this.buildTitleIcon()}
         textPrefix={this.buildTitlePrevText()}
         text={this.buildTitleText()}
-        extra={subInfo}
       />
     );
   };
@@ -202,6 +190,12 @@ class Base extends BaseWindow {
 
     const that = this;
 
+    const subText = this.buildTitleSubText();
+
+    const subInfo = checkStringIsNullOrWhiteSpace(subText) ? null : (
+      <Alert message={`标题：${subText}`} type="info" />
+    );
+
     return (
       <ModalExtra
         flag={this.getVisibleFlag()}
@@ -222,9 +216,13 @@ class Base extends BaseWindow {
           that.doOtherWhenChangeVisible(v);
         }}
       >
-        {this.renderPresetModalInner()}
+        <div className={styles.modalExtraInner}>
+          {checkStringIsNullOrWhiteSpace(subText) ? null : subInfo}
 
-        {this.renderPresetOther()}
+          {this.renderPresetModalInner()}
+
+          {this.renderPresetOther()}
+        </div>
       </ModalExtra>
     );
   }

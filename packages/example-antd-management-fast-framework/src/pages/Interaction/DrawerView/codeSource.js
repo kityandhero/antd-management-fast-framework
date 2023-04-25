@@ -1,4 +1,4 @@
-import { connect } from 'easy-soft-dva';
+export const code = `import { connect } from 'easy-soft-dva';
 import {
   logDebug,
   mergeArrowText,
@@ -171,3 +171,4 @@ class DrawerView extends BaseView {
 }
 
 export default DrawerView;
+`;

@@ -15,6 +15,8 @@ const visibleFlag = '21743fb1abc347a0ac55c2eed31d08ec';
   schedulingControl,
 }))
 class SimpleAddModal extends BaseAddModal {
+  showCallProcess = true;
+
   static open() {
     switchControlAssist.open(visibleFlag);
   }
@@ -24,7 +26,7 @@ class SimpleAddModal extends BaseAddModal {
 
     this.state = {
       ...this.state,
-      pageTitle: '排序值设置',
+      pageTitle: '新增信息',
       submitApiPath: 'simple/addBasicInfo',
     };
   }
@@ -66,7 +68,7 @@ class SimpleAddModal extends BaseAddModal {
     // eslint-disable-next-line no-unused-vars
     submitData,
   ) => {
-    return \`排序值更新成功。\`;
+    return \`信息添加成功。\`;
   };
 
   buildTitleSubText = () => {
@@ -118,8 +120,9 @@ class SimpleAddModal extends BaseAddModal {
           items: [
             {
               lg: 24,
-              type: cardConfig.contentItemType.inputNumber,
-              fieldData: fieldData.sort,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.title,
+              require: true,
             },
           ],
         },
