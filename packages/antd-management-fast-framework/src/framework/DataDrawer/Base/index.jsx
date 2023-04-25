@@ -91,18 +91,13 @@ class Base extends BaseWindow {
   };
 
   buildFormLayout = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildFormLayout', emptyLogic);
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildFormLayout');
 
     return 'vertical';
   };
 
   buildNotificationPlacement = () => {
-    this.logCallTrack(
-      {},
-      'DataDrawer::Base',
-      'buildNotificationPlacement',
-      emptyLogic,
-    );
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildNotificationPlacement');
 
     return `bottom-left`;
   };

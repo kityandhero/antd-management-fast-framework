@@ -201,9 +201,22 @@ class BaseWindow extends Base {
     const { afterClose } = this.props;
 
     if (isFunction(afterClose)) {
-      this.logCallTrace({}, 'DataOperation::BaseWindow', 'afterClose');
+      this.logCallTrace(
+        {},
+        'DataOperation::BaseWindow',
+        'onClose',
+        'afterClose',
+      );
 
       afterClose();
+    } else {
+      this.logCallTrace(
+        {},
+        'DataMultiPageView::MultiPageDrawer',
+        'onClose',
+        'afterClose',
+        'afterClose not set, ignore',
+      );
     }
   };
 
@@ -574,7 +587,22 @@ class BaseWindow extends Base {
     const { afterCancel } = this.props;
 
     if (isFunction(afterCancel)) {
+      this.logCallTrace(
+        {},
+        'DataOperation::BaseWindow',
+        'handleCancel',
+        'afterCancel',
+      );
+
       afterCancel();
+    } else {
+      this.logCallTrace(
+        {},
+        'DataOperation::BaseWindow',
+        'handleCancel',
+        'afterCancel',
+        'afterCancel not set, ignore',
+      );
     }
   };
 

@@ -117,6 +117,8 @@ class DataCore extends BaseView {
   };
 
   buildFormLayout = () => {
+    this.logCallTrack({}, 'DataSingleView::DataCore', 'buildFormLayout');
+
     return 'vertical';
   };
 

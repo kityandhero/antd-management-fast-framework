@@ -1,4 +1,4 @@
-import { Form, Modal, Spin } from 'antd';
+import { Form } from 'antd';
 import React from 'react';
 
 import { checkStringIsNullOrWhiteSpace, isUndefined } from 'easy-soft-utility';
@@ -6,6 +6,7 @@ import { checkStringIsNullOrWhiteSpace, isUndefined } from 'easy-soft-utility';
 import { contentConfig, defaultFormState } from 'antd-management-fast-common';
 import { FlexText, iconBuilder } from 'antd-management-fast-component';
 
+import { ModalExtra } from '../../../components/ModalExtra';
 import { BaseWindow } from '../../DataOperation/BaseWindow';
 
 import styles from './index.less';
@@ -22,14 +23,13 @@ class Base extends BaseWindow {
 
     this.state = {
       ...defaultState,
-      visible: false,
-      dataLoading: false,
-
       width: 520,
     };
   }
 
   buildFormLayout = () => {
+    this.logCallTrack({}, 'DataModal::Base', 'buildFormLayout');
+
     return 'horizontal';
   };
 
@@ -197,15 +197,17 @@ class Base extends BaseWindow {
   };
 
   renderFurther() {
-    const { width, visible, processing, dataLoading } = this.state;
+    const { width } = this.state;
     const { maskClosable } = this.props;
 
+    const that = this;
+
     return (
-      <Modal
+      <ModalExtra
+        flag={this.getVisibleFlag()}
         title={this.buildTitle()}
         width={width}
         bodyStyle={this.getModalBodyStyle()}
-        open={visible}
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         zIndex={1001}
         okButtonProps={this.buildOkButtonProps()}
@@ -216,13 +218,14 @@ class Base extends BaseWindow {
         cancelButtonProps={this.buildCancelButtonProps()}
         cancelText={this.buildCancelText()}
         onCancel={this.handleCancel}
+        afterOpenChange={(v) => {
+          that.doOtherWhenChangeVisible(v);
+        }}
       >
-        <Spin spinning={processing || dataLoading}>
-          {this.renderPresetModalInner()}
-        </Spin>
+        {this.renderPresetModalInner()}
 
         {this.renderPresetOther()}
-      </Modal>
+      </ModalExtra>
     );
   }
 }

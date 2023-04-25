@@ -1,5 +1,9 @@
 import { connect } from 'easy-soft-dva';
-import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
+import {
+  logDebug,
+  mergeArrowText,
+  showSimpleInfoMessage,
+} from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { buildButton, iconBuilder } from 'antd-management-fast-component';
@@ -79,6 +83,8 @@ class ModalView extends BaseView {
                 buildType: cardConfig.extraBuildType.generalButton,
                 icon: iconBuilder.form(),
                 text: 'SimpleAddModal 源代码',
+                size: 'small',
+                type: 'link',
                 handleClick: () => {
                   that.setState({
                     interactionMode: interactionModeCollection.add,
@@ -91,6 +97,8 @@ class ModalView extends BaseView {
                 buildType: cardConfig.extraBuildType.generalButton,
                 icon: iconBuilder.form(),
                 text: 'SimpleEditModal 源代码',
+                size: 'small',
+                type: 'link',
                 handleClick: () => {
                   that.setState({
                     interactionMode: interactionModeCollection.edit,
@@ -126,28 +134,28 @@ class ModalView extends BaseView {
     return (
       <>
         <SimpleAddModal
-        // afterOK={({ subjoinData }) => {
-        //   this.afterAddBasicInfoModalOk({ subjoinData });
-        // }}
-        // afterCancel={() => {
-        //   this.afterAddBasicInfoModalCancel();
-        // }}
-        // afterClose={() => {
-        //   this.afterAddBasicInfoModalClose();
-        // }}
+          afterOK={({ subjoinData }) => {
+            logDebug(subjoinData, 'trigger afterOK');
+          }}
+          afterCancel={() => {
+            logDebug({}, 'trigger afterCancel');
+          }}
+          afterClose={() => {
+            logDebug({}, 'trigger afterClose');
+          }}
         />
 
         <SimpleEditModal
           externalData={{ simpleId: 1 }}
-          // afterOK={() => {
-          //   this.afterUpdateBasicInfoModalOk();
-          // }}
-          // afterCancel={() => {
-          //   this.afterUpdateBasicInfoModalCancel();
-          // }}
-          // afterClose={() => {
-          //   this.afterUpdateBasicInfoModalClose();
-          // }}
+          afterOK={({ subjoinData }) => {
+            logDebug(subjoinData, 'trigger afterOK');
+          }}
+          afterCancel={() => {
+            logDebug({}, 'trigger afterCancel');
+          }}
+          afterClose={() => {
+            logDebug({}, 'trigger afterClose');
+          }}
         />
       </>
     );

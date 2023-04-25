@@ -162,7 +162,22 @@ class MultiPageDrawer extends MultiPage {
     const { afterClose } = this.props;
 
     if (typeof afterClose === 'function') {
+      this.logCallTrace(
+        {},
+        'DataMultiPageView::MultiPageDrawer',
+        'doAfterSubmitSuccess',
+        'afterClose',
+      );
+
       afterClose();
+    } else {
+      this.logCallTrace(
+        {},
+        'DataMultiPageView::MultiPageDrawer',
+        'doAfterSubmitSuccess',
+        'afterClose',
+        'afterClose not set, ignore',
+      );
     }
   };
 

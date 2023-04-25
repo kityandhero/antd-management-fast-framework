@@ -8,25 +8,24 @@ import { fieldData } from '../../Simple/Common/data';
 
 const { BaseAddModal } = DataModal;
 
-const visibleFlag = 'ac1ba58aad2447848347c745828491a7';
+const visibleFlag = '21743fb1abc347a0ac55c2eed31d08ec';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class ChangeSortModal extends BaseAddModal {
+class SimpleAddModal extends BaseAddModal {
   static open() {
     switchControlAssist.open(visibleFlag);
   }
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
       pageTitle: '排序值设置',
-      loadApiPath: 'simple/get',
-      submitApiPath: 'simple/updateSort',
+      submitApiPath: 'simple/addBasicInfo',
     };
   }
 
@@ -129,5 +128,5 @@ class ChangeSortModal extends BaseAddModal {
   };
 }
 
-export default ChangeSortModal;
+export default SimpleAddModal;
 `;

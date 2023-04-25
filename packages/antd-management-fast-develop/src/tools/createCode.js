@@ -34,7 +34,7 @@ function generateCode(dataSource) {
       coverFile: true,
     });
 
-    promptSuccess(`Generate "${codeFilePath}" complete`);
+    promptSuccess(`Create "${codeFilePath}" complete`);
   }
 }
 

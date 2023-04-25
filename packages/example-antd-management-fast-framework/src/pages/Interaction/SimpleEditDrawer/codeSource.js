@@ -5,11 +5,14 @@ import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig, drawerConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
+import {
+  DataDrawer,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 import { fieldData } from '../../Simple/Common/data';
 
-const { BaseUpdateModel } = DataModal;
+const { BaseUpdateDrawer } = DataDrawer;
 
 const visibleFlag = '7476eba9e3bf442ab7655e7b41c40360';
 
@@ -17,7 +20,7 @@ const visibleFlag = '7476eba9e3bf442ab7655e7b41c40360';
   simple,
   schedulingControl,
 }))
-class SimpleEditModel extends BaseUpdateModel {
+class SimpleEditModel extends BaseUpdateDrawer {
   showCallProcess = true;
 
   static open() {

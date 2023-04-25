@@ -1,5 +1,9 @@
 import { connect } from 'easy-soft-dva';
-import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
+import {
+  logDebug,
+  mergeArrowText,
+  showSimpleInfoMessage,
+} from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { buildButton, iconBuilder } from 'antd-management-fast-component';
@@ -130,28 +134,22 @@ class DrawerView extends BaseView {
     return (
       <>
         <SimpleAddDrawer
-        // afterOK={({ subjoinData }) => {
-        //   this.afterAddBasicInfoDrawerOk({ subjoinData });
-        // }}
-        // afterCancel={() => {
-        //   this.afterAddBasicInfoDrawerCancel();
-        // }}
-        // afterClose={() => {
-        //   this.afterAddBasicInfoDrawerClose();
-        // }}
+          afterOK={({ subjoinData }) => {
+            logDebug(subjoinData, 'trigger afterOK');
+          }}
+          afterClose={() => {
+            logDebug({}, 'trigger afterClose');
+          }}
         />
 
         <SimpleEditDrawer
           externalData={{ simpleId: 1 }}
-          // afterOK={() => {
-          //   this.afterUpdateBasicInfoDrawerOk();
-          // }}
-          // afterCancel={() => {
-          //   this.afterUpdateBasicInfoDrawerCancel();
-          // }}
-          // afterClose={() => {
-          //   this.afterUpdateBasicInfoDrawerClose();
-          // }}
+          afterOK={({ subjoinData }) => {
+            logDebug(subjoinData, 'trigger afterOK');
+          }}
+          afterClose={() => {
+            logDebug({}, 'trigger afterClose');
+          }}
         />
       </>
     );

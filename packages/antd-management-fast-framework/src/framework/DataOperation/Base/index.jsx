@@ -155,6 +155,13 @@ class Base extends AuthorizationWrapper {
     });
 
     if (isFunction(afterOK)) {
+      this.logCallTrace(
+        {},
+        'DataOperation::Base',
+        'doAfterSubmitSuccess',
+        'afterOK',
+      );
+
       const subjoinData = this.subjoinDataOnAfterOK();
 
       afterOK({
@@ -165,6 +172,14 @@ class Base extends AuthorizationWrapper {
         submitData,
         subjoinData: subjoinData || {},
       });
+    } else {
+      this.logCallTrace(
+        {},
+        'DataOperation::Base',
+        'doAfterSubmitSuccess',
+        'afterOK',
+        'afterOK not set, ignore',
+      );
     }
   };
 
