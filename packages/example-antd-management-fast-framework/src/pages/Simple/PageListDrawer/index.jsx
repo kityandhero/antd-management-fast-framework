@@ -27,6 +27,8 @@ import { fieldData, statusCollection } from '../Common/data';
 const { Text } = Typography;
 const { MultiPageSelectDrawer } = DataMultiPageView;
 
+const visibleFlag = '719c590f676f4b5388a77ebc98241fdd';
+
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
@@ -37,7 +39,7 @@ class PageListDrawer extends MultiPageSelectDrawer {
   componentAuthority = accessWayCollection.simple.pageList.permission;
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

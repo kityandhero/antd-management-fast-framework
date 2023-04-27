@@ -11,15 +11,23 @@ import { iconBuilder } from 'antd-management-fast-component';
 }))
 class ResetButton extends PureComponent {
   render() {
-    const { switchControl, loadingFlag, searchingFlag, text, onReset } =
+    const { switchControl, loadingFlag, resettingFlag, text, onReset } =
       this.props;
 
     const loading = !!switchControl[loadingFlag];
-    const searching = !!switchControl[searchingFlag];
+    const resetting = !!switchControl[resettingFlag];
+
+    console.log({
+      resettingFlag,
+      resetting,
+      switchControl,
+    });
+
+    const showLoadingIcon = loading && resetting ? true : false;
 
     return (
       <Button
-        disabled={loading}
+        disabled={loading || resetting}
         style={{ marginLeft: 8 }}
         onClick={(event) => {
           if (isFunction(onReset)) {
@@ -27,7 +35,7 @@ class ResetButton extends PureComponent {
           }
         }}
       >
-        {searching ? iconBuilder.loading() : iconBuilder.reload()}
+        {showLoadingIcon ? iconBuilder.loading() : iconBuilder.reload()}
         {text}
       </Button>
     );

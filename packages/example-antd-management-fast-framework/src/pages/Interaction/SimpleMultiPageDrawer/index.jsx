@@ -36,7 +36,7 @@ const visibleFlag = 'eced74e7982a48adbb394fd8257c6018';
   schedulingControl,
 }))
 class SimpleMultiPageDrawer extends MultiPageDrawer {
-  showCallProcess = true;
+  // showCallProcess = true;
 
   reloadWhenShow = true;
 

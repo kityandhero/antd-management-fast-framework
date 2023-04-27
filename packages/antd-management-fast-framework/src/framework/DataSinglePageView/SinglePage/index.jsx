@@ -54,7 +54,7 @@ class SinglePage extends Base {
       endTime: '',
     };
 
-    this.reloadData({});
+    this.resetData({});
   };
 
   /**
@@ -126,7 +126,16 @@ class SinglePage extends Base {
   };
 
   handleSearch = () => {
+    this.logCallTrack({}, 'DataSinglePageView::SinglePage', 'handleSearch');
+
     if (this.checkWorkDoing()) {
+      this.logCallTrace(
+        {},
+        'DataSinglePageView::SinglePage',
+        'handleSearch',
+        'ignore on working',
+      );
+
       return;
     }
 

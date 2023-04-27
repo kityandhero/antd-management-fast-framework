@@ -1,11 +1,7 @@
 import { Affix, Col, Divider, Form, Layout, Row, Space } from 'antd';
 import React, { Fragment } from 'react';
 
-import {
-  checkStringIsNullOrWhiteSpace,
-  isArray,
-  isUndefined,
-} from 'easy-soft-utility';
+import { isArray, isUndefined } from 'easy-soft-utility';
 
 import {
   cardConfig,
@@ -78,18 +74,6 @@ class Base extends BaseWindow {
 
     return iconBuilder.form();
   };
-
-  renderPresetTitle = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetTitle');
-
-    const previousText = this.buildTitlePrevText();
-    let subText = this.buildTitleSubText();
-
-    subText = checkStringIsNullOrWhiteSpace(subText) ? '' : `:【${subText}】`;
-
-    return `${previousText}${this.buildTitleText() || '信息详情'}${subText}`;
-  };
-
   buildFormLayout = () => {
     this.logCallTrack({}, 'DataDrawer::Base', 'buildFormLayout');
 
@@ -437,25 +421,15 @@ class Base extends BaseWindow {
     const { width, height, showBottomBar, placement } = this.state;
     const { maskClosable } = this.props;
 
-    const titleIcon = this.renderPresetTitleIcon();
-
     const that = this;
 
     return (
       <DrawerExtra
         flag={this.getVisibleFlag()}
-        title={
-          <span>
-            {titleIcon}
-            {titleIcon ? (
-              <>
-                <span className={styles.titleText} /> {this.renderPresetTitle()}
-              </>
-            ) : (
-              this.renderPresetTitle()
-            )}
-          </span>
-        }
+        icon={this.renderPresetTitleIcon()}
+        titlePrefix={this.buildTitlePrevText()}
+        title={this.buildTitleText()}
+        subtitle={this.buildTitleSubText()}
         destroyOnClose={false}
         width={width}
         height={height}

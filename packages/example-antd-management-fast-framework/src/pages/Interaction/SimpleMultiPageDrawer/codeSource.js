@@ -15,7 +15,7 @@ import {
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import {
-  DataSinglePageView,
+  DataMultiPageView,
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
@@ -27,15 +27,15 @@ import {
 import { fieldData, statusCollection } from '../../Simple/Common/data';
 
 const { Text } = Typography;
-const { SinglePageDrawer } = DataSinglePageView;
+const { MultiPageDrawer } = DataMultiPageView;
 
-const visibleFlag = '0b1e438b8c2e4fa5a318b624788960a0';
+const visibleFlag = 'eced74e7982a48adbb394fd8257c6018';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SimpleSinglePageDrawer extends SinglePageDrawer {
+class SimpleMultiPageDrawer extends MultiPageDrawer {
   showCallProcess = true;
 
   reloadWhenShow = true;
@@ -49,14 +49,14 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'simple/singleList',
+      loadApiPath: 'simple/pageList',
       listViewMode: listViewConfig.viewMode.list,
       tableScroll: { y: 600 },
     };
   }
 
   getPresetPageName = () => {
-    return '数据单页列表';
+    return '数据分页列表';
   };
 
   getStatusBadge = (v) => {
@@ -221,5 +221,5 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
   ];
 }
 
-export default SimpleSinglePageDrawer;
+export default SimpleMultiPageDrawer;
 `;

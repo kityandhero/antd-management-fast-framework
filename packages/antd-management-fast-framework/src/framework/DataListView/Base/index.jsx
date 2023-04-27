@@ -65,7 +65,6 @@ const classPrefix = `amf-data-list-view-base`;
 const { Item: FormItem } = Form;
 const { RangePicker } = DatePicker;
 const { DatePickerItem, ComponentItem, OnlyShowInputItem } = FormExtra;
-
 class Base extends AuthorizationWrapper {
   /**
    * 使用远端分页
@@ -332,7 +331,16 @@ class Base extends AuthorizationWrapper {
   handleAdditionalSearchReset = () => {};
 
   handleSearch = () => {
+    this.logCallTrack({}, 'DataListView::Base', 'handleSearch');
+
     if (this.checkWorkDoing()) {
+      this.logCallTrace(
+        {},
+        'DataListView::Base',
+        'handleSearch',
+        'ignore on working',
+      );
+
       return;
     }
 
@@ -591,11 +599,12 @@ class Base extends AuthorizationWrapper {
             this.handleSearch(event);
           }}
         />
+
         <ResetButton
           loadingFlag={this.viewLoadingFlag}
-          searchingFlag={this.viewSearchingFlag}
-          onReset={(event) => {
-            this.handleSearchReset(event);
+          resettingFlag={this.viewResettingFlag}
+          onReset={() => {
+            this.handleSearchReset();
           }}
         />
       </span>
@@ -1108,17 +1117,20 @@ class Base extends AuthorizationWrapper {
   establishPageHeaderExtraContentConfig = () => null;
 
   buildPaginationBar = () => {
+    this.logCallTrack({}, 'DataListView::Base', 'buildPaginationBar');
+
     const paginationConfig = this.supplementPaginationConfig();
 
     const style = this.establishPaginationViewStyle();
 
-    this.logCallTrack(
+    this.logCallTrace(
       {
         paginationConfig,
         style,
       },
       'DataListView::Base',
       'buildPaginationBar',
+      'object',
     );
 
     const bar = (
@@ -1142,7 +1154,7 @@ class Base extends AuthorizationWrapper {
     if (this.affixPaginationBar) {
       return (
         <Affix offsetBottom={0}>
-          <div style={{ background: '#fff' }}>{bar}</div>
+          <div style={{ background: 'transparent' }}>{bar}</div>
         </Affix>
       );
     }

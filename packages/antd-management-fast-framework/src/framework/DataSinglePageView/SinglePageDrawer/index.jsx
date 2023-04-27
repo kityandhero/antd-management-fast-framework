@@ -1,5 +1,4 @@
-import { Button, Card, Col, Divider, List, Row, Tag, Tooltip } from 'antd';
-import QueueAnim from 'rc-queue-anim';
+import { Button, Card, Col, Divider, List, Row, Tooltip } from 'antd';
 import React from 'react';
 
 import {
@@ -18,8 +17,15 @@ import {
   iconBuilder,
 } from 'antd-management-fast-component';
 
-import { DrawerExtra } from '../../../components/DrawerExtra';
-import { switchControlAssist } from '../../../utils/switchControlAssist';
+import {
+  DrawerExtra,
+  LoadingOverlay,
+  ReloadAnimalPrompt,
+} from '../../../components';
+import {
+  reloadAnimalPromptControlAssist,
+  switchControlAssist,
+} from '../../../utils';
 import { ColumnSetting } from '../../DataListView/ColumnSetting';
 import { DensityAction } from '../../DataListView/DensityAction';
 import { SinglePage } from '../SinglePage';
@@ -37,18 +43,23 @@ class SinglePageDrawer extends SinglePage {
 
   reloadWhenShow = true;
 
+  reloadAnimalPrompt = true;
+
   constructor(properties, visibleFlag) {
     super(properties);
 
     if (checkStringIsNullOrWhiteSpace(visibleFlag || '')) {
       throw new Error(
-        mergeArrowText(this.componentName, `visibleFlag disallow empty`),
+        mergeArrowText(
+          this.componentName,
+          'constructor(properties, visibleFlag)',
+          `visibleFlag disallow empty`,
+        ),
       );
     }
 
     this.state = {
       ...this.state,
-      reloadAnimalShow: false,
       listViewMode: listViewConfig.viewMode.table,
     };
 
@@ -88,10 +99,36 @@ class SinglePageDrawer extends SinglePage {
 
     // 未加载数据过数据的时候，进行加载
     if (!firstLoadSuccess) {
+      this.logCallTrace(
+        {},
+        'DataSinglePageView::SinglePageDrawer',
+        'doOtherWhenChangeVisibleToShow',
+        'trigger',
+        'handleSearchReset',
+      );
+
       // 设置界面效果为加载中，减少用户误解
-      this.handleSearchReset(false, 700);
+      this.handleSearchReset({});
     } else if (this.reloadWhenShow) {
-      this.reloadData({});
+      this.logCallTrace(
+        {},
+        'DataSinglePageView::SinglePageDrawer',
+        'doOtherWhenChangeVisibleToShow',
+        'trigger',
+        'reloadData',
+      );
+
+      const that = this;
+
+      that.reloadData({
+        delay: 400,
+        beforeRequest: () => {
+          reloadAnimalPromptControlAssist.show();
+        },
+        completeCallback: () => {
+          reloadAnimalPromptControlAssist.hide(1000);
+        },
+      });
     }
   };
 
@@ -227,6 +264,26 @@ class SinglePageDrawer extends SinglePage {
     return iconBuilder.read();
   };
 
+  buildTitlePrevText = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitlePrevText', emptyLogic);
+
+    return '';
+  };
+
+  buildTitleText = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleText', emptyLogic);
+
+    const { pageTitle } = this.state;
+
+    return pageTitle || this.getPresetPageName();
+  };
+
+  buildTitleSubText = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleSubText', emptyLogic);
+
+    return '';
+  };
+
   hideDrawer = () => {
     this.logCallTrack({}, 'DataSinglePageView::SinglePageDrawer', 'hideDrawer');
 
@@ -240,7 +297,7 @@ class SinglePageDrawer extends SinglePage {
       'renderPresetListMainViewContainor',
     );
 
-    const { reloadAnimalShow, listTitle, tableSize, refreshing, listViewMode } =
+    const { firstLoadSuccess, listTitle, tableSize, refreshing, listViewMode } =
       this.state;
 
     const extraAction = this.renderPresetExtraActionView();
@@ -302,13 +359,12 @@ class SinglePageDrawer extends SinglePage {
                 <Row>
                   <Col flex="70px"> {listTitle}</Col>
                   <Col flex="auto">
-                    <QueueAnim>
-                      {reloadAnimalShow ? (
-                        <div key="3069dd18-f530-43ab-b96d-a86f8079358f">
-                          <Tag color="gold">即将刷新</Tag>
-                        </div>
-                      ) : null}
-                    </QueueAnim>
+                    {this.reloadWhenShow && this.reloadAnimalPrompt ? (
+                      <ReloadAnimalPrompt
+                        visible={firstLoadSuccess}
+                        flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}
+                      />
+                    ) : null}
                   </Col>
                 </Row>
               }
@@ -484,7 +540,7 @@ class SinglePageDrawer extends SinglePage {
       'renderPresetListView',
     );
 
-    const { dataLoading, listViewMode } = this.state;
+    const { listViewMode } = this.state;
 
     const list = this.getCanUseFrontendPagination()
       ? this.adjustFrontendPaginationViewDataSource()
@@ -508,23 +564,30 @@ class SinglePageDrawer extends SinglePage {
         <div
           style={
             listViewMode === listViewConfig.viewMode.list
-              ? { flex: 'auto', overflow: 'hidden' }
+              ? {
+                  flex: 'auto',
+                  overflow: 'hidden',
+                }
               : {}
           }
         >
-          <List
-            style={
-              listViewMode === listViewConfig.viewMode.list
-                ? { height: '100%', overflow: 'auto' }
-                : {}
-            }
-            loading={dataLoading}
-            itemLayout={this.renderPresetListViewItemLayout()}
-            dataSource={list}
-            renderItem={(item, index) => {
-              return this.renderPresetListViewItem(item, index);
-            }}
-          />
+          <LoadingOverlay
+            flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}
+            fill
+          >
+            <List
+              style={
+                listViewMode === listViewConfig.viewMode.list
+                  ? { height: '100%', overflow: 'auto' }
+                  : {}
+              }
+              itemLayout={this.renderPresetListViewItemLayout()}
+              dataSource={list}
+              renderItem={(item, index) => {
+                return this.renderPresetListViewItem(item, index);
+              }}
+            />
+          </LoadingOverlay>
         </div>
 
         {(bottomBar || null) == null ? null : (
@@ -540,6 +603,7 @@ class SinglePageDrawer extends SinglePage {
                       height: '100%',
                       display: 'flex',
                       justifyContent: 'space-between',
+                      boxShadow: '0 -4px 8px 0px rgb(5 5 5 / 6%)',
                     }
                   : {}
               }
@@ -585,12 +649,10 @@ class SinglePageDrawer extends SinglePage {
     return (
       <DrawerExtra
         flag={this.getVisibleFlag()}
-        title={
-          <span>
-            {this.renderPresetTitleIcon()}
-            {this.getPresetPageName()}
-          </span>
-        }
+        icon={this.renderPresetTitleIcon()}
+        titlePrefix={this.buildTitlePrevText()}
+        title={this.buildTitleText()}
+        subtitle={this.buildTitleSubText()}
         destroyOnClose={false}
         className={styles.containorBox}
         width={width}
@@ -598,6 +660,8 @@ class SinglePageDrawer extends SinglePage {
         onClose={this.onClose}
         bodyStyle={{
           padding: 0,
+          overflowY: 'hidden',
+          overflowX: 'auto',
         }}
         afterOpenChange={(v) => {
           that.doOtherWhenChangeVisible(v);

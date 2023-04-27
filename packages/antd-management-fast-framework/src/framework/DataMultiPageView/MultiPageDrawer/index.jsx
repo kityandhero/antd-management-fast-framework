@@ -49,18 +49,25 @@ class MultiPageDrawer extends MultiPage {
 
   reloadWhenShow = true;
 
+  reloadAnimalPrompt = true;
+
+  reloadAnimalPromptComplete = false;
+
   constructor(properties, visibleFlag) {
     super(properties);
 
     if (checkStringIsNullOrWhiteSpace(visibleFlag || '')) {
       throw new Error(
-        mergeArrowText(this.componentName, `visibleFlag disallow empty`),
+        mergeArrowText(
+          this.componentName,
+          'constructor(properties, visibleFlag)',
+          `visibleFlag disallow empty`,
+        ),
       );
     }
 
     this.state = {
       ...this.state,
-      reloadAnimalShow: false,
       listViewMode: listViewConfig.viewMode.table,
     };
 
@@ -101,9 +108,36 @@ class MultiPageDrawer extends MultiPage {
 
     // 未加载数据过数据的时候，进行加载
     if (!firstLoadSuccess) {
-      this.handleSearchReset(false, 700);
+      this.logCallTrace(
+        {},
+        'DataMultiPageView::MultiPageDrawer',
+        'doOtherWhenChangeVisibleToShow',
+        'handleSearchReset',
+      );
+
+      this.handleSearchReset({});
     } else if (this.reloadWhenShow) {
-      this.reloadData({});
+      this.logCallTrace(
+        {},
+        'DataMultiPageView::MultiPageDrawer',
+        'doOtherWhenChangeVisibleToShow',
+        'reloadData',
+      );
+
+      this.reloadData({
+        completeCallback: () => {
+          this.reloadAnimalPromptComplete = true;
+
+          this.logCallTrace(
+            {},
+            'DataMultiPageView::MultiPageDrawer',
+            'doOtherWhenChangeVisibleToShow',
+            'reloadData',
+            'reloadAnimalPromptComplete',
+            true,
+          );
+        },
+      });
     }
   };
 
@@ -215,6 +249,26 @@ class MultiPageDrawer extends MultiPage {
     return iconBuilder.read();
   };
 
+  buildTitlePrevText = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitlePrevText', emptyLogic);
+
+    return '';
+  };
+
+  buildTitleText = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleText', emptyLogic);
+
+    const { pageTitle } = this.state;
+
+    return pageTitle || this.getPresetPageName();
+  };
+
+  buildTitleSubText = () => {
+    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleSubText', emptyLogic);
+
+    return '';
+  };
+
   hideDrawer = () => {
     this.logCallTrack({}, 'DataMultiPageView::MultiPageDrawer', 'hideDrawer');
 
@@ -256,7 +310,6 @@ class MultiPageDrawer extends MultiPage {
     );
 
     const {
-      reloadAnimalShow,
       listTitle,
       tableSize,
       dataLoading,
@@ -326,7 +379,9 @@ class MultiPageDrawer extends MultiPage {
                   <Col flex="70px"> {listTitle}</Col>
                   <Col flex="auto">
                     <QueueAnim>
-                      {reloadAnimalShow ? (
+                      {this.reloadWhenShow &&
+                      this.reloadAnimalPrompt &&
+                      !this.reloadAnimalPromptComplete ? (
                         <div key="3069dd18-f530-43ab-b96d-a86f8079358f">
                           <Tag color="gold">即将刷新</Tag>
                         </div>
@@ -592,17 +647,13 @@ class MultiPageDrawer extends MultiPage {
 
     const that = this;
 
-    console.log(this.getVisibleFlag());
-
     return (
       <DrawerExtra
         flag={this.getVisibleFlag()}
-        title={
-          <span>
-            {this.renderPresetTitleIcon()}
-            {this.getPresetPageName()}
-          </span>
-        }
+        icon={this.renderPresetTitleIcon()}
+        titlePrefix={this.buildTitlePrevText()}
+        title={this.buildTitleText()}
+        subtitle={this.buildTitleSubText()}
         destroyOnClose={false}
         className={styles.containorBox}
         width={widthDrawer}
@@ -610,6 +661,8 @@ class MultiPageDrawer extends MultiPage {
         onClose={this.onClose}
         bodyStyle={{
           padding: 0,
+          overflowY: 'hidden',
+          overflowX: 'auto',
         }}
         afterOpenChange={(v) => {
           that.doOtherWhenChangeVisible(v);

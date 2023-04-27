@@ -20,6 +20,7 @@ import {
 import {
   contentConfig,
   defaultCommonState,
+  emptyLogic,
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 import {
@@ -161,6 +162,7 @@ class InternalFlow extends Core {
     requestData: requestDataSource = {},
     otherState = {},
     delay = 0,
+    beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
     completeCallback = null,
@@ -245,6 +247,7 @@ class InternalFlow extends Core {
       this.initLoadCore({
         requestData: submitData || {},
         delay,
+        beforeRequest: beforeRequestSource,
         successCallback,
         failCallback,
         completeCallback,
@@ -254,6 +257,7 @@ class InternalFlow extends Core {
         this.initLoadCore({
           requestData: submitData || {},
           delay,
+          beforeRequest: beforeRequestSource,
           successCallback,
           failCallback,
           completeCallback,
@@ -269,6 +273,7 @@ class InternalFlow extends Core {
   initLoadCore = ({
     requestData,
     delay = 0,
+    beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
     completeCallback = null,
@@ -283,6 +288,27 @@ class InternalFlow extends Core {
       'Common::InternalFlow',
       'initLoadCore',
     );
+
+    if (isFunction(beforeRequestSource)) {
+      this.logCallTrace(
+        {},
+        'Common::InternalFlow',
+        'initLoadCore',
+        'trigger',
+        'beforeRequest',
+      );
+
+      beforeRequestSource();
+    } else {
+      this.logCallTrace(
+        {},
+        'Common::InternalFlow',
+        'initLoadCore',
+        'trigger',
+        'beforeRequest',
+        emptyLogic,
+      );
+    }
 
     const delayTime = toNumber(delay);
 
@@ -590,13 +616,21 @@ class InternalFlow extends Core {
   reloadData = ({
     otherState = {},
     delay = 0,
+    beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
     completeCallback: completeCallbackSource = null,
   }) => {
     this.logCallTrack(
       {
-        parameter: { otherState, delay },
+        parameter: {
+          otherState,
+          delay,
+          beforeRequest: beforeRequestSource,
+          successCallback,
+          failCallback,
+          completeCallback: completeCallbackSource,
+        },
       },
       'Common::InternalFlow',
       'reloadData',
@@ -608,16 +642,34 @@ class InternalFlow extends Core {
 
     that.startReloading();
 
+    that.logCallTrace({}, 'Common::InternalFlow', 'reloadData', 'initLoad');
+
     that.initLoad({
       otherState,
       delay: delay || 0,
+      beforeRequest: beforeRequestSource || null,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
       completeCallback: () => {
         that.stopReloading();
 
         if (isFunction(completeCallbackSource)) {
+          that.logCallTrace(
+            {},
+            'Common::InternalFlow',
+            'reloadData',
+            'completeCallback',
+          );
+
           completeCallbackSource();
+        } else {
+          that.logCallTrace(
+            {},
+            'Common::InternalFlow',
+            'reloadData',
+            'completeCallback',
+            emptyLogic,
+          );
         }
 
         that.closePreventRender();
@@ -627,19 +679,148 @@ class InternalFlow extends Core {
     });
   };
 
-  searchData = (otherState, successCallback = null, delay = 0) => {
-    const s = { ...otherState, searching: true };
+  searchData = ({
+    otherState = {},
+    delay = 0,
+    beforeRequest: beforeRequestSource = null,
+    successCallback = null,
+    failCallback = null,
+    completeCallback: completeCallbackSource = null,
+  }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          otherState,
+          delay,
+          beforeRequest: beforeRequestSource,
+          successCallback,
+          failCallback,
+          completeCallback: completeCallbackSource,
+        },
+      },
+      'Common::InternalFlow',
+      'searchData',
+    );
+
+    const that = this;
+
+    that.openPreventRender();
+
+    that.startSearching();
+
+    that.logCallTrace({}, 'Common::InternalFlow', 'searchData', 'initLoad');
 
     this.initLoad({
-      otherState: s,
+      otherState,
       delay: delay || 0,
+      beforeRequest: beforeRequestSource || null,
       successCallback: successCallback || null,
+      failCallback: failCallback || null,
+      completeCallback: () => {
+        that.stopSearching();
+
+        if (isFunction(completeCallbackSource)) {
+          that.logCallTrace(
+            {},
+            'Common::InternalFlow',
+            'searchData',
+            'completeCallback',
+          );
+
+          completeCallbackSource();
+        } else {
+          that.logCallTrace(
+            {},
+            'Common::InternalFlow',
+            'searchData',
+            'completeCallback',
+            emptyLogic,
+          );
+        }
+
+        that.closePreventRender();
+
+        that.increaseCounter({});
+      },
+    });
+  };
+
+  resetData = ({
+    otherState = {},
+    delay = 0,
+    beforeRequest: beforeRequestSource = null,
+    successCallback = null,
+    failCallback = null,
+    completeCallback: completeCallbackSource = null,
+  }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          otherState,
+          delay,
+          beforeRequest: beforeRequestSource,
+          successCallback,
+          failCallback,
+          completeCallback: completeCallbackSource,
+        },
+      },
+      'Common::InternalFlow',
+      'resetData',
+    );
+
+    const that = this;
+
+    that.openPreventRender();
+
+    that.startResetting();
+
+    that.logCallTrace(
+      {},
+      'Common::InternalFlow',
+      'resetData',
+      'trigger',
+      'initLoad',
+    );
+
+    this.initLoad({
+      otherState,
+      delay: delay || 0,
+      beforeRequest: beforeRequestSource || null,
+      successCallback: successCallback || null,
+      failCallback: failCallback || null,
+      completeCallback: () => {
+        that.stopResetting();
+
+        if (isFunction(completeCallbackSource)) {
+          that.logCallTrace(
+            {},
+            'Common::InternalFlow',
+            'resetData',
+            'completeCallback',
+          );
+
+          completeCallbackSource();
+        } else {
+          that.logCallTrace(
+            {},
+            'Common::InternalFlow',
+            'resetData',
+            'completeCallback',
+            emptyLogic,
+          );
+        }
+
+        that.closePreventRender();
+
+        that.increaseCounter({});
+      },
     });
   };
 
   refreshData = ({
     otherState = {},
     delay = 0,
+    beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
     completeCallback: completeCallbackSource = null,
@@ -658,9 +839,19 @@ class InternalFlow extends Core {
 
     that.startRefreshing();
 
+    that.logCallTrace(
+      {
+        parameter: { otherState, delay },
+      },
+      'Common::InternalFlow',
+      'refreshData',
+      'initLoad',
+    );
+
     that.initLoad({
       otherState,
       delay: delay || 0,
+      beforeRequest: beforeRequestSource || null,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
       completeCallback: () => {

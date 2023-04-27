@@ -26,6 +26,8 @@ import { fieldData, statusCollection } from '../Common/data';
 const { Text } = Typography;
 const { SinglePageDrawer } = DataSinglePageView;
 
+const visibleFlag = 'c9ad8f7b4f874cbab64ae0a0e1f305fd';
+
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
@@ -36,7 +38,7 @@ class SingleListDrawer extends SinglePageDrawer {
   componentAuthority = accessWayCollection.simple.singleList.permission;
 
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

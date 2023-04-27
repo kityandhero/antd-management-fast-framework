@@ -67,18 +67,8 @@ class MultiPage extends Base {
     return result;
   };
 
-  handleSearchReset = (checkWorkDoing = true, delay = 0) => {
-    if (checkWorkDoing && this.checkWorkDoing()) {
-      return;
-    }
-
-    this.logCallTrack(
-      {
-        parameter: { checkWorkDoing, delay },
-      },
-      'DataMultiPageView::MultiPage',
-      'handleSearchReset',
-    );
+  handleSearchReset = () => {
+    this.logCallTrack({}, 'DataMultiPageView::MultiPage', 'handleSearchReset');
 
     const form = this.getSearchCard();
 
@@ -98,7 +88,7 @@ class MultiPage extends Base {
       endTime: '',
     };
 
-    this.reloadData({}, null, delay);
+    this.resetData({});
   };
 
   /**

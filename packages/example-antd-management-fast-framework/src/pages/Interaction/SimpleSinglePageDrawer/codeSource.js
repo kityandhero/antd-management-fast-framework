@@ -29,7 +29,7 @@ import { fieldData, statusCollection } from '../../Simple/Common/data';
 const { Text } = Typography;
 const { SinglePageDrawer } = DataSinglePageView;
 
-const visibleFlag = '0b1e438b8c2e4fa5a318b624788960a0';
+const visibleFlag = 'b354b02508d747ecacedc90e6c86c4a1';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,

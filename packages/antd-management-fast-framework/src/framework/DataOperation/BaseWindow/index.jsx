@@ -34,7 +34,11 @@ class BaseWindow extends Base {
 
     if (checkStringIsNullOrWhiteSpace(visibleFlag || '')) {
       throw new Error(
-        mergeArrowText(this.componentName, `visibleFlag disallow empty`),
+        mergeArrowText(
+          this.componentName,
+          'constructor(properties, visibleFlag)',
+          `visibleFlag disallow empty`,
+        ),
       );
     }
 

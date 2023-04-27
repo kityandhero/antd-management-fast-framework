@@ -21,7 +21,7 @@ const visibleFlag = '7476eba9e3bf442ab7655e7b41c40360';
   schedulingControl,
 }))
 class SimpleEditModel extends BaseUpdateDrawer {
-  showCallProcess = true;
+  // showCallProcess = true;
 
   static open() {
     switchControlAssist.open(visibleFlag);

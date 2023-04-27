@@ -8,5 +8,6 @@ export * from './interfaceSettingAssist';
 export * from './interfaceSettingCacheAssist';
 export * from './metaDataAssist';
 export * from './progressBarControlAssist';
+export * from './reloadAnimalPromptControlAssist';
 export * from './schedulingControlAssist';
 export * from './switchControlAssist';

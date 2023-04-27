@@ -15,8 +15,6 @@ class RefreshButton extends PureComponent {
   render() {
     const { switchControl, flag, title, onRefresh } = this.props;
 
-    console.log({ switchControl, flag });
-
     const refreshing = switchControlAssist.check(switchControl, flag);
 
     return (

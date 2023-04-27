@@ -15,6 +15,7 @@ import SimpleAddDrawer from '../SimpleAddDrawer';
 import { code as codeSimpleAddDrawer } from '../SimpleAddDrawer/codeSource';
 import SimpleEditDrawer from '../SimpleEditDrawer';
 import { code as codeSimpleEditDrawer } from '../SimpleEditDrawer/codeSource';
+import SimpleMultiPageDrawer from '../SimpleMultiPageDrawer';
 import SimpleSinglePageDrawer from '../SimpleSinglePageDrawer';
 
 @connect(({ schedulingControl }) => ({
@@ -43,7 +44,6 @@ class DrawerView extends BaseView {
             handleClick: () => {
               SimpleSinglePageDrawer.open();
             },
-            disabled: false,
           }),
         },
         {
@@ -53,7 +53,6 @@ class DrawerView extends BaseView {
             handleClick: () => {
               SimpleMultiPageDrawer.open();
             },
-            disabled: false,
           }),
         },
         {
@@ -63,7 +62,6 @@ class DrawerView extends BaseView {
             handleClick: () => {
               SimpleAddDrawer.open();
             },
-            disabled: false,
           }),
         },
         {
@@ -73,7 +71,6 @@ class DrawerView extends BaseView {
             handleClick: () => {
               SimpleEditDrawer.open();
             },
-            disabled: false,
           }),
         },
         {
@@ -84,7 +81,6 @@ class DrawerView extends BaseView {
             handleClick: () => {
               DrawerCodeView.open();
             },
-            disabled: false,
           }),
         },
       ],

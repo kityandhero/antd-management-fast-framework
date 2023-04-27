@@ -17,7 +17,7 @@ const visibleFlag = 'c5165ff470f646eb986f4843f48e47f9';
   schedulingControl,
 }))
 class DrawerCodeView extends BaseNeedlessLoadDrawer {
-  showCallProcess = true;
+  // showCallProcess = true;
 
   static open() {
     switchControlAssist.open(visibleFlag);

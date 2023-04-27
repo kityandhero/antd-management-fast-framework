@@ -18,6 +18,8 @@ class Core extends BaseComponent {
 
   viewSearchingFlag = '';
 
+  viewResettingFlag = '';
+
   viewRefreshingFlag = '';
 
   viewReloadingFlag = '';
@@ -42,6 +44,7 @@ class Core extends BaseComponent {
     this.viewLoadingFlag = getGuid();
     this.viewSearchingFlag = getGuid();
     this.viewRefreshingFlag = getGuid();
+    this.viewResettingFlag = getGuid();
     this.viewReloadingFlag = getGuid();
     this.viewProcessingFlag = getGuid();
     this.viewTabFlag = getGuid();
@@ -71,6 +74,7 @@ class Core extends BaseComponent {
     const list = [
       this.viewLoadingFlag,
       this.viewSearchingFlag,
+      this.viewResettingFlag,
       this.viewRefreshingFlag,
       this.viewReloadingFlag,
       this.viewProcessingFlag,
@@ -132,6 +136,28 @@ class Core extends BaseComponent {
       [this.viewSearchingFlag, this.viewLoadingFlag],
       this.componentName,
       ['viewSearchingFlag', 'viewLoadingFlag'],
+      ...message,
+    );
+  }
+
+  startResetting(...message) {
+    this.logCallTrack({}, 'Core', 'startResetting');
+
+    switchControlAssist.openMulti(
+      [this.viewResettingFlag, this.viewLoadingFlag],
+      this.componentName,
+      ['viewResettingFlag', 'viewLoadingFlag'],
+      ...message,
+    );
+  }
+
+  stopResetting(...message) {
+    this.logCallTrack({}, 'Core', 'stopResetting');
+
+    switchControlAssist.closeMulti(
+      [this.viewResettingFlag, this.viewLoadingFlag],
+      this.componentName,
+      ['viewResettingFlag', 'viewLoadingFlag'],
       ...message,
     );
   }

@@ -20,7 +20,7 @@ const visibleFlag = '35f84a341e49444a994b61add41acf9b';
   schedulingControl,
 }))
 class SimpleAddDrawer extends BaseAddDrawer {
-  showCallProcess = true;
+  // showCallProcess = true;
 
   static open() {
     switchControlAssist.open(visibleFlag);
