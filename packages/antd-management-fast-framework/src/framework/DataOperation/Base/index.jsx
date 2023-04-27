@@ -159,6 +159,7 @@ class Base extends AuthorizationWrapper {
         {},
         'DataOperation::Base',
         'doAfterSubmitSuccess',
+        'trigger',
         'afterOK',
       );
 
@@ -177,8 +178,9 @@ class Base extends AuthorizationWrapper {
         {},
         'DataOperation::Base',
         'doAfterSubmitSuccess',
+        'trigger',
         'afterOK',
-        'afterOK not set, ignore',
+        emptyLogic,
       );
     }
   };

@@ -7,6 +7,8 @@ import {
   showSimpleWarningMessage,
 } from 'easy-soft-utility';
 
+import { emptyLogic } from 'antd-management-fast-common';
+
 import { DataLoad } from '../../DataSingleView/DataLoad';
 
 class BaseUpdateForm extends DataLoad {
@@ -114,10 +116,20 @@ class BaseUpdateForm extends DataLoad {
               },
               'DataForm::BaseUpdateForm',
               'execSubmitApi',
+              'trigger',
               'completeCallback',
             );
 
             completeCallback();
+          } else {
+            that.logCallTrace(
+              {},
+              'DataForm::BaseUpdateForm',
+              'execSubmitApi',
+              'trigger',
+              'completeCallback',
+              emptyLogic,
+            );
           }
 
           that.closePreventRender();
@@ -180,6 +192,15 @@ class BaseUpdateForm extends DataLoad {
         );
 
         completeCallback();
+      } else {
+        that.logCallTrace(
+          {},
+          'DataForm::BaseUpdateForm',
+          'validate',
+          'trigger',
+          'completeCallback',
+          emptyLogic,
+        );
       }
 
       that.closePreventRender();
@@ -266,6 +287,15 @@ class BaseUpdateForm extends DataLoad {
           );
 
           failCallback(error);
+        } else {
+          that.logCallTrace(
+            {},
+            'DataForm::BaseUpdateForm',
+            'validate',
+            'trigger',
+            'failCallback',
+            emptyLogic,
+          );
         }
 
         if (isFunction(completeCallback)) {
@@ -277,6 +307,15 @@ class BaseUpdateForm extends DataLoad {
           );
 
           completeCallback();
+        } else {
+          that.logCallTrace(
+            {},
+            'DataForm::BaseUpdateForm',
+            'validate',
+            'trigger',
+            'completeCallback',
+            emptyLogic,
+          );
         }
 
         that.closePreventRender();

@@ -196,6 +196,7 @@ class InternalFlow extends Core {
           'Common::InternalFlow',
           'initLoad',
           'check loadApiPath fail',
+          'trigger',
           'completeCallback',
         );
 
@@ -222,6 +223,7 @@ class InternalFlow extends Core {
           'Common::InternalFlow',
           'initLoad',
           'check load request params fail',
+          'trigger',
           'completeCallback',
         );
 
@@ -488,6 +490,7 @@ class InternalFlow extends Core {
                 },
                 'Common::InternalFlow',
                 'loadFromApi',
+                'trigger',
                 'completeCallback',
               );
 
@@ -512,6 +515,7 @@ class InternalFlow extends Core {
                 },
                 'Common::InternalFlow',
                 'loadFromApi',
+                'trigger',
                 'failCallback',
               );
 
@@ -527,6 +531,7 @@ class InternalFlow extends Core {
                 },
                 'Common::InternalFlow',
                 'loadFromApi',
+                'trigger',
                 'completeCallback',
               );
 
@@ -546,6 +551,7 @@ class InternalFlow extends Core {
           },
           'Common::InternalFlow',
           'loadFromApi',
+          'trigger',
           'completeCallback',
         );
 
@@ -642,7 +648,13 @@ class InternalFlow extends Core {
 
     that.startReloading();
 
-    that.logCallTrace({}, 'Common::InternalFlow', 'reloadData', 'initLoad');
+    that.logCallTrace(
+      {},
+      'Common::InternalFlow',
+      'reloadData',
+      'trigger',
+      'initLoad',
+    );
 
     that.initLoad({
       otherState,
@@ -658,6 +670,7 @@ class InternalFlow extends Core {
             {},
             'Common::InternalFlow',
             'reloadData',
+            'trigger',
             'completeCallback',
           );
 
@@ -667,6 +680,7 @@ class InternalFlow extends Core {
             {},
             'Common::InternalFlow',
             'reloadData',
+            'trigger',
             'completeCallback',
             emptyLogic,
           );
@@ -724,6 +738,7 @@ class InternalFlow extends Core {
             {},
             'Common::InternalFlow',
             'searchData',
+            'trigger',
             'completeCallback',
           );
 
@@ -733,6 +748,7 @@ class InternalFlow extends Core {
             {},
             'Common::InternalFlow',
             'searchData',
+            'trigger',
             'completeCallback',
             emptyLogic,
           );
@@ -796,6 +812,7 @@ class InternalFlow extends Core {
             {},
             'Common::InternalFlow',
             'resetData',
+            'trigger',
             'completeCallback',
           );
 
@@ -805,6 +822,7 @@ class InternalFlow extends Core {
             {},
             'Common::InternalFlow',
             'resetData',
+            'trigger',
             'completeCallback',
             emptyLogic,
           );
@@ -827,7 +845,14 @@ class InternalFlow extends Core {
   }) => {
     this.logCallTrack(
       {
-        parameter: { otherState, delay },
+        parameter: {
+          otherState,
+          delay,
+          beforeRequest: beforeRequestSource,
+          successCallback,
+          failCallback,
+          completeCallback: completeCallbackSource,
+        },
       },
       'Common::InternalFlow',
       'refreshData',
@@ -840,11 +865,10 @@ class InternalFlow extends Core {
     that.startRefreshing();
 
     that.logCallTrace(
-      {
-        parameter: { otherState, delay },
-      },
+      {},
       'Common::InternalFlow',
       'refreshData',
+      'trigger',
       'initLoad',
     );
 
@@ -858,7 +882,24 @@ class InternalFlow extends Core {
         that.stopRefreshing();
 
         if (isFunction(completeCallbackSource)) {
+          that.logCallTrace(
+            {},
+            'Common::InternalFlow',
+            'refreshData',
+            'trigger',
+            'completeCallback',
+          );
+
           completeCallbackSource();
+        } else {
+          that.logCallTrace(
+            {},
+            'Common::InternalFlow',
+            'refreshData',
+            'trigger',
+            'completeCallback',
+            emptyLogic,
+          );
         }
 
         that.closePreventRender();

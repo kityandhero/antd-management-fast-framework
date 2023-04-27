@@ -216,6 +216,7 @@ class BaseWindow extends Base {
         {},
         'DataOperation::BaseWindow',
         'onClose',
+        'trigger',
         'afterClose',
       );
 
@@ -225,8 +226,9 @@ class BaseWindow extends Base {
         {},
         'DataMultiPageView::MultiPageDrawer',
         'onClose',
+        'trigger',
         'afterClose',
-        'afterClose not set, ignore',
+        emptyLogic,
       );
     }
   };
@@ -367,10 +369,20 @@ class BaseWindow extends Base {
                 },
                 'DataOperation::BaseWindow',
                 'execSubmitApi',
+                'trigger',
                 'successCallback',
               );
 
               successCallback(remoteData);
+            } else {
+              that.logCallTrace(
+                {},
+                'DataOperation::BaseWindow',
+                'execSubmitApi',
+                'trigger',
+                'successCallback',
+                emptyLogic,
+              );
             }
           }
 
@@ -385,6 +397,15 @@ class BaseWindow extends Base {
             );
 
             completeCallback();
+          } else {
+            that.logCallTrace(
+              {},
+              'DataOperation::BaseWindow',
+              'execSubmitApi',
+              'trigger',
+              'completeCallback',
+              emptyLogic,
+            );
           }
 
           that.closePreventRender();
@@ -407,10 +428,20 @@ class BaseWindow extends Base {
               },
               'DataOperation::BaseWindow',
               'execSubmitApi',
+              'trigger',
               'failCallback',
             );
 
             failCallback(error);
+          } else {
+            that.logCallTrace(
+              {},
+              'DataOperation::BaseWindow',
+              'execSubmitApi',
+              'trigger',
+              'failCallback',
+              emptyLogic,
+            );
           }
 
           if (isFunction(completeCallback)) {
@@ -420,10 +451,20 @@ class BaseWindow extends Base {
               },
               'DataOperation::BaseWindow',
               'execSubmitApi',
+              'trigger',
               'completeCallback',
             );
 
             completeCallback();
+          } else {
+            that.logCallTrace(
+              {},
+              'DataOperation::BaseWindow',
+              'execSubmitApi',
+              'trigger',
+              'completeCallback',
+              emptyLogic,
+            );
           }
 
           that.closePreventRender();
@@ -443,10 +484,20 @@ class BaseWindow extends Base {
           {},
           'DataOperation::BaseWindow',
           'validate',
+          'trigger',
           'completeCallback',
         );
 
         completeCallback();
+      } else {
+        that.logCallTrace(
+          {},
+          'DataOperation::BaseWindow',
+          'validate',
+          'trigger',
+          'completeCallback',
+          emptyLogic,
+        );
       }
 
       that.closePreventRender();
@@ -522,10 +573,20 @@ class BaseWindow extends Base {
             {},
             'DataOperation::BaseWindow',
             'execSubmitApi',
+            'trigger',
             'failCallback',
           );
 
           failCallback(error);
+        } else {
+          that.logCallTrace(
+            {},
+            'DataOperation::BaseWindow',
+            'execSubmitApi',
+            'trigger',
+            'failCallback',
+            emptyLogic,
+          );
         }
 
         if (isFunction(completeCallback)) {
@@ -533,10 +594,20 @@ class BaseWindow extends Base {
             {},
             'DataOperation::BaseWindow',
             'execSubmitApi',
+            'trigger',
             'completeCallback',
           );
 
           completeCallback();
+        } else {
+          that.logCallTrace(
+            {},
+            'DataOperation::BaseWindow',
+            'execSubmitApi',
+            'trigger',
+            'completeCallback',
+            emptyLogic,
+          );
         }
       });
   };
@@ -604,6 +675,7 @@ class BaseWindow extends Base {
         {},
         'DataOperation::BaseWindow',
         'handleCancel',
+        'trigger',
         'afterCancel',
       );
 
@@ -613,8 +685,9 @@ class BaseWindow extends Base {
         {},
         'DataOperation::BaseWindow',
         'handleCancel',
+        'trigger',
         'afterCancel',
-        'afterCancel not set, ignore',
+        emptyLogic,
       );
     }
   };

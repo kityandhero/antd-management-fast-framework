@@ -112,6 +112,7 @@ class MultiPageDrawer extends MultiPage {
         {},
         'DataMultiPageView::MultiPageDrawer',
         'doOtherWhenChangeVisibleToShow',
+        'trigger',
         'handleSearchReset',
       );
 
@@ -121,6 +122,7 @@ class MultiPageDrawer extends MultiPage {
         {},
         'DataMultiPageView::MultiPageDrawer',
         'doOtherWhenChangeVisibleToShow',
+        'trigger',
         'reloadData',
       );
 
@@ -224,6 +226,7 @@ class MultiPageDrawer extends MultiPage {
         {},
         'DataMultiPageView::MultiPageDrawer',
         'onClose',
+        'trigger',
         'afterClose',
       );
 
@@ -233,8 +236,9 @@ class MultiPageDrawer extends MultiPage {
         {},
         'DataMultiPageView::MultiPageDrawer',
         'onClose',
+        'trigger',
         'afterClose',
-        'afterClose not set, ignore',
+        emptyLogic,
       );
     }
   };

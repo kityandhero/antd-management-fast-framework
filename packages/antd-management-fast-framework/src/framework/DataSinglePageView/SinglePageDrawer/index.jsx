@@ -215,6 +215,7 @@ class SinglePageDrawer extends SinglePage {
         {},
         'DataSinglePageView::SinglePageDrawer',
         'onClose',
+        'trigger',
         'afterClose',
       );
 
@@ -224,8 +225,9 @@ class SinglePageDrawer extends SinglePage {
         {},
         'DataSinglePageView::SinglePageDrawer',
         'onClose',
+        'trigger',
         'afterClose',
-        'afterClose not set, ignore',
+        emptyLogic,
       );
     }
   };

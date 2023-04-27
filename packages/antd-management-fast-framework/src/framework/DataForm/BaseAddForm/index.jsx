@@ -15,6 +15,7 @@ import {
 
 import {
   defaultFormState,
+  emptyLogic,
   formNameCollection,
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
@@ -170,6 +171,7 @@ class BaseAddForm extends DataCore {
                 },
                 'DataForm::BaseAddForm',
                 'execSubmitApi',
+                'trigger',
                 'successCallback',
               );
 
@@ -183,6 +185,7 @@ class BaseAddForm extends DataCore {
                 },
                 'DataForm::BaseAddForm',
                 'execSubmitApi',
+                'trigger',
                 'completeCallback',
               );
 
@@ -206,6 +209,7 @@ class BaseAddForm extends DataCore {
                 },
                 'DataForm::BaseAddForm',
                 'execSubmitApi',
+                'trigger',
                 'failCallback',
               );
 
@@ -219,6 +223,7 @@ class BaseAddForm extends DataCore {
                 },
                 'DataForm::BaseAddForm',
                 'execSubmitApi',
+                'trigger',
                 'completeCallback',
               );
 
@@ -248,6 +253,7 @@ class BaseAddForm extends DataCore {
               },
               'DataForm::BaseAddForm',
               'execSubmitApi',
+              'trigger',
               'failCallback',
             );
 
@@ -261,6 +267,7 @@ class BaseAddForm extends DataCore {
               },
               'DataForm::BaseAddForm',
               'execSubmitApi',
+              'trigger',
               'completeCallback',
             );
 
@@ -284,10 +291,20 @@ class BaseAddForm extends DataCore {
           {},
           'DataForm::BaseAddForm',
           'validate',
+          'trigger',
           'completeCallback',
         );
 
         completeCallback();
+      } else {
+        that.logCallTrace(
+          {},
+          'DataForm::BaseAddForm',
+          'validate',
+          'trigger',
+          'completeCallback',
+          emptyLogic,
+        );
       }
 
       that.closePreventRender();
@@ -366,6 +383,7 @@ class BaseAddForm extends DataCore {
             {},
             'DataForm::BaseAddForm',
             'validate',
+            'trigger',
             'failCallback',
           );
 
@@ -377,6 +395,7 @@ class BaseAddForm extends DataCore {
             {},
             'DataForm::BaseAddForm',
             'validate',
+            'trigger',
             'completeCallback',
           );
 
