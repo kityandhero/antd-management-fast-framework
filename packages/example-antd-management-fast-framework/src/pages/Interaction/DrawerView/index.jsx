@@ -6,9 +6,11 @@ import {
 } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
-import { buildButton, iconBuilder } from 'antd-management-fast-component';
+import {
+  buildButton,
+  convertOptionOrRadioData,
+} from 'antd-management-fast-component';
 
-import { interactionModeCollection } from '../../../constants';
 import BaseView from '../BaseView';
 import DrawerCodeView from '../DrawerCodeView';
 import SimpleAddDrawer from '../SimpleAddDrawer';
@@ -16,7 +18,11 @@ import { code as codeSimpleAddDrawer } from '../SimpleAddDrawer/codeSource';
 import SimpleEditDrawer from '../SimpleEditDrawer';
 import { code as codeSimpleEditDrawer } from '../SimpleEditDrawer/codeSource';
 import SimpleMultiPageDrawer from '../SimpleMultiPageDrawer';
+import { code as codeSimpleMultiPageDrawer } from '../SimpleMultiPageDrawer/codeSource';
 import SimpleSinglePageDrawer from '../SimpleSinglePageDrawer';
+import { code as codeSimpleSinglePageDrawer } from '../SimpleSinglePageDrawer/codeSource';
+import SimpleSinglePageSelectDrawer from '../SimpleSinglePageSelectDrawer';
+import { code as codeSimpleSinglePageSelectDrawer } from '../SimpleSinglePageSelectDrawer/codeSource';
 
 @connect(({ schedulingControl }) => ({
   schedulingControl,
@@ -28,7 +34,8 @@ class DrawerView extends BaseView {
     this.state = {
       ...this.state,
       pageTitle: 'Drawer 交互示例',
-      interactionMode: interactionModeCollection.add,
+      currentCodeTitle: 'SimpleSinglePageDrawer',
+      currentCode: codeSimpleSinglePageDrawer,
     };
   }
 
@@ -37,6 +44,15 @@ class DrawerView extends BaseView {
       stick: false,
       title: '操作栏',
       tools: [
+        {
+          component: buildButton({
+            title: '点击显示 SinglePageSelectDrawer',
+            text: '显示 SinglePageSelectDrawer',
+            handleClick: () => {
+              SimpleSinglePageSelectDrawer.open();
+            },
+          }),
+        },
         {
           component: buildButton({
             title: '点击显示 SinglePageDrawer',
@@ -88,7 +104,7 @@ class DrawerView extends BaseView {
   };
 
   establishCardCollectionConfig = () => {
-    const { interactionMode } = this.state;
+    const { currentCode, currentCodeTitle } = this.state;
 
     const that = this;
 
@@ -97,43 +113,77 @@ class DrawerView extends BaseView {
         {
           title: {
             text: '代码示例',
-            subText: mergeArrowText(
-              'Code',
-              interactionMode === interactionModeCollection.add
-                ? 'SimpleAddDrawer'
-                : 'SimpleEditDrawer',
-            ),
+            subText: mergeArrowText('Code', currentCodeTitle),
           },
           extra: {
             affix: true,
             split: false,
             list: [
               {
-                buildType: cardConfig.extraBuildType.generalButton,
-                icon: iconBuilder.form(),
-                text: 'SimpleAddDrawer 源代码',
+                buildType: cardConfig.extraBuildType.flexSelect,
+                label: '显示源代码',
                 size: 'small',
-                type: 'link',
-                handleClick: () => {
+                defaultValue: 'SimpleSinglePageDrawer',
+                style: { width: '320px' },
+                list: [
+                  {
+                    flag: 'SimpleSinglePageSelectDrawer',
+                    name: 'SimpleSinglePageSelectDrawer',
+                  },
+                  {
+                    flag: 'SimpleSinglePageDrawer',
+                    name: 'SimpleSinglePageDrawer',
+                  },
+                  {
+                    flag: 'SimpleMultiPageDrawer',
+                    name: 'SimpleMultiPageDrawer',
+                  },
+                  {
+                    flag: 'SimpleAddDrawer',
+                    name: 'SimpleAddDrawer',
+                  },
+                  {
+                    flag: 'SimpleEditDrawer',
+                    name: 'SimpleEditDrawer',
+                  },
+                ],
+                dataConvert: convertOptionOrRadioData,
+                onChange: (v) => {
+                  let code = '';
+
+                  switch (v) {
+                    case 'SimpleSinglePageSelectDrawer': {
+                      code = codeSimpleSinglePageSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleSinglePageDrawer': {
+                      code = codeSimpleSinglePageDrawer;
+                      break;
+                    }
+
+                    case 'SimpleMultiPageDrawer': {
+                      code = codeSimpleMultiPageDrawer;
+                      break;
+                    }
+
+                    case 'SimpleAddDrawer': {
+                      code = codeSimpleAddDrawer;
+                      break;
+                    }
+
+                    case 'SimpleEditDrawer': {
+                      code = codeSimpleEditDrawer;
+                      break;
+                    }
+                  }
+
                   that.setState({
-                    interactionMode: interactionModeCollection.add,
+                    currentCodeTitle: v,
+                    currentCode: code,
                   });
 
-                  showSimpleInfoMessage('当前显示 SimpleAddDrawer 源代码');
-                },
-              },
-              {
-                buildType: cardConfig.extraBuildType.generalButton,
-                icon: iconBuilder.form(),
-                text: 'SimpleEditDrawer 源代码',
-                size: 'small',
-                type: 'link',
-                handleClick: () => {
-                  that.setState({
-                    interactionMode: interactionModeCollection.edit,
-                  });
-
-                  showSimpleInfoMessage('当前显示 SimpleEditDrawer 源代码');
+                  showSimpleInfoMessage(`当前显示 ${v} 源代码`);
                 },
               },
             ],
@@ -143,10 +193,7 @@ class DrawerView extends BaseView {
               lg: 24,
               type: cardConfig.contentItemType.syntaxHighlighterView,
               fieldData: 'syntaxHighlighter',
-              value:
-                interactionMode === interactionModeCollection.add
-                  ? codeSimpleAddDrawer
-                  : codeSimpleEditDrawer,
+              value: currentCode,
               language: 'js',
               innerProps: {
                 showLineNumbers: false,
@@ -162,6 +209,8 @@ class DrawerView extends BaseView {
   renderPresetOther = () => {
     return (
       <>
+        <SimpleSinglePageSelectDrawer />
+
         <SimpleSinglePageDrawer />
 
         <SimpleMultiPageDrawer />

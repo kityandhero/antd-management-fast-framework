@@ -217,7 +217,7 @@ function buildArticleList() {
   const simpleData = getSimpleArticle();
 
   const list = createEmptyList(30).map((o, index) => {
-    const no = `${index + 1}`;
+    const no = `${200_000 + index + 1}`;
 
     return {
       ...simpleData,

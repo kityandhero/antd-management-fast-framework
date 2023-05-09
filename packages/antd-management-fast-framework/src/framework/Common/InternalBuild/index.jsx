@@ -457,6 +457,17 @@ class InternalBuild extends InternalTabFlow {
   };
 
   buildByExtraBuildType = ({ keyPrefix = '', configList }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          keyPrefix,
+          configList,
+        },
+      },
+      'Common::InternalBuild',
+      'buildByExtraBuildType',
+    );
+
     const list = [];
 
     for (const [index, item] of (isArray(configList)
@@ -474,7 +485,6 @@ class InternalBuild extends InternalTabFlow {
           icon: null,
           text: '',
           component: null,
-
           ...item,
         };
 

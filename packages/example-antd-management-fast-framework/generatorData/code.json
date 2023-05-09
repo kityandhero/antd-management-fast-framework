@@ -32,6 +32,10 @@
     {
       "sourceFilePath": "./src/pages/Interaction/SimpleMultiPageDrawer/index.jsx",
       "codeFilePath": "./src/pages/Interaction/SimpleMultiPageDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageSelectDrawer/codeSource.js"
     }
   ]
 }

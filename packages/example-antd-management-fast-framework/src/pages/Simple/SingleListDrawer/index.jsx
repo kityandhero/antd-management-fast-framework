@@ -44,7 +44,7 @@ class SingleListDrawer extends SinglePageDrawer {
       ...this.state,
       loadApiPath: 'simple/singleList',
       listViewMode: listViewConfig.viewMode.list,
-      tableScroll: { y: 600 },
+      tableScrollY: 600,
     };
   }
 

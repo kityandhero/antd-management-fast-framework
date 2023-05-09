@@ -36,7 +36,7 @@ const visibleFlag = 'eced74e7982a48adbb394fd8257c6018';
   schedulingControl,
 }))
 class SimpleMultiPageDrawer extends MultiPageDrawer {
-  // showCallProcess = true;
+  showCallProcess = true;
 
   reloadWhenShow = true;
 
@@ -51,7 +51,7 @@ class SimpleMultiPageDrawer extends MultiPageDrawer {
       ...this.state,
       loadApiPath: 'simple/pageList',
       listViewMode: listViewConfig.viewMode.list,
-      tableScroll: { y: 600 },
+      tableScrollY: 600,
     };
   }
 
@@ -86,7 +86,7 @@ class SimpleMultiPageDrawer extends MultiPageDrawer {
     return {
       list: [
         {
-          lg: 8,
+          lg: 12,
           type: searchCardConfig.contentItemType.input,
           fieldData: fieldData.title,
         },

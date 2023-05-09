@@ -198,10 +198,31 @@ export const listViewConfig = {
   dataContainerExtraActionBuildType: {
     generalButton: 'generalButton',
     button: 'button',
+
+    /**
+     * dropdown
+     */
     dropdown: 'dropdown',
+
+    /**
+     * 带扩展操作的按钮
+     */
     dropdownButton: 'dropdownButton',
+
+    /**
+     * 带扩展操作的省略按钮，省略占位符本身不具有操作
+     */
     dropdownEllipsis: 'dropdownEllipsis',
+
+    /**
+     * 带图标文字，图标为空或者文字为空情况下渲染方式有差异
+     */
     iconInfo: 'iconInfo',
+
+    /**
+     * 自定义选择框
+     */
+    flexSelect: 'flexSelect',
 
     /**
      * 指定渲染自定义组件，组件由配置传入
@@ -223,6 +244,11 @@ export const listViewConfig = {
      * 构建Card集合展示
      */
     cardCollectionView: 2,
+
+    /**
+     * 构建自定义集合展示
+     */
+    customView: 3,
   },
   tableSize: {
     middle: 'middle',

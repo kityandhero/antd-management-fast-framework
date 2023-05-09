@@ -466,9 +466,9 @@ class SingleList extends SinglePage {
               availability: whetherNumber.yes,
             },
             {
-              flag: '4',
-              name: 'OtherView',
-              availability: whetherNumber.no,
+              flag: listViewConfig.viewMode.customView,
+              name: 'CustomView',
+              availability: whetherNumber.yes,
             },
           ],
           dataConvert: (o) => {

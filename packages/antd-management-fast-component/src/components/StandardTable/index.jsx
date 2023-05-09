@@ -1,6 +1,8 @@
 import { Alert, Table } from 'antd';
 import React, { PureComponent } from 'react';
 
+import { logDebug, mergeArrowText } from 'easy-soft-utility';
+
 import { listViewConfig } from 'antd-management-fast-common';
 
 import { AnchorLink } from '../AnchorLink';
@@ -82,6 +84,7 @@ class StandardTable extends PureComponent {
       size,
       showSelect: showSelectOption,
       showPagination,
+      style,
       ...rest
     } = this.props;
 
@@ -143,16 +146,17 @@ class StandardTable extends PureComponent {
         </div>
       );
 
+    const containerStyle = {
+      backgroundColor: '#fff',
+      padding: '10px 12px 0px 12px',
+      borderRadius: '8px',
+      ...style,
+    };
+
+    logDebug(containerStyle, mergeArrowText('StandardTable', 'containerStyle'));
+
     return (
-      <div
-        style={{
-          backgroundColor: '#fff',
-          paddingLeft: '12px',
-          paddingRight: '12px',
-          paddingTop: '10px',
-          borderRadius: '8px',
-        }}
-      >
+      <div style={containerStyle}>
         {rowSelectionMessage}
 
         <Table
@@ -173,6 +177,7 @@ class StandardTable extends PureComponent {
 
 StandardTable.defaultProps = {
   showPagination: true,
+  style: null,
 };
 
 export { StandardTable };

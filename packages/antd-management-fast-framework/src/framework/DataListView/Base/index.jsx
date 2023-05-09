@@ -12,7 +12,7 @@ import {
   Space,
 } from 'antd';
 import classNames from 'classnames';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import {
   buildFieldDescription,
@@ -31,6 +31,7 @@ import {
   cardConfig,
   columnFacadeMode,
   defaultListState,
+  emptyLogic,
   formNameCollection,
   getDerivedStateFromPropertiesForUrlParameters,
   listViewConfig,
@@ -669,6 +670,8 @@ class Base extends AuthorizationWrapper {
     colLg = 8,
     rangePickerProperties = null,
   ) => {
+    this.logCallTrack({}, 'DataListView::Base', 'buildSearchCardRangePicker');
+
     return (
       <Col lg={colLg} md={12} sm={24} xs={24}>
         {this.buildSearchCardRangePickerCore(
@@ -680,6 +683,8 @@ class Base extends AuthorizationWrapper {
   };
 
   buildSearchCardRow = () => {
+    this.logCallTrack({}, 'DataListView::Base', 'buildSearchCardRow');
+
     const config = this.establishSearchCardConfig();
 
     if ((config || null) == null) {
@@ -690,6 +695,13 @@ class Base extends AuthorizationWrapper {
   };
 
   fillSearchCardInitialValues = () => {
+    this.logCallTrack(
+      {},
+      'DataListView::Base',
+      'fillSearchCardInitialValues',
+      emptyLogic,
+    );
+
     return {};
   };
 
@@ -714,21 +726,35 @@ class Base extends AuthorizationWrapper {
 
   renderPresetForm = () => this.buildSearchCard();
 
-  // eslint-disable-next-line arrow-body-style
   establishTableAdditionalConfig = () => {
-    // 可以配置额外的Table属性
+    this.logCallTrack(
+      {},
+      'DataListView::Base',
+      'establishTableAdditionalConfig',
+      emptyLogic,
+    );
 
     return {};
   };
 
-  // eslint-disable-next-line arrow-body-style
   establishTableExpandableConfig = () => {
-    // 可以配置额外的Table属性
+    this.logCallTrack(
+      {},
+      'DataListView::Base',
+      'establishTableExpandableConfig',
+      emptyLogic,
+    );
 
     return null;
   };
 
   restoreColumnsOtherConfigArray = () => {
+    this.logCallTrack(
+      {},
+      'DataListView::Base',
+      'restoreColumnsOtherConfigArray',
+    );
+
     const columnsOtherConfigArray = this.getColumn().map((item) => {
       return { dataIndex: item.dataIndex, show: true, fixed: item.fixed || '' };
     });
@@ -737,18 +763,29 @@ class Base extends AuthorizationWrapper {
   };
 
   buildTableConfig = () => {
+    this.logCallTrack({}, 'DataListView::Base', 'buildTableConfig');
+
     const { tableSize } = this.state;
 
     const columns = this.getColumnMerged();
     const expandable = this.establishTableExpandableConfig();
 
-    return {
+    const result = {
       ...this.establishTableAdditionalConfig(),
       columns,
       size: tableSize,
       tableLayout: 'fix',
       expandable,
     };
+
+    this.logCallTrace(
+      result,
+      'DataListView::Base',
+      'buildTableConfig',
+      'result',
+    );
+
+    return result;
   };
 
   setTableSize = (key) => {
@@ -863,14 +900,34 @@ class Base extends AuthorizationWrapper {
   };
 
   establishDataContainerExtraActionCollectionConfig = () => {
+    this.logCallTrack(
+      {},
+      'DataListView::Base',
+      'establishDataContainerExtraActionCollectionConfig',
+      emptyLogic,
+    );
+
     return [];
   };
 
   establishDataContainerExtraAffixConfig = () => {
+    this.logCallTrack(
+      {},
+      'DataListView::Base',
+      'establishDataContainerExtraAffixConfig',
+      emptyLogic,
+    );
+
     return {};
   };
 
   buildDataContainerExtraActionCollection = () => {
+    this.logCallTrack(
+      {},
+      'DataListView::Base',
+      'buildDataContainerExtraActionCollection',
+    );
+
     const configList = this.establishDataContainerExtraActionCollectionConfig();
 
     if (!isArray(configList)) {
@@ -884,6 +941,8 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetExtraActionView = () => {
+    this.logCallTrack({}, 'DataListView::Base', 'renderPresetExtraActionView');
+
     const actions = this.buildDataContainerExtraActionCollection();
 
     if (!isArray(actions) || actions.length <= 0) {
@@ -1297,10 +1356,22 @@ class Base extends AuthorizationWrapper {
    * frontendPagination配置仅用在前台模拟分页时
    */
   renderPresetTableView = () => {
-    const { metaListData, tableScroll, showSelect, selectedDataTableDataRows } =
-      this.state;
+    this.logCallTrace({}, 'DataListView::Base', 'renderPresetTableView');
 
-    const { styleSet, columns, expandable, size } = this.buildTableConfig();
+    const {
+      metaListData,
+      tableScrollX,
+      tableScrollY,
+      showSelect,
+      selectedDataTableDataRows,
+    } = this.state;
+
+    const {
+      style: styleSet,
+      columns,
+      expandable,
+      size,
+    } = this.buildTableConfig();
 
     const standardTableCustomOption = {
       loading: this.checkInProgress(),
@@ -1327,14 +1398,16 @@ class Base extends AuthorizationWrapper {
       standardTableCustomOption.style = styleSet;
     }
 
-    if ((tableScroll || null) != null) {
-      standardTableCustomOption.scroll = tableScroll;
-    }
+    standardTableCustomOption.scroll = {
+      ...(tableScrollX > 0 ? { x: tableScrollX } : {}),
+      ...(tableScrollY == null ? {} : { y: tableScrollY }),
+    };
 
-    this.logCallTrack(
+    this.logCallTrace(
       {
         metaListData,
-        tableScroll,
+        tableScrollX,
+        tableScrollY,
         showSelect,
         selectedDataTableDataRows,
         standardTableCustomOption,
@@ -1344,11 +1417,12 @@ class Base extends AuthorizationWrapper {
     );
 
     return (
-      <div>
-        <LoadingOverlay flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}>
-          <StandardTable {...standardTableCustomOption} />
-        </LoadingOverlay>
-      </div>
+      <LoadingOverlay
+        flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}
+        fill
+      >
+        <StandardTable {...standardTableCustomOption} />
+      </LoadingOverlay>
     );
   };
 
@@ -1380,6 +1454,42 @@ class Base extends AuthorizationWrapper {
     );
   };
 
+  // eslint-disable-next-line no-unused-vars
+  renderPresetCustomItemView = (item) => {
+    logException('renderPresetCustomItemView need override for custom view');
+
+    return null;
+  };
+
+  renderPresetCustomView = () => {
+    const listItem = this.getCanUseFrontendPagination()
+      ? this.adjustFrontendPaginationViewDataSource()
+      : this.adjustViewDataSource();
+    const itemCount = listItem.length;
+
+    return (
+      <LoadingOverlay flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}>
+        <Space style={{ width: '100%' }} direction="vertical" size={14}>
+          {itemCount > 0 ? (
+            listItem.map((o, index) => {
+              return (
+                <Fragment key={`item_${index}`}>
+                  {this.renderPresetCustomItemView(o)}
+                </Fragment>
+              );
+            })
+          ) : (
+            <EmptyCardCollection
+              flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}
+            />
+          )}
+        </Space>
+
+        {this.renderPresetPaginationView()}
+      </LoadingOverlay>
+    );
+  };
+
   renderPresetPaginationView = () => {
     this.logCallTrack({}, 'DataListView::Base', 'renderPresetPaginationView');
 
@@ -1395,7 +1505,7 @@ class Base extends AuthorizationWrapper {
 
     if (listViewMode === listViewConfig.viewMode.list) {
       if (showSelect) {
-        const text = 'MultiListView显示模式下不支持选择';
+        const text = 'MultiListView显示模式下不支持选择 list view';
 
         showSimpleRuntimeError(text);
       }
@@ -1405,12 +1515,22 @@ class Base extends AuthorizationWrapper {
 
     if (listViewMode === listViewConfig.viewMode.cardCollectionView) {
       if (showSelect) {
-        const text = 'MultiListView显示模式下不支持选择';
+        const text = 'MultiListView显示模式下不支持选择 card collection view';
 
         showSimpleRuntimeError(text);
       }
 
       return this.renderPresetCardCollectionView();
+    }
+
+    if (listViewMode === listViewConfig.viewMode.customView) {
+      if (showSelect) {
+        const text = 'MultiListView显示模式下不支持选择 custom view';
+
+        showSimpleRuntimeError(text);
+      }
+
+      return this.renderPresetCustomView();
     }
 
     const text = '未知的显示模式';

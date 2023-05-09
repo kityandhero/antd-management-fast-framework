@@ -17,12 +17,6 @@ class ResetButton extends PureComponent {
     const loading = !!switchControl[loadingFlag];
     const resetting = !!switchControl[resettingFlag];
 
-    console.log({
-      resettingFlag,
-      resetting,
-      switchControl,
-    });
-
     const showLoadingIcon = loading && resetting ? true : false;
 
     return (

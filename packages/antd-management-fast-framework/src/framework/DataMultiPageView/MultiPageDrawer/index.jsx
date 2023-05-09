@@ -1,14 +1,4 @@
-import {
-  Button,
-  Card,
-  Col,
-  Divider,
-  List,
-  Row,
-  Spin,
-  Tag,
-  Tooltip,
-} from 'antd';
+import { Card, Col, Divider, List, Row, Tooltip } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import React from 'react';
 
@@ -30,10 +20,18 @@ import {
   iconBuilder,
 } from 'antd-management-fast-component';
 
-import { DrawerExtra } from '../../../components/DrawerExtra';
-import { switchControlAssist } from '../../../utils/switchControlAssist';
+import {
+  DrawerExtra,
+  LoadingOverlay,
+  ReloadAnimalPrompt,
+} from '../../../components';
+import {
+  reloadAnimalPromptControlAssist,
+  switchControlAssist,
+} from '../../../utils';
 import { ColumnSetting } from '../../DataListView/ColumnSetting';
 import { DensityAction } from '../../DataListView/DensityAction';
+import { RefreshButton } from '../../DataListView/RefreshButton';
 import { MultiPage } from '../MultiPage';
 
 import styles from './index.less';
@@ -69,6 +67,7 @@ class MultiPageDrawer extends MultiPage {
     this.state = {
       ...this.state,
       listViewMode: listViewConfig.viewMode.table,
+      tableScrollY: 'calc(100% - 35px)',
     };
 
     this.restoreSearch = false;
@@ -127,17 +126,12 @@ class MultiPageDrawer extends MultiPage {
       );
 
       this.reloadData({
+        delay: 400,
+        beforeRequest: () => {
+          reloadAnimalPromptControlAssist.show();
+        },
         completeCallback: () => {
-          this.reloadAnimalPromptComplete = true;
-
-          this.logCallTrace(
-            {},
-            'DataMultiPageView::MultiPageDrawer',
-            'doOtherWhenChangeVisibleToShow',
-            'reloadData',
-            'reloadAnimalPromptComplete',
-            true,
-          );
+          reloadAnimalPromptControlAssist.hide(1000);
         },
       });
     }
@@ -313,15 +307,7 @@ class MultiPageDrawer extends MultiPage {
       'renderPresetListMainViewContainor',
     );
 
-    const {
-      listTitle,
-      tableSize,
-      dataLoading,
-      reloading,
-      processing,
-      refreshing,
-      listViewMode,
-    } = this.state;
+    const { firstLoadSuccess, listTitle, tableSize, listViewMode } = this.state;
 
     const extraAction = this.renderPresetExtraActionView();
     const searchForm = this.renderPresetForm();
@@ -329,31 +315,19 @@ class MultiPageDrawer extends MultiPage {
     return (
       <div
         className={styles.tableList}
-        style={
-          listViewMode === listViewConfig.viewMode.list
-            ? { height: '100%', overflow: 'hidden' }
-            : {}
-        }
+        style={{ height: '100%', overflow: 'hidden' }}
       >
         <div
           className={styles.containorBox}
-          style={
-            listViewMode === listViewConfig.viewMode.list
-              ? {
-                  height: '100%',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }
-              : {}
-          }
+          style={{
+            height: '100%',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
         >
           {this.showSearchForm && (searchForm || null) != null ? (
-            <div
-              style={
-                listViewMode === listViewConfig.viewMode.list ? { flex: 0 } : {}
-              }
-            >
+            <div style={{ flex: 0 }}>
               <Card
                 bordered={false}
                 className={styles.containorSearch}
@@ -370,40 +344,29 @@ class MultiPageDrawer extends MultiPage {
             </div>
           ) : null}
 
-          <div
-            style={
-              listViewMode === listViewConfig.viewMode.list
-                ? { flex: 'auto', overflow: 'hidden' }
-                : {}
-            }
-          >
+          <div style={{ flex: 'auto', overflow: 'hidden' }}>
             <Card
               title={
                 <Row>
                   <Col flex="70px"> {listTitle}</Col>
                   <Col flex="auto">
                     <QueueAnim>
-                      {this.reloadWhenShow &&
-                      this.reloadAnimalPrompt &&
-                      !this.reloadAnimalPromptComplete ? (
-                        <div key="3069dd18-f530-43ab-b96d-a86f8079358f">
-                          <Tag color="gold">即将刷新</Tag>
-                        </div>
+                      {this.reloadWhenShow && this.reloadAnimalPrompt ? (
+                        <ReloadAnimalPrompt
+                          visible={firstLoadSuccess}
+                          flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}
+                        />
                       ) : null}
                     </QueueAnim>
                   </Col>
                 </Row>
               }
-              style={
-                listViewMode === listViewConfig.viewMode.list
-                  ? {
-                      height: '100%',
-                      overflow: 'hidden',
-                      display: 'flex',
-                      flexDirection: 'column',
-                    }
-                  : {}
-              }
+              style={{
+                height: '100%',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
               headStyle={{
                 borderBottom: 0,
                 paddingLeft: 0,
@@ -439,12 +402,9 @@ class MultiPageDrawer extends MultiPage {
                   ) : null}
 
                   <Tooltip title="刷新本页">
-                    <Button
-                      shape="circle"
-                      className={styles.iconAction}
-                      loading={refreshing}
-                      icon={iconBuilder.reload()}
-                      onClick={() => {
+                    <RefreshButton
+                      flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
+                      onRefresh={() => {
                         this.refreshData({});
                       }}
                     />
@@ -465,43 +425,20 @@ class MultiPageDrawer extends MultiPage {
                 </>
               }
             >
-              <Spin
-                spinning={dataLoading || reloading || processing}
-                wrapperClassName={styles.spinListView}
+              <div
+                style={{
+                  height: '100%',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
               >
-                <div
-                  style={
-                    listViewMode === listViewConfig.viewMode.list
-                      ? {
-                          height: '100%',
-                          overflow: 'hidden',
-                          display: 'flex',
-                          flexDirection: 'column',
-                        }
-                      : {}
-                  }
-                >
-                  <div
-                    style={
-                      listViewMode === listViewConfig.viewMode.list
-                        ? { flex: 0 }
-                        : {}
-                    }
-                  >
-                    {this.renderPresetAboveTable()}
-                  </div>
+                <div style={{ flex: 0 }}>{this.renderPresetAboveTable()}</div>
 
-                  <div
-                    style={
-                      listViewMode === listViewConfig.viewMode.list
-                        ? { flex: 'auto', overflow: 'hidden', paddingTop: 5 }
-                        : {}
-                    }
-                  >
-                    {this.renderPresetListMainView()}
-                  </div>
+                <div style={{ flex: 'auto', overflow: 'hidden' }}>
+                  {this.renderPresetListMainView()}
                 </div>
-              </Spin>
+              </div>
             </Card>
           </div>
         </div>
@@ -512,21 +449,14 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderPresetContentContainor = () => {
-    const { listViewMode } = this.state;
-
     return (
       <div
         className={styles.contentContainor}
         style={{
-          ...(listViewMode === listViewConfig.viewMode.list
-            ? {
-                paddingBottom: 0,
-                height: '100%',
-                overflow: 'hidden',
-              }
-            : { paddingBottom: 0 }),
+          paddingBottom: 0,
+          height: '100%',
+          overflow: 'hidden',
           ...(this.showSearchForm ? {} : { paddingTop: 0 }),
-
           backgroundColor: '#fff',
         }}
       >
@@ -536,16 +466,10 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderPresetDrawerInner = () => {
-    const { listViewMode } = this.state;
-
     return (
       <div
         className={styles.mainContainor}
-        style={
-          listViewMode === listViewConfig.viewMode.list
-            ? { height: '100%', overflow: 'hidden' }
-            : {}
-        }
+        style={{ height: '100%', overflow: 'hidden' }}
       >
         {this.renderPresetContentContainor()}
       </div>
@@ -560,73 +484,47 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderPresetListView = () => {
-    const { listViewMode } = this.state;
-
     return (
       <div
-        style={
-          listViewMode === listViewConfig.viewMode.list
-            ? {
-                height: '100%',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-              }
-            : {}
-        }
+        style={{
+          height: '100%',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
-        <div
-          style={
-            listViewMode === listViewConfig.viewMode.list
-              ? { flex: 'auto', overflow: 'hidden' }
-              : {}
-          }
-        >
-          <List
-            style={
-              listViewMode === listViewConfig.viewMode.list
-                ? { height: '100%', overflow: 'auto' }
-                : {}
-            }
-            className={styles.list}
-            itemLayout={this.renderPresetListViewItemLayout()}
-            dataSource={
-              this.getCanUseFrontendPagination()
-                ? this.adjustFrontendPaginationViewDataSource()
-                : this.adjustViewDataSource()
-            }
-            pagination={false}
-            renderItem={(item, index) => {
-              return this.renderPresetListViewItem(item, index);
-            }}
-          />
+        <div style={{ flex: 'auto', overflow: 'hidden' }}>
+          <LoadingOverlay
+            flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}
+            fill
+          >
+            <List
+              style={{ height: '100%', overflow: 'auto' }}
+              className={styles.list}
+              itemLayout={this.renderPresetListViewItemLayout()}
+              dataSource={
+                this.getCanUseFrontendPagination()
+                  ? this.adjustFrontendPaginationViewDataSource()
+                  : this.adjustViewDataSource()
+              }
+              pagination={false}
+              renderItem={(item, index) => {
+                return this.renderPresetListViewItem(item, index);
+              }}
+            />
+          </LoadingOverlay>
         </div>
 
-        <div
-          style={
-            listViewMode === listViewConfig.viewMode.list
-              ? { flex: 0, paddingTop: 0, paddingBottom: 0 }
-              : {}
-          }
-        >
+        <div style={{ flex: 0, paddingTop: 0, paddingBottom: 0 }}>
           <div
-            style={
-              listViewMode === listViewConfig.viewMode.list
-                ? {
-                    height: '100%',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                  }
-                : {}
-            }
+            style={{
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              boxShadow: 'inset 0px 9px 8px -5px rgba(5, 5, 5, 0.06)',
+            }}
           >
-            <div
-              style={
-                listViewMode === listViewConfig.viewMode.list
-                  ? { flex: 'auto' }
-                  : {}
-              }
-            />
+            <div style={{ flex: 'auto' }} />
 
             {this.renderPresetPaginationView()}
           </div>
@@ -672,6 +570,16 @@ class MultiPageDrawer extends MultiPage {
           that.doOtherWhenChangeVisible(v);
         }}
       >
+        {listViewMode === listViewConfig.viewMode.table ? (
+          <div
+            style={{
+              height: '100%',
+            }}
+          >
+            {this.renderPresetDrawerInner()}
+          </div>
+        ) : null}
+
         {listViewMode === listViewConfig.viewMode.list ? (
           <div
             style={{
@@ -692,9 +600,15 @@ class MultiPageDrawer extends MultiPage {
           </div>
         ) : null}
 
-        {listViewMode === listViewConfig.viewMode.table
-          ? this.renderPresetDrawerInner()
-          : null}
+        {listViewMode === listViewConfig.viewMode.customView ? (
+          <div
+            style={{
+              height: 'calc(100vh - 55px)',
+            }}
+          >
+            {this.renderPresetDrawerInner()}
+          </div>
+        ) : null}
       </DrawerExtra>
     );
   }

@@ -8,7 +8,7 @@ export function convertOptionOrRadioData(o, index) {
   const { flag, name, availability } = {
     flag: `option_${index}`,
     name: '',
-    availability: 0,
+    availability: 1,
     hidden: false,
     ...o,
   };

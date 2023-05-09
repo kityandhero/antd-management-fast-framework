@@ -8,7 +8,6 @@ import {
 import { cardConfig } from 'antd-management-fast-common';
 import { buildButton, iconBuilder } from 'antd-management-fast-component';
 
-import { interactionModeCollection } from '../../../constants';
 import BaseView from '../BaseView';
 import ModalCodeView from '../ModalCodeView';
 import SimpleAddModal from '../SimpleAddModal';
@@ -26,7 +25,8 @@ class ModalView extends BaseView {
     this.state = {
       ...this.state,
       pageTitle: 'Modal 交互示例',
-      interactionMode: interactionModeCollection.add,
+      currentCodeTitle: 'SimpleAddModal',
+      currentCode: codeSimpleAddModal,
     };
   }
 
@@ -71,7 +71,7 @@ class ModalView extends BaseView {
   };
 
   establishCardCollectionConfig = () => {
-    const { interactionMode } = this.state;
+    const { currentCode, currentCodeTitle } = this.state;
 
     const that = this;
 
@@ -80,12 +80,7 @@ class ModalView extends BaseView {
         {
           title: {
             text: '代码示例',
-            subText: mergeArrowText(
-              'Code',
-              interactionMode === interactionModeCollection.add
-                ? 'SimpleAddModal'
-                : 'SimpleEditModal',
-            ),
+            subText: mergeArrowText('Code', currentCodeTitle),
           },
           extra: {
             affix: true,
@@ -99,7 +94,8 @@ class ModalView extends BaseView {
                 type: 'link',
                 handleClick: () => {
                   that.setState({
-                    interactionMode: interactionModeCollection.add,
+                    currentCodeTitle: 'SimpleAddModal',
+                    currentCode: codeSimpleAddModal,
                   });
 
                   showSimpleInfoMessage('当前显示 SimpleAddModal 源代码');
@@ -113,7 +109,8 @@ class ModalView extends BaseView {
                 type: 'link',
                 handleClick: () => {
                   that.setState({
-                    interactionMode: interactionModeCollection.edit,
+                    currentCodeTitle: 'SimpleEditModal',
+                    currentCode: codeSimpleEditModal,
                   });
 
                   showSimpleInfoMessage('当前显示 SimpleEditModal 源代码');
@@ -126,10 +123,7 @@ class ModalView extends BaseView {
               lg: 24,
               type: cardConfig.contentItemType.syntaxHighlighterView,
               fieldData: 'syntaxHighlighter',
-              value:
-                interactionMode === interactionModeCollection.add
-                  ? codeSimpleAddModal
-                  : codeSimpleEditModal,
+              value: currentCode,
               language: 'js',
               innerProps: {
                 showLineNumbers: false,

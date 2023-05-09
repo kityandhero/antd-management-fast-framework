@@ -5,6 +5,7 @@ import {
   checkStringIsNullOrWhiteSpace,
   formatCollection,
   getValueByKey,
+  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -13,7 +14,10 @@ import {
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import {
+  convertOptionOrRadioData,
+  iconBuilder,
+} from 'antd-management-fast-component';
 import {
   DataSinglePageView,
   switchControlAssist,
@@ -51,7 +55,7 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
       ...this.state,
       loadApiPath: 'simple/singleList',
       listViewMode: listViewConfig.viewMode.list,
-      tableScroll: { y: 600 },
+      tableScrollY: 600,
     };
   }
 
@@ -86,7 +90,7 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
     return {
       list: [
         {
-          lg: 8,
+          lg: 12,
           type: searchCardConfig.contentItemType.input,
           fieldData: fieldData.title,
         },
@@ -97,6 +101,65 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
         },
       ],
     };
+  };
+
+  establishDataContainerExtraActionCollectionConfig = () => {
+    const { listViewMode } = this.state;
+
+    return [
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.flexSelect,
+        label: '显示模式',
+        size: 'small',
+        defaultValue: listViewMode,
+        style: { width: '190px' },
+        list: [
+          {
+            flag: listViewConfig.viewMode.table,
+            name: '表格视图',
+            availability: whetherNumber.yes,
+          },
+          {
+            flag: listViewConfig.viewMode.list,
+            name: '列表视图',
+            availability: whetherNumber.yes,
+          },
+          {
+            flag: listViewConfig.viewMode.cardCollectionView,
+            name: '卡片视图',
+            availability: whetherNumber.yes,
+          },
+          {
+            flag: listViewConfig.viewMode.customView,
+            name: '自定义视图',
+            availability: whetherNumber.yes,
+          },
+        ],
+        dataConvert: convertOptionOrRadioData,
+        onChange: (v, option) => {
+          console.log({ v, option });
+          this.setState({ listViewMode: v });
+        },
+      },
+      // {
+      //   buildType:
+      //     listViewConfig.dataContainerExtraActionBuildType.generalButton,
+      //   type: 'primary',
+      //   icon: iconBuilder.plus(),
+      //   text: '新增文章[侧拉]',
+      //   handleClick: this.showAddBasicInfoDrawer,
+      // },
+      // {
+      //   buildType:
+      //     listViewConfig.dataContainerExtraActionBuildType.generalButton,
+      //   type: 'primary',
+      //   icon: iconBuilder.plus(),
+      //   confirm: true,
+      //   title: '即将跳转新增数据页面，确定吗？',
+      //   text: '新增文章[页面]',
+      //   handleClick: this.goToAdd,
+      // },
+    ];
   };
 
   // eslint-disable-next-line no-unused-vars

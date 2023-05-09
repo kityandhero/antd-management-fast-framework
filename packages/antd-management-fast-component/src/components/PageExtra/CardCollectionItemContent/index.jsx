@@ -628,7 +628,6 @@ class CardCollectionItemContent extends PureComponent {
               if (type === cardConfig.contentItemType.audioUpload) {
                 const uploadProperties = {
                   ...contentItem.uploadProps,
-
                   audio: contentItem.audio || '',
                   showPreview: contentItem.showPreview || false,
                   action: contentItem.action || '',

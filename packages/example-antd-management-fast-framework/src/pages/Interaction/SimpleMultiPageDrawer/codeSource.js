@@ -86,7 +86,7 @@ class SimpleMultiPageDrawer extends MultiPageDrawer {
     return {
       list: [
         {
-          lg: 8,
+          lg: 12,
           type: searchCardConfig.contentItemType.input,
           fieldData: fieldData.title,
         },

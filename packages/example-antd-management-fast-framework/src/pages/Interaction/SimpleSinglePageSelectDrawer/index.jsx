@@ -1,11 +1,10 @@
-export const code = `import { Avatar, Divider, List, Typography } from 'antd';
+import { Avatar, Divider, List, Typography } from 'antd';
 
 import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   formatCollection,
   getValueByKey,
-  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -14,10 +13,7 @@ import {
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
-import {
-  convertOptionOrRadioData,
-  iconBuilder,
-} from 'antd-management-fast-component';
+import { iconBuilder } from 'antd-management-fast-component';
 import {
   DataSinglePageView,
   switchControlAssist,
@@ -31,15 +27,15 @@ import {
 import { fieldData, statusCollection } from '../../Simple/Common/data';
 
 const { Text } = Typography;
-const { SinglePageDrawer } = DataSinglePageView;
+const { SinglePageSelectDrawer } = DataSinglePageView;
 
-const visibleFlag = 'b354b02508d747ecacedc90e6c86c4a1';
+const visibleFlag = 'da3bbfa15180472992244f3b33d36229';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SimpleSinglePageDrawer extends SinglePageDrawer {
+class SimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
   showCallProcess = true;
 
   reloadWhenShow = true;
@@ -54,13 +50,13 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
     this.state = {
       ...this.state,
       loadApiPath: 'simple/singleList',
-      listViewMode: listViewConfig.viewMode.list,
-      tableScroll: { y: 600 },
+      listViewMode: listViewConfig.viewMode.table,
+      tableScrollX: 1620,
     };
   }
 
   getPresetPageName = () => {
-    return '数据单页列表';
+    return '数据单页选择列表';
   };
 
   getStatusBadge = (v) => {
@@ -101,65 +97,6 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
         },
       ],
     };
-  };
-
-  establishDataContainerExtraActionCollectionConfig = () => {
-    const { listViewMode } = this.state;
-
-    return [
-      {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.flexSelect,
-        label: '显示模式',
-        size: 'small',
-        defaultValue: listViewMode,
-        style: { width: '190px' },
-        list: [
-          {
-            flag: listViewConfig.viewMode.table,
-            name: '表格视图',
-            availability: whetherNumber.yes,
-          },
-          {
-            flag: listViewConfig.viewMode.list,
-            name: '列表视图',
-            availability: whetherNumber.yes,
-          },
-          {
-            flag: listViewConfig.viewMode.cardCollectionView,
-            name: '卡片视图',
-            availability: whetherNumber.yes,
-          },
-          {
-            flag: listViewConfig.viewMode.customView,
-            name: '自定义视图',
-            availability: whetherNumber.yes,
-          },
-        ],
-        dataConvert: convertOptionOrRadioData,
-        onChange: (v, option) => {
-          console.log({ v, option });
-          this.setState({ listViewMode: v });
-        },
-      },
-      // {
-      //   buildType:
-      //     listViewConfig.dataContainerExtraActionBuildType.generalButton,
-      //   type: 'primary',
-      //   icon: iconBuilder.plus(),
-      //   text: '新增文章[侧拉]',
-      //   handleClick: this.showAddBasicInfoDrawer,
-      // },
-      // {
-      //   buildType:
-      //     listViewConfig.dataContainerExtraActionBuildType.generalButton,
-      //   type: 'primary',
-      //   icon: iconBuilder.plus(),
-      //   confirm: true,
-      //   title: '即将跳转新增数据页面，确定吗？',
-      //   text: '新增文章[页面]',
-      //   handleClick: this.goToAdd,
-      // },
-    ];
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -284,5 +221,4 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
   ];
 }
 
-export default SimpleSinglePageDrawer;
-`;
+export default SimpleSinglePageSelectDrawer;

@@ -84,7 +84,7 @@ class PageList extends MultiPage {
       pageTitle: '文章列表',
       listViewMode: listViewConfig.viewMode.table,
       pageSize: 8,
-      tableScroll: { x: 1620 },
+      tableScrollX: 1620,
       loadApiPath: 'simple/pageList',
       changeSortModalVisible: false,
       updateBasicInfoDrawerVisible: false,
@@ -573,9 +573,9 @@ class PageList extends MultiPage {
               availability: whetherNumber.yes,
             },
             {
-              flag: '4',
-              name: 'OtherView',
-              availability: whetherNumber.no,
+              flag: listViewConfig.viewMode.customView,
+              name: 'CustomView',
+              availability: whetherNumber.yes,
             },
           ],
           dataConvert: (o) => {

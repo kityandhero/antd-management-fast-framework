@@ -46,7 +46,7 @@ class PageListDrawer extends MultiPageSelectDrawer {
 
       loadApiPath: 'simple/pageList',
       listViewMode: listViewConfig.viewMode.list,
-      tableScroll: { y: 600 },
+      tableScrollY: 600,
     };
   }
 

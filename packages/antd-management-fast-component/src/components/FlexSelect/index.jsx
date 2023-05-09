@@ -17,6 +17,7 @@ import { VerticalBox } from '../VerticalBox';
 class FlexSelect extends BaseComponent {
   renderFurther() {
     const {
+      style,
       label = '',
       defaultValue = null,
       separator = ':',
@@ -61,6 +62,7 @@ class FlexSelect extends BaseComponent {
     return (
       <FlexBox
         flexAuto="right"
+        style={style}
         left={
           checkStringIsNullOrWhiteSpace(label || '') ? null : (
             <VerticalBox

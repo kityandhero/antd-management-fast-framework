@@ -52,7 +52,7 @@ class Index extends MultiPage {
       pageTitle: '工作台',
       listTitle: '新近列表',
       loadApiPath: 'simple/pageList',
-      tableScroll: { x: 1020 },
+      tableScrollX: 1020,
       pageSize: 8,
       currentOperator: null,
     };

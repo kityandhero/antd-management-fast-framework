@@ -42,7 +42,8 @@ export function defaultCommonState() {
 export function defaultListState() {
   const data = {
     ...defaultCommonState(),
-    tableScroll: { x: 1520 },
+    tableScrollX: 1520,
+    tableScrollY: null,
     startTimeAlias: '',
     endTimeAlias: '',
     listViewMode: listViewConfig.viewMode.table,
@@ -57,7 +58,8 @@ export function defaultPageListState() {
   const data = {
     ...defaultCommonState(),
     loadApiPath: '',
-    tableScroll: { x: 1520 },
+    tableScrollX: 1520,
+    tableScrollY: null,
     listViewMode: listViewConfig.viewMode.table,
     showSelect: false,
     selectedDataTableDataRows: [],

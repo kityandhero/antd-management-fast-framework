@@ -376,6 +376,7 @@ export function buildTreeSelect({
 }
 
 export function buildFlexSelect({
+  style = null,
   label = '',
   defaultValue = null,
   separator = ':',
@@ -388,6 +389,7 @@ export function buildFlexSelect({
 }) {
   return (
     <FlexSelect
+      style={style}
       label={label}
       defaultValue={defaultValue}
       separator={separator}

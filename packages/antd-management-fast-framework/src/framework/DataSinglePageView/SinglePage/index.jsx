@@ -9,7 +9,7 @@ import {
   toNumber,
 } from 'easy-soft-utility';
 
-import { defaultListState } from 'antd-management-fast-common';
+import { defaultListState, emptyLogic } from 'antd-management-fast-common';
 
 import { Base } from '../../DataListView/Base';
 
@@ -249,6 +249,13 @@ class SinglePage extends Base {
    * @returns
    */
   establishTableAdditionalConfig = () => {
+    this.logCallTrack(
+      {},
+      'DataSinglePageView::SinglePage',
+      'establishTableAdditionalConfig',
+      emptyLogic,
+    );
+
     return {};
   };
 

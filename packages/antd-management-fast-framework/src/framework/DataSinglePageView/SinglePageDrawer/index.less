@@ -28,6 +28,44 @@
       .ant-layout-footer {
         padding: 0;
       }
+
+      .ant-card {
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .ant-table-wrapper {
+        height: 100%;
+
+        .ant-spin-nested-loading {
+          height: 100%;
+
+          .ant-spin-container {
+            height: 100%;
+            overflow-x: hidden;
+
+            .ant-table {
+              height: calc(100% - 52px);
+
+              .ant-table-container {
+                height: 100%;
+
+                &::before {
+                  height: 100%;
+                }
+              }
+            }
+
+            .ant-pagination {
+              box-shadow: inset 0 9px 8px -5px rgba(5, 5, 5, 6%);
+              margin-top: 0;
+              margin-bottom: 0;
+              padding-top: 10px;
+              padding-bottom: 10px;
+            }
+          }
+        }
+      }
     }
   }
 }
