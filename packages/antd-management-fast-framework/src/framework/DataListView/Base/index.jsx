@@ -93,6 +93,11 @@ class Base extends AuthorizationWrapper {
 
   showListViewItemActionSelect = false;
 
+  /**
+   * 使用表格密度配置
+   */
+  useTableDensityAction = true;
+
   constructor(properties) {
     super(properties);
 
@@ -1222,17 +1227,24 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetCardExtraAction = () => {
+    this.logCallTrack({}, 'DataListView::Base', 'renderPresetCardExtraAction');
+
     const { listViewMode, tableSize } = this.state;
+
+    console.log(this.useTableDensityAction);
+    console.log('---------------------------------------------------');
 
     if (listViewMode === listViewConfig.viewMode.table) {
       return (
         <>
-          <DensityAction
-            tableSize={tableSize}
-            setTableSize={(key) => {
-              this.setTableSize(key);
-            }}
-          />
+          {this.useTableDensityAction ? (
+            <DensityAction
+              tableSize={tableSize}
+              setTableSize={(key) => {
+                this.setTableSize(key);
+              }}
+            />
+          ) : null}
 
           <RefreshButton
             flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
@@ -1266,6 +1278,8 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetListViewItem = (record, index) => {
+    this.logCallTrack({}, 'DataListView::Base', 'renderPresetListViewItem');
+
     return (
       <List.Item
         actions={this.renderPresetListViewItemActions(record, index)}

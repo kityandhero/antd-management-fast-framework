@@ -3,8 +3,10 @@ import { Avatar, Divider, List, Typography } from 'antd';
 import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
+  convertCollection,
   formatCollection,
   getValueByKey,
+  showSimpleInfoMessage,
 } from 'easy-soft-utility';
 
 import {
@@ -94,6 +96,74 @@ class SimpleMultiPageDrawer extends MultiPageDrawer {
           lg: 8,
           type: searchCardConfig.contentItemType.component,
           component: this.buildSearchCardButtonCore(),
+        },
+      ],
+    };
+  };
+
+  establishListItemDropdownConfig = (record) => {
+    const itemStatus = getValueByKey({
+      data: record,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
+    return {
+      size: 'small',
+      text: '按钮',
+      placement: 'topRight',
+      icon: iconBuilder.form(),
+      // eslint-disable-next-line no-unused-vars
+      handleButtonClick: ({ handleData }) => {
+        const { title } = handleData;
+
+        showSimpleInfoMessage(`点击按钮 ${title}`);
+      },
+      handleData: record,
+      confirm: true,
+      title: '将要点击按钮，确定吗？',
+      handleMenuClick: ({ key, handleData }) => {
+        this.handleMenuClick({ key, handleData });
+      },
+      items: [
+        {
+          key: 'button1',
+          icon: iconBuilder.edit(),
+          text: 'button1',
+        },
+        {
+          key: 'button2',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.playCircle(),
+          text: 'button2',
+          disabled: itemStatus === statusCollection.online,
+          confirm: true,
+          title: '将要点击button2, 确定吗?',
+        },
+        {
+          key: 'button3',
+          icon: iconBuilder.pauseCircle(),
+          text: 'button3',
+          disabled: itemStatus === statusCollection.offline,
+          confirm: true,
+          title: '将要点击button3, 确定吗?',
+        },
+        {
+          key: 'button4',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.edit(),
+          text: 'button4',
+        },
+        {
+          key: 'button5',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.reload(),
+          text: 'button5',
+          confirm: true,
+          title: '将要点击button5, 确定吗?',
         },
       ],
     };
@@ -208,16 +278,6 @@ class SimpleMultiPageDrawer extends MultiPageDrawer {
       emptyValue: '--',
     },
     columnPlaceholder,
-    {
-      dataTarget: fieldData.customOperate,
-      width: 106,
-      fixed: 'right',
-      render: (text, record) => {
-        return this.renderPresetSelectButton({
-          handleData: record,
-        });
-      },
-    },
   ];
 }
 

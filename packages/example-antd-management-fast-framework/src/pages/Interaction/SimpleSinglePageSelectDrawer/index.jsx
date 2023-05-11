@@ -5,6 +5,8 @@ import {
   checkStringIsNullOrWhiteSpace,
   formatCollection,
   getValueByKey,
+  isArray,
+  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -13,7 +15,10 @@ import {
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import {
+  convertOptionOrRadioData,
+  iconBuilder,
+} from 'antd-management-fast-component';
 import {
   DataSinglePageView,
   switchControlAssist,
@@ -39,6 +44,8 @@ class SimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
   showCallProcess = true;
 
   reloadWhenShow = true;
+
+  confirmSelect = true;
 
   static open() {
     switchControlAssist.open(visibleFlag);
@@ -97,6 +104,68 @@ class SimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
         },
       ],
     };
+  };
+
+  establishDataContainerExtraActionCollectionConfig = () => {
+    const { listViewMode } = this.state;
+
+    return [
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.flexSelect,
+        label: '显示模式',
+        size: 'small',
+        defaultValue: listViewMode,
+        style: { width: '190px' },
+        list: [
+          {
+            flag: listViewConfig.viewMode.table,
+            name: '表格视图',
+            availability: whetherNumber.yes,
+          },
+          {
+            flag: listViewConfig.viewMode.list,
+            name: '列表视图',
+            availability: whetherNumber.yes,
+          },
+          {
+            flag: listViewConfig.viewMode.cardCollectionView,
+            name: '卡片视图',
+            availability: whetherNumber.yes,
+          },
+          {
+            flag: listViewConfig.viewMode.customView,
+            name: '自定义视图',
+            availability: whetherNumber.yes,
+          },
+        ],
+        dataConvert: convertOptionOrRadioData,
+        onChange: (v, option) => {
+          console.log({ v, option });
+          this.setState({ listViewMode: v });
+        },
+      },
+    ];
+  };
+
+  buildSelectNotificationDescription = (o) => {
+    if (isArray(o)) {
+      let list = [];
+
+      for (const item of o) {
+        const { title } = item;
+        list.push(title);
+      }
+
+      if (list.length > 0) {
+        return `已选择: ${list.join(',')}`;
+      }
+
+      return '';
+    } else {
+      const { title } = o;
+
+      return `已选择: ${title}`;
+    }
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -208,16 +277,6 @@ class SimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
       emptyValue: '--',
     },
     columnPlaceholder,
-    {
-      dataTarget: fieldData.customOperate,
-      width: 106,
-      fixed: 'right',
-      render: (text, record) => {
-        return this.renderPresetSelectButton({
-          handleData: record,
-        });
-      },
-    },
   ];
 }
 

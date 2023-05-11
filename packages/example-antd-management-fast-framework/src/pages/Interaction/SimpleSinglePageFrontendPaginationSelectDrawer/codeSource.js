@@ -3,10 +3,9 @@ export const code = `import { Avatar, Divider, List, Typography } from 'antd';
 import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
-  convertCollection,
   formatCollection,
   getValueByKey,
-  showSimpleInfoMessage,
+  isArray,
   whetherNumber,
 } from 'easy-soft-utility';
 
@@ -33,18 +32,22 @@ import {
 import { fieldData, statusCollection } from '../../Simple/Common/data';
 
 const { Text } = Typography;
-const { SinglePageDrawer } = DataSinglePageView;
+const { SinglePageSelectDrawer } = DataSinglePageView;
 
-const visibleFlag = 'b354b02508d747ecacedc90e6c86c4a1';
+const visibleFlag = 'de266a61e4b24705afda59a125f81952';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SimpleSinglePageDrawer extends SinglePageDrawer {
+class SimpleSinglePageFrontendPaginationSelectDrawer extends SinglePageSelectDrawer {
   showCallProcess = true;
 
   reloadWhenShow = true;
+
+  useFrontendPagination = true;
+
+  confirmSelect = true;
 
   static open() {
     switchControlAssist.open(visibleFlag);
@@ -56,14 +59,13 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
     this.state = {
       ...this.state,
       loadApiPath: 'simple/singleList',
-      listViewMode: listViewConfig.viewMode.list,
-      tableScrollX: 1600,
-      tableScrollY: 800,
+      listViewMode: listViewConfig.viewMode.table,
+      tableScrollX: 1620,
     };
   }
 
   getPresetPageName = () => {
-    return '数据单页列表';
+    return '数据单页选择列表';
   };
 
   getStatusBadge = (v) => {
@@ -111,30 +113,6 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
 
     return [
       {
-        buildType:
-          listViewConfig.dataContainerExtraActionBuildType.generalButton,
-        type: 'default',
-        icon: iconBuilder.plus(),
-        size: 'small',
-        text: '新增按钮',
-        handleClick: () => {
-          showSimpleInfoMessage(\`点击新增按钮\`);
-        },
-      },
-      {
-        buildType:
-          listViewConfig.dataContainerExtraActionBuildType.generalButton,
-        type: 'primary',
-        icon: iconBuilder.form(),
-        confirm: true,
-        title: '即将点击按钮，确定吗？',
-        size: 'small',
-        text: '按钮',
-        handleClick: () => {
-          showSimpleInfoMessage(\`点击按钮\`);
-        },
-      },
-      {
         buildType: listViewConfig.dataContainerExtraActionBuildType.flexSelect,
         label: '显示模式',
         size: 'small',
@@ -171,109 +149,25 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
     ];
   };
 
-  establishListItemDropdownConfig = (record) => {
-    const itemStatus = getValueByKey({
-      data: record,
-      key: fieldData.status.name,
-      convert: convertCollection.number,
-    });
+  buildSelectNotificationDescription = (o) => {
+    if (isArray(o)) {
+      let list = [];
 
-    return {
-      size: 'small',
-      text: '按钮',
-      placement: 'topRight',
-      icon: iconBuilder.form(),
-      // eslint-disable-next-line no-unused-vars
-      handleButtonClick: ({ handleData }) => {
-        const { title } = handleData;
+      for (const item of o) {
+        const { title } = item;
+        list.push(title);
+      }
 
-        showSimpleInfoMessage(\`点击按钮 \${title}\`);
-      },
-      handleData: record,
-      confirm: true,
-      title: '将要点击按钮，确定吗？',
-      handleMenuClick: ({ key, handleData }) => {
-        this.handleMenuClick({ key, handleData });
-      },
-      items: [
-        {
-          key: 'button1',
-          icon: iconBuilder.edit(),
-          text: 'button1',
-        },
-        {
-          key: 'button2',
-          withDivider: true,
-          uponDivider: true,
-          icon: iconBuilder.playCircle(),
-          text: 'button2',
-          disabled: itemStatus === statusCollection.online,
-          confirm: true,
-          title: '将要点击button2, 确定吗?',
-        },
-        {
-          key: 'button3',
-          icon: iconBuilder.pauseCircle(),
-          text: 'button3',
-          disabled: itemStatus === statusCollection.offline,
-          confirm: true,
-          title: '将要点击button3, 确定吗?',
-        },
-        {
-          key: 'button4',
-          withDivider: true,
-          uponDivider: true,
-          icon: iconBuilder.edit(),
-          text: 'button4',
-        },
-        {
-          key: 'button5',
-          withDivider: true,
-          uponDivider: true,
-          icon: iconBuilder.reload(),
-          text: 'button5',
-          confirm: true,
-          title: '将要点击button5, 确定吗?',
-        },
-      ],
-    };
-  };
+      if (list.length > 0) {
+        return \`已选择: \${list.join(',')}\`;
+      }
 
-  // eslint-disable-next-line no-unused-vars
-  handleMenuClick = ({ key, handleData }) => {
-    showSimpleInfoMessage(\`click \${key}\`);
+      return '';
+    } else {
+      const { title } = o;
 
-    // switch (key) {
-    //   case 'button1': {
-    //     showSimpleInfoMessage(\`click \${key}\`);
-
-    //     break;
-    //   }
-
-    //   case 'button2': {
-    //     showSimpleInfoMessage(\`click \${key}\`);
-    //     break;
-    //   }
-
-    //   case 'button3': {
-    //     showSimpleInfoMessage(\`click \${key}\`);
-    //     break;
-    //   }
-
-    //   case 'button4': {
-    //     showSimpleInfoMessage(\`click \${key}\`);
-    //     break;
-    //   }
-
-    //   case 'button5': {
-    //     showSimpleInfoMessage(\`click \${key}\`);
-    //     break;
-    //   }
-
-    //   default: {
-    //     break;
-    //   }
-    // }
+      return \`已选择: \${title}\`;
+    }
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -388,5 +282,5 @@ class SimpleSinglePageDrawer extends SinglePageDrawer {
   ];
 }
 
-export default SimpleSinglePageDrawer;
+export default SimpleSinglePageFrontendPaginationSelectDrawer;
 `;

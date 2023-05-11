@@ -3,6 +3,7 @@ import {
   logDebug,
   mergeArrowText,
   showSimpleInfoMessage,
+  showSimpleSuccessMessage,
 } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
@@ -21,8 +22,18 @@ import SimpleMultiPageDrawer from '../SimpleMultiPageDrawer';
 import { code as codeSimpleMultiPageDrawer } from '../SimpleMultiPageDrawer/codeSource';
 import SimpleSinglePageDrawer from '../SimpleSinglePageDrawer';
 import { code as codeSimpleSinglePageDrawer } from '../SimpleSinglePageDrawer/codeSource';
+import SimpleSinglePageFrontendPaginationMultiSelectDrawer from '../SimpleSinglePageFrontendPaginationMultiSelectDrawer';
+import { code as codeSimpleSinglePageFrontendPaginationMultiSelectDrawer } from '../SimpleSinglePageFrontendPaginationMultiSelectDrawer/codeSource';
+import SimpleSinglePageFrontendPaginationSelectDrawer from '../SimpleSinglePageFrontendPaginationSelectDrawer';
+import { code as codeSimpleSinglePageFrontendPaginationSelectDrawer } from '../SimpleSinglePageFrontendPaginationSelectDrawer/codeSource';
+import SimpleSinglePageFrontendPaginationSingleSelectDrawer from '../SimpleSinglePageFrontendPaginationSingleSelectDrawer';
+import { code as codeSimpleSinglePageFrontendPaginationSingleSelectDrawer } from '../SimpleSinglePageFrontendPaginationSingleSelectDrawer/codeSource';
+import SimpleSinglePageMultiSelectDrawer from '../SimpleSinglePageMultiSelectDrawer';
+import { code as codeSimpleSinglePageMultiSelectDrawer } from '../SimpleSinglePageMultiSelectDrawer/codeSource';
 import SimpleSinglePageSelectDrawer from '../SimpleSinglePageSelectDrawer';
 import { code as codeSimpleSinglePageSelectDrawer } from '../SimpleSinglePageSelectDrawer/codeSource';
+import SimpleSinglePageSingleSelectDrawer from '../SimpleSinglePageSingleSelectDrawer';
+import { code as codeSimpleSinglePageSingleSelectDrawer } from '../SimpleSinglePageSingleSelectDrawer/codeSource';
 
 @connect(({ schedulingControl }) => ({
   schedulingControl,
@@ -46,17 +57,8 @@ class DrawerView extends BaseView {
       tools: [
         {
           component: buildButton({
-            title: '点击显示 SinglePageSelectDrawer',
-            text: '显示 SinglePageSelectDrawer',
-            handleClick: () => {
-              SimpleSinglePageSelectDrawer.open();
-            },
-          }),
-        },
-        {
-          component: buildButton({
             title: '点击显示 SinglePageDrawer',
-            text: '显示 SinglePageDrawer',
+            text: 'SinglePageDrawer',
             handleClick: () => {
               SimpleSinglePageDrawer.open();
             },
@@ -65,7 +67,7 @@ class DrawerView extends BaseView {
         {
           component: buildButton({
             title: '点击显示 MultiPageDrawer',
-            text: '显示 MultiPageDrawer',
+            text: 'MultiPageDrawer',
             handleClick: () => {
               SimpleMultiPageDrawer.open();
             },
@@ -74,7 +76,7 @@ class DrawerView extends BaseView {
         {
           component: buildButton({
             title: '点击显示 AddDrawer',
-            text: '显示 AddDrawer',
+            text: 'AddDrawer',
             handleClick: () => {
               SimpleAddDrawer.open();
             },
@@ -83,7 +85,7 @@ class DrawerView extends BaseView {
         {
           component: buildButton({
             title: '点击显示 EditDrawer',
-            text: '显示 EditDrawer',
+            text: 'EditDrawer',
             handleClick: () => {
               SimpleEditDrawer.open();
             },
@@ -112,6 +114,88 @@ class DrawerView extends BaseView {
       list: [
         {
           title: {
+            text: '单页列表选择功能实例',
+          },
+          items: [
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SinglePageFrontendPaginationSelectDrawer',
+                text: '显示 SinglePageFrontendPaginationSelectDrawer',
+                handleClick: () => {
+                  SimpleSinglePageFrontendPaginationSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title:
+                  '点击显示 SimpleSinglePageFrontendPaginationSingleSelectDrawer',
+                text: '显示 SimpleSinglePageFrontendPaginationSingleSelectDrawer',
+                handleClick: () => {
+                  SimpleSinglePageFrontendPaginationSingleSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title:
+                  '点击显示 SimpleSinglePageFrontendPaginationMultiSelectDrawer',
+                text: '显示 SimpleSinglePageFrontendPaginationMultiSelectDrawer',
+                handleClick: () => {
+                  SimpleSinglePageFrontendPaginationMultiSelectDrawer.open();
+                },
+              }),
+            },
+          ],
+        },
+        {
+          title: {
+            text: '单页列表选择功能实例 [页面模拟分页效果]',
+          },
+          items: [
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SinglePageSelectDrawer',
+                text: '显示 SinglePageSelectDrawer',
+                handleClick: () => {
+                  SimpleSinglePageSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleSinglePageSingleSelectDrawer',
+                text: '显示 SimpleSinglePageSingleSelectDrawer',
+                handleClick: () => {
+                  SimpleSinglePageSingleSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleSinglePageMultiSelectDrawer',
+                text: '显示 SimpleSinglePageMultiSelectDrawer',
+                handleClick: () => {
+                  SimpleSinglePageMultiSelectDrawer.open();
+                },
+              }),
+            },
+          ],
+        },
+        {
+          title: {
             text: '代码示例',
             subText: mergeArrowText('Code', currentCodeTitle),
           },
@@ -124,11 +208,31 @@ class DrawerView extends BaseView {
                 label: '显示源代码',
                 size: 'small',
                 defaultValue: 'SimpleSinglePageDrawer',
-                style: { width: '320px' },
+                style: { width: '500px' },
                 list: [
                   {
                     flag: 'SimpleSinglePageSelectDrawer',
                     name: 'SimpleSinglePageSelectDrawer',
+                  },
+                  {
+                    flag: 'SimpleSinglePageSingleSelectDrawer',
+                    name: 'SimpleSinglePageSingleSelectDrawer',
+                  },
+                  {
+                    flag: 'SimpleSinglePageMultiSelectDrawer',
+                    name: 'SimpleSinglePageMultiSelectDrawer',
+                  },
+                  {
+                    flag: 'SimpleSinglePageFrontendPaginationSelectDrawer',
+                    name: 'SimpleSinglePageFrontendPaginationSelectDrawer',
+                  },
+                  {
+                    flag: 'SimpleSinglePageFrontendPaginationSingleSelectDrawer',
+                    name: 'SimpleSinglePageFrontendPaginationSingleSelectDrawer',
+                  },
+                  {
+                    flag: 'SimpleSinglePageFrontendPaginationMultiSelectDrawer',
+                    name: 'SimpleSinglePageFrontendPaginationMultiSelectDrawer',
                   },
                   {
                     flag: 'SimpleSinglePageDrawer',
@@ -154,6 +258,33 @@ class DrawerView extends BaseView {
                   switch (v) {
                     case 'SimpleSinglePageSelectDrawer': {
                       code = codeSimpleSinglePageSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleSinglePageSingleSelectDrawer': {
+                      code = codeSimpleSinglePageMultiSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleSinglePageMultiSelectDrawer': {
+                      code = codeSimpleSinglePageSingleSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleSinglePageFrontendPaginationSelectDrawer': {
+                      code = codeSimpleSinglePageFrontendPaginationSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleSinglePageFrontendPaginationSingleSelectDrawer': {
+                      code =
+                        codeSimpleSinglePageFrontendPaginationSingleSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleSinglePageFrontendPaginationMultiSelectDrawer': {
+                      code =
+                        codeSimpleSinglePageFrontendPaginationMultiSelectDrawer;
                       break;
                     }
 
@@ -206,12 +337,49 @@ class DrawerView extends BaseView {
     };
   };
 
+  // eslint-disable-next-line no-unused-vars
+  afterSelectSuccess = (data) => {
+    // console.log(data);
+
+    showSimpleSuccessMessage('Select Success');
+  };
+
   renderPresetOther = () => {
     return (
       <>
-        <SimpleSinglePageSelectDrawer />
+        <SimpleSinglePageSelectDrawer
+          multiSelect={true}
+          hideAfterSelect={false}
+          afterSelectSuccess={this.afterSelectSuccess}
+        />
 
-        <SimpleSinglePageDrawer />
+        <SimpleSinglePageSingleSelectDrawer
+          afterSelectSuccess={this.afterSelectSuccess}
+        />
+
+        <SimpleSinglePageMultiSelectDrawer
+          multiSelect={true}
+          hideAfterSelect={false}
+          afterSelectSuccess={this.afterSelectSuccess}
+        />
+
+        <SimpleSinglePageFrontendPaginationSelectDrawer
+          multiSelect={true}
+          hideAfterSelect={false}
+          afterSelectSuccess={this.afterSelectSuccess}
+        />
+
+        <SimpleSinglePageFrontendPaginationSingleSelectDrawer
+          afterSelectSuccess={this.afterSelectSuccess}
+        />
+
+        <SimpleSinglePageFrontendPaginationMultiSelectDrawer
+          multiSelect={true}
+          hideAfterSelect={false}
+          afterSelectSuccess={this.afterSelectSuccess}
+        />
+
+        <SimpleSinglePageDrawer afterSelectSuccess={this.afterSelectSuccess} />
 
         <SimpleMultiPageDrawer />
 

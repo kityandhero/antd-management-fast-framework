@@ -15,10 +15,7 @@ import {
   listViewConfig,
   notify,
 } from 'antd-management-fast-common';
-import {
-  buildListViewItemActionSelect,
-  iconBuilder,
-} from 'antd-management-fast-component';
+import { iconBuilder } from 'antd-management-fast-component';
 
 import {
   DrawerExtra,
@@ -51,6 +48,8 @@ class MultiPageDrawer extends MultiPage {
 
   reloadAnimalPromptComplete = false;
 
+  useTableDensityAction = false;
+
   constructor(properties, visibleFlag) {
     super(properties);
 
@@ -67,7 +66,7 @@ class MultiPageDrawer extends MultiPage {
     this.state = {
       ...this.state,
       listViewMode: listViewConfig.viewMode.table,
-      tableScrollY: 'calc(100% - 35px)',
+      tableScrollY: 'calc(100% - 47px)',
     };
 
     this.restoreSearch = false;
@@ -162,7 +161,7 @@ class MultiPageDrawer extends MultiPage {
   };
 
   /**
-   * 当可见性变为显示后附加的执行
+   * 当可见性变为隐藏后附加的执行
    */
   executeAfterDoOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
@@ -392,7 +391,8 @@ class MultiPageDrawer extends MultiPage {
 
                   {this.renderPresetBatchAction()}
 
-                  {listViewMode === listViewConfig.viewMode.table ? (
+                  {listViewMode === listViewConfig.viewMode.table &&
+                  this.useTableDensityAction ? (
                     <DensityAction
                       tableSize={tableSize}
                       setTableSize={(key) => {
@@ -531,16 +531,6 @@ class MultiPageDrawer extends MultiPage {
         </div>
       </div>
     );
-  };
-
-  renderPresetListViewItemActionSelect = (item, index) => {
-    const that = this;
-
-    return buildListViewItemActionSelect({
-      index,
-      selectData: item,
-      selectCallback: (data) => that.selectRecord({ handleData: data || null }),
-    });
   };
 
   renderFurther() {

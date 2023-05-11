@@ -280,6 +280,7 @@ class InternalBuild extends InternalTabFlow {
     ) : null;
 
     if (
+      !hasExtraItems &&
       cardContent == null &&
       otherComponent == null &&
       helpArea == null &&
@@ -374,20 +375,24 @@ class InternalBuild extends InternalTabFlow {
               }
         }
       >
-        <LoadingOverlay
-          flag={[
-            this.viewLoadingFlag,
-            this.viewReloadingFlag,
-            this.viewRefreshingFlag,
-            this.viewProcessingFlag,
-          ]}
-        >
-          {cardContent}
+        {cardContent == null &&
+        otherComponent == null &&
+        helpArea == null ? null : (
+          <LoadingOverlay
+            flag={[
+              this.viewLoadingFlag,
+              this.viewReloadingFlag,
+              this.viewRefreshingFlag,
+              this.viewProcessingFlag,
+            ]}
+          >
+            {cardContent}
 
-          {otherComponent || null}
+            {otherComponent || null}
 
-          {helpArea}
-        </LoadingOverlay>
+            {helpArea}
+          </LoadingOverlay>
+        )}
 
         {imageArea}
       </Card>

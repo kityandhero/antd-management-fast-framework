@@ -89,7 +89,7 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 当可见性变为显示后附加的执行
+   * 当可见性变为隐藏后附加的执行
    */
   executeAfterDoOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(

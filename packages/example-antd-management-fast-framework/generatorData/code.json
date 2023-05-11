@@ -36,6 +36,26 @@
     {
       "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageSelectDrawer/index.jsx",
       "codeFilePath": "./src/pages/Interaction/SimpleSinglePageSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageSingleSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageSingleSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageMultiSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageMultiSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationSingleSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationSingleSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationMultiSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationMultiSelectDrawer/codeSource.js"
     }
   ]
 }

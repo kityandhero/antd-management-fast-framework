@@ -63,6 +63,8 @@ class AbstractComponent extends Component {
 
   showCallProcessSwitchPromptComplete = false;
 
+  showUnmountInConsole = false;
+
   //#endregion
 
   /**
@@ -265,7 +267,9 @@ class AbstractComponent extends Component {
 
     this.setState = () => {};
 
-    logTrace(this.componentName, 'Unmount');
+    if (this.showUnmountInConsole) {
+      logTrace(this.componentName, 'Unmount');
+    }
   }
 
   // eslint-disable-next-line no-unused-vars

@@ -469,6 +469,7 @@ export function buildListViewItemActionSelect({
     icon: iconBuilder.import(),
     text: '选取',
     showIcon: true,
+    title: '确定选择此项吗？',
     handleClick: ({ handleData }) => {
       if (isFunction(selectCallback)) {
         selectCallback(handleData);

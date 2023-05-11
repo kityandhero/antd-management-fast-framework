@@ -1,4 +1,5 @@
 import { Card, Col, Divider, List, Row, Tooltip } from 'antd';
+import classNames from 'classnames';
 import React from 'react';
 
 import {
@@ -12,10 +13,7 @@ import {
   emptyLogic,
   listViewConfig,
 } from 'antd-management-fast-common';
-import {
-  buildListViewItemActionSelect,
-  iconBuilder,
-} from 'antd-management-fast-component';
+import { iconBuilder } from 'antd-management-fast-component';
 
 import {
   DrawerExtra,
@@ -45,6 +43,8 @@ class SinglePageDrawer extends SinglePage {
   reloadWhenShow = true;
 
   reloadAnimalPrompt = true;
+
+  useTableDensityAction = false;
 
   constructor(properties, visibleFlag) {
     super(properties);
@@ -178,7 +178,7 @@ class SinglePageDrawer extends SinglePage {
   };
 
   /**
-   * 当可见性变为显示后附加的执行
+   * 当可见性变为隐藏后附加的执行
    */
   executeAfterDoOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
@@ -338,7 +338,12 @@ class SinglePageDrawer extends SinglePage {
         style={{ height: '100%', overflow: 'hidden' }}
       >
         <div
-          className={styles.containorBox}
+          className={classNames(
+            styles.containorBox,
+            this.useFrontendPagination
+              ? styles.frontendPagination
+              : styles.noneFrontendPagination,
+          )}
           style={{
             height: '100%',
             overflow: 'hidden',
@@ -409,7 +414,8 @@ class SinglePageDrawer extends SinglePage {
 
                   {this.renderPresetBatchAction()}
 
-                  {listViewMode === listViewConfig.viewMode.table ? (
+                  {listViewMode === listViewConfig.viewMode.table &&
+                  this.useTableDensityAction ? (
                     <DensityAction
                       tableSize={tableSize}
                       setTableSize={(key) => {
@@ -464,7 +470,6 @@ class SinglePageDrawer extends SinglePage {
             </Card>
           </div>
         </div>
-
         {this.renderPresetOther()}
       </div>
     );
@@ -571,22 +576,6 @@ class SinglePageDrawer extends SinglePage {
         )}
       </div>
     );
-  };
-
-  renderPresetListViewItemActionSelect = (item, index) => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageDrawer',
-      'renderPresetListViewItemActionSelect',
-    );
-
-    const that = this;
-
-    return buildListViewItemActionSelect({
-      index,
-      selectData: item,
-      selectCallback: (data) => that.selectRecord({ handleData: data || null }),
-    });
   };
 
   renderFurther() {

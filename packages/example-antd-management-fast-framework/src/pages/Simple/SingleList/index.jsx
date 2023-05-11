@@ -22,7 +22,6 @@ import {
 import {
   buildButton,
   buildCustomGrid,
-  buildDropdownButton,
   buildFlexRadio,
   iconBuilder,
 } from 'antd-management-fast-component';
@@ -617,6 +616,85 @@ class SingleList extends SinglePage {
     };
   };
 
+  establishListItemDropdownConfig = (record) => {
+    const itemStatus = getValueByKey({
+      data: record,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
+    return {
+      size: 'small',
+      text: '编辑',
+      icon: iconBuilder.form(),
+      handleButtonClick: ({ handleData }) => {
+        this.goToEdit(handleData);
+      },
+      handleData: record,
+      confirm: true,
+      title: '将要点击按钮，确定吗？',
+      handleMenuClick: ({ key, handleData }) => {
+        this.handleMenuClick({ key, handleData });
+      },
+      items: [
+        {
+          key: 'showUpdateBasicInfoDrawer',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.edit(),
+          text: '编辑[侧拉]',
+          hidden: !checkHasAuthority(
+            accessWayCollection.simple.updateBasicInfo.permission,
+          ),
+        },
+        {
+          key: 'setOnline',
+          icon: iconBuilder.playCircle(),
+          text: '设为上线',
+          hidden: !checkHasAuthority(
+            accessWayCollection.simple.setOnline.permission,
+          ),
+          disabled: itemStatus === statusCollection.online,
+          confirm: true,
+          title: '将要设置为上线，确定吗？',
+        },
+        {
+          key: 'setOffline',
+          icon: iconBuilder.pauseCircle(),
+          text: '设为下线',
+          hidden: !checkHasAuthority(
+            accessWayCollection.simple.setOffline.permission,
+          ),
+          disabled: itemStatus === statusCollection.offline,
+          confirm: true,
+          title: '将要设置为下线，确定吗？',
+        },
+        {
+          key: 'setSort',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.edit(),
+          text: '设置排序值',
+          hidden: !checkHasAuthority(
+            accessWayCollection.simple.updateSort.permission,
+          ),
+        },
+        {
+          key: 'refreshCache',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.reload(),
+          text: '刷新缓存',
+          hidden: !checkHasAuthority(
+            accessWayCollection.simple.refreshCache.permission,
+          ),
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
+        },
+      ],
+    };
+  };
+
   // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemInner = (r, index) => {
     return (
@@ -692,87 +770,6 @@ class SingleList extends SinglePage {
       emptyValue: '--',
     },
     columnPlaceholder,
-    {
-      dataTarget: fieldData.customOperate,
-      width: 106,
-      fixed: 'right',
-      render: (text, r) => {
-        const itemStatus = getValueByKey({
-          data: r,
-          key: fieldData.status.name,
-          convert: convertCollection.number,
-        });
-
-        return buildDropdownButton({
-          size: 'small',
-          text: '编辑',
-          icon: iconBuilder.form(),
-          handleButtonClick: ({ handleData }) => {
-            this.goToEdit(handleData);
-          },
-          handleData: r,
-          handleMenuClick: ({ key, handleData }) => {
-            this.handleMenuClick({ key, handleData });
-          },
-          items: [
-            {
-              key: 'showUpdateBasicInfoDrawer',
-              withDivider: true,
-              uponDivider: true,
-              icon: iconBuilder.edit(),
-              text: '编辑[侧拉]',
-              hidden: !checkHasAuthority(
-                accessWayCollection.simple.updateBasicInfo.permission,
-              ),
-            },
-            {
-              key: 'setOnline',
-              icon: iconBuilder.playCircle(),
-              text: '设为上线',
-              hidden: !checkHasAuthority(
-                accessWayCollection.simple.setOnline.permission,
-              ),
-              disabled: itemStatus === statusCollection.online,
-              confirm: true,
-              title: '将要设置为上线，确定吗？',
-            },
-            {
-              key: 'setOffline',
-              icon: iconBuilder.pauseCircle(),
-              text: '设为下线',
-              hidden: !checkHasAuthority(
-                accessWayCollection.simple.setOffline.permission,
-              ),
-              disabled: itemStatus === statusCollection.offline,
-              confirm: true,
-              title: '将要设置为下线，确定吗？',
-            },
-            {
-              key: 'setSort',
-              withDivider: true,
-              uponDivider: true,
-              icon: iconBuilder.edit(),
-              text: '设置排序值',
-              hidden: !checkHasAuthority(
-                accessWayCollection.simple.updateSort.permission,
-              ),
-            },
-            {
-              key: 'refreshCache',
-              withDivider: true,
-              uponDivider: true,
-              icon: iconBuilder.reload(),
-              text: '刷新缓存',
-              hidden: !checkHasAuthority(
-                accessWayCollection.simple.refreshCache.permission,
-              ),
-              confirm: true,
-              title: '将要刷新缓存，确定吗？',
-            },
-          ],
-        });
-      },
-    },
   ];
 
   establishHelpConfig = () => {

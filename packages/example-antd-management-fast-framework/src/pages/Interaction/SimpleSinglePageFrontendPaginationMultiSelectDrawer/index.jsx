@@ -1,13 +1,5 @@
-export const code = `import { Avatar, Divider, List, Typography } from 'antd';
-
 import { connect } from 'easy-soft-dva';
-import {
-  checkStringIsNullOrWhiteSpace,
-  formatCollection,
-  getValueByKey,
-  isArray,
-  whetherNumber,
-} from 'easy-soft-utility';
+import { isArray } from 'easy-soft-utility';
 
 import {
   columnFacadeMode,
@@ -15,10 +7,6 @@ import {
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
-import {
-  convertOptionOrRadioData,
-  iconBuilder,
-} from 'antd-management-fast-component';
 import {
   DataSinglePageView,
   switchControlAssist,
@@ -31,19 +19,20 @@ import {
 } from '../../../customSpecialComponents';
 import { fieldData, statusCollection } from '../../Simple/Common/data';
 
-const { Text } = Typography;
 const { SinglePageSelectDrawer } = DataSinglePageView;
 
-const visibleFlag = 'da3bbfa15180472992244f3b33d36229';
+const visibleFlag = '94f54e3085974ebca2dd0b4f92868ec6';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
+class SimpleSinglePageFrontendPaginationMultiSelectDrawer extends SinglePageSelectDrawer {
   showCallProcess = true;
 
   reloadWhenShow = true;
+
+  useFrontendPagination = true;
 
   confirmSelect = true;
 
@@ -106,47 +95,6 @@ class SimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     };
   };
 
-  establishDataContainerExtraActionCollectionConfig = () => {
-    const { listViewMode } = this.state;
-
-    return [
-      {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.flexSelect,
-        label: '显示模式',
-        size: 'small',
-        defaultValue: listViewMode,
-        style: { width: '190px' },
-        list: [
-          {
-            flag: listViewConfig.viewMode.table,
-            name: '表格视图',
-            availability: whetherNumber.yes,
-          },
-          {
-            flag: listViewConfig.viewMode.list,
-            name: '列表视图',
-            availability: whetherNumber.yes,
-          },
-          {
-            flag: listViewConfig.viewMode.cardCollectionView,
-            name: '卡片视图',
-            availability: whetherNumber.yes,
-          },
-          {
-            flag: listViewConfig.viewMode.customView,
-            name: '自定义视图',
-            availability: whetherNumber.yes,
-          },
-        ],
-        dataConvert: convertOptionOrRadioData,
-        onChange: (v, option) => {
-          console.log({ v, option });
-          this.setState({ listViewMode: v });
-        },
-      },
-    ];
-  };
-
   buildSelectNotificationDescription = (o) => {
     if (isArray(o)) {
       let list = [];
@@ -157,67 +105,15 @@ class SimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
       }
 
       if (list.length > 0) {
-        return \`已选择: \${list.join(',')}\`;
+        return `已选择: ${list.join(',')}`;
       }
 
       return '';
     } else {
       const { title } = o;
 
-      return \`已选择: \${title}\`;
+      return `已选择: ${title}`;
     }
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  renderPresetListViewItemInner = (item, index) => {
-    const simpleId = getValueByKey({
-      data: item,
-      key: fieldData.simpleId.name,
-    });
-
-    const image = getValueByKey({
-      data: item,
-      key: fieldData.image.name,
-    });
-
-    const title = getValueByKey({
-      data: item,
-      key: fieldData.title.name,
-    });
-
-    const createTime = getValueByKey({
-      data: item,
-      key: fieldData.createTime.name,
-      format: formatCollection.datetime,
-    });
-
-    return (
-      <>
-        <List.Item.Meta
-          avatar={
-            checkStringIsNullOrWhiteSpace(image) ? (
-              <Avatar icon={iconBuilder.user()} />
-            ) : (
-              <Avatar src={image} />
-            )
-          }
-          title={
-            <>
-              <Text>{title}</Text>
-            </>
-          }
-          description={
-            <>
-              <Text>{fieldData.simpleId.label}:</Text>
-              <Text copyable>{simpleId}</Text>
-              <Divider type="vertical" />
-              <Text>{fieldData.createTime.label}:</Text>
-              <Text>{createTime}</Text>
-            </>
-          }
-        />
-      </>
-    );
   };
 
   getColumnWrapper = () => [
@@ -280,5 +176,4 @@ class SimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
   ];
 }
 
-export default SimpleSinglePageSelectDrawer;
-`;
+export default SimpleSinglePageFrontendPaginationMultiSelectDrawer;
