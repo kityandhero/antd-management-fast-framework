@@ -29,13 +29,13 @@ import { fieldData, statusCollection } from '../../Simple/Common/data';
 const { Text } = Typography;
 const { SinglePageSelectDrawer } = DataSinglePageView;
 
-const visibleFlag = 'b354b02508d747ecacedc90e6c86c4a1';
+const visibleFlag = 'da3bbfa15180472992244f3b33d36229';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SimpleSinglePageDrawer extends SinglePageSelectDrawer {
+class SimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
   showCallProcess = true;
 
   reloadWhenShow = true;
@@ -50,13 +50,13 @@ class SimpleSinglePageDrawer extends SinglePageSelectDrawer {
     this.state = {
       ...this.state,
       loadApiPath: 'simple/singleList',
-      listViewMode: listViewConfig.viewMode.list,
-      tableScroll: { y: 600 },
+      listViewMode: listViewConfig.viewMode.table,
+      tableScrollX: 1620,
     };
   }
 
   getPresetPageName = () => {
-    return '数据单页列表';
+    return '数据单页选择列表';
   };
 
   getStatusBadge = (v) => {
@@ -221,5 +221,5 @@ class SimpleSinglePageDrawer extends SinglePageSelectDrawer {
   ];
 }
 
-export default SimpleSinglePageDrawer;
+export default SimpleSinglePageSelectDrawer;
 `;

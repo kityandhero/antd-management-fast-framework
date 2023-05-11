@@ -6,7 +6,10 @@ import {
 } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
-import { buildButton, iconBuilder } from 'antd-management-fast-component';
+import {
+  buildButton,
+  convertOptionOrRadioData,
+} from 'antd-management-fast-component';
 
 import BaseView from '../BaseView';
 import DrawerCodeView from '../DrawerCodeView';
@@ -117,67 +120,70 @@ class DrawerView extends BaseView {
             split: false,
             list: [
               {
-                buildType: cardConfig.extraBuildType.generalButton,
-                icon: iconBuilder.form(),
-                text: 'SimpleSinglePageDrawer 源代码',
+                buildType: cardConfig.extraBuildType.flexSelect,
+                label: '显示源代码',
                 size: 'small',
-                type: 'link',
-                handleClick: () => {
+                defaultValue: 'SimpleSinglePageDrawer',
+                style: { width: '320px' },
+                list: [
+                  {
+                    flag: 'SimpleSinglePageSelectDrawer',
+                    name: 'SimpleSinglePageSelectDrawer',
+                  },
+                  {
+                    flag: 'SimpleSinglePageDrawer',
+                    name: 'SimpleSinglePageDrawer',
+                  },
+                  {
+                    flag: 'SimpleMultiPageDrawer',
+                    name: 'SimpleMultiPageDrawer',
+                  },
+                  {
+                    flag: 'SimpleAddDrawer',
+                    name: 'SimpleAddDrawer',
+                  },
+                  {
+                    flag: 'SimpleEditDrawer',
+                    name: 'SimpleEditDrawer',
+                  },
+                ],
+                dataConvert: convertOptionOrRadioData,
+                onChange: (v) => {
+                  let code = '';
+
+                  switch (v) {
+                    case 'SimpleSinglePageSelectDrawer': {
+                      code = codeSimpleSinglePageSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleSinglePageDrawer': {
+                      code = codeSimpleSinglePageDrawer;
+                      break;
+                    }
+
+                    case 'SimpleMultiPageDrawer': {
+                      code = codeSimpleMultiPageDrawer;
+                      break;
+                    }
+
+                    case 'SimpleAddDrawer': {
+                      code = codeSimpleAddDrawer;
+                      break;
+                    }
+
+                    case 'SimpleEditDrawer': {
+                      code = codeSimpleEditDrawer;
+                      break;
+                    }
+                  }
+
                   that.setState({
-                    currentCodeTitle: 'SimpleSinglePageDrawer',
-                    currentCode: codeSimpleSinglePageDrawer,
+                    currentCodeTitle: v,
+                    currentCode: code,
                   });
 
-                  showSimpleInfoMessage(
-                    '当前显示 SimpleSinglePageDrawer 源代码',
-                  );
-                },
-              },
-              {
-                buildType: cardConfig.extraBuildType.generalButton,
-                icon: iconBuilder.form(),
-                text: 'SimpleMultiPageDrawer 源代码',
-                size: 'small',
-                type: 'link',
-                handleClick: () => {
-                  that.setState({
-                    currentCodeTitle: 'SimpleMultiPageDrawer',
-                    currentCode: codeSimpleMultiPageDrawer,
-                  });
-
-                  showSimpleInfoMessage(
-                    '当前显示 SimpleMultiPageDrawer 源代码',
-                  );
-                },
-              },
-              {
-                buildType: cardConfig.extraBuildType.generalButton,
-                icon: iconBuilder.form(),
-                text: 'SimpleAddDrawer 源代码',
-                size: 'small',
-                type: 'link',
-                handleClick: () => {
-                  that.setState({
-                    currentCodeTitle: 'SimpleAddDrawer',
-                    currentCode: codeSimpleAddDrawer,
-                  });
-
-                  showSimpleInfoMessage('当前显示 SimpleAddDrawer 源代码');
-                },
-              },
-              {
-                buildType: cardConfig.extraBuildType.generalButton,
-                icon: iconBuilder.form(),
-                text: 'SimpleEditDrawer 源代码',
-                size: 'small',
-                type: 'link',
-                handleClick: () => {
-                  that.setState({
-                    currentCodeTitle: 'SimpleAddDrawer',
-                    currentCode: codeSimpleEditDrawer,
-                  });
-
-                  showSimpleInfoMessage('当前显示 SimpleEditDrawer 源代码');
+                  showSimpleInfoMessage(\`当前显示 \${v} 源代码\`);
                 },
               },
             ],
@@ -203,6 +209,8 @@ class DrawerView extends BaseView {
   renderPresetOther = () => {
     return (
       <>
+        <SimpleSinglePageSelectDrawer />
+
         <SimpleSinglePageDrawer />
 
         <SimpleMultiPageDrawer />

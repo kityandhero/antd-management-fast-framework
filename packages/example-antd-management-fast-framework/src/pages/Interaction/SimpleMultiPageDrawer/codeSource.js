@@ -51,7 +51,7 @@ class SimpleMultiPageDrawer extends MultiPageDrawer {
       ...this.state,
       loadApiPath: 'simple/pageList',
       listViewMode: listViewConfig.viewMode.list,
-      tableScroll: { y: 600 },
+      tableScrollY: 600,
     };
   }
 
