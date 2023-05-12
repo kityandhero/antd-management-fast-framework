@@ -33,6 +33,8 @@ import { MultiPage } from '../MultiPage';
 
 import styles from './index.less';
 
+const primaryCallName = 'DataMultiPageView::MultiPageDrawer';
+
 class MultiPageDrawer extends MultiPage {
   visibleFlag = '';
 
@@ -81,11 +83,7 @@ class MultiPageDrawer extends MultiPage {
   }
 
   getVisibleFlag() {
-    this.logCallTrack(
-      {},
-      'DataMultiPageView::MultiPageDrawer',
-      'getVisibleFlag',
-    );
+    this.logCallTrack({}, primaryCallName, 'getVisibleFlag');
 
     const { flag } = this.props;
 
@@ -96,11 +94,7 @@ class MultiPageDrawer extends MultiPage {
    * 当可见性变为显示时执行
    */
   doOtherWhenChangeVisibleToShow = () => {
-    this.logCallTrack(
-      {},
-      'DataMultiPageView::MultiPageDrawer',
-      'doOtherWhenChangeVisibleToShow',
-    );
+    this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToShow');
 
     const { firstLoadSuccess } = this.state;
 
@@ -108,7 +102,7 @@ class MultiPageDrawer extends MultiPage {
     if (!firstLoadSuccess) {
       this.logCallTrace(
         {},
-        'DataMultiPageView::MultiPageDrawer',
+        primaryCallName,
         'doOtherWhenChangeVisibleToShow',
         'trigger',
         'handleSearchReset',
@@ -118,7 +112,7 @@ class MultiPageDrawer extends MultiPage {
     } else if (this.reloadWhenShow) {
       this.logCallTrace(
         {},
-        'DataMultiPageView::MultiPageDrawer',
+        primaryCallName,
         'doOtherWhenChangeVisibleToShow',
         'trigger',
         'reloadData',
@@ -142,7 +136,7 @@ class MultiPageDrawer extends MultiPage {
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
       {},
-      'DataMultiPageView::MultiPageDrawer',
+      primaryCallName,
       'executeAfterDoOtherWhenChangeVisibleToShow',
       emptyLogic,
     );
@@ -154,7 +148,7 @@ class MultiPageDrawer extends MultiPage {
   doOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
       {},
-      'DataMultiPageView::MultiPageDrawer',
+      primaryCallName,
       'doOtherWhenChangeVisibleToHide',
       emptyLogic,
     );
@@ -166,7 +160,7 @@ class MultiPageDrawer extends MultiPage {
   executeAfterDoOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
       {},
-      'DataMultiPageView::MultiPageDrawer',
+      primaryCallName,
       'executeAfterDoOtherWhenChangeVisibleToHide',
       emptyLogic,
     );
@@ -178,7 +172,7 @@ class MultiPageDrawer extends MultiPage {
   executeOtherAfterDoOtherWhenChangeVisible = () => {
     this.logCallTrack(
       {},
-      'DataMultiPageView::MultiPageDrawer',
+      primaryCallName,
       'executeOtherAfterDoOtherWhenChangeVisible',
       emptyLogic,
     );
@@ -192,7 +186,7 @@ class MultiPageDrawer extends MultiPage {
       {
         parameter: { currentVisible },
       },
-      'DataMultiPageView::MultiPageDrawer',
+      primaryCallName,
       'doOtherWhenChangeVisible',
     );
 
@@ -208,7 +202,7 @@ class MultiPageDrawer extends MultiPage {
   };
 
   onClose = () => {
-    this.logCallTrack({}, 'DataMultiPageView::MultiPageDrawer', 'onClose');
+    this.logCallTrack({}, primaryCallName, 'onClose');
 
     switchControlAssist.close(this.getVisibleFlag());
 
@@ -217,7 +211,7 @@ class MultiPageDrawer extends MultiPage {
     if (isFunction(afterClose)) {
       this.logCallTrace(
         {},
-        'DataMultiPageView::MultiPageDrawer',
+        primaryCallName,
         'onClose',
         'trigger',
         'afterClose',
@@ -227,7 +221,7 @@ class MultiPageDrawer extends MultiPage {
     } else {
       this.logCallTrace(
         {},
-        'DataMultiPageView::MultiPageDrawer',
+        primaryCallName,
         'onClose',
         'trigger',
         'afterClose',
@@ -237,23 +231,19 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderPresetTitleIcon = () => {
-    this.logCallTrack(
-      {},
-      'DataMultiPageView::MultiPageDrawer',
-      'renderPresetTitleIcon',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon');
 
     return iconBuilder.read();
   };
 
   buildTitlePrevText = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitlePrevText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitlePrevText', emptyLogic);
 
     return '';
   };
 
   buildTitleText = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitleText', emptyLogic);
 
     const { pageTitle } = this.state;
 
@@ -261,13 +251,13 @@ class MultiPageDrawer extends MultiPage {
   };
 
   buildTitleSubText = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleSubText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitleSubText', emptyLogic);
 
     return '';
   };
 
   hideDrawer = () => {
-    this.logCallTrack({}, 'DataMultiPageView::MultiPageDrawer', 'hideDrawer');
+    this.logCallTrack({}, primaryCallName, 'hideDrawer');
 
     this.onClose();
   };
@@ -277,7 +267,7 @@ class MultiPageDrawer extends MultiPage {
       {
         parameter: { handleData },
       },
-      'DataMultiPageView::MultiPageDrawer',
+      primaryCallName,
       'selectRecord',
     );
 
@@ -300,11 +290,7 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderPresetListMainViewContainor = () => {
-    this.logCallTrack(
-      {},
-      'DataMultiPageView::MultiPageDrawer',
-      'renderPresetListMainViewContainor',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetListMainViewContainor');
 
     const { firstLoadSuccess, listTitle, tableSize, listViewMode } = this.state;
 

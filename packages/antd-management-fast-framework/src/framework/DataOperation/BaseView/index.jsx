@@ -1,5 +1,7 @@
 import { Base } from '../Base';
 
+const primaryCallName = 'DataOperation::BaseView';
+
 class BaseView extends Base {
   afterSubmitSuccess = ({
     singleData = null,
@@ -16,7 +18,7 @@ class BaseView extends Base {
         responseOriginalData,
         submitData,
       },
-      'DataOperation::BaseView',
+      primaryCallName,
       'afterSubmitSuccess',
     );
 

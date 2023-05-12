@@ -23,6 +23,8 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import { DataCore } from '../../DataSingleView/DataCore';
 
+const primaryCallName = 'DataForm::BaseAddForm';
+
 class BaseAddForm extends DataCore {
   loadRemoteRequestAfterMount = false;
 
@@ -58,7 +60,7 @@ class BaseAddForm extends DataCore {
   };
 
   fillData = () => {
-    this.logCallTrack({}, 'DataForm::BaseAddForm', 'fillData');
+    this.logCallTrack({}, primaryCallName, 'fillData');
 
     const initialValues = this.buildInitialValues();
 
@@ -77,7 +79,7 @@ class BaseAddForm extends DataCore {
   afterFillForm = (initialValues) => {};
 
   setFormFieldsValue = (v) => {
-    this.logCallTrack({}, 'DataForm::BaseAddForm', 'setFormFieldsValue');
+    this.logCallTrack({}, primaryCallName, 'setFormFieldsValue');
 
     const form = this.getTargetForm();
 
@@ -92,7 +94,7 @@ class BaseAddForm extends DataCore {
   afterSetFieldsValue = (values) => {};
 
   handleFormReset = () => {
-    this.logCallTrack({}, 'DataForm::BaseAddForm', 'handleFormReset');
+    this.logCallTrack({}, primaryCallName, 'handleFormReset');
 
     const form = this.getTargetForm();
 
@@ -119,7 +121,7 @@ class BaseAddForm extends DataCore {
       {
         parameter: { values },
       },
-      'DataForm::BaseAddForm',
+      primaryCallName,
       'execSubmitApi',
     );
 
@@ -169,7 +171,7 @@ class BaseAddForm extends DataCore {
                 {
                   parameter: { values },
                 },
-                'DataForm::BaseAddForm',
+                primaryCallName,
                 'execSubmitApi',
                 'trigger',
                 'successCallback',
@@ -183,7 +185,7 @@ class BaseAddForm extends DataCore {
                 {
                   parameter: { values },
                 },
-                'DataForm::BaseAddForm',
+                primaryCallName,
                 'execSubmitApi',
                 'trigger',
                 'completeCallback',
@@ -207,7 +209,7 @@ class BaseAddForm extends DataCore {
                 {
                   parameter: { values },
                 },
-                'DataForm::BaseAddForm',
+                primaryCallName,
                 'execSubmitApi',
                 'trigger',
                 'failCallback',
@@ -221,7 +223,7 @@ class BaseAddForm extends DataCore {
                 {
                   parameter: { values },
                 },
-                'DataForm::BaseAddForm',
+                primaryCallName,
                 'execSubmitApi',
                 'trigger',
                 'completeCallback',
@@ -251,7 +253,7 @@ class BaseAddForm extends DataCore {
               {
                 parameter: { values },
               },
-              'DataForm::BaseAddForm',
+              primaryCallName,
               'execSubmitApi',
               'trigger',
               'failCallback',
@@ -265,7 +267,7 @@ class BaseAddForm extends DataCore {
               {
                 parameter: { values },
               },
-              'DataForm::BaseAddForm',
+              primaryCallName,
               'execSubmitApi',
               'trigger',
               'completeCallback',
@@ -281,7 +283,7 @@ class BaseAddForm extends DataCore {
     } else {
       that.logCallTrace(
         {},
-        'DataForm::BaseAddForm',
+        primaryCallName,
         'validate',
         'check submit data fail',
       );
@@ -289,7 +291,7 @@ class BaseAddForm extends DataCore {
       if (isFunction(completeCallback)) {
         that.logCallTrace(
           {},
-          'DataForm::BaseAddForm',
+          primaryCallName,
           'validate',
           'trigger',
           'completeCallback',
@@ -299,7 +301,7 @@ class BaseAddForm extends DataCore {
       } else {
         that.logCallTrace(
           {},
-          'DataForm::BaseAddForm',
+          primaryCallName,
           'validate',
           'trigger',
           'completeCallback',
@@ -316,7 +318,7 @@ class BaseAddForm extends DataCore {
     failCallback = null,
     completeCallback = null,
   }) => {
-    this.logCallTrack({}, 'DataForm::BaseAddForm', 'validate');
+    this.logCallTrack({}, primaryCallName, 'validate');
 
     const form = this.getTargetForm();
 
@@ -342,12 +344,7 @@ class BaseAddForm extends DataCore {
           logException(message);
         }
 
-        that.logCallTrace(
-          {},
-          'DataForm::BaseAddForm',
-          'validate',
-          'validate fail',
-        );
+        that.logCallTrace({}, primaryCallName, 'validate', 'validate fail');
 
         const { errorFields } = error;
 
@@ -381,7 +378,7 @@ class BaseAddForm extends DataCore {
         if (isFunction(failCallback)) {
           this.logCallTrace(
             {},
-            'DataForm::BaseAddForm',
+            primaryCallName,
             'validate',
             'trigger',
             'failCallback',
@@ -393,7 +390,7 @@ class BaseAddForm extends DataCore {
         if (isFunction(completeCallback)) {
           this.logCallTrace(
             {},
-            'DataForm::BaseAddForm',
+            primaryCallName,
             'validate',
             'trigger',
             'completeCallback',
@@ -426,7 +423,7 @@ class BaseAddForm extends DataCore {
   };
 
   renderPresetModalInner = () => {
-    this.logCallTrack({}, 'DataForm::BaseAddForm', 'renderPresetModalInner');
+    this.logCallTrack({}, primaryCallName, 'renderPresetModalInner');
 
     const initialValues = this.buildInitialValues();
 

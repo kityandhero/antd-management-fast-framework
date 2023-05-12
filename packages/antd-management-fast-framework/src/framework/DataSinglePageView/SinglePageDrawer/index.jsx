@@ -31,6 +31,8 @@ import { SinglePage } from '../SinglePage';
 
 import styles from './index.less';
 
+const primaryCallName = 'DataSinglePageView::SinglePageDrawer';
+
 class SinglePageDrawer extends SinglePage {
   visibleFlag = '';
 
@@ -80,11 +82,7 @@ class SinglePageDrawer extends SinglePage {
    * @returns
    */
   establishTableAdditionalConfig = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageDrawer',
-      'establishTableAdditionalConfig',
-    );
+    this.logCallTrack({}, primaryCallName, 'establishTableAdditionalConfig');
 
     return {
       style: {
@@ -95,11 +93,7 @@ class SinglePageDrawer extends SinglePage {
   };
 
   getVisibleFlag() {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageDrawer',
-      'getVisibleFlag',
-    );
+    this.logCallTrack({}, primaryCallName, 'getVisibleFlag');
 
     const { flag } = this.props;
 
@@ -110,11 +104,7 @@ class SinglePageDrawer extends SinglePage {
    * 当可见性变为显示时执行
    */
   doOtherWhenChangeVisibleToShow = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageDrawer',
-      'doOtherWhenChangeVisibleToShow',
-    );
+    this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToShow');
 
     const { firstLoadSuccess } = this.state;
 
@@ -122,7 +112,7 @@ class SinglePageDrawer extends SinglePage {
     if (!firstLoadSuccess) {
       this.logCallTrace(
         {},
-        'DataSinglePageView::SinglePageDrawer',
+        primaryCallName,
         'doOtherWhenChangeVisibleToShow',
         'trigger',
         'handleSearchReset',
@@ -133,7 +123,7 @@ class SinglePageDrawer extends SinglePage {
     } else if (this.reloadWhenShow) {
       this.logCallTrace(
         {},
-        'DataSinglePageView::SinglePageDrawer',
+        primaryCallName,
         'doOtherWhenChangeVisibleToShow',
         'trigger',
         'reloadData',
@@ -159,7 +149,7 @@ class SinglePageDrawer extends SinglePage {
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
       {},
-      'DataSinglePageView::SinglePageDrawer',
+      primaryCallName,
       'executeAfterDoOtherWhenChangeVisibleToShow',
       emptyLogic,
     );
@@ -171,7 +161,7 @@ class SinglePageDrawer extends SinglePage {
   doOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
       {},
-      'DataSinglePageView::SinglePageDrawer',
+      primaryCallName,
       'doOtherWhenChangeVisibleToHide',
       emptyLogic,
     );
@@ -183,7 +173,7 @@ class SinglePageDrawer extends SinglePage {
   executeAfterDoOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
       {},
-      'DataSinglePageView::SinglePageDrawer',
+      primaryCallName,
       'executeAfterDoOtherWhenChangeVisibleToHide',
       emptyLogic,
     );
@@ -195,7 +185,7 @@ class SinglePageDrawer extends SinglePage {
   executeOtherAfterDoOtherWhenChangeVisible = () => {
     this.logCallTrack(
       {},
-      'DataSinglePageView::SinglePageDrawer',
+      primaryCallName,
       'executeOtherAfterDoOtherWhenChangeVisible',
       emptyLogic,
     );
@@ -209,7 +199,7 @@ class SinglePageDrawer extends SinglePage {
       {
         parameter: { currentVisible },
       },
-      'DataSinglePageView::SinglePageDrawer',
+      primaryCallName,
       'doOtherWhenChangeVisible',
     );
 
@@ -225,7 +215,7 @@ class SinglePageDrawer extends SinglePage {
   };
 
   onClose = () => {
-    this.logCallTrack({}, 'DataSinglePageView::SinglePageDrawer', 'onClose');
+    this.logCallTrack({}, primaryCallName, 'onClose');
 
     switchControlAssist.close(this.getVisibleFlag());
 
@@ -234,7 +224,7 @@ class SinglePageDrawer extends SinglePage {
     if (isFunction(afterClose)) {
       this.logCallTrace(
         {},
-        'DataSinglePageView::SinglePageDrawer',
+        primaryCallName,
         'onClose',
         'trigger',
         'afterClose',
@@ -244,7 +234,7 @@ class SinglePageDrawer extends SinglePage {
     } else {
       this.logCallTrace(
         {},
-        'DataSinglePageView::SinglePageDrawer',
+        primaryCallName,
         'onClose',
         'trigger',
         'afterClose',
@@ -262,7 +252,7 @@ class SinglePageDrawer extends SinglePage {
       {
         parameter: { handleData },
       },
-      'DataSinglePageView::SinglePageDrawer',
+      primaryCallName,
       'selectRecord',
     );
 
@@ -278,23 +268,19 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetTitleIcon = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageDrawer',
-      'renderPresetTitleIcon',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon');
 
     return iconBuilder.read();
   };
 
   buildTitlePrevText = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitlePrevText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitlePrevText', emptyLogic);
 
     return '';
   };
 
   buildTitleText = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitleText', emptyLogic);
 
     const { pageTitle } = this.state;
 
@@ -302,13 +288,13 @@ class SinglePageDrawer extends SinglePage {
   };
 
   buildTitleSubText = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleSubText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitleSubText', emptyLogic);
 
     return '';
   };
 
   hideDrawer = () => {
-    this.logCallTrack({}, 'DataSinglePageView::SinglePageDrawer', 'hideDrawer');
+    this.logCallTrack({}, primaryCallName, 'hideDrawer');
 
     this.onClose();
   };
@@ -321,11 +307,7 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetListMainViewContainor = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageDrawer',
-      'renderPresetListMainViewContainor',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetListMainViewContainor');
 
     const { firstLoadSuccess, listTitle, tableSize, listViewMode } = this.state;
 
@@ -476,11 +458,7 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetContentContainor = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageDrawer',
-      'renderPresetContentContainor',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetContentContainor');
 
     return (
       <div
@@ -499,11 +477,7 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetDrawerInner = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageDrawer',
-      'renderPresetDrawerInner',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetDrawerInner');
 
     return (
       <div
@@ -516,11 +490,7 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetListView = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageDrawer',
-      'renderPresetListView',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetListView');
 
     const list = this.getCanUseFrontendPagination()
       ? this.adjustFrontendPaginationViewDataSource()

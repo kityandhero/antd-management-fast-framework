@@ -16,6 +16,8 @@ import { emptyLogic } from 'antd-management-fast-common';
 import { switchControlAssist } from '../../../utils/switchControlAssist';
 import { Base } from '../Base';
 
+const primaryCallName = 'DataOperation::BaseWindow';
+
 class BaseWindow extends Base {
   visibleFlag = '';
 
@@ -58,7 +60,7 @@ class BaseWindow extends Base {
   doOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
       {},
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'doOtherWhenChangeVisibleToShow',
       emptyLogic,
     );
@@ -70,7 +72,7 @@ class BaseWindow extends Base {
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
       {},
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'executeAfterDoOtherWhenChangeVisibleToShow',
       emptyLogic,
     );
@@ -82,7 +84,7 @@ class BaseWindow extends Base {
   doOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
       {},
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'doOtherWhenChangeVisibleToHide',
       emptyLogic,
     );
@@ -94,7 +96,7 @@ class BaseWindow extends Base {
   executeAfterDoOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
       {},
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'executeAfterDoOtherWhenChangeVisibleToHide',
       emptyLogic,
     );
@@ -106,7 +108,7 @@ class BaseWindow extends Base {
   executeOtherAfterDoOtherWhenChangeVisible = () => {
     this.logCallTrack(
       {},
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'executeOtherAfterDoOtherWhenChangeVisible',
       emptyLogic,
     );
@@ -120,7 +122,7 @@ class BaseWindow extends Base {
       {
         parameter: { currentVisible },
       },
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'doOtherWhenChangeVisible',
     );
 
@@ -136,7 +138,7 @@ class BaseWindow extends Base {
   };
 
   getTargetForm = () => {
-    this.logCallTrack({}, 'DataOperation::BaseWindow', 'getTargetForm');
+    this.logCallTrack({}, primaryCallName, 'getTargetForm');
 
     return this.formRef.current;
   };
@@ -144,7 +146,7 @@ class BaseWindow extends Base {
   supplementSubmitRequestParams = (o) => {
     this.logCallTrack(
       {},
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'supplementSubmitRequestParams',
       emptyLogic,
     );
@@ -167,7 +169,7 @@ class BaseWindow extends Base {
           metaOriginalData,
         },
       },
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'afterLoadSuccess',
     );
 
@@ -198,14 +200,14 @@ class BaseWindow extends Base {
   }) => {
     this.logCallTrack(
       {},
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'doOtherAfterLoadSuccess',
       emptyLogic,
     );
   };
 
   onClose = () => {
-    this.logCallTrack({}, 'DataOperation::BaseWindow', 'onClose');
+    this.logCallTrack({}, primaryCallName, 'onClose');
 
     switchControlAssist.close(this.getVisibleFlag());
 
@@ -214,7 +216,7 @@ class BaseWindow extends Base {
     if (isFunction(afterClose)) {
       this.logCallTrace(
         {},
-        'DataOperation::BaseWindow',
+        primaryCallName,
         'onClose',
         'trigger',
         'afterClose',
@@ -248,7 +250,7 @@ class BaseWindow extends Base {
           metaOriginalData,
         },
       },
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'fillData',
     );
 
@@ -265,7 +267,7 @@ class BaseWindow extends Base {
   };
 
   setFormFieldsValue = (v) => {
-    this.logCallTrack({}, 'DataOperation::BaseWindow', 'setFormFieldsValue');
+    this.logCallTrack({}, primaryCallName, 'setFormFieldsValue');
 
     const form = this.getTargetForm();
 
@@ -278,18 +280,13 @@ class BaseWindow extends Base {
 
   // eslint-disable-next-line no-unused-vars
   afterSetFieldsValue = (value) => {
-    this.logCallTrack(
-      {},
-      'DataOperation::BaseWindow',
-      'afterSetFieldsValue',
-      emptyLogic,
-    );
+    this.logCallTrack({}, primaryCallName, 'afterSetFieldsValue', emptyLogic);
   };
 
   afterCheckSubmitRequestParams = (o) => {
     this.logCallTrack(
       {},
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'afterCheckSubmitRequestParams',
       emptyLogic,
     );
@@ -309,7 +306,7 @@ class BaseWindow extends Base {
       {
         parameter: { values },
       },
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'execSubmitApi',
     );
 
@@ -367,7 +364,7 @@ class BaseWindow extends Base {
                 {
                   parameter: { values },
                 },
-                'DataOperation::BaseWindow',
+                primaryCallName,
                 'execSubmitApi',
                 'trigger',
                 'successCallback',
@@ -377,7 +374,7 @@ class BaseWindow extends Base {
             } else {
               that.logCallTrace(
                 {},
-                'DataOperation::BaseWindow',
+                primaryCallName,
                 'execSubmitApi',
                 'trigger',
                 'successCallback',
@@ -391,7 +388,7 @@ class BaseWindow extends Base {
               {
                 parameter: { values },
               },
-              'DataOperation::BaseWindow',
+              primaryCallName,
               'execSubmitApi',
               'completeCallback',
             );
@@ -400,7 +397,7 @@ class BaseWindow extends Base {
           } else {
             that.logCallTrace(
               {},
-              'DataOperation::BaseWindow',
+              primaryCallName,
               'execSubmitApi',
               'trigger',
               'completeCallback',
@@ -426,7 +423,7 @@ class BaseWindow extends Base {
               {
                 parameter: { values },
               },
-              'DataOperation::BaseWindow',
+              primaryCallName,
               'execSubmitApi',
               'trigger',
               'failCallback',
@@ -436,7 +433,7 @@ class BaseWindow extends Base {
           } else {
             that.logCallTrace(
               {},
-              'DataOperation::BaseWindow',
+              primaryCallName,
               'execSubmitApi',
               'trigger',
               'failCallback',
@@ -449,7 +446,7 @@ class BaseWindow extends Base {
               {
                 parameter: { values },
               },
-              'DataOperation::BaseWindow',
+              primaryCallName,
               'execSubmitApi',
               'trigger',
               'completeCallback',
@@ -459,7 +456,7 @@ class BaseWindow extends Base {
           } else {
             that.logCallTrace(
               {},
-              'DataOperation::BaseWindow',
+              primaryCallName,
               'execSubmitApi',
               'trigger',
               'completeCallback',
@@ -474,7 +471,7 @@ class BaseWindow extends Base {
     } else {
       that.logCallTrace(
         {},
-        'DataOperation::BaseWindow',
+        primaryCallName,
         'validate',
         'check submit data fail',
       );
@@ -482,7 +479,7 @@ class BaseWindow extends Base {
       if (isFunction(completeCallback)) {
         that.logCallTrace(
           {},
-          'DataOperation::BaseWindow',
+          primaryCallName,
           'validate',
           'trigger',
           'completeCallback',
@@ -492,7 +489,7 @@ class BaseWindow extends Base {
       } else {
         that.logCallTrace(
           {},
-          'DataOperation::BaseWindow',
+          primaryCallName,
           'validate',
           'trigger',
           'completeCallback',
@@ -509,7 +506,7 @@ class BaseWindow extends Base {
     failCallback = null,
     completeCallback = null,
   }) => {
-    this.logCallTrack({}, 'DataOperation::BaseWindow', 'handleOkWithForm');
+    this.logCallTrack({}, primaryCallName, 'handleOkWithForm');
 
     const that = this;
 
@@ -571,7 +568,7 @@ class BaseWindow extends Base {
         if (isFunction(failCallback)) {
           this.logCallTrace(
             {},
-            'DataOperation::BaseWindow',
+            primaryCallName,
             'execSubmitApi',
             'trigger',
             'failCallback',
@@ -581,7 +578,7 @@ class BaseWindow extends Base {
         } else {
           that.logCallTrace(
             {},
-            'DataOperation::BaseWindow',
+            primaryCallName,
             'execSubmitApi',
             'trigger',
             'failCallback',
@@ -592,7 +589,7 @@ class BaseWindow extends Base {
         if (isFunction(completeCallback)) {
           this.logCallTrace(
             {},
-            'DataOperation::BaseWindow',
+            primaryCallName,
             'execSubmitApi',
             'trigger',
             'completeCallback',
@@ -602,7 +599,7 @@ class BaseWindow extends Base {
         } else {
           that.logCallTrace(
             {},
-            'DataOperation::BaseWindow',
+            primaryCallName,
             'execSubmitApi',
             'trigger',
             'completeCallback',
@@ -617,7 +614,7 @@ class BaseWindow extends Base {
     failCallback = null,
     completeCallback = null,
   }) => {
-    this.logCallTrack({}, 'DataOperation::BaseWindow', 'handleOk');
+    this.logCallTrack({}, primaryCallName, 'handleOk');
 
     if (this.submitWithForm) {
       this.handleOkWithForm({
@@ -650,7 +647,7 @@ class BaseWindow extends Base {
         responseOriginalData,
         submitData,
       },
-      'DataOperation::BaseWindow',
+      primaryCallName,
       'afterSubmitSuccess',
     );
 
@@ -664,7 +661,7 @@ class BaseWindow extends Base {
   };
 
   handleCancel = () => {
-    this.logCallTrack({}, 'DataOperation::BaseWindow', 'handleCancel');
+    this.logCallTrack({}, primaryCallName, 'handleCancel');
 
     switchControlAssist.close(this.getVisibleFlag());
 
@@ -673,7 +670,7 @@ class BaseWindow extends Base {
     if (isFunction(afterCancel)) {
       this.logCallTrace(
         {},
-        'DataOperation::BaseWindow',
+        primaryCallName,
         'handleCancel',
         'trigger',
         'afterCancel',
@@ -683,7 +680,7 @@ class BaseWindow extends Base {
     } else {
       this.logCallTrace(
         {},
-        'DataOperation::BaseWindow',
+        primaryCallName,
         'handleCancel',
         'trigger',
         'afterCancel',
@@ -693,18 +690,13 @@ class BaseWindow extends Base {
   };
 
   getFormClassName = () => {
-    this.logCallTrack(
-      {},
-      'DataOperation::BaseWindow',
-      'getFormClassName',
-      emptyLogic,
-    );
+    this.logCallTrack({}, primaryCallName, 'getFormClassName', emptyLogic);
 
     return null;
   };
 
   getVisibleFlag() {
-    this.logCallTrack({}, 'DataOperation::BaseWindow', 'getVisibleFlag');
+    this.logCallTrack({}, primaryCallName, 'getVisibleFlag');
 
     const { flag } = this.props;
 
@@ -712,7 +704,7 @@ class BaseWindow extends Base {
   }
 
   getSaveButtonDisabled = () => {
-    this.logCallTrack({}, 'DataOperation::BaseWindow', 'getSaveButtonDisabled');
+    this.logCallTrack({}, primaryCallName, 'getSaveButtonDisabled');
 
     const { loadApiPath, dataLoading, processing, loadSuccess } = this.state;
 

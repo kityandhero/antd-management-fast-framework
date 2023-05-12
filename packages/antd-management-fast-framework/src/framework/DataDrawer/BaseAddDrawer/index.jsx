@@ -6,6 +6,8 @@ import { iconBuilder } from 'antd-management-fast-component';
 import { ElasticityExtraButton } from '../../../components/ElasticityExtraButton';
 import { BaseNeedlessLoadDrawer } from '../BaseNeedlessLoadDrawer';
 
+const primaryCallName = 'DataDrawer::BaseAddDrawer';
+
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -22,7 +24,7 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   }
 
   adjustWhenDidMount = () => {
-    this.logCallTrack({}, 'DataDrawer::BaseAddDrawer', 'adjustWhenDidMount');
+    this.logCallTrack({}, primaryCallName, 'adjustWhenDidMount');
 
     this.fillData({});
   };
@@ -30,7 +32,7 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   buildBottomBarInnerDefaultConfigList = () => {
     this.logCallTrack(
       {},
-      'DataDrawer::BaseAddDrawer',
+      primaryCallName,
       'buildBottomBarInnerDefaultConfigList',
     );
 

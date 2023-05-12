@@ -5,6 +5,8 @@ import {
 
 import { DataCore } from '../DataCore';
 
+const primaryCallName = 'DataSingleView::DataLoad';
+
 class DataLoad extends DataCore {
   constructor(properties) {
     super(properties);
@@ -70,7 +72,7 @@ class DataLoad extends DataCore {
           metaOriginalData,
         },
       },
-      'DataSingleView::DataLoad',
+      primaryCallName,
       'afterLoadSuccess',
     );
 
@@ -115,7 +117,7 @@ class DataLoad extends DataCore {
           metaOriginalData,
         },
       },
-      'DataSingleView::DataLoad',
+      primaryCallName,
       'fillData',
     );
 

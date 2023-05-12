@@ -9,6 +9,8 @@ import { BaseComponent } from 'antd-management-fast-component';
 import { switchControlAssist } from '../../utils/switchControlAssist';
 import { tabControlAssist } from '../../utils/tabControlAssist';
 
+const primaryCallName = 'Core';
+
 class Core extends BaseComponent {
   lastLoadParams = null;
 
@@ -89,7 +91,7 @@ class Core extends BaseComponent {
       {
         parameter: { key },
       },
-      'Core',
+      primaryCallName,
       'setTabActiveKey',
     );
 
@@ -97,7 +99,7 @@ class Core extends BaseComponent {
   }
 
   startLoading(...message) {
-    this.logCallTrack({}, 'Core', 'startLoading');
+    this.logCallTrack({}, primaryCallName, 'startLoading');
 
     switchControlAssist.open(
       this.viewLoadingFlag,
@@ -108,7 +110,7 @@ class Core extends BaseComponent {
   }
 
   stopLoading(...message) {
-    this.logCallTrack({}, 'Core', 'stopLoading');
+    this.logCallTrack({}, primaryCallName, 'stopLoading');
 
     switchControlAssist.close(
       this.viewLoadingFlag,
@@ -119,7 +121,7 @@ class Core extends BaseComponent {
   }
 
   startSearching(...message) {
-    this.logCallTrack({}, 'Core', 'startSearching');
+    this.logCallTrack({}, primaryCallName, 'startSearching');
 
     switchControlAssist.openMulti(
       [this.viewSearchingFlag, this.viewLoadingFlag],
@@ -130,7 +132,7 @@ class Core extends BaseComponent {
   }
 
   stopSearching(...message) {
-    this.logCallTrack({}, 'Core', 'stopSearching');
+    this.logCallTrack({}, primaryCallName, 'stopSearching');
 
     switchControlAssist.closeMulti(
       [this.viewSearchingFlag, this.viewLoadingFlag],
@@ -141,7 +143,7 @@ class Core extends BaseComponent {
   }
 
   startResetting(...message) {
-    this.logCallTrack({}, 'Core', 'startResetting');
+    this.logCallTrack({}, primaryCallName, 'startResetting');
 
     switchControlAssist.openMulti(
       [this.viewResettingFlag, this.viewLoadingFlag],
@@ -152,7 +154,7 @@ class Core extends BaseComponent {
   }
 
   stopResetting(...message) {
-    this.logCallTrack({}, 'Core', 'stopResetting');
+    this.logCallTrack({}, primaryCallName, 'stopResetting');
 
     switchControlAssist.closeMulti(
       [this.viewResettingFlag, this.viewLoadingFlag],
@@ -163,7 +165,7 @@ class Core extends BaseComponent {
   }
 
   startRefreshing(...message) {
-    this.logCallTrack({}, 'Core', 'startRefreshing');
+    this.logCallTrack({}, primaryCallName, 'startRefreshing');
 
     switchControlAssist.openMulti(
       [this.viewLoadingFlag, this.viewRefreshingFlag],
@@ -174,7 +176,7 @@ class Core extends BaseComponent {
   }
 
   stopRefreshing(...message) {
-    this.logCallTrack({}, 'Core', 'stopRefreshing');
+    this.logCallTrack({}, primaryCallName, 'stopRefreshing');
 
     switchControlAssist.closeMulti(
       [this.viewLoadingFlag, this.viewRefreshingFlag],
@@ -185,7 +187,7 @@ class Core extends BaseComponent {
   }
 
   startReloading(...message) {
-    this.logCallTrack({}, 'Core', 'startReloading');
+    this.logCallTrack({}, primaryCallName, 'startReloading');
 
     switchControlAssist.openMulti(
       [this.viewLoadingFlag, this.viewReloadingFlag],
@@ -196,7 +198,7 @@ class Core extends BaseComponent {
   }
 
   stopReloading(...message) {
-    this.logCallTrack({}, 'Core', 'stopReloading');
+    this.logCallTrack({}, primaryCallName, 'stopReloading');
 
     switchControlAssist.closeMulti(
       [this.viewLoadingFlag, this.viewReloadingFlag],
@@ -207,7 +209,7 @@ class Core extends BaseComponent {
   }
 
   startProcessing(...message) {
-    this.logCallTrack({}, 'Core', 'startProcessing');
+    this.logCallTrack({}, primaryCallName, 'startProcessing');
 
     switchControlAssist.open(
       this.viewProcessingFlag,
@@ -218,7 +220,7 @@ class Core extends BaseComponent {
   }
 
   stopProcessing(...message) {
-    this.logCallTrack({}, 'Core', 'stopProcessing');
+    this.logCallTrack({}, primaryCallName, 'stopProcessing');
 
     switchControlAssist.close(
       this.viewProcessingFlag,

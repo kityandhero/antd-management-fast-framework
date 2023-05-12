@@ -28,6 +28,8 @@ import styles from './index.less';
 
 const { Footer, Content } = Layout;
 
+const primaryCallName = 'DataDrawer::Base';
+
 class Base extends BaseWindow {
   contentWrapperType = contentConfig.wrapperType.drawer;
 
@@ -50,13 +52,13 @@ class Base extends BaseWindow {
   }
 
   buildTitlePrevText = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitlePrevText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitlePrevText', emptyLogic);
 
     return '';
   };
 
   buildTitleText = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitleText', emptyLogic);
 
     const { pageTitle } = this.state;
 
@@ -64,30 +66,30 @@ class Base extends BaseWindow {
   };
 
   buildTitleSubText = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildTitleSubText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitleSubText', emptyLogic);
 
     return '';
   };
 
   renderPresetTitleIcon = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetTitleIcon');
+    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon');
 
     return iconBuilder.form();
   };
   buildFormLayout = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildFormLayout');
+    this.logCallTrack({}, primaryCallName, 'buildFormLayout');
 
     return 'vertical';
   };
 
   buildNotificationPlacement = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'buildNotificationPlacement');
+    this.logCallTrack({}, primaryCallName, 'buildNotificationPlacement');
 
     return `bottom-left`;
   };
 
   renderPresetForm = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetForm');
+    this.logCallTrack({}, primaryCallName, 'renderPresetForm');
 
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
@@ -116,7 +118,7 @@ class Base extends BaseWindow {
   establishCardCollectionConfig = () => {
     this.logCallTrack(
       {},
-      'DataDrawer::Base',
+      primaryCallName,
       'establishCardCollectionConfig',
       emptyLogic,
     );
@@ -125,7 +127,7 @@ class Base extends BaseWindow {
   };
 
   renderPresetFormContent = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetFormContent');
+    this.logCallTrack({}, primaryCallName, 'renderPresetFormContent');
 
     return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };
@@ -133,7 +135,7 @@ class Base extends BaseWindow {
   renderPresetContentContainor = () => {
     this.logCallTrack(
       {},
-      'DataDrawer::Base',
+      primaryCallName,
       'renderPresetContentContainor',
       emptyLogic,
     );
@@ -148,7 +150,7 @@ class Base extends BaseWindow {
       {
         parameter: { option },
       },
-      'DataDrawer::Base',
+      primaryCallName,
       'renderPresetCloseButton',
     );
 
@@ -169,7 +171,7 @@ class Base extends BaseWindow {
   buildBottomBarInnerExtraConfigList = () => {
     this.logCallTrack(
       {},
-      'DataDrawer::Base',
+      primaryCallName,
       'buildBottomBarInnerExtraConfigList',
       emptyLogic,
     );
@@ -180,7 +182,7 @@ class Base extends BaseWindow {
   buildBottomBarInnerDefaultConfigList = () => {
     this.logCallTrack(
       {},
-      'DataDrawer::Base',
+      primaryCallName,
       'buildBottomBarInnerDefaultConfigList',
     );
 
@@ -194,7 +196,7 @@ class Base extends BaseWindow {
   buildBottomBarInnerLeftItemConfigList = () => {
     this.logCallTrack(
       {},
-      'DataDrawer::Base',
+      primaryCallName,
       'buildBottomBarInnerLeftItemConfigList',
       emptyLogic,
     );
@@ -205,7 +207,7 @@ class Base extends BaseWindow {
   buildBottomBarInnerRightItemConfigList = () => {
     this.logCallTrack(
       {},
-      'DataDrawer::Base',
+      primaryCallName,
       'buildBottomBarInnerRightItemConfigList',
     );
 
@@ -221,7 +223,7 @@ class Base extends BaseWindow {
   };
 
   renderPresetBottomBarRightBox = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetBottomBarRightBox');
+    this.logCallTrack({}, primaryCallName, 'renderPresetBottomBarRightBox');
 
     const rightConfigList = this.buildBottomBarInnerRightItemConfigList();
 
@@ -229,7 +231,7 @@ class Base extends BaseWindow {
   };
 
   renderPresetBottomBarLeftBox = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetBottomBarLeftBox');
+    this.logCallTrack({}, primaryCallName, 'renderPresetBottomBarLeftBox');
 
     const leftConfigList = this.buildBottomBarInnerLeftItemConfigList();
 
@@ -241,7 +243,7 @@ class Base extends BaseWindow {
       {
         parameter: configList,
       },
-      'DataDrawer::Base',
+      primaryCallName,
       'renderPresetBottomBarInnerBox',
     );
 
@@ -370,7 +372,7 @@ class Base extends BaseWindow {
   };
 
   renderPresetBottomBar = () => {
-    this.logCallTrack({}, 'DataDrawer::Base', 'renderPresetBottomBar');
+    this.logCallTrack({}, primaryCallName, 'renderPresetBottomBar');
 
     const bottomBarLeftBox = this.renderPresetBottomBarLeftBox();
     const bottomBarRightBox = this.renderPresetBottomBarRightBox();

@@ -11,6 +11,8 @@ import { BaseWindow } from '../../DataOperation/BaseWindow';
 
 import styles from './index.less';
 
+const primaryCallName = 'DataModal::Base';
+
 class Base extends BaseWindow {
   contentWrapperType = contentConfig.wrapperType.model;
 
@@ -28,7 +30,7 @@ class Base extends BaseWindow {
   }
 
   buildFormLayout = () => {
-    this.logCallTrack({}, 'DataModal::Base', 'buildFormLayout');
+    this.logCallTrack({}, primaryCallName, 'buildFormLayout');
 
     return 'horizontal';
   };

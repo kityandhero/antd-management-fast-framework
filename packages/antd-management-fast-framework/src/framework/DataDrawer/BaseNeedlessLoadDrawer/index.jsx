@@ -4,6 +4,8 @@ import { formNameCollection } from 'antd-management-fast-common';
 
 import { Base } from '../Base';
 
+const primaryCallName = 'DataDrawer::BaseNeedlessLoadDrawer';
+
 class BaseNeedlessLoadDrawer extends Base {
   resetDataAfterLoad = false;
 
@@ -20,11 +22,7 @@ class BaseNeedlessLoadDrawer extends Base {
   }
 
   doOtherWhenChangeVisibleToShow = () => {
-    this.logCallTrack(
-      {},
-      'DataDrawer::BaseNeedlessLoadDrawer',
-      'doOtherWhenChangeVisibleToShow',
-    );
+    this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToShow');
 
     const form = this.getTargetForm();
 
@@ -36,21 +34,13 @@ class BaseNeedlessLoadDrawer extends Base {
   };
 
   buildInitialValues = () => {
-    this.logCallTrack(
-      {},
-      'DataDrawer::BaseNeedlessLoadDrawer',
-      'buildInitialValues',
-    );
+    this.logCallTrack({}, primaryCallName, 'buildInitialValues');
 
     return this.fillDefaultInitialValues();
   };
 
   fillDefaultInitialValues = () => {
-    this.logCallTrack(
-      {},
-      'DataDrawer::BaseNeedlessLoadDrawer',
-      'fillDefaultInitialValues',
-    );
+    this.logCallTrack({}, primaryCallName, 'fillDefaultInitialValues');
 
     const initialValues = {};
 

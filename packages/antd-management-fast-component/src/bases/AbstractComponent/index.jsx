@@ -33,6 +33,8 @@ const defaultProps = {
   hidden: false,
 };
 
+const primaryCallName = 'bases::AbstractComponent';
+
 /**
  * Refined PureComponent, it is usually used in load remote api scenarios
  */
@@ -166,7 +168,7 @@ class AbstractComponent extends Component {
     if (this.preventRender || !dispatchComplete) {
       this.logCallTrack(
         {},
-        'AbstractComponent',
+        primaryCallName,
         'shouldComponentUpdate',
         `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, force ignore render`,
       );
@@ -177,7 +179,7 @@ class AbstractComponent extends Component {
         {
           parameter: { nextProperties, nextState },
         },
-        'AbstractComponent',
+        primaryCallName,
         'shouldComponentUpdate',
         `preventRender: ${this.preventRender}, dispatchComplete: ${dispatchComplete}, use normal render check`,
       );
@@ -232,7 +234,7 @@ class AbstractComponent extends Component {
             childrenChanged,
           }
         : {},
-      'AbstractComponent',
+      primaryCallName,
       'shouldComponentUpdate',
       compareResult ? 'true' : 'false',
       compareResult ? 'will render' : 'ignore render',
@@ -286,7 +288,7 @@ class AbstractComponent extends Component {
 
     this.logCallTrack(
       {},
-      'AbstractComponent',
+      primaryCallName,
       'increaseCounter',
       `next counter: ${nextCounter}`,
     );
@@ -304,7 +306,7 @@ class AbstractComponent extends Component {
   }
 
   doDidMountTask = () => {
-    this.logCallTrack({}, 'AbstractComponent', 'doDidMountTask');
+    this.logCallTrack({}, primaryCallName, 'doDidMountTask');
 
     this.mounted = true;
 
@@ -313,7 +315,7 @@ class AbstractComponent extends Component {
     if (checkAuthenticationResult) {
       this.logCallTrace(
         {},
-        'AbstractComponent',
+        primaryCallName,
         'doDidMountTask',
         'checkAuthenticationResult',
         true,
@@ -324,7 +326,7 @@ class AbstractComponent extends Component {
       if (checkAuthorizationResult) {
         this.logCallTrace(
           {},
-          'AbstractComponent',
+          primaryCallName,
           'doDidMountTask',
           'checkAuthorizationResult',
           true,
@@ -348,7 +350,7 @@ class AbstractComponent extends Component {
       } else {
         this.logCallTrace(
           {},
-          'AbstractComponent',
+          primaryCallName,
           'doDidMountTask',
           'checkAuthorizationResult',
           false,
@@ -359,7 +361,7 @@ class AbstractComponent extends Component {
     } else {
       this.logCallTrace(
         {},
-        'AbstractComponent',
+        primaryCallName,
         'doDidMountTask',
         'checkAuthenticationResult',
         false,
@@ -378,21 +380,13 @@ class AbstractComponent extends Component {
   };
 
   doWorkWhenCheckAuthenticationFail = () => {
-    this.logCallTrack(
-      {},
-      'AbstractComponent',
-      'doWorkWhenCheckAuthenticationFail',
-    );
+    this.logCallTrack({}, primaryCallName, 'doWorkWhenCheckAuthenticationFail');
 
     handleAuthenticationFail();
   };
 
   doWorkWhenCheckAuthorizationFail = () => {
-    this.logCallTrack(
-      {},
-      'AbstractComponent',
-      'doWorkWhenCheckAuthorizationFail',
-    );
+    this.logCallTrack({}, primaryCallName, 'doWorkWhenCheckAuthorizationFail');
 
     handleAuthorizationFail();
   };
@@ -417,29 +411,19 @@ class AbstractComponent extends Component {
 
   // eslint-disable-next-line no-unused-vars
   doWorkBeforeUpdate = (nextProperties, nextState) => {
-    this.logCallTrack(
-      {},
-      'bases::AbstractComponent',
-      'doWorkBeforeUpdate',
-      emptyLogic,
-    );
+    this.logCallTrack({}, primaryCallName, 'doWorkBeforeUpdate', emptyLogic);
   };
 
   // eslint-disable-next-line no-unused-vars
   doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
-    this.logCallTrack(
-      {},
-      'bases::AbstractComponent',
-      'doWorkWhenDidUpdate',
-      emptyLogic,
-    );
+    this.logCallTrack({}, primaryCallName, 'doWorkWhenDidUpdate', emptyLogic);
   };
 
   // eslint-disable-next-line no-unused-vars
   doWorkWhenGetSnapshotBeforeUpdate = (preProperties, preState) => {
     this.logCallTrack(
       {},
-      'bases::AbstractComponent',
+      primaryCallName,
       'doWorkWhenGetSnapshotBeforeUpdate',
       emptyLogic,
     );

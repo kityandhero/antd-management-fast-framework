@@ -49,6 +49,8 @@ import { loadMetaData } from '../../../utils/metaDataAssist';
 import { progressBarControlAssist } from '../../../utils/progressBarControlAssist';
 import { Core } from '../../Core';
 
+const primaryCallName = 'Common::InternalFlow';
+
 class InternalFlow extends Core {
   showPageHeader = true;
 
@@ -88,7 +90,7 @@ class InternalFlow extends Core {
   checkNeedUpdate = (preProperties, preState, snapshot) => false;
 
   doLoadRemoteRequest = () => {
-    this.logCallTrack({}, 'Common::InternalFlow', 'doLoadRemoteRequest');
+    this.logCallTrack({}, primaryCallName, 'doLoadRemoteRequest');
 
     const that = this;
 
@@ -175,7 +177,7 @@ class InternalFlow extends Core {
           delay,
         },
       },
-      'Common::InternalFlow',
+      primaryCallName,
       'initLoad',
     );
 
@@ -193,7 +195,7 @@ class InternalFlow extends Core {
       if (isFunction(completeCallback)) {
         this.logCallTrace(
           {},
-          'Common::InternalFlow',
+          primaryCallName,
           'initLoad',
           'check loadApiPath fail',
           'trigger',
@@ -220,7 +222,7 @@ class InternalFlow extends Core {
       if (isFunction(completeCallback)) {
         this.logCallTrace(
           {},
-          'Common::InternalFlow',
+          primaryCallName,
           'initLoad',
           'check load request params fail',
           'trigger',
@@ -287,14 +289,14 @@ class InternalFlow extends Core {
           delay,
         },
       },
-      'Common::InternalFlow',
+      primaryCallName,
       'initLoadCore',
     );
 
     if (isFunction(beforeRequestSource)) {
       this.logCallTrace(
         {},
-        'Common::InternalFlow',
+        primaryCallName,
         'initLoadCore',
         'trigger',
         'beforeRequest',
@@ -304,7 +306,7 @@ class InternalFlow extends Core {
     } else {
       this.logCallTrace(
         {},
-        'Common::InternalFlow',
+        primaryCallName,
         'initLoadCore',
         'trigger',
         'beforeRequest',
@@ -330,7 +332,7 @@ class InternalFlow extends Core {
               delay,
             },
           },
-          'Common::InternalFlow',
+          primaryCallName,
           'initLoadCore',
           'load from api delay',
           delayTime,
@@ -392,7 +394,7 @@ class InternalFlow extends Core {
             loadApiPath,
             requestData,
           },
-          'Common::InternalFlow',
+          primaryCallName,
           'loadFromApi',
         );
 
@@ -488,7 +490,7 @@ class InternalFlow extends Core {
                     requestData,
                   },
                 },
-                'Common::InternalFlow',
+                primaryCallName,
                 'loadFromApi',
                 'trigger',
                 'completeCallback',
@@ -513,7 +515,7 @@ class InternalFlow extends Core {
                     requestData,
                   },
                 },
-                'Common::InternalFlow',
+                primaryCallName,
                 'loadFromApi',
                 'trigger',
                 'failCallback',
@@ -529,7 +531,7 @@ class InternalFlow extends Core {
                     requestData,
                   },
                 },
-                'Common::InternalFlow',
+                primaryCallName,
                 'loadFromApi',
                 'trigger',
                 'completeCallback',
@@ -549,7 +551,7 @@ class InternalFlow extends Core {
               requestData,
             },
           },
-          'Common::InternalFlow',
+          primaryCallName,
           'loadFromApi',
           'trigger',
           'completeCallback',
@@ -587,7 +589,7 @@ class InternalFlow extends Core {
       {
         parameter: { otherState, requestData, delay },
       },
-      'Common::InternalFlow',
+      primaryCallName,
       'pageListData',
     );
 
@@ -638,7 +640,7 @@ class InternalFlow extends Core {
           completeCallback: completeCallbackSource,
         },
       },
-      'Common::InternalFlow',
+      primaryCallName,
       'reloadData',
     );
 
@@ -648,13 +650,7 @@ class InternalFlow extends Core {
 
     that.startReloading();
 
-    that.logCallTrace(
-      {},
-      'Common::InternalFlow',
-      'reloadData',
-      'trigger',
-      'initLoad',
-    );
+    that.logCallTrace({}, primaryCallName, 'reloadData', 'trigger', 'initLoad');
 
     that.initLoad({
       otherState,
@@ -668,7 +664,7 @@ class InternalFlow extends Core {
         if (isFunction(completeCallbackSource)) {
           that.logCallTrace(
             {},
-            'Common::InternalFlow',
+            primaryCallName,
             'reloadData',
             'trigger',
             'completeCallback',
@@ -678,7 +674,7 @@ class InternalFlow extends Core {
         } else {
           that.logCallTrace(
             {},
-            'Common::InternalFlow',
+            primaryCallName,
             'reloadData',
             'trigger',
             'completeCallback',
@@ -712,7 +708,7 @@ class InternalFlow extends Core {
           completeCallback: completeCallbackSource,
         },
       },
-      'Common::InternalFlow',
+      primaryCallName,
       'searchData',
     );
 
@@ -722,7 +718,7 @@ class InternalFlow extends Core {
 
     that.startSearching();
 
-    that.logCallTrace({}, 'Common::InternalFlow', 'searchData', 'initLoad');
+    that.logCallTrace({}, primaryCallName, 'searchData', 'initLoad');
 
     this.initLoad({
       otherState,
@@ -736,7 +732,7 @@ class InternalFlow extends Core {
         if (isFunction(completeCallbackSource)) {
           that.logCallTrace(
             {},
-            'Common::InternalFlow',
+            primaryCallName,
             'searchData',
             'trigger',
             'completeCallback',
@@ -746,7 +742,7 @@ class InternalFlow extends Core {
         } else {
           that.logCallTrace(
             {},
-            'Common::InternalFlow',
+            primaryCallName,
             'searchData',
             'trigger',
             'completeCallback',
@@ -780,7 +776,7 @@ class InternalFlow extends Core {
           completeCallback: completeCallbackSource,
         },
       },
-      'Common::InternalFlow',
+      primaryCallName,
       'resetData',
     );
 
@@ -790,13 +786,7 @@ class InternalFlow extends Core {
 
     that.startResetting();
 
-    that.logCallTrace(
-      {},
-      'Common::InternalFlow',
-      'resetData',
-      'trigger',
-      'initLoad',
-    );
+    that.logCallTrace({}, primaryCallName, 'resetData', 'trigger', 'initLoad');
 
     this.initLoad({
       otherState,
@@ -810,7 +800,7 @@ class InternalFlow extends Core {
         if (isFunction(completeCallbackSource)) {
           that.logCallTrace(
             {},
-            'Common::InternalFlow',
+            primaryCallName,
             'resetData',
             'trigger',
             'completeCallback',
@@ -820,7 +810,7 @@ class InternalFlow extends Core {
         } else {
           that.logCallTrace(
             {},
-            'Common::InternalFlow',
+            primaryCallName,
             'resetData',
             'trigger',
             'completeCallback',
@@ -854,7 +844,7 @@ class InternalFlow extends Core {
           completeCallback: completeCallbackSource,
         },
       },
-      'Common::InternalFlow',
+      primaryCallName,
       'refreshData',
     );
 
@@ -866,7 +856,7 @@ class InternalFlow extends Core {
 
     that.logCallTrace(
       {},
-      'Common::InternalFlow',
+      primaryCallName,
       'refreshData',
       'trigger',
       'initLoad',
@@ -884,7 +874,7 @@ class InternalFlow extends Core {
         if (isFunction(completeCallbackSource)) {
           that.logCallTrace(
             {},
-            'Common::InternalFlow',
+            primaryCallName,
             'refreshData',
             'trigger',
             'completeCallback',
@@ -894,7 +884,7 @@ class InternalFlow extends Core {
         } else {
           that.logCallTrace(
             {},
-            'Common::InternalFlow',
+            primaryCallName,
             'refreshData',
             'trigger',
             'completeCallback',
@@ -933,7 +923,7 @@ class InternalFlow extends Core {
           metaOriginalData,
         },
       },
-      'Common::InternalFlow',
+      primaryCallName,
       'afterLoadSuccess',
     );
 
@@ -1307,6 +1297,13 @@ class InternalFlow extends Core {
   };
 
   establishFormAdditionalConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishFormAdditionalConfig',
+      emptyLogic,
+    );
+
     return {};
   };
 

@@ -13,6 +13,8 @@ import {
 
 import { SinglePageDrawer } from '../SinglePageDrawer';
 
+const primaryCallName = 'DataSinglePageView::SinglePageSelectDrawer';
+
 class SinglePageSelectDrawer extends SinglePageDrawer {
   showListViewItemActionSelect = true;
 
@@ -22,27 +24,51 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
 
   selectListData = [];
 
+  selectChanged = false;
+
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'executeAfterDoOtherWhenChangeVisibleToShow',
+    );
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'executeAfterDoOtherWhenChangeVisibleToShow',
+      'reset selectListData => [] and selectChanged => false',
+    );
+
     this.selectListData = [];
+    this.selectChanged = false;
   };
 
   doOtherWhenChangeVisibleToHide = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageSelectDrawer',
-      'doOtherWhenChangeVisibleToHide',
-    );
+    if (!this.selectChanged) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'doOtherWhenChangeVisibleToHide',
+        'afterSelectSuccess',
+        'ignore when no change in selection',
+      );
+
+      return;
+    }
+
+    this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToHide');
 
     const { afterSelectSuccess } = this.props;
 
     if (isFunction(afterSelectSuccess)) {
       this.logCallTrace(
         {},
-        'DataSinglePageView::SinglePageSelectDrawer',
+        primaryCallName,
         'doOtherWhenChangeVisibleToHide',
         'afterSelectSuccess',
       );
@@ -51,7 +77,7 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
     } else {
       this.logCallTrace(
         {},
-        'DataSinglePageView::SinglePageSelectDrawer',
+        primaryCallName,
         'doOtherWhenChangeVisibleToHide',
         'afterSelectSuccess',
         emptyLogic,
@@ -78,7 +104,7 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
   buildSelectNotificationDescription = (data) => {
     this.logCallTrack(
       {},
-      'DataSinglePageView::SinglePageSelectDrawer',
+      primaryCallName,
       'buildSelectNotificationDescription',
       emptyLogic,
     );
@@ -87,11 +113,7 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
   };
 
   selectRecord = ({ handleData }) => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePageSelectDrawer',
-      'selectRecord',
-    );
+    this.logCallTrack({}, primaryCallName, 'selectRecord');
 
     if (!isArray(this.selectListData)) {
       this.selectListData = [];
@@ -105,11 +127,13 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
       this.selectListData = [handleData];
     }
 
+    this.selectChanged = true;
+
     this.logCallTrace(
       multiSelect
         ? { selectData: this.selectListData }
         : { selectData: this.selectListData[0] },
-      'DataSinglePageView::SinglePageSelectDrawer',
+      primaryCallName,
       'selectRecord',
       'select info',
     );
@@ -122,7 +146,7 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
       if (checkStringIsNullOrWhiteSpace(text)) {
         this.logCallTrace(
           {},
-          'DataSinglePageView::SinglePageSelectDrawer',
+          primaryCallName,
           'selectRecord',
           'showSuccessNotification',
           'ignore when message is empty',
@@ -130,7 +154,7 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
       } else {
         this.logCallTrace(
           {},
-          'DataSinglePageView::SinglePageSelectDrawer',
+          primaryCallName,
           'selectRecord',
           'showSuccessNotification',
         );

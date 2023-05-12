@@ -13,6 +13,8 @@ import { defaultListState, emptyLogic } from 'antd-management-fast-common';
 
 import { Base } from '../../DataListView/Base';
 
+const primaryCallName = 'DataSinglePageView::SinglePage';
+
 class SinglePage extends Base {
   /**
    * 使用远端分页
@@ -90,7 +92,7 @@ class SinglePage extends Base {
         sorterValues: this.sorterValues,
         pageValues: this.pageValues,
       },
-      'DataMultiPageView::SinglePage',
+      primaryCallName,
       'initLoadRequestParams',
     );
 
@@ -126,12 +128,12 @@ class SinglePage extends Base {
   };
 
   handleSearch = () => {
-    this.logCallTrack({}, 'DataSinglePageView::SinglePage', 'handleSearch');
+    this.logCallTrack({}, primaryCallName, 'handleSearch');
 
     if (this.checkWorkDoing()) {
       this.logCallTrace(
         {},
-        'DataSinglePageView::SinglePage',
+        primaryCallName,
         'handleSearch',
         'ignore on working',
       );
@@ -237,7 +239,7 @@ class SinglePage extends Base {
         useFrontendPagination,
         listData,
       },
-      'DataSinglePageView::SinglePage',
+      primaryCallName,
       'buildFrontendPaginationListData',
     );
 
@@ -251,7 +253,7 @@ class SinglePage extends Base {
   establishTableAdditionalConfig = () => {
     this.logCallTrack(
       {},
-      'DataSinglePageView::SinglePage',
+      primaryCallName,
       'establishTableAdditionalConfig',
       emptyLogic,
     );
@@ -281,7 +283,7 @@ class SinglePage extends Base {
       {
         parameter: { page, size },
       },
-      'DataSinglePageView::SinglePage',
+      primaryCallName,
       'handlePaginationChange',
     );
 
@@ -322,7 +324,7 @@ class SinglePage extends Base {
         sorter,
         extra,
       },
-      'DataSinglePageView::SinglePage',
+      primaryCallName,
       'handleAdditionalStandardTableChange',
     );
 
@@ -343,11 +345,7 @@ class SinglePage extends Base {
   };
 
   renderPresetPaginationView = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::SinglePage',
-      'renderPresetPaginationView',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetPaginationView');
 
     if (!this.getCanUseFrontendPagination()) {
       return null;

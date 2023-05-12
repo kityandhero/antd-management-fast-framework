@@ -66,6 +66,9 @@ const classPrefix = `amf-data-list-view-base`;
 const { Item: FormItem } = Form;
 const { RangePicker } = DatePicker;
 const { DatePickerItem, ComponentItem, OnlyShowInputItem } = FormExtra;
+
+const primaryCallName = 'DataListView::Base';
+
 class Base extends AuthorizationWrapper {
   /**
    * 使用远端分页
@@ -149,7 +152,7 @@ class Base extends AuthorizationWrapper {
           metaOriginalData,
         },
       },
-      'DataListView::Base',
+      primaryCallName,
       'afterLoadSuccess',
     );
 
@@ -337,12 +340,12 @@ class Base extends AuthorizationWrapper {
   handleAdditionalSearchReset = () => {};
 
   handleSearch = () => {
-    this.logCallTrack({}, 'DataListView::Base', 'handleSearch');
+    this.logCallTrack({}, primaryCallName, 'handleSearch');
 
     if (this.checkWorkDoing()) {
       this.logCallTrace(
         {},
-        'DataListView::Base',
+        primaryCallName,
         'handleSearch',
         'ignore on working',
       );
@@ -675,7 +678,7 @@ class Base extends AuthorizationWrapper {
     colLg = 8,
     rangePickerProperties = null,
   ) => {
-    this.logCallTrack({}, 'DataListView::Base', 'buildSearchCardRangePicker');
+    this.logCallTrack({}, primaryCallName, 'buildSearchCardRangePicker');
 
     return (
       <Col lg={colLg} md={12} sm={24} xs={24}>
@@ -688,7 +691,7 @@ class Base extends AuthorizationWrapper {
   };
 
   buildSearchCardRow = () => {
-    this.logCallTrack({}, 'DataListView::Base', 'buildSearchCardRow');
+    this.logCallTrack({}, primaryCallName, 'buildSearchCardRow');
 
     const config = this.establishSearchCardConfig();
 
@@ -702,7 +705,7 @@ class Base extends AuthorizationWrapper {
   fillSearchCardInitialValues = () => {
     this.logCallTrack(
       {},
-      'DataListView::Base',
+      primaryCallName,
       'fillSearchCardInitialValues',
       emptyLogic,
     );
@@ -734,7 +737,7 @@ class Base extends AuthorizationWrapper {
   establishTableAdditionalConfig = () => {
     this.logCallTrack(
       {},
-      'DataListView::Base',
+      primaryCallName,
       'establishTableAdditionalConfig',
       emptyLogic,
     );
@@ -745,7 +748,7 @@ class Base extends AuthorizationWrapper {
   establishTableExpandableConfig = () => {
     this.logCallTrack(
       {},
-      'DataListView::Base',
+      primaryCallName,
       'establishTableExpandableConfig',
       emptyLogic,
     );
@@ -754,11 +757,7 @@ class Base extends AuthorizationWrapper {
   };
 
   restoreColumnsOtherConfigArray = () => {
-    this.logCallTrack(
-      {},
-      'DataListView::Base',
-      'restoreColumnsOtherConfigArray',
-    );
+    this.logCallTrack({}, primaryCallName, 'restoreColumnsOtherConfigArray');
 
     const columnsOtherConfigArray = this.getColumn().map((item) => {
       return { dataIndex: item.dataIndex, show: true, fixed: item.fixed || '' };
@@ -768,7 +767,7 @@ class Base extends AuthorizationWrapper {
   };
 
   buildTableConfig = () => {
-    this.logCallTrack({}, 'DataListView::Base', 'buildTableConfig');
+    this.logCallTrack({}, primaryCallName, 'buildTableConfig');
 
     const { tableSize } = this.state;
 
@@ -783,12 +782,7 @@ class Base extends AuthorizationWrapper {
       expandable,
     };
 
-    this.logCallTrace(
-      result,
-      'DataListView::Base',
-      'buildTableConfig',
-      'result',
-    );
+    this.logCallTrace(result, primaryCallName, 'buildTableConfig', 'result');
 
     return result;
   };
@@ -907,7 +901,7 @@ class Base extends AuthorizationWrapper {
   establishDataContainerExtraActionCollectionConfig = () => {
     this.logCallTrack(
       {},
-      'DataListView::Base',
+      primaryCallName,
       'establishDataContainerExtraActionCollectionConfig',
       emptyLogic,
     );
@@ -918,7 +912,7 @@ class Base extends AuthorizationWrapper {
   establishDataContainerExtraAffixConfig = () => {
     this.logCallTrack(
       {},
-      'DataListView::Base',
+      primaryCallName,
       'establishDataContainerExtraAffixConfig',
       emptyLogic,
     );
@@ -929,7 +923,7 @@ class Base extends AuthorizationWrapper {
   buildDataContainerExtraActionCollection = () => {
     this.logCallTrack(
       {},
-      'DataListView::Base',
+      primaryCallName,
       'buildDataContainerExtraActionCollection',
     );
 
@@ -946,7 +940,7 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetExtraActionView = () => {
-    this.logCallTrack({}, 'DataListView::Base', 'renderPresetExtraActionView');
+    this.logCallTrack({}, primaryCallName, 'renderPresetExtraActionView');
 
     const actions = this.buildDataContainerExtraActionCollection();
 
@@ -1080,7 +1074,7 @@ class Base extends AuthorizationWrapper {
         paginationConfig,
         config,
       },
-      'DataListView::Base',
+      primaryCallName,
       'supplementPaginationConfig',
     );
 
@@ -1115,7 +1109,7 @@ class Base extends AuthorizationWrapper {
         sorter,
         extra,
       },
-      'DataListView::Base',
+      primaryCallName,
       'handleStandardTableChange',
     );
 
@@ -1171,7 +1165,7 @@ class Base extends AuthorizationWrapper {
           size,
         },
       },
-      'DataListView::Base',
+      primaryCallName,
       'handlePaginationShowSizeChange',
     );
 
@@ -1181,7 +1175,7 @@ class Base extends AuthorizationWrapper {
   establishPageHeaderExtraContentConfig = () => null;
 
   buildPaginationBar = () => {
-    this.logCallTrack({}, 'DataListView::Base', 'buildPaginationBar');
+    this.logCallTrack({}, primaryCallName, 'buildPaginationBar');
 
     const paginationConfig = this.supplementPaginationConfig();
 
@@ -1192,7 +1186,7 @@ class Base extends AuthorizationWrapper {
         paginationConfig,
         style,
       },
-      'DataListView::Base',
+      primaryCallName,
       'buildPaginationBar',
       'object',
     );
@@ -1227,7 +1221,7 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetCardExtraAction = () => {
-    this.logCallTrack({}, 'DataListView::Base', 'renderPresetCardExtraAction');
+    this.logCallTrack({}, primaryCallName, 'renderPresetCardExtraAction');
 
     const { listViewMode, tableSize } = this.state;
 
@@ -1278,7 +1272,7 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetListViewItem = (record, index) => {
-    this.logCallTrack({}, 'DataListView::Base', 'renderPresetListViewItem');
+    this.logCallTrack({}, primaryCallName, 'renderPresetListViewItem');
 
     return (
       <List.Item
@@ -1370,7 +1364,7 @@ class Base extends AuthorizationWrapper {
    * frontendPagination配置仅用在前台模拟分页时
    */
   renderPresetTableView = () => {
-    this.logCallTrace({}, 'DataListView::Base', 'renderPresetTableView');
+    this.logCallTrace({}, primaryCallName, 'renderPresetTableView');
 
     const {
       metaListData,
@@ -1426,7 +1420,7 @@ class Base extends AuthorizationWrapper {
         selectedDataTableDataRows,
         standardTableCustomOption,
       },
-      'DataListView::Base',
+      primaryCallName,
       'renderPresetTableView',
     );
 
@@ -1505,7 +1499,7 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetPaginationView = () => {
-    this.logCallTrack({}, 'DataListView::Base', 'renderPresetPaginationView');
+    this.logCallTrack({}, primaryCallName, 'renderPresetPaginationView');
 
     return this.buildPaginationBar();
   };

@@ -2,6 +2,8 @@ import { drawerConfig } from 'antd-management-fast-common';
 
 import { BaseLoadDrawer } from '../BaseLoadDrawer';
 
+const primaryCallName = 'DataDrawer::BaseUpdateDrawer';
+
 class BaseUpdateDrawer extends BaseLoadDrawer {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -19,7 +21,7 @@ class BaseUpdateDrawer extends BaseLoadDrawer {
   buildBottomBarInnerDefaultConfigList = () => {
     this.logCallTrack(
       {},
-      'DataDrawer::BaseUpdateDrawer',
+      primaryCallName,
       'buildBottomBarInnerDefaultConfigList',
     );
 

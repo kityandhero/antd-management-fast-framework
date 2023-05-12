@@ -13,6 +13,8 @@ import {
 
 import { MultiPageDrawer } from '../MultiPageDrawer';
 
+const primaryCallName = 'DataSinglePageView::MultiPageSelectDrawer';
+
 class MultiPageSelectDrawer extends MultiPageDrawer {
   showListViewItemActionSelect = true;
 
@@ -20,27 +22,51 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
 
   selectListData = [];
 
+  selectChanged = false;
+
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'executeAfterDoOtherWhenChangeVisibleToShow',
+    );
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'executeAfterDoOtherWhenChangeVisibleToShow',
+      'reset selectListData => [] and selectChanged => false',
+    );
+
     this.selectListData = [];
+    this.selectChanged = false;
   };
 
   doOtherWhenChangeVisibleToHide = () => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::MultiPageSelectDrawer',
-      'doOtherWhenChangeVisibleToHide',
-    );
+    if (!this.selectChanged) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'doOtherWhenChangeVisibleToHide',
+        'afterSelectSuccess',
+        'ignore when no change in selection',
+      );
+
+      return;
+    }
+
+    this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToHide');
 
     const { afterSelectSuccess } = this.props;
 
     if (isFunction(afterSelectSuccess)) {
       this.logCallTrace(
         {},
-        'DataSinglePageView::MultiPageSelectDrawer',
+        primaryCallName,
         'doOtherWhenChangeVisibleToHide',
         'afterSelectSuccess',
       );
@@ -49,7 +75,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
     } else {
       this.logCallTrace(
         {},
-        'DataSinglePageView::MultiPageSelectDrawer',
+        primaryCallName,
         'doOtherWhenChangeVisibleToHide',
         'afterSelectSuccess',
         emptyLogic,
@@ -76,7 +102,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
   buildSelectNotificationDescription = (data) => {
     this.logCallTrack(
       {},
-      'DataSinglePageView::MultiPageSelectDrawer',
+      primaryCallName,
       'buildSelectNotificationDescription',
       emptyLogic,
     );
@@ -85,11 +111,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
   };
 
   selectRecord = ({ handleData }) => {
-    this.logCallTrack(
-      {},
-      'DataSinglePageView::MultiPageSelectDrawer',
-      'selectRecord',
-    );
+    this.logCallTrack({}, primaryCallName, 'selectRecord');
 
     if (!isArray(this.selectListData)) {
       this.selectListData = [];
@@ -103,11 +125,13 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
       this.selectListData = [handleData];
     }
 
+    this.selectChanged = true;
+
     this.logCallTrace(
       multiSelect
         ? { selectData: this.selectListData }
         : { selectData: this.selectListData[0] },
-      'DataSinglePageView::MultiPageSelectDrawer',
+      primaryCallName,
       'selectRecord',
       'select info',
     );
@@ -120,7 +144,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
       if (checkStringIsNullOrWhiteSpace(text)) {
         this.logCallTrace(
           {},
-          'DataSinglePageView::MultiPageSelectDrawer',
+          primaryCallName,
           'selectRecord',
           'showSuccessNotification',
           'ignore when message is empty',
@@ -128,7 +152,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
       } else {
         this.logCallTrace(
           {},
-          'DataSinglePageView::MultiPageSelectDrawer',
+          primaryCallName,
           'selectRecord',
           'showSuccessNotification',
         );

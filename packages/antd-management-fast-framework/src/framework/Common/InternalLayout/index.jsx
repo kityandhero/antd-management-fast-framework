@@ -9,9 +9,11 @@ import { InternalBuild } from '../InternalBuild';
 
 const { ContentBox, BodyContent, SiderBox, ToolBar, HelpContent } = PageExtra;
 
+const primaryCallName = 'Common::InternalLayout';
+
 class InternalLayout extends InternalBuild {
   renderPresetSiderTopArea = () => {
-    this.logCallTrack({}, 'Common::InternalLayout', 'renderPresetSiderTopArea');
+    this.logCallTrack({}, primaryCallName, 'renderPresetSiderTopArea');
 
     const configOrComponent = this.establishSiderTopAreaConfig();
 
@@ -27,11 +29,7 @@ class InternalLayout extends InternalBuild {
   };
 
   renderPresetSiderBottomArea = () => {
-    this.logCallTrack(
-      {},
-      'Common::InternalLayout',
-      'renderPresetSiderBottomArea',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetSiderBottomArea');
 
     const config = this.establishSiderBottomAreaConfig();
 
@@ -45,11 +43,7 @@ class InternalLayout extends InternalBuild {
   renderPresetContentArea = () => {};
 
   renderPresetPageBodyContent = () => {
-    this.logCallTrack(
-      {},
-      'Common::InternalLayout',
-      'renderPresetPageBodyContent',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetPageBodyContent');
 
     const top = this.renderPresetSiderTopArea();
     const bottom = this.renderPresetSiderBottomArea();
@@ -77,7 +71,7 @@ class InternalLayout extends InternalBuild {
   };
 
   renderPresetPageBody = () => {
-    this.logCallTrack({}, 'Common::InternalLayout', 'renderPresetPageBody');
+    this.logCallTrack({}, primaryCallName, 'renderPresetPageBody');
 
     return (
       <BodyContent
@@ -88,7 +82,7 @@ class InternalLayout extends InternalBuild {
   };
 
   renderFurther() {
-    this.logCallTrack({}, 'Common::InternalLayout', 'renderFurther');
+    this.logCallTrack({}, primaryCallName, 'renderFurther');
 
     const { showPageHeaderAvatar, defaultAvatarIcon, avatarImageLoadResult } =
       this.state;

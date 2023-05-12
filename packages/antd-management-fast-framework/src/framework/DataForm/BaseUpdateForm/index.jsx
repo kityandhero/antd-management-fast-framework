@@ -11,11 +11,13 @@ import { emptyLogic } from 'antd-management-fast-common';
 
 import { DataLoad } from '../../DataSingleView/DataLoad';
 
+const primaryCallName = 'DataForm::BaseUpdateForm';
+
 class BaseUpdateForm extends DataLoad {
   goToUpdateWhenProcessed = false;
 
   handleFormReset = () => {
-    this.logCallTrack({}, 'DataForm::BaseUpdateForm', 'handleFormReset');
+    this.logCallTrack({}, primaryCallName, 'handleFormReset');
 
     const form = this.getTargetForm();
 
@@ -42,7 +44,7 @@ class BaseUpdateForm extends DataLoad {
       {
         parameter: { values },
       },
-      'DataForm::BaseUpdateForm',
+      primaryCallName,
       'execSubmitApi',
     );
 
@@ -100,7 +102,7 @@ class BaseUpdateForm extends DataLoad {
                 {
                   parameter: { values },
                 },
-                'DataForm::BaseUpdateForm',
+                primaryCallName,
                 'execSubmitApi',
                 'successCallback',
               );
@@ -114,7 +116,7 @@ class BaseUpdateForm extends DataLoad {
               {
                 parameter: { values },
               },
-              'DataForm::BaseUpdateForm',
+              primaryCallName,
               'execSubmitApi',
               'trigger',
               'completeCallback',
@@ -124,7 +126,7 @@ class BaseUpdateForm extends DataLoad {
           } else {
             that.logCallTrace(
               {},
-              'DataForm::BaseUpdateForm',
+              primaryCallName,
               'execSubmitApi',
               'trigger',
               'completeCallback',
@@ -150,7 +152,7 @@ class BaseUpdateForm extends DataLoad {
               {
                 parameter: { values },
               },
-              'DataForm::BaseUpdateForm',
+              primaryCallName,
               'execSubmitApi',
               'failCallback',
             );
@@ -163,7 +165,7 @@ class BaseUpdateForm extends DataLoad {
               {
                 parameter: { values },
               },
-              'DataForm::BaseUpdateForm',
+              primaryCallName,
               'execSubmitApi',
               'completeCallback',
             );
@@ -178,24 +180,19 @@ class BaseUpdateForm extends DataLoad {
     } else {
       that.logCallTrace(
         {},
-        'DataForm::BaseUpdateForm',
+        primaryCallName,
         'validate',
         'check submit data fail',
       );
 
       if (isFunction(completeCallback)) {
-        that.logCallTrace(
-          {},
-          'DataForm::BaseUpdateForm',
-          'validate',
-          'completeCallback',
-        );
+        that.logCallTrace({}, primaryCallName, 'validate', 'completeCallback');
 
         completeCallback();
       } else {
         that.logCallTrace(
           {},
-          'DataForm::BaseUpdateForm',
+          primaryCallName,
           'validate',
           'trigger',
           'completeCallback',
@@ -212,7 +209,7 @@ class BaseUpdateForm extends DataLoad {
     failCallback = null,
     completeCallback = null,
   }) => {
-    this.logCallTrack({}, 'DataForm::BaseUpdateForm', 'validate');
+    this.logCallTrack({}, primaryCallName, 'validate');
 
     const that = this;
 
@@ -242,12 +239,7 @@ class BaseUpdateForm extends DataLoad {
           logException(message);
         }
 
-        that.logCallTrace(
-          {},
-          'DataForm::BaseUpdateForm',
-          'validate',
-          'validate fail',
-        );
+        that.logCallTrace({}, primaryCallName, 'validate', 'validate fail');
 
         const { errorFields } = error;
 
@@ -279,18 +271,13 @@ class BaseUpdateForm extends DataLoad {
         }
 
         if (isFunction(failCallback)) {
-          this.logCallTrace(
-            {},
-            'DataForm::BaseUpdateForm',
-            'validate',
-            'failCallback',
-          );
+          this.logCallTrace({}, primaryCallName, 'validate', 'failCallback');
 
           failCallback(error);
         } else {
           that.logCallTrace(
             {},
-            'DataForm::BaseUpdateForm',
+            primaryCallName,
             'validate',
             'trigger',
             'failCallback',
@@ -301,7 +288,7 @@ class BaseUpdateForm extends DataLoad {
         if (isFunction(completeCallback)) {
           this.logCallTrace(
             {},
-            'DataForm::BaseUpdateForm',
+            primaryCallName,
             'validate',
             'completeCallback',
           );
@@ -310,7 +297,7 @@ class BaseUpdateForm extends DataLoad {
         } else {
           that.logCallTrace(
             {},
-            'DataForm::BaseUpdateForm',
+            primaryCallName,
             'validate',
             'trigger',
             'completeCallback',

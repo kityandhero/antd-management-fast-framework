@@ -16,6 +16,8 @@ import { defaultPageListState } from 'antd-management-fast-common';
 
 import { Base } from '../../DataListView/Base';
 
+const primaryCallName = 'DataMultiPageView::MultiPage';
+
 class MultiPage extends Base {
   /**
    * 使用远端分页
@@ -60,7 +62,7 @@ class MultiPage extends Base {
         parameter: o,
         result,
       },
-      'DataMultiPageView::MultiPage',
+      primaryCallName,
       'supplementLoadRequestParams',
     );
 
@@ -68,7 +70,7 @@ class MultiPage extends Base {
   };
 
   handleSearchReset = () => {
-    this.logCallTrack({}, 'DataMultiPageView::MultiPage', 'handleSearchReset');
+    this.logCallTrack({}, primaryCallName, 'handleSearchReset');
 
     const form = this.getSearchCard();
 
@@ -127,7 +129,7 @@ class MultiPage extends Base {
         sorterValues: this.sorterValues,
         pageValues: this.pageValues,
       },
-      'DataMultiPageView::MultiPage',
+      primaryCallName,
       'initLoadRequestParams',
     );
 
@@ -204,7 +206,7 @@ class MultiPage extends Base {
       {
         parameter: {},
       },
-      'DataListView::Base',
+      primaryCallName,
       'handleSearch',
     );
 
@@ -314,7 +316,7 @@ class MultiPage extends Base {
         requestData: parameterAdjust,
       },
 
-      'DataMultiPageView::MultiPage',
+      primaryCallName,
       'handleStandardTableChange',
     );
 
@@ -348,7 +350,7 @@ class MultiPage extends Base {
           pageSize,
         },
       },
-      'DataMultiPageView::MultiPage',
+      primaryCallName,
       'handlePaginationChange',
     );
 
@@ -399,7 +401,7 @@ class MultiPage extends Base {
       {
         paginationConfig,
       },
-      'DataMultiPageView::MultiPage',
+      primaryCallName,
       'establishViewPaginationConfig',
     );
 

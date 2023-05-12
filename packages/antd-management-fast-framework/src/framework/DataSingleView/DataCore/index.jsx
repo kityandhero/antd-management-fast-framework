@@ -11,6 +11,8 @@ import { BaseView } from '../../DataOperation/BaseView';
 
 import styles from './index.less';
 
+const primaryCallName = 'DataSingleView::DataCore';
+
 class DataCore extends BaseView {
   enableActionBack = true;
 
@@ -41,7 +43,7 @@ class DataCore extends BaseView {
       {
         parameter: v,
       },
-      'DataSingleView::DataCore',
+      primaryCallName,
       'setFormFieldsValue',
     );
 
@@ -84,7 +86,7 @@ class DataCore extends BaseView {
   };
 
   buildExtraBackAction = () => {
-    this.logCallTrack({}, 'DataSingleView::DataCore', 'buildExtraBackAction');
+    this.logCallTrack({}, primaryCallName, 'buildExtraBackAction');
 
     const { backPath } = this.state;
 
@@ -117,7 +119,7 @@ class DataCore extends BaseView {
   };
 
   buildFormLayout = () => {
-    this.logCallTrack({}, 'DataSingleView::DataCore', 'buildFormLayout');
+    this.logCallTrack({}, primaryCallName, 'buildFormLayout');
 
     return 'vertical';
   };
@@ -135,7 +137,7 @@ class DataCore extends BaseView {
   };
 
   renderPresetMainTitle = () => {
-    this.logCallTrack({}, 'DataSingleView::DataCore', 'renderPresetMainTitle');
+    this.logCallTrack({}, primaryCallName, 'renderPresetMainTitle');
 
     return (
       <>
@@ -149,27 +151,19 @@ class DataCore extends BaseView {
   };
 
   renderPresetFormWrapper = () => {
-    this.logCallTrack(
-      {},
-      'DataSingleView::DataCore',
-      'renderPresetFormWrapper',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetFormWrapper');
 
     return this.renderPresetForm();
   };
 
   renderPresetContentArea = () => {
-    this.logCallTrack(
-      {},
-      'DataSingleView::DataCore',
-      'renderPresetContentArea',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetContentArea');
 
     return this.renderPresetFormWrapper();
   };
 
   renderPresetForm = () => {
-    this.logCallTrack({}, 'DataSingleView::DataCore', 'renderPresetForm');
+    this.logCallTrack({}, primaryCallName, 'renderPresetForm');
 
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
@@ -200,11 +194,7 @@ class DataCore extends BaseView {
   };
 
   renderPresetFormContent = () => {
-    this.logCallTrack(
-      {},
-      'DataSingleView::DataCore',
-      'renderPresetFormContent',
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetFormContent');
 
     return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };

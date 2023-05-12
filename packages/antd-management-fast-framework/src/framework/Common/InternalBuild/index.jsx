@@ -10,7 +10,11 @@ import {
   logObject,
 } from 'easy-soft-utility';
 
-import { cardConfig, extraBuildType } from 'antd-management-fast-common';
+import {
+  cardConfig,
+  emptyLogic,
+  extraBuildType,
+} from 'antd-management-fast-common';
 import {
   buildButton,
   buildButtonGroup,
@@ -36,6 +40,8 @@ import { ReloadActionButton } from '../ReloadActionButton';
 import styles from './index.less';
 
 const { CardCollectionItemContent } = PageExtra;
+
+const primaryCallName = 'Common::InternalBuild';
 
 class InternalBuild extends InternalTabFlow {
   buildCardCollectionArea = (config = null) => {
@@ -469,7 +475,7 @@ class InternalBuild extends InternalTabFlow {
           configList,
         },
       },
-      'Common::InternalBuild',
+      primaryCallName,
       'buildByExtraBuildType',
     );
 
@@ -587,9 +593,15 @@ class InternalBuild extends InternalTabFlow {
     return list;
   };
 
-  buildExtraBackAction = () => null;
+  buildExtraBackAction = () => {
+    this.logCallTrack({}, primaryCallName, 'buildExtraBackAction', emptyLogic);
+
+    return null;
+  };
 
   buildExtraAction = () => {
+    this.logCallTrack({}, primaryCallName, 'buildExtraAction');
+
     const { showReloadButton } = this.state;
 
     const { keyPrefix, list: configList } = {
@@ -671,7 +683,16 @@ class InternalBuild extends InternalTabFlow {
     );
   };
 
-  buildPageHeaderSubTitle = () => null;
+  buildPageHeaderSubTitle = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'buildPageHeaderSubTitle',
+      emptyLogic,
+    );
+
+    return null;
+  };
 }
 
 export { InternalBuild };

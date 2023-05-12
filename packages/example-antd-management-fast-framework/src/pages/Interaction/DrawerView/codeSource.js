@@ -208,7 +208,7 @@ class DrawerView extends BaseView {
                 label: '显示源代码',
                 size: 'small',
                 defaultValue: 'SimpleSinglePageDrawer',
-                style: { width: '500px' },
+                style: { width: '520px' },
                 list: [
                   {
                     flag: 'SimpleSinglePageSelectDrawer',
@@ -364,8 +364,6 @@ class DrawerView extends BaseView {
         />
 
         <SimpleSinglePageFrontendPaginationSelectDrawer
-          multiSelect={true}
-          hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 

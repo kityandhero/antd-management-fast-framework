@@ -10,6 +10,8 @@ import { InternalFlow } from '../InternalFlow';
 
 const { TabBarExtraBox } = PageExtra;
 
+const primaryCallName = 'Common::InternalTabFlow';
+
 class InternalTabFlow extends InternalFlow {
   tabList = [];
 
@@ -22,11 +24,7 @@ class InternalTabFlow extends InternalFlow {
   }
 
   doOtherWorkAfterDidMount = () => {
-    this.logCallTrack(
-      {},
-      'Common::InternalTabFlow',
-      'doOtherWorkAfterDidMount',
-    );
+    this.logCallTrack({}, primaryCallName, 'doOtherWorkAfterDidMount');
 
     const tabListAvailable = this.getTabListAvailable();
 
@@ -48,7 +46,7 @@ class InternalTabFlow extends InternalFlow {
   adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
 
   getTabListAvailable = () => {
-    this.logCallTrack({}, 'Common::InternalTabFlow', 'getTabListAvailable');
+    this.logCallTrack({}, primaryCallName, 'getTabListAvailable');
 
     const tabListAvailable = [];
 
@@ -68,7 +66,7 @@ class InternalTabFlow extends InternalFlow {
       {
         parameter: { key },
       },
-      'Common::InternalTabFlow',
+      primaryCallName,
       'getTabListAvailable',
     );
 

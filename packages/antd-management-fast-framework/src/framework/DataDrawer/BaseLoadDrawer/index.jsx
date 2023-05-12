@@ -1,5 +1,7 @@
 import { Base } from '../Base';
 
+const primaryCallName = 'DataDrawer::BaseLoadDrawer';
+
 class BaseLoadDrawer extends Base {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -15,11 +17,7 @@ class BaseLoadDrawer extends Base {
 
   // eslint-disable-next-line no-unused-vars
   doOtherWhenChangeVisibleToShow = () => {
-    this.logCallTrack(
-      {},
-      'DataDrawer::BaseLoadDrawer',
-      'doOtherWhenChangeVisibleToShow',
-    );
+    this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToShow');
 
     this.reloadData({});
   };
