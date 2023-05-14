@@ -12,8 +12,7 @@ const {
 const { readFileSync } = require('node:fs');
 
 function getCodeContent(code) {
-  const v = `${code}`.replace(/`/g, '\\`').replace(/\$/g, '\\$');
-
+  const v = `${code}`.replaceAll('`', '\\`').replaceAll('$', '\\$');
   return `export const code = \`${v}\`;
 `;
 }

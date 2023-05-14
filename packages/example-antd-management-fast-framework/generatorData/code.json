@@ -4,7 +4,6 @@
       "sourceFilePath": "./src/pages/Interaction/ModalView/index.jsx",
       "codeFilePath": "./src/pages/Interaction/ModalView/codeSource.js"
     },
-
     {
       "sourceFilePath": "./src/pages/Interaction/SimpleAddModal/index.jsx",
       "codeFilePath": "./src/pages/Interaction/SimpleAddModal/codeSource.js"
@@ -26,16 +25,20 @@
       "codeFilePath": "./src/pages/Interaction/SimpleEditDrawer/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageDrawer/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/BaseSimpleSinglePageSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Single/BaseSimpleSinglePageSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/SimpleSinglePageSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Single/SimpleSinglePageSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/SimpleSinglePageConfirmSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Single/SimpleSinglePageConfirmSelectDrawer/codeSource.js"
     },
     {
       "sourceFilePath": "./src/pages/Interaction/SimpleMultiPageDrawer/index.jsx",
       "codeFilePath": "./src/pages/Interaction/SimpleMultiPageDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageSelectDrawer/codeSource.js"
     },
     {
       "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageSingleSelectDrawer/index.jsx",

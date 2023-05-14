@@ -18,6 +18,9 @@ const primaryCallName = 'DataSinglePageView::MultiPageSelectDrawer';
 class MultiPageSelectDrawer extends MultiPageDrawer {
   showListViewItemActionSelect = true;
 
+  /**
+   * 使用选择二次确认
+   */
   confirmSelect = false;
 
   selectListData = [];

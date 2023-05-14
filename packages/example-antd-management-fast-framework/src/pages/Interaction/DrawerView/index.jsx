@@ -14,6 +14,8 @@ import {
 
 import BaseView from '../BaseView';
 import DrawerCodeView from '../DrawerCodeView';
+import SimpleSinglePageSelectDrawer from '../Drawers/Single/SimpleSinglePageSelectDrawer';
+import { code as codeSimpleSinglePageSelectDrawer } from '../Drawers/Single/SimpleSinglePageSelectDrawer/codeSource';
 import SimpleAddDrawer from '../SimpleAddDrawer';
 import { code as codeSimpleAddDrawer } from '../SimpleAddDrawer/codeSource';
 import SimpleEditDrawer from '../SimpleEditDrawer';
@@ -30,8 +32,6 @@ import SimpleSinglePageFrontendPaginationSingleSelectDrawer from '../SimpleSingl
 import { code as codeSimpleSinglePageFrontendPaginationSingleSelectDrawer } from '../SimpleSinglePageFrontendPaginationSingleSelectDrawer/codeSource';
 import SimpleSinglePageMultiSelectDrawer from '../SimpleSinglePageMultiSelectDrawer';
 import { code as codeSimpleSinglePageMultiSelectDrawer } from '../SimpleSinglePageMultiSelectDrawer/codeSource';
-import SimpleSinglePageSelectDrawer from '../SimpleSinglePageSelectDrawer';
-import { code as codeSimpleSinglePageSelectDrawer } from '../SimpleSinglePageSelectDrawer/codeSource';
 import SimpleSinglePageSingleSelectDrawer from '../SimpleSinglePageSingleSelectDrawer';
 import { code as codeSimpleSinglePageSingleSelectDrawer } from '../SimpleSinglePageSingleSelectDrawer/codeSource';
 
@@ -121,6 +121,46 @@ class DrawerView extends BaseView {
               lg: 8,
               type: cardConfig.contentItemType.component,
               component: buildButton({
+                title: '点击显示 SinglePageSelectDrawer',
+                text: '显示 SinglePageSelectDrawer',
+                handleClick: () => {
+                  SimpleSinglePageSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleSinglePageSingleSelectDrawer',
+                text: '显示 SimpleSinglePageSingleSelectDrawer',
+                handleClick: () => {
+                  SimpleSinglePageSingleSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleSinglePageMultiSelectDrawer',
+                text: '显示 SimpleSinglePageMultiSelectDrawer',
+                handleClick: () => {
+                  SimpleSinglePageMultiSelectDrawer.open();
+                },
+              }),
+            },
+          ],
+        },
+        {
+          title: {
+            text: '单页列表选择功能实例 [页面模拟分页效果]',
+          },
+          items: [
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
                 title: '点击显示 SinglePageFrontendPaginationSelectDrawer',
                 text: '显示 SinglePageFrontendPaginationSelectDrawer',
                 handleClick: () => {
@@ -149,46 +189,6 @@ class DrawerView extends BaseView {
                 text: '显示 SimpleSinglePageFrontendPaginationMultiSelectDrawer',
                 handleClick: () => {
                   SimpleSinglePageFrontendPaginationMultiSelectDrawer.open();
-                },
-              }),
-            },
-          ],
-        },
-        {
-          title: {
-            text: '单页列表选择功能实例 [页面模拟分页效果]',
-          },
-          items: [
-            {
-              lg: 8,
-              type: cardConfig.contentItemType.component,
-              component: buildButton({
-                title: '点击显示 SinglePageSelectDrawer',
-                text: '显示 SinglePageSelectDrawer',
-                handleClick: () => {
-                  SimpleSinglePageSelectDrawer.open();
-                },
-              }),
-            },
-            {
-              lg: 8,
-              type: cardConfig.contentItemType.component,
-              component: buildButton({
-                title: '点击显示 SimpleSinglePageSingleSelectDrawer',
-                text: '显示 SimpleSinglePageSingleSelectDrawer',
-                handleClick: () => {
-                  SimpleSinglePageSingleSelectDrawer.open();
-                },
-              }),
-            },
-            {
-              lg: 8,
-              type: cardConfig.contentItemType.component,
-              component: buildButton({
-                title: '点击显示 SimpleSinglePageMultiSelectDrawer',
-                text: '显示 SimpleSinglePageMultiSelectDrawer',
-                handleClick: () => {
-                  SimpleSinglePageMultiSelectDrawer.open();
                 },
               }),
             },
