@@ -1,5 +1,6 @@
 export const code = `import { Avatar, Divider, List, Typography } from 'antd';
 
+import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   formatCollection,
@@ -18,41 +19,51 @@ import {
   convertOptionOrRadioData,
   iconBuilder,
 } from 'antd-management-fast-component';
-import { DataSinglePageView } from 'antd-management-fast-framework';
+import {
+  DataSinglePageView,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
-import { colorCollection } from '../../../../../customConfig';
+import { colorCollection } from '../../../../../../customConfig';
 import {
   getSimpleRenderTypeName,
   getSimpleStatusName,
-} from '../../../../../customSpecialComponents';
-import { fieldData, statusCollection } from '../../../../Simple/Common/data';
+} from '../../../../../../customSpecialComponents';
+import { fieldData, statusCollection } from '../../../../../Simple/Common/data';
 
 const { Text } = Typography;
 const { SinglePageSelectDrawer } = DataSinglePageView;
 
-// 组件基类, 仅为代码复用性设计, 具体使用时请自行考虑
-class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
+const visibleFlag = 'de266a61e4b24705afda59a125f81952';
+
+@connect(({ simple, schedulingControl }) => ({
+  simple,
+  schedulingControl,
+}))
+class SimpleSinglePageFrontendPaginationSelectDrawer extends SinglePageSelectDrawer {
   showCallProcess = true;
 
-  // 显示时是否自动刷新数据
   reloadWhenShow = true;
 
-  constructor(properties, visibleFlag) {
+  useFrontendPagination = true;
+
+  confirmSelect = true;
+
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
+
+  constructor(properties) {
     super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
-      // 页面加载时自动加载的远程请求
       loadApiPath: 'simple/singleList',
-      // 设置默认试图模式为 table
       listViewMode: listViewConfig.viewMode.table,
-      // table 显示模式行长度, 合理设置可以提升美观以及用户体验，超出可见区域将显示滚动条
-      tableScrollX: 1220,
+      tableScrollX: 1620,
     };
   }
 
-  // 设定标题
   getPresetPageName = () => {
     return '数据单页选择列表';
   };
@@ -80,7 +91,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     return result;
   };
 
-  // 配置搜索框
   establishSearchCardConfig = () => {
     return {
       list: [
@@ -98,7 +108,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     };
   };
 
-  // 配置动作集合
   establishDataContainerExtraActionCollectionConfig = () => {
     const { listViewMode } = this.state;
 
@@ -140,7 +149,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     ];
   };
 
-  // 构建通知文本, 仅多选模式有效, 单选时不会触发通知
   buildSelectNotificationDescription = (o) => {
     if (isArray(o)) {
       let list = [];
@@ -162,7 +170,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     }
   };
 
-  // 配置列表显示模式构建逻辑
   // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemInner = (item, index) => {
     const simpleId = getValueByKey({
@@ -215,7 +222,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     );
   };
 
-  // 配置 table 显示模式数据列
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
@@ -272,10 +278,9 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
       facadeMode: columnFacadeMode.datetime,
       emptyValue: '--',
     },
-    // 站位符, 显示为 "--"
     columnPlaceholder,
   ];
 }
 
-export default BaseSimpleSinglePageSelectDrawer;
+export default SimpleSinglePageFrontendPaginationSelectDrawer;
 `;

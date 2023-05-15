@@ -1,4 +1,4 @@
-export const code = `import { Avatar, Divider, List, Typography } from 'antd';
+import { Avatar, Divider, List, Typography } from 'antd';
 
 import {
   checkStringIsNullOrWhiteSpace,
@@ -151,14 +151,14 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
       }
 
       if (list.length > 0) {
-        return \`已选择: \${list.join(',')}\`;
+        return `已选择: ${list.join(',')}`;
       }
 
       return '';
     } else {
       const { title } = o;
 
-      return \`已选择: \${title}\`;
+      return `已选择: ${title}`;
     }
   };
 
@@ -278,4 +278,3 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
 }
 
 export default BaseSimpleSinglePageSelectDrawer;
-`;

@@ -48,7 +48,7 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
       // 设置默认试图模式为 table
       listViewMode: listViewConfig.viewMode.table,
       // table 显示模式行长度, 合理设置可以提升美观以及用户体验，超出可见区域将显示滚动条
-      tableScrollX: 1620,
+      tableScrollX: 1220,
     };
   }
 
@@ -219,7 +219,7 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
-      width: 780,
+      width: 420,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',

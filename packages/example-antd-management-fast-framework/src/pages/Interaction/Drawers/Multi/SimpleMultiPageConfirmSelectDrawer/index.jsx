@@ -1,11 +1,12 @@
-export const code = `import { Avatar, Divider, List, Typography } from 'antd';
+import { Avatar, Divider, List, Typography } from 'antd';
 
+import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
+  convertCollection,
   formatCollection,
   getValueByKey,
-  isArray,
-  whetherNumber,
+  showSimpleInfoMessage,
 } from 'easy-soft-utility';
 
 import {
@@ -14,11 +15,11 @@ import {
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
+import { iconBuilder } from 'antd-management-fast-component';
 import {
-  convertOptionOrRadioData,
-  iconBuilder,
-} from 'antd-management-fast-component';
-import { DataSinglePageView } from 'antd-management-fast-framework';
+  DataMultiPageView,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 import { colorCollection } from '../../../../../customConfig';
 import {
@@ -28,33 +29,36 @@ import {
 import { fieldData, statusCollection } from '../../../../Simple/Common/data';
 
 const { Text } = Typography;
-const { SinglePageSelectDrawer } = DataSinglePageView;
+const { MultiPageDrawer } = DataMultiPageView;
 
-// 组件基类, 仅为代码复用性设计, 具体使用时请自行考虑
-class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
+const visibleFlag = 'eced74e7982a48adbb394fd8257c6018';
+
+@connect(({ simple, schedulingControl }) => ({
+  simple,
+  schedulingControl,
+}))
+class SimpleMultiPageDrawer extends MultiPageDrawer {
   showCallProcess = true;
 
-  // 显示时是否自动刷新数据
   reloadWhenShow = true;
 
-  constructor(properties, visibleFlag) {
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
+
+  constructor(properties) {
     super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
-      // 页面加载时自动加载的远程请求
-      loadApiPath: 'simple/singleList',
-      // 设置默认试图模式为 table
-      listViewMode: listViewConfig.viewMode.table,
-      // table 显示模式行长度, 合理设置可以提升美观以及用户体验，超出可见区域将显示滚动条
-      tableScrollX: 1220,
+      loadApiPath: 'simple/pageList',
+      listViewMode: listViewConfig.viewMode.list,
+      tableScrollY: 600,
     };
   }
 
-  // 设定标题
   getPresetPageName = () => {
-    return '数据单页选择列表';
+    return '数据分页列表';
   };
 
   getStatusBadge = (v) => {
@@ -80,7 +84,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     return result;
   };
 
-  // 配置搜索框
   establishSearchCardConfig = () => {
     return {
       list: [
@@ -98,71 +101,74 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     };
   };
 
-  // 配置动作集合
-  establishDataContainerExtraActionCollectionConfig = () => {
-    const { listViewMode } = this.state;
+  establishListItemDropdownConfig = (record) => {
+    const itemStatus = getValueByKey({
+      data: record,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
 
-    return [
-      {
-        buildType: listViewConfig.dataContainerExtraActionBuildType.flexSelect,
-        label: '显示模式',
-        size: 'small',
-        defaultValue: listViewMode,
-        style: { width: '190px' },
-        list: [
-          {
-            flag: listViewConfig.viewMode.table,
-            name: '表格视图',
-            availability: whetherNumber.yes,
-          },
-          {
-            flag: listViewConfig.viewMode.list,
-            name: '列表视图',
-            availability: whetherNumber.yes,
-          },
-          {
-            flag: listViewConfig.viewMode.cardCollectionView,
-            name: '卡片视图',
-            availability: whetherNumber.yes,
-          },
-          {
-            flag: listViewConfig.viewMode.customView,
-            name: '自定义视图',
-            availability: whetherNumber.yes,
-          },
-        ],
-        dataConvert: convertOptionOrRadioData,
-        onChange: (v, option) => {
-          console.log({ v, option });
-          this.setState({ listViewMode: v });
-        },
+    return {
+      size: 'small',
+      text: '按钮',
+      placement: 'topRight',
+      icon: iconBuilder.form(),
+      // eslint-disable-next-line no-unused-vars
+      handleButtonClick: ({ handleData }) => {
+        const { title } = handleData;
+
+        showSimpleInfoMessage(`点击按钮 ${title}`);
       },
-    ];
+      handleData: record,
+      confirm: true,
+      title: '将要点击按钮，确定吗？',
+      handleMenuClick: ({ key, handleData }) => {
+        this.handleMenuClick({ key, handleData });
+      },
+      items: [
+        {
+          key: 'button1',
+          icon: iconBuilder.edit(),
+          text: 'button1',
+        },
+        {
+          key: 'button2',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.playCircle(),
+          text: 'button2',
+          disabled: itemStatus === statusCollection.online,
+          confirm: true,
+          title: '将要点击button2, 确定吗?',
+        },
+        {
+          key: 'button3',
+          icon: iconBuilder.pauseCircle(),
+          text: 'button3',
+          disabled: itemStatus === statusCollection.offline,
+          confirm: true,
+          title: '将要点击button3, 确定吗?',
+        },
+        {
+          key: 'button4',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.edit(),
+          text: 'button4',
+        },
+        {
+          key: 'button5',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.reload(),
+          text: 'button5',
+          confirm: true,
+          title: '将要点击button5, 确定吗?',
+        },
+      ],
+    };
   };
 
-  // 构建通知文本, 仅多选模式有效, 单选时不会触发通知
-  buildSelectNotificationDescription = (o) => {
-    if (isArray(o)) {
-      let list = [];
-
-      for (const item of o) {
-        const { title } = item;
-        list.push(title);
-      }
-
-      if (list.length > 0) {
-        return \`已选择: \${list.join(',')}\`;
-      }
-
-      return '';
-    } else {
-      const { title } = o;
-
-      return \`已选择: \${title}\`;
-    }
-  };
-
-  // 配置列表显示模式构建逻辑
   // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemInner = (item, index) => {
     const simpleId = getValueByKey({
@@ -215,7 +221,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     );
   };
 
-  // 配置 table 显示模式数据列
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
@@ -272,10 +277,8 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
       facadeMode: columnFacadeMode.datetime,
       emptyValue: '--',
     },
-    // 站位符, 显示为 "--"
     columnPlaceholder,
   ];
 }
 
-export default BaseSimpleSinglePageSelectDrawer;
-`;
+export default SimpleMultiPageDrawer;

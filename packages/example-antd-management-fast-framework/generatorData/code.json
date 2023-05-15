@@ -29,36 +29,44 @@
       "codeFilePath": "./src/pages/Interaction/Drawers/Single/BaseSimpleSinglePageSelectDrawer/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/SimpleSinglePageSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Single/SimpleSinglePageSelectDrawer/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/SimpleSinglePageConfirmSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Single/SimpleSinglePageConfirmSelectDrawer/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/SimpleMultiPageDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleMultiPageDrawer/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageSingleSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageSingleSelectDrawer/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageMultiSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageMultiSelectDrawer/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationSelectDrawer/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationSingleSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationSingleSelectDrawer/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Multi/BaseSimpleMultiPageSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Multi/BaseSimpleMultiPageSelectDrawer/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationMultiSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleSinglePageFrontendPaginationMultiSelectDrawer/codeSource.js"
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageConfirmSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageConfirmSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageSingleSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageSingleSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageMultiSelectDrawer/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageMultiSelectDrawer/codeSource.js"
     }
   ]
 }

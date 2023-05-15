@@ -1,10 +1,12 @@
 export const code = `import { Avatar, Divider, List, Typography } from 'antd';
 
+import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
+  convertCollection,
   formatCollection,
   getValueByKey,
-  isArray,
+  showSimpleInfoMessage,
   whetherNumber,
 } from 'easy-soft-utility';
 
@@ -18,7 +20,10 @@ import {
   convertOptionOrRadioData,
   iconBuilder,
 } from 'antd-management-fast-component';
-import { DataSinglePageView } from 'antd-management-fast-framework';
+import {
+  DataSinglePageView,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 import { colorCollection } from '../../../../../customConfig';
 import {
@@ -28,33 +33,37 @@ import {
 import { fieldData, statusCollection } from '../../../../Simple/Common/data';
 
 const { Text } = Typography;
-const { SinglePageSelectDrawer } = DataSinglePageView;
+const { SinglePageDrawer } = DataSinglePageView;
 
-// 组件基类, 仅为代码复用性设计, 具体使用时请自行考虑
-class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
+const visibleFlag = 'b354b02508d747ecacedc90e6c86c4a1';
+
+@connect(({ simple, schedulingControl }) => ({
+  simple,
+  schedulingControl,
+}))
+class SimpleSinglePageDrawer extends SinglePageDrawer {
   showCallProcess = true;
 
-  // 显示时是否自动刷新数据
   reloadWhenShow = true;
 
-  constructor(properties, visibleFlag) {
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
+
+  constructor(properties) {
     super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
-      // 页面加载时自动加载的远程请求
       loadApiPath: 'simple/singleList',
-      // 设置默认试图模式为 table
-      listViewMode: listViewConfig.viewMode.table,
-      // table 显示模式行长度, 合理设置可以提升美观以及用户体验，超出可见区域将显示滚动条
-      tableScrollX: 1220,
+      listViewMode: listViewConfig.viewMode.list,
+      tableScrollX: 1600,
+      tableScrollY: 800,
     };
   }
 
-  // 设定标题
   getPresetPageName = () => {
-    return '数据单页选择列表';
+    return '数据单页列表';
   };
 
   getStatusBadge = (v) => {
@@ -80,7 +89,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     return result;
   };
 
-  // 配置搜索框
   establishSearchCardConfig = () => {
     return {
       list: [
@@ -98,11 +106,34 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     };
   };
 
-  // 配置动作集合
   establishDataContainerExtraActionCollectionConfig = () => {
     const { listViewMode } = this.state;
 
     return [
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'default',
+        icon: iconBuilder.plus(),
+        size: 'small',
+        text: '新增按钮',
+        handleClick: () => {
+          showSimpleInfoMessage(\`点击新增按钮\`);
+        },
+      },
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'primary',
+        icon: iconBuilder.form(),
+        confirm: true,
+        title: '即将点击按钮，确定吗？',
+        size: 'small',
+        text: '按钮',
+        handleClick: () => {
+          showSimpleInfoMessage(\`点击按钮\`);
+        },
+      },
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.flexSelect,
         label: '显示模式',
@@ -140,29 +171,111 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     ];
   };
 
-  // 构建通知文本, 仅多选模式有效, 单选时不会触发通知
-  buildSelectNotificationDescription = (o) => {
-    if (isArray(o)) {
-      let list = [];
+  establishListItemDropdownConfig = (record) => {
+    const itemStatus = getValueByKey({
+      data: record,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
 
-      for (const item of o) {
-        const { title } = item;
-        list.push(title);
-      }
+    return {
+      size: 'small',
+      text: '按钮',
+      placement: 'topRight',
+      icon: iconBuilder.form(),
+      // eslint-disable-next-line no-unused-vars
+      handleButtonClick: ({ handleData }) => {
+        const { title } = handleData;
 
-      if (list.length > 0) {
-        return \`已选择: \${list.join(',')}\`;
-      }
-
-      return '';
-    } else {
-      const { title } = o;
-
-      return \`已选择: \${title}\`;
-    }
+        showSimpleInfoMessage(\`点击按钮 \${title}\`);
+      },
+      handleData: record,
+      confirm: true,
+      title: '将要点击按钮，确定吗？',
+      handleMenuClick: ({ key, handleData }) => {
+        this.handleMenuClick({ key, handleData });
+      },
+      items: [
+        {
+          key: 'button1',
+          icon: iconBuilder.edit(),
+          text: 'button1',
+        },
+        {
+          key: 'button2',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.playCircle(),
+          text: 'button2',
+          disabled: itemStatus === statusCollection.online,
+          confirm: true,
+          title: '将要点击button2, 确定吗?',
+        },
+        {
+          key: 'button3',
+          icon: iconBuilder.pauseCircle(),
+          text: 'button3',
+          disabled: itemStatus === statusCollection.offline,
+          confirm: true,
+          title: '将要点击button3, 确定吗?',
+        },
+        {
+          key: 'button4',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.edit(),
+          text: 'button4',
+        },
+        {
+          key: 'button5',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.reload(),
+          text: 'button5',
+          confirm: true,
+          title: '将要点击button5, 确定吗?',
+        },
+      ],
+    };
   };
 
-  // 配置列表显示模式构建逻辑
+  // eslint-disable-next-line no-unused-vars
+  handleMenuClick = ({ key, handleData }) => {
+    showSimpleInfoMessage(\`click \${key}\`);
+
+    // switch (key) {
+    //   case 'button1': {
+    //     showSimpleInfoMessage(\`click \${key}\`);
+
+    //     break;
+    //   }
+
+    //   case 'button2': {
+    //     showSimpleInfoMessage(\`click \${key}\`);
+    //     break;
+    //   }
+
+    //   case 'button3': {
+    //     showSimpleInfoMessage(\`click \${key}\`);
+    //     break;
+    //   }
+
+    //   case 'button4': {
+    //     showSimpleInfoMessage(\`click \${key}\`);
+    //     break;
+    //   }
+
+    //   case 'button5': {
+    //     showSimpleInfoMessage(\`click \${key}\`);
+    //     break;
+    //   }
+
+    //   default: {
+    //     break;
+    //   }
+    // }
+  };
+
   // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemInner = (item, index) => {
     const simpleId = getValueByKey({
@@ -215,7 +328,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
     );
   };
 
-  // 配置 table 显示模式数据列
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
@@ -272,10 +384,9 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
       facadeMode: columnFacadeMode.datetime,
       emptyValue: '--',
     },
-    // 站位符, 显示为 "--"
     columnPlaceholder,
   ];
 }
 
-export default BaseSimpleSinglePageSelectDrawer;
+export default SimpleSinglePageDrawer;
 `;

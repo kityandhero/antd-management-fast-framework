@@ -13,27 +13,33 @@ import {
 } from 'antd-management-fast-component';
 
 import BaseView from '../BaseView';
-import DrawerCodeView from '../DrawerCodeView';
-import SimpleSinglePageSelectDrawer from '../Drawers/Single/SimpleSinglePageSelectDrawer';
-import { code as codeSimpleSinglePageSelectDrawer } from '../Drawers/Single/SimpleSinglePageSelectDrawer/codeSource';
+import SimpleMultiPageConfirmSelectDrawer from '../Drawers/Multi/SimpleMultiPageConfirmSelectDrawer';
+import {
+  code as codeSimpleMultiPageConfirmSelectDrawer,
+  code as codeSimpleMultiPageSingleSelectDrawer,
+} from '../Drawers/Multi/SimpleMultiPageConfirmSelectDrawer/codeSource';
+import SimpleMultiPageMultiSelectDrawer from '../Drawers/Multi/SimpleMultiPageMultiSelectDrawer';
+import { code as codeSimpleMultiPageMultiSelectDrawer } from '../Drawers/Multi/SimpleMultiPageMultiSelectDrawer/codeSource';
+import SimpleMultiPageSingleSelectDrawer from '../Drawers/Multi/SimpleMultiPageSingleSelectDrawer';
+import { code as codeBaseSimpleSinglePageSelectDrawer } from '../Drawers/Single/BaseSimpleSinglePageSelectDrawer/codeSource';
+import SimpleSinglePageFrontendPaginationConfirmSelectDrawer from '../Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer';
+import { code as codeSimpleSinglePageFrontendPaginationConfirmSelectDrawer } from '../Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer/codeSource';
+import SimpleSinglePageFrontendPaginationMultiSelectDrawer from '../Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer';
+import { code as codeSimpleSinglePageFrontendPaginationMultiSelectDrawer } from '../Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer/codeSource';
+import SimpleSinglePageFrontendPaginationSingleSelectDrawer from '../Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer';
+import { code as codeSimpleSinglePageFrontendPaginationSingleSelectDrawer } from '../Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer/codeSource';
+import SimpleSinglePageConfirmSelectDrawer from '../Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer';
+import { code as codeSimpleSinglePageConfirmSelectDrawer } from '../Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer/codeSource';
+import SimpleSinglePageMultiSelectDrawer from '../Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer';
+import { code as codeSimpleSinglePageMultiSelectDrawer } from '../Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer/codeSource';
+import SimpleSinglePageSingleSelectDrawer from '../Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer';
+import { code as codeSimpleSinglePageSingleSelectDrawer } from '../Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer/codeSource';
 import SimpleAddDrawer from '../SimpleAddDrawer';
 import { code as codeSimpleAddDrawer } from '../SimpleAddDrawer/codeSource';
 import SimpleEditDrawer from '../SimpleEditDrawer';
 import { code as codeSimpleEditDrawer } from '../SimpleEditDrawer/codeSource';
-import SimpleMultiPageDrawer from '../SimpleMultiPageDrawer';
-import { code as codeSimpleMultiPageDrawer } from '../SimpleMultiPageDrawer/codeSource';
-import SimpleSinglePageDrawer from '../SimpleSinglePageDrawer';
-import { code as codeSimpleSinglePageDrawer } from '../SimpleSinglePageDrawer/codeSource';
-import SimpleSinglePageFrontendPaginationMultiSelectDrawer from '../SimpleSinglePageFrontendPaginationMultiSelectDrawer';
-import { code as codeSimpleSinglePageFrontendPaginationMultiSelectDrawer } from '../SimpleSinglePageFrontendPaginationMultiSelectDrawer/codeSource';
-import SimpleSinglePageFrontendPaginationSelectDrawer from '../SimpleSinglePageFrontendPaginationSelectDrawer';
-import { code as codeSimpleSinglePageFrontendPaginationSelectDrawer } from '../SimpleSinglePageFrontendPaginationSelectDrawer/codeSource';
-import SimpleSinglePageFrontendPaginationSingleSelectDrawer from '../SimpleSinglePageFrontendPaginationSingleSelectDrawer';
-import { code as codeSimpleSinglePageFrontendPaginationSingleSelectDrawer } from '../SimpleSinglePageFrontendPaginationSingleSelectDrawer/codeSource';
-import SimpleSinglePageMultiSelectDrawer from '../SimpleSinglePageMultiSelectDrawer';
-import { code as codeSimpleSinglePageMultiSelectDrawer } from '../SimpleSinglePageMultiSelectDrawer/codeSource';
-import SimpleSinglePageSingleSelectDrawer from '../SimpleSinglePageSingleSelectDrawer';
-import { code as codeSimpleSinglePageSingleSelectDrawer } from '../SimpleSinglePageSingleSelectDrawer/codeSource';
+
+import { code as codeDrawerView } from './codeSource';
 
 @connect(({ schedulingControl }) => ({
   schedulingControl,
@@ -45,8 +51,8 @@ class DrawerView extends BaseView {
     this.state = {
       ...this.state,
       pageTitle: 'Drawer 交互示例',
-      currentCodeTitle: 'SimpleSinglePageDrawer',
-      currentCode: codeSimpleSinglePageDrawer,
+      currentCodeTitle: 'DrawerView',
+      currentCode: codeDrawerView,
     };
   }
 
@@ -55,24 +61,6 @@ class DrawerView extends BaseView {
       stick: false,
       title: '操作栏',
       tools: [
-        {
-          component: buildButton({
-            title: '点击显示 SinglePageDrawer',
-            text: 'SinglePageDrawer',
-            handleClick: () => {
-              SimpleSinglePageDrawer.open();
-            },
-          }),
-        },
-        {
-          component: buildButton({
-            title: '点击显示 MultiPageDrawer',
-            text: 'MultiPageDrawer',
-            handleClick: () => {
-              SimpleMultiPageDrawer.open();
-            },
-          }),
-        },
         {
           component: buildButton({
             title: '点击显示 AddDrawer',
@@ -91,16 +79,6 @@ class DrawerView extends BaseView {
             },
           }),
         },
-        {
-          component: buildButton({
-            title: '点击显示页面代码',
-            text: '显示页面代码',
-            type: 'dashed',
-            handleClick: () => {
-              DrawerCodeView.open();
-            },
-          }),
-        },
       ],
     };
   };
@@ -114,17 +92,17 @@ class DrawerView extends BaseView {
       list: [
         {
           title: {
-            text: '单页列表选择功能实例',
+            text: '单页列表选择功能实例 [常规]',
           },
           items: [
             {
               lg: 8,
               type: cardConfig.contentItemType.component,
               component: buildButton({
-                title: '点击显示 SinglePageSelectDrawer',
-                text: '显示 SinglePageSelectDrawer',
+                title: '点击显示 SimpleSinglePageConfirmSelectDrawer',
+                text: '显示 SimpleSinglePageConfirmSelectDrawer',
                 handleClick: () => {
-                  SimpleSinglePageSelectDrawer.open();
+                  SimpleSinglePageConfirmSelectDrawer.open();
                 },
               }),
             },
@@ -161,10 +139,11 @@ class DrawerView extends BaseView {
               lg: 8,
               type: cardConfig.contentItemType.component,
               component: buildButton({
-                title: '点击显示 SinglePageFrontendPaginationSelectDrawer',
-                text: '显示 SinglePageFrontendPaginationSelectDrawer',
+                title:
+                  '点击显示 SinglePageFrontendPaginationConfirmSelectDrawer',
+                text: '显示 SinglePageFrontendPaginationConfirmSelectDrawer',
                 handleClick: () => {
-                  SimpleSinglePageFrontendPaginationSelectDrawer.open();
+                  SimpleSinglePageFrontendPaginationConfirmSelectDrawer.open();
                 },
               }),
             },
@@ -207,12 +186,24 @@ class DrawerView extends BaseView {
                 buildType: cardConfig.extraBuildType.flexSelect,
                 label: '显示源代码',
                 size: 'small',
-                defaultValue: 'SimpleSinglePageDrawer',
+                defaultValue: 'DrawerView',
                 style: { width: '520px' },
                 list: [
                   {
-                    flag: 'SimpleSinglePageSelectDrawer',
-                    name: 'SimpleSinglePageSelectDrawer',
+                    flag: 'DrawerView',
+                    name: 'DrawerView',
+                  },
+                  {
+                    flag: 'BaseSimpleSinglePageSelectDrawer',
+                    name: 'BaseSimpleSinglePageSelectDrawer',
+                  },
+                  {
+                    flag: 'BaseSimpleMultiPageSelectDrawer',
+                    name: 'BaseSimpleMultiPageSelectDrawer',
+                  },
+                  {
+                    flag: 'SimpleSinglePageConfirmSelectDrawer',
+                    name: 'SimpleSinglePageConfirmSelectDrawer',
                   },
                   {
                     flag: 'SimpleSinglePageSingleSelectDrawer',
@@ -223,8 +214,8 @@ class DrawerView extends BaseView {
                     name: 'SimpleSinglePageMultiSelectDrawer',
                   },
                   {
-                    flag: 'SimpleSinglePageFrontendPaginationSelectDrawer',
-                    name: 'SimpleSinglePageFrontendPaginationSelectDrawer',
+                    flag: 'SimpleSinglePageFrontendPaginationConfirmSelectDrawer',
+                    name: 'SimpleSinglePageFrontendPaginationConfirmSelectDrawer',
                   },
                   {
                     flag: 'SimpleSinglePageFrontendPaginationSingleSelectDrawer',
@@ -235,12 +226,16 @@ class DrawerView extends BaseView {
                     name: 'SimpleSinglePageFrontendPaginationMultiSelectDrawer',
                   },
                   {
-                    flag: 'SimpleSinglePageDrawer',
-                    name: 'SimpleSinglePageDrawer',
+                    flag: 'SimpleMultiPageConfirmSelectDrawer',
+                    name: 'SimpleMultiPageConfirmSelectDrawer',
                   },
                   {
-                    flag: 'SimpleMultiPageDrawer',
-                    name: 'SimpleMultiPageDrawer',
+                    flag: 'SimpleMultiPageSingleSelectDrawer',
+                    name: 'SimpleMultiPageSingleSelectDrawer',
+                  },
+                  {
+                    flag: 'SimpleMultiPageMultiSelectDrawer',
+                    name: 'SimpleMultiPageMultiSelectDrawer',
                   },
                   {
                     flag: 'SimpleAddDrawer',
@@ -256,23 +251,34 @@ class DrawerView extends BaseView {
                   let code = '';
 
                   switch (v) {
-                    case 'SimpleSinglePageSelectDrawer': {
-                      code = codeSimpleSinglePageSelectDrawer;
+                    case 'DrawerView': {
+                      code = codeDrawerView;
+                      break;
+                    }
+
+                    case 'BaseSimpleSinglePageSelectDrawer': {
+                      code = codeBaseSimpleSinglePageSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleSinglePageConfirmSelectDrawer': {
+                      code = codeSimpleSinglePageConfirmSelectDrawer;
                       break;
                     }
 
                     case 'SimpleSinglePageSingleSelectDrawer': {
-                      code = codeSimpleSinglePageMultiSelectDrawer;
-                      break;
-                    }
-
-                    case 'SimpleSinglePageMultiSelectDrawer': {
                       code = codeSimpleSinglePageSingleSelectDrawer;
                       break;
                     }
 
-                    case 'SimpleSinglePageFrontendPaginationSelectDrawer': {
-                      code = codeSimpleSinglePageFrontendPaginationSelectDrawer;
+                    case 'SimpleSinglePageMultiSelectDrawer': {
+                      code = codeSimpleSinglePageMultiSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleSinglePageFrontendPaginationConfirmSelectDrawer': {
+                      code =
+                        codeSimpleSinglePageFrontendPaginationConfirmSelectDrawer;
                       break;
                     }
 
@@ -288,13 +294,18 @@ class DrawerView extends BaseView {
                       break;
                     }
 
-                    case 'SimpleSinglePageDrawer': {
-                      code = codeSimpleSinglePageDrawer;
+                    case 'SimpleMultiPageConfirmSelectDrawer': {
+                      code = codeSimpleMultiPageConfirmSelectDrawer;
                       break;
                     }
 
-                    case 'SimpleMultiPageDrawer': {
-                      code = codeSimpleMultiPageDrawer;
+                    case 'SimpleMultiPageSingleSelectDrawer': {
+                      code = codeSimpleMultiPageSingleSelectDrawer;
+                      break;
+                    }
+
+                    case 'SimpleMultiPageMultiSelectDrawer': {
+                      code = codeSimpleMultiPageMultiSelectDrawer;
                       break;
                     }
 
@@ -347,7 +358,7 @@ class DrawerView extends BaseView {
   renderPresetOther = () => {
     return (
       <>
-        <SimpleSinglePageSelectDrawer
+        <SimpleSinglePageConfirmSelectDrawer
           multiSelect={true}
           hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
@@ -363,7 +374,7 @@ class DrawerView extends BaseView {
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
-        <SimpleSinglePageFrontendPaginationSelectDrawer
+        <SimpleSinglePageFrontendPaginationConfirmSelectDrawer
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
@@ -377,11 +388,19 @@ class DrawerView extends BaseView {
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
-        <SimpleSinglePageDrawer afterSelectSuccess={this.afterSelectSuccess} />
+        <SimpleMultiPageConfirmSelectDrawer
+          afterSelectSuccess={this.afterSelectSuccess}
+        />
 
-        <SimpleMultiPageDrawer />
+        <SimpleMultiPageSingleSelectDrawer
+          afterSelectSuccess={this.afterSelectSuccess}
+        />
 
-        <DrawerCodeView />
+        <SimpleMultiPageMultiSelectDrawer
+          multiSelect={true}
+          hideAfterSelect={false}
+          afterSelectSuccess={this.afterSelectSuccess}
+        />
 
         <SimpleAddDrawer
           afterOK={({ subjoinData }) => {
