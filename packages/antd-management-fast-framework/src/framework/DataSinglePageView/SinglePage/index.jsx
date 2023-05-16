@@ -21,9 +21,6 @@ class SinglePage extends Base {
    */
   useRemotePagination = false;
 
-  /**
-   * 使用前台模拟分页，有助于优化长列表页面交互操作导致的延迟
-   */
   useFrontendPagination = true;
 
   constructor(properties) {

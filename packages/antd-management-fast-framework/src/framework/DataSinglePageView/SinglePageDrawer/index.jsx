@@ -29,7 +29,7 @@ import { DensityAction } from '../../DataListView/DensityAction';
 import { RefreshButton } from '../../DataListView/RefreshButton';
 import { SinglePage } from '../SinglePage';
 
-import styles from './index.less';
+import styles from '../../DataListView/Drawer/index.less';
 
 const primaryCallName = 'DataSinglePageView::SinglePageDrawer';
 

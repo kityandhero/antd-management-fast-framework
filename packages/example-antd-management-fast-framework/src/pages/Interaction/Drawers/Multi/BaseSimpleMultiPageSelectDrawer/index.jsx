@@ -18,7 +18,7 @@ import {
   convertOptionOrRadioData,
   iconBuilder,
 } from 'antd-management-fast-component';
-import { DataSinglePageView } from 'antd-management-fast-framework';
+import { DataMultiPageView } from 'antd-management-fast-framework';
 
 import { colorCollection } from '../../../../../customConfig';
 import {
@@ -28,10 +28,10 @@ import {
 import { fieldData, statusCollection } from '../../../../Simple/Common/data';
 
 const { Text } = Typography;
-const { SinglePageSelectDrawer } = DataSinglePageView;
+const { MultiPageSelectDrawer } = DataMultiPageView;
 
 // 组件基类, 仅为代码复用性设计, 具体使用时请自行考虑
-class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
+class BaseSimpleMultiPageSelectDrawer extends MultiPageSelectDrawer {
   // 在控制台显示组建内调用序列, 仅为进行开发辅助
   showCallProcess = true;
 
@@ -219,7 +219,7 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
-      width: 780,
+      width: 420,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
@@ -277,4 +277,4 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
   ];
 }
 
-export default BaseSimpleSinglePageSelectDrawer;
+export default BaseSimpleMultiPageSelectDrawer;

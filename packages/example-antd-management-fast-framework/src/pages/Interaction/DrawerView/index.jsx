@@ -14,13 +14,11 @@ import {
 
 import BaseView from '../BaseView';
 import SimpleMultiPageConfirmSelectDrawer from '../Drawers/Multi/SimpleMultiPageConfirmSelectDrawer';
-import {
-  code as codeSimpleMultiPageConfirmSelectDrawer,
-  code as codeSimpleMultiPageSingleSelectDrawer,
-} from '../Drawers/Multi/SimpleMultiPageConfirmSelectDrawer/codeSource';
+import { code as codeSimpleMultiPageConfirmSelectDrawer } from '../Drawers/Multi/SimpleMultiPageConfirmSelectDrawer/codeSource';
 import SimpleMultiPageMultiSelectDrawer from '../Drawers/Multi/SimpleMultiPageMultiSelectDrawer';
 import { code as codeSimpleMultiPageMultiSelectDrawer } from '../Drawers/Multi/SimpleMultiPageMultiSelectDrawer/codeSource';
 import SimpleMultiPageSingleSelectDrawer from '../Drawers/Multi/SimpleMultiPageSingleSelectDrawer';
+import { code as codeSimpleMultiPageSingleSelectDrawer } from '../Drawers/Multi/SimpleMultiPageSingleSelectDrawer/codeSource';
 import { code as codeBaseSimpleSinglePageSelectDrawer } from '../Drawers/Single/BaseSimpleSinglePageSelectDrawer/codeSource';
 import SimpleSinglePageFrontendPaginationConfirmSelectDrawer from '../Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer';
 import { code as codeSimpleSinglePageFrontendPaginationConfirmSelectDrawer } from '../Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer/codeSource';
@@ -132,7 +130,7 @@ class DrawerView extends BaseView {
         },
         {
           title: {
-            text: '单页列表选择功能实例 [页面模拟分页效果]',
+            text: '单页列表选择功能实例 [前端模拟分页]',
           },
           items: [
             {
@@ -168,6 +166,46 @@ class DrawerView extends BaseView {
                 text: '显示 SimpleSinglePageFrontendPaginationMultiSelectDrawer',
                 handleClick: () => {
                   SimpleSinglePageFrontendPaginationMultiSelectDrawer.open();
+                },
+              }),
+            },
+          ],
+        },
+        {
+          title: {
+            text: '分页列表选择功能实例',
+          },
+          items: [
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleMultiPageConfirmSelectDrawer',
+                text: '显示 SimpleMultiPageConfirmSelectDrawer',
+                handleClick: () => {
+                  SimpleMultiPageConfirmSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleMultiPageSingleSelectDrawer',
+                text: '显示 SimpleMultiPageSingleSelectDrawer',
+                handleClick: () => {
+                  SimpleMultiPageSingleSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleMultiPageMultiSelectDrawer',
+                text: '显示 SimpleMultiPageMultiSelectDrawer',
+                handleClick: () => {
+                  SimpleMultiPageMultiSelectDrawer.open();
                 },
               }),
             },

@@ -219,7 +219,7 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
-      width: 780,
+      width: 420,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',

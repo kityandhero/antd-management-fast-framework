@@ -132,7 +132,7 @@ class DrawerView extends BaseView {
         },
         {
           title: {
-            text: '单页列表选择功能实例 [页面模拟分页效果]',
+            text: '单页列表选择功能实例 [前端模拟分页]',
           },
           items: [
             {
@@ -168,6 +168,46 @@ class DrawerView extends BaseView {
                 text: '显示 SimpleSinglePageFrontendPaginationMultiSelectDrawer',
                 handleClick: () => {
                   SimpleSinglePageFrontendPaginationMultiSelectDrawer.open();
+                },
+              }),
+            },
+          ],
+        },
+        {
+          title: {
+            text: '分页列表选择功能实例',
+          },
+          items: [
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleMultiPageConfirmSelectDrawer',
+                text: '显示 SimpleMultiPageConfirmSelectDrawer',
+                handleClick: () => {
+                  SimpleMultiPageConfirmSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleMultiPageSingleSelectDrawer',
+                text: '显示 SimpleMultiPageSingleSelectDrawer',
+                handleClick: () => {
+                  SimpleMultiPageSingleSelectDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleMultiPageMultiSelectDrawer',
+                text: '显示 SimpleMultiPageMultiSelectDrawer',
+                handleClick: () => {
+                  SimpleMultiPageMultiSelectDrawer.open();
                 },
               }),
             },

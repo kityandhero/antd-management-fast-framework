@@ -18,13 +18,21 @@ const primaryCallName = 'DataSinglePageView::MultiPageSelectDrawer';
 class MultiPageSelectDrawer extends MultiPageDrawer {
   showListViewItemActionSelect = true;
 
+  useFrontendPagination = false;
+
   /**
-   * 使用选择二次确认
+   * 指定使用选择确认模式, 默认 false, 不使用二次选择确认时可不用特殊指定
    */
   confirmSelect = false;
 
+  /**
+   * 已选择的数据集合
+   */
   selectListData = [];
 
+  /**
+   * 选择状态是否发生变化
+   */
   selectChanged = false;
 
   static getDerivedStateFromProps(nextProperties, previousState) {

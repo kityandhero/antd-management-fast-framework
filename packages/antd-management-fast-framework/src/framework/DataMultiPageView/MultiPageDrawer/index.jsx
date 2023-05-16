@@ -1,4 +1,5 @@
 import { Card, Col, Divider, List, Row, Tooltip } from 'antd';
+import classNames from 'classnames';
 import QueueAnim from 'rc-queue-anim';
 import React from 'react';
 
@@ -6,14 +7,12 @@ import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
   mergeArrowText,
-  notificationTypeCollection,
 } from 'easy-soft-utility';
 
 import {
   contentConfig,
   emptyLogic,
   listViewConfig,
-  notify,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
@@ -31,7 +30,7 @@ import { DensityAction } from '../../DataListView/DensityAction';
 import { RefreshButton } from '../../DataListView/RefreshButton';
 import { MultiPage } from '../MultiPage';
 
-import styles from './index.less';
+import styles from '../../DataListView/Drawer/index.less';
 
 const primaryCallName = 'DataMultiPageView::MultiPageDrawer';
 
@@ -81,6 +80,21 @@ class MultiPageDrawer extends MultiPage {
 
     return { externalData: externalData || null };
   }
+
+  /**
+   * 构建附加的分页配置
+   * @returns
+   */
+  establishTableAdditionalConfig = () => {
+    this.logCallTrack({}, primaryCallName, 'establishTableAdditionalConfig');
+
+    return {
+      style: {
+        padding: '0px',
+        height: '100%',
+      },
+    };
+  };
 
   getVisibleFlag() {
     this.logCallTrack({}, primaryCallName, 'getVisibleFlag');
@@ -230,6 +244,30 @@ class MultiPageDrawer extends MultiPage {
     }
   };
 
+  /**
+   * 选择数据
+   * @param {*} handleData
+   */
+  selectRecord = ({ handleData }) => {
+    this.logCallTrack(
+      {
+        parameter: { handleData },
+      },
+      primaryCallName,
+      'selectRecord',
+    );
+
+    const { afterSelectSuccess, hideDrawerAfterSelect } = this.props;
+
+    if (isFunction(afterSelectSuccess)) {
+      afterSelectSuccess(handleData);
+    }
+
+    if (hideDrawerAfterSelect) {
+      this.hideDrawer();
+    }
+  };
+
   renderPresetTitleIcon = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon');
 
@@ -262,31 +300,11 @@ class MultiPageDrawer extends MultiPage {
     this.onClose();
   };
 
-  selectRecord = ({ handleData }) => {
-    this.logCallTrack(
-      {
-        parameter: { handleData },
-      },
-      primaryCallName,
-      'selectRecord',
-    );
-
-    const { afterSelectSuccess, hideDrawerAfterSelect } = this.props;
-
-    if (isFunction(afterSelectSuccess)) {
-      afterSelectSuccess(handleData);
-    }
-
-    if (hideDrawerAfterSelect) {
-      this.hideDrawer();
-    } else {
-      notify({
-        type: notificationTypeCollection.success,
-        placement: 'bottom-left',
-        message: '操作结果',
-        description: '选择成功',
-      });
-    }
+  establishPaginationViewStyle = () => {
+    return {
+      paddingTop: 10,
+      paddingBottom: 10,
+    };
   };
 
   renderPresetListMainViewContainor = () => {
@@ -303,7 +321,7 @@ class MultiPageDrawer extends MultiPage {
         style={{ height: '100%', overflow: 'hidden' }}
       >
         <div
-          className={styles.containorBox}
+          className={classNames(styles.containorBox, styles.backendPagination)}
           style={{
             height: '100%',
             overflow: 'hidden',
@@ -462,13 +480,6 @@ class MultiPageDrawer extends MultiPage {
     );
   };
 
-  establishPaginationViewStyle = () => {
-    return {
-      paddingTop: 10,
-      paddingBottom: 10,
-    };
-  };
-
   renderPresetListView = () => {
     return (
       <div
@@ -501,7 +512,7 @@ class MultiPageDrawer extends MultiPage {
           </LoadingOverlay>
         </div>
 
-        <div style={{ flex: 0, paddingTop: 0, paddingBottom: 0 }}>
+        <div style={{ flex: 0 }}>
           <div
             style={{
               height: '100%',

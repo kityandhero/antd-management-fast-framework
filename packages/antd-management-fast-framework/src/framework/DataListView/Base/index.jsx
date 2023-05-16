@@ -76,9 +76,9 @@ class Base extends AuthorizationWrapper {
   useRemotePagination = true;
 
   /**
-   * 使用前台模拟分页，有助于优化长列表页面交互操作导致的延迟
+   * 使用前台模拟分页，有助于优化长列表页面交互操作导致的延迟, 默认 true
    */
-  useFrontendPagination = false;
+  useFrontendPagination = true;
 
   showSearchForm = true;
 
@@ -94,6 +94,9 @@ class Base extends AuthorizationWrapper {
 
   columnOperateFixed = 'right';
 
+  /**
+   * 显示选择按钮
+   */
   showListViewItemActionSelect = false;
 
   /**
