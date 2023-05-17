@@ -1,4 +1,4 @@
-import { Affix, Col, Divider, Form, Layout, Row, Space } from 'antd';
+import { Col, Divider, Form, Layout, Row, Space } from 'antd';
 import React, { Fragment } from 'react';
 
 import { isArray, isUndefined } from 'easy-soft-utility';
@@ -48,6 +48,8 @@ class Base extends BaseWindow {
       showBottomBar: false,
       submitApiPath: '',
       placement: 'right',
+      overlayButtonOpenText: '打开浮层',
+      overlayButtonCloseText: '关闭浮层',
     };
   }
 
@@ -379,48 +381,59 @@ class Base extends BaseWindow {
 
     return (
       <Footer>
-        <Affix offsetBottom={0}>
-          <div className={styles.bottomBar}>
-            <Row>
-              <Col span={24} style={{ textAlign: 'right' }}>
-                <FlexBox
-                  flexAuto="left"
-                  left={
-                    <FlexBox
-                      flexAuto="right"
-                      style={{
-                        height: '100%',
-                      }}
-                      leftStyle={{
-                        height: '100%',
-                      }}
-                      left={
-                        <Space
-                          split={<Divider type="vertical" />}
-                          style={{ height: '100%' }}
-                        >
-                          {bottomBarLeftBox}
-                        </Space>
-                      }
-                      right={<div />}
-                    />
-                  }
-                  right={
-                    <Space split={<Divider type="vertical" />}>
-                      {bottomBarRightBox}
-                    </Space>
-                  }
-                />
-              </Col>
-            </Row>
-          </div>
-        </Affix>
+        <div className={styles.bottomBar}>
+          <Row>
+            <Col span={24} style={{ textAlign: 'right' }}>
+              <FlexBox
+                flexAuto="left"
+                left={
+                  <FlexBox
+                    flexAuto="right"
+                    style={{
+                      height: '100%',
+                    }}
+                    leftStyle={{
+                      height: '100%',
+                    }}
+                    left={
+                      <Space
+                        split={<Divider type="vertical" />}
+                        style={{ height: '100%' }}
+                      >
+                        {bottomBarLeftBox}
+                      </Space>
+                    }
+                    right={<div />}
+                  />
+                }
+                right={
+                  <Space split={<Divider type="vertical" />}>
+                    {bottomBarRightBox}
+                  </Space>
+                }
+              />
+            </Col>
+          </Row>
+        </div>
       </Footer>
     );
   };
 
+  renderOverlayContent = () => {
+    this.logCallTrack({}, primaryCallName, 'renderOverlayContent', emptyLogic);
+
+    return null;
+  };
+
   renderFurther() {
-    const { width, height, showBottomBar, placement } = this.state;
+    const {
+      width,
+      height,
+      showBottomBar,
+      placement,
+      overlayButtonOpenText,
+      overlayButtonCloseText,
+    } = this.state;
     const { maskClosable } = this.props;
 
     const that = this;
@@ -437,9 +450,13 @@ class Base extends BaseWindow {
         height={height}
         placement={placement}
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
+        overlayContent={this.renderOverlayContent()}
+        overlayButtonOpenText={overlayButtonOpenText}
+        overlayButtonCloseText={overlayButtonCloseText}
         onClose={this.onClose}
         bodyStyle={{
           padding: 0,
+          overflow: 'hidden',
         }}
         extra={this.buildExtraAction()}
         afterOpenChange={(v) => {
@@ -447,7 +464,7 @@ class Base extends BaseWindow {
         }}
       >
         <div className={styles.mainContainor}>
-          <Layout>
+          <Layout style={{ height: '100%' }}>
             <Content>{this.renderPresetContentContainor()}</Content>
 
             {showBottomBar ? this.renderPresetBottomBar() : null}

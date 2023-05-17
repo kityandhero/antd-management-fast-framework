@@ -113,6 +113,13 @@ export default [
         redirect: '/interaction/modelView',
       },
       {
+        path: '/interaction/animalView',
+        name: 'animalView',
+        icon: 'bars',
+        useMini: true,
+        component: './Interaction/AnimalView',
+      },
+      {
         path: '/interaction/modelView',
         name: 'modelView',
         icon: 'bars',

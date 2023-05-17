@@ -4,6 +4,9 @@ import { switchControlAssist } from 'antd-management-fast-framework';
 
 import BaseSimpleSinglePageSelectDrawer from '../../BaseSimpleSinglePageSelectDrawer';
 
+import { code } from './codeSource';
+
+// 显隐控制标记, 必须设置, 标记需要全局唯一
 const visibleFlag = 'de266a61e4b24705afda59a125f81952';
 
 @connect(({ simple, schedulingControl }) => ({
@@ -23,6 +26,11 @@ class SimpleSinglePageFrontendPaginationSelectDrawer extends BaseSimpleSinglePag
 
   constructor(properties) {
     super(properties, visibleFlag);
+
+    this.state = {
+      ...this.state,
+      sourceCode: code,
+    };
   }
 }
 

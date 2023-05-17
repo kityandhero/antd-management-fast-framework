@@ -68,6 +68,8 @@ class MultiPageDrawer extends MultiPage {
       ...this.state,
       listViewMode: listViewConfig.viewMode.table,
       tableScrollY: 'calc(100% - 47px)',
+      overlayButtonOpenText: '打开浮层',
+      overlayButtonCloseText: '关闭浮层',
     };
 
     this.restoreSearch = false;
@@ -301,6 +303,8 @@ class MultiPageDrawer extends MultiPage {
   };
 
   establishPaginationViewStyle = () => {
+    this.logCallTrack({}, primaryCallName, 'establishPaginationViewStyle');
+
     return {
       paddingTop: 10,
       paddingBottom: 10,
@@ -530,9 +534,16 @@ class MultiPageDrawer extends MultiPage {
     );
   };
 
+  renderOverlayContent = () => {
+    this.logCallTrack({}, primaryCallName, 'renderOverlayContent', emptyLogic);
+
+    return null;
+  };
+
   renderFurther() {
-    const { width: widthDrawer } = this.props;
-    const { listViewMode } = this.state;
+    const { width } = this.props;
+    const { listViewMode, overlayButtonOpenText, overlayButtonCloseText } =
+      this.state;
 
     const that = this;
 
@@ -545,8 +556,11 @@ class MultiPageDrawer extends MultiPage {
         subtitle={this.buildTitleSubText()}
         destroyOnClose={false}
         className={styles.containorBox}
-        width={widthDrawer}
+        width={width}
         placement="right"
+        overlayContent={this.renderOverlayContent()}
+        overlayButtonOpenText={overlayButtonOpenText}
+        overlayButtonCloseText={overlayButtonCloseText}
         onClose={this.onClose}
         bodyStyle={{
           padding: 0,

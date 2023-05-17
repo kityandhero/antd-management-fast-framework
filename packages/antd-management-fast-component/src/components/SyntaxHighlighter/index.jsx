@@ -8,7 +8,7 @@ import { BaseComponent } from '../../bases';
 
 class SyntaxHighlighter extends BaseComponent {
   renderFurther() {
-    const { language, value, other } = this.props;
+    const { language, value, style: customStyle, other } = this.props;
 
     const c = {
       ...other,
@@ -17,6 +17,7 @@ class SyntaxHighlighter extends BaseComponent {
       wrapLongLines: true,
       language,
       style: oneDark,
+      customStyle,
     };
 
     return (
@@ -43,6 +44,7 @@ SyntaxHighlighter.defaultProps = {
   language: 'javascript',
   value: '',
   other: {},
+  style: null,
 };
 
 export { SyntaxHighlighter };

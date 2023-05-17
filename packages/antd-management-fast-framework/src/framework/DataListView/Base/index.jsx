@@ -1091,6 +1091,8 @@ class Base extends AuthorizationWrapper {
   };
 
   establishPaginationViewStyle = () => {
+    this.logCallTrack({}, primaryCallName, 'establishPaginationViewStyle');
+
     return {
       paddingTop: 16,
       paddingBottom: 16,

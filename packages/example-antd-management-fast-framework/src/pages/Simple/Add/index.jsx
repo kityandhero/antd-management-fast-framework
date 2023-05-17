@@ -384,7 +384,7 @@ class Add extends BaseAddForm {
               type: cardConfig.contentItemType.component,
               component: (
                 <>
-                  <FadeBox show={fadeBoxShow}>
+                  <FadeBox visible={fadeBoxShow}>
                     <div>
                       <Space>
                         <IconInfo icon={iconBuilder.form()} text="文字1" />

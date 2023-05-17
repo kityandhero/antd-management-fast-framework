@@ -1,4 +1,4 @@
-import { DataSingleView } from 'antd-management-fast-framework';
+export const code = `import { DataSingleView } from 'antd-management-fast-framework';
 
 const { DataCore } = DataSingleView;
 
@@ -11,3 +11,4 @@ class BaseView extends DataCore {
 }
 
 export default BaseView;
+`;

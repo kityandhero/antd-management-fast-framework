@@ -128,7 +128,7 @@ export function adjustTableExpandConfig({ list, config }) {
                 );
 
                 if (expandAnimalType === listViewConfig.expandAnimalType.fade) {
-                  child = <FadeBox show={expanded}>{child}</FadeBox>;
+                  child = <FadeBox visible={expanded}>{child}</FadeBox>;
                 }
 
                 if (

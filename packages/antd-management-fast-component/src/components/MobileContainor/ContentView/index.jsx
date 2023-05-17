@@ -83,7 +83,7 @@ class ContentView extends PureComponent {
           {alertAnimationType === animalType.none ? alert : null}
 
           {alertAnimationType === animalType.fade ? (
-            <FadeBox show={alertVisible}>{alert}</FadeBox>
+            <FadeBox visible={alertVisible}>{alert}</FadeBox>
           ) : null}
 
           {alertAnimationType === animalType.queue ? (

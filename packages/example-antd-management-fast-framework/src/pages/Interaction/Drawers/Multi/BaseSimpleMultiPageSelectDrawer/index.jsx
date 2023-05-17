@@ -17,6 +17,7 @@ import {
 import {
   convertOptionOrRadioData,
   iconBuilder,
+  SyntaxHighlighter,
 } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
@@ -49,6 +50,9 @@ class BaseSimpleMultiPageSelectDrawer extends MultiPageSelectDrawer {
       listViewMode: listViewConfig.viewMode.table,
       // table 显示模式行长度, 合理设置可以提升美观以及用户体验，超出可见区域将显示滚动条
       tableScrollX: 1220,
+      sourceCode: '',
+      overlayButtonOpenText: '打开源代码',
+      overlayButtonCloseText: '关闭源代码',
     };
   }
 
@@ -275,6 +279,21 @@ class BaseSimpleMultiPageSelectDrawer extends MultiPageSelectDrawer {
     // 站位符, 显示为 "--"
     columnPlaceholder,
   ];
+
+  renderOverlayContent = () => {
+    const { sourceCode } = this.state;
+
+    return (
+      <div style={{ width: '90%', height: '90%' }}>
+        <SyntaxHighlighter
+          language="js"
+          value={sourceCode}
+          other={{ showLineNumbers: false, wrapLines: false }}
+          style={{ height: '100%' }}
+        />
+      </div>
+    );
+  };
 }
 
 export default BaseSimpleMultiPageSelectDrawer;

@@ -3,13 +3,15 @@ import { Checkbox } from 'antd';
 import { connect } from 'easy-soft-dva';
 
 import { cardConfig, drawerConfig } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import { iconBuilder, SyntaxHighlighter } from 'antd-management-fast-component';
 import {
   DataDrawer,
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
 import { fieldData } from '../../Simple/Common/data';
+
+import { code } from './codeSource';
 
 const { BaseAddDrawer } = DataDrawer;
 
@@ -32,6 +34,9 @@ class SimpleAddDrawer extends BaseAddDrawer {
     this.state = {
       ...this.state,
       submitApiPath: 'simple/addBasicInfo',
+      sourceCode: code,
+      overlayButtonOpenText: '打开源代码',
+      overlayButtonCloseText: '关闭源代码',
     };
   }
 
@@ -154,6 +159,21 @@ class SimpleAddDrawer extends BaseAddDrawer {
         },
       ],
     };
+  };
+
+  renderOverlayContent = () => {
+    const { sourceCode } = this.state;
+
+    return (
+      <div style={{ width: '90%', height: '90%' }}>
+        <SyntaxHighlighter
+          language="js"
+          value={sourceCode}
+          other={{ showLineNumbers: false, wrapLines: false }}
+          style={{ height: '100%' }}
+        />
+      </div>
+    );
   };
 }
 

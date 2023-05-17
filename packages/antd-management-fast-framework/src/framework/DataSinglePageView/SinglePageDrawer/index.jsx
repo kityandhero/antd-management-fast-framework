@@ -65,6 +65,8 @@ class SinglePageDrawer extends SinglePage {
       ...this.state,
       listViewMode: listViewConfig.viewMode.table,
       tableScrollY: 'calc(100% - 47px)',
+      overlayButtonOpenText: '打开浮层',
+      overlayButtonCloseText: '关闭浮层',
     };
 
     this.visibleFlag = visibleFlag;
@@ -300,6 +302,8 @@ class SinglePageDrawer extends SinglePage {
   };
 
   establishPaginationViewStyle = () => {
+    this.logCallTrack({}, primaryCallName, 'establishPaginationViewStyle');
+
     return {
       paddingTop: 10,
       paddingBottom: 10,
@@ -548,9 +552,16 @@ class SinglePageDrawer extends SinglePage {
     );
   };
 
+  renderOverlayContent = () => {
+    this.logCallTrack({}, primaryCallName, 'renderOverlayContent', emptyLogic);
+
+    return null;
+  };
+
   renderFurther() {
     const { width } = this.props;
-    const { listViewMode } = this.state;
+    const { listViewMode, overlayButtonOpenText, overlayButtonCloseText } =
+      this.state;
 
     const that = this;
 
@@ -565,6 +576,9 @@ class SinglePageDrawer extends SinglePage {
         className={styles.containorBox}
         width={width}
         placement="right"
+        overlayContent={this.renderOverlayContent()}
+        overlayButtonOpenText={overlayButtonOpenText}
+        overlayButtonCloseText={overlayButtonCloseText}
         onClose={this.onClose}
         bodyStyle={{
           padding: 0,

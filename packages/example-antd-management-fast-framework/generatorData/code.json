@@ -1,6 +1,14 @@
 {
   "list": [
     {
+      "sourceFilePath": "./src/pages/Interaction/BaseView/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/BaseView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/AnimalView/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/AnimalView/codeSource.js"
+    },
+    {
       "sourceFilePath": "./src/pages/Interaction/ModalView/index.jsx",
       "codeFilePath": "./src/pages/Interaction/ModalView/codeSource.js"
     },
