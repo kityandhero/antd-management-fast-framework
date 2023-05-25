@@ -13,7 +13,7 @@ class ApplicationWrapper extends BaseComponent {
       <ApplicationProvider>
         <TopProgressBar />
 
-        {this.props.children}
+        <div className="antd-management-fast">{this.props.children}</div>
 
         <ToastContainer />
       </ApplicationProvider>

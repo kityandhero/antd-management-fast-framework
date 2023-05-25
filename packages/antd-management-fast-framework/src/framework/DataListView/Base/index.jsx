@@ -1230,9 +1230,6 @@ class Base extends AuthorizationWrapper {
 
     const { listViewMode, tableSize } = this.state;
 
-    console.log(this.useTableDensityAction);
-    console.log('---------------------------------------------------');
-
     if (listViewMode === listViewConfig.viewMode.table) {
       return (
         <>
