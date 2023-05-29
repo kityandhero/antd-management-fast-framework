@@ -49,7 +49,12 @@ export function signInAction({
       const token = remoteData[getTokenName()];
 
       setLocalAuthorityCollection(currentAuthority);
+
+      logDebug(currentAuthority, 'current operator authority collection data');
+
       setToken(token);
+
+      logDebug({ token }, 'current operator token data');
 
       // ----------------------------
 

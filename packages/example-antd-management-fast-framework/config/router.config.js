@@ -1,3 +1,5 @@
+import { accessWayCollection } from '../src/customConfig/accessWayCollection';
+
 export default [
   {
     path: '/entrance',
@@ -51,10 +53,10 @@ export default [
         name: 'addBasicInfo',
         icon: 'plusSquare',
         useMini: true,
-        // authority: [
-        //   accessWayCollection.super.permission.permission,
-        //   accessWayCollection.article.addBasicInfo.permission,
-        // ],
+        authority: [
+          accessWayCollection.super.permission,
+          accessWayCollection.simple.addBasicInfo.permission,
+        ],
         component: './Simple/Add',
       },
       {

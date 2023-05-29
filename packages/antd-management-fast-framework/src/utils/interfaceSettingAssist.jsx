@@ -3,18 +3,24 @@ import React, { Fragment } from 'react';
 import { SettingDrawer } from '@ant-design/pro-layout';
 
 import {
+  checkHasAuthority,
   checkObjectIsNullOrEmpty,
   checkStringIsNullOrWhiteSpace,
   endsWith,
+  isEmptyArray,
   isEmptyObject,
   isFunction,
   logExecute,
+  logTrace,
+  redirectTo,
   toNumber,
 } from 'easy-soft-utility';
 
 import {
   defaultUserAvatar,
   getApplicationListData,
+  getAuthorizationFailRedirectPath,
+  getCurrentRoute,
   getLeftBarLogo,
   getLeftBarText,
   layoutCollection,
@@ -277,6 +283,32 @@ export function mergeLayoutSetting({
           updateCount: toNumber(preUpdateCount) + 1,
         };
       });
+    },
+    onPageChange: (o) => {
+      console.log('-------------------------------');
+      console.log(o);
+
+      const { authority } = {
+        authority: '',
+        ...getCurrentRoute(),
+      };
+
+      if (checkStringIsNullOrWhiteSpace(authority) || isEmptyArray(authority)) {
+        return;
+      }
+
+      const checkResult = checkHasAuthority(authority);
+
+      if (!checkResult) {
+        logTrace(
+          { authority },
+          'check authority fail, redirect to AuthorizationFailRedirectPath',
+        );
+
+        const path = getAuthorizationFailRedirectPath();
+
+        redirectTo(path);
+      }
     },
     childrenRender: (children, properties) => {
       return (
