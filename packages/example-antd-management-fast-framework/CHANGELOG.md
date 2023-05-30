@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.18](https://github.com/kityandhero/antd-management-fast-framework/compare/example-antd-management-fast-framework@1.1.17...example-antd-management-fast-framework@1.1.18) (2023-05-30)
+
+### Bug Fixes
+
+- **antd-management-fast-charts:** update ([3569642](https://github.com/kityandhero/antd-management-fast-framework/commit/35696428755ed7e23ae76f952c972319d71da7fe))
+- **antd-management-fast-charts:** update ([c9a9a01](https://github.com/kityandhero/antd-management-fast-framework/commit/c9a9a016c9176b4e0591d455ea2ddccf7eaa6160))
+- **antd-management-fast-charts:** update ([a84153f](https://github.com/kityandhero/antd-management-fast-framework/commit/a84153f738196150a280ca708e3fa38591db48e7))
+- **antd-management-fast-charts:** update ([6a45ca2](https://github.com/kityandhero/antd-management-fast-framework/commit/6a45ca24af8ac622ca9bdf2c47e085b6c9df6211))
+- **antd-management-fast-charts:** update ([af32f61](https://github.com/kityandhero/antd-management-fast-framework/commit/af32f6160cb235d53ea780974273fbe959d3355a))
+- **antd-management-fast-charts:** update ([8e65a21](https://github.com/kityandhero/antd-management-fast-framework/commit/8e65a2194458b75f0ad699d72e4389346e0f0820))
+- **antd-management-fast-charts:** update ([f8eac50](https://github.com/kityandhero/antd-management-fast-framework/commit/f8eac50b6e1a5c75776ee50e3d3e99898fd667b3))
+- **antd-management-fast-charts:** update ([a974e9c](https://github.com/kityandhero/antd-management-fast-framework/commit/a974e9cffe95bbd337bc24f9cce08d22e8527d59))
+- **antd-management-fast-charts:** update ([cbb0fd6](https://github.com/kityandhero/antd-management-fast-framework/commit/cbb0fd6bb663e92a49a4918791a7d9301d7e3cf2))
+- **antd-management-fast-charts:** update ([aa9cf7b](https://github.com/kityandhero/antd-management-fast-framework/commit/aa9cf7b15177eddeda9ce67df641deaf04985fdd))
+- **antd-management-fast-charts:** update ([cf57997](https://github.com/kityandhero/antd-management-fast-framework/commit/cf57997f2bacf64972554e47cd32126d27a52031))
+- **antd-management-fast-charts:** update ([e72215c](https://github.com/kityandhero/antd-management-fast-framework/commit/e72215c51bbc294f58e322a3e7b792cf8b0b7506))
+- **antd-management-fast-charts:** update ([866589f](https://github.com/kityandhero/antd-management-fast-framework/commit/866589f0ef5fa29338c67ddc1796e4a1394eb645))
+- **antd-management-fast-charts:** update ([d75771c](https://github.com/kityandhero/antd-management-fast-framework/commit/d75771c5fdcd62acfb38059b44240783f042c8f3))
+- **antd-management-fast-charts:** update ([226857f](https://github.com/kityandhero/antd-management-fast-framework/commit/226857f8bf6449565e6a1ebba0187d8d81ec6246))
+- **antd-management-fast-charts:** update ([5b741d2](https://github.com/kityandhero/antd-management-fast-framework/commit/5b741d270bddbe53307e2b041641d8b27e16ea85))
+- **antd-management-fast-charts:** update ([7343a95](https://github.com/kityandhero/antd-management-fast-framework/commit/7343a951cdb2fc65a5d9ef05e0309b1219ae5f05))
+- **antd-management-fast-charts:** update ([263bb2c](https://github.com/kityandhero/antd-management-fast-framework/commit/263bb2c865c2abc852d9f12cc5a753ad8cb495e2))
+- **antd-management-fast-charts:** update ([7a32b10](https://github.com/kityandhero/antd-management-fast-framework/commit/7a32b10f038aae45392b8f536d607b1f95f31208))
+- **antd-management-fast-charts:** update ([600e54c](https://github.com/kityandhero/antd-management-fast-framework/commit/600e54c81b07a0eb63ddad4bd2b157b4249cf85b))
+
 ## [1.1.17](https://github.com/kityandhero/antd-management-fast-framework/compare/example-antd-management-fast-framework@1.1.16...example-antd-management-fast-framework@1.1.17) (2023-04-12)
 
 ### Bug Fixes
