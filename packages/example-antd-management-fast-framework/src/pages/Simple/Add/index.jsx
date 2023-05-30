@@ -29,6 +29,9 @@ const { BaseAddForm } = DataForm;
   schedulingControl,
 }))
 class Add extends BaseAddForm {
+  /**
+   * 在控制台显示组建内调用序列, 仅为进行开发辅助
+   */
   showCallProcess = true;
 
   componentAuthority = accessWayCollection.simple.addBasicInfo.permission;

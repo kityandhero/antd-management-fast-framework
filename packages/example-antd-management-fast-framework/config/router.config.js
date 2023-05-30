@@ -38,10 +38,11 @@ export default [
     path: '/simple',
     name: 'simple',
     icon: 'bars',
-    // authority: [
-    //   accessWayCollection.super.permission,
-    //   accessWayCollection.article.pageList.permission,
-    // ],
+    access: 'checkAccess',
+    authority: [
+      accessWayCollection.super.permission,
+      accessWayCollection.simple.pageList.permission,
+    ],
     // hideChildrenInMenu: true,
     routes: [
       {

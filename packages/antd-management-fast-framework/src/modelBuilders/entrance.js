@@ -31,6 +31,7 @@ import {
   signOutData,
   signOutDataSimulation,
 } from '../services/entrance';
+import { pretreatSignInData } from '../utils/entranceAssist';
 
 export function buildModel() {
   return {
@@ -58,7 +59,15 @@ export function buildModel() {
           payload,
         );
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          pretreatment: (o) => {
+            return pretreatSignInData({
+              request: payload,
+              response: o,
+            });
+          },
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -86,7 +95,15 @@ export function buildModel() {
           payload,
         );
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          pretreatment: (o) => {
+            return pretreatSignInData({
+              request: payload,
+              response: o,
+            });
+          },
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,

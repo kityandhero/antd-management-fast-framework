@@ -6,14 +6,19 @@ import {
 } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
-import { buildButton, iconBuilder } from 'antd-management-fast-component';
+import {
+  buildButton,
+  convertOptionOrRadioData,
+} from 'antd-management-fast-component';
 
 import BaseView from '../BaseView';
-import ModalCodeView from '../ModalCodeView';
+import { code as codeBaseView } from '../BaseView/codeSource';
 import SimpleAddModal from '../SimpleAddModal';
 import { code as codeSimpleAddModal } from '../SimpleAddModal/codeSource';
 import SimpleEditModal from '../SimpleEditModal';
 import { code as codeSimpleEditModal } from '../SimpleEditModal/codeSource';
+
+import { code as codeModalView } from './codeSource';
 
 @connect(({ schedulingControl }) => ({
   schedulingControl,
@@ -25,8 +30,8 @@ class ModalView extends BaseView {
     this.state = {
       ...this.state,
       pageTitle: 'Modal 交互示例',
-      currentCodeTitle: 'SimpleAddModal',
-      currentCode: codeSimpleAddModal,
+      currentCodeTitle: 'ModalView',
+      currentCode: codeModalView,
     };
   }
 
@@ -55,17 +60,6 @@ class ModalView extends BaseView {
             disabled: false,
           }),
         },
-        {
-          component: buildButton({
-            title: '点击显示页面代码',
-            text: '显示页面代码',
-            type: 'dashed',
-            handleClick: () => {
-              ModalCodeView.open();
-            },
-            disabled: false,
-          }),
-        },
       ],
     };
   };
@@ -87,33 +81,64 @@ class ModalView extends BaseView {
             split: false,
             list: [
               {
-                buildType: cardConfig.extraBuildType.generalButton,
-                icon: iconBuilder.form(),
-                text: 'SimpleAddModal 源代码',
+                buildType: cardConfig.extraBuildType.flexSelect,
+                label: '显示源代码',
                 size: 'small',
-                type: 'link',
-                handleClick: () => {
+                defaultValue: 'ModalView',
+                style: { width: '520px' },
+                list: [
+                  {
+                    flag: 'BaseView',
+                    name: 'BaseView',
+                  },
+                  {
+                    flag: 'ModalView',
+                    name: 'ModalView',
+                  },
+                  {
+                    flag: 'SimpleAddModal',
+                    name: 'SimpleAddModal',
+                  },
+                  {
+                    flag: 'SimpleEditModal',
+                    name: 'SimpleEditModal',
+                  },
+                ],
+                dataConvert: convertOptionOrRadioData,
+                onChange: (v) => {
+                  let code = '';
+
+                  switch (v) {
+                    case 'BaseView': {
+                      code = codeBaseView;
+
+                      break;
+                    }
+
+                    case 'ModalView': {
+                      code = codeModalView;
+                      break;
+                    }
+
+                    case 'SimpleAddModal': {
+                      code = codeSimpleAddModal;
+
+                      break;
+                    }
+
+                    case 'SimpleEditModal': {
+                      code = codeSimpleEditModal;
+
+                      break;
+                    }
+                  }
+
                   that.setState({
-                    currentCodeTitle: 'SimpleAddModal',
-                    currentCode: codeSimpleAddModal,
+                    currentCodeTitle: v,
+                    currentCode: code,
                   });
 
-                  showSimpleInfoMessage('当前显示 SimpleAddModal 源代码');
-                },
-              },
-              {
-                buildType: cardConfig.extraBuildType.generalButton,
-                icon: iconBuilder.form(),
-                text: 'SimpleEditModal 源代码',
-                size: 'small',
-                type: 'link',
-                handleClick: () => {
-                  that.setState({
-                    currentCodeTitle: 'SimpleEditModal',
-                    currentCode: codeSimpleEditModal,
-                  });
-
-                  showSimpleInfoMessage('当前显示 SimpleEditModal 源代码');
+                  showSimpleInfoMessage(\`当前显示 \${v} 源代码\`);
                 },
               },
             ],
@@ -139,8 +164,6 @@ class ModalView extends BaseView {
   renderPresetOther = () => {
     return (
       <>
-        <ModalCodeView />
-
         <SimpleAddModal
           afterOK={({ subjoinData }) => {
             logDebug(subjoinData, 'trigger afterOK');

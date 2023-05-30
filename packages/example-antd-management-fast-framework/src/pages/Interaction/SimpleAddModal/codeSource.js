@@ -8,6 +8,7 @@ import { fieldData } from '../../Simple/Common/data';
 
 const { BaseAddModal } = DataModal;
 
+// 显隐控制标记, 必须设置, 标记需要全局唯一
 const visibleFlag = '21743fb1abc347a0ac55c2eed31d08ec';
 
 @connect(({ simple, schedulingControl }) => ({
@@ -15,6 +16,7 @@ const visibleFlag = '21743fb1abc347a0ac55c2eed31d08ec';
   schedulingControl,
 }))
 class SimpleAddModal extends BaseAddModal {
+  //  在控制台显示组建内调用序列, 仅为进行开发辅助
   showCallProcess = true;
 
   static open() {

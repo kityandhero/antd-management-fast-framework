@@ -60,6 +60,7 @@ const { MultiPage } = DataMultiPageView;
   schedulingControl,
 }))
 class PageList extends MultiPage {
+  // 在控制台显示组建内调用序列, 仅为进行开发辅助
   showCallProcess = true;
 
   loadRemoteRequestDelay = 100;

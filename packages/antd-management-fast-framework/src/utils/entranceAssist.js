@@ -1,11 +1,15 @@
 import { getDispatch } from 'easy-soft-dva';
 import {
+  buildPromptModuleInfo,
   checkInCollection,
   handleAuthorizationFail,
   isFunction,
   logDebug,
   logDevelop,
   logExecute,
+  logTrace,
+  mergeTextMessage,
+  promptTextBuilder,
   setLocalAuthorityCollection,
   setToken,
 } from 'easy-soft-utility';
@@ -18,6 +22,82 @@ import {
 
 import { loadApplicationInitialData } from './bootstrap';
 import { getCurrentOperator } from './currentOperatorAssist';
+import { modulePackageName } from './definition';
+
+/**
+ * Module Name.
+ * @private
+ */
+const moduleName = 'entranceAssist';
+
+function buildPromptModuleInfoText(text, ancillaryInformation = '') {
+  return buildPromptModuleInfo(
+    modulePackageName,
+    mergeTextMessage(text, ancillaryInformation),
+    moduleName,
+  );
+}
+
+/**
+ * Entrance Configuration
+ */
+export const entranceAssistConfigure = {
+  // eslint-disable-next-line no-unused-vars
+  handleSignInDataPretreatment: ({ request, response }) => response,
+  signInDataPretreatmentSetComplete: false,
+};
+
+/**
+ * Set signIn data pretreatment handler
+ * @param {Function} handler handle signIn data pretreatment
+ */
+export function setSignInDataPretreatmentHandler(handler) {
+  if (entranceAssistConfigure.signInDataPretreatmentSetComplete) {
+    logDevelop(
+      'setSignInDataPretreatmentHandler',
+      'reset is not allowed, it can be set only once',
+    );
+
+    return;
+  }
+
+  if (isFunction(handler)) {
+    logDevelop('setSignInDataPretreatmentHandler', typeof handler);
+  } else {
+    throw new Error(
+      buildPromptModuleInfoText(
+        'setSignInDataPretreatmentHandler',
+        promptTextBuilder.buildMustFunction({}),
+      ),
+    );
+  }
+
+  entranceAssistConfigure.handleSignInDataPretreatment = handler;
+  entranceAssistConfigure.signInDataPretreatmentSetComplete = true;
+}
+
+export function pretreatSignInData({ request, response }) {
+  const result = entranceAssistConfigure.handleSignInDataPretreatment({
+    request,
+    response,
+  });
+
+  logTrace(
+    {
+      parameter: {
+        request,
+        response,
+      },
+      pretreatResult: result,
+    },
+    mergeTextMessage(
+      'trigger pretreatSignInData which setSignInDataPretreatmentHandler set it',
+      'pretreat signIn data',
+    ),
+  );
+
+  return result;
+}
 
 export function signInAction({
   target,
@@ -25,6 +105,8 @@ export function signInAction({
   successCallback = null,
   failCallback = null,
 }) {
+  logExecute('signInAction');
+
   actionCore({
     api: 'entrance/signIn',
     target,
@@ -88,6 +170,8 @@ export function signOutAction({
   successCallback = null,
   failCallback = null,
 }) {
+  logExecute('signOutAction');
+
   apiRequest({
     api: 'entrance/signOut',
     params: {},

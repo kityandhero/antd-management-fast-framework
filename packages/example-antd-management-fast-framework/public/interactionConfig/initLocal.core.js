@@ -3,6 +3,8 @@ window.appInitCustomLocalCore = {
   authenticationFailCode: 2001,
   authenticationFailRedirectPath: '/entrance/signIn',
   authorizationFailRedirectPath: '/common/result/forbidden',
+  // 远程登陆接口Url相对地址
+  // signInApi: 'entranceGuard/signIn',
   signInSimulationData: { currentAuthority: ['super'] },
   currentOperatorSimulationData: {
     avatar:

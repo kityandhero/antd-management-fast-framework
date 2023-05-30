@@ -1,10 +1,19 @@
-export default (initialState) => {
-  // 在这里按照初始化数据定义项目中的权限，统一管理
-  // 参考文档 https://next.umijs.org/docs/max/access
-  const canSeeAdmin = !!(
-    initialState && initialState.name !== 'doNotHaveAccess'
-  );
+import { checkHasAuthority, isArray, isEmptyArray } from 'easy-soft-utility';
+
+export default () => {
   return {
-    canSeeAdmin,
+    checkAccess: (o) => {
+      const { authority } = o;
+
+      if (!isArray(authority)) {
+        return true;
+      }
+
+      if (isEmptyArray(authority)) {
+        return true;
+      }
+
+      return checkHasAuthority(authority);
+    },
   };
 };

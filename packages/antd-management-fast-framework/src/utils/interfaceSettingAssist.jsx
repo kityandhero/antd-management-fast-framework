@@ -284,10 +284,8 @@ export function mergeLayoutSetting({
         };
       });
     },
+    // eslint-disable-next-line no-unused-vars
     onPageChange: (o) => {
-      console.log('-------------------------------');
-      console.log(o);
-
       const { authority } = {
         authority: '',
         ...getCurrentRoute(),
@@ -301,7 +299,9 @@ export function mergeLayoutSetting({
 
       if (!checkResult) {
         logTrace(
-          { authority },
+          {
+            authority,
+          },
           'check authority fail, redirect to AuthorizationFailRedirectPath',
         );
 

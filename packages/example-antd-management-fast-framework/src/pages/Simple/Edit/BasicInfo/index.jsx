@@ -77,6 +77,7 @@ function dataConvert(o, index) {
   schedulingControl,
 }))
 class BasicInfo extends TabPageBase {
+  // 在控制台显示组建内调用序列, 仅为进行开发辅助
   showCallProcess = true;
 
   componentAuthority = accessWayCollection.simple.get.permission;

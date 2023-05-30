@@ -36,7 +36,7 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
   // 在控制台显示组建内调用序列, 仅为进行开发辅助
   showCallProcess = true;
 
-  // 显示时是否自动刷新数据
+  // 显示时是否自动刷新数据;
   reloadWhenShow = true;
 
   constructor(properties, visibleFlag) {
