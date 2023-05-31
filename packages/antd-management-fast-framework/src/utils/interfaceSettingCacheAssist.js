@@ -1,5 +1,6 @@
 import {
   getJsonFromLocalStorage,
+  logDebug,
   removeLocalStorage,
   saveJsonToLocalStorage,
 } from 'easy-soft-utility';
@@ -28,6 +29,8 @@ export function getInterfaceSetting() {
  */
 export function setInterfaceSetting(value) {
   const key = storageKeyCollection.interfaceSetting;
+
+  logDebug(value, 'save interface setting');
 
   return saveJsonToLocalStorage(key, value);
 }
