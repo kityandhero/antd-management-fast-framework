@@ -422,9 +422,11 @@ class InternalFlow extends Core {
               {},
               primaryCallName,
               'loadFromApi',
-              'remoteData is undefined',
+              'metaOriginalData is undefined',
               'ignore execute continue logic',
             );
+
+            logException('api request result is undefined');
 
             that.setState(willSaveToState);
 

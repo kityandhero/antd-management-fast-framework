@@ -50,6 +50,8 @@ export function buildModel() {
           alias,
           ...reducerDefaultParameters,
         });
+
+        return dataAdjust;
       },
       *delete({ payload, alias }, { call, put }) {
         const response = yield call(deleteData, payload);
@@ -64,6 +66,8 @@ export function buildModel() {
           alias,
           ...reducerDefaultParameters,
         });
+
+        return dataAdjust;
       },
       *deleteMulti({ payload, alias }, { call, put }) {
         const response = yield call(deleteMultiData, payload);
@@ -78,6 +82,8 @@ export function buildModel() {
           alias,
           ...reducerDefaultParameters,
         });
+
+        return dataAdjust;
       },
     },
 
