@@ -102,12 +102,10 @@ class CustomGrid extends BaseComponent {
       ...(bordered ? { margin } : {}),
     };
 
-    const contentStyle = bordered
-      ? {
-          margin: '16px 24px',
-          ...contentStyleSource,
-        }
-      : {};
+    const contentStyle = {
+      ...contentStyleSource,
+      ...(bordered ? { margin } : {}),
+    };
 
     const titleComponent = checkStringIsNullOrWhiteSpace(title) ? null : (
       <div

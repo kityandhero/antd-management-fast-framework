@@ -250,7 +250,7 @@ class Index extends MultiPage {
     },
   ];
 
-  renderOther = () => {
+  renderPresetOther = () => {
     const { previewDrawerVisible, currentRecord } = this.state;
 
     return (
