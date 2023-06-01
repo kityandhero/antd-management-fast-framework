@@ -1,22 +1,38 @@
 import axios from 'axios';
 
 import {
+  buildPromptModuleInfo,
   checkStringIsNullOrWhiteSpace,
   getToken,
   isString,
+  logDebug,
   logException,
+  logExecute,
   logObject,
+  logTrace,
+  mergeArrowText,
+  mergeTextMessage,
   requestMethod,
   setRequestHandler as setRequestHandlerCore,
-  setRequestInfoDisplaySwitch,
   trySendNearestLocalhostNotify,
 } from 'easy-soft-utility';
 
-import {
-  getCorsDomain,
-  getShowRequestInfo,
-  getTokenName,
-} from './settingAssist';
+import { modulePackageName } from './definition';
+import { getCorsDomain, getTokenName } from './settingAssist';
+
+/**
+ * Module Name.
+ * @private
+ */
+const moduleName = 'requestAssist';
+
+function buildPromptModuleInfoText(text, ancillaryInformation = '') {
+  return buildPromptModuleInfo(
+    modulePackageName,
+    mergeTextMessage(text, ancillaryInformation),
+    moduleName,
+  );
+}
 
 export async function request({
   url,
@@ -25,6 +41,19 @@ export async function request({
   header = [],
   option = {},
 }) {
+  logExecute(
+    {
+      url,
+      method,
+      data,
+      header,
+      option,
+    },
+    buildPromptModuleInfoText('request'),
+  );
+
+  logTrace({}, mergeArrowText('request with axios', 'prepare request'));
+
   const token = getToken() || 'anonymous';
 
   const corsUrl = getCorsDomain();
@@ -64,19 +93,37 @@ export async function request({
   }
 
   try {
-    const response = await axios.request({
+    const requestConfig = {
       url: urlChange,
       headers: { ...headers, ...header },
       method,
       params: {},
       data: data,
       ...option,
-    });
+    };
+
+    logTrace(
+      {
+        requestConfig,
+      },
+      mergeArrowText('request with axios', 'request start'),
+    );
+
+    const response = await axios.request(requestConfig);
+
+    logTrace(
+      {
+        response,
+      },
+      mergeArrowText('request with axios', 'request success'),
+    );
 
     const { data: responseData } = response;
 
     return responseData;
   } catch (error) {
+    logDebug({}, mergeArrowText('request with axios', 'request fail'));
+
     logException(error);
   }
 }
@@ -85,6 +132,5 @@ export async function request({
  * 设置 Request 处理器
  */
 export function setRequestHandler() {
-  setRequestInfoDisplaySwitch(getShowRequestInfo());
   setRequestHandlerCore(request);
 }

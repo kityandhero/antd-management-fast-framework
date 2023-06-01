@@ -4,7 +4,6 @@ import React from 'react';
 import {
   checkStringIsNullOrWhiteSpace,
   isEmptyObject,
-  isEqual,
   isFunction,
   isUndefined,
   logDevelop,
@@ -317,6 +316,18 @@ class InternalFlow extends Core {
     const delayTime = toNumber(delay);
 
     if (delayTime <= 0) {
+      this.logCallTrace(
+        {
+          parameter: {
+            requestData,
+            delay,
+          },
+        },
+        primaryCallName,
+        'initLoadCore',
+        'load from api without delay',
+      );
+
       this.loadFromApi({
         requestData,
         successCallback,
@@ -363,8 +374,6 @@ class InternalFlow extends Core {
     const that = this;
 
     try {
-      const requestingDataPre = this.getRequestingData();
-
       const loadApiCustomPath = this.adjustLoadApiPath();
 
       const loadApiPathCustom = checkStringIsNullOrWhiteSpace(loadApiCustomPath)
@@ -380,167 +389,171 @@ class InternalFlow extends Core {
 
       loadApiPath = loadApiPathValue || '';
 
-      // 处理频繁的相同请求
-      if (
-        !isEqual(requestingDataPre, {
+      that.setRequestingData({ type: loadApiPath, payload: requestData });
+
+      this.logCallTrack(
+        {
+          loadApiPath,
+          requestData,
+        },
+        primaryCallName,
+        'loadFromApi',
+      );
+
+      that
+        .dispatchApi({
           type: loadApiPath,
           payload: requestData,
         })
-      ) {
-        that.setRequestingData({ type: loadApiPath, payload: requestData });
+        .then((metaOriginalData) => {
+          that.logCallTrace({}, primaryCallName, 'loadFromApi', 'success');
 
-        this.logCallTrack(
-          {
-            loadApiPath,
-            requestData,
-          },
-          primaryCallName,
-          'loadFromApi',
-        );
+          let willSaveToState = {
+            dataLoading: false,
+            loadSuccess: false,
+            reloading: false,
+            searching: false,
+            refreshing: false,
+            dispatchComplete: true,
+          };
 
-        that
-          .dispatchApi({
-            type: loadApiPath,
-            payload: requestData,
-          })
-          .then((metaOriginalData) => {
-            let willSaveToState = {
-              dataLoading: false,
-              loadSuccess: false,
-              reloading: false,
-              searching: false,
-              refreshing: false,
-              dispatchComplete: true,
-            };
-
-            if (isUndefined(metaOriginalData)) {
-              that.setState(willSaveToState);
-
-              return;
-            }
-
-            that.lastLoadParams = requestData;
-
-            const { dataSuccess } = metaOriginalData;
-
-            willSaveToState = {
-              ...willSaveToState,
-
-              loadSuccess: dataSuccess,
-            };
-
-            if (dataSuccess) {
-              const {
-                list: metaListData,
-                data: metaData,
-                extra: metaExtra,
-              } = metaOriginalData;
-
-              willSaveToState = {
-                metaData: metaData || null,
-                metaExtra: metaExtra || null,
-                metaListData: metaListData || [],
-                metaOriginalData,
-                ...willSaveToState,
-              };
-
-              that.afterLoadSuccess({
-                metaData: metaData || null,
-                metaListData: metaListData || [],
-                metaExtra: metaExtra || null,
-                metaOriginalData: metaOriginalData || null,
-              });
-            }
-
-            const { reloading: reloadingComplete } = that.state;
-
-            if (reloadingComplete) {
-              that.afterReloadSuccess();
-              that.afterGetReLoadRequestResult(requestData, metaOriginalData);
-            }
-
-            if (!firstLoadSuccess) {
-              willSaveToState = {
-                ...willSaveToState,
-
-                firstLoadSuccess: true,
-              };
-            }
+          if (isUndefined(metaOriginalData)) {
+            that.logCallTrace(
+              {},
+              primaryCallName,
+              'loadFromApi',
+              'remoteData is undefined',
+              'ignore execute continue logic',
+            );
 
             that.setState(willSaveToState);
 
-            if (!firstLoadSuccess) {
-              that.afterFirstLoadSuccess();
+            return;
+          }
 
-              that.afterGetFirstRequestResult(requestData, metaOriginalData);
-            }
+          that.lastLoadParams = requestData;
 
-            that.afterGetRequestResult(requestData, metaOriginalData);
+          const { dataSuccess } = metaOriginalData;
 
-            if (isFunction(successCallback)) {
-              successCallback(metaOriginalData);
-            }
+          willSaveToState = {
+            ...willSaveToState,
 
-            that.clearRequestingData();
+            loadSuccess: dataSuccess,
+          };
 
-            if (isFunction(completeCallback)) {
-              that.logCallTrace(
-                {
-                  parameter: {
-                    requestData,
-                  },
+          if (dataSuccess) {
+            const {
+              list: metaListData,
+              data: metaData,
+              extra: metaExtra,
+            } = metaOriginalData;
+
+            willSaveToState = {
+              metaData: metaData || null,
+              metaExtra: metaExtra || null,
+              metaListData: metaListData || [],
+              metaOriginalData,
+              ...willSaveToState,
+            };
+
+            that.afterLoadSuccess({
+              metaData: metaData || null,
+              metaListData: metaListData || [],
+              metaExtra: metaExtra || null,
+              metaOriginalData: metaOriginalData || null,
+            });
+          }
+
+          const { reloading: reloadingComplete } = that.state;
+
+          if (reloadingComplete) {
+            that.afterReloadSuccess();
+            that.afterGetReLoadRequestResult(requestData, metaOriginalData);
+          }
+
+          if (!firstLoadSuccess) {
+            willSaveToState = {
+              ...willSaveToState,
+
+              firstLoadSuccess: true,
+            };
+          }
+
+          that.setState(willSaveToState);
+
+          if (!firstLoadSuccess) {
+            that.afterFirstLoadSuccess();
+
+            that.afterGetFirstRequestResult(requestData, metaOriginalData);
+          }
+
+          that.afterGetRequestResult(requestData, metaOriginalData);
+
+          if (isFunction(successCallback)) {
+            successCallback(metaOriginalData);
+          }
+
+          that.clearRequestingData();
+
+          if (isFunction(completeCallback)) {
+            that.logCallTrace(
+              {
+                parameter: {
+                  requestData,
                 },
-                primaryCallName,
-                'loadFromApi',
-                'trigger',
-                'completeCallback',
-              );
+              },
+              primaryCallName,
+              'loadFromApi',
+              'trigger',
+              'completeCallback',
+            );
 
-              completeCallback();
-            }
+            completeCallback();
+          }
 
-            return metaOriginalData;
-          })
-          .catch((error) => {
-            const { message } = error;
+          return metaOriginalData;
+        })
+        .catch((error) => {
+          that.logCallTrace({}, primaryCallName, 'loadFromApi', 'fail');
 
-            if (!isUndefined()) {
-              logException(message);
-            }
+          const { message } = error;
 
-            if (isFunction(failCallback)) {
-              this.logCallTrace(
-                {
-                  parameter: {
-                    requestData,
-                  },
+          if (!isUndefined()) {
+            logException(message);
+          }
+
+          if (isFunction(failCallback)) {
+            this.logCallTrace(
+              {
+                parameter: {
+                  requestData,
                 },
-                primaryCallName,
-                'loadFromApi',
-                'trigger',
-                'failCallback',
-              );
+              },
+              primaryCallName,
+              'loadFromApi',
+              'trigger',
+              'failCallback',
+            );
 
-              failCallback(error);
-            }
+            failCallback(error);
+          }
 
-            if (isFunction(completeCallback)) {
-              this.logCallTrace(
-                {
-                  parameter: {
-                    requestData,
-                  },
+          if (isFunction(completeCallback)) {
+            this.logCallTrace(
+              {
+                parameter: {
+                  requestData,
                 },
-                primaryCallName,
-                'loadFromApi',
-                'trigger',
-                'completeCallback',
-              );
+              },
+              primaryCallName,
+              'loadFromApi',
+              'trigger',
+              'completeCallback',
+            );
 
-              completeCallback();
-            }
-          });
-      }
+            completeCallback();
+          }
+        });
     } catch (error) {
       logObject({ loadApiPath, requestData });
 

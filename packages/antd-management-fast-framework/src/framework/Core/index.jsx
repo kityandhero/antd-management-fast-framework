@@ -86,6 +86,18 @@ class Core extends BaseComponent {
     tabControlAssist.remove(this.viewTabFlag);
   };
 
+  getViewFlagInfo() {
+    return {
+      viewLoadingFlag: this.viewLoadingFlag,
+      viewSearchingFlag: this.viewSearchingFlag,
+      viewRefreshingFlag: this.viewRefreshingFlag,
+      viewResettingFlag: this.viewResettingFlag,
+      viewReloadingFlag: this.viewReloadingFlag,
+      viewProcessingFlag: this.viewProcessingFlag,
+      viewTabFlag: this.viewTabFlag,
+    };
+  }
+
   setTabActiveKey(key) {
     this.logCallTrack(
       {
@@ -99,7 +111,7 @@ class Core extends BaseComponent {
   }
 
   startLoading(...message) {
-    this.logCallTrack({}, primaryCallName, 'startLoading');
+    this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'startLoading');
 
     switchControlAssist.open(
       this.viewLoadingFlag,
@@ -110,7 +122,7 @@ class Core extends BaseComponent {
   }
 
   stopLoading(...message) {
-    this.logCallTrack({}, primaryCallName, 'stopLoading');
+    this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'stopLoading');
 
     switchControlAssist.close(
       this.viewLoadingFlag,
@@ -121,7 +133,11 @@ class Core extends BaseComponent {
   }
 
   startSearching(...message) {
-    this.logCallTrack({}, primaryCallName, 'startSearching');
+    this.logCallTrack(
+      this.getViewFlagInfo(),
+      primaryCallName,
+      'startSearching',
+    );
 
     switchControlAssist.openMulti(
       [this.viewSearchingFlag, this.viewLoadingFlag],
@@ -132,7 +148,7 @@ class Core extends BaseComponent {
   }
 
   stopSearching(...message) {
-    this.logCallTrack({}, primaryCallName, 'stopSearching');
+    this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'stopSearching');
 
     switchControlAssist.closeMulti(
       [this.viewSearchingFlag, this.viewLoadingFlag],
@@ -143,7 +159,11 @@ class Core extends BaseComponent {
   }
 
   startResetting(...message) {
-    this.logCallTrack({}, primaryCallName, 'startResetting');
+    this.logCallTrack(
+      this.getViewFlagInfo(),
+      primaryCallName,
+      'startResetting',
+    );
 
     switchControlAssist.openMulti(
       [this.viewResettingFlag, this.viewLoadingFlag],
@@ -154,7 +174,7 @@ class Core extends BaseComponent {
   }
 
   stopResetting(...message) {
-    this.logCallTrack({}, primaryCallName, 'stopResetting');
+    this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'stopResetting');
 
     switchControlAssist.closeMulti(
       [this.viewResettingFlag, this.viewLoadingFlag],
@@ -165,7 +185,11 @@ class Core extends BaseComponent {
   }
 
   startRefreshing(...message) {
-    this.logCallTrack({}, primaryCallName, 'startRefreshing');
+    this.logCallTrack(
+      this.getViewFlagInfo(),
+      primaryCallName,
+      'startRefreshing',
+    );
 
     switchControlAssist.openMulti(
       [this.viewLoadingFlag, this.viewRefreshingFlag],
@@ -176,7 +200,11 @@ class Core extends BaseComponent {
   }
 
   stopRefreshing(...message) {
-    this.logCallTrack({}, primaryCallName, 'stopRefreshing');
+    this.logCallTrack(
+      this.getViewFlagInfo(),
+      primaryCallName,
+      'stopRefreshing',
+    );
 
     switchControlAssist.closeMulti(
       [this.viewLoadingFlag, this.viewRefreshingFlag],
@@ -187,7 +215,11 @@ class Core extends BaseComponent {
   }
 
   startReloading(...message) {
-    this.logCallTrack({}, primaryCallName, 'startReloading');
+    this.logCallTrack(
+      this.getViewFlagInfo(),
+      primaryCallName,
+      'startReloading',
+    );
 
     switchControlAssist.openMulti(
       [this.viewLoadingFlag, this.viewReloadingFlag],
@@ -198,7 +230,7 @@ class Core extends BaseComponent {
   }
 
   stopReloading(...message) {
-    this.logCallTrack({}, primaryCallName, 'stopReloading');
+    this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'stopReloading');
 
     switchControlAssist.closeMulti(
       [this.viewLoadingFlag, this.viewReloadingFlag],
@@ -209,7 +241,11 @@ class Core extends BaseComponent {
   }
 
   startProcessing(...message) {
-    this.logCallTrack({}, primaryCallName, 'startProcessing');
+    this.logCallTrack(
+      this.getViewFlagInfo(),
+      primaryCallName,
+      'startProcessing',
+    );
 
     switchControlAssist.open(
       this.viewProcessingFlag,
@@ -220,7 +256,11 @@ class Core extends BaseComponent {
   }
 
   stopProcessing(...message) {
-    this.logCallTrack({}, primaryCallName, 'stopProcessing');
+    this.logCallTrack(
+      this.getViewFlagInfo(),
+      primaryCallName,
+      'stopProcessing',
+    );
 
     switchControlAssist.close(
       this.viewProcessingFlag,

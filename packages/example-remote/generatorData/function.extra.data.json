@@ -1,0 +1,19 @@
+{
+  "list": [
+    {
+      "functionSegment": "WebChannel",
+      "label": "Web渠道",
+      "name": "webChannelId"
+    },
+    {
+      "functionSegment": "ErrorLogResolve",
+      "label": "解决状态",
+      "name": "resolve"
+    },
+    {
+      "functionSegment": "GeneralLogType",
+      "label": "类型",
+      "name": "type"
+    }
+  ]
+}

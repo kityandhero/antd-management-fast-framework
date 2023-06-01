@@ -81,7 +81,6 @@ export const appInitDefault = {
   authenticationFailRedirectPath: '',
   authorizationFailRedirectPath: '',
   showLogInConsole: false,
-  showRequestInfo: false,
   apiVersion: '',
   imageUploadMaxSize: 2,
   audioUploadMaxSize: 4,

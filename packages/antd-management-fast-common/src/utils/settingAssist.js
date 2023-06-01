@@ -263,15 +263,6 @@ export function getShowLogInConsole() {
   return showLogInConsole || false;
 }
 
-export function getShowRequestInfo() {
-  const { showRequestInfo } = {
-    showRequestInfo: false,
-    ...getApplicationMergeConfig(),
-  };
-
-  return showRequestInfo || false;
-}
-
 export function getPlatformName() {
   const { platformName } = {
     platformName: '',
