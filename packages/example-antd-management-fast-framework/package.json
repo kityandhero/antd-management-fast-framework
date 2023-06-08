@@ -14,7 +14,7 @@
     "setup": "max setup",
     "prestart": "npx rimraf ./src/.umi && npm run y:code:source:generate && npm run y:template:generate",
     "start": "npm run dev",
-    "y:code:source:generate": "npx antd-management-fast-develop code --dataPath ./generatorData/code.json",
+    "y:code:source:generate": "npx easy-soft-develop code --dataPath ./generatorData/code.json",
     "y:template:generate": "npx antd-management-fast-develop generate --dataPath ./generatorData/function.extra.data.json --relativeFolder ./src/customSpecialComponents",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
     "prez:documentation:generate": "npx rimraf ./docs && npm run z:documentation:lint",
