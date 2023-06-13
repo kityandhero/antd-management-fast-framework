@@ -143,7 +143,7 @@ class PageList extends MultiPage {
     handleItem({
       target,
       dataId: simpleId,
-      compareDataIdHandler: (o) => {
+      compareValueHandler: (o) => {
         const { simpleId: v } = o;
 
         return v;
