@@ -283,11 +283,14 @@ class MultiPageDrawer extends MultiPage {
   };
 
   buildTitleText = () => {
-    this.logCallTrack({}, primaryCallName, 'buildTitleText', emptyLogic);
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'buildTitleText',
+      'getPresetPageName',
+    );
 
-    const { pageTitle } = this.state;
-
-    return pageTitle || this.getPresetPageName();
+    return this.getPresetPageName();
   };
 
   buildTitleSubText = () => {

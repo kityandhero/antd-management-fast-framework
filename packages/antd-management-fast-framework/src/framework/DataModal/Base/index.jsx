@@ -129,9 +129,16 @@ class Base extends BaseWindow {
   };
 
   buildTitleText = () => {
-    const { pageTitle } = this.state;
+    this.logCallTrack({}, primaryCallName, 'buildTitleText');
 
-    return pageTitle;
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'buildTitleText',
+      'getPresetPageName',
+    );
+
+    return this.getPresetPageName();
   };
 
   buildTitleSubText = () => {

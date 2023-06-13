@@ -79,12 +79,6 @@ class DataCore extends BaseView {
 
   pageHeaderLogo = () => <Avatar shape="square" icon={iconBuilder.plus()} />;
 
-  getPresetPageName = () => {
-    const { pageTitle } = this.state;
-
-    return pageTitle;
-  };
-
   buildExtraBackAction = () => {
     this.logCallTrack({}, primaryCallName, 'buildExtraBackAction');
 

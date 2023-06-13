@@ -72,7 +72,6 @@ class InternalFlow extends Core {
 
     this.state = {
       ...defaultState,
-
       backPath: '',
       showReloadButton: false,
     };
@@ -1264,6 +1263,22 @@ class InternalFlow extends Core {
 
   getDisabledButtonIcon = () => {
     return iconBuilder.save();
+  };
+
+  getPresetPageName = () => {
+    this.logCallTrack({}, primaryCallName, 'getPresetPageName');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'getPresetPageName',
+      'state',
+      'pageTitle',
+    );
+
+    const { pageTitle } = this.state;
+
+    return pageTitle;
   };
 
   renderPresetDisabledButton = (text = '') => {

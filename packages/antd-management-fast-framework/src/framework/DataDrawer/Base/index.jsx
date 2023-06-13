@@ -60,11 +60,16 @@ class Base extends BaseWindow {
   };
 
   buildTitleText = () => {
-    this.logCallTrack({}, primaryCallName, 'buildTitleText', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'buildTitleText');
 
-    const { pageTitle } = this.state;
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'buildTitleText',
+      'getPresetPageName',
+    );
 
-    return pageTitle;
+    return this.getPresetPageName();
   };
 
   buildTitleSubText = () => {

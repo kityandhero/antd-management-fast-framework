@@ -43,7 +43,7 @@ class PageListDrawer extends MultiPageSelectDrawer {
 
     this.state = {
       ...this.state,
-
+      pageTitle: '请选择文章',
       loadApiPath: 'simple/pageList',
       listViewMode: listViewConfig.viewMode.list,
       tableScrollY: 600,
@@ -53,10 +53,6 @@ class PageListDrawer extends MultiPageSelectDrawer {
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
-
-  getPresetPageName = () => {
-    return '请选择文章';
-  };
 
   getStatusBadge = (v) => {
     let result = 'default';

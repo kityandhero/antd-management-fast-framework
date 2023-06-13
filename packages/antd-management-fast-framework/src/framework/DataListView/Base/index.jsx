@@ -245,12 +245,6 @@ class Base extends AuthorizationWrapper {
   // eslint-disable-next-line no-unused-vars
   afterSetSearchFormFieldsValue = (value) => {};
 
-  getPresetPageName = () => {
-    const { pageTitle } = this.state;
-
-    return pageTitle;
-  };
-
   getColumnWrapper = () => {
     const text = 'getColumnWrapper 需要重载实现';
 

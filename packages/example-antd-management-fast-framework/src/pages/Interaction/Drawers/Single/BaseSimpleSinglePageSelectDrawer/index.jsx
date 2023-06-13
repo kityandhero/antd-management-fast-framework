@@ -44,6 +44,7 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
 
     this.state = {
       ...this.state,
+      pageTitle: '数据单页选择列表',
       // 页面加载时自动加载的远程请求
       loadApiPath: 'simple/singleList',
       // 设置默认试图模式为 table
@@ -55,11 +56,6 @@ class BaseSimpleSinglePageSelectDrawer extends SinglePageSelectDrawer {
       overlayButtonCloseText: '关闭源代码',
     };
   }
-
-  // 设定标题
-  getPresetPageName = () => {
-    return '数据单页选择列表';
-  };
 
   getStatusBadge = (v) => {
     let result = 'default';
