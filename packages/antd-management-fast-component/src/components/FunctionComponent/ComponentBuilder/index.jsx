@@ -23,6 +23,7 @@ import { ElasticityTreeSelect } from '../../ElasticityTreeSelect';
 import { FlexRadio } from '../../FlexRadio';
 import { FlexSelect } from '../../FlexSelect';
 import { iconBuilder } from '../../Icon';
+import { JsonView } from '../../JsonView';
 
 const ButtonGroup = Button.Group;
 
@@ -477,4 +478,8 @@ export function buildListViewItemActionSelect({
     },
     handleData: selectData,
   });
+}
+
+export function buildJsonView({ value = '', theme = 'monokai' }) {
+  return <JsonView value={value} theme={theme} />;
 }
