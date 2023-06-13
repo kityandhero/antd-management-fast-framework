@@ -43,8 +43,10 @@ import {
   buildColumnList,
   buildDropdown,
   buildFlexSelect,
+  convertOptionOrRadioData,
   FlexBox,
   FormExtra,
+  FunctionSupplement,
   iconBuilder,
   StandardTable,
 } from 'antd-management-fast-component';
@@ -63,9 +65,18 @@ import './index.less';
 
 const classPrefix = `amf-data-list-view-base`;
 
+const {
+  Whether: { refitWhetherList },
+} = FunctionSupplement;
 const { Item: FormItem } = Form;
 const { RangePicker } = DatePicker;
-const { DatePickerItem, ComponentItem, OnlyShowInputItem } = FormExtra;
+const {
+  DatePickerItem,
+  ComponentItem,
+  OnlyShowInputItem,
+  SelectItem,
+  RadioItem,
+} = FormExtra;
 
 const primaryCallName = 'DataListView::Base';
 
@@ -551,6 +562,22 @@ class Base extends AuthorizationWrapper {
           />
         ) : null}
 
+        {type === searchCardConfig.contentItemType.whetherSelect ? (
+          <SelectItem
+            label={fieldData.label}
+            name={fieldData.name}
+            list={refitWhetherList({ withUnlimited: true })}
+            dataConvert={convertOptionOrRadioData}
+            renderItem={null}
+            helper={fieldData.helper}
+            onChange={contentItem.onChangeCallback}
+            formItemLayout={null}
+            required={false}
+            innerProps={contentItem.innerProps}
+            hidden={contentItem.hidden || false}
+          />
+        ) : null}
+
         {type === searchCardConfig.contentItemType.customSelect
           ? contentItem.component
           : null}
@@ -558,6 +585,22 @@ class Base extends AuthorizationWrapper {
         {type === cardConfig.contentItemType.flexSelect
           ? buildFlexSelect(contentItem)
           : null}
+
+        {type === searchCardConfig.contentItemType.whetherRadio ? (
+          <RadioItem
+            label={fieldData.label}
+            name={fieldData.name}
+            list={refitWhetherList({ withUnlimited: true })}
+            dataConvert={convertOptionOrRadioData}
+            renderItem={null}
+            helper={fieldData.helper}
+            onChange={contentItem.onChangeCallback}
+            formItemLayout={null}
+            required={false}
+            innerProps={contentItem.innerProps}
+            hidden={contentItem.hidden || false}
+          />
+        ) : null}
 
         {type === searchCardConfig.contentItemType.customRadio
           ? contentItem.component

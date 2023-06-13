@@ -416,7 +416,7 @@ export const cardConfig = {
     select: 'select',
 
     /**
-     * ”是/否“ 选择框
+     * "是/否" 选择框
      */
     whetherSelect: 'whetherSelect',
 
@@ -436,7 +436,7 @@ export const cardConfig = {
     radio: 'radio',
 
     /**
-     * ”是/否“ 单选框
+     * "是/否" 单选框
      */
     whetherRadio: 'whetherRadio',
 
@@ -605,6 +605,11 @@ export const searchCardConfig = {
     inputNumber: 'inputNumber',
 
     /**
+     * "是/否" 选择框
+     */
+    whetherSelect: 'whetherSelect',
+
+    /**
      * 自定义选择框
      */
     customSelect: 'customSelect',
@@ -613,6 +618,11 @@ export const searchCardConfig = {
      * 自定义选择框
      */
     flexSelect: 'flexSelect',
+
+    /**
+     * "是/否" 单选框
+     */
+    whetherRadio: 'whetherRadio',
 
     /**
      * 自定义单选框

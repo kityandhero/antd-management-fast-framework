@@ -418,6 +418,16 @@ class SingleList extends SinglePage {
         },
         {
           lg: 6,
+          type: searchCardConfig.contentItemType.whetherSelect,
+          fieldData: fieldData.selectWhether,
+        },
+        {
+          lg: 6,
+          type: searchCardConfig.contentItemType.whetherRadio,
+          fieldData: fieldData.selectRadio,
+        },
+        {
+          lg: 6,
           type: searchCardConfig.contentItemType.component,
           component: renderSearchSimpleStatusSelect({}),
         },

@@ -21,7 +21,7 @@ import {
   buildSearchFormSelect,
 } from '../../FunctionComponent';
 
-function refitWhetherList({ withUnlimited = true }) {
+export function refitWhetherList({ withUnlimited = true }) {
   const { whetherList: list } = {
     whetherList: whetherList,
   };
