@@ -251,10 +251,10 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.16
+        specifier: ^2.1.17
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.1.16
+        specifier: ^2.1.17
         version: link:../antd-management-fast-component
       array-move:
         specifier: ^4.0.0
@@ -898,7 +898,7 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.16
+        specifier: ^2.1.17
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1587,10 +1587,10 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.16
+        specifier: ^2.1.17
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.1.16
+        specifier: ^2.1.17
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.4.0
@@ -1906,13 +1906,13 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.16
+        specifier: ^2.1.17
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.1.16
+        specifier: ^2.1.17
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.1.17
+        specifier: ^2.1.18
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
@@ -2162,13 +2162,13 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.16
+        specifier: ^2.1.17
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.1.16
+        specifier: ^2.1.17
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.1.17
+        specifier: ^2.1.18
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
