@@ -29,23 +29,6 @@ class BaseView extends Base {
       responseOriginalData,
       submitData,
     });
-
-    if (this.updateUrlOnSubmitSuccess) {
-      this.logCallTrace(
-        {
-          singleData,
-          listData,
-          extraData,
-          responseOriginalData,
-          submitData,
-        },
-        primaryCallName,
-        'trigger',
-        'reloadByUrl',
-      );
-
-      this.reloadByUrl();
-    }
   };
 }
 

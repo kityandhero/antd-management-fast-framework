@@ -100,7 +100,7 @@ class Index extends MultiPage {
       key: fieldData.errorLogId.name,
     });
 
-    this.goToPath(`/errorLog/edit/load/${errorLogId}/key/basicInfo`);
+    this.goToPath(`/logs/errorLog/edit/load/${errorLogId}/key/basicInfo`);
   };
 
   establishPageHeaderTitlePrefix = () => {

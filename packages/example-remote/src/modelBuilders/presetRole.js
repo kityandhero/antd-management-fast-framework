@@ -28,10 +28,22 @@ export function buildModel() {
     },
 
     effects: {
-      *pageList({ payload, alias }, { call, put }) {
+      *pageList(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(pageListData, payload);
 
-        const dataAdjust = pretreatmentRemotePageListData({ source: response });
+        const dataAdjust = pretreatmentRemotePageListData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -42,10 +54,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *listModule({ payload, alias }, { call, put }) {
+      *listModule(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(listModuleData, payload);
 
-        const dataAdjust = pretreatmentRemoteListData({ source: response });
+        const dataAdjust = pretreatmentRemoteListData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -56,10 +80,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *get({ payload, alias }, { call, put }) {
+      *get(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(getData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -70,10 +106,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *addBasicInfo({ payload, alias }, { call, put }) {
+      *addBasicInfo(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(addBasicInfoData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -84,10 +132,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *updateBasicInfo({ payload, alias }, { call, put }) {
+      *updateBasicInfo(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(updateBasicInfoData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -98,10 +158,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *setEnable({ payload, alias }, { call, put }) {
+      *setEnable(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(setEnableData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -112,10 +184,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *setDisable({ payload, alias }, { call, put }) {
+      *setDisable(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(setDisableData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -126,10 +210,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *refreshCache({ payload, alias }, { call, put }) {
+      *refreshCache(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(refreshCacheData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,

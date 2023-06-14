@@ -52,7 +52,7 @@ import { Core } from '../../Core';
 const primaryCallName = 'Common::InternalFlow';
 
 class InternalFlow extends Core {
-  updateUrlOnSubmitSuccess = true;
+  reloadHeaderOnSubmitSuccess = true;
 
   showPageHeader = true;
 

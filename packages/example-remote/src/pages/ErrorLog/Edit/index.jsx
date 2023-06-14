@@ -36,7 +36,7 @@ class Index extends DataTabContainerSupplement {
     this.state = {
       ...this.state,
       loadApiPath: 'errorLog/get',
-      backPath: `/errorLog/pageList/key`,
+      backPath: `/logs/errorLog/pageList/key`,
       errorLogId: null,
     };
   }
@@ -84,7 +84,9 @@ class Index extends DataTabContainerSupplement {
     const { adjacentData } = metaData;
 
     if (adjacentData.prevExist) {
-      this.goToPath(`/errorLog/edit/load/${adjacentData.prevId}/key/basicInfo`);
+      this.goToPath(
+        `/logs/errorLog/edit/load/${adjacentData.prevId}/key/basicInfo`,
+      );
     }
   };
 
@@ -92,7 +94,9 @@ class Index extends DataTabContainerSupplement {
     const { adjacentData } = metaData;
 
     if (adjacentData.nextExist) {
-      this.goToPath(`/errorLog/edit/load/${adjacentData.nextId}/key/basicInfo`);
+      this.goToPath(
+        `/logs/errorLog/edit/load/${adjacentData.nextId}/key/basicInfo`,
+      );
     }
   };
 

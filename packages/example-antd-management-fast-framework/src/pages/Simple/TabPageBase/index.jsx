@@ -9,7 +9,7 @@ import {
 const { BaseUpdateFormTab } = DataForm;
 
 class TabPageBase extends BaseUpdateFormTab {
-  updateUrlOnSubmitSuccess = true;
+  reloadHeaderOnSubmitSuccess = true;
 
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(

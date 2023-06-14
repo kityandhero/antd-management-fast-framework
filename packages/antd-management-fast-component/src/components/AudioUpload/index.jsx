@@ -33,7 +33,6 @@ class AudioUpload extends PureComponent {
 
     this.state = {
       ...this.state,
-
       audioSource: '',
       audioUrl: '',
       audioUrlTemp: '',

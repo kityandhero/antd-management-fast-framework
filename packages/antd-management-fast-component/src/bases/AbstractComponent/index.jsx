@@ -151,7 +151,7 @@ class AbstractComponent extends Component {
   }
 
   // eslint-disable-next-line no-unused-vars
-  static getDerivedStateFromProps(_nextProperties, _previousState) {
+  static getDerivedStateFromProps(nextProperties, previousState) {
     return null;
   }
 
@@ -444,8 +444,20 @@ class AbstractComponent extends Component {
 
   doWorkAfterUnmount = () => {};
 
-  dispatchApi = ({ type, payload, alias = 'data' }) => {
-    return dispatch({ type, payload, alias });
+  dispatchApi = ({
+    type,
+    payload,
+    alias = 'data',
+    pretreatmentSuccessCallback = null,
+    pretreatmentFailCallback = null,
+  }) => {
+    return dispatch({
+      type,
+      payload,
+      alias,
+      pretreatmentSuccessCallback: pretreatmentSuccessCallback || null,
+      pretreatmentFailCallback: pretreatmentFailCallback || null,
+    });
   };
 
   goToPath = (path, withProgress = false) => {

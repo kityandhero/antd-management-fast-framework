@@ -14,7 +14,7 @@ import { DataLoad } from '../../DataSingleView/DataLoad';
 const primaryCallName = 'DataForm::BaseUpdateForm';
 
 class BaseUpdateForm extends DataLoad {
-  updateUrlOnSubmitSuccess = false;
+  reloadHeaderOnSubmitSuccess = false;
 
   handleFormReset = () => {
     this.logCallTrack({}, primaryCallName, 'handleFormReset');
@@ -72,10 +72,31 @@ class BaseUpdateForm extends DataLoad {
       that.startProcessing();
       that.openPreventRender();
 
+      that.logCallTrace(
+        {},
+        primaryCallName,
+        'execSubmitApi',
+        'trigger',
+        'dispatchApi',
+      );
+
       that
         .dispatchApi({
           type: submitApiPath,
           payload: submitData,
+          pretreatmentSuccessCallback: () => {
+            if (that.reloadHeaderOnSubmitSuccess) {
+              that.logCallTrace(
+                {},
+                primaryCallName,
+                'execSubmitApi',
+                'trigger',
+                'reloadByUrl',
+              );
+
+              that.reloadByUrl();
+            }
+          },
         })
         .then((remoteData) => {
           that.stopProcessing();
@@ -108,7 +129,24 @@ class BaseUpdateForm extends DataLoad {
               );
 
               successCallback(remoteData);
+            } else {
+              that.logCallTrace(
+                {},
+                primaryCallName,
+                'execSubmitApi',
+                'trigger',
+                'successCallback',
+                emptyLogic,
+              );
             }
+          } else {
+            that.logCallTrace(
+              {},
+              primaryCallName,
+              'execSubmitApi',
+              'dataSuccess',
+              false,
+            );
           }
 
           if (isFunction(completeCallback)) {
@@ -223,6 +261,14 @@ class BaseUpdateForm extends DataLoad {
 
     validateFields()
       .then((values) => {
+        that.logCallTrace(
+          {},
+          primaryCallName,
+          'validate',
+          'trigger',
+          'execSubmitApi',
+        );
+
         that.execSubmitApi({
           values,
           successCallback,

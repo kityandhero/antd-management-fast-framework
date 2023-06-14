@@ -42,11 +42,6 @@ export function onRouteChange({
   });
 }
 
-export function patchRoutes({ routes }) {
-  console.log('------------------------');
-  console.log(routes);
-}
-
 export const layout = ({ initialState, setInitialState }) => {
   return mergeLayoutSetting({
     logo: getLogo(),

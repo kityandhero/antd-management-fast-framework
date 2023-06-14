@@ -23,10 +23,22 @@ export function buildModel() {
     },
 
     effects: {
-      *pageList({ payload, alias }, { call, put }) {
+      *pageList(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(pageListData, payload);
 
-        const dataAdjust = pretreatmentRemotePageListData({ source: response });
+        const dataAdjust = pretreatmentRemotePageListData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -37,10 +49,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *get({ payload, alias }, { call, put }) {
+      *get(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(getData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -51,10 +75,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *delete({ payload, alias }, { call, put }) {
+      *delete(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(deleteData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -65,10 +101,22 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *deleteMulti({ payload, alias }, { call, put }) {
+      *deleteMulti(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
         const response = yield call(deleteMultiData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,

@@ -29,7 +29,7 @@ class BaseWindow extends Base {
 
   submitWithForm = true;
 
-  updateUrlOnSubmitSuccess = false;
+  reloadHeaderOnSubmitSuccess = false;
 
   constructor(properties, visibleFlag = '') {
     super(properties);

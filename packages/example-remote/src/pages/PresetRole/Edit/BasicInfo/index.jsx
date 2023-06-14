@@ -13,24 +13,20 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
-import TabPageBase from '../../TabPageBase';
+import { TabPageBase } from '../../TabPageBase';
 
 @connect(({ presetRole, schedulingControl }) => ({
   presetRole,
   schedulingControl,
 }))
 class Index extends TabPageBase {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
-  updateUrlOnSubmitSuccess = true;
+  reloadHeaderOnSubmitSuccess = true;
 
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-
       loadApiPath: 'presetRole/get',
       submitApiPath: 'presetRole/updateBasicInfo',
       presetRoleId: null,
