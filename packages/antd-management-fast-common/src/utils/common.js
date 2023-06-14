@@ -54,8 +54,8 @@ export function getDerivedStateFromPropertiesForUrlParameters(
 
 /**
  * 复制到剪贴板
- * @param {*} text
- * @param {*} showText
+ * @param {*} text text
+ * @param {*} showText showText
  */
 export function copyToClipboard(text, showCopyText = true, otherShowText = '') {
   copy(text);
