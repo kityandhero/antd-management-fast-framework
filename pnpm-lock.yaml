@@ -251,10 +251,10 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.18
+        specifier: ^2.1.19
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.1.20
+        specifier: ^2.1.21
         version: link:../antd-management-fast-component
       array-move:
         specifier: ^4.0.0
@@ -898,7 +898,7 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.18
+        specifier: ^2.1.19
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1587,10 +1587,10 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.18
+        specifier: ^2.1.19
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.1.20
+        specifier: ^2.1.21
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.4.0
@@ -1906,13 +1906,13 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.18
+        specifier: ^2.1.19
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.1.20
+        specifier: ^2.1.21
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.1.22
+        specifier: ^2.1.23
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
@@ -2162,13 +2162,13 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.18
+        specifier: ^2.1.19
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.1.20
+        specifier: ^2.1.21
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.1.22
+        specifier: ^2.1.23
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
@@ -8559,7 +8559,7 @@ packages:
       axios: 0.27.2
       babel-plugin-import: 1.13.6
       dayjs: 1.11.8
-      dva-core: 2.0.4(redux@4.2.1)
+      dva-core: 2.0.4(redux@3.7.2)
       dva-immer: 1.0.1(dva@2.5.0-beta.2)
       dva-loading: 3.0.24(dva-core@2.0.4)
       event-emitter: 0.3.5
@@ -12000,20 +12000,6 @@ packages:
       redux-saga: 0.16.2
       warning: 3.0.0
 
-  /dva-core@2.0.4(redux@4.2.1):
-    resolution: {integrity: sha512-Zh39llFyItu9HKXKfCZVf9UFtDTcypdAjGBew1S+wK8BGVzFpm1GPTdd6uIMeg7O6STtCvt2Qv+RwUut1GFynA==}
-    peerDependencies:
-      redux: 4.x
-    dependencies:
-      '@babel/runtime': 7.22.5
-      flatten: 1.0.3
-      global: 4.4.0
-      invariant: 2.2.4
-      is-plain-object: 2.0.4
-      redux: 4.2.1
-      redux-saga: 0.16.2
-      warning: 3.0.0
-
   /dva-immer@1.0.1(dva@2.5.0-beta.2):
     resolution: {integrity: sha512-Oe+yFTtu2UMNcMoBLLTa/ms1RjUry38Yf0ClN8LiHbF+gT2QAdLYLk3miu1dDtm3Sxl9nk+DH1edKX0Hy49uQg==}
     peerDependencies:
@@ -12029,7 +12015,7 @@ packages:
       dva-core: ^1.1.0 || ^1.5.0-0 || ^1.6.0-0
     dependencies:
       '@babel/runtime': 7.22.5
-      dva-core: 2.0.4(redux@4.2.1)
+      dva-core: 2.0.4(redux@3.7.2)
 
   /dva@2.5.0-beta.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-kc2+CHhF1cNIU3Rg1miMhHgOKJ/VDrq9d6ynVBZf1EN2YKWU3MVFq/uTTBqMr2qkR0m9f8VKHOFmfKLtfMI93Q==}
