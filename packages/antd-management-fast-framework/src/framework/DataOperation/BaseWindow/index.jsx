@@ -29,7 +29,7 @@ class BaseWindow extends Base {
 
   submitWithForm = true;
 
-  goToUpdateWhenProcessed = false;
+  updateUrlOnSubmitSuccess = false;
 
   constructor(properties, visibleFlag = '') {
     super(properties);

@@ -8,9 +8,7 @@ import {
 
 const { BaseUpdateFormTab } = DataForm;
 
-class TabPageBase extends BaseUpdateFormTab {
-  updateUrlOnSubmitSuccess = true;
-
+class BaseEditTab extends BaseUpdateFormTab {
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,
@@ -26,12 +24,12 @@ class TabPageBase extends BaseUpdateFormTab {
 
   supplementLoadRequestParams = (o) => {
     const d = o;
-    const { simpleId } = this.state;
+    const { presetRoleId } = this.state;
 
-    d.simpleId = simpleId;
+    d.presetRoleId = presetRoleId;
 
     return d;
   };
 }
 
-export default TabPageBase;
+export default BaseEditTab;

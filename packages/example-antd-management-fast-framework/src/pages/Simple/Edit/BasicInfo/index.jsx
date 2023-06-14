@@ -1269,6 +1269,120 @@ class BasicInfo extends TabPageBase {
               ],
               props: {
                 size: 'small',
+                bordered: true,
+                column: 2,
+                emptyStyle: {
+                  color: '#cccccc',
+                },
+                emptyValue: '待完善',
+                labelStyle: {
+                  width: '100px',
+                },
+                ellipsis: false,
+              },
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  label: '中文金额',
+                  value: formatTarget({
+                    target: 451.31,
+                    format: formatCollection.chineseMoney,
+                  }),
+                },
+                {
+                  label: '日期格式化',
+                  value: formatTarget({
+                    target: new Date('2023-03-01 10:35:54'),
+                    format: formatCollection.datetime,
+                  }),
+                },
+                {
+                  label: '金额格式化',
+                  value: formatTarget({
+                    target: 451.31,
+                    format: formatCollection.money,
+                  }),
+                },
+                {
+                  label: '类型转换',
+                  value: to({
+                    target: 0.24,
+                    convert: convertCollection.string,
+                  }),
+                },
+                {
+                  span: 2,
+                  label: fieldData.description.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.description.name,
+                  }),
+                },
+              ],
+              props: {
+                size: 'small',
+                bordered: true,
+                column: 2,
+                emptyStyle: {
+                  color: '#cccccc',
+                },
+                emptyValue: '待完善',
+                labelStyle: {
+                  width: '100px',
+                },
+                ellipsis: false,
+              },
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.divider,
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  span: 2,
+                  label: fieldData.title.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.title.name,
+                  }),
+                },
+                {
+                  label: fieldData.subtitle.label,
+                  value: '',
+                  emptyValue: '空白值演示',
+                },
+                {
+                  label: '百分比转换',
+                  value: formatTarget({
+                    target: 0.24,
+                    format: formatCollection.percentage,
+                  }),
+                },
+                {
+                  label: fieldData.simpleId.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.simpleId.name,
+                  }),
+                  canCopy: true,
+                },
+                {
+                  label: fieldData.sort.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.sort.name,
+                    convert: convertCollection.string,
+                  }),
+                },
+              ],
+              props: {
+                size: 'small',
                 bordered: false,
                 column: 2,
                 emptyStyle: {

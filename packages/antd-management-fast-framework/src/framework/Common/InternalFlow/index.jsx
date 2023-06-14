@@ -20,6 +20,7 @@ import {
   contentConfig,
   defaultCommonState,
   emptyLogic,
+  getCurrentLocation,
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 import {
@@ -51,6 +52,8 @@ import { Core } from '../../Core';
 const primaryCallName = 'Common::InternalFlow';
 
 class InternalFlow extends Core {
+  updateUrlOnSubmitSuccess = true;
+
   showPageHeader = true;
 
   contentWrapperType = contentConfig.wrapperType.page;
@@ -968,9 +971,18 @@ class InternalFlow extends Core {
   }
 
   reloadByUrl() {
-    const {
-      location: { pathname },
-    } = this.props;
+    this.logCallTrack({}, primaryCallName, 'reloadByUrl');
+
+    const { pathname } = getCurrentLocation();
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'reloadByUrl',
+      'trigger redirect',
+      'change url',
+      'load to update',
+    );
 
     this.redirectToPath(pathname.replace('/load/', '/update/'));
   }

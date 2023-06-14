@@ -9,6 +9,7 @@ import {
   removeEndMatch,
 } from 'easy-soft-utility';
 
+import { getCurrentLocation } from 'antd-management-fast-common';
 import { IconInfo } from 'antd-management-fast-component';
 
 import { AuthorizationWrapper } from '../AuthorizationWrapper';
@@ -45,7 +46,7 @@ class DataMenuContainer extends AuthorizationWrapper {
 
   doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
     const { urlParams } = this.state;
-
+    console.log('---------------------');
     const { urlParams: urlParametersPrevious } = preState;
 
     if (
@@ -59,18 +60,19 @@ class DataMenuContainer extends AuthorizationWrapper {
 
     const { op: previousOp } = urlParametersPrevious;
 
-    const { dataLoading } = this.state;
+    console.log('---------------------');
+    console.log({
+      previousOp,
+      op,
+    });
 
     if (
-      !dataLoading &&
-      ((previousOp === 'load' && op === 'update') ||
-        this.checkNeedUpdate(preProperties, preState, snapshot))
+      (previousOp === 'load' && op === 'update') ||
+      this.checkNeedUpdate(preProperties, preState, snapshot)
     ) {
       this.reloadData({});
 
-      const {
-        location: { pathname },
-      } = this.props;
+      const { pathname } = getCurrentLocation();
 
       this.redirectToPath(`${pathname.replace('/update/', '/load/')}`);
     }
@@ -110,9 +112,9 @@ class DataMenuContainer extends AuthorizationWrapper {
     let selectKeyExist = false;
 
     const selectKey = pathname
-      .replace(/\//g, '-')
-      .replace(`${match.url.replace(/\//g, '-')}-`, '')
-      .replace(/-/g, '/');
+      .replaceAll('/', '-')
+      .replace(`${match.url.replaceAll('/', '-')}-`, '')
+      .replaceAll('-', '/');
 
     menuListAvailable.some((o) => {
       const { key } = {

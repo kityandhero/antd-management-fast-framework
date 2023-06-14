@@ -16,8 +16,6 @@ const primaryCallName = 'DataSingleView::DataCore';
 class DataCore extends BaseView {
   enableActionBack = true;
 
-  reloadByUrlOp = false;
-
   actionBackProps = {};
 
   formRef = React.createRef();

@@ -191,8 +191,6 @@ class Add extends BaseAddForm {
     const { fadeBoxShow, image, rectangleImage, video, audio, attachment } =
       this.state;
 
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
@@ -216,7 +214,6 @@ class Add extends BaseAddForm {
               },
             ],
           },
-          spinning,
           items: [
             {
               lg: 12,
@@ -267,7 +264,6 @@ class Add extends BaseAddForm {
             text: '配图',
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning,
           items: [
             {
               lg: 6,
@@ -334,7 +330,6 @@ class Add extends BaseAddForm {
           title: {
             text: '媒体、简介描述',
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -380,7 +375,6 @@ class Add extends BaseAddForm {
           title: {
             text: '动画展示',
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -465,7 +459,6 @@ class Add extends BaseAddForm {
           title: {
             text: '其他信息',
           },
-          spinning,
           items: [
             {
               type: cardConfig.contentItemType.nowTime,

@@ -44,7 +44,7 @@ class BaseSimpleMultiPageSelectDrawer extends MultiPageSelectDrawer {
 
     this.state = {
       ...this.state,
-      pageTitle: '数据单页选择列表',
+      pageTitle: '数据分页选择列表',
       // 页面加载时自动加载的远程请求
       loadApiPath: 'simple/singleList',
       // 设置默认试图模式为 table

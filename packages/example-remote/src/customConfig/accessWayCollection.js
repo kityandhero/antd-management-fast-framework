@@ -25,6 +25,12 @@ export const accessWayCollection = {
       permission: '',
     },
   },
+  presetRole: {
+    pageList: {
+      paramsKey: '9b6452a4-74a6-4457-a155-ed7c5790916b',
+      permission: '',
+    },
+  },
   errorLog: {
     pageList: {
       paramsKey: 'd987d830-a317-4d46-945c-3d45b3072711',

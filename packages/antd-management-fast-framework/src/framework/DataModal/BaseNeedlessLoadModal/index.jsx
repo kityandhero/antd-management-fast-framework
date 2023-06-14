@@ -14,23 +14,7 @@ class BaseNeedlessLoadModal extends Base {
 
     this.state = {
       ...this.state,
-
-      visible: false,
-      needReset: false,
     };
-  }
-
-  static getDerivedStateFromProps(nextProperties, previousState) {
-    const { visible } = nextProperties;
-    const { visible: visiblePre, externalData } = previousState;
-
-    let needReset = false;
-
-    if (visiblePre === false && visible === true) {
-      needReset = true;
-    }
-
-    return { visible, needReset, externalData };
   }
 
   doOtherWhenChangeVisibleToShow = () => {

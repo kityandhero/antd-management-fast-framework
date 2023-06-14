@@ -1,0 +1,112 @@
+{
+  "list": [
+    {
+      "name": "currentAccount",
+      "apis": [
+        {
+          "effect": "getCurrentBasicInfo",
+          "service": "getCurrentBasicInfoData",
+          "api": "/currentAccount/getCurrentBasicInfo",
+          "type": "singleData"
+        }
+      ],
+      "cover": false
+    },
+    {
+      "name": "currentSystem",
+      "apis": [
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/currentSystem/get",
+          "type": "singleData"
+        }
+      ],
+      "cover": false
+    },
+    {
+      "name": "errorLog",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/errorLog/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/errorLog/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "delete",
+          "service": "deleteData",
+          "api": "/errorLog/delete",
+          "type": "singleData"
+        },
+        {
+          "effect": "deleteMulti",
+          "service": "deleteMultiData",
+          "api": "/errorLog/deleteMulti",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "presetRole",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/presetRole/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "listModule",
+          "service": "listModuleData",
+          "api": "/presetRole/listModule",
+          "type": "singleList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/presetRole/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/presetRole/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/presetRole/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "api": "/presetRole/setEnable",
+          "type": "singleData"
+        },
+        {
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "api": "/presetRole/setDisable",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/presetRole/refreshCache",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    }
+  ]
+}

@@ -1,6 +1,11 @@
 {
   "list": [
     {
+      "functionSegment": "Channel",
+      "label": "适用渠道",
+      "name": "channel"
+    },
+    {
       "functionSegment": "WebChannel",
       "label": "Web渠道",
       "name": "webChannelId"
@@ -14,6 +19,16 @@
       "functionSegment": "GeneralLogType",
       "label": "类型",
       "name": "type"
+    },
+    {
+      "functionSegment": "ManagementChannel",
+      "label": "目标系统",
+      "name": "channel"
+    },
+    {
+      "functionSegment": "PresetRoleStatus",
+      "label": "状态",
+      "name": "status"
     }
   ]
 }

@@ -30,6 +30,7 @@ class IconInfo extends BaseComponent {
 
     return {
       display: block ? 'block' : 'inline-block',
+      ...(block ? { width: '100%' } : {}),
     };
   };
 
@@ -86,16 +87,29 @@ class IconInfo extends BaseComponent {
 
     let textMerge = null;
     let tooltipTitle = null;
-    let textAfterFormat = isFunction(textFormat || null)
-      ? textFormat(text)
+    let textAfterFormat = isString(text)
+      ? isFunction(textFormat || null)
+        ? textFormat(text)
+        : text
       : text;
 
-    const textAfterFormatForShow = isObject(textStyle) ? (
-      <Text style={{ ...styleMerge, ...textStyle }}>
+    // const textAfterFormatForShow = isObject(textStyle) ? (
+    //   <Text style={{ ...styleMerge, ...textStyle, flex: 'auto' }}>
+    //     {textAfterFormat || ''}
+    //   </Text>
+    // ) : (
+    //   textAfterFormat || ''
+    // );
+
+    const textAfterFormatForShow = isString(textAfterFormat) ? (
+      <Text
+        style={{ ...styleMerge, ...textStyle, flex: 'auto' }}
+        ellipsis={ellipsis}
+      >
         {textAfterFormat || ''}
       </Text>
     ) : (
-      textAfterFormat || ''
+      textAfterFormat
     );
 
     const textAfterFormatForTooltip = isObject(textStyle) ? (
@@ -105,32 +119,40 @@ class IconInfo extends BaseComponent {
     );
 
     if (checkStringIsNullOrWhiteSpace(textPrefix)) {
-      textMerge = checkStringIsNullOrWhiteSpace(
-        textAfterFormatForShow,
-      ) ? null : (
-        <Text style={styleMerge} ellipsis={ellipsis}>
-          {textAfterFormatForShow}
-        </Text>
-      );
+      textMerge = textAfterFormatForShow;
 
       tooltipTitle = textAfterFormatForTooltip;
     } else {
-      const textPrefixAdjust = isObject(textPrefixStyle) ? (
-        <Text style={{ ...styleMerge, ...textPrefixStyle }}>
+      // const textPrefixAdjust = isObject(textPrefixStyle) ? (
+      //   <Text style={{ ...styleMerge, ...textPrefixStyle, flex: 'auto' }}>
+      //     {textPrefix || ''}
+      //   </Text>
+      // ) : (
+      //   textPrefix || ''
+      // );
+
+      const textPrefixAdjust = (
+        <Text style={{ ...styleMerge, ...textPrefixStyle, flex: 'auto' }}>
           {textPrefix || ''}
         </Text>
-      ) : (
-        textPrefix || ''
       );
+
+      // const separatorAdjust = checkStringIsNullOrWhiteSpace(separator) ? (
+      //   ''
+      // ) : isObject(separatorStyle) ? (
+      //   <Text style={{ ...styleMerge, ...separatorStyle }}>
+      //     {separator || ':'}
+      //   </Text>
+      // ) : (
+      //   separator || ':'
+      // );
 
       const separatorAdjust = checkStringIsNullOrWhiteSpace(separator) ? (
         ''
-      ) : isObject(separatorStyle) ? (
-        <Text style={{ ...styleMerge, ...separatorStyle }}>
+      ) : (
+        <Text style={{ ...styleMerge, ...separatorStyle, flex: 'auto' }}>
           {separator || ':'}
         </Text>
-      ) : (
-        separator || ':'
       );
 
       if (

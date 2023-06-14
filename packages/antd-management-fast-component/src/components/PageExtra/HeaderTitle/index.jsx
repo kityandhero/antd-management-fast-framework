@@ -1,57 +1,39 @@
 import React, { PureComponent } from 'react';
 
-import { isArray, toString } from 'easy-soft-utility';
-
 import { IconInfo } from '../../IconInfo';
+import { VerticalBox } from '../../VerticalBox';
 
 class HeaderTitle extends PureComponent {
   render() {
     const { title, titlePrefix } = this.props;
 
-    let nameList = [];
-
-    nameList = isArray(title)
-      ? title.map((o, index) => ({
-          key: `title_${index}`,
-          text: toString(o),
-        }))
-      : [
-          {
-            key: `title_1`,
-            text: toString(title),
-          },
-        ];
-
     return (
-      <span
+      <div
         style={{
           display: 'block',
           maxWidth: '700px',
           height: '32px',
           overflow: 'hidden',
-          lineHeight: '32px',
-          whiteSpace: 'nowrap',
-          textOverflow: 'ellipsis',
+          // lineHeight: '32px',
+          // whiteSpace: 'nowrap',
+          // textOverflow: 'ellipsis',
         }}
       >
-        <IconInfo
-          style={{
-            fontSize: '18px',
-          }}
-          textPrefix={titlePrefix}
-          text={
-            <>
-              {nameList.map((o) => (
-                <span key={o.key}>{o.text}</span>
-              ))}
-            </>
-          }
-          separatorStyle={{
-            paddingRight: '5px',
-          }}
-          ellipsis
-        />
-      </span>
+        <VerticalBox>
+          <IconInfo
+            block
+            style={{
+              fontSize: '18px',
+            }}
+            textPrefix={titlePrefix}
+            text={title}
+            separatorStyle={{
+              paddingRight: '5px',
+            }}
+            ellipsis
+          />
+        </VerticalBox>
+      </div>
     );
   }
 }

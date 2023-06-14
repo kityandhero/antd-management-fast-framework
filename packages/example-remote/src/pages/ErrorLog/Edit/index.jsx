@@ -35,7 +35,6 @@ class Index extends DataTabContainerSupplement {
 
     this.state = {
       ...this.state,
-      pageName: '',
       loadApiPath: 'errorLog/get',
       backPath: `/errorLog/pageList/key`,
       errorLogId: null,
@@ -74,7 +73,7 @@ class Index extends DataTabContainerSupplement {
     metaOriginalData = null,
   }) => {
     this.setState({
-      pageName: getValueByKey({
+      pageTitle: getValueByKey({
         data: metaData,
         key: fieldData.message.name,
       }),

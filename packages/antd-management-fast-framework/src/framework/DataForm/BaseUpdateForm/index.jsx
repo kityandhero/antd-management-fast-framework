@@ -14,7 +14,7 @@ import { DataLoad } from '../../DataSingleView/DataLoad';
 const primaryCallName = 'DataForm::BaseUpdateForm';
 
 class BaseUpdateForm extends DataLoad {
-  goToUpdateWhenProcessed = false;
+  updateUrlOnSubmitSuccess = false;
 
   handleFormReset = () => {
     this.logCallTrack({}, primaryCallName, 'handleFormReset');

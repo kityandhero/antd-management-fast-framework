@@ -23,7 +23,6 @@ class Index extends TabPageBase {
 
     this.state = {
       ...this.state,
-
       loadApiPath: 'errorLog/get',
       errorLogId: null,
     };

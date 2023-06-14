@@ -36,40 +36,86 @@ export default [
     ],
   },
   {
-    name: 'errorLog',
+    name: 'logs',
     icon: 'reconciliation',
-    path: '/errorLog',
+    path: '/logs',
     routes: [
       {
-        path: '/errorLog',
-        redirect: '/errorLog/pageList',
-      },
-      {
-        path: '/errorLog/pageList',
-        name: 'pageList',
-        icon: 'bars',
-        redirect: '/errorLog/pageList/no',
-      },
-      {
-        path: '/errorLog/pageList/:pageKey',
-        hideInMenu: true,
-        component: './ErrorLog/PageList',
-      },
-      {
-        path: '/errorLog/edit/:op/:id/:pageKey',
-        name: 'edit',
-        hideInMenu: true,
-        component: './ErrorLog/Edit',
+        name: 'errorLog',
+        icon: 'reconciliation',
+        hideChildrenInMenu: true,
+        path: '/logs/errorLog',
         routes: [
           {
-            path: '/errorLog/edit/:op/:id/:pageKey/basicInfo',
-            name: 'basicInfo',
-            component: './ErrorLog/Edit/BasicInfo',
+            path: '/logs/errorLog',
+            redirect: '/logs/errorLog/pageList',
           },
           {
-            path: '/errorLog/edit/:op/:id/:pageKey/paramInfo',
-            name: 'paramInfo',
-            component: './ErrorLog/Edit/ParamInfo',
+            path: '/logs/errorLog/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/logs/errorLog/pageList/no',
+          },
+          {
+            path: '/logs/errorLog/pageList/:pageKey',
+            hideInMenu: true,
+            component: './ErrorLog/PageList',
+          },
+          {
+            path: '/logs/errorLog/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './ErrorLog/Edit',
+            routes: [
+              {
+                path: '/logs/errorLog/edit/:op/:id/:pageKey/basicInfo',
+                name: 'basicInfo',
+                component: './ErrorLog/Edit/BasicInfo',
+              },
+              {
+                path: '/logs/errorLog/edit/:op/:id/:pageKey/paramInfo',
+                name: 'paramInfo',
+                component: './ErrorLog/Edit/ParamInfo',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'permission',
+    icon: 'reconciliation',
+    path: '/permission',
+    routes: [
+      {
+        name: 'presetRole',
+        icon: 'bars',
+        hideChildrenInMenu: true,
+        path: '/permission/presetRole',
+        routes: [
+          {
+            path: '/permission/presetRole',
+            redirect: '/permission/presetRole/pageList/no',
+          },
+          {
+            path: '/permission/presetRole/pageList/:pageKey',
+            name: 'pageList',
+            hideInMenu: true,
+            component: './PresetRole/PageList',
+          },
+          {
+            path: '/permission/presetRole/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './PresetRole/Edit',
+            routes: [
+              {
+                path: '/permission/presetRole/edit/:op/:id/:pageKey/basicInfo',
+                name: 'basicInfo',
+                component: './PresetRole/Edit/BasicInfo',
+              },
+            ],
           },
         ],
       },

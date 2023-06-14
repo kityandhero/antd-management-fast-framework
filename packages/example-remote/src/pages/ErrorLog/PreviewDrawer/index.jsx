@@ -19,8 +19,6 @@ const visibleFlag = '4b04425da2f94bdcb96027c2cfc8d549';
   schedulingControl,
 }))
 class PreviewDrawer extends BaseLoadDrawer {
-  showCallProcess = true;
-
   resetDataAfterLoad = false;
 
   static open() {
@@ -32,6 +30,7 @@ class PreviewDrawer extends BaseLoadDrawer {
 
     this.state = {
       ...this.state,
+      pageTitle: '异常摘要信息',
       loadApiPath: 'errorLog/get',
     };
   }
@@ -140,6 +139,7 @@ class PreviewDrawer extends BaseLoadDrawer {
                   width: '90px',
                 },
                 emptyValue: '暂无',
+                ellipsis: false,
               },
             },
           ],
@@ -177,6 +177,7 @@ class PreviewDrawer extends BaseLoadDrawer {
                   width: '90px',
                 },
                 emptyValue: '暂无',
+                ellipsis: false,
               },
             },
           ],
@@ -294,10 +295,6 @@ class PreviewDrawer extends BaseLoadDrawer {
         },
       ],
     };
-  };
-
-  renderPresetTitle = () => {
-    return '异常摘要信息';
   };
 }
 

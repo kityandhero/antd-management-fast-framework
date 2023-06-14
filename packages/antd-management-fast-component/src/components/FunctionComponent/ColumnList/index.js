@@ -233,7 +233,7 @@ export function buildColumnItem({
         }
 
         const component = (
-          <div>
+          <div style={{ maxWidth: '100%' }}>
             {(addonBefore || null) == null ? null : addonBefore}
 
             <IconInfo

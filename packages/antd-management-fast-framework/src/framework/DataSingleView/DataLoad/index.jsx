@@ -45,13 +45,9 @@ class DataLoad extends DataCore {
 
     const { op: previousOp } = urlParametersPrevious;
 
-    const { dataLoading } = this.state;
-
     if (
-      !dataLoading &&
-      ((previousOp === 'load' && op === 'update') ||
-        this.checkNeedUpdate(preProperties, preState, snapshot)) &&
-      this.reloadByUrlOp
+      (previousOp === 'load' && op === 'update') ||
+      this.checkNeedUpdate(preProperties, preState, snapshot)
     ) {
       this.reloadData({});
     }

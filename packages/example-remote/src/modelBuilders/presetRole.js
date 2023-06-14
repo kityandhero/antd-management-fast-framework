@@ -1,5 +1,6 @@
 import {
   getTacitlyState,
+  pretreatmentRemoteListData,
   pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
@@ -8,16 +9,19 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  addBasicInfoData,
   getData,
+  listModuleData,
   pageListData,
   refreshCacheData,
-  setOfflineData,
-  setOnlineData,
-} from '../services/accessWay';
+  setDisableData,
+  setEnableData,
+  updateBasicInfoData,
+} from '../services/presetRole';
 
 export function buildModel() {
   return {
-    namespace: 'accessWay',
+    namespace: 'presetRole',
 
     state: {
       ...getTacitlyState(),
@@ -28,6 +32,20 @@ export function buildModel() {
         const response = yield call(pageListData, payload);
 
         const dataAdjust = pretreatmentRemotePageListData({ source: response });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *listModule({ payload, alias }, { call, put }) {
+        const response = yield call(listModuleData, payload);
+
+        const dataAdjust = pretreatmentRemoteListData({ source: response });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -52,8 +70,8 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *setOffline({ payload, alias }, { call, put }) {
-        const response = yield call(setOfflineData, payload);
+      *addBasicInfo({ payload, alias }, { call, put }) {
+        const response = yield call(addBasicInfoData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
@@ -66,8 +84,36 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *setOnline({ payload, alias }, { call, put }) {
-        const response = yield call(setOnlineData, payload);
+      *updateBasicInfo({ payload, alias }, { call, put }) {
+        const response = yield call(updateBasicInfoData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *setEnable({ payload, alias }, { call, put }) {
+        const response = yield call(setEnableData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *setDisable({ payload, alias }, { call, put }) {
+        const response = yield call(setDisableData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 

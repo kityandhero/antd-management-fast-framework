@@ -1,9 +1,27 @@
+import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 
+import { isFunction } from 'easy-soft-utility';
+
 class VerticalBox extends PureComponent {
+  triggerClick = (event) => {
+    const { onClick } = this.props;
+
+    if (isFunction(onClick)) {
+      onClick(event);
+    }
+  };
+
   render() {
-    const { className, style, bodyStyle, align, alignJustify, children } =
-      this.props;
+    const {
+      className,
+      style,
+      fillWidth,
+      bodyStyle,
+      align,
+      alignJustify,
+      children,
+    } = this.props;
 
     let alignStyle = 'center';
 
@@ -73,7 +91,19 @@ class VerticalBox extends PureComponent {
     };
 
     return (
-      <div style={style} className={className}>
+      <div
+        style={{
+          ...style,
+          height: '100%',
+          ...(fillWidth
+            ? {
+                width: '100%',
+              }
+            : {}),
+        }}
+        className={classNames('amf-vertical-box', className)}
+        onClick={this.triggerClick}
+      >
         <div style={flexStyle}>{children}</div>
       </div>
     );
@@ -81,11 +111,12 @@ class VerticalBox extends PureComponent {
 }
 
 VerticalBox.defaultProps = {
-  fitWidth: true,
   style: {},
   bodyStyle: {},
   align: 'center',
   alignJustify: 'flex-start',
+  fillWidth: true,
+  onClick: null,
 };
 
 export { VerticalBox };

@@ -40,9 +40,7 @@ export function buildModel() {
       *get({ payload, alias }, { call, put }) {
         const response = yield call(getData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({
-          source: response,
-        });
+        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -56,9 +54,7 @@ export function buildModel() {
       *delete({ payload, alias }, { call, put }) {
         const response = yield call(deleteData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({
-          source: response,
-        });
+        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,
@@ -72,9 +68,7 @@ export function buildModel() {
       *deleteMulti({ payload, alias }, { call, put }) {
         const response = yield call(deleteMultiData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({
-          source: response,
-        });
+        const dataAdjust = pretreatmentRemoteSingleData({ source: response });
 
         yield put({
           type: reducerNameCollection.reducerRemoteData,

@@ -38,11 +38,10 @@ class Index extends MultiPage {
 
     this.state = {
       ...this.state,
-      pageName: '异常列表',
+      pageTitle: '异常列表',
       paramsKey: accessWayCollection.errorLog.pageList.paramsKey,
       loadApiPath: 'errorLog/pageList',
       dateRangeFieldName: '发生时段',
-      previewDrawerVisible: false,
       currentRecord: null,
     };
   }
@@ -70,7 +69,7 @@ class Index extends MultiPage {
       target: this,
       handleData: r,
       successCallback: ({ target }) => {
-        target.reloadData();
+        target.reloadData({});
       },
     });
   };
@@ -92,7 +91,7 @@ class Index extends MultiPage {
       target: this,
       handleData: submitData,
       successCallback: ({ target }) => {
-        target.reloadData();
+        target.reloadData({});
       },
     });
   };
@@ -109,7 +108,7 @@ class Index extends MultiPage {
       key: fieldData.errorLogId.name,
     });
 
-    this.goToPath(`/errorLog/edit/load/${errorLogId}/key/basicInfo`);
+    this.goToPath(`/logs/errorLog/edit/load/${errorLogId}/key/basicInfo`);
   };
 
   fillSearchCardInitialValues = () => {
@@ -251,18 +250,11 @@ class Index extends MultiPage {
   ];
 
   renderPresetOther = () => {
-    const { previewDrawerVisible, currentRecord } = this.state;
+    const { currentRecord } = this.state;
 
     return (
       <>
-        <PreviewDrawer
-          maskClosable
-          visible={previewDrawerVisible}
-          externalData={currentRecord}
-          afterClose={() => {
-            this.afterPreviewDrawerClose();
-          }}
-        />
+        <PreviewDrawer maskClosable externalData={currentRecord} />
       </>
     );
   };
