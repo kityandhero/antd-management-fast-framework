@@ -117,7 +117,9 @@ function remoteAction({
         }
       }
 
-      target.stopProcessing();
+      if (isFunction(target.stopProcessing)) {
+        target.stopProcessing();
+      }
 
       return data;
     })
@@ -138,7 +140,9 @@ function remoteAction({
         completeProcess({ target, params });
       }
 
-      target.stopProcessing();
+      if (isFunction(target.stopProcessing)) {
+        target.stopProcessing();
+      }
     });
 }
 
@@ -207,7 +211,9 @@ export async function actionCore({
     beforeProcess({ target, params });
   }
 
-  target.startProcessing();
+  if (isFunction(target.startProcessing)) {
+    target.startProcessing();
+  }
 
   if (delay <= 0) {
     remoteAction({
