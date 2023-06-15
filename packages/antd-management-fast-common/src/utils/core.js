@@ -15,6 +15,12 @@ export const getAuthorityFromRouter = (router = [], pathname) => {
   return;
 };
 
+/**
+ * Get route authority
+ * @param {*} path path
+ * @param {*} routeData routeData
+ * @returns
+ */
 export const getRouteAuthority = (path, routeData) => {
   let authorities;
   for (const route of routeData) {
