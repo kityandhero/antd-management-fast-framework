@@ -1,6 +1,3 @@
-import React from 'react';
-import { toast } from 'react-toastify';
-
 import {
   checkStringIsNullOrWhiteSpace,
   isNumber,
@@ -15,6 +12,8 @@ import {
   setWarnNotificationDisplayMonitor,
 } from 'easy-soft-utility';
 
+import { notification } from '../components';
+
 function adjustPlacement(o) {
   const oAdjust = { ...o };
 
@@ -24,7 +23,7 @@ function adjustPlacement(o) {
   };
 
   if (checkStringIsNullOrWhiteSpace(placement)) {
-    return toast.POSITION.BOTTOM_RIGHT;
+    return 'bottomRight';
   }
 
   return placement;
@@ -42,35 +41,7 @@ function adjustDuration(o) {
     return 3;
   }
 
-  return duration / 1;
-}
-
-function NotifyContent({ title, description }) {
-  if (
-    checkStringIsNullOrWhiteSpace(title) &&
-    checkStringIsNullOrWhiteSpace(description)
-  ) {
-    return null;
-  }
-  if (
-    checkStringIsNullOrWhiteSpace(title) ||
-    checkStringIsNullOrWhiteSpace(description)
-  ) {
-    if (checkStringIsNullOrWhiteSpace(title)) {
-      return description;
-    }
-
-    if (checkStringIsNullOrWhiteSpace(description)) {
-      return title;
-    }
-  }
-
-  return (
-    <div>
-      <div style={{ fontSize: '16px' }}>{title}:</div>
-      <div style={{ fontSize: '14px' }}>{description}</div>
-    </div>
-  );
+  return duration / 1000;
 }
 
 /**
@@ -101,60 +72,100 @@ export function notify({
     return;
   }
 
-  const content = <NotifyContent title={title} description={description} />;
-
-  const options = {
-    position: placementAdjust,
-    autoClose: durationAdjust,
-    onClose,
-  };
-
   setTimeout(() => {
     switch (type) {
       case notificationTypeCollection.open: {
-        toast(content, options);
+        notification.open({
+          message: title,
+          description,
+          placement: placementAdjust,
+          duration: durationAdjust,
+          onClose,
+        });
 
         break;
       }
 
       case notificationTypeCollection.loading: {
-        toast(content, options);
+        notification.open({
+          message: title,
+          description,
+          placement: placementAdjust,
+          duration: durationAdjust,
+          onClose,
+        });
 
         break;
       }
 
       case notificationTypeCollection.info: {
-        toast(content, options);
+        notification.info({
+          message: title,
+          description,
+          placement: placementAdjust,
+          duration: durationAdjust,
+          onClose,
+        });
 
         break;
       }
 
       case notificationTypeCollection.warn: {
-        toast.warn(content, options);
+        notification.warning({
+          message: title,
+          description,
+          placement: placementAdjust,
+          duration: durationAdjust,
+          onClose,
+        });
 
         break;
       }
 
       case notificationTypeCollection.warning: {
-        toast.warning(content, options);
+        notification.warning({
+          message: title,
+          description,
+          placement: placementAdjust,
+          duration: durationAdjust,
+          onClose,
+        });
 
         break;
       }
 
       case notificationTypeCollection.success: {
-        toast.success(content, options);
+        notification.success({
+          message: title,
+          description,
+          placement: placementAdjust,
+          duration: durationAdjust,
+          onClose,
+        });
 
         break;
       }
 
       case notificationTypeCollection.error: {
-        toast.error(content, options);
+        notification.error({
+          message: title,
+          description,
+          placement: placementAdjust,
+          duration: durationAdjust,
+          onClose,
+        });
 
         break;
       }
 
       default: {
-        toast(content, options);
+        notification.open({
+          message: title,
+          description,
+          placement: placementAdjust,
+          duration: durationAdjust,
+          onClose,
+        });
 
         break;
       }

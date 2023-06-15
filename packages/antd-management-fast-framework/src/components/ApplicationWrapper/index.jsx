@@ -1,21 +1,31 @@
-import React from 'react';
-import { ToastContainer } from 'react-toastify';
+import { App, ConfigProvider } from 'antd';
+import React, { PureComponent } from 'react';
 
 import { ApplicationProvider } from 'easy-soft-dva';
+import { logTrace } from 'easy-soft-utility';
 
-import { BaseComponent } from 'antd-management-fast-component';
+import { InteractionAssemble } from 'antd-management-fast-common';
 
+// import { BaseComponent } from 'antd-management-fast-component';
 import { TopProgressBar } from '../TopProgressBar';
 
-class ApplicationWrapper extends BaseComponent {
-  renderFurther() {
+class ApplicationWrapper extends PureComponent {
+  render() {
+    logTrace(
+      '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$',
+    );
+
     return (
       <ApplicationProvider>
+        <ConfigProvider>
+          <App>
+            <InteractionAssemble />
+
+            <div className="antd-management-fast">{this.props.children}</div>
+          </App>
+        </ConfigProvider>
+
         <TopProgressBar />
-
-        <div className="antd-management-fast">{this.props.children}</div>
-
-        <ToastContainer />
       </ApplicationProvider>
     );
   }

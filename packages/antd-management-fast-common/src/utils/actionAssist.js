@@ -1,57 +1,35 @@
-import { Modal } from 'antd';
-import React from 'react';
-import { Flip, toast } from 'react-toastify';
-
 import { getDispatch } from 'easy-soft-dva';
 import {
+  buildPromptModuleInfo,
   checkStringIsNullOrWhiteSpace,
+  getGuid,
   isArray,
   isFunction,
   isUndefined,
-  logDebug,
   logException,
   logExecute,
   logTrace,
   mergeArrowText,
+  mergeTextMessage,
   showSimpleSuccessNotification,
 } from 'easy-soft-utility';
 
-const { confirm } = Modal;
+import { destroyMessage, message, modal } from '../components';
 
-const toastOptions = {
-  position: 'top-center',
-  hideProgressBar: true,
-  transition: Flip,
-  closeButton: false,
-  autoClose: false,
-  style: {
-    paddingTop: 0,
-    paddingBottom: 0,
-    '--toastify-toast-min-height': '40px',
-    '--toastify-toast-width': 'auto',
-    minWidth: '200px',
-    maxWidth: '600px',
-    fontSize: '14px',
-    borderRadius: '8px',
-  },
-  bodyStyle: {
-    paddingTop: 0,
-    paddingBottom: 0,
-    marginTop: 0,
-    marginBottom: 0,
-  },
-};
+import { emptyLogic } from './constants';
+import { modulePackageName } from './definition';
 
-function ToastContent({ text }) {
-  return (
-    <div
-      style={{
-        paddingTop: '4px',
-        paddingBottom: '4px',
-      }}
-    >
-      {text}
-    </div>
+/**
+ * Module Name.
+ * @private
+ */
+const moduleName = 'actionAssist';
+
+function buildPromptModuleInfoText(text, ancillaryInformation = '') {
+  return buildPromptModuleInfo(
+    modulePackageName,
+    mergeTextMessage(text, ancillaryInformation),
+    moduleName,
   );
 }
 
@@ -63,14 +41,14 @@ function remoteAction({
   params,
   target,
   failCallback,
+  successCallback,
   successMessage,
   successMessageBuilder,
   showProcessing = false,
   loadingKey = '',
-  successCallback,
   completeProcess = null,
 }) {
-  logExecute('remoteAction', `model access: ${api}`);
+  logExecute(buildPromptModuleInfoText('remoteAction', `model access: ${api}`));
 
   const dispatch = getDispatch();
 
@@ -85,7 +63,7 @@ function remoteAction({
     .then((data) => {
       if (showProcessing) {
         setTimeout(() => {
-          toast.dismiss(loadingKey);
+          destroyMessage(loadingKey);
         }, 200);
       }
 
@@ -139,10 +117,7 @@ function remoteAction({
         }
       }
 
-      target.setState({
-        processing: false,
-        dispatchComplete: true,
-      });
+      target.stopProcessing();
 
       return data;
     })
@@ -155,18 +130,15 @@ function remoteAction({
 
       if (showProcessing) {
         setTimeout(() => {
-          toast.dismiss(loadingKey);
+          destroyMessage(loadingKey);
         }, 200);
       }
-
-      target.setState({
-        processing: false,
-        dispatchComplete: true,
-      });
 
       if (isFunction(completeProcess)) {
         completeProcess({ target, params });
       }
+
+      target.stopProcessing();
     });
 }
 
@@ -176,33 +148,31 @@ function remoteAction({
  * @param {string} option.api dva model effect like "modelName/effect"
  * @param {Object} option.params request params.
  * @param {Object} option.target the passed appendage object，eg "component".
+ * @param {Function} option.beforeProcess preprocessing of requests.
+ * @param {Number} option.delay  delay millisecond before request.
+ * @param {Boolean} option.showProcessing whether show processing prompt.
+ * @param {String} option.processingPrompt prompt text when show processing.
+ * @param {String} option.completeProcess request complete callback.
  * @param {Function} option.failCallback  if it is function, it will exec when request fail.
  * @param {Function} option.successCallback if it is function, it will exec when request success.
  * @param {String} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
  * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
- * @param {Boolean} option.showProcessing whether show processing prompt.
- * @param {String} option.processingPrompt prompt text when show processing.
- * @param {Number} option.delay  delay millisecond before request.
- * @param {String} option.completeProcess request complete callback.
- * @param {Boolean} option.setProgressingFirst set state.processing to true before request
- * @param {Function} option.beforeProcess preprocessing of requests.
  */
 export async function actionCore({
   api,
   params,
   target,
-  failCallback,
-  successCallback,
-  successMessage = '数据已经操作成功，请进行后续操作。',
-  successMessageBuilder = null,
+  beforeProcess = null,
+  delay = 400,
   showProcessing = true,
   processingPrompt = '处理中，请稍后',
-  delay = 400,
-  setProgressingFirst = true,
-  beforeProcess = null,
   completeProcess = null,
+  failCallback = null,
+  successCallback = null,
+  successMessage = '数据已经操作成功，请进行后续操作。',
+  successMessageBuilder = null,
 }) {
-  logExecute('actionCore', `api:"${api}"`);
+  logExecute(buildPromptModuleInfoText('actionCore', `api:"${api}"`));
 
   if ((target || null) == null) {
     throw new Error('actionCore: target not allow null');
@@ -212,107 +182,62 @@ export async function actionCore({
     throw new Error('actionCore: target.props not allow null');
   }
 
-  if (!isFunction(target.setState)) {
-    throw new Error('actionCore: target.setState must be function');
-  }
-
   let key = '';
 
   if (showProcessing) {
     logTrace(
-      'actionCore',
-      mergeArrowText(`api:"${api}"`, 'showProcessing', true),
+      buildPromptModuleInfoText(
+        'actionCore',
+        mergeArrowText(`api:"${api}"`, 'showProcessing', true),
+      ),
     );
 
-    key = toast.loading(
-      <ToastContent
-        text={
-          checkStringIsNullOrWhiteSpace(processingPrompt)
-            ? '处理中，请稍后'
-            : processingPrompt
-        }
-      />,
-      {
-        ...toastOptions,
-      },
-    );
+    key = getGuid();
+
+    message.loading({
+      key,
+      content: checkStringIsNullOrWhiteSpace(processingPrompt)
+        ? '处理中，请稍后'
+        : processingPrompt,
+      duration: 0,
+    });
   }
 
   if (isFunction(beforeProcess)) {
     beforeProcess({ target, params });
   }
 
-  if (setProgressingFirst) {
-    target.setState({ processing: true }, () => {
-      logDebug('state dispatchComplete will set to false');
+  target.startProcessing();
 
-      target.setState(
-        {
-          dispatchComplete: false,
-        },
-        () => {
-          delay <= 0
-            ? remoteAction({
-                api,
-                params,
-                target,
-                failCallback,
-                successMessage,
-                successMessageBuilder,
-                showProcessing,
-                loadingKey: key,
-                successCallback,
-                completeProcess,
-              })
-            : setTimeout(() => {
-                // 延迟一定时间，优化界面呈现
-                remoteAction({
-                  api,
-                  params,
-                  target,
-                  failCallback,
-                  successMessage,
-                  successMessageBuilder,
-                  showProcessing,
-                  loadingKey: key,
-                  successCallback,
-                  completeProcess,
-                });
-              }, delay);
-        },
-      );
+  if (delay <= 0) {
+    remoteAction({
+      api,
+      params,
+      target,
+      failCallback,
+      successCallback,
+      successMessage,
+      successMessageBuilder,
+      showProcessing,
+      loadingKey: key,
+      completeProcess,
     });
   } else {
-    target.setState({ processing: true, dispatchComplete: false }, () => {
-      delay <= 0
-        ? remoteAction({
-            api,
-            params,
-            target,
-            failCallback,
-            successMessage,
-            successMessageBuilder,
-            showProcessing,
-            loadingKey: key,
-            successCallback,
-            completeProcess,
-          })
-        : setTimeout(() => {
-            // 延迟一定时间，优化界面呈现
-            remoteAction({
-              api,
-              params,
-              target,
-              failCallback,
-              successMessage,
-              successMessageBuilder,
-              showProcessing,
-              loadingKey: key,
-              successCallback,
-              completeProcess,
-            });
-          }, delay);
-    });
+    setTimeout(() => {
+      // 延迟一定时间，优化界面呈现
+      remoteAction({
+        api,
+        params,
+        target,
+        failCallback,
+        successMessage,
+        successMessageBuilder,
+        showProcessing,
+        loadingKey: key,
+        successCallback,
+        completeProcess,
+      });
+    }, delay);
   }
 }
 
@@ -342,7 +267,7 @@ export function apiRequest({
   processingPrompt = '',
   completeProcess = null,
 }) {
-  logExecute('apiRequest', `model access: ${api}`);
+  logExecute(buildPromptModuleInfoText('apiRequest', `model access: ${api}`));
 
   const dispatch = getDispatch();
 
@@ -355,20 +280,22 @@ export function apiRequest({
   let key = '';
 
   if (showProcessing) {
-    logTrace('apiRequest', mergeArrowText('showProcessing', true));
-
-    key = toast.loading(
-      <ToastContent
-        text={
-          checkStringIsNullOrWhiteSpace(processingPrompt)
-            ? '处理中，请稍后'
-            : processingPrompt
-        }
-      />,
-      {
-        ...toastOptions,
-      },
+    logTrace(
+      buildPromptModuleInfoText(
+        'apiRequest',
+        mergeArrowText('showProcessing', true),
+      ),
     );
+
+    key = getGuid();
+
+    message.loading({
+      key,
+      content: checkStringIsNullOrWhiteSpace(processingPrompt)
+        ? '处理中，请稍后'
+        : processingPrompt,
+      duration: 0,
+    });
   }
 
   dispatch({
@@ -378,7 +305,7 @@ export function apiRequest({
     .then((data) => {
       if (showProcessing) {
         setTimeout(() => {
-          toast.dismiss(key);
+          destroyMessage(key);
         }, 200);
       }
 
@@ -402,6 +329,21 @@ export function apiRequest({
         let messageText = successMessage;
 
         if (isFunction(successMessageBuilder)) {
+          logTrace(
+            {
+              api,
+              params,
+              dispatch,
+              remoteOriginal: data,
+              error: null,
+            },
+            buildPromptModuleInfoText(
+              'apiRequest',
+              'trigger',
+              'successMessageBuilder',
+            ),
+          );
+
           messageText = successMessageBuilder({
             remoteListData: isArray(remoteListData) ? remoteListData : [],
             remoteData: remoteData || null,
@@ -427,6 +369,17 @@ export function apiRequest({
         }
       } else {
         if (isFunction(failCallback)) {
+          logTrace(
+            {
+              api,
+              params,
+              dispatch,
+              remoteOriginal: data,
+              error: null,
+            },
+            buildPromptModuleInfoText('apiRequest', 'trigger', 'failCallback'),
+          );
+
           failCallback({
             api,
             params,
@@ -434,6 +387,22 @@ export function apiRequest({
             remoteOriginal: data,
             error: null,
           });
+        } else {
+          logTrace(
+            {
+              api,
+              params,
+              dispatch,
+              remoteOriginal: data,
+              error: null,
+            },
+            buildPromptModuleInfoText(
+              'apiRequest',
+              'trigger',
+              'failCallback',
+              emptyLogic,
+            ),
+          );
         }
       }
 
@@ -452,7 +421,7 @@ export function apiRequest({
 
       if (showProcessing) {
         setTimeout(() => {
-          toast.dismiss(key);
+          destroyMessage(key);
         }, 200);
       }
 
@@ -464,46 +433,67 @@ export function apiRequest({
 
 /**
  * confirmActionCore
- * @param {*} param0
+ * @param {Object} option option
+ * @param {string} option.api dva model effect like "modelName/effect"
+ * @param {Object} option.params request params.
+ * @param {Object} option.target the passed appendage object，eg "component".
+ * @param {Object} option.title title.
+ * @param {Object} option.content content.
+ * @param {Object} option.okText ok button text, default value is '确定'.
+ * @param {Object} option.okType ok button type, default value is 'danger'.
+ * @param {Object} option.cancelText cancel button text, default value is '取消'.
+ * @param {Boolean} option.showProcessing whether show processing prompt.
+ * @param {String} option.processingPrompt prompt text when show processing.
+ * @param {String} option.completeProcess request complete callback.
+ * @param {Function} option.beforeProcess preprocessing of requests.
+ * @param {Function} option.failCallback  if it is function, it will exec when request fail.
+ * @param {Function} option.successCallback if it is function, it will exec when request success.
+ * @param {String} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
+ * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
  */
 export async function confirmActionCore({
-  target,
+  api,
   params,
+  target,
   title,
   content,
   okText = '确定',
-  okType = 'danger',
+  okType = 'primary',
   cancelText = '取消',
-  successCallback,
-  okAction = null,
+  showProcessing = true,
+  processingPrompt = '处理中，请稍后',
+  beforeProcess = null,
+  completeProcess = null,
+  failCallback = null,
+  successCallback = null,
   successMessage = '数据已经操作成功，请进行后续操作。',
   successMessageBuilder = null,
-  showProcessing = true,
 }) {
   logExecute('confirmActionCore');
 
-  if (!isFunction(okAction)) {
-    throw new Error('confirmActionCore: okAction must be function');
-  }
-
-  const { processing } = target.state;
-
-  confirm({
+  modal.confirm({
     title: title || '',
     content: content || '',
     okText: okText || '确定',
-    okType: okType || 'danger',
+    okType: okType || 'primary',
     cancelText: cancelText || '取消',
-    confirmLoading: { processing },
-    onOk() {
-      okAction({
-        target,
-        params,
-        successCallback,
-        successMessage,
-        successMessageBuilder,
-        showProcessing,
-      });
+    onOk: () => {
+      setTimeout(() => {
+        actionCore({
+          api,
+          params,
+          target,
+          failCallback,
+          successCallback,
+          successMessage,
+          successMessageBuilder,
+          showProcessing,
+          processingPrompt,
+          delay: 0,
+          beforeProcess,
+          completeProcess,
+        });
+      }, 300);
     },
     onCancel() {},
   });

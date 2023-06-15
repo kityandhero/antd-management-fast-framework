@@ -20,18 +20,22 @@ export function loadApplicationInitialData() {
     return;
   }
 
-  requestAnimationFrame(() => {
+  logExecute('loadApplicationInitialData');
+
+  setTimeout(() => {
     const text = '数据正在初始化，需要一点点时间哦！';
 
-    showInfoMessage({
-      text: text,
-      duration: 2,
-    });
-  });
+    try {
+      showInfoMessage({
+        text: text,
+        duration: 2,
+      });
+    } catch {
+      // ignore
+    }
+  }, 300);
 
   loadApplicationInitialDataComplete = true;
-
-  logExecute('loadApplicationInitialData');
 
   if (!metaDataFirstLoadSuccess) {
     removeLocalMetaData();

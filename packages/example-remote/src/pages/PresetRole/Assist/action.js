@@ -1,6 +1,6 @@
 import { getValueByKey } from 'easy-soft-utility';
 
-import { actionCore } from 'antd-management-fast-common';
+import { actionCore, confirmActionCore } from 'antd-management-fast-common';
 
 import { fieldData } from '../Common/data';
 
@@ -82,7 +82,28 @@ export async function refreshCacheAction({
       }),
     },
     target,
-    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export async function refreshCacheConfirmAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage = null,
+}) {
+  await confirmActionCore({
+    api: 'presetRole/refreshCache',
+    params: {
+      presetRoleId: getValueByKey({
+        data: handleData,
+        key: fieldData.presetRoleId.name,
+      }),
+    },
+    target,
+    title: '确认执行',
+    content: '确定刷新缓存吗',
     successCallback,
     successMessage,
   });

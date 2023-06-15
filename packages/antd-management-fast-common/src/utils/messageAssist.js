@@ -1,6 +1,3 @@
-import React from 'react';
-import { Flip, toast } from 'react-toastify';
-
 import {
   messageTypeCollection,
   setDurationConversionRatio,
@@ -11,92 +8,89 @@ import {
   setSuccessMessageDisplayMonitor,
   setWarningMessageDisplayMonitor,
   setWarnMessageDisplayMonitor,
-  toNumber,
 } from 'easy-soft-utility';
+
+import { message } from '../components';
 
 function showMessage({ type, duration = 3, text, onClose = () => {} }) {
   requestAnimationFrame(() => {
-    const options = {
-      position: 'top-center',
-      autoClose: toNumber(duration * 1000),
-      hideProgressBar: true,
-      transition: Flip,
-      closeButton: false,
-      style: {
-        paddingTop: 0,
-        paddingBottom: 0,
-        '--toastify-toast-min-height': '40px',
-        '--toastify-toast-width': 'auto',
-        minWidth: '200px',
-        maxWidth: '600px',
-        fontSize: '14px',
-        borderRadius: '8px',
-      },
-      bodyStyle: {
-        paddingTop: 0,
-        paddingBottom: 0,
-        marginTop: 0,
-        marginBottom: 0,
-      },
-      onClose,
-    };
-
-    const content = (
-      <div
-        style={{
-          paddingTop: '4px',
-          paddingBottom: '4px',
-        }}
-      >
-        {text}
-      </div>
-    );
-
     switch (type) {
       case messageTypeCollection.open: {
-        toast(content, options);
+        message.open({
+          duration,
+          content: text,
+          onClose,
+        });
 
         break;
       }
 
       case messageTypeCollection.loading: {
-        toast.loading(content, options);
+        message.loading({
+          duration,
+          content: text,
+          onClose,
+        });
 
         break;
       }
 
       case messageTypeCollection.info: {
-        toast.info(content, options);
+        message.info({
+          duration,
+          content: text,
+          onClose,
+        });
 
         break;
       }
 
       case messageTypeCollection.warn: {
-        toast.warn(content, options);
+        message.warning({
+          duration,
+          content: text,
+          onClose,
+        });
 
         break;
       }
 
       case messageTypeCollection.warning: {
-        toast.warning(content, options);
+        message.warning({
+          duration,
+          content: text,
+          onClose,
+        });
 
         break;
       }
 
       case messageTypeCollection.success: {
-        toast.success(content, options);
+        message.success({
+          duration,
+          content: text,
+          onClose,
+        });
 
         break;
       }
 
       case messageTypeCollection.error: {
-        toast.error(content, options);
+        message.error({
+          duration,
+          content: text,
+          onClose,
+        });
 
         break;
       }
 
       default: {
-        toast(content, options);
+        message.open({
+          duration,
+          content: text,
+          onClose,
+        });
 
         break;
       }

@@ -12,7 +12,7 @@ import {
   toNumber,
 } from 'easy-soft-utility';
 
-import { getImageUploadMaxSize } from 'antd-management-fast-common';
+import { getImageUploadMaxSize, modal } from 'antd-management-fast-common';
 
 import { CenterBox } from '../CenterBox';
 import { FlexBox } from '../FlexBox';
@@ -22,8 +22,6 @@ import { ImageBox } from '../ImageBox';
 import { VerticalBox } from '../VerticalBox';
 
 import styles from './index.less';
-
-const { confirm } = Modal;
 
 const defaultCapacity = 8;
 
@@ -146,7 +144,7 @@ class ImageUpload extends PureComponent {
     const { afterUploadSuccess } = this.props;
 
     if (isFunction(afterUploadSuccess)) {
-      confirm({
+      modal.confirm({
         title: `清除图片`,
         content: `即将清除图片数据，清除后需要保存才能进行生效，要继续吗？`,
         okText: '确定',

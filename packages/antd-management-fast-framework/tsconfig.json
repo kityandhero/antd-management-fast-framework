@@ -27,7 +27,8 @@
   },
   "include": [
     "src/**/*",
-    "../antd-management-fast-component/src/components/StandardTable"
+    "../antd-management-fast-component/src/components/StandardTable",
+    "../antd-management-fast-common/src/components/InteractionAssemble"
   ],
   "exclude": [
     "node_modules",

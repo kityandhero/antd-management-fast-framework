@@ -26,6 +26,7 @@ import {
 import AddModal from '../AddModal';
 import {
   refreshCacheAction,
+  refreshCacheConfirmAction,
   removeAction,
   setDisableAction,
   setEnableAction,
@@ -41,6 +42,9 @@ const { MultiPage } = DataMultiPageView;
   schedulingControl,
 }))
 class PageList extends MultiPage {
+  // 在控制台显示组建内调用序列, 仅为进行开发辅助
+  showCallProcess = true;
+
   constructor(properties) {
     super(properties);
 
@@ -76,7 +80,7 @@ class PageList extends MultiPage {
       }
 
       case 'refreshCache': {
-        this.refreshCache(handleData);
+        this.refreshCacheConfirm(handleData);
 
         break;
       }
@@ -142,6 +146,13 @@ class PageList extends MultiPage {
 
   refreshCache = (r) => {
     refreshCacheAction({
+      target: this,
+      handleData: r,
+    });
+  };
+
+  refreshCacheConfirm = (r) => {
+    refreshCacheConfirmAction({
       target: this,
       handleData: r,
     });
