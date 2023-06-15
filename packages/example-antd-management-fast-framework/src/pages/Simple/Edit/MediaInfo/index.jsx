@@ -28,7 +28,6 @@ import {
   iconBuilder,
   StatusBar,
 } from 'antd-management-fast-component';
-import { switchControlAssist } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../../customConfig/config';
 import AddMediaItemDrawer from '../../AddMediaItemDrawer';
@@ -42,8 +41,6 @@ import MediaItemPreviewDrawer from '../../MediaItemPreviewDrawer';
 import MobilePreviewBox from '../../MobilePreviewBox';
 import TabPageBase from '../../TabPageBase';
 import UpdateMediaItemDrawer from '../../UpdateMediaItemDrawer';
-
-const flagAddMediaItemDrawer = 'd1c674d387ec4b238cee44df9be3f165';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
@@ -61,8 +58,6 @@ class BasicInfo extends TabPageBase {
       simpleId: null,
       mediaItemList: [],
       mediaItemCount: 0,
-      updateMediaItemDrawerVisible: false,
-      mediaItemPreviewDrawerVisible: false,
       currentMediaItem: null,
       selectForwardId: '',
     };
@@ -124,15 +119,7 @@ class BasicInfo extends TabPageBase {
   };
 
   showMediaItemPreviewDrawer = () => {
-    this.setState({
-      mediaItemPreviewDrawerVisible: true,
-    });
-  };
-
-  closeMediaItemPreviewDrawer = () => {
-    this.setState({
-      mediaItemPreviewDrawerVisible: false,
-    });
+    MediaItemPreviewDrawer.open();
   };
 
   showInsertMediaItemDrawer = (record) => {
@@ -145,24 +132,29 @@ class BasicInfo extends TabPageBase {
   };
 
   showAddMediaItemDrawer = () => {
-    switchControlAssist.open(flagAddMediaItemDrawer);
-
-    this.setState({
-      selectForwardId: '',
-    });
+    this.setState(
+      {
+        selectForwardId: '',
+      },
+      () => {
+        AddMediaItemDrawer.open();
+      },
+    );
   };
 
   showUpdateMediaItemDrawer = (record) => {
-    this.setState({
-      updateMediaItemDrawerVisible: true,
-      selectForwardId: '',
-      currentMediaItem: record,
-    });
+    this.setState(
+      {
+        selectForwardId: '',
+        currentMediaItem: record,
+      },
+      () => {
+        UpdateMediaItemDrawer.open();
+      },
+    );
   };
 
   afterAddMediaItemDrawerOk = () => {
-    switchControlAssist.close(flagAddMediaItemDrawer);
-
     this.setState({
       selectForwardId: '',
     });
@@ -171,18 +163,7 @@ class BasicInfo extends TabPageBase {
   };
 
   afterUpdateMediaItemDrawerOk = () => {
-    this.setState(
-      {
-        updateMediaItemDrawerVisible: false,
-      },
-      () => {
-        const that = this;
-
-        setTimeout(() => {
-          that.refreshData({});
-        }, 300);
-      },
-    );
+    this.refreshData({ delay: 300 });
   };
 
   afterAddMediaItemDrawerCancel = () => {
@@ -191,18 +172,10 @@ class BasicInfo extends TabPageBase {
     });
   };
 
-  afterUpdateMediaItemDrawerCancel = () => {
-    this.setState({ updateMediaItemDrawerVisible: false });
-  };
-
   afterAddMediaItemDrawerClose = () => {
     this.setState({
       selectForwardId: '',
     });
-  };
-
-  afterUpdateMediaItemDrawerClose = () => {
-    this.setState({ updateMediaItemDrawerVisible: false });
   };
 
   handleMenuClick = ({ key, handleData }) => {
@@ -641,19 +614,12 @@ class BasicInfo extends TabPageBase {
   };
 
   renderPresetOther = () => {
-    const {
-      simpleId,
-      mediaItemList,
-      currentMediaItem,
-      updateMediaItemDrawerVisible,
-      mediaItemPreviewDrawerVisible,
-      selectForwardId,
-    } = this.state;
+    const { simpleId, mediaItemList, currentMediaItem, selectForwardId } =
+      this.state;
 
     return (
       <>
         <AddMediaItemDrawer
-          flag={flagAddMediaItemDrawer}
           externalData={{
             simpleId,
             forwardId: selectForwardId,
@@ -670,26 +636,13 @@ class BasicInfo extends TabPageBase {
         />
 
         <UpdateMediaItemDrawer
-          visible={updateMediaItemDrawerVisible}
           externalData={{ ...currentMediaItem, simpleId }}
           afterOK={() => {
             this.afterUpdateMediaItemDrawerOk();
           }}
-          afterCancel={() => {
-            this.afterUpdateMediaItemDrawerCancel();
-          }}
-          afterClose={() => {
-            this.afterUpdateMediaItemDrawerClose();
-          }}
         />
 
-        <MediaItemPreviewDrawer
-          visible={mediaItemPreviewDrawerVisible}
-          data={mediaItemList || []}
-          afterClose={() => {
-            this.closeMediaItemPreviewDrawer();
-          }}
-        />
+        <MediaItemPreviewDrawer data={mediaItemList || []} />
       </>
     );
   };

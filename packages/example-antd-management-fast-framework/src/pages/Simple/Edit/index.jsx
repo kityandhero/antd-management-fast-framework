@@ -62,7 +62,7 @@ class Edit extends DataTabContainerSupplement {
       // children: <ContentInfo />,
     },
     {
-      key: 'mediaInfo',
+      key: 'mediaInfo/ss',
       show: checkHasAuthority(
         accessWayCollection.simple.updateMediaData.permission,
       ),

@@ -22,6 +22,30 @@ export function buildModel() {
     },
 
     effects: {
+      *getActiveKey({ payload }, { select }) {
+        const { flag, message } = { flag: '', message: [], ...payload };
+
+        if (checkObjectIsNullOrEmpty(flag)) {
+          throw new Error(
+            mergeTextMessage(
+              'tabControl::getActiveKey',
+              promptTextBuilder.buildMustString({ name: 'payload.flag' }),
+              'disallow empty string',
+            ),
+          );
+        }
+
+        const o = yield select((state) => state['tabControl']);
+
+        const value = o[flag] || '';
+
+        logTrace(
+          mergeArrowText(...message, 'tabControl::getActiveKey'),
+          `tab flag "${flag}" value is "${value}"`,
+        );
+
+        return value;
+      },
       *setActiveKey({ payload, alias }, { put }) {
         const { flag, name, message } = { flag: '', message: [], ...payload };
 

@@ -20,8 +20,8 @@ const { MobileSimulation } = MobileContainor;
 class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
   resetDataAfterLoad = false;
 
-  constructor(properties) {
-    super(properties);
+  constructor(properties, visibleFlag) {
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

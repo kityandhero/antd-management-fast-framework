@@ -61,7 +61,7 @@ class InternalTabFlow extends InternalFlow {
     return this.adjustTabListAvailable(tabListAvailable);
   };
 
-  handleTabChange = (key) => {
+  handleTabChange = async (key) => {
     this.logCallTrack(
       {
         parameter: { key },
@@ -70,14 +70,15 @@ class InternalTabFlow extends InternalFlow {
       'getTabListAvailable',
     );
 
-    const { name } = getCurrentRoute();
+    const tabActiveKey = await this.getTabActiveKey();
+
     const { pathname } = getCurrentLocation();
 
     for (const item of this.tabList || []) {
       if (item.key === key) {
         let path = pathname
           .replace('/update', '/load')
-          .replace(`/${name}`, '/');
+          .replace(`/${tabActiveKey}`, '/');
 
         path = `${path}${item.key}`;
 

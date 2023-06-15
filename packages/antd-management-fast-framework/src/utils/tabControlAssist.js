@@ -12,6 +12,28 @@ import {
  */
 export const tabControlAssist = {
   /**
+   * get tab active key
+   * @param {string} flag tab flag
+   */
+  getActiveKey(flag, ...message) {
+    if (checkObjectIsNullOrEmpty(flag)) {
+      throw new Error(
+        mergeTextMessage(
+          'tabControlAssist::getActiveKey',
+          promptTextBuilder.buildMustString({}),
+          'disallow empty string',
+        ),
+      );
+    }
+
+    const dispatch = getDispatch();
+
+    return dispatch({
+      type: 'tabControl/getActiveKey',
+      payload: { flag, message },
+    });
+  },
+  /**
    * set tab active key
    * @param {string} flag tab flag
    */

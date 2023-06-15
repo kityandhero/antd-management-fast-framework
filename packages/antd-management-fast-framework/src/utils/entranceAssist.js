@@ -4,10 +4,10 @@ import {
   checkInCollection,
   handleAuthorizationFail,
   isFunction,
-  logDebug,
   logDevelop,
   logExecute,
   logTrace,
+  mergeArrowText,
   mergeTextMessage,
   promptTextBuilder,
   setLocalAuthorityCollection,
@@ -17,6 +17,7 @@ import {
 import {
   actionCore,
   apiRequest,
+  emptyLogic,
   getTokenName,
 } from 'antd-management-fast-common';
 
@@ -30,10 +31,10 @@ import { modulePackageName } from './definition';
  */
 const moduleName = 'entranceAssist';
 
-function buildPromptModuleInfoText(text, ancillaryInformation = '') {
+function buildPromptModuleInfoText(text, ...messages) {
   return buildPromptModuleInfo(
     modulePackageName,
-    mergeTextMessage(text, ancillaryInformation),
+    mergeTextMessage(text, mergeArrowText(messages)),
     moduleName,
   );
 }
@@ -90,7 +91,8 @@ export function pretreatSignInData({ request, response }) {
       },
       pretreatResult: result,
     },
-    mergeTextMessage(
+    buildPromptModuleInfoText(
+      'pretreatSignInData',
       'trigger pretreatSignInData which setSignInDataPretreatmentHandler set it',
       'pretreat signIn data',
     ),
@@ -105,7 +107,7 @@ export function signInAction({
   successCallback = null,
   failCallback = null,
 }) {
-  logExecute('signInAction');
+  logExecute(buildPromptModuleInfoText('signInAction'));
 
   actionCore({
     api: 'entrance/signIn',
@@ -113,10 +115,11 @@ export function signInAction({
     params: handleData,
     showProcessing: false,
     successCallback: ({ target, remoteData }) => {
-      // logTrace(remoteData, 'response original data on signIn success');
-
       if (!checkInCollection(Object.keys(remoteData), getTokenName())) {
-        logDevelop(remoteData, 'signIn data');
+        logTrace(
+          remoteData,
+          buildPromptModuleInfoText('signInAction', 'success', 'signIn data'),
+        );
 
         throw new Error(
           `token key name "${getTokenName()}" not exist in signIn data`,
@@ -132,11 +135,27 @@ export function signInAction({
 
       setLocalAuthorityCollection(currentAuthority);
 
-      logDebug(currentAuthority, 'current operator authority collection data');
+      logTrace(
+        currentAuthority,
+        buildPromptModuleInfoText(
+          'signInAction',
+          'success',
+          'current operator authority collection data',
+        ),
+      );
 
       setToken(token);
 
-      logDebug({ token }, 'current operator token data');
+      logTrace(
+        {
+          token,
+        },
+        buildPromptModuleInfoText(
+          'signInAction',
+          'success',
+          'current operator token data',
+        ),
+      );
 
       // ----------------------------
 
@@ -144,22 +163,51 @@ export function signInAction({
       getCurrentOperator({});
 
       if (isFunction(successCallback)) {
-        logExecute('signIn', 'successCallback');
+        logTrace(
+          buildPromptModuleInfoText(
+            'signInAction',
+            'trigger',
+            'successCallback',
+          ),
+        );
 
         successCallback({ target, remoteData });
       } else {
-        logExecute('signIn', 'successCallback not set, ignore');
+        logTrace(
+          buildPromptModuleInfoText(
+            'signInAction',
+            'trigger',
+            'successCallback',
+            emptyLogic,
+          ),
+        );
       }
     },
     failCallback: ({ remoteOriginal }) => {
-      logDebug(remoteOriginal, 'response original data on signIn fail');
+      logTrace(
+        remoteOriginal,
+        buildPromptModuleInfoText(
+          'signInAction',
+          'fail',
+          'response original data',
+        ),
+      );
 
       if (isFunction(failCallback)) {
-        logExecute('signIn', 'failCallback');
+        logTrace(
+          buildPromptModuleInfoText('signInAction', 'trigger', 'failCallback'),
+        );
 
         failCallback();
       } else {
-        logExecute('signIn', 'failCallback not set, ignore');
+        logTrace(
+          buildPromptModuleInfoText(
+            'signInAction',
+            'trigger',
+            'failCallback',
+            emptyLogic,
+          ),
+        );
       }
     },
   });
@@ -170,7 +218,7 @@ export function signOutAction({
   successCallback = null,
   failCallback = null,
 }) {
-  logExecute('signOutAction');
+  logExecute(buildPromptModuleInfoText('signOutAction'));
 
   apiRequest({
     api: 'entrance/signOut',
@@ -179,11 +227,24 @@ export function signOutAction({
     showProcessing: true,
     successCallback: ({ remoteData }) => {
       if (isFunction(successCallback)) {
-        logExecute('signOut', 'successCallback');
+        logTrace(
+          buildPromptModuleInfoText(
+            'signOutAction',
+            'trigger',
+            'successCallback',
+          ),
+        );
 
         successCallback({ target, remoteData });
       } else {
-        logExecute('signOut', 'successCallback not set, ignore');
+        logTrace(
+          buildPromptModuleInfoText(
+            'signOutAction',
+            'trigger',
+            'successCallback',
+            emptyLogic,
+          ),
+        );
       }
 
       setTimeout(() => {
@@ -191,14 +252,30 @@ export function signOutAction({
       }, 300);
     },
     failCallback: ({ remoteOriginal }) => {
-      logDebug(remoteOriginal, 'response original data on signOut fail');
+      logTrace(
+        remoteOriginal,
+        buildPromptModuleInfoText(
+          'signOutAction',
+          'fail',
+          'response original data',
+        ),
+      );
 
       if (isFunction(failCallback)) {
-        logExecute('signOut', 'failCallback');
+        logTrace(
+          buildPromptModuleInfoText('signOutAction', 'trigger', 'failCallback'),
+        );
 
         failCallback();
       } else {
-        logExecute('signOut', 'failCallback not set, ignore');
+        logTrace(
+          buildPromptModuleInfoText(
+            'signOutAction',
+            'trigger',
+            'failCallback',
+            emptyLogic,
+          ),
+        );
       }
     },
   });

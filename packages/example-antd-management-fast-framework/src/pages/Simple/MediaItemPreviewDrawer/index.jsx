@@ -7,15 +7,24 @@ import {
 } from 'easy-soft-utility';
 
 import { buildPlayer, iconBuilder } from 'antd-management-fast-component';
-import { MobileContainor } from 'antd-management-fast-framework';
+import {
+  MobileContainor,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 const { MobilePreviewDrawer } = MobileContainor;
+
+const visibleFlag = '1957347645844379afae9df53ac59956';
 
 class MediaItemPreviewDrawer extends MobilePreviewDrawer {
   resetDataAfterLoad = false;
 
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
+
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,

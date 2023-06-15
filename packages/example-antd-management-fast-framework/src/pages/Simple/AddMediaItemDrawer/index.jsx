@@ -7,7 +7,10 @@ import {
 
 import { cardConfig, getCorsDomain } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import { DataDrawer } from 'antd-management-fast-framework';
+import {
+  DataDrawer,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 import {
   accessWayCollection,
@@ -26,6 +29,10 @@ const visibleFlag = '7e84caa4d70d4f039b06eb5f0a84839e';
 }))
 class Index extends BaseAddDrawer {
   componentAuthority = accessWayCollection.simple.addMediaItem.permission;
+
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
 
   constructor(properties) {
     super(properties, visibleFlag);

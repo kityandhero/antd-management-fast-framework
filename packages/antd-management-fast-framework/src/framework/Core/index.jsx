@@ -98,6 +98,10 @@ class Core extends BaseComponent {
     };
   }
 
+  getTabActiveKey() {
+    return tabControlAssist.getActiveKey(this.viewTabFlag);
+  }
+
   setTabActiveKey(key) {
     this.logCallTrack(
       {

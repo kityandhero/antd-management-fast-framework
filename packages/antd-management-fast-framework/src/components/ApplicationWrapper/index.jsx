@@ -2,18 +2,15 @@ import { App, ConfigProvider } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { ApplicationProvider } from 'easy-soft-dva';
-import { logTrace } from 'easy-soft-utility';
+import { logDebug } from 'easy-soft-utility';
 
 import { InteractionAssemble } from 'antd-management-fast-common';
 
-// import { BaseComponent } from 'antd-management-fast-component';
 import { TopProgressBar } from '../TopProgressBar';
 
 class ApplicationWrapper extends PureComponent {
   render() {
-    logTrace(
-      '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$',
-    );
+    logDebug('render ApplicationWrapper');
 
     return (
       <ApplicationProvider>

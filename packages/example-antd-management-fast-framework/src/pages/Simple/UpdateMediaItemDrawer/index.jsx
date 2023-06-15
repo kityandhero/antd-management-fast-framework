@@ -8,13 +8,18 @@ import {
 
 import { cardConfig, getCorsDomain } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import { DataDrawer } from 'antd-management-fast-framework';
+import {
+  DataDrawer,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig/config';
 import { mediaTypeCollection } from '../../../customConfig/constants';
 import { mediaItemData } from '../Common/data';
 
 const { BaseUpdateDrawer } = DataDrawer;
+
+const visibleFlag = 'b901740eb37b46fbade7931ce2ae875c';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
@@ -23,8 +28,12 @@ const { BaseUpdateDrawer } = DataDrawer;
 class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
   componentAuthority = accessWayCollection.simple.getMediaItem.permission;
 
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
+
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
