@@ -155,21 +155,36 @@ class StandardTable extends PureComponent {
 
     logDebug(containerStyle, mergeArrowText('StandardTable', 'containerStyle'));
 
+    const table = (
+      <Table
+        rowKey={rowKey || 'key'}
+        size={size || listViewConfig.tableSize.middle}
+        rowSelection={rowSelection}
+        dataSource={list}
+        pagination={paginationProperties}
+        onChange={this.handleTableChange}
+        defaultExpandAllRows
+        {...rest}
+        loading={false}
+      />
+    );
+
     return (
       <div style={containerStyle}>
         {rowSelectionMessage}
 
-        <Table
-          rowKey={rowKey || 'key'}
-          size={size || listViewConfig.tableSize.middle}
-          rowSelection={rowSelection}
-          dataSource={list}
-          pagination={paginationProperties}
-          onChange={this.handleTableChange}
-          defaultExpandAllRows
-          {...rest}
-          loading={false}
-        />
+        {rowSelection === null ? (
+          table
+        ) : (
+          <div
+            style={{
+              width: '100%',
+              height: 'calc(100% - 50px)',
+            }}
+          >
+            {table}
+          </div>
+        )}
       </div>
     );
   }
@@ -177,6 +192,9 @@ class StandardTable extends PureComponent {
 
 StandardTable.defaultProps = {
   showPagination: true,
+  showSelect: false,
+  rowKey: 'key',
+  size: null,
   style: null,
 };
 

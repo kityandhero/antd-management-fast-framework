@@ -49,6 +49,7 @@ class BaseSimpleMultiPageSelectDrawer extends MultiPageSelectDrawer {
       loadApiPath: 'simple/singleList',
       // 设置默认试图模式为 table
       listViewMode: listViewConfig.viewMode.table,
+      showSelect: true,
       // table 显示模式行长度, 合理设置可以提升美观以及用户体验，超出可见区域将显示滚动条
       tableScrollX: 1220,
       sourceCode: '',
@@ -219,7 +220,7 @@ class BaseSimpleMultiPageSelectDrawer extends MultiPageSelectDrawer {
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.title,
-      width: 420,
+      width: 360,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
