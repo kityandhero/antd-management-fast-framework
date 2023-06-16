@@ -82,6 +82,7 @@ export async function refreshCacheAction({
       }),
     },
     target,
+    handleData,
     successCallback,
     successMessage,
   });
@@ -102,6 +103,7 @@ export async function refreshCacheConfirmAction({
       }),
     },
     target,
+    handleData,
     title: '确认执行',
     content: '确定刷新缓存吗',
     successCallback,

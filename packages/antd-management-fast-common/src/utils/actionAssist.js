@@ -40,6 +40,7 @@ function remoteAction({
   api,
   params,
   target,
+  handleData,
   failCallback,
   successCallback,
   successMessage,
@@ -85,6 +86,7 @@ function remoteAction({
 
         if (isFunction(successMessageBuilder)) {
           messageText = successMessageBuilder({
+            handleData,
             remoteListData: isArray(remoteListData) ? remoteListData : [],
             remoteData: remoteData || null,
             remoteExtraData: remoteExtraData || null,
@@ -100,6 +102,7 @@ function remoteAction({
           successCallback({
             target,
             params,
+            handleData,
             remoteListData: isArray(remoteListData) ? remoteListData : [],
             remoteData: remoteData || null,
             remoteExtraData: remoteExtraData || null,
@@ -111,6 +114,7 @@ function remoteAction({
           failCallback({
             target,
             params,
+            handleData,
             remoteOriginal: data,
             error: null,
           });
@@ -152,6 +156,7 @@ function remoteAction({
  * @param {string} option.api dva model effect like "modelName/effect"
  * @param {Object} option.params request params.
  * @param {Object} option.target the passed appendage object，eg "component".
+ * @param {Object} option.handleData the data will transmit to callback.
  * @param {Function} option.beforeProcess preprocessing of requests.
  * @param {Number} option.delay  delay millisecond before request.
  * @param {Boolean} option.showProcessing whether show processing prompt.
@@ -165,6 +170,7 @@ function remoteAction({
 export async function actionCore({
   api,
   params,
+  handleData,
   target,
   beforeProcess = null,
   delay = 400,
@@ -219,6 +225,7 @@ export async function actionCore({
     remoteAction({
       api,
       params,
+      handleData,
       target,
       failCallback,
       successCallback,
@@ -234,6 +241,7 @@ export async function actionCore({
       remoteAction({
         api,
         params,
+        handleData,
         target,
         failCallback,
         successMessage,
@@ -460,6 +468,7 @@ export function apiRequest({
 export async function confirmActionCore({
   api,
   params,
+  handleData,
   target,
   title,
   content,
@@ -488,6 +497,7 @@ export async function confirmActionCore({
         actionCore({
           api,
           params,
+          handleData,
           target,
           failCallback,
           successCallback,

@@ -113,6 +113,7 @@ export function signInAction({
     api: 'entrance/signIn',
     target,
     params: handleData,
+    handleData,
     showProcessing: false,
     successCallback: ({ target, remoteData }) => {
       if (!checkInCollection(Object.keys(remoteData), getTokenName())) {
