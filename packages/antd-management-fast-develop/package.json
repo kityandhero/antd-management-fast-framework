@@ -50,11 +50,11 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "@umijs/max": "^4.0.70",
-    "commander": "^10.0.1",
+    "@umijs/max": "^4.0.71",
+    "commander": "^11.0.0",
     "ejs": "^3.1.9",
     "rimraf": "^5.0.1",
-    "umi": "^4.0.70"
+    "umi": "^4.0.71"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",

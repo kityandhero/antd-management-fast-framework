@@ -61,10 +61,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
-    "@ant-design/pro-layout": "^7.14.7",
+    "@ant-design/pro-layout": "^7.14.8",
     "@tanem/react-nprogress": "^5.0.42",
     "@tinymce/tinymce-react": "^4.3.0",
-    "@umijs/max": "^4.0.70",
+    "@umijs/max": "^4.0.71",
     "antd": "^5.6.1",
     "antd-management-fast-common": "^2.1.24",
     "array-move": "^4.0.0",
@@ -73,8 +73,8 @@
     "classnames": "^2.3.2",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.8",
-    "easy-soft-dva": "^3.6.168",
-    "easy-soft-utility": "^2.4.139",
+    "easy-soft-dva": "^3.6.169",
+    "easy-soft-utility": "^2.4.140",
     "html-react-parser": "^4.0.0",
     "lodash.debounce": "^4.0.8",
     "numeral": "^2.0.6",
@@ -91,7 +91,7 @@
     "react-json-view": "^1.21.3",
     "react-player": "^2.12.0",
     "react-syntax-highlighter": "^15.5.0",
-    "umi": "^4.0.70"
+    "umi": "^4.0.71"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",

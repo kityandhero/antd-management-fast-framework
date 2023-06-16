@@ -61,15 +61,15 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
-    "@ant-design/pro-layout": "^7.14.7",
-    "@umijs/max": "^4.0.70",
+    "@ant-design/pro-layout": "^7.14.8",
+    "@umijs/max": "^4.0.71",
     "antd": "^5.6.1",
     "array-move": "^4.0.0",
     "axios": "^1.4.0",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.8",
-    "easy-soft-dva": "^3.6.168",
-    "easy-soft-utility": "^2.4.139",
+    "easy-soft-dva": "^3.6.169",
+    "easy-soft-utility": "^2.4.140",
     "lodash": "^4.17.21",
     "lodash-decorators": "^6.0.1",
     "lodash.isequal": "^4.5.0",
@@ -84,7 +84,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intl": "^6.4.4",
-    "umi": "^4.0.70"
+    "umi": "^4.0.71"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",

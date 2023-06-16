@@ -120,8 +120,8 @@ class SingleList extends SinglePage {
 
     handleItem({
       target,
-      dataId: simpleId,
-      compareDataIdHandler: (o) => {
+      value: simpleId,
+      compareValueHandler: (o) => {
         const { simpleId: v } = o;
 
         return v;
