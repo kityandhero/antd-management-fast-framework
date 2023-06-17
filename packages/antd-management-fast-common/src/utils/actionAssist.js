@@ -125,6 +125,14 @@ function remoteAction({
         target.stopProcessing();
       }
 
+      if (isFunction(target.closePreventRender)) {
+        target.closePreventRender();
+      }
+
+      if (isFunction(target.increaseCounter)) {
+        target.increaseCounter({});
+      }
+
       return data;
     })
     .catch((error) => {
@@ -215,6 +223,10 @@ export async function actionCore({
 
   if (isFunction(beforeProcess)) {
     beforeProcess({ target, params });
+  }
+
+  if (isFunction(target.openPreventRender)) {
+    target.openPreventRender();
   }
 
   if (isFunction(target.startProcessing)) {

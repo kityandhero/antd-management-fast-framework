@@ -1,7 +1,7 @@
 import { Alert, Table } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { logDebug, mergeArrowText } from 'easy-soft-utility';
+import { logTrace, mergeArrowText } from 'easy-soft-utility';
 
 import { listViewConfig } from 'antd-management-fast-common';
 
@@ -153,7 +153,16 @@ class StandardTable extends PureComponent {
       ...style,
     };
 
-    logDebug(containerStyle, mergeArrowText('StandardTable', 'containerStyle'));
+    logTrace(containerStyle, mergeArrowText('StandardTable', 'containerStyle'));
+
+    logTrace(
+      {
+        size: size || listViewConfig.tableSize.middle,
+        dataSource: list,
+        pagination: paginationProperties,
+      },
+      mergeArrowText('StandardTable', 'Table', 'props'),
+    );
 
     const table = (
       <Table
