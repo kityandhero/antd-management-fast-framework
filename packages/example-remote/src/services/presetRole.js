@@ -35,6 +35,48 @@ export async function updateBasicInfoData(parameters) {
   });
 }
 
+export async function addModuleData(parameters) {
+  return request({
+    api: '/presetRole/addModule',
+    params: parameters,
+  });
+}
+
+export async function addMultiModuleData(parameters) {
+  return request({
+    api: '/presetRole/addMultiModule',
+    params: parameters,
+  });
+}
+
+export async function addAllModuleData(parameters) {
+  return request({
+    api: '/presetRole/addAllModule',
+    params: parameters,
+  });
+}
+
+export async function updateModuleData(parameters) {
+  return request({
+    api: '/presetRole/updateModule',
+    params: parameters,
+  });
+}
+
+export async function removeModuleData(parameters) {
+  return request({
+    api: '/presetRole/removeModule',
+    params: parameters,
+  });
+}
+
+export async function clearModuleData(parameters) {
+  return request({
+    api: '/presetRole/clearModule',
+    params: parameters,
+  });
+}
+
 export async function setEnableData(parameters) {
   return request({
     api: '/presetRole/setEnable',
@@ -45,6 +87,13 @@ export async function setEnableData(parameters) {
 export async function setDisableData(parameters) {
   return request({
     api: '/presetRole/setDisable',
+    params: parameters,
+  });
+}
+
+export async function removeData(parameters) {
+  return request({
+    api: '/presetRole/remove',
     params: parameters,
   });
 }

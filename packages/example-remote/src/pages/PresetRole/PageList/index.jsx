@@ -26,7 +26,6 @@ import {
 import AddModal from '../AddModal';
 import {
   refreshCacheAction,
-  refreshCacheConfirmAction,
   removeAction,
   setDisableAction,
   setEnableAction,
@@ -80,7 +79,7 @@ class PageList extends MultiPage {
       }
 
       case 'refreshCache': {
-        this.refreshCacheConfirm(handleData);
+        this.refreshCache(handleData);
 
         break;
       }
@@ -146,13 +145,6 @@ class PageList extends MultiPage {
 
   refreshCache = (r) => {
     refreshCacheAction({
-      target: this,
-      handleData: r,
-    });
-  };
-
-  refreshCacheConfirm = (r) => {
-    refreshCacheConfirmAction({
       target: this,
       handleData: r,
     });
@@ -289,78 +281,99 @@ class PageList extends MultiPage {
     };
   };
 
-  getColumnWrapper = () => [
-    {
-      dataTarget: fieldData.name,
-      width: 200,
-      align: 'left',
-      showRichFacade: true,
-      emptyValue: '--',
-    },
-    {
-      dataTarget: fieldData.description,
-      showRichFacade: true,
-      emptyValue: '--',
-    },
-    {
-      dataTarget: fieldData.moduleCount,
-      width: 120,
-      showRichFacade: true,
-      emptyValue: '--',
-      formatValue: (value) => {
-        return value === '' ? '0' : value;
+  getColumnWrapper = () => {
+    const { metaListData } = this.state;
+
+    console.log(metaListData);
+
+    return [
+      {
+        dataTarget: fieldData.name,
+        width: 200,
+        align: 'left',
+        showRichFacade: true,
+        emptyValue: '--',
       },
-    },
-    {
-      dataTarget: fieldData.createTime,
-      width: 120,
-      showRichFacade: true,
-      canCopy: true,
-    },
-    {
-      dataTarget: fieldData.status,
-      width: 100,
-      showRichFacade: true,
-      emptyValue: '--',
-      facadeMode: columnFacadeMode.badge,
-      facadeConfigBuilder: (value) => {
-        return {
-          status: getStatusBadge(value),
-          text: getPresetRoleStatusName({
+      {
+        dataTarget: fieldData.description,
+        showRichFacade: true,
+        emptyValue: '--',
+      },
+      {
+        dataTarget: fieldData.moduleCount,
+        width: 120,
+        showRichFacade: true,
+        emptyValue: '--',
+        formatValue: (value) => {
+          return value === '' ? '0' : value;
+        },
+      },
+      {
+        dataTarget: fieldData.createTime,
+        width: 120,
+        showRichFacade: true,
+        canCopy: true,
+      },
+      {
+        dataTarget: fieldData.status,
+        width: 100,
+        showRichFacade: true,
+        emptyValue: '--',
+        facadeMode: columnFacadeMode.badge,
+        facadeConfigBuilder: (value, record) => {
+          // const c = getValueByKey({
+          //   data: record,
+          //   key: fieldData.status.name,
+          //   convert: convertCollection.string,
+          // });
+
+          // console.log(JSON.stringify(record));
+          console.log({ record, v: record.status });
+
+          // console.log({ s: JSON.stringify(record), record });
+          // console.log({ value, record, c, v: `${record.status}` });
+
+          return {
+            status: getStatusBadge(value),
+            text: getPresetRoleStatusName({
+              value: value,
+            }),
+          };
+        },
+      },
+      {
+        dataTarget: fieldData.createTime,
+        width: 150,
+        sorter: false,
+        showRichFacade: true,
+        facadeMode: columnFacadeMode.datetime,
+        emptyValue: '--',
+      },
+      {
+        dataTarget: fieldData.channel,
+        width: 160,
+        showRichFacade: true,
+        emptyValue: '--',
+        facadeConfigBuilder: (value) => {
+          return {
+            color: buildRandomHexColor({
+              seed: toNumber(value) + 31,
+            }),
+          };
+        },
+        formatValue: (value) => {
+          return getChannelName({
             value: value,
-          }),
-        };
+          });
+        },
       },
-    },
-    {
-      dataTarget: fieldData.createTime,
-      width: 150,
-      sorter: false,
-      showRichFacade: true,
-      facadeMode: columnFacadeMode.datetime,
-      emptyValue: '--',
-    },
-    {
-      dataTarget: fieldData.channel,
-      width: 160,
-      showRichFacade: true,
-      emptyValue: '--',
-      facadeConfigBuilder: (value) => {
-        return {
-          color: buildRandomHexColor({
-            seed: toNumber(value) + 31,
-          }),
-        };
-      },
-      formatValue: (value) => {
-        return getChannelName({
-          value: value,
-        });
-      },
-    },
-  ];
+    ];
+  };
 
   renderPresetOther = () => {
+    console.log('-----------------------');
+    console.log(this.state);
+
     return <AddModal afterOK={this.afterAddModalOk} />;
   };
 }

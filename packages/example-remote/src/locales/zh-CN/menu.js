@@ -21,6 +21,11 @@ export default {
   'menu.permission': '权限相关',
   'menu.permission-mini': '权限',
 
+  'menu.permission.accessWay': '操作模块',
+  'menu.permission.accessWay-mini': '模块',
+  'menu.permission.accessWay.pageList': '模块列表',
+  'menu.permission.accessWay.pageList-mini': '模块',
+
   'menu.permission.presetRole': '预设角色',
   'menu.permission.presetRole-mini': '预设',
   'menu.permission.presetRole.pageList': '角色列表',
@@ -28,6 +33,8 @@ export default {
   'menu.permission.presetRole.add': '新增预设角色',
   'menu.permission.presetRole.edit': '角色详情',
   'menu.permission.presetRole.edit.basicInfo': '基本信息',
+  'menu.permission.presetRole.edit.moduleInfo': '所含模块',
+  'menu.permission.presetRole.edit.moduleInfo.singleList': '模块列表',
 
   'menu.currentSystem': '系统设置',
   'menu.currentSystem.basicInfo': '基本设置',

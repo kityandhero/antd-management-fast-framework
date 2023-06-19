@@ -25,13 +25,14 @@ import { fieldData, statusCollection } from '../Common/data';
   schedulingControl,
 }))
 class Edit extends DataTabContainerSupplement {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
   tabList = [
     {
       key: 'basicInfo',
       tab: '基本信息',
+    },
+    {
+      key: 'moduleInfo/singleList',
+      tab: '所含模块',
     },
   ];
 
@@ -40,7 +41,6 @@ class Edit extends DataTabContainerSupplement {
 
     this.state = {
       ...this.state,
-
       pageTitle: '',
       loadApiPath: 'presetRole/get',
       backPath: `/permission/presetRole/pageList/key`,
@@ -61,15 +61,6 @@ class Edit extends DataTabContainerSupplement {
     return checkNeedUpdateAssist(this.state, preProperties, preState, snapshot);
   };
 
-  supplementLoadRequestParams = (o) => {
-    const d = o;
-    const { presetRoleId } = this.state;
-
-    d.presetRoleId = presetRoleId;
-
-    return d;
-  };
-
   doOtherAfterLoadSuccess = ({
     metaData = null,
     // eslint-disable-next-line no-unused-vars
@@ -85,6 +76,15 @@ class Edit extends DataTabContainerSupplement {
         key: fieldData.name.name,
       }),
     });
+  };
+
+  supplementLoadRequestParams = (o) => {
+    const d = o;
+    const { presetRoleId } = this.state;
+
+    d.presetRoleId = presetRoleId;
+
+    return d;
   };
 
   setEnable = (r) => {

@@ -89,6 +89,29 @@ export default [
     path: '/permission',
     routes: [
       {
+        name: 'accessWay',
+        icon: 'bars',
+        hideChildrenInMenu: true,
+        path: '/permission/accessWay',
+        routes: [
+          {
+            path: '/permission/accessWay',
+            redirect: '/permission/accessWay/pageList',
+          },
+          {
+            path: '/permission/accessWay/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/permission/accessWay/pageList/no',
+          },
+          {
+            path: '/permission/accessWay/pageList/:pageKey',
+            hideInMenu: true,
+            component: './AccessWay/PageList',
+          },
+        ],
+      },
+      {
         name: 'presetRole',
         icon: 'bars',
         hideChildrenInMenu: true,
@@ -97,6 +120,12 @@ export default [
           {
             path: '/permission/presetRole',
             redirect: '/permission/presetRole/pageList/no',
+          },
+          {
+            path: '/permission/presetRole/add',
+            name: 'add',
+            hideInMenu: true,
+            component: './PresetRole/Add',
           },
           {
             path: '/permission/presetRole/pageList/:pageKey',
@@ -114,6 +143,22 @@ export default [
                 path: '/permission/presetRole/edit/:op/:id/:pageKey/basicInfo',
                 name: 'basicInfo',
                 component: './PresetRole/Edit/BasicInfo',
+              },
+              {
+                path: '/permission/presetRole/edit/:op/:id/:pageKey/moduleInfo',
+                name: 'moduleInfo',
+                routes: [
+                  {
+                    path: '/permission/presetRole/edit/:op/:id/:pageKey/moduleInfo',
+                    redirect:
+                      '/permission/presetRole/edit/:op/:id/:pageKey/moduleInfo/singleList',
+                  },
+                  {
+                    path: '/permission/presetRole/edit/:op/:id/:pageKey/moduleInfo/singleList',
+                    name: 'singleList',
+                    component: './PresetRole/Edit/ModuleInfo/SingleList',
+                  },
+                ],
               },
             ],
           },

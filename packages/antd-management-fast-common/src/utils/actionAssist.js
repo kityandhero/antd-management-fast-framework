@@ -126,11 +126,7 @@ function remoteAction({
       }
 
       if (isFunction(target.closePreventRender)) {
-        target.closePreventRender();
-      }
-
-      if (isFunction(target.increaseCounter)) {
-        target.increaseCounter({});
+        target.closePreventRender(true);
       }
 
       return data;

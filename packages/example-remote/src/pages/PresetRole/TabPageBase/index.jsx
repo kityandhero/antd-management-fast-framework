@@ -8,7 +8,7 @@ import {
 
 const { BaseUpdateFormTab } = DataForm;
 
-class TabPageBase extends BaseUpdateFormTab {
+class BaseEditTab extends BaseUpdateFormTab {
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,
@@ -32,4 +32,4 @@ class TabPageBase extends BaseUpdateFormTab {
   };
 }
 
-export { TabPageBase };
+export default BaseEditTab;

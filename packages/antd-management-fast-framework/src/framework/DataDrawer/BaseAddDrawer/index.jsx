@@ -14,7 +14,6 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
 
     this.state = {
       ...this.state,
-
       showBottomBar: true,
     };
   }

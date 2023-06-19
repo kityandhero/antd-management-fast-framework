@@ -209,6 +209,29 @@ class SinglePageDrawer extends SinglePage {
       this.doOtherWhenChangeVisibleToShow();
       this.executeAfterDoOtherWhenChangeVisibleToShow();
     } else {
+      const { afterClose } = this.props;
+
+      if (isFunction(afterClose)) {
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doOtherWhenChangeVisible',
+          'trigger',
+          'afterClose',
+        );
+
+        afterClose();
+      } else {
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doOtherWhenChangeVisible',
+          'trigger',
+          'afterClose',
+          emptyLogic,
+        );
+      }
+
       this.doOtherWhenChangeVisibleToHide();
       this.executeAfterDoOtherWhenChangeVisibleToHide();
     }
@@ -217,32 +240,17 @@ class SinglePageDrawer extends SinglePage {
   };
 
   onClose = () => {
-    this.logCallTrack({}, primaryCallName, 'onClose');
+    const { onClose: triggerClose } = this.props;
+
+    if (isFunction(triggerClose)) {
+      this.logCallTrace({}, primaryCallName, 'trigger', 'onClose');
+
+      triggerClose();
+    } else {
+      this.logCallTrace({}, primaryCallName, 'trigger', 'onClose', emptyLogic);
+    }
 
     switchControlAssist.close(this.getVisibleFlag());
-
-    const { afterClose } = this.props;
-
-    if (isFunction(afterClose)) {
-      this.logCallTrace(
-        {},
-        primaryCallName,
-        'onClose',
-        'trigger',
-        'afterClose',
-      );
-
-      afterClose();
-    } else {
-      this.logCallTrace(
-        {},
-        primaryCallName,
-        'onClose',
-        'trigger',
-        'afterClose',
-        emptyLogic,
-      );
-    }
   };
 
   /**

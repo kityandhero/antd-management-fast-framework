@@ -76,31 +76,31 @@ class ElasticityDropdown extends BaseComponent {
       logDevelop('handleButtonClick must be function');
     }
 
+    const propertiesAdjust = {
+      confirm,
+      title,
+      placement,
+      okText,
+      cancelText,
+      type: typeSource || 'default',
+      size: size ?? 'default',
+      text: text || '',
+      icon: icon || null,
+      handleClick: isFunction(handleButtonClick)
+        ? () => {
+            handleButtonClick({ handleData: r });
+          }
+        : null,
+      hidden,
+      disabled: disabled ?? false,
+      handleData: r,
+      processing,
+      iconProcessing,
+      ...innerProperties,
+    };
+
     if (!isArray(items) || items.length === 0) {
-      return (
-        <ElasticityButton
-          {...{
-            confirm,
-            title,
-            placement,
-            okText,
-            cancelText,
-            type: typeSource || 'default',
-            size,
-            text,
-            icon,
-            handleClick: isFunction(handleButtonClick)
-              ? handleButtonClick
-              : null,
-            hidden,
-            disabled,
-            handleData: r,
-            processing,
-            iconProcessing,
-            ...innerProperties,
-          }}
-        />
-      );
+      return <ElasticityButton {...propertiesAdjust} />;
     }
 
     const popoverButton = ellipsisMode ? (
@@ -173,23 +173,9 @@ class ElasticityDropdown extends BaseComponent {
         }}
         left={
           <ElasticityButton
-            confirm={confirm}
-            placement={placement}
-            title={title}
-            okText={okText}
-            cancelText={cancelText}
-            disabled={disabled ?? false}
-            type={typeSource || 'default'}
+            {...propertiesAdjust}
             style={{
               border: 0,
-            }}
-            size={size ?? 'default'}
-            icon={icon || null}
-            text={text || ''}
-            handleClick={() => {
-              if (isFunction(handleButtonClick)) {
-                handleButtonClick({ handleData: r });
-              }
             }}
           />
         }
@@ -210,7 +196,7 @@ ElasticityDropdown.defaultProps = {
   size: 'default',
   text: '按钮',
   icon: iconBuilder.form(),
-  handleData: {},
+  handleData: null,
   arrow: true,
   disabled: false,
   hidden: false,

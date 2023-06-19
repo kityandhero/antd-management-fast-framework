@@ -21,6 +21,16 @@
       "name": "type"
     },
     {
+      "functionSegment": "HostServiceChangeType",
+      "label": "变更类型",
+      "name": "changeType"
+    },
+    {
+      "functionSegment": "HostServiceStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
       "functionSegment": "ManagementChannel",
       "label": "目标系统",
       "name": "channel"

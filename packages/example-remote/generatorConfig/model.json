@@ -25,6 +25,30 @@
       "cover": false
     },
     {
+      "name": "channelSqlLogSwitch",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/channelSqlLogSwitch/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "updateKeyValueInfo",
+          "service": "updateKeyValueInfoData",
+          "api": "/channelSqlLogSwitch/updateKeyValueInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/channelSqlLogSwitch/refreshCache",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
       "name": "errorLog",
       "apis": [
         {
@@ -50,6 +74,48 @@
           "service": "deleteMultiData",
           "api": "/errorLog/deleteMulti",
           "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "generalLog",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/generalLog/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/generalLog/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "delete",
+          "service": "deleteData",
+          "api": "/generalLog/delete",
+          "type": "singleData"
+        },
+        {
+          "effect": "deleteMulti",
+          "service": "deleteMultiData",
+          "api": "/generalLog/deleteMulti",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "accessWay",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/accessWay/pageList",
+          "type": "pageList"
         }
       ],
       "cover": true
@@ -88,6 +154,42 @@
           "type": "singleData"
         },
         {
+          "effect": "addModule",
+          "service": "addModuleData",
+          "api": "/presetRole/addModule",
+          "type": "singleData"
+        },
+        {
+          "effect": "addMultiModule",
+          "service": "addMultiModuleData",
+          "api": "/presetRole/addMultiModule",
+          "type": "singleData"
+        },
+        {
+          "effect": "addAllModule",
+          "service": "addAllModuleData",
+          "api": "/presetRole/addAllModule",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateModule",
+          "service": "updateModuleData",
+          "api": "/presetRole/updateModule",
+          "type": "singleData"
+        },
+        {
+          "effect": "removeModule",
+          "service": "removeModuleData",
+          "api": "/presetRole/removeModule",
+          "type": "singleData"
+        },
+        {
+          "effect": "clearModule",
+          "service": "clearModuleData",
+          "api": "/presetRole/clearModule",
+          "type": "singleData"
+        },
+        {
           "effect": "setEnable",
           "service": "setEnableData",
           "api": "/presetRole/setEnable",
@@ -100,10 +202,190 @@
           "type": "singleData"
         },
         {
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/presetRole/remove",
+          "type": "singleData"
+        },
+        {
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "api": "/presetRole/refreshCache",
           "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "sqlLog",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/sqlLog/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/sqlLog/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "delete",
+          "service": "deleteData",
+          "api": "/sqlLog/delete",
+          "type": "singleData"
+        },
+        {
+          "effect": "deleteMulti",
+          "service": "deleteMultiData",
+          "api": "/sqlLog/deleteMulti",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "hostService",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/hostService/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/hostService/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "change",
+          "service": "changeData",
+          "api": "/hostService/change",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshAllStatus",
+          "service": "refreshAllStatusData",
+          "api": "/hostService/refreshAllStatus",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "HostServiceLog",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/hostServiceLog/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/hostServiceLog/get",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "smsLog",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/smsLog/pageList",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "smsStatistic",
+      "apis": [
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/smsStatistic/get",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "smsCategory",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/smsCategory/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/smsCategory/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/smsCategory/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/smsCategory/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "api": "/smsCategory/setEnable",
+          "type": "singleData"
+        },
+        {
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "api": "/smsCategory/setDisable",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/smsCategory/refreshCache",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "smsCategoryStatistic",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/smsCategoryStatistic/pageList",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "article",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/article/pageList",
+          "type": "pageList"
         }
       ],
       "cover": true

@@ -631,9 +631,7 @@ class InternalFlow extends Core {
           completeCallbackSource();
         }
 
-        that.closePreventRender();
-
-        that.increaseCounter({});
+        that.closePreventRender(true);
       },
     });
   };
@@ -699,9 +697,7 @@ class InternalFlow extends Core {
           );
         }
 
-        that.closePreventRender();
-
-        that.increaseCounter({});
+        that.closePreventRender(true);
       },
     });
   };
@@ -767,9 +763,7 @@ class InternalFlow extends Core {
           );
         }
 
-        that.closePreventRender();
-
-        that.increaseCounter({});
+        that.closePreventRender(true);
       },
     });
   };
@@ -835,9 +829,7 @@ class InternalFlow extends Core {
           );
         }
 
-        that.closePreventRender();
-
-        that.increaseCounter({});
+        that.closePreventRender(true);
       },
     });
   };
@@ -909,9 +901,7 @@ class InternalFlow extends Core {
           );
         }
 
-        that.closePreventRender();
-
-        that.increaseCounter({});
+        that.closePreventRender(true);
       },
     });
   };

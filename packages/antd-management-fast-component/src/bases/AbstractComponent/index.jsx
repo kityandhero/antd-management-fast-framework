@@ -567,13 +567,17 @@ class AbstractComponent extends Component {
     );
   }
 
-  closePreventRender() {
+  closePreventRender(triggerRender = false) {
     this.preventRender = false;
 
     this.logCallTrace(
       'closePreventRender',
       `preventRender change to ${this.preventRender}`,
     );
+
+    if (triggerRender && isFunction(this.increaseCounter)) {
+      this.increaseCounter({});
+    }
   }
 
   /**
