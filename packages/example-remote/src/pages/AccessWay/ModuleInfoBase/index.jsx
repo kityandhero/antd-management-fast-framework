@@ -25,6 +25,8 @@ import { fieldData } from '../Common/data';
 
 const { InnerSinglePage } = DataSinglePageView;
 
+const primaryCallName = 'AccessWay::ModuleInfoBase';
+
 class ModuleInfoBase extends InnerSinglePage {
   constructor(properties) {
     super(properties);
@@ -86,13 +88,21 @@ class ModuleInfoBase extends InnerSinglePage {
   };
 
   afterOperateSuccess = () => {
-    this.refreshData({});
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'afterOperateSuccess',
+      'trigger',
+      'reloadDataWithReloadAnimalPrompt',
+    );
+
+    this.reloadDataWithReloadAnimalPrompt({ delay: 650 });
 
     this.reloadByUrl();
   };
 
   afterUpdateModuleModalClose = () => {
-    this.refreshData({});
+    this.reloadDataWithReloadAnimalPrompt({ delay: 650 });
   };
 
   establishDataContainerExtraActionCollectionConfig = () => {

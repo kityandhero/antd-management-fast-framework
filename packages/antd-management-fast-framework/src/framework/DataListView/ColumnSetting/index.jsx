@@ -192,6 +192,7 @@ const CheckboxList = ({
   return (
     <DndProvider backend={Backend}>
       {showTitle && <span className={styles.title}>{listTitle}</span>}
+
       {listDom}
     </DndProvider>
   );

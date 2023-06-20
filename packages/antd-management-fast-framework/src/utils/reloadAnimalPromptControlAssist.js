@@ -1,4 +1,5 @@
 import { getDispatch } from 'easy-soft-dva';
+import { isArray, isString } from 'easy-soft-utility';
 
 /**
  * reload animal prompt control assist
@@ -7,29 +8,50 @@ export const reloadAnimalPromptControlAssist = {
   /**
    * check
    * @param {object} reloadAnimalPromptControl model
+   * @param {string} flag switch flag
    */
-  check(reloadAnimalPromptControl) {
-    const { visible } = reloadAnimalPromptControl;
+  check(reloadAnimalPromptControl, flag) {
+    if (isArray(flag)) {
+      let result = false;
 
-    return !!visible;
+      for (const o of flag) {
+        if (!isString(o)) {
+          continue;
+        }
+
+        result = !!reloadAnimalPromptControl[o];
+
+        if (result) {
+          break;
+        }
+      }
+
+      return result;
+    } else {
+      if (!isString(flag)) {
+        return false;
+      }
+
+      return !!reloadAnimalPromptControl[flag];
+    }
   },
   /**
    * show
    * @param {Array} message switch flag
    */
-  show(...message) {
+  show(flag, ...message) {
     const dispatch = getDispatch();
 
     dispatch({
       type: 'reloadAnimalPromptControl/show',
-      payload: { message: message || [] },
+      payload: { flag, message: message || [] },
     });
   },
   /**
    * hide
    * @param {Array} message switch flag
    */
-  hide(delay = 0, ...message) {
+  hide(flag, delay = 0, ...message) {
     const dispatch = getDispatch();
 
     if (delay <= 0) {
@@ -41,7 +63,7 @@ export const reloadAnimalPromptControlAssist = {
       setTimeout(() => {
         dispatch({
           type: 'reloadAnimalPromptControl/hide',
-          payload: { message: message || [] },
+          payload: { flag, message: message || [] },
         });
       }, delay);
     }

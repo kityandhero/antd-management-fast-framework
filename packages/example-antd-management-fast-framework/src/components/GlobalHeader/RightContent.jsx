@@ -55,7 +55,8 @@ const GlobalHeaderRight = (properties) => {
             ),
             value: 'Pro Layout',
           },
-        ]} // onSearch={value => {
+        ]}
+        // onSearch={value => {
         //   //console.log('input', value);
         // }}
       />

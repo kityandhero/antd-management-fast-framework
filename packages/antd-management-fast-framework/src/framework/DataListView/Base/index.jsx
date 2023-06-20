@@ -51,7 +51,7 @@ import {
   StandardTable,
 } from 'antd-management-fast-component';
 
-import { LoadingOverlay } from '../../../components';
+import { LoadingOverlay, ReloadAnimalPrompt } from '../../../components';
 import { AuthorizationWrapper } from '../../AuthorizationWrapper';
 import { BatchAction } from '../BatchAction';
 import { ColumnSetting } from '../ColumnSetting';
@@ -114,6 +114,8 @@ class Base extends AuthorizationWrapper {
    * 使用表格密度配置
    */
   useTableDensityAction = true;
+
+  reloadAnimalPrompt = true;
 
   constructor(properties) {
     super(properties);
@@ -1588,7 +1590,7 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetContentArea = () => {
-    const { listTitle } = this.state;
+    const { firstLoadSuccess, listTitle } = this.state;
 
     const affixConfig = {
       affix: false,
@@ -1630,7 +1632,19 @@ class Base extends AuthorizationWrapper {
 
     let gridView = (
       <Card
-        title={listTitle}
+        title={
+          <Row>
+            <Col flex="70px"> {listTitle}</Col>
+            <Col flex="auto">
+              {this.reloadAnimalPrompt ? (
+                <ReloadAnimalPrompt
+                  visible={firstLoadSuccess}
+                  flag={this.viewReloadAnimalPrompt}
+                />
+              ) : null}
+            </Col>
+          </Row>
+        }
         headStyle={{ borderBottom: '0px' }}
         bodyStyle={{
           paddingTop: '0',

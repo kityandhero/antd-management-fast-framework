@@ -46,7 +46,6 @@ class DataMenuContainer extends AuthorizationWrapper {
 
   doWorkWhenDidUpdate = (preProperties, preState, snapshot) => {
     const { urlParams } = this.state;
-    console.log('---------------------');
     const { urlParams: urlParametersPrevious } = preState;
 
     if (
@@ -59,12 +58,6 @@ class DataMenuContainer extends AuthorizationWrapper {
     const { op } = urlParams;
 
     const { op: previousOp } = urlParametersPrevious;
-
-    console.log('---------------------');
-    console.log({
-      previousOp,
-      op,
-    });
 
     if (
       (previousOp === 'load' && op === 'update') ||

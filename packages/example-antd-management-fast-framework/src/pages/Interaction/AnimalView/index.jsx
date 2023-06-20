@@ -100,12 +100,155 @@ class AnimalView extends BaseView {
           },
           items: [
             {
-              lg: 24,
+              lg: 6,
               type: cardConfig.contentItemType.component,
               component: (
                 <div style={boxStyle}>
                   <QueueBox show={boxVisible}>
-                    <IconInfo icon={iconBuilder.form()} text="QueueBox" />
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:null]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={'left'}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:left]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={'right'} duration={600}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:right]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={'top'}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:top]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={'bottom'}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:bottom]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={'scale'}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:scale]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={'scaleBig'}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:scaleBig]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={'scaleX'}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:scaleX]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={'scaleY'}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:scaleY]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={'alpha'}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:alpha]"
+                    />
+                  </QueueBox>
+                </div>
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={boxStyle}>
+                  <QueueBox show={boxVisible} type={['right', 'alpha']}>
+                    <IconInfo
+                      icon={iconBuilder.form()}
+                      text="QueueBox [type:['right', 'alpha']]"
+                    />
                   </QueueBox>
                 </div>
               ),

@@ -1,7 +1,10 @@
 import {
+  checkObjectIsNullOrEmpty,
   getTacitlyState,
   logTrace,
   mergeArrowText,
+  mergeTextMessage,
+  promptTextBuilder,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
@@ -18,9 +21,23 @@ export function buildModel() {
 
     effects: {
       *show({ payload, alias }, { put }) {
-        const { message } = { flag: '', message: [], ...payload };
+        const { flag, message } = { flag: '', message: [], ...payload };
 
-        const data = { visible: true };
+        if (checkObjectIsNullOrEmpty(flag)) {
+          throw new Error(
+            mergeTextMessage(
+              'reloadAnimalPromptControl::show',
+              promptTextBuilder.buildMustString({
+                name: 'payload.flag',
+              }),
+              'disallow empty string',
+            ),
+          );
+        }
+
+        const data = {};
+
+        data[flag] = true;
 
         yield put({
           type: reducerNameCollection.reducerNormalData,
@@ -31,15 +48,27 @@ export function buildModel() {
 
         logTrace(
           mergeArrowText(...message, 'reloadAnimalPromptControl::show'),
-          `visible change to true`,
+          `visible flag "${flag}" change to true`,
         );
 
         return data;
       },
       *hide({ payload, alias }, { put }) {
-        const { message } = { flag: '', message: [], ...payload };
+        const { flag, message } = { flag: '', message: [], ...payload };
 
-        const data = { visible: false };
+        if (checkObjectIsNullOrEmpty(flag)) {
+          throw new Error(
+            mergeTextMessage(
+              'reloadAnimalPromptControl::close',
+              promptTextBuilder.buildMustString({ name: 'payload.flag' }),
+              'disallow empty string',
+            ),
+          );
+        }
+
+        const data = {};
+
+        data[flag] = false;
 
         yield put({
           type: reducerNameCollection.reducerNormalData,
@@ -50,7 +79,7 @@ export function buildModel() {
 
         logTrace(
           mergeArrowText(...message, 'reloadAnimalPromptControl::close'),
-          `visible change to false`,
+          `visible flag "${flag}" change to false`,
         );
 
         return data;

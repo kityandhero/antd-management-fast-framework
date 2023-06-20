@@ -47,6 +47,7 @@ import {
 import { ElasticityExtraButton } from '../../../components/ElasticityExtraButton';
 import { loadMetaData } from '../../../utils/metaDataAssist';
 import { progressBarControlAssist } from '../../../utils/progressBarControlAssist';
+import { reloadAnimalPromptControlAssist } from '../../../utils/reloadAnimalPromptControlAssist';
 import { Core } from '../../Core';
 
 const primaryCallName = 'Common::InternalFlow';
@@ -698,6 +699,86 @@ class InternalFlow extends Core {
         }
 
         that.closePreventRender(true);
+      },
+    });
+  };
+
+  reloadDataWithReloadAnimalPrompt = ({
+    otherState = {},
+    delay = 500,
+    beforeRequest: beforeRequestSource = null,
+    successCallback = null,
+    failCallback = null,
+    completeCallback: completeCallbackSource = null,
+  }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          otherState,
+          delay,
+          beforeRequest: beforeRequestSource,
+          successCallback,
+          failCallback,
+          completeCallback: completeCallbackSource,
+        },
+      },
+      primaryCallName,
+      'reloadDataWithReloadAnimalPrompt',
+    );
+
+    const that = this;
+
+    that.openPreventRender();
+
+    that.startReloading();
+
+    that.logCallTrace(
+      {},
+      primaryCallName,
+      'reloadDataWithReloadAnimalPrompt',
+      'trigger',
+      'initLoad',
+    );
+
+    that.initLoad({
+      otherState,
+      delay: delay || 0,
+      beforeRequest: () => {
+        reloadAnimalPromptControlAssist.show(this.viewReloadAnimalPrompt);
+
+        if (isFunction(beforeRequestSource)) {
+          beforeRequestSource();
+        }
+      },
+      successCallback: successCallback || null,
+      failCallback: failCallback || null,
+      completeCallback: () => {
+        that.stopReloading();
+
+        if (isFunction(completeCallbackSource)) {
+          that.logCallTrace(
+            {},
+            primaryCallName,
+            'reloadDataWithReloadAnimalPrompt',
+            'trigger',
+            'completeCallback',
+          );
+
+          completeCallbackSource();
+        } else {
+          that.logCallTrace(
+            {},
+            primaryCallName,
+            'reloadDataWithReloadAnimalPrompt',
+            'trigger',
+            'completeCallback',
+            emptyLogic,
+          );
+        }
+
+        that.closePreventRender(true);
+
+        reloadAnimalPromptControlAssist.hide(this.viewReloadAnimalPrompt, 1000);
       },
     });
   };

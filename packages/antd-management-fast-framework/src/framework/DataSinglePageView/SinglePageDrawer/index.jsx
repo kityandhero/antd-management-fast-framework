@@ -20,10 +20,7 @@ import {
   LoadingOverlay,
   ReloadAnimalPrompt,
 } from '../../../components';
-import {
-  reloadAnimalPromptControlAssist,
-  switchControlAssist,
-} from '../../../utils';
+import { switchControlAssist } from '../../../utils';
 import { ColumnSetting } from '../../DataListView/ColumnSetting';
 import { DensityAction } from '../../DataListView/DensityAction';
 import { RefreshButton } from '../../DataListView/RefreshButton';
@@ -144,14 +141,8 @@ class SinglePageDrawer extends SinglePage {
 
       const that = this;
 
-      that.reloadData({
-        delay: 400,
-        beforeRequest: () => {
-          reloadAnimalPromptControlAssist.show();
-        },
-        completeCallback: () => {
-          reloadAnimalPromptControlAssist.hide(1000);
-        },
+      that.reloadDataWithReloadAnimalPrompt({
+        delay: 500,
       });
     }
   };
@@ -386,7 +377,7 @@ class SinglePageDrawer extends SinglePage {
                     {this.reloadWhenShow && this.reloadAnimalPrompt ? (
                       <ReloadAnimalPrompt
                         visible={firstLoadSuccess}
-                        flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}
+                        flag={this.viewReloadAnimalPrompt}
                       />
                     ) : null}
                   </Col>

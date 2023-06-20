@@ -1,8 +1,9 @@
 import { Tag } from 'antd';
-import QueueAnim from 'rc-queue-anim';
 import React, { PureComponent } from 'react';
 
 import { connect } from 'easy-soft-dva';
+
+import { QueueBox } from 'antd-management-fast-component';
 
 import { reloadAnimalPromptControlAssist } from '../../utils/reloadAnimalPromptControlAssist';
 
@@ -11,24 +12,24 @@ import { reloadAnimalPromptControlAssist } from '../../utils/reloadAnimalPromptC
 }))
 class ReloadAnimalPrompt extends PureComponent {
   render() {
-    const { reloadAnimalPromptControl, visible, color, text } = this.props;
+    const { reloadAnimalPromptControl, visible, flag, color, text } =
+      this.props;
 
     if (!visible) {
       return null;
     }
 
-    const result = reloadAnimalPromptControlAssist.check(
+    const spinning = reloadAnimalPromptControlAssist.check(
       reloadAnimalPromptControl,
+      flag,
     );
 
     return (
-      <QueueAnim>
-        {result ? (
-          <div key="d7521eec94194aeca0759c5a5bda41f0">
-            <Tag color={color}>{text}</Tag>
-          </div>
-        ) : null}
-      </QueueAnim>
+      <QueueBox show={spinning} type={'right'}>
+        <div key={this.keyPrefix}>
+          <Tag color={color}>{text}</Tag>
+        </div>
+      </QueueBox>
     );
   }
 }
@@ -38,6 +39,7 @@ ReloadAnimalPrompt.defaultProps = {
   flag: '',
   color: 'gold',
   text: '即将刷新',
+  delay: 0,
 };
 
 export { ReloadAnimalPrompt };

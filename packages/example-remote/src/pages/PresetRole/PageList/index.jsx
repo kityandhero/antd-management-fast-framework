@@ -371,9 +371,6 @@ class PageList extends MultiPage {
   };
 
   renderPresetOther = () => {
-    console.log('-----------------------');
-    console.log(this.state);
-
     return <AddModal afterOK={this.afterAddModalOk} />;
   };
 }
