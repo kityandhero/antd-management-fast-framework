@@ -54,6 +54,17 @@ class BaseWindow extends Base {
     return { externalData };
   }
 
+  adjustAfterCloseParameter = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'adjustAfterCloseParameter',
+      emptyLogic,
+    );
+
+    return null;
+  };
+
   /**
    * 当可见性变为显示时执行
    */
@@ -141,7 +152,7 @@ class BaseWindow extends Base {
           'afterClose',
         );
 
-        afterClose();
+        afterClose(this.adjustAfterCloseParameter());
       } else {
         this.logCallTrace(
           {},
