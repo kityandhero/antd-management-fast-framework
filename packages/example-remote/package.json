@@ -1,6 +1,6 @@
 {
   "name": "example-remote",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "author": "",
   "scripts": {
     "dev": "cross-env max dev",
@@ -48,8 +48,8 @@
     "@umijs/max": "^4.0.71",
     "antd": "^5.6.1",
     "antd-management-fast-common": "^2.1.27",
-    "antd-management-fast-component": "^2.1.31",
-    "antd-management-fast-framework": "^2.1.35",
+    "antd-management-fast-component": "^2.2.0",
+    "antd-management-fast-framework": "^2.2.0",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.8",
