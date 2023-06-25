@@ -70,10 +70,6 @@ class SingleList extends SinglePage {
       pageTitle: '文章单页列表',
       loadApiPath: 'simple/singleList',
       listViewMode: listViewConfig.viewMode.table,
-      changeSortModalVisible: false,
-      addBasicInfoDrawerVisible: false,
-      updateBasicInfoDrawerVisible: false,
-      singleListDrawerVisible: false,
       currentRecord: null,
     };
   }
@@ -167,80 +163,33 @@ class SingleList extends SinglePage {
   };
 
   showSingleListDrawer = () => {
-    this.setState({
-      singleListDrawerVisible: true,
-    });
+    SingleListDrawer.open();
   };
 
   afterSingleListDrawerOk = () => {
-    this.setState({ singleListDrawerVisible: false }, () => {
-      const that = this;
-
-      setTimeout(() => {
-        that.refreshData({});
-      }, 500);
-    });
-  };
-
-  afterSingleListDrawerCancel = () => {
-    this.setState({ singleListDrawerVisible: false });
-  };
-
-  afterSingleListDrawerClose = () => {
-    this.setState({ singleListDrawerVisible: false });
+    this.refreshData({});
   };
 
   showAddBasicInfoDrawer = () => {
-    this.setState({
-      addBasicInfoDrawerVisible: true,
-    });
+    AddBasicInfoDrawer.open();
   };
 
   afterAddBasicInfoDrawerOk = () => {
-    this.setState({ addBasicInfoDrawerVisible: false }, () => {
-      const that = this;
-
-      setTimeout(() => {
-        that.refreshData({});
-      }, 500);
-    });
-  };
-
-  afterAddBasicInfoDrawerCancel = () => {
-    this.setState({ addBasicInfoDrawerVisible: false });
-  };
-
-  afterAddBasicInfoDrawerClose = () => {
-    this.setState({ addBasicInfoDrawerVisible: false });
+    this.refreshData({});
   };
 
   showUpdateBasicInfoDrawer = (r) => {
     this.setState({
-      updateBasicInfoDrawerVisible: true,
       currentRecord: r,
     });
   };
 
   afterUpdateBasicInfoDrawerOk = () => {
-    this.setState({ updateBasicInfoDrawerVisible: false }, () => {
-      const that = this;
-
-      setTimeout(() => {
-        that.refreshData({});
-      }, 500);
-    });
-  };
-
-  afterUpdateBasicInfoDrawerCancel = () => {
-    this.setState({ updateBasicInfoDrawerVisible: false });
-  };
-
-  afterUpdateBasicInfoDrawerClose = () => {
-    this.setState({ updateBasicInfoDrawerVisible: false });
+    this.refreshData({});
   };
 
   showChangeSortModal = (currentRecord) => {
-    this.setState({ changeSortModalVisible: true, currentRecord });
+    this.setState({ currentRecord });
   };
 
   afterChangeSortModalOk = ({
@@ -284,16 +233,6 @@ class SingleList extends SinglePage {
         },
       });
     }
-
-    that.setState({
-      changeSortModalVisible: false,
-    });
-  };
-
-  afterChangeSortModalCancel = () => {
-    this.setState({
-      changeSortModalVisible: false,
-    });
   };
 
   goToAdd = () => {
@@ -797,14 +736,7 @@ class SingleList extends SinglePage {
   };
 
   renderPresetOther = () => {
-    const {
-      simpleId,
-      singleListDrawerVisible,
-      addBasicInfoDrawerVisible,
-      updateBasicInfoDrawerVisible,
-      changeSortModalVisible,
-      currentRecord,
-    } = this.state;
+    const { simpleId, currentRecord } = this.state;
 
     const renderChangeSortModal = checkHasAuthority(
       accessWayCollection.simple.updateSort.permission,
@@ -814,52 +746,29 @@ class SingleList extends SinglePage {
       <>
         <SingleListDrawer
           width={1200}
-          visible={singleListDrawerVisible}
           afterOK={() => {
             this.showSingleListDrawer();
-          }}
-          afterCancel={() => {
-            this.afterSingleListDrawerCancel();
-          }}
-          afterClose={() => {
-            this.afterSingleListDrawerClose();
           }}
         />
 
         <AddBasicInfoDrawer
-          visible={addBasicInfoDrawerVisible}
           externalData={{ simpleId }}
           afterOK={() => {
             this.afterAddBasicInfoDrawerOk();
           }}
-          afterCancel={() => {
-            this.afterAddBasicInfoDrawerCancel();
-          }}
-          afterClose={() => {
-            this.afterAddBasicInfoDrawerClose();
-          }}
         />
 
         <UpdateBasicInfoDrawer
-          visible={updateBasicInfoDrawerVisible}
           externalData={currentRecord}
           afterOK={() => {
             this.afterUpdateBasicInfoDrawerOk();
-          }}
-          afterCancel={() => {
-            this.afterUpdateBasicInfoDrawerCancel();
-          }}
-          afterClose={() => {
-            this.afterUpdateBasicInfoDrawerClose();
           }}
         />
 
         {renderChangeSortModal ? (
           <ChangeSortModal
-            visible={changeSortModalVisible}
             externalData={currentRecord}
             afterOK={this.afterChangeSortModalOk}
-            afterCancel={this.afterChangeSortModalCancel}
           />
         ) : null}
       </>

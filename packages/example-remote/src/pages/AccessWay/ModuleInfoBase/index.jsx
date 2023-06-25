@@ -28,6 +28,12 @@ const { InnerSinglePage } = DataSinglePageView;
 const primaryCallName = 'AccessWay::ModuleInfoBase';
 
 class ModuleInfoBase extends InnerSinglePage {
+  pageValues = {
+    pageNo: 1,
+    frontendPageNo: 1,
+    pageSize: 6,
+  };
+
   constructor(properties) {
     super(properties);
 

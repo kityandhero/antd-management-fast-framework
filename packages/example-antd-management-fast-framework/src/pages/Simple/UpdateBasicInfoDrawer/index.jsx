@@ -3,7 +3,10 @@ import { formatCollection, getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import { DataDrawer } from 'antd-management-fast-framework';
+import {
+  DataDrawer,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig/accessWayCollection';
 import { fieldData } from '../Common/data';
@@ -18,6 +21,10 @@ const visibleFlag = 'b6ee74db71ab4c0c88da4ceaf2f7138e';
 }))
 class Index extends BaseUpdateDrawer {
   componentAuthority = accessWayCollection.simple.updateBasicInfo.permission;
+
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
 
   constructor(properties) {
     super(properties, visibleFlag);

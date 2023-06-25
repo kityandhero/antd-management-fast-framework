@@ -12,6 +12,7 @@ import {
 
 import {
   cardConfig,
+  contentConfig,
   emptyLogic,
   extraBuildType,
 } from 'antd-management-fast-common';
@@ -39,7 +40,7 @@ import { ReloadActionButton } from '../ReloadActionButton';
 
 import styles from './index.less';
 
-const { CardCollectionItemContent } = PageExtra;
+const { HelpContent, CardCollectionItemContent } = PageExtra;
 
 const primaryCallName = 'Common::InternalBuild';
 
@@ -76,6 +77,10 @@ class InternalBuild extends InternalTabFlow {
       }
     }
 
+    const helpConfig = (this.contentWrapperType = contentConfig.wrapperType.page
+      ? null
+      : this.establishHelpConfig());
+
     return (
       <div
         style={{
@@ -98,6 +103,13 @@ class InternalBuild extends InternalTabFlow {
               key: index,
             });
           })}
+
+          {helpConfig == null ? null : (
+            <HelpContent
+              wrapperType={this.contentWrapperType}
+              {...this.establishHelpConfig()}
+            />
+          )}
         </Space>
       </div>
     );

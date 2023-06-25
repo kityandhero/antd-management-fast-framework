@@ -132,7 +132,7 @@ class AnimalView extends BaseView {
               type: cardConfig.contentItemType.component,
               component: (
                 <div style={boxStyle}>
-                  <QueueBox show={boxVisible} type={'right'}>
+                  <QueueBox show={boxVisible} type={'right'} duration={600}>
                     <IconInfo
                       icon={iconBuilder.form()}
                       text="QueueBox [type:right]"

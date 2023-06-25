@@ -14,7 +14,10 @@ import {
   searchCardConfig,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import { DataSinglePageView } from 'antd-management-fast-framework';
+import {
+  DataSinglePageView,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 import { accessWayCollection, colorCollection } from '../../../customConfig';
 import {
@@ -36,6 +39,10 @@ class SingleListDrawer extends SinglePageDrawer {
   reloadWhenShow = true;
 
   componentAuthority = accessWayCollection.simple.singleList.permission;
+
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
 
   constructor(properties) {
     super(properties, visibleFlag);
