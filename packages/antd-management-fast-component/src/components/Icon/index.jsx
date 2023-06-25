@@ -23,11 +23,13 @@ import {
   CloseCircleOutlined,
   CloudDownloadOutlined,
   ColumnHeightOutlined,
+  CommentOutlined,
   CompressOutlined,
   ContactsFilled,
   ContactsOutlined,
   CopyFilled,
   CopyOutlined,
+  CustomerServiceOutlined,
   DashboardFilled,
   DashboardOutlined,
   DeleteFilled,
@@ -202,6 +204,12 @@ export const iconBuilder = {
     }
 
     return <PlusCircleOutlined {...(properties || {})} />;
+  },
+  customerService: (properties = null) => {
+    return <CustomerServiceOutlined {...(properties || {})} />;
+  },
+  comment: (properties = null) => {
+    return <CommentOutlined {...(properties || {})} />;
   },
   reload: (properties = null) => {
     return <ReloadOutlined {...(properties || {})} />;

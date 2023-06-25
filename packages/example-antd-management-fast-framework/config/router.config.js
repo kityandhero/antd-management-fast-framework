@@ -116,6 +116,13 @@ export default [
         redirect: '/interaction/modelView',
       },
       {
+        path: '/interaction/formView',
+        name: 'formView',
+        icon: 'bars',
+        useMini: true,
+        component: './Interaction/FormView',
+      },
+      {
         path: '/interaction/animalView',
         name: 'animalView',
         icon: 'bars',

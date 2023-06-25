@@ -11,7 +11,7 @@ import {
 } from 'easy-soft-utility';
 
 import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
-import { DataModal } from 'antd-management-fast-framework';
+import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig/config';
 import { setMediaCollectionSortAction } from '../Assist/action';
@@ -30,6 +30,10 @@ const visibleFlag = 'b47b4b567e1643b585f1f7c69a323cba';
 }))
 class ChangeImageSortModal extends Base {
   resetDataAfterLoad = false;
+
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
 
   constructor(properties) {
     super(properties, visibleFlag);

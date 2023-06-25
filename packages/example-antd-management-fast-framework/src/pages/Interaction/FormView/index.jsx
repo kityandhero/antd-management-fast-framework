@@ -1,50 +1,47 @@
 import { Radio, Select } from 'antd';
-import dayjs from 'dayjs';
 
 import { connect } from 'easy-soft-dva';
 import {
   buildRandomHexColor,
   checkHasAuthority,
   convertCollection,
-  datetimeFormat,
   formatCollection,
   formatTarget,
-  getToken,
   getValueByKey,
   logDebug,
+  mergeArrowText,
   pretreatmentRemoteSingleData,
   showInfoMessage,
+  showSimpleInfoMessage,
   to,
 } from 'easy-soft-utility';
 
-import {
-  cardConfig,
-  getCorsDomain,
-  getTokenName,
-} from 'antd-management-fast-common';
+import { cardConfig, getCorsDomain } from 'antd-management-fast-common';
 import {
   buildButton,
   buildColorText,
   buildCustomGrid,
   ColorText,
+  convertOptionOrRadioData,
   iconBuilder,
   IconInfo,
 } from 'antd-management-fast-component';
 
-import { accessWayCollection } from '../../../../customConfig';
+import { accessWayCollection } from '../../../customConfig';
 import {
   renderCustomSimpleStatusRadio,
   renderCustomSimpleStatusSelect,
-} from '../../../../customSpecialComponents';
-import { fieldData as fieldDataSimpleImage } from '../../../SimpleImage/Common/data';
+} from '../../../customSpecialComponents';
 import {
   addGalleryImageAction,
   removeGalleryImageConfirmAction,
-  singleListTreeAction,
-} from '../../Assist/action';
-import ChangeImageSortModal from '../../ChangeImageSortModal';
-import { fieldData } from '../../Common/data';
-import TabPageBase from '../../TabPageBase';
+} from '../../Simple/Assist/action';
+import { fieldData as fieldDataSimpleImage } from '../../SimpleImage/Common/data';
+import BaseView from '../BaseView';
+import { code as codeBaseView } from '../BaseView/codeSource';
+import { fieldData } from '../Common/data';
+
+import { code as codeAnimalView } from './codeSource';
 
 const optionList = [
   {
@@ -72,127 +69,23 @@ function dataConvert(o, index) {
   return { label: name, value: flag, disabled: false, ...o };
 }
 
-@connect(({ simple, schedulingControl }) => ({
-  simple,
+@connect(({ schedulingControl }) => ({
   schedulingControl,
 }))
-class BasicInfo extends TabPageBase {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
-  componentAuthority = accessWayCollection.simple.get.permission;
-
-  htmlContent = '';
-
-  textContent = '';
-
+class FormView extends BaseView {
   constructor(properties) {
     super(properties);
 
-    const tokenSetObject = {};
-
-    tokenSetObject[`${getTokenName()}`] = getToken() || '';
-
     this.state = {
       ...this.state,
-
-      loadApiPath: 'simple/get',
-      submitApiPath: 'simple/updateBasicInfo',
-      tokenSet: tokenSetObject,
-      changeImageSortModalVisible: false,
-      simpleId: null,
+      pageTitle: 'Animal 交互示例',
+      currentCodeTitle: 'AnimalView',
+      currentCode: codeAnimalView,
       attachmentBase64: '',
       image: '',
       rectangleImage: '',
-      video: '',
-      audio: '',
-      attachment: '',
-      imageList: [],
-      fileList: [],
-      initContent: '',
-      listTreeData: [],
-      parentId: '1',
-      switchValue: true,
     };
   }
-
-  doOtherRemoteRequest = () => {
-    singleListTreeAction({
-      target: this,
-      successCallback: ({ target, remoteListData }) => {
-        target.setState({
-          listTreeData: remoteListData,
-        });
-      },
-    });
-  };
-
-  supplementSubmitRequestParams = (o) => {
-    const d = o;
-    const { simpleId, image, rectangleImage, video, audio, attachment } =
-      this.state;
-
-    d.simpleId = simpleId;
-    d.image = image;
-    d.rectangleImage = rectangleImage;
-    d.video = video;
-    d.audio = audio;
-    d.attachment = attachment;
-    d.content = this.htmlContent;
-
-    return d;
-  };
-
-  doOtherAfterLoadSuccess = ({
-    metaData,
-    // eslint-disable-next-line no-unused-vars
-    metaListData,
-    // eslint-disable-next-line no-unused-vars
-    metaExtra,
-    // eslint-disable-next-line no-unused-vars
-    metaOriginalData,
-  }) => {
-    const {
-      image,
-      rectangleImage,
-      imageList,
-      imageFileList,
-      video,
-      audio,
-      attachment,
-      attachmentBase64,
-      content,
-    } = metaData;
-
-    const fileList = [];
-
-    for (const item of imageFileList || []) {
-      const o = {
-        uid: item.id,
-        name: '',
-        status: 'done',
-        url: item.url,
-      };
-
-      o[fieldDataSimpleImage.simpleImageId.name] = item.id;
-
-      fileList.push(o);
-    }
-
-    this.htmlContent = content;
-
-    this.setState({
-      image,
-      rectangleImage,
-      imageList,
-      fileList,
-      video,
-      audio,
-      attachment,
-      attachmentBase64,
-      initContent: content,
-    });
-  };
 
   afterImageUploadSuccess = (image) => {
     this.setState({ image });
@@ -303,10 +196,6 @@ class BasicInfo extends TabPageBase {
     return false;
   };
 
-  showChangeImageSortModal = () => {
-    ChangeImageSortModal.open();
-  };
-
   afterChangeImageSortModalOk = () => {
     this.reloadData({});
   };
@@ -374,55 +263,11 @@ class BasicInfo extends TabPageBase {
     };
   };
 
-  fillInitialValuesAfterLoad = ({
-    metaData = null,
-    // eslint-disable-next-line no-unused-vars
-    metaListData = [],
-    // eslint-disable-next-line no-unused-vars
-    metaExtra = null,
-    // eslint-disable-next-line no-unused-vars
-    metaOriginalData = null,
-  }) => {
-    const values = {};
-
-    if (metaData != null) {
-      values[fieldData.title.name] = getValueByKey({
-        data: metaData,
-        key: fieldData.title.name,
-      });
-
-      values[fieldData.subtitle.name] = getValueByKey({
-        data: metaData,
-        key: fieldData.subtitle.name,
-      });
-
-      values[fieldData.timePicker.name] = getValueByKey({
-        data: metaData,
-        key: fieldData.timePicker.name,
-        // eslint-disable-next-line no-unused-vars
-        convertBuilder: (value) => {
-          return dayjs('12:08', datetimeFormat.hourMinute);
-        },
-      });
-
-      values[fieldData.description.name] = getValueByKey({
-        data: metaData,
-        key: fieldData.description.name,
-      });
-
-      values[fieldData.switch.name] = getValueByKey({
-        data: metaData,
-        key: fieldData.switch.name,
-        convert: convertCollection.boolean,
-      });
-    }
-
-    return values;
-  };
-
   establishCardCollectionConfig = () => {
     const {
       metaData,
+      currentCode,
+      currentCodeTitle,
       image,
       rectangleImage,
       video,
@@ -435,6 +280,8 @@ class BasicInfo extends TabPageBase {
       listTreeData,
       parentId,
     } = this.state;
+
+    const that = this;
 
     return {
       list: [
@@ -849,7 +696,6 @@ class BasicInfo extends TabPageBase {
               },
               onItemChange: this.handleGalleryUploadChange,
               onItemRemove: this.onGalleryRemove,
-              // showUploadList: true,
             },
           ],
         },
@@ -1686,34 +1532,79 @@ class BasicInfo extends TabPageBase {
             },
           ],
         },
+
+        {
+          title: {
+            text: '代码示例',
+            subText: mergeArrowText('Code', currentCodeTitle),
+          },
+          extra: {
+            affix: true,
+            split: false,
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.flexSelect,
+                label: '显示源代码',
+                size: 'small',
+                defaultValue: 'AnimalView',
+                style: { width: '520px' },
+                list: [
+                  {
+                    flag: 'BaseView',
+                    name: 'BaseView',
+                  },
+                  {
+                    flag: 'AnimalView',
+                    name: 'AnimalView',
+                  },
+                ],
+                dataConvert: convertOptionOrRadioData,
+                onChange: (v) => {
+                  let code = '';
+
+                  switch (v) {
+                    case 'BaseView': {
+                      code = codeBaseView;
+                      break;
+                    }
+
+                    case 'AnimalView': {
+                      code = codeAnimalView;
+                      break;
+                    }
+                  }
+
+                  that.setState({
+                    currentCodeTitle: v,
+                    currentCode: code,
+                  });
+
+                  showSimpleInfoMessage(`当前显示 ${v} 源代码`);
+                },
+              },
+            ],
+          },
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.syntaxHighlighterView,
+              fieldData: 'syntaxHighlighter',
+              value: currentCode,
+              language: 'js',
+              innerProps: {
+                showLineNumbers: false,
+                wrapLines: false,
+              },
+            },
+          ],
+        },
       ],
     };
   };
 
-  establishHelpConfig = () => {
-    return {
-      title: '操作提示',
-      list: [
-        {
-          text: '简要说明:这里可以显示需要提示的信息。',
-        },
-        {
-          text: '简要说明:这里可以显示需要提示的信息。',
-        },
-      ],
-    };
-  };
-
-  renderPresetOther = () => {
-    const { metaData } = this.state;
-
-    return (
-      <ChangeImageSortModal
-        externalData={metaData}
-        afterOK={this.afterChangeImageSortModalOk}
-      />
-    );
+  renderPresetPageFooter = () => {
+    return 'PageFooter';
   };
 }
 
-export default BasicInfo;
+export default FormView;

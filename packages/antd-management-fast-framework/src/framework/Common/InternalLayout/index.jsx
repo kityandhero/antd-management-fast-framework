@@ -1,3 +1,4 @@
+import { FloatButton } from 'antd';
 import React from 'react';
 
 import { checkObjectIsNullOrEmpty, isArray } from 'easy-soft-utility';
@@ -8,6 +9,7 @@ import { PageExtraWrapper } from '../../../components/PageExtraWrapper';
 import { InternalBuild } from '../InternalBuild';
 
 const { ContentBox, BodyContent, SiderBox, ToolBar, HelpContent } = PageExtra;
+const { BackTop } = FloatButton;
 
 const primaryCallName = 'Common::InternalLayout';
 
@@ -81,6 +83,16 @@ class InternalLayout extends InternalBuild {
     );
   };
 
+  renderPresetPageFooter = () => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetPageFooter');
+
+    return null;
+  };
+
+  renderPresetFloatButton = () => {
+    return <BackTop style={{ bottom: 75 }} />;
+  };
+
   renderFurther() {
     this.logCallTrack({}, primaryCallName, 'renderFurther');
 
@@ -123,6 +135,8 @@ class InternalLayout extends InternalBuild {
         tabBarExtraContent={this.buildTabBarExtraContent()}
         onTabChange={this.handleTabChange}
         tabProps={this.buildOtherTabProps()}
+        footer={this.renderPresetPageFooter()}
+        floatButton={this.renderPresetFloatButton()}
       >
         {this.renderPresetPageBody()}
       </PageExtraWrapper>

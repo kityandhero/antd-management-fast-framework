@@ -77,9 +77,15 @@ class InternalBuild extends InternalTabFlow {
       }
     }
 
-    const helpConfig = (this.contentWrapperType = contentConfig.wrapperType.page
-      ? null
-      : this.establishHelpConfig());
+    const helpConfig =
+      this.contentWrapperType === contentConfig.wrapperType.page
+        ? null
+        : this.establishHelpConfig();
+
+    console.log({
+      contentWrapperType: this.contentWrapperType,
+      v: this.establishHelpConfig(),
+    });
 
     return (
       <div

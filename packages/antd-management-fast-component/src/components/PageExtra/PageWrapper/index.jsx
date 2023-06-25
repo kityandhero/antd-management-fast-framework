@@ -1,4 +1,3 @@
-import { FloatButton } from 'antd';
 import React, { PureComponent } from 'react';
 import { Outlet } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
@@ -16,8 +15,6 @@ import { HeaderExtraContent } from '../HeaderExtraContent';
 import { HeaderSubTitle } from '../HeaderSubTitle';
 import { HeaderTagWrapper } from '../HeaderTagWrapper';
 import { HeaderTitle } from '../HeaderTitle';
-
-const { BackTop } = FloatButton;
 
 class PageWrapper extends PureComponent {
   render() {
@@ -42,6 +39,8 @@ class PageWrapper extends PureComponent {
       tabBarExtraContent,
       tabProps,
       onTabChange,
+      footer,
+      floatButton,
       children,
     } = this.props;
 
@@ -101,12 +100,13 @@ class PageWrapper extends PureComponent {
             tabBarExtraContent={tabBarExtraContent}
             onTabChange={onTabChange}
             tabProps={tabProps}
+            footer={footer}
           >
             <Outlet />
 
             {children}
 
-            <BackTop />
+            {floatButton}
           </PageContainer>
         </div>
       );
@@ -118,7 +118,7 @@ class PageWrapper extends PureComponent {
 
         {children}
 
-        <BackTop />
+        {floatButton}
       </>
     );
   }
@@ -140,6 +140,8 @@ PageWrapper.defaultProps = {
   extraAction: null,
   contentConfig: null,
   extraContentConfig: null,
+  footer: null,
+  floatButton: null,
 };
 
 export { PageWrapper };

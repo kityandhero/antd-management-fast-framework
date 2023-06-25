@@ -28,6 +28,8 @@ export default {
 
   'menu.interaction': '交互示例',
   'menu.interaction-mini': '交互',
+  'menu.interaction.formView': 'Form 示例',
+  'menu.interaction.formView-mini': 'Form',
   'menu.interaction.animalView': 'Animal 示例',
   'menu.interaction.animalView-mini': 'Animal',
   'menu.interaction.modelView': 'Model 示例',
