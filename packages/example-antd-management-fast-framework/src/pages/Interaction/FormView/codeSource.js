@@ -10,6 +10,7 @@ import {
   getValueByKey,
   logDebug,
   mergeArrowText,
+  pretreatmentRemoteSingleData,
   showInfoMessage,
   showSimpleInfoMessage,
   to,
@@ -31,6 +32,11 @@ import {
   renderCustomSimpleStatusRadio,
   renderCustomSimpleStatusSelect,
 } from '../../../customSpecialComponents';
+import {
+  addGalleryImageAction,
+  removeGalleryImageConfirmAction,
+} from '../../Simple/Assist/action';
+import { fieldData as fieldDataSimpleImage } from '../../SimpleImage/Common/data';
 import BaseView from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 import { fieldData } from '../Common/data';
@@ -80,6 +86,119 @@ class FormView extends BaseView {
       rectangleImage: '',
     };
   }
+
+  afterImageUploadSuccess = (image) => {
+    this.setState({ image });
+  };
+
+  afterRectangleImageUploadSuccess = (image) => {
+    this.setState({ rectangleImage: image });
+  };
+
+  afterVideoChangeSuccess = (video) => {
+    this.setState({ video });
+  };
+
+  afterAudioChangeSuccess = (audio) => {
+    this.setState({ audio });
+  };
+
+  afterFileBase64UploadSuccess = (base64) => {
+    this.setState({ attachmentBase64: base64 });
+  };
+
+  afterFileUploadSuccess = (file) => {
+    this.setState({ attachment: file });
+  };
+
+  afterAttachmentChangeSuccess = (attachment) => {
+    this.setState({ attachment });
+  };
+
+  afterHtmlChange = ({ html, text }) => {
+    this.htmlContent = html;
+    this.textContent = text;
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  handleSwitchChange = (value) => {};
+
+  handleGalleryUploadChange = ({ file, fileList }) => {
+    this.setState({ fileList: [...fileList] });
+
+    if (file.status === 'done') {
+      const { response } = file;
+
+      const v = pretreatmentRemoteSingleData(response);
+
+      const { dataSuccess } = v;
+
+      if (dataSuccess) {
+        const {
+          data: { imageUrl },
+        } = v;
+
+        this.addGalleryImage({ file, fileList, imageUrl });
+      }
+    }
+  };
+
+  addGalleryImage = ({ file, fileList, imageUrl }) => {
+    const { metaData } = this.state;
+
+    addGalleryImageAction({
+      target: this,
+      handleData: { ...metaData, url: imageUrl },
+      successCallback: ({ target, remoteData }) => {
+        for (const item of fileList || []) {
+          if (item.uid === file.uid) {
+            item[fieldDataSimpleImage.simpleImageId.name] = getValueByKey({
+              data: remoteData,
+              key: fieldDataSimpleImage.simpleImageId.name,
+            });
+          }
+        }
+
+        target.setState({ fileList: [...fileList] });
+      },
+    });
+  };
+
+  onGalleryRemove = (file) => {
+    const simpleImageId = getValueByKey({
+      data: file,
+      key: fieldDataSimpleImage.simpleImageId.name,
+    });
+
+    removeGalleryImageConfirmAction({
+      target: this,
+      handleData: { simpleImageId },
+      successCallback: ({ target }) => {
+        const { fileList } = this.state;
+
+        const list = [];
+
+        for (const item of fileList || []) {
+          const itemProductImageId = getValueByKey({
+            data: item,
+            key: fieldDataSimpleImage.simpleImageId.name,
+          });
+
+          if (itemProductImageId !== simpleImageId) {
+            list.push(item);
+          }
+        }
+
+        target.setState({ fileList: [...list] });
+      },
+    });
+
+    return false;
+  };
+
+  afterChangeImageSortModalOk = () => {
+    this.reloadData({});
+  };
 
   establishToolBarConfig = () => {
     return {

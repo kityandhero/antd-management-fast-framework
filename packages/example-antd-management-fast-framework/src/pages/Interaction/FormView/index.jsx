@@ -78,14 +78,30 @@ class FormView extends BaseView {
 
     this.state = {
       ...this.state,
-      pageTitle: 'Animal 交互示例',
-      currentCodeTitle: 'AnimalView',
+      pageTitle: 'Form 交互示例',
+      currentCodeTitle: 'FormView',
       currentCode: codeAnimalView,
       attachmentBase64: '',
       image: '',
       rectangleImage: '',
     };
   }
+
+  establishPageHeaderSubTitle = () => '复杂的组件展示';
+
+  establishPageHeaderTagCollectionConfig = () => {
+    return [
+      {
+        color: 'red',
+        text: '标签1',
+      },
+      {
+        color: 'green',
+        text: '标签2',
+        hidden: true,
+      },
+    ];
+  };
 
   afterImageUploadSuccess = (image) => {
     this.setState({ image });

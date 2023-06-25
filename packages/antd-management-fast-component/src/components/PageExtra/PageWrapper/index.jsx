@@ -76,16 +76,19 @@ class PageWrapper extends PureComponent {
                 paddingLeft: '24px',
                 paddingRight: '24px',
               },
+              avatar: avatarProperties,
+              title: <HeaderTitle title={title} titlePrefix={titlePrefix} />,
+              subTitle: isString(subTitle) ? (
+                <HeaderSubTitle text={subTitle} />
+              ) : (
+                subTitle
+              ),
+              tags: <HeaderTagWrapper list={tagList} />,
+              ...(tabProps === null ? { footer: null } : {}),
             }}
             childrenContentStyle={{
               padding: '0px',
             }}
-            avatar={avatarProperties}
-            title={<HeaderTitle title={title} titlePrefix={titlePrefix} sp />}
-            subTitle={
-              isString(subTitle) ? <HeaderSubTitle text={subTitle} /> : subTitle
-            }
-            tags={<HeaderTagWrapper list={tagList} />}
             extra={extraAction}
             content={<HeaderContent {...(contentConfig || {})} />}
             extraContent={
