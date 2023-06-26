@@ -1041,6 +1041,17 @@ class InternalFlow extends Core {
     return false;
   }
 
+  validate = ({
+    // eslint-disable-next-line no-unused-vars
+    successCallback = null,
+    // eslint-disable-next-line no-unused-vars
+    failCallback = null,
+    // eslint-disable-next-line no-unused-vars
+    completeCallback = null,
+  }) => {
+    throw new Error(this.buildOverloadErrorText('validate'));
+  };
+
   reloadByUrl() {
     this.logCallTrack({}, primaryCallName, 'reloadByUrl');
 
@@ -1348,13 +1359,13 @@ class InternalFlow extends Core {
     return iconBuilder.save();
   };
 
-  getPresetPageName = () => {
-    this.logCallTrack({}, primaryCallName, 'getPresetPageName');
+  getPresetPageTitle = () => {
+    this.logCallTrack({}, primaryCallName, 'getPresetPageTitle');
 
     this.logCallTrace(
       {},
       primaryCallName,
-      'getPresetPageName',
+      'getPresetPageTitle',
       'state',
       'pageTitle',
     );

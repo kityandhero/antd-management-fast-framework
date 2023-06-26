@@ -296,10 +296,14 @@ class SinglePageDrawer extends SinglePage {
       {},
       primaryCallName,
       'buildTitleText',
-      'getPresetPageName',
+      'getPresetPageTitle',
     );
 
-    return this.getPresetPageName();
+    const { title } = this.props;
+
+    return checkStringIsNullOrWhiteSpace(title)
+      ? this.getPresetPageTitle()
+      : title;
   };
 
   buildTitleSubText = () => {
@@ -647,6 +651,7 @@ class SinglePageDrawer extends SinglePage {
 }
 
 SinglePageDrawer.defaultProps = {
+  title: '',
   hideDrawerAfterSelect: true,
   confirmSelect: true,
   width: 820,

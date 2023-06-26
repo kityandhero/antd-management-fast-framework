@@ -1575,7 +1575,6 @@ class BasicInfo extends TabPageBase {
           title: {
             text: 'syntaxHighlighter',
           },
-
           items: [
             {
               lg: 24,

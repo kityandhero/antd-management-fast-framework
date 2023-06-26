@@ -297,10 +297,14 @@ class MultiPageDrawer extends MultiPage {
       {},
       primaryCallName,
       'buildTitleText',
-      'getPresetPageName',
+      'getPresetPageTitle',
     );
 
-    return this.getPresetPageName();
+    const { title } = this.props;
+
+    return checkStringIsNullOrWhiteSpace(title)
+      ? this.getPresetPageTitle()
+      : title;
   };
 
   buildTitleSubText = () => {
@@ -629,6 +633,7 @@ class MultiPageDrawer extends MultiPage {
 }
 
 MultiPageDrawer.defaultProps = {
+  title: '',
   hideDrawerAfterSelect: true,
   confirmSelect: true,
   width: 820,

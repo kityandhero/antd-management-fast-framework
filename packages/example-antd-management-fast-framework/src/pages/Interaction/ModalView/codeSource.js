@@ -11,12 +11,12 @@ import {
   convertOptionOrRadioData,
 } from 'antd-management-fast-component';
 
+import SimpleAddModal from '../../../businessComponents/Modals/SimpleAddModal';
+import { code as codeSimpleAddModal } from '../../../businessComponents/Modals/SimpleAddModal/codeSource';
+import SimpleEditModal from '../../../businessComponents/Modals/SimpleEditModal';
+import { code as codeSimpleEditModal } from '../../../businessComponents/Modals/SimpleEditModal/codeSource';
 import BaseView from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
-import SimpleAddModal from '../SimpleAddModal';
-import { code as codeSimpleAddModal } from '../SimpleAddModal/codeSource';
-import SimpleEditModal from '../SimpleEditModal';
-import { code as codeSimpleEditModal } from '../SimpleEditModal/codeSource';
 
 import { code as codeModalView } from './codeSource';
 

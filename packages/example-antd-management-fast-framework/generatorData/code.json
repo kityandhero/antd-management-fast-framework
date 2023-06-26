@@ -1,12 +1,120 @@
 {
   "list": [
     {
-      "sourceFilePath": "./src/pages/Interaction/BaseView/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/BaseView/codeSource.js"
+      "sourceFilePath": "./src/businessComponents/SelectButton/index.jsx",
+      "codeFilePath": "./src/businessComponents/SelectButton/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/FormView/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/FormView/codeSource.js"
+      "sourceFilePath": "./src/businessComponents/SelectField/index.jsx",
+      "codeFilePath": "./src/businessComponents/SelectField/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Modals/SimpleAddModal/index.jsx",
+      "codeFilePath": "./src/businessComponents/Modals/SimpleAddModal/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Modals/SimpleEditModal/index.jsx",
+      "codeFilePath": "./src/businessComponents/Modals/SimpleEditModal/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/SimpleAddDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/SimpleAddDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/SimpleEditDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/SimpleEditDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Single/BaseSimpleSinglePageSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Single/BaseSimpleSinglePageSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Multi/BaseSimpleMultiPageSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Multi/BaseSimpleMultiPageSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Multi/SimpleMultiPageConfirmSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Multi/SimpleMultiPageConfirmSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Multi/SimpleMultiPageSingleSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Multi/SimpleMultiPageSingleSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/businessComponents/Drawers/Multi/SimpleMultiPageMultiSelectDrawer/index.jsx",
+      "codeFilePath": "./src/businessComponents/Drawers/Multi/SimpleMultiPageMultiSelectDrawer/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/BaseView/index.jsx",
+      "codeFilePath": "./src/pages/Form/BaseView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/NormalView/index.jsx",
+      "codeFilePath": "./src/pages/Form/NormalView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/RadioView/index.jsx",
+      "codeFilePath": "./src/pages/Form/RadioView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/SelectView/index.jsx",
+      "codeFilePath": "./src/pages/Form/SelectView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/DataView/index.jsx",
+      "codeFilePath": "./src/pages/Form/DataView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/UploadView/index.jsx",
+      "codeFilePath": "./src/pages/Form/UploadView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/GridView/index.jsx",
+      "codeFilePath": "./src/pages/Form/GridView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/ToolbarView/index.jsx",
+      "codeFilePath": "./src/pages/Form/ToolbarView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/EditorView/index.jsx",
+      "codeFilePath": "./src/pages/Form/EditorView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/HighlighterView/index.jsx",
+      "codeFilePath": "./src/pages/Form/HighlighterView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Form/SelectFieldView/index.jsx",
+      "codeFilePath": "./src/pages/Form/SelectFieldView/codeSource.js"
+    },
+    {
+      "sourceFilePath": "./src/pages/Interaction/BaseView/index.jsx",
+      "codeFilePath": "./src/pages/Interaction/BaseView/codeSource.js"
     },
     {
       "sourceFilePath": "./src/pages/Interaction/AnimalView/index.jsx",
@@ -17,68 +125,8 @@
       "codeFilePath": "./src/pages/Interaction/ModalView/codeSource.js"
     },
     {
-      "sourceFilePath": "./src/pages/Interaction/SimpleAddModal/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleAddModal/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/SimpleEditModal/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleEditModal/codeSource.js"
-    },
-    {
       "sourceFilePath": "./src/pages/Interaction/DrawerView/index.jsx",
       "codeFilePath": "./src/pages/Interaction/DrawerView/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/SimpleAddDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleAddDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/SimpleEditDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/SimpleEditDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/BaseSimpleSinglePageSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Single/BaseSimpleSinglePageSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Multi/BaseSimpleMultiPageSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Multi/BaseSimpleMultiPageSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageConfirmSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageConfirmSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageSingleSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageSingleSelectDrawer/codeSource.js"
-    },
-    {
-      "sourceFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageMultiSelectDrawer/index.jsx",
-      "codeFilePath": "./src/pages/Interaction/Drawers/Multi/SimpleMultiPageMultiSelectDrawer/codeSource.js"
     }
   ]
 }

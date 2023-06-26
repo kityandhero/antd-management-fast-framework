@@ -18,7 +18,7 @@ class OnlyShowInputItem extends PureComponent {
       value,
       helper = null,
       icon = iconBuilder.form(),
-      inputProps: inputProperties = { disabled: true },
+      innerProps: innerProperties = { disabled: true },
       formItemLayout = {},
       hidden = false,
     } = this.props;
@@ -29,7 +29,7 @@ class OnlyShowInputItem extends PureComponent {
       addonBefore: icon,
       placeholder: '暂无数据',
       value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
-      ...inputProperties,
+      ...innerProperties,
     };
 
     const resultCheck = checkFromConfig({
@@ -66,7 +66,7 @@ OnlyShowInputItem.defaultProps = {
   value: '',
   helper: null,
   icon: iconBuilder.form(),
-  inputProps: { disabled: true },
+  innerProps: { disabled: true },
   formItemLayout: {},
   hidden: false,
 };

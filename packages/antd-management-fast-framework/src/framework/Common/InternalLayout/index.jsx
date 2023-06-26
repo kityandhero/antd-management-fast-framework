@@ -117,7 +117,7 @@ class InternalLayout extends InternalBuild {
         tabFlag={this.viewTabFlag}
         flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
         showHeader={this.showPageHeader}
-        title={this.getPresetPageName()}
+        title={this.getPresetPageTitle()}
         titlePrefix={this.establishPageHeaderTitlePrefix()}
         subTitle={this.establishPageHeaderSubTitle()}
         showAvatar={showPageHeaderAvatar}

@@ -545,6 +545,14 @@ class AbstractComponent extends Component {
     logCallTraceCore(data, mergeArrowText(this.componentName, ...messages));
   }
 
+  buildOverloadErrorText(...texts) {
+    return mergeArrowText(
+      this.componentName,
+      'need overrode to implement',
+      ...texts,
+    );
+  }
+
   renderFurther() {
     return null;
   }

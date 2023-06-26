@@ -1,18 +1,18 @@
 import { connect } from 'easy-soft-dva';
 
-import { FieldExtension } from 'antd-management-fast-framework';
+import { FieldExtra } from 'antd-management-fast-component';
 
 import PageListDrawer from '../PageListDrawer';
 
 const {
-  SelectFieldDrawer: { SelectFieldInteractiveBase },
-} = FieldExtension;
+  SelectFieldExtra: { BaseSelectFieldExtra },
+} = FieldExtra;
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SelectField extends SelectFieldInteractiveBase {
+class SelectField extends BaseSelectFieldExtra {
   renderPresetSelectDrawer = () => {
     const { drawerVisible } = this.state;
 
@@ -21,7 +21,6 @@ class SelectField extends SelectFieldInteractiveBase {
         visible={drawerVisible || false}
         width={1200}
         afterSelectSuccess={this.afterDrawerSelectSuccess}
-        afterClose={this.afterDrawerClose}
       />
     );
   };

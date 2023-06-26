@@ -82,11 +82,6 @@ class InternalBuild extends InternalTabFlow {
         ? null
         : this.establishHelpConfig();
 
-    console.log({
-      contentWrapperType: this.contentWrapperType,
-      v: this.establishHelpConfig(),
-    });
-
     return (
       <div
         style={{

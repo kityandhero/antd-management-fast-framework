@@ -5,7 +5,6 @@ import {
   isArray,
   isEmptyArray,
   pretreatmentRequestParameters,
-  showSimpleErrorMessage,
 } from 'easy-soft-utility';
 
 import { listViewConfig } from 'antd-management-fast-common';
@@ -63,17 +62,15 @@ class ModuleInfoBase extends InnerSinglePage {
 
   // eslint-disable-next-line no-unused-vars
   removeModule = (record) => {
-    const text = 'removeModule need be override';
-
-    showSimpleErrorMessage(text);
+    throw new Error(this.buildOverloadErrorText('removeModule'));
   };
 
   openModuleDrawer = () => {
-    throw new Error('showModuleDrawer need overrode to implement');
+    throw new Error(this.buildOverloadErrorText('showModuleDrawer'));
   };
 
   openUpdateModuleModal = () => {
-    throw new Error('openUpdateModuleModal need overrode to implement');
+    throw new Error(this.buildOverloadErrorText('openUpdateModuleModal'));
   };
 
   showModuleDrawer = () => {

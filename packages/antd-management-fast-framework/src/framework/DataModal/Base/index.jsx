@@ -135,10 +135,10 @@ class Base extends BaseWindow {
       {},
       primaryCallName,
       'buildTitleText',
-      'getPresetPageName',
+      'getPresetPageTitle',
     );
 
-    return this.getPresetPageName();
+    return this.getPresetPageTitle();
   };
 
   buildTitleSubText = () => {

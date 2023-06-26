@@ -41,7 +41,6 @@ class Add extends BaseAddForm {
 
     this.state = {
       ...this.state,
-
       dataLoading: false,
       pageTitle: '发布文章',
       submitApiPath: 'simple/addBasicInfo',

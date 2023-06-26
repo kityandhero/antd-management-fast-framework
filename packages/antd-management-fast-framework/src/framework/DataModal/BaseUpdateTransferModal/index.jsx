@@ -23,7 +23,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
   }
 
   buildTargetKeys = () => {
-    throw new Error('buildTargetKeys need overload');
+    throw new Error(this.buildOverloadErrorText('buildTargetKeys'));
   };
 
   doOtherWhenChangeVisibleToShow = () => {
@@ -48,7 +48,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
   };
 
   buildDataSource = () => {
-    throw new Error('buildDataSource need overload');
+    throw new Error(this.buildOverloadErrorText('buildDataSource'));
   };
 
   buildTransferTitle = () => {
@@ -57,7 +57,7 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
 
   // eslint-disable-next-line no-unused-vars
   buildItem = (o) => {
-    throw new Error('buildItem need overload');
+    throw new Error(this.buildOverloadErrorText('buildItem'));
   };
 
   establishCardCollectionConfig = () => {
