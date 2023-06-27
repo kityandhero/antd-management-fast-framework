@@ -744,7 +744,7 @@ class InternalFlow extends Core {
       otherState,
       delay: delay || 0,
       beforeRequest: () => {
-        reloadAnimalPromptControlAssist.show(this.viewReloadAnimalPrompt);
+        reloadAnimalPromptControlAssist.show(this.viewAnimalPromptFlag);
 
         if (isFunction(beforeRequestSource)) {
           beforeRequestSource();
@@ -778,7 +778,7 @@ class InternalFlow extends Core {
 
         that.closePreventRender(true);
 
-        reloadAnimalPromptControlAssist.hide(this.viewReloadAnimalPrompt, 1000);
+        reloadAnimalPromptControlAssist.hide(this.viewAnimalPromptFlag, 1000);
       },
     });
   };
@@ -983,6 +983,86 @@ class InternalFlow extends Core {
         }
 
         that.closePreventRender(true);
+      },
+    });
+  };
+
+  refreshDataWithReloadAnimalPrompt = ({
+    otherState = {},
+    delay = 0,
+    beforeRequest: beforeRequestSource = null,
+    successCallback = null,
+    failCallback = null,
+    completeCallback: completeCallbackSource = null,
+  }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          otherState,
+          delay,
+          beforeRequest: beforeRequestSource,
+          successCallback,
+          failCallback,
+          completeCallback: completeCallbackSource,
+        },
+      },
+      primaryCallName,
+      'refreshDataWithReloadAnimalPrompt',
+    );
+
+    const that = this;
+
+    that.openPreventRender();
+
+    that.startRefreshing();
+
+    that.logCallTrace(
+      {},
+      primaryCallName,
+      'refreshDataWithReloadAnimalPrompt',
+      'trigger',
+      'initLoad',
+    );
+
+    that.initLoad({
+      otherState,
+      delay: delay || 0,
+      beforeRequest: () => {
+        reloadAnimalPromptControlAssist.show(this.viewAnimalPromptFlag);
+
+        if (isFunction(beforeRequestSource)) {
+          beforeRequestSource();
+        }
+      },
+      successCallback: successCallback || null,
+      failCallback: failCallback || null,
+      completeCallback: () => {
+        that.stopRefreshing();
+
+        if (isFunction(completeCallbackSource)) {
+          that.logCallTrace(
+            {},
+            primaryCallName,
+            'refreshDataWithReloadAnimalPrompt',
+            'trigger',
+            'completeCallback',
+          );
+
+          completeCallbackSource();
+        } else {
+          that.logCallTrace(
+            {},
+            primaryCallName,
+            'refreshDataWithReloadAnimalPrompt',
+            'trigger',
+            'completeCallback',
+            emptyLogic,
+          );
+        }
+
+        that.closePreventRender(true);
+
+        reloadAnimalPromptControlAssist.hide(this.viewAnimalPromptFlag, 1000);
       },
     });
   };

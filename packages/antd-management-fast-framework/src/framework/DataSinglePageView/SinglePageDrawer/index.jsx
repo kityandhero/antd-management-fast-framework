@@ -380,8 +380,8 @@ class SinglePageDrawer extends SinglePage {
                   <Col flex="auto">
                     {this.reloadWhenShow && this.reloadAnimalPrompt ? (
                       <ReloadAnimalPrompt
-                        visible={firstLoadSuccess}
-                        flag={this.viewReloadAnimalPrompt}
+                        hide={!firstLoadSuccess}
+                        flag={this.viewAnimalPromptFlag}
                       />
                     ) : null}
                   </Col>

@@ -12,10 +12,9 @@ import { reloadAnimalPromptControlAssist } from '../../utils/reloadAnimalPromptC
 }))
 class ReloadAnimalPrompt extends PureComponent {
   render() {
-    const { reloadAnimalPromptControl, visible, flag, color, text } =
-      this.props;
+    const { reloadAnimalPromptControl, hide, flag, color, text } = this.props;
 
-    if (!visible) {
+    if (!hide) {
       return null;
     }
 
@@ -35,7 +34,7 @@ class ReloadAnimalPrompt extends PureComponent {
 }
 
 ReloadAnimalPrompt.defaultProps = {
-  visible: false,
+  hide: false,
   flag: '',
   color: 'gold',
   text: '即将刷新',

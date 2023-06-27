@@ -377,8 +377,8 @@ class MultiPageDrawer extends MultiPage {
                     <QueueAnim>
                       {this.reloadWhenShow && this.reloadAnimalPrompt ? (
                         <ReloadAnimalPrompt
-                          visible={firstLoadSuccess}
-                          flag={this.viewReloadAnimalPrompt}
+                          hide={!firstLoadSuccess}
+                          flag={this.viewAnimalPromptFlag}
                         />
                       ) : null}
                     </QueueAnim>

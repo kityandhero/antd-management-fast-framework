@@ -30,7 +30,7 @@ class Core extends BaseComponent {
 
   viewTabFlag = '';
 
-  viewReloadAnimalPrompt = '';
+  viewAnimalPromptFlag = '';
 
   //#endregion
 
@@ -52,7 +52,7 @@ class Core extends BaseComponent {
     this.viewReloadingFlag = getGuid();
     this.viewProcessingFlag = getGuid();
     this.viewTabFlag = getGuid();
-    this.viewReloadAnimalPrompt = getGuid();
+    this.viewAnimalPromptFlag = getGuid();
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -83,7 +83,7 @@ class Core extends BaseComponent {
       this.viewRefreshingFlag,
       this.viewReloadingFlag,
       this.viewProcessingFlag,
-      this.viewReloadAnimalPrompt,
+      this.viewAnimalPromptFlag,
     ];
 
     switchControlAssist.removeMulti(list);
@@ -99,7 +99,7 @@ class Core extends BaseComponent {
       viewReloadingFlag: this.viewReloadingFlag,
       viewProcessingFlag: this.viewProcessingFlag,
       viewTabFlag: this.viewTabFlag,
-      viewReloadAnimalPrompt: this.viewReloadAnimalPrompt,
+      viewAnimalPromptFlag: this.viewAnimalPromptFlag,
     };
   }
 
