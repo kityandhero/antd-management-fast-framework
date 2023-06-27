@@ -435,6 +435,16 @@ class SingleList extends SinglePage {
       {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'default',
+        icon: iconBuilder.plus(),
+        text: '刷新效果',
+        handleClick: () => {
+          this.refreshDataWithReloadAnimalPrompt({});
+        },
+      },
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconBuilder.sortAscending(),
         text: '侧拉单页列表',

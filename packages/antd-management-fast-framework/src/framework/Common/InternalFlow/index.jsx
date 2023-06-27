@@ -989,7 +989,7 @@ class InternalFlow extends Core {
 
   refreshDataWithReloadAnimalPrompt = ({
     otherState = {},
-    delay = 0,
+    delay = 500,
     beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,

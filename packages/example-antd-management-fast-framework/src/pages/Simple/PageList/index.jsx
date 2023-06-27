@@ -595,6 +595,16 @@ class PageList extends MultiPage {
       {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'default',
+        icon: iconBuilder.plus(),
+        text: '刷新效果',
+        handleClick: () => {
+          this.refreshDataWithReloadAnimalPrompt({});
+        },
+      },
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconBuilder.plus(),
         text: '新增文章[侧拉]',

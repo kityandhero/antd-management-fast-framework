@@ -13,6 +13,19 @@ const {
   schedulingControl,
 }))
 class SelectField extends BaseSelectFieldExtra {
+  selectValueText = (data) => {
+    const { title } = {
+      title: '',
+      ...data,
+    };
+
+    return title;
+  };
+
+  openDrawer = () => {
+    PageListDrawer.open();
+  };
+
   renderPresetSelectDrawer = () => {
     const { drawerVisible } = this.state;
 
