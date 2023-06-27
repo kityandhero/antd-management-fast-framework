@@ -14,7 +14,7 @@ class ReloadAnimalPrompt extends PureComponent {
   render() {
     const { reloadAnimalPromptControl, hide, flag, color, text } = this.props;
 
-    if (!hide) {
+    if (hide) {
       return null;
     }
 
