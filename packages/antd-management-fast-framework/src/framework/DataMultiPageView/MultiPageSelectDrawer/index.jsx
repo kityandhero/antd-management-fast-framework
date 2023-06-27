@@ -171,7 +171,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
         showSuccessNotification({
           title: '操作结果',
           description: text,
-          placement: 'bottom-left',
+          placement: 'bottomLeft',
         });
       }
     }

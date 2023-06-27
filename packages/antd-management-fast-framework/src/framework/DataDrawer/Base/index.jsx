@@ -92,7 +92,7 @@ class Base extends BaseWindow {
   buildNotificationPlacement = () => {
     this.logCallTrack({}, primaryCallName, 'buildNotificationPlacement');
 
-    return `bottom-left`;
+    return `bottomLeft`;
   };
 
   renderPresetForm = () => {

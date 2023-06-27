@@ -20,6 +20,9 @@ const visibleFlag = 'b6ee74db71ab4c0c88da4ceaf2f7138e';
   schedulingControl,
 }))
 class Index extends BaseUpdateDrawer {
+  // 在控制台显示组建内调用序列, 仅为进行开发辅助
+  showCallProcess = true;
+
   componentAuthority = accessWayCollection.simple.updateBasicInfo.permission;
 
   static open() {

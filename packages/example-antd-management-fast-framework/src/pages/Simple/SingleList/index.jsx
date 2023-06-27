@@ -179,9 +179,14 @@ class SingleList extends SinglePage {
   };
 
   showUpdateBasicInfoDrawer = (r) => {
-    this.setState({
-      currentRecord: r,
-    });
+    this.setState(
+      {
+        currentRecord: r,
+      },
+      () => {
+        UpdateBasicInfoDrawer.open();
+      },
+    );
   };
 
   afterUpdateBasicInfoDrawerOk = () => {
