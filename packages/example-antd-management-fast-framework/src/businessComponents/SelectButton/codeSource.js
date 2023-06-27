@@ -5,6 +5,7 @@ import { connect } from 'easy-soft-dva';
 import { ElasticitySelectButton } from 'antd-management-fast-component';
 
 import SimpleMultiPageSingleSelectDrawer from '../Drawers/Multi/SimpleMultiPageSingleSelectDrawer';
+import SimpleSingleSelectModal from '../Modals/SimpleSingleSelectModal';
 
 const { BaseElasticitySelectButton } = ElasticitySelectButton;
 
@@ -17,28 +18,41 @@ class SelectButton extends BaseElasticitySelectButton {
     SimpleMultiPageSingleSelectDrawer.open();
   };
 
+  openModal = () => {
+    SimpleSingleSelectModal.open();
+  };
+
   renderPresetSelectDrawer = () => {
+    const { label } = this.props;
+
     return (
       <SimpleMultiPageSingleSelectDrawer
+        title={label}
         width={1200}
         afterSelectSuccess={this.afterDrawerSelectSuccess}
       />
     );
   };
 
-  getFieldData = () => {
-    const { label, valueText, helper } = this.props;
+  renderPresetSelectModal = () => {
+    const { label, helper, labelWidth } = this.props;
 
-    return {
-      fieldText: valueText || '',
-      fieldTitle: label,
-      fieldPlaceholder: helper,
-    };
+    return (
+      <SimpleSingleSelectModal
+        label={label}
+        helper={helper}
+        labelWidth={labelWidth}
+        afterSelectSuccess={this.afterModalSelectSuccess}
+      />
+    );
   };
 }
 
 SelectButton.defaultProps = {
   ...BaseElasticitySelectButton.defaultProps,
+  label: 'Label',
+  helper: '',
+  labelWidth: 100,
 };
 
 export { SelectButton };

@@ -1,10 +1,14 @@
 export const code = `import { connect } from 'easy-soft-dva';
-import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
+import {
+  getValueByKey,
+  mergeArrowText,
+  showSimpleInfoMessage,
+} from 'easy-soft-utility';
 
 import { cardConfig, selectModeCollection } from 'antd-management-fast-common';
 import { convertOptionOrRadioData } from 'antd-management-fast-component';
 
-import { SelectButton } from '../../../businessComponents/SelectButton';
+import { SelectField } from '../../../businessComponents/SelectField';
 import { fieldData } from '../../../businessData/data';
 import BaseView from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
@@ -20,7 +24,7 @@ class SelectFieldView extends BaseView {
 
     this.state = {
       ...this.state,
-      pageTitle: 'Animal 交互示例',
+      pageTitle: 'SelectField 示例',
       currentCodeTitle: 'SelectFieldView',
       currentCode: codeSelectFieldView,
       selectData: null,
@@ -28,12 +32,15 @@ class SelectFieldView extends BaseView {
   }
 
   afterSelect = (o) => {
-    console.log('-----------------------------');
-    console.log(o);
+    this.setState({ selectData: o });
+  };
+
+  clearSelect = () => {
+    this.setState({ selectData: null });
   };
 
   establishCardCollectionConfig = () => {
-    const { currentCode, currentCodeTitle } = this.state;
+    const { selectData, currentCode, currentCodeTitle } = this.state;
 
     const that = this;
 
@@ -41,25 +48,49 @@ class SelectFieldView extends BaseView {
       list: [
         {
           title: {
-            text: 'SelectField 高级选择',
+            text: 'SelectField 示例',
           },
           items: [
             {
               lg: 24,
+              type: cardConfig.contentItemType.onlyShowInput,
+              fieldData: fieldData.title,
+              value: getValueByKey({
+                data: selectData,
+                key: fieldData.title.name,
+                defaultValue: '目前没有文章被选中',
+              }),
+            },
+            {
+              lg: 6,
               type: cardConfig.contentItemType.customSelect,
               component: (
-                <SelectButton
+                <SelectField
                   selectMode={selectModeCollection.drawer}
-                  label={fieldData.title.label}
-                  text="选择文章"
-                  valueText={''}
-                  helper={fieldData.title.helper}
-                  afterSelect={(d) => {
+                  label="选择文章"
+                  text="选择文章【Drawer】"
+                  helper=""
+                  afterSelectSuccess={(d) => {
                     this.afterSelect(d);
                   }}
-                  afterClearSelect={() => {
-                    this.clearSelect();
+                  afterClearSelect={this.clearSelect}
+                />
+              ),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.customSelect,
+              component: (
+                <SelectField
+                  selectMode={selectModeCollection.modal}
+                  label="选择文章"
+                  text="选择文章【Modal】"
+                  labelWidth={90}
+                  helper=""
+                  afterSelectSuccess={(d) => {
+                    this.afterSelect(d);
                   }}
+                  afterClearSelect={this.clearSelect}
                 />
               ),
             },

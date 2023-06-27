@@ -107,7 +107,7 @@ class Base extends AuthorizationWrapper {
   };
 
   subjoinDataOnAfterOK = () => {
-    this.logCallTrack({}, primaryCallName, 'doAfterSubmitSuccess', emptyLogic);
+    this.logCallTrack({}, primaryCallName, 'subjoinDataOnAfterOK', emptyLogic);
 
     return {};
   };
@@ -152,15 +152,22 @@ class Base extends AuthorizationWrapper {
     });
 
     if (isFunction(afterOK)) {
+      const subjoinData = this.subjoinDataOnAfterOK();
+
       this.logCallTrace(
-        {},
+        {
+          singleData,
+          listData,
+          extraData,
+          responseOriginalData,
+          submitData,
+          subjoinData: subjoinData || {},
+        },
         primaryCallName,
         'doAfterSubmitSuccess',
         'trigger',
         'afterOK',
       );
-
-      const subjoinData = this.subjoinDataOnAfterOK();
 
       afterOK({
         singleData,
