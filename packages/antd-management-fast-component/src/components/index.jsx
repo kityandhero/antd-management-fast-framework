@@ -52,6 +52,7 @@ export * from './ImageBox';
 export * from './ImageContentPreview';
 export * from './ImageUpload';
 export * from './JsonView';
+export * from './Line';
 export * from './MemoFunction';
 export * from './MobileContainor';
 export * from './NoticeIconCustom';

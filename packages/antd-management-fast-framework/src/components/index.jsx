@@ -3,6 +3,7 @@ export * from './Bootstrap';
 export * from './DataPreviewDrawer';
 export * from './DrawerExtra';
 export * from './LoadingOverlay';
+export * from './MenuWrapper';
 export * from './MobileContainor';
 export * from './ModalExtra';
 export * from './ReloadAnimalPrompt';

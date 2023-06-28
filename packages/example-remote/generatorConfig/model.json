@@ -4,25 +4,49 @@
       "name": "currentAccount",
       "apis": [
         {
-          "effect": "getCurrentBasicInfo",
-          "service": "getCurrentBasicInfoData",
-          "api": "/currentAccount/getCurrentBasicInfo",
+          "effect": "get",
+          "service": "getData",
+          "api": "/currentAccount/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/currentAccount/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "changePassword",
+          "service": "changePasswordData",
+          "api": "/currentAccount/changePassword",
           "type": "singleData"
         }
       ],
-      "cover": false
+      "cover": true
     },
     {
-      "name": "currentSystem",
+      "name": "currentManagement",
       "apis": [
         {
           "effect": "get",
           "service": "getData",
-          "api": "/currentSystem/get",
+          "api": "/currentManagement/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/currentManagement/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateFileStorageInfo",
+          "service": "updateFileStorageInfoData",
+          "api": "/currentManagement/updateFileStorageInfo",
           "type": "singleData"
         }
       ],
-      "cover": false
+      "cover": true
     },
     {
       "name": "channelSqlLogSwitch",

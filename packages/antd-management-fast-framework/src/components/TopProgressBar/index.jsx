@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import { connect } from 'easy-soft-dva';
 
-import { BaseComponent, ProgressBar } from 'antd-management-fast-component';
+import { ProgressBar } from 'antd-management-fast-component';
 
 @connect(({ progressBarControl }) => ({
   progressBarControl,
 }))
-class TopProgressBar extends BaseComponent {
-  renderFurther() {
+class TopProgressBar extends PureComponent {
+  render() {
     const {
       progressBarControl: { progressing },
     } = this.props;

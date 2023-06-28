@@ -1,9 +1,20 @@
 import { Alert, Form } from 'antd';
 import React from 'react';
 
-import { checkStringIsNullOrWhiteSpace, isUndefined } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isUndefined,
+  logCallTrack,
+  mergeArrowText,
+  toString,
+} from 'easy-soft-utility';
 
-import { contentConfig, defaultFormState } from 'antd-management-fast-common';
+import {
+  contentConfig,
+  defaultFormState,
+  renderFurtherColorWhenNoCallProcess,
+  renderFurtherPrefixWhenNoCallProcess,
+} from 'antd-management-fast-common';
 import { FlexText, iconBuilder } from 'antd-management-fast-component';
 
 import { ModalExtra } from '../../../components/ModalExtra';
@@ -157,6 +168,8 @@ class Base extends BaseWindow {
   };
 
   renderPresetFormContent = () => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetFormContent');
+
     return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };
 
@@ -194,6 +207,25 @@ class Base extends BaseWindow {
   };
 
   renderFurther() {
+    if (this.showCallProcess) {
+      this.logCallTrack({}, primaryCallName, 'renderFurther');
+    } else {
+      logCallTrack(
+        {},
+        mergeArrowText(
+          this.componentName,
+          primaryCallName,
+          'renderFurther',
+          'showCallProcess',
+          toString(this.showCallProcess),
+        ),
+        {
+          color: renderFurtherColorWhenNoCallProcess,
+          prefix: renderFurtherPrefixWhenNoCallProcess,
+        },
+      );
+    }
+
     const { width } = this.state;
     const { maskClosable } = this.props;
 

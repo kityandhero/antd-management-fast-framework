@@ -1,5 +1,8 @@
 import { emptyLogo } from './mediaDefault';
 
+export const renderFurtherColorWhenNoCallProcess = '#b15a43';
+export const renderFurtherPrefixWhenNoCallProcess = 'hideCallProcess';
+
 export const emptyLogic = 'empty-logic';
 
 export const whetherList = [

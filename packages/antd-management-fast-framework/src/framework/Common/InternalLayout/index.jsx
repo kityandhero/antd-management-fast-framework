@@ -1,8 +1,18 @@
 import { FloatButton } from 'antd';
 import React from 'react';
 
-import { checkObjectIsNullOrEmpty, isArray } from 'easy-soft-utility';
+import {
+  checkObjectIsNullOrEmpty,
+  isArray,
+  isEmptyObject,
+  isObject,
+  logCallTrack,
+  mergeArrowText,
+  toString,
+} from 'easy-soft-utility';
 
+import { renderFurtherPrefixWhenNoCallProcess } from 'antd-management-fast-common';
+import { renderFurtherColorWhenNoCallProcess } from 'antd-management-fast-common/src/utils/constants';
 import { PageExtra } from 'antd-management-fast-component';
 
 import { PageExtraWrapper } from '../../../components/PageExtraWrapper';
@@ -50,6 +60,8 @@ class InternalLayout extends InternalBuild {
     const top = this.renderPresetSiderTopArea();
     const bottom = this.renderPresetSiderBottomArea();
 
+    const helpConfig = this.establishHelpConfig();
+
     return (
       <ContentBox
         layoutConfig={this.establishPageContentLayoutConfig()}
@@ -63,14 +75,18 @@ class InternalLayout extends InternalBuild {
         toolbar={<ToolBar {...this.establishToolBarConfig()} />}
         contentBody={this.renderPresetContentArea()}
         bottom={
-          <HelpContent
-            wrapperType={this.contentWrapperType}
-            {...this.establishHelpConfig()}
-          />
+          helpConfig == null ? null : (
+            <HelpContent
+              wrapperType={this.contentWrapperType}
+              {...this.establishHelpConfig()}
+            />
+          )
         }
       />
     );
   };
+
+  renderPresetPageLeftArea = () => null;
 
   renderPresetPageBody = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetPageBody');
@@ -94,7 +110,24 @@ class InternalLayout extends InternalBuild {
   };
 
   renderFurther() {
-    this.logCallTrack({}, primaryCallName, 'renderFurther');
+    if (this.showCallProcess) {
+      this.logCallTrack({}, primaryCallName, 'renderFurther');
+    } else {
+      logCallTrack(
+        {},
+        mergeArrowText(
+          this.componentName,
+          primaryCallName,
+          'renderFurther',
+          'showCallProcess',
+          toString(this.showCallProcess),
+        ),
+        {
+          color: renderFurtherColorWhenNoCallProcess,
+          prefix: renderFurtherPrefixWhenNoCallProcess,
+        },
+      );
+    }
 
     const { showPageHeaderAvatar, defaultAvatarIcon, avatarImageLoadResult } =
       this.state;
@@ -111,6 +144,20 @@ class InternalLayout extends InternalBuild {
       ...this.establishPageHeaderContentActionConfig(),
       ...this.establishPageHeaderContentComponentConfig(),
     };
+
+    const tabProperties = this.buildOtherTabProps();
+
+    if (isObject(tabProperties) && !isEmptyObject(tabProperties)) {
+      this.logCallTrace(
+        {
+          tabProps: tabProperties,
+        },
+        primaryCallName,
+        'renderFurther',
+        'trigger',
+        'buildOtherTabProps',
+      );
+    }
 
     return (
       <PageExtraWrapper
@@ -134,10 +181,12 @@ class InternalLayout extends InternalBuild {
         tabList={this.getTabListAvailable()}
         tabBarExtraContent={this.buildTabBarExtraContent()}
         onTabChange={this.handleTabChange}
-        tabProps={this.buildOtherTabProps()}
+        tabProps={tabProperties}
+        leftArea={this.renderPresetPageLeftArea()}
         footer={this.renderPresetPageFooter()}
         floatButton={this.renderPresetFloatButton()}
       >
+        请问请问犬瘟热请问
         {this.renderPresetPageBody()}
       </PageExtraWrapper>
     );

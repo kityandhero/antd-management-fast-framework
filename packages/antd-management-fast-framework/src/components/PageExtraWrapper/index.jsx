@@ -1,10 +1,18 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 import { connect } from 'easy-soft-dva';
+import {
+  checkStringIsNullOrWhiteSpace,
+  endsWith,
+  isArray,
+  isEmptyArray,
+} from 'easy-soft-utility';
 
-import { PageExtra } from 'antd-management-fast-component';
+import { getCurrentLocation } from 'antd-management-fast-common';
+import { BaseComponent, PageExtra } from 'antd-management-fast-component';
 
 import { switchControlAssist } from '../../utils/switchControlAssist';
+import { tabControlAssist } from '../../utils/tabControlAssist';
 
 const { PageWrapper } = PageExtra;
 
@@ -12,8 +20,61 @@ const { PageWrapper } = PageExtra;
   switchControl,
   tabControl,
 }))
-class PageExtraWrapper extends PureComponent {
-  render() {
+class PageExtraWrapper extends BaseComponent {
+  doWorkAfterDidMount = () => {
+    this.checkActiveKey();
+  };
+
+  getUsableKey = () => {
+    const { tabList } = this.props;
+
+    const { pathname } = getCurrentLocation();
+
+    let result = '';
+
+    for (const item of tabList) {
+      const { key } = item;
+
+      if (endsWith(pathname, key)) {
+        result = key;
+
+        break;
+      }
+    }
+
+    return result;
+  };
+
+  checkActiveKey = () => {
+    const { tabFlag, tabList } = this.props;
+
+    if (!isArray(tabList)) {
+      return;
+    }
+
+    if (isEmptyArray(tabList)) {
+      return;
+    }
+
+    const usableKey = this.getUsableKey();
+
+    if (!checkStringIsNullOrWhiteSpace(usableKey)) {
+      tabControlAssist
+        .getActiveKey(tabFlag)
+        .then((activeKey) => {
+          if (checkStringIsNullOrWhiteSpace(activeKey)) {
+            tabControlAssist.setActiveKey(tabFlag, usableKey);
+          }
+
+          return activeKey;
+        })
+        .catch(() => {
+          // ignore
+        });
+    }
+  };
+
+  renderFurther() {
     const { children, switchControl, tabControl, flag, tabFlag, ...rest } =
       this.props;
 

@@ -6,6 +6,7 @@ import {
 } from 'antd-management-fast-common';
 import { BaseComponent } from 'antd-management-fast-component';
 
+import { menuControlAssist } from '../../utils/menuControlAssist';
 import { switchControlAssist } from '../../utils/switchControlAssist';
 import { tabControlAssist } from '../../utils/tabControlAssist';
 
@@ -30,6 +31,8 @@ class Core extends BaseComponent {
 
   viewTabFlag = '';
 
+  viewMenuFlag = '';
+
   viewAnimalPromptFlag = '';
 
   //#endregion
@@ -52,6 +55,7 @@ class Core extends BaseComponent {
     this.viewReloadingFlag = getGuid();
     this.viewProcessingFlag = getGuid();
     this.viewTabFlag = getGuid();
+    this.viewMenuFlag = getGuid();
     this.viewAnimalPromptFlag = getGuid();
   }
 
@@ -88,6 +92,7 @@ class Core extends BaseComponent {
 
     switchControlAssist.removeMulti(list);
     tabControlAssist.remove(this.viewTabFlag);
+    menuControlAssist.remove(this.viewMenuFlag);
   };
 
   getViewFlagInfo() {
@@ -99,13 +104,14 @@ class Core extends BaseComponent {
       viewReloadingFlag: this.viewReloadingFlag,
       viewProcessingFlag: this.viewProcessingFlag,
       viewTabFlag: this.viewTabFlag,
+      viewMenuFlag: this.viewMenuFlag,
       viewAnimalPromptFlag: this.viewAnimalPromptFlag,
     };
   }
 
-  getTabActiveKey() {
+  getTabActiveKey = () => {
     return tabControlAssist.getActiveKey(this.viewTabFlag);
-  }
+  };
 
   setTabActiveKey(key) {
     this.logCallTrack(
@@ -117,6 +123,22 @@ class Core extends BaseComponent {
     );
 
     tabControlAssist.setActiveKey(this.viewTabFlag, key);
+  }
+
+  getMenuActiveKey = () => {
+    return menuControlAssist.getActiveKey(this.viewMenuFlag);
+  };
+
+  setMenuActiveKey(key) {
+    this.logCallTrack(
+      {
+        parameter: { key },
+      },
+      primaryCallName,
+      'setMenuActiveKey',
+    );
+
+    menuControlAssist.setActiveKey(this.viewMenuFlag, key);
   }
 
   startLoading(...message) {

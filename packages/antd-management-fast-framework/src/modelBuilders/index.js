@@ -2,6 +2,7 @@ import { appendEmbedBuilder } from 'easy-soft-utility';
 
 import { buildModel as buildCurrentOperatorModel } from './currentOperator';
 import { buildModel as buildEntranceModel } from './entrance';
+import { buildModel as buildMenuControlModel } from './menuControl';
 import { buildModel as buildProgressBarControlModel } from './progressBarControl';
 import { buildModel as buildReloadAnimalPromptControlModel } from './reloadAnimalPromptControl';
 import { buildModel as buildSchedulingControlModel } from './schedulingControl';
@@ -16,4 +17,5 @@ export function appendEmbedModelBuilder() {
   appendEmbedBuilder(buildSchedulingControlModel);
   appendEmbedBuilder(buildSwitchControlModel);
   appendEmbedBuilder(buildTabControlModel);
+  appendEmbedBuilder(buildMenuControlModel);
 }

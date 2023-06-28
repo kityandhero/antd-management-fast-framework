@@ -1,19 +1,20 @@
 import React from 'react';
 
-import {
-  getCurrentLocation,
-  getCurrentRoute,
-} from 'antd-management-fast-common';
+import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
+
+import { getCurrentLocation } from 'antd-management-fast-common';
 import { PageExtra } from 'antd-management-fast-component';
 
 import { InternalFlow } from '../InternalFlow';
 
 const { TabBarExtraBox } = PageExtra;
 
-const primaryCallName = 'Common::InternalTabFlow';
+const primaryCallName = 'Common::InternalSwitchoverFlow';
 
-class InternalTabFlow extends InternalFlow {
+class InternalSwitchoverFlow extends InternalFlow {
   tabList = [];
+
+  menuList = [];
 
   constructor(properties) {
     super(properties);
@@ -23,15 +24,55 @@ class InternalTabFlow extends InternalFlow {
     };
   }
 
-  doOtherWorkAfterDidMount = () => {
-    this.logCallTrack({}, primaryCallName, 'doOtherWorkAfterDidMount');
+  adjustMenuListAvailable = (menuListAvailable) => menuListAvailable;
 
-    const tabListAvailable = this.getTabListAvailable();
+  getMenuListAvailable = () => {
+    this.logCallTrack({}, primaryCallName, 'getMenuListAvailable');
 
-    if (tabListAvailable.length > 0) {
-      const { name } = getCurrentRoute();
+    const menuListAvailable = [];
 
-      this.setTabActiveKey(name);
+    for (const o of this.menuList || []) {
+      const v = o.show === undefined ? true : o.show === true;
+
+      if (v) {
+        menuListAvailable.push(o);
+      }
+    }
+
+    return this.adjustMenuListAvailable(menuListAvailable);
+  };
+
+  handleMenuChange = async ({ key }) => {
+    this.logCallTrack(
+      {
+        parameter: { key },
+      },
+      primaryCallName,
+      'handleMenuChange',
+    );
+
+    const menuActiveKey = await this.getMenuActiveKey();
+
+    console.log(menuActiveKey);
+
+    const { pathname } = getCurrentLocation();
+
+    for (const item of this.menuList || []) {
+      if (item.key === key) {
+        let path = pathname;
+
+        if (!checkStringIsNullOrWhiteSpace(menuActiveKey)) {
+          path = path.replace(`/${menuActiveKey}`, '/');
+        }
+
+        path = `${path}${item.key}`;
+
+        this.setMenuActiveKey(key);
+
+        this.redirectToPath(path);
+
+        break;
+      }
     }
   };
 
@@ -67,7 +108,7 @@ class InternalTabFlow extends InternalFlow {
         parameter: { key },
       },
       primaryCallName,
-      'getTabListAvailable',
+      'handleTabChange',
     );
 
     const tabActiveKey = await this.getTabActiveKey();
@@ -76,9 +117,11 @@ class InternalTabFlow extends InternalFlow {
 
     for (const item of this.tabList || []) {
       if (item.key === key) {
-        let path = pathname
-          .replace('/update', '/load')
-          .replace(`/${tabActiveKey}`, '/');
+        let path = pathname.replace('/update', '/load');
+
+        if (!checkStringIsNullOrWhiteSpace(tabActiveKey)) {
+          path = path.replace(`/${tabActiveKey}`, '/');
+        }
 
         path = `${path}${item.key}`;
 
@@ -130,4 +173,4 @@ class InternalTabFlow extends InternalFlow {
   };
 }
 
-export { InternalTabFlow };
+export { InternalSwitchoverFlow };

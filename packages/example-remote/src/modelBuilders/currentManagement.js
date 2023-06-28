@@ -7,14 +7,14 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  changePasswordData,
   getData,
   updateBasicInfoData,
-} from '../services/currentAccount';
+  updateFileStorageInfoData,
+} from '../services/currentManagement';
 
 export function buildModel() {
   return {
-    namespace: 'currentAccount',
+    namespace: 'currentManagement',
 
     state: {
       ...getTacitlyState(),
@@ -73,7 +73,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *changePassword(
+      *updateFileStorageInfo(
         {
           payload,
           alias,
@@ -82,7 +82,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(changePasswordData, payload);
+        const response = yield call(updateFileStorageInfoData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

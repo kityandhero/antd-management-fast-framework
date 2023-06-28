@@ -4,7 +4,7 @@ import { buildModel as buildAccessWayModel } from './accessWay';
 import { buildModel as buildArticleModel } from './article';
 import { buildModel as buildChannelSqlLogSwitchModel } from './channelSqlLogSwitch';
 import { buildModel as buildCurrentAccountModel } from './currentAccount';
-import { buildModel as buildCurrentSystemModel } from './currentSystem';
+import { buildModel as buildCurrentManagementModel } from './currentManagement';
 import { buildModel as buildErrorLogModel } from './errorLog';
 import { buildModel as buildGeneralLogModel } from './generalLog';
 import { buildModel as buildHostServiceModel } from './hostService';
@@ -19,7 +19,7 @@ import { buildModel as buildSqlLogModel } from './sqlLog';
 function collectModelBuilder() {
   appendExtraBuilder(buildCurrentAccountModel);
 
-  appendExtraBuilder(buildCurrentSystemModel);
+  appendExtraBuilder(buildCurrentManagementModel);
 
   appendExtraBuilder(buildChannelSqlLogSwitchModel);
 

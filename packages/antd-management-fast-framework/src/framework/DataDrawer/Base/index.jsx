@@ -1,7 +1,13 @@
 import { Col, Divider, Form, Layout, Row, Space } from 'antd';
 import React, { Fragment } from 'react';
 
-import { isArray, isUndefined } from 'easy-soft-utility';
+import {
+  isArray,
+  isUndefined,
+  logCallTrack,
+  mergeArrowText,
+  toString,
+} from 'easy-soft-utility';
 
 import {
   cardConfig,
@@ -9,6 +15,8 @@ import {
   defaultFormState,
   drawerConfig,
   emptyLogic,
+  renderFurtherColorWhenNoCallProcess,
+  renderFurtherPrefixWhenNoCallProcess,
 } from 'antd-management-fast-common';
 import {
   buildButton,
@@ -431,6 +439,25 @@ class Base extends BaseWindow {
   };
 
   renderFurther() {
+    if (this.showCallProcess) {
+      this.logCallTrack({}, primaryCallName, 'renderFurther');
+    } else {
+      logCallTrack(
+        {},
+        mergeArrowText(
+          this.componentName,
+          primaryCallName,
+          'renderFurther',
+          'showCallProcess',
+          toString(this.showCallProcess),
+        ),
+        {
+          color: renderFurtherColorWhenNoCallProcess,
+          prefix: renderFurtherPrefixWhenNoCallProcess,
+        },
+      );
+    }
+
     const {
       width,
       height,

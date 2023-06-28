@@ -10,6 +10,7 @@ import {
 } from 'easy-soft-utility';
 
 import { decorateAvatar } from '../../DecorateAvatar';
+import { FlexBox } from '../../FlexBox';
 import { HeaderContent } from '../HeaderContent';
 import { HeaderExtraContent } from '../HeaderExtraContent';
 import { HeaderSubTitle } from '../HeaderSubTitle';
@@ -41,6 +42,7 @@ class PageWrapper extends PureComponent {
       onTabChange,
       footer,
       floatButton,
+      leftArea,
       children,
     } = this.props;
 
@@ -59,6 +61,33 @@ class PageWrapper extends PureComponent {
           },
         )
       : null;
+
+    const content = leftArea ? (
+      <FlexBox
+        flexAuto="right"
+        leftStyle={{
+          backgroundColor: '#fff',
+        }}
+        left={leftArea}
+        right={
+          <>
+            <Outlet />
+
+            {children}
+
+            {floatButton}
+          </>
+        }
+      />
+    ) : (
+      <>
+        <Outlet />
+
+        {children}
+
+        {floatButton}
+      </>
+    );
 
     if (showHeader || false) {
       return (
@@ -105,25 +134,13 @@ class PageWrapper extends PureComponent {
             tabProps={tabProps}
             footer={footer}
           >
-            <Outlet />
-
-            {children}
-
-            {floatButton}
+            {content}
           </PageContainer>
         </div>
       );
     }
 
-    return (
-      <>
-        <Outlet />
-
-        {children}
-
-        {floatButton}
-      </>
-    );
+    return content;
   }
 }
 
@@ -143,8 +160,14 @@ PageWrapper.defaultProps = {
   extraAction: null,
   contentConfig: null,
   extraContentConfig: null,
+  tabActiveKey: null,
+  tabList: [],
+  tabBarExtraContent: null,
+  tabProps: null,
   footer: null,
   floatButton: null,
+  leftArea: null,
+  onTabChange: null,
 };
 
 export { PageWrapper };

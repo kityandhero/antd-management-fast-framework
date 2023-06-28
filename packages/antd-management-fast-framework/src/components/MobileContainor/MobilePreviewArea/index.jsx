@@ -1,12 +1,21 @@
 import { Affix } from 'antd';
 import React from 'react';
 
-import { isArray, isObject, whetherNumber } from 'easy-soft-utility';
+import {
+  isArray,
+  isObject,
+  logCallTrack,
+  mergeArrowText,
+  toString,
+  whetherNumber,
+} from 'easy-soft-utility';
 
 import {
   animalType,
   cardConfig,
   mobileTypeCollection,
+  renderFurtherColorWhenNoCallProcess,
+  renderFurtherPrefixWhenNoCallProcess,
 } from 'antd-management-fast-common';
 import {
   buildOptionItem,
@@ -17,6 +26,8 @@ import {
 import { Base } from '../../../framework/DataDrawer/Base';
 
 const { MobileSimulation } = MobileContainor;
+
+const primaryCallName = 'MobileContainor::MobilePreviewArea';
 
 class MobilePreviewArea extends Base {
   resetDataAfterLoad = false;
@@ -146,6 +157,25 @@ class MobilePreviewArea extends Base {
   };
 
   renderFurther() {
+    if (this.showCallProcess) {
+      this.logCallTrack({}, primaryCallName, 'renderFurther');
+    } else {
+      logCallTrack(
+        {},
+        mergeArrowText(
+          this.componentName,
+          primaryCallName,
+          'renderFurther',
+          'showCallProcess',
+          toString(this.showCallProcess),
+        ),
+        {
+          color: renderFurtherColorWhenNoCallProcess,
+          prefix: renderFurtherPrefixWhenNoCallProcess,
+        },
+      );
+    }
+
     const { affix, affixOffsetTop, affixOffsetBottom } = this.props;
 
     if (!affix) {

@@ -35,7 +35,7 @@ import {
 } from 'antd-management-fast-component';
 
 import { LoadingOverlay } from '../../../components/LoadingOverlay';
-import { InternalTabFlow } from '../InternalTabFlow';
+import { InternalSwitchoverFlow } from '../InternalSwitchoverFlow';
 import { ReloadActionButton } from '../ReloadActionButton';
 
 import styles from './index.less';
@@ -44,7 +44,7 @@ const { HelpContent, CardCollectionItemContent } = PageExtra;
 
 const primaryCallName = 'Common::InternalBuild';
 
-class InternalBuild extends InternalTabFlow {
+class InternalBuild extends InternalSwitchoverFlow {
   buildCardCollectionArea = (config = null) => {
     if (config == null) {
       return null;

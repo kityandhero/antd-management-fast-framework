@@ -6,13 +6,17 @@ import React from 'react';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
+  logCallTrack,
   mergeArrowText,
+  toString,
 } from 'easy-soft-utility';
 
 import {
   contentConfig,
   emptyLogic,
   listViewConfig,
+  renderFurtherColorWhenNoCallProcess,
+  renderFurtherPrefixWhenNoCallProcess,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
@@ -558,6 +562,25 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderFurther() {
+    if (this.showCallProcess) {
+      this.logCallTrack({}, primaryCallName, 'renderFurther');
+    } else {
+      logCallTrack(
+        {},
+        mergeArrowText(
+          this.componentName,
+          primaryCallName,
+          'renderFurther',
+          'showCallProcess',
+          toString(this.showCallProcess),
+        ),
+        {
+          color: renderFurtherColorWhenNoCallProcess,
+          prefix: renderFurtherPrefixWhenNoCallProcess,
+        },
+      );
+    }
+
     const { width } = this.props;
     const { listViewMode, overlayButtonOpenText, overlayButtonCloseText } =
       this.state;

@@ -36,12 +36,13 @@ export default {
   'menu.permission.presetRole.edit.moduleInfo': '所含模块',
   'menu.permission.presetRole.edit.moduleInfo.singleList': '模块列表',
 
-  'menu.currentSystem': '系统设置',
-  'menu.currentSystem.basicInfo': '基本设置',
+  'menu.currentAccount': '个人中心',
+  'menu.currentAccount-mini': '个人',
+  'menu.currentAccount.setting': '个人设置',
+  'menu.currentAccount.setting-mini': '设置',
 
-  'menu.currentOperator': '个人中心',
-  'menu.currentOperator.center': '个人中心',
-  'menu.currentOperator.setting': '个人设置',
+  'menu.currentManagement': '系统设置',
+  'menu.currentManagement.basicInfo': '基本设置',
 
   'menu.result': '结果页',
   'menu.result-mini': '结果页',
