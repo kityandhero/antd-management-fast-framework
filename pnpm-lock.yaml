@@ -251,10 +251,10 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.27
+        specifier: ^2.1.28
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.4.0
+        specifier: ^2.4.1
         version: link:../antd-management-fast-component
       array-move:
         specifier: ^4.0.0
@@ -895,7 +895,7 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.27
+        specifier: ^2.1.28
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1581,10 +1581,10 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.27
+        specifier: ^2.1.28
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.4.0
+        specifier: ^2.4.1
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.4.0
@@ -1897,13 +1897,13 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.27
+        specifier: ^2.1.28
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.4.0
+        specifier: ^2.4.1
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.8.0
+        specifier: ^2.8.1
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
@@ -2006,10 +2006,10 @@ importers:
         specifier: ^5.60.1
         version: 5.60.1(eslint@8.43.0)(typescript@5.1.5)
       antd-management-fast-config:
-        specifier: ^1.0.18
+        specifier: ^1.0.19
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.0.23
+        specifier: ^1.0.24
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.5.0
@@ -2150,13 +2150,13 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.1.27
+        specifier: ^2.1.28
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.4.0
+        specifier: ^2.4.1
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.8.0
+        specifier: ^2.8.1
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
@@ -2259,10 +2259,10 @@ importers:
         specifier: ^5.60.1
         version: 5.60.1(eslint@8.43.0)(typescript@5.1.5)
       antd-management-fast-config:
-        specifier: ^1.0.18
+        specifier: ^1.0.19
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.0.23
+        specifier: ^1.0.24
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.5.0
@@ -7489,7 +7489,7 @@ packages:
     resolution: {integrity: sha512-DxX1V9P8zdJPYQat1gHyY0xj3efl8gnMVjiM9iCY6y27lj+PoQWkgjt8jDqmovPqULkKVpKRg8J36iQiA+EtEg==}
 
   /@types/isomorphic-fetch@0.0.34:
-    resolution: {integrity: sha512-BmJKuPCZCR6pbYYgi5nKFJrPC4pLoBgsi/B1nFN64Ba+hLLGUcKPIh7eVlR2xG763Ap08hgQafq/Wx4RFb0omQ==}
+    resolution: {integrity: sha1-PDSD5gbAQTeEOOlRRk8A5OYHBtY=}
 
   /@types/istanbul-lib-coverage@2.0.4:
     resolution: {integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==}
@@ -8413,6 +8413,7 @@ packages:
       umi: 4.0.71(@babel/core@7.22.5)(@types/node@20.3.2)(@types/react@18.2.14)(eslint@8.35.0)(jest@29.5.0)(postcss@8.4.24)(prettier@2.8.8)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.10)(stylelint@14.8.2)(typescript@5.1.5)(webpack@5.82.1)
     transitivePeerDependencies:
       - '@babel/core'
+      - '@reduxjs/toolkit'
       - '@types/lodash.merge'
       - '@types/node'
       - '@types/react'
@@ -8463,6 +8464,7 @@ packages:
       umi: 4.0.71(@babel/core@7.22.5)(@types/node@20.3.2)(eslint@8.35.0)(jest@29.5.0)(postcss@8.4.24)(prettier@2.8.8)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.10)(stylelint@14.8.2)(typescript@5.1.5)(webpack@5.82.1)
     transitivePeerDependencies:
       - '@babel/core'
+      - '@reduxjs/toolkit'
       - '@types/lodash.merge'
       - '@types/node'
       - '@types/react'
@@ -8591,12 +8593,13 @@ packages:
       moment: 2.29.4
       qiankun: 2.10.6
       react-intl: 3.12.1(react@18.2.0)
-      react-redux: 8.1.1(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+      react-redux: 8.1.0(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       redux: 4.2.1
       styled-components: 6.0.0-rc.0(react-dom@18.2.0)(react@18.2.0)
       tslib: 2.5.0
       warning: 4.0.3
     transitivePeerDependencies:
+      - '@reduxjs/toolkit'
       - '@types/lodash.merge'
       - '@types/react'
       - '@types/react-dom'
@@ -14438,7 +14441,7 @@ packages:
     engines: {node: '>= 4'}
 
   /image-size@0.5.5:
-    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
+    resolution: {integrity: sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=}
     engines: {node: '>=0.10.0'}
     hasBin: true
     requiresBuild: true
@@ -15085,7 +15088,7 @@ packages:
     engines: {node: '>=0.10.0'}
 
   /isomorphic-fetch@2.2.1:
-    resolution: {integrity: sha512-9c4TNAKYXM5PRyVcwUZrF3W09nQ+sO7+jydgs4ZGW9dhsLG2VOlISJABombdQqQRXCwuYG3sYV/puGf5rp0qmA==}
+    resolution: {integrity: sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=}
     dependencies:
       node-fetch: 1.7.3
       whatwg-fetch: 3.6.2
@@ -20953,6 +20956,40 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
+  /react-redux@8.1.0(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
+    resolution: {integrity: sha512-CtHZzAOxi7GQvTph4dVLWwZHAWUjV2kMEQtk50OrN8z3gKxpWg3Tz7JfDw32N3Rpd7fh02z73cF6yZkK467gbQ==}
+    peerDependencies:
+      '@reduxjs/toolkit': ^1 || ^2.0.0-beta.0
+      '@types/react': ^16.8 || ^17.0 || ^18.0
+      '@types/react-dom': ^16.8 || ^17.0 || ^18.0
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+      react-native: '>=0.59'
+      redux: ^4 || ^5.0.0-beta.0
+    peerDependenciesMeta:
+      '@reduxjs/toolkit':
+        optional: true
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+      redux:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.22.5
+      '@types/hoist-non-react-statics': 3.3.1
+      '@types/use-sync-external-store': 0.0.3
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-is: 18.2.0
+      redux: 4.2.1
+      use-sync-external-store: 1.2.0(react@18.2.0)
+
   /react-redux@8.1.1(@types/react-dom@18.2.6)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
     resolution: {integrity: sha512-5W0QaKtEhj+3bC0Nj0NkqkhIv8gLADH/2kYFMTHxCVqQILiWzLv6MaLuV5wJU3BQEdHKzTfcvPN0WMS6SC1oyA==}
     peerDependencies:
@@ -20986,37 +21023,6 @@ packages:
       redux: 4.2.1
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
-
-  /react-redux@8.1.1(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
-    resolution: {integrity: sha512-5W0QaKtEhj+3bC0Nj0NkqkhIv8gLADH/2kYFMTHxCVqQILiWzLv6MaLuV5wJU3BQEdHKzTfcvPN0WMS6SC1oyA==}
-    peerDependencies:
-      '@types/react': ^16.8 || ^17.0 || ^18.0
-      '@types/react-dom': ^16.8 || ^17.0 || ^18.0
-      react: ^16.8 || ^17.0 || ^18.0
-      react-dom: ^16.8 || ^17.0 || ^18.0
-      react-native: '>=0.59'
-      redux: ^4 || ^5.0.0-beta.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      '@types/react-dom':
-        optional: true
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-      redux:
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.22.5
-      '@types/hoist-non-react-statics': 3.3.1
-      '@types/use-sync-external-store': 0.0.3
-      hoist-non-react-statics: 3.3.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-is: 18.2.0
-      redux: 4.2.1
-      use-sync-external-store: 1.2.0(react@18.2.0)
 
   /react-refresh@0.14.0:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
@@ -23461,7 +23467,7 @@ packages:
     optional: true
 
   /uglify-to-browserify@1.0.2:
-    resolution: {integrity: sha512-vb2s1lYx2xBtUgy+ta+b2J/GLVUR+wmpINwHePmPRhOsIVCG2wDzKJ0n14GslH1BifsqVzSOwQhRaCAsZ/nI4Q==}
+    resolution: {integrity: sha1-bgkk1r2mta/jSeOabWMoUKD4grc=}
     requiresBuild: true
     dev: false
     optional: true
