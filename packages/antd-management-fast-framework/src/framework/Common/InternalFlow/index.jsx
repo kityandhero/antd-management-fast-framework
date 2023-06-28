@@ -57,6 +57,8 @@ class InternalFlow extends Core {
 
   showPageHeader = true;
 
+  showReloadButton = true;
+
   contentWrapperType = contentConfig.wrapperType.page;
 
   showExtraActionDivider = false;
@@ -77,7 +79,6 @@ class InternalFlow extends Core {
     this.state = {
       ...defaultState,
       backPath: '',
-      showReloadButton: false,
     };
   }
 

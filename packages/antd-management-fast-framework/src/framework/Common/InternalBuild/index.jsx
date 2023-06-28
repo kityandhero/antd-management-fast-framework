@@ -615,8 +615,6 @@ class InternalBuild extends InternalSwitchoverFlow {
   buildExtraAction = () => {
     this.logCallTrack({}, primaryCallName, 'buildExtraAction');
 
-    const { showReloadButton } = this.state;
-
     const { keyPrefix, list: configList } = {
       keyPrefix: '',
       list: [],
@@ -664,15 +662,13 @@ class InternalBuild extends InternalSwitchoverFlow {
 
     if ((backAction || null) != null) {
       listAction.push(
-        <Fragment key={`${keyPrefixAdjust}_dropdownEllipsis`}>
-          {backAction}
-        </Fragment>,
+        <Fragment key={`${keyPrefixAdjust}_backAction`}>{backAction}</Fragment>,
       );
     }
 
-    if (showReloadButton) {
+    if (this.showReloadButton) {
       listAction.push(
-        <Fragment key={`${keyPrefixAdjust}_dropdownEllipsis`}>
+        <Fragment key={`${keyPrefixAdjust}_reloadButton`}>
           <ReloadActionButton
             flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
             onReload={() => {

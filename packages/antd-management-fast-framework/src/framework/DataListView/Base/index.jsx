@@ -81,6 +81,8 @@ const {
 const primaryCallName = 'DataListView::Base';
 
 class Base extends AuthorizationWrapper {
+  showReloadButton = false;
+
   /**
    * 使用远端分页
    */

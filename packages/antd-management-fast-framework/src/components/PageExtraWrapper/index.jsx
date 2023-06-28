@@ -22,7 +22,11 @@ const { PageWrapper } = PageExtra;
 }))
 class PageExtraWrapper extends BaseComponent {
   doWorkAfterDidMount = () => {
-    this.checkActiveKey();
+    const that = this;
+
+    setTimeout(() => {
+      that.checkActiveKey();
+    }, 300);
   };
 
   getUsableKey = () => {

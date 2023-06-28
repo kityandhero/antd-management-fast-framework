@@ -17,8 +17,6 @@ class DataLoad extends DataCore {
 
     this.state = {
       ...defaultState,
-
-      showReloadButton: true,
     };
   }
 

@@ -19,7 +19,11 @@ import { menuControlAssist } from '../../utils/menuControlAssist';
 }))
 class MenuWrapper extends BaseComponent {
   doWorkAfterDidMount = () => {
-    this.checkActiveKey();
+    const that = this;
+
+    setTimeout(() => {
+      that.checkActiveKey();
+    }, 300);
   };
 
   getUsableKey = () => {
@@ -55,9 +59,6 @@ class MenuWrapper extends BaseComponent {
 
     const usableKey = this.getUsableKey();
 
-    console.log('===============');
-    console.log(usableKey);
-
     if (!checkStringIsNullOrWhiteSpace(usableKey)) {
       menuControlAssist
         .getActiveKey(menuFlag)
@@ -74,10 +75,18 @@ class MenuWrapper extends BaseComponent {
     }
   };
 
-  renderFurther() {
-    const { menuControl, menuFlag, mode, items, handleClick } = this.props;
+  getActiveKey = () => {
+    const { menuControl, menuFlag } = this.props;
 
     const activeKey = menuControl[menuFlag] || '';
+
+    return activeKey;
+  };
+
+  renderFurther() {
+    const { mode, items, handleClick } = this.props;
+
+    const activeKey = this.getActiveKey();
 
     return (
       <Menu

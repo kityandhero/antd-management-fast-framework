@@ -53,8 +53,6 @@ class InternalSwitchoverFlow extends InternalFlow {
 
     const menuActiveKey = await this.getMenuActiveKey();
 
-    console.log(menuActiveKey);
-
     const { pathname } = getCurrentLocation();
 
     for (const item of this.menuList || []) {
