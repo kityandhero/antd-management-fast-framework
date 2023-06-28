@@ -168,6 +168,12 @@ class DataCore extends BaseView {
 
     const otherFormProperties = this.establishFormAdditionalConfig();
 
+    const formContent = this.renderPresetFormContent();
+
+    if (formContent == null) {
+      return null;
+    }
+
     return (
       <Form
         ref={this.formRef}

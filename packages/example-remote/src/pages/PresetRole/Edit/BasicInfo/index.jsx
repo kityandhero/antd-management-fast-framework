@@ -19,7 +19,10 @@ import TabPageBase from '../../TabPageBase';
   presetRole,
   schedulingControl,
 }))
-class Index extends TabPageBase {
+class BasicInfo extends TabPageBase {
+  // 在控制台显示组建内调用序列, 仅为进行开发辅助
+  showCallProcess = true;
+
   reloadHeaderOnSubmitSuccess = true;
 
   constructor(properties) {
@@ -239,4 +242,4 @@ class Index extends TabPageBase {
   };
 }
 
-export default Index;
+export default BasicInfo;

@@ -57,31 +57,48 @@ class InternalLayout extends InternalBuild {
   renderPresetPageBodyContent = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetPageBodyContent');
 
-    const top = this.renderPresetSiderTopArea();
-    const bottom = this.renderPresetSiderBottomArea();
+    const siderTop = this.renderPresetSiderTopArea();
+    const siderBottom = this.renderPresetSiderBottomArea();
 
     const helpConfig = this.establishHelpConfig();
+    const toolBarConfig = this.establishToolBarConfig();
+
+    const siderBody =
+      checkObjectIsNullOrEmpty(siderTop) &&
+      checkObjectIsNullOrEmpty(siderBottom) ? null : (
+        <SiderBox top={siderTop} bottom={siderBottom} />
+      );
+
+    const toolbar =
+      toolBarConfig == null ? null : <ToolBar {...toolBarConfig} />;
+
+    const contentBody = this.renderPresetContentArea();
+
+    const bottom =
+      helpConfig == null ? null : (
+        <HelpContent
+          wrapperType={this.contentWrapperType}
+          {...this.establishHelpConfig()}
+        />
+      );
+
+    if (
+      siderBody == null &&
+      toolbar == null &&
+      contentBody == null &&
+      bottom == null
+    ) {
+      return null;
+    }
 
     return (
       <ContentBox
         layoutConfig={this.establishPageContentLayoutConfig()}
         siderConfig={this.establishPageContentLayoutSiderConfig()}
-        siderBody={
-          checkObjectIsNullOrEmpty(top) &&
-          checkObjectIsNullOrEmpty(bottom) ? null : (
-            <SiderBox top={top} bottom={bottom} />
-          )
-        }
-        toolbar={<ToolBar {...this.establishToolBarConfig()} />}
-        contentBody={this.renderPresetContentArea()}
-        bottom={
-          helpConfig == null ? null : (
-            <HelpContent
-              wrapperType={this.contentWrapperType}
-              {...this.establishHelpConfig()}
-            />
-          )
-        }
+        siderBody={siderBody}
+        toolbar={toolbar}
+        contentBody={contentBody}
+        bottom={bottom}
       />
     );
   };
@@ -91,12 +108,10 @@ class InternalLayout extends InternalBuild {
   renderPresetPageBody = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetPageBody');
 
-    return (
-      <BodyContent
-        body={this.renderPresetPageBodyContent()}
-        bottom={this.renderPresetOther()}
-      />
-    );
+    const body = this.renderPresetPageBodyContent();
+    const bottom = this.renderPresetOther();
+
+    return <BodyContent body={body} bottom={bottom} />;
   };
 
   renderPresetPageFooter = () => {
@@ -186,7 +201,6 @@ class InternalLayout extends InternalBuild {
         footer={this.renderPresetPageFooter()}
         floatButton={this.renderPresetFloatButton()}
       >
-        请问请问犬瘟热请问
         {this.renderPresetPageBody()}
       </PageExtraWrapper>
     );

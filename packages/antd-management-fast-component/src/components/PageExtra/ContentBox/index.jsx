@@ -72,6 +72,14 @@ class ContentBox extends PureComponent {
         </Layout>
       );
 
+    if (
+      contentBody == null &&
+      (toolbar || null) == null &&
+      (bottom || null) == null
+    ) {
+      return null;
+    }
+
     if ((toolbar || null) != null || (bottom || null) != null) {
       return (
         <div style={{ overflowX: 'hidden' }}>

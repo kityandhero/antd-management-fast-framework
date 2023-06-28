@@ -4,6 +4,10 @@ class BodyContent extends PureComponent {
   render() {
     const { body, bottom } = this.props;
 
+    if (body == null && bottom == null) {
+      return null;
+    }
+
     return (
       <div
         style={{
