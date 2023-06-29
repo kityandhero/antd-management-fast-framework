@@ -62,7 +62,21 @@ class PageWrapper extends PureComponent {
         )
       : null;
 
-    const content = leftArea ? (
+    const headerContent = isObject(contentConfig) ? (
+      isEmptyObject(contentConfig) ? null : HeaderContent.checkProperties(
+          contentConfig,
+        ) ? (
+        <HeaderContent {...contentConfig} />
+      ) : null
+    ) : null;
+
+    const extraContent = isObject(extraContentConfig) ? (
+      isEmptyObject(extraContentConfig) ? null : (
+        <HeaderExtraContent {...extraContentConfig} />
+      )
+    ) : null;
+
+    const innerContent = leftArea ? (
       <FlexBox
         flexAuto="right"
         leftStyle={{
@@ -119,14 +133,8 @@ class PageWrapper extends PureComponent {
               padding: '0px',
             }}
             extra={extraAction}
-            content={<HeaderContent {...(contentConfig || {})} />}
-            extraContent={
-              isObject(extraContentConfig) ? (
-                isEmptyObject(extraContentConfig) ? null : (
-                  <HeaderExtraContent {...extraContentConfig} />
-                )
-              ) : null
-            }
+            content={headerContent}
+            extraContent={extraContent}
             tabActiveKey={tabActiveKey}
             tabList={tabList}
             tabBarExtraContent={tabBarExtraContent}
@@ -134,13 +142,13 @@ class PageWrapper extends PureComponent {
             tabProps={tabProps}
             footer={footer}
           >
-            {content}
+            {innerContent}
           </PageContainer>
         </div>
       );
     }
 
-    return content;
+    return innerContent;
   }
 }
 

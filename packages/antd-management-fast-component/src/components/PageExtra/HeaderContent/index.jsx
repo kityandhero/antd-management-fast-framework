@@ -5,6 +5,7 @@ import {
   checkObjectIsNullOrEmpty,
   checkStringIsNullOrWhiteSpace,
   isArray,
+  isEmptyArray,
   isString,
 } from 'easy-soft-utility';
 
@@ -13,6 +14,17 @@ import { DescriptionGrid } from '../../DescriptionGrid';
 const { Paragraph } = Typography;
 
 class HeaderContent extends PureComponent {
+  static checkProperties(p) {
+    const { paragraph, gridConfig, component, actions } = p;
+
+    return !(
+      paragraph == null &&
+      gridConfig == null &&
+      component == null &&
+      isEmptyArray(actions)
+    );
+  }
+
   render() {
     const { paragraph, gridConfig, component, actions } = this.props;
 
@@ -73,7 +85,7 @@ class HeaderContent extends PureComponent {
       });
     }
 
-    if (list.length <= 0) {
+    if (isEmptyArray(list)) {
       return null;
     }
 
