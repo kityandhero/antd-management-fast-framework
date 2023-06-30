@@ -1069,6 +1069,16 @@ class InternalFlow extends Core {
   };
 
   reloadGlobalData = ({ successCallback = null, failCallback = null }) => {
+    this.logCallTrack({}, primaryCallName, 'reloadGlobalData');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'reloadGlobalData',
+      'trigger',
+      'loadMetaData',
+    );
+
     loadMetaData({
       successCallback: successCallback,
       failCallback: failCallback,
@@ -1561,7 +1571,9 @@ class InternalFlow extends Core {
 
   // eslint-disable-next-line no-unused-vars
   pretreatmentImageUploadRemoteResponse = (response) => {
-    const text = '需要在继承中重新实现 pretreatmentImageUploadRemoteResponse';
+    const text = this.buildOverloadErrorText(
+      'pretreatmentImageUploadRemoteResponse',
+    );
 
     showSimpleRuntimeError(text);
 
@@ -1570,8 +1582,9 @@ class InternalFlow extends Core {
 
   // eslint-disable-next-line no-unused-vars
   pretreatmentFileBase64UploadRemoteResponse = (response) => {
-    const text =
-      '需要在继承中重新实现 pretreatmentFileBase64UploadRemoteResponse';
+    const text = this.buildOverloadErrorText(
+      'pretreatmentFileBase64UploadRemoteResponse',
+    );
 
     showSimpleRuntimeError(text);
 
@@ -1580,7 +1593,9 @@ class InternalFlow extends Core {
 
   // eslint-disable-next-line no-unused-vars
   pretreatmentVideoUploadRemoteResponse = (response) => {
-    const text = '需要在继承中重新实现 pretreatmentVideoUploadRemoteResponse';
+    const text = this.buildOverloadErrorText(
+      'pretreatmentVideoUploadRemoteResponse',
+    );
 
     showSimpleRuntimeError(text);
 
@@ -1589,7 +1604,9 @@ class InternalFlow extends Core {
 
   // eslint-disable-next-line no-unused-vars
   pretreatmentAudioUploadRemoteResponse = (response) => {
-    const text = '需要在继承中重新实现 pretreatmentAudioUploadRemoteResponse';
+    const text = this.buildOverloadErrorText(
+      'pretreatmentAudioUploadRemoteResponse',
+    );
 
     showSimpleRuntimeError(text);
 
@@ -1598,7 +1615,9 @@ class InternalFlow extends Core {
 
   // eslint-disable-next-line no-unused-vars
   pretreatmentFileUploadRemoteResponse = (response) => {
-    const text = '需要在继承中重新实现 pretreatmentFileUploadRemoteResponse';
+    const text = this.buildOverloadErrorText(
+      'pretreatmentFileUploadRemoteResponse',
+    );
 
     showSimpleRuntimeError(text);
 

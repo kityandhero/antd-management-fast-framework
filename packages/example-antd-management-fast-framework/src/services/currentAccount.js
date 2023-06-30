@@ -2,7 +2,7 @@ import { request, requestMode } from 'easy-soft-utility';
 
 export async function getCurrentBasicInfoData() {
   return request({
-    api: `/currentOperator/getCurrentBasicInfo`,
+    api: `/currentAccount/getCurrentBasicInfo`,
     mode: requestMode.simulation,
     simulativeSuccessResponse: {
       data: {
@@ -61,14 +61,14 @@ export async function getCurrentBasicInfoData() {
 
 export async function updateCurrentBasicInfoData(parameters) {
   return request({
-    api: `/currentOperator/updateCurrentBasicInfo`,
+    api: `/currentAccount/updateCurrentBasicInfo`,
     params: parameters,
   });
 }
 
 export async function changeCurrentPasswordData(parameters) {
   return request({
-    api: `/currentOperator/changeCurrentPassword`,
+    api: `/currentAccount/changeCurrentPassword`,
     params: parameters,
   });
 }

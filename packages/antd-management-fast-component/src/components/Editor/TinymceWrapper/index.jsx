@@ -139,7 +139,7 @@ class TinymceWrapper extends PureComponent {
           return;
         }
 
-        const v = pretreatmentRemoteSingleData(json);
+        const v = pretreatmentRemoteSingleData({ source: json });
 
         const { dataSuccess } = v;
 

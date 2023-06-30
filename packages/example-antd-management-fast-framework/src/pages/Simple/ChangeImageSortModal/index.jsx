@@ -13,7 +13,7 @@ import {
 import { AnchorLink, iconBuilder } from 'antd-management-fast-component';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '../../../customConfig/config';
+import { accessWayCollection } from '../../../customConfig';
 import { setMediaCollectionSortAction } from '../Assist/action';
 import { getArticleIdFromExternalData } from '../Assist/config';
 import { mediaItemData } from '../Common/data';

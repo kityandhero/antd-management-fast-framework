@@ -33,7 +33,7 @@ import {
 } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '../../../customConfig/config';
+import { accessWayCollection } from '../../../customConfig';
 import { colorCollection } from '../../../customConfig/constants';
 import {
   getSimpleRenderTypeName,

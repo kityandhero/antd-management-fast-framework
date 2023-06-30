@@ -32,7 +32,7 @@ class ShortcutPanel extends BaseView {
   };
 
   goToOperateCenter = () => {
-    this.goToPath(`/currentOperator/setting`);
+    this.goToPath(`/currentAccount/setting`);
   };
 
   establishCardCollectionConfig = () => {

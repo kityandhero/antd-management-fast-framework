@@ -14,6 +14,9 @@ const { BaseUpdateFormMenu } = DataForm;
   schedulingControl,
 }))
 class BasicInfo extends BaseUpdateFormMenu {
+  // 在控制台显示组建内调用序列, 仅为进行开发辅助
+  showCallProcess = true;
+
   constructor(properties) {
     super(properties);
 
@@ -160,7 +163,7 @@ class BasicInfo extends BaseUpdateFormMenu {
               lg: 24,
               type: cardConfig.contentItemType.imageUpload,
               image: avatar,
-              action: `${getCorsDomain()}/currentOperator/uploadImage`,
+              action: `${getCorsDomain()}/currentAccount/uploadImage`,
               afterUploadSuccess: (imageData) => {
                 this.afterImageUploadSuccess(imageData);
               },

@@ -12,7 +12,7 @@ import {
 import { iconBuilder } from 'antd-management-fast-component';
 import { MobileContainor } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '../../../../customConfig/config';
+import { accessWayCollection } from '../../../../customConfig';
 import { parseUrlParametersForSetState as parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';

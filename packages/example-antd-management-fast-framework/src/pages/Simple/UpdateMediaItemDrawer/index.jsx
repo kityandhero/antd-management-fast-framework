@@ -13,7 +13,7 @@ import {
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '../../../customConfig/config';
+import { accessWayCollection } from '../../../customConfig';
 import { mediaTypeCollection } from '../../../customConfig/constants';
 import { mediaItemData } from '../Common/data';
 

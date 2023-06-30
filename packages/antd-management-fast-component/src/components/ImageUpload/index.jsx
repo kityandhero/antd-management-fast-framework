@@ -1,5 +1,5 @@
 import { Modal, Space, Tooltip, Upload } from 'antd';
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
 import {
@@ -14,6 +14,7 @@ import {
 
 import { getImageUploadMaxSize, modal } from 'antd-management-fast-common';
 
+import { PureExtraComponent } from '../../bases';
 import { CenterBox } from '../CenterBox';
 import { FlexBox } from '../FlexBox';
 import { iconBuilder } from '../Icon';
@@ -25,7 +26,7 @@ import styles from './index.less';
 
 const defaultCapacity = 8;
 
-class ImageUpload extends PureComponent {
+class ImageUpload extends PureExtraComponent {
   constructor(properties) {
     super(properties);
 
@@ -102,10 +103,16 @@ class ImageUpload extends PureComponent {
 
     if (info.file.status === 'uploading') {
       this.setState({ uploading: true });
+
       return;
     }
 
     if (info.file.status === 'done') {
+      this.logCallTrack(
+        info,
+        this.buildPromptModuleInfoText('handleUploadChange', 'upload complete'),
+      );
+
       const { response } = info.file;
 
       if (isFunction(pretreatmentRemoteResponse)) {

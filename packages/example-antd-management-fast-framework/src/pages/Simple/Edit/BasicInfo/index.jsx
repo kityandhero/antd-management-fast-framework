@@ -236,7 +236,7 @@ class BasicInfo extends TabPageBase {
     if (file.status === 'done') {
       const { response } = file;
 
-      const v = pretreatmentRemoteSingleData(response);
+      const v = pretreatmentRemoteSingleData({ source: response });
 
       const { dataSuccess } = v;
 

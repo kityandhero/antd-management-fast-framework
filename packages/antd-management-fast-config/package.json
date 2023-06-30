@@ -49,10 +49,10 @@
     "@babel/core": "^7.22.5",
     "@babel/eslint-parser": "^7.22.5",
     "@babel/plugin-external-helpers": "^7.22.5",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-decorators": "^7.22.5",
-    "@babel/plugin-proposal-private-methods": "^7.18.6",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-class-properties": "^7.22.5",
+    "@babel/plugin-transform-private-methods": "^7.22.5",
+    "@babel/plugin-transform-private-property-in-object": "^7.22.5",
     "@babel/plugin-transform-runtime": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
@@ -65,12 +65,13 @@
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.2",
     "@typescript-eslint/parser": "^5.60.1",
-    "@umijs/max": "^4.0.71",
+    "@umijs/max": "^4.0.72",
+    "babel-jest": "^29.5.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^6.1.0",
     "cross-env": "^7.0.3",
     "documentation": "^14.0.2",
-    "easy-soft-develop": "^2.1.21",
+    "easy-soft-develop": "^2.1.26",
     "eslint": "^8.43.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -99,6 +100,6 @@
     "stylelint": "^15.9.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^33.0.0",
-    "umi": "^4.0.71"
+    "umi": "^4.0.72"
   }
 }

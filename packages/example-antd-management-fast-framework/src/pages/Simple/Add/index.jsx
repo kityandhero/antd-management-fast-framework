@@ -18,7 +18,7 @@ import {
 } from 'antd-management-fast-component';
 import { DataForm } from 'antd-management-fast-framework';
 
-import { accessWayCollection } from '../../../customConfig/config';
+import { accessWayCollection } from '../../../customConfig';
 import { parseUrlParametersForSetState as parseUrlParametersForSetState } from '../Assist/config';
 import { fieldData } from '../Common/data';
 

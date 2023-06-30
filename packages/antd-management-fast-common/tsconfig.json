@@ -27,7 +27,8 @@
   },
   "include": [
     "src/**/*",
-    "../antd-management-fast-framework/src/utils/configAssist.js"
+    "../antd-management-fast-framework/src/utils/configAssist.js",
+    "src/utils/httpAssist.js"
   ],
   "exclude": [
     "node_modules",
@@ -36,6 +37,6 @@
     "scripts",
     "src/.umi/*",
     "webpack",
-    "jest"
+    "jestMock"
   ]
 }

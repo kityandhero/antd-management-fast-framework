@@ -4,6 +4,7 @@ export * from './componentAssist';
 export * from './constants';
 export * from './core';
 export * from './fitHandler';
+export * from './httpAssist';
 export * from './localStorageAssist';
 export * from './mediaDefault';
 export * from './messageAssist';

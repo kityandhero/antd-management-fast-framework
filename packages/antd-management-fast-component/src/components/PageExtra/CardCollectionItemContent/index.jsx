@@ -15,6 +15,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  adjustUploadUrl,
   cardConfig,
   contentConfig,
   copyToClipboard,
@@ -286,6 +287,10 @@ class CardCollectionItemContent extends PureComponent {
                   ...contentItem.uploadProps,
                 };
 
+                uploadProperties.action = adjustUploadUrl(
+                  uploadProperties.action,
+                );
+
                 return (
                   <Col
                     key={contentItemKey}
@@ -507,11 +512,14 @@ class CardCollectionItemContent extends PureComponent {
               if (type === cardConfig.contentItemType.fileBase64Upload) {
                 const uploadProperties = {
                   ...contentItem.uploadProps,
-
                   fileBase64: contentItem.fileBase64 || '',
                   action: contentItem.action || '',
                   tokenSet: buildTokenData(),
                 };
+
+                uploadProperties.action = adjustUploadUrl(
+                  uploadProperties.action,
+                );
 
                 return (
                   <Col
@@ -547,12 +555,15 @@ class CardCollectionItemContent extends PureComponent {
               if (type === cardConfig.contentItemType.videoUpload) {
                 const uploadProperties = {
                   ...contentItem.uploadProps,
-
                   video: contentItem.video || '',
                   showPreview: contentItem.showPreview || false,
                   action: contentItem.action || '',
                   tokenSet: buildTokenData(),
                 };
+
+                uploadProperties.action = adjustUploadUrl(
+                  uploadProperties.action,
+                );
 
                 return (
                   <Col
@@ -588,11 +599,14 @@ class CardCollectionItemContent extends PureComponent {
               if (type === cardConfig.contentItemType.fileUpload) {
                 const uploadProperties = {
                   ...contentItem.uploadProps,
-
                   file: contentItem.file || '',
                   action: contentItem.action || '',
                   tokenSet: buildTokenData(),
                 };
+
+                uploadProperties.action = adjustUploadUrl(
+                  uploadProperties.action,
+                );
 
                 return (
                   <Col
@@ -633,6 +647,10 @@ class CardCollectionItemContent extends PureComponent {
                   action: contentItem.action || '',
                   tokenSet: buildTokenData(),
                 };
+
+                uploadProperties.action = adjustUploadUrl(
+                  uploadProperties.action,
+                );
 
                 return (
                   <Col

@@ -29,7 +29,7 @@ import {
   StatusBar,
 } from 'antd-management-fast-component';
 
-import { accessWayCollection } from '../../../../customConfig/config';
+import { accessWayCollection } from '../../../../customConfig';
 import AddMediaItemDrawer from '../../AddMediaItemDrawer';
 import {
   removeMediaItemAction,

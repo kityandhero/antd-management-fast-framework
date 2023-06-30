@@ -1,4 +1,10 @@
-import { getGuid, logDebug, mergeArrowText, toString } from 'easy-soft-utility';
+import {
+  getGuid,
+  logDebug,
+  mergeArrowText,
+  toBoolean,
+  toString,
+} from 'easy-soft-utility';
 
 import {
   defaultCoreState,
@@ -71,7 +77,8 @@ class Core extends BaseComponent {
         mergeArrowText(
           this.componentName,
           'showCallProcess',
-          toString(this.showCallProcess),
+          toString(toBoolean(this.showCallProcess)),
+          'do not show call process, if want wo show it, please set "this.showCallProcess" to true',
         ),
       );
 

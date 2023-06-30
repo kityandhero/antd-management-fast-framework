@@ -156,12 +156,12 @@ export function buildConfig({
         plugins: [
           '@babel/plugin-transform-react-jsx',
           ['@babel/plugin-proposal-decorators', { legacy: true }],
-          ['@babel/plugin-proposal-private-methods', { loose: true }],
+          ['@babel/plugin-transform-private-methods', { loose: true }],
           [
-            '@babel/plugin-proposal-private-property-in-object',
+            '@babel/plugin-transform-private-property-in-object',
             { loose: true },
           ],
-          ['@babel/plugin-proposal-class-properties', { loose: true }],
+          ['@babel/plugin-transform-class-properties', { loose: true }],
           '@babel/plugin-external-helpers',
           [
             '@babel/plugin-transform-runtime',
