@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-develop@1.0.24...antd-management-fast-develop@1.1.0) (2023-06-30)
+
+### Features
+
+- **antd-management-fast-charts:** update ([d3730f7](https://github.com/kityandhero/antd-management-fast-framework/commit/d3730f70c42d9ab9679a65026a743e0cc2c52bd9))
+
 ## [1.0.24](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-develop@1.0.23...antd-management-fast-develop@1.0.24) (2023-06-28)
 
 ### Bug Fixes
