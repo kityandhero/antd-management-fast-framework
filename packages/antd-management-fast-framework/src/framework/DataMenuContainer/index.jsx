@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isArray } from 'easy-soft-utility';
+import { isArray, logTrace, mergeArrowText } from 'easy-soft-utility';
 
 import { iconBuilder, Line } from 'antd-management-fast-component';
 
@@ -23,6 +23,15 @@ class DataMenuContainer extends DataTabContainer {
       ...this.state,
       menuMode: 'inline',
     };
+  }
+
+  static getDerivedStateFromProps(nextProperties, previousState) {
+    logTrace(
+      { parameter: { nextProperties, previousState } },
+      mergeArrowText(primaryCallName, 'getDerivedStateFromProps'),
+    );
+
+    return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   buildMenu = () => {

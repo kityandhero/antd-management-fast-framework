@@ -1,4 +1,8 @@
-import { logTrace, mergeArrowText } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  logTrace,
+  mergeArrowText,
+} from 'easy-soft-utility';
 
 import {
   getCurrentLocation,
@@ -67,7 +71,11 @@ class DataTabContainer extends DataLoad {
       (previousOp === 'load' && op === 'update') ||
       this.checkNeedUpdate(preProperties, preState, snapshot)
     ) {
-      this.reloadData({});
+      const { loadApiPath } = this.state;
+
+      if (!checkStringIsNullOrWhiteSpace(loadApiPath)) {
+        this.reloadData({});
+      }
 
       const { pathname } = getCurrentLocation();
 

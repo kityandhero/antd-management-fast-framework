@@ -1,8 +1,13 @@
 window.appInitCustomLocalCore = {
   layoutSetting: {
+    colorPrimary: '#1677FF',
+    contentWidth: 'Fluid',
     fixSiderbar: true,
+    fixedHeader: false,
     layout: 'side',
-    splitMenus: true,
+    navTheme: 'light',
+    siderMenuType: 'sub',
+    splitMenus: false,
   },
   successCode: 200,
   authenticationFailCode: 2001,
@@ -10,7 +15,8 @@ window.appInitCustomLocalCore = {
   authorizationFailRedirectPath: '/common/result/forbidden',
   // 远程登陆接口Url相对地址
   signInApi: 'entrance/signIn',
-  signInSimulationData: { currentAuthority: ['super'] },
+  metaDataApi: 'metaData/get',
+  currentOperatorApi: 'currentOperator/get',
   currentOperatorSimulationData: {
     avatar:
       'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',

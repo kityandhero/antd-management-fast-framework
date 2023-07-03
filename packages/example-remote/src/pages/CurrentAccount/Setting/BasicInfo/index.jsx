@@ -3,17 +3,15 @@ import { getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig, getCorsDomain } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
-import { DataForm } from 'antd-management-fast-framework';
 
 import { fieldData } from '../../Common/data';
-
-const { BaseUpdateFormMenu } = DataForm;
+import MenuPageBase from '../../MenuPageBase';
 
 @connect(({ currentAccount, schedulingControl }) => ({
   currentAccount,
   schedulingControl,
 }))
-class BasicInfo extends BaseUpdateFormMenu {
+class BasicInfo extends MenuPageBase {
   // 在控制台显示组建内调用序列, 仅为进行开发辅助
   showCallProcess = true;
 
@@ -44,6 +42,27 @@ class BasicInfo extends BaseUpdateFormMenu {
     });
 
     this.setState({ avatar: avatar || '' });
+  };
+
+  doAfterSubmitSuccess = ({
+    // eslint-disable-next-line no-unused-vars
+    singleData = null,
+    // eslint-disable-next-line no-unused-vars
+    listData = [],
+    // eslint-disable-next-line no-unused-vars
+    extraData = null,
+    // eslint-disable-next-line no-unused-vars
+    responseOriginalData = null,
+    // eslint-disable-next-line no-unused-vars
+    submitData = null,
+  }) => {
+    const that = this;
+
+    that.reloadCurrentOperator({
+      successCallback: () => {
+        that.reloadByUrl();
+      },
+    });
   };
 
   supplementSubmitRequestParams = (o) => {
@@ -179,7 +198,7 @@ class BasicInfo extends BaseUpdateFormMenu {
               lg: 24,
               type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
-              require: true,
+              require: false,
             },
           ],
         },

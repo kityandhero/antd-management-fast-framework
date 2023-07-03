@@ -172,6 +172,10 @@ export default [
     path: '/currentAccount',
     routes: [
       {
+        path: '/currentAccount',
+        redirect: '/currentAccount/setting',
+      },
+      {
         name: 'setting',
         icon: 'bars',
         hideChildrenInMenu: true,
@@ -180,14 +184,14 @@ export default [
         routes: [
           {
             path: '/currentAccount/setting',
-            redirect: '/currentAccount/setting/basicInfo',
+            redirect: '/currentAccount/setting/load/basicInfo',
           },
           {
-            path: '/currentAccount/setting/basicInfo',
+            path: '/currentAccount/setting/:op/basicInfo',
             component: './CurrentAccount/Setting/BasicInfo',
           },
           {
-            path: '/currentAccount/setting/password',
+            path: '/currentAccount/setting/:op/password',
             component: './CurrentAccount/Setting/Password',
           },
         ],
