@@ -1,16 +1,14 @@
 import {
   checkHasAuthority,
   checkStringIsNullOrWhiteSpace,
+  getCurrentOperatorCache,
   getToken,
   handleSimulationAuthorizeExtra,
-  isArray,
-  isFunction,
-  isUndefined,
-  logException,
 } from 'easy-soft-utility';
 
 import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
 
+import { refreshCurrentOperator } from '../../utils/currentOperatorAssist';
 import { SupplementWrapper } from '../CustomWrapper/SupplementWrapper';
 
 class AuthorizationWrapper extends SupplementWrapper {
@@ -38,57 +36,16 @@ class AuthorizationWrapper extends SupplementWrapper {
   };
 
   getCurrentOperator = () => {
-    const {
-      global: { currentOperator },
-    } = this.props;
+    getCurrentOperatorCache();
 
-    return currentOperator;
+    return getCurrentOperatorCache();
   };
 
   reloadCurrentOperator = ({ successCallback = null, failCallback = null }) => {
-    const that = this;
-
-    that
-      .dispatchApi({
-        type: 'global/getCurrentOperator',
-        payload: { force: true },
-      })
-      .then((remoteData) => {
-        const { dataSuccess } = remoteData;
-
-        if (dataSuccess) {
-          const { list, data, extra } = {
-            data: {},
-            list: [],
-            extra: {},
-            ...remoteData,
-          };
-
-          if (isFunction(successCallback)) {
-            // eslint-disable-next-line promise/no-callback-in-promise
-            successCallback({
-              data: data || {},
-              list: isArray(list) ? list : [],
-              extra: extra || {},
-              originalData: remoteData || {},
-            });
-          }
-        } else {
-          if (isFunction(failCallback)) {
-            // eslint-disable-next-line promise/no-callback-in-promise
-            failCallback({ originalData: remoteData || {} });
-          }
-        }
-
-        return;
-      })
-      .catch((error) => {
-        const { message } = error;
-
-        if (!isUndefined()) {
-          logException(message);
-        }
-      });
+    refreshCurrentOperator({
+      successCallback: successCallback,
+      failCallback: failCallback,
+    });
   };
 }
 

@@ -88,7 +88,7 @@ export function transferLayoutAvatar({ currentOperator }) {
   return layoutAvatar;
 }
 
-function refreshCurrentOperator({
+export function refreshCurrentOperator({
   successCallback = null,
   failCallback = null,
 }) {
