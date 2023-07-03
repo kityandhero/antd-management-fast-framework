@@ -6,16 +6,23 @@ import { cardConfig, dataTypeCollection } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
 import { Base } from '../../framework/DataDrawer/Base';
+import { switchControlAssist } from '../../utils/switchControlAssist';
 
 import styles from './index.less';
+
+const visibleFlag = '276b262ee5bc4c138c5e38f552fcf9e7';
 
 class DataPreviewDrawer extends Base {
   loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
 
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
+
   constructor(properties) {
-    super(properties);
+    super(properties, visibleFlag);
 
     this.state = {
       ...this.state,
