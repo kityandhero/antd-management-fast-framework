@@ -11,6 +11,7 @@ import {
   isArray,
   sortCollectionByKey,
   sortOperate,
+  toString,
 } from 'easy-soft-utility';
 
 import {

@@ -57,7 +57,7 @@ class InternalSwitchoverFlow extends InternalFlow {
 
     for (const item of this.menuList || []) {
       if (item.key === key) {
-        let path = pathname.replace('/update', '/load');
+        let path = pathname.replace('/update/', '/load/');
 
         if (!checkStringIsNullOrWhiteSpace(menuActiveKey)) {
           path = path.replace(`/${menuActiveKey}`, '/');
@@ -115,7 +115,7 @@ class InternalSwitchoverFlow extends InternalFlow {
 
     for (const item of this.tabList || []) {
       if (item.key === key) {
-        let path = pathname.replace('/update', '/load');
+        let path = pathname.replace('/update/', '/load/');
 
         if (!checkStringIsNullOrWhiteSpace(tabActiveKey)) {
           path = path.replace(`/${tabActiveKey}`, '/');

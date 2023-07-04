@@ -1,4 +1,4 @@
-import { Avatar, Divider, List, Typography } from 'antd';
+import { Avatar, Divider, List, Space, Typography } from 'antd';
 
 import {
   checkStringIsNullOrWhiteSpace,
@@ -15,6 +15,7 @@ import {
   searchCardConfig,
 } from 'antd-management-fast-common';
 import {
+  ColorText,
   convertOptionOrRadioData,
   iconBuilder,
   SyntaxHighlighter,
@@ -203,13 +204,19 @@ class BaseSimpleMultiPageSelectDrawer extends MultiPageSelectDrawer {
             </>
           }
           description={
-            <>
-              <Text>{fieldData.simpleId.label}:</Text>
-              <Text copyable>{simpleId}</Text>
-              <Divider type="vertical" />
-              <Text>{fieldData.createTime.label}:</Text>
-              <Text>{createTime}</Text>
-            </>
+            <Space split={<Divider type="vertical" />}>
+              <ColorText
+                textPrefix={fieldData.simpleId.label}
+                separator=": "
+                text={<Text copyable>{simpleId}</Text>}
+              />
+
+              <ColorText
+                textPrefix={fieldData.createTime.label}
+                separator=": "
+                text={createTime}
+              />
+            </Space>
           }
         />
       </>
