@@ -35,13 +35,13 @@ class SelectButton extends BaseElasticitySelectButton {
   };
 
   renderPresetSelectModal = () => {
-    const { label, helper, labelWidth } = this.props;
+    const { label, helper } = this.props;
 
     return (
       <SimpleSingleSelectModal
         label={label}
         helper={helper}
-        labelWidth={labelWidth}
+        labelWidth={100}
         afterSelectSuccess={this.afterModalSelectSuccess}
       />
     );
@@ -52,7 +52,6 @@ SelectButton.defaultProps = {
   ...BaseElasticitySelectButton.defaultProps,
   label: 'Label',
   helper: '',
-  labelWidth: 100,
 };
 
 export { SelectButton };

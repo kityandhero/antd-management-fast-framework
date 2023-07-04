@@ -69,5 +69,11 @@ class SelectField extends BaseSelectFieldExtra {
   };
 }
 
+SelectField.defaultProps = {
+  label: '',
+  valueText: '',
+  helper: '',
+};
+
 export { SelectField };
 `;

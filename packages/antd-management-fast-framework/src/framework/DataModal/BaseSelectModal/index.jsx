@@ -9,6 +9,8 @@ import {
 import { switchControlAssist } from '../../../utils/switchControlAssist';
 import { BaseLoadModal } from '../BaseLoadModal';
 
+const primaryCallName = 'DataModal::BaseSelectModal';
+
 class BaseSelectModal extends BaseLoadModal {
   submitWithForm = false;
 
@@ -25,6 +27,21 @@ class BaseSelectModal extends BaseLoadModal {
     const { externalData } = this.props;
 
     return { ...o, ...externalData };
+  };
+
+  /**
+   * 当可见性变为隐藏后附加的执行
+   */
+  executeAfterDoOtherWhenChangeVisibleToHide = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'executeAfterDoOtherWhenChangeVisibleToHide',
+    );
+
+    this.setState({
+      currentRecord: null,
+    });
   };
 
   fillInitialValuesAfterLoad = ({

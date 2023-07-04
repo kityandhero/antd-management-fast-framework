@@ -37,16 +37,10 @@ class SelectField extends BaseSelectFieldExtra {
       />
     );
   };
-
-  getFieldData = () => {
-    const { title, label, fieldTitle } = this.props;
-
-    return {
-      fieldText: title || '',
-      fieldTitle: fieldTitle || label || '文章',
-      fieldPlaceholder: '请选择',
-    };
-  };
 }
+
+SelectField.defaultProps = {
+  ...BaseSelectFieldExtra.defaultProps,
+};
 
 export default SelectField;

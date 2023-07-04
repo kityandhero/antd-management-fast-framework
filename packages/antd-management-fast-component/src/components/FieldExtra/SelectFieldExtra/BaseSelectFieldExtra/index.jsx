@@ -2,6 +2,7 @@ import { Button, Divider } from 'antd';
 import React from 'react';
 
 import {
+  buildFieldDescription,
   checkStringIsNullOrWhiteSpace,
   isArray,
   isEmptyArray,
@@ -31,14 +32,6 @@ class BaseSelectFieldExtra extends BaseComponent {
       selectData: null,
     };
   }
-
-  getFieldData = () => {
-    return {
-      fieldText: '',
-      fieldTitle: '',
-      placeholder: '请选择',
-    };
-  };
 
   clearSelect = () => {
     const { afterClearSelect } = this.props;
@@ -138,22 +131,20 @@ class BaseSelectFieldExtra extends BaseComponent {
   };
 
   renderPresetField = () => {
-    const { label, helper, formItemLayout, showClear } = this.props;
+    const {
+      label,
+      defaultValue,
+      helper,
+      placeholder,
+      formItemLayout,
+      showClear,
+    } = this.props;
     const { selectData } = this.state;
-
-    const { fieldText, fieldTitle, fieldPlaceholder } = {
-      fieldText: '',
-      fieldTitle: '',
-      fieldPlaceholder: '请选择',
-      ...this.getFieldData(),
-    };
 
     const selectValue = this.selectValueText(selectData);
 
     const v = checkStringIsNullOrWhiteSpace(selectValue)
-      ? (fieldText || '') === ''
-        ? null
-        : fieldText
+      ? defaultValue || ''
       : selectValue;
 
     return (
@@ -163,7 +154,7 @@ class BaseSelectFieldExtra extends BaseComponent {
         helper={helper || null}
         icon={iconBuilder.form()}
         innerProps={{
-          placeholder: `${fieldPlaceholder}${fieldTitle}`,
+          placeholder: placeholder || buildFieldDescription(label, '选择'),
           readOnly: true,
           addonAfter: (
             <>
@@ -175,7 +166,7 @@ class BaseSelectFieldExtra extends BaseComponent {
                   paddingLeft: 0,
                   paddingRight: 0,
                 }}
-                title={`选择${fieldTitle}`}
+                title={buildFieldDescription(label, '选择')}
                 onClick={(event) => this.showSelect(event)}
               >
                 {iconBuilder.search()}
@@ -245,6 +236,11 @@ class BaseSelectFieldExtra extends BaseComponent {
 }
 
 BaseSelectFieldExtra.defaultProps = {
+  label: '',
+  defaultValue: '',
+  helper: '',
+  placeholder: '',
+  formItemLayout: null,
   required: false,
   showClear: true,
   selectMode: selectModeCollection.drawer,

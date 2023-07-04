@@ -27,14 +27,6 @@ class BaseElasticitySelectButton extends BaseComponent {
     };
   }
 
-  getFieldData = () => {
-    return {
-      fieldText: '',
-      fieldTitle: '',
-      placeholder: '请选择',
-    };
-  };
-
   showSelect = () => {
     const { selectMode } = this.props;
 
