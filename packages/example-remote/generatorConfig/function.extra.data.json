@@ -6,6 +6,11 @@
       "name": "channel"
     },
     {
+      "functionSegment": "Gender",
+      "label": "性别",
+      "name": "gender"
+    },
+    {
       "functionSegment": "WebChannel",
       "label": "Web渠道",
       "name": "webChannelId"
@@ -19,6 +24,21 @@
       "functionSegment": "GeneralLogType",
       "label": "类型",
       "name": "type"
+    },
+    {
+      "functionSegment": "SmsCategoryStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "SmsLogStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "SmsLogAggregate",
+      "label": "汇总状态",
+      "name": "aggregate"
     },
     {
       "functionSegment": "HostServiceChangeType",
@@ -39,6 +59,11 @@
       "functionSegment": "PresetRoleStatus",
       "label": "状态",
       "name": "status"
+    },
+    {
+      "functionSegment": "UserType",
+      "label": "类型",
+      "name": "type"
     }
   ]
 }

@@ -19,10 +19,7 @@ import TabPageBase from '../../TabPageBase';
   presetRole,
   schedulingControl,
 }))
-class BasicInfo extends TabPageBase {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
+class Index extends TabPageBase {
   reloadHeaderOnSubmitSuccess = true;
 
   constructor(properties) {
@@ -84,8 +81,6 @@ class BasicInfo extends TabPageBase {
   establishCardCollectionConfig = () => {
     const { metaData } = this.state;
 
-    const spinning = this.checkInProgress();
-
     const isSuper = getValueByKey({
       data: metaData,
       key: fieldData.isSuper.name,
@@ -118,7 +113,6 @@ class BasicInfo extends TabPageBase {
               },
             ],
           },
-          spinning,
           items: [
             {
               lg: 12,
@@ -139,7 +133,6 @@ class BasicInfo extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '模块与系统信息',
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -181,7 +174,6 @@ class BasicInfo extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '操作信息',
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -240,6 +232,17 @@ class BasicInfo extends TabPageBase {
       ],
     };
   };
+
+  establishHelpConfig = () => {
+    return {
+      title: '操作提示',
+      list: [
+        {
+          text: '角色名称尽可能表达出实际含义。',
+        },
+      ],
+    };
+  };
 }
 
-export default BasicInfo;
+export default Index;

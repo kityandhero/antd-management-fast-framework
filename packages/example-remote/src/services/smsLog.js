@@ -6,3 +6,24 @@ export async function pageListData(parameters) {
     params: parameters,
   });
 }
+
+export async function getData(parameters) {
+  return request({
+    api: '/smsLog/get',
+    params: parameters,
+  });
+}
+
+export async function deleteData(parameters) {
+  return request({
+    api: '/sqlLog/delete',
+    params: parameters,
+  });
+}
+
+export async function deleteMultiData(parameters) {
+  return request({
+    api: '/sqlLog/deleteMulti',
+    params: parameters,
+  });
+}

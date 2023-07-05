@@ -26,8 +26,9 @@ import ShortcutPanel from './ShortcutPanel';
 
 const { MultiPage } = DataMultiPageView;
 
-@connect(({ errorLog, schedulingControl }) => ({
+@connect(({ errorLog, currentOperator, schedulingControl }) => ({
   errorLog,
+  currentOperator,
   schedulingControl,
 }))
 class Index extends MultiPage {

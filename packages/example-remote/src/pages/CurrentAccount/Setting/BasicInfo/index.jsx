@@ -12,9 +12,6 @@ import MenuPageBase from '../../MenuPageBase';
   schedulingControl,
 }))
 class BasicInfo extends MenuPageBase {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
   constructor(properties) {
     super(properties);
 
@@ -157,7 +154,7 @@ class BasicInfo extends MenuPageBase {
               lg: 6,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.name,
-              require: true,
+              require: false,
             },
             {
               lg: 6,

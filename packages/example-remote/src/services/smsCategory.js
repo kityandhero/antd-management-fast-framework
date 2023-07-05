@@ -42,6 +42,13 @@ export async function setDisableData(parameters) {
   });
 }
 
+export async function removeData(parameters) {
+  return request({
+    api: '/smsCategory/remove',
+    params: parameters,
+  });
+}
+
 export async function refreshCacheData(parameters) {
   return request({
     api: '/smsCategory/refreshCache',

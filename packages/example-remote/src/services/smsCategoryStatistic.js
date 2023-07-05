@@ -6,3 +6,10 @@ export async function pageListData(parameters) {
     params: parameters,
   });
 }
+
+export async function getData(parameters) {
+  return request({
+    api: '/smsCategoryStatistic/get',
+    params: parameters,
+  });
+}

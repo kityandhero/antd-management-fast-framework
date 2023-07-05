@@ -5,6 +5,7 @@ import {
   isArray,
   isEmptyArray,
   pretreatmentRequestParameters,
+  showSimpleErrorMessage,
 } from 'easy-soft-utility';
 
 import { listViewConfig } from 'antd-management-fast-common';
@@ -23,8 +24,6 @@ import { DataSinglePageView } from 'antd-management-fast-framework';
 import { fieldData } from '../Common/data';
 
 const { InnerSinglePage } = DataSinglePageView;
-
-const primaryCallName = 'AccessWay::ModuleInfoBase';
 
 class ModuleInfoBase extends InnerSinglePage {
   pageValues = {
@@ -62,19 +61,29 @@ class ModuleInfoBase extends InnerSinglePage {
 
   // eslint-disable-next-line no-unused-vars
   removeModule = (record) => {
-    throw new Error(this.buildOverloadErrorText('removeModule'));
+    const text = 'removeModule need be override';
+
+    showSimpleErrorMessage(text);
   };
 
   openModuleDrawer = () => {
-    throw new Error(this.buildOverloadErrorText('showModuleDrawer'));
+    throw new Error('showModuleDrawer need overrode to implement');
   };
 
   openUpdateModuleModal = () => {
-    throw new Error(this.buildOverloadErrorText('openUpdateModuleModal'));
+    throw new Error('openUpdateModuleModal need overrode to implement');
+  };
+
+  openModuleTreeDrawer = () => {
+    throw new Error('openModuleTreeDrawer need overrode to implement');
   };
 
   showModuleDrawer = () => {
     this.openModuleDrawer();
+  };
+
+  showModuleTreeDrawer = () => {
+    this.openModuleTreeDrawer();
   };
 
   showUpdateModuleModal = (record) => {
@@ -91,14 +100,6 @@ class ModuleInfoBase extends InnerSinglePage {
   };
 
   afterOperateSuccess = () => {
-    this.logCallTrace(
-      {},
-      primaryCallName,
-      'afterOperateSuccess',
-      'trigger',
-      'reloadDataWithReloadAnimalPrompt',
-    );
-
     this.reloadDataWithReloadAnimalPrompt({ delay: 650 });
 
     this.reloadByUrl();
@@ -110,6 +111,14 @@ class ModuleInfoBase extends InnerSinglePage {
 
   establishDataContainerExtraActionCollectionConfig = () => {
     return [
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'default',
+        icon: iconBuilder.inbox(),
+        text: '已选模块树型展示',
+        handleClick: this.showModuleTreeDrawer,
+      },
       {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,

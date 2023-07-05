@@ -6,6 +6,7 @@ import ModuleInfoBase from '../../../../AccessWay/ModuleInfoBase';
 import AccessWayDrawer from '../../../AccessWayDrawer';
 import { removeModuleAction } from '../../../Assist/action';
 import { parseUrlParametersForSetState } from '../../../Assist/config';
+import ModuleTreeDrawer from '../../../ModuleTreeDrawer';
 import UpdateModuleModal from '../../../UpdateModuleModal';
 
 @connect(({ presetRole, schedulingControl }) => ({
@@ -74,6 +75,10 @@ class ModuleInfo extends ModuleInfoBase {
     UpdateModuleModal.open();
   };
 
+  openModuleTreeDrawer = () => {
+    ModuleTreeDrawer.open();
+  };
+
   renderPresetOther = () => {
     const { currentRecord, presetRoleId } = this.state;
 
@@ -82,8 +87,11 @@ class ModuleInfo extends ModuleInfoBase {
         <AccessWayDrawer
           externalData={{ presetRoleId }}
           width={1200}
+          onClose={this.afterAccessWayDrawerClose}
           afterClose={this.afterOperateSuccess}
         />
+
+        <ModuleTreeDrawer externalData={{ presetRoleId }} />
 
         <UpdateModuleModal
           externalData={{

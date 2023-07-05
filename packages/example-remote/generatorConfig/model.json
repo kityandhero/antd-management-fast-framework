@@ -133,6 +133,36 @@
       "cover": true
     },
     {
+      "name": "sqlLog",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/sqlLog/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/sqlLog/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "delete",
+          "service": "deleteData",
+          "api": "/sqlLog/delete",
+          "type": "singleData"
+        },
+        {
+          "effect": "deleteMulti",
+          "service": "deleteMultiData",
+          "api": "/sqlLog/deleteMulti",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
       "name": "accessWay",
       "apis": [
         {
@@ -157,6 +187,12 @@
           "effect": "listModule",
           "service": "listModuleData",
           "api": "/presetRole/listModule",
+          "type": "singleList"
+        },
+        {
+          "effect": "listTreeModule",
+          "service": "listTreeModuleData",
+          "api": "/presetRole/listTreeModule",
           "type": "singleList"
         },
         {
@@ -241,36 +277,6 @@
       "cover": true
     },
     {
-      "name": "sqlLog",
-      "apis": [
-        {
-          "effect": "pageList",
-          "service": "pageListData",
-          "api": "/sqlLog/pageList",
-          "type": "pageList"
-        },
-        {
-          "effect": "get",
-          "service": "getData",
-          "api": "/sqlLog/get",
-          "type": "singleData"
-        },
-        {
-          "effect": "delete",
-          "service": "deleteData",
-          "api": "/sqlLog/delete",
-          "type": "singleData"
-        },
-        {
-          "effect": "deleteMulti",
-          "service": "deleteMultiData",
-          "api": "/sqlLog/deleteMulti",
-          "type": "singleData"
-        }
-      ],
-      "cover": true
-    },
-    {
       "name": "hostService",
       "apis": [
         {
@@ -326,17 +332,23 @@
           "service": "pageListData",
           "api": "/smsLog/pageList",
           "type": "pageList"
-        }
-      ],
-      "cover": true
-    },
-    {
-      "name": "smsStatistic",
-      "apis": [
+        },
         {
           "effect": "get",
           "service": "getData",
-          "api": "/smsStatistic/get",
+          "api": "/smsLog/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "delete",
+          "service": "deleteData",
+          "api": "/sqlLog/delete",
+          "type": "singleData"
+        },
+        {
+          "effect": "deleteMulti",
+          "service": "deleteMultiData",
+          "api": "/sqlLog/deleteMulti",
           "type": "singleData"
         }
       ],
@@ -382,6 +394,12 @@
           "type": "singleData"
         },
         {
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/smsCategory/remove",
+          "type": "singleData"
+        },
+        {
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "api": "/smsCategory/refreshCache",
@@ -398,18 +416,138 @@
           "service": "pageListData",
           "api": "/smsCategoryStatistic/pageList",
           "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/smsCategoryStatistic/get",
+          "type": "singleData"
         }
       ],
       "cover": true
     },
     {
-      "name": "article",
+      "name": "masterManager",
       "apis": [
         {
           "effect": "pageList",
           "service": "pageListData",
-          "api": "/article/pageList",
+          "api": "/masterManager/pageList",
           "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/masterManager/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/masterManager/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "resetPassword",
+          "service": "resetPasswordData",
+          "api": "/masterManager/resetPassword",
+          "type": "singleData"
+        },
+        {
+          "effect": "delete",
+          "service": "deleteData",
+          "api": "/masterManager/delete",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "user",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/user/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/user/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/user/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateParent",
+          "service": "updateParentData",
+          "api": "/user/updateParent",
+          "type": "singleData"
+        },
+        {
+          "effect": "clearParent",
+          "service": "clearParentData",
+          "api": "/user/clearParent",
+          "type": "singleData"
+        },
+        {
+          "effect": "resetPassword",
+          "service": "resetPasswordData",
+          "api": "/user/resetPassword",
+          "type": "singleData"
+        },
+        {
+          "effect": "delete",
+          "service": "deleteData",
+          "api": "/user/delete",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/user/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/user/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "internalTester",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/internalTester/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/internalTester/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/internalTester/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/internalTester/remove",
+          "type": "singleData"
         }
       ],
       "cover": true

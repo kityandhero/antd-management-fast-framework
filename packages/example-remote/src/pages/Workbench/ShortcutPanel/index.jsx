@@ -14,7 +14,7 @@ class ShortcutPanel extends BaseView {
   loadRemoteRequestAfterMount = false;
 
   goToPageList = () => {
-    this.goToPath(`/news/article/pageList`);
+    this.goToPath(`/logs/generalLog/pageList`);
   };
 
   goToOperateCenter = () => {
@@ -34,7 +34,7 @@ class ShortcutPanel extends BaseView {
               type: cardConfig.contentItemType.component,
               component: (
                 <Space style={{ width: '100%' }} direction="vertical">
-                  <Button onClick={this.goToPageList}>文章管理</Button>
+                  <Button onClick={this.goToPageList}>日志管理</Button>
                   <Button
                     onClick={() => {
                       this.goToOperateCenter();

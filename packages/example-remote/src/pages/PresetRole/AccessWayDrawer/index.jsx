@@ -19,9 +19,6 @@ const visibleFlag = 'fd7a604f12fa456dab6bcad940da8921';
   schedulingControl,
 }))
 class AccessWayDrawer extends PageListDrawerCore {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
   static open() {
     switchControlAssist.open(visibleFlag);
   }

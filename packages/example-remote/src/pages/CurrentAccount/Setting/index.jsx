@@ -4,14 +4,12 @@ import { getCurrentOperatorCache, getValueByKey } from 'easy-soft-utility';
 import { defaultUserAvatar } from 'antd-management-fast-common';
 import { DataMenuContainer } from 'antd-management-fast-framework';
 
-@connect(({ currentAccount, schedulingControl }) => ({
+@connect(({ currentOperator, currentAccount, schedulingControl }) => ({
+  currentOperator,
   currentAccount,
   schedulingControl,
 }))
 class Setting extends DataMenuContainer {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
   showReloadButton = false;
 
   menuList = [
@@ -40,13 +38,19 @@ class Setting extends DataMenuContainer {
   getPresetPageTitle = () => {
     const currentOperator = getCurrentOperatorCache();
 
+    console.log(currentOperator);
+
     const name = getValueByKey({
       data: currentOperator,
       key: 'name',
-      defaultValue: '--',
     });
 
-    return name || '';
+    const loginName = getValueByKey({
+      data: currentOperator,
+      key: 'loginName',
+    });
+
+    return name || loginName || '';
   };
 }
 

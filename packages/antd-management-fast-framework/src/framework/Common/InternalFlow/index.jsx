@@ -90,7 +90,17 @@ class InternalFlow extends Core {
   }
 
   // eslint-disable-next-line no-unused-vars
-  checkNeedUpdate = (preProperties, preState, snapshot) => false;
+  checkNeedUpdate = (preProperties, preState, snapshot) => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'afterFirstLoadSuccess',
+      emptyLogic,
+      'return false',
+    );
+
+    return false;
+  };
 
   doLoadRemoteRequest = () => {
     this.logCallTrack({}, primaryCallName, 'doLoadRemoteRequest');
@@ -116,28 +126,59 @@ class InternalFlow extends Core {
   };
 
   // eslint-disable-next-line no-unused-vars
-  beforeFirstLoadRequest = (submitData) => {};
+  beforeFirstLoadRequest = (submitData) => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'beforeFirstLoadRequest',
+      emptyLogic,
+    );
+  };
 
   // eslint-disable-next-line no-unused-vars
-  beforeReLoadRequest = (submitData) => {};
+  beforeReLoadRequest = (submitData) => {
+    this.logCallTrack({}, primaryCallName, 'beforeReLoadRequest', emptyLogic);
+  };
 
   // eslint-disable-next-line no-unused-vars
-  beforeRequest = (submitData) => {};
+  beforeRequest = (submitData) => {
+    this.logCallTrack({}, primaryCallName, 'beforeRequest', emptyLogic);
+  };
 
   // eslint-disable-next-line no-unused-vars
-  afterGetFirstRequestResult = (submitData, responseData) => {};
+  afterGetFirstRequestResult = (submitData, responseData) => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'afterGetFirstRequestResult',
+      emptyLogic,
+    );
+  };
 
   // eslint-disable-next-line no-unused-vars
-  afterGetRequestResult = (submitData, responseData) => {};
+  afterGetRequestResult = (submitData, responseData) => {
+    this.logCallTrack({}, primaryCallName, 'afterGetRequestResult', emptyLogic);
+  };
 
   // eslint-disable-next-line no-unused-vars
-  afterGetReLoadRequestResult = (submitData, responseData) => {};
+  afterGetReLoadRequestResult = (submitData, responseData) => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'afterGetReLoadRequestResult',
+      emptyLogic,
+    );
+  };
 
   getRequestingData() {
+    this.logCallTrack({}, primaryCallName, 'getRequestingData');
+
     return this.lastRequestingData;
   }
 
   setRequestingData(parameters, callback) {
+    this.logCallTrack({}, primaryCallName, 'setRequestingData');
+
     const d =
       parameters == null
         ? { type: '', payload: {} }
@@ -151,15 +192,45 @@ class InternalFlow extends Core {
   }
 
   clearRequestingData() {
+    this.logCallTrack({}, primaryCallName, 'clearRequestingData');
+
     this.setRequestingData({ type: '', payload: {} });
   }
 
-  initLoadRequestParams = (o) => o || {};
+  initLoadRequestParams = (o) => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'initLoadRequestParams',
+      emptyLogic,
+      'return source',
+    );
 
-  supplementLoadRequestParams = (o) => o || {};
+    return o || {};
+  };
+
+  supplementLoadRequestParams = (o) => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'supplementLoadRequestParams',
+      emptyLogic,
+      'return source',
+    );
+
+    return o || {};
+  };
 
   // eslint-disable-next-line no-unused-vars
   checkLoadRequestParams = (o) => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'checkLoadRequestParams',
+      emptyLogic,
+      'return true',
+    );
+
     return true;
   };
 
@@ -274,6 +345,8 @@ class InternalFlow extends Core {
   };
 
   adjustLoadApiPath = () => {
+    this.logCallTrack({}, primaryCallName, 'adjustLoadApiPath', emptyLogic);
+
     return '';
   };
 
@@ -1085,7 +1158,9 @@ class InternalFlow extends Core {
     });
   };
 
-  afterFirstLoadSuccess = () => {};
+  afterFirstLoadSuccess = () => {
+    this.logCallTrack({}, primaryCallName, 'afterFirstLoadSuccess', emptyLogic);
+  };
 
   afterLoadSuccess = ({
     metaData = null,
@@ -1109,15 +1184,21 @@ class InternalFlow extends Core {
     logDevelop(this.componentName, 'afterLoadSuccess do nothing, ');
   };
 
-  afterReloadSuccess = () => {};
+  afterReloadSuccess = () => {
+    this.logCallTrack({}, primaryCallName, 'afterReloadSuccess', emptyLogic);
+  };
 
   backToList = () => {
+    this.logCallTrack({}, primaryCallName, 'backToList');
+
     const { backPath } = this.state;
 
     this.goToPath(backPath);
   };
 
   checkWorkDoing() {
+    this.logCallTrack({}, primaryCallName, 'checkWorkDoing');
+
     const { dataLoading, reloading, searching, refreshing, processing } =
       this.state;
 
@@ -1140,6 +1221,8 @@ class InternalFlow extends Core {
     // eslint-disable-next-line no-unused-vars
     completeCallback = null,
   }) => {
+    this.logCallTrack({}, primaryCallName, 'validate', emptyLogic);
+
     throw new Error(this.buildOverloadErrorText('validate'));
   };
 
@@ -1161,6 +1244,8 @@ class InternalFlow extends Core {
   }
 
   renderPresetOther = () => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetOther', emptyLogic);
+
     return null;
   };
 

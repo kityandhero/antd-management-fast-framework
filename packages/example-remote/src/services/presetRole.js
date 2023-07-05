@@ -14,6 +14,13 @@ export async function listModuleData(parameters) {
   });
 }
 
+export async function listTreeModuleData(parameters) {
+  return request({
+    api: '/presetRole/listTreeModule',
+    params: parameters,
+  });
+}
+
 export async function getData(parameters) {
   return request({
     api: '/presetRole/get',

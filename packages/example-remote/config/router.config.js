@@ -15,6 +15,7 @@ export default [
   {
     path: '/',
     redirect: '/dashboard',
+    routes: [],
   },
   {
     path: '/dashboard',
@@ -78,6 +79,201 @@ export default [
                 component: './ErrorLog/Edit/ParamInfo',
               },
             ],
+          },
+        ],
+      },
+      {
+        name: 'generalLog',
+        icon: 'reconciliation',
+        hideChildrenInMenu: true,
+        path: '/logs/generalLog',
+        routes: [
+          {
+            path: '/logs/generalLog',
+            redirect: '/logs/generalLog/pageList',
+          },
+          {
+            path: '/logs/generalLog/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/logs/generalLog/pageList/no',
+          },
+          {
+            path: '/logs/generalLog/pageList/:pageKey',
+            hideInMenu: true,
+            component: './GeneralLog/PageList',
+          },
+          {
+            path: '/logs/generalLog/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './GeneralLog/Edit',
+            routes: [
+              {
+                path: '/logs/generalLog/edit/:op/:id/:pageKey/basicInfo',
+                name: 'basicInfo',
+                component: './GeneralLog/Edit/BasicInfo',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'sqlLog',
+        icon: 'reconciliation',
+        hideChildrenInMenu: true,
+        path: '/logs/sqlLog',
+        routes: [
+          {
+            path: '/logs/sqlLog',
+            redirect: '/logs/sqlLog/pageList',
+          },
+          {
+            path: '/logs/sqlLog/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/logs/sqlLog/pageList/no',
+          },
+          {
+            path: '/logs/sqlLog/pageList/:pageKey',
+            hideInMenu: true,
+            component: './SqlLog/PageList',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'sms',
+    icon: 'read',
+    path: '/sms',
+    routes: [
+      {
+        name: 'smsCategory',
+        icon: 'bars',
+        hideChildrenInMenu: true,
+        path: '/sms/smsCategory',
+        routes: [
+          {
+            path: '/sms/smsCategory',
+            redirect: '/sms/smsCategory/pageList/no',
+          },
+          {
+            path: '/sms/smsCategory/pageList/:pageKey',
+            name: 'pageList',
+            hideInMenu: true,
+            component: './SmsCategory/PageList',
+          },
+        ],
+      },
+      {
+        name: 'smsLog',
+        icon: 'bars',
+        hideChildrenInMenu: true,
+        path: '/sms/smsLog',
+        routes: [
+          {
+            path: '/sms/smsLog',
+            redirect: '/sms/smsLog/pageList/no',
+          },
+          {
+            path: '/sms/smsLog/pageList/:pageKey',
+            name: 'pageList',
+            hideInMenu: true,
+            component: './SmsLog/PageList',
+          },
+        ],
+      },
+      {
+        name: 'smsCategoryStatistic',
+        icon: 'bars',
+        path: '/sms/smsCategoryStatistic',
+        hideChildrenInMenu: true,
+        routes: [
+          {
+            path: '/sms/smsCategoryStatistic',
+            redirect: '/sms/smsCategoryStatistic/pageList/no',
+          },
+          {
+            path: '/sms/smsCategoryStatistic/pageList/:pageKey',
+            name: 'pageList',
+            hideInMenu: true,
+            component: './SmsCategoryStatistic/PageList',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'services',
+    icon: 'reconciliation',
+    path: '/services',
+    routes: [
+      {
+        name: 'hostService',
+        icon: 'reconciliation',
+        hideChildrenInMenu: true,
+        path: '/services/hostService',
+        routes: [
+          {
+            path: '/services/hostService',
+            redirect: '/services/hostService/pageList',
+          },
+          {
+            path: '/services/hostService/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/services/hostService/pageList/no',
+          },
+          {
+            path: '/services/hostService/pageList/:pageKey',
+            hideInMenu: true,
+            component: './HostService/PageList',
+          },
+          {
+            path: '/services/hostService/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './HostService/Edit',
+            routes: [
+              {
+                path: '/services/hostService/edit/:op/:id/:pageKey/changeRecord',
+                routes: [
+                  {
+                    path: '/services/hostService/edit/:op/:id/:pageKey/changeRecord',
+                    redirect:
+                      '/services/hostService/edit/:op/:id/:pageKey/changeRecord/pageList',
+                  },
+                  {
+                    path: '/services/hostService/edit/:op/:id/:pageKey/changeRecord/pageList',
+                    component: './HostService/Edit/ChangeRecord/PageList',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'hostServiceLog',
+        icon: 'reconciliation',
+        hideChildrenInMenu: true,
+        path: '/services/hostServiceLog',
+        routes: [
+          {
+            path: '/services/hostServiceLog',
+            redirect: '/services/hostServiceLog/pageList',
+          },
+          {
+            path: '/services/hostServiceLog/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/services/hostServiceLog/pageList/no',
+          },
+          {
+            path: '/services/hostServiceLog/pageList/:pageKey',
+            hideInMenu: true,
+            component: './HostServiceLog/PageList',
           },
         ],
       },
@@ -167,6 +363,97 @@ export default [
     ],
   },
   {
+    name: 'person',
+    icon: 'team',
+    path: '/person',
+    routes: [
+      {
+        name: 'user',
+        icon: 'user',
+        hideChildrenInMenu: true,
+        path: '/person/user',
+        routes: [
+          {
+            path: '/person/user',
+            redirect: '/person/user/pageList',
+          },
+          {
+            path: '/person/user/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/person/user/pageList/no',
+          },
+          {
+            path: '/person/user/pageList/:pageKey',
+            hideInMenu: true,
+            component: './User/PageList',
+          },
+          {
+            path: '/person/user/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './User/Edit',
+            routes: [
+              {
+                path: '/person/user/edit/:op/:id/:pageKey/basicInfo',
+                name: 'basicInfo',
+                component: './User/Edit/BasicInfo',
+              },
+              {
+                path: '/person/user/edit/:op/:id/:pageKey/updateParent',
+                name: 'basicInfo',
+                component: './User/Edit/UpdateParent',
+              },
+              {
+                path: '/person/user/edit/:op/:id/:pageKey/operateLog',
+                name: 'operateLog',
+                routes: [
+                  {
+                    path: '/person/user/edit/:op/:id/:pageKey/operateLog',
+                    redirect:
+                      '/person/user/edit/:op/:id/:pageKey/operateLog/pageList',
+                  },
+                  {
+                    path: '/person/user/edit/:op/:id/:pageKey/operateLog/pageList',
+                    component: './User/Edit/OperateLog/PageList',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'internalTester',
+        icon: 'reconciliation',
+        hideChildrenInMenu: true,
+        path: '/person/internalTester',
+        routes: [
+          {
+            path: '/person/internalTester',
+            redirect: '/person/internalTester/pageList',
+          },
+          {
+            path: '/person/internalTester/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/person/internalTester/pageList/no',
+          },
+          {
+            path: '/person/internalTester/pageList/:pageKey',
+            hideInMenu: true,
+            component: './InternalTester/PageList',
+          },
+          {
+            path: '/person/internalTester/add',
+            hideInMenu: true,
+            component: './InternalTester/Add',
+          },
+        ],
+      },
+    ],
+  },
+  {
     name: 'currentAccount',
     icon: 'user',
     path: '/currentAccount',
@@ -193,6 +480,38 @@ export default [
           {
             path: '/currentAccount/setting/:op/password',
             component: './CurrentAccount/Setting/Password',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'currentManagement',
+    icon: 'user',
+    path: '/currentManagement',
+    routes: [
+      {
+        path: '/currentManagement',
+        redirect: '/currentManagement/setting',
+      },
+      {
+        name: 'setting',
+        icon: 'bars',
+        hideChildrenInMenu: true,
+        path: '/currentManagement/setting',
+        component: './CurrentManagement/Setting',
+        routes: [
+          {
+            path: '/currentManagement/setting',
+            redirect: '/currentManagement/setting/load/basicInfo',
+          },
+          {
+            path: '/currentManagement/setting/:op/basicInfo',
+            component: './CurrentManagement/Setting/BasicInfo',
+          },
+          {
+            path: '/currentManagement/setting/:op/fileStorageInfo',
+            component: './CurrentManagement/Setting/FileStorageInfo',
           },
         ],
       },

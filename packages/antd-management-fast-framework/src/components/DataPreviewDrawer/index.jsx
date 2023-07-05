@@ -1,4 +1,5 @@
 import parse from 'html-react-parser';
+import React from 'react';
 
 import { connect } from 'easy-soft-dva';
 import { toNumber } from 'easy-soft-utility';

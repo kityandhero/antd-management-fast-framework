@@ -72,12 +72,9 @@ class AddModal extends BaseAddModal {
   };
 
   establishCardCollectionConfig = () => {
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
-          spinning,
           items: [
             {
               lg: 24,
