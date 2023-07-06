@@ -13,7 +13,10 @@ import { apiRequest, getPresetMetaData } from 'antd-management-fast-common';
 
 import { schedulingControlAssist } from './schedulingControlAssist';
 
-function refreshMetaData({ successCallback = null, failCallback = null }) {
+export function refreshMetaData({
+  successCallback = null,
+  failCallback = null,
+}) {
   logExecute('refreshMetaData');
 
   schedulingControlAssist.setMetaDataRequestProcessing(true);
