@@ -260,7 +260,7 @@ importers:
         specifier: ^5.6.4
         version: 5.6.4(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.2.0
+        specifier: ^2.6.3
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -964,7 +964,7 @@ importers:
         specifier: ^5.6.4
         version: 5.6.4(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.2.0
+        specifier: ^2.6.3
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1659,10 +1659,10 @@ importers:
         specifier: ^5.6.4
         version: 5.6.4(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.2.0
+        specifier: ^2.6.3
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.2
+        specifier: ^2.6.3
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.4.0
@@ -1978,13 +1978,13 @@ importers:
         specifier: ^5.6.4
         version: 5.6.4(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.2.0
+        specifier: ^2.6.3
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.2
+        specifier: ^2.6.3
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.11.7
+        specifier: ^2.11.8
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
@@ -2087,10 +2087,10 @@ importers:
         specifier: ^5.61.0
         version: 5.61.0(eslint@8.44.0)(typescript@5.1.6)
       antd-management-fast-config:
-        specifier: ^1.1.0
+        specifier: ^1.1.1
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.1.0
+        specifier: ^1.1.1
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.6.1
@@ -2231,13 +2231,13 @@ importers:
         specifier: ^5.6.4
         version: 5.6.4(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.2.0
+        specifier: ^2.6.3
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.2
+        specifier: ^2.6.3
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.11.7
+        specifier: ^2.11.8
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
@@ -2340,10 +2340,10 @@ importers:
         specifier: ^5.61.0
         version: 5.61.0(eslint@8.44.0)(typescript@5.1.6)
       antd-management-fast-config:
-        specifier: ^1.1.0
+        specifier: ^1.1.1
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.1.0
+        specifier: ^1.1.1
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.6.1
