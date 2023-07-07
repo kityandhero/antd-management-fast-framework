@@ -93,24 +93,18 @@ class IconInfo extends BaseComponent {
         : text
       : text;
 
-    // const textAfterFormatForShow = isObject(textStyle) ? (
-    //   <Text style={{ ...styleMerge, ...textStyle, flex: 'auto' }}>
-    //     {textAfterFormat || ''}
-    //   </Text>
-    // ) : (
-    //   textAfterFormat || ''
-    // );
-
-    const textAfterFormatForShow = isString(textAfterFormat) ? (
-      <Text
-        style={{ ...styleMerge, ...textStyle, flex: 'auto' }}
-        ellipsis={ellipsis}
-      >
-        {textAfterFormat || ''}
-      </Text>
-    ) : (
-      textAfterFormat
-    );
+    const textAfterFormatForShow =
+      isString(textAfterFormat) &&
+      !checkStringIsNullOrWhiteSpace(textAfterFormat) ? (
+        <Text
+          style={{ ...styleMerge, ...textStyle, flex: 'auto' }}
+          ellipsis={ellipsis}
+        >
+          {textAfterFormat || ''}
+        </Text>
+      ) : (
+        textAfterFormat
+      );
 
     const textAfterFormatForTooltip = isObject(textStyle) ? (
       <Text style={{ ...styleMerge, ...textStyle }}>{text || ''}</Text>
@@ -162,12 +156,16 @@ class IconInfo extends BaseComponent {
       ) {
         const t = `${textPrefixAdjust}${separatorAdjust}${textAfterFormatForShow}`;
 
-        textMerge = checkStringIsNullOrWhiteSpace(t) ? null : (
-          <Text
-            style={styleMerge}
-            ellipsis={ellipsis}
-          >{`${textPrefixAdjust}${separatorAdjust}${textAfterFormatForShow}`}</Text>
-        );
+        if (checkStringIsNullOrWhiteSpace(t)) {
+          textMerge = null;
+        } else {
+          textMerge = checkStringIsNullOrWhiteSpace(t) ? null : (
+            <Text
+              style={styleMerge}
+              ellipsis={ellipsis}
+            >{`${textPrefixAdjust}${separatorAdjust}${textAfterFormatForShow}`}</Text>
+          );
+        }
 
         tooltipTitle = `${textPrefixAdjust}${separatorAdjust}${textAfterFormatForTooltip}`;
       } else {
@@ -189,9 +187,10 @@ class IconInfo extends BaseComponent {
       }
     }
 
-    const textCore = (
-      <VerticalBox style={{ width: '100%' }}>{textMerge}</VerticalBox>
-    );
+    const textCore =
+      textMerge == null ? null : (
+        <VerticalBox style={{ width: '100%' }}>{textMerge}</VerticalBox>
+      );
 
     const textArea = tooltip ? (
       <Tooltip
@@ -219,7 +218,7 @@ class IconInfo extends BaseComponent {
                 this.copyDataToClipboard();
               }}
             >
-              {ellipsis ? (
+              {ellipsis && textArea != null ? (
                 ellipsisMaxWidth > 0 ? (
                   <div
                     style={{
@@ -260,7 +259,7 @@ class IconInfo extends BaseComponent {
                 this.copyDataToClipboard();
               }}
             >
-              {ellipsis ? (
+              {ellipsis && textArea != null ? (
                 ellipsisMaxWidth > 0 ? (
                   <div
                     style={{
@@ -297,7 +296,7 @@ class IconInfo extends BaseComponent {
               this.copyDataToClipboard();
             }}
           >
-            {ellipsis ? (
+            {ellipsis && textArea != null ? (
               ellipsisMaxWidth > 0 ? (
                 <div
                   style={{
@@ -345,7 +344,7 @@ class IconInfo extends BaseComponent {
                 this.copyDataToClipboard();
               }}
             >
-              {ellipsis ? (
+              {ellipsis && textArea != null ? (
                 ellipsisMaxWidth > 0 ? (
                   <div
                     style={{
@@ -410,7 +409,7 @@ class IconInfo extends BaseComponent {
                   this.copyDataToClipboard();
                 }}
               >
-                {ellipsis ? (
+                {ellipsis && textArea != null ? (
                   ellipsisMaxWidth > 0 ? (
                     <div
                       style={{

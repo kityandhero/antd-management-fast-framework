@@ -9,6 +9,8 @@ class BaseNeedlessLoadModal extends Base {
 
   resetDataAfterLoad = false;
 
+  showReloadButton = false;
+
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
 

@@ -30,6 +30,8 @@ class BaseAddForm extends DataCore {
 
   resetDataAfterLoad = false;
 
+  showReloadButton = false;
+
   formRef = React.createRef();
 
   constructor(properties) {
