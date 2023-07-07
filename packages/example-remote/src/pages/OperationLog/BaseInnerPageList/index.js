@@ -104,7 +104,8 @@ class BaseInnerOperationLogPageList extends InnerMultiPage {
     return (
       <DataPreviewDrawer
         maskClosable
-        title={title}
+        title="详细信息"
+        description={title}
         dataType={contentType}
         data={content}
       />

@@ -2,7 +2,7 @@ import parse from 'html-react-parser';
 import React from 'react';
 
 import { connect } from 'easy-soft-dva';
-import { toNumber } from 'easy-soft-utility';
+import { isArray, isEmptyArray, toNumber } from 'easy-soft-utility';
 
 import { cardConfig, dataTypeCollection } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
@@ -21,6 +21,8 @@ class DataPreviewDrawer extends Base {
   loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
+
+  showReloadButton = false;
 
   static open() {
     switchControlAssist.open(visibleFlag);
@@ -41,14 +43,20 @@ class DataPreviewDrawer extends Base {
     return icon;
   };
 
-  renderPresetTitle = () => {
+  getPresetPageTitle = () => {
     const { title } = this.props;
 
     return title || '';
   };
 
   establishCardCollectionConfig = () => {
-    const { dataType, data } = this.props;
+    const {
+      descriptionLabel,
+      description,
+      dataType,
+      data,
+      listData: otherListData,
+    } = this.props;
 
     const list = [
       {
@@ -59,12 +67,23 @@ class DataPreviewDrawer extends Base {
         items: [
           {
             lg: 24,
-            type: cardConfig.contentItemType.onlyShowText,
-            fieldData: {
-              label: '',
-              helper: '',
+            type: cardConfig.contentItemType.customGrid,
+            list: [
+              {
+                label: descriptionLabel || '简要描述',
+                value: description,
+              },
+            ],
+            props: {
+              bordered: true,
+              size: 'small',
+              column: 2,
+              labelStyle: {
+                width: '90px',
+              },
+              emptyValue: '暂无',
+              ellipsis: false,
             },
-            value: '本次操作的记录描述，请细心察看',
           },
         ],
       },
@@ -125,6 +144,12 @@ class DataPreviewDrawer extends Base {
       });
     }
 
+    if (isArray(otherListData) && !isEmptyArray(otherListData)) {
+      for (const item of otherListData) {
+        list.push(item);
+      }
+    }
+
     return { list };
   };
 
@@ -143,7 +168,10 @@ class DataPreviewDrawer extends Base {
 
 DataPreviewDrawer.defaultProps = {
   title: '',
-  icon: iconBuilder.form(),
+  descriptionLabel: '简要描述',
+  description: '',
+  listData: [],
+  icon: iconBuilder.read(),
   placement: 'left',
   width: 380,
   dataType: dataTypeCollection.commonValue.flag,
