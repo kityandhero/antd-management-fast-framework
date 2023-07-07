@@ -145,6 +145,7 @@ class DataPreviewDrawer extends Base {
     }
 
     if (isArray(otherListData) && !isEmptyArray(otherListData)) {
+      console.log(otherListData);
       for (const item of otherListData) {
         list.push(item);
       }

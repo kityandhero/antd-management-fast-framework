@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { checkHasAuthority } from 'easy-soft-utility';
+import { checkHasAuthority, getValueByKey } from 'easy-soft-utility';
 
 import {
+  cardConfig,
   columnFacadeMode,
   dataTypeCollection,
 } from 'antd-management-fast-common';
@@ -108,6 +109,60 @@ class BaseInnerOperationLogPageList extends InnerMultiPage {
         description={title}
         dataType={contentType}
         data={content}
+        listData={[
+          {
+            title: {
+              icon: iconBuilder.contacts(),
+              text: '其他信息',
+            },
+            items: [
+              {
+                lg: 24,
+                type: cardConfig.contentItemType.customGrid,
+                list: [
+                  {
+                    label: fieldData.userId.label,
+                    value: getValueByKey({
+                      data: currentRecord,
+                      key: fieldData.userId.name,
+                    }),
+                  },
+                  {
+                    label: fieldData.primaryKeyValue.label,
+                    value: getValueByKey({
+                      data: currentRecord,
+                      key: fieldData.primaryKeyValue.name,
+                    }),
+                  },
+                  {
+                    label: fieldData.operationLogId.label,
+                    value: getValueByKey({
+                      data: currentRecord,
+                      key: fieldData.operationLogId.name,
+                    }),
+                  },
+                  {
+                    label: fieldData.createTime.label,
+                    value: getValueByKey({
+                      data: currentRecord,
+                      key: fieldData.createTime.name,
+                    }),
+                  },
+                ],
+                props: {
+                  bordered: true,
+                  size: 'small',
+                  column: 2,
+                  labelStyle: {
+                    width: '90px',
+                  },
+                  emptyValue: '暂无',
+                  ellipsis: false,
+                },
+              },
+            ],
+          },
+        ]}
       />
     );
   };
