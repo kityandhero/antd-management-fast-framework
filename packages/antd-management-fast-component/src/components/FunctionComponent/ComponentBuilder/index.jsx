@@ -1,4 +1,4 @@
-import { Alert, Button, Tree } from 'antd';
+import { Alert, Button, List, Tree } from 'antd';
 import React from 'react';
 import ReactPlayer from 'react-player';
 
@@ -22,8 +22,11 @@ import { ElasticityTagList } from '../../ElasticityTagList';
 import { ElasticityTreeSelect } from '../../ElasticityTreeSelect';
 import { FlexRadio } from '../../FlexRadio';
 import { FlexSelect } from '../../FlexSelect';
+import { FlexText } from '../../FlexText';
 import { iconBuilder } from '../../Icon';
+import { IconInfo } from '../../IconInfo';
 import { JsonView } from '../../JsonView';
+import { StatusBar } from '../../StatusBar';
 
 const ButtonGroup = Button.Group;
 
@@ -452,10 +455,148 @@ export function buildListViewItemExtra({
   );
 }
 
+/**
+ *
+ * @param {Object} options
+ * @param {Object} option.title title config like { label:'',text:'' }.
+ * @param {Array} option.descriptionList description config like { label:'',text:'',textStyle: null }.
+ * @param {Array} option.actionList action config like { label:'',text:'',emptyText:'',extra: null,canCopy: false }.
+ * @param {Object} option.extra StatusBar extra component.
+ */
+export function buildListViewItemInner({
+  title = {},
+  descriptionList = [],
+  actionList = [],
+  extra = null,
+}) {
+  const { titleLabel, titleText } = {
+    label: '',
+    text: '',
+    ...title,
+  };
+
+  const descriptionListAdjust = (
+    isArray(descriptionList) ? descriptionList : []
+  ).map((o) => {
+    const { label, text } = {
+      label: '',
+      text: '',
+      extra: null,
+      ...o,
+    };
+
+    return { label, text };
+  });
+
+  const actionListAdjust = (isArray(actionList) ? actionList : []).map(
+    (o, index) => {
+      const { label, text, emptyText, textStyle, canCopy } = {
+        label: '',
+        text: '',
+        emptyText: '',
+        textStyle: null,
+        canCopy: false,
+        ...o,
+      };
+
+      return (
+        <IconInfo
+          key={`action_${index}`}
+          textPrefix={label}
+          text={text || emptyText}
+          textStyle={textStyle}
+          canCopy={canCopy}
+        />
+      );
+    },
+  );
+
+  return (
+    <>
+      <List.Item.Meta
+        title={<ColorText textPrefix={titleLabel} text={titleText} />}
+        description={
+          <>
+            {descriptionListAdjust.map((o, index) => {
+              const { label, text, extra } = o;
+
+              return (
+                <div key={`description_${index}`}>
+                  <FlexText textPrefix={label} text={text} extra={extra} />
+                </div>
+              );
+            })}
+          </>
+        }
+      />
+
+      <div>
+        <StatusBar actions={actionListAdjust} extra={extra || null} />
+      </div>
+    </>
+  );
+}
+
+/**
+ * @param {Object} options
+ * @param {Object} option.title title config like { label:'',text:'' }.
+ * @param {Array} option.descriptionList description config like { label:'',text:'',textStyle: null }.
+ * @param {Array} option.actionList action config like { label:'',text:'',emptyText:'',extra: null,canCopy: false }.
+ * @param {Object} option.extra the params for buildDropdownButton.
+ */
+export function buildListViewItemInnerWithDropdownButton({
+  title = {},
+  descriptionList = [],
+  actionList = [],
+  extra = null,
+}) {
+  return buildListViewItemInner({
+    title,
+    descriptionList,
+    actionList,
+    extra: extra == null ? null : buildDropdownButton(extra),
+  });
+}
+
+/**
+ * @param {Object} options
+ * @param {Object} option.title title config like { label:'',text:'' }.
+ * @param {Array} option.descriptionList description config like { label:'',text:'',textStyle: null }.
+ * @param {Array} option.actionList action config like { label:'',text:'',emptyText:'',extra: null,canCopy: false }.
+ * @param {Boolean} option.confirm whether confirm select.
+ * @param {Object} option.selectData the data selected .
+ * @param {Function} option.selectCallback the callback after selected, like (data)=>{}.
+ */
+export function buildListViewItemInnerWithSelectButton({
+  title = {},
+  descriptionList = [],
+  actionList = [],
+  confirm = false,
+  selectData,
+  selectCallback = null,
+}) {
+  return buildListViewItemInner({
+    title,
+    descriptionList,
+    actionList,
+    extra: buildListViewItemActionSelect({
+      confirm,
+      selectData,
+      selectCallback,
+    }),
+  });
+}
+
+/**
+ * @param {Object} options
+ * @param {Boolean} option.confirm whether confirm select.
+ * @param {Object} option.selectData the data selected .
+ * @param {Function} option.selectCallback the callback after selected, like (data)=>{}.
+ */
 export function buildListViewItemActionSelect({
   confirm = false,
   selectData,
-  selectCallback,
+  selectCallback = null,
 }) {
   if (!isFunction(selectCallback)) {
     const text = 'selectCallback 不是有效的回调函数';
@@ -480,6 +621,11 @@ export function buildListViewItemActionSelect({
   });
 }
 
+/**
+ * @param {Object} options
+ * @param {string} option.value the value will display.
+ * @param {string} option.theme theme, default value is "monokai".
+ */
 export function buildJsonView({ value = '', theme = 'monokai' }) {
   return <JsonView value={value} theme={theme} />;
 }
