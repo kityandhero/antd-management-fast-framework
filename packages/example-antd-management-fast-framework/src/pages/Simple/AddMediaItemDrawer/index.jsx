@@ -12,12 +12,12 @@ import {
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
+import { mediaItemData } from '../../../businessData/data';
 import {
   accessWayCollection,
   mediaTypeCollection,
 } from '../../../customConfig';
 import { renderFormMediaTypeSelect } from '../../../customSpecialComponents';
-import { mediaItemData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;
 

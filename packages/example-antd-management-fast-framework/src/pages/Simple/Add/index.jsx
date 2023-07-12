@@ -18,9 +18,9 @@ import {
 } from 'antd-management-fast-component';
 import { DataForm } from 'antd-management-fast-framework';
 
+import { parseUrlParametersForSetState } from '../../../businessAssists/config';
+import { fieldData } from '../../../businessData/data';
 import { accessWayCollection } from '../../../customConfig';
-import { parseUrlParametersForSetState as parseUrlParametersForSetState } from '../Assist/config';
-import { fieldData } from '../Common/data';
 
 const { BaseAddForm } = DataForm;
 

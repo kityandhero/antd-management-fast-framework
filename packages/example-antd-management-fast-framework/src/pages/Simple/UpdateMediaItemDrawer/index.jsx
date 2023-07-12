@@ -13,9 +13,9 @@ import {
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
+import { mediaItemData } from '../../../businessData/data';
 import { accessWayCollection } from '../../../customConfig';
 import { mediaTypeCollection } from '../../../customConfig/constants';
-import { mediaItemData } from '../Common/data';
 
 const { BaseUpdateDrawer } = DataDrawer;
 

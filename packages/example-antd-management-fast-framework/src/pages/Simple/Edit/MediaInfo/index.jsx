@@ -30,14 +30,14 @@ import {
   StatusBar,
 } from 'antd-management-fast-component';
 
-import { accessWayCollection } from '../../../../customConfig';
-import AddMediaItemDrawer from '../../AddMediaItemDrawer';
 import {
   removeMediaItemAction,
   setMediaCollectionSortAction,
-} from '../../Assist/action';
-import { parseUrlParametersForSetState as parseUrlParametersForSetState } from '../../Assist/config';
-import { mediaItemData } from '../../Common/data';
+} from '../../../../businessAssists/action';
+import { parseUrlParametersForSetState } from '../../../../businessAssists/config';
+import { mediaItemData } from '../../../../businessData/data';
+import { accessWayCollection } from '../../../../customConfig';
+import AddMediaItemDrawer from '../../AddMediaItemDrawer';
 import MediaItemPreviewDrawer from '../../MediaItemPreviewDrawer';
 import MobilePreviewBox from '../../MobilePreviewBox';
 import TabPageBase from '../../TabPageBase';

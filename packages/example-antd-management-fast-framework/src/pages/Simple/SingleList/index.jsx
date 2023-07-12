@@ -27,6 +27,13 @@ import {
 } from 'antd-management-fast-component';
 import { DataSinglePageView } from 'antd-management-fast-framework';
 
+import {
+  refreshCacheAction,
+  setOfflineAction,
+  setOnlineAction,
+} from '../../../businessAssists/action';
+import { getStatusBadge } from '../../../businessAssists/tools';
+import { fieldData, statusCollection } from '../../../businessData/data';
 import { accessWayCollection, colorCollection } from '../../../customConfig';
 import {
   getSimpleRenderTypeName,
@@ -35,14 +42,7 @@ import {
   renderSearchSimpleStatusSelect,
 } from '../../../customSpecialComponents';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
-import {
-  refreshCacheAction,
-  setOfflineAction,
-  setOnlineAction,
-} from '../Assist/action';
-import { getStatusBadge } from '../Assist/tools';
 import ChangeSortModal from '../ChangeSortModal';
-import { fieldData, statusCollection } from '../Common/data';
 import SingleListDrawer from '../SingleListDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 

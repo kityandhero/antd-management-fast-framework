@@ -12,9 +12,9 @@ import {
 import { iconBuilder } from 'antd-management-fast-component';
 import { MobileContainor } from 'antd-management-fast-framework';
 
+import { parseUrlParametersForSetState } from '../../../../businessAssists/config';
+import { fieldData } from '../../../../businessData/data';
 import { accessWayCollection } from '../../../../customConfig';
-import { parseUrlParametersForSetState as parseUrlParametersForSetState } from '../../Assist/config';
-import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';
 
 const { MobileHtmlPreviewBox } = MobileContainor;

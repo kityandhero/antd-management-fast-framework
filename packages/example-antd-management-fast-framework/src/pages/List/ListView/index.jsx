@@ -1,5 +1,10 @@
 import { connect } from 'easy-soft-dva';
-import { getValueByKey, handleItem } from 'easy-soft-utility';
+import {
+  checkHasAuthority,
+  convertCollection,
+  getValueByKey,
+  handleItem,
+} from 'easy-soft-utility';
 
 import {
   defaultEmptyImage,
@@ -8,13 +13,20 @@ import {
 } from 'antd-management-fast-common';
 import {
   buildListViewItemExtra,
-  buildListViewItemInnerWithSelectButton,
+  buildListViewItemInnerWithDropdownButton,
+  ColorText,
   iconBuilder,
 } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
-import { fieldData } from '../../../businessData/data';
+import {
+  refreshCacheAction,
+  setOfflineAction,
+  setOnlineAction,
+} from '../../../businessAssists/action';
+import { fieldData, statusCollection } from '../../../businessData/data';
 import { accessWayCollection } from '../../../customConfig';
+import { getSimpleStatusName } from '../../../customSpecialComponents';
 
 const { MultiPage } = DataMultiPageView;
 
@@ -68,24 +80,18 @@ class PageList extends MultiPage {
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
-      case 'updateSort': {
-        this.showChangeSortModal(handleData);
+      case 'setOnline': {
+        this.setOnline(handleData);
         break;
       }
 
-      case 'setEnable': {
-        this.setEnable(handleData);
-        break;
-      }
-
-      case 'setDisable': {
-        this.setDisable(handleData);
+      case 'setOffline': {
+        this.setOffline(handleData);
         break;
       }
 
       case 'refreshCache': {
         this.refreshCache(handleData);
-
         break;
       }
 
@@ -93,6 +99,33 @@ class PageList extends MultiPage {
         break;
       }
     }
+  };
+
+  setOnline = (r) => {
+    setOnlineAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target, handleData, remoteData }) => {
+        target.handleItemStatus({ target, handleData, remoteData });
+      },
+    });
+  };
+
+  setOffline = (r) => {
+    setOfflineAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target, handleData, remoteData }) => {
+        target.handleItemStatus({ target, handleData, remoteData });
+      },
+    });
+  };
+
+  refreshCache = (r) => {
+    refreshCacheAction({
+      target: this,
+      handleData: r,
+    });
   };
 
   goToAdd = () => {
@@ -163,7 +196,13 @@ class PageList extends MultiPage {
 
   // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemInner = (item, index) => {
-    return buildListViewItemInnerWithSelectButton({
+    const status = getValueByKey({
+      data: item,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
+    return buildListViewItemInnerWithDropdownButton({
       title: {
         label: fieldData.title.label,
         text: getValueByKey({
@@ -179,6 +218,17 @@ class PageList extends MultiPage {
             key: fieldData.description.name,
           }),
           color: '#999999',
+          extra: (
+            <ColorText
+              textPrefix={fieldData.status.label}
+              text={getSimpleStatusName({
+                value: status,
+              })}
+              randomColor
+              randomSeed={status}
+              seedOffset={18}
+            />
+          ),
         },
       ],
       actionList: [
@@ -210,63 +260,60 @@ class PageList extends MultiPage {
           color: '#999999',
         },
       ],
-      selectCallback: () => {},
+      extra: {
+        size: 'small',
+        text: '编辑',
+        placement: 'topRight',
+        icon: iconBuilder.form(),
+        handleButtonClick: ({ handleData }) => {
+          this.goToEdit(handleData);
+        },
+        handleData: item,
+        confirm: true,
+        title: '将要进行编辑，确定吗？',
+        handleMenuClick: ({ key, handleData }) => {
+          this.handleMenuClick({ key, handleData });
+        },
+        items: [
+          {
+            key: 'setOnline',
+            withDivider: true,
+            uponDivider: true,
+            icon: iconBuilder.playCircle(),
+            text: '设为上线',
+            hidden: !checkHasAuthority(
+              accessWayCollection.simple.setOnline.permission,
+            ),
+            disabled: status === statusCollection.online,
+            confirm: true,
+            title: '将要设置为上线，确定吗？',
+          },
+          {
+            key: 'setOffline',
+            icon: iconBuilder.pauseCircle(),
+            text: '设为下线',
+            hidden: !checkHasAuthority(
+              accessWayCollection.simple.setOffline.permission,
+            ),
+            disabled: status === statusCollection.offline,
+            confirm: true,
+            title: '将要设置为下线，确定吗？',
+          },
+          {
+            key: 'refreshCache',
+            withDivider: true,
+            uponDivider: true,
+            icon: iconBuilder.reload(),
+            text: '刷新缓存',
+            hidden: !checkHasAuthority(
+              accessWayCollection.simple.refreshCache.permission,
+            ),
+            confirm: true,
+            title: '将要刷新缓存，确定吗？',
+          },
+        ],
+      },
     });
-
-    // return (
-    //   <>
-    //     <List.Item.Meta
-    //       avatar={
-    //         checkStringIsNullOrWhiteSpace(logo) ? (
-    //           <Avatar icon={iconBuilder.shop()} />
-    //         ) : (
-    //           <Avatar src={logo} />
-    //         )
-    //       }
-    //       title={
-    //         <ColorText
-    //           textPrefix={fieldData.shortName.label}
-    //           separator=": "
-    //           text={shortName}
-    //         />
-    //       }
-    //       description={
-    //         <div>
-    //           <ColorText
-    //             textPrefix={fieldData.fullName.label}
-    //             separator=": "
-    //             text={fullName}
-    //           />
-
-    //           <div>
-    //             <Space split={<Divider type="vertical" />}>
-    //               <ColorText
-    //                 textPrefix={fieldData.code.label}
-    //                 separator=": "
-    //                 text={code || '暂未设置'}
-    //                 color={checkStringIsNullOrWhiteSpace(code) ? '#bbb' : ''}
-    //               />
-
-    //               <ColorText
-    //                 textPrefix={fieldData.subsidiaryId.label}
-    //                 separator=": "
-    //                 text={<Text copyable>{subsidiaryId}</Text>}
-    //               />
-
-    //               <ColorText
-    //                 textPrefix={fieldData.createTime.label}
-    //                 separator=": "
-    //                 text={createTime}
-    //               />
-    //             </Space>
-    //           </div>
-    //         </div>
-    //       }
-    //     />
-
-    //     {/* <div>性别：{getSexName(sex)}</div> */}
-    //   </>
-    // );
   };
 }
 

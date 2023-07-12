@@ -4,7 +4,7 @@ import { convertCollection, getValueByKey } from 'easy-soft-utility';
 import { cardConfig } from 'antd-management-fast-common';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
-import { fieldData } from '../Common/data';
+import { fieldData } from '../../../businessData/data';
 
 const { BaseUpdateModal } = DataModal;
 

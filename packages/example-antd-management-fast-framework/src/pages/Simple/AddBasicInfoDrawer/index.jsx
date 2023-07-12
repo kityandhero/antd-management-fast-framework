@@ -9,8 +9,8 @@ import {
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
+import { fieldData } from '../../../businessData/data';
 import { accessWayCollection } from '../../../customConfig/accessWayCollection';
-import { fieldData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;
 

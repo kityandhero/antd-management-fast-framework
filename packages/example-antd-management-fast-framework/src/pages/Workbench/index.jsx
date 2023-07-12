@@ -15,16 +15,16 @@ import {
   getCurrentOperator,
 } from 'antd-management-fast-framework';
 
-import { TestComponent } from '../../components/TestComponent';
-import { accessWayCollection } from '../../customConfig';
-import { getSimpleStatusName } from '../../customSpecialComponents';
 import {
   refreshCacheAction,
   setOfflineAction,
   setOnlineAction,
-} from '../Simple/Assist/action';
-import { getStatusBadge } from '../Simple/Assist/tools';
-import { fieldData, statusCollection } from '../Simple/Common/data';
+} from '../../businessAssists/action';
+import { getStatusBadge } from '../../businessAssists/tools';
+import { fieldData, statusCollection } from '../../businessData/data';
+import { TestComponent } from '../../components/TestComponent';
+import { accessWayCollection } from '../../customConfig';
+import { getSimpleStatusName } from '../../customSpecialComponents';
 
 import { PageHeaderContent } from './PageHeaderContent';
 import ShortcutPanel from './ShortcutPanel';

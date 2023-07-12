@@ -31,19 +31,19 @@ import {
   IconInfo,
 } from 'antd-management-fast-component';
 
+import {
+  addGalleryImageAction,
+  removeGalleryImageConfirmAction,
+  singleListTreeAction,
+} from '../../../../businessAssists/action';
+import { fieldData } from '../../../../businessData/data';
 import { accessWayCollection } from '../../../../customConfig';
 import {
   renderCustomSimpleStatusRadio,
   renderCustomSimpleStatusSelect,
 } from '../../../../customSpecialComponents';
 import { fieldData as fieldDataSimpleImage } from '../../../SimpleImage/Common/data';
-import {
-  addGalleryImageAction,
-  removeGalleryImageConfirmAction,
-  singleListTreeAction,
-} from '../../Assist/action';
 import ChangeImageSortModal from '../../ChangeImageSortModal';
-import { fieldData } from '../../Common/data';
 import TabPageBase from '../../TabPageBase';
 
 const optionList = [

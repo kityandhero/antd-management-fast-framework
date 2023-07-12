@@ -33,6 +33,17 @@ import {
 } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
+import {
+  refreshCacheAction,
+  setOfflineAction,
+  setOnlineAction,
+} from '../../../businessAssists/action';
+import { getStatusBadge } from '../../../businessAssists/tools';
+import {
+  fieldData,
+  mediaItemData,
+  statusCollection,
+} from '../../../businessData/data';
 import { accessWayCollection } from '../../../customConfig';
 import { colorCollection } from '../../../customConfig/constants';
 import {
@@ -42,14 +53,7 @@ import {
   renderSearchSimpleStatusSelect,
 } from '../../../customSpecialComponents';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
-import {
-  refreshCacheAction,
-  setOfflineAction,
-  setOnlineAction,
-} from '../Assist/action';
-import { getStatusBadge } from '../Assist/tools';
 import ChangeSortModal from '../ChangeSortModal';
-import { fieldData, mediaItemData, statusCollection } from '../Common/data';
 import SimpleSelectField from '../SelectField';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 

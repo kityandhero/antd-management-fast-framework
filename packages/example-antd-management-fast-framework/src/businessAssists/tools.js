@@ -1,4 +1,4 @@
-import { statusCollection } from '../Common/data';
+import { statusCollection } from '../businessData/data';
 
 export function getStatusBadge(status) {
   let result = 'default';

@@ -481,7 +481,7 @@ export function buildListViewItemInner({
   const descriptionListAdjust = (
     isArray(descriptionList) ? descriptionList : []
   ).map((o) => {
-    const { label, text, color } = {
+    const { label, text, color, extra } = {
       label: '',
       text: '',
       extra: null,
@@ -489,7 +489,7 @@ export function buildListViewItemInner({
       ...o,
     };
 
-    return { label, text, color: color || '' };
+    return { label, text, color: color || '', extra };
   });
 
   const actionListAdjust = (isArray(actionList) ? actionList : []).map(

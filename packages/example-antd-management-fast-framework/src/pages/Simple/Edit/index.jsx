@@ -15,26 +15,22 @@ import {
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
+import {
+  refreshCacheAction,
+  setOfflineAction,
+  setOnlineAction,
+} from '../../../businessAssists/action';
+import {
+  checkNeedUpdateAssist,
+  parseUrlParametersForSetState as parseUrlParametersForSetState,
+} from '../../../businessAssists/config';
+import { fieldData, statusCollection } from '../../../businessData/data';
 import { accessWayCollection } from '../../../customConfig';
 import {
   DataTabContainerSupplement,
   getSimpleRenderTypeName,
   getSimpleStatusName,
 } from '../../../customSpecialComponents';
-import {
-  refreshCacheAction,
-  setOfflineAction,
-  setOnlineAction,
-} from '../Assist/action';
-import {
-  checkNeedUpdateAssist,
-  parseUrlParametersForSetState as parseUrlParametersForSetState,
-} from '../Assist/config';
-import { fieldData, statusCollection } from '../Common/data';
-
-// import BasicInfo from './BasicInfo';
-// import ContentInfo from './ContentInfo';
-// import MediaInfo from './MediaInfo';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,

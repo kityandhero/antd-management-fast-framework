@@ -108,7 +108,7 @@ export default [
   },
   {
     path: '/list',
-    name: 'form',
+    name: 'list',
     icon: 'bars',
     routes: [
       {

@@ -16,13 +16,13 @@ import {
 import { ColorText, iconBuilder } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
+import { fieldData, statusCollection } from '../../../businessData/data';
 import { accessWayCollection } from '../../../customConfig';
 import { colorCollection } from '../../../customConfig/constants';
 import {
   getSimpleRenderTypeName,
   getSimpleStatusName,
 } from '../../../customSpecialComponents';
-import { fieldData, statusCollection } from '../Common/data';
 
 const { Text } = Typography;
 const { MultiPageSelectDrawer } = DataMultiPageView;

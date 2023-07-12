@@ -4,7 +4,7 @@ import { DataForm } from 'antd-management-fast-framework';
 import {
   checkNeedUpdateAssist,
   parseUrlParametersForSetState as parseUrlParametersForSetState,
-} from '../Assist/config';
+} from '../../../businessAssists/config';
 
 const { BaseUpdateFormTab } = DataForm;
 

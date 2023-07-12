@@ -2,7 +2,7 @@ import { getValueByKey } from 'easy-soft-utility';
 
 import { actionCore, confirmActionCore } from 'antd-management-fast-common';
 
-import { fieldData, mediaItemData } from '../Common/data';
+import { fieldData, mediaItemData } from '../businessData/data';
 
 export function singleListTreeAction({
   target,

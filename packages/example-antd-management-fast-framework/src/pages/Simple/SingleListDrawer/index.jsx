@@ -19,12 +19,12 @@ import {
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
+import { fieldData, statusCollection } from '../../../businessData/data';
 import { accessWayCollection, colorCollection } from '../../../customConfig';
 import {
   getSimpleRenderTypeName,
   getSimpleStatusName,
 } from '../../../customSpecialComponents';
-import { fieldData, statusCollection } from '../Common/data';
 
 const { Text } = Typography;
 const { SinglePageDrawer } = DataSinglePageView;

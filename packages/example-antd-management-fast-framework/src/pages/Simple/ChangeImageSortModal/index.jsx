@@ -2,7 +2,7 @@ import { connect } from 'easy-soft-dva';
 
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
-import { getArticleIdFromExternalData } from '../Assist/config';
+import { getArticleIdFromExternalData } from '../../../businessAssists/config';
 
 const { BaseImageSortModal } = DataModal;
 
