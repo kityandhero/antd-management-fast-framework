@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.12](https://github.com/kityandhero/antd-management-fast-framework/compare/example-remote@1.4.11...example-remote@1.4.12) (2023-07-12)
+
+### Bug Fixes
+
+- **antd-management-fast-charts:** update ([8f07bf1](https://github.com/kityandhero/antd-management-fast-framework/commit/8f07bf1156a81766a9dfdda60aa115f14267cd97))
+
 ## [1.4.11](https://github.com/kityandhero/antd-management-fast-framework/compare/example-remote@1.4.10...example-remote@1.4.11) (2023-07-12)
 
 **Note:** Version bump only for package example-remote
