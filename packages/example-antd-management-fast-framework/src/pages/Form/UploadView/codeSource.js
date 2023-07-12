@@ -19,6 +19,7 @@ import {
   addGalleryImageAction,
   removeGalleryImageConfirmAction,
 } from '../../Simple/Assist/action';
+import ChangeImageSortModal from '../../Simple/ChangeImageSortModal';
 import { fieldData as fieldDataSimpleImage } from '../../SimpleImage/Common/data';
 import BaseView from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
@@ -153,12 +154,17 @@ class NormalView extends BaseView {
     return false;
   };
 
+  showChangeImageSortModal = () => {
+    ChangeImageSortModal.open();
+  };
+
   afterChangeImageSortModalOk = () => {
     this.reloadData({});
   };
 
   establishCardCollectionConfig = () => {
     const {
+      firstLoadSuccess,
       currentCode,
       currentCodeTitle,
       image,
@@ -217,7 +223,7 @@ class NormalView extends BaseView {
                 text: '调整图片顺序',
                 icon: iconBuilder.sortAscending(),
                 handleClick: (event) => this.showChangeImageSortModal(event),
-                disabled: this.checkInProgress(),
+                disabled: !firstLoadSuccess,
               },
             ],
           },

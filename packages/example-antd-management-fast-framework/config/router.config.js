@@ -107,6 +107,20 @@ export default [
     ],
   },
   {
+    path: '/list',
+    name: 'form',
+    icon: 'bars',
+    routes: [
+      {
+        path: '/list/listView',
+        name: 'listView',
+        icon: 'bars',
+        useMini: true,
+        component: './List/ListView',
+      },
+    ],
+  },
+  {
     path: '/form',
     name: 'form',
     icon: 'bars',

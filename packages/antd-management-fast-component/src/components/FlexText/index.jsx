@@ -1,6 +1,8 @@
 import { Space } from 'antd';
 import React, { PureComponent } from 'react';
 
+import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
+
 import { FlexBox } from '../FlexBox';
 import { IconInfo } from '../IconInfo';
 
@@ -21,6 +23,7 @@ class FlexText extends PureComponent {
       addonAfter,
       extra,
       style,
+      color,
     } = this.props;
 
     return (
@@ -37,6 +40,7 @@ class FlexText extends PureComponent {
               text={text}
               ellipsis={ellipsis}
               ellipsisMaxWidth={textEllipsisMaxWidth}
+              style={checkStringIsNullOrWhiteSpace(color) ? {} : { color }}
             />
 
             {(subText || null) == null ? null : (
@@ -65,6 +69,7 @@ FlexText.defaultProps = {
   subTextStyle: null,
   extra: null,
   style: null,
+  color: '',
 };
 
 export { FlexText };

@@ -469,7 +469,7 @@ export function buildListViewItemInner({
   actionList = [],
   extra = null,
 }) {
-  const { titleLabel, titleText } = {
+  const { label: titleLabel, text: titleText } = {
     label: '',
     text: '',
     ...title,
@@ -478,24 +478,26 @@ export function buildListViewItemInner({
   const descriptionListAdjust = (
     isArray(descriptionList) ? descriptionList : []
   ).map((o) => {
-    const { label, text } = {
+    const { label, text, color } = {
       label: '',
       text: '',
       extra: null,
+      color: '',
       ...o,
     };
 
-    return { label, text };
+    return { label, text, color: color || '' };
   });
 
   const actionListAdjust = (isArray(actionList) ? actionList : []).map(
     (o, index) => {
-      const { label, text, emptyText, textStyle, canCopy } = {
+      const { label, text, emptyText, textStyle, canCopy, color } = {
         label: '',
         text: '',
         emptyText: '',
         textStyle: null,
         canCopy: false,
+        color: '',
         ...o,
       };
 
@@ -506,6 +508,7 @@ export function buildListViewItemInner({
           text={text || emptyText}
           textStyle={textStyle}
           canCopy={canCopy}
+          style={checkStringIsNullOrWhiteSpace(color) ? {} : { color }}
         />
       );
     },
@@ -518,11 +521,16 @@ export function buildListViewItemInner({
         description={
           <>
             {descriptionListAdjust.map((o, index) => {
-              const { label, text, extra } = o;
+              const { label, text, color, extra } = o;
 
               return (
                 <div key={`description_${index}`}>
-                  <FlexText textPrefix={label} text={text} extra={extra} />
+                  <FlexText
+                    textPrefix={label}
+                    text={text}
+                    color={color}
+                    extra={extra}
+                  />
                 </div>
               );
             })}
