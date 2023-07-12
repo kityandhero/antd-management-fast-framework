@@ -1,4 +1,4 @@
-import { Alert, Button, List, Tree } from 'antd';
+import { Alert, Avatar, Button, List, Tree } from 'antd';
 import React from 'react';
 import ReactPlayer from 'react-player';
 
@@ -6,6 +6,7 @@ import {
   checkStringIsNullOrWhiteSpace,
   isArray,
   isFunction,
+  isString,
   showSimpleRuntimeError,
 } from 'easy-soft-utility';
 
@@ -458,12 +459,14 @@ export function buildListViewItemExtra({
 /**
  *
  * @param {Object} options
+ * @param {Object|string} option.image image like iconBuilder.user() or "/user.png", default value is null.
  * @param {Object} option.title title config like { label:'',text:'' }.
  * @param {Array} option.descriptionList description config like { label:'',text:'',textStyle: null }.
  * @param {Array} option.actionList action config like { label:'',text:'',emptyText:'',extra: null,canCopy: false }.
  * @param {Object} option.extra StatusBar extra component.
  */
 export function buildListViewItemInner({
+  image = null,
   title = {},
   descriptionList = [],
   actionList = [],
@@ -517,6 +520,14 @@ export function buildListViewItemInner({
   return (
     <>
       <List.Item.Meta
+        avatar={
+          image == null ||
+          checkStringIsNullOrWhiteSpace(image) ? null : isString(image) ? (
+            <Avatar src={image} />
+          ) : (
+            <Avatar icon={image} />
+          )
+        }
         title={<ColorText textPrefix={titleLabel} text={titleText} />}
         description={
           <>
@@ -553,12 +564,14 @@ export function buildListViewItemInner({
  * @param {Object} option.extra the params for buildDropdownButton.
  */
 export function buildListViewItemInnerWithDropdownButton({
+  image = null,
   title = {},
   descriptionList = [],
   actionList = [],
   extra = null,
 }) {
   return buildListViewItemInner({
+    image,
     title,
     descriptionList,
     actionList,
@@ -576,6 +589,7 @@ export function buildListViewItemInnerWithDropdownButton({
  * @param {Function} option.selectCallback the callback after selected, like (data)=>{}.
  */
 export function buildListViewItemInnerWithSelectButton({
+  image = null,
   title = {},
   descriptionList = [],
   actionList = [],
@@ -584,6 +598,7 @@ export function buildListViewItemInnerWithSelectButton({
   selectCallback = null,
 }) {
   return buildListViewItemInner({
+    image,
     title,
     descriptionList,
     actionList,

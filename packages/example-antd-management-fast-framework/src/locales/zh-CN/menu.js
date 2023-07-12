@@ -26,6 +26,11 @@ export default {
   'menu.simple.edit.contentInfo': '图文H5信息',
   'menu.simple.edit.mediaInfo': '媒体信息',
 
+  'menu.list': 'List示例',
+  'menu.list-mini': 'List',
+  'menu.list.listView': '示例1',
+  'menu.list.listView-mini': '示例1',
+
   'menu.form': 'Form示例',
   'menu.form-mini': 'Form',
   'menu.form.normalView': 'Normal 示例',
