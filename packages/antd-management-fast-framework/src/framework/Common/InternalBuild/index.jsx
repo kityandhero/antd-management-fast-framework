@@ -46,6 +46,14 @@ const primaryCallName = 'Common::InternalBuild';
 
 class InternalBuild extends InternalSwitchoverFlow {
   buildCardCollectionArea = (config = null) => {
+    this.logCallTrack(
+      {
+        parameter: config,
+      },
+      primaryCallName,
+      'buildCardCollectionArea',
+    );
+
     if (config == null) {
       return null;
     }
@@ -406,9 +414,7 @@ class InternalBuild extends InternalSwitchoverFlow {
             ]}
           >
             {cardContent}
-
             {otherComponent || null}
-
             {helpArea}
           </LoadingOverlay>
         )}
@@ -480,17 +486,17 @@ class InternalBuild extends InternalSwitchoverFlow {
     );
   };
 
-  buildByExtraBuildType = ({ keyPrefix = '', configList }) => {
-    this.logCallTrack(
-      {
-        parameter: {
-          keyPrefix,
-          configList,
-        },
-      },
-      primaryCallName,
-      'buildByExtraBuildType',
-    );
+  buildByExtraBuildType = ({ keyPrefix = '', configList = [] }) => {
+    // this.logCallTrack(
+    //   {
+    //     parameter: {
+    //       keyPrefix,
+    //       configList,
+    //     },
+    //   },
+    //   primaryCallName,
+    //   'buildByExtraBuildType',
+    // );
 
     const list = [];
 

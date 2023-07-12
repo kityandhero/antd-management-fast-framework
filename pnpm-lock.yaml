@@ -281,11 +281,11 @@ importers:
         specifier: ^1.11.9
         version: 1.11.9
       easy-soft-dva:
-        specifier: ^3.9.7
-        version: 3.9.7(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
+        specifier: ^3.9.9
+        version: 3.9.9(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.7
-        version: 2.7.7
+        specifier: ^2.7.9
+        version: 2.7.9
       html-react-parser:
         specifier: ^4.0.0
         version: 4.0.0(react@18.2.0)
@@ -633,11 +633,11 @@ importers:
         specifier: ^1.11.9
         version: 1.11.9
       easy-soft-dva:
-        specifier: ^3.9.7
-        version: 3.9.7(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
+        specifier: ^3.9.9
+        version: 3.9.9(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.7
-        version: 2.7.7
+        specifier: ^2.7.9
+        version: 2.7.9
       html-react-parser:
         specifier: ^4.0.0
         version: 4.0.0(react@18.2.0)
@@ -985,11 +985,11 @@ importers:
         specifier: ^1.11.9
         version: 1.11.9
       easy-soft-dva:
-        specifier: ^3.9.7
-        version: 3.9.7(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
+        specifier: ^3.9.9
+        version: 3.9.9(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.7
-        version: 2.7.7
+        specifier: ^2.7.9
+        version: 2.7.9
       html-react-parser:
         specifier: ^4.0.0
         version: 4.0.0(react@18.2.0)
@@ -1674,11 +1674,11 @@ importers:
         specifier: ^1.11.9
         version: 1.11.9
       easy-soft-dva:
-        specifier: ^3.9.7
-        version: 3.9.7(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
+        specifier: ^3.9.9
+        version: 3.9.9(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.7
-        version: 2.7.7
+        specifier: ^2.7.9
+        version: 2.7.9
       html-react-parser:
         specifier: ^4.0.0
         version: 4.0.0(react@18.2.0)
@@ -1996,11 +1996,11 @@ importers:
         specifier: ^1.11.9
         version: 1.11.9
       easy-soft-dva:
-        specifier: ^3.9.7
-        version: 3.9.7(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
+        specifier: ^3.9.9
+        version: 3.9.9(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.7
-        version: 2.7.7
+        specifier: ^2.7.9
+        version: 2.7.9
       rc-util:
         specifier: ^5.34.1
         version: 5.34.1(react-dom@18.2.0)(react@18.2.0)
@@ -2249,11 +2249,11 @@ importers:
         specifier: ^1.11.9
         version: 1.11.9
       easy-soft-dva:
-        specifier: ^3.9.7
-        version: 3.9.7(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
+        specifier: ^3.9.9
+        version: 3.9.9(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.7
-        version: 2.7.7
+        specifier: ^2.7.9
+        version: 2.7.9
       rc-util:
         specifier: ^5.34.1
         version: 5.34.1(react-dom@18.2.0)(react@18.2.0)
@@ -11856,14 +11856,14 @@ packages:
       terminal-kit: 3.0.0
     dev: true
 
-  /easy-soft-dva@3.9.7(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1):
-    resolution: {integrity: sha512-NKgnORSL0BbdlAKsvMQjxtac0zU5Cpjo/dsTQLZV2qTziXI79SPCSSNjl9uQPSt6uqynSaiEEVamok6cCo7Pqw==}
+  /easy-soft-dva@3.9.9(@types/react-dom@18.2.6)(@types/react@18.2.14)(redux@4.2.1):
+    resolution: {integrity: sha512-d7EgIXgG/COOcUBcGICbcvcRs3h2npB7K93yRT0EeIF67KBnNVytycOZL8M6+9241gNuMb6sy86TeNFl5yqIdg==}
     peerDependencies:
       redux: 4.x
     dependencies:
       '@babel/runtime': 7.22.6
       '@reduxjs/toolkit': 1.9.5(react-redux@8.1.1)(react@18.2.0)
-      easy-soft-utility: 2.7.7
+      easy-soft-utility: 2.7.9
       flatten: 1.0.3
       global: 4.4.0
       invariant: 2.2.4
@@ -11880,8 +11880,8 @@ packages:
       - react-native
     dev: false
 
-  /easy-soft-utility@2.7.7:
-    resolution: {integrity: sha512-TVovco4j9BaFosHWhMlBTHQj9bg2wBGrPI21aW1wHGZREsK/4MmJ4Xn40VYegJdW8xcZ/0CB4oSCFJuaWHWz8Q==}
+  /easy-soft-utility@2.7.9:
+    resolution: {integrity: sha512-EzUgeiApy8RfIDaHEczajTEoCr/tJA/o9OoiuE6X77163jDE8SKPcZsFzNfIYdY3RWvqYSVl+ABGoxvYs9PLyQ==}
     dependencies:
       dayjs: 1.11.9
       js-base64: 3.7.5

@@ -30,9 +30,31 @@ class BaseUpdateForm extends DataLoad {
     this.reloadData({});
   };
 
-  supplementSubmitRequestParams = (o) => o;
+  supplementSubmitRequestParams = (o) => {
+    this.logCallTrack(
+      {
+        parameter: o,
+      },
+      primaryCallName,
+      'supplementSubmitRequestParams',
+      emptyLogic,
+    );
 
-  afterCheckSubmitRequestParams = (o) => o;
+    return o;
+  };
+
+  afterCheckSubmitRequestParams = (o) => {
+    this.logCallTrack(
+      {
+        parameter: o,
+      },
+      primaryCallName,
+      'afterCheckSubmitRequestParams',
+      emptyLogic,
+    );
+
+    return o;
+  };
 
   execSubmitApi = ({
     values = {},
@@ -60,11 +82,51 @@ class BaseUpdateForm extends DataLoad {
       return;
     }
 
+    this.logCallTrace(
+      {
+        parameter: values || {},
+      },
+      primaryCallName,
+      'execSubmitApi',
+      'trigger',
+      'pretreatmentRequestParameters',
+    );
+
     let submitData = pretreatmentRequestParameters(values || {});
+
+    this.logCallTrace(
+      {
+        parameter: submitData,
+      },
+      primaryCallName,
+      'execSubmitApi',
+      'trigger',
+      'supplementSubmitRequestParams',
+    );
 
     submitData = this.supplementSubmitRequestParams(submitData);
 
+    this.logCallTrace(
+      {
+        parameter: submitData,
+      },
+      primaryCallName,
+      'execSubmitApi',
+      'trigger',
+      'checkSubmitData',
+    );
+
     const checkResult = this.checkSubmitData(submitData);
+
+    this.logCallTrace(
+      {
+        parameter: submitData,
+      },
+      primaryCallName,
+      'execSubmitApi',
+      'trigger',
+      'afterCheckSubmitRequestParams',
+    );
 
     submitData = this.afterCheckSubmitRequestParams(submitData);
 

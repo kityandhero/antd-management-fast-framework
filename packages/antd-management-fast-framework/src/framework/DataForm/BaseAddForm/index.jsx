@@ -54,10 +54,14 @@ class BaseAddForm extends DataCore {
   }
 
   adjustWhenDidMount = () => {
+    this.logCallTrack({}, primaryCallName, 'adjustWhenDidMount');
+
     this.fillData();
   };
 
   getTargetForm = () => {
+    this.logCallTrack({}, primaryCallName, 'getTargetForm');
+
     return this.formRef.current;
   };
 
@@ -77,11 +81,25 @@ class BaseAddForm extends DataCore {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
-  afterFillForm = (initialValues) => {};
+  afterFillForm = (initialValues) => {
+    this.logCallTrack(
+      {
+        parameter: initialValues,
+      },
+      primaryCallName,
+      'afterFillForm',
+      emptyLogic,
+    );
+  };
 
   setFormFieldsValue = (v) => {
-    this.logCallTrack({}, primaryCallName, 'setFormFieldsValue');
+    this.logCallTrack(
+      {
+        parameter: v,
+      },
+      primaryCallName,
+      'setFormFieldsValue',
+    );
 
     const form = this.getTargetForm();
 
@@ -92,8 +110,16 @@ class BaseAddForm extends DataCore {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
-  afterSetFieldsValue = (values) => {};
+  afterSetFieldsValue = (values) => {
+    this.logCallTrack(
+      {
+        parameter: values,
+      },
+      primaryCallName,
+      'afterSetFieldsValue',
+      emptyLogic,
+    );
+  };
 
   handleFormReset = () => {
     this.logCallTrack({}, primaryCallName, 'handleFormReset');
@@ -109,9 +135,31 @@ class BaseAddForm extends DataCore {
     this.reloadData({});
   };
 
-  supplementSubmitRequestParams = (o) => o;
+  supplementSubmitRequestParams = (o) => {
+    this.logCallTrack(
+      {
+        parameter: o,
+      },
+      primaryCallName,
+      'supplementSubmitRequestParams',
+      emptyLogic,
+    );
 
-  afterCheckSubmitRequestParams = (o) => o;
+    return o;
+  };
+
+  afterCheckSubmitRequestParams = (o) => {
+    this.logCallTrack(
+      {
+        parameter: o,
+      },
+      primaryCallName,
+      'afterCheckSubmitRequestParams',
+      emptyLogic,
+    );
+
+    return o;
+  };
 
   execSubmitApi = ({
     values = {},
@@ -139,11 +187,51 @@ class BaseAddForm extends DataCore {
       return;
     }
 
+    this.logCallTrace(
+      {
+        parameter: values || {},
+      },
+      primaryCallName,
+      'execSubmitApi',
+      'trigger',
+      'pretreatmentRequestParameters',
+    );
+
     let submitData = pretreatmentRequestParameters(values || {});
+
+    this.logCallTrace(
+      {
+        parameter: submitData,
+      },
+      primaryCallName,
+      'execSubmitApi',
+      'trigger',
+      'supplementSubmitRequestParams',
+    );
 
     submitData = this.supplementSubmitRequestParams(submitData);
 
+    this.logCallTrace(
+      {
+        parameter: submitData,
+      },
+      primaryCallName,
+      'execSubmitApi',
+      'trigger',
+      'checkSubmitData',
+    );
+
     const checkResult = this.checkSubmitData(submitData);
+
+    this.logCallTrace(
+      {
+        parameter: submitData,
+      },
+      primaryCallName,
+      'execSubmitApi',
+      'trigger',
+      'afterCheckSubmitRequestParams',
+    );
 
     submitData = this.afterCheckSubmitRequestParams(submitData);
 

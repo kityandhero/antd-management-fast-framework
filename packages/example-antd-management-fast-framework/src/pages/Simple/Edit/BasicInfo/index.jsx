@@ -829,7 +829,6 @@ class BasicInfo extends TabPageBase {
               },
             ],
           },
-
           items: [
             {
               lg: 24,

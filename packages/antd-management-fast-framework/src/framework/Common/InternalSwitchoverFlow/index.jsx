@@ -138,7 +138,7 @@ class InternalSwitchoverFlow extends InternalFlow {
         <TabBarExtraBox
           list={this.buildByExtraBuildType({
             keyPrefix: 'data_tab_container_tab_bar_left_action_key',
-            list: this.establishTabBarExtraContentLeftConfig(),
+            configList: this.establishTabBarExtraContentLeftConfig(),
           })}
         />
       ),
@@ -146,7 +146,7 @@ class InternalSwitchoverFlow extends InternalFlow {
         <TabBarExtraBox
           list={this.buildByExtraBuildType({
             keyPrefix: 'data_tab_container_tab_bar_right_action_key',
-            list: this.establishTabBarExtraContentRightConfig(),
+            configList: this.establishTabBarExtraContentRightConfig(),
           })}
         />
       ),

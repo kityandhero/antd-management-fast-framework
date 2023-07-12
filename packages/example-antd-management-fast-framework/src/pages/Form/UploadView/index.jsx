@@ -1,5 +1,6 @@
 import { connect } from 'easy-soft-dva';
 import {
+  checkHasAuthority,
   getValueByKey,
   mergeArrowText,
   pretreatmentRemoteSingleData,
@@ -7,13 +8,18 @@ import {
 } from 'easy-soft-utility';
 
 import { cardConfig, getCorsDomain } from 'antd-management-fast-common';
-import { convertOptionOrRadioData } from 'antd-management-fast-component';
+import {
+  convertOptionOrRadioData,
+  iconBuilder,
+} from 'antd-management-fast-component';
 
 import { fieldData } from '../../../businessData/data';
+import { accessWayCollection } from '../../../customConfig';
 import {
   addGalleryImageAction,
   removeGalleryImageConfirmAction,
 } from '../../Simple/Assist/action';
+import ChangeImageSortModal from '../../Simple/ChangeImageSortModal';
 import { fieldData as fieldDataSimpleImage } from '../../SimpleImage/Common/data';
 import BaseView from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
@@ -39,9 +45,11 @@ class NormalView extends BaseView {
       pageTitle: 'Upload 示例',
       currentCodeTitle: 'UploadView',
       currentCode: codeUploadView,
-      attachmentBase64: '',
       image: '',
-      rectangleImage: '',
+      video: '',
+      audio: '',
+      attachment: '',
+      attachmentBase64: '',
     };
   }
 
@@ -146,18 +154,25 @@ class NormalView extends BaseView {
     return false;
   };
 
+  showChangeImageSortModal = () => {
+    ChangeImageSortModal.open();
+  };
+
   afterChangeImageSortModalOk = () => {
     this.reloadData({});
   };
 
   establishCardCollectionConfig = () => {
     const {
+      firstLoadSuccess,
       currentCode,
       currentCodeTitle,
+      image,
       video,
       audio,
       attachment,
       attachmentBase64,
+      fileList,
     } = this.state;
 
     const that = this;
@@ -183,11 +198,70 @@ class NormalView extends BaseView {
           items: [
             {
               lg: 24,
+              type: cardConfig.contentItemType.imageUpload,
+              image: image,
+              action: `/simple/uploadImage`,
+              afterUploadSuccess: (imageData) => {
+                this.afterImageUploadSuccess(imageData);
+              },
+            },
+          ],
+        },
+        {
+          title: {
+            text: '示例: 图片相册',
+            subText:
+              '[相册最大容量为8张图片, 大小必须统一640*640 (800*800)，图片相册的添加和删除将自动保, 产品其他信息请在修改后点击保存按钮!]',
+          },
+          extra: {
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.generalButton,
+                hidden: !checkHasAuthority(
+                  accessWayCollection.simple.updateImageSort.permission,
+                ),
+                text: '调整图片顺序',
+                icon: iconBuilder.sortAscending(),
+                handleClick: (event) => this.showChangeImageSortModal(event),
+                disabled: !firstLoadSuccess,
+              },
+            ],
+          },
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.imageUpload,
+              action: `${getCorsDomain()}/simple/uploadImage`,
+              disabled: !checkHasAuthority(
+                accessWayCollection.simple.addImage.permission,
+              ),
+              multiple: true,
+              fileList,
+              showUploadList: {
+                showPreviewIcon: true,
+                showDownloadIcon: true,
+                showRemoveIcon: checkHasAuthority(
+                  accessWayCollection.simple.removeImage.permission,
+                ),
+              },
+              onItemChange: this.handleGalleryUploadChange,
+              onItemRemove: this.onGalleryRemove,
+              // showUploadList: true,
+            },
+          ],
+        },
+        {
+          title: {
+            text: '示例',
+          },
+          items: [
+            {
+              lg: 24,
               type: cardConfig.contentItemType.videoUpload,
               fieldData: fieldData.video,
               video,
               showPreview: true,
-              action: `${getCorsDomain()}/simple/uploadVideo`,
+              action: `/simple/uploadVideo`,
               afterChangeSuccess: (data) => {
                 this.afterVideoChangeSuccess(data);
               },
@@ -198,7 +272,7 @@ class NormalView extends BaseView {
               fieldData: fieldData.audio,
               audio,
               showPreview: true,
-              action: `${getCorsDomain()}/simple/uploadAudio`,
+              action: `/simple/uploadAudio`,
               afterChangeSuccess: (data) => {
                 this.afterAudioChangeSuccess(data);
               },
@@ -208,7 +282,7 @@ class NormalView extends BaseView {
               type: cardConfig.contentItemType.fileBase64Upload,
               fieldData: fieldData.fileBase64,
               fileBase64: attachmentBase64,
-              action: `${getCorsDomain()}/application/uploadFileBase64`,
+              action: `/application/uploadFileBase64`,
               afterUploadSuccess: (data) => {
                 this.afterFileBase64UploadSuccess(data);
               },
@@ -218,7 +292,7 @@ class NormalView extends BaseView {
               type: cardConfig.contentItemType.fileUpload,
               fieldData: fieldData.file,
               file: attachment,
-              action: `${getCorsDomain()}/application/uploadFile`,
+              action: `/application/uploadFile`,
               afterUploadSuccess: (data) => {
                 this.afterFileUploadSuccess(data);
               },

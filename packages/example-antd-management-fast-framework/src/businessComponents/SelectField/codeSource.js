@@ -57,22 +57,10 @@ class SelectField extends BaseSelectFieldExtra {
       />
     );
   };
-
-  getFieldData = () => {
-    const { label, valueText, helper } = this.props;
-
-    return {
-      fieldText: valueText || '',
-      fieldTitle: label,
-      fieldPlaceholder: helper,
-    };
-  };
 }
 
 SelectField.defaultProps = {
-  label: '',
-  valueText: '',
-  helper: '',
+  ...BaseSelectFieldExtra.defaultProps,
 };
 
 export { SelectField };

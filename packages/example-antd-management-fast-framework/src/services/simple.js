@@ -347,6 +347,7 @@ export async function listImageData(parameters) {
     api: `/simple/ListImage`,
     params: parameters,
     mode: requestMode.simulation,
+    simulateRequestDelay: 300,
     simulativeSuccessResponse: {
       list: imageFileList,
     },

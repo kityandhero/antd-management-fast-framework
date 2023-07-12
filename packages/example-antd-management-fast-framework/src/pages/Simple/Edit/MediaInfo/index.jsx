@@ -222,8 +222,8 @@ class BasicInfo extends TabPageBase {
       operate: key,
       item: record,
       list: mediaItemList,
-      sortKey: 'sort',
-      sortMin: 1,
+      key: 'sort',
+      sortInitialValue: 1,
     });
 
     this.saveSortChangedMediaItem(list);
