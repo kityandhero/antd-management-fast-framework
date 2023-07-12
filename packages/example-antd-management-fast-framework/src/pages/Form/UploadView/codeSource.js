@@ -13,12 +13,12 @@ import {
   iconBuilder,
 } from 'antd-management-fast-component';
 
-import { fieldData } from '../../../businessData/data';
-import { accessWayCollection } from '../../../customConfig';
 import {
   addGalleryImageAction,
   removeGalleryImageConfirmAction,
-} from '../../Simple/Assist/action';
+} from '../../../businessAssists/action';
+import { fieldData } from '../../../businessData/data';
+import { accessWayCollection } from '../../../customConfig';
 import ChangeImageSortModal from '../../Simple/ChangeImageSortModal';
 import { fieldData as fieldDataSimpleImage } from '../../SimpleImage/Common/data';
 import BaseView from '../BaseView';
