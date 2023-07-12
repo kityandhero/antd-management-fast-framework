@@ -544,7 +544,7 @@ class SinglePageDrawer extends SinglePage {
           >
             <List
               style={{ height: '100%', overflow: 'auto' }}
-              itemLayout={this.renderPresetListViewItemLayout()}
+              itemLayout={this.establishListViewItemLayout()}
               dataSource={list}
               renderItem={(item, index) => {
                 return this.renderPresetListViewItem(item, index);

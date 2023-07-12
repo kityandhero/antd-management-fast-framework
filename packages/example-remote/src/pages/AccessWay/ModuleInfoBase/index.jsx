@@ -149,11 +149,11 @@ class ModuleInfoBase extends InnerSinglePage {
     });
   };
 
-  renderPresetListViewItemLayout = () => {
+  establishListViewItemLayout = () => {
     return 'vertical';
   };
 
-  renderPresetListViewSize = () => {
+  establishListViewSize = () => {
     return 'small';
   };
 

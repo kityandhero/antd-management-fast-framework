@@ -145,7 +145,7 @@ class PageList extends MultiPage {
     ];
   };
 
-  renderPresetListViewItemLayout = () => {
+  establishListViewItemLayout = () => {
     return 'vertical';
   };
 

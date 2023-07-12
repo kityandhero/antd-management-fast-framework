@@ -202,11 +202,11 @@ class PageListDrawer extends MultiPageDrawer {
     };
   };
 
-  renderPresetListViewItemLayout = () => {
+  establishListViewItemLayout = () => {
     return 'vertical';
   };
 
-  renderPresetListViewSize = () => {
+  establishListViewSize = () => {
     return 'small';
   };
 

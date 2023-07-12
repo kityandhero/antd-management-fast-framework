@@ -1372,11 +1372,11 @@ class Base extends AuthorizationWrapper {
     return null;
   };
 
-  renderPresetListViewItemLayout = () => {
+  establishListViewItemLayout = () => {
     return 'horizontal';
   };
 
-  renderPresetListViewSize = () => {
+  establishListViewSize = () => {
     return 'default';
   };
 
@@ -1384,8 +1384,8 @@ class Base extends AuthorizationWrapper {
     return (
       <LoadingOverlay flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}>
         <List
-          itemLayout={this.renderPresetListViewItemLayout()}
-          size={this.renderPresetListViewSize()}
+          itemLayout={this.establishListViewItemLayout()}
+          size={this.establishListViewSize()}
           dataSource={
             this.getCanUseFrontendPagination()
               ? this.adjustFrontendPaginationViewDataSource()
