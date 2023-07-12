@@ -24,6 +24,8 @@ class FlexText extends PureComponent {
       extra,
       style,
       color,
+      separator,
+      separatorStyle,
     } = this.props;
 
     return (
@@ -37,6 +39,8 @@ class FlexText extends PureComponent {
             <IconInfo
               icon={icon}
               textPrefix={textPrefix}
+              separator={separator}
+              separatorStyle={separatorStyle}
               text={text}
               ellipsis={ellipsis}
               ellipsisMaxWidth={textEllipsisMaxWidth}
@@ -70,6 +74,8 @@ FlexText.defaultProps = {
   extra: null,
   style: null,
   color: '',
+  separator: ': ',
+  separatorStyle: null,
 };
 
 export { FlexText };

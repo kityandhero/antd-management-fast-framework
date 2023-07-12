@@ -510,6 +510,10 @@ export function buildListViewItemInner({
           textPrefix={label}
           text={text || emptyText}
           textStyle={textStyle}
+          separatorStyle={{
+            paddingLeft: '3px',
+            paddingRight: '5px',
+          }}
           canCopy={canCopy}
           style={checkStringIsNullOrWhiteSpace(color) ? {} : { color }}
         />
@@ -528,7 +532,16 @@ export function buildListViewItemInner({
             <Avatar icon={image} />
           )
         }
-        title={<ColorText textPrefix={titleLabel} text={titleText} />}
+        title={
+          <ColorText
+            textPrefix={titleLabel}
+            text={titleText}
+            separatorStyle={{
+              paddingLeft: '3px',
+              paddingRight: '5px',
+            }}
+          />
+        }
         description={
           <>
             {descriptionListAdjust.map((o, index) => {
@@ -540,6 +553,10 @@ export function buildListViewItemInner({
                     textPrefix={label}
                     text={text}
                     color={color}
+                    separatorStyle={{
+                      paddingLeft: '3px',
+                      paddingRight: '5px',
+                    }}
                     extra={extra}
                   />
                 </div>
