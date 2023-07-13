@@ -1,4 +1,4 @@
-import { Col, Divider, Form, Layout, Row, Space } from 'antd';
+import { Col, Divider, Layout, Row, Space } from 'antd';
 import React, { Fragment } from 'react';
 
 import {
@@ -91,11 +91,6 @@ class Base extends BaseWindow {
 
     return iconBuilder.form();
   };
-  buildFormLayout = () => {
-    this.logCallTrack({}, primaryCallName, 'buildFormLayout');
-
-    return 'vertical';
-  };
 
   buildNotificationPlacement = () => {
     this.logCallTrack({}, primaryCallName, 'buildNotificationPlacement');
@@ -103,60 +98,24 @@ class Base extends BaseWindow {
     return `bottomLeft`;
   };
 
-  renderPresetForm = () => {
-    this.logCallTrack({}, primaryCallName, 'renderPresetForm');
-
-    const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
-
-    const initialValues = this.buildInitialValues({
-      metaData,
-      metaListData,
-      metaExtra,
-      metaOriginalData,
-    });
-
-    const otherFormProperties = this.establishFormAdditionalConfig();
-
-    return (
-      <Form
-        ref={this.formRef}
-        initialValues={initialValues}
-        className={this.getFormClassName()}
-        layout={this.buildFormLayout()}
-        {...otherFormProperties}
-      >
-        {this.renderPresetFormContent()}
-      </Form>
-    );
-  };
-
-  establishCardCollectionConfig = () => {
+  renderPresetContentContainorInner = () => {
     this.logCallTrack(
       {},
       primaryCallName,
-      'establishCardCollectionConfig',
+      'renderPresetContentContainorInner',
       emptyLogic,
     );
 
     return null;
   };
 
-  renderPresetFormContent = () => {
-    this.logCallTrack({}, primaryCallName, 'renderPresetFormContent');
-
-    return this.buildCardCollectionArea(this.establishCardCollectionConfig());
-  };
-
   renderPresetContentContainor = () => {
-    this.logCallTrack(
-      {},
-      primaryCallName,
-      'renderPresetContentContainor',
-      emptyLogic,
-    );
+    this.logCallTrack({}, primaryCallName, 'renderPresetContentContainor');
 
     return (
-      <div className={styles.contentContainor}>{this.renderPresetForm()}</div>
+      <div className={styles.contentContainor}>
+        {this.renderPresetContentContainorInner()}
+      </div>
     );
   };
 

@@ -1,8 +1,8 @@
-import { Base } from '../Base';
+import { BaseFormDrawer } from '../BaseFormDrawer';
 
 const primaryCallName = 'DataDrawer::BaseLoadDrawer';
 
-class BaseLoadDrawer extends Base {
+class BaseLoadDrawer extends BaseFormDrawer {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
 

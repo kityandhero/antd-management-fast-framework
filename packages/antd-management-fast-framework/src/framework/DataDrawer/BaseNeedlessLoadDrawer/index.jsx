@@ -2,11 +2,11 @@ import { datetimeFormat, formatDatetime } from 'easy-soft-utility';
 
 import { formNameCollection } from 'antd-management-fast-common';
 
-import { Base } from '../Base';
+import { BaseFormDrawer } from '../BaseFormDrawer';
 
 const primaryCallName = 'DataDrawer::BaseNeedlessLoadDrawer';
 
-class BaseNeedlessLoadDrawer extends Base {
+class BaseNeedlessLoadDrawer extends BaseFormDrawer {
   resetDataAfterLoad = false;
 
   showReloadButton = false;

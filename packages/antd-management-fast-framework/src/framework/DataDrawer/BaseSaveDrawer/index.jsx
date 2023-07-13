@@ -1,8 +1,8 @@
 import { drawerConfig } from 'antd-management-fast-common';
 
-import { Base } from '../Base';
+import { BaseFormDrawer } from '../BaseFormDrawer';
 
-class BaseSaveDrawer extends Base {
+class BaseSaveDrawer extends BaseFormDrawer {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
 
