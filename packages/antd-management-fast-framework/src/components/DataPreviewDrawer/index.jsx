@@ -7,7 +7,7 @@ import { isArray, isEmptyArray, toNumber } from 'easy-soft-utility';
 import { cardConfig, dataTypeCollection } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { Base } from '../../framework/DataDrawer/Base';
+import { BaseFormDrawer } from '../../framework/DataDrawer/BaseFormDrawer';
 import { switchControlAssist } from '../../utils/switchControlAssist';
 
 import styles from './index.less';
@@ -17,7 +17,7 @@ const visibleFlag = '276b262ee5bc4c138c5e38f552fcf9e7';
 @connect(({ schedulingControl }) => ({
   schedulingControl,
 }))
-class DataPreviewDrawer extends Base {
+class DataPreviewDrawer extends BaseFormDrawer {
   loadRemoteRequestAfterMount = false;
 
   resetDataAfterLoad = false;
