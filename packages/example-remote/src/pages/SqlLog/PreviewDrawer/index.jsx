@@ -68,7 +68,7 @@ class PreviewDrawer extends BaseLoadDrawer {
                 defaultValue: '',
               }),
               language: 'sql',
-              otherProps: {
+              innerProps: {
                 wrapLines: false,
               },
             },

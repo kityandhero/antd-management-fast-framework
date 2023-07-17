@@ -17,7 +17,7 @@ class DatePickerItem extends PureComponent {
       name,
       required = false,
       helper = null,
-      datePickerProps: datePickerProperties = {},
+      innerProps: innerProperties = {},
       canOperate = true,
       formItemLayout = {},
       hidden = false,
@@ -25,13 +25,13 @@ class DatePickerItem extends PureComponent {
 
     const title = label;
 
-    const otherDatePickerProperties = {
+    const otherInnerProperties = {
       style: { width: '100%' },
       showTime: true,
       format: 'YYYY-MM-DD HH:mm:ss',
       inputReadOnly: true,
       placeholder: buildFieldDescription(title, '选择'),
-      ...datePickerProperties,
+      ...innerProperties,
     };
 
     const resultCheck = checkFromConfig({
@@ -53,7 +53,7 @@ class DatePickerItem extends PureComponent {
           }
           hidden={hidden}
         >
-          <DatePicker {...otherDatePickerProperties} />
+          <DatePicker {...otherInnerProperties} />
         </Item>
       );
     }
@@ -76,7 +76,7 @@ class DatePickerItem extends PureComponent {
         ]}
         hidden={hidden}
       >
-        <DatePicker {...otherDatePickerProperties} />
+        <DatePicker {...otherInnerProperties} />
       </Item>
     );
   }
@@ -87,7 +87,7 @@ DatePickerItem.defaultProps = {
   name: '',
   required: false,
   helper: null,
-  datePickerProps: {},
+  innerProps: {},
   canOperate: true,
   formItemLayout: {},
   hidden: false,

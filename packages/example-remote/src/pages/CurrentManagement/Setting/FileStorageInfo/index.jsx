@@ -361,7 +361,7 @@ class Index extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.divider,
               text: '配置七牛云转存',
-              otherProps: {
+              innerProps: {
                 orientation: 'left',
                 style: {
                   margin: '4px 0 24px 0',
@@ -374,7 +374,7 @@ class Index extends TabPageBase {
               fieldData: fieldData.qiniu.qiniuImageSwitch,
               checked: qiniuImageSwitch,
               require: false,
-              otherProps: {
+              innerProps: {
                 checkedChildren: '开启',
                 unCheckedChildren: '关闭',
                 onChange: this.onQiniuImageSwitchSwitchChange,
@@ -386,7 +386,7 @@ class Index extends TabPageBase {
               fieldData: fieldData.qiniu.qiniuVideoSwitch,
               checked: qiniuVideoSwitch,
               require: false,
-              otherProps: {
+              innerProps: {
                 checkedChildren: '开启',
                 unCheckedChildren: '关闭',
                 onChange: this.onQiniuVideoSwitchSwitchChange,
@@ -398,7 +398,7 @@ class Index extends TabPageBase {
               fieldData: fieldData.qiniu.qiniuAudioSwitch,
               checked: qiniuAudioSwitch,
               require: false,
-              otherProps: {
+              innerProps: {
                 checkedChildren: '开启',
                 unCheckedChildren: '关闭',
                 onChange: this.onQiniuAudioSwitchSwitchChange,
@@ -410,7 +410,7 @@ class Index extends TabPageBase {
               fieldData: fieldData.qiniu.qiniuFileSwitch,
               checked: qiniuFileSwitch,
               require: false,
-              otherProps: {
+              innerProps: {
                 checkedChildren: '开启',
                 unCheckedChildren: '关闭',
                 onChange: this.onQiniuFileSwitchSwitchChange,

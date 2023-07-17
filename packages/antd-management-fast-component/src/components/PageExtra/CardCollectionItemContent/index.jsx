@@ -740,7 +740,7 @@ class CardCollectionItemContent extends PureComponent {
                       name={fieldData.name}
                       required={require}
                       helper={fieldData.helper}
-                      datePickerProps={{ ...contentItem.innerProps }}
+                      innerProps={{ ...contentItem.innerProps }}
                       canOperate={canOperate}
                       formItemLayout={formItemLayout}
                     />
@@ -775,7 +775,7 @@ class CardCollectionItemContent extends PureComponent {
                       name={fieldData.name}
                       required={require}
                       helper={fieldData.helper}
-                      datePickerProps={{ ...contentItem.innerProps }}
+                      innerProps={{ ...contentItem.innerProps }}
                       canOperate={canOperate}
                       formItemLayout={formItemLayout}
                     />
@@ -787,7 +787,7 @@ class CardCollectionItemContent extends PureComponent {
                       name={fieldData.name}
                       required={require}
                       helper={fieldData.helper}
-                      datePickerProps={{ ...contentItem.innerProps }}
+                      innerProps={{ ...contentItem.innerProps }}
                       canOperate={canOperate}
                       formItemLayout={formItemLayout}
                     />
@@ -799,7 +799,7 @@ class CardCollectionItemContent extends PureComponent {
                       name={fieldData.name}
                       required={require}
                       helper={fieldData.helper}
-                      datePickerProps={{
+                      innerProps={{
                         autoSize: { minRows: 3, maxRows: 5 },
                         ...contentItem.innerProps,
                       }}
@@ -813,7 +813,7 @@ class CardCollectionItemContent extends PureComponent {
                       label={fieldData.label}
                       value={contentItem.value}
                       helper={fieldData.helper}
-                      datePickerProps={{
+                      innerProps={{
                         autoSize: { minRows: 3, maxRows: 5 },
                         ...contentItem.innerProps,
                       }}

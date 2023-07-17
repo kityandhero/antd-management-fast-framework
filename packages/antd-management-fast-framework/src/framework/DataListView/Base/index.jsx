@@ -534,7 +534,7 @@ class Base extends AuthorizationWrapper {
             name={fieldData.name}
             required={false}
             helper={fieldData.helper}
-            datePickerProps={{ ...innerProps }}
+            innerProps={{ ...innerProps }}
           />
         ) : null}
 

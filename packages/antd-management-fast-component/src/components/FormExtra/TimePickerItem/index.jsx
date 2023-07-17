@@ -17,7 +17,7 @@ class TimePickerItem extends PureComponent {
       name,
       required = false,
       helper = null,
-      timePickerProps: timePickerProperties = {},
+      innerProps: innerProperties = {},
       canOperate = true,
       formItemLayout = {},
       hidden = false,
@@ -25,11 +25,11 @@ class TimePickerItem extends PureComponent {
 
     const title = label;
 
-    const otherTimePickerProperties = {
+    const otherInnerProperties = {
       style: { width: '100%' },
       inputReadOnly: true,
       placeholder: buildFieldDescription(title, '选择'),
-      ...timePickerProperties,
+      ...innerProperties,
     };
 
     const resultCheck = checkFromConfig({
@@ -51,7 +51,7 @@ class TimePickerItem extends PureComponent {
           }
           hidden={hidden}
         >
-          <TimePicker {...otherTimePickerProperties} />
+          <TimePicker {...otherInnerProperties} />
         </Item>
       );
     }
@@ -74,7 +74,7 @@ class TimePickerItem extends PureComponent {
         ]}
         hidden={hidden}
       >
-        <TimePicker {...otherTimePickerProperties} />
+        <TimePicker {...otherInnerProperties} />
       </Item>
     );
   }
@@ -85,7 +85,7 @@ TimePickerItem.defaultProps = {
   name: '',
   required: false,
   helper: null,
-  timePickerProps: {},
+  innerProps: {},
   canOperate: true,
   formItemLayout: {},
   hidden: false,

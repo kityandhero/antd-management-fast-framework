@@ -73,7 +73,7 @@ export function buildFormTextArea({
   name,
   required = false,
   helper = null,
-  innerProps: textAreaProperties = {},
+  innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
@@ -83,7 +83,7 @@ export function buildFormTextArea({
       name={name}
       required={required}
       helper={helper}
-      innerProps={textAreaProperties}
+      innerProps={innerProperties}
       canOperate={canOperate}
       formItemLayout={formItemLayout}
     />
@@ -95,7 +95,7 @@ export function buildFormDatePicker({
   name,
   required = false,
   helper = null,
-  datePickerProps: datePickerProperties = {},
+  innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
@@ -105,7 +105,7 @@ export function buildFormDatePicker({
       name={name}
       required={required}
       helper={helper}
-      datePickerProps={datePickerProperties}
+      innerProps={innerProperties}
       canOperate={canOperate}
       formItemLayout={formItemLayout}
     />
@@ -117,7 +117,7 @@ export function buildFormTimePicker({
   name,
   required = false,
   helper = null,
-  timePickerProps: timePickerProperties = {},
+  innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
 }) {
@@ -127,7 +127,7 @@ export function buildFormTimePicker({
       name={name}
       required={required}
       helper={helper}
-      datePickerProps={timePickerProperties}
+      innerProps={innerProperties}
       canOperate={canOperate}
       formItemLayout={formItemLayout}
     />
