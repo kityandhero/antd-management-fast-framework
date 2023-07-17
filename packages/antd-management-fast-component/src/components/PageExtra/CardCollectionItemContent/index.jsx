@@ -738,6 +738,7 @@ class CardCollectionItemContent extends PureComponent {
                     <SwitchItem
                       label={fieldData.label}
                       name={fieldData.name}
+                      checked={contentItem.checked || false}
                       required={require}
                       helper={fieldData.helper}
                       innerProps={{ ...contentItem.innerProps }}

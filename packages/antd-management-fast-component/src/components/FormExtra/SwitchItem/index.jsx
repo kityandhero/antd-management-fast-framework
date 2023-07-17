@@ -16,6 +16,7 @@ class SwitchItem extends PureComponent {
     const {
       label,
       name,
+      checked = false,
       required = false,
       helper = null,
       innerProps: innerProperties = {},
@@ -28,6 +29,7 @@ class SwitchItem extends PureComponent {
 
     const otherSwitchProperties = {
       disabled: !canOperate,
+      checked,
       ...innerProperties,
     };
 
@@ -72,6 +74,7 @@ class SwitchItem extends PureComponent {
 SwitchItem.defaultProps = {
   label: '',
   name: '',
+  checked: false,
   required: false,
   helper: null,
   innerProps: {},
