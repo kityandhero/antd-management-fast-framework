@@ -12,6 +12,7 @@ import {
 import {
   contentConfig,
   defaultFormState,
+  emptyLogic,
   renderFurtherColorWhenNoCallProcess,
   renderFurtherPrefixWhenNoCallProcess,
 } from 'antd-management-fast-common';
@@ -47,6 +48,8 @@ class Base extends BaseWindow {
   };
 
   establishFormAdditionalConfig = () => {
+    this.logCallTrack({}, primaryCallName, 'establishFormAdditionalConfig');
+
     return {
       labelCol: {
         span: 7,
@@ -58,14 +61,25 @@ class Base extends BaseWindow {
   };
 
   establishCardCollectionConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishCardCollectionConfig',
+      emptyLogic,
+    );
+
     return null;
   };
 
   getSaveButtonDisabled = () => {
+    this.logCallTrack({}, primaryCallName, 'getSaveButtonDisabled');
+
     return this.checkOperability();
   };
 
   buildOkButtonProps = () => {
+    this.logCallTrack({}, primaryCallName, 'buildOkButtonProps');
+
     if (this.reloadWhenShow) {
       const buttonDisabled =
         this.getSaveButtonDisabled() || this.getOtherButtonDisabled();
@@ -83,10 +97,14 @@ class Base extends BaseWindow {
   };
 
   buildOkText = () => {
+    this.logCallTrack({}, primaryCallName, 'buildOkText');
+
     return '';
   };
 
   buildOkTextWrapper = () => {
+    this.logCallTrack({}, primaryCallName, 'buildOkTextWrapper');
+
     const okText = this.buildOkText();
 
     const buttonProcessing = this.getSaveButtonProcessing();
@@ -100,6 +118,8 @@ class Base extends BaseWindow {
   };
 
   buildCancelButtonProps = () => {
+    this.logCallTrack({}, primaryCallName, 'buildCancelButtonProps');
+
     if (this.reloadWhenShow) {
       const buttonDisabled =
         this.getSaveButtonDisabled() || this.getOtherButtonDisabled();
@@ -113,6 +133,8 @@ class Base extends BaseWindow {
   };
 
   buildCancelText = (saveButtonText = '') => {
+    this.logCallTrack({}, primaryCallName, 'buildCancelText');
+
     return (
       <>
         {iconBuilder.closeCircle()}
@@ -122,21 +144,29 @@ class Base extends BaseWindow {
   };
 
   buildModalBodyStyle = () => {
+    this.logCallTrack({}, primaryCallName, 'buildModalBodyStyle');
+
     return { padding: 0 };
   };
 
   getModalBodyStyle = () => {
+    this.logCallTrack({}, primaryCallName, 'getModalBodyStyle');
+
     const otherModalBodyStyle = this.buildModalBodyStyle();
 
     return { padding: 0, ...otherModalBodyStyle };
   };
 
   buildTitleIcon = () => {
+    this.logCallTrack({}, primaryCallName, 'buildTitleIcon');
+
     return iconBuilder.edit();
   };
 
   buildTitlePrevText = () => {
-    return '';
+    this.logCallTrack({}, primaryCallName, 'buildTitleIcon');
+
+    return '标题';
   };
 
   buildTitleText = () => {
@@ -153,10 +183,20 @@ class Base extends BaseWindow {
   };
 
   buildTitleSubText = () => {
+    this.logCallTrack({}, primaryCallName, 'buildTitleSubText', emptyLogic);
+
     return '';
   };
 
+  buildTitleSubTextPrefix = () => {
+    this.logCallTrack({}, primaryCallName, 'buildTitleSubTextPrefix');
+
+    return '标题';
+  };
+
   buildTitle = () => {
+    this.logCallTrack({}, primaryCallName, 'buildTitle');
+
     return (
       <FlexText
         flexAuto="right"
@@ -174,6 +214,8 @@ class Base extends BaseWindow {
   };
 
   renderPresetForm = () => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetForm');
+
     const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
 
     const initialValues = this.buildInitialValues({
@@ -199,10 +241,14 @@ class Base extends BaseWindow {
   };
 
   renderPresetFormWrapper = () => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetFormWrapper');
+
     return this.renderPresetForm();
   };
 
   renderPresetModalInner = () => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetModalInner');
+
     return this.renderPresetFormWrapper();
   };
 
@@ -231,10 +277,11 @@ class Base extends BaseWindow {
 
     const that = this;
 
+    const subTextPrefix = this.buildTitleSubTextPrefix();
     const subText = this.buildTitleSubText();
 
     const subInfo = checkStringIsNullOrWhiteSpace(subText) ? null : (
-      <Alert message={`标题：${subText}`} type="info" />
+      <Alert message={`${subTextPrefix}：${subText}`} type="info" />
     );
 
     return (
