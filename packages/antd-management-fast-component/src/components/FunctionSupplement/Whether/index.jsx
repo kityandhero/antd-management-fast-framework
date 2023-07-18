@@ -1,4 +1,5 @@
 ﻿import {
+  checkStringIsNullOrWhiteSpace,
   isInvalid,
   isNull,
   isUndefined,
@@ -33,7 +34,12 @@ export function refitWhetherList({ withUnlimited = true }) {
   return refitCommonData(list);
 }
 
-export function getWhetherName({ value, defaultValue = '' }) {
+export function getWhetherName({
+  value,
+  defaultValue = '',
+  trueText = '',
+  falseText = '',
+}) {
   if (isInvalid(value)) {
     return defaultValue;
   }
@@ -43,6 +49,16 @@ export function getWhetherName({ value, defaultValue = '' }) {
     `${isNull(isUndefined(value) ? null : value) ? '' : value}`,
     refitWhetherList({ withUnlimited: false }),
   );
+
+  if (!checkStringIsNullOrWhiteSpace(trueText) && item.flag === '1') {
+    item.name = trueText;
+    item.alias = trueText;
+  }
+
+  if (!checkStringIsNullOrWhiteSpace(falseText) && item.flag === '0') {
+    item.name = falseText;
+    item.alias = falseText;
+  }
 
   return item == null ? '未知' : item.name;
 }

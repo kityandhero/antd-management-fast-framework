@@ -15,6 +15,7 @@ import {
   buildListViewItemExtra,
   buildListViewItemInnerWithDropdownButton,
   ColorText,
+  FunctionSupplement,
   iconBuilder,
 } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
@@ -29,6 +30,9 @@ import { accessWayCollection } from '../../../customConfig';
 import { getSimpleStatusName } from '../../../customSpecialComponents';
 
 const { MultiPage } = DataMultiPageView;
+const {
+  Whether: { getWhetherName },
+} = FunctionSupplement;
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
@@ -247,6 +251,21 @@ class PageList extends MultiPage {
             data: item,
             key: fieldData.author.name,
             defaultValue: '暂无',
+          }),
+          canCopy: true,
+          color: '#999999',
+        },
+        {
+          label: fieldData.switch.label,
+          text: getWhetherName({
+            value: getValueByKey({
+              data: item,
+              key: fieldData.switch.name,
+              convert: convertCollection.string,
+              defaultValue: '0',
+            }),
+            trueText: '开启',
+            falseText: '关闭',
           }),
           canCopy: true,
           color: '#999999',
