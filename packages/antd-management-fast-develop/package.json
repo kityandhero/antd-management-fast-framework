@@ -75,7 +75,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.2",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/parser": "^6.1.0",
     "babel-jest": "^29.6.1",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^6.1.0",
