@@ -15,6 +15,8 @@ class HelpCard extends PureComponent {
             : {
                 borderTop: '0',
                 borderBottom: '0',
+                borderLeft: '0',
+                borderRight: '0',
               }
         }
         bodyStyle={

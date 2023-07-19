@@ -90,10 +90,19 @@ class InternalBuild extends InternalSwitchoverFlow {
         ? null
         : this.establishHelpConfig();
 
+    const backgroundColorStyle = checkInCollection(
+      [contentConfig.wrapperType.page, contentConfig.wrapperType.drawer],
+      this.contentWrapperType,
+    )
+      ? {
+          backgroundColor: '#f0f2f5',
+        }
+      : {};
+
     return (
       <div
         style={{
-          backgroundColor: '#f0f2f5',
+          ...backgroundColorStyle,
         }}
       >
         <Space style={{ width: '100%' }} direction="vertical" size={16}>

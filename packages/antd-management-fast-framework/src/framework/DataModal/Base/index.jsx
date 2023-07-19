@@ -166,7 +166,7 @@ class Base extends BaseWindow {
   buildTitlePrevText = () => {
     this.logCallTrack({}, primaryCallName, 'buildTitleIcon');
 
-    return '标题';
+    return '';
   };
 
   buildTitleText = () => {
