@@ -6,11 +6,12 @@ import {
   showSimpleSuccessMessage,
 } from 'easy-soft-utility';
 
-import { cardConfig } from 'antd-management-fast-common';
+import { cardConfig, dataTypeCollection } from 'antd-management-fast-common';
 import {
   buildButton,
   convertOptionOrRadioData,
 } from 'antd-management-fast-component';
+import { DataPreviewDrawer } from 'antd-management-fast-framework';
 
 import { code as codeBaseSimpleMultiPageSelectDrawer } from '../../../businessComponents/Drawers/Multi/BaseSimpleMultiPageSelectDrawer/codeSource';
 import SimpleMultiPageConfirmSelectDrawer from '../../../businessComponents/Drawers/Multi/SimpleMultiPageConfirmSelectDrawer';
@@ -25,6 +26,7 @@ import SimpleSinglePageFrontendPaginationSingleSelectDrawer from '../../../busin
 import SimpleSinglePageConfirmSelectDrawer from '../../../businessComponents/Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer';
 import SimpleSinglePageMultiSelectDrawer from '../../../businessComponents/Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer';
 import SimpleSinglePageSingleSelectDrawer from '../../../businessComponents/Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer';
+import { simpleJsonData } from '../../../businessData/data';
 import BaseView from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
@@ -204,6 +206,24 @@ class DrawerView extends BaseView {
         },
         {
           title: {
+            text: '内置Drawer组件示例',
+          },
+          items: [
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 Json 预览',
+                text: '显示 Json 预览',
+                handleClick: () => {
+                  DataPreviewDrawer.open();
+                },
+              }),
+            },
+          ],
+        },
+        {
+          title: {
             text: '代码示例',
             subText: mergeArrowText('Code', currentCodeTitle),
           },
@@ -360,6 +380,15 @@ class DrawerView extends BaseView {
           afterClose={() => {
             logDebug({}, 'trigger afterClose');
           }}
+        />
+
+        <DataPreviewDrawer
+          maskClosable
+          title="Json预览"
+          descriptionLabel="简要描述"
+          description="数据结构概览"
+          dataType={dataTypeCollection.jsonObjectList.flag}
+          data={simpleJsonData}
         />
       </>
     );

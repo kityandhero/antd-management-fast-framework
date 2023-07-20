@@ -77,7 +77,7 @@ class DataPreviewDrawer extends BaseFormDrawer {
             props: {
               bordered: true,
               size: 'small',
-              column: 2,
+              column: 1,
               labelStyle: {
                 width: '90px',
               },
@@ -145,7 +145,6 @@ class DataPreviewDrawer extends BaseFormDrawer {
     }
 
     if (isArray(otherListData) && !isEmptyArray(otherListData)) {
-      console.log(otherListData);
       for (const item of otherListData) {
         list.push(item);
       }
