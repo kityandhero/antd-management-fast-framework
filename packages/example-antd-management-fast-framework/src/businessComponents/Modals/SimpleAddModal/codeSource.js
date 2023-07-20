@@ -131,6 +131,17 @@ class SimpleAddModal extends BaseAddModal {
       ],
     };
   };
+
+  establishHelpConfig = () => {
+    return {
+      title: '操作提示',
+      list: [
+        {
+          text: '这是一条操作提示。',
+        },
+      ],
+    };
+  };
 }
 
 export default SimpleAddModal;

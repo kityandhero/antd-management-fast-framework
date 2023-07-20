@@ -443,6 +443,39 @@ export function buildTagList({ list = [] }) {
   return <ElasticityTagList list={list} />;
 }
 
+export function buildStatusBar({ actionList = [], extra = null }) {
+  const actionListAdjust = (isArray(actionList) ? actionList : []).map(
+    (o, index) => {
+      const { label, text, emptyText, textStyle, canCopy, color } = {
+        label: '',
+        text: '',
+        emptyText: '',
+        textStyle: null,
+        canCopy: false,
+        color: '',
+        ...o,
+      };
+
+      return (
+        <IconInfo
+          key={`action_${index}`}
+          textPrefix={label}
+          text={text || emptyText}
+          textStyle={textStyle}
+          separatorStyle={{
+            paddingLeft: '3px',
+            paddingRight: '5px',
+          }}
+          canCopy={canCopy}
+          style={checkStringIsNullOrWhiteSpace(color) ? {} : { color }}
+        />
+      );
+    },
+  );
+
+  return <StatusBar actions={actionListAdjust} extra={extra || null} />;
+}
+
 export function buildListViewItemExtra({
   align,
   imageUrl,
@@ -492,35 +525,6 @@ export function buildListViewItemInner({
     return { label, text, color: color || '', extra };
   });
 
-  const actionListAdjust = (isArray(actionList) ? actionList : []).map(
-    (o, index) => {
-      const { label, text, emptyText, textStyle, canCopy, color } = {
-        label: '',
-        text: '',
-        emptyText: '',
-        textStyle: null,
-        canCopy: false,
-        color: '',
-        ...o,
-      };
-
-      return (
-        <IconInfo
-          key={`action_${index}`}
-          textPrefix={label}
-          text={text || emptyText}
-          textStyle={textStyle}
-          separatorStyle={{
-            paddingLeft: '3px',
-            paddingRight: '5px',
-          }}
-          canCopy={canCopy}
-          style={checkStringIsNullOrWhiteSpace(color) ? {} : { color }}
-        />
-      );
-    },
-  );
-
   return (
     <>
       <List.Item.Meta
@@ -566,9 +570,7 @@ export function buildListViewItemInner({
         }
       />
 
-      <div>
-        <StatusBar actions={actionListAdjust} extra={extra || null} />
-      </div>
+      <div>{buildStatusBar({ actionList, extra })}</div>
     </>
   );
 }
