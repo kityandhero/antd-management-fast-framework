@@ -16,11 +16,13 @@ import {
   CaretUpOutlined,
   CheckCircleFilled,
   CheckCircleOutlined,
+  CheckCircleTwoTone,
   ClearOutlined,
   ClockCircleFilled,
   ClockCircleOutlined,
   CloseCircleFilled,
   CloseCircleOutlined,
+  CloseCircleTwoTone,
   CloudDownloadOutlined,
   ColumnHeightOutlined,
   CommentOutlined,
@@ -177,9 +179,15 @@ import {
   WarningOutlined,
 } from '@ant-design/icons';
 
+export const iconModeCollection = {
+  outlined: 'outlined',
+  filled: 'filled',
+  twoTone: 'twoTone',
+};
+
 export const iconBuilder = {
-  help: (properties = null, filled = false) => {
-    if (filled) {
+  help: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <InfoCircleFilled {...(properties || {})} />;
     }
 
@@ -191,15 +199,15 @@ export const iconBuilder = {
   plus: (properties = null) => {
     return <PlusOutlined {...(properties || {})} />;
   },
-  addCircle: (properties = null, filled = false) => {
-    if (filled) {
+  addCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <PlusCircleFilled {...(properties || {})} />;
     }
 
     return <PlusCircleOutlined {...(properties || {})} />;
   },
-  plusCircle: (properties = null, filled = false) => {
-    if (filled) {
+  plusCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <PlusCircleFilled {...(properties || {})} />;
     }
 
@@ -214,78 +222,82 @@ export const iconBuilder = {
   reload: (properties = null) => {
     return <ReloadOutlined {...(properties || {})} />;
   },
-  edit: (properties = null, filled = false) => {
-    if (filled) {
+  edit: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <EditFilled {...(properties || {})} />;
     }
 
     return <EditOutlined {...(properties || {})} />;
   },
-  enable: (properties = null, filled = false) => {
-    if (filled) {
+  enable: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <PlayCircleFilled {...(properties || {})} />;
     }
 
     return <PlayCircleOutlined {...(properties || {})} />;
   },
-  disable: (properties = null, filled = false) => {
-    if (filled) {
+  disable: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <PauseCircleFilled {...(properties || {})} />;
     }
 
     return <PauseCircleOutlined {...(properties || {})} />;
   },
-  playCircle: (properties = null, filled = false) => {
-    if (filled) {
+  playCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <PlayCircleFilled {...(properties || {})} />;
     }
 
     return <PlayCircleOutlined {...(properties || {})} />;
   },
-  pauseCircle: (properties = null, filled = false) => {
-    if (filled) {
+  pauseCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <PauseCircleFilled {...(properties || {})} />;
     }
 
     return <PauseCircleOutlined {...(properties || {})} />;
   },
-  delete: (properties = null, filled = false) => {
-    if (filled) {
+  delete: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <DeleteFilled {...(properties || {})} />;
     }
 
     return <DeleteOutlined {...(properties || {})} />;
   },
-  clock: (properties = null, filled = false) => {
-    if (filled) {
+  clock: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ClockCircleFilled {...(properties || {})} />;
     }
 
     return <ClockCircleOutlined {...(properties || {})} />;
   },
-  close: (properties = null, filled = false) => {
-    if (filled) {
+  close: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <CloseCircleFilled {...(properties || {})} />;
     }
 
     return <CloseCircleOutlined {...(properties || {})} />;
   },
-  closeCircle: (properties = null, filled = false) => {
-    if (filled) {
+  closeCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <CloseCircleFilled {...(properties || {})} />;
+    }
+
+    if (mode === iconModeCollection.twoTone) {
+      return <CloseCircleTwoTone {...(properties || {})} />;
     }
 
     return <CloseCircleOutlined {...(properties || {})} />;
   },
-  copy: (properties = null, filled = false) => {
-    if (filled) {
+  copy: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <CopyFilled {...(properties || {})} />;
     }
 
     return <CopyOutlined {...(properties || {})} />;
   },
-  eye: (properties = null, filled = false) => {
-    if (filled) {
+  eye: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <EyeFilled {...(properties || {})} />;
     }
 
@@ -294,8 +306,8 @@ export const iconBuilder = {
   export: (properties = null) => {
     return <ExportOutlined {...(properties || {})} />;
   },
-  home: (properties = null, filled = false) => {
-    if (filled) {
+  home: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <HomeFilled {...(properties || {})} />;
     }
 
@@ -304,8 +316,8 @@ export const iconBuilder = {
   import: (properties = null) => {
     return <ImportOutlined {...(properties || {})} />;
   },
-  idCard: (properties = null, filled = false) => {
-    if (filled) {
+  idCard: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <IdcardFilled {...(properties || {})} />;
     }
 
@@ -314,22 +326,22 @@ export const iconBuilder = {
   search: (properties = null) => {
     return <SearchOutlined {...(properties || {})} />;
   },
-  setting: (properties = null, filled = false) => {
-    if (filled) {
+  setting: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <SettingFilled {...(properties || {})} />;
     }
 
     return <SettingOutlined {...(properties || {})} />;
   },
-  tag: (properties = null, filled = false) => {
-    if (filled) {
+  tag: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <TagFilled {...(properties || {})} />;
     }
 
     return <TagOutlined {...(properties || {})} />;
   },
-  tags: (properties = null, filled = false) => {
-    if (filled) {
+  tags: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <TagsFilled {...(properties || {})} />;
     }
 
@@ -341,15 +353,15 @@ export const iconBuilder = {
   user: (properties = null) => {
     return <UserOutlined {...(properties || {})} />;
   },
-  video: (properties = null, filled = false) => {
-    if (filled) {
+  video: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <VideoCameraFilled {...(properties || {})} />;
     }
 
     return <VideoCameraOutlined {...(properties || {})} />;
   },
-  videoCamera: (properties = null, filled = false) => {
-    if (filled) {
+  videoCamera: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <VideoCameraFilled {...(properties || {})} />;
     }
 
@@ -367,8 +379,8 @@ export const iconBuilder = {
   users: (properties = null) => {
     return <TeamOutlined {...(properties || {})} />;
   },
-  tool: (properties = null, filled = false) => {
-    if (filled) {
+  tool: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ToolFilled {...(properties || {})} />;
     }
 
@@ -377,15 +389,15 @@ export const iconBuilder = {
   sync: (properties = null) => {
     return <SyncOutlined {...(properties || {})} />;
   },
-  sound: (properties = null, filled = false) => {
-    if (filled) {
+  sound: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <SoundFilled {...(properties || {})} />;
     }
 
     return <SoundOutlined {...(properties || {})} />;
   },
-  shop: (properties = null, filled = false) => {
-    if (filled) {
+  shop: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ShopFilled {...(properties || {})} />;
     }
 
@@ -394,15 +406,15 @@ export const iconBuilder = {
   shoppingCart: (properties = null) => {
     return <ShoppingCartOutlined {...(properties || {})} />;
   },
-  shopping: (properties = null, filled = false) => {
-    if (filled) {
+  shopping: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ShoppingFilled {...(properties || {})} />;
     }
 
     return <ShoppingOutlined {...(properties || {})} />;
   },
-  schedule: (properties = null, filled = false) => {
-    if (filled) {
+  schedule: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ScheduleFilled {...(properties || {})} />;
     }
 
@@ -411,8 +423,8 @@ export const iconBuilder = {
   scan: (properties = null) => {
     return <ScanOutlined {...(properties || {})} />;
   },
-  read: (properties = null, filled = false) => {
-    if (filled) {
+  read: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ReadFilled {...(properties || {})} />;
     }
 
@@ -424,57 +436,57 @@ export const iconBuilder = {
   powerOff: (properties = null) => {
     return <PoweroffOutlined {...(properties || {})} />;
   },
-  phone: (properties = null, filled = false) => {
-    if (filled) {
+  phone: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <PhoneFilled {...(properties || {})} />;
     }
 
     return <PhoneOutlined {...(properties || {})} />;
   },
-  profile: (properties = null, filled = false) => {
-    if (filled) {
+  profile: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ProfileFilled {...(properties || {})} />;
     }
 
     return <ProfileOutlined {...(properties || {})} />;
   },
-  project: (properties = null, filled = false) => {
-    if (filled) {
+  project: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ProjectFilled {...(properties || {})} />;
     }
 
     return <ProjectOutlined {...(properties || {})} />;
   },
-  message: (properties = null, filled = false) => {
-    if (filled) {
+  message: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <MessageFilled {...(properties || {})} />;
     }
 
     return <MessageOutlined {...(properties || {})} />;
   },
-  layout: (properties = null, filled = false) => {
-    if (filled) {
+  layout: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <LayoutFilled {...(properties || {})} />;
     }
 
     return <LayoutOutlined {...(properties || {})} />;
   },
-  lock: (properties = null, filled = false) => {
-    if (filled) {
+  lock: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <LockFilled {...(properties || {})} />;
     }
 
     return <LockOutlined {...(properties || {})} />;
   },
-  unlock: (properties = null, filled = false) => {
-    if (filled) {
+  unlock: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <UnlockFilled {...(properties || {})} />;
     }
 
     return <UnlockOutlined {...(properties || {})} />;
   },
-  mail: (properties = null, filled = false) => {
-    if (filled) {
+  mail: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <MailFilled {...(properties || {})} />;
     }
 
@@ -489,22 +501,22 @@ export const iconBuilder = {
   history: (properties = null) => {
     return <HistoryOutlined {...(properties || {})} />;
   },
-  gift: (properties = null, filled = false) => {
-    if (filled) {
+  gift: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <GiftFilled {...(properties || {})} />;
     }
 
     return <GiftOutlined {...(properties || {})} />;
   },
-  folder: (properties = null, filled = false) => {
-    if (filled) {
+  folder: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <FolderFilled {...(properties || {})} />;
     }
 
     return <FolderOutlined {...(properties || {})} />;
   },
-  filter: (properties = null, filled = false) => {
-    if (filled) {
+  filter: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <FilterFilled {...(properties || {})} />;
     }
 
@@ -519,15 +531,15 @@ export const iconBuilder = {
   desktop: (properties = null) => {
     return <DesktopOutlined {...(properties || {})} />;
   },
-  dashboard: (properties = null, filled = false) => {
-    if (filled) {
+  dashboard: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <DashboardFilled {...(properties || {})} />;
     }
 
     return <DashboardOutlined {...(properties || {})} />;
   },
-  contacts: (properties = null, filled = false) => {
-    if (filled) {
+  contacts: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ContactsFilled {...(properties || {})} />;
     }
 
@@ -536,8 +548,8 @@ export const iconBuilder = {
   clear: (properties = null) => {
     return <ClearOutlined {...(properties || {})} />;
   },
-  bell: (properties = null, filled = false) => {
-    if (filled) {
+  bell: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <BellFilled {...(properties || {})} />;
     }
 
@@ -552,15 +564,15 @@ export const iconBuilder = {
   form: (properties = null) => {
     return <FormOutlined {...(properties || {})} />;
   },
-  warning: (properties = null, filled = false) => {
-    if (filled) {
+  warning: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <WarningFilled {...(properties || {})} />;
     }
 
     return <WarningOutlined {...(properties || {})} />;
   },
-  question: (properties = null, filled = false) => {
-    if (filled) {
+  question: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <QuestionCircleFilled {...(properties || {})} />;
     }
 
@@ -596,8 +608,8 @@ export const iconBuilder = {
   up: (properties = null) => {
     return <UpOutlined {...(properties || {})} />;
   },
-  upCircle: (properties = null, filled = false) => {
-    if (filled) {
+  upCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <UpCircleFilled {...(properties || {})} />;
     }
 
@@ -606,8 +618,8 @@ export const iconBuilder = {
   down: (properties = null) => {
     return <DownOutlined {...(properties || {})} />;
   },
-  downCircle: (properties = null, filled = false) => {
-    if (filled) {
+  downCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <DownCircleFilled {...(properties || {})} />;
     }
 
@@ -616,8 +628,8 @@ export const iconBuilder = {
   left: (properties = null) => {
     return <LeftOutlined {...(properties || {})} />;
   },
-  leftCircle: (properties = null, filled = false) => {
-    if (filled) {
+  leftCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <LeftCircleFilled {...(properties || {})} />;
     }
 
@@ -626,15 +638,15 @@ export const iconBuilder = {
   right: (properties = null) => {
     return <RightOutlined {...(properties || {})} />;
   },
-  rightCircle: (properties = null, filled = false) => {
-    if (filled) {
+  rightCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <RightCircleFilled {...(properties || {})} />;
     }
 
     return <RightCircleOutlined {...(properties || {})} />;
   },
-  picture: (properties = null, filled = false) => {
-    if (filled) {
+  picture: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <PictureFilled {...(properties || {})} />;
     }
 
@@ -643,15 +655,19 @@ export const iconBuilder = {
   link: (properties = null) => {
     return <LinkOutlined {...(properties || {})} />;
   },
-  checkCircle: (properties = null, filled = false) => {
-    if (filled) {
+  checkCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <CheckCircleFilled {...(properties || {})} />;
+    }
+
+    if (mode === iconModeCollection.twoTone) {
+      return <CheckCircleTwoTone {...(properties || {})} />;
     }
 
     return <CheckCircleOutlined {...(properties || {})} />;
   },
-  warningCircle: (properties = null, filled = false) => {
-    if (filled) {
+  warningCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ExclamationCircleFilled {...(properties || {})} />;
     }
 
@@ -663,15 +679,15 @@ export const iconBuilder = {
   sortDescending: (properties = null) => {
     return <SortDescendingOutlined {...(properties || {})} />;
   },
-  infoCircle: (properties = null, filled = false) => {
-    if (filled) {
+  infoCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <InfoCircleFilled {...(properties || {})} />;
     }
 
     return <InfoCircleOutlined {...(properties || {})} />;
   },
-  instagram: (properties = null, filled = false) => {
-    if (filled) {
+  instagram: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <InstagramFilled {...(properties || {})} />;
     }
 
@@ -695,8 +711,8 @@ export const iconBuilder = {
   rollback: (properties = null) => {
     return <RollbackOutlined {...(properties || {})} />;
   },
-  snippets: (properties = null, filled = false) => {
-    if (filled) {
+  snippets: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <SnippetsFilled {...(properties || {})} />;
     }
 
@@ -705,8 +721,8 @@ export const iconBuilder = {
   compress: (properties = null) => {
     return <CompressOutlined {...(properties || {})} />;
   },
-  minusCircle: (properties = null, filled = false) => {
-    if (filled) {
+  minusCircle: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <MinusCircleFilled {...(properties || {})} />;
     }
 
@@ -715,8 +731,8 @@ export const iconBuilder = {
   select: (properties = null) => {
     return <SelectOutlined {...(properties || {})} />;
   },
-  plusSquare: (properties = null, filled = false) => {
-    if (filled) {
+  plusSquare: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <PlusSquareFilled {...(properties || {})} />;
     }
 
@@ -728,8 +744,8 @@ export const iconBuilder = {
   fork: (properties = null) => {
     return <ForkOutlined {...(properties || {})} />;
   },
-  bug: (properties = null, filled = false) => {
-    if (filled) {
+  bug: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <BugFilled {...(properties || {})} />;
     }
 
@@ -738,8 +754,8 @@ export const iconBuilder = {
   cloudDownload: (properties = null) => {
     return <CloudDownloadOutlined {...(properties || {})} />;
   },
-  reconciliation: (properties = null, filled = false) => {
-    if (filled) {
+  reconciliation: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <ReconciliationFilled {...(properties || {})} />;
     }
 
@@ -751,8 +767,8 @@ export const iconBuilder = {
   dingDing: (properties = null) => {
     return <DingdingOutlined {...(properties || {})} />;
   },
-  macCommand: (properties = null, filled = false) => {
-    if (filled) {
+  macCommand: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <MacCommandFilled {...(properties || {})} />;
     }
 
@@ -761,22 +777,22 @@ export const iconBuilder = {
   inbox: (properties = null) => {
     return <InboxOutlined {...(properties || {})} />;
   },
-  save: (properties = null, filled = false) => {
-    if (filled) {
+  save: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <SaveFilled {...(properties || {})} />;
     }
 
     return <SaveOutlined {...(properties || {})} />;
   },
-  file: (properties = null, filled = false) => {
-    if (filled) {
+  file: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <FileFilled {...(properties || {})} />;
     }
 
     return <FileOutlined {...(properties || {})} />;
   },
-  mobile: (properties = null, filled = false) => {
-    if (filled) {
+  mobile: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <MobileFilled {...(properties || {})} />;
     }
 
@@ -791,15 +807,15 @@ export const iconBuilder = {
   verticalAlignMiddle: (properties = null) => {
     return <VerticalAlignMiddleOutlined {...(properties || {})} />;
   },
-  caretUp: (properties = null, filled = false) => {
-    if (filled) {
+  caretUp: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <CaretUpFilled {...(properties || {})} />;
     }
 
     return <CaretUpOutlined {...(properties || {})} />;
   },
-  caretDown: (properties = null, filled = false) => {
-    if (filled) {
+  caretDown: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
       return <CaretDownFilled {...(properties || {})} />;
     }
 
@@ -808,8 +824,11 @@ export const iconBuilder = {
   retweet: (properties = null) => {
     return <RetweetOutlined {...(properties || {})} />;
   },
-  exclamationCircle: (properties = null, filled = false) => {
-    if (filled) {
+  exclamationCircle: (
+    properties = null,
+    mode = iconModeCollection.outlined,
+  ) => {
+    if (mode === iconModeCollection.filled) {
       return <ExclamationCircleFilled {...(properties || {})} />;
     }
 

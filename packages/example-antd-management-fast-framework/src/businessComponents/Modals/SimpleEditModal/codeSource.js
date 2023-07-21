@@ -74,6 +74,14 @@ class SimpleEditModal extends BaseUpdateModal {
     return \`信息更新成功。\`;
   };
 
+  buildTitleSubTextPrefix = () => {
+    return '文章标题';
+  };
+
+  buildTitleSubTextAlign = () => {
+    return 'left';
+  };
+
   buildTitleSubText = () => {
     const { metaData } = this.state;
 
