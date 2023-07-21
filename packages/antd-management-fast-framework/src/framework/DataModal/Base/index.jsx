@@ -189,9 +189,20 @@ class Base extends BaseWindow {
   };
 
   buildTitleSubTextPrefix = () => {
-    this.logCallTrack({}, primaryCallName, 'buildTitleSubTextPrefix');
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'buildTitleSubTextPrefix',
+      emptyLogic,
+    );
 
-    return '标题';
+    return '';
+  };
+
+  buildTitleSubTextAlign = () => {
+    this.logCallTrack({}, primaryCallName, 'buildTitleSubTextAlign');
+
+    return 'center';
   };
 
   buildTitle = () => {
@@ -277,11 +288,29 @@ class Base extends BaseWindow {
 
     const that = this;
 
-    const subTextPrefix = this.buildTitleSubTextPrefix();
+    let subTextPrefix = this.buildTitleSubTextPrefix();
     const subText = this.buildTitleSubText();
+    const subTextAlign = this.buildTitleSubTextAlign();
+
+    subTextPrefix = checkStringIsNullOrWhiteSpace(subTextPrefix)
+      ? ''
+      : `${subTextPrefix}：`;
 
     const subInfo = checkStringIsNullOrWhiteSpace(subText) ? null : (
-      <Alert message={`${subTextPrefix}：${subText}`} type="info" />
+      <Alert
+        message={`${subTextPrefix}${subText}`}
+        style={{ textAlign: subTextAlign }}
+        type="info"
+      />
+    );
+
+    this.logCallTrace(
+      {
+        subTextPrefix,
+        subText,
+        subTextAlign,
+      },
+      mergeArrowText(this.componentName, primaryCallName, 'renderFurther'),
     );
 
     return (
