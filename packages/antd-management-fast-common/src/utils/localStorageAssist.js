@@ -1,27 +1,37 @@
 import {
+  checkStringIsNullOrWhiteSpace,
   decodeBase64,
   encodeBase64,
   setLocalStorageFlusher,
   setLocalStorageGetter,
   setLocalStorageRemover,
   setLocalStorageSetter,
+  toString,
 } from 'easy-soft-utility';
+
+import { getLocalStorageSecretSwitch } from './settingAssist';
 
 /**
  * 获取LocalStorage数据
  * @param {*} key
- * @param {*} value
  */
 function getFromLocalStorage(key) {
   const storage = window.localStorage;
-  const value = storage.getItem(key);
+  const value = storage.getItem(key) || '';
 
-  if (process.env.NODE_ENV === 'development') {
+  const secretSwitch = getLocalStorageSecretSwitch();
+
+  if (!secretSwitch) {
     return value;
   }
 
-  const decode = decodeBase64(value);
-  const v = encodeBase64(decode);
+  let decode = '';
+  let v = '';
+
+  if (!checkStringIsNullOrWhiteSpace(value)) {
+    decode = decodeBase64(value);
+    v = encodeBase64(decode);
+  }
 
   if (value !== v) {
     return null;
@@ -32,16 +42,24 @@ function getFromLocalStorage(key) {
 
 /**
  * 存储本地数据
- * @param {*} key
- * @param {*} value
+ * @param {*} key key
+ * @param {*} value value
  */
 function saveToLocalStorage(key, value) {
   const storage = window.localStorage;
 
-  if (process.env.NODE_ENV === 'development') {
-    storage.setItem(key, value);
+  const valueAdjust = toString(value);
+
+  const secretSwitch = getLocalStorageSecretSwitch();
+
+  if (secretSwitch) {
+    if (checkStringIsNullOrWhiteSpace(valueAdjust)) {
+      storage.setItem(key, valueAdjust);
+    } else {
+      storage.setItem(key, encodeBase64(valueAdjust));
+    }
   } else {
-    storage.setItem(key, encodeBase64(value));
+    storage.setItem(key, value);
   }
 }
 

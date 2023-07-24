@@ -12,9 +12,13 @@ import {
   removeLocalMetaData,
   setProgressStartHandler,
   setProgressStopHandler,
+  toString,
 } from 'easy-soft-utility';
 
-import { setEasySoftUtilityHandler } from 'antd-management-fast-common';
+import {
+  getLocalStorageSecretSwitch,
+  setEasySoftUtilityHandler,
+} from 'antd-management-fast-common';
 
 import { appendEmbedModelBuilder } from '../modelBuilders';
 
@@ -63,6 +67,13 @@ export function configEnvironment(otherConfigHandler = null) {
   setApplicationInitialOption();
 
   initializeApplication();
+
+  logDevelop('--------------------------------------------');
+
+  logDevelop({}, [
+    'localStorageSecretSwitch',
+    toString(getLocalStorageSecretSwitch()),
+  ]);
 
   logDevelop('--------------------------------------------');
 

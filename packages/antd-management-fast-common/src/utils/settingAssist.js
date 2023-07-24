@@ -27,6 +27,15 @@ export function getCorsDomain() {
   return corsTargetDomain;
 }
 
+export function getLocalStorageSecretSwitch() {
+  const { localStorageSecretSwitch } = {
+    localStorageSecretSwitch: true,
+    ...getApplicationMergeConfig(),
+  };
+
+  return localStorageSecretSwitch || false;
+}
+
 export function logShowInConsole() {
   const { showLogInConsole } = {
     showLogInConsole: false,
