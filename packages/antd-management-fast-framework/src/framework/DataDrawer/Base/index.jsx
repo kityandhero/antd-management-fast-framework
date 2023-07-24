@@ -87,9 +87,9 @@ class Base extends BaseWindow {
   };
 
   renderPresetTitleIcon = () => {
-    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon');
+    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon', emptyLogic);
 
-    return iconBuilder.form();
+    return null;
   };
 
   buildNotificationPlacement = () => {

@@ -463,14 +463,14 @@ class CardCollectionItemContent extends PureComponent {
               if (type === cardConfig.contentItemType.treeSelect) {
                 const {
                   value: treeSelectValue,
-                  onChangeCallback: onTreeSelectChangeCallback,
+                  onChange: onTreeSelectChangeCallback,
                   innerProps: otherTreeSelectProperties,
                   listData: treeSelectListData,
                   dataConvert: treeSelectDataConvertor,
                 } = {
                   value: contentItem.value || '',
                   fileBase64: contentItem.fileBase64 || '',
-                  onChangeCallback: contentItem.onChangeCallback || null,
+                  onChange: contentItem.onChange || null,
                   innerProps: {
                     ...contentItem.innerProps,
                   },
