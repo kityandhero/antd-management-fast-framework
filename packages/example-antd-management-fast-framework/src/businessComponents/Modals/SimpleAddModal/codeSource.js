@@ -144,5 +144,5 @@ class SimpleAddModal extends BaseAddModal {
   };
 }
 
-export default SimpleAddModal;
+export { SimpleAddModal };
 `;

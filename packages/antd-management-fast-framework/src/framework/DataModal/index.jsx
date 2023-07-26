@@ -1,5 +1,6 @@
 import { Base } from './Base';
 import { BaseAddModal } from './BaseAddModal';
+import { BaseDisplayModal } from './BaseDisplayModal';
 import { BaseImageSortModal } from './BaseImageSortModal';
 import { BaseLoadModal } from './BaseLoadModal';
 import { BaseNeedlessLoadModal } from './BaseNeedlessLoadModal';
@@ -16,6 +17,7 @@ const DataModal = {
   BaseUpdateModal,
   BaseUpdateTransferModal,
   BaseImageSortModal,
+  BaseDisplayModal,
 };
 
 export { DataModal };

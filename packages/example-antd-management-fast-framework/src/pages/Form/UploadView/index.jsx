@@ -21,7 +21,7 @@ import { fieldData } from '../../../businessData/data';
 import { accessWayCollection } from '../../../customConfig';
 import ChangeImageSortModal from '../../Simple/ChangeImageSortModal';
 import { fieldData as fieldDataSimpleImage } from '../../SimpleImage/Common/data';
-import BaseView from '../BaseView';
+import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeUploadView } from './codeSource';

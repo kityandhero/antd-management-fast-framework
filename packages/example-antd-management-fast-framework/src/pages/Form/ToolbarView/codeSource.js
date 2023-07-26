@@ -20,7 +20,7 @@ import {
   renderCustomSimpleStatusRadio,
   renderCustomSimpleStatusSelect,
 } from '../../../customSpecialComponents';
-import BaseView from '../BaseView';
+import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeFormView } from './codeSource';

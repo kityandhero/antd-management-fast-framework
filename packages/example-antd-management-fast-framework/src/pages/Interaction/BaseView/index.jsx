@@ -10,4 +10,4 @@ class BaseView extends DataCore {
   resetDataAfterLoad = false;
 }
 
-export default BaseView;
+export { BaseView };

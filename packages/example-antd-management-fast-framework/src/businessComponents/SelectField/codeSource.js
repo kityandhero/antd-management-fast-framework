@@ -5,7 +5,7 @@ import { connect } from 'easy-soft-dva';
 import { FieldExtra } from 'antd-management-fast-component';
 
 import SimpleMultiPageSingleSelectDrawer from '../Drawers/Multi/SimpleMultiPageSingleSelectDrawer';
-import SimpleSingleSelectModal from '../Modals/SimpleSingleSelectModal';
+import { SimpleSingleSelectModal } from '../Modals/SimpleSingleSelectModal';
 
 const {
   SelectFieldExtra: { BaseSelectFieldExtra },

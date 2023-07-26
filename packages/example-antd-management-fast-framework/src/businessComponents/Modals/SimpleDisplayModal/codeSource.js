@@ -1,4 +1,4 @@
-import { connect } from 'easy-soft-dva';
+export const code = `import { connect } from 'easy-soft-dva';
 import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
@@ -6,16 +6,16 @@ import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
 import { fieldData } from '../../../businessData/data';
 
-const { BaseAddModal } = DataModal;
+const { BaseDisplayModal } = DataModal;
 
 // 显隐控制标记, 必须设置, 标记需要全局唯一
-const visibleFlag = '21743fb1abc347a0ac55c2eed31d08ec';
+const visibleFlag = 'be0f9aa812e8465eb95e0c9fc4f5f820';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SimpleAddModal extends BaseAddModal {
+class SimpleDisplayModal extends BaseDisplayModal {
   //  在控制台显示组建内调用序列, 仅为进行开发辅助
   showCallProcess = true;
 
@@ -28,8 +28,7 @@ class SimpleAddModal extends BaseAddModal {
 
     this.state = {
       ...this.state,
-      pageTitle: '新增信息',
-      submitApiPath: 'simple/addBasicInfo',
+      pageTitle: '展示窗体',
     };
   }
 
@@ -70,7 +69,7 @@ class SimpleAddModal extends BaseAddModal {
     // eslint-disable-next-line no-unused-vars
     submitData,
   ) => {
-    return `信息添加成功。`;
+    return \`信息添加成功。\`;
   };
 
   buildTitleSubText = () => {
@@ -144,4 +143,5 @@ class SimpleAddModal extends BaseAddModal {
   };
 }
 
-export { SimpleAddModal };
+export { SimpleDisplayModal };
+`;

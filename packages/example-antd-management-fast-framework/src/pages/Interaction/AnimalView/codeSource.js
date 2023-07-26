@@ -14,7 +14,7 @@ import {
   QueueListBox,
 } from 'antd-management-fast-component';
 
-import BaseView from '../BaseView';
+import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeAnimalView } from './codeSource';

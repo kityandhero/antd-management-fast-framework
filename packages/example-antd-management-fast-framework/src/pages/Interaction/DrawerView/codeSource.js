@@ -27,7 +27,7 @@ import SimpleSinglePageConfirmSelectDrawer from '../../../businessComponents/Dra
 import SimpleSinglePageMultiSelectDrawer from '../../../businessComponents/Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer';
 import SimpleSinglePageSingleSelectDrawer from '../../../businessComponents/Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer';
 import { simpleJsonData } from '../../../businessData/data';
-import BaseView from '../BaseView';
+import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeDrawerView } from './codeSource';

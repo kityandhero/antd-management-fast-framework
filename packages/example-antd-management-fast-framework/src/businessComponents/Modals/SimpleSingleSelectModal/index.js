@@ -27,4 +27,4 @@ class SimpleSingleSelectModal extends BaseSelectModal {
   }
 }
 
-export default SimpleSingleSelectModal;
+export { SimpleSingleSelectModal };

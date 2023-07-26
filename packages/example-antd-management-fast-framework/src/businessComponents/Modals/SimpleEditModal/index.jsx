@@ -152,4 +152,4 @@ class SimpleEditModal extends BaseUpdateModal {
   };
 }
 
-export default SimpleEditModal;
+export { SimpleEditModal };

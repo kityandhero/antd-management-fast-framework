@@ -9,6 +9,10 @@
       "codeFilePath": "./src/businessComponents/SelectField/codeSource.js"
     },
     {
+      "sourceFilePath": "./src/businessComponents/Modals/SimpleDisplayModal/index.jsx",
+      "codeFilePath": "./src/businessComponents/Modals/SimpleDisplayModal/codeSource.js"
+    },
+    {
       "sourceFilePath": "./src/businessComponents/Modals/SimpleAddModal/index.jsx",
       "codeFilePath": "./src/businessComponents/Modals/SimpleAddModal/codeSource.js"
     },

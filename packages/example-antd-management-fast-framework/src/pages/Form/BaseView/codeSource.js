@@ -13,5 +13,5 @@ class BaseView extends BaseAddForm {
   }
 }
 
-export default BaseView;
+export { BaseView };
 `;

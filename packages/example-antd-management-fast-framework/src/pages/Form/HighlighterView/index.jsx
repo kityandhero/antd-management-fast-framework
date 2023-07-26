@@ -5,7 +5,7 @@ import { cardConfig } from 'antd-management-fast-common';
 import { convertOptionOrRadioData } from 'antd-management-fast-component';
 
 import { fieldData } from '../../../businessData/data';
-import BaseView from '../BaseView';
+import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeHighlighterView } from './codeSource';

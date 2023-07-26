@@ -11,11 +11,13 @@ import {
   convertOptionOrRadioData,
 } from 'antd-management-fast-component';
 
-import SimpleAddModal from '../../../businessComponents/Modals/SimpleAddModal';
+import { SimpleAddModal } from '../../../businessComponents/Modals/SimpleAddModal';
 import { code as codeSimpleAddModal } from '../../../businessComponents/Modals/SimpleAddModal/codeSource';
-import SimpleEditModal from '../../../businessComponents/Modals/SimpleEditModal';
+import { SimpleDisplayModal } from '../../../businessComponents/Modals/SimpleDisplayModal';
+import { code as codeSimpleDisplayModal } from '../../../businessComponents/Modals/SimpleDisplayModal/codeSource';
+import { SimpleEditModal } from '../../../businessComponents/Modals/SimpleEditModal';
 import { code as codeSimpleEditModal } from '../../../businessComponents/Modals/SimpleEditModal/codeSource';
-import BaseView from '../BaseView';
+import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeModalView } from './codeSource';
@@ -40,6 +42,16 @@ class ModalView extends BaseView {
       stick: false,
       title: '操作栏',
       tools: [
+        {
+          component: buildButton({
+            title: '点击显示 SimpleDisplayModal',
+            text: '显示 SimpleDisplayModal',
+            handleClick: () => {
+              SimpleDisplayModal.open();
+            },
+            disabled: false,
+          }),
+        },
         {
           component: buildButton({
             title: '点击显示 AddModal',
@@ -96,6 +108,10 @@ class ModalView extends BaseView {
                     name: 'ModalView',
                   },
                   {
+                    flag: 'SimpleDisplayModal',
+                    name: 'SimpleDisplayModal',
+                  },
+                  {
                     flag: 'SimpleAddModal',
                     name: 'SimpleAddModal',
                   },
@@ -117,6 +133,12 @@ class ModalView extends BaseView {
 
                     case 'ModalView': {
                       code = codeModalView;
+                      break;
+                    }
+
+                    case 'SimpleDisplayModal': {
+                      code = codeSimpleDisplayModal;
+
                       break;
                     }
 
@@ -164,6 +186,8 @@ class ModalView extends BaseView {
   renderPresetOther = () => {
     return (
       <>
+        <SimpleDisplayModal />
+
         <SimpleAddModal
           afterOK={({ subjoinData }) => {
             logDebug(subjoinData, 'trigger afterOK');

@@ -30,6 +30,8 @@ class Base extends BaseWindow {
 
   reloadWhenShow = true;
 
+  showFooter = true;
+
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
 
@@ -332,6 +334,7 @@ class Base extends BaseWindow {
         afterOpenChange={(v) => {
           that.doOtherWhenChangeVisible(v);
         }}
+        {...(this.showFooter ? {} : { footer: null })}
       >
         <div className={styles.modalExtraInner}>
           {checkStringIsNullOrWhiteSpace(subText) ? null : subInfo}
