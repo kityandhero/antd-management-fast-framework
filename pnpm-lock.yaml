@@ -1984,7 +1984,7 @@ importers:
         specifier: ^2.6.19
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.11.30
+        specifier: ^2.11.31
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
@@ -2237,7 +2237,7 @@ importers:
         specifier: ^2.6.19
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.11.30
+        specifier: ^2.11.31
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.4.0
