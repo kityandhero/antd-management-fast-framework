@@ -14,16 +14,16 @@ export async function getData(parameters) {
   });
 }
 
-export async function deleteData(parameters) {
+export async function removeData(parameters) {
   return request({
-    api: '/generalLog/delete',
+    api: '/generalLog/remove',
     params: parameters,
   });
 }
 
-export async function deleteMultiData(parameters) {
+export async function removeMultiData(parameters) {
   return request({
-    api: '/generalLog/deleteMulti',
+    api: '/generalLog/removeMulti',
     params: parameters,
   });
 }

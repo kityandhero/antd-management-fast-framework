@@ -21,6 +21,13 @@ export async function addBasicInfoData(parameters) {
   });
 }
 
+export async function updateBasicInfoData(parameters) {
+  return request({
+    api: '/masterManager/updateBasicInfo',
+    params: parameters,
+  });
+}
+
 export async function resetPasswordData(parameters) {
   return request({
     api: '/masterManager/resetPassword',
@@ -28,9 +35,44 @@ export async function resetPasswordData(parameters) {
   });
 }
 
-export async function deleteData(parameters) {
+export async function setEnableData(parameters) {
   return request({
-    api: '/masterManager/delete',
+    api: '/masterManager/setEnable',
+    params: parameters,
+  });
+}
+
+export async function setDisableData(parameters) {
+  return request({
+    api: '/masterManager/setDisable',
+    params: parameters,
+  });
+}
+
+export async function removeData(parameters) {
+  return request({
+    api: '/masterManager/remove',
+    params: parameters,
+  });
+}
+
+export async function changePermissionData(parameters) {
+  return request({
+    api: '/masterManager/changePermission',
+    params: parameters,
+  });
+}
+
+export async function refreshCacheData(parameters) {
+  return request({
+    api: '/masterManager/refreshCache',
+    params: parameters,
+  });
+}
+
+export async function pageListOperateLogData(parameters) {
+  return request({
+    api: '/masterManager/pageListOperateLog',
     params: parameters,
   });
 }

@@ -137,7 +137,7 @@ class Edit extends DataTabContainerSupplement {
   };
 
   establishExtraActionGroupConfig = () => {
-    const { metaData, dataLoading, processing } = this.state;
+    const { metaData } = this.state;
 
     if (metaData == null) {
       return null;
@@ -167,8 +167,7 @@ class Edit extends DataTabContainerSupplement {
             that.setEnable(handleData);
           },
           hidden: !!isSuper,
-          disabled:
-            dataLoading || processing || status === statusCollection.enable,
+          disabled: status === statusCollection.enable,
           confirm: {
             title:
               '启用将分使已配该角色的账户相关的角色功能同步启用，确定启用吗？',
@@ -183,8 +182,7 @@ class Edit extends DataTabContainerSupplement {
             that.setDisable(handleData);
           },
           hidden: !!isSuper,
-          disabled:
-            dataLoading || processing || status === statusCollection.disable,
+          disabled: status === statusCollection.disable,
           confirm: {
             title:
               '禁用将分使已配该角色的账户相关的角色功能不可用，确定禁用吗？',

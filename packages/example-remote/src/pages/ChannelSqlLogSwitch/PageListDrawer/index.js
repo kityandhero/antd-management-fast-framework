@@ -59,10 +59,9 @@ class PageListDrawer extends MultiPageDrawer {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
-  // eslint-disable-next-line no-unused-vars
-  handleItemValue = ({ target, record, remoteData }) => {
+  handleItemValue = ({ target, handleData, remoteData }) => {
     const tag = getValueByKey({
-      data: remoteData,
+      data: handleData,
       key: fieldData.tag.name,
     });
 

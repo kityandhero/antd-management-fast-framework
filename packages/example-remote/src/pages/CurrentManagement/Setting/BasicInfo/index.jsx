@@ -5,13 +5,13 @@ import { cardConfig, getCorsDomain } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
 import { fieldData } from '../../Common/data';
-import MenuPageBase from '../../MenuPageBase';
+import { TabPageBase } from '../../TabPageBase';
 
 @connect(({ currentManagement, schedulingControl }) => ({
   currentManagement,
   schedulingControl,
 }))
-class Index extends MenuPageBase {
+class Index extends TabPageBase {
   goToUpdateWhenProcessed = true;
 
   constructor(properties) {
@@ -72,6 +72,11 @@ class Index extends MenuPageBase {
     const values = {};
 
     if (metaData != null) {
+      values[fieldData.systemName.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.systemName.name,
+      });
+
       values[fieldData.name.name] = getValueByKey({
         data: metaData,
         key: fieldData.name.name,
@@ -88,8 +93,6 @@ class Index extends MenuPageBase {
 
   establishCardCollectionConfig = () => {
     const { metaData, logo } = this.state;
-
-    console.log({ logo });
 
     return {
       list: [
@@ -111,6 +114,11 @@ class Index extends MenuPageBase {
             ],
           },
           items: [
+            {
+              lg: 18,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.systemName,
+            },
             {
               lg: 18,
               type: cardConfig.contentItemType.input,

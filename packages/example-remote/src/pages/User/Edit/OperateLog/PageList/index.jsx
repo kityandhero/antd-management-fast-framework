@@ -2,7 +2,7 @@ import { connect } from 'easy-soft-dva';
 
 import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
 
-import { BaseInnerOperationLogPageList } from '../../../../OperationLog/BaseInnerPageList';
+import BaseInnerPageList from '../../../../OperationLog/BaseInnerPageList';
 import {
   checkNeedUpdateAssist,
   parseUrlParametersForSetState,
@@ -12,7 +12,7 @@ import {
   user,
   schedulingControl,
 }))
-class PageList extends BaseInnerOperationLogPageList {
+class PageList extends BaseInnerPageList {
   constructor(properties) {
     super(properties);
 
@@ -20,7 +20,6 @@ class PageList extends BaseInnerOperationLogPageList {
       ...this.state,
       loadApiPath: 'user/pageListOperateLog',
       dateRangeFieldName: '操作时间',
-      dataPreviewDrawerVisible: false,
       userId: null,
       currentRecord: null,
     };

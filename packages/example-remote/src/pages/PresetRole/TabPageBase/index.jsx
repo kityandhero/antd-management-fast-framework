@@ -8,7 +8,7 @@ import {
 
 const { BaseUpdateFormTab } = DataForm;
 
-class BaseEditTab extends BaseUpdateFormTab {
+class TabPageBase extends BaseUpdateFormTab {
   reloadHeaderOnSubmitSuccess = true;
 
   static getDerivedStateFromProps(nextProperties, previousState) {
@@ -34,4 +34,4 @@ class BaseEditTab extends BaseUpdateFormTab {
   };
 }
 
-export default BaseEditTab;
+export { TabPageBase };

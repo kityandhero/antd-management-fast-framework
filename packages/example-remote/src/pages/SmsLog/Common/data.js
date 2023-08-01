@@ -22,26 +22,6 @@ export const fieldData = {
     name: 'code',
     helper: '',
   },
-  platformId: {
-    label: '平台标识',
-    name: 'platformId',
-    helper: '',
-  },
-  platformName: {
-    label: '平台名称',
-    name: 'platformName',
-    helper: '',
-  },
-  areaAgentId: {
-    label: '运营商标识',
-    name: 'areaAgentId',
-    helper: '',
-  },
-  areaAgentName: {
-    label: '运营商名称',
-    name: 'areaAgentName',
-    helper: '',
-  },
   cityCode: {
     label: '城市代码',
     name: 'cityCode',

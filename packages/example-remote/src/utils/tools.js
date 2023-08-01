@@ -1,10 +1,17 @@
 import { Input, Space } from 'antd';
 
 import { getModelRemoteData } from 'easy-soft-dva';
-import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  datetimeFormat,
+  formatDatetime,
+  getValueByKey,
+} from 'easy-soft-utility';
 
-import { layoutCollection } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import { cardConfig, layoutCollection } from 'antd-management-fast-common';
+import { buildButton, iconBuilder } from 'antd-management-fast-component';
+
+import { keyValueEditModeCollection } from '../customConfig';
 
 export const themeToken = {
   // colorBgAppListIconHover: 'rgba(0,0,0,0.06)',
@@ -177,4 +184,65 @@ export function buildSiderMenuFooter() {
       <div>Menu Footer</div>
     </div>
   );
+}
+
+export function buildKeyTag(key) {
+  return `${key}Tag`;
+}
+
+export function buildInputItem({
+  firstLoadSuccess,
+  handleData,
+  fieldData: f,
+  hidden = false,
+  editMode = keyValueEditModeCollection.string,
+  // eslint-disable-next-line no-unused-vars
+  handleClick: handleClickSimple = ({ fieldData, editMode }) => {},
+}) {
+  return {
+    lg: 24,
+    type: cardConfig.contentItemType.onlyShowInput,
+    icon: iconBuilder.read(),
+    fieldData: f,
+    value: getValueByKey({
+      data: handleData,
+      key: f.name,
+      convertBuilder: (v) => {
+        let result = v;
+        switch (editMode) {
+          case keyValueEditModeCollection.time: {
+            result = formatDatetime({
+              data: v,
+              format: datetimeFormat.hourMinute,
+              defaultValue: '--',
+            });
+            break;
+          }
+
+          default: {
+            result = v;
+            break;
+          }
+        }
+
+        return result;
+      },
+    }),
+    hidden,
+    innerProps: {
+      addonAfter: buildButton({
+        style: {
+          border: '0px solid #d9d9d9',
+          backgroundColor: '#fafafa',
+          height: '30px',
+        },
+        icon: iconBuilder.form(),
+        text: '更改配置',
+        disabled: !firstLoadSuccess,
+        handleClick: () => {
+          handleClickSimple({ fieldData: f, editMode });
+        },
+      }),
+    },
+  };
 }

@@ -32,4 +32,4 @@ class TabPageBase extends BaseUpdateFormTab {
   };
 }
 
-export default TabPageBase;
+export { TabPageBase };

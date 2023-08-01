@@ -11,7 +11,6 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
 
     this.state = {
       ...this.state,
-
       width: 712,
       targetKeys: [],
       selectedKeys: [],

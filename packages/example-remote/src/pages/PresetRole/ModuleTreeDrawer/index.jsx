@@ -59,7 +59,7 @@ class ModuleTreeDrawer extends BaseLoadDrawer {
     return d;
   };
 
-  renderPresetTitle = () => {
+  getPresetPageTitle = () => {
     return '角色权限配置树型列表';
   };
 

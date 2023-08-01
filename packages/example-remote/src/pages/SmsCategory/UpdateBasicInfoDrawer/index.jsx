@@ -57,7 +57,7 @@ class Index extends BaseUpdateDrawer {
     return d;
   };
 
-  renderTitle = () => {
+  renderPresetTitle = () => {
     return '编辑类别信息';
   };
 
@@ -123,26 +123,60 @@ class Index extends BaseUpdateDrawer {
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '其他信息',
+            text: '操作信息',
           },
           items: [
             {
-              type: cardConfig.contentItemType.onlyShowInput,
-              fieldData: fieldData.createTime,
-              value: getValueByKey({
-                data: metaData,
-                key: fieldData.createTime.name,
-                format: formatCollection.datetime,
-              }),
-            },
-            {
-              type: cardConfig.contentItemType.onlyShowInput,
-              fieldData: fieldData.updateTime,
-              value: getValueByKey({
-                data: metaData,
-                key: fieldData.updateTime.name,
-                format: formatCollection.datetime,
-              }),
+              lg: 24,
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  span: 1,
+                  label: fieldData.createOperatorId.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.createOperatorId.name,
+                  }),
+                },
+                {
+                  span: 1,
+                  label: fieldData.createTime.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.createTime.name,
+                    format: formatCollection.datetime,
+                  }),
+                },
+                {
+                  span: 1,
+                  label: fieldData.updateOperatorId.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.updateOperatorId.name,
+                  }),
+                },
+                {
+                  span: 1,
+                  label: fieldData.updateTime.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.updateTime.name,
+                    format: formatCollection.datetime,
+                  }),
+                },
+              ],
+              props: {
+                size: 'small',
+                bordered: true,
+                column: 4,
+                emptyStyle: {
+                  color: '#cccccc',
+                },
+                emptyValue: '待完善',
+                labelStyle: {
+                  width: '80px',
+                },
+              },
             },
           ],
         },

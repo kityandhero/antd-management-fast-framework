@@ -9,7 +9,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
-import TabPageBase from '../../TabPageBase';
+import { TabPageBase } from '../../TabPageBase';
 
 @connect(({ errorLog, schedulingControl }) => ({
   errorLog,
@@ -41,7 +41,7 @@ class Index extends TabPageBase {
     const d = o;
     const { errorLogId } = this.state;
 
-    d.errorLogId = errorLogId;
+    d[fieldData.errorLogId.name] = errorLogId;
 
     return d;
   };

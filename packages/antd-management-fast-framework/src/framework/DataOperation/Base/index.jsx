@@ -19,6 +19,19 @@ const primaryCallName = 'DataOperation::Base';
 class Base extends AuthorizationWrapper {
   resetDataAfterLoad = true;
 
+  submitSuccessTransferData = {};
+
+  resetSubmitSuccessTransferData = () => {
+    return {
+      flag: false,
+      singleData: null,
+      listData: [],
+      extraData: null,
+      responseOriginalData: null,
+      submitData: null,
+    };
+  };
+
   supplementLoadRequestParams = (o) => {
     this.logCallTrack(
       {},
@@ -114,16 +127,22 @@ class Base extends AuthorizationWrapper {
 
   doAfterSubmitSuccess = ({
     singleData = null,
-
     listData = [],
-
     extraData = null,
-
     responseOriginalData = null,
-
     submitData = null,
   }) => {
     this.logCallTrack({}, primaryCallName, 'doAfterSubmitSuccess');
+
+    this.submitSuccessTransferData = {
+      ...this.resetSubmitSuccessTransferData(),
+      flag: true,
+      singleData,
+      listData,
+      extraData,
+      responseOriginalData,
+      submitData,
+    };
 
     const { afterOK } = this.props;
 

@@ -52,12 +52,90 @@ export const accessWayCollection = {
       permission: '',
     },
   },
+  uploadHistory: {
+    pageList: {
+      paramsKey: 'f90a6533-4982-4dc8-9298-40472c07220d',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
   operationLog: {
     pageList: {
       paramsKey: '3c5e1af2-0177-4f38-9729-5c46354068f9',
       permission: '',
     },
     get: {
+      permission: '',
+    },
+  },
+  applicationSource: {
+    pageList: {
+      paramsKey: 'd1f0bf03-2d4c-4754-bee8-8b80e6e2723f',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+  },
+  application: {
+    pageList: {
+      paramsKey: 'dd02ec43-a727-47b1-9b1d-cfefdd1f887c',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    getCustomGlobalDataItem: {
+      permission: '',
+    },
+    addCustomGlobalDataItem: {
+      permission: '',
+    },
+    updateCustomGlobalDataItem: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  applicationNavigation: {
+    pageList: {
+      paramsKey: '7b94e660-9332-42aa-b003-b0a0829d9423',
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    getNavigationItem: {
+      permission: '',
+    },
+    addNavigationItem: {
+      permission: '',
+    },
+    updateNavigationItem: {
+      permission: '',
+    },
+    setNavigationCollectionSort: {
+      permission: '',
+    },
+    removeNavigationItem: {
+      permission: '',
+    },
+    pageListOperateLog: {
       permission: '',
     },
   },
@@ -96,6 +174,21 @@ export const accessWayCollection = {
       paramsKey: 'c86bcd52-6c0b-4afc-bd72-4473489daacb',
       permission: '',
     },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
   },
   user: {
     pageList: {
@@ -111,10 +204,67 @@ export const accessWayCollection = {
     updateBasicInfo: {
       permission: '',
     },
+    updateParent: {
+      permission: '',
+    },
+    clearParent: {
+      permission: '',
+    },
+    setSignet: {
+      permission: '',
+    },
+    openSignetPasswordSwitch: {
+      permission: '',
+    },
+    closeSignetPasswordSwitch: {
+      permission: '',
+    },
+    setEnable: {
+      permission: '',
+    },
+    setDisable: {
+      permission: '',
+    },
+    resetSignetPassword: {
+      permission: '',
+    },
+    resetPassword: {
+      permission: '',
+    },
     refreshCache: {
       permission: '',
     },
-    operateLog: {
+    remove: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  userYonYouCorrelation: {
+    pageList: {
+      paramsKey: '0031d44e-172e-465f-ba8b-2e416470ddac',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    setEnable: {
+      permission: '',
+    },
+    setDisable: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
       permission: '',
     },
   },
@@ -130,6 +280,261 @@ export const accessWayCollection = {
       permission: '',
     },
     remove: {
+      permission: '',
+    },
+  },
+  weChatMessageRecord: {
+    pageList: {
+      paramsKey: 'e65b630f-6ce8-4f5d-bec8-a043c2fe9774',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+  },
+  tag: {
+    pageList: {
+      paramsKey: 'cbff5360-67c9-41bd-9f1d-843f4b16cd89',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    updateSort: {
+      permission: '',
+    },
+    toggleRecommend: {
+      permission: '',
+    },
+    setEnable: {
+      permission: '',
+    },
+    setDisable: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  subsidiary: {
+    pageList: {
+      paramsKey: '2034e3f7-702d-490e-b437-913c21954eb9',
+      permission: '',
+    },
+    singleList: {
+      permission: '',
+    },
+    singleTreeList: {
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    updateSort: {
+      permission: '',
+    },
+    setEnable: {
+      permission: '',
+    },
+    setDisable: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  department: {
+    pageList: {
+      paramsKey: 'c1a19af6-e9ec-4d30-8e44-2200a8282617',
+      permission: '',
+    },
+    singleList: {
+      permission: '',
+    },
+    singleTreeList: {
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    updateParentId: {
+      permission: '',
+    },
+    updateSubsidiaryId: {
+      permission: '',
+    },
+    updateSort: {
+      permission: '',
+    },
+    setNormal: {
+      permission: '',
+    },
+    setInvalid: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  section: {
+    pageList: {
+      paramsKey: '7d073a9d-7f3a-4b00-88c7-aa6b0e671eaa',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    updateContentInfo: {
+      permission: '',
+    },
+    updateRenderType: {
+      permission: '',
+    },
+    updateSort: {
+      permission: '',
+    },
+    toggleRecommend: {
+      permission: '',
+    },
+    toggleTop: {
+      permission: '',
+    },
+    toggleVisible: {
+      permission: '',
+    },
+    setOnline: {
+      permission: '',
+    },
+    setOffline: {
+      permission: '',
+    },
+    setReadObtainScore: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    getMediaItem: {
+      permission: '',
+    },
+    addMediaItem: {
+      permission: '',
+    },
+    updateMediaItem: {
+      permission: '',
+    },
+    setMediaCollectionSort: {
+      permission: '',
+    },
+    removeMediaItem: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  sectionApplicationConfig: {
+    pageList: {
+      paramsKey: 'f0040cdd-0a2b-45a4-94a0-150d68bfd82d',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    getConfigItem: {
+      permission: '',
+    },
+    addConfigItem: {
+      permission: '',
+    },
+    updateConfigItem: {
+      permission: '',
+    },
+    removeConfigItem: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  optionPool: {
+    pageList: {
+      paramsKey: 'd95c1b86-8604-469d-9d0d-29c68b45b4a1',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    updateSort: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  yonYouPushMessage: {
+    pageList: {
+      paramsKey: 'd8dcd06c-9d40-46d4-b84a-165c64ba0cca',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
       permission: '',
     },
   },

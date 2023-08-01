@@ -8,8 +8,14 @@ import {
 import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
+import {
+  toggleQiniuAudioSwitchAction,
+  toggleQiniuFileSwitchAction,
+  toggleQiniuImageSwitchAction,
+  toggleQiniuVideoSwitchAction,
+} from '../../Assist/action';
 import { fieldData } from '../../Common/data';
-import TabPageBase from '../../TabPageBase';
+import { TabPageBase } from '../../TabPageBase';
 
 @connect(({ currentManagement, schedulingControl }) => ({
   currentManagement,
@@ -42,7 +48,6 @@ class Index extends TabPageBase {
 
     return {
       ...o,
-
       qiniuImageSwitch: qiniuImageSwitch ? 1 : 0,
       qiniuVideoSwitch: qiniuVideoSwitch ? 1 : 0,
       qiniuAudioSwitch: qiniuAudioSwitch ? 1 : 0,
@@ -96,27 +101,39 @@ class Index extends TabPageBase {
     });
   };
 
-  onQiniuImageSwitchSwitchChange = (v) => {
-    this.setState({
-      qiniuImageSwitch: v,
+  onQiniuImageSwitchSwitchChange = () => {
+    const { metaData } = this.state;
+
+    toggleQiniuImageSwitchAction({
+      target: this,
+      handleData: metaData,
     });
   };
 
-  onQiniuVideoSwitchSwitchChange = (v) => {
-    this.setState({
-      qiniuVideoSwitch: v,
+  onQiniuVideoSwitchSwitchChange = () => {
+    const { metaData } = this.state;
+
+    toggleQiniuVideoSwitchAction({
+      target: this,
+      handleData: metaData,
     });
   };
 
-  onQiniuAudioSwitchSwitchChange = (v) => {
-    this.setState({
-      qiniuAudioSwitch: v,
+  onQiniuAudioSwitchSwitchChange = () => {
+    const { metaData } = this.state;
+
+    toggleQiniuAudioSwitchAction({
+      target: this,
+      handleData: metaData,
     });
   };
 
-  onQiniuFileSwitchSwitchChange = (v) => {
-    this.setState({
-      qiniuFileSwitch: v,
+  onQiniuFileSwitchSwitchChange = () => {
+    const { metaData } = this.state;
+
+    toggleQiniuFileSwitchAction({
+      target: this,
+      handleData: metaData,
     });
   };
 
@@ -177,19 +194,41 @@ class Index extends TabPageBase {
         data: metaData,
         key: fieldData.qiniu.rootUrl.name,
       });
+
+      values[fieldData.qiniu.qiniuImageSwitch.name] =
+        getValueByKey({
+          data: metaData,
+          key: fieldData.qiniu.qiniuImageSwitch.name,
+          convert: convertCollection.number,
+        }) === whetherNumber.yes;
+
+      values[fieldData.qiniu.qiniuVideoSwitch.name] =
+        getValueByKey({
+          data: metaData,
+          key: fieldData.qiniu.qiniuVideoSwitch.name,
+          convert: convertCollection.number,
+        }) === whetherNumber.yes;
+
+      values[fieldData.qiniu.qiniuAudioSwitch.name] =
+        getValueByKey({
+          data: metaData,
+          key: fieldData.qiniu.qiniuAudioSwitch.name,
+          convert: convertCollection.number,
+        }) === whetherNumber.yes;
+
+      values[fieldData.qiniu.qiniuFileSwitch.name] =
+        getValueByKey({
+          data: metaData,
+          key: fieldData.qiniu.qiniuFileSwitch.name,
+          convert: convertCollection.number,
+        }) === whetherNumber.yes;
     }
 
     return values;
   };
 
   establishCardCollectionConfig = () => {
-    const {
-      metaData,
-      qiniuImageSwitch,
-      qiniuVideoSwitch,
-      qiniuAudioSwitch,
-      qiniuFileSwitch,
-    } = this.state;
+    const { metaData } = this.state;
 
     const localStorage = getValueByKey({
       data: metaData,
@@ -357,22 +396,29 @@ class Index extends TabPageBase {
               fieldData: fieldData.qiniu.rootUrl,
               require: false,
             },
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.divider,
-              text: '配置七牛云转存',
-              innerProps: {
-                orientation: 'left',
-                style: {
-                  margin: '4px 0 24px 0',
-                },
+          ],
+        },
+        {
+          title: {
+            icon: iconBuilder.contacts(),
+            text: '配置七牛云转存',
+            subText:
+              '[开启七牛云转存上传文件时请提交完善的七牛云配置信息, 否则将引发上传异常!]',
+          },
+          extra: {
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.iconInfo,
+                icon: iconBuilder.infoCircle(),
+                text: '点击开关即可生效',
               },
-            },
+            ],
+          },
+          items: [
             {
               lg: 24,
               type: cardConfig.contentItemType.switch,
               fieldData: fieldData.qiniu.qiniuImageSwitch,
-              checked: qiniuImageSwitch,
               require: false,
               innerProps: {
                 checkedChildren: '开启',
@@ -384,7 +430,6 @@ class Index extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.switch,
               fieldData: fieldData.qiniu.qiniuVideoSwitch,
-              checked: qiniuVideoSwitch,
               require: false,
               innerProps: {
                 checkedChildren: '开启',
@@ -396,7 +441,6 @@ class Index extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.switch,
               fieldData: fieldData.qiniu.qiniuAudioSwitch,
-              checked: qiniuAudioSwitch,
               require: false,
               innerProps: {
                 checkedChildren: '开启',
@@ -408,7 +452,6 @@ class Index extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.switch,
               fieldData: fieldData.qiniu.qiniuFileSwitch,
-              checked: qiniuFileSwitch,
               require: false,
               innerProps: {
                 checkedChildren: '开启',

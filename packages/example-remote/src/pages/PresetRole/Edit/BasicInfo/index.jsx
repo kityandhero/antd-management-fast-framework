@@ -13,7 +13,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
-import TabPageBase from '../../TabPageBase';
+import { TabPageBase } from '../../TabPageBase';
 
 @connect(({ presetRole, schedulingControl }) => ({
   presetRole,
@@ -27,7 +27,6 @@ class Index extends TabPageBase {
 
     this.state = {
       ...this.state,
-
       loadApiPath: 'presetRole/get',
       submitApiPath: 'presetRole/updateBasicInfo',
       presetRoleId: null,
@@ -47,7 +46,7 @@ class Index extends TabPageBase {
     const d = o;
     const { presetRoleId } = this.state;
 
-    d.presetRoleId = presetRoleId;
+    d[fieldData.presetRoleId.name] = presetRoleId;
 
     return d;
   };

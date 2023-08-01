@@ -2,6 +2,6 @@ import { DataForm } from 'antd-management-fast-framework';
 
 const { BaseUpdateFormTab } = DataForm;
 
-class BaseEditTab extends BaseUpdateFormTab {}
+class TabPageBase extends BaseUpdateFormTab {}
 
-export default BaseEditTab;
+export { TabPageBase };

@@ -21,6 +21,13 @@ export async function addBasicInfoData(parameters) {
   });
 }
 
+export async function updateBasicInfoData(parameters) {
+  return request({
+    api: '/user/updateBasicInfo',
+    params: parameters,
+  });
+}
+
 export async function updateParentData(parameters) {
   return request({
     api: '/user/updateParent',
@@ -35,6 +42,41 @@ export async function clearParentData(parameters) {
   });
 }
 
+export async function setSignetData(parameters) {
+  return request({
+    api: '/user/setSignet',
+    params: parameters,
+  });
+}
+
+export async function openSignetPasswordSwitchData(parameters) {
+  return request({
+    api: '/user/openSignetPasswordSwitch',
+    params: parameters,
+  });
+}
+
+export async function closeSignetPasswordSwitchData(parameters) {
+  return request({
+    api: '/user/closeSignetPasswordSwitch',
+    params: parameters,
+  });
+}
+
+export async function toggleSignetPasswordSwitchData(parameters) {
+  return request({
+    api: '/user/toggleSignetPasswordSwitch',
+    params: parameters,
+  });
+}
+
+export async function resetSignetPasswordData(parameters) {
+  return request({
+    api: '/user/resetSignetPassword',
+    params: parameters,
+  });
+}
+
 export async function resetPasswordData(parameters) {
   return request({
     api: '/user/resetPassword',
@@ -42,9 +84,30 @@ export async function resetPasswordData(parameters) {
   });
 }
 
-export async function deleteData(parameters) {
+export async function setEnableData(parameters) {
   return request({
-    api: '/user/delete',
+    api: '/user/setEnable',
+    params: parameters,
+  });
+}
+
+export async function setDisableData(parameters) {
+  return request({
+    api: '/user/setDisable',
+    params: parameters,
+  });
+}
+
+export async function changePermissionData(parameters) {
+  return request({
+    api: '/masterManager/changePermission',
+    params: parameters,
+  });
+}
+
+export async function removeData(parameters) {
+  return request({
+    api: '/user/remove',
     params: parameters,
   });
 }

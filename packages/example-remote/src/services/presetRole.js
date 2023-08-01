@@ -7,6 +7,13 @@ export async function pageListData(parameters) {
   });
 }
 
+export async function listSelectData(parameters) {
+  return request({
+    api: '/presetRole/listSelect',
+    params: parameters,
+  });
+}
+
 export async function listModuleData(parameters) {
   return request({
     api: '/presetRole/listModule',

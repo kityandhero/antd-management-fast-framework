@@ -44,6 +44,36 @@
           "service": "updateFileStorageInfoData",
           "api": "/currentManagement/updateFileStorageInfo",
           "type": "singleData"
+        },
+        {
+          "effect": "updateSmsInfo",
+          "service": "updateSmsInfoData",
+          "api": "/currentManagement/updateSmsInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "toggleQiniuImageSwitch",
+          "service": "toggleQiniuImageSwitchData",
+          "api": "/currentManagement/toggleQiniuImageSwitch",
+          "type": "singleData"
+        },
+        {
+          "effect": "toggleQiniuAudioSwitch",
+          "service": "toggleQiniuAudioSwitchData",
+          "api": "/currentManagement/toggleQiniuAudioSwitch",
+          "type": "singleData"
+        },
+        {
+          "effect": "toggleQiniuVideoSwitch",
+          "service": "toggleQiniuVideoSwitchData",
+          "api": "/currentManagement/toggleQiniuVideoSwitch",
+          "type": "singleData"
+        },
+        {
+          "effect": "toggleQiniuFileSwitch",
+          "service": "toggleQiniuFileSwitchData",
+          "api": "/currentManagement/toggleQiniuFileSwitch",
+          "type": "singleData"
         }
       ],
       "cover": true
@@ -88,15 +118,15 @@
           "type": "singleData"
         },
         {
-          "effect": "delete",
-          "service": "deleteData",
-          "api": "/errorLog/delete",
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/errorLog/remove",
           "type": "singleData"
         },
         {
-          "effect": "deleteMulti",
-          "service": "deleteMultiData",
-          "api": "/errorLog/deleteMulti",
+          "effect": "removeMulti",
+          "service": "removeMultiData",
+          "api": "/errorLog/removeMulti",
           "type": "singleData"
         }
       ],
@@ -118,15 +148,15 @@
           "type": "singleData"
         },
         {
-          "effect": "delete",
-          "service": "deleteData",
-          "api": "/generalLog/delete",
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/generalLog/remove",
           "type": "singleData"
         },
         {
-          "effect": "deleteMulti",
-          "service": "deleteMultiData",
-          "api": "/generalLog/deleteMulti",
+          "effect": "removeMulti",
+          "service": "removeMultiData",
+          "api": "/generalLog/removeMulti",
           "type": "singleData"
         }
       ],
@@ -148,15 +178,45 @@
           "type": "singleData"
         },
         {
-          "effect": "delete",
-          "service": "deleteData",
-          "api": "/sqlLog/delete",
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/sqlLog/remove",
           "type": "singleData"
         },
         {
-          "effect": "deleteMulti",
-          "service": "deleteMultiData",
-          "api": "/sqlLog/deleteMulti",
+          "effect": "removeMulti",
+          "service": "removeMultiData",
+          "api": "/sqlLog/removeMulti",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "uploadHistory",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/uploadHistory/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/uploadHistory/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/uploadHistory/remove",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/uploadHistory/refreshCache",
           "type": "singleData"
         }
       ],
@@ -182,6 +242,12 @@
           "service": "pageListData",
           "api": "/presetRole/pageList",
           "type": "pageList"
+        },
+        {
+          "effect": "listSelect",
+          "service": "listSelectData",
+          "api": "/presetRole/listSelect",
+          "type": "singleList"
         },
         {
           "effect": "listModule",
@@ -325,6 +391,306 @@
       "cover": true
     },
     {
+      "name": "applicationSource",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/applicationSource/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "singleList",
+          "service": "singleListData",
+          "api": "/applicationSource/singleList",
+          "type": "singleList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/applicationSource/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/applicationSource/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/applicationSource/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "api": "/applicationSource/setEnable",
+          "type": "singleData"
+        },
+        {
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "api": "/applicationSource/setDisable",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/applicationSource/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/applicationSource/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "application",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/application/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "singleList",
+          "service": "singleListData",
+          "api": "/application/singleList",
+          "type": "singleList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/application/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "getPagePathConfig",
+          "service": "getPagePathConfigData",
+          "api": "/application/getPagePathConfig",
+          "type": "singleData"
+        },
+        {
+          "effect": "getWeChatMessageTemplateConfig",
+          "service": "getWeChatMessageTemplateConfigData",
+          "api": "/application/getWeChatMessageTemplateConfig",
+          "type": "singleData"
+        },
+        {
+          "effect": "getWeChatMessageTargetPathConfig",
+          "service": "getWeChatMessageTargetPathConfigData",
+          "api": "/application/getWeChatMessageTargetPathConfig",
+          "type": "singleData"
+        },
+        {
+          "effect": "getArticleNotificationConfig",
+          "service": "getArticleNotificationConfigData",
+          "api": "/application/getArticleNotificationConfig",
+          "type": "singleData"
+        },
+        {
+          "effect": "getCheckInConfig",
+          "service": "getCheckInConfigData",
+          "api": "/application/getCheckInConfig",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/application/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/application/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateWeChatApplicationInfo",
+          "service": "updateWeChatApplicationInfoData",
+          "api": "/application/updateWeChatApplicationInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateWeChatPayCertificateInfo",
+          "service": "updateWeChatPayCertificateInfoData",
+          "api": "/application/updateWeChatPayCertificateInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateKeyValueInfo",
+          "service": "updateKeyValueInfoData",
+          "api": "/application/updateKeyValueInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateMessageChannelApplicationInfo",
+          "service": "updateMessageChannelApplicationInfoData",
+          "api": "/application/updateMessageChannelApplicationInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "setOwn",
+          "service": "setOwnData",
+          "api": "/application/setOwn",
+          "type": "singleData"
+        },
+        {
+          "effect": "setStart",
+          "service": "setStartData",
+          "api": "/application/setStart",
+          "type": "singleData"
+        },
+        {
+          "effect": "setStop",
+          "service": "setStopData",
+          "api": "/application/setStop",
+          "type": "singleData"
+        },
+        {
+          "effect": "testSendWechatUniformMessage",
+          "service": "testSendWechatUniformMessageData",
+          "api": "/application/testSendWechatUniformMessage",
+          "type": "singleData"
+        },
+        {
+          "effect": "testSendWechatTemplateMessage",
+          "service": "testSendWechatTemplateMessageData",
+          "api": "/application/testSendWechatTemplateMessage",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/application/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "getCustomGlobalData",
+          "service": "getCustomGlobalDataData",
+          "api": "/application/getCustomGlobalData",
+          "type": "singleData"
+        },
+        {
+          "effect": "getCustomGlobalDataItem",
+          "service": "getCustomGlobalDataItemData",
+          "api": "/application/getCustomGlobalDataItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "addCustomGlobalDataItem",
+          "service": "addCustomGlobalDataItemData",
+          "api": "/application/addCustomGlobalDataItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateCustomGlobalDataItem",
+          "service": "updateCustomGlobalDataItemData",
+          "api": "/application/updateCustomGlobalDataItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "removeCustomGlobalDataItem",
+          "service": "removeCustomGlobalDataItemData",
+          "api": "/application/removeCustomGlobalDataItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/application/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "applicationNavigation",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/applicationNavigation/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/applicationNavigation/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/applicationNavigation/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/applicationNavigation/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/applicationNavigation/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/applicationNavigation/remove",
+          "type": "singleData"
+        },
+        {
+          "effect": "getNavigationItem",
+          "service": "getNavigationItemData",
+          "api": "/applicationNavigation/getNavigationItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "addNavigationItem",
+          "service": "addNavigationItemData",
+          "api": "/applicationNavigation/addNavigationItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateNavigationItem",
+          "service": "updateNavigationItemData",
+          "api": "/applicationNavigation/updateNavigationItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "removeNavigationItem",
+          "service": "removeNavigationItemData",
+          "api": "/applicationNavigation/removeNavigationItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "setNavigationCollectionSort",
+          "service": "setNavigationCollectionSortData",
+          "api": "/applicationNavigation/setNavigationCollectionSort",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/applicationNavigation/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
       "name": "smsLog",
       "apis": [
         {
@@ -340,15 +706,15 @@
           "type": "singleData"
         },
         {
-          "effect": "delete",
-          "service": "deleteData",
-          "api": "/sqlLog/delete",
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/sqlLog/remove",
           "type": "singleData"
         },
         {
-          "effect": "deleteMulti",
-          "service": "deleteMultiData",
-          "api": "/sqlLog/deleteMulti",
+          "effect": "removeMulti",
+          "service": "removeMultiData",
+          "api": "/sqlLog/removeMulti",
           "type": "singleData"
         }
       ],
@@ -448,16 +814,52 @@
           "type": "singleData"
         },
         {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/masterManager/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
           "effect": "resetPassword",
           "service": "resetPasswordData",
           "api": "/masterManager/resetPassword",
           "type": "singleData"
         },
         {
-          "effect": "delete",
-          "service": "deleteData",
-          "api": "/masterManager/delete",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "api": "/masterManager/setEnable",
           "type": "singleData"
+        },
+        {
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "api": "/masterManager/setDisable",
+          "type": "singleData"
+        },
+        {
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/masterManager/remove",
+          "type": "singleData"
+        },
+        {
+          "effect": "changePermission",
+          "service": "changePermissionData",
+          "api": "/masterManager/changePermission",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/masterManager/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/masterManager/pageListOperateLog",
+          "type": "pageList"
         }
       ],
       "cover": true
@@ -484,6 +886,12 @@
           "type": "singleData"
         },
         {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/user/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
           "effect": "updateParent",
           "service": "updateParentData",
           "api": "/user/updateParent",
@@ -496,15 +904,63 @@
           "type": "singleData"
         },
         {
+          "effect": "setSignet",
+          "service": "setSignetData",
+          "api": "/user/setSignet",
+          "type": "singleData"
+        },
+        {
+          "effect": "openSignetPasswordSwitch",
+          "service": "openSignetPasswordSwitchData",
+          "api": "/user/openSignetPasswordSwitch",
+          "type": "singleData"
+        },
+        {
+          "effect": "closeSignetPasswordSwitch",
+          "service": "closeSignetPasswordSwitchData",
+          "api": "/user/closeSignetPasswordSwitch",
+          "type": "singleData"
+        },
+        {
+          "effect": "toggleSignetPasswordSwitch",
+          "service": "toggleSignetPasswordSwitchData",
+          "api": "/user/toggleSignetPasswordSwitch",
+          "type": "singleData"
+        },
+        {
+          "effect": "resetSignetPassword",
+          "service": "resetSignetPasswordData",
+          "api": "/user/resetSignetPassword",
+          "type": "singleData"
+        },
+        {
           "effect": "resetPassword",
           "service": "resetPasswordData",
           "api": "/user/resetPassword",
           "type": "singleData"
         },
         {
-          "effect": "delete",
-          "service": "deleteData",
-          "api": "/user/delete",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "api": "/user/setEnable",
+          "type": "singleData"
+        },
+        {
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "api": "/user/setDisable",
+          "type": "singleData"
+        },
+        {
+          "effect": "changePermission",
+          "service": "changePermissionData",
+          "api": "/masterManager/changePermission",
+          "type": "singleData"
+        },
+        {
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/user/remove",
           "type": "singleData"
         },
         {
@@ -517,6 +973,60 @@
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
           "api": "/user/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "userYonYouCorrelation",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/userYonYouCorrelation/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/userYonYouCorrelation/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/userYonYouCorrelation/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/userYonYouCorrelation/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "api": "/userYonYouCorrelation/setEnable",
+          "type": "singleData"
+        },
+        {
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "api": "/userYonYouCorrelation/setDisable",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/userYonYouCorrelation/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/userYonYouCorrelation/pageListOperateLog",
           "type": "pageList"
         }
       ],
@@ -548,6 +1058,570 @@
           "service": "removeData",
           "api": "/internalTester/remove",
           "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "weChatMessageRecord",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/weChatMessageRecord/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/weChatMessageRecord/get",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "tag",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/tag/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/tag/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/tag/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/tag/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "api": "/tag/updateSort",
+          "type": "singleData"
+        },
+        {
+          "effect": "toggleRecommend",
+          "service": "toggleRecommendData",
+          "api": "/tag/toggleRecommend",
+          "type": "singleData"
+        },
+        {
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "api": "/tag/setEnable",
+          "type": "singleData"
+        },
+        {
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "api": "/tag/setDisable",
+          "type": "singleData"
+        },
+        {
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/tag/remove",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/tag/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/tag/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "optionPool",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/optionPool/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/optionPool/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/optionPool/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/optionPool/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "api": "/optionPool/updateSort",
+          "type": "singleData"
+        },
+        {
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "api": "/tag/setEnable",
+          "type": "singleData"
+        },
+        {
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "api": "/tag/setDisable",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/tag/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/tag/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "subsidiary",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/subsidiary/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "singleList",
+          "service": "singleListData",
+          "api": "/subsidiary/singleList",
+          "type": "singleList"
+        },
+        {
+          "effect": "singleTreeList",
+          "service": "singleTreeListData",
+          "api": "/subsidiary/singleTreeList",
+          "type": "singleList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/subsidiary/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/subsidiary/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/subsidiary/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "api": "/subsidiary/updateSort",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateParent",
+          "service": "updateParentData",
+          "api": "/subsidiary/updateParent",
+          "type": "singleData"
+        },
+        {
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "api": "/subsidiary/setEnable",
+          "type": "singleData"
+        },
+        {
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "api": "/subsidiary/setDisable",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/subsidiary/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/subsidiary/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "department",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/department/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "singleList",
+          "service": "singleListData",
+          "api": "/department/singleList",
+          "type": "singleList"
+        },
+        {
+          "effect": "singleTreeList",
+          "service": "singleTreeListData",
+          "api": "/department/singleTreeList",
+          "type": "singleList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/department/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/department/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/department/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "api": "/department/updateSort",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateParentId",
+          "service": "updateParentIdData",
+          "api": "/department/updateParentId",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateSubsidiaryId",
+          "service": "updateSubsidiaryIdData",
+          "api": "/department/updateSubsidiaryId",
+          "type": "singleData"
+        },
+        {
+          "effect": "setNormal",
+          "service": "setNormalData",
+          "api": "/department/setNormal",
+          "type": "singleData"
+        },
+        {
+          "effect": "setInvalid",
+          "service": "setInvalidData",
+          "api": "/department/setInvalid",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/department/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/department/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "organization",
+      "apis": [
+        {
+          "effect": "getGraphicalTree",
+          "service": "getGraphicalTreeData",
+          "api": "/organization/getGraphicalTree",
+          "type": "singleData"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "section",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/section/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "singleTreeList",
+          "service": "singleTreeListData",
+          "api": "/section/singleTreeList",
+          "type": "singleList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/section/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/section/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/section/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateContentInfo",
+          "service": "updateContentInfoData",
+          "api": "/section/updateContentInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateRenderType",
+          "service": "updateRenderTypeData",
+          "api": "/section/updateRenderType",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "api": "/section/updateSort",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateParentId",
+          "service": "updateParentIdData",
+          "api": "/section/updateParentId",
+          "type": "singleData"
+        },
+        {
+          "effect": "toggleRecommend",
+          "service": "toggleRecommendData",
+          "api": "/section/toggleRecommend",
+          "type": "singleData"
+        },
+        {
+          "effect": "toggleTop",
+          "service": "toggleTopData",
+          "api": "/section/toggleTop",
+          "type": "singleData"
+        },
+        {
+          "effect": "toggleVisible",
+          "service": "toggleVisibleData",
+          "api": "/section/toggleVisible",
+          "type": "singleData"
+        },
+        {
+          "effect": "setOnline",
+          "service": "setOnlineData",
+          "api": "/section/setOnline",
+          "type": "singleData"
+        },
+        {
+          "effect": "setOffline",
+          "service": "setOfflineData",
+          "api": "/section/setOffline",
+          "type": "singleData"
+        },
+        {
+          "effect": "setReadObtainScore",
+          "service": "setReadObtainScoreData",
+          "api": "/section/setReadObtainScore",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/section/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "getMediaItem",
+          "service": "getMediaItemData",
+          "api": "/section/getMediaItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "addMediaItem",
+          "service": "addMediaItemData",
+          "api": "/section/addMediaItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateMediaItem",
+          "service": "updateMediaItemData",
+          "api": "/section/updateMediaItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "setMediaCollectionSort",
+          "service": "setMediaCollectionSortData",
+          "api": "/section/setMediaCollectionSort",
+          "type": "singleData"
+        },
+        {
+          "effect": "removeMediaItem",
+          "service": "removeMediaItemData",
+          "api": "/section/removeMediaItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/section/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "sectionApplicationConfig",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/sectionApplicationConfig/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/sectionApplicationConfig/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "api": "/sectionApplicationConfig/addBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "api": "/sectionApplicationConfig/updateBasicInfo",
+          "type": "singleData"
+        },
+        {
+          "effect": "remove",
+          "service": "removeData",
+          "api": "/sectionApplicationConfig/remove",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/sectionApplicationConfig/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "getConfigItem",
+          "service": "getConfigItemData",
+          "api": "/section/getConfigItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "addConfigItem",
+          "service": "addConfigItemData",
+          "api": "/section/addConfigItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "updateConfigItem",
+          "service": "updateConfigItemData",
+          "api": "/section/updateConfigItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "removeConfigItem",
+          "service": "removeConfigItemData",
+          "api": "/section/removeConfigItem",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/section/pageListOperateLog",
+          "type": "pageList"
+        }
+      ],
+      "cover": true
+    },
+    {
+      "name": "yonYouPushMessage",
+      "apis": [
+        {
+          "effect": "pageList",
+          "service": "pageListData",
+          "api": "/yonYouPushMessage/pageList",
+          "type": "pageList"
+        },
+        {
+          "effect": "get",
+          "service": "getData",
+          "api": "/yonYouPushMessage/get",
+          "type": "singleData"
+        },
+        {
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "api": "/yonYouPushMessage/refreshCache",
+          "type": "singleData"
+        },
+        {
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "api": "/yonYouPushMessage/pageListOperateLog",
+          "type": "pageList"
         }
       ],
       "cover": true

@@ -67,7 +67,7 @@ class BasicInfo extends MenuPageBase {
 
     const { avatar } = this.state;
 
-    d.avatar = avatar || '';
+    d[fieldData.avatar.name] = avatar || '';
 
     return d;
   };
@@ -159,12 +159,12 @@ class BasicInfo extends MenuPageBase {
             {
               lg: 6,
               type: cardConfig.contentItemType.input,
-              fieldData: fieldData.email,
+              fieldData: fieldData.phone,
             },
             {
               lg: 6,
               type: cardConfig.contentItemType.input,
-              fieldData: fieldData.phone,
+              fieldData: fieldData.email,
             },
           ],
         },

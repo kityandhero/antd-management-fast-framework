@@ -93,12 +93,9 @@ class UpdateModuleModalBase extends BaseUpdateModal {
   establishCardCollectionConfig = () => {
     const { metaListData, targetKeys, selectedKeys } = this.state;
 
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
-          spinning,
           items: [
             {
               lg: 24,

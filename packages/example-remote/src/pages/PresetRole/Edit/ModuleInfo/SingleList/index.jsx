@@ -87,7 +87,6 @@ class ModuleInfo extends ModuleInfoBase {
         <AccessWayDrawer
           externalData={{ presetRoleId }}
           width={1200}
-          onClose={this.afterAccessWayDrawerClose}
           afterClose={this.afterOperateSuccess}
         />
 

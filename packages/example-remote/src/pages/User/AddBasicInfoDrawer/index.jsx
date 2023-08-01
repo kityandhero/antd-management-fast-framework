@@ -31,7 +31,7 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
     };
   }
 
-  renderPresetTitle = () => {
+  getPresetPageTitle = () => {
     return '新增用户';
   };
 

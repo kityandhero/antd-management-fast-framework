@@ -8,10 +8,10 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  deleteData,
-  deleteMultiData,
   getData,
   pageListData,
+  removeData,
+  removeMultiData,
 } from '../services/generalLog';
 
 export function buildModel() {
@@ -75,7 +75,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *delete(
+      *remove(
         {
           payload,
           alias,
@@ -84,7 +84,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(deleteData, payload);
+        const response = yield call(removeData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -101,7 +101,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *deleteMulti(
+      *removeMulti(
         {
           payload,
           alias,
@@ -110,7 +110,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(deleteMultiData, payload);
+        const response = yield call(removeMultiData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

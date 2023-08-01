@@ -32,14 +32,14 @@ export const fieldData = {
     name: 'updateTime',
     helper: '',
   },
-  createUserId: {
+  createOperatorId: {
     label: '创建人标识',
-    name: 'createUserId',
+    name: 'createOperatorId',
     helper: '',
   },
-  updateUserId: {
+  updateOperatorId: {
     label: '更新人标识',
-    name: 'updateUserId',
+    name: 'updateOperatorId',
     helper: '',
   },
 };

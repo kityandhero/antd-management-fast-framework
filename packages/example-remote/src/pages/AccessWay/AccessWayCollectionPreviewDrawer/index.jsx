@@ -46,7 +46,7 @@ class AccessWayCollectionPreviewDrawer extends SinglePageDrawer {
     return icon;
   };
 
-  renderPresetTitle = () => {
+  getPresetPageTitle = () => {
     const { title } = this.props;
 
     return title || '简要信息';

@@ -1,19 +1,34 @@
 import { connect } from 'easy-soft-dva';
-import { checkHasAuthority } from 'easy-soft-utility';
+import {
+  checkHasAuthority,
+  convertCollection,
+  getValueByKey,
+  handleItem,
+} from 'easy-soft-utility';
 
 import {
   columnFacadeMode,
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import { buildTagList, iconBuilder } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig';
-import { getGenderName } from '../../../customSpecialComponents';
+import {
+  getGenderName,
+  getUserStatusName,
+} from '../../../customSpecialComponents';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
-import { refreshCacheAction, removeAction } from '../Assist/action';
-import { fieldData } from '../Common/data';
+import {
+  refreshCacheAction,
+  removeAction,
+  setDisableAction,
+  setEnableAction,
+} from '../Assist/action';
+import { getStatusBadge } from '../Assist/tools';
+import { UpdateRoleModal } from '../ChangeRoleModal';
+import { fieldData, statusCollection } from '../Common/data';
 
 const { MultiPage } = DataMultiPageView;
 
@@ -22,7 +37,7 @@ const { MultiPage } = DataMultiPageView;
   schedulingControl,
 }))
 class PageList extends MultiPage {
-  componentAuthority = accessWayCollection.user.list;
+  componentAuthority = accessWayCollection.user.pageList.permission;
 
   constructor(properties) {
     super(properties);
@@ -32,12 +47,54 @@ class PageList extends MultiPage {
       pageTitle: '用户列表',
       paramsKey: accessWayCollection.user.pageList.paramsKey,
       loadApiPath: 'user/pageList',
-      dateRangeFieldName: '注册时间',
+      dateRangeFieldName: '创建时间',
     };
   }
 
+  handleItemStatus = ({ target, handleData, remoteData }) => {
+    const userId = getValueByKey({
+      data: handleData,
+      key: fieldData.userId.name,
+    });
+
+    handleItem({
+      target,
+      value: userId,
+      compareValueHandler: (o) => {
+        const { userId: v } = o;
+
+        return v;
+      },
+      handler: (d) => {
+        const o = d;
+
+        o[fieldData.status.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.status.name,
+        });
+
+        return d;
+      },
+    });
+  };
+
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
+      case 'changePermission': {
+        this.showUpdateRoleModal(handleData);
+        break;
+      }
+
+      case 'setEnable': {
+        this.setEnable(handleData);
+        break;
+      }
+
+      case 'setDisable': {
+        this.setDisable(handleData);
+        break;
+      }
+
       case 'remove': {
         this.remove(handleData);
 
@@ -56,12 +113,32 @@ class PageList extends MultiPage {
     }
   };
 
+  setEnable = (r) => {
+    setEnableAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target, handleData, remoteData }) => {
+        target.handleItemStatus({ target, handleData, remoteData });
+      },
+    });
+  };
+
+  setDisable = (r) => {
+    setDisableAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target, handleData, remoteData }) => {
+        target.handleItemStatus({ target, handleData, remoteData });
+      },
+    });
+  };
+
   remove = (r) => {
     removeAction({
       target: this,
       handleData: r,
       successCallback: ({ target }) => {
-        target.reloadData({});
+        target.refreshDataWithReloadAnimalPrompt({});
       },
     });
   };
@@ -94,6 +171,52 @@ class PageList extends MultiPage {
     this.refreshDataWithReloadAnimalPrompt({});
   };
 
+  showUpdateRoleModal = (r) => {
+    this.setState(
+      {
+        currentRecord: { ...r },
+      },
+      () => {
+        UpdateRoleModal.open();
+      },
+    );
+  };
+
+  afterUpdateRoleModalOk = ({
+    // eslint-disable-next-line no-unused-vars
+    singleData,
+    // eslint-disable-next-line no-unused-vars
+    listData,
+    // eslint-disable-next-line no-unused-vars
+    extraData,
+    // eslint-disable-next-line no-unused-vars
+    responseOriginalData,
+    // eslint-disable-next-line no-unused-vars
+    submitData,
+    // eslint-disable-next-line no-unused-vars
+    subjoinData,
+  }) => {
+    this.refreshDataWithReloadAnimalPrompt({});
+  };
+
+  buildAuthorityTagList = (authorityCollection) => {
+    const list = [];
+
+    authorityCollection.map((item) => {
+      const { key, name } = item;
+
+      list.push({
+        key,
+        text: name,
+        color: '#87d068',
+      });
+    });
+
+    return buildTagList({
+      list,
+    });
+  };
+
   goToEdit = (record) => {
     const { userId } = record;
 
@@ -112,6 +235,11 @@ class PageList extends MultiPage {
           lg: 5,
           type: searchCardConfig.contentItemType.input,
           fieldData: fieldData.nickname,
+        },
+        {
+          lg: 5,
+          type: searchCardConfig.contentItemType.input,
+          fieldData: fieldData.realName,
         },
         {
           lg: 5,
@@ -136,6 +264,12 @@ class PageList extends MultiPage {
   };
 
   establishListItemDropdownConfig = (record) => {
+    const status = getValueByKey({
+      data: record,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
     return {
       size: 'small',
       text: '编辑',
@@ -150,6 +284,43 @@ class PageList extends MultiPage {
       },
       items: [
         {
+          key: 'changePermission',
+          icon: iconBuilder.edit(),
+          text: '变更权限',
+        },
+        {
+          withDivider: true,
+          uponDivider: true,
+          key: 'setEnable',
+          icon: iconBuilder.playCircle(),
+          text: '设为启用',
+          disabled: status === statusCollection.enable,
+          confirm: {
+            title: '将要设为启用，确定吗？',
+          },
+        },
+        {
+          key: 'setDisable',
+          icon: iconBuilder.pauseCircle(),
+          text: '设为禁用',
+          disabled: status === statusCollection.disable,
+          confirm: {
+            title: '将要设为禁用，确定吗？',
+          },
+        },
+        {
+          withDivider: true,
+          uponDivider: true,
+          key: 'remove',
+          icon: iconBuilder.delete(),
+          text: '移除账户',
+          confirm: {
+            title: '将要移除账户，确定吗？',
+          },
+        },
+        {
+          withDivider: true,
+          uponDivider: true,
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
@@ -163,22 +334,28 @@ class PageList extends MultiPage {
 
   getColumnWrapper = () => [
     {
-      dataTarget: fieldData.headImageUrl,
+      dataTarget: fieldData.avatar,
       width: 60,
       showRichFacade: true,
       facadeMode: columnFacadeMode.image,
     },
     {
-      dataTarget: fieldData.nickname,
-      align: 'left',
+      dataTarget: fieldData.loginName,
+      width: 140,
       showRichFacade: true,
       emptyValue: '--',
     },
     {
-      dataTarget: fieldData.parentHeadImgUrl,
-      width: 80,
+      dataTarget: fieldData.nickname,
+      width: 200,
       showRichFacade: true,
-      facadeMode: columnFacadeMode.image,
+      emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.realName,
+      width: 140,
+      showRichFacade: true,
+      emptyValue: '--',
     },
     {
       dataTarget: fieldData.parentNickname,
@@ -187,7 +364,7 @@ class PageList extends MultiPage {
       emptyValue: '--',
     },
     {
-      dataTarget: fieldData.sex,
+      dataTarget: fieldData.gender,
       width: 80,
       showRichFacade: true,
       formatValue: (value) => {
@@ -197,12 +374,33 @@ class PageList extends MultiPage {
         });
       },
     },
-
     {
-      dataTarget: fieldData.city,
-      width: 100,
+      dataTarget: fieldData.authorityCollection,
+      align: 'left',
+      render: (value) => (
+        <>
+          {(value || []).length === 0 ? '--' : null}
+
+          {(value || []).length > 0 ? (
+            <>{this.buildAuthorityTagList(value)}</>
+          ) : null}
+        </>
+      ),
+    },
+    {
+      dataTarget: fieldData.status,
+      width: 120,
       showRichFacade: true,
       emptyValue: '--',
+      facadeMode: columnFacadeMode.badge,
+      facadeConfigBuilder: (value) => {
+        return {
+          status: getStatusBadge(value),
+          text: getUserStatusName({
+            value: value,
+          }),
+        };
+      },
     },
     {
       dataTarget: fieldData.userId,
@@ -219,9 +417,24 @@ class PageList extends MultiPage {
   ];
 
   renderPresetOther = () => {
+    const { currentRecord } = this.state;
+
+    const userId = getValueByKey({
+      data: currentRecord,
+      key: fieldData.userId.name,
+    });
+
     return (
       <>
         <AddBasicInfoDrawer afterOK={this.afterAddBasicInfoDrawerOk} />
+
+        <UpdateRoleModal
+          externalData={{
+            userId,
+            selectData: currentRecord,
+          }}
+          afterOK={this.afterUpdateRoleModalOk}
+        />
       </>
     );
   };

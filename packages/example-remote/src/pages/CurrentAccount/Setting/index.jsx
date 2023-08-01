@@ -38,8 +38,6 @@ class Setting extends DataMenuContainer {
   getPresetPageTitle = () => {
     const currentOperator = getCurrentOperatorCache();
 
-    console.log(currentOperator);
-
     const name = getValueByKey({
       data: currentOperator,
       key: 'name',

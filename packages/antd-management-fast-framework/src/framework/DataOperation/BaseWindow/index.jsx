@@ -145,17 +145,30 @@ class BaseWindow extends Base {
 
       if (isFunction(afterClose)) {
         this.logCallTrace(
-          {},
+          {
+            parameter: {
+              ...this.adjustAfterCloseParameter(),
+              ...this.submitSuccessTransferData,
+            },
+          },
           primaryCallName,
           'doOtherWhenChangeVisible',
           'trigger',
           'afterClose',
         );
 
-        afterClose(this.adjustAfterCloseParameter());
+        afterClose({
+          ...this.adjustAfterCloseParameter(),
+          ...this.submitSuccessTransferData,
+        });
       } else {
         this.logCallTrace(
-          {},
+          {
+            parameter: {
+              ...this.adjustAfterCloseParameter(),
+              ...this.submitSuccessTransferData,
+            },
+          },
           primaryCallName,
           'doOtherWhenChangeVisible',
           'trigger',
@@ -169,6 +182,10 @@ class BaseWindow extends Base {
     }
 
     this.executeOtherAfterDoOtherWhenChangeVisible(currentVisible);
+
+    this.submitSuccessTransferData = {
+      ...this.resetSubmitSuccessTransferData(),
+    };
   };
 
   getTargetForm = () => {

@@ -7,7 +7,6 @@ import {
   columnFacadeMode,
   getDerivedStateFromPropertiesForUrlParameters,
   searchCardConfig,
-  selectModeCollection,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import { DataMultiPageView } from 'antd-management-fast-framework';
@@ -100,9 +99,6 @@ class PageList extends MultiPage {
   };
 
   establishSearchCardConfig = () => {
-    const { loadSuccess, dataLoading, processing, smsCategoryName } =
-      this.state;
-
     return {
       list: [
         {
@@ -110,19 +106,14 @@ class PageList extends MultiPage {
           type: searchCardConfig.contentItemType.customSelect,
           component: (
             <SelectField
-              dataLoading={dataLoading}
-              processing={processing}
-              loadSuccess={loadSuccess}
-              selectMode={selectModeCollection.drawer}
               label={fieldData.smsCategoryName.label}
-              smsCategoryName={smsCategoryName || ''}
+              text="选择文章【Modal】"
+              labelWidth={90}
               helper={fieldData.smsCategoryName.helper}
-              afterSelect={(d) => {
-                this.afterSmsCategorySelect(d);
+              afterSelectSuccess={(d) => {
+                this.afterSelect(d);
               }}
-              afterClearSelect={() => {
-                this.afterSmsCategoryClearSelect();
-              }}
+              afterClearSelect={this.clearSelect}
             />
           ),
         },
@@ -179,7 +170,6 @@ class PageList extends MultiPage {
         };
       },
     },
-
     {
       dataTarget: fieldData.sendTime,
       width: 160,
@@ -202,32 +192,6 @@ class PageList extends MultiPage {
           }),
         };
       },
-    },
-    {
-      dataTarget: fieldData.platformName,
-      width: 160,
-      showRichFacade: true,
-      emptyValue: '--',
-    },
-    {
-      dataTarget: fieldData.areaAgentName,
-      width: 160,
-      showRichFacade: true,
-      emptyValue: '--',
-    },
-    {
-      dataTarget: fieldData.platformId,
-      width: 120,
-      showRichFacade: true,
-      canCopy: true,
-      emptyValue: '--',
-    },
-    {
-      dataTarget: fieldData.areaAgentId,
-      width: 120,
-      showRichFacade: true,
-      canCopy: true,
-      emptyValue: '--',
     },
     {
       dataTarget: fieldData.smsLogId,

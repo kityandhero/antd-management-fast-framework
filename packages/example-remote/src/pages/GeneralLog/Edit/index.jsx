@@ -6,7 +6,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import {
   DataTabContainerSupplement,
-  getErrorLogResolveName,
+  getGeneralLogTypeName,
 } from '../../../customSpecialComponents';
 import {
   checkNeedUpdateAssist,
@@ -81,18 +81,18 @@ class Index extends DataTabContainerSupplement {
   };
 
   establishPageHeaderAvatarConfig = () => {
-    return { icon: iconBuilder.bug() };
+    return { icon: iconBuilder.message() };
   };
 
   establishPageHeaderExtraContentConfig = () => {
     const { metaData } = this.state;
 
     return {
-      textLabel: fieldData.resolveNote.label,
-      text: getErrorLogResolveName({
+      textLabel: fieldData.type.label,
+      text: getGeneralLogTypeName({
         value: getValueByKey({
           data: metaData,
-          key: fieldData.resolve.name,
+          key: fieldData.type.name,
           convert: convertCollection.number,
           defaultValue: '--',
         }),
@@ -119,38 +119,10 @@ class Index extends DataTabContainerSupplement {
         canCopy: true,
       },
       {
-        label: fieldData.typeNote.label,
-        value: getValueByKey({
-          data: metaData,
-          key: fieldData.typeNote.name,
-        }),
-      },
-      {
         label: fieldData.channelNote.label,
         value: getValueByKey({
           data: metaData,
           key: fieldData.channelNote.name,
-        }),
-      },
-      {
-        label: fieldData.degreeNote.label,
-        value: getValueByKey({
-          data: metaData,
-          key: fieldData.degreeNote.name,
-        }),
-      },
-      {
-        label: fieldData.sendNotification.label,
-        value: getValueByKey({
-          data: metaData,
-          key: fieldData.sendNotification.name,
-        }),
-      },
-      {
-        label: fieldData.sendTime.label,
-        value: getValueByKey({
-          data: metaData,
-          key: fieldData.sendTime.name,
         }),
       },
     ];

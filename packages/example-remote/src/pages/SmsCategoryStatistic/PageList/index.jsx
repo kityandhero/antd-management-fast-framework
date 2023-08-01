@@ -57,8 +57,7 @@ class PageList extends MultiPage {
   };
 
   establishSearchCardConfig = () => {
-    const { loadSuccess, dataLoading, processing, smsCategoryName } =
-      this.state;
+    const { loadSuccess, smsCategoryName } = this.state;
 
     return {
       list: [
@@ -67,8 +66,6 @@ class PageList extends MultiPage {
           type: searchCardConfig.contentItemType.customSelect,
           component: (
             <SelectField
-              dataLoading={dataLoading}
-              processing={processing}
               loadSuccess={loadSuccess}
               selectMode={selectModeCollection.drawer}
               label={fieldData.smsCategoryName.label}

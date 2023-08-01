@@ -19,6 +19,7 @@ import {
   redirectTo,
   showSimpleErrorMessage,
   toNumber,
+  toString,
 } from 'easy-soft-utility';
 
 import {
@@ -372,10 +373,26 @@ class AbstractComponent extends Component {
   };
 
   checkAuthentication = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'checkAuthentication',
+      'default value',
+      toString(true),
+    );
+
     return true;
   };
 
   checkAuthorization = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'checkAuthorization',
+      'default value',
+      toString(true),
+    );
+
     return true;
   };
 
@@ -392,22 +409,86 @@ class AbstractComponent extends Component {
   };
 
   doOtherCheckComponentUpdate = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'doDidMountTask',
+      'doOtherCheckComponentUpdate',
+      emptyLogic,
+    );
+
     return null;
   };
 
-  doWorkBeforeAdjustDidMount = () => {};
+  doWorkBeforeAdjustDidMount = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'doDidMountTask',
+      'doWorkBeforeAdjustDidMount',
+      emptyLogic,
+    );
+  };
 
-  doWorkAdjustDidMount = () => {};
+  doWorkAdjustDidMount = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'doDidMountTask',
+      'doWorkAdjustDidMount',
+      emptyLogic,
+    );
+  };
 
-  doWorkAfterAdjustDidMount = () => {};
+  doWorkAfterAdjustDidMount = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'doDidMountTask',
+      'doWorkAfterAdjustDidMount',
+      emptyLogic,
+    );
+  };
 
-  doWorkAfterDidMount = () => {};
+  doWorkAfterDidMount = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'doDidMountTask',
+      'doWorkAfterDidMount',
+      emptyLogic,
+    );
+  };
 
-  doLoadRemoteRequest = () => {};
+  doLoadRemoteRequest = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'doDidMountTask',
+      'doLoadRemoteRequest',
+      emptyLogic,
+    );
+  };
 
-  doOtherRemoteRequest = () => {};
+  doOtherRemoteRequest = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'doDidMountTask',
+      'doOtherRemoteRequest',
+      emptyLogic,
+    );
+  };
 
-  doOtherWorkAfterDidMount = () => {};
+  doOtherWorkAfterDidMount = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'doDidMountTask',
+      'doOtherWorkAfterDidMount',
+      emptyLogic,
+    );
+  };
 
   // eslint-disable-next-line no-unused-vars
   doWorkBeforeUpdate = (nextProperties, nextState) => {

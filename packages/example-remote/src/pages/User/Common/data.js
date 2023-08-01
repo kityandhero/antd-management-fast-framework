@@ -6,6 +6,11 @@ const fieldExtraData = {
     name: 'passwordVerify',
     helper: '',
   },
+  signetPasswordVerify: {
+    label: '校验密码',
+    name: 'signetPasswordVerify',
+    helper: '',
+  },
 };
 
 export const fieldData = {
@@ -30,9 +35,14 @@ export const fieldData = {
     name: 'nickname',
     helper: '',
   },
-  headImageUrl: {
+  realName: {
+    label: '真实姓名',
+    name: 'realName',
+    helper: '',
+  },
+  avatar: {
     label: '头像',
-    name: 'headImageUrl',
+    name: 'avatar',
     helper: '',
   },
   dateRange: {
@@ -75,24 +85,14 @@ export const fieldData = {
     name: 'birthday',
     helper: '',
   },
-  sex: {
-    label: '会员性别',
-    name: 'sex',
+  gender: {
+    label: '性别',
+    name: 'gender',
     helper: '',
   },
-  province: {
-    label: '省份城市',
-    name: 'province',
-    helper: '',
-  },
-  provinceName: {
-    label: '省份',
-    name: 'provinceName',
-    helper: '',
-  },
-  cityName: {
-    label: '城市',
-    name: 'cityName',
+  identityNumber: {
+    label: '身份证号',
+    name: 'identityNumber',
     helper: '',
   },
   countryName: {
@@ -100,19 +100,39 @@ export const fieldData = {
     name: 'countryName',
     helper: '',
   },
+  provinceCode: {
+    label: '省份',
+    name: 'provinceCode',
+    helper: '',
+  },
+  provinceName: {
+    label: '省份',
+    name: 'provinceName',
+    helper: '',
+  },
+  cityCode: {
+    label: '城市',
+    name: 'cityCode',
+    helper: '',
+  },
+  cityName: {
+    label: '城市',
+    name: 'cityName',
+    helper: '',
+  },
+  districtCode: {
+    label: '区县',
+    name: 'districtCode',
+    helper: '',
+  },
+  districtName: {
+    label: '区县',
+    name: 'districtName',
+    helper: '',
+  },
   address: {
     label: '详细地址',
     name: 'address',
-    helper: '',
-  },
-  isReceiveOTMsg: {
-    label: '订单消息',
-    name: 'isReceiveOTMsg',
-    helper: '',
-  },
-  isManage: {
-    label: '管理权限',
-    name: 'isManage',
     helper: '',
   },
   parentNickname: {
@@ -125,24 +145,9 @@ export const fieldData = {
     name: 'parentRealName',
     helper: '',
   },
-  consumption: {
-    label: '累计消费',
-    name: 'consumption',
-    helper: '',
-  },
-  balance: {
-    label: '账户金额',
-    name: 'balance',
-    helper: '',
-  },
   integral: {
     label: '积分',
     name: 'integral',
-    helper: '',
-  },
-  city: {
-    label: '所在城市',
-    name: 'city',
     helper: '',
   },
   type: {
@@ -160,10 +165,72 @@ export const fieldData = {
     name: 'customRefererName',
     helper: '申请时自主填写的推荐人姓名，作为管理参考',
   },
+  signet: {
+    label: '印章',
+    name: 'signet',
+    helper: '',
+  },
+  signetPassword: {
+    label: '印章密码',
+    name: 'signetPassword',
+    helper: '',
+  },
+  signetPasswordSwitch: {
+    label: '印章密码开关',
+    name: 'signetPasswordSwitch',
+    helper: '',
+  },
+  signetPasswordSwitchNote: {
+    label: '印章密码开关',
+    name: 'signetPasswordSwitch',
+    helper: '',
+  },
+  signetPasswordNeedSet: {
+    label: '签章密码状态',
+    name: 'signetPasswordNeedSet',
+    helper: '',
+  },
+  authorityCollection: {
+    label: '拥有角色',
+    name: 'authorityCollection',
+    helper: '',
+  },
+  status: {
+    label: '状态',
+    name: 'status',
+    helper: '用户状态',
+  },
+  statusNote: {
+    label: '状态',
+    name: 'statusNote',
+    helper: '用户状态',
+  },
   createTime: {
     label: '创建时间',
     name: 'createTime',
     helper: '',
   },
+  updateTime: {
+    label: '更新时间',
+    name: 'updateTime',
+    helper: '',
+  },
   ...fieldExtraData,
+};
+
+/**
+ * 状态值集合
+ */
+export const statusCollection = {
+  /**
+   * 已禁用
+   * value : 0
+   */
+  disable: 0,
+
+  /**
+   * 已启用
+   * value : 100
+   */
+  enable: 100,
 };

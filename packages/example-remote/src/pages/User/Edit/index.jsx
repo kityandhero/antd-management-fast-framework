@@ -13,14 +13,21 @@ import { accessWayCollection } from '../../../customConfig';
 import {
   DataTabContainerSupplement,
   getGenderName,
+  getUserStatusName,
   getUserTypeName,
 } from '../../../customSpecialComponents';
-import { refreshCacheAction } from '../Assist/action';
+import {
+  refreshCacheAction,
+  setDisableAction,
+  setEnableAction,
+} from '../Assist/action';
 import {
   checkNeedUpdateAssist,
   parseUrlParametersForSetState,
 } from '../Assist/config';
-import { fieldData } from '../Common/data';
+import { fieldData, statusCollection } from '../Common/data';
+import ResetPasswordModal from '../ResetPasswordModal';
+import ResetSignetPasswordModal from '../ResetSignetPasswordModal';
 
 @connect(({ user, schedulingControl }) => ({
   user,
@@ -36,7 +43,12 @@ class Detail extends DataTabContainerSupplement {
       tab: '基本信息',
     },
     {
-      key: 'updateParent',
+      key: 'signetInfo',
+      show: checkHasAuthority(accessWayCollection.user.setSignet.permission),
+      tab: '设置印章',
+    },
+    {
+      key: 'parentInfo',
       show: checkHasAuthority(
         accessWayCollection.user.updateBasicInfo.permission,
       ),
@@ -44,7 +56,9 @@ class Detail extends DataTabContainerSupplement {
     },
     {
       key: 'operateLog/pageList',
-      show: checkHasAuthority(accessWayCollection.user.operateLog.permission),
+      show: checkHasAuthority(
+        accessWayCollection.user.pageListOperateLog.permission,
+      ),
       tab: '操作日志',
     },
   ];
@@ -54,7 +68,7 @@ class Detail extends DataTabContainerSupplement {
 
     this.state = {
       ...this.state,
-      pageTitle: '用户：',
+      pageTitle: '',
       loadApiPath: 'user/get',
       backPath: `/person/user/pageList/key`,
       userId: null,
@@ -100,11 +114,55 @@ class Detail extends DataTabContainerSupplement {
     });
   };
 
+  setEnable = (r) => {
+    setEnableAction({
+      target: this,
+      handleData: r,
+      // eslint-disable-next-line no-unused-vars
+      successCallback: ({ target, handleData, remoteData }) => {
+        const { metaData } = target.state;
+
+        metaData[fieldData.status.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.status.name,
+        });
+
+        target.setState({ metaData });
+      },
+    });
+  };
+
+  setDisable = (r) => {
+    setDisableAction({
+      target: this,
+      handleData: r,
+      // eslint-disable-next-line no-unused-vars
+      successCallback: ({ target, handleData, remoteData }) => {
+        const { metaData } = target.state;
+
+        metaData[fieldData.status.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.status.name,
+        });
+
+        target.setState({ metaData });
+      },
+    });
+  };
+
   refreshCache = (r) => {
     refreshCacheAction({
       target: this,
       handleData: r,
     });
+  };
+
+  openResetPasswordModal = () => {
+    ResetPasswordModal.open();
+  };
+
+  openResetSignetPasswordModal = () => {
+    ResetSignetPasswordModal.open();
   };
 
   establishPageHeaderTitlePrefix = () => {
@@ -114,16 +172,81 @@ class Detail extends DataTabContainerSupplement {
   establishPageHeaderAvatarConfig = () => {
     const { metaData } = this.state;
 
-    const headImageUrl = getValueByKey({
+    const avatar = getValueByKey({
       data: metaData,
-      key: fieldData.headImageUrl.name,
+      key: fieldData.avatar.name,
     });
 
-    if (!checkStringIsNullOrWhiteSpace(headImageUrl || '')) {
-      return { src: headImageUrl };
+    if (!checkStringIsNullOrWhiteSpace(avatar || '')) {
+      return { src: avatar };
     }
 
     return null;
+  };
+
+  establishExtraActionGroupConfig = () => {
+    const { metaData } = this.state;
+
+    if (metaData == null) {
+      return null;
+    }
+
+    const status = getValueByKey({
+      data: metaData,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
+    const that = this;
+
+    return {
+      buttons: [
+        {
+          key: 'setEnable',
+          text: '启用用户',
+          icon: iconBuilder.playCircle(),
+          handleButtonClick: ({ handleData }) => {
+            that.setEnable(handleData);
+          },
+          disabled: status === statusCollection.enable,
+          confirm: {
+            title: '即将启用用户，确定吗？',
+          },
+          handleData: metaData,
+        },
+        {
+          key: 'setDisable',
+          text: '禁用用户',
+          icon: iconBuilder.pauseCircle(),
+          handleButtonClick: ({ handleData }) => {
+            that.setDisable(handleData);
+          },
+          disabled: status === statusCollection.disable,
+          confirm: {
+            title: '即将禁用用户，确定吗？',
+          },
+          handleData: metaData,
+        },
+        {
+          key: 'resetPassword',
+          text: '重置登录密码',
+          icon: iconBuilder.key(),
+          handleButtonClick: () => {
+            that.openResetPasswordModal();
+          },
+          handleData: metaData,
+        },
+        {
+          key: 'resetSignetPassword',
+          text: '重置印章密码',
+          icon: iconBuilder.key(),
+          handleButtonClick: () => {
+            that.openResetSignetPasswordModal();
+          },
+          handleData: metaData,
+        },
+      ],
+    };
   };
 
   establishExtraActionEllipsisConfig = () => {
@@ -171,7 +294,13 @@ class Detail extends DataTabContainerSupplement {
 
     return {
       textLabel: '当前状态',
-      text: '正常',
+      text: getUserStatusName({
+        value: getValueByKey({
+          data: metaData,
+          key: fieldData.status.name,
+          convert: convertCollection.number,
+        }),
+      }),
       timeLabel: fieldData.createTime.label,
       time: getValueByKey({
         data: metaData,
@@ -194,11 +323,20 @@ class Detail extends DataTabContainerSupplement {
         canCopy: true,
       },
       {
-        label: fieldData.type.label,
+        label: fieldData.realName.label,
+        value: getValueByKey({
+          data: metaData,
+          key: fieldData.realName.name,
+          defaultValue: '暂无',
+        }),
+      },
+      {
+        label: fieldData.gender.label,
         value: getGenderName({
           value: getValueByKey({
             data: metaData,
-            key: fieldData.sex.name,
+            key: fieldData.gender.name,
+            defaultValue: '暂未设置',
           }),
         }),
       },
@@ -216,6 +354,7 @@ class Detail extends DataTabContainerSupplement {
         value: getValueByKey({
           data: metaData,
           key: fieldData.phone.name,
+          defaultValue: '暂无',
         }),
       },
       {
@@ -223,6 +362,7 @@ class Detail extends DataTabContainerSupplement {
         value: getValueByKey({
           data: metaData,
           key: fieldData.noId.name,
+          defaultValue: '暂无',
         }),
       },
       {
@@ -230,6 +370,7 @@ class Detail extends DataTabContainerSupplement {
         value: getValueByKey({
           data: metaData,
           key: fieldData.email.name,
+          defaultValue: '暂无',
         }),
       },
       {
@@ -237,9 +378,22 @@ class Detail extends DataTabContainerSupplement {
         value: getValueByKey({
           data: metaData,
           key: fieldData.address.name,
+          defaultValue: '暂无',
         }),
       },
     ];
+  };
+
+  renderPresetOther = () => {
+    const { metaData } = this.state;
+
+    return (
+      <>
+        <ResetPasswordModal externalData={metaData} />
+
+        <ResetSignetPasswordModal externalData={metaData} />
+      </>
+    );
   };
 }
 

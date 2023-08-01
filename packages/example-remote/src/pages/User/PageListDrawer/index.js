@@ -43,7 +43,6 @@ class PageListDrawer extends MultiPageSelectDrawer {
 
     this.state = {
       ...this.state,
-
       loadApiPath: 'user/pageList',
       listViewMode: listViewConfig.viewMode.list,
     };
@@ -81,9 +80,9 @@ class PageListDrawer extends MultiPageSelectDrawer {
 
   // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemInner = (item, index) => {
-    const headImageUrl = getValueByKey({
+    const avatar = getValueByKey({
       data: item,
-      key: fieldData.headImageUrl.name,
+      key: fieldData.avatar.name,
     });
 
     const userId = getValueByKey({
@@ -121,10 +120,10 @@ class PageListDrawer extends MultiPageSelectDrawer {
       <>
         <List.Item.Meta
           avatar={
-            checkStringIsNullOrWhiteSpace(headImageUrl) ? (
+            checkStringIsNullOrWhiteSpace(avatar) ? (
               <Avatar icon={iconBuilder.user()} />
             ) : (
-              <Avatar src={headImageUrl} />
+              <Avatar src={avatar} />
             )
           }
           title={

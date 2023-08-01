@@ -37,8 +37,7 @@ class Index extends DataTabContainerSupplement {
 
     this.state = {
       ...this.state,
-
-      pageTitle: '名称：',
+      pageTitle: '',
       loadApiPath: 'hostService/get',
       backPath: `/service/hostService/pageList/key`,
       hostServiceId: null,

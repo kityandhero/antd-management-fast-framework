@@ -1,15 +1,21 @@
 import { connect } from 'easy-soft-dva';
-import { convertCollection, getValueByKey } from 'easy-soft-utility';
+import {
+  checkInCollection,
+  convertCollection,
+  formatCollection,
+  getValueByKey,
+} from 'easy-soft-utility';
 
 import {
   cardConfig,
+  dataTypeCollection,
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
-import TabPageBase from '../../TabPageBase';
+import { TabPageBase } from '../../TabPageBase';
 
 @connect(({ generalLog, schedulingControl }) => ({
   generalLog,
@@ -41,13 +47,25 @@ class Index extends TabPageBase {
     const d = o;
     const { generalLogId } = this.state;
 
-    d.generalLogId = generalLogId;
+    d[fieldData.generalLogId.name] = generalLogId;
 
     return d;
   };
 
   establishCardCollectionConfig = () => {
     const { metaData } = this.state;
+
+    const messageType = getValueByKey({
+      data: metaData,
+      key: fieldData.messageType.name,
+      convert: convertCollection.number,
+    });
+
+    const contentType = getValueByKey({
+      data: metaData,
+      key: fieldData.contentType.name,
+      convert: convertCollection.number,
+    });
 
     return {
       list: [
@@ -69,130 +87,79 @@ class Index extends TabPageBase {
           items: [
             {
               lg: 24,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  span: 4,
-                  label: fieldData.message.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.message.name,
-                  }),
+              type: cardConfig.contentItemType.jsonView,
+              value: getValueByKey({
+                data: metaData,
+                key: fieldData.message.name,
+              }),
+              hidden: !checkInCollection(
+                [
+                  dataTypeCollection.jsonObject.flag,
+                  dataTypeCollection.jsonObjectList.flag,
+                ],
+                messageType,
+              ),
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.html,
+              html: getValueByKey({
+                data: metaData,
+                key: fieldData.message.name,
+                defaultValue: '',
+                formatBuilder: (v) => {
+                  return v.replaceAll(new RegExp('\\r\\n', 'g'), '<br/>');
                 },
-                {
-                  span: 4,
-                  label: fieldData.url.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.url.name,
-                  }),
-                },
-                {
-                  label: fieldData.source.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.source.name,
-                  }),
-                },
-                {
-                  label: fieldData.userId.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.userId.name,
-                  }),
-                },
-                {
-                  label: fieldData.scene.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.scene.name,
-                  }),
-                },
-                {
-                  label: fieldData.host.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.host.name,
-                  }),
-                },
-                {
-                  label: fieldData.port.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.port.name,
-                  }),
-                },
-                {
-                  label: fieldData.ip.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.ip.name,
-                  }),
-                },
-                {
-                  label: fieldData.log.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.log.name,
-                  }),
-                },
-                {
-                  label: fieldData.autoRemark.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.autoRemark.name,
-                  }),
-                },
-              ],
-              props: {
-                bordered: true,
-                column: 4,
-                labelStyle: {
-                  width: '90px',
-                },
-                emptyValue: '暂无',
-              },
+              }),
+              hidden: checkInCollection(
+                [
+                  dataTypeCollection.jsonObject.flag,
+                  dataTypeCollection.jsonObjectList.flag,
+                ],
+                messageType,
+              ),
             },
           ],
         },
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '异常信息',
+            text: '调用堆栈信息',
           },
           items: [
             {
               lg: 24,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  span: 4,
-                  label: fieldData.exceptionTypeName.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.exceptionTypeName.name,
-                  }),
+              type: cardConfig.contentItemType.jsonView,
+              value: getValueByKey({
+                data: metaData,
+                key: fieldData.content.name,
+              }),
+              hidden: !checkInCollection(
+                [
+                  dataTypeCollection.jsonObject.flag,
+                  dataTypeCollection.jsonObjectList.flag,
+                ],
+                contentType,
+              ),
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.html,
+              html: getValueByKey({
+                data: metaData,
+                key: fieldData.content.name,
+                defaultValue: '',
+                formatBuilder: (v) => {
+                  return v.replaceAll(new RegExp('\\r\\n', 'g'), '<br/>');
                 },
-                {
-                  span: 4,
-                  label: fieldData.exceptionTypeFullName.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.exceptionTypeFullName.name,
-                  }),
-                },
-              ],
-              props: {
-                bordered: true,
-                column: 4,
-                labelStyle: {
-                  width: '90px',
-                },
-                emptyValue: '暂无',
-                emptyStyle: {
-                  color: '#ccc',
-                },
-              },
+              }),
+              hidden: checkInCollection(
+                [
+                  dataTypeCollection.jsonObject.flag,
+                  dataTypeCollection.jsonObjectList.flag,
+                ],
+                contentType,
+              ),
             },
           ],
         },
@@ -204,16 +171,40 @@ class Index extends TabPageBase {
           items: [
             {
               lg: 24,
-              type: cardConfig.contentItemType.html,
-              html: getValueByKey({
-                data: metaData,
-                key: fieldData.stackTrace.name,
-                defaultValue: '',
-                convert: convertCollection.string,
-                formatBuilder: (v) => {
-                  return v.replaceAll(new RegExp('\\r\\n', 'g'), '<br/>');
+              type: cardConfig.contentItemType.customGrid,
+              list: [
+                {
+                  label: fieldData.channelNote.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.channelNote.name,
+                  }),
                 },
-              }),
+                {
+                  label: fieldData.ip.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.ip.name,
+                  }),
+                },
+                {
+                  span: 2,
+                  label: fieldData.createTime.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.createTime.name,
+                    format: formatCollection.datetime,
+                  }),
+                },
+              ],
+              props: {
+                bordered: true,
+                column: 4,
+                labelStyle: {
+                  width: '90px',
+                },
+                emptyValue: '暂无',
+              },
             },
           ],
         },

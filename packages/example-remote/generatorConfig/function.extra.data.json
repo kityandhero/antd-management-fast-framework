@@ -1,14 +1,29 @@
 {
   "list": [
     {
+      "functionSegment": "JsonItemType",
+      "label": "值类型",
+      "name": "type"
+    },
+    {
       "functionSegment": "Channel",
       "label": "适用渠道",
       "name": "channel"
     },
     {
+      "functionSegment": "FileType",
+      "label": "文件类型",
+      "name": "fileType"
+    },
+    {
       "functionSegment": "Gender",
       "label": "性别",
       "name": "gender"
+    },
+    {
+      "functionSegment": "BusinessMode",
+      "label": "适用业务",
+      "name": "businessMode"
     },
     {
       "functionSegment": "WebChannel",
@@ -24,6 +39,16 @@
       "functionSegment": "GeneralLogType",
       "label": "类型",
       "name": "type"
+    },
+    {
+      "functionSegment": "UploadHistorySourceType",
+      "label": "来源",
+      "name": "sourceType"
+    },
+    {
+      "functionSegment": "UploadHistoryStatus",
+      "label": "状态",
+      "name": "status"
     },
     {
       "functionSegment": "SmsCategoryStatus",
@@ -61,9 +86,129 @@
       "name": "status"
     },
     {
+      "functionSegment": "ApplicationSourceType",
+      "label": "类型",
+      "name": "type"
+    },
+    {
+      "functionSegment": "ApplicationSourceCreateMode",
+      "label": "状态",
+      "name": "createMode"
+    },
+    {
+      "functionSegment": "ApplicationSourceStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "ApplicationType",
+      "label": "类型",
+      "name": "type"
+    },
+    {
+      "functionSegment": "ApplicationCertificateType",
+      "label": "类型",
+      "name": "certificateType"
+    },
+    {
+      "functionSegment": "ApplicationMerchantType",
+      "label": "商户类型",
+      "name": "merchantType"
+    },
+    {
+      "functionSegment": "ApplicationStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "ApplicationNavigationVisibility",
+      "label": "可见性",
+      "name": "visibility"
+    },
+    {
+      "functionSegment": "ApplicationNavigationOperationType",
+      "label": "交互方式",
+      "name": "operationType"
+    },
+    {
+      "functionSegment": "ApplicationNavigationAccessibility",
+      "label": "可访问性",
+      "name": "accessibility"
+    },
+    {
       "functionSegment": "UserType",
       "label": "类型",
       "name": "type"
+    },
+    {
+      "functionSegment": "UserStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "UserYonYouCorrelationStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "MasterManagerStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "WeChatMessageRecordSendStatus",
+      "label": "发送状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "TagDisplayRange",
+      "label": "显示范围",
+      "name": "displayRange"
+    },
+    {
+      "functionSegment": "TagStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "SubsidiaryStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "DepartmentOwnershipMode",
+      "label": "归属模式",
+      "name": "ownershipMode"
+    },
+    {
+      "functionSegment": "DepartmentStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "OptionPoolCategory",
+      "label": "类别",
+      "name": "category"
+    },
+    {
+      "functionSegment": "OptionPoolStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "SectionRenderType",
+      "label": "渲染模式",
+      "name": "renderType"
+    },
+    {
+      "functionSegment": "SectionStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "YonYouPushMessageStatus",
+      "label": "状态",
+      "name": "status"
     }
   ]
 }

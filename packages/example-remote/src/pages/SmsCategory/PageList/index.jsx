@@ -221,7 +221,7 @@ class PageList extends MultiPage {
   };
 
   establishListItemDropdownConfig = (record) => {
-    const itemStatus = getValueByKey({
+    const status = getValueByKey({
       data: record,
       key: fieldData.status.name,
       convert: convertCollection.number,
@@ -243,7 +243,7 @@ class PageList extends MultiPage {
           key: 'setEnable',
           icon: iconBuilder.playCircle(),
           text: '设为启用',
-          disabled: itemStatus === statusCollection.enable,
+          disabled: status === statusCollection.enable,
           confirm: {
             title: '即将设为启用，确定吗？',
           },
@@ -252,7 +252,7 @@ class PageList extends MultiPage {
           key: 'setDisable',
           icon: iconBuilder.pauseCircle(),
           text: '设为禁用',
-          disabled: itemStatus === statusCollection.disable,
+          disabled: status === statusCollection.disable,
           confirm: {
             title: '即将设为禁用，确定吗？',
           },

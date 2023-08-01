@@ -18,7 +18,7 @@ import { fieldData } from '../Common/data';
 
 const { InnerMultiPage } = DataMultiPageView;
 
-class BaseInnerOperationLogPageList extends InnerMultiPage {
+class BaseInnerPageList extends InnerMultiPage {
   constructor(properties) {
     super(properties);
 
@@ -106,6 +106,7 @@ class BaseInnerOperationLogPageList extends InnerMultiPage {
       <DataPreviewDrawer
         maskClosable
         title="详细信息"
+        descriptionLabel="简要描述"
         description={title}
         dataType={contentType}
         data={content}
@@ -168,4 +169,4 @@ class BaseInnerOperationLogPageList extends InnerMultiPage {
   };
 }
 
-export { BaseInnerOperationLogPageList };
+export default BaseInnerPageList;

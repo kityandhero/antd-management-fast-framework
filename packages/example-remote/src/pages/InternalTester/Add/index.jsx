@@ -32,7 +32,6 @@ class Add extends BaseAddForm {
 
     this.state = {
       ...this.state,
-
       dataLoading: false,
       pageTitle: '新增内测用户',
       submitApiPath: 'internalTester/addBasicInfo',
@@ -54,7 +53,7 @@ class Add extends BaseAddForm {
     const d = o;
     const { userId } = this.state;
 
-    d.userId = userId;
+    d[fieldData.userId.name] = userId;
 
     return d;
   };

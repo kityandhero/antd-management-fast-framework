@@ -2,10 +2,15 @@ import { formNameCollection } from 'antd-management-fast-common';
 
 export const fieldData = {
   ...formNameCollection,
-  name: {
-    label: '名称',
-    name: 'name',
+  systemName: {
+    label: '系统名称',
+    name: 'systemName',
     helper: '系统的名称',
+  },
+  name: {
+    label: '组织名称',
+    name: 'name',
+    helper: '组织的名称',
   },
   description: {
     label: '简介描述',
@@ -123,6 +128,24 @@ export const fieldData = {
       label: '自动补全域名',
       name: 'qiniuRootUrl',
       helper: '相对路径文件自动追加的域名信息',
+    },
+  },
+  sms: {
+    label: '短信',
+    shortMessagingServiceKey: {
+      label: '短信平台Key',
+      name: 'shortMessagingServiceKey',
+      helper: '',
+    },
+    shortMessagingServiceSignature: {
+      label: '短信签名',
+      name: 'shortMessagingServiceSignature',
+      helper: '',
+    },
+    shortMessagingServiceVerificationCodeTemplate: {
+      label: '验证码短信模板',
+      name: 'shortMessagingServiceVerificationCodeTemplate',
+      helper: '',
     },
   },
 };

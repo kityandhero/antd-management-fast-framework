@@ -1,5 +1,6 @@
 import { logExecute, showSimpleInfoNotification } from 'easy-soft-utility';
 
+import { defaultUserAvatar } from 'antd-management-fast-common';
 import {
   configEnvironment,
   setSignInDataPretreatmentHandler,
@@ -9,11 +10,11 @@ import {
 import { prepareModel } from '../modelBuilders';
 
 function transferLayoutAvatar({ currentOperator }) {
-  const { avatar, name } = currentOperator;
+  const { avatar, loginName, name } = currentOperator;
 
   return {
-    src: avatar,
-    title: name,
+    src: avatar || defaultUserAvatar,
+    title: name || loginName,
   };
 }
 
@@ -21,8 +22,6 @@ function pretreatSignInData({ request, response }) {
   logExecute('pretreatSignInData');
 
   const { name } = request;
-
-  console.log({ name });
 
   if (name === 'admin') {
     showSimpleInfoNotification('login with super role');
