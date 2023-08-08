@@ -1,10 +1,7 @@
 export const code = `import { connect } from 'easy-soft-dva';
-import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
-
-import { fieldData } from '../../../businessData/data';
 
 const { BaseDisplayModal } = DataModal;
 
@@ -29,70 +26,16 @@ class SimpleDisplayModal extends BaseDisplayModal {
     this.state = {
       ...this.state,
       pageTitle: '展示窗体',
+      image: '',
     };
   }
 
-  supplementLoadRequestParams = (o) => {
-    const d = o;
-    const { externalData } = this.state;
-    const { simpleId } = externalData;
-
-    d.simpleId = simpleId;
-
-    return d;
-  };
-
-  supplementSubmitRequestParams = (o) => {
-    const d = o;
-    const { externalData } = this.state;
-
-    let simpleId = '';
-
-    if ((externalData || null) != null) {
-      simpleId = externalData.simpleId || '';
-    }
-
-    d.simpleId = simpleId;
-
-    return d;
-  };
-
-  buildNotificationDescription = (
-    // eslint-disable-next-line no-unused-vars
-    singleData,
-    // eslint-disable-next-line no-unused-vars
-    listData,
-    // eslint-disable-next-line no-unused-vars
-    extraData,
-    // eslint-disable-next-line no-unused-vars
-    responseOriginalData,
-    // eslint-disable-next-line no-unused-vars
-    submitData,
-  ) => {
-    return \`信息添加成功。\`;
-  };
-
-  buildTitleSubText = () => {
-    const { metaData } = this.state;
-
-    return getValueByKey({
-      data: metaData,
-      key: fieldData.title.name,
-    });
-  };
-
-  establishFormAdditionalConfig = () => {
-    return {
-      labelCol: {
-        flex: '60px',
-      },
-      wrapperCol: {
-        flex: 'auto',
-      },
-    };
+  afterImageUploadSuccess = (image) => {
+    this.setState({ image });
   };
 
   fillInitialValuesAfterLoad = ({
+    // eslint-disable-next-line no-unused-vars
     metaData = null,
     // eslint-disable-next-line no-unused-vars
     metaListData = [],
@@ -103,27 +46,30 @@ class SimpleDisplayModal extends BaseDisplayModal {
   }) => {
     const values = {};
 
-    if (metaData != null) {
-      values[fieldData.sort.name] = getValueByKey({
-        data: metaData,
-        key: fieldData.sort.name,
-        convert: convertCollection.number,
-      });
-    }
-
     return values;
   };
 
   establishCardCollectionConfig = () => {
+    const { image } = this.state;
+
     return {
       list: [
         {
           items: [
             {
               lg: 24,
-              type: cardConfig.contentItemType.input,
-              fieldData: fieldData.title,
-              require: true,
+              type: cardConfig.contentItemType.imageUpload,
+              image,
+              uploadProps: {
+                singleMode: {
+                  width: '100%',
+                  emptyImage: '',
+                },
+              },
+              action: \`/simple/uploadImage\`,
+              afterUploadSuccess: (imageData) => {
+                this.afterImageUploadSuccess(imageData);
+              },
             },
           ],
         },
