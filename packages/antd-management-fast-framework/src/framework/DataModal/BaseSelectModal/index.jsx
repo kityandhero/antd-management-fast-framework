@@ -67,7 +67,20 @@ class BaseSelectModal extends BaseLoadModal {
     return optionCount === 0 || (currentRecord || null) == null;
   };
 
-  onChange = (v, selectData) => {
+  onChange = (value, selectData, option, list) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          value,
+          selectData,
+          option,
+          list,
+        },
+      },
+      primaryCallName,
+      'onChange',
+    );
+
     this.setState({
       currentRecord: selectData,
     });
@@ -85,7 +98,13 @@ class BaseSelectModal extends BaseLoadModal {
     switchControlAssist.close(this.getVisibleFlag());
   };
 
+  transferData = (o, index) => {
+    return convertOptionOrRadioData(o, index);
+  };
+
   establishFormAdditionalConfig = () => {
+    this.logCallTrack({}, primaryCallName, 'establishFormAdditionalConfig');
+
     const { labelWidth } = this.props;
 
     return {
@@ -118,7 +137,7 @@ class BaseSelectModal extends BaseLoadModal {
                 label: label,
                 name: 'value',
                 list: refitCommonData(metaListData),
-                dataConvert: convertOptionOrRadioData,
+                dataConvert: this.transferData,
                 onChange: this.onChange,
                 helper: helper,
               }),

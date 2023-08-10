@@ -27,13 +27,17 @@ export function buildOptionItem(item, index) {
     showSimpleWarnMessage(text);
   }
 
+  const text = alias || label;
+
+  const descriptionAdjust = text === description ? '' : description;
+
   return (
     <Option
       key={`option_${index}`}
       value={value}
       disabled={toBoolean(disabled)}
     >
-      <FlexText text={alias || label} subText={description} />
+      <FlexText text={text} subText={descriptionAdjust} />
     </Option>
   );
 }

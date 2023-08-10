@@ -51,6 +51,7 @@ class SelectItem extends PureComponent {
             v,
             selectList.length == 1 ? selectList[0] : selectList,
             option,
+            listAdjust,
           );
         }
       },
