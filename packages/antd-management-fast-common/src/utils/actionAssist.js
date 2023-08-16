@@ -99,6 +99,22 @@ function remoteAction({
         }
 
         if (isFunction(successCallback)) {
+          logTrace(
+            {
+              target,
+              params,
+              handleData,
+              remoteListData: isArray(remoteListData) ? remoteListData : [],
+              remoteData: remoteData || null,
+              remoteExtraData: remoteExtraData || null,
+              remoteOriginal: data,
+            },
+            buildPromptModuleInfoText(
+              'remoteAction',
+              mergeArrowText('trigger', 'successCallback'),
+            ),
+          );
+
           successCallback({
             target,
             params,
@@ -108,9 +124,37 @@ function remoteAction({
             remoteExtraData: remoteExtraData || null,
             remoteOriginal: data,
           });
+        } else {
+          logTrace(
+            {
+              target,
+              api,
+              params,
+              dispatch,
+              remoteOriginal: data,
+            },
+            buildPromptModuleInfoText(
+              'remoteAction',
+              mergeArrowText('trigger', 'successCallback', emptyLogic),
+            ),
+          );
         }
       } else {
         if (isFunction(failCallback)) {
+          logTrace(
+            {
+              target,
+              params,
+              handleData,
+              remoteOriginal: data,
+              error: null,
+            },
+            buildPromptModuleInfoText(
+              'remoteAction',
+              mergeArrowText('trigger', 'failCallback'),
+            ),
+          );
+
           failCallback({
             target,
             params,
@@ -118,6 +162,20 @@ function remoteAction({
             remoteOriginal: data,
             error: null,
           });
+        } else {
+          logTrace(
+            {
+              target,
+              api,
+              params,
+              dispatch,
+              remoteOriginal: data,
+            },
+            buildPromptModuleInfoText(
+              'remoteAction',
+              mergeArrowText('trigger', 'failCallback', emptyLogic),
+            ),
+          );
         }
       }
 
@@ -127,6 +185,44 @@ function remoteAction({
 
       if (isFunction(target.closePreventRender)) {
         target.closePreventRender(true);
+      }
+
+      if (isFunction(completeProcess)) {
+        logTrace(
+          {
+            target,
+            api,
+            params,
+            dispatch,
+            remoteOriginal: data,
+          },
+          buildPromptModuleInfoText(
+            'remoteAction',
+            mergeArrowText('trigger', 'completeProcess'),
+          ),
+        );
+
+        completeProcess({
+          target,
+          api,
+          params,
+          dispatch,
+          remoteOriginal: data,
+        });
+      } else {
+        logTrace(
+          {
+            target,
+            api,
+            params,
+            dispatch,
+            remoteOriginal: data,
+          },
+          buildPromptModuleInfoText(
+            'remoteAction',
+            mergeArrowText('trigger', 'completeProcess', emptyLogic),
+          ),
+        );
       }
 
       return data;
@@ -144,12 +240,42 @@ function remoteAction({
         }, 200);
       }
 
-      if (isFunction(completeProcess)) {
-        completeProcess({ target, params });
-      }
-
       if (isFunction(target.stopProcessing)) {
         target.stopProcessing();
+      }
+
+      if (isFunction(target.closePreventRender)) {
+        target.closePreventRender(true);
+      }
+
+      if (isFunction(completeProcess)) {
+        logTrace(
+          {
+            target,
+            api,
+            params,
+            dispatch,
+          },
+          buildPromptModuleInfoText(
+            'remoteAction',
+            mergeArrowText('trigger', 'completeProcess'),
+          ),
+        );
+
+        completeProcess({ target, api, params, dispatch });
+      } else {
+        logTrace(
+          {
+            target,
+            api,
+            params,
+            dispatch,
+          },
+          buildPromptModuleInfoText(
+            'remoteAction',
+            mergeArrowText('trigger', 'completeProcess', emptyLogic),
+          ),
+        );
       }
     });
 }
@@ -361,8 +487,7 @@ export function apiRequest({
             },
             buildPromptModuleInfoText(
               'apiRequest',
-              'trigger',
-              'successMessageBuilder',
+              mergeArrowText('trigger', 'successMessageBuilder'),
             ),
           );
 
@@ -379,6 +504,22 @@ export function apiRequest({
         }
 
         if (isFunction(successCallback)) {
+          logTrace(
+            {
+              api,
+              params,
+              dispatch,
+              remoteListData: isArray(remoteListData) ? remoteListData : [],
+              remoteData: remoteData || null,
+              remoteExtraData: remoteExtraData || null,
+              remoteOriginal: data,
+            },
+            buildPromptModuleInfoText(
+              'apiRequest',
+              mergeArrowText('trigger', 'successCallback'),
+            ),
+          );
+
           successCallback({
             api,
             params,
@@ -388,6 +529,22 @@ export function apiRequest({
             remoteExtraData: remoteExtraData || null,
             remoteOriginal: data,
           });
+        } else {
+          logTrace(
+            {
+              api,
+              params,
+              dispatch,
+              remoteListData: isArray(remoteListData) ? remoteListData : [],
+              remoteData: remoteData || null,
+              remoteExtraData: remoteExtraData || null,
+              remoteOriginal: data,
+            },
+            buildPromptModuleInfoText(
+              'apiRequest',
+              mergeArrowText('trigger', 'successCallback', emptyLogic),
+            ),
+          );
         }
       } else {
         if (isFunction(failCallback)) {
@@ -399,7 +556,10 @@ export function apiRequest({
               remoteOriginal: data,
               error: null,
             },
-            buildPromptModuleInfoText('apiRequest', 'trigger', 'failCallback'),
+            buildPromptModuleInfoText(
+              'apiRequest',
+              mergeArrowText('trigger', 'failCallback'),
+            ),
           );
 
           failCallback({
@@ -420,16 +580,45 @@ export function apiRequest({
             },
             buildPromptModuleInfoText(
               'apiRequest',
-              'trigger',
-              'failCallback',
-              emptyLogic,
+              mergeArrowText('trigger', 'failCallback', emptyLogic),
             ),
           );
         }
       }
 
       if (isFunction(completeProcess)) {
-        completeProcess({ api, params, dispatch, remoteOriginal: data });
+        logTrace(
+          {
+            api,
+            params,
+            dispatch,
+            remoteOriginal: data,
+          },
+          buildPromptModuleInfoText(
+            'apiRequest',
+            mergeArrowText('trigger', 'completeProcess'),
+          ),
+        );
+
+        completeProcess({
+          api,
+          params,
+          dispatch,
+          remoteOriginal: data,
+        });
+      } else {
+        logTrace(
+          {
+            api,
+            params,
+            dispatch,
+            remoteOriginal: data,
+          },
+          buildPromptModuleInfoText(
+            'apiRequest',
+            mergeArrowText('trigger', 'completeProcess', emptyLogic),
+          ),
+        );
       }
 
       return data;
@@ -448,7 +637,31 @@ export function apiRequest({
       }
 
       if (isFunction(completeProcess)) {
+        logTrace(
+          {
+            api,
+            params,
+            dispatch,
+          },
+          buildPromptModuleInfoText(
+            'apiRequest',
+            mergeArrowText('trigger', 'completeProcess'),
+          ),
+        );
+
         completeProcess({ api, params, dispatch });
+      } else {
+        logTrace(
+          {
+            api,
+            params,
+            dispatch,
+          },
+          buildPromptModuleInfoText(
+            'apiRequest',
+            mergeArrowText('trigger', 'completeProcess', emptyLogic),
+          ),
+        );
       }
     });
 }
