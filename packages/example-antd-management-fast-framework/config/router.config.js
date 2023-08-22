@@ -29,7 +29,7 @@ export default [
       {
         path: '/dashboard/workbench',
         name: 'workbench',
-        icon: 'bars',
+        // icon: 'bars',
         component: './Workbench',
       },
     ],

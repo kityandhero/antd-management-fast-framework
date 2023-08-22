@@ -16,6 +16,7 @@ function buildConfig({ packageJson: packageImport, config = {} }) {
     if (deps['react']) {
       shared.react = {
         singleton: true,
+        eager: true,
         requiredVersion: deps['react'],
       };
     }
@@ -23,10 +24,12 @@ function buildConfig({ packageJson: packageImport, config = {} }) {
     if (deps['react-dom']) {
       shared['react-dom'] = {
         singleton: true,
+        eager: true,
         requiredVersion: deps['react-dom'],
       };
     }
 
+    mfsu.remotes = [];
     mfsu.shared = shared;
   }
 
