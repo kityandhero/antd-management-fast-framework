@@ -241,7 +241,7 @@ class BaseUpdateForm extends DataLoad {
         .catch((error) => {
           const { message } = error;
 
-          if (!isUndefined()) {
+          if (!isUndefined(message)) {
             logException(message);
           }
 
@@ -343,7 +343,7 @@ class BaseUpdateForm extends DataLoad {
       .catch((error) => {
         const { message } = error;
 
-        if (!isUndefined()) {
+        if (!isUndefined(message)) {
           logException(message);
         }
 

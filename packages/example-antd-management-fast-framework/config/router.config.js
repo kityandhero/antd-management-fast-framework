@@ -234,6 +234,13 @@ export default [
         useMini: true,
         component: './Interaction/DrawerView',
       },
+      {
+        path: '/interaction/designView',
+        name: 'designView',
+        icon: 'bars',
+        useMini: true,
+        component: './Interaction/DesignView',
+      },
     ],
   },
   {

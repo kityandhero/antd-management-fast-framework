@@ -448,7 +448,7 @@ class BaseWindow extends Base {
         .catch((error) => {
           const { message } = error;
 
-          if (!isUndefined()) {
+          if (!isUndefined(message)) {
             logException(message);
           }
 
@@ -568,7 +568,7 @@ class BaseWindow extends Base {
       .catch((error) => {
         const { errorFields, message } = error;
 
-        if (!isUndefined()) {
+        if (!isUndefined(message)) {
           logException(message);
         }
 

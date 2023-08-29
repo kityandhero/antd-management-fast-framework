@@ -230,7 +230,7 @@ function remoteAction({
     .catch((error) => {
       const { message } = error;
 
-      if (!isUndefined()) {
+      if (!isUndefined(message)) {
         logException(message);
       }
 
@@ -626,7 +626,7 @@ export function apiRequest({
     .catch((error) => {
       const { message } = error;
 
-      if (!isUndefined()) {
+      if (!isUndefined(message)) {
         logException(message);
       }
 

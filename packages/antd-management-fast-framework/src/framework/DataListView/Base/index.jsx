@@ -391,7 +391,7 @@ class Base extends AuthorizationWrapper {
       .catch((error) => {
         const { errorFields, message } = error;
 
-        if (!isUndefined()) {
+        if (!isUndefined(message)) {
           logException(message);
         }
 

@@ -19,7 +19,6 @@ module.exports = {
       'plugin/declaration-block-no-ignored-properties': true,
       'selector-type-no-unknown': null,
       'value-keyword-case': ['lower', { ignoreProperties: ['composes'] }],
-      'unicode-bom': 'never',
       'no-descending-specificity': null,
       'selector-class-pattern': null,
       'value-no-vendor-prefix': null,

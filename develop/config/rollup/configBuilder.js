@@ -97,6 +97,7 @@ export function buildConfig({
   terser: whetherTerser = false,
   externalCollection: otherExternalCollection = [],
   babelConfig: babelExtraConfig = {},
+  postcssConfig = {},
 }) {
   const externals = [...externalCollection, ...(otherExternalCollection || [])];
 
@@ -142,6 +143,7 @@ export function buildConfig({
         inject: { insertAt: 'top' },
         extract: true,
         modules: true,
+        ...postcssConfig,
       }),
       babelConfig({
         presets: [
@@ -149,6 +151,7 @@ export function buildConfig({
             '@babel/preset-react',
             {
               runtime: 'automatic',
+              development: false,
             },
           ],
           '@babel/preset-env',

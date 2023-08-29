@@ -99,12 +99,8 @@ class InternalBuild extends InternalSwitchoverFlow {
         }
       : {};
 
-    return (
-      <div
-        style={{
-          ...backgroundColorStyle,
-        }}
-      >
+    const inner =
+      listData.length > 1 ? (
         <Space style={{ width: '100%' }} direction="vertical" size={16}>
           {listData.map((item, index) => {
             if (React.isValidElement(item)) {
@@ -129,6 +125,40 @@ class InternalBuild extends InternalSwitchoverFlow {
             />
           )}
         </Space>
+      ) : (
+        <>
+          {listData.map((item, index) => {
+            if (React.isValidElement(item)) {
+              return (
+                <Fragment key={`item_component_${index}`}>{item}</Fragment>
+              );
+            }
+
+            return this.buildCardCollectionItem({
+              mode,
+              justify: justifyGeneral,
+              align: alignGeneral,
+              config: { bordered: false, ...item },
+              key: index,
+            });
+          })}
+
+          {helpConfig == null ? null : (
+            <HelpContent
+              wrapperType={this.contentWrapperType}
+              {...this.establishHelpConfig()}
+            />
+          )}
+        </>
+      );
+
+    return (
+      <div
+        style={{
+          ...backgroundColorStyle,
+        }}
+      >
+        {inner}
       </div>
     );
   };

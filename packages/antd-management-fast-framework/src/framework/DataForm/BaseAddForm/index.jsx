@@ -330,7 +330,7 @@ class BaseAddForm extends DataCore {
         .catch((error) => {
           const { message } = error;
 
-          if (!isUndefined()) {
+          if (!isUndefined(message)) {
             logException(message);
           }
 
@@ -430,7 +430,7 @@ class BaseAddForm extends DataCore {
       .catch((error) => {
         const { message } = error;
 
-        if (!isUndefined()) {
+        if (!isUndefined(message)) {
           logException(message);
         }
 

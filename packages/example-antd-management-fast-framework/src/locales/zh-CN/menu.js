@@ -62,9 +62,10 @@ export default {
   'menu.interaction.animalView-mini': 'Animal',
   'menu.interaction.modelView': 'Model 示例',
   'menu.interaction.modelView-mini': 'Model',
-
   'menu.interaction.drawerView': 'Drawer 示例',
   'menu.interaction.drawerView-mini': 'Drawer',
+  'menu.interaction.designView': 'Design 示例',
+  'menu.interaction.designView-mini': 'Design',
 
   'menu.flowEditor': '流程图',
   'menu.flowEditor-mini': '流程图',

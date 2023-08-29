@@ -597,7 +597,7 @@ class InternalFlow extends Core {
 
           const { message } = error;
 
-          if (!isUndefined()) {
+          if (!isUndefined(message)) {
             logException(message);
           }
 
