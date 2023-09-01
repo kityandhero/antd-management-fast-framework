@@ -2,7 +2,7 @@ import React from 'react';
 
 import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
-import { getCurrentLocation } from 'antd-management-fast-common';
+import { emptyLogic, getCurrentLocation } from 'antd-management-fast-common';
 import { PageExtra } from 'antd-management-fast-component';
 
 import { InternalFlow } from '../InternalFlow';
@@ -24,7 +24,11 @@ class InternalSwitchoverFlow extends InternalFlow {
     };
   }
 
-  adjustMenuListAvailable = (menuListAvailable) => menuListAvailable;
+  adjustMenuListAvailable = (menuListAvailable) => {
+    this.logCallTrack({}, primaryCallName, 'getMenuListAvailable', emptyLogic);
+
+    return menuListAvailable;
+  };
 
   getMenuListAvailable = () => {
     this.logCallTrack({}, primaryCallName, 'getMenuListAvailable');
