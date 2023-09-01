@@ -28,9 +28,25 @@
     {
       "type": "npm",
       "script": "dev:rollup",
-      "path": "packages/antd-management-fast-design",
+      "path": "packages/antd-management-fast-design-playground",
       "problemMatcher": [],
-      "label": "dev:core-design",
+      "label": "dev:core-design-playground",
+      "detail": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch"
+    },
+    {
+      "type": "npm",
+      "script": "dev:rollup",
+      "path": "packages/antd-management-fast-design-react",
+      "problemMatcher": [],
+      "label": "dev:core-design-react",
+      "detail": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch"
+    },
+    {
+      "type": "npm",
+      "script": "dev:rollup",
+      "path": "packages/antd-management-fast-formily",
+      "problemMatcher": [],
+      "label": "dev:core-formily",
       "detail": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch"
     },
     {

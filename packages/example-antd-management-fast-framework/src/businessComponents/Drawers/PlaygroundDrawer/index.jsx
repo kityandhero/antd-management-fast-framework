@@ -1,6 +1,35 @@
 import { connect } from 'easy-soft-dva';
 
-import { Playground } from 'antd-management-fast-design';
+import { Playground } from 'antd-management-fast-design-playground';
+import {
+  ArrayCards,
+  ArrayTable,
+  Card,
+  Cascader,
+  Checkbox,
+  DatePicker,
+  Field,
+  Form,
+  FormCollapse,
+  FormGrid,
+  FormLayout,
+  FormTab,
+  Input,
+  NumberPicker,
+  ObjectContainer,
+  Password,
+  Radio,
+  Rate,
+  Select,
+  Slider,
+  Space,
+  Switch,
+  Text,
+  TimePicker,
+  Transfer,
+  TreeSelect,
+  Upload,
+} from 'antd-management-fast-formily';
 import {
   DataDrawer,
   switchControlAssist,
@@ -22,6 +51,10 @@ class PlaygroundDrawer extends BaseFormDrawer {
     switchControlAssist.open(visibleFlag);
   }
 
+  static close() {
+    switchControlAssist.close(visibleFlag);
+  }
+
   constructor(properties) {
     super(properties, visibleFlag);
 
@@ -33,12 +66,81 @@ class PlaygroundDrawer extends BaseFormDrawer {
     };
   }
 
+  adjustHeaderStyle = () => {
+    return {
+      display: 'none',
+    };
+  };
+
+  save = (data) => {
+    console.log(data);
+  };
+
   renderPresetTitle = () => {
     return '表单设计';
   };
 
   renderPresetContentContainorInner = () => {
-    return <Playground />;
+    return (
+      <Playground
+        inputs={[
+          Input,
+          Password,
+          NumberPicker,
+          Rate,
+          Slider,
+          Select,
+          TreeSelect,
+          Cascader,
+          Transfer,
+          Checkbox,
+          Radio,
+          DatePicker,
+          TimePicker,
+          Upload,
+          Switch,
+          ObjectContainer,
+        ]}
+        layouts={[Card, FormGrid, FormTab, FormLayout, FormCollapse, Space]}
+        arrays={[ArrayCards, ArrayTable]}
+        displays={[Text]}
+        widgetComponents={{
+          Form,
+          Field,
+          Input,
+          Select,
+          TreeSelect,
+          Cascader,
+          Radio,
+          Checkbox,
+          Slider,
+          Rate,
+          NumberPicker,
+          Transfer,
+          Password,
+          DatePicker,
+          TimePicker,
+          Upload,
+          Switch,
+          Text,
+          Card,
+          ArrayCards,
+          ArrayTable,
+          Space,
+          FormTab,
+          FormCollapse,
+          FormGrid,
+          FormLayout,
+          ObjectContainer,
+        }}
+        onClose={() => {
+          PlaygroundDrawer.close();
+        }}
+        afterLocalSave={(data) => {
+          this.save(data);
+        }}
+      />
+    );
   };
 }
 

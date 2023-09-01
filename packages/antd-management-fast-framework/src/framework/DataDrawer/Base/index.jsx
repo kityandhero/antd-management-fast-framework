@@ -61,6 +61,12 @@ class Base extends BaseWindow {
     };
   }
 
+  adjustHeaderStyle = () => {
+    this.logCallTrack({}, primaryCallName, 'adjustHeaderStyle', emptyLogic);
+
+    return {};
+  };
+
   buildTitlePrevText = () => {
     this.logCallTrack({}, primaryCallName, 'buildTitlePrevText', emptyLogic);
 
@@ -431,6 +437,7 @@ class Base extends BaseWindow {
 
     return (
       <DrawerExtra
+        headerStyle={this.adjustHeaderStyle()}
         flag={this.getVisibleFlag()}
         icon={this.renderPresetTitleIcon()}
         titlePrefix={this.buildTitlePrevText()}
