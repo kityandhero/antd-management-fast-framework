@@ -19,7 +19,7 @@
     "postbuild:rollup:skipCompression": "npm run z:tsc:build",
     "dev:rollup": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch --watch.onBundleEnd=\"npm run z:tsc:build\"",
     "postinstall": "max setup",
-    "precommit": "npm run z:lint:staged:quiet",
+    "precommit": "npm run z:lint:staged",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
     "prez:documentation:generate": "npx rimraf ./docs && npm run z:documentation:lint",
     "z:documentation:generate": "npx documentation build src/** -f html --github -o docs",

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env max dev",
     "postinstall": "max setup",
-    "precommit": "npm run z:lint:staged:quiet",
+    "precommit": "npm run z:lint:staged",
     "setup": "max setup",
     "prestart": "npx rimraf ./src/.umi && npm run x:create-model && npm run y:template:generate",
     "start": "npm run dev",

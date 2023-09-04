@@ -29,7 +29,7 @@
     "postbuild:rollup:skipCompression": "npm run z:tsc:build",
     "dev:rollup": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch --watch.onBundleEnd=\"npm run z:tsc:build\"",
     "postinstall": "max setup",
-    "precommit": "npm run z:lint:staged:quiet",
+    "precommit": "npm run z:lint:staged",
     "setup": "max setup",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
     "prez:documentation:generate": "npx rimraf ./docs && npm run z:documentation:lint",
@@ -178,6 +178,5 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
     "typescript": "^5.2.2"
-  },
-  "gitHead": "8f5f3fe1105991d759c5e13cd5ae898385c17c9a"
+  }
 }

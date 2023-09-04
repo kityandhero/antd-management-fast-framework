@@ -2,7 +2,7 @@
   "name": "example-antd-management-fast-framework",
   "version": "1.8.44",
   "private": true,
-  "description": "> TODO: description",
+  "description": "example-antd-management-fast-framework",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
   "license": "ISC",
   "author": "卢志涛 <kityandhero@126.com>",
@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "cross-env max dev",
     "postinstall": "max setup",
-    "precommit": "npm run z:lint:staged:quiet",
+    "precommit": "npm run z:lint:staged",
     "setup": "max setup",
     "prestart": "npx rimraf ./src/.umi && npm run y:code:source:generate && npm run y:template:generate",
     "start": "npm run dev",
