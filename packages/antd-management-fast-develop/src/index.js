@@ -1,3 +1,3 @@
-// this is entry file.
+// this is entry.
 
 console.log('this is an empty entry point');

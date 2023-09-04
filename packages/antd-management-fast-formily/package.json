@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-formily",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "keywords": [
     "antd-management-fast-formily"
   ],
@@ -27,7 +27,7 @@
     "build:rollup:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs",
     "postbuild:rollup:skipCompression": "npm run z:tsc:build",
     "dev:rollup": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch --watch.onBundleEnd=\"npm run z:tsc:build\"",
-    "precommit": "npm run z:lint:staged",
+    "precommit": "npm run z:lint:staged:quiet",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
     "prez:documentation:generate": "npx rimraf ./docs && npm run z:documentation:lint",
     "z:documentation:generate": "npx documentation build src/** -f html --github -o docs",
@@ -67,7 +67,7 @@
     "@formily/reactive": "^2.2.29",
     "@formily/reactive-react": "^2.2.29",
     "@formily/shared": "^2.2.29",
-    "antd-management-fast-design-react": "^1.0.5",
+    "antd-management-fast-design-react": "^1.0.6",
     "classnames": "^2.3.2",
     "easy-soft-utility": "^2.7.14",
     "react": "^18.2.0",

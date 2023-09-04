@@ -1,5 +1,13 @@
 # antd-management-fast-formily
 
+## 1.0.6
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-design-react@1.0.6
+
 ## 1.0.5
 
 ### Patch Changes

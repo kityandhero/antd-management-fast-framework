@@ -34,7 +34,7 @@
     "dev:core-formily:rollup": "cd packages/antd-management-fast-formily && npm run dev:rollup",
     "dev:core-framework:rollup": "cd packages/antd-management-fast-framework && npm run dev:rollup",
     "postinstall": "npm run z:initial:environment",
-    "precommit": "npm run z:lint:staged",
+    "precommit": "npm run z:lint:staged:quiet",
     "prepare": "pnpm changeset init && npm run z:husky:install && echo do other prepare work with here",
     "publish:npm:develop": "cd packages/antd-management-fast-develop && npm run publish:npm",
     "start:example": "cd packages/example-antd-management-fast-framework && npm start",

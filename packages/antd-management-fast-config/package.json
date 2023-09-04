@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-config",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -15,7 +15,7 @@
     "types/"
   ],
   "scripts": {
-    "precommit": "npm run z:lint:staged",
+    "precommit": "npm run z:lint:staged:quiet",
     "publish:npm": "npm publish --registry https://registry.npmjs.org/",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
     "prez:documentation:generate": "npx rimraf ./docs && npm run z:documentation:lint",
