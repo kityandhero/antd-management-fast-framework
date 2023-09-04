@@ -1,4 +1,4 @@
-// this is entry.
+// this is entry file.
 
 import './index.less';
 
