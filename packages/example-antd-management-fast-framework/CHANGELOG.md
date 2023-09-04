@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.8.39
+
+### Patch Changes
+
+- Updated dependencies
+  - antd-management-fast-common@2.6.15
+  - antd-management-fast-component@2.6.25
+  - antd-management-fast-framework@2.11.37
+
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [1.8.38](https://github.com/kityandhero/antd-management-fast-framework/compare/example-antd-management-fast-framework@1.8.37...example-antd-management-fast-framework@1.8.38) (2023-08-22)

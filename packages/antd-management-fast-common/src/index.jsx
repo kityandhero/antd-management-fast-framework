@@ -1,6 +1,6 @@
 import './index.less';
 
-// this is entry file.
+// this is entry.
 
 export * from './components';
 export * from './utils';
