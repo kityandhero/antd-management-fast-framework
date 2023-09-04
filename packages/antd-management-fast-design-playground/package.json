@@ -57,7 +57,7 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.2.5",
+    "@ant-design/icons": "^5.2.6",
     "@babel/parser": "^7.22.14",
     "@designable/core": "^1.0.0-beta.45",
     "@designable/shared": "^1.0.0-beta.45",
@@ -84,10 +84,10 @@
   "devDependencies": {
     "@types/dateformat": "^5.0.0",
     "@types/jest": "^29.5.4",
-    "@types/node": "^20.5.7",
+    "@types/node": "^20.5.9",
     "@types/react": "^18.2.21",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18.2.7",
-    "antd": "^5.8.5"
+    "antd": "^5.8.6"
   }
 }

@@ -74,7 +74,7 @@
     "@commitlint/cz-commitlint": "^17.7.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@types/jest": "^29.5.4",
-    "@types/node": "^20.5.7",
+    "@types/node": "^20.5.9",
     "@typescript-eslint/parser": "^6.5.0",
     "babel-jest": "^29.6.4",
     "commitizen": "^4.3.0",
