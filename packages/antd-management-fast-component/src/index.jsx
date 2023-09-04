@@ -1,6 +1,12 @@
-// this is entry.
+/* eslint-disable no-undef */
+/* eslint-disable unicorn/prefer-module */
+/* eslint-disable no-useless-escape */
 
-import './index.less';
+// this is entry file.
 
-export * from './bases';
-export * from './components';
+const { checkDevelopment, buildConfig } = require('./configAssist');
+
+module.exports = {
+  checkDevelopment,
+  buildConfig,
+};

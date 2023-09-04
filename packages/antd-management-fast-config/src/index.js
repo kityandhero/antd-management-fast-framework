@@ -2,7 +2,7 @@
 /* eslint-disable unicorn/prefer-module */
 /* eslint-disable no-useless-escape */
 
-// this is entry.
+// this is entry file.
 
 const { checkDevelopment, buildConfig } = require('./configAssist');
 
