@@ -1,8 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo
+echo ---------------------
 echo exec husky commit-msg
-echo
 
 npx commitlint -e $HUSKY_GIT_PARAMS -V
