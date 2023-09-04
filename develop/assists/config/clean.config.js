@@ -2,7 +2,7 @@
 /* eslint-disable unicorn/prefer-module */
 /* eslint-disable no-useless-escape */
 
-const cleanCommand = 'lerna clean -y';
+const cleanCommand = '';
 
 const cleanCollection = [
   'yarn-error.log',

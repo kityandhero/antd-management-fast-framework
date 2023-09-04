@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-formily",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "keywords": [
     "antd-management-fast-formily"
   ],
@@ -67,7 +67,7 @@
     "@formily/reactive": "^2.2.29",
     "@formily/reactive-react": "^2.2.29",
     "@formily/shared": "^2.2.29",
-    "antd-management-fast-design-react": "workspace:^",
+    "antd-management-fast-design-react": "^1.0.5",
     "classnames": "^2.3.2",
     "easy-soft-utility": "^2.7.14",
     "react": "^18.2.0",

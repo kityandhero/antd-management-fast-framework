@@ -8,7 +8,8 @@ const lintScript = {
 };
 
 const prepareScript = {
-  prepare: 'npm run z:husky:install && echo do other prepare work with here',
+  prepare:
+    'pnpm changeset init && npm run z:husky:install && echo do other prepare work with here',
   'z:husky:install': 'npx husky install',
 };
 
@@ -16,8 +17,7 @@ const toolsScript = {
   postinstall:
     'npm run z:initial:environment && echo do other postinstall work with here',
   'z:show:info':
-    'echo node version && node --version && echo npm version && npm --version && echo ------------ && npx lerna ls -a -l',
-  'z:show:package': 'npx lerna ls -a -l',
+    'echo node version && node --version && echo npm version && npm --version',
   'z:sleep': 'npx easy-soft-develop sleep --second 2 --showInfo false',
   'z:create:assist-scripts': 'npx easy-soft-develop create-assist-scripts',
   'z:update:package-from-package':
@@ -25,15 +25,12 @@ const toolsScript = {
 };
 
 const publishScript = {
-  changelog:
-    'lerna version --conventional-commits --no-push --no-git-tag-version',
-  'prez:publish:lerna': 'npm run z:change:npm:registry:npm',
-  'z:publish:lerna': 'lerna updated && npm run z:lerna:publish',
-  'postz:publish:lerna':
-    'npm run z:change:npm:registry:local && npm run z:publish:npm-all',
+  'prez:publish:repository': 'npm run z:change:npm:registry:local',
+  'z:publish:repository': 'npm run z:repository:publish',
+  'postz:publish:repository': 'npm run z:publish:npm-all',
   'prez:publish:build':
-    'npm run z:install && npm run z:cz && npm run z:build:all',
-  'z:publish:build': 'npm run z:publish:lerna',
+    'npm run z:install && pnpm changeset && pnpm changeset version && npm run z:cz && npm run z:build:all',
+  'z:publish:build': 'npm run z:publish:repository',
 };
 
 const cleanScript = {
@@ -45,14 +42,14 @@ const environmentScript = {
   'z:initial:environment': 'node ./develop/assists/initial.environment.js',
 };
 
-const lernaScript = {
-  'z:lerna:publish': 'lerna publish --yes',
-  'z:lerna:bootstrap':
+const repositoryScript = {
+  'z:repository:publish': 'pnpm -r publish',
+  'z:bootstrap':
     'npm run z:clean && npm run z:husky:install && git pull && npm run z:install',
 };
 
 const installScript = {
-  'z:reinstall': 'npm run z:lerna:bootstrap',
+  'z:reinstall': 'npm run z:bootstrap',
   postinstall: 'npm run z:initial:environment',
   'prez:install.global.develop.dependence':
     'npm run z:change:npm:registry:local',
@@ -105,7 +102,7 @@ module.exports = {
   ...publishScript,
   ...cleanScript,
   ...environmentScript,
-  ...lernaScript,
+  ...repositoryScript,
   ...installScript,
   ...nrmScript,
   ...commitScript,
