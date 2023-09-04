@@ -6,6 +6,9 @@ function checkDevelopment() {
   return process.env.NODE_ENV === 'development';
 }
 
+/**
+ * buildConfig
+ */
 function buildConfig({ packageJson: packageImport, config = {} }) {
   const deps = packageImport.dependencies;
 

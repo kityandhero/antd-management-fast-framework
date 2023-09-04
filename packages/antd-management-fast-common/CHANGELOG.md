@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.6.16
+
+### Patch Changes
+
+- aa33bcc8: update
+- update
+- update
+- update
+- aa33bcc8: update
+- Updated dependencies [aa33bcc8]
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies [aa33bcc8]
+  - antd-management-fast-common@2.6.16
+
 ## 2.6.15
 
 ### Patch Changes

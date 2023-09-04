@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.11
+
+### Patch Changes
+
+- update
+
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [1.1.10](https://github.com/kityandhero/antd-management-fast-framework/compare/antd-management-fast-develop@1.1.9...antd-management-fast-develop@1.1.10) (2023-08-22)

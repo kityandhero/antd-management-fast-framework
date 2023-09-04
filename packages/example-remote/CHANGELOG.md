@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.4.38
+
+### Patch Changes
+
+- aa33bcc8: update
+- aa33bcc8: update
+- Updated dependencies [aa33bcc8]
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies [aa33bcc8]
+  - antd-management-fast-component@2.6.26
+  - antd-management-fast-framework@2.11.38
+  - antd-management-fast-common@2.6.16
+
 ## 1.4.37
 
 ### Patch Changes
