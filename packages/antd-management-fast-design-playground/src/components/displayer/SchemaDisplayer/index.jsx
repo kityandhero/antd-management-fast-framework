@@ -72,13 +72,15 @@ const SchemaField = createSchemaField({
 
 class SchemaDisplayer extends PureComponent {
   render() {
-    const { form: formProperties, schema } = this.props;
+    const { form: formProperties, schema, children } = this.props;
 
     const form = createForm();
 
     return (
       <Form {...formProperties} form={form}>
         <SchemaField schema={schema} />
+
+        {children}
       </Form>
     );
   }
