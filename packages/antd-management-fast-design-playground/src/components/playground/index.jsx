@@ -66,6 +66,14 @@ GlobalRegistry.registerDesignerLocales({
   },
 });
 
+/**
+ * 使用外部数据设置 schema
+ * @param {string} schema json string
+ */
+export function setSchemaWithExternalData(schema) {
+  localStorage.setItem('formily-schema', schema);
+}
+
 export const Playground = (properties) => {
   const {
     inputs,
