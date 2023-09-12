@@ -46,6 +46,7 @@ GlobalRegistry.registerDesignerLocales({
       Layouts: '布局组件',
       Arrays: '自增组件',
       Displays: '展示组件',
+      HigherOrders: '高阶组件',
     },
   },
   'en-US': {
@@ -54,14 +55,7 @@ GlobalRegistry.registerDesignerLocales({
       Layouts: 'Layouts',
       Arrays: 'Arrays',
       Displays: 'Displays',
-    },
-  },
-  'ko-KR': {
-    sources: {
-      Inputs: '입력',
-      Layouts: '레이아웃',
-      Arrays: '배열',
-      Displays: '디스플레이',
+      HigherOrders: 'Higher-Orders',
     },
   },
 });

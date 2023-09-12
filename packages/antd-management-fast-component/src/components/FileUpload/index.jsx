@@ -34,7 +34,6 @@ class FileUpload extends PureComponent {
 
     this.state = {
       ...this.state,
-
       fileSource: '',
       fileUrl: '',
       fileUrlTemp: '',

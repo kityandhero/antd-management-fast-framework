@@ -19,14 +19,4 @@ export const Rate = {
       },
     },
   },
-  'ko-KR': {
-    title: '비율',
-    settings: {
-      'x-component-props': {
-        allowHalf: '절반 허용',
-        tooltips: { title: '툴팁', tooltip: '형식：string[]' },
-        count: '개수',
-      },
-    },
-  },
 };
