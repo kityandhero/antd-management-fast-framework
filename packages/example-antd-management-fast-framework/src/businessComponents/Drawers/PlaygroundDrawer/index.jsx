@@ -9,6 +9,7 @@ import {
   Checkbox,
   DatePicker,
   Field,
+  FileUpload,
   Form,
   FormCollapse,
   FormGrid,
@@ -104,6 +105,7 @@ class PlaygroundDrawer extends BaseFormDrawer {
         layouts={[Card, FormGrid, FormTab, FormLayout, FormCollapse, Space]}
         arrays={[ArrayCards, ArrayTable]}
         displays={[Text]}
+        higherOrders={[FileUpload]}
         widgetComponents={{
           Form,
           Field,
@@ -120,6 +122,7 @@ class PlaygroundDrawer extends BaseFormDrawer {
           Password,
           DatePicker,
           TimePicker,
+          FileUpload,
           Upload,
           Switch,
           Text,

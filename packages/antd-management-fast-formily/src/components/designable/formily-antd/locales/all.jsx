@@ -7,6 +7,7 @@ export * from './Checkbox';
 export * from './Component';
 export * from './DatePicker';
 export * from './Field';
+export * from './FileUpload';
 export * from './Form';
 export * from './FormCollapse';
 export * from './FormGrid';

@@ -74,6 +74,7 @@ export const Playground = (properties) => {
     layouts,
     arrays,
     displays,
+    higherOrders,
     widgetComponents,
     onClose,
     afterLocalSave,
@@ -120,6 +121,11 @@ export const Playground = (properties) => {
             <ResourceWidget title="sources.Arrays" sources={arrays} />
 
             <ResourceWidget title="sources.Displays" sources={displays} />
+
+            <ResourceWidget
+              title="sources.HigherOrders"
+              sources={higherOrders}
+            />
           </CompositePanel.Item>
 
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">

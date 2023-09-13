@@ -113,6 +113,7 @@ import {
   ArrayCards,
 } from "@formily/antd-v5"
 import { Card, Slider, Rate } from 'antd'
+import { FileUpload } from 'antd-management-fast-formily';
 
 const Text: React.FC<{
   value?: string
@@ -138,6 +139,7 @@ const SchemaField = createSchemaField({
     Cascader,
     Editable,
     Input,
+    FileUpload,
     Text,
     NumberPicker,
     Switch,

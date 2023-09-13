@@ -1525,9 +1525,18 @@ importers:
       '@monaco-editor/react':
         specifier: ^4.5.2
         version: 4.5.2(monaco-editor@0.41.0)(react-dom@18.2.0)(react@18.2.0)
+      antd-management-fast-common:
+        specifier: ^2.6.23
+        version: link:../antd-management-fast-common
+      antd-management-fast-component:
+        specifier: ^2.6.33
+        version: link:../antd-management-fast-component
       antd-management-fast-design-react:
         specifier: ^1.0.7
         version: link:../antd-management-fast-design-react
+      antd-management-fast-formily:
+        specifier: ^1.0.7
+        version: link:../antd-management-fast-formily
       classnames:
         specifier: ^2.3.2
         version: 2.3.2
@@ -1537,6 +1546,9 @@ importers:
       dayjs:
         specifier: ^1.11.9
         version: 1.11.9
+      easy-soft-dva:
+        specifier: ^3.9.14
+        version: 3.9.14(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
         specifier: ^2.7.14
         version: 2.7.14
@@ -2164,12 +2176,21 @@ importers:
       '@formily/shared':
         specifier: ^2.2.29
         version: 2.2.29
+      antd-management-fast-common:
+        specifier: ^2.6.23
+        version: link:../antd-management-fast-common
+      antd-management-fast-component:
+        specifier: ^2.6.33
+        version: link:../antd-management-fast-component
       antd-management-fast-design-react:
         specifier: ^1.0.7
         version: link:../antd-management-fast-design-react
       classnames:
         specifier: ^2.3.2
         version: 2.3.2
+      easy-soft-dva:
+        specifier: ^3.9.14
+        version: 3.9.14(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
         specifier: ^2.7.14
         version: 2.7.14

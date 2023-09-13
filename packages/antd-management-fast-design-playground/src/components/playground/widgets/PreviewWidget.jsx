@@ -32,6 +32,7 @@ import { createForm } from '@formily/core';
 import { createSchemaField } from '@formily/react';
 
 import { transformToSchema } from 'antd-management-fast-design-react';
+import { FileUpload } from 'antd-management-fast-formily';
 
 const Text = ({ value, mode, content, ...properties }) => {
   const tagName = mode === 'normal' || !mode ? 'div' : mode;
@@ -40,35 +41,36 @@ const Text = ({ value, mode, content, ...properties }) => {
 
 const SchemaField = createSchemaField({
   components: {
-    Space,
+    ArrayCards,
+    ArrayTable,
+    Card,
+    Cascader,
+    Checkbox,
+    DatePicker,
+    Editable,
+    FileUpload,
+    FormCollapse,
     FormGrid,
+    FormItem,
     FormLayout,
     FormTab,
-    FormCollapse,
-    ArrayTable,
-    ArrayCards,
-    FormItem,
-    DatePicker,
-    Checkbox,
-    Cascader,
-    Editable,
     Input,
-    Text,
     NumberPicker,
-    Switch,
     Password,
     PreviewText,
     Radio,
+    Rate,
     Reset,
     Select,
+    Slider,
+    Space,
     Submit,
+    Switch,
+    Text,
     TimePicker,
     Transfer,
     TreeSelect,
     Upload,
-    Card,
-    Slider,
-    Rate,
   },
 });
 

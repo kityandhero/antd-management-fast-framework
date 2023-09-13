@@ -5,6 +5,7 @@ export * from './Cascader';
 export * from './CascadingStyleSheet';
 export * from './Checkbox';
 export * from './DatePicker';
+export * from './FileUpload';
 export * from './Form';
 export * from './FormCollapse';
 export * from './FormGrid';
