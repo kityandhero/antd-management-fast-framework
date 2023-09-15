@@ -290,8 +290,8 @@ importers:
         specifier: ^3.9.15
         version: 3.9.15(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.16
-        version: 2.7.16
+        specifier: ^2.7.17
+        version: 2.7.17
       html-react-parser:
         specifier: ^4.2.2
         version: 4.2.2(react@18.2.0)
@@ -645,8 +645,8 @@ importers:
         specifier: ^3.9.15
         version: 3.9.15(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.16
-        version: 2.7.16
+        specifier: ^2.7.17
+        version: 2.7.17
       html-react-parser:
         specifier: ^4.2.2
         version: 4.2.2(react@18.2.0)
@@ -1000,8 +1000,8 @@ importers:
         specifier: ^3.9.15
         version: 3.9.15(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.16
-        version: 2.7.16
+        specifier: ^2.7.17
+        version: 2.7.17
       html-react-parser:
         specifier: ^4.2.2
         version: 4.2.2(react@18.2.0)
@@ -1550,8 +1550,8 @@ importers:
         specifier: ^3.9.15
         version: 3.9.15(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.16
-        version: 2.7.16
+        specifier: ^2.7.17
+        version: 2.7.17
       monaco-editor:
         specifier: ^0.43.0
         version: 0.43.0
@@ -1785,8 +1785,8 @@ importers:
         specifier: ^1.11.9
         version: 1.11.9
       easy-soft-utility:
-        specifier: ^2.7.16
-        version: 2.7.16
+        specifier: ^2.7.17
+        version: 2.7.17
       monaco-editor:
         specifier: ^0.43.0
         version: 0.43.0
@@ -2192,8 +2192,8 @@ importers:
         specifier: ^3.9.15
         version: 3.9.15(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.16
-        version: 2.7.16
+        specifier: ^2.7.17
+        version: 2.7.17
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2400,8 +2400,8 @@ importers:
         specifier: ^3.9.15
         version: 3.9.15(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.16
-        version: 2.7.16
+        specifier: ^2.7.17
+        version: 2.7.17
       html-react-parser:
         specifier: ^4.2.2
         version: 4.2.2(react@18.2.0)
@@ -2734,8 +2734,8 @@ importers:
         specifier: ^3.9.15
         version: 3.9.15(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.16
-        version: 2.7.16
+        specifier: ^2.7.17
+        version: 2.7.17
       rc-util:
         specifier: ^5.37.0
         version: 5.37.0(react-dom@18.2.0)(react@18.2.0)
@@ -2996,8 +2996,8 @@ importers:
         specifier: ^3.9.15
         version: 3.9.15(@types/react-dom@18.2.7)(@types/react@18.2.21)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.7.16
-        version: 2.7.16
+        specifier: ^2.7.17
+        version: 2.7.17
       rc-util:
         specifier: ^5.37.0
         version: 5.37.0(react-dom@18.2.0)(react@18.2.0)
@@ -13284,7 +13284,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.15
       '@reduxjs/toolkit': 1.9.5(react-redux@8.1.2)(react@18.2.0)
-      easy-soft-utility: 2.7.16
+      easy-soft-utility: 2.7.17
       flatten: 1.0.3
       global: 4.4.0
       invariant: 2.2.4
@@ -13301,8 +13301,8 @@ packages:
       - react-native
     dev: false
 
-  /easy-soft-utility@2.7.16:
-    resolution: {integrity: sha512-bijxFe+4XpOQh9nor2+w0cK9wMv/StE8bE4XunBz6it4PVbA05aYKh4MNIBDmegZ/YfSwiL+OXkaEuSkbt1qIw==}
+  /easy-soft-utility@2.7.17:
+    resolution: {integrity: sha512-GPdHbbyUkNR908lOUzmJ8D02H1WoCY0UDtT/fDw6uks4W8PHNBTu/xXWn2HwLQjr4pST93L3TkDrtQViG2+DWQ==}
     dependencies:
       dayjs: 1.11.9
       js-base64: 3.7.5
