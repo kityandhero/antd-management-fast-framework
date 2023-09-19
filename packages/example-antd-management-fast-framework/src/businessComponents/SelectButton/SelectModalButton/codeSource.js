@@ -2,38 +2,27 @@ export const code = `import React from 'react';
 
 import { connect } from 'easy-soft-dva';
 
-import { FieldExtra } from 'antd-management-fast-component';
+import { ElasticitySelectButton } from 'antd-management-fast-component';
 
 import SimpleMultiPageSingleSelectDrawer from '../Drawers/Multi/SimpleMultiPageSingleSelectDrawer';
 import { SimpleSingleSelectModal } from '../Modals/SimpleSingleSelectModal';
 
-const {
-  SelectFieldExtra: { BaseSelectFieldExtra },
-} = FieldExtra;
+const { BaseElasticitySelectButton } = ElasticitySelectButton;
 
 @connect(({ smsCategory, schedulingControl }) => ({
   smsCategory,
   schedulingControl,
 }))
-class SelectField extends BaseSelectFieldExtra {
-  selectValueText = (data) => {
-    const { title } = {
-      title: '',
-      ...data,
-    };
-
-    return title;
-  };
-
-  openDrawer = () => {
+class SelectButton extends BaseElasticitySelectButton {
+  openSelector = () => {
     SimpleMultiPageSingleSelectDrawer.open();
   };
 
-  openModal = () => {
+  openSelector = () => {
     SimpleSingleSelectModal.open();
   };
 
-  renderPresetSelectDrawer = () => {
+  renderPresetSelector = () => {
     const { label } = this.props;
 
     return (
@@ -45,23 +34,25 @@ class SelectField extends BaseSelectFieldExtra {
     );
   };
 
-  renderPresetSelectModal = () => {
-    const { label, helper, labelWidth } = this.props;
+  renderPresetSelector = () => {
+    const { label, helper } = this.props;
 
     return (
       <SimpleSingleSelectModal
         label={label}
         helper={helper}
-        labelWidth={labelWidth}
+        labelWidth={100}
         afterSelectSuccess={this.afterModalSelectSuccess}
       />
     );
   };
 }
 
-SelectField.defaultProps = {
-  ...BaseSelectFieldExtra.defaultProps,
+SelectButton.defaultProps = {
+  ...BaseElasticitySelectButton.defaultProps,
+  label: 'Label',
+  helper: '',
 };
 
-export { SelectField };
+export { SelectButton };
 `;

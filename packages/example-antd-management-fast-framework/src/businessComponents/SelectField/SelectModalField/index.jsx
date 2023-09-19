@@ -4,7 +4,7 @@ import { connect } from 'easy-soft-dva';
 
 import { FieldExtra } from 'antd-management-fast-component';
 
-import PageListDrawer from '../PageListDrawer';
+import { SimpleSingleSelectModal } from '../../Modals/SimpleSingleSelectModal';
 
 const {
   SelectFieldExtra: { BaseSelectFieldExtra },
@@ -14,35 +14,36 @@ const {
   smsCategory,
   schedulingControl,
 }))
-class SelectField extends BaseSelectFieldExtra {
+class SelectModalField extends BaseSelectFieldExtra {
   selectValueText = (data) => {
-    const { name } = {
-      name: '',
+    const { title } = {
+      title: '',
       ...data,
     };
 
-    return name;
+    return title;
   };
 
   openSelector = () => {
-    PageListDrawer.open();
+    SimpleSingleSelectModal.open();
   };
 
   renderPresetSelector = () => {
-    const { label } = this.props;
+    const { label, helper, labelWidth } = this.props;
 
     return (
-      <PageListDrawer
-        title={label}
-        width={1200}
+      <SimpleSingleSelectModal
+        label={label}
+        helper={helper}
+        labelWidth={labelWidth}
         afterSelectSuccess={this.afterSelectSuccess}
       />
     );
   };
 }
 
-SelectField.defaultProps = {
+SelectModalField.defaultProps = {
   ...BaseSelectFieldExtra.defaultProps,
 };
 
-export { SelectField };
+export { SelectModalField };

@@ -24,18 +24,15 @@ class SelectField extends BaseSelectFieldExtra {
     return name;
   };
 
-  openDrawer = () => {
+  openSelector = () => {
     SelectModal.open();
   };
 
-  renderPresetSelectModal = () => {
+  renderPresetSelector = () => {
     const { label } = this.props;
 
     return (
-      <SelectModal
-        title={label}
-        afterSelectSuccess={this.afterModalSelectSuccess}
-      />
+      <SelectModal title={label} afterSelectSuccess={this.afterSelectSuccess} />
     );
   };
 }

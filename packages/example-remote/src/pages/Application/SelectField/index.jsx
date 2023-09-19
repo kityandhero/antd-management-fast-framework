@@ -24,7 +24,7 @@ class SelectField extends BaseSelectFieldExtra {
     return name;
   };
 
-  openDrawer = () => {
+  openSelector = () => {
     SelectModal.open();
   };
 
@@ -35,7 +35,7 @@ class SelectField extends BaseSelectFieldExtra {
       <SelectModal
         title={label}
         externalData={externalData}
-        afterSelectSuccess={this.afterModalSelectSuccess}
+        afterSelectSuccess={this.afterSelectSuccess}
       />
     );
   };

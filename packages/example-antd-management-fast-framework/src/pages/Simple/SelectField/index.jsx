@@ -22,18 +22,18 @@ class SelectField extends BaseSelectFieldExtra {
     return title;
   };
 
-  openDrawer = () => {
+  openSelector = () => {
     PageListDrawer.open();
   };
 
-  renderPresetSelectDrawer = () => {
+  renderPresetSelector = () => {
     const { drawerVisible } = this.state;
 
     return (
       <PageListDrawer
         visible={drawerVisible || false}
         width={1200}
-        afterSelectSuccess={this.afterDrawerSelectSuccess}
+        afterSelectSuccess={this.afterSelectSuccess}
       />
     );
   };

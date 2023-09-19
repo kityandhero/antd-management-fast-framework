@@ -5,10 +5,13 @@ import {
   showSimpleInfoMessage,
 } from 'easy-soft-utility';
 
-import { cardConfig, selectModeCollection } from 'antd-management-fast-common';
+import { cardConfig } from 'antd-management-fast-common';
 import { convertOptionOrRadioData } from 'antd-management-fast-component';
 
-import { SelectField } from '../../../businessComponents/SelectField';
+import {
+  SelectDrawerField,
+  SelectModalField,
+} from '../../../businessComponents/SelectField';
 import { fieldData } from '../../../businessData/data';
 import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
@@ -65,8 +68,7 @@ class SelectFieldView extends BaseView {
               lg: 6,
               type: cardConfig.contentItemType.customSelect,
               component: (
-                <SelectField
-                  selectMode={selectModeCollection.drawer}
+                <SelectDrawerField
                   label="选择文章"
                   text="选择文章【Drawer】"
                   helper=""
@@ -81,8 +83,7 @@ class SelectFieldView extends BaseView {
               lg: 6,
               type: cardConfig.contentItemType.customSelect,
               component: (
-                <SelectField
-                  selectMode={selectModeCollection.modal}
+                <SelectModalField
                   label="选择文章"
                   text="选择文章【Modal】"
                   labelWidth={90}

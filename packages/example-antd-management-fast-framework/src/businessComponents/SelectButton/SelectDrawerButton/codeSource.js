@@ -14,15 +14,15 @@ const { BaseElasticitySelectButton } = ElasticitySelectButton;
   schedulingControl,
 }))
 class SelectButton extends BaseElasticitySelectButton {
-  openDrawer = () => {
+  openSelector = () => {
     SimpleMultiPageSingleSelectDrawer.open();
   };
 
-  openModal = () => {
+  openSelector = () => {
     SimpleSingleSelectModal.open();
   };
 
-  renderPresetSelectDrawer = () => {
+  renderPresetSelector = () => {
     const { label } = this.props;
 
     return (
@@ -34,7 +34,7 @@ class SelectButton extends BaseElasticitySelectButton {
     );
   };
 
-  renderPresetSelectModal = () => {
+  renderPresetSelector = () => {
     const { label, helper } = this.props;
 
     return (

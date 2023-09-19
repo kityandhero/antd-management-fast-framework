@@ -6,8 +6,6 @@ import {
   isFunction,
   logTrace,
   mergeArrowText,
-  showSimpleRuntimeError,
-  toNumber,
 } from 'easy-soft-utility';
 
 import { selectModeCollection } from 'antd-management-fast-common';
@@ -28,54 +26,20 @@ class BaseElasticitySelectButton extends BaseComponent {
   }
 
   showSelect = () => {
-    const { selectMode } = this.props;
-
-    if (toNumber(selectMode) === selectModeCollection.drawer) {
-      this.showDrawer();
-    }
-
-    if (toNumber(selectMode) === selectModeCollection.modal) {
-      this.showModal();
-    }
+    this.openSelector();
   };
 
-  openDrawer = () => {
-    throw new Error(this.buildOverloadErrorText('openDrawer'));
+  openSelector = () => {
+    throw new Error(this.buildOverloadErrorText('openSelector'));
   };
 
-  showDrawer = () => {
-    this.openDrawer();
-  };
-
-  afterDrawerSelectSuccess = (o) => {
+  afterSelectSuccess = (o) => {
     logTrace(
       mergeArrowText(
         this.componentName,
         primaryCallName,
         'trigger',
-        'afterDrawerSelectSuccess',
-        'afterSelectSuccessCore',
-      ),
-    );
-
-    this.afterSelectSuccessCore(o);
-  };
-
-  openModal = () => {
-    throw new Error(this.buildOverloadErrorText('openModal'));
-  };
-
-  showModal = () => {
-    this.openModal();
-  };
-
-  afterModalSelectSuccess = (o) => {
-    logTrace(
-      mergeArrowText(
-        this.componentName,
-        primaryCallName,
-        'trigger',
-        'afterModalSelectSuccess',
+        'afterSelectSuccess',
         'afterSelectSuccessCore',
       ),
     );
@@ -131,30 +95,12 @@ class BaseElasticitySelectButton extends BaseComponent {
     return <ElasticityButton {...p}>{children}</ElasticityButton>;
   };
 
-  renderPresetSelectDrawer = () => {
-    throw new Error(this.buildOverloadErrorText('renderPresetSelectDrawer'));
-  };
-
-  renderPresetSelectModal = () => {
-    throw new Error(this.buildOverloadErrorText('renderPresetSelectModal'));
+  renderPresetSelector = () => {
+    throw new Error(this.buildOverloadErrorText('renderPresetSelector'));
   };
 
   renderPresetOther = () => {
-    const { selectMode } = this.props;
-
-    if (toNumber(selectMode) === selectModeCollection.drawer) {
-      return this.renderPresetSelectDrawer();
-    }
-
-    if (toNumber(selectMode) === selectModeCollection.modal) {
-      return this.renderPresetSelectModal();
-    }
-
-    const text = '无效的选择项渲染模式';
-
-    showSimpleRuntimeError(text);
-
-    return null;
+    return this.renderPresetSelector();
   };
 
   renderFurther() {

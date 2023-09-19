@@ -25,11 +25,11 @@ class DepartmentSelectField extends BaseSelectFieldExtra {
     return name;
   };
 
-  openDrawer = () => {
+  openSelector = () => {
     PageListDrawer.open();
   };
 
-  renderPresetSelectDrawer = () => {
+  renderPresetSelector = () => {
     const { label, searchParams } = this.props;
 
     return (
@@ -37,7 +37,7 @@ class DepartmentSelectField extends BaseSelectFieldExtra {
         searchParams={searchParams}
         title={buildFieldDescription(label, '选择')}
         width={1200}
-        afterSelectSuccess={this.afterDrawerSelectSuccess}
+        afterSelectSuccess={this.afterSelectSuccess}
       />
     );
   };

@@ -25,18 +25,18 @@ class SubsidiarySelectField extends BaseSelectFieldExtra {
     return nickname || replaceWithKeep(userId, '***', 2, 6);
   };
 
-  openDrawer = () => {
+  openSelector = () => {
     PageListDrawer.open();
   };
 
-  renderPresetSelectDrawer = () => {
+  renderPresetSelector = () => {
     const { label } = this.props;
 
     return (
       <PageListDrawer
         title={buildFieldDescription(label, '选择')}
         width={1200}
-        afterSelectSuccess={this.afterDrawerSelectSuccess}
+        afterSelectSuccess={this.afterSelectSuccess}
       />
     );
   };

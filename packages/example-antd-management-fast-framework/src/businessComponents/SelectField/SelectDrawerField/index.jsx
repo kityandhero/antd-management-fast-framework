@@ -4,7 +4,7 @@ import { connect } from 'easy-soft-dva';
 
 import { FieldExtra } from 'antd-management-fast-component';
 
-import PageListDrawer from '../PageListDrawer';
+import SimpleMultiPageSingleSelectDrawer from '../../Drawers/Multi/SimpleMultiPageSingleSelectDrawer';
 
 const {
   SelectFieldExtra: { BaseSelectFieldExtra },
@@ -14,25 +14,25 @@ const {
   smsCategory,
   schedulingControl,
 }))
-class SelectField extends BaseSelectFieldExtra {
+class SelectDrawerField extends BaseSelectFieldExtra {
   selectValueText = (data) => {
-    const { name } = {
-      name: '',
+    const { title } = {
+      title: '',
       ...data,
     };
 
-    return name;
+    return title;
   };
 
   openSelector = () => {
-    PageListDrawer.open();
+    SimpleMultiPageSingleSelectDrawer.open();
   };
 
   renderPresetSelector = () => {
     const { label } = this.props;
 
     return (
-      <PageListDrawer
+      <SimpleMultiPageSingleSelectDrawer
         title={label}
         width={1200}
         afterSelectSuccess={this.afterSelectSuccess}
@@ -41,8 +41,8 @@ class SelectField extends BaseSelectFieldExtra {
   };
 }
 
-SelectField.defaultProps = {
+SelectDrawerField.defaultProps = {
   ...BaseSelectFieldExtra.defaultProps,
 };
 
-export { SelectField };
+export { SelectDrawerField };

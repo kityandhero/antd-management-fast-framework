@@ -1,6 +1,6 @@
 {
   "name": "example-remote",
-  "version": "1.4.47",
+  "version": "1.4.48",
   "private": true,
   "author": "",
   "scripts": {
@@ -51,7 +51,7 @@
     "@umijs/max": "^4.0.81",
     "antd": "^5.9.1",
     "antd-management-fast-common": "^2.6.26",
-    "antd-management-fast-component": "^2.6.36",
+    "antd-management-fast-component": "^2.6.37",
     "antd-management-fast-framework": "^2.11.47",
     "axios": "^1.5.0",
     "classnames": "^2.3.2",
