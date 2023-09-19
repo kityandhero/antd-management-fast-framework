@@ -129,20 +129,6 @@ export const imageContentPreviewMode = {
   imageList: 3,
 };
 
-export const selectModeCollection = {
-  /**
-   * 侧拉面板
-   * value : 0
-   */
-  drawer: 0,
-
-  /**
-   * 弹出框
-   * value : 1
-   */
-  modal: 1,
-};
-
 export const columnFacadeMode = {
   /**
    * 省略文本

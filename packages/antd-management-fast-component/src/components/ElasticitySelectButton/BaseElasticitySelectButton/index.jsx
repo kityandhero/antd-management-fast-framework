@@ -8,8 +8,6 @@ import {
   mergeArrowText,
 } from 'easy-soft-utility';
 
-import { selectModeCollection } from 'antd-management-fast-common';
-
 import { BaseComponent } from '../../../bases/BaseComponent';
 import { ElasticityButton } from '../../ElasticityButton';
 
@@ -123,7 +121,6 @@ BaseElasticitySelectButton.defaultProps = {
   color: null,
   showIcon: true,
   text: '按钮',
-  selectMode: selectModeCollection.drawer,
   afterSelectSuccess: null,
 };
 

@@ -2707,7 +2707,7 @@ importers:
         specifier: ^2.6.26
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.36
+        specifier: ^2.6.37
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
         specifier: ^1.0.14
@@ -2978,7 +2978,7 @@ importers:
         specifier: ^2.6.26
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.36
+        specifier: ^2.6.37
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
         specifier: ^2.11.47

@@ -7,7 +7,6 @@ import {
   columnFacadeMode,
   getDerivedStateFromPropertiesForUrlParameters,
   searchCardConfig,
-  selectModeCollection,
 } from 'antd-management-fast-common';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
@@ -67,7 +66,6 @@ class PageList extends MultiPage {
           component: (
             <SelectField
               loadSuccess={loadSuccess}
-              selectMode={selectModeCollection.drawer}
               label={fieldData.smsCategoryName.label}
               smsCategoryName={smsCategoryName || ''}
               helper={fieldData.smsCategoryName.helper}

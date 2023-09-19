@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'easy-soft-dva';
 import { getValueByKey } from 'easy-soft-utility';
 
-import { cardConfig, selectModeCollection } from 'antd-management-fast-common';
+import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import {
   DataDrawer,
@@ -102,7 +102,6 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
               type: cardConfig.contentItemType.component,
               component: (
                 <SelectField
-                  selectMode={selectModeCollection.modal}
                   label={fieldDataApplication.name.label}
                   applicationName={applicationName || null}
                   afterSelect={(d) => {

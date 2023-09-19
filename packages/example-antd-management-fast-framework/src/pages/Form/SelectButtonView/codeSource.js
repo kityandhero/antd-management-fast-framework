@@ -1,7 +1,7 @@
 export const code = `import { connect } from 'easy-soft-dva';
 import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
 
-import { cardConfig, selectModeCollection } from 'antd-management-fast-common';
+import { cardConfig } from 'antd-management-fast-common';
 import { convertOptionOrRadioData } from 'antd-management-fast-component';
 
 import { SelectButton } from '../../../businessComponents/SelectButton';
@@ -49,7 +49,6 @@ class SelectFieldView extends BaseView {
               type: cardConfig.contentItemType.customSelect,
               component: (
                 <SelectButton
-                  selectMode={selectModeCollection.drawer}
                   label={fieldData.title.label}
                   text="选择文章"
                   valueText={''}
