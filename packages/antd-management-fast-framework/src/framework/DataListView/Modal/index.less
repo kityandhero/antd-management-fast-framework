@@ -1,0 +1,129 @@
+.containorBox {
+  .titleIcon {
+    margin-right: 10px;
+  }
+
+  .titleText {
+    margin-left: 2px;
+  }
+
+  .mainContainor {
+    .contentContainor {
+      padding: 22px 0 0;
+      border-top: 1px solid rgb(240, 242, 245);
+      // padding-top: 22px;
+    }
+
+    .containorTable {
+      .iconAction {
+        color: #000;
+        border: 0;
+      }
+    }
+
+    .backendPagination {
+      :global {
+        .ant-table {
+          height: calc(100% - 52px);
+        }
+      }
+    }
+
+    .frontendPagination {
+      :global {
+        .ant-table {
+          height: calc(100% - 52px);
+        }
+      }
+    }
+
+    .noneFrontendPagination {
+      :global {
+        .ant-table {
+          height: 100%;
+        }
+      }
+    }
+
+    :global {
+      .ant-layout {
+        min-height: calc(100vh - 55px);
+        background-color: #fff;
+      }
+
+      .ant-layout-footer {
+        padding: 0;
+      }
+
+      .ant-card {
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .ant-table-wrapper {
+        height: 100%;
+
+        .ant-spin-nested-loading {
+          height: 100%;
+
+          .ant-spin-container {
+            height: 100%;
+            overflow-x: hidden;
+
+            .ant-table {
+              .ant-table-container {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+
+                &::before {
+                  height: 100%;
+                }
+
+                .ant-table-content {
+                  height: 100%;
+                }
+
+                .ant-table-header {
+                  flex: 0 1 auto;
+
+                  .ant-table-thead {
+                    max-height: 47px;
+                  }
+                }
+
+                .ant-table-body {
+                  flex: 1 1 auto;
+                }
+              }
+            }
+
+            .ant-pagination {
+              box-shadow: inset 0 9px 8px -5px rgba(5, 5, 5, 6%);
+              margin-top: 0;
+              margin-bottom: 0;
+              padding-top: 10px;
+              padding-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.singlePageContainorBox {
+  :global {
+    .ant-modal-content {
+      padding-bottom: 16px;
+    }
+  }
+}
+
+.multiPageContainorBox {
+  :global {
+    .ant-modal-content {
+      padding-bottom: 2px;
+    }
+  }
+}

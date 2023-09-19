@@ -804,7 +804,11 @@ class Base extends AuthorizationWrapper {
     this.logCallTrack({}, primaryCallName, 'restoreColumnsOtherConfigArray');
 
     const columnsOtherConfigArray = this.getColumn().map((item) => {
-      return { dataIndex: item.dataIndex, show: true, fixed: item.fixed || '' };
+      return {
+        dataIndex: item.dataIndex,
+        show: true,
+        fixed: item.fixed || '',
+      };
     });
 
     this.columnsOtherConfig = columnsOtherConfigArray;
