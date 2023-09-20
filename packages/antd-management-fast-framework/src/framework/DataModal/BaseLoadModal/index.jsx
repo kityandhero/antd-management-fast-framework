@@ -11,7 +11,27 @@ class BaseLoadModal extends Base {
     this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToShow');
 
     if (this.reloadWhenShow) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'doOtherWhenChangeVisibleToShow',
+        'trigger',
+        'resetTargetForm',
+      );
+
       this.resetTargetForm();
+
+      this.logCallTrace(
+        {
+          parameter: {
+            dataLoading: true,
+          },
+        },
+        primaryCallName,
+        'doOtherWhenChangeVisibleToShow',
+        'trigger',
+        'reloadData',
+      );
 
       this.reloadData({ dataLoading: true }, null, 300);
     }

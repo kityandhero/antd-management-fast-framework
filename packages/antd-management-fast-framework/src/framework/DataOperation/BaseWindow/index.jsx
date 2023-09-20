@@ -138,7 +138,24 @@ class BaseWindow extends Base {
     );
 
     if (currentVisible) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'doOtherWhenChangeVisible',
+        'trigger',
+        'doOtherWhenChangeVisibleToShow',
+      );
+
       this.doOtherWhenChangeVisibleToShow();
+
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'doOtherWhenChangeVisible',
+        'trigger',
+        'executeAfterDoOtherWhenChangeVisibleToShow',
+      );
+
       this.executeAfterDoOtherWhenChangeVisibleToShow();
     } else {
       const { afterClose } = this.props;
@@ -177,11 +194,48 @@ class BaseWindow extends Base {
         );
       }
 
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'doOtherWhenChangeVisible',
+        'trigger',
+        'doOtherWhenChangeVisibleToHide',
+      );
+
       this.doOtherWhenChangeVisibleToHide();
+
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'doOtherWhenChangeVisible',
+        'trigger',
+        'executeAfterDoOtherWhenChangeVisibleToHide',
+      );
+
       this.executeAfterDoOtherWhenChangeVisibleToHide();
     }
 
+    this.logCallTrace(
+      {
+        parameter: {
+          currentVisible,
+        },
+      },
+      primaryCallName,
+      'doOtherWhenChangeVisible',
+      'trigger',
+      'executeOtherAfterDoOtherWhenChangeVisible',
+    );
+
     this.executeOtherAfterDoOtherWhenChangeVisible(currentVisible);
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doOtherWhenChangeVisible',
+      'trigger',
+      'resetSubmitSuccessTransferData',
+    );
 
     this.submitSuccessTransferData = {
       ...this.resetSubmitSuccessTransferData(),
@@ -209,12 +263,36 @@ class BaseWindow extends Base {
     const form = this.getTargetForm();
 
     if (!form) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'resetTargetForm',
+        'trigger',
+        'handleOtherOnResetTargetForm',
+      );
+
       this.handleOtherOnResetTargetForm();
 
       return;
     }
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'resetTargetForm',
+      'trigger',
+      'form.resetFields()',
+    );
+
     form.resetFields();
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'resetTargetForm',
+      'trigger',
+      'handleOtherOnResetTargetForm',
+    );
 
     this.handleOtherOnResetTargetForm();
   };
@@ -249,12 +327,42 @@ class BaseWindow extends Base {
       'afterLoadSuccess',
     );
 
+    this.logCallTrace(
+      {
+        parameter: {
+          metaData,
+          metaListData,
+          metaExtra,
+          metaOriginalData,
+        },
+      },
+      primaryCallName,
+      'afterLoadSuccess',
+      'trigger',
+      'fillData',
+    );
+
     this.fillData({
       metaData,
       metaListData,
       metaExtra,
       metaOriginalData,
     });
+
+    this.logCallTrace(
+      {
+        parameter: {
+          metaData,
+          metaListData,
+          metaExtra,
+          metaOriginalData,
+        },
+      },
+      primaryCallName,
+      'afterLoadSuccess',
+      'trigger',
+      'doOtherAfterLoadSuccess',
+    );
 
     this.doOtherAfterLoadSuccess({
       metaData,

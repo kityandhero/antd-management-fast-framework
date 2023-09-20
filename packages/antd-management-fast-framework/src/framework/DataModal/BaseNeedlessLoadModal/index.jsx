@@ -4,6 +4,8 @@ import { formNameCollection } from 'antd-management-fast-common';
 
 import { Base } from '../Base';
 
+const primaryCallName = 'DataModal::BaseNeedlessLoadModal';
+
 class BaseNeedlessLoadModal extends Base {
   reloadWhenShow = false;
 
@@ -20,13 +22,17 @@ class BaseNeedlessLoadModal extends Base {
   }
 
   doOtherWhenChangeVisibleToShow = () => {
-    const form = this.getTargetForm();
+    this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToShow');
 
-    if (!form) {
-      return;
-    }
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doOtherWhenChangeVisibleToShow',
+      'trigger',
+      'resetTargetForm',
+    );
 
-    form.resetFields();
+    this.resetTargetForm();
   };
 
   buildInitialValues = () => {

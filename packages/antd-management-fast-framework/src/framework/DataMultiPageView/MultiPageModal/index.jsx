@@ -139,11 +139,15 @@ class MultiPageModal extends MultiPage {
       this.handleSearchReset({});
     } else if (this.reloadWhenShow) {
       this.logCallTrace(
-        {},
+        {
+          parameter: {
+            delay: 500,
+          },
+        },
         primaryCallName,
         'doOtherWhenChangeVisibleToShow',
         'trigger',
-        'reloadData',
+        'reloadDataWithReloadAnimalPrompt',
       );
 
       this.reloadDataWithReloadAnimalPrompt({

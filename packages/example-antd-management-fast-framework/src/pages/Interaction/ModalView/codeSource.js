@@ -12,7 +12,7 @@ import {
 } from 'antd-management-fast-component';
 
 import { code as codeBaseSimpleMultiPageModal } from '../../../businessComponents/Modals/Multi/ListModal/BaseSimpleMultiPageModal/codeSource';
-import SimpleMultiPageModal from '../../../businessComponents/Modals/Multi/ListModal/SimpleMultiPageModal';
+import { SimpleMultiPageModal } from '../../../businessComponents/Modals/Multi/ListModal/SimpleMultiPageModal';
 import { code as codeSimpleMultiPageModal } from '../../../businessComponents/Modals/Multi/ListModal/SimpleMultiPageModal/codeSource';
 import { code as codeBaseSimpleMultiPageSelectModal } from '../../../businessComponents/Modals/Multi/SelectModal/BaseSimpleMultiPageSelectModal/codeSource';
 import SimpleMultiPageConfirmSelectModal from '../../../businessComponents/Modals/Multi/SelectModal/SimpleMultiPageConfirmSelectModal';

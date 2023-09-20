@@ -19,6 +19,14 @@ class BaseLoadDrawer extends BaseFormDrawer {
   doOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToShow');
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doOtherWhenChangeVisibleToShow',
+      'trigger',
+      'reloadData',
+    );
+
     this.reloadData({});
   };
 }

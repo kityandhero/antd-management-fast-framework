@@ -5,6 +5,7 @@ import {
   formatCollection,
   getValueByKey,
   isArray,
+  logExecute,
   whetherNumber,
 } from 'easy-soft-utility';
 
@@ -88,17 +89,21 @@ class BaseSimpleMultiPageSelectModal extends MultiPageModal {
     return result;
   };
 
+  handleOtherOnResetTargetSearch = () => {
+    logExecute('handleOtherOnResetTargetSearch');
+  };
+
   // 配置搜索框
   establishSearchCardConfig = () => {
     return {
       list: [
         {
-          lg: 12,
+          lg: 9,
           type: searchCardConfig.contentItemType.input,
           fieldData: fieldData.title,
         },
         {
-          lg: 8,
+          lg: 6,
           type: searchCardConfig.contentItemType.component,
           component: this.buildSearchCardButtonCore(),
         },

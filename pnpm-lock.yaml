@@ -266,7 +266,7 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.28
+        specifier: ^2.6.29
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -621,7 +621,7 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.28
+        specifier: ^2.6.29
         version: 'link:'
       array-move:
         specifier: ^4.0.0
@@ -976,7 +976,7 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.28
+        specifier: ^2.6.29
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1526,13 +1526,13 @@ importers:
         specifier: ^4.5.2
         version: 4.5.2(monaco-editor@0.43.0)(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.28
+        specifier: ^2.6.29
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.39
+        specifier: ^2.6.40
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
-        specifier: ^1.0.11
+        specifier: ^1.0.12
         version: link:../antd-management-fast-design-react
       antd-management-fast-formily:
         specifier: ^1.0.11
@@ -2382,10 +2382,10 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.28
+        specifier: ^2.6.29
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.39
+        specifier: ^2.6.40
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.5.0
@@ -2704,22 +2704,22 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.28
+        specifier: ^2.6.29
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.39
+        specifier: ^2.6.40
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.15
+        specifier: ^1.0.16
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
-        specifier: ^1.0.11
+        specifier: ^1.0.12
         version: link:../antd-management-fast-design-react
       antd-management-fast-formily:
         specifier: ^1.0.11
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.49
+        specifier: ^2.11.50
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.5.0
@@ -2975,13 +2975,13 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.28
+        specifier: ^2.6.29
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.39
+        specifier: ^2.6.40
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.11.49
+        specifier: ^2.11.50
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.5.0

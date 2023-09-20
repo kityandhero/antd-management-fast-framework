@@ -5,6 +5,8 @@ import { cardConfig } from 'antd-management-fast-common';
 
 import { BaseUpdateModal } from '../BaseUpdateModal';
 
+const primaryCallName = 'DataModal::BaseUpdateTransferModal';
+
 class BaseUpdateTransferModal extends BaseUpdateModal {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -26,11 +28,29 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
   };
 
   doOtherWhenChangeVisibleToShow = () => {
+    this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToShow');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doOtherWhenChangeVisibleToShow',
+      'trigger',
+      'buildTargetKeys',
+    );
+
     this.setState(
       {
         targetKeys: this.buildTargetKeys(),
       },
       () => {
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doOtherWhenChangeVisibleToShow',
+          'trigger',
+          'reloadData',
+        );
+
         this.reloadData({});
       },
     );

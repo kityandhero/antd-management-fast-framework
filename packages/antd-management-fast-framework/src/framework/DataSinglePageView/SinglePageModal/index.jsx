@@ -136,11 +136,15 @@ class SinglePageModal extends SinglePage {
       this.handleSearchReset({});
     } else if (this.reloadWhenShow) {
       this.logCallTrace(
-        {},
+        {
+          parameter: {
+            delay: 500,
+          },
+        },
         primaryCallName,
         'doOtherWhenChangeVisibleToShow',
         'trigger',
-        'reloadData',
+        'reloadDataWithReloadAnimalPrompt',
       );
 
       const that = this;

@@ -26,6 +26,14 @@ class BaseNeedlessLoadDrawer extends BaseFormDrawer {
   doOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToShow');
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doOtherWhenChangeVisibleToShow',
+      'trigger',
+      'resetTargetForm',
+    );
+
     this.resetTargetForm();
   };
 

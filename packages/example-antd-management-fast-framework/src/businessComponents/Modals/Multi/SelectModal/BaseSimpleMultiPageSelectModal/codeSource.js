@@ -87,7 +87,7 @@ class BaseSimpleMultiPageSelectModal extends MultiPageSelectModal {
     return {
       list: [
         {
-          lg: 12,
+          lg: 6,
           type: searchCardConfig.contentItemType.input,
           fieldData: fieldData.title,
         },
