@@ -2719,7 +2719,7 @@ importers:
         specifier: ^1.0.11
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.50
+        specifier: ^2.11.51
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.5.0

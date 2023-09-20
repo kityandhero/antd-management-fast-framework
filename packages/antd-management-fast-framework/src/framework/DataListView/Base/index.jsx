@@ -445,12 +445,36 @@ class Base extends AuthorizationWrapper {
     const form = this.getSearchCard();
 
     if (!form) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'resetTargetSearch',
+        'trigger',
+        'handleOtherOnResetTargetSearch',
+      );
+
       this.handleOtherOnResetTargetSearch();
 
       return;
     }
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'resetTargetSearch',
+      'trigger',
+      'form.resetFields()',
+    );
+
     form.resetFields();
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'resetTargetSearch',
+      'trigger',
+      'handleOtherOnResetTargetSearch',
+    );
 
     this.handleOtherOnResetTargetSearch();
   };
