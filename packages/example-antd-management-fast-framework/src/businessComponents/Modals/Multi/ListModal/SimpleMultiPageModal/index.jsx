@@ -31,4 +31,4 @@ class SimpleMultiPageModal extends BaseSimpleMultiPageModal {
   }
 }
 
-export default SimpleMultiPageModal;
+export { SimpleMultiPageModal };

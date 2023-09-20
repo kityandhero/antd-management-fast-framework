@@ -425,7 +425,34 @@ class Base extends AuthorizationWrapper {
   };
 
   getSearchCard = () => {
+    this.logCallTrack({}, primaryCallName, 'getSearchCard', emptyLogic);
+
     return this.formRef.current;
+  };
+
+  handleOtherOnResetTargetSearch = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'handleOtherOnResetTargetSearch',
+      emptyLogic,
+    );
+  };
+
+  resetTargetSearch = () => {
+    this.logCallTrack({}, primaryCallName, 'resetTargetSearch');
+
+    const form = this.getSearchCard();
+
+    if (!form) {
+      this.handleOtherOnResetTargetSearch();
+
+      return;
+    }
+
+    form.resetFields();
+
+    this.handleOtherOnResetTargetSearch();
   };
 
   buildSearchCardContent = (config) => {

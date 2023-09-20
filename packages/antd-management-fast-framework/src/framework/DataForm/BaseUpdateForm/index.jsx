@@ -19,13 +19,7 @@ class BaseUpdateForm extends DataLoad {
   handleFormReset = () => {
     this.logCallTrack({}, primaryCallName, 'handleFormReset');
 
-    const form = this.getTargetForm();
-
-    if (!form) {
-      return;
-    }
-
-    form.resetFields();
+    this.resetTargetForm();
 
     this.reloadData({});
   };

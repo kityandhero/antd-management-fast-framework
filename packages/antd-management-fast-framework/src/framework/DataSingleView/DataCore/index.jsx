@@ -1,7 +1,10 @@
 import { Avatar, Button, Form, Tooltip } from 'antd';
 import React from 'react';
 
-import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
+import {
+  emptyLogic,
+  getDerivedStateFromPropertiesForUrlParameters,
+} from 'antd-management-fast-common';
 import {
   avatarImageLoadResultCollection,
   iconBuilder,
@@ -58,7 +61,34 @@ class DataCore extends BaseView {
   afterSetFieldsValue = (value) => {};
 
   getTargetForm = () => {
+    this.logCallTrack({}, primaryCallName, 'getTargetForm');
+
     return this.formRef.current;
+  };
+
+  handleOtherOnResetTargetForm = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'handleOtherOnResetTargetForm',
+      emptyLogic,
+    );
+  };
+
+  resetTargetForm = () => {
+    this.logCallTrack({}, primaryCallName, 'resetTargetForm');
+
+    const form = this.getTargetForm();
+
+    if (!form) {
+      this.handleOtherOnResetTargetForm();
+
+      return;
+    }
+
+    form.resetFields();
+
+    this.handleOtherOnResetTargetForm();
   };
 
   onPageHeaderAvatarLoadError = () => {

@@ -59,12 +59,6 @@ class BaseAddForm extends DataCore {
     this.fillData();
   };
 
-  getTargetForm = () => {
-    this.logCallTrack({}, primaryCallName, 'getTargetForm');
-
-    return this.formRef.current;
-  };
-
   fillData = () => {
     this.logCallTrack({}, primaryCallName, 'fillData');
 
@@ -124,13 +118,7 @@ class BaseAddForm extends DataCore {
   handleFormReset = () => {
     this.logCallTrack({}, primaryCallName, 'handleFormReset');
 
-    const form = this.getTargetForm();
-
-    if (!form) {
-      return;
-    }
-
-    form.resetFields();
+    this.resetTargetForm();
 
     this.reloadData({});
   };

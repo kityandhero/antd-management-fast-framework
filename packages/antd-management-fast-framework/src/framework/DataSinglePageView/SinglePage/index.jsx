@@ -37,11 +37,9 @@ class SinglePage extends Base {
   }
 
   handleSearchReset = () => {
-    const form = this.getSearchCard();
+    this.logCallTrack({}, primaryCallName, 'handleSearchReset');
 
-    if (form) {
-      form.resetFields();
-    }
+    this.resetTargetSearch();
 
     this.handleAdditionalSearchReset();
 

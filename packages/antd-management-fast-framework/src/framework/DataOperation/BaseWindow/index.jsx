@@ -194,6 +194,31 @@ class BaseWindow extends Base {
     return this.formRef.current;
   };
 
+  handleOtherOnResetTargetForm = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'handleOtherOnResetTargetForm',
+      emptyLogic,
+    );
+  };
+
+  resetTargetForm = () => {
+    this.logCallTrack({}, primaryCallName, 'resetTargetForm');
+
+    const form = this.getTargetForm();
+
+    if (!form) {
+      this.handleOtherOnResetTargetForm();
+
+      return;
+    }
+
+    form.resetFields();
+
+    this.handleOtherOnResetTargetForm();
+  };
+
   supplementSubmitRequestParams = (o) => {
     this.logCallTrack(
       {},

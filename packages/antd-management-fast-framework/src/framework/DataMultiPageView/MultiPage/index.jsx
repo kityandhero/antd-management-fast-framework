@@ -67,11 +67,7 @@ class MultiPage extends Base {
   handleSearchReset = () => {
     this.logCallTrack({}, primaryCallName, 'handleSearchReset');
 
-    const form = this.getSearchCard();
-
-    if (form) {
-      form.resetFields();
-    }
+    this.resetTargetSearch();
 
     this.handleAdditionalSearchReset();
 
