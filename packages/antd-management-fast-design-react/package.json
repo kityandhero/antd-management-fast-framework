@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-react",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "keywords": [
     "antd-management-fast-design-react"
   ],
@@ -61,7 +61,7 @@
     "@babel/parser": "^7.22.16",
     "@designable/core": "^1.0.0-beta.45",
     "@designable/shared": "^1.0.0-beta.45",
-    "@formily/antd-v5": "^1.1.1",
+    "@formily/antd-v5": "^1.1.2",
     "@formily/core": "^2.2.29",
     "@formily/json-schema": "^2.2.29",
     "@formily/react": "^2.2.29",
@@ -74,7 +74,7 @@
     "classnames": "^2.3.2",
     "dateformat": "^5.0.3",
     "dayjs": "^1.11.10",
-    "easy-soft-utility": "^2.7.17",
+    "easy-soft-utility": "^2.7.18",
     "monaco-editor": "^0.43.0",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
@@ -98,7 +98,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@types/dateformat": "^5.0.0",
     "@types/jest": "^29.5.5",
-    "@types/node": "^20.6.2",
+    "@types/node": "^20.6.3",
     "@types/react": "^18.2.22",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18.2.7",
