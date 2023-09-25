@@ -526,17 +526,6 @@ class InternalBuild extends InternalSwitchoverFlow {
   };
 
   buildByExtraBuildType = ({ keyPrefix = '', configList = [] }) => {
-    // this.logCallTrack(
-    //   {
-    //     parameter: {
-    //       keyPrefix,
-    //       configList,
-    //     },
-    //   },
-    //   primaryCallName,
-    //   'buildByExtraBuildType',
-    // );
-
     const list = [];
 
     for (const [index, item] of (isArray(configList)

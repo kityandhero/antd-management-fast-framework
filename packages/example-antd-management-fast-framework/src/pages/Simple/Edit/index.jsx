@@ -431,64 +431,66 @@ class Edit extends DataTabContainerSupplement {
   establishTabBarExtraContentRightConfig = () => {
     const { metaData } = this.state;
 
-    return {
-      buildType: tabBarCollection.extraBuildType.dropdown,
-      icon: iconBuilder.form(),
-      size: 'small',
-      text: '扩展菜单',
-      handleData: metaData,
-      hidden: false,
-      // eslint-disable-next-line no-unused-vars
-      handleButtonClick: ({ handleData }) => {
-        showSimpleInfoMessage('已点击');
+    return [
+      {
+        buildType: tabBarCollection.extraBuildType.dropdown,
+        icon: iconBuilder.form(),
+        size: 'small',
+        text: '扩展菜单',
+        handleData: metaData,
+        hidden: false,
+        // eslint-disable-next-line no-unused-vars
+        handleButtonClick: ({ handleData }) => {
+          showSimpleInfoMessage('已点击');
+        },
+        // eslint-disable-next-line no-unused-vars
+        handleMenuClick: ({ key, handleData }) => {
+          switch (key) {
+            case 'extraBarAction1': {
+              showSimpleInfoMessage(`click ${key}`);
+
+              break;
+            }
+
+            case 'extraBarAction2': {
+              showSimpleInfoMessage(`click ${key}`);
+
+              break;
+            }
+
+            case 'extraBarAction3': {
+              showSimpleInfoMessage(`click ${key}`);
+
+              break;
+            }
+          }
+        },
+        items: [
+          {
+            key: 'extraBarAction1',
+            icon: iconBuilder.form(),
+            text: '按钮1',
+            hidden: false,
+            confirm: true,
+            title: `即将点击按钮，确定吗？`,
+          },
+          {
+            key: 'extraBarAction2',
+            icon: iconBuilder.form(),
+            text: '按钮2',
+            hidden: false,
+          },
+          {
+            key: 'extraBarAction3',
+            icon: iconBuilder.form(),
+            text: '按钮3',
+            hidden: true,
+            confirm: true,
+            title: `即将点击按钮3, 确定吗?`,
+          },
+        ],
       },
-      // eslint-disable-next-line no-unused-vars
-      handleMenuClick: ({ key, handleData }) => {
-        switch (key) {
-          case 'extraBarAction1': {
-            showSimpleInfoMessage(`click ${key}`);
-
-            break;
-          }
-
-          case 'extraBarAction2': {
-            showSimpleInfoMessage(`click ${key}`);
-
-            break;
-          }
-
-          case 'extraBarAction3': {
-            showSimpleInfoMessage(`click ${key}`);
-
-            break;
-          }
-        }
-      },
-      items: [
-        {
-          key: 'extraBarAction1',
-          icon: iconBuilder.form(),
-          text: '按钮1',
-          hidden: false,
-          confirm: true,
-          title: `即将点击按钮，确定吗？`,
-        },
-        {
-          key: 'extraBarAction2',
-          icon: iconBuilder.form(),
-          text: '按钮2',
-          hidden: false,
-        },
-        {
-          key: 'extraBarAction3',
-          icon: iconBuilder.form(),
-          text: '按钮3',
-          hidden: true,
-          confirm: true,
-          title: `即将点击按钮3, 确定吗?`,
-        },
-      ],
-    };
+    ];
   };
 
   establishPageHeaderExtraContentConfig = () => {
