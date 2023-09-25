@@ -2,7 +2,6 @@ import { Button, Modal } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { connect } from 'easy-soft-dva';
-import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
 
 import styles from './index.less';
 
@@ -24,13 +23,9 @@ class ModalExtra extends PureComponent {
   };
 
   renderPresetTitle = () => {
-    const { titlePrefix, title, subtitle } = this.props;
+    const { titlePrefix, title } = this.props;
 
-    const subtitleAdjust = checkStringIsNullOrWhiteSpace(subtitle)
-      ? ''
-      : `:【${subtitle}】`;
-
-    return `${titlePrefix}${title || '标题'}${subtitleAdjust}`;
+    return `${titlePrefix}${title || '标题'}`;
   };
 
   renderOverlayControlButton = () => {
@@ -93,7 +88,6 @@ ModalExtra.defaultProps = {
   icon: null,
   titlePrefix: null,
   title: null,
-  subtitle: null,
 };
 
 export { ModalExtra };

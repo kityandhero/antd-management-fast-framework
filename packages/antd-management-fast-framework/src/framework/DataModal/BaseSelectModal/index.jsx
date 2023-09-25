@@ -87,6 +87,8 @@ class BaseSelectModal extends BaseLoadModal {
   };
 
   handleOk = () => {
+    this.logCallTrack({}, primaryCallName, 'handleOk');
+
     const { afterSelectSuccess } = this.props;
 
     if (isFunction(afterSelectSuccess)) {
@@ -118,8 +120,12 @@ class BaseSelectModal extends BaseLoadModal {
   };
 
   establishCardCollectionConfig = () => {
+    this.logCallTrack({}, primaryCallName, 'establishCardCollectionConfig');
+
     const { label, helper } = this.props;
     const { metaListData } = this.state;
+
+    this.logCallTrace({}, primaryCallName, 'transferData');
 
     return {
       list: [

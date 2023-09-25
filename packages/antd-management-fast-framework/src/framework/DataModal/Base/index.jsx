@@ -16,7 +16,7 @@ import {
   renderFurtherColorWhenNoCallProcess,
   renderFurtherPrefixWhenNoCallProcess,
 } from 'antd-management-fast-common';
-import { FlexText, iconBuilder } from 'antd-management-fast-component';
+import { iconBuilder } from 'antd-management-fast-component';
 
 import { ModalExtra } from '../../../components/ModalExtra';
 import { BaseWindow } from '../../DataOperation/BaseWindow';
@@ -166,7 +166,7 @@ class Base extends BaseWindow {
   };
 
   buildTitlePrevText = () => {
-    this.logCallTrack({}, primaryCallName, 'buildTitleIcon');
+    this.logCallTrack({}, primaryCallName, 'buildTitlePrevText');
 
     return '';
   };
@@ -207,17 +207,10 @@ class Base extends BaseWindow {
     return 'center';
   };
 
-  buildTitle = () => {
-    this.logCallTrack({}, primaryCallName, 'buildTitle');
+  renderPresetTitleIcon = () => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon');
 
-    return (
-      <FlexText
-        flexAuto="right"
-        icon={this.buildTitleIcon()}
-        textPrefix={this.buildTitlePrevText()}
-        text={this.buildTitleText()}
-      />
-    );
+    return iconBuilder.edit();
   };
 
   renderPresetFormContent = () => {
@@ -318,7 +311,9 @@ class Base extends BaseWindow {
     return (
       <ModalExtra
         flag={this.getVisibleFlag()}
-        title={this.buildTitle()}
+        icon={this.renderPresetTitleIcon()}
+        titlePrefix={this.buildTitlePrevText()}
+        title={this.buildTitleText()}
         width={width}
         bodyStyle={this.getModalBodyStyle()}
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
