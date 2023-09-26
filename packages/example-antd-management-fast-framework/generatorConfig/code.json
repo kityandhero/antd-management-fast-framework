@@ -89,6 +89,10 @@
       "sourceFilePath": "./src/businessComponents/Modals/Multi/SelectModal/SimpleMultiPageMultiSelectModal/index.jsx"
     },
     {
+      "codeFilePath": "./src/businessComponents/Drawers/SimpleVerticalFlexDrawer/codeSource.js",
+      "sourceFilePath": "./src/businessComponents/Drawers/SimpleVerticalFlexDrawer/index.jsx"
+    },
+    {
       "codeFilePath": "./src/businessComponents/Drawers/SimpleAddDrawer/codeSource.js",
       "sourceFilePath": "./src/businessComponents/Drawers/SimpleAddDrawer/index.jsx"
     },

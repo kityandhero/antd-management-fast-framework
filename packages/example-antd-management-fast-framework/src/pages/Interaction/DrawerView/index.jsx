@@ -19,6 +19,7 @@ import SimpleMultiPageMultiSelectDrawer from '../../../businessComponents/Drawer
 import SimpleMultiPageSingleSelectDrawer from '../../../businessComponents/Drawers/Multi/SimpleMultiPageSingleSelectDrawer';
 import SimpleAddDrawer from '../../../businessComponents/Drawers/SimpleAddDrawer';
 import SimpleEditDrawer from '../../../businessComponents/Drawers/SimpleEditDrawer';
+import { SimpleVerticalFlexDrawer } from '../../../businessComponents/Drawers/SimpleVerticalFlexDrawer';
 import { code as codeBaseSimpleSinglePageSelectDrawer } from '../../../businessComponents/Drawers/Single/BaseSimpleSinglePageSelectDrawer/codeSource';
 import SimpleSinglePageFrontendPaginationConfirmSelectDrawer from '../../../businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer';
 import SimpleSinglePageFrontendPaginationMultiSelectDrawer from '../../../businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer';
@@ -52,6 +53,15 @@ class DrawerView extends BaseView {
       stick: false,
       title: '操作栏',
       tools: [
+        {
+          component: buildButton({
+            title: '点击显示 VerticalFlexDrawer',
+            text: 'VerticalFlexDrawer',
+            handleClick: () => {
+              SimpleVerticalFlexDrawer.open();
+            },
+          }),
+        },
         {
           component: buildButton({
             title: '点击显示 AddDrawer',
@@ -361,6 +371,12 @@ class DrawerView extends BaseView {
           multiSelect={true}
           hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
+        />
+
+        <SimpleVerticalFlexDrawer
+          afterClose={() => {
+            logDebug({}, 'trigger afterClose');
+          }}
         />
 
         <SimpleAddDrawer

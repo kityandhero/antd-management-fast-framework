@@ -6,6 +6,7 @@ import {
   isUndefined,
   logCallTrack,
   mergeArrowText,
+  showSimpleErrorMessage,
   toString,
 } from 'easy-soft-utility';
 
@@ -111,6 +112,10 @@ class Base extends BaseWindow {
       'renderPresetContentContainorInner',
       emptyLogic,
     );
+
+    const text = 'renderPresetContentContainorInner need be override';
+
+    showSimpleErrorMessage(text);
 
     return null;
   };

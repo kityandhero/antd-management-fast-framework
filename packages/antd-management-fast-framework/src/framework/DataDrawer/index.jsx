@@ -5,6 +5,7 @@ import { BaseLoadDrawer } from './BaseLoadDrawer';
 import { BaseNeedlessLoadDrawer } from './BaseNeedlessLoadDrawer';
 import { BaseSaveDrawer } from './BaseSaveDrawer';
 import { BaseUpdateDrawer } from './BaseUpdateDrawer';
+import { BaseVerticalFlexDrawer } from './BaseVerticalFlexDrawer';
 
 const DataDrawer = {
   Base,
@@ -14,6 +15,7 @@ const DataDrawer = {
   BaseNeedlessLoadDrawer,
   BaseSaveDrawer,
   BaseUpdateDrawer,
+  BaseVerticalFlexDrawer,
 };
 
 export { DataDrawer };
