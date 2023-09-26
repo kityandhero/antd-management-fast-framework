@@ -47,14 +47,17 @@ class FlexBox extends PureComponent {
       right,
       rightStyle,
       top,
+      topStyle,
       bottom,
-      vertical,
+      bottomStyle,
     } = this.props;
 
     let direction = this.getDirection();
 
+    let flexAuto = '';
+
     if (direction === 'horizontal') {
-      const flexAuto = flexAutoSource === 'left' ? 'left' : 'right';
+      flexAuto = flexAutoSource === 'left' ? 'left' : 'right';
 
       const style = {
         ...styleSource,
@@ -91,35 +94,44 @@ class FlexBox extends PureComponent {
       );
     }
 
-    const {
-      // minHeight,
-      bottomHeight,
-    } = {
-      bottomHeight: '180rpx',
-      ...vertical,
-    };
+    if (top == null || bottom == null) {
+      if (top == null && bottom == null) {
+        return null;
+      }
+
+      if (top == null) {
+        return bottom;
+      }
+
+      if (bottom == null) {
+        return top;
+      }
+    }
+
+    flexAuto = flexAutoSource === 'top' ? 'top' : 'bottom';
 
     const style = {
       height: '100%',
       display: 'flex',
       flexFlow: 'column',
       alignItems: 'stretch',
-      // minHeight: minHeight,
     };
 
     return (
       <div style={style} className={className}>
         <div
           style={{
-            flex: '1 1 auto',
+            ...topStyle,
+            ...(flexAuto === 'bottom' ? {} : { flex: '1 1 auto' }),
           }}
         >
-          <div>{top}</div>
+          {top}
         </div>
 
         <div
           style={{
-            flex: `0 1 ${bottomHeight}`,
+            ...bottomStyle,
+            ...(flexAuto === 'bottom' ? { flex: '1 1 auto' } : {}),
           }}
         >
           {bottom}
@@ -132,14 +144,14 @@ class FlexBox extends PureComponent {
 FlexBox.defaultProps = {
   flexAuto: 'left',
   allowWrap: false,
-  vertical: {
-    minHeight: 'auto',
-    bottomHeight: '180rpx',
-  },
   left: null,
+  leftStyle: {},
   right: null,
+  rightStyle: {},
   top: null,
+  topStyle: {},
   bottom: null,
+  bottomStyle: {},
   style: null,
   className: null,
 };

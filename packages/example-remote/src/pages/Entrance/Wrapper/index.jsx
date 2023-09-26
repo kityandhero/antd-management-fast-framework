@@ -28,8 +28,8 @@ class Wrapper extends BaseComponent {
         <div style={{ height: '100vh' }}>
           <FlexBox
             flexAuto="top"
-            vertical={{
-              bottomHeight: '180rpx',
+            bottomStyle={{
+              height: '180rpx',
             }}
             top={
               <VerticalBox

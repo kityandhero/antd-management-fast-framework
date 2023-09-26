@@ -46,6 +46,17 @@ class BaseVerticalFlexDrawer extends Base {
     return values;
   };
 
+  establishPresetContentContainorInnerTopStyle = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPresetContentContainorInnerTopStyle',
+      emptyLogic,
+    );
+
+    return {};
+  };
+
   renderPresetContentContainorInnerTop = () => {
     this.logCallTrack(
       {},
@@ -68,16 +79,34 @@ class BaseVerticalFlexDrawer extends Base {
 
     const bottom =
       helpConfig == null ? null : (
-        <HelpContent
-          wrapperType={this.contentWrapperType}
-          {...this.establishHelpConfig()}
-        />
+        <>
+          <div style={{ height: '24px' }}></div>
+
+          <HelpContent
+            wrapperType={this.contentWrapperType}
+            {...this.establishHelpConfig()}
+          />
+        </>
       );
 
     return (
       <FlexBox
         flexAuto="top"
-        top={<div>{this.renderPresetContentContainorInnerTop()}</div>}
+        topStyle={{
+          height: '100%',
+        }}
+        top={
+          <div
+            style={{
+              padding: '16px 24px',
+              backgroundColor: '#fff',
+              ...this.establishPresetContentContainorInnerTopStyle(),
+              height: '100%',
+            }}
+          >
+            {this.renderPresetContentContainorInnerTop()}
+          </div>
+        }
         bottom={bottom}
       />
     );
