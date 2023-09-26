@@ -60,6 +60,12 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
     return '编辑信息';
   };
 
+  establishPresetContentContainorInnerTopStyle = () => {
+    return {
+      // padding: '12px 36px',
+    };
+  };
+
   establishHelpConfig = () => {
     return {
       title: '操作提示',
@@ -75,7 +81,9 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
   };
 
   renderPresetContentContainorInnerTop = () => {
-    return 1212;
+    return (
+      <div style={{ backgroundColor: '#4563ef', height: '100%' }}>content</div>
+    );
   };
 
   renderOverlayContent = () => {

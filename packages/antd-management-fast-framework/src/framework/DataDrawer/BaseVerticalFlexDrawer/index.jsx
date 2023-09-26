@@ -5,6 +5,7 @@ import { showSimpleErrorMessage } from 'easy-soft-utility';
 import { emptyLogic } from 'antd-management-fast-common';
 import { FlexBox, PageExtra } from 'antd-management-fast-component';
 
+import { LoadingOverlay } from '../../../components';
 import { Base } from '../Base';
 
 const { HelpContent } = PageExtra;
@@ -90,25 +91,35 @@ class BaseVerticalFlexDrawer extends Base {
       );
 
     return (
-      <FlexBox
-        flexAuto="top"
-        topStyle={{
-          height: '100%',
-        }}
-        top={
-          <div
-            style={{
-              padding: '16px 24px',
-              backgroundColor: '#fff',
-              ...this.establishPresetContentContainorInnerTopStyle(),
-              height: '100%',
-            }}
-          >
-            {this.renderPresetContentContainorInnerTop()}
-          </div>
-        }
-        bottom={bottom}
-      />
+      <LoadingOverlay
+        flag={[
+          this.viewLoadingFlag,
+          this.viewReloadingFlag,
+          this.viewRefreshingFlag,
+          this.viewProcessingFlag,
+        ]}
+        fill
+      >
+        <FlexBox
+          flexAuto="top"
+          topStyle={{
+            height: '100%',
+          }}
+          top={
+            <div
+              style={{
+                padding: '16px 24px',
+                backgroundColor: '#fff',
+                ...this.establishPresetContentContainorInnerTopStyle(),
+                height: '100%',
+              }}
+            >
+              {this.renderPresetContentContainorInnerTop()}
+            </div>
+          }
+          bottom={bottom}
+        />
+      </LoadingOverlay>
     );
   };
 }

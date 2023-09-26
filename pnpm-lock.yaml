@@ -2385,7 +2385,7 @@ importers:
         specifier: ^2.6.30
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.41
+        specifier: ^2.6.42
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.5.0
@@ -2707,7 +2707,7 @@ importers:
         specifier: ^2.6.30
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.41
+        specifier: ^2.6.42
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
         specifier: ^1.0.17
@@ -2719,7 +2719,7 @@ importers:
         specifier: ^1.0.12
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.55
+        specifier: ^2.11.56
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.5.0
@@ -2978,10 +2978,10 @@ importers:
         specifier: ^2.6.30
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.41
+        specifier: ^2.6.42
         version: link:../antd-management-fast-component
       antd-management-fast-framework:
-        specifier: ^2.11.53
+        specifier: ^2.11.56
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.5.0
