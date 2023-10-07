@@ -86,7 +86,7 @@ class FileUpload extends PureComponent {
       },
       () => {
         if (isFunction(afterChangeSuccess)) {
-          afterChangeSuccess(fileUrlTemp || '');
+          afterChangeSuccess(fileUrlTemp || '', { file: fileUrlTemp });
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
@@ -114,7 +114,7 @@ class FileUpload extends PureComponent {
       },
       () => {
         if (isFunction(afterChangeSuccess)) {
-          afterChangeSuccess('');
+          afterChangeSuccess('', null);
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
@@ -139,7 +139,11 @@ class FileUpload extends PureComponent {
   };
 
   handleUploadChange = (info) => {
-    const { pretreatmentRemoteResponse, afterChangeSuccess } = this.props;
+    const {
+      pretreatmentRemoteResponse,
+      afterUploadSuccess,
+      afterChangeSuccess,
+    } = this.props;
 
     if (info.file.status === 'uploading') {
       this.setState({ uploading: true });
@@ -160,8 +164,16 @@ class FileUpload extends PureComponent {
             uploading: false,
           },
           () => {
+            if (isFunction(afterUploadSuccess)) {
+              afterUploadSuccess(file || '', data);
+            } else {
+              const text = 'afterUploadSuccess 配置无效';
+
+              showSimpleRuntimeError(text);
+            }
+
             if (isFunction(afterChangeSuccess)) {
-              afterChangeSuccess(file || '');
+              afterChangeSuccess(file || '', data);
             } else {
               const text = 'afterChangeSuccess 配置无效';
 

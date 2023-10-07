@@ -108,7 +108,7 @@ class AudioUpload extends PureComponent {
       },
       () => {
         if (isFunction(afterChangeSuccess)) {
-          afterChangeSuccess(audioUrlTemp || '');
+          afterChangeSuccess(audioUrlTemp || '', { audio: audioUrlTemp });
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
@@ -134,7 +134,7 @@ class AudioUpload extends PureComponent {
       },
       () => {
         if (isFunction(afterChangeSuccess)) {
-          afterChangeSuccess('');
+          afterChangeSuccess('', null);
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
@@ -165,7 +165,11 @@ class AudioUpload extends PureComponent {
   };
 
   handleUploadChange = (info) => {
-    const { pretreatmentRemoteResponse, afterChangeSuccess } = this.props;
+    const {
+      pretreatmentRemoteResponse,
+      afterUploadSuccess,
+      afterChangeSuccess,
+    } = this.props;
 
     if (info.file.status === 'uploading') {
       this.setState({ uploading: true });
@@ -186,8 +190,16 @@ class AudioUpload extends PureComponent {
             uploading: false,
           },
           () => {
+            if (isFunction(afterUploadSuccess)) {
+              afterUploadSuccess(audio || '', data);
+            } else {
+              const text = 'afterUploadSuccess 配置无效';
+
+              showSimpleRuntimeError(text);
+            }
+
             if (isFunction(afterChangeSuccess)) {
-              afterChangeSuccess(audio || '');
+              afterChangeSuccess(audio || '', data);
             } else {
               const text = 'afterChangeSuccess 配置无效';
 

@@ -125,7 +125,7 @@ class ImageUpload extends PureExtraComponent {
         });
 
         if (isFunction(afterUploadSuccess)) {
-          afterUploadSuccess(image || '');
+          afterUploadSuccess(image || '', data);
         } else {
           const text = 'afterUploadSuccess 配置无效';
 
@@ -158,7 +158,7 @@ class ImageUpload extends PureExtraComponent {
         okType: 'danger',
         cancelText: '取消',
         onOk() {
-          afterUploadSuccess('');
+          afterUploadSuccess('', null);
         },
         onCancel() {},
       });
@@ -380,10 +380,8 @@ ImageUpload.defaultProps = {
   helper: '',
   pretreatmentRemoteResponse: () => {},
   afterUploadSuccess: () => {},
-
   // eslint-disable-next-line no-unused-vars
   onItemChange: ({ file, fileList }) => {},
-
   // eslint-disable-next-line no-unused-vars
   onItemRemove: (file) => {},
   fileListCapacity: defaultCapacity,

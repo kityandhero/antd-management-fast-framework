@@ -35,7 +35,6 @@ class VideoUpload extends PureComponent {
 
     this.state = {
       ...this.state,
-
       videoSource: '',
       videoUrl: '',
       videoUrlTemp: '',
@@ -111,7 +110,7 @@ class VideoUpload extends PureComponent {
       },
       () => {
         if (isFunction(afterChangeSuccess)) {
-          afterChangeSuccess(videoUrlTemp || '');
+          afterChangeSuccess(videoUrlTemp || '', { video: videoUrlTemp });
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
@@ -137,7 +136,7 @@ class VideoUpload extends PureComponent {
       },
       () => {
         if (isFunction(afterChangeSuccess)) {
-          afterChangeSuccess('');
+          afterChangeSuccess('', null);
         } else {
           const text = 'afterChangeSuccess 配置无效';
 
@@ -168,7 +167,11 @@ class VideoUpload extends PureComponent {
   };
 
   handleUploadChange = (info) => {
-    const { pretreatmentRemoteResponse, afterChangeSuccess } = this.props;
+    const {
+      pretreatmentRemoteResponse,
+      afterUploadSuccess,
+      afterChangeSuccess,
+    } = this.props;
 
     if (info.file.status === 'uploading') {
       this.setState({ uploading: true });
@@ -189,8 +192,16 @@ class VideoUpload extends PureComponent {
             uploading: false,
           },
           () => {
+            if (isFunction(afterUploadSuccess)) {
+              afterUploadSuccess(video || '', data);
+            } else {
+              const text = 'afterUploadSuccess 配置无效';
+
+              showSimpleRuntimeError(text);
+            }
+
             if (isFunction(afterChangeSuccess)) {
-              afterChangeSuccess(video || '');
+              afterChangeSuccess(video || '', data);
             } else {
               const text = 'afterChangeSuccess 配置无效';
 
