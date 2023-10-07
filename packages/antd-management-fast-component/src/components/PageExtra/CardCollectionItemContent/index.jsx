@@ -581,6 +581,11 @@ class CardCollectionItemContent extends PureComponent {
                           pretreatmentRemoteResponse={
                             pretreatmentVideoUploadResponse
                           }
+                          afterUploadSuccess={(video) => {
+                            if (isFunction(contentItem.afterUploadSuccess)) {
+                              contentItem.afterUploadSuccess(video);
+                            }
+                          }}
                           afterChangeSuccess={(video) => {
                             if (isFunction(contentItem.afterChangeSuccess)) {
                               contentItem.afterChangeSuccess(video);
@@ -624,6 +629,11 @@ class CardCollectionItemContent extends PureComponent {
                           pretreatmentRemoteResponse={
                             pretreatmentFileUploadResponse
                           }
+                          afterUploadSuccess={(file) => {
+                            if (isFunction(contentItem.afterUploadSuccess)) {
+                              contentItem.afterUploadSuccess(file);
+                            }
+                          }}
                           afterChangeSuccess={(file) => {
                             if (isFunction(contentItem.afterChangeSuccess)) {
                               contentItem.afterChangeSuccess(file);
@@ -668,6 +678,11 @@ class CardCollectionItemContent extends PureComponent {
                           pretreatmentRemoteResponse={
                             pretreatmentAudioUploadResponse
                           }
+                          afterUploadSuccess={(audio) => {
+                            if (isFunction(contentItem.afterUploadSuccess)) {
+                              contentItem.afterUploadSuccess(audio);
+                            }
+                          }}
                           afterChangeSuccess={(audio) => {
                             if (isFunction(contentItem.afterChangeSuccess)) {
                               contentItem.afterChangeSuccess(audio);
