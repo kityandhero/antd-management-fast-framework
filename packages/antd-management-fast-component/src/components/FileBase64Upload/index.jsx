@@ -59,7 +59,7 @@ class FileBase64Upload extends PureComponent {
         });
 
         if (isFunction(afterUploadSuccess)) {
-          afterUploadSuccess(fileBase64 || '');
+          afterUploadSuccess(fileBase64 || '', data);
         } else {
           const text = 'afterUploadSuccess 配置无效';
 

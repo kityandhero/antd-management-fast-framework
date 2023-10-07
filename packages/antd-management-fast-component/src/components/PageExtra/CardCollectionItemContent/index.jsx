@@ -304,9 +304,9 @@ class CardCollectionItemContent extends PureComponent {
                       pretreatmentRemoteResponse={
                         pretreatmentImageUploadResponse
                       }
-                      afterUploadSuccess={(image) => {
+                      afterUploadSuccess={(image, data) => {
                         if (isFunction(contentItem.afterUploadSuccess)) {
-                          contentItem.afterUploadSuccess(image);
+                          contentItem.afterUploadSuccess(image, data);
                         }
                       }}
                       onItemChange={contentItem.onItemChange || null}
@@ -537,9 +537,9 @@ class CardCollectionItemContent extends PureComponent {
                           pretreatmentRemoteResponse={
                             pretreatmentFileBase64UploadResponse
                           }
-                          afterUploadSuccess={(fileBase64) => {
+                          afterUploadSuccess={(fileBase64, data) => {
                             if (isFunction(contentItem.afterUploadSuccess)) {
-                              contentItem.afterUploadSuccess(fileBase64);
+                              contentItem.afterUploadSuccess(fileBase64, data);
                             }
                           }}
                         />
@@ -581,9 +581,9 @@ class CardCollectionItemContent extends PureComponent {
                           pretreatmentRemoteResponse={
                             pretreatmentVideoUploadResponse
                           }
-                          afterUploadSuccess={(video) => {
+                          afterUploadSuccess={(video, data) => {
                             if (isFunction(contentItem.afterUploadSuccess)) {
-                              contentItem.afterUploadSuccess(video);
+                              contentItem.afterUploadSuccess(video, data);
                             }
                           }}
                           afterChangeSuccess={(video) => {
@@ -629,9 +629,9 @@ class CardCollectionItemContent extends PureComponent {
                           pretreatmentRemoteResponse={
                             pretreatmentFileUploadResponse
                           }
-                          afterUploadSuccess={(file) => {
+                          afterUploadSuccess={(file, data) => {
                             if (isFunction(contentItem.afterUploadSuccess)) {
-                              contentItem.afterUploadSuccess(file);
+                              contentItem.afterUploadSuccess(file, data);
                             }
                           }}
                           afterChangeSuccess={(file) => {
@@ -678,9 +678,9 @@ class CardCollectionItemContent extends PureComponent {
                           pretreatmentRemoteResponse={
                             pretreatmentAudioUploadResponse
                           }
-                          afterUploadSuccess={(audio) => {
+                          afterUploadSuccess={(audio, data) => {
                             if (isFunction(contentItem.afterUploadSuccess)) {
-                              contentItem.afterUploadSuccess(audio);
+                              contentItem.afterUploadSuccess(audio, data);
                             }
                           }}
                           afterChangeSuccess={(audio) => {
