@@ -50,16 +50,20 @@ class FileBase64Upload extends PureComponent {
       const { response } = info.file;
 
       if (isFunction(pretreatmentRemoteResponse)) {
-        const data = pretreatmentRemoteResponse(response) || { fileBase64: '' };
+        const data = {
+          fileBase64: '',
+          data: {},
+          ...pretreatmentRemoteResponse(response),
+        };
 
-        const { fileBase64 } = data;
+        const { fileBase64, data: remoteData } = data;
 
         this.setState({
           uploading: false,
         });
 
         if (isFunction(afterUploadSuccess)) {
-          afterUploadSuccess(fileBase64 || '', data);
+          afterUploadSuccess(fileBase64 || '', remoteData);
         } else {
           const text = 'afterUploadSuccess 配置无效';
 

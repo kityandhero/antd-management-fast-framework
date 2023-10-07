@@ -116,16 +116,20 @@ class ImageUpload extends PureExtraComponent {
       const { response } = info.file;
 
       if (isFunction(pretreatmentRemoteResponse)) {
-        const data = pretreatmentRemoteResponse(response) || { image: '' };
+        const data = {
+          image: '',
+          data: {},
+          ...pretreatmentRemoteResponse(response),
+        };
 
-        const { image } = data;
+        const { image, data: remoteData } = data;
 
         this.setState({
           uploading: false,
         });
 
         if (isFunction(afterUploadSuccess)) {
-          afterUploadSuccess(image || '', data);
+          afterUploadSuccess(image || '', remoteData);
         } else {
           const text = 'afterUploadSuccess 配置无效';
 

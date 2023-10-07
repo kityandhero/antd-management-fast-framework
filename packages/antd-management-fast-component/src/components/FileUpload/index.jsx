@@ -154,9 +154,13 @@ class FileUpload extends PureComponent {
       const { response } = info.file;
 
       if (isFunction(pretreatmentRemoteResponse)) {
-        const data = pretreatmentRemoteResponse(response) || { file: '' };
+        const data = {
+          file: '',
+          data: {},
+          ...pretreatmentRemoteResponse(response),
+        };
 
-        const { file } = data;
+        const { file, data: remoteData } = data;
 
         this.setState(
           {
@@ -165,7 +169,7 @@ class FileUpload extends PureComponent {
           },
           () => {
             if (isFunction(afterUploadSuccess)) {
-              afterUploadSuccess(file || '', data);
+              afterUploadSuccess(file || '', remoteData);
             } else {
               const text = 'afterUploadSuccess 配置无效';
 
@@ -173,7 +177,7 @@ class FileUpload extends PureComponent {
             }
 
             if (isFunction(afterChangeSuccess)) {
-              afterChangeSuccess(file || '', data);
+              afterChangeSuccess(file || '', remoteData);
             } else {
               const text = 'afterChangeSuccess 配置无效';
 

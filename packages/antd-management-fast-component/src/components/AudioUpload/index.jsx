@@ -180,9 +180,13 @@ class AudioUpload extends PureComponent {
       const { response } = info.file;
 
       if (isFunction(pretreatmentRemoteResponse)) {
-        const data = pretreatmentRemoteResponse(response) || { audio: '' };
+        const data = {
+          audio: '',
+          data: {},
+          ...pretreatmentRemoteResponse(response),
+        };
 
-        const { audio } = data;
+        const { audio, data: remoteData } = data;
 
         this.setState(
           {
@@ -191,7 +195,7 @@ class AudioUpload extends PureComponent {
           },
           () => {
             if (isFunction(afterUploadSuccess)) {
-              afterUploadSuccess(audio || '', data);
+              afterUploadSuccess(audio || '', remoteData);
             } else {
               const text = 'afterUploadSuccess 配置无效';
 
@@ -199,7 +203,7 @@ class AudioUpload extends PureComponent {
             }
 
             if (isFunction(afterChangeSuccess)) {
-              afterChangeSuccess(audio || '', data);
+              afterChangeSuccess(audio || '', remoteData);
             } else {
               const text = 'afterChangeSuccess 配置无效';
 

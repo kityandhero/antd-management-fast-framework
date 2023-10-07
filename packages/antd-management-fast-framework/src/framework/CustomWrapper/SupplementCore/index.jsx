@@ -18,18 +18,18 @@ class SupplementCore extends Common {
       'pretreatmentImageUploadRemoteResponse',
     );
 
-    let result = { image: '' };
+    let result = { image: '', data: {} };
 
     const v = pretreatmentRemoteSingleData({ source: response });
 
     const { dataSuccess } = v;
 
     if (dataSuccess) {
-      const {
-        data: { imageUrl },
-      } = v;
+      const { data } = v;
 
-      result = { image: imageUrl || '' };
+      const { imageUrl } = data;
+
+      result = { image: imageUrl || '', data };
     } else {
       logDebug(
         {
@@ -56,18 +56,18 @@ class SupplementCore extends Common {
       'pretreatmentFileBase64UploadRemoteResponse',
     );
 
-    let result = { image: '' };
+    let result = { image: '', data: {} };
 
     const v = pretreatmentRemoteSingleData({ source: response });
 
     const { dataSuccess } = v;
 
     if (dataSuccess) {
-      const {
-        data: { fileBase64 },
-      } = v;
+      const { data } = v;
 
-      result = { fileBase64: fileBase64 || '' };
+      const { fileBase64 } = data;
+
+      result = { fileBase64: fileBase64 || '', data };
     } else {
       logDebug(
         {
@@ -94,18 +94,18 @@ class SupplementCore extends Common {
       'pretreatmentVideoUploadRemoteResponse',
     );
 
-    let result = { video: '' };
+    let result = { video: '', data: {} };
 
     const v = pretreatmentRemoteSingleData({ source: response });
 
     const { dataSuccess } = v;
 
     if (dataSuccess) {
-      const {
-        data: { videoUrl },
-      } = v;
+      const { data } = v;
 
-      result = { video: videoUrl || '' };
+      const { videoUrl } = data;
+
+      result = { video: videoUrl || '', data };
     } else {
       logDebug(
         {
@@ -132,18 +132,18 @@ class SupplementCore extends Common {
       'pretreatmentAudioUploadRemoteResponse',
     );
 
-    let result = { audio: '' };
+    let result = { audio: '', data: {} };
 
     const v = pretreatmentRemoteSingleData({ source: response });
 
     const { dataSuccess } = v;
 
     if (dataSuccess) {
-      const {
-        data: { audioUrl },
-      } = v;
+      const { data } = v;
 
-      result = { audio: audioUrl || '' };
+      const { audioUrl } = data;
+
+      result = { audio: audioUrl || '', data };
     } else {
       logDebug(
         {
@@ -170,18 +170,18 @@ class SupplementCore extends Common {
       'pretreatmentFileUploadRemoteResponse',
     );
 
-    let result = { file: '' };
+    let result = { file: '', data: {} };
 
     const v = pretreatmentRemoteSingleData({ source: response });
 
     const { dataSuccess } = v;
 
     if (dataSuccess) {
-      const {
-        data: { fileUrl },
-      } = v;
+      const { data } = v;
 
-      result = { file: fileUrl || '' };
+      const { fileUrl } = data;
+
+      result = { file: fileUrl || '', data };
     } else {
       logDebug(
         {

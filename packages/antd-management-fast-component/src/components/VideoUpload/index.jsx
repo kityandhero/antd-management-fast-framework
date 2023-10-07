@@ -182,9 +182,13 @@ class VideoUpload extends PureComponent {
       const { response } = info.file;
 
       if (isFunction(pretreatmentRemoteResponse)) {
-        const data = pretreatmentRemoteResponse(response) || { video: '' };
+        const data = {
+          video: '',
+          data: {},
+          ...pretreatmentRemoteResponse(response),
+        };
 
-        const { video } = data;
+        const { video, data: remoteData } = data;
 
         this.setState(
           {
@@ -193,7 +197,7 @@ class VideoUpload extends PureComponent {
           },
           () => {
             if (isFunction(afterUploadSuccess)) {
-              afterUploadSuccess(video || '', data);
+              afterUploadSuccess(video || '', remoteData);
             } else {
               const text = 'afterUploadSuccess 配置无效';
 
@@ -201,7 +205,7 @@ class VideoUpload extends PureComponent {
             }
 
             if (isFunction(afterChangeSuccess)) {
-              afterChangeSuccess(video || '', data);
+              afterChangeSuccess(video || '', remoteData);
             } else {
               const text = 'afterChangeSuccess 配置无效';
 
