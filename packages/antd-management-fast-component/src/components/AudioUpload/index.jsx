@@ -425,6 +425,7 @@ AudioUpload.defaultProps = {
   audio: '',
   showPreview: false,
   pretreatmentRemoteResponse: () => {},
+  afterUploadSuccess: () => {},
   afterChangeSuccess: () => {},
 };
 

@@ -419,6 +419,7 @@ VideoUpload.defaultProps = {
   video: '',
   showPreview: false,
   pretreatmentRemoteResponse: () => {},
+  afterUploadSuccess: () => {},
   afterChangeSuccess: () => {},
 };
 

@@ -349,6 +349,7 @@ FileUpload.defaultProps = {
   tokenSet: {},
   file: '',
   pretreatmentRemoteResponse: () => {},
+  afterUploadSuccess: () => {},
   afterChangeSuccess: () => {},
 };
 
