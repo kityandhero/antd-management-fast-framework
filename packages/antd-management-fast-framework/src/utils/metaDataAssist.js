@@ -1,23 +1,41 @@
 import { getDispatch } from 'easy-soft-dva';
 import {
+  buildPromptModuleInfo,
   getLocalMetaData,
   isFunction,
   logDebug,
   logExecute,
   logInfo,
   logTrace,
+  mergeTextMessage,
   setLocalMetaData,
+  throttle,
 } from 'easy-soft-utility';
 
 import { apiRequest, getPresetMetaData } from 'antd-management-fast-common';
 
+import { modulePackageName } from './definition';
 import { schedulingControlAssist } from './schedulingControlAssist';
+
+/**
+ * Module Name.
+ * @private
+ */
+const moduleName = 'metaDataAssist';
+
+function buildPromptModuleInfoText(text, ancillaryInformation = '') {
+  return buildPromptModuleInfo(
+    modulePackageName,
+    mergeTextMessage(text, ancillaryInformation),
+    moduleName,
+  );
+}
 
 export function refreshMetaData({
   successCallback = null,
   failCallback = null,
 }) {
-  logExecute('refreshMetaData');
+  logExecute({}, buildPromptModuleInfoText('refreshMetaData'));
 
   schedulingControlAssist.setMetaDataRequestProcessing(true);
 
@@ -66,6 +84,8 @@ export function refreshMetaData({
 }
 
 export function loadMetaData({ successCallback = null, failCallback = null }) {
+  logExecute({}, buildPromptModuleInfoText('loadMetaData'));
+
   if (schedulingControlAssist.getMetaDataRequestProcessing()) {
     const delayTime = 200;
 
@@ -108,8 +128,21 @@ export function loadMetaData({ successCallback = null, failCallback = null }) {
   });
 }
 
+function refreshMetaDataWhenCacheNonexistence() {
+  logExecute(
+    {},
+    buildPromptModuleInfoText('refreshMetaDataWhenCacheNonexistence'),
+  );
+
+  refreshMetaData({});
+}
+
 export function getMergeMetaData() {
   const metaDataCatch = getLocalMetaData();
+
+  if (metaDataCatch == null) {
+    throttle(refreshMetaDataWhenCacheNonexistence, 9999);
+  }
 
   return metaDataCatch;
 }

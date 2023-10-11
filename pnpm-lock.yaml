@@ -2385,7 +2385,7 @@ importers:
         specifier: ^2.6.30
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.42
+        specifier: ^2.6.47
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.5.0

@@ -1,5 +1,12 @@
 import { getDispatch } from 'easy-soft-dva';
-import { isFunction, logDebug, logExecute, logTrace } from 'easy-soft-utility';
+import {
+  buildPromptModuleInfo,
+  isFunction,
+  logDebug,
+  logExecute,
+  logTrace,
+  mergeTextMessage,
+} from 'easy-soft-utility';
 
 import { apiRequest } from 'antd-management-fast-common';
 
@@ -7,13 +14,28 @@ import {
   getApplicationListDataCache,
   setApplicationListDataCache,
 } from './applicationListDataCacheAssist';
+import { modulePackageName } from './definition';
 import { schedulingControlAssist } from './schedulingControlAssist';
+
+/**
+ * Module Name.
+ * @private
+ */
+const moduleName = 'applicationListDataAssist';
+
+function buildPromptModuleInfoText(text, ancillaryInformation = '') {
+  return buildPromptModuleInfo(
+    modulePackageName,
+    mergeTextMessage(text, ancillaryInformation),
+    moduleName,
+  );
+}
 
 function refreshApplicationListData(
   successCallback = null,
   failCallback = null,
 ) {
-  logExecute('refreshApplicationListData');
+  logExecute({}, buildPromptModuleInfoText('refreshApplicationListData'));
 
   schedulingControlAssist.setApplicationListDataProcessing(true);
 
@@ -69,6 +91,8 @@ export function loadApplicationListData({
   successCallback = null,
   failCallback = null,
 }) {
+  logExecute({}, buildPromptModuleInfoText('loadApplicationListData'));
+
   if (schedulingControlAssist.getApplicationListDataProcessing()) {
     const delayTime = 200;
 
@@ -113,7 +137,7 @@ export function loadApplicationListData({
 }
 
 export function getApplicationListData() {
-  logExecute('getApplicationListData');
+  logExecute({}, buildPromptModuleInfoText('getApplicationListData'));
 
   const applicationListDataCatch = getApplicationListDataCache();
 
