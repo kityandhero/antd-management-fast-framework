@@ -606,10 +606,12 @@ class MultiPageDrawer extends MultiPage {
         overlayButtonOpenText={overlayButtonOpenText}
         overlayButtonCloseText={overlayButtonCloseText}
         onClose={this.onClose}
-        bodyStyle={{
-          padding: 0,
-          overflowY: 'hidden',
-          overflowX: 'auto',
+        styles={{
+          body: {
+            padding: 0,
+            overflowY: 'hidden',
+            overflowX: 'auto',
+          },
         }}
         afterOpenChange={(v) => {
           that.doOtherWhenChangeVisible(v);

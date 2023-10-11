@@ -442,7 +442,6 @@ class Base extends BaseWindow {
 
     return (
       <DrawerExtra
-        headerStyle={this.adjustHeaderStyle()}
         flag={this.getVisibleFlag()}
         icon={this.renderPresetTitleIcon()}
         titlePrefix={this.buildTitlePrevText()}
@@ -457,9 +456,12 @@ class Base extends BaseWindow {
         overlayButtonOpenText={overlayButtonOpenText}
         overlayButtonCloseText={overlayButtonCloseText}
         onClose={this.onClose}
-        bodyStyle={{
-          padding: 0,
-          overflow: 'hidden',
+        styles={{
+          header: this.adjustHeaderStyle(),
+          body: {
+            padding: 0,
+            overflow: 'hidden',
+          },
         }}
         extra={this.buildExtraAction()}
         afterOpenChange={(v) => {
