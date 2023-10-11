@@ -22,6 +22,32 @@ class ModalExtra extends PureComponent {
     };
   };
 
+  buildStyles = () => {
+    const { styles: styleCollection } = { styles: {}, ...this.props };
+
+    const { header, body, footer, mask, wrapper } = {
+      header: {},
+      body: {},
+      footer: {},
+      mask: {},
+      wrapper: {},
+      ...styleCollection,
+    };
+
+    const bodyStyleAdjust = {
+      ...body,
+      ...this.buildBodyStyle(),
+    };
+
+    return {
+      header,
+      body: bodyStyleAdjust,
+      footer,
+      mask,
+      wrapper,
+    };
+  };
+
   renderPresetTitle = () => {
     const { titlePrefix, title } = this.props;
 
@@ -52,19 +78,16 @@ class ModalExtra extends PureComponent {
   };
 
   render() {
-    const { flag, switchControl, children, icon, bodyStyle, ...rest } =
-      this.props;
+    const { flag, switchControl, children, icon, ...rest } = this.props;
 
     const v = !!switchControl[flag];
+    const styleCollection = this.buildStyles();
 
     return (
       <Modal
         open={v || false}
         {...rest}
-        bodyStyle={{
-          ...bodyStyle,
-          ...this.buildBodyStyle(),
-        }}
+        styles={styleCollection}
         title={
           <span>
             {icon}

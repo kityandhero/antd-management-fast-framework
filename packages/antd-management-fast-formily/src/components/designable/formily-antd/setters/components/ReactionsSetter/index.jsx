@@ -188,7 +188,11 @@ export const ReactionsSetter = (properties) => {
         )}
         width="70%"
         centered
-        bodyStyle={{ padding: 10 }}
+        styles={{
+          body: {
+            padding: 10,
+          },
+        }}
         transitionName=""
         maskTransitionName=""
         open={modalVisible}

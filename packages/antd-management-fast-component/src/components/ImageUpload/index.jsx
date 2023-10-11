@@ -330,8 +330,10 @@ class ImageUpload extends PureExtraComponent {
               open={previewVisible}
               footer={null}
               onCancel={this.handleUploadCancel}
-              bodyStyle={{
-                boxShadow: '0 1px 4px #ccc, 0 0 40px #ccc inset',
+              styles={{
+                body: {
+                  boxShadow: '0 1px 4px #ccc, 0 0 40px #ccc inset',
+                },
               }}
             >
               <VerticalBox

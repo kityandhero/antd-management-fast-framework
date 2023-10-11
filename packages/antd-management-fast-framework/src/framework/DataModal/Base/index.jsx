@@ -315,7 +315,9 @@ class Base extends BaseWindow {
         titlePrefix={this.buildTitlePrevText()}
         title={this.buildTitleText()}
         width={width}
-        bodyStyle={this.getModalBodyStyle()}
+        styles={{
+          body: this.getModalBodyStyle(),
+        }}
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         zIndex={1001}
         okButtonProps={this.buildOkButtonProps()}

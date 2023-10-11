@@ -605,10 +605,12 @@ class MultiPageModal extends MultiPage {
         )}
         width={width}
         onCancel={this.onCancel}
-        bodyStyle={{
-          padding: 0,
-          overflowY: 'hidden',
-          overflowX: 'auto',
+        styles={{
+          body: {
+            padding: 0,
+            overflowY: 'hidden',
+            overflowX: 'auto',
+          },
         }}
         afterOpenChange={(v) => {
           that.doOtherWhenChangeVisible(v);

@@ -53,7 +53,11 @@ export const DataSourceSetter = observer((properties) => {
           <TextWidget token="SettingComponents.DataSourceSetter.configureDataSource" />
         }
         width="65%"
-        bodyStyle={{ padding: 10 }}
+        styles={{
+          body: {
+            padding: 10,
+          },
+        }}
         transitionName=""
         maskTransitionName=""
         open={modalVisible}
