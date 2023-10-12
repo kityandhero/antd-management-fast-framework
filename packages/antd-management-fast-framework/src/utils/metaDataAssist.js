@@ -141,7 +141,7 @@ export function getMergeMetaData() {
   const metaDataCatch = getLocalMetaData();
 
   if (metaDataCatch == null) {
-    throttle(refreshMetaDataWhenCacheNonexistence, 9999);
+    throttle(refreshMetaDataWhenCacheNonexistence, 5000);
   }
 
   return metaDataCatch;

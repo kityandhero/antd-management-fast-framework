@@ -34,6 +34,7 @@ import {
   QueueBox,
 } from 'antd-management-fast-component';
 
+import { buildExtraButton } from '../../../components/FunctionComponent';
 import { LoadingOverlay } from '../../../components/LoadingOverlay';
 import { InternalSwitchoverFlow } from '../InternalSwitchoverFlow';
 import { ReloadActionButton } from '../ReloadActionButton';
@@ -564,6 +565,19 @@ class InternalBuild extends InternalSwitchoverFlow {
 
             case extraBuildType.generalButton: {
               itemAdjust = buildButton(item);
+              break;
+            }
+
+            case extraBuildType.generalExtraButton: {
+              itemAdjust = buildExtraButton({
+                flag: [
+                  this.viewLoadingFlag,
+                  this.viewReloadingFlag,
+                  this.viewRefreshingFlag,
+                  this.viewProcessingFlag,
+                ],
+                ...item,
+              });
               break;
             }
 

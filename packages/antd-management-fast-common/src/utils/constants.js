@@ -186,6 +186,7 @@ export const contentConfig = {
 export const listViewConfig = {
   dataContainerExtraActionBuildType: {
     generalButton: 'generalButton',
+    generalExtraButton: 'generalExtraButton',
     button: 'button',
 
     /**
@@ -271,6 +272,11 @@ export const extraBuildType = {
   generalButton: 'generalButton',
 
   /**
+   * 根据配置项渲染高级按钮，事件触发需要自定义指定
+   */
+  generalExtraButton: 'generalExtraButton',
+
+  /**
    * 带图标文字，图标为空或者文字为空情况下渲染方式有差异
    */
   iconInfo: 'iconInfo',
@@ -326,6 +332,7 @@ export const drawerConfig = {
     refresh: 'refresh',
     save: 'save',
     generalButton: 'generalButton',
+    generalExtraButton: 'generalExtraButton',
     iconInfo: 'iconInfo',
     button: 'button',
     dropdownButton: 'dropdownButton',
