@@ -139,7 +139,10 @@ function refreshMetaDataWhenCacheNonexistence() {
 
 const throttleRefreshMetaDataWhenCacheNonexistence = throttle(
   refreshMetaDataWhenCacheNonexistence,
-  5000,
+  9999,
+  {
+    trailing: false,
+  },
 );
 
 export function getMergeMetaData() {
