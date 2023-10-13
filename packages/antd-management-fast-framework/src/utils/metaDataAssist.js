@@ -137,11 +137,16 @@ function refreshMetaDataWhenCacheNonexistence() {
   refreshMetaData({});
 }
 
+const throttleRefreshMetaDataWhenCacheNonexistence = throttle(
+  refreshMetaDataWhenCacheNonexistence,
+  5000,
+);
+
 export function getMergeMetaData() {
   const metaDataCatch = getLocalMetaData();
 
   if (metaDataCatch == null) {
-    throttle(refreshMetaDataWhenCacheNonexistence, 5000);
+    throttleRefreshMetaDataWhenCacheNonexistence();
   }
 
   return metaDataCatch;

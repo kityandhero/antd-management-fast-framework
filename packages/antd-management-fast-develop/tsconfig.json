@@ -17,8 +17,7 @@
     "experimentalDecorators": true,
     "strict": true,
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "ignoreDeprecations": "5.0"
+    "emitDeclarationOnly": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

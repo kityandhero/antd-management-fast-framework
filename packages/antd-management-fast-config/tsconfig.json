@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "es",
-    "target": "ES2017",
-    "module": "ESNext",
+    "outDir": "./dist",
+    "module": "esnext",
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
     "sourceMap": true,
     "baseUrl": ".",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
@@ -17,9 +18,17 @@
     "experimentalDecorators": true,
     "strict": true,
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "ignoreDeprecations": "5.0"
+    "declarationDir": "types",
+    "emitDeclarationOnly": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "build",
+    "es",
+    "dist",
+    "scripts",
+    "webpack",
+    "jest"
+  ]
 }

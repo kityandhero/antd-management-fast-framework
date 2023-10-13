@@ -19,8 +19,7 @@
     "strict": true,
     "declaration": true,
     "declarationDir": "es",
-    "emitDeclarationOnly": true,
-    "ignoreDeprecations": "5.0"
+    "emitDeclarationOnly": true
   },
   "include": ["src/**/*"],
   "exclude": [
