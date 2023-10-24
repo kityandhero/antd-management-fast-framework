@@ -58,6 +58,7 @@ class StatusBar extends PureComponent {
             );
           })}
         </Col>
+
         {extra == null ? null : <Col flex>{extra}</Col>}
       </Row>
     );

@@ -496,7 +496,8 @@ export function buildListViewItemExtra({
  * @param {Object} option.title title config like { label:'',text:'' }.
  * @param {Array} option.descriptionList description config like { label:'',text:'',textStyle: null }.
  * @param {Array} option.actionList action config like { label:'',text:'',emptyText:'',extra: null,canCopy: false }.
- * @param {Object} option.extra StatusBar extra component.
+ * @param {Object} option.extra statusBar extra component.
+ * @param {Object} option.statusBarWrapperStyle statusBar style.
  */
 export function buildListViewItemInner({
   image = null,
@@ -504,6 +505,7 @@ export function buildListViewItemInner({
   descriptionList = [],
   actionList = [],
   extra = null,
+  statusBarWrapperStyle = {},
 }) {
   const { label: titleLabel, text: titleText } = {
     label: '',
@@ -570,7 +572,9 @@ export function buildListViewItemInner({
         }
       />
 
-      <div>{buildStatusBar({ actionList, extra })}</div>
+      <div style={statusBarWrapperStyle}>
+        {buildStatusBar({ actionList, extra })}
+      </div>
     </>
   );
 }
@@ -581,6 +585,7 @@ export function buildListViewItemInner({
  * @param {Array} option.descriptionList description config like { label:'',text:'',textStyle: null }.
  * @param {Array} option.actionList action config like { label:'',text:'',emptyText:'',extra: null,canCopy: false }.
  * @param {Object} option.extra the params for buildDropdownButton.
+ * @param {Object} option.statusBarWrapperStyle statusBar
  */
 export function buildListViewItemInnerWithDropdownButton({
   image = null,
@@ -588,6 +593,7 @@ export function buildListViewItemInnerWithDropdownButton({
   descriptionList = [],
   actionList = [],
   extra = null,
+  statusBarWrapperStyle = {},
 }) {
   return buildListViewItemInner({
     image,
@@ -595,6 +601,7 @@ export function buildListViewItemInnerWithDropdownButton({
     descriptionList,
     actionList,
     extra: extra == null ? null : buildDropdownButton(extra),
+    statusBarWrapperStyle,
   });
 }
 
