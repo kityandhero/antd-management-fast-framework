@@ -95,6 +95,7 @@
     "pagebreak",
     "pageembed",
     "pageview",
+    "pannable",
     "permanentpen",
     "pify",
     "pmmmwh",
@@ -131,6 +132,7 @@
     "restoredraft",
     "rgba",
     "rightrec",
+    "rorate",
     "scroller",
     "searchreplace",
     "showcomments",
@@ -151,7 +153,8 @@
     "voronoi",
     "wordcount",
     "ycheck",
-    "ychecker"
+    "ychecker",
+    "zoomable"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,

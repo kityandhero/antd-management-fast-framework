@@ -1,3 +1,5 @@
+export const styleClassPrefix = 'antd-management-fast-flow';
+
 export const targetPointColor = '#4e44f2';
 export const sourcePointColor = '#a98477';
 

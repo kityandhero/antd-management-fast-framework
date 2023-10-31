@@ -18,9 +18,11 @@ import {
   VerticalBox,
 } from 'antd-management-fast-component';
 
-import { sourcePointColor, targetPointColor } from '../constant';
-
-import styles from '../node.less';
+import {
+  sourcePointColor,
+  styleClassPrefix,
+  targetPointColor,
+} from '../constant';
 
 class IntermediateNode extends PureComponent {
   render() {
@@ -66,9 +68,12 @@ class IntermediateNode extends PureComponent {
     return (
       <>
         <div
-          className={classNames(styles.node, isNext ? styles.node_next : null)}
+          className={classNames(
+            `${styleClassPrefix + '-node'}`,
+            isNext ? `${styleClassPrefix + '-node-next'}` : null,
+          )}
         >
-          <div className={styles.header}>
+          <div className={`${styleClassPrefix + '-node-header'}`}>
             <FlexBox
               flexAuto="left"
               left={
@@ -153,9 +158,9 @@ class IntermediateNode extends PureComponent {
           </div>
 
           {size !== 'small' && (
-            <div className={styles.content}>
-              <div className={styles.inner}>
-                <div className={styles.info}>
+            <div className={`${styleClassPrefix + '-node-content'}`}>
+              <div className={`${styleClassPrefix + '-node-content-inner'}`}>
+                <div className={`${styleClassPrefix + '-node-content-info'}`}>
                   <Space
                     direction="vertical"
                     style={{ width: '100%' }}

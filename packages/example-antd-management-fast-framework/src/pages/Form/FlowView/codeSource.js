@@ -1,25 +1,14 @@
 export const code = `import { connect } from 'easy-soft-dva';
-import {
-  convertCollection,
-  formatCollection,
-  formatTarget,
-  getValueByKey,
-  mergeArrowText,
-  showSimpleInfoMessage,
-  to,
-} from 'easy-soft-utility';
+import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
-import {
-  buildCustomGrid,
-  convertOptionOrRadioData,
-} from 'antd-management-fast-component';
+import { convertOptionOrRadioData } from 'antd-management-fast-component';
+import { Flow } from 'antd-management-fast-flow';
 
-import { fieldData } from '../../../businessData/data';
 import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
-import { code as codeGridView } from './codeSource';
+import { code as codeFlowView } from './codeSource';
 
 // eslint-disable-next-line no-unused-vars
 function dataConvert(o, index) {
@@ -37,14 +26,14 @@ class RadioView extends BaseView {
 
     this.state = {
       ...this.state,
-      pageTitle: 'Form 交互示例',
-      currentCodeTitle: 'GridView',
-      currentCode: codeGridView,
+      pageTitle: 'Flow 示例',
+      currentCodeTitle: 'FlowView',
+      currentCode: codeFlowView,
     };
   }
 
   establishCardCollectionConfig = () => {
-    const { metaData, currentCode, currentCodeTitle } = this.state;
+    const { currentCode, currentCodeTitle } = this.state;
 
     const that = this;
 
@@ -58,547 +47,23 @@ class RadioView extends BaseView {
             {
               lg: 24,
               type: cardConfig.contentItemType.component,
-              component: buildCustomGrid({
-                list: [
-                  {
-                    label: fieldData.simpleId.label,
-                    value: getValueByKey({
-                      data: metaData,
-                      key: fieldData.simpleId.name,
-                    }),
-                    canCopy: true,
-                  },
-                  {
-                    span: 2,
-                    label: fieldData.title.label,
-                    value: getValueByKey({
-                      data: metaData,
-                      key: fieldData.title.name,
-                    }),
-                  },
-                  {
-                    label: fieldData.sort.label,
-                    value: getValueByKey({
-                      data: metaData,
-                      key: fieldData.sort.name,
-                      convert: convertCollection.string,
-                    }),
-                  },
-                  {
-                    label: fieldData.subtitle.label,
-                    value: '',
-                    emptyValue: '空白值演示',
-                  },
-                  {
-                    label: '百分比转换',
-                    value: formatTarget({
-                      target: 0.24,
-                      format: formatCollection.percentage,
-                    }),
-                  },
-                  {
-                    label: '中文金额',
-                    value: formatTarget({
-                      target: 451.31,
-                      format: formatCollection.chineseMoney,
-                    }),
-                  },
-                  {
-                    label: '日期格式化',
-                    value: formatTarget({
-                      target: new Date('2023-03-01 10:35:54'),
-                      format: formatCollection.datetime,
-                    }),
-                  },
-                  {
-                    label: '金额格式化',
-                    value: formatTarget({
-                      target: 451.31,
-                      format: formatCollection.money,
-                    }),
-                  },
-                  {
-                    label: '类型转换',
-                    value: to({
-                      target: 0.24,
-                      convert: convertCollection.string,
-                    }),
-                  },
-                  {
-                    span: 2,
-                    label: fieldData.description.label,
-                    value: getValueByKey({
-                      data: metaData,
-                      key: fieldData.description.name,
-                    }),
-                  },
-                ],
-                props: {
-                  bordered: true,
-                  column: 3,
-                  emptyStyle: {
-                    color: '#cccccc',
-                  },
-                  emptyValue: '待完善',
-                  labelStyle: {
-                    width: '140px',
-                  },
-                },
-              }),
-            },
-          ],
-        },
-        {
-          title: {
-            text: '内嵌表格展示',
-          },
-          items: [
-            {
-              lg: 12,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  span: 2,
-                  label: fieldData.title.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.title.name,
-                  }),
-                },
-                {
-                  label: fieldData.subtitle.label,
-                  value: '',
-                  emptyValue: '空白值演示',
-                },
-                {
-                  label: '百分比转换',
-                  value: formatTarget({
-                    target: 0.24,
-                    format: formatCollection.percentage,
-                  }),
-                },
-                {
-                  label: fieldData.simpleId.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.simpleId.name,
-                  }),
-                  canCopy: true,
-                },
-                {
-                  label: fieldData.sort.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.sort.name,
-                    convert: convertCollection.string,
-                  }),
-                },
-              ],
-              props: {
-                title: '标题标题',
-                bordered: true,
-                column: 2,
-                emptyStyle: {
-                  color: '#cccccc',
-                },
-                emptyValue: '待完善',
-                labelStyle: {
-                  width: '140px',
-                },
-              },
-            },
-            {
-              lg: 12,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  label: '中文金额',
-                  value: formatTarget({
-                    target: 451.31,
-                    format: formatCollection.chineseMoney,
-                  }),
-                },
-                {
-                  label: '日期格式化',
-                  value: formatTarget({
-                    target: new Date('2023-03-01 10:35:54'),
-                    format: formatCollection.datetime,
-                  }),
-                },
-                {
-                  label: '金额格式化',
-                  value: formatTarget({
-                    target: 451.31,
-                    format: formatCollection.money,
-                  }),
-                },
-                {
-                  label: '类型转换',
-                  value: to({
-                    target: 0.24,
-                    convert: convertCollection.string,
-                  }),
-                },
-                {
-                  span: 2,
-                  label: fieldData.description.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.description.name,
-                  }),
-                },
-              ],
-              props: {
-                title: '标题标题',
-                bordered: true,
-                column: 2,
-                emptyStyle: {
-                  color: '#cccccc',
-                },
-                emptyValue: '待完善',
-                labelStyle: {
-                  width: '100px',
-                },
-              },
-            },
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.divider,
-            },
-            {
-              lg: 12,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  span: 2,
-                  label: fieldData.title.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.title.name,
-                  }),
-                },
-                {
-                  label: fieldData.subtitle.label,
-                  value: '',
-                  emptyValue: '空白值演示',
-                },
-                {
-                  label: '百分比转换',
-                  value: formatTarget({
-                    target: 0.24,
-                    format: formatCollection.percentage,
-                  }),
-                },
-                {
-                  label: fieldData.simpleId.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.simpleId.name,
-                  }),
-                  canCopy: true,
-                },
-                {
-                  label: fieldData.sort.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.sort.name,
-                    convert: convertCollection.string,
-                  }),
-                },
-              ],
-              props: {
-                size: 'small',
-                bordered: true,
-                column: 2,
-                emptyStyle: {
-                  color: '#cccccc',
-                },
-                emptyValue: '待完善',
-                labelStyle: {
-                  width: '100px',
-                },
-              },
-            },
-            {
-              lg: 12,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  label: '中文金额',
-                  value: formatTarget({
-                    target: 451.31,
-                    format: formatCollection.chineseMoney,
-                  }),
-                },
-                {
-                  label: '日期格式化',
-                  value: formatTarget({
-                    target: new Date('2023-03-01 10:35:54'),
-                    format: formatCollection.datetime,
-                  }),
-                },
-                {
-                  label: '金额格式化',
-                  value: formatTarget({
-                    target: 451.31,
-                    format: formatCollection.money,
-                  }),
-                },
-                {
-                  label: '类型转换',
-                  value: to({
-                    target: 0.24,
-                    convert: convertCollection.string,
-                  }),
-                },
-                {
-                  span: 2,
-                  label: fieldData.description.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.description.name,
-                  }),
-                },
-              ],
-              props: {
-                size: 'small',
-                bordered: true,
-                column: 2,
-                emptyStyle: {
-                  color: '#cccccc',
-                },
-                emptyValue: '待完善',
-                labelStyle: {
-                  width: '100px',
-                },
-              },
-            },
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.divider,
-            },
-            {
-              lg: 12,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  span: 2,
-                  label: fieldData.title.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.title.name,
-                  }),
-                },
-                {
-                  label: fieldData.subtitle.label,
-                  value: '',
-                  emptyValue: '空白值演示',
-                },
-                {
-                  label: '百分比转换',
-                  value: formatTarget({
-                    target: 0.24,
-                    format: formatCollection.percentage,
-                  }),
-                },
-                {
-                  label: fieldData.simpleId.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.simpleId.name,
-                  }),
-                  canCopy: true,
-                },
-                {
-                  label: fieldData.sort.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.sort.name,
-                    convert: convertCollection.string,
-                  }),
-                },
-              ],
-              props: {
-                size: 'small',
-                bordered: true,
-                column: 2,
-                emptyStyle: {
-                  color: '#cccccc',
-                },
-                emptyValue: '待完善',
-                labelStyle: {
-                  width: '100px',
-                },
-                ellipsis: false,
-              },
-            },
-            {
-              lg: 12,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  label: '中文金额',
-                  value: formatTarget({
-                    target: 451.31,
-                    format: formatCollection.chineseMoney,
-                  }),
-                },
-                {
-                  label: '日期格式化',
-                  value: formatTarget({
-                    target: new Date('2023-03-01 10:35:54'),
-                    format: formatCollection.datetime,
-                  }),
-                },
-                {
-                  label: '金额格式化',
-                  value: formatTarget({
-                    target: 451.31,
-                    format: formatCollection.money,
-                  }),
-                },
-                {
-                  label: '类型转换',
-                  value: to({
-                    target: 0.24,
-                    convert: convertCollection.string,
-                  }),
-                },
-                {
-                  span: 2,
-                  label: fieldData.description.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.description.name,
-                  }),
-                },
-              ],
-              props: {
-                size: 'small',
-                bordered: true,
-                column: 2,
-                emptyStyle: {
-                  color: '#cccccc',
-                },
-                emptyValue: '待完善',
-                labelStyle: {
-                  width: '100px',
-                },
-                ellipsis: false,
-              },
-            },
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.divider,
-            },
-            {
-              lg: 12,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  span: 2,
-                  label: fieldData.title.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.title.name,
-                  }),
-                },
-                {
-                  label: fieldData.subtitle.label,
-                  value: '',
-                  emptyValue: '空白值演示',
-                },
-                {
-                  label: '百分比转换',
-                  value: formatTarget({
-                    target: 0.24,
-                    format: formatCollection.percentage,
-                  }),
-                },
-                {
-                  label: fieldData.simpleId.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.simpleId.name,
-                  }),
-                  canCopy: true,
-                },
-                {
-                  label: fieldData.sort.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.sort.name,
-                    convert: convertCollection.string,
-                  }),
-                },
-              ],
-              props: {
-                size: 'small',
-                bordered: false,
-                column: 2,
-                emptyStyle: {
-                  color: '#cccccc',
-                },
-                emptyValue: '待完善',
-                labelStyle: {
-                  width: '100px',
-                },
-              },
-            },
-            {
-              lg: 12,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  label: '中文金额',
-                  value: formatTarget({
-                    target: 451.31,
-                    format: formatCollection.chineseMoney,
-                  }),
-                },
-                {
-                  label: '日期格式化',
-                  value: formatTarget({
-                    target: new Date('2023-03-01 10:35:54'),
-                    format: formatCollection.datetime,
-                  }),
-                },
-                {
-                  label: '金额格式化',
-                  value: formatTarget({
-                    target: 451.31,
-                    format: formatCollection.money,
-                  }),
-                },
-                {
-                  label: '类型转换',
-                  value: to({
-                    target: 0.24,
-                    convert: convertCollection.string,
-                  }),
-                },
-                {
-                  span: 2,
-                  label: fieldData.description.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.description.name,
-                  }),
-                },
-              ],
-              props: {
-                size: 'small',
-                bordered: false,
-                column: 2,
-                emptyStyle: {
-                  color: '#cccccc',
-                },
-                emptyValue: '待完善',
-                labelStyle: {
-                  width: '100px',
-                },
-                ellipsis: false,
-              },
+              component: (
+                <div style={{ height: '630px' }}>
+                  <Flow
+                    canEdit={true}
+                    // nodeNameKey={fieldDataWorkflowNode.name.name}
+                    // listApproverKey={fieldDataWorkflowNode.listApprover.name}
+                    // personnelNameKey={
+                    //   fieldDataWorkflowNodeApprover.userRealName.name
+                    // }
+                    // personnelNameLabel={
+                    //   fieldDataWorkflowNodeApprover.userRealName.label
+                    // }
+                    nodes={[]}
+                    edges={[]}
+                  />
+                </div>
+              ),
             },
           ],
         },
@@ -615,7 +80,7 @@ class RadioView extends BaseView {
                 buildType: cardConfig.extraBuildType.flexSelect,
                 label: '显示源代码',
                 size: 'small',
-                defaultValue: 'GridView',
+                defaultValue: 'FlowView',
                 style: { width: '520px' },
                 list: [
                   {
@@ -623,8 +88,8 @@ class RadioView extends BaseView {
                     name: 'BaseView',
                   },
                   {
-                    flag: 'GridView',
-                    name: 'GridView',
+                    flag: 'FlowView',
+                    name: 'FlowView',
                   },
                 ],
                 dataConvert: convertOptionOrRadioData,
@@ -637,8 +102,8 @@ class RadioView extends BaseView {
                       break;
                     }
 
-                    case 'GridView': {
-                      code = codeGridView;
+                    case 'FlowView': {
+                      code = codeFlowView;
                       break;
                     }
                   }

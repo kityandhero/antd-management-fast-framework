@@ -13,9 +13,11 @@ import {
   VerticalBox,
 } from 'antd-management-fast-component';
 
-import { endNodeHeaderStyle, targetPointColor } from '../constant';
-
-import styles from '../node.less';
+import {
+  endNodeHeaderStyle,
+  styleClassPrefix,
+  targetPointColor,
+} from '../constant';
 
 const EndNode = (properties) => {
   const { size, data, onClick: click } = properties;
@@ -41,8 +43,15 @@ const EndNode = (properties) => {
 
   return (
     <>
-      <div className={styles.node} onClick={click} title={description || ''}>
-        <div className={styles.header} style={endNodeHeaderStyle}>
+      <div
+        className={`${styleClassPrefix + '-node'}`}
+        onClick={click}
+        title={description || ''}
+      >
+        <div
+          className={`${styleClassPrefix + '-node-header'}`}
+          style={endNodeHeaderStyle}
+        >
           <FlexBox
             flexAuto="left"
             left={
@@ -87,9 +96,9 @@ const EndNode = (properties) => {
         </div>
 
         {size !== 'small' && (
-          <div className={styles.content}>
-            <div className={styles.inner}>
-              <div className={styles.info}>
+          <div className={`${styleClassPrefix + '-node-content'}`}>
+            <div className={`${styleClassPrefix + '-node-content-inner'}`}>
+              <div className={`${styleClassPrefix + '-node-content-info'}`}>
                 <ColorText text={'此节点为终止节点，代表流程结束。'} />
               </div>
             </div>

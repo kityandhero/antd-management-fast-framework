@@ -11,18 +11,20 @@ import {
 import {
   sourcePointColor,
   startNodeHeaderStyle,
+  styleClassPrefix,
   targetPointColor,
 } from '../constant';
-
-import styles from '../node.less';
 
 const StartNode = (properties) => {
   const { size, onClick: click } = properties;
 
   return (
     <>
-      <div className={styles.node} onClick={click}>
-        <div className={styles.header} style={startNodeHeaderStyle}>
+      <div className={`${styleClassPrefix + '-node'}`} onClick={click}>
+        <div
+          className={`${styleClassPrefix + '-node-header'}`}
+          style={startNodeHeaderStyle}
+        >
           <FlexBox
             flexAuto="left"
             left={
@@ -39,9 +41,9 @@ const StartNode = (properties) => {
         </div>
 
         {size !== 'small' && (
-          <div className={styles.content}>
-            <div className={styles.inner}>
-              <div className={styles.info}>
+          <div className={`${styleClassPrefix + '-node-content'}`}>
+            <div className={`${styleClassPrefix + '-node-content-inner'}`}>
+              <div className={`${styleClassPrefix + '-node-content-info'}`}>
                 <ColorText text={'此为流程发起唯一节点，无审批人。'} />
               </div>
             </div>

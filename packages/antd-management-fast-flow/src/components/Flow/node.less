@@ -1,11 +1,11 @@
 @import url('./index.less');
 
-.node {
+.@{class-prefix-flow}-node {
   border-radius: 0 0 5px 5px;
   box-shadow: @flow-box-shadow;
   background-color: transparent;
 
-  .header {
+  &-header {
     width: 250px;
     padding: 10px;
     color: @flow-overlay-font-color;
@@ -14,7 +14,7 @@
     border-radius: 5px 5px 0 0;
   }
 
-  .content {
+  &-content {
     color: @flow-normal-font-color;
     border: @flow-box-border;
     border-top: none;
@@ -22,20 +22,20 @@
     padding-bottom: 8px;
     background-color: #fff;
 
-    .inner {
+    &-inner {
       padding-top: 10px;
       padding-right: 10px;
       padding-left: 10px;
     }
 
-    .info {
+    &-info {
       .ant-input-sm {
         height: 29px;
         background-color: @flow-theme-color;
       }
     }
 
-    .history {
+    &-history {
       margin-top: 10px;
       padding: 5px 0;
       font-size: 12px;
@@ -44,15 +44,16 @@
   }
 }
 
-.node_next {
+.@{class-prefix-flow}-node-next {
   border: 2px solid;
   border-image: linear-gradient(45deg, gold, deeppink) 1;
   clip-path: inset(0 round 5px);
-  animation: node-current-linear-gradient-move 3s infinite linear;
+  animation: antd-management-fast-flow-node-current-linear-gradient-move 3s
+    infinite linear;
   filter: hue-rotate(360deg);
 }
 
-@keyframes node-current-linear-gradient-move {
+@keyframes antd-management-fast-flow-node-current-linear-gradient-move {
   0% {
     filter: hue-rotate(0deg);
   }
