@@ -1,4 +1,5 @@
 import { Alert, Divider, Empty, Timeline, Typography } from 'antd';
+import React from 'react';
 
 import {
   checkStringIsNullOrWhiteSpace,

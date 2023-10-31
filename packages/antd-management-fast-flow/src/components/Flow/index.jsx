@@ -20,6 +20,7 @@ import { edgeTypes, nodeTypes } from './definition';
 import { GraphicDescription } from './GraphicDescription';
 import { GraphicHelper } from './GraphicHelper';
 
+import './index.less';
 import 'reactflow/dist/style.css';
 
 let dragStartPosition = {};
