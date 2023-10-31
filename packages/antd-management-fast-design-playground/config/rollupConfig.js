@@ -11,6 +11,12 @@ export function buildConfig({ terser: whetherTerser = false }) {
     postcssConfig: {
       modules: false,
     },
-    externalCollection: ['antd-management-fast-design-react'],
+    externalCollection: [
+      'antd-management-fast-common',
+      'antd-management-fast-component',
+      'antd-management-fast-design-react',
+      'antd-management-fast-formily',
+      'antd-management-fast-formily',
+    ],
   });
 }

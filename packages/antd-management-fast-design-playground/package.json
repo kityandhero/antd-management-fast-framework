@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-playground",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "keywords": [
     "antd-management-fast-design-playground"
   ],
@@ -74,7 +74,7 @@
     "antd-management-fast-common": "^2.6.38",
     "antd-management-fast-component": "^2.6.56",
     "antd-management-fast-design-react": "^1.0.20",
-    "antd-management-fast-formily": "^1.0.20",
+    "antd-management-fast-formily": "^1.0.21",
     "classnames": "^2.3.2",
     "dateformat": "^5.0.3",
     "dayjs": "^1.11.10",

@@ -11,6 +11,9 @@ export function buildConfig({ terser: whetherTerser = false }) {
     postcssConfig: {
       modules: false,
     },
-    externalCollection: [],
+    externalCollection: [
+      'antd-management-fast-common',
+      'antd-management-fast-component',
+    ],
   });
 }
