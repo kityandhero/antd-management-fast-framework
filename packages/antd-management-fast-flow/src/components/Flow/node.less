@@ -1,0 +1,63 @@
+@import url('./index.less');
+
+.node {
+  border-radius: 0 0 5px 5px;
+  box-shadow: @flow-box-shadow;
+  background-color: transparent;
+
+  .header {
+    width: 250px;
+    padding: 10px;
+    color: @flow-overlay-font-color;
+    background-color: @flow-primary-color;
+    border: @flow-box-border;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .content {
+    color: @flow-normal-font-color;
+    border: @flow-box-border;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    padding-bottom: 8px;
+    background-color: #fff;
+
+    .inner {
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+    .info {
+      .ant-input-sm {
+        height: 29px;
+        background-color: @flow-theme-color;
+      }
+    }
+
+    .history {
+      margin-top: 10px;
+      padding: 5px 0;
+      font-size: 12px;
+      border-top: 1px solid #eee;
+    }
+  }
+}
+
+.node_next {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, gold, deeppink) 1;
+  clip-path: inset(0 round 5px);
+  animation: node-current-linear-gradient-move 3s infinite linear;
+  filter: hue-rotate(360deg);
+}
+
+@keyframes node-current-linear-gradient-move {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rorate(360deg);
+  }
+}

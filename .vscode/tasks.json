@@ -44,6 +44,14 @@
     {
       "type": "npm",
       "script": "dev:rollup",
+      "path": "packages/antd-management-fast-flow",
+      "problemMatcher": [],
+      "label": "dev:core-flow",
+      "detail": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch"
+    },
+    {
+      "type": "npm",
+      "script": "dev:rollup",
       "path": "packages/antd-management-fast-formily",
       "problemMatcher": [],
       "label": "dev:core-formily",

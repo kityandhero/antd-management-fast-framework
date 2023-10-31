@@ -1,0 +1,29 @@
+@flow-theme-color-base: #fff;
+@flow-normal-font-color-base: #222;
+@flow-overlay-font-color-base: #fff;
+@flow-primary-color-base: #f66902;
+@flow-box-border-color-base: #d9d9d9;
+
+@flow-box-shadow-base: 0 2px 3px 0 rgba(0, 112, 204, 0.06);
+
+@flow-box-radius-base: 100px;
+@flow-line-color-base: #bfbfbf;
+// 主题背景色（画布背景色）
+@flow-theme-background-color: @flow-theme-color-base;
+// （各图形框）普通情况背景色
+@flow-theme-color: fade(@flow-theme-color-base, 80%);
+// 主题色
+@flow-primary-color: @flow-primary-color-base;
+// 普通情况下字体颜色
+@flow-normal-font-color: @flow-normal-font-color-base;
+// 主题背景色上的字体颜色及icon颜色
+@flow-overlay-font-color: @flow-overlay-font-color-base;
+// 拖动时的背景色
+@flow-box-move-background-color: fade(@flow-primary-color, 20%);
+// 边框的样式
+@flow-box-border: 1px solid @flow-box-border-color-base;
+@flow-box-shadow: @flow-box-shadow-base;
+@flow-box-radius: @flow-box-radius-base;
+@flow-box-node-border-hover: 1px solid @flow-primary-color;
+// 线条样式
+@flow-line-color: @flow-line-color-base;
