@@ -1535,7 +1535,7 @@ importers:
         specifier: ^1.0.20
         version: link:../antd-management-fast-design-react
       antd-management-fast-formily:
-        specifier: ^1.0.20
+        specifier: ^1.0.21
         version: link:../antd-management-fast-formily
       classnames:
         specifier: ^2.3.2
@@ -2899,6 +2899,9 @@ importers:
       antd-management-fast-design-react:
         specifier: ^1.0.20
         version: link:../antd-management-fast-design-react
+      antd-management-fast-flow:
+        specifier: ^1.0.3
+        version: link:../antd-management-fast-flow
       antd-management-fast-formily:
         specifier: ^1.0.20
         version: link:../antd-management-fast-formily

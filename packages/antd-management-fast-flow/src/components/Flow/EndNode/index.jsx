@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/named
 import { Space } from 'antd';
+import React from 'react';
 // eslint-disable-next-line import/named
 import { Handle, Position } from 'reactflow';
 

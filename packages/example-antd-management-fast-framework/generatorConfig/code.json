@@ -189,6 +189,10 @@
       "sourceFilePath": "./src/pages/Form/SelectFieldView/index.jsx"
     },
     {
+      "codeFilePath": "./src/pages/Form/FlowView/codeSource.js",
+      "sourceFilePath": "./src/pages/Form/FlowView/index.jsx"
+    },
+    {
       "codeFilePath": "./src/pages/Interaction/BaseView/codeSource.js",
       "sourceFilePath": "./src/pages/Interaction/BaseView/index.jsx"
     },

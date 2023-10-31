@@ -1,6 +1,6 @@
 import { Button, Divider, Space } from 'antd';
 import classNames from 'classnames';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 // eslint-disable-next-line import/named
 import { Handle, Position } from 'reactflow';
 

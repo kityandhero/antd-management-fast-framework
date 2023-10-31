@@ -1,4 +1,5 @@
 import { Card, Divider } from 'antd';
+import React from 'react';
 
 import { CenterBox, FlexBox } from 'antd-management-fast-component';
 

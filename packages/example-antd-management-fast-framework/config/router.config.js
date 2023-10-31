@@ -202,6 +202,13 @@ export default [
         useMini: true,
         component: './Form/SelectFieldView',
       },
+      {
+        path: '/form/flowView',
+        name: 'flowView',
+        icon: 'bars',
+        useMini: true,
+        component: './Form/FlowView',
+      },
     ],
   },
   {

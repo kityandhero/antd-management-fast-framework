@@ -55,6 +55,8 @@ export default {
   'menu.form.selectButtonView-mini': 'SelectButton',
   'menu.form.selectFieldView': 'SelectField 示例',
   'menu.form.selectFieldView-mini': 'SelectField',
+  'menu.form.flowView': 'flow 示例',
+  'menu.form.flowView-mini': 'flow',
 
   'menu.interaction': '交互示例',
   'menu.interaction-mini': '交互',
