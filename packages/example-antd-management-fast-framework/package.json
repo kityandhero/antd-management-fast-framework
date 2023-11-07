@@ -1,6 +1,6 @@
 {
   "name": "example-antd-management-fast-framework",
-  "version": "1.8.69",
+  "version": "1.8.70",
   "private": true,
   "description": "example-antd-management-fast-framework",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
@@ -58,7 +58,7 @@
     "antd-management-fast-design-react": "^1.0.20",
     "antd-management-fast-flow": "^1.0.6",
     "antd-management-fast-formily": "^1.0.20",
-    "antd-management-fast-framework": "^2.11.70",
+    "antd-management-fast-framework": "^2.11.71",
     "axios": "^1.6.0",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",

@@ -2900,7 +2900,7 @@ importers:
         specifier: ^1.0.20
         version: link:../antd-management-fast-design-react
       antd-management-fast-flow:
-        specifier: ^1.0.5
+        specifier: ^1.0.6
         version: link:../antd-management-fast-flow
       antd-management-fast-formily:
         specifier: ^1.0.20

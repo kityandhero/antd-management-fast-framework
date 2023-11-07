@@ -44,6 +44,7 @@ import {
   buildDropdown,
   buildFlexSelect,
   convertOptionOrRadioData,
+  EverySpace,
   FlexBox,
   FormExtra,
   FunctionSupplement,
@@ -1729,18 +1730,25 @@ class Base extends AuthorizationWrapper {
           backgroundColor: '#f0f2f5',
         }}
       >
-        <Space style={{ width: '100%' }} direction="vertical" size={14}>
-          <Card
-            bordered={false}
-            className={classNames(`${classPrefix}_containorSearch`)}
-          >
-            <div className={classNames(`${classPrefix}_tableListForm`)}>
-              {searchForm}
-            </div>
-          </Card>
+        <FlexBox
+          direction="vertical"
+          flexAuto="bottom"
+          top={
+            <>
+              <Card
+                bordered={false}
+                className={classNames(`${classPrefix}_containorSearch`)}
+              >
+                <div className={classNames(`${classPrefix}_tableListForm`)}>
+                  {searchForm}
+                </div>
+              </Card>
 
-          {gridView}
-        </Space>
+              <EverySpace direction="horizontal" size={14} />
+            </>
+          }
+          bottom={gridView}
+        />
       </div>
     );
   };
