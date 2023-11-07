@@ -98,6 +98,7 @@ class InternalLayout extends InternalBuild {
         siderBody={siderBody}
         toolbar={toolbar}
         contentBody={contentBody}
+        contentClassName={`preset-page-body-content-${this.contentWrapperType}`}
         bottom={bottom}
       />
     );

@@ -1,4 +1,5 @@
 import { Layout, Space } from 'antd';
+import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 
 import { checkInCollection, checkObjectIsNullOrEmpty } from 'easy-soft-utility';
@@ -13,6 +14,7 @@ class ContentBox extends PureComponent {
       siderBody = null,
       toolbar,
       contentBody = null,
+      contentClassName,
       bottom,
     } = this.props;
 
@@ -62,6 +64,10 @@ class ContentBox extends PureComponent {
               backgroundColor: '#fff',
               borderRadius: '4px',
             }}
+            className={classNames(
+              'antd-management-fast-component-page-extra-content-box',
+              contentClassName,
+            )}
           >
             {contentBody}
           </Content>
@@ -103,6 +109,7 @@ ContentBox.defaultProps = {
   siderConfig: {},
   siderBody: null,
   contentBody: null,
+  contentClassName: '',
   toolbar: null,
   bottom: null,
 };
