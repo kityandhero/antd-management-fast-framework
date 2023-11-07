@@ -13,20 +13,23 @@ import {
 } from 'antd-management-fast-component';
 import { DataPreviewDrawer } from 'antd-management-fast-framework';
 
-import { code as codeBaseSimpleMultiPageSelectDrawer } from '../../../businessComponents/Drawers/Multi/BaseSimpleMultiPageSelectDrawer/codeSource';
-import SimpleMultiPageConfirmSelectDrawer from '../../../businessComponents/Drawers/Multi/SimpleMultiPageConfirmSelectDrawer';
-import SimpleMultiPageMultiSelectDrawer from '../../../businessComponents/Drawers/Multi/SimpleMultiPageMultiSelectDrawer';
-import SimpleMultiPageSingleSelectDrawer from '../../../businessComponents/Drawers/Multi/SimpleMultiPageSingleSelectDrawer';
-import SimpleAddDrawer from '../../../businessComponents/Drawers/SimpleAddDrawer';
-import SimpleEditDrawer from '../../../businessComponents/Drawers/SimpleEditDrawer';
+import { SimpleMultiPageDrawer } from '../../../businessComponents/Drawers/Multi/ListDrawer/SimpleMultiPageDrawer';
+import { code as codeBaseSimpleMultiPageSelectDrawer } from '../../../businessComponents/Drawers/Multi/SelectDrawer/BaseSimpleMultiPageSelectDrawer/codeSource';
+import { SimpleMultiPageConfirmSelectDrawer } from '../../../businessComponents/Drawers/Multi/SelectDrawer/SimpleMultiPageConfirmSelectDrawer';
+import { SimpleMultiPageMultiSelectDrawer } from '../../../businessComponents/Drawers/Multi/SelectDrawer/SimpleMultiPageMultiSelectDrawer';
+import { SimpleMultiPageSingleSelectDrawer } from '../../../businessComponents/Drawers/Multi/SelectDrawer/SimpleMultiPageSingleSelectDrawer';
+import { SimpleAddDrawer } from '../../../businessComponents/Drawers/SimpleAddDrawer';
+import { SimpleEditDrawer } from '../../../businessComponents/Drawers/SimpleEditDrawer';
 import { SimpleVerticalFlexDrawer } from '../../../businessComponents/Drawers/SimpleVerticalFlexDrawer';
-import { code as codeBaseSimpleSinglePageSelectDrawer } from '../../../businessComponents/Drawers/Single/BaseSimpleSinglePageSelectDrawer/codeSource';
-import SimpleSinglePageFrontendPaginationConfirmSelectDrawer from '../../../businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer';
-import SimpleSinglePageFrontendPaginationMultiSelectDrawer from '../../../businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer';
-import SimpleSinglePageFrontendPaginationSingleSelectDrawer from '../../../businessComponents/Drawers/Single/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer';
-import SimpleSinglePageConfirmSelectDrawer from '../../../businessComponents/Drawers/Single/Normal/SimpleSinglePageConfirmSelectDrawer';
-import SimpleSinglePageMultiSelectDrawer from '../../../businessComponents/Drawers/Single/Normal/SimpleSinglePageMultiSelectDrawer';
-import SimpleSinglePageSingleSelectDrawer from '../../../businessComponents/Drawers/Single/Normal/SimpleSinglePageSingleSelectDrawer';
+import { SimpleSingleFrontendPaginationPageDrawer } from '../../../businessComponents/Drawers/Single/ListDrawer/SimpleSingleFrontendPaginationPageDrawer';
+import { SimpleSinglePageDrawer } from '../../../businessComponents/Drawers/Single/ListDrawer/SimpleSinglePageDrawer';
+import { code as codeBaseSimpleSinglePageSelectDrawer } from '../../../businessComponents/Drawers/Single/SelectDrawer/BaseSimpleSinglePageSelectDrawer/codeSource';
+import { SimpleSinglePageFrontendPaginationConfirmSelectDrawer } from '../../../businessComponents/Drawers/Single/SelectDrawer/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectDrawer';
+import { SimpleSinglePageFrontendPaginationMultiSelectDrawer } from '../../../businessComponents/Drawers/Single/SelectDrawer/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectDrawer';
+import { SimpleSinglePageFrontendPaginationSingleSelectDrawer } from '../../../businessComponents/Drawers/Single/SelectDrawer/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectDrawer';
+import { SimpleSinglePageConfirmSelectDrawer } from '../../../businessComponents/Drawers/Single/SelectDrawer/Normal/SimpleSinglePageConfirmSelectDrawer';
+import { SimpleSinglePageMultiSelectDrawer } from '../../../businessComponents/Drawers/Single/SelectDrawer/Normal/SimpleSinglePageMultiSelectDrawer';
+import { SimpleSinglePageSingleSelectDrawer } from '../../../businessComponents/Drawers/Single/SelectDrawer/Normal/SimpleSinglePageSingleSelectDrawer';
 import { simpleJsonData } from '../../../businessData/data';
 import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
@@ -91,6 +94,46 @@ class DrawerView extends BaseView {
 
     return {
       list: [
+        {
+          title: {
+            text: '列表实例',
+          },
+          items: [
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleSinglePageDrawer',
+                text: '显示 SimpleSinglePageDrawer',
+                handleClick: () => {
+                  SimpleSinglePageDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleSingleFrontendPaginationPageDrawer',
+                text: '显示 SimpleSingleFrontendPaginationPageDrawer',
+                handleClick: () => {
+                  SimpleSingleFrontendPaginationPageDrawer.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleMultiPageDrawer',
+                text: '显示 SimpleMultiPageDrawer',
+                handleClick: () => {
+                  SimpleMultiPageDrawer.open();
+                },
+              }),
+            },
+          ],
+        },
         {
           title: {
             text: '单页列表选择功能实例 [常规]',
@@ -372,6 +415,12 @@ class DrawerView extends BaseView {
           hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
+
+        <SimpleSinglePageDrawer />
+
+        <SimpleSingleFrontendPaginationPageDrawer />
+
+        <SimpleMultiPageDrawer />
 
         <SimpleVerticalFlexDrawer
           afterClose={() => {

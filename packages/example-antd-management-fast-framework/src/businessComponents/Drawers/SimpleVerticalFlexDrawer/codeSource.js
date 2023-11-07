@@ -3,7 +3,7 @@ export const code = `import { Checkbox } from 'antd';
 import { connect } from 'easy-soft-dva';
 
 import { drawerConfig } from 'antd-management-fast-common';
-import { SyntaxHighlighter } from 'antd-management-fast-component';
+import { CenterBox, SyntaxHighlighter } from 'antd-management-fast-component';
 import {
   DataDrawer,
   switchControlAssist,
@@ -82,7 +82,9 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
 
   renderPresetContentContainorInnerTop = () => {
     return (
-      <div style={{ backgroundColor: '#4563ef', height: '100%' }}>content</div>
+      <div style={{ backgroundColor: '#4563ef', height: '100%' }}>
+        <CenterBox>content</CenterBox>
+      </div>
     );
   };
 

@@ -38,6 +38,8 @@ const primaryCallName = 'DataMultiPageView::MultiPageDrawer';
 class MultiPageDrawer extends MultiPage {
   visibleFlag = '';
 
+  affixPaginationBar = false;
+
   contentWrapperType = contentConfig.wrapperType.drawer;
 
   loadRemoteRequestAfterMount = false;

@@ -31,5 +31,5 @@ class SimpleSinglePageConfirmSelectModal extends BaseSimpleSinglePageSelectModal
   }
 }
 
-export default SimpleSinglePageConfirmSelectModal;
+export { SimpleSinglePageConfirmSelectModal };
 `;

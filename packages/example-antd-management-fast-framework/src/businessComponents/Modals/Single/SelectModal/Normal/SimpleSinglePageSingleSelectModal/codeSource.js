@@ -28,5 +28,5 @@ class SimpleSinglePageSingleSelectModal extends BaseSimpleSinglePageSelectModal 
   }
 }
 
-export default SimpleSinglePageSingleSelectModal;
+export { SimpleSinglePageSingleSelectModal };
 `;

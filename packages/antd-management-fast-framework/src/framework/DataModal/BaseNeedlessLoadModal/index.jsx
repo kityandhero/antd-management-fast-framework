@@ -2,11 +2,11 @@ import { datetimeFormat, formatDatetime } from 'easy-soft-utility';
 
 import { formNameCollection } from 'antd-management-fast-common';
 
-import { Base } from '../Base';
+import { BaseFormModal } from '../BaseFormModal';
 
 const primaryCallName = 'DataModal::BaseNeedlessLoadModal';
 
-class BaseNeedlessLoadModal extends Base {
+class BaseNeedlessLoadModal extends BaseFormModal {
   reloadWhenShow = false;
 
   resetDataAfterLoad = false;

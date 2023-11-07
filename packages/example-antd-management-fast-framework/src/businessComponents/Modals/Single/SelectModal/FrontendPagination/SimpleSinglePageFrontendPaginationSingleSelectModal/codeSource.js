@@ -31,5 +31,5 @@ class SimpleSinglePageFrontendPaginationSingleSelectModal extends BaseSimpleSing
   }
 }
 
-export default SimpleSinglePageFrontendPaginationSingleSelectModal;
+export { SimpleSinglePageFrontendPaginationSingleSelectModal };
 `;

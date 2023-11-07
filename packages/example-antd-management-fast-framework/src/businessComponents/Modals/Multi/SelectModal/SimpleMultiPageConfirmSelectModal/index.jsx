@@ -13,7 +13,7 @@ const visibleFlag = '924250f1986948af8eb25b9a7f34858e';
   simple,
   schedulingControl,
 }))
-class SimpleMultiPageModal extends BaseSimpleMultiPageSelectModal {
+class SimpleMultiPageConfirmSelectModal extends BaseSimpleMultiPageSelectModal {
   // 指定使用选择确认模式, 默认 false, 不使用二次选择确认时可不用特殊指定
   confirmSelect = true;
 
@@ -31,4 +31,4 @@ class SimpleMultiPageModal extends BaseSimpleMultiPageSelectModal {
   }
 }
 
-export default SimpleMultiPageModal;
+export { SimpleMultiPageConfirmSelectModal };

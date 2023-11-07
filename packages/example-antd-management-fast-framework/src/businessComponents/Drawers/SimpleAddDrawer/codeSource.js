@@ -177,5 +177,5 @@ class SimpleAddDrawer extends BaseAddDrawer {
   };
 }
 
-export default SimpleAddDrawer;
+export { SimpleAddDrawer };
 `;

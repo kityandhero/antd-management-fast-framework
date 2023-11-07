@@ -13,7 +13,7 @@ const visibleFlag = 'b7f7c4c27d7a42d095e80f176029ba8f';
   simple,
   schedulingControl,
 }))
-class SimpleSinglePageFrontendPaginationSelectModal extends BaseSimpleSinglePageSelectModal {
+class SimpleSinglePageFrontendPaginationConfirmSelectModal extends BaseSimpleSinglePageSelectModal {
   // 使用模拟分页, 默认 false, 不使用二次选择确认时可不用特殊指定
   useFrontendPagination = true;
 
@@ -34,4 +34,4 @@ class SimpleSinglePageFrontendPaginationSelectModal extends BaseSimpleSinglePage
   }
 }
 
-export default SimpleSinglePageFrontendPaginationSelectModal;
+export { SimpleSinglePageFrontendPaginationConfirmSelectModal };

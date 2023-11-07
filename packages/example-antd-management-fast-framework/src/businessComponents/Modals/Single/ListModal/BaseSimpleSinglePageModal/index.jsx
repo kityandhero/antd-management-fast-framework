@@ -4,7 +4,6 @@ import {
   checkStringIsNullOrWhiteSpace,
   formatCollection,
   getValueByKey,
-  isArray,
   whetherNumber,
 } from 'easy-soft-utility';
 
@@ -34,7 +33,7 @@ const { Text } = Typography;
 const { SinglePageSelectModal } = DataSinglePageView;
 
 // 组件基类, 仅为代码复用性设计, 具体使用时请自行考虑
-class BaseSimpleSinglePageSelectModal extends SinglePageSelectModal {
+class BaseSimpleSinglePageModal extends SinglePageSelectModal {
   // 在控制台显示组建内调用序列, 仅为进行开发辅助
   showCallProcess = true;
 
@@ -147,28 +146,6 @@ class BaseSimpleSinglePageSelectModal extends SinglePageSelectModal {
         },
       },
     ];
-  };
-
-  // 构建通知文本, 仅多选模式有效, 单选时不会触发通知
-  buildSelectNotificationDescription = (o) => {
-    if (isArray(o)) {
-      let list = [];
-
-      for (const item of o) {
-        const { title } = item;
-        list.push(title);
-      }
-
-      if (list.length > 0) {
-        return `已选择: ${list.join(',')}`;
-      }
-
-      return '';
-    } else {
-      const { title } = o;
-
-      return `已选择: ${title}`;
-    }
   };
 
   // 配置列表显示模式构建逻辑
@@ -322,4 +299,4 @@ class BaseSimpleSinglePageSelectModal extends SinglePageSelectModal {
   };
 }
 
-export default BaseSimpleSinglePageSelectModal;
+export { BaseSimpleSinglePageModal };

@@ -15,27 +15,29 @@ import { code as codeBaseSimpleMultiPageModal } from '../../../businessComponent
 import { SimpleMultiPageModal } from '../../../businessComponents/Modals/Multi/ListModal/SimpleMultiPageModal';
 import { code as codeSimpleMultiPageModal } from '../../../businessComponents/Modals/Multi/ListModal/SimpleMultiPageModal/codeSource';
 import { code as codeBaseSimpleMultiPageSelectModal } from '../../../businessComponents/Modals/Multi/SelectModal/BaseSimpleMultiPageSelectModal/codeSource';
-import SimpleMultiPageConfirmSelectModal from '../../../businessComponents/Modals/Multi/SelectModal/SimpleMultiPageConfirmSelectModal';
-import SimpleMultiPageMultiSelectModal from '../../../businessComponents/Modals/Multi/SelectModal/SimpleMultiPageMultiSelectModal';
-import SimpleMultiPageSingleSelectModal from '../../../businessComponents/Modals/Multi/SelectModal/SimpleMultiPageSingleSelectModal';
+import { SimpleMultiPageConfirmSelectModal } from '../../../businessComponents/Modals/Multi/SelectModal/SimpleMultiPageConfirmSelectModal';
+import { SimpleMultiPageMultiSelectModal } from '../../../businessComponents/Modals/Multi/SelectModal/SimpleMultiPageMultiSelectModal';
+import { SimpleMultiPageSingleSelectModal } from '../../../businessComponents/Modals/Multi/SelectModal/SimpleMultiPageSingleSelectModal';
 import { SimpleAddModal } from '../../../businessComponents/Modals/SimpleAddModal';
 import { code as codeSimpleAddModal } from '../../../businessComponents/Modals/SimpleAddModal/codeSource';
 import { SimpleDisplayModal } from '../../../businessComponents/Modals/SimpleDisplayModal';
 import { code as codeSimpleDisplayModal } from '../../../businessComponents/Modals/SimpleDisplayModal/codeSource';
 import { SimpleEditModal } from '../../../businessComponents/Modals/SimpleEditModal';
 import { code as codeSimpleEditModal } from '../../../businessComponents/Modals/SimpleEditModal/codeSource';
+import { SimpleUploadImageModal } from '../../../businessComponents/Modals/SimpleUploadImageModal';
+import { code as codeSimpleUploadImageModal } from '../../../businessComponents/Modals/SimpleUploadImageModal/codeSource';
 import { code as codeBaseSimpleSinglePageModal } from '../../../businessComponents/Modals/Single/ListModal/BaseSimpleSinglePageModal/codeSource';
-import SimpleSingleFrontendPaginationPageModal from '../../../businessComponents/Modals/Single/ListModal/SimpleSingleFrontendPaginationPageModal';
+import { SimpleSingleFrontendPaginationPageModal } from '../../../businessComponents/Modals/Single/ListModal/SimpleSingleFrontendPaginationPageModal';
 import { code as codeSimpleSingleFrontendPaginationPageModal } from '../../../businessComponents/Modals/Single/ListModal/SimpleSingleFrontendPaginationPageModal/codeSource';
-import SimpleSinglePageModal from '../../../businessComponents/Modals/Single/ListModal/SimpleSinglePageModal';
+import { SimpleSinglePageModal } from '../../../businessComponents/Modals/Single/ListModal/SimpleSinglePageModal';
 import { code as codeSimpleSinglePageModal } from '../../../businessComponents/Modals/Single/ListModal/SimpleSinglePageModal/codeSource';
 import { code as codeBaseSimpleSinglePageSelectModal } from '../../../businessComponents/Modals/Single/SelectModal/BaseSimpleSinglePageSelectModal/codeSource';
-import SimpleSinglePageFrontendPaginationConfirmSelectModal from '../../../businessComponents/Modals/Single/SelectModal/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectModal';
-import SimpleSinglePageFrontendPaginationMultiSelectModal from '../../../businessComponents/Modals/Single/SelectModal/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectModal';
-import SimpleSinglePageFrontendPaginationSingleSelectModal from '../../../businessComponents/Modals/Single/SelectModal/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectModal';
-import SimpleSinglePageConfirmSelectModal from '../../../businessComponents/Modals/Single/SelectModal/Normal/SimpleSinglePageConfirmSelectModal';
-import SimpleSinglePageMultiSelectModal from '../../../businessComponents/Modals/Single/SelectModal/Normal/SimpleSinglePageMultiSelectModal';
-import SimpleSinglePageSingleSelectModal from '../../../businessComponents/Modals/Single/SelectModal/Normal/SimpleSinglePageSingleSelectModal';
+import { SimpleSinglePageFrontendPaginationConfirmSelectModal } from '../../../businessComponents/Modals/Single/SelectModal/FrontendPagination/SimpleSinglePageFrontendPaginationConfirmSelectModal';
+import { SimpleSinglePageFrontendPaginationMultiSelectModal } from '../../../businessComponents/Modals/Single/SelectModal/FrontendPagination/SimpleSinglePageFrontendPaginationMultiSelectModal';
+import { SimpleSinglePageFrontendPaginationSingleSelectModal } from '../../../businessComponents/Modals/Single/SelectModal/FrontendPagination/SimpleSinglePageFrontendPaginationSingleSelectModal';
+import { SimpleSinglePageConfirmSelectModal } from '../../../businessComponents/Modals/Single/SelectModal/Normal/SimpleSinglePageConfirmSelectModal';
+import { SimpleSinglePageMultiSelectModal } from '../../../businessComponents/Modals/Single/SelectModal/Normal/SimpleSinglePageMultiSelectModal';
+import { SimpleSinglePageSingleSelectModal } from '../../../businessComponents/Modals/Single/SelectModal/Normal/SimpleSinglePageSingleSelectModal';
 import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
@@ -73,50 +75,10 @@ class ModalView extends BaseView {
         },
         {
           component: buildButton({
-            title: '点击显示 AddModal',
-            text: '显示 AddModal',
+            title: '点击显示 SimpleUploadImageModal',
+            text: '显示 SimpleUploadImageModal',
             handleClick: () => {
-              SimpleAddModal.open();
-            },
-            disabled: false,
-          }),
-        },
-        {
-          component: buildButton({
-            title: '点击显示 EditModal',
-            text: '显示 EditModal',
-            handleClick: () => {
-              SimpleEditModal.open();
-            },
-            disabled: false,
-          }),
-        },
-        {
-          component: buildButton({
-            title: '点击显示 SimpleSinglePageModal',
-            text: '显示 SimpleSinglePageModal',
-            handleClick: () => {
-              SimpleSinglePageModal.open();
-            },
-            disabled: false,
-          }),
-        },
-        {
-          component: buildButton({
-            title: '点击显示 SimpleSingleFrontendPaginationPageModal',
-            text: '显示 SimpleSingleFrontendPaginationPageModal',
-            handleClick: () => {
-              SimpleSingleFrontendPaginationPageModal.open();
-            },
-            disabled: false,
-          }),
-        },
-        {
-          component: buildButton({
-            title: '点击显示 SimpleMultiPageModal',
-            text: '显示 SimpleMultiPageModal',
-            handleClick: () => {
-              SimpleMultiPageModal.open();
+              SimpleUploadImageModal.open();
             },
             disabled: false,
           }),
@@ -132,6 +94,79 @@ class ModalView extends BaseView {
 
     return {
       list: [
+        {
+          title: {
+            text: '表单',
+          },
+          items: [
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 AddModal',
+                text: '显示 AddModal',
+                handleClick: () => {
+                  SimpleAddModal.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 EditModal',
+                text: '显示 EditModal',
+                handleClick: () => {
+                  SimpleEditModal.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.placeholder,
+            },
+          ],
+        },
+        {
+          title: {
+            text: '列表操作',
+          },
+          items: [
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleSinglePageModal',
+                text: '显示 SimpleSinglePageModal',
+                handleClick: () => {
+                  SimpleSinglePageModal.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleSingleFrontendPaginationPageModal',
+                text: '显示 SimpleSingleFrontendPaginationPageModal',
+                handleClick: () => {
+                  SimpleSingleFrontendPaginationPageModal.open();
+                },
+              }),
+            },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 SimpleMultiPageModal',
+                text: '显示 SimpleMultiPageModal',
+                handleClick: () => {
+                  SimpleMultiPageModal.open();
+                },
+              }),
+            },
+          ],
+        },
         {
           title: {
             text: '单页列表选择功能实例 [常规]',
@@ -296,6 +331,10 @@ class ModalView extends BaseView {
                     name: 'BaseSimpleMultiPageSelectModal',
                   },
                   {
+                    flag: 'SimpleUploadImageModal',
+                    name: 'SimpleUploadImageModal',
+                  },
+                  {
                     flag: 'SimpleDisplayModal',
                     name: 'SimpleDisplayModal',
                   },
@@ -358,6 +397,12 @@ class ModalView extends BaseView {
 
                     case 'SimpleDisplayModal': {
                       code = codeSimpleDisplayModal;
+
+                      break;
+                    }
+
+                    case 'SimpleUploadImageModal': {
+                      code = codeSimpleUploadImageModal;
 
                       break;
                     }
@@ -475,6 +520,8 @@ class ModalView extends BaseView {
         <SimpleMultiPageModal />
 
         <SimpleDisplayModal />
+
+        <SimpleUploadImageModal />
 
         <SimpleAddModal
           afterOK={({ subjoinData }) => {

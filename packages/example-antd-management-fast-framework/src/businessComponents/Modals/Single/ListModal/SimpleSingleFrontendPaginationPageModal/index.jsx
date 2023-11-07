@@ -2,18 +2,18 @@ import { connect } from 'easy-soft-dva';
 
 import { switchControlAssist } from 'antd-management-fast-framework';
 
-import BaseSimpleSinglePageModal from '../BaseSimpleSinglePageModal';
+import { BaseSimpleSinglePageModal } from '../BaseSimpleSinglePageModal';
 
 import { code } from './codeSource';
 
 // 显隐控制标记, 必须设置, 标记需要全局唯一
-const visibleFlag = '4e5267268cf8461dbb5038303456e7cb';
+const visibleFlag = '9f490e094ff14b4487ef50af3b71a97f';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SimpleSinglePageFrontendPaginationSingleSelectModal extends BaseSimpleSinglePageModal {
+class SimpleSingleFrontendPaginationPageModal extends BaseSimpleSinglePageModal {
   // 使用模拟分页, 默认 false, 不使用二次选择确认时可不用特殊指定
   useFrontendPagination = true;
 
@@ -31,4 +31,4 @@ class SimpleSinglePageFrontendPaginationSingleSelectModal extends BaseSimpleSing
   }
 }
 
-export default SimpleSinglePageFrontendPaginationSingleSelectModal;
+export { SimpleSingleFrontendPaginationPageModal };

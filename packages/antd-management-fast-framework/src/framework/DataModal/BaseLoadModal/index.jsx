@@ -1,8 +1,8 @@
-import { Base } from '../Base';
+import { BaseFormModal } from '../BaseFormModal';
 
 const primaryCallName = 'DataModal::Base';
 
-class BaseLoadModal extends Base {
+class BaseLoadModal extends BaseFormModal {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
   }

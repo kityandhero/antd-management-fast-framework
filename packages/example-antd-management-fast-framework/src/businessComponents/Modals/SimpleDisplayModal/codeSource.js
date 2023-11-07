@@ -1,6 +1,7 @@
 export const code = `import { connect } from 'easy-soft-dva';
 
 import { cardConfig } from 'antd-management-fast-common';
+import { CenterBox } from 'antd-management-fast-component';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
 const { BaseDisplayModal } = DataModal;
@@ -50,26 +51,18 @@ class SimpleDisplayModal extends BaseDisplayModal {
   };
 
   establishCardCollectionConfig = () => {
-    const { image } = this.state;
-
     return {
       list: [
         {
           items: [
             {
               lg: 24,
-              type: cardConfig.contentItemType.imageUpload,
-              image,
-              uploadProps: {
-                singleMode: {
-                  width: '100%',
-                  emptyImage: '',
-                },
-              },
-              action: \`/simple/uploadImage\`,
-              afterUploadSuccess: (imageData) => {
-                this.afterImageUploadSuccess(imageData);
-              },
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '240px' }}>
+                  <CenterBox>内容区域</CenterBox>
+                </div>
+              ),
             },
           ],
         },

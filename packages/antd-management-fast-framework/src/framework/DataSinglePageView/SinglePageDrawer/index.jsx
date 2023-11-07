@@ -37,6 +37,8 @@ const primaryCallName = 'DataSinglePageView::SinglePageDrawer';
 class SinglePageDrawer extends SinglePage {
   visibleFlag = '';
 
+  affixPaginationBar = false;
+
   contentWrapperType = contentConfig.wrapperType.drawer;
 
   loadRemoteRequestAfterMount = false;

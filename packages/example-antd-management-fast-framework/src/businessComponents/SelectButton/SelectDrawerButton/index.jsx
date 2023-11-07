@@ -4,7 +4,7 @@ import { connect } from 'easy-soft-dva';
 
 import { ElasticitySelectButton } from 'antd-management-fast-component';
 
-import SimpleMultiPageSingleSelectDrawer from '../../Drawers/Multi/SimpleMultiPageSingleSelectDrawer';
+import { SimpleMultiPageSingleSelectDrawer } from '../../Drawers/Multi/SelectDrawer/SimpleMultiPageSingleSelectDrawer';
 
 const { BaseElasticitySelectButton } = ElasticitySelectButton;
 

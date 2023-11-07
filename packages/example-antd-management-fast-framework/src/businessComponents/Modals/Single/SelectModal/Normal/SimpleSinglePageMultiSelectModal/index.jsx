@@ -28,4 +28,4 @@ class SimpleSinglePageMultiSelectModal extends BaseSimpleSinglePageSelectModal {
   }
 }
 
-export default SimpleSinglePageMultiSelectModal;
+export { SimpleSinglePageMultiSelectModal };

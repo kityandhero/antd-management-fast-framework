@@ -1,4 +1,4 @@
-import { Alert, Form } from 'antd';
+import { Alert } from 'antd';
 import React from 'react';
 
 import {
@@ -6,6 +6,7 @@ import {
   isUndefined,
   logCallTrack,
   mergeArrowText,
+  showSimpleErrorMessage,
   toString,
 } from 'easy-soft-utility';
 
@@ -213,49 +214,25 @@ class Base extends BaseWindow {
     return iconBuilder.edit();
   };
 
-  renderPresetFormContent = () => {
-    this.logCallTrack({}, primaryCallName, 'renderPresetFormContent');
-
-    return this.buildCardCollectionArea(this.establishCardCollectionConfig());
-  };
-
-  renderPresetForm = () => {
-    this.logCallTrack({}, primaryCallName, 'renderPresetForm');
-
-    const { metaData, metaListData, metaExtra, metaOriginalData } = this.state;
-
-    const initialValues = this.buildInitialValues({
-      metaData,
-      metaListData,
-      metaExtra,
-      metaOriginalData,
-    });
-
-    const otherFormProperties = this.establishFormAdditionalConfig();
-
-    return (
-      <Form
-        ref={this.formRef}
-        layout={this.buildFormLayout()}
-        initialValues={initialValues}
-        className={this.getFormClassName()}
-        {...otherFormProperties}
-      >
-        {this.renderPresetFormContent()}
-      </Form>
+  renderPresetContentContainorInner = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'renderPresetContentContainorInner',
+      emptyLogic,
     );
-  };
 
-  renderPresetFormWrapper = () => {
-    this.logCallTrack({}, primaryCallName, 'renderPresetFormWrapper');
+    const text = 'renderPresetContentContainorInner need be override';
 
-    return this.renderPresetForm();
+    showSimpleErrorMessage(text);
+
+    return null;
   };
 
   renderPresetModalInner = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetModalInner');
 
-    return this.renderPresetFormWrapper();
+    return this.renderPresetContentContainorInner();
   };
 
   renderFurther() {

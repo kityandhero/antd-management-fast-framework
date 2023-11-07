@@ -31,5 +31,5 @@ class SimpleSinglePageFrontendPaginationMultiSelectModal extends BaseSimpleSingl
   }
 }
 
-export default SimpleSinglePageFrontendPaginationMultiSelectModal;
+export { SimpleSinglePageFrontendPaginationMultiSelectModal };
 `;

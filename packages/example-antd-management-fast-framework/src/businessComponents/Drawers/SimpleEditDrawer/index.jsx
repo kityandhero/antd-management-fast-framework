@@ -22,7 +22,7 @@ const visibleFlag = '7476eba9e3bf442ab7655e7b41c40360';
   simple,
   schedulingControl,
 }))
-class SimpleEditModel extends BaseUpdateDrawer {
+class SimpleEditDrawer extends BaseUpdateDrawer {
   // showCallProcess = true;
 
   static open() {
@@ -222,4 +222,4 @@ class SimpleEditModel extends BaseUpdateDrawer {
   };
 }
 
-export default SimpleEditModel;
+export { SimpleEditDrawer };
