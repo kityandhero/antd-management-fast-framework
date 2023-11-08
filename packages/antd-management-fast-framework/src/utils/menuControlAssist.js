@@ -1,11 +1,22 @@
 import { getDispatch } from 'easy-soft-dva';
 import {
   checkObjectIsNullOrEmpty,
+  deleteCache,
+  getCache,
   isArray,
   isEmptyArray,
+  logTrace,
+  mergeArrowText,
   mergeTextMessage,
   promptTextBuilder,
+  setCache,
 } from 'easy-soft-utility';
+
+// 缓存和dva同时使用, 缓存用于主控交互控制, dva用于被动交互触发
+
+function buildCacheKey(flag) {
+  return `menu-active-key-${flag}`;
+}
 
 /**
  * menu control assist
@@ -26,12 +37,23 @@ export const menuControlAssist = {
       );
     }
 
-    const dispatch = getDispatch();
-
-    return dispatch({
-      type: 'menuControl/getActiveKey',
-      payload: { flag, message },
+    const value = getCache({
+      key: buildCacheKey(flag),
     });
+
+    logTrace(
+      mergeArrowText(...message, 'menuControlAssist::getActiveKey'),
+      `tab flag "${flag}" value is "${value ?? ''}"`,
+    );
+
+    return value ?? '';
+
+    // const dispatch = getDispatch();
+
+    // return dispatch({
+    //   type: 'menuControl/getActiveKey',
+    //   payload: { flag, message },
+    // });
   },
   /**
    * set menu active key
@@ -48,11 +70,20 @@ export const menuControlAssist = {
       );
     }
 
+    setCache({
+      key: buildCacheKey(flag),
+      value: name,
+    });
+
     const dispatch = getDispatch();
 
     dispatch({
       type: 'menuControl/setActiveKey',
-      payload: { flag, name, message },
+      payload: {
+        flag,
+        name: checkObjectIsNullOrEmpty(name) ? '' : name,
+        message,
+      },
     });
   },
   /**
@@ -69,6 +100,10 @@ export const menuControlAssist = {
         ),
       );
     }
+
+    deleteCache({
+      key: buildCacheKey(flag),
+    });
 
     const dispatch = getDispatch();
 
@@ -90,6 +125,18 @@ export const menuControlAssist = {
           'must be string array, disallow empty array',
         ),
       );
+    }
+
+    if (isArray(flags) && !isEmptyArray(flags)) {
+      for (const flag of flags) {
+        if (checkObjectIsNullOrEmpty(flag)) {
+          continue;
+        }
+
+        deleteCache({
+          key: buildCacheKey(flag),
+        });
+      }
     }
 
     const dispatch = getDispatch();

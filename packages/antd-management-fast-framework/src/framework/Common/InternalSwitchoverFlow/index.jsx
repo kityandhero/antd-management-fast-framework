@@ -46,7 +46,7 @@ class InternalSwitchoverFlow extends InternalFlow {
     return this.adjustMenuListAvailable(menuListAvailable);
   };
 
-  handleMenuChange = async ({ key }) => {
+  handleMenuChange = ({ key }) => {
     this.logCallTrack(
       {
         parameter: { key },
@@ -55,7 +55,7 @@ class InternalSwitchoverFlow extends InternalFlow {
       'handleMenuChange',
     );
 
-    const menuActiveKey = await this.getMenuActiveKey();
+    const menuActiveKey = this.getMenuActiveKey();
 
     const { pathname } = getCurrentLocation();
 
@@ -104,7 +104,7 @@ class InternalSwitchoverFlow extends InternalFlow {
     return this.adjustTabListAvailable(tabListAvailable);
   };
 
-  handleTabChange = async (key) => {
+  handleTabChange = (key) => {
     this.logCallTrack(
       {
         parameter: { key },
@@ -113,7 +113,7 @@ class InternalSwitchoverFlow extends InternalFlow {
       'handleTabChange',
     );
 
-    const tabActiveKey = await this.getTabActiveKey();
+    const tabActiveKey = this.getTabActiveKey();
 
     const { pathname } = getCurrentLocation();
 

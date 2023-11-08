@@ -8,4 +8,5 @@ export * from './MenuWrapper';
 export * from './MobileContainor';
 export * from './ModalExtra';
 export * from './ReloadAnimalPrompt';
+export * from './ShortcutNavigation';
 export * from './TopProgressBar';

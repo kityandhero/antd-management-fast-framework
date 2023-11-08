@@ -60,18 +60,13 @@ class MenuWrapper extends BaseComponent {
     const usableKey = this.getUsableKey();
 
     if (!checkStringIsNullOrWhiteSpace(usableKey)) {
-      menuControlAssist
-        .getActiveKey(menuFlag)
-        .then((activeKey) => {
-          if (checkStringIsNullOrWhiteSpace(activeKey)) {
-            menuControlAssist.setActiveKey(menuFlag, usableKey);
-          }
+      const activeKey = menuControlAssist.getActiveKey(menuFlag);
 
-          return activeKey;
-        })
-        .catch(() => {
-          // ignore
-        });
+      if (checkStringIsNullOrWhiteSpace(activeKey)) {
+        menuControlAssist.setActiveKey(menuFlag, usableKey);
+      }
+
+      return activeKey;
     }
   };
 

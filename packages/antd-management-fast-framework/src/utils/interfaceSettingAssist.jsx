@@ -43,6 +43,7 @@ import {
   getLocalInterfaceSetting,
   setLocalInterfaceSetting,
 } from './interfaceSettingLocalAssist';
+import { shortcutControlAssist } from './shortcutControlAssist';
 
 /**
  * merge layout runtime config
@@ -152,7 +153,13 @@ export function mergeLayoutSetting({
       ...(collapsed ? {} : groupMenu ? { type: 'group' } : {}),
       ...(collapsed ? { collapsedShowTitle: collapsedShowTitle } : {}),
     },
-    menuProps: {},
+    menuProps: {
+      onClick: (o) => {
+        const { key } = { key: '', ...o };
+
+        shortcutControlAssist.pushLatestKey(key);
+      },
+    },
     waterMarkProps: checkStringIsNullOrWhiteSpace(title)
       ? {}
       : {
@@ -198,6 +205,10 @@ export function mergeLayoutSetting({
     },
     itemRender: (route) => route.breadcrumbName,
     postMenuData: (d) => {
+      setTimeout(() => {
+        shortcutControlAssist.pushLatestData(d);
+      }, 10);
+
       if (!collapsedShowTitle) {
         return d;
       }

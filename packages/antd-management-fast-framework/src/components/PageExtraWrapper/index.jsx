@@ -13,6 +13,7 @@ import { BaseComponent, PageExtra } from 'antd-management-fast-component';
 
 import { switchControlAssist } from '../../utils/switchControlAssist';
 import { tabControlAssist } from '../../utils/tabControlAssist';
+import { ShortcutNavigation } from '../ShortcutNavigation';
 
 const { PageWrapper } = PageExtra;
 
@@ -63,18 +64,13 @@ class PageExtraWrapper extends BaseComponent {
     const usableKey = this.getUsableKey();
 
     if (!checkStringIsNullOrWhiteSpace(usableKey)) {
-      tabControlAssist
-        .getActiveKey(tabFlag)
-        .then((activeKey) => {
-          if (checkStringIsNullOrWhiteSpace(activeKey)) {
-            tabControlAssist.setActiveKey(tabFlag, usableKey);
-          }
+      const activeKey = tabControlAssist.getActiveKey(tabFlag);
 
-          return activeKey;
-        })
-        .catch(() => {
-          // ignore
-        });
+      if (checkStringIsNullOrWhiteSpace(activeKey)) {
+        tabControlAssist.setActiveKey(tabFlag, usableKey);
+      }
+
+      return activeKey;
     }
   };
 
@@ -88,6 +84,7 @@ class PageExtraWrapper extends BaseComponent {
     return (
       <PageWrapper
         {...rest}
+        shortcutNavigation={<ShortcutNavigation />}
         dataLoading={spinning}
         reloading={spinning}
         tabActiveKey={activeKey}

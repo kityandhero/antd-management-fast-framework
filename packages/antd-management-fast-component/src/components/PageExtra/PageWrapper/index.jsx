@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 import { Outlet } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
@@ -32,6 +33,8 @@ class PageWrapper extends PureComponent {
       avatarImageLoadResult,
       onAvatarLoadError,
       tagList,
+      useShortcutNavigation,
+      shortcutNavigation,
       extraAction,
       contentConfig,
       extraContentConfig,
@@ -132,6 +135,12 @@ class PageWrapper extends PureComponent {
             childrenContentStyle={{
               padding: '0px',
             }}
+            className={classNames(
+              'antd-management-fast-component',
+              useShortcutNavigation
+                ? `antd-management-fast-component-use-shortcut-navigation`
+                : '',
+            )}
             extra={extraAction}
             content={headerContent}
             extraContent={extraContent}
@@ -141,6 +150,33 @@ class PageWrapper extends PureComponent {
             onTabChange={onTabChange}
             tabProps={tabProps}
             footer={footer}
+            breadcrumbRender={(properties, originBreadcrumb) => {
+              return (
+                <FlexBox
+                  flexAuto="right"
+                  style={{
+                    paddingBottom: '7px',
+                    borderBottom: '1px solid #f1f1f1',
+                  }}
+                  left={<div>{originBreadcrumb}</div>}
+                  right={
+                    shortcutNavigation == null ? null : (
+                      <FlexBox
+                        flexAuto="top"
+                        top={<div></div>}
+                        bottom={
+                          <FlexBox
+                            flexAuto="left"
+                            left={<div></div>}
+                            right={<div>{shortcutNavigation}</div>}
+                          />
+                        }
+                      />
+                    )
+                  }
+                />
+              );
+            }}
           >
             {innerContent}
           </PageContainer>
@@ -165,6 +201,8 @@ PageWrapper.defaultProps = {
   avatarImageLoadResult: null,
   onAvatarLoadError: null,
   tagList: [],
+  useShortcutNavigation: true,
+  shortcutNavigation: null,
   extraAction: null,
   contentConfig: null,
   extraContentConfig: null,
