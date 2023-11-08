@@ -1,5 +1,5 @@
 import { getDispatch } from 'easy-soft-dva';
-import { checkObjectIsNullOrEmpty, throttle } from 'easy-soft-utility';
+import { checkObjectIsNullOrEmpty } from 'easy-soft-utility';
 
 function setLatestData(listData) {
   const dispatch = getDispatch();
@@ -9,9 +9,6 @@ function setLatestData(listData) {
     payload: listData,
   });
 }
-const throttleSetLatestData = throttle(setLatestData, 400, {
-  trailing: false,
-});
 
 /**
  * shortcut control assist
@@ -38,6 +35,6 @@ export const shortcutControlAssist = {
    * @param {Array} listData  menu list Data
    */
   pushLatestData(listData) {
-    throttleSetLatestData(listData);
+    setLatestData(listData);
   },
 };

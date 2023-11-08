@@ -128,6 +128,14 @@ export function buildModel() {
           };
 
           return result;
+        } else {
+          logTrace(
+            {
+              payload: listSource,
+              latestKey,
+            },
+            mergeArrowText('shortcutControl::reducerLatestData', 'ignore'),
+          );
         }
 
         return state;
