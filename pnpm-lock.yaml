@@ -621,7 +621,7 @@ importers:
         specifier: ^5.11.0
         version: 5.11.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.39
+        specifier: ^2.6.40
         version: 'link:'
       array-move:
         specifier: ^4.0.0
@@ -976,7 +976,7 @@ importers:
         specifier: ^5.11.0
         version: 5.11.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.39
+        specifier: ^2.6.40
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -2566,10 +2566,10 @@ importers:
         specifier: ^5.11.0
         version: 5.11.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.39
+        specifier: ^2.6.40
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.58
+        specifier: ^2.6.59
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.6.0
