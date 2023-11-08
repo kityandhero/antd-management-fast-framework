@@ -29,8 +29,12 @@ export function buildModel() {
         });
 
         logTrace(
-          mergeArrowText(...message, 'shortcutControl::pushLatestKey'),
-          `key "${key}"`,
+          {},
+          mergeArrowText(
+            ...message,
+            'shortcutControl::pushLatestKey',
+            `key "${key}"`,
+          ),
         );
 
         return key;
@@ -43,7 +47,7 @@ export function buildModel() {
           ...reducerDefaultParameters,
         });
 
-        logTrace(mergeArrowText('shortcutControl::pushLatestData'));
+        logTrace({}, mergeArrowText('shortcutControl::pushLatestData'));
 
         return payload;
       },
@@ -62,6 +66,13 @@ export function buildModel() {
           ...state,
           latestKey: key,
         };
+
+        logTrace(
+          {
+            latestKey: key,
+          },
+          mergeArrowText('shortcutControl.latestKey'),
+        );
 
         return result;
       },
@@ -103,6 +114,13 @@ export function buildModel() {
               path,
             },
           ];
+
+          logTrace(
+            {
+              listData: [...listDataAdjust],
+            },
+            mergeArrowText('shortcutControl.listData'),
+          );
 
           let result = {
             ...state,
