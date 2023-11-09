@@ -1,15 +1,13 @@
-import { TreeSelect } from 'antd';
+import { Tree } from 'antd';
 import React from 'react';
 
 import { isArray, isFunction, transformListData } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../bases';
 
-class ElasticityTreeSelect extends BaseComponent {
+class ElasticityTree extends BaseComponent {
   renderFurther() {
     const {
-      value: v,
-      placeholder = '',
       onChangeCallback = null,
       innerProps: innerProperties = {},
       listData = [],
@@ -17,14 +15,8 @@ class ElasticityTreeSelect extends BaseComponent {
     } = this.props;
 
     const adjustOtherProperties = {
-      style: { width: '100%' },
-      showSearch: true,
-      allowClear: true,
-      treeLine: true,
-      placeholder,
+      showLine: true,
       ...innerProperties,
-
-      value: v || null,
     };
 
     const listDataSource = isArray(listData) ? listData : [];
@@ -38,29 +30,28 @@ class ElasticityTreeSelect extends BaseComponent {
       : listDataSource;
 
     adjustOtherProperties.treeData = listDataAdjust;
-    adjustOtherProperties.onChange = (value, label, extra) => {
+    adjustOtherProperties.onSelect = (selectedKeys, o) => {
+      const { selectedNodes, node } = o;
+
       if (isFunction(onChangeCallback)) {
-        onChangeCallback({
-          value,
-          label,
-          extra,
+        onChangeCallback(selectedKeys, o, {
+          selectedNodes,
+          node,
           treeData: listDataAdjust,
           listData,
         });
       }
     };
 
-    return <TreeSelect {...adjustOtherProperties} />;
+    return <Tree {...adjustOtherProperties} />;
   }
 }
 
-ElasticityTreeSelect.defaultProps = {
-  value: null,
-  placeholder: '',
+ElasticityTree.defaultProps = {
   onChangeCallback: null,
   innerProps: {},
   listData: [],
   dataConvert: null,
 };
 
-export { ElasticityTreeSelect };
+export { ElasticityTree };

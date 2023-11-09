@@ -1,4 +1,4 @@
-import { Col, Divider, Empty, Row, Space, Tree } from 'antd';
+import { Col, Divider, Empty, Row, Space } from 'antd';
 import React, { PureComponent } from 'react';
 
 import {
@@ -28,6 +28,7 @@ import { AudioUpload } from '../../AudioUpload';
 import { CustomGrid } from '../../CustomGrid';
 import { TinymceWrapper } from '../../Editor/TinymceWrapper';
 import { ElasticityButton } from '../../ElasticityButton';
+import { ElasticityTree } from '../../ElasticityTree';
 import { ElasticityTreeSelect } from '../../ElasticityTreeSelect';
 import { FileBase64Upload } from '../../FileBase64Upload';
 import { FileUpload } from '../../FileUpload';
@@ -207,6 +208,20 @@ class CardCollectionItemContent extends PureComponent {
               }
 
               if (type === cardConfig.contentItemType.tree) {
+                const {
+                  onChange: onTreeSelectChangeCallback,
+                  innerProps: otherTreeSelectProperties,
+                  listData: treeSelectListData,
+                  dataConvert: treeSelectDataConvertor,
+                } = {
+                  onChange: contentItem.onChange || null,
+                  innerProps: {
+                    ...contentItem.innerProps,
+                  },
+                  listData: contentItem.listData || [],
+                  dataConvert: contentItem.dataConvert || null,
+                };
+
                 return (
                   <Col
                     key={contentItemKey}
@@ -215,7 +230,12 @@ class CardCollectionItemContent extends PureComponent {
                     sm={lg || sm}
                     xs={lg || xs}
                   >
-                    <Tree {...contentItem} />
+                    <ElasticityTree
+                      onChange={onTreeSelectChangeCallback}
+                      innerProps={otherTreeSelectProperties}
+                      listData={treeSelectListData}
+                      dataConvert={treeSelectDataConvertor}
+                    />
                   </Col>
                 );
               }
@@ -469,7 +489,6 @@ class CardCollectionItemContent extends PureComponent {
                   dataConvert: treeSelectDataConvertor,
                 } = {
                   value: contentItem.value || '',
-                  fileBase64: contentItem.fileBase64 || '',
                   onChange: contentItem.onChange || null,
                   innerProps: {
                     ...contentItem.innerProps,
