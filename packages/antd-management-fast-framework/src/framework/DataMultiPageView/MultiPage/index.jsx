@@ -18,6 +18,12 @@ import { Base } from '../../DataListView/Base';
 
 const primaryCallName = 'DataMultiPageView::MultiPage';
 
+const parameterCachePrefix = 'amf-parameter';
+
+function buildParameterCacheKey(parametersKey) {
+  return `${parameterCachePrefix}-${parametersKey}`;
+}
+
 class MultiPage extends Base {
   /**
    * 使用远端分页
@@ -133,7 +139,7 @@ class MultiPage extends Base {
         return d;
       }
 
-      d = getParametersDataCache(this.paramsKey);
+      d = getParametersDataCache(buildParameterCacheKey(this.paramsKey));
 
       this.restoreSearchComplete = true;
 
@@ -183,9 +189,14 @@ class MultiPage extends Base {
   };
 
   afterGetRequestResult = () => {
-    if (!checkStringIsNullOrWhiteSpace(this.paramsKey)) {
-      setParametersDataCache(this.paramsKey, this.lastLoadParams);
+    if (checkStringIsNullOrWhiteSpace(this.paramsKey)) {
+      return;
     }
+
+    setParametersDataCache(
+      buildParameterCacheKey(this.paramsKey),
+      this.lastLoadParams,
+    );
   };
 
   handleSearch = () => {

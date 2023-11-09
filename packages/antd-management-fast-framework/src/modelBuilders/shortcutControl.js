@@ -1,11 +1,60 @@
 import {
   filter,
   getTacitlyState,
+  isArray,
+  isEmptyArray,
   logTrace,
   mergeArrowText,
   reducerDefaultParameters,
   uniqBy,
 } from 'easy-soft-utility';
+
+function flatTreeData(listSource) {
+  let list = [];
+
+  listSource.map((o) => {
+    const l = flatTreeItemData(o);
+
+    list = [...list, ...l];
+  });
+
+  return list;
+}
+
+function flatTreeItemData(item) {
+  let list = [];
+
+  const { key, locale, name, path, children } = {
+    key: '',
+    locale: '',
+    name: '',
+    path: '',
+    ...item,
+  };
+
+  list.push({
+    key,
+    locale,
+    name,
+    path,
+  });
+
+  if (!isArray(children)) {
+    return list;
+  }
+
+  if (isEmptyArray(children)) {
+    return list;
+  }
+
+  children.map((o) => {
+    const l = flatTreeItemData(o);
+
+    list = [...list, ...l];
+  });
+
+  return list;
+}
 
 export function buildModel() {
   return {
@@ -89,8 +138,10 @@ export function buildModel() {
           (o) => o.key !== latestKey,
         ).slice(0, 7);
 
+        const listSourceAdjust = flatTreeData(listSource);
+
         const listSourceFiltered = filter(
-          listSource,
+          listSourceAdjust,
           (o) => o.key === latestKey,
         );
 
