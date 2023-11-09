@@ -8,7 +8,7 @@ import { BaseComponent } from '../../bases';
 class ElasticityTree extends BaseComponent {
   renderFurther() {
     const {
-      onChangeCallback = null,
+      onSelect: onSelectCallback = null,
       innerProps: innerProperties = {},
       listData = [],
       dataConvert = null,
@@ -33,8 +33,8 @@ class ElasticityTree extends BaseComponent {
     adjustOtherProperties.onSelect = (selectedKeys, o) => {
       const { selectedNodes, node } = o;
 
-      if (isFunction(onChangeCallback)) {
-        onChangeCallback(selectedKeys, o, {
+      if (isFunction(onSelectCallback)) {
+        onSelectCallback(selectedKeys, o, {
           selectedNodes,
           node,
           treeData: listDataAdjust,
@@ -48,7 +48,7 @@ class ElasticityTree extends BaseComponent {
 }
 
 ElasticityTree.defaultProps = {
-  onChangeCallback: null,
+  onSelect: null,
   innerProps: {},
   listData: [],
   dataConvert: null,

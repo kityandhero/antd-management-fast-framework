@@ -209,12 +209,12 @@ class CardCollectionItemContent extends PureComponent {
 
               if (type === cardConfig.contentItemType.tree) {
                 const {
-                  onChange: onTreeSelectChangeCallback,
+                  onSelect: onSelectCallback,
                   innerProps: otherTreeSelectProperties,
                   listData: treeSelectListData,
                   dataConvert: treeSelectDataConvertor,
                 } = {
-                  onChange: contentItem.onChange || null,
+                  onSelect: contentItem.onSelect || null,
                   innerProps: {
                     ...contentItem.innerProps,
                   },
@@ -231,7 +231,7 @@ class CardCollectionItemContent extends PureComponent {
                     xs={lg || xs}
                   >
                     <ElasticityTree
-                      onChange={onTreeSelectChangeCallback}
+                      onSelect={onSelectCallback}
                       innerProps={otherTreeSelectProperties}
                       listData={treeSelectListData}
                       dataConvert={treeSelectDataConvertor}

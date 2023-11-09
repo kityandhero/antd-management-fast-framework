@@ -1091,8 +1091,8 @@ class PageList extends MultiPage {
               showLine: true,
               switcherIcon: iconBuilder.down(),
               defaultExpandedKeys: ['0-0-0'],
-              onSelect: () => {},
-              treeData: [
+
+              listData: [
                 {
                   title: 'parent 1',
                   key: '0-0',
@@ -1142,6 +1142,16 @@ class PageList extends MultiPage {
                   ],
                 },
               ],
+              innerProps: {
+                defaultExpandAll: true,
+              },
+              onSelect: (
+                selectedKeys,
+                o,
+                { selectedNodes, node, treeData },
+              ) => {
+                console.log({ selectedNodes, node, treeData });
+              },
             },
           ],
           instruction: {

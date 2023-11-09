@@ -10,7 +10,7 @@ class ElasticityTreeSelect extends BaseComponent {
     const {
       value: v,
       placeholder = '',
-      onChangeCallback = null,
+      onChange: onChangeCallback = null,
       innerProps: innerProperties = {},
       listData = [],
       dataConvert = null,
@@ -57,7 +57,7 @@ class ElasticityTreeSelect extends BaseComponent {
 ElasticityTreeSelect.defaultProps = {
   value: null,
   placeholder: '',
-  onChangeCallback: null,
+  onChange: null,
   innerProps: {},
   listData: [],
   dataConvert: null,
