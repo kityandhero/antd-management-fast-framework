@@ -248,6 +248,13 @@ export default [
         useMini: true,
         component: './Interaction/DesignView',
       },
+      {
+        path: '/interaction/formLayoutView',
+        name: 'formLayoutView',
+        icon: 'bars',
+        useMini: true,
+        component: './Interaction/FormLayoutView',
+      },
     ],
   },
   {

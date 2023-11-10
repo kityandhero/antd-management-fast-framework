@@ -1,4 +1,4 @@
-import { Affix, Card, Divider, Space } from 'antd';
+import { Affix, Card, Col, Divider, Row, Space } from 'antd';
 import React, { Fragment } from 'react';
 
 import {
@@ -6,8 +6,10 @@ import {
   checkStringIsNullOrWhiteSpace,
   isArray,
   isBoolean,
+  isEmptyArray,
   isObject,
   logObject,
+  toString,
 } from 'easy-soft-utility';
 
 import {
@@ -110,6 +112,40 @@ class InternalBuild extends InternalSwitchoverFlow {
               );
             }
 
+            if (isArray(item) && !isEmptyArray(item)) {
+              return (
+                <Row key={`flex_row_${index}`} gutter={[16, 16]}>
+                  {item.map((one, n) => {
+                    const { width: widthOne } = { width: '', ...one };
+
+                    const oneProperties = checkStringIsNullOrWhiteSpace(
+                      widthOne,
+                    )
+                      ? { span: '24' }
+                      : { flex: toString(widthOne) };
+
+                    return (
+                      <Col
+                        key={`flex_row_${index}_col_${n}`}
+                        {...oneProperties}
+                      >
+                        {this.buildCardCollectionItem({
+                          mode,
+                          justify: justifyGeneral,
+                          align: alignGeneral,
+                          config: { bordered: false, ...one },
+                          key: `flex_row_${index}_col_${n}_inner`,
+                          style: {
+                            height: '100%',
+                          },
+                        })}
+                      </Col>
+                    );
+                  })}
+                </Row>
+              );
+            }
+
             return this.buildCardCollectionItem({
               mode,
               justify: justifyGeneral,
@@ -170,6 +206,7 @@ class InternalBuild extends InternalSwitchoverFlow {
     mode = cardConfig.wrapperType.page,
     justify: justifyGeneral = 'start',
     align: alignGeneral = 'top',
+    style: cardStyle = null,
   }) => {
     const key = `cardCollectionItem_key_${cardItemKey}`;
 
@@ -381,6 +418,7 @@ class InternalBuild extends InternalSwitchoverFlow {
         style={{
           // boxShadow: 'none',
           // borderRadius: 0,
+          ...cardStyle,
           ...(imageVisible ? { position: 'relative' } : {}),
         }}
         headStyle={
@@ -464,7 +502,7 @@ class InternalBuild extends InternalSwitchoverFlow {
     );
 
     return (
-      <div key={key} className={styles.cardContainor}>
+      <div key={key} className={styles.cardContainor} style={cardStyle}>
         {isBoolean(useAnimal) && animalType === cardConfig.animalType.fade ? (
           <FadeBox>{card}</FadeBox>
         ) : null}

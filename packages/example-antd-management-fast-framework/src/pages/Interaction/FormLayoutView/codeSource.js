@@ -1,4 +1,4 @@
-import { connect } from 'easy-soft-dva';
+export const code = `import { connect } from 'easy-soft-dva';
 import {
   logDebug,
   mergeArrowText,
@@ -98,7 +98,6 @@ class ModalView extends BaseView {
           title: {
             text: '表单',
           },
-          width: 'auto',
           items: [
             {
               lg: 8,
@@ -444,7 +443,7 @@ class ModalView extends BaseView {
                     currentCode: code,
                   });
 
-                  showSimpleInfoMessage(`当前显示 ${v} 源代码`);
+                  showSimpleInfoMessage(\`当前显示 \${v} 源代码\`);
                 },
               },
             ],
@@ -548,3 +547,4 @@ class ModalView extends BaseView {
 }
 
 export default ModalView;
+`;

@@ -1,4 +1,5 @@
 import { connect } from 'easy-soft-dva';
+import { checkStringIsNullOrWhiteSpace, isFunction } from 'easy-soft-utility';
 
 import { Playground } from 'antd-management-fast-design-playground';
 import {
@@ -38,9 +39,10 @@ import {
 
 const { BaseFormDrawer } = DataDrawer;
 
-const visibleFlag = 'E3F3492EE09B463A89D3B5989FF05B6D';
+const visibleFlag = '3f955425f2de43ad884f9d3e6be6ac57';
 
-@connect(({ schedulingControl }) => ({
+@connect(({ formDesign, schedulingControl }) => ({
+  formDesign,
   schedulingControl,
 }))
 class PlaygroundDrawer extends BaseFormDrawer {
@@ -61,6 +63,8 @@ class PlaygroundDrawer extends BaseFormDrawer {
 
     this.state = {
       ...this.state,
+      loadApiPath: 'formDesign/get',
+      submitApiPath: 'formDesign/set',
       width: '100vw',
       overlayButtonOpenText: '打开源代码',
       overlayButtonCloseText: '关闭源代码',
@@ -74,7 +78,38 @@ class PlaygroundDrawer extends BaseFormDrawer {
   };
 
   save = (data) => {
-    console.log(data);
+    const { afterSave } = this.props;
+
+    const {
+      schema: { properties },
+    } = {
+      form: {},
+      schema: {},
+      ...(checkStringIsNullOrWhiteSpace(data) ? {} : JSON.parse(data)),
+    };
+
+    const dataSchema = [];
+
+    for (const [key, value] of Object.entries(properties)) {
+      const { title, type, name } = {
+        name: key,
+        ...value,
+      };
+
+      dataSchema.push({ title, type, name });
+    }
+
+    this.execSubmitApi({
+      values: {
+        designSchema: data,
+        dataSchema: JSON.stringify(dataSchema),
+      },
+      successCallback: () => {
+        if (isFunction(afterSave)) {
+          afterSave();
+        }
+      },
+    });
   };
 
   renderPresetTitle = () => {

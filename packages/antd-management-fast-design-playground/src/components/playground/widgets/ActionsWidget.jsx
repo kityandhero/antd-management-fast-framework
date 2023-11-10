@@ -33,7 +33,7 @@ export const ActionsWidget = observer((properties) => {
 
   return (
     <Space style={{ marginRight: 10 }}>
-      <Tooltip title="存储数据到本地浏览器, 仅为临时存储">
+      <Tooltip title="存储数据到本地, 仅为临时存储, 不更新渲染">
         <Button
           type="primary"
           onClick={() => {

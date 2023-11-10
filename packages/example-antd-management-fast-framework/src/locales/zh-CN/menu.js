@@ -68,6 +68,8 @@ export default {
   'menu.interaction.drawerView-mini': 'Drawer',
   'menu.interaction.designView': 'Design 示例',
   'menu.interaction.designView-mini': 'Design',
+  'menu.interaction.formLayoutView': 'FormLayout 示例',
+  'menu.interaction.formLayoutView-mini': 'Design',
 
   'menu.flowEditor': '流程图',
   'menu.flowEditor-mini': '流程图',
