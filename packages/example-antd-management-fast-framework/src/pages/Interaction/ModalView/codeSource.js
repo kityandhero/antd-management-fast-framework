@@ -98,6 +98,7 @@ class ModalView extends BaseView {
           title: {
             text: '表单',
           },
+          width: 'auto',
           items: [
             {
               lg: 8,

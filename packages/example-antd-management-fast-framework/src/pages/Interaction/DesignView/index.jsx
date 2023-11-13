@@ -12,12 +12,14 @@ import { cardConfig } from 'antd-management-fast-common';
 import {
   buildButton,
   convertOptionOrRadioData,
+  iconBuilder,
 } from 'antd-management-fast-component';
 import {
   DataDisplayer,
   SchemaDisplayer,
 } from 'antd-management-fast-design-playground';
 
+import { FlowCaseFormDocumentDrawer } from '../../../businessComponents/Drawers/FlowCaseFormDocumentDrawer';
 import { PlaygroundDrawer } from '../../../businessComponents/Drawers/PlaygroundDrawer';
 import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
@@ -40,6 +42,10 @@ class ModalView extends BaseView {
       currentCode: codeModalView,
     };
   }
+
+  showFlowCaseFormDocumentDrawer = () => {
+    FlowCaseFormDocumentDrawer.open();
+  };
 
   afterDesignDrawerClose = () => {
     this.reloadData({});
@@ -65,7 +71,12 @@ class ModalView extends BaseView {
   };
 
   establishCardCollectionConfig = () => {
-    const { currentCode, currentCodeTitle, metaData } = this.state;
+    const {
+      // firstLoadSuccess,
+      currentCode,
+      currentCodeTitle,
+      metaData,
+    } = this.state;
 
     const that = this;
 
@@ -100,6 +111,22 @@ class ModalView extends BaseView {
               text: '表单示例',
             },
             width: 'auto',
+            hasExtra: true,
+            extra: {
+              affix: true,
+              list: [
+                {
+                  buildType: cardConfig.extraBuildType.generalExtraButton,
+                  type: 'default',
+                  icon: iconBuilder.read(),
+                  text: '表单文档',
+                  // disabled: !firstLoadSuccess,
+                  handleClick: () => {
+                    this.showFlowCaseFormDocumentDrawer();
+                  },
+                },
+              ],
+            },
             items: [
               {
                 lg: 24,
@@ -212,6 +239,8 @@ class ModalView extends BaseView {
             this.afterDesignDrawerClose();
           }}
         />
+
+        <FlowCaseFormDocumentDrawer maskClosable />
       </>
     );
   };
