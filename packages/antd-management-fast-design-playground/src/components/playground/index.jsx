@@ -26,7 +26,7 @@ import {
   WorkspacePanel,
 } from 'antd-management-fast-design-react';
 
-import { saveSchema } from './service';
+import { saveSchemaToLocal, schemaLocalKey } from './service';
 import {
   ActionsWidget,
   LogoWidget,
@@ -65,7 +65,7 @@ GlobalRegistry.registerDesignerLocales({
  * @param {string} schema json string
  */
 export function setSchemaWithExternalData(schema) {
-  localStorage.setItem('formily-schema', schema);
+  localStorage.setItem(schemaLocalKey, schema);
 }
 
 export const Playground = (properties) => {
@@ -95,7 +95,7 @@ export const Playground = (properties) => {
               [KeyCode.Control, KeyCode.S],
             ],
             handler(context) {
-              saveSchema(context.engine);
+              saveSchemaToLocal(context.engine);
             },
           }),
         ],
@@ -136,6 +136,7 @@ export const Playground = (properties) => {
             <HistoryWidget />
           </CompositePanel.Item>
         </CompositePanel>
+
         <Workspace id="form">
           <WorkspacePanel>
             <ToolbarPanel>

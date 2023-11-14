@@ -287,6 +287,7 @@ class Base extends BaseWindow {
 
     return (
       <ModalExtra
+        destroyOnClose={this.destroyOnClose || false}
         flag={this.getVisibleFlag()}
         icon={this.renderPresetTitleIcon()}
         titlePrefix={this.buildTitlePrevText()}

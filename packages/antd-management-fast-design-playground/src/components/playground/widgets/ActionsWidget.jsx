@@ -8,7 +8,11 @@ import { isFunction } from 'easy-soft-utility';
 
 import { TextWidget, useDesigner } from 'antd-management-fast-design-react';
 
-import { loadInitialSchema, saveSchema } from '../service';
+import {
+  loadInitialSchema,
+  saveSchemaToLocal,
+  schemaLocalKey,
+} from '../service';
 
 const supportLocales = new Set(['zh-cn', 'en-us', 'ko-kr']);
 
@@ -37,7 +41,7 @@ export const ActionsWidget = observer((properties) => {
         <Button
           type="primary"
           onClick={() => {
-            saveSchema(designer, true);
+            saveSchemaToLocal(designer, true);
           }}
         >
           <SaveOutlined style={{ marginRight: '6px' }} />
@@ -50,10 +54,10 @@ export const ActionsWidget = observer((properties) => {
         <Button
           type="primary"
           onClick={() => {
-            saveSchema(designer, false);
+            saveSchemaToLocal(designer, false);
 
             if (isFunction(afterLocalSave)) {
-              afterLocalSave(localStorage.getItem('formily-schema'));
+              afterLocalSave(localStorage.getItem(schemaLocalKey));
             }
           }}
         >

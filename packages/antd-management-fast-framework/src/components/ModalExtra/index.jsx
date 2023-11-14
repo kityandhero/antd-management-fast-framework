@@ -78,7 +78,8 @@ class ModalExtra extends PureComponent {
   };
 
   render() {
-    const { flag, switchControl, children, icon, ...rest } = this.props;
+    const { flag, switchControl, children, icon, destroyOnClose, ...rest } =
+      this.props;
 
     const v = !!switchControl[flag];
     const styleCollection = this.buildStyles();
@@ -86,6 +87,7 @@ class ModalExtra extends PureComponent {
     return (
       <Modal
         open={v || false}
+        destroyOnClose={destroyOnClose || false}
         {...rest}
         styles={styleCollection}
         title={
@@ -111,6 +113,7 @@ ModalExtra.defaultProps = {
   icon: null,
   titlePrefix: null,
   title: null,
+  destroyOnClose: false,
 };
 
 export { ModalExtra };

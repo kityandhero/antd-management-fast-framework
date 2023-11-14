@@ -31,6 +31,8 @@ class BaseWindow extends Base {
 
   reloadHeaderOnSubmitSuccess = false;
 
+  destroyOnClose = false;
+
   constructor(properties, visibleFlag = '') {
     super(properties);
 

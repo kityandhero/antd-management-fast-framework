@@ -5,9 +5,11 @@ import {
   transformToTreeNode,
 } from 'antd-management-fast-design-react';
 
-export const saveSchema = (designer, promptMessage = true) => {
+export const schemaLocalKey = 'amf-design-formily-schema';
+
+export const saveSchemaToLocal = (designer, promptMessage = true) => {
   localStorage.setItem(
-    'formily-schema',
+    schemaLocalKey,
     JSON.stringify(transformToSchema(designer.getCurrentTree())),
   );
 
@@ -19,7 +21,7 @@ export const saveSchema = (designer, promptMessage = true) => {
 export const loadInitialSchema = (designer) => {
   try {
     designer.setCurrentTree(
-      transformToTreeNode(JSON.parse(localStorage.getItem('formily-schema'))),
+      transformToTreeNode(JSON.parse(localStorage.getItem(schemaLocalKey))),
     );
   } catch {
     // ignored
