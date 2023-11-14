@@ -18,18 +18,18 @@ class LoadingOverlay extends PureComponent {
     const minHeightStyle = fill
       ? {}
       : isNumber(minHeight)
-      ? { minHeight: `${minHeight}px` }
-      : isString(minHeight)
-      ? { minHeight }
-      : {};
+        ? { minHeight: `${minHeight}px` }
+        : isString(minHeight)
+          ? { minHeight }
+          : {};
 
     const maxHeightStyle = fill
       ? {}
       : isNumber(maxHeight)
-      ? { maxHeight: `${maxHeight}px` }
-      : isString(maxHeight)
-      ? { maxHeight }
-      : {};
+        ? { maxHeight: `${maxHeight}px` }
+        : isString(maxHeight)
+          ? { maxHeight }
+          : {};
 
     const fillStyle = {
       height: '100%',

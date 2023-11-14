@@ -18,8 +18,8 @@ function FlowProcessHistory(properties) {
     nextData == null
       ? null
       : isFunction(nextDataConvert)
-      ? nextDataConvert(nextData)
-      : nextData;
+        ? nextDataConvert(nextData)
+        : nextData;
 
   const l = (isArray(list) ? list : []).map((o) => {
     return isFunction(listItemConvert) ? listItemConvert(o) : o;

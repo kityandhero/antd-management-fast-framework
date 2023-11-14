@@ -84,18 +84,18 @@ function getExternalConfigs() {
       ...((window.appInitCustomLocalCore || null) == null
         ? []
         : isArray(window.appInitCustomLocalCore.applicationListData)
-        ? window.appInitCustomLocalCore.applicationListData
-        : []),
+          ? window.appInitCustomLocalCore.applicationListData
+          : []),
       ...((window.appInitCustomLocalSpecial || null) == null
         ? []
         : isArray(window.appInitCustomLocalSpecial.applicationListData)
-        ? window.appInitCustomLocalSpecial.applicationListData
-        : []),
+          ? window.appInitCustomLocalSpecial.applicationListData
+          : []),
       ...((window.appInitCustomRemote || null) == null
         ? []
         : isArray(window.appInitCustomRemote.applicationListData)
-        ? window.appInitCustomRemote.applicationListData
-        : []),
+          ? window.appInitCustomRemote.applicationListData
+          : []),
     ];
 
     list.push({ applicationListData });

@@ -91,12 +91,13 @@ class PlaygroundDrawer extends BaseFormDrawer {
     const dataSchema = [];
 
     for (const [key, value] of Object.entries(properties)) {
-      const { title, type, name } = {
+      const { title, type, name, fullLine } = {
         name: key,
+        fullLine: '1',
         ...value,
       };
 
-      dataSchema.push({ title, type, name });
+      dataSchema.push({ title, type, name, fullLine });
     }
 
     this.execSubmitApi({

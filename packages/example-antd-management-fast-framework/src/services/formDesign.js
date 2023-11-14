@@ -26,7 +26,7 @@ export async function getData(parameters) {
     api: getDataApiAddress,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 800,
+    simulateRequestMaxDelay: 800,
     simulativeSuccessResponse: {
       data: {
         dataSchema: dataSchema ?? '',
@@ -48,11 +48,32 @@ export async function setData(parameters) {
     api: setDataApiAddress,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         dataSchema: dataSchema ?? '',
         designSchema: designSchema ?? '',
+      },
+    },
+  });
+}
+
+export const setDataSchemaDataApiAddress = '/formDesign/setDataSchema';
+
+export async function setDataSchemaData(parameters) {
+  const { dataSchema } = parameters;
+
+  saveStringToLocalStorage(buildDataSchemaKey(), dataSchema);
+
+  return request({
+    api: setDataApiAddress,
+    params: parameters,
+    mode: requestMode.simulation,
+    simulateRequestMaxDelay: 300,
+    simulativeSuccessResponse: {
+      data: {
+        dataSchema: dataSchema ?? '',
+        designSchema: getStringFromLocalStorage(buildDesignSchemaKey()),
       },
     },
   });

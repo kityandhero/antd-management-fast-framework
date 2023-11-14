@@ -199,3 +199,21 @@ export async function removeGalleryImageConfirmAction({
     },
   });
 }
+
+export async function setDataSchemaAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: 'formDesign/setDataSchema',
+    params: {
+      dataSchema: handleData,
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}

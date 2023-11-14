@@ -24,8 +24,8 @@ class FlexBox extends PureComponent {
     return checkInCollection(['left', 'right'], flexAuto)
       ? 'horizontal'
       : checkInCollection(['top', 'bottom'], flexAuto)
-      ? 'vertical'
-      : 'horizontal';
+        ? 'vertical'
+        : 'horizontal';
   };
 
   triggerClick = () => {

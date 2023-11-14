@@ -69,8 +69,8 @@ class ElasticityDropdown extends BaseComponent {
       placementAdjust.includes('bottom') || placementAdjust.includes('Bottom')
         ? classNames(`amf-dropdownExpandOverlayBottom`)
         : placementAdjust.startsWith('top')
-        ? classNames(`amf-dropdownExpandOverlayTop`)
-        : {};
+          ? classNames(`amf-dropdownExpandOverlayTop`)
+          : {};
 
     if ((handleButtonClick || null) != null && !isFunction(handleButtonClick)) {
       logDevelop('handleButtonClick must be function');

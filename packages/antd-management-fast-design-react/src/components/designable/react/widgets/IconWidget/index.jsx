@@ -100,8 +100,8 @@ export const IconWidget = observer((properties) => {
         React.isValidElement(tooltip) || isStr(tooltip)
           ? {}
           : isObj(tooltip)
-          ? tooltip
-          : {};
+            ? tooltip
+            : {};
 
       return (
         <Tooltip {...properties_} title={title}>

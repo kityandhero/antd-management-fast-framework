@@ -152,8 +152,8 @@ class HelpBox extends PureComponent {
               width: customLabelWidth
                 ? labelWidthStyle
                 : showNumber
-                ? '22px'
-                : '12px',
+                  ? '22px'
+                  : '12px',
             },
             contentStyle: {
               color: '#999',

@@ -17,7 +17,7 @@ export async function pageListData(parameters) {
     api: `/simple/pageList`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 100,
+    simulateRequestMaxDelay: 100,
     simulativeSuccessResponse: {
       extra: {
         pageNo: pageNo,
@@ -34,7 +34,7 @@ export async function singleListData(parameters) {
     api: `/simple/singleList`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 100,
+    simulateRequestMaxDelay: 100,
     simulativeSuccessResponse: {
       list: getArticleList(),
     },
@@ -46,7 +46,7 @@ export async function singleListTreeData(parameters) {
     api: `/simple/singleListTree`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 100,
+    simulateRequestMaxDelay: 100,
     simulativeSuccessResponse: {
       list: [
         { label: '条目1', code: '1' },
@@ -79,7 +79,7 @@ export async function getData(parameters) {
     api: `/simple/get`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 800,
+    simulateRequestMaxDelay: 800,
     simulativeSuccessResponse: {
       data: findArticle(parameters),
     },
@@ -91,7 +91,7 @@ export async function addBasicInfoData(parameters) {
     api: `/simple/addBasicInfo`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: findArticle(parameters),
     },
@@ -103,7 +103,7 @@ export async function updateBasicInfoData(parameters) {
     api: `/simple/updateBasicInfo`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -118,7 +118,7 @@ export async function updateContentInfoData(parameters) {
     api: `/simple/updateContentInfo`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -133,7 +133,7 @@ export async function updateMediaInfoData(parameters) {
     api: `/simple/updateMediaInfo`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -148,7 +148,7 @@ export async function updateSortData(parameters) {
     api: `/simple/updateSort`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -163,7 +163,7 @@ export async function updateImageSortData(parameters) {
     api: `/simple/updateImageSort`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -178,7 +178,7 @@ export async function updateRenderTypeData(parameters) {
     api: `/simple/updateRenderType`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -193,7 +193,7 @@ export async function setOnlineData(parameters) {
     api: `/simple/setOnline`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -210,7 +210,7 @@ export async function setOfflineData(parameters) {
     api: `/simple/setOffline`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -227,7 +227,7 @@ export async function refreshCacheData(parameters) {
     api: `/simple/refreshCache`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -242,7 +242,7 @@ export async function removeData(parameters) {
     api: `/simple/remove`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -257,7 +257,7 @@ export async function getMediaItemData(parameters) {
     api: `/simple/getMediaItem`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 200,
+    simulateRequestMaxDelay: 200,
     simulativeSuccessResponse: {
       data: {
         id: '986170e1-1b3f-46ca-930e-1b20cba2ef8b',
@@ -287,7 +287,7 @@ export async function addMediaItemData(parameters) {
     api: `/simple/addMediaItem`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -302,7 +302,7 @@ export async function updateMediaItemData(parameters) {
     api: `/simple/updateMediaItem`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -317,7 +317,7 @@ export async function setMediaCollectionSortData(parameters) {
     api: `/simple/setMediaCollectionSort`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -332,7 +332,7 @@ export async function removeMediaItemData(parameters) {
     api: `/simple/removeMediaItem`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -347,7 +347,7 @@ export async function listImageData(parameters) {
     api: `/simple/ListImage`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       list: imageFileList,
     },
@@ -359,7 +359,7 @@ export async function addImageData(parameters) {
     api: `/simple/addImage`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...findArticle(parameters),
@@ -374,7 +374,7 @@ export async function removeImageData(parameters) {
     api: `/simple/removeImage`,
     params: parameters,
     mode: requestMode.simulation,
-    simulateRequestDelay: 300,
+    simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
         ...parameters,

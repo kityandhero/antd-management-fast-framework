@@ -294,10 +294,10 @@ class InternalBuild extends InternalSwitchoverFlow {
     const iconAdjust = hideIcon
       ? null
       : imageVisible
-      ? hideIconWhenShowImage
-        ? null
-        : icon
-      : icon || iconBuilder.read();
+        ? hideIconWhenShowImage
+          ? null
+          : icon
+        : icon || iconBuilder.read();
 
     const extraListData = [];
 

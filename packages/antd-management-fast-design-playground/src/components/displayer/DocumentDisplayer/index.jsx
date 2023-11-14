@@ -1,24 +1,89 @@
+import { Button, Space } from 'antd';
 import React, { PureComponent } from 'react';
+import ReactToPrint from 'react-to-print';
 
-import { isArray } from 'easy-soft-utility';
+import { isArray, whetherString } from 'easy-soft-utility';
 
-import { CenterBox, FlexBox } from 'antd-management-fast-component';
+import { CenterBox, iconBuilder } from 'antd-management-fast-component';
 
-const fontFamilyStyle = {
-  fontFamily: 'fangsong',
-};
+import { DocumentContent } from './DocumentContent';
 
 const colorDefault = '#000';
 
-const colorStyle = {
-  color: colorDefault,
-};
-
-const lineStyle = {
-  minHeight: '46px',
-};
-
 class DocumentDisplayer extends PureComponent {
+  componentRef = null;
+
+  constructor(properties) {
+    super(properties);
+
+    this.state = {
+      ...this.state,
+      designMode: true,
+    };
+  }
+
+  setComponentRef = (reference) => {
+    this.componentRef = reference;
+  };
+
+  reset = () => {
+    const { schema, onChange: onChangeCallback } = this.props;
+
+    if (isArray(schema)) {
+      const schemaAdjust = schema.map((o) => {
+        const {
+          title,
+          name: nameItem,
+          type,
+        } = {
+          ...o,
+        };
+
+        return {
+          title,
+          name: nameItem,
+          type,
+          fullLine: whetherString.yes,
+        };
+      });
+
+      onChangeCallback(schemaAdjust);
+    } else {
+      onChangeCallback(schema);
+    }
+  };
+
+  openDesignMode = () => {
+    this.setState({
+      designMode: true,
+    });
+  };
+
+  closeDesignMode = () => {
+    this.setState({
+      designMode: false,
+    });
+  };
+
+  renderPrintContent = () => {
+    return this.componentRef;
+  };
+
+  renderTrigger = () => {
+    // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+    // to the root node of the returned component as it will be overwritten.
+
+    // Bad: the `onClick` here will be overwritten by `react-to-print`
+    // return <button onClick={() => alert('This will not work')}>Print this out!</button>;
+
+    // Good
+    return (
+      <Button type="dashed" icon={iconBuilder.file()} size="small">
+        打印预览
+      </Button>
+    );
+  };
+
   render() {
     const {
       schema,
@@ -32,97 +97,90 @@ class DocumentDisplayer extends PureComponent {
       title,
       titleContainerStyle,
       titleStyle,
+      onChange: onChangeCallback,
     } = this.props;
+    const { designMode } = this.state;
 
-    const schemaAdjust = isArray(schema)
-      ? schema.map((o, index) => {
-          return {
-            key: `document_index_${index}`,
-            ...o,
-          };
-        })
-      : [];
+    const p = {
+      schema,
+      style,
+      color,
+      labelColumnWidth,
+      labelColumnStyle,
+      labelContainerStyle,
+      valueColumnStyle,
+      valueContainerStyle,
+      title,
+      titleContainerStyle,
+      titleStyle,
+      onChange: onChangeCallback,
+    };
 
     return (
-      <div>
+      <>
         <div
           style={{
-            paddingTop: '10px',
-            paddingBottom: '10px',
-            ...titleContainerStyle,
+            position: 'relative',
+            height: '100%',
           }}
         >
-          <CenterBox>
-            <div
-              style={{
-                fontSize: '24px',
-                ...colorStyle,
-                ...fontFamilyStyle,
-                ...titleStyle,
-              }}
-            >
-              {title}
-            </div>
-          </CenterBox>
-        </div>
-        <div
-          style={{
-            borderTop: `1px solid ${color}`,
-            ...style,
-          }}
-        >
-          {schemaAdjust.map((item) => {
-            const { key, title } = item;
+          <div style={{ position: 'absolute', top: '00px', right: '80px' }}>
+            <Space>
+              {designMode ? (
+                <Button
+                  icon={iconBuilder.form()}
+                  size="small"
+                  onClick={this.closeDesignMode}
+                >
+                  关闭设计
+                </Button>
+              ) : null}
 
-            return (
-              <FlexBox
-                key={key}
-                flexAuto="right"
-                style={{
-                  borderBottom: `1px solid ${color}`,
-                  ...lineStyle,
-                }}
-                leftStyle={{
-                  paddingTop: '12px',
-                  paddingBottom: '12px',
-                  paddingLeft: '10px',
-                  paddingRight: '10px',
-                  borderLeft: `1px solid ${color}`,
-                  borderRight: `1px solid ${color}`,
-                  width: `${labelColumnWidth}px`,
-                  fontSize: '16px',
-                  ...colorStyle,
-                  ...fontFamilyStyle,
-                  ...labelColumnStyle,
-                }}
-                left={
-                  <div style={labelContainerStyle}>
-                    <CenterBox>
-                      <div>{title}</div>
-                    </CenterBox>
-                  </div>
-                }
-                rightStyle={{
-                  borderRight: `1px solid ${color}`,
-                  paddingLeft: '10px',
-                  paddingRight: '10px',
-                  fontSize: '16px',
-                  ...colorStyle,
-                  ...fontFamilyStyle,
-                  ...valueColumnStyle,
-                }}
-                right={
-                  <div style={valueContainerStyle}>
-                    <CenterBox>
-                      <div></div>
-                    </CenterBox>
-                  </div>
-                }
+              {designMode ? (
+                <Button
+                  icon={iconBuilder.redo()}
+                  size="small"
+                  onClick={this.reset}
+                >
+                  重置设置
+                </Button>
+              ) : null}
+
+              {designMode ? null : (
+                <Button
+                  icon={iconBuilder.form()}
+                  size="small"
+                  onClick={this.openDesignMode}
+                >
+                  开启设计
+                </Button>
+              )}
+
+              {designMode ? null : (
+                <ReactToPrint
+                  content={this.renderPrintContent}
+                  documentTitle="文档"
+                  // onAfterPrint={this.handleAfterPrint}
+                  // onBeforeGetContent={this.handleOnBeforeGetContent}
+                  // onBeforePrint={this.handleBeforePrint}
+                  removeAfterPrint
+                  trigger={this.renderTrigger}
+                />
+              )}
+            </Space>
+          </div>
+
+          <div>
+            <CenterBox>
+              <DocumentContent
+                ref={this.setComponentRef}
+                {...p}
+                designMode={designMode}
               />
-            );
-          })}
+            </CenterBox>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
@@ -141,6 +199,7 @@ DocumentDisplayer.defaultProps = {
   valueColumnStyle: null,
   valueContainerStyle: null,
   valueStyle: null,
+  onChange: null,
 };
 
 export { DocumentDisplayer };

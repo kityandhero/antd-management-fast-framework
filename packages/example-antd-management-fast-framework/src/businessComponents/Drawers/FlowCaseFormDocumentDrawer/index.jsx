@@ -1,11 +1,13 @@
 import { connect } from 'easy-soft-dva';
-import { getValueByKey } from 'easy-soft-utility';
+import { getValueByKey, logException } from 'easy-soft-utility';
 
 import { DocumentDisplayer } from 'antd-management-fast-design-playground';
 import {
   DataDrawer,
   switchControlAssist,
 } from 'antd-management-fast-framework';
+
+import { setDataSchemaAction } from '../../../businessAssists/action';
 
 const { BaseVerticalFlexDrawer } = DataDrawer;
 
@@ -37,6 +39,16 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     };
   }
 
+  saveDataSchema = (data) => {
+    setDataSchemaAction({
+      target: this,
+      handleData: JSON.stringify(data),
+      successCallback: ({ target }) => {
+        target.reloadData({});
+      },
+    });
+  };
+
   establishHelpConfig = () => {
     return {
       title: '操作提示',
@@ -57,11 +69,20 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       defaultValue: '[]',
     });
 
-    let listDataSchema = JSON.parse(dataSchema);
+    let listDataSchema = [];
+
+    try {
+      listDataSchema = JSON.parse(dataSchema);
+    } catch (error) {
+      logException(error);
+    }
 
     return (
       <DocumentDisplayer
         schema={listDataSchema}
+        onChange={(data) => {
+          this.saveDataSchema(data);
+        }}
         onClose={() => {
           FlowCaseFormDocumentDrawer.close();
         }}
