@@ -8,6 +8,7 @@ import {
   isUndefined,
   logException,
   logObject,
+  mergeArrowText,
   pretreatmentRequestParameters,
   showSimpleRuntimeError,
   showSimpleWarningMessage,
@@ -60,7 +61,16 @@ class BaseAddForm extends DataCore {
   };
 
   fillData = () => {
-    this.logCallTrack({}, primaryCallName, 'fillData');
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'fillData',
+      this.useFormWrapper ? '' : 'current useFormWrapper set to false ignore',
+    );
+
+    if (!this.useFormWrapper) {
+      return;
+    }
 
     const initialValues = this.buildInitialValues();
 
@@ -93,7 +103,12 @@ class BaseAddForm extends DataCore {
       },
       primaryCallName,
       'setFormFieldsValue',
+      this.useFormWrapper ? '' : 'current useFormWrapper set to false ignore',
     );
+
+    if (!this.useFormWrapper) {
+      return;
+    }
 
     const form = this.getTargetForm();
 
@@ -397,6 +412,16 @@ class BaseAddForm extends DataCore {
     completeCallback = null,
   }) => {
     this.logCallTrack({}, primaryCallName, 'validate');
+
+    if (!this.useFormWrapper) {
+      throw new Error(
+        mergeArrowText(
+          primaryCallName,
+          'validate',
+          'current useFormWrapper set to false, please change it to true',
+        ),
+      );
+    }
 
     const form = this.getTargetForm();
 

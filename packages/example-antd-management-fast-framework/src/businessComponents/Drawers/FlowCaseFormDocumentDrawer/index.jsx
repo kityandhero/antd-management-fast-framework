@@ -56,6 +56,12 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         {
           text: '此图例显示的流程表单打印概览, 仅可查看',
         },
+        {
+          text: '设置为非独占行的单元, 若前一个单元为独占, 则此单元也将转换为行布局, 宽度设置将武侠',
+        },
+        {
+          text: '打印预览需要关闭设计模式',
+        },
       ],
     };
   };
@@ -69,6 +75,11 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       defaultValue: '[]',
     });
 
+    const formData = getValueByKey({
+      data: metaData,
+      key: 'formData',
+    });
+
     let listDataSchema = [];
 
     try {
@@ -79,6 +90,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
 
     return (
       <DocumentDisplayer
+        values={formData}
         schema={listDataSchema}
         onChange={(data) => {
           this.saveDataSchema(data);

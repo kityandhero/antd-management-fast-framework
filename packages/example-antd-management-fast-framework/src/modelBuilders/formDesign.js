@@ -6,7 +6,13 @@ import {
   reducerNameCollection,
 } from 'easy-soft-utility';
 
-import { getData, setData, setDataSchemaData } from '../services/formDesign';
+import {
+  getData,
+  getFormData,
+  saveFormData,
+  setData,
+  setDataSchemaData,
+} from '../services/formDesign';
 
 export function buildModel() {
   return {
@@ -79,6 +85,58 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(setDataSchemaData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *getForm(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(getFormData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *saveForm(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(saveFormData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

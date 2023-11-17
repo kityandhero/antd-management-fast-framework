@@ -330,6 +330,7 @@ export function mergeLayoutSetting({
 
           {!properties.location?.pathname?.includes('/login') && (
             <SettingDrawer
+              disableUrlParams
               enableDarkTheme
               settings={settings}
               onSettingChange={(settings) => {

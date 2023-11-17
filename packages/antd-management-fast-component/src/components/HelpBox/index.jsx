@@ -15,6 +15,7 @@ import styles from './index.less';
 class HelpBox extends PureComponent {
   render() {
     const {
+      style,
       title: titleValue,
       showTitle,
       showDivider,
@@ -76,6 +77,7 @@ class HelpBox extends PureComponent {
           styles.helpBox,
           useBackground ? styles.helpBoxBackground : styles.helpBoxNoBackground,
         )}
+        style={style}
       >
         {showTitle ? (
           showDivider ? (
@@ -166,6 +168,7 @@ class HelpBox extends PureComponent {
 }
 
 HelpBox.defaultProps = {
+  style: null,
   title: '帮助信息',
   showTitle: true,
   showNumber: true,

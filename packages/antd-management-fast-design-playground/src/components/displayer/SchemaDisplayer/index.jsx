@@ -1,4 +1,4 @@
-import { Card, Rate, Slider } from 'antd';
+import { Card, Divider, Rate, Slider } from 'antd';
 import React, { PureComponent } from 'react';
 import {
   ArrayCards,
@@ -8,6 +8,7 @@ import {
   DatePicker,
   Editable,
   Form,
+  FormButtonGroup,
   FormCollapse,
   FormGrid,
   FormItem,
@@ -29,7 +30,16 @@ import {
   Upload,
 } from '@formily/antd-v5';
 import { createForm } from '@formily/core';
-import { createSchemaField } from '@formily/react';
+import { createSchemaField, Field } from '@formily/react';
+
+import {
+  checkInCollection,
+  isArray,
+  isEmptyArray,
+  isFunction,
+} from 'easy-soft-utility';
+
+import { HelpBox, iconBuilder } from 'antd-management-fast-component';
 
 const Text = ({ value, mode, content, ...properties }) => {
   const tagName = mode === 'normal' || !mode ? 'div' : mode;
@@ -38,63 +48,214 @@ const Text = ({ value, mode, content, ...properties }) => {
 
 const SchemaField = createSchemaField({
   components: {
-    Space,
+    ArrayCards,
+    ArrayTable,
+    Card,
+    Cascader,
+    Checkbox,
+    DatePicker,
+    Editable,
+    // FormButtonGroup,
+    FormCollapse,
     FormGrid,
+    FormItem,
     FormLayout,
     FormTab,
-    FormCollapse,
-    ArrayTable,
-    ArrayCards,
-    FormItem,
-    DatePicker,
-    Checkbox,
-    Cascader,
-    Editable,
     Input,
-    Text,
     NumberPicker,
-    Switch,
     Password,
     PreviewText,
     Radio,
+    Rate,
     Reset,
     Select,
+    Slider,
+    Space,
     Submit,
+    Switch,
+    Text,
     TimePicker,
     Transfer,
     TreeSelect,
     Upload,
-    Card,
-    Slider,
-    Rate,
   },
 });
 
+const remarkName = '2ff73e227d264c06b951c037ce0f51ef';
+
+const descriptionTypeCollection = ['field', 'box'];
+
 class SchemaDisplayer extends PureComponent {
+  getDescriptionType = (type) => {
+    const v = checkInCollection(descriptionTypeCollection, type);
+
+    return v ? type : 'field';
+  };
+
+  renderDescription = () => {
+    const { descriptions } = this.props;
+
+    if (!isArray(descriptions) || isEmptyArray(descriptions)) {
+      return null;
+    }
+
+    return (
+      <Space direction="vertical">
+        {descriptions.map((o, index) => {
+          const { text } = o;
+          const key = `index_${index}`;
+
+          return <div key={key}>{text}</div>;
+        })}
+      </Space>
+    );
+  };
+
   render() {
     const {
       form: formProperties,
       schema,
+      showSubmit,
+      submitButtonIcon,
+      submitButtonText,
+      buttonBeforeSubmitBuilder,
+      buttonAfterSubmitBuilder,
+      showSubmitDivider,
       initialValues,
+      helpBoxProps,
+      descriptions,
+      descriptionType,
+      descriptionLabel,
+      header,
+      showFooterDivider,
+      footer,
+      onSubmit,
       children,
     } = this.props;
 
-    const form = createForm({ initialValues });
+    const formInstance = createForm({ initialValues });
 
+    const buttonBefore = isFunction(buttonBeforeSubmitBuilder)
+      ? buttonBeforeSubmitBuilder()
+      : null;
+
+    const buttonAfter = isFunction(buttonAfterSubmitBuilder)
+      ? buttonAfterSubmitBuilder()
+      : null;
+
+    const buttonGroup =
+      showSubmit || buttonBefore || buttonAfter ? (
+        <FormButtonGroup.FormItem>
+          {buttonBefore}
+
+          {showSubmit ? (
+            <Submit
+              form={formInstance}
+              icon={submitButtonIcon}
+              onSubmit={(o) => {
+                if (isFunction(onSubmit)) {
+                  onSubmit(o);
+                }
+              }}
+            >
+              {submitButtonText}
+            </Submit>
+          ) : null}
+
+          {buttonAfter}
+        </FormButtonGroup.FormItem>
+      ) : null;
+
+    const descriptionComponent =
+      isArray(descriptions) && !isEmptyArray(descriptions) ? (
+        descriptionType === 'field' ? (
+          <Field
+            name={remarkName}
+            title={<span style={{ color: '#999999' }}>{descriptionLabel}</span>}
+            decorator={[FormItem]}
+            component={[
+              () => {
+                return (
+                  <HelpBox
+                    style={{
+                      paddingTop: '4px',
+                    }}
+                    {...helpBoxProps}
+                    showTitle={false}
+                    list={descriptions}
+                  />
+                );
+              },
+            ]}
+          />
+        ) : (
+          <FormItem label={<div></div>} colon={false}>
+            <Divider orientation="left" plain>
+              {descriptionLabel}
+            </Divider>
+
+            <HelpBox
+              style={{
+                paddingTop: '4px',
+              }}
+              {...helpBoxProps}
+              showTitle={false}
+              list={descriptions}
+            />
+          </FormItem>
+        )
+      ) : null;
     return (
-      <Form {...formProperties} form={form}>
-        <SchemaField schema={schema} />
+      <div>
+        <Form {...formProperties} form={formInstance}>
+          {header ? (
+            <FormItem label={<div></div>} colon={false}>
+              {header}
+            </FormItem>
+          ) : null}
 
-        {children}
-      </Form>
+          <SchemaField schema={schema} />
+
+          {children}
+
+          {descriptionComponent}
+
+          {showSubmitDivider ? <Divider /> : null}
+
+          {buttonGroup}
+
+          {showFooterDivider && footer ? <Divider /> : null}
+
+          {footer ? (
+            <FormItem label={<div></div>} colon={false}>
+              {footer}
+            </FormItem>
+          ) : null}
+        </Form>
+      </div>
     );
   }
 }
 
 SchemaDisplayer.defaultProps = {
+  initialValues: {},
   form: {},
   schema: {},
-  initialValues: {},
+  // eslint-disable-next-line no-unused-vars
+  showSubmit: false,
+  showSubmitDivider: false,
+  submitButtonIcon: iconBuilder.save(),
+  submitButtonText: 'submit',
+  buttonBeforeSubmitBuilder: () => null,
+  buttonAfterSubmitBuilder: () => null,
+  helpBoxProps: {},
+  descriptionType: 'field',
+  descriptionLabel: '备注',
+  descriptions: [],
+  onSubmit: () => {},
+  header: null,
+  footer: null,
+  showFooterDivider: false,
 };
 
 export { SchemaDisplayer };

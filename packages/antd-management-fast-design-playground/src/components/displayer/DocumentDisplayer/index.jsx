@@ -43,6 +43,8 @@ class DocumentDisplayer extends PureComponent {
           title,
           name: nameItem,
           type,
+          width: 0,
+          height: 0,
           fullLine: whetherString.yes,
         };
       });
@@ -86,6 +88,7 @@ class DocumentDisplayer extends PureComponent {
 
   render() {
     const {
+      values,
       schema,
       style,
       color,
@@ -102,6 +105,7 @@ class DocumentDisplayer extends PureComponent {
     const { designMode } = this.state;
 
     const p = {
+      values,
       schema,
       style,
       color,
@@ -186,6 +190,7 @@ class DocumentDisplayer extends PureComponent {
 }
 
 DocumentDisplayer.defaultProps = {
+  values: {},
   schema: {},
   style: null,
   color: colorDefault,

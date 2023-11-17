@@ -1,11 +1,12 @@
 import { connect } from 'easy-soft-dva';
+import { mergeArrowText } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { CenterBox } from 'antd-management-fast-component';
 
 import { BaseView } from '../BaseView';
 
-import { code as codeModalView } from './codeSource';
+import { code as codeFormLayoutView } from './codeSource';
 
 @connect(({ schedulingControl }) => ({
   schedulingControl,
@@ -17,8 +18,8 @@ class FormLayoutView extends BaseView {
     this.state = {
       ...this.state,
       pageTitle: 'Modal 交互示例',
-      currentCodeTitle: 'ModalView',
-      currentCode: codeModalView,
+      currentCodeTitle: 'FormLayoutView',
+      currentCode: codeFormLayoutView,
     };
   }
 
@@ -27,8 +28,45 @@ class FormLayoutView extends BaseView {
   };
 
   establishCardCollectionConfig = () => {
+    const { currentCode, currentCodeTitle } = this.state;
+
     return {
       list: [
+        {
+          title: {
+            text: '占位区域',
+          },
+          fullLine: false,
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
+            },
+          ],
+        },
+        {
+          title: {
+            text: '占位区域',
+          },
+          fullLine: false,
+          width: '180px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
+            },
+          ],
+        },
         {
           title: {
             text: '区域',
@@ -46,75 +84,77 @@ class FormLayoutView extends BaseView {
             },
           ],
         },
-        [
-          {
-            title: {
-              text: '区域',
-            },
-            width: 'auto',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '100px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+        {
+          title: {
+            text: '区域',
           },
-          {
-            title: {
-              text: '占位区域',
+          fullLine: false,
+          width: 'auto',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '100px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            width: '180px',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '200px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        {
+          title: {
+            text: '占位区域',
           },
-          {
-            title: {
-              text: '占位区域',
+          fullLine: false,
+          width: '180px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            width: '400px',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '200px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        {
+          title: {
+            text: '占位区域',
           },
-          {
-            title: {
-              text: '占位区域',
+          fullLine: false,
+          width: '400px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '200px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        {
+          title: {
+            text: '占位区域',
           },
-        ],
+          fullLine: false,
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
+            },
+          ],
+        },
         {
           title: {
             text: '区域',
@@ -131,145 +171,153 @@ class FormLayoutView extends BaseView {
             },
           ],
         },
-        [
-          {
-            title: {
-              text: '占位区域',
-            },
-            width: '180px',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '200px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+        {
+          title: {
+            text: '占位区域',
           },
-          {
-            title: {
-              text: '占位区域',
+          fullLine: false,
+          width: '180px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            width: '180px',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '200px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        {
+          title: {
+            text: '占位区域',
           },
-          {
-            title: {
-              text: '占位区域',
+          fullLine: false,
+          width: '180px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            width: '180px',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '200px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        // {} 可以打断行布局
+        {},
+        {
+          title: {
+            text: '占位区域',
           },
-          {
-            title: {
-              text: '区域',
+          fullLine: false,
+          width: '180px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            width: 'auto',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '100px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        {
+          title: {
+            text: '占位区域',
           },
-          {
-            title: {
-              text: '占位区域',
+          fullLine: false,
+          width: 'auto',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '100px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            width: '400px',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '200px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        {
+          title: {
+            text: '占位区域',
           },
-          {
-            title: {
-              text: '占位区域',
+          fullLine: false,
+          width: '400px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '200px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        // null 可以打断行布局
+        null,
+        {
+          title: {
+            text: '占位区域',
           },
-        ],
-        [
-          {
-            title: {
-              text: '区域',
+          fullLine: false,
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '200px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            width: 'auto',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '100px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        {
+          title: {
+            text: '占位区域',
           },
-          {
-            title: {
-              text: '区域',
+          fullLine: false,
+          width: 'auto',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '100px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
             },
-            width: 'auto',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div style={{ height: '100px' }}>
-                    <CenterBox>content</CenterBox>
-                  </div>
-                ),
-              },
-            ],
+          ],
+        },
+        {
+          title: {
+            text: '占位区域',
           },
-        ],
+          fullLine: false,
+          width: 'auto',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div style={{ height: '100px' }}>
+                  <CenterBox>content</CenterBox>
+                </div>
+              ),
+            },
+          ],
+        },
         {
           title: {
             text: '区域',
@@ -283,6 +331,25 @@ class FormLayoutView extends BaseView {
                   <CenterBox>content</CenterBox>
                 </div>
               ),
+            },
+          ],
+        },
+        {
+          title: {
+            text: '代码示例',
+            subText: mergeArrowText('Code', currentCodeTitle),
+          },
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.syntaxHighlighterView,
+              fieldData: 'syntaxHighlighter',
+              value: currentCode,
+              language: 'js',
+              innerProps: {
+                showLineNumbers: false,
+                wrapLines: false,
+              },
             },
           ],
         },

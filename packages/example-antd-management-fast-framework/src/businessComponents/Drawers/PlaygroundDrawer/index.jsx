@@ -83,7 +83,6 @@ class PlaygroundDrawer extends BaseFormDrawer {
     const {
       schema: { properties },
     } = {
-      form: {},
       schema: {},
       ...(checkStringIsNullOrWhiteSpace(data) ? {} : JSON.parse(data)),
     };

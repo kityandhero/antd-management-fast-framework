@@ -7,6 +7,8 @@ import {
   isArray,
   isBoolean,
   isEmptyArray,
+  isEmptyObject,
+  isNull,
   isObject,
   logObject,
   toString,
@@ -47,6 +49,57 @@ const { HelpContent, CardCollectionItemContent } = PageExtra;
 
 const primaryCallName = 'Common::InternalBuild';
 
+function adjustListData(listData) {
+  if (!isArray(listData)) {
+    return [];
+  }
+
+  const list = [];
+
+  let listTemplate = [];
+
+  for (const value of Object.values(listData)) {
+    if (isNull(value) || isEmptyObject(value)) {
+      list.push([...listTemplate]);
+
+      listTemplate = [];
+
+      continue;
+    }
+
+    const { fullLine } = {
+      fullLine: true,
+      ...value,
+    };
+
+    if (fullLine) {
+      if (listTemplate.length > 0) {
+        list.push([...listTemplate]);
+
+        listTemplate = [];
+      }
+
+      list.push({
+        ...value,
+        fullLine,
+      });
+    } else {
+      listTemplate.push({
+        ...value,
+        fullLine,
+      });
+    }
+  }
+
+  if (listTemplate.length > 0) {
+    list.push([...listTemplate]);
+
+    listTemplate = [];
+  }
+
+  return list;
+}
+
 class InternalBuild extends InternalSwitchoverFlow {
   buildCardCollectionArea = (config = null) => {
     this.logCallTrack(
@@ -76,17 +129,7 @@ class InternalBuild extends InternalSwitchoverFlow {
       list,
     } = configData;
 
-    const listData = [];
-
-    if (isArray(list)) {
-      for (const [ci, co] of list.entries()) {
-        listData.push(co);
-
-        if (ci !== list.length - 1) {
-          listData.push('');
-        }
-      }
-    }
+    const listData = adjustListData(list);
 
     const helpConfig =
       this.contentWrapperType === contentConfig.wrapperType.page
@@ -114,14 +157,14 @@ class InternalBuild extends InternalSwitchoverFlow {
 
             if (isArray(item) && !isEmptyArray(item)) {
               return (
-                <Row key={`flex_row_${index}`} gutter={[16, 16]}>
+                <Row key={`flex_row_${index}`} gutter={[16, 16]} wrap={false}>
                   {item.map((one, n) => {
                     const { width: widthOne } = { width: '', ...one };
 
                     const oneProperties = checkStringIsNullOrWhiteSpace(
                       widthOne,
                     )
-                      ? { span: '24' }
+                      ? { flex: 'auto' }
                       : { flex: toString(widthOne) };
 
                     return (

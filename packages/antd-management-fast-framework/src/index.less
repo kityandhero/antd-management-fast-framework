@@ -67,6 +67,25 @@
         }
       }
     }
+
+    .ant-layout-sider {
+      div:has(> .ant-menu)::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      div:has(> .ant-menu)::-webkit-scrollbar-thumb {
+        background: hsla(0deg, 0%, 100%, 20%);
+        border-radius: 3px;
+        box-shadow: inset 0 0 5px hsla(0deg, 0%, 100%, 5%);
+      }
+
+      div:has(> .ant-menu)::-webkit-scrollbar-track {
+        background: hsla(0deg, 0%, 100%, 15%);
+        border-radius: 3px;
+        box-shadow: inset 0 0 5px rgba(37, 37, 37, 5%);
+      }
+    }
   }
 
   .ant-layout-sider-children {

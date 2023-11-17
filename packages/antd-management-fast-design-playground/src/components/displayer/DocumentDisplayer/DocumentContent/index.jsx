@@ -1,9 +1,22 @@
-import { Col, Row, Switch } from 'antd';
+import { Col, InputNumber, Row, Switch } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { isArray, isFunction, whetherString } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  getValueByKey,
+  isArray,
+  isFunction,
+  isUndefined,
+  toNumber,
+  whetherNumber,
+  whetherString,
+} from 'easy-soft-utility';
 
-import { CenterBox, FlexBox } from 'antd-management-fast-component';
+import {
+  CenterBox,
+  FlexBox,
+  VerticalBox,
+} from 'antd-management-fast-component';
 
 const fontFamilyStyle = {
   fontFamily: 'fangsong',
@@ -43,14 +56,25 @@ function adjustSchemaData(schema) {
   let listTemplate = [];
 
   for (const [key, value] of Object.entries(schema)) {
-    const { title, type, name, fullLine } = {
+    const { title, type, name, fullLine, width, height } = {
       name: key,
       fullLine: whetherString.yes,
+      width: '0',
+      height: '0',
       ...value,
     };
 
     if (fullLine === whetherString.yes) {
       if (listTemplate.length > 0) {
+        // if (listTemplate.length === 1) {
+        //   list.push({
+        //     ...listTemplate[0],
+        //     fullLine: whetherString.yes,
+        //   });
+        // } else {
+        //   list.push([...listTemplate]);
+        // }
+
         list.push([...listTemplate]);
 
         listTemplate = [];
@@ -62,6 +86,8 @@ function adjustSchemaData(schema) {
         type,
         name,
         fullLine,
+        width,
+        height,
       });
     } else {
       listTemplate.push({
@@ -70,11 +96,22 @@ function adjustSchemaData(schema) {
         type,
         name,
         fullLine,
+        width,
+        height,
       });
     }
   }
 
   if (listTemplate.length > 0) {
+    // if (listTemplate.length === 1) {
+    //   list.push({
+    //     ...listTemplate[0],
+    //     fullLine: whetherString.yes,
+    //   });
+    // } else {
+    //   list.push([...listTemplate]);
+    // }
+
     list.push([...listTemplate]);
 
     listTemplate = [];
@@ -83,9 +120,197 @@ function adjustSchemaData(schema) {
   return list;
 }
 
+function RowConfigBox(properties) {
+  const { data, onChange: onChangeCallback } = properties;
+
+  const { height } = {
+    height: '',
+    ...data,
+  };
+
+  const heightAdjust =
+    isUndefined(height) ||
+    checkStringIsNullOrWhiteSpace(height) ||
+    toNumber(height) <= 0
+      ? ''
+      : height;
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        zIndex: '100',
+      }}
+    >
+      <CenterBox>
+        <div
+          style={{
+            padding: '2px 6px',
+            backgroundColor: '#ccc',
+            borderRadius: '6px',
+            overflow: 'hidden',
+          }}
+        >
+          <FlexBox
+            flexAuto="left"
+            left="高："
+            right={
+              <InputNumber
+                style={{ width: '60px' }}
+                value={heightAdjust}
+                onBlur={(o) => {
+                  const {
+                    target: { value: v },
+                  } = o;
+
+                  if (!isFunction(onChangeCallback)) {
+                    return;
+                  }
+
+                  onChangeCallback(
+                    {
+                      ...data,
+                      height: v,
+                    },
+                    data,
+                  );
+                }}
+              />
+            }
+          />
+        </div>
+      </CenterBox>
+    </div>
+  );
+}
+
+function ConfigBox(properties) {
+  const { data, onChange: onChangeCallback } = properties;
+
+  const { fullLine, width } = data;
+
+  const widthAdjust =
+    isUndefined(width) ||
+    checkStringIsNullOrWhiteSpace(width) ||
+    toNumber(width) <= 0
+      ? ''
+      : width;
+
+  const fullLineAdjust = toNumber(fullLine);
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        zIndex: '100',
+      }}
+    >
+      <CenterBox>
+        <div
+          style={{
+            padding: '2px 6px',
+            backgroundColor: '#ccc',
+            borderRadius: '6px',
+            overflow: 'hidden',
+          }}
+        >
+          {fullLineAdjust === whetherNumber.yes ? (
+            <Switch
+              checkedChildren="行"
+              unCheckedChildren="列"
+              defaultChecked={fullLineAdjust === whetherNumber.yes}
+              onChange={(checked) => {
+                if (!isFunction(onChangeCallback)) {
+                  return;
+                }
+
+                onChangeCallback(
+                  {
+                    ...data,
+                    fullLine: checked ? whetherString.yes : whetherString.no,
+                  },
+                  data,
+                );
+              }}
+            />
+          ) : (
+            <FlexBox
+              flexAuto="left"
+              left={
+                <FlexBox
+                  flexAuto="left"
+                  left="宽："
+                  right={
+                    <InputNumber
+                      style={{ width: '60px' }}
+                      value={widthAdjust}
+                      onBlur={(o) => {
+                        const {
+                          target: { value: v },
+                        } = o;
+
+                        if (!isFunction(onChangeCallback)) {
+                          return;
+                        }
+
+                        onChangeCallback(
+                          {
+                            ...data,
+                            width: v,
+                          },
+                          data,
+                        );
+                      }}
+                    />
+                  }
+                />
+              }
+              leftStyle={{
+                paddingRight: '4px',
+                whiteSpace: 'nowrap',
+              }}
+              right={
+                <CenterBox>
+                  <Switch
+                    checkedChildren="行"
+                    unCheckedChildren="列"
+                    defaultChecked={fullLine === whetherNumber.yes}
+                    onChange={(checked) => {
+                      if (!isFunction(onChangeCallback)) {
+                        return;
+                      }
+
+                      onChangeCallback(
+                        {
+                          ...data,
+                          fullLine: checked
+                            ? whetherString.yes
+                            : whetherString.no,
+                        },
+                        data,
+                      );
+                    }}
+                  />
+                </CenterBox>
+              }
+            />
+          )}
+        </div>
+      </CenterBox>
+    </div>
+  );
+}
+
 function LineItem(properties) {
   const {
     data,
+    values,
     designMode,
     lineStyle,
     labelBoxStyle,
@@ -110,17 +335,65 @@ function LineItem(properties) {
     dataAdjust = data;
   }
 
-  const { title, fullLine } = dataAdjust;
+  const { title, name, width, height } = dataAdjust;
+
+  const heightAdjust =
+    isUndefined(height) ||
+    checkStringIsNullOrWhiteSpace(height) ||
+    toNumber(height) <= 0
+      ? ''
+      : height;
+
+  const widthAdjust =
+    isUndefined(width) ||
+    checkStringIsNullOrWhiteSpace(width) ||
+    toNumber(width) <= 0
+      ? ''
+      : width;
 
   return (
     <FlexBox
       flexAuto="right"
-      style={lineStyle}
-      leftStyle={labelBoxStyle}
+      style={{
+        ...lineStyle,
+        ...(checkStringIsNullOrWhiteSpace(heightAdjust)
+          ? {}
+          : {
+              height: `${height}px`,
+            }),
+      }}
+      leftStyle={{
+        ...labelBoxStyle,
+        position: 'relative',
+        padding: '0',
+        ...(checkStringIsNullOrWhiteSpace(heightAdjust)
+          ? {}
+          : {
+              height: `${height}px`,
+            }),
+      }}
       left={
-        <CenterBox>
-          <div style={labelContainerStyle}>{title}</div>
-        </CenterBox>
+        <>
+          {designMode ? (
+            <RowConfigBox data={dataAdjust} onChange={onChangeCallback} />
+          ) : null}
+
+          <div
+            style={{
+              labelBoxStyle,
+              height: '100%',
+              ...(checkStringIsNullOrWhiteSpace(heightAdjust)
+                ? {}
+                : {
+                    height: `${height}px`,
+                  }),
+            }}
+          >
+            <CenterBox>
+              <div style={labelContainerStyle}>{title}</div>
+            </CenterBox>
+          </div>
+        </>
       }
       rightStyle={{
         ...valueBoxStyle,
@@ -129,108 +402,123 @@ function LineItem(properties) {
           : { paddingLeft: '0', paddingRight: '0' }),
       }}
       right={
-        <div
-          style={{
-            ...valueContainerStyle,
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-          }}
-        >
+        otherList.length <= 0 ? (
           <div
             style={{
-              position: 'absolute',
+              ...valueContainerStyle,
+              position: 'relative',
               width: '100%',
               height: '100%',
             }}
           >
             {designMode ? (
-              otherList.length <= 0 ? (
-                <CenterBox>
-                  <FlexBox
-                    style={{
-                      padding: '2px 6px',
-                      backgroundColor: '#ccc',
-                      borderRadius: '6px',
-                      overflow: 'hidden',
-                    }}
-                    flexAuto="left"
-                    left="独行: "
-                    leftStyle={{ paddingRight: '4px', whiteSpace: 'nowrap' }}
-                    right={
-                      <CenterBox>
-                        <Switch
-                          checkedChildren="开"
-                          unCheckedChildren="关"
-                          defaultChecked={fullLine === whetherString.yes}
-                          onChange={(checked) => {
-                            if (!isFunction(onChangeCallback)) {
-                              return;
-                            }
-
-                            onChangeCallback(checked, dataAdjust);
-                          }}
-                        />
-                      </CenterBox>
-                    }
-                  />
-                </CenterBox>
-              ) : (
-                <Row style={{ height: '100%' }} wrap={false}>
-                  <Col flex="auto">
-                    <CenterBox>
-                      <FlexBox
-                        style={{
-                          padding: '2px 6px',
-                          backgroundColor: '#ccc',
-                          borderRadius: '6px',
-                          overflow: 'hidden',
-                        }}
-                        flexAuto="left"
-                        left="独行: "
-                        leftStyle={{
-                          paddingRight: '4px',
-                          whiteSpace: 'nowrap',
-                        }}
-                        right={
-                          <CenterBox>
-                            <Switch
-                              checkedChildren="开"
-                              unCheckedChildren="关"
-                              defaultChecked={fullLine === whetherString.yes}
-                              onChange={(checked) => {
-                                if (!isFunction(onChangeCallback)) {
-                                  return;
-                                }
-
-                                onChangeCallback(checked, dataAdjust);
-                              }}
-                            />
-                          </CenterBox>
-                        }
-                      />
-                    </CenterBox>
-                  </Col>
-
-                  {otherList.map((o, columnIndex) => {
-                    return (
-                      <Col key={`line_column_${columnIndex}`} flex="auto">
-                        <InLineItem
-                          designMode={designMode}
-                          data={o}
-                          labelBoxStyle={labelBoxStyle}
-                          labelContainerStyle={labelContainerStyle}
-                          valueBoxStyle={valueBoxStyle}
-                          onChange={onChangeCallback}
-                        />
-                      </Col>
-                    );
-                  })}
-                </Row>
-              )
+              <ConfigBox data={dataAdjust} onChange={onChangeCallback} />
             ) : null}
+
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <div
+                style={{
+                  paddingLeft: '10px',
+                  paddingRight: '10px',
+                  height: '100%',
+                }}
+              >
+                <VerticalBox>
+                  {getValueByKey({
+                    data: values,
+                    key: name,
+                    defaultValue: '',
+                  })}
+                </VerticalBox>
+              </div>
+            </div>
           </div>
-        </div>
+        ) : (
+          <Row style={{ width: '100%', height: '100%' }} wrap={false}>
+            <Col
+              flex={
+                checkStringIsNullOrWhiteSpace(widthAdjust)
+                  ? 'auto'
+                  : `${width}px`
+              }
+            >
+              <div
+                style={{
+                  ...valueContainerStyle,
+                  position: 'relative',
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                {designMode ? (
+                  <ConfigBox data={dataAdjust} onChange={onChangeCallback} />
+                ) : null}
+
+                <div
+                  style={{
+                    ...valueBoxStyle,
+                    width: '100%',
+                    height: '100%',
+                    borderRight: '0',
+                  }}
+                >
+                  <div
+                    style={{
+                      paddingLeft: '10px',
+                      paddingRight: '10px',
+                      height: '100%',
+                    }}
+                  >
+                    <VerticalBox>
+                      {getValueByKey({
+                        data: values,
+                        key: name,
+                        defaultValue: '',
+                      })}
+                    </VerticalBox>
+                  </div>
+                </div>
+              </div>
+            </Col>
+
+            {otherList.map((o, columnIndex) => {
+              const { width: widthItem } = o;
+
+              const widthItemAdjust =
+                isUndefined(widthItem) ||
+                checkStringIsNullOrWhiteSpace(widthItem) ||
+                toNumber(widthItem) <= 0
+                  ? ''
+                  : widthItem;
+
+              return (
+                <Col
+                  key={`line_column_${columnIndex}`}
+                  flex={
+                    checkStringIsNullOrWhiteSpace(widthItemAdjust)
+                      ? 'auto'
+                      : `${widthItemAdjust}px`
+                  }
+                >
+                  <InLineItem
+                    designMode={designMode}
+                    values={values}
+                    data={o}
+                    labelBoxStyle={labelBoxStyle}
+                    labelContainerStyle={labelContainerStyle}
+                    valueBoxStyle={valueBoxStyle}
+                    onChange={onChangeCallback}
+                  />
+                </Col>
+              );
+            })}
+          </Row>
+        )
       }
     />
   );
@@ -239,6 +527,7 @@ function LineItem(properties) {
 function InLineItem(properties) {
   const {
     data,
+    values,
     color,
     labelBoxStyle,
     labelContainerStyle,
@@ -247,9 +536,9 @@ function InLineItem(properties) {
     onChange: onChangeCallback,
   } = properties;
 
-  const { title, fullLine } = { ...data };
+  const { title, name } = { ...data };
 
-  return (
+  const filedComponent = (
     <FlexBox
       flexAuto="right"
       style={{
@@ -284,8 +573,6 @@ function InLineItem(properties) {
         </CenterBox>
       }
       rightStyle={{
-        paddingLeft: '10px',
-        paddingRight: '10px',
         ...valueFrontStyle,
         ...colorStyle,
         ...fontFamilyStyle,
@@ -293,44 +580,61 @@ function InLineItem(properties) {
         borderRight: '0',
       }}
       right={
-        designMode ? (
-          <CenterBox>
-            <FlexBox
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <div
               style={{
-                padding: '2px 6px',
-                backgroundColor: '#ccc',
-                borderRadius: '6px',
-                overflow: 'hidden',
+                paddingLeft: '10px',
+                paddingRight: '10px',
+                height: '100%',
               }}
-              flexAuto="left"
-              left="独行: "
-              leftStyle={{ paddingRight: '4px', whiteSpace: 'nowrap' }}
-              right={
-                <CenterBox>
-                  <Switch
-                    checkedChildren="开"
-                    unCheckedChildren="关"
-                    defaultChecked={fullLine === whetherString.yes}
-                    onChange={(checked) => {
-                      if (!isFunction(onChangeCallback)) {
-                        return;
-                      }
-
-                      onChangeCallback(checked, data);
-                    }}
-                  />
-                </CenterBox>
-              }
-            />
-          </CenterBox>
-        ) : null
+            >
+              <VerticalBox>
+                {getValueByKey({
+                  data: values,
+                  key: name,
+                  defaultValue: '',
+                })}
+              </VerticalBox>
+            </div>
+          </div>
+        </div>
       }
     />
   );
+
+  if (designMode) {
+    return (
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+        }}
+      >
+        <ConfigBox data={data} onChange={onChangeCallback} />
+
+        {filedComponent}
+      </div>
+    );
+  }
+
+  return filedComponent;
 }
 
 class DocumentContent extends PureComponent {
-  onChange = (checked, item) => {
+  onChange = (item) => {
     const { schema, onChange: onChangeCallback } = this.props;
 
     if (!isFunction(onChangeCallback)) {
@@ -338,34 +642,21 @@ class DocumentContent extends PureComponent {
     }
 
     if (isArray(schema)) {
-      const { name } = item;
+      const { name, fullLine, width, height } = item;
 
       const schemaAdjust = schema.map((o) => {
-        const {
-          title,
-          name: nameItem,
-          type,
-          fullLine,
-        } = {
-          fullLine: whetherString.yes,
-          ...o,
-        };
+        const { name: nameItem } = o;
 
         if (nameItem === name) {
           return {
-            title,
-            name: nameItem,
-            type,
-            fullLine: checked ? whetherString.yes : whetherString.no,
+            ...o,
+            fullLine,
+            width,
+            height,
           };
         }
 
-        return {
-          title,
-          name: nameItem,
-          type,
-          fullLine,
-        };
+        return o;
       });
 
       onChangeCallback(schemaAdjust);
@@ -376,6 +667,7 @@ class DocumentContent extends PureComponent {
 
   render() {
     const {
+      values,
       schema,
       style,
       color,
@@ -414,8 +706,6 @@ class DocumentContent extends PureComponent {
 
     const valueBoxStyle = {
       borderRight: `1px solid ${color}`,
-      paddingLeft: '10px',
-      paddingRight: '10px',
       ...valueFrontStyle,
       ...colorStyle,
       ...fontFamilyStyle,
@@ -478,6 +768,7 @@ class DocumentContent extends PureComponent {
             return (
               <LineItem
                 key={key}
+                values={values}
                 data={item}
                 designMode={designMode}
                 lineStyle={lineAdjustStyle}
@@ -497,6 +788,7 @@ class DocumentContent extends PureComponent {
 
 DocumentContent.defaultProps = {
   schema: {},
+  values: {},
   style: null,
   color: colorDefault,
   title: '表格标题',

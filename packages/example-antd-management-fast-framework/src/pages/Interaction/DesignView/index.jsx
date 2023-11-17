@@ -1,4 +1,5 @@
 import { Empty } from 'antd';
+import React from 'react';
 
 import { connect } from 'easy-soft-dva';
 import {
@@ -11,26 +12,35 @@ import {
 import { cardConfig } from 'antd-management-fast-common';
 import {
   buildButton,
+  CenterBox,
   convertOptionOrRadioData,
   iconBuilder,
 } from 'antd-management-fast-component';
 import {
   DataDisplayer,
   SchemaDisplayer,
+  setSchemaWithExternalData,
 } from 'antd-management-fast-design-playground';
+import { DataForm } from 'antd-management-fast-framework';
 
+import { saveFormAction } from '../../../businessAssists/action';
 import { FlowCaseFormDocumentDrawer } from '../../../businessComponents/Drawers/FlowCaseFormDocumentDrawer';
 import { PlaygroundDrawer } from '../../../businessComponents/Drawers/PlaygroundDrawer';
-import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeModalView } from './codeSource';
+
+const { BaseUpdateForm } = DataForm;
 
 @connect(({ formDesign, schedulingControl }) => ({
   formDesign,
   schedulingControl,
 }))
-class ModalView extends BaseView {
+class DesignView extends BaseUpdateForm {
+  resetDataAfterLoad = false;
+
+  useFormWrapper = false;
+
   constructor(properties) {
     super(properties);
 
@@ -40,8 +50,35 @@ class ModalView extends BaseView {
       pageTitle: 'Modal 交互示例',
       currentCodeTitle: 'ModalView',
       currentCode: codeModalView,
+      formData: null,
     };
   }
+
+  doOtherAfterLoadSuccess = ({ metaData }) => {
+    const designJson = getValueByKey({
+      data: metaData,
+      key: 'designSchema',
+    });
+
+    const formData = getValueByKey({
+      data: metaData,
+      key: 'formData',
+    });
+
+    setSchemaWithExternalData(designJson);
+
+    this.setState({ formData });
+  };
+
+  saveForm = (data) => {
+    saveFormAction({
+      target: this,
+      handleData: data,
+      successCallback: ({ params }) => {
+        this.setState({ formData: params });
+      },
+    });
+  };
 
   showFlowCaseFormDocumentDrawer = () => {
     FlowCaseFormDocumentDrawer.open();
@@ -76,6 +113,7 @@ class ModalView extends BaseView {
       currentCode,
       currentCodeTitle,
       metaData,
+      formData,
     } = this.state;
 
     const that = this;
@@ -105,58 +143,114 @@ class ModalView extends BaseView {
 
     return {
       list: [
-        [
-          {
-            title: {
-              text: '表单示例',
-            },
-            width: 'auto',
-            hasExtra: true,
-            extra: {
-              affix: true,
-              list: [
-                {
-                  buildType: cardConfig.extraBuildType.generalExtraButton,
-                  type: 'default',
-                  icon: iconBuilder.read(),
-                  text: '表单文档',
-                  // disabled: !firstLoadSuccess,
-                  handleClick: () => {
-                    this.showFlowCaseFormDocumentDrawer();
-                  },
+        {
+          title: {
+            text: '表单示例',
+          },
+          fullLine: false,
+          width: 'auto',
+          hasExtra: true,
+          extra: {
+            affix: true,
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.generalExtraButton,
+                type: 'default',
+                icon: iconBuilder.read(),
+                text: '表单文档',
+                // disabled: !firstLoadSuccess,
+                handleClick: () => {
+                  this.showFlowCaseFormDocumentDrawer();
                 },
-              ],
-            },
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: (
-                  <div>
-                    <SchemaDisplayer {...designData}>
-                      {hasDataSchema ? null : (
-                        <Empty description="暂无表单设计，请进行设计" />
-                      )}
-                    </SchemaDisplayer>
-                  </div>
-                ),
               },
             ],
           },
-          {
-            title: {
-              text: '数据集合',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div>
+                  <SchemaDisplayer
+                    {...designData}
+                    initialValues={formData}
+                    showSubmit
+                    showSubmitDivider
+                    header={
+                      <div>
+                        <CenterBox>
+                          <h2>表单头部区域</h2>
+                        </CenterBox>
+                      </div>
+                    }
+                    buttonBeforeSubmitBuilder={() => {
+                      return buildButton({
+                        type: 'primary',
+                        icon: iconBuilder.checkCircle(),
+                        text: '其他前置按钮',
+                        hidden: false,
+                        handleData: metaData,
+                        handleClick: ({ handleData }) => {
+                          console.log(handleData);
+                        },
+                      });
+                    }}
+                    buttonAfterSubmitBuilder={() => {
+                      return buildButton({
+                        icon: iconBuilder.checkCircle(),
+                        text: '其他后置按钮',
+                        hidden: false,
+                        handleData: metaData,
+                        handleClick: ({ handleData }) => {
+                          console.log(handleData);
+                        },
+                      });
+                    }}
+                    helpBoxProps={
+                      {
+                        // showNumber: false,
+                      }
+                    }
+                    descriptions={[
+                      {
+                        text: '说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1',
+                      },
+                      {
+                        text: '说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2',
+                      },
+                      {
+                        text: '说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3',
+                      },
+                    ]}
+                    showFooterDivider
+                    footer={<div>123123</div>}
+                    onSubmit={(o) => {
+                      this.saveForm(o);
+                    }}
+                  >
+                    {hasDataSchema ? null : (
+                      <Empty description="暂无表单设计，请进行设计" />
+                    )}
+                  </SchemaDisplayer>
+                </div>
+              ),
             },
-            width: '400px',
-            items: [
-              {
-                lg: 24,
-                type: cardConfig.contentItemType.component,
-                component: <DataDisplayer schema={listDataSchema} />,
-              },
-            ],
+          ],
+        },
+        {
+          title: {
+            text: '数据集合',
           },
-        ],
+          fullLine: false,
+          width: '400px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: <DataDisplayer schema={listDataSchema} />,
+            },
+          ],
+        },
         {
           title: {
             text: '代码示例',
@@ -246,4 +340,4 @@ class ModalView extends BaseView {
   };
 }
 
-export default ModalView;
+export default DesignView;

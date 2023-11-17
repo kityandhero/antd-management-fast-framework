@@ -113,7 +113,12 @@ class DataLoad extends DataCore {
       },
       primaryCallName,
       'fillData',
+      this.useFormWrapper ? '' : 'current useFormWrapper set to false ignore',
     );
+
+    if (!this.useFormWrapper) {
+      return;
+    }
 
     const initialValues = this.buildInitialValues({
       metaData,

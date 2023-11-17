@@ -1,6 +1,8 @@
 import { Avatar, Button, Form, Tooltip } from 'antd';
 import React from 'react';
 
+import { mergeArrowText } from 'easy-soft-utility';
+
 import {
   emptyLogic,
   getDerivedStateFromPropertiesForUrlParameters,
@@ -22,6 +24,11 @@ class DataCore extends BaseView {
   actionBackProps = {};
 
   formRef = React.createRef();
+
+  /**
+   * 使用Form包裹内容
+   */
+  useFormWrapper = true;
 
   constructor(properties) {
     super(properties);
@@ -48,6 +55,10 @@ class DataCore extends BaseView {
       'setFormFieldsValue',
     );
 
+    if (!this.useFormWrapper) {
+      return;
+    }
+
     const form = this.getTargetForm();
 
     if (form != null) {
@@ -63,6 +74,16 @@ class DataCore extends BaseView {
   getTargetForm = () => {
     this.logCallTrack({}, primaryCallName, 'getTargetForm');
 
+    if (!this.useFormWrapper) {
+      throw new Error(
+        mergeArrowText(
+          primaryCallName,
+          'getTargetForm',
+          'current useFormWrapper set to false, please change it to true',
+        ),
+      );
+    }
+
     return this.formRef.current;
   };
 
@@ -73,10 +94,24 @@ class DataCore extends BaseView {
       'handleOtherOnResetTargetForm',
       emptyLogic,
     );
+
+    if (!this.useFormWrapper) {
+      throw new Error(
+        mergeArrowText(
+          primaryCallName,
+          'handleOtherOnResetTargetForm',
+          'current useFormWrapper set to false, please change it to true',
+        ),
+      );
+    }
   };
 
   resetTargetForm = () => {
     this.logCallTrack({}, primaryCallName, 'resetTargetForm');
+
+    if (!this.useFormWrapper) {
+      return;
+    }
 
     const form = this.getTargetForm();
 
@@ -204,17 +239,21 @@ class DataCore extends BaseView {
       return null;
     }
 
-    return (
-      <Form
-        ref={this.formRef}
-        initialValues={initialValues}
-        className={this.getFormClassName()}
-        layout={this.buildFormLayout()}
-        {...otherFormProperties}
-      >
-        {this.renderPresetFormContent()}
-      </Form>
-    );
+    if (this.useFormWrapper) {
+      return (
+        <Form
+          ref={this.formRef}
+          initialValues={initialValues}
+          className={this.getFormClassName()}
+          layout={this.buildFormLayout()}
+          {...otherFormProperties}
+        >
+          {this.renderPresetFormContent()}
+        </Form>
+      );
+    }
+
+    return this.renderPresetFormContent();
   };
 
   establishCardCollectionConfig = () => {
