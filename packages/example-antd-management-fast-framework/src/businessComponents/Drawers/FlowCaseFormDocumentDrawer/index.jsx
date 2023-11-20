@@ -33,7 +33,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       ...this.state,
       pageTitle: '表格文档格式预览',
       loadApiPath: 'formDesign/get',
-      width: '1024',
+      width: 1024,
       overlayButtonOpenText: '打开源代码',
       overlayButtonCloseText: '关闭源代码',
     };
@@ -66,6 +66,12 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     };
   };
 
+  establishPresetContentContainorInnerTopStyle = () => {
+    return {
+      backgroundColor: '#ccc',
+    };
+  };
+
   renderPresetContentContainorInnerTop = () => {
     const { metaData } = this.state;
 
@@ -92,7 +98,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       <DocumentDisplayer
         values={formData}
         schema={listDataSchema}
-        onChange={(data) => {
+        onSave={(data) => {
           this.saveDataSchema(data);
         }}
         onClose={() => {

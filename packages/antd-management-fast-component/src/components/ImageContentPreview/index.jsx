@@ -14,7 +14,6 @@ class ImageContentPreview extends BaseComponent {
 
     this.state = {
       ...this.state,
-
       visible: false,
       htmlContent: '',
       imageList: [],

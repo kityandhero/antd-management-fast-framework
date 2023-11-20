@@ -47,12 +47,23 @@ class BaseVerticalFlexDrawer extends Base {
     return values;
   };
 
+  establishPresetContentContainorInnerStyle = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPresetContentContainorInnerStyle',
+      emptyLogic,
+    );
+
+    return {};
+  };
+
   establishPresetContentContainorInnerTopStyle = () => {
     this.logCallTrack(
       {},
       primaryCallName,
       'establishPresetContentContainorInnerTopStyle',
-      emptyLogic,
+      '#fff',
     );
 
     return {};
@@ -100,25 +111,34 @@ class BaseVerticalFlexDrawer extends Base {
         ]}
         fill
       >
-        <FlexBox
-          flexAuto="top"
-          topStyle={{
+        <div
+          style={{
             height: '100%',
+            padding: '0',
+            margin: '0',
+            border: '0',
           }}
-          top={
-            <div
-              style={{
-                padding: '16px 24px',
-                backgroundColor: '#fff',
-                ...this.establishPresetContentContainorInnerTopStyle(),
-                height: '100%',
-              }}
-            >
-              {this.renderPresetContentContainorInnerTop()}
-            </div>
-          }
-          bottom={bottom}
-        />
+        >
+          <FlexBox
+            flexAuto="top"
+            style={{
+              ...this.establishPresetContentContainorInnerStyle(),
+              height: '100%',
+              padding: '0',
+              margin: '0',
+              border: '0',
+            }}
+            topStyle={{
+              backgroundColor: '#fff',
+              ...this.establishPresetContentContainorInnerTopStyle(),
+              padding: '0',
+              margin: '0',
+              border: '0',
+            }}
+            top={this.renderPresetContentContainorInnerTop()}
+            bottom={bottom}
+          />
+        </div>
       </LoadingOverlay>
     );
   };

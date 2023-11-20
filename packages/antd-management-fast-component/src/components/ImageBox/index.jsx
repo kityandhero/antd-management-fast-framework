@@ -69,7 +69,6 @@ class ImageBox extends BaseComponent {
 
     this.state = {
       ...this.state,
-
       src: '',
       aspectRatio: 1,
       borderRadiusDefaultStyle: {},

@@ -423,6 +423,7 @@ class DrawerView extends BaseView {
         <SimpleMultiPageDrawer />
 
         <SimpleVerticalFlexDrawer
+          maskClosable
           afterClose={() => {
             logDebug({}, 'trigger afterClose');
           }}

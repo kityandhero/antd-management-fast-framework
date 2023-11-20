@@ -62,7 +62,7 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
 
   establishPresetContentContainorInnerTopStyle = () => {
     return {
-      // padding: '12px 36px',
+      backgroundColor: '#4563ef',
     };
   };
 
@@ -74,7 +74,10 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
           text: '简要说明:这里可以显示需要提示的信息。',
         },
         {
-          text: '简要说明:这里可以显示需要提示的信息。',
+          text: '简要说明:这里可以显示需要提示的信息, 这里可以显示需要提示的信息, 这里可以显示需要提示的信息, 这里可以显示需要提示的信息。',
+        },
+        {
+          text: '简要说明:这里可以显示需要提示的信息, 这里可以显示需要提示的信息, 这里可以显示需要提示的信息, 这里可以显示需要提示的信息, 这里可以显示需要提示的信息, 这里可以显示需要提示的信息, 这里可以显示需要提示的信息。',
         },
       ],
     };
@@ -82,7 +85,7 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
 
   renderPresetContentContainorInnerTop = () => {
     return (
-      <div style={{ backgroundColor: '#4563ef', height: '100%' }}>
+      <div style={{ height: '800px' }}>
         <CenterBox>content</CenterBox>
       </div>
     );

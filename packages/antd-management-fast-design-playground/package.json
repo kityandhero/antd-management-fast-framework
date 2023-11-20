@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-playground",
-  "version": "1.0.35",
+  "version": "1.0.36",
   "keywords": [
     "antd-management-fast-design-playground"
   ],
@@ -72,7 +72,7 @@
     "@monaco-editor/loader": "^1.4.0",
     "@monaco-editor/react": "^4.6.0",
     "antd-management-fast-common": "^2.6.43",
-    "antd-management-fast-component": "^2.6.68",
+    "antd-management-fast-component": "^2.6.69",
     "antd-management-fast-design-react": "^1.0.25",
     "antd-management-fast-formily": "^1.0.25",
     "classnames": "^2.3.2",

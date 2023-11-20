@@ -161,19 +161,14 @@ function RowConfigBox(properties) {
               <InputNumber
                 style={{ width: '60px' }}
                 value={heightAdjust}
-                onBlur={(o) => {
-                  const {
-                    target: { value: v },
-                  } = o;
-
+                onChange={(o) => {
                   if (!isFunction(onChangeCallback)) {
                     return;
                   }
-
                   onChangeCallback(
                     {
                       ...data,
-                      height: v,
+                      height: o,
                     },
                     data,
                   );
@@ -221,24 +216,26 @@ function ConfigBox(properties) {
           }}
         >
           {fullLineAdjust === whetherNumber.yes ? (
-            <Switch
-              checkedChildren="行"
-              unCheckedChildren="列"
-              defaultChecked={fullLineAdjust === whetherNumber.yes}
-              onChange={(checked) => {
-                if (!isFunction(onChangeCallback)) {
-                  return;
-                }
+            <CenterBox>
+              <Switch
+                checkedChildren="行"
+                unCheckedChildren="列"
+                defaultChecked={fullLineAdjust === whetherNumber.yes}
+                onChange={(checked) => {
+                  if (!isFunction(onChangeCallback)) {
+                    return;
+                  }
 
-                onChangeCallback(
-                  {
-                    ...data,
-                    fullLine: checked ? whetherString.yes : whetherString.no,
-                  },
-                  data,
-                );
-              }}
-            />
+                  onChangeCallback(
+                    {
+                      ...data,
+                      fullLine: checked ? whetherString.yes : whetherString.no,
+                    },
+                    data,
+                  );
+                }}
+              />
+            </CenterBox>
           ) : (
             <FlexBox
               flexAuto="left"
@@ -250,19 +247,14 @@ function ConfigBox(properties) {
                     <InputNumber
                       style={{ width: '60px' }}
                       value={widthAdjust}
-                      onBlur={(o) => {
-                        const {
-                          target: { value: v },
-                        } = o;
-
+                      onChange={(o) => {
                         if (!isFunction(onChangeCallback)) {
                           return;
                         }
-
                         onChangeCallback(
                           {
                             ...data,
-                            width: v,
+                            width: o,
                           },
                           data,
                         );
@@ -660,8 +652,6 @@ class DocumentContent extends PureComponent {
       });
 
       onChangeCallback(schemaAdjust);
-    } else {
-      onChangeCallback(schema);
     }
   };
 
@@ -720,6 +710,7 @@ class DocumentContent extends PureComponent {
           paddingBottom: '40px',
           margin: '0 auto',
           width: '920px',
+          backgroundColor: '#fff',
         }}
       >
         <div

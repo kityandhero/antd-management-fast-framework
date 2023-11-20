@@ -122,7 +122,13 @@ class FlexBox extends PureComponent {
         <div
           style={{
             ...topStyle,
-            ...(flexAuto === 'bottom' ? {} : { flex: '1 1 auto' }),
+            ...(flexAuto === 'bottom'
+              ? {}
+              : {
+                  flex: '1 1 auto',
+                  overflowX: 'hidden',
+                  overflowY: 'auto',
+                }),
           }}
         >
           {top}
@@ -131,7 +137,13 @@ class FlexBox extends PureComponent {
         <div
           style={{
             ...bottomStyle,
-            ...(flexAuto === 'bottom' ? { flex: '1 1 auto' } : {}),
+            ...(flexAuto === 'bottom'
+              ? {
+                  flex: '1 1 auto',
+                  overflowX: 'hidden',
+                  overflowY: 'auto',
+                }
+              : {}),
           }}
         >
           {bottom}
