@@ -4,14 +4,25 @@ import {
   convertCollection,
   getValueByKey,
   isArray,
+  isEmptyObject,
   mergeArrowText,
   showSimpleInfoMessage,
   toLowerFirst,
 } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
-import { convertOptionOrRadioData } from 'antd-management-fast-component';
-import { adjustEdge, adjustNode, Flow } from 'antd-management-fast-flow';
+import {
+  convertOptionOrRadioData,
+  FlexBox,
+  iconBuilder,
+  ScrollFacadeBox,
+} from 'antd-management-fast-component';
+import {
+  adjustEdge,
+  adjustNode,
+  Flow,
+  FlowProcessHistory,
+} from 'antd-management-fast-flow';
 
 import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
@@ -155,6 +166,243 @@ const workflowLineList = [
     toName: '终止点',
   },
 ];
+
+function buildProcessHistory(count = 0) {
+  const list = [];
+
+  list.push({
+    workflowId: '1720257724563984384',
+    flowCaseId: '1721891698650517504',
+    approveUserId: 0,
+    approveWorkflowNodeId: '1720257727365779456',
+    inWorkflowLineId: 0,
+    approveWorkflowNodeType: 10,
+    approveAction: 100,
+    approveActionMode: 100,
+    note: '',
+    workflowCaseProcessHistoryId: '1724638271054680064',
+    channel: 200,
+    status: 100,
+    createOperatorId: 0,
+    createTime: '2023-11-15 11:59:40',
+    updateOperatorId: 0,
+    updateTime: '2023-11-15 11:59:40',
+    key: '1724638271054680064',
+    approveActionNote: '通过',
+    approveActionModeNote: '自动操作',
+    approveUserName: '',
+    approveUserSignet: ' ',
+    approveWorkflowNodeTypeNote: '起始点',
+    statusNote: '正常',
+    workflowName: '员工请假审批流程',
+    flowCaseTitle: '员工请假审批流程实例',
+    approveWorkflowNodeName: '起始点',
+  });
+
+  for (let index = 0; index < count; index++) {
+    list.push({
+      workflowId: \`\${index * 2 + 1}\`,
+      flowCaseId: \`\${index * 3 + 1}\`,
+      approveUserId: \`\${index * 4 + 1}\`,
+      approveWorkflowNodeId: \`\${index * 5 + 1}\`,
+      inWorkflowLineId: \`\${index * 6 + 1}\`,
+      approveWorkflowNodeType: 20,
+      approveAction: 100,
+      approveActionMode: 200,
+      note: '',
+      workflowCaseProcessHistoryId: \`\${index * 7 + 1}\`,
+      channel: 200,
+      status: 100,
+      createOperatorId: \`\${index * 8 + 1}\`,
+      createTime: '2023-11-15 12:00:33',
+      updateOperatorId: \`\${index * 9 + 1}\`,
+      updateTime: '2023-11-15 12:00:33',
+      key: \`\${index * 7 + 1}\`,
+      approveActionNote: '通过',
+      approveActionModeNote: '人工操作',
+      approveUserName: \`审批人员\${index + 1}\`,
+      approveUserSignet: '',
+      approveWorkflowNodeTypeNote: '过程点',
+      statusNote: '正常',
+      workflowName: '员工请假审批流程',
+      flowCaseTitle: '员工请假审批流程实例',
+      approveWorkflowNodeName: \`审批节点\${index + 1}\`,
+    });
+  }
+
+  list.push(
+    {
+      workflowId: '1720257724563984384',
+      flowCaseId: '1721891698650517504',
+      approveUserId: '1721888194980614144',
+      approveWorkflowNodeId: '1721889557470908416',
+      inWorkflowLineId: '1721890146867089408',
+      approveWorkflowNodeType: 20,
+      approveAction: 100,
+      approveActionMode: 200,
+      note: '',
+      workflowCaseProcessHistoryId: '1724638494204235776',
+      channel: 200,
+      status: 100,
+      createOperatorId: '1721888194980614144',
+      createTime: '2023-11-15 12:00:33',
+      updateOperatorId: '1721888194980614144',
+      updateTime: '2023-11-15 12:00:33',
+      key: '1724638494204235776',
+      approveActionNote: '通过',
+      approveActionModeNote: '人工操作',
+      approveUserName: '赵姗',
+      approveUserSignet: '',
+      approveWorkflowNodeTypeNote: '过程点',
+      statusNote: '正常',
+      workflowName: '员工请假审批流程',
+      flowCaseTitle: '员工请假审批流程实例',
+      approveWorkflowNodeName: '行政部副部长审批',
+    },
+    {
+      workflowId: '1720257724563984384',
+      flowCaseId: '1721891698650517504',
+      approveUserId: '1699415925855490048',
+      approveWorkflowNodeId: '1721889911902179328',
+      inWorkflowLineId: '1721890338412564480',
+      approveWorkflowNodeType: 20,
+      approveAction: 100,
+      approveActionMode: 200,
+      note: '',
+      workflowCaseProcessHistoryId: '1724638654573449216',
+      channel: 200,
+      status: 100,
+      createOperatorId: '1699415925855490048',
+      createTime: '2023-11-15 12:01:12',
+      updateOperatorId: '1699415925855490048',
+      updateTime: '2023-11-15 12:01:12',
+      key: '1724638654573449216',
+      approveActionNote: '通过',
+      approveActionModeNote: '人工操作',
+      approveUserName: '胡江波',
+      approveUserSignet: '',
+      approveWorkflowNodeTypeNote: '过程点',
+      statusNote: '正常',
+      workflowName: '员工请假审批流程',
+      flowCaseTitle: '员工请假审批流程实例',
+      approveWorkflowNodeName: '副总经理审批',
+    },
+    {
+      workflowId: '1720257724563984384',
+      flowCaseId: '1721891698650517504',
+      approveUserId: 0,
+      approveWorkflowNodeId: '1720257728011702272',
+      inWorkflowLineId: '1721890667040477184',
+      approveWorkflowNodeType: 30,
+      approveAction: 100,
+      approveActionMode: 100,
+      note: '',
+      workflowCaseProcessHistoryId: '1724638654699278336',
+      channel: 200,
+      status: 100,
+      createOperatorId: '1699415925855490048',
+      createTime: '2023-11-15 12:01:12',
+      updateOperatorId: '1699415925855490048',
+      updateTime: '2023-11-15 12:01:12',
+      key: '1724638654699278336',
+      approveActionNote: '通过',
+      approveActionModeNote: '自动操作',
+      approveUserName: '',
+      approveUserSignet: ' ',
+      approveWorkflowNodeTypeNote: '终止点',
+      statusNote: '正常',
+      workflowName: '员工请假审批流程',
+      flowCaseTitle: '员工请假审批流程实例',
+      approveWorkflowNodeName: '终止点',
+    },
+  );
+
+  return list;
+}
+
+const nextApproveWorkflowNode = {};
+
+function processHistoryNextDataConvert(o) {
+  if (o == null || isEmptyObject(o)) {
+    return null;
+  }
+
+  const nextApproveWorkflowNodeName = getValueByKey({
+    data: o,
+    key: 'name',
+  });
+
+  return {
+    ...o,
+    titlePrefix: '待审批节点',
+    title: nextApproveWorkflowNodeName,
+    icon: iconBuilder.clock(),
+    color: 'blue',
+    result: '',
+    note: '',
+    operatorName: '',
+    time: '',
+  };
+}
+
+function processHistoryItemDataConvert(o) {
+  const approveWorkflowNodeName = getValueByKey({
+    data: o,
+    key: 'approveWorkflowNodeName',
+  });
+
+  const approveWorkflowNodeType = getValueByKey({
+    data: o,
+    key: 'approveWorkflowNodeType',
+    convert: convertCollection.number,
+  });
+
+  const approveActionNote = getValueByKey({
+    data: o,
+    key: 'approveActionNote',
+  });
+
+  const approveActionMode = getValueByKey({
+    data: o,
+    key: 'approveActionMode',
+  });
+
+  const note = getValueByKey({
+    data: o,
+    key: 'note',
+  });
+
+  const approveUserName = getValueByKey({
+    data: o,
+    key: 'approveUserName',
+  });
+
+  const time = getValueByKey({
+    data: o,
+    key: 'createTime',
+  });
+
+  if (approveWorkflowNodeType === 'intermediateNode') {
+    return {
+      ...o,
+      title: approveWorkflowNodeName,
+      result: approveActionNote,
+      note,
+      operatorName: approveUserName,
+      time,
+    };
+  }
+
+  return {
+    ...o,
+    title: approveWorkflowNodeName,
+    result: '',
+    note: '',
+    operatorName: '',
+    time: '',
+    compact: approveActionMode === 100,
+  };
+}
 
 // eslint-disable-next-line no-unused-vars
 function dataConvert(o, index) {
@@ -304,32 +552,94 @@ class RadioView extends BaseView {
 
     const that = this;
 
+    const listProcessHistory = buildProcessHistory(10);
+    const listProcessHistory2 = buildProcessHistory(20);
+
     return {
       list: [
         {
           title: {
             text: '示例',
           },
+          fullLine: false,
           items: [
             {
               lg: 24,
               type: cardConfig.contentItemType.component,
               component: (
-                <div style={{ height: '630px' }}>
-                  <Flow
-                    canEdit={true}
-                    nodeNameKey={'name'}
-                    // listApproverKey={fieldDataWorkflowNode.listApprover.name}
-                    // personnelNameKey={
-                    //   fieldDataWorkflowNodeApprover.userRealName.name
-                    // }
-                    // personnelNameLabel={
-                    //   fieldDataWorkflowNodeApprover.userRealName.label
-                    // }
-                    nodes={[...(isArray(nodeList) ? nodeList : [])]}
-                    edges={[...(isArray(edgeList) ? edgeList : [])]}
+                <div>
+                  <FlexBox
+                    flexAuto="left"
+                    left={
+                      <div
+                        style={{
+                          paddingTop: '20px',
+                          height: '630px',
+                        }}
+                      >
+                        <Flow
+                          canEdit={true}
+                          nodeNameKey={'name'}
+                          // listApproverKey={fieldDataWorkflowNode.listApprover.name}
+                          // personnelNameKey={
+                          //   fieldDataWorkflowNodeApprover.userRealName.name
+                          // }
+                          // personnelNameLabel={
+                          //   fieldDataWorkflowNodeApprover.userRealName.label
+                          // }
+                          nodes={[...(isArray(nodeList) ? nodeList : [])]}
+                          edges={[...(isArray(edgeList) ? edgeList : [])]}
+                        />
+                      </div>
+                    }
+                    right={
+                      <div style={{ height: '100%', width: '280px' }}>
+                        <FlowProcessHistory
+                          style={{ width: '280px' }}
+                          title="审批进度"
+                          showTitle
+                          showLeftDivider
+                          list={[
+                            ...(isArray(listProcessHistory)
+                              ? listProcessHistory
+                              : []),
+                          ]}
+                          listItemConvert={processHistoryItemDataConvert}
+                          nextData={nextApproveWorkflowNode}
+                          nextDataConvert={processHistoryNextDataConvert}
+                        />
+                      </div>
+                    }
                   />
                 </div>
+              ),
+            },
+          ],
+        },
+        {
+          title: {
+            text: '审批进度',
+          },
+          fullLine: false,
+          width: '320px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <ScrollFacadeBox style={{ height: '630px', overflowY: 'auto' }}>
+                  <FlowProcessHistory
+                    // style={{ width: '280px' }}
+                    list={[
+                      ...(isArray(listProcessHistory2)
+                        ? listProcessHistory2
+                        : []),
+                    ]}
+                    listItemConvert={processHistoryItemDataConvert}
+                    nextData={nextApproveWorkflowNode}
+                    nextDataConvert={processHistoryNextDataConvert}
+                  />
+                </ScrollFacadeBox>
               ),
             },
           ],
@@ -339,6 +649,7 @@ class RadioView extends BaseView {
             text: '代码示例',
             subText: mergeArrowText('Code', currentCodeTitle),
           },
+          fullLine: true,
           extra: {
             affix: true,
             split: false,

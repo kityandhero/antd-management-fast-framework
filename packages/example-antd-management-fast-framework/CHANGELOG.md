@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.8.85
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-component@2.6.74
+  - antd-management-fast-framework@2.11.91
+  - antd-management-fast-flow@1.0.15
+
+## 1.8.84
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-component@2.6.73
+  - antd-management-fast-framework@2.11.90
+  - antd-management-fast-flow@1.0.14
+
 ## 1.8.83
 
 ### Patch Changes

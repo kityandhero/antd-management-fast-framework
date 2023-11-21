@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.6.74
+
+### Patch Changes
+
+- update
+
+## 2.6.73
+
+### Patch Changes
+
+- update
+
 ## 2.6.72
 
 ### Patch Changes

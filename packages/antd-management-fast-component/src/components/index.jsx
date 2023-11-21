@@ -66,6 +66,7 @@ export * from './PriceBox';
 export * from './ProgressBar';
 export * from './Result';
 export * from './RowExpandTable';
+export * from './ScrollFacadeBox';
 export * from './StandardFormRow';
 export * from './StandardTable';
 export * from './StatusBar';

@@ -34,7 +34,7 @@ class LoadingOverlay extends PureComponent {
     const fillStyle = {
       height: '100%',
       width: '100%',
-      overflow: 'auto',
+      overflow: 'hidden',
     };
     return { ...minHeightStyle, ...maxHeightStyle, ...(fill ? fillStyle : {}) };
   };

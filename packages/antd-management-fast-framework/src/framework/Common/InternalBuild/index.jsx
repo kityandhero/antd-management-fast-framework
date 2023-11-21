@@ -82,6 +82,7 @@ function adjustListData(listData) {
       list.push({
         ...value,
         fullLine,
+        flexVertical: false,
       });
     } else {
       listTemplate.push({
@@ -273,6 +274,7 @@ class InternalBuild extends InternalSwitchoverFlow {
       instruction,
       justify: justifyRow,
       align: alignRow,
+      flexVertical,
     } = {
       title: '',
       size: 'default',
@@ -289,6 +291,7 @@ class InternalBuild extends InternalSwitchoverFlow {
       instruction: null,
       justify: 'start',
       align: 'top',
+      flexVertical: false,
       ...cardItemConfig,
     };
 
@@ -463,14 +466,25 @@ class InternalBuild extends InternalSwitchoverFlow {
           // borderRadius: 0,
           ...cardStyle,
           ...(imageVisible ? { position: 'relative' } : {}),
+          ...(flexVertical
+            ? {
+                display: 'flex',
+                flexDirection: 'column',
+              }
+            : {}),
         }}
-        headStyle={
-          imageVisible
+        headStyle={{
+          ...(imageVisible
             ? {
                 paddingLeft: '64px',
               }
-            : {}
-        }
+            : {}),
+          ...(flexVertical
+            ? {
+                flex: 'none',
+              }
+            : {}),
+        }}
         size={size || 'default'}
         bordered={bordered}
         extra={
@@ -510,8 +524,8 @@ class InternalBuild extends InternalSwitchoverFlow {
             )
           ) : null
         }
-        bodyStyle={
-          mode === cardConfig.wrapperType.model
+        bodyStyle={{
+          ...(mode === cardConfig.wrapperType.model
             ? {
                 ...cardBodyStyle,
                 ...cardTypeBodyStyle,
@@ -520,8 +534,13 @@ class InternalBuild extends InternalSwitchoverFlow {
             : {
                 ...cardBodyStyle,
                 ...cardTypeBodyStyle,
+              }),
+          ...(flexVertical
+            ? {
+                flex: '1 1 auto',
               }
-        }
+            : {}),
+        }}
       >
         {cardContent == null &&
         otherComponent == null &&
@@ -533,6 +552,7 @@ class InternalBuild extends InternalSwitchoverFlow {
               this.viewRefreshingFlag,
               this.viewProcessingFlag,
             ]}
+            fill
           >
             {cardContent}
             {otherComponent || null}

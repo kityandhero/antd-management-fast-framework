@@ -7,12 +7,24 @@ import {
   isFunction,
 } from 'easy-soft-utility';
 
-import { ColorText, FlexBox } from 'antd-management-fast-component';
+import {
+  ColorText,
+  FlexBox,
+  ScrollFacadeBox,
+} from 'antd-management-fast-component';
 
 const { Paragraph } = Typography;
 function FlowProcessHistory(properties) {
-  const { style, list, listItemConvert, nextData, nextDataConvert } =
-    properties;
+  const {
+    style,
+    title: boxTitle,
+    showTitle,
+    showLeftDivider,
+    list,
+    listItemConvert,
+    nextData,
+    nextDataConvert,
+  } = properties;
 
   const nextDataAdjust =
     nextData == null
@@ -131,51 +143,85 @@ function FlowProcessHistory(properties) {
     inner = <Timeline reverse style={{ marginTop: '10px' }} items={listItem} />;
   }
 
+  const rightComponent = (
+    <FlexBox
+      style={{ height: '100%' }}
+      flexAuto="bottom"
+      topStyle={{
+        paddingBottom: '6px',
+      }}
+      top={showTitle ? <Alert message={`${boxTitle}：`} type="info" /> : null}
+      bottom={
+        <div
+          style={{
+            height: '100%',
+            position: 'relative',
+          }}
+        >
+          <ScrollFacadeBox
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              paddingLeft: '6px',
+              paddingRight: '6px',
+              height: '100%',
+              width: '100%',
+              overflowY: 'auto',
+            }}
+          >
+            {inner}
+          </ScrollFacadeBox>
+        </div>
+
+        // showTitle ? (
+        //   <div
+        //     style={{
+        //       height: '100%',
+        //       position: 'relative',
+        //     }}
+        //   >
+        //     <ScrollFacadeBox
+        //       style={{
+        //         position: 'absolute',
+        //         left: 0,
+        //         top: 0,
+        //         paddingLeft: '6px',
+        //         paddingRight: '6px',
+        //         height: '100%',
+        //         width: '100%',
+        //         overflowY: 'auto',
+        //       }}
+        //     >
+        //       {inner}
+        //     </ScrollFacadeBox>
+        //   </div>
+        // ) : (
+        //   inner
+        // )
+      }
+    />
+  );
+
+  if (!showLeftDivider) {
+    return rightComponent;
+  }
+
   return (
     <FlexBox
       style={{ ...style, height: '100%' }}
       flexAuto="right"
       left={<Divider type="vertical" style={{ height: '100%' }} />}
-      right={
-        <FlexBox
-          style={{ height: '100%' }}
-          flexAuto="bottom"
-          topStyle={{
-            paddingBottom: '6px',
-          }}
-          top={<Alert message="审批进度：" type="info" />}
-          bottom={
-            <div
-              style={{
-                height: '100%',
-
-                position: 'relative',
-              }}
-            >
-              <div
-                style={{
-                  position: 'absolute',
-                  left: 0,
-                  top: 0,
-                  paddingLeft: '6px',
-                  paddingRight: '6px',
-                  height: '100%',
-                  width: '100%',
-                  overflowY: 'auto',
-                }}
-              >
-                {inner}
-              </div>
-            </div>
-          }
-        />
-      }
+      right={rightComponent}
     />
   );
 }
 
 FlowProcessHistory.defaultProps = {
   style: {},
+  title: '审批进度',
+  showTitle: false,
+  showLeftDivider: false,
   canEdit: true,
   list: [],
   listItemConvert: null,
