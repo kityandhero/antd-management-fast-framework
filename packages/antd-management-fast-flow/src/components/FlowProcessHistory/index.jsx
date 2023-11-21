@@ -152,53 +152,31 @@ function FlowProcessHistory(properties) {
       }}
       top={showTitle ? <Alert message={`${boxTitle}：`} type="info" /> : null}
       bottom={
-        <div
-          style={{
-            height: '100%',
-            position: 'relative',
-          }}
-        >
-          <ScrollFacadeBox
+        showTitle ? (
+          <div
             style={{
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              paddingLeft: '6px',
-              paddingRight: '6px',
               height: '100%',
-              width: '100%',
-              overflowY: 'auto',
+              position: 'relative',
             }}
           >
-            {inner}
-          </ScrollFacadeBox>
-        </div>
-
-        // showTitle ? (
-        //   <div
-        //     style={{
-        //       height: '100%',
-        //       position: 'relative',
-        //     }}
-        //   >
-        //     <ScrollFacadeBox
-        //       style={{
-        //         position: 'absolute',
-        //         left: 0,
-        //         top: 0,
-        //         paddingLeft: '6px',
-        //         paddingRight: '6px',
-        //         height: '100%',
-        //         width: '100%',
-        //         overflowY: 'auto',
-        //       }}
-        //     >
-        //       {inner}
-        //     </ScrollFacadeBox>
-        //   </div>
-        // ) : (
-        //   inner
-        // )
+            <ScrollFacadeBox
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                paddingLeft: '6px',
+                paddingRight: '6px',
+                height: '100%',
+                width: '100%',
+                overflowY: 'auto',
+              }}
+            >
+              {inner}
+            </ScrollFacadeBox>
+          </div>
+        ) : (
+          inner
+        )
       }
     />
   );

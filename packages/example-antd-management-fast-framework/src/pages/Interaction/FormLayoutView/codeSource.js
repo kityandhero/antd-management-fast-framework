@@ -12,6 +12,8 @@ import { code as codeFormLayoutView } from './codeSource';
   schedulingControl,
 }))
 class FormLayoutView extends BaseView {
+  showCallProcess = true;
+
   constructor(properties) {
     super(properties);
 
@@ -37,6 +39,7 @@ class FormLayoutView extends BaseView {
             text: '占位区域',
           },
           fullLine: false,
+          width: 'auto',
           items: [
             {
               lg: 24,
@@ -54,7 +57,7 @@ class FormLayoutView extends BaseView {
             text: '占位区域',
           },
           fullLine: false,
-          width: '180px',
+          width: '280px',
           items: [
             {
               lg: 24,
@@ -71,7 +74,6 @@ class FormLayoutView extends BaseView {
           title: {
             text: '区域',
           },
-          width: 'auto',
           items: [
             {
               lg: 24,

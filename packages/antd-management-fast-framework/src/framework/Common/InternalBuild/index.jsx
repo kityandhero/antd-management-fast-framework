@@ -36,6 +36,7 @@ import {
   ImageBox,
   PageExtra,
   QueueBox,
+  ScrollFacadeBox,
 } from 'antd-management-fast-component';
 
 import { buildExtraButton } from '../../../components/FunctionComponent';
@@ -60,9 +61,11 @@ function adjustListData(listData) {
 
   for (const value of Object.values(listData)) {
     if (isNull(value) || isEmptyObject(value)) {
-      list.push([...listTemplate]);
+      if (listTemplate.length > 0) {
+        list.push([...listTemplate]);
 
-      listTemplate = [];
+        listTemplate = [];
+      }
 
       continue;
     }
@@ -131,6 +134,14 @@ class InternalBuild extends InternalSwitchoverFlow {
     } = configData;
 
     const listData = adjustListData(list);
+
+    this.logCallTrace(
+      {
+        listData,
+      },
+      primaryCallName,
+      'buildCardCollectionArea',
+    );
 
     const helpConfig =
       this.contentWrapperType === contentConfig.wrapperType.page
@@ -212,6 +223,40 @@ class InternalBuild extends InternalSwitchoverFlow {
             if (React.isValidElement(item)) {
               return (
                 <Fragment key={`item_component_${index}`}>{item}</Fragment>
+              );
+            }
+
+            if (isArray(item) && !isEmptyArray(item)) {
+              return (
+                <Row key={`flex_row_${index}`} gutter={[16, 16]} wrap={false}>
+                  {item.map((one, n) => {
+                    const { width: widthOne } = { width: '', ...one };
+
+                    const oneProperties = checkStringIsNullOrWhiteSpace(
+                      widthOne,
+                    )
+                      ? { flex: 'auto' }
+                      : { flex: toString(widthOne) };
+
+                    return (
+                      <Col
+                        key={`flex_row_${index}_col_${n}`}
+                        {...oneProperties}
+                      >
+                        {this.buildCardCollectionItem({
+                          mode,
+                          justify: justifyGeneral,
+                          align: alignGeneral,
+                          config: { bordered: false, ...one },
+                          key: `flex_row_${index}_col_${n}_inner`,
+                          style: {
+                            height: '100%',
+                          },
+                        })}
+                      </Col>
+                    );
+                  })}
+                </Row>
               );
             }
 
@@ -439,6 +484,38 @@ class InternalBuild extends InternalSwitchoverFlow {
       return null;
     }
 
+    const cardBodyInnerComponent = flexVertical ? (
+      <div
+        style={{
+          height: '100%',
+          position: 'relative',
+        }}
+      >
+        <ScrollFacadeBox
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            paddingLeft: '6px',
+            paddingRight: '6px',
+            height: '100%',
+            width: '100%',
+            overflowY: 'auto',
+          }}
+        >
+          {cardContent}
+          {otherComponent || null}
+          {helpArea}
+        </ScrollFacadeBox>
+      </div>
+    ) : (
+      <>
+        {cardContent}
+        {otherComponent || null}
+        {helpArea}
+      </>
+    );
+
     const card = (
       <Card
         title={
@@ -554,9 +631,7 @@ class InternalBuild extends InternalSwitchoverFlow {
             ]}
             fill
           >
-            {cardContent}
-            {otherComponent || null}
-            {helpArea}
+            {cardBodyInnerComponent}
           </LoadingOverlay>
         )}
 
