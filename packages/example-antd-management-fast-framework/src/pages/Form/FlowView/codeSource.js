@@ -251,7 +251,7 @@ function buildProcessHistory(count = 0) {
       key: '1724638494204235776',
       approveActionNote: '通过',
       approveActionModeNote: '人工操作',
-      approveUserName: '赵姗',
+      approveUserName: '行政部长',
       approveUserSignet: '',
       approveWorkflowNodeTypeNote: '过程点',
       statusNote: '正常',
@@ -279,7 +279,7 @@ function buildProcessHistory(count = 0) {
       key: '1724638654573449216',
       approveActionNote: '通过',
       approveActionModeNote: '人工操作',
-      approveUserName: '胡江波',
+      approveUserName: '副总',
       approveUserSignet: '',
       approveWorkflowNodeTypeNote: '过程点',
       statusNote: '正常',
@@ -351,12 +351,6 @@ function processHistoryItemDataConvert(o) {
     key: 'approveWorkflowNodeName',
   });
 
-  const approveWorkflowNodeType = getValueByKey({
-    data: o,
-    key: 'approveWorkflowNodeType',
-    convert: convertCollection.number,
-  });
-
   const approveActionNote = getValueByKey({
     data: o,
     key: 'approveActionNote',
@@ -382,7 +376,7 @@ function processHistoryItemDataConvert(o) {
     key: 'createTime',
   });
 
-  if (approveWorkflowNodeType === 'intermediateNode') {
+  if (approveActionMode !== 100) {
     return {
       ...o,
       title: approveWorkflowNodeName,
@@ -400,7 +394,7 @@ function processHistoryItemDataConvert(o) {
     note: '',
     operatorName: '',
     time: '',
-    compact: approveActionMode === 100,
+    compact: true,
   };
 }
 
@@ -552,8 +546,8 @@ class RadioView extends BaseView {
 
     const that = this;
 
-    const listProcessHistory = buildProcessHistory(10);
-    const listProcessHistory2 = buildProcessHistory(20);
+    const listProcessHistory = buildProcessHistory(0);
+    const listProcessHistory2 = buildProcessHistory(10);
 
     return {
       list: [
@@ -622,27 +616,26 @@ class RadioView extends BaseView {
           },
           fullLine: false,
           width: '320px',
-          items: [
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.component,
-              component: (
-                <ScrollFacadeBox style={{ height: '630px', overflowY: 'auto' }}>
-                  <FlowProcessHistory
-                    // style={{ width: '280px' }}
-                    list={[
-                      ...(isArray(listProcessHistory2)
-                        ? listProcessHistory2
-                        : []),
-                    ]}
-                    listItemConvert={processHistoryItemDataConvert}
-                    nextData={nextApproveWorkflowNode}
-                    nextDataConvert={processHistoryNextDataConvert}
-                  />
-                </ScrollFacadeBox>
-              ),
-            },
-          ],
+          // 内置 card 变更为 flex 布局，即 card body 占满剩余宽度, 仅在 fullLine 为 false 下生效
+          flexVertical: true,
+          otherComponent: (
+            <ScrollFacadeBox
+              style={{
+                height: '100%',
+                overflowY: 'auto',
+              }}
+            >
+              <FlowProcessHistory
+                // style={{ width: '280px' }}
+                list={[
+                  ...(isArray(listProcessHistory2) ? listProcessHistory2 : []),
+                ]}
+                listItemConvert={processHistoryItemDataConvert}
+                nextData={nextApproveWorkflowNode}
+                nextDataConvert={processHistoryNextDataConvert}
+              />
+            </ScrollFacadeBox>
+          ),
         },
         {
           title: {
@@ -650,6 +643,7 @@ class RadioView extends BaseView {
             subText: mergeArrowText('Code', currentCodeTitle),
           },
           fullLine: true,
+          flexVertical: true,
           extra: {
             affix: true,
             split: false,
