@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
+  convertCollection,
   getValueByKey,
   mergeArrowText,
   showSimpleInfoMessage,
@@ -18,6 +19,7 @@ import {
 } from 'antd-management-fast-component';
 import {
   DataDisplayer,
+  FileViewer,
   SchemaDisplayer,
   setSchemaWithExternalData,
 } from 'antd-management-fast-design-playground';
@@ -26,11 +28,35 @@ import { DataForm } from 'antd-management-fast-framework';
 import { saveFormAction } from '../../../businessAssists/action';
 import { FlowCaseFormDocumentDrawer } from '../../../businessComponents/Drawers/FlowCaseFormDocumentDrawer';
 import { PlaygroundDrawer } from '../../../businessComponents/Drawers/PlaygroundDrawer';
+import { RemarkEditDrawer } from '../../../businessComponents/Drawers/RemarkEditDrawer';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeModalView } from './codeSource';
 
 const { BaseUpdateForm } = DataForm;
+
+const listAttachment = [
+  {
+    workflowId: '1720257724563984384',
+    flowCaseId: '1721891698650517504',
+    tag: 'abdb2869310d4e31ad77a1671909454f',
+    name: '1724402689661603840.png',
+    alias: '文件1.png',
+    size: 405.9541,
+    suffix: 'png',
+    workflowCaseFormAttachmentId: '1724402698385756160',
+    channel: 200,
+    status: 100,
+    createOperatorId: '1718800099049607168',
+    createTime: '2023-11-14 20:23:35',
+    updateOperatorId: '1718800099049607168',
+    updateTime: '2023-11-14 20:23:35',
+    key: '1724402698385756160',
+    workflowName: '员工请假审批流程',
+    url: 'http://file.abc.net/simple.png',
+    statusNote: '正常',
+  },
+];
 
 @connect(({ formDesign, schedulingControl }) => ({
   formDesign,
@@ -88,6 +114,14 @@ class DesignView extends BaseUpdateForm {
     this.reloadData({});
   };
 
+  showRemarkEditDrawer = () => {
+    RemarkEditDrawer.open();
+  };
+
+  afterRemarkEditDrawerClose = () => {
+    this.reloadData({});
+  };
+
   establishToolBarConfig = () => {
     return {
       stick: false,
@@ -117,6 +151,12 @@ class DesignView extends BaseUpdateForm {
     } = this.state;
 
     const that = this;
+
+    const formRemarkList = getValueByKey({
+      data: metaData,
+      key: 'formRemarkList',
+      convert: convertCollection.array,
+    });
 
     const designJson = getValueByKey({
       data: metaData,
@@ -157,10 +197,20 @@ class DesignView extends BaseUpdateForm {
                 buildType: cardConfig.extraBuildType.generalExtraButton,
                 type: 'default',
                 icon: iconBuilder.read(),
-                text: '表单文档',
+                text: '表单打印设计',
                 // disabled: !firstLoadSuccess,
                 handleClick: () => {
                   this.showFlowCaseFormDocumentDrawer();
+                },
+              },
+              {
+                buildType: cardConfig.extraBuildType.generalExtraButton,
+                type: 'default',
+                icon: iconBuilder.read(),
+                text: '表单备注设置',
+                // disabled: !firstLoadSuccess,
+                handleClick: () => {
+                  this.showRemarkEditDrawer();
                 },
               },
             ],
@@ -211,19 +261,37 @@ class DesignView extends BaseUpdateForm {
                         // showNumber: false,
                       }
                     }
-                    descriptions={[
-                      {
-                        text: '说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1说明文本1',
-                      },
-                      {
-                        text: '说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2说明文本2',
-                      },
-                      {
-                        text: '说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3说明文本3',
-                      },
-                    ]}
+                    descriptions={formRemarkList}
                     showFooterDivider
-                    footer={<div>123123</div>}
+                    footer={
+                      <FileViewer
+                        canUpload
+                        canRemove
+                        list={listAttachment}
+                        dataTransfer={(o) => {
+                          return {
+                            ...o,
+                            name: getValueByKey({
+                              data: o,
+                              key: 'alias',
+                            }),
+                            url: getValueByKey({
+                              data: o,
+                              key: 'url',
+                            }),
+                          };
+                        }}
+                        onUploadButtonClick={() => {
+                          showSimpleInfoMessage('点击上传按钮');
+                        }}
+                        onItemClick={() => {
+                          showSimpleInfoMessage('点击条目按钮');
+                        }}
+                        onRemove={() => {
+                          showSimpleInfoMessage('点击移除按钮');
+                        }}
+                      />
+                    }
                     onSubmit={(o) => {
                       this.saveForm(o);
                     }}
@@ -335,6 +403,13 @@ class DesignView extends BaseUpdateForm {
         />
 
         <FlowCaseFormDocumentDrawer maskClosable />
+
+        <RemarkEditDrawer
+          maskClosable
+          afterClose={() => {
+            this.afterRemarkEditDrawerClose();
+          }}
+        />
       </>
     );
   };

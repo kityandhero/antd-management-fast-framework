@@ -37,6 +37,7 @@ import {
   isArray,
   isEmptyArray,
   isFunction,
+  toString,
 } from 'easy-soft-utility';
 
 import { HelpBox, iconBuilder } from 'antd-management-fast-component';
@@ -182,7 +183,11 @@ class SchemaDisplayer extends PureComponent {
                     }}
                     {...helpBoxProps}
                     showTitle={false}
-                    list={descriptions}
+                    list={descriptions.map((o) => {
+                      return {
+                        text: toString(o),
+                      };
+                    })}
                   />
                 );
               },

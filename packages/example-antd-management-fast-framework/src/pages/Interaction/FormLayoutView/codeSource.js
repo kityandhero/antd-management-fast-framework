@@ -39,7 +39,7 @@ class FormLayoutView extends BaseView {
             text: '占位区域',
           },
           fullLine: false,
-          width: 'auto',
+          // width: 'auto',
           items: [
             {
               lg: 24,
@@ -58,17 +58,12 @@ class FormLayoutView extends BaseView {
           },
           fullLine: false,
           width: '280px',
-          items: [
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.component,
-              component: (
-                <div style={{ height: '200px' }}>
-                  <CenterBox>content</CenterBox>
-                </div>
-              ),
-            },
-          ],
+          flexVertical: true,
+          otherComponent: (
+            <div style={{ height: '300px' }}>
+              <CenterBox>content</CenterBox>
+            </div>
+          ),
         },
         {
           title: {
@@ -88,7 +83,7 @@ class FormLayoutView extends BaseView {
         },
         {
           title: {
-            text: '区域',
+            text: '占位区域',
           },
           fullLine: false,
           width: 'auto',

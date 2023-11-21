@@ -249,3 +249,19 @@ export async function saveFormAction({
     successMessage,
   });
 }
+
+export async function saveFormRemarkAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: 'formDesign/saveFormRemark',
+    params: handleData,
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
