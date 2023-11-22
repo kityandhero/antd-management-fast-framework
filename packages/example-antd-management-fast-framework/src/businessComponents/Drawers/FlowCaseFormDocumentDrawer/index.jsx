@@ -73,6 +73,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
   };
 
   renderPresetContentContainorInnerTop = () => {
+    const { canDesign } = this.props;
     const { metaData } = this.state;
 
     const dataSchema = getValueByKey({
@@ -96,6 +97,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
 
     return (
       <DocumentDisplayer
+        canDesign={canDesign}
         values={formData}
         schema={listDataSchema}
         onSave={(data) => {
@@ -108,5 +110,9 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     );
   };
 }
+
+FlowCaseFormDocumentDrawer.defaultProps = {
+  canDesign: false,
+};
 
 export { FlowCaseFormDocumentDrawer };

@@ -27,7 +27,7 @@ class DocumentDisplayer extends BaseComponent {
 
     this.state = {
       ...this.state,
-      designMode: true,
+      designMode: false,
       schemaTag: '',
       schemaStorage: [],
     };
@@ -137,6 +137,7 @@ class DocumentDisplayer extends BaseComponent {
       values,
       style,
       color,
+      canDesign,
       labelColumnWidth,
       labelColumnStyle,
       labelContainerStyle,
@@ -177,7 +178,7 @@ class DocumentDisplayer extends BaseComponent {
                   title="操作栏"
                   tools={[
                     {
-                      hidden: !designMode,
+                      hidden: !canDesign || !designMode,
                       component: buildButton({
                         text: '关闭设计模式',
                         size: 'small',
@@ -188,7 +189,7 @@ class DocumentDisplayer extends BaseComponent {
                       }),
                     },
                     {
-                      hidden: !designMode,
+                      hidden: !canDesign || !designMode,
                       component: buildButton({
                         text: '初始化设计',
                         size: 'small',
@@ -199,7 +200,7 @@ class DocumentDisplayer extends BaseComponent {
                       }),
                     },
                     {
-                      hidden: !designMode,
+                      hidden: !canDesign || !designMode,
                       component: buildButton({
                         text: '重置设计',
                         size: 'small',
@@ -210,7 +211,7 @@ class DocumentDisplayer extends BaseComponent {
                       }),
                     },
                     {
-                      hidden: !designMode,
+                      hidden: !canDesign || !designMode,
                       component: buildButton({
                         text: '保存设计',
                         size: 'small',
@@ -222,7 +223,7 @@ class DocumentDisplayer extends BaseComponent {
                       }),
                     },
                     {
-                      hidden: designMode,
+                      hidden: !canDesign || designMode,
                       component: buildButton({
                         text: '开启设计模式',
                         size: 'small',
@@ -271,6 +272,7 @@ DocumentDisplayer.defaultProps = {
   values: {},
   schema: {},
   style: null,
+  canDesign: false,
   color: colorDefault,
   title: '表格标题',
   titleContainerStyle: null,

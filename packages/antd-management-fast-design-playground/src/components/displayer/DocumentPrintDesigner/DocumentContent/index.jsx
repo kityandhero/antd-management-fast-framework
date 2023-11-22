@@ -103,15 +103,6 @@ function adjustSchemaData(schema) {
   }
 
   if (listTemplate.length > 0) {
-    // if (listTemplate.length === 1) {
-    //   list.push({
-    //     ...listTemplate[0],
-    //     fullLine: whetherString.yes,
-    //   });
-    // } else {
-    //   list.push([...listTemplate]);
-    // }
-
     list.push([...listTemplate]);
 
     listTemplate = [];

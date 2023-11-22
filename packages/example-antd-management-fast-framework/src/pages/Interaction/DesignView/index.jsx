@@ -411,7 +411,7 @@ class DesignView extends BaseUpdateForm {
           }}
         />
 
-        <FlowCaseFormDocumentDrawer maskClosable />
+        <FlowCaseFormDocumentDrawer maskClosable canDesign />
 
         <RemarkEditDrawer
           afterClose={() => {
