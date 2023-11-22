@@ -414,7 +414,6 @@ class DesignView extends BaseUpdateForm {
         <FlowCaseFormDocumentDrawer maskClosable />
 
         <RemarkEditDrawer
-          maskClosable
           afterClose={() => {
             this.afterRemarkEditDrawerClose();
           }}

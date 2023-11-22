@@ -4,6 +4,7 @@ import React from 'react';
 import {
   checkStringIsNullOrWhiteSpace,
   filter,
+  getGuid,
   isArray,
   isFunction,
   toMd5,
@@ -29,12 +30,12 @@ class RemarkEditor extends BaseComponent {
       ...this.state,
       dataTag: '',
       dataStorage: [],
+      dataBackup: [],
     };
   }
 
   templateStorage = {};
 
-  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProperties, previousState) {
     const { data } = nextProperties;
     const { dataTag } = previousState;
@@ -49,10 +50,12 @@ class RemarkEditor extends BaseComponent {
       };
 
       listAdjust = isArray(list)
-        ? list.map((o, index) => {
+        ? list.map((o) => {
+            const uuid = getGuid();
+
             return {
-              no: index + 1,
-              key: `item_${index + 1}`,
+              id: uuid,
+              key: uuid,
               text: toString(o),
               editing: false,
             };
@@ -62,6 +65,7 @@ class RemarkEditor extends BaseComponent {
       return {
         dataTag: toMd5(JSON.stringify(data || [])),
         dataStorage: listAdjust,
+        dataBackup: listAdjust,
         color: color || '',
       };
     }
@@ -80,24 +84,28 @@ class RemarkEditor extends BaseComponent {
   add = () => {
     const { dataStorage } = this.state;
 
+    const uuid = getGuid();
+
     if (!isArray(dataStorage)) {
       this.setState({
         dataStorage: [
           {
-            no: 1,
-            key: `item_${1}`,
+            id: uuid,
+            key: uuid,
             text: '',
             editing: false,
           },
         ],
       });
+
+      return;
     }
 
     const list = [...dataStorage];
 
     list.push({
-      no: dataStorage.length + 1,
-      key: `item_${dataStorage.length + 1}`,
+      id: uuid,
+      key: uuid,
       text: '',
       editing: false,
     });
@@ -108,12 +116,12 @@ class RemarkEditor extends BaseComponent {
   edit = (item) => {
     const { dataStorage } = this.state;
 
-    const { no } = item;
+    const { id } = item;
 
     const dataAdjust = dataStorage.map((o) => {
-      const { no: noItem } = o;
+      const { id: idItem } = o;
 
-      if (noItem === no) {
+      if (idItem === id) {
         return {
           ...o,
           editing: true,
@@ -132,12 +140,12 @@ class RemarkEditor extends BaseComponent {
   cancelEdit = (item) => {
     const { dataStorage } = this.state;
 
-    const { no } = item;
+    const { id } = item;
 
     const dataAdjust = dataStorage.map((o) => {
-      const { no: noItem } = o;
+      const { id: idItem } = o;
 
-      if (noItem === no) {
+      if (idItem === id) {
         return {
           ...o,
           editing: false,
@@ -153,16 +161,16 @@ class RemarkEditor extends BaseComponent {
     this.setState({ dataStorage: [...dataAdjust] });
   };
 
-  saveItem = ({ no }) => {
+  saveItem = ({ id }) => {
     const { dataStorage } = this.state;
 
     const dataAdjust = dataStorage.map((o) => {
-      const { no: noItem } = o;
+      const { id: idItem } = o;
 
-      if (noItem === no) {
+      if (idItem === id) {
         return {
           ...o,
-          text: this.templateStorage[no] ?? '',
+          text: this.templateStorage[id] ?? '',
           editing: false,
         };
       }
@@ -174,6 +182,39 @@ class RemarkEditor extends BaseComponent {
     });
 
     this.setState({ dataStorage: [...dataAdjust] });
+  };
+
+  deleteItem = (item) => {
+    const { dataStorage } = this.state;
+
+    const { id } = item;
+
+    const list = [];
+
+    for (const o of dataStorage) {
+      const { id: idItem } = o;
+
+      if (idItem === id) {
+        continue;
+      }
+
+      list.push({
+        ...o,
+        editing: false,
+      });
+    }
+
+    this.setState({ dataStorage: [...list] });
+  };
+
+  reset = () => {
+    const { dataBackup } = this.state;
+
+    const list = [...dataBackup];
+
+    console.log(list);
+
+    this.setState({ dataStorage: [...list] });
   };
 
   save = () => {
@@ -205,15 +246,18 @@ class RemarkEditor extends BaseComponent {
     return [
       {
         title: '序号',
-        dataIndex: 'no',
+        dataIndex: 'id',
         align: 'center',
         width: 70,
+        render: (value, record, index) => {
+          return index + 1;
+        },
       },
       {
         title: '备注描述',
         dataIndex: 'text',
         render: (value, record) => {
-          const { no, editing } = record;
+          const { id, editing } = record;
 
           if (!editing) {
             return value;
@@ -227,7 +271,7 @@ class RemarkEditor extends BaseComponent {
                   target: { value: v },
                 } = event;
 
-                this.templateStorage[no] = v;
+                this.templateStorage[id] = v;
               }}
             />
           );
@@ -239,12 +283,12 @@ class RemarkEditor extends BaseComponent {
         align: 'center',
         width: 100,
         render: (_, record) => {
-          const { no, editing } = record;
+          const { id, editing } = record;
 
           return editing ? (
             <span>
               <Typography.Link
-                onClick={() => this.saveItem({ no })}
+                onClick={() => this.saveItem({ id })}
                 style={{ marginRight: 8 }}
               >
                 确定
@@ -260,9 +304,23 @@ class RemarkEditor extends BaseComponent {
               </Popconfirm>
             </span>
           ) : (
-            <Typography.Link onClick={() => this.edit(record)}>
-              编辑
-            </Typography.Link>
+            <span>
+              <Typography.Link
+                onClick={() => this.edit(record)}
+                style={{ marginRight: 8 }}
+              >
+                编辑
+              </Typography.Link>
+
+              <Popconfirm
+                title="确定删除吗?"
+                onConfirm={() => {
+                  this.deleteItem(record);
+                }}
+              >
+                <a>删除</a>
+              </Popconfirm>
+            </span>
           );
         },
       },
@@ -347,10 +405,21 @@ class RemarkEditor extends BaseComponent {
                 },
                 {
                   component: buildButton({
-                    text: '新增条目1',
+                    text: '新增条目',
                     icon: iconBuilder.addCircle(),
                     handleClick: () => {
                       this.add();
+                    },
+                  }),
+                },
+                {
+                  component: buildButton({
+                    text: '重置编辑',
+                    icon: iconBuilder.undo(),
+                    title: '即将重置为初始数据，确定吗？',
+                    confirm: true,
+                    handleClick: () => {
+                      this.reset();
                     },
                   }),
                 },

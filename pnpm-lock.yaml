@@ -1529,7 +1529,7 @@ importers:
         specifier: ^2.6.47
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.75
+        specifier: ^2.6.76
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
         specifier: ^1.0.29
@@ -2903,10 +2903,10 @@ importers:
         specifier: ^2.6.47
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.75
+        specifier: ^2.6.76
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.41
+        specifier: ^1.0.42
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
         specifier: ^1.0.29
