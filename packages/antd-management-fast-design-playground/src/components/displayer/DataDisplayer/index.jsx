@@ -1,7 +1,7 @@
 import { Table } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { isArray } from 'easy-soft-utility';
+import { checkStringIsNullOrWhiteSpace, isArray } from 'easy-soft-utility';
 
 const columns = [
   {
@@ -10,6 +10,13 @@ const columns = [
     key: 'title',
     align: 'center',
     ellipsis: true,
+    render: (value) => {
+      if (!checkStringIsNullOrWhiteSpace(value)) {
+        return value;
+      }
+
+      return <span style={{ color: '#bfbfbf' }}>暂无</span>;
+    },
   },
   {
     title: '名称',
@@ -17,6 +24,14 @@ const columns = [
     key: 'name',
     align: 'center',
     width: '120px',
+    ellipsis: true,
+    render: (value) => {
+      if (!checkStringIsNullOrWhiteSpace(value)) {
+        return value;
+      }
+
+      return <span style={{ color: '#bfbfbf' }}>暂无</span>;
+    },
   },
   {
     title: '类型',
@@ -24,6 +39,14 @@ const columns = [
     key: 'type',
     align: 'center',
     width: '120px',
+    ellipsis: true,
+    render: (value) => {
+      if (!checkStringIsNullOrWhiteSpace(value)) {
+        return value;
+      }
+
+      return <span style={{ color: '#bfbfbf' }}>暂无</span>;
+    },
   },
 ];
 
