@@ -1,4 +1,4 @@
-import { Input, Popconfirm, Table, Typography } from 'antd';
+import { ColorPicker, Input, Popconfirm, Table, Typography } from 'antd';
 import React from 'react';
 
 import {
@@ -13,8 +13,10 @@ import {
 import {
   BaseComponent,
   buildButton,
+  FlexBox,
   iconBuilder,
   PageExtra,
+  VerticalBox,
 } from 'antd-management-fast-component';
 
 const { ToolBar } = PageExtra;
@@ -38,10 +40,16 @@ class RemarkEditor extends BaseComponent {
     const { dataTag } = previousState;
 
     if (toMd5(JSON.stringify(data || [])) != dataTag) {
-      let dataAdjust = [];
+      let listAdjust = [];
 
-      dataAdjust = isArray(data)
-        ? data.map((o, index) => {
+      const { color, list } = {
+        color: '',
+        list: [],
+        ...data,
+      };
+
+      listAdjust = isArray(list)
+        ? list.map((o, index) => {
             return {
               no: index + 1,
               key: `item_${index + 1}`,
@@ -53,7 +61,8 @@ class RemarkEditor extends BaseComponent {
 
       return {
         dataTag: toMd5(JSON.stringify(data || [])),
-        dataStorage: dataAdjust,
+        dataStorage: listAdjust,
+        color: color || '',
       };
     }
 
@@ -62,6 +71,10 @@ class RemarkEditor extends BaseComponent {
 
   onChange = (data) => {
     this.setState({ dataStorage: data || [] });
+  };
+
+  changeColor = (color) => {
+    this.setState({ color: color || '' });
   };
 
   add = () => {
@@ -170,7 +183,7 @@ class RemarkEditor extends BaseComponent {
       return;
     }
 
-    const { dataStorage } = this.state;
+    const { dataStorage, color } = this.state;
 
     const list = dataStorage.map((o) => {
       const { text } = o;
@@ -182,7 +195,10 @@ class RemarkEditor extends BaseComponent {
       return !checkStringIsNullOrWhiteSpace(one || '');
     });
 
-    onSave(listAdjust || []);
+    onSave({
+      color: color || '',
+      list: listAdjust || [],
+    });
   };
 
   getColumn = () => {
@@ -255,7 +271,7 @@ class RemarkEditor extends BaseComponent {
 
   render() {
     const { style } = this.props;
-    const { dataStorage } = this.state;
+    const { dataStorage, color } = this.state;
 
     const columns = this.getColumn();
 
@@ -268,8 +284,70 @@ class RemarkEditor extends BaseComponent {
               title="操作栏"
               tools={[
                 {
+                  component: (
+                    <FlexBox
+                      flexAuto="right"
+                      left={<VerticalBox>颜色：</VerticalBox>}
+                      right={
+                        <div
+                          style={{
+                            minWidth: '104px',
+                          }}
+                        >
+                          <VerticalBox>
+                            <ColorPicker
+                              value={color}
+                              showText
+                              presets={[
+                                {
+                                  label: '常用',
+                                  colors: [
+                                    '#000000',
+                                    '#000000E0',
+                                    '#000000A6',
+                                    '#00000073',
+                                    '#00000040',
+                                    '#00000026',
+                                    '#0000001A',
+                                    '#00000012',
+                                    '#0000000A',
+                                    '#00000005',
+                                    '#F5222D',
+                                    '#FA8C16',
+                                    '#FADB14',
+                                    '#8BBB11',
+                                    '#52C41A',
+                                    '#13A8A8',
+                                    '#1677FF',
+                                    '#2F54EB',
+                                    '#722ED1',
+                                    '#EB2F96',
+                                    '#F5222D4D',
+                                    '#FA8C164D',
+                                    '#FADB144D',
+                                    '#8BBB114D',
+                                    '#52C41A4D',
+                                    '#13A8A84D',
+                                    '#1677FF4D',
+                                    '#2F54EB4D',
+                                    '#722ED14D',
+                                    '#EB2F964D',
+                                  ],
+                                },
+                              ]}
+                              onChange={(_, hex) => {
+                                this.changeColor(hex);
+                              }}
+                            />
+                          </VerticalBox>
+                        </div>
+                      }
+                    />
+                  ),
+                },
+                {
                   component: buildButton({
-                    text: '新增条目',
+                    text: '新增条目1',
                     icon: iconBuilder.addCircle(),
                     handleClick: () => {
                       this.add();

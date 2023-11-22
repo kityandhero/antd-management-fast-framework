@@ -126,13 +126,22 @@ class SchemaDisplayer extends PureComponent {
       helpBoxProps,
       descriptions,
       descriptionType,
-      descriptionLabel,
+      descriptionTitleText,
+      descriptionTitleColor,
+      descriptionLabelColor,
+      descriptionTextColor,
       header,
       showFooterDivider,
       footer,
       onSubmit,
       children,
     } = this.props;
+
+    const helpBoxPropertiesAdjust = {
+      labelColor: descriptionLabelColor,
+      textColor: descriptionTextColor,
+      ...helpBoxProps,
+    };
 
     const formInstance = createForm({ initialValues });
 
@@ -172,7 +181,11 @@ class SchemaDisplayer extends PureComponent {
         descriptionType === 'field' ? (
           <Field
             name={remarkName}
-            title={<span style={{ color: '#999999' }}>{descriptionLabel}</span>}
+            title={
+              <span style={{ color: descriptionTitleColor || '#999999' }}>
+                {descriptionTitleText}
+              </span>
+            }
             decorator={[FormItem]}
             component={[
               () => {
@@ -181,7 +194,7 @@ class SchemaDisplayer extends PureComponent {
                     style={{
                       paddingTop: '4px',
                     }}
-                    {...helpBoxProps}
+                    {...helpBoxPropertiesAdjust}
                     showTitle={false}
                     list={descriptions.map((o) => {
                       return {
@@ -196,7 +209,7 @@ class SchemaDisplayer extends PureComponent {
         ) : (
           <FormItem label={<div></div>} colon={false}>
             <Divider orientation="left" plain>
-              {descriptionLabel}
+              {descriptionTitleText}
             </Divider>
 
             <HelpBox
@@ -255,7 +268,10 @@ SchemaDisplayer.defaultProps = {
   buttonAfterSubmitBuilder: () => null,
   helpBoxProps: {},
   descriptionType: 'field',
-  descriptionLabel: '备注',
+  descriptionTitleText: '备注',
+  descriptionTitleColor: '#999',
+  descriptionLabelColor: '#999',
+  descriptionTextColor: '#999',
   descriptions: [],
   onSubmit: () => {},
   header: null,

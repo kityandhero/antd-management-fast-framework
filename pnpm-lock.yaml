@@ -2906,7 +2906,7 @@ importers:
         specifier: ^2.6.75
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.40
+        specifier: ^1.0.41
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
         specifier: ^1.0.29

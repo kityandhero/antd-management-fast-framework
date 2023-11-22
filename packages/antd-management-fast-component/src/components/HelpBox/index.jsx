@@ -17,7 +17,10 @@ class HelpBox extends PureComponent {
     const {
       style,
       title: titleValue,
+      titleColor,
       showTitle,
+      labelColor,
+      textColor,
       showDivider,
       showNumber,
       labelWidth: labelWidthValue,
@@ -87,7 +90,7 @@ class HelpBox extends PureComponent {
               style={{
                 marginTop: 4,
                 marginBottom: 4,
-                color: '#999',
+                color: titleColor || '#999',
               }}
             >
               {title}
@@ -97,7 +100,7 @@ class HelpBox extends PureComponent {
               style={{
                 marginTop: '4px',
                 marginBottom: '4px',
-                color: '#999',
+                color: titleColor || '#999',
                 fontWeight: 'normal',
                 fontSize: '14px',
                 lineHeight: '22px',
@@ -156,9 +159,10 @@ class HelpBox extends PureComponent {
                 : showNumber
                   ? '22px'
                   : '12px',
+              color: labelColor || '#999',
             },
             contentStyle: {
-              color: '#999',
+              color: textColor || '#999',
             },
           },
         })}
@@ -170,6 +174,9 @@ class HelpBox extends PureComponent {
 HelpBox.defaultProps = {
   style: null,
   title: '帮助信息',
+  titleColor: '#999',
+  labelColor: '#999',
+  textColor: '#999',
   showTitle: true,
   showNumber: true,
   labelWidth: null,

@@ -39,11 +39,12 @@ class RemarkEditDrawer extends BaseVerticalFlexDrawer {
     };
   }
 
-  saveRemark = (data) => {
+  saveRemark = ({ color, list }) => {
     saveFormRemarkAction({
       target: this,
       handleData: {
-        formRemarkList: data,
+        color: color || '',
+        list: list,
       },
       successCallback: ({ target }) => {
         target.reloadData({});
@@ -74,12 +75,21 @@ class RemarkEditDrawer extends BaseVerticalFlexDrawer {
       convert: convertCollection.array,
     });
 
+    const formRemarkColor = getValueByKey({
+      data: metaData,
+      key: 'formRemarkColor',
+      defaultValue: '',
+    });
+
     return (
       <div style={{ paddingLeft: '12px', paddingRight: '12px' }}>
         <RemarkEditor
-          data={formRemarkList}
-          onSave={(data) => {
-            this.saveRemark(data);
+          data={{
+            color: formRemarkColor,
+            list: formRemarkList,
+          }}
+          onSave={({ color, list }) => {
+            this.saveRemark({ color, list });
           }}
         />
       </div>

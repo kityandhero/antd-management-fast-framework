@@ -1,4 +1,5 @@
 import {
+  checkStringIsNullOrWhiteSpace,
   getJsonFromLocalStorage,
   getStringFromLocalStorage,
   isArray,
@@ -10,7 +11,8 @@ import {
 
 const formDesignKey = 'form-design-remote';
 const formDataKey = 'form-data-remote';
-const formRemarkKey = 'form-remark-remote';
+const formRemarkListKey = 'form-remark-list-remote';
+const formRemarkColorKey = 'form-remark-color-remote';
 const uuid = '842927b4edc94b61a4005603b89bd356';
 
 function buildDataSchemaKey() {
@@ -25,8 +27,12 @@ function buildFormDataKey() {
   return `${formDataKey}-e3cabeac8b4b4277adce624793b584c7`;
 }
 
-function buildFormRemarkKey() {
-  return `${formRemarkKey}-57449e0602d944028bc853b063633429`;
+function buildFormRemarkListKey() {
+  return `${formRemarkListKey}-57449e0602d944028bc853b063633429`;
+}
+
+function buildFormRemarkColorKey() {
+  return `${formRemarkColorKey}-e1da2c23d73247c8be233ad4385bdd40`;
 }
 
 export const getDataApiAddress = '/formDesign/get';
@@ -35,7 +41,8 @@ export async function getData(parameters) {
   const dataSchema = getStringFromLocalStorage(buildDataSchemaKey());
   const designSchema = getStringFromLocalStorage(buildDesignSchemaKey());
   const formData = getJsonFromLocalStorage(buildFormDataKey());
-  let formRemarkList = getJsonFromLocalStorage(buildFormRemarkKey());
+  let formRemarkList = getJsonFromLocalStorage(buildFormRemarkListKey());
+  let formRemarkColor = getStringFromLocalStorage(buildFormRemarkColorKey());
 
   if (!isArray(formRemarkList)) {
     formRemarkList = [
@@ -43,7 +50,12 @@ export async function getData(parameters) {
       '表单备注2表单备注2表单备注2表单备注2表单备注2表单备注2表单备注2表单备注2表单备注2表单备注2表单备注2表单备注2',
     ];
 
-    saveJsonToLocalStorage(buildFormRemarkKey(), formRemarkList);
+    saveJsonToLocalStorage(buildFormRemarkListKey(), formRemarkList);
+  }
+
+  if (checkStringIsNullOrWhiteSpace(formRemarkColor)) {
+    formRemarkColor = '';
+    saveStringToLocalStorage(buildFormRemarkColorKey(), formRemarkColor);
   }
 
   return request({
@@ -57,6 +69,7 @@ export async function getData(parameters) {
         designSchema: designSchema ?? '',
         formData: formData || {},
         formRemarkList: formRemarkList,
+        formRemarkColor: formRemarkColor,
       },
     },
   });
@@ -140,7 +153,8 @@ export async function saveFormData(parameters) {
 export const getFormRemarkDataApiAddress = '/formDesign/getFormRemark';
 
 export async function getFormRemarkData(parameters) {
-  let formRemarkList = getJsonFromLocalStorage(buildFormRemarkKey());
+  let formRemarkList = getJsonFromLocalStorage(buildFormRemarkListKey());
+  let formRemarkColor = getStringFromLocalStorage(buildFormRemarkColorKey());
 
   if (!isArray(formRemarkList)) {
     formRemarkList = [
@@ -149,7 +163,12 @@ export async function getFormRemarkData(parameters) {
       '表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3表单备注3',
     ];
 
-    saveJsonToLocalStorage(buildFormRemarkKey(), formRemarkList);
+    saveJsonToLocalStorage(buildFormRemarkListKey(), formRemarkList);
+  }
+
+  if (checkStringIsNullOrWhiteSpace(formRemarkColor)) {
+    formRemarkColor = '';
+    saveStringToLocalStorage(buildFormRemarkColorKey(), formRemarkColor);
   }
 
   return request({
@@ -159,6 +178,7 @@ export async function getFormRemarkData(parameters) {
     simulateRequestMaxDelay: 800,
     simulativeSuccessResponse: {
       data: {
+        formRemarkColor,
         formRemarkList,
       },
     },
@@ -168,13 +188,18 @@ export async function getFormRemarkData(parameters) {
 export const saveFormRemarkDataApiAddress = '/formDesign/saveFormRemark';
 
 export async function saveFormRemarkData(parameters) {
-  let { formRemarkList } = parameters;
+  let { color, list } = parameters;
 
-  if (!isArray(formRemarkList)) {
-    formRemarkList = [];
+  if (!isArray(list)) {
+    list = [];
   }
 
-  saveJsonToLocalStorage(buildFormRemarkKey(), formRemarkList);
+  if (checkStringIsNullOrWhiteSpace(color)) {
+    color = '';
+  }
+
+  saveJsonToLocalStorage(buildFormRemarkListKey(), list);
+  saveStringToLocalStorage(buildFormRemarkColorKey(), color);
 
   return request({
     api: saveFormRemarkDataApiAddress,
@@ -183,7 +208,8 @@ export async function saveFormRemarkData(parameters) {
     simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
-        formRemarkList,
+        formRemarkColor: color,
+        formRemarkList: list,
       },
     },
   });

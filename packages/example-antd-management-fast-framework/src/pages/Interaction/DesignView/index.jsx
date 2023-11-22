@@ -158,6 +158,12 @@ class DesignView extends BaseUpdateForm {
       convert: convertCollection.array,
     });
 
+    const formRemarkColor = getValueByKey({
+      data: metaData,
+      key: 'formRemarkColor',
+      defaultValue: '',
+    });
+
     const designJson = getValueByKey({
       data: metaData,
       key: 'designSchema',
@@ -261,6 +267,9 @@ class DesignView extends BaseUpdateForm {
                         // showNumber: false,
                       }
                     }
+                    descriptionTitleColor={formRemarkColor}
+                    descriptionLabelColor={formRemarkColor}
+                    descriptionTextColor={formRemarkColor}
                     descriptions={formRemarkList}
                     showFooterDivider
                     footer={
