@@ -1,6 +1,11 @@
-export const code = `import { connect } from 'easy-soft-dva';
+export const code = `import { Empty } from 'antd';
+import React from 'react';
+
+import { connect } from 'easy-soft-dva';
 import {
-  logDebug,
+  checkStringIsNullOrWhiteSpace,
+  convertCollection,
+  getValueByKey,
   mergeArrowText,
   showSimpleInfoMessage,
 } from 'easy-soft-utility';
@@ -8,34 +13,114 @@ import {
 import { cardConfig } from 'antd-management-fast-common';
 import {
   buildButton,
+  CenterBox,
   convertOptionOrRadioData,
+  iconBuilder,
 } from 'antd-management-fast-component';
+import {
+  DataDisplayer,
+  FileViewer,
+  SchemaDisplayer,
+  setSchemaWithExternalData,
+} from 'antd-management-fast-design-playground';
+import { DataForm } from 'antd-management-fast-framework';
 
-import { SimpleAddModal } from '../../../businessComponents/Modals/SimpleAddModal';
-import { code as codeSimpleAddModal } from '../../../businessComponents/Modals/SimpleAddModal/codeSource';
-import { SimpleDisplayModal } from '../../../businessComponents/Modals/SimpleDisplayModal';
-import { code as codeSimpleDisplayModal } from '../../../businessComponents/Modals/SimpleDisplayModal/codeSource';
-import { SimpleEditModal } from '../../../businessComponents/Modals/SimpleEditModal';
-import { code as codeSimpleEditModal } from '../../../businessComponents/Modals/SimpleEditModal/codeSource';
-import { BaseView } from '../BaseView';
+import { saveFormAction } from '../../../businessAssists/action';
+import { FlowCaseFormDocumentDrawer } from '../../../businessComponents/Drawers/FlowCaseFormDocumentDrawer';
+import { PlaygroundDrawer } from '../../../businessComponents/Drawers/PlaygroundDrawer';
+import { RemarkEditDrawer } from '../../../businessComponents/Drawers/RemarkEditDrawer';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeModalView } from './codeSource';
 
-@connect(({ schedulingControl }) => ({
+const { BaseUpdateForm } = DataForm;
+
+const listAttachment = [
+  {
+    workflowId: '1720257724563984384',
+    flowCaseId: '1721891698650517504',
+    tag: 'abdb2869310d4e31ad77a1671909454f',
+    name: '1724402689661603840.png',
+    alias: '文件1.png',
+    size: 405.9541,
+    suffix: 'png',
+    workflowCaseFormAttachmentId: '1724402698385756160',
+    channel: 200,
+    status: 100,
+    createOperatorId: '1718800099049607168',
+    createTime: '2023-11-14 20:23:35',
+    updateOperatorId: '1718800099049607168',
+    updateTime: '2023-11-14 20:23:35',
+    key: '1724402698385756160',
+    workflowName: '员工请假审批流程',
+    url: 'http://file.abc.net/simple.png',
+    statusNote: '正常',
+  },
+];
+
+@connect(({ formDesign, schedulingControl }) => ({
+  formDesign,
   schedulingControl,
 }))
-class ModalView extends BaseView {
+class DesignView extends BaseUpdateForm {
+  resetDataAfterLoad = false;
+
+  useFormWrapper = false;
+
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-      pageTitle: 'Modal 交互示例',
+      loadApiPath: 'formDesign/get',
+      pageTitle: 'Design 示例',
       currentCodeTitle: 'ModalView',
       currentCode: codeModalView,
+      formData: null,
     };
   }
+
+  doOtherAfterLoadSuccess = ({ metaData }) => {
+    const designJson = getValueByKey({
+      data: metaData,
+      key: 'designSchema',
+    });
+
+    const formData = getValueByKey({
+      data: metaData,
+      key: 'formData',
+    });
+
+    setSchemaWithExternalData(designJson);
+
+    this.setState({ formData });
+  };
+
+  saveForm = (data) => {
+    saveFormAction({
+      target: this,
+      handleData: data,
+      successCallback: ({ params }) => {
+        this.setState({ formData: params });
+      },
+    });
+  };
+
+  showFlowCaseFormDocumentDrawer = () => {
+    FlowCaseFormDocumentDrawer.open();
+  };
+
+  afterDesignDrawerClose = () => {
+    this.reloadData({});
+  };
+
+  showRemarkEditDrawer = () => {
+    RemarkEditDrawer.open();
+  };
+
+  afterRemarkEditDrawerClose = () => {
+    this.reloadData({});
+  };
 
   establishToolBarConfig = () => {
     return {
@@ -44,30 +129,10 @@ class ModalView extends BaseView {
       tools: [
         {
           component: buildButton({
-            title: '点击显示 SimpleDisplayModal',
-            text: '显示 SimpleDisplayModal',
+            title: '点击显示 PlaygroundModalExtra',
+            text: '显示 PlaygroundModalExtra',
             handleClick: () => {
-              SimpleDisplayModal.open();
-            },
-            disabled: false,
-          }),
-        },
-        {
-          component: buildButton({
-            title: '点击显示 AddModal',
-            text: '显示 AddModal',
-            handleClick: () => {
-              SimpleAddModal.open();
-            },
-            disabled: false,
-          }),
-        },
-        {
-          component: buildButton({
-            title: '点击显示 EditModal',
-            text: '显示 EditModal',
-            handleClick: () => {
-              SimpleEditModal.open();
+              PlaygroundDrawer.open();
             },
             disabled: false,
           }),
@@ -77,12 +142,192 @@ class ModalView extends BaseView {
   };
 
   establishCardCollectionConfig = () => {
-    const { currentCode, currentCodeTitle } = this.state;
+    const {
+      // firstLoadSuccess,
+      currentCode,
+      currentCodeTitle,
+      metaData,
+      formData,
+    } = this.state;
 
     const that = this;
 
+    const formRemarkList = getValueByKey({
+      data: metaData,
+      key: 'formRemarkList',
+      convert: convertCollection.array,
+    });
+
+    const formRemarkColor = getValueByKey({
+      data: metaData,
+      key: 'formRemarkColor',
+      defaultValue: '',
+    });
+
+    const designJson = getValueByKey({
+      data: metaData,
+      key: 'designSchema',
+    });
+
+    const dataSchema = getValueByKey({
+      data: metaData,
+      key: 'dataSchema',
+      defaultValue: '[]',
+    });
+
+    let listDataSchema = JSON.parse(dataSchema);
+
+    const hasDataSchema = listDataSchema.length > 0;
+
+    const designData = {
+      form: {},
+      schema: {},
+      ...(checkStringIsNullOrWhiteSpace(designJson)
+        ? {}
+        : JSON.parse(designJson)),
+    };
+
     return {
       list: [
+        {
+          title: {
+            text: '表单示例',
+          },
+          fullLine: false,
+          width: 'auto',
+          hasExtra: true,
+          extra: {
+            affix: true,
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.generalExtraButton,
+                type: 'default',
+                icon: iconBuilder.read(),
+                text: '表单打印设计',
+                // disabled: !firstLoadSuccess,
+                handleClick: () => {
+                  this.showFlowCaseFormDocumentDrawer();
+                },
+              },
+              {
+                buildType: cardConfig.extraBuildType.generalExtraButton,
+                type: 'default',
+                icon: iconBuilder.read(),
+                text: '表单备注设置',
+                // disabled: !firstLoadSuccess,
+                handleClick: () => {
+                  this.showRemarkEditDrawer();
+                },
+              },
+            ],
+          },
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: (
+                <div>
+                  <SchemaDisplayer
+                    {...designData}
+                    initialValues={formData}
+                    showSubmit
+                    showSubmitDivider
+                    header={
+                      <div>
+                        <CenterBox>
+                          <h2>表单头部区域</h2>
+                        </CenterBox>
+                      </div>
+                    }
+                    buttonBeforeSubmitBuilder={() => {
+                      return buildButton({
+                        type: 'primary',
+                        icon: iconBuilder.checkCircle(),
+                        text: '其他前置按钮',
+                        hidden: false,
+                        handleData: metaData,
+                        handleClick: ({ handleData }) => {
+                          console.log(handleData);
+                        },
+                      });
+                    }}
+                    buttonAfterSubmitBuilder={() => {
+                      return buildButton({
+                        icon: iconBuilder.checkCircle(),
+                        text: '其他后置按钮',
+                        hidden: false,
+                        handleData: metaData,
+                        handleClick: ({ handleData }) => {
+                          console.log(handleData);
+                        },
+                      });
+                    }}
+                    helpBoxProps={
+                      {
+                        // showNumber: false,
+                      }
+                    }
+                    descriptionTitleColor={formRemarkColor}
+                    descriptionLabelColor={formRemarkColor}
+                    descriptionTextColor={formRemarkColor}
+                    descriptions={formRemarkList}
+                    showFooterDivider
+                    footer={
+                      <FileViewer
+                        canUpload
+                        canRemove
+                        list={listAttachment}
+                        dataTransfer={(o) => {
+                          return {
+                            ...o,
+                            name: getValueByKey({
+                              data: o,
+                              key: 'alias',
+                            }),
+                            url: getValueByKey({
+                              data: o,
+                              key: 'url',
+                            }),
+                          };
+                        }}
+                        onUploadButtonClick={() => {
+                          showSimpleInfoMessage('点击上传按钮');
+                        }}
+                        onItemClick={() => {
+                          showSimpleInfoMessage('点击条目按钮');
+                        }}
+                        onRemove={() => {
+                          showSimpleInfoMessage('点击移除按钮');
+                        }}
+                      />
+                    }
+                    onSubmit={(o) => {
+                      this.saveForm(o);
+                    }}
+                  >
+                    {hasDataSchema ? null : (
+                      <Empty description="暂无表单设计，请进行设计" />
+                    )}
+                  </SchemaDisplayer>
+                </div>
+              ),
+            },
+          ],
+        },
+        {
+          title: {
+            text: '数据集合',
+          },
+          fullLine: false,
+          width: '400px',
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.component,
+              component: <DataDisplayer schema={listDataSchema} />,
+            },
+          ],
+        },
         {
           title: {
             text: '代码示例',
@@ -108,16 +353,8 @@ class ModalView extends BaseView {
                     name: 'ModalView',
                   },
                   {
-                    flag: 'SimpleDisplayModal',
-                    name: 'SimpleDisplayModal',
-                  },
-                  {
-                    flag: 'SimpleAddModal',
-                    name: 'SimpleAddModal',
-                  },
-                  {
-                    flag: 'SimpleEditModal',
-                    name: 'SimpleEditModal',
+                    flag: 'PlaygroundModalExtra',
+                    name: 'PlaygroundModalExtra',
                   },
                 ],
                 dataConvert: convertOptionOrRadioData,
@@ -133,24 +370,6 @@ class ModalView extends BaseView {
 
                     case 'ModalView': {
                       code = codeModalView;
-                      break;
-                    }
-
-                    case 'SimpleDisplayModal': {
-                      code = codeSimpleDisplayModal;
-
-                      break;
-                    }
-
-                    case 'SimpleAddModal': {
-                      code = codeSimpleAddModal;
-
-                      break;
-                    }
-
-                    case 'SimpleEditModal': {
-                      code = codeSimpleEditModal;
-
                       break;
                     }
                   }
@@ -186,24 +405,17 @@ class ModalView extends BaseView {
   renderPresetOther = () => {
     return (
       <>
-        <SimpleDisplayModal />
-
-        <SimpleAddModal
-          afterOK={({ subjoinData }) => {
-            logDebug(subjoinData, 'trigger afterOK');
-          }}
-          afterCancel={() => {
-            logDebug({}, 'trigger afterCancel');
+        <PlaygroundDrawer
+          afterClose={() => {
+            this.afterDesignDrawerClose();
           }}
         />
 
-        <SimpleEditModal
-          externalData={{ simpleId: 1 }}
-          afterOK={({ subjoinData }) => {
-            logDebug(subjoinData, 'trigger afterOK');
-          }}
-          afterCancel={() => {
-            logDebug({}, 'trigger afterCancel');
+        <FlowCaseFormDocumentDrawer maskClosable canDesign />
+
+        <RemarkEditDrawer
+          afterClose={() => {
+            this.afterRemarkEditDrawerClose();
           }}
         />
       </>
@@ -211,5 +423,5 @@ class ModalView extends BaseView {
   };
 }
 
-export default ModalView;
+export default DesignView;
 `;

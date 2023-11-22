@@ -95,6 +95,7 @@ const externalCollection = [
   'react-player',
   'react-redux',
   'react-syntax-highlighter',
+  'react-to-print',
   'react/jsx-runtime',
   'reactflow',
   'redux',

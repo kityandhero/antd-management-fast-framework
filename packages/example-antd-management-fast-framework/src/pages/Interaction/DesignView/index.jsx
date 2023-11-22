@@ -73,7 +73,7 @@ class DesignView extends BaseUpdateForm {
     this.state = {
       ...this.state,
       loadApiPath: 'formDesign/get',
-      pageTitle: 'Modal 交互示例',
+      pageTitle: 'Design 示例',
       currentCodeTitle: 'ModalView',
       currentCode: codeModalView,
       formData: null,

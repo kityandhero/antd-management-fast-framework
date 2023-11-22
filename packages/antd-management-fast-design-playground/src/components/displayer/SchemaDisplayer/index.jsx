@@ -137,6 +137,12 @@ class SchemaDisplayer extends PureComponent {
       children,
     } = this.props;
 
+    const formPropertiesAdjust = {
+      labelCol: 6,
+      wrapperCol: 12,
+      ...formProperties,
+    };
+
     const helpBoxPropertiesAdjust = {
       labelColor: descriptionLabelColor,
       textColor: descriptionTextColor,
@@ -225,7 +231,7 @@ class SchemaDisplayer extends PureComponent {
       ) : null;
     return (
       <div>
-        <Form {...formProperties} form={formInstance}>
+        <Form {...formPropertiesAdjust} form={formInstance}>
           {header ? (
             <FormItem label={<div></div>} colon={false}>
               {header}

@@ -19,7 +19,7 @@ class FormLayoutView extends BaseView {
 
     this.state = {
       ...this.state,
-      pageTitle: 'Modal 交互示例',
+      pageTitle: 'Form Layout 示例',
       currentCodeTitle: 'FormLayoutView',
       currentCode: codeFormLayoutView,
     };

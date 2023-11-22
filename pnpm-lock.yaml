@@ -2906,7 +2906,7 @@ importers:
         specifier: ^2.6.76
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.43
+        specifier: ^1.0.45
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
         specifier: ^1.0.29
@@ -2944,6 +2944,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      react-to-print:
+        specifier: ^2.14.15
+        version: 2.14.15(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@babel/core':
         specifier: ^7.23.3
