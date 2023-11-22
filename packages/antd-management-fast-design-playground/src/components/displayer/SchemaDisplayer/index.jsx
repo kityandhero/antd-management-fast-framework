@@ -40,7 +40,11 @@ import {
   toString,
 } from 'easy-soft-utility';
 
-import { HelpBox, iconBuilder } from 'antd-management-fast-component';
+import {
+  CenterBox,
+  HelpBox,
+  iconBuilder,
+} from 'antd-management-fast-component';
 
 const Text = ({ value, mode, content, ...properties }) => {
   const tagName = mode === 'normal' || !mode ? 'div' : mode;
@@ -162,23 +166,27 @@ class SchemaDisplayer extends PureComponent {
     const buttonGroup =
       showSubmit || buttonBefore || buttonAfter ? (
         <FormButtonGroup.FormItem>
-          {buttonBefore}
+          <CenterBox>
+            <Space>
+              {buttonBefore}
 
-          {showSubmit ? (
-            <Submit
-              form={formInstance}
-              icon={submitButtonIcon}
-              onSubmit={(o) => {
-                if (isFunction(onSubmit)) {
-                  onSubmit(o);
-                }
-              }}
-            >
-              {submitButtonText}
-            </Submit>
-          ) : null}
+              {showSubmit ? (
+                <Submit
+                  form={formInstance}
+                  icon={submitButtonIcon}
+                  onSubmit={(o) => {
+                    if (isFunction(onSubmit)) {
+                      onSubmit(o);
+                    }
+                  }}
+                >
+                  {submitButtonText}
+                </Submit>
+              ) : null}
 
-          {buttonAfter}
+              {buttonAfter}
+            </Space>
+          </CenterBox>
         </FormButtonGroup.FormItem>
       ) : null;
 

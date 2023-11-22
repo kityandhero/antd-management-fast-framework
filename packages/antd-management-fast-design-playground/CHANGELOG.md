@@ -1,5 +1,11 @@
 # antd-management-fast-design-playground
 
+## 1.0.47
+
+### Patch Changes
+
+- update
+
 ## 1.0.46
 
 ### Patch Changes
