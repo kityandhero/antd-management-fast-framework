@@ -617,6 +617,9 @@ class InternalBuild extends InternalSwitchoverFlow {
                 flex: '1 1 auto',
               }
             : {}),
+          ...(cardContent == null && otherComponent == null && helpArea == null
+            ? { padding: '0' }
+            : {}),
         }}
       >
         {cardContent == null &&
