@@ -3,12 +3,12 @@ import React, { PureComponent } from 'react';
 
 import {
   checkStringIsNullOrWhiteSpace,
-  convertCollection,
   endsWith,
   getValueByKey,
   isArray,
   isEmptyArray,
   isFunction,
+  isString,
   isUndefined,
   toNumber,
   toString,
@@ -143,6 +143,67 @@ function adjustSchemaData(schema) {
   }
 
   return list;
+}
+
+function buildDisplayValue(data, values) {
+  const { name, type, enumList } = { ...data };
+
+  let v = '';
+
+  if (endsWith(type, '[]')) {
+    let vList = [];
+
+    if (isArray(values[name])) {
+      vList = values[name];
+    }
+
+    if (!isArray(values[name]) && isString(values[name])) {
+      try {
+        const valueTemporary = JSON.parse(values[name]);
+
+        if (isArray(valueTemporary)) {
+          vList = values[name];
+        }
+      } catch {
+        vList = [];
+      }
+    }
+
+    v = vList.join(' ～ ');
+  } else {
+    v = getValueByKey({
+      data: values,
+      key: name,
+      defaultValue: '',
+    });
+  }
+
+  return isArray(enumList) && !isEmptyArray(enumList) ? (
+    <VerticalBox>
+      <Space wrap>
+        {enumList.map((o, index) => {
+          const { label, value } = o;
+
+          return (
+            <Checkbox
+              key={`${name}_${index}`}
+              value={value}
+              checked={value == v}
+              style={{
+                fontSize: '16px',
+                ...fontFamilyStyle,
+                ...colorStyle,
+              }}
+            >
+              {label}
+            </Checkbox>
+          );
+        })}
+      </Space>
+    </VerticalBox>
+  ) : (
+    <VerticalBox>{v}</VerticalBox>
+  );
 }
 
 function RowConfigBox(properties) {
@@ -352,7 +413,7 @@ function LineItem(properties) {
     dataAdjust = data;
   }
 
-  const { title, name, type, enumList, width, height } = dataAdjust;
+  const { title, width, height } = dataAdjust;
 
   const heightAdjust =
     isUndefined(height) ||
@@ -368,51 +429,7 @@ function LineItem(properties) {
       ? ''
       : width;
 
-  let v = '';
-
-  if (endsWith(type, '[]')) {
-    const vList = getValueByKey({
-      data: values,
-      key: name,
-      convert: convertCollection.array,
-    });
-
-    v = vList.join(' ～ ');
-  } else {
-    v = getValueByKey({
-      data: values,
-      key: name,
-      defaultValue: '',
-    });
-  }
-
-  const displayValue =
-    isArray(enumList) && !isEmptyArray(enumList) ? (
-      <VerticalBox>
-        <Space wrap>
-          {enumList.map((o, index) => {
-            const { label, value } = o;
-
-            return (
-              <Checkbox
-                key={`${name}_${index}`}
-                value={value}
-                checked={value == v}
-                style={{
-                  fontSize: '16px',
-                  ...fontFamilyStyle,
-                  ...colorStyle,
-                }}
-              >
-                {label}
-              </Checkbox>
-            );
-          })}
-        </Space>
-      </VerticalBox>
-    ) : (
-      <VerticalBox>{v}</VerticalBox>
-    );
+  const displayValue = buildDisplayValue(dataAdjust, values);
 
   return (
     <FlexBox
@@ -587,53 +604,9 @@ function InLineItem(properties) {
     onChange: onChangeCallback,
   } = properties;
 
-  const { title, name, type, enumList } = { ...data };
+  const { title } = { ...data };
 
-  let v = '';
-
-  if (endsWith(type, '[]')) {
-    const vList = getValueByKey({
-      data: values,
-      key: name,
-      convert: convertCollection.array,
-    });
-
-    v = vList.join(' ～ ');
-  } else {
-    v = getValueByKey({
-      data: values,
-      key: name,
-      defaultValue: '',
-    });
-  }
-
-  const displayValue =
-    isArray(enumList) && !isEmptyArray(enumList) ? (
-      <VerticalBox>
-        <Space wrap>
-          {enumList.map((o, index) => {
-            const { label, value } = o;
-
-            return (
-              <Checkbox
-                key={`${name}_${index}`}
-                value={value}
-                checked={value == v}
-                style={{
-                  fontSize: '16px',
-                  ...fontFamilyStyle,
-                  ...colorStyle,
-                }}
-              >
-                {label}
-              </Checkbox>
-            );
-          })}
-        </Space>
-      </VerticalBox>
-    ) : (
-      <VerticalBox>{v}</VerticalBox>
-    );
+  const displayValue = buildDisplayValue(data, values);
 
   const filedComponent = (
     <FlexBox
