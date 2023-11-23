@@ -113,6 +113,7 @@ import {
   PlusSquareFilled,
   PlusSquareOutlined,
   PoweroffOutlined,
+  PrinterOutlined,
   ProfileFilled,
   ProfileOutlined,
   ProjectFilled,
@@ -823,6 +824,9 @@ export const iconBuilder = {
   },
   retweet: (properties = null) => {
     return <RetweetOutlined {...(properties || {})} />;
+  },
+  printer: (properties = null) => {
+    return <PrinterOutlined {...(properties || {})} />;
   },
   exclamationCircle: (
     properties = null,

@@ -6,7 +6,6 @@ import {
   getValueByKey,
   isArray,
   isFunction,
-  isObject,
   isUndefined,
   toNumber,
   toString,
@@ -49,10 +48,6 @@ const valueFrontStyle = {
 };
 
 function adjustValues(values) {
-  if (isObject(values)) {
-    return values;
-  }
-
   if (isArray(values)) {
     const v = {};
 
@@ -73,7 +68,7 @@ function adjustValues(values) {
     return v;
   }
 
-  return {};
+  return values || {};
 }
 
 function adjustSchemaData(schema) {
