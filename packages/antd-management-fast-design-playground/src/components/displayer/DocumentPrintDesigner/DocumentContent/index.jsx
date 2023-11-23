@@ -6,6 +6,7 @@ import {
   getValueByKey,
   isArray,
   isFunction,
+  isObject,
   isUndefined,
   toNumber,
   toString,
@@ -46,6 +47,34 @@ const valueFrontStyle = {
   fontSize: '20px',
   lineHeight: '36px',
 };
+
+function adjustValues(values) {
+  if (isObject(values)) {
+    return values;
+  }
+
+  if (isArray(values)) {
+    const v = {};
+
+    for (const o of values) {
+      const { name, value } = {
+        name: '',
+        value: '',
+        ...o,
+      };
+
+      if (checkStringIsNullOrWhiteSpace(name)) {
+        continue;
+      }
+
+      v[name] = value ?? '';
+    }
+
+    return v;
+  }
+
+  return {};
+}
 
 function adjustSchemaData(schema) {
   if (!isArray(schema)) {
@@ -660,7 +689,7 @@ class DocumentContent extends PureComponent {
 
   render() {
     const {
-      values,
+      values: valuesSource,
       schema,
       style,
       color,
@@ -674,6 +703,8 @@ class DocumentContent extends PureComponent {
       titleStyle,
       designMode,
     } = this.props;
+
+    const values = adjustValues(valuesSource);
 
     const schemaAdjust = adjustSchemaData(schema);
 
