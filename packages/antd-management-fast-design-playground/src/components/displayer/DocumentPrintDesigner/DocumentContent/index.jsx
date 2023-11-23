@@ -162,14 +162,14 @@ function buildDisplayValue(data, values) {
         const valueTemporary = JSON.parse(values[name]);
 
         if (isArray(valueTemporary)) {
-          vList = values[name];
+          vList = valueTemporary;
         }
       } catch {
         vList = [];
       }
     }
 
-    v = vList.join(' ～ ');
+    v = isEmptyArray(vList) ? values[name] : vList.join(' ～ ');
   } else {
     v = getValueByKey({
       data: values,
