@@ -15,7 +15,6 @@ import {
   convertOptionOrRadioData,
   FlexBox,
   iconBuilder,
-  ScrollFacadeBox,
 } from 'antd-management-fast-component';
 import {
   adjustEdge,
@@ -619,22 +618,15 @@ class RadioView extends BaseView {
           // 内置 card 变更为 flex 布局，即 card body 占满剩余宽度, 仅在 fullLine 为 false 下生效
           flexVertical: true,
           otherComponent: (
-            <ScrollFacadeBox
-              style={{
-                height: '100%',
-                overflowY: 'auto',
-              }}
-            >
-              <FlowProcessHistory
-                // style={{ width: '280px' }}
-                list={[
-                  ...(isArray(listProcessHistory2) ? listProcessHistory2 : []),
-                ]}
-                listItemConvert={processHistoryItemDataConvert}
-                nextData={nextApproveWorkflowNode}
-                nextDataConvert={processHistoryNextDataConvert}
-              />
-            </ScrollFacadeBox>
+            <FlowProcessHistory
+              // style={{ width: '280px' }}
+              list={[
+                ...(isArray(listProcessHistory2) ? listProcessHistory2 : []),
+              ]}
+              listItemConvert={processHistoryItemDataConvert}
+              nextData={nextApproveWorkflowNode}
+              nextDataConvert={processHistoryNextDataConvert}
+            />
           ),
         },
         {

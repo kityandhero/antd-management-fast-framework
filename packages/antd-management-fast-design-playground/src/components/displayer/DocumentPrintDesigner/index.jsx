@@ -2,7 +2,13 @@ import { Button } from 'antd';
 import React from 'react';
 import ReactToPrint from 'react-to-print';
 
-import { isArray, isFunction, toMd5, whetherString } from 'easy-soft-utility';
+import {
+  isArray,
+  isFunction,
+  toMd5,
+  toString,
+  whetherString,
+} from 'easy-soft-utility';
 
 import {
   BaseComponent,
@@ -39,9 +45,31 @@ class DocumentDisplayer extends BaseComponent {
     const { schemaTag } = previousState;
 
     if (toMd5(JSON.stringify(schema || [])) != schemaTag) {
+      const schemaAdjust = isArray(schema) ? schema : [];
+
+      const schemaStorageAdjust = schemaAdjust.map((o) => {
+        const {
+          fullLine: fullLineItem,
+          width: widthItem,
+          height: heightItem,
+        } = {
+          fullLine: whetherString.yes,
+          width: '0',
+          height: '0',
+          ...o,
+        };
+
+        return {
+          ...o,
+          fullLine: toString(fullLineItem),
+          width: toString(widthItem),
+          height: toString(heightItem),
+        };
+      });
+
       return {
         schemaTag: toMd5(JSON.stringify(schema || [])),
-        schemaStorage: schema || [],
+        schemaStorage: schemaStorageAdjust,
       };
     }
 
@@ -69,8 +97,8 @@ class DocumentDisplayer extends BaseComponent {
           title,
           name: nameItem,
           type,
-          width: 0,
-          height: 0,
+          width: '0',
+          height: '0',
           fullLine: whetherString.yes,
         };
       });
@@ -94,11 +122,22 @@ class DocumentDisplayer extends BaseComponent {
   save = () => {
     const { onSave } = this.props;
 
-    if (isFunction(onSave)) {
-      const { schemaStorage } = this.state;
-
-      onSave(schemaStorage || []);
+    if (!isFunction(onSave)) {
+      return;
     }
+
+    const { schemaStorage } = this.state;
+
+    const list = (schemaStorage || []).map((o) => {
+      return {
+        height: '0',
+        width: '0',
+        fullLine: '1',
+        ...o,
+      };
+    });
+
+    onSave(list);
   };
 
   openDesignMode = () => {

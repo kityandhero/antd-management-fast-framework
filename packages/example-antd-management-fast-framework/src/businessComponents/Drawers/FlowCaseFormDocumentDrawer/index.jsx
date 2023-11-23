@@ -1,6 +1,7 @@
 import { connect } from 'easy-soft-dva';
 import { getValueByKey, logException } from 'easy-soft-utility';
 
+import { logTemplate } from 'antd-management-fast-common';
 import { DocumentDisplayer } from 'antd-management-fast-design-playground';
 import {
   DataDrawer,
@@ -39,7 +40,9 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     };
   }
 
-  saveDataSchema = (data) => {
+  saveDocumentSchema = (data) => {
+    logTemplate(data);
+
     setDataSchemaAction({
       target: this,
       handleData: JSON.stringify(data),
@@ -101,7 +104,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         values={formData}
         schema={listDataSchema}
         onSave={(data) => {
-          this.saveDataSchema(data);
+          this.saveDocumentSchema(data);
         }}
         onClose={() => {
           FlowCaseFormDocumentDrawer.close();

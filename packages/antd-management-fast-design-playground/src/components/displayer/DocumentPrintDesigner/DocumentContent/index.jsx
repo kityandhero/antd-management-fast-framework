@@ -8,6 +8,7 @@ import {
   isFunction,
   isUndefined,
   toNumber,
+  toString,
   whetherNumber,
   whetherString,
 } from 'easy-soft-utility';
@@ -633,13 +634,24 @@ class DocumentContent extends PureComponent {
         if (nameItem === name) {
           return {
             ...o,
-            fullLine,
-            width,
-            height,
+            fullLine: toString(fullLine),
+            width: toString(width),
+            height: toString(height),
+          };
+        } else {
+          const {
+            fullLine: fullLineItem,
+            width: widthItem,
+            height: heightItem,
+          } = o;
+
+          return {
+            ...o,
+            fullLine: toString(fullLineItem),
+            width: toString(heightItem),
+            height: toString(widthItem),
           };
         }
-
-        return o;
       });
 
       onChangeCallback(schemaAdjust);

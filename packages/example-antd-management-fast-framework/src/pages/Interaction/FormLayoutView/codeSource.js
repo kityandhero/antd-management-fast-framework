@@ -1,8 +1,8 @@
 export const code = `import { connect } from 'easy-soft-dva';
-import { mergeArrowText } from 'easy-soft-utility';
+import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
-import { CenterBox } from 'antd-management-fast-component';
+import { CenterBox, iconBuilder } from 'antd-management-fast-component';
 
 import { BaseView } from '../BaseView';
 
@@ -64,6 +64,49 @@ class FormLayoutView extends BaseView {
               <CenterBox>content</CenterBox>
             </div>
           ),
+        },
+        {
+          title: {
+            text: '工具条模式',
+          },
+          hasExtra: true,
+          extra: {
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.generalExtraButton,
+                type: 'default',
+                icon: iconBuilder.edit(),
+                text: '按钮1',
+                handleClick: () => {
+                  showSimpleInfoMessage('点击按钮');
+                },
+              },
+              {
+                buildType: cardConfig.extraBuildType.generalExtraButton,
+                type: 'default',
+                icon: iconBuilder.edit(),
+                text: '按钮2',
+                handleClick: () => {
+                  showSimpleInfoMessage('点击按钮');
+                },
+              },
+              {
+                buildType: cardConfig.extraBuildType.generalExtraButton,
+                type: 'default',
+                icon: iconBuilder.edit(),
+                text: '按钮3',
+                handleClick: () => {
+                  showSimpleInfoMessage('点击按钮');
+                },
+              },
+              {
+                buildType: cardConfig.extraBuildType.divider,
+              },
+              {
+                buildType: cardConfig.extraBuildType.refresh,
+              },
+            ],
+          },
         },
         {
           title: {
