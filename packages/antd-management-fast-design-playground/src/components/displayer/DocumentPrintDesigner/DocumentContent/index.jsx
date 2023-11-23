@@ -1,10 +1,13 @@
-import { Col, InputNumber, Row, Switch } from 'antd';
+import { Checkbox, Col, InputNumber, Row, Space, Switch } from 'antd';
 import React, { PureComponent } from 'react';
 
 import {
   checkStringIsNullOrWhiteSpace,
+  convertCollection,
+  endsWith,
   getValueByKey,
   isArray,
+  isEmptyArray,
   isFunction,
   isUndefined,
   toNumber,
@@ -81,11 +84,15 @@ function adjustSchemaData(schema) {
   let listTemplate = [];
 
   for (const [key, value] of Object.entries(schema)) {
-    const { title, type, name, fullLine, width, height } = {
+    const { title, type, name, enumList, fullLine, width, height } = {
+      title: '',
       name: key,
+      type: '',
+      enumList: [],
       fullLine: whetherString.yes,
       width: '0',
       height: '0',
+
       ...value,
     };
 
@@ -110,6 +117,7 @@ function adjustSchemaData(schema) {
         title,
         type,
         name,
+        enumList,
         fullLine,
         width,
         height,
@@ -120,6 +128,7 @@ function adjustSchemaData(schema) {
         title,
         type,
         name,
+        enumList,
         fullLine,
         width,
         height,
@@ -343,7 +352,7 @@ function LineItem(properties) {
     dataAdjust = data;
   }
 
-  const { title, name, width, height } = dataAdjust;
+  const { title, name, type, enumList, width, height } = dataAdjust;
 
   const heightAdjust =
     isUndefined(height) ||
@@ -358,6 +367,52 @@ function LineItem(properties) {
     toNumber(width) <= 0
       ? ''
       : width;
+
+  let v = '';
+
+  if (endsWith(type, '[]')) {
+    const vList = getValueByKey({
+      data: values,
+      key: name,
+      convert: convertCollection.array,
+    });
+
+    v = vList.join(' ～ ');
+  } else {
+    v = getValueByKey({
+      data: values,
+      key: name,
+      defaultValue: '',
+    });
+  }
+
+  const displayValue =
+    isArray(enumList) && !isEmptyArray(enumList) ? (
+      <VerticalBox>
+        <Space wrap>
+          {enumList.map((o, index) => {
+            const { label, value } = o;
+
+            return (
+              <Checkbox
+                key={`${name}_${index}`}
+                value={value}
+                checked={value == v}
+                style={{
+                  fontSize: '16px',
+                  ...fontFamilyStyle,
+                  ...colorStyle,
+                }}
+              >
+                {label}
+              </Checkbox>
+            );
+          })}
+        </Space>
+      </VerticalBox>
+    ) : (
+      <VerticalBox>{v}</VerticalBox>
+    );
 
   return (
     <FlexBox
@@ -436,13 +491,7 @@ function LineItem(properties) {
                   height: '100%',
                 }}
               >
-                <VerticalBox>
-                  {getValueByKey({
-                    data: values,
-                    key: name,
-                    defaultValue: '',
-                  })}
-                </VerticalBox>
+                {displayValue}
               </div>
             </div>
           </div>
@@ -482,13 +531,7 @@ function LineItem(properties) {
                       height: '100%',
                     }}
                   >
-                    <VerticalBox>
-                      {getValueByKey({
-                        data: values,
-                        key: name,
-                        defaultValue: '',
-                      })}
-                    </VerticalBox>
+                    {displayValue}
                   </div>
                 </div>
               </div>
@@ -544,7 +587,53 @@ function InLineItem(properties) {
     onChange: onChangeCallback,
   } = properties;
 
-  const { title, name } = { ...data };
+  const { title, name, type, enumList } = { ...data };
+
+  let v = '';
+
+  if (endsWith(type, '[]')) {
+    const vList = getValueByKey({
+      data: values,
+      key: name,
+      convert: convertCollection.array,
+    });
+
+    v = vList.join(' ～ ');
+  } else {
+    v = getValueByKey({
+      data: values,
+      key: name,
+      defaultValue: '',
+    });
+  }
+
+  const displayValue =
+    isArray(enumList) && !isEmptyArray(enumList) ? (
+      <VerticalBox>
+        <Space wrap>
+          {enumList.map((o, index) => {
+            const { label, value } = o;
+
+            return (
+              <Checkbox
+                key={`${name}_${index}`}
+                value={value}
+                checked={value == v}
+                style={{
+                  fontSize: '16px',
+                  ...fontFamilyStyle,
+                  ...colorStyle,
+                }}
+              >
+                {label}
+              </Checkbox>
+            );
+          })}
+        </Space>
+      </VerticalBox>
+    ) : (
+      <VerticalBox>{v}</VerticalBox>
+    );
 
   const filedComponent = (
     <FlexBox
@@ -608,13 +697,7 @@ function InLineItem(properties) {
                 height: '100%',
               }}
             >
-              <VerticalBox>
-                {getValueByKey({
-                  data: values,
-                  key: name,
-                  defaultValue: '',
-                })}
-              </VerticalBox>
+              {displayValue}
             </div>
           </div>
         </div>
@@ -667,7 +750,12 @@ class DocumentContent extends PureComponent {
             fullLine: fullLineItem,
             width: widthItem,
             height: heightItem,
-          } = o;
+          } = {
+            fullLine: whetherString.yes,
+            width: '0',
+            height: '0',
+            ...o,
+          };
 
           return {
             ...o,

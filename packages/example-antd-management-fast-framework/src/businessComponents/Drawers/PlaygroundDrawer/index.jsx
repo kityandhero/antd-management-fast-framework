@@ -1,5 +1,10 @@
 import { connect } from 'easy-soft-dva';
-import { checkStringIsNullOrWhiteSpace, isFunction } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isArray,
+  isEmptyArray,
+  isFunction,
+} from 'easy-soft-utility';
 
 import { Playground } from 'antd-management-fast-design-playground';
 import {
@@ -90,13 +95,32 @@ class PlaygroundDrawer extends BaseFormDrawer {
     const dataSchema = [];
 
     for (const [key, value] of Object.entries(properties)) {
-      const { title, type, name, fullLine } = {
+      const {
+        title,
+        type,
+        name,
+        enum: enumList,
+      } = {
         name: key,
-        fullLine: '1',
+        enum: [],
         ...value,
       };
 
-      dataSchema.push({ title, type, name, fullLine });
+      if (isArray(enumList) && !isEmptyArray(enumList)) {
+        const l = enumList.map((o) => {
+          const { label, value } = {
+            label: '',
+            value: '',
+            ...o,
+          };
+
+          return { label, value };
+        });
+
+        dataSchema.push({ title, type, name, enumList: l });
+      } else {
+        dataSchema.push({ title, type, name });
+      }
     }
 
     this.execSubmitApi({

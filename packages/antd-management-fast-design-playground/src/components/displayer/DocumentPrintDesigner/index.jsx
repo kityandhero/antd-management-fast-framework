@@ -28,6 +28,8 @@ const colorDefault = '#000';
 class DocumentDisplayer extends BaseComponent {
   componentRef = null;
 
+  imageTargetRef = React.createRef();
+
   constructor(properties) {
     super(properties);
 
@@ -89,7 +91,9 @@ class DocumentDisplayer extends BaseComponent {
           title,
           name: nameItem,
           type,
+          enumList,
         } = {
+          enumList: [],
           ...o,
         };
 
@@ -97,6 +101,7 @@ class DocumentDisplayer extends BaseComponent {
           title,
           name: nameItem,
           type,
+          enumList,
           width: '0',
           height: '0',
           fullLine: whetherString.yes,
@@ -165,7 +170,7 @@ class DocumentDisplayer extends BaseComponent {
 
     // Good
     return (
-      <Button type="dashed" icon={iconBuilder.file()} size="small">
+      <Button type="dashed" icon={iconBuilder.printer()} size="small">
         打印预览
       </Button>
     );
@@ -292,11 +297,13 @@ class DocumentDisplayer extends BaseComponent {
 
               <EverySpace size={10} direction="horizontal" />
 
-              <DocumentContent
-                ref={this.setComponentRef}
-                {...p}
-                designMode={designMode}
-              />
+              <div ref={this.imageTargetRef}>
+                <DocumentContent
+                  ref={this.setComponentRef}
+                  {...p}
+                  designMode={designMode}
+                />
+              </div>
             </div>
           </CenterBox>
 
