@@ -101,7 +101,7 @@ class ActiveChart extends Component {
           <div className={styles.activeChartLegend}>
             <span>00:00</span>
             <span>{activeData[Math.floor(activeData.length / 2)].x}</span>
-            <span>{activeData[activeData.length - 1].x}</span>
+            <span>{activeData.at(-1).x}</span>
           </div>
         )}
       </div>

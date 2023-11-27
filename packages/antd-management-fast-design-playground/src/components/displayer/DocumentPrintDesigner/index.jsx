@@ -2,13 +2,7 @@ import { Button } from 'antd';
 import React from 'react';
 import ReactToPrint from 'react-to-print';
 
-import {
-  isArray,
-  isFunction,
-  toMd5,
-  toString,
-  whetherString,
-} from 'easy-soft-utility';
+import { isArray, isFunction, toMd5 } from 'easy-soft-utility';
 
 import {
   BaseComponent,
@@ -19,13 +13,18 @@ import {
   PageExtra,
 } from 'antd-management-fast-component';
 
+import {
+  adjustSchemaData,
+  getInitializeGeneral,
+  getInitializeItem,
+} from './DocumentContent/tools';
 import { DocumentContent } from './DocumentContent';
 
 const { ToolBar } = PageExtra;
 
 const colorDefault = '#000';
 
-class DocumentDisplayer extends BaseComponent {
+class DocumentPrintDesigner extends BaseComponent {
   componentRef = null;
 
   imageTargetRef = React.createRef();
@@ -37,7 +36,10 @@ class DocumentDisplayer extends BaseComponent {
       ...this.state,
       designMode: false,
       schemaTag: '',
-      schemaStorage: [],
+      generalOriginal: {},
+      itemsOriginal: [],
+      general: {},
+      items: [],
     };
   }
 
@@ -46,32 +48,15 @@ class DocumentDisplayer extends BaseComponent {
     const { schema } = nextProperties;
     const { schemaTag } = previousState;
 
-    if (toMd5(JSON.stringify(schema || [])) != schemaTag) {
-      const schemaAdjust = isArray(schema) ? schema : [];
-
-      const schemaStorageAdjust = schemaAdjust.map((o) => {
-        const {
-          fullLine: fullLineItem,
-          width: widthItem,
-          height: heightItem,
-        } = {
-          fullLine: whetherString.yes,
-          width: '0',
-          height: '0',
-          ...o,
-        };
-
-        return {
-          ...o,
-          fullLine: toString(fullLineItem),
-          width: toString(widthItem),
-          height: toString(heightItem),
-        };
-      });
+    if (toMd5(JSON.stringify(schema || {})) != schemaTag) {
+      const { general, items } = adjustSchemaData(schema);
 
       return {
         schemaTag: toMd5(JSON.stringify(schema || [])),
-        schemaStorage: schemaStorageAdjust,
+        general,
+        items: [...items],
+        generalOriginal: general,
+        itemsOriginal: [...items],
       };
     }
 
@@ -83,45 +68,40 @@ class DocumentDisplayer extends BaseComponent {
   };
 
   initializeDesign = () => {
-    const { schema } = this.props;
+    const { itemsOriginal } = this.state;
 
-    if (isArray(schema)) {
-      const schemaAdjust = schema.map((o) => {
-        const {
-          title,
-          name: nameItem,
-          type,
-          enumList,
-        } = {
-          enumList: [],
-          ...o,
-        };
-
+    if (isArray(itemsOriginal)) {
+      const itemsAdjust = itemsOriginal.map((o) => {
         return {
-          title,
-          name: nameItem,
-          type,
-          enumList,
-          width: '0',
-          height: '0',
-          fullLine: whetherString.yes,
+          ...getInitializeItem(),
+          ...o,
         };
       });
 
-      this.setState({ schemaStorage: schemaAdjust });
+      this.setState({
+        general: getInitializeGeneral(),
+        items: [...itemsAdjust],
+      });
     } else {
-      this.setState({ schemaStorage: [] });
+      this.setState({ general: getInitializeGeneral(), items: [] });
     }
   };
 
   reset = () => {
-    const { schema } = this.props;
+    const { generalOriginal, itemsOriginal } = this.state;
 
-    this.setState({ schemaStorage: schema || [] });
+    this.setState({
+      general: generalOriginal,
+      items: [...itemsOriginal],
+    });
   };
 
-  onChange = (data) => {
-    this.setState({ schemaStorage: data || [] });
+  onGeneralChange = (o) => {
+    this.setState({ general: o || {} });
+  };
+
+  onItemsChange = (list) => {
+    this.setState({ items: [...list] });
   };
 
   save = () => {
@@ -131,18 +111,9 @@ class DocumentDisplayer extends BaseComponent {
       return;
     }
 
-    const { schemaStorage } = this.state;
+    const { general, items } = this.state;
 
-    const list = (schemaStorage || []).map((o) => {
-      return {
-        height: '0',
-        width: '0',
-        fullLine: '1',
-        ...o,
-      };
-    });
-
-    onSave(list);
+    onSave({ general, items });
   };
 
   openDesignMode = () => {
@@ -191,11 +162,12 @@ class DocumentDisplayer extends BaseComponent {
       titleContainerStyle,
       titleStyle,
     } = this.props;
-    const { designMode, schemaStorage } = this.state;
+    const { designMode, general, items } = this.state;
 
     const p = {
       values,
-      schema: schemaStorage,
+      general,
+      items,
       style,
       color,
       labelColumnWidth,
@@ -206,7 +178,8 @@ class DocumentDisplayer extends BaseComponent {
       title,
       titleContainerStyle,
       titleStyle,
-      onChange: this.onChange,
+      onGeneralChange: this.onGeneralChange,
+      onItemsChange: this.onItemsChange,
     };
 
     return (
@@ -314,7 +287,7 @@ class DocumentDisplayer extends BaseComponent {
   }
 }
 
-DocumentDisplayer.defaultProps = {
+DocumentPrintDesigner.defaultProps = {
   values: {},
   schema: {},
   style: null,
@@ -333,4 +306,4 @@ DocumentDisplayer.defaultProps = {
   onChange: null,
 };
 
-export { DocumentDisplayer };
+export { DocumentPrintDesigner };

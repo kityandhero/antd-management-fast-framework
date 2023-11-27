@@ -1,8 +1,15 @@
 import { connect } from 'easy-soft-dva';
-import { getValueByKey, logException } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  convertCollection,
+  getValueByKey,
+  isArray,
+  isEmptyArray,
+  logException,
+} from 'easy-soft-utility';
 
 import { logTemplate } from 'antd-management-fast-common';
-import { DocumentDisplayer } from 'antd-management-fast-design-playground';
+import { DocumentPrintDesigner } from 'antd-management-fast-design-playground';
 import {
   DataDrawer,
   switchControlAssist,
@@ -12,6 +19,8 @@ import { setDataSchemaAction } from '../../../businessAssists/action';
 
 const { BaseVerticalFlexDrawer } = DataDrawer;
 
+const primaryCallName = 'Common::FlowCaseFormDocumentDrawer';
+
 const visibleFlag = '8513c5de635245ff962933f8ad3f9214';
 
 @connect(({ formDesign, schedulingControl }) => ({
@@ -19,6 +28,8 @@ const visibleFlag = '8513c5de635245ff962933f8ad3f9214';
   schedulingControl,
 }))
 class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
+  showCallProcess = true;
+
   static open() {
     switchControlAssist.open(visibleFlag);
   }
@@ -39,6 +50,18 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       overlayButtonCloseText: '关闭源代码',
     };
   }
+
+  doOtherAfterLoadSuccess = ({
+    metaData = null,
+    // eslint-disable-next-line no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line no-unused-vars
+    metaOriginalData = null,
+  }) => {
+    logTemplate(metaData);
+  };
 
   saveDocumentSchema = (data) => {
     logTemplate(data);
@@ -85,6 +108,18 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       defaultValue: '[]',
     });
 
+    const documentGeneralSchema = getValueByKey({
+      data: metaData,
+      key: 'documentGeneralSchema',
+      defaultValue: {},
+    });
+
+    const documentItemsSchema = getValueByKey({
+      data: metaData,
+      key: 'documentItemsSchema',
+      convert: convertCollection.array,
+    });
+
     const formData = getValueByKey({
       data: metaData,
       key: 'formData',
@@ -98,11 +133,58 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       logException(error);
     }
 
+    let items = [];
+
+    if (
+      isArray(documentItemsSchema) &&
+      !isEmptyArray(documentItemsSchema) &&
+      isArray(listDataSchema)
+    ) {
+      for (const o of listDataSchema) {
+        const { name } = { name: '', ...o };
+
+        if (checkStringIsNullOrWhiteSpace(name)) {
+          continue;
+        }
+
+        let config = {};
+
+        for (const one of documentItemsSchema) {
+          const { name: nameOne } = { name: '', ...one };
+
+          if (nameOne === name) {
+            config = one;
+
+            break;
+          }
+        }
+
+        items.push({ ...config, ...o });
+      }
+    } else {
+      items = listDataSchema;
+    }
+
+    this.logCallTrace(
+      {
+        values: formData,
+        schema: {
+          general: documentGeneralSchema,
+          items,
+        },
+      },
+      primaryCallName,
+      'render',
+    );
+
     return (
-      <DocumentDisplayer
+      <DocumentPrintDesigner
         canDesign={canDesign}
         values={formData}
-        schema={listDataSchema}
+        schema={{
+          general: documentGeneralSchema,
+          items,
+        }}
         onSave={(data) => {
           this.saveDocumentSchema(data);
         }}

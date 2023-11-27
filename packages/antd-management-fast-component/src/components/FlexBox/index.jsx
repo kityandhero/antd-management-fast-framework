@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 
 import {
   checkInCollection,
+  checkStringIsNullOrWhiteSpace,
   isFunction,
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
@@ -65,13 +66,19 @@ class FlexBox extends PureComponent {
       };
 
       if (flexAuto === 'left') {
+        const { width } = { width: '', ...rightStyle };
+
         return (
           <Row style={style} className={className}>
             <Col flex="auto" style={leftStyle || null}>
               {left}
             </Col>
+
             {(right || null) == null ? null : (
-              <Col flex style={rightStyle || null}>
+              <Col
+                flex={checkStringIsNullOrWhiteSpace(width) ? true : width}
+                style={rightStyle || null}
+              >
                 {right}
               </Col>
             )}
@@ -79,9 +86,14 @@ class FlexBox extends PureComponent {
         );
       }
 
+      const { width } = { width: '', ...leftStyle };
+
       return (
         <Row style={style} className={className}>
-          <Col flex style={leftStyle || null}>
+          <Col
+            flex={checkStringIsNullOrWhiteSpace(width) ? true : width}
+            style={leftStyle || null}
+          >
             {left}
           </Col>
 

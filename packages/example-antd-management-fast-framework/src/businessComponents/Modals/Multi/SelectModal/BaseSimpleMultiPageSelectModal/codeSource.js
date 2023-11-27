@@ -136,6 +136,7 @@ class BaseSimpleMultiPageSelectModal extends MultiPageSelectModal {
         dataConvert: convertOptionOrRadioData,
         onChange: (v, option) => {
           console.log({ v, option });
+
           this.setState({ listViewMode: v });
         },
       },

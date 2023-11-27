@@ -9,7 +9,7 @@ export function buildConfig({ terser: whetherTerser = false }) {
     inputFile,
     terser: whetherTerser,
     postcssConfig: {
-      modules: false,
+      modules: true,
     },
     externalCollection: [
       'antd-management-fast-common',
