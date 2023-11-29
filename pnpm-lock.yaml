@@ -624,7 +624,7 @@ importers:
         specifier: ^5.11.4
         version: 5.11.4(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.51
+        specifier: ^2.6.52
         version: 'link:'
       array-move:
         specifier: ^4.0.0
@@ -979,7 +979,7 @@ importers:
         specifier: ^5.11.4
         version: 5.11.4(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.51
+        specifier: ^2.6.52
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1529,10 +1529,10 @@ importers:
         specifier: ^4.6.0
         version: 4.6.0(monaco-editor@0.44.0)(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.51
+        specifier: ^2.6.52
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
         specifier: ^1.0.30
@@ -2903,13 +2903,13 @@ importers:
         specifier: ^5.11.4
         version: 5.11.4(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.51
+        specifier: ^2.6.52
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.57
+        specifier: ^1.0.58
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
         specifier: ^1.0.30
