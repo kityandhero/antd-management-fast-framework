@@ -37,7 +37,7 @@ export function getInitializeItem() {
     fullLine: defaultConfig.fullLine,
     firstPosition: defaultConfig.firstPosition,
     width: defaultConfig.width,
-    height: defaultConfig.height,
+    minHeight: defaultConfig.minHeight,
   };
 }
 
@@ -50,7 +50,7 @@ export function adjustItem(o) {
     fullLine: defaultConfig.fullLine,
     firstPosition: defaultConfig.firstPosition,
     width: defaultConfig.width,
-    height: defaultConfig.height,
+    minHeight: defaultConfig.minHeight,
     ...o,
   };
 
@@ -81,7 +81,7 @@ export function adjustSchemaData(schema) {
       fullLine,
       firstPosition,
       width,
-      height,
+      minHeight,
       valueDisplayMode,
     } = adjustItem(value);
 
@@ -105,7 +105,7 @@ export function adjustSchemaData(schema) {
       fullLine,
       firstPosition,
       width,
-      height,
+      minHeight,
       valueDisplayMode,
     });
   }
@@ -119,8 +119,16 @@ export function adjustSchemaData(schema) {
   };
 }
 
-export function adjustItemCollection(items) {
-  if (!isArray(items)) {
+export function adjustItemCollection(items, other = []) {
+  let itemsAdjust = [];
+
+  itemsAdjust = isArray(items) ? items : [];
+
+  if (isArray(other) && !isEmptyArray(other)) {
+    itemsAdjust = [...itemsAdjust, ...other];
+  }
+
+  if (isEmptyArray(itemsAdjust)) {
     return [];
   }
 
@@ -128,7 +136,7 @@ export function adjustItemCollection(items) {
 
   let listTemplate = [];
 
-  for (const [key, value] of Object.entries(items)) {
+  for (const [key, value] of Object.entries(itemsAdjust)) {
     let {
       title,
       type,
@@ -137,7 +145,7 @@ export function adjustItemCollection(items) {
       fullLine,
       firstPosition,
       width,
-      height,
+      minHeight,
       valueDisplayMode,
     } = adjustItem(value);
 
@@ -168,7 +176,7 @@ export function adjustItemCollection(items) {
         fullLine,
         firstPosition,
         width,
-        height,
+        minHeight,
         valueDisplayMode,
       });
     } else {
@@ -187,7 +195,7 @@ export function adjustItemCollection(items) {
         fullLine,
         firstPosition,
         width,
-        height,
+        minHeight,
         valueDisplayMode,
       });
     }
@@ -202,7 +210,9 @@ export function adjustItemCollection(items) {
   return list;
 }
 
-export function adjustValueCollection(values) {
+export function adjustValueCollection(values, otherData = []) {
+  let result = {};
+
   if (isArray(values)) {
     const v = {};
 
@@ -220,10 +230,21 @@ export function adjustValueCollection(values) {
       v[name] = value ?? '';
     }
 
-    return v;
+    result = v;
+  } else {
+    result = values | {};
   }
 
-  return values || {};
+  if (isArray(otherData) && !isEmptyArray(otherData)) {
+    const o = adjustValueCollection(otherData, []);
+
+    result = {
+      ...result,
+      ...o,
+    };
+  }
+
+  return result;
 }
 
 export function buildDisplayValue(data, values) {
@@ -303,11 +324,11 @@ export function buildDisplayValue(data, values) {
     !isEmptyArray(enumList) &&
     valueDisplayMode === valueDisplayModeCollection.text ? (
     <VerticalBox>
-      <div style={{ whiteSpace: 'nowrap' }}>{vText}</div>
+      <div>{vText}</div>
     </VerticalBox>
   ) : (
     <VerticalBox>
-      <div style={{ whiteSpace: 'nowrap' }}>{v}</div>
+      <div>{v}</div>
     </VerticalBox>
   );
 }

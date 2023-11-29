@@ -45,7 +45,7 @@ function ItemConfigBox(properties) {
     isUndefined(height) ||
     checkStringIsNullOrWhiteSpace(height) ||
     toNumber(height) <= 0
-      ? defaultConfig.height
+      ? defaultConfig.minHeight
       : height;
 
   const fullLineAdjust = toNumber(fullLine);

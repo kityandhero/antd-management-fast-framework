@@ -10,16 +10,10 @@ import {
 
 import { CenterBox, FlexBox } from 'antd-management-fast-component';
 
-import { CellMarker } from '../CellMarker';
-import {
-  colorStyle,
-  defaultConfig,
-  fontFamilyStyle,
-  highlightModeCollection,
-  labelFrontStyle,
-  valueFrontStyle,
-} from '../constant';
-import { buildDisplayValue } from '../tools';
+import { CellMarker } from '../../CellMarker';
+import { defaultConfig, highlightModeCollection } from '../../constant';
+import { buildDisplayValue } from '../../tools';
+import { InLineItem } from '../InLineItem';
 
 function LineItem(properties) {
   const {
@@ -52,20 +46,20 @@ function LineItem(properties) {
     dataAdjust = data;
   }
 
-  const { title, name, width, height } = {
+  const { title, name, width, minHeight } = {
     title: '',
     name: '',
     width: '0',
-    height: '0',
+    minHeight: '0',
     ...dataAdjust,
   };
 
-  const heightAdjust =
-    isUndefined(height) ||
-    checkStringIsNullOrWhiteSpace(height) ||
-    toNumber(height) <= 0
-      ? defaultConfig.height
-      : height;
+  const minHeightAdjust =
+    isUndefined(minHeight) ||
+    checkStringIsNullOrWhiteSpace(minHeight) ||
+    toNumber(minHeight) <= 0
+      ? defaultConfig.minHeight
+      : minHeight;
 
   const widthAdjust =
     isUndefined(width) ||
@@ -90,10 +84,10 @@ function LineItem(properties) {
       flexAuto="right"
       style={{
         ...lineStyle,
-        ...(checkStringIsNullOrWhiteSpace(heightAdjust)
+        ...(checkStringIsNullOrWhiteSpace(minHeightAdjust)
           ? {}
           : {
-              height: `${height}px`,
+              minHeight: `${toNumber(minHeightAdjust)}px`,
             }),
         overflow: 'hidden',
       }}
@@ -101,10 +95,10 @@ function LineItem(properties) {
         ...labelBoxStyle,
         position: 'relative',
         padding: '0',
-        ...(checkStringIsNullOrWhiteSpace(heightAdjust)
+        ...(checkStringIsNullOrWhiteSpace(minHeightAdjust)
           ? {}
           : {
-              height: `${height}px`,
+              minHeight: `${toNumber(minHeightAdjust)}px`,
             }),
         ...(checkStringIsNullOrWhiteSpace(labelWidthAdjust)
           ? {}
@@ -130,10 +124,10 @@ function LineItem(properties) {
             style={{
               labelBoxStyle,
               height: '100%',
-              ...(checkStringIsNullOrWhiteSpace(heightAdjust)
+              ...(checkStringIsNullOrWhiteSpace(minHeightAdjust)
                 ? {}
                 : {
-                    height: `${height}px`,
+                    minHeight: `${toNumber(minHeightAdjust)}px`,
                   }),
             }}
           >
@@ -148,10 +142,10 @@ function LineItem(properties) {
         ...(otherList.length <= 0
           ? {}
           : { paddingLeft: '0', paddingRight: '0' }),
-        ...(checkStringIsNullOrWhiteSpace(heightAdjust)
+        ...(checkStringIsNullOrWhiteSpace(minHeightAdjust)
           ? {}
           : {
-              height: `${height}px`,
+              minHeight: `${toNumber(minHeightAdjust)}px`,
             }),
       }}
       right={
@@ -271,122 +265,6 @@ function LineItem(properties) {
       }
     />
   );
-}
-
-function InLineItem(properties) {
-  const {
-    data,
-    values,
-    color,
-    currentName,
-    highlightMode,
-    labelBoxStyle,
-    labelContainerStyle,
-    valueBoxStyle,
-    designMode,
-    onClick: onClickCallback,
-  } = properties;
-
-  const { title, name } = { ...data };
-
-  const displayValue = buildDisplayValue(data, values);
-
-  const filedComponent = (
-    <FlexBox
-      flexAuto="right"
-      style={{
-        height: '100%',
-        overflow: 'hidden',
-      }}
-      leftStyle={{
-        paddingTop: '12px',
-        paddingBottom: '12px',
-        paddingLeft: '10px',
-        paddingRight: '10px',
-        borderLeft: `1px solid ${color}`,
-        borderRight: `1px solid ${color}`,
-        textAlign: 'center',
-        ...labelFrontStyle,
-        ...colorStyle,
-        ...fontFamilyStyle,
-        ...labelBoxStyle,
-        width: 'auto',
-      }}
-      left={
-        <CenterBox>
-          <div
-            style={{
-              paddingLeft: '6px',
-              paddingRight: '6px',
-              ...labelContainerStyle,
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {title}
-          </div>
-        </CenterBox>
-      }
-      rightStyle={{
-        ...valueFrontStyle,
-        ...colorStyle,
-        ...fontFamilyStyle,
-        ...valueBoxStyle,
-        borderRight: '0',
-      }}
-      right={
-        <div
-          style={{
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-          }}
-        >
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-          >
-            <div
-              style={{
-                paddingLeft: '10px',
-                paddingRight: '10px',
-                height: '100%',
-              }}
-            >
-              {displayValue}
-            </div>
-          </div>
-        </div>
-      }
-    />
-  );
-
-  if (designMode) {
-    return (
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: '100%',
-        }}
-      >
-        <CellMarker
-          data={data}
-          highlight={
-            currentName === name &&
-            highlightMode === highlightModeCollection.value
-          }
-          highlightMode={highlightModeCollection.value}
-          onClick={onClickCallback}
-        />
-
-        {filedComponent}
-      </div>
-    );
-  }
-
-  return filedComponent;
 }
 
 export { LineItem };

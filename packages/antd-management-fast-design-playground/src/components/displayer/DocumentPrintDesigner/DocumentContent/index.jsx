@@ -14,8 +14,8 @@ import {
   valueFrontStyle,
 } from './constant';
 import { GeneralConfigBox } from './GeneralConfigBox';
-import { LineItem } from './Item';
 import { ItemConfigBox } from './ItemConfigBox';
+import { LineItem, LineRemark } from './Items';
 import {
   adjustItem,
   adjustItemCollection,
@@ -103,6 +103,9 @@ class DocumentContent extends PureComponent {
       titleContainerStyle,
       titleStyle,
       designMode,
+      remarkTitle,
+      remarkName,
+      remarkList,
     } = this.props;
     const { currentItem, currentHighlightMode } = this.state;
 
@@ -266,6 +269,25 @@ class DocumentContent extends PureComponent {
               />
             );
           })}
+
+          <LineRemark
+            title={remarkTitle}
+            name={remarkName}
+            value={
+              isArray(remarkList)
+                ? remarkList.map((o) => toString(o)).join('')
+                : toString(remarkList)
+            }
+            general={general}
+            currentName={currentName}
+            highlightMode={currentHighlightMode}
+            designMode={designMode}
+            lineStyle={lineAdjustStyle}
+            labelBoxStyle={labelBoxStyle}
+            valueBoxStyle={valueBoxStyle}
+            labelContainerStyle={labelContainerStyle}
+            valueContainerStyle={valueContainerStyle}
+          />
         </div>
       </div>
     );
@@ -291,6 +313,10 @@ DocumentContent.defaultProps = {
   onItemsChange: null,
   onGeneralChange: null,
   designMode: false,
+  useRemark: false,
+  remarkTitle: '备注',
+  remarkName: 'remark',
+  remarkList: [],
 };
 
 export { DocumentContent };

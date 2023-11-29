@@ -6,6 +6,8 @@ import {
   checkStringIsNullOrWhiteSpace,
   convertCollection,
   getValueByKey,
+  isArray,
+  isEmptyArray,
   mergeArrowText,
   showSimpleInfoMessage,
 } from 'easy-soft-utility';
@@ -58,6 +60,22 @@ const listAttachment = [
   },
 ];
 
+function buildFormInitialValues(listFormStorage) {
+  const data = {};
+
+  if (isArray(listFormStorage) && !isEmptyArray(listFormStorage)) {
+    for (const o of listFormStorage) {
+      try {
+        data[o.name] = JSON.parse(o.value);
+      } catch {
+        data[o.name] = o.value;
+      }
+    }
+  }
+
+  return data;
+}
+
 @connect(({ formDesign, schedulingControl }) => ({
   formDesign,
   schedulingControl,
@@ -76,7 +94,6 @@ class DesignView extends BaseUpdateForm {
       pageTitle: 'Design 示例',
       currentCodeTitle: 'ModalView',
       currentCode: codeModalView,
-      formData: null,
     };
   }
 
@@ -86,22 +103,26 @@ class DesignView extends BaseUpdateForm {
       key: 'designSchema',
     });
 
-    const formData = getValueByKey({
-      data: metaData,
-      key: 'formData',
-    });
-
     setSchemaWithExternalData(designJson);
-
-    this.setState({ formData });
   };
 
   saveForm = (data) => {
+    const list = [];
+
+    for (const [key, value] of Object.entries(data)) {
+      list.push({
+        name: key,
+        value: value,
+      });
+    }
+
     saveFormAction({
       target: this,
-      handleData: data,
-      successCallback: ({ params }) => {
-        this.setState({ formData: params });
+      handleData: {
+        listFormStorage: list,
+      },
+      successCallback: ({ target }) => {
+        target.reloadData({});
       },
     });
   };
@@ -147,8 +168,14 @@ class DesignView extends BaseUpdateForm {
       currentCode,
       currentCodeTitle,
       metaData,
-      formData,
     } = this.state;
+
+    const { listFormStorage } = {
+      listFormStorage: [],
+      ...metaData,
+    };
+
+    const initialValues = buildFormInitialValues(listFormStorage);
 
     const that = this;
 
@@ -219,6 +246,12 @@ class DesignView extends BaseUpdateForm {
                   this.showRemarkEditDrawer();
                 },
               },
+              {
+                buildType: cardConfig.extraBuildType.divider,
+              },
+              {
+                buildType: cardConfig.extraBuildType.refresh,
+              },
             ],
           },
           items: [
@@ -229,7 +262,7 @@ class DesignView extends BaseUpdateForm {
                 <div>
                   <SchemaDisplayer
                     {...designData}
-                    initialValues={formData}
+                    initialValues={initialValues}
                     showSubmit
                     showSubmitDivider
                     header={

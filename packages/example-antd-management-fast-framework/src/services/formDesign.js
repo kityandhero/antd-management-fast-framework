@@ -11,16 +11,18 @@ import {
 } from 'easy-soft-utility';
 
 const formDataSchemaKey =
-  'form-data-schema-remote-0f58a9f4b87e4488b48d7a1d478dd6ff';
+  'simple-form-data-schema-remote-0f58a9f4b87e4488b48d7a1d478dd6ff';
 const formDesignSchemaKey =
-  'form-design-schema-remote-35713f03ad864e71a34b44984e6a6263';
-const formDocumentGeneralSchemaKey = 'form-document-general-schema-remote';
-const formDocumentItemsSchemaKey = 'form-document-items-schema-remote';
-const formDataKey = 'form-data-remote-e3cabeac8b4b4277adce624793b584c7';
+  'simple-form-design-schema-remote-35713f03ad864e71a34b44984e6a6263';
+const formDocumentGeneralSchemaKey =
+  'simple-form-document-general-schema-remote-c8f8ac92604545b7b4adfb266169937d';
+const formDocumentItemsSchemaKey =
+  'simple-form-document-items-schema-remote-5fceb57ac251401a8dd811cb9d0f14e2';
+const formDataKey = 'simple-form-data-remote-e3cabeac8b4b4277adce624793b584c7';
 const formRemarkListKey =
-  'form-remark-list-remote-57449e0602d944028bc853b063633429';
+  'simple-form-remark-list-remote-57449e0602d944028bc853b063633429';
 const formRemarkColorKey =
-  'form-remark-color-remote-e1da2c23d73247c8be233ad4385bdd40';
+  'simple-form-remark-color-remote-e1da2c23d73247c8be233ad4385bdd40';
 
 export const getDataApiAddress = '/formDesign/get';
 
@@ -38,7 +40,7 @@ export async function getData(parameters) {
     if (!isObject(documentGeneralSchema)) {
       documentGeneralSchema = {};
 
-      saveStringToLocalStorage(
+      saveJsonToLocalStorage(
         formDocumentGeneralSchemaKey,
         documentGeneralSchema,
       );
@@ -46,10 +48,7 @@ export async function getData(parameters) {
   } catch {
     documentGeneralSchema = {};
 
-    saveStringToLocalStorage(
-      formDocumentGeneralSchemaKey,
-      documentGeneralSchema,
-    );
+    saveJsonToLocalStorage(formDocumentGeneralSchemaKey, documentGeneralSchema);
   }
 
   let documentItemsSchema = [];
@@ -68,7 +67,7 @@ export async function getData(parameters) {
     saveJsonToLocalStorage(formDocumentItemsSchemaKey, documentItemsSchema);
   }
 
-  const formData = getJsonFromLocalStorage(formDataKey);
+  const listFormStorage = getJsonFromLocalStorage(formDataKey);
 
   let formRemarkList = getJsonFromLocalStorage(formRemarkListKey);
   let formRemarkColor = getStringFromLocalStorage(formRemarkColorKey);
@@ -96,9 +95,11 @@ export async function getData(parameters) {
       data: {
         dataSchema: dataSchema ?? '',
         designSchema: designSchema ?? '',
-        documentGeneralSchema: documentGeneralSchema ?? {},
-        documentItemsSchema: documentItemsSchema ?? [],
-        formData: formData || {},
+        documentSchema: {
+          general: documentGeneralSchema ?? {},
+          items: documentItemsSchema,
+        },
+        listFormStorage: listFormStorage || [],
         formRemarkList: formRemarkList,
         formRemarkColor: formRemarkColor,
       },
@@ -172,26 +173,12 @@ export async function setDocumentSchemaData(parameters) {
   });
 }
 
-export const getFormDataApiAddress = '/formDesign/getForm';
-
-export async function getFormData(parameters) {
-  const formData = getJsonFromLocalStorage(formDataKey);
-
-  return request({
-    api: getFormDataApiAddress,
-    params: parameters,
-    mode: requestMode.simulation,
-    simulateRequestMaxDelay: 800,
-    simulativeSuccessResponse: {
-      data: formData,
-    },
-  });
-}
-
 export const saveFormDataApiAddress = '/formDesign/saveForm';
 
 export async function saveFormData(parameters) {
-  saveJsonToLocalStorage(formDataKey, parameters);
+  const { listFormStorage } = parameters;
+
+  saveJsonToLocalStorage(formDataKey, listFormStorage);
 
   return request({
     api: saveFormDataApiAddress,
@@ -199,7 +186,9 @@ export async function saveFormData(parameters) {
     mode: requestMode.simulation,
     simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
-      data: parameters,
+      data: {
+        listFormStorage,
+      },
     },
   });
 }

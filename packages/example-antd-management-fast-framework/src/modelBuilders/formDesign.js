@@ -8,7 +8,6 @@ import {
 
 import {
   getData,
-  getFormData,
   getFormRemarkData,
   saveFormData,
   saveFormRemarkData,
@@ -87,32 +86,6 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(setDataSchemaData, payload);
-
-        const dataAdjust = pretreatmentRemoteSingleData({
-          source: response,
-          successCallback: pretreatmentSuccessCallback || null,
-          failCallback: pretreatmentFailCallback || null,
-        });
-
-        yield put({
-          type: reducerNameCollection.reducerRemoteData,
-          payload: dataAdjust,
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        return dataAdjust;
-      },
-      *getForm(
-        {
-          payload,
-          alias,
-          pretreatmentSuccessCallback,
-          pretreatmentFailCallback,
-        },
-        { call, put },
-      ) {
-        const response = yield call(getFormData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

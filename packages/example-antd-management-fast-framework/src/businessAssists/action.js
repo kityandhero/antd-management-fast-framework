@@ -218,22 +218,6 @@ export async function setDataSchemaAction({
   });
 }
 
-export async function getFormAction({
-  target,
-  handleData,
-  successCallback,
-  successMessage,
-}) {
-  actionCore({
-    api: 'formDesign/getForm',
-    params: handleData,
-    target,
-    handleData,
-    successCallback,
-    successMessage,
-  });
-}
-
 export async function saveFormAction({
   target,
   handleData,

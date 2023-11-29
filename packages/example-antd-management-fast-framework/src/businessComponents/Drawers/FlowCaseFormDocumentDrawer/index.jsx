@@ -19,7 +19,7 @@ import { setDataSchemaAction } from '../../../businessAssists/action';
 
 const { BaseVerticalFlexDrawer } = DataDrawer;
 
-const primaryCallName = 'Common::FlowCaseFormDocumentDrawer';
+const primaryCallName = 'example::FlowCaseFormDocumentDrawer';
 
 const visibleFlag = '8513c5de635245ff962933f8ad3f9214';
 
@@ -60,7 +60,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {
-    logTemplate(metaData);
+    this.logCallTrace({ metaData }, primaryCallName, 'doOtherAfterLoadSuccess');
   };
 
   saveDocumentSchema = (data) => {
@@ -102,6 +102,17 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     const { canDesign } = this.props;
     const { metaData } = this.state;
 
+    const { listFormStorage } = {
+      listFormStorage: [],
+      ...metaData,
+    };
+
+    const formRemarkList = getValueByKey({
+      data: metaData,
+      key: 'formRemarkList',
+      convert: convertCollection.array,
+    });
+
     const dataSchema = getValueByKey({
       data: metaData,
       key: 'dataSchema',
@@ -118,11 +129,6 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       data: metaData,
       key: 'documentItemsSchema',
       convert: convertCollection.array,
-    });
-
-    const formData = getValueByKey({
-      data: metaData,
-      key: 'formData',
     });
 
     let listDataSchema = [];
@@ -167,7 +173,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
 
     this.logCallTrace(
       {
-        values: formData,
+        values: listFormStorage,
         schema: {
           general: documentGeneralSchema,
           items,
@@ -180,11 +186,14 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     return (
       <DocumentPrintDesigner
         canDesign={canDesign}
-        values={formData}
+        values={listFormStorage}
         schema={{
           general: documentGeneralSchema,
           items,
         }}
+        remarkTitle="备注"
+        remarkName="remark"
+        remarkList={formRemarkList}
         onSave={(data) => {
           this.saveDocumentSchema(data);
         }}

@@ -20,6 +20,8 @@ import {
 } from './DocumentContent/tools';
 import { DocumentContent } from './DocumentContent';
 
+import styles from './index.less';
+
 const { ToolBar } = PageExtra;
 
 const colorDefault = '#000';
@@ -161,6 +163,9 @@ class DocumentPrintDesigner extends BaseComponent {
       title,
       titleContainerStyle,
       titleStyle,
+      remarkTitle,
+      remarkName,
+      remarkList,
     } = this.props;
     const { designMode, general, items } = this.state;
 
@@ -178,13 +183,16 @@ class DocumentPrintDesigner extends BaseComponent {
       title,
       titleContainerStyle,
       titleStyle,
+      remarkTitle,
+      remarkName,
+      remarkList,
       onGeneralChange: this.onGeneralChange,
       onItemsChange: this.onItemsChange,
     };
 
     return (
       <>
-        <div>
+        <div className={styles.documentPrintDesigner}>
           <CenterBox>
             <div>
               <EverySpace size={10} direction="horizontal" />
@@ -303,6 +311,9 @@ DocumentPrintDesigner.defaultProps = {
   valueColumnStyle: null,
   valueContainerStyle: null,
   valueStyle: null,
+  remarkTitle: '备注',
+  remarkName: 'remark',
+  remarkList: [],
   onChange: null,
 };
 

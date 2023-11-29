@@ -4,20 +4,23 @@ import { Editor } from '@tinymce/tinymce-react';
 import {
   getToken,
   isFunction,
+  logTrace,
   pretreatmentRemoteSingleData,
   showSimpleErrorNotification,
 } from 'easy-soft-utility';
 
 import { getCorsDomain, getTokenName } from 'antd-management-fast-common';
 
+const primaryCallName = 'components::Editor::TinymceWrapper';
+
 class TinymceWrapper extends PureComponent {
   editor = React.createRef();
 
   buildConfig = () => {
-    const { initConfig } = this.props;
+    const { language, initConfig } = this.props;
 
     const config = {
-      language: 'zh_CN',
+      language: language || '',
       height: 690,
       // plugins_ignore:
       //   'tinydrive powerpaste imagetools advcode formatpainter pageembed permanentpen casechange checklist advtable export tinymcespellchecker linkchecker mentions tinycomments toc',
@@ -90,6 +93,8 @@ class TinymceWrapper extends PureComponent {
       images_upload_handler: this.imageUploadHandler,
       ...initConfig,
     };
+
+    logTrace(config, [primaryCallName, 'buildConfig']);
 
     return config;
   };
@@ -181,7 +186,7 @@ class TinymceWrapper extends PureComponent {
   };
 
   render() {
-    const { apiKey, content } = this.props;
+    const { scriptSrc, apiKey, content } = this.props;
 
     return (
       <div
@@ -190,6 +195,7 @@ class TinymceWrapper extends PureComponent {
         }}
       >
         <Editor
+          tinymceScriptSrc={scriptSrc || ''}
           apiKey={apiKey}
           onInit={(event_, editor) => (this.editor.current = editor)}
           initialValue={content}
@@ -202,7 +208,9 @@ class TinymceWrapper extends PureComponent {
 }
 
 TinymceWrapper.defaultProps = {
+  scriptSrc: '',
   apiKey: '',
+  language: '',
   content: '',
   initConfig: null,
   imagesUploadUrl: '',

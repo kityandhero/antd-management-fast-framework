@@ -22,6 +22,8 @@ import {
   defaultEmptyImage,
   getTinymceApiKey,
   getTinymceImagesUploadUrl,
+  getTinymceLanguage,
+  getTinymceScriptSource,
 } from 'antd-management-fast-common';
 
 import { AudioUpload } from '../../AudioUpload';
@@ -258,6 +260,20 @@ class CardCollectionItemContent extends PureComponent {
                       content={contentItem.html || ''}
                       afterChange={contentItem.afterChange}
                       initConfig={contentItem.initConfig || null}
+                      scriptSrc={
+                        checkStringIsNullOrWhiteSpace(
+                          contentItem.scriptSrc || '',
+                        )
+                          ? getTinymceScriptSource()
+                          : contentItem.scriptSrc
+                      }
+                      language={
+                        checkStringIsNullOrWhiteSpace(
+                          contentItem.language || '',
+                        )
+                          ? getTinymceLanguage()
+                          : contentItem.language
+                      }
                       imagesUploadUrl={
                         checkStringIsNullOrWhiteSpace(
                           contentItem.imagesUploadUrl || '',

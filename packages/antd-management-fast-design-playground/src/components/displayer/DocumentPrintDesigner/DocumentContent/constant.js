@@ -27,6 +27,7 @@ export const valueFrontStyle = {
 };
 
 export const highlightModeCollection = {
+  none: 'none',
   label: 'label',
   value: 'value',
   all: 'all',
@@ -35,7 +36,8 @@ export const highlightModeCollection = {
 export const defaultConfig = {
   labelWidth: '160',
   width: zeroString,
-  height: '50',
+  minHeight: '50',
+  // height: 'auto',
   fullLine: whetherString.yes,
   firstPosition: whetherString.no,
   enumList: [],

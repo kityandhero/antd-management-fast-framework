@@ -90,6 +90,7 @@ export const appInitDefault = {
   audioUploadMaxSize: 4,
   videoUploadMaxSize: 4,
   fileUploadMaxSize: 2,
+  tinymceScriptSrc: '',
   tinymceApiKey: '',
   tinymceImagesUploadUrl: '',
   layoutSetting: {

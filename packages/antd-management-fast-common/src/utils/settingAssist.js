@@ -45,6 +45,15 @@ export function logShowInConsole() {
   return showLogInConsole || false;
 }
 
+export function getTinymceScriptSource() {
+  const { tinymceScriptSrc } = {
+    tinymceScriptSrc: null,
+    ...getApplicationMergeConfig(),
+  };
+
+  return tinymceScriptSrc || '';
+}
+
 export function getTinymceImagesUploadUrl() {
   const { tinymceImagesUploadUrl } = {
     tinymceImagesUploadUrl: null,
@@ -61,6 +70,15 @@ export function getTinymceApiKey() {
   };
 
   return tinymceApiKey || '';
+}
+
+export function getTinymceLanguage() {
+  const { tinymceLanguage } = {
+    tinymceLanguage: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return tinymceLanguage || '';
 }
 
 export function getFileUploadMaxSize() {

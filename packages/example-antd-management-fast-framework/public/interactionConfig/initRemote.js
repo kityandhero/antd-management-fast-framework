@@ -15,7 +15,12 @@ window.appInitCustomRemote = {
   },
   metaDataApi: '',
   apiVersion: 'v1',
+  // tinymceScriptSrc:
+  //   'https://cdn.bootcdn.net/ajax/libs/tinymce/6.7.0/tinymce.min.js',
+  tinymceScriptSrc:
+    'http://file.oa.32306.net/tinymce/js/tinymce/tinymce.min.js',
   tinymceApiKey: 'al3poaukm85tca809x2fsl7hnw3vau5i4s5zx3fv3rforr5h',
+  tinymceLanguage: 'zh_CN',
   tinymceImagesUploadUrl: '/editor/uploadImage',
   applicationListData: [
     {
