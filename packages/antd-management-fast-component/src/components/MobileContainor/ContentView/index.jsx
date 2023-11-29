@@ -9,6 +9,7 @@ import { FadeBox } from '../../AnimalBox/FadeBox';
 import { QueueBox } from '../../AnimalBox/QueueBox';
 import { buildButton } from '../../FunctionComponent';
 import { iconBuilder } from '../../Icon';
+import { ScrollFacadeBox } from '../../ScrollFacadeBox';
 
 import styles from './index.less';
 
@@ -91,7 +92,16 @@ class ContentView extends PureComponent {
           ) : null}
         </div>
 
-        <div className={styles.deviceContent}>{children}</div>
+        {/* <div className={styles.deviceContent}>{children}</div> */}
+        <ScrollFacadeBox
+          style={{
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+          }}
+        >
+          {children}
+        </ScrollFacadeBox>
       </div>
     );
   }

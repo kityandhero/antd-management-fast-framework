@@ -10,6 +10,7 @@ import { IPhone5S } from '../Devices/IPhone5S';
 import { Iphone8 } from '../Devices/Iphone8';
 import { Iphone8plus } from '../Devices/Iphone8plus';
 import { IphoneX } from '../Devices/IphoneX';
+import { NoneSketch } from '../Devices/NoneSketch';
 import { RoughSketch } from '../Devices/RoughSketch';
 
 class MobileSimulation extends PureComponent {
@@ -53,6 +54,24 @@ class MobileSimulation extends PureComponent {
     let mobileView = null;
 
     switch (mobileType) {
+      case mobileTypeCollection.noneSketch.name: {
+        mobileView = (
+          <NoneSketch
+            alertVisible={alertVisible}
+            alertAnimationType={alertAnimationType}
+            alertMessage={alertMessage}
+            alertDescription={alertDescription}
+            alertIcon={alertIcon}
+            alertType={alertType}
+            alertButtonText={alertButtonText}
+            afterAlertClick={afterAlertClick}
+          >
+            {this.renderPresetInnerViewWrapper()}
+          </NoneSketch>
+        );
+        break;
+      }
+
       case mobileTypeCollection.roughSketch.name: {
         mobileView = (
           <RoughSketch

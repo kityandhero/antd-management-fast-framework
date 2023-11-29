@@ -171,7 +171,7 @@ class Add extends BaseAddForm {
                   value,
                 };
               },
-              onChangeCallback: ({ value }) => {
+              onChange: ({ value }) => {
                 this.setState({
                   parentId: toString(value),
                 });

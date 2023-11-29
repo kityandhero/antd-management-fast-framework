@@ -1,6 +1,6 @@
 {
   "name": "example-remote",
-  "version": "1.4.70",
+  "version": "1.4.72",
   "private": true,
   "author": "",
   "scripts": {
@@ -50,9 +50,9 @@
     "@tanem/react-nprogress": "^5.0.51",
     "@umijs/max": "^4.0.88",
     "antd": "^5.11.4",
-    "antd-management-fast-common": "^2.6.53",
-    "antd-management-fast-component": "^2.6.82",
-    "antd-management-fast-framework": "^2.11.96",
+    "antd-management-fast-common": "^2.6.55",
+    "antd-management-fast-component": "^2.6.84",
+    "antd-management-fast-framework": "^2.11.98",
     "axios": "^1.6.2",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",

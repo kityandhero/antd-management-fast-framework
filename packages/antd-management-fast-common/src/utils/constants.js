@@ -788,6 +788,15 @@ export const tabBarCollection = {
  */
 export const mobileTypeCollection = {
   /**
+   * 无轮廓
+   */
+  noneSketch: {
+    label: '无轮廓',
+    name: 'noneSketch',
+    helper: '',
+  },
+
+  /**
    * 模拟轮廓
    */
   roughSketch: {

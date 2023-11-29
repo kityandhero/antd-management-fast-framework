@@ -540,7 +540,7 @@ class BasicInfo extends TabPageBase {
                   children: children || [],
                 };
               },
-              onChangeCallback: ({
+              onChange: ({
                 value,
                 // eslint-disable-next-line no-unused-vars
                 label,

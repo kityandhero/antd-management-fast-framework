@@ -13,22 +13,66 @@ import { getCorsDomain, getTokenName } from 'antd-management-fast-common';
 
 const primaryCallName = 'components::Editor::TinymceWrapper';
 
+const commonPluginList = [
+  'advlist',
+  'anchor',
+  'autolink',
+  'autosave',
+  'charmap',
+  'charmap',
+  'code',
+  'codesample',
+  'directionality',
+  'emoticons',
+  'fullscreen',
+  'help',
+  'image',
+  'importcss',
+  'insertdatetime',
+  'link',
+  'lists',
+  'media',
+  'nonbreaking',
+  'pagebreak',
+  'preview',
+  'quickbars',
+  'save',
+  'searchreplace',
+  'table',
+  'template',
+  'visualblocks',
+  'visualchars',
+  'wordcount',
+];
+
+function buildPluginList({ autoresize = false }) {
+  const list = [];
+
+  if (autoresize) {
+    list.push('autoresize');
+  }
+
+  return [...commonPluginList, ...list];
+}
+
 class TinymceWrapper extends PureComponent {
   editor = React.createRef();
 
   buildConfig = () => {
     const { language, initConfig } = this.props;
 
+    const { autoresize } = { autoresize: false, ...initConfig };
+
+    const plugins = buildPluginList({ autoresize }).join(' ');
+
     const config = {
       language: language || '',
       height: 690,
       // plugins_ignore:
       //   'tinydrive powerpaste imagetools advcode formatpainter pageembed permanentpen casechange checklist advtable export tinymcespellchecker linkchecker mentions tinycomments toc',
-      plugins:
-        'preview  importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample code table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons autoresize',
+      plugins: plugins,
       mobile: {
-        plugins:
-          'preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample code table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons autoresize',
+        plugins: plugins,
       },
       menu: {
         tc: {
@@ -88,8 +132,8 @@ class TinymceWrapper extends PureComponent {
       // mentions_item_type: 'profile',
       automatic_uploads: true,
       images_upload_url: '',
-      min_height: 700,
-      toolbar_sticky: true,
+      // min_height: 700,
+      toolbar_sticky: false,
       images_upload_handler: this.imageUploadHandler,
       ...initConfig,
     };
@@ -213,6 +257,7 @@ TinymceWrapper.defaultProps = {
   language: '',
   content: '',
   initConfig: null,
+  autoresize: false,
   imagesUploadUrl: '',
 };
 

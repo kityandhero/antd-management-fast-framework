@@ -7,11 +7,7 @@ import {
   drawerConfig,
   mobileTypeCollection,
 } from 'antd-management-fast-common';
-import {
-  buildOptionItem,
-  iconBuilder,
-  MobileContainor,
-} from 'antd-management-fast-component';
+import { iconBuilder, MobileContainor } from 'antd-management-fast-component';
 
 import { BaseNeedlessLoadDrawer } from '../../../framework/DataDrawer/BaseNeedlessLoadDrawer';
 
@@ -28,7 +24,7 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
       placement: 'top',
       height: '100vh',
       showBottomBar: false,
-      mobileType: mobileTypeCollection.roughSketch.name,
+      mobileType: mobileTypeCollection.noneSketch.name,
     };
   }
 
@@ -67,13 +63,23 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
         {
           buildType: drawerConfig.extraBuildType.flexSelect,
           label: '模拟设备',
-          value: mobileType,
-          renderItem: () => {
-            return buildOptionItem({
-              list: listConfig,
-            });
+          defaultValue: mobileType,
+          list: listConfig,
+          dataConvert: (o) => {
+            const { label, flag: value } = {
+              label: '',
+              flag: '',
+              ...o,
+            };
+
+            return {
+              ...o,
+              label,
+              value,
+              alias: label,
+            };
           },
-          onChangeCallback: (v) => {
+          onChange: (v) => {
             this.setState({
               mobileType: v,
             });

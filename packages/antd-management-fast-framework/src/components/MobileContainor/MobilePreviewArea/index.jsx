@@ -17,11 +17,7 @@ import {
   renderFurtherColorWhenNoCallProcess,
   renderFurtherPrefixWhenNoCallProcess,
 } from 'antd-management-fast-common';
-import {
-  buildOptionItem,
-  iconBuilder,
-  MobileContainor,
-} from 'antd-management-fast-component';
+import { iconBuilder, MobileContainor } from 'antd-management-fast-component';
 
 import { Base } from '../../../framework/DataDrawer/Base';
 
@@ -39,7 +35,7 @@ class MobilePreviewArea extends Base {
       ...this.state,
       placement: 'top',
       height: '100vh',
-      mobileType: mobileTypeCollection.roughSketch.name,
+      mobileType: mobileTypeCollection.noneSketch.name,
     };
   }
 
@@ -49,6 +45,7 @@ class MobilePreviewArea extends Base {
     for (const o of Object.entries(mobileTypeCollection)) {
       // eslint-disable-next-line no-unused-vars
       const [k, v] = o;
+
       if (isObject(v)) {
         list.push(v);
       }
@@ -81,12 +78,13 @@ class MobilePreviewArea extends Base {
     for (const [index, o] of mobileCollection.entries()) {
       if (isObject(o)) {
         const key = `mobileType_${index}`;
+        const { label, name } = { label: '', name: '', ...o };
 
         listConfig.push({
           key,
-          flag: o.name,
-          name: o.label,
-          alias: o.label,
+          flag: name,
+          label: label,
+          alias: label,
           description: '',
           availability: whetherNumber.yes,
         });
@@ -106,13 +104,24 @@ class MobilePreviewArea extends Base {
                 buildType: cardConfig.extraBuildType.flexSelect,
                 size: 'small',
                 label: '模拟设备',
-                value: mobileType,
-                renderItem: () => {
-                  return buildOptionItem({
-                    list: listConfig,
-                  });
+                defaultValue: mobileType,
+                list: listConfig,
+                style: { minWidth: '170px' },
+                dataConvert: (o) => {
+                  const { label, flag: value } = {
+                    label: '',
+                    flag: '',
+                    ...o,
+                  };
+
+                  return {
+                    ...o,
+                    label,
+                    value,
+                    alias: label,
+                  };
                 },
-                onChangeCallback: (v) => {
+                onChange: (v) => {
                   this.setState({
                     mobileType: v,
                   });

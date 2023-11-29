@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { connect } from 'easy-soft-dva';
-import { checkHasAuthority, getValueByKey } from 'easy-soft-utility';
+import { checkHasAuthority, getValueByKey, throttle } from 'easy-soft-utility';
 
 import {
-  animalType,
+  // animalType,
   cardConfig,
   getDerivedStateFromPropertiesForUrlParameters,
   mobileTypeCollection,
@@ -48,7 +48,7 @@ class ContentInfo extends TabPageBase {
       submitApiPath: 'simple/updateContentInfo',
       simpleId: null,
       initContent: '',
-      contentChanged: false,
+      // contentChanged: false,
       contentPreview: '',
     };
   }
@@ -71,7 +71,7 @@ class ContentInfo extends TabPageBase {
           that.setState(
             {
               contentPreview: that.htmlContent,
-              contentChanged: false,
+              // contentChanged: false,
             },
             () => {
               that.autoSyncPrevFlag = false;
@@ -122,19 +122,26 @@ class ContentInfo extends TabPageBase {
     this.textContent = text;
     this.autoSyncPrevFlag = true;
 
-    const { contentChanged } = this.state;
+    // const { contentChanged } = this.state;
 
-    if (!contentChanged) {
-      this.setState({ contentChanged: true });
-    }
+    // if (!contentChanged) {
+    //   this.setState({ contentChanged: true });
+    // }
+
+    this.refreshContentPreview();
   };
 
-  refreshContentPreview = () => {
-    this.setState({
-      contentPreview: this.htmlContent,
-      contentChanged: false,
-    });
-  };
+  refreshContentPreview = throttle(
+    () => {
+      this.setState({
+        contentPreview: this.htmlContent,
+      });
+    },
+    600,
+    {
+      trailing: true,
+    },
+  );
 
   establishCardCollectionConfig = () => {
     const { initContent } = this.state;
@@ -168,7 +175,10 @@ class ContentInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.tinymce,
               html: initContent,
-              initConfig: {},
+              initConfig: {
+                height: 700,
+                toolbar_sticky: false,
+              },
               afterChange: this.afterHtmlChange,
             },
           ],
@@ -182,24 +192,27 @@ class ContentInfo extends TabPageBase {
   };
 
   renderPresetSiderTopArea = () => {
-    const { contentPreview, contentChanged } = this.state;
+    const {
+      contentPreview,
+      //  contentChanged
+    } = this.state;
 
     return (
       <MobileHtmlPreviewBox
-        affix
+        // affix
         affixOffsetTop={20}
-        alertVisible={contentChanged}
-        alertAnimationType={animalType.queue}
-        alertMessage={'内容已经发生变化'}
-        alertDescription={
-          '编辑器内容已经更改, 请点击刷新按钮查看最新预览, 或者更待稍后自动更新.'
-        }
-        alertType={'warning'}
-        alertIcon={false}
-        alertButtonText="刷新"
+        // alertVisible={contentChanged}
+        // alertAnimationType={animalType.queue}
+        // alertMessage={'内容已经发生变化'}
+        // alertDescription={
+        //   '编辑器内容已经更改, 请点击刷新按钮查看最新预览, 或者更待稍后自动更新.'
+        // }
+        // alertType={'warning'}
+        // alertIcon={false}
+        // alertButtonText="刷新"
         mobileList={[
+          mobileTypeCollection.noneSketch,
           mobileTypeCollection.roughSketch,
-          mobileTypeCollection.iPhone5S,
         ]}
         html={contentPreview || ''}
         afterAlertClick={() => {

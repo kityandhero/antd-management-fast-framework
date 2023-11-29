@@ -964,7 +964,7 @@ class CardCollectionItemContent extends PureComponent {
                         label: fieldData.label,
                         name: fieldData.name,
                         helper: fieldData.helper,
-                        onChangeCallback: contentItem.onChangeCallback,
+                        onChange: contentItem.onChange,
                         formItemLayout,
                         required: true,
                         innerProps: {
@@ -1018,7 +1018,7 @@ class CardCollectionItemContent extends PureComponent {
                         label: fieldData.label,
                         name: fieldData.name,
                         helper: fieldData.helper,
-                        onChange: contentItem.onChangeCallback,
+                        onChange: contentItem.onChange,
                         formItemLayout,
                         required: true,
                         innerProps: { ...contentItem.innerProps },

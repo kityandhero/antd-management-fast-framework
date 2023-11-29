@@ -29,6 +29,7 @@ class MobileHtmlPreviewBox extends MobilePreviewArea {
 }
 
 MobileHtmlPreviewBox.defaultProps = {
+  ...MobilePreviewArea.defaultProps,
   html: '',
 };
 
