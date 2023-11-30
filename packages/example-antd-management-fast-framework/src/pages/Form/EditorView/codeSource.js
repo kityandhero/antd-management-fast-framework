@@ -37,17 +37,44 @@ class RadioView extends BaseView {
   };
 
   establishCardCollectionConfig = () => {
-    const {
-      currentCode,
-      currentCodeTitle,
-
-      initContent,
-    } = this.state;
+    const { currentCode, currentCodeTitle } = this.state;
 
     const that = this;
 
     return {
       list: [
+        {
+          title: {
+            text: '富文本编辑',
+          },
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.tinymce,
+              html: '',
+              initConfig: {
+                height: 400,
+                toolbar_sticky: false,
+              },
+            },
+          ],
+        },
+        {
+          title: {
+            text: '富文本编辑',
+          },
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.tinymce,
+              html: '',
+              initConfig: {
+                min_height: 400,
+                toolbar_sticky: true,
+              },
+            },
+          ],
+        },
         {
           title: {
             text: '富文本编辑',
@@ -68,7 +95,11 @@ class RadioView extends BaseView {
             {
               lg: 24,
               type: cardConfig.contentItemType.tinymce,
-              content: initContent,
+              html: '',
+              initConfig: {
+                // min_height: 400,
+                autoresize: true,
+              },
               afterChange: this.afterHtmlChange,
             },
           ],

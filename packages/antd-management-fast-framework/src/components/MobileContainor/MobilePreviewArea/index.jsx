@@ -19,7 +19,7 @@ import {
 } from 'antd-management-fast-common';
 import { iconBuilder, MobileContainor } from 'antd-management-fast-component';
 
-import { Base } from '../../../framework/DataDrawer/Base';
+import { Base } from '../../../framework/DataOperation/Base';
 
 const { MobileSimulation } = MobileContainor;
 
@@ -95,8 +95,8 @@ class MobilePreviewArea extends Base {
       list: [
         {
           title: {
-            text: '手机预览',
-            icon: iconBuilder.mobile(),
+            text: '内容预览',
+            icon: iconBuilder.read(),
           },
           extra: {
             list: [
