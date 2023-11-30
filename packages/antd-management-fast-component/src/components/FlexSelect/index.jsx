@@ -8,8 +8,6 @@ import {
   isFunction,
 } from 'easy-soft-utility';
 
-import { logTemplate } from 'antd-management-fast-common';
-
 import { BaseComponent } from '../../bases';
 import { ColorText } from '../ColorText';
 import { FlexBox } from '../FlexBox';
@@ -37,8 +35,6 @@ class FlexSelect extends BaseComponent {
         : list.map((o, index) => {
             return dataConvert(o, index);
           });
-
-    logTemplate(listAdjust);
 
     const mergeProperties = {
       placeholder: buildFieldDescription(label, '选择') || '请选择',

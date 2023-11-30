@@ -8,7 +8,6 @@ import {
   logException,
 } from 'easy-soft-utility';
 
-import { logTemplate } from 'antd-management-fast-common';
 import { DocumentPrintDesigner } from 'antd-management-fast-design-playground';
 import {
   DataDrawer,
@@ -64,8 +63,6 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
   };
 
   saveDocumentSchema = (data) => {
-    logTemplate(data);
-
     setDataSchemaAction({
       target: this,
       handleData: JSON.stringify(data),

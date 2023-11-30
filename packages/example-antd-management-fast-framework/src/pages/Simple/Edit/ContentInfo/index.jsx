@@ -7,7 +7,6 @@ import {
   // animalType,
   cardConfig,
   getDerivedStateFromPropertiesForUrlParameters,
-  logTemplate,
   mobileTypeCollection,
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
@@ -197,8 +196,6 @@ class ContentInfo extends TabPageBase {
       contentPreview,
       //  contentChanged
     } = this.state;
-
-    logTemplate(this.contentWrapperType);
 
     return (
       <MobileHtmlPreviewBox
