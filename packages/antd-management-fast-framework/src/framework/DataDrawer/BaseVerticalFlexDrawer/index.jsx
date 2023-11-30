@@ -84,8 +84,12 @@ class BaseVerticalFlexDrawer extends Base {
     return null;
   };
 
-  renderPresetContentContainorInner = () => {
-    this.logCallTrack({}, primaryCallName, 'renderPresetContentContainorInner');
+  renderPresetContentContainorInnerBottom = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'renderPresetContentContainorInnerBottom',
+    );
 
     const helpConfig = this.establishHelpConfig();
 
@@ -100,6 +104,12 @@ class BaseVerticalFlexDrawer extends Base {
           />
         </>
       );
+
+    return bottom;
+  };
+
+  renderPresetContentContainorInner = () => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetContentContainorInner');
 
     return (
       <LoadingOverlay
@@ -136,7 +146,7 @@ class BaseVerticalFlexDrawer extends Base {
               border: '0',
             }}
             top={this.renderPresetContentContainorInnerTop()}
-            bottom={bottom}
+            bottom={this.renderPresetContentContainorInnerBottom()}
           />
         </div>
       </LoadingOverlay>
