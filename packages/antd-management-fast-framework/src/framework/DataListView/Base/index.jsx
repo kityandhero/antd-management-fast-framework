@@ -133,6 +133,7 @@ class Base extends AuthorizationWrapper {
       ...this.state,
       ...defaultState,
       showSelect: false,
+      showOverlay: false,
       listTitle: '检索结果',
       defaultAvatarIcon: iconBuilder.picture(),
       listViewMode: listViewConfig.viewMode.list,
@@ -828,7 +829,21 @@ class Base extends AuthorizationWrapper {
     );
   };
 
+  establishPresetFormOverlayStyle = () => {};
+
   renderPresetForm = () => this.buildSearchCard();
+
+  renderPresetFormOverlayContent = () => {
+    return null;
+  };
+
+  renderPresetListMainViewOverlayContent = () => {
+    return null;
+  };
+
+  renderPresetContentFooter = () => {
+    return null;
+  };
 
   establishTableAdditionalConfig = () => {
     this.logCallTrack(
@@ -1156,6 +1171,7 @@ class Base extends AuthorizationWrapper {
 
     const config = {
       size: 'default',
+      total: 0,
       showSizeChanger: true,
       showQuickJumper: true,
       showTotal: (total, range) => {
@@ -1648,7 +1664,7 @@ class Base extends AuthorizationWrapper {
   };
 
   renderPresetContentArea = () => {
-    const { firstLoadSuccess, listTitle } = this.state;
+    const { showOverlay, firstLoadSuccess, listTitle } = this.state;
 
     const affixConfig = {
       affix: false,
@@ -1689,40 +1705,63 @@ class Base extends AuthorizationWrapper {
     );
 
     let gridView = (
-      <Card
-        title={
-          <Row>
-            <Col flex="70px"> {listTitle}</Col>
-            <Col flex="auto">
-              {this.reloadAnimalPrompt ? (
-                <ReloadAnimalPrompt
-                  hide={!firstLoadSuccess}
-                  flag={this.viewAnimalPromptFlag}
-                />
-              ) : null}
-            </Col>
-          </Row>
-        }
-        headStyle={{ borderBottom: '0px' }}
-        bodyStyle={{
-          paddingTop: '0',
-          paddingBottom: hasPagination ? 0 : 24,
+      <div
+        style={{
+          borderRadius: '8px',
+          overflow: 'hidden',
+          ...(showOverlay ? { position: 'relative' } : {}),
         }}
-        bordered={false}
-        className={classNames(`${classPrefix}_containorTable`)}
-        extra={extraView}
       >
-        <div>
-          {this.renderPresetAboveTable()}
+        {showOverlay ? (
+          <div
+            style={{
+              zIndex: 100,
+              backgroundColor: 'rgba(255,255,255,0.4)',
+              ...this.establishPresetFormOverlayStyle(),
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              borderRadius: '8px',
+              overflow: 'hidden',
+            }}
+          >
+            {this.renderPresetListMainViewOverlayContent()}
+          </div>
+        ) : null}
 
-          {this.renderPresetListMainView()}
-        </div>
-      </Card>
+        <Card
+          title={
+            <Row>
+              <Col flex="70px"> {listTitle}</Col>
+              <Col flex="auto">
+                {this.reloadAnimalPrompt ? (
+                  <ReloadAnimalPrompt
+                    hide={!firstLoadSuccess}
+                    flag={this.viewAnimalPromptFlag}
+                  />
+                ) : null}
+              </Col>
+            </Row>
+          }
+          headStyle={{ borderBottom: '0px' }}
+          bodyStyle={{
+            paddingTop: '0',
+            paddingBottom: hasPagination ? 0 : 24,
+          }}
+          bordered={false}
+          className={classNames(`${classPrefix}_containorTable`)}
+          extra={extraView}
+        >
+          <div>
+            {this.renderPresetAboveTable()}
+
+            {this.renderPresetListMainView()}
+          </div>
+        </Card>
+      </div>
     );
 
-    if (!this.showSearchForm || (searchForm || null) == null) {
-      return gridView;
-    }
+    const footer = this.renderPresetContentFooter();
 
     return (
       <div
@@ -1734,21 +1773,50 @@ class Base extends AuthorizationWrapper {
           direction="vertical"
           flexAuto="bottom"
           top={
-            <>
-              <Card
-                bordered={false}
-                className={classNames(`${classPrefix}_containorSearch`)}
-              >
-                <div className={classNames(`${classPrefix}_tableListForm`)}>
-                  {searchForm}
-                </div>
-              </Card>
+            !this.showSearchForm || (searchForm || null) == null ? null : (
+              <div>
+                <div style={showOverlay ? { position: 'relative' } : {}}>
+                  {showOverlay ? (
+                    <div
+                      style={{
+                        zIndex: 100,
+                        backgroundColor: 'rgba(255,255,255,0.4)',
+                        ...this.establishPresetFormOverlayStyle(),
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      {this.renderPresetFormOverlayContent()}
+                    </div>
+                  ) : null}
 
-              <EverySpace direction="horizontal" size={14} />
-            </>
+                  <Card
+                    bordered={false}
+                    className={classNames(`${classPrefix}_containorSearch`)}
+                  >
+                    <div className={classNames(`${classPrefix}_tableListForm`)}>
+                      {searchForm}
+                    </div>
+                  </Card>
+                </div>
+
+                <EverySpace direction="horizontal" size={14} />
+              </div>
+            )
           }
           bottom={gridView}
         />
+
+        {footer == null ? null : (
+          <>
+            <EverySpace direction="horizontal" size={14} />
+
+            {footer}
+          </>
+        )}
       </div>
     );
   };

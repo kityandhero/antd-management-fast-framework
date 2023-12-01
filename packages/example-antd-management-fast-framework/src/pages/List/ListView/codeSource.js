@@ -1,4 +1,4 @@
-import { connect } from 'easy-soft-dva';
+export const code = `import { connect } from 'easy-soft-dva';
 import {
   checkHasAuthority,
   convertCollection,
@@ -146,13 +146,13 @@ class PageList extends MultiPage {
   };
 
   goToAdd = () => {
-    this.goToPath(`/simple/add`);
+    this.goToPath(\`/simple/add\`);
   };
 
   goToEdit = (record) => {
     const { simpleId } = record;
 
-    this.goToPath(`/simple/edit/load/${simpleId}/key/basicInfo`);
+    this.goToPath(\`/simple/edit/load/\${simpleId}/key/basicInfo\`);
   };
 
   establishSearchCardConfig = () => {
@@ -379,3 +379,4 @@ class PageList extends MultiPage {
 }
 
 export default PageList;
+`;
