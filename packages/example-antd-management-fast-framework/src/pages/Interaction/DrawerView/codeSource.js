@@ -373,8 +373,6 @@ class DrawerView extends BaseView {
     return (
       <>
         <SimpleSinglePageConfirmSelectDrawer
-          multiSelect={true}
-          hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
@@ -383,8 +381,6 @@ class DrawerView extends BaseView {
         />
 
         <SimpleSinglePageMultiSelectDrawer
-          multiSelect={true}
-          hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
@@ -397,8 +393,6 @@ class DrawerView extends BaseView {
         />
 
         <SimpleSinglePageFrontendPaginationMultiSelectDrawer
-          multiSelect={true}
-          hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
@@ -411,8 +405,6 @@ class DrawerView extends BaseView {
         />
 
         <SimpleMultiPageMultiSelectDrawer
-          multiSelect={true}
-          hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 

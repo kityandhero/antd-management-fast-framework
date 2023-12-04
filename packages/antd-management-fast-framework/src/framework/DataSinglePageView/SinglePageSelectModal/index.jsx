@@ -31,11 +31,6 @@ class SinglePageSelectModal extends SinglePageModal {
    */
   selectListData = [];
 
-  /**
-   * 选择状态是否发生变化
-   */
-  selectChanged = false;
-
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
@@ -51,26 +46,17 @@ class SinglePageSelectModal extends SinglePageModal {
       {},
       primaryCallName,
       'executeAfterDoOtherWhenChangeVisibleToShow',
-      'reset selectListData => [] and selectChanged => false',
+      'reset selectListData => [] when showSelect is false',
     );
 
-    this.selectListData = [];
-    this.selectChanged = false;
+    const { showSelect } = this.state;
+
+    if (!showSelect) {
+      this.selectListData = [];
+    }
   };
 
   doOtherWhenChangeVisibleToHide = () => {
-    if (!this.selectChanged) {
-      this.logCallTrace(
-        {},
-        primaryCallName,
-        'doOtherWhenChangeVisibleToHide',
-        'afterSelectSuccess',
-        'ignore when no change in selection',
-      );
-
-      return;
-    }
-
     this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToHide');
 
     const { afterSelectSuccess } = this.props;
@@ -164,8 +150,6 @@ class SinglePageSelectModal extends SinglePageModal {
     } else {
       this.selectListData = [handleData];
     }
-
-    this.selectChanged = true;
 
     this.execSelect();
   };

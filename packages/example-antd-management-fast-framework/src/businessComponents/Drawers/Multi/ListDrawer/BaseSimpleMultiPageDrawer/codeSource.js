@@ -4,7 +4,6 @@ import {
   checkStringIsNullOrWhiteSpace,
   formatCollection,
   getValueByKey,
-  isArray,
   logExecute,
   whetherNumber,
 } from 'easy-soft-utility';
@@ -151,28 +150,6 @@ class BaseSimpleMultiPageDrawer extends MultiPageDrawer {
         },
       },
     ];
-  };
-
-  // 构建通知文本, 仅多选模式有效, 单选时不会触发通知
-  buildSelectNotificationDescription = (o) => {
-    if (isArray(o)) {
-      let list = [];
-
-      for (const item of o) {
-        const { title } = item;
-        list.push(title);
-      }
-
-      if (list.length > 0) {
-        return \`已选择: \${list.join(',')}\`;
-      }
-
-      return '';
-    } else {
-      const { title } = o;
-
-      return \`已选择: \${title}\`;
-    }
   };
 
   // 配置列表显示模式构建逻辑
