@@ -1,5 +1,6 @@
 export const code = `import { connect } from 'easy-soft-dva';
 
+import { logTemplate } from 'antd-management-fast-common';
 import { switchControlAssist } from 'antd-management-fast-framework';
 
 import BaseSimpleSinglePageSelectModal from '../../BaseSimpleSinglePageSelectModal';
@@ -26,9 +27,16 @@ class SimpleSinglePageFrontendPaginationMultiSelectModal extends BaseSimpleSingl
 
     this.state = {
       ...this.state,
+      showSelect: true,
       sourceCode: code,
     };
   }
+
+  onBatchActionClick = (list) => {
+    logTemplate({
+      list,
+    });
+  };
 }
 
 export { SimpleSinglePageFrontendPaginationMultiSelectModal };

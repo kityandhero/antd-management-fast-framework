@@ -1,6 +1,5 @@
 import { connect } from 'easy-soft-dva';
 
-import { logTemplate } from 'antd-management-fast-common';
 import { switchControlAssist } from 'antd-management-fast-framework';
 
 import { BaseSimpleMultiPageSelectDrawer } from '../BaseSimpleMultiPageSelectDrawer';
@@ -28,12 +27,6 @@ class SimpleMultiPageMultiSelectDrawer extends BaseSimpleMultiPageSelectDrawer {
   static open() {
     switchControlAssist.open(visibleFlag);
   }
-
-  onBatchActionClick = (list) => {
-    logTemplate({
-      list,
-    });
-  };
 }
 
 export { SimpleMultiPageMultiSelectDrawer };

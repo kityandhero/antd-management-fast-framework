@@ -1,10 +1,4 @@
-import {
-  checkStringIsNullOrWhiteSpace,
-  isArray,
-  isFunction,
-  showSimpleErrorMessage,
-  showSuccessNotification,
-} from 'easy-soft-utility';
+import { isArray, isFunction } from 'easy-soft-utility';
 
 import {
   columnFacadeMode,
@@ -129,10 +123,16 @@ class MultiPageSelectModal extends MultiPageModal {
     return iconBuilder.select();
   };
 
-  onBatchActionClick = () => {
-    const text = 'onBatchActionClick need be override';
+  handleSelectRows = (rows) => {
+    this.selectListData = rows;
 
-    showSimpleErrorMessage(text);
+    this.setState({
+      selectedDataTableDataRows: rows,
+    });
+  };
+
+  onBatchActionClick = () => {
+    this.execSelect();
   };
 
   establishListItemDropdownConfig = (record) => {
@@ -148,18 +148,6 @@ class MultiPageSelectModal extends MultiPageModal {
       confirm: this.confirmSelect,
       title: this.confirmSelect ? '确定选择此项吗？' : '',
     };
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  buildSelectNotificationDescription = (data) => {
-    this.logCallTrack(
-      {},
-      primaryCallName,
-      'buildSelectNotificationDescription',
-      emptyLogic,
-    );
-
-    return '';
   };
 
   selectRecord = ({ handleData }) => {
@@ -189,7 +177,6 @@ class MultiPageSelectModal extends MultiPageModal {
       this.selectListData = [];
     }
 
-    const { hideAfterSelect } = this.props;
     const { showSelect } = this.state;
 
     this.logCallTrace(
@@ -201,34 +188,15 @@ class MultiPageSelectModal extends MultiPageModal {
       'select info',
     );
 
-    if (!showSelect && hideAfterSelect) {
-      this.hideModal();
-    } else {
-      const text = this.buildSelectNotificationDescription(this.selectListData);
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'execSelect',
+      'trigger',
+      'hideModal',
+    );
 
-      if (checkStringIsNullOrWhiteSpace(text)) {
-        this.logCallTrace(
-          {},
-          primaryCallName,
-          'selectRecord',
-          'showSuccessNotification',
-          'ignore when message is empty',
-        );
-      } else {
-        this.logCallTrace(
-          {},
-          primaryCallName,
-          'selectRecord',
-          'showSuccessNotification',
-        );
-
-        showSuccessNotification({
-          title: '操作结果',
-          description: text,
-          placement: 'bottomLeft',
-        });
-      }
-    }
+    this.hideModal();
   };
 
   buildColumnFromWrapper = () => {
@@ -294,8 +262,6 @@ class MultiPageSelectModal extends MultiPageModal {
 
 MultiPageSelectModal.defaultProps = {
   width: 820,
-  multiSelect: false,
-  hideAfterSelect: true,
 };
 
 export { MultiPageSelectModal };

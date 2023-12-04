@@ -962,7 +962,7 @@ class Base extends AuthorizationWrapper {
   };
 
   triggerBatchActionClick = (list) => {
-    this.logCallTrack({ list }, primaryCallName, 'triggerBatchActionClick');
+    this.logCallTrack({}, primaryCallName, 'triggerBatchActionClick');
 
     if (!isArray(list) || isEmptyArray(list)) {
       showSimpleWarnMessage('请先选择目标项');

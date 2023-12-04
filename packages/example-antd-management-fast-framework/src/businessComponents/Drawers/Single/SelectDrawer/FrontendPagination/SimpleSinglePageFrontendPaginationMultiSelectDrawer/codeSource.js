@@ -26,6 +26,7 @@ class SimpleSinglePageFrontendPaginationMultiSelectDrawer extends BaseSimpleSing
 
     this.state = {
       ...this.state,
+      showSelect: true,
       sourceCode: code,
     };
   }

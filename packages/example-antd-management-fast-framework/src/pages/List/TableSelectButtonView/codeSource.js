@@ -11,6 +11,7 @@ import {
   columnFacadeMode,
   columnPlaceholder,
   listViewConfig,
+  logTemplate,
   searchCardConfig,
 } from 'antd-management-fast-common';
 import { iconBuilder, SyntaxHighlighter } from 'antd-management-fast-component';
@@ -40,6 +41,8 @@ const { MultiPage } = DataMultiPageView;
 }))
 class PageList extends MultiPage {
   showCallProcess = true;
+
+  batchActionSwitch = true;
 
   pageValues = {
     pageNo: 1,
@@ -150,6 +153,14 @@ class PageList extends MultiPage {
     const { simpleId } = record;
 
     this.goToPath(\`/simple/edit/load/\${simpleId}/key/basicInfo\`);
+  };
+
+  establishPresetBatchActionText = () => '选择联动按钮';
+
+  onBatchActionClick = (list) => {
+    logTemplate({
+      list,
+    });
   };
 
   establishSearchCardConfig = () => {

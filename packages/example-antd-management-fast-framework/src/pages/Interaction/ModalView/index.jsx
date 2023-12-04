@@ -471,8 +471,6 @@ class ModalView extends BaseView {
     return (
       <>
         <SimpleSinglePageConfirmSelectModal
-          multiSelect={true}
-          hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
@@ -481,8 +479,6 @@ class ModalView extends BaseView {
         />
 
         <SimpleSinglePageMultiSelectModal
-          multiSelect={true}
-          hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
@@ -495,8 +491,6 @@ class ModalView extends BaseView {
         />
 
         <SimpleSinglePageFrontendPaginationMultiSelectModal
-          multiSelect={true}
-          hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
@@ -509,8 +503,6 @@ class ModalView extends BaseView {
         />
 
         <SimpleMultiPageMultiSelectModal
-          multiSelect={true}
-          hideAfterSelect={false}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 

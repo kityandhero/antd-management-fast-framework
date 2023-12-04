@@ -2,7 +2,7 @@ export const code = `import { connect } from 'easy-soft-dva';
 
 import { switchControlAssist } from 'antd-management-fast-framework';
 
-import BaseSimpleMultiPageSelectDrawer from '../BaseSimpleMultiPageSelectDrawer';
+import { BaseSimpleMultiPageSelectDrawer } from '../BaseSimpleMultiPageSelectDrawer';
 
 import { code } from './codeSource';
 

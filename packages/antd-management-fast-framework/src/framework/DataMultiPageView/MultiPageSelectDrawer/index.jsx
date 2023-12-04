@@ -1,10 +1,4 @@
-import {
-  checkStringIsNullOrWhiteSpace,
-  isArray,
-  isFunction,
-  showSimpleErrorMessage,
-  showSuccessNotification,
-} from 'easy-soft-utility';
+import { isArray, isFunction } from 'easy-soft-utility';
 
 import {
   columnFacadeMode,
@@ -129,11 +123,17 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
     return iconBuilder.select();
   };
 
+  handleSelectRows = (rows) => {
+    this.selectListData = rows;
+
+    this.setState({
+      selectedDataTableDataRows: rows,
+    });
+  };
+
   // eslint-disable-next-line no-unused-vars
   onBatchActionClick = (list) => {
-    const text = 'onBatchActionClick need be override';
-
-    showSimpleErrorMessage(text);
+    this.execSelect();
   };
 
   establishListItemDropdownConfig = (record) => {
@@ -149,18 +149,6 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
       confirm: this.confirmSelect,
       title: this.confirmSelect ? '确定选择此项吗？' : '',
     };
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  buildSelectNotificationDescription = (data) => {
-    this.logCallTrack(
-      {},
-      primaryCallName,
-      'buildSelectNotificationDescription',
-      emptyLogic,
-    );
-
-    return '';
   };
 
   selectRecord = ({ handleData }) => {
@@ -190,7 +178,6 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
       this.selectListData = [];
     }
 
-    const { hideAfterSelect } = this.props;
     const { showSelect } = this.state;
 
     this.logCallTrace(
@@ -202,34 +189,15 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
       'select info',
     );
 
-    if (!showSelect && hideAfterSelect) {
-      this.hideDrawer();
-    } else {
-      const text = this.buildSelectNotificationDescription(this.selectListData);
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'execSelect',
+      'trigger',
+      'hideDrawer',
+    );
 
-      if (checkStringIsNullOrWhiteSpace(text)) {
-        this.logCallTrace(
-          {},
-          primaryCallName,
-          'selectRecord',
-          'showSuccessNotification',
-          'ignore when message is empty',
-        );
-      } else {
-        this.logCallTrace(
-          {},
-          primaryCallName,
-          'selectRecord',
-          'showSuccessNotification',
-        );
-
-        showSuccessNotification({
-          title: '操作结果',
-          description: text,
-          placement: 'bottomLeft',
-        });
-      }
-    }
+    this.hideDrawer();
   };
 
   buildColumnFromWrapper = () => {
@@ -295,7 +263,6 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
 
 MultiPageSelectDrawer.defaultProps = {
   width: 820,
-  hideAfterSelect: true,
 };
 
 export { MultiPageSelectDrawer };
