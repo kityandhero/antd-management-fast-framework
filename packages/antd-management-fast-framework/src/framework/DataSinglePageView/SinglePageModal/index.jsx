@@ -1,4 +1,4 @@
-import { Card, Col, Divider, List, Row, Tooltip } from 'antd';
+import { Card, Col, Divider, List, Row, Space, Tooltip } from 'antd';
 import classNames from 'classnames';
 import React from 'react';
 
@@ -431,45 +431,48 @@ class SinglePageModal extends SinglePage {
               bordered={false}
               className={styles.containorTable}
               extra={
-                <>
+                <Space
+                  direction="horizontal"
+                  split={<Divider type="vertical" />}
+                >
                   {extraAction}
-
-                  {extraAction == null ? null : <Divider type="vertical" />}
 
                   {this.renderPresetBatchAction()}
 
-                  {listViewMode === listViewConfig.viewMode.table &&
-                  this.useTableDensityAction ? (
-                    <DensityAction
-                      tableSize={tableSize}
-                      setTableSize={(key) => {
-                        this.setTableSize(key);
-                      }}
-                    />
-                  ) : null}
+                  <div>
+                    {listViewMode === listViewConfig.viewMode.table &&
+                    this.useTableDensityAction ? (
+                      <DensityAction
+                        tableSize={tableSize}
+                        setTableSize={(key) => {
+                          this.setTableSize(key);
+                        }}
+                      />
+                    ) : null}
 
-                  <Tooltip title="刷新本页">
-                    <RefreshButton
-                      flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
-                      onRefresh={() => {
-                        this.refreshData({});
-                      }}
-                    />
-                  </Tooltip>
+                    <Tooltip title="刷新本页">
+                      <RefreshButton
+                        flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
+                        onRefresh={() => {
+                          this.refreshData({});
+                        }}
+                      />
+                    </Tooltip>
 
-                  {listViewMode === listViewConfig.viewMode.table ? (
-                    <ColumnSetting
-                      columns={this.getColumn()}
-                      columnsMap={this.getColumnsMap()}
-                      setColumnsMap={(event) => {
-                        this.setColumnsMap(event);
-                      }}
-                      setSortKeyColumns={(key) => {
-                        this.setSortKeyColumns(key);
-                      }}
-                    />
-                  ) : null}
-                </>
+                    {listViewMode === listViewConfig.viewMode.table ? (
+                      <ColumnSetting
+                        columns={this.getColumn()}
+                        columnsMap={this.getColumnsMap()}
+                        setColumnsMap={(event) => {
+                          this.setColumnsMap(event);
+                        }}
+                        setSortKeyColumns={(key) => {
+                          this.setSortKeyColumns(key);
+                        }}
+                      />
+                    ) : null}
+                  </div>
+                </Space>
               }
             >
               <div

@@ -19,6 +19,8 @@ import {
   createDayJsDatetime,
   datetimeFormat,
   isArray,
+  isEmptyArray,
+  isFunction,
   isUndefined,
   logException,
   showSimpleErrorMessage,
@@ -83,6 +85,8 @@ const primaryCallName = 'DataListView::Base';
 
 class Base extends AuthorizationWrapper {
   showReloadButton = false;
+
+  batchActionSwitch = false;
 
   /**
    * 使用远端分页
@@ -957,8 +961,42 @@ class Base extends AuthorizationWrapper {
     return o;
   };
 
+  triggerBatchActionClick = (list) => {
+    this.logCallTrack({ list }, primaryCallName, 'triggerBatchActionClick');
+
+    if (!isArray(list) || isEmptyArray(list)) {
+      showSimpleWarnMessage('请先选择目标项');
+
+      return;
+    }
+
+    if (isFunction(this.onBatchActionClick)) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'triggerBatchActionClick',
+        'trigger',
+        'onBatchActionClick',
+      );
+
+      this.onBatchActionClick(list);
+    } else {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'triggerBatchActionClick',
+        'trigger',
+        'onBatchActionClick',
+        'ignore',
+      );
+    }
+  };
+
   // eslint-disable-next-line no-unused-vars
-  onBatchActionSelect = (key) => {};
+  onBatchActionClick = null;
+
+  // eslint-disable-next-line no-unused-vars
+  onBatchActionSelect = null;
 
   // eslint-disable-next-line no-unused-vars
   renderPresetTable = (config) => null;
@@ -1072,35 +1110,85 @@ class Base extends AuthorizationWrapper {
     );
   };
 
-  renderPresetBatchActionMenu = () => [];
+  establishPresetBatchActionSize = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPresetBatchActionSize',
+      'default',
+    );
+
+    return 'default';
+  };
+
+  establishPresetBatchActionIcon = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPresetBatchActionIcon',
+      emptyLogic,
+    );
+
+    return null;
+  };
+
+  establishPresetBatchActionText = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPresetBatchActionText',
+      '按钮',
+    );
+
+    return '按钮';
+  };
+
+  establishPresetBatchActionMenu = () => [];
 
   renderPresetBatchAction = () => {
     const { showSelect, selectedDataTableDataRows } = this.state;
 
-    const selectRows = isArray(selectedDataTableDataRows)
-      ? selectedDataTableDataRows
-      : [];
+    this.logCallTrack(
+      { showSelect },
+      primaryCallName,
+      'renderPresetBatchAction',
+      emptyLogic,
+    );
 
-    if (showSelect) {
-      const batchActionMenu = this.renderPresetBatchActionMenu();
+    if (showSelect && this.batchActionSwitch) {
+      const batchActionMenu = this.establishPresetBatchActionMenu();
 
-      if ((batchActionMenu || []).length > 0) {
-        return (
-          <>
-            <BatchAction.Button
-              onSelect={(key) => {
-                this.onBatchActionSelect(key);
-              }}
-              menus={batchActionMenu}
-              disabled={selectRows.length === 0}
-            >
-              批量操作
-            </BatchAction.Button>
+      this.logCallTrace({}, primaryCallName, 'establishPresetBatchActionSize');
 
-            <Divider type="vertical" />
-          </>
-        );
-      }
+      this.logCallTrace({}, primaryCallName, 'establishPresetBatchActionText');
+
+      this.logCallTrace({}, primaryCallName, 'establishPresetBatchActionIcon');
+
+      return (
+        <BatchAction
+          flag={[this.viewLoadingFlag, this.viewReloadingFlag]}
+          size={this.establishPresetBatchActionSize()}
+          icon={this.establishPresetBatchActionIcon()}
+          text={this.establishPresetBatchActionText()}
+          onSelect={
+            isFunction(this.onBatchActionSelect)
+              ? (key) => {
+                  this.onBatchActionSelect(key, selectedDataTableDataRows);
+                }
+              : null
+          }
+          onClick={
+            isFunction(this.onBatchActionClick)
+              ? () => {
+                  this.triggerBatchActionClick(selectedDataTableDataRows);
+                }
+              : null
+          }
+          menus={batchActionMenu}
+        >
+          批量操作
+        </BatchAction>
+      );
     }
 
     return null;
@@ -1345,7 +1433,7 @@ class Base extends AuthorizationWrapper {
 
     if (listViewMode === listViewConfig.viewMode.table) {
       return (
-        <>
+        <div>
           {this.useTableDensityAction ? (
             <DensityAction
               tableSize={tableSize}
@@ -1372,7 +1460,7 @@ class Base extends AuthorizationWrapper {
               this.setSortKeyColumns(key);
             }}
           />
-        </>
+        </div>
       );
     }
 
@@ -1674,6 +1762,8 @@ class Base extends AuthorizationWrapper {
 
     const extraAction = this.renderPresetExtraActionView();
 
+    const batchAction = this.renderPresetBatchAction();
+
     const searchForm = this.renderPresetForm();
 
     const hasPagination = this.renderPresetPaginationView() != null;
@@ -1682,26 +1772,22 @@ class Base extends AuthorizationWrapper {
 
     const extraView = affix ? (
       <Affix offsetTop={toNumber(offsetTop)}>
-        <div>
+        <Space direction="horizontal" split={<Divider type="vertical" />}>
           {extraAction}
 
-          {extraAction == null ? null : <Divider type="vertical" />}
-
-          {this.renderPresetBatchAction()}
+          {batchAction}
 
           {this.renderPresetCardExtraAction()}
-        </div>
+        </Space>
       </Affix>
     ) : (
-      <>
+      <Space direction="horizontal" split={<Divider type="vertical" />}>
         {extraAction}
 
-        {extraAction == null ? null : <Divider type="vertical" />}
-
-        {this.renderPresetBatchAction()}
+        {batchAction}
 
         {this.renderPresetCardExtraAction()}
-      </>
+      </Space>
     );
 
     let gridView = (

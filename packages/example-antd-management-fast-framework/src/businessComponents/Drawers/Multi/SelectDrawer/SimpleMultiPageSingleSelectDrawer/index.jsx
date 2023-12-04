@@ -2,12 +2,12 @@ import { connect } from 'easy-soft-dva';
 
 import { switchControlAssist } from 'antd-management-fast-framework';
 
-import BaseSimpleMultiPageSelectDrawer from '../BaseSimpleMultiPageSelectDrawer';
+import { BaseSimpleMultiPageSelectDrawer } from '../BaseSimpleMultiPageSelectDrawer';
 
 import { code } from './codeSource';
 
 // 显隐控制标记, 必须设置, 标记需要全局唯一
-const visibleFlag = '5d72df79921e438fa86762e52929fce1';
+const visibleFlag = '71ca206537f64f4fa00247381a6d6eb2';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,

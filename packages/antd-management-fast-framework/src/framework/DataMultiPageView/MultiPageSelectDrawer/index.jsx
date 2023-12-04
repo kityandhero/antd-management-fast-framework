@@ -2,10 +2,15 @@ import {
   checkStringIsNullOrWhiteSpace,
   isArray,
   isFunction,
+  showSimpleErrorMessage,
   showSuccessNotification,
 } from 'easy-soft-utility';
 
-import { emptyLogic } from 'antd-management-fast-common';
+import {
+  columnFacadeMode,
+  emptyLogic,
+  formNameCollection,
+} from 'antd-management-fast-common';
 import {
   buildListViewItemActionSelect,
   iconBuilder,
@@ -13,10 +18,12 @@ import {
 
 import { MultiPageDrawer } from '../MultiPageDrawer';
 
-const primaryCallName = 'DataSinglePageView::MultiPageSelectDrawer';
+const primaryCallName = 'DataSinglePageView::MultiPageSelectCoreDrawer';
 
 class MultiPageSelectDrawer extends MultiPageDrawer {
   showListViewItemActionSelect = true;
+
+  batchActionSwitch = true;
 
   useFrontendPagination = false;
 
@@ -94,6 +101,41 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
     }
   };
 
+  establishPresetBatchActionSize = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPresetBatchActionSize',
+      'small',
+    );
+
+    return 'small';
+  };
+
+  establishPresetBatchActionText = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPresetBatchActionText',
+      '确定选择',
+    );
+
+    return '确定选择';
+  };
+
+  establishPresetBatchActionIcon = () => {
+    this.logCallTrack({}, primaryCallName, 'establishPresetBatchActionIcon');
+
+    return iconBuilder.select();
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  onBatchActionClick = (list) => {
+    const text = 'onBatchActionClick need be override';
+
+    showSimpleErrorMessage(text);
+  };
+
   establishListItemDropdownConfig = (record) => {
     return {
       size: 'small',
@@ -124,13 +166,13 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
   selectRecord = ({ handleData }) => {
     this.logCallTrack({}, primaryCallName, 'selectRecord');
 
+    const { showSelect } = this.state;
+
     if (!isArray(this.selectListData)) {
       this.selectListData = [];
     }
 
-    const { multiSelect, hideAfterSelect } = this.props;
-
-    if (multiSelect) {
+    if (showSelect) {
       this.selectListData.push(handleData);
     } else {
       this.selectListData = [handleData];
@@ -138,8 +180,21 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
 
     this.selectChanged = true;
 
+    this.execSelect();
+  };
+
+  execSelect = () => {
+    this.logCallTrack({}, primaryCallName, 'execSelect');
+
+    if (!isArray(this.selectListData)) {
+      this.selectListData = [];
+    }
+
+    const { hideAfterSelect } = this.props;
+    const { showSelect } = this.state;
+
     this.logCallTrace(
-      multiSelect
+      showSelect
         ? { selectData: this.selectListData }
         : { selectData: this.selectListData[0] },
       primaryCallName,
@@ -147,7 +202,7 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
       'select info',
     );
 
-    if (!multiSelect && hideAfterSelect) {
+    if (!showSelect && hideAfterSelect) {
       this.hideDrawer();
     } else {
       const text = this.buildSelectNotificationDescription(this.selectListData);
@@ -177,6 +232,55 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
     }
   };
 
+  buildColumnFromWrapper = () => {
+    const { showSelect } = this.state;
+
+    const list = this.getColumnWrapper() || [];
+
+    if (showSelect) {
+      return this.buildColumnList([...list]);
+    }
+
+    let hasCustomOperate = false;
+
+    for (const o of list) {
+      const { dataTarget: dt } = {
+        dataTarget: {},
+        ...o,
+      };
+
+      const { name } = {
+        name: '',
+        ...dt,
+      };
+
+      if (name === formNameCollection.customOperate.name) {
+        hasCustomOperate = true;
+      }
+    }
+
+    return this.buildColumnList([
+      ...list,
+      ...(hasCustomOperate
+        ? []
+        : [
+            {
+              dataTarget: formNameCollection.customOperate,
+              width: this.columnOperateWidth,
+              fixed: this.columnOperateFixed,
+              showRichFacade: true,
+              facadeMode: columnFacadeMode.dropdown,
+              hidden: !this.columnOperateVisible,
+              configBuilder: (value, record) => {
+                const o = this.establishListItemDropdownConfig(record);
+
+                return o || null;
+              },
+            },
+          ]),
+    ]);
+  };
+
   renderPresetListViewItemActionSelect = (item, index) => {
     const that = this;
 
@@ -191,7 +295,6 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
 
 MultiPageSelectDrawer.defaultProps = {
   width: 820,
-  multiSelect: false,
   hideAfterSelect: true,
 };
 

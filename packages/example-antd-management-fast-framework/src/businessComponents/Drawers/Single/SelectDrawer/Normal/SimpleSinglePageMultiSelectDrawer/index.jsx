@@ -23,6 +23,7 @@ class SimpleSinglePageMultiSelectDrawer extends BaseSimpleSinglePageSelectDrawer
 
     this.state = {
       ...this.state,
+      showSelect: true,
       sourceCode: code,
     };
   }

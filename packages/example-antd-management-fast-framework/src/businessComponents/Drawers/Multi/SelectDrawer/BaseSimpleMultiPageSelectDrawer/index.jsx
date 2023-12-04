@@ -45,12 +45,11 @@ class BaseSimpleMultiPageSelectDrawer extends MultiPageSelectDrawer {
 
     this.state = {
       ...this.state,
-      pageTitle: '数据分页选择列表',
+      pageTitle: '数据分页列表单项选择',
       // 页面加载时自动加载的远程请求
-      loadApiPath: 'simple/singleList',
+      loadApiPath: 'simple/pageList',
       // 设置默认试图模式为 table
       listViewMode: listViewConfig.viewMode.table,
-      showSelect: true,
       // table 显示模式行长度, 合理设置可以提升美观以及用户体验，超出可见区域将显示滚动条
       tableScrollX: 1220,
       sourceCode: '',
@@ -300,4 +299,4 @@ class BaseSimpleMultiPageSelectDrawer extends MultiPageSelectDrawer {
   };
 }
 
-export default BaseSimpleMultiPageSelectDrawer;
+export { BaseSimpleMultiPageSelectDrawer };

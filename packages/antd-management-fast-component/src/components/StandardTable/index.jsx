@@ -1,11 +1,11 @@
-import { Alert, Table } from 'antd';
+import { Alert, Table, Typography } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { logTrace, mergeArrowText } from 'easy-soft-utility';
+import { logTrace, mergeArrowText, toString } from 'easy-soft-utility';
 
 import { listViewConfig } from 'antd-management-fast-common';
 
-import { AnchorLink } from '../AnchorLink';
+const { Link } = Typography;
 
 function initTotalList(columns) {
   const totalList = [];
@@ -28,7 +28,7 @@ class StandardTable extends PureComponent {
 
     this.state = {
       selectedRowKeys: [],
-      needTotalList,
+      needTotalList: [...needTotalList],
     };
   }
 
@@ -38,16 +38,16 @@ class StandardTable extends PureComponent {
       const needTotalList = initTotalList(nextProperties.columns);
       return {
         selectedRowKeys: [],
-        needTotalList,
+        needTotalList: [...needTotalList],
       };
     }
     return null;
   }
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
-    let { needTotalList } = this.state;
+    const { needTotalList } = this.state;
 
-    needTotalList = needTotalList.map((item) => ({
+    const list = needTotalList.map((item) => ({
       ...item,
       total: (selectedRows || []).reduce(
         (sum, value) => sum + Number.parseFloat(value[item.dataIndex], 10),
@@ -61,7 +61,10 @@ class StandardTable extends PureComponent {
       onSelectRow(selectedRows || []);
     }
 
-    this.setState({ selectedRowKeys, needTotalList });
+    this.setState({
+      selectedRowKeys: [...selectedRowKeys],
+      needTotalList: [...list],
+    });
   };
 
   handleTableChange = (pagination, filters, sorter, extra) => {
@@ -78,6 +81,7 @@ class StandardTable extends PureComponent {
 
   render() {
     const { selectedRowKeys, needTotalList } = this.state;
+
     const {
       data: { list, pagination },
       rowKey,
@@ -118,11 +122,13 @@ class StandardTable extends PureComponent {
           <Alert
             message={
               <>
-                已选择{' '}
-                <AnchorLink style={{ fontWeight: 600 }}>
-                  {selectedRowKeys.length}
-                </AnchorLink>{' '}
-                项&nbsp;&nbsp;
+                已选择
+                <Link
+                  style={{ fontWeight: 600, marginLeft: 6, marginRight: 6 }}
+                >
+                  {toString(selectedRowKeys.length)}
+                </Link>
+                项
                 {needTotalList.map((item) => (
                   <span style={{ marginLeft: 8 }} key={item.dataIndex}>
                     {item.title}
@@ -132,12 +138,12 @@ class StandardTable extends PureComponent {
                     </span>
                   </span>
                 ))}
-                <AnchorLink
+                <Link
                   onClick={this.cleanSelectedKeys}
-                  style={{ marginLeft: 24 }}
+                  style={{ marginLeft: 10 }}
                 >
                   清空
-                </AnchorLink>
+                </Link>
               </>
             }
             type="info"
