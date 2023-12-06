@@ -501,7 +501,14 @@ class Base extends AuthorizationWrapper {
 
     if (isArray(list)) {
       for (const co of list) {
-        listData.push(co);
+        const { hidden } = {
+          hidden: false,
+          ...co,
+        };
+
+        if (!hidden) {
+          listData.push(co);
+        }
       }
     }
 
