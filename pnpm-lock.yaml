@@ -1985,7 +1985,7 @@ importers:
       antd-management-fast-develop: ^1.1.48
       antd-management-fast-flow: ^1.0.28
       antd-management-fast-formily: ^1.0.40
-      antd-management-fast-framework: ^2.11.118
+      antd-management-fast-framework: ^2.11.119
       axios: ^1.6.2
       babel-jest: ^29.7.0
       classnames: ^2.3.2
@@ -2176,7 +2176,7 @@ importers:
       antd-management-fast-develop: ^1.1.48
       antd-management-fast-flow: ^1.0.28
       antd-management-fast-formily: ^1.0.40
-      antd-management-fast-framework: ^2.11.118
+      antd-management-fast-framework: ^2.11.119
       axios: ^1.6.2
       babel-jest: ^29.7.0
       classnames: ^2.3.2
@@ -8080,7 +8080,7 @@ packages:
     resolution: {integrity: sha512-hy8b7Y1J8OGe6LbAjj3xniQrj3v6lsivCcrmf4TzSgPzLkhIeKgc5IZnT7ReIqmEuodjfO8EYAuoFvIrHi/+jQ==}
     deprecated: This is a stub types definition. history provides its own type definitions, so you do not need this installed.
     dependencies:
-      history: 4.10.1
+      history: 5.3.0
 
   /@types/hoist-non-react-statics/3.3.5:
     resolution: {integrity: sha512-SbcrWzkKBw2cdwRTwQAswfpB9g9LJWfjtUeW/jvNwbhC8cpmmNYVePa+ncbUe0rGTQ7G3Ff6mYUN2VMfLVr+Sg==}

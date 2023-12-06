@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-charts",
-  "version": "2.6.54",
+  "version": "2.6.55",
   "description": "antd-management-fast-charts",
   "keywords": [
     "antd-management-fast-charts"
@@ -66,8 +66,8 @@
     "@tinymce/tinymce-react": "^4.3.2",
     "@umijs/max": "^4.0.89",
     "antd": "^5.12.1",
-    "antd-management-fast-common": "^2.6.66",
-    "antd-management-fast-component": "^2.6.98",
+    "antd-management-fast-common": "^2.6.67",
+    "antd-management-fast-component": "^2.6.99",
     "array-move": "^4.0.0",
     "axios": "^1.6.2",
     "bizcharts": "^4.1.23",

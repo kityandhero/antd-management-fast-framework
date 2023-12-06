@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-flow",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "keywords": [
     "antd-management-fast-flow"
   ],
@@ -58,8 +58,8 @@
   },
   "dependencies": {
     "antd": "^5.12.1",
-    "antd-management-fast-common": "^2.6.66",
-    "antd-management-fast-component": "^2.6.98",
+    "antd-management-fast-common": "^2.6.67",
+    "antd-management-fast-component": "^2.6.99",
     "classnames": "^2.3.2",
     "easy-soft-utility": "^2.7.25",
     "react": "^18.2.0",
