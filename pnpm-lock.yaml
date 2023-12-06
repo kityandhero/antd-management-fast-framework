@@ -2921,7 +2921,7 @@ importers:
         specifier: ^1.0.39
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.113
+        specifier: ^2.11.114
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.6.2

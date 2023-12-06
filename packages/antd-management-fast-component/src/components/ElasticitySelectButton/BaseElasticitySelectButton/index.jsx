@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  isArray,
-  isEmptyArray,
-  isFunction,
-  logTrace,
-  mergeArrowText,
-} from 'easy-soft-utility';
+import { isFunction, logTrace, mergeArrowText } from 'easy-soft-utility';
 
 import { BaseComponent } from '../../../bases/BaseComponent';
 import { ElasticityButton } from '../../ElasticityButton';
@@ -52,14 +46,12 @@ class BaseElasticitySelectButton extends BaseComponent {
 
     const { afterSelectSuccess } = this.props;
 
-    const v = isArray(o) ? (isEmptyArray(o) ? null : o[0]) : o;
-
     this.setState({
-      selectData: v,
+      selectData: o,
     });
 
     if (isFunction(afterSelectSuccess)) {
-      afterSelectSuccess(v);
+      afterSelectSuccess(o);
     }
   };
 

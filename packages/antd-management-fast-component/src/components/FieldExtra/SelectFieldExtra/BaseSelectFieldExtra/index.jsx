@@ -4,8 +4,6 @@ import React from 'react';
 import {
   buildFieldDescription,
   checkStringIsNullOrWhiteSpace,
-  isArray,
-  isEmptyArray,
   isFunction,
   logTrace,
   mergeArrowText,
@@ -68,14 +66,12 @@ class BaseSelectFieldExtra extends BaseComponent {
 
     const { afterSelectSuccess } = this.props;
 
-    const v = isArray(o) ? (isEmptyArray(o) ? null : o[0]) : o;
-
     this.setState({
-      selectData: v,
+      selectData: o,
     });
 
     if (isFunction(afterSelectSuccess)) {
-      afterSelectSuccess(v);
+      afterSelectSuccess(o);
     }
   };
 

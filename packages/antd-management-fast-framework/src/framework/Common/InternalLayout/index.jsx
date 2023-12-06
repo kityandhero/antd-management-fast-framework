@@ -52,7 +52,7 @@ class InternalLayout extends InternalBuild {
     return this.buildCardCollectionArea(config);
   };
 
-  renderPresetContentArea = () => {};
+  renderPresetContentArea = () => null;
 
   renderPresetPageBodyContent = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetPageBodyContent');
