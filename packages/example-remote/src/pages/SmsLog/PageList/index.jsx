@@ -18,7 +18,7 @@ import {
   renderSearchSmsLogAggregateSelect,
   renderSearchSmsLogStatusSelect,
 } from '../../../customSpecialComponents';
-import { SelectField } from '../../SmsCategory/SelectField';
+import { SelectDrawerField } from '../../SmsCategory/SelectDrawerField';
 import { parseUrlParametersForSetState } from '../Assist/config';
 import { getAggregateBadge, getStatusBadge } from '../Assist/tools';
 import { fieldData } from '../Common/data';
@@ -40,7 +40,7 @@ class PageList extends MultiPage {
       paramsKey: accessWayCollection.smsLog.pageList.paramsKey,
       pageTitle: '短信发送列表',
       loadApiPath: 'smsLog/pageList',
-      tableScrollX: 2190,
+      // tableScrollX: 1800,
       smsCategoryId: unlimitedWithStringFlag.flag,
       smsCategoryName: '',
     };
@@ -105,7 +105,7 @@ class PageList extends MultiPage {
           lg: 6,
           type: searchCardConfig.contentItemType.customSelect,
           component: (
-            <SelectField
+            <SelectDrawerField
               label={fieldData.smsCategoryName.label}
               text="选择文章【Modal】"
               labelWidth={90}

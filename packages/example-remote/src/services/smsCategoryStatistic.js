@@ -1,15 +1,19 @@
 import { request } from 'easy-soft-utility';
 
+export const pageListDataApiAddress = '/smsCategoryStatistic/pageList';
+
 export async function pageListData(parameters) {
   return request({
-    api: '/smsCategoryStatistic/pageList',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }
 
+export const getDataApiAddress = '/smsCategoryStatistic/get';
+
 export async function getData(parameters) {
   return request({
-    api: '/smsCategoryStatistic/get',
+    api: getDataApiAddress,
     params: parameters,
   });
 }

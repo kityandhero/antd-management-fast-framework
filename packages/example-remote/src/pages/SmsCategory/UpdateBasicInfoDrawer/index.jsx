@@ -1,5 +1,9 @@
 import { connect } from 'easy-soft-dva';
-import { formatCollection, getValueByKey } from 'easy-soft-utility';
+import {
+  convertCollection,
+  formatCollection,
+  getValueByKey,
+} from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
@@ -28,6 +32,7 @@ class Index extends BaseUpdateDrawer {
 
     this.state = {
       ...this.state,
+      pageTitle: '编辑类别信息',
       loadApiPath: 'smsCategory/get',
       submitApiPath: 'smsCategory/updateBasicInfo',
     };
@@ -57,10 +62,6 @@ class Index extends BaseUpdateDrawer {
     return d;
   };
 
-  renderPresetTitle = () => {
-    return '编辑类别信息';
-  };
-
   fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line no-unused-vars
     metaData = null,
@@ -79,6 +80,11 @@ class Index extends BaseUpdateDrawer {
         key: fieldData.name.name,
       });
 
+      values[fieldData.template.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.template.name,
+      });
+
       values[fieldData.description.name] = getValueByKey({
         data: metaData,
         key: fieldData.description.name,
@@ -90,6 +96,12 @@ class Index extends BaseUpdateDrawer {
 
   establishCardCollectionConfig = () => {
     const { metaData } = this.state;
+
+    const flag = getValueByKey({
+      data: metaData,
+      key: fieldData.flag.name,
+      convert: convertCollection.number,
+    });
 
     return {
       list: [
@@ -104,6 +116,22 @@ class Index extends BaseUpdateDrawer {
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.name,
               require: true,
+              hidden: flag > 0,
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.onlyShowInput,
+              fieldData: fieldData.name,
+              value: getValueByKey({
+                data: metaData,
+                key: fieldData.name.name,
+              }),
+              hidden: flag === 0,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.textarea,
+              fieldData: fieldData.template,
             },
           ],
         },
@@ -130,6 +158,14 @@ class Index extends BaseUpdateDrawer {
               lg: 24,
               type: cardConfig.contentItemType.customGrid,
               list: [
+                {
+                  span: 2,
+                  label: fieldData.flag.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.flag.name,
+                  }),
+                },
                 {
                   span: 1,
                   label: fieldData.createOperatorId.label,
@@ -168,17 +204,28 @@ class Index extends BaseUpdateDrawer {
               props: {
                 size: 'small',
                 bordered: true,
-                column: 4,
+                column: 2,
                 emptyStyle: {
                   color: '#cccccc',
                 },
                 emptyValue: '待完善',
                 labelStyle: {
-                  width: '80px',
+                  width: '100px',
                 },
               },
             },
           ],
+        },
+      ],
+    };
+  };
+
+  establishHelpConfig = () => {
+    return {
+      title: '操作提示',
+      list: [
+        {
+          text: '具有系统特征值的分类为系统内置, 部分数据不允许编辑',
         },
       ],
     };

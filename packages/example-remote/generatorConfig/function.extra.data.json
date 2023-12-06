@@ -26,6 +26,11 @@
       "name": "businessMode"
     },
     {
+      "functionSegment": "DeviceType",
+      "label": "设备类型",
+      "name": "deviceType"
+    },
+    {
       "functionSegment": "WebChannel",
       "label": "Web渠道",
       "name": "webChannelId"
@@ -41,6 +46,106 @@
       "name": "type"
     },
     {
+      "functionSegment": "FlowApproveAction",
+      "label": "审批动作",
+      "name": "approveAction"
+    },
+    {
+      "functionSegment": "FlowApproveActionMode",
+      "label": "审批动作模式",
+      "name": "approveActionMode"
+    },
+    {
+      "functionSegment": "FlowScope",
+      "label": "适用范围",
+      "name": "scope"
+    },
+    {
+      "functionSegment": "FlowEffectiveRange",
+      "label": "生效范围",
+      "name": "effectiveRange"
+    },
+    {
+      "functionSegment": "FlowStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "FlowRangeEffectiveRelationStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "FlowNodeStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "FlowNodeType",
+      "label": "类型",
+      "name": "type"
+    },
+    {
+      "functionSegment": "FlowNodeApproverStatus",
+      "label": "类型",
+      "name": "type"
+    },
+    {
+      "functionSegment": "FlowLineStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "FlowLineType",
+      "label": "类型",
+      "name": "type"
+    },
+    {
+      "functionSegment": "FlowLineFromPosition",
+      "label": "起始位置",
+      "name": "fromPosition"
+    },
+    {
+      "functionSegment": "FlowLineToPosition",
+      "label": "到达位置",
+      "name": "toPosition"
+    },
+    {
+      "functionSegment": "FlowFormDesignStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "FlowCaseStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "FlowCancelApproveSwitchList",
+      "label": "可撤销开关",
+      "name": "cancelApproveSwitch"
+    },
+    {
+      "functionSegment": "FlowResetAllApproveSwitchList",
+      "label": "可重置开关",
+      "name": "resetAllApproveSwitch"
+    },
+    {
+      "functionSegment": "FlowCaseFormStorageStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "FlowCaseFormAttachmentStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "FlowCaseProcessHistoryStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
       "functionSegment": "UploadHistorySourceType",
       "label": "来源",
       "name": "sourceType"
@@ -49,6 +154,11 @@
       "functionSegment": "UploadHistoryStatus",
       "label": "状态",
       "name": "status"
+    },
+    {
+      "functionSegment": "SmsCategoryFlag",
+      "label": "类别标记",
+      "name": "smsCategoryFlag"
     },
     {
       "functionSegment": "SmsCategoryStatus",
@@ -101,6 +211,11 @@
       "name": "status"
     },
     {
+      "functionSegment": "ApplicationVersionStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
       "functionSegment": "ApplicationType",
       "label": "类型",
       "name": "type"
@@ -146,7 +261,22 @@
       "name": "status"
     },
     {
+      "functionSegment": "UserSubsidiaryInfoStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "UserDepartmentInfoStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
       "functionSegment": "UserYonYouCorrelationStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "UserDeviceStatus",
       "label": "状态",
       "name": "status"
     },
@@ -207,6 +337,11 @@
     },
     {
       "functionSegment": "YonYouPushMessageStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "YonYouImportHistoryStatus",
       "label": "状态",
       "name": "status"
     }

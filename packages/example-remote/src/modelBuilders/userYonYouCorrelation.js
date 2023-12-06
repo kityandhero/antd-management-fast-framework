@@ -10,11 +10,13 @@ import {
 import {
   addBasicInfoData,
   getData,
+  importData,
   pageListData,
   pageListOperateLogData,
   refreshCacheData,
   setDisableData,
   setEnableData,
+  testExistData,
   updateBasicInfoData,
 } from '../services/userYonYouCorrelation';
 
@@ -89,6 +91,32 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(addBasicInfoData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *import(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(importData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -193,6 +221,32 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(refreshCacheData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *testExist(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(testExistData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

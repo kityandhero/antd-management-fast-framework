@@ -236,9 +236,8 @@ class ModuleInfoBase extends InnerSinglePage {
                     handleMenuClick: ({ key, handleData }) => {
                       this.handleMenuClick({ key, handleData });
                     },
-                    confirm: {
-                      title: '即将移除权限，确定码？',
-                    },
+                    confirm: true,
+                    title: '即将移除权限，确定码？',
                     items: [
                       {
                         key: 'changeExpand',

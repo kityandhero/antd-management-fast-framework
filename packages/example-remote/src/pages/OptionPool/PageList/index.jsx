@@ -256,9 +256,8 @@ class PageList extends MultiPage {
             accessWayCollection.optionPool.setEnable.permission,
           ),
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '即将设为启用，确定吗？',
-          },
+          confirm: true,
+          title: '即将设为启用，确定吗？',
         },
         {
           key: 'setDisable',
@@ -268,9 +267,8 @@ class PageList extends MultiPage {
             accessWayCollection.optionPool.setDisable.permission,
           ),
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '即将设为禁用，确定吗？',
-          },
+          confirm: true,
+          title: '即将设为禁用，确定吗？',
         },
         {
           key: 'updateSort',
@@ -291,9 +289,8 @@ class PageList extends MultiPage {
           hidden: !checkHasAuthority(
             accessWayCollection.optionPool.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };

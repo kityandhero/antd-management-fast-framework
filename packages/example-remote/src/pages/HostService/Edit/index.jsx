@@ -167,9 +167,8 @@ class Index extends DataTabContainerSupplement {
             that.setStart(handleData);
           },
           disabled: status === statusCollection.start,
-          confirm: {
-            title: '即将启动服务，确定吗？',
-          },
+          confirm: true,
+          title: '即将启动服务，确定吗？',
           handleData: metaData,
         },
         {
@@ -180,9 +179,8 @@ class Index extends DataTabContainerSupplement {
             that.setStop(handleData);
           },
           disabled: status === statusCollection.stop,
-          confirm: {
-            title: '即将停止服务，确定吗？',
-          },
+          confirm: true,
+          title: '即将停止服务，确定吗？',
           handleData: metaData,
         },
       ],

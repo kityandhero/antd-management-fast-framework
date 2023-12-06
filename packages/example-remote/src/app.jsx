@@ -51,9 +51,9 @@ export const layout = ({ initialState, setInitialState }) => {
     initialState: initialState || {},
     setInitialState,
     themeToken: themeToken,
-    keepCollapsed: true,
+    // keepCollapsed: true,
     groupMenu: true,
-    collapsedShowTitle: true,
+    // collapsedShowTitle: true,
     backgroundImageItems: [
       {
         src: 'https://img.alicdn.com/imgextra/i3/O1CN018NxReL1shX85Yz6Cx_!!6000000005798-2-tps-884-496.png',

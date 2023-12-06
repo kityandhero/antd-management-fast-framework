@@ -25,6 +25,312 @@ export const fileTypeCollection = {
   file: 400,
 };
 
+export const flowEffectiveRangeCollection = {
+  /**
+   * 全局适用
+   * value : 100
+   */
+  globalEffective: 100,
+
+  /**
+   * 范围内适用
+   * value : 200
+   */
+  rangeEffective: 200,
+};
+
+/**
+ * 流程审批动作集合
+ */
+export const flowApproveActionCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 通过
+   * value : 100
+   */
+  pass: 100,
+
+  /**
+   * 拒绝
+   * value : 200
+   */
+  refuse: 200,
+};
+
+/**
+ * 流程审批动作模式集合
+ */
+export const flowApproveActionModeCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 自动操作
+   * value : 100
+   */
+  autoControl: 100,
+
+  /**
+   * 人工
+   * value : 200
+   */
+  manualControl: 200,
+};
+
+/**
+ * 流程应用范围值集合
+ */
+export const flowScopeCollection = {
+  /**
+   * 文章审核
+   * value : 100
+   */
+  articleAudit: 100,
+
+  /**
+   * 流程审批
+   * value : 200
+   */
+  processApproval: 200,
+};
+
+/**
+ * 流程状态值集合
+ */
+export const flowStatusCollection = {
+  /**
+   * 禁用
+   * value : 0
+   */
+  disable: 0,
+
+  /**
+   * 启用
+   * value : 100
+   */
+  enable: 100,
+};
+
+/**
+ * 流程表单设计状态值集合
+ */
+export const flowFormDesignStatusCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 正常
+   * value : 100
+   */
+  normal: 100,
+};
+
+/**
+ * 流程线条类型值集合
+ */
+export const flowLineTypeCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 前进
+   * value : 100
+   */
+  forward: 100,
+
+  /**
+   * 回退
+   * value : 200
+   */
+  backward: 200,
+};
+
+/**
+ * 流程线条状态值集合
+ */
+export const flowLineStatusCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 正常
+   * value : 100
+   */
+  normal: 100,
+};
+
+/**
+ * 流程节点类型值集合
+ */
+export const flowNodeTypeCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 起始点
+   * value : 10
+   */
+  startNode: 10,
+
+  /**
+   * 中间点
+   * value : 20
+   */
+  intermediateNode: 20,
+
+  /**
+   * 终止点
+   * value : 30
+   */
+  endNode: 30,
+};
+
+/**
+ * 流程节点状态值集合
+ */
+export const flowNodeStatusCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 正常
+   * value : 100
+   */
+  normal: 100,
+};
+
+/**
+ * 流程节点审批人状态值集合
+ */
+export const flowNodeApproverStatusCollection = {
+  /**
+   * 正常
+   * value : 100
+   */
+  normal: 100,
+};
+
+/**
+ * 流程实例状态值集合
+ */
+export const flowCaseStatusCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 新创建
+   * value : 100
+   */
+  created: 100,
+
+  /**
+   * 审批驳回
+   * value : 110
+   */
+  refuse: 110,
+
+  /**
+   * 递交审批
+   * value : 200
+   */
+  submitApproval: 200,
+
+  /**
+   * 审批中
+   * value : 300
+   */
+  inApprovalProcess: 300,
+
+  /**
+   * 审批完成
+   * value : 400
+   */
+  success: 400,
+};
+
+/**
+ * 流程历史数据状态值集合
+ */
+export const flowCaseProcessHistoryStatusCollection = {
+  /**
+   * 已撤销
+   * value : -1
+   */
+  cancel: -1,
+
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 正常
+   * value : 100
+   */
+  normal: 100,
+};
+
+/**
+ * 流程表单附件存储数据状态值集合
+ */
+export const flowCaseFormAttachmentStatusCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 正常
+   * value : 100
+   */
+  normal: 100,
+};
+
+/**
+ * 流程表单键值存储数据状态值集合
+ */
+export const flowCaseFormStorageStatusCollection = {
+  /**
+   * 未知
+   * value : 0
+   */
+  unknown: 0,
+
+  /**
+   * 正常
+   * value : 100
+   */
+  normal: 100,
+};
+
 export const keyValueEditModeCollection = {
   string: 'string',
   number: 'number',

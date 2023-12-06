@@ -18,8 +18,18 @@ export const fieldData = {
     helper: '',
   },
   message: {
-    label: '消息描述',
+    label: '消息内容',
     name: 'message',
+    helper: '',
+  },
+  description: {
+    label: '消息描述',
+    name: 'description',
+    helper: '',
+  },
+  ancillaryInformation: {
+    label: '附属信息',
+    name: 'ancillaryInformation',
     helper: '',
   },
   stackTrace: {

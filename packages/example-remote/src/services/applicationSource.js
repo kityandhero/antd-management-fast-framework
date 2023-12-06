@@ -1,64 +1,84 @@
 import { request } from 'easy-soft-utility';
 
+export const pageListDataApiAddress = '/applicationSource/pageList';
+
 export async function pageListData(parameters) {
   return request({
-    api: '/applicationSource/pageList',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }
+
+export const singleListDataApiAddress = '/applicationSource/singleList';
 
 export async function singleListData(parameters) {
   return request({
-    api: '/applicationSource/singleList',
+    api: singleListDataApiAddress,
     params: parameters,
   });
 }
+
+export const getDataApiAddress = '/applicationSource/get';
 
 export async function getData(parameters) {
   return request({
-    api: '/applicationSource/get',
+    api: getDataApiAddress,
     params: parameters,
   });
 }
+
+export const addBasicInfoDataApiAddress = '/applicationSource/addBasicInfo';
 
 export async function addBasicInfoData(parameters) {
   return request({
-    api: '/applicationSource/addBasicInfo',
+    api: addBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateBasicInfoDataApiAddress =
+  '/applicationSource/updateBasicInfo';
 
 export async function updateBasicInfoData(parameters) {
   return request({
-    api: '/applicationSource/updateBasicInfo',
+    api: updateBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const setEnableDataApiAddress = '/applicationSource/setEnable';
 
 export async function setEnableData(parameters) {
   return request({
-    api: '/applicationSource/setEnable',
+    api: setEnableDataApiAddress,
     params: parameters,
   });
 }
+
+export const setDisableDataApiAddress = '/applicationSource/setDisable';
 
 export async function setDisableData(parameters) {
   return request({
-    api: '/applicationSource/setDisable',
+    api: setDisableDataApiAddress,
     params: parameters,
   });
 }
+
+export const refreshCacheDataApiAddress = '/applicationSource/refreshCache';
 
 export async function refreshCacheData(parameters) {
   return request({
-    api: '/applicationSource/refreshCache',
+    api: refreshCacheDataApiAddress,
     params: parameters,
   });
 }
 
+export const pageListOperateLogDataApiAddress =
+  '/applicationSource/pageListOperateLog';
+
 export async function pageListOperateLogData(parameters) {
   return request({
-    api: '/applicationSource/pageListOperateLog',
+    api: pageListOperateLogDataApiAddress,
     params: parameters,
   });
 }

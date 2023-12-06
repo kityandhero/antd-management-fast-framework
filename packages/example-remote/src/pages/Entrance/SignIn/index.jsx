@@ -31,7 +31,6 @@ class SignIn extends BaseComponent {
 
     this.state = {
       ...this.state,
-
       type: 'account',
       processing: false,
     };

@@ -34,16 +34,6 @@ class Add extends BaseAddForm {
     singleTreeListAction({
       target: this,
       successCallback: ({ target, remoteListData }) => {
-        console.log({
-          sectionTreeData: [
-            {
-              title: '无上级',
-              code: '0',
-            },
-            ...remoteListData,
-          ],
-        });
-
         target.setState({
           sectionTreeData: [
             {
@@ -171,9 +161,9 @@ class Add extends BaseAddForm {
                   value,
                 };
               },
-              onChange: ({ value }) => {
+              onChange: (v) => {
                 this.setState({
-                  parentId: toString(value),
+                  parentId: toString(v),
                 });
               },
             },

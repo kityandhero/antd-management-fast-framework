@@ -62,12 +62,12 @@ class PageListDrawer extends MultiPageSelectDrawer {
         {
           lg: 8,
           type: searchCardConfig.contentItemType.input,
-          fieldData: fieldData.userId,
+          fieldData: fieldData.realName,
         },
         {
           lg: 8,
           type: searchCardConfig.contentItemType.input,
-          fieldData: fieldData.nickname,
+          fieldData: fieldData.phone,
         },
         {
           lg: 8,
@@ -169,4 +169,4 @@ class PageListDrawer extends MultiPageSelectDrawer {
   };
 }
 
-export default PageListDrawer;
+export { PageListDrawer };

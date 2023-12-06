@@ -26,8 +26,8 @@ import {
   parseUrlParametersForSetState,
 } from '../Assist/config';
 import { fieldData, statusCollection } from '../Common/data';
-import ResetPasswordModal from '../ResetPasswordModal';
-import ResetSignetPasswordModal from '../ResetSignetPasswordModal';
+import { ResetPasswordModal } from '../ResetPasswordModal';
+import { ResetSignetPasswordModal } from '../ResetSignetPasswordModal';
 
 @connect(({ user, schedulingControl }) => ({
   user,
@@ -41,6 +41,20 @@ class Detail extends DataTabContainerSupplement {
       key: 'basicInfo',
       show: checkHasAuthority(accessWayCollection.user.get.permission),
       tab: '基本信息',
+    },
+    {
+      key: 'userDepartmentInfo/pageList',
+      show: checkHasAuthority(
+        accessWayCollection.userDepartmentInfo.pageList.permission,
+      ),
+      tab: '设置所属部门',
+    },
+    {
+      key: 'userSubsidiaryInfo/pageList',
+      show: checkHasAuthority(
+        accessWayCollection.userSubsidiaryInfo.pageList.permission,
+      ),
+      tab: '设置归属公司',
     },
     {
       key: 'signetInfo',
@@ -209,9 +223,8 @@ class Detail extends DataTabContainerSupplement {
             that.setEnable(handleData);
           },
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '即将启用用户，确定吗？',
-          },
+          confirm: true,
+          title: '即将启用用户，确定吗？',
           handleData: metaData,
         },
         {
@@ -222,9 +235,8 @@ class Detail extends DataTabContainerSupplement {
             that.setDisable(handleData);
           },
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '即将禁用用户，确定吗？',
-          },
+          confirm: true,
+          title: '即将禁用用户，确定吗？',
           handleData: metaData,
         },
         {
@@ -281,9 +293,8 @@ class Detail extends DataTabContainerSupplement {
           hidden: !checkHasAuthority(
             accessWayCollection.user.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };

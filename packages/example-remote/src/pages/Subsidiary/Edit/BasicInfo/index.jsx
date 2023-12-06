@@ -10,7 +10,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 import { accessWayCollection } from '../../../../customConfig';
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
-import { SubsidiarySelectField } from '../../SelectField';
+import { SubsidiarySelectDrawerField } from '../../SelectDrawerField';
 import { TabPageBase } from '../../TabPageBase';
 
 @connect(({ subsidiary, schedulingControl }) => ({
@@ -202,7 +202,7 @@ class BasicInfo extends TabPageBase {
               lg: 6,
               type: cardConfig.contentItemType.component,
               component: (
-                <SubsidiarySelectField
+                <SubsidiarySelectDrawerField
                   label={fieldData.parentShortName.label}
                   defaultValue={parentShortName || null}
                   helper={fieldData.parentShortName.helper}
@@ -238,7 +238,7 @@ class BasicInfo extends TabPageBase {
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '简介描述',
+            text: '简介 - 描述 - 备注',
           },
           items: [
             {

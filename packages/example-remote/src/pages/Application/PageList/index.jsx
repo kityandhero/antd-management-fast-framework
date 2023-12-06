@@ -289,9 +289,8 @@ class PageList extends MultiPage {
           handleButtonClick: () => {
             this.setOwn(record);
           },
-          confirm: {
-            title: '立即开通应用程序，确定吗？',
-          },
+          confirm: true,
+          title: '立即开通应用程序，确定吗？',
         }
       : {
           size: 'small',
@@ -313,18 +312,16 @@ class PageList extends MultiPage {
               icon: iconBuilder.playCircle(),
               text: '启动应用',
               disabled: status === statusCollection.start,
-              confirm: {
-                title: '即将启动应用，确定吗？',
-              },
+              confirm: true,
+              title: '即将启动应用，确定吗？',
             },
             {
               key: 'setStop',
               icon: iconBuilder.pauseCircle(),
               text: '停止应用',
               disabled: status === statusCollection.stop,
-              confirm: {
-                title: '即将停止应用，确定吗？',
-              },
+              confirm: true,
+              title: '即将停止应用，确定吗？',
             },
             {
               key: 'updateMessageChannelApplicationInfo',

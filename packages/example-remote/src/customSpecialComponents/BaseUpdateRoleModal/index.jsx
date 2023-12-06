@@ -1,12 +1,10 @@
 import { DataModal } from 'antd-management-fast-framework';
 
-import { listSelectAction } from '../../commonAssist/action';
-
 const { BaseUpdateTransferModal } = DataModal;
 
 class BaseUpdateRoleModal extends BaseUpdateTransferModal {
   // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
+  // showCallProcess = true;
 
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -17,30 +15,28 @@ class BaseUpdateRoleModal extends BaseUpdateTransferModal {
     };
   }
 
-  executeAfterDoOtherWhenChangeVisibleToShow = () => {
-    const { externalData } = this.props;
-    const { selectData } = {
-      selectData: {},
-      ...externalData,
-    };
-
+  doOtherAfterLoadSuccess = ({
+    metaData = null,
+    // eslint-disable-next-line no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line no-unused-vars
+    metaOriginalData = null,
+  }) => {
     const { authorityKeyCollection } = {
       authorityKeyCollection: [],
-      ...selectData,
+      ...metaData,
     };
 
     this.setState({
       selectedKeys: [...authorityKeyCollection],
+      targetKeys: [...authorityKeyCollection],
     });
+  };
 
-    listSelectAction({
-      target: this,
-      successCallback: ({ target, remoteListData }) => {
-        const customData = remoteListData;
-
-        target.setState({ customData });
-      },
-    });
+  doOtherWhenChangeVisibleToShow = () => {
+    this.reloadData({});
   };
 
   executeAfterDoOtherWhenChangeVisibleToHide = () => {
@@ -51,11 +47,10 @@ class BaseUpdateRoleModal extends BaseUpdateTransferModal {
 
   // eslint-disable-next-line no-unused-vars
   buildTargetKeys = (preProperties, preState, snapshot) => {
-    const { externalData } = this.state;
-    const { selectData } = externalData;
+    const { metaData } = this.state;
     const { authorityKeyCollection } = {
       authorityKeyCollection: [],
-      ...selectData,
+      ...metaData,
     };
 
     return (authorityKeyCollection || null) == null
@@ -64,9 +59,8 @@ class BaseUpdateRoleModal extends BaseUpdateTransferModal {
   };
 
   buildTitleText = () => {
-    const { externalData } = this.state;
-    const { selectData } = externalData;
-    const { name } = { name: '', ...selectData };
+    const { metaData } = this.state;
+    const { name } = { name: '', ...metaData };
 
     return `设置“${(name || null) == null ? '' : name}”拥有的角色`;
   };

@@ -1,11 +1,7 @@
 import {
   checkStringIsNullOrWhiteSpace,
-  isUndefined,
-  logException,
   logObject,
-  showSimpleErrorMessage,
   showSimpleRuntimeError,
-  showSimpleWarningMessage,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -120,76 +116,6 @@ class SinglePage extends Base {
     delete d.dateRange;
 
     return this.adjustLoadRequestParams(d);
-  };
-
-  handleSearch = () => {
-    this.logCallTrack({}, primaryCallName, 'handleSearch');
-
-    if (this.checkWorkDoing()) {
-      this.logCallTrace(
-        {},
-        primaryCallName,
-        'handleSearch',
-        'ignore on working',
-      );
-
-      return;
-    }
-
-    const form = this.getSearchCard();
-
-    if (!form) {
-      const text = '查询表单不存在';
-
-      showSimpleErrorMessage(text);
-    }
-
-    const { validateFields } = form;
-
-    validateFields()
-      .then((fieldsValue) => {
-        const values = {
-          ...fieldsValue,
-          // eslint-disable-next-line promise/always-return
-          updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
-        };
-
-        this.searchData({ formValues: values });
-      })
-      .catch((error) => {
-        const { errorFields, message } = error;
-
-        if (!isUndefined(message)) {
-          logException(message);
-        }
-
-        if (isUndefined(errorFields)) {
-          showSimpleRuntimeError(error);
-        } else {
-          const m = [];
-
-          for (const o of Object.values(errorFields)) {
-            m.push(o.errors[0]);
-          }
-
-          const maxLength = 5;
-          let beyondMax = false;
-
-          if (m.length > maxLength) {
-            m.length = maxLength;
-
-            beyondMax = true;
-          }
-
-          let errorMessage = m.join(', ');
-
-          if (beyondMax) {
-            errorMessage += ' ...';
-          }
-
-          showSimpleWarningMessage(errorMessage);
-        }
-      });
   };
 
   /**

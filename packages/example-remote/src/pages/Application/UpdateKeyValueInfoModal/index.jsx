@@ -71,6 +71,19 @@ class UpdateKeyValueInfoModal extends BaseUpdateModal {
     return 'vertical';
   };
 
+  buildTitleSubTextPrefix = () => {
+    return '当前应用';
+  };
+
+  buildTitleSubText = () => {
+    const { metaData } = this.state;
+
+    return getValueByKey({
+      data: metaData,
+      key: fieldData.name.name,
+    });
+  };
+
   establishFormAdditionalConfig = () => {
     return {
       labelCol: {
@@ -135,7 +148,6 @@ class UpdateKeyValueInfoModal extends BaseUpdateModal {
       externalData: { fieldData: targetFieldData },
       editMode,
     } = this.props;
-    const { metaData } = this.state;
 
     let editType = cardConfig.contentItemType.input;
 
@@ -162,16 +174,6 @@ class UpdateKeyValueInfoModal extends BaseUpdateModal {
       list: [
         {
           items: [
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.onlyShowInput,
-              fieldData: fieldData.name,
-              value: getValueByKey({
-                data: metaData,
-                key: fieldData.name.name,
-                defaultValue: '',
-              }),
-            },
             {
               lg: 24,
               type: editType,

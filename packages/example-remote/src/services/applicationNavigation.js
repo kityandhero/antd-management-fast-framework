@@ -1,85 +1,116 @@
 import { request } from 'easy-soft-utility';
 
+export const pageListDataApiAddress = '/applicationNavigation/pageList';
+
 export async function pageListData(parameters) {
   return request({
-    api: '/applicationNavigation/pageList',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }
+
+export const getDataApiAddress = '/applicationNavigation/get';
 
 export async function getData(parameters) {
   return request({
-    api: '/applicationNavigation/get',
+    api: getDataApiAddress,
     params: parameters,
   });
 }
+
+export const addBasicInfoDataApiAddress = '/applicationNavigation/addBasicInfo';
 
 export async function addBasicInfoData(parameters) {
   return request({
-    api: '/applicationNavigation/addBasicInfo',
+    api: addBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateBasicInfoDataApiAddress =
+  '/applicationNavigation/updateBasicInfo';
 
 export async function updateBasicInfoData(parameters) {
   return request({
-    api: '/applicationNavigation/updateBasicInfo',
+    api: updateBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const refreshCacheDataApiAddress = '/applicationNavigation/refreshCache';
 
 export async function refreshCacheData(parameters) {
   return request({
-    api: '/applicationNavigation/refreshCache',
+    api: refreshCacheDataApiAddress,
     params: parameters,
   });
 }
+
+export const removeDataApiAddress = '/applicationNavigation/remove';
 
 export async function removeData(parameters) {
   return request({
-    api: '/applicationNavigation/remove',
+    api: removeDataApiAddress,
     params: parameters,
   });
 }
+
+export const getNavigationItemDataApiAddress =
+  '/applicationNavigation/getNavigationItem';
 
 export async function getNavigationItemData(parameters) {
   return request({
-    api: '/applicationNavigation/getNavigationItem',
+    api: getNavigationItemDataApiAddress,
     params: parameters,
   });
 }
+
+export const addNavigationItemDataApiAddress =
+  '/applicationNavigation/addNavigationItem';
 
 export async function addNavigationItemData(parameters) {
   return request({
-    api: '/applicationNavigation/addNavigationItem',
+    api: addNavigationItemDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateNavigationItemDataApiAddress =
+  '/applicationNavigation/updateNavigationItem';
 
 export async function updateNavigationItemData(parameters) {
   return request({
-    api: '/applicationNavigation/updateNavigationItem',
+    api: updateNavigationItemDataApiAddress,
     params: parameters,
   });
 }
+
+export const removeNavigationItemDataApiAddress =
+  '/applicationNavigation/removeNavigationItem';
 
 export async function removeNavigationItemData(parameters) {
   return request({
-    api: '/applicationNavigation/removeNavigationItem',
+    api: removeNavigationItemDataApiAddress,
     params: parameters,
   });
 }
+
+export const setNavigationCollectionSortDataApiAddress =
+  '/applicationNavigation/setNavigationCollectionSort';
 
 export async function setNavigationCollectionSortData(parameters) {
   return request({
-    api: '/applicationNavigation/setNavigationCollectionSort',
+    api: setNavigationCollectionSortDataApiAddress,
     params: parameters,
   });
 }
 
+export const pageListOperateLogDataApiAddress =
+  '/applicationNavigation/pageListOperateLog';
+
 export async function pageListOperateLogData(parameters) {
   return request({
-    api: '/applicationNavigation/pageListOperateLog',
+    api: pageListOperateLogDataApiAddress,
     params: parameters,
   });
 }

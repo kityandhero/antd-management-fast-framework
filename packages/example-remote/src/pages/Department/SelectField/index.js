@@ -5,7 +5,7 @@ import { buildFieldDescription } from 'easy-soft-utility';
 
 import { FieldExtra } from 'antd-management-fast-component';
 
-import PageListDrawer from '../PageListDrawer';
+import { PageListSelectDrawer } from '../PageListSelectDrawer';
 
 const {
   SelectFieldExtra: { BaseSelectFieldExtra },
@@ -26,14 +26,14 @@ class DepartmentSelectField extends BaseSelectFieldExtra {
   };
 
   openSelector = () => {
-    PageListDrawer.open();
+    PageListSelectDrawer.open();
   };
 
   renderPresetSelector = () => {
     const { label, searchParams } = this.props;
 
     return (
-      <PageListDrawer
+      <PageListSelectDrawer
         searchParams={searchParams}
         title={buildFieldDescription(label, '选择')}
         width={1200}

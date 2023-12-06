@@ -15,7 +15,7 @@ import UpdateModuleModal from '../../../UpdateModuleModal';
 }))
 class ModuleInfo extends ModuleInfoBase {
   // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
+  // showCallProcess = true;
 
   constructor(properties) {
     super(properties);

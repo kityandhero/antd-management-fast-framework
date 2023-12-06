@@ -20,7 +20,11 @@ import {
   renderSearchChannelSelect,
   renderSearchGeneralLogTypeSelect,
 } from '../../../customSpecialComponents';
-import { deleteAction, deleteMultiAction } from '../Assist/action';
+import {
+  removeAction,
+  removeAllAction,
+  removeMultiAction,
+} from '../Assist/action';
 import { fieldData } from '../Common/data';
 import { PreviewDrawer } from '../PreviewDrawer';
 
@@ -36,7 +40,7 @@ class Index extends MultiPage {
 
     this.state = {
       ...this.state,
-      pageTitle: '异常列表',
+      pageTitle: '一般日志列表',
       paramsKey: accessWayCollection.generalLog.pageList.paramsKey,
       loadApiPath: 'generalLog/pageList',
       dateRangeFieldName: '发生时段',
@@ -52,8 +56,8 @@ class Index extends MultiPage {
         break;
       }
 
-      case 'delete': {
-        this.delete(handleData);
+      case 'remove': {
+        this.remove(handleData);
 
         break;
       }
@@ -64,8 +68,8 @@ class Index extends MultiPage {
     }
   };
 
-  delete = (r) => {
-    deleteAction({
+  remove = (r) => {
+    removeAction({
       target: this,
       handleData: r,
       successCallback: ({ target }) => {
@@ -74,7 +78,7 @@ class Index extends MultiPage {
     });
   };
 
-  deleteMulti = () => {
+  removeMulti = () => {
     let submitData = this.initLoadRequestParams() || {};
 
     submitData = pretreatmentRequestParameters(submitData || {});
@@ -87,9 +91,19 @@ class Index extends MultiPage {
       return;
     }
 
-    deleteMultiAction({
+    removeMultiAction({
       target: this,
       handleData: submitData,
+      successCallback: ({ target }) => {
+        target.reloadData({});
+      },
+    });
+  };
+
+  removeAll = () => {
+    removeAllAction({
+      target: this,
+      handleData: {},
       successCallback: ({ target }) => {
         target.reloadData({});
       },
@@ -154,9 +168,19 @@ class Index extends MultiPage {
         type: 'dashed',
         icon: iconBuilder.delete(),
         text: '批量删除',
-        handleClick: this.deleteMulti,
+        handleClick: this.removeMulti,
         confirm: true,
         title: '即将根据搜索条件批量删除日志，确定吗？',
+      },
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'dashed',
+        icon: iconBuilder.delete(),
+        text: '全量删除',
+        handleClick: this.removeAll,
+        confirm: true,
+        title: '即将删除全部日志，确定吗？',
       },
     ];
   };
@@ -183,7 +207,7 @@ class Index extends MultiPage {
         {
           withDivider: true,
           uponDivider: true,
-          key: 'delete',
+          key: 'remove',
           icon: iconBuilder.delete(),
           text: '删除日志',
           confirm: true,

@@ -6,7 +6,10 @@ import {
   getValueByKey,
 } from 'easy-soft-utility';
 
-import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
+import {
+  getDerivedStateFromPropertiesForUrlParameters,
+  tabBarCollection,
+} from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../customConfig';
@@ -14,6 +17,7 @@ import {
   DataTabContainerSupplement,
   getTagStatusName,
 } from '../../../customSpecialComponents';
+import { GraphicalSingleSubsidiaryDepartmentTreeDrawer } from '../../Organization/GraphicalSingleSubsidiaryDepartmentTreeDrawer';
 import {
   refreshCacheAction,
   setDisableAction,
@@ -154,8 +158,12 @@ class Detail extends DataTabContainerSupplement {
     });
   };
 
+  openGraphicalSingleSubsidiaryDepartmentTreeDrawer = () => {
+    GraphicalSingleSubsidiaryDepartmentTreeDrawer.open();
+  };
+
   establishPageHeaderTitlePrefix = () => {
-    return '子公司';
+    return '公司';
   };
 
   establishPageHeaderAvatarConfig = () => {
@@ -192,28 +200,26 @@ class Detail extends DataTabContainerSupplement {
       buttons: [
         {
           key: 'setEnable',
-          text: '启用子公司',
+          text: '启用公司',
           icon: iconBuilder.playCircle(),
           handleButtonClick: ({ handleData }) => {
             that.setEnable(handleData);
           },
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '即将启用子公司，确定吗？',
-          },
+          confirm: true,
+          title: '即将启用公司，确定吗？',
           handleData: metaData,
         },
         {
           key: 'setDisable',
-          text: '禁用子公司',
+          text: '禁用公司',
           icon: iconBuilder.pauseCircle(),
           handleButtonClick: ({ handleData }) => {
             that.setDisable(handleData);
           },
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '即将禁用子公司，确定吗？',
-          },
+          confirm: true,
+          title: '即将禁用公司，确定吗？',
           handleData: metaData,
         },
       ],
@@ -252,12 +258,25 @@ class Detail extends DataTabContainerSupplement {
           hidden: !checkHasAuthority(
             accessWayCollection.subsidiary.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };
+  };
+
+  establishTabBarExtraContentRightConfig = () => {
+    return [
+      {
+        buildType: tabBarCollection.extraBuildType.button,
+        icon: iconBuilder.unorderedList(),
+        text: '组织图例',
+        size: 'small',
+        handleClick: () => {
+          this.openGraphicalSingleSubsidiaryDepartmentTreeDrawer();
+        },
+      },
+    ];
   };
 
   establishPageHeaderExtraContentConfig = () => {
@@ -329,6 +348,19 @@ class Detail extends DataTabContainerSupplement {
         }),
       },
     ];
+  };
+
+  renderPresetOther = () => {
+    const { metaData } = this.state;
+
+    return (
+      <>
+        <GraphicalSingleSubsidiaryDepartmentTreeDrawer
+          maskClosable
+          externalData={metaData}
+        />
+      </>
+    );
   };
 }
 

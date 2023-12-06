@@ -68,6 +68,22 @@ class PreviewDrawer extends BaseLoadDrawer {
                 },
                 {
                   span: 2,
+                  label: fieldData.description.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.description.name,
+                  }),
+                },
+                {
+                  span: 2,
+                  label: fieldData.ancillaryInformation.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.ancillaryInformation.name,
+                  }),
+                },
+                {
+                  span: 2,
                   label: fieldData.url.label,
                   value: getValueByKey({
                     data: metaData,

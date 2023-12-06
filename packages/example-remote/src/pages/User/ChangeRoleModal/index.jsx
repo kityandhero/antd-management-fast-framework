@@ -1,8 +1,11 @@
 import { connect } from 'easy-soft-dva';
+import { getValueByKey } from 'easy-soft-utility';
 
 import { switchControlAssist } from 'antd-management-fast-framework';
 
+import { listSelectAction } from '../../../commonAssist/action';
 import BaseUpdateRoleModal from '../../../customSpecialComponents/BaseUpdateRoleModal';
+import { fieldData } from '../Common/data';
 
 const visibleFlag = 'f4df1383ab594341b1034714ec52fb46';
 
@@ -23,24 +26,34 @@ class UpdateRoleModal extends BaseUpdateRoleModal {
 
     this.state = {
       ...this.state,
+      loadApiPath: 'user/get',
       submitApiPath: 'user/changePermission',
     };
   }
 
+  executeAfterDoOtherWhenChangeVisibleToShow = () => {
+    listSelectAction({
+      target: this,
+      handleData: {
+        channel: 200,
+      },
+      successCallback: ({ target, remoteListData }) => {
+        const customData = remoteListData;
+
+        target.setState({ customData });
+      },
+    });
+  };
+
   supplementLoadRequestParams = (o) => {
     const d = o;
     const { externalData } = this.props;
-    const { selectData } = {
-      selectData: {},
-      ...externalData,
-    };
 
-    const { userId } = {
-      userId: '',
-      ...selectData,
-    };
+    const userId = getValueByKey({
+      data: externalData,
+      key: fieldData.userId.name,
+    });
 
-    d.channel = 200;
     d.userId = userId;
 
     return d;
@@ -50,14 +63,10 @@ class UpdateRoleModal extends BaseUpdateRoleModal {
     const d = data;
 
     const { targetKeys, externalData, customData } = this.state;
-    const { selectData } = {
-      selectData: {},
-      ...externalData,
-    };
-    const { userId } = {
-      userId: '',
-      ...selectData,
-    };
+    const userId = getValueByKey({
+      data: externalData,
+      key: fieldData.userId.name,
+    });
 
     d.userId = userId;
 

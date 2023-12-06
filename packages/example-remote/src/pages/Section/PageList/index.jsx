@@ -574,11 +574,10 @@ class PageList extends MultiPage {
               hidden: !checkHasAuthority(
                 accessWayCollection.section.toggleRecommend.permission,
               ),
-              confirm: {
-                title: `即将${
-                  itemWhetherRecommend ? '取消推荐' : '设为推荐'
-                }，确定吗？`,
-              },
+              confirm: true,
+              title: `即将${
+                itemWhetherRecommend ? '取消推荐' : '设为推荐'
+              }，确定吗？`,
             },
             {
               key: 'toggleTop',
@@ -599,11 +598,10 @@ class PageList extends MultiPage {
               hidden: !checkHasAuthority(
                 accessWayCollection.section.toggleTop.permission,
               ),
-              confirm: {
-                title: `即将${
-                  itemWhetherTop ? '取消置顶' : '设为置顶'
-                }，确定吗？`,
-              },
+              confirm: true,
+              title: `即将${
+                itemWhetherTop ? '取消置顶' : '设为置顶'
+              }，确定吗？`,
             },
             {
               key: 'toggleVisible',
@@ -624,11 +622,10 @@ class PageList extends MultiPage {
               hidden: !checkHasAuthority(
                 accessWayCollection.section.toggleVisible.permission,
               ),
-              confirm: {
-                title: `即将${
-                  itemWhetherVisible ? '设为隐藏' : '设为显示'
-                }，确定吗？`,
-              },
+              confirm: true,
+              title: `即将${
+                itemWhetherVisible ? '设为隐藏' : '设为显示'
+              }，确定吗？`,
             },
             {
               key: 'setOnline',
@@ -640,9 +637,8 @@ class PageList extends MultiPage {
                 accessWayCollection.section.setOnline.permission,
               ),
               disabled: itemStatus === statusCollection.online,
-              confirm: {
-                title: '即将设为上线，确定吗？',
-              },
+              confirm: true,
+              title: '即将设为上线，确定吗？',
             },
             {
               key: 'setOffline',
@@ -652,9 +648,8 @@ class PageList extends MultiPage {
                 accessWayCollection.section.setOffline.permission,
               ),
               disabled: itemStatus === statusCollection.offline,
-              confirm: {
-                title: '即将设为下线，确定吗？',
-              },
+              confirm: true,
+              title: '即将设为下线，确定吗？',
             },
             {
               key: 'setSort',
@@ -675,9 +670,8 @@ class PageList extends MultiPage {
               hidden: !checkHasAuthority(
                 accessWayCollection.section.refreshCache.permission,
               ),
-              confirm: {
-                title: '即将刷新缓存，确定吗？',
-              },
+              confirm: true,
+              title: '即将刷新缓存，确定吗？',
             },
           ],
         };

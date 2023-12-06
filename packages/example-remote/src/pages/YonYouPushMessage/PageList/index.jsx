@@ -180,9 +180,8 @@ class PageList extends MultiPage {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
         },
       ],
     };

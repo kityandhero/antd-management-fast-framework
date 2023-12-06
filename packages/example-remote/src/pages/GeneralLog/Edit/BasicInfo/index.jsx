@@ -174,6 +174,20 @@ class Index extends TabPageBase {
               type: cardConfig.contentItemType.customGrid,
               list: [
                 {
+                  label: fieldData.description.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.description.name,
+                  }),
+                },
+                {
+                  label: fieldData.ancillaryInformation.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.ancillaryInformation.name,
+                  }),
+                },
+                {
                   label: fieldData.channelNote.label,
                   value: getValueByKey({
                     data: metaData,

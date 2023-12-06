@@ -2,15 +2,24 @@ import { formNameCollection } from 'antd-management-fast-common';
 
 export const fieldData = {
   ...formNameCollection,
-
   generalLogId: {
     label: '数据标识',
     name: 'generalLogId',
     helper: '',
   },
   message: {
-    label: '简介描述',
+    label: '消息内容',
     name: 'message',
+    helper: '',
+  },
+  description: {
+    label: '消息描述',
+    name: 'description',
+    helper: '',
+  },
+  ancillaryInformation: {
+    label: '附属信息',
+    name: 'ancillaryInformation',
     helper: '',
   },
   messageType: {

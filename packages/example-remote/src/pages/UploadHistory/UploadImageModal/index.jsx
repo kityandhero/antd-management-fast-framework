@@ -38,7 +38,7 @@ class UploadImageModal extends BaseDisplayModal {
   afterImageUploadSuccess = (image) => {
     this.setState({ image }, () => {
       showInfoMessage({
-        text: '上传成功，即将关闭窗口',
+        text: '图片上传成功，即将关闭窗口',
         onClose: () => {
           setTimeout(() => {
             UploadImageModal.close();

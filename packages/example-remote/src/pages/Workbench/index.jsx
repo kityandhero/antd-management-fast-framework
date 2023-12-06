@@ -16,7 +16,7 @@ import {
 } from 'antd-management-fast-framework';
 
 import { getWebChannelName } from '../../customSpecialComponents';
-import { deleteAction } from '../ErrorLog/Assist/action';
+import { removeAction } from '../ErrorLog/Assist/action';
 import { getResolveBadge } from '../ErrorLog/Assist/tools';
 import { fieldData } from '../ErrorLog/Common/data';
 import { PreviewDrawer } from '../ErrorLog/PreviewDrawer';
@@ -36,6 +36,12 @@ class Index extends MultiPage {
 
   showSearchForm = false;
 
+  pageValues = {
+    pageNo: 1,
+    frontendPageNo: 1,
+    pageSize: 8,
+  };
+
   constructor(properties) {
     super(properties);
 
@@ -45,7 +51,6 @@ class Index extends MultiPage {
       listTitle: '新近异常列表',
       loadApiPath: 'errorLog/pageList',
       tableScrollX: 1020,
-      pageSize: 8,
       currentOperator: null,
     };
   }
@@ -79,7 +84,7 @@ class Index extends MultiPage {
   };
 
   delete = (r) => {
-    deleteAction({
+    removeAction({
       target: this,
       handleData: r,
       successCallback: ({ target }) => {

@@ -386,9 +386,8 @@ class BasicInfo extends TabPageBase {
                   key: 'removeItem',
                   icon: iconBuilder.delete(),
                   text: '删除信息',
-                  confirm: {
-                    title: '将要删除信息，确定吗？',
-                  },
+                  confirm: true,
+                  title: '将要删除信息，确定吗？',
                 },
               ],
             }),

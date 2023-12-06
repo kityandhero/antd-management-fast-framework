@@ -35,10 +35,10 @@ class UploadVideoModal extends BaseDisplayModal {
     this.setState({ video: '' });
   };
 
-  afterAudioUploadSuccess = (video) => {
+  afterVideoUploadSuccess = (video) => {
     this.setState({ video }, () => {
       showInfoMessage({
-        text: '上传成功，即将关闭窗口',
+        text: '视频上传成功，即将关闭窗口',
         onClose: () => {
           setTimeout(() => {
             UploadVideoModal.close();
@@ -92,7 +92,7 @@ class UploadVideoModal extends BaseDisplayModal {
               video,
               action: `/uploadHistory/uploadVideo`,
               afterUploadSuccess: (videoData) => {
-                this.afterImageUploadSuccess(videoData);
+                this.afterVideoUploadSuccess(videoData);
               },
             },
           ],

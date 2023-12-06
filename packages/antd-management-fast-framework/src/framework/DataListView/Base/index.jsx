@@ -388,6 +388,23 @@ class Base extends AuthorizationWrapper {
           updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
         };
 
+        const keys = Object.keys(values);
+
+        for (const key of keys) {
+          if (isUndefined(values[key])) {
+            delete values[key];
+          }
+        }
+
+        this.logCallTrace(
+          {
+            filterFormValues: values,
+          },
+          primaryCallName,
+          'handleSearch',
+          'filter form values info',
+        );
+
         this.filterFormValues = values;
 
         this.searchData({});

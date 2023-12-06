@@ -82,6 +82,22 @@ class Index extends TabPageBase {
                 },
                 {
                   span: 4,
+                  label: fieldData.description.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.description.name,
+                  }),
+                },
+                {
+                  span: 4,
+                  label: fieldData.ancillaryInformation.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.ancillaryInformation.name,
+                  }),
+                },
+                {
+                  span: 4,
                   label: fieldData.url.label,
                   value: getValueByKey({
                     data: metaData,

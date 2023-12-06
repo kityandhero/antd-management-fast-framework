@@ -13,7 +13,7 @@ import {
 import { DataForm } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig';
-import { UserSelectField } from '../../User/SelectField';
+import { UserSelectDrawerField } from '../../User/SelectDrawerField';
 import { parseUrlParametersForSetState } from '../Assist/config';
 import { fieldData } from '../Common/data';
 
@@ -68,7 +68,7 @@ class Add extends BaseAddForm {
     this.goToPath(`/person/internalTester/pageList/no`);
   };
 
-  afterCustomerSelect = (d) => {
+  afterUserSelect = (d) => {
     const userId = getValueByKey({
       data: d,
       key: fieldData.userId.name,
@@ -91,7 +91,7 @@ class Add extends BaseAddForm {
     });
   };
 
-  afterCustomerClearSelect = () => {
+  afterUserClearSelect = () => {
     this.setState({
       userId: '',
       nickname: '',
@@ -121,13 +121,13 @@ class Add extends BaseAddForm {
               lg: 6,
               type: cardConfig.contentItemType.component,
               component: (
-                <UserSelectField
+                <UserSelectDrawerField
                   label={fieldData.nickname.label}
                   afterSelectSuccess={(d) => {
-                    this.afterCustomerSelect(d);
+                    this.afterUserSelect(d);
                   }}
                   afterClearSelect={() => {
-                    this.afterCustomerClearSelect();
+                    this.afterUserClearSelect();
                   }}
                 />
               ),

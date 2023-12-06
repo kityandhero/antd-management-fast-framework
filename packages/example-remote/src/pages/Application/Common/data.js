@@ -43,7 +43,7 @@ export const fieldData = {
     helper: '',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '',
   },
@@ -288,6 +288,21 @@ export const fieldData = {
     label: '签到打卡通知标题',
     name: 'checkInNotificationTitle',
     helper: '签到打卡通知消息的标题',
+  },
+  jiGuangAppKey: {
+    label: '极光推送AppKey',
+    name: 'jiGuangAppKey',
+    helper: '极光推送AppKey',
+  },
+  jiGuangSecret: {
+    label: '极光推送Secret',
+    name: 'jiGuangSecret',
+    helper: '极光推送Secret',
+  },
+  jiGuangTestDeviceCode: {
+    label: '极光推送测试设备号',
+    name: 'jiGuangTestDeviceCode',
+    helper: '极光推送测试设备号',
   },
   checkInNotificationFirstParam: {
     label: '签到打卡通知第一参数',

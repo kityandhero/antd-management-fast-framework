@@ -20,6 +20,7 @@ import {
   parseUrlParametersForSetState,
 } from '../Assist/config';
 import { fieldData, statusCollection } from '../Common/data';
+import { TestSendSmsCaptchaModal } from '../TestSendSmsCaptchaModal';
 import { TestSendWechatTemplateMessageModal } from '../TestSendWechatTemplateMessageModal';
 import { TestSendWechatUniformMessageModal } from '../TestSendWechatUniformMessageModal';
 import { UpdateMessageChannelApplicationInfoModal } from '../UpdateMessageChannelApplicationInfoModal';
@@ -65,12 +66,20 @@ class Edit extends DataTabContainerSupplement {
       tab: '微信消息跳转配置',
     },
     {
+      key: 'jiGuangInfo',
+      tab: '极光设置',
+    },
+    {
       key: 'articleNotificationInfo',
       tab: '文章推送设置',
     },
     {
       key: 'checkInInfo',
       tab: '签到打卡设置',
+    },
+    {
+      key: 'applicationVersion/pageList',
+      tab: '版本配置',
     },
     {
       key: 'operateLog/pageList',
@@ -197,6 +206,17 @@ class Edit extends DataTabContainerSupplement {
     );
   };
 
+  showTestSendSmsCaptchaModal = (record) => {
+    this.setState(
+      {
+        currentRecord: record,
+      },
+      () => {
+        TestSendSmsCaptchaModal.open();
+      },
+    );
+  };
+
   establishPageHeaderAvatarConfig = () => {
     return { icon: iconBuilder.fork() };
   };
@@ -261,9 +281,8 @@ class Edit extends DataTabContainerSupplement {
             that.setStart(handleData);
           },
           disabled: status === statusCollection.start,
-          confirm: {
-            title: '即将启动应用，确定吗？',
-          },
+          confirm: true,
+          title: '即将启动应用，确定吗？',
           handleData: metaData,
         },
         {
@@ -274,9 +293,8 @@ class Edit extends DataTabContainerSupplement {
             that.setStop(handleData);
           },
           disabled: status === statusCollection.stop,
-          confirm: {
-            title: '即将停止应用，确定吗？',
-          },
+          confirm: true,
+          title: '即将停止应用，确定吗？',
           handleData: metaData,
         },
         {
@@ -285,24 +303,6 @@ class Edit extends DataTabContainerSupplement {
           icon: iconBuilder.form(),
           handleButtonClick: () => {
             that.showUpdateMessageChannelApplicationInfoModal();
-          },
-          handleData: metaData,
-        },
-        {
-          key: 'testSendWechatTemplateMessage',
-          text: '测试微信公众号模板消息',
-          icon: iconBuilder.message(),
-          handleButtonClick: () => {
-            that.showTestSendWechatTemplateMessageModal();
-          },
-          handleData: metaData,
-        },
-        {
-          key: 'testSendWechatUniformMessage',
-          text: '测试微信统一服务消息',
-          icon: iconBuilder.message(),
-          handleButtonClick: () => {
-            that.showTestSendWechatUniformMessageModal();
           },
           handleData: metaData,
         },
@@ -323,6 +323,20 @@ class Edit extends DataTabContainerSupplement {
       disabled: this.checkInProgress(),
       handleMenuClick: ({ key, handleData }) => {
         switch (key) {
+          case 'testSendWechatTemplateMessage': {
+            that.showTestSendWechatTemplateMessageModal(handleData);
+            break;
+          }
+          case 'testSendWechatUniformMessage': {
+            that.showTestSendWechatUniformMessageModal(handleData);
+            break;
+          }
+
+          case 'testSendSmsCaptcha': {
+            that.showTestSendSmsCaptchaModal(handleData);
+            break;
+          }
+
           case 'refreshCache': {
             that.refreshCache(handleData);
             break;
@@ -336,12 +350,26 @@ class Edit extends DataTabContainerSupplement {
       handleData: metaData,
       items: [
         {
+          key: 'testSendWechatTemplateMessage',
+          icon: iconBuilder.message(),
+          text: '测试微信公众号模板消息',
+        },
+        {
+          key: 'testSendWechatUniformMessage',
+          icon: iconBuilder.message(),
+          text: '测试微信统一服务消息',
+        },
+        {
+          key: 'testSendSmsCaptcha',
+          icon: iconBuilder.message(),
+          text: '测试短信验证码消息',
+        },
+        {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };
@@ -410,26 +438,13 @@ class Edit extends DataTabContainerSupplement {
 
     return (
       <>
-        <UpdateMessageChannelApplicationInfoModal
-          externalData={metaData}
-          afterOK={() => {
-            this.afterUpdateMessageChannelApplicationInfoModalOk();
-          }}
-        />
+        <UpdateMessageChannelApplicationInfoModal externalData={metaData} />
 
-        <TestSendWechatTemplateMessageModal
-          externalData={metaData}
-          afterOK={() => {
-            this.afterTestSendWechatTemplateMessageModalOk();
-          }}
-        />
+        <TestSendWechatTemplateMessageModal externalData={metaData} />
 
-        <TestSendWechatUniformMessageModal
-          externalData={metaData}
-          afterOK={() => {
-            this.afterTestSendWechatUniformMessageModalOk();
-          }}
-        />
+        <TestSendWechatUniformMessageModal externalData={metaData} />
+
+        <TestSendSmsCaptchaModal externalData={metaData} />
       </>
     );
   };

@@ -73,7 +73,7 @@ export const fieldData = {
     helper: '栏目的排序值',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '',
   },

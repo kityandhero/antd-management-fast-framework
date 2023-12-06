@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { checkHasAuthority, getValueByKey } from 'easy-soft-utility';
+import { checkHasAuthority, getValueByKey, toNumber } from 'easy-soft-utility';
 
 import {
+  buildRandomHexColor,
   cardConfig,
   columnFacadeMode,
   dataTypeCollection,
@@ -14,6 +15,7 @@ import {
 } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig';
+import { getChannelName } from '../../../customSpecialComponents';
 import { fieldData } from '../Common/data';
 
 const { InnerMultiPage } = DataMultiPageView;
@@ -77,6 +79,24 @@ class BaseInnerPageList extends InnerMultiPage {
       width: 120,
       showRichFacade: true,
       canCopy: true,
+    },
+    {
+      dataTarget: fieldData.channel,
+      width: 120,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfigBuilder: (value) => {
+        return {
+          color: buildRandomHexColor({
+            seed: toNumber(value) + 47,
+          }),
+        };
+      },
+      formatValue: (value) => {
+        return getChannelName({
+          value: value,
+        });
+      },
     },
     {
       dataTarget: fieldData.operationLogId,

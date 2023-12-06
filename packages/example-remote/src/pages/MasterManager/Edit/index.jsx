@@ -214,9 +214,8 @@ class Detail extends DataTabContainerSupplement {
             that.setEnable(handleData);
           },
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '即将启用账户，确定吗？',
-          },
+          confirm: true,
+          title: '即将启用账户，确定吗？',
           handleData: metaData,
         },
         {
@@ -227,9 +226,8 @@ class Detail extends DataTabContainerSupplement {
             that.setDisable(handleData);
           },
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '即将禁用账户，确定吗？',
-          },
+          confirm: true,
+          title: '即将禁用账户，确定吗？',
           handleData: metaData,
         },
       ],
@@ -278,9 +276,8 @@ class Detail extends DataTabContainerSupplement {
           hidden: !checkHasAuthority(
             accessWayCollection.masterManager.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };

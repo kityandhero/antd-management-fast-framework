@@ -26,7 +26,7 @@ class UploadFileModal extends BaseDisplayModal {
 
     this.state = {
       ...this.state,
-      pageTitle: '上传音频',
+      pageTitle: '上传文件',
       file: '',
     };
   }
@@ -35,10 +35,10 @@ class UploadFileModal extends BaseDisplayModal {
     this.setState({ file: '' });
   };
 
-  afterAudioUploadSuccess = (file) => {
+  afterFileUploadSuccess = (file) => {
     this.setState({ file }, () => {
       showInfoMessage({
-        text: '上传成功，即将关闭窗口',
+        text: '文件上传成功，即将关闭窗口',
         onClose: () => {
           setTimeout(() => {
             UploadFileModal.close();
@@ -92,7 +92,7 @@ class UploadFileModal extends BaseDisplayModal {
               file,
               action: `/uploadHistory/uploadFile`,
               afterUploadSuccess: (fileData) => {
-                this.afterImageUploadSuccess(fileData);
+                this.afterFileUploadSuccess(fileData);
               },
             },
           ],

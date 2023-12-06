@@ -78,7 +78,7 @@ export const navigationItemData = {
     helper: '导航配置的标题',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '导航配置的简介描述',
   },

@@ -27,6 +27,7 @@ import {
   getSubsidiaryStatusName,
   getTagStatusName,
 } from '../../../customSpecialComponents';
+import { GraphicalSingleSubsidiaryDepartmentTreeDrawer } from '../../Organization/GraphicalSingleSubsidiaryDepartmentTreeDrawer';
 import {
   refreshCacheAction,
   setDisableAction,
@@ -35,7 +36,6 @@ import {
 import { getStatusBadge } from '../Assist/tools';
 import { ChangeSortModal } from '../ChangeSortModal';
 import { fieldData, statusCollection } from '../Common/data';
-import { TreeDrawer } from '../TreeDrawer';
 
 const { MultiPage } = DataMultiPageView;
 
@@ -51,7 +51,7 @@ class PageList extends MultiPage {
 
     this.state = {
       ...this.state,
-      pageTitle: '子公司列表',
+      pageTitle: '公司列表',
       paramsKey: accessWayCollection.subsidiary.pageList.paramsKey,
       listViewMode: listViewConfig.viewMode.list,
       loadApiPath: 'subsidiary/pageList',
@@ -89,6 +89,11 @@ class PageList extends MultiPage {
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
+      case 'showGraphical': {
+        this.openGraphicalSingleSubsidiaryDepartmentTreeDrawer(handleData);
+        break;
+      }
+
       case 'updateSort': {
         this.showChangeSortModal(handleData);
         break;
@@ -143,12 +148,14 @@ class PageList extends MultiPage {
     });
   };
 
-  openTreeDrawer = () => {
-    TreeDrawer.open();
+  openGraphicalSingleSubsidiaryDepartmentTreeDrawer = (item) => {
+    this.setState({ currentRecord: item }, () => {
+      GraphicalSingleSubsidiaryDepartmentTreeDrawer.open();
+    });
   };
 
-  showChangeSortModal = (r) => {
-    this.setState({ currentRecord: r }, () => {
+  showChangeSortModal = (item) => {
+    this.setState({ currentRecord: item }, () => {
       ChangeSortModal.open();
     });
   };
@@ -218,23 +225,14 @@ class PageList extends MultiPage {
       {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
-        type: 'default',
-        icon: iconBuilder.inbox(),
-        text: '子公司树型展示',
-        handleClick: this.openTreeDrawer,
-      },
-      {
-        buildType:
-          listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',
         icon: iconBuilder.plus(),
-        text: '增加子公司',
+        text: '增加公司',
         handleClick: this.goToAdd,
       },
     ];
   };
 
-  // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemExtra = (record, index) => {
     return buildListViewItemExtra({
       index,
@@ -259,7 +257,7 @@ class PageList extends MultiPage {
         label: fieldData.shortName.label,
         text: getValueByKey({
           data: item,
-          key: fieldData.subsidiaryId.name,
+          key: fieldData.shortName.name,
         }),
       },
       descriptionList: [
@@ -278,6 +276,9 @@ class PageList extends MultiPage {
               })}
               randomColor
               randomSeed={status}
+              separatorStyle={{
+                paddingRight: '4px',
+              }}
               seedOffset={18}
             />
           ),
@@ -345,6 +346,13 @@ class PageList extends MultiPage {
         },
         items: [
           {
+            key: 'showGraphical',
+            icon: iconBuilder.read(),
+            text: '查看组织图例',
+          },
+          {
+            withDivider: true,
+            uponDivider: true,
             key: 'updateSort',
             icon: iconBuilder.edit(),
             text: '设置排序值',
@@ -356,18 +364,16 @@ class PageList extends MultiPage {
             icon: iconBuilder.playCircle(),
             text: '设为启用',
             disabled: status === statusCollection.enable,
-            confirm: {
-              title: '将要设为启用，确定吗？',
-            },
+            confirm: true,
+            title: '将要设为启用，确定吗？',
           },
           {
             key: 'setDisable',
             icon: iconBuilder.pauseCircle(),
             text: '设为禁用',
             disabled: status === statusCollection.disable,
-            confirm: {
-              title: '将要设为禁用，确定吗？',
-            },
+            confirm: true,
+            title: '将要设为禁用，确定吗？',
           },
           {
             withDivider: true,
@@ -375,9 +381,8 @@ class PageList extends MultiPage {
             key: 'refreshCache',
             icon: iconBuilder.reload(),
             text: '刷新缓存',
-            confirm: {
-              title: '将要刷新缓存，确定吗？',
-            },
+            confirm: true,
+            title: '将要刷新缓存，确定吗？',
           },
         ],
       },
@@ -462,11 +467,14 @@ class PageList extends MultiPage {
 
     return (
       <>
-        <TreeDrawer title={'111'} maskClosable />
-
         <ChangeSortModal
           externalData={currentRecord}
           afterOK={this.afterChangeSortModalOk}
+        />
+
+        <GraphicalSingleSubsidiaryDepartmentTreeDrawer
+          maskClosable
+          externalData={currentRecord}
         />
       </>
     );

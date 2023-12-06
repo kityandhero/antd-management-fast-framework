@@ -303,11 +303,8 @@ class Edit extends DataTabContainerSupplement {
             accessWayCollection.section.toggleRecommend.permission,
           ),
           disabled: this.checkInProgress(),
-          confirm: {
-            title: `即将${
-              whetherRecommend ? '取消推荐' : '设为推荐'
-            }，确定吗？`,
-          },
+          confirm: true,
+          title: `即将${whetherRecommend ? '取消推荐' : '设为推荐'}，确定吗？`,
           handleData: metaData,
         },
         {
@@ -333,9 +330,8 @@ class Edit extends DataTabContainerSupplement {
             accessWayCollection.section.toggleTop.permission,
           ),
           disabled: this.checkInProgress(),
-          confirm: {
-            title: `即将${whetherTop ? '取消置顶' : '设为置顶'}，确定吗？`,
-          },
+          confirm: true,
+          title: `即将${whetherTop ? '取消置顶' : '设为置顶'}，确定吗？`,
           handleData: metaData,
         },
         {
@@ -361,9 +357,8 @@ class Edit extends DataTabContainerSupplement {
             accessWayCollection.section.toggleVisible.permission,
           ),
           disabled: this.checkInProgress(),
-          confirm: {
-            title: `即将${whetherVisible ? '设为隐藏' : '设为显示'}，确定吗？`,
-          },
+          confirm: true,
+          title: `即将${whetherVisible ? '设为隐藏' : '设为显示'}，确定吗？`,
           handleData: metaData,
         },
         {
@@ -377,9 +372,8 @@ class Edit extends DataTabContainerSupplement {
             accessWayCollection.section.setOnline.permission,
           ),
           disabled: status === statusCollection.online,
-          confirm: {
-            title: '设置为上线，确定吗？',
-          },
+          confirm: true,
+          title: '设置为上线，确定吗？',
           handleData: metaData,
         },
         {
@@ -393,9 +387,8 @@ class Edit extends DataTabContainerSupplement {
             accessWayCollection.section.setOffline.permission,
           ),
           disabled: status === statusCollection.offline,
-          confirm: {
-            title: '设置为下线，确定吗？',
-          },
+          confirm: true,
+          title: '设置为下线，确定吗？',
           handleData: metaData,
         },
       ],
@@ -434,9 +427,8 @@ class Edit extends DataTabContainerSupplement {
           hidden: !checkHasAuthority(
             accessWayCollection.section.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };

@@ -69,12 +69,17 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
               fieldData: fieldData.name,
               require: true,
             },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.textarea,
+              fieldData: fieldData.template,
+            },
           ],
         },
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '简介描述',
+            text: '简介 - 描述 - 备注',
           },
           items: [
             {

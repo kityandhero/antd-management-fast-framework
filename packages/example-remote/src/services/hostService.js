@@ -1,29 +1,37 @@
 import { request } from 'easy-soft-utility';
 
+export const pageListDataApiAddress = '/hostService/pageList';
+
 export async function pageListData(parameters) {
   return request({
-    api: '/hostService/pageList',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }
+
+export const getDataApiAddress = '/hostService/get';
 
 export async function getData(parameters) {
   return request({
-    api: '/hostService/get',
+    api: getDataApiAddress,
     params: parameters,
   });
 }
+
+export const changeDataApiAddress = '/hostService/change';
 
 export async function changeData(parameters) {
   return request({
-    api: '/hostService/change',
+    api: changeDataApiAddress,
     params: parameters,
   });
 }
 
+export const refreshAllStatusDataApiAddress = '/hostService/refreshAllStatus';
+
 export async function refreshAllStatusData(parameters) {
   return request({
-    api: '/hostService/refreshAllStatus',
+    api: refreshAllStatusDataApiAddress,
     params: parameters,
   });
 }

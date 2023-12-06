@@ -119,6 +119,42 @@ export default [
         ],
       },
       {
+        name: 'executeLog',
+        icon: 'reconciliation',
+        hideChildrenInMenu: true,
+        path: '/logs/executeLog',
+        routes: [
+          {
+            path: '/logs/executeLog',
+            redirect: '/logs/executeLog/pageList',
+          },
+          {
+            path: '/logs/executeLog/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/logs/executeLog/pageList/no',
+          },
+          {
+            path: '/logs/executeLog/pageList/:pageKey',
+            hideInMenu: true,
+            component: './ExecuteLog/PageList',
+          },
+          {
+            path: '/logs/executeLog/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './ExecuteLog/Edit',
+            routes: [
+              {
+                path: '/logs/executeLog/edit/:op/:id/:pageKey/basicInfo',
+                name: 'basicInfo',
+                component: './ExecuteLog/Edit/BasicInfo',
+              },
+            ],
+          },
+        ],
+      },
+      {
         name: 'sqlLog',
         icon: 'reconciliation',
         hideChildrenInMenu: true,
@@ -510,6 +546,11 @@ export default [
                 component: './Application/Edit/WeChatMessageTargetPathInfo',
               },
               {
+                path: '/app/application/edit/:op/:id/:pageKey/jiGuangInfo',
+                name: 'jiGuangInfo',
+                component: './Application/Edit/JiGuangInfo',
+              },
+              {
                 path: '/app/application/edit/:op/:id/:pageKey/articleNotificationInfo',
                 name: 'articleNotificationInfo',
                 component: './Application/Edit/ArticleNotificationInfo',
@@ -518,6 +559,21 @@ export default [
                 path: '/app/application/edit/:op/:id/:pageKey/checkInInfo',
                 name: 'checkInInfo',
                 component: './Application/Edit/CheckInInfo',
+              },
+              {
+                path: '/app/application/edit/:op/:id/:pageKey/applicationVersion',
+                name: 'applicationVersion',
+                routes: [
+                  {
+                    path: '/app/application/edit/:op/:id/:pageKey/applicationVersion',
+                    redirect:
+                      '/app/application/edit/:op/:id/:pageKey/applicationVersion/pageList',
+                  },
+                  {
+                    path: '/app/application/edit/:op/:id/:pageKey/applicationVersion/pageList',
+                    component: './Application/Edit/ApplicationVersion/PageList',
+                  },
+                ],
               },
               {
                 path: '/app/application/edit/:op/:id/:pageKey/operateLog',
@@ -845,7 +901,7 @@ export default [
       {
         name: 'graph',
         icon: 'graph',
-        hideChildrenInMenu: true,
+        // hideChildrenInMenu: true,
         path: '/organization/graph',
         routes: [
           {
@@ -855,8 +911,175 @@ export default [
           {
             path: '/organization/graph/graphicalTree',
             name: 'graphicalTree',
-            hideInMenu: true,
+            // hideInMenu: true,
             component: './Organization/GraphicalTree',
+          },
+          {
+            path: '/organization/graph/graphicalDirectDepartmentTree',
+            name: 'graphicalDirectDepartmentTree',
+            // hideInMenu: true,
+            component: './Organization/GraphicalDirectDepartmentTree',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'flow',
+    icon: 'reconciliation',
+    path: '/flow',
+    routes: [
+      {
+        name: 'workflow',
+        icon: 'bars',
+        hideChildrenInMenu: true,
+        path: '/flow/workflow',
+        routes: [
+          {
+            path: '/flow/workflow',
+            redirect: '/flow/workflow/pageList',
+          },
+          {
+            path: '/flow/workflow/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/flow/workflow/pageList/no',
+          },
+          {
+            path: '/flow/workflow/pageList/:pageKey',
+            hideInMenu: true,
+            component: './Workflow/PageList',
+          },
+          {
+            path: '/flow/workflow/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './Workflow/Edit',
+            routes: [
+              {
+                path: '/flow/workflow/edit/:op/:id/:pageKey/basicInfo',
+                name: 'basicInfo',
+                component: './Workflow/Edit/BasicInfo',
+              },
+              {
+                path: '/flow/workflow/edit/:op/:id/:pageKey/workflowRangeEffectiveSubsidiaryRelation',
+                name: 'workflowRangeEffectiveSubsidiaryRelation',
+                routes: [
+                  {
+                    path: '/flow/workflow/edit/:op/:id/:pageKey/workflowRangeEffectiveSubsidiaryRelation',
+                    redirect:
+                      '/flow/workflow/edit/:op/:id/:pageKey/workflowRangeEffectiveSubsidiaryRelation/pageList',
+                  },
+                  {
+                    path: '/flow/workflow/edit/:op/:id/:pageKey/workflowRangeEffectiveSubsidiaryRelation/pageList',
+                    component:
+                      './Workflow/Edit/WorkflowRangeEffectiveSubsidiaryRelation/PageList',
+                  },
+                ],
+              },
+              {
+                path: '/flow/workflow/edit/:op/:id/:pageKey/workflowRangeEffectiveExternalDepartmentRelation',
+                name: 'workflowRangeEffectiveExternalDepartmentRelation',
+                routes: [
+                  {
+                    path: '/flow/workflow/edit/:op/:id/:pageKey/workflowRangeEffectiveExternalDepartmentRelation',
+                    redirect:
+                      '/flow/workflow/edit/:op/:id/:pageKey/workflowRangeEffectiveExternalDepartmentRelation/pageList',
+                  },
+                  {
+                    path: '/flow/workflow/edit/:op/:id/:pageKey/workflowRangeEffectiveExternalDepartmentRelation/pageList',
+                    component:
+                      './Workflow/Edit/WorkflowRangeEffectiveExternalDepartmentRelation/PageList',
+                  },
+                ],
+              },
+              {
+                path: '/flow/workflow/edit/:op/:id/:pageKey/fromInfo',
+                name: 'fromInfo',
+                component: './Workflow/Edit/FromInfo',
+              },
+              {
+                path: '/flow/workflow/edit/:op/:id/:pageKey/designInfo',
+                name: 'designInfo',
+                component: './Workflow/Edit/DesignInfo',
+              },
+              {
+                path: '/flow/workflow/edit/:op/:id/:pageKey/debugCaseInfo',
+                name: 'debugCaseInfo',
+                component: './Workflow/Edit/DebugCaseInfo',
+              },
+              {
+                path: '/flow/workflow/edit/:op/:id/:pageKey/operateLog',
+                name: 'operateLog',
+                routes: [
+                  {
+                    path: '/flow/workflow/edit/:op/:id/:pageKey/operateLog',
+                    redirect:
+                      '/flow/workflow/edit/:op/:id/:pageKey/operateLog/pageList',
+                  },
+                  {
+                    path: '/flow/workflow/edit/:op/:id/:pageKey/operateLog/pageList',
+                    component: './Workflow/Edit/OperateLog/PageList',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'workflowCase',
+        icon: 'bars',
+        hideChildrenInMenu: true,
+        path: '/flow/workflowCase',
+        routes: [
+          {
+            path: '/flow/workflowCase',
+            redirect: '/flow/workflowCase/pageList',
+          },
+          {
+            path: '/flow/workflowCase/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/flow/workflowCase/pageList/no',
+          },
+          {
+            path: '/flow/workflowCase/pageList/:pageKey',
+            hideInMenu: true,
+            component: './WorkflowCase/PageList',
+          },
+          {
+            path: '/flow/workflowCase/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './WorkflowCase/Edit',
+            routes: [
+              {
+                path: '/flow/workflowCase/edit/:op/:id/:pageKey/basicInfo',
+                name: 'basicInfo',
+                component: './WorkflowCase/Edit/BasicInfo',
+              },
+              {
+                path: '/flow/workflowCase/edit/:op/:id/:pageKey/formInfo',
+                name: 'formInfo',
+                component: './WorkflowCase/Edit/FormInfo',
+              },
+              {
+                path: '/flow/workflowCase/edit/:op/:id/:pageKey/operateLog',
+                name: 'operateLog',
+                routes: [
+                  {
+                    path: '/flow/workflowCase/edit/:op/:id/:pageKey/operateLog',
+                    redirect:
+                      '/flow/workflowCase/edit/:op/:id/:pageKey/operateLog/pageList',
+                  },
+                  {
+                    path: '/flow/workflowCase/edit/:op/:id/:pageKey/operateLog/pageList',
+                    component: './WorkflowCase/Edit/OperateLog/PageList',
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
@@ -1008,6 +1231,36 @@ export default [
                 component: './User/Edit/SignetInfo',
               },
               {
+                path: '/person/user/edit/:op/:id/:pageKey/userDepartmentInfo',
+                name: 'userDepartmentInfo',
+                routes: [
+                  {
+                    path: '/person/user/edit/:op/:id/:pageKey/userDepartmentInfo',
+                    redirect:
+                      '/person/user/edit/:op/:id/:pageKey/userDepartmentInfo/pageList',
+                  },
+                  {
+                    path: '/person/user/edit/:op/:id/:pageKey/userDepartmentInfo/pageList',
+                    component: './User/Edit/UserDepartmentInfo/PageList',
+                  },
+                ],
+              },
+              {
+                path: '/person/user/edit/:op/:id/:pageKey/userSubsidiaryInfo',
+                name: 'userSubsidiaryInfo',
+                routes: [
+                  {
+                    path: '/person/user/edit/:op/:id/:pageKey/userSubsidiaryInfo',
+                    redirect:
+                      '/person/user/edit/:op/:id/:pageKey/userSubsidiaryInfo/pageList',
+                  },
+                  {
+                    path: '/person/user/edit/:op/:id/:pageKey/userSubsidiaryInfo/pageList',
+                    component: './User/Edit/UserSubsidiaryInfo/PageList',
+                  },
+                ],
+              },
+              {
                 path: '/person/user/edit/:op/:id/:pageKey/operateLog',
                 name: 'operateLog',
                 routes: [
@@ -1094,6 +1347,114 @@ export default [
                     path: '/person/userYonYouCorrelation/edit/:op/:id/:pageKey/operateLog/pageList',
                     component:
                       './UserYonYouCorrelation/Edit/OperateLog/PageList',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'yonYouImportHistory',
+        icon: 'user',
+        hideChildrenInMenu: true,
+        path: '/person/yonYouImportHistory',
+        routes: [
+          {
+            path: '/person/yonYouImportHistory',
+            redirect: '/person/yonYouImportHistory/pageList',
+          },
+          {
+            path: '/person/yonYouImportHistory/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/person/yonYouImportHistory/pageList/no',
+          },
+          {
+            path: '/person/yonYouImportHistory/pageList/:pageKey',
+            hideInMenu: true,
+            component: './YonYouImportHistory/PageList',
+          },
+          {
+            path: '/person/yonYouImportHistory/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './YonYouImportHistory/Edit',
+            routes: [
+              {
+                path: '/person/yonYouImportHistory/edit/:op/:id/:pageKey/basicInfo',
+                name: 'basicInfo',
+                component: './YonYouImportHistory/Edit/BasicInfo',
+              },
+              {
+                path: '/person/yonYouImportHistory/edit/:op/:id/:pageKey/operateLog',
+                name: 'operateLog',
+                routes: [
+                  {
+                    path: '/person/yonYouImportHistory/edit/:op/:id/:pageKey/operateLog',
+                    redirect:
+                      '/person/yonYouImportHistory/edit/:op/:id/:pageKey/operateLog/pageList',
+                  },
+                  {
+                    path: '/person/yonYouImportHistory/edit/:op/:id/:pageKey/operateLog/pageList',
+                    component: './YonYouImportHistory/Edit/OperateLog/PageList',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'userDevice',
+        icon: 'user',
+        hideChildrenInMenu: true,
+        path: '/person/userDevice',
+        routes: [
+          {
+            path: '/person/userDevice',
+            redirect: '/person/userDevice/pageList',
+          },
+          {
+            path: '/person/userDevice/pageList',
+            name: 'pageList',
+            icon: 'bars',
+            redirect: '/person/userDevice/pageList/no',
+          },
+          {
+            path: '/person/userDevice/pageList/:pageKey',
+            hideInMenu: true,
+            component: './UserDevice/PageList',
+          },
+          {
+            path: '/person/userDevice/add',
+            name: 'add',
+            hideInMenu: true,
+            component: './UserDevice/Add',
+          },
+          {
+            path: '/person/userDevice/edit/:op/:id/:pageKey',
+            name: 'edit',
+            hideInMenu: true,
+            component: './UserDevice/Edit',
+            routes: [
+              {
+                path: '/person/userDevice/edit/:op/:id/:pageKey/basicInfo',
+                name: 'basicInfo',
+                component: './UserDevice/Edit/BasicInfo',
+              },
+              {
+                path: '/person/userDevice/edit/:op/:id/:pageKey/operateLog',
+                name: 'operateLog',
+                routes: [
+                  {
+                    path: '/person/userDevice/edit/:op/:id/:pageKey/operateLog',
+                    redirect:
+                      '/person/userDevice/edit/:op/:id/:pageKey/operateLog/pageList',
+                  },
+                  {
+                    path: '/person/userDevice/edit/:op/:id/:pageKey/operateLog/pageList',
+                    component: './UserDevice/Edit/OperateLog/PageList',
                   },
                 ],
               },
@@ -1247,6 +1608,21 @@ export default [
             component: './CurrentManagement/Setting/BasicInfo',
           },
           {
+            path: '/currentManagement/setting/:op/defaultImage',
+            name: 'defaultImage',
+            routes: [
+              {
+                path: '/currentManagement/setting/:op/defaultImage',
+                redirect:
+                  '/currentManagement/setting/:op/defaultImage/pageList',
+              },
+              {
+                path: '/currentManagement/setting/:op/defaultImage/pageList',
+                component: './CurrentManagement/Setting/DefaultImage/PageList',
+              },
+            ],
+          },
+          {
             path: '/currentManagement/setting/:op/fileStorageInfo',
             name: 'fileStorageInfo',
             component: './CurrentManagement/Setting/FileStorageInfo',
@@ -1255,6 +1631,26 @@ export default [
             path: '/currentManagement/setting/:op/smsInfo',
             name: 'smsInfo',
             component: './CurrentManagement/Setting/SmsInfo',
+          },
+          {
+            path: '/currentManagement/setting/:op/secretKeyInfo',
+            name: 'smsInfo',
+            component: './CurrentManagement/Setting/SecretKeyInfo',
+          },
+          {
+            path: '/currentManagement/setting/:op/flowInfo',
+            name: 'flowInfo',
+            component: './CurrentManagement/Setting/FlowInfo',
+          },
+          {
+            path: '/currentManagement/setting/:op/yonYouKeyInfo',
+            name: 'smsInfo',
+            component: './CurrentManagement/Setting/YonYouKeyInfo',
+          },
+          {
+            path: '/currentManagement/setting/:op/otherInfo',
+            name: 'otherInfo',
+            component: './CurrentManagement/Setting/OtherInfo',
           },
         ],
       },

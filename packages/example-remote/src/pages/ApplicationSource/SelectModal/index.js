@@ -27,10 +27,8 @@ class SelectModal extends BaseSelectModal {
       ...this.state,
       pageTitle: '选择应用模板',
       loadApiPath: 'applicationSource/singleList',
-      administrativeDivisionOptions: [],
-      selectParentCodeOptions: [],
     };
   }
 }
 
-export default SelectModal;
+export { SelectModal };

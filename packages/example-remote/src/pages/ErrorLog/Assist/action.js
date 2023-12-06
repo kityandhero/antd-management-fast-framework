@@ -4,14 +4,14 @@ import { actionCore } from 'antd-management-fast-common';
 
 import { fieldData } from '../Common/data';
 
-export function deleteAction({
+export function removeAction({
   target,
   handleData,
   successCallback,
   successMessage = null,
 }) {
   actionCore({
-    api: 'errorLog/delete',
+    api: 'errorLog/remove',
     params: {
       errorLogId: getValueByKey({
         data: handleData,
@@ -25,14 +25,30 @@ export function deleteAction({
   });
 }
 
-export function deleteMultiAction({
+export function removeMultiAction({
   target,
   handleData,
   successCallback,
   successMessage = null,
 }) {
   actionCore({
-    api: 'errorLog/deleteMulti',
+    api: 'errorLog/removeMulti',
+    params: { ...handleData },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export function removeAllAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage = null,
+}) {
+  actionCore({
+    api: 'errorLog/removeAll',
     params: { ...handleData },
     target,
     handleData,

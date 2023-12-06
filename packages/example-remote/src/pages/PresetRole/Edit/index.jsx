@@ -168,10 +168,9 @@ class Edit extends DataTabContainerSupplement {
           },
           hidden: !!isSuper,
           disabled: status === statusCollection.enable,
-          confirm: {
-            title:
-              '启用将分使已配该角色的账户相关的角色功能同步启用，确定启用吗？',
-          },
+          confirm: true,
+          title:
+            '启用将分使已配该角色的账户相关的角色功能同步启用，确定启用吗？',
           handleData: metaData,
         },
         {
@@ -183,10 +182,8 @@ class Edit extends DataTabContainerSupplement {
           },
           hidden: !!isSuper,
           disabled: status === statusCollection.disable,
-          confirm: {
-            title:
-              '禁用将分使已配该角色的账户相关的角色功能不可用，确定禁用吗？',
-          },
+          confirm: true,
+          title: '禁用将分使已配该角色的账户相关的角色功能不可用，确定禁用吗？',
           handleData: metaData,
         },
       ],
@@ -222,9 +219,8 @@ class Edit extends DataTabContainerSupplement {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };

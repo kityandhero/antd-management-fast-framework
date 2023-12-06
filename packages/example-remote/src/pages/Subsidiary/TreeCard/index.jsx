@@ -55,7 +55,7 @@ class Index extends BaseView {
               treeData: [
                 {
                   key: '-10000',
-                  title: '全部子公司',
+                  title: '全部公司',
                   code: '-10000',
                 },
                 ...metaListData,

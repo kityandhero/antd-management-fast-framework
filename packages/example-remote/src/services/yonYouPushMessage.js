@@ -1,29 +1,38 @@
 import { request } from 'easy-soft-utility';
 
+export const pageListDataApiAddress = '/yonYouPushMessage/pageList';
+
 export async function pageListData(parameters) {
   return request({
-    api: '/yonYouPushMessage/pageList',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }
+
+export const getDataApiAddress = '/yonYouPushMessage/get';
 
 export async function getData(parameters) {
   return request({
-    api: '/yonYouPushMessage/get',
+    api: getDataApiAddress,
     params: parameters,
   });
 }
+
+export const refreshCacheDataApiAddress = '/yonYouPushMessage/refreshCache';
 
 export async function refreshCacheData(parameters) {
   return request({
-    api: '/yonYouPushMessage/refreshCache',
+    api: refreshCacheDataApiAddress,
     params: parameters,
   });
 }
 
+export const pageListOperateLogDataApiAddress =
+  '/yonYouPushMessage/pageListOperateLog';
+
 export async function pageListOperateLogData(parameters) {
   return request({
-    api: '/yonYouPushMessage/pageListOperateLog',
+    api: pageListOperateLogDataApiAddress,
     params: parameters,
   });
 }

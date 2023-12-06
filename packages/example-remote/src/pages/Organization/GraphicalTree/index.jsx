@@ -6,6 +6,9 @@ import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import { DataForm } from 'antd-management-fast-framework';
 
+import { accessWayCollection } from '../../../customConfig';
+import { buildConfig } from '../Assist/tool';
+
 const { BaseUpdateForm } = DataForm;
 
 @connect(({ organization, schedulingControl }) => ({
@@ -13,12 +16,15 @@ const { BaseUpdateForm } = DataForm;
   schedulingControl,
 }))
 class AddBasicInfo extends BaseUpdateForm {
+  componentAuthority =
+    accessWayCollection.organization.getGraphicalTree.permission;
+
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-      pageTitle: '组织结构图示',
+      pageTitle: '结构概览',
       loadApiPath: 'organization/getGraphicalTree',
     };
   }
@@ -46,7 +52,7 @@ class AddBasicInfo extends BaseUpdateForm {
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '组织结构全局概览',
+            text: '结构全局概览',
           },
           hasExtra: true,
           extra: {
@@ -63,24 +69,32 @@ class AddBasicInfo extends BaseUpdateForm {
               type: cardConfig.contentItemType.component,
               component: metaData ? (
                 <OrganizationGraph
-                  nodeCfg={{
-                    size: [20, 44],
-                    autoWidth: true,
-                  }}
+                  {...buildConfig()}
                   data={
                     metaData || {
                       id: 'root',
                       value: {
                         name: '加载中',
+                        level: 0,
                       },
                       children: [],
                     }
                   }
-                  behaviors={['drag-canvas', 'zoom-canvas']}
                 />
               ) : null,
             },
           ],
+        },
+      ],
+    };
+  };
+
+  establishHelpConfig = () => {
+    return {
+      title: '操作提示',
+      list: [
+        {
+          text: '此处展示的是集团子公司与编外部门的关系图例。',
         },
       ],
     };

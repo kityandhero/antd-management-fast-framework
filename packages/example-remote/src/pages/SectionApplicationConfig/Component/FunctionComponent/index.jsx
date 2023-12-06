@@ -67,7 +67,9 @@ export function buildTable({ target, list, props: properties = {} }) {
     <Table
       columns={columns}
       dataSource={listData}
-      pagination={false}
+      pagination={{
+        hideOnSinglePage: true,
+      }}
       {...(properties || {})}
     />
   );

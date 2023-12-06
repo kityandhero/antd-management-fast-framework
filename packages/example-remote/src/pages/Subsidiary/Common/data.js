@@ -3,7 +3,7 @@ import { formNameCollection } from 'antd-management-fast-common';
 export const fieldData = {
   ...formNameCollection,
   subsidiaryId: {
-    label: '子公司标识',
+    label: '公司标识',
     name: 'subsidiaryId',
     helper: '',
   },
@@ -28,7 +28,7 @@ export const fieldData = {
     helper: '',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '',
   },

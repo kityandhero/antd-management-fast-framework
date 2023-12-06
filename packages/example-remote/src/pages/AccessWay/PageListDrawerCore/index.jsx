@@ -121,9 +121,8 @@ class PageListDrawerCore extends MultiPageDrawer {
         text: '增加所选模块',
         handleClick: this.addMultiModuleWrapper,
         disabled: this.checkInProgress(),
-        confirm: {
-          title: '将添加所选模块，确定吗？',
-        },
+        confirm: true,
+        title: '将添加所选模块，确定吗？',
       },
       {
         buildType:
@@ -134,9 +133,8 @@ class PageListDrawerCore extends MultiPageDrawer {
         text: '添加所有模块',
         handleClick: this.addAllModule,
         disabled: this.checkInProgress(),
-        confirm: {
-          title: '将添加所有模块，确定吗？',
-        },
+        confirm: true,
+        title: '将添加所有模块，确定吗？',
       },
     ];
   };
@@ -163,9 +161,8 @@ class PageListDrawerCore extends MultiPageDrawer {
         this.addModule(submitData);
       },
       handleData: record,
-      confirm: {
-        title: '将添加此操作模块，确定吗？',
-      },
+      confirm: true,
+      title: '将添加此操作模块，确定吗？',
     };
   };
 

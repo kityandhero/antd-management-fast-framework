@@ -197,9 +197,8 @@ class Edit extends DataTabContainerSupplement {
             that.setEnable(handleData);
           },
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '设置为启用，确定吗？',
-          },
+          confirm: true,
+          title: '设置为启用，确定吗？',
           handleData: metaData,
         },
         {
@@ -210,9 +209,8 @@ class Edit extends DataTabContainerSupplement {
             that.setDisable(handleData);
           },
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '设置为停用，确定吗？',
-          },
+          confirm: true,
+          title: '设置为停用，确定吗？',
           handleData: metaData,
         },
       ],
@@ -248,9 +246,8 @@ class Edit extends DataTabContainerSupplement {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };

@@ -6,7 +6,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 import { DataForm } from 'antd-management-fast-framework';
 
 import { fieldData } from '../Common/data';
-import { SubsidiarySelectField } from '../SelectField';
+import { SubsidiarySelectDrawerField } from '../SelectDrawerField';
 
 const { BaseAddForm } = DataForm;
 
@@ -20,7 +20,7 @@ class AddBasicInfo extends BaseAddForm {
 
     this.state = {
       ...this.state,
-      pageTitle: '新增子公司',
+      pageTitle: '新增公司',
       submitApiPath: 'subsidiary/addBasicInfo',
       logo: '',
       parentId: '',
@@ -136,7 +136,7 @@ class AddBasicInfo extends BaseAddForm {
               lg: 6,
               type: cardConfig.contentItemType.component,
               component: (
-                <SubsidiarySelectField
+                <SubsidiarySelectDrawerField
                   label={fieldData.parentShortName.label}
                   defaultValue={parentShortName || null}
                   helper={fieldData.parentShortName.helper}
@@ -182,7 +182,7 @@ class AddBasicInfo extends BaseAddForm {
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '简介描述',
+            text: '简介 - 描述 - 备注',
           },
           items: [
             {

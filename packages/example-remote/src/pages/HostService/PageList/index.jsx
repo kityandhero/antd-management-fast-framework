@@ -171,9 +171,8 @@ class PageList extends MultiPage {
         text: '重新获取服务状态',
         handleClick: this.refreshAllStatus,
         disabled: this.checkInProgress(),
-        confirm: {
-          title: '即将重新获取服务状态，该操作较为耗时，确定执行吗？',
-        },
+        confirm: true,
+        title: '即将重新获取服务状态，该操作较为耗时，确定执行吗？',
       },
     ];
   };
@@ -209,9 +208,8 @@ class PageList extends MultiPage {
           text: '启动服务',
           disabled: itemStatus === statusCollection.start,
           // hidden: itemServiceChannel === daemonServiceChannel,
-          confirm: {
-            title: '即将启动服务，确定吗？',
-          },
+          confirm: true,
+          title: '即将启动服务，确定吗？',
         },
         {
           key: 'setStop',
@@ -219,18 +217,16 @@ class PageList extends MultiPage {
           text: '停止服务',
           disabled: itemStatus === statusCollection.stop,
           // hidden: itemServiceChannel === daemonServiceChannel,
-          confirm: {
-            title: '即将停止服务，确定吗？',
-          },
+          confirm: true,
+          title: '即将停止服务，确定吗？',
         },
         {
           key: 'setRestart',
           icon: iconBuilder.redo(),
           text: '重启服务',
           // hidden: itemServiceChannel === daemonServiceChannel,
-          confirm: {
-            title: '即将重启服务，确定吗？',
-          },
+          confirm: true,
+          title: '即将重启服务，确定吗？',
         },
       ],
     };

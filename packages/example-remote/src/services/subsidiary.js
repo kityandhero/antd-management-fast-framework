@@ -1,85 +1,110 @@
 import { request } from 'easy-soft-utility';
 
+export const pageListDataApiAddress = '/subsidiary/pageList';
+
 export async function pageListData(parameters) {
   return request({
-    api: '/subsidiary/pageList',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }
+
+export const singleListDataApiAddress = '/subsidiary/singleList';
 
 export async function singleListData(parameters) {
   return request({
-    api: '/subsidiary/singleList',
+    api: singleListDataApiAddress,
     params: parameters,
   });
 }
+
+export const singleTreeListDataApiAddress = '/subsidiary/singleTreeList';
 
 export async function singleTreeListData(parameters) {
   return request({
-    api: '/subsidiary/singleTreeList',
+    api: singleTreeListDataApiAddress,
     params: parameters,
   });
 }
+
+export const getDataApiAddress = '/subsidiary/get';
 
 export async function getData(parameters) {
   return request({
-    api: '/subsidiary/get',
+    api: getDataApiAddress,
     params: parameters,
   });
 }
+
+export const addBasicInfoDataApiAddress = '/subsidiary/addBasicInfo';
 
 export async function addBasicInfoData(parameters) {
   return request({
-    api: '/subsidiary/addBasicInfo',
+    api: addBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateBasicInfoDataApiAddress = '/subsidiary/updateBasicInfo';
 
 export async function updateBasicInfoData(parameters) {
   return request({
-    api: '/subsidiary/updateBasicInfo',
+    api: updateBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateSortDataApiAddress = '/subsidiary/updateSort';
 
 export async function updateSortData(parameters) {
   return request({
-    api: '/subsidiary/updateSort',
+    api: updateSortDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateParentDataApiAddress = '/subsidiary/updateParent';
 
 export async function updateParentData(parameters) {
   return request({
-    api: '/subsidiary/updateParent',
+    api: updateParentDataApiAddress,
     params: parameters,
   });
 }
+
+export const setEnableDataApiAddress = '/subsidiary/setEnable';
 
 export async function setEnableData(parameters) {
   return request({
-    api: '/subsidiary/setEnable',
+    api: setEnableDataApiAddress,
     params: parameters,
   });
 }
+
+export const setDisableDataApiAddress = '/subsidiary/setDisable';
 
 export async function setDisableData(parameters) {
   return request({
-    api: '/subsidiary/setDisable',
+    api: setDisableDataApiAddress,
     params: parameters,
   });
 }
+
+export const refreshCacheDataApiAddress = '/subsidiary/refreshCache';
 
 export async function refreshCacheData(parameters) {
   return request({
-    api: '/subsidiary/refreshCache',
+    api: refreshCacheDataApiAddress,
     params: parameters,
   });
 }
 
+export const pageListOperateLogDataApiAddress =
+  '/subsidiary/pageListOperateLog';
+
 export async function pageListOperateLogData(parameters) {
   return request({
-    api: '/subsidiary/pageListOperateLog',
+    api: pageListOperateLogDataApiAddress,
     params: parameters,
   });
 }

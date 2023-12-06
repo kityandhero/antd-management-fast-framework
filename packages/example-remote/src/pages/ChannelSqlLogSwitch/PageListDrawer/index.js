@@ -149,9 +149,8 @@ class PageListDrawer extends MultiPageDrawer {
       handleButtonClick: ({ handleData }) => {
         this.refreshCache(handleData);
       },
-      confirm: {
-        title: '即将刷新缓存，确定吗？',
-      },
+      confirm: true,
+      title: '即将刷新缓存，确定吗？',
       handleData: record,
       handleMenuClick: ({ key, handleData }) => {
         this.handleMenuClick({ key, handleData });
@@ -162,18 +161,16 @@ class PageListDrawer extends MultiPageDrawer {
           icon: iconBuilder.playCircle(),
           text: '开启SQL日志记录',
           disabled: value === whetherNumber.yes,
-          confirm: {
-            title: '即将开启SQL日志记录,确定吗?',
-          },
+          confirm: true,
+          title: '即将开启SQL日志记录,确定吗?',
         },
         {
           key: 'setDisable',
           icon: iconBuilder.pauseCircle(),
           text: '关闭SQL日志记录',
           disabled: value === whetherNumber.no,
-          confirm: {
-            title: '即将关闭SQL日志记录,确定吗?',
-          },
+          confirm: true,
+          title: '即将关闭SQL日志记录,确定吗?',
         },
       ],
     };
@@ -246,6 +243,7 @@ class PageListDrawer extends MultiPageDrawer {
             <div>
               <FlexText
                 textPrefix={fieldData.key.label}
+                separatorStyle={{ padding: '0 4px 0 2px' }}
                 text={key}
                 extra={
                   <ColorText
@@ -308,4 +306,4 @@ class PageListDrawer extends MultiPageDrawer {
   ];
 }
 
-export default PageListDrawer;
+export { PageListDrawer };

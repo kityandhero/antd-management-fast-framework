@@ -2,13 +2,9 @@ import {
   checkStringIsNullOrWhiteSpace,
   getParametersDataCache,
   getValue,
-  isUndefined,
-  logException,
   logObject,
   setParametersDataCache,
-  showSimpleErrorMessage,
   showSimpleRuntimeError,
-  showSimpleWarningMessage,
   showSimpleWarnMessage,
 } from 'easy-soft-utility';
 
@@ -117,6 +113,12 @@ class MultiPage extends Base {
       return d;
     }
 
+    const { pageNo, pageSize } = {
+      pageNo: 1,
+      pageSize: 10,
+      ...this.pageValues,
+    };
+
     this.logCallTrack(
       {
         parameter: o,
@@ -124,7 +126,7 @@ class MultiPage extends Base {
         filterFormValues: this.filterFormValues,
         filterNoFormValues: this.filterNoFormValues,
         sorterValues: this.sorterValues,
-        pageValues: this.pageValues,
+        pageValues: { pageNo, pageSize },
       },
       primaryCallName,
       'initLoadRequestParams',
@@ -169,7 +171,8 @@ class MultiPage extends Base {
         ...this.filterFormValues,
         ...this.filterNoFormValues,
         ...this.sorterValues,
-        ...this.pageValues,
+        pageNo,
+        pageSize,
       };
 
       delete d.dateRange;
@@ -199,79 +202,6 @@ class MultiPage extends Base {
     );
   };
 
-  handleSearch = () => {
-    if (this.checkWorkDoing()) {
-      return;
-    }
-
-    this.logCallTrack(
-      {
-        parameter: {},
-      },
-      primaryCallName,
-      'handleSearch',
-    );
-
-    const form = this.getSearchCard();
-
-    if (!form) {
-      const text = '查询表单不存在';
-
-      showSimpleErrorMessage(text);
-    }
-
-    const { validateFields } = form;
-
-    validateFields()
-      .then((fieldsValue) => {
-        const values = {
-          ...fieldsValue,
-          // eslint-disable-next-line promise/always-return
-          updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
-        };
-
-        this.setPageValue({ pageNo: 1 });
-
-        this.filterNoFormValues = values;
-
-        this.searchData({});
-      })
-      .catch((error) => {
-        const { errorFields, message } = error;
-
-        if (!isUndefined(message)) {
-          logException(message);
-        }
-
-        if (isUndefined(errorFields)) {
-          showSimpleRuntimeError(error);
-        } else {
-          const m = [];
-
-          for (const o of Object.values(errorFields)) {
-            m.push(o.errors[0]);
-          }
-
-          const maxLength = 5;
-          let beyondMax = false;
-
-          if (m.length > maxLength) {
-            m.length = maxLength;
-
-            beyondMax = true;
-          }
-
-          let errorMessage = m.join(', ');
-
-          if (beyondMax) {
-            errorMessage += ' ...';
-          }
-
-          showSimpleWarningMessage(errorMessage);
-        }
-      });
-  };
-
   /**
    * 配置StandardTable切换页面时需要引发的事项
    * @param {*} pagination
@@ -280,8 +210,33 @@ class MultiPage extends Base {
    */
   handleStandardTableChange = (pagination, filtersArgument, sorter, extra) => {
     if (this.checkWorkDoing()) {
+      this.logCallTrack(
+        {
+          pagination,
+          filtersArgument,
+          sorter,
+          extra,
+        },
+        primaryCallName,
+        'handleStandardTableChange',
+        'checkWorkDoing',
+        'true',
+        'ignore',
+      );
+
       return;
     }
+
+    this.logCallTrack(
+      {
+        pagination,
+        filtersArgument,
+        sorter,
+        extra,
+      },
+      primaryCallName,
+      'handleStandardTableChange',
+    );
 
     // eslint-disable-next-line unicorn/no-array-reduce
     const filters = Object.keys(filtersArgument).reduce((object, key) => {
@@ -307,19 +262,14 @@ class MultiPage extends Base {
       this.sorterValues = parameterAdjust.sorter;
     }
 
-    this.logCallTrack(
+    this.logCallTrace(
       {
-        parameter: {
-          pagination,
-          filtersArgument,
-          sorter,
-          extra,
-        },
-        requestData: parameterAdjust,
+        pageNo: pagination.current,
+        pageSize: pagination.pageSize,
       },
-
       primaryCallName,
       'handleStandardTableChange',
+      'setPageValue',
     );
 
     this.setPageValue({
@@ -327,10 +277,31 @@ class MultiPage extends Base {
       pageSize: pagination.pageSize,
     });
 
+    this.logCallTrace(
+      {
+        requestData: parameterAdjust,
+        delay: this.pageRemoteRequestDelay,
+      },
+      primaryCallName,
+      'handleStandardTableChange',
+      'pageListData',
+    );
+
     this.pageListData({
       requestData: parameterAdjust,
       delay: this.pageRemoteRequestDelay,
     });
+
+    this.logCallTrace(
+      {
+        requestData: parameterAdjust,
+        delay: this.pageRemoteRequestDelay,
+      },
+      primaryCallName,
+      'handleStandardTableChange',
+      'trigger',
+      'handleAdditionalStandardTableChange',
+    );
 
     this.handleAdditionalStandardTableChange(
       pagination,

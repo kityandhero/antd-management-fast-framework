@@ -32,7 +32,6 @@ class UpdateConfigItemDrawer extends BaseUpdateDrawer {
 
     this.state = {
       ...this.state,
-
       loadApiPath: 'sectionApplicationConfig/getConfigItem',
       submitApiPath: 'sectionApplicationConfig/updateConfigItem',
       icon: '',

@@ -1,78 +1,103 @@
 import { request } from 'easy-soft-utility';
 
+export const pageListDataApiAddress = '/sectionApplicationConfig/pageList';
+
 export async function pageListData(parameters) {
   return request({
-    api: '/sectionApplicationConfig/pageList',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }
+
+export const getDataApiAddress = '/sectionApplicationConfig/get';
 
 export async function getData(parameters) {
   return request({
-    api: '/sectionApplicationConfig/get',
+    api: getDataApiAddress,
     params: parameters,
   });
 }
+
+export const addBasicInfoDataApiAddress =
+  '/sectionApplicationConfig/addBasicInfo';
 
 export async function addBasicInfoData(parameters) {
   return request({
-    api: '/sectionApplicationConfig/addBasicInfo',
+    api: addBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateBasicInfoDataApiAddress =
+  '/sectionApplicationConfig/updateBasicInfo';
 
 export async function updateBasicInfoData(parameters) {
   return request({
-    api: '/sectionApplicationConfig/updateBasicInfo',
+    api: updateBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const removeDataApiAddress = '/sectionApplicationConfig/remove';
 
 export async function removeData(parameters) {
   return request({
-    api: '/sectionApplicationConfig/remove',
+    api: removeDataApiAddress,
     params: parameters,
   });
 }
+
+export const refreshCacheDataApiAddress =
+  '/sectionApplicationConfig/refreshCache';
 
 export async function refreshCacheData(parameters) {
   return request({
-    api: '/sectionApplicationConfig/refreshCache',
+    api: refreshCacheDataApiAddress,
     params: parameters,
   });
 }
+
+export const getConfigItemDataApiAddress = '/section/getConfigItem';
 
 export async function getConfigItemData(parameters) {
   return request({
-    api: '/section/getConfigItem',
+    api: getConfigItemDataApiAddress,
     params: parameters,
   });
 }
+
+export const addConfigItemDataApiAddress = '/section/addConfigItem';
 
 export async function addConfigItemData(parameters) {
   return request({
-    api: '/section/addConfigItem',
+    api: addConfigItemDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateConfigItemDataApiAddress = '/section/updateConfigItem';
 
 export async function updateConfigItemData(parameters) {
   return request({
-    api: '/section/updateConfigItem',
+    api: updateConfigItemDataApiAddress,
     params: parameters,
   });
 }
+
+export const removeConfigItemDataApiAddress = '/section/removeConfigItem';
 
 export async function removeConfigItemData(parameters) {
   return request({
-    api: '/section/removeConfigItem',
+    api: removeConfigItemDataApiAddress,
     params: parameters,
   });
 }
 
+export const pageListOperateLogDataApiAddress = '/section/pageListOperateLog';
+
 export async function pageListOperateLogData(parameters) {
   return request({
-    api: '/section/pageListOperateLog',
+    api: pageListOperateLogDataApiAddress,
     params: parameters,
   });
 }

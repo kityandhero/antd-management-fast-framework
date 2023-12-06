@@ -15,8 +15,8 @@ import { iconBuilder } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig';
-import { getTagStatusName } from '../../../customSpecialComponents';
-import { UserSelectField } from '../../User/SelectField';
+import { getUserYonYouCorrelationStatusName } from '../../../customSpecialComponents';
+import { UserSelectDrawerField } from '../../User/SelectDrawerField';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
   refreshCacheAction,
@@ -166,7 +166,7 @@ class PageList extends MultiPage {
           lg: 6,
           type: searchCardConfig.contentItemType.component,
           component: (
-            <UserSelectField
+            <UserSelectDrawerField
               label={fieldData.userId.label}
               defaultValue={''}
               helper={fieldData.userId.helper}
@@ -244,9 +244,8 @@ class PageList extends MultiPage {
           key: 'toggleRecommend',
           icon: iconBuilder.swap(),
           text: '切换推荐',
-          confirm: {
-            title: '将要切换推荐设置，确定吗？',
-          },
+          confirm: true,
+          title: '将要切换推荐设置，确定吗？',
         },
         {
           withDivider: true,
@@ -255,18 +254,16 @@ class PageList extends MultiPage {
           icon: iconBuilder.playCircle(),
           text: '设为启用',
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '将要设为启用，确定吗？',
-          },
+          confirm: true,
+          title: '将要设为启用，确定吗？',
         },
         {
           key: 'setDisable',
           icon: iconBuilder.pauseCircle(),
           text: '设为禁用',
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '将要设为禁用，确定吗？',
-          },
+          confirm: true,
+          title: '将要设为禁用，确定吗？',
         },
         {
           withDivider: true,
@@ -274,9 +271,8 @@ class PageList extends MultiPage {
           key: 'remove',
           icon: iconBuilder.delete(),
           text: '移除用友账户关系',
-          confirm: {
-            title: '将要移除用友账户关系，确定吗？',
-          },
+          confirm: true,
+          title: '将要移除用友账户关系，确定吗？',
         },
         {
           withDivider: true,
@@ -284,9 +280,8 @@ class PageList extends MultiPage {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
         },
       ],
     };
@@ -338,7 +333,7 @@ class PageList extends MultiPage {
       facadeConfigBuilder: (value) => {
         return {
           status: getStatusBadge(value),
-          text: getTagStatusName({
+          text: getUserYonYouCorrelationStatusName({
             value: value,
           }),
         };

@@ -28,7 +28,7 @@ export const fieldData = {
     helper: '',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '',
   },

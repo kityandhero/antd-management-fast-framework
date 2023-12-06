@@ -117,6 +117,29 @@ export async function refreshCacheAction({
   });
 }
 
+export async function testJiGuangSendDeviceAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  const { applicationId } = {
+    applicationId: 0,
+    ...handleData,
+  };
+
+  actionCore({
+    api: 'application/testJiGuangSendDevice',
+    params: {
+      applicationId: applicationId || 0,
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
 export async function testSendWechatMessageAction({
   target,
   handleData,

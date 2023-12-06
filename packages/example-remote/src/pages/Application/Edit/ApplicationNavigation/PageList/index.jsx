@@ -42,6 +42,12 @@ const { InnerMultiPage } = DataMultiPageView;
 class Index extends InnerMultiPage {
   goToUpdateWhenProcessed = true;
 
+  pageValues = {
+    pageNo: 1,
+    frontendPageNo: 1,
+    pageSize: 2,
+  };
+
   constructor(properties) {
     super(properties);
 
@@ -49,11 +55,9 @@ class Index extends InnerMultiPage {
       ...this.state,
       listViewMode: listViewConfig.viewMode.cardCollectionView,
       loadApiPath: 'applicationNavigation/pageList',
-      pageSize: 2,
       applicationId: null,
       currentRecord: null,
       currentNavigationItem: null,
-      pageSizeAdditional: 0,
     };
   }
 
@@ -314,9 +318,8 @@ class Index extends InnerMultiPage {
                   accessWayCollection.applicationNavigation.refreshCache
                     .permission,
                 ),
-                confirm: {
-                  title: '即将刷新缓存，确定吗？',
-                },
+                confirm: true,
+                title: '即将刷新缓存，确定吗？',
               },
             ],
           },
@@ -355,9 +358,8 @@ class Index extends InnerMultiPage {
                         accessWayCollection.applicationNavigation
                           .removeNavigationItem.permission,
                       ),
-                      confirm: {
-                        title: '将要移除导航，确定吗？',
-                      },
+                      confirm: true,
+                      title: '将要移除导航，确定吗？',
                     },
                   ],
                 });

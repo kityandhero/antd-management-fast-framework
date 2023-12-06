@@ -13,7 +13,7 @@ export const fieldData = {
     helper: '输入合适的角色名称。尽可能表达清晰',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '描述一下角色，便于管理',
   },

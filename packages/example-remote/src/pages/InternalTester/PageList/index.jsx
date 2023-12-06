@@ -98,9 +98,8 @@ class PageList extends MultiPage {
         this.remove(handleData);
       },
       handleData: record,
-      confirm: {
-        title: '即将移除数据，确定吗？',
-      },
+      confirm: true,
+      title: '即将移除数据，确定吗？',
     };
   };
 

@@ -250,9 +250,8 @@ class PageList extends MultiPage {
           text: '设为上线',
           hidden: !!itemIsSuper,
           disabled: itemStatus === statusCollection.enable,
-          confirm: {
-            title: '将要设置为上线，确定吗？',
-          },
+          confirm: true,
+          title: '将要设置为上线，确定吗？',
         },
         {
           key: 'setDisable',
@@ -260,9 +259,8 @@ class PageList extends MultiPage {
           text: '设为下线',
           hidden: !!itemIsSuper,
           disabled: itemStatus === statusCollection.disable,
-          confirm: {
-            title: '将要设置为下线，确定吗？',
-          },
+          confirm: true,
+          title: '将要设置为下线，确定吗？',
         },
         {
           key: 'refreshCache',
@@ -270,9 +268,8 @@ class PageList extends MultiPage {
           uponDivider: true,
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
         },
       ],
     };

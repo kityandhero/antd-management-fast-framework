@@ -16,6 +16,7 @@ import {
   getCustomGlobalDataData,
   getCustomGlobalDataItemData,
   getData,
+  getJiGuangConfigData,
   getPagePathConfigData,
   getWeChatMessageTargetPathConfigData,
   getWeChatMessageTemplateConfigData,
@@ -27,6 +28,8 @@ import {
   setStartData,
   setStopData,
   singleListData,
+  testJiGuangSendDeviceData,
+  testSendSmsCaptchaData,
   testSendWechatTemplateMessageData,
   testSendWechatUniformMessageData,
   updateBasicInfoData,
@@ -244,6 +247,32 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(getCheckInConfigData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *getJiGuangConfig(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(getJiGuangConfigData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -500,6 +529,32 @@ export function buildModel() {
 
         return dataAdjust;
       },
+      *testJiGuangSendDevice(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(testJiGuangSendDeviceData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
       *testSendWechatUniformMessage(
         {
           payload,
@@ -536,6 +591,32 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(testSendWechatTemplateMessageData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *testSendSmsCaptcha(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(testSendSmsCaptchaData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

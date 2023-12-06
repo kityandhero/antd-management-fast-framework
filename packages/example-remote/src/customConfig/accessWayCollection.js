@@ -7,6 +7,17 @@ export const accessWayCollection = {
       permission: '',
     },
   },
+  currentManagement: {
+    pageListDefaultImage: {
+      permission: '',
+    },
+    updateKeyValueInfo: {
+      permission: '',
+    },
+    testSecretKey: {
+      permission: '',
+    },
+  },
   accessWay: {
     pageList: {
       paramsKey: 'fb527a4349b84a2ba59701c9e77fa27d',
@@ -39,16 +50,70 @@ export const accessWayCollection = {
       paramsKey: 'd987d830-a317-4d46-945c-3d45b3072711',
       permission: '',
     },
+    get: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    removeMulti: {
+      permission: '',
+    },
+    removeAll: {
+      permission: '',
+    },
   },
   generalLog: {
     pageList: {
       paramsKey: '048df32c-8a3b-419f-baa7-4b913f1c743f',
       permission: '',
     },
+    get: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    removeMulti: {
+      permission: '',
+    },
+    removeAll: {
+      permission: '',
+    },
+  },
+  executeLog: {
+    pageList: {
+      paramsKey: '8fbcab47-a049-4815-abfe-36797e83243b',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    removeMulti: {
+      permission: '',
+    },
+    removeAll: {
+      permission: '',
+    },
   },
   sqlLog: {
     pageList: {
       paramsKey: 'e1beb9e2-1fee-4a22-871c-7469804ec370',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    removeMulti: {
+      permission: '',
+    },
+    removeAll: {
       permission: '',
     },
   },
@@ -93,6 +158,9 @@ export const accessWayCollection = {
     get: {
       permission: '',
     },
+    getJiGuangConfig: {
+      permission: '',
+    },
     getCustomGlobalDataItem: {
       permission: '',
     },
@@ -100,6 +168,9 @@ export const accessWayCollection = {
       permission: '',
     },
     updateCustomGlobalDataItem: {
+      permission: '',
+    },
+    testJiGuangSendDevice: {
       permission: '',
     },
     pageListOperateLog: {
@@ -133,6 +204,33 @@ export const accessWayCollection = {
       permission: '',
     },
     removeNavigationItem: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  applicationVersion: {
+    pageList: {
+      paramsKey: '00121aa3-e0e4-4943-a0b6-24a81c6293ae',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    setEnable: {
+      permission: '',
+    },
+    setDisable: {
+      permission: '',
+    },
+    refreshCache: {
       permission: '',
     },
     pageListOperateLog: {
@@ -241,6 +339,48 @@ export const accessWayCollection = {
       permission: '',
     },
   },
+  userSubsidiaryInfo: {
+    pageList: {
+      paramsKey: '49e09cad-8e58-4151-bf1b-f2ee4a061b44',
+      permission: '',
+    },
+    singleList: {
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
+  userDepartmentInfo: {
+    pageList: {
+      paramsKey: '8458ab40-7da4-45d5-b663-a224977aa7fc',
+      permission: '',
+    },
+    singleList: {
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
   userYonYouCorrelation: {
     pageList: {
       paramsKey: '0031d44e-172e-465f-ba8b-2e416470ddac',
@@ -259,6 +399,30 @@ export const accessWayCollection = {
       permission: '',
     },
     setDisable: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    testExist: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  userDevice: {
+    pageList: {
+      paramsKey: '86573887-305c-42c7-89e7-dc5b2245d34d',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    remove: {
       permission: '',
     },
     refreshCache: {
@@ -403,6 +567,17 @@ export const accessWayCollection = {
       permission: '',
     },
   },
+  organization: {
+    getGraphicalTree: {
+      permission: '',
+    },
+    getGraphicalDirectDepartment: {
+      permission: '',
+    },
+    getGraphicalSingleSubsidiaryDepartment: {
+      permission: '',
+    },
+  },
   section: {
     pageList: {
       paramsKey: '7d073a9d-7f3a-4b00-88c7-aa6b0e671eaa',
@@ -529,6 +704,338 @@ export const accessWayCollection = {
       permission: '',
     },
     get: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  yonYouImportHistory: {
+    pageList: {
+      paramsKey: '66b925c4-acb9-4121-a8ee-4434141b16c0',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    import: {
+      permission: '',
+    },
+    setMapConfig: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  workflow: {
+    pageList: {
+      paramsKey: '31276808-1bd2-407f-9e00-9573c45ce3ac',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addOfficeAutomationArticleAudit: {
+      permission: '',
+    },
+    addOfficeAutomationProcessApproval: {
+      permission: '',
+    },
+    setChannel: {
+      permission: '',
+    },
+    setEnable: {
+      permission: '',
+    },
+    setDisable: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  workflowRangeEffectiveSubsidiaryRelation: {
+    pageList: {
+      paramsKey: '8b3926c6-fba2-4127-8563-4605e3b2c549',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    add: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    removeAll: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
+  workflowRangeEffectiveExternalDepartmentRelation: {
+    pageList: {
+      paramsKey: 'b23b404d-8ebf-42f2-bdaa-4ddf28bc256a',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    add: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    removeAll: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
+  workflowNode: {
+    pageList: {
+      paramsKey: '34349f06-0531-4e31-8547-939a3b874cad',
+      permission: '',
+    },
+    getTree: {
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addStartPoint: {
+      permission: '',
+    },
+    addIntermediatePoint: {
+      permission: '',
+    },
+    addEndPoint: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
+  workflowNodeApprover: {
+    pageList: {
+      paramsKey: '6b8a2dcdb8f3490e93b5a6ea235afe0f',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    addBasicInfo: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
+  workflowLine: {
+    pageList: {
+      paramsKey: '6f846cb6-7f58-47bb-b8ad-a07653202027',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    createLine: {
+      permission: '',
+    },
+    updateLine: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    removeAll: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
+  workflowFormDesign: {
+    addBasicInfo: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
+  workflowCase: {
+    pageList: {
+      paramsKey: '02d7a39b-a7b3-4214-9854-7676c45e195b',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    submitApproval: {
+      permission: '',
+    },
+    openCancelApproveSwitch: {
+      permission: '',
+    },
+    closeCancelApproveSwitch: {
+      permission: '',
+    },
+    openResetAllApproveSwitch: {
+      permission: '',
+    },
+    closeResetAllApproveSwitch: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  workflowCaseFormStorage: {
+    set: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
+  workflowCaseProcessHistory: {
+    pageList: {
+      paramsKey: '611c3767-a6a9-4b2e-979b-15d1b4d0c9ff',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    pass: {
+      permission: '',
+    },
+    refuse: {
+      permission: '',
+    },
+    cancelApprove: {
+      permission: '',
+    },
+    resetAllApprove: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  workflowDebugCase: {
+    pageList: {
+      paramsKey: 'c1bc2b50-df23-4903-ae9a-11d6832af3bf',
+      permission: '',
+    },
+    pageListLatestApprove: {
+      paramsKey: '6268f6ca-7594-4011-9d9e-1747a332c661',
+      permission: '',
+    },
+    pageListWaitApprove: {
+      paramsKey: 'e5fc3a89-0bd3-49af-9f99-5dc7ce57f4a4',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    getByWorkflow: {
+      permission: '',
+    },
+    updateBasicInfo: {
+      permission: '',
+    },
+    submitForm: {
+      permission: '',
+    },
+    submitApproval: {
+      permission: '',
+    },
+    openCancelApproveSwitch: {
+      permission: '',
+    },
+    closeCancelApproveSwitch: {
+      permission: '',
+    },
+    openResetAllApproveSwitch: {
+      permission: '',
+    },
+    closeResetAllApproveSwitch: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+    pageListOperateLog: {
+      permission: '',
+    },
+  },
+  workflowDebugCaseFormStorage: {
+    set: {
+      permission: '',
+    },
+    remove: {
+      permission: '',
+    },
+    refreshCache: {
+      permission: '',
+    },
+  },
+  workflowDebugCaseProcessHistory: {
+    pageList: {
+      paramsKey: '87900c72-c493-42c7-b042-a230f90987a6',
+      permission: '',
+    },
+    get: {
+      permission: '',
+    },
+    pass: {
+      permission: '',
+    },
+    refuse: {
+      permission: '',
+    },
+    cancelApprove: {
+      permission: '',
+    },
+    resetAllApprove: {
       permission: '',
     },
     refreshCache: {

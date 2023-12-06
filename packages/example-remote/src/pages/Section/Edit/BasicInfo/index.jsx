@@ -258,9 +258,11 @@ class Index extends TabPageBase {
                   value,
                 };
               },
-              onChange: ({ value }) => {
+              onChange: (v) => {
+                console.log(v);
+
                 this.setState({
-                  parentId: toString(value),
+                  parentId: toString(v),
                 });
               },
             },

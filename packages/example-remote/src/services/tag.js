@@ -1,78 +1,100 @@
 import { request } from 'easy-soft-utility';
 
+export const pageListDataApiAddress = '/tag/pageList';
+
 export async function pageListData(parameters) {
   return request({
-    api: '/tag/pageList',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }
+
+export const getDataApiAddress = '/tag/get';
 
 export async function getData(parameters) {
   return request({
-    api: '/tag/get',
+    api: getDataApiAddress,
     params: parameters,
   });
 }
+
+export const addBasicInfoDataApiAddress = '/tag/addBasicInfo';
 
 export async function addBasicInfoData(parameters) {
   return request({
-    api: '/tag/addBasicInfo',
+    api: addBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateBasicInfoDataApiAddress = '/tag/updateBasicInfo';
 
 export async function updateBasicInfoData(parameters) {
   return request({
-    api: '/tag/updateBasicInfo',
+    api: updateBasicInfoDataApiAddress,
     params: parameters,
   });
 }
+
+export const updateSortDataApiAddress = '/tag/updateSort';
 
 export async function updateSortData(parameters) {
   return request({
-    api: '/tag/updateSort',
+    api: updateSortDataApiAddress,
     params: parameters,
   });
 }
+
+export const toggleRecommendDataApiAddress = '/tag/toggleRecommend';
 
 export async function toggleRecommendData(parameters) {
   return request({
-    api: '/tag/toggleRecommend',
+    api: toggleRecommendDataApiAddress,
     params: parameters,
   });
 }
+
+export const setEnableDataApiAddress = '/tag/setEnable';
 
 export async function setEnableData(parameters) {
   return request({
-    api: '/tag/setEnable',
+    api: setEnableDataApiAddress,
     params: parameters,
   });
 }
+
+export const setDisableDataApiAddress = '/tag/setDisable';
 
 export async function setDisableData(parameters) {
   return request({
-    api: '/tag/setDisable',
+    api: setDisableDataApiAddress,
     params: parameters,
   });
 }
+
+export const removeDataApiAddress = '/tag/remove';
 
 export async function removeData(parameters) {
   return request({
-    api: '/tag/remove',
+    api: removeDataApiAddress,
     params: parameters,
   });
 }
+
+export const refreshCacheDataApiAddress = '/tag/refreshCache';
 
 export async function refreshCacheData(parameters) {
   return request({
-    api: '/tag/refreshCache',
+    api: refreshCacheDataApiAddress,
     params: parameters,
   });
 }
 
+export const pageListOperateLogDataApiAddress = '/tag/pageListOperateLog';
+
 export async function pageListOperateLogData(parameters) {
   return request({
-    api: '/tag/pageListOperateLog',
+    api: pageListOperateLogDataApiAddress,
     params: parameters,
   });
 }

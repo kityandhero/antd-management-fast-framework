@@ -1,4 +1,7 @@
-import { logExecute, showSimpleInfoNotification } from 'easy-soft-utility';
+import {
+  logExecute,
+  //  showSimpleInfoNotification
+} from 'easy-soft-utility';
 
 import { defaultUserAvatar } from 'antd-management-fast-common';
 import {
@@ -19,17 +22,18 @@ function transferLayoutAvatar({ currentOperator }) {
 }
 
 function pretreatSignInData({ request, response }) {
-  logExecute('pretreatSignInData');
+  logExecute({ request, response }, 'pretreatSignInData');
 
-  const { name } = request;
+  // const { name } = request;
 
-  if (name === 'admin') {
-    showSimpleInfoNotification('login with super role');
-  } else {
-    response.data.currentAuthority = [];
+  // // 用于测试的代码
+  // if (name === 'admin') {
+  //   showSimpleInfoNotification('login with super role');
+  // } else {
+  //   response.data.currentAuthority = [];
 
-    showSimpleInfoNotification('login with none role');
-  }
+  //   showSimpleInfoNotification('login with none role');
+  // }
 
   return response;
 }

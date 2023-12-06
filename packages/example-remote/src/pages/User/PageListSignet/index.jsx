@@ -26,7 +26,7 @@ import {
   refreshCacheAction,
 } from '../Assist/action';
 import { fieldData } from '../Common/data';
-import ResetSignetPasswordModal from '../ResetSignetPasswordModal';
+import { ResetSignetPasswordModal } from '../ResetSignetPasswordModal';
 
 const { MultiPage } = DataMultiPageView;
 const {
@@ -37,7 +37,7 @@ const {
   user,
   schedulingControl,
 }))
-class PageList extends MultiPage {
+class PageListSignet extends MultiPage {
   componentAuthority = accessWayCollection.user.pageList.permission;
 
   constructor(properties) {
@@ -237,18 +237,16 @@ class PageList extends MultiPage {
           icon: iconBuilder.playCircle(),
           text: '开启密码',
           disabled: signetPasswordSwitch === whetherNumber.yes,
-          confirm: {
-            title: '将要开启印章密码，确定吗？',
-          },
+          confirm: true,
+          title: '将要开启印章密码，确定吗？',
         },
         {
           key: 'closeSignetPasswordSwitch',
           icon: iconBuilder.pauseCircle(),
           text: '关闭密码',
           disabled: signetPasswordSwitch === whetherNumber.no,
-          confirm: {
-            title: '将要关闭印章密码，确定吗？',
-          },
+          confirm: true,
+          title: '将要关闭印章密码，确定吗？',
         },
         {
           withDivider: true,
@@ -256,9 +254,8 @@ class PageList extends MultiPage {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
         },
       ],
     };
@@ -344,4 +341,4 @@ class PageList extends MultiPage {
   };
 }
 
-export default PageList;
+export default PageListSignet;

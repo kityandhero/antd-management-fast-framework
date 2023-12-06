@@ -1,8 +1,11 @@
 import { connect } from 'easy-soft-dva';
+import { getValueByKey } from 'easy-soft-utility';
 
 import { switchControlAssist } from 'antd-management-fast-framework';
 
+import { listSelectAction } from '../../../commonAssist/action';
 import BaseUpdateRoleModal from '../../../customSpecialComponents/BaseUpdateRoleModal';
+import { fieldData } from '../Common/data';
 
 const visibleFlag = '353c1120acee4829aa8c78c497ed2d15';
 
@@ -12,9 +15,6 @@ const visibleFlag = '353c1120acee4829aa8c78c497ed2d15';
   schedulingControl,
 }))
 class UpdateRoleModal extends BaseUpdateRoleModal {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
   resetDataAfterLoad = false;
 
   static open() {
@@ -31,20 +31,29 @@ class UpdateRoleModal extends BaseUpdateRoleModal {
     };
   }
 
+  executeAfterDoOtherWhenChangeVisibleToShow = () => {
+    listSelectAction({
+      target: this,
+      handleData: {
+        channel: 100,
+      },
+      successCallback: ({ target, remoteListData }) => {
+        const customData = remoteListData;
+
+        target.setState({ customData });
+      },
+    });
+  };
+
   supplementLoadRequestParams = (o) => {
     const d = o;
     const { externalData } = this.props;
-    const { selectData } = {
-      selectData: {},
-      ...externalData,
-    };
 
-    const { masterManagerId } = {
-      masterManagerId: '',
-      ...selectData,
-    };
+    const masterManagerId = getValueByKey({
+      data: externalData,
+      key: fieldData.masterManagerId.name,
+    });
 
-    d.channel = 100;
     d.masterManagerId = masterManagerId;
 
     return d;
@@ -54,14 +63,11 @@ class UpdateRoleModal extends BaseUpdateRoleModal {
     const d = data;
 
     const { targetKeys, externalData, customData } = this.state;
-    const { selectData } = {
-      selectData: {},
-      ...externalData,
-    };
-    const { masterManagerId } = {
-      masterManagerId: '',
-      ...selectData,
-    };
+
+    const masterManagerId = getValueByKey({
+      data: externalData,
+      key: fieldData.masterManagerId.name,
+    });
 
     d.masterManagerId = masterManagerId;
 

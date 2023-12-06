@@ -244,18 +244,16 @@ class PageList extends MultiPage {
           icon: iconBuilder.playCircle(),
           text: '设为启用',
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '即将设为启用，确定吗？',
-          },
+          confirm: true,
+          title: '即将设为启用，确定吗？',
         },
         {
           key: 'setDisable',
           icon: iconBuilder.pauseCircle(),
           text: '设为禁用',
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '即将设为禁用，确定吗？',
-          },
+          confirm: true,
+          title: '即将设为禁用，确定吗？',
         },
         {
           key: 'refreshCache',
@@ -263,9 +261,8 @@ class PageList extends MultiPage {
           uponDivider: true,
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };
@@ -280,8 +277,14 @@ class PageList extends MultiPage {
       emptyValue: '--',
     },
     {
-      dataTarget: fieldData.description,
+      dataTarget: fieldData.template,
       align: 'left',
+      showRichFacade: true,
+      emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.flag,
+      width: 120,
       showRichFacade: true,
       emptyValue: '--',
     },
@@ -314,6 +317,17 @@ class PageList extends MultiPage {
       emptyValue: '--',
     },
   ];
+
+  establishHelpConfig = () => {
+    return {
+      title: '操作提示',
+      list: [
+        {
+          text: '具有系统特征值的分类为系统内置, 部分数据不允许编辑',
+        },
+      ],
+    };
+  };
 
   renderPresetOther = () => {
     const { currentRecord } = this.state;

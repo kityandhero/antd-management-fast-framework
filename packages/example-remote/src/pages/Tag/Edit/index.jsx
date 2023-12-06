@@ -210,9 +210,8 @@ class Detail extends DataTabContainerSupplement {
             that.setEnable(handleData);
           },
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '即将启用标签，确定吗？',
-          },
+          confirm: true,
+          title: '即将启用标签，确定吗？',
           handleData: metaData,
         },
         {
@@ -223,9 +222,8 @@ class Detail extends DataTabContainerSupplement {
             that.setDisable(handleData);
           },
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '即将禁用标签，确定吗？',
-          },
+          confirm: true,
+          title: '即将禁用标签，确定吗？',
           handleData: metaData,
         },
       ],
@@ -264,9 +262,8 @@ class Detail extends DataTabContainerSupplement {
           hidden: !checkHasAuthority(
             accessWayCollection.tag.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };

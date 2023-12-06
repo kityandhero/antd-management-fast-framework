@@ -13,7 +13,7 @@ export const fieldData = {
     helper: '选型的标题/名称',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '选型的简介描述',
   },

@@ -8,9 +8,7 @@ export async function listSelectAction({
 }) {
   actionCore({
     api: 'presetRole/listSelect',
-    params: {
-      channel: 100,
-    },
+    params: handleData,
     target,
     handleData,
     successCallback,

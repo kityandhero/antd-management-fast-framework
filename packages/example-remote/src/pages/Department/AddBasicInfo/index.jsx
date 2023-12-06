@@ -7,7 +7,7 @@ import { DataForm } from 'antd-management-fast-framework';
 
 import { renderFormDepartmentOwnershipModeSelect } from '../../../customSpecialComponents';
 import { fieldData as fieldDataSubsidiary } from '../../Subsidiary/Common/data';
-import { SubsidiarySelectField } from '../../Subsidiary/SelectField';
+import { SubsidiarySelectDrawerField } from '../../Subsidiary/SelectDrawerField';
 import { fieldData } from '../Common/data';
 import { DepartmentSelectField } from '../SelectField';
 
@@ -165,7 +165,7 @@ class AddBasicInfo extends BaseAddForm {
               lg: 6,
               type: cardConfig.contentItemType.component,
               component: (
-                <SubsidiarySelectField
+                <SubsidiarySelectDrawerField
                   label={fieldData.subsidiaryShortName.label}
                   defaultValue={subsidiaryShortName || null}
                   helper={fieldData.subsidiaryShortName.helper}
@@ -189,7 +189,7 @@ class AddBasicInfo extends BaseAddForm {
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '简介描述',
+            text: '简介 - 描述 - 备注',
           },
           items: [
             {

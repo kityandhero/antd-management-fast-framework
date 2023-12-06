@@ -129,4 +129,4 @@ class ResetSignetPasswordModal extends BaseUpdateModal {
   };
 }
 
-export default ResetSignetPasswordModal;
+export { ResetSignetPasswordModal };

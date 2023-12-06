@@ -12,7 +12,7 @@ import {
 
 import { accessWayCollection } from '../../../customConfig';
 import { fieldData as fieldDataApplication } from '../../Application/Common/data';
-import SelectField from '../../Application/SelectField';
+import { ApplicationSelectModalField } from '../../Application/SelectModalField';
 import { fieldData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;
@@ -101,7 +101,7 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
               lg: 24,
               type: cardConfig.contentItemType.component,
               component: (
-                <SelectField
+                <ApplicationSelectModalField
                   label={fieldDataApplication.name.label}
                   applicationName={applicationName || null}
                   afterSelect={(d) => {

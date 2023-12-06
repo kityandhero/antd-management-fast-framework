@@ -72,7 +72,7 @@ class PreviewDrawer extends BaseLoadDrawer {
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '简介描述',
+            text: '简介 - 描述 - 备注',
           },
           items: [
             {
@@ -163,6 +163,20 @@ class PreviewDrawer extends BaseLoadDrawer {
               lg: 24,
               type: cardConfig.contentItemType.customGrid,
               list: [
+                {
+                  label: fieldData.description.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.description.name,
+                  }),
+                },
+                {
+                  label: fieldData.ancillaryInformation.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.ancillaryInformation.name,
+                  }),
+                },
                 {
                   label: fieldData.channelNote.label,
                   value: getValueByKey({

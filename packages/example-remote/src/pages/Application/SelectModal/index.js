@@ -11,7 +11,7 @@ const visibleFlag = '9ab50fb4e00643bdab97ac55fa829a93';
   administrativeDivision,
   schedulingControl,
 }))
-class SelectModal extends BaseSelectModal {
+class ApplicationSelectModal extends BaseSelectModal {
   submitWithForm = false;
 
   static open() {
@@ -29,4 +29,4 @@ class SelectModal extends BaseSelectModal {
   }
 }
 
-export default SelectModal;
+export { ApplicationSelectModal };

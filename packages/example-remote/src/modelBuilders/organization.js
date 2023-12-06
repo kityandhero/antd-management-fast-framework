@@ -6,7 +6,11 @@ import {
   reducerNameCollection,
 } from 'easy-soft-utility';
 
-import { getGraphicalTreeData } from '../services/organization';
+import {
+  getGraphicalDirectDepartmentData,
+  getGraphicalSingleSubsidiaryDepartmentData,
+  getGraphicalTreeData,
+} from '../services/organization';
 
 export function buildModel() {
   return {
@@ -27,6 +31,61 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(getGraphicalTreeData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *getGraphicalDirectDepartment(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(getGraphicalDirectDepartmentData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *getGraphicalSingleSubsidiaryDepartment(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(
+          getGraphicalSingleSubsidiaryDepartmentData,
+          payload,
+        );
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

@@ -1,5 +1,5 @@
 import { connect } from 'easy-soft-dva';
-import { getValueByKey } from 'easy-soft-utility';
+import { getValueByKey, showSimpleSuccessMessage } from 'easy-soft-utility';
 
 import { defaultEmptyImage } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
@@ -21,12 +21,32 @@ class Setting extends DataTabContainer {
       tab: '基本信息',
     },
     {
+      key: 'defaultImage/pageList',
+      tab: '默认图片设置',
+    },
+    {
       key: 'fileStorageInfo',
       tab: '文件存储设置',
     },
     {
       key: 'smsInfo',
       tab: '短信配置',
+    },
+    {
+      key: 'secretKeyInfo',
+      tab: '系统密钥配置',
+    },
+    {
+      key: 'flowInfo',
+      tab: '流程配置',
+    },
+    {
+      key: 'yonYouKeyInfo',
+      tab: '用友密钥配置',
+    },
+    {
+      key: 'otherInfo',
+      tab: '其他配置',
     },
   ];
 
@@ -87,7 +107,11 @@ class Setting extends DataTabContainer {
           icon: iconBuilder.redo(),
           // eslint-disable-next-line no-unused-vars
           handleButtonClick: ({ handleData }) => {
-            refreshMetaData({});
+            refreshMetaData({
+              successCallback: () => {
+                showSimpleSuccessMessage('元数据刷新成功');
+              },
+            });
           },
           handleData: metaData,
         },

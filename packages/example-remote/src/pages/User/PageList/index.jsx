@@ -295,18 +295,16 @@ class PageList extends MultiPage {
           icon: iconBuilder.playCircle(),
           text: '设为启用',
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '将要设为启用，确定吗？',
-          },
+          confirm: true,
+          title: '将要设为启用，确定吗？',
         },
         {
           key: 'setDisable',
           icon: iconBuilder.pauseCircle(),
           text: '设为禁用',
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '将要设为禁用，确定吗？',
-          },
+          confirm: true,
+          title: '将要设为禁用，确定吗？',
         },
         {
           withDivider: true,
@@ -314,9 +312,8 @@ class PageList extends MultiPage {
           key: 'remove',
           icon: iconBuilder.delete(),
           text: '移除账户',
-          confirm: {
-            title: '将要移除账户，确定吗？',
-          },
+          confirm: true,
+          title: '将要移除账户，确定吗？',
         },
         {
           withDivider: true,
@@ -324,9 +321,8 @@ class PageList extends MultiPage {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
         },
       ],
     };
@@ -358,6 +354,12 @@ class PageList extends MultiPage {
       emptyValue: '--',
     },
     {
+      dataTarget: fieldData.phone,
+      width: 140,
+      showRichFacade: true,
+      emptyValue: '--',
+    },
+    {
       dataTarget: fieldData.parentNickname,
       width: 140,
       showRichFacade: true,
@@ -376,16 +378,18 @@ class PageList extends MultiPage {
     },
     {
       dataTarget: fieldData.authorityCollection,
-      align: 'left',
-      render: (value) => (
-        <>
-          {(value || []).length === 0 ? '--' : null}
+      align: 'center',
+      render: (value) => {
+        return (
+          <>
+            {(value || []).length === 0 ? '--' : null}
 
-          {(value || []).length > 0 ? (
-            <>{this.buildAuthorityTagList(value)}</>
-          ) : null}
-        </>
-      ),
+            {(value || []).length > 0 ? (
+              <>{this.buildAuthorityTagList(value)}</>
+            ) : null}
+          </>
+        );
+      },
     },
     {
       dataTarget: fieldData.status,
@@ -419,20 +423,12 @@ class PageList extends MultiPage {
   renderPresetOther = () => {
     const { currentRecord } = this.state;
 
-    const userId = getValueByKey({
-      data: currentRecord,
-      key: fieldData.userId.name,
-    });
-
     return (
       <>
         <AddBasicInfoDrawer afterOK={this.afterAddBasicInfoDrawerOk} />
 
         <UpdateRoleModal
-          externalData={{
-            userId,
-            selectData: currentRecord,
-          }}
+          externalData={currentRecord}
           afterOK={this.afterUpdateRoleModalOk}
         />
       </>

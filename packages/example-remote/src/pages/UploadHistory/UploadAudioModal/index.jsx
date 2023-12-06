@@ -38,7 +38,7 @@ class UploadAudioModal extends BaseDisplayModal {
   afterAudioUploadSuccess = (audio) => {
     this.setState({ audio }, () => {
       showInfoMessage({
-        text: '上传成功，即将关闭窗口',
+        text: '音频上传成功，即将关闭窗口',
         onClose: () => {
           setTimeout(() => {
             UploadAudioModal.close();
@@ -92,7 +92,7 @@ class UploadAudioModal extends BaseDisplayModal {
               audio,
               action: `/uploadHistory/uploadAudio`,
               afterUploadSuccess: (audioData) => {
-                this.afterImageUploadSuccess(audioData);
+                this.afterAudioUploadSuccess(audioData);
               },
             },
           ],

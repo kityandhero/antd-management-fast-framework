@@ -12,7 +12,7 @@ import { accessWayCollection } from '../../../customConfig';
 import {
   DataTabContainerSupplement,
   getBusinessModeName,
-  getTagStatusName,
+  getYonYouPushMessageStatusName,
 } from '../../../customSpecialComponents';
 import { refreshCacheAction } from '../Assist/action';
 import {
@@ -152,9 +152,8 @@ class Detail extends DataTabContainerSupplement {
           hidden: !checkHasAuthority(
             accessWayCollection.yonYouPushMessage.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };
@@ -165,7 +164,7 @@ class Detail extends DataTabContainerSupplement {
 
     return {
       textLabel: '当前状态',
-      text: getTagStatusName({
+      text: getYonYouPushMessageStatusName({
         value: getValueByKey({
           data: metaData,
           key: fieldData.status.name,

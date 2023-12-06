@@ -9,7 +9,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../../customConfig';
 import { fieldData as fieldDataUser } from '../../../User/Common/data';
-import { UserSelectField } from '../../../User/SelectField';
+import { UserSelectDrawerField } from '../../../User/SelectDrawerField';
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
@@ -197,7 +197,7 @@ class BasicInfo extends TabPageBase {
               lg: 6,
               type: cardConfig.contentItemType.component,
               component: (
-                <UserSelectField
+                <UserSelectDrawerField
                   label={fieldData.userRealName.label}
                   defaultValue={userRealName || null}
                   helper={fieldData.userRealName.helper}

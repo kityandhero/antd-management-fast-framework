@@ -13,7 +13,7 @@ export const fieldData = {
     helper: '',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '',
   },
@@ -30,7 +30,7 @@ export const fieldData = {
   subsidiaryId: {
     label: '所属公司标识',
     name: 'subsidiaryId',
-    helper: '所属的子公司',
+    helper: '所属的公司',
   },
   subsidiaryShortName: {
     label: '所属公司',
@@ -80,7 +80,7 @@ export const ownershipModeCollection = {
   directLevel: 100,
 
   /**
-   * 子公司专属
+   * 公司专属
    * value : 200
    */
   subsidiaryLevel: 200,

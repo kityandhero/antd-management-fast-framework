@@ -24,7 +24,7 @@ import {
   parseUrlParametersForSetState,
 } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
-import { UserSelectField } from '../../SelectField';
+import { UserSelectDrawerField } from '../../SelectDrawerField';
 import { TabPageBase } from '../../TabPageBase';
 
 @connect(({ user, schedulingControl }) => ({
@@ -237,9 +237,8 @@ class ParentInfo extends TabPageBase {
                 icon: iconBuilder.disconnect(),
                 text: '清除上级',
                 danger: true,
-                confirm: {
-                  title: '即将清除上级，确定吗？',
-                },
+                confirm: true,
+                title: '即将清除上级，确定吗？',
                 handleClick: () => {
                   this.clearParent();
                 },
@@ -258,7 +257,7 @@ class ParentInfo extends TabPageBase {
               lg: 6,
               type: cardConfig.contentItemType.component,
               component: (
-                <UserSelectField
+                <UserSelectDrawerField
                   label={fieldData.parentNickname.label}
                   defaultValue={parentNickname || null}
                   helper={fieldData.parentNickname.helper}

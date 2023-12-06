@@ -13,13 +13,23 @@ export const fieldData = {
     helper: '输入合适的类别名称',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '输入合适的简介描述',
   },
   status: {
     label: '状态',
     name: 'status',
+    helper: '',
+  },
+  flag: {
+    label: '系统特征值',
+    name: 'flag',
+    helper: '',
+  },
+  template: {
+    label: '短信模板',
+    name: 'template',
     helper: '',
   },
   statusNote: {

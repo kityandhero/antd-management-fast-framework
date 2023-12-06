@@ -224,18 +224,16 @@ class PageList extends MultiPage {
           icon: iconBuilder.playCircle(),
           text: '设为正常',
           disabled: status === statusCollection.normal,
-          confirm: {
-            title: '将要设为启用，确定吗？',
-          },
+          confirm: true,
+          title: '将要设为启用，确定吗？',
         },
         {
           key: 'setInvalid',
           icon: iconBuilder.pauseCircle(),
           text: '设为无效',
           disabled: status === statusCollection.invalid,
-          confirm: {
-            title: '将要设为禁用，确定吗？',
-          },
+          confirm: true,
+          title: '将要设为禁用，确定吗？',
         },
         {
           withDivider: true,
@@ -243,9 +241,8 @@ class PageList extends MultiPage {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
-          confirm: {
-            title: '将要刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '将要刷新缓存，确定吗？',
         },
       ],
     };

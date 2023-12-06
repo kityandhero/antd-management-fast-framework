@@ -165,6 +165,12 @@ class PageList extends MultiPage {
           fieldData: fieldData.title,
         },
         {
+          lg: 6,
+          type: searchCardConfig.contentItemType.input,
+          fieldData: fieldData.subtitle,
+          hidden: true,
+        },
+        {
           lg: 4,
           type: searchCardConfig.contentItemType.component,
           component: this.buildSearchCardButtonCore(),
@@ -290,6 +296,14 @@ class PageList extends MultiPage {
         circle: false,
       },
       facadeMode: columnFacadeMode.image,
+    },
+    {
+      dataTarget: fieldData.description,
+      width: 620,
+      align: 'left',
+      showRichFacade: true,
+      emptyValue: '--',
+      hidden: true,
     },
     {
       dataTarget: fieldData.sort,

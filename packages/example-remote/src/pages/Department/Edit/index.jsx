@@ -12,7 +12,7 @@ import { accessWayCollection } from '../../../customConfig';
 import {
   DataTabContainerSupplement,
   getDepartmentOwnershipModeName,
-  getTagStatusName,
+  getDepartmentStatusName,
 } from '../../../customSpecialComponents';
 import {
   refreshCacheAction,
@@ -183,9 +183,8 @@ class Detail extends DataTabContainerSupplement {
             that.setNormal(handleData);
           },
           disabled: status === statusCollection.normal,
-          confirm: {
-            title: '即将设为正常，确定吗？',
-          },
+          confirm: true,
+          title: '即将设为正常，确定吗？',
           handleData: metaData,
         },
         {
@@ -196,9 +195,8 @@ class Detail extends DataTabContainerSupplement {
             that.setInvalid(handleData);
           },
           disabled: status === statusCollection.invalid,
-          confirm: {
-            title: '即将设为无效，确定吗？',
-          },
+          confirm: true,
+          title: '即将设为无效，确定吗？',
           handleData: metaData,
         },
       ],
@@ -237,9 +235,8 @@ class Detail extends DataTabContainerSupplement {
           hidden: !checkHasAuthority(
             accessWayCollection.department.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };
@@ -250,7 +247,7 @@ class Detail extends DataTabContainerSupplement {
 
     return {
       textLabel: '当前状态',
-      text: getTagStatusName({
+      text: getDepartmentStatusName({
         value: getValueByKey({
           data: metaData,
           key: fieldData.status.name,

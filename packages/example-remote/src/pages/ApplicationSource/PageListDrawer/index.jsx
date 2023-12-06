@@ -205,9 +205,8 @@ class Index extends MultiPageDrawer {
           handleButtonClick: () => {
             this.setOwn(record);
           },
-          confirm: {
-            title: '立即开通应用程序，确定吗？',
-          },
+          confirm: true,
+          title: '立即开通应用程序，确定吗？',
         };
       },
     },

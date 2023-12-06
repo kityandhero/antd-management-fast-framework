@@ -10,6 +10,7 @@ import {
 import {
   getData,
   pageListData,
+  removeAllData,
   removeData,
   removeMultiData,
 } from '../services/errorLog';
@@ -111,6 +112,32 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(removeMultiData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *removeAll(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(removeAllData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

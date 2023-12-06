@@ -11,7 +11,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 import { accessWayCollection } from '../../../customConfig';
 import {
   DataTabContainerSupplement,
-  getTagStatusName,
+  getUserYonYouCorrelationStatusName,
 } from '../../../customSpecialComponents';
 import {
   refreshCacheAction,
@@ -194,9 +194,8 @@ class Detail extends DataTabContainerSupplement {
             that.setEnable(handleData);
           },
           disabled: status === statusCollection.enable,
-          confirm: {
-            title: '即将启用用友账户关系，确定吗？',
-          },
+          confirm: true,
+          title: '即将启用用友账户关系，确定吗？',
           handleData: metaData,
         },
         {
@@ -207,9 +206,8 @@ class Detail extends DataTabContainerSupplement {
             that.setDisable(handleData);
           },
           disabled: status === statusCollection.disable,
-          confirm: {
-            title: '即将禁用用友账户关系，确定吗？',
-          },
+          confirm: true,
+          title: '即将禁用用友账户关系，确定吗？',
           handleData: metaData,
         },
       ],
@@ -248,9 +246,8 @@ class Detail extends DataTabContainerSupplement {
           hidden: !checkHasAuthority(
             accessWayCollection.userYonYouCorrelation.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };
@@ -261,7 +258,7 @@ class Detail extends DataTabContainerSupplement {
 
     return {
       textLabel: '当前状态',
-      text: getTagStatusName({
+      text: getUserYonYouCorrelationStatusName({
         value: getValueByKey({
           data: metaData,
           key: fieldData.status.name,

@@ -1,29 +1,37 @@
 import { request } from 'easy-soft-utility';
 
+export const pageListDataApiAddress = '/smsLog/pageList';
+
 export async function pageListData(parameters) {
   return request({
-    api: '/smsLog/pageList',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }
+
+export const getDataApiAddress = '/smsLog/get';
 
 export async function getData(parameters) {
   return request({
-    api: '/smsLog/get',
+    api: getDataApiAddress,
     params: parameters,
   });
 }
+
+export const removeDataApiAddress = '/sqlLog/remove';
 
 export async function removeData(parameters) {
   return request({
-    api: '/sqlLog/remove',
+    api: removeDataApiAddress,
     params: parameters,
   });
 }
 
+export const removeMultiDataApiAddress = '/sqlLog/removeMulti';
+
 export async function removeMultiData(parameters) {
   return request({
-    api: '/sqlLog/removeMulti',
+    api: removeMultiDataApiAddress,
     params: parameters,
   });
 }

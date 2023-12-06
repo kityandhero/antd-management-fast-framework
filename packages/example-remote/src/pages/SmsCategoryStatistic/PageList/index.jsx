@@ -11,7 +11,7 @@ import {
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig';
-import { SelectField } from '../../SmsCategory/SelectField';
+import { SelectDrawerField } from '../../SmsCategory/SelectDrawerField';
 import { parseUrlParametersForSetState } from '../Assist/config';
 import { fieldData } from '../Common/data';
 
@@ -64,7 +64,7 @@ class PageList extends MultiPage {
           lg: 6,
           type: searchCardConfig.contentItemType.customSelect,
           component: (
-            <SelectField
+            <SelectDrawerField
               loadSuccess={loadSuccess}
               label={fieldData.smsCategoryName.label}
               smsCategoryName={smsCategoryName || ''}

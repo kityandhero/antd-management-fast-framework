@@ -1,5 +1,28 @@
 import { formNameCollection } from 'antd-management-fast-common';
 
+export const fieldDataDefaultImage = {
+  key: {
+    label: '键名',
+    name: 'key',
+    helper: '',
+  },
+  title: {
+    label: '标题',
+    name: 'title',
+    helper: '',
+  },
+  tag: {
+    label: '标记',
+    name: 'tag',
+    helper: '',
+  },
+  value: {
+    label: '设定值',
+    name: 'value',
+    helper: '',
+  },
+};
+
 export const fieldData = {
   ...formNameCollection,
   systemName: {
@@ -13,7 +36,7 @@ export const fieldData = {
     helper: '组织的名称',
   },
   description: {
-    label: '简介描述',
+    label: '简介描述 ',
     name: 'description',
     helper: '系统的简介描述',
   },
@@ -82,6 +105,41 @@ export const fieldData = {
     name: 'fileUploadMaxSize',
     helper: '一般文件上传限额 (MB)',
   },
+  privateKey: {
+    label: '系统私钥',
+    name: 'privateKey',
+    helper: '',
+  },
+  publicKey: {
+    label: '系统公钥',
+    name: 'publicKey',
+    helper: '',
+  },
+  flowDebugUserId: {
+    label: '用于流程调试的用户标识',
+    name: 'flowDebugUserId',
+    helper: '',
+  },
+  flowNotificationTemplate: {
+    label: '用于流程调试的消息模板',
+    name: 'flowNotificationTemplate',
+    helper: '',
+  },
+  masterManagementTokenExpirationTime: {
+    label: '主控系统登录凭据有效期 (分钟)',
+    name: 'masterManagementTokenExpirationTime',
+    helper: '',
+  },
+  officeAutomationManagementTokenExpirationTime: {
+    label: 'OA系统登录凭据有效期 (分钟)',
+    name: 'officeAutomationManagementTokenExpirationTime',
+    helper: '',
+  },
+  officeAutomationApplicationTokenExpirationTime: {
+    label: 'OA客户端登录凭据有效期 (分钟)',
+    name: 'officeAutomationApplicationTokenExpirationTime',
+    helper: '',
+  },
   qiniu: {
     label: '七牛云',
     qiniuImageSwitch: {
@@ -145,6 +203,19 @@ export const fieldData = {
     shortMessagingServiceVerificationCodeTemplate: {
       label: '验证码短信模板',
       name: 'shortMessagingServiceVerificationCodeTemplate',
+      helper: '',
+    },
+  },
+  yonYou: {
+    label: '用友',
+    yonYouPrivateKey: {
+      label: '用友系统私钥',
+      name: 'yonYouPrivateKey',
+      helper: '',
+    },
+    yonYouPublicKey: {
+      label: '用友系统公钥',
+      name: 'yonYouPublicKey',
       helper: '',
     },
   },

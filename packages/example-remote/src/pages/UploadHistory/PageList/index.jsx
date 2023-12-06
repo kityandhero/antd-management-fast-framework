@@ -220,9 +220,8 @@ class PageList extends MultiPage {
           hidden: !checkHasAuthority(
             accessWayCollection.uploadHistory.remove.permission,
           ),
-          confirm: {
-            title: '将要移除信息，确定吗？',
-          },
+          confirm: true,
+          title: '将要移除信息，确定吗？',
         },
         {
           key: 'refreshCache',
@@ -233,9 +232,8 @@ class PageList extends MultiPage {
           hidden: !checkHasAuthority(
             accessWayCollection.uploadHistory.refreshCache.permission,
           ),
-          confirm: {
-            title: '即将刷新缓存，确定吗？',
-          },
+          confirm: true,
+          title: '即将刷新缓存，确定吗？',
         },
       ],
     };
