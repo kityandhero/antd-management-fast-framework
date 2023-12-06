@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { checkStringIsNullOrWhiteSpace } from 'easy-soft-utility';
+import { checkStringIsNullOrWhiteSpace, endsWith } from 'easy-soft-utility';
 
 import { emptyLogic, getCurrentLocation } from 'antd-management-fast-common';
 import { PageExtra } from 'antd-management-fast-component';
@@ -12,6 +12,8 @@ const { TabBarExtraBox } = PageExtra;
 const primaryCallName = 'Common::InternalSwitchoverFlow';
 
 class InternalSwitchoverFlow extends InternalFlow {
+  pathPrefix = '';
+
   tabList = [];
 
   menuList = [];
@@ -55,17 +57,25 @@ class InternalSwitchoverFlow extends InternalFlow {
       'handleMenuChange',
     );
 
-    const menuActiveKey = this.getMenuActiveKey();
-
     const { pathname } = getCurrentLocation();
+
+    if (checkStringIsNullOrWhiteSpace(this.pathPrefix)) {
+      const menuList = this.getMenuListAvailable();
+
+      for (const o of menuList) {
+        const { key } = o;
+
+        if (endsWith(pathname, key)) {
+          this.pathPrefix = pathname.replace(`/${key}`, '/');
+
+          break;
+        }
+      }
+    }
 
     for (const item of this.menuList || []) {
       if (item.key === key) {
-        let path = pathname.replace('/update/', '/load/');
-
-        if (!checkStringIsNullOrWhiteSpace(menuActiveKey)) {
-          path = path.replace(`/${menuActiveKey}`, '/');
-        }
+        let path = this.pathPrefix.replace('/update/', '/load/');
 
         path = `${path}${item.key}`;
 
@@ -94,9 +104,12 @@ class InternalSwitchoverFlow extends InternalFlow {
     const tabListAvailable = [];
 
     for (const o of this.tabList || []) {
-      const v = o.show === undefined ? true : o.show === true;
+      const { hidden } = {
+        hidden: false,
+        ...o,
+      };
 
-      if (v) {
+      if (!hidden) {
         tabListAvailable.push(o);
       }
     }
@@ -113,17 +126,25 @@ class InternalSwitchoverFlow extends InternalFlow {
       'handleTabChange',
     );
 
-    const tabActiveKey = this.getTabActiveKey();
-
     const { pathname } = getCurrentLocation();
+
+    if (checkStringIsNullOrWhiteSpace(this.pathPrefix)) {
+      const tabList = this.getTabListAvailable();
+
+      for (const o of tabList) {
+        const { key } = o;
+
+        if (endsWith(pathname, key)) {
+          this.pathPrefix = pathname.replace(`/${key}`, '/');
+
+          break;
+        }
+      }
+    }
 
     for (const item of this.tabList || []) {
       if (item.key === key) {
-        let path = pathname.replace('/update/', '/load/');
-
-        if (!checkStringIsNullOrWhiteSpace(tabActiveKey)) {
-          path = path.replace(`/${tabActiveKey}`, '/');
-        }
+        let path = this.pathPrefix.replace('/update/', '/load/');
 
         path = `${path}${item.key}`;
 

@@ -16,6 +16,8 @@ class DataMenuContainer extends DataTabContainer {
 
   resetDataAfterLoad = false;
 
+  pathPrefix = '';
+
   constructor(properties) {
     super(properties);
 

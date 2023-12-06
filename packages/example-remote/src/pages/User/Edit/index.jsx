@@ -39,38 +39,38 @@ class Detail extends DataTabContainerSupplement {
   tabList = [
     {
       key: 'basicInfo',
-      show: checkHasAuthority(accessWayCollection.user.get.permission),
+      hidden: !checkHasAuthority(accessWayCollection.user.get.permission),
       tab: '基本信息',
     },
     {
       key: 'userDepartmentInfo/pageList',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.userDepartmentInfo.pageList.permission,
       ),
       tab: '设置所属部门',
     },
     {
       key: 'userSubsidiaryInfo/pageList',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.userSubsidiaryInfo.pageList.permission,
       ),
       tab: '设置归属公司',
     },
     {
       key: 'signetInfo',
-      show: checkHasAuthority(accessWayCollection.user.setSignet.permission),
+      hidden: !checkHasAuthority(accessWayCollection.user.setSignet.permission),
       tab: '设置印章',
     },
     {
       key: 'parentInfo',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.user.updateBasicInfo.permission,
       ),
       tab: '设置上级',
     },
     {
       key: 'operateLog/pageList',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.user.pageListOperateLog.permission,
       ),
       tab: '操作日志',

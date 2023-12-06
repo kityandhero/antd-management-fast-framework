@@ -121,13 +121,7 @@ class Core extends BaseComponent {
   };
 
   setTabActiveKey(key) {
-    this.logCallTrack(
-      {
-        parameter: { key },
-      },
-      primaryCallName,
-      'setTabActiveKey',
-    );
+    this.logCallTrack({}, primaryCallName, 'setTabActiveKey');
 
     tabControlAssist.setActiveKey(this.viewTabFlag, key);
   }
@@ -137,13 +131,7 @@ class Core extends BaseComponent {
   };
 
   setMenuActiveKey(key) {
-    this.logCallTrack(
-      {
-        parameter: { key },
-      },
-      primaryCallName,
-      'setMenuActiveKey',
-    );
+    this.logCallTrack(primaryCallName, 'setMenuActiveKey');
 
     menuControlAssist.setActiveKey(this.viewMenuFlag, key);
   }

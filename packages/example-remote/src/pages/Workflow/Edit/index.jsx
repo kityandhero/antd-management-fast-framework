@@ -46,34 +46,36 @@ import { UpdateChannelModal } from '../UpdateChannelModal';
   schedulingControl,
 }))
 class Detail extends DataTabContainerSupplement {
+  showCallProcess = true;
+
   componentAuthority = accessWayCollection.workflow.get.permission;
 
   tabList = [
     {
       key: 'basicInfo',
-      show: checkHasAuthority(accessWayCollection.workflow.get.permission),
+      hidden: !checkHasAuthority(accessWayCollection.workflow.get.permission),
       tab: '基本信息',
     },
     {
       key: 'fromInfo',
-      show: checkHasAuthority(accessWayCollection.workflow.get.permission),
+      hidden: !checkHasAuthority(accessWayCollection.workflow.get.permission),
       tab: '表单设计',
     },
     {
       key: 'designInfo',
-      show: checkHasAuthority(accessWayCollection.workflow.get.permission),
+      hidden: !checkHasAuthority(accessWayCollection.workflow.get.permission),
       tab: '流程设计',
     },
     {
       key: 'debugCaseInfo',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.workflowDebugCase.getByWorkflow.permission,
       ),
       tab: '流程测试',
     },
     {
       key: 'workflowRangeEffectiveSubsidiaryRelation/pageList',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.workflowRangeEffectiveSubsidiaryRelation.pageList
           .permission,
       ),
@@ -81,7 +83,7 @@ class Detail extends DataTabContainerSupplement {
     },
     {
       key: 'workflowRangeEffectiveExternalDepartmentRelation/pageList',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.workflowRangeEffectiveExternalDepartmentRelation
           .pageList.permission,
       ),
@@ -89,7 +91,7 @@ class Detail extends DataTabContainerSupplement {
     },
     {
       key: 'operateLog/pageList',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.workflow.pageListOperateLog.permission,
       ),
       tab: '操作日志',

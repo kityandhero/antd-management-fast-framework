@@ -39,12 +39,12 @@ class Detail extends DataTabContainerSupplement {
   tabList = [
     {
       key: 'basicInfo',
-      show: checkHasAuthority(accessWayCollection.subsidiary.get.permission),
+      hidden: !checkHasAuthority(accessWayCollection.subsidiary.get.permission),
       tab: '基本信息',
     },
     {
       key: 'operateLog/pageList',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.subsidiary.pageListOperateLog.permission,
       ),
       tab: '操作日志',

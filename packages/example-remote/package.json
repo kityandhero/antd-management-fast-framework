@@ -1,6 +1,6 @@
 {
   "name": "example-remote",
-  "version": "1.4.81",
+  "version": "1.4.82",
   "private": true,
   "author": "",
   "scripts": {
@@ -59,7 +59,7 @@
     "antd-management-fast-design-react": "^1.0.40",
     "antd-management-fast-flow": "^1.0.28",
     "antd-management-fast-formily": "^1.0.40",
-    "antd-management-fast-framework": "^2.11.118",
+    "antd-management-fast-framework": "^2.11.119",
     "axios": "^1.6.2",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",

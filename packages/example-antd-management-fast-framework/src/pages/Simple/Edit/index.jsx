@@ -45,21 +45,21 @@ class Edit extends DataTabContainerSupplement {
   tabList = [
     {
       key: 'basicInfo',
-      show: checkHasAuthority(accessWayCollection.simple.get.permission),
+      hidden: !checkHasAuthority(accessWayCollection.simple.get.permission),
       tab: '基本信息',
       label: '基本信息',
       // children: <BasicInfo />,
     },
     {
       key: 'contentInfo',
-      show: checkHasAuthority(accessWayCollection.simple.get.permission),
+      hidden: !checkHasAuthority(accessWayCollection.simple.get.permission),
       tab: '图文H5信息',
       label: '图文H5信息',
       // children: <ContentInfo />,
     },
     {
       key: 'mediaInfo/ss',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.simple.updateMediaData.permission,
       ),
       tab: '媒体信息',

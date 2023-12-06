@@ -51,19 +51,19 @@ class Edit extends DataTabContainerSupplement {
     },
     {
       key: 'contentInfo',
-      show: checkHasAuthority(accessWayCollection.section.get.permission),
+      hidden: !checkHasAuthority(accessWayCollection.section.get.permission),
       tab: '图文H5信息',
     },
     {
       key: 'mediaInfo',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.section.getMediaItem.permission,
       ),
       tab: '媒体信息',
     },
     {
       key: 'scoreInfo',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.section.setReadObtainScore.permission,
       ),
       tab: '积分设置',

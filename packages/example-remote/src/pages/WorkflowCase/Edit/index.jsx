@@ -45,17 +45,21 @@ class Detail extends DataTabContainerSupplement {
   tabList = [
     {
       key: 'basicInfo',
-      show: checkHasAuthority(accessWayCollection.workflowCase.get.permission),
+      hidden: !checkHasAuthority(
+        accessWayCollection.workflowCase.get.permission,
+      ),
       tab: '基本信息',
     },
     {
       key: 'formInfo',
-      show: checkHasAuthority(accessWayCollection.workflowCase.get.permission),
+      hidden: !checkHasAuthority(
+        accessWayCollection.workflowCase.get.permission,
+      ),
       tab: '表单信息',
     },
     {
       key: 'operateLog/pageList',
-      show: checkHasAuthority(
+      hidden: !checkHasAuthority(
         accessWayCollection.workflowCase.pageListOperateLog.permission,
       ),
       tab: '操作日志',
