@@ -14,6 +14,8 @@ import { DataLoad } from '../../DataSingleView/DataLoad';
 const primaryCallName = 'DataForm::BaseUpdateForm';
 
 class BaseUpdateForm extends DataLoad {
+  resetDataAfterLoad = true;
+
   reloadHeaderOnSubmitSuccess = false;
 
   handleFormReset = () => {

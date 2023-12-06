@@ -19,6 +19,8 @@ import styles from './index.less';
 const primaryCallName = 'DataSingleView::DataCore';
 
 class DataCore extends BaseView {
+  resetDataAfterLoad = false;
+
   enableActionBack = true;
 
   actionBackProps = {};
