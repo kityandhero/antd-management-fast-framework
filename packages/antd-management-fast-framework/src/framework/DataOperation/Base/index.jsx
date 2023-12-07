@@ -29,6 +29,7 @@ class Base extends AuthorizationWrapper {
       extraData: null,
       responseOriginalData: null,
       submitData: null,
+      subjoinData: {},
     };
   };
 
@@ -125,6 +126,17 @@ class Base extends AuthorizationWrapper {
     return {};
   };
 
+  subjoinDataOnAfterClose = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'subjoinDataOnAfterClose',
+      emptyLogic,
+    );
+
+    return {};
+  };
+
   doAfterSubmitSuccess = ({
     singleData = null,
     listData = [],
@@ -142,9 +154,24 @@ class Base extends AuthorizationWrapper {
       extraData,
       responseOriginalData,
       submitData,
+      subjoinData: this.subjoinDataOnAfterClose() || {},
     };
 
     const { afterOK } = this.props;
+
+    this.logCallTrace(
+      {
+        singleData,
+        listData,
+        extraData,
+        responseOriginalData,
+        submitData,
+      },
+      primaryCallName,
+      'doAfterSubmitSuccess',
+      'trigger',
+      'doOtherAfterSubmitSuccess',
+    );
 
     this.doOtherAfterSubmitSuccess({
       singleData,
@@ -154,6 +181,20 @@ class Base extends AuthorizationWrapper {
       submitData,
     });
 
+    this.logCallTrace(
+      {
+        singleData,
+        listData,
+        extraData,
+        responseOriginalData,
+        submitData,
+      },
+      primaryCallName,
+      'doAfterSubmitSuccess',
+      'trigger',
+      'sendSubmitSuccessMessage',
+    );
+
     this.sendSubmitSuccessMessage({
       singleData,
       listData,
@@ -161,6 +202,20 @@ class Base extends AuthorizationWrapper {
       responseOriginalData,
       submitData,
     });
+
+    this.logCallTrace(
+      {
+        singleData,
+        listData,
+        extraData,
+        responseOriginalData,
+        submitData,
+      },
+      primaryCallName,
+      'doAfterSubmitSuccess',
+      'trigger',
+      'sendSubmitSuccessNotification',
+    );
 
     this.sendSubmitSuccessNotification({
       singleData,
@@ -186,6 +241,7 @@ class Base extends AuthorizationWrapper {
         'doAfterSubmitSuccess',
         'trigger',
         'afterOK',
+        'afterOK callback can not trigger render, if need render please use afterClose',
       );
 
       afterOK({
@@ -204,6 +260,7 @@ class Base extends AuthorizationWrapper {
         'trigger',
         'afterOK',
         emptyLogic,
+        'afterOK callback can not trigger render, if need render please use afterClose',
       );
     }
   };

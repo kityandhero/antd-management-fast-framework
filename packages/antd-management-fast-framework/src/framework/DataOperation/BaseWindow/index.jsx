@@ -174,6 +174,7 @@ class BaseWindow extends Base {
           'doOtherWhenChangeVisible',
           'trigger',
           'afterClose',
+          'afterOK callback can trigger render',
         );
 
         afterClose({
@@ -193,6 +194,7 @@ class BaseWindow extends Base {
           'trigger',
           'afterClose',
           emptyLogic,
+          'afterOK callback can trigger render',
         );
       }
 

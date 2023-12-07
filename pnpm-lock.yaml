@@ -1985,7 +1985,7 @@ importers:
       antd-management-fast-develop: ^1.1.49
       antd-management-fast-flow: ^1.0.29
       antd-management-fast-formily: ^1.0.41
-      antd-management-fast-framework: ^2.11.120
+      antd-management-fast-framework: ^2.11.121
       axios: ^1.6.2
       babel-jest: ^29.7.0
       classnames: ^2.3.2

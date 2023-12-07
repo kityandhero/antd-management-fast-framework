@@ -31,6 +31,7 @@ class RemarkEditor extends BaseComponent {
       dataTag: '',
       dataStorage: [],
       dataBackup: [],
+      color: '',
     };
   }
 
