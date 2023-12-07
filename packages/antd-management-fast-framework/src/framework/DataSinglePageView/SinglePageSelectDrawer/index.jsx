@@ -1,4 +1,9 @@
-import { isArray, isFunction } from 'easy-soft-utility';
+import {
+  isArray,
+  isEmptyArray,
+  isFunction,
+  showSimpleWarnMessage,
+} from 'easy-soft-utility';
 
 import {
   columnFacadeMode,
@@ -69,7 +74,19 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
         'afterSelectSuccess',
       );
 
-      afterSelectSuccess(this.selectListData);
+      if (!isArray(this.selectListData) || isEmptyArray(this.selectListData)) {
+        showSimpleWarnMessage('没有已选择的数据项目');
+
+        return;
+      }
+
+      const { showSelect } = this.state;
+
+      if (showSelect) {
+        afterSelectSuccess(this.selectListData);
+      } else {
+        afterSelectSuccess(this.selectListData[0]);
+      }
     } else {
       this.logCallTrace(
         {},

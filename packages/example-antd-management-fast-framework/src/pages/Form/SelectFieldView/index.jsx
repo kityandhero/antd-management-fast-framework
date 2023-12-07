@@ -5,7 +5,7 @@ import {
   showSimpleInfoMessage,
 } from 'easy-soft-utility';
 
-import { cardConfig } from 'antd-management-fast-common';
+import { cardConfig, logTemplate } from 'antd-management-fast-common';
 import { convertOptionOrRadioData } from 'antd-management-fast-component';
 
 import {
@@ -35,6 +35,8 @@ class SelectFieldView extends BaseView {
   }
 
   afterSelect = (o) => {
+    logTemplate(o);
+
     this.setState({ selectData: o });
   };
 
