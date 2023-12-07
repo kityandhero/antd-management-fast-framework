@@ -241,7 +241,6 @@ class Base extends AuthorizationWrapper {
         'doAfterSubmitSuccess',
         'trigger',
         'afterOK',
-        'afterOK callback can not trigger parent component render, if you need, please use afterClose',
       );
 
       afterOK({
@@ -260,7 +259,6 @@ class Base extends AuthorizationWrapper {
         'trigger',
         'afterOK',
         emptyLogic,
-        'afterOK callback can not trigger parent component render, if you need, please use afterClose',
       );
     }
   };
