@@ -11,6 +11,7 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
+  buildDropdownMenu,
   buildFlexRadio,
   buildFlexSelect,
   buildFormRadio,
@@ -90,6 +91,7 @@ export function renderSearchGovernmentAffairRoleCreateModeSelect({
 }
 
 export function renderCustomGovernmentAffairRoleCreateModeSelect({
+  style = {},
   label = '创建模式',
   separator = ':',
   size = 'middle',
@@ -97,6 +99,7 @@ export function renderCustomGovernmentAffairRoleCreateModeSelect({
   innerProps: innerProperties = null,
 }) {
   return buildFlexSelect({
+    style,
     label,
     defaultValue: null,
     separator,
@@ -106,6 +109,26 @@ export function renderCustomGovernmentAffairRoleCreateModeSelect({
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
+  });
+}
+
+export function renderGovernmentAffairRoleCreateModeDropDown({
+  label = '创建模式',
+  placement = 'bottomRight',
+  icon = null,
+  size = 'middle',
+  onClick: onClickCallback,
+  innerProps: innerProperties = null,
+}) {
+  return buildDropdownMenu({
+    label,
+    placement,
+    icon,
+    size,
+    list: refitGovernmentAffairRoleCreateModeList({ withUnlimited: false }),
+    dataConvert: null,
+    onClick: onClickCallback,
+    innerProps: innerProperties || null,
   });
 }
 

@@ -315,6 +315,20 @@ export default [
         useMini: true,
         component: './Interaction/FormLayoutView',
       },
+      {
+        path: '/interaction/toolBarView',
+        name: 'toolBarView',
+        icon: 'bars',
+        useMini: true,
+        component: './Interaction/ToolBarView',
+      },
+      {
+        path: '/interaction/functionExtraView',
+        name: 'functionExtraView',
+        icon: 'bars',
+        useMini: true,
+        component: './Interaction/FunctionExtraView',
+      },
     ],
   },
   {

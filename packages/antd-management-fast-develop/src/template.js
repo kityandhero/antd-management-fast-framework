@@ -16,6 +16,7 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
+  buildDropdownMenu,
   buildFlexRadio,
   buildFlexSelect,
   buildFormRadio,
@@ -90,6 +91,7 @@ export function renderSearch<%= o.functionSegment %>Select({
 }
 
 export function renderCustom<%= o.functionSegment %>Select({
+  style = {},
   label = '<%= o.label %>',
   separator = ':',
   size = 'middle',
@@ -97,6 +99,7 @@ export function renderCustom<%= o.functionSegment %>Select({
   innerProps: innerProperties = null,
 }) {
   return buildFlexSelect({
+    style,
     label,
     defaultValue: null,
     separator,
@@ -106,6 +109,26 @@ export function renderCustom<%= o.functionSegment %>Select({
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
+  });
+}
+
+export function render<%= o.functionSegment %>DropDown({
+  label = '<%= o.label %>',
+  placement = 'bottomRight',
+  icon = null,
+  size = 'middle',
+  onClick: onClickCallback,
+  innerProps: innerProperties = null,
+}) {
+  return buildDropdownMenu({
+    label,
+    placement,
+    icon,
+    size,
+    list: refit<%= o.functionSegment %>List({ withUnlimited: false }),
+    dataConvert: null,
+    onClick: onClickCallback,
+    innerProps: innerProperties || null,
   });
 }
 

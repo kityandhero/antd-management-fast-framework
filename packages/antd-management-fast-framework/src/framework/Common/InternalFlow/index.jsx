@@ -238,6 +238,7 @@ class InternalFlow extends Core {
     requestData: requestDataSource = {},
     otherState = {},
     delay = 0,
+    prepareRequest: prepareRequestSource = null,
     beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
@@ -280,6 +281,27 @@ class InternalFlow extends Core {
       }
 
       return;
+    }
+
+    if (isFunction(prepareRequestSource)) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'initLoadCore',
+        'trigger',
+        'prepareRequest',
+      );
+
+      prepareRequestSource();
+    } else {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'initLoadCore',
+        'trigger',
+        'prepareRequest',
+        emptyLogic,
+      );
     }
 
     let submitData = this.initLoadRequestParams(requestDataSource) || {};
@@ -378,7 +400,7 @@ class InternalFlow extends Core {
         'beforeRequest',
       );
 
-      beforeRequestSource();
+      beforeRequestSource(requestData);
     } else {
       this.logCallTrace(
         {},
@@ -714,6 +736,7 @@ class InternalFlow extends Core {
   reloadData = ({
     otherState = {},
     delay = 0,
+    prepareRequest: prepareRequestSource = null,
     beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
@@ -724,7 +747,8 @@ class InternalFlow extends Core {
         parameter: {
           otherState,
           delay,
-          beforeRequest: beforeRequestSource,
+          prepareRequest: prepareRequestSource || null,
+          beforeRequest: beforeRequestSource || null,
           successCallback,
           failCallback,
           completeCallback: completeCallbackSource,
@@ -745,6 +769,7 @@ class InternalFlow extends Core {
     that.initLoad({
       otherState,
       delay: delay || 0,
+      prepareRequest: prepareRequestSource || null,
       beforeRequest: beforeRequestSource || null,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
@@ -780,6 +805,7 @@ class InternalFlow extends Core {
   reloadDataWithReloadAnimalPrompt = ({
     otherState = {},
     delay = 500,
+    prepareRequest: prepareRequestSource = null,
     beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
@@ -790,6 +816,7 @@ class InternalFlow extends Core {
         parameter: {
           otherState,
           delay,
+          prepareRequest: prepareRequestSource || null,
           beforeRequest: beforeRequestSource,
           successCallback,
           failCallback,
@@ -817,6 +844,7 @@ class InternalFlow extends Core {
     that.initLoad({
       otherState,
       delay: delay || 0,
+      prepareRequest: prepareRequestSource || null,
       beforeRequest: () => {
         reloadAnimalPromptControlAssist.show(this.viewAnimalPromptFlag);
 
@@ -860,6 +888,7 @@ class InternalFlow extends Core {
   searchData = ({
     otherState = {},
     delay = 0,
+    prepareRequest: prepareRequestSource = null,
     beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
@@ -870,7 +899,8 @@ class InternalFlow extends Core {
         parameter: {
           otherState,
           delay,
-          beforeRequest: beforeRequestSource,
+          prepareRequest: prepareRequestSource || null,
+          beforeRequest: beforeRequestSource || null,
           successCallback,
           failCallback,
           completeCallback: completeCallbackSource,
@@ -891,6 +921,7 @@ class InternalFlow extends Core {
     this.initLoad({
       otherState,
       delay: delay || 0,
+      prepareRequest: prepareRequestSource || null,
       beforeRequest: beforeRequestSource || null,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
@@ -926,6 +957,7 @@ class InternalFlow extends Core {
   resetData = ({
     otherState = {},
     delay = 0,
+    prepareRequest: prepareRequestSource = null,
     beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
@@ -936,7 +968,8 @@ class InternalFlow extends Core {
         parameter: {
           otherState,
           delay,
-          beforeRequest: beforeRequestSource,
+          prepareRequest: prepareRequestSource || null,
+          beforeRequest: beforeRequestSource || null,
           successCallback,
           failCallback,
           completeCallback: completeCallbackSource,
@@ -957,6 +990,7 @@ class InternalFlow extends Core {
     this.initLoad({
       otherState,
       delay: delay || 0,
+      prepareRequest: prepareRequestSource || null,
       beforeRequest: beforeRequestSource || null,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
@@ -992,6 +1026,7 @@ class InternalFlow extends Core {
   refreshData = ({
     otherState = {},
     delay = 0,
+    prepareRequest: prepareRequestSource = null,
     beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
@@ -1002,7 +1037,8 @@ class InternalFlow extends Core {
         parameter: {
           otherState,
           delay,
-          beforeRequest: beforeRequestSource,
+          prepareRequest: prepareRequestSource || null,
+          beforeRequest: beforeRequestSource || null,
           successCallback,
           failCallback,
           completeCallback: completeCallbackSource,
@@ -1029,6 +1065,7 @@ class InternalFlow extends Core {
     that.initLoad({
       otherState,
       delay: delay || 0,
+      prepareRequest: prepareRequestSource || null,
       beforeRequest: beforeRequestSource || null,
       successCallback: successCallback || null,
       failCallback: failCallback || null,
@@ -1064,6 +1101,7 @@ class InternalFlow extends Core {
   refreshDataWithReloadAnimalPrompt = ({
     otherState = {},
     delay = 500,
+    prepareRequest: prepareRequestSource = null,
     beforeRequest: beforeRequestSource = null,
     successCallback = null,
     failCallback = null,
@@ -1074,7 +1112,8 @@ class InternalFlow extends Core {
         parameter: {
           otherState,
           delay,
-          beforeRequest: beforeRequestSource,
+          prepareRequest: prepareRequestSource || null,
+          beforeRequest: beforeRequestSource || null,
           successCallback,
           failCallback,
           completeCallback: completeCallbackSource,
@@ -1101,6 +1140,7 @@ class InternalFlow extends Core {
     that.initLoad({
       otherState,
       delay: delay || 0,
+      prepareRequest: prepareRequestSource || null,
       beforeRequest: () => {
         reloadAnimalPromptControlAssist.show(this.viewAnimalPromptFlag);
 

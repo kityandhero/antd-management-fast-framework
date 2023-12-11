@@ -97,6 +97,7 @@ class FlexSelect extends BaseComponent {
 }
 
 FlexSelect.defaultProps = {
+  style: null,
   label: '',
   defaultValue: null,
   separator: ':',

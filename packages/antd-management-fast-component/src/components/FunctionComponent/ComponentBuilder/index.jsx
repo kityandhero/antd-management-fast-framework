@@ -1,4 +1,4 @@
-import { Alert, Avatar, Button, List, Tree } from 'antd';
+import { Alert, Avatar, Button, Dropdown, List, Tree } from 'antd';
 import React from 'react';
 import ReactPlayer from 'react-player';
 
@@ -30,6 +30,77 @@ import { JsonView } from '../../JsonView';
 import { StatusBar } from '../../StatusBar';
 
 const ButtonGroup = Button.Group;
+
+export function buildDropdownMenu({
+  label = '名称',
+  placement = 'bottomRight',
+  icon = null,
+  size = 'middle',
+  list = [],
+  dataConvert = null,
+  onClick: onClickCallback,
+  innerProps: innerProperties = null,
+}) {
+  const listCheck = isArray(list) ? list : [];
+
+  const listAdjust = isFunction(dataConvert)
+    ? listCheck.map((o) => {
+        return dataConvert(o);
+      })
+    : list;
+
+  const items = listAdjust.map((o) => {
+    const { flag, key, name } = {
+      flag: '',
+      key: '',
+      name: '',
+      ...o,
+    };
+
+    const keyAdjust = checkStringIsNullOrWhiteSpace(key) ? flag : key;
+
+    return {
+      ...o,
+      flag,
+      key: keyAdjust,
+      name,
+      label: name,
+    };
+  });
+
+  return (
+    <Dropdown
+      menu={{
+        items,
+        onClick: (o) => {
+          if (!isFunction(onClickCallback)) {
+            return;
+          }
+
+          const { key } = o;
+
+          let v = null;
+
+          for (const item of items) {
+            const { key: keyItem } = item;
+
+            if (keyItem === key) {
+              v = item;
+            }
+          }
+
+          onClickCallback(v);
+        },
+      }}
+      placement={placement}
+      arrow
+    >
+      <Button size={size} {...innerProperties}>
+        <IconInfo icon={icon} text={label} />
+      </Button>
+    </Dropdown>
+  );
+}
 
 export function buildMenu({
   handleData: r,

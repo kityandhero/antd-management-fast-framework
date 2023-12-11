@@ -11,6 +11,7 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
+  buildDropdownMenu,
   buildFlexRadio,
   buildFlexSelect,
   buildFormRadio,
@@ -90,6 +91,7 @@ export function renderSearchGovernmentAffairManagerStatusSelect({
 }
 
 export function renderCustomGovernmentAffairManagerStatusSelect({
+  style = {},
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -97,6 +99,7 @@ export function renderCustomGovernmentAffairManagerStatusSelect({
   innerProps: innerProperties = null,
 }) {
   return buildFlexSelect({
+    style,
     label,
     defaultValue: null,
     separator,
@@ -106,6 +109,26 @@ export function renderCustomGovernmentAffairManagerStatusSelect({
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
+  });
+}
+
+export function renderGovernmentAffairManagerStatusDropDown({
+  label = '状态',
+  placement = 'bottomRight',
+  icon = null,
+  size = 'middle',
+  onClick: onClickCallback,
+  innerProps: innerProperties = null,
+}) {
+  return buildDropdownMenu({
+    label,
+    placement,
+    icon,
+    size,
+    list: refitGovernmentAffairManagerStatusList({ withUnlimited: false }),
+    dataConvert: null,
+    onClick: onClickCallback,
+    innerProps: innerProperties || null,
   });
 }
 

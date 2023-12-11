@@ -11,6 +11,7 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
+  buildDropdownMenu,
   buildFlexRadio,
   buildFlexSelect,
   buildFormRadio,
@@ -85,6 +86,7 @@ export function renderSearchScoreRankStatusSelect({
 }
 
 export function renderCustomScoreRankStatusSelect({
+  style = {},
   label = '状态',
   separator = ':',
   size = 'middle',
@@ -92,6 +94,7 @@ export function renderCustomScoreRankStatusSelect({
   innerProps: innerProperties = null,
 }) {
   return buildFlexSelect({
+    style,
     label,
     defaultValue: null,
     separator,
@@ -101,6 +104,26 @@ export function renderCustomScoreRankStatusSelect({
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
+  });
+}
+
+export function renderScoreRankStatusDropDown({
+  label = '状态',
+  placement = 'bottomRight',
+  icon = null,
+  size = 'middle',
+  onClick: onClickCallback,
+  innerProps: innerProperties = null,
+}) {
+  return buildDropdownMenu({
+    label,
+    placement,
+    icon,
+    size,
+    list: refitScoreRankStatusList({ withUnlimited: false }),
+    dataConvert: null,
+    onClick: onClickCallback,
+    innerProps: innerProperties || null,
   });
 }
 

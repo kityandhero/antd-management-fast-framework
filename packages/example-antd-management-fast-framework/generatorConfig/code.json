@@ -212,10 +212,6 @@
       "sourceFilePath": "./src/pages/Form/GridView/index.jsx"
     },
     {
-      "codeFilePath": "./src/pages/Form/ToolbarView/codeSource.js",
-      "sourceFilePath": "./src/pages/Form/ToolbarView/index.jsx"
-    },
-    {
       "codeFilePath": "./src/pages/Form/EditorView/codeSource.js",
       "sourceFilePath": "./src/pages/Form/EditorView/index.jsx"
     },
@@ -254,6 +250,14 @@
     {
       "codeFilePath": "./src/pages/Interaction/DrawerView/codeSource.js",
       "sourceFilePath": "./src/pages/Interaction/DrawerView/index.jsx"
+    },
+    {
+      "codeFilePath": "./src/pages/Interaction/ToolbarView/codeSource.js",
+      "sourceFilePath": "./src/pages/Interaction/ToolbarView/index.jsx"
+    },
+    {
+      "codeFilePath": "./src/pages/Interaction/FunctionExtraView/codeSource.js",
+      "sourceFilePath": "./src/pages/Interaction/FunctionExtraView/index.jsx"
     },
     {
       "codeFilePath": "./src/pages/List/ListView/codeSource.js",
