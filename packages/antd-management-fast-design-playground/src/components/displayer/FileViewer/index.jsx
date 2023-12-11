@@ -1,7 +1,12 @@
 import { Button, Divider, Space, Table } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { isArray, isEmptyArray, isFunction } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isArray,
+  isEmptyArray,
+  isFunction,
+} from 'easy-soft-utility';
 
 import {
   buildDropdownButton,
@@ -31,8 +36,10 @@ class FileViewer extends PureComponent {
 
   render() {
     const {
+      label,
       canUpload,
       canRemove,
+      showUrl,
       list,
       dataTransfer,
       onUploadButtonClick,
@@ -68,45 +75,57 @@ class FileViewer extends PureComponent {
         title: '名称',
         dataIndex: 'name',
         key: 'name',
-        width: '220px',
+        ...(showUrl ? { width: '220px' } : {}),
         ellipsis: true,
       },
-      {
+    ];
+
+    if (showUrl) {
+      columns.push({
         title: '链接',
         dataIndex: 'url',
         key: 'url',
         ellipsis: true,
-      },
-      {
-        title: '操作',
-        align: 'center',
-        key: 'action',
-        width: '110px',
-        render: (_, record) => (
-          <Space size="middle">
-            {buildDropdownButton({
-              size: 'small',
-              text: '查看',
-              icon: iconBuilder.read(),
-              handleButtonClick: ({ handleData }) => {
-                onItemClick(handleData);
-              },
-              handleData: record,
-              handleMenuClick: ({ key, handleData }) => {
-                this.handleMenuClick({ key, handleData });
-              },
-              items: menuItems,
-            })}
-          </Space>
-        ),
-      },
-    ];
+      });
+    }
+
+    columns.push({
+      title: '操作',
+      align: 'center',
+      key: 'action',
+      width: '110px',
+      render: (_, record) => (
+        <Space size="middle">
+          {buildDropdownButton({
+            size: 'small',
+            text: '查看',
+            icon: iconBuilder.read(),
+            handleButtonClick: ({ handleData }) => {
+              onItemClick(handleData);
+            },
+            handleData: record,
+            handleMenuClick: ({ key, handleData }) => {
+              this.handleMenuClick({ key, handleData });
+            },
+            items: menuItems,
+          })}
+        </Space>
+      ),
+    });
 
     return (
       <>
         <FlexBox
           flexAuto="left"
-          left={<VerticalBox>表单附件：</VerticalBox>}
+          left={
+            <VerticalBox>
+              {checkStringIsNullOrWhiteSpace(label) ? (
+                <div></div>
+              ) : (
+                `${label}：`
+              )}
+            </VerticalBox>
+          }
           right={
             <div>
               <Space direction="horizontal" split={<Divider type="vertical" />}>
@@ -148,9 +167,11 @@ class FileViewer extends PureComponent {
 }
 
 FileViewer.defaultProps = {
+  label: '',
   list: [],
   canUpload: false,
   canRemove: false,
+  showUrl: false,
   dataTransfer: (o) => o,
   onItemClick: null,
   onUploadButtonClick: null,
