@@ -222,7 +222,6 @@ class DesignView extends BaseUpdateForm {
           },
           fullLine: false,
           width: 'auto',
-          hasExtra: true,
           extra: {
             affix: true,
             list: [
@@ -309,6 +308,7 @@ class DesignView extends BaseUpdateForm {
                       <FileViewer
                         canUpload
                         canRemove
+                        showUrl
                         list={listAttachment}
                         dataTransfer={(o) => {
                           return {
@@ -339,6 +339,7 @@ class DesignView extends BaseUpdateForm {
                       <FileViewer
                         canUpload
                         canRemove
+                        showUrl
                         list={listAttachment}
                         dataTransfer={(o) => {
                           return {
@@ -370,6 +371,7 @@ class DesignView extends BaseUpdateForm {
                         label="附件列表"
                         canUpload
                         canRemove
+                        showUrl
                         list={listAttachment}
                         dataTransfer={(o) => {
                           return {

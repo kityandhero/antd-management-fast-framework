@@ -108,7 +108,6 @@ class Index extends BaseUpdateDrawer {
             icon: iconBuilder.contacts(),
             text: '基本信息',
           },
-          hasExtra: true,
           spinning,
           items: [
             {

@@ -69,7 +69,6 @@ class FormLayoutView extends BaseView {
           title: {
             text: '工具条模式',
           },
-          hasExtra: true,
           extra: {
             list: [
               {

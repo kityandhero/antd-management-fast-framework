@@ -72,7 +72,6 @@ class Index extends TabPageBase {
             text: '密钥配置',
             subtext: '请谨慎操作',
           },
-          hasExtra: true,
           extra: {
             affix: true,
             list: [

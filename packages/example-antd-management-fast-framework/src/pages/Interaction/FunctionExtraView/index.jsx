@@ -52,7 +52,6 @@ class FunctionExtraView extends BaseView {
           title: {
             text: 'FunctionExtra',
           },
-          hasExtra: true,
           extra: {
             affix: true,
             list: [

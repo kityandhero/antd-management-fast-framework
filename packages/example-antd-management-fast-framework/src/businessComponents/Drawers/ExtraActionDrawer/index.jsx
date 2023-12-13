@@ -1,6 +1,11 @@
 import { connect } from 'easy-soft-dva';
 
-import { CenterBox, SyntaxHighlighter } from 'antd-management-fast-component';
+import { extraBuildType, logTemplate } from 'antd-management-fast-common';
+import {
+  CenterBox,
+  iconBuilder,
+  SyntaxHighlighter,
+} from 'antd-management-fast-component';
 import {
   DataDrawer,
   switchControlAssist,
@@ -10,13 +15,13 @@ import { code } from './codeSource';
 
 const { BaseVerticalFlexDrawer } = DataDrawer;
 
-const visibleFlag = '0ddf863464134dadb40a207b3e901237';
+const visibleFlag = '415197d3bf4a40c68995c26d4512350c';
 
 @connect(({ simple, schedulingControl }) => ({
   simple,
   schedulingControl,
 }))
-class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
+class ExtraActionDrawer extends BaseVerticalFlexDrawer {
   // showCallProcess = true;
 
   static open() {
@@ -28,6 +33,7 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
 
     this.state = {
       ...this.state,
+      pageTitle: '主标题',
       loadApiPath: 'simple/get',
       sourceCode: code,
       overlayButtonOpenText: '打开源代码',
@@ -35,8 +41,65 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
     };
   }
 
-  renderPresetTitle = () => {
-    return '编辑信息';
+  establishExtraActionConfig = () => {
+    return {
+      list: [
+        {
+          buildType: extraBuildType.iconInfo,
+          icon: iconBuilder.infoCircle(),
+          text: '一些说明',
+        },
+        {
+          buildType: extraBuildType.button,
+          icon: iconBuilder.form(),
+          text: '按钮',
+          handleClick: () => {},
+        },
+      ],
+    };
+  };
+
+  establishExtraActionGroupConfig = () => {
+    return {
+      buttons: [
+        {
+          key: 'setOnline',
+          type: 'default',
+          size: 'default',
+          text: '上架',
+          icon: iconBuilder.upCircle(),
+          handleButtonClick: ({ handleData }) => {
+            logTemplate(handleData);
+          },
+          hidden: false,
+          disabled: false,
+          confirm: true,
+          title: '设置为上架，确定吗？',
+          placement: 'bottomRight',
+          okText: '确定',
+          cancelText: '取消',
+          handleData: { text: 'text1' },
+        },
+        {
+          key: 'setOffline',
+          type: 'default',
+          size: 'default',
+          text: '下架',
+          icon: iconBuilder.upCircle(),
+          handleButtonClick: ({ handleData }) => {
+            logTemplate(handleData);
+          },
+          hidden: false,
+          disabled: false,
+          confirm: true,
+          title: '设置为下架，确定吗？',
+          placement: 'bottomRight',
+          okText: '确定',
+          cancelText: '取消',
+          handleData: { text: 'text2' },
+        },
+      ],
+    };
   };
 
   establishPresetContentContainorInnerTopStyle = () => {
@@ -60,6 +123,14 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
         },
       ],
     };
+  };
+
+  buildTitlePrevText = () => {
+    return '前缀：';
+  };
+
+  buildTitleSubText = () => {
+    return '副标题';
   };
 
   renderPresetContentContainorInnerTop = () => {
@@ -86,4 +157,4 @@ class SimpleVerticalFlexDrawer extends BaseVerticalFlexDrawer {
   };
 }
 
-export { SimpleVerticalFlexDrawer };
+export { ExtraActionDrawer };

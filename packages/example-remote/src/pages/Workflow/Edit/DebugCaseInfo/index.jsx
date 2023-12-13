@@ -692,7 +692,6 @@ class DebugCaseInfo extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '基本信息',
           },
-          hasExtra: true,
           extra: {
             list: [
               {
@@ -935,7 +934,6 @@ class DebugCaseInfo extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '调试工具栏',
           },
-          hasExtra: true,
           extra: {
             list: [
               {

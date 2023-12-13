@@ -135,7 +135,6 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
             icon: iconBuilder.contacts(),
             text: '基本信息',
           },
-          hasExtra: true,
           items: [
             {
               lg: 24,

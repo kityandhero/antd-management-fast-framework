@@ -24,6 +24,7 @@ import {
   CloseCircleOutlined,
   CloseCircleTwoTone,
   CloudDownloadOutlined,
+  ClusterOutlined,
   ColumnHeightOutlined,
   CommentOutlined,
   CompressOutlined,
@@ -296,6 +297,9 @@ export const iconBuilder = {
     }
 
     return <CopyOutlined {...(properties || {})} />;
+  },
+  cluster: (properties = null) => {
+    return <ClusterOutlined {...(properties || {})} />;
   },
   eye: (properties = null, mode = iconModeCollection.outlined) => {
     if (mode === iconModeCollection.filled) {

@@ -54,7 +54,6 @@ class AddBasicInfo extends BaseUpdateForm {
             icon: iconBuilder.contacts(),
             text: '组织结构全局概览',
           },
-          hasExtra: true,
           extra: {
             affix: true,
             list: [

@@ -284,7 +284,6 @@ class BasicInfo extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '基本信息',
           },
-          hasExtra: true,
           extra: {
             affix: true,
             list: [
@@ -347,7 +346,6 @@ class BasicInfo extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '数据预览',
           },
-          hasExtra: true,
           extra: {
             list: [
               {

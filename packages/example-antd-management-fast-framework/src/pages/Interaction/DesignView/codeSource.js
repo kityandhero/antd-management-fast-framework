@@ -222,7 +222,6 @@ class DesignView extends BaseUpdateForm {
           },
           fullLine: false,
           width: 'auto',
-          hasExtra: true,
           extra: {
             affix: true,
             list: [
@@ -304,11 +303,75 @@ class DesignView extends BaseUpdateForm {
                     descriptionLabelColor={formRemarkColor}
                     descriptionTextColor={formRemarkColor}
                     descriptions={formRemarkList}
-                    showFooterDivider
-                    footer={
+                    descriptionUpperLabel="附件列表"
+                    descriptionUpperComponent={
                       <FileViewer
                         canUpload
                         canRemove
+                        showUrl
+                        list={listAttachment}
+                        dataTransfer={(o) => {
+                          return {
+                            ...o,
+                            name: getValueByKey({
+                              data: o,
+                              key: 'alias',
+                            }),
+                            url: getValueByKey({
+                              data: o,
+                              key: 'url',
+                            }),
+                          };
+                        }}
+                        onUploadButtonClick={() => {
+                          showSimpleInfoMessage('点击上传按钮');
+                        }}
+                        onItemClick={() => {
+                          showSimpleInfoMessage('点击条目按钮');
+                        }}
+                        onRemove={() => {
+                          showSimpleInfoMessage('点击移除按钮');
+                        }}
+                      />
+                    }
+                    descriptionNetherLabel="附件列表"
+                    descriptionNetherComponent={
+                      <FileViewer
+                        canUpload
+                        canRemove
+                        showUrl
+                        list={listAttachment}
+                        dataTransfer={(o) => {
+                          return {
+                            ...o,
+                            name: getValueByKey({
+                              data: o,
+                              key: 'alias',
+                            }),
+                            url: getValueByKey({
+                              data: o,
+                              key: 'url',
+                            }),
+                          };
+                        }}
+                        onUploadButtonClick={() => {
+                          showSimpleInfoMessage('点击上传按钮');
+                        }}
+                        onItemClick={() => {
+                          showSimpleInfoMessage('点击条目按钮');
+                        }}
+                        onRemove={() => {
+                          showSimpleInfoMessage('点击移除按钮');
+                        }}
+                      />
+                    }
+                    showFooterDivider
+                    footer={
+                      <FileViewer
+                        label="附件列表"
+                        canUpload
+                        canRemove
+                        showUrl
                         list={listAttachment}
                         dataTransfer={(o) => {
                           return {

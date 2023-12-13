@@ -104,7 +104,10 @@
       "codeFilePath": "./src/businessComponents/Drawers/SimpleEditDrawer/codeSource.js",
       "sourceFilePath": "./src/businessComponents/Drawers/SimpleEditDrawer/index.jsx"
     },
-
+    {
+      "codeFilePath": "./src/businessComponents/Drawers/ExtraActionDrawer/codeSource.js",
+      "sourceFilePath": "./src/businessComponents/Drawers/ExtraActionDrawer/index.jsx"
+    },
     {
       "codeFilePath": "./src/businessComponents/Modals/Single/ListModal/BaseSimpleSinglePageModal/codeSource.js",
       "sourceFilePath": "./src/businessComponents/Modals/Single/ListModal/BaseSimpleSinglePageModal/index.jsx"

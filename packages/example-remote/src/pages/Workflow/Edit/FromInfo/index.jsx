@@ -172,7 +172,6 @@ class BasicInfo extends TabPageBase {
             text: '设计预览',
           },
           fullLine: false,
-          hasExtra: true,
           extra: {
             affix: true,
             list: [

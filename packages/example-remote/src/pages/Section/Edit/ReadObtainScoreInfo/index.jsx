@@ -122,7 +122,6 @@ class Index extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '阅读时奖励积分开关',
           },
-          hasExtra: true,
           extra: {
             affix: true,
             list: [
