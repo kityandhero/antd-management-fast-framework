@@ -1059,8 +1059,6 @@ class PageList extends MultiPage {
   };
 
   establishSiderTopAreaConfig = () => {
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
@@ -1083,7 +1081,6 @@ class PageList extends MultiPage {
               },
             ],
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -1091,7 +1088,6 @@ class PageList extends MultiPage {
               showLine: true,
               switcherIcon: iconBuilder.down(),
               defaultExpandedKeys: ['0-0-0'],
-
               listData: [
                 {
                   title: 'parent 1',
@@ -1173,8 +1169,6 @@ class PageList extends MultiPage {
   };
 
   establishSiderBottomAreaConfig = () => {
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
@@ -1189,7 +1183,6 @@ class PageList extends MultiPage {
               },
             }),
           },
-          spinning,
           items: [
             {
               buildType: cardConfig.extraBuildType.iconInfo,

@@ -23,7 +23,6 @@ class ElasticityTreeSelect extends BaseComponent {
       treeLine: true,
       placeholder,
       ...innerProperties,
-
       value: v || null,
     };
 

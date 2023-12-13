@@ -99,8 +99,6 @@ class Index extends BaseUpdateDrawer {
   establishCardCollectionConfig = () => {
     const { metaData } = this.state;
 
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
@@ -108,7 +106,6 @@ class Index extends BaseUpdateDrawer {
             icon: iconBuilder.contacts(),
             text: '基本信息',
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -136,7 +133,6 @@ class Index extends BaseUpdateDrawer {
             icon: iconBuilder.contacts(),
             text: '简介描述',
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -178,7 +174,6 @@ class Index extends BaseUpdateDrawer {
             icon: iconBuilder.contacts(),
             text: '其他信息',
           },
-          spinning,
           items: [
             {
               type: cardConfig.contentItemType.onlyShowInput,

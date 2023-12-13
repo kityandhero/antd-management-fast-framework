@@ -141,8 +141,6 @@ class Index extends BaseAddDrawer {
   establishCardCollectionConfig = () => {
     const { mediaType, image, video, audio, attachment } = this.state;
 
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
@@ -150,7 +148,6 @@ class Index extends BaseAddDrawer {
             icon: iconBuilder.contacts(),
             text: mediaItemData.title.label,
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -170,7 +167,6 @@ class Index extends BaseAddDrawer {
             text: mediaItemData.image.label,
             subText: '[上传后需点击保存按钮保存]',
           },
-          spinning,
           hidden: !checkInCollection(
             [mediaTypeCollection.image, mediaTypeCollection.video],
             mediaType,
@@ -197,7 +193,6 @@ class Index extends BaseAddDrawer {
           title: {
             text: mediaItemData.description.label,
           },
-          spinning,
           hidden: !checkInCollection(
             [mediaTypeCollection.paragraph],
             mediaType,
@@ -214,7 +209,6 @@ class Index extends BaseAddDrawer {
           title: {
             text: mediaItemData.link.label,
           },
-          spinning,
           hidden: !checkInCollection([mediaTypeCollection.link], mediaType),
           items: [
             {
@@ -229,7 +223,6 @@ class Index extends BaseAddDrawer {
             icon: iconBuilder.videoCamera(),
             text: mediaItemData.video.label,
           },
-          spinning,
           hidden: !checkInCollection([mediaTypeCollection.video], mediaType),
           items: [
             {
@@ -250,7 +243,6 @@ class Index extends BaseAddDrawer {
             icon: iconBuilder.sound(),
             text: mediaItemData.audio.label,
           },
-          spinning,
           hidden: !checkInCollection([mediaTypeCollection.audio], mediaType),
           items: [
             {
@@ -271,7 +263,6 @@ class Index extends BaseAddDrawer {
             icon: iconBuilder.link(),
             text: mediaItemData.attachment.label,
           },
-          spinning,
           hidden: !checkInCollection(
             [mediaTypeCollection.attachment],
             mediaType,
@@ -294,7 +285,6 @@ class Index extends BaseAddDrawer {
           title: {
             text: '其他信息',
           },
-          spinning,
           items: [
             {
               type: cardConfig.contentItemType.nowTime,

@@ -63,8 +63,6 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
   };
 
   establishCardCollectionConfig = () => {
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
@@ -72,7 +70,6 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
             icon: iconBuilder.contacts(),
             text: '基本信息',
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -100,7 +97,6 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
             icon: iconBuilder.contacts(),
             text: '简介描述',
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -142,7 +138,6 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
             icon: iconBuilder.contacts(),
             text: '其他信息',
           },
-          spinning,
           items: [
             {
               type: cardConfig.contentItemType.nowTime,

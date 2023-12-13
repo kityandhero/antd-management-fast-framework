@@ -190,8 +190,6 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
     const { processing, metaData, mediaType, image, video, audio, attachment } =
       this.state;
 
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
@@ -199,7 +197,6 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
             icon: iconBuilder.contacts(),
             text: mediaItemData.title.label,
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -214,7 +211,6 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
             text: mediaItemData.image.label,
             subText: '[上传后需点击保存按钮保存！]',
           },
-          spinning,
           items: [
             {
               type: cardConfig.contentItemType.imageUpload,
@@ -236,7 +232,6 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
           title: {
             text: mediaItemData.description.label,
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -249,7 +244,6 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
           title: {
             text: mediaItemData.link.label,
           },
-          spinning,
           items: [
             {
               lg: 24,
@@ -284,7 +278,6 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
             icon: iconBuilder.sound(),
             text: mediaItemData.audio.label,
           },
-          spinning,
           hidden: !checkInCollection([mediaTypeCollection.audio], mediaType),
           items: [
             {
@@ -305,7 +298,6 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
             icon: iconBuilder.link(),
             text: mediaItemData.attachment.label,
           },
-          spinning,
           hidden: !checkInCollection(
             [mediaTypeCollection.attachment],
             mediaType,
@@ -328,7 +320,6 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
           title: {
             text: '其他信息',
           },
-          spinning,
           items: [
             {
               type: cardConfig.contentItemType.onlyShowInput,

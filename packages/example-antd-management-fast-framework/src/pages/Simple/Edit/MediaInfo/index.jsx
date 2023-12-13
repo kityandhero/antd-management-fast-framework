@@ -573,15 +573,12 @@ class BasicInfo extends TabPageBase {
   establishCardCollectionConfig = () => {
     const { mediaItemList } = this.state;
 
-    const spinning = this.checkInProgress();
-
     return {
       list: [
         {
           title: {
             text: '图片媒体列表',
           },
-          spinning,
           items: [
             {
               lg: 24,
