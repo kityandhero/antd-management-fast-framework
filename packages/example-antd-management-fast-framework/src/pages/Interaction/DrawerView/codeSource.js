@@ -13,6 +13,7 @@ import {
 } from 'antd-management-fast-component';
 import { DataPreviewDrawer } from 'antd-management-fast-framework';
 
+import { ExtraActionDrawer } from '../../../businessComponents/Drawers/ExtraActionDrawer';
 import { SimpleMultiPageDrawer } from '../../../businessComponents/Drawers/Multi/ListDrawer/SimpleMultiPageDrawer';
 import { code as codeBaseSimpleMultiPageSelectDrawer } from '../../../businessComponents/Drawers/Multi/SelectDrawer/BaseSimpleMultiPageSelectDrawer/codeSource';
 import { SimpleMultiPageConfirmSelectDrawer } from '../../../businessComponents/Drawers/Multi/SelectDrawer/SimpleMultiPageConfirmSelectDrawer';
@@ -273,6 +274,17 @@ class DrawerView extends BaseView {
                 },
               }),
             },
+            {
+              lg: 8,
+              type: cardConfig.contentItemType.component,
+              component: buildButton({
+                title: '点击显示 Extra Action 预览',
+                text: '显示 Extra Action 预览',
+                handleClick: () => {
+                  ExtraActionDrawer.open();
+                },
+              }),
+            },
           ],
         },
         {
@@ -448,6 +460,8 @@ class DrawerView extends BaseView {
           dataType={dataTypeCollection.jsonObjectList.flag}
           data={simpleJsonData}
         />
+
+        <ExtraActionDrawer maskClosable />
       </>
     );
   };

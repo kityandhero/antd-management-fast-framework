@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.11.126
+
+### Patch Changes
+
+- update
+
 ## 2.11.125
 
 ### Patch Changes

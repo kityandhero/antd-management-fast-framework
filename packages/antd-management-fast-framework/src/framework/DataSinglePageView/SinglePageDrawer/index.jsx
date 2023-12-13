@@ -17,7 +17,6 @@ import {
   renderFurtherColorWhenNoCallProcess,
   renderFurtherPrefixWhenNoCallProcess,
 } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
 
 import {
   DrawerExtra,
@@ -290,9 +289,9 @@ class SinglePageDrawer extends SinglePage {
   };
 
   renderPresetTitleIcon = () => {
-    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon');
+    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon', emptyLogic);
 
-    return iconBuilder.read();
+    return null;
   };
 
   buildTitlePrevText = () => {

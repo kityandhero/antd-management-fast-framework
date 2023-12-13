@@ -18,7 +18,6 @@ import {
   renderFurtherColorWhenNoCallProcess,
   renderFurtherPrefixWhenNoCallProcess,
 } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
 
 import {
   DrawerExtra,
@@ -291,9 +290,9 @@ class MultiPageDrawer extends MultiPage {
   };
 
   renderPresetTitleIcon = () => {
-    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon');
+    this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon', emptyLogic);
 
-    return iconBuilder.read();
+    return null;
   };
 
   buildTitlePrevText = () => {
