@@ -104,7 +104,7 @@ class ElasticityDropdown extends BaseComponent {
     }
 
     const popoverButton = ellipsisMode ? (
-      <Button>
+      <Button size={size ?? 'default'}>
         <VerticalBox>
           <IconInfo
             icon={iconBuilder.ellipsis({
@@ -126,6 +126,7 @@ class ElasticityDropdown extends BaseComponent {
           paddingLeft: 3,
           paddingRight: 3,
         }}
+        size={size ?? 'default'}
       >
         <VerticalBox>
           <EllipsisOutlined
