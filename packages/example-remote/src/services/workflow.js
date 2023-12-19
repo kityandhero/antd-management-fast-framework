@@ -18,22 +18,22 @@ export async function getData(parameters) {
   });
 }
 
-export const addOfficeAutomationProcessApprovalDataApiAddress =
-  '/workflow/addOfficeAutomationProcessApproval';
-
-export async function addOfficeAutomationProcessApprovalData(parameters) {
-  return request({
-    api: addOfficeAutomationProcessApprovalDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const addOfficeAutomationArticleAuditDataApiAddress =
   '/workflow/addOfficeAutomationArticleAudit';
 
 export async function addOfficeAutomationArticleAuditData(parameters) {
   return request({
     api: addOfficeAutomationArticleAuditDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const addOfficeAutomationProcessApprovalDataApiAddress =
+  '/workflow/addOfficeAutomationProcessApproval';
+
+export async function addOfficeAutomationProcessApprovalData(parameters) {
+  return request({
+    api: addOfficeAutomationProcessApprovalDataApiAddress,
     params: parameters,
   });
 }
@@ -74,20 +74,20 @@ export async function setDisableData(parameters) {
   });
 }
 
-export const removeDataApiAddress = '/workflow/remove';
-
-export async function removeData(parameters) {
-  return request({
-    api: removeDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const refreshCacheDataApiAddress = '/workflow/refreshCache';
 
 export async function refreshCacheData(parameters) {
   return request({
     api: refreshCacheDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const removeDataApiAddress = '/workflow/remove';
+
+export async function removeData(parameters) {
+  return request({
+    api: removeDataApiAddress,
     params: parameters,
   });
 }

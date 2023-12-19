@@ -36,6 +36,24 @@ export async function updateBasicInfoData(parameters) {
   });
 }
 
+export const updateColorDataApiAddress = '/tag/updateColor';
+
+export async function updateColorData(parameters) {
+  return request({
+    api: updateColorDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const updateTypeDataApiAddress = '/tag/updateType';
+
+export async function updateTypeData(parameters) {
+  return request({
+    api: updateTypeDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const updateSortDataApiAddress = '/tag/updateSort';
 
 export async function updateSortData(parameters) {
@@ -86,6 +104,15 @@ export const refreshCacheDataApiAddress = '/tag/refreshCache';
 export async function refreshCacheData(parameters) {
   return request({
     api: refreshCacheDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadImageDataApiAddress = '/tag/uploadImage';
+
+export async function uploadImageData(parameters) {
+  return request({
+    api: uploadImageDataApiAddress,
     params: parameters,
   });
 }

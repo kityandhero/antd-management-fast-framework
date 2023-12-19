@@ -132,6 +132,7 @@ class SignetInfo extends TabPageBase {
             text: '印章信息',
             subText: '[上传后需点击保存按钮保存!]',
           },
+          hasExtra: true,
           extra: {
             affix: true,
             list: [

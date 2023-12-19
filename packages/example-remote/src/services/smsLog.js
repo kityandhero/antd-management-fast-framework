@@ -8,30 +8,3 @@ export async function pageListData(parameters) {
     params: parameters,
   });
 }
-
-export const getDataApiAddress = '/smsLog/get';
-
-export async function getData(parameters) {
-  return request({
-    api: getDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const removeDataApiAddress = '/sqlLog/remove';
-
-export async function removeData(parameters) {
-  return request({
-    api: removeDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const removeMultiDataApiAddress = '/sqlLog/removeMulti';
-
-export async function removeMultiData(parameters) {
-  return request({
-    api: removeMultiDataApiAddress,
-    params: parameters,
-  });
-}

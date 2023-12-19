@@ -18,6 +18,15 @@ export async function singleListData(parameters) {
   });
 }
 
+export const pageListLogDataApiAddress = '/applicationSource/pageListLog';
+
+export async function pageListLogData(parameters) {
+  return request({
+    api: pageListLogDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const getDataApiAddress = '/applicationSource/get';
 
 export async function getData(parameters) {
@@ -69,6 +78,15 @@ export const refreshCacheDataApiAddress = '/applicationSource/refreshCache';
 export async function refreshCacheData(parameters) {
   return request({
     api: refreshCacheDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadImageDataApiAddress = '/applicationSource/uploadImage';
+
+export async function uploadImageData(parameters) {
+  return request({
+    api: uploadImageDataApiAddress,
     params: parameters,
   });
 }

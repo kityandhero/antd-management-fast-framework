@@ -45,7 +45,7 @@ export async function updateSortData(parameters) {
   });
 }
 
-export const setEnableDataApiAddress = '/tag/setEnable';
+export const setEnableDataApiAddress = '/optionPool/setEnable';
 
 export async function setEnableData(parameters) {
   return request({
@@ -54,7 +54,7 @@ export async function setEnableData(parameters) {
   });
 }
 
-export const setDisableDataApiAddress = '/tag/setDisable';
+export const setDisableDataApiAddress = '/optionPool/setDisable';
 
 export async function setDisableData(parameters) {
   return request({
@@ -63,7 +63,7 @@ export async function setDisableData(parameters) {
   });
 }
 
-export const refreshCacheDataApiAddress = '/tag/refreshCache';
+export const refreshCacheDataApiAddress = '/optionPool/refreshCache';
 
 export async function refreshCacheData(parameters) {
   return request({
@@ -72,7 +72,8 @@ export async function refreshCacheData(parameters) {
   });
 }
 
-export const pageListOperateLogDataApiAddress = '/tag/pageListOperateLog';
+export const pageListOperateLogDataApiAddress =
+  '/optionPool/pageListOperateLog';
 
 export async function pageListOperateLogData(parameters) {
   return request({

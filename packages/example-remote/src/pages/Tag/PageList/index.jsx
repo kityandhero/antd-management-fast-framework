@@ -4,16 +4,18 @@ import {
   checkHasAuthority,
   convertCollection,
   getValueByKey,
-  handleItem,
   toNumber,
 } from 'easy-soft-utility';
 
 import {
   columnFacadeMode,
   listViewConfig,
+  logTemplate,
   searchCardConfig,
 } from 'antd-management-fast-common';
 import {
+  CenterBox,
+  FlexBox,
   iconBuilder,
   iconModeCollection,
 } from 'antd-management-fast-component';
@@ -23,6 +25,7 @@ import { accessWayCollection, colorCollection } from '../../../customConfig';
 import {
   getBusinessModeName,
   getTagStatusName,
+  getTagTypeName,
 } from '../../../customSpecialComponents';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
@@ -32,8 +35,14 @@ import {
   setEnableAction,
   toggleRecommendAction,
 } from '../Assist/action';
-import { getStatusBadge } from '../Assist/tools';
-import ChangeSortModal from '../ChangeSortModal';
+import {
+  getStatusBadge,
+  handleItemStatus,
+  handleItemType,
+  handleItemWhetherRecommend,
+} from '../Assist/tools';
+import { ChangeSortModal } from '../ChangeSortModal';
+import { ChangeTypeModal } from '../ChangeTypeModal';
 import { fieldData, statusCollection } from '../Common/data';
 
 const { MultiPage } = DataMultiPageView;
@@ -43,6 +52,8 @@ const { MultiPage } = DataMultiPageView;
   schedulingControl,
 }))
 class PageList extends MultiPage {
+  showCallProcess = true;
+
   componentAuthority = accessWayCollection.tag.pageList.permission;
 
   constructor(properties) {
@@ -58,60 +69,6 @@ class PageList extends MultiPage {
     };
   }
 
-  handleItemWhetherRecommend = ({ target, handleData, remoteData }) => {
-    const tagId = getValueByKey({
-      data: handleData,
-      key: fieldData.tagId.name,
-    });
-
-    handleItem({
-      target,
-      value: tagId,
-      compareValueHandler: (o) => {
-        const { tagId: v } = o;
-
-        return v;
-      },
-      handler: (d) => {
-        const o = d;
-
-        o[fieldData.whetherRecommend.name] = getValueByKey({
-          data: remoteData,
-          key: fieldData.whetherRecommend.name,
-        });
-
-        return d;
-      },
-    });
-  };
-
-  handleItemStatus = ({ target, handleData, remoteData }) => {
-    const tagId = getValueByKey({
-      data: handleData,
-      key: fieldData.tagId.name,
-    });
-
-    handleItem({
-      target,
-      value: tagId,
-      compareValueHandler: (o) => {
-        const { tagId: v } = o;
-
-        return v;
-      },
-      handler: (d) => {
-        const o = d;
-
-        o[fieldData.status.name] = getValueByKey({
-          data: remoteData,
-          key: fieldData.status.name,
-        });
-
-        return d;
-      },
-    });
-  };
-
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
       case 'toggleRecommend': {
@@ -121,6 +78,11 @@ class PageList extends MultiPage {
 
       case 'updateSort': {
         this.showChangeSortModal(handleData);
+        break;
+      }
+
+      case 'updateType': {
+        this.showChangeTypeModal(handleData);
         break;
       }
 
@@ -157,7 +119,7 @@ class PageList extends MultiPage {
       target: this,
       handleData: r,
       successCallback: ({ target, handleData, remoteData }) => {
-        target.handleItemWhetherRecommend({ target, handleData, remoteData });
+        handleItemWhetherRecommend({ target, handleData, remoteData });
       },
     });
   };
@@ -167,7 +129,7 @@ class PageList extends MultiPage {
       target: this,
       handleData: r,
       successCallback: ({ target, handleData, remoteData }) => {
-        target.handleItemStatus({ target, handleData, remoteData });
+        handleItemStatus({ target, handleData, remoteData });
       },
     });
   };
@@ -177,7 +139,7 @@ class PageList extends MultiPage {
       target: this,
       handleData: r,
       successCallback: ({ target, handleData, remoteData }) => {
-        target.handleItemStatus({ target, handleData, remoteData });
+        handleItemStatus({ target, handleData, remoteData });
       },
     });
   };
@@ -241,6 +203,42 @@ class PageList extends MultiPage {
     subjoinData,
   }) => {
     this.refreshDataWithReloadAnimalPrompt({});
+  };
+
+  showChangeTypeModal = (r) => {
+    this.setState({ currentRecord: r }, () => {
+      ChangeTypeModal.open();
+    });
+  };
+
+  afterChangeTypeModalClose = ({
+    flag,
+    // eslint-disable-next-line no-unused-vars
+    singleData,
+    // eslint-disable-next-line no-unused-vars
+    listData,
+    // eslint-disable-next-line no-unused-vars
+    extraData,
+    // eslint-disable-next-line no-unused-vars
+    responseOriginalData,
+    // eslint-disable-next-line no-unused-vars
+    submitData,
+    // eslint-disable-next-line no-unused-vars
+    subjoinData,
+  }) => {
+    if (!flag) {
+      return;
+    }
+
+    logTemplate({ submitData, singleData });
+
+    handleItemType({
+      target: this,
+      handleData: submitData,
+      remoteData: singleData,
+    });
+
+    this.forceUpdate();
   };
 
   goToEdit = (record) => {
@@ -320,6 +318,11 @@ class PageList extends MultiPage {
           text: '设置排序值',
         },
         {
+          key: 'updateType',
+          icon: iconBuilder.edit(),
+          text: '设置适用对象',
+        },
+        {
           withDivider: true,
           uponDivider: true,
           key: 'toggleRecommend',
@@ -388,6 +391,45 @@ class PageList extends MultiPage {
       facadeMode: columnFacadeMode.image,
     },
     {
+      dataTarget: fieldData.color,
+      width: 120,
+      showRichFacade: true,
+      emptyValue: '--',
+      hidden: !checkHasAuthority(
+        accessWayCollection.tag.updateColor.permission,
+      ),
+      render: (value) => {
+        return (
+          <div>
+            <FlexBox
+              flexAuto="right"
+              style={{
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                overflow: 'hidden',
+                padding: '2px',
+              }}
+              left={
+                <CenterBox>
+                  <div
+                    style={{
+                      backgroundColor: value,
+                      border: '1px solid #ccc',
+                      borderRadius: '4px',
+                      width: '20px',
+                      height: '20px',
+                      overflow: 'hidden',
+                    }}
+                  />
+                </CenterBox>
+              }
+              right={<CenterBox>{value || '无色值'}</CenterBox>}
+            />
+          </div>
+        );
+      },
+    },
+    {
       dataTarget: fieldData.sort,
       width: 80,
       showRichFacade: true,
@@ -398,6 +440,24 @@ class PageList extends MultiPage {
       width: 120,
       showRichFacade: true,
       emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.type,
+      width: 120,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfigBuilder: (value) => {
+        return {
+          color: buildRandomHexColor({
+            seed: toNumber(value) + 15,
+          }),
+        };
+      },
+      formatValue: (value) => {
+        return getTagTypeName({
+          value: value,
+        });
+      },
     },
     {
       dataTarget: fieldData.businessMode,
@@ -484,6 +544,11 @@ class PageList extends MultiPage {
         <ChangeSortModal
           externalData={currentRecord}
           afterOK={this.afterChangeSortModalOk}
+        />
+
+        <ChangeTypeModal
+          externalData={currentRecord}
+          afterClose={this.afterChangeTypeModalClose}
         />
       </>
     );

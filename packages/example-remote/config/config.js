@@ -15,6 +15,7 @@ function buildConfig() {
   return buildConfigCore({
     packageJson: pk,
     config: {
+      esbuildMinifyIIFE: true,
       mfsu: false,
       styles: [`body { margin: 0; }`],
       routes: routes,

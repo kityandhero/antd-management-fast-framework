@@ -18,34 +18,6 @@ export async function getData(parameters) {
   });
 }
 
-export const passDataApiAddress = '/workflowCaseProcessHistory/pass';
-
-export async function passData(parameters) {
-  return request({
-    api: passDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const refuseDataApiAddress = '/workflowCaseProcessHistory/refuse';
-
-export async function refuseData(parameters) {
-  return request({
-    api: refuseDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const cancelApproveDataApiAddress =
-  '/workflowCaseProcessHistory/cancelApprove';
-
-export async function cancelApproveData(parameters) {
-  return request({
-    api: cancelApproveDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const resetAllApproveDataApiAddress =
   '/workflowCaseProcessHistory/resetAllApprove';
 

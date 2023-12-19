@@ -33,6 +33,7 @@ import {
 import { parseUrlParametersForSetState } from '../Assist/config';
 import { getStatusBadge } from '../Assist/tools';
 import { fieldData, statusCollection } from '../Common/data';
+import { ModuleTreeDrawer } from '../ModuleTreeDrawer';
 
 const { MultiPage } = DataMultiPageView;
 
@@ -49,6 +50,7 @@ class PageList extends MultiPage {
       paramsKey: accessWayCollection.presetRole.pageList.paramsKey,
       pageTitle: '预设角色列表',
       loadApiPath: 'presetRole/pageList',
+      currentRecord: null,
     };
   }
 
@@ -63,6 +65,12 @@ class PageList extends MultiPage {
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
+      case 'showModuleTree': {
+        this.showModuleTreeDrawer(handleData);
+
+        break;
+      }
+
       case 'setEnable': {
         this.setEnable(handleData);
 
@@ -157,6 +165,17 @@ class PageList extends MultiPage {
     });
   };
 
+  showModuleTreeDrawer = (item) => {
+    this.setState(
+      {
+        currentRecord: item,
+      },
+      () => {
+        ModuleTreeDrawer.open();
+      },
+    );
+  };
+
   showAddModal = () => {
     AddModal.open();
   };
@@ -245,7 +264,15 @@ class PageList extends MultiPage {
       },
       items: [
         {
+          key: 'showModuleTree',
+          icon: iconBuilder.read(),
+          text: '查看模块',
+          hidden: !!itemIsSuper,
+        },
+        {
           key: 'setEnable',
+          withDivider: true,
+          uponDivider: true,
           icon: iconBuilder.upCircle(),
           text: '设为上线',
           hidden: !!itemIsSuper,
@@ -347,7 +374,15 @@ class PageList extends MultiPage {
   ];
 
   renderPresetOther = () => {
-    return <AddModal afterOK={this.afterAddModalOk} />;
+    const { currentRecord } = this.state;
+
+    return (
+      <>
+        <AddModal afterOK={this.afterAddModalOk} />
+
+        <ModuleTreeDrawer maskClosable externalData={currentRecord} />
+      </>
+    );
   };
 }
 

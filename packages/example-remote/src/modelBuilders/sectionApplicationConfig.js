@@ -134,7 +134,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *remove(
+      *refreshCache(
         {
           payload,
           alias,
@@ -143,7 +143,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(removeData, payload);
+        const response = yield call(refreshCacheData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -160,7 +160,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *refreshCache(
+      *remove(
         {
           payload,
           alias,
@@ -169,7 +169,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(refreshCacheData, payload);
+        const response = yield call(removeData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

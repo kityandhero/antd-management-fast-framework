@@ -52,6 +52,7 @@ class PageList extends MultiPage {
       paramsKey: accessWayCollection.application.pageList.paramsKey,
       pageTitle: '应用列表',
       loadApiPath: 'application/pageList',
+      currentRecord: null,
     };
   }
 

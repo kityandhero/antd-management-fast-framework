@@ -3,744 +3,371 @@
     {
       "apis": [
         {
-          "api": "/currentAccount/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentAccount/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentAccount/changePassword",
-          "effect": "changePassword",
-          "service": "changePasswordData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "currentAccount"
-    },
-    {
-      "apis": [
-        {
-          "api": "/currentManagement/pageListDefaultImage",
-          "effect": "pageListDefaultImage",
-          "service": "pageListDefaultImageData",
-          "type": "singleList"
-        },
-        {
-          "api": "/currentManagement/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/updateFileStorageInfo",
-          "effect": "updateFileStorageInfo",
-          "service": "updateFileStorageInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/updateSmsInfo",
-          "effect": "updateSmsInfo",
-          "service": "updateSmsInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/updateFlowDebugUserId",
-          "effect": "updateFlowDebugUserId",
-          "service": "updateFlowDebugUserIdData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/updateSecretKeyInfo",
-          "effect": "updateSecretKeyInfo",
-          "service": "updateSecretKeyInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/updateYonYouKeyInfo",
-          "effect": "updateYonYouKeyInfo",
-          "service": "updateYonYouKeyInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/updateKeyValueInfo",
-          "effect": "updateKeyValueInfo",
-          "service": "updateKeyValueInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/refreshKeyValueCache",
-          "effect": "refreshKeyValueCache",
-          "service": "refreshKeyValueCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/toggleQiniuImageSwitch",
-          "effect": "toggleQiniuImageSwitch",
-          "service": "toggleQiniuImageSwitchData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/toggleQiniuAudioSwitch",
-          "effect": "toggleQiniuAudioSwitch",
-          "service": "toggleQiniuAudioSwitchData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/toggleQiniuVideoSwitch",
-          "effect": "toggleQiniuVideoSwitch",
-          "service": "toggleQiniuVideoSwitchData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/toggleQiniuFileSwitch",
-          "effect": "toggleQiniuFileSwitch",
-          "service": "toggleQiniuFileSwitchData",
-          "type": "singleData"
-        },
-        {
-          "api": "/currentManagement/testSecretKey",
-          "effect": "testSecretKey",
-          "service": "testSecretKeyData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "currentManagement"
-    },
-    {
-      "apis": [
-        {
-          "api": "/channelSqlLogSwitch/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/channelSqlLogSwitch/updateKeyValueInfo",
-          "effect": "updateKeyValueInfo",
-          "service": "updateKeyValueInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/channelSqlLogSwitch/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "channelSqlLogSwitch"
-    },
-    {
-      "apis": [
-        {
-          "api": "/channelExecuteLogSwitch/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/channelExecuteLogSwitch/updateKeyValueInfo",
-          "effect": "updateKeyValueInfo",
-          "service": "updateKeyValueInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/channelExecuteLogSwitch/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "channelExecuteLogSwitch"
-    },
-    {
-      "apis": [
-        {
-          "api": "/errorLog/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/errorLog/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/errorLog/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/errorLog/removeMulti",
-          "effect": "removeMulti",
-          "service": "removeMultiData",
-          "type": "singleData"
-        },
-        {
-          "api": "/errorLog/removeAll",
-          "effect": "removeAll",
-          "service": "removeAllData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "errorLog"
-    },
-    {
-      "apis": [
-        {
-          "api": "/generalLog/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/generalLog/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/generalLog/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/generalLog/removeMulti",
-          "effect": "removeMulti",
-          "service": "removeMultiData",
-          "type": "singleData"
-        },
-        {
-          "api": "/generalLog/removeAll",
-          "effect": "removeAll",
-          "service": "removeAllData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "generalLog"
-    },
-    {
-      "apis": [
-        {
-          "api": "/executeLog/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/executeLog/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/executeLog/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/executeLog/removeMulti",
-          "effect": "removeMulti",
-          "service": "removeMultiData",
-          "type": "singleData"
-        },
-        {
-          "api": "/executeLog/removeAll",
-          "effect": "removeAll",
-          "service": "removeAllData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "executeLog"
-    },
-    {
-      "apis": [
-        {
-          "api": "/sqlLog/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/sqlLog/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/sqlLog/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/sqlLog/removeMulti",
-          "effect": "removeMulti",
-          "service": "removeMultiData",
-          "type": "singleData"
-        },
-        {
-          "api": "/sqlLog/removeAll",
-          "effect": "removeAll",
-          "service": "removeAllData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "sqlLog"
-    },
-    {
-      "apis": [
-        {
-          "api": "/uploadHistory/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/uploadHistory/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/uploadHistory/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/uploadHistory/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "uploadHistory"
-    },
-    {
-      "apis": [
-        {
+          "title": "模块列表",
           "api": "/accessWay/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
+        },
+        {
+          "title": "程序集检测异常列表",
+          "api": "/accessWay/pageListAssemblyVerify",
+          "effect": "pageListAssemblyVerify",
+          "service": "pageListAssemblyVerifyData",
+          "type": "pageList"
+        },
+        {
+          "title": "模块详情",
+          "api": "/accessWay/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取前端权限配置文件内容",
+          "api": "/accessWay/getPermissionFileContent",
+          "effect": "getPermissionFileContent",
+          "service": "getPermissionFileContentData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取前端Model配置文件内容",
+          "api": "/accessWay/getModelConfigFileContent",
+          "effect": "getModelConfigFileContent",
+          "service": "getModelConfigFileContentData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取ActionMap",
+          "api": "/accessWay/getActionMap",
+          "effect": "getActionMap",
+          "service": "getActionMapData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取鉴权ActionMap",
+          "api": "/accessWay/getPermissionActionMap",
+          "effect": "getPermissionActionMap",
+          "service": "getPermissionActionMapData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取无需鉴权ActionMap",
+          "api": "/accessWay/getNonePermissionActionMap",
+          "effect": "getNonePermissionActionMap",
+          "service": "getNonePermissionActionMapData",
+          "type": "singleData"
+        },
+        {
+          "title": "测试权限唯一性",
+          "api": "/accessWay/testPermissionActionUnique",
+          "effect": "testPermissionActionUnique",
+          "service": "testPermissionActionUniqueData",
+          "type": "singleData"
+        },
+        {
+          "title": "测试鉴权Action",
+          "api": "/accessWay/testPermissionAction",
+          "effect": "testPermissionAction",
+          "service": "testPermissionActionData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除",
+          "api": "/accessWay/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/accessWay/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
         }
       ],
       "cover": true,
+      "title": "模块管理",
       "name": "accessWay"
     },
     {
       "apis": [
         {
-          "api": "/presetRole/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/presetRole/listSelect",
-          "effect": "listSelect",
-          "service": "listSelectData",
-          "type": "singleList"
-        },
-        {
-          "api": "/presetRole/listModule",
-          "effect": "listModule",
-          "service": "listModuleData",
-          "type": "singleList"
-        },
-        {
-          "api": "/presetRole/listTreeModule",
-          "effect": "listTreeModule",
-          "service": "listTreeModuleData",
-          "type": "singleList"
-        },
-        {
-          "api": "/presetRole/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/addModule",
-          "effect": "addModule",
-          "service": "addModuleData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/addMultiModule",
-          "effect": "addMultiModule",
-          "service": "addMultiModuleData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/addAllModule",
-          "effect": "addAllModule",
-          "service": "addAllModuleData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/updateModule",
-          "effect": "updateModule",
-          "service": "updateModuleData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/removeModule",
-          "effect": "removeModule",
-          "service": "removeModuleData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/clearModule",
-          "effect": "clearModule",
-          "service": "clearModuleData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/setEnable",
-          "effect": "setEnable",
-          "service": "setEnableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/setDisable",
-          "effect": "setDisable",
-          "service": "setDisableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/presetRole/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "presetRole"
-    },
-    {
-      "apis": [
-        {
-          "api": "/hostService/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/hostService/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/hostService/change",
-          "effect": "change",
-          "service": "changeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/hostService/refreshAllStatus",
-          "effect": "refreshAllStatus",
-          "service": "refreshAllStatusData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "hostService"
-    },
-    {
-      "apis": [
-        {
-          "api": "/hostServiceLog/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/hostServiceLog/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "HostServiceLog"
-    },
-    {
-      "apis": [
-        {
-          "api": "/applicationSource/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/applicationSource/singleList",
+          "title": "单页列表",
+          "api": "/administrativeDivision/singleList",
           "effect": "singleList",
           "service": "singleListData",
           "type": "singleList"
         },
         {
-          "api": "/applicationSource/get",
+          "title": "地区列表",
+          "api": "/administrativeDivision/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "地区详情",
+          "api": "/administrativeDivision/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/applicationSource/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/applicationSource/updateBasicInfo",
+          "title": "编辑基本信息",
+          "api": "/administrativeDivision/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/applicationSource/setEnable",
-          "effect": "setEnable",
-          "service": "setEnableData",
+          "title": "编辑位置信息",
+          "api": "/administrativeDivision/updateLocationInfo",
+          "effect": "updateLocationInfo",
+          "service": "updateLocationInfoData",
           "type": "singleData"
         },
         {
-          "api": "/applicationSource/setDisable",
-          "effect": "setDisable",
-          "service": "setDisableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/applicationSource/refreshCache",
+          "title": "刷新缓存",
+          "api": "/administrativeDivision/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
-        },
-        {
-          "api": "/applicationSource/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
         }
       ],
       "cover": true,
-      "name": "applicationSource"
+      "title": "地区管理",
+      "name": "administrativeDivision"
     },
     {
       "apis": [
         {
+          "title": "应用列表",
           "api": "/application/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "已开通应用单列表",
           "api": "/application/singleList",
           "effect": "singleList",
           "service": "singleListData",
           "type": "singleList"
         },
         {
+          "title": "平台详情",
           "api": "/application/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
+          "title": "首页路径配置",
           "api": "/application/getPagePathConfig",
           "effect": "getPagePathConfig",
           "service": "getPagePathConfigData",
           "type": "singleData"
         },
         {
+          "title": "微信消息模板配置",
           "api": "/application/getWeChatMessageTemplateConfig",
           "effect": "getWeChatMessageTemplateConfig",
           "service": "getWeChatMessageTemplateConfigData",
           "type": "singleData"
         },
         {
+          "title": "微信消息跳转路径配置",
           "api": "/application/getWeChatMessageTargetPathConfig",
           "effect": "getWeChatMessageTargetPathConfig",
           "service": "getWeChatMessageTargetPathConfigData",
           "type": "singleData"
         },
         {
+          "title": "文章推送配置",
           "api": "/application/getArticleNotificationConfig",
           "effect": "getArticleNotificationConfig",
           "service": "getArticleNotificationConfigData",
           "type": "singleData"
         },
         {
+          "title": "签到配置",
           "api": "/application/getCheckInConfig",
           "effect": "getCheckInConfig",
           "service": "getCheckInConfigData",
           "type": "singleData"
         },
         {
+          "title": "极光配置",
           "api": "/application/getJiGuangConfig",
           "effect": "getJiGuangConfig",
           "service": "getJiGuangConfigData",
           "type": "singleData"
         },
         {
-          "api": "/application/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
+          "title": "更新信息",
           "api": "/application/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "配置微信应用",
           "api": "/application/updateWeChatApplicationInfo",
           "effect": "updateWeChatApplicationInfo",
           "service": "updateWeChatApplicationInfoData",
           "type": "singleData"
         },
         {
+          "title": "设置微信支付",
           "api": "/application/updateWeChatPayCertificateInfo",
           "effect": "updateWeChatPayCertificateInfo",
           "service": "updateWeChatPayCertificateInfoData",
           "type": "singleData"
         },
         {
+          "title": "设置应用键值配置",
           "api": "/application/updateKeyValueInfo",
           "effect": "updateKeyValueInfo",
           "service": "updateKeyValueInfoData",
           "type": "singleData"
         },
         {
+          "title": "关联消息应用",
           "api": "/application/updateMessageChannelApplicationInfo",
           "effect": "updateMessageChannelApplicationInfo",
           "service": "updateMessageChannelApplicationInfoData",
           "type": "singleData"
         },
         {
-          "api": "/application/setOwn",
-          "effect": "setOwn",
-          "service": "setOwnData",
-          "type": "singleData"
-        },
-        {
+          "title": "开始运营",
           "api": "/application/setStart",
           "effect": "setStart",
           "service": "setStartData",
           "type": "singleData"
         },
         {
+          "title": "停止运营",
           "api": "/application/setStop",
           "effect": "setStop",
           "service": "setStopData",
           "type": "singleData"
         },
         {
+          "title": "开通应用",
+          "api": "/application/setOwn",
+          "effect": "setOwn",
+          "service": "setOwnData",
+          "type": "singleData"
+        },
+        {
+          "title": "测试发送极光推送",
           "api": "/application/testJiGuangSendDevice",
           "effect": "testJiGuangSendDevice",
           "service": "testJiGuangSendDeviceData",
           "type": "singleData"
         },
         {
-          "api": "/application/testSendWechatUniformMessage",
-          "effect": "testSendWechatUniformMessage",
-          "service": "testSendWechatUniformMessageData",
-          "type": "singleData"
-        },
-        {
+          "title": "测试发送微信公众号模板消息",
           "api": "/application/testSendWechatTemplateMessage",
           "effect": "testSendWechatTemplateMessage",
           "service": "testSendWechatTemplateMessageData",
           "type": "singleData"
         },
         {
+          "title": "测试发送微信统一服务消息",
+          "api": "/application/testSendWechatUniformMessage",
+          "effect": "testSendWechatUniformMessage",
+          "service": "testSendWechatUniformMessageData",
+          "type": "singleData"
+        },
+        {
+          "title": "测试验证码短信",
           "api": "/application/testSendSmsCaptcha",
           "effect": "testSendSmsCaptcha",
           "service": "testSendSmsCaptchaData",
           "type": "singleData"
         },
         {
+          "title": "刷新缓存",
           "api": "/application/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "",
+          "api": "/application/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "",
+          "api": "/application/uploadVideo",
+          "effect": "uploadVideo",
+          "service": "uploadVideoData",
+          "type": "singleData"
+        },
+        {
+          "title": "",
+          "api": "/application/uploadAudio",
+          "effect": "uploadAudio",
+          "service": "uploadAudioData",
+          "type": "singleData"
+        },
+        {
+          "title": "",
+          "api": "/application/uploadFile",
+          "effect": "uploadFile",
+          "service": "uploadFileData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传证书文件",
+          "api": "/application/uploadCertificate",
+          "effect": "uploadCertificate",
+          "service": "uploadCertificateData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取自定义数据",
           "api": "/application/getCustomGlobalData",
           "effect": "getCustomGlobalData",
           "service": "getCustomGlobalDataData",
           "type": "singleData"
         },
         {
+          "title": "获取自定义数据项",
           "api": "/application/getCustomGlobalDataItem",
           "effect": "getCustomGlobalDataItem",
           "service": "getCustomGlobalDataItemData",
           "type": "singleData"
         },
         {
+          "title": "增加自定义数据项",
           "api": "/application/addCustomGlobalDataItem",
           "effect": "addCustomGlobalDataItem",
           "service": "addCustomGlobalDataItemData",
           "type": "singleData"
         },
         {
+          "title": "更新自定义数据项",
           "api": "/application/updateCustomGlobalDataItem",
           "effect": "updateCustomGlobalDataItem",
           "service": "updateCustomGlobalDataItemData",
           "type": "singleData"
         },
         {
+          "title": "移除自定义数据项",
           "api": "/application/removeCustomGlobalDataItem",
           "effect": "removeCustomGlobalDataItem",
           "service": "removeCustomGlobalDataItemData",
           "type": "singleData"
         },
         {
+          "title": "操作日志列表",
           "api": "/application/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -748,77 +375,104 @@
         }
       ],
       "cover": true,
+      "title": "平台应用",
       "name": "application"
     },
     {
       "apis": [
         {
+          "title": "导航配置列表",
           "api": "/applicationNavigation/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "导航配置详情",
           "api": "/applicationNavigation/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
+          "title": "新增基础信息",
           "api": "/applicationNavigation/addBasicInfo",
           "effect": "addBasicInfo",
           "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "更新基础信息",
           "api": "/applicationNavigation/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "刷新缓存",
           "api": "/applicationNavigation/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "移除导航",
           "api": "/applicationNavigation/remove",
           "effect": "remove",
           "service": "removeData",
           "type": "singleData"
         },
         {
+          "title": "获取导航条目",
           "api": "/applicationNavigation/getNavigationItem",
           "effect": "getNavigationItem",
           "service": "getNavigationItemData",
           "type": "singleData"
         },
         {
+          "title": "增加导航条目",
           "api": "/applicationNavigation/addNavigationItem",
           "effect": "addNavigationItem",
           "service": "addNavigationItemData",
           "type": "singleData"
         },
         {
+          "title": "更新导航条目",
           "api": "/applicationNavigation/updateNavigationItem",
           "effect": "updateNavigationItem",
           "service": "updateNavigationItemData",
           "type": "singleData"
         },
         {
-          "api": "/applicationNavigation/removeNavigationItem",
-          "effect": "removeNavigationItem",
-          "service": "removeNavigationItemData",
-          "type": "singleData"
-        },
-        {
+          "title": "设置导航条目顺序",
           "api": "/applicationNavigation/setNavigationCollectionSort",
           "effect": "setNavigationCollectionSort",
           "service": "setNavigationCollectionSortData",
           "type": "singleData"
         },
         {
+          "title": "移除导航条目",
+          "api": "/applicationNavigation/removeNavigationItem",
+          "effect": "removeNavigationItem",
+          "service": "removeNavigationItemData",
+          "type": "singleData"
+        },
+        {
+          "title": "",
+          "api": "/applicationNavigation/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "",
+          "api": "/applicationNavigation/uploadVideo",
+          "effect": "uploadVideo",
+          "service": "uploadVideoData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
           "api": "/applicationNavigation/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -826,65 +480,167 @@
         }
       ],
       "cover": true,
+      "title": "导航配置管理",
       "name": "applicationNavigation"
     },
     {
       "apis": [
         {
+          "title": "应用源列表",
+          "api": "/applicationSource/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "应用源列表",
+          "api": "/applicationSource/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/applicationSource/pageListLog",
+          "effect": "pageListLog",
+          "service": "pageListLogData",
+          "type": "pageList"
+        },
+        {
+          "title": "平台详情",
+          "api": "/applicationSource/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增应用源",
+          "api": "/applicationSource/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新信息",
+          "api": "/applicationSource/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "开始运营",
+          "api": "/applicationSource/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "停止运营",
+          "api": "/applicationSource/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/applicationSource/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传图片文件",
+          "api": "/applicationSource/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/applicationSource/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "平台应用源",
+      "name": "applicationSource"
+    },
+    {
+      "apis": [
+        {
+          "title": "版本列表",
           "api": "/applicationVersion/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "版本列表",
           "api": "/applicationVersion/singleList",
           "effect": "singleList",
           "service": "singleListData",
           "type": "singleList"
         },
         {
+          "title": "操作日志列表",
+          "api": "/applicationVersion/pageListLog",
+          "effect": "pageListLog",
+          "service": "pageListLogData",
+          "type": "pageList"
+        },
+        {
+          "title": "版本详情",
           "api": "/applicationVersion/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
+          "title": "新增版本",
           "api": "/applicationVersion/addBasicInfo",
           "effect": "addBasicInfo",
           "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "更新信息",
           "api": "/applicationVersion/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "设为启用",
           "api": "/applicationVersion/setEnable",
           "effect": "setEnable",
           "service": "setEnableData",
           "type": "singleData"
         },
         {
+          "title": "设为停用",
           "api": "/applicationVersion/setDisable",
           "effect": "setDisable",
           "service": "setDisableData",
           "type": "singleData"
         },
         {
+          "title": "移除",
           "api": "/applicationVersion/remove",
           "effect": "remove",
           "service": "removeData",
           "type": "singleData"
         },
         {
+          "title": "刷新缓存",
           "api": "/applicationVersion/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "操作日志列表",
           "api": "/applicationVersion/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -892,797 +648,433 @@
         }
       ],
       "cover": true,
+      "title": "应用版本",
       "name": "applicationVersion"
     },
     {
       "apis": [
         {
-          "api": "/smsLog/pageList",
+          "title": "设置列表",
+          "api": "/articleNotificationApplication/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/smsLog/get",
+          "title": "设置详情",
+          "api": "/articleNotificationApplication/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/sqlLog/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/sqlLog/removeMulti",
-          "effect": "removeMulti",
-          "service": "removeMultiData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "smsLog"
-    },
-    {
-      "apis": [
-        {
-          "api": "/smsCategory/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/smsCategory/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/smsCategory/addBasicInfo",
+          "title": "新增设置",
+          "api": "/articleNotificationApplication/addBasicInfo",
           "effect": "addBasicInfo",
           "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/smsCategory/updateBasicInfo",
+          "title": "更新信息",
+          "api": "/articleNotificationApplication/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/smsCategory/setEnable",
-          "effect": "setEnable",
-          "service": "setEnableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/smsCategory/setDisable",
-          "effect": "setDisable",
-          "service": "setDisableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/smsCategory/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/smsCategory/refreshCache",
+          "title": "刷新缓存",
+          "api": "/articleNotificationApplication/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         }
       ],
       "cover": true,
-      "name": "smsCategory"
+      "title": "文章推送应用设置",
+      "name": "articleNotificationApplication"
     },
     {
       "apis": [
         {
-          "api": "/smsCategoryStatistic/pageList",
+          "title": "开关分页列表",
+          "api": "/channelExecuteLogSwitch/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/smsCategoryStatistic/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "smsCategoryStatistic"
-    },
-    {
-      "apis": [
-        {
-          "api": "/masterManager/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/masterManager/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/masterManager/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/masterManager/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/masterManager/resetPassword",
-          "effect": "resetPassword",
-          "service": "resetPasswordData",
-          "type": "singleData"
-        },
-        {
-          "api": "/masterManager/setEnable",
-          "effect": "setEnable",
-          "service": "setEnableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/masterManager/setDisable",
-          "effect": "setDisable",
-          "service": "setDisableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/masterManager/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/masterManager/changePermission",
-          "effect": "changePermission",
-          "service": "changePermissionData",
-          "type": "singleData"
-        },
-        {
-          "api": "/masterManager/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/masterManager/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "masterManager"
-    },
-    {
-      "apis": [
-        {
-          "api": "/user/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/user/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/updateParent",
-          "effect": "updateParent",
-          "service": "updateParentData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/clearParent",
-          "effect": "clearParent",
-          "service": "clearParentData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/setSignet",
-          "effect": "setSignet",
-          "service": "setSignetData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/openSignetPasswordSwitch",
-          "effect": "openSignetPasswordSwitch",
-          "service": "openSignetPasswordSwitchData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/closeSignetPasswordSwitch",
-          "effect": "closeSignetPasswordSwitch",
-          "service": "closeSignetPasswordSwitchData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/toggleSignetPasswordSwitch",
-          "effect": "toggleSignetPasswordSwitch",
-          "service": "toggleSignetPasswordSwitchData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/resetSignetPassword",
-          "effect": "resetSignetPassword",
-          "service": "resetSignetPasswordData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/resetPassword",
-          "effect": "resetPassword",
-          "service": "resetPasswordData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/setEnable",
-          "effect": "setEnable",
-          "service": "setEnableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/setDisable",
-          "effect": "setDisable",
-          "service": "setDisableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/changePermission",
-          "effect": "changePermission",
-          "service": "changePermissionData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/user/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "user"
-    },
-    {
-      "apis": [
-        {
-          "api": "/userSubsidiaryInfo/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/userSubsidiaryInfo/singleList",
+          "title": "开关单页列表",
+          "api": "/channelExecuteLogSwitch/singleList",
           "effect": "singleList",
           "service": "singleListData",
           "type": "singleList"
         },
         {
-          "api": "/userSubsidiaryInfo/get",
+          "title": "开关详情",
+          "api": "/channelExecuteLogSwitch/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/userSubsidiaryInfo/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
+          "title": "设置键值配置",
+          "api": "/channelExecuteLogSwitch/updateKeyValueInfo",
+          "effect": "updateKeyValueInfo",
+          "service": "updateKeyValueInfoData",
           "type": "singleData"
         },
         {
-          "api": "/userSubsidiaryInfo/setPrimary",
-          "effect": "setPrimary",
-          "service": "setPrimaryData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userSubsidiaryInfo/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userSubsidiaryInfo/refreshCache",
+          "title": "刷新缓存",
+          "api": "/channelExecuteLogSwitch/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         }
       ],
       "cover": true,
-      "name": "userSubsidiaryInfo"
+      "title": "执行日志开关",
+      "name": "channelExecuteLogSwitch"
     },
     {
       "apis": [
         {
-          "api": "/userYonYouCorrelation/pageList",
+          "title": "开关分页列表",
+          "api": "/channelSqlLogSwitch/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/userYonYouCorrelation/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userYonYouCorrelation/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userYonYouCorrelation/import",
-          "effect": "import",
-          "service": "importData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userYonYouCorrelation/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userYonYouCorrelation/setEnable",
-          "effect": "setEnable",
-          "service": "setEnableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userYonYouCorrelation/setDisable",
-          "effect": "setDisable",
-          "service": "setDisableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userYonYouCorrelation/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userYonYouCorrelation/testExist",
-          "effect": "testExist",
-          "service": "testExistData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userYonYouCorrelation/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "userYonYouCorrelation"
-    },
-    {
-      "apis": [
-        {
-          "api": "/userDevice/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/userDevice/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userDevice/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userDevice/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userDevice/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userDevice/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "userDevice"
-    },
-    {
-      "apis": [
-        {
-          "api": "/internalTester/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/internalTester/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/internalTester/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/internalTester/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/internalTester/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/internalTester/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "internalTester"
-    },
-    {
-      "apis": [
-        {
-          "api": "/weChatMessageRecord/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/weChatMessageRecord/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        }
-      ],
-      "cover": true,
-      "name": "weChatMessageRecord"
-    },
-    {
-      "apis": [
-        {
-          "api": "/tag/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/tag/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/updateSort",
-          "effect": "updateSort",
-          "service": "updateSortData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/toggleRecommend",
-          "effect": "toggleRecommend",
-          "service": "toggleRecommendData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/setEnable",
-          "effect": "setEnable",
-          "service": "setEnableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/setDisable",
-          "effect": "setDisable",
-          "service": "setDisableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "tag"
-    },
-    {
-      "apis": [
-        {
-          "api": "/optionPool/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/optionPool/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/optionPool/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/optionPool/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/optionPool/updateSort",
-          "effect": "updateSort",
-          "service": "updateSortData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/setEnable",
-          "effect": "setEnable",
-          "service": "setEnableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/setDisable",
-          "effect": "setDisable",
-          "service": "setDisableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/tag/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "optionPool"
-    },
-    {
-      "apis": [
-        {
-          "api": "/subsidiary/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/subsidiary/singleList",
+          "title": "开关单页列表",
+          "api": "/channelSqlLogSwitch/singleList",
           "effect": "singleList",
           "service": "singleListData",
           "type": "singleList"
         },
         {
-          "api": "/subsidiary/singleTreeList",
-          "effect": "singleTreeList",
-          "service": "singleTreeListData",
-          "type": "singleList"
-        },
-        {
-          "api": "/subsidiary/get",
+          "title": "平台详情",
+          "api": "/channelSqlLogSwitch/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/subsidiary/addBasicInfo",
+          "title": "设置键值配置",
+          "api": "/channelSqlLogSwitch/updateKeyValueInfo",
+          "effect": "updateKeyValueInfo",
+          "service": "updateKeyValueInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/channelSqlLogSwitch/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "Sql日志开关",
+      "name": "channelSqlLogSwitch"
+    },
+    {
+      "apis": [
+        {
+          "title": "文件列表",
+          "api": "/cloudStorage/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "文件详情",
+          "api": "/cloudStorage/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增信息",
+          "api": "/cloudStorage/addBasicInfo",
           "effect": "addBasicInfo",
           "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/subsidiary/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
+          "title": "移除",
+          "api": "/cloudStorage/remove",
+          "effect": "remove",
+          "service": "removeData",
           "type": "singleData"
         },
         {
-          "api": "/subsidiary/updateSort",
-          "effect": "updateSort",
-          "service": "updateSortData",
-          "type": "singleData"
-        },
-        {
-          "api": "/subsidiary/updateParent",
-          "effect": "updateParent",
-          "service": "updateParentData",
-          "type": "singleData"
-        },
-        {
-          "api": "/subsidiary/setEnable",
-          "effect": "setEnable",
-          "service": "setEnableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/subsidiary/setDisable",
-          "effect": "setDisable",
-          "service": "setDisableData",
-          "type": "singleData"
-        },
-        {
-          "api": "/subsidiary/refreshCache",
+          "title": "刷新缓存",
+          "api": "/cloudStorage/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
-          "api": "/subsidiary/pageListOperateLog",
+          "title": "操作日志列表",
+          "api": "/cloudStorage/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
           "type": "pageList"
         }
       ],
       "cover": true,
-      "name": "subsidiary"
+      "title": "企业云盘",
+      "name": "cloudStorage"
     },
     {
       "apis": [
         {
+          "title": "获取信息",
+          "api": "/currentAccount/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "通告列表",
+          "api": "/currentAccount/listNotice",
+          "effect": "listNotice",
+          "service": "listNoticeData",
+          "type": "singleList"
+        },
+        {
+          "title": "更新基本信息",
+          "api": "/currentAccount/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "变更密码",
+          "api": "/currentAccount/changePassword",
+          "effect": "changePassword",
+          "service": "changePasswordData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传图片",
+          "api": "/currentAccount/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "当前账户",
+      "name": "currentAccount"
+    },
+    {
+      "apis": [
+        {
+          "title": "默认图片配置单页列表",
+          "api": "/currentManagement/pageListDefaultImage",
+          "effect": "pageListDefaultImage",
+          "service": "pageListDefaultImageData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/currentManagement/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置基本信息",
+          "api": "/currentManagement/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置主控七牛云信息",
+          "api": "/currentManagement/updateFileStorageInfo",
+          "effect": "updateFileStorageInfo",
+          "service": "updateFileStorageInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置短信发动信息",
+          "api": "/currentManagement/updateSmsInfo",
+          "effect": "updateSmsInfo",
+          "service": "updateSmsInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置流程调试用户标识",
+          "api": "/currentManagement/updateFlowDebugUserId",
+          "effect": "updateFlowDebugUserId",
+          "service": "updateFlowDebugUserIdData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置系统密钥",
+          "api": "/currentManagement/updateSecretKeyInfo",
+          "effect": "updateSecretKeyInfo",
+          "service": "updateSecretKeyInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置用友密钥",
+          "api": "/currentManagement/updateYonYouKeyInfo",
+          "effect": "updateYonYouKeyInfo",
+          "service": "updateYonYouKeyInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置键值配置",
+          "api": "/currentManagement/updateKeyValueInfo",
+          "effect": "updateKeyValueInfo",
+          "service": "updateKeyValueInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新键值配置缓存",
+          "api": "/currentManagement/refreshKeyValueCache",
+          "effect": "refreshKeyValueCache",
+          "service": "refreshKeyValueCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换七牛云图片转存开关",
+          "api": "/currentManagement/toggleQiniuImageSwitch",
+          "effect": "toggleQiniuImageSwitch",
+          "service": "toggleQiniuImageSwitchData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换七牛云音频转存开关",
+          "api": "/currentManagement/toggleQiniuAudioSwitch",
+          "effect": "toggleQiniuAudioSwitch",
+          "service": "toggleQiniuAudioSwitchData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换七牛云视频转存开关",
+          "api": "/currentManagement/toggleQiniuVideoSwitch",
+          "effect": "toggleQiniuVideoSwitch",
+          "service": "toggleQiniuVideoSwitchData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换七牛云文件转存开关",
+          "api": "/currentManagement/toggleQiniuFileSwitch",
+          "effect": "toggleQiniuFileSwitch",
+          "service": "toggleQiniuFileSwitchData",
+          "type": "singleData"
+        },
+        {
+          "title": "测试系统密钥",
+          "api": "/currentManagement/testSecretKey",
+          "effect": "testSecretKey",
+          "service": "testSecretKeyData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传图片",
+          "api": "/currentManagement/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "当前系统",
+      "name": "currentManagement"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
           "api": "/department/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "单页列表",
           "api": "/department/singleList",
           "effect": "singleList",
           "service": "singleListData",
           "type": "singleList"
         },
         {
+          "title": "单页树型列表",
           "api": "/department/singleTreeList",
           "effect": "singleTreeList",
           "service": "singleTreeListData",
           "type": "singleList"
         },
         {
+          "title": "部门详情",
           "api": "/department/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
+          "title": "更新信息",
           "api": "/department/addBasicInfo",
           "effect": "addBasicInfo",
           "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "更新信息",
           "api": "/department/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/department/updateSort",
-          "effect": "updateSort",
-          "service": "updateSortData",
-          "type": "singleData"
-        },
-        {
+          "title": "更新上级部门",
           "api": "/department/updateParentId",
           "effect": "updateParentId",
           "service": "updateParentIdData",
           "type": "singleData"
         },
         {
+          "title": "更新所属子公司",
           "api": "/department/updateSubsidiaryId",
           "effect": "updateSubsidiaryId",
           "service": "updateSubsidiaryIdData",
           "type": "singleData"
         },
         {
+          "title": "更新排序值",
+          "api": "/department/updateSort",
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为正常",
           "api": "/department/setNormal",
           "effect": "setNormal",
           "service": "setNormalData",
           "type": "singleData"
         },
         {
+          "title": "设为无效",
           "api": "/department/setInvalid",
           "effect": "setInvalid",
           "service": "setInvalidData",
           "type": "singleData"
         },
         {
+          "title": "刷新缓存",
           "api": "/department/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "操作日志列表",
           "api": "/department/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -1690,71 +1082,510 @@
         }
       ],
       "cover": true,
+      "title": "部门管理",
       "name": "department"
     },
     {
       "apis": [
         {
-          "api": "/userDepartmentInfo/pageList",
+          "title": "上传图片",
+          "api": "/editor/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "编辑器",
+      "name": "editor"
+    },
+    {
+      "apis": [
+        {
+          "title": "日志列表",
+          "api": "/errorLog/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/userDepartmentInfo/singleList",
-          "effect": "singleList",
-          "service": "singleListData",
-          "type": "singleList"
-        },
-        {
-          "api": "/userDepartmentInfo/get",
+          "title": "日志详情",
+          "api": "/errorLog/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/userDepartmentInfo/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userDepartmentInfo/setPrimary",
-          "effect": "setPrimary",
-          "service": "setPrimaryData",
-          "type": "singleData"
-        },
-        {
-          "api": "/userDepartmentInfo/remove",
+          "title": "删除日志",
+          "api": "/errorLog/remove",
           "effect": "remove",
           "service": "removeData",
           "type": "singleData"
         },
         {
-          "api": "/userDepartmentInfo/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
+          "title": "批量删除日志",
+          "api": "/errorLog/removeMulti",
+          "effect": "removeMulti",
+          "service": "removeMultiData",
+          "type": "singleData"
+        },
+        {
+          "title": "全量删除日志",
+          "api": "/errorLog/removeAll",
+          "effect": "removeAll",
+          "service": "removeAllData",
           "type": "singleData"
         }
       ],
       "cover": true,
-      "name": "userDepartmentInfo"
+      "title": "错误日志",
+      "name": "errorLog"
     },
     {
       "apis": [
         {
-          "api": "/organization/getGraphicalTree",
-          "effect": "getGraphicalTree",
-          "service": "getGraphicalTreeData",
+          "title": "分页列表",
+          "api": "/executeLog/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/executeLog/get",
+          "effect": "get",
+          "service": "getData",
           "type": "singleData"
         },
         {
+          "title": "删除日志",
+          "api": "/executeLog/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "批量删除日志",
+          "api": "/executeLog/removeMulti",
+          "effect": "removeMulti",
+          "service": "removeMultiData",
+          "type": "singleData"
+        },
+        {
+          "title": "全量删除日志",
+          "api": "/executeLog/removeAll",
+          "effect": "removeAll",
+          "service": "removeAllData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "执行日志",
+      "name": "executeLog"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/generalLog/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/generalLog/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除日志",
+          "api": "/generalLog/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "批量删除日志",
+          "api": "/generalLog/removeMulti",
+          "effect": "removeMulti",
+          "service": "removeMultiData",
+          "type": "singleData"
+        },
+        {
+          "title": "全量删除日志",
+          "api": "/generalLog/removeAll",
+          "effect": "removeAll",
+          "service": "removeAllData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "一般日志",
+      "name": "generalLog"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/governmentAffairManager/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/governmentAffairManager/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增账户",
+          "api": "/governmentAffairManager/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新信息",
+          "api": "/governmentAffairManager/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "重置密码",
+          "api": "/governmentAffairManager/resetPassword",
+          "effect": "resetPassword",
+          "service": "resetPasswordData",
+          "type": "singleData"
+        },
+        {
+          "title": "启用",
+          "api": "/governmentAffairManager/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "禁用",
+          "api": "/governmentAffairManager/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/governmentAffairManager/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除账户",
+          "api": "/governmentAffairManager/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "政务系统操作人员",
+      "name": "governmentAffairManager"
+    },
+    {
+      "apis": [
+        {
+          "title": "变更拥有角色",
+          "api": "/governmentAffairManagerRole/changeCollection",
+          "effect": "changeCollection",
+          "service": "changeCollectionData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "政务系统管理账户拥有角色",
+      "name": "governmentAffairManagerRole"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/hostService/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/hostService/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "服务操作",
+          "api": "/hostService/change",
+          "effect": "change",
+          "service": "changeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新状态",
+          "api": "/hostService/refreshAllStatus",
+          "effect": "refreshAllStatus",
+          "service": "refreshAllStatusData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "驻留服务",
+      "name": "hostService"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/hostServiceLog/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/hostServiceLog/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "驻留服务变动记录",
+      "name": "hostServiceLog"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/internalTester/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取列表",
+          "api": "/internalTester/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增内测用户",
+          "api": "/internalTester/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除数据",
+          "api": "/internalTester/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "内测用户管理",
+      "name": "internalTester"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/masterManager/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/masterManager/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增账户",
+          "api": "/masterManager/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新信息",
+          "api": "/masterManager/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "重置密码",
+          "api": "/masterManager/resetPassword",
+          "effect": "resetPassword",
+          "service": "resetPasswordData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为启用",
+          "api": "/masterManager/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为禁用",
+          "api": "/masterManager/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新权限",
+          "api": "/masterManager/changePermission",
+          "effect": "changePermission",
+          "service": "changePermissionData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除账户",
+          "api": "/masterManager/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/masterManager/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/masterManager/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        },
+        {
+          "title": "",
+          "api": "/masterManager/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "账户信息",
+      "name": "masterManager"
+    },
+    {
+      "apis": [
+        {
+          "title": "获取",
+          "api": "/metaData/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "元数据集合",
+      "name": "metaData"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/optionPool/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/optionPool/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新建",
+          "api": "/optionPool/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "编辑信息",
+          "api": "/optionPool/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设定排序值",
+          "api": "/optionPool/updateSort",
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为启用",
+          "api": "/optionPool/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为禁用",
+          "api": "/optionPool/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/optionPool/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/optionPool/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "选项池",
+      "name": "optionPool"
+    },
+    {
+      "apis": [
+        {
+          "title": "",
           "api": "/organization/getGraphicalDirectDepartment",
           "effect": "getGraphicalDirectDepartment",
           "service": "getGraphicalDirectDepartmentData",
           "type": "singleData"
         },
         {
+          "title": "",
           "api": "/organization/getGraphicalSingleSubsidiaryDepartment",
           "effect": "getGraphicalSingleSubsidiaryDepartment",
           "service": "getGraphicalSingleSubsidiaryDepartmentData",
@@ -1762,137 +1593,335 @@
         }
       ],
       "cover": true,
+      "title": "",
       "name": "organization"
     },
     {
       "apis": [
         {
+          "title": "分页列表",
+          "api": "/presetRole/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "选项列表",
+          "api": "/presetRole/listSelect",
+          "effect": "listSelect",
+          "service": "listSelectData",
+          "type": "singleList"
+        },
+        {
+          "title": "含有模块列表",
+          "api": "/presetRole/listModule",
+          "effect": "listModule",
+          "service": "listModuleData",
+          "type": "singleData"
+        },
+        {
+          "title": "含有模块树型列表",
+          "api": "/presetRole/listTreeModule",
+          "effect": "listTreeModule",
+          "service": "listTreeModuleData",
+          "type": "singleData"
+        },
+        {
+          "title": "角色详情",
+          "api": "/presetRole/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增角色",
+          "api": "/presetRole/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新角色信息",
+          "api": "/presetRole/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加模块",
+          "api": "/presetRole/addModule",
+          "effect": "addModule",
+          "service": "addModuleData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加多个模块",
+          "api": "/presetRole/addMultiModule",
+          "effect": "addMultiModule",
+          "service": "addMultiModuleData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加所有模块",
+          "api": "/presetRole/addAllModule",
+          "effect": "addAllModule",
+          "service": "addAllModuleData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新模块",
+          "api": "/presetRole/updateModule",
+          "effect": "updateModule",
+          "service": "updateModuleData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除模块",
+          "api": "/presetRole/removeModule",
+          "effect": "removeModule",
+          "service": "removeModuleData",
+          "type": "singleData"
+        },
+        {
+          "title": "清空模块",
+          "api": "/presetRole/clearModule",
+          "effect": "clearModule",
+          "service": "clearModuleData",
+          "type": "singleData"
+        },
+        {
+          "title": "启用",
+          "api": "/presetRole/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "禁用",
+          "api": "/presetRole/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除角色",
+          "api": "/presetRole/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/presetRole/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/presetRole/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "预设角色",
+      "name": "presetRole"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
           "api": "/section/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "单页列表",
+          "api": "/section/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "单页树型列表",
           "api": "/section/singleTreeList",
           "effect": "singleTreeList",
           "service": "singleTreeListData",
           "type": "singleList"
         },
         {
+          "title": "获取详情",
           "api": "/section/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
+          "title": "新建",
           "api": "/section/addBasicInfo",
           "effect": "addBasicInfo",
           "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "编辑信息",
           "api": "/section/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "更新图文H5",
           "api": "/section/updateContentInfo",
           "effect": "updateContentInfo",
           "service": "updateContentInfoData",
           "type": "singleData"
         },
         {
+          "title": "设置渲染模式",
           "api": "/section/updateRenderType",
           "effect": "updateRenderType",
           "service": "updateRenderTypeData",
           "type": "singleData"
         },
         {
+          "title": "设定排序值",
           "api": "/section/updateSort",
           "effect": "updateSort",
           "service": "updateSortData",
           "type": "singleData"
         },
         {
+          "title": "设定上级栏目",
           "api": "/section/updateParentId",
           "effect": "updateParentId",
           "service": "updateParentIdData",
           "type": "singleData"
         },
         {
+          "title": "切换推荐",
           "api": "/section/toggleRecommend",
           "effect": "toggleRecommend",
           "service": "toggleRecommendData",
           "type": "singleData"
         },
         {
+          "title": "切换置顶",
           "api": "/section/toggleTop",
           "effect": "toggleTop",
           "service": "toggleTopData",
           "type": "singleData"
         },
         {
+          "title": "切换可见性",
           "api": "/section/toggleVisible",
           "effect": "toggleVisible",
           "service": "toggleVisibleData",
           "type": "singleData"
         },
         {
+          "title": "设为上线",
           "api": "/section/setOnline",
           "effect": "setOnline",
           "service": "setOnlineData",
           "type": "singleData"
         },
         {
+          "title": "设为下线",
           "api": "/section/setOffline",
           "effect": "setOffline",
           "service": "setOfflineData",
           "type": "singleData"
         },
         {
-          "api": "/section/setReadObtainScore",
-          "effect": "setReadObtainScore",
-          "service": "setReadObtainScoreData",
-          "type": "singleData"
-        },
-        {
+          "title": "刷新缓存",
           "api": "/section/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "设置阅读积分发放",
+          "api": "/section/setReadObtainScore",
+          "effect": "setReadObtainScore",
+          "service": "setReadObtainScoreData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传图片文件",
+          "api": "/section/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传视频文件",
+          "api": "/section/uploadVideo",
+          "effect": "uploadVideo",
+          "service": "uploadVideoData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传音频文件",
+          "api": "/section/uploadAudio",
+          "effect": "uploadAudio",
+          "service": "uploadAudioData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传附件文件",
+          "api": "/section/uploadFile",
+          "effect": "uploadFile",
+          "service": "uploadFileData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传附件文件[转换为Base64]",
+          "api": "/section/uploadFileBase64",
+          "effect": "uploadFileBase64",
+          "service": "uploadFileBase64Data",
+          "type": "singleData"
+        },
+        {
+          "title": "获取媒体条目",
           "api": "/section/getMediaItem",
           "effect": "getMediaItem",
           "service": "getMediaItemData",
           "type": "singleData"
         },
         {
+          "title": "增加媒体条目",
           "api": "/section/addMediaItem",
           "effect": "addMediaItem",
           "service": "addMediaItemData",
           "type": "singleData"
         },
         {
+          "title": "更新媒体条目",
           "api": "/section/updateMediaItem",
           "effect": "updateMediaItem",
           "service": "updateMediaItemData",
           "type": "singleData"
         },
         {
+          "title": "设置媒体条目顺序",
           "api": "/section/setMediaCollectionSort",
           "effect": "setMediaCollectionSort",
           "service": "setMediaCollectionSortData",
           "type": "singleData"
         },
         {
+          "title": "移除媒体条目",
           "api": "/section/removeMediaItem",
           "effect": "removeMediaItem",
           "service": "removeMediaItemData",
           "type": "singleData"
         },
         {
+          "title": "操作日志列表",
           "api": "/section/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -1900,215 +1929,972 @@
         }
       ],
       "cover": true,
+      "title": "栏目管理",
       "name": "section"
     },
     {
       "apis": [
         {
+          "title": "分页列表",
           "api": "/sectionApplicationConfig/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "获取详情",
           "api": "/sectionApplicationConfig/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
+          "title": "新增基础信息",
           "api": "/sectionApplicationConfig/addBasicInfo",
           "effect": "addBasicInfo",
           "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "更新基础信息",
           "api": "/sectionApplicationConfig/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/sectionApplicationConfig/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
+          "title": "刷新缓存",
           "api": "/sectionApplicationConfig/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
-          "api": "/section/getConfigItem",
+          "title": "移除栏目应用配置",
+          "api": "/sectionApplicationConfig/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取栏目应用条目",
+          "api": "/sectionApplicationConfig/getConfigItem",
           "effect": "getConfigItem",
           "service": "getConfigItemData",
           "type": "singleData"
         },
         {
-          "api": "/section/addConfigItem",
+          "title": "增加栏目应用条目",
+          "api": "/sectionApplicationConfig/addConfigItem",
           "effect": "addConfigItem",
           "service": "addConfigItemData",
           "type": "singleData"
         },
         {
-          "api": "/section/updateConfigItem",
+          "title": "更新栏目应用条目",
+          "api": "/sectionApplicationConfig/updateConfigItem",
           "effect": "updateConfigItem",
           "service": "updateConfigItemData",
           "type": "singleData"
         },
         {
-          "api": "/section/removeConfigItem",
+          "title": "移除栏目应用条目",
+          "api": "/sectionApplicationConfig/removeConfigItem",
           "effect": "removeConfigItem",
           "service": "removeConfigItemData",
           "type": "singleData"
         },
         {
-          "api": "/section/pageListOperateLog",
+          "title": "操作日志列表",
+          "api": "/sectionApplicationConfig/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
           "type": "pageList"
         }
       ],
       "cover": true,
+      "title": "栏目应用配置管理",
       "name": "sectionApplicationConfig"
     },
     {
       "apis": [
         {
-          "api": "/yonYouPushMessage/pageList",
+          "title": "分页列表",
+          "api": "/smsCategory/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/yonYouPushMessage/get",
+          "title": "获取详情",
+          "api": "/smsCategory/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/yonYouPushMessage/refreshCache",
+          "title": "新建分类",
+          "api": "/smsCategory/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "编辑信息",
+          "api": "/smsCategory/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为启用",
+          "api": "/smsCategory/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为停用",
+          "api": "/smsCategory/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除角色",
+          "api": "/smsCategory/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/smsCategory/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "短信类别管理",
+      "name": "smsCategory"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/smsCategoryStatistic/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/smsCategoryStatistic/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "短信统计管理",
+      "name": "smsCategoryStatistic"
+    },
+    {
+      "apis": [
+        {
+          "title": "",
+          "api": "/smsLog/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "",
+      "name": "smsLog"
+    },
+    {
+      "apis": [
+        {
+          "title": "",
+          "api": "/smsStatistic/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "",
+      "name": "smsStatistic"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/sqlLog/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/sqlLog/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除日志",
+          "api": "/sqlLog/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "批量删除日志",
+          "api": "/sqlLog/removeMulti",
+          "effect": "removeMulti",
+          "service": "removeMultiData",
+          "type": "singleData"
+        },
+        {
+          "title": "全量删除日志",
+          "api": "/sqlLog/removeAll",
+          "effect": "removeAll",
+          "service": "removeAllData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "SQL执行日志",
+      "name": "sqlLog"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/subsidiary/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "单页列表",
+          "api": "/subsidiary/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "单页树型列表",
+          "api": "/subsidiary/singleTreeList",
+          "effect": "singleTreeList",
+          "service": "singleTreeListData",
+          "type": "singleList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/subsidiary/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新信息",
+          "api": "/subsidiary/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新信息",
+          "api": "/subsidiary/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新上级公司",
+          "api": "/subsidiary/updateParentId",
+          "effect": "updateParentId",
+          "service": "updateParentIdData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新排序值",
+          "api": "/subsidiary/updateSort",
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为启用",
+          "api": "/subsidiary/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为禁用",
+          "api": "/subsidiary/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/subsidiary/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
-          "api": "/yonYouPushMessage/pageListOperateLog",
+          "title": "上传图片文件",
+          "api": "/subsidiary/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/subsidiary/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
           "type": "pageList"
         }
       ],
       "cover": true,
-      "name": "yonYouPushMessage"
+      "title": "公司管理",
+      "name": "subsidiary"
     },
     {
       "apis": [
         {
-          "api": "/yonYouImportHistory/pageList",
+          "title": "标签列表",
+          "api": "/tag/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/yonYouImportHistory/get",
+          "title": "标签详情",
+          "api": "/tag/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/yonYouImportHistory/importFile",
-          "effect": "importFile",
-          "service": "importFileData",
+          "title": "更新信息",
+          "api": "/tag/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/yonYouImportHistory/setMapConfig",
-          "effect": "setMapConfig",
-          "service": "setMapConfigData",
+          "title": "更新信息",
+          "api": "/tag/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/yonYouImportHistory/refreshCache",
+          "title": "更新色值",
+          "api": "/tag/updateColor",
+          "effect": "updateColor",
+          "service": "updateColorData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新适用类别",
+          "api": "/tag/updateType",
+          "effect": "updateType",
+          "service": "updateTypeData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新排序值",
+          "api": "/tag/updateSort",
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换推荐状态",
+          "api": "/tag/toggleRecommend",
+          "effect": "toggleRecommend",
+          "service": "toggleRecommendData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为启用",
+          "api": "/tag/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为禁用",
+          "api": "/tag/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除标签",
+          "api": "/tag/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/tag/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
-          "api": "/yonYouImportHistory/pageListOperateLog",
+          "title": "",
+          "api": "/tag/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/tag/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
           "type": "pageList"
         }
       ],
       "cover": true,
-      "name": "yonYouImportHistory"
+      "title": "标签管理",
+      "name": "tag"
     },
     {
       "apis": [
         {
+          "title": "分页列表",
+          "api": "/uploadHistory/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/uploadHistory/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除上传",
+          "api": "/uploadHistory/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/uploadHistory/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传图片",
+          "api": "/uploadHistory/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传视频",
+          "api": "/uploadHistory/uploadVideo",
+          "effect": "uploadVideo",
+          "service": "uploadVideoData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传音频",
+          "api": "/uploadHistory/uploadAudio",
+          "effect": "uploadAudio",
+          "service": "uploadAudioData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传文件",
+          "api": "/uploadHistory/uploadFile",
+          "effect": "uploadFile",
+          "service": "uploadFileData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "上传历史",
+      "name": "uploadHistory"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/user/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/user/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增用户",
+          "api": "/user/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新信息",
+          "api": "/user/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置上级用户",
+          "api": "/user/updateParent",
+          "effect": "updateParent",
+          "service": "updateParentData",
+          "type": "singleData"
+        },
+        {
+          "title": "清楚上级用户设置",
+          "api": "/user/clearParent",
+          "effect": "clearParent",
+          "service": "clearParentData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置印章",
+          "api": "/user/setSignet",
+          "effect": "setSignet",
+          "service": "setSignetData",
+          "type": "singleData"
+        },
+        {
+          "title": "开启印章密码开关",
+          "api": "/user/openSignetPasswordSwitch",
+          "effect": "openSignetPasswordSwitch",
+          "service": "openSignetPasswordSwitchData",
+          "type": "singleData"
+        },
+        {
+          "title": "关闭印章密码开关",
+          "api": "/user/closeSignetPasswordSwitch",
+          "effect": "closeSignetPasswordSwitch",
+          "service": "closeSignetPasswordSwitchData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换印章密码开关",
+          "api": "/user/toggleSignetPasswordSwitch",
+          "effect": "toggleSignetPasswordSwitch",
+          "service": "toggleSignetPasswordSwitchData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为启用",
+          "api": "/user/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为禁用",
+          "api": "/user/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "重置印章密码",
+          "api": "/user/resetSignetPassword",
+          "effect": "resetSignetPassword",
+          "service": "resetSignetPasswordData",
+          "type": "singleData"
+        },
+        {
+          "title": "重置登录密码",
+          "api": "/user/resetPassword",
+          "effect": "resetPassword",
+          "service": "resetPasswordData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新权限",
+          "api": "/user/changePermission",
+          "effect": "changePermission",
+          "service": "changePermissionData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除用户",
+          "api": "/user/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/user/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "",
+          "api": "/user/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/user/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "用户信息",
+      "name": "user"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/userDepartmentInfo/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/userDepartmentInfo/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增绑定",
+          "api": "/userDepartmentInfo/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置主要关系",
+          "api": "/userDepartmentInfo/setPrimary",
+          "effect": "setPrimary",
+          "service": "setPrimaryData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除绑定",
+          "api": "/userDepartmentInfo/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/userDepartmentInfo/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "用户部门关系绑定",
+      "name": "userDepartmentInfo"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/userDevice/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/userDevice/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增设备",
+          "api": "/userDevice/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除设备",
+          "api": "/userDevice/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/userDevice/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/userDevice/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "用户设备",
+      "name": "userDevice"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/userSubsidiaryInfo/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/userSubsidiaryInfo/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增信息",
+          "api": "/userSubsidiaryInfo/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置主要关系",
+          "api": "/userSubsidiaryInfo/setPrimary",
+          "effect": "setPrimary",
+          "service": "setPrimaryData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除绑定",
+          "api": "/userSubsidiaryInfo/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/userSubsidiaryInfo/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "用户子公司关系绑定",
+      "name": "userSubsidiaryInfo"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/userYonYouCorrelation/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/userYonYouCorrelation/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新信息",
+          "api": "/userYonYouCorrelation/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "导入数据项",
+          "api": "/userYonYouCorrelation/import",
+          "effect": "import",
+          "service": "importData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新信息",
+          "api": "/userYonYouCorrelation/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为启用",
+          "api": "/userYonYouCorrelation/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为禁用",
+          "api": "/userYonYouCorrelation/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/userYonYouCorrelation/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "测试存在性",
+          "api": "/userYonYouCorrelation/testExist",
+          "effect": "testExist",
+          "service": "testExistData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/userYonYouCorrelation/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "用友用户信息绑定",
+      "name": "userYonYouCorrelation"
+    },
+    {
+      "apis": [
+        {
+          "title": "",
+          "api": "/weChatMessageRecord/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "",
+          "api": "/weChatMessageRecord/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "",
+      "name": "weChatMessageRecord"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
           "api": "/workflow/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "获取详情",
           "api": "/workflow/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/workflow/addOfficeAutomationProcessApproval",
-          "effect": "addOfficeAutomationProcessApproval",
-          "service": "addOfficeAutomationProcessApprovalData",
-          "type": "singleData"
-        },
-        {
+          "title": "新建OA文章审核流程",
           "api": "/workflow/addOfficeAutomationArticleAudit",
           "effect": "addOfficeAutomationArticleAudit",
           "service": "addOfficeAutomationArticleAuditData",
           "type": "singleData"
         },
         {
+          "title": "新建OA审批流程",
+          "api": "/workflow/addOfficeAutomationProcessApproval",
+          "effect": "addOfficeAutomationProcessApproval",
+          "service": "addOfficeAutomationProcessApprovalData",
+          "type": "singleData"
+        },
+        {
+          "title": "编辑信息",
           "api": "/workflow/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "更改渠道值，仅用于特殊情况",
           "api": "/workflow/setChannel",
           "effect": "setChannel",
           "service": "setChannelData",
           "type": "singleData"
         },
         {
+          "title": "设为启用",
           "api": "/workflow/setEnable",
           "effect": "setEnable",
           "service": "setEnableData",
           "type": "singleData"
         },
         {
+          "title": "设为禁用",
           "api": "/workflow/setDisable",
           "effect": "setDisable",
           "service": "setDisableData",
           "type": "singleData"
         },
         {
-          "api": "/workflow/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
+          "title": "刷新缓存",
           "api": "/workflow/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "删除",
+          "api": "/workflow/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
           "api": "/workflow/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -2116,431 +2902,174 @@
         }
       ],
       "cover": true,
+      "title": "流程管理",
       "name": "workflow"
     },
     {
       "apis": [
         {
-          "api": "/workflowNode/pageList",
+          "title": "分页列表",
+          "api": "/workflowBranchCondition/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/workflowNode/singleList",
-          "effect": "singleList",
-          "service": "singleListData",
-          "type": "singleList"
-        },
-        {
-          "api": "/workflowNode/getTree",
-          "effect": "getTree",
-          "service": "getTreeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNode/get",
+          "title": "获取详情",
+          "api": "/workflowBranchCondition/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/workflowNode/addStartPoint",
-          "effect": "addStartPoint",
-          "service": "addStartPointData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNode/addIntermediatePoint",
-          "effect": "addIntermediatePoint",
-          "service": "addIntermediatePointData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNode/addEndPoint",
-          "effect": "addEndPoint",
-          "service": "addEndPointData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNode/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNode/updateViewConfig",
-          "effect": "updateViewConfig",
-          "service": "updateViewConfigData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNode/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNode/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNode/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "workflowNode"
-    },
-    {
-      "apis": [
-        {
-          "api": "/workflowNodeApprover/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/workflowNodeApprover/singleList",
-          "effect": "singleList",
-          "service": "singleListData",
-          "type": "singleList"
-        },
-        {
-          "api": "/workflowNodeApprover/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNodeApprover/addBasicInfo",
+          "title": "新建流程节点分支条件",
+          "api": "/workflowBranchCondition/addBasicInfo",
           "effect": "addBasicInfo",
           "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/workflowNodeApprover/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNodeApprover/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowNodeApprover/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "workflowNodeApprover"
-    },
-    {
-      "apis": [
-        {
-          "api": "/workflowLine/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/workflowLine/singleList",
-          "effect": "singleList",
-          "service": "singleListData",
-          "type": "singleList"
-        },
-        {
-          "api": "/workflowLine/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowLine/createLine",
-          "effect": "createLine",
-          "service": "createLineData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowLine/updateLine",
-          "effect": "updateLine",
-          "service": "updateLineData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowLine/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowLine/removeAll",
-          "effect": "removeAll",
-          "service": "removeAllData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowLine/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowLine/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "workflowLine"
-    },
-    {
-      "apis": [
-        {
-          "api": "/workflowFormDesign/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/workflowFormDesign/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowFormDesign/getByWorkflow",
-          "effect": "getByWorkflow",
-          "service": "getByWorkflowData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowFormDesign/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowFormDesign/updateBasicInfo",
+          "title": "编辑信息",
+          "api": "/workflowBranchCondition/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/workflowFormDesign/updateDocumentSchema",
-          "effect": "updateDocumentSchema",
-          "service": "updateDocumentSchemaData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowFormDesign/updateRemarkSchema",
-          "effect": "updateRemarkSchema",
-          "service": "updateRemarkSchemaData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowFormDesign/refreshCache",
+          "title": "刷新缓存",
+          "api": "/workflowBranchCondition/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
-          "api": "/workflowFormDesign/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "workflowFormDesign"
-    },
-    {
-      "apis": [
-        {
-          "api": "/workflowRangeEffectiveSubsidiaryRelation/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/workflowRangeEffectiveSubsidiaryRelation/singleList",
-          "effect": "singleList",
-          "service": "singleListData",
-          "type": "singleList"
-        },
-        {
-          "api": "/workflowRangeEffectiveSubsidiaryRelation/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowRangeEffectiveSubsidiaryRelation/add",
-          "effect": "add",
-          "service": "addData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowRangeEffectiveSubsidiaryRelation/remove",
+          "title": "删除",
+          "api": "/workflowBranchCondition/remove",
           "effect": "remove",
           "service": "removeData",
           "type": "singleData"
         },
         {
-          "api": "/workflowRangeEffectiveSubsidiaryRelation/removeAll",
-          "effect": "removeAll",
-          "service": "removeAllData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowRangeEffectiveSubsidiaryRelation/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowRangeEffectiveSubsidiaryRelation/pageListOperateLog",
+          "title": "操作日志列表",
+          "api": "/workflowBranchCondition/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
           "type": "pageList"
         }
       ],
       "cover": true,
-      "name": "workflowRangeEffectiveSubsidiaryRelation"
+      "title": "",
+      "name": "workflowBranchCondition"
     },
     {
       "apis": [
         {
-          "api": "/workflowRangeEffectiveExternalDepartmentRelation/pageList",
+          "title": "分页列表",
+          "api": "/workflowBranchConditionItem/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/workflowRangeEffectiveExternalDepartmentRelation/singleList",
-          "effect": "singleList",
-          "service": "singleListData",
-          "type": "singleList"
-        },
-        {
-          "api": "/workflowRangeEffectiveExternalDepartmentRelation/get",
+          "title": "获取详情",
+          "api": "/workflowBranchConditionItem/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/workflowRangeEffectiveExternalDepartmentRelation/add",
-          "effect": "add",
-          "service": "addData",
+          "title": "新建流程节点分支条件项",
+          "api": "/workflowBranchConditionItem/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/workflowRangeEffectiveExternalDepartmentRelation/remove",
-          "effect": "remove",
-          "service": "removeData",
+          "title": "编辑信息",
+          "api": "/workflowBranchConditionItem/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/workflowRangeEffectiveExternalDepartmentRelation/removeAll",
-          "effect": "removeAll",
-          "service": "removeAllData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowRangeEffectiveExternalDepartmentRelation/refreshCache",
+          "title": "刷新缓存",
+          "api": "/workflowBranchConditionItem/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
-          "api": "/workflowRangeEffectiveExternalDepartmentRelation/pageListOperateLog",
+          "title": "删除",
+          "api": "/workflowBranchConditionItem/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/workflowBranchConditionItem/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
           "type": "pageList"
         }
       ],
       "cover": true,
-      "name": "workflowRangeEffectiveExternalDepartmentRelation"
+      "title": "",
+      "name": "workflowBranchConditionItem"
     },
     {
       "apis": [
         {
+          "title": "分页列表",
           "api": "/workflowCase/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "获取详情",
           "api": "/workflowCase/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/workflowCase/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCase/updateBasicInfo",
-          "effect": "updateBasicInfo",
-          "service": "updateBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCase/submitForm",
-          "effect": "submitForm",
-          "service": "submitFormData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCase/submitApproval",
-          "effect": "submitApproval",
-          "service": "submitApprovalData",
-          "type": "singleData"
-        },
-        {
+          "title": "开启撤销审批功能",
           "api": "/workflowCase/openCancelApproveSwitch",
           "effect": "openCancelApproveSwitch",
           "service": "openCancelApproveSwitchData",
           "type": "singleData"
         },
         {
+          "title": "关闭撤销审批功能",
           "api": "/workflowCase/closeCancelApproveSwitch",
           "effect": "closeCancelApproveSwitch",
           "service": "closeCancelApproveSwitchData",
           "type": "singleData"
         },
         {
+          "title": "开启重置审批功能",
           "api": "/workflowCase/openResetAllApproveSwitch",
           "effect": "openResetAllApproveSwitch",
           "service": "openResetAllApproveSwitchData",
           "type": "singleData"
         },
         {
+          "title": "关闭重置审批功能",
           "api": "/workflowCase/closeResetAllApproveSwitch",
           "effect": "closeResetAllApproveSwitch",
           "service": "closeResetAllApproveSwitchData",
           "type": "singleData"
         },
         {
+          "title": "刷新缓存",
           "api": "/workflowCase/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "操作日志列表",
           "api": "/workflowCase/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -2548,47 +3077,90 @@
         }
       ],
       "cover": true,
+      "title": "流程实例管理",
       "name": "workflowCase"
     },
     {
       "apis": [
         {
+          "title": "分页列表",
+          "api": "/workflowCaseFormAttachment/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "流程表单附件单页列表",
+          "api": "/workflowCaseFormAttachment/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "流程表单附件详情",
+          "api": "/workflowCaseFormAttachment/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/workflowCaseFormAttachment/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/workflowCaseFormAttachment/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        },
+        {
+          "title": "",
+          "api": "/workflowCaseFormAttachment/uploadFile",
+          "effect": "uploadFile",
+          "service": "uploadFileData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "流程表单附件管理",
+      "name": "workflowCaseFormAttachment"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
           "api": "/workflowCaseFormStorage/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "单页列表",
           "api": "/workflowCaseFormStorage/singleList",
           "effect": "singleList",
           "service": "singleListData",
           "type": "singleList"
         },
         {
+          "title": "获取详情",
           "api": "/workflowCaseFormStorage/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/workflowCaseFormStorage/set",
-          "effect": "set",
-          "service": "setData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCaseFormStorage/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
+          "title": "刷新缓存",
           "api": "/workflowCaseFormStorage/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "操作日志列表",
           "api": "/workflowCaseFormStorage/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -2596,101 +3168,41 @@
         }
       ],
       "cover": true,
+      "title": "流程表单存储管理",
       "name": "workflowCaseFormStorage"
     },
     {
       "apis": [
         {
-          "api": "/workflowCaseFormAttachment/pageList",
-          "effect": "pageList",
-          "service": "pageListData",
-          "type": "pageList"
-        },
-        {
-          "api": "/workflowCaseFormAttachment/singleList",
-          "effect": "singleList",
-          "service": "singleListData",
-          "type": "singleList"
-        },
-        {
-          "api": "/workflowCaseFormAttachment/get",
-          "effect": "get",
-          "service": "getData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCaseFormAttachment/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCaseFormAttachment/remove",
-          "effect": "remove",
-          "service": "removeData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCaseFormAttachment/refreshCache",
-          "effect": "refreshCache",
-          "service": "refreshCacheData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCaseFormAttachment/pageListOperateLog",
-          "effect": "pageListOperateLog",
-          "service": "pageListOperateLogData",
-          "type": "pageList"
-        }
-      ],
-      "cover": true,
-      "name": "workflowCaseFormAttachment"
-    },
-    {
-      "apis": [
-        {
+          "title": "分页列表",
           "api": "/workflowCaseProcessHistory/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "获取详情",
           "api": "/workflowCaseProcessHistory/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/workflowCaseProcessHistory/pass",
-          "effect": "pass",
-          "service": "passData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCaseProcessHistory/refuse",
-          "effect": "refuse",
-          "service": "refuseData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowCaseProcessHistory/cancelApprove",
-          "effect": "cancelApprove",
-          "service": "cancelApproveData",
-          "type": "singleData"
-        },
-        {
+          "title": "重置审批至起点",
           "api": "/workflowCaseProcessHistory/resetAllApprove",
           "effect": "resetAllApprove",
           "service": "resetAllApproveData",
           "type": "singleData"
         },
         {
+          "title": "刷新缓存",
           "api": "/workflowCaseProcessHistory/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "操作日志列表",
           "api": "/workflowCaseProcessHistory/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -2698,89 +3210,104 @@
         }
       ],
       "cover": true,
+      "title": "工作流实例审批历史管理",
       "name": "workflowCaseProcessHistory"
     },
     {
       "apis": [
         {
+          "title": "分页列表",
           "api": "/workflowDebugCase/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "已审批流程实例分页列表",
           "api": "/workflowDebugCase/pageListLatestApprove",
           "effect": "pageListLatestApprove",
           "service": "pageListLatestApproveData",
           "type": "pageList"
         },
         {
+          "title": "待审批流程实例分页列表",
           "api": "/workflowDebugCase/pageListWaitApprove",
           "effect": "pageListWaitApprove",
           "service": "pageListWaitApproveData",
           "type": "pageList"
         },
         {
+          "title": "获取详情",
           "api": "/workflowDebugCase/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
+          "title": "通过流程设计获取流程测试实例详情",
           "api": "/workflowDebugCase/getByWorkflow",
           "effect": "getByWorkflow",
           "service": "getByWorkflowData",
           "type": "singleData"
         },
         {
+          "title": "更新流程测试实例",
           "api": "/workflowDebugCase/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
           "type": "singleData"
         },
         {
+          "title": "提交表单信息",
           "api": "/workflowDebugCase/submitForm",
           "effect": "submitForm",
           "service": "submitFormData",
           "type": "singleData"
         },
         {
+          "title": "提交审核",
           "api": "/workflowDebugCase/submitApproval",
           "effect": "submitApproval",
           "service": "submitApprovalData",
           "type": "singleData"
         },
         {
+          "title": "开启撤销审批功能",
           "api": "/workflowDebugCase/openCancelApproveSwitch",
           "effect": "openCancelApproveSwitch",
           "service": "openCancelApproveSwitchData",
           "type": "singleData"
         },
         {
+          "title": "关闭撤销审批功能",
           "api": "/workflowDebugCase/closeCancelApproveSwitch",
           "effect": "closeCancelApproveSwitch",
           "service": "closeCancelApproveSwitchData",
           "type": "singleData"
         },
         {
+          "title": "开启重置审批功能",
           "api": "/workflowDebugCase/openResetAllApproveSwitch",
           "effect": "openResetAllApproveSwitch",
           "service": "openResetAllApproveSwitchData",
           "type": "singleData"
         },
         {
+          "title": "关闭重置审批功能",
           "api": "/workflowDebugCase/closeResetAllApproveSwitch",
           "effect": "closeResetAllApproveSwitch",
           "service": "closeResetAllApproveSwitchData",
           "type": "singleData"
         },
         {
+          "title": "刷新缓存",
           "api": "/workflowDebugCase/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "操作日志列表",
           "api": "/workflowDebugCase/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -2788,101 +3315,118 @@
         }
       ],
       "cover": true,
+      "title": "流程测试实例管理",
       "name": "workflowDebugCase"
     },
     {
       "apis": [
         {
-          "api": "/workflowDebugCaseProcessHistory/pageList",
+          "title": "分页列表",
+          "api": "/workflowDebugCaseFormAttachment/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/workflowDebugCaseProcessHistory/get",
+          "title": "单页列表",
+          "api": "/workflowDebugCaseFormAttachment/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/workflowDebugCaseFormAttachment/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/workflowDebugCaseProcessHistory/pass",
-          "effect": "pass",
-          "service": "passData",
+          "title": "增加流程测试表单存储",
+          "api": "/workflowDebugCaseFormAttachment/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
           "type": "singleData"
         },
         {
-          "api": "/workflowDebugCaseProcessHistory/refuse",
-          "effect": "refuse",
-          "service": "refuseData",
+          "title": "删除",
+          "api": "/workflowDebugCaseFormAttachment/remove",
+          "effect": "remove",
+          "service": "removeData",
           "type": "singleData"
         },
         {
-          "api": "/workflowDebugCaseProcessHistory/cancelApprove",
-          "effect": "cancelApprove",
-          "service": "cancelApproveData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowDebugCaseProcessHistory/resetAllApprove",
-          "effect": "resetAllApprove",
-          "service": "resetAllApproveData",
-          "type": "singleData"
-        },
-        {
-          "api": "/workflowDebugCaseProcessHistory/refreshCache",
+          "title": "刷新缓存",
+          "api": "/workflowDebugCaseFormAttachment/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
-          "api": "/workflowDebugCaseProcessHistory/pageListOperateLog",
+          "title": "操作日志列表",
+          "api": "/workflowDebugCaseFormAttachment/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
           "type": "pageList"
+        },
+        {
+          "title": "",
+          "api": "/workflowDebugCaseFormAttachment/uploadFile",
+          "effect": "uploadFile",
+          "service": "uploadFileData",
+          "type": "singleData"
         }
       ],
       "cover": true,
-      "name": "workflowDebugCaseProcessHistory"
+      "title": "流程测试表单附件管理",
+      "name": "workflowDebugCaseFormAttachment"
     },
     {
       "apis": [
         {
+          "title": "分页列表",
           "api": "/workflowDebugCaseFormStorage/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
+          "title": "单页列表",
           "api": "/workflowDebugCaseFormStorage/singleList",
           "effect": "singleList",
           "service": "singleListData",
           "type": "singleList"
         },
         {
+          "title": "获取详情",
           "api": "/workflowDebugCaseFormStorage/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
+          "title": "设置流程测试表单存储",
           "api": "/workflowDebugCaseFormStorage/set",
           "effect": "set",
           "service": "setData",
           "type": "singleData"
         },
         {
+          "title": "删除",
           "api": "/workflowDebugCaseFormStorage/remove",
           "effect": "remove",
           "service": "removeData",
           "type": "singleData"
         },
         {
+          "title": "刷新缓存",
           "api": "/workflowDebugCaseFormStorage/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
+          "title": "操作日志列表",
           "api": "/workflowDebugCaseFormStorage/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
@@ -2890,55 +3434,575 @@
         }
       ],
       "cover": true,
+      "title": "流程测试表单存储管理",
       "name": "workflowDebugCaseFormStorage"
     },
     {
       "apis": [
         {
-          "api": "/workflowDebugCaseFormAttachment/pageList",
+          "title": "分页列表",
+          "api": "/workflowDebugCaseProcessHistory/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "api": "/workflowDebugCaseFormAttachment/singleList",
-          "effect": "singleList",
-          "service": "singleListData",
-          "type": "singleList"
-        },
-        {
-          "api": "/workflowDebugCaseFormAttachment/get",
+          "title": "获取详情",
+          "api": "/workflowDebugCaseProcessHistory/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
-          "api": "/workflowDebugCaseFormAttachment/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
+          "title": "通过",
+          "api": "/workflowDebugCaseProcessHistory/pass",
+          "effect": "pass",
+          "service": "passData",
           "type": "singleData"
         },
         {
-          "api": "/workflowDebugCaseFormAttachment/remove",
-          "effect": "remove",
-          "service": "removeData",
+          "title": "拒绝",
+          "api": "/workflowDebugCaseProcessHistory/refuse",
+          "effect": "refuse",
+          "service": "refuseData",
           "type": "singleData"
         },
         {
-          "api": "/workflowDebugCaseFormAttachment/refreshCache",
+          "title": "撤销审批",
+          "api": "/workflowDebugCaseProcessHistory/cancelApprove",
+          "effect": "cancelApprove",
+          "service": "cancelApproveData",
+          "type": "singleData"
+        },
+        {
+          "title": "重置审批至起点",
+          "api": "/workflowDebugCaseProcessHistory/resetAllApprove",
+          "effect": "resetAllApprove",
+          "service": "resetAllApproveData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/workflowDebugCaseProcessHistory/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
         },
         {
-          "api": "/workflowDebugCaseFormAttachment/pageListOperateLog",
+          "title": "操作日志列表",
+          "api": "/workflowDebugCaseProcessHistory/pageListOperateLog",
           "effect": "pageListOperateLog",
           "service": "pageListOperateLogData",
           "type": "pageList"
         }
       ],
       "cover": true,
-      "name": "workflowDebugCaseFormAttachment"
+      "title": "工作流测试实例审批历史管理",
+      "name": "workflowDebugCaseProcessHistory"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/workflowFormDesign/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/workflowFormDesign/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取流程表单设计详情",
+          "api": "/workflowFormDesign/getByWorkflow",
+          "effect": "getByWorkflow",
+          "service": "getByWorkflowData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加流程表单设计",
+          "api": "/workflowFormDesign/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新流程表单设计",
+          "api": "/workflowFormDesign/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新流程文档设计",
+          "api": "/workflowFormDesign/updateDocumentSchema",
+          "effect": "updateDocumentSchema",
+          "service": "updateDocumentSchemaData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新流程备注设计",
+          "api": "/workflowFormDesign/updateRemarkSchema",
+          "effect": "updateRemarkSchema",
+          "service": "updateRemarkSchemaData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/workflowFormDesign/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/workflowFormDesign/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "流程表单设计管理",
+      "name": "workflowFormDesign"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/workflowLine/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "单页列表",
+          "api": "/workflowLine/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/workflowLine/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加流程线",
+          "api": "/workflowLine/createLine",
+          "effect": "createLine",
+          "service": "createLineData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新节点",
+          "api": "/workflowLine/updateLine",
+          "effect": "updateLine",
+          "service": "updateLineData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置流程线条的分支进入条件, 仅应在多分支流程中使用",
+          "api": "/workflowLine/setBranchConditionId",
+          "effect": "setBranchConditionId",
+          "service": "setBranchConditionIdData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除",
+          "api": "/workflowLine/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除全部",
+          "api": "/workflowLine/removeAll",
+          "effect": "removeAll",
+          "service": "removeAllData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/workflowLine/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/workflowLine/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "流程线管理",
+      "name": "workflowLine"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/workflowNode/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "单页列表",
+          "api": "/workflowNode/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/workflowNode/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加起始节点",
+          "api": "/workflowNode/addStartPoint",
+          "effect": "addStartPoint",
+          "service": "addStartPointData",
+          "type": "singleData"
+        },
+        {
+          "title": "新建环节节点",
+          "api": "/workflowNode/addIntermediatePoint",
+          "effect": "addIntermediatePoint",
+          "service": "addIntermediatePointData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加结束节点",
+          "api": "/workflowNode/addEndPoint",
+          "effect": "addEndPoint",
+          "service": "addEndPointData",
+          "type": "singleData"
+        },
+        {
+          "title": "编辑信息",
+          "api": "/workflowNode/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "编辑节点视图配置",
+          "api": "/workflowNode/updateViewConfig",
+          "effect": "updateViewConfig",
+          "service": "updateViewConfigData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除",
+          "api": "/workflowNode/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/workflowNode/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/workflowNode/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "流程节点管理",
+      "name": "workflowNode"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/workflowNodeApprover/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "单页列表",
+          "api": "/workflowNodeApprover/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/workflowNodeApprover/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加流程节点审批人",
+          "api": "/workflowNodeApprover/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除流程节点审批人",
+          "api": "/workflowNodeApprover/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/workflowNodeApprover/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/workflowNodeApprover/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "流程节点审批人管理",
+      "name": "workflowNodeApprover"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/workflowRangeEffectiveExternalDepartmentRelation/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "单页列表",
+          "api": "/workflowRangeEffectiveExternalDepartmentRelation/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/workflowRangeEffectiveExternalDepartmentRelation/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加工作流外部部门范围生效关系",
+          "api": "/workflowRangeEffectiveExternalDepartmentRelation/add",
+          "effect": "add",
+          "service": "addData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除",
+          "api": "/workflowRangeEffectiveExternalDepartmentRelation/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除全部",
+          "api": "/workflowRangeEffectiveExternalDepartmentRelation/removeAll",
+          "effect": "removeAll",
+          "service": "removeAllData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/workflowRangeEffectiveExternalDepartmentRelation/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/workflowRangeEffectiveExternalDepartmentRelation/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "工作流外部部门范围生效关系管理",
+      "name": "workflowRangeEffectiveExternalDepartmentRelation"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/workflowRangeEffectiveSubsidiaryRelation/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "单页列表",
+          "api": "/workflowRangeEffectiveSubsidiaryRelation/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/workflowRangeEffectiveSubsidiaryRelation/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "增加工作流子公司范围生效关系",
+          "api": "/workflowRangeEffectiveSubsidiaryRelation/add",
+          "effect": "add",
+          "service": "addData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除",
+          "api": "/workflowRangeEffectiveSubsidiaryRelation/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "删除全部",
+          "api": "/workflowRangeEffectiveSubsidiaryRelation/removeAll",
+          "effect": "removeAll",
+          "service": "removeAllData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/workflowRangeEffectiveSubsidiaryRelation/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/workflowRangeEffectiveSubsidiaryRelation/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "工作流公司范围生效关系管理",
+      "name": "workflowRangeEffectiveSubsidiaryRelation"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/yonYouImportHistory/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/yonYouImportHistory/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "导入文件",
+          "api": "/yonYouImportHistory/importFile",
+          "effect": "importFile",
+          "service": "importFileData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置键值映射",
+          "api": "/yonYouImportHistory/setMapConfig",
+          "effect": "setMapConfig",
+          "service": "setMapConfigData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/yonYouImportHistory/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/yonYouImportHistory/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "用友数据导入",
+      "name": "yonYouImportHistory"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/yonYouPushMessage/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/yonYouPushMessage/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/yonYouPushMessage/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传图片",
+          "api": "/yonYouPushMessage/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/yonYouPushMessage/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "用友消息推送",
+      "name": "yonYouPushMessage"
     }
   ]
 }

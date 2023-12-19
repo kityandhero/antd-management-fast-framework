@@ -9,7 +9,6 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  addBasicInfoData,
   addCustomGlobalDataItemData,
   getArticleNotificationConfigData,
   getCheckInConfigData,
@@ -38,6 +37,11 @@ import {
   updateMessageChannelApplicationInfoData,
   updateWeChatApplicationInfoData,
   updateWeChatPayCertificateInfoData,
+  uploadAudioData,
+  uploadCertificateData,
+  uploadFileData,
+  uploadImageData,
+  uploadVideoData,
 } from '../services/application';
 
 export function buildModel() {
@@ -289,32 +293,6 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *addBasicInfo(
-        {
-          payload,
-          alias,
-          pretreatmentSuccessCallback,
-          pretreatmentFailCallback,
-        },
-        { call, put },
-      ) {
-        const response = yield call(addBasicInfoData, payload);
-
-        const dataAdjust = pretreatmentRemoteSingleData({
-          source: response,
-          successCallback: pretreatmentSuccessCallback || null,
-          failCallback: pretreatmentFailCallback || null,
-        });
-
-        yield put({
-          type: reducerNameCollection.reducerRemoteData,
-          payload: dataAdjust,
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        return dataAdjust;
-      },
       *updateBasicInfo(
         {
           payload,
@@ -451,32 +429,6 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *setOwn(
-        {
-          payload,
-          alias,
-          pretreatmentSuccessCallback,
-          pretreatmentFailCallback,
-        },
-        { call, put },
-      ) {
-        const response = yield call(setOwnData, payload);
-
-        const dataAdjust = pretreatmentRemoteSingleData({
-          source: response,
-          successCallback: pretreatmentSuccessCallback || null,
-          failCallback: pretreatmentFailCallback || null,
-        });
-
-        yield put({
-          type: reducerNameCollection.reducerRemoteData,
-          payload: dataAdjust,
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        return dataAdjust;
-      },
       *setStart(
         {
           payload,
@@ -529,6 +481,32 @@ export function buildModel() {
 
         return dataAdjust;
       },
+      *setOwn(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(setOwnData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
       *testJiGuangSendDevice(
         {
           payload,
@@ -555,7 +533,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *testSendWechatUniformMessage(
+      *testSendWechatTemplateMessage(
         {
           payload,
           alias,
@@ -564,7 +542,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(testSendWechatUniformMessageData, payload);
+        const response = yield call(testSendWechatTemplateMessageData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -581,7 +559,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *testSendWechatTemplateMessage(
+      *testSendWechatUniformMessage(
         {
           payload,
           alias,
@@ -590,7 +568,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(testSendWechatTemplateMessageData, payload);
+        const response = yield call(testSendWechatUniformMessageData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -643,6 +621,136 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(refreshCacheData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *uploadImage(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(uploadImageData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *uploadVideo(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(uploadVideoData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *uploadAudio(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(uploadAudioData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *uploadFile(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(uploadFileData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *uploadCertificate(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(uploadCertificateData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

@@ -1,6 +1,6 @@
 import {
   getTacitlyState,
-  pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -23,6 +23,7 @@ import {
   updateSecretKeyInfoData,
   updateSmsInfoData,
   updateYonYouKeyInfoData,
+  uploadImageData,
 } from '../services/currentManagement';
 
 export function buildModel() {
@@ -45,7 +46,7 @@ export function buildModel() {
       ) {
         const response = yield call(pageListDefaultImageData, payload);
 
-        const dataAdjust = pretreatmentRemoteListData({
+        const dataAdjust = pretreatmentRemotePageListData({
           source: response,
           successCallback: pretreatmentSuccessCallback || null,
           failCallback: pretreatmentFailCallback || null,
@@ -408,6 +409,32 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(testSecretKeyData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *uploadImage(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(uploadImageData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

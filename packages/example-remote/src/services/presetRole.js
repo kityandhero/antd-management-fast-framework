@@ -152,3 +152,13 @@ export async function refreshCacheData(parameters) {
     params: parameters,
   });
 }
+
+export const pageListOperateLogDataApiAddress =
+  '/presetRole/pageListOperateLog';
+
+export async function pageListOperateLogData(parameters) {
+  return request({
+    api: pageListOperateLogDataApiAddress,
+    params: parameters,
+  });
+}

@@ -18,15 +18,6 @@ export async function singleListData(parameters) {
   });
 }
 
-export const getTreeDataApiAddress = '/workflowNode/getTree';
-
-export async function getTreeData(parameters) {
-  return request({
-    api: getTreeDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const getDataApiAddress = '/workflowNode/get';
 
 export async function getData(parameters) {

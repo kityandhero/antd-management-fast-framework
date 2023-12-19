@@ -12,6 +12,11 @@ export const fieldData = {
     name: 'name',
     helper: '',
   },
+  color: {
+    label: '色值',
+    name: 'color',
+    helper: '',
+  },
   displayName: {
     label: '显示名称',
     name: 'displayName',
@@ -51,6 +56,16 @@ export const fieldData = {
     label: '适用范围',
     name: 'businessModeNote',
     helper: '',
+  },
+  type: {
+    label: '类型',
+    name: 'type',
+    helper: '标签的类型',
+  },
+  typeNote: {
+    label: '类型',
+    name: 'typeNote',
+    helper: '标签的类型',
   },
   whetherRecommend: {
     label: '推荐',

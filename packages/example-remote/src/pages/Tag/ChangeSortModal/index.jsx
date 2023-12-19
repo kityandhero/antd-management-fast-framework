@@ -128,4 +128,4 @@ class ChangeSortModal extends BaseUpdateModal {
   };
 }
 
-export default ChangeSortModal;
+export { ChangeSortModal };

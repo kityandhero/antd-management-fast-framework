@@ -134,6 +134,7 @@ class Index extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '基本信息',
           },
+          hasExtra: true,
           extra: {
             affix: true,
             list: [

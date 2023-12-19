@@ -55,6 +55,7 @@ export * from './SmsLogStatus';
 export * from './SubsidiaryStatus';
 export * from './TagDisplayRange';
 export * from './TagStatus';
+export * from './TagType';
 export * from './UploadHistorySourceType';
 export * from './UploadHistoryStatus';
 export * from './UserDepartmentInfoStatus';

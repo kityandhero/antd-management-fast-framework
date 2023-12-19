@@ -9,15 +9,6 @@ export async function pageListData(parameters) {
   });
 }
 
-export const singleListDataApiAddress = '/userSubsidiaryInfo/singleList';
-
-export async function singleListData(parameters) {
-  return request({
-    api: singleListDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const getDataApiAddress = '/userSubsidiaryInfo/get';
 
 export async function getData(parameters) {

@@ -38,15 +38,6 @@ export async function updateBasicInfoData(parameters) {
   });
 }
 
-export const removeDataApiAddress = '/sectionApplicationConfig/remove';
-
-export async function removeData(parameters) {
-  return request({
-    api: removeDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const refreshCacheDataApiAddress =
   '/sectionApplicationConfig/refreshCache';
 
@@ -57,7 +48,17 @@ export async function refreshCacheData(parameters) {
   });
 }
 
-export const getConfigItemDataApiAddress = '/section/getConfigItem';
+export const removeDataApiAddress = '/sectionApplicationConfig/remove';
+
+export async function removeData(parameters) {
+  return request({
+    api: removeDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const getConfigItemDataApiAddress =
+  '/sectionApplicationConfig/getConfigItem';
 
 export async function getConfigItemData(parameters) {
   return request({
@@ -66,7 +67,8 @@ export async function getConfigItemData(parameters) {
   });
 }
 
-export const addConfigItemDataApiAddress = '/section/addConfigItem';
+export const addConfigItemDataApiAddress =
+  '/sectionApplicationConfig/addConfigItem';
 
 export async function addConfigItemData(parameters) {
   return request({
@@ -75,7 +77,8 @@ export async function addConfigItemData(parameters) {
   });
 }
 
-export const updateConfigItemDataApiAddress = '/section/updateConfigItem';
+export const updateConfigItemDataApiAddress =
+  '/sectionApplicationConfig/updateConfigItem';
 
 export async function updateConfigItemData(parameters) {
   return request({
@@ -84,7 +87,8 @@ export async function updateConfigItemData(parameters) {
   });
 }
 
-export const removeConfigItemDataApiAddress = '/section/removeConfigItem';
+export const removeConfigItemDataApiAddress =
+  '/sectionApplicationConfig/removeConfigItem';
 
 export async function removeConfigItemData(parameters) {
   return request({
@@ -93,7 +97,8 @@ export async function removeConfigItemData(parameters) {
   });
 }
 
-export const pageListOperateLogDataApiAddress = '/section/pageListOperateLog';
+export const pageListOperateLogDataApiAddress =
+  '/sectionApplicationConfig/pageListOperateLog';
 
 export async function pageListOperateLogData(parameters) {
   return request({

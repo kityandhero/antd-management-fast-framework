@@ -27,24 +27,6 @@ export async function getData(parameters) {
   });
 }
 
-export const setDataApiAddress = '/workflowCaseFormStorage/set';
-
-export async function setData(parameters) {
-  return request({
-    api: setDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const removeDataApiAddress = '/workflowCaseFormStorage/remove';
-
-export async function removeData(parameters) {
-  return request({
-    api: removeDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const refreshCacheDataApiAddress =
   '/workflowCaseFormStorage/refreshCache';
 

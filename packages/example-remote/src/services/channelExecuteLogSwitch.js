@@ -9,6 +9,24 @@ export async function pageListData(parameters) {
   });
 }
 
+export const singleListDataApiAddress = '/channelExecuteLogSwitch/singleList';
+
+export async function singleListData(parameters) {
+  return request({
+    api: singleListDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const getDataApiAddress = '/channelExecuteLogSwitch/get';
+
+export async function getData(parameters) {
+  return request({
+    api: getDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const updateKeyValueInfoDataApiAddress =
   '/channelExecuteLogSwitch/updateKeyValueInfo';
 

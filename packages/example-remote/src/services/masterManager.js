@@ -63,20 +63,20 @@ export async function setDisableData(parameters) {
   });
 }
 
-export const removeDataApiAddress = '/masterManager/remove';
-
-export async function removeData(parameters) {
-  return request({
-    api: removeDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const changePermissionDataApiAddress = '/masterManager/changePermission';
 
 export async function changePermissionData(parameters) {
   return request({
     api: changePermissionDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const removeDataApiAddress = '/masterManager/remove';
+
+export async function removeData(parameters) {
+  return request({
+    api: removeDataApiAddress,
     params: parameters,
   });
 }
@@ -96,6 +96,15 @@ export const pageListOperateLogDataApiAddress =
 export async function pageListOperateLogData(parameters) {
   return request({
     api: pageListOperateLogDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadImageDataApiAddress = '/masterManager/uploadImage';
+
+export async function uploadImageData(parameters) {
+  return request({
+    api: uploadImageDataApiAddress,
     params: parameters,
   });
 }

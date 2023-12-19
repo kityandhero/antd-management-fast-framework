@@ -85,6 +85,16 @@ export async function updateNavigationItemData(parameters) {
   });
 }
 
+export const setNavigationCollectionSortDataApiAddress =
+  '/applicationNavigation/setNavigationCollectionSort';
+
+export async function setNavigationCollectionSortData(parameters) {
+  return request({
+    api: setNavigationCollectionSortDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const removeNavigationItemDataApiAddress =
   '/applicationNavigation/removeNavigationItem';
 
@@ -95,12 +105,20 @@ export async function removeNavigationItemData(parameters) {
   });
 }
 
-export const setNavigationCollectionSortDataApiAddress =
-  '/applicationNavigation/setNavigationCollectionSort';
+export const uploadImageDataApiAddress = '/applicationNavigation/uploadImage';
 
-export async function setNavigationCollectionSortData(parameters) {
+export async function uploadImageData(parameters) {
   return request({
-    api: setNavigationCollectionSortDataApiAddress,
+    api: uploadImageDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadVideoDataApiAddress = '/applicationNavigation/uploadVideo';
+
+export async function uploadVideoData(parameters) {
+  return request({
+    api: uploadVideoDataApiAddress,
     params: parameters,
   });
 }

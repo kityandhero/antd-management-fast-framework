@@ -1,22 +1,29 @@
 import { appendExtraBuilder } from 'easy-soft-utility';
 
 import { buildModel as buildAccessWayModel } from './accessWay';
+import { buildModel as buildAdministrativeDivisionModel } from './administrativeDivision';
 import { buildModel as buildApplicationModel } from './application';
 import { buildModel as buildApplicationNavigationModel } from './applicationNavigation';
 import { buildModel as buildApplicationSourceModel } from './applicationSource';
 import { buildModel as buildApplicationVersionModel } from './applicationVersion';
+import { buildModel as buildArticleNotificationApplicationModel } from './articleNotificationApplication';
 import { buildModel as buildChannelExecuteLogSwitchModel } from './channelExecuteLogSwitch';
 import { buildModel as buildChannelSqlLogSwitchModel } from './channelSqlLogSwitch';
+import { buildModel as buildCloudStorageModel } from './cloudStorage';
 import { buildModel as buildCurrentAccountModel } from './currentAccount';
 import { buildModel as buildCurrentManagementModel } from './currentManagement';
 import { buildModel as buildDepartmentModel } from './department';
+import { buildModel as buildEditorModel } from './editor';
 import { buildModel as buildErrorLogModel } from './errorLog';
 import { buildModel as buildExecuteLogModel } from './executeLog';
 import { buildModel as buildGeneralLogModel } from './generalLog';
+import { buildModel as buildGovernmentAffairManagerModel } from './governmentAffairManager';
+import { buildModel as buildGovernmentAffairManagerRoleModel } from './governmentAffairManagerRole';
 import { buildModel as buildHostServiceModel } from './hostService';
 import { buildModel as buildHostServiceLogModel } from './hostServiceLog';
 import { buildModel as buildInternalTesterModel } from './internalTester';
 import { buildModel as buildMasterManagerModel } from './masterManager';
+import { buildModel as buildMetaDataModel } from './metaData';
 import { buildModel as buildOptionPoolModel } from './optionPool';
 import { buildModel as buildOrganizationModel } from './organization';
 import { buildModel as buildPresetRoleModel } from './presetRole';
@@ -25,6 +32,7 @@ import { buildModel as buildSectionApplicationConfigModel } from './sectionAppli
 import { buildModel as buildSmsCategoryModel } from './smsCategory';
 import { buildModel as buildSmsCategoryStatisticModel } from './smsCategoryStatistic';
 import { buildModel as buildSmsLogModel } from './smsLog';
+import { buildModel as buildSmsStatisticModel } from './smsStatistic';
 import { buildModel as buildSqlLogModel } from './sqlLog';
 import { buildModel as buildSubsidiaryModel } from './subsidiary';
 import { buildModel as buildTagModel } from './tag';
@@ -36,6 +44,8 @@ import { buildModel as buildUserSubsidiaryInfoModel } from './userSubsidiaryInfo
 import { buildModel as buildUserYonYouCorrelationModel } from './userYonYouCorrelation';
 import { buildModel as buildWeChatMessageRecordModel } from './weChatMessageRecord';
 import { buildModel as buildWorkflowModel } from './workflow';
+import { buildModel as buildWorkflowBranchConditionModel } from './workflowBranchCondition';
+import { buildModel as buildWorkflowBranchConditionItemModel } from './workflowBranchConditionItem';
 import { buildModel as buildWorkflowCaseModel } from './workflowCase';
 import { buildModel as buildWorkflowCaseFormAttachmentModel } from './workflowCaseFormAttachment';
 import { buildModel as buildWorkflowCaseFormStorageModel } from './workflowCaseFormStorage';
@@ -54,111 +64,131 @@ import { buildModel as buildYonYouImportHistoryModel } from './yonYouImportHisto
 import { buildModel as buildYonYouPushMessageModel } from './yonYouPushMessage';
 
 function collectModelBuilder() {
-  appendExtraBuilder(buildCurrentAccountModel);
-
-  appendExtraBuilder(buildCurrentManagementModel);
-
-  appendExtraBuilder(buildChannelSqlLogSwitchModel);
-
-  appendExtraBuilder(buildChannelExecuteLogSwitchModel);
-
-  appendExtraBuilder(buildErrorLogModel);
-
-  appendExtraBuilder(buildGeneralLogModel);
-
-  appendExtraBuilder(buildExecuteLogModel);
-
-  appendExtraBuilder(buildSqlLogModel);
-
-  appendExtraBuilder(buildUploadHistoryModel);
-
   appendExtraBuilder(buildAccessWayModel);
 
-  appendExtraBuilder(buildPresetRoleModel);
-
-  appendExtraBuilder(buildHostServiceModel);
-
-  appendExtraBuilder(buildHostServiceLogModel);
-
-  appendExtraBuilder(buildApplicationSourceModel);
+  appendExtraBuilder(buildAdministrativeDivisionModel);
 
   appendExtraBuilder(buildApplicationModel);
 
   appendExtraBuilder(buildApplicationNavigationModel);
 
+  appendExtraBuilder(buildApplicationSourceModel);
+
   appendExtraBuilder(buildApplicationVersionModel);
 
-  appendExtraBuilder(buildSmsLogModel);
+  appendExtraBuilder(buildArticleNotificationApplicationModel);
 
-  appendExtraBuilder(buildSmsCategoryModel);
+  appendExtraBuilder(buildChannelExecuteLogSwitchModel);
 
-  appendExtraBuilder(buildSmsCategoryStatisticModel);
+  appendExtraBuilder(buildChannelSqlLogSwitchModel);
 
-  appendExtraBuilder(buildMasterManagerModel);
+  appendExtraBuilder(buildCloudStorageModel);
 
-  appendExtraBuilder(buildUserModel);
+  appendExtraBuilder(buildCurrentAccountModel);
 
-  appendExtraBuilder(buildUserSubsidiaryInfoModel);
-
-  appendExtraBuilder(buildUserYonYouCorrelationModel);
-
-  appendExtraBuilder(buildUserDeviceModel);
-
-  appendExtraBuilder(buildInternalTesterModel);
-
-  appendExtraBuilder(buildWeChatMessageRecordModel);
-
-  appendExtraBuilder(buildTagModel);
-
-  appendExtraBuilder(buildOptionPoolModel);
-
-  appendExtraBuilder(buildSubsidiaryModel);
+  appendExtraBuilder(buildCurrentManagementModel);
 
   appendExtraBuilder(buildDepartmentModel);
 
-  appendExtraBuilder(buildUserDepartmentInfoModel);
+  appendExtraBuilder(buildEditorModel);
+
+  appendExtraBuilder(buildErrorLogModel);
+
+  appendExtraBuilder(buildExecuteLogModel);
+
+  appendExtraBuilder(buildGeneralLogModel);
+
+  appendExtraBuilder(buildGovernmentAffairManagerModel);
+
+  appendExtraBuilder(buildGovernmentAffairManagerRoleModel);
+
+  appendExtraBuilder(buildHostServiceModel);
+
+  appendExtraBuilder(buildHostServiceLogModel);
+
+  appendExtraBuilder(buildInternalTesterModel);
+
+  appendExtraBuilder(buildMasterManagerModel);
+
+  appendExtraBuilder(buildMetaDataModel);
+
+  appendExtraBuilder(buildOptionPoolModel);
 
   appendExtraBuilder(buildOrganizationModel);
+
+  appendExtraBuilder(buildPresetRoleModel);
 
   appendExtraBuilder(buildSectionModel);
 
   appendExtraBuilder(buildSectionApplicationConfigModel);
 
-  appendExtraBuilder(buildYonYouPushMessageModel);
+  appendExtraBuilder(buildSmsCategoryModel);
 
-  appendExtraBuilder(buildYonYouImportHistoryModel);
+  appendExtraBuilder(buildSmsCategoryStatisticModel);
+
+  appendExtraBuilder(buildSmsLogModel);
+
+  appendExtraBuilder(buildSmsStatisticModel);
+
+  appendExtraBuilder(buildSqlLogModel);
+
+  appendExtraBuilder(buildSubsidiaryModel);
+
+  appendExtraBuilder(buildTagModel);
+
+  appendExtraBuilder(buildUploadHistoryModel);
+
+  appendExtraBuilder(buildUserModel);
+
+  appendExtraBuilder(buildUserDepartmentInfoModel);
+
+  appendExtraBuilder(buildUserDeviceModel);
+
+  appendExtraBuilder(buildUserSubsidiaryInfoModel);
+
+  appendExtraBuilder(buildUserYonYouCorrelationModel);
+
+  appendExtraBuilder(buildWeChatMessageRecordModel);
 
   appendExtraBuilder(buildWorkflowModel);
 
-  appendExtraBuilder(buildWorkflowNodeModel);
+  appendExtraBuilder(buildWorkflowBranchConditionModel);
 
-  appendExtraBuilder(buildWorkflowNodeApproverModel);
-
-  appendExtraBuilder(buildWorkflowLineModel);
-
-  appendExtraBuilder(buildWorkflowFormDesignModel);
-
-  appendExtraBuilder(buildWorkflowRangeEffectiveSubsidiaryRelationModel);
-
-  appendExtraBuilder(
-    buildWorkflowRangeEffectiveExternalDepartmentRelationModel,
-  );
+  appendExtraBuilder(buildWorkflowBranchConditionItemModel);
 
   appendExtraBuilder(buildWorkflowCaseModel);
 
-  appendExtraBuilder(buildWorkflowCaseFormStorageModel);
-
   appendExtraBuilder(buildWorkflowCaseFormAttachmentModel);
+
+  appendExtraBuilder(buildWorkflowCaseFormStorageModel);
 
   appendExtraBuilder(buildWorkflowCaseProcessHistoryModel);
 
   appendExtraBuilder(buildWorkflowDebugCaseModel);
 
-  appendExtraBuilder(buildWorkflowDebugCaseProcessHistoryModel);
+  appendExtraBuilder(buildWorkflowDebugCaseFormAttachmentModel);
 
   appendExtraBuilder(buildWorkflowDebugCaseFormStorageModel);
 
-  appendExtraBuilder(buildWorkflowDebugCaseFormAttachmentModel);
+  appendExtraBuilder(buildWorkflowDebugCaseProcessHistoryModel);
+
+  appendExtraBuilder(buildWorkflowFormDesignModel);
+
+  appendExtraBuilder(buildWorkflowLineModel);
+
+  appendExtraBuilder(buildWorkflowNodeModel);
+
+  appendExtraBuilder(buildWorkflowNodeApproverModel);
+
+  appendExtraBuilder(
+    buildWorkflowRangeEffectiveExternalDepartmentRelationModel,
+  );
+
+  appendExtraBuilder(buildWorkflowRangeEffectiveSubsidiaryRelationModel);
+
+  appendExtraBuilder(buildYonYouImportHistoryModel);
+
+  appendExtraBuilder(buildYonYouPushMessageModel);
 }
 
 collectModelBuilder();

@@ -84,15 +84,6 @@ export async function getJiGuangConfigData(parameters) {
   });
 }
 
-export const addBasicInfoDataApiAddress = '/application/addBasicInfo';
-
-export async function addBasicInfoData(parameters) {
-  return request({
-    api: addBasicInfoDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const updateBasicInfoDataApiAddress = '/application/updateBasicInfo';
 
 export async function updateBasicInfoData(parameters) {
@@ -142,15 +133,6 @@ export async function updateMessageChannelApplicationInfoData(parameters) {
   });
 }
 
-export const setOwnDataApiAddress = '/application/setOwn';
-
-export async function setOwnData(parameters) {
-  return request({
-    api: setOwnDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const setStartDataApiAddress = '/application/setStart';
 
 export async function setStartData(parameters) {
@@ -169,6 +151,15 @@ export async function setStopData(parameters) {
   });
 }
 
+export const setOwnDataApiAddress = '/application/setOwn';
+
+export async function setOwnData(parameters) {
+  return request({
+    api: setOwnDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const testJiGuangSendDeviceDataApiAddress =
   '/application/testJiGuangSendDevice';
 
@@ -179,22 +170,22 @@ export async function testJiGuangSendDeviceData(parameters) {
   });
 }
 
-export const testSendWechatUniformMessageDataApiAddress =
-  '/application/testSendWechatUniformMessage';
-
-export async function testSendWechatUniformMessageData(parameters) {
-  return request({
-    api: testSendWechatUniformMessageDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const testSendWechatTemplateMessageDataApiAddress =
   '/application/testSendWechatTemplateMessage';
 
 export async function testSendWechatTemplateMessageData(parameters) {
   return request({
     api: testSendWechatTemplateMessageDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const testSendWechatUniformMessageDataApiAddress =
+  '/application/testSendWechatUniformMessage';
+
+export async function testSendWechatUniformMessageData(parameters) {
+  return request({
+    api: testSendWechatUniformMessageDataApiAddress,
     params: parameters,
   });
 }
@@ -214,6 +205,51 @@ export const refreshCacheDataApiAddress = '/application/refreshCache';
 export async function refreshCacheData(parameters) {
   return request({
     api: refreshCacheDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadImageDataApiAddress = '/application/uploadImage';
+
+export async function uploadImageData(parameters) {
+  return request({
+    api: uploadImageDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadVideoDataApiAddress = '/application/uploadVideo';
+
+export async function uploadVideoData(parameters) {
+  return request({
+    api: uploadVideoDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadAudioDataApiAddress = '/application/uploadAudio';
+
+export async function uploadAudioData(parameters) {
+  return request({
+    api: uploadAudioDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadFileDataApiAddress = '/application/uploadFile';
+
+export async function uploadFileData(parameters) {
+  return request({
+    api: uploadFileDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadCertificateDataApiAddress = '/application/uploadCertificate';
+
+export async function uploadCertificateData(parameters) {
+  return request({
+    api: uploadCertificateDataApiAddress,
     params: parameters,
   });
 }

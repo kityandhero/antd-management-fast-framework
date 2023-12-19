@@ -1,8 +1,10 @@
 import { request } from 'easy-soft-utility';
 
-export async function getData(parameters) {
+export const pageListDataApiAddress = '/smsStatistic/pageList';
+
+export async function pageListData(parameters) {
   return request({
-    api: '/smsStatistic/get',
+    api: pageListDataApiAddress,
     params: parameters,
   });
 }

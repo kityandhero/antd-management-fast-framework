@@ -13,7 +13,6 @@ import {
   addIntermediatePointData,
   addStartPointData,
   getData,
-  getTreeData,
   pageListData,
   pageListOperateLogData,
   refreshCacheData,
@@ -70,32 +69,6 @@ export function buildModel() {
         const response = yield call(singleListData, payload);
 
         const dataAdjust = pretreatmentRemoteListData({
-          source: response,
-          successCallback: pretreatmentSuccessCallback || null,
-          failCallback: pretreatmentFailCallback || null,
-        });
-
-        yield put({
-          type: reducerNameCollection.reducerRemoteData,
-          payload: dataAdjust,
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        return dataAdjust;
-      },
-      *getTree(
-        {
-          payload,
-          alias,
-          pretreatmentSuccessCallback,
-          pretreatmentFailCallback,
-        },
-        { call, put },
-      ) {
-        const response = yield call(getTreeData, payload);
-
-        const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
           successCallback: pretreatmentSuccessCallback || null,
           failCallback: pretreatmentFailCallback || null,

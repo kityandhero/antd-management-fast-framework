@@ -1,21 +1,30 @@
+import { ColorPicker } from 'antd';
+
 import { connect } from 'easy-soft-dva';
 import {
   convertCollection,
   formatCollection,
   getValueByKey,
+  throttle,
 } from 'easy-soft-utility';
 
 import {
   cardConfig,
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import {
+  FlexBox,
+  iconBuilder,
+  VerticalBox,
+} from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../../customConfig';
 import {
   getBusinessModeName,
   getTagDisplayRangeName,
+  renderFormTagTypeSelect,
 } from '../../../../customSpecialComponents';
+import { updateColorAction } from '../../Assist/action';
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
@@ -36,6 +45,7 @@ class BasicInfo extends TabPageBase {
       submitApiPath: 'tag/updateBasicInfo',
       tagId: null,
       image: '',
+      color: '',
     };
   }
 
@@ -76,7 +86,26 @@ class BasicInfo extends TabPageBase {
       key: fieldData.image.name,
     });
 
-    this.setState({ image });
+    const color = getValueByKey({
+      data: metaData,
+      key: fieldData.color.name,
+    });
+
+    this.setState({ image, color });
+  };
+
+  updateColor = throttle(() => {
+    const { tagId, color } = this.state;
+
+    updateColorAction({
+      handleData: { tagId, color },
+    });
+  }, 800);
+
+  changeColor = (color) => {
+    this.setState({ color }, () => {
+      this.updateColor();
+    });
   };
 
   fillInitialValuesAfterLoad = ({
@@ -101,6 +130,12 @@ class BasicInfo extends TabPageBase {
         key: fieldData.displayName.name,
       });
 
+      values[fieldData.type.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.type.name,
+        convert: convertCollection.string,
+      });
+
       values[fieldData.sort.name] = getValueByKey({
         data: metaData,
         key: fieldData.sort.name,
@@ -116,7 +151,7 @@ class BasicInfo extends TabPageBase {
   };
 
   establishCardCollectionConfig = () => {
-    const { metaData, image } = this.state;
+    const { firstLoadSuccess, metaData, image, color } = this.state;
 
     return {
       list: [
@@ -125,9 +160,77 @@ class BasicInfo extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '基本信息',
           },
+          hasExtra: true,
           extra: {
             affix: true,
             list: [
+              {
+                buildType: cardConfig.extraBuildType.component,
+                component: (
+                  <FlexBox
+                    flexAuto="right"
+                    left={<VerticalBox>色值：</VerticalBox>}
+                    right={
+                      <div
+                        style={{
+                          minWidth: '104px',
+                        }}
+                      >
+                        <VerticalBox>
+                          <ColorPicker
+                            value={color}
+                            showText
+                            disabled={!firstLoadSuccess}
+                            presets={[
+                              {
+                                label: '常用',
+                                colors: [
+                                  '#000000',
+                                  '#000000E0',
+                                  '#000000A6',
+                                  '#00000073',
+                                  '#00000040',
+                                  '#00000026',
+                                  '#0000001A',
+                                  '#00000012',
+                                  '#0000000A',
+                                  '#00000005',
+                                  '#F5222D',
+                                  '#FA8C16',
+                                  '#FADB14',
+                                  '#8BBB11',
+                                  '#52C41A',
+                                  '#13A8A8',
+                                  '#1677FF',
+                                  '#2F54EB',
+                                  '#722ED1',
+                                  '#EB2F96',
+                                  '#F5222D4D',
+                                  '#FA8C164D',
+                                  '#FADB144D',
+                                  '#8BBB114D',
+                                  '#52C41A4D',
+                                  '#13A8A84D',
+                                  '#1677FF4D',
+                                  '#2F54EB4D',
+                                  '#722ED14D',
+                                  '#EB2F964D',
+                                ],
+                              },
+                            ]}
+                            onChange={(_, hex) => {
+                              this.changeColor(hex);
+                            }}
+                          />
+                        </VerticalBox>
+                      </div>
+                    }
+                  />
+                ),
+              },
+              {
+                buildType: cardConfig.extraBuildType.divider,
+              },
               {
                 buildType: cardConfig.extraBuildType.refresh,
               },
@@ -138,7 +241,7 @@ class BasicInfo extends TabPageBase {
           },
           items: [
             {
-              lg: 12,
+              lg: 6,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.name,
               require: true,
@@ -147,6 +250,12 @@ class BasicInfo extends TabPageBase {
               lg: 6,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.displayName,
+              require: true,
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: renderFormTagTypeSelect({}),
               require: true,
             },
             {

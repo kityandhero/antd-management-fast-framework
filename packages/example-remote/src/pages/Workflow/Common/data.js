@@ -66,12 +66,22 @@ export const fieldData = {
     helper: '',
   },
   whetherAllowMultibranchNote: {
-    label: '允许多路分支',
+    label: '是否允许多路分支',
     name: 'whetherAllowMultibranchNote',
     helper: '',
   },
+  whetherAllowMultiEnd: {
+    label: '是否允许多个终点',
+    name: 'whetherAllowMultiEnd',
+    helper: '',
+  },
+  whetherAllowMultiEndNote: {
+    label: '是否允许多个终点',
+    name: 'whetherAllowMultiEndNote',
+    helper: '',
+  },
   creatorUserId: {
-    label: '创建人用户标识',
+    label: '是否创建人用户标识',
     name: 'creatorUserId',
     helper: '',
   },

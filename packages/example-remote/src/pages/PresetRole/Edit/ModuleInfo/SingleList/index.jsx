@@ -6,8 +6,8 @@ import ModuleInfoBase from '../../../../AccessWay/ModuleInfoBase';
 import AccessWayDrawer from '../../../AccessWayDrawer';
 import { removeModuleAction } from '../../../Assist/action';
 import { parseUrlParametersForSetState } from '../../../Assist/config';
-import ModuleTreeDrawer from '../../../ModuleTreeDrawer';
-import UpdateModuleModal from '../../../UpdateModuleModal';
+import { ModuleTreeDrawer } from '../../../ModuleTreeDrawer';
+import { UpdateModuleModal } from '../../../UpdateModuleModal';
 
 @connect(({ presetRole, schedulingControl }) => ({
   presetRole,
@@ -90,7 +90,7 @@ class ModuleInfo extends ModuleInfoBase {
           afterClose={this.afterOperateSuccess}
         />
 
-        <ModuleTreeDrawer externalData={{ presetRoleId }} />
+        <ModuleTreeDrawer maskClosable externalData={{ presetRoleId }} />
 
         <UpdateModuleModal
           externalData={{

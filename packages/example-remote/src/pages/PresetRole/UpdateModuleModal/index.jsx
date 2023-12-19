@@ -26,4 +26,4 @@ class UpdateModuleModal extends UpdateModuleModalBase {
   }
 }
 
-export default UpdateModuleModal;
+export { UpdateModuleModal };

@@ -28,25 +28,6 @@ export async function getData(parameters) {
   });
 }
 
-export const addBasicInfoDataApiAddress =
-  '/workflowCaseFormAttachment/addBasicInfo';
-
-export async function addBasicInfoData(parameters) {
-  return request({
-    api: addBasicInfoDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const removeDataApiAddress = '/workflowCaseFormAttachment/remove';
-
-export async function removeData(parameters) {
-  return request({
-    api: removeDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const refreshCacheDataApiAddress =
   '/workflowCaseFormAttachment/refreshCache';
 
@@ -63,6 +44,16 @@ export const pageListOperateLogDataApiAddress =
 export async function pageListOperateLogData(parameters) {
   return request({
     api: pageListOperateLogDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadFileDataApiAddress =
+  '/workflowCaseFormAttachment/uploadFile';
+
+export async function uploadFileData(parameters) {
+  return request({
+    api: uploadFileDataApiAddress,
     params: parameters,
   });
 }

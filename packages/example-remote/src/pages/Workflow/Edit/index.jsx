@@ -7,6 +7,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  extraBuildType,
   getDerivedStateFromPropertiesForUrlParameters,
   tabBarCollection,
 } from 'antd-management-fast-common';
@@ -46,8 +47,6 @@ import { UpdateChannelModal } from '../UpdateChannelModal';
   schedulingControl,
 }))
 class Detail extends DataTabContainerSupplement {
-  showCallProcess = true;
-
   componentAuthority = accessWayCollection.workflow.get.permission;
 
   tabList = [
@@ -274,6 +273,37 @@ class Detail extends DataTabContainerSupplement {
     return '流程';
   };
 
+  establishExtraActionConfig = () => {
+    const { metaData } = this.state;
+
+    if (metaData == null) {
+      return null;
+    }
+
+    const that = this;
+
+    return {
+      list: [
+        {
+          buildType: extraBuildType.generalExtraButton,
+          type: 'default',
+          icon: iconBuilder.swap(),
+          text: '设置数据通道',
+          handleData: metaData,
+          hidden: !checkHasAuthority(
+            accessWayCollection.workflow.setChannel.permission,
+          ),
+          handleClick: ({ handleData }) => {
+            that.showUpdateChannelModal(handleData);
+          },
+        },
+        {
+          buildType: extraBuildType.divider,
+        },
+      ],
+    };
+  };
+
   establishTabBarExtraContentRightConfig = () => {
     return [
       {
@@ -332,15 +362,6 @@ class Detail extends DataTabContainerSupplement {
 
     return {
       buttons: [
-        {
-          key: 'setChannel',
-          text: '设为数据通道',
-          icon: iconBuilder.edit(),
-          handleButtonClick: ({ handleData }) => {
-            that.showUpdateChannelModal(handleData);
-          },
-          handleData: metaData,
-        },
         {
           key: 'setEnable',
           text: '设为启用',
@@ -449,13 +470,6 @@ class Detail extends DataTabContainerSupplement {
         }),
       },
       {
-        label: fieldData.whetherAllowMultibranchNote.label,
-        value: getValueByKey({
-          data: metaData,
-          key: fieldData.whetherAllowMultibranchNote.name,
-        }),
-      },
-      {
         label: fieldData.scope.label,
         value: getFlowScopeName({
           value: getValueByKey({
@@ -497,6 +511,20 @@ class Detail extends DataTabContainerSupplement {
             convert: convertCollection.string,
           }),
           defaultValue: '暂未设置',
+        }),
+      },
+      {
+        label: fieldData.whetherAllowMultibranchNote.label,
+        value: getValueByKey({
+          data: metaData,
+          key: fieldData.whetherAllowMultibranchNote.name,
+        }),
+      },
+      {
+        label: fieldData.whetherAllowMultiEndNote.label,
+        value: getValueByKey({
+          data: metaData,
+          key: fieldData.whetherAllowMultiEndNote.name,
         }),
       },
     ];

@@ -19,8 +19,9 @@ import {
   singleListData,
   singleTreeListData,
   updateBasicInfoData,
-  updateParentData,
+  updateParentIdData,
   updateSortData,
+  uploadImageData,
 } from '../services/subsidiary';
 
 export function buildModel() {
@@ -188,7 +189,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *updateSort(
+      *updateParentId(
         {
           payload,
           alias,
@@ -197,7 +198,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(updateSortData, payload);
+        const response = yield call(updateParentIdData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -214,7 +215,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *updateParent(
+      *updateSort(
         {
           payload,
           alias,
@@ -223,7 +224,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(updateParentData, payload);
+        const response = yield call(updateSortData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -302,6 +303,32 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(refreshCacheData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *uploadImage(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(uploadImageData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

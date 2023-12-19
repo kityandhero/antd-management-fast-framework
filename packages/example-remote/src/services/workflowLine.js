@@ -45,6 +45,16 @@ export async function updateLineData(parameters) {
   });
 }
 
+export const setBranchConditionIdDataApiAddress =
+  '/workflowLine/setBranchConditionId';
+
+export async function setBranchConditionIdData(parameters) {
+  return request({
+    api: setBranchConditionIdDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const removeDataApiAddress = '/workflowLine/remove';
 
 export async function removeData(parameters) {

@@ -48,18 +48,29 @@ class Index extends BaseView {
               lg: 24,
               type: cardConfig.contentItemType.tree,
               showLine: true,
-              switcherIcon: iconBuilder.download(),
-              onSelect: (selectedKeys, { node }) => {
-                this.goToPageList(node);
+              switcherIcon: iconBuilder.down(),
+              listData: metaListData,
+              dataConvert: (o) => {
+                const {
+                  title,
+                  code: value,
+                  key,
+                  root,
+                } = {
+                  root: 0,
+                  ...o,
+                };
+
+                return {
+                  title,
+                  value,
+                  key,
+                  root,
+                };
               },
-              treeData: [
-                {
-                  key: '-10000',
-                  title: '全部公司',
-                  code: '-10000',
-                },
-                ...metaListData,
-              ],
+              innerProps: {
+                defaultExpandAll: true,
+              },
             },
           ],
         },

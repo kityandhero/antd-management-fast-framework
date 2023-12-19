@@ -172,6 +172,7 @@ class BasicInfo extends TabPageBase {
             text: '设计预览',
           },
           fullLine: false,
+          hasExtra: true,
           extra: {
             affix: true,
             list: [
@@ -245,37 +246,8 @@ class BasicInfo extends TabPageBase {
                     descriptionLabelColor={remarkColor}
                     descriptionTextColor={remarkColor}
                     descriptions={remarkSchemaList}
-                    showSubmit
-                    showSubmitDivider
-                    submitButtonText="提交表单"
-                    buttonAfterSubmitBuilder={() => {
-                      return (
-                        <>
-                          {buildButton({
-                            type: 'primary',
-                            icon: iconBuilder.checkCircle(),
-                            text: '同意审批',
-                            handleData: metaData,
-                            handleClick: () => {
-                              showSimpleInfoMessage('示例: 点击同意审批');
-                            },
-                          })}
-
-                          {buildButton({
-                            type: 'primary',
-                            danger: true,
-                            icon: iconBuilder.closeCircle(),
-                            text: '拒绝审批',
-                            handleData: metaData,
-                            handleClick: () => {
-                              showSimpleInfoMessage('示例: 点击拒绝审批');
-                            },
-                          })}
-                        </>
-                      );
-                    }}
-                    showFooterDivider
-                    footer={
+                    descriptionUpperLabel="附件列表"
+                    descriptionUpperComponent={
                       <FileViewer
                         canUpload
                         canRemove
@@ -311,6 +283,35 @@ class BasicInfo extends TabPageBase {
                         }}
                       />
                     }
+                    showSubmit
+                    showSubmitDivider
+                    submitButtonText="提交表单"
+                    buttonAfterSubmitBuilder={() => {
+                      return (
+                        <>
+                          {buildButton({
+                            type: 'primary',
+                            icon: iconBuilder.checkCircle(),
+                            text: '同意审批',
+                            handleData: metaData,
+                            handleClick: () => {
+                              showSimpleInfoMessage('示例: 点击同意审批');
+                            },
+                          })}
+
+                          {buildButton({
+                            type: 'primary',
+                            danger: true,
+                            icon: iconBuilder.closeCircle(),
+                            text: '拒绝审批',
+                            handleData: metaData,
+                            handleClick: () => {
+                              showSimpleInfoMessage('示例: 点击拒绝审批');
+                            },
+                          })}
+                        </>
+                      );
+                    }}
                     onSubmit={() => {
                       showSimpleInfoMessage('示例: 点击提交按钮');
                     }}

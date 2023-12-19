@@ -146,3 +146,12 @@ export async function testSecretKeyData(parameters) {
     params: parameters,
   });
 }
+
+export const uploadImageDataApiAddress = '/currentManagement/uploadImage';
+
+export async function uploadImageData(parameters) {
+  return request({
+    api: uploadImageDataApiAddress,
+    params: parameters,
+  });
+}

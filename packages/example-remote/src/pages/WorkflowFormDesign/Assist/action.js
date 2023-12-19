@@ -45,9 +45,9 @@ export async function refreshCacheAction({
   actionCore({
     api: 'workflowLine/refreshCache',
     params: {
-      workflowLineId: getValueByKey({
+      workflowFormDesignId: getValueByKey({
         data: handleData,
-        key: fieldData.workflowLineId.name,
+        key: fieldData.workflowFormDesignId.name,
       }),
     },
     target,

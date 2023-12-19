@@ -9,7 +9,6 @@ import {
 import {
   getGraphicalDirectDepartmentData,
   getGraphicalSingleSubsidiaryDepartmentData,
-  getGraphicalTreeData,
 } from '../services/organization';
 
 export function buildModel() {
@@ -21,32 +20,6 @@ export function buildModel() {
     },
 
     effects: {
-      *getGraphicalTree(
-        {
-          payload,
-          alias,
-          pretreatmentSuccessCallback,
-          pretreatmentFailCallback,
-        },
-        { call, put },
-      ) {
-        const response = yield call(getGraphicalTreeData, payload);
-
-        const dataAdjust = pretreatmentRemoteSingleData({
-          source: response,
-          successCallback: pretreatmentSuccessCallback || null,
-          failCallback: pretreatmentFailCallback || null,
-        });
-
-        yield put({
-          type: reducerNameCollection.reducerRemoteData,
-          payload: dataAdjust,
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        return dataAdjust;
-      },
       *getGraphicalDirectDepartment(
         {
           payload,

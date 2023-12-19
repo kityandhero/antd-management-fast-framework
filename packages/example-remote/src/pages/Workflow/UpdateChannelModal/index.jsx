@@ -76,8 +76,6 @@ class UpdateChannelModal extends BaseUpdateModal {
       });
     }
 
-    console.log(values);
-
     return values;
   };
 

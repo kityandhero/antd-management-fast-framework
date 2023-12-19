@@ -54,15 +54,6 @@ export async function updateBasicInfoData(parameters) {
   });
 }
 
-export const updateSortDataApiAddress = '/department/updateSort';
-
-export async function updateSortData(parameters) {
-  return request({
-    api: updateSortDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const updateParentIdDataApiAddress = '/department/updateParentId';
 
 export async function updateParentIdData(parameters) {
@@ -78,6 +69,15 @@ export const updateSubsidiaryIdDataApiAddress =
 export async function updateSubsidiaryIdData(parameters) {
   return request({
     api: updateSubsidiaryIdDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const updateSortDataApiAddress = '/department/updateSort';
+
+export async function updateSortData(parameters) {
+  return request({
+    api: updateSortDataApiAddress,
     params: parameters,
   });
 }

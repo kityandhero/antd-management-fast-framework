@@ -27,6 +27,15 @@ export async function refreshCacheData(parameters) {
   });
 }
 
+export const uploadImageDataApiAddress = '/yonYouPushMessage/uploadImage';
+
+export async function uploadImageData(parameters) {
+  return request({
+    api: uploadImageDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const pageListOperateLogDataApiAddress =
   '/yonYouPushMessage/pageListOperateLog';
 

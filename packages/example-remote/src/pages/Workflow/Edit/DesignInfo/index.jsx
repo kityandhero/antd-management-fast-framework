@@ -7,6 +7,7 @@ import {
   getValueByKey,
   isArray,
   toLowerFirst,
+  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -50,6 +51,8 @@ import { fieldData as fieldDataWorkflowNodeApprover } from '../../../WorkflowNod
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
+// import { UpdateMultibranchModal } from '../../UpdateMultibranchModal';
+// import { UpdateMultiEndModal } from '../../UpdateMultiEndModal';
 
 @connect(({ workflow, workflowNode, schedulingControl }) => ({
   workflow,
@@ -255,8 +258,14 @@ class Index extends TabPageBase {
       (o) => o.type === flowNodeTypeCollection.startNode,
     );
 
+    const endPointIndex = findIndex(
+      workflowNodeList,
+      (o) => o.type === flowNodeTypeCollection.endNode,
+    );
+
     this.setState({
       startPointExist: startPointIndex >= 0,
+      endPointExist: endPointIndex >= 0,
       nodeList: [...nodeList],
       edgeList: [...edgeList],
     });
@@ -434,6 +443,22 @@ class Index extends TabPageBase {
     });
   };
 
+  // showUpdateMultibranchModal = () => {
+  //   UpdateMultibranchModal.open();
+  // };
+
+  // afterUpdateMultibranchModalOk = () => {
+  //   this.reloadData({});
+  // };
+
+  // showUpdateMultiEndModal = () => {
+  //   UpdateMultiEndModal.open();
+  // };
+
+  // afterUpdateMultiEndModalOk = () => {
+  //   this.reloadData({});
+  // };
+
   showAddIntermediatePointDrawer = () => {
     AddIntermediatePointDrawer.open();
   };
@@ -555,8 +580,20 @@ class Index extends TabPageBase {
   };
 
   establishCardCollectionConfig = () => {
-    const { firstLoadSuccess, metaData, startPointExist, nodeList, edgeList } =
-      this.state;
+    const {
+      firstLoadSuccess,
+      metaData,
+      startPointExist,
+      endPointExist,
+      nodeList,
+      edgeList,
+    } = this.state;
+
+    const whetherAllowMultiEnd = getValueByKey({
+      data: metaData,
+      key: fieldData.whetherAllowMultiEnd.name,
+      convert: convertCollection.number,
+    });
 
     return {
       list: [
@@ -565,6 +602,7 @@ class Index extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '基本信息',
           },
+          hasExtra: true,
           extra: {
             affix: true,
             list: [
@@ -600,7 +638,10 @@ class Index extends TabPageBase {
                 type: 'primary',
                 icon: iconBuilder.addCircle(),
                 text: '新增结束点',
-                disabled: !firstLoadSuccess || !startPointExist,
+                disabled:
+                  !firstLoadSuccess ||
+                  !startPointExist ||
+                  (whetherAllowMultiEnd === whetherNumber.no && endPointExist),
                 hidden: !checkHasAuthority(
                   accessWayCollection.workflowNode.addEndPoint.permission,
                 ),
@@ -640,9 +681,32 @@ class Index extends TabPageBase {
               {
                 buildType: cardConfig.extraBuildType.divider,
               },
-              {
-                buildType: cardConfig.extraBuildType.divider,
-              },
+              // {
+              //   buildType: cardConfig.extraBuildType.generalExtraButton,
+              //   type: 'default',
+              //   icon: iconBuilder.edit(),
+              //   text: '开关多分支',
+              //   disabled: !firstLoadSuccess,
+              //   hidden: !checkHasAuthority(
+              //     accessWayCollection.workflow.setMultibranch.permission,
+              //   ),
+              //   handleClick: () => {
+              //     this.showUpdateMultibranchModal();
+              //   },
+              // },
+              // {
+              //   buildType: cardConfig.extraBuildType.generalExtraButton,
+              //   type: 'default',
+              //   icon: iconBuilder.edit(),
+              //   text: '开关多终点',
+              //   disabled: !firstLoadSuccess,
+              //   hidden: !checkHasAuthority(
+              //     accessWayCollection.workflow.setMultiEnd.permission,
+              //   ),
+              //   handleClick: () => {
+              //     this.showUpdateMultiEndModal();
+              //   },
+              // },
               {
                 buildType: cardConfig.extraBuildType.refresh,
               },
@@ -697,6 +761,20 @@ class Index extends TabPageBase {
 
     return (
       <>
+        {/* <UpdateMultibranchModal
+          externalData={{ workflowId }}
+          afterOK={() => {
+            this.afterUpdateMultibranchModalOk();
+          }}
+        />
+
+        <UpdateMultiEndModal
+          externalData={{ workflowId }}
+          afterOK={() => {
+            this.afterUpdateMultiEndModalOk();
+          }}
+        /> */}
+
         <AddIntermediatePointDrawer
           externalData={{ workflowId }}
           forward={forward}

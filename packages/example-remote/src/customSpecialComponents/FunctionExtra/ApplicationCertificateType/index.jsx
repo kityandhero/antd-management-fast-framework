@@ -11,6 +11,7 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
+  buildDropdownMenu,
   buildFlexRadio,
   buildFlexSelect,
   buildFormRadio,
@@ -88,6 +89,7 @@ export function renderSearchApplicationCertificateTypeSelect({
 }
 
 export function renderCustomApplicationCertificateTypeSelect({
+  style = {},
   label = '类型',
   separator = ':',
   size = 'middle',
@@ -95,6 +97,7 @@ export function renderCustomApplicationCertificateTypeSelect({
   innerProps: innerProperties = null,
 }) {
   return buildFlexSelect({
+    style,
     label,
     defaultValue: null,
     separator,
@@ -104,6 +107,26 @@ export function renderCustomApplicationCertificateTypeSelect({
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
+  });
+}
+
+export function renderApplicationCertificateTypeDropDown({
+  label = '类型',
+  placement = 'bottomRight',
+  icon = null,
+  size = 'middle',
+  onClick: onClickCallback,
+  innerProps: innerProperties = null,
+}) {
+  return buildDropdownMenu({
+    label,
+    placement,
+    icon,
+    size,
+    list: refitApplicationCertificateTypeList({ withUnlimited: false }),
+    dataConvert: null,
+    onClick: onClickCallback,
+    innerProps: innerProperties || null,
   });
 }
 

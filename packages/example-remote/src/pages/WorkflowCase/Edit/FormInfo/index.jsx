@@ -352,6 +352,7 @@ class BasicInfo extends TabPageBase {
             text: '基本信息',
           },
           fullLine: false,
+          hasExtra: true,
           extra: {
             affix: true,
             list: [
@@ -380,8 +381,8 @@ class BasicInfo extends TabPageBase {
                     descriptionLabelColor={remarkColor}
                     descriptionTextColor={remarkColor}
                     descriptions={remarkSchemaList}
-                    showFooterDivider
-                    footer={
+                    descriptionUpperLabel="附件列表"
+                    descriptionUpperComponent={
                       <FileViewer
                         canUpload={false}
                         canRemove={false}

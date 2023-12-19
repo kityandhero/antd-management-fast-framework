@@ -67,3 +67,13 @@ export async function pageListOperateLogData(parameters) {
     params: parameters,
   });
 }
+
+export const uploadFileDataApiAddress =
+  '/workflowDebugCaseFormAttachment/uploadFile';
+
+export async function uploadFileData(parameters) {
+  return request({
+    api: uploadFileDataApiAddress,
+    params: parameters,
+  });
+}

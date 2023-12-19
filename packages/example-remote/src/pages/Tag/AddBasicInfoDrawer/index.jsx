@@ -10,6 +10,7 @@ import {
 import {
   renderFormBusinessModeSelect,
   renderFormTagDisplayRangeSelect,
+  renderFormTagTypeSelect,
 } from '../../../customSpecialComponents';
 import { fieldData } from '../Common/data';
 
@@ -63,7 +64,7 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
           },
           items: [
             {
-              lg: 24,
+              lg: 12,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.name,
               require: true,
@@ -73,6 +74,12 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.displayName,
               require: false,
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.component,
+              component: renderFormTagTypeSelect({}),
+              require: true,
             },
             {
               lg: 12,

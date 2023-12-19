@@ -93,24 +93,6 @@ export async function toggleSignetPasswordSwitchData(parameters) {
   });
 }
 
-export const resetSignetPasswordDataApiAddress = '/user/resetSignetPassword';
-
-export async function resetSignetPasswordData(parameters) {
-  return request({
-    api: resetSignetPasswordDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const resetPasswordDataApiAddress = '/user/resetPassword';
-
-export async function resetPasswordData(parameters) {
-  return request({
-    api: resetPasswordDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const setEnableDataApiAddress = '/user/setEnable';
 
 export async function setEnableData(parameters) {
@@ -125,6 +107,24 @@ export const setDisableDataApiAddress = '/user/setDisable';
 export async function setDisableData(parameters) {
   return request({
     api: setDisableDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const resetSignetPasswordDataApiAddress = '/user/resetSignetPassword';
+
+export async function resetSignetPasswordData(parameters) {
+  return request({
+    api: resetSignetPasswordDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const resetPasswordDataApiAddress = '/user/resetPassword';
+
+export async function resetPasswordData(parameters) {
+  return request({
+    api: resetPasswordDataApiAddress,
     params: parameters,
   });
 }
@@ -152,6 +152,15 @@ export const refreshCacheDataApiAddress = '/user/refreshCache';
 export async function refreshCacheData(parameters) {
   return request({
     api: refreshCacheDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const uploadImageDataApiAddress = '/user/uploadImage';
+
+export async function uploadImageData(parameters) {
+  return request({
+    api: uploadImageDataApiAddress,
     params: parameters,
   });
 }

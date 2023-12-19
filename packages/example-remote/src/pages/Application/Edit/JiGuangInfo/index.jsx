@@ -148,6 +148,7 @@ class PagePathInfo extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '测试配置',
           },
+          hasExtra: true,
           extra: {
             list: [
               {

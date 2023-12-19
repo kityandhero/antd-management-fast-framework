@@ -1,12 +1,12 @@
 import {
   getTacitlyState,
-  pretreatmentRemoteSingleData,
+  pretreatmentRemotePageListData,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
 } from 'easy-soft-utility';
 
-import { getData } from '../services/smsStatistic';
+import { pageListData } from '../services/smsStatistic';
 
 export function buildModel() {
   return {
@@ -17,7 +17,7 @@ export function buildModel() {
     },
 
     effects: {
-      *get(
+      *pageList(
         {
           payload,
           alias,
@@ -26,9 +26,9 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(getData, payload);
+        const response = yield call(pageListData, payload);
 
-        const dataAdjust = pretreatmentRemoteSingleData({
+        const dataAdjust = pretreatmentRemotePageListData({
           source: response,
           successCallback: pretreatmentSuccessCallback || null,
           failCallback: pretreatmentFailCallback || null,

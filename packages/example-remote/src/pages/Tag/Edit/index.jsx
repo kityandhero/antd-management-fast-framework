@@ -15,6 +15,7 @@ import {
   getBusinessModeName,
   getTagDisplayRangeName,
   getTagStatusName,
+  getTagTypeName,
 } from '../../../customSpecialComponents';
 import {
   refreshCacheAction,
@@ -303,17 +304,20 @@ class Detail extends DataTabContainerSupplement {
         canCopy: true,
       },
       {
-        label: fieldData.name.label,
-        value: getValueByKey({
-          data: metaData,
-          key: fieldData.name.name,
-        }),
-      },
-      {
         label: fieldData.displayName.label,
         value: getValueByKey({
           data: metaData,
           key: fieldData.displayName.name,
+        }),
+      },
+      {
+        label: fieldData.type.label,
+        value: getTagTypeName({
+          value: getValueByKey({
+            data: metaData,
+            key: fieldData.type.name,
+            convert: convertCollection.number,
+          }),
         }),
       },
       {

@@ -35,22 +35,3 @@ export async function removeData(parameters) {
     params: parameters,
   });
 }
-
-export const refreshCacheDataApiAddress = '/internalTester/refreshCache';
-
-export async function refreshCacheData(parameters) {
-  return request({
-    api: refreshCacheDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const pageListOperateLogDataApiAddress =
-  '/internalTester/pageListOperateLog';
-
-export async function pageListOperateLogData(parameters) {
-  return request({
-    api: pageListOperateLogDataApiAddress,
-    params: parameters,
-  });
-}

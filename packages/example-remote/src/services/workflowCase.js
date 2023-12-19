@@ -18,42 +18,6 @@ export async function getData(parameters) {
   });
 }
 
-export const addBasicInfoDataApiAddress = '/workflowCase/addBasicInfo';
-
-export async function addBasicInfoData(parameters) {
-  return request({
-    api: addBasicInfoDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const updateBasicInfoDataApiAddress = '/workflowCase/updateBasicInfo';
-
-export async function updateBasicInfoData(parameters) {
-  return request({
-    api: updateBasicInfoDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const submitFormDataApiAddress = '/workflowCase/submitForm';
-
-export async function submitFormData(parameters) {
-  return request({
-    api: submitFormDataApiAddress,
-    params: parameters,
-  });
-}
-
-export const submitApprovalDataApiAddress = '/workflowCase/submitApproval';
-
-export async function submitApprovalData(parameters) {
-  return request({
-    api: submitApprovalDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const openCancelApproveSwitchDataApiAddress =
   '/workflowCase/openCancelApproveSwitch';
 

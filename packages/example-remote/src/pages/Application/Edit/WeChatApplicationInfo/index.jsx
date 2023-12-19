@@ -148,6 +148,7 @@ class WeChatApplicationInfo extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '微信应用信息',
           },
+          hasExtra: true,
           extra: {
             affix: true,
             list: [

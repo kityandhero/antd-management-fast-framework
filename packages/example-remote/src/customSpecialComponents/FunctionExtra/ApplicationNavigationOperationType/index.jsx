@@ -11,6 +11,7 @@ import {
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
 import {
+  buildDropdownMenu,
   buildFlexRadio,
   buildFlexSelect,
   buildFormRadio,
@@ -94,6 +95,7 @@ export function renderSearchApplicationNavigationOperationTypeSelect({
 }
 
 export function renderCustomApplicationNavigationOperationTypeSelect({
+  style = {},
   label = '交互方式',
   separator = ':',
   size = 'middle',
@@ -101,6 +103,7 @@ export function renderCustomApplicationNavigationOperationTypeSelect({
   innerProps: innerProperties = null,
 }) {
   return buildFlexSelect({
+    style,
     label,
     defaultValue: null,
     separator,
@@ -110,6 +113,26 @@ export function renderCustomApplicationNavigationOperationTypeSelect({
     renderItem: null,
     onChange: onChangeCallback,
     innerProps: innerProperties,
+  });
+}
+
+export function renderApplicationNavigationOperationTypeDropDown({
+  label = '交互方式',
+  placement = 'bottomRight',
+  icon = null,
+  size = 'middle',
+  onClick: onClickCallback,
+  innerProps: innerProperties = null,
+}) {
+  return buildDropdownMenu({
+    label,
+    placement,
+    icon,
+    size,
+    list: refitApplicationNavigationOperationTypeList({ withUnlimited: false }),
+    dataConvert: null,
+    onClick: onClickCallback,
+    innerProps: innerProperties || null,
   });
 }
 

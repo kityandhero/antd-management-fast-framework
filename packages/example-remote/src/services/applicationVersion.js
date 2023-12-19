@@ -18,6 +18,15 @@ export async function singleListData(parameters) {
   });
 }
 
+export const pageListLogDataApiAddress = '/applicationVersion/pageListLog';
+
+export async function pageListLogData(parameters) {
+  return request({
+    api: pageListLogDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const getDataApiAddress = '/applicationVersion/get';
 
 export async function getData(parameters) {

@@ -20,6 +20,8 @@ import {
   setNavigationCollectionSortData,
   updateBasicInfoData,
   updateNavigationItemData,
+  uploadImageData,
+  uploadVideoData,
 } from '../services/applicationNavigation';
 
 export function buildModel() {
@@ -265,6 +267,32 @@ export function buildModel() {
 
         return dataAdjust;
       },
+      *setNavigationCollectionSort(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(setNavigationCollectionSortData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
       *removeNavigationItem(
         {
           payload,
@@ -291,7 +319,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *setNavigationCollectionSort(
+      *uploadImage(
         {
           payload,
           alias,
@@ -300,7 +328,33 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(setNavigationCollectionSortData, payload);
+        const response = yield call(uploadImageData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *uploadVideo(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(uploadVideoData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

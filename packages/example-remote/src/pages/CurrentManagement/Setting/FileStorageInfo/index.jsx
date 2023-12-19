@@ -285,6 +285,7 @@ class Index extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '本地存储配置',
           },
+          hasExtra: true,
           extra: {
             affix: true,
             list: [

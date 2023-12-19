@@ -24,7 +24,7 @@ const visibleFlag = 'eb965c312f1a4580a41a8983d5a657f0';
 }))
 class WorkflowNodeDetailDrawer extends BaseVerticalFlexDrawer {
   componentAuthority =
-    accessWayCollection.workflowCaseFormStorage.set.permission;
+    accessWayCollection.workflowCaseFormStorage.get.permission;
 
   static open() {
     switchControlAssist.open(visibleFlag);

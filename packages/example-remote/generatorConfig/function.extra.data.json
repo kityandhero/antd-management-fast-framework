@@ -296,6 +296,11 @@
       "name": "displayRange"
     },
     {
+      "functionSegment": "TagType",
+      "label": "使用对象",
+      "name": "type"
+    },
+    {
       "functionSegment": "TagStatus",
       "label": "状态",
       "name": "status"

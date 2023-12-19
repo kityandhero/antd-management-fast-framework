@@ -58,7 +58,7 @@ class FormDrawer extends BaseVerticalFlexDrawer {
   useFormWrapper = false;
 
   componentAuthority =
-    accessWayCollection.workflowCaseFormStorage.set.permission;
+    accessWayCollection.workflowCaseFormStorage.get.permission;
 
   static open() {
     switchControlAssist.open(visibleFlag);
@@ -216,8 +216,8 @@ class FormDrawer extends BaseVerticalFlexDrawer {
           descriptionLabelColor={remarkColor}
           descriptionTextColor={remarkColor}
           descriptions={remarkSchemaList}
-          showFooterDivider
-          footer={
+          descriptionUpperLabel="附件列表"
+          descriptionUpperComponent={
             <FileViewer
               canUpload
               canRemove

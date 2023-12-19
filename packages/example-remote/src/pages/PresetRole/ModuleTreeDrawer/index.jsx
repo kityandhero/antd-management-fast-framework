@@ -1,8 +1,9 @@
-import { connect } from 'easy-soft-dva';
-import { getValueByKey } from 'easy-soft-utility';
+import { Empty } from 'antd';
 
-import { cardConfig } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import { connect } from 'easy-soft-dva';
+import { getValueByKey, isEmptyArray } from 'easy-soft-utility';
+
+import { ElasticityTree } from 'antd-management-fast-component';
 import {
   DataDrawer,
   switchControlAssist,
@@ -11,15 +12,15 @@ import {
 import { accessWayCollection } from '../../../customConfig/accessWayCollection';
 import { fieldData } from '../Common/data';
 
-const { BaseLoadDrawer } = DataDrawer;
+const { BaseVerticalFlexDrawer } = DataDrawer;
 
-const visibleFlag = 'e4fae955cbb14fa9ba43e9b3685867c1';
+const visibleFlag = '96503b03e8e44a1fbbd9807b4b8bb46e';
 
-@connect(({ simple, schedulingControl }) => ({
-  simple,
+@connect(({ presetRole, schedulingControl }) => ({
+  presetRole,
   schedulingControl,
 }))
-class ModuleTreeDrawer extends BaseLoadDrawer {
+class ModuleTreeDrawer extends BaseVerticalFlexDrawer {
   componentAuthority = accessWayCollection.presetRole.listTreeModule.permission;
 
   static open() {
@@ -32,6 +33,7 @@ class ModuleTreeDrawer extends BaseLoadDrawer {
     this.state = {
       ...this.state,
       loadApiPath: 'presetRole/listTreeModule',
+      defaultExpandedKeys: [],
     };
   }
 
@@ -47,16 +49,25 @@ class ModuleTreeDrawer extends BaseLoadDrawer {
     return d;
   };
 
-  supplementSubmitRequestParams = (o) => {
-    const d = o;
-    const { externalData } = this.state;
+  doOtherAfterLoadSuccess = ({
+    // eslint-disable-next-line no-unused-vars
+    metaData = null,
+    // eslint-disable-next-line no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line no-unused-vars
+    metaOriginalData = null,
+  }) => {
+    const keys = metaListData.map((o) => {
+      const { key } = { key: '', ...o };
 
-    d.presetRoleId = getValueByKey({
-      data: externalData,
-      key: fieldData.presetRoleId.name,
+      return key;
     });
 
-    return d;
+    this.setState({
+      defaultExpandedKeys: [...keys],
+    });
   };
 
   getPresetPageTitle = () => {
@@ -78,43 +89,47 @@ class ModuleTreeDrawer extends BaseLoadDrawer {
     return values;
   };
 
-  establishCardCollectionConfig = () => {
-    const { metaListData } = this.state;
-
-    return {
-      list: [
-        {
-          title: {
-            icon: iconBuilder.contacts(),
-            text: '树型展示',
-          },
-          items: [
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.tree,
-              showLine: true,
-              switcherIcon: iconBuilder.down(),
-              treeData: metaListData,
-            },
-          ],
-        },
-      ],
-    };
-  };
-
   establishHelpConfig = () => {
     return {
       title: '操作提示',
       list: [
         {
-          text: '简要说明:这里可以显示需要提示的信息。',
-        },
-        {
-          text: '简要说明:这里可以显示需要提示的信息。',
+          text: '简要说明:这里可以显示角色已选择的模块。',
         },
       ],
     };
   };
+
+  renderPresetContentContainorInnerTop = () => {
+    const { metaListData, defaultExpandedKeys } = this.state;
+
+    const hasData = !isEmptyArray(metaListData);
+
+    return (
+      <div style={{ padding: '20px 20px' }}>
+        {hasData ? (
+          <ElasticityTree
+            innerProps={{ defaultExpandedKeys }}
+            listData={metaListData}
+            dataConvert={(o) => {
+              const { title, relativePath } = {
+                title: '',
+                relativePath: '',
+                ...o,
+              };
+
+              return {
+                ...o,
+                title: `${title} 【“${relativePath}”】`,
+              };
+            }}
+          />
+        ) : (
+          <Empty description="暂无已选择模块，请选择后查看" />
+        )}
+      </div>
+    );
+  };
 }
 
-export default ModuleTreeDrawer;
+export { ModuleTreeDrawer };

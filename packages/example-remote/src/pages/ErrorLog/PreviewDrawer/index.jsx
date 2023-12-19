@@ -223,6 +223,7 @@ class PreviewDrawer extends BaseLoadDrawer {
             icon: iconBuilder.contacts(),
             text: `${fieldData.header.label}信息`,
           },
+          hasExtra: true,
           extra: {
             affix: true,
             list: [

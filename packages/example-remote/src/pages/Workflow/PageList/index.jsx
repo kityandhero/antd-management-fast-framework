@@ -115,6 +115,11 @@ class PageList extends MultiPage {
         break;
       }
 
+      case 'remove': {
+        this.remove(handleData);
+        break;
+      }
+
       case 'refreshCache': {
         this.refreshCache(handleData);
 
@@ -127,40 +132,62 @@ class PageList extends MultiPage {
     }
   };
 
-  setEnable = (r) => {
+  setEnable = (item) => {
     setEnableAction({
       target: this,
-      handleData: r,
+      handleData: item,
       successCallback: ({ target, handleData, remoteData }) => {
         target.handleItemStatus({ target, handleData, remoteData });
       },
     });
   };
 
-  setDisable = (r) => {
+  setDisable = (item) => {
     setDisableAction({
       target: this,
-      handleData: r,
+      handleData: item,
       successCallback: ({ target, handleData, remoteData }) => {
         target.handleItemStatus({ target, handleData, remoteData });
       },
     });
   };
 
-  remove = (r) => {
+  remove = (item) => {
+    const { metaListData } = this.state;
+
+    const that = this;
+
     removeAction({
-      target: this,
-      handleData: r,
-      successCallback: ({ target, handleData, remoteData }) => {
-        target.handleItemStatus({ target, handleData, remoteData });
+      target: that,
+      handleData: item,
+      successCallback: ({ target }) => {
+        if (metaListData.length === 1) {
+          target.refreshDataWithReloadAnimalPrompt({
+            prepareRequest: () => {
+              that.pageValues.pageNo =
+                that.pageValues.pageNo - 1 <= 0
+                  ? 1
+                  : that.pageValues.pageNo - 1;
+
+              that.pageValues.frontendPageNo =
+                that.pageValues.frontendPageNo - 1 <= 0
+                  ? 1
+                  : that.pageValues.frontendPageNo - 1;
+
+              console.log(that.pageValues);
+            },
+          });
+        } else {
+          target.refreshDataWithReloadAnimalPrompt({});
+        }
       },
     });
   };
 
-  refreshCache = (r) => {
+  refreshCache = (item) => {
     refreshCacheAction({
       target: this,
-      handleData: r,
+      handleData: item,
     });
   };
 
@@ -303,6 +330,15 @@ class PageList extends MultiPage {
           text: '刷新缓存',
           confirm: true,
           title: '将要刷新缓存，确定吗？',
+        },
+        {
+          withDivider: true,
+          uponDivider: true,
+          key: 'remove',
+          icon: iconBuilder.delete(),
+          text: '移除流程',
+          confirm: true,
+          title: '将要移除流程，确定吗？',
         },
       ],
     };

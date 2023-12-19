@@ -1,8 +1,27 @@
-import { getValueByKey } from 'easy-soft-utility';
+import { getValueByKey, request } from 'easy-soft-utility';
 
 import { actionCore } from 'antd-management-fast-common';
 
+import { updateColorDataApiAddress } from '../../../services/tag';
 import { fieldData } from '../Common/data';
+
+export function updateColorAction({ handleData }) {
+  request({
+    api: updateColorDataApiAddress,
+    params: {
+      tagId: getValueByKey({
+        data: handleData,
+        key: fieldData.tagId.name,
+        defaultValue: '',
+      }),
+      color: getValueByKey({
+        data: handleData,
+        key: fieldData.color.name,
+        defaultValue: '',
+      }),
+    },
+  });
+}
 
 export async function updateSortAction({
   target,
@@ -16,6 +35,7 @@ export async function updateSortAction({
       tagId: getValueByKey({
         data: handleData,
         key: fieldData.tagId.name,
+        defaultValue: '',
       }),
     },
     target,

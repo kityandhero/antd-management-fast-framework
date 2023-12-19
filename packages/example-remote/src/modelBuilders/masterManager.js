@@ -19,6 +19,7 @@ import {
   setDisableData,
   setEnableData,
   updateBasicInfoData,
+  uploadImageData,
 } from '../services/masterManager';
 
 export function buildModel() {
@@ -212,7 +213,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *remove(
+      *changePermission(
         {
           payload,
           alias,
@@ -221,7 +222,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(removeData, payload);
+        const response = yield call(changePermissionData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -238,7 +239,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *changePermission(
+      *remove(
         {
           payload,
           alias,
@@ -247,7 +248,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(changePermissionData, payload);
+        const response = yield call(removeData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -302,6 +303,32 @@ export function buildModel() {
         const response = yield call(pageListOperateLogData, payload);
 
         const dataAdjust = pretreatmentRemotePageListData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *uploadImage(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(uploadImageData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
           successCallback: pretreatmentSuccessCallback || null,
           failCallback: pretreatmentFailCallback || null,
