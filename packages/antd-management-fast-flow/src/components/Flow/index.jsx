@@ -29,6 +29,8 @@ function Flow(properties) {
   const {
     canEdit,
     nodeNameKey,
+    listInLineKey,
+    listOutLineKey,
     listApproverKey,
     personnelNameKey,
     personnelNameLabel,
@@ -53,6 +55,8 @@ function Flow(properties) {
   const nodeWithEditOption = nodes.map((o) => {
     o.data.canEdit = canEdit;
     o.data.nodeNameKey = nodeNameKey;
+    o.data.listInLineKey = listInLineKey;
+    o.data.listOutLineKey = listOutLineKey;
     o.data.listApproverKey = listApproverKey;
     o.data.personnelNameKey = personnelNameKey;
     o.data.personnelNameLabel = personnelNameLabel;
@@ -142,6 +146,8 @@ function Flow(properties) {
 Flow.defaultProps = {
   canEdit: true,
   nodeNameKey: 'nodeNameKey',
+  listInLineKey: 'listInLine',
+  listOutLineKey: 'listOutLine',
   listApproverKey: 'listApprover',
   personnelNameKey: 'personnelNameKey',
   personnelNameLabel: 'personnelNameLabel',

@@ -33,16 +33,21 @@ class IntermediateNode extends PureComponent {
       isNext,
       canEdit,
       nodeNameKey,
+      // listInLineKey,
+      listOutLineKey,
       listApproverKey,
       personnelNameKey,
       personnelNameLabel,
       onAddApprover,
       onChange,
+      onChangeBranchCondition,
       onRemove,
       onRemoveApprover,
     } = {
       canEdit: false,
       nodeNameKey: 'nodeNameKey',
+      listInLineKey: 'listInLine',
+      listOutLineKey: 'listOutLine',
       listApproverKey: 'listApprover',
       personnelNameKey: 'personnelName',
       personnelNameLabel: '',
@@ -55,8 +60,6 @@ class IntermediateNode extends PureComponent {
       defaultValue: '暂无',
     });
 
-    console.log({ dataSource, nodeNameKey });
-
     const listApprover = getValueByKey({
       data: dataSource,
       key: listApproverKey,
@@ -64,6 +67,24 @@ class IntermediateNode extends PureComponent {
     });
 
     const hasApprover = listApprover.length > 0;
+
+    // const listInLine = getValueByKey({
+    //   data: dataSource,
+    //   key: listInLineKey,
+    //   convert: convertCollection.array,
+    // });
+
+    // const inLineCount = listInLine.length;
+
+    const listOutLine = getValueByKey({
+      data: dataSource,
+      key: listOutLineKey,
+      convert: convertCollection.array,
+    });
+
+    const outLineCount = listOutLine.length;
+
+    console.log({ outLineCount });
 
     return (
       <>
@@ -131,6 +152,28 @@ class IntermediateNode extends PureComponent {
                     >
                       {iconBuilder.edit()}
                     </button>
+
+                    {outLineCount > 1 ? (
+                      <button
+                        style={{
+                          padding: '1px 4px',
+                          fontSize: '12px',
+                          backgroundColor: 'transparent',
+                          borderRadius: '5px',
+                          borderColor: '#fff',
+                        }}
+                        title="点击编辑分支条件"
+                        onClick={(event) => {
+                          event.stopPropagation();
+
+                          if (isFunction(onChangeBranchCondition)) {
+                            onChangeBranchCondition(dataSource);
+                          }
+                        }}
+                      >
+                        {iconBuilder.fork()}
+                      </button>
+                    ) : null}
 
                     <button
                       style={{
@@ -317,6 +360,8 @@ class IntermediateNode extends PureComponent {
 
 IntermediateNode.defaultProps = {
   color: 'black',
+  data: {},
+  size: '',
 };
 
 export { IntermediateNode };

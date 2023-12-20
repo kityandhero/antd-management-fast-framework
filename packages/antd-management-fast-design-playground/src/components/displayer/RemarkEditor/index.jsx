@@ -213,8 +213,6 @@ class RemarkEditor extends BaseComponent {
 
     const list = [...dataBackup];
 
-    console.log(list);
-
     this.setState({ dataStorage: [...list] });
   };
 

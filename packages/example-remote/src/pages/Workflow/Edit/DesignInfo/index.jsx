@@ -22,6 +22,7 @@ import {
   flowLineTypeCollection,
   flowNodeTypeCollection,
 } from '../../../../customConfig';
+import { BranchConditionDrawer } from '../../../WorkflowBranchCondition/BranchConditionDrawer';
 import { AddLineDrawer } from '../../../WorkflowLine/AddLineDrawer';
 import {
   removeAllAction as removeAllLineAction,
@@ -176,6 +177,9 @@ class Index extends TabPageBase {
             },
             onChange: (data) => {
               this.showUpdateBasicInfoDrawer(data);
+            },
+            onChangeBranchCondition: (data) => {
+              this.showBranchConditionDrawer(data);
             },
             onRemove: (data) => {
               this.removeNodeConfirm(data);
@@ -483,6 +487,22 @@ class Index extends TabPageBase {
     this.reloadData({});
   };
 
+  showBranchConditionDrawer = (record) => {
+    this.setState(
+      {
+        currentNode: record,
+      },
+      () => {
+        BranchConditionDrawer.open();
+      },
+    );
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  afterBranchConditionDrawerClose = (data) => {
+    this.reloadData({});
+  };
+
   showUpdateLineDrawer = (data) => {
     this.setState(
       {
@@ -718,10 +738,12 @@ class Index extends TabPageBase {
               type: cardConfig.contentItemType.component,
               component: (
                 <>
-                  <div style={{ height: '630px' }}>
+                  <div style={{ height: '730px' }}>
                     <Flow
                       canEdit
                       nodeNameKey={fieldDataWorkflowNode.name.name}
+                      listInLineKey={fieldDataWorkflowNode.listInLine.name}
+                      listOutLineKey={fieldDataWorkflowNode.listOutLine.name}
                       listApproverKey={fieldDataWorkflowNode.listApprover.name}
                       personnelNameKey={
                         fieldDataWorkflowNodeApprover.userRealName.name
@@ -787,6 +809,13 @@ class Index extends TabPageBase {
           externalData={currentNode}
           afterClose={() => {
             this.afterUpdateBasicInfoDrawerClose();
+          }}
+        />
+
+        <BranchConditionDrawer
+          externalData={currentNode}
+          afterClose={() => {
+            this.afterBranchConditionDrawerClose();
           }}
         />
 

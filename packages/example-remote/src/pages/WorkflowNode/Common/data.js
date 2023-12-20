@@ -1,5 +1,38 @@
 import { formNameCollection } from '../../../customConfig';
 
+const formExtraData = {
+  outLineCount: {
+    label: '发出线条数量',
+    name: 'outLineCount',
+    helper: '',
+  },
+  inLineCount: {
+    label: '进入线条数量',
+    name: 'inLineCount',
+    helper: '',
+  },
+  listOutLine: {
+    label: '发出线条列表',
+    name: 'listOutLine',
+    helper: '',
+  },
+  listInLine: {
+    label: '进入线条列表',
+    name: 'listInLine',
+    helper: '',
+  },
+  listWorkflowNodeApprover: {
+    label: '节点审批人列表',
+    name: 'listInLine',
+    helper: '',
+  },
+  listWorkflowBranchCondition: {
+    label: '节点分支条件列表',
+    name: 'listWorkflowBranchCondition',
+    helper: '',
+  },
+};
+
 export const fieldData = {
   ...formNameCollection,
   workflowNodeId: {
@@ -77,4 +110,5 @@ export const fieldData = {
     name: 'updateTime',
     helper: '',
   },
+  ...formExtraData,
 };

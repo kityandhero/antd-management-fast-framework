@@ -1135,6 +1135,8 @@ class DebugCaseInfo extends TabPageBase {
                   <Flow
                     canEdit={false}
                     nodeNameKey={fieldDataWorkflowNode.name.name}
+                    listInLineKey={fieldDataWorkflowNode.listInLine.name}
+                    listOutLineKey={fieldDataWorkflowNode.listOutLine.name}
                     listApproverKey={fieldDataWorkflowNode.listApprover.name}
                     personnelNameKey={
                       fieldDataWorkflowNodeApprover.userRealName.name
