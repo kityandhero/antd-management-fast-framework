@@ -8,10 +8,15 @@ import {
   BellFilled,
   BellOutlined,
   BorderOuterOutlined,
+  BranchesOutlined,
   BugFilled,
   BugOutlined,
   CaretDownFilled,
   CaretDownOutlined,
+  CaretLeftFilled,
+  CaretLeftOutlined,
+  CaretRightFilled,
+  CaretRightOutlined,
   CaretUpFilled,
   CaretUpOutlined,
   CheckCircleFilled,
@@ -30,8 +35,11 @@ import {
   CompressOutlined,
   ContactsFilled,
   ContactsOutlined,
+  ControlFilled,
+  ControlOutlined,
   CopyFilled,
   CopyOutlined,
+  CopyrightOutlined,
   CustomerServiceOutlined,
   DashboardFilled,
   DashboardOutlined,
@@ -122,6 +130,7 @@ import {
   QrcodeOutlined,
   QuestionCircleFilled,
   QuestionCircleOutlined,
+  QuestionOutlined,
   ReadFilled,
   ReadOutlined,
   ReconciliationFilled,
@@ -208,6 +217,9 @@ export const iconBuilder = {
 
     return <PlusCircleOutlined {...(properties || {})} />;
   },
+  branches: (properties = null) => {
+    return <BranchesOutlined {...(properties || {})} />;
+  },
   plusCircle: (properties = null, mode = iconModeCollection.outlined) => {
     if (mode === iconModeCollection.filled) {
       return <PlusCircleFilled {...(properties || {})} />;
@@ -291,12 +303,22 @@ export const iconBuilder = {
 
     return <CloseCircleOutlined {...(properties || {})} />;
   },
+  control: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
+      return <ControlFilled {...(properties || {})} />;
+    }
+
+    return <ControlOutlined {...(properties || {})} />;
+  },
   copy: (properties = null, mode = iconModeCollection.outlined) => {
     if (mode === iconModeCollection.filled) {
       return <CopyFilled {...(properties || {})} />;
     }
 
     return <CopyOutlined {...(properties || {})} />;
+  },
+  copyright: (properties = null) => {
+    return <CopyrightOutlined {...(properties || {})} />;
   },
   cluster: (properties = null) => {
     return <ClusterOutlined {...(properties || {})} />;
@@ -576,12 +598,15 @@ export const iconBuilder = {
 
     return <WarningOutlined {...(properties || {})} />;
   },
-  question: (properties = null, mode = iconModeCollection.outlined) => {
+  questionCircle: (properties = null, mode = iconModeCollection.outlined) => {
     if (mode === iconModeCollection.filled) {
       return <QuestionCircleFilled {...(properties || {})} />;
     }
 
     return <QuestionCircleOutlined {...(properties || {})} />;
+  },
+  question: (properties = null) => {
+    return <QuestionOutlined {...(properties || {})} />;
   },
   logout: (properties = null) => {
     return <LogoutOutlined {...(properties || {})} />;
@@ -825,6 +850,20 @@ export const iconBuilder = {
     }
 
     return <CaretDownOutlined {...(properties || {})} />;
+  },
+  caretLeft: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
+      return <CaretLeftFilled {...(properties || {})} />;
+    }
+
+    return <CaretLeftOutlined {...(properties || {})} />;
+  },
+  caretRight: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
+      return <CaretRightFilled {...(properties || {})} />;
+    }
+
+    return <CaretRightOutlined {...(properties || {})} />;
   },
   retweet: (properties = null) => {
     return <RetweetOutlined {...(properties || {})} />;
