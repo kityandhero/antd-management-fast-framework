@@ -122,6 +122,9 @@ class BranchConditionDrawer extends BaseVerticalFlexDrawer {
       title: '操作提示',
       list: [
         {
+          text: '点击箭头展开或折叠条件内容。',
+        },
+        {
           text: '不同条件的执行结果不能相互重叠。',
         },
       ],

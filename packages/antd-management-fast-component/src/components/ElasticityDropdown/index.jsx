@@ -6,6 +6,7 @@ import { EllipsisOutlined } from '@ant-design/icons';
 import {
   isArray,
   isFunction,
+  isNull,
   logDevelop,
   toLowerFirst,
 } from 'easy-soft-utility';
@@ -42,6 +43,7 @@ class ElasticityDropdown extends BaseComponent {
       handleMenuClick = () => {},
       items = [],
       itemPanelTitle = '',
+      itemPanelZIndex = null,
       processing = false,
       iconProcessing = iconBuilder.loading(),
     } = this.props;
@@ -140,6 +142,7 @@ class ElasticityDropdown extends BaseComponent {
 
     const popover = (
       <Popover
+        {...(isNull(itemPanelZIndex) ? {} : { zIndex: itemPanelZIndex })}
         {...innerProperties}
         placement={placementAdjust}
         arrow={arrow}
@@ -205,6 +208,7 @@ ElasticityDropdown.defaultProps = {
   handleMenuClick: () => {},
   items: [],
   itemPanelTitle: '',
+  itemPanelZIndex: null,
   processing: false,
   iconProcessing: iconBuilder.loading(),
 };

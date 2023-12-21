@@ -183,6 +183,7 @@ export function buildDropdown({
   handleMenuClick = () => {},
   items = [],
   itemPanelTitle = '',
+  itemPanelZIndex = null,
   processing = false,
   iconProcessing = iconBuilder.loading(),
 }) {
@@ -206,6 +207,7 @@ export function buildDropdown({
       handleMenuClick={handleMenuClick}
       items={items}
       itemPanelTitle={itemPanelTitle}
+      itemPanelZIndex={itemPanelZIndex}
       processing={processing}
       iconProcessing={iconProcessing}
       {...(key ? { key: key } : {})}

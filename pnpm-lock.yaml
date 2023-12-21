@@ -1041,7 +1041,7 @@ importers:
       '@typescript-eslint/parser': ^6.14.0
       antd: ^5.12.2
       antd-management-fast-common: ^2.6.70
-      antd-management-fast-component: ^2.6.103
+      antd-management-fast-component: ^2.6.104
       antd-management-fast-design-react: ^1.0.44
       antd-management-fast-formily: ^1.0.44
       babel-jest: ^29.7.0
@@ -1476,7 +1476,7 @@ importers:
       '@typescript-eslint/parser': ^6.14.0
       antd: ^5.12.2
       antd-management-fast-common: ^2.6.70
-      antd-management-fast-component: ^2.6.103
+      antd-management-fast-component: ^2.6.104
       babel-jest: ^29.7.0
       classnames: ^2.3.2
       commitizen: ^4.3.0
@@ -2169,12 +2169,12 @@ importers:
       '@umijs/max': ^4.0.89
       antd: ^5.12.2
       antd-management-fast-common: ^2.6.70
-      antd-management-fast-component: ^2.6.103
+      antd-management-fast-component: ^2.6.104
       antd-management-fast-config: ^1.1.52
-      antd-management-fast-design-playground: ^1.0.74
+      antd-management-fast-design-playground: ^1.0.75
       antd-management-fast-design-react: ^1.0.44
       antd-management-fast-develop: ^1.1.53
-      antd-management-fast-flow: ^1.0.32
+      antd-management-fast-flow: ^1.0.33
       antd-management-fast-formily: ^1.0.44
       antd-management-fast-framework: ^2.11.127
       axios: ^1.6.2
