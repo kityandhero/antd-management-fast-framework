@@ -22,6 +22,7 @@ class FlexText extends PureComponent {
       addonBefore,
       addonAfter,
       extra,
+      extraStyle,
       style,
       color,
       separator,
@@ -56,6 +57,7 @@ class FlexText extends PureComponent {
             {(addonAfter || null) == null ? null : addonAfter}
           </Space>
         }
+        rightStyle={extraStyle}
         right={extra}
       />
     );
@@ -72,6 +74,7 @@ FlexText.defaultProps = {
   subText: '',
   subTextStyle: null,
   extra: null,
+  extraStyle: null,
   style: null,
   color: '',
   separator: ': ',

@@ -36,10 +36,14 @@ export function buildDropdownMenu({
   placement = 'bottomRight',
   icon = null,
   size = 'middle',
+  type = 'default',
   list = [],
   dataConvert = null,
   onClick: onClickCallback,
   innerProps: innerProperties = null,
+  extra = null,
+  extraStyle = null,
+  color = null,
 }) {
   const listCheck = isArray(list) ? list : [];
 
@@ -95,8 +99,20 @@ export function buildDropdownMenu({
       placement={placement}
       arrow
     >
-      <Button size={size} {...innerProperties}>
-        <IconInfo icon={icon} text={label} />
+      <Button size={size} type={type} {...innerProperties}>
+        <FlexText
+          icon={icon}
+          color={
+            checkStringIsNullOrWhiteSpace(color)
+              ? type === 'link'
+                ? '#1677ff'
+                : null
+              : color
+          }
+          text={label}
+          extra={extra}
+          extraStyle={extraStyle}
+        />
       </Button>
     </Dropdown>
   );

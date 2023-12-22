@@ -1,4 +1,4 @@
-import { connect } from 'easy-soft-dva';
+export const code = `import { connect } from 'easy-soft-dva';
 import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
 
 import { cardConfig, logTemplate } from 'antd-management-fast-common';
@@ -20,18 +20,26 @@ import { code as codeView } from './codeSource';
 @connect(({ schedulingControl }) => ({
   schedulingControl,
 }))
-class FunctionExtraView extends BaseView {
+class FunctionComponentView extends BaseView {
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-      pageTitle: 'FunctionExtraView 交互示例',
-      currentCodeTitle: 'FunctionExtraView',
+      pageTitle: 'FunctionComponentView 交互示例',
+      currentCodeTitle: 'FunctionComponentView',
       currentCode: codeView,
       boxVisible: true,
     };
   }
+
+  toggleFadeBoxShow = () => {
+    const { boxVisible } = this.state;
+
+    this.setState({
+      boxVisible: !boxVisible,
+    });
+  };
 
   establishCardCollectionConfig = () => {
     const { currentCode, currentCodeTitle } = this.state;
@@ -42,7 +50,7 @@ class FunctionExtraView extends BaseView {
       list: [
         {
           title: {
-            text: 'FunctionExtra',
+            text: 'FunctionComponent',
           },
           extra: {
             affix: true,
@@ -139,7 +147,7 @@ class FunctionExtraView extends BaseView {
                     currentCode: code,
                   });
 
-                  showSimpleInfoMessage(`当前显示 ${v} 源代码`);
+                  showSimpleInfoMessage(\`当前显示 \${v} 源代码\`);
                 },
               },
             ],
@@ -163,4 +171,5 @@ class FunctionExtraView extends BaseView {
   };
 }
 
-export default FunctionExtraView;
+export default FunctionComponentView;
+`;

@@ -263,6 +263,10 @@
       "sourceFilePath": "./src/pages/Interaction/FunctionExtraView/index.jsx"
     },
     {
+      "codeFilePath": "./src/pages/Interaction/FunctionComponentView/codeSource.js",
+      "sourceFilePath": "./src/pages/Interaction/FunctionComponentView/index.jsx"
+    },
+    {
       "codeFilePath": "./src/pages/List/ListView/codeSource.js",
       "sourceFilePath": "./src/pages/List/ListView/index.jsx"
     },

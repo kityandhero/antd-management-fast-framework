@@ -1,16 +1,17 @@
 import { connect } from 'easy-soft-dva';
 import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
 
-import { cardConfig, logTemplate } from 'antd-management-fast-common';
-import { convertOptionOrRadioData } from 'antd-management-fast-component';
+import { cardConfig } from 'antd-management-fast-common';
+import {
+  buildDropdownMenu,
+  convertOptionOrRadioData,
+  iconBuilder,
+} from 'antd-management-fast-component';
 
 import {
-  renderCustomWebChannelRadio,
-  renderCustomWebChannelSelect,
+  refitWebChannelList,
   renderFormWebChannelRadio,
   renderFormWebChannelSelect,
-  renderSearchWebChannelSelect,
-  renderWebChannelDropDown,
 } from '../../../customSpecialComponents';
 import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
@@ -20,14 +21,14 @@ import { code as codeView } from './codeSource';
 @connect(({ schedulingControl }) => ({
   schedulingControl,
 }))
-class FunctionExtraView extends BaseView {
+class FunctionComponentView extends BaseView {
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-      pageTitle: 'FunctionExtraView 交互示例',
-      currentCodeTitle: 'FunctionExtraView',
+      pageTitle: 'FunctionComponentView 交互示例',
+      currentCodeTitle: 'FunctionComponentView',
       currentCode: codeView,
       boxVisible: true,
     };
@@ -42,44 +43,64 @@ class FunctionExtraView extends BaseView {
       list: [
         {
           title: {
-            text: 'FunctionExtra',
-          },
-          extra: {
-            affix: true,
-            list: [
-              {
-                buildType: cardConfig.extraBuildType.component,
-                component: renderCustomWebChannelRadio({}),
-              },
-              {
-                buildType: cardConfig.extraBuildType.divider,
-              },
-              {
-                buildType: cardConfig.extraBuildType.component,
-                component: renderCustomWebChannelSelect({
-                  style: {
-                    minWidth: '230px',
-                  },
-                }),
-              },
-              {
-                buildType: cardConfig.extraBuildType.divider,
-              },
-              {
-                buildType: cardConfig.extraBuildType.component,
-                component: renderWebChannelDropDown({
-                  onClick: (o) => {
-                    logTemplate(o);
-                  },
-                }),
-              },
-            ],
+            text: 'FunctionComponent',
           },
           items: [
             {
               lg: 6,
               type: cardConfig.contentItemType.component,
-              component: renderSearchWebChannelSelect({}),
+              component: buildDropdownMenu({
+                label: '下拉菜单1',
+                placement: 'bottomRight',
+                icon: null,
+                size: 'middle',
+                type: 'default',
+                list: refitWebChannelList({ withUnlimited: false }),
+                dataConvert: null,
+                onClick: null,
+                innerProps: null,
+                extra: null,
+              }),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: buildDropdownMenu({
+                label: '下拉菜单2',
+                placement: 'bottom',
+                icon: iconBuilder.edit(),
+                size: 'middle',
+                type: 'link',
+                list: refitWebChannelList({ withUnlimited: false }),
+                dataConvert: null,
+                onClick: null,
+                innerProps: null,
+                extraStyle: { paddingLeft: '4px' },
+                extra: iconBuilder.down(),
+              }),
+            },
+          ],
+        },
+        {
+          title: {
+            text: 'FunctionComponent',
+          },
+          items: [
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: buildDropdownMenu({
+                label: '下拉菜单',
+                placement: 'bottomRight',
+                icon: null,
+                size: 'middle',
+                type: 'default',
+                list: refitWebChannelList({ withUnlimited: false }),
+                dataConvert: null,
+                onClick: null,
+                innerProps: null,
+                extra: null,
+              }),
             },
             {
               lg: 6,
@@ -163,4 +184,4 @@ class FunctionExtraView extends BaseView {
   };
 }
 
-export default FunctionExtraView;
+export default FunctionComponentView;

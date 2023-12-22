@@ -329,6 +329,13 @@ export default [
         useMini: true,
         component: './Interaction/FunctionExtraView',
       },
+      {
+        path: '/interaction/functionComponentView',
+        name: 'functionComponentView',
+        icon: 'bars',
+        useMini: true,
+        component: './Interaction/FunctionComponentView',
+      },
     ],
   },
   {

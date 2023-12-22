@@ -89,7 +89,9 @@ export default {
   'menu.interaction.toolBarView': 'ToolBar 示例',
   'menu.interaction.toolBarView-mini': 'toolBar',
   'menu.interaction.functionExtraView': 'FunctionExtra 示例',
-  'menu.interaction.functionExtraView-mini': 'FunctionExtra',
+  'menu.interaction.functionExtraView-mini': 'FE',
+  'menu.interaction.functionComponentView': 'FunctionComponent 示例',
+  'menu.interaction.functionComponentView-mini': 'FC',
 
   'menu.flowEditor': '流程图',
   'menu.flowEditor-mini': '流程图',
