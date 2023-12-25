@@ -15,6 +15,10 @@ export function buildSearchInput({
   formItemLayout = {},
   reminderPrefix = '输入',
   hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   return (
     <InputItem
@@ -27,6 +31,10 @@ export function buildSearchInput({
       formItemLayout={formItemLayout}
       reminderPrefix={reminderPrefix}
       hidden={hidden}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
     />
   );
 }
@@ -39,6 +47,11 @@ export function buildSearchInputNumber({
   innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   return (
     <InputNumberItem
@@ -49,6 +62,11 @@ export function buildSearchInputNumber({
       innerProps={innerProperties}
       canOperate={canOperate}
       formItemLayout={formItemLayout}
+      hidden={hidden}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
     />
   );
 }
@@ -63,6 +81,10 @@ export function buildSearchFormSelect({
   onChange: onChangeCallback = null,
   innerProps: innerProperties = null,
   hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   return (
     <SelectItem
@@ -75,6 +97,10 @@ export function buildSearchFormSelect({
       onChange={onChangeCallback}
       innerProps={innerProperties}
       hidden={hidden}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
     />
   );
 }

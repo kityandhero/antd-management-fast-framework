@@ -36,6 +36,7 @@ export function buildFormOnlyShowInput({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   return (
     <OnlyShowInputItem
@@ -49,6 +50,7 @@ export function buildFormOnlyShowInput({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -66,6 +68,7 @@ export function buildFormInputNumber({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   return (
     <InputNumberItem
@@ -81,6 +84,7 @@ export function buildFormInputNumber({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -96,6 +100,7 @@ export function buildFormTextArea({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   return (
     <TextAreaItem
@@ -110,6 +115,7 @@ export function buildFormTextArea({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -126,6 +132,7 @@ export function buildFormDatePicker({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   return (
     <DatePickerItem
@@ -140,6 +147,7 @@ export function buildFormDatePicker({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -156,6 +164,7 @@ export function buildFormTimePicker({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   return (
     <TimePickerItem
@@ -170,6 +179,7 @@ export function buildFormTimePicker({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -183,6 +193,7 @@ export function buildFormText({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   return (
     <TextItem
@@ -194,6 +205,7 @@ export function buildFormText({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -208,6 +220,7 @@ export function buildFormOnlyShowTextarea({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   return (
     <TextAreaItem
@@ -221,6 +234,7 @@ export function buildFormOnlyShowTextarea({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -235,6 +249,7 @@ export function buildFormInnerComponent({
   addonAfter = null,
   addonAfterStyle = null,
   requiredForShow = false,
+  hidden = false,
 }) {
   return (
     <ComponentItem
@@ -247,6 +262,7 @@ export function buildFormInnerComponent({
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
       requiredForShow={requiredForShow}
+      hidden={hidden}
     />
   );
 }
@@ -258,6 +274,7 @@ export function buildFormActionItem({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   if ((component || null) == null) {
     return null;
@@ -271,6 +288,7 @@ export function buildFormActionItem({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     >
       {component}
     </ActionItem>
@@ -284,6 +302,7 @@ export function buildFormButton({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   return (
     <Item
@@ -293,6 +312,7 @@ export function buildFormButton({
       addonBeforeStyle={addonBeforeStyle}
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
+      hidden={hidden}
     >
       <ElasticityButton {...config} />
     </Item>
@@ -311,6 +331,7 @@ export function buildFormOnlyShowSyntaxHighlighter({
   formItemLayout = {},
   requiredForShow = false,
   innerProps: innerProperties = {},
+  hidden = false,
 }) {
   return (
     <SyntaxHighlighterItem
@@ -325,6 +346,7 @@ export function buildFormOnlyShowSyntaxHighlighter({
       formItemLayout={formItemLayout}
       requiredForShow={requiredForShow}
       innerProps={innerProperties}
+      hidden={hidden}
     />
   );
 }
@@ -402,6 +424,7 @@ export function buildFormOnlyShowText({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = {},
+  hidden = false,
 }) {
   return (
     <TextItem
@@ -413,6 +436,7 @@ export function buildFormOnlyShowText({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -507,6 +531,7 @@ export function buildFormCreateTimeField({
   addonBeforeStyle = null,
   addonAfter = null,
   addonAfterStyle = null,
+  hidden = false,
 }) {
   return (
     <OnlyShowDatetimeItem
@@ -518,6 +543,7 @@ export function buildFormCreateTimeField({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -531,6 +557,7 @@ export function buildFormUpdateTimeField({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = null,
+  hidden = false,
 }) {
   return (
     <OnlyShowDatetimeItem
@@ -542,6 +569,7 @@ export function buildFormUpdateTimeField({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
@@ -554,6 +582,7 @@ export function buildFormNowTimeField({
   addonAfter = null,
   addonAfterStyle = null,
   formItemLayout = null,
+  hidden = false,
 }) {
   return (
     <NowTimeItem
@@ -564,6 +593,7 @@ export function buildFormNowTimeField({
       addonAfter={addonAfter}
       addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
+      hidden={hidden}
     />
   );
 }
