@@ -10,32 +10,22 @@ import { ItemChildren } from '../ItemChildren';
 
 const { Item: FormItem } = Form;
 
-export function Item(properties) {
-  const {
-    hidden,
-    render,
-    children,
+function renderWithAddon(
+  c,
+  {
     addonBefore = null,
     addonBeforeStyle = null,
     addonAfter = null,
     addonAfterStyle = null,
-    ...rest
-  } = properties;
-
-  const childrenAdjust =
-    React.isValidElement(children) && isFunction(render) ? (
-      <ItemChildren render={render}>{children}</ItemChildren>
-    ) : (
-      children
-    );
-
+  },
+) {
   const childWithAddonAfter =
     addonAfter == null ? (
-      childrenAdjust
+      c
     ) : (
       <FlexBox
         flexAuto={'left'}
-        left={childrenAdjust}
+        left={c}
         rightStyle={{
           paddingLeft: '10px',
           ...addonAfterStyle,
@@ -59,9 +49,44 @@ export function Item(properties) {
       />
     );
 
+  return childWithAddonBefore;
+}
+
+export function Item(properties) {
+  const {
+    hidden,
+    render,
+    children,
+    addonBefore = null,
+    addonBeforeStyle = null,
+    addonAfter = null,
+    addonAfterStyle = null,
+    ...rest
+  } = properties;
+
   return (
     <HiddenWrapper hidden={hidden}>
-      <FormItem {...rest}>{childWithAddonBefore}</FormItem>
+      <FormItem {...rest}>
+        {React.isValidElement(children) && isFunction(render) ? (
+          <ItemChildren render={render}>{children}</ItemChildren>
+        ) : React.isValidElement(children) &&
+          (addonBefore != null || addonAfter != null) ? (
+          <ItemChildren
+            render={(c) => {
+              return renderWithAddon(c, {
+                addonBefore,
+                addonBeforeStyle,
+                addonAfter,
+                addonAfterStyle,
+              });
+            }}
+          >
+            {children}
+          </ItemChildren>
+        ) : (
+          children
+        )}
+      </FormItem>
     </HiddenWrapper>
   );
 }
