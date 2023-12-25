@@ -1,16 +1,17 @@
 export const code = `import { connect } from 'easy-soft-dva';
 import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
 
-import { cardConfig, logTemplate } from 'antd-management-fast-common';
-import { convertOptionOrRadioData } from 'antd-management-fast-component';
+import { cardConfig } from 'antd-management-fast-common';
+import {
+  buildDropdownMenu,
+  convertOptionOrRadioData,
+  iconBuilder,
+} from 'antd-management-fast-component';
 
 import {
-  renderCustomWebChannelRadio,
-  renderCustomWebChannelSelect,
+  refitWebChannelList,
   renderFormWebChannelRadio,
   renderFormWebChannelSelect,
-  renderSearchWebChannelSelect,
-  renderWebChannelDropDown,
 } from '../../../customSpecialComponents';
 import { BaseView } from '../BaseView';
 import { code as codeBaseView } from '../BaseView/codeSource';
@@ -33,14 +34,6 @@ class FunctionComponentView extends BaseView {
     };
   }
 
-  toggleFadeBoxShow = () => {
-    const { boxVisible } = this.state;
-
-    this.setState({
-      boxVisible: !boxVisible,
-    });
-  };
-
   establishCardCollectionConfig = () => {
     const { currentCode, currentCodeTitle } = this.state;
 
@@ -52,42 +45,62 @@ class FunctionComponentView extends BaseView {
           title: {
             text: 'FunctionComponent',
           },
-          extra: {
-            affix: true,
-            list: [
-              {
-                buildType: cardConfig.extraBuildType.component,
-                component: renderCustomWebChannelRadio({}),
-              },
-              {
-                buildType: cardConfig.extraBuildType.divider,
-              },
-              {
-                buildType: cardConfig.extraBuildType.component,
-                component: renderCustomWebChannelSelect({
-                  style: {
-                    minWidth: '230px',
-                  },
-                }),
-              },
-              {
-                buildType: cardConfig.extraBuildType.divider,
-              },
-              {
-                buildType: cardConfig.extraBuildType.component,
-                component: renderWebChannelDropDown({
-                  onClick: (o) => {
-                    logTemplate(o);
-                  },
-                }),
-              },
-            ],
+          items: [
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: buildDropdownMenu({
+                label: '下拉菜单1',
+                placement: 'bottomRight',
+                icon: null,
+                size: 'middle',
+                type: 'default',
+                list: refitWebChannelList({ withUnlimited: false }),
+                dataConvert: null,
+                onClick: null,
+                innerProps: null,
+                extra: null,
+              }),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.component,
+              component: buildDropdownMenu({
+                label: '下拉菜单2',
+                placement: 'bottom',
+                icon: iconBuilder.edit(),
+                size: 'middle',
+                type: 'link',
+                list: refitWebChannelList({ withUnlimited: false }),
+                dataConvert: null,
+                onClick: null,
+                innerProps: null,
+                extraStyle: { paddingLeft: '4px' },
+                extra: iconBuilder.down(),
+              }),
+            },
+          ],
+        },
+        {
+          title: {
+            text: 'FunctionComponent',
           },
           items: [
             {
               lg: 6,
               type: cardConfig.contentItemType.component,
-              component: renderSearchWebChannelSelect({}),
+              component: buildDropdownMenu({
+                label: '下拉菜单',
+                placement: 'bottomRight',
+                icon: null,
+                size: 'middle',
+                type: 'default',
+                list: refitWebChannelList({ withUnlimited: false }),
+                dataConvert: null,
+                onClick: null,
+                innerProps: null,
+                extra: null,
+              }),
             },
             {
               lg: 6,

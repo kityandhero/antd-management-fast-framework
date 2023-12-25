@@ -537,6 +537,10 @@ class CardCollectionItemContent extends PureComponent {
                         />
                       }
                       helper={fieldData.helper}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                       requiredForShow={require}
                     />
@@ -580,6 +584,10 @@ class CardCollectionItemContent extends PureComponent {
                         />
                       }
                       helper={fieldData.helper}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={null}
                       requiredForShow={require}
                     />
@@ -629,6 +637,10 @@ class CardCollectionItemContent extends PureComponent {
                         />
                       }
                       helper={fieldData.helper}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                       requiredForShow={require}
                     />
@@ -677,6 +689,10 @@ class CardCollectionItemContent extends PureComponent {
                         />
                       }
                       helper={fieldData.helper}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                       requiredForShow={require}
                     />
@@ -726,6 +742,10 @@ class CardCollectionItemContent extends PureComponent {
                         />
                       }
                       helper={fieldData.helper}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                       requiredForShow={require}
                     />
@@ -740,6 +760,10 @@ class CardCollectionItemContent extends PureComponent {
                       label={fieldData.label}
                       value={contentItem.value || ''}
                       helper={fieldData.helper}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -753,6 +777,10 @@ class CardCollectionItemContent extends PureComponent {
                         icon: contentItem.icon || iconBuilder.form(),
                         innerProps: { ...contentItem.innerProps },
                         canOperate: canOperate,
+                        addonBefore: contentItem.addonBefore || null,
+                        addonBeforeStyle: contentItem.addonBeforeStyle || null,
+                        addonAfter: contentItem.addonAfter || null,
+                        addonAfterStyle: contentItem.addonAfterStyle || null,
                         formItemLayout: formItemLayout,
                         reminderPrefix: '输入',
                         hidden: false,
@@ -767,6 +795,10 @@ class CardCollectionItemContent extends PureComponent {
                       required={require}
                       icon={contentItem.icon || iconBuilder.form()}
                       innerProps={{ ...contentItem.innerProps }}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -780,6 +812,10 @@ class CardCollectionItemContent extends PureComponent {
                       icon={contentItem.icon || iconBuilder.form()}
                       innerProps={{ ...contentItem.innerProps }}
                       canOperate={canOperate}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -793,6 +829,10 @@ class CardCollectionItemContent extends PureComponent {
                       helper={fieldData.helper}
                       innerProps={{ ...contentItem.innerProps }}
                       canOperate={canOperate}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -828,6 +868,10 @@ class CardCollectionItemContent extends PureComponent {
                       helper={fieldData.helper}
                       innerProps={{ ...contentItem.innerProps }}
                       canOperate={canOperate}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -840,6 +884,10 @@ class CardCollectionItemContent extends PureComponent {
                       helper={fieldData.helper}
                       innerProps={{ ...contentItem.innerProps }}
                       canOperate={canOperate}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -855,6 +903,10 @@ class CardCollectionItemContent extends PureComponent {
                         ...contentItem.innerProps,
                       }}
                       canOperate={canOperate}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -868,6 +920,10 @@ class CardCollectionItemContent extends PureComponent {
                         autoSize: { minRows: 3, maxRows: 5 },
                         ...contentItem.innerProps,
                       }}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -905,6 +961,10 @@ class CardCollectionItemContent extends PureComponent {
                             }
                           : {}),
                       }}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -924,6 +984,10 @@ class CardCollectionItemContent extends PureComponent {
                         disabled: true,
                         placeholder: `暂无${fieldData.label}信息`,
                       }}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -954,6 +1018,10 @@ class CardCollectionItemContent extends PureComponent {
                           : null
                       }
                       required={true}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                       innerProps={{ ...contentItem.innerProps }}
                     />
@@ -1008,6 +1076,10 @@ class CardCollectionItemContent extends PureComponent {
                       }
                       button={toBoolean(contentItem.button || false)}
                       required={true}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                       innerProps={{ ...contentItem.innerProps }}
                     />
@@ -1036,6 +1108,10 @@ class CardCollectionItemContent extends PureComponent {
                       helper={
                         contentItem.showHelper ? fieldData.helper || '' : ''
                       }
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -1045,6 +1121,10 @@ class CardCollectionItemContent extends PureComponent {
                       label={fieldData.label}
                       innerComponent={contentItem.component}
                       helper={fieldData.helper}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                       requiredForShow={require}
                     />
@@ -1057,6 +1137,10 @@ class CardCollectionItemContent extends PureComponent {
                           ? saveButtonBuilder(contentItem.config || {})
                           : null
                       }
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
                     />
                   ) : null}
@@ -1104,12 +1188,22 @@ class CardCollectionItemContent extends PureComponent {
                       value={contentItem.value}
                       helper={fieldData.helper}
                       formItemLayout={formItemLayout}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
                       innerProps={{ ...contentItem.innerProps }}
                     />
                   ) : null}
 
                   {type === cardConfig.contentItemType.nowTime ? (
-                    <NowTimeItem formItemLayout={formItemLayout} />
+                    <NowTimeItem
+                      formItemLayout={formItemLayout}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
+                    />
                   ) : null}
                 </Col>
               );

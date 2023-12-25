@@ -13,7 +13,17 @@ import { Item } from '../Item';
 
 class OnlyShowDatetimeItem extends PureComponent {
   render() {
-    const { label, name, helper, formItemLayout } = this.props;
+    const {
+      label,
+      name,
+      helper,
+      formItemLayout,
+      hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
+    } = this.props;
 
     const {
       label: labelChanged,
@@ -41,6 +51,11 @@ class OnlyShowDatetimeItem extends PureComponent {
             ? null
             : buildFieldHelper(resultCheck.helper)
         }
+        hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <Input
           addonBefore={iconBuilder.form()}
@@ -57,6 +72,8 @@ OnlyShowDatetimeItem.defaultProps = {
   name: '',
   helper: '',
   formItemLayout: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { OnlyShowDatetimeItem };

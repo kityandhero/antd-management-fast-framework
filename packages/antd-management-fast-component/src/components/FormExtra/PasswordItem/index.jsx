@@ -24,6 +24,10 @@ class PasswordItem extends PureComponent {
       required,
       innerProps: innerProperties,
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const otherInnerProperties = {
@@ -55,6 +59,10 @@ class PasswordItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <Password {...otherInnerProperties} />
       </Item>
@@ -71,6 +79,10 @@ PasswordItem.defaultProps = {
   innerProps: {},
   formItemLayout: {},
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { PasswordItem };

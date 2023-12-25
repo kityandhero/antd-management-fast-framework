@@ -23,6 +23,10 @@ class SwitchItem extends PureComponent {
       canOperate = true,
       formItemLayout = {},
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const title = label;
@@ -64,6 +68,10 @@ class SwitchItem extends PureComponent {
           />
         )}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <Switch {...otherSwitchProperties} />
       </Item>
@@ -81,6 +89,10 @@ SwitchItem.defaultProps = {
   canOperate: true,
   formItemLayout: {},
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { SwitchItem };

@@ -22,7 +22,11 @@ class InputNumberItem extends PureComponent {
       innerProps: innerProperties = {},
       canOperate = true,
       formItemLayout = {},
-      hidden = true,
+      hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const title = label;
@@ -59,6 +63,10 @@ class InputNumberItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <InputNumber {...otherInnerProperties} />
       </Item>
@@ -76,6 +84,10 @@ InputNumberItem.defaultProps = {
   canOperate: true,
   formItemLayout: {},
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { InputNumberItem };

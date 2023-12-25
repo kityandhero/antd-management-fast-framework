@@ -17,6 +17,10 @@ class TextItem extends PureComponent {
       helper = null,
       formItemLayout = null,
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const resultCheck = checkFromConfig({
@@ -41,6 +45,10 @@ class TextItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         {value}
       </Item>
@@ -55,6 +63,10 @@ TextItem.defaultProps = {
   list: [],
   formItemLayout: null,
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { TextItem };

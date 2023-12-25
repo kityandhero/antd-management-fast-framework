@@ -55,6 +55,26 @@ export const fieldData = {
     name: 'select1',
     helper: '选项列表示例',
   },
+  select11: {
+    label: 'Select选项列表',
+    name: 'select11',
+    helper: '选项列表示例',
+  },
+  select12: {
+    label: 'Select选项列表',
+    name: 'select12',
+    helper: '选项列表示例',
+  },
+  select13: {
+    label: 'Select选项列表',
+    name: 'select13',
+    helper: '选项列表示例',
+  },
+  select14: {
+    label: 'Select选项列表',
+    name: 'select14',
+    helper: '选项列表示例',
+  },
   select2: {
     label: 'Select-Custom选项列表',
     name: 'select2',
@@ -73,6 +93,11 @@ export const fieldData = {
   radio1: {
     label: 'Radio选项列表',
     name: 'radio1',
+    helper: '选项列表示例',
+  },
+  radio11: {
+    label: 'Radio选项列表',
+    name: 'radio11',
     helper: '选项列表示例',
   },
   radio2: {

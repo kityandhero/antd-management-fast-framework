@@ -30,6 +30,10 @@ class RadioItem extends PureComponent {
       innerProps: innerProperties = null,
       button = false,
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const listAdjust =
@@ -87,6 +91,10 @@ class RadioItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <RadioGroup {...otherRadioProperties}>
           {isFunction(renderItem)
@@ -114,6 +122,10 @@ RadioItem.defaultProps = {
   required: false,
   innerProps: null,
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { RadioItem };

@@ -4,10 +4,12 @@ import {
   getValueByKey,
   mergeArrowText,
   showSimpleInfoMessage,
+  showSimpleInfoNotification,
 } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import {
+  buildButton,
   buildColorText,
   convertOptionOrRadioData,
   iconBuilder,
@@ -498,6 +500,59 @@ class NormalView extends BaseView {
               },
             ],
           },
+        },
+        {
+          title: {
+            text: '通用前后附加组件',
+          },
+          items: [
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.author,
+              require: false,
+              addonBefore: buildButton({
+                text: '',
+                icon: iconBuilder.edit(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click button');
+                },
+              }),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.author,
+              require: false,
+              addonAfter: buildButton({
+                text: '',
+                icon: iconBuilder.reload(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click refresh button');
+                },
+              }),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.author,
+              require: false,
+              addonBefore: buildButton({
+                text: '',
+                icon: iconBuilder.edit(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click button');
+                },
+              }),
+              addonAfter: buildButton({
+                text: '',
+                icon: iconBuilder.reload(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click refresh button');
+                },
+              }),
+            },
+          ],
         },
         {
           title: {

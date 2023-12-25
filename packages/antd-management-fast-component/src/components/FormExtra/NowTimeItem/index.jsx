@@ -15,7 +15,16 @@ import { Item } from '../Item';
 
 class NowTimeItem extends PureComponent {
   render() {
-    const { label, helper, formItemLayout, hidden = false } = this.props;
+    const {
+      label,
+      helper,
+      formItemLayout,
+      hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
+    } = this.props;
 
     const {
       label: labelChanged,
@@ -49,6 +58,10 @@ class NowTimeItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <Input
           value={formatDatetime({
@@ -68,6 +81,8 @@ NowTimeItem.defaultProps = {
   label: '当前时间',
   helper: '操作的当前时间',
   formItemLayout: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { NowTimeItem };

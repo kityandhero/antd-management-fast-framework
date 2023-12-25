@@ -21,6 +21,10 @@ class OnlyShowTextareaItem extends PureComponent {
       innerProps: innerProperties = {},
       formItemLayout = {},
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const title = label;
@@ -54,6 +58,10 @@ class OnlyShowTextareaItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <TextArea {...otherInnerProperties} value={value} />
       </Item>
@@ -69,6 +77,10 @@ OnlyShowTextareaItem.defaultProps = {
   canOperate: true,
   formItemLayout: {},
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { OnlyShowTextareaItem };

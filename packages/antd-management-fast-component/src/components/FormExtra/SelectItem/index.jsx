@@ -27,6 +27,10 @@ class SelectItem extends PureComponent {
       required = false,
       innerProps: innerProperties = null,
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const listAdjust =
@@ -64,6 +68,18 @@ class SelectItem extends PureComponent {
       helper,
     });
 
+    const select = (
+      <Select {...otherSelectProperties}>
+        {isFunction(renderItem)
+          ? listAdjust.map((o, index) => {
+              return renderItem(o, index);
+            })
+          : listAdjust.map((o, index) => {
+              return buildOptionItem(o, index);
+            })}
+      </Select>
+    );
+
     return (
       <Item
         {...(formItemLayout || {})}
@@ -81,16 +97,12 @@ class SelectItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
-        <Select {...otherSelectProperties}>
-          {isFunction(renderItem)
-            ? listAdjust.map((o, index) => {
-                return renderItem(o, index);
-              })
-            : listAdjust.map((o, index) => {
-                return buildOptionItem(o, index);
-              })}
-        </Select>
+        {select}
       </Item>
     );
   }
@@ -108,6 +120,10 @@ SelectItem.defaultProps = {
   required: false,
   innerProps: null,
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { SelectItem };

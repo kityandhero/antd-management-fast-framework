@@ -24,6 +24,10 @@ class InputItem extends PureComponent {
       formItemLayout,
       reminderPrefix,
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const title = label;
@@ -60,6 +64,10 @@ class InputItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <Input {...otherInnerProperties} />
       </Item>
@@ -78,6 +86,10 @@ InputItem.defaultProps = {
   formItemLayout: {},
   reminderPrefix: '输入',
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { InputItem };

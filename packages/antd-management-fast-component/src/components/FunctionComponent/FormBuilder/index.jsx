@@ -31,6 +31,10 @@ export function buildFormOnlyShowInput({
   helper = null,
   icon = iconBuilder.form(),
   innerProps: innerProperties = { disabled: true },
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
 }) {
   return (
@@ -40,6 +44,10 @@ export function buildFormOnlyShowInput({
       helper={helper}
       icon={icon}
       innerProps={innerProperties}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -53,6 +61,10 @@ export function buildFormInputNumber({
   icon = iconBuilder.form(),
   innerProps: innerProperties = {},
   canOperate = true,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
 }) {
   return (
@@ -64,6 +76,10 @@ export function buildFormInputNumber({
       icon={icon}
       innerProps={innerProperties}
       canOperate={canOperate}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -75,6 +91,10 @@ export function buildFormTextArea({
   helper = null,
   innerProps: innerProperties = {},
   canOperate = true,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
 }) {
   return (
@@ -85,6 +105,10 @@ export function buildFormTextArea({
       helper={helper}
       innerProps={innerProperties}
       canOperate={canOperate}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -97,6 +121,10 @@ export function buildFormDatePicker({
   helper = null,
   innerProps: innerProperties = {},
   canOperate = true,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
 }) {
   return (
@@ -107,6 +135,10 @@ export function buildFormDatePicker({
       helper={helper}
       innerProps={innerProperties}
       canOperate={canOperate}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -119,6 +151,10 @@ export function buildFormTimePicker({
   helper = null,
   innerProps: innerProperties = {},
   canOperate = true,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
 }) {
   return (
@@ -129,6 +165,10 @@ export function buildFormTimePicker({
       helper={helper}
       innerProps={innerProperties}
       canOperate={canOperate}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -138,6 +178,10 @@ export function buildFormText({
   label,
   value,
   helper = null,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
 }) {
   return (
@@ -145,6 +189,10 @@ export function buildFormText({
       label={label}
       value={value}
       helper={helper}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -155,6 +203,10 @@ export function buildFormOnlyShowTextarea({
   value,
   helper = null,
   innerProps: innerProperties = {},
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
 }) {
   return (
@@ -164,6 +216,10 @@ export function buildFormOnlyShowTextarea({
       helper={helper}
       canOperate={false}
       innerProps={innerProperties}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -174,6 +230,10 @@ export function buildFormInnerComponent({
   innerComponent,
   helper = null,
   formItemLayout = {},
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   requiredForShow = false,
 }) {
   return (
@@ -181,27 +241,59 @@ export function buildFormInnerComponent({
       label={label}
       innerComponent={innerComponent}
       helper={helper}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
       requiredForShow={requiredForShow}
     />
   );
 }
 
-export function buildFormActionItem({ component, formItemLayout = {} }) {
+export function buildFormActionItem({
+  component,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  formItemLayout = {},
+}) {
   if ((component || null) == null) {
     return null;
   }
 
   return (
-    <ActionItem action={component} formItemLayout={formItemLayout}>
+    <ActionItem
+      action={component}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
+      formItemLayout={formItemLayout}
+    >
       {component}
     </ActionItem>
   );
 }
 
-export function buildFormButton({ config, formItemLayout = {} }) {
+export function buildFormButton({
+  config,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  formItemLayout = {},
+}) {
   return (
-    <Item {...{ ...formItemLayout, colon: false }} label={<div />}>
+    <Item
+      {...{ ...formItemLayout, colon: false }}
+      label={<div />}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
+    >
       <ElasticityButton {...config} />
     </Item>
   );
@@ -212,6 +304,10 @@ export function buildFormOnlyShowSyntaxHighlighter({
   label,
   value,
   helper = null,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
   requiredForShow = false,
   innerProps: innerProperties = {},
@@ -222,6 +318,10 @@ export function buildFormOnlyShowSyntaxHighlighter({
       label={label}
       value={value}
       helper={helper}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
       requiredForShow={requiredForShow}
       innerProps={innerProperties}
@@ -234,6 +334,10 @@ export function buildFormSwitch({
   name,
   required = false,
   helper = null,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   innerProps: innerProperties = {},
   canOperate = true,
   formItemLayout = {},
@@ -247,6 +351,10 @@ export function buildFormSwitch({
       required={required}
       innerProps={innerProperties}
       canOperate={canOperate}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
       hidden={hidden}
     />
@@ -261,6 +369,10 @@ export function buildFormPassword({
   icon = iconBuilder.form(),
   innerProps: innerProperties = {},
   hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
 }) {
   return (
@@ -271,6 +383,10 @@ export function buildFormPassword({
       required={required}
       icon={icon}
       innerProps={innerProperties}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
       hidden={hidden}
     />
@@ -281,6 +397,10 @@ export function buildFormOnlyShowText({
   label,
   value,
   helper = null,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = {},
 }) {
   return (
@@ -288,6 +408,10 @@ export function buildFormOnlyShowText({
       label={label}
       value={value}
       helper={helper}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -308,6 +432,10 @@ export function buildFormInput({
   formItemLayout = {},
   reminderPrefix = '输入',
   hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   return (
     <InputItem
@@ -318,6 +446,10 @@ export function buildFormInput({
       icon={icon}
       innerProps={innerProperties}
       canOperate={canOperate}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
       reminderPrefix={reminderPrefix}
       hidden={hidden}
@@ -334,6 +466,10 @@ export function buildFormInputFieldData({
   formItemLayout = {},
   reminderPrefix = '输入',
   hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   const { label, name, helper } = {
     label: null,
@@ -351,6 +487,10 @@ export function buildFormInputFieldData({
       icon={icon}
       innerProps={innerProperties}
       canOperate={canOperate}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
       reminderPrefix={reminderPrefix}
       hidden={hidden}
@@ -363,12 +503,20 @@ export function buildFormCreateTimeField({
   helper = '数据的添加时间',
   label = '添加时间',
   formItemLayout = null,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   return (
     <OnlyShowDatetimeItem
       label={label}
       name={name}
       helper={helper}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -378,6 +526,10 @@ export function buildFormUpdateTimeField({
   name = 'updateTime',
   helper = '数据的最后修改时间',
   label = '最后修改时间',
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = null,
 }) {
   return (
@@ -385,6 +537,10 @@ export function buildFormUpdateTimeField({
       label={label}
       name={name}
       helper={helper}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -393,12 +549,20 @@ export function buildFormUpdateTimeField({
 export function buildFormNowTimeField({
   label = '当前时间',
   helper = '操作的当前时间',
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
   formItemLayout = null,
 }) {
   return (
     <NowTimeItem
       label={label}
       helper={helper}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
     />
   );
@@ -416,6 +580,10 @@ export function buildFormSelect({
   required = false,
   innerProps: innerProperties = null,
   hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   return (
     <SelectItem
@@ -426,6 +594,10 @@ export function buildFormSelect({
       renderItem={renderItem}
       helper={helper}
       onChange={onChangeCallback}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
       required={required}
       innerProps={innerProperties}
@@ -446,6 +618,10 @@ export function buildFormRadio({
   required = false,
   innerProps: innerProperties = null,
   hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   return (
     <RadioItem
@@ -456,6 +632,10 @@ export function buildFormRadio({
       renderItem={renderItem}
       helper={helper}
       onChangeCallback={onChangeCallback}
+      addonBefore={addonBefore}
+      addonBeforeStyle={addonBeforeStyle}
+      addonAfter={addonAfter}
+      addonAfterStyle={addonAfterStyle}
       formItemLayout={formItemLayout}
       required={required}
       innerProps={innerProperties}

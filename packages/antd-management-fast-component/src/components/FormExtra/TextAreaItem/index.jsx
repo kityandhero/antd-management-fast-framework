@@ -23,6 +23,10 @@ class TextAreaItem extends PureComponent {
       canOperate = true,
       formItemLayout = {},
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const title = label;
@@ -56,6 +60,10 @@ class TextAreaItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <TextArea {...otherInnerProperties} />
       </Item>
@@ -72,6 +80,10 @@ TextAreaItem.defaultProps = {
   canOperate: true,
   formItemLayout: {},
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { TextAreaItem };

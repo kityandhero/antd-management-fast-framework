@@ -20,6 +20,10 @@ class ComponentItem extends PureComponent {
       formItemLayout = {},
       requiredForShow = false,
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const title = label;
@@ -47,6 +51,10 @@ class ComponentItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         {innerComponent}
       </Item>
@@ -61,6 +69,10 @@ ComponentItem.defaultProps = {
   formItemLayout: {},
   requiredForShow: false,
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { ComponentItem };

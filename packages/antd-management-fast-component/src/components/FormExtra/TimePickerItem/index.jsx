@@ -21,6 +21,10 @@ class TimePickerItem extends PureComponent {
       canOperate = true,
       formItemLayout = {},
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const title = label;
@@ -50,6 +54,10 @@ class TimePickerItem extends PureComponent {
               : buildFieldHelper(resultCheck.helper)
           }
           hidden={hidden}
+          addonBefore={addonBefore}
+          addonBeforeStyle={addonBeforeStyle}
+          addonAfter={addonAfter}
+          addonAfterStyle={addonAfterStyle}
         >
           <TimePicker {...otherInnerProperties} />
         </Item>
@@ -73,6 +81,10 @@ class TimePickerItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <TimePicker {...otherInnerProperties} />
       </Item>
@@ -89,6 +101,10 @@ TimePickerItem.defaultProps = {
   canOperate: true,
   formItemLayout: {},
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { TimePickerItem };

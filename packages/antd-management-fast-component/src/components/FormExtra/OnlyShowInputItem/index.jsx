@@ -21,6 +21,10 @@ class OnlyShowInputItem extends PureComponent {
       innerProps: innerProperties = { disabled: true },
       formItemLayout = {},
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     const title = label;
@@ -54,6 +58,10 @@ class OnlyShowInputItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       >
         <Input {...otherInputProperties} />
       </Item>
@@ -69,6 +77,10 @@ OnlyShowInputItem.defaultProps = {
   innerProps: { disabled: true },
   formItemLayout: {},
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { OnlyShowInputItem };

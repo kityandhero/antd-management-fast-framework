@@ -14,6 +14,10 @@ class SyntaxHighlighterItem extends PureComponent {
       requiredForShow = false,
       innerProps: innerProperties = {},
       hidden = false,
+      addonBefore = null,
+      addonBeforeStyle = null,
+      addonAfter = null,
+      addonAfterStyle = null,
     } = this.props;
 
     return (
@@ -30,6 +34,10 @@ class SyntaxHighlighterItem extends PureComponent {
         requiredForShow={requiredForShow}
         formItemLayout={formItemLayout}
         hidden={hidden}
+        addonBefore={addonBefore}
+        addonBeforeStyle={addonBeforeStyle}
+        addonAfter={addonAfter}
+        addonAfterStyle={addonAfterStyle}
       />
     );
   }
@@ -44,6 +52,10 @@ SyntaxHighlighterItem.defaultProps = {
   requiredForShow: false,
   innerProps: {},
   hidden: false,
+  addonBefore: null,
+  addonBeforeStyle: null,
+  addonAfter: null,
+  addonAfterStyle: null,
 };
 
 export { SyntaxHighlighterItem };

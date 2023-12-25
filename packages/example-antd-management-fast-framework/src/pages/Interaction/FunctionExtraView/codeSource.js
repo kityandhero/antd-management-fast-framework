@@ -33,14 +33,6 @@ class FunctionExtraView extends BaseView {
     };
   }
 
-  toggleFadeBoxShow = () => {
-    const { boxVisible } = this.state;
-
-    this.setState({
-      boxVisible: !boxVisible,
-    });
-  };
-
   establishCardCollectionConfig = () => {
     const { currentCode, currentCodeTitle } = this.state;
 
