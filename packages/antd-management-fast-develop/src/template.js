@@ -224,8 +224,6 @@ export function renderCustom<%= o.functionSegment %>Radio({
   innerProps: innerProperties = null,
   adjustListData: adjustListDataCallback = null,
 }) {
-  const title = label || unknownLabel;
-
   const listData = refit<%= o.functionSegment %>List({
     withUnlimited: true,
   });
