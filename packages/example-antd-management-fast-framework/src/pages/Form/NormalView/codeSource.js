@@ -367,6 +367,14 @@ class NormalView extends BaseView {
     ];
   };
 
+  fillDefaultInitialValues = () => {
+    const values = {};
+
+    values[fieldData.author.name] = '张三';
+
+    return values;
+  };
+
   establishCardCollectionConfig = () => {
     const { metaData, currentCode, currentCodeTitle, parentId } = this.state;
 
@@ -482,9 +490,15 @@ class NormalView extends BaseView {
               ),
             },
             {
-              lg: 224,
+              lg: 18,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.subtitle,
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.author,
+              require: false,
             },
           ],
           instruction: {

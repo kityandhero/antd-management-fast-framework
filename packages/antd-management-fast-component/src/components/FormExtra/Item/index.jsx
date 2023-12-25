@@ -67,12 +67,19 @@ export function Item(properties) {
   return (
     <HiddenWrapper hidden={hidden}>
       <FormItem {...rest}>
-        {React.isValidElement(children) && isFunction(render) ? (
-          <ItemChildren render={render}>{children}</ItemChildren>
-        ) : React.isValidElement(children) &&
-          (addonBefore != null || addonAfter != null) ? (
+        {React.isValidElement(children) &&
+        (isFunction(render) || addonBefore != null || addonAfter != null) ? (
           <ItemChildren
             render={(c) => {
+              if (isFunction(render)) {
+                return renderWithAddon(render(c), {
+                  addonBefore,
+                  addonBeforeStyle,
+                  addonAfter,
+                  addonAfterStyle,
+                });
+              }
+
               return renderWithAddon(c, {
                 addonBefore,
                 addonBeforeStyle,
