@@ -6,12 +6,15 @@ import {
   logDebug,
   mergeArrowText,
   showSimpleInfoMessage,
+  showSimpleInfoNotification,
 } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import {
+  buildButton,
   ColorText,
   convertOptionOrRadioData,
+  iconBuilder,
 } from 'antd-management-fast-component';
 
 import { fieldData } from '../../../businessData/data';
@@ -130,6 +133,68 @@ class RadioView extends BaseView {
               // onChange: (v, option) => {
               //   logDebug(option, \`selectValue -> \${v}\`);
               // },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.empty,
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.select,
+              fieldData: fieldData.select11,
+              listData: optionList,
+              dataConvert: dataConvert,
+              onChange: (v, option) => {
+                logDebug(option, \`selectValue -> \${v}\`);
+              },
+              addonBefore: buildButton({
+                text: '',
+                icon: iconBuilder.edit(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click button');
+                },
+              }),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.select,
+              fieldData: fieldData.select11,
+              listData: optionList,
+              dataConvert: dataConvert,
+              onChange: (v, option) => {
+                logDebug(option, \`selectValue -> \${v}\`);
+              },
+              addonAfter: buildButton({
+                text: '',
+                icon: iconBuilder.reload(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click refresh button');
+                },
+              }),
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.select,
+              fieldData: fieldData.select11,
+              listData: optionList,
+              dataConvert: dataConvert,
+              onChange: (v, option) => {
+                logDebug(option, \`selectValue -> \${v}\`);
+              },
+              addonBefore: buildButton({
+                text: '',
+                icon: iconBuilder.edit(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click button');
+                },
+              }),
+              addonAfter: buildButton({
+                text: '',
+                icon: iconBuilder.reload(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click refresh button');
+                },
+              }),
             },
           ],
         },

@@ -6,12 +6,15 @@ import {
   logDebug,
   mergeArrowText,
   showSimpleInfoMessage,
+  showSimpleInfoNotification,
 } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import {
+  buildButton,
   ColorText,
   convertOptionOrRadioData,
+  iconBuilder,
 } from 'antd-management-fast-component';
 
 import { fieldData } from '../../../businessData/data';
@@ -98,6 +101,16 @@ class RadioView extends BaseView {
             {
               lg: 6,
               type: cardConfig.contentItemType.radio,
+              fieldData: fieldData.radio1,
+              listData: optionList,
+              dataConvert: dataConvert,
+              onChange: (v, event) => {
+                logDebug(event, \`selectValue -> \${v}\`);
+              },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.radio,
               fieldData: fieldData.radio4,
               listData: optionList,
               dataConvert: (o, index) => {
@@ -132,7 +145,7 @@ class RadioView extends BaseView {
               },
             },
             {
-              lg: 6,
+              lg: 12,
               type: cardConfig.contentItemType.radio,
               fieldData: fieldData.radio2,
               button: true,
@@ -141,6 +154,31 @@ class RadioView extends BaseView {
               onChange: (v) => {
                 logDebug({ selectValue: v });
               },
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.radio,
+              fieldData: fieldData.radio11,
+              button: true,
+              listData: optionList,
+              dataConvert: dataConvert,
+              onChange: (v) => {
+                logDebug({ selectValue: v });
+              },
+              addonBefore: buildButton({
+                text: '',
+                icon: iconBuilder.edit(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click button');
+                },
+              }),
+              addonAfter: buildButton({
+                text: '',
+                icon: iconBuilder.reload(),
+                handleClick: () => {
+                  showSimpleInfoNotification('click refresh button');
+                },
+              }),
             },
           ],
         },

@@ -1,7 +1,7 @@
 export const code = `import { connect } from 'easy-soft-dva';
 import { mergeArrowText, showSimpleInfoMessage } from 'easy-soft-utility';
 
-import { cardConfig } from 'antd-management-fast-common';
+import { cardConfig, logTemplate } from 'antd-management-fast-common';
 import {
   buildDropdownMenu,
   convertOptionOrRadioData,
@@ -71,12 +71,26 @@ class FunctionComponentView extends BaseView {
                 icon: iconBuilder.edit(),
                 size: 'middle',
                 type: 'link',
+                hidden: false,
                 list: refitWebChannelList({ withUnlimited: false }),
                 dataConvert: null,
-                onClick: null,
-                innerProps: null,
                 extraStyle: { paddingLeft: '4px' },
-                extra: iconBuilder.down(),
+                extra: iconBuilder.down({
+                  style: {
+                    fontSize: '10px',
+                  },
+                }),
+                innerProps: {
+                  border: '0',
+                  height: '22px',
+                  style: {
+                    padding: '0',
+                    height: '22px',
+                  },
+                },
+                onClick: ({ key }) => {
+                  logTemplate({ key });
+                },
               }),
             },
           ],
