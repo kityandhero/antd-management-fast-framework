@@ -11,6 +11,8 @@ import {
   addOfficeAutomationArticleAuditData,
   addOfficeAutomationProcessApprovalData,
   getData,
+  openMultibranchData,
+  openMultiEndData,
   pageListData,
   pageListOperateLogData,
   refreshCacheData,
@@ -176,6 +178,58 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(setChannelData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *openMultibranch(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(openMultibranchData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *openMultiEnd(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(openMultiEndData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

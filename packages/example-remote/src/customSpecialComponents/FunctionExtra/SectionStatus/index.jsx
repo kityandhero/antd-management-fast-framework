@@ -73,15 +73,35 @@ export function renderSearchSectionStatusSelect({
   label = '状态',
   name = 'status',
   helper = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitSectionStatusList({
+    withUnlimited,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildSearchFormSelect({
     label: title,
     name,
     helper,
-    list: refitSectionStatusList({ withUnlimited }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -92,14 +112,24 @@ export function renderCustomSectionStatusSelect({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitSectionStatusList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexSelect({
     style,
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitSectionStatusList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -114,13 +144,23 @@ export function renderSectionStatusDropDown({
   size = 'middle',
   onClick: onClickCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitSectionStatusList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildDropdownMenu({
     label,
     placement,
     icon,
     size,
-    list: refitSectionStatusList({ withUnlimited: false }),
+    list: list,
     dataConvert: null,
     onClick: onClickCallback,
     innerProps: innerProperties || null,
@@ -135,19 +175,39 @@ export function renderFormSectionStatusSelect({
   required = true,
   name = 'status',
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitSectionStatusList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormSelect({
     label: title,
     name,
     helper,
-    list: refitSectionStatusList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -157,13 +217,23 @@ export function renderCustomSectionStatusRadio({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitSectionStatusList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexRadio({
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitSectionStatusList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -179,18 +249,38 @@ export function renderFormSectionStatusRadio({
   required = true,
   name = 'status',
   innerProps: innerProperties = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitSectionStatusList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormRadio({
     label: title,
     name,
     helper,
-    list: refitSectionStatusList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }

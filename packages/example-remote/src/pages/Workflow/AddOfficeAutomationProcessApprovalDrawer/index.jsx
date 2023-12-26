@@ -1,5 +1,5 @@
 import { connect } from 'easy-soft-dva';
-import { getValueByKey, whetherString } from 'easy-soft-utility';
+import { getValueByKey, toString, whetherString } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
@@ -8,6 +8,7 @@ import {
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
+import { flowEffectiveRangeCollection } from '../../../customConfig';
 import { renderFormFlowEffectiveRangeSelect } from '../../../customSpecialComponents';
 import { fieldData } from '../Common/data';
 
@@ -56,6 +57,9 @@ class AddOfficeAutomationProcessApprovalDrawer extends BaseAddDrawer {
   fillDefaultInitialValues = () => {
     const v = {};
 
+    v[fieldData.effectiveRange.name] = toString(
+      flowEffectiveRangeCollection.rangeEffective,
+    );
     v[fieldData.whetherAllowMultibranch.name] = whetherString.yes;
     v[fieldData.whetherAllowMultiEnd.name] = whetherString.no;
 
@@ -88,18 +92,12 @@ class AddOfficeAutomationProcessApprovalDrawer extends BaseAddDrawer {
               type: cardConfig.contentItemType.whetherSelect,
               fieldData: fieldData.whetherAllowMultibranch,
               require: true,
-              innerProps: {
-                disabled: true,
-              },
             },
             {
               lg: 12,
               type: cardConfig.contentItemType.whetherSelect,
               fieldData: fieldData.whetherAllowMultiEnd,
               require: true,
-              innerProps: {
-                disabled: true,
-              },
             },
           ],
         },

@@ -157,6 +157,12 @@ export const flowLineTypeCollection = {
    * value : 200
    */
   backward: 200,
+
+  /**
+   * 抄送
+   * value : 300
+   */
+  carbonCopy: 300,
 };
 
 /**
@@ -193,10 +199,16 @@ export const flowNodeTypeCollection = {
   startNode: 10,
 
   /**
-   * 中间点
+   * 过程点
    * value : 20
    */
   intermediateNode: 20,
+
+  /**
+   * 抄送点
+   * value : 26
+   */
+  carbonCopyPoint: 26,
 
   /**
    * 终止点
@@ -226,6 +238,144 @@ export const flowNodeStatusCollection = {
  * 流程节点审批人状态值集合
  */
 export const flowNodeApproverStatusCollection = {
+  /**
+   * 正常
+   * value : 100
+   */
+  normal: 100,
+};
+
+/**
+ * 流程节点条件判断标准值集合
+ */
+export const flowBranchConditionJudgmentModeCollection = {
+  /**
+   * 符合全部
+   * value : 100
+   */
+  and: 100,
+
+  /**
+   * 符合其一
+   * value : 200
+   */
+  or: 200,
+};
+
+/**
+ * 流程节点条件状态值集合
+ */
+export const flowBranchConditionStatusCollection = {
+  /**
+   * 正常
+   * value : 100
+   */
+  normal: 100,
+};
+
+/**
+ * 流程节点条件项对比模式值集合
+ */
+export const flowBranchConditionItemTargetComparisonModelCollection = {
+  /**
+   * 相等
+   * value : 0
+   */
+  eq: 0,
+
+  /**
+   * 不等于
+   * value : 0
+   */
+  ne: 10,
+
+  /**
+   * 大于
+   * value : 100
+   */
+  gt: 100,
+
+  /**
+   * 大于等于
+   * value : 110
+   */
+  gte: 110,
+
+  /**
+   * 小于
+   * value : 200
+   */
+  lt: 200,
+
+  /**
+   * 小于等于
+   * value : 210
+   */
+  lte: 210,
+
+  /**
+   * 小于等于
+   * value : 300
+   */
+  rangeWithGtAndLt: 300,
+
+  /**
+   * 范围值[大于等于 ~ 小于]
+   * value : 310
+   */
+  rangeWithGteAndLt: 310,
+
+  /**
+   * 范围值[大于 ~ 小于等于]
+   * value : 320
+   */
+  rangeWithGtAndLte: 320,
+
+  /**
+   * 范围值[大于等于 ~ 小于等于]
+   * value : 330
+   */
+  rangeWithGteAndLte: 330,
+};
+
+/**
+ * 流程节点条件项数据源模式值集合
+ */
+export const flowBranchConditionItemTargetSourceModeCollection = {
+  /**
+   * 表单字段
+   * value : 100
+   */
+  formField: 100,
+
+  /**
+   * 远程调用
+   * value : 1000
+   */
+  remoteCall: 1000,
+};
+
+/**
+ * 流程节点条件项数据类型值集合
+ */
+export const flowBranchConditionItemTargetTypeCollection = {
+  /**
+   * 数字
+   * value : 100
+   */
+  number: 100,
+
+  /**
+   * 文本
+   * value : 200
+   */
+  string: 200,
+};
+
+/**
+ * 流程节点条件项状态值集合
+ */
+export const flowBranchConditionItemStatusCollection = {
   /**
    * 正常
    * value : 100

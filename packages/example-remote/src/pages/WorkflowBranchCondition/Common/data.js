@@ -35,6 +35,16 @@ export const fieldData = {
     name: 'description',
     helper: '',
   },
+  judgmentMode: {
+    label: '判断模式',
+    name: 'judgmentMode',
+    helper: '',
+  },
+  judgmentModeNote: {
+    label: '判断模式',
+    name: 'judgmentModeNote',
+    helper: '',
+  },
   status: {
     label: '状态',
     name: 'status',

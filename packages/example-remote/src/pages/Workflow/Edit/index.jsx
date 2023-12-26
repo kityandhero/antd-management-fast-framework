@@ -4,6 +4,7 @@ import {
   checkInCollection,
   convertCollection,
   getValueByKey,
+  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -41,6 +42,8 @@ import {
 import { fieldData } from '../Common/data';
 import { FlowDisplayDrawer } from '../FlowDisplayDrawer';
 import { UpdateChannelModal } from '../UpdateChannelModal';
+import { UpdateMultibranchModal } from '../UpdateMultibranchModal';
+import { UpdateMultiEndModal } from '../UpdateMultiEndModal';
 
 @connect(({ workflow, schedulingControl }) => ({
   workflow,
@@ -245,6 +248,22 @@ class Detail extends DataTabContainerSupplement {
     });
   };
 
+  showUpdateMultibranchModal = () => {
+    UpdateMultibranchModal.open();
+  };
+
+  afterUpdateMultibranchModalOk = () => {
+    this.reloadData({});
+  };
+
+  showUpdateMultiEndModal = () => {
+    UpdateMultiEndModal.open();
+  };
+
+  afterUpdateMultiEndModalOk = () => {
+    this.reloadData({});
+  };
+
   showUpdateChannelModal = () => {
     UpdateChannelModal.open();
   };
@@ -403,6 +422,16 @@ class Detail extends DataTabContainerSupplement {
       disabled: this.checkInProgress(),
       handleMenuClick: ({ key, handleData }) => {
         switch (key) {
+          case 'openMultibranch': {
+            that.showUpdateMultibranchModal(handleData);
+            break;
+          }
+
+          case 'openMultiEnd': {
+            that.showUpdateMultiEndModal(handleData);
+            break;
+          }
+
           case 'refreshCache': {
             that.refreshCache(handleData);
             break;
@@ -416,6 +445,36 @@ class Detail extends DataTabContainerSupplement {
       handleData: metaData,
       items: [
         {
+          key: 'openMultibranch',
+          icon: iconBuilder.branches(),
+          text: '启用多分支模式',
+          hidden: !checkHasAuthority(
+            accessWayCollection.workflow.openMultibranch.permission,
+          ),
+          disabled:
+            getValueByKey({
+              data: metaData,
+              key: fieldData.whetherAllowMultibranch.name,
+              convert: convertCollection.number,
+            }) === whetherNumber.yes,
+        },
+        {
+          key: 'openMultiEnd',
+          icon: iconBuilder.edit(),
+          text: '启用多终点模式',
+          hidden: !checkHasAuthority(
+            accessWayCollection.workflow.openMultiEnd.permission,
+          ),
+          disabled:
+            getValueByKey({
+              data: metaData,
+              key: fieldData.whetherAllowMultiEnd.name,
+              convert: convertCollection.number,
+            }) === whetherNumber.yes,
+        },
+        {
+          withDivider: true,
+          uponDivider: true,
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',
@@ -535,6 +594,20 @@ class Detail extends DataTabContainerSupplement {
 
     return (
       <>
+        <UpdateMultibranchModal
+          externalData={{ workflowId }}
+          afterOK={() => {
+            this.afterUpdateMultibranchModalOk();
+          }}
+        />
+
+        <UpdateMultiEndModal
+          externalData={{ workflowId }}
+          afterOK={() => {
+            this.afterUpdateMultiEndModalOk();
+          }}
+        />
+
         <UpdateChannelModal
           externalData={{ workflowId }}
           afterOK={() => {

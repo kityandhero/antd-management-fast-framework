@@ -18,6 +18,10 @@ class ColorText extends PureComponent {
 
   render() {
     const {
+      style,
+      textStyle,
+      block,
+      multiLine,
       textPrefix,
       textPrefixStyle,
       randomSeed,
@@ -40,20 +44,39 @@ class ColorText extends PureComponent {
       });
     }
 
-    const style = {
+    const styleAdjust = {
+      ...style,
       color: 'rgba(0, 0, 0, 0.85)',
       ...(canCopy ? { cursor: 'pointer' } : {}),
+      ...(block
+        ? {
+            display: 'block',
+            width: '100%',
+            overflow: 'hidden',
+          }
+        : {}),
     };
 
-    const textStyle = {
+    const textStyleAdjust = {
+      ...textStyle,
       ...(checkStringIsNullOrWhiteSpace(colorValue)
         ? {}
         : { color: colorValue }),
+      ...(multiLine ? {} : { whiteSpace: 'nowrap' }),
+      ...(block
+        ? {
+            display: 'inline-block',
+            overflow: 'hidden',
+          }
+        : {}),
     };
 
     return (
       <span
-        style={style}
+        style={styleAdjust}
+        title={`${checkStringIsNullOrWhiteSpace(textPrefix) ? '' : textPrefix}${
+          checkStringIsNullOrWhiteSpace(separator) ? '' : separator
+        }${text}`}
         onClick={() => {
           this.copyText();
         }}
@@ -62,19 +85,48 @@ class ColorText extends PureComponent {
           ''
         ) : (
           <>
-            <span style={textPrefixStyle || null}>{textPrefix}</span>
+            <span
+              style={{
+                ...textPrefixStyle,
+                ...(block
+                  ? {
+                      display: 'inline-block',
+                      overflow: 'hidden',
+                    }
+                  : {}),
+              }}
+            >
+              {textPrefix}
+            </span>
+
             {checkStringIsNullOrWhiteSpace(separator) ? null : (
-              <span style={separatorStyle || null}>{separator}</span>
+              <span
+                style={{
+                  ...separatorStyle,
+                  ...(block
+                    ? {
+                        display: 'inline-block',
+                      }
+                    : {}),
+                }}
+              >
+                {separator}
+              </span>
             )}
           </>
         )}
-        <span style={textStyle}>{text}</span>
+
+        <span style={textStyleAdjust}>{text}</span>
       </span>
     );
   }
 }
 
 ColorText.defaultProps = {
+  style: null,
+  textStyle: null,
+  block: false,
+  title: false,
   canCopy: false,
   randomSeed: 0,
   seedOffset: 0,
@@ -84,6 +136,7 @@ ColorText.defaultProps = {
   textPrefixStyle: null,
   text: '',
   separator: ':',
+  multiLine: false,
   separatorStyle: null,
 };
 

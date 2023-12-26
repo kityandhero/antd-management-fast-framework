@@ -82,15 +82,35 @@ export function renderSearchApplicationNavigationOperationTypeSelect({
   label = '交互方式',
   name = 'operationType',
   helper = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitApplicationNavigationOperationTypeList({
+    withUnlimited,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildSearchFormSelect({
     label: title,
     name,
     helper,
-    list: refitApplicationNavigationOperationTypeList({ withUnlimited }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -101,14 +121,24 @@ export function renderCustomApplicationNavigationOperationTypeSelect({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitApplicationNavigationOperationTypeList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexSelect({
     style,
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitApplicationNavigationOperationTypeList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -123,13 +153,23 @@ export function renderApplicationNavigationOperationTypeDropDown({
   size = 'middle',
   onClick: onClickCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitApplicationNavigationOperationTypeList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildDropdownMenu({
     label,
     placement,
     icon,
     size,
-    list: refitApplicationNavigationOperationTypeList({ withUnlimited: false }),
+    list: list,
     dataConvert: null,
     onClick: onClickCallback,
     innerProps: innerProperties || null,
@@ -144,19 +184,39 @@ export function renderFormApplicationNavigationOperationTypeSelect({
   required = true,
   name = 'operationType',
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitApplicationNavigationOperationTypeList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormSelect({
     label: title,
     name,
     helper,
-    list: refitApplicationNavigationOperationTypeList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -166,13 +226,23 @@ export function renderCustomApplicationNavigationOperationTypeRadio({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitApplicationNavigationOperationTypeList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexRadio({
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitApplicationNavigationOperationTypeList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -188,18 +258,38 @@ export function renderFormApplicationNavigationOperationTypeRadio({
   required = true,
   name = 'operationType',
   innerProps: innerProperties = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitApplicationNavigationOperationTypeList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormRadio({
     label: title,
     name,
     helper,
-    list: refitApplicationNavigationOperationTypeList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }

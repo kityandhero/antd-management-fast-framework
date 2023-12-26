@@ -73,15 +73,35 @@ export function renderSearchFlowApproveActionModeSelect({
   label = '审批动作模式',
   name = 'approveActionMode',
   helper = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitFlowApproveActionModeList({
+    withUnlimited,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildSearchFormSelect({
     label: title,
     name,
     helper,
-    list: refitFlowApproveActionModeList({ withUnlimited }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -92,14 +112,24 @@ export function renderCustomFlowApproveActionModeSelect({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitFlowApproveActionModeList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexSelect({
     style,
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitFlowApproveActionModeList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -114,13 +144,23 @@ export function renderFlowApproveActionModeDropDown({
   size = 'middle',
   onClick: onClickCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitFlowApproveActionModeList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildDropdownMenu({
     label,
     placement,
     icon,
     size,
-    list: refitFlowApproveActionModeList({ withUnlimited: false }),
+    list: list,
     dataConvert: null,
     onClick: onClickCallback,
     innerProps: innerProperties || null,
@@ -135,19 +175,39 @@ export function renderFormFlowApproveActionModeSelect({
   required = true,
   name = 'approveActionMode',
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitFlowApproveActionModeList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormSelect({
     label: title,
     name,
     helper,
-    list: refitFlowApproveActionModeList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -157,13 +217,23 @@ export function renderCustomFlowApproveActionModeRadio({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitFlowApproveActionModeList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexRadio({
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitFlowApproveActionModeList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -179,18 +249,38 @@ export function renderFormFlowApproveActionModeRadio({
   required = true,
   name = 'approveActionMode',
   innerProps: innerProperties = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitFlowApproveActionModeList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormRadio({
     label: title,
     name,
     helper,
-    list: refitFlowApproveActionModeList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }

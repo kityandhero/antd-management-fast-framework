@@ -56,6 +56,24 @@ export async function setChannelData(parameters) {
   });
 }
 
+export const openMultibranchDataApiAddress = '/workflow/openMultibranch';
+
+export async function openMultibranchData(parameters) {
+  return request({
+    api: openMultibranchDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const openMultiEndDataApiAddress = '/workflow/openMultiEnd';
+
+export async function openMultiEndData(parameters) {
+  return request({
+    api: openMultiEndDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const setEnableDataApiAddress = '/workflow/setEnable';
 
 export async function setEnableData(parameters) {

@@ -7,7 +7,10 @@ import { getValueByKey, isFunction } from 'easy-soft-utility';
 
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { backwardEdgeTextColor } from '../constant';
+import {
+  backwardEdgeLabelBackground,
+  backwardEdgeTextColor,
+} from '../constant';
 
 const { Text } = Typography;
 
@@ -43,10 +46,13 @@ const BackwardEdge = ({
   const {
     data: dataSource,
     canEdit,
+    multibranch,
     onChange,
+    onChangeBranchCondition,
     onRemove,
   } = {
     canEdit: false,
+    multibranch: false,
     ...data,
   };
 
@@ -69,7 +75,7 @@ const BackwardEdge = ({
           style={{
             position: 'absolute',
             transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-            background: '#ffcc00',
+            background: backwardEdgeLabelBackground,
             padding: 6,
             borderRadius: 5,
             fontSize: 12,
@@ -105,6 +111,25 @@ const BackwardEdge = ({
                 }}
               >
                 {iconBuilder.edit()}
+              </button>
+            ) : null}
+
+            {multibranch ? (
+              <button
+                style={{
+                  padding: '0.5px 4px',
+                  fontSize: '12px',
+                }}
+                title="点击变更绑定逆向连接条件"
+                onClick={(event) => {
+                  event.stopPropagation();
+
+                  if (isFunction(onChangeBranchCondition)) {
+                    onChangeBranchCondition(dataSource);
+                  }
+                }}
+              >
+                {iconBuilder.pullRequest()}
               </button>
             ) : null}
 

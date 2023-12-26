@@ -27,10 +27,19 @@ const StartNode = (properties) => {
         >
           <FlexBox
             flexAuto="left"
+            miniAuto
             left={
               <VerticalBox>
                 <ColorText
-                  style={{ color: '#ffe4c4' }}
+                  block
+                  title
+                  style={{ height: '22px' }}
+                  textStyle={{
+                    width: '100%',
+                    height: '22px',
+                    lineHeight: '22px',
+                    textOverflow: 'ellipsis',
+                  }}
                   color={'#333'}
                   separator=" "
                   text={'起始点'}

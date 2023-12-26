@@ -18,12 +18,22 @@ export async function getData(parameters) {
   });
 }
 
-export const addBasicInfoDataApiAddress =
-  '/workflowBranchConditionItem/addBasicInfo';
+export const addFormFieldBasicInfoDataApiAddress =
+  '/workflowBranchConditionItem/addFormFieldBasicInfo';
 
-export async function addBasicInfoData(parameters) {
+export async function addFormFieldBasicInfoData(parameters) {
   return request({
-    api: addBasicInfoDataApiAddress,
+    api: addFormFieldBasicInfoDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const addRemoteCallBasicInfoDataApiAddress =
+  '/workflowBranchConditionItem/addRemoteCallBasicInfo';
+
+export async function addRemoteCallBasicInfoData(parameters) {
+  return request({
+    api: addRemoteCallBasicInfoDataApiAddress,
     params: parameters,
   });
 }
@@ -34,6 +44,26 @@ export const updateBasicInfoDataApiAddress =
 export async function updateBasicInfoData(parameters) {
   return request({
     api: updateBasicInfoDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const setRemoteCallUrlDataApiAddress =
+  '/workflowBranchConditionItem/setRemoteCallUrl';
+
+export async function setRemoteCallUrlData(parameters) {
+  return request({
+    api: setRemoteCallUrlDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const setRemoteCallParametersDataApiAddress =
+  '/workflowBranchConditionItem/setRemoteCallParameters';
+
+export async function setRemoteCallParametersData(parameters) {
+  return request({
+    api: setRemoteCallParametersDataApiAddress,
     params: parameters,
   });
 }

@@ -73,15 +73,35 @@ export function renderSearchFlowLineFromPositionSelect({
   label = '起始位置',
   name = 'fromPosition',
   helper = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitFlowLineFromPositionList({
+    withUnlimited,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildSearchFormSelect({
     label: title,
     name,
     helper,
-    list: refitFlowLineFromPositionList({ withUnlimited }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -92,14 +112,24 @@ export function renderCustomFlowLineFromPositionSelect({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitFlowLineFromPositionList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexSelect({
     style,
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitFlowLineFromPositionList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -114,13 +144,23 @@ export function renderFlowLineFromPositionDropDown({
   size = 'middle',
   onClick: onClickCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitFlowLineFromPositionList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildDropdownMenu({
     label,
     placement,
     icon,
     size,
-    list: refitFlowLineFromPositionList({ withUnlimited: false }),
+    list: list,
     dataConvert: null,
     onClick: onClickCallback,
     innerProps: innerProperties || null,
@@ -135,19 +175,39 @@ export function renderFormFlowLineFromPositionSelect({
   required = true,
   name = 'fromPosition',
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitFlowLineFromPositionList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormSelect({
     label: title,
     name,
     helper,
-    list: refitFlowLineFromPositionList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -157,13 +217,23 @@ export function renderCustomFlowLineFromPositionRadio({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitFlowLineFromPositionList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexRadio({
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitFlowLineFromPositionList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -179,18 +249,38 @@ export function renderFormFlowLineFromPositionRadio({
   required = true,
   name = 'fromPosition',
   innerProps: innerProperties = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitFlowLineFromPositionList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormRadio({
     label: title,
     name,
     helper,
-    list: refitFlowLineFromPositionList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }

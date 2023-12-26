@@ -73,15 +73,35 @@ export function renderSearchChannelSelect({
   label = '适用渠道',
   name = 'channel',
   helper = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitChannelList({
+    withUnlimited,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildSearchFormSelect({
     label: title,
     name,
     helper,
-    list: refitChannelList({ withUnlimited }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -92,14 +112,24 @@ export function renderCustomChannelSelect({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitChannelList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexSelect({
     style,
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitChannelList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -114,13 +144,23 @@ export function renderChannelDropDown({
   size = 'middle',
   onClick: onClickCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitChannelList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildDropdownMenu({
     label,
     placement,
     icon,
     size,
-    list: refitChannelList({ withUnlimited: false }),
+    list: list,
     dataConvert: null,
     onClick: onClickCallback,
     innerProps: innerProperties || null,
@@ -135,19 +175,39 @@ export function renderFormChannelSelect({
   required = true,
   name = 'channel',
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitChannelList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormSelect({
     label: title,
     name,
     helper,
-    list: refitChannelList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }
 
@@ -157,13 +217,23 @@ export function renderCustomChannelRadio({
   size = 'middle',
   onChange: onChangeCallback,
   innerProps: innerProperties = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
+  const listData = refitChannelList({
+    withUnlimited: true,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
+
   return buildFlexRadio({
     label,
     defaultValue: null,
     separator,
     size,
-    list: refitChannelList({ withUnlimited: true }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     renderItem: null,
     onChange: onChangeCallback,
@@ -179,18 +249,38 @@ export function renderFormChannelRadio({
   required = true,
   name = 'channel',
   innerProps: innerProperties = null,
+  hidden = false,
+  addonBefore = null,
+  addonBeforeStyle = null,
+  addonAfter = null,
+  addonAfterStyle = null,
+  adjustListData: adjustListDataCallback = null,
 }) {
   const title = label || unknownLabel;
+
+  const listData = refitChannelList({
+    withUnlimited: false,
+  });
+
+  const list =
+    adjustListDataCallback == null
+      ? listData
+      : adjustListDataCallback(listData);
 
   return buildFormRadio({
     label: title,
     name,
     helper,
-    list: refitChannelList({ withUnlimited: false }),
+    list: list,
     dataConvert: convertOptionOrRadioData,
     onChange: onChangeCallback,
     formItemLayout,
     required,
     innerProps: innerProperties,
+    hidden,
+    addonBefore,
+    addonBeforeStyle,
+    addonAfter,
+    addonAfterStyle,
   });
 }

@@ -91,6 +91,41 @@
       "name": "type"
     },
     {
+      "functionSegment": "FlowBranchConditionJudgmentMode",
+      "label": "判断模式",
+      "name": "judgmentMode"
+    },
+    {
+      "functionSegment": "FlowBranchConditionStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "FlowBranchConditionItemTargetSourceMode",
+      "label": "目标来源",
+      "name": "targetSourceMode"
+    },
+    {
+      "functionSegment": "FlowBranchConditionItemTargetType",
+      "label": "目标类型",
+      "name": "targetType"
+    },
+    {
+      "functionSegment": "FlowBranchConditionItemTargetType",
+      "label": "目标值类型",
+      "name": "targetType"
+    },
+    {
+      "functionSegment": "FlowBranchConditionItemTargetComparisonMode",
+      "label": "目标对比模式",
+      "name": "targetComparisonMode"
+    },
+    {
+      "functionSegment": "FlowBranchConditionItemStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
       "functionSegment": "FlowLineStatus",
       "label": "状态",
       "name": "status"

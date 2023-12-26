@@ -46,6 +46,16 @@ export async function addIntermediatePointData(parameters) {
   });
 }
 
+export const addCarbonCopyPointDataApiAddress =
+  '/workflowNode/addCarbonCopyPoint';
+
+export async function addCarbonCopyPointData(parameters) {
+  return request({
+    api: addCarbonCopyPointDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const addEndPointDataApiAddress = '/workflowNode/addEndPoint';
 
 export async function addEndPointData(parameters) {

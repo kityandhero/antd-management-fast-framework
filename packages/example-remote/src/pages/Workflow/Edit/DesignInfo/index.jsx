@@ -30,6 +30,7 @@ import {
 } from '../../../WorkflowLine/Assist/action';
 import { fieldData as fieldDataWorkflowLine } from '../../../WorkflowLine/Common/data';
 import { UpdateLineDrawer } from '../../../WorkflowLine/UpdateLineDrawer';
+import { AddCarbonCopyPointDrawer } from '../../../WorkflowNode/AddCarbonCopyPointDrawer';
 import { AddIntermediatePointDrawer } from '../../../WorkflowNode/AddIntermediatePointDrawer';
 import {
   addEndPointAction,
@@ -52,8 +53,6 @@ import { fieldData as fieldDataWorkflowNodeApprover } from '../../../WorkflowNod
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
-// import { UpdateMultibranchModal } from '../../UpdateMultibranchModal';
-// import { UpdateMultiEndModal } from '../../UpdateMultiEndModal';
 
 @connect(({ workflow, workflowNode, schedulingControl }) => ({
   workflow,
@@ -147,6 +146,11 @@ class Index extends TabPageBase {
             break;
           }
 
+          case flowNodeTypeCollection.carbonCopyPoint: {
+            nodeType = 'carbonCopy';
+            break;
+          }
+
           default: {
             nodeType = 'intermediate';
           }
@@ -235,7 +239,10 @@ class Index extends TabPageBase {
         return adjustEdge({
           index,
           id: workflowLineId,
-          forward: type === flowLineTypeCollection.forward,
+          forward:
+            type === flowLineTypeCollection.forward ||
+            type === flowLineTypeCollection.carbonCopy,
+          carbonCopy: type === flowLineTypeCollection.carbonCopy,
           source: fromId,
           sourceHandle: checkInCollection(positionList, fromPositionName)
             ? fromPositionName
@@ -447,27 +454,19 @@ class Index extends TabPageBase {
     });
   };
 
-  // showUpdateMultibranchModal = () => {
-  //   UpdateMultibranchModal.open();
-  // };
-
-  // afterUpdateMultibranchModalOk = () => {
-  //   this.reloadData({});
-  // };
-
-  // showUpdateMultiEndModal = () => {
-  //   UpdateMultiEndModal.open();
-  // };
-
-  // afterUpdateMultiEndModalOk = () => {
-  //   this.reloadData({});
-  // };
-
   showAddIntermediatePointDrawer = () => {
     AddIntermediatePointDrawer.open();
   };
 
   afterAddIntermediatePointDrawerOk = () => {
+    this.reloadData({});
+  };
+
+  showAddCarbonCopyPointDrawer = () => {
+    AddCarbonCopyPointDrawer.open();
+  };
+
+  afterAddCarbonCopyPointDrawerOk = () => {
     this.reloadData({});
   };
 
@@ -615,6 +614,12 @@ class Index extends TabPageBase {
       convert: convertCollection.number,
     });
 
+    const whetherAllowMultibranch = getValueByKey({
+      data: metaData,
+      key: fieldData.whetherAllowMultibranch.name,
+      convert: convertCollection.number,
+    });
+
     return {
       list: [
         {
@@ -642,8 +647,8 @@ class Index extends TabPageBase {
               {
                 buildType: cardConfig.extraBuildType.button,
                 type: 'primary',
-                icon: iconBuilder.addCircle(),
-                text: '新增中间点',
+                icon: iconBuilder.apartment(),
+                text: '新增过程点',
                 disabled: !firstLoadSuccess || !startPointExist,
                 hidden: !checkHasAuthority(
                   accessWayCollection.workflowNode.addIntermediatePoint
@@ -651,6 +656,19 @@ class Index extends TabPageBase {
                 ),
                 handleClick: () => {
                   this.showAddIntermediatePointDrawer();
+                },
+              },
+              {
+                buildType: cardConfig.extraBuildType.button,
+                icon: iconBuilder.deploymentUnit(),
+                text: '新增抄送点',
+                disabled: !firstLoadSuccess || !startPointExist,
+                hidden: !checkHasAuthority(
+                  accessWayCollection.workflowNode.addCarbonCopyPoint
+                    .permission,
+                ),
+                handleClick: () => {
+                  this.showAddCarbonCopyPointDrawer();
                 },
               },
               {
@@ -670,9 +688,12 @@ class Index extends TabPageBase {
                 },
               },
               {
+                buildType: cardConfig.extraBuildType.divider,
+              },
+              {
                 buildType: cardConfig.extraBuildType.button,
                 type: 'primary',
-                icon: iconBuilder.addCircle(),
+                icon: iconBuilder.nodeIndex(),
                 text: '新增流程线',
                 disabled: !firstLoadSuccess || !startPointExist,
                 hidden: !checkHasAuthority(
@@ -701,32 +722,6 @@ class Index extends TabPageBase {
               {
                 buildType: cardConfig.extraBuildType.divider,
               },
-              // {
-              //   buildType: cardConfig.extraBuildType.generalExtraButton,
-              //   type: 'default',
-              //   icon: iconBuilder.edit(),
-              //   text: '开关多分支',
-              //   disabled: !firstLoadSuccess,
-              //   hidden: !checkHasAuthority(
-              //     accessWayCollection.workflow.setMultibranch.permission,
-              //   ),
-              //   handleClick: () => {
-              //     this.showUpdateMultibranchModal();
-              //   },
-              // },
-              // {
-              //   buildType: cardConfig.extraBuildType.generalExtraButton,
-              //   type: 'default',
-              //   icon: iconBuilder.edit(),
-              //   text: '开关多终点',
-              //   disabled: !firstLoadSuccess,
-              //   hidden: !checkHasAuthority(
-              //     accessWayCollection.workflow.setMultiEnd.permission,
-              //   ),
-              //   handleClick: () => {
-              //     this.showUpdateMultiEndModal();
-              //   },
-              // },
               {
                 buildType: cardConfig.extraBuildType.refresh,
               },
@@ -741,6 +736,9 @@ class Index extends TabPageBase {
                   <div style={{ height: '730px' }}>
                     <Flow
                       canEdit
+                      multibranch={
+                        whetherAllowMultibranch === whetherNumber.yes
+                      }
                       nodeNameKey={fieldDataWorkflowNode.name.name}
                       listInLineKey={fieldDataWorkflowNode.listInLine.name}
                       listOutLineKey={fieldDataWorkflowNode.listOutLine.name}
@@ -783,25 +781,19 @@ class Index extends TabPageBase {
 
     return (
       <>
-        {/* <UpdateMultibranchModal
-          externalData={{ workflowId }}
-          afterOK={() => {
-            this.afterUpdateMultibranchModalOk();
-          }}
-        />
-
-        <UpdateMultiEndModal
-          externalData={{ workflowId }}
-          afterOK={() => {
-            this.afterUpdateMultiEndModalOk();
-          }}
-        /> */}
-
         <AddIntermediatePointDrawer
           externalData={{ workflowId }}
           forward={forward}
           afterOK={() => {
             this.afterAddIntermediatePointDrawerOk();
+          }}
+        />
+
+        <AddCarbonCopyPointDrawer
+          externalData={{ workflowId }}
+          forward={forward}
+          afterOK={() => {
+            this.afterAddCarbonCopyPointDrawerOk();
           }}
         />
 

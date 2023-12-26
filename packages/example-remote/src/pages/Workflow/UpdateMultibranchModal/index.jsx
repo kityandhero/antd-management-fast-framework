@@ -1,7 +1,6 @@
 import { connect } from 'easy-soft-dva';
 import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
-import { cardConfig } from 'antd-management-fast-common';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
 import { fieldData } from '../Common/data';
@@ -24,9 +23,9 @@ class UpdateMultibranchModal extends BaseUpdateModal {
 
     this.state = {
       ...this.state,
-      pageTitle: '设置多分支能力',
+      pageTitle: '启用多分支模式',
       loadApiPath: 'workflow/get',
-      submitApiPath: 'workflow/setMultibranch',
+      submitApiPath: 'workflow/openMultibranch',
     };
   }
 
@@ -100,16 +99,16 @@ class UpdateMultibranchModal extends BaseUpdateModal {
 
   establishCardCollectionConfig = () => {
     return {
+      list: [],
+    };
+  };
+
+  establishHelpConfig = () => {
+    return {
+      title: '操作提示',
       list: [
         {
-          items: [
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.whetherSelect,
-              fieldData: fieldData.whetherAllowMultibranch,
-              require: true,
-            },
-          ],
+          text: '开启多分支模式后不可关闭。',
         },
       ],
     };

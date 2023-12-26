@@ -32,9 +32,10 @@ class IntermediateNode extends PureComponent {
       data: dataSource,
       isNext,
       canEdit,
+      multibranch,
       nodeNameKey,
       // listInLineKey,
-      listOutLineKey,
+      // listOutLineKey,
       listApproverKey,
       personnelNameKey,
       personnelNameLabel,
@@ -45,6 +46,7 @@ class IntermediateNode extends PureComponent {
       onRemoveApprover,
     } = {
       canEdit: false,
+      multibranch: false,
       nodeNameKey: 'nodeNameKey',
       listInLineKey: 'listInLine',
       listOutLineKey: 'listOutLine',
@@ -76,15 +78,13 @@ class IntermediateNode extends PureComponent {
 
     // const inLineCount = listInLine.length;
 
-    const listOutLine = getValueByKey({
-      data: dataSource,
-      key: listOutLineKey,
-      convert: convertCollection.array,
-    });
+    // const listOutLine = getValueByKey({
+    //   data: dataSource,
+    //   key: listOutLineKey,
+    //   convert: convertCollection.array,
+    // });
 
-    const outLineCount = listOutLine.length;
-
-    console.log({ outLineCount });
+    // const outLineCount = listOutLine.length;
 
     return (
       <>
@@ -97,17 +97,28 @@ class IntermediateNode extends PureComponent {
           <div className={`${styleClassPrefix + '-node-header'}`}>
             <FlexBox
               flexAuto="left"
+              miniAuto
               left={
                 <VerticalBox>
-                  <ColorText
-                    style={{}}
-                    color={'#333'}
-                    separator=" "
-                    textPrefixStyle={{
-                      marginRight: '6px',
-                    }}
-                    text={name || '流程项'}
-                  />
+                  <div style={{ width: '100%' }}>
+                    <ColorText
+                      block
+                      title
+                      style={{ height: '22px' }}
+                      textStyle={{
+                        width: '100%',
+                        height: '22px',
+                        lineHeight: '22px',
+                        textOverflow: 'ellipsis',
+                      }}
+                      color={'#333'}
+                      separator=" "
+                      textPrefixStyle={{
+                        marginRight: '6px',
+                      }}
+                      text={name || '流程项'}
+                    />
+                  </div>
                 </VerticalBox>
               }
               right={
@@ -153,7 +164,7 @@ class IntermediateNode extends PureComponent {
                       {iconBuilder.edit()}
                     </button>
 
-                    {outLineCount > 1 ? (
+                    {multibranch ? (
                       <button
                         style={{
                           padding: '1px 4px',
@@ -171,7 +182,7 @@ class IntermediateNode extends PureComponent {
                           }
                         }}
                       >
-                        {iconBuilder.fork()}
+                        {iconBuilder.branches()}
                       </button>
                     ) : null}
 

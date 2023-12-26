@@ -45,6 +45,7 @@ import {
   DashboardOutlined,
   DeleteFilled,
   DeleteOutlined,
+  DeploymentUnitOutlined,
   DesktopOutlined,
   DingdingOutlined,
   DisconnectOutlined,
@@ -67,9 +68,13 @@ import {
   FolderFilled,
   FolderOutlined,
   ForkOutlined,
+  FormatPainterOutlined,
   FormOutlined,
+  FunctionOutlined,
   GiftFilled,
   GiftOutlined,
+  HeartFilled,
+  HeartOutlined,
   HistoryOutlined,
   HomeFilled,
   HomeOutlined,
@@ -108,6 +113,7 @@ import {
   MinusCircleOutlined,
   MobileFilled,
   MobileOutlined,
+  NodeIndexOutlined,
   PauseCircleFilled,
   PauseCircleOutlined,
   PhoneFilled,
@@ -127,6 +133,7 @@ import {
   ProfileOutlined,
   ProjectFilled,
   ProjectOutlined,
+  PullRequestOutlined,
   QrcodeOutlined,
   QuestionCircleFilled,
   QuestionCircleOutlined,
@@ -151,6 +158,7 @@ import {
   SelectOutlined,
   SettingFilled,
   SettingOutlined,
+  ShareAltOutlined,
   ShopFilled,
   ShopOutlined,
   ShoppingCartOutlined,
@@ -233,6 +241,9 @@ export const iconBuilder = {
   comment: (properties = null) => {
     return <CommentOutlined {...(properties || {})} />;
   },
+  deploymentUnit: (properties = null) => {
+    return <DeploymentUnitOutlined {...(properties || {})} />;
+  },
   reload: (properties = null) => {
     return <ReloadOutlined {...(properties || {})} />;
   },
@@ -250,12 +261,18 @@ export const iconBuilder = {
 
     return <PlayCircleOutlined {...(properties || {})} />;
   },
-  disable: (properties = null, mode = iconModeCollection.outlined) => {
+  formatPainter: (properties = null) => {
+    return <FormatPainterOutlined {...(properties || {})} />;
+  },
+  function: (properties = null) => {
+    return <FunctionOutlined {...(properties || {})} />;
+  },
+  heart: (properties = null, mode = iconModeCollection.outlined) => {
     if (mode === iconModeCollection.filled) {
-      return <PauseCircleFilled {...(properties || {})} />;
+      return <HeartFilled {...(properties || {})} />;
     }
 
-    return <PauseCircleOutlined {...(properties || {})} />;
+    return <HeartOutlined {...(properties || {})} />;
   },
   playCircle: (properties = null, mode = iconModeCollection.outlined) => {
     if (mode === iconModeCollection.filled) {
@@ -403,8 +420,17 @@ export const iconBuilder = {
   team: (properties = null) => {
     return <TeamOutlined {...(properties || {})} />;
   },
+  nodeIndex: (properties = null) => {
+    return <NodeIndexOutlined {...(properties || {})} />;
+  },
   users: (properties = null) => {
     return <TeamOutlined {...(properties || {})} />;
+  },
+  pullRequest: (properties = null) => {
+    return <PullRequestOutlined {...(properties || {})} />;
+  },
+  shareAlt: (properties = null) => {
+    return <ShareAltOutlined {...(properties || {})} />;
   },
   tool: (properties = null, mode = iconModeCollection.outlined) => {
     if (mode === iconModeCollection.filled) {

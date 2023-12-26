@@ -9,6 +9,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  addCarbonCopyPointData,
   addEndPointData,
   addIntermediatePointData,
   addStartPointData,
@@ -145,6 +146,32 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(addIntermediatePointData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *addCarbonCopyPoint(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(addCarbonCopyPointData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

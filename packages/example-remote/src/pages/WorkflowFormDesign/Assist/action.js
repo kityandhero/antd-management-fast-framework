@@ -1,8 +1,31 @@
-import { getValueByKey } from 'easy-soft-utility';
+import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
 import { actionCore } from 'antd-management-fast-common';
 
 import { fieldData } from '../Common/data';
+
+export async function getByWorkflowAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: 'workflowFormDesign/getByWorkflow',
+    params: {
+      workflowId: getValueByKey({
+        data: handleData,
+        key: fieldData.workflowId.name,
+        convert: convertCollection.string,
+      }),
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+    showProcessing: false,
+  });
+}
 
 export async function updateDocumentSchemaAction({
   target,

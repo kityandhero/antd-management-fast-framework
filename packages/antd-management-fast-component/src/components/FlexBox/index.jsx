@@ -42,6 +42,7 @@ class FlexBox extends PureComponent {
       style: styleSource,
       className,
       allowWrap,
+      miniAuto,
       flexAuto: flexAutoSource,
       left,
       leftStyle,
@@ -70,7 +71,10 @@ class FlexBox extends PureComponent {
 
         return (
           <Row style={style} className={className}>
-            <Col flex="auto" style={leftStyle || null}>
+            <Col
+              flex="auto"
+              style={{ ...leftStyle, ...(miniAuto ? { width: '0' } : {}) }}
+            >
               {left}
             </Col>
 
@@ -98,7 +102,10 @@ class FlexBox extends PureComponent {
           </Col>
 
           {(right || null) == null ? null : (
-            <Col flex="auto" style={rightStyle || null}>
+            <Col
+              flex="auto"
+              style={{ ...rightStyle, ...(miniAuto ? { width: '0' } : {}) }}
+            >
               {right}
             </Col>
           )}
@@ -167,6 +174,7 @@ class FlexBox extends PureComponent {
 
 FlexBox.defaultProps = {
   flexAuto: 'left',
+  miniAuto: false,
   allowWrap: false,
   left: null,
   leftStyle: {},

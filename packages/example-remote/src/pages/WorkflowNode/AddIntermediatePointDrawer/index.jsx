@@ -23,6 +23,7 @@ class AddIntermediatePointDrawer extends BaseAddPointDrawer {
 
     this.state = {
       ...this.state,
+      pageTitle: '新增过程点',
       submitApiPath: 'workflowNode/addIntermediatePoint',
     };
   }

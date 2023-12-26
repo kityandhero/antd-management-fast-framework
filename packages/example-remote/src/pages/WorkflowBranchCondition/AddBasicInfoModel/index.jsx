@@ -5,6 +5,7 @@ import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
+import { renderFormFlowBranchConditionJudgmentModeSelect } from '../../../customSpecialComponents';
 import { fieldData } from '../Common/data';
 
 const { BaseAddModal } = DataModal;
@@ -76,6 +77,11 @@ class AddBasicInfoModel extends BaseAddModal {
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.name,
               require: true,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.customSelect,
+              component: renderFormFlowBranchConditionJudgmentModeSelect({}),
             },
             {
               lg: 24,

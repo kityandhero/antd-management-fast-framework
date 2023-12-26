@@ -1,6 +1,6 @@
 {
   "name": "example-remote",
-  "version": "1.4.89",
+  "version": "1.4.90",
   "private": true,
   "author": "",
   "scripts": {
@@ -54,10 +54,10 @@
     "@umijs/max": "^4.0.90",
     "antd": "^5.12.5",
     "antd-management-fast-common": "^2.6.71",
-    "antd-management-fast-component": "^2.6.110",
+    "antd-management-fast-component": "^2.6.114",
     "antd-management-fast-design-playground": "^1.0.76",
     "antd-management-fast-design-react": "^1.0.45",
-    "antd-management-fast-flow": "^1.0.34",
+    "antd-management-fast-flow": "^1.0.35",
     "antd-management-fast-formily": "^1.0.45",
     "antd-management-fast-framework": "^2.11.128",
     "axios": "^1.6.2",

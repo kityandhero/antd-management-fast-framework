@@ -32,6 +32,12 @@ export function adjustEdge(o) {
     convert: convertCollection.boolean,
   });
 
+  const carbonCopy = getValueByKey({
+    data: o,
+    key: 'carbonCopy',
+    convert: convertCollection.boolean,
+  });
+
   const forwardEdgeColorAdjust =
     index > 0
       ? buildRandomHexColor({ seed: index * 30 + index + 2 })
@@ -48,7 +54,7 @@ export function adjustEdge(o) {
     sourceHandle: forward ? 'bottom' : 'right',
     targetHandle: forward ? 'top' : 'right',
     ...o,
-    type: forward ? 'forward' : 'backward',
+    type: forward ? (carbonCopy ? 'carbonCopy' : 'forward') : 'backward',
     markerEnd: {
       type: MarkerType.ArrowClosed,
       // width: 20,

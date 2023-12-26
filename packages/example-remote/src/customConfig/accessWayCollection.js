@@ -1732,6 +1732,16 @@ export const accessWayCollection = {
       paramsKey: '29f7014f7b472d2c9c12a7d75fff6b6f',
       permission: 'c1ec28887aa746a483e647e7fd5593f4',
     },
+    openMultibranch: {
+      title: '开启多分支模式',
+      paramsKey: '3aeeed63cbbe1538b2da9698addaa8ff',
+      permission: 'f9bf5e638ebc4f1dbc548b62ecfabf48',
+    },
+    openMultiEnd: {
+      title: '开启多终点模式',
+      paramsKey: '2c40cd8b1a458d2404ff0e70e248263f',
+      permission: 'd742cb04484c46edb483d935195bd7b8',
+    },
     setEnable: {
       title: '设为启用',
       paramsKey: 'c3af4f4cef4afbbed62a0a75f78e209e',
@@ -1806,15 +1816,30 @@ export const accessWayCollection = {
       paramsKey: 'ef66ed20c6af150d169c1d6791188fe6',
       permission: '8736bdc60a8c4643903136aba2f4bdc5',
     },
-    addBasicInfo: {
-      title: '新建流程节点分支条件项',
+    addFormFieldBasicInfo: {
+      title: '新建流程节点分支表单字段条件项',
       paramsKey: 'c087459f2f569143f4d4c568cc54ace7',
       permission: '1d6022a2014f4e18b392f782a1538216',
+    },
+    addRemoteCallBasicInfo: {
+      title: '新建流程节点分支远程调用条件项',
+      paramsKey: '8d4e9aeb07a9afa523c9bd72f24d12b1',
+      permission: 'c8ae9c43f6894aaf89b6cb21dcc1d8cf',
     },
     updateBasicInfo: {
       title: '编辑信息',
       paramsKey: 'b3c45ec32ba8d606796a4e4cb091fa87',
       permission: '781e6f9448f94303a6e4adf8c65f3429',
+    },
+    setRemoteCallUrl: {
+      title: '设置对象比较模式',
+      paramsKey: 'd907f27f6b31820b683adc9065cb1820',
+      permission: '63f9382cbbb04d27a213c0c6d2c8591a',
+    },
+    setRemoteCallParameters: {
+      title: '设置对象比较模式',
+      paramsKey: '1cec01166f5cc1de6736d112b5d37dd3',
+      permission: '72c1a78615a945e0a772542f867cd726',
     },
     refreshCache: {
       title: '刷新缓存',
@@ -2264,9 +2289,14 @@ export const accessWayCollection = {
       permission: 'b0f467363bb94d62b2362d309c4e8cb4',
     },
     addIntermediatePoint: {
-      title: '新建环节节点',
+      title: '新建过程节点',
       paramsKey: 'f8df694e5cf1b7435d1aae76c0a01a46',
       permission: '3e99a7aef50d48a5b78a7566262456fb',
+    },
+    addCarbonCopyPoint: {
+      title: '新建抄送节点',
+      paramsKey: '3dd3da206185492ddccbf3b564c46beb',
+      permission: '53a5e8092ebd44b984e1942b09e2735e',
     },
     addEndPoint: {
       title: '增加结束节点',

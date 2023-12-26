@@ -7,7 +7,7 @@ import { getValueByKey, isFunction } from 'easy-soft-utility';
 
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { forwardEdgeTextColor } from '../constant';
+import { forwardEdgeLabelBackground, forwardEdgeTextColor } from '../constant';
 
 const { Text } = Typography;
 
@@ -46,10 +46,13 @@ class ForwardEdge extends PureComponent {
     const {
       data: dataSource,
       canEdit,
+      multibranch,
       onChange,
+      onChangeBranchCondition,
       onRemove,
     } = {
       canEdit: false,
+      multibranch: false,
       ...data,
     };
 
@@ -72,7 +75,7 @@ class ForwardEdge extends PureComponent {
             style={{
               position: 'absolute',
               transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-              background: '#ffcc00',
+              background: forwardEdgeLabelBackground,
               padding: 6,
               borderRadius: 5,
               fontSize: 12,
@@ -107,6 +110,25 @@ class ForwardEdge extends PureComponent {
                   }}
                 >
                   {iconBuilder.edit()}
+                </button>
+              ) : null}
+
+              {multibranch ? (
+                <button
+                  style={{
+                    padding: '0.5px 4px',
+                    fontSize: '12px',
+                  }}
+                  title="点击变更绑定的正向连接条件"
+                  onClick={(event) => {
+                    event.stopPropagation();
+
+                    if (isFunction(onChangeBranchCondition)) {
+                      onChangeBranchCondition(dataSource);
+                    }
+                  }}
+                >
+                  {iconBuilder.nodeIndex()}
                 </button>
               ) : null}
 

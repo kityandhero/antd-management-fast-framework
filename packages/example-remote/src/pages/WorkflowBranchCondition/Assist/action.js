@@ -1,16 +1,18 @@
 import { getValueByKey } from 'easy-soft-utility';
 
-import { actionCore } from 'antd-management-fast-common';
+import { actionCore, confirmActionCore } from 'antd-management-fast-common';
 
 import { fieldData } from '../Common/data';
 
-export async function removeAction({
+export async function removeConfirmAction({
   target,
   handleData,
   successCallback,
-  successMessage,
+  successMessage = null,
 }) {
-  actionCore({
+  confirmActionCore({
+    title: `移除条件`,
+    content: `即将移除条件，确定吗？`,
     api: 'workflowBranchCondition/remove',
     params: {
       workflowBranchConditionId: getValueByKey({

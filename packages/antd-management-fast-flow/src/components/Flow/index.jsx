@@ -28,6 +28,7 @@ let dragStartPosition = {};
 function Flow(properties) {
   const {
     canEdit,
+    multibranch,
     nodeNameKey,
     listInLineKey,
     listOutLineKey,
@@ -53,7 +54,8 @@ function Flow(properties) {
   }, [sourceAdjustedNodes, sourceAdjustedEdges]);
 
   const nodeWithEditOption = nodes.map((o) => {
-    o.data.canEdit = canEdit;
+    o.data.canEdit = canEdit || false;
+    o.data.multibranch = multibranch || false;
     o.data.nodeNameKey = nodeNameKey;
     o.data.listInLineKey = listInLineKey;
     o.data.listOutLineKey = listOutLineKey;
@@ -65,7 +67,8 @@ function Flow(properties) {
   });
 
   const edgeWithEditOption = edges.map((o) => {
-    o.data.canEdit = canEdit;
+    o.data.canEdit = canEdit || false;
+    o.data.multibranch = multibranch || false;
 
     return o;
   });
@@ -145,6 +148,7 @@ function Flow(properties) {
 
 Flow.defaultProps = {
   canEdit: true,
+  multibranch: false,
   nodeNameKey: 'nodeNameKey',
   listInLineKey: 'listInLine',
   listOutLineKey: 'listOutLine',

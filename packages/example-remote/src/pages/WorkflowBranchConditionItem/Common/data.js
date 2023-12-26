@@ -23,7 +23,7 @@ export const fieldData = {
     helper: '',
   },
   name: {
-    label: '名称',
+    label: '条件名',
     name: 'name',
     helper: '',
   },
@@ -32,15 +32,65 @@ export const fieldData = {
     name: 'description',
     helper: '',
   },
-  type: {
-    label: '类型',
-    name: 'type',
+  targetName: {
+    label: '目标字段',
+    name: 'targetName',
     helper: '',
   },
-  typeNote: {
-    label: '类型',
-    name: 'typeNote',
+  targetValue: {
+    label: '目标值',
+    name: 'targetValue',
+    helper: '需要对比的目标值',
+  },
+  targetMinValue: {
+    label: '目标最小值',
+    name: 'targetMinValue',
+    helper: '需要对比的目标最小值',
+  },
+  targetMaxValue: {
+    label: '目标最大值',
+    name: 'targetMaxValue',
+    helper: '需要对比的目标最大值',
+  },
+  targetType: {
+    label: '目标类型',
+    name: 'targetType',
     helper: '',
+  },
+  targetTypeNote: {
+    label: '目标类型',
+    name: 'targetTypeNote',
+    helper: '目标数据的类型',
+  },
+  targetComparisonMode: {
+    label: '比较模式',
+    name: 'targetComparisonMode',
+    helper: '比较方式，等于、大于或小于等等',
+  },
+  targetComparisonModeNote: {
+    label: '比较模式',
+    name: 'targetComparisonModeNote',
+    helper: '比较方式，等于、大于或小于等等',
+  },
+  targetSourceMode: {
+    label: '来源模式',
+    name: 'targetSourceMode',
+    helper: '',
+  },
+  targetSourceModeNote: {
+    label: '来源模式',
+    name: 'targetSourceModeNote',
+    helper: '',
+  },
+  remoteCallUrl: {
+    label: '远程调用地址',
+    name: 'remoteCallUrl',
+    helper: '远程调用的地址',
+  },
+  remoteCallParams: {
+    label: '远程调用参数',
+    name: 'remoteCallParams',
+    helper: '远程调用的参数',
   },
   status: {
     label: '状态',

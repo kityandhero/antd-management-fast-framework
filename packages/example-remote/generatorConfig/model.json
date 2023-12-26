@@ -2866,6 +2866,20 @@
           "type": "singleData"
         },
         {
+          "title": "开启多分支模式",
+          "api": "/workflow/openMultibranch",
+          "effect": "openMultibranch",
+          "service": "openMultibranchData",
+          "type": "singleData"
+        },
+        {
+          "title": "开启多终点模式",
+          "api": "/workflow/openMultiEnd",
+          "effect": "openMultiEnd",
+          "service": "openMultiEndData",
+          "type": "singleData"
+        },
+        {
           "title": "设为启用",
           "api": "/workflow/setEnable",
           "effect": "setEnable",
@@ -2978,10 +2992,17 @@
           "type": "singleData"
         },
         {
-          "title": "新建流程节点分支条件项",
-          "api": "/workflowBranchConditionItem/addBasicInfo",
-          "effect": "addBasicInfo",
-          "service": "addBasicInfoData",
+          "title": "新建流程节点分支表单字段条件项",
+          "api": "/workflowBranchConditionItem/addFormFieldBasicInfo",
+          "effect": "addFormFieldBasicInfo",
+          "service": "addFormFieldBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "新建流程节点分支远程调用条件项",
+          "api": "/workflowBranchConditionItem/addRemoteCallBasicInfo",
+          "effect": "addRemoteCallBasicInfo",
+          "service": "addRemoteCallBasicInfoData",
           "type": "singleData"
         },
         {
@@ -2989,6 +3010,20 @@
           "api": "/workflowBranchConditionItem/updateBasicInfo",
           "effect": "updateBasicInfo",
           "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置对象比较模式",
+          "api": "/workflowBranchConditionItem/setRemoteCallUrl",
+          "effect": "setRemoteCallUrl",
+          "service": "setRemoteCallUrlData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置对象比较模式",
+          "api": "/workflowBranchConditionItem/setRemoteCallParameters",
+          "effect": "setRemoteCallParameters",
+          "service": "setRemoteCallParametersData",
           "type": "singleData"
         },
         {
@@ -3678,10 +3713,17 @@
           "type": "singleData"
         },
         {
-          "title": "新建环节节点",
+          "title": "新建过程节点",
           "api": "/workflowNode/addIntermediatePoint",
           "effect": "addIntermediatePoint",
           "service": "addIntermediatePointData",
+          "type": "singleData"
+        },
+        {
+          "title": "新建抄送节点",
+          "api": "/workflowNode/addCarbonCopyPoint",
+          "effect": "addCarbonCopyPoint",
+          "service": "addCarbonCopyPointData",
           "type": "singleData"
         },
         {

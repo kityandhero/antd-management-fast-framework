@@ -4,9 +4,11 @@ import React from 'react';
 import { CenterBox, FlexBox } from 'antd-management-fast-component';
 
 import {
-  backwardEdgeTextColor,
+  backwardEdgeLabelBackground,
+  carbonCopyEdgeLabelBackground,
+  carbonCopyNodeBackgroundColor,
   endNodeBackgroundColor,
-  forwardEdgeTextColor,
+  forwardEdgeLabelBackground,
   intermediateNodeBackgroundColor,
   sourcePointColor,
   startNodeBackgroundColor,
@@ -72,6 +74,28 @@ export function GraphicDescription() {
                 style={{
                   height: '10px',
                   width: '16px',
+                  backgroundColor: carbonCopyNodeBackgroundColor,
+                  borderRadius: '3px',
+                }}
+              ></div>
+            </CenterBox>
+          }
+          right="流程抄送节点"
+        />
+      </div>
+
+      <div style={{ width: '120px' }}>
+        <FlexBox
+          flex="left"
+          leftStyle={{
+            paddingRight: '10px',
+          }}
+          left={
+            <CenterBox>
+              <div
+                style={{
+                  height: '10px',
+                  width: '16px',
                   backgroundColor: endNodeBackgroundColor,
                   borderRadius: '3px',
                 }}
@@ -114,28 +138,6 @@ export function GraphicDescription() {
         }}
       />
 
-      <div style={{ width: '120px' }}>
-        <FlexBox
-          flex="left"
-          leftStyle={{
-            paddingRight: '10px',
-          }}
-          left={
-            <CenterBox>
-              <div
-                style={{
-                  height: '6px',
-                  width: '6px',
-                  backgroundColor: sourcePointColor,
-                  borderRadius: '50%',
-                }}
-              ></div>
-            </CenterBox>
-          }
-          right="节点流程出口"
-        />
-      </div>
-
       <div>
         <FlexBox
           flex="left"
@@ -158,6 +160,28 @@ export function GraphicDescription() {
         />
       </div>
 
+      <div style={{ width: '120px' }}>
+        <FlexBox
+          flex="left"
+          leftStyle={{
+            paddingRight: '10px',
+          }}
+          left={
+            <CenterBox>
+              <div
+                style={{
+                  height: '6px',
+                  width: '6px',
+                  backgroundColor: sourcePointColor,
+                  borderRadius: '50%',
+                }}
+              ></div>
+            </CenterBox>
+          }
+          right="节点流程出口"
+        />
+      </div>
+
       <Divider
         type="horizontal"
         style={{
@@ -166,7 +190,7 @@ export function GraphicDescription() {
         }}
       />
 
-      <div>
+      <div style={{ width: '120px' }}>
         <FlexBox
           flex="left"
           leftStyle={{
@@ -176,18 +200,19 @@ export function GraphicDescription() {
             <CenterBox>
               <div
                 style={{
-                  height: '2px',
-                  width: '100%',
-                  backgroundColor: forwardEdgeTextColor,
+                  height: '10px',
+                  width: '16px',
+                  backgroundColor: forwardEdgeLabelBackground,
+                  borderRadius: '3px',
                 }}
               ></div>
             </CenterBox>
           }
-          right="前进流程标签"
+          right="前进指向标签"
         />
       </div>
 
-      <div>
+      <div style={{ width: '120px' }}>
         <FlexBox
           flex="left"
           leftStyle={{
@@ -197,14 +222,37 @@ export function GraphicDescription() {
             <CenterBox>
               <div
                 style={{
-                  height: '2px',
-                  width: '100%',
-                  backgroundColor: backwardEdgeTextColor,
+                  height: '10px',
+                  width: '16px',
+                  backgroundColor: carbonCopyEdgeLabelBackground,
+                  borderRadius: '3px',
                 }}
               ></div>
             </CenterBox>
           }
-          right="回退流程标签"
+          right="抄送指向标签"
+        />
+      </div>
+
+      <div style={{ width: '120px' }}>
+        <FlexBox
+          flex="left"
+          leftStyle={{
+            paddingRight: '10px',
+          }}
+          left={
+            <CenterBox>
+              <div
+                style={{
+                  height: '10px',
+                  width: '16px',
+                  backgroundColor: backwardEdgeLabelBackground,
+                  borderRadius: '3px',
+                }}
+              ></div>
+            </CenterBox>
+          }
+          right="回退指向标签"
         />
       </div>
     </Card>

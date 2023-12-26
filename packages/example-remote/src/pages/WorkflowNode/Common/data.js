@@ -46,7 +46,7 @@ export const fieldData = {
     helper: '',
   },
   name: {
-    label: '流程节点',
+    label: '节点名称',
     name: 'name',
     helper: '工作流节点的名称',
   },

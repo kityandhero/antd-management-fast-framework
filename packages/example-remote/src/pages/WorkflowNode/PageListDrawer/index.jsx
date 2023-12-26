@@ -20,6 +20,7 @@ import { accessWayCollection } from '../../../customConfig';
 import {
   getChannelName,
   getFlowNodeStatusName,
+  getFlowNodeTypeName,
 } from '../../../customSpecialComponents';
 import { refreshCacheAction } from '../Assist/action';
 import { getStatusBadge } from '../Assist/tools';
@@ -50,7 +51,7 @@ class PageListDrawer extends MultiPageDrawer {
       ...this.state,
       pageTitle: '流程节点列表',
       loadApiPath: 'workflowNode/pageList',
-      tableScrollX: 1040,
+      tableScrollX: 1140,
     };
   }
 
@@ -125,6 +126,24 @@ class PageListDrawer extends MultiPageDrawer {
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.type,
+      width: 120,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfigBuilder: (value) => {
+        return {
+          color: buildRandomHexColor({
+            seed: toNumber(value) + 15,
+          }),
+        };
+      },
+      formatValue: (value) => {
+        return getFlowNodeTypeName({
+          value: value,
+        });
+      },
     },
     {
       dataTarget: fieldData.channel,

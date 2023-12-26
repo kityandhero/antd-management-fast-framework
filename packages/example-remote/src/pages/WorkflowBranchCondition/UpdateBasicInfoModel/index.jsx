@@ -1,10 +1,15 @@
 import { connect } from 'easy-soft-dva';
-import { getValueByKey } from 'easy-soft-utility';
+import {
+  convertCollection,
+  getValueByKey,
+  zeroString,
+} from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
+import { renderFormFlowBranchConditionJudgmentModeSelect } from '../../../customSpecialComponents';
 import { fieldData } from '../Common/data';
 
 const { BaseUpdateModal } = DataModal;
@@ -16,6 +21,8 @@ const visibleFlag = '9303d879778542f28efae80f6e302e18';
   schedulingControl,
 }))
 class UpdateBasicInfoModal extends BaseUpdateModal {
+  showCallProcess = true;
+
   static open() {
     switchControlAssist.open(visibleFlag);
   }
@@ -90,6 +97,15 @@ class UpdateBasicInfoModal extends BaseUpdateModal {
         data: metaData,
         key: fieldData.description.name,
       });
+
+      const judgmentMode = getValueByKey({
+        data: metaData,
+        key: fieldData.judgmentMode.name,
+        convert: convertCollection.string,
+      });
+
+      values[fieldData.judgmentMode.name] =
+        judgmentMode === zeroString ? null : judgmentMode;
     }
 
     return values;
@@ -109,6 +125,11 @@ class UpdateBasicInfoModal extends BaseUpdateModal {
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.name,
               require: true,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.customSelect,
+              component: renderFormFlowBranchConditionJudgmentModeSelect({}),
             },
             {
               lg: 24,

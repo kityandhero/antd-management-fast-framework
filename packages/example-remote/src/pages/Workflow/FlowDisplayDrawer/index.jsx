@@ -108,6 +108,11 @@ class FlowDisplayDrawer extends BaseVerticalFlexDrawer {
             break;
           }
 
+          case flowNodeTypeCollection.carbonCopyPoint: {
+            nodeType = 'carbonCopy';
+            break;
+          }
+
           default: {
             nodeType = 'intermediate';
           }
@@ -181,7 +186,10 @@ class FlowDisplayDrawer extends BaseVerticalFlexDrawer {
         return adjustEdge({
           index,
           id: workflowLineId,
-          forward: type === flowLineTypeCollection.forward,
+          forward:
+            type === flowLineTypeCollection.forward ||
+            type === flowLineTypeCollection.carbonCopy,
+          carbonCopy: type === flowLineTypeCollection.carbonCopy,
           source: fromId,
           sourceHandle: checkInCollection(positionList, fromPositionName)
             ? fromPositionName
