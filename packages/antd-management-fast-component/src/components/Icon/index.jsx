@@ -170,6 +170,8 @@ import {
   SortDescendingOutlined,
   SoundFilled,
   SoundOutlined,
+  StopFilled,
+  StopOutlined,
   SwapOutlined,
   SyncOutlined,
   TagFilled,
@@ -890,6 +892,13 @@ export const iconBuilder = {
     }
 
     return <CaretRightOutlined {...(properties || {})} />;
+  },
+  stop: (properties = null, mode = iconModeCollection.outlined) => {
+    if (mode === iconModeCollection.filled) {
+      return <StopFilled {...(properties || {})} />;
+    }
+
+    return <StopOutlined {...(properties || {})} />;
   },
   retweet: (properties = null) => {
     return <RetweetOutlined {...(properties || {})} />;
