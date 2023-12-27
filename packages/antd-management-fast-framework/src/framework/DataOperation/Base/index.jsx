@@ -1,6 +1,5 @@
 import {
   checkStringIsNullOrWhiteSpace,
-  isFunction,
   showErrorNotification,
   showInfoNotification,
   showSimpleRuntimeError,
@@ -157,8 +156,6 @@ class Base extends AuthorizationWrapper {
       subjoinData: this.subjoinDataOnAfterClose() || {},
     };
 
-    const { afterOK } = this.props;
-
     this.logCallTrace(
       {
         singleData,
@@ -224,43 +221,6 @@ class Base extends AuthorizationWrapper {
       responseOriginalData,
       submitData,
     });
-
-    if (isFunction(afterOK)) {
-      const subjoinData = this.subjoinDataOnAfterOK();
-
-      this.logCallTrace(
-        {
-          singleData,
-          listData,
-          extraData,
-          responseOriginalData,
-          submitData,
-          subjoinData: subjoinData || {},
-        },
-        primaryCallName,
-        'doAfterSubmitSuccess',
-        'trigger',
-        'afterOK',
-      );
-
-      afterOK({
-        singleData,
-        listData,
-        extraData,
-        responseOriginalData,
-        submitData,
-        subjoinData: subjoinData || {},
-      });
-    } else {
-      this.logCallTrace(
-        {},
-        primaryCallName,
-        'doAfterSubmitSuccess',
-        'trigger',
-        'afterOK',
-        emptyLogic,
-      );
-    }
   };
 
   doOtherAfterSubmitSuccess = ({

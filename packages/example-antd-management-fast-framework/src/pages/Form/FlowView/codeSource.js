@@ -572,6 +572,7 @@ class RadioView extends BaseView {
                       >
                         <Flow
                           canEdit={true}
+                          multibranch={true}
                           nodeNameKey={'name'}
                           // listApproverKey={fieldDataWorkflowNode.listApprover.name}
                           // personnelNameKey={

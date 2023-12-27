@@ -160,15 +160,44 @@ class BaseWindow extends Base {
 
       this.executeAfterDoOtherWhenChangeVisibleToShow();
     } else {
-      const { afterClose } = this.props;
+      const { afterOK, afterClose } = this.props;
+
+      const data = {
+        ...this.adjustAfterCloseParameter(),
+        ...this.submitSuccessTransferData,
+      };
+
+      const { flag } = data;
+
+      if (flag) {
+        if (isFunction(afterOK)) {
+          this.logCallTrace(
+            {
+              parameter: data,
+            },
+            primaryCallName,
+            'doOtherWhenChangeVisible',
+            'trigger',
+            'afterOK',
+          );
+
+          afterOK(data);
+        } else {
+          this.logCallTrace(
+            {},
+            primaryCallName,
+            'doOtherWhenChangeVisible',
+            'trigger',
+            'afterOK',
+            emptyLogic,
+          );
+        }
+      }
 
       if (isFunction(afterClose)) {
         this.logCallTrace(
           {
-            parameter: {
-              ...this.adjustAfterCloseParameter(),
-              ...this.submitSuccessTransferData,
-            },
+            parameter: data,
           },
           primaryCallName,
           'doOtherWhenChangeVisible',
@@ -176,17 +205,11 @@ class BaseWindow extends Base {
           'afterClose',
         );
 
-        afterClose({
-          ...this.adjustAfterCloseParameter(),
-          ...this.submitSuccessTransferData,
-        });
+        afterClose(data);
       } else {
         this.logCallTrace(
           {
-            parameter: {
-              ...this.adjustAfterCloseParameter(),
-              ...this.submitSuccessTransferData,
-            },
+            parameter: data,
           },
           primaryCallName,
           'doOtherWhenChangeVisible',
