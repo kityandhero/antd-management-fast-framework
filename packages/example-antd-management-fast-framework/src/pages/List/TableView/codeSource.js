@@ -4,6 +4,7 @@ import {
   convertCollection,
   getValueByKey,
   handleItem,
+  showSimpleInfoMessage,
 } from 'easy-soft-utility';
 
 import {
@@ -11,6 +12,7 @@ import {
   columnFacadeMode,
   columnPlaceholder,
   listViewConfig,
+  logTemplate,
   searchCardConfig,
 } from 'antd-management-fast-common';
 import { iconBuilder, SyntaxHighlighter } from 'antd-management-fast-component';
@@ -287,6 +289,21 @@ class PageList extends MultiPage {
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
+      facadeConfig: {
+        color: '#6587df',
+        valPrefix: '标题',
+        valPrefixStyle: { color: '#333', width: '34px' },
+        separator: ': ',
+        separatorStyle: { color: '#3e4523', width: '10px' },
+        icon: iconBuilder.read(),
+        addonBefore: iconBuilder.eye(),
+        addonAfter: iconBuilder.bell(),
+        onClick: (value, record, index) => {
+          logTemplate({ value, record, index });
+
+          showSimpleInfoMessage(\`click title: \${value}\`);
+        },
+      },
     },
     {
       dataTarget: fieldData.image,
