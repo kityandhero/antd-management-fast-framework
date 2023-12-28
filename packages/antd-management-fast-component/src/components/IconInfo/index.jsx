@@ -97,7 +97,7 @@ class IconInfo extends BaseComponent {
       isString(textAfterFormat) &&
       !checkStringIsNullOrWhiteSpace(textAfterFormat) ? (
         <Text
-          style={{ ...styleMerge, ...textStyle, flex: 'auto' }}
+          style={{ ...styleMerge, ...textStyle, flex: 'auto', minWidth: 0 }}
           ellipsis={ellipsis}
         >
           {textAfterFormat || ''}
@@ -117,34 +117,32 @@ class IconInfo extends BaseComponent {
 
       tooltipTitle = textAfterFormatForTooltip;
     } else {
-      // const textPrefixAdjust = isObject(textPrefixStyle) ? (
-      //   <Text style={{ ...styleMerge, ...textPrefixStyle, flex: 'auto' }}>
-      //     {textPrefix || ''}
-      //   </Text>
-      // ) : (
-      //   textPrefix || ''
-      // );
-
       const textPrefixAdjust = (
-        <Text style={{ ...styleMerge, ...textPrefixStyle, flex: 'auto' }}>
+        <Text
+          style={{
+            ...styleMerge,
+            ...textPrefixStyle,
+            whiteSpace: 'nowrap',
+            flex: '0 0 auto',
+            minWidth: 0,
+          }}
+        >
           {textPrefix || ''}
         </Text>
       );
 
-      // const separatorAdjust = checkStringIsNullOrWhiteSpace(separator) ? (
-      //   ''
-      // ) : isObject(separatorStyle) ? (
-      //   <Text style={{ ...styleMerge, ...separatorStyle }}>
-      //     {separator || ':'}
-      //   </Text>
-      // ) : (
-      //   separator || ':'
-      // );
-
       const separatorAdjust = checkStringIsNullOrWhiteSpace(separator) ? (
         ''
       ) : (
-        <Text style={{ ...styleMerge, ...separatorStyle, flex: 'auto' }}>
+        <Text
+          style={{
+            ...styleMerge,
+            ...separatorStyle,
+            whiteSpace: 'nowrap',
+            flex: '0 0 auto',
+            minWidth: 0,
+          }}
+        >
           {separator || ':'}
         </Text>
       );
@@ -328,7 +326,7 @@ class IconInfo extends BaseComponent {
 
           {!checkStringIsNullOrWhiteSpace(textMerge) &&
           iconPosition === 'left' ? (
-            <Col flex="auto">
+            <Col flex="0 0 auto">
               {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
                 iconItem
               ) : (
@@ -339,6 +337,7 @@ class IconInfo extends BaseComponent {
 
           {checkStringIsNullOrWhiteSpace(textMerge) ? null : (
             <Col
+              flex="1 1 auto"
               style={styleMerge}
               onClick={() => {
                 this.copyDataToClipboard();
@@ -365,7 +364,7 @@ class IconInfo extends BaseComponent {
 
           {!checkStringIsNullOrWhiteSpace(textMerge) &&
           iconPosition !== 'left' ? (
-            <Col flex="auto">
+            <Col flex="0 0 auto">
               {checkStringIsNullOrWhiteSpace(iconTooltip) ? (
                 iconItem
               ) : (

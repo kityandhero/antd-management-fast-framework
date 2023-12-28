@@ -163,12 +163,14 @@ export function buildColumnItem({
         separator,
         separatorStyle,
         icon,
+        iconStyle,
         iconPosition,
         addonAfter,
         addonBefore,
         datetimeFormat: datetimeFormatValue,
         status,
         text,
+        onClick,
       } = {
         color: null,
         valPrefix: '',
@@ -177,12 +179,14 @@ export function buildColumnItem({
         separator: ':',
         separatorStyle: null,
         icon: null,
+        iconStyle: null,
         iconPosition: 'left',
         addonAfter: null,
         addonBefore: null,
         datetimeFormat: datetimeFormat.yearMonthDayHourMinuteSecond,
         status: 'default',
         text: '',
+        onClick: null,
         ...facadeConfig,
       };
 
@@ -233,27 +237,41 @@ export function buildColumnItem({
         }
 
         const component = (
-          <div style={{ maxWidth: '100%' }}>
-            {(addonBefore || null) == null ? null : addonBefore}
+          <Row gutter={8} wrap={false}>
+            {(addonBefore || null) == null ? null : (
+              <Col flex="0 0 auto">{addonBefore}</Col>
+            )}
 
-            <IconInfo
-              block
-              icon={icon || null}
-              iconPosition={iconPosition || 'left'}
-              text={v || emptyValue}
-              textStyle={valStyle || null}
-              textPrefix={valPrefix}
-              textPrefixStyle={valPrefixStyle || null}
-              separator={separator || ''}
-              separatorStyle={separatorStyle || null}
-              style={styleMerge}
-              tooltip
-              tooltipPlacement={tooltipPlacement}
-              ellipsis
-            />
+            <Col flex="1 1 auto">
+              <IconInfo
+                block
+                icon={icon || null}
+                iconStyle={iconStyle}
+                iconPosition={iconPosition || 'left'}
+                text={v || emptyValue}
+                textStyle={valStyle || null}
+                textPrefix={valPrefix}
+                textPrefixStyle={valPrefixStyle || null}
+                separator={separator || ''}
+                separatorStyle={separatorStyle || null}
+                style={styleMerge}
+                tooltip
+                tooltipPlacement={tooltipPlacement}
+                ellipsis
+                onClick={() => {
+                  if (!isFunction(onClick)) {
+                    return;
+                  }
 
-            {(addonAfter || null) == null ? null : addonAfter}
-          </div>
+                  onClick(value, record, index);
+                }}
+              />
+            </Col>
+
+            {(addonAfter || null) == null ? null : (
+              <Col flex="0 0 auto">{addonAfter}</Col>
+            )}
+          </Row>
         );
 
         return align === 'center' ? (

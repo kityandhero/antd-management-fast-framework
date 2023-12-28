@@ -4,6 +4,7 @@ import {
   convertCollection,
   getValueByKey,
   handleItem,
+  showSimpleInfoMessage,
 } from 'easy-soft-utility';
 
 import {
@@ -161,6 +162,8 @@ class PageList extends MultiPage {
     logTemplate({
       list,
     });
+
+    showSimpleInfoMessage('click 选择联动按钮');
   };
 
   onBatchActionSelect = (key, selectedDataTableDataRows) => {
@@ -171,6 +174,7 @@ class PageList extends MultiPage {
           list: selectedDataTableDataRows,
         });
 
+        showSimpleInfoMessage('click 选择联动按钮 action1');
         break;
       }
 
@@ -180,6 +184,7 @@ class PageList extends MultiPage {
           list: selectedDataTableDataRows,
         });
 
+        showSimpleInfoMessage('click 选择联动按钮 action2');
         break;
       }
 
