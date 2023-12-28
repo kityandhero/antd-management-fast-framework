@@ -1978,7 +1978,7 @@ importers:
       '@umijs/max': ^4.0.90
       antd: ^5.12.5
       antd-management-fast-common: ^2.6.71
-      antd-management-fast-component: ^2.6.114
+      antd-management-fast-component: ^2.6.115
       antd-management-fast-config: ^1.1.53
       antd-management-fast-design-playground: ^1.0.76
       antd-management-fast-design-react: ^1.0.45

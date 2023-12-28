@@ -78,6 +78,9 @@ class SignIn extends BaseComponent {
           },
         );
       },
+      failCallback: ({ target }) => {
+        target.setState({ processing: false });
+      },
     });
   };
 

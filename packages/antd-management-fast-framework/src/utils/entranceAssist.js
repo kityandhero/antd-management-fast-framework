@@ -2,7 +2,7 @@ import { getDispatch } from 'easy-soft-dva';
 import {
   buildPromptModuleInfo,
   checkInCollection,
-  handleAuthorizationFail,
+  handleAuthenticationFail,
   isFunction,
   logDevelop,
   logExecute,
@@ -34,7 +34,7 @@ const moduleName = 'entranceAssist';
 function buildPromptModuleInfoText(text, ...messages) {
   return buildPromptModuleInfo(
     modulePackageName,
-    mergeTextMessage(text, mergeArrowText(messages)),
+    mergeTextMessage(text, mergeArrowText(...messages)),
     moduleName,
   );
 }
@@ -78,24 +78,28 @@ export function setSignInDataPretreatmentHandler(handler) {
 }
 
 export function pretreatSignInData({ request, response }) {
-  const result = entranceAssistConfigure.handleSignInDataPretreatment({
-    request,
-    response,
-  });
-
   logTrace(
     {
       parameter: {
         request,
         response,
       },
-      pretreatResult: result,
     },
     buildPromptModuleInfoText(
       'pretreatSignInData',
       'trigger pretreatSignInData which setSignInDataPretreatmentHandler set it',
       'pretreat signIn data',
     ),
+  );
+
+  const result = entranceAssistConfigure.handleSignInDataPretreatment({
+    request,
+    response,
+  });
+
+  logTrace(
+    result,
+    buildPromptModuleInfoText('pretreatSignInData', 'pretreat result data'),
   );
 
   return result;
@@ -115,7 +119,15 @@ export function signInAction({
     params: handleData,
     handleData,
     showProcessing: false,
-    successCallback: ({ target, remoteData }) => {
+    successCallback: ({
+      target,
+      params,
+      handleData,
+      remoteListData,
+      remoteData,
+      remoteExtraData,
+      remoteOriginal,
+    }) => {
       if (!checkInCollection(Object.keys(remoteData), getTokenName())) {
         logTrace(
           remoteData,
@@ -172,7 +184,15 @@ export function signInAction({
           ),
         );
 
-        successCallback({ target, remoteData });
+        successCallback({
+          target,
+          params,
+          handleData,
+          remoteListData,
+          remoteData,
+          remoteExtraData,
+          remoteOriginal,
+        });
       } else {
         logTrace(
           buildPromptModuleInfoText(
@@ -184,7 +204,7 @@ export function signInAction({
         );
       }
     },
-    failCallback: ({ remoteOriginal }) => {
+    failCallback: ({ target, params, handleData, remoteOriginal, error }) => {
       logTrace(
         remoteOriginal,
         buildPromptModuleInfoText(
@@ -199,7 +219,13 @@ export function signInAction({
           buildPromptModuleInfoText('signInAction', 'trigger', 'failCallback'),
         );
 
-        failCallback();
+        failCallback({
+          target,
+          params,
+          handleData,
+          remoteOriginal,
+          error,
+        });
       } else {
         logTrace(
           buildPromptModuleInfoText(
@@ -249,7 +275,15 @@ export function signOutAction({
       }
 
       setTimeout(() => {
-        handleAuthorizationFail();
+        logTrace(
+          buildPromptModuleInfoText(
+            'signOutAction',
+            'trigger',
+            'handleAuthenticationFail',
+          ),
+        );
+
+        handleAuthenticationFail();
       }, 300);
     },
     failCallback: ({ remoteOriginal }) => {

@@ -1,4 +1,5 @@
 import {
+  buildPromptModuleInfo,
   checkStringIsNullOrWhiteSpace,
   checkWhetherDevelopmentEnvironment,
   getApplicationMergeConfig,
@@ -6,6 +7,10 @@ import {
   isBrowser,
   isObject,
   logError,
+  logExecute,
+  logTrace,
+  mergeArrowText,
+  mergeTextMessage,
   redirectTo,
   setApplicationExternalConfigList,
   setApplicationInitialConfig,
@@ -20,6 +25,7 @@ import {
 } from 'easy-soft-utility';
 
 import { appInitDefault } from './constants';
+import { modulePackageName } from './definition';
 import { setLocalStorageHandler } from './localStorageAssist';
 import { setMessageDisplayMonitor } from './messageAssist';
 import { setNavigationHandler } from './navigationAssist';
@@ -31,6 +37,20 @@ import {
   getAuthenticationFailRedirectPath,
   getAuthorizationFailRedirectPath,
 } from './settingAssist';
+
+/**
+ * Module Name.
+ * @private
+ */
+const moduleName = 'fitHandler';
+
+function buildPromptModuleInfoText(text, ...messages) {
+  return buildPromptModuleInfo(
+    modulePackageName,
+    mergeTextMessage(text, mergeArrowText(...messages)),
+    moduleName,
+  );
+}
 
 function getShowLogInConsole() {
   const { showLogInConsole } = {
@@ -105,6 +125,8 @@ function getExternalConfigs() {
 }
 
 function handleAuthenticationFail() {
+  logExecute({}, buildPromptModuleInfoText('handleAuthenticationFail'));
+
   const authenticationFailRedirectPath = getAuthenticationFailRedirectPath();
 
   if (checkStringIsNullOrWhiteSpace(authenticationFailRedirectPath)) {
@@ -117,11 +139,20 @@ function handleAuthenticationFail() {
   }
 
   setTimeout(() => {
+    logTrace(
+      buildPromptModuleInfoText(
+        'handleAuthorizationFail',
+        'redirectTo',
+        `"${authenticationFailRedirectPath}" [get by getAuthenticationFailRedirectPath()]`,
+      ),
+    );
     redirectTo(authenticationFailRedirectPath);
   }, 100);
 }
 
 function handleAuthorizationFail() {
+  logExecute({}, buildPromptModuleInfoText('handleAuthorizationFail'));
+
   const authorizationFailRedirectPath = getAuthorizationFailRedirectPath();
 
   if (checkStringIsNullOrWhiteSpace(authorizationFailRedirectPath)) {
@@ -134,6 +165,14 @@ function handleAuthorizationFail() {
   }
 
   setTimeout(() => {
+    logTrace(
+      buildPromptModuleInfoText(
+        'handleAuthorizationFail',
+        'redirectTo',
+        `"${authorizationFailRedirectPath}" [get by getAuthorizationFailRedirectPath()]`,
+      ),
+    );
+
     redirectTo(authorizationFailRedirectPath);
   }, 100);
 }

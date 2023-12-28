@@ -2,7 +2,7 @@ import {
   compareTimeLessThan,
   logExecute,
   setSimulationAuthorizeExtraHandler,
-  showSimpleInfoNotification,
+  showSimpleInfoMessage,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -30,14 +30,16 @@ function pretreatSignInData({ request, response }) {
 
   const { name } = request;
 
-  console.log({ name });
-
   if (name === 'admin') {
-    showSimpleInfoNotification('login with super role');
+    setTimeout(() => {
+      showSimpleInfoMessage('login with super role');
+    }, 2500);
   } else {
     response.data.currentAuthority = [];
 
-    showSimpleInfoNotification('login with none role');
+    setTimeout(() => {
+      showSimpleInfoMessage('login with none role');
+    }, 2500);
   }
 
   return response;
