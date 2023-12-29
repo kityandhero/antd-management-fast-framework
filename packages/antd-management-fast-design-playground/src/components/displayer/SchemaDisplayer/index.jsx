@@ -33,18 +33,25 @@ import { createForm } from '@formily/core';
 import { createSchemaField, Field } from '@formily/react';
 
 import {
+  buildPromptModuleInfo,
   checkInCollection,
   isArray,
   isEmptyArray,
   isFunction,
+  logTrace,
+  mergeArrowText,
+  mergeTextMessage,
   toString,
 } from 'easy-soft-utility';
 
+import { emptyLogic } from 'antd-management-fast-common';
 import {
   CenterBox,
   HelpBox,
   iconBuilder,
 } from 'antd-management-fast-component';
+
+import { modulePackageName } from '../../../utils/definition';
 
 const Text = ({ value, mode, content, ...properties }) => {
   const tagName = mode === 'normal' || !mode ? 'div' : mode;
@@ -60,7 +67,6 @@ const SchemaField = createSchemaField({
     Checkbox,
     DatePicker,
     Editable,
-    // FormButtonGroup,
     FormCollapse,
     FormGrid,
     FormItem,
@@ -86,6 +92,20 @@ const SchemaField = createSchemaField({
   },
 });
 
+/**
+ * Module Name.
+ * @private
+ */
+const moduleName = 'SchemaDisplayer';
+
+function buildPromptModuleInfoText(text, ...messages) {
+  return buildPromptModuleInfo(
+    modulePackageName,
+    mergeTextMessage(text, mergeArrowText(...messages)),
+    moduleName,
+  );
+}
+
 const remarkName = '2ff73e227d264c06b951c037ce0f51ef';
 
 const descriptionTypeCollection = ['field', 'box'];
@@ -95,6 +115,88 @@ class SchemaDisplayer extends PureComponent {
     const v = checkInCollection(descriptionTypeCollection, type);
 
     return v ? type : 'field';
+  };
+
+  submitForm = (o) => {
+    const { onSubmit } = this.props;
+
+    if (!isFunction(onSubmit)) {
+      logTrace(
+        {
+          submitData: o,
+        },
+        buildPromptModuleInfoText(
+          'submitForm',
+          'trigger',
+          'onSubmit',
+          emptyLogic,
+        ),
+      );
+
+      return;
+    }
+
+    logTrace(o, buildPromptModuleInfoText('submitForm', 'trigger', 'onSubmit'));
+
+    onSubmit(o);
+  };
+
+  onSubmitSuccess = (o) => {
+    const { afterSubmitSuccess } = this.props;
+
+    if (!isFunction(afterSubmitSuccess)) {
+      logTrace(
+        o,
+        buildPromptModuleInfoText(
+          'onSubmitFailed',
+          'trigger',
+          'afterSubmitSuccess',
+          emptyLogic,
+        ),
+      );
+
+      return;
+    }
+
+    logTrace(
+      o,
+      buildPromptModuleInfoText(
+        'onSubmitFailed',
+        'trigger',
+        'afterSubmitSuccess',
+      ),
+    );
+
+    afterSubmitSuccess(o);
+  };
+
+  onSubmitFailed = (o) => {
+    const { afterSubmitFailed } = this.props;
+
+    if (!isFunction(afterSubmitFailed)) {
+      logTrace(
+        o,
+        buildPromptModuleInfoText(
+          'onSubmitFailed',
+          'trigger',
+          'afterSubmitFailed',
+          emptyLogic,
+        ),
+      );
+
+      return;
+    }
+
+    logTrace(
+      o,
+      buildPromptModuleInfoText(
+        'onSubmitFailed',
+        'trigger',
+        'afterSubmitFailed',
+      ),
+    );
+
+    afterSubmitFailed(o);
   };
 
   renderDescription = () => {
@@ -143,7 +245,6 @@ class SchemaDisplayer extends PureComponent {
       header,
       showFooterDivider,
       footer,
-      onSubmit,
       children,
     } = this.props;
 
@@ -162,11 +263,17 @@ class SchemaDisplayer extends PureComponent {
     const formInstance = createForm({ initialValues });
 
     const buttonBefore = isFunction(buttonBeforeSubmitBuilder)
-      ? buttonBeforeSubmitBuilder()
+      ? buttonBeforeSubmitBuilder({
+          form: formInstance,
+          getFormValue: () => JSON.parse(JSON.stringify(formInstance.values)),
+        })
       : null;
 
     const buttonAfter = isFunction(buttonAfterSubmitBuilder)
-      ? buttonAfterSubmitBuilder()
+      ? buttonAfterSubmitBuilder({
+          form: formInstance,
+          getFormValue: () => JSON.parse(JSON.stringify(formInstance.values)),
+        })
       : null;
 
     const buttonGroup =
@@ -180,11 +287,9 @@ class SchemaDisplayer extends PureComponent {
                 <Submit
                   form={formInstance}
                   icon={submitButtonIcon}
-                  onSubmit={(o) => {
-                    if (isFunction(onSubmit)) {
-                      onSubmit(o);
-                    }
-                  }}
+                  onSubmit={this.submitForm}
+                  onSubmitSuccess={this.onSubmitSuccess}
+                  onSubmitFailed={this.onSubmitFailed}
                 >
                   {submitButtonText}
                 </Submit>
@@ -355,6 +460,10 @@ SchemaDisplayer.defaultProps = {
   descriptionNetherLabel: '',
   descriptionNetherComponent: null,
   onSubmit: () => {},
+  // eslint-disable-next-line no-unused-vars
+  afterSubmitSuccess: (payload) => {},
+  // eslint-disable-next-line no-unused-vars
+  afterSubmitFailed: (feedbacks) => {},
   header: null,
   footer: null,
   showFooterDivider: false,

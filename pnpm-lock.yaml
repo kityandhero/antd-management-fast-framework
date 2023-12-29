@@ -452,7 +452,7 @@ importers:
       '@typescript-eslint/parser': ^6.15.0
       '@umijs/max': ^4.0.90
       antd: ^5.12.5
-      antd-management-fast-common: ^2.6.71
+      antd-management-fast-common: ^2.6.72
       array-move: ^4.0.0
       autoprefixer: ^10.4.16
       axios: ^1.6.2
@@ -1768,7 +1768,7 @@ importers:
       '@typescript-eslint/parser': ^6.15.0
       '@umijs/max': ^4.0.90
       antd: ^5.12.5
-      antd-management-fast-common: ^2.6.71
+      antd-management-fast-common: ^2.6.72
       antd-management-fast-component: ^2.6.110
       autoprefixer: ^10.4.16
       axios: ^1.6.2
@@ -1977,15 +1977,15 @@ importers:
       '@typescript-eslint/parser': ^6.15.0
       '@umijs/max': ^4.0.90
       antd: ^5.12.5
-      antd-management-fast-common: ^2.6.71
+      antd-management-fast-common: ^2.6.72
       antd-management-fast-component: ^2.6.115
       antd-management-fast-config: ^1.1.53
-      antd-management-fast-design-playground: ^1.0.76
+      antd-management-fast-design-playground: ^1.0.77
       antd-management-fast-design-react: ^1.0.45
       antd-management-fast-develop: ^1.1.57
       antd-management-fast-flow: ^1.0.35
       antd-management-fast-formily: ^1.0.45
-      antd-management-fast-framework: ^2.11.129
+      antd-management-fast-framework: ^2.11.130
       axios: ^1.6.2
       babel-jest: ^29.7.0
       classnames: ^2.3.2
