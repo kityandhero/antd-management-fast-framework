@@ -143,7 +143,46 @@ class Base extends AuthorizationWrapper {
     responseOriginalData = null,
     submitData = null,
   }) => {
-    this.logCallTrack({}, primaryCallName, 'doAfterSubmitSuccess');
+    this.logCallTrack(
+      {
+        parameter: {
+          singleData,
+          listData,
+          extraData,
+          responseOriginalData,
+          submitData,
+        },
+      },
+      primaryCallName,
+      'doAfterSubmitSuccess',
+    );
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doAfterSubmitSuccess',
+      'trigger',
+      'resetSubmitSuccessTransferData',
+    );
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doAfterSubmitSuccess',
+      'trigger',
+      'subjoinDataOnAfterClose',
+      'result will Append parameters to "afterOK or afterClose"',
+    );
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doAfterSubmitSuccess',
+      'trigger',
+      'subjoinDataOnAfterOK',
+      'result will Append parameters to "afterOK or afterClose"',
+      '"subjoinDataOnAfterOK" will overrides key values on "subjoinDataOnAfterClose" with the same name',
+    );
 
     this.submitSuccessTransferData = {
       ...this.resetSubmitSuccessTransferData(),
@@ -153,7 +192,10 @@ class Base extends AuthorizationWrapper {
       extraData,
       responseOriginalData,
       submitData,
-      subjoinData: this.subjoinDataOnAfterClose() || {},
+      subjoinData: {
+        ...this.subjoinDataOnAfterClose(),
+        ...this.subjoinDataOnAfterOK(),
+      },
     };
 
     this.logCallTrace(

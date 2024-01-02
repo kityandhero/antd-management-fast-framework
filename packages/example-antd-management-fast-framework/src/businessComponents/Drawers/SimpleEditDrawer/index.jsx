@@ -44,7 +44,8 @@ class SimpleEditDrawer extends BaseUpdateDrawer {
 
   subjoinDataOnAfterOK = () => {
     return {
-      message: '这是一个增补数据, 将附加到 afterOk 方法中进行调用',
+      message:
+        '这是一个增补数据, 将附加到 afterOk 或 afterClose 方法的 subjoinData 参数',
     };
   };
 

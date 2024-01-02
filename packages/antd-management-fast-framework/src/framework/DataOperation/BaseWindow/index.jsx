@@ -845,6 +845,14 @@ class BaseWindow extends Base {
       'afterSubmitSuccess',
     );
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'afterSubmitSuccess',
+      'trigger',
+      'doAfterSubmitSuccess',
+    );
+
     this.doAfterSubmitSuccess({
       singleData,
       listData,

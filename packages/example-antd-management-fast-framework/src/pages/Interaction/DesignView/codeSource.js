@@ -12,7 +12,7 @@ import {
   showSimpleInfoMessage,
 } from 'easy-soft-utility';
 
-import { cardConfig } from 'antd-management-fast-common';
+import { cardConfig, logTemplate } from 'antd-management-fast-common';
 import {
   buildButton,
   CenterBox,
@@ -271,26 +271,40 @@ class DesignView extends BaseUpdateForm {
                         </CenterBox>
                       </div>
                     }
-                    buttonBeforeSubmitBuilder={() => {
+                    buttonBeforeSubmitBuilder={({ getFormValue }) => {
                       return buildButton({
                         type: 'primary',
                         icon: iconBuilder.checkCircle(),
                         text: '其他前置按钮',
                         hidden: false,
                         handleData: metaData,
+                        // eslint-disable-next-line no-unused-vars
                         handleClick: ({ handleData }) => {
-                          console.log(handleData);
+                          const formValues = getFormValue();
+
+                          logTemplate(formValues);
+
+                          showSimpleInfoMessage(
+                            \`click 其他前置按钮, \${
+                              Object.entries(formValues).keys.length
+                            }\`,
+                          );
                         },
                       });
                     }}
-                    buttonAfterSubmitBuilder={() => {
+                    buttonAfterSubmitBuilder={({ getFormValue }) => {
                       return buildButton({
                         icon: iconBuilder.checkCircle(),
                         text: '其他后置按钮',
                         hidden: false,
                         handleData: metaData,
+                        // eslint-disable-next-line no-unused-vars
                         handleClick: ({ handleData }) => {
-                          console.log(handleData);
+                          const formValues = getFormValue();
+
+                          logTemplate(formValues);
+
+                          showSimpleInfoMessage('click 其他后置按钮');
                         },
                       });
                     }}

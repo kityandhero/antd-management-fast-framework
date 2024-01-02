@@ -1980,7 +1980,7 @@ importers:
       antd-management-fast-common: ^2.6.72
       antd-management-fast-component: ^2.6.115
       antd-management-fast-config: ^1.1.53
-      antd-management-fast-design-playground: ^1.0.77
+      antd-management-fast-design-playground: ^1.0.78
       antd-management-fast-design-react: ^1.0.45
       antd-management-fast-develop: ^1.1.57
       antd-management-fast-flow: ^1.0.35

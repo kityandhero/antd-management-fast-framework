@@ -318,67 +318,95 @@ class DesignView extends BaseUpdateForm {
                     descriptionTextColor={formRemarkColor}
                     descriptions={formRemarkList}
                     descriptionUpperLabel="附件列表"
-                    descriptionUpperComponent={
-                      <FileViewer
-                        canUpload
-                        canRemove
-                        showUrl
-                        list={listAttachment}
-                        dataTransfer={(o) => {
-                          return {
-                            ...o,
-                            name: getValueByKey({
-                              data: o,
-                              key: 'alias',
-                            }),
-                            url: getValueByKey({
-                              data: o,
-                              key: 'url',
-                            }),
-                          };
-                        }}
-                        onUploadButtonClick={() => {
-                          showSimpleInfoMessage('点击上传按钮');
-                        }}
-                        onItemClick={() => {
-                          showSimpleInfoMessage('点击条目按钮');
-                        }}
-                        onRemove={() => {
-                          showSimpleInfoMessage('点击移除按钮');
-                        }}
-                      />
-                    }
+                    descriptionUpperComponentBuilder={({
+                      // eslint-disable-next-line no-unused-vars
+                      form,
+                      getFormValue,
+                    }) => {
+                      return (
+                        <FileViewer
+                          canUpload
+                          canRemove
+                          showUrl
+                          list={listAttachment}
+                          dataTransfer={(o) => {
+                            return {
+                              ...o,
+                              name: getValueByKey({
+                                data: o,
+                                key: 'alias',
+                              }),
+                              url: getValueByKey({
+                                data: o,
+                                key: 'url',
+                              }),
+                            };
+                          }}
+                          onUploadButtonClick={() => {
+                            showSimpleInfoMessage('点击上传按钮');
+
+                            logTemplate({
+                              formValues: getFormValue(),
+                            });
+                          }}
+                          onItemClick={() => {
+                            showSimpleInfoMessage('点击条目按钮');
+                          }}
+                          onRemove={() => {
+                            showSimpleInfoMessage('点击移除按钮');
+
+                            logTemplate({
+                              formValues: getFormValue(),
+                            });
+                          }}
+                        />
+                      );
+                    }}
                     descriptionNetherLabel="附件列表"
-                    descriptionNetherComponent={
-                      <FileViewer
-                        canUpload
-                        canRemove
-                        showUrl
-                        list={listAttachment}
-                        dataTransfer={(o) => {
-                          return {
-                            ...o,
-                            name: getValueByKey({
-                              data: o,
-                              key: 'alias',
-                            }),
-                            url: getValueByKey({
-                              data: o,
-                              key: 'url',
-                            }),
-                          };
-                        }}
-                        onUploadButtonClick={() => {
-                          showSimpleInfoMessage('点击上传按钮');
-                        }}
-                        onItemClick={() => {
-                          showSimpleInfoMessage('点击条目按钮');
-                        }}
-                        onRemove={() => {
-                          showSimpleInfoMessage('点击移除按钮');
-                        }}
-                      />
-                    }
+                    descriptionNetherComponentBuilder={({
+                      // eslint-disable-next-line no-unused-vars
+                      form,
+                      getFormValue,
+                    }) => {
+                      return (
+                        <FileViewer
+                          canUpload
+                          canRemove
+                          showUrl
+                          list={listAttachment}
+                          dataTransfer={(o) => {
+                            return {
+                              ...o,
+                              name: getValueByKey({
+                                data: o,
+                                key: 'alias',
+                              }),
+                              url: getValueByKey({
+                                data: o,
+                                key: 'url',
+                              }),
+                            };
+                          }}
+                          onUploadButtonClick={() => {
+                            showSimpleInfoMessage('点击上传按钮');
+
+                            logTemplate({
+                              formValues: getFormValue(),
+                            });
+                          }}
+                          onItemClick={() => {
+                            showSimpleInfoMessage('点击条目按钮');
+                          }}
+                          onRemove={() => {
+                            showSimpleInfoMessage('点击移除按钮');
+
+                            logTemplate({
+                              formValues: getFormValue(),
+                            });
+                          }}
+                        />
+                      );
+                    }}
                     showFooterDivider
                     footer={
                       <FileViewer

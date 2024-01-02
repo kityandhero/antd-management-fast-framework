@@ -146,9 +146,9 @@ class SchemaDisplayer extends PureComponent {
 
     if (!isFunction(afterSubmitSuccess)) {
       logTrace(
-        o,
+        o || null,
         buildPromptModuleInfoText(
-          'onSubmitFailed',
+          'onSubmitSuccess',
           'trigger',
           'afterSubmitSuccess',
           emptyLogic,
@@ -161,7 +161,7 @@ class SchemaDisplayer extends PureComponent {
     logTrace(
       o,
       buildPromptModuleInfoText(
-        'onSubmitFailed',
+        'onSubmitSuccess',
         'trigger',
         'afterSubmitSuccess',
       ),
@@ -233,9 +233,11 @@ class SchemaDisplayer extends PureComponent {
       descriptionUpperType,
       descriptionUpperLabel,
       descriptionUpperComponent,
+      descriptionUpperComponentBuilder,
       descriptionNetherType,
       descriptionNetherLabel,
       descriptionNetherComponent,
+      descriptionNetherComponentBuilder,
       descriptions,
       descriptionType,
       descriptionTitleText,
@@ -350,8 +352,9 @@ class SchemaDisplayer extends PureComponent {
       ) : null;
 
     const descriptionUpperComponentAdjust =
-      descriptionUpperComponent == null ? null : descriptionUpperType ===
-        'field' ? (
+      !isFunction(descriptionUpperComponentBuilder) &&
+      (descriptionUpperComponent || null) ==
+        null ? null : descriptionUpperType === 'field' ? (
         <Field
           name="descriptionUpper"
           title={
@@ -360,7 +363,13 @@ class SchemaDisplayer extends PureComponent {
           decorator={[FormItem]}
           component={[
             () => {
-              return descriptionUpperComponent;
+              return isFunction(descriptionUpperComponentBuilder)
+                ? descriptionUpperComponentBuilder({
+                    form: formInstance,
+                    getFormValue: () =>
+                      JSON.parse(JSON.stringify(formInstance.values)),
+                  })
+                : descriptionUpperComponent;
             },
           ]}
         />
@@ -370,13 +379,20 @@ class SchemaDisplayer extends PureComponent {
             {descriptionUpperLabel}
           </Divider>
 
-          {descriptionUpperComponent}
+          {isFunction(descriptionUpperComponentBuilder)
+            ? descriptionUpperComponentBuilder({
+                form: formInstance,
+                getFormValue: () =>
+                  JSON.parse(JSON.stringify(formInstance.values)),
+              })
+            : descriptionUpperComponent}
         </FormItem>
       );
 
     const descriptionNetherComponentAdjust =
-      descriptionNetherComponent == null ? null : descriptionNetherType ===
-        'field' ? (
+      !isFunction(descriptionNetherComponentBuilder) &&
+      (descriptionNetherComponent || null) ==
+        null ? null : descriptionNetherType === 'field' ? (
         <Field
           name="descriptionNether"
           title={
@@ -385,7 +401,13 @@ class SchemaDisplayer extends PureComponent {
           decorator={[FormItem]}
           component={[
             () => {
-              return descriptionNetherComponent;
+              return isFunction(descriptionNetherComponentBuilder)
+                ? descriptionNetherComponentBuilder({
+                    form: formInstance,
+                    getFormValue: () =>
+                      JSON.parse(JSON.stringify(formInstance.values)),
+                  })
+                : descriptionNetherComponent;
             },
           ]}
         />
@@ -395,7 +417,13 @@ class SchemaDisplayer extends PureComponent {
             {descriptionNetherLabel}
           </Divider>
 
-          {descriptionNetherComponent}
+          {isFunction(descriptionNetherComponentBuilder)
+            ? descriptionNetherComponentBuilder({
+                form: formInstance,
+                getFormValue: () =>
+                  JSON.parse(JSON.stringify(formInstance.values)),
+              })
+            : descriptionNetherComponent}
         </FormItem>
       );
 
@@ -456,9 +484,11 @@ SchemaDisplayer.defaultProps = {
   descriptionUpperType: 'field',
   descriptionUpperLabel: '',
   descriptionUpperComponent: null,
+  descriptionUpperComponentBuilder: null,
   descriptionNetherType: 'field',
   descriptionNetherLabel: '',
   descriptionNetherComponent: null,
+  descriptionNetherComponentBuilder: null,
   onSubmit: () => {},
   // eslint-disable-next-line no-unused-vars
   afterSubmitSuccess: (payload) => {},
