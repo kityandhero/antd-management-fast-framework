@@ -1769,7 +1769,7 @@ importers:
       '@umijs/max': ^4.0.90
       antd: ^5.12.5
       antd-management-fast-common: ^2.6.72
-      antd-management-fast-component: ^2.6.110
+      antd-management-fast-component: ^2.6.116
       autoprefixer: ^10.4.16
       axios: ^1.6.2
       babel-jest: ^29.7.0
@@ -1978,14 +1978,14 @@ importers:
       '@umijs/max': ^4.0.90
       antd: ^5.12.5
       antd-management-fast-common: ^2.6.72
-      antd-management-fast-component: ^2.6.115
+      antd-management-fast-component: ^2.6.116
       antd-management-fast-config: ^1.1.53
       antd-management-fast-design-playground: ^1.0.79
       antd-management-fast-design-react: ^1.0.45
       antd-management-fast-develop: ^1.1.57
       antd-management-fast-flow: ^1.0.35
       antd-management-fast-formily: ^1.0.45
-      antd-management-fast-framework: ^2.11.131
+      antd-management-fast-framework: ^2.11.132
       axios: ^1.6.2
       babel-jest: ^29.7.0
       classnames: ^2.3.2
