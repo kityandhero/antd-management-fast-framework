@@ -157,7 +157,16 @@ class AbstractComponent extends Component {
   }
 
   componentDidMount() {
+    this.logCallTrack({}, primaryCallName, 'componentDidMount');
+
     this.doDidMountTask();
+
+    this.logCallTrace(
+      this,
+      primaryCallName,
+      'componentDidMount complete',
+      'instance information',
+    );
   }
 
   shouldComponentUpdate(nextProperties, nextState) {
@@ -194,12 +203,28 @@ class AbstractComponent extends Component {
       return true;
     }
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'shouldComponentUpdate',
+      'trigger',
+      'doOtherCheckComponentUpdate',
+    );
+
     const checkComponentUpdate = this.doOtherCheckComponentUpdate(
       nextProperties,
       nextState,
     );
 
     if ((checkComponentUpdate || null) != null && !!checkComponentUpdate) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'shouldComponentUpdate',
+        'trigger',
+        'doWorkBeforeUpdate',
+      );
+
       this.doWorkBeforeUpdate(nextProperties, nextState);
 
       return !!checkComponentUpdate;
@@ -242,6 +267,14 @@ class AbstractComponent extends Component {
     );
 
     if (compareResult) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'shouldComponentUpdate',
+        'trigger',
+        'doWorkBeforeUpdate',
+      );
+
       this.doWorkBeforeUpdate(nextProperties, nextState);
     }
 
@@ -249,22 +282,77 @@ class AbstractComponent extends Component {
   }
 
   componentDidCatchError(error, info) {
+    this.logCallTrack(
+      {
+        error,
+        info,
+      },
+      primaryCallName,
+      'componentDidCatchError',
+    );
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'componentDidCatchError',
+      'trigger',
+      'doWhenCatchError',
+    );
+
     this.doWhenCatchError(error, info);
   }
 
   // eslint-disable-next-line react/sort-comp
   getSnapshotBeforeUpdate(preProperties, preState) {
+    this.logCallTrack({}, primaryCallName, 'getSnapshotBeforeUpdate');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'componentDidUpdate',
+      'trigger',
+      'getSnapshotBeforeUpdate',
+    );
+
     return this.doWorkWhenGetSnapshotBeforeUpdate(preProperties, preState);
   }
 
   componentDidUpdate(preProperties, preState, snapshot) {
+    this.logCallTrack({}, primaryCallName, 'componentDidUpdate');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'componentDidUpdate',
+      'trigger',
+      'doWorkWhenDidUpdate',
+    );
+
     this.doWorkWhenDidUpdate(preProperties, preState, snapshot);
   }
 
   componentWillUnmount() {
+    this.logCallTrack({}, primaryCallName, 'componentWillUnmount');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'componentWillUnmount',
+      'trigger',
+      'doWorkBeforeUnmount',
+    );
+
     this.doWorkBeforeUnmount();
 
     this.mounted = false;
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'componentWillUnmount',
+      'trigger',
+      'doWorkAfterUnmount',
+    );
 
     this.doWorkAfterUnmount();
 
@@ -311,6 +399,14 @@ class AbstractComponent extends Component {
 
     this.mounted = true;
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doDidMountTask',
+      'trigger',
+      'checkAuthentication',
+    );
+
     const checkAuthenticationResult = this.checkAuthentication();
 
     if (checkAuthenticationResult) {
@@ -320,6 +416,14 @@ class AbstractComponent extends Component {
         'doDidMountTask',
         'checkAuthenticationResult',
         true,
+      );
+
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'doDidMountTask',
+        'trigger',
+        'checkAuthorization',
       );
 
       const checkAuthorizationResult = this.checkAuthorization();
@@ -333,19 +437,75 @@ class AbstractComponent extends Component {
           true,
         );
 
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doDidMountTask',
+          'trigger',
+          'doWorkBeforeAdjustDidMount',
+        );
+
         this.doWorkBeforeAdjustDidMount();
+
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doDidMountTask',
+          'trigger',
+          'doWorkAdjustDidMount',
+        );
 
         this.doWorkAdjustDidMount();
 
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doDidMountTask',
+          'trigger',
+          'doWorkAfterAdjustDidMount',
+        );
+
         this.doWorkAfterAdjustDidMount();
+
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doDidMountTask',
+          'trigger',
+          'doWorkAfterDidMount',
+        );
 
         this.doWorkAfterDidMount();
 
         if (this.loadRemoteRequestAfterMount) {
+          this.logCallTrace(
+            {},
+            primaryCallName,
+            'doDidMountTask',
+            'trigger',
+            'doLoadRemoteRequest',
+          );
+
           this.doLoadRemoteRequest();
         }
 
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doDidMountTask',
+          'trigger',
+          'doOtherRemoteRequest',
+        );
+
         this.doOtherRemoteRequest();
+
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doDidMountTask',
+          'trigger',
+          'doOtherWorkAfterDidMount',
+        );
 
         this.doOtherWorkAfterDidMount();
       } else {
@@ -357,6 +517,14 @@ class AbstractComponent extends Component {
           false,
         );
 
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'doDidMountTask',
+          'trigger',
+          'doWorkWhenCheckAuthorizationFail',
+        );
+
         this.doWorkWhenCheckAuthorizationFail();
       }
     } else {
@@ -366,6 +534,14 @@ class AbstractComponent extends Component {
         'doDidMountTask',
         'checkAuthenticationResult',
         false,
+      );
+
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'doDidMountTask',
+        'trigger',
+        'doWorkWhenCheckAuthenticationFail',
       );
 
       this.doWorkWhenCheckAuthenticationFail();
@@ -399,11 +575,27 @@ class AbstractComponent extends Component {
   doWorkWhenCheckAuthenticationFail = () => {
     this.logCallTrack({}, primaryCallName, 'doWorkWhenCheckAuthenticationFail');
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doWorkWhenCheckAuthenticationFail',
+      'trigger',
+      'handleAuthenticationFail',
+    );
+
     handleAuthenticationFail();
   };
 
   doWorkWhenCheckAuthorizationFail = () => {
     this.logCallTrack({}, primaryCallName, 'doWorkWhenCheckAuthorizationFail');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'doWorkWhenCheckAuthorizationFail',
+      'trigger',
+      'handleAuthorizationFail',
+    );
 
     handleAuthorizationFail();
   };
@@ -521,9 +713,13 @@ class AbstractComponent extends Component {
     });
   };
 
-  doWorkBeforeUnmount = () => {};
+  doWorkBeforeUnmount = () => {
+    this.logCallTrack({}, primaryCallName, 'doWorkBeforeUnmount', emptyLogic);
+  };
 
-  doWorkAfterUnmount = () => {};
+  doWorkAfterUnmount = () => {
+    this.logCallTrack({}, primaryCallName, 'doWorkAfterUnmount', emptyLogic);
+  };
 
   dispatchApi = ({
     type,
@@ -532,6 +728,20 @@ class AbstractComponent extends Component {
     pretreatmentSuccessCallback = null,
     pretreatmentFailCallback = null,
   }) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          type,
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+      },
+      primaryCallName,
+      'dispatchApi',
+    );
+
     return dispatch({
       type,
       payload,
@@ -542,6 +752,17 @@ class AbstractComponent extends Component {
   };
 
   goToPath = (path, withProgress = false) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          path,
+          withProgress,
+        },
+      },
+      primaryCallName,
+      'goToPath',
+    );
+
     const location = {
       pathname: path,
     };
@@ -550,6 +771,17 @@ class AbstractComponent extends Component {
   };
 
   redirectToPath = (path, withProgress = false) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          path,
+          withProgress,
+        },
+      },
+      primaryCallName,
+      'redirectToPath',
+    );
+
     const location = {
       pathname: path,
     };
@@ -558,6 +790,18 @@ class AbstractComponent extends Component {
   };
 
   checkHasMore = (pageNo, pageSize, total) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          pageNo,
+          pageSize,
+          total,
+        },
+      },
+      primaryCallName,
+      'checkHasMore',
+    );
+
     return checkHasMoreCore({ pageNo, pageSize, total });
   };
 
@@ -567,6 +811,16 @@ class AbstractComponent extends Component {
    * @param {*} callback [function] 登录失败回调函数
    */
   doWhenAuthorizeFail = (remoteData, callback) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          remoteData,
+        },
+      },
+      primaryCallName,
+      'doWhenAuthorizeFail',
+    );
+
     if (isFunction(callback)) {
       callback(remoteData);
     }
@@ -576,8 +830,18 @@ class AbstractComponent extends Component {
    * 登录失败时的回调定义
    * @param {Object} remoteData [object] 远程返回数据
    */
-  // eslint-disable-next-line no-unused-vars
-  authorizeFailCallback = (remoteData) => {};
+  authorizeFailCallback = (remoteData) => {
+    this.logCallTrack(
+      {
+        parameter: {
+          remoteData,
+        },
+      },
+      primaryCallName,
+      'doWhenAuthorizeFail',
+      emptyLogic,
+    );
+  };
 
   showRenderCount() {
     if (this.judgeShowRenderCountInConsole()) {
@@ -639,6 +903,16 @@ class AbstractComponent extends Component {
   }
 
   setPageValue(o) {
+    this.logCallTrack(
+      {
+        parameter: {
+          o,
+        },
+      },
+      primaryCallName,
+      'setPageValue',
+    );
+
     this.pageValues = {
       ...this.pageValues,
       ...o,
@@ -648,6 +922,8 @@ class AbstractComponent extends Component {
   }
 
   openPreventRender() {
+    this.logCallTrack({}, primaryCallName, 'openPreventRender');
+
     this.preventRender = true;
 
     this.logCallTrace(
@@ -657,6 +933,16 @@ class AbstractComponent extends Component {
   }
 
   closePreventRender(triggerRender = false) {
+    this.logCallTrack(
+      {
+        parameter: {
+          triggerRender,
+        },
+      },
+      primaryCallName,
+      'closePreventRender',
+    );
+
     this.preventRender = false;
 
     this.logCallTrace(
@@ -673,15 +959,25 @@ class AbstractComponent extends Component {
    * render the practical view
    */
   renderPracticalView() {
+    this.logCallTrack({}, primaryCallName, 'renderPracticalView');
+
     if (!this.checkAuthentication() || !this.checkAuthorization()) {
       return null;
     }
 
-    this.logCallTrace({}, '-------------render start----------------');
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'renderPracticalView',
+      'trigger',
+      'renderFurther',
+    );
+
+    this.logCallTrace({}, '-------------render further start----------------');
 
     const c = this.renderFurther();
 
-    this.logCallTrace({}, '-------------render end------------------');
+    this.logCallTrace({}, '-------------render further end------------------');
 
     return c;
   }
@@ -690,10 +986,22 @@ class AbstractComponent extends Component {
     const { hidden } = this.props;
 
     if (hidden) {
+      this.logCallTrack({}, primaryCallName, 'render', emptyLogic);
+
       return null;
     }
 
+    this.logCallTrack({}, primaryCallName, 'render');
+
     this.showRenderCount();
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'render',
+      'trigger',
+      'renderPracticalView',
+    );
 
     return this.renderPracticalView();
   }

@@ -28,16 +28,18 @@ export default {
 
   'menu.list': 'List示例',
   'menu.list-mini': 'List',
+
   'menu.list.listView': 'ListView 示例',
   'menu.list.listView-mini': 'List',
+
   'menu.list.tableView': 'TableView 示例',
   'menu.list.tableView-mini': 'Table',
-  'menu.list.tableSelectButtonView': 'TableSelectBtnView 示例',
-  'menu.list.tableSelectButtonView-mini': 'TableSelect1',
-  'menu.list.tableSelectDropDownView': 'TableSelectDropView 示例',
-  'menu.list.tableSelectDropDownView-mini': 'TableSelect2',
-  'menu.list.tableSelectDropDownButtonView': 'TableSelectDBtnView 示例',
-  'menu.list.tableSelectDropDownButtonView-mini': 'TableSelect3',
+
+  'menu.list.tableView.normal': 'Normal',
+  'menu.list.tableView.tableSelectButtonView': 'SelectButtonView',
+  'menu.list.tableView.tableSelectDropDownView': 'SelectDropView',
+  'menu.list.tableView.tableSelectDropDownButtonView': 'SelectDropButtonView',
+
   'menu.list.noneSearch': 'NoneSearch 示例',
   'menu.list.noneSearch-mini': 'NoneSearch',
   'menu.list.overlay': 'Overlay 示例',

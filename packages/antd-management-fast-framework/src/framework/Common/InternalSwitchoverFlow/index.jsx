@@ -45,6 +45,14 @@ class InternalSwitchoverFlow extends InternalFlow {
       }
     }
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'getMenuListAvailable',
+      'trigger',
+      'adjustMenuListAvailable',
+    );
+
     return this.adjustMenuListAvailable(menuListAvailable);
   };
 
@@ -57,9 +65,25 @@ class InternalSwitchoverFlow extends InternalFlow {
       'handleMenuChange',
     );
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'handleMenuChange',
+      'trigger',
+      'getCurrentLocation',
+    );
+
     const { pathname } = getCurrentLocation();
 
     if (checkStringIsNullOrWhiteSpace(this.pathPrefix)) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'handleMenuChange',
+        'trigger',
+        'getMenuListAvailable',
+      );
+
       const menuList = this.getMenuListAvailable();
 
       for (const o of menuList) {
@@ -79,7 +103,23 @@ class InternalSwitchoverFlow extends InternalFlow {
 
         path = `${path}${item.key}`;
 
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'handleMenuChange',
+          'trigger',
+          'setMenuActiveKey',
+        );
+
         this.setMenuActiveKey(key);
+
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'handleMenuChange',
+          'trigger',
+          'redirectToPath',
+        );
 
         this.redirectToPath(path);
 
@@ -89,10 +129,24 @@ class InternalSwitchoverFlow extends InternalFlow {
   };
 
   establishTabBarExtraContentLeftConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishTabBarExtraContentRightConfig',
+      emptyLogic,
+    );
+
     return null;
   };
 
   establishTabBarExtraContentRightConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishTabBarExtraContentRightConfig',
+      emptyLogic,
+    );
+
     return null;
   };
 
@@ -114,6 +168,14 @@ class InternalSwitchoverFlow extends InternalFlow {
       }
     }
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'getTabListAvailable',
+      'trigger',
+      'adjustTabListAvailable',
+    );
+
     return this.adjustTabListAvailable(tabListAvailable);
   };
 
@@ -129,6 +191,14 @@ class InternalSwitchoverFlow extends InternalFlow {
     const { pathname } = getCurrentLocation();
 
     if (checkStringIsNullOrWhiteSpace(this.pathPrefix)) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'handleTabChange',
+        'trigger',
+        'getTabListAvailable',
+      );
+
       const tabList = this.getTabListAvailable();
 
       for (const o of tabList) {
@@ -148,7 +218,23 @@ class InternalSwitchoverFlow extends InternalFlow {
 
         path = `${path}${item.key}`;
 
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'handleTabChange',
+          'trigger',
+          'setTabActiveKey',
+        );
+
         this.setTabActiveKey(key);
+
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'handleTabChange',
+          'trigger',
+          'redirectToPath',
+        );
 
         this.redirectToPath(path);
 
@@ -158,6 +244,8 @@ class InternalSwitchoverFlow extends InternalFlow {
   };
 
   buildTabBarExtraContent = () => {
+    this.logCallTrack({}, primaryCallName, 'buildTabBarExtraContent');
+
     return {
       left: (
         <TabBarExtraBox
@@ -179,6 +267,16 @@ class InternalSwitchoverFlow extends InternalFlow {
   };
 
   buildOtherTabProps = () => {
+    this.logCallTrack({}, primaryCallName, 'buildOtherTabProps');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'buildOtherTabProps',
+      'trigger',
+      'getTabListAvailable',
+    );
+
     const tabListAvailable = this.getTabListAvailable();
 
     if (tabListAvailable.length > 0) {

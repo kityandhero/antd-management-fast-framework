@@ -113,35 +113,38 @@ export default [
     routes: [
       {
         path: '/list',
-        redirect: '/list/listView',
+        redirect: '/list/tableView',
       },
       {
-        path: '/list/tableView',
         name: 'tableView',
         icon: 'bars',
-        useMini: true,
-        component: './List/TableView',
-      },
-      {
-        path: '/list/tableSelectButtonView',
-        name: 'tableSelectButtonView',
-        icon: 'bars',
-        useMini: true,
-        component: './List/TableSelectButtonView',
-      },
-      {
-        path: '/list/tableSelectDropDownView',
-        name: 'tableSelectDropDownView',
-        icon: 'bars',
-        useMini: true,
-        component: './List/TableSelectDropDownView',
-      },
-      {
-        path: '/list/tableSelectDropDownButtonView',
-        name: 'tableSelectDropDownButtonView',
-        icon: 'bars',
-        useMini: true,
-        component: './List/TableSelectDropDownButtonView',
+        path: '/list/tableView',
+        routes: [
+          {
+            path: '/list/tableView',
+            redirect: '/list/tableView/normal',
+          },
+          {
+            path: '/list/tableView/normal',
+            name: 'normal',
+            component: './List/TableView',
+          },
+          {
+            path: '/list/tableView/tableSelectButtonView',
+            name: 'tableSelectButtonView',
+            component: './List/TableSelectButtonView',
+          },
+          {
+            path: '/list/tableView/tableSelectDropDownView',
+            name: 'tableSelectDropDownView',
+            component: './List/TableSelectDropDownView',
+          },
+          {
+            path: '/list/tableView/tableSelectDropDownButtonView',
+            name: 'tableSelectDropDownButtonView',
+            component: './List/TableSelectDropDownButtonView',
+          },
+        ],
       },
       {
         path: '/list/listView',

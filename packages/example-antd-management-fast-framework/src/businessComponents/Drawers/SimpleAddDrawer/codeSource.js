@@ -22,7 +22,7 @@ const visibleFlag = '35f84a341e49444a994b61add41acf9b';
   schedulingControl,
 }))
 class SimpleAddDrawer extends BaseAddDrawer {
-  // showCallProcess = true;
+  showCallProcess = true;
 
   static open() {
     switchControlAssist.open(visibleFlag);
@@ -42,7 +42,14 @@ class SimpleAddDrawer extends BaseAddDrawer {
 
   subjoinDataOnAfterOK = () => {
     return {
-      message: '这是一个增补数据, 将附加到 afterOk 方法中进行调用',
+      message:
+        '这是一个增补数据, 将附加到 afterOk 或 afterClose 方法的 subjoinData 参数',
+    };
+  };
+
+  subjoinDataOnAfterClose = () => {
+    return {
+      otherData: '其他数据',
     };
   };
 

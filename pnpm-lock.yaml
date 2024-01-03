@@ -1980,12 +1980,12 @@ importers:
       antd-management-fast-common: ^2.6.72
       antd-management-fast-component: ^2.6.115
       antd-management-fast-config: ^1.1.53
-      antd-management-fast-design-playground: ^1.0.78
+      antd-management-fast-design-playground: ^1.0.79
       antd-management-fast-design-react: ^1.0.45
       antd-management-fast-develop: ^1.1.57
       antd-management-fast-flow: ^1.0.35
       antd-management-fast-formily: ^1.0.45
-      antd-management-fast-framework: ^2.11.130
+      antd-management-fast-framework: ^2.11.131
       axios: ^1.6.2
       babel-jest: ^29.7.0
       classnames: ^2.3.2
@@ -2171,12 +2171,12 @@ importers:
       antd-management-fast-common: ^2.6.71
       antd-management-fast-component: ^2.6.114
       antd-management-fast-config: ^1.1.53
-      antd-management-fast-design-playground: ^1.0.76
+      antd-management-fast-design-playground: ^1.0.79
       antd-management-fast-design-react: ^1.0.45
       antd-management-fast-develop: ^1.1.54
       antd-management-fast-flow: ^1.0.35
       antd-management-fast-formily: ^1.0.45
-      antd-management-fast-framework: ^2.11.128
+      antd-management-fast-framework: ^2.11.131
       axios: ^1.6.2
       babel-jest: ^29.7.0
       classnames: ^2.3.2
