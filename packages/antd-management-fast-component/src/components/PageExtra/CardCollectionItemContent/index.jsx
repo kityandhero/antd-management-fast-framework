@@ -1017,7 +1017,7 @@ class CardCollectionItemContent extends PureComponent {
                           ? contentItem.onChange
                           : null
                       }
-                      required={true}
+                      required={require}
                       addonBefore={contentItem.addonBefore || null}
                       addonBeforeStyle={contentItem.addonBeforeStyle || null}
                       addonAfter={contentItem.addonAfter || null}
@@ -1075,7 +1075,7 @@ class CardCollectionItemContent extends PureComponent {
                           : null
                       }
                       button={toBoolean(contentItem.button || false)}
-                      required={true}
+                      required={require}
                       addonBefore={contentItem.addonBefore || null}
                       addonBeforeStyle={contentItem.addonBeforeStyle || null}
                       addonAfter={contentItem.addonAfter || null}
