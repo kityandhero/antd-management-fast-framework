@@ -1,4 +1,4 @@
-import { Empty } from 'antd';
+import { Divider, Empty } from 'antd';
 import React from 'react';
 
 import { connect } from 'easy-soft-dva';
@@ -21,6 +21,7 @@ import {
 } from 'antd-management-fast-component';
 import {
   DataDisplayer,
+  DocumentPrintDesigner,
   FileViewer,
   SchemaDisplayer,
   setSchemaWithExternalData,
@@ -31,6 +32,7 @@ import { saveFormAction } from '../../../businessAssists/action';
 import { FlowCaseFormDocumentDrawer } from '../../../businessComponents/Drawers/FlowCaseFormDocumentDrawer';
 import { PlaygroundDrawer } from '../../../businessComponents/Drawers/PlaygroundDrawer';
 import { RemarkEditDrawer } from '../../../businessComponents/Drawers/RemarkEditDrawer';
+import { listApprove } from '../../../utils';
 import { code as codeBaseView } from '../BaseView/codeSource';
 
 import { code as codeModalView } from './codeSource';
@@ -447,6 +449,16 @@ class DesignView extends BaseUpdateForm {
                       <Empty description="暂无表单设计，请进行设计" />
                     )}
                   </SchemaDisplayer>
+
+                  <Divider>审批信息</Divider>
+
+                  <DocumentPrintDesigner
+                    showToolbar={false}
+                    canDesign={false}
+                    showTitle={false}
+                    showRemark={false}
+                    approveList={listApprove}
+                  />
                 </div>
               ),
             },

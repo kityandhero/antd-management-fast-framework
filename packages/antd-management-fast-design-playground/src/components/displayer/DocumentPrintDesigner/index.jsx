@@ -151,6 +151,8 @@ class DocumentPrintDesigner extends BaseComponent {
 
   render() {
     const {
+      showToolbar,
+      showRemark,
       values,
       style,
       color,
@@ -163,6 +165,8 @@ class DocumentPrintDesigner extends BaseComponent {
       title,
       titleContainerStyle,
       titleStyle,
+      showTitle,
+      approveList,
       remarkTitle,
       remarkName,
       remarkList,
@@ -170,6 +174,8 @@ class DocumentPrintDesigner extends BaseComponent {
     const { designMode, general, items } = this.state;
 
     const p = {
+      showToolbar,
+      showRemark,
       values,
       general,
       items,
@@ -183,6 +189,8 @@ class DocumentPrintDesigner extends BaseComponent {
       title,
       titleContainerStyle,
       titleStyle,
+      showTitle,
+      approveList,
       remarkTitle,
       remarkName,
       remarkList,
@@ -195,86 +203,90 @@ class DocumentPrintDesigner extends BaseComponent {
         <div className={styles.documentPrintDesigner}>
           <CenterBox>
             <div>
-              <EverySpace size={10} direction="horizontal" />
+              {showToolbar ? (
+                <EverySpace size={10} direction="horizontal" />
+              ) : null}
 
-              <div style={{ borderRadius: '8px', overflow: 'hidden' }}>
-                <ToolBar
-                  stick={false}
-                  title="操作栏"
-                  tools={[
-                    {
-                      hidden: !canDesign || !designMode,
-                      component: buildButton({
-                        text: '关闭设计模式',
-                        size: 'small',
-                        icon: iconBuilder.closeCircle(),
-                        handleClick: () => {
-                          this.closeDesignMode();
-                        },
-                      }),
-                    },
-                    {
-                      hidden: !canDesign || !designMode,
-                      component: buildButton({
-                        text: '初始化设计',
-                        size: 'small',
-                        icon: iconBuilder.clear(),
-                        handleClick: () => {
-                          this.initializeDesign();
-                        },
-                      }),
-                    },
-                    {
-                      hidden: !canDesign || !designMode,
-                      component: buildButton({
-                        text: '重置设计',
-                        size: 'small',
-                        icon: iconBuilder.redo(),
-                        handleClick: () => {
-                          this.reset();
-                        },
-                      }),
-                    },
-                    {
-                      hidden: !canDesign || !designMode,
-                      component: buildButton({
-                        text: '保存设计',
-                        size: 'small',
-                        type: 'primary',
-                        icon: iconBuilder.save(),
-                        handleClick: () => {
-                          this.save();
-                        },
-                      }),
-                    },
-                    {
-                      hidden: !canDesign || designMode,
-                      component: buildButton({
-                        text: '开启设计模式',
-                        size: 'small',
-                        icon: iconBuilder.desktop(),
-                        handleClick: () => {
-                          this.openDesignMode();
-                        },
-                      }),
-                    },
-                    {
-                      hidden: designMode,
-                      component: (
-                        <ReactToPrint
-                          content={this.renderPrintContent}
-                          documentTitle="文档"
-                          // onAfterPrint={this.handleAfterPrint}
-                          // onBeforeGetContent={this.handleOnBeforeGetContent}
-                          // onBeforePrint={this.handleBeforePrint}
-                          removeAfterPrint
-                          trigger={this.renderTrigger}
-                        />
-                      ),
-                    },
-                  ]}
-                />
-              </div>
+              {showToolbar ? (
+                <div style={{ borderRadius: '8px', overflow: 'hidden' }}>
+                  <ToolBar
+                    stick={false}
+                    title="操作栏"
+                    tools={[
+                      {
+                        hidden: !canDesign || !designMode,
+                        component: buildButton({
+                          text: '关闭设计模式',
+                          size: 'small',
+                          icon: iconBuilder.closeCircle(),
+                          handleClick: () => {
+                            this.closeDesignMode();
+                          },
+                        }),
+                      },
+                      {
+                        hidden: !canDesign || !designMode,
+                        component: buildButton({
+                          text: '初始化设计',
+                          size: 'small',
+                          icon: iconBuilder.clear(),
+                          handleClick: () => {
+                            this.initializeDesign();
+                          },
+                        }),
+                      },
+                      {
+                        hidden: !canDesign || !designMode,
+                        component: buildButton({
+                          text: '重置设计',
+                          size: 'small',
+                          icon: iconBuilder.redo(),
+                          handleClick: () => {
+                            this.reset();
+                          },
+                        }),
+                      },
+                      {
+                        hidden: !canDesign || !designMode,
+                        component: buildButton({
+                          text: '保存设计',
+                          size: 'small',
+                          type: 'primary',
+                          icon: iconBuilder.save(),
+                          handleClick: () => {
+                            this.save();
+                          },
+                        }),
+                      },
+                      {
+                        hidden: !canDesign || designMode,
+                        component: buildButton({
+                          text: '开启设计模式',
+                          size: 'small',
+                          icon: iconBuilder.desktop(),
+                          handleClick: () => {
+                            this.openDesignMode();
+                          },
+                        }),
+                      },
+                      {
+                        hidden: designMode,
+                        component: (
+                          <ReactToPrint
+                            content={this.renderPrintContent}
+                            documentTitle="文档"
+                            // onAfterPrint={this.handleAfterPrint}
+                            // onBeforeGetContent={this.handleOnBeforeGetContent}
+                            // onBeforePrint={this.handleBeforePrint}
+                            removeAfterPrint
+                            trigger={this.renderTrigger}
+                          />
+                        ),
+                      },
+                    ]}
+                  />
+                </div>
+              ) : null}
 
               <EverySpace size={10} direction="horizontal" />
 
@@ -299,11 +311,13 @@ DocumentPrintDesigner.defaultProps = {
   values: {},
   schema: {},
   style: null,
+  showToolbar: true,
   canDesign: false,
   color: colorDefault,
   title: '表格标题',
   titleContainerStyle: null,
   titleStyle: null,
+  showTitle: true,
   labelColumnWidth: 140,
   labelColumnStyle: null,
   labelContainerStyle: null,
@@ -311,6 +325,8 @@ DocumentPrintDesigner.defaultProps = {
   valueColumnStyle: null,
   valueContainerStyle: null,
   valueStyle: null,
+  approveList: [],
+  showRemark: true,
   remarkTitle: '备注',
   remarkName: 'remark',
   remarkList: [],

@@ -4,6 +4,7 @@ import { isArray, isFunction, toString } from 'easy-soft-utility';
 
 import { CenterBox, FlexBox } from 'antd-management-fast-component';
 
+import { LineApprove } from './Items/LineApprove';
 import {
   colorDefault,
   colorStyle,
@@ -89,6 +90,8 @@ class DocumentContent extends PureComponent {
 
   render() {
     const {
+      showToolbar,
+      showRemark,
       values: valuesSource,
       general,
       items: itemsSource,
@@ -102,7 +105,9 @@ class DocumentContent extends PureComponent {
       title,
       titleContainerStyle,
       titleStyle,
+      showTitle,
       designMode,
+      approveList,
       remarkTitle,
       remarkName,
       remarkList,
@@ -147,7 +152,7 @@ class DocumentContent extends PureComponent {
         style={{
           paddingLeft: '60px',
           paddingRight: '60px',
-          paddingBottom: '40px',
+          ...(showToolbar ? { paddingBottom: '40px' } : { paddingBottom: '0' }),
           margin: '0 auto',
           width: '920px',
           backgroundColor: '#fff',
@@ -155,25 +160,28 @@ class DocumentContent extends PureComponent {
       >
         <div
           style={{
-            paddingTop: '50px',
-            paddingBottom: '10px',
             ...titleContainerStyle,
+            ...(showToolbar
+              ? { paddingTop: '50px', paddingBottom: '10px' }
+              : { paddingTop: '0', paddingBottom: '0' }),
             position: 'relative',
           }}
         >
-          <CenterBox>
-            <div
-              style={{
-                textAlign: 'center',
-                ...documentTitleStyle,
-                ...colorStyle,
-                ...fontFamilyStyle,
-                ...titleStyle,
-              }}
-            >
-              {title}
-            </div>
-          </CenterBox>
+          {showTitle ? (
+            <CenterBox>
+              <div
+                style={{
+                  textAlign: 'center',
+                  ...documentTitleStyle,
+                  ...colorStyle,
+                  ...fontFamilyStyle,
+                  ...titleStyle,
+                }}
+              >
+                {title}
+              </div>
+            </CenterBox>
+          ) : null}
 
           {designMode ? (
             <div
@@ -270,24 +278,46 @@ class DocumentContent extends PureComponent {
             );
           })}
 
-          <LineRemark
-            title={remarkTitle}
-            name={remarkName}
-            value={
-              isArray(remarkList)
-                ? remarkList.map((o) => toString(o)).join('')
-                : toString(remarkList)
-            }
-            general={general}
-            currentName={currentName}
-            highlightMode={currentHighlightMode}
-            designMode={designMode}
-            lineStyle={lineAdjustStyle}
-            labelBoxStyle={labelBoxStyle}
-            valueBoxStyle={valueBoxStyle}
-            labelContainerStyle={labelContainerStyle}
-            valueContainerStyle={valueContainerStyle}
-          />
+          {isArray(approveList)
+            ? approveList.map((o, index) => {
+                return (
+                  <LineApprove
+                    key={`approve_item_${index}`}
+                    data={o}
+                    general={general}
+                    currentName={currentName}
+                    highlightMode={currentHighlightMode}
+                    designMode={designMode}
+                    lineStyle={lineAdjustStyle}
+                    labelBoxStyle={labelBoxStyle}
+                    valueBoxStyle={valueBoxStyle}
+                    labelContainerStyle={labelContainerStyle}
+                    valueContainerStyle={valueContainerStyle}
+                  />
+                );
+              })
+            : null}
+
+          {showRemark ? (
+            <LineRemark
+              title={remarkTitle}
+              name={remarkName}
+              value={
+                isArray(remarkList)
+                  ? remarkList.map((o) => toString(o)).join('')
+                  : toString(remarkList)
+              }
+              general={general}
+              currentName={currentName}
+              highlightMode={currentHighlightMode}
+              designMode={designMode}
+              lineStyle={lineAdjustStyle}
+              labelBoxStyle={labelBoxStyle}
+              valueBoxStyle={valueBoxStyle}
+              labelContainerStyle={labelContainerStyle}
+              valueContainerStyle={valueContainerStyle}
+            />
+          ) : null}
         </div>
       </div>
     );
@@ -295,6 +325,9 @@ class DocumentContent extends PureComponent {
 }
 
 DocumentContent.defaultProps = {
+  showToolbar: true,
+  showRemark: true,
+  showTitle: true,
   general: {},
   items: [],
   values: {},
@@ -314,6 +347,7 @@ DocumentContent.defaultProps = {
   onGeneralChange: null,
   designMode: false,
   useRemark: false,
+  approveList: [],
   remarkTitle: '备注',
   remarkName: 'remark',
   remarkList: [],
