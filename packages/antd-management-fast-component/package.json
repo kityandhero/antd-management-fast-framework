@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-component",
-  "version": "2.6.123",
+  "version": "2.6.124",
   "description": "antd-management-fast-component",
   "keywords": [
     "antd-management-fast-component"
@@ -28,9 +28,7 @@
     "build:rollup:skipCompression": "rimraf ./es && rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs",
     "postbuild:rollup:skipCompression": "npm run z:tsc:build",
     "dev:rollup": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch --watch.onBundleEnd=\"npm run z:tsc:build\"",
-    "postinstall": "max setup",
     "precommit": "npm run z:lint:staged:quiet",
-    "setup": "max setup",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
     "prez:documentation:generate": "npx rimraf ./docs && npm run z:documentation:lint",
     "z:documentation:generate": "npx documentation build src/** -f html --github -o docs",
@@ -61,12 +59,12 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
-    "@ant-design/pro-layout": "^7.17.18",
+    "@ant-design/pro-layout": "^7.17.19",
     "@tanem/react-nprogress": "^5.0.51",
     "@tinymce/tinymce-react": "^4.3.2",
     "@umijs/max": "^4.1.0",
-    "antd": "^5.12.8",
-    "antd-management-fast-common": "^2.6.78",
+    "antd": "^5.13.1",
+    "antd-management-fast-common": "^2.6.79",
     "array-move": "^4.0.0",
     "axios": "^1.6.5",
     "bizcharts": "^4.1.23",
@@ -127,7 +125,7 @@
     "@types/lodash.debounce": "^4.0.9",
     "@types/lodash.isequal": "^4.5.8",
     "@types/node": "^20.11.1",
-    "@types/react": "^18.2.47",
+    "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "@types/shelljs": "^0.8.15",
     "@typescript-eslint/parser": "^6.18.1",
