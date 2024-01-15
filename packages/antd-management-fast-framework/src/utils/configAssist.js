@@ -31,6 +31,7 @@ export function configEnvironment(otherConfigHandler = null) {
   if (configEnvironmentComplete) {
     return;
   }
+
   logDevelop('--------------------------------------------');
 
   setEasySoftUtilityHandler();
