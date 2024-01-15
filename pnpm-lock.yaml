@@ -270,10 +270,10 @@ importers:
         specifier: ^5.12.8
         version: 5.12.8(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.76
+        specifier: ^2.6.77
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.121
+        specifier: ^2.6.122
         version: link:../antd-management-fast-component
       array-move:
         specifier: ^4.0.0
@@ -628,7 +628,7 @@ importers:
         specifier: ^5.12.8
         version: 5.12.8(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.76
+        specifier: ^2.6.77
         version: 'link:'
       array-move:
         specifier: ^4.0.0
@@ -983,7 +983,7 @@ importers:
         specifier: ^5.12.8
         version: 5.12.8(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.76
+        specifier: ^2.6.77
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1533,16 +1533,16 @@ importers:
         specifier: ^4.6.0
         version: 4.6.0(monaco-editor@0.45.0)(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.76
+        specifier: ^2.6.77
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.121
+        specifier: ^2.6.122
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
-        specifier: ^1.0.49
+        specifier: ^1.0.50
         version: link:../antd-management-fast-design-react
       antd-management-fast-formily:
-        specifier: ^1.0.49
+        specifier: ^1.0.50
         version: link:../antd-management-fast-formily
       classnames:
         specifier: ^2.5.1
@@ -2160,10 +2160,10 @@ importers:
         specifier: ^5.12.8
         version: 5.12.8(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.76
+        specifier: ^2.6.77
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.121
+        specifier: ^2.6.122
         version: link:../antd-management-fast-component
       classnames:
         specifier: ^2.5.1
@@ -2371,13 +2371,13 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1
       antd-management-fast-common:
-        specifier: ^2.6.76
+        specifier: ^2.6.77
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.121
+        specifier: ^2.6.122
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
-        specifier: ^1.0.49
+        specifier: ^1.0.50
         version: link:../antd-management-fast-design-react
       classnames:
         specifier: ^2.5.1
@@ -2576,10 +2576,10 @@ importers:
         specifier: ^5.12.8
         version: 5.12.8(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.76
+        specifier: ^2.6.77
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.121
+        specifier: ^2.6.122
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.6.5
@@ -2907,25 +2907,25 @@ importers:
         specifier: ^5.12.8
         version: 5.12.8(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.76
+        specifier: ^2.6.77
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.121
+        specifier: ^2.6.122
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.84
+        specifier: ^1.0.85
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
-        specifier: ^1.0.49
+        specifier: ^1.0.50
         version: link:../antd-management-fast-design-react
       antd-management-fast-flow:
-        specifier: ^1.0.39
+        specifier: ^1.0.40
         version: link:../antd-management-fast-flow
       antd-management-fast-formily:
-        specifier: ^1.0.49
+        specifier: ^1.0.50
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.136
+        specifier: ^2.11.137
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.6.5
@@ -3034,10 +3034,10 @@ importers:
         specifier: ^6.18.1
         version: 6.18.1(eslint@8.56.0)(typescript@5.3.3)
       antd-management-fast-config:
-        specifier: ^1.1.57
+        specifier: ^1.1.58
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.1.61
+        specifier: ^1.1.62
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.7.0
@@ -3193,25 +3193,25 @@ importers:
         specifier: ^5.12.8
         version: 5.12.8(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.76
+        specifier: ^2.6.77
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.121
+        specifier: ^2.6.122
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.84
+        specifier: ^1.0.85
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
-        specifier: ^1.0.49
+        specifier: ^1.0.50
         version: link:../antd-management-fast-design-react
       antd-management-fast-flow:
-        specifier: ^1.0.39
+        specifier: ^1.0.40
         version: link:../antd-management-fast-flow
       antd-management-fast-formily:
-        specifier: ^1.0.49
+        specifier: ^1.0.50
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.136
+        specifier: ^2.11.137
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.6.5
@@ -3326,10 +3326,10 @@ importers:
         specifier: ^6.18.1
         version: 6.18.1(eslint@8.56.0)(typescript@5.3.3)
       antd-management-fast-config:
-        specifier: ^1.1.57
+        specifier: ^1.1.58
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.1.61
+        specifier: ^1.1.62
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.7.0
@@ -9209,7 +9209,7 @@ packages:
     resolution: {integrity: sha512-IwpIMieE55oGWiXkQPSBY1nw1nFs6bsKXTFskNY8sdS17K24vyEBRQZEwlRS7ZmXCWnJcQtbxWzly+cODWGs2A==}
 
   /@types/isomorphic-fetch@0.0.34:
-    resolution: {integrity: sha1-PDSD5gbAQTeEOOlRRk8A5OYHBtY=}
+    resolution: {integrity: sha512-BmJKuPCZCR6pbYYgi5nKFJrPC4pLoBgsi/B1nFN64Ba+hLLGUcKPIh7eVlR2xG763Ap08hgQafq/Wx4RFb0omQ==}
 
   /@types/istanbul-lib-coverage@2.0.6:
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
@@ -12459,6 +12459,7 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+    requiresBuild: true
 
   /cssnano-preset-default@5.2.14(postcss@8.4.33):
     resolution: {integrity: sha512-t0SFesj/ZV2OTylqQVOrFgEh5uanxbO6ZAdeCrNsUQ6fVuXwYTxJPNAGvGTxHbD68ldIJNec7PyYZDBrfDQ+6A==}
@@ -15853,7 +15854,7 @@ packages:
     engines: {node: '>= 4'}
 
   /image-size@0.5.5:
-    resolution: {integrity: sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=}
+    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
     hasBin: true
     requiresBuild: true
@@ -16518,7 +16519,7 @@ packages:
     engines: {node: '>=0.10.0'}
 
   /isomorphic-fetch@2.2.1:
-    resolution: {integrity: sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=}
+    resolution: {integrity: sha512-9c4TNAKYXM5PRyVcwUZrF3W09nQ+sO7+jydgs4ZGW9dhsLG2VOlISJABombdQqQRXCwuYG3sYV/puGf5rp0qmA==}
     dependencies:
       node-fetch: 1.7.3
       whatwg-fetch: 3.6.20
@@ -20030,7 +20031,7 @@ packages:
       postcss: 8.4.33
 
   /postcss-media-query-parser@0.2.3:
-    resolution: {integrity: sha1-J7Ocb02U+Bsac7j3Y1HGCeXO8kQ=}
+    resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==}
 
   /postcss-merge-longhand@5.1.7(postcss@8.4.33):
     resolution: {integrity: sha512-YCI9gZB+PLNskrK0BB3/2OzPnGhPkBEwmwhfYk1ilBHYVAZB7/tkTHFBAnCrvBBOmeYyMYw3DMjT55SyxMBzjQ==}
@@ -20586,7 +20587,7 @@ packages:
       postcss: 8.4.33
 
   /postcss-resolve-nested-selector@0.1.1:
-    resolution: {integrity: sha1-Kcy8fDfe36wwTp//C/FZaz9qDk4=}
+    resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
 
   /postcss-safe-parser@6.0.0(postcss@8.4.33):
     resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
@@ -24923,7 +24924,7 @@ packages:
     dev: false
 
   /uglify-to-browserify@1.0.2:
-    resolution: {integrity: sha1-bgkk1r2mta/jSeOabWMoUKD4grc=}
+    resolution: {integrity: sha512-vb2s1lYx2xBtUgy+ta+b2J/GLVUR+wmpINwHePmPRhOsIVCG2wDzKJ0n14GslH1BifsqVzSOwQhRaCAsZ/nI4Q==}
     requiresBuild: true
     dev: false
     optional: true
@@ -25319,7 +25320,7 @@ packages:
       react: 18.2.0
 
   /util-deprecate@1.0.2:
-    resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
+    resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
   /util@0.10.4:
     resolution: {integrity: sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==}
