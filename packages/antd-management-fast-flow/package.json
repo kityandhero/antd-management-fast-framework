@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-flow",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "keywords": [
     "antd-management-fast-flow"
   ],
@@ -58,10 +58,10 @@
   },
   "dependencies": {
     "antd": "^5.13.1",
-    "antd-management-fast-common": "^2.6.79",
-    "antd-management-fast-component": "^2.6.124",
+    "antd-management-fast-common": "^2.6.80",
+    "antd-management-fast-component": "^2.6.125",
     "classnames": "^2.5.1",
-    "easy-soft-utility": "^2.8.6",
+    "easy-soft-utility": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reactflow": "^11.10.1"
@@ -83,17 +83,17 @@
     "@commitlint/cz-commitlint": "^18.4.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@types/jest": "^29.5.11",
-    "@types/node": "^20.11.1",
+    "@types/node": "^20.11.3",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "@typescript-eslint/parser": "^6.18.1",
+    "@typescript-eslint/parser": "^6.19.0",
     "antd": "^5.13.1",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^7.0.2",
     "cross-env": "^7.0.3",
     "documentation": "^14.0.2",
-    "easy-soft-develop": "^2.1.54",
+    "easy-soft-develop": "^2.1.55",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
