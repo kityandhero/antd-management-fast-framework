@@ -169,7 +169,6 @@
     "typescriptreact",
     "javascriptreact"
   ],
-  "eslint.packageManager": "yarn",
   "git.ignoreLimitWarning": true,
   "search.exclude": {
     "**/node_modules": true,
