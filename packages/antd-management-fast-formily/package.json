@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-formily",
-  "version": "1.0.54",
+  "version": "1.0.55",
   "keywords": [
     "antd-management-fast-formily"
   ],
@@ -67,12 +67,12 @@
     "@formily/reactive": "^2.3.1",
     "@formily/reactive-react": "^2.3.1",
     "@formily/shared": "^2.3.1",
-    "antd-management-fast-common": "^2.6.81",
-    "antd-management-fast-component": "^2.6.126",
-    "antd-management-fast-design-react": "^1.0.54",
+    "antd-management-fast-common": "^2.6.82",
+    "antd-management-fast-component": "^2.6.127",
+    "antd-management-fast-design-react": "^1.0.55",
     "classnames": "^2.5.1",
-    "easy-soft-dva": "^3.10.9",
-    "easy-soft-utility": "^2.8.10",
+    "easy-soft-dva": "^3.10.11",
+    "easy-soft-utility": "^2.8.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -87,10 +87,10 @@
     "@babel/preset-react": "^7.23.3",
     "@babel/runtime": "^7.23.8",
     "@changesets/cli": "^2.27.1",
-    "@commitlint/cli": "^18.4.4",
-    "@commitlint/config-conventional": "^18.4.4",
+    "@commitlint/cli": "^18.5.0",
+    "@commitlint/config-conventional": "^18.5.0",
     "@commitlint/config-pnpm-scopes": "^18.4.4",
-    "@commitlint/cz-commitlint": "^18.4.4",
+    "@commitlint/cz-commitlint": "^18.5.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.11.5",
@@ -103,7 +103,7 @@
     "conventional-changelog-conventionalcommits": "^7.0.2",
     "cross-env": "^7.0.3",
     "documentation": "^14.0.2",
-    "easy-soft-develop": "^2.1.59",
+    "easy-soft-develop": "^2.1.61",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
@@ -129,7 +129,10 @@
     "prettier-plugin-packagejson": "^2.4.9",
     "rimraf": "^5.0.5",
     "stylelint": "^16.2.0",
+    "stylelint-config-css-modules": "^4.4.0",
     "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-standard": "^36.0.0"
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+    "stylelint-order": "^6.0.4"
   }
 }

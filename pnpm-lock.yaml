@@ -45,17 +45,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -80,6 +80,9 @@ importers:
       '@rollup/plugin-replace':
         specifier: ^5.0.5
         version: 5.0.5(rollup@4.9.6)
+      '@rollup/plugin-terser':
+        specifier: ^0.4.4
+        version: 0.4.4(rollup@4.9.6)
       '@rollup/plugin-url':
         specifier: ^8.0.2
         version: 8.0.2(rollup@4.9.6)
@@ -120,8 +123,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -224,9 +227,6 @@ importers:
       rollup-plugin-serve:
         specifier: ^3.0.0
         version: 3.0.0
-      rollup-plugin-terser:
-        specifier: ^7.0.2
-        version: 7.0.2(rollup@4.9.6)
       rollup-plugin-typescript2:
         specifier: ^0.36.0
         version: 0.36.0(rollup@4.9.6)(typescript@5.3.3)
@@ -239,15 +239,15 @@ importers:
       stylelint-config-css-modules:
         specifier: ^4.4.0
         version: 4.4.0(stylelint@16.2.0)
-      stylelint-config-prettier:
-        specifier: ^9.0.5
-        version: 9.0.5(stylelint@16.2.0)
       stylelint-config-standard:
         specifier: ^36.0.0
         version: 36.0.0(stylelint@16.2.0)
       stylelint-declaration-block-no-ignored-properties:
         specifier: ^2.8.0
         version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
 
   packages/antd-management-fast-charts:
     dependencies:
@@ -270,10 +270,10 @@ importers:
         specifier: ^5.13.2
         version: 5.13.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.125
+        specifier: ^2.6.126
         version: link:../antd-management-fast-component
       array-move:
         specifier: ^4.0.0
@@ -294,11 +294,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.9
-        version: 3.10.9(@types/react@18.2.48)(redux@4.2.1)
+        specifier: ^3.10.11
+        version: 3.10.11(@types/react@18.2.48)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       html-react-parser:
         specifier: ^5.1.1
         version: 5.1.1(react@18.2.0)
@@ -391,17 +391,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -426,6 +426,9 @@ importers:
       '@rollup/plugin-replace':
         specifier: ^5.0.5
         version: 5.0.5(rollup@4.9.6)
+      '@rollup/plugin-terser':
+        specifier: ^0.4.4
+        version: 0.4.4(rollup@4.9.6)
       '@rollup/plugin-url':
         specifier: ^8.0.2
         version: 8.0.2(rollup@4.9.6)
@@ -484,8 +487,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -582,9 +585,6 @@ importers:
       rollup-plugin-serve:
         specifier: ^3.0.0
         version: 3.0.0
-      rollup-plugin-terser:
-        specifier: ^7.0.2
-        version: 7.0.2(rollup@4.9.6)
       rollup-plugin-typescript2:
         specifier: ^0.36.0
         version: 0.36.0(rollup@4.9.6)(typescript@5.3.3)
@@ -603,6 +603,9 @@ importers:
       stylelint-declaration-block-no-ignored-properties:
         specifier: ^2.8.0
         version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -628,7 +631,7 @@ importers:
         specifier: ^5.13.2
         version: 5.13.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: 'link:'
       array-move:
         specifier: ^4.0.0
@@ -649,11 +652,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.9
-        version: 3.10.9(@types/react@18.2.48)(redux@4.2.1)
+        specifier: ^3.10.11
+        version: 3.10.11(@types/react@18.2.48)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       html-react-parser:
         specifier: ^5.1.1
         version: 5.1.1(react@18.2.0)
@@ -746,17 +749,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -781,6 +784,9 @@ importers:
       '@rollup/plugin-replace':
         specifier: ^5.0.5
         version: 5.0.5(rollup@4.9.6)
+      '@rollup/plugin-terser':
+        specifier: ^0.4.4
+        version: 0.4.4(rollup@4.9.6)
       '@rollup/plugin-url':
         specifier: ^8.0.2
         version: 8.0.2(rollup@4.9.6)
@@ -839,8 +845,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -937,9 +943,6 @@ importers:
       rollup-plugin-serve:
         specifier: ^3.0.0
         version: 3.0.0
-      rollup-plugin-terser:
-        specifier: ^7.0.2
-        version: 7.0.2(rollup@4.9.6)
       rollup-plugin-typescript2:
         specifier: ^0.36.0
         version: 0.36.0(rollup@4.9.6)(typescript@5.3.3)
@@ -958,6 +961,9 @@ importers:
       stylelint-declaration-block-no-ignored-properties:
         specifier: ^2.8.0
         version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -983,7 +989,7 @@ importers:
         specifier: ^5.13.2
         version: 5.13.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1004,11 +1010,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.9
-        version: 3.10.9(@types/react@18.2.48)(redux@4.2.1)
+        specifier: ^3.10.11
+        version: 3.10.11(@types/react@18.2.48)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       html-react-parser:
         specifier: ^5.1.1
         version: 5.1.1(react@18.2.0)
@@ -1101,17 +1107,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -1136,6 +1142,9 @@ importers:
       '@rollup/plugin-replace':
         specifier: ^5.0.5
         version: 5.0.5(rollup@4.9.6)
+      '@rollup/plugin-terser':
+        specifier: ^0.4.4
+        version: 0.4.4(rollup@4.9.6)
       '@rollup/plugin-url':
         specifier: ^8.0.2
         version: 8.0.2(rollup@4.9.6)
@@ -1194,8 +1203,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1292,9 +1301,6 @@ importers:
       rollup-plugin-serve:
         specifier: ^3.0.0
         version: 3.0.0
-      rollup-plugin-terser:
-        specifier: ^7.0.2
-        version: 7.0.2(rollup@4.9.6)
       rollup-plugin-typescript2:
         specifier: ^0.36.0
         version: 0.36.0(rollup@4.9.6)(typescript@5.3.3)
@@ -1313,6 +1319,9 @@ importers:
       stylelint-declaration-block-no-ignored-properties:
         specifier: ^2.8.0
         version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -1356,17 +1365,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -1398,8 +1407,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1481,12 +1490,21 @@ importers:
       stylelint:
         specifier: ^16.2.0
         version: 16.2.0(typescript@5.3.3)
+      stylelint-config-css-modules:
+        specifier: ^4.4.0
+        version: 4.4.0(stylelint@16.2.0)
       stylelint-config-prettier:
         specifier: ^9.0.5
         version: 9.0.5(stylelint@16.2.0)
       stylelint-config-standard:
         specifier: ^36.0.0
         version: 36.0.0(stylelint@16.2.0)
+      stylelint-declaration-block-no-ignored-properties:
+        specifier: ^2.8.0
+        version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
       umi:
         specifier: ^4.1.1
         version: 4.1.1(@babel/core@7.23.7)(@types/node@20.11.5)(@types/react@18.2.48)(eslint@8.56.0)(jest@29.7.0)(postcss-less@6.0.0)(prettier@3.2.4)(react-dom@18.2.0)(react@18.2.0)(rollup@4.9.6)(stylelint@16.2.0)(typescript@5.3.3)(webpack@5.89.0)
@@ -1536,16 +1554,16 @@ importers:
         specifier: ^4.6.0
         version: 4.6.0(monaco-editor@0.45.0)(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.125
+        specifier: ^2.6.126
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
-        specifier: ^1.0.53
+        specifier: ^1.0.54
         version: link:../antd-management-fast-design-react
       antd-management-fast-formily:
-        specifier: ^1.0.53
+        specifier: ^1.0.54
         version: link:../antd-management-fast-formily
       classnames:
         specifier: ^2.5.1
@@ -1557,11 +1575,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.9
-        version: 3.10.9(@types/react@18.2.48)(redux@4.2.1)
+        specifier: ^3.10.11
+        version: 3.10.11(@types/react@18.2.48)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       monaco-editor:
         specifier: ^0.45.0
         version: 0.45.0
@@ -1609,17 +1627,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -1663,8 +1681,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1740,12 +1758,21 @@ importers:
       stylelint:
         specifier: ^16.2.0
         version: 16.2.0(typescript@5.3.3)
+      stylelint-config-css-modules:
+        specifier: ^4.4.0
+        version: 4.4.0(stylelint@16.2.0)
       stylelint-config-prettier:
         specifier: ^9.0.5
         version: 9.0.5(stylelint@16.2.0)
       stylelint-config-standard:
         specifier: ^36.0.0
         version: 36.0.0(stylelint@16.2.0)
+      stylelint-declaration-block-no-ignored-properties:
+        specifier: ^2.8.0
+        version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
 
   packages/antd-management-fast-design-react:
     dependencies:
@@ -1801,8 +1828,8 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       monaco-editor:
         specifier: ^0.45.0
         version: 0.45.0
@@ -1847,17 +1874,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -1901,8 +1928,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1978,12 +2005,21 @@ importers:
       stylelint:
         specifier: ^16.2.0
         version: 16.2.0(typescript@5.3.3)
+      stylelint-config-css-modules:
+        specifier: ^4.4.0
+        version: 4.4.0(stylelint@16.2.0)
       stylelint-config-prettier:
         specifier: ^9.0.5
         version: 9.0.5(stylelint@16.2.0)
       stylelint-config-standard:
         specifier: ^36.0.0
         version: 36.0.0(stylelint@16.2.0)
+      stylelint-declaration-block-no-ignored-properties:
+        specifier: ^2.8.0
+        version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
 
   packages/antd-management-fast-develop:
     dependencies:
@@ -2040,17 +2076,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -2079,8 +2115,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -2159,12 +2195,21 @@ importers:
       stylelint:
         specifier: ^16.2.0
         version: 16.2.0(typescript@5.3.3)
+      stylelint-config-css-modules:
+        specifier: ^4.4.0
+        version: 4.4.0(stylelint@16.2.0)
       stylelint-config-prettier:
         specifier: ^9.0.5
         version: 9.0.5(stylelint@16.2.0)
       stylelint-config-standard:
         specifier: ^36.0.0
         version: 36.0.0(stylelint@16.2.0)
+      stylelint-declaration-block-no-ignored-properties:
+        specifier: ^2.8.0
+        version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
 
   packages/antd-management-fast-flow:
     dependencies:
@@ -2172,17 +2217,17 @@ importers:
         specifier: ^5.13.2
         version: 5.13.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.125
+        specifier: ^2.6.126
         version: link:../antd-management-fast-component
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2224,17 +2269,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -2269,8 +2314,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -2346,12 +2391,21 @@ importers:
       stylelint:
         specifier: ^16.2.0
         version: 16.2.0(typescript@5.3.3)
+      stylelint-config-css-modules:
+        specifier: ^4.4.0
+        version: 4.4.0(stylelint@16.2.0)
       stylelint-config-prettier:
         specifier: ^9.0.5
         version: 9.0.5(stylelint@16.2.0)
       stylelint-config-standard:
         specifier: ^36.0.0
         version: 36.0.0(stylelint@16.2.0)
+      stylelint-declaration-block-no-ignored-properties:
+        specifier: ^2.8.0
+        version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
 
   packages/antd-management-fast-formily:
     dependencies:
@@ -2386,23 +2440,23 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1
       antd-management-fast-common:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.125
+        specifier: ^2.6.126
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
-        specifier: ^1.0.53
+        specifier: ^1.0.54
         version: link:../antd-management-fast-design-react
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
       easy-soft-dva:
-        specifier: ^3.10.9
-        version: 3.10.9(@types/react@18.2.48)(redux@4.2.1)
+        specifier: ^3.10.11
+        version: 3.10.11(@types/react@18.2.48)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2441,17 +2495,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -2489,8 +2543,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -2566,12 +2620,21 @@ importers:
       stylelint:
         specifier: ^16.2.0
         version: 16.2.0(typescript@5.3.3)
+      stylelint-config-css-modules:
+        specifier: ^4.4.0
+        version: 4.4.0(stylelint@16.2.0)
       stylelint-config-prettier:
         specifier: ^9.0.5
         version: 9.0.5(stylelint@16.2.0)
       stylelint-config-standard:
         specifier: ^36.0.0
         version: 36.0.0(stylelint@16.2.0)
+      stylelint-declaration-block-no-ignored-properties:
+        specifier: ^2.8.0
+        version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
 
   packages/antd-management-fast-framework:
     dependencies:
@@ -2594,10 +2657,10 @@ importers:
         specifier: ^5.13.2
         version: 5.13.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.125
+        specifier: ^2.6.126
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.6.5
@@ -2609,11 +2672,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.9
-        version: 3.10.9(@types/react@18.2.48)(redux@4.2.1)
+        specifier: ^3.10.11
+        version: 3.10.11(@types/react@18.2.48)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       html-react-parser:
         specifier: ^5.1.1
         version: 5.1.1(react@18.2.0)
@@ -2679,17 +2742,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -2714,6 +2777,9 @@ importers:
       '@rollup/plugin-replace':
         specifier: ^5.0.5
         version: 5.0.5(rollup@4.9.6)
+      '@rollup/plugin-terser':
+        specifier: ^0.4.4
+        version: 0.4.4(rollup@4.9.6)
       '@rollup/plugin-url':
         specifier: ^8.0.2
         version: 8.0.2(rollup@4.9.6)
@@ -2769,8 +2835,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -2867,9 +2933,6 @@ importers:
       rollup-plugin-serve:
         specifier: ^3.0.0
         version: 3.0.0
-      rollup-plugin-terser:
-        specifier: ^7.0.2
-        version: 7.0.2(rollup@4.9.6)
       rollup-plugin-typescript2:
         specifier: ^0.36.0
         version: 0.36.0(rollup@4.9.6)(typescript@5.3.3)
@@ -2888,6 +2951,9 @@ importers:
       stylelint-declaration-block-no-ignored-properties:
         specifier: ^2.8.0
         version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -2925,25 +2991,25 @@ importers:
         specifier: ^5.13.2
         version: 5.13.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.125
+        specifier: ^2.6.126
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.88
+        specifier: ^1.0.89
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
-        specifier: ^1.0.53
+        specifier: ^1.0.54
         version: link:../antd-management-fast-design-react
       antd-management-fast-flow:
-        specifier: ^1.0.43
+        specifier: ^1.0.44
         version: link:../antd-management-fast-flow
       antd-management-fast-formily:
-        specifier: ^1.0.53
+        specifier: ^1.0.54
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.140
+        specifier: ^2.11.141
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.6.5
@@ -2955,11 +3021,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.9
-        version: 3.10.9(@types/react@18.2.48)(redux@4.2.1)
+        specifier: ^3.10.11
+        version: 3.10.11(@types/react@18.2.48)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       rc-util:
         specifier: ^5.38.1
         version: 5.38.1(react-dom@18.2.0)(react@18.2.0)
@@ -3010,17 +3076,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -3052,10 +3118,10 @@ importers:
         specifier: ^6.19.0
         version: 6.19.0(eslint@8.56.0)(typescript@5.3.3)
       antd-management-fast-config:
-        specifier: ^1.1.60
+        specifier: ^1.1.61
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.1.64
+        specifier: ^1.1.65
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.7.0
@@ -3073,11 +3139,11 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       easy-soft-develop-dva-assist:
-        specifier: ^1.0.35
-        version: 1.0.35
+        specifier: ^1.0.36
+        version: 1.0.36
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -3168,6 +3234,9 @@ importers:
       stylelint-declaration-block-no-ignored-properties:
         specifier: ^2.8.0
         version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -3211,25 +3280,25 @@ importers:
         specifier: ^5.13.2
         version: 5.13.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.80
+        specifier: ^2.6.81
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.125
+        specifier: ^2.6.126
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.88
+        specifier: ^1.0.89
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
-        specifier: ^1.0.53
+        specifier: ^1.0.54
         version: link:../antd-management-fast-design-react
       antd-management-fast-flow:
-        specifier: ^1.0.43
+        specifier: ^1.0.44
         version: link:../antd-management-fast-flow
       antd-management-fast-formily:
-        specifier: ^1.0.53
+        specifier: ^1.0.54
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.140
+        specifier: ^2.11.141
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.6.5
@@ -3241,11 +3310,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.9
-        version: 3.10.9(@types/react@18.2.48)(redux@4.2.1)
+        specifier: ^3.10.11
+        version: 3.10.11(@types/react@18.2.48)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.10
-        version: 2.8.10
+        specifier: ^2.8.12
+        version: 2.8.12
       rc-util:
         specifier: ^5.38.1
         version: 5.38.1(react-dom@18.2.0)(react@18.2.0)
@@ -3299,17 +3368,17 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.4.4
-        version: 18.4.4
+        specifier: ^18.5.0
+        version: 18.5.0
       '@commitlint/config-pnpm-scopes':
         specifier: ^18.4.4
         version: 18.4.4
       '@commitlint/cz-commitlint':
-        specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: ^18.5.0
+        version: 18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3)
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: ^0.5.11
         version: 0.5.11(react-refresh@0.14.0)(webpack@5.89.0)
@@ -3341,10 +3410,10 @@ importers:
         specifier: ^6.19.0
         version: 6.19.0(eslint@8.56.0)(typescript@5.3.3)
       antd-management-fast-config:
-        specifier: ^1.1.60
+        specifier: ^1.1.61
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.1.64
+        specifier: ^1.1.65
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.7.0
@@ -3362,11 +3431,11 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       easy-soft-develop:
-        specifier: ^2.1.59
-        version: 2.1.59
+        specifier: ^2.1.61
+        version: 2.1.61
       easy-soft-develop-dva-assist:
-        specifier: ^1.0.35
-        version: 1.0.35
+        specifier: ^1.0.36
+        version: 1.0.36
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -3457,6 +3526,9 @@ importers:
       stylelint-declaration-block-no-ignored-properties:
         specifier: ^2.8.0
         version: 2.8.0(stylelint@16.2.0)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.2.0)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -3506,8 +3578,8 @@ packages:
     resolution: {integrity: sha512-LrX0OGZtW+W6iLnTAqnTaoIsRelYeuLZWsrmBJFUXDALQphPsN8cE5DCsmoSlL0QYb94BQxINiuS70Ar/8BNgA==}
     dev: false
 
-  /@ant-design/cssinjs@1.18.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-514V9rjLaFYb3v4s55/8bg2E6fb81b99s3crDZf4nSwtiDLLXs8axnIph+q2TVkY2hbJPZOn/cVsVcnLkzFy7w==}
+  /@ant-design/cssinjs@1.18.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-IrUAOj5TYuMG556C9gdbFuOrigyhzhU5ZYpWb3gYTxAwymVqRbvLzFCZg6OsjLBR6GhzcxYF3AhxKmjB+rA2xA==}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
@@ -3919,7 +3991,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/cssinjs': 1.18.2(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/cssinjs': 1.18.4(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.23.8
       '@ctrl/tinycolor': 3.6.1
       antd: 4.24.15(react-dom@18.2.0)(react@18.2.0)
@@ -3935,7 +4007,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/cssinjs': 1.18.2(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/cssinjs': 1.18.4(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.23.8
       '@ctrl/tinycolor': 3.6.1
       antd: 5.13.2(react-dom@18.2.0)(react@18.2.0)
@@ -4296,7 +4368,7 @@ packages:
     dev: false
 
   /@antv/g2plot@2.3.39:
-    resolution: {integrity: sha1-RrdLvX7BIljKdiaDrc0yeEivTO4=}
+    resolution: {integrity: sha512-B6/b+MiUOuO3vlvY19Qt0v+3B7ds72pxESI714hzuH2niXQ35AW8GaQ7+1U6Y7Kk7btoaB2AaCyWcvZuloWoPw==}
     dependencies:
       '@antv/event-emitter': 0.1.3
       '@antv/g2': 4.1.32
@@ -6086,14 +6158,14 @@ packages:
     dev: true
     optional: true
 
-  /@commitlint/cli@18.4.4(@types/node@20.11.5)(typescript@5.3.3):
-    resolution: {integrity: sha512-Ro3wIo//fV3XiV1EkdpHog6huaEyNcUAVrSmtgKqYM5g982wOWmP4FXvEDFwRMVgz878CNBvvCc33dMZ5AQJ/g==}
+  /@commitlint/cli@18.5.0(@types/node@20.11.5)(typescript@5.3.3):
+    resolution: {integrity: sha512-g/N0mJBrHcTdiccUpJknS6/ru45eIEAZyhEy9sL2ILjzK2IVNrpzlAPtxEr8bZCZLGwPBUrQ5UCIIu4uebhImw==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
       '@commitlint/format': 18.4.4
-      '@commitlint/lint': 18.4.4
-      '@commitlint/load': 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+      '@commitlint/lint': 18.5.0
+      '@commitlint/load': 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/read': 18.4.4
       '@commitlint/types': 18.4.4
       execa: 5.1.1
@@ -6106,8 +6178,8 @@ packages:
       - typescript
     dev: true
 
-  /@commitlint/config-conventional@18.4.4:
-    resolution: {integrity: sha512-Bz3sPQSboBN+Et/KyZrR+OJ3z9PrHDw7Bls0/hv94PmuHBtMq1dCGxS9XzTGzxeMNlytCC4kxF083tbhPljl3Q==}
+  /@commitlint/config-conventional@18.5.0:
+    resolution: {integrity: sha512-XGmU4u3Z7bCn0H0nTEG9LUn6hMDUIPP4P6dun7PKFhtnt/wwiKAqmPj+QRmFiqWjkOWcmrh7w7xRiDL32cWS5g==}
     engines: {node: '>=v18'}
     dependencies:
       conventional-changelog-conventionalcommits: 7.0.2
@@ -6122,23 +6194,23 @@ packages:
       read-yaml-file: 2.1.0
     dev: true
 
-  /@commitlint/config-validator@18.4.4:
-    resolution: {integrity: sha512-/QI8KIg/h7O0Eus36fPcEcO3QPBcdXuGfZeCF5m15k0EB2bcU8s6pHNTNEa6xz9PrAefHCL+yzRJj7w20T6Mow==}
+  /@commitlint/config-validator@18.5.0:
+    resolution: {integrity: sha512-mDAA6WQPjh9Ida8ACdInDylBQcqeUD2gBHE+dQu+B3OIHiWiSSrq4F2+wg3nDU9EzfcQSwPwYL+QbMmiW5SmLA==}
     engines: {node: '>=v18'}
     dependencies:
       '@commitlint/types': 18.4.4
       ajv: 8.12.0
     dev: true
 
-  /@commitlint/cz-commitlint@18.4.4(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3):
-    resolution: {integrity: sha512-XUOgq1xofb4c5AlhnImyR2n845hvzW0t3hpW46iD/DpsN1VD6PsgSfctAVkIKmDM8Y2MXIJ1VVu0Qf1+xOtQCA==}
+  /@commitlint/cz-commitlint@18.5.0(@types/node@20.11.5)(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.3):
+    resolution: {integrity: sha512-3kXAdK5KjadJWvGXrVc1GTINJxlEnx3NE9m1L0wByw4D71QDfbNFH7MuB2b78A94qzb8drPEvXZgOYY57PpUUQ==}
     engines: {node: '>=v18'}
     peerDependencies:
       commitizen: ^4.0.3
       inquirer: ^8.0.0
     dependencies:
       '@commitlint/ensure': 18.4.4
-      '@commitlint/load': 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+      '@commitlint/load': 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/types': 18.4.4
       chalk: 4.1.2
       commitizen: 4.3.0(@types/node@20.11.5)(typescript@5.3.3)
@@ -6183,8 +6255,8 @@ packages:
       semver: 7.5.4
     dev: true
 
-  /@commitlint/lint@18.4.4:
-    resolution: {integrity: sha512-SoyQstVxMY5Z4GnFRtRzy+NWYb+yVseXgir+7BxnpB59oH05C9XztRrhDw6OnkNeXhjINTpi1HLnuY7So+CaAQ==}
+  /@commitlint/lint@18.5.0:
+    resolution: {integrity: sha512-4VbfTGTZf/aDaOn+vednMQFu5EIKfERvv7j8La3etQCra0O2QMrZL28xugTroYekawpTkiWWvLswtpVfabIbgw==}
     engines: {node: '>=v18'}
     dependencies:
       '@commitlint/is-ignored': 18.4.4
@@ -6193,13 +6265,13 @@ packages:
       '@commitlint/types': 18.4.4
     dev: true
 
-  /@commitlint/load@18.4.4(@types/node@20.11.5)(typescript@5.3.3):
-    resolution: {integrity: sha512-RaDIa9qwOw2xRJ3Jr2DBXd14rmnHJIX2XdZF4kmoF1rgsg/+7cvrExLSUNAkQUNimyjCn1b/bKX2Omm+GdY0XQ==}
+  /@commitlint/load@18.5.0(@types/node@20.11.5)(typescript@5.3.3):
+    resolution: {integrity: sha512-vpyGgk7rzbFsU01NVwPNC/WetHFP0EwSYnQ1R833SJFHkEo+cWvqoVlw/VoZwBMoI6sF5/lwEdKzFDr1DHJ6+A==}
     engines: {node: '>=v18'}
     dependencies:
-      '@commitlint/config-validator': 18.4.4
+      '@commitlint/config-validator': 18.5.0
       '@commitlint/execute-rule': 18.4.4
-      '@commitlint/resolve-extends': 18.4.4
+      '@commitlint/resolve-extends': 18.5.0
       '@commitlint/types': 18.4.4
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.3.3)
@@ -6237,11 +6309,11 @@ packages:
       minimist: 1.2.8
     dev: true
 
-  /@commitlint/resolve-extends@18.4.4:
-    resolution: {integrity: sha512-RRpIHSbRnFvmGifVk21Gqazf1QF/yeP+Kkg/e3PlkegcOKd/FGOXp/Kx9cvSO2K7ucSn4GD/oBvgasFoy+NCAw==}
+  /@commitlint/resolve-extends@18.5.0:
+    resolution: {integrity: sha512-OxCYOMnlkOEEIkwTaRiFjHyuWBq962WBZQVHfMHej8tr3d+SfjznvqZhPmW8/SuqtfmGEiJPGWUNOxgwH+O0MA==}
     engines: {node: '>=v18'}
     dependencies:
-      '@commitlint/config-validator': 18.4.4
+      '@commitlint/config-validator': 18.5.0
       '@commitlint/types': 18.4.4
       import-fresh: 3.3.0
       lodash.mergewith: 4.6.2
@@ -7075,7 +7147,7 @@ packages:
       react-dom: '>=16.8.0'
       react-is: '>=16.8.0 || >=17.0.0'
     dependencies:
-      '@ant-design/cssinjs': 1.18.2(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/cssinjs': 1.18.4(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/icons': 5.2.6(react-dom@18.2.0)(react@18.2.0)
       '@dnd-kit/core': 6.1.0(react-dom@18.2.0)(react@18.2.0)
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0)(react@18.2.0)
@@ -7638,7 +7710,7 @@ packages:
       eslint-scope: 5.1.1
 
   /@nodelib/fs.scandir@2.1.5:
-    resolution: {integrity: sha1-dhnC6yGyVIP20WdUi0z9WnSIw9U=}
+    resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -7783,6 +7855,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -7792,6 +7865,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -7801,6 +7875,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -7810,6 +7885,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -8379,6 +8455,21 @@ packages:
       rollup: 4.9.6
     dev: true
 
+  /@rollup/plugin-terser@0.4.4(rollup@4.9.6):
+    resolution: {integrity: sha512-XHeJC5Bgvs8LfukDwWZp7yeqin6ns8RTl2B9avbejt6tZqsqvVoWI7ZTQrcNsfKEDWBTnTxM8nMDkO2IFFbd0A==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      rollup: 4.9.6
+      serialize-javascript: 6.0.2
+      smob: 1.4.1
+      terser: 5.27.0
+    dev: true
+
   /@rollup/plugin-url@8.0.2(rollup@4.9.6):
     resolution: {integrity: sha512-5yW2LP5NBEgkvIRSSEdJkmxe5cUNZKG3eenKtfJvSkxVm/xTTu7w+ayBtNwhozl1ZnTUCU0xFaRQR+cBl2H7TQ==}
     engines: {node: '>=14.0.0'}
@@ -8456,6 +8547,7 @@ packages:
     resolution: {integrity: sha512-Z3O60yxPtuCYobrtzjo0wlmvDdx2qZfeAWTyfOjEDqd08kthDKexLpV97KfAeUXPosENKd8uyJMRDfFMxcYkDQ==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -8463,6 +8555,7 @@ packages:
     resolution: {integrity: sha512-gpiG0qQJNdYEVad+1iAsGAbgAnZ8j07FapmnIAQgODKcOTjLEWM9sRb+MbQyVsYCnA0Im6M6QIq6ax7liws6eQ==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -8470,6 +8563,7 @@ packages:
     resolution: {integrity: sha512-+uCOcvVmFUYvVDr27aiyun9WgZk0tXe7ThuzoUTAukZJOwS5MrGbmSlNOhx1j80GdpqbOty05XqSl5w4dQvcOA==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -8477,6 +8571,7 @@ packages:
     resolution: {integrity: sha512-HUNqM32dGzfBKuaDUBqFB7tP6VMN74eLZ33Q9Y1TBqRDn+qDonkAUyKWwF9BR9unV7QUzffLnz9GrnKvMqC/fw==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -8484,6 +8579,7 @@ packages:
     resolution: {integrity: sha512-ch7M+9Tr5R4FK40FHQk8VnML0Szi2KRujUgHXd/HjuH9ifH72GUmw6lStZBo3c3GB82vHa0ZoUfjfcM7JiiMrQ==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -8919,7 +9015,7 @@ packages:
     dev: true
 
   /@trysound/sax@0.2.0:
-    resolution: {integrity: sha1-zMqrdYr1Z2Hre/N69vA/Mm3XmK0=}
+    resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
   /@tufjs/canonical-json@1.0.0:
@@ -9932,6 +10028,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -9940,6 +10037,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -9948,6 +10046,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -9956,6 +10055,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -10116,7 +10216,7 @@ packages:
     dependencies:
       '@ahooksjs/use-request': 2.8.15(react@18.2.0)
       '@ant-design/antd-theme-variable': 1.0.0
-      '@ant-design/cssinjs': 1.18.2(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/cssinjs': 1.18.4(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/icons': 4.8.1(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/moment-webpack-plugin': 0.0.3
       '@ant-design/pro-components': 2.6.48(antd@4.24.15)(rc-field-form@1.41.0)(react-dom@18.2.0)(react@18.2.0)
@@ -10780,7 +10880,7 @@ packages:
       react-dom: '>=16.9.0'
     dependencies:
       '@ant-design/colors': 7.0.2
-      '@ant-design/cssinjs': 1.18.2(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/cssinjs': 1.18.4(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/icons': 5.2.6(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/react-slick': 1.0.2(react@18.2.0)
       '@ctrl/tinycolor': 3.6.1
@@ -11406,7 +11506,7 @@ packages:
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
 
   /bser@2.1.1:
-    resolution: {integrity: sha1-5nh9og7OnQeZhTPP2d5vXDj0vAU=}
+    resolution: {integrity: sha512-gQxTNE/GAfIIrmHLUE3oJyp5FO6HRBfhjnw4/wMmA63ZGDJnWBmgY/lyQBpnDUkGmAhbSe39tx2d/iTOAfglwQ==}
     dependencies:
       node-int64: 0.4.0
 
@@ -11557,7 +11657,7 @@ packages:
     dev: true
 
   /cachedir@2.3.0:
-    resolution: {integrity: sha1-DHWJKgUhmPCyHHwYBNgzHt/K4Og=}
+    resolution: {integrity: sha512-A+Fezp4zxnit6FanDmv9EqXNAi3vt9DWp51/71UEhXukb7QUuvtv9344h91dyAxuTLoSYJFU299qzR3tzwPAhw==}
     engines: {node: '>=6'}
     dev: true
 
@@ -11830,7 +11930,7 @@ packages:
     engines: {node: '>=18'}
     dependencies:
       slice-ansi: 5.0.0
-      string-width: 7.0.0
+      string-width: 7.1.0
     dev: true
 
   /cli-width@3.0.0:
@@ -12037,7 +12137,7 @@ packages:
     resolution: {integrity: sha512-rj8l8pD4bJ1nx+dAkMhV1xB5RuZEyVysfxJqB1pRchh1KVvwOv9b7CGB8ZfjTImVv2oF+sYMUkMZq6Na5Ftmbg==}
 
   /concat-map@0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   /concat-with-sourcemaps@1.1.0:
     resolution: {integrity: sha512-4gEjHJFT9e+2W/77h/DS5SGUgwDaOwprX8L/gl5+3ixnzkVJJsZWDSelmN3Oilw3LNDZjZV0yqH1hLG3k6nghg==}
@@ -12611,7 +12711,7 @@ packages:
     dev: true
 
   /current-script-polyfill@1.0.0:
-    resolution: {integrity: sha1-8xz35PPiGLBybnOMqSoC00iO9hU=}
+    resolution: {integrity: sha512-qv8s+G47V6Hq+g2kRE5th+ASzzrL7b6l+tap1DHKK25ZQJv3yIFhH96XaQ7NGL+zRW3t/RDbweJf/dJDe5Z5KA==}
 
   /cwise-compiler@1.1.3:
     resolution: {integrity: sha512-WXlK/m+Di8DMMcCjcWr4i+XzcQra9eCdXIJrgh4TUgh0pIS/yJduLxS9JgefsHJ/YVLdgPtXm9r62W92MvanEQ==}
@@ -12620,7 +12720,7 @@ packages:
     dev: true
 
   /cz-conventional-changelog@3.3.0(@types/node@20.11.5)(typescript@5.3.3):
-    resolution: {integrity: sha1-kkaUfJBAQUmz/iz37pGsrTt9ItI=}
+    resolution: {integrity: sha512-U466fIzU5U22eES5lTNiNbZ+d8dfcHcssH4o7QsdWaCcRs/feIPCxKYSWkYBNs5mny7MvEfwpTLWjvbm94hecw==}
     engines: {node: '>= 10'}
     dependencies:
       chalk: 2.4.2
@@ -12630,7 +12730,7 @@ packages:
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
+      '@commitlint/load': 18.5.0(@types/node@20.11.5)(typescript@5.3.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -13394,8 +13494,8 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  /easy-soft-develop-dva-assist@1.0.35:
-    resolution: {integrity: sha512-aZybQ/vjU0b3MjJ0epORV5oLYq+P+L8uKEiaKzdSOGMQ5UYduR1WHo1PhhoiFpmBL241N3H3E8ReQNR3gnEvFg==}
+  /easy-soft-develop-dva-assist@1.0.36:
+    resolution: {integrity: sha512-DkCXDgz7fBmjF0mhWn6rfWVoSOsiLC1rkf2kIDS++c7IDl8f8KodtPNX9sTrmNEVjqWhf75u68Zc78MFnmXLug==}
     hasBin: true
     dependencies:
       commander: 11.1.0
@@ -13403,8 +13503,8 @@ packages:
       rimraf: 5.0.5
     dev: true
 
-  /easy-soft-develop@2.1.59:
-    resolution: {integrity: sha512-uCv3diAm2VDIhUeuuKJOrRbhXLZhAPi8a1XyOSS/3JgmZergIUt3JYLoAEfsGNBRyPutMfoKwSQwdOlqyXNpuA==}
+  /easy-soft-develop@2.1.61:
+    resolution: {integrity: sha512-CWq4imGO9l3Zh3pJlzB/WiXJwemzpD64cqN2jfbSkPKnXCJ4WFPuLl5Oj0VR+JrzAfPzX0WTnq15gCodXQKJ5A==}
     hasBin: true
     dependencies:
       commander: 11.1.0
@@ -13418,14 +13518,14 @@ packages:
       terminal-kit: 3.0.1
     dev: true
 
-  /easy-soft-dva@3.10.9(@types/react@18.2.48)(redux@4.2.1):
-    resolution: {integrity: sha512-NSKKxMvhhiPEFqL0Z21cQ+NhcyV9newk188kuO5m0C9uqgZE4EKuNpHlVAFS2VmjXjdlSj0Qq/7r2yQ1oT+zag==}
+  /easy-soft-dva@3.10.11(@types/react@18.2.48)(redux@4.2.1):
+    resolution: {integrity: sha512-5jjQP0NIOUOur6Emtmy8Ih8aRIVXNrvlykIZuUHsgz5JQ1jjf07R8OP7p/tfoJmc+wXexAZEnrbXbOdlH3Iskw==}
     peerDependencies:
       redux: 4.x
     dependencies:
       '@babel/runtime': 7.23.8
       '@reduxjs/toolkit': 2.0.1(react-redux@9.1.0)(react@18.2.0)
-      easy-soft-utility: 2.8.10
+      easy-soft-utility: 2.8.12
       flatten: 1.0.3
       global: 4.4.0
       invariant: 2.2.4
@@ -13441,8 +13541,8 @@ packages:
       - react-native
     dev: false
 
-  /easy-soft-utility@2.8.10:
-    resolution: {integrity: sha512-xRZ8r0oYnxY9TbuU+jFsqyGFr33XKL+OwfcCEBwRXE5hXSOG5GyV3bWWJcBkkboFYO0hg6slz0HpIGRyniN2DA==}
+  /easy-soft-utility@2.8.12:
+    resolution: {integrity: sha512-MSOHOOBBKQ6S8rZqGsMG3SfN4R3NTv07GNuZbxisdahmvKWi4PAE+hTOQ4OngyZncxYsVB2l3/VNyxfNYCozQQ==}
     dependencies:
       dayjs: 1.11.10
       js-base64: 3.7.6
@@ -13842,7 +13942,7 @@ packages:
       eslint-rule-docs: 1.1.235
       log-symbols: 6.0.0
       plur: 5.1.0
-      string-width: 7.0.0
+      string-width: 7.1.0
       supports-hyperlinks: 3.0.0
     dev: true
 
@@ -15819,7 +15919,7 @@ packages:
       postcss: 8.4.33
 
   /identity-obj-proxy@3.0.0:
-    resolution: {integrity: sha1-lNK9qWCERT7zb7xarsN+D3nx/BQ=}
+    resolution: {integrity: sha512-00n6YnVHKrinT9t0d9+5yZC6UBNJANpYEQvL2LlX6Ab9lnmxzIRcEmTPuyGScvl1+jKuCICX1Z0Ab1pPKKdikA==}
     engines: {node: '>=4'}
     dependencies:
       harmony-reflect: 1.6.2
@@ -16011,7 +16111,7 @@ packages:
       intl-messageformat-parser: 3.6.4
 
   /intl@1.2.5:
-    resolution: {integrity: sha1-giRKIZDE5Bn4Nx9ao02qNCDiq94=}
+    resolution: {integrity: sha512-rK0KcPHeBFBcqsErKSpvZnrOmWOj+EmDkyJ57e90YWaQNqbcivcqmKDlHEeNprDWOsKzPsh1BfSpPQdDvclHVw==}
 
   /into-stream@3.1.0:
     resolution: {integrity: sha512-TcdjPibTksa1NQximqep2r17ISRiNE9fwlfbg3F8ANdvP5/yrFTew86VcO//jk4QTaMlbjypPBq76HN2zaKfZQ==}
@@ -16959,15 +17059,6 @@ packages:
       jest-util: 29.7.0
       string-length: 4.0.2
 
-  /jest-worker@26.6.2:
-    resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
-    engines: {node: '>= 10.13.0'}
-    dependencies:
-      '@types/node': 20.11.5
-      merge-stream: 2.0.0
-      supports-color: 7.2.0
-    dev: true
-
   /jest-worker@27.5.1:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
@@ -17067,11 +17158,11 @@ packages:
     dev: true
 
   /json-buffer@3.0.0:
-    resolution: {integrity: sha1-Wx85evx11ne96Lz8Dkfh+aPZqJg=}
+    resolution: {integrity: sha512-CuUqjv0FUZIdXkHPI8MezCnFCdaTAacej1TZYulLoAg1h/PhwkdXFN4V/gzY4g+fMBCOV2xF+rp7t2XD2ns/NQ==}
     dev: true
 
   /json-buffer@3.0.1:
-    resolution: {integrity: sha1-kziAKjDTtmBfvgYT4JQAjKjAWhM=}
+    resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
 
   /json-parse-even-better-errors@2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}
@@ -17302,6 +17393,7 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -17310,6 +17402,7 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -17318,6 +17411,7 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -17326,6 +17420,7 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -17744,7 +17839,7 @@ packages:
     dev: true
 
   /makeerror@1.0.12:
-    resolution: {integrity: sha1-Pl3SB5qC6BLpg8xmEMSiyw6qgBo=}
+    resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
     dependencies:
       tmpl: 1.0.5
 
@@ -18635,7 +18730,7 @@ packages:
     resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
 
   /node-bitmap@0.0.1:
-    resolution: {integrity: sha1-GA6scAPgxwdhjvMTaPYvhLKmkJE=}
+    resolution: {integrity: sha512-Jx5lPaaLdIaOsj2mVLWMWulXF6GQVdyLvNSxmiYCvZ8Ma2hfKX0POoR2kgKOqz+oFsRreq0yYZjQ2wjE9VNzCA==}
     engines: {node: '>=v0.6.5'}
     dev: true
 
@@ -19446,7 +19541,7 @@ packages:
       tslib: 2.6.2
 
   /path-browserify@0.0.1:
-    resolution: {integrity: sha1-5sTd1+06onxoogzE5Q4aTug7vEo=}
+    resolution: {integrity: sha512-BapA40NHICOS+USX9SN4tyhq+A2RrN/Ws5F0Z5aMHDp98Fl86lX8Oti8B7uN93L4Ifv4fHOEA+pQw87gmMO/lQ==}
 
   /path-exists@4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
@@ -20610,6 +20705,14 @@ packages:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
+
+  /postcss-sorting@8.0.2(postcss@8.4.33):
+    resolution: {integrity: sha512-M9dkSrmU00t/jK7rF6BZSZauA5MAaBW4i5EnJXspMwt4iqTh/L9j6fgMnbElEOfyRyfLfVbIHj/R52zHzAPe1Q==}
+    peerDependencies:
+      postcss: ^8.4.20
+    dependencies:
+      postcss: 8.4.33
+    dev: true
 
   /postcss-svgo@5.1.0(postcss@8.4.33):
     resolution: {integrity: sha512-D75KsH1zm5ZrHyxPakAxJWtkyXew5qwS70v56exwvw542d9CRtTo78K0WeFxZB4G7JXKKMbEZtZayTGdIky/eA==}
@@ -22869,7 +22972,7 @@ packages:
     dev: true
 
   /remove-accents@0.4.2:
-    resolution: {integrity: sha1-CkPTqq4egNuRngeuJUsoXZ4ce7U=}
+    resolution: {integrity: sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==}
 
   /renderkid@3.0.0:
     resolution: {integrity: sha512-q/7VIQA8lmM1hF+jn+sFSPWGlMkSAeNYcPLmDQx2zzuiDfaLrOmumR8iaUKlenFgh0XRPIUeSPlH3A+AW3Z5pg==}
@@ -23110,19 +23213,6 @@ packages:
       opener: 1.5.2
     dev: true
 
-  /rollup-plugin-terser@7.0.2(rollup@4.9.6):
-    resolution: {integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==}
-    deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
-    peerDependencies:
-      rollup: ^2.0.0
-    dependencies:
-      '@babel/code-frame': 7.23.5
-      jest-worker: 26.6.2
-      rollup: 4.9.6
-      serialize-javascript: 4.0.0
-      terser: 5.27.0
-    dev: true
-
   /rollup-plugin-typescript2@0.36.0(rollup@4.9.6)(typescript@5.3.3):
     resolution: {integrity: sha512-NB2CSQDxSe9+Oe2ahZbf+B4bh7pHwjV5L+RSYpCu7Q5ROuN94F9b6ioWwKfz3ueL3KTtmX4o2MUH2cgHDIEUsw==}
     peerDependencies:
@@ -23349,12 +23439,6 @@ packages:
     dependencies:
       lru-cache: 6.0.0
 
-  /serialize-javascript@4.0.0:
-    resolution: {integrity: sha512-GaNA54380uFefWghODBWEGisLZFj00nS5ACs6yHa9nLqlLpVLO8ChDGeKRjZnV4Nh4n0Qi7nhYZD/9fCPzEqkw==}
-    dependencies:
-      randombytes: 2.1.0
-    dev: true
-
   /serialize-javascript@6.0.2:
     resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
     dependencies:
@@ -23544,6 +23628,10 @@ packages:
       strip-ansi: 6.0.1
       wcwidth: 1.0.1
       yargs: 15.4.1
+    dev: true
+
+  /smob@1.4.1:
+    resolution: {integrity: sha512-9LK+E7Hv5R9u4g4C3p+jjLstaLe11MDsL21UpYaCNmapvMkYhqCV4A/f/3gyH8QjMyh6l68q9xC85vihY9ahMQ==}
     dev: true
 
   /snake-case@3.0.4:
@@ -23874,8 +23962,8 @@ packages:
       emoji-regex: 9.2.2
       strip-ansi: 7.1.0
 
-  /string-width@7.0.0:
-    resolution: {integrity: sha512-GPQHj7row82Hjo9hKZieKcHIhaAIKOJvFSIZXuCU9OASVZrMNUaZuz++SPVrBjnLsnk4k+z9f2EIypgxf2vNFw==}
+  /string-width@7.1.0:
+    resolution: {integrity: sha512-SEIJCWiX7Kg4c129n48aDRwLbFb2LJmXXFrWBG4NGaRtMQ3myKPKbwrD1BKqQn74oCoNMBVrfDEr5M9YxCsrkw==}
     engines: {node: '>=18'}
     dependencies:
       emoji-regex: 10.3.0
@@ -24181,6 +24269,16 @@ packages:
     peerDependencies:
       stylelint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
+      stylelint: 16.2.0(typescript@5.3.3)
+    dev: true
+
+  /stylelint-order@6.0.4(stylelint@16.2.0):
+    resolution: {integrity: sha512-0UuKo4+s1hgQ/uAxlYU4h0o0HS4NiQDud0NAUNI0aa8FJdmYHA5ZZTFHiV5FpmE3071e9pZx5j0QpVJW5zOCUA==}
+    peerDependencies:
+      stylelint: ^14.0.0 || ^15.0.0 || ^16.0.1
+    dependencies:
+      postcss: 8.4.33
+      postcss-sorting: 8.0.2(postcss@8.4.33)
       stylelint: 16.2.0(typescript@5.3.3)
     dev: true
 
@@ -24640,7 +24738,7 @@ packages:
     dev: true
 
   /tmpl@1.0.5:
-    resolution: {integrity: sha1-hoPguQK7nCDE9ybjwLafNlGMB8w=}
+    resolution: {integrity: sha512-3f0uOEAQwIqGuWW2MVzYg8fV/QNnc/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3kkbhwL9Ab7Hrsmuj+Smw==}
 
   /to-arraybuffer@1.0.1:
     resolution: {integrity: sha512-okFlQcoGTi4LQBG/PgSYblw9VOyptsz2KJZqc6qtgGdes8VktzUQkj4BI2blit072iS8VODNcMA+tvnS9dnuMA==}
@@ -24754,7 +24852,7 @@ packages:
       fsevents: 2.3.3
 
   /tty-browserify@0.0.0:
-    resolution: {integrity: sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=}
+    resolution: {integrity: sha512-JVa5ijo+j/sOoHGjw0sxw734b1LhBkQ3bvUGNdxnVXDCX81Yx7TFgnZygxrIIWn23hbfTaMYLwRmAxFyDuFmIw==}
 
   /tty-table@4.2.3:
     resolution: {integrity: sha512-Fs15mu0vGzCrj8fmJNP7Ynxt5J7praPXqFN0leZeZBXJwkMxv9cb2D454k1ltrtUSJbZ4yH4e0CynsHLxmUfFA==}
@@ -24809,7 +24907,7 @@ packages:
       prelude-ls: 1.2.1
 
   /type-detect@4.0.8:
-    resolution: {integrity: sha1-dkb7XxiHHPu3dJ5pvTmmOI63RQw=}
+    resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==}
     engines: {node: '>=4'}
 
   /type-fest@0.13.1:
@@ -25688,7 +25786,7 @@ packages:
     dev: true
 
   /window-size@0.1.0:
-    resolution: {integrity: sha1-VDjNLqk7IC76Ohn+iIeu58lPnJ0=}
+    resolution: {integrity: sha512-1pTPQDKTdd61ozlKGNCjhNRd+KPmgLSGa3mZTHoOliaGcESD8G1PXhh7c1fgiPjVbNVfgy2Faw4BI8/m0cC8Mg==}
     engines: {node: '>= 0.8.0'}
     dev: false
 
@@ -25698,7 +25796,7 @@ packages:
     dev: true
 
   /wordwrap@0.0.2:
-    resolution: {integrity: sha1-t5Zpu0LstAn4PVg8rVLKF+qhZD8=}
+    resolution: {integrity: sha512-xSBsCeh+g+dinoBv3GAOWM4LcVVO68wLXRanibtBSdUvkGWQRGeE9P7IwU9EmDDi4jA6L44lz15CGMwdw9N5+Q==}
     engines: {node: '>=0.4.0'}
     dev: false
 
@@ -25732,7 +25830,7 @@ packages:
     engines: {node: '>=18'}
     dependencies:
       ansi-styles: 6.2.1
-      string-width: 7.0.0
+      string-width: 7.1.0
       strip-ansi: 7.1.0
     dev: true
 

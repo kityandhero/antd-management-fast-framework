@@ -5,12 +5,11 @@
 
 module.exports = {
   generalConfig: {
-    extends: [
-      'stylelint-config-standard',
-      'stylelint-config-css-modules',
-      'stylelint-config-prettier',
+    extends: ['stylelint-config-standard', 'stylelint-config-css-modules'],
+    plugins: [
+      'stylelint-declaration-block-no-ignored-properties',
+      'stylelint-order',
     ],
-    plugins: ['stylelint-declaration-block-no-ignored-properties'],
     ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.tsx', '**/*.ts'],
     customSyntax: 'postcss-less',
     rules: {

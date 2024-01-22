@@ -2,13 +2,13 @@ import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import postcss from 'rollup-plugin-postcss';
-import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import babelConfig from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
 
@@ -37,6 +37,7 @@ const externalCollection = [
   '@rollup/plugin-commonjs',
   '@rollup/plugin-json',
   '@rollup/plugin-node-resolve',
+  '@rollup/plugin-terser',
   '@rollup/plugin-url',
   '@svgr/rollup',
   '@tanem/react-nprogress',
@@ -103,7 +104,6 @@ const externalCollection = [
   'redux-saga',
   'redux-thunk',
   'rollup-plugin-postcss',
-  'rollup-plugin-terser',
   'rollup-plugin-typescript2',
   'umi',
   'uuid',

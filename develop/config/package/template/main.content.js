@@ -10,7 +10,7 @@ const lintScript = {
 
 const prepareScript = {
   prepare:
-    'pnpm changeset init && npm run z:husky:install && echo do other prepare work with here',
+    'pnpm changeset init && npm run z:husky:install && echo do other prepare work with here before run z:husky:install',
   'z:husky:install': 'npx husky install',
 };
 

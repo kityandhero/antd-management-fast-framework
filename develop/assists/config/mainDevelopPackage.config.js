@@ -10,6 +10,7 @@ const mainDevelopPackageList = [
   '@rollup/plugin-json',
   '@rollup/plugin-node-resolve',
   '@rollup/plugin-replace',
+  '@rollup/plugin-terser',
   '@rollup/plugin-url',
   '@svgr/rollup',
   'autoprefixer',
@@ -17,11 +18,10 @@ const mainDevelopPackageList = [
   'rollup',
   'rollup-plugin-copy',
   'rollup-plugin-livereload',
+  'rollup-plugin-polyfill-node',
   'rollup-plugin-postcss',
   'rollup-plugin-serve',
-  'rollup-plugin-terser',
   'rollup-plugin-typescript2',
-  'rollup-plugin-polyfill-node',
 ];
 
 module.exports = {
