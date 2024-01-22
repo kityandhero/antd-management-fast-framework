@@ -23,12 +23,12 @@
     "paths": {
       // "@/*": ["./example/*"],
       // "@@/*": ["./example/.umi/*"]
-    }
+    },
   },
   "include": [
     "src/**/*",
     "../antd-management-fast-framework/src/utils/configAssist.js",
-    "src/utils/httpAssist.js"
+    "src/utils/httpAssist.js",
   ],
   "exclude": [
     "node_modules",
@@ -37,6 +37,6 @@
     "scripts",
     "src/.umi/*",
     "webpack",
-    "jestMock"
-  ]
+    "jestMock",
+  ],
 }

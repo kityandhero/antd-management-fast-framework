@@ -24,8 +24,8 @@
     "esModuleInterop": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@@/*": ["./src/.umi/*"]
-    }
+      "@@/*": ["./src/.umi/*"],
+    },
   },
   "include": ["src/**/*"],
   "exclude": [
@@ -35,6 +35,6 @@
     "scripts",
     "src/.umi/*",
     "webpack",
-    "jest"
-  ]
+    "jest",
+  ],
 }
