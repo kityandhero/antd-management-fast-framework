@@ -4,9 +4,21 @@ import { checkObjectIsNullOrEmpty, throttle } from 'easy-soft-utility';
 function setLatestData(listData) {
   const dispatch = getDispatch();
 
+  const listDataAdjust = listData.map((o) => {
+    const { key, locale, name, path } = {
+      key: '',
+      locale: '',
+      name: '',
+      path: '',
+      ...o,
+    };
+
+    return { key, locale, name, path };
+  });
+
   dispatch({
     type: 'shortcutControl/pushLatestData',
-    payload: listData,
+    payload: listDataAdjust,
   });
 }
 

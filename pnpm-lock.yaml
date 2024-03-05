@@ -270,10 +270,10 @@ importers:
         specifier: ^5.15.0
         version: 5.15.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.83
+        specifier: ^2.6.84
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.128
+        specifier: ^2.6.129
         version: link:../antd-management-fast-component
       array-move:
         specifier: ^4.0.0
@@ -631,7 +631,7 @@ importers:
         specifier: ^5.15.0
         version: 5.15.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.83
+        specifier: ^2.6.84
         version: 'link:'
       array-move:
         specifier: ^4.0.0
@@ -989,7 +989,7 @@ importers:
         specifier: ^5.15.0
         version: 5.15.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.83
+        specifier: ^2.6.84
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1554,16 +1554,16 @@ importers:
         specifier: ^4.6.0
         version: 4.6.0(monaco-editor@0.46.0)(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.83
+        specifier: ^2.6.84
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.128
+        specifier: ^2.6.129
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
         specifier: ^1.0.56
         version: link:../antd-management-fast-design-react
       antd-management-fast-formily:
-        specifier: ^1.0.56
+        specifier: ^1.0.57
         version: link:../antd-management-fast-formily
       classnames:
         specifier: ^2.5.1
@@ -2440,10 +2440,10 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1
       antd-management-fast-common:
-        specifier: ^2.6.83
+        specifier: ^2.6.84
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.128
+        specifier: ^2.6.129
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
         specifier: ^1.0.56
@@ -2657,10 +2657,10 @@ importers:
         specifier: ^5.15.0
         version: 5.15.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.83
+        specifier: ^2.6.84
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.128
+        specifier: ^2.6.129
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.6.7
@@ -2991,13 +2991,13 @@ importers:
         specifier: ^5.15.0
         version: 5.15.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.83
+        specifier: ^2.6.84
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.128
+        specifier: ^2.6.129
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.91
+        specifier: ^1.0.92
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
         specifier: ^1.0.56
@@ -3006,10 +3006,10 @@ importers:
         specifier: ^1.0.46
         version: link:../antd-management-fast-flow
       antd-management-fast-formily:
-        specifier: ^1.0.56
+        specifier: ^1.0.57
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.143
+        specifier: ^2.11.144
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.6.7
@@ -3280,13 +3280,13 @@ importers:
         specifier: ^5.15.0
         version: 5.15.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.83
+        specifier: ^2.6.84
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.128
+        specifier: ^2.6.129
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.91
+        specifier: ^1.0.92
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
         specifier: ^1.0.56
@@ -3295,10 +3295,10 @@ importers:
         specifier: ^1.0.46
         version: link:../antd-management-fast-flow
       antd-management-fast-formily:
-        specifier: ^1.0.56
+        specifier: ^1.0.57
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.143
+        specifier: ^2.11.144
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.6.7
@@ -9313,7 +9313,7 @@ packages:
     resolution: {integrity: sha512-hy8b7Y1J8OGe6LbAjj3xniQrj3v6lsivCcrmf4TzSgPzLkhIeKgc5IZnT7ReIqmEuodjfO8EYAuoFvIrHi/+jQ==}
     deprecated: This is a stub types definition. history provides its own type definitions, so you do not need this installed.
     dependencies:
-      history: 4.10.1
+      history: 5.3.0
 
   /@types/hoist-non-react-statics@3.3.5:
     resolution: {integrity: sha512-SbcrWzkKBw2cdwRTwQAswfpB9g9LJWfjtUeW/jvNwbhC8cpmmNYVePa+ncbUe0rGTQ7G3Ff6mYUN2VMfLVr+Sg==}
@@ -9463,7 +9463,7 @@ packages:
       '@types/history': 4.7.11
       '@types/react': 18.2.63
       '@types/react-router': 5.1.20
-      redux: 4.2.1
+      redux: 5.0.1
 
   /@types/react-router@5.1.20:
     resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
@@ -12602,6 +12602,7 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+    requiresBuild: true
 
   /cssnano-preset-default@5.2.14(postcss@8.4.35):
     resolution: {integrity: sha512-t0SFesj/ZV2OTylqQVOrFgEh5uanxbO6ZAdeCrNsUQ6fVuXwYTxJPNAGvGTxHbD68ldIJNec7PyYZDBrfDQ+6A==}
@@ -22882,7 +22883,6 @@ packages:
 
   /redux@5.0.1:
     resolution: {integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==}
-    dev: false
 
   /reflect-metadata@0.1.14:
     resolution: {integrity: sha512-ZhYeb6nRaXCfhnndflDK8qI6ZQ/YcWZCISRAWICW9XYqMUwjZM9Z0DveWX/ABN01oxSHwVxKQmxeYZSsm0jh5A==}
