@@ -26,8 +26,8 @@
       "@/*": ["./src/*"],
       "@@/*": ["./src/.umi/*"],
       "@umijs/max": ["E:\\project\\my\\fast-framework\\node_modules\\umi"],
-      "@umijs/max/typings": ["./src/.umi/typings"],
-    },
+      "@umijs/max/typings": ["./src/.umi/typings"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": [
@@ -37,6 +37,6 @@
     "scripts",
     "src/.umi/*",
     "webpack",
-    "jest",
-  ],
+    "jest"
+  ]
 }

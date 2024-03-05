@@ -18,7 +18,7 @@
     "strict": true,
     "declaration": true,
     "declarationDir": "types",
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": true
   },
   "include": ["develop/**/*"],
   "exclude": [
@@ -28,6 +28,6 @@
     "scripts",
     "src/.umi/*",
     "webpack",
-    "jest",
-  ],
+    "jest"
+  ]
 }

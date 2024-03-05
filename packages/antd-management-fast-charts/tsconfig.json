@@ -22,8 +22,8 @@
     "emitDeclarationOnly": true,
     "paths": {
       "@/*": ["./example/*"],
-      "@@/*": ["./example/.umi/*"],
-    },
+      "@@/*": ["./example/.umi/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": [
@@ -33,6 +33,6 @@
     "scripts",
     "src/.umi/*",
     "webpack",
-    "jest",
-  ],
+    "jest"
+  ]
 }
