@@ -39,7 +39,6 @@ const commonPluginList = [
   'save',
   'searchreplace',
   'table',
-  'template',
   'visualblocks',
   'visualchars',
   'wordcount',
@@ -82,7 +81,7 @@ class TinymceWrapper extends PureComponent {
       },
       menubar: 'file edit view insert format tools table tc help',
       toolbar:
-        'undo redo bold italic underline strikethrough fontselect fontsizeselect formatselect alignleft aligncenter alignright alignjustify outdent indent numlist bullist forecolor backcolor  removeformat visualblocks visualchars table tabledelete tableprops tablerowprops tablecellprops tableinsertrowbefore tableinsertrowafter tabledeleterow tableinsertcolbefore tableinsertcolafter tabledeletecol searchreplace pagebreak nonbreaking charmap emoticons fullscreen  preview wordcount save insertdatetime insertfile image media template link anchor codesample code ltr rtl showcomments addcomment restoredraft help',
+        'undo redo bold italic underline strikethrough fontselect fontsizeselect formatselect alignleft aligncenter alignright alignjustify outdent indent numlist bullist forecolor backcolor  removeformat visualblocks visualchars table tabledelete tableprops tablerowprops tablecellprops tableinsertrowbefore tableinsertrowafter tabledeleterow tableinsertcolbefore tableinsertcolafter tabledeletecol searchreplace pagebreak nonbreaking charmap emoticons fullscreen  preview wordcount save insertdatetime insertfile image media link anchor codesample code ltr rtl showcomments addcomment restoredraft help',
       autosave_ask_before_unload: true,
       autosave_interval: '30s',
       autosave_prefix: '{path}{query}-{id}-',
@@ -94,27 +93,6 @@ class TinymceWrapper extends PureComponent {
       // 启用image_class_list 配置后,该值不能为空数组，否则将发生错误
       // image_class_list: ['image'],
       importcss_append: true,
-      templates: [
-        {
-          title: '新建表格',
-          description: 'creates a new table',
-          content:
-            '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>',
-        },
-        {
-          title: 'Starting my story',
-          description: 'A cure for writers block',
-          content: 'Once upon a time...',
-        },
-        {
-          title: '附带日期的清单',
-          description: '附带日期的清单',
-          content:
-            '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>',
-        },
-      ],
-      template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
-      template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
       image_caption: true,
       quickbars_selection_toolbar:
         'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
