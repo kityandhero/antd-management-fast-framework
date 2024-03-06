@@ -1853,10 +1853,14 @@ class Base extends AuthorizationWrapper {
               </Col>
             </Row>
           }
-          headStyle={{ borderBottom: '0px' }}
-          bodyStyle={{
-            paddingTop: '0',
-            paddingBottom: hasPagination ? 0 : 24,
+          styles={{
+            header: {
+              borderBottom: '0px',
+            },
+            body: {
+              paddingTop: '0',
+              paddingBottom: hasPagination ? 0 : 24,
+            },
           }}
           bordered={false}
           className={classNames(`${classPrefix}_containorTable`)}

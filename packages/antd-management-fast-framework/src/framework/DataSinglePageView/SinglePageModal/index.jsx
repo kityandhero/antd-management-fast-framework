@@ -380,8 +380,10 @@ class SinglePageModal extends SinglePage {
               <Card
                 bordered={false}
                 className={styles.containorSearch}
-                bodyStyle={{
-                  padding: 0,
+                styles={{
+                  body: {
+                    padding: 0,
+                  },
                 }}
               >
                 <div className={styles.tableListForm}>
@@ -414,19 +416,21 @@ class SinglePageModal extends SinglePage {
                 display: 'flex',
                 flexDirection: 'column',
               }}
-              headStyle={{
-                borderBottom: 0,
-                paddingLeft: 0,
-                paddingRight: 0,
-                flex: 0,
-              }}
-              bodyStyle={{
-                paddingTop: 0,
-                paddingBottom: 0,
-                paddingLeft: 0,
-                paddingRight: 0,
-                flex: 'auto',
-                overflow: 'hidden',
+              styles={{
+                header: {
+                  borderBottom: 0,
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  flex: 0,
+                },
+                body: {
+                  paddingTop: 0,
+                  paddingBottom: 0,
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  flex: 'auto',
+                  overflow: 'hidden',
+                },
               }}
               bordered={false}
               className={styles.containorTable}

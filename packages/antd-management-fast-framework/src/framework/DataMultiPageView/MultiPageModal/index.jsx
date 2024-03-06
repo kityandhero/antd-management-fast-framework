@@ -363,8 +363,10 @@ class MultiPageModal extends MultiPage {
               <Card
                 bordered={false}
                 className={styles.containorSearch}
-                bodyStyle={{
-                  padding: 0,
+                styles={{
+                  body: {
+                    padding: 0,
+                  },
                 }}
               >
                 <div className={styles.tableListForm}>
@@ -399,20 +401,22 @@ class MultiPageModal extends MultiPage {
                 display: 'flex',
                 flexDirection: 'column',
               }}
-              headStyle={{
-                borderBottom: 0,
-                paddingLeft: 0,
-                paddingRight: 0,
-                flex: 0,
-              }}
-              bodyStyle={{
-                paddingTop: 0,
-                paddingBottom: 0,
-                paddingLeft: 0,
-                paddingRight: 0,
-                flex: 'auto',
-                overflow: 'hidden',
-                // height: 'calc(100vh - 103px)',
+              styles={{
+                header: {
+                  borderBottom: 0,
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  flex: 0,
+                },
+                body: {
+                  paddingTop: 0,
+                  paddingBottom: 0,
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  flex: 'auto',
+                  overflow: 'hidden',
+                  // height: 'calc(100vh - 103px)',
+                },
               }}
               bordered={false}
               className={styles.containorTable}

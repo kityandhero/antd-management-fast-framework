@@ -38,7 +38,11 @@ class ToolBar extends PureComponent {
       <Card
         title={<IconInfo icon={iconBuilder.tool()} text={title || '工具栏'} />}
         bordered={false}
-        bodyStyle={{ padding: 0 }}
+        styles={{
+          body: {
+            padding: 0,
+          },
+        }}
         extra={
           <Space split={<Divider type="vertical" />}>
             {toolList.map((o) => {

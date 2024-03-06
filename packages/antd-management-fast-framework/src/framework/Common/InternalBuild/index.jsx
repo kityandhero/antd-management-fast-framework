@@ -550,17 +550,41 @@ class InternalBuild extends InternalSwitchoverFlow {
               }
             : {}),
         }}
-        headStyle={{
-          ...(imageVisible
-            ? {
-                paddingLeft: '64px',
-              }
-            : {}),
-          ...(flexVertical
-            ? {
-                flex: 'none',
-              }
-            : {}),
+        styles={{
+          header: {
+            ...(imageVisible
+              ? {
+                  paddingLeft: '64px',
+                }
+              : {}),
+            ...(flexVertical
+              ? {
+                  flex: 'none',
+                }
+              : {}),
+          },
+          body: {
+            ...(mode === cardConfig.wrapperType.model
+              ? {
+                  ...cardBodyStyle,
+                  ...cardTypeBodyStyle,
+                  paddingBottom: 0,
+                }
+              : {
+                  ...cardBodyStyle,
+                  ...cardTypeBodyStyle,
+                }),
+            ...(flexVertical
+              ? {
+                  flex: '1 1 auto',
+                }
+              : {}),
+            ...(cardContent == null &&
+            otherComponent == null &&
+            helpArea == null
+              ? { padding: '0' }
+              : {}),
+          },
         }}
         size={size || 'default'}
         bordered={bordered}
@@ -601,26 +625,6 @@ class InternalBuild extends InternalSwitchoverFlow {
             )
           ) : null
         }
-        bodyStyle={{
-          ...(mode === cardConfig.wrapperType.model
-            ? {
-                ...cardBodyStyle,
-                ...cardTypeBodyStyle,
-                paddingBottom: 0,
-              }
-            : {
-                ...cardBodyStyle,
-                ...cardTypeBodyStyle,
-              }),
-          ...(flexVertical
-            ? {
-                flex: '1 1 auto',
-              }
-            : {}),
-          ...(cardContent == null && otherComponent == null && helpArea == null
-            ? { padding: '0' }
-            : {}),
-        }}
       >
         {cardContent == null &&
         otherComponent == null &&

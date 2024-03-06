@@ -127,7 +127,7 @@ export function buildActionItems() {
             },
           })}
           placeholder="搜索方案"
-          bordered={false}
+          variant="borderless"
         />
       );
     },
@@ -161,7 +161,7 @@ export function buildSiderMenuExtra() {
             },
           })}
           placeholder="搜索方案"
-          bordered={false}
+          variant="borderless"
         />
 
         {iconBuilder.search({

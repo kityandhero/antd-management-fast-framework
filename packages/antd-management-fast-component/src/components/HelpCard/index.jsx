@@ -19,8 +19,8 @@ class HelpCard extends PureComponent {
                 borderRight: '0',
               }
         }
-        bodyStyle={
-          compact
+        styles={{
+          body: compact
             ? {
                 paddingTop: '0',
                 paddingBottom: '0',
@@ -28,8 +28,8 @@ class HelpCard extends PureComponent {
             : {
                 paddingTop: '12px',
                 paddingBottom: '12px',
-              }
-        }
+              },
+        }}
       >
         <HelpBox {...helpBoxProps} />
       </Card>
