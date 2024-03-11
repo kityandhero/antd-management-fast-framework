@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-config",
-  "version": "1.1.64",
+  "version": "1.1.65",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -63,16 +63,16 @@
     "@commitlint/config-pnpm-scopes": "^19.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.24",
+    "@types/node": "^20.11.25",
     "@typescript-eslint/parser": "^7.1.1",
-    "@umijs/max": "^4.1.2",
+    "@umijs/max": "^4.1.4",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^7.0.2",
     "cross-env": "^7.0.3",
     "cz-git": "^1.9.0",
     "documentation": "^14.0.3",
-    "easy-soft-develop": "^2.1.68",
+    "easy-soft-develop": "^2.1.69",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -105,6 +105,6 @@
     "stylelint-config-standard": "^36.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
     "stylelint-order": "^6.0.4",
-    "umi": "^4.1.2"
+    "umi": "^4.1.4"
   }
 }

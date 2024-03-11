@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-flow",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "keywords": [
     "antd-management-fast-flow"
   ],
@@ -57,11 +57,11 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "antd": "^5.15.0",
-    "antd-management-fast-common": "^2.6.85",
-    "antd-management-fast-component": "^2.6.131",
+    "antd": "^5.15.2",
+    "antd-management-fast-common": "^2.6.86",
+    "antd-management-fast-component": "^2.6.133",
     "classnames": "^2.5.1",
-    "easy-soft-utility": "^2.8.13",
+    "easy-soft-utility": "^2.8.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reactflow": "^11.10.4"
@@ -82,18 +82,18 @@
     "@commitlint/config-pnpm-scopes": "^19.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.62",
-    "@types/react-dom": "^18.2.19",
+    "@types/node": "^20.11.25",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
     "@typescript-eslint/parser": "^7.1.1",
-    "antd": "^5.15.0",
+    "antd": "^5.15.2",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^7.0.2",
     "cross-env": "^7.0.3",
     "cz-git": "^1.9.0",
     "documentation": "^14.0.3",
-    "easy-soft-develop": "^2.1.68",
+    "easy-soft-develop": "^2.1.69",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
