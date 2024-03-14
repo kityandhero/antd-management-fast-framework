@@ -4,6 +4,7 @@ import {
   getCurrentOperatorCache,
   getToken,
   handleSimulationAuthorizeExtra,
+  logWarn,
 } from 'easy-soft-utility';
 
 import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
@@ -29,10 +30,23 @@ class AuthorizationWrapper extends SupplementWrapper {
   };
 
   checkAuthorization = () => {
-    return checkStringIsNullOrWhiteSpace(this.componentAuthority) ||
+    const checkResult =
+      checkStringIsNullOrWhiteSpace(this.componentAuthority) ||
       checkHasAuthority(this.componentAuthority)
-      ? true
-      : false;
+        ? true
+        : false;
+
+    if (!checkResult) {
+      logWarn(
+        {
+          componentName: this.componentName,
+          componentAuthority: this.componentAuthority,
+        },
+        'check authorization fail on this.checkAuthorization()',
+      );
+    }
+
+    return checkResult;
   };
 
   getCurrentOperator = () => {
