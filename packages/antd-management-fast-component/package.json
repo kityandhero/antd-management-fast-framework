@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-component",
-  "version": "2.6.134",
+  "version": "2.6.135",
   "description": "antd-management-fast-component",
   "keywords": [
     "antd-management-fast-component"
@@ -58,21 +58,21 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.3.1",
+    "@ant-design/icons": "^5.3.2",
     "@ant-design/pro-layout": "^7.17.19",
     "@tanem/react-nprogress": "^5.0.51",
     "@tinymce/tinymce-react": "^4.3.2",
     "@umijs/max": "^4.1.4",
     "antd": "^5.15.2",
-    "antd-management-fast-common": "^2.6.87",
+    "antd-management-fast-common": "^2.6.88",
     "array-move": "^4.0.0",
     "axios": "^1.6.7",
     "bizcharts": "^4.1.23",
     "classnames": "^2.5.1",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.10",
-    "easy-soft-dva": "^3.10.15",
-    "easy-soft-utility": "^2.8.16",
+    "easy-soft-dva": "^3.10.18",
+    "easy-soft-utility": "^2.8.20",
     "html-react-parser": "^5.1.8",
     "lodash.debounce": "^4.0.8",
     "numeral": "^2.0.6",
@@ -105,7 +105,7 @@
     "@babel/preset-react": "^7.23.3",
     "@babel/runtime": "^7.24.0",
     "@changesets/cli": "^2.27.1",
-    "@commitlint/cli": "^19.1.0",
+    "@commitlint/cli": "^19.2.0",
     "@commitlint/config-conventional": "^19.1.0",
     "@commitlint/config-pnpm-scopes": "^19.1.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",

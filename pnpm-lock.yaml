@@ -45,8 +45,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -252,8 +252,8 @@ importers:
   packages/antd-management-fast-charts:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.3.1
-        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.2
+        version: 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-layout':
         specifier: ^7.17.19
         version: 7.17.19(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
@@ -270,10 +270,10 @@ importers:
         specifier: ^5.15.2
         version: 5.15.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.86
+        specifier: ^2.6.87
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.133
+        specifier: ^2.6.134
         version: link:../antd-management-fast-component
       array-move:
         specifier: ^4.0.0
@@ -294,11 +294,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.15
-        version: 3.10.15(@types/react@18.2.66)(redux@4.2.1)
+        specifier: ^3.10.18
+        version: 3.10.18(@types/react@18.2.66)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       html-react-parser:
         specifier: ^5.1.8
         version: 5.1.8(@types/react@18.2.66)(react@18.2.0)
@@ -391,8 +391,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -613,8 +613,8 @@ importers:
   packages/antd-management-fast-common:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.3.1
-        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.2
+        version: 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-layout':
         specifier: ^7.17.19
         version: 7.17.19(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
@@ -631,7 +631,7 @@ importers:
         specifier: ^5.15.2
         version: 5.15.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.86
+        specifier: ^2.6.87
         version: 'link:'
       array-move:
         specifier: ^4.0.0
@@ -652,11 +652,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.15
-        version: 3.10.15(@types/react@18.2.66)(redux@4.2.1)
+        specifier: ^3.10.18
+        version: 3.10.18(@types/react@18.2.66)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       html-react-parser:
         specifier: ^5.1.8
         version: 5.1.8(@types/react@18.2.66)(react@18.2.0)
@@ -749,8 +749,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -971,8 +971,8 @@ importers:
   packages/antd-management-fast-component:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.3.1
-        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.2
+        version: 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-layout':
         specifier: ^7.17.19
         version: 7.17.19(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
@@ -989,7 +989,7 @@ importers:
         specifier: ^5.15.2
         version: 5.15.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.86
+        specifier: ^2.6.87
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -1010,11 +1010,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.15
-        version: 3.10.15(@types/react@18.2.66)(redux@4.2.1)
+        specifier: ^3.10.18
+        version: 3.10.18(@types/react@18.2.66)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       html-react-parser:
         specifier: ^5.1.8
         version: 5.1.8(@types/react@18.2.66)(react@18.2.0)
@@ -1107,8 +1107,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -1365,8 +1365,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -1512,8 +1512,8 @@ importers:
   packages/antd-management-fast-design-playground:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.3.1
-        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.2
+        version: 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@babel/parser':
         specifier: ^7.24.0
         version: 7.24.0
@@ -1554,16 +1554,16 @@ importers:
         specifier: ^4.6.0
         version: 4.6.0(monaco-editor@0.47.0)(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.86
+        specifier: ^2.6.87
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.133
+        specifier: ^2.6.134
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
-        specifier: ^1.0.58
+        specifier: ^1.0.59
         version: link:../antd-management-fast-design-react
       antd-management-fast-formily:
-        specifier: ^1.0.59
+        specifier: ^1.0.60
         version: link:../antd-management-fast-formily
       classnames:
         specifier: ^2.5.1
@@ -1575,11 +1575,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.15
-        version: 3.10.15(@types/react@18.2.66)(redux@4.2.1)
+        specifier: ^3.10.18
+        version: 3.10.18(@types/react@18.2.66)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       monaco-editor:
         specifier: ^0.47.0
         version: 0.47.0
@@ -1627,8 +1627,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -1777,8 +1777,8 @@ importers:
   packages/antd-management-fast-design-react:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.3.1
-        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.2
+        version: 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@babel/parser':
         specifier: ^7.24.0
         version: 7.24.0
@@ -1828,8 +1828,8 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       monaco-editor:
         specifier: ^0.47.0
         version: 0.47.0
@@ -1874,8 +1874,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -2076,8 +2076,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -2217,17 +2217,17 @@ importers:
         specifier: ^5.15.2
         version: 5.15.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.86
+        specifier: ^2.6.87
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.133
+        specifier: ^2.6.134
         version: link:../antd-management-fast-component
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2269,8 +2269,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -2410,8 +2410,8 @@ importers:
   packages/antd-management-fast-formily:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.3.1
-        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.2
+        version: 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@designable/core':
         specifier: ^1.0.0-beta.45
         version: 1.0.0-beta.45(@formily/json-schema@2.3.1)(@formily/path@2.3.1)(@formily/reactive@2.3.1)
@@ -2440,23 +2440,23 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1
       antd-management-fast-common:
-        specifier: ^2.6.86
+        specifier: ^2.6.87
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.133
+        specifier: ^2.6.134
         version: link:../antd-management-fast-component
       antd-management-fast-design-react:
-        specifier: ^1.0.58
+        specifier: ^1.0.59
         version: link:../antd-management-fast-design-react
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
       easy-soft-dva:
-        specifier: ^3.10.15
-        version: 3.10.15(@types/react@18.2.66)(redux@4.2.1)
+        specifier: ^3.10.18
+        version: 3.10.18(@types/react@18.2.66)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2495,8 +2495,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -2639,8 +2639,8 @@ importers:
   packages/antd-management-fast-framework:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.3.1
-        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.2
+        version: 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-components':
         specifier: ^2.6.49
         version: 2.6.49(antd@5.15.2)(rc-field-form@1.43.0)(react-dom@18.2.0)(react@18.2.0)
@@ -2657,10 +2657,10 @@ importers:
         specifier: ^5.15.2
         version: 5.15.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.86
+        specifier: ^2.6.87
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.133
+        specifier: ^2.6.134
         version: link:../antd-management-fast-component
       axios:
         specifier: ^1.6.7
@@ -2672,11 +2672,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.15
-        version: 3.10.15(@types/react@18.2.66)(redux@4.2.1)
+        specifier: ^3.10.18
+        version: 3.10.18(@types/react@18.2.66)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       html-react-parser:
         specifier: ^5.1.8
         version: 5.1.8(@types/react@18.2.66)(react@18.2.0)
@@ -2742,8 +2742,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -2961,8 +2961,8 @@ importers:
   packages/example-antd-management-fast-framework:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.3.1
-        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.2
+        version: 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-components':
         specifier: ^2.6.49
         version: 2.6.49(antd@5.15.2)(rc-field-form@1.43.0)(react-dom@18.2.0)(react@18.2.0)
@@ -2991,25 +2991,25 @@ importers:
         specifier: ^5.15.2
         version: 5.15.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.86
+        specifier: ^2.6.87
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.133
+        specifier: ^2.6.134
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.94
+        specifier: ^1.0.95
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
-        specifier: ^1.0.58
+        specifier: ^1.0.59
         version: link:../antd-management-fast-design-react
       antd-management-fast-flow:
-        specifier: ^1.0.48
+        specifier: ^1.0.49
         version: link:../antd-management-fast-flow
       antd-management-fast-formily:
-        specifier: ^1.0.59
+        specifier: ^1.0.60
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.149
+        specifier: ^2.11.150
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.6.7
@@ -3021,11 +3021,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.15
-        version: 3.10.15(@types/react@18.2.66)(redux@4.2.1)
+        specifier: ^3.10.18
+        version: 3.10.18(@types/react@18.2.66)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       rc-util:
         specifier: ^5.39.1
         version: 5.39.1(react-dom@18.2.0)(react@18.2.0)
@@ -3076,8 +3076,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -3115,10 +3115,10 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0(eslint@8.57.0)(typescript@5.4.2)
       antd-management-fast-config:
-        specifier: ^1.1.65
+        specifier: ^1.1.66
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.1.69
+        specifier: ^1.1.70
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.7.0
@@ -3142,8 +3142,8 @@ importers:
         specifier: ^2.1.70
         version: 2.1.70
       easy-soft-develop-dva-assist:
-        specifier: ^1.0.41
-        version: 1.0.41
+        specifier: ^1.0.42
+        version: 1.0.42
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -3247,8 +3247,8 @@ importers:
         specifier: ^1.4.1
         version: 1.4.1(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/icons':
-        specifier: ^5.3.1
-        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.2
+        version: 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-components':
         specifier: ^2.6.49
         version: 2.6.49(antd@5.15.2)(rc-field-form@1.43.0)(react-dom@18.2.0)(react@18.2.0)
@@ -3280,25 +3280,25 @@ importers:
         specifier: ^5.15.2
         version: 5.15.2(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.86
+        specifier: ^2.6.87
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.133
+        specifier: ^2.6.134
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
-        specifier: ^1.0.94
+        specifier: ^1.0.95
         version: link:../antd-management-fast-design-playground
       antd-management-fast-design-react:
-        specifier: ^1.0.58
+        specifier: ^1.0.59
         version: link:../antd-management-fast-design-react
       antd-management-fast-flow:
-        specifier: ^1.0.48
+        specifier: ^1.0.49
         version: link:../antd-management-fast-flow
       antd-management-fast-formily:
-        specifier: ^1.0.59
+        specifier: ^1.0.60
         version: link:../antd-management-fast-formily
       antd-management-fast-framework:
-        specifier: ^2.11.149
+        specifier: ^2.11.150
         version: link:../antd-management-fast-framework
       axios:
         specifier: ^1.6.7
@@ -3310,11 +3310,11 @@ importers:
         specifier: ^1.11.10
         version: 1.11.10
       easy-soft-dva:
-        specifier: ^3.10.15
-        version: 3.10.15(@types/react@18.2.66)(redux@4.2.1)
+        specifier: ^3.10.18
+        version: 3.10.18(@types/react@18.2.66)(redux@4.2.1)
       easy-soft-utility:
-        specifier: ^2.8.16
-        version: 2.8.16
+        specifier: ^2.8.20
+        version: 2.8.20
       rc-util:
         specifier: ^5.39.1
         version: 5.39.1(react-dom@18.2.0)(react@18.2.0)
@@ -3368,8 +3368,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@commitlint/cli':
-        specifier: ^19.1.0
-        version: 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
       '@commitlint/config-conventional':
         specifier: ^19.1.0
         version: 19.1.0
@@ -3407,10 +3407,10 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0(eslint@8.57.0)(typescript@5.4.2)
       antd-management-fast-config:
-        specifier: ^1.1.65
+        specifier: ^1.1.66
         version: link:../antd-management-fast-config
       antd-management-fast-develop:
-        specifier: ^1.1.69
+        specifier: ^1.1.70
         version: link:../antd-management-fast-develop
       babel-jest:
         specifier: ^29.7.0
@@ -3434,8 +3434,8 @@ importers:
         specifier: ^2.1.70
         version: 2.1.70
       easy-soft-develop-dva-assist:
-        specifier: ^1.0.41
-        version: 1.0.41
+        specifier: ^1.0.42
+        version: 1.0.42
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -3629,8 +3629,8 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  /@ant-design/icons@5.3.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-85zROTJCCApQn0Ee6L9561+Vd7yVKtSWNm2TpmOsYMrumchbzaRK83x1WWHv2VG+Y1ZAaKkDwcnnSPS/eSwNHA==}
+  /@ant-design/icons@5.3.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-+07UzOrzMJGl62K1nMiS2IpJu7uRIlO05fHVZidhkiE10szJofKrBymAEYhDMsKaRKfpbgbGgpAnb3T4uFzwVw==}
     engines: {node: '>=8'}
     peerDependencies:
       react: '>=16.0.0'
@@ -3653,7 +3653,7 @@ packages:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-utils': 2.15.4(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.24.0
@@ -3672,7 +3672,7 @@ packages:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-utils': 2.15.4(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.24.0
@@ -3784,7 +3784,7 @@ packages:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-utils': 2.15.4(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.24.0
@@ -3806,7 +3806,7 @@ packages:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-utils': 2.15.4(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.24.0
@@ -3835,7 +3835,7 @@ packages:
       '@types/lodash.merge':
         optional: true
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-field': 2.14.6(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-utils': 2.15.4(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
@@ -3865,7 +3865,7 @@ packages:
       '@types/lodash.merge':
         optional: true
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-field': 2.14.6(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-utils': 2.15.4(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
@@ -3891,7 +3891,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-utils': 2.15.4(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.24.0
@@ -3916,7 +3916,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-utils': 2.15.4(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.24.0
@@ -3942,7 +3942,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-card': 2.5.29(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-field': 2.14.6(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-table': 3.14.2(antd@4.24.15)(rc-field-form@1.43.0)(react-dom@18.2.0)(react@18.2.0)
@@ -3966,7 +3966,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-card': 2.5.29(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-field': 2.14.6(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-table': 3.14.2(antd@5.15.2)(rc-field-form@1.43.0)(react-dom@18.2.0)(react@18.2.0)
@@ -4050,7 +4050,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-card': 2.5.29(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-field': 2.14.6(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-form': 2.24.4(antd@4.24.15)(rc-field-form@1.43.0)(react-dom@18.2.0)(react@18.2.0)
@@ -4082,7 +4082,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-card': 2.5.29(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-field': 2.14.6(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-form': 2.24.4(antd@5.15.2)(rc-field-form@1.43.0)(react-dom@18.2.0)(react@18.2.0)
@@ -4114,7 +4114,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@4.24.15)(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.24.0
       antd: 4.24.15(react-dom@18.2.0)(react@18.2.0)
@@ -4134,7 +4134,7 @@ packages:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
     dependencies:
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider': 2.13.5(antd@5.15.2)(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.24.0
       antd: 5.15.2(react-dom@18.2.0)(react@18.2.0)
@@ -4247,8 +4247,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@antv/g-canvas@0.5.16:
-    resolution: {integrity: sha512-G55GbnGAunWDItLRaD0JrTB0uUg44bDxymefTlKFKcM6mmtJ8oJ4LtOZMe/ggtmQ+f0XG6ed5kT/nJOokhvd5g==}
+  /@antv/g-canvas@0.5.17:
+    resolution: {integrity: sha512-sXYJMWTOlb/Ycb6sTKu00LcJqInXJY4t99+kSM40u2OfqrXYmaXDjHR7D2V0roMkbK/QWiWS9UnEidCR1VtMOA==}
     dependencies:
       '@antv/g-base': 0.5.16
       '@antv/g-math': 0.1.9
@@ -4358,7 +4358,7 @@ packages:
       '@antv/dom-util': 2.0.4
       '@antv/event-emitter': 0.1.3
       '@antv/g-base': 0.5.16
-      '@antv/g-canvas': 0.5.16
+      '@antv/g-canvas': 0.5.17
       '@antv/g-svg': 0.5.7
       '@antv/matrix-util': 3.1.0-beta.3
       '@antv/path-util': 2.0.15
@@ -4415,7 +4415,7 @@ packages:
       '@antv/dom-util': 2.0.4
       '@antv/event-emitter': 0.1.3
       '@antv/g-base': 0.5.16
-      '@antv/g-canvas': 0.5.16
+      '@antv/g-canvas': 0.5.17
       '@antv/g-math': 0.1.9
       '@antv/g-svg': 0.5.7
       '@antv/g6-core': 0.8.24
@@ -4443,7 +4443,7 @@ packages:
     dependencies:
       '@antv/dom-util': 2.0.4
       '@antv/g-base': 0.5.16
-      '@antv/g-canvas': 0.5.16
+      '@antv/g-canvas': 0.5.17
       '@antv/g-svg': 0.5.7
       '@antv/g6': 4.8.24
       '@antv/g6-core': 0.8.24
@@ -6158,15 +6158,15 @@ packages:
     dev: true
     optional: true
 
-  /@commitlint/cli@19.1.0(@types/node@20.11.27)(typescript@5.4.2):
-    resolution: {integrity: sha512-SYGm8HGbVzrlSYeB6oo6pG1Ec6bOMJcDsXgNGa4vgZQsPj6nJkcbTWlIRmtmIk0tHi0d5sCljGuQ+g/0NCPv7w==}
+  /@commitlint/cli@19.2.0(@types/node@20.11.27)(typescript@5.4.2):
+    resolution: {integrity: sha512-8XnQDMyQR+1/ldbmIyhonvnDS2enEw48Wompo/967fsEvy9Vj5/JbDutzmSBKxANWDVeEbR9QQm0yHpw6ArrFw==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
       '@commitlint/format': 19.0.3
       '@commitlint/lint': 19.1.0
-      '@commitlint/load': 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
-      '@commitlint/read': 19.0.3
+      '@commitlint/load': 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
+      '@commitlint/read': 19.2.0
       '@commitlint/types': 19.0.3
       execa: 8.0.1
       yargs: 17.7.2
@@ -6243,8 +6243,8 @@ packages:
       '@commitlint/types': 19.0.3
     dev: true
 
-  /@commitlint/load@19.1.0(@types/node@20.11.27)(typescript@5.4.2):
-    resolution: {integrity: sha512-rWqnvNDpeshX8JfUC/qjpDkQB78qF+4uHcJmIRJMwvlj6zWce08SP/TPKN3GlNKgXhAawwcAPxXL9qOTTdiOBA==}
+  /@commitlint/load@19.2.0(@types/node@20.11.27)(typescript@5.4.2):
+    resolution: {integrity: sha512-XvxxLJTKqZojCxaBQ7u92qQLFMMZc4+p9qrIq/9kJDy8DOrEa7P1yx7Tjdc2u2JxIalqT4KOGraVgCE7eCYJyQ==}
     engines: {node: '>=v18'}
     dependencies:
       '@commitlint/config-validator': 19.0.3
@@ -6252,8 +6252,8 @@ packages:
       '@commitlint/resolve-extends': 19.1.0
       '@commitlint/types': 19.0.3
       chalk: 5.3.0
-      cosmiconfig: 8.3.6(typescript@5.4.2)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.11.27)(cosmiconfig@8.3.6)(typescript@5.4.2)
+      cosmiconfig: 9.0.0(typescript@5.4.2)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.11.27)(cosmiconfig@9.0.0)(typescript@5.4.2)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -6276,12 +6276,13 @@ packages:
       conventional-commits-parser: 5.0.0
     dev: true
 
-  /@commitlint/read@19.0.3:
-    resolution: {integrity: sha512-b5AflTyAXkUx5qKw4TkjjcOccXZHql3JqMi522knTQktq2AubKXFz60Sws+K4FsefwPws6fGz9mqiI/NvsvxFA==}
+  /@commitlint/read@19.2.0:
+    resolution: {integrity: sha512-HlGeEd/jyp2a5Fb9mvtsaDm5hFCmj80dJYjLQkpG3DzWneWBc37YU3kM8Za1D1HUazZaTkdsWq73M3XDE4CvCA==}
     engines: {node: '>=v18'}
     dependencies:
       '@commitlint/top-level': 19.0.0
       '@commitlint/types': 19.0.3
+      execa: 8.0.1
       git-raw-commits: 4.0.0
       minimist: 1.2.8
     dev: true
@@ -7150,7 +7151,7 @@ packages:
       react-is: '>=16.8.0 || >=17.0.0'
     dependencies:
       '@ant-design/cssinjs': 1.18.4(react-dom@18.2.0)(react@18.2.0)
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@dnd-kit/core': 6.1.0(react-dom@18.2.0)(react@18.2.0)
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0)(react@18.2.0)
       '@formily/core': 2.3.1
@@ -10890,7 +10891,7 @@ packages:
     dependencies:
       '@ant-design/colors': 7.0.2
       '@ant-design/cssinjs': 1.18.4(react-dom@18.2.0)(react@18.2.0)
-      '@ant-design/icons': 5.3.1(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.2(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/react-slick': 1.0.2(react@18.2.0)
       '@babel/runtime': 7.24.0
       '@ctrl/tinycolor': 3.6.1
@@ -11194,7 +11195,7 @@ packages:
   /axios@0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
     dependencies:
-      follow-redirects: 1.15.5
+      follow-redirects: 1.15.6
       form-data: 4.0.0
     transitivePeerDependencies:
       - debug
@@ -11202,7 +11203,7 @@ packages:
   /axios@1.6.7:
     resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
     dependencies:
-      follow-redirects: 1.15.5
+      follow-redirects: 1.15.6
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -11394,8 +11395,8 @@ packages:
   /big.js@5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
 
-  /binary-extensions@2.2.0:
-    resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
+  /binary-extensions@2.3.0:
+    resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
 
   /bizcharts@4.1.23(@babel/core@7.24.0)(react@18.2.0):
@@ -11546,7 +11547,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001597
-      electron-to-chromium: 1.4.705
+      electron-to-chromium: 1.4.707
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
 
@@ -12335,7 +12336,7 @@ packages:
       object-assign: 4.1.1
       vary: 1.1.2
 
-  /cosmiconfig-typescript-loader@5.0.0(@types/node@20.11.27)(cosmiconfig@8.3.6)(typescript@5.4.2):
+  /cosmiconfig-typescript-loader@5.0.0(@types/node@20.11.27)(cosmiconfig@9.0.0)(typescript@5.4.2):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
     peerDependencies:
@@ -12344,7 +12345,7 @@ packages:
       typescript: '>=4'
     dependencies:
       '@types/node': 20.11.27
-      cosmiconfig: 8.3.6(typescript@5.4.2)
+      cosmiconfig: 9.0.0(typescript@5.4.2)
       jiti: 1.21.0
       typescript: 5.4.2
     dev: true
@@ -12798,7 +12799,7 @@ packages:
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 19.1.0(@types/node@20.11.27)(typescript@5.4.2)
+      '@commitlint/load': 19.2.0(@types/node@20.11.27)(typescript@5.4.2)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -13568,8 +13569,8 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  /easy-soft-develop-dva-assist@1.0.41:
-    resolution: {integrity: sha512-kzGxeaUbiwD8ROWXiH1qTtP+BaeT6xbY74JSRny5nevapzQRYdxAjTH0ePdQbuoRdW0ChnUv5iwqKCEIZvMMjQ==}
+  /easy-soft-develop-dva-assist@1.0.42:
+    resolution: {integrity: sha512-9IIw2EOsttthlFe/LL56Sfeq4wkF6mj4pyGC23H/S8xNa5KMTXZtf602e4eWrWMMl1XxSytU9iqclhz/0ZOO0Q==}
     hasBin: true
     dependencies:
       commander: 12.0.0
@@ -13592,14 +13593,14 @@ packages:
       terminal-kit: 3.1.1
     dev: true
 
-  /easy-soft-dva@3.10.15(@types/react@18.2.66)(redux@4.2.1):
-    resolution: {integrity: sha512-wBd0pwf9D/JWplqP73KF3OzuX0sJRYKap/JJBfBB0lgE7J+vhsqeh9Q00v23l5ebNg2AU6FO8hYpDvvPNxOJzw==}
+  /easy-soft-dva@3.10.18(@types/react@18.2.66)(redux@4.2.1):
+    resolution: {integrity: sha512-fQ5uLJxuHEvM3rwL4drE8SOQ/RJgUygXLcb7qf0IkhftcJvG8kqdChsXx0yP/2Y9EySMcLPjxnmblO7XXSy0sg==}
     peerDependencies:
       redux: 4.x
     dependencies:
       '@babel/runtime': 7.24.0
       '@reduxjs/toolkit': 2.2.1(react-redux@9.1.0)(react@18.2.0)
-      easy-soft-utility: 2.8.16
+      easy-soft-utility: 2.8.20
       flatten: 1.0.3
       global: 4.4.0
       invariant: 2.2.4
@@ -13615,8 +13616,8 @@ packages:
       - react-native
     dev: false
 
-  /easy-soft-utility@2.8.16:
-    resolution: {integrity: sha512-j9AunUMEe8tqEJZb+OR6Dcb2tczu6bRK+OoSNUdFhOyf2Dr5zStERq0vZsk+E4uF1qcxRK5t8xvuJXWGN3LiPQ==}
+  /easy-soft-utility@2.8.20:
+    resolution: {integrity: sha512-3SuhLUCNJiCg5jeD9ULIEmbaaHD/mHXwrNNwlikGybV52qvCw34xA9RuddbmnWRj89RP7QNwOmJNyDXi+8iA3A==}
     dependencies:
       dayjs: 1.11.10
       js-base64: 3.7.7
@@ -13635,8 +13636,8 @@ packages:
     dependencies:
       jake: 10.8.7
 
-  /electron-to-chromium@1.4.705:
-    resolution: {integrity: sha512-LKqhpwJCLhYId2VVwEzFXWrqQI5n5zBppz1W9ehhTlfYU8CUUW6kClbN8LHF/v7flMgRdETS772nqywJ+ckVAw==}
+  /electron-to-chromium@1.4.707:
+    resolution: {integrity: sha512-qRq74Mo7ChePOU6GHdfAJ0NREXU8vQTlVlfWz3wNygFay6xrd/fY2J7oGHwrhFeU30OVctGLdTh/FcnokTWpng==}
 
   /elliptic@6.5.5:
     resolution: {integrity: sha512-7EjbcmUm17NQFu4Pmgmq2olYMj8nwMnpcddByChSUjArp8F5DQWcIcpriwO4ZToLNAJig0yiyjswfyGNje/ixw==}
@@ -15029,8 +15030,8 @@ packages:
       uglify-js: 2.8.29
     dev: false
 
-  /follow-redirects@1.15.5:
-    resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
+  /follow-redirects@1.15.6:
+    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -16344,7 +16345,7 @@ packages:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
     engines: {node: '>=8'}
     dependencies:
-      binary-extensions: 2.2.0
+      binary-extensions: 2.3.0
 
   /is-boolean-object@1.1.2:
     resolution: {integrity: sha512-gDYaKHJmnj4aWxyj6YHyXVpdQawtVLHU5cb+eztPGczf6cjuTdwve5ZIEfgXqH4e57An1D1AKf8CZ3kYrQRqYA==}

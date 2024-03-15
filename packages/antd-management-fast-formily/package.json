@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-formily",
-  "version": "1.0.60",
+  "version": "1.0.61",
   "keywords": [
     "antd-management-fast-formily"
   ],
@@ -57,7 +57,7 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.3.1",
+    "@ant-design/icons": "^5.3.2",
     "@designable/core": "^1.0.0-beta.45",
     "@designable/shared": "^1.0.0-beta.45",
     "@formily/antd-v5": "^1.1.9",
@@ -67,12 +67,12 @@
     "@formily/reactive": "^2.3.1",
     "@formily/reactive-react": "^2.3.1",
     "@formily/shared": "^2.3.1",
-    "antd-management-fast-common": "^2.6.87",
-    "antd-management-fast-component": "^2.6.134",
-    "antd-management-fast-design-react": "^1.0.59",
+    "antd-management-fast-common": "^2.6.88",
+    "antd-management-fast-component": "^2.6.135",
+    "antd-management-fast-design-react": "^1.0.60",
     "classnames": "^2.5.1",
-    "easy-soft-dva": "^3.10.15",
-    "easy-soft-utility": "^2.8.16",
+    "easy-soft-dva": "^3.10.18",
+    "easy-soft-utility": "^2.8.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -87,7 +87,7 @@
     "@babel/preset-react": "^7.23.3",
     "@babel/runtime": "^7.24.0",
     "@changesets/cli": "^2.27.1",
-    "@commitlint/cli": "^19.1.0",
+    "@commitlint/cli": "^19.2.0",
     "@commitlint/config-conventional": "^19.1.0",
     "@commitlint/config-pnpm-scopes": "^19.1.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
