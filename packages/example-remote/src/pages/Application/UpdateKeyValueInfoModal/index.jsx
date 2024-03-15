@@ -123,7 +123,11 @@ class UpdateKeyValueInfoModal extends BaseUpdateModal {
                 return null;
               }
 
-              return createDayJsDatetime(v, 'YYYY-MM-DD HH:mm');
+              return createDayJsDatetime({
+                datetime: v,
+                format: 'YYYY-MM-DD HH:mm',
+                convertEmptyDatetimeToNull: true,
+              });
             },
           });
 

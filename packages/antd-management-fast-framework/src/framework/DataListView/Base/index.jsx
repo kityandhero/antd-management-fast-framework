@@ -763,12 +763,22 @@ class Base extends AuthorizationWrapper {
 
     if ((startTime || null) != null) {
       valueList.push(
-        createDayJsDatetime(startTime, datetimeFormat.yearMonthDay),
+        createDayJsDatetime({
+          datetime: startTime,
+          format: datetimeFormat.yearMonthDay,
+          convertEmptyDatetimeToNull: true,
+        }),
       );
     }
 
     if ((endTime || null) != null) {
-      valueList.push(createDayJsDatetime(endTime, datetimeFormat.yearMonthDay));
+      valueList.push(
+        createDayJsDatetime({
+          datetime: endTime,
+          format: datetimeFormat.yearMonthDay,
+          convertEmptyDatetimeToNull: true,
+        }),
+      );
     }
 
     const p = {
