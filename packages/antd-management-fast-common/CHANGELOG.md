@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.6.89
+
+### Patch Changes
+
+- yodate
+- Updated dependencies
+  - antd-management-fast-common@2.6.89
+
 ## 2.6.88
 
 ### Patch Changes

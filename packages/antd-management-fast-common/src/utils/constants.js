@@ -176,6 +176,16 @@ export const columnPlaceholder = {
   render: () => '--',
 };
 
+export const columnSerialNumber = {
+  placeholder: true,
+  title: 'No.',
+  dataIndex: null,
+  align: 'center',
+  render: (value, record, index) => {
+    return index + 1;
+  },
+};
+
 export const contentConfig = {
   wrapperType: {
     page: 'page',

@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-common",
-  "version": "2.6.88",
+  "version": "2.6.89",
   "description": "antd-management-fast-common",
   "keywords": [
     "antd-management-fast-common"
@@ -64,7 +64,7 @@
     "@tinymce/tinymce-react": "^4.3.2",
     "@umijs/max": "^4.1.4",
     "antd": "^5.15.2",
-    "antd-management-fast-common": "^2.6.88",
+    "antd-management-fast-common": "^2.6.89",
     "array-move": "^4.0.0",
     "axios": "^1.6.7",
     "bizcharts": "^4.1.23",
