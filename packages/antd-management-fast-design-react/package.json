@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-react",
-  "version": "1.0.60",
+  "version": "1.0.61",
   "keywords": [
     "antd-management-fast-design-react"
   ],
@@ -74,7 +74,7 @@
     "classnames": "^2.5.1",
     "dateformat": "^5.0.3",
     "dayjs": "^1.11.10",
-    "easy-soft-utility": "^2.8.20",
+    "easy-soft-utility": "^2.8.21",
     "monaco-editor": "^0.47.0",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
