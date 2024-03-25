@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { analysisRoute } from 'antd-management-fast-common';
+import { analysisRoute, setRouteCollection } from 'antd-management-fast-common';
 import {
   ApplicationWrapper,
   mergeLayoutSetting,
@@ -22,7 +22,38 @@ export async function getInitialState() {
   return { name: '@umijs/max' };
 }
 
-export function rootContainer(container) {
+export function rootContainer(container, o) {
+  const { routes } = { routes: {}, ...o };
+
+  let routeCollection = {};
+
+  for (const o of Object.entries(routes)) {
+    const [k, v] = o;
+
+    const { id, name, parentId, path, redirect, authority, access } = {
+      id: '',
+      name: '',
+      access: '',
+      parentId: '',
+      path: '',
+      redirect: '',
+      authority: [],
+      ...v,
+    };
+
+    routeCollection[k] = {
+      id,
+      name,
+      parentId,
+      path,
+      redirect,
+      access,
+      authority,
+    };
+  }
+
+  setRouteCollection(routeCollection);
+
   return React.createElement(ApplicationWrapper, null, container);
 }
 

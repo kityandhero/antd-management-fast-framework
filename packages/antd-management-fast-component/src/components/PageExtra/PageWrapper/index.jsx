@@ -137,9 +137,7 @@ class PageWrapper extends PureComponent {
             }}
             className={classNames(
               'antd-management-fast-component',
-              useShortcutNavigation
-                ? `antd-management-fast-component-use-shortcut-navigation`
-                : '',
+              `antd-management-fast-component-use-shortcut-navigation`,
             )}
             extra={extraAction}
             content={headerContent}
@@ -160,6 +158,7 @@ class PageWrapper extends PureComponent {
                   }}
                   left={<div>{originBreadcrumb}</div>}
                   right={
+                    useShortcutNavigation == false ||
                     shortcutNavigation == null ? null : (
                       <FlexBox
                         flexAuto="top"

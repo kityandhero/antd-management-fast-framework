@@ -68,6 +68,7 @@ export const appInitDefault = {
   },
   showSelectLanguage: false,
   showLogoInEntrance: true,
+  useShortcutNavigation: true,
   emptyLogo: emptyLogo,
   leftBarLogo: emptyLogo,
   tokenName: 'token',

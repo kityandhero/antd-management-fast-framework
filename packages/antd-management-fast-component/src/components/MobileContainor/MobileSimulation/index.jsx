@@ -20,6 +20,7 @@ class MobileSimulation extends PureComponent {
     for (const o of Object.entries(mobileTypeCollection)) {
       // eslint-disable-next-line no-unused-vars
       const [k, v] = o;
+
       if (isObject(v)) {
         list.push(v);
       }

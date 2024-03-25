@@ -157,7 +157,7 @@ export function mergeLayoutSetting({
       onClick: (o) => {
         const { key } = { key: '', ...o };
 
-        shortcutControlAssist.pushLatestKey(key);
+        shortcutControlAssist.pushLatest(key);
       },
     },
     waterMarkProps: checkStringIsNullOrWhiteSpace(title)
@@ -205,10 +205,6 @@ export function mergeLayoutSetting({
     },
     itemRender: (route) => route.breadcrumbName,
     postMenuData: (d) => {
-      setTimeout(() => {
-        shortcutControlAssist.pushLatestData(d);
-      }, 10);
-
       if (!collapsedShowTitle) {
         return d;
       }

@@ -1,28 +1,38 @@
 import { getDispatch } from 'easy-soft-dva';
-import { checkObjectIsNullOrEmpty, throttle } from 'easy-soft-utility';
+import { isNull, throttle } from 'easy-soft-utility';
 
-function setLatestData(listData) {
+import { orientRoute } from 'antd-management-fast-common';
+
+function setLatest(key) {
   const dispatch = getDispatch();
 
-  const listDataAdjust = listData.map((o) => {
-    const { key, locale, name, path } = {
-      key: '',
-      locale: '',
-      name: '',
-      path: '',
-      ...o,
-    };
+  const pathData = orientRoute({ path: key });
 
-    return { key, locale, name, path };
-  });
+  if (isNull(pathData)) {
+    return;
+  }
+
+  const { path, menu, name } = {
+    path: '',
+    menu: '',
+    name: '',
+    ...pathData,
+  };
 
   dispatch({
-    type: 'shortcutControl/pushLatestData',
-    payload: listDataAdjust,
+    type: 'shortcutControl/pushLatest',
+    payload: {
+      pathData: {
+        key: path,
+        locale: menu,
+        name,
+        path,
+      },
+    },
   });
 }
 
-const throttleSetLatestData = throttle(setLatestData, 400, {
+const throttleSetLatest = throttle(setLatest, 400, {
   trailing: false,
 });
 
@@ -31,26 +41,10 @@ const throttleSetLatestData = throttle(setLatestData, 400, {
  */
 export const shortcutControlAssist = {
   /**
-   * set shortcut latest key
-   * @param {string} key shortcut key
-   */
-  pushLatestKey(key, ...message) {
-    const dispatch = getDispatch();
-
-    dispatch({
-      type: 'shortcutControl/pushLatestKey',
-      payload: {
-        key: checkObjectIsNullOrEmpty(key) ? '' : key,
-        message,
-      },
-    });
-  },
-
-  /**
    * set shortcut latest data
    * @param {Array} listData  menu list Data
    */
-  pushLatestData(listData) {
-    throttleSetLatestData(listData);
+  pushLatest(key) {
+    throttleSetLatest(key);
   },
 };

@@ -403,3 +403,12 @@ export function getTitle() {
 
   return appName || '';
 }
+
+export function getUseShortcutNavigation() {
+  const { useShortcutNavigation } = {
+    useShortcutNavigation: false,
+    ...getApplicationMergeConfig(),
+  };
+
+  return !!useShortcutNavigation || false;
+}

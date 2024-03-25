@@ -11,8 +11,11 @@ import {
   toString,
 } from 'easy-soft-utility';
 
-import { renderFurtherPrefixWhenNoCallProcess } from 'antd-management-fast-common';
-import { renderFurtherColorWhenNoCallProcess } from 'antd-management-fast-common/src/utils/constants';
+import {
+  getUseShortcutNavigation,
+  renderFurtherColorWhenNoCallProcess,
+  renderFurtherPrefixWhenNoCallProcess,
+} from 'antd-management-fast-common';
 import { PageExtra } from 'antd-management-fast-component';
 
 import { PageExtraWrapper } from '../../../components/PageExtraWrapper';
@@ -201,6 +204,7 @@ class InternalLayout extends InternalBuild {
         leftArea={this.renderPresetPageLeftArea()}
         footer={this.renderPresetPageFooter()}
         floatButton={this.renderPresetFloatButton()}
+        useShortcutNavigation={getUseShortcutNavigation()}
       >
         {this.renderPresetPageBody()}
       </PageExtraWrapper>

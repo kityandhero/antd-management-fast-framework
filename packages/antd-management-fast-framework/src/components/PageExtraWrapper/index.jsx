@@ -75,8 +75,15 @@ class PageExtraWrapper extends BaseComponent {
   };
 
   renderFurther() {
-    const { children, switchControl, tabControl, flag, tabFlag, ...rest } =
-      this.props;
+    const {
+      children,
+      useShortcutNavigation,
+      switchControl,
+      tabControl,
+      flag,
+      tabFlag,
+      ...rest
+    } = this.props;
 
     const spinning = switchControlAssist.check(switchControl, flag);
     const activeKey = tabControl[tabFlag] || '';
@@ -84,6 +91,7 @@ class PageExtraWrapper extends BaseComponent {
     return (
       <PageWrapper
         {...rest}
+        useShortcutNavigation={useShortcutNavigation || false}
         shortcutNavigation={<ShortcutNavigation />}
         dataLoading={spinning}
         reloading={spinning}

@@ -6,6 +6,7 @@ import {
   logTrace,
   mergeArrowText,
   reducerDefaultParameters,
+  reverse,
   uniqBy,
 } from 'easy-soft-utility';
 
@@ -67,83 +68,42 @@ export function buildModel() {
     },
 
     effects: {
-      *pushLatestKey({ payload, alias }, { put }) {
-        const { key, message } = { key: '', message: [], ...payload };
-
+      *pushLatest({ payload, alias }, { put }) {
         yield put({
-          type: 'reducerLatestKey',
-          payload: { key },
-          alias,
-          ...reducerDefaultParameters,
-        });
-
-        logTrace(
-          {},
-          mergeArrowText(
-            ...message,
-            'shortcutControl::pushLatestKey',
-            `key "${key}"`,
-          ),
-        );
-
-        return key;
-      },
-      *pushLatestData({ payload, alias }, { put }) {
-        yield put({
-          type: 'reducerLatestData',
+          type: 'reducerLatest',
           payload,
           alias,
           ...reducerDefaultParameters,
         });
-
-        logTrace({}, mergeArrowText('shortcutControl::pushLatestData'));
 
         return payload;
       },
     },
 
     reducers: {
-      reducerLatestKey(state, action) {
-        const { payload: v } = {
+      reducerLatest(state, action) {
+        const { payload } = {
           payload: {},
           ...action,
         };
 
-        const { key } = { key: '', ...v };
-
-        let result = {
-          ...state,
-          latestKey: key,
+        const { pathData } = {
+          pathData: null,
+          ...payload,
         };
 
-        logTrace(
-          {
-            latestKey: key,
-          },
-          mergeArrowText('shortcutControl.latestKey'),
-        );
-
-        return result;
-      },
-      reducerLatestData(state, action) {
-        const { payload: listSource } = {
-          payload: {},
-          ...action,
+        const { path: currentPath } = {
+          path: '',
+          ...pathData,
         };
 
         const { latestKey, listData } = state;
 
-        const listDataFiltered = filter(
-          uniqBy(listData, 'key'),
-          (o) => o.key !== latestKey,
+        const listDataFiltered = reverse(
+          filter(uniqBy(listData, 'path'), (o) => o.path !== currentPath),
         ).slice(0, 7);
 
-        const listSourceAdjust = flatTreeData(listSource);
-
-        const listSourceFiltered = filter(
-          listSourceAdjust,
-          (o) => o.key === latestKey,
-        );
+        const listSourceFiltered = flatTreeData([pathData]);
 
         if (listSourceFiltered.length > 0) {
           const menu = listSourceFiltered[0];
@@ -157,7 +117,7 @@ export function buildModel() {
           };
 
           const listDataAdjust = [
-            ...listDataFiltered,
+            ...reverse(listDataFiltered),
             {
               key,
               locale,
@@ -166,23 +126,25 @@ export function buildModel() {
             },
           ];
 
+          const result = {
+            ...state,
+            listData: [...listDataAdjust],
+            latestKey: path,
+          };
+
           logTrace(
             {
               listData: [...listDataAdjust],
+              latestKey: path,
             },
-            mergeArrowText('shortcutControl.listData'),
+            mergeArrowText('shortcutControl::reducerLatestData'),
           );
-
-          let result = {
-            ...state,
-            listData: [...listDataAdjust],
-          };
 
           return result;
         } else {
           logTrace(
             {
-              payload: listSource,
+              listData: listData,
               latestKey,
             },
             mergeArrowText('shortcutControl::reducerLatestData', 'ignore'),
