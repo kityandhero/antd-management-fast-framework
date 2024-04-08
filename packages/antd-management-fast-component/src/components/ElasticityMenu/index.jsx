@@ -100,6 +100,7 @@ class ElasticityMenu extends BaseComponent {
           const {
             title,
             placement,
+            confirmZIndex,
             okText,
             cancelText,
             type,
@@ -114,6 +115,7 @@ class ElasticityMenu extends BaseComponent {
             confirm: false,
             title: '',
             placement: 'topRight',
+            confirmZIndex: null,
             className: '',
             okText: '确定',
             cancelText: '取消',
@@ -134,6 +136,7 @@ class ElasticityMenu extends BaseComponent {
               <ElasticityButton
                 key={key}
                 confirm={confirm}
+                confirmPanelZIndex={confirmZIndex}
                 placement={placement}
                 title={title}
                 okText={okText}

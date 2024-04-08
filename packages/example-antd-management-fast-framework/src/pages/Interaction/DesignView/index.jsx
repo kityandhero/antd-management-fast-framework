@@ -373,8 +373,10 @@ class DesignView extends BaseUpdateForm {
                       return (
                         <FileViewer
                           canUpload
+                          canDownload
                           canRemove
                           showUrl
+                          splitHeight={10}
                           list={listAttachment}
                           dataTransfer={(o) => {
                             return {
@@ -414,8 +416,10 @@ class DesignView extends BaseUpdateForm {
                       <FileViewer
                         label="附件列表"
                         canUpload
+                        canDownload
                         canRemove
                         showUrl
+                        splitHeight={10}
                         list={listAttachment}
                         dataTransfer={(o) => {
                           return {

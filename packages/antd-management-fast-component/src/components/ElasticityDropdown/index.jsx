@@ -27,7 +27,7 @@ class ElasticityDropdown extends BaseComponent {
       ellipsisMode = false,
       confirm = false,
       title = '',
-      placement = 'topRight',
+      // placement = 'topRight',
       okText = '确定',
       cancelText = '取消',
       type: typeSource = 'default',
@@ -81,7 +81,7 @@ class ElasticityDropdown extends BaseComponent {
     const propertiesAdjust = {
       confirm,
       title,
-      placement,
+      placement: placementAdjust,
       okText,
       cancelText,
       type: typeSource || 'default',

@@ -4,6 +4,7 @@ import React from 'react';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
+  isNull,
   showSimpleErrorMessage,
 } from 'easy-soft-utility';
 
@@ -37,6 +38,7 @@ class ElasticityButton extends BaseComponent {
       style = {},
       color,
       showIcon = true,
+      confirmPanelZIndex = null,
     } = this.props;
 
     if (hidden) {
@@ -50,6 +52,9 @@ class ElasticityButton extends BaseComponent {
     if (confirm) {
       return (
         <Popconfirm
+          {...(isNull(confirmPanelZIndex)
+            ? {}
+            : { zIndex: confirmPanelZIndex })}
           placement={placement}
           title={title || '将要进行操作，确定吗？'}
           onConfirm={() => {
@@ -143,6 +148,7 @@ ElasticityButton.defaultProps = {
   style: null,
   color: null,
   showIcon: true,
+  confirmPanelZIndex: null,
 };
 
 export { ElasticityButton };
