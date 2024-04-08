@@ -249,6 +249,7 @@ export function buildDropdownButton({
   handleMenuClick = () => {},
   items = [],
   itemPanelTitle = '',
+  itemPanelZIndex = null,
 }) {
   return buildDropdown({
     ellipsisMode: false,
@@ -269,6 +270,7 @@ export function buildDropdownButton({
     handleMenuClick,
     items,
     itemPanelTitle,
+    itemPanelZIndex,
   });
 }
 
@@ -289,6 +291,7 @@ export function buildDropdownEllipsis({
   handleMenuClick = () => {},
   items = [],
   itemPanelTitle = '',
+  itemPanelZIndex = null,
 }) {
   return buildDropdown({
     ellipsisMode: true,
@@ -305,6 +308,7 @@ export function buildDropdownEllipsis({
     handleMenuClick,
     items,
     itemPanelTitle,
+    itemPanelZIndex,
   });
 }
 

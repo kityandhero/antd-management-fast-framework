@@ -62,6 +62,7 @@ class FileViewer extends PureComponent {
       showUrl,
       splitHeight,
       list,
+      menuZIndex,
       dataTransfer,
       onUploadButtonClick,
       onItemClick,
@@ -129,6 +130,7 @@ class FileViewer extends PureComponent {
             size: 'small',
             text: '查看',
             icon: iconBuilder.read(),
+            itemPanelZIndex: menuZIndex,
             handleButtonClick: ({ handleData }) => {
               onItemClick(handleData);
             },
@@ -207,6 +209,7 @@ FileViewer.defaultProps = {
   canRemove: false,
   showUrl: false,
   splitHeight: 0,
+  menuZIndex: null,
   dataTransfer: (o) => o,
   onItemClick: null,
   onUploadButtonClick: null,
