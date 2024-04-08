@@ -14,6 +14,7 @@ import { EllipsisOutlined } from '@ant-design/icons';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
+  isNumber,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
 } from 'easy-soft-utility';
@@ -153,15 +154,21 @@ class AudioUpload extends PureComponent {
       showSimpleErrorMessage(text);
     }
 
-    const isLt3M = file.size / 1024 / 1024 < getAudioUploadMaxSize();
+    let uploadMaxSize = getAudioUploadMaxSize();
 
-    if (!isLt3M) {
-      const text = '音频文件不能超过3MB!';
+    if (!isNumber(uploadMaxSize) || uploadMaxSize <= 0) {
+      uploadMaxSize = 4;
+    }
+
+    const allowUploadSize = file.size / 1024 / 1024 < uploadMaxSize;
+
+    if (!allowUploadSize) {
+      const text = `音频文件不能超过${uploadMaxSize}MB!`;
 
       showSimpleErrorMessage(text);
     }
 
-    return isAudio && isLt3M;
+    return isAudio && allowUploadSize;
   };
 
   handleUploadChange = (info) => {

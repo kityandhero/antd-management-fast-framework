@@ -14,6 +14,7 @@ import { EllipsisOutlined } from '@ant-design/icons';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
+  isNumber,
   showSimpleErrorMessage,
   showSimpleRuntimeError,
 } from 'easy-soft-utility';
@@ -155,15 +156,21 @@ class VideoUpload extends PureComponent {
       showSimpleErrorMessage(text);
     }
 
-    const isLt3M = file.size / 1024 / 1024 < getVideoUploadMaxSize();
+    let uploadMaxSize = getVideoUploadMaxSize();
 
-    if (!isLt3M) {
-      const text = '视频文件不能超过3MB!';
+    if (!isNumber(uploadMaxSize) || uploadMaxSize <= 0) {
+      uploadMaxSize = 10;
+    }
+
+    const allowUploadSize = file.size / 1024 / 1024 < uploadMaxSize;
+
+    if (!allowUploadSize) {
+      const text = `视频文件不能超过${uploadMaxSize}MB!`;
 
       showSimpleErrorMessage(text);
     }
 
-    return isVideo && isLt3M;
+    return isVideo && allowUploadSize;
   };
 
   handleUploadChange = (info) => {

@@ -3,14 +3,18 @@ import React, { PureComponent } from 'react';
 
 import {
   checkStringIsNullOrWhiteSpace,
+  getValueByKey,
   isArray,
   isEmptyArray,
   isFunction,
+  showErrorMessage,
+  toNumber,
 } from 'easy-soft-utility';
 
 import {
   buildDropdownButton,
   ColorText,
+  EverySpace,
   FlexBox,
   iconBuilder,
   VerticalBox,
@@ -28,6 +32,21 @@ class FileViewer extends PureComponent {
         break;
       }
 
+      case 'download': {
+        const url = getValueByKey({
+          data: handleData,
+          key: 'url',
+          defaultValue: '',
+        });
+
+        if (checkStringIsNullOrWhiteSpace(url)) {
+          showErrorMessage('下载链接地址(url)无效');
+        } else {
+          window.open(url, '_blank');
+        }
+        break;
+      }
+
       default: {
         break;
       }
@@ -38,8 +57,10 @@ class FileViewer extends PureComponent {
     const {
       label,
       canUpload,
+      canDownload,
       canRemove,
       showUrl,
+      splitHeight,
       list,
       dataTransfer,
       onUploadButtonClick,
@@ -59,6 +80,14 @@ class FileViewer extends PureComponent {
     const fileCount = listAdjust.length;
 
     const menuItems = [];
+
+    if (canDownload) {
+      menuItems.push({
+        key: 'download',
+        icon: iconBuilder.download(),
+        text: '下载附件',
+      });
+    }
 
     if (canRemove) {
       menuItems.push({
@@ -153,6 +182,10 @@ class FileViewer extends PureComponent {
           }
         />
 
+        {toNumber(splitHeight) > 0 ? (
+          <EverySpace size={splitHeight} direction="horizontal" />
+        ) : null}
+
         <Table
           columns={columns}
           size="small"
@@ -170,8 +203,10 @@ FileViewer.defaultProps = {
   label: '',
   list: [],
   canUpload: false,
+  canDownload: true,
   canRemove: false,
   showUrl: false,
+  splitHeight: 0,
   dataTransfer: (o) => o,
   onItemClick: null,
   onUploadButtonClick: null,

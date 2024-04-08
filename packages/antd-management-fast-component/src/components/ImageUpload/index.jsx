@@ -6,6 +6,7 @@ import {
   buildFieldHelper,
   checkStringIsNullOrWhiteSpace,
   isFunction,
+  isNumber,
   showSimpleInfoMessage,
   showSimpleRuntimeError,
   showSimpleWarnMessage,
@@ -87,15 +88,21 @@ class ImageUpload extends PureExtraComponent {
       showSimpleRuntimeError(text);
     }
 
-    const isLt2M = file.size / 1024 / 1024 < getImageUploadMaxSize();
+    let uploadMaxSize = getImageUploadMaxSize();
 
-    if (!isLt2M) {
-      const text = '图片文件不能超过2MB!';
+    if (!isNumber(uploadMaxSize) || uploadMaxSize <= 0) {
+      uploadMaxSize = 2;
+    }
+
+    const allowUploadSize = file.size / 1024 / 1024 < uploadMaxSize;
+
+    if (!allowUploadSize) {
+      const text = `图片文件不能超过${uploadMaxSize}MB!`;
 
       showSimpleRuntimeError(text);
     }
 
-    return isPic && isLt2M;
+    return isPic && allowUploadSize;
   };
 
   handleUploadChange = (info) => {

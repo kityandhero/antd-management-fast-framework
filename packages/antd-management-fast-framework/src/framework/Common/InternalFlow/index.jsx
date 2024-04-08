@@ -5,6 +5,7 @@ import {
   checkStringIsNullOrWhiteSpace,
   isEmptyObject,
   isFunction,
+  isNumber,
   isUndefined,
   logDevelop,
   logException,
@@ -22,6 +23,7 @@ import {
   emptyLogic,
   getCurrentLocation,
   getDerivedStateFromPropertiesForUrlParameters,
+  getVideoUploadMaxSize,
 } from 'antd-management-fast-common';
 import {
   buildFormActionItem,
@@ -1684,14 +1686,22 @@ class InternalFlow extends Core {
 
       showSimpleRuntimeError(text);
     }
-    const isLt3M = file.size / 1024 / 1024 < 3;
-    if (!isLt3M) {
-      const text = '视频文件不能超过3MB!';
+
+    let uploadMaxSize = getVideoUploadMaxSize();
+
+    if (!isNumber(uploadMaxSize) || uploadMaxSize <= 0) {
+      uploadMaxSize = 10;
+    }
+
+    const allowUploadSize = file.size / 1024 / 1024 < uploadMaxSize;
+
+    if (!allowUploadSize) {
+      const text = `视频文件不能超过${uploadMaxSize}MB!`;
 
       showSimpleRuntimeError(text);
     }
 
-    return isVideo && isLt3M;
+    return isVideo && allowUploadSize;
   };
 
   // eslint-disable-next-line no-unused-vars

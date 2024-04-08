@@ -1,7 +1,11 @@
 import { Button, Input, Upload } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { isFunction, showSimpleRuntimeError } from 'easy-soft-utility';
+import {
+  isFunction,
+  isNumber,
+  showSimpleRuntimeError,
+} from 'easy-soft-utility';
 
 import { getFileUploadMaxSize } from 'antd-management-fast-common';
 
@@ -29,14 +33,21 @@ class FileBase64Upload extends PureComponent {
   handleUploadCancel = () => this.setState({ previewVisible: false });
 
   beforeUpload = (file) => {
-    const isLt1M = file.size / 1024 / 1024 < getFileUploadMaxSize();
-    if (!isLt1M) {
-      const text = `文件不能超过${getFileUploadMaxSize()}MB!`;
+    let uploadMaxSize = getFileUploadMaxSize();
+
+    if (!isNumber(uploadMaxSize) || uploadMaxSize <= 0) {
+      uploadMaxSize = 4;
+    }
+
+    const allowUploadSize = file.size / 1024 / 1024 < uploadMaxSize;
+
+    if (!allowUploadSize) {
+      const text = `文件不能超过${uploadMaxSize}MB!`;
 
       showSimpleRuntimeError(text);
     }
 
-    return isLt1M;
+    return allowUploadSize;
   };
 
   handleUploadChange = (info) => {
