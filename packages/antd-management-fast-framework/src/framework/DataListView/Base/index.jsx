@@ -81,6 +81,8 @@ const {
   RadioItem,
 } = FormExtra;
 
+const rangeTimeFieldName = '1231e27b236947eeadbb23a032d5d8b0';
+
 const primaryCallName = 'DataListView::Base';
 
 class Base extends AuthorizationWrapper {
@@ -200,10 +202,10 @@ class Base extends AuthorizationWrapper {
   }) => {};
 
   onDateRangeChange = (dates, dateStrings) => {
-    this.setState({
-      startTime: dateStrings[0],
-      endTime: dateStrings[1],
-    });
+    this.filterExtraValues = this.filterExtraValues || {};
+
+    this.filterExtraValues.startTime = dateStrings[0];
+    this.filterExtraValues.endTime = dateStrings[1];
   };
 
   handleSelectRows = (rows) => {
@@ -383,6 +385,8 @@ class Base extends AuthorizationWrapper {
 
     validateFields()
       .then((fieldsValue) => {
+        delete fieldsValue[rangeTimeFieldName];
+
         const values = {
           ...fieldsValue,
           updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
@@ -784,7 +788,7 @@ class Base extends AuthorizationWrapper {
     const p = {
       style: { width: '100%' },
       showTime: { format: 'HH:mm' },
-      value: valueList,
+      // value: valueList,
       format: datetimeFormat.yearMonthDayHourMinute,
       placeholder: ['开始时间', '结束时间'],
       onChange: (dates, dateStrings) => {
@@ -796,6 +800,7 @@ class Base extends AuthorizationWrapper {
     return (
       <FormItem
         label={dateRangeFieldName}
+        name={rangeTimeFieldName}
         rules={[
           {
             required: false,
