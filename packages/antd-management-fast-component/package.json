@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-component",
-  "version": "2.6.142",
+  "version": "2.6.143",
   "description": "antd-management-fast-component",
   "keywords": [
     "antd-management-fast-component"
@@ -64,7 +64,7 @@
     "@tinymce/tinymce-react": "^5.0.0",
     "@umijs/max": "^4.1.6",
     "antd": "^5.16.0",
-    "antd-management-fast-common": "^2.6.93",
+    "antd-management-fast-common": "^2.6.94",
     "array-move": "^4.0.0",
     "axios": "^1.6.8",
     "bizcharts": "^4.1.23",

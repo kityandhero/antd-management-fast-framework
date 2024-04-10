@@ -24,6 +24,7 @@ import { AnchorLink } from '../../AnchorLink';
 import { CenterBox } from '../../CenterBox';
 import { ElasticityDropdown } from '../../ElasticityDropdown';
 import { EllipsisCustom } from '../../EllipsisCustom';
+import { FlexBox } from '../../FlexBox';
 import { iconBuilder } from '../../Icon';
 import { IconInfo } from '../../IconInfo';
 import { ImageBox } from '../../ImageBox';
@@ -314,6 +315,41 @@ export function buildColumnItem({
             />
 
             {(addonAfter || null) == null ? null : addonAfter}
+          </>
+        );
+      }
+
+      if (facadeMode === columnFacadeMode.color) {
+        v = checkStringIsNullOrWhiteSpace(v) ? '' : v;
+
+        return (
+          <>
+            <div style={styleMerge}>
+              <FlexBox
+                flexAuto="right"
+                style={{
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                  padding: '2px',
+                }}
+                left={
+                  <CenterBox>
+                    <div
+                      style={{
+                        backgroundColor: v,
+                        border: '1px solid #ccc',
+                        borderRadius: '4px',
+                        width: '20px',
+                        height: '20px',
+                        overflow: 'hidden',
+                      }}
+                    />
+                  </CenterBox>
+                }
+                right={<CenterBox>{v || '无色值'}</CenterBox>}
+              />
+            </div>
           </>
         );
       }

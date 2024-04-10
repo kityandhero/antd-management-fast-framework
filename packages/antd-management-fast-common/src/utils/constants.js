@@ -145,6 +145,12 @@ export const columnFacadeMode = {
   image: 'image',
 
   /**
+   * 颜色展示
+   * value : color
+   */
+  color: 'color',
+
+  /**
    * 日期
    * value : datetime
    */
