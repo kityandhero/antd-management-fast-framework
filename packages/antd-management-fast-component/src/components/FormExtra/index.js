@@ -1,4 +1,5 @@
 import { ActionItem } from './ActionItem';
+import { ColorPickerItem } from './ColorPickerItem';
 import { ComponentItem } from './ComponentItem';
 import { DatePickerItem } from './DatePickerItem';
 import { DisplayItem } from './DisplayItem';
@@ -19,25 +20,26 @@ import { TextItem } from './TextItem';
 import { TimePickerItem } from './TimePickerItem';
 
 const FormExtra = {
+  ActionItem,
+  ColorPickerItem,
   ComponentItem,
   DatePickerItem,
   DisplayItem,
   InputItem,
-  Item,
-  OnlyShowInputItem,
-  SelectItem,
-  SyntaxHighlighterItem,
-  SwitchItem,
-  TextAreaItem,
-  TimePickerItem,
   InputNumberItem,
-  RadioItem,
-  TextItem,
-  PasswordItem,
-  OnlyShowTextareaItem,
+  Item,
   NowTimeItem,
   OnlyShowDatetimeItem,
-  ActionItem,
+  OnlyShowInputItem,
+  OnlyShowTextareaItem,
+  PasswordItem,
+  RadioItem,
+  SelectItem,
+  SwitchItem,
+  SyntaxHighlighterItem,
+  TextAreaItem,
+  TextItem,
+  TimePickerItem,
 };
 
 export { FormExtra };

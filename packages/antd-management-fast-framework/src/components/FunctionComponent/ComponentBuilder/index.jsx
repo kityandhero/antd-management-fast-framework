@@ -3,6 +3,7 @@ import React from 'react';
 import { iconBuilder } from 'antd-management-fast-component';
 
 import { ElasticityExtraButton } from '../../ElasticityExtraButton';
+import { ElasticityExtraColorPicker } from '../../ElasticityExtraColorPicker';
 
 /**
  * 构建按钮
@@ -49,6 +50,25 @@ export function buildExtraButton({
       iconProcessing={iconProcessing}
       style={style}
       showIcon={showIcon}
+    />
+  );
+}
+
+/**
+ * 构建按钮
+ */
+export function buildExtraColorPicker({
+  flag = [],
+  value = null,
+  disabled = false,
+  onChange = null,
+}) {
+  return (
+    <ElasticityExtraColorPicker
+      flag={flag}
+      value={value}
+      disabled={disabled}
+      onChange={onChange}
     />
   );
 }

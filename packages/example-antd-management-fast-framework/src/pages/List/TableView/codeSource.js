@@ -154,6 +154,8 @@ class PageList extends MultiPage {
   };
 
   establishSearchCardConfig = () => {
+    const { dateRangeFieldName } = this.state;
+
     return {
       list: [
         {
@@ -167,10 +169,15 @@ class PageList extends MultiPage {
           fieldData: fieldData.title,
         },
         {
-          lg: 6,
+          lg: 12,
           type: searchCardConfig.contentItemType.input,
           fieldData: fieldData.subtitle,
-          hidden: true,
+          // hidden: true,
+        },
+        {
+          lg: 12,
+          type: searchCardConfig.contentItemType.component,
+          component: this.buildSearchCardRangePickerCore(dateRangeFieldName),
         },
         {
           lg: 4,

@@ -227,6 +227,16 @@ export const listViewConfig = {
     flexSelect: 'flexSelect',
 
     /**
+     * colorPicker
+     */
+    colorPicker: 'colorPicker',
+
+    /**
+     * generalExtraColorPicker
+     */
+    generalExtraColorPicker: 'generalExtraColorPicker',
+
+    /**
      * 指定渲染自定义组件，组件由配置传入
      */
     component: 'component',
@@ -287,6 +297,16 @@ export const extraBuildType = {
    * 根据配置项渲染高级按钮，事件触发需要自定义指定
    */
   generalExtraButton: 'generalExtraButton',
+
+  /**
+   * colorPicker
+   */
+  colorPicker: 'colorPicker',
+
+  /**
+   * generalExtraColorPicker
+   */
+  generalExtraColorPicker: 'generalExtraColorPicker',
 
   /**
    * 带图标文字，图标为空或者文字为空情况下渲染方式有差异
@@ -413,6 +433,11 @@ export const cardConfig = {
      * 文本域，仅用于单页详情或表单上下文环境
      */
     textarea: 'textarea',
+
+    /**
+     * colorPicker
+     */
+    colorPicker: 'colorPicker',
 
     /**
      * switch开关

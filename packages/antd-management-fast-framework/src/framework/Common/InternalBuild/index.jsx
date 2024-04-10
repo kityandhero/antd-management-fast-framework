@@ -23,6 +23,7 @@ import {
 import {
   buildButton,
   buildButtonGroup,
+  buildColorPicker,
   buildDropdown,
   buildDropdownButton,
   buildDropdownEllipsis,
@@ -39,7 +40,10 @@ import {
   ScrollFacadeBox,
 } from 'antd-management-fast-component';
 
-import { buildExtraButton } from '../../../components/FunctionComponent';
+import {
+  buildExtraButton,
+  buildExtraColorPicker,
+} from '../../../components/FunctionComponent';
 import { LoadingOverlay } from '../../../components/LoadingOverlay';
 import { InternalSwitchoverFlow } from '../InternalSwitchoverFlow';
 import { ReloadActionButton } from '../ReloadActionButton';
@@ -761,6 +765,24 @@ class InternalBuild extends InternalSwitchoverFlow {
                 ],
                 ...item,
               });
+              break;
+            }
+
+            case extraBuildType.generalExtraColorPicker: {
+              itemAdjust = buildExtraColorPicker({
+                flag: [
+                  this.viewLoadingFlag,
+                  this.viewReloadingFlag,
+                  this.viewRefreshingFlag,
+                  this.viewProcessingFlag,
+                ],
+                ...item,
+              });
+              break;
+            }
+
+            case extraBuildType.colorPicker: {
+              itemAdjust = buildColorPicker(item);
               break;
             }
 

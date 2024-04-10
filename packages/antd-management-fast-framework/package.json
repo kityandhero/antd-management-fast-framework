@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-framework",
-  "version": "2.11.158",
+  "version": "2.11.159",
   "description": "antd-management-fast-framework",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
   "license": "ISC",
@@ -54,8 +54,8 @@
     "@tanem/react-nprogress": "^5.0.51",
     "@umijs/max": "^4.1.6",
     "antd": "^5.16.0",
-    "antd-management-fast-common": "^2.6.92",
-    "antd-management-fast-component": "^2.6.139",
+    "antd-management-fast-common": "^2.6.93",
+    "antd-management-fast-component": "^2.6.142",
     "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.10",

@@ -90,6 +90,11 @@ export const fieldData = {
     name: 'selectRadio',
     helper: 'selectRadio开关选择示例',
   },
+  color: {
+    label: '颜色',
+    name: 'color',
+    helper: '选项颜色示例',
+  },
   radio1: {
     label: 'Radio选项列表',
     name: 'radio1',

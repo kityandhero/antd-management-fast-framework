@@ -415,6 +415,12 @@ class BasicInfo extends TabPageBase {
         key: fieldData.switch.name,
         convert: convertCollection.boolean,
       });
+
+      values[fieldData.color.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.color.name,
+        // convert: convertCollection.string,
+      });
     }
 
     return values;
@@ -472,6 +478,13 @@ class BasicInfo extends TabPageBase {
               {
                 buildType: cardConfig.extraBuildType.component,
                 component: renderCustomSimpleStatusSelect({}),
+              },
+              {
+                buildType: cardConfig.extraBuildType.divider,
+              },
+              {
+                buildType: cardConfig.extraBuildType.generalExtraColorPicker,
+                value: '#412DE6',
               },
               {
                 buildType: cardConfig.extraBuildType.divider,
@@ -679,6 +692,14 @@ class BasicInfo extends TabPageBase {
               // onChange: (v, option) => {
               //   logDebug(option, `selectValue -> ${v}`);
               // },
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.colorPicker,
+              fieldData: fieldData.color,
+              onChange: (v, hex) => {
+                logDebug({ v, hex }, `selectValue -> ${hex}`);
+              },
             },
             {
               lg: 24,

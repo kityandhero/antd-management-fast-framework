@@ -191,6 +191,19 @@ class PageList extends MultiPage {
   establishDataContainerExtraActionCollectionConfig = () => {
     return [
       {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.colorPicker,
+        value: '#412DE6',
+      },
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType
+            .generalExtraColorPicker,
+        value: '#11FDa6',
+      },
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.divider,
+      },
+      {
         buildType:
           listViewConfig.dataContainerExtraActionBuildType.generalButton,
         type: 'primary',

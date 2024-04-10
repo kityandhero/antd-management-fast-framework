@@ -3,6 +3,7 @@ import {
   formatDatetime,
   getNow,
   getValueByKey,
+  toString,
 } from 'easy-soft-utility';
 
 import { defaultEmptyImage, getEmptyLogo } from 'antd-management-fast-common';
@@ -94,6 +95,7 @@ function buildAbundantArticle() {
     sort: 0,
     status: 0,
     author: '',
+    color: '#13A8A8',
     accessCount: 0,
     businessMode: 10,
     createUserId: '1385411903626547200',
@@ -205,6 +207,7 @@ function buildSimpleArticle() {
     sort: 0,
     status: 0,
     author: '',
+    color: '#1311A8',
     accessCount: 0,
     businessMode: 10,
     createUserId: '1385411903626547200',

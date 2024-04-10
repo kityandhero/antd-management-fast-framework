@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.6.142
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-common@2.6.93
+
 ## 2.6.141
 
 ### Patch Changes

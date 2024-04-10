@@ -51,21 +51,22 @@ const {
 } = FunctionSupplement;
 
 const {
+  ActionItem,
+  ColorPickerItem,
   ComponentItem,
+  DatePickerItem,
   InputNumberItem,
-  SwitchItem,
+  NowTimeItem,
   OnlyShowInputItem,
-  SelectItem,
+  OnlyShowTextareaItem,
+  PasswordItem,
   RadioItem,
+  SelectItem,
+  SwitchItem,
   SyntaxHighlighterItem,
   TextAreaItem,
-  TimePickerItem,
-  DatePickerItem,
   TextItem,
-  PasswordItem,
-  OnlyShowTextareaItem,
-  NowTimeItem,
-  ActionItem,
+  TimePickerItem,
 } = FormExtra;
 
 class CardCollectionItemContent extends PureComponent {
@@ -817,6 +818,27 @@ class CardCollectionItemContent extends PureComponent {
                       addonAfter={contentItem.addonAfter || null}
                       addonAfterStyle={contentItem.addonAfterStyle || null}
                       formItemLayout={formItemLayout}
+                    />
+                  ) : null}
+
+                  {type === cardConfig.contentItemType.colorPicker ? (
+                    <ColorPickerItem
+                      label={fieldData.label}
+                      name={fieldData.name}
+                      required={require}
+                      helper={fieldData.helper}
+                      innerProps={{ ...contentItem.innerProps }}
+                      canOperate={canOperate}
+                      addonBefore={contentItem.addonBefore || null}
+                      addonBeforeStyle={contentItem.addonBeforeStyle || null}
+                      addonAfter={contentItem.addonAfter || null}
+                      addonAfterStyle={contentItem.addonAfterStyle || null}
+                      formItemLayout={formItemLayout}
+                      onChange={
+                        isFunction(contentItem.onChange)
+                          ? contentItem.onChange
+                          : null
+                      }
                     />
                   ) : null}
 
