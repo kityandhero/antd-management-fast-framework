@@ -225,6 +225,11 @@ class FileUpload extends PureComponent {
         break;
       }
 
+      case 'download': {
+        window.open(fileUrl, '_blank');
+        break;
+      }
+
       default: {
         break;
       }
@@ -261,6 +266,12 @@ class FileUpload extends PureComponent {
         key: 'clearUrl',
         label: '清空文件',
         icon: iconBuilder.delete(),
+        disabled: checkStringIsNullOrWhiteSpace(fileUrl),
+      },
+      {
+        key: 'download',
+        label: '下载视频',
+        icon: iconBuilder.download(),
         disabled: checkStringIsNullOrWhiteSpace(fileUrl),
       },
     ];

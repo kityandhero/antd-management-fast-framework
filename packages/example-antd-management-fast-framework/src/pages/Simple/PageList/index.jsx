@@ -936,9 +936,6 @@ class PageList extends MultiPage {
       dataTarget: fieldData.color,
       width: 120,
       showRichFacade: true,
-      facadeConfig: {
-        circle: false,
-      },
       facadeMode: columnFacadeMode.color,
     },
     {

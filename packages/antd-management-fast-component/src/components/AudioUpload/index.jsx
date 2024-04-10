@@ -258,6 +258,11 @@ class AudioUpload extends PureComponent {
         break;
       }
 
+      case 'download': {
+        window.open(audioUrl, '_blank');
+        break;
+      }
+
       default: {
         break;
       }
@@ -300,6 +305,12 @@ class AudioUpload extends PureComponent {
         key: 'clearUrl',
         label: '清空音频',
         icon: iconBuilder.delete(),
+        disabled: checkStringIsNullOrWhiteSpace(audioUrl),
+      },
+      {
+        key: 'download',
+        label: '下载视频',
+        icon: iconBuilder.download(),
         disabled: checkStringIsNullOrWhiteSpace(audioUrl),
       },
     ];

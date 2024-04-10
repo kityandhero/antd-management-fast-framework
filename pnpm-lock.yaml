@@ -631,7 +631,7 @@ importers:
         specifier: ^5.16.0
         version: 5.16.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.93
+        specifier: ^2.6.94
         version: 'link:'
       array-move:
         specifier: ^4.0.0
@@ -989,7 +989,7 @@ importers:
         specifier: ^5.16.0
         version: 5.16.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.93
+        specifier: ^2.6.94
         version: link:../antd-management-fast-common
       array-move:
         specifier: ^4.0.0
@@ -2991,10 +2991,10 @@ importers:
         specifier: ^5.16.0
         version: 5.16.0(react-dom@18.2.0)(react@18.2.0)
       antd-management-fast-common:
-        specifier: ^2.6.93
+        specifier: ^2.6.94
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.142
+        specifier: ^2.6.143
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
         specifier: ^1.0.103

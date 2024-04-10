@@ -260,6 +260,11 @@ class VideoUpload extends PureComponent {
         break;
       }
 
+      case 'download': {
+        window.open(videoUrl, '_blank');
+        break;
+      }
+
       default: {
         break;
       }
@@ -302,6 +307,12 @@ class VideoUpload extends PureComponent {
         key: 'clearUrl',
         label: '清空视频',
         icon: iconBuilder.delete(),
+        disabled: checkStringIsNullOrWhiteSpace(videoUrl),
+      },
+      {
+        key: 'download',
+        label: '下载视频',
+        icon: iconBuilder.download(),
         disabled: checkStringIsNullOrWhiteSpace(videoUrl),
       },
     ];
