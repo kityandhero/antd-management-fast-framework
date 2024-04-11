@@ -309,7 +309,7 @@ class AudioUpload extends PureComponent {
       },
       {
         key: 'download',
-        label: '下载视频',
+        label: '下载音频',
         icon: iconBuilder.download(),
         disabled: checkStringIsNullOrWhiteSpace(audioUrl),
       },

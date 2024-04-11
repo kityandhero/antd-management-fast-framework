@@ -171,6 +171,7 @@ export function buildColumnItem({
         datetimeFormat: datetimeFormatValue,
         status,
         text,
+        showTooltip,
         onClick,
       } = {
         color: null,
@@ -188,6 +189,7 @@ export function buildColumnItem({
         status: 'default',
         text: '',
         onClick: null,
+        showTooltip: true,
         ...facadeConfig,
       };
 
@@ -256,7 +258,7 @@ export function buildColumnItem({
                 separator={separator || ''}
                 separatorStyle={separatorStyle || null}
                 style={styleMerge}
-                tooltip
+                tooltip={showTooltip}
                 tooltipPlacement={tooltipPlacement}
                 ellipsis
                 onClick={() => {
@@ -309,7 +311,7 @@ export function buildColumnItem({
               separator={separator || ''}
               separatorStyle={separatorStyle || null}
               style={styleMerge}
-              tooltip
+              tooltip={showTooltip}
               tooltipPlacement={tooltipPlacement}
               ellipsis
             />
@@ -376,7 +378,7 @@ export function buildColumnItem({
               separator={separator || ''}
               separatorStyle={separatorStyle || null}
               style={styleMerge}
-              tooltip
+              tooltip={showTooltip}
               tooltipPlacement={tooltipPlacement}
               ellipsis
             />

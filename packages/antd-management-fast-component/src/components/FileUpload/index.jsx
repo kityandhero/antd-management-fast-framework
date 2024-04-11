@@ -270,7 +270,7 @@ class FileUpload extends PureComponent {
       },
       {
         key: 'download',
-        label: '下载视频',
+        label: '下载文件',
         icon: iconBuilder.download(),
         disabled: checkStringIsNullOrWhiteSpace(fileUrl),
       },
