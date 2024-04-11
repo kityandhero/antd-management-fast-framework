@@ -11,6 +11,7 @@ import {
   toNumber,
 } from 'easy-soft-utility';
 
+import { copyToClipboard } from 'antd-management-fast-common';
 import {
   buildDropdownButton,
   ColorText,
@@ -25,9 +26,17 @@ class FileViewer extends PureComponent {
     const { onRemove } = this.props;
 
     switch (key) {
-      case 'removeItem': {
-        if (isFunction(onRemove)) {
-          onRemove(handleData);
+      case 'copyUrl': {
+        const url = getValueByKey({
+          data: handleData,
+          key: 'url',
+          defaultValue: '',
+        });
+
+        if (checkStringIsNullOrWhiteSpace(url)) {
+          showErrorMessage('下载链接地址(url)无效');
+        } else {
+          copyToClipboard(url);
         }
         break;
       }
@@ -47,6 +56,13 @@ class FileViewer extends PureComponent {
         break;
       }
 
+      case 'removeItem': {
+        if (isFunction(onRemove)) {
+          onRemove(handleData);
+        }
+        break;
+      }
+
       default: {
         break;
       }
@@ -56,6 +72,7 @@ class FileViewer extends PureComponent {
   render() {
     const {
       label,
+      canCopyUrl,
       canUpload,
       canDownload,
       canRemove,
@@ -80,6 +97,14 @@ class FileViewer extends PureComponent {
     const fileCount = listAdjust.length;
 
     const menuItems = [];
+
+    if (canCopyUrl) {
+      menuItems.push({
+        key: 'copyUrl',
+        icon: iconBuilder.download(),
+        text: '复制链接',
+      });
+    }
 
     if (canDownload) {
       menuItems.push({
@@ -204,6 +229,7 @@ FileViewer.defaultProps = {
   label: '',
   list: [],
   canUpload: false,
+  canCopyUrl: true,
   canDownload: true,
   canRemove: false,
   showUrl: false,
