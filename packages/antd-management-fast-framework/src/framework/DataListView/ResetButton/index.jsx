@@ -10,9 +10,17 @@ import { iconBuilder } from 'antd-management-fast-component';
   switchControl,
 }))
 class ResetButton extends PureComponent {
+  getProperties = () => {
+    return {
+      text: '重置',
+      onReset: null,
+      ...this.props,
+    };
+  };
+
   render() {
     const { switchControl, loadingFlag, resettingFlag, text, onReset } =
-      this.props;
+      this.getProperties();
 
     const loading = !!switchControl[loadingFlag];
     const resetting = !!switchControl[resettingFlag];
@@ -35,10 +43,5 @@ class ResetButton extends PureComponent {
     );
   }
 }
-
-ResetButton.defaultProps = {
-  text: '重置',
-  onReset: null,
-};
 
 export { ResetButton };

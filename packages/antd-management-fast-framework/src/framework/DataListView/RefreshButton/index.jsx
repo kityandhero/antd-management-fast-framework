@@ -12,8 +12,16 @@ import { switchControlAssist } from '../../../utils/switchControlAssist';
   switchControl,
 }))
 class RefreshButton extends PureComponent {
+  getProperties = () => {
+    return {
+      title: '刷新本页',
+      onRefresh: null,
+      ...this.props,
+    };
+  };
+
   render() {
-    const { switchControl, flag, title, onRefresh } = this.props;
+    const { switchControl, flag, title, onRefresh } = this.getProperties();
 
     const refreshing = switchControlAssist.check(switchControl, flag);
 
@@ -37,10 +45,5 @@ class RefreshButton extends PureComponent {
     );
   }
 }
-
-RefreshButton.defaultProps = {
-  title: '刷新本页',
-  onRefresh: null,
-};
 
 export { RefreshButton };

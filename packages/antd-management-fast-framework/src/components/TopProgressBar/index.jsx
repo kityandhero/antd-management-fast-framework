@@ -23,6 +23,4 @@ class TopProgressBar extends PureComponent {
   }
 }
 
-TopProgressBar.defaultProps = {};
-
 export { TopProgressBar };

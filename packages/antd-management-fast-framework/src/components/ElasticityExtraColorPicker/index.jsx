@@ -12,6 +12,16 @@ import { switchControlAssist } from '../../utils/switchControlAssist';
   switchControl,
 }))
 class ElasticityExtraColorPicker extends PureComponent {
+  getProperties = () => {
+    return {
+      flag: '',
+      value: '',
+      disabled: false,
+      onChange: null,
+      ...this.props,
+    };
+  };
+
   render() {
     const {
       switchControl,
@@ -19,7 +29,7 @@ class ElasticityExtraColorPicker extends PureComponent {
       value,
       disabled,
       onChange: onChangeCallback,
-    } = this.props;
+    } = this.getProperties();
 
     const checkResult = switchControlAssist.check(switchControl, flag);
 
@@ -91,12 +101,5 @@ class ElasticityExtraColorPicker extends PureComponent {
     );
   }
 }
-
-ElasticityExtraColorPicker.defaultProps = {
-  flag: '',
-  value: '',
-  disabled: false,
-  onChange: null,
-};
 
 export { ElasticityExtraColorPicker };

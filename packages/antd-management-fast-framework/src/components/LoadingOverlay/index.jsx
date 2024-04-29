@@ -12,8 +12,18 @@ import styles from './index.less';
   switchControl,
 }))
 class LoadingOverlay extends PureComponent {
+  getProperties = () => {
+    return {
+      flag: '',
+      fill: false,
+      minHeight: null,
+      maxHeight: null,
+      ...this.props,
+    };
+  };
+
   getStyle = () => {
-    const { minHeight, maxHeight, fill } = this.props;
+    const { minHeight, maxHeight, fill } = this.getProperties();
 
     const minHeightStyle = fill
       ? {}
@@ -40,7 +50,7 @@ class LoadingOverlay extends PureComponent {
   };
 
   render() {
-    const { children, switchControl, flag, fill } = this.props;
+    const { children, switchControl, flag, fill } = this.getProperties();
 
     const result = switchControlAssist.check(switchControl, flag);
 
@@ -59,12 +69,5 @@ class LoadingOverlay extends PureComponent {
     );
   }
 }
-
-LoadingOverlay.defaultProps = {
-  flag: '',
-  fill: false,
-  minHeight: null,
-  maxHeight: null,
-};
 
 export { LoadingOverlay };

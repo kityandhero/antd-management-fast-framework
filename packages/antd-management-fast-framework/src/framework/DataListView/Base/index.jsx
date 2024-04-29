@@ -26,7 +26,6 @@ import {
   showSimpleErrorMessage,
   showSimpleRuntimeError,
   showSimpleWarnMessage,
-  toMd5,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -85,8 +84,6 @@ const {
 const rangeTimeFieldName = '1231e27b236947eeadbb23a032d5d8b0';
 
 const primaryCallName = 'DataListView::Base';
-
-let filterFormValuesMd5 = '';
 
 class Base extends AuthorizationWrapper {
   showReloadButton = false;
@@ -416,11 +413,10 @@ class Base extends AuthorizationWrapper {
 
         that.filterFormValues = values;
 
-        if (filterFormValuesMd5 != toMd5(values)) {
-          filterFormValuesMd5 = toMd5(values);
-
-          that.pageValues.pageNo = 1;
-        }
+        this.setPageValue({
+          pageNo: 1,
+          frontendPageNo: 1,
+        });
 
         that.searchData({});
 
@@ -1317,8 +1313,8 @@ class Base extends AuthorizationWrapper {
       },
       pageSizeOptions,
       ...paginationConfig,
-      defaultCurrent: pageNo,
-      defaultPageSize: pageSize,
+      current: pageNo,
+      pageSize: pageSize,
     };
 
     this.logCallTrack(

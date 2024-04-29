@@ -10,9 +10,17 @@ import { iconBuilder } from 'antd-management-fast-component';
   switchControl,
 }))
 class SearchButton extends PureComponent {
+  getProperties = () => {
+    return {
+      text: '查询',
+      onSearch: null,
+      ...this.props,
+    };
+  };
+
   render() {
     const { switchControl, loadingFlag, searchingFlag, text, onSearch } =
-      this.props;
+      this.getProperties();
 
     const loading = !!switchControl[loadingFlag];
     const searching = !!switchControl[searchingFlag];
@@ -33,10 +41,5 @@ class SearchButton extends PureComponent {
     );
   }
 }
-
-SearchButton.defaultProps = {
-  text: '查询',
-  onSearch: null,
-};
 
 export { SearchButton };
