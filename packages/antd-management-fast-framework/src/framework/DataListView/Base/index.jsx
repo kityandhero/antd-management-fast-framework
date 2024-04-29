@@ -26,6 +26,7 @@ import {
   showSimpleErrorMessage,
   showSimpleRuntimeError,
   showSimpleWarnMessage,
+  toMd5,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -84,6 +85,8 @@ const {
 const rangeTimeFieldName = '1231e27b236947eeadbb23a032d5d8b0';
 
 const primaryCallName = 'DataListView::Base';
+
+let filterFormValuesMd5 = '';
 
 class Base extends AuthorizationWrapper {
   showReloadButton = false;
@@ -383,6 +386,8 @@ class Base extends AuthorizationWrapper {
 
     const { validateFields } = form;
 
+    const that = this;
+
     validateFields()
       .then((fieldsValue) => {
         delete fieldsValue[rangeTimeFieldName];
@@ -400,7 +405,7 @@ class Base extends AuthorizationWrapper {
           }
         }
 
-        this.logCallTrace(
+        that.logCallTrace(
           {
             filterFormValues: values,
           },
@@ -409,9 +414,15 @@ class Base extends AuthorizationWrapper {
           'filter form values info',
         );
 
-        this.filterFormValues = values;
+        that.filterFormValues = values;
 
-        this.searchData({});
+        if (filterFormValuesMd5 != toMd5(values)) {
+          filterFormValuesMd5 = toMd5(values);
+
+          that.pageValues.pageNo = 1;
+        }
+
+        that.searchData({});
 
         return values;
       })
