@@ -584,7 +584,7 @@ class BasicInfo extends TabPageBase {
     return { width: 400 };
   };
 
-  renderSiderTopArea = () => {
+  renderPresetSiderTopArea = () => {
     const { mediaItemList } = this.state;
 
     return (

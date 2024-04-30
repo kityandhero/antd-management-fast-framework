@@ -316,6 +316,7 @@ class InternalBuild extends InternalSwitchoverFlow {
       extra,
       hidden,
       cardType,
+      cardStyle: cardStyleItem,
       cardBodyStyle,
       items: contentItems,
       otherComponent,
@@ -333,6 +334,7 @@ class InternalBuild extends InternalSwitchoverFlow {
       extra: null,
       hidden: false,
       cardType: cardConfig.renderType.normal,
+      cardStyle: {},
       cardBodyStyle: {},
       items: [],
       otherComponent: null,
@@ -546,6 +548,7 @@ class InternalBuild extends InternalSwitchoverFlow {
           // boxShadow: 'none',
           // borderRadius: 0,
           ...cardStyle,
+          ...cardStyleItem,
           ...(imageVisible ? { position: 'relative' } : {}),
           ...(flexVertical
             ? {

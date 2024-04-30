@@ -56,6 +56,7 @@ class MobilePreviewArea extends Base {
 
   establishCardCollectionConfig = () => {
     const {
+      style,
       alertVisible,
       alertAnimationType,
       alertMessage,
@@ -98,6 +99,7 @@ class MobilePreviewArea extends Base {
             text: '内容预览',
             icon: iconBuilder.read(),
           },
+          cardStyle: style,
           extra: {
             list: [
               {
@@ -205,6 +207,7 @@ class MobilePreviewArea extends Base {
 }
 
 MobilePreviewArea.defaultProps = {
+  style: {},
   affix: false,
   affixOffsetBottom: 0,
   affixOffsetTop: 0,

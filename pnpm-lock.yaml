@@ -3283,7 +3283,7 @@ importers:
         specifier: ^2.6.95
         version: link:../antd-management-fast-common
       antd-management-fast-component:
-        specifier: ^2.6.147
+        specifier: ^2.6.148
         version: link:../antd-management-fast-component
       antd-management-fast-design-playground:
         specifier: ^1.0.105
