@@ -197,7 +197,6 @@ class CustomGrid extends BaseComponent {
                         ...contentStyle,
                         ...(isEmpty ? globalEmptyStyle || {} : {}),
                         ...(isEmpty ? itemEmptyStyle || {} : {}),
-
                         WebkitBoxOrient: 'vertical',
                         overflow: 'hidden',
                         display: '-webkit-box',

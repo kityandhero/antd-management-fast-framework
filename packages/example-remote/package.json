@@ -1,6 +1,6 @@
 {
   "name": "example-remote",
-  "version": "1.4.115",
+  "version": "1.4.117",
   "private": true,
   "author": "",
   "scripts": {
@@ -53,7 +53,7 @@
     "@umijs/max": "^4.1.10",
     "antd": "^5.16.5",
     "antd-management-fast-common": "^2.6.95",
-    "antd-management-fast-component": "^2.6.149",
+    "antd-management-fast-component": "^2.6.151",
     "antd-management-fast-design-playground": "^1.0.105",
     "antd-management-fast-design-react": "^1.0.64",
     "antd-management-fast-flow": "^1.0.54",
@@ -97,7 +97,7 @@
     "@types/shelljs": "^0.8.15",
     "@typescript-eslint/parser": "^7.7.1",
     "antd-management-fast-config": "^1.1.70",
-    "antd-management-fast-develop": "^1.1.74",
+    "antd-management-fast-develop": "^1.1.76",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^7.0.2",

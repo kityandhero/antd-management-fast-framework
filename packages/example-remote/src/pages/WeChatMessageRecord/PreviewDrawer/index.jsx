@@ -13,7 +13,7 @@ const { Base } = DataDrawer;
 const visibleFlag = 'e1a7b33c-f78b-4018-94db-534e167524cf';
 
 class PreviewDrawer extends Base {
-  loadDataAfterMount = false;
+  loadRemoteRequestAfterMount = false;
 
   static open() {
     switchControlAssist.open(visibleFlag);
