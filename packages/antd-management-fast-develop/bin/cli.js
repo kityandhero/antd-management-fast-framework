@@ -19,6 +19,7 @@ program
   .command('generate')
   .description('generate file from data source and template')
   .option('--dataPath <string>', 'data json source file path')
+  .option('--dataExtraPath <string>', 'data extra json source file path')
   .option(
     '--relativeFolder <bool>',
     'file will be generate by the relative folder path, default is "."',
