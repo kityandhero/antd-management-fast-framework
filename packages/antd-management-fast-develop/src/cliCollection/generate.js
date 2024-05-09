@@ -11,6 +11,7 @@ const {
   exit,
   promptInfo,
   exec,
+  mkdirSync,
 } = require('easy-soft-develop');
 const { generate } = require('../tools/generate');
 
@@ -19,11 +20,23 @@ exports.run = function (s, o) {
     _optionValues: { dataPath = '', dataExtraPath = '', relativeFolder = '.' },
   } = o;
 
-  if (checkStringIsEmpty(dataPath)) {
-    promptWarn('please input data json file path, use --help to get help info');
+  if (checkStringIsEmpty(dataPath) && checkStringIsEmpty(dataExtraPath)) {
+    promptWarn(
+      'please input data json file path or data extra json file path, use --help to get help info',
+    );
 
     exit();
   }
+
+  const removeCmd = `npx rimraf ${relativeFolder}/FunctionExtra`;
+
+  promptInfo(`remove FunctionExtra: ${removeCmd}`);
+
+  exec(removeCmd);
+
+  mkdirSync(`${relativeFolder}/FunctionExtra`, {
+    recursive: true,
+  });
 
   const data = readJsonFileSync(dataPath);
 

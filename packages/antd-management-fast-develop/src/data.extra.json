@@ -1,0 +1,9 @@
+{
+  "list": [
+    {
+      "functionSegment": "Brand",
+      "label": "商品品牌",
+      "name": "brandId"
+    }
+  ]
+}

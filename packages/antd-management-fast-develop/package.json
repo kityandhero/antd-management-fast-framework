@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.1.79",
+  "version": "1.1.80",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -18,7 +18,7 @@
     "types/"
   ],
   "scripts": {
-    "ejs:test": "node ./bin/cli.js generate --dataPath ./src/data.json",
+    "ejs:test": "node ./bin/cli.js generate --dataPath ./src/data.json --dataExtraPath ./src/data.extra.json",
     "precommit": "npm run z:lint:staged:quiet",
     "publish:npm": "npm publish --registry https://registry.npmjs.org/",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",

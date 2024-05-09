@@ -4,11 +4,6 @@
       "functionSegment": "SimpleStatus",
       "label": "状态",
       "name": "status"
-    },
-    {
-      "functionSegment": "Brand",
-      "label": "商品品牌",
-      "name": "brandId"
     }
   ]
 }
