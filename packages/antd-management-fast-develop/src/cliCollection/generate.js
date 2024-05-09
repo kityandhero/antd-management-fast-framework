@@ -3,6 +3,7 @@
 /* eslint-disable no-useless-escape */
 
 const {
+  writeFileSync,
   promptWarn,
   checkStringIsEmpty,
   readJsonFileSync,
