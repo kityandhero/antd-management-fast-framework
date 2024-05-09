@@ -19,8 +19,10 @@ import {
   showSimpleRuntimeError,
 } from 'easy-soft-utility';
 
-import { copyToClipboard } from 'antd-management-fast-common';
-import { getAudioUploadMaxSize } from 'antd-management-fast-common/src';
+import {
+  copyToClipboard,
+  getAudioUploadMaxSize,
+} from 'antd-management-fast-common';
 
 import { buildPlayer } from '../FunctionComponent';
 import { iconBuilder } from '../Icon';

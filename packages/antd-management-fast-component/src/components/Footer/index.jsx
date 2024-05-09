@@ -1,7 +1,7 @@
 import React from 'react';
 import { DefaultFooter } from '@ant-design/pro-layout';
 
-import { getCopyright } from 'antd-management-fast-common/src';
+import { getCopyright } from 'antd-management-fast-common';
 
 const Footer = ({ links }) => {
   return (
