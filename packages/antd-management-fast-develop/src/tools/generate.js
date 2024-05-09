@@ -52,15 +52,7 @@ function generate(dataSource, relativeFolder) {
     exportList.push(`export * from './${o.functionSegment}';`);
   }
 
-  if (exportList.length > 0) {
-    writeFileSync(
-      `${relativeFolder}/FunctionExtra/index.jsx`,
-      exportList.join(''),
-      {
-        coverFile: true,
-      },
-    );
-  }
+  return exportList;
 }
 
 function adjustSource(o) {

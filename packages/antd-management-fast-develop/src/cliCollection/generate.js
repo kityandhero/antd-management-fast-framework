@@ -28,12 +28,16 @@ exports.run = function (s, o) {
 
   let crateFileSuccess = false;
 
+  let exportList = [];
+
   if (isObject(data) && Array.isArray(data.list)) {
     promptInfo('File will generate, please wait a moment');
 
-    generate(data.list, relativeFolder);
+    const list = generate(data.list, relativeFolder);
 
     crateFileSuccess = true;
+
+    exportList = [...exportList, ...list];
   }
 
   const dataExtra = readJsonFileSync(dataExtraPath);
@@ -41,12 +45,24 @@ exports.run = function (s, o) {
   if (isObject(dataExtra) && Array.isArray(dataExtra.list)) {
     promptInfo('File extra will generate, please wait a moment');
 
-    generate(dataExtra.list, relativeFolder);
+    const list = generate(dataExtra.list, relativeFolder);
 
     crateFileSuccess = true;
+
+    exportList = [...exportList, ...list];
   }
 
   if (crateFileSuccess) {
+    if (exportList.length > 0) {
+      writeFileSync(
+        `${relativeFolder}/FunctionExtra/index.jsx`,
+        exportList.join(''),
+        {
+          coverFile: true,
+        },
+      );
+    }
+
     const cmdEslint = `npx eslint --fix --cache --ext .js,.jsx,.ts,.tsx ${relativeFolder}/`;
 
     promptInfo(`Eslint generated file: ${cmdEslint}`);
