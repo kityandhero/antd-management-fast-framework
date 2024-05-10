@@ -38,32 +38,36 @@ exports.run = function (s, o) {
     recursive: true,
   });
 
-  const data = readJsonFileSync(dataPath);
-
   let crateFileSuccess = false;
 
   let exportList = [];
 
-  if (isObject(data) && Array.isArray(data.list)) {
-    promptInfo('File will generate, please wait a moment');
+  if (!checkStringIsEmpty(dataPath)) {
+    const data = readJsonFileSync(dataPath);
 
-    const list = generate(data.list, relativeFolder);
+    if (isObject(data) && Array.isArray(data.list)) {
+      promptInfo('File will generate, please wait a moment');
 
-    crateFileSuccess = true;
+      const list = generate(data.list, relativeFolder);
 
-    exportList = [...exportList, ...list];
+      crateFileSuccess = true;
+
+      exportList = [...exportList, ...list];
+    }
   }
 
-  const dataExtra = readJsonFileSync(dataExtraPath);
+  if (!checkStringIsEmpty(dataExtraPath)) {
+    const dataExtra = readJsonFileSync(dataExtraPath);
 
-  if (isObject(dataExtra) && Array.isArray(dataExtra.list)) {
-    promptInfo('File extra will generate, please wait a moment');
+    if (isObject(dataExtra) && Array.isArray(dataExtra.list)) {
+      promptInfo('File extra will generate, please wait a moment');
 
-    const list = generate(dataExtra.list, relativeFolder);
+      const list = generate(dataExtra.list, relativeFolder);
 
-    crateFileSuccess = true;
+      crateFileSuccess = true;
 
-    exportList = [...exportList, ...list];
+      exportList = [...exportList, ...list];
+    }
   }
 
   if (crateFileSuccess) {

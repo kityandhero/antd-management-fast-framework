@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.71
+
+### Patch Changes
+
+- update
+
 ## 1.1.70
 
 ### Patch Changes
