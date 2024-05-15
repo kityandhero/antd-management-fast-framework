@@ -9,7 +9,7 @@ const commitScript = {
 
 const documentationScript = {
   'prez:documentation:generate':
-    'npx rimraf ./docs && npm run z:documentation:lint',
+    'rimraf ./docs && npm run z:documentation:lint',
   'z:documentation:generate':
     'npx documentation build src/** -f html --github -o docs',
   'z:documentation:lint': 'npx documentation lint src/**',

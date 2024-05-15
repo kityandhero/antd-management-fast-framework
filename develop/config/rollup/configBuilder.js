@@ -14,7 +14,17 @@ import svgr from '@svgr/rollup';
 
 const externalCollection = [
   '@ant-design/icons',
+  '@ant-design/pro-card',
+  '@ant-design/pro-components',
+  '@ant-design/pro-descriptions',
+  '@ant-design/pro-field',
+  '@ant-design/pro-form',
   '@ant-design/pro-layout',
+  '@ant-design/pro-list',
+  '@ant-design/pro-provider',
+  '@ant-design/pro-skeleton',
+  '@ant-design/pro-table',
+  '@ant-design/pro-utils',
   '@antv/data-set',
   '@antv/l7',
   '@antv/l7-maps',
@@ -53,6 +63,7 @@ const externalCollection = [
   'classnames',
   'copy-to-clipboard',
   'cssnano',
+  'date-fns',
   'dateformat',
   'dayjs',
   'easy-soft-dva',
@@ -85,6 +96,7 @@ const externalCollection = [
   'rc-tween-one',
   'rc-util',
   'rc-util/es/composeProps',
+  'rc-util/es/hooks/useLayoutEffect',
   'rc-util/es/hooks/useMergedState',
   'react',
   'react-color',
@@ -238,12 +250,4 @@ export function buildConfig({
     //   plugins: [dts.default()],
     // },
   ];
-}
-
-/**
- * 占位函数
- *
- */
-export function emptyExport() {
-  return {};
 }

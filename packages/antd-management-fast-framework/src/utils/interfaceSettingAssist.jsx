@@ -1,6 +1,7 @@
 import { Dropdown } from 'antd';
 import React, { Fragment } from 'react';
-import { SettingDrawer } from '@ant-design/pro-layout';
+// eslint-disable-next-line import/named
+import { SettingDrawer } from '@ant-design/pro-components';
 
 import {
   checkHasAuthority,

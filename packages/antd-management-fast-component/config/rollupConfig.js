@@ -11,11 +11,3 @@ export function buildConfig({ terser: whetherTerser = false }) {
     externalCollection: ['antd-management-fast-common'],
   });
 }
-
-/**
- * 占位函数
- *
- */
-export function emptyExport() {
-  return {};
-}

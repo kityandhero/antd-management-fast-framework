@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 import { Outlet } from 'umi';
-import { PageContainer } from '@ant-design/pro-layout';
+// eslint-disable-next-line import/named
+import { PageContainer } from '@ant-design/pro-components';
 
 import {
   isEmptyObject,

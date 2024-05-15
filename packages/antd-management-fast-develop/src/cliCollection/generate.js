@@ -28,7 +28,7 @@ exports.run = function (s, o) {
     exit();
   }
 
-  const removeCmd = `npx rimraf ${relativeFolder}/FunctionExtra`;
+  const removeCmd = `rimraf ${relativeFolder}/FunctionExtra`;
 
   promptInfo(`remove FunctionExtra: ${removeCmd}`);
 

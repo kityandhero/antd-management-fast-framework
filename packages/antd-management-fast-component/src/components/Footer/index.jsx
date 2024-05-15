@@ -1,5 +1,6 @@
 import React from 'react';
-import { DefaultFooter } from '@ant-design/pro-layout';
+// eslint-disable-next-line import/named
+import { DefaultFooter } from '@ant-design/pro-components';
 
 import { getCopyright } from 'antd-management-fast-common';
 

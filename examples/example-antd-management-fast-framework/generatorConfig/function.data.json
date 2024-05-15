@@ -1,0 +1,14 @@
+{
+  "list": [
+    {
+      "functionSegment": "SimpleStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "SimpleRenderType",
+      "label": "渲染模式",
+      "name": "renderType"
+    }
+  ]
+}

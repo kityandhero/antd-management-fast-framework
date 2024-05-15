@@ -1,3 +1,0 @@
-window.appInitCustomLocalSpecial = {
-  showLogInConsole: false,
-};

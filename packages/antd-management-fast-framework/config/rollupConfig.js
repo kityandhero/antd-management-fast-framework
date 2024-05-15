@@ -18,11 +18,3 @@ export function buildConfig({ terser: whetherTerser = false }) {
     ],
   });
 }
-
-/**
- * 占位函数
- *
- */
-export function emptyExport() {
-  return {};
-}

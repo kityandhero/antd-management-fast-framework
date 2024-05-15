@@ -3,9 +3,12 @@
 /* eslint-disable unicorn/prefer-module */
 /* eslint-disable no-useless-escape */
 
-module.exports = function (api) {
+function buildConfig(api) {
   api.cache(true);
+
   return {
-    babelrcRoots: ['.', 'packages/*'],
+    babelrcRoots: ['.', 'packages/*', 'examples/*'],
   };
-};
+}
+
+module.exports = buildConfig;
