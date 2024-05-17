@@ -4,6 +4,8 @@ import {
   buildPromptModuleInfo,
   checkStringIsNullOrWhiteSpace,
   checkWhetherDevelopmentEnvironment,
+  endsWith,
+  filter,
   getCache,
   isNumber,
   isUndefined,
@@ -12,6 +14,7 @@ import {
   mergeTextMessage,
   saveJsonToLocalStorage,
   setCache,
+  split,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -91,6 +94,12 @@ export function orientRoute({ path }) {
           parentId = '';
         }
       }
+    }
+
+    if (!checkStringIsNullOrWhiteSpace(menu) && endsWith(menu, '.')) {
+      menu = filter(split(menu, '.'), (one) => {
+        return !checkStringIsNullOrWhiteSpace(one);
+      }).join('.');
     }
 
     return {
