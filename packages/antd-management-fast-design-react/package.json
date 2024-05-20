@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-react",
-  "version": "1.0.69",
+  "version": "1.0.70",
   "keywords": [
     "antd-management-fast-design-react"
   ],
@@ -74,7 +74,7 @@
     "classnames": "^2.5.1",
     "dateformat": "^5.0.3",
     "dayjs": "^1.11.11",
-    "easy-soft-utility": "^2.8.42",
+    "easy-soft-utility": "^2.8.43",
     "monaco-editor": "^0.48.0",
     "react": "^18.3.1",
     "react-color": "^2.19.3",
@@ -109,7 +109,7 @@
     "cross-env": "^7.0.3",
     "cz-git": "^1.9.1",
     "documentation": "^14.0.3",
-    "easy-soft-develop": "^2.1.161",
+    "easy-soft-develop": "^2.1.163",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.1.85",
+  "version": "1.1.86",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -82,7 +82,7 @@
     "cross-env": "^7.0.3",
     "cz-git": "^1.9.1",
     "documentation": "^14.0.3",
-    "easy-soft-develop": "^2.1.161",
+    "easy-soft-develop": "^2.1.163",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
