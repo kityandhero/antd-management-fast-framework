@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-config",
-  "version": "1.1.74",
+  "version": "1.1.75",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -18,7 +18,7 @@
     "precommit": "npm run z:lint:staged:quiet",
     "publish:npm": "npm publish --registry https://registry.npmjs.org/",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
-    "prez:documentation:generate": "rimraf ./docs && npm run z:documentation:lint",
+    "prez:documentation:generate": "npx easy-soft-develop rimraf ./docs && npm run z:documentation:lint",
     "z:documentation:generate": "npx documentation build src/** -f html --github -o docs",
     "z:documentation:lint": "npx documentation lint src/**",
     "z:lint:file:all": "npm run z:lint:script:all && npm run z:lint:style:all",
@@ -57,7 +57,7 @@
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.24.1",
     "@babel/runtime": "^7.24.5",
-    "@changesets/cli": "^2.27.1",
+    "@changesets/cli": "^2.27.3",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/config-pnpm-scopes": "^19.1.0",
@@ -65,14 +65,14 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.12",
     "@typescript-eslint/parser": "^7.9.0",
-    "@umijs/max": "^4.2.3",
+    "@umijs/max": "^4.2.5",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "cross-env": "^7.0.3",
     "cz-git": "^1.9.1",
     "documentation": "^14.0.3",
-    "easy-soft-develop": "^2.1.137",
+    "easy-soft-develop": "^2.1.161",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -105,6 +105,6 @@
     "stylelint-config-standard": "^36.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
     "stylelint-order": "^6.0.4",
-    "umi": "^4.2.3"
+    "umi": "^4.2.5"
   }
 }

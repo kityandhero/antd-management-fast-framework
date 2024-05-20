@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-flow",
-  "version": "1.0.59",
+  "version": "1.0.60",
   "keywords": [
     "antd-management-fast-flow"
   ],
@@ -29,7 +29,7 @@
     "dev:rollup": "rollup --config rollup.config.skipCompression.js --bundleConfigAsCjs --watch --watch.onBundleEnd=\"npm run z:tsc:build\"",
     "precommit": "npm run z:lint:staged:quiet",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
-    "prez:documentation:generate": "rimraf ./docs && npm run z:documentation:lint",
+    "prez:documentation:generate": "npx easy-soft-develop rimraf ./docs && npm run z:documentation:lint",
     "z:documentation:generate": "npx documentation build src/** -f html --github -o docs",
     "z:documentation:lint": "npx documentation lint src/**",
     "z:lint:file:all": "npm run z:lint:script:all && npm run z:lint:style:all",
@@ -57,11 +57,11 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "antd": "^5.17.2",
+    "antd": "^5.17.3",
     "antd-management-fast-common": "workspace:*",
     "antd-management-fast-component": "workspace:*",
     "classnames": "^2.5.1",
-    "easy-soft-utility": "^2.8.39",
+    "easy-soft-utility": "^2.8.42",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "reactflow": "^11.11.3"
@@ -76,7 +76,7 @@
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.24.1",
     "@babel/runtime": "^7.24.5",
-    "@changesets/cli": "^2.27.1",
+    "@changesets/cli": "^2.27.3",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/config-pnpm-scopes": "^19.1.0",
@@ -86,14 +86,14 @@
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/parser": "^7.9.0",
-    "antd": "^5.17.2",
+    "antd": "^5.17.3",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "cross-env": "^7.0.3",
     "cz-git": "^1.9.1",
     "documentation": "^14.0.3",
-    "easy-soft-develop": "^2.1.137",
+    "easy-soft-develop": "^2.1.161",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
