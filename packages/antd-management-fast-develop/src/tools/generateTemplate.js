@@ -19,7 +19,8 @@ function generate(dataSource, templateContent, relativeFolder) {
 
     mkdirSync(`${relativeFolder}/${o.folder}`);
 
-    const { coverFile } = {
+    const { fileName, coverFile } = {
+      fileName: 'index.jsx',
       coverFile: false,
       ...o,
     };
@@ -29,7 +30,7 @@ function generate(dataSource, templateContent, relativeFolder) {
     });
 
     promptSuccess(
-      `Generate complete: "${relativeFolder}/${o.folder}/index.jsx".`,
+      `Generate complete: "${relativeFolder}/${o.folder}/${fileName || 'index.jsx'}".`,
     );
   }
 }
