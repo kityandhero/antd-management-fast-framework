@@ -25,9 +25,13 @@ function generate(dataSource, templateContent, relativeFolder) {
       ...o,
     };
 
-    writeFileSync(`${relativeFolder}/${o.folder}/index.jsx`, content, {
-      coverFile: coverFile || false,
-    });
+    writeFileSync(
+      `${relativeFolder}/${o.folder}/${fileName || 'index.jsx'}`,
+      content,
+      {
+        coverFile: coverFile || false,
+      },
+    );
 
     promptSuccess(
       `Generate complete: "${relativeFolder}/${o.folder}/${fileName || 'index.jsx'}".`,
