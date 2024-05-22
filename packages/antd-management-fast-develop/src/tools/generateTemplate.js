@@ -19,8 +19,13 @@ function generate(dataSource, templateContent, relativeFolder) {
 
     mkdirSync(`${relativeFolder}/${o.folder}`);
 
+    const { coverFile } = {
+      coverFile: false,
+      ...o,
+    };
+
     writeFileSync(`${relativeFolder}/${o.folder}/index.jsx`, content, {
-      coverFile: true,
+      coverFile: coverFile || false,
     });
 
     promptSuccess(
