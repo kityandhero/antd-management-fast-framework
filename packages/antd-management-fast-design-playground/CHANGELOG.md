@@ -1,5 +1,16 @@
 # antd-management-fast-design-playground
 
+## 1.0.113
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-design-react@1.0.71
+  - antd-management-fast-component@2.6.160
+  - antd-management-fast-formily@1.0.73
+  - antd-management-fast-common@2.6.103
+
 ## 1.0.112
 
 ### Patch Changes
