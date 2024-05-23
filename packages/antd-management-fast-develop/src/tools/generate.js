@@ -13,7 +13,7 @@ const {
 
 let { templateContent } = require('../template');
 
-function generate(dataSource, relativeFolder) {
+function generate(dataSource, folderName, relativeFolder) {
   const dataAdjust = dataSource.map((o) => adjustSource(o));
 
   const exportList = [];
@@ -23,10 +23,10 @@ function generate(dataSource, relativeFolder) {
 
     let content = compile(templateContent)({ o });
 
-    mkdirSync(`${relativeFolder}/FunctionExtra/${o.functionSegment}`);
+    mkdirSync(`${relativeFolder}/${folderName}/${o.functionSegment}`);
 
     writeFileSync(
-      `${relativeFolder}/FunctionExtra/${o.functionSegment}/index.jsx`,
+      `${relativeFolder}/${folderName}/${o.functionSegment}/index.jsx`,
       content,
       {
         coverFile: true,
@@ -34,7 +34,7 @@ function generate(dataSource, relativeFolder) {
     );
 
     promptSuccess(
-      `Generate "${relativeFolder}/FunctionExtra/${o.functionSegment}/index.jsx" complete`,
+      `Generate "${relativeFolder}/${folderName}/${o.functionSegment}/index.jsx" complete`,
     );
 
     exportList.push(`export * from './${o.functionSegment}';`);

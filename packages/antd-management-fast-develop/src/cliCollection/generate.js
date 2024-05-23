@@ -12,15 +12,20 @@ const {
   promptInfo,
   exec,
   mkdirSync,
+  promptError,
 } = require('easy-soft-develop');
 const { generate } = require('../tools/generate');
 
 exports.run = function (s, o) {
   const {
-    _optionValues: { dataPath = '', dataExtraPath = '', relativeFolder = '.' },
+    _optionValues: {
+      dataPath = '',
+      folderName = 'FunctionSpecialComponent',
+      relativeFolder = '.',
+    },
   } = o;
 
-  if (checkStringIsEmpty(dataPath) && checkStringIsEmpty(dataExtraPath)) {
+  if (checkStringIsEmpty(dataPath)) {
     promptWarn(
       'please input data json file path or data extra json file path, use --help to get help info',
     );
@@ -28,13 +33,19 @@ exports.run = function (s, o) {
     exit();
   }
 
-  const removeCmd = `rimraf ${relativeFolder}/FunctionExtra`;
+  if (checkStringIsEmpty(folderName)) {
+    promptError('folder name disallow empty, use --help to get help info!');
 
-  promptInfo(`remove FunctionExtra: ${removeCmd}`);
+    exit();
+  }
+
+  const removeCmd = `rimraf ${relativeFolder}/${folderName}`;
+
+  promptInfo(`remove ${folderName}: ${removeCmd}`);
 
   exec(removeCmd);
 
-  mkdirSync(`${relativeFolder}/FunctionExtra`, {
+  mkdirSync(`${relativeFolder}/${folderName}`, {
     recursive: true,
   });
 
@@ -48,21 +59,7 @@ exports.run = function (s, o) {
     if (isObject(data) && Array.isArray(data.list)) {
       promptInfo('File will generate, please wait a moment');
 
-      const list = generate(data.list, relativeFolder);
-
-      crateFileSuccess = true;
-
-      exportList = [...exportList, ...list];
-    }
-  }
-
-  if (!checkStringIsEmpty(dataExtraPath)) {
-    const dataExtra = readJsonFileSync(dataExtraPath);
-
-    if (isObject(dataExtra) && Array.isArray(dataExtra.list)) {
-      promptInfo('File extra will generate, please wait a moment');
-
-      const list = generate(dataExtra.list, relativeFolder);
+      const list = generate(data.list, folderName, relativeFolder);
 
       crateFileSuccess = true;
 
@@ -73,7 +70,7 @@ exports.run = function (s, o) {
   if (crateFileSuccess) {
     if (exportList.length > 0) {
       writeFileSync(
-        `${relativeFolder}/FunctionExtra/index.jsx`,
+        `${relativeFolder}/${folderName}/index.jsx`,
         exportList.join(''),
         {
           coverFile: true,
