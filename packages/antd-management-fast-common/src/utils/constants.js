@@ -698,6 +698,11 @@ export const searchCardConfig = {
      * 分隔符
      */
     divider: 'divider',
+
+    /**
+     * treeSelect
+     */
+    treeSelect: 'treeSelect',
   },
 };
 

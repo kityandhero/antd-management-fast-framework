@@ -46,6 +46,7 @@ import {
   buildDropdown,
   buildFlexSelect,
   convertOptionOrRadioData,
+  ElasticityTreeSelect,
   EverySpace,
   FlexBox,
   FormExtra,
@@ -660,7 +661,7 @@ class Base extends AuthorizationWrapper {
             dataConvert={convertOptionOrRadioData}
             renderItem={null}
             helper={fieldData.helper}
-            onChange={contentItem.onChangeCallback}
+            onChange={contentItem.onChange}
             formItemLayout={null}
             required={false}
             innerProps={contentItem.innerProps}
@@ -684,7 +685,7 @@ class Base extends AuthorizationWrapper {
             dataConvert={convertOptionOrRadioData}
             renderItem={null}
             helper={fieldData.helper}
-            onChange={contentItem.onChangeCallback}
+            onChange={contentItem.onChange}
             formItemLayout={null}
             required={false}
             innerProps={contentItem.innerProps}
@@ -695,6 +696,31 @@ class Base extends AuthorizationWrapper {
         {type === searchCardConfig.contentItemType.customRadio
           ? contentItem.component
           : null}
+
+        {type === searchCardConfig.contentItemType.treeSelect ? (
+          <ComponentItem
+            label={fieldData.label}
+            innerComponent={
+              <ElasticityTreeSelect
+                value={contentItem.value || null}
+                placeholder={
+                  buildFieldDescription(fieldData.label, '选择') || '请选择'
+                }
+                onChange={contentItem.onChange}
+                innerProps={contentItem.innerProps}
+                listData={contentItem.listData || []}
+                dataConvert={contentItem.dataConvert || null}
+              />
+            }
+            helper={fieldData.helper}
+            addonBefore={contentItem.addonBefore || null}
+            addonBeforeStyle={contentItem.addonBeforeStyle || null}
+            addonAfter={contentItem.addonAfter || null}
+            addonAfterStyle={contentItem.addonAfterStyle || null}
+            formItemLayout={null}
+            requiredForShow={false}
+          />
+        ) : null}
 
         {type === searchCardConfig.contentItemType.innerComponent ? (
           <ComponentItem
