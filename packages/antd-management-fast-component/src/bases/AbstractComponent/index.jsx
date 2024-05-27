@@ -8,6 +8,7 @@ import {
   handleAuthorizationFail,
   isFunction,
   isNumber,
+  logCallResult as logCallResultCore,
   logCallTrace as logCallTraceCore,
   logCallTrack as logCallTrackCore,
   logError,
@@ -888,6 +889,20 @@ class AbstractComponent extends Component {
     }
 
     logCallTraceCore(data, mergeArrowText(this.componentName, ...messages));
+  }
+
+  /**
+   * log call result
+   * @param {*} message
+   */
+  logCallResult(data, ...messages) {
+    if (!this.showCallProcess) {
+      this.promptCallProcessSwitch();
+
+      return;
+    }
+
+    logCallResultCore(data, mergeArrowText(this.componentName, ...messages));
   }
 
   buildOverloadErrorText(...texts) {
