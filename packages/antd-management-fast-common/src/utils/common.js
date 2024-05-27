@@ -12,7 +12,12 @@ import { getCurrentLocationParameters } from './routeAssist';
 /**
  * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state，
  */
-export function getDerivedStateFromPropertiesForUrlParametersCore() {
+export function getDerivedStateFromPropertiesForUrlParametersCore(
+  // eslint-disable-next-line no-unused-vars
+  nextProperties,
+  // eslint-disable-next-line no-unused-vars
+  previousState,
+) {
   const parameters = getCurrentLocationParameters();
 
   return { urlParams: parameters };
@@ -27,7 +32,10 @@ export function getDerivedStateFromPropertiesForUrlParameters(
   defaultUrlParameters = null,
   parseUrlParametersForSetState = null,
 ) {
-  let stateUrlParameters = getDerivedStateFromPropertiesForUrlParametersCore();
+  let stateUrlParameters = getDerivedStateFromPropertiesForUrlParametersCore(
+    nextProperties,
+    previousState,
+  );
 
   stateUrlParameters = {
     urlParams: { id: '' },

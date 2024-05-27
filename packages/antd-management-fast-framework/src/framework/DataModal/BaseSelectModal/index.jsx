@@ -11,6 +11,10 @@ import { BaseLoadModal } from '../BaseLoadModal';
 
 const primaryCallName = 'DataModal::BaseSelectModal';
 
+/**
+ * DataModal.BaseSelectModal
+ * @namespace
+ */
 class BaseSelectModal extends BaseLoadModal {
   submitWithForm = false;
 

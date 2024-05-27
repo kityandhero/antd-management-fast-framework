@@ -8,6 +8,12 @@ import { BaseNeedlessLoadDrawer } from '../BaseNeedlessLoadDrawer';
 
 const primaryCallName = 'DataDrawer::BaseAddDrawer';
 
+/**
+ * base add drawer
+ * @namespace framework.DataDrawer
+ * @class BaseAddDrawer
+ * @augments BaseNeedlessLoadDrawer
+ */
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -18,6 +24,13 @@ class BaseAddDrawer extends BaseNeedlessLoadDrawer {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }

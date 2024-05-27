@@ -3,6 +3,7 @@ import { PureComponent } from 'react';
 import {
   buildPromptModuleInfo,
   getGuid,
+  logCallResult as logCallResultCore,
   logCallTrace as logCallTraceCore,
   logCallTrack as logCallTrackCore,
   logDebug,
@@ -88,6 +89,22 @@ class PureExtraComponent extends PureComponent {
     }
 
     logCallTraceCore(data, this.buildPromptModuleInfoText(...messages));
+  }
+
+  /**
+   * log call result
+   * @param {*} message
+   */
+  logCallResult(data, ...messages) {
+    const { showCallProcess } = this.props;
+
+    if (!showCallProcess) {
+      this.promptCallProcessSwitch();
+
+      return;
+    }
+
+    logCallResultCore(data, this.buildPromptModuleInfoText(...messages));
   }
 
   buildOverloadErrorText(...texts) {

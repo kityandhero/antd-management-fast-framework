@@ -33,6 +33,10 @@ import styles from '../../DataListView/Drawer/index.less';
 
 const primaryCallName = 'DataSinglePageView::SinglePageDrawer';
 
+/**
+ * DataSinglePageView.SinglePageDrawer
+ * @namespace
+ */
 class SinglePageDrawer extends SinglePage {
   visibleFlag = '';
 
@@ -83,7 +87,6 @@ class SinglePageDrawer extends SinglePage {
 
   /**
    * 构建附加的分页配置
-   * @returns
    */
   establishTableAdditionalConfig = () => {
     this.logCallTrack({}, primaryCallName, 'establishTableAdditionalConfig');

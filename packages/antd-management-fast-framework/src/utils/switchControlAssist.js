@@ -14,7 +14,7 @@ import {
 export const switchControlAssist = {
   /**
    * check switch
-   * @param {object} switchControl switch model
+   * @param {Object} switchControl switch model
    * @param {string} flag switch flag
    */
   check(switchControl, flag) {

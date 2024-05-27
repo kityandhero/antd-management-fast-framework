@@ -7,6 +7,12 @@ import { BaseUpdateModal } from '../BaseUpdateModal';
 
 const primaryCallName = 'DataModal::BaseUpdateTransferModal';
 
+/**
+ * base update transfer modal
+ * @namespace framework.DataModal
+ * @class BaseUpdateTransferModal
+ * @augments BaseUpdateModal
+ */
 class BaseUpdateTransferModal extends BaseUpdateModal {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -19,6 +25,13 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }

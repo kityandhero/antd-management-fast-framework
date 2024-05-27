@@ -86,6 +86,12 @@ const rangeTimeFieldName = '1231e27b236947eeadbb23a032d5d8b0';
 
 const primaryCallName = 'DataListView::Base';
 
+/**
+ * DataListView.Base
+ * @namespace DataListView
+ * @class Base
+ * @augments AuthorizationWrapper
+ */
 class Base extends AuthorizationWrapper {
   showReloadButton = false;
 
@@ -151,6 +157,13 @@ class Base extends AuthorizationWrapper {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,
@@ -353,12 +366,43 @@ class Base extends AuthorizationWrapper {
     return columns;
   };
 
-  handleSearchReset = () => {
-    // 需要继承重载
-  };
-
-  // 其他项重置
+  /**
+   * 其他项重置，请勿在此设置 state, 因为异步机制，将导致传递给调用的 state 值不是最新的
+   */
   handleAdditionalSearchReset = () => {};
+
+  /**
+   * 搜索前重置 state 的值
+   */
+  handleSearchResetState = () => {};
+
+  handleSearchReset = () => {
+    this.logCallTrack({}, primaryCallName, 'handleSearchReset');
+
+    this.logCallTrace({}, primaryCallName, 'resetTargetSearch');
+
+    this.resetTargetSearch();
+
+    this.logCallTrace({}, primaryCallName, 'handleAdditionalSearchReset');
+
+    this.handleAdditionalSearchReset();
+
+    this.filterFormValues = {};
+    this.filterNoFormValues = {};
+    this.filterExtraValues = {
+      ...this.filterExtraValues,
+      startTime: '',
+      endTime: '',
+    };
+
+    this.logCallTrace({}, primaryCallName, 'handleSearchResetState');
+
+    const stateAdjust = this.handleSearchResetState() || {};
+
+    this.logCallTrace(stateAdjust, primaryCallName, 'resetData');
+
+    this.resetData(stateAdjust);
+  };
 
   handleSearch = () => {
     this.logCallTrack({}, primaryCallName, 'handleSearch');
@@ -1375,7 +1419,7 @@ class Base extends AuthorizationWrapper {
   /**
    * 配置StandardTable切换页面时需要引发的事项
    * @param {*} pagination
-   * @param {*} filtersArg
+   * @param {*} filtersArgument
    * @param {*} sorter
    * @param {*} extra
    */
@@ -1402,7 +1446,7 @@ class Base extends AuthorizationWrapper {
   /**
    * 配置额外的StandardTable切换页面时需要引发的事项
    * @param {*} pagination
-   * @param {*} filtersArg
+   * @param {*} filtersArgument
    * @param {*} sorter
    * @param {*} extra
    */
@@ -1428,9 +1472,8 @@ class Base extends AuthorizationWrapper {
 
   /**
    * 配置额外的Pagination切换页面时需要引发的事项,用于listView/cardView
-   * @param {*} pagination
-   * @param {*} filtersArg
-   * @param {*} sorter
+   * @param {number} page
+   * @param {number} size
    */
   // eslint-disable-next-line no-unused-vars
   handleAdditionalPaginationChange = (page, size) => {};

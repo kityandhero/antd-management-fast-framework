@@ -2,6 +2,14 @@ import { drawerConfig } from 'antd-management-fast-common';
 
 import { BaseFormDrawer } from '../BaseFormDrawer';
 
+const primaryCallName = 'DataDrawer::BaseSaveDrawer';
+
+/**
+ * base save drawer
+ * @namespace framework.DataDrawer
+ * @class BaseSaveDrawer
+ * @augments BaseFormDrawer
+ */
 class BaseSaveDrawer extends BaseFormDrawer {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -13,11 +21,20 @@ class BaseSaveDrawer extends BaseFormDrawer {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
   adjustWhenDidMount = () => {
+    this.logCallTrack({}, primaryCallName, 'adjustWhenDidMount');
+
     this.fillData({});
   };
 

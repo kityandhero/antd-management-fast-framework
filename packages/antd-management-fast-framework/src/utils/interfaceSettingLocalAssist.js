@@ -22,7 +22,7 @@ export function getLocalInterfaceSetting() {
 
 /**
  * Set local interface setting
- * @param {String} value
+ * @param {string} value
  */
 export function setLocalInterfaceSetting(value) {
   logExecute('setLocalInterfaceSetting');

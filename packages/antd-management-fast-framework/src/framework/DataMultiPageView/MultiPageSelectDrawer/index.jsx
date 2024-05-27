@@ -19,6 +19,10 @@ import { MultiPageDrawer } from '../MultiPageDrawer';
 
 const primaryCallName = 'DataSinglePageView::MultiPageSelectCoreDrawer';
 
+/**
+ * DataSinglePageView.MultiPageSelectCoreDrawer
+ * @namespace
+ */
 class MultiPageSelectDrawer extends MultiPageDrawer {
   showListViewItemActionSelect = true;
 

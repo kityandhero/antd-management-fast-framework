@@ -11,8 +11,6 @@ const storageKeyCollection = {
 
 /**
  * 获取 applicationListData 缓存
- *
- * @param {*} fn
  */
 export function getApplicationListDataCache() {
   logExecute('getApplicationListDataCache');
@@ -30,8 +28,7 @@ export function getApplicationListDataCache() {
 
 /**
  * 设置 applicationListData 缓存
- *
- * @param {o} metaData数据
+ * @param {Object} o metaData数据
  */
 export function setApplicationListDataCache(o) {
   logExecute('setApplicationListDataCache');
@@ -47,8 +44,6 @@ export function setApplicationListDataCache(o) {
 
 /**
  * 移除信息
- *
- * @param {*} fn
  */
 export function removeApplicationListDataCache() {
   logExecute('removeApplicationListDataCache');

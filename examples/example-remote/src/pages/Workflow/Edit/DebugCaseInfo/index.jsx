@@ -310,6 +310,13 @@ class DebugCaseInfo extends TabPageBase {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,

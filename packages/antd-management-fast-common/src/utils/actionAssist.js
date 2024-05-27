@@ -290,11 +290,11 @@ function remoteAction({
  * @param {Function} option.beforeProcess preprocessing of requests.
  * @param {Number} option.delay  delay millisecond before request.
  * @param {Boolean} option.showProcessing whether show processing prompt.
- * @param {String} option.processingPrompt prompt text when show processing.
- * @param {String} option.completeProcess request complete callback.
+ * @param {string} option.processingPrompt prompt text when show processing.
+ * @param {string} option.completeProcess request complete callback.
  * @param {Function} option.failCallback  if it is function, it will exec when request fail.
  * @param {Function} option.successCallback if it is function, it will exec when request success.
- * @param {String} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
+ * @param {string} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
  * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
  */
 export async function actionCore({
@@ -397,10 +397,10 @@ export async function actionCore({
  * @param {Function} option.beforeProcess preprocessing of requests.
  * @param {Function} option.failCallback  if it is function, it will exec when request fail.
  * @param {Function} option.successCallback if it is function, it will exec when request success.
- * @param {String} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
+ * @param {string} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
  * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
  * @param {Boolean} option.showProcessing whether show processing prompt.
- * @param {String} option.processingPrompt prompt text when show processing.
+ * @param {string} option.processingPrompt prompt text when show processing.
  * @param {Object} option.completeProcess request complete callback.
  */
 export function apiRequest({
@@ -678,12 +678,12 @@ export function apiRequest({
  * @param {Object} option.okType ok button type, default value is 'danger'.
  * @param {Object} option.cancelText cancel button text, default value is '取消'.
  * @param {Boolean} option.showProcessing whether show processing prompt.
- * @param {String} option.processingPrompt prompt text when show processing.
- * @param {String} option.completeProcess request complete callback.
+ * @param {string} option.processingPrompt prompt text when show processing.
+ * @param {string} option.completeProcess request complete callback.
  * @param {Function} option.beforeProcess preprocessing of requests.
  * @param {Function} option.failCallback  if it is function, it will exec when request fail.
  * @param {Function} option.successCallback if it is function, it will exec when request success.
- * @param {String} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
+ * @param {string} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
  * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
  */
 export async function confirmActionCore({

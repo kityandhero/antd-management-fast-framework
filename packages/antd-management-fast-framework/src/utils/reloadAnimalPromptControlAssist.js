@@ -7,7 +7,7 @@ import { isArray, isString } from 'easy-soft-utility';
 export const reloadAnimalPromptControlAssist = {
   /**
    * check
-   * @param {object} reloadAnimalPromptControl model
+   * @param {Object} reloadAnimalPromptControl model
    * @param {string} flag switch flag
    */
   check(reloadAnimalPromptControl, flag) {

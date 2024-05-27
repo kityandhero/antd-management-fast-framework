@@ -4,6 +4,7 @@
 **/.history
 **/.husky
 **/.vs
+**/docs
 
 *.d.ts
 *.log

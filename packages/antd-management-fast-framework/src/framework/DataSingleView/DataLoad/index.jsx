@@ -7,6 +7,12 @@ import { DataCore } from '../DataCore';
 
 const primaryCallName = 'DataSingleView::DataLoad';
 
+/**
+ * data load
+ * @namespace framework.DataSingleView
+ * @class DataLoad
+ * @augments DataCore
+ */
 class DataLoad extends DataCore {
   constructor(properties) {
     super(properties);
@@ -20,6 +26,13 @@ class DataLoad extends DataCore {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,

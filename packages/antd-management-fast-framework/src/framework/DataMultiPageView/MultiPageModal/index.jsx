@@ -35,6 +35,10 @@ import styles from '../../DataListView/Modal/index.less';
 
 const primaryCallName = 'DataMultiPageView::MultiPageModal';
 
+/**
+ * DataMultiPageView.MultiPageModal
+ * @namespace
+ */
 class MultiPageModal extends MultiPage {
   visibleFlag = '';
 
@@ -86,7 +90,6 @@ class MultiPageModal extends MultiPage {
 
   /**
    * 构建附加的分页配置
-   * @returns
    */
   establishTableAdditionalConfig = () => {
     this.logCallTrack({}, primaryCallName, 'establishTableAdditionalConfig');

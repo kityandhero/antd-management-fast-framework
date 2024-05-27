@@ -9,6 +9,12 @@ import { DataTabContainer } from '../DataTabContainer';
 
 const primaryCallName = 'DataMenuContainer';
 
+/**
+ * DataMenuContainer
+ * @namespace DataMenuContainer
+ * @class DataMenuContainer
+ * @augments DataTabContainer
+ */
 class DataMenuContainer extends DataTabContainer {
   showHeader = false;
 
@@ -27,6 +33,13 @@ class DataMenuContainer extends DataTabContainer {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     logTrace(
       { parameter: { nextProperties, previousState } },

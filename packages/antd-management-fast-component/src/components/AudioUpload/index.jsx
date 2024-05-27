@@ -45,6 +45,13 @@ class AudioUpload extends PureComponent {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     const { audio: audioNext } = nextProperties;
     const { audioSource: audioPrevious } = previousState;

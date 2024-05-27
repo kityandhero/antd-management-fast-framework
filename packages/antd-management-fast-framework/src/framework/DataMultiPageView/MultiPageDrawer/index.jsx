@@ -34,6 +34,10 @@ import styles from '../../DataListView/Drawer/index.less';
 
 const primaryCallName = 'DataMultiPageView::MultiPageDrawer';
 
+/**
+ * DataMultiPageView.MultiPageDrawer
+ * @namespace
+ */
 class MultiPageDrawer extends MultiPage {
   visibleFlag = '';
 
@@ -87,7 +91,6 @@ class MultiPageDrawer extends MultiPage {
 
   /**
    * 构建附加的分页配置
-   * @returns
    */
   establishTableAdditionalConfig = () => {
     this.logCallTrack({}, primaryCallName, 'establishTableAdditionalConfig');

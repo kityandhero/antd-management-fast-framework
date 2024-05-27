@@ -45,6 +45,13 @@ class VideoUpload extends PureComponent {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     const { video: videoNext } = nextProperties;
     const { videoSource: videoPrevious } = previousState;

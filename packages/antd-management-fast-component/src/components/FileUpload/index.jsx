@@ -43,6 +43,13 @@ class FileUpload extends PureComponent {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     const { file: fileNext } = nextProperties;
     const { fileSource: filePrevious } = previousState;

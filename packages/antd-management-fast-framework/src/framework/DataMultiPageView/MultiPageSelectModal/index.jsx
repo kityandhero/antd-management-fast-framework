@@ -19,6 +19,10 @@ import { MultiPageModal } from '../MultiPageModal';
 
 const primaryCallName = 'DataSinglePageView::MultiPageSelectModal';
 
+/**
+ * DataSinglePageView.MultiPageSelectModal
+ * @namespace
+ */
 class MultiPageSelectModal extends MultiPageModal {
   showListViewItemActionSelect = true;
 

@@ -2,6 +2,12 @@ import { BaseFormDrawer } from '../BaseFormDrawer';
 
 const primaryCallName = 'DataDrawer::BaseLoadDrawer';
 
+/**
+ * base load drawer
+ * @namespace framework.DataDrawer
+ * @class BaseLoadDrawer
+ * @augments BaseFormDrawer
+ */
 class BaseLoadDrawer extends BaseFormDrawer {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -11,6 +17,13 @@ class BaseLoadDrawer extends BaseFormDrawer {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }

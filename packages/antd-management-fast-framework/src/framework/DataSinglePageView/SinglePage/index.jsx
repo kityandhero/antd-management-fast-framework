@@ -11,6 +11,10 @@ import { Base } from '../../DataListView/Base';
 
 const primaryCallName = 'DataSinglePageView::SinglePage';
 
+/**
+ * DataSinglePageView.SinglePage
+ * @namespace
+ */
 class SinglePage extends Base {
   /**
    * 使用远端分页
@@ -32,28 +36,8 @@ class SinglePage extends Base {
     };
   }
 
-  handleSearchReset = () => {
-    this.logCallTrack({}, primaryCallName, 'handleSearchReset');
-
-    this.resetTargetSearch();
-
-    this.handleAdditionalSearchReset();
-
-    this.filterFormValues = {};
-    this.filterNoFormValues = {};
-    this.filterExtraValues = {
-      ...this.filterExtraValues,
-      startTime: '',
-      endTime: '',
-    };
-
-    this.resetData({});
-  };
-
   /**
    * 轻微调整初始化请求数据体
-   *
-   * @memberof PagerList
    */
   adjustLoadRequestParams = (o) => o || {};
 
@@ -120,7 +104,6 @@ class SinglePage extends Base {
 
   /**
    * 构建列表数据
-   * @returns
    */
   establishViewDataSource = () => {
     const { metaOriginalData } = this.state;
@@ -169,7 +152,6 @@ class SinglePage extends Base {
 
   /**
    * 构建附加的分页配置
-   * @returns
    */
   establishTableAdditionalConfig = () => {
     this.logCallTrack(
@@ -195,9 +177,8 @@ class SinglePage extends Base {
 
   /**
    * 配置Pagination切换页面时需要引发的事项,用于listView/cardView
-   * @param {*} pagination
-   * @param {*} filtersArg
-   * @param {*} sorter
+   * @param {number} page
+   * @param {number} size
    */
   handlePaginationChange = (page, size) => {
     this.logCallTrack(
@@ -224,8 +205,9 @@ class SinglePage extends Base {
   /**
    * 当页码变动时的附加执行行为
    * @param {*} pagination
-   * @param {*} filtersArg
+   * @param {*} filtersArgument
    * @param {*} sorter
+   * @param {Object} extra
    */
   handleAdditionalStandardTableChange = (
     pagination,
@@ -257,7 +239,6 @@ class SinglePage extends Base {
 
   /**
    * 获取当前的前端模拟分页当前页码
-   * @returns
    */
   getFrontendPageNo = () => {
     const { frontendPageNo } = this.pageValues;

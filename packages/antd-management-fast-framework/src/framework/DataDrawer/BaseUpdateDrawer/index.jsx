@@ -4,6 +4,12 @@ import { BaseLoadDrawer } from '../BaseLoadDrawer';
 
 const primaryCallName = 'DataDrawer::BaseUpdateDrawer';
 
+/**
+ * base update drawer
+ * @namespace framework.DataDrawer
+ * @class BaseUpdateDrawer
+ * @augments BaseLoadDrawer
+ */
 class BaseUpdateDrawer extends BaseLoadDrawer {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -14,6 +20,13 @@ class BaseUpdateDrawer extends BaseLoadDrawer {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }

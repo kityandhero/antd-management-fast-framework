@@ -34,6 +34,10 @@ import styles from '../../DataListView/Modal/index.less';
 
 const primaryCallName = 'DataSinglePageView::SinglePageModal';
 
+/**
+ * DataSinglePageView.SinglePageModal
+ * @namespace
+ */
 class SinglePageModal extends SinglePage {
   visibleFlag = '';
 
@@ -82,7 +86,6 @@ class SinglePageModal extends SinglePage {
 
   /**
    * 构建附加的分页配置
-   * @returns
    */
   establishTableAdditionalConfig = () => {
     this.logCallTrack({}, primaryCallName, 'establishTableAdditionalConfig');

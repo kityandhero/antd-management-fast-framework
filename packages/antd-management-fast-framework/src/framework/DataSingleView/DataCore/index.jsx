@@ -18,6 +18,10 @@ import styles from './index.less';
 
 const primaryCallName = 'DataSingleView::DataCore';
 
+/**
+ * DataSingleView.DataCore
+ * @namespace
+ */
 class DataCore extends BaseView {
   resetDataAfterLoad = false;
 
@@ -41,6 +45,13 @@ class DataCore extends BaseView {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,

@@ -20,6 +20,10 @@ function buildParameterCacheKey(parametersKey) {
   return `${parameterCachePrefix}-${parametersKey}`;
 }
 
+/**
+ * DataMultiPageView.MultiPage
+ * @namespace
+ */
 class MultiPage extends Base {
   /**
    * 使用远端分页
@@ -52,16 +56,17 @@ class MultiPage extends Base {
   supplementPageLoadRequestParams = () => {};
 
   supplementLoadRequestParams = (o) => {
-    const result = { ...o, ...this.supplementPageLoadRequestParams() };
-
     this.logCallTrack(
-      {
-        parameter: o,
-        result,
-      },
+      { parameter: o },
       primaryCallName,
       'supplementLoadRequestParams',
     );
+
+    this.logCallTrace({}, primaryCallName, 'supplementPageLoadRequestParams');
+
+    const result = { ...o, ...this.supplementPageLoadRequestParams() };
+
+    this.logCallResult(result, primaryCallName, 'supplementLoadRequestParams');
 
     return result;
   };
@@ -69,9 +74,15 @@ class MultiPage extends Base {
   handleSearchReset = () => {
     this.logCallTrack({}, primaryCallName, 'handleSearchReset');
 
+    this.logCallTrace({}, primaryCallName, 'resetTargetSearch');
+
     this.resetTargetSearch();
 
+    this.logCallTrace({}, primaryCallName, 'handleAdditionalSearchReset');
+
     this.handleAdditionalSearchReset();
+
+    this.logCallTrace({}, primaryCallName, 'setPageValue');
 
     this.setPageValue({ pageNo: 1 });
 
@@ -83,20 +94,22 @@ class MultiPage extends Base {
       endTime: '',
     };
 
-    this.resetData({});
+    this.logCallTrace({}, primaryCallName, 'handleSearchResetState');
+
+    const stateAdjust = this.handleSearchResetState() || {};
+
+    this.logCallTrace(stateAdjust, primaryCallName, 'resetData');
+
+    this.resetData(stateAdjust);
   };
 
   /**
    * 轻微调整初始化请求数据体
-   *
-   * @memberof PagerList
    */
   adjustLoadRequestParams = (o) => o || {};
 
   /**
    * 创建初始化请求数据体
-   *
-   * @memberof PagerList
    */
   initLoadRequestParams = (o) => {
     let d = o || {};
@@ -204,9 +217,10 @@ class MultiPage extends Base {
 
   /**
    * 配置StandardTable切换页面时需要引发的事项
-   * @param {*} pagination
-   * @param {*} filtersArg
-   * @param {*} sorter
+   * @param {Object} pagination
+   * @param {Object} filtersArgument
+   * @param {Object} sorter
+   * @param {Object} sorter
    */
   handleStandardTableChange = (pagination, filtersArgument, sorter, extra) => {
     if (this.checkWorkDoing()) {

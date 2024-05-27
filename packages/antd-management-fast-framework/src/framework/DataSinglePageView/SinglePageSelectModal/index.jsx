@@ -19,6 +19,10 @@ import { SinglePageModal } from '../SinglePageModal';
 
 const primaryCallName = 'DataSinglePageView::SinglePageSelectModal';
 
+/**
+ * DataSinglePageView.SinglePageSelectModal
+ * @namespace
+ */
 class SinglePageSelectModal extends SinglePageModal {
   showListViewItemActionSelect = true;
 

@@ -32,6 +32,13 @@ class StandardTable extends PureComponent {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties) {
     // clean state
     if ((nextProperties.selectedRows || []).length === 0) {

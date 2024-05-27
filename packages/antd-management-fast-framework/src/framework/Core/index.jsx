@@ -18,31 +18,81 @@ import { tabControlAssist } from '../../utils/tabControlAssist';
 
 const primaryCallName = 'Core';
 
+/**
+ * core
+ * @namespace framework
+ * @class Core
+ * @augments BaseComponent
+ */
 class Core extends BaseComponent {
+  /**
+   * view loading flag
+   * @member {Object}
+   */
   lastLoadParams = null;
 
   //#region view control
 
+  /**
+   * view loading flag
+   * @member {string}
+   */
   viewLoadingFlag = '';
 
+  /**
+   * view searching flag
+   * @member {string}
+   */
   viewSearchingFlag = '';
 
+  /**
+   * view resetting flag
+   * @member {string}
+   */
   viewResettingFlag = '';
 
+  /**
+   * view refreshing flag
+   * @member {string}
+   */
   viewRefreshingFlag = '';
 
+  /**
+   * view reloading flag
+   * @member {string}
+   */
   viewReloadingFlag = '';
 
+  /**
+   * view processing flag
+   * @member {string}
+   */
   viewProcessingFlag = '';
 
+  /**
+   * view tab flag
+   * @member {string}
+   */
   viewTabFlag = '';
 
+  /**
+   * view menu flag
+   * @member {string}
+   */
   viewMenuFlag = '';
 
+  /**
+   * view animal prompt flag
+   * @member {string}
+   */
   viewAnimalPromptFlag = '';
 
   //#endregion
 
+  /**
+   * @constructs
+   * @param {Object} properties
+   */
   constructor(properties) {
     super(properties);
 
@@ -65,11 +115,24 @@ class Core extends BaseComponent {
     this.viewAnimalPromptFlag = getGuid();
   }
 
-  // eslint-disable-next-line no-unused-vars
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
-    return getDerivedStateFromPropertiesForUrlParametersCore();
+    return getDerivedStateFromPropertiesForUrlParametersCore(
+      nextProperties,
+      previousState,
+    );
   }
 
+  /**
+   * prompt call process switch
+   * @function
+   */
   promptCallProcessSwitch = () => {
     if (!this.showCallProcessSwitchPromptComplete) {
       logDebug(

@@ -14,6 +14,12 @@ import { DataLoad } from '../DataSingleView/DataLoad';
 
 const primaryCallName = 'DataTabContainer';
 
+/**
+ * data tab container
+ * @namespace framework
+ * @class DataTabContainer
+ * @augments DataLoad
+ */
 class DataTabContainer extends DataLoad {
   resetDataAfterLoad = false;
 
@@ -29,6 +35,13 @@ class DataTabContainer extends DataLoad {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     logTrace(
       { parameter: { nextProperties, previousState } },

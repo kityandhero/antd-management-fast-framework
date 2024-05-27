@@ -19,6 +19,10 @@ import { SinglePageDrawer } from '../SinglePageDrawer';
 
 const primaryCallName = 'DataSinglePageView::SinglePageSelectDrawer';
 
+/**
+ * DataSinglePageView.SinglePageSelectDrawer
+ * @namespace
+ */
 class SinglePageSelectDrawer extends SinglePageDrawer {
   showListViewItemActionSelect = true;
 

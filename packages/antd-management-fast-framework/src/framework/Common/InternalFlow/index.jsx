@@ -54,6 +54,12 @@ import { Core } from '../../Core';
 
 const primaryCallName = 'Common::InternalFlow';
 
+/**
+ * InternalFlow
+ * @namespace Common
+ * @class InternalFlow
+ * @augments Core
+ */
 class InternalFlow extends Core {
   reloadHeaderOnSubmitSuccess = true;
 
@@ -73,6 +79,9 @@ class InternalFlow extends Core {
 
   lastRequestingData = { type: '', payload: {} };
 
+  /**
+   * @constructs InternalFlow
+   */
   constructor(properties) {
     super(properties);
 
@@ -84,6 +93,13 @@ class InternalFlow extends Core {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,

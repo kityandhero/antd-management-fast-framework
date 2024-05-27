@@ -18,6 +18,10 @@ import { Base } from '../Base';
 
 const primaryCallName = 'DataOperation::BaseWindow';
 
+/**
+ * DataOperation.BaseWindow
+ * @namespace
+ */
 class BaseWindow extends Base {
   visibleFlag = '';
 

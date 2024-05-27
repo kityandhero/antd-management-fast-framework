@@ -16,6 +16,12 @@ import styles from './index.less';
 
 const primaryCallName = 'DataModal::BaseImageSortModal';
 
+/**
+ * base image sort modal
+ * @namespace framework.DataModal
+ * @class BaseImageSortModal
+ * @augments BaseUpdateModal
+ */
 class BaseImageSortModal extends BaseUpdateModal {
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
@@ -33,6 +39,13 @@ class BaseImageSortModal extends BaseUpdateModal {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }

@@ -26,6 +26,12 @@ import { DataCore } from '../../DataSingleView/DataCore';
 
 const primaryCallName = 'DataForm::BaseAddForm';
 
+/**
+ * base add form
+ * @namespace framework.DataForm
+ * @class BaseAddForm
+ * @augments DataCore
+ */
 class BaseAddForm extends DataCore {
   loadRemoteRequestAfterMount = false;
 
@@ -47,6 +53,13 @@ class BaseAddForm extends DataCore {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,

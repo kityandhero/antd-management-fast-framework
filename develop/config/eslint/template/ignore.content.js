@@ -8,6 +8,7 @@ const content = `**/public
 **/.history
 **/.husky
 **/.vs
+**/docs
 
 *.d.ts
 *.log

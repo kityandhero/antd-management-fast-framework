@@ -42,7 +42,7 @@ const throttleSetLatest = throttle(setLatest, 400, {
 export const shortcutControlAssist = {
   /**
    * set shortcut latest data
-   * @param {Array} listData  menu list Data
+   * @param {string} key  shortcut latest data
    */
   pushLatest(key) {
     throttleSetLatest(key);

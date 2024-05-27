@@ -30,6 +30,13 @@ class TagSelect extends Component {
     };
   }
 
+  /**
+   * get derived state from props
+   * @static
+   * @param {Object} nextProperties
+   * @param {Object} previousState
+   * @returns {Object}
+   */
   static getDerivedStateFromProps(nextProperties) {
     if ('value' in nextProperties) {
       return { value: nextProperties.value || [] };
