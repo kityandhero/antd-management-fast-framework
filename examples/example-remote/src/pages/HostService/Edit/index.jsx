@@ -45,11 +45,11 @@ class Index extends DataTabContainerSupplement {
   }
 
   /**
-   * get derived state from props
+   * get derived state from props。
    * @static
-   * @param {Object} nextProperties
-   * @param {Object} previousState
-   * @returns {Object}
+   * @param {Object} nextProperties 即将更改的属性值
+   * @param {Object} previousState 之前的 state 值
+   * @returns {Object} 更新后的 state 值
    */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(

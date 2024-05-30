@@ -108,7 +108,19 @@ function adjustListData(listData) {
   return list;
 }
 
+/**
+ * 基础内部构建器
+ * @namespace Common
+ * @class InternalBuild
+ * @augments InternalSwitchoverFlow
+ */
 class InternalBuild extends InternalSwitchoverFlow {
+  /**
+   * 构建卡片集合区域。
+   * @function
+   * @param {Object} config 配置项。
+   * @returns {Object} 构建结果。
+   */
   buildCardCollectionArea = (config = null) => {
     this.logCallTrack(
       {
@@ -293,6 +305,18 @@ class InternalBuild extends InternalSwitchoverFlow {
     );
   };
 
+  /**
+   * 构建卡片项。
+   * @function
+   * @param {Object} option 配置项。
+   * @param {Object} option.config 卡片项配置。
+   * @param {string} option.key 卡片标记。
+   * @param {string} option.mode 卡片显示模式。
+   * @param {string} option.justify 卡片垂直对齐方式。
+   * @param {string} option.align 卡片水平对齐方式。
+   * @param {Object} option.style 卡片样式配置。
+   * @returns {Object} 构建结果。
+   */
   buildCardCollectionItem = ({
     config: cardItemConfig,
     key: cardItemKey,
@@ -675,6 +699,18 @@ class InternalBuild extends InternalSwitchoverFlow {
     );
   };
 
+  /**
+   * 构建卡片项内部内容。
+   * @function
+   * @param {Object} option 配置项。
+   * @param {string} option.mode 卡片显示模式。
+   * @param {string} option.justify 卡片垂直对齐方式。
+   * @param {string} option.align 卡片水平对齐方式。
+   * @param {Number} option.gutter 卡片间距。
+   * @param {Array} option.items 卡片内容集合。
+   * @param {string} option.index 卡片序列值。
+   * @returns {Object} 构建结果。
+   */
   buildCardCollectionItemContent = ({
     mode,
     justify,
@@ -716,6 +752,14 @@ class InternalBuild extends InternalSwitchoverFlow {
     );
   };
 
+  /**
+   * 构建卡片Extra部分。
+   * @function
+   * @param {Object} option 配置项。
+   * @param {string} option.keyPrefix 序列值前缀。
+   * @param {Array} option.configList 项配置集合。
+   * @returns {Object} 构建结果。
+   */
   buildByExtraBuildType = ({ keyPrefix = '', configList = [] }) => {
     const list = [];
 
@@ -862,12 +906,23 @@ class InternalBuild extends InternalSwitchoverFlow {
     return list;
   };
 
+  /**
+   * 构建卡片Extra部分的返回动作，默认空逻辑，可根据需要重载。
+   * @function
+   * @example
+   * buildExtraBackAction = () => null
+   */
   buildExtraBackAction = () => {
     this.logCallTrack({}, primaryCallName, 'buildExtraBackAction', emptyLogic);
 
     return null;
   };
 
+  /**
+   * 构建返回动作。
+   * @function
+   * @returns {Object} 构建结果。
+   */
   buildExtraAction = () => {
     this.logCallTrack({}, primaryCallName, 'buildExtraAction');
 
@@ -948,6 +1003,13 @@ class InternalBuild extends InternalSwitchoverFlow {
     );
   };
 
+  /**
+   * 构建页头部子标题，默认为空，可根据需要重载。
+   * @function
+   * @example
+   * buildPageHeaderSubTitle = () => null
+   * @returns {Object|string} 构建结果。
+   */
   buildPageHeaderSubTitle = () => {
     this.logCallTrack(
       {},

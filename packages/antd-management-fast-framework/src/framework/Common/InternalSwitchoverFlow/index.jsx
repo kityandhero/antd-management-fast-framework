@@ -11,13 +11,35 @@ const { TabBarExtraBox } = PageExtra;
 
 const primaryCallName = 'Common::InternalSwitchoverFlow';
 
+/**
+ * 构建可切换相关。
+ * @namespace Common
+ * @class InternalSwitchoverFlow
+ * @augments InternalFlow
+ */
 class InternalSwitchoverFlow extends InternalFlow {
+  /**
+   * path 路径前缀。
+   * @member {string}
+   */
   pathPrefix = '';
 
+  /**
+   * Tab 页集合。
+   * @member {Array}
+   */
   tabList = [];
 
+  /**
+   * Menu 页集合。
+   * @member {Array}
+   */
   menuList = [];
 
+  /**
+   * @constructs
+   * @param {Object} properties
+   */
   constructor(properties) {
     super(properties);
 
@@ -26,12 +48,25 @@ class InternalSwitchoverFlow extends InternalFlow {
     };
   }
 
-  adjustMenuListAvailable = (menuListAvailable) => {
+  /**
+   * 调整可用 Menu 页集合，默认为空逻辑，可根据需要重载。
+   * @function
+   * @param {Array} menuList 将要调整的 Menu 页集合
+   * @returns {Array} 经过调整的可用 Menu 页集合
+   * @example
+   * adjustMenuListAvailable = (menuListAvailable) => menuListAvailable
+   */
+  adjustMenuListAvailable = (menuList) => {
     this.logCallTrack({}, primaryCallName, 'getMenuListAvailable', emptyLogic);
 
-    return menuListAvailable;
+    return menuList;
   };
 
+  /**
+   * 获取可用 Menu 页集合。
+   * @function
+   * @returns {Array} 可用 Menu 页集合
+   */
   getMenuListAvailable = () => {
     this.logCallTrack({}, primaryCallName, 'getMenuListAvailable');
 
@@ -56,6 +91,12 @@ class InternalSwitchoverFlow extends InternalFlow {
     return this.adjustMenuListAvailable(menuListAvailable);
   };
 
+  /**
+   * Menu页切换回调处理。
+   * @function
+   * @param {Object} option 配置项。
+   * @param {string} option.key 显示页的 key。
+   */
   handleMenuChange = ({ key }) => {
     this.logCallTrack(
       {
@@ -128,6 +169,12 @@ class InternalSwitchoverFlow extends InternalFlow {
     }
   };
 
+  /**
+   * 构建 Tab Bar Extra Content 左侧区域配置，默认为空，可根据需要重载。
+   * @function
+   * @example
+   * establishTabBarExtraContentLeftConfig = () => null
+   */
   establishTabBarExtraContentLeftConfig = () => {
     this.logCallTrack(
       {},
@@ -139,6 +186,12 @@ class InternalSwitchoverFlow extends InternalFlow {
     return null;
   };
 
+  /**
+   * 构建 Tab Bar Extra Content 右侧区域配置，默认为空，可根据需要重载。
+   * @function
+   * @example
+   * establishTabBarExtraContentRightConfig = () => null
+   */
   establishTabBarExtraContentRightConfig = () => {
     this.logCallTrack(
       {},
@@ -150,8 +203,21 @@ class InternalSwitchoverFlow extends InternalFlow {
     return null;
   };
 
-  adjustTabListAvailable = (tabListAvailable) => tabListAvailable;
+  /**
+   * 调整可用 Tab 页集合，默认为空逻辑，可根据需要重载。
+   * @function
+   * @param {Array} menuList 将要调整的 Tab 页集合
+   * @returns {Array} 经过调整的可用 Tab 页集合
+   * @example
+   * adjustTabListAvailable = (tabList) => tabList
+   */
+  adjustTabListAvailable = (tabList) => tabList;
 
+  /**
+   * 获取可用 Tab 页集合。
+   * @function
+   * @returns {Array} 可用 Tab 页集合
+   */
   getTabListAvailable = () => {
     this.logCallTrack({}, primaryCallName, 'getTabListAvailable');
 
@@ -179,6 +245,12 @@ class InternalSwitchoverFlow extends InternalFlow {
     return this.adjustTabListAvailable(tabListAvailable);
   };
 
+  /**
+   * Tab 页切换回调处理。
+   * @function
+   * @param {Object} option 配置项。
+   * @param {string} option.key 显示页的 key。
+   */
   handleTabChange = (key) => {
     this.logCallTrack(
       {
@@ -243,6 +315,10 @@ class InternalSwitchoverFlow extends InternalFlow {
     }
   };
 
+  /**
+   * 创建 Tab Bar Extra Content 部分。
+   * @function
+   */
   buildTabBarExtraContent = () => {
     this.logCallTrack({}, primaryCallName, 'buildTabBarExtraContent');
 
@@ -266,6 +342,10 @@ class InternalSwitchoverFlow extends InternalFlow {
     };
   };
 
+  /**
+   * 配置额外的 Tab 属性。
+   * @function
+   */
   buildOtherTabProps = () => {
     this.logCallTrack({}, primaryCallName, 'buildOtherTabProps');
 

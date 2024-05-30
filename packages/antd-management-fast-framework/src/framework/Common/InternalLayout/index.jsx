@@ -26,7 +26,17 @@ const { BackTop } = FloatButton;
 
 const primaryCallName = 'Common::InternalLayout';
 
+/**
+ * 构建布局相关。
+ * @namespace Common
+ * @class InternalLayout
+ * @augments InternalBuild
+ */
 class InternalLayout extends InternalBuild {
+  /**
+   * 渲染预设侧边栏上部。
+   * @function
+   */
   renderPresetSiderTopArea = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetSiderTopArea');
 
@@ -43,6 +53,10 @@ class InternalLayout extends InternalBuild {
     return this.buildCardCollectionArea(configOrComponent);
   };
 
+  /**
+   * 渲染预设侧边栏下部。
+   * @function
+   */
   renderPresetSiderBottomArea = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetSiderBottomArea');
 
@@ -55,8 +69,18 @@ class InternalLayout extends InternalBuild {
     return this.buildCardCollectionArea(config);
   };
 
+  /**
+   * 渲染预设内容区域，默认为空逻辑，可根据需要重载。
+   * @function
+   * @example
+   * renderPresetContentArea = () => {}
+   */
   renderPresetContentArea = () => null;
 
+  /**
+   * 渲染预设页面 Body 内容区域。
+   * @function
+   */
   renderPresetPageBodyContent = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetPageBodyContent');
 
@@ -107,8 +131,16 @@ class InternalLayout extends InternalBuild {
     );
   };
 
+  /**
+   * 渲染预设页面左侧内容区域。
+   * @function
+   */
   renderPresetPageLeftArea = () => null;
 
+  /**
+   * 渲染预设页面 Body 区域。
+   * @function
+   */
   renderPresetPageBody = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetPageBody');
 
@@ -118,16 +150,28 @@ class InternalLayout extends InternalBuild {
     return <BodyContent body={body} bottom={bottom} />;
   };
 
+  /**
+   * 渲染预设页面 Footer 区域。
+   * @function
+   */
   renderPresetPageFooter = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetPageFooter');
 
     return null;
   };
 
+  /**
+   * 渲染预设悬浮按钮。
+   * @function
+   */
   renderPresetFloatButton = () => {
     return <BackTop style={{ bottom: 75 }} />;
   };
 
+  /**
+   * 总体渲染入口函数。
+   * @function
+   */
   renderFurther() {
     if (this.showCallProcess) {
       this.logCallTrack({}, primaryCallName, 'renderFurther');

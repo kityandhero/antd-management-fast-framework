@@ -23,6 +23,7 @@
     "z:documentation:clear": "npx easy-soft-develop rimraf --path ./docs",
     "prez:documentation:generate": "npm run z:documentation:clear && npm run z:documentation:lint",
     "z:documentation:generate": "npx documentation build src/** -f html --github -o docs",
+    "z:documentation:generate:only": "npx documentation build src/** -f html --github -o docs",
     "z:documentation:lint": "npx documentation lint src/**",
     "z:lint:file:all": "npm run z:lint:script:all && npm run z:lint:style:all",
     "z:lint:file:all:fix": "npm run z:lint:script:all:fix && npm run z:lint:style:all:fix",

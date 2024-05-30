@@ -19,70 +19,70 @@ import { tabControlAssist } from '../../utils/tabControlAssist';
 const primaryCallName = 'Core';
 
 /**
- * core
+ * 框架内核定义类。
  * @namespace framework
  * @class Core
  * @augments BaseComponent
  */
 class Core extends BaseComponent {
   /**
-   * view loading flag
+   * 最近一次调用数据加载时候的传递参数。
    * @member {Object}
    */
   lastLoadParams = null;
 
-  //#region view control
+  //#region view control 视图控制
 
   /**
-   * view loading flag
+   * 加载中的标记符号变量，默认 ""。
    * @member {string}
    */
   viewLoadingFlag = '';
 
   /**
-   * view searching flag
+   * 搜索中的标记符号变量，默认 ""。
    * @member {string}
    */
   viewSearchingFlag = '';
 
   /**
-   * view resetting flag
+   * 重置中的标记符号变量，默认 ""。
    * @member {string}
    */
   viewResettingFlag = '';
 
   /**
-   * view refreshing flag
+   * 刷新中的标记符号变量，默认 ""。
    * @member {string}
    */
   viewRefreshingFlag = '';
 
   /**
-   * view reloading flag
+   * 重新载入中的标记符号变量，默认 ""。
    * @member {string}
    */
   viewReloadingFlag = '';
 
   /**
-   * view processing flag
+   * 处理中的标记符号变量，默认 ""。
    * @member {string}
    */
   viewProcessingFlag = '';
 
   /**
-   * view tab flag
+   * 标签页标记符号变量，默认 ""。
    * @member {string}
    */
   viewTabFlag = '';
 
   /**
-   * view menu flag
+   * 菜单页标记符号变量，默认 ""。
    * @member {string}
    */
   viewMenuFlag = '';
 
   /**
-   * view animal prompt flag
+   * 动画提示标记符号变量，默认 ""。
    * @member {string}
    */
   viewAnimalPromptFlag = '';
@@ -116,11 +116,11 @@ class Core extends BaseComponent {
   }
 
   /**
-   * get derived state from props
+   * get derived state from props。
    * @static
-   * @param {Object} nextProperties
-   * @param {Object} previousState
-   * @returns {Object}
+   * @param {Object} nextProperties 即将更改的属性值
+   * @param {Object} previousState 之前的 state 值
+   * @returns {Object} 更新后的 state 值
    */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParametersCore(
@@ -130,7 +130,7 @@ class Core extends BaseComponent {
   }
 
   /**
-   * prompt call process switch
+   * 调用过程显示开关，用于开发辅助，showCallProcess 设置为 true 之后，在控制台显示调用过程。
    * @function
    */
   promptCallProcessSwitch = () => {
@@ -149,6 +149,10 @@ class Core extends BaseComponent {
     }
   };
 
+  /**
+   * 组件执行卸载后将会触发的逻辑。
+   * @function
+   */
   doWorkAfterUnmount = () => {
     const list = [
       this.viewLoadingFlag,
@@ -165,6 +169,10 @@ class Core extends BaseComponent {
     menuControlAssist.remove(this.viewMenuFlag);
   };
 
+  /**
+   * 获取标记变量集合。
+   * @function
+   */
   getViewFlagInfo() {
     return {
       viewLoadingFlag: this.viewLoadingFlag,
@@ -179,49 +187,82 @@ class Core extends BaseComponent {
     };
   }
 
+  /**
+   * 获取当前激活的 Tab 页标记。
+   * @function
+   */
   getTabActiveKey = () => {
     return tabControlAssist.getActiveKey(this.viewTabFlag);
   };
 
+  /**
+   * 设置当前激活的 Tab 页标记。
+   * @function
+   * @param {string} key Tab页标记值
+   */
   setTabActiveKey(key) {
     this.logCallTrack({}, primaryCallName, 'setTabActiveKey');
 
     tabControlAssist.setActiveKey(this.viewTabFlag, key);
   }
 
+  /**
+   * 获取当前激活的 Menu 页标记。
+   * @function
+   */
   getMenuActiveKey = () => {
     return menuControlAssist.getActiveKey(this.viewMenuFlag);
   };
 
+  /**
+   * 设置当前激活的 Menu 页标记。
+   * @function
+   * @param {string} key Menu页标记值
+   */
   setMenuActiveKey(key) {
     this.logCallTrack(primaryCallName, 'setMenuActiveKey');
 
     menuControlAssist.setActiveKey(this.viewMenuFlag, key);
   }
 
-  startLoading(...message) {
+  /**
+   * 开始加载，影响"加载中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  startLoading(...messages) {
     this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'startLoading');
 
     switchControlAssist.open(
       this.viewLoadingFlag,
       this.componentName,
       'viewLoadingFlag',
-      ...message,
+      ...messages,
     );
   }
 
-  stopLoading(...message) {
+  /**
+   * 停止加载，影响"加载中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  stopLoading(...messages) {
     this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'stopLoading');
 
     switchControlAssist.close(
       this.viewLoadingFlag,
       this.componentName,
       'viewLoadingFlag',
-      ...message,
+      ...messages,
     );
   }
 
-  startSearching(...message) {
+  /**
+   * 开始搜索，影响"搜索中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  startSearching(...messages) {
     this.logCallTrack(
       this.getViewFlagInfo(),
       primaryCallName,
@@ -232,22 +273,32 @@ class Core extends BaseComponent {
       [this.viewSearchingFlag, this.viewLoadingFlag],
       this.componentName,
       ['viewSearchingFlag', 'viewLoadingFlag'],
-      ...message,
+      ...messages,
     );
   }
 
-  stopSearching(...message) {
+  /**
+   * 停止搜索，影响"搜索中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  stopSearching(...messages) {
     this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'stopSearching');
 
     switchControlAssist.closeMulti(
       [this.viewSearchingFlag, this.viewLoadingFlag],
       this.componentName,
       ['viewSearchingFlag', 'viewLoadingFlag'],
-      ...message,
+      ...messages,
     );
   }
 
-  startResetting(...message) {
+  /**
+   * 开始重置，影响"重置中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  startResetting(...messages) {
     this.logCallTrack(
       this.getViewFlagInfo(),
       primaryCallName,
@@ -258,22 +309,32 @@ class Core extends BaseComponent {
       [this.viewResettingFlag, this.viewLoadingFlag],
       this.componentName,
       ['viewResettingFlag', 'viewLoadingFlag'],
-      ...message,
+      ...messages,
     );
   }
 
-  stopResetting(...message) {
+  /**
+   * 停止重置，影响"重置中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  stopResetting(...messages) {
     this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'stopResetting');
 
     switchControlAssist.closeMulti(
       [this.viewResettingFlag, this.viewLoadingFlag],
       this.componentName,
       ['viewResettingFlag', 'viewLoadingFlag'],
-      ...message,
+      ...messages,
     );
   }
 
-  startRefreshing(...message) {
+  /**
+   * 开始刷新，影响"刷新中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  startRefreshing(...messages) {
     this.logCallTrack(
       this.getViewFlagInfo(),
       primaryCallName,
@@ -284,11 +345,16 @@ class Core extends BaseComponent {
       [this.viewLoadingFlag, this.viewRefreshingFlag],
       this.componentName,
       ['viewLoadingFlag', 'viewRefreshingFlag'],
-      ...message,
+      ...messages,
     );
   }
 
-  stopRefreshing(...message) {
+  /**
+   * 停止刷新，影响"刷新中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  stopRefreshing(...messages) {
     this.logCallTrack(
       this.getViewFlagInfo(),
       primaryCallName,
@@ -299,11 +365,16 @@ class Core extends BaseComponent {
       [this.viewLoadingFlag, this.viewRefreshingFlag],
       this.componentName,
       ['viewLoadingFlag', 'viewRefreshingFlag'],
-      ...message,
+      ...messages,
     );
   }
 
-  startReloading(...message) {
+  /**
+   * 开始重载，影响"重载中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  startReloading(...messages) {
     this.logCallTrack(
       this.getViewFlagInfo(),
       primaryCallName,
@@ -314,22 +385,32 @@ class Core extends BaseComponent {
       [this.viewLoadingFlag, this.viewReloadingFlag],
       this.componentName,
       ['viewLoadingFlag', 'viewReloadingFlag'],
-      ...message,
+      ...messages,
     );
   }
 
-  stopReloading(...message) {
+  /**
+   * 停止重载，影响"重载中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  stopReloading(...messages) {
     this.logCallTrack(this.getViewFlagInfo(), primaryCallName, 'stopReloading');
 
     switchControlAssist.closeMulti(
       [this.viewLoadingFlag, this.viewReloadingFlag],
       this.componentName,
       ['viewLoadingFlag', 'viewReloadingFlag'],
-      ...message,
+      ...messages,
     );
   }
 
-  startProcessing(...message) {
+  /**
+   * 开始处理，影响"处理中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  startProcessing(...messages) {
     this.logCallTrack(
       this.getViewFlagInfo(),
       primaryCallName,
@@ -340,11 +421,16 @@ class Core extends BaseComponent {
       this.viewProcessingFlag,
       this.componentName,
       'viewProcessingFlag',
-      ...message,
+      ...messages,
     );
   }
 
-  stopProcessing(...message) {
+  /**
+   * 停止处理，影响"处理中"效果。
+   * @function
+   * @param {Array} messages 消息或消息集合
+   */
+  stopProcessing(...messages) {
     this.logCallTrack(
       this.getViewFlagInfo(),
       primaryCallName,
@@ -355,12 +441,12 @@ class Core extends BaseComponent {
       this.viewProcessingFlag,
       this.componentName,
       'viewProcessingFlag',
-      ...message,
+      ...messages,
     );
   }
 
   /**
-   * check loading progress,if loading or load fail,return false,else return true
+   * 检查加载进度，如果加载或加载失败，返回false，否则返回true。
    */
   checkLoadingProgress() {
     const { dataLoading, loadSuccess } = this.state;
@@ -369,7 +455,7 @@ class Core extends BaseComponent {
   }
 
   /**
-   * check operability,if loading or or processing or load fail,return false,else return true
+   * 检查可操作性，如果加载或处理或加载失败，返回false，否则返回true。
    */
   checkOperability() {
     const { loadSuccess } = this.state;
@@ -378,7 +464,7 @@ class Core extends BaseComponent {
   }
 
   /**
-   * check in progress,if loading or or processing,return false,else return true
+   * 检查是否在加载或处理中，如果正在加载或正在处理，返回false，否则返回true。
    */
   checkInProgress() {
     const { dataLoading, processing } = this.state;
