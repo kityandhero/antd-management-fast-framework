@@ -172,6 +172,11 @@ class InternalLayout extends InternalBuild {
    * 总体渲染入口函数。
    * @function
    */
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     if (this.showCallProcess) {
       this.logCallTrack({}, primaryCallName, 'renderFurther');

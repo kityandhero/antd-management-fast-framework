@@ -223,6 +223,11 @@ class ImageBox extends BaseComponent {
     }
   }
 
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const { fillHeight, preview, previewSimpleMask } = this.props;
 

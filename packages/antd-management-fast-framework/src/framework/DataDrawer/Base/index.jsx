@@ -39,9 +39,24 @@ const { Footer, Content } = Layout;
 
 const primaryCallName = 'DataDrawer::Base';
 
+/**
+ * Drawer 操作基类
+ * @namespace DataDrawer
+ * @class Base
+ * @augments BaseWindow
+ */
 class Base extends BaseWindow {
+  /**
+   * 内容包裹类型，赋值为 contentConfig.wrapperType.drawer，务必不要更改此项属性值。
+   * @member {string}
+   */
   contentWrapperType = contentConfig.wrapperType.drawer;
 
+  /**
+   * @constructs
+   * @param {Object} properties 属性值集合。
+   * @param {string} visibleFlag 可见性标记。
+   */
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
 
@@ -62,18 +77,37 @@ class Base extends BaseWindow {
     };
   }
 
+  /**
+   * 调整头部样式。
+   * @function
+   * @returns {Object} style
+   * @example
+   * adjustHeaderStyle = () => { return {}; }
+   */
   adjustHeaderStyle = () => {
     this.logCallTrack({}, primaryCallName, 'adjustHeaderStyle', emptyLogic);
 
     return {};
   };
 
+  /**
+   * 创建标题前缀文字，默认为空，可根据需要重载。
+   * @function
+   * @returns {string} 标题前缀文本
+   * @example
+   * buildTitlePrevText = () => ""
+   */
   buildTitlePrevText = () => {
     this.logCallTrack({}, primaryCallName, 'buildTitlePrevText', emptyLogic);
 
     return '';
   };
 
+  /**
+   * 创建标题文字。
+   * @function
+   * @returns {string} 标题文本
+   */
   buildTitleText = () => {
     this.logCallTrack({}, primaryCallName, 'buildTitleText');
 
@@ -87,24 +121,52 @@ class Base extends BaseWindow {
     return this.getPresetPageTitle();
   };
 
+  /**
+   * 创建副标题文字，默认为空，可根据需要重载。
+   * @function
+   * @returns {string} 副标题文本
+   * @example
+   * buildTitleSubText = () => ""
+   */
   buildTitleSubText = () => {
     this.logCallTrack({}, primaryCallName, 'buildTitleSubText', emptyLogic);
 
     return '';
   };
 
+  /**
+   * 渲染标题图标，默认为空，可根据需要重载。
+   * @function
+   * @returns {Object} 标题图标
+   * @example
+   * renderPresetTitleIcon = () => null
+   */
   renderPresetTitleIcon = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon', emptyLogic);
 
     return null;
   };
 
+  /**
+   * 配置通知出现位置配置，默认为 bottomLeft，可根据需要重载。
+   * @function
+   * @returns {string} 位置配置
+   * @example
+   * buildNotificationPlacement = () => 'bottomLeft'
+   */
   buildNotificationPlacement = () => {
     this.logCallTrack({}, primaryCallName, 'buildNotificationPlacement');
 
     return `bottomLeft`;
   };
 
+  /**
+   * 渲染内容容器内部。
+   * @function
+   * @returns {Object} 渲染结果
+   * @example
+   * renderPresetContentContainorInner = () => null
+   */
   renderPresetContentContainorInner = () => {
     this.logCallTrack(
       {},
@@ -120,6 +182,11 @@ class Base extends BaseWindow {
     return null;
   };
 
+  /**
+   * 渲染内容容器。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderPresetContentContainor = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetContentContainor');
 
@@ -130,6 +197,12 @@ class Base extends BaseWindow {
     );
   };
 
+  /**
+   * 渲染关闭按钮。
+   * @function
+   * @param {Object} option 配置项
+   * @returns {Object} 渲染结果
+   */
   renderPresetCloseButton = (option) => {
     this.logCallTrack(
       {
@@ -153,6 +226,13 @@ class Base extends BaseWindow {
     return buildButton(o);
   };
 
+  /**
+   * 构造底部栏内部Extra区域配置集合。
+   * @function
+   * @returns {Array} 配置集合
+   * @example
+   * buildBottomBarInnerExtraConfigList = () => []
+   */
   buildBottomBarInnerExtraConfigList = () => {
     this.logCallTrack(
       {},
@@ -164,6 +244,11 @@ class Base extends BaseWindow {
     return [];
   };
 
+  /**
+   * 构造底部栏内部默认配置集合。
+   * @function
+   * @returns {Array} 配置集合
+   */
   buildBottomBarInnerDefaultConfigList = () => {
     this.logCallTrack(
       {},
@@ -178,6 +263,13 @@ class Base extends BaseWindow {
     ];
   };
 
+  /**
+   * 构造底部栏内部左侧项配置集合。
+   * @function
+   * @returns {Array} 配置集合
+   * @example
+   * buildBottomBarInnerLeftItemConfigList = () => []
+   */
   buildBottomBarInnerLeftItemConfigList = () => {
     this.logCallTrack(
       {},
@@ -189,6 +281,11 @@ class Base extends BaseWindow {
     return [];
   };
 
+  /**
+   * 构造底部栏内部右侧项配置集合。
+   * @function
+   * @returns {Array} 配置集合
+   */
   buildBottomBarInnerRightItemConfigList = () => {
     this.logCallTrack(
       {},
@@ -207,6 +304,11 @@ class Base extends BaseWindow {
     ];
   };
 
+  /**
+   * 渲染底部栏右侧部份。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderPresetBottomBarRightBox = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetBottomBarRightBox');
 
@@ -215,6 +317,11 @@ class Base extends BaseWindow {
     return this.renderPresetBottomBarInnerBox(rightConfigList);
   };
 
+  /**
+   * 渲染底部栏左侧部份。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderPresetBottomBarLeftBox = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetBottomBarLeftBox');
 
@@ -223,6 +330,12 @@ class Base extends BaseWindow {
     return this.renderPresetBottomBarInnerBox(leftConfigList);
   };
 
+  /**
+   * 渲染底部栏内部部份。
+   * @function
+   * @param {Array} configList 配置项集合
+   * @returns {Object} 渲染结果
+   */
   renderPresetBottomBarInnerBox = (configList) => {
     this.logCallTrack(
       {
@@ -356,6 +469,11 @@ class Base extends BaseWindow {
     return components;
   };
 
+  /**
+   * 渲染底部栏。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderPresetBottomBar = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetBottomBar');
 
@@ -402,12 +520,29 @@ class Base extends BaseWindow {
     );
   };
 
+  /**
+   * 渲染遮罩层内容区域，默认为空，可根据需要重载。
+   * @function
+   * @returns {Object} 渲染结果
+   * @example
+   * renderOverlayContent = () => null
+   */
   renderOverlayContent = () => {
     this.logCallTrack({}, primaryCallName, 'renderOverlayContent', emptyLogic);
 
     return null;
   };
 
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     if (this.showCallProcess) {
       this.logCallTrack({}, primaryCallName, 'renderFurther');

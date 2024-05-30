@@ -9,6 +9,11 @@ import { BaseComponent } from '../../bases';
 import { AnchorLink } from '../AnchorLink';
 
 class DescriptionGrid extends BaseComponent {
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const { list, config } = this.props;
 

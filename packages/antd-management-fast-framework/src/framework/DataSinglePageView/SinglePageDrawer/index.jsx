@@ -291,12 +291,26 @@ class SinglePageDrawer extends SinglePage {
     }
   };
 
+  /**
+   * 渲染标题图标，默认为空，可根据需要重载。
+   * @function
+   * @returns {Object} 标题图标
+   * @example
+   * renderPresetTitleIcon = () => null
+   */
   renderPresetTitleIcon = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon', emptyLogic);
 
     return null;
   };
 
+  /**
+   * 创建标题前缀文字，默认为空，可根据需要重载。
+   * @function
+   * @returns {string} 标题前缀文本
+   * @example
+   * buildTitlePrevText = () => ""
+   */
   buildTitlePrevText = () => {
     this.logCallTrack({}, primaryCallName, 'buildTitlePrevText', emptyLogic);
 
@@ -497,6 +511,11 @@ class SinglePageDrawer extends SinglePage {
     );
   };
 
+  /**
+   * 渲染内容容器。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderPresetContentContainor = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetContentContainor');
 
@@ -594,6 +613,11 @@ class SinglePageDrawer extends SinglePage {
     return null;
   };
 
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     if (this.showCallProcess) {
       this.logCallTrack({}, primaryCallName, 'renderFurther');

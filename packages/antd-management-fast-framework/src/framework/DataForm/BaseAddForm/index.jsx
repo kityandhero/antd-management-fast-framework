@@ -98,6 +98,17 @@ class BaseAddForm extends DataCore {
     }
   };
 
+  /**
+   * 填充数据后触发逻辑。
+   * @function
+   * @param {*} option 配置项。
+   * @param {Object} option.metaData 单体数据。
+   * @param {Array} option.metaListData 列表数据。
+   * @param {Object} option.metaExtra 额外数据。
+   * @param {Object} option.metaOriginalData 原始数据。
+   * @example
+   * afterFillForm = () => {}
+   */
   afterFillForm = (initialValues) => {
     this.logCallTrack(
       {
@@ -109,6 +120,11 @@ class BaseAddForm extends DataCore {
     );
   };
 
+  /**
+   * 设置表单项值。
+   * @function
+   * @param {*} v 值。
+   */
   setFormFieldsValue = (v) => {
     this.logCallTrack(
       {
@@ -123,15 +139,38 @@ class BaseAddForm extends DataCore {
       return;
     }
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'setFormFieldsValue',
+      'trigger',
+      'getTargetForm',
+    );
+
     const form = this.getTargetForm();
 
     if (form != null) {
       form.setFieldsValue(v);
 
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'setFormFieldsValue',
+        'trigger',
+        'afterSetFieldsValue',
+      );
+
       this.afterSetFieldsValue(v);
     }
   };
 
+  /**
+   * 设置表单项值后的触发逻辑。
+   * @function
+   * @param {Object} value 值。
+   * @example
+   * afterSetFieldsValue = () => {}
+   */
   afterSetFieldsValue = (values) => {
     this.logCallTrack(
       {
@@ -143,14 +182,40 @@ class BaseAddForm extends DataCore {
     );
   };
 
+  /**
+   * 处理表单数据重置。
+   * @function
+   */
   handleFormReset = () => {
     this.logCallTrack({}, primaryCallName, 'handleFormReset');
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'handleFormReset',
+      'trigger',
+      'resetTargetForm',
+    );
+
     this.resetTargetForm();
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'handleFormReset',
+      'trigger',
+      'reloadData',
+    );
 
     this.reloadData({});
   };
 
+  /**
+   * 补全提交表单时的数据。
+   * @function
+   * @param {Object} o 将要提交的数据
+   * @returns {Object} 补全后的将要提交的数据
+   */
   supplementSubmitRequestParams = (o) => {
     this.logCallTrack(
       {
@@ -164,6 +229,12 @@ class BaseAddForm extends DataCore {
     return o;
   };
 
+  /**
+   * 检测表单提交数据之后的触发逻辑。
+   * @function
+   * @example
+   * afterCheckSubmitRequestParams = (o) => o
+   */
   afterCheckSubmitRequestParams = (o) => {
     this.logCallTrack(
       {
@@ -252,7 +323,32 @@ class BaseAddForm extends DataCore {
     submitData = this.afterCheckSubmitRequestParams(submitData);
 
     if (checkResult) {
+      this.logCallTrace(
+        {
+          parameter: submitData,
+        },
+        primaryCallName,
+        'execSubmitApi',
+        'checkSubmitData',
+        'success',
+        'trigger',
+        'startProcessing',
+      );
+
       that.startProcessing();
+
+      this.logCallTrace(
+        {
+          parameter: submitData,
+        },
+        primaryCallName,
+        'execSubmitApi',
+        'checkSubmitData',
+        'success',
+        'trigger',
+        'openPreventRender',
+      );
+
       that.openPreventRender();
 
       that
@@ -261,6 +357,20 @@ class BaseAddForm extends DataCore {
           payload: submitData,
         })
         .then((remoteData) => {
+          this.logCallTrace(
+            {
+              parameter: submitData,
+            },
+            primaryCallName,
+            'execSubmitApi',
+            'checkSubmitData',
+            'success',
+            'dispatchApi',
+            'then',
+            'trigger',
+            'stopProcessing',
+          );
+
           that.stopProcessing('on dispatch api success');
 
           const { dataSuccess } = remoteData;
@@ -273,12 +383,16 @@ class BaseAddForm extends DataCore {
             } = remoteData;
 
             if (isFunction(successCallback)) {
-              this.logCallTrace(
+              that.logCallTrace(
                 {
                   parameter: { values },
                 },
                 primaryCallName,
                 'execSubmitApi',
+                'checkSubmitData',
+                'success',
+                'dispatchApi',
+                'then',
                 'trigger',
                 'successCallback',
               );
@@ -287,12 +401,16 @@ class BaseAddForm extends DataCore {
             }
 
             if (isFunction(completeCallback)) {
-              this.logCallTrace(
+              that.logCallTrace(
                 {
                   parameter: { values },
                 },
                 primaryCallName,
                 'execSubmitApi',
+                'checkSubmitData',
+                'success',
+                'dispatchApi',
+                'then',
                 'trigger',
                 'completeCallback',
               );
@@ -300,7 +418,35 @@ class BaseAddForm extends DataCore {
               completeCallback();
             }
 
+            that.logCallTrace(
+              {
+                parameter: { values },
+              },
+              primaryCallName,
+              'execSubmitApi',
+              'checkSubmitData',
+              'success',
+              'dispatchApi',
+              'then',
+              'trigger',
+              'closePreventRender',
+            );
+
             that.closePreventRender();
+
+            that.logCallTrace(
+              {
+                parameter: { values },
+              },
+              primaryCallName,
+              'execSubmitApi',
+              'checkSubmitData',
+              'success',
+              'dispatchApi',
+              'then',
+              'trigger',
+              'afterSubmitSuccess',
+            );
 
             that.afterSubmitSuccess({
               singleData: metaData || null,
@@ -311,12 +457,16 @@ class BaseAddForm extends DataCore {
             });
           } else {
             if (isFunction(failCallback)) {
-              this.logCallTrace(
+              that.logCallTrace(
                 {
                   parameter: { values },
                 },
                 primaryCallName,
                 'execSubmitApi',
+                'checkSubmitData',
+                'success',
+                'dispatchApi',
+                'then',
                 'trigger',
                 'failCallback',
               );
@@ -325,18 +475,36 @@ class BaseAddForm extends DataCore {
             }
 
             if (isFunction(completeCallback)) {
-              this.logCallTrace(
+              that.logCallTrace(
                 {
                   parameter: { values },
                 },
                 primaryCallName,
                 'execSubmitApi',
+                'checkSubmitData',
+                'success',
+                'dispatchApi',
+                'then',
                 'trigger',
                 'completeCallback',
               );
 
               completeCallback();
             }
+
+            that.logCallTrace(
+              {
+                parameter: { values },
+              },
+              primaryCallName,
+              'execSubmitApi',
+              'checkSubmitData',
+              'success',
+              'dispatchApi',
+              'then',
+              'trigger',
+              'closePreventRender',
+            );
 
             that.closePreventRender();
           }
@@ -350,17 +518,35 @@ class BaseAddForm extends DataCore {
             logException(message);
           }
 
+          that.logCallTrace(
+            {
+              parameter: { values },
+            },
+            primaryCallName,
+            'execSubmitApi',
+            'checkSubmitData',
+            'success',
+            'dispatchApi',
+            'catch',
+            'trigger',
+            'stopProcessing',
+          );
+
           that.stopProcessing('on dispatch api fail');
 
           logObject(error);
 
           if (isFunction(failCallback)) {
-            this.logCallTrace(
+            that.logCallTrace(
               {
                 parameter: { values },
               },
               primaryCallName,
               'execSubmitApi',
+              'checkSubmitData',
+              'success',
+              'dispatchApi',
+              'catch',
               'trigger',
               'failCallback',
             );
@@ -369,12 +555,16 @@ class BaseAddForm extends DataCore {
           }
 
           if (isFunction(completeCallback)) {
-            this.logCallTrace(
+            that.logCallTrace(
               {
                 parameter: { values },
               },
               primaryCallName,
               'execSubmitApi',
+              'checkSubmitData',
+              'success',
+              'dispatchApi',
+              'catch',
               'trigger',
               'completeCallback',
             );
@@ -390,7 +580,7 @@ class BaseAddForm extends DataCore {
       that.logCallTrace(
         {},
         primaryCallName,
-        'validate',
+        'execSubmitApi',
         'check submit data fail',
       );
 
@@ -398,7 +588,9 @@ class BaseAddForm extends DataCore {
         that.logCallTrace(
           {},
           primaryCallName,
-          'validate',
+          'execSubmitApi',
+          'checkSubmitData',
+          'fail',
           'trigger',
           'completeCallback',
         );
@@ -408,17 +600,38 @@ class BaseAddForm extends DataCore {
         that.logCallTrace(
           {},
           primaryCallName,
-          'validate',
+          'execSubmitApi',
+          'checkSubmitData',
+          'fail',
           'trigger',
           'completeCallback',
           emptyLogic,
         );
       }
 
+      that.logCallTrace(
+        {},
+        primaryCallName,
+        'execSubmitApi',
+        'checkSubmitData',
+        'fail',
+        'trigger',
+        'closePreventRender',
+        emptyLogic,
+      );
+
       that.closePreventRender();
     }
   };
 
+  /**
+   * 校验数据。
+   * @function
+   * @param {*} option 配置项。
+   * @param {Function} option.successCallback 成功后的回调。
+   * @param {Function} option.failCallback 失败后的回调。
+   * @param {Function} option.completeCallback 完成后的回调，成功或失败后都将触发。
+   */
   validate = ({
     successCallback = null,
     failCallback = null,
@@ -436,6 +649,14 @@ class BaseAddForm extends DataCore {
       );
     }
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'validate',
+      'trigger',
+      'getTargetForm',
+    );
+
     const form = this.getTargetForm();
 
     const { validateFields } = form;
@@ -444,6 +665,16 @@ class BaseAddForm extends DataCore {
 
     validateFields()
       .then((values) => {
+        that.logCallTrace(
+          {},
+          primaryCallName,
+          'validate',
+          'success',
+          'then',
+          'trigger',
+          'execSubmitApi',
+        );
+
         that.execSubmitApi({
           values,
           successCallback,
@@ -492,10 +723,12 @@ class BaseAddForm extends DataCore {
         }
 
         if (isFunction(failCallback)) {
-          this.logCallTrace(
+          that.logCallTrace(
             {},
             primaryCallName,
             'validate',
+            'fail',
+            'catch',
             'trigger',
             'failCallback',
           );
@@ -504,16 +737,28 @@ class BaseAddForm extends DataCore {
         }
 
         if (isFunction(completeCallback)) {
-          this.logCallTrace(
+          that.logCallTrace(
             {},
             primaryCallName,
             'validate',
+            'fail',
+            'catch',
             'trigger',
             'completeCallback',
           );
 
           completeCallback();
         }
+
+        that.logCallTrace(
+          {},
+          primaryCallName,
+          'validate',
+          'fail',
+          'catch',
+          'trigger',
+          'closePreventRender',
+        );
 
         that.closePreventRender();
 
@@ -538,6 +783,11 @@ class BaseAddForm extends DataCore {
     return initialValues;
   };
 
+  /**
+   * 渲染 Modal 内部区域。
+   * @function
+   * @return {Object} 渲染结果。
+   */
   renderPresetModalInner = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetModalInner');
 

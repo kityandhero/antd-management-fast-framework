@@ -10,12 +10,20 @@ class BaseFormModal extends Base {
     super(properties, visibleFlag);
   }
 
+  /**
+   * 渲染表单内容。
+   * @function
+   */
   renderPresetFormContent = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetFormContent');
 
     return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };
 
+  /**
+   * 渲染表单。
+   * @function
+   */
   renderPresetForm = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetForm');
 
@@ -55,6 +63,11 @@ class BaseFormModal extends Base {
     return this.renderPresetFormWrapper();
   };
 
+  /**
+   * 渲染 Modal 内部区域。
+   * @function
+   * @return {Object} 渲染结果。
+   */
   renderPresetModalInner = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetModalInner');
 

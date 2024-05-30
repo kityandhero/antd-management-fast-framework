@@ -1507,9 +1507,9 @@ class InternalFlow extends Core {
    * @function
    * @param {*} option 配置项。
    * @param {Object} option.metaData 单体数据。
-   * @param {number} option.metaListData 列表数据。
-   * @param {Function} option.metaExtra 额外数据。
-   * @param {Function} option.metaOriginalData 原始数据。
+   * @param {Array} option.metaListData 列表数据。
+   * @param {Object} option.metaExtra 额外数据。
+   * @param {Object} option.metaOriginalData 原始数据。
    */
   afterLoadSuccess = ({
     metaData = null,

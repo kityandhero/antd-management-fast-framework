@@ -54,6 +54,10 @@ class MobilePreviewArea extends Base {
     return list;
   };
 
+  /**
+   * 构造 Card 配置集合。
+   * @function
+   */
   establishCardCollectionConfig = () => {
     const {
       style,
@@ -167,6 +171,11 @@ class MobilePreviewArea extends Base {
     return this.renderPresetInnerView();
   };
 
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     if (this.showCallProcess) {
       this.logCallTrack({}, primaryCallName, 'renderFurther');

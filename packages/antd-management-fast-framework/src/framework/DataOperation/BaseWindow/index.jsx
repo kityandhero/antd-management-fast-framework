@@ -19,24 +19,58 @@ import { Base } from '../Base';
 const primaryCallName = 'DataOperation::BaseWindow';
 
 /**
- * DataOperation.BaseWindow
- * @namespace
+ * 弹窗类操作基类
+ * @namespace DataOperation
+ * @class BaseWindow
+ * @augments Base
  */
 class BaseWindow extends Base {
+  /**
+   * 可见性标记，通过构造函数赋值，请务必不要使用其他渠道赋值。
+   * @member {string}
+   */
   visibleFlag = '';
 
+  /**
+   * 当切换为显示的时候，是否重载数据, 默认 false。
+   * @member {boolean}
+   */
   reloadWhenShow = false;
 
+  /**
+   * 渲染后是否立即载入数据, 默认 false。
+   * @member {boolean}
+   */
   loadRemoteRequestAfterMount = false;
 
+  /**
+   * 表单应用，请务必不要更改赋值。
+   * @member {Object}
+   */
   formRef = React.createRef();
 
+  /**
+   * 是否通过表单提交数据, 默认 true
+   * @member {boolean}
+   */
   submitWithForm = true;
 
+  /**
+   * 提交成功后是否重新载入Header部分数据, 默认 false
+   * @member {boolean}
+   */
   reloadHeaderOnSubmitSuccess = false;
 
+  /**
+   * 关闭后是否立即销毁, 默认 false
+   * @member {boolean}
+   */
   destroyOnClose = false;
 
+  /**
+   * @constructs
+   * @param {Object} properties 属性值集合。
+   */
   constructor(properties, visibleFlag = '') {
     super(properties);
 
@@ -53,6 +87,13 @@ class BaseWindow extends Base {
     this.visibleFlag = visibleFlag;
   }
 
+  /**
+   * get derived state from props。
+   * @static
+   * @param {Object} nextProperties 即将更改的属性值
+   * @param {Object} previousState 之前的 state 值
+   * @returns {Object} 更新后的 state 值
+   */
   // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProperties, previousState) {
     const { externalData } = nextProperties;
@@ -60,6 +101,13 @@ class BaseWindow extends Base {
     return { externalData };
   }
 
+  /**
+   * 调整关闭时传递的参数。
+   * @function
+   * @returns {Object} 调整后的参数
+   * @example
+   * adjustAfterCloseParameter = () => null
+   */
   adjustAfterCloseParameter = () => {
     this.logCallTrack(
       {},
@@ -72,7 +120,10 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 当可见性变为显示时执行
+   * 切换为显示状态后的额外执行逻辑
+   * @function
+   * @example
+   * doOtherWhenChangeVisibleToShow = () => {}
    */
   doOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
@@ -84,7 +135,10 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 当可见性变为显示时附加的执行
+   * 切换为显示状态后，doOtherWhenChangeVisibleToShow 执行后的附加逻辑
+   * @function
+   * @example
+   * executeAfterDoOtherWhenChangeVisibleToShow = () => {}
    */
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
@@ -96,7 +150,10 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 当可见性变为隐藏时执行
+   * 切换为隐藏状态后的额外执行逻辑
+   * @function
+   * @example
+   * doOtherWhenChangeVisibleToHide = () => {}
    */
   doOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
@@ -108,7 +165,10 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 当可见性变为隐藏后附加的执行
+   * 切换为显示状态后，doOtherWhenChangeVisibleToHide 执行后的附加逻辑
+   * @function
+   * @example
+   * executeAfterDoOtherWhenChangeVisibleToHide = () => {}
    */
   executeAfterDoOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
@@ -120,11 +180,19 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 当可见性变更后的附加执行
+   * 可见性变更后，doOtherWhenChangeVisible 执行后的附加逻辑
+   * @function
+   * @param {boolean} currentVisible 当前显示状态
+   * @example
+   * executeOtherAfterDoOtherWhenChangeVisible = (currentVisible) => {}
    */
-  executeOtherAfterDoOtherWhenChangeVisible = () => {
+  executeOtherAfterDoOtherWhenChangeVisible = (currentVisible) => {
     this.logCallTrack(
-      {},
+      {
+        parameters: {
+          currentVisible,
+        },
+      },
       primaryCallName,
       'executeOtherAfterDoOtherWhenChangeVisible',
       emptyLogic,
@@ -132,7 +200,9 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 当可见性发生变化时执行
+   * 可见性变更后执行的逻辑。
+   * @function
+   * @param {boolean} currentVisible 当前显示状态。
    */
   doOtherWhenChangeVisible = (currentVisible) => {
     this.logCallTrack(
@@ -271,12 +341,23 @@ class BaseWindow extends Base {
     };
   };
 
+  /**
+   * 获取表单。
+   * @function
+   * @returns {Object} 表单。
+   */
   getTargetForm = () => {
     this.logCallTrack({}, primaryCallName, 'getTargetForm');
 
     return this.formRef.current;
   };
 
+  /**
+   * 当重置表单时的额外逻辑。
+   * @function
+   * @example
+   * handleOtherOnResetTargetForm = () => {}
+   */
   handleOtherOnResetTargetForm = () => {
     this.logCallTrack(
       {},
@@ -286,6 +367,10 @@ class BaseWindow extends Base {
     );
   };
 
+  /**
+   * 重置表单。
+   * @function
+   */
   resetTargetForm = () => {
     this.logCallTrack({}, primaryCallName, 'resetTargetForm');
 
@@ -326,6 +411,12 @@ class BaseWindow extends Base {
     this.handleOtherOnResetTargetForm();
   };
 
+  /**
+   * 补全提交表单时的数据。
+   * @function
+   * @param {Object} o 将要提交的数据
+   * @returns {Object} 补全后的将要提交的数据
+   */
   supplementSubmitRequestParams = (o) => {
     this.logCallTrack(
       {},
@@ -337,6 +428,15 @@ class BaseWindow extends Base {
     return o;
   };
 
+  /**
+   * 加载数据成功后执行。
+   * @function
+   * @param {*} option 配置项。
+   * @param {Object} option.metaData 单体数据。
+   * @param {Array} option.metaListData 列表数据。
+   * @param {Object} option.metaExtra 额外数据。
+   * @param {Object} option.metaOriginalData 原始数据。
+   */
   afterLoadSuccess = ({
     metaData,
     metaListData,
@@ -401,6 +501,17 @@ class BaseWindow extends Base {
     });
   };
 
+  /**
+   * 加载数据成功后的额外执行逻辑，在 afterLoadSuccess 调用后触发。
+   * @function
+   * @param {*} option 配置项。
+   * @param {Object} option.metaData 单体数据。
+   * @param {Array} option.metaListData 列表数据。
+   * @param {Object} option.metaExtra 额外数据。
+   * @param {Object} option.metaOriginalData 原始数据。
+   * @example
+   * doOtherAfterLoadSuccess = () => {}
+   */
   doOtherAfterLoadSuccess = ({
     // eslint-disable-next-line no-unused-vars
     metaData = null,
@@ -433,6 +544,15 @@ class BaseWindow extends Base {
     switchControlAssist.close(this.getVisibleFlag());
   };
 
+  /**
+   * 填充数据。
+   * @function
+   * @param {*} option 配置项。
+   * @param {Object} option.metaData 单体数据。
+   * @param {Array} option.metaListData 列表数据。
+   * @param {Object} option.metaExtra 额外数据。
+   * @param {Object} option.metaOriginalData 原始数据。
+   */
   fillData = ({
     metaData = null,
     metaListData = [],
@@ -464,6 +584,11 @@ class BaseWindow extends Base {
     }
   };
 
+  /**
+   * 设置表单项值。
+   * @function
+   * @param {*} v 值。
+   */
   setFormFieldsValue = (v) => {
     this.logCallTrack({}, primaryCallName, 'setFormFieldsValue');
 
@@ -476,11 +601,30 @@ class BaseWindow extends Base {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
+  /**
+   * 设置表单项值后的触发逻辑。
+   * @function
+   * @param {Object} value 值。
+   * @example
+   * afterSetFieldsValue = () => {}
+   */
   afterSetFieldsValue = (value) => {
-    this.logCallTrack({}, primaryCallName, 'afterSetFieldsValue', emptyLogic);
+    this.logCallTrack(
+      {
+        parameters: { value },
+      },
+      primaryCallName,
+      'afterSetFieldsValue',
+      emptyLogic,
+    );
   };
 
+  /**
+   * 检测表单提交数据之后的触发逻辑。
+   * @function
+   * @example
+   * afterCheckSubmitRequestParams = (o) => o
+   */
   afterCheckSubmitRequestParams = (o) => {
     this.logCallTrack(
       {},

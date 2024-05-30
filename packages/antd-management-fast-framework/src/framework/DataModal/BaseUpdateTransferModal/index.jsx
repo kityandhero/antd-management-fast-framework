@@ -92,6 +92,10 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
     throw new Error(this.buildOverloadErrorText('buildItem'));
   };
 
+  /**
+   * 构造 Card 配置集合。
+   * @function
+   */
   establishCardCollectionConfig = () => {
     const { targetKeys, selectedKeys } = this.state;
 

@@ -4,6 +4,11 @@ import { defaultUserAvatar } from 'antd-management-fast-common';
 import { BaseComponent, FlexBox } from 'antd-management-fast-component';
 
 class PageHeaderContent extends BaseComponent {
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const { avatar, name } = this.props;
 

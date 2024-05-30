@@ -9,6 +9,11 @@ import { FlexBox } from '../FlexBox';
 import { VerticalBox } from '../VerticalBox';
 
 class FlexRadio extends BaseComponent {
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const {
       label = '',

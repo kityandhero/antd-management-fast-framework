@@ -5,6 +5,11 @@ import { FlexBox } from '../FlexBox';
 import { VerticalBox } from '../VerticalBox';
 
 class ElasticityMenuHeader extends BaseComponent {
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const { logoDom, collapsed, navTheme, shortName } = this.props;
 

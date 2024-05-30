@@ -78,6 +78,11 @@ class MenuWrapper extends BaseComponent {
     return activeKey;
   };
 
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const { mode, items, handleClick } = this.props;
 

@@ -59,10 +59,15 @@ class DataCore extends BaseView {
     );
   }
 
-  setFormFieldsValue = (v) => {
+  /**
+   * 设置表单项值。
+   * @function
+   * @param {Object} value 值。
+   */
+  setFormFieldsValue = (value) => {
     this.logCallTrack(
       {
-        parameter: v,
+        parameter: value,
       },
       primaryCallName,
       'setFormFieldsValue',
@@ -75,14 +80,29 @@ class DataCore extends BaseView {
     const form = this.getTargetForm();
 
     if (form != null) {
-      form.setFieldsValue(v);
+      form.setFieldsValue(value);
 
-      this.afterSetFieldsValue(v);
+      this.afterSetFieldsValue(value);
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
-  afterSetFieldsValue = (value) => {};
+  /**
+   * 设置表单项值后的触发逻辑。
+   * @function
+   * @param {Object} value 值。
+   * @example
+   * afterSetFieldsValue = () => {}
+   */
+  afterSetFieldsValue = (value) => {
+    this.logCallTrack(
+      {
+        parameters: { value },
+      },
+      primaryCallName,
+      'afterSetFieldsValue',
+      emptyLogic,
+    );
+  };
 
   getTargetForm = () => {
     this.logCallTrack({}, primaryCallName, 'getTargetForm');
@@ -232,6 +252,10 @@ class DataCore extends BaseView {
     return this.renderPresetFormWrapper();
   };
 
+  /**
+   * 渲染表单。
+   * @function
+   */
   renderPresetForm = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetForm');
 
@@ -269,10 +293,20 @@ class DataCore extends BaseView {
     return this.renderPresetFormContent();
   };
 
+  /**
+   * 构造 Card 配置集合。
+   * @function
+   * @example
+   * establishCardCollectionConfig = () => null
+   */
   establishCardCollectionConfig = () => {
     return null;
   };
 
+  /**
+   * 渲染表单内容。
+   * @function
+   */
   renderPresetFormContent = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetFormContent');
 

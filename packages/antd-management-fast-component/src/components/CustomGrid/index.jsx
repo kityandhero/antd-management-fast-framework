@@ -17,6 +17,11 @@ import { FlexBox } from '../FlexBox';
 import { FlexText } from '../FlexText';
 
 class CustomGrid extends BaseComponent {
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const { list, config } = this.props;
 

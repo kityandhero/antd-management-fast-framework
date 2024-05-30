@@ -28,6 +28,11 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
     };
   }
 
+  /**
+   * 渲染标题图标，默认为空，可根据需要重载。
+   * @function
+   * @returns {Object} 标题图标
+   */
   renderPresetTitleIcon = () => {
     return iconBuilder.picture();
   };
@@ -89,6 +94,10 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
     };
   };
 
+  /**
+   * 构造 Card 配置集合。
+   * @function
+   */
   establishCardCollectionConfig = () => {
     const {
       alertVisible,

@@ -5,6 +5,11 @@ import { ImageBox } from '../ImageBox';
 import { VerticalBox } from '../VerticalBox';
 
 class ElasticityListViewItemExtra extends BaseComponent {
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const { align, imageUrl, emptyImageUrl, width } = this.props;
 

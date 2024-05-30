@@ -37,18 +37,31 @@ class DataPreviewDrawer extends BaseFormDrawer {
     };
   }
 
+  /**
+   * 渲染标题图标，默认为空，可根据需要重载。
+   * @function
+   * @returns {Object} 标题图标
+   */
   renderPresetTitleIcon = () => {
     const { icon } = this.props;
 
     return icon;
   };
 
+  /**
+   * 获取页面标题。
+   * @function
+   */
   getPresetPageTitle = () => {
     const { title } = this.props;
 
     return title || '';
   };
 
+  /**
+   * 构造 Card 配置集合。
+   * @function
+   */
   establishCardCollectionConfig = () => {
     const {
       descriptionLabel,
@@ -153,6 +166,11 @@ class DataPreviewDrawer extends BaseFormDrawer {
     return { list };
   };
 
+  /**
+   * 渲染内容容器。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderPresetContentContainor = () => {
     const { dataType, data } = this.props;
 

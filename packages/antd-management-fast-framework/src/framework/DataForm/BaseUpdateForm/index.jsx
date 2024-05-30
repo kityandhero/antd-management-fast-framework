@@ -18,14 +18,40 @@ class BaseUpdateForm extends DataLoad {
 
   reloadHeaderOnSubmitSuccess = false;
 
+  /**
+   * 处理表单数据重置。
+   * @function
+   */
   handleFormReset = () => {
     this.logCallTrack({}, primaryCallName, 'handleFormReset');
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'handleFormReset',
+      'trigger',
+      'resetTargetForm',
+    );
+
     this.resetTargetForm();
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'handleFormReset',
+      'trigger',
+      'reloadData',
+    );
 
     this.reloadData({});
   };
 
+  /**
+   * 补全提交表单时的数据。
+   * @function
+   * @param {Object} o 将要提交的数据
+   * @returns {Object} 补全后的将要提交的数据
+   */
   supplementSubmitRequestParams = (o) => {
     this.logCallTrack(
       {
@@ -39,6 +65,12 @@ class BaseUpdateForm extends DataLoad {
     return o;
   };
 
+  /**
+   * 检测表单提交数据之后的触发逻辑。
+   * @function
+   * @example
+   * afterCheckSubmitRequestParams = (o) => o
+   */
   afterCheckSubmitRequestParams = (o) => {
     this.logCallTrack(
       {
@@ -300,6 +332,14 @@ class BaseUpdateForm extends DataLoad {
     }
   };
 
+  /**
+   * 校验数据。
+   * @function
+   * @param {*} option 配置项。
+   * @param {Function} option.successCallback 成功后的回调。
+   * @param {Function} option.failCallback 失败后的回调。
+   * @param {Function} option.completeCallback 完成后的回调，成功或失败后都将触发。
+   */
   validate = ({
     successCallback = null,
     failCallback = null,

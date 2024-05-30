@@ -14,6 +14,11 @@ const { NotFound } = Result;
 class Index extends AuthorizationWrapper {
   loadRemoteRequestAfterMount = false;
 
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     return (
       <NotFound

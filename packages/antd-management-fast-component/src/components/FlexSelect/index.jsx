@@ -15,6 +15,11 @@ import { buildOptionItem } from '../Function';
 import { VerticalBox } from '../VerticalBox';
 
 class FlexSelect extends BaseComponent {
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const {
       style,

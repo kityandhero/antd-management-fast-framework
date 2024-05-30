@@ -12,6 +12,12 @@ class BaseFormDrawer extends Base {
     super(properties, visibleFlag);
   }
 
+  /**
+   * 构造 Card 配置集合。
+   * @function
+   * @example
+   * establishCardCollectionConfig = () => null
+   */
   establishCardCollectionConfig = () => {
     this.logCallTrack(
       {},
@@ -29,12 +35,20 @@ class BaseFormDrawer extends Base {
     return 'vertical';
   };
 
+  /**
+   * 渲染表单内容。
+   * @function
+   */
   renderPresetFormContent = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetFormContent');
 
     return this.buildCardCollectionArea(this.establishCardCollectionConfig());
   };
 
+  /**
+   * 渲染表单。
+   * @function
+   */
   renderPresetForm = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetForm');
 

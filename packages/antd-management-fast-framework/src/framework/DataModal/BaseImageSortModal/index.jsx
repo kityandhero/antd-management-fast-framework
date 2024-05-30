@@ -231,6 +231,10 @@ class BaseImageSortModal extends BaseUpdateModal {
     );
   };
 
+  /**
+   * 构造 Card 配置集合。
+   * @function
+   */
   establishCardCollectionConfig = () => {
     return {
       list: [

@@ -123,6 +123,10 @@ class BaseSelectModal extends BaseLoadModal {
     };
   };
 
+  /**
+   * 构造 Card 配置集合。
+   * @function
+   */
   establishCardCollectionConfig = () => {
     this.logCallTrack({}, primaryCallName, 'establishCardCollectionConfig');
 

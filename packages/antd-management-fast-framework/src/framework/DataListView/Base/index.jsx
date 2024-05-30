@@ -177,6 +177,15 @@ class Base extends AuthorizationWrapper {
     this.pageSizeAdditional = pageSize;
   };
 
+  /**
+   * 加载数据成功后执行。
+   * @function
+   * @param {*} option 配置项。
+   * @param {Object} option.metaData 单体数据。
+   * @param {Array} option.metaListData 列表数据。
+   * @param {Object} option.metaExtra 额外数据。
+   * @param {Object} option.metaOriginalData 原始数据。
+   */
   afterLoadSuccess = ({
     metaData,
     metaListData,
@@ -204,6 +213,17 @@ class Base extends AuthorizationWrapper {
     });
   };
 
+  /**
+   * 加载数据成功后的额外执行逻辑，在 afterLoadSuccess 调用后触发。
+   * @function
+   * @param {*} option 配置项。
+   * @param {Object} option.metaData 单体数据。
+   * @param {Array} option.metaListData 列表数据。
+   * @param {Object} option.metaExtra 额外数据。
+   * @param {Object} option.metaOriginalData 原始数据。
+   * @example
+   * doOtherAfterLoadSuccess = () => {}
+   */
   doOtherAfterLoadSuccess = ({
     // eslint-disable-next-line no-unused-vars
     metaData = null,
@@ -951,6 +971,10 @@ class Base extends AuthorizationWrapper {
 
   establishPresetFormOverlayStyle = () => {};
 
+  /**
+   * 渲染表单。
+   * @function
+   */
   renderPresetForm = () => this.buildSearchCard();
 
   renderPresetFormOverlayContent = () => {

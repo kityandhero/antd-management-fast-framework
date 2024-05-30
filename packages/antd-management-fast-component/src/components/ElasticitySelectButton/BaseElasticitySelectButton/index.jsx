@@ -93,6 +93,11 @@ class BaseElasticitySelectButton extends BaseComponent {
     return this.renderPresetSelector();
   };
 
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     return (
       <>

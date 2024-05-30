@@ -76,6 +76,11 @@ class SignIn extends BaseComponent {
     });
   };
 
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     const { type: loginType, processing } = this.state;
 

@@ -8,7 +8,18 @@ import { Common } from '../../Common';
 
 const primaryCallName = 'CustomWrapper::SupplementCore';
 
+/**
+ * 该类作为特有项目的补充，视具体项目进行增部方法
+ * @namespace CustomWrapper
+ * @class SupplementCore
+ * @augments Common
+ */
 class SupplementCore extends Common {
+  /**
+   * 预处理图片上传结果。
+   * @function
+   * @param {Object} response 上传结果。
+   */
   pretreatmentImageUploadRemoteResponse = (response) => {
     this.logCallTrack(
       {
@@ -47,6 +58,11 @@ class SupplementCore extends Common {
     return result;
   };
 
+  /**
+   * 预处理文件Base64上传结果。
+   * @function
+   * @param {Object} response 上传结果。
+   */
   pretreatmentFileBase64UploadRemoteResponse = (response) => {
     this.logCallTrack(
       {
@@ -85,6 +101,11 @@ class SupplementCore extends Common {
     return result;
   };
 
+  /**
+   * 预处理视频上传结果。
+   * @function
+   * @param {Object} response 上传结果。
+   */
   pretreatmentVideoUploadRemoteResponse = (response) => {
     this.logCallTrack(
       {
@@ -123,6 +144,11 @@ class SupplementCore extends Common {
     return result;
   };
 
+  /**
+   * 预处理音频上传结果。
+   * @function
+   * @param {Object} response 上传结果。
+   */
   pretreatmentAudioUploadRemoteResponse = (response) => {
     this.logCallTrack(
       {
@@ -161,6 +187,11 @@ class SupplementCore extends Common {
     return result;
   };
 
+  /**
+   * 预处理文件上传结果。
+   * @function
+   * @param {Object} response 上传结果。
+   */
   pretreatmentFileUploadRemoteResponse = (response) => {
     this.logCallTrack(
       {

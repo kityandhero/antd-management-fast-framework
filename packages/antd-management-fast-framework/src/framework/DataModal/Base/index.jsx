@@ -63,6 +63,12 @@ class Base extends BaseWindow {
     };
   };
 
+  /**
+   * 构造 Card 配置集合。
+   * @function
+   * @example
+   * establishCardCollectionConfig = () => null
+   */
   establishCardCollectionConfig = () => {
     this.logCallTrack(
       {},
@@ -160,12 +166,24 @@ class Base extends BaseWindow {
     return { padding: 0, ...otherModalBodyStyle };
   };
 
+  /**
+   * 构造标题图标。
+   * @function
+   * @returns {Object} 标题图标。
+   */
   buildTitleIcon = () => {
     this.logCallTrack({}, primaryCallName, 'buildTitleIcon');
 
     return iconBuilder.edit();
   };
 
+  /**
+   * 创建标题前缀文字，默认为空，可根据需要重载。
+   * @function
+   * @returns {string} 标题前缀文本
+   * @example
+   * buildTitlePrevText = () => ""
+   */
   buildTitlePrevText = () => {
     this.logCallTrack({}, primaryCallName, 'buildTitlePrevText');
 
@@ -208,6 +226,11 @@ class Base extends BaseWindow {
     return 'center';
   };
 
+  /**
+   * 渲染标题图标，默认为空，可根据需要重载。
+   * @function
+   * @returns {Object} 标题图标
+   */
   renderPresetTitleIcon = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetTitleIcon');
 
@@ -229,12 +252,22 @@ class Base extends BaseWindow {
     return null;
   };
 
+  /**
+   * 渲染 Modal 内部区域。
+   * @function
+   * @return {Object} 渲染结果。
+   */
   renderPresetModalInner = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetModalInner');
 
     return this.renderPresetContentContainorInner();
   };
 
+  /**
+   * 渲染主入口。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderFurther() {
     if (this.showCallProcess) {
       this.logCallTrack({}, primaryCallName, 'renderFurther');
