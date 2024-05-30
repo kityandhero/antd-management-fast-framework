@@ -167,9 +167,9 @@ class BaseAddForm extends DataCore {
   /**
    * 设置表单项值后的触发逻辑。
    * @function
-   * @param {Object} value 值。
+   * @param {Object} values 值。
    * @example
-   * afterSetFieldsValue = () => {}
+   * afterSetFieldsValue = (values) => {}
    */
   afterSetFieldsValue = (values) => {
     this.logCallTrack(

@@ -8,6 +8,12 @@ import { InteractionAssemble } from 'antd-management-fast-common';
 
 import { TopProgressBar } from '../TopProgressBar';
 
+/**
+ * 应用包裹器。
+ * @namespace components
+ * @class ApplicationWrapper
+ * @augments PureComponent
+ */
 class ApplicationWrapper extends PureComponent {
   render() {
     logDebug('render ApplicationWrapper');

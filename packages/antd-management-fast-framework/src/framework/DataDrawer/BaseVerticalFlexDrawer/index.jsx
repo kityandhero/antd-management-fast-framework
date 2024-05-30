@@ -13,6 +13,11 @@ const { HelpContent } = PageExtra;
 const primaryCallName = 'DataDrawer::BaseVerticalFlexDrawer';
 
 class BaseVerticalFlexDrawer extends Base {
+  /**
+   * @constructs
+   * @param {Object} properties 属性值集合。
+   * @param {string} visibleFlag 可见性标记。
+   */
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
   }

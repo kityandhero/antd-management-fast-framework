@@ -8,6 +8,11 @@ import { Base } from '../Base';
 const primaryCallName = 'DataDrawer::Base';
 
 class BaseFormDrawer extends Base {
+  /**
+   * @constructs
+   * @param {Object} properties 属性值集合。
+   * @param {string} visibleFlag 可见性标记。
+   */
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
   }
@@ -29,6 +34,11 @@ class BaseFormDrawer extends Base {
     return null;
   };
 
+  /**
+   * 配置表单布局。
+   * @function
+   * @returns {string} 'vertical'
+   */
   buildFormLayout = () => {
     this.logCallTrack({}, primaryCallName, 'buildFormLayout');
 

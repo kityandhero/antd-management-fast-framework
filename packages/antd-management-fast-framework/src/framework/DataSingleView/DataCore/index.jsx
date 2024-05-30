@@ -89,14 +89,14 @@ class DataCore extends BaseView {
   /**
    * 设置表单项值后的触发逻辑。
    * @function
-   * @param {Object} value 值。
+   * @param {Object} values 值。
    * @example
-   * afterSetFieldsValue = () => {}
+   * afterSetFieldsValue = (values) => {}
    */
-  afterSetFieldsValue = (value) => {
+  afterSetFieldsValue = (values) => {
     this.logCallTrack(
       {
-        parameters: { value },
+        parameters: { values },
       },
       primaryCallName,
       'afterSetFieldsValue',
@@ -208,6 +208,11 @@ class DataCore extends BaseView {
     );
   };
 
+  /**
+   * 配置表单布局。
+   * @function
+   * @returns {string} 'vertical'
+   */
   buildFormLayout = () => {
     this.logCallTrack({}, primaryCallName, 'buildFormLayout');
 
@@ -218,14 +223,29 @@ class DataCore extends BaseView {
     return null;
   };
 
+  /**
+   * 渲染主标题图标。
+   * @function
+   * @returns {Object} 图标
+   */
   renderPresetMainTitleIcon = () => {
     return iconBuilder.contacts();
   };
 
+  /**
+   * 渲染主标题文本。
+   * @function
+   * @returns {string} 文本
+   */
   renderPresetMainTitleText = () => {
     return '基本信息';
   };
 
+  /**
+   * 渲染主标题。
+   * @function
+   * @returns {Object} 渲染结果
+   */
   renderPresetMainTitle = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetMainTitle');
 

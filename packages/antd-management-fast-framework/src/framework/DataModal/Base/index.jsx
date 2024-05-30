@@ -33,6 +33,11 @@ class Base extends BaseWindow {
 
   showFooter = true;
 
+  /**
+   * @constructs
+   * @param {Object} properties 属性值集合。
+   * @param {string} visibleFlag 可见性标记。
+   */
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
 
@@ -44,12 +49,22 @@ class Base extends BaseWindow {
     };
   }
 
+  /**
+   * 配置表单布局。
+   * @function
+   * @returns {string} 'horizontal'
+   */
   buildFormLayout = () => {
     this.logCallTrack({}, primaryCallName, 'buildFormLayout');
 
     return 'horizontal';
   };
 
+  /**
+   * 构建表单额外配置。
+   * @function
+   * @returns {Object} 额外配置
+   */
   establishFormAdditionalConfig = () => {
     this.logCallTrack({}, primaryCallName, 'establishFormAdditionalConfig');
 

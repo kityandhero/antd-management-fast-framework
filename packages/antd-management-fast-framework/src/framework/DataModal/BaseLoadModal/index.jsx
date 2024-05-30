@@ -3,6 +3,11 @@ import { BaseFormModal } from '../BaseFormModal';
 const primaryCallName = 'DataModal::Base';
 
 class BaseLoadModal extends BaseFormModal {
+  /**
+   * @constructs
+   * @param {Object} properties 属性值集合。
+   * @param {string} visibleFlag 可见性标记。
+   */
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
   }

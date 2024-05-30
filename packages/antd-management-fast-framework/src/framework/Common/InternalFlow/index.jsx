@@ -2197,8 +2197,10 @@ class InternalFlow extends Core {
   };
 
   /**
-   * 构建表单额外配置。
+   * 构建表单额外配置，默认为空，可根据需要重载。
    * @function
+   * @example
+   * establishFormAdditionalConfig = () => {}
    */
   establishFormAdditionalConfig = () => {
     this.logCallTrack(

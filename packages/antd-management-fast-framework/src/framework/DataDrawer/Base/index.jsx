@@ -42,7 +42,7 @@ const primaryCallName = 'DataDrawer::Base';
 /**
  * Drawer 操作基类
  * @namespace DataDrawer
- * @class Base
+ * @class DataDrawer.Base
  * @augments BaseWindow
  */
 class Base extends BaseWindow {

@@ -613,6 +613,10 @@ class AbstractComponent extends Component {
     return null;
   };
 
+  /**
+   * 挂载完成后进行调整，触发 doWorkAdjustDidMount 前执行，默认为空逻辑，可根据需要重载。
+   * @function
+   */
   doWorkBeforeAdjustDidMount = () => {
     this.logCallTrack(
       {},
@@ -623,6 +627,10 @@ class AbstractComponent extends Component {
     );
   };
 
+  /**
+   * 挂载完成后进行调整，触发 doWorkBeforeAdjustDidMount 后，触发 doWorkAfterAdjustDidMount 前执行，默认为空逻辑，可根据需要重载。
+   * @function
+   */
   doWorkAdjustDidMount = () => {
     this.logCallTrack(
       {},
@@ -633,6 +641,10 @@ class AbstractComponent extends Component {
     );
   };
 
+  /**
+   * 挂载完成后进行调整，触发 doWorkAdjustDidMount 后执行，默认为空逻辑，可根据需要重载。
+   * @function
+   */
   doWorkAfterAdjustDidMount = () => {
     this.logCallTrack(
       {},
@@ -673,6 +685,10 @@ class AbstractComponent extends Component {
     );
   };
 
+  /**
+   * 挂载完成后触发执行。
+   * @function
+   */
   doOtherWorkAfterDidMount = () => {
     this.logCallTrack(
       {},

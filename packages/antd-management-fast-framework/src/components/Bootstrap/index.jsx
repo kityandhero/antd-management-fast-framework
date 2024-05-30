@@ -14,7 +14,17 @@ import {
 
 const primaryCallName = 'Bootstrap';
 
+/**
+ * 引导处理。
+ * @namespace components
+ * @class Bootstrap
+ * @augments BaseComponent
+ */
 class Bootstrap extends BaseComponent {
+  /**
+   * 挂载完成后触发执行。
+   * @function
+   */
   doOtherWorkAfterDidMount = () => {
     const { setInitialState } = this.props;
 
