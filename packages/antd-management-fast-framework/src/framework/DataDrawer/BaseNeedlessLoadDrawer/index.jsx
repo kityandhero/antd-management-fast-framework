@@ -10,7 +10,7 @@ const primaryCallName = 'DataDrawer::BaseNeedlessLoadDrawer';
  * base needless load drawer
  * @namespace framework.DataDrawer
  * @class BaseNeedlessLoadDrawer
- * @augments BaseFormDrawer
+ * @extends BaseFormDrawer
  */
 class BaseNeedlessLoadDrawer extends BaseFormDrawer {
   resetDataAfterLoad = false;
@@ -18,7 +18,7 @@ class BaseNeedlessLoadDrawer extends BaseFormDrawer {
   showReloadButton = false;
 
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    * @param {string} visibleFlag 可见性标记。
    */

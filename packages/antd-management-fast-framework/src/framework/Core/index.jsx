@@ -22,7 +22,7 @@ const primaryCallName = 'Core';
  * 框架内核定义类。
  * @namespace framework
  * @class Core
- * @augments BaseComponent
+ * @extends BaseComponent
  */
 class Core extends BaseComponent {
   /**
@@ -90,7 +90,7 @@ class Core extends BaseComponent {
   //#endregion
 
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties
    */
   constructor(properties) {

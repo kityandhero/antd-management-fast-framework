@@ -11,11 +11,11 @@ const primaryCallName = 'DataModal::BaseUpdateTransferModal';
  * base update transfer modal
  * @namespace framework.DataModal
  * @class BaseUpdateTransferModal
- * @augments BaseUpdateModal
+ * @extends BaseUpdateModal
  */
 class BaseUpdateTransferModal extends BaseUpdateModal {
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    * @param {string} visibleFlag 可见性标记。
    */

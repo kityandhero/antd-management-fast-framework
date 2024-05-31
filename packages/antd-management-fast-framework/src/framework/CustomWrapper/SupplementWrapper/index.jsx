@@ -6,7 +6,7 @@ import { Supplement } from '../Supplement';
  * 该类作为特有项目的补充，视具体项目进行增部方法
  * @namespace CustomWrapper
  * @class SupplementWrapper
- * @augments Supplement
+ * @extends Supplement
  */
 class SupplementWrapper extends Supplement {
   /**

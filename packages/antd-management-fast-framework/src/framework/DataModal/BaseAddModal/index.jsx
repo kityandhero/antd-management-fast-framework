@@ -4,11 +4,11 @@ import { BaseNeedlessLoadModal } from '../BaseNeedlessLoadModal';
  * base add modal
  * @namespace framework.DataModal
  * @class BaseAddModal
- * @augments BaseNeedlessLoadModal
+ * @extends BaseNeedlessLoadModal
  */
 class BaseAddModal extends BaseNeedlessLoadModal {
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    * @param {string} visibleFlag 可见性标记。
    */

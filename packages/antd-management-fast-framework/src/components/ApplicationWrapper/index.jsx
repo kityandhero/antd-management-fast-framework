@@ -12,7 +12,7 @@ import { TopProgressBar } from '../TopProgressBar';
  * 应用包裹器。
  * @namespace components
  * @class ApplicationWrapper
- * @augments PureComponent
+ * @extends PureComponent
  */
 class ApplicationWrapper extends PureComponent {
   render() {

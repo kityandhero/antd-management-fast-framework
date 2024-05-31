@@ -43,17 +43,17 @@ const primaryCallName = 'DataDrawer::Base';
  * Drawer 操作基类
  * @namespace DataDrawer
  * @class DataDrawer.Base
- * @augments BaseWindow
+ * @extends BaseWindow
  */
 class Base extends BaseWindow {
   /**
    * 内容包裹类型，赋值为 contentConfig.wrapperType.drawer，务必不要更改此项属性值。
-   * @member {string}
+   * @property
    */
   contentWrapperType = contentConfig.wrapperType.drawer;
 
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    * @param {string} visibleFlag 可见性标记。
    */

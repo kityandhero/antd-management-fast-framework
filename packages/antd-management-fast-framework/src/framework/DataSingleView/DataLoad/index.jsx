@@ -11,7 +11,7 @@ const primaryCallName = 'DataSingleView::DataLoad';
  * data load
  * @namespace framework.DataSingleView
  * @class DataLoad
- * @augments DataCore
+ * @extends DataCore
  */
 class DataLoad extends DataCore {
   constructor(properties) {

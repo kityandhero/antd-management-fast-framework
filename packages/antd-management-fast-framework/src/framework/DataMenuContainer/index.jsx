@@ -13,7 +13,7 @@ const primaryCallName = 'DataMenuContainer';
  * DataMenuContainer
  * @namespace DataMenuContainer
  * @class DataMenuContainer
- * @augments DataTabContainer
+ * @extends DataTabContainer
  */
 class DataMenuContainer extends DataTabContainer {
   showHeader = false;

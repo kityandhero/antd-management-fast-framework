@@ -4,13 +4,13 @@ import { BaseNeedlessLoadModal } from '../BaseNeedlessLoadModal';
  * base display modal
  * @namespace framework.DataModal
  * @class BaseDisplayModal
- * @augments BaseNeedlessLoadModal
+ * @extends BaseNeedlessLoadModal
  */
 class BaseDisplayModal extends BaseNeedlessLoadModal {
   showFooter = false;
 
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    * @param {string} visibleFlag 可见性标记。
    */

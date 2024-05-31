@@ -30,7 +30,7 @@ const primaryCallName = 'Common::InternalLayout';
  * 构建布局相关。
  * @namespace Common
  * @class InternalLayout
- * @augments InternalBuild
+ * @extends InternalBuild
  */
 class InternalLayout extends InternalBuild {
   /**

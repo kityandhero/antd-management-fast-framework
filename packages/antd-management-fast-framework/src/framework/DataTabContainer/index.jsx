@@ -18,7 +18,7 @@ const primaryCallName = 'DataTabContainer';
  * data tab container
  * @namespace framework
  * @class DataTabContainer
- * @augments DataLoad
+ * @extends DataLoad
  */
 class DataTabContainer extends DataLoad {
   resetDataAfterLoad = false;

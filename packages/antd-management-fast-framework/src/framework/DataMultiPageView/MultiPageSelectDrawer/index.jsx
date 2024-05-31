@@ -44,6 +44,10 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
+  /**
+   * 切换为显示状态后，doOtherWhenChangeVisibleToShow 执行后的附加逻辑，如无必要，请勿重写。
+   * @function
+   */
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
       {},
@@ -65,6 +69,10 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
     }
   };
 
+  /**
+   * 切换为隐藏状态后的额外执行逻辑
+   * @function
+   */
   doOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToHide');
 

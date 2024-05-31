@@ -8,11 +8,11 @@ const primaryCallName = 'DataDrawer::BaseSaveDrawer';
  * base save drawer
  * @namespace framework.DataDrawer
  * @class BaseSaveDrawer
- * @augments BaseFormDrawer
+ * @extends BaseFormDrawer
  */
 class BaseSaveDrawer extends BaseFormDrawer {
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    * @param {string} visibleFlag 可见性标记。
    */

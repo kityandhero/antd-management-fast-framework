@@ -116,7 +116,7 @@ function adjustListData(listData) {
 /**
  * 基础内部构建器
  * @class InternalBuild
- * @augments InternalSwitchoverFlow
+ * @extends InternalSwitchoverFlow
  */
 class InternalBuild extends InternalSwitchoverFlow {
   /**

@@ -6,7 +6,7 @@ import { SupplementCore } from '../SupplementCore';
  * 该类作为特有项目的补充，视具体项目进行增部方法
  * @namespace CustomWrapper
  * @class Supplement
- * @augments SupplementCore
+ * @extends SupplementCore
  */
 class Supplement extends SupplementCore {
   static getDerivedStateFromProps(nextProperties, previousState) {

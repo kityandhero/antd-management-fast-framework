@@ -20,30 +20,57 @@ import { SinglePageModal } from '../SinglePageModal';
 const primaryCallName = 'DataSinglePageView::SinglePageSelectModal';
 
 /**
- * DataSinglePageView.SinglePageSelectModal
- * @namespace
+ * Single Page Select Modal
+ * @namespace DataSinglePageView
+ * @class SinglePageSelectModal
+ * @extends SinglePageModal
  */
 class SinglePageSelectModal extends SinglePageModal {
+  /**
+   * 在列表视图下显示选择动作，默认 true。
+   * @member {boolean}
+   */
   showListViewItemActionSelect = true;
 
+  /**
+   * 是否显示批量操作动作，默认 true。
+   * @member {boolean}
+   */
   batchActionSwitch = true;
 
+  /**
+   * 使用前端模拟分页，默认 false。
+   * @member {boolean}
+   */
   useFrontendPagination = false;
 
   /**
-   * 指定使用选择确认模式, 默认 false, 不使用二次选择确认时可不用特殊指定
+   * 指定使用选择二次确认模式, 默认 false, 不使用二次选择确认时可不用特殊指定
+   * @member {boolean}
    */
   confirmSelect = false;
 
   /**
    * 已选择的数据集合
+   * @member {Array}
    */
   selectListData = [];
 
+  /**
+   * get derived state from props。
+   * @static
+   * @param {Object} nextProperties 即将更改的属性值
+   * @param {Object} previousState 之前的 state 值
+   * @returns {Object} 更新后的 state 值
+   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
+  /**
+   * 切换为显示状态后，doOtherWhenChangeVisibleToShow 执行后的附加逻辑，如无必要，请勿重写。
+   * @function
+   */
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
       {},
@@ -65,6 +92,10 @@ class SinglePageSelectModal extends SinglePageModal {
     }
   };
 
+  /**
+   * 切换为隐藏状态后的额外执行逻辑
+   * @function
+   */
   doOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToHide');
 

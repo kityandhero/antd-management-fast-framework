@@ -58,7 +58,7 @@ const primaryCallName = 'Common::InternalFlow';
  * 构建流程相关。
  * @namespace Common
  * @class InternalFlow
- * @augments Core
+ * @extends Core
  */
 class InternalFlow extends Core {
   /**
@@ -116,7 +116,7 @@ class InternalFlow extends Core {
   lastRequestingData = { type: '', payload: {} };
 
   /**
-   * @constructs
+   * 构造函数
    */
   constructor(properties) {
     super(properties);
@@ -406,7 +406,7 @@ class InternalFlow extends Core {
    * 执行加载。
    * @function
    * @param {Object} option 配置项。
-   * @param {Object} option.requestData 请求参数。
+   * @param {Object} [option.requestData={}] 请求参数。
    * @param {Object} option.otherState 请求前的 state 赋值。
    * @param {number} option.delay 请求延迟值。
    * @param {Function} option.prepareRequest 请求前准备逻辑。

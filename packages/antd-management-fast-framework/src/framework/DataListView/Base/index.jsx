@@ -90,7 +90,7 @@ const primaryCallName = 'DataListView::Base';
  * DataListView.Base
  * @namespace DataListView
  * @class Base
- * @augments AuthorizationWrapper
+ * @extends AuthorizationWrapper
  */
 class Base extends AuthorizationWrapper {
   showReloadButton = false;

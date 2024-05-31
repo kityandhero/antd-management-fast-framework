@@ -18,7 +18,7 @@ const primaryCallName = 'Bootstrap';
  * 引导处理。
  * @namespace components
  * @class Bootstrap
- * @augments BaseComponent
+ * @extends BaseComponent
  */
 class Bootstrap extends BaseComponent {
   /**

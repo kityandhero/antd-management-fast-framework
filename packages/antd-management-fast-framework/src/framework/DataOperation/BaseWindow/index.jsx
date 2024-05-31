@@ -22,7 +22,7 @@ const primaryCallName = 'DataOperation::BaseWindow';
  * 弹窗类操作基类
  * @namespace DataOperation
  * @class BaseWindow
- * @augments Base
+ * @extends Base
  */
 class BaseWindow extends Base {
   /**
@@ -68,7 +68,7 @@ class BaseWindow extends Base {
   destroyOnClose = false;
 
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    */
   constructor(properties, visibleFlag = '') {
@@ -135,7 +135,7 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 切换为显示状态后，doOtherWhenChangeVisibleToShow 执行后的附加逻辑
+   * 切换为显示状态后，doOtherWhenChangeVisibleToShow 执行后的附加逻辑, 默认为空逻辑，可根据需要重载。
    * @function
    * @example
    * executeAfterDoOtherWhenChangeVisibleToShow = () => {}
@@ -150,7 +150,7 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 切换为隐藏状态后的额外执行逻辑
+   * 切换为隐藏状态后的额外执行逻辑, 在 doOtherWhenChangeVisible 中根据可见状态自动触发，当前为空逻辑，可根据需要重载。
    * @function
    * @example
    * doOtherWhenChangeVisibleToHide = () => {}
@@ -165,7 +165,7 @@ class BaseWindow extends Base {
   };
 
   /**
-   * 切换为显示状态后，doOtherWhenChangeVisibleToHide 执行后的附加逻辑
+   * 切换为隐藏状态后的额外附加执行逻辑, 在 doOtherWhenChangeVisible 中根据可见状态自动触发，排在 doOtherWhenChangeVisibleToHide 之后触发，当前为空逻辑，可根据需要重载。
    * @function
    * @example
    * executeAfterDoOtherWhenChangeVisibleToHide = () => {}

@@ -12,11 +12,11 @@ const primaryCallName = 'DataDrawer::BaseAddDrawer';
  * base add drawer
  * @namespace framework.DataDrawer
  * @class BaseAddDrawer
- * @augments BaseNeedlessLoadDrawer
+ * @extends BaseNeedlessLoadDrawer
  */
 class BaseAddDrawer extends BaseNeedlessLoadDrawer {
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    * @param {string} visibleFlag 可见性标记。
    */

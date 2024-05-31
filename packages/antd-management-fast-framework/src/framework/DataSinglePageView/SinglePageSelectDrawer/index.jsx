@@ -20,8 +20,10 @@ import { SinglePageDrawer } from '../SinglePageDrawer';
 const primaryCallName = 'DataSinglePageView::SinglePageSelectDrawer';
 
 /**
- * DataSinglePageView.SinglePageSelectDrawer
- * @namespace
+ * Single Page Select Drawer
+ * @namespace DataSinglePageView
+ * @class SinglePageSelectDrawer
+ * @extends SinglePageDrawer
  */
 class SinglePageSelectDrawer extends SinglePageDrawer {
   showListViewItemActionSelect = true;
@@ -44,6 +46,10 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
+  /**
+   * 切换为显示状态后，doOtherWhenChangeVisibleToShow 执行后的附加逻辑，如无必要，请勿重写。
+   * @function
+   */
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
       {},
@@ -65,6 +71,10 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
     }
   };
 
+  /**
+   * 切换为隐藏状态后的额外执行逻辑
+   * @function
+   */
   doOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack({}, primaryCallName, 'doOtherWhenChangeVisibleToHide');
 

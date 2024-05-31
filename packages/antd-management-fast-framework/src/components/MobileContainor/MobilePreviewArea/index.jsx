@@ -29,7 +29,7 @@ class MobilePreviewArea extends Base {
   resetDataAfterLoad = false;
 
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    * @param {string} visibleFlag 可见性标记。
    */

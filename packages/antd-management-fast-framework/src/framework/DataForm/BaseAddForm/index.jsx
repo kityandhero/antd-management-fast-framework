@@ -30,7 +30,7 @@ const primaryCallName = 'DataForm::BaseAddForm';
  * base add form
  * @namespace framework.DataForm
  * @class BaseAddForm
- * @augments DataCore
+ * @extends DataCore
  */
 class BaseAddForm extends DataCore {
   loadRemoteRequestAfterMount = false;

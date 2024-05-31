@@ -15,7 +15,7 @@ const primaryCallName = 'Common::InternalSwitchoverFlow';
  * 构建可切换相关。
  * @namespace Common
  * @class InternalSwitchoverFlow
- * @augments InternalFlow
+ * @extends InternalFlow
  */
 class InternalSwitchoverFlow extends InternalFlow {
   /**
@@ -37,7 +37,7 @@ class InternalSwitchoverFlow extends InternalFlow {
   menuList = [];
 
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties
    */
   constructor(properties) {

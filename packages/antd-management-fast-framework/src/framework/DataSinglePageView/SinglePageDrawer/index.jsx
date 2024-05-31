@@ -38,6 +38,10 @@ const primaryCallName = 'DataSinglePageView::SinglePageDrawer';
  * @namespace
  */
 class SinglePageDrawer extends SinglePage {
+  /**
+   * 可见性标记，通过构造函数赋值，请务必不要使用其他渠道赋值。
+   * @member {string}
+   */
   visibleFlag = '';
 
   affixPaginationBar = false;
@@ -55,7 +59,7 @@ class SinglePageDrawer extends SinglePage {
   useTableDensityAction = false;
 
   /**
-   * @constructs
+   * 构造函数
    * @param {Object} properties 属性值集合。
    * @param {string} visibleFlag 可见性标记。
    */
@@ -165,7 +169,10 @@ class SinglePageDrawer extends SinglePage {
   };
 
   /**
-   * 当可见性变为显示时附加的执行
+   * 切换为显示状态后，doOtherWhenChangeVisibleToShow 执行后的附加逻辑, 默认为空逻辑，可根据需要重载
+   * @function
+   * @example
+   * executeAfterDoOtherWhenChangeVisibleToShow = () => {}
    */
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
     this.logCallTrack(
@@ -177,7 +184,10 @@ class SinglePageDrawer extends SinglePage {
   };
 
   /**
-   * 当可见性变为隐藏时执行
+   * 切换为隐藏状态后的额外执行逻辑, 在 doOtherWhenChangeVisible 中根据可见状态自动触发，当前为空逻辑，可根据需要重载。
+   * @function
+   * @example
+   * doOtherWhenChangeVisibleToHide = () => {}
    */
   doOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
@@ -189,7 +199,10 @@ class SinglePageDrawer extends SinglePage {
   };
 
   /**
-   * 当可见性变为隐藏后附加的执行
+   * 切换为隐藏状态后的额外附加执行逻辑, 在 doOtherWhenChangeVisible 中根据可见状态自动触发，排在 doOtherWhenChangeVisibleToHide 之后触发，当前为空逻辑，可根据需要重载。
+   * @function
+   * @example
+   * executeAfterDoOtherWhenChangeVisibleToHide = () => {}
    */
   executeAfterDoOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
