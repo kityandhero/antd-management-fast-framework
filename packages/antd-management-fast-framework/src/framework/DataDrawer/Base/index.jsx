@@ -48,7 +48,7 @@ const primaryCallName = 'DataDrawer::Base';
 class Base extends BaseWindow {
   /**
    * 内容包裹类型，赋值为 contentConfig.wrapperType.drawer，务必不要更改此项属性值。
-   * @property
+   * @member
    */
   contentWrapperType = contentConfig.wrapperType.drawer;
 

@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>utils/settingAssist.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css" />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css" />
+    <script src="scripts/nav.js" defer></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+    <label for="nav-trigger" class="navicon-button x">
+      <div class="navicon"></div>
+    </label>
+
+    <label for="nav-trigger" class="overlay"></label>
+
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Global</h3>
+      <ul>
+        <li>
+          <a href="global.html#FormatMessageWrapper">FormatMessageWrapper</a>
+        </li>
+        <li>
+          <a href="global.html#InteractionAssemble">InteractionAssemble</a>
+        </li>
+        <li><a href="global.html#TranslateLocale">TranslateLocale</a></li>
+        <li><a href="global.html#actionCore">actionCore</a></li>
+        <li><a href="global.html#animalType">animalType</a></li>
+        <li><a href="global.html#apiRequest">apiRequest</a></li>
+        <li><a href="global.html#apiSuccessCode">apiSuccessCode</a></li>
+        <li><a href="global.html#appInitDefault">appInitDefault</a></li>
+        <li>
+          <a href="global.html#authenticationFailCode"
+            >authenticationFailCode</a
+          >
+        </li>
+        <li>
+          <a href="global.html#buildRandomHexColor">buildRandomHexColor</a>
+        </li>
+        <li><a href="global.html#cardConfig">cardConfig</a></li>
+        <li><a href="global.html#confirmActionCore">confirmActionCore</a></li>
+        <li><a href="global.html#copyToClipboard">copyToClipboard</a></li>
+        <li><a href="global.html#destroyMessage">destroyMessage</a></li>
+        <li><a href="global.html#emptyLogic">emptyLogic</a></li>
+        <li><a href="global.html#emptyLogo">emptyLogo</a></li>
+        <li><a href="global.html#extraBuildType">extraBuildType</a></li>
+        <li><a href="global.html#filterUpdateModel">filterUpdateModel</a></li>
+        <li><a href="global.html#flushLocalStorage">flushLocalStorage</a></li>
+        <li>
+          <a href="global.html#flushSessionStorage">flushSessionStorage</a>
+        </li>
+        <li><a href="global.html#formatMessage">formatMessage</a></li>
+        <li>
+          <a href="global.html#getAuthorityFromRouter"
+            >getAuthorityFromRouter</a
+          >
+        </li>
+        <li><a href="global.html#getCorsDomain">getCorsDomain</a></li>
+        <li>
+          <a href="global.html#getDerivedStateFromPropertiesForUrlParameters"
+            >getDerivedStateFromPropertiesForUrlParameters</a
+          >
+        </li>
+        <li>
+          <a
+            href="global.html#getDerivedStateFromPropertiesForUrlParametersCore"
+            >getDerivedStateFromPropertiesForUrlParametersCore</a
+          >
+        </li>
+        <li>
+          <a href="global.html#getFromLocalStorage">getFromLocalStorage</a>
+        </li>
+        <li>
+          <a href="global.html#getFromSessionStorage">getFromSessionStorage</a>
+        </li>
+        <li><a href="global.html#getQueue">getQueue</a></li>
+        <li><a href="global.html#getRouteAuthority">getRouteAuthority</a></li>
+        <li><a href="global.html#logLevel">logLevel</a></li>
+        <li>
+          <a href="global.html#mobileTypeCollection">mobileTypeCollection</a>
+        </li>
+        <li><a href="global.html#modulePackageName">modulePackageName</a></li>
+        <li><a href="global.html#notify">notify</a></li>
+        <li><a href="global.html#numeralFormat">numeralFormat</a></li>
+        <li><a href="global.html#remoteAction">remoteAction</a></li>
+        <li><a href="global.html#removeLocalStorage">removeLocalStorage</a></li>
+        <li>
+          <a href="global.html#removeSessionStorage">removeSessionStorage</a>
+        </li>
+        <li>
+          <a href="global.html#renderFurtherColorWhenNoCallProcess"
+            >renderFurtherColorWhenNoCallProcess</a
+          >
+        </li>
+        <li>
+          <a href="global.html#renderFurtherPrefixWhenNoCallProcess"
+            >renderFurtherPrefixWhenNoCallProcess</a
+          >
+        </li>
+        <li><a href="global.html#saveToLocalStorage">saveToLocalStorage</a></li>
+        <li>
+          <a href="global.html#saveToSessionStorage">saveToSessionStorage</a>
+        </li>
+        <li>
+          <a href="global.html#setEasySoftUtilityHandler"
+            >setEasySoftUtilityHandler</a
+          >
+        </li>
+        <li>
+          <a href="global.html#setLocalStorageHandler"
+            >setLocalStorageHandler</a
+          >
+        </li>
+        <li>
+          <a href="global.html#setMessageDisplayMonitor"
+            >setMessageDisplayMonitor</a
+          >
+        </li>
+        <li>
+          <a href="global.html#setNavigationHandler">setNavigationHandler</a>
+        </li>
+        <li>
+          <a href="global.html#setNotificationDisplayMonitor"
+            >setNotificationDisplayMonitor</a
+          >
+        </li>
+        <li><a href="global.html#setRequestHandler">setRequestHandler</a></li>
+        <li>
+          <a href="global.html#setSessionStorageHandler"
+            >setSessionStorageHandler</a
+          >
+        </li>
+        <li><a href="global.html#shallowUpdateEqual">shallowUpdateEqual</a></li>
+        <li><a href="global.html#showInfoMessage">showInfoMessage</a></li>
+        <li><a href="global.html#showWarningMessage">showWarningMessage</a></li>
+        <li>
+          <a href="global.html#unlimitedWithNumberFlag"
+            >unlimitedWithNumberFlag</a
+          >
+        </li>
+        <li>
+          <a href="global.html#unlimitedWithStringFlag"
+            >unlimitedWithStringFlag</a
+          >
+        </li>
+        <li><a href="global.html#whetherList">whetherList</a></li>
+      </ul>
+    </nav>
+
+    <div id="main">
+      <h1 class="page-title">utils/settingAssist.js</h1>
+
+      <section>
+        <article>
+          <pre class="prettyprint source linenums"><code>import {
+  checkStringIsNullOrWhiteSpace,
+  getApplicationMergeConfig,
+  isArray,
+  isObject,
+} from 'easy-soft-utility';
+
+import { authenticationFailCode as authenticationFailCodeDefault } from './constants';
+import { emptyLogo as emptyLogoImage } from './mediaDefault';
+
+/**
+ * get cors domain
+ */
+export function getCorsDomain() {
+  const appInit = getApplicationMergeConfig();
+
+  let corsTargetDomain = '';
+
+  if (appInit.apiPrefix != null &amp;&amp; appInit.apiPrefix.corsTargetDomain != null) {
+    const {
+      apiPrefix: { corsTargetDomain: corsTargetDomainRemote },
+    } = appInit;
+
+    corsTargetDomain = corsTargetDomainRemote;
+  }
+
+  return corsTargetDomain;
+}
+
+export function getLocalStorageSecretSwitch() {
+  const { localStorageSecretSwitch } = {
+    localStorageSecretSwitch: true,
+    ...getApplicationMergeConfig(),
+  };
+
+  return localStorageSecretSwitch || false;
+}
+
+export function logShowInConsole() {
+  const { showLogInConsole } = {
+    showLogInConsole: false,
+    ...getApplicationMergeConfig(),
+  };
+
+  return showLogInConsole || false;
+}
+
+export function getTinymceScriptSource() {
+  const { tinymceScriptSrc } = {
+    tinymceScriptSrc: null,
+    ...getApplicationMergeConfig(),
+  };
+
+  return tinymceScriptSrc || '';
+}
+
+export function getTinymceImagesUploadUrl() {
+  const { tinymceImagesUploadUrl } = {
+    tinymceImagesUploadUrl: null,
+    ...getApplicationMergeConfig(),
+  };
+
+  return tinymceImagesUploadUrl || '';
+}
+
+export function getTinymceApiKey() {
+  const { tinymceApiKey } = {
+    tinymceApiKey: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return tinymceApiKey || '';
+}
+
+export function getTinymceLanguage() {
+  const { tinymceLanguage } = {
+    tinymceLanguage: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return tinymceLanguage || '';
+}
+
+export function getFileUploadMaxSize() {
+  const { fileUploadMaxSize } = {
+    fileUploadMaxSize: 2,
+    ...getApplicationMergeConfig(),
+  };
+
+  return fileUploadMaxSize || 2;
+}
+
+export function getAudioUploadMaxSize() {
+  const { audioUploadMaxSize } = {
+    audioUploadMaxSize: 4,
+    ...getApplicationMergeConfig(),
+  };
+
+  return audioUploadMaxSize || 4;
+}
+
+export function getVideoUploadMaxSize() {
+  const { videoUploadMaxSize } = {
+    videoUploadMaxSize: 4,
+    ...getApplicationMergeConfig(),
+  };
+
+  return videoUploadMaxSize || 4;
+}
+
+export function getImageUploadMaxSize() {
+  const { imageUploadMaxSize } = {
+    imageUploadMaxSize: 2,
+    ...getApplicationMergeConfig(),
+  };
+
+  return imageUploadMaxSize || 2;
+}
+
+export function getShowSelectLanguage() {
+  const { showSelectLanguage } = {
+    showSelectLanguage: false,
+    ...getApplicationMergeConfig(),
+  };
+
+  return showSelectLanguage || false;
+}
+
+export function getShowLogoInEntrance() {
+  const { showLogoInEntrance } = {
+    showLogoInEntrance: false,
+    ...getApplicationMergeConfig(),
+  };
+
+  return showLogoInEntrance || false;
+}
+
+export function getEmptyLogo() {
+  const { emptyLogo } = {
+    emptyLogo: emptyLogoImage,
+    ...getApplicationMergeConfig(),
+  };
+
+  return emptyLogo || emptyLogoImage;
+}
+
+export function getAuthenticationFailCode() {
+  const { authenticationFailCode } = {
+    authenticationFailCode: authenticationFailCodeDefault,
+    ...getApplicationMergeConfig(),
+  };
+
+  return authenticationFailCode || authenticationFailCodeDefault;
+}
+
+export function getTokenName() {
+  const { tokenName } = {
+    tokenName: 'token',
+    ...getApplicationMergeConfig(),
+  };
+
+  return tokenName || 'token';
+}
+
+export function getSignInApi() {
+  const { signInApi } = {
+    signInApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return signInApi || '';
+}
+
+export function getSignInCaptchaApi() {
+  const { signInCaptchaApi } = {
+    signInCaptchaApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return signInCaptchaApi || '';
+}
+
+export function getSignOutApi() {
+  const { signOutApi } = {
+    signOutApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return signOutApi || '';
+}
+
+export function getSignInSimulationData() {
+  const { signInSimulationData } = {
+    signInSimulationData: {},
+    ...getApplicationMergeConfig(),
+  };
+
+  return isObject(signInSimulationData) ? signInSimulationData : {};
+}
+
+export function getApplicationListDataApi() {
+  const { applicationListDataApi } = {
+    applicationListDataApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return applicationListDataApi || '';
+}
+
+export function getApplicationListData() {
+  const { applicationListData } = {
+    applicationListData: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return isArray(applicationListData) ? applicationListData : [];
+}
+
+export function getMetaDataApi() {
+  const { metaDataApi } = {
+    metaDataApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return metaDataApi || '';
+}
+
+export function getPresetMetaData() {
+  const { metaData } = {
+    metaData: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return metaData || {};
+}
+
+export function getCurrentOperatorApi() {
+  const { currentOperatorApi } = {
+    currentOperatorApi: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return currentOperatorApi || '';
+}
+
+export function getCurrentOperatorSimulationData() {
+  const { currentOperatorSimulationData } = {
+    currentOperatorSimulationData: {},
+    ...getApplicationMergeConfig(),
+  };
+
+  return isObject(currentOperatorSimulationData)
+    ? currentOperatorSimulationData
+    : {};
+}
+
+export function getApiVersion() {
+  const { apiVersion } = {
+    apiVersion: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return apiVersion || '';
+}
+
+export function getAuthenticationFailRedirectPath() {
+  const { authenticationFailRedirectPath } = {
+    authenticationFailRedirectPath: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return authenticationFailRedirectPath || '';
+}
+
+export function getAuthorizationFailRedirectPath() {
+  const { authorizationFailRedirectPath } = {
+    authorizationFailRedirectPath: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return authorizationFailRedirectPath || '';
+}
+
+export function getShowLogInConsole() {
+  const { showLogInConsole } = {
+    showLogInConsole: false,
+    ...getApplicationMergeConfig(),
+  };
+
+  return showLogInConsole || false;
+}
+
+export function getPlatformName() {
+  const { platformName } = {
+    platformName: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return platformName || '';
+}
+
+export function getAppName() {
+  const { appName } = {
+    appName: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return appName || '';
+}
+
+export function getAppDescription() {
+  const { appDescription } = {
+    appDescription: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return appDescription || '';
+}
+
+export function getEntranceLogo() {
+  const { entranceLogo } = {
+    entranceLogo: emptyLogoImage,
+    ...getApplicationMergeConfig(),
+  };
+
+  return entranceLogo || emptyLogoImage;
+}
+
+export function getShareLogo() {
+  const { shareLogo } = {
+    shareLogo: emptyLogoImage,
+    ...getApplicationMergeConfig(),
+  };
+
+  return shareLogo || emptyLogoImage;
+}
+
+export function getShareLogoName() {
+  const { shareLogoName } = {
+    shareLogoName: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return shareLogoName || '';
+}
+
+export function getCompanyName() {
+  const { companyName } = {
+    companyName: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return companyName || '';
+}
+
+export function getLeftBarLogo(remoteLogo) {
+  if (!checkStringIsNullOrWhiteSpace(remoteLogo || null)) {
+    return remoteLogo;
+  }
+
+  const { leftBarLogo } = {
+    leftBarLogo: emptyLogoImage,
+    ...getApplicationMergeConfig(),
+  };
+
+  return leftBarLogo || emptyLogoImage;
+}
+
+export function getLeftBarText() {
+  const { leftBarText } = {
+    leftBarText: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return leftBarText || '';
+}
+
+export function getCopyright() {
+  const { copyright } = {
+    copyright: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return copyright || '';
+}
+
+export function getLayoutSetting() {
+  const { layoutSetting } = {
+    layoutSetting: {},
+    ...getApplicationMergeConfig(),
+  };
+
+  return {
+    ...layoutSetting,
+  };
+}
+
+export function getTitle() {
+  const { appName } = {
+    appName: '',
+    ...getApplicationMergeConfig(),
+  };
+
+  return appName || '';
+}
+
+export function getUseShortcutNavigation() {
+  const { useShortcutNavigation } = {
+    useShortcutNavigation: false,
+    ...getApplicationMergeConfig(),
+  };
+
+  return !!useShortcutNavigation || false;
+}
+</code></pre>
+        </article>
+      </section>
+    </div>
+
+    <br class="clear" />
+
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Mon Jun 03
+      2024 17:31:00 GMT+0800 (中国标准时间) using the
+      <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/polyfill.js"></script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>

@@ -11,7 +11,11 @@ export const getAuthorityFromRouter = (router = [], pathname) => {
       (path && pathToRegexp(path).exec(pathname)) ||
       (routes && getAuthorityFromRouter(routes, pathname)),
   );
-  if (authority) return authority;
+
+  if (authority) {
+    return authority;
+  }
+
   return;
 };
 
@@ -19,25 +23,29 @@ export const getAuthorityFromRouter = (router = [], pathname) => {
  * Get route authority
  * @param {*} path path
  * @param {*} routeData routeData
- * @returns
+ * @returns {Array}
  */
 export const getRouteAuthority = (path, routeData) => {
   let authorities;
+
   for (const route of routeData) {
     // match prefix
     if (pathToRegexp(`${route.path}/(.*)`).test(`${path}/`)) {
       if (route.authority) {
         authorities = route.authority;
       }
+
       // exact match
       if (route.path === path) {
         authorities = route.authority || authorities;
       }
+
       // get children authority recursively
       if (route.routes) {
         authorities = getRouteAuthority(path, route.routes) || authorities;
       }
     }
   }
+
   return authorities;
 };

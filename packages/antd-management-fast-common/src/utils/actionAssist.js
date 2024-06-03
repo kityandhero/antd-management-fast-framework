@@ -281,21 +281,22 @@ function remoteAction({
 }
 
 /**
- * remote assess wrapper core
- * @param {Object} option option
- * @param {string} option.api dva model effect like "modelName/effect"
+ * Remote assess wrapper core.
+ * @function
+ * @param {Object} option option.
+ * @param {string} option.api dva model effect like "modelName/effect".
  * @param {Object} option.params request params.
  * @param {Object} option.target the passed appendage object，eg "component".
  * @param {Object} option.handleData the data will transmit to callback.
- * @param {Function} option.beforeProcess preprocessing of requests.
- * @param {Number} option.delay  delay millisecond before request.
- * @param {Boolean} option.showProcessing whether show processing prompt.
- * @param {string} option.processingPrompt prompt text when show processing.
- * @param {string} option.completeProcess request complete callback.
- * @param {Function} option.failCallback  if it is function, it will exec when request fail.
- * @param {Function} option.successCallback if it is function, it will exec when request success.
- * @param {string} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
- * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
+ * @param {Function} [option.beforeProcess = null] preprocessing of requests.
+ * @param {Number} [option.delay = 400]  delay millisecond before request.
+ * @param {Boolean} [option.showProcessing = true] whether show processing prompt.
+ * @param {string} [option.processingPrompt = '处理中，请稍后'] prompt text when show processing.
+ * @param {string} [option.completeProcess  =null] request complete callback.
+ * @param {Function} [option.failCallback = null]  if it is function, it will exec when request fail.
+ * @param {Function} [option.successCallback = null] if it is function, it will exec when request success.
+ * @param {string} [option.successMessage = '数据已经操作成功，请进行后续操作。'] when request success. if successMessage not null or empty, will notify with this this message.
+ * @param {Function} [option.successMessageBuilder=null] success message builder, priority over successMessage, must return string.
  */
 export async function actionCore({
   api,
@@ -390,18 +391,19 @@ export async function actionCore({
 }
 
 /**
- *
- * @param {Object} option request option
- * @param {string} option.api dva model effect like "modelName/effect"
+ * api request.
+ * @function
+ * @param {Object} option request option.
+ * @param {string} option.api dva model effect like "modelName/effect".
  * @param {Object} option.params request params.
- * @param {Function} option.beforeProcess preprocessing of requests.
- * @param {Function} option.failCallback  if it is function, it will exec when request fail.
- * @param {Function} option.successCallback if it is function, it will exec when request success.
- * @param {string} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
- * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
- * @param {Boolean} option.showProcessing whether show processing prompt.
- * @param {string} option.processingPrompt prompt text when show processing.
- * @param {Object} option.completeProcess request complete callback.
+ * @param {Function} [option.beforeProcess = null] preprocessing of requests.
+ * @param {Function} [option.failCallback = null]  if it is function, it will exec when request fail.
+ * @param {Function} [option.successCallback = null] if it is function, it will exec when request success.
+ * @param {string} [option.successMessage = ''] when request success. if successMessage not null or empty, will notify with this this message.
+ * @param {Function} [option.successMessageBuilder = null] success message builder, priority over successMessage, must return string.
+ * @param {Boolean} [option.showProcessing = false] whether show processing prompt.
+ * @param {string} [option.processingPrompt = ''] prompt text when show processing.
+ * @param {Object} [option.completeProcess = null] request complete callback.
  */
 export function apiRequest({
   api,
@@ -667,24 +669,25 @@ export function apiRequest({
 }
 
 /**
- * confirmActionCore
- * @param {Object} option option
- * @param {string} option.api dva model effect like "modelName/effect"
+ * Confirm with remote assess wrapper core.
+ * @function
+ * @param {Object} option option.
+ * @param {string} option.api dva model effect like "modelName/effect".
  * @param {Object} option.params request params.
  * @param {Object} option.target the passed appendage object，eg "component".
  * @param {Object} option.title title.
  * @param {Object} option.content content.
- * @param {Object} option.okText ok button text, default value is '确定'.
- * @param {Object} option.okType ok button type, default value is 'danger'.
- * @param {Object} option.cancelText cancel button text, default value is '取消'.
- * @param {Boolean} option.showProcessing whether show processing prompt.
- * @param {string} option.processingPrompt prompt text when show processing.
- * @param {string} option.completeProcess request complete callback.
- * @param {Function} option.beforeProcess preprocessing of requests.
- * @param {Function} option.failCallback  if it is function, it will exec when request fail.
- * @param {Function} option.successCallback if it is function, it will exec when request success.
- * @param {string} option.successMessage when request success. if successMessage not null or empty, will notify with this this message.
- * @param {Function} option.successMessageBuilder success message builder, priority over successMessage, must return string.
+ * @param {Object} [option.okText='确定'] ok button text, default value is '确定'.
+ * @param {Object} [option.okType='primary'] ok button type, default value is 'danger'.
+ * @param {Object} [option.cancelText='取消'] cancel button text, default value is '取消'.
+ * @param {Boolean} [option.showProcessing=true] whether show processing prompt.
+ * @param {string} [option.processingPrompt='处理中，请稍后'] prompt text when show processing.
+ * @param {Function} [option.beforeProcess=null] preprocessing of requests.
+ * @param {Function} [option.failCallback=null]  if it is function, it will exec when request fail.
+ * @param {Function} [option.successCallback=null] if it is function, it will exec when request success.
+ * @param {string} [option.completeProcess=null] request complete callback.
+ * @param {string} [option.successMessage='数据已经操作成功，请进行后续操作。'] when request success. if successMessage not null or empty, will notify with this this message.
+ * @param {Function} [option.successMessageBuilder=null] success message builder, priority over successMessage, must return string.
  */
 export async function confirmActionCore({
   api,

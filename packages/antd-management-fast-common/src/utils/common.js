@@ -10,7 +10,11 @@ import {
 import { getCurrentLocationParameters } from './routeAssist';
 
 /**
- * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state，
+ * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state.
+ * @function
+ * @param {Object} nextProperties next properties.
+ * @param {Object} previousState previous state.
+ * @returns {Object} result object data.
  */
 export function getDerivedStateFromPropertiesForUrlParametersCore(
   // eslint-disable-next-line no-unused-vars
@@ -24,7 +28,13 @@ export function getDerivedStateFromPropertiesForUrlParametersCore(
 }
 
 /**
- * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state,如果值重复，则返回null，
+ * Reacts生命周期getDerivedStateFromProps 辅助函数用于将url参数解析到返回值中用于设定state,如果值重复，则返回null.
+ * @function
+ * @param {Object} nextProperties next properties.
+ * @param {Object} previousState previous state.
+ * @param {Object} [defaultUrlParameters=null] default url parameters.
+ * @param {Function} [parseUrlParametersForSetState=null] parse url parameters for set state.
+ * @returns {Object} result object data.
  */
 export function getDerivedStateFromPropertiesForUrlParameters(
   nextProperties,
@@ -61,9 +71,11 @@ export function getDerivedStateFromPropertiesForUrlParameters(
 }
 
 /**
- * 复制到剪贴板
- * @param {*} text text
- * @param {*} showText showText
+ * copy text to clipboard and show prompt.
+ * @function
+ * @param {string} text text will copy.
+ * @param {boolean} [showCopyText = true] show copy text.
+ * @param {string} [otherShowText = ''] show other info text when showCopyText is false and otherShowText is not empty.
  */
 export function copyToClipboard(text, showCopyText = true, otherShowText = '') {
   copy(text);

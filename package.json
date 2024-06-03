@@ -55,6 +55,8 @@
     "test:antd-management-fast-test": "cd packages/antd-management-fast-test && npm run z:test",
     "test:example-antd-management-fast-framework": "cd examples/example-antd-management-fast-framework && npm run z:test",
     "test:example-remote": "cd examples/example-remote && npm run z:test",
+    "x:jsdoc:antd-management-fast-common": "cd packages/antd-management-fast-common && npm run z:jsdoc:generate",
+    "x:jsdoc:antd-management-fast-framework": "cd packages/antd-management-fast-framework && npm run z:jsdoc:generate",
     "y:clean:example-antd-management-fast-framework": "cd examples/example-antd-management-fast-framework && npm run y:clean",
     "y:clean:example-remote": "cd examples/example-remote && npm run y:clean",
     "y:publish:npm-charts": "easy-soft-develop publish --packages antd-management-fast-charts --otp true",

@@ -32,7 +32,7 @@
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
     "z:jsdoc:clear": "npx easy-soft-develop rimraf --path ./docs",
     "prez:jsdoc:generate": "npm run z:jsdoc:clear",
-    "z:jsdoc:generate": "npx jsdoc -c .jsdoc.js",
+    "z:jsdoc:generate": "npx jsdoc -c .jsdoc.js --readme ./README.md",
     "z:lint:file:all": "npm run z:lint:script:all && npm run z:lint:style:all",
     "z:lint:file:all:fix": "npm run z:lint:script:all:fix && npm run z:lint:style:all:fix",
     "z:lint:file:change": "npm run z:lint:script:change && npm run z:lint:style:all",

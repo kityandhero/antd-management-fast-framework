@@ -18,7 +18,7 @@ module.exports = {
       encoding: 'utf8',
       destination: 'docs/',
       recurse: true,
-      verbose: true,
+      verbose: false,
     },
     templates: {
       cleverLinks: false,

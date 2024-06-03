@@ -1,10 +1,30 @@
 import { emptyLogo } from './mediaDefault';
 
+/**
+ * Render further color when no call process.
+ * @constant {string}
+ * @default '#b15a43'
+ */
 export const renderFurtherColorWhenNoCallProcess = '#b15a43';
+
+/**
+ * Render further prefix when no call process.
+ * @constant {string}
+ * @default 'hideCallProcess'
+ */
 export const renderFurtherPrefixWhenNoCallProcess = 'hideCallProcess';
 
+/**
+ * Empty logic.
+ * @constant {string}
+ * @default 'empty-logic'
+ */
 export const emptyLogic = 'empty-logic';
 
+/**
+ * Whether list.
+ * @constant {Object}
+ */
 export const whetherList = [
   {
     key: 'b24a21cf-a45c-4b6a-9993-f6953d7eb1ee',

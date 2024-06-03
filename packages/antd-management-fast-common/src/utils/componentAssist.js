@@ -8,6 +8,12 @@ import {
   isObject,
 } from 'easy-soft-utility';
 
+/**
+ * filter and update model.
+ * @function
+ * @param {string} properties the target will update.
+ * @param {Array} [ignoreCompareKeyCollection = []] ignore compare key collection.
+ */
 export function filterUpdateModel(properties, ignoreCompareKeyCollection = []) {
   const result = { ...properties };
 
@@ -46,6 +52,9 @@ export function filterUpdateModel(properties, ignoreCompareKeyCollection = []) {
  * Performs equality by iterating through keys on an object and returning false.
  * when any key has values which are not strictly equal between the arguments.
  * Returns true when the values of all keys are strictly equal.
+ * @function
+ * @param {Object} a compare data.
+ * @param {Object} b other compare data.
  */
 export function shallowUpdateEqual(a, b) {
   return isEqual(a, b);
