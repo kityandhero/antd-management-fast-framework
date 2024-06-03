@@ -7,6 +7,7 @@ const { initialEnvironment } = require('easy-soft-develop');
 
 const eslintFile = require('../config/eslint/template/content');
 const ncuFile = require('../config/ncu/template/content');
+const jsdocFile = require('../config/jsdoc/template/content');
 const eslintIgnoreFile = require('../config/eslint/template/ignore.content');
 const prettierFile = require('../config/prettier/template/content');
 const prettierIgnoreFile = require('../config/prettier/template/ignore.content');
@@ -28,6 +29,8 @@ const packageEslintFileContent = eslintFile.packageContent;
 
 const mainNcuFileContent = ncuFile.mainContent;
 const packageNcuFileContent = ncuFile.packageContent;
+
+const packageJsdocFileContent = jsdocFile.packageContent;
 
 const eslintIgnoreContent = eslintIgnoreFile.content;
 
@@ -118,6 +121,11 @@ const packageFileContentList = [
   {
     name: '.ncurc.js',
     content: packageNcuFileContent,
+    coverFile: true,
+  },
+  {
+    name: '.jsdoc.js',
+    content: packageJsdocFileContent,
     coverFile: true,
   },
   {
