@@ -89,10 +89,10 @@ const ncuScript = {
     'node ./develop/assists/install.global.develop.dependence',
   'z:update:all-package-version':
     'npx easy-soft-develop update-all-package-version',
-  'postz:update:all-package-version': 'npm run z:install',
+  'postz:update:all-package-version': 'npm run z:reinstall',
   'z:update:special-package-version':
     'node ./develop/assists/package.update.special.version.js',
-  'postz:update:special-package-version': 'npm run z:install',
+  'postz:update:special-package-version': 'npm run z:reinstall',
 };
 
 module.exports = {
