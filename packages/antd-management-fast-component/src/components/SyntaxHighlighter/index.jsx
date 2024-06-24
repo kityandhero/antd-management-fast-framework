@@ -16,10 +16,10 @@ class SyntaxHighlighter extends BaseComponent {
     const { language, value, style: customStyle, other } = this.props;
 
     const c = {
-      ...other,
       showLineNumbers: false,
       wrapLines: false,
       wrapLongLines: true,
+      ...other,
       language,
       style: oneDark,
       customStyle,

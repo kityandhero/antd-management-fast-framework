@@ -14,8 +14,10 @@ import routes from './router.config';
 function buildConfig() {
   return buildConfigCore({
     packageJson: pk,
+
     config: {
-      mfsu: false,
+      esbuildMinifyIIFE: true,
+      mfsu: true,
       styles: [`body { margin: 0; }`],
       routes: routes,
       ...(checkDevelopment() ? configDevelopment : configProduction),

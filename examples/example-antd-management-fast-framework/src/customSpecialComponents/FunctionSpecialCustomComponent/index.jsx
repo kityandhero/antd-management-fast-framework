@@ -23,7 +23,5 @@ export * from './ScoreBusinessMode';
 export * from './ScoreProductStockChangeType';
 export * from './ScoreRank';
 export * from './ScoreRankStatus';
-export * from './SimpleRenderType';
-export * from './SimpleStatus';
 export * from './UserScoreOrderStatus';
 export * from './WebChannel';
