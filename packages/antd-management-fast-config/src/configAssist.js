@@ -12,32 +12,51 @@ function checkDevelopment() {
 function buildConfig({ packageJson: packageImport, config = {} }) {
   const deps = packageImport.dependencies;
 
-  let mfsu = {};
-  const shared = {};
+  let { mfsu } = {
+    mfsu: false,
+    ...config,
+  };
 
-  if (deps) {
-    if (deps['react']) {
-      shared.react = {
-        singleton: true,
-        eager: true,
-        requiredVersion: deps['react'],
-      };
+  if (checkDevelopment()) {
+    if (mfsu !== null && typeof mfsu === 'object') {
+      const shared = {};
+
+      if (deps) {
+        if (deps['react']) {
+          shared.react = {
+            singleton: true,
+            eager: true,
+            requiredVersion: deps['react'],
+          };
+        }
+
+        if (deps['react-dom']) {
+          shared['react-dom'] = {
+            singleton: true,
+            eager: true,
+            requiredVersion: deps['react-dom'],
+          };
+        }
+
+        mfsu.shared = {
+          ...mfsu.shared,
+          ...shared,
+        };
+      }
+    } else {
+      mfsu = false;
     }
-
-    if (deps['react-dom']) {
-      shared['react-dom'] = {
-        singleton: true,
-        eager: true,
-        requiredVersion: deps['react-dom'],
-      };
-    }
-
-    mfsu.remotes = [];
-    mfsu.shared = shared;
+  } else {
+    mfsu = false;
   }
 
-  const mergeConfig = {
+  const configAdjust = {
+    ...config,
     mfsu,
+  };
+
+  const mergeConfig = {
+    mfsu: false,
     hash: true,
     antd: {},
     access: {},
@@ -53,7 +72,8 @@ function buildConfig({ packageJson: packageImport, config = {} }) {
       baseNavigator: true,
     },
     layout: {},
-    ...config,
+    esbuildMinifyIIFE: true,
+    ...configAdjust,
   };
 
   delete mergeConfig.dva;
