@@ -21,7 +21,23 @@ class DescriptionGrid extends BaseComponent {
       return null;
     }
 
-    const dataList = list.map((o, index) => {
+    const listAdjust = [];
+
+    for (const item of list) {
+      const { hidden } = {
+        hidden: false,
+        ...item,
+      };
+
+      if (!hidden) {
+        listAdjust.push({
+          ...item,
+          hidden: false,
+        });
+      }
+    }
+
+    const dataList = listAdjust.map((o, index) => {
       const d = { key: `item_${index}`, ...o };
 
       return { canCopy: false, ...d };
