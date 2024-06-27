@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { checkStringIsNullOrWhiteSpace, endsWith } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  endsWith,
+  isArray,
+} from 'easy-soft-utility';
 
 import { emptyLogic, getCurrentLocation } from 'antd-management-fast-common';
 import { PageExtra } from 'antd-management-fast-component';
@@ -70,16 +74,6 @@ class InternalSwitchoverFlow extends InternalFlow {
   getMenuListAvailable = () => {
     this.logCallTrack({}, primaryCallName, 'getMenuListAvailable');
 
-    const menuListAvailable = [];
-
-    for (const o of this.menuList || []) {
-      const v = o.show === undefined ? true : o.show === true;
-
-      if (v) {
-        menuListAvailable.push(o);
-      }
-    }
-
     this.logCallTrace(
       {},
       primaryCallName,
@@ -88,7 +82,26 @@ class InternalSwitchoverFlow extends InternalFlow {
       'adjustMenuListAvailable',
     );
 
-    return this.adjustMenuListAvailable(menuListAvailable);
+    let menuListAdjust = [];
+
+    if (isArray(this.menuList)) {
+      menuListAdjust = this.adjustMenuListAvailable(this.menuList);
+    }
+
+    const menuListAvailable = [];
+
+    for (const o of menuListAdjust || []) {
+      const { hidden } = {
+        hidden: false,
+        ...o,
+      };
+
+      if (!hidden) {
+        menuListAvailable.push(o);
+      }
+    }
+
+    return menuListAvailable;
   };
 
   /**
@@ -221,9 +234,23 @@ class InternalSwitchoverFlow extends InternalFlow {
   getTabListAvailable = () => {
     this.logCallTrack({}, primaryCallName, 'getTabListAvailable');
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'getTabListAvailable',
+      'trigger',
+      'adjustTabListAvailable',
+    );
+
+    let tabListAdjust = [];
+
+    if (isArray(this.tabList)) {
+      tabListAdjust = this.adjustTabListAvailable(this.tabList);
+    }
+
     const tabListAvailable = [];
 
-    for (const o of this.tabList || []) {
+    for (const o of tabListAdjust || []) {
       const { hidden } = {
         hidden: false,
         ...o,
@@ -234,15 +261,7 @@ class InternalSwitchoverFlow extends InternalFlow {
       }
     }
 
-    this.logCallTrace(
-      {},
-      primaryCallName,
-      'getTabListAvailable',
-      'trigger',
-      'adjustTabListAvailable',
-    );
-
-    return this.adjustTabListAvailable(tabListAvailable);
+    return tabListAvailable;
   };
 
   /**
