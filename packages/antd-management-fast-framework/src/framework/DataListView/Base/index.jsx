@@ -419,9 +419,15 @@ class Base extends AuthorizationWrapper {
 
     const stateAdjust = this.handleSearchResetState() || {};
 
-    this.logCallTrace(stateAdjust, primaryCallName, 'resetData');
+    this.logCallTrace(
+      {
+        otherState: stateAdjust,
+      },
+      primaryCallName,
+      'resetData',
+    );
 
-    this.resetData(stateAdjust);
+    this.resetData({ otherState: stateAdjust });
   };
 
   handleSearch = () => {
