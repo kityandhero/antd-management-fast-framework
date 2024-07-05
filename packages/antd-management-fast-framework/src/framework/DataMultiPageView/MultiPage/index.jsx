@@ -197,6 +197,16 @@ class MultiPage extends Base {
       delete d.dateRange;
     }
 
+    this.logCallTrace(
+      {
+        parameters: d,
+      },
+      primaryCallName,
+      'initLoadRequestParams',
+      'trigger',
+      'adjustLoadRequestParams',
+    );
+
     return this.adjustLoadRequestParams(d);
   };
 
@@ -215,10 +225,22 @@ class MultiPage extends Base {
       return;
     }
 
-    setParametersDataCache(
-      buildParameterCacheKey(this.paramsKey),
-      this.lastLoadParams,
+    const cacheKey = buildParameterCacheKey(this.paramsKey);
+
+    this.logCallTrace(
+      {
+        parameters: {
+          cacheKey,
+          data: this.lastLoadParams,
+        },
+      },
+      primaryCallName,
+      'afterGetRequestResult',
+      'trigger',
+      'setParametersDataCache',
     );
+
+    setParametersDataCache(cacheKey, this.lastLoadParams);
   };
 
   /**

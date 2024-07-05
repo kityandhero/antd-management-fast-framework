@@ -96,8 +96,18 @@ class PageList extends MultiPage {
       currentRecord: null,
       simpleId: '',
       simpleTitle: '',
+      test: 'test',
     };
   }
+
+  supplementLoadRequestParams = (o) => {
+    const d = o;
+    const { test } = this.state;
+
+    d.test = test;
+
+    return d;
+  };
 
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
@@ -304,12 +314,15 @@ class PageList extends MultiPage {
     });
   };
 
-  handleAdditionalSearchReset = () => {
-    this.setState({
+  handleSearchResetState = () => {
+    return {
+      test: '',
       simpleId: '',
       simpleTitle: '',
-    });
+    };
   };
+
+  handleAdditionalSearchReset = () => {};
 
   goToAdd = () => {
     this.goToPath(`/simple/addBasicInfo`);

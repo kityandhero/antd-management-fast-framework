@@ -43,6 +43,7 @@ class PageList extends MultiPage {
       // tableScrollX: 1800,
       smsCategoryId: unlimitedWithStringFlag.flag,
       smsCategoryName: '',
+      test: 'test',
     };
   }
 
@@ -73,12 +74,15 @@ class PageList extends MultiPage {
     return d;
   };
 
-  handleAdditionalSearchReset = () => {
-    this.setState({
+  handleSearchResetState = () => {
+    return {
+      test: '',
       smsCategoryId: unlimitedWithStringFlag.flag,
       smsCategoryName: '',
-    });
+    };
   };
+
+  handleAdditionalSearchReset = () => {};
 
   afterSmsCategorySelect = (d) => {
     const { smsCategoryId, name: smsCategoryName } = d;

@@ -468,7 +468,7 @@ class InternalFlow extends Core {
       this.logCallTrace(
         {},
         primaryCallName,
-        'initLoadCore',
+        'initLoad',
         'trigger',
         'prepareRequest',
       );
@@ -478,55 +478,38 @@ class InternalFlow extends Core {
       this.logCallTrace(
         {},
         primaryCallName,
-        'initLoadCore',
+        'initLoad',
         'trigger',
         'prepareRequest',
         emptyLogic,
       );
     }
 
-    let submitData = this.initLoadRequestParams(requestDataSource) || {};
-
-    submitData = pretreatmentRequestParameters(submitData || {});
-
-    submitData = this.supplementLoadRequestParams(submitData || {});
-
-    const checkResult = this.checkLoadRequestParams(submitData || {});
-
-    if (!checkResult) {
-      showErrorMessage('check load request params fail');
-
-      if (isFunction(completeCallback)) {
-        this.logCallTrace(
-          {},
-          primaryCallName,
-          'initLoad',
-          'check load request params fail',
-          'trigger',
-          'completeCallback',
-        );
-
-        completeCallback();
-      }
-    }
-
-    if (!firstLoadSuccess) {
-      this.beforeFirstLoadRequest(submitData || {});
-    }
-
-    if (reloadingBefore) {
-      this.beforeReLoadRequest(submitData || {});
-    }
-
-    this.beforeRequest(submitData || {});
-
     const willSaveState = {
       ...otherState,
     };
 
     if (isEmptyObject(willSaveState)) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'initLoad',
+        'otherState has none data',
+        'ignore set state',
+      );
+
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'initLoad',
+        'trigger',
+        'initLoadCore',
+      );
+
       this.initLoadCore({
-        requestData: submitData || {},
+        firstLoadSuccess,
+        reloading: reloadingBefore,
+        requestData: requestDataSource || {},
         delay,
         beforeRequest: beforeRequestSource,
         successCallback,
@@ -534,9 +517,30 @@ class InternalFlow extends Core {
         completeCallback,
       });
     } else {
+      this.logCallTrace(
+        {
+          otherState: willSaveState,
+        },
+        primaryCallName,
+        'initLoad',
+        'set state',
+      );
+
+      const that = this;
+
       this.setState(willSaveState, () => {
-        this.initLoadCore({
-          requestData: submitData || {},
+        that.logCallTrace(
+          {},
+          primaryCallName,
+          'initLoad',
+          'trigger',
+          'initLoadCore',
+        );
+
+        that.initLoadCore({
+          firstLoadSuccess,
+          reloading: reloadingBefore,
+          requestData: requestDataSource || {},
           delay,
           beforeRequest: beforeRequestSource,
           successCallback,
@@ -572,7 +576,9 @@ class InternalFlow extends Core {
    * @param {Function} option.completeCallback 请求完成后的回调，成功或失败后都将触发。
    */
   initLoadCore = ({
-    requestData,
+    firstLoadSuccess = false,
+    reloading: reloadingBefore = false,
+    requestData: requestDataSource = {},
     delay = 0,
     beforeRequest: beforeRequestSource = null,
     successCallback = null,
@@ -582,13 +588,50 @@ class InternalFlow extends Core {
     this.logCallTrack(
       {
         parameter: {
-          requestData,
+          requestData: requestDataSource,
           delay,
         },
       },
       primaryCallName,
       'initLoadCore',
     );
+
+    let requestDataAdjust = this.initLoadRequestParams(requestDataSource) || {};
+
+    requestDataAdjust = pretreatmentRequestParameters(requestDataAdjust || {});
+
+    requestDataAdjust = this.supplementLoadRequestParams(
+      requestDataAdjust || {},
+    );
+
+    const checkResult = this.checkLoadRequestParams(requestDataAdjust || {});
+
+    if (!checkResult) {
+      showErrorMessage('check load request params fail');
+
+      if (isFunction(completeCallback)) {
+        this.logCallTrace(
+          {},
+          primaryCallName,
+          'initLoad',
+          'check load request params fail',
+          'trigger',
+          'completeCallback',
+        );
+
+        completeCallback();
+      }
+    }
+
+    if (!firstLoadSuccess) {
+      this.beforeFirstLoadRequest(requestDataAdjust || {});
+    }
+
+    if (reloadingBefore) {
+      this.beforeReLoadRequest(requestDataAdjust || {});
+    }
+
+    this.beforeRequest(requestDataAdjust || {});
 
     if (isFunction(beforeRequestSource)) {
       this.logCallTrace(
@@ -599,7 +642,7 @@ class InternalFlow extends Core {
         'beforeRequest',
       );
 
-      beforeRequestSource(requestData);
+      beforeRequestSource(requestDataAdjust);
     } else {
       this.logCallTrace(
         {},
@@ -617,7 +660,7 @@ class InternalFlow extends Core {
       this.logCallTrace(
         {
           parameter: {
-            requestData,
+            requestData: requestDataAdjust,
             delay,
           },
         },
@@ -627,7 +670,7 @@ class InternalFlow extends Core {
       );
 
       this.loadFromApi({
-        requestData,
+        requestData: requestDataAdjust,
         successCallback,
         failCallback,
         completeCallback,
@@ -637,7 +680,7 @@ class InternalFlow extends Core {
         this.logCallTrace(
           {
             parameter: {
-              requestData,
+              requestData: requestDataAdjust,
               delay,
             },
           },
@@ -652,7 +695,7 @@ class InternalFlow extends Core {
 
       setTimeout(() => {
         that.loadFromApi({
-          requestData,
+          requestData: requestDataAdjust,
           successCallback,
           failCallback,
           completeCallback,
