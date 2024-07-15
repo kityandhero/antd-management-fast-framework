@@ -38,6 +38,7 @@ class ElasticityMenu extends BaseComponent {
     }
 
     let listItem = [];
+    let previousItem = null;
 
     for (const o of items || []) {
       const d = {
@@ -68,6 +69,11 @@ class ElasticityMenu extends BaseComponent {
           type,
         )
       ) {
+        const { type: previousItemType = '' } = {
+          type: '',
+          ...previousItem,
+        };
+
         if (withDivider && type === dropdownExpandItemType.item) {
           const divider = {
             key: getGuid(),
@@ -78,18 +84,67 @@ class ElasticityMenu extends BaseComponent {
             type: dropdownExpandItemType.divider,
           };
 
-          if (uponDivider) {
+          if (
+            uponDivider &&
+            previousItemType !== dropdownExpandItemType.divider
+          ) {
             listItem.push(divider);
           }
 
           listItem.push(d);
 
-          if (!uponDivider) {
+          if (
+            !uponDivider &&
+            previousItemType !== dropdownExpandItemType.divider
+          ) {
             listItem.push(divider);
+
+            previousItem = divider;
+          } else {
+            previousItem = d;
           }
         } else {
-          listItem.push(d);
+          if (type === dropdownExpandItemType.item) {
+            listItem.push(d);
+
+            previousItem = d;
+          }
+
+          if (
+            type === dropdownExpandItemType.divider &&
+            previousItemType !== dropdownExpandItemType.divider
+          ) {
+            listItem.push(d);
+
+            previousItem = d;
+          }
         }
+      }
+    }
+
+    if (listItem.length > 0) {
+      const firstItem = listItem[0];
+
+      const { type: firstItemType = '' } = {
+        type: '',
+        ...firstItem,
+      };
+
+      if (firstItemType === dropdownExpandItemType.divider) {
+        listItem.shift();
+      }
+    }
+
+    if (listItem.length > 0) {
+      const lastItem = listItem.at(-1);
+
+      const { type: lastItemType = '' } = {
+        type: '',
+        ...lastItem,
+      };
+
+      if (lastItemType === dropdownExpandItemType.divider) {
+        listItem.pop();
       }
     }
 

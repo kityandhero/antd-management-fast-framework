@@ -51,8 +51,8 @@ class ElasticityButton extends BaseComponent {
     }
 
     const ico = processing
-      ? iconProcessing ?? iconBuilder.loading()
-      : icon ?? iconBuilder.form();
+      ? (iconProcessing ?? iconBuilder.loading())
+      : (icon ?? iconBuilder.form());
 
     if (confirm) {
       return (

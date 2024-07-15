@@ -29,7 +29,7 @@ const mapEnum = (dataSource) => (item, index) => {
     label: icon ? (
       <IconWidget infer={icon[0]} tooltip={icon[1]} />
     ) : (
-      label?.label ?? label ?? 'Unknown'
+      (label?.label ?? label ?? 'Unknown')
     ),
   };
 };

@@ -17,6 +17,7 @@ import {
   cardConfig,
   columnFacadeMode,
   columnPlaceholder,
+  dropdownExpandItemType,
   extraBuildType,
   listViewConfig,
   searchCardConfig,
@@ -872,11 +873,22 @@ class PageList extends MultiPage {
         },
         {
           key: 'contentInfo',
+          withDivider: true,
+          uponDivider: true,
           icon: iconBuilder.edit(),
           text: '编辑图文',
           hidden: !checkHasAuthority(
             accessWayCollection.simple.updateContentInfo.permission,
           ),
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          type: dropdownExpandItemType.divider,
         },
         {
           key: 'setOnline',
