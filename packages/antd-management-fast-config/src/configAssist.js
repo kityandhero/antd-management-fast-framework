@@ -6,6 +6,10 @@ function checkDevelopment() {
   return process.env.NODE_ENV === 'development';
 }
 
+function isArray(value) {
+  return Array.isArray(value);
+}
+
 /**
  * buildConfig
  */
@@ -22,6 +26,47 @@ function buildConfig({ packageJson: packageImport, config = {} }) {
       const shared = {};
 
       if (deps) {
+        let { exclude } = {
+          exclude: [],
+          ...mfsu,
+        };
+
+        if (!isArray(exclude)) {
+          exclude = [];
+        }
+
+        exclude = [
+          ...exclude,
+          '@ant-design/graphs',
+          '@ant-design/icons',
+          '@ant-design/pro-components',
+          '@cyntler/react-doc-viewer',
+          '@emotion/css',
+          '@formily/antd-v5',
+          '@formily/core',
+          '@formily/react',
+          '@reduxjs/toolkit',
+          '@tanem/react-nprogress',
+          '@umijs/max',
+          'antd',
+          'antd-management-fast-common',
+          'antd-management-fast-component',
+          'antd-management-fast-design-playground',
+          'antd-management-fast-design-react',
+          'antd-management-fast-flow',
+          'antd-management-fast-formily',
+          'antd-management-fast-framework',
+          'easy-soft-dva',
+          'easy-soft-utility',
+          'react',
+          'react-dom',
+          'react-redux',
+          'redux',
+          'redux-saga',
+          'react-to-print',
+          'reactflow',
+        ];
+
         if (deps['react']) {
           shared.react = {
             singleton: true,
@@ -41,6 +86,7 @@ function buildConfig({ packageJson: packageImport, config = {} }) {
         mfsu.shared = {
           ...mfsu.shared,
           ...shared,
+          exclude,
         };
       }
     } else {
