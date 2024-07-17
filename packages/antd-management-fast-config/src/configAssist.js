@@ -86,8 +86,9 @@ function buildConfig({ packageJson: packageImport, config = {} }) {
         mfsu.shared = {
           ...mfsu.shared,
           ...shared,
-          exclude,
         };
+
+        mfsu.exclude = exclude;
       }
     } else {
       mfsu = false;
