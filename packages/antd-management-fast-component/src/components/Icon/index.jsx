@@ -174,6 +174,7 @@ import {
   StopFilled,
   StopOutlined,
   SwapOutlined,
+  SwitcherOutlined,
   SyncOutlined,
   TagFilled,
   TagOutlined,
@@ -194,6 +195,7 @@ import {
   UsergroupAddOutlined,
   UsergroupDeleteOutlined,
   UserOutlined,
+  UserSwitchOutlined,
   VerticalAlignBottomOutlined,
   VerticalAlignMiddleOutlined,
   VerticalAlignTopOutlined,
@@ -921,6 +923,12 @@ export const iconBuilder = {
   },
   userGroupDelete: (properties = null) => {
     return <UsergroupDeleteOutlined {...(properties || {})} />;
+  },
+  switcher: (properties = null) => {
+    return <SwitcherOutlined {...(properties || {})} />;
+  },
+  userSwitch: (properties = null) => {
+    return <UserSwitchOutlined {...(properties || {})} />;
   },
   exclamationCircle: (
     properties = null,
