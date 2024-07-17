@@ -73,6 +73,7 @@ import {
   FunctionOutlined,
   GiftFilled,
   GiftOutlined,
+  GroupOutlined,
   HeartFilled,
   HeartOutlined,
   HistoryOutlined,
@@ -182,6 +183,7 @@ import {
   ToolFilled,
   ToolOutlined,
   UndoOutlined,
+  UngroupOutlined,
   UnlockFilled,
   UnlockOutlined,
   UnorderedListOutlined,
@@ -189,6 +191,8 @@ import {
   UpCircleOutlined,
   UploadOutlined,
   UpOutlined,
+  UsergroupAddOutlined,
+  UsergroupDeleteOutlined,
   UserOutlined,
   VerticalAlignBottomOutlined,
   VerticalAlignMiddleOutlined,
@@ -905,6 +909,18 @@ export const iconBuilder = {
   },
   printer: (properties = null) => {
     return <PrinterOutlined {...(properties || {})} />;
+  },
+  group: (properties = null) => {
+    return <GroupOutlined {...(properties || {})} />;
+  },
+  ungroup: (properties = null) => {
+    return <UngroupOutlined {...(properties || {})} />;
+  },
+  userGroupAdd: (properties = null) => {
+    return <UsergroupAddOutlined {...(properties || {})} />;
+  },
+  userGroupDelete: (properties = null) => {
+    return <UsergroupDeleteOutlined {...(properties || {})} />;
   },
   exclamationCircle: (
     properties = null,
