@@ -90,7 +90,7 @@ const ncuScript = {
   'prez:update:all-package-version':
     'node ./develop/assists/install.global.develop.dependence',
   'z:update:all-package-version':
-    'npx easy-soft-develop update-all-package-version',
+    'npx easy-soft-develop update-all-package-version --autoInstall false',
   'postz:update:all-package-version': 'npm run z:reinstall',
   'prez:update:every-package-version':
     'node ./develop/assists/install.global.develop.dependence',

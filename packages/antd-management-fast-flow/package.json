@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-flow",
-  "version": "1.0.77",
+  "version": "1.0.78",
   "keywords": [
     "antd-management-fast-flow"
   ],
@@ -61,7 +61,7 @@
     "antd-management-fast-common": "workspace:*",
     "antd-management-fast-component": "workspace:*",
     "classnames": "^2.5.1",
-    "easy-soft-utility": "^2.8.57",
+    "easy-soft-utility": "^2.8.58",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "reactflow": "^11.11.4"
@@ -93,7 +93,7 @@
     "cross-env": "^7.0.3",
     "cz-git": "^1.9.4",
     "docdash": "^2.0.2",
-    "easy-soft-develop": "^2.1.216",
+    "easy-soft-develop": "^2.1.224",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
