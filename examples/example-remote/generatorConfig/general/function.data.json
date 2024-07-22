@@ -1,0 +1,19 @@
+{
+  "list": [
+    {
+      "functionSegment": "ApplicationSourceType",
+      "label": "类型",
+      "name": "type"
+    },
+    {
+      "functionSegment": "ApplicationSourceCreateMode",
+      "label": "状态",
+      "name": "createMode"
+    },
+    {
+      "functionSegment": "ApplicationSourceStatus",
+      "label": "状态",
+      "name": "status"
+    }
+  ]
+}

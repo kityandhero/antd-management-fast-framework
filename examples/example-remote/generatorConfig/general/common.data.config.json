@@ -1,0 +1,11 @@
+{
+  "list": [
+    {
+      "folder": "ApplicationSource/Common",
+      "model": "applicationSource",
+      "key": "applicationSourceId",
+      "fileName": "data.js",
+      "coverFile": false
+    }
+  ]
+}

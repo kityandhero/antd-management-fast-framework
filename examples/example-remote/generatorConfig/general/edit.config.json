@@ -1,0 +1,12 @@
+{
+  "list": [
+    {
+      "folder": "ApplicationSource/Edit",
+      "name": "ApplicationSource",
+      "model": "applicationSource",
+      "key": "applicationSourceId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
+}

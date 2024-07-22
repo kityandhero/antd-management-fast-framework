@@ -1,0 +1,13 @@
+import { formNameCollection } from '../../../customConfig';
+
+const fieldExtraData = {};
+
+export const fieldData = {
+  ...formNameCollection,
+  <%= o.key %>: {
+    label: '数据标识',
+    name: '<%= o.key %>',
+    helper: '',
+  },
+  ...fieldExtraData,
+};

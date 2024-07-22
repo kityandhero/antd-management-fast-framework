@@ -1,0 +1,11 @@
+{
+  "list": [
+    {
+      "folder": "ApplicationSource/TabPageBase",
+      "model": "applicationSource",
+      "key": "applicationSourceId",
+      "fileName": "index.jsx",
+      "coverFile": true
+    }
+  ]
+}

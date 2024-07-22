@@ -19,8 +19,6 @@ import {
 } from 'antd-management-fast-component';
 import { signInAction } from 'antd-management-fast-framework';
 
-const defaultProps = {};
-
 @connect(({ entrance, schedulingControl }) => ({
   entrance,
   schedulingControl,
@@ -73,14 +71,12 @@ class SignIn extends BaseComponent {
           },
         );
       },
+      failCallback: ({ target }) => {
+        target.setState({ processing: false });
+      },
     });
   };
 
-  /**
-   * 渲染主入口。
-   * @function
-   * @returns {Object} 渲染结果
-   */
   renderFurther() {
     const { type: loginType, processing } = this.state;
 
@@ -141,9 +137,4 @@ class SignIn extends BaseComponent {
   }
 }
 
-SignIn.defaultProps = {
-  ...BaseComponent.defaultProps,
-  ...defaultProps,
-};
-
-export default SignIn;
+export { SignIn };

@@ -36,6 +36,16 @@ export async function changePasswordData(parameters) {
   });
 }
 
+export const pageListLoginLogDataApiAddress =
+  '/currentAccount/pageListLoginLog';
+
+export async function pageListLoginLogData(parameters) {
+  return request({
+    api: pageListLoginLogDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const uploadImageDataApiAddress = '/currentAccount/uploadImage';
 
 export async function uploadImageData(parameters) {

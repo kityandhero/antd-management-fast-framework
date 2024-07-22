@@ -16,7 +16,10 @@ function buildConfig() {
     packageJson: pk,
     config: {
       esbuildMinifyIIFE: true,
-      mfsu: {},
+      mfsu: false,
+      // mfsu: {
+      //   exclude: [],
+      // },
       styles: [`body { margin: 0; }`],
       routes: routes,
       ...(checkDevelopment() ? configDevelopment : configProduction),

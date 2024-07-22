@@ -1,4 +1,5 @@
 export * from './CustomAssembly';
 export * from './DataTabContainerSupplement';
-export * from './FunctionSpecialComponent';
+// export * from './FunctionSpecialCustomComponent';
+export * from './FunctionSpecialGeneralComponent';
 export * from './UpdateModuleModalBase';

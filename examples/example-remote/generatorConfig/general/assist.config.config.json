@@ -1,0 +1,11 @@
+{
+  "list": [
+    {
+      "folder": "ApplicationSource/Assist",
+      "model": "applicationSource",
+      "key": "applicationSourceId",
+      "fileName": "config.js",
+      "coverFile": false
+    }
+  ]
+}

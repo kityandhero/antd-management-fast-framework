@@ -27,16 +27,15 @@ import { fieldData, statusCollection } from '../Common/data';
   schedulingControl,
 }))
 class Edit extends DataTabContainerSupplement {
+  // 在控制台显示组建内调用序列, 仅为进行开发辅助
+  showCallProcess = true;
+
   componentAuthority = accessWayCollection.applicationSource.get.permission;
 
   tabList = [
     {
       key: 'basicInfo',
       tab: '基本信息',
-    },
-    {
-      key: 'operateLog/pageList',
-      tab: '操作日志',
     },
   ];
 

@@ -1,0 +1,137 @@
+{
+  "list": [
+    {
+      "apis": [
+        {
+          "title": "应用源列表",
+          "api": "/applicationSource/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "应用源列表",
+          "api": "/applicationSource/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/applicationSource/pageListLog",
+          "effect": "pageListLog",
+          "service": "pageListLogData",
+          "type": "pageList"
+        },
+        {
+          "title": "平台详情",
+          "api": "/applicationSource/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新增应用源",
+          "api": "/applicationSource/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "更新信息",
+          "api": "/applicationSource/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "开始运营",
+          "api": "/applicationSource/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "停止运营",
+          "api": "/applicationSource/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/applicationSource/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "上传图片文件",
+          "api": "/applicationSource/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/applicationSource/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "平台应用源",
+      "name": "applicationSource"
+    },
+    {
+      "apis": [
+        {
+          "title": "获取信息",
+          "api": "/currentAccount/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "通告列表",
+          "api": "/currentAccount/listNotice",
+          "effect": "listNotice",
+          "service": "listNoticeData",
+          "type": "singleList"
+        },
+        {
+          "title": "更新基本信息",
+          "api": "/currentAccount/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "变更密码",
+          "api": "/currentAccount/changePassword",
+          "effect": "changePassword",
+          "service": "changePasswordData",
+          "type": "singleData"
+        },
+        {
+          "title": "登录记录列表",
+          "api": "/currentAccount/pageListLoginLog",
+          "effect": "pageListLoginLog",
+          "service": "pageListLoginLogData",
+          "type": "pageList"
+        },
+        {
+          "title": "上传图片",
+          "api": "/currentAccount/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "当前账户",
+      "name": "currentAccount"
+    }
+  ]
+}

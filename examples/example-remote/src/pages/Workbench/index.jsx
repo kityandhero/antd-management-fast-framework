@@ -2,32 +2,25 @@ import { connect } from 'easy-soft-dva';
 import {
   getCurrentOperatorCache,
   getValueByKey,
-  toNumber,
+  showSimpleErrorMessage,
 } from 'easy-soft-utility';
 
-import {
-  buildRandomHexColor,
-  columnFacadeMode,
-} from 'antd-management-fast-common';
+import { columnFacadeMode } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import {
   DataMultiPageView,
   getCurrentOperator,
 } from 'antd-management-fast-framework';
 
-import { getWebChannelName } from '../../customSpecialComponents';
-import { removeAction } from '../ErrorLog/Assist/action';
-import { getResolveBadge } from '../ErrorLog/Assist/tools';
-import { fieldData } from '../ErrorLog/Common/data';
-import { PreviewDrawer } from '../ErrorLog/PreviewDrawer';
+import { fieldData } from '../ApplicationSource/Common/data';
 
 import { PageHeaderContent } from './PageHeaderContent';
 import ShortcutPanel from './ShortcutPanel';
 
 const { MultiPage } = DataMultiPageView;
 
-@connect(({ errorLog, currentOperator, schedulingControl }) => ({
-  errorLog,
+@connect(({ applicationSource, currentOperator, schedulingControl }) => ({
+  applicationSource,
   currentOperator,
   schedulingControl,
 }))
@@ -48,8 +41,8 @@ class Index extends MultiPage {
     this.state = {
       ...this.state,
       pageTitle: '工作台',
-      listTitle: '新近异常列表',
-      loadApiPath: 'errorLog/pageList',
+      listTitle: '新近列表',
+      loadApiPath: 'applicationSource/pageList',
       tableScrollX: 1020,
       currentOperator: null,
     };
@@ -72,40 +65,20 @@ class Index extends MultiPage {
         break;
       }
 
-      case 'delete': {
-        this.delete(handleData);
-        break;
-      }
-
       default: {
+        showSimpleErrorMessage('can not find matched key');
         break;
       }
     }
   };
 
-  delete = (r) => {
-    removeAction({
-      target: this,
-      handleData: r,
-      successCallback: ({ target }) => {
-        target.reloadData({});
-      },
-    });
-  };
-
-  showPreviewDrawer = (record) => {
-    this.setState({ currentRecord: record }, () => {
-      PreviewDrawer.open();
-    });
-  };
-
   goToEdit = (record) => {
-    const errorLogId = getValueByKey({
+    const id = getValueByKey({
       data: record,
-      key: fieldData.errorLogId.name,
+      key: fieldData.applicationSourceId.name,
     });
 
-    this.goToPath(`/logs/errorLog/edit/load/${errorLogId}/key/basicInfo`);
+    this.goToPath(`/app/applicationSource/edit/load/${id}/key/basicInfo`);
   };
 
   establishPageHeaderTitlePrefix = () => {
@@ -156,7 +129,7 @@ class Index extends MultiPage {
 
   getColumnWrapper = () => [
     {
-      dataTarget: fieldData.message,
+      dataTarget: fieldData.name,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
@@ -170,37 +143,7 @@ class Index extends MultiPage {
       emptyValue: '--',
     },
     {
-      dataTarget: fieldData.resolve,
-      width: 100,
-      showRichFacade: true,
-      facadeMode: columnFacadeMode.badge,
-      facadeConfigBuilder: (value, record) => {
-        return {
-          status: getResolveBadge(value),
-          text: record.resolveNote || '--',
-        };
-      },
-    },
-    {
-      dataTarget: fieldData.channel,
-      width: 160,
-      showRichFacade: true,
-      emptyValue: '--',
-      facadeConfigBuilder: (value) => {
-        return {
-          color: buildRandomHexColor({
-            seed: toNumber(value) + 31,
-          }),
-        };
-      },
-      formatValue: (value) => {
-        return getWebChannelName({
-          value: value,
-        });
-      },
-    },
-    {
-      dataTarget: fieldData.errorLogId,
+      dataTarget: fieldData.applicationSourceId,
       width: 120,
       showRichFacade: true,
       canCopy: true,
@@ -227,13 +170,9 @@ class Index extends MultiPage {
   };
 
   establishSiderTopAreaConfig = () => {
-    const { currentRecord } = this.state;
-
     return (
       <>
         <ShortcutPanel />
-
-        <PreviewDrawer maskClosable externalData={currentRecord} />
       </>
     );
   };
