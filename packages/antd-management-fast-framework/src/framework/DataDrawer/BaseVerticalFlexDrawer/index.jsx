@@ -159,6 +159,4 @@ class BaseVerticalFlexDrawer extends Base {
   };
 }
 
-BaseVerticalFlexDrawer.defaultProps = {};
-
 export { BaseVerticalFlexDrawer };

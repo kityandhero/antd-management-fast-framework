@@ -156,6 +156,4 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
   };
 }
 
-MobilePreviewDrawer.defaultProps = {};
-
 export { MobilePreviewDrawer };

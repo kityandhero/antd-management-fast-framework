@@ -272,6 +272,13 @@ export default [
         useMini: true,
         component: './Form/FlowView',
       },
+      {
+        path: '/form/treeView',
+        name: 'treeView',
+        icon: 'bars',
+        useMini: true,
+        component: './Form/ElasticityTreeView',
+      },
     ],
   },
   {

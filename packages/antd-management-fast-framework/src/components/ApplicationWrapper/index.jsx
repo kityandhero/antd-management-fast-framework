@@ -34,6 +34,4 @@ class ApplicationWrapper extends PureComponent {
   }
 }
 
-ApplicationWrapper.defaultProps = {};
-
 export { ApplicationWrapper };

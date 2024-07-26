@@ -127,6 +127,4 @@ const StartNode = (properties) => {
   );
 };
 
-StartNode.defaultProps = {};
-
 export { StartNode };

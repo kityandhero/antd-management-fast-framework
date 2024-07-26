@@ -236,7 +236,7 @@ class CardCollectionItemContent extends PureComponent {
                     <ElasticityTree
                       onSelect={onSelectCallback}
                       innerProps={otherTreeSelectProperties}
-                      listData={treeSelectListData}
+                      listData={[...treeSelectListData]}
                       dataConvert={treeSelectDataConvertor}
                     />
                   </Col>

@@ -1,30 +1,29 @@
 import { Tree } from 'antd';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import { isArray, isFunction, transformListData } from 'easy-soft-utility';
 
-import { BaseComponent } from '../../bases';
-
-class ElasticityTree extends BaseComponent {
-  /**
-   * 渲染主入口。
-   * @function
-   * @returns {Object} 渲染结果
-   */
-  renderFurther() {
+class ElasticityTree extends PureComponent {
+  render() {
     const {
       onSelect: onSelectCallback = null,
       innerProps: innerProperties = {},
       listData = [],
       dataConvert = null,
-    } = this.props;
+    } = {
+      onSelect: null,
+      innerProps: {},
+      listData: [],
+      dataConvert: null,
+      ...this.props,
+    };
 
     const adjustOtherProperties = {
       showLine: true,
       ...innerProperties,
     };
 
-    const listDataSource = isArray(listData) ? listData : [];
+    const listDataSource = isArray(listData) ? [...listData] : [];
 
     const listDataAdjust = isFunction(dataConvert)
       ? transformListData({
@@ -34,7 +33,7 @@ class ElasticityTree extends BaseComponent {
         })
       : listDataSource;
 
-    adjustOtherProperties.treeData = listDataAdjust;
+    adjustOtherProperties.treeData = [...listDataAdjust];
     adjustOtherProperties.onSelect = (selectedKeys, o) => {
       const { selectedNodes, node } = o;
 
@@ -42,7 +41,7 @@ class ElasticityTree extends BaseComponent {
         onSelectCallback(selectedKeys, o, {
           selectedNodes,
           node,
-          treeData: listDataAdjust,
+          treeData: [...listDataAdjust],
           listData,
         });
       }
@@ -51,12 +50,5 @@ class ElasticityTree extends BaseComponent {
     return <Tree {...adjustOtherProperties} />;
   }
 }
-
-ElasticityTree.defaultProps = {
-  onSelect: null,
-  innerProps: {},
-  listData: [],
-  dataConvert: null,
-};
 
 export { ElasticityTree };

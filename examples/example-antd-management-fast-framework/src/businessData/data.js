@@ -26,6 +26,11 @@ const viewColumnFieldDataCollection = {
     name: 'syntaxHighlighter',
     helper: '',
   },
+  tree: {
+    label: '树型数据展示',
+    name: 'tree',
+    helper: '',
+  },
 };
 
 export const fieldData = {

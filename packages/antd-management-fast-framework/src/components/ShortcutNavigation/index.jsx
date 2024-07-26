@@ -40,6 +40,4 @@ class ShortcutNavigation extends PureComponent {
   }
 }
 
-ShortcutNavigation.defaultProps = {};
-
 export { ShortcutNavigation };

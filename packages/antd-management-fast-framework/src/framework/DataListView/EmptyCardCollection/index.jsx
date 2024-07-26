@@ -18,6 +18,4 @@ class EmptyCardCollection extends PureComponent {
   }
 }
 
-EmptyCardCollection.defaultProps = {};
-
 export { EmptyCardCollection };

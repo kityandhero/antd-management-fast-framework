@@ -231,6 +231,10 @@
       "sourceFilePath": "./src/pages/Form/FlowView/index.jsx"
     },
     {
+      "codeFilePath": "./src/pages/Form/ElasticityTreeView/codeSource.js",
+      "sourceFilePath": "./src/pages/Form/ElasticityTreeView/index.jsx"
+    },
+    {
       "codeFilePath": "./src/pages/Interaction/BaseView/codeSource.js",
       "sourceFilePath": "./src/pages/Interaction/BaseView/index.jsx"
     },

@@ -150,6 +150,4 @@ const EndNode = (properties) => {
   );
 };
 
-EndNode.defaultProps = {};
-
 export { EndNode };

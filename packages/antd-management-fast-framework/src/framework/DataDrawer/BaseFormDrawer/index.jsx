@@ -93,6 +93,4 @@ class BaseFormDrawer extends Base {
   };
 }
 
-BaseFormDrawer.defaultProps = {};
-
 export { BaseFormDrawer };

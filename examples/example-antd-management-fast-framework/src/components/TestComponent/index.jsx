@@ -23,6 +23,4 @@ class TestComponent extends PureComponent {
   }
 }
 
-TestComponent.defaultProps = {};
-
 export { TestComponent };

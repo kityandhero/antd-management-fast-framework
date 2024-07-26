@@ -75,5 +75,3 @@ export const MobileBody = observer((properties) => {
     </div>
   );
 });
-
-MobileBody.defaultProps = {};

@@ -70,6 +70,4 @@ class Spirit extends Core {
   };
 }
 
-Spirit.defaultProps = {};
-
 export { Spirit };

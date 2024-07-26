@@ -97,7 +97,10 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
   };
 
   renderPresetContentContainorInnerTop = () => {
-    const { canDesign } = this.props;
+    const { canDesign } = {
+      canDesign: false,
+      ...this.props,
+    };
     const { metaData } = this.state;
 
     const { listFormStorage } = {
@@ -203,9 +206,5 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     );
   };
 }
-
-FlowCaseFormDocumentDrawer.defaultProps = {
-  canDesign: false,
-};
 
 export { FlowCaseFormDocumentDrawer };

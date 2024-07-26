@@ -158,6 +158,4 @@ const BackwardEdge = ({
   );
 };
 
-BackwardEdge.defaultProps = {};
-
 export { BackwardEdge };

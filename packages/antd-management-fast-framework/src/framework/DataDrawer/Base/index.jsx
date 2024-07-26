@@ -617,8 +617,4 @@ class Base extends BaseWindow {
   }
 }
 
-Base.defaultProps = {
-  flag: '',
-};
-
 export { Base };

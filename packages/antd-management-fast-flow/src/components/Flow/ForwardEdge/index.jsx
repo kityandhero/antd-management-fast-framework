@@ -158,6 +158,4 @@ class ForwardEdge extends PureComponent {
   }
 }
 
-ForwardEdge.defaultProps = {};
-
 export { ForwardEdge };

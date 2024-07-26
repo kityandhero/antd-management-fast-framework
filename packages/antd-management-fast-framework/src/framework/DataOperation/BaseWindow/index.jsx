@@ -1048,7 +1048,10 @@ class BaseWindow extends Base {
   getVisibleFlag() {
     this.logCallTrack({}, primaryCallName, 'getVisibleFlag');
 
-    const { flag } = this.props;
+    const { flag } = {
+      flag: '',
+      ...this.props,
+    };
 
     return flag || this.visibleFlag;
   }
@@ -1065,9 +1068,5 @@ class BaseWindow extends Base {
     );
   };
 }
-
-BaseWindow.defaultProps = {
-  flag: '',
-};
 
 export { BaseWindow };

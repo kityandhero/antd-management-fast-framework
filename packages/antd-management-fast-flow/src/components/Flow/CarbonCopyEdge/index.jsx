@@ -140,6 +140,4 @@ class CarbonCopyEdge extends PureComponent {
   }
 }
 
-CarbonCopyEdge.defaultProps = {};
-
 export { CarbonCopyEdge };
