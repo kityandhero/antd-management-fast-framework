@@ -17,7 +17,8 @@ function buildConfig() {
 
     config: {
       esbuildMinifyIIFE: true,
-      mfsu: {},
+      mfsu: false,
+      // mfsu: {},
       styles: [`body { margin: 0; }`],
       routes: routes,
       ...(checkDevelopment() ? configDevelopment : configProduction),

@@ -1,8 +1,17 @@
 import React, { PureComponent } from 'react';
 
+const defaultProperties = {
+  top: null,
+  body: null,
+  bottom: null,
+};
+
 class BodyContent extends PureComponent {
   render() {
-    const { body, bottom } = this.props;
+    const { top, body, bottom } = {
+      ...defaultProperties,
+      ...this.props,
+    };
 
     if (body == null && bottom == null) {
       return null;
@@ -14,6 +23,8 @@ class BodyContent extends PureComponent {
           padding: '12px 16px',
         }}
       >
+        {top}
+
         {body}
 
         {bottom}
@@ -21,10 +32,5 @@ class BodyContent extends PureComponent {
     );
   }
 }
-
-BodyContent.defaultProps = {
-  body: null,
-  bottom: null,
-};
 
 export { BodyContent };

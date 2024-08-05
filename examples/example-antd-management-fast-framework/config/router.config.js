@@ -113,7 +113,14 @@ export default [
     routes: [
       {
         path: '/list',
-        redirect: '/list/tableView',
+        redirect: '/list/layoutView',
+      },
+      {
+        path: '/list/layoutView',
+        name: 'layoutView',
+        icon: 'bars',
+        useMini: true,
+        component: './List/LayoutView',
       },
       {
         name: 'tableView',

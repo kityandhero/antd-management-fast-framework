@@ -29,6 +29,9 @@ export default {
   'menu.list': 'List示例',
   'menu.list-mini': 'List',
 
+  'menu.list.layoutView': '列表页布局示例',
+  'menu.list.layoutView-mini': '列表页布局',
+
   'menu.list.listView': 'ListView 示例',
   'menu.list.listView-mini': 'List',
 

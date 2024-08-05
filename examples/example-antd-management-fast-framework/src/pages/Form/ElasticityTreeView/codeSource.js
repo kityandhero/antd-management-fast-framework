@@ -23,7 +23,10 @@ function dataConvert(o, index) {
 @connect(({ schedulingControl }) => ({
   schedulingControl,
 }))
-class HighlighterView extends BaseView {
+class ElasticityTreeView extends BaseView {
+  // 在控制台显示组建内调用序列, 仅为进行开发辅助
+  // showCallProcess = true;
+
   constructor(properties) {
     super(properties);
 
@@ -60,8 +63,6 @@ class HighlighterView extends BaseView {
       this.state;
 
     const that = this;
-
-    console.log({ listData });
 
     return {
       list: [
@@ -149,7 +150,7 @@ class HighlighterView extends BaseView {
                 buildType: cardConfig.extraBuildType.flexSelect,
                 label: '显示源代码',
                 size: 'small',
-                defaultValue: 'HighlighterView',
+                defaultValue: 'ElasticityTreeView',
                 style: { width: '520px' },
                 list: [
                   {
@@ -210,5 +211,5 @@ class HighlighterView extends BaseView {
   };
 }
 
-export default HighlighterView;
+export default ElasticityTreeView;
 `;

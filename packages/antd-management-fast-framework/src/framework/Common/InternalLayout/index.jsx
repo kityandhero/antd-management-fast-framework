@@ -12,6 +12,7 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  emptyLogic,
   getUseShortcutNavigation,
   renderFurtherColorWhenNoCallProcess,
   renderFurtherPrefixWhenNoCallProcess,
@@ -75,7 +76,33 @@ class InternalLayout extends InternalBuild {
    * @example
    * renderPresetContentArea = () => {}
    */
-  renderPresetContentArea = () => null;
+  renderPresetContentArea = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'renderPresetContentArea',
+      emptyLogic,
+    );
+
+    return null;
+  };
+
+  /**
+   * 渲染预设内容区域外的上部，默认为空，可根据需要重载。
+   * @function
+   * @example
+   * renderPresetPageBodyTop = () => null
+   */
+  renderPresetPageBodyTop = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'renderPresetPageBodyTop',
+      emptyLogic,
+    );
+
+    return null;
+  };
 
   /**
    * 渲染预设页面 Body 内容区域。
@@ -135,7 +162,16 @@ class InternalLayout extends InternalBuild {
    * 渲染预设页面左侧内容区域。
    * @function
    */
-  renderPresetPageLeftArea = () => null;
+  renderPresetPageLeftArea = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'renderPresetPageLeftArea',
+      emptyLogic,
+    );
+
+    return null;
+  };
 
   /**
    * 渲染预设页面 Body 区域。
@@ -144,10 +180,34 @@ class InternalLayout extends InternalBuild {
   renderPresetPageBody = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetPageBody');
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'renderPresetPageBody',
+      'renderPresetPageBodyTop',
+    );
+
+    const top = this.renderPresetPageBodyTop();
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'renderPresetPageBody',
+      'renderPresetPageBodyContent',
+    );
+
     const body = this.renderPresetPageBodyContent();
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'renderPresetPageBody',
+      'renderPresetOther',
+    );
+
     const bottom = this.renderPresetOther();
 
-    return <BodyContent body={body} bottom={bottom} />;
+    return <BodyContent top={top} body={body} bottom={bottom} />;
   };
 
   /**
