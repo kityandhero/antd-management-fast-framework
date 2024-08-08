@@ -74,6 +74,11 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
   };
 
   establishHelpConfig = () => {
+    const { canDesign } = {
+      canDesign: false,
+      ...this.props,
+    };
+
     return {
       title: '操作提示',
       list: [
@@ -86,6 +91,11 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         {
           text: '打印预览需要关闭设计模式',
         },
+        canDesign
+          ? {
+              text: '审批节点样例仅在设计时用于占位进行效果展示, 实际表单将呈现真实审批节点。',
+            }
+          : null,
       ],
     };
   };
