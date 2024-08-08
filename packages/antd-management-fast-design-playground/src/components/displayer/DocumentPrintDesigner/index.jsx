@@ -26,6 +26,33 @@ const { ToolBar } = PageExtra;
 
 const colorDefault = '#000';
 
+const defaultProperties = {
+  values: {},
+  schema: {},
+  style: null,
+  showToolbar: true,
+  canDesign: false,
+  color: colorDefault,
+  title: '表格标题',
+  titleContainerStyle: null,
+  titleStyle: null,
+  showTitle: true,
+  labelColumnWidth: 140,
+  labelColumnStyle: null,
+  labelContainerStyle: null,
+  labelStyle: null,
+  valueColumnStyle: null,
+  valueContainerStyle: null,
+  valueStyle: null,
+  approveList: [],
+  allApproveProcessList: [],
+  showRemark: true,
+  remarkTitle: '备注',
+  remarkName: 'remark',
+  remarkList: [],
+  onChange: null,
+};
+
 class DocumentPrintDesigner extends BaseComponent {
   componentRef = null;
 
@@ -107,7 +134,10 @@ class DocumentPrintDesigner extends BaseComponent {
   };
 
   save = () => {
-    const { onSave } = this.props;
+    const { onSave } = {
+      ...defaultProperties,
+      ...this.props,
+    };
 
     if (!isFunction(onSave)) {
       return;
@@ -167,10 +197,14 @@ class DocumentPrintDesigner extends BaseComponent {
       titleStyle,
       showTitle,
       approveList,
+      allApproveProcessList,
       remarkTitle,
       remarkName,
       remarkList,
-    } = this.props;
+    } = {
+      ...defaultProperties,
+      ...this.props,
+    };
     const { designMode, general, items } = this.state;
 
     const p = {
@@ -191,6 +225,7 @@ class DocumentPrintDesigner extends BaseComponent {
       titleStyle,
       showTitle,
       approveList,
+      allApproveProcessList,
       remarkTitle,
       remarkName,
       remarkList,
@@ -308,29 +343,7 @@ class DocumentPrintDesigner extends BaseComponent {
 }
 
 DocumentPrintDesigner.defaultProps = {
-  values: {},
-  schema: {},
-  style: null,
-  showToolbar: true,
-  canDesign: false,
-  color: colorDefault,
-  title: '表格标题',
-  titleContainerStyle: null,
-  titleStyle: null,
-  showTitle: true,
-  labelColumnWidth: 140,
-  labelColumnStyle: null,
-  labelContainerStyle: null,
-  labelStyle: null,
-  valueColumnStyle: null,
-  valueContainerStyle: null,
-  valueStyle: null,
-  approveList: [],
-  showRemark: true,
-  remarkTitle: '备注',
-  remarkName: 'remark',
-  remarkList: [],
-  onChange: null,
+  ...defaultProperties,
 };
 
 export { DocumentPrintDesigner };

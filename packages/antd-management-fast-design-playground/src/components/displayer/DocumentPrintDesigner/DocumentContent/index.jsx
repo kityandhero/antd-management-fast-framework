@@ -1,6 +1,13 @@
 import React, { PureComponent } from 'react';
 
-import { isArray, isFunction, toString } from 'easy-soft-utility';
+import {
+  checkInCollection,
+  filter,
+  isArray,
+  isEmptyArray,
+  isFunction,
+  toString,
+} from 'easy-soft-utility';
 
 import { CenterBox, FlexBox } from 'antd-management-fast-component';
 
@@ -108,6 +115,7 @@ class DocumentContent extends PureComponent {
       showTitle,
       designMode,
       approveList,
+      allApproveProcessList,
       remarkTitle,
       remarkName,
       remarkList,
@@ -146,6 +154,65 @@ class DocumentContent extends PureComponent {
       ...fontFamilyStyle,
       ...valueColumnStyle,
     };
+
+    let nodeList = [];
+
+    const approveListAdjust = isArray(approveList) ? approveList : [];
+    const allApproveProcessListAdjust = isArray(allApproveProcessList)
+      ? allApproveProcessList
+      : [];
+
+    if (isEmptyArray(allApproveProcessListAdjust)) {
+      nodeList = [...approveListAdjust];
+    } else {
+      const approveNodeIdList = approveListAdjust.map((o) => o.nodeId);
+
+      for (const one of allApproveProcessListAdjust) {
+        const { nodeId } = {
+          nodeId: '',
+          ...one,
+        };
+
+        if (checkInCollection(approveNodeIdList, nodeId)) {
+          const listFilter = filter(approveListAdjust, (item) => {
+            const { nodeId: nodeIdItem } = {
+              nodeId: '',
+              ...item,
+            };
+
+            return nodeIdItem === nodeId;
+          });
+
+          if (listFilter.length > 0) {
+            nodeList.push(listFilter[0]);
+          } else {
+            nodeList.push(one);
+          }
+        } else {
+          nodeList.push(one);
+        }
+      }
+    }
+
+    const nodeListAdjust = nodeList.map((o) => {
+      const { nodeId, title, note, name, signet, time } = {
+        title: '',
+        note: '',
+        name: '',
+        signet: '',
+        time: '',
+        ...o,
+      };
+
+      return {
+        nodeId,
+        title,
+        note,
+        name,
+        signet,
+        time,
+      };
+    });
 
     return (
       <div
@@ -278,8 +345,8 @@ class DocumentContent extends PureComponent {
             );
           })}
 
-          {isArray(approveList)
-            ? approveList.map((o, index) => {
+          {isArray(nodeListAdjust)
+            ? nodeListAdjust.map((o, index) => {
                 return (
                   <LineApprove
                     key={`approve_item_${index}`}

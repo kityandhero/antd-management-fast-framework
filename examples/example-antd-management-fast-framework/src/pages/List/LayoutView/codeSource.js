@@ -415,6 +415,21 @@ class PageList extends MultiPage {
     };
   };
 
+  renderPresetPageBodyTop = () => {
+    return (
+      <div
+        style={{
+          border: '1px solid red',
+          padding: '10px',
+          textAlign: 'center',
+          marginBottom: '10px',
+        }}
+      >
+        Top Area
+      </div>
+    );
+  };
+
   renderPresetContentFooter = () => {
     const { currentCode } = this.state;
 

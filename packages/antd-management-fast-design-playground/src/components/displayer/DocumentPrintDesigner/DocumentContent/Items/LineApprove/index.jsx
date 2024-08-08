@@ -4,6 +4,7 @@ import {
   checkStringIsNullOrWhiteSpace,
   isUndefined,
   toNumber,
+  transparentImage,
 } from 'easy-soft-utility';
 
 import {
@@ -151,7 +152,15 @@ function LineApprove(properties) {
             >
               <VerticalBox fillWidth>
                 <div style={{ width: '100%' }}>
-                  <div style={{ padding: '10px 0 5px 0' }}>{note}</div>
+                  {checkStringIsNullOrWhiteSpace(note) ? (
+                    <div
+                      style={{ padding: '10px 0 5px 0' }}
+                      dangerouslySetInnerHTML={{ __html: '&nbsp;' }}
+                    ></div>
+                  ) : (
+                    <div style={{ padding: '10px 0 5px 0' }}>{note}</div>
+                  )}
+
                   <div style={{ padding: '5px 0 10px 0' }}>
                     <FlexBox
                       flexAuto="left"
@@ -161,7 +170,10 @@ function LineApprove(properties) {
                           <FlexBox
                             flexAuto="left"
                             left={
-                              <img src={signet} style={{ height: '40px' }} />
+                              <img
+                                src={signet || transparentImage}
+                                style={{ height: '40px' }}
+                              />
                             }
                             rightStyle={{
                               paddingLeft: '10px',

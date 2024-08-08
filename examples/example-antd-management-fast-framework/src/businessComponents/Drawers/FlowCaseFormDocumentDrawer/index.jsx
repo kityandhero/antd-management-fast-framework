@@ -15,7 +15,7 @@ import {
 } from 'antd-management-fast-framework';
 
 import { setDataSchemaAction } from '../../../businessAssists/action';
-import { listApprove } from '../../../utils';
+import { listAllApproveProcess, listApprove } from '../../../utils';
 
 const { BaseVerticalFlexDrawer } = DataDrawer;
 
@@ -193,6 +193,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
           items,
         }}
         approveList={listApprove}
+        allApproveProcessList={listAllApproveProcess}
         remarkTitle="备注"
         remarkName="remark"
         remarkList={formRemarkList}
