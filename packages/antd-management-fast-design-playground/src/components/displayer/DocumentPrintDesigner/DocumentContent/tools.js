@@ -2,6 +2,7 @@ import { Checkbox, Col, Row } from 'antd';
 import React from 'react';
 
 import {
+  checkInCollection,
   checkStringIsNullOrWhiteSpace,
   endsWith,
   filter,
@@ -251,10 +252,9 @@ export function buildDisplayValue(data, values) {
   const { name, type, enumList, valueDisplayMode } = { ...data };
 
   let v = '';
+  let vList = [];
 
   if (endsWith(type, '[]')) {
-    let vList = [];
-
     if (isArray(values[name])) {
       vList = values[name];
     }
@@ -264,7 +264,9 @@ export function buildDisplayValue(data, values) {
         const valueTemporary = JSON.parse(values[name]);
 
         if (isArray(valueTemporary)) {
-          vList = valueTemporary;
+          vList = valueTemporary.map((o) => {
+            return toString(o);
+          });
         }
       } catch {
         vList = [];
@@ -306,7 +308,9 @@ export function buildDisplayValue(data, values) {
             <VerticalBox>
               <Checkbox
                 value={value}
-                checked={value == v}
+                checked={
+                  value == v || checkInCollection(vList, toString(value))
+                }
                 style={{
                   fontSize: '16px',
                   ...fontFamilyStyle,
