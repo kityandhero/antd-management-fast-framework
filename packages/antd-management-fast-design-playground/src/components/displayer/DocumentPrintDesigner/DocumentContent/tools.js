@@ -10,6 +10,7 @@ import {
   isArray,
   isEmptyArray,
   isString,
+  startsWith,
   toString,
   whetherString,
 } from 'easy-soft-utility';
@@ -254,9 +255,11 @@ export function buildDisplayValue(data, values) {
   let v = '';
   let vList = [];
 
-  if (endsWith(type, '[]')) {
+  if (endsWith(type, '[]') || startsWith(type, 'Array<')) {
     if (isArray(values[name])) {
-      vList = values[name];
+      vList = values[name].map((o) => {
+        return toString(o);
+      });
     }
 
     if (!isArray(values[name]) && isString(values[name])) {

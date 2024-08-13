@@ -114,7 +114,7 @@ class DesignView extends BaseUpdateForm {
     for (const [key, value] of Object.entries(data)) {
       list.push({
         name: key,
-        value: value,
+        value: JSON.stringify(value),
       });
     }
 
