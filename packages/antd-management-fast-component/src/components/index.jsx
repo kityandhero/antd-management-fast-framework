@@ -38,6 +38,7 @@ export * from './FlexText';
 export * from './Footer';
 export * from './FooterToolbar';
 export * from './FormExtra';
+export * from './FrameBox';
 export * from './Function';
 export * from './FunctionComponent';
 export * from './FunctionSupplement';
