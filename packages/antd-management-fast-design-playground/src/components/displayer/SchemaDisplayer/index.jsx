@@ -38,6 +38,7 @@ import {
   isArray,
   isEmptyArray,
   isFunction,
+  isNull,
   logTrace,
   mergeArrowText,
   mergeTextMessage,
@@ -111,6 +112,8 @@ const remarkName = '2ff73e227d264c06b951c037ce0f51ef';
 const descriptionTypeCollection = ['field', 'box'];
 
 class SchemaDisplayer extends PureComponent {
+  fromTarget = null;
+
   getDescriptionType = (type) => {
     const v = checkInCollection(descriptionTypeCollection, type);
 
@@ -262,19 +265,27 @@ class SchemaDisplayer extends PureComponent {
       ...helpBoxProps,
     };
 
-    const formInstance = createForm({ initialValues });
+    // const formInstance = createForm({ initialValues });
+
+    if (isNull(this.fromTarget)) {
+      this.fromTarget = createForm({ initialValues });
+    } else {
+      this.fromTarget.setInitialValues(initialValues);
+    }
 
     const buttonBefore = isFunction(buttonBeforeSubmitBuilder)
       ? buttonBeforeSubmitBuilder({
-          form: formInstance,
-          getFormValue: () => JSON.parse(JSON.stringify(formInstance.values)),
+          form: this.fromTarget,
+          getFormValue: () =>
+            JSON.parse(JSON.stringify(this.fromTarget.values)),
         })
       : null;
 
     const buttonAfter = isFunction(buttonAfterSubmitBuilder)
       ? buttonAfterSubmitBuilder({
-          form: formInstance,
-          getFormValue: () => JSON.parse(JSON.stringify(formInstance.values)),
+          form: this.fromTarget,
+          getFormValue: () =>
+            JSON.parse(JSON.stringify(this.fromTarget.values)),
         })
       : null;
 
@@ -287,7 +298,7 @@ class SchemaDisplayer extends PureComponent {
 
               {showSubmit ? (
                 <Submit
-                  form={formInstance}
+                  form={this.fromTarget}
                   icon={submitButtonIcon}
                   onSubmit={this.submitForm}
                   onSubmitSuccess={this.onSubmitSuccess}
@@ -365,9 +376,9 @@ class SchemaDisplayer extends PureComponent {
             () => {
               return isFunction(descriptionUpperComponentBuilder)
                 ? descriptionUpperComponentBuilder({
-                    form: formInstance,
+                    form: this.fromTarget,
                     getFormValue: () =>
-                      JSON.parse(JSON.stringify(formInstance.values)),
+                      JSON.parse(JSON.stringify(this.fromTarget.values)),
                   })
                 : descriptionUpperComponent;
             },
@@ -381,9 +392,9 @@ class SchemaDisplayer extends PureComponent {
 
           {isFunction(descriptionUpperComponentBuilder)
             ? descriptionUpperComponentBuilder({
-                form: formInstance,
+                form: this.fromTarget,
                 getFormValue: () =>
-                  JSON.parse(JSON.stringify(formInstance.values)),
+                  JSON.parse(JSON.stringify(this.fromTarget.values)),
               })
             : descriptionUpperComponent}
         </FormItem>
@@ -403,9 +414,9 @@ class SchemaDisplayer extends PureComponent {
             () => {
               return isFunction(descriptionNetherComponentBuilder)
                 ? descriptionNetherComponentBuilder({
-                    form: formInstance,
+                    form: this.fromTarget,
                     getFormValue: () =>
-                      JSON.parse(JSON.stringify(formInstance.values)),
+                      JSON.parse(JSON.stringify(this.fromTarget.values)),
                   })
                 : descriptionNetherComponent;
             },
@@ -419,9 +430,9 @@ class SchemaDisplayer extends PureComponent {
 
           {isFunction(descriptionNetherComponentBuilder)
             ? descriptionNetherComponentBuilder({
-                form: formInstance,
+                form: this.fromTarget,
                 getFormValue: () =>
-                  JSON.parse(JSON.stringify(formInstance.values)),
+                  JSON.parse(JSON.stringify(this.fromTarget.values)),
               })
             : descriptionNetherComponent}
         </FormItem>
@@ -429,7 +440,7 @@ class SchemaDisplayer extends PureComponent {
 
     return (
       <div>
-        <Form {...formPropertiesAdjust} form={formInstance}>
+        <Form {...formPropertiesAdjust} form={this.fromTarget}>
           {header ? (
             <FormItem label={<div></div>} colon={false}>
               {header}
