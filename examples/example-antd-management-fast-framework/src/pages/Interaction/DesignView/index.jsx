@@ -462,6 +462,7 @@ class DesignView extends BaseUpdateForm {
                     showTitle={false}
                     showRemark={false}
                     approveList={listApprove}
+                    signetStyle={{ border: '1px solid #000' }}
                   />
                 </div>
               ),

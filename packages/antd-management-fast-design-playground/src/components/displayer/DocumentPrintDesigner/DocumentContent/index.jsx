@@ -119,6 +119,7 @@ class DocumentContent extends PureComponent {
       remarkTitle,
       remarkName,
       remarkList,
+      signetStyle,
     } = this.props;
     const { currentItem, currentHighlightMode } = this.state;
 
@@ -360,6 +361,7 @@ class DocumentContent extends PureComponent {
                     valueBoxStyle={valueBoxStyle}
                     labelContainerStyle={labelContainerStyle}
                     valueContainerStyle={valueContainerStyle}
+                    signetStyle={signetStyle}
                   />
                 );
               })
@@ -407,6 +409,7 @@ DocumentContent.defaultProps = {
   labelColumnStyle: null,
   labelContainerStyle: null,
   labelStyle: null,
+  signetStyle: null,
   valueColumnStyle: null,
   valueContainerStyle: null,
   valueStyle: null,

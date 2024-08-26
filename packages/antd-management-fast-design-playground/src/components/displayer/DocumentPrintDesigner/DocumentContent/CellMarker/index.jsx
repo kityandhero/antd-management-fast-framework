@@ -12,7 +12,10 @@ function CellMarker(properties) {
     highlight,
     highlightMode,
     onClick: onClickCallback,
-  } = properties;
+  } = {
+    useHover: true,
+    ...properties,
+  };
 
   return (
     <div
@@ -36,9 +39,5 @@ function CellMarker(properties) {
     ></div>
   );
 }
-
-CellMarker.defaultProps = {
-  useHover: true,
-};
 
 export { CellMarker };

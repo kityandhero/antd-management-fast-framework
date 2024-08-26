@@ -28,6 +28,7 @@ function LineApprove(properties) {
     valueBoxStyle,
     labelContainerStyle,
     valueContainerStyle,
+    signetStyle,
   } = properties;
 
   const minHeightAdjust = defaultConfig.minHeight;
@@ -170,10 +171,20 @@ function LineApprove(properties) {
                           <FlexBox
                             flexAuto="left"
                             left={
-                              <img
-                                src={signet || transparentImage}
-                                style={{ height: '40px' }}
-                              />
+                              <div
+                                style={{ height: '40px', position: 'relative' }}
+                              >
+                                <img
+                                  src={signet || transparentImage}
+                                  style={{
+                                    height: '40px',
+                                    top: '0',
+                                    ...signetStyle,
+                                    right: '0',
+                                    position: 'absolute',
+                                  }}
+                                />
+                              </div>
                             }
                             rightStyle={{
                               paddingLeft: '10px',

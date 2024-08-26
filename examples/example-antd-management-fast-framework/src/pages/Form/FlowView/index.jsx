@@ -567,7 +567,7 @@ class RadioView extends BaseView {
                       <div
                         style={{
                           paddingTop: '20px',
-                          height: '630px',
+                          height: '720px',
                         }}
                       >
                         <Flow

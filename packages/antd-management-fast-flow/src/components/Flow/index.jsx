@@ -33,8 +33,8 @@ function Flow(properties) {
     listInLineKey,
     listOutLineKey,
     listApproverKey,
-    personnelNameKey,
-    personnelNameLabel,
+    approverNameKey,
+    approverNameLabel,
     nodes: sourceNodes,
     edges: sourceEdges,
     updateViewConfig,
@@ -60,8 +60,8 @@ function Flow(properties) {
     o.data.listInLineKey = listInLineKey;
     o.data.listOutLineKey = listOutLineKey;
     o.data.listApproverKey = listApproverKey;
-    o.data.personnelNameKey = personnelNameKey;
-    o.data.personnelNameLabel = personnelNameLabel;
+    o.data.approverNameKey = approverNameKey;
+    o.data.approverNameLabel = approverNameLabel;
 
     return o;
   });
@@ -153,8 +153,8 @@ Flow.defaultProps = {
   listInLineKey: 'listInLine',
   listOutLineKey: 'listOutLine',
   listApproverKey: 'listApprover',
-  personnelNameKey: 'personnelNameKey',
-  personnelNameLabel: 'personnelNameLabel',
+  approverNameKey: 'approverNameKey',
+  approverNameLabel: 'approverNameLabel',
   onEdgeCreate: () => {},
 };
 

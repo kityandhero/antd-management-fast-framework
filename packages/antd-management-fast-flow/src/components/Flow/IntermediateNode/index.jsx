@@ -37,8 +37,8 @@ class IntermediateNode extends PureComponent {
       // listInLineKey,
       // listOutLineKey,
       listApproverKey,
-      personnelNameKey,
-      personnelNameLabel,
+      approverNameKey,
+      approverNameLabel,
       onAddApprover,
       onChange,
       onChangeBranchCondition,
@@ -51,8 +51,8 @@ class IntermediateNode extends PureComponent {
       listInLineKey: 'listInLine',
       listOutLineKey: 'listOutLine',
       listApproverKey: 'listApprover',
-      personnelNameKey: 'personnelName',
-      personnelNameLabel: '',
+      approverNameKey: 'approverName',
+      approverNameLabel: '',
       ...data,
     };
 
@@ -224,7 +224,7 @@ class IntermediateNode extends PureComponent {
                       listApprover.map((o, index) => {
                         const userRealName = getValueByKey({
                           data: o,
-                          key: personnelNameKey,
+                          key: approverNameKey,
                           defaultValue: '',
                         });
 
@@ -234,7 +234,7 @@ class IntermediateNode extends PureComponent {
                             flexAuto="left"
                             left={
                               <ColorText
-                                textPrefix={personnelNameLabel}
+                                textPrefix={approverNameLabel}
                                 text={userRealName || '未设置'}
                                 separatorStyle={{
                                   paddingRight: '3px',
@@ -268,7 +268,7 @@ class IntermediateNode extends PureComponent {
                                       padding: '0.5px 5px',
                                       fontSize: '12px',
                                     }}
-                                    title="移除审批人"
+                                    title="移除审批人或职级"
                                     onClick={(event) => {
                                       event.stopPropagation();
 
@@ -288,10 +288,10 @@ class IntermediateNode extends PureComponent {
 
                     {hasApprover ? null : (
                       <div>
-                        未设置审批人
+                        未设置人或职级
                         {canEdit ? '，点击 ' : ''}
                         {canEdit ? iconBuilder.plusCircle() : ''}
-                        {canEdit ? ' 按钮添加' : ''}。
+                        {canEdit ? ' 添加' : ''}。
                       </div>
                     )}
                   </Space>

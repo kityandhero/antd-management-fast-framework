@@ -204,6 +204,12 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         }}
         approveList={listApprove}
         allApproveProcessList={listAllApproveProcess}
+        signetStyle={{
+          border: '1px solid #000',
+          width: '120px',
+          height: '60px',
+          top: '-10px',
+        }}
         remarkTitle="备注"
         remarkName="remark"
         remarkList={formRemarkList}
