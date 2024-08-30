@@ -362,6 +362,16 @@ class SchemaDisplayer extends PureComponent {
         )
       ) : null;
 
+    const descriptionUpperComponentResult = isFunction(
+      descriptionUpperComponentBuilder,
+    )
+      ? descriptionUpperComponentBuilder({
+          form: this.fromTarget,
+          getFormValue: () =>
+            JSON.parse(JSON.stringify(this.fromTarget.values)),
+        })
+      : descriptionUpperComponent;
+
     const descriptionUpperComponentAdjust =
       !isFunction(descriptionUpperComponentBuilder) &&
       (descriptionUpperComponent || null) ==
@@ -372,33 +382,28 @@ class SchemaDisplayer extends PureComponent {
             <span style={{ color: '#000000e0' }}>{descriptionUpperLabel}</span>
           }
           decorator={[FormItem]}
-          component={[
-            () => {
-              return isFunction(descriptionUpperComponentBuilder)
-                ? descriptionUpperComponentBuilder({
-                    form: this.fromTarget,
-                    getFormValue: () =>
-                      JSON.parse(JSON.stringify(this.fromTarget.values)),
-                  })
-                : descriptionUpperComponent;
-            },
-          ]}
-        />
+        >
+          {descriptionUpperComponentResult}
+        </Field>
       ) : (
         <FormItem label={<div></div>} colon={false}>
           <Divider orientation="left" plain>
             {descriptionUpperLabel}
           </Divider>
 
-          {isFunction(descriptionUpperComponentBuilder)
-            ? descriptionUpperComponentBuilder({
-                form: this.fromTarget,
-                getFormValue: () =>
-                  JSON.parse(JSON.stringify(this.fromTarget.values)),
-              })
-            : descriptionUpperComponent}
+          {descriptionUpperComponentResult}
         </FormItem>
       );
+
+    const descriptionNetherComponentResult = isFunction(
+      descriptionNetherComponentBuilder,
+    )
+      ? descriptionNetherComponentBuilder({
+          form: this.fromTarget,
+          getFormValue: () =>
+            JSON.parse(JSON.stringify(this.fromTarget.values)),
+        })
+      : descriptionNetherComponent;
 
     const descriptionNetherComponentAdjust =
       !isFunction(descriptionNetherComponentBuilder) &&
@@ -410,31 +415,16 @@ class SchemaDisplayer extends PureComponent {
             <span style={{ color: '#000000e0' }}>{descriptionNetherLabel}</span>
           }
           decorator={[FormItem]}
-          component={[
-            () => {
-              return isFunction(descriptionNetherComponentBuilder)
-                ? descriptionNetherComponentBuilder({
-                    form: this.fromTarget,
-                    getFormValue: () =>
-                      JSON.parse(JSON.stringify(this.fromTarget.values)),
-                  })
-                : descriptionNetherComponent;
-            },
-          ]}
-        />
+        >
+          {descriptionNetherComponentResult}
+        </Field>
       ) : (
         <FormItem label={<div></div>} colon={false}>
           <Divider orientation="left" plain>
             {descriptionNetherLabel}
           </Divider>
 
-          {isFunction(descriptionNetherComponentBuilder)
-            ? descriptionNetherComponentBuilder({
-                form: this.fromTarget,
-                getFormValue: () =>
-                  JSON.parse(JSON.stringify(this.fromTarget.values)),
-              })
-            : descriptionNetherComponent}
+          {descriptionNetherComponentResult}
         </FormItem>
       );
 
