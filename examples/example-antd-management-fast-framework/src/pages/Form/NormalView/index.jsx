@@ -405,9 +405,12 @@ class NormalView extends BaseView {
                 // type: 'primary',
                 icon: iconBuilder.plus(),
                 text: '发起流程审批',
-                styles: {
-                  defaultBg: 'green',
+                style: {
+                  backgroundColor: '#52C41A',
+                  color: '#fff',
                 },
+                confirm: true,
+                title: '这里是提示',
               },
               {
                 buildType: cardConfig.extraBuildType.divider,

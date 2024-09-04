@@ -1,4 +1,4 @@
-import { Button, ConfigProvider, Popconfirm, Tooltip } from 'antd';
+import { Button, Popconfirm, Tooltip } from 'antd';
 import React from 'react';
 
 import {
@@ -40,7 +40,7 @@ class ElasticityButton extends BaseComponent {
       handleData = null,
       processing = false,
       iconProcessing = iconBuilder.loading(),
-      styles = {},
+      style = {},
       color,
       showIcon = true,
       confirmPanelZIndex = null,
@@ -76,62 +76,47 @@ class ElasticityButton extends BaseComponent {
           disabled={disabled}
           overlayStyle={overlayStyle}
         >
-          <ConfigProvider
-            theme={{
-              components: {
-                Button: styles,
-              },
-            }}
+          <Button
+            className={className}
+            type={type}
+            size={size}
+            danger={danger}
+            disabled={disabled}
+            style={style || null}
           >
-            <Button
-              className={className}
-              type={type}
-              size={size}
-              danger={danger}
-              disabled={disabled}
-            >
-              <IconInfo
-                icon={showIcon ? ico : null}
-                text={text}
-                style={
-                  checkStringIsNullOrWhiteSpace(color)
-                    ? { color: 'inherit' }
-                    : { color: color }
-                }
-              />
-            </Button>
-          </ConfigProvider>
+            <IconInfo
+              icon={showIcon ? ico : null}
+              text={text}
+              style={
+                checkStringIsNullOrWhiteSpace(color)
+                  ? { color: 'inherit' }
+                  : { color: color }
+              }
+            />
+          </Button>
         </Popconfirm>
       );
     }
 
     const button = (
-      <ConfigProvider
-        theme={{
-          components: {
-            Button: styles,
-          },
-        }}
+      <Button
+        style={style || null}
+        type={type}
+        size={size}
+        danger={danger}
+        disabled={disabled}
+        onClick={() => handleClick({ handleData: handleData ?? null })}
       >
-        <Button
-          styles={styles || null}
-          type={type}
-          size={size}
-          danger={danger}
-          disabled={disabled}
-          onClick={() => handleClick({ handleData: handleData ?? null })}
-        >
-          <IconInfo
-            icon={showIcon ? ico : null}
-            text={text}
-            style={
-              checkStringIsNullOrWhiteSpace(color)
-                ? { color: 'inherit' }
-                : { color: color }
-            }
-          />
-        </Button>
-      </ConfigProvider>
+        <IconInfo
+          icon={showIcon ? ico : null}
+          text={text}
+          style={
+            checkStringIsNullOrWhiteSpace(color)
+              ? { color: 'inherit' }
+              : { color: color }
+          }
+        />
+      </Button>
     );
 
     if (checkStringIsNullOrWhiteSpace(title)) {
@@ -165,7 +150,7 @@ ElasticityButton.defaultProps = {
   handleData: null,
   processing: false,
   iconProcessing: iconBuilder.loading(),
-  styles: {},
+  style: {},
   color: null,
   showIcon: true,
   confirmPanelZIndex: null,

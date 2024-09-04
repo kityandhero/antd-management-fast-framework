@@ -154,7 +154,7 @@ export function buildButton({
   handleData = null,
   processing = false,
   iconProcessing = iconBuilder.loading(),
-  styles = {},
+  style = {},
   showIcon = true,
 }) {
   return (
@@ -175,7 +175,7 @@ export function buildButton({
       handleData={handleData}
       processing={processing}
       iconProcessing={iconProcessing}
-      styles={styles}
+      style={style}
       showIcon={showIcon}
     />
   );
