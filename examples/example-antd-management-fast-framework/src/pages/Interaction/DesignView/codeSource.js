@@ -319,7 +319,7 @@ class DesignView extends BaseUpdateForm {
                     descriptionLabelColor={formRemarkColor}
                     descriptionTextColor={formRemarkColor}
                     descriptions={formRemarkList}
-                    descriptionUpperLabel="附件列表"
+                    descriptionUpperLabel="附件列表1"
                     descriptionUpperComponentBuilder={({
                       // eslint-disable-next-line no-unused-vars
                       form,
@@ -364,7 +364,7 @@ class DesignView extends BaseUpdateForm {
                         />
                       );
                     }}
-                    descriptionNetherLabel="附件列表"
+                    descriptionNetherLabel="附件列表2"
                     descriptionNetherComponentBuilder={({
                       // eslint-disable-next-line no-unused-vars
                       form,

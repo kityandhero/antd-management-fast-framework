@@ -7,7 +7,7 @@ import {
   showSimpleInfoNotification,
 } from 'easy-soft-utility';
 
-import { cardConfig } from 'antd-management-fast-common';
+import { cardConfig, listViewConfig } from 'antd-management-fast-common';
 import {
   buildButton,
   buildColorText,
@@ -398,6 +398,20 @@ class NormalView extends BaseView {
             affix: true,
             split: false,
             list: [
+              {
+                buildType:
+                  listViewConfig.dataContainerExtraActionBuildType
+                    .generalButton,
+                // type: 'primary',
+                icon: iconBuilder.plus(),
+                text: '发起流程审批',
+                styles: {
+                  defaultBg: 'green',
+                },
+              },
+              {
+                buildType: cardConfig.extraBuildType.divider,
+              },
               {
                 buildType: cardConfig.extraBuildType.refresh,
               },
