@@ -16,6 +16,7 @@ import { cardConfig, logTemplate } from 'antd-management-fast-common';
 import {
   buildButton,
   CenterBox,
+  ColorText,
   convertOptionOrRadioData,
   iconBuilder,
 } from 'antd-management-fast-component';
@@ -343,6 +344,17 @@ class DesignView extends BaseUpdateForm {
                                 key: 'url',
                               }),
                             };
+                          }}
+                          nameRender={(v) => {
+                            console.log(11_212_121);
+
+                            return (
+                              <ColorText
+                                textPrefix={v}
+                                text={'额外说明'}
+                                color={'green'}
+                              />
+                            );
                           }}
                           onUploadButtonClick={() => {
                             showSimpleInfoMessage('点击上传按钮');
