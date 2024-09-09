@@ -80,6 +80,9 @@ class FileViewer extends PureComponent {
       splitHeight,
       list,
       dataTransfer,
+      extraColumns,
+      nameRender,
+      urlRender,
       onUploadButtonClick,
       onItemClick,
     } = this.props;
@@ -125,13 +128,14 @@ class FileViewer extends PureComponent {
       });
     }
 
-    const columns = [
+    let columns = [
       {
         title: '名称',
         dataIndex: 'name',
         key: 'name',
         ...(showUrl ? { width: '220px' } : {}),
         ellipsis: true,
+        ...(isFunction(nameRender) ? { render: nameRender } : {}),
       },
     ];
 
@@ -141,7 +145,12 @@ class FileViewer extends PureComponent {
         dataIndex: 'url',
         key: 'url',
         ellipsis: true,
+        ...(isFunction(urlRender) ? { render: urlRender } : {}),
       });
+    }
+
+    if (isArray(extraColumns) && !isEmptyArray(extraColumns)) {
+      columns = [...columns, ...extraColumns];
     }
 
     columns.push({
@@ -235,6 +244,9 @@ FileViewer.defaultProps = {
   showUrl: false,
   splitHeight: 0,
   dataTransfer: (o) => o,
+  extraColumns: null,
+  nameRender: null,
+  urlRender: null,
   onItemClick: null,
   onUploadButtonClick: null,
   onRemove: () => {},
