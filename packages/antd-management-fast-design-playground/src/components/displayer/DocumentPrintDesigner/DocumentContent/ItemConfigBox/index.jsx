@@ -2,11 +2,13 @@ import { Divider, Dropdown, InputNumber, Space, Switch } from 'antd';
 import React from 'react';
 
 import {
+  checkInCollection,
   checkStringIsNullOrWhiteSpace,
   isArray,
   isEmptyArray,
   isFunction,
   isUndefined,
+  toLower,
   toNumber,
   toString,
   whetherNumber,
@@ -214,7 +216,8 @@ function ItemConfigBox(properties) {
                     />
                   ) : null}
 
-                  {fullLineAdjust === whetherNumber.yes && type === 'number' ? (
+                  {fullLineAdjust === whetherNumber.yes &&
+                  checkInCollection(['number', 'string'], toLower(type)) ? (
                     <FlexBox
                       flexAuto="left"
                       left={<VerticalBox>金额：</VerticalBox>}

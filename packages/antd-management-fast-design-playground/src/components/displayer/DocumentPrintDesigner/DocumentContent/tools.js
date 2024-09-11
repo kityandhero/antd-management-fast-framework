@@ -10,8 +10,10 @@ import {
   getValueByKey,
   isArray,
   isEmptyArray,
+  isNumber,
   isString,
   startsWith,
+  toLower,
   toNumber,
   toString,
   whetherString,
@@ -349,7 +351,8 @@ export function buildDisplayValue(data, values) {
     <VerticalBox>
       <div>{vText}</div>
     </VerticalBox>
-  ) : type === 'number' &&
+  ) : checkInCollection(['number', 'string'], toLower(type)) &&
+    isNumber(v) &&
     fullLine === whetherString.yes &&
     currencyDisplay === whetherString.yes ? (
     <FlexBox
