@@ -15,7 +15,11 @@ import {
 } from 'antd-management-fast-framework';
 
 import { setDataSchemaAction } from '../../../businessAssists/action';
-import { listAllApproveProcess, listApprove } from '../../../utils';
+import {
+  listAllApproveProcess,
+  listApprove,
+  listAttention,
+} from '../../../utils';
 
 const { BaseVerticalFlexDrawer } = DataDrawer;
 
@@ -202,14 +206,16 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
           general: documentGeneralSchema,
           items,
         }}
+        showAttention
+        attentionList={listAttention}
         approveList={listApprove}
         allApproveProcessList={listAllApproveProcess}
-        signetStyle={{
-          border: '1px solid #000',
-          width: '120px',
-          height: '60px',
-          top: '-10px',
-        }}
+        // signetStyle={{
+        //   border: '1px solid #000',
+        //   width: '120px',
+        //   height: '60px',
+        //   top: '-10px',
+        // }}
         remarkTitle="备注"
         remarkName="remark"
         remarkList={formRemarkList}

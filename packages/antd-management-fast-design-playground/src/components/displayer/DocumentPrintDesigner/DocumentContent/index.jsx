@@ -30,6 +30,69 @@ import {
   adjustValueCollection,
 } from './tools';
 
+function transferNodeList(approveList, allApproveProcessList) {
+  let nodeList = [];
+
+  const approveListAdjust = isArray(approveList) ? approveList : [];
+  const allApproveProcessListAdjust = isArray(allApproveProcessList)
+    ? allApproveProcessList
+    : [];
+
+  if (isEmptyArray(allApproveProcessListAdjust)) {
+    nodeList = [...approveListAdjust];
+  } else {
+    const approveNodeIdList = approveListAdjust.map((o) => o.nodeId);
+
+    for (const one of allApproveProcessListAdjust) {
+      const { nodeId } = {
+        nodeId: '',
+        ...one,
+      };
+
+      if (checkInCollection(approveNodeIdList, nodeId)) {
+        const listFilter = filter(approveListAdjust, (item) => {
+          const { nodeId: nodeIdItem } = {
+            nodeId: '',
+            ...item,
+          };
+
+          return nodeIdItem === nodeId;
+        });
+
+        if (listFilter.length > 0) {
+          nodeList.push(listFilter[0]);
+        } else {
+          nodeList.push(one);
+        }
+      } else {
+        nodeList.push(one);
+      }
+    }
+  }
+
+  const nodeListAdjust = nodeList.map((o) => {
+    const { nodeId, title, note, name, signet, time } = {
+      title: '',
+      note: '',
+      name: '',
+      signet: '',
+      time: '',
+      ...o,
+    };
+
+    return {
+      nodeId,
+      title,
+      note,
+      name,
+      signet,
+      time,
+    };
+  });
+
+  return nodeListAdjust;
+}
+
 class DocumentContent extends PureComponent {
   constructor(properties) {
     super(properties);
@@ -63,8 +126,15 @@ class DocumentContent extends PureComponent {
     }
 
     if (isArray(items)) {
-      const { name, fullLine, firstPosition, width, height, valueDisplayMode } =
-        adjustItem(item);
+      const {
+        name,
+        fullLine,
+        currencyDisplay,
+        firstPosition,
+        width,
+        height,
+        valueDisplayMode,
+      } = adjustItem(item);
 
       let current = null;
 
@@ -75,6 +145,7 @@ class DocumentContent extends PureComponent {
           current = {
             ...o,
             fullLine: toString(fullLine),
+            currencyDisplay: toString(currencyDisplay),
             firstPosition: toString(firstPosition),
             width: toString(width),
             height: toString(height),
@@ -114,6 +185,8 @@ class DocumentContent extends PureComponent {
       titleStyle,
       showTitle,
       designMode,
+      showAttention,
+      attentionList,
       approveList,
       allApproveProcessList,
       remarkTitle,
@@ -156,46 +229,11 @@ class DocumentContent extends PureComponent {
       ...valueColumnStyle,
     };
 
-    let nodeList = [];
+    const nodeListAdjust = transferNodeList(approveList, allApproveProcessList);
 
-    const approveListAdjust = isArray(approveList) ? approveList : [];
-    const allApproveProcessListAdjust = isArray(allApproveProcessList)
-      ? allApproveProcessList
-      : [];
-
-    if (isEmptyArray(allApproveProcessListAdjust)) {
-      nodeList = [...approveListAdjust];
-    } else {
-      const approveNodeIdList = approveListAdjust.map((o) => o.nodeId);
-
-      for (const one of allApproveProcessListAdjust) {
-        const { nodeId } = {
-          nodeId: '',
-          ...one,
-        };
-
-        if (checkInCollection(approveNodeIdList, nodeId)) {
-          const listFilter = filter(approveListAdjust, (item) => {
-            const { nodeId: nodeIdItem } = {
-              nodeId: '',
-              ...item,
-            };
-
-            return nodeIdItem === nodeId;
-          });
-
-          if (listFilter.length > 0) {
-            nodeList.push(listFilter[0]);
-          } else {
-            nodeList.push(one);
-          }
-        } else {
-          nodeList.push(one);
-        }
-      }
-    }
-
-    const nodeListAdjust = nodeList.map((o) => {
+    const attentionListAdjust = (
+      isArray(attentionList) ? attentionList : []
+    ).map((o) => {
       const { nodeId, title, note, name, signet, time } = {
         title: '',
         note: '',
@@ -346,6 +384,29 @@ class DocumentContent extends PureComponent {
             );
           })}
 
+          {showAttention &&
+          isArray(attentionListAdjust) &&
+          !isEmptyArray(attentionListAdjust)
+            ? attentionListAdjust.map((o, index) => {
+                return (
+                  <LineApprove
+                    key={`attention_item_${index}`}
+                    data={o}
+                    general={general}
+                    currentName={currentName}
+                    highlightMode={currentHighlightMode}
+                    designMode={designMode}
+                    lineStyle={lineAdjustStyle}
+                    labelBoxStyle={labelBoxStyle}
+                    valueBoxStyle={valueBoxStyle}
+                    labelContainerStyle={labelContainerStyle}
+                    valueContainerStyle={valueContainerStyle}
+                    signetStyle={signetStyle}
+                  />
+                );
+              })
+            : null}
+
           {isArray(nodeListAdjust)
             ? nodeListAdjust.map((o, index) => {
                 return (
@@ -417,7 +478,10 @@ DocumentContent.defaultProps = {
   onGeneralChange: null,
   designMode: false,
   useRemark: false,
+  showAttention: true,
+  attentionList: [],
   approveList: [],
+  allApproveProcessList: [],
   remarkTitle: '备注',
   remarkName: 'remark',
   remarkList: [],

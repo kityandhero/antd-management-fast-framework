@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-common",
-  "version": "2.6.124",
+  "version": "2.6.125",
   "description": "antd-management-fast-common",
   "keywords": [
     "antd-management-fast-common"
@@ -59,23 +59,23 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
-    "@ant-design/pro-components": "^2.7.15",
+    "@ant-design/pro-components": "^2.7.16",
     "@tanem/react-nprogress": "^5.0.51",
     "@tinymce/tinymce-react": "^5.1.1",
-    "@umijs/max": "^4.3.19",
-    "antd": "^5.20.5",
+    "@umijs/max": "^4.3.20",
+    "antd": "^5.20.6",
     "array-move": "^4.0.0",
     "axios": "^1.7.7",
     "bizcharts": "^4.1.23",
     "classnames": "^2.5.1",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.13",
-    "easy-soft-dva": "^3.10.64",
-    "easy-soft-utility": "^2.8.67",
+    "easy-soft-dva": "^3.10.65",
+    "easy-soft-utility": "^2.8.68",
     "html-react-parser": "^5.1.15",
     "lodash.debounce": "^4.0.8",
     "numeral": "^2.0.6",
-    "path-to-regexp": "^8.0.0",
+    "path-to-regexp": "^8.1.0",
     "queue": "^7.0.0",
     "randomcolor": "^0.6.2",
     "rc-animate": "^3.1.1",
@@ -88,7 +88,7 @@
     "react-json-view": "^1.21.3",
     "react-player": "^2.16.0",
     "react-syntax-highlighter": "^15.5.0",
-    "umi": "^4.3.19"
+    "umi": "^4.3.20"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -104,9 +104,9 @@
     "@babel/preset-react": "^7.24.7",
     "@babel/runtime": "^7.25.6",
     "@changesets/cli": "^2.27.8",
-    "@commitlint/cli": "^19.4.1",
-    "@commitlint/config-conventional": "^19.4.1",
-    "@commitlint/config-pnpm-scopes": "^19.1.0",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@commitlint/config-pnpm-scopes": "^19.5.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-babel": "6.0.4",
@@ -127,7 +127,7 @@
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@types/shelljs": "^0.8.15",
-    "@typescript-eslint/parser": "^8.4.0",
+    "@typescript-eslint/parser": "^8.5.0",
     "autoprefixer": "^10.4.20",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",
@@ -136,7 +136,7 @@
     "cssnano": "^7.0.6",
     "cz-git": "^1.9.4",
     "docdash": "^2.0.2",
-    "easy-soft-develop": "^2.1.237",
+    "easy-soft-develop": "^2.1.239",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -178,6 +178,6 @@
     "stylelint-config-standard": "^36.0.1",
     "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
     "stylelint-order": "^6.0.4",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   }
 }

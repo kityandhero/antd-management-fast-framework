@@ -39,6 +39,7 @@ export const defaultConfig = {
   minHeight: '50',
   // height: 'auto',
   fullLine: whetherString.yes,
+  currencyDisplay: whetherString.no,
   firstPosition: whetherString.no,
   enumList: [],
 };

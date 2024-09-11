@@ -31,8 +31,16 @@ import { adjustItem, getValueDisplayModeText } from '../tools';
 function ItemConfigBox(properties) {
   const { data, highlightMode, onChange: onChangeCallback } = properties;
 
-  const { fullLine, firstPosition, width, height, valueDisplayMode, enumList } =
-    adjustItem(data);
+  const {
+    fullLine,
+    currencyDisplay,
+    firstPosition,
+    width,
+    height,
+    valueDisplayMode,
+    enumList,
+    type,
+  } = adjustItem(data);
 
   const widthAdjust =
     isUndefined(width) ||
@@ -49,6 +57,8 @@ function ItemConfigBox(properties) {
       : height;
 
   const fullLineAdjust = toNumber(fullLine);
+
+  const currencyDisplayAdjust = toNumber(currencyDisplay);
 
   return (
     <div
@@ -200,6 +210,35 @@ function ItemConfigBox(properties) {
                             </Space>
                           </a>
                         </Dropdown>
+                      }
+                    />
+                  ) : null}
+
+                  {fullLineAdjust === whetherNumber.yes && type === 'number' ? (
+                    <FlexBox
+                      flexAuto="left"
+                      left={<VerticalBox>金额：</VerticalBox>}
+                      right={
+                        <Switch
+                          checkedChildren="是"
+                          unCheckedChildren="否"
+                          checked={currencyDisplayAdjust === whetherNumber.yes}
+                          onChange={(checked) => {
+                            if (!isFunction(onChangeCallback)) {
+                              return;
+                            }
+
+                            onChangeCallback({
+                              ...data,
+                              currencyDisplay:
+                                fullLineAdjust === whetherNumber.yes
+                                  ? checked
+                                    ? whetherString.yes
+                                    : whetherString.no
+                                  : whetherString.no,
+                            });
+                          }}
+                        />
                       }
                     />
                   ) : null}

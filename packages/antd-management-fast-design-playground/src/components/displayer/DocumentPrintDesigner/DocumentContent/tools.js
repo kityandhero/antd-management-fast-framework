@@ -6,22 +6,25 @@ import {
   checkStringIsNullOrWhiteSpace,
   endsWith,
   filter,
+  formatMoneyToChinese,
   getValueByKey,
   isArray,
   isEmptyArray,
   isString,
   startsWith,
+  toNumber,
   toString,
   whetherString,
 } from 'easy-soft-utility';
 
-import { VerticalBox } from 'antd-management-fast-component';
+import { FlexBox, VerticalBox } from 'antd-management-fast-component';
 
 import {
   colorStyle,
   defaultConfig,
   fontFamilyStyle,
   valueDisplayModeCollection,
+  valueFrontStyle,
 } from './constant';
 
 export function getInitializeGeneral() {
@@ -37,6 +40,7 @@ export function getInitializeItem() {
     name: '',
     enumList: [],
     fullLine: defaultConfig.fullLine,
+    currencyDisplay: defaultConfig.currencyDisplay,
     firstPosition: defaultConfig.firstPosition,
     width: defaultConfig.width,
     minHeight: defaultConfig.minHeight,
@@ -50,6 +54,7 @@ export function adjustItem(o) {
     name: '',
     enumList: defaultConfig.enumList,
     fullLine: defaultConfig.fullLine,
+    currencyDisplay: defaultConfig.currencyDisplay,
     firstPosition: defaultConfig.firstPosition,
     width: defaultConfig.width,
     minHeight: defaultConfig.minHeight,
@@ -60,6 +65,10 @@ export function adjustItem(o) {
 
   if (fullLine == whetherString.yes) {
     data.firstPosition = whetherString.no;
+  }
+
+  if (fullLine == whetherString.no) {
+    data.currencyDisplay = whetherString.no;
   }
 
   return data;
@@ -81,6 +90,7 @@ export function adjustSchemaData(schema) {
       name,
       enumList,
       fullLine,
+      currencyDisplay,
       firstPosition,
       width,
       minHeight,
@@ -105,6 +115,7 @@ export function adjustSchemaData(schema) {
       name,
       enumList,
       fullLine,
+      currencyDisplay,
       firstPosition,
       width,
       minHeight,
@@ -145,6 +156,7 @@ export function adjustItemCollection(items, other = []) {
       name,
       enumList,
       fullLine,
+      currencyDisplay,
       firstPosition,
       width,
       minHeight,
@@ -176,6 +188,7 @@ export function adjustItemCollection(items, other = []) {
         name,
         enumList,
         fullLine,
+        currencyDisplay,
         firstPosition,
         width,
         minHeight,
@@ -195,6 +208,7 @@ export function adjustItemCollection(items, other = []) {
         name,
         enumList,
         fullLine,
+        currencyDisplay,
         firstPosition,
         width,
         minHeight,
@@ -250,7 +264,8 @@ export function adjustValueCollection(values, otherData = []) {
 }
 
 export function buildDisplayValue(data, values) {
-  const { name, type, enumList, valueDisplayMode } = { ...data };
+  const { name, type, fullLine, currencyDisplay, enumList, valueDisplayMode } =
+    { ...data };
 
   let v = '';
   let vList = [];
@@ -333,6 +348,44 @@ export function buildDisplayValue(data, values) {
     <VerticalBox>
       <div>{vText}</div>
     </VerticalBox>
+  ) : type === 'number' &&
+    fullLine === whetherString.yes &&
+    currencyDisplay === whetherString.yes ? (
+    <FlexBox
+      flexAuto="left"
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
+      left={
+        <VerticalBox>
+          <div
+            style={{
+              ...valueFrontStyle,
+              fontSize: '16px',
+              ...fontFamilyStyle,
+              ...colorStyle,
+            }}
+          >
+            人民币（大写）{formatMoneyToChinese({ target: toNumber(v) })}
+          </div>
+        </VerticalBox>
+      }
+      right={
+        <VerticalBox>
+          <div
+            style={{
+              ...valueFrontStyle,
+              fontSize: '16px',
+              ...fontFamilyStyle,
+              ...colorStyle,
+            }}
+          >
+            小写￥{v}
+          </div>
+        </VerticalBox>
+      }
+    />
   ) : (
     <VerticalBox>
       <div>{v}</div>
