@@ -15,7 +15,7 @@ import {
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
-import { setDataSchemaAction } from '../../../businessAssists/action';
+import { setDocumentSchemaAction } from '../../../businessAssists/action';
 import {
   listAllApproveProcess,
   listApprove,
@@ -69,9 +69,24 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
   };
 
   saveDocumentSchema = (data) => {
-    setDataSchemaAction({
+    const { general, items } = {
+      general: {},
+      items: [],
+      ...data,
+    };
+
+    delete general['general'];
+    delete general['items'];
+
+    const o = {};
+
+    o['documentGeneralSchema'] = JSON.stringify(general);
+
+    o['documentItemsSchema'] = JSON.stringify(items);
+
+    setDocumentSchemaAction({
       target: this,
-      handleData: JSON.stringify(data),
+      handleData: JSON.stringify(o),
       successCallback: ({ target }) => {
         target.reloadData({});
       },

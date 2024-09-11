@@ -351,10 +351,10 @@ export function buildDisplayValue(data, values) {
     <VerticalBox>
       <div>{vText}</div>
     </VerticalBox>
-  ) : checkInCollection(['number', 'string'], toLower(type)) &&
-    isNumber(v) &&
+  ) : currencyDisplay === whetherString.yes &&
     fullLine === whetherString.yes &&
-    currencyDisplay === whetherString.yes ? (
+    checkInCollection(['number', 'string'], toLower(type)) &&
+    isNumber(toNumber(v)) ? (
     <FlexBox
       flexAuto="left"
       style={{

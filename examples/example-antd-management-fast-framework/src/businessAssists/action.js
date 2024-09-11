@@ -218,6 +218,24 @@ export async function setDataSchemaAction({
   });
 }
 
+export async function setDocumentSchemaAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: 'formDesign/setDocumentSchema',
+    params: {
+      ...handleData,
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
 export async function saveFormAction({
   target,
   handleData,
