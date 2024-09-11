@@ -33,6 +33,10 @@ export const highlightModeCollection = {
   all: 'all',
 };
 
+export const currencyDisplayStyle = {
+  borderBottom: '1px solid #999',
+};
+
 export const defaultConfig = {
   labelWidth: '160',
   width: zeroString,

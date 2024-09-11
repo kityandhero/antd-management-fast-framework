@@ -8,6 +8,7 @@ import {
   logException,
 } from 'easy-soft-utility';
 
+import { SyntaxHighlighter } from 'antd-management-fast-component';
 import { DocumentPrintDesigner } from 'antd-management-fast-design-playground';
 import {
   DataDrawer,
@@ -50,8 +51,8 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       pageTitle: '表格文档格式预览',
       loadApiPath: 'formDesign/get',
       width: 1024,
-      overlayButtonOpenText: '打开源代码',
-      overlayButtonCloseText: '关闭源代码',
+      overlayButtonOpenText: '查看数据',
+      overlayButtonCloseText: '关闭数据',
     };
   }
 
@@ -226,6 +227,117 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
           FlowCaseFormDocumentDrawer.close();
         }}
       />
+    );
+  };
+
+  renderOverlayContent = () => {
+    const { metaData } = this.state;
+
+    const { listFormStorage } = {
+      listFormStorage: [],
+      ...metaData,
+    };
+
+    const documentGeneralSchema = getValueByKey({
+      data: metaData,
+      key: 'documentGeneralSchema',
+      defaultValue: {},
+    });
+
+    const documentItemsSchema = getValueByKey({
+      data: metaData,
+      key: 'documentItemsSchema',
+      convert: convertCollection.array,
+    });
+
+    const formRemarkList = getValueByKey({
+      data: metaData,
+      key: 'formRemarkList',
+      convert: convertCollection.array,
+    });
+
+    const dataSchema = getValueByKey({
+      data: metaData,
+      key: 'dataSchema',
+      defaultValue: '[]',
+    });
+
+    let listDataSchema = [];
+
+    try {
+      listDataSchema = JSON.parse(dataSchema);
+    } catch (error) {
+      logException(error);
+    }
+
+    let items = [];
+
+    if (
+      isArray(documentItemsSchema) &&
+      !isEmptyArray(documentItemsSchema) &&
+      isArray(listDataSchema)
+    ) {
+      for (const o of listDataSchema) {
+        const { name } = { name: '', ...o };
+
+        if (checkStringIsNullOrWhiteSpace(name)) {
+          continue;
+        }
+
+        let config = {};
+
+        for (const one of documentItemsSchema) {
+          const { name: nameOne } = { name: '', ...one };
+
+          if (nameOne === name) {
+            config = one;
+
+            break;
+          }
+        }
+
+        items.push({ ...config, ...o });
+      }
+    } else {
+      items = listDataSchema;
+    }
+
+    // const { general } = {
+    //   general: {},
+    //   ...documentSchema,
+    // };
+
+    const data = {
+      documentSchema: {
+        general: documentGeneralSchema,
+        items,
+      },
+      values: listFormStorage,
+      remarkSchemaList: formRemarkList,
+    };
+
+    return (
+      <div
+        style={{
+          width: '90%',
+          height: '90%',
+          background: '#fff',
+          padding: '16px 16px 26px 16px',
+          borderRadius: '10px',
+          overflow: 'hidden',
+        }}
+      >
+        <SyntaxHighlighter
+          language="js"
+          value={JSON.stringify(data, null, 2)}
+          other={{ showLineNumbers: true, wrapLines: true }}
+          style={{
+            height: '100%',
+            marginLeft: '0px',
+            marginRight: '0px',
+          }}
+        />
+      </div>
     );
   };
 }

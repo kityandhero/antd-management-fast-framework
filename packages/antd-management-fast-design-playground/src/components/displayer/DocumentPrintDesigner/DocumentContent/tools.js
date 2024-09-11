@@ -21,6 +21,7 @@ import { FlexBox, VerticalBox } from 'antd-management-fast-component';
 
 import {
   colorStyle,
+  currencyDisplayStyle,
   defaultConfig,
   fontFamilyStyle,
   valueDisplayModeCollection,
@@ -367,7 +368,10 @@ export function buildDisplayValue(data, values) {
               ...colorStyle,
             }}
           >
-            人民币（大写）{formatMoneyToChinese({ target: toNumber(v) })}
+            人民币（大写）
+            <span style={currencyDisplayStyle}>
+              {formatMoneyToChinese({ target: toNumber(v) })}
+            </span>
           </div>
         </VerticalBox>
       }
@@ -381,7 +385,7 @@ export function buildDisplayValue(data, values) {
               ...colorStyle,
             }}
           >
-            小写￥{v}
+            小写￥<span style={currencyDisplayStyle}>{v}</span>
           </div>
         </VerticalBox>
       }
