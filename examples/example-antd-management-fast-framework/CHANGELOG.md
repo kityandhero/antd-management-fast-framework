@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.9.24
+
+### Patch Changes
+
+- update
+
 ## 1.9.23
 
 ### Patch Changes
