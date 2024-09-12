@@ -18,6 +18,7 @@ import {
 import { setDocumentSchemaAction } from '../../../businessAssists/action';
 import {
   listAllApproveProcess,
+  listApply,
   listApprove,
   listAttention,
 } from '../../../utils';
@@ -222,6 +223,8 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
           general: documentGeneralSchema,
           items,
         }}
+        showApply
+        applyList={listApply}
         showAttention
         attentionList={listAttention}
         approveList={listApprove}

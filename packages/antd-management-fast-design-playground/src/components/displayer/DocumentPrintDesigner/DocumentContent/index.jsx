@@ -11,6 +11,7 @@ import {
 
 import { CenterBox, FlexBox } from 'antd-management-fast-component';
 
+import { LineApply } from './Items/LineApply';
 import { LineApprove } from './Items/LineApprove';
 import {
   colorDefault,
@@ -92,6 +93,41 @@ function transferNodeList(approveList, allApproveProcessList) {
 
   return nodeListAdjust;
 }
+
+const defaultProperties = {
+  showToolbar: true,
+  showRemark: true,
+  showTitle: true,
+  general: {},
+  items: [],
+  values: {},
+  style: null,
+  color: colorDefault,
+  title: '表格标题',
+  titleContainerStyle: null,
+  titleStyle: null,
+  labelColumnWidth: 140,
+  labelColumnStyle: null,
+  labelContainerStyle: null,
+  labelStyle: null,
+  signetStyle: null,
+  valueColumnStyle: null,
+  valueContainerStyle: null,
+  valueStyle: null,
+  onItemsChange: null,
+  onGeneralChange: null,
+  designMode: false,
+  useRemark: false,
+  showApply: false,
+  applyList: [],
+  showAttention: false,
+  attentionList: [],
+  approveList: [],
+  allApproveProcessList: [],
+  remarkTitle: '备注',
+  remarkName: 'remark',
+  remarkList: [],
+};
 
 class DocumentContent extends PureComponent {
   constructor(properties) {
@@ -185,6 +221,8 @@ class DocumentContent extends PureComponent {
       titleStyle,
       showTitle,
       designMode,
+      showApply,
+      applyList,
       showAttention,
       attentionList,
       approveList,
@@ -230,6 +268,26 @@ class DocumentContent extends PureComponent {
     };
 
     const nodeListAdjust = transferNodeList(approveList, allApproveProcessList);
+
+    const applyListAdjust = (isArray(applyList) ? applyList : []).map((o) => {
+      const { nodeId, title, note, name, signet, time } = {
+        title: '',
+        note: '',
+        name: '',
+        signet: '',
+        time: '',
+        ...o,
+      };
+
+      return {
+        nodeId,
+        title,
+        note,
+        name,
+        signet,
+        time,
+      };
+    });
 
     const attentionListAdjust = (
       isArray(attentionList) ? attentionList : []
@@ -384,6 +442,29 @@ class DocumentContent extends PureComponent {
             );
           })}
 
+          {showApply &&
+          isArray(applyListAdjust) &&
+          !isEmptyArray(applyListAdjust)
+            ? applyListAdjust.map((o, index) => {
+                return (
+                  <LineApply
+                    key={`attention_item_${index}`}
+                    data={o}
+                    general={general}
+                    currentName={currentName}
+                    highlightMode={currentHighlightMode}
+                    designMode={designMode}
+                    lineStyle={lineAdjustStyle}
+                    labelBoxStyle={labelBoxStyle}
+                    valueBoxStyle={valueBoxStyle}
+                    labelContainerStyle={labelContainerStyle}
+                    valueContainerStyle={valueContainerStyle}
+                    signetStyle={signetStyle}
+                  />
+                );
+              })
+            : null}
+
           {showAttention &&
           isArray(attentionListAdjust) &&
           !isEmptyArray(attentionListAdjust)
@@ -455,36 +536,7 @@ class DocumentContent extends PureComponent {
 }
 
 DocumentContent.defaultProps = {
-  showToolbar: true,
-  showRemark: true,
-  showTitle: true,
-  general: {},
-  items: [],
-  values: {},
-  style: null,
-  color: colorDefault,
-  title: '表格标题',
-  titleContainerStyle: null,
-  titleStyle: null,
-  labelColumnWidth: 140,
-  labelColumnStyle: null,
-  labelContainerStyle: null,
-  labelStyle: null,
-  signetStyle: null,
-  valueColumnStyle: null,
-  valueContainerStyle: null,
-  valueStyle: null,
-  onItemsChange: null,
-  onGeneralChange: null,
-  designMode: false,
-  useRemark: false,
-  showAttention: true,
-  attentionList: [],
-  approveList: [],
-  allApproveProcessList: [],
-  remarkTitle: '备注',
-  remarkName: 'remark',
-  remarkList: [],
+  ...defaultProperties,
 };
 
 export { DocumentContent };

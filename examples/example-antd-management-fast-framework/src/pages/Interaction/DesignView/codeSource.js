@@ -8,6 +8,8 @@ import {
   getValueByKey,
   isArray,
   isEmptyArray,
+  isNumber,
+  isString,
   mergeArrowText,
   showSimpleInfoMessage,
 } from 'easy-soft-utility';
@@ -115,7 +117,11 @@ class DesignView extends BaseUpdateForm {
     for (const [key, value] of Object.entries(data)) {
       list.push({
         name: key,
-        value: JSON.stringify(value),
+        value: isString(value)
+          ? value
+          : isNumber(value)
+            ? value
+            : JSON.stringify(value),
       });
     }
 
