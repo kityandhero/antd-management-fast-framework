@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-flow",
-  "version": "1.0.95",
+  "version": "1.0.96",
   "keywords": [
     "antd-management-fast-flow"
   ],
@@ -61,7 +61,7 @@
     "antd-management-fast-common": "workspace:*",
     "antd-management-fast-component": "workspace:*",
     "classnames": "^2.5.1",
-    "easy-soft-utility": "^2.8.69",
+    "easy-soft-utility": "^2.8.70",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "reactflow": "^11.11.4"
@@ -82,10 +82,10 @@
     "@commitlint/config-pnpm-scopes": "^19.5.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@types/jest": "^29.5.13",
-    "@types/node": "^22.5.4",
-    "@types/react": "^18.3.5",
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.7",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/parser": "^8.5.0",
+    "@typescript-eslint/parser": "^8.6.0",
     "antd": "^5.20.6",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",

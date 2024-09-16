@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-formily",
-  "version": "1.0.105",
+  "version": "1.0.106",
   "keywords": [
     "antd-management-fast-formily"
   ],
@@ -71,8 +71,8 @@
     "antd-management-fast-component": "workspace:*",
     "antd-management-fast-design-react": "workspace:*",
     "classnames": "^2.5.1",
-    "easy-soft-dva": "^3.10.66",
-    "easy-soft-utility": "^2.8.69",
+    "easy-soft-dva": "^3.10.67",
+    "easy-soft-utility": "^2.8.70",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -92,10 +92,10 @@
     "@commitlint/config-pnpm-scopes": "^19.5.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@types/jest": "^29.5.13",
-    "@types/node": "^22.5.4",
-    "@types/react": "^18.3.5",
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.7",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/parser": "^8.5.0",
+    "@typescript-eslint/parser": "^8.6.0",
     "antd": "^5.20.6",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",
