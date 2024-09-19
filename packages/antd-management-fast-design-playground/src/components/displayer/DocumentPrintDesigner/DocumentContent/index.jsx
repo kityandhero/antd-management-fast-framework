@@ -1,15 +1,23 @@
 import React, { PureComponent } from 'react';
 
 import {
+  canToNumber,
   checkInCollection,
   filter,
   isArray,
   isEmptyArray,
   isFunction,
+  toNumber,
   toString,
 } from 'easy-soft-utility';
 
-import { CenterBox, FlexBox } from 'antd-management-fast-component';
+import {
+  CenterBox,
+  ColorText,
+  FlexBox,
+  ImageBox,
+  VerticalBox,
+} from 'antd-management-fast-component';
 
 import { LineApply } from './Items/LineApply';
 import { LineApprove } from './Items/LineApprove';
@@ -127,6 +135,15 @@ const defaultProperties = {
   remarkTitle: '备注',
   remarkName: 'remark',
   remarkList: [],
+  showQRCode: false,
+  qRCodeTitle: '防伪二维码:',
+  qRCodeDescription: '扫码查看防伪标识',
+  qRCodeImage: '',
+  qRCodeHeight: 40,
+  qRCodeStyle: {},
+  showSerialNumber: false,
+  serialNumberTitle: '流水号',
+  serialNumberContent: '',
 };
 
 class DocumentContent extends PureComponent {
@@ -139,6 +156,122 @@ class DocumentContent extends PureComponent {
       currentHighlightMode: '',
     };
   }
+
+  buildFooter = () => {
+    const {
+      showQRCode,
+      qRCodeTitle,
+      qRCodeDescription,
+      qRCodeImage,
+      qRCodeHeight,
+      qRCodeStyle,
+      showSerialNumber,
+      serialNumberTitle,
+      serialNumberContent,
+    } = this.props;
+
+    const paddingTop = 8;
+
+    const qRCodeHeightAdjust = canToNumber(qRCodeHeight)
+      ? toNumber(qRCodeHeight)
+      : defaultProperties.qRCodeHeight;
+
+    if (!showQRCode && !showSerialNumber) {
+      return null;
+    }
+
+    if (showQRCode && showSerialNumber) {
+      return (
+        <div
+          style={{
+            height: `${qRCodeHeightAdjust}px`,
+            paddingTop: `${paddingTop}px`,
+          }}
+        >
+          <FlexBox
+            flexAuto="left"
+            style={{ width: '100%' }}
+            left={
+              <FlexBox
+                flexAuto="top"
+                top={
+                  <div>
+                    <ColorText text={serialNumberTitle} />
+                  </div>
+                }
+                bottom={
+                  <div>
+                    <ColorText text={serialNumberContent} />
+                  </div>
+                }
+              />
+            }
+            right={
+              <div style={{ ...qRCodeStyle, width: `${qRCodeHeightAdjust}px` }}>
+                <ImageBox src={qRCodeImage} />
+              </div>
+            }
+          />
+        </div>
+      );
+    }
+
+    if (showSerialNumber) {
+      return (
+        <div
+          style={{
+            height: '22px',
+            paddingTop: `${paddingTop}px`,
+          }}
+        >
+          <VerticalBox fillWidth>
+            <FlexBox
+              flexAuto="left"
+              style={{ width: '100%' }}
+              left={<ColorText text={serialNumberTitle} />}
+              right={<ColorText text={serialNumberContent} />}
+            />
+          </VerticalBox>
+        </div>
+      );
+    }
+
+    if (showQRCode) {
+      return (
+        <div
+          style={{
+            height: `${qRCodeHeightAdjust}px`,
+            paddingTop: `${paddingTop}px`,
+          }}
+        >
+          <FlexBox
+            flexAuto="left"
+            style={{ width: '100%' }}
+            left={
+              <FlexBox
+                flexAuto="top"
+                top={
+                  <div>
+                    <ColorText text={qRCodeTitle} />
+                  </div>
+                }
+                bottom={
+                  <div>
+                    <ColorText text={qRCodeDescription} />
+                  </div>
+                }
+              />
+            }
+            right={
+              <div style={{ ...qRCodeStyle, width: `${qRCodeHeightAdjust}px` }}>
+                <ImageBox src={qRCodeImage} />
+              </div>
+            }
+          />
+        </div>
+      );
+    }
+  };
 
   onCellClick = (o, highlightMode) => {
     this.setState({ currentItem: o, currentHighlightMode: highlightMode });
@@ -530,6 +663,8 @@ class DocumentContent extends PureComponent {
             />
           ) : null}
         </div>
+
+        {this.buildFooter()}
       </div>
     );
   }
