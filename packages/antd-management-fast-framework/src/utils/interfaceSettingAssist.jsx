@@ -7,6 +7,7 @@ import {
   checkHasAuthority,
   checkObjectIsNullOrEmpty,
   checkStringIsNullOrWhiteSpace,
+  checkWhetherDevelopmentEnvironment,
   endsWith,
   isEmptyArray,
   isEmptyObject,
@@ -325,33 +326,34 @@ export function mergeLayoutSetting({
 
           <Bootstrap setInitialState={setInitialState} />
 
-          {!properties.location?.pathname?.includes('/login') && (
-            <SettingDrawer
-              disableUrlParams
-              enableDarkTheme
-              settings={settings}
-              onSettingChange={(settings) => {
-                setInitialState((preInitialState) => {
-                  const { settings: preSettings = {} } = {
-                    settings: {},
-                    ...preInitialState,
-                  };
+          {!properties.location?.pathname?.includes('/login') &&
+            checkWhetherDevelopmentEnvironment() && (
+              <SettingDrawer
+                disableUrlParams
+                enableDarkTheme
+                settings={settings}
+                onSettingChange={(settings) => {
+                  setInitialState((preInitialState) => {
+                    const { settings: preSettings = {} } = {
+                      settings: {},
+                      ...preInitialState,
+                    };
 
-                  const v = {
-                    ...preSettings,
-                    ...settings,
-                  };
+                    const v = {
+                      ...preSettings,
+                      ...settings,
+                    };
 
-                  setInterfaceSetting(v);
+                    setInterfaceSetting(v);
 
-                  return {
-                    ...preInitialState,
-                    settings: v,
-                  };
-                });
-              }}
-            />
-          )}
+                    return {
+                      ...preInitialState,
+                      settings: v,
+                    };
+                  });
+                }}
+              />
+            )}
         </>
       );
     },
