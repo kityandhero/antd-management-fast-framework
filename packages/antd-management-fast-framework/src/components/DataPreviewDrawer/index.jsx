@@ -37,13 +37,27 @@ class DataPreviewDrawer extends BaseFormDrawer {
     };
   }
 
+  getProperties = () => {
+    return {
+      title: '',
+      descriptionLabel: '简要描述',
+      description: '',
+      listData: [],
+      icon: iconBuilder.read(),
+      placement: 'left',
+      width: 380,
+      dataType: dataTypeCollection.commonValue.flag,
+      ...this.props,
+    };
+  };
+
   /**
    * 渲染标题图标，默认为空，可根据需要重载。
    * @function
    * @returns {Object} 标题图标
    */
   renderPresetTitleIcon = () => {
-    const { icon } = this.props;
+    const { icon } = this.getProperties();
 
     return icon;
   };
@@ -53,7 +67,7 @@ class DataPreviewDrawer extends BaseFormDrawer {
    * @function
    */
   getPresetPageTitle = () => {
-    const { title } = this.props;
+    const { title } = this.getProperties();
 
     return title || '';
   };
@@ -69,7 +83,7 @@ class DataPreviewDrawer extends BaseFormDrawer {
       dataType,
       data,
       listData: otherListData,
-    } = this.props;
+    } = this.getProperties();
 
     const list = [
       {
@@ -172,7 +186,7 @@ class DataPreviewDrawer extends BaseFormDrawer {
    * @returns {Object} 渲染结果
    */
   renderPresetContentContainor = () => {
-    const { dataType, data } = this.props;
+    const { dataType, data } = this.getProperties();
 
     if (dataType === dataTypeCollection.html.flag) {
       return <div className={styles.previewContainor}>{parse(data)}</div>;
@@ -183,16 +197,5 @@ class DataPreviewDrawer extends BaseFormDrawer {
     );
   };
 }
-
-DataPreviewDrawer.defaultProps = {
-  title: '',
-  descriptionLabel: '简要描述',
-  description: '',
-  listData: [],
-  icon: iconBuilder.read(),
-  placement: 'left',
-  width: 380,
-  dataType: dataTypeCollection.commonValue.flag,
-};
 
 export { DataPreviewDrawer };

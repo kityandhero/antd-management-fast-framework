@@ -14,6 +14,21 @@ import styles from './index.less';
   switchControl,
 }))
 class BatchAction extends PureComponent {
+  getProperties = () => {
+    return {
+      type: 'default',
+      icon: null,
+      text: '按钮',
+      size: 'small',
+      danger: false,
+      menus: [],
+      onClick: null,
+      onSelect: null,
+      disabled: false,
+      ...this.props,
+    };
+  };
+
   render() {
     const {
       switchControl,
@@ -27,7 +42,7 @@ class BatchAction extends PureComponent {
       onClick,
       onSelect,
       disabled,
-    } = this.props;
+    } = this.getProperties();
 
     const loading = switchControlAssist.check(switchControl, flag);
 
@@ -95,17 +110,5 @@ class BatchAction extends PureComponent {
     );
   }
 }
-
-BatchAction.defaultProps = {
-  type: 'default',
-  icon: null,
-  text: '按钮',
-  size: 'small',
-  danger: false,
-  menus: [],
-  onClick: null,
-  onSelect: null,
-  disabled: false,
-};
 
 export { BatchAction };

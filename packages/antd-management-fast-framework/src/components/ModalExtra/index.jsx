@@ -9,8 +9,18 @@ import styles from './index.less';
   switchControl,
 }))
 class ModalExtra extends PureComponent {
+  getProperties = () => {
+    return {
+      icon: null,
+      titlePrefix: null,
+      title: null,
+      destroyOnClose: false,
+      ...this.props,
+    };
+  };
+
   buildBodyStyle = () => {
-    const { overlayContent } = this.props;
+    const { overlayContent } = this.getProperties();
 
     if (overlayContent == null) {
       return {};
@@ -23,7 +33,7 @@ class ModalExtra extends PureComponent {
   };
 
   buildStyles = () => {
-    const { styles: styleCollection } = { styles: {}, ...this.props };
+    const { styles: styleCollection } = this.getProperties();
 
     const { header, body, footer, mask, wrapper } = {
       header: {},
@@ -49,14 +59,14 @@ class ModalExtra extends PureComponent {
   };
 
   renderPresetTitle = () => {
-    const { titlePrefix, title } = this.props;
+    const { titlePrefix, title } = this.getProperties();
 
     return `${titlePrefix}${title || '标题'}`;
   };
 
   renderOverlayControlButton = () => {
     const { overlayContent, overlayButtonOpenText, overlayButtonCloseText } =
-      this.props;
+      this.getProperties();
 
     if (overlayContent == null) {
       return null;
@@ -79,7 +89,7 @@ class ModalExtra extends PureComponent {
 
   render() {
     const { flag, switchControl, children, icon, destroyOnClose, ...rest } =
-      this.props;
+      this.getProperties();
 
     const v = !!switchControl[flag];
     const styleCollection = this.buildStyles();
@@ -108,12 +118,5 @@ class ModalExtra extends PureComponent {
     );
   }
 }
-
-ModalExtra.defaultProps = {
-  icon: null,
-  titlePrefix: null,
-  title: null,
-  destroyOnClose: false,
-};
 
 export { ModalExtra };

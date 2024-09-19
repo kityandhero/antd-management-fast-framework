@@ -10,10 +10,16 @@ import { TranslateLocale } from 'antd-management-fast-common';
   shortcutControl,
 }))
 class ShortcutNavigation extends PureComponent {
+  getProperties = () => {
+    return {
+      ...this.props,
+    };
+  };
+
   render() {
     const {
       shortcutControl: { listData },
-    } = this.props;
+    } = this.getProperties();
 
     return (
       <Space>

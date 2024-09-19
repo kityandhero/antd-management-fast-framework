@@ -8,10 +8,16 @@ import { ProgressBar } from 'antd-management-fast-component';
   progressBarControl,
 }))
 class TopProgressBar extends PureComponent {
+  getProperties = () => {
+    return {
+      ...this.props,
+    };
+  };
+
   render() {
     const {
       progressBarControl: { progressing },
-    } = this.props;
+    } = this.getProperties();
 
     return (
       <ProgressBar

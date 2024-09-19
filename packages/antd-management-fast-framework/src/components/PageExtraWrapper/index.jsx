@@ -22,6 +22,15 @@ const { PageWrapper } = PageExtra;
   tabControl,
 }))
 class PageExtraWrapper extends BaseComponent {
+  getProperties = () => {
+    return {
+      useShortcutNavigation: false,
+      tabFlag: '',
+      tabList: [],
+      ...this.props,
+    };
+  };
+
   doWorkAfterDidMount = () => {
     const that = this;
 
@@ -31,7 +40,7 @@ class PageExtraWrapper extends BaseComponent {
   };
 
   getUsableKey = () => {
-    const { tabList } = this.props;
+    const { tabList } = this.getProperties();
 
     const { pathname } = getCurrentLocation();
 
@@ -51,7 +60,7 @@ class PageExtraWrapper extends BaseComponent {
   };
 
   checkActiveKey = () => {
-    const { tabFlag, tabList } = this.props;
+    const { tabFlag, tabList } = this.getProperties();
 
     if (!isArray(tabList)) {
       return;
@@ -88,7 +97,7 @@ class PageExtraWrapper extends BaseComponent {
       flag,
       tabFlag,
       ...rest
-    } = this.props;
+    } = this.getProperties();
 
     const spinning = switchControlAssist.check(switchControl, flag);
     const activeKey = tabControl[tabFlag] || '';

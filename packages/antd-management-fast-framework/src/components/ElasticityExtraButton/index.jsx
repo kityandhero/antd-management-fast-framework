@@ -10,9 +10,18 @@ import { switchControlAssist } from '../../utils/switchControlAssist';
   switchControl,
 }))
 class ElasticityExtraButton extends PureComponent {
+  getProperties = () => {
+    return {
+      flag: '',
+      interimIcon: null,
+      ...ElasticityButton.defaultProps,
+      ...this.props,
+    };
+  };
+
   render() {
     const { switchControl, flag, interimIcon, icon, disabled, ...rest } =
-      this.props;
+      this.getProperties();
 
     const checkResult = switchControlAssist.check(switchControl, flag);
 
@@ -25,11 +34,5 @@ class ElasticityExtraButton extends PureComponent {
     );
   }
 }
-
-ElasticityExtraButton.defaultProps = {
-  flag: '',
-  interimIcon: null,
-  ...ElasticityButton.defaultProps,
-};
 
 export { ElasticityExtraButton };

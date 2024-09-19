@@ -18,6 +18,16 @@ import { menuControlAssist } from '../../utils/menuControlAssist';
   menuControl,
 }))
 class MenuWrapper extends BaseComponent {
+  getProperties = () => {
+    return {
+      mode: '',
+      menuFlag: '',
+      items: [],
+      handleClick: null,
+      ...this.props,
+    };
+  };
+
   doWorkAfterDidMount = () => {
     const that = this;
 
@@ -27,7 +37,7 @@ class MenuWrapper extends BaseComponent {
   };
 
   getUsableKey = () => {
-    const { items } = this.props;
+    const { items } = this.getProperties();
 
     const { pathname } = getCurrentLocation();
 
@@ -47,7 +57,7 @@ class MenuWrapper extends BaseComponent {
   };
 
   checkActiveKey = () => {
-    const { menuFlag, items } = this.props;
+    const { menuFlag, items } = this.getProperties();
 
     if (!isArray(items)) {
       return;
@@ -71,7 +81,7 @@ class MenuWrapper extends BaseComponent {
   };
 
   getActiveKey = () => {
-    const { menuControl, menuFlag } = this.props;
+    const { menuControl, menuFlag } = this.getProperties();
 
     const activeKey = menuControl[menuFlag] || '';
 
@@ -84,7 +94,7 @@ class MenuWrapper extends BaseComponent {
    * @returns {Object} 渲染结果
    */
   renderFurther() {
-    const { mode, items, handleClick } = this.props;
+    const { mode, items, handleClick } = this.getProperties();
 
     const activeKey = this.getActiveKey();
 

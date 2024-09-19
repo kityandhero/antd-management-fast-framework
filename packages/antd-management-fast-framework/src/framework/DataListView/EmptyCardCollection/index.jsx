@@ -9,8 +9,14 @@ import { switchControlAssist } from '../../../utils/switchControlAssist';
   switchControl,
 }))
 class EmptyCardCollection extends PureComponent {
+  getProperties = () => {
+    return {
+      ...this.props,
+    };
+  };
+
   render() {
-    const { switchControl, flag } = this.props;
+    const { switchControl, flag } = this.getProperties();
 
     const loading = switchControlAssist.check(switchControl, flag);
 

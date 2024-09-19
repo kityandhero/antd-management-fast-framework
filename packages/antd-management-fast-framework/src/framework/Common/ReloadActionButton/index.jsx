@@ -11,8 +11,16 @@ import { switchControlAssist } from '../../../utils/switchControlAssist';
   switchControl,
 }))
 class ReloadActionButton extends PureComponent {
+  getProperties = () => {
+    return {
+      title: '刷新当前数据',
+      onReload: null,
+      ...this.props,
+    };
+  };
+
   render() {
-    const { switchControl, flag, title, onReload } = this.props;
+    const { switchControl, flag, title, onReload } = this.getProperties();
 
     const checkResult = switchControlAssist.check(switchControl, flag);
 
@@ -32,10 +40,5 @@ class ReloadActionButton extends PureComponent {
     );
   }
 }
-
-ReloadActionButton.defaultProps = {
-  title: '刷新当前数据',
-  onReload: null,
-};
 
 export { ReloadActionButton };

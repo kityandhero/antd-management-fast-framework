@@ -20,8 +20,23 @@ class DrawerExtra extends PureComponent {
     };
   }
 
+  getProperties = () => {
+    return {
+      styles: {},
+      icon: null,
+      titlePrefix: null,
+      title: null,
+      subtitle: null,
+      destroyOnClose: false,
+      overlayContent: null,
+      overlayButtonOpenText: '打开浮层',
+      overlayButtonCloseText: '关闭浮层',
+      ...this.props,
+    };
+  };
+
   buildBodyStyle = () => {
-    const { overlayContent } = this.props;
+    const { overlayContent } = this.getProperties();
 
     if (overlayContent == null) {
       return {};
@@ -34,7 +49,7 @@ class DrawerExtra extends PureComponent {
   };
 
   buildStyles = () => {
-    const { styles: styleCollection } = { styles: {}, ...this.props };
+    const { styles: styleCollection } = this.getProperties();
 
     const { header, body, footer, mask, wrapper } = {
       header: {},
@@ -60,7 +75,7 @@ class DrawerExtra extends PureComponent {
   };
 
   renderPresetTitle = () => {
-    const { titlePrefix, title, subtitle } = this.props;
+    const { titlePrefix, title, subtitle } = this.getProperties();
 
     const subtitleAdjust = checkStringIsNullOrWhiteSpace(subtitle)
       ? ''
@@ -71,7 +86,7 @@ class DrawerExtra extends PureComponent {
 
   renderOverlayControlButton = () => {
     const { overlayContent, overlayButtonOpenText, overlayButtonCloseText } =
-      this.props;
+      this.getProperties();
 
     if (overlayContent == null) {
       return null;
@@ -93,7 +108,7 @@ class DrawerExtra extends PureComponent {
   };
 
   renderExtra = () => {
-    const { extra } = this.props;
+    const { extra } = this.getProperties();
 
     const extraActions = [];
 
@@ -150,7 +165,7 @@ class DrawerExtra extends PureComponent {
   };
 
   renderOverlayContent = () => {
-    const { overlayContent } = this.props;
+    const { overlayContent } = this.getProperties();
 
     if (overlayContent == null) {
       return null;
@@ -167,7 +182,7 @@ class DrawerExtra extends PureComponent {
 
   render() {
     const { flag, switchControl, children, icon, destroyOnClose, ...rest } =
-      this.props;
+      this.getProperties();
 
     const v = !!switchControl[flag];
 
@@ -201,16 +216,5 @@ class DrawerExtra extends PureComponent {
     );
   }
 }
-
-DrawerExtra.defaultProps = {
-  icon: null,
-  titlePrefix: null,
-  title: null,
-  subtitle: null,
-  destroyOnClose: false,
-  overlayContent: null,
-  overlayButtonOpenText: '打开浮层',
-  overlayButtonCloseText: '关闭浮层',
-};
 
 export { DrawerExtra };
