@@ -108,9 +108,15 @@ export default {
   'menu.currentSystem': '系统设置',
   'menu.currentSystem.basicInfo': '基本设置',
 
-  'menu.currentOperator': '个人中心',
-  'menu.currentOperator.center': '个人中心',
-  'menu.currentOperator.setting': '个人设置',
+  'menu.currentAccount': '个人中心',
+  'menu.currentAccount-mini': '个人',
+
+  'menu.currentAccount.setting': '个人设置',
+  'menu.currentAccount.setting-mini': '设置',
+  'menu.currentAccount.loginLog': '登录记录',
+  'menu.currentAccount.loginLog-mini': '记录',
+  'menu.currentAccount.loginLog.pageList': '记录列表',
+  'menu.currentAccount.loginLog.pageList-mini': '列表',
 
   'menu.common': '通用页面',
   'menu.common-mini': '通用页',

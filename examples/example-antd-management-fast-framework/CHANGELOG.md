@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.9.30
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-framework@2.12.16
+
 ## 1.9.29
 
 ### Patch Changes

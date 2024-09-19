@@ -1,4 +1,4 @@
-import { Menu } from 'antd';
+import { ConfigProvider, Menu } from 'antd';
 import React from 'react';
 
 import { connect } from 'easy-soft-dva';
@@ -89,12 +89,20 @@ class MenuWrapper extends BaseComponent {
     const activeKey = this.getActiveKey();
 
     return (
-      <Menu
-        mode={mode}
-        items={items}
-        selectedKeys={[activeKey]}
-        onClick={handleClick}
-      />
+      <ConfigProvider
+        theme={{
+          components: {
+            Menu: {},
+          },
+        }}
+      >
+        <Menu
+          mode={mode}
+          items={items}
+          selectedKeys={[activeKey]}
+          onClick={handleClick}
+        />
+      </ConfigProvider>
     );
   }
 }

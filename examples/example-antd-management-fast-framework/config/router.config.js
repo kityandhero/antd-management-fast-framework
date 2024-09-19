@@ -356,6 +356,38 @@ export default [
     ],
   },
   {
+    name: 'currentAccount',
+    icon: 'user',
+    path: '/currentAccount',
+    routes: [
+      {
+        path: '/currentAccount',
+        redirect: '/currentAccount/setting',
+      },
+      {
+        name: 'setting',
+        icon: 'bars',
+        hideChildrenInMenu: true,
+        path: '/currentAccount/setting',
+        component: './CurrentAccount/Setting',
+        routes: [
+          {
+            path: '/currentAccount/setting',
+            redirect: '/currentAccount/setting/load/basicInfo',
+          },
+          {
+            path: '/currentAccount/setting/:op/basicInfo',
+            component: './CurrentAccount/Setting/BasicInfo',
+          },
+          {
+            path: '/currentAccount/setting/:op/password',
+            component: './CurrentAccount/Setting/Password',
+          },
+        ],
+      },
+    ],
+  },
+  {
     path: '/common',
     name: 'common',
     icon: 'bars',
