@@ -155,14 +155,14 @@ function LineApply(properties) {
                 <div style={{ width: '100%' }}>
                   {checkStringIsNullOrWhiteSpace(note) ? (
                     <div
-                      style={{ padding: '10px 0 5px 0' }}
+                      style={{ padding: '3px 0 5px 0' }}
                       dangerouslySetInnerHTML={{ __html: '&nbsp;' }}
                     ></div>
                   ) : (
-                    <div style={{ padding: '10px 0 5px 0' }}>{note}</div>
+                    <div style={{ padding: '3px 0 5px 0' }}>{note}</div>
                   )}
 
-                  <div style={{ padding: '5px 0 10px 0' }}>
+                  <div style={{ padding: '0px 0 5px 0' }}>
                     <FlexBox
                       flexAuto="left"
                       left={<div></div>}
