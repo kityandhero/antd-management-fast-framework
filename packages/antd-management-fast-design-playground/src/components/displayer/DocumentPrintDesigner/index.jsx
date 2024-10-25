@@ -1,8 +1,14 @@
-import { Button } from 'antd';
 import React from 'react';
-import ReactToPrint from 'react-to-print';
+import generatePDF from 'react-to-pdf';
 
-import { isArray, isFunction, toMd5 } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isArray,
+  isFunction,
+  logException,
+  showOpenMessage,
+  toMd5,
+} from 'easy-soft-utility';
 
 import {
   BaseComponent,
@@ -67,10 +73,12 @@ const defaultProperties = {
   onChange: null,
 };
 
-class DocumentPrintDesigner extends BaseComponent {
-  componentRef = null;
+// function printDocument(o) {
+//   useReactToPrint(o);
+// }
 
-  imageTargetRef = React.createRef();
+class DocumentPrintDesigner extends BaseComponent {
+  printButtonCanOperate = true;
 
   constructor(properties) {
     super(properties);
@@ -100,14 +108,67 @@ class DocumentPrintDesigner extends BaseComponent {
         items: [...items],
         generalOriginal: general,
         itemsOriginal: [...items],
+        documentTempUrl: '',
       };
     }
 
     return null;
   }
 
-  setComponentRef = (reference) => {
-    this.componentRef = reference;
+  getPrintId = () => {
+    return `${this.keyPrefix}_printBox`;
+  };
+
+  getPrintContainerId = () => {
+    return `${this.keyPrefix}_printBoxContainer`;
+  };
+
+  getTargetDocumentElement = () => {
+    const targetId = this.getPrintId();
+
+    // eslint-disable-next-line unicorn/prefer-query-selector
+    return document.getElementById(targetId);
+  };
+
+  generateDocument = () => {
+    const options = {
+      method: 'build',
+      filename: 'document.pdf',
+      page: {
+        // margin: 20,
+      },
+    };
+
+    const that = this;
+
+    that.printButtonCanOperate = false;
+
+    that.setState(
+      {
+        documentTempUrl: '',
+      },
+      () => {
+        generatePDF(that.getTargetDocumentElement, options)
+          .then((o) => {
+            console.log(o);
+
+            that.setState({
+              documentTempUrl: o.output('bloburi'),
+            });
+
+            return;
+          })
+          .catch((error) => {
+            that.setState({
+              documentTempUrl: '',
+            });
+
+            that.printButtonCanOperate = true;
+
+            logException(error);
+          });
+      },
+    );
   };
 
   initializeDesign = () => {
@@ -174,22 +235,32 @@ class DocumentPrintDesigner extends BaseComponent {
     });
   };
 
-  renderPrintContent = () => {
-    return this.componentRef;
-  };
+  renderPrintContainer = () => {
+    const { documentTempUrl } = this.state;
 
-  renderTrigger = () => {
-    // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
-    // to the root node of the returned component as it will be overwritten.
+    const that = this;
 
-    // Bad: the `onClick` here will be overwritten by `react-to-print`
-    // return <button onClick={() => alert('This will not work')}>Print this out!</button>;
+    if (checkStringIsNullOrWhiteSpace(documentTempUrl)) {
+      that.printButtonCanOperate = true;
 
-    // Good
+      return null;
+    }
+
     return (
-      <Button type="dashed" icon={iconBuilder.printer()} size="small">
-        打印预览
-      </Button>
+      <div
+        style={{
+          display: 'none',
+        }}
+      >
+        <iframe
+          src={documentTempUrl}
+          onLoad={(event) => {
+            event.target.contentWindow.print();
+
+            that.printButtonCanOperate = true;
+          }}
+        />
+      </div>
     );
   };
 
@@ -275,6 +346,8 @@ class DocumentPrintDesigner extends BaseComponent {
       onItemsChange: this.onItemsChange,
     };
 
+    const that = this;
+
     return (
       <>
         <div className={styles.documentPrintDesigner}>
@@ -347,18 +420,27 @@ class DocumentPrintDesigner extends BaseComponent {
                         }),
                       },
                       {
-                        hidden: designMode,
-                        component: (
-                          <ReactToPrint
-                            content={this.renderPrintContent}
-                            documentTitle="文档"
-                            // onAfterPrint={this.handleAfterPrint}
-                            // onBeforeGetContent={this.handleOnBeforeGetContent}
-                            // onBeforePrint={this.handleBeforePrint}
-                            removeAfterPrint
-                            trigger={this.renderTrigger}
-                          />
-                        ),
+                        hidden: !canDesign || designMode,
+                        component: buildButton({
+                          text: '打印预览',
+                          size: 'small',
+                          icon: iconBuilder.printer(),
+                          handleClick: () => {
+                            if (!that.printButtonCanOperate) {
+                              return;
+                            }
+
+                            showOpenMessage({
+                              text: '打印准备中，需要一点点时间，请稍等',
+                              duration: 600,
+                              onClose: () => {
+                                setTimeout(() => {
+                                  this.generateDocument();
+                                }, 320);
+                              },
+                            });
+                          },
+                        }),
                       },
                     ]}
                   />
@@ -367,13 +449,15 @@ class DocumentPrintDesigner extends BaseComponent {
 
               <EverySpace size={10} direction="horizontal" />
 
-              <div ref={this.imageTargetRef}>
+              <div>
                 <DocumentContent
-                  ref={this.setComponentRef}
+                  printAreaId={that.getPrintId()}
                   {...p}
                   designMode={designMode}
                 />
               </div>
+
+              {that.renderPrintContainer()}
             </div>
           </CenterBox>
 

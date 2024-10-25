@@ -1,6 +1,6 @@
 {
   "name": "example-remote",
-  "version": "1.4.155",
+  "version": "1.4.156",
   "private": true,
   "author": "",
   "scripts": {
@@ -73,7 +73,7 @@
     "rc-util": "^5.43.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-to-print": "^3.0.2",
+    "react-to-pdf": "^1.0.1",
     "reactflow": "^11.11.4"
   },
   "devDependencies": {

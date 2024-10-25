@@ -1,5 +1,11 @@
 # antd-management-fast-flow
 
+## 1.0.98
+
+### Patch Changes
+
+- update
+
 ## 1.0.97
 
 ### Patch Changes

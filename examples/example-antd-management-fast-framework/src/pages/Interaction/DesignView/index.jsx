@@ -352,8 +352,6 @@ class DesignView extends BaseUpdateForm {
                             };
                           }}
                           nameRender={(v) => {
-                            console.log(11_212_121);
-
                             return (
                               <ColorText
                                 textPrefix={v}

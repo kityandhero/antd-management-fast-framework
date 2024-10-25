@@ -61,10 +61,11 @@ function buildConfig({ packageJson: packageImport, config = {} }) {
           'react',
           'react-dom',
           'react-redux',
-          'redux',
-          'redux-saga',
+          'react-to-pdf',
           'react-to-print',
           'reactflow',
+          'redux',
+          'redux-saga',
         ];
 
         if (deps['react']) {

@@ -103,6 +103,7 @@ function transferNodeList(approveList, allApproveProcessList) {
 }
 
 const defaultProperties = {
+  printAreaId: '',
   showToolbar: true,
   showRemark: true,
   showTitle: true,
@@ -337,6 +338,7 @@ class DocumentContent extends PureComponent {
 
   render() {
     const {
+      printAreaId,
       showToolbar,
       showRemark,
       values: valuesSource,
@@ -446,6 +448,7 @@ class DocumentContent extends PureComponent {
 
     return (
       <div
+        id={printAreaId || ''}
         style={{
           paddingLeft: '60px',
           paddingRight: '60px',
