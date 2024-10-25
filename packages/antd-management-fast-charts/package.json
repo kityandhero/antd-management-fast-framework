@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-charts",
-  "version": "2.6.122",
+  "version": "2.6.123",
   "description": "antd-management-fast-charts",
   "keywords": [
     "antd-management-fast-charts"
@@ -62,7 +62,7 @@
     "@ant-design/pro-components": "^2.8.1",
     "@tanem/react-nprogress": "^5.0.52",
     "@tinymce/tinymce-react": "^5.1.1",
-    "@umijs/max": "^4.3.27",
+    "@umijs/max": "^4.3.28",
     "antd": "^5.21.5",
     "antd-management-fast-common": "workspace:*",
     "antd-management-fast-component": "workspace:*",
@@ -90,7 +90,7 @@
     "react-json-view": "^1.21.3",
     "react-player": "^2.16.0",
     "react-syntax-highlighter": "^15.6.1",
-    "umi": "^4.3.27"
+    "umi": "^4.3.28"
   },
   "devDependencies": {
     "@babel/core": "^7.25.9",
@@ -159,7 +159,7 @@
     "jest": "^29.7.0",
     "jsdoc": "^4.0.4",
     "lint-staged": "^15.2.10",
-    "npm-check-updates": "^17.1.4",
+    "npm-check-updates": "^17.1.5",
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-packagejson": "^2.5.3",

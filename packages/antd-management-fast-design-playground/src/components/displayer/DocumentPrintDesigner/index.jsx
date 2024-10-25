@@ -420,7 +420,7 @@ class DocumentPrintDesigner extends BaseComponent {
                         }),
                       },
                       {
-                        hidden: !canDesign || designMode,
+                        hidden: designMode,
                         component: buildButton({
                           text: '打印预览',
                           size: 'small',
