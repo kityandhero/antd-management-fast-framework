@@ -1,3 +1,6 @@
+// 此文件将会从模板库自动更新，请勿改动此文件内容。
+// 此文件用于初始化相关
+
 import {
   logExecute,
   //  showSimpleInfoNotification

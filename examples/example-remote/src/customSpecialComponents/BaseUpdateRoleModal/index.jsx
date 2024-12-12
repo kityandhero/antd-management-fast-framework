@@ -48,6 +48,7 @@ class BaseUpdateRoleModal extends BaseUpdateTransferModal {
   // eslint-disable-next-line no-unused-vars
   buildTargetKeys = (preProperties, preState, snapshot) => {
     const { metaData } = this.state;
+
     const { authorityKeyCollection } = {
       authorityKeyCollection: [],
       ...metaData,

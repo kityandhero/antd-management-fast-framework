@@ -56,4 +56,4 @@ class ShortcutPanel extends BaseView {
   }
 }
 
-export default ShortcutPanel;
+export { ShortcutPanel };

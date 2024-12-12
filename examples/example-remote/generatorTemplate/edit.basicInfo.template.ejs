@@ -1,9 +1,5 @@
 import { connect } from 'easy-soft-dva';
-import {
-  convertCollection,
-  formatCollection,
-  getValueByKey,
-} from 'easy-soft-utility';
+import { getValueByKey } from 'easy-soft-utility';
 
 import {
   cardConfig,
@@ -22,6 +18,8 @@ import { TabPageBase } from '../../TabPageBase';
   schedulingControl,
 }))
 class Index extends TabPageBase {
+  reloadHeaderOnSubmitSuccess = true;
+
   componentAuthority =
     accessWayCollection.<%= o.model %>.pageList.permission;
 

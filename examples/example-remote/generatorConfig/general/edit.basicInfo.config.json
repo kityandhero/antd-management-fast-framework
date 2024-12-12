@@ -1,9 +1,135 @@
 {
   "list": [
     {
+      "folder": "AdministrativeDivision/Edit/BasicInfo",
+      "model": "administrativeDivision",
+      "key": "administrativeDivisionId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Question/Edit/BasicInfo",
+      "model": "question",
+      "key": "questionId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Questionnaire/Edit/BasicInfo",
+      "model": "questionnaire",
+      "key": "questionnaireId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "UserQuestionnaire/Edit/BasicInfo",
+      "model": "userQuestionnaire",
+      "key": "userQuestionnaireId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Application/Edit/BasicInfo",
+      "model": "application",
+      "key": "applicationId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
       "folder": "ApplicationSource/Edit/BasicInfo",
       "model": "applicationSource",
       "key": "applicationSourceId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "CallCenter/Edit/BasicInfo",
+      "model": "callCenter",
+      "key": "callCenterId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Department/Edit/BasicInfo",
+      "model": "department",
+      "key": "departmentId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Gallery/Edit/BasicInfo",
+      "model": "gallery",
+      "key": "galleryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "MasterManager/Edit/BasicInfo",
+      "model": "masterManager",
+      "key": "masterManagerId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "PresetRole/Edit/BasicInfo",
+      "model": "presetRole",
+      "key": "presetRoleId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "QrCode/Edit/BasicInfo",
+      "model": "qrCode",
+      "key": "qrCodeId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Section/Edit/BasicInfo",
+      "model": "section",
+      "key": "sectionId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Subsidiary/Edit/BasicInfo",
+      "model": "subsidiary",
+      "key": "subsidiaryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Tag/Edit/BasicInfo",
+      "model": "tag",
+      "key": "tagId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "User/Edit/BasicInfo",
+      "model": "user",
+      "key": "userId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "UserDevice/Edit/BasicInfo",
+      "model": "userDevice",
+      "key": "userDeviceId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Workflow/Edit/BasicInfo",
+      "model": "workflow",
+      "key": "workflowId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "WorkflowCase/Edit/BasicInfo",
+      "model": "workflowCase",
+      "key": "workflowCaseId",
       "fileName": "index.jsx",
       "coverFile": false
     }

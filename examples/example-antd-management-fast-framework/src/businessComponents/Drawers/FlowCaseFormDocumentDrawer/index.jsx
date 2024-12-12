@@ -87,7 +87,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
 
     setDocumentSchemaAction({
       target: this,
-      handleData: JSON.stringify(o),
+      handleData: o,
       successCallback: ({ target }) => {
         target.reloadData({});
       },
@@ -223,6 +223,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
           general: documentGeneralSchema,
           items,
         }}
+        formItems={listDataSchema}
         showApply
         applyList={listApply}
         showAttention
@@ -338,6 +339,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         general: documentGeneralSchema,
         items,
       },
+      formItems: listDataSchema,
       values: listFormStorage,
       remarkSchemaList: formRemarkList,
     };

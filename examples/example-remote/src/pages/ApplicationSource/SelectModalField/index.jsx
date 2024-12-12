@@ -29,7 +29,12 @@ class ApplicationSourceSelectModalField extends BaseSelectFieldExtra {
   };
 
   renderPresetSelector = () => {
-    const { label, helper, labelWidth } = this.props;
+    const { label, helper, labelWidth } = {
+      label: '',
+      helper: '',
+      labelWidth: 100,
+      ...this.props,
+    };
 
     return (
       <SelectModal
@@ -41,9 +46,5 @@ class ApplicationSourceSelectModalField extends BaseSelectFieldExtra {
     );
   };
 }
-
-ApplicationSourceSelectModalField.defaultProps = {
-  ...BaseSelectFieldExtra.defaultProps,
-};
 
 export { ApplicationSourceSelectModalField };

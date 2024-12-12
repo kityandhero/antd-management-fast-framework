@@ -3,24 +3,33 @@ import {
   getCurrentOperatorCache,
   getValueByKey,
   showSimpleErrorMessage,
+  toNumber,
 } from 'easy-soft-utility';
 
-import { columnFacadeMode } from 'antd-management-fast-common';
+import {
+  buildRandomHexColor,
+  columnFacadeMode,
+  dropdownExpandItemType,
+} from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 import {
   DataMultiPageView,
   getCurrentOperator,
 } from 'antd-management-fast-framework';
 
-import { fieldData } from '../ApplicationSource/Common/data';
+import { getWebChannelName } from '../../customSpecialComponents';
+import { removeAction } from '../ErrorLog/Assist/action';
+import { getResolveBadge } from '../ErrorLog/Assist/tools';
+import { fieldData } from '../ErrorLog/Common/data';
+import { PreviewDrawer } from '../ErrorLog/PreviewDrawer';
 
 import { PageHeaderContent } from './PageHeaderContent';
-import ShortcutPanel from './ShortcutPanel';
+import { ShortcutPanel } from './ShortcutPanel';
 
 const { MultiPage } = DataMultiPageView;
 
-@connect(({ applicationSource, currentOperator, schedulingControl }) => ({
-  applicationSource,
+@connect(({ errorLog, currentOperator, schedulingControl }) => ({
+  errorLog,
   currentOperator,
   schedulingControl,
 }))
@@ -41,8 +50,8 @@ class Index extends MultiPage {
     this.state = {
       ...this.state,
       pageTitle: '工作台',
-      listTitle: '新近列表',
-      loadApiPath: 'applicationSource/pageList',
+      listTitle: '新近异常列表',
+      loadApiPath: 'errorLog/pageList',
       tableScrollX: 1020,
       currentOperator: null,
     };
@@ -65,6 +74,11 @@ class Index extends MultiPage {
         break;
       }
 
+      case 'delete': {
+        this.delete(handleData);
+        break;
+      }
+
       default: {
         showSimpleErrorMessage('can not find matched key');
         break;
@@ -72,13 +86,29 @@ class Index extends MultiPage {
     }
   };
 
+  delete = (r) => {
+    removeAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target }) => {
+        target.reloadData({});
+      },
+    });
+  };
+
+  showPreviewDrawer = (record) => {
+    this.setState({ currentRecord: record }, () => {
+      PreviewDrawer.open();
+    });
+  };
+
   goToEdit = (record) => {
-    const id = getValueByKey({
+    const errorLogId = getValueByKey({
       data: record,
-      key: fieldData.applicationSourceId.name,
+      key: fieldData.errorLogId.name,
     });
 
-    this.goToPath(`/app/applicationSource/edit/load/${id}/key/basicInfo`);
+    this.goToPath(`/logs/errorLog/edit/load/${errorLogId}/key/basicInfo`);
   };
 
   establishPageHeaderTitlePrefix = () => {
@@ -115,8 +145,9 @@ class Index extends MultiPage {
           text: '日志详情',
         },
         {
-          withDivider: true,
-          uponDivider: true,
+          type: dropdownExpandItemType.divider,
+        },
+        {
           key: 'delete',
           icon: iconBuilder.delete(),
           text: '删除日志',
@@ -129,7 +160,7 @@ class Index extends MultiPage {
 
   getColumnWrapper = () => [
     {
-      dataTarget: fieldData.name,
+      dataTarget: fieldData.message,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
@@ -143,7 +174,37 @@ class Index extends MultiPage {
       emptyValue: '--',
     },
     {
-      dataTarget: fieldData.applicationSourceId,
+      dataTarget: fieldData.resolve,
+      width: 100,
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.badge,
+      facadeConfigBuilder: (value, record) => {
+        return {
+          status: getResolveBadge(value),
+          text: record.resolveNote || '--',
+        };
+      },
+    },
+    {
+      dataTarget: fieldData.channel,
+      width: 160,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfigBuilder: (value) => {
+        return {
+          color: buildRandomHexColor({
+            seed: toNumber(value) + 31,
+          }),
+        };
+      },
+      formatValue: (value) => {
+        return getWebChannelName({
+          value: value,
+        });
+      },
+    },
+    {
+      dataTarget: fieldData.errorLogId,
       width: 120,
       showRichFacade: true,
       canCopy: true,
@@ -164,15 +225,21 @@ class Index extends MultiPage {
       defaultValue: '--',
     });
 
+    console.log(currentOperator);
+
     return {
       component: <PageHeaderContent avatar={avatar} name={name} />,
     };
   };
 
   establishSiderTopAreaConfig = () => {
+    const { currentRecord } = this.state;
+
     return (
       <>
         <ShortcutPanel />
+
+        <PreviewDrawer maskClosable externalData={currentRecord} />
       </>
     );
   };

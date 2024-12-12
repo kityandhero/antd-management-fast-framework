@@ -1,5 +1,9 @@
 import { connect } from 'easy-soft-dva';
-import { convertCollection, getValueByKey } from 'easy-soft-utility';
+import {
+  convertCollection,
+  getValueByKey,
+  showSimpleErrorMessage,
+} from 'easy-soft-utility';
 
 import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
@@ -27,15 +31,16 @@ import { fieldData, statusCollection } from '../Common/data';
   schedulingControl,
 }))
 class Edit extends DataTabContainerSupplement {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
   componentAuthority = accessWayCollection.applicationSource.get.permission;
 
   tabList = [
     {
       key: 'basicInfo',
       tab: '基本信息',
+    },
+    {
+      key: 'operateLog/pageList',
+      tab: '操作日志',
     },
   ];
 
@@ -51,13 +56,6 @@ class Edit extends DataTabContainerSupplement {
     };
   }
 
-  /**
-   * get derived state from props。
-   * @static
-   * @param {Object} nextProperties 即将更改的属性值
-   * @param {Object} previousState 之前的 state 值
-   * @returns {Object} 更新后的 state 值
-   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,
@@ -242,6 +240,7 @@ class Edit extends DataTabContainerSupplement {
           }
 
           default: {
+            showSimpleErrorMessage('can not find matched key');
             break;
           }
         }

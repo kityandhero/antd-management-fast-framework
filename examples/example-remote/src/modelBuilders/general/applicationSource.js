@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemoteListData,
   pretreatmentRemotePageListData,
+  pretreatmentRemoteListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,18 +9,32 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  addBasicInfoData,
-  getData,
   pageListData,
-  pageListLogData,
-  pageListOperateLogData,
-  refreshCacheData,
-  setDisableData,
-  setEnableData,
   singleListData,
+  pageListLogData,
+  getData,
+  addBasicInfoData,
   updateBasicInfoData,
+  setEnableData,
+  setDisableData,
+  refreshCacheData,
   uploadImageData,
+  pageListOperateLogData,
 } from '../../services/applicationSource';
+
+export const applicationSourceTypeCollection = {
+  pageList: 'applicationSource/pageList',
+  singleList: 'applicationSource/singleList',
+  pageListLog: 'applicationSource/pageListLog',
+  get: 'applicationSource/get',
+  addBasicInfo: 'applicationSource/addBasicInfo',
+  updateBasicInfo: 'applicationSource/updateBasicInfo',
+  setEnable: 'applicationSource/setEnable',
+  setDisable: 'applicationSource/setDisable',
+  refreshCache: 'applicationSource/refreshCache',
+  uploadImage: 'applicationSource/uploadImage',
+  pageListOperateLog: 'applicationSource/pageListOperateLog',
+};
 
 export function buildModel() {
   return {

@@ -1,3 +1,28 @@
 {
-  "list": []
+  "list": [
+    {
+      "folder": "Position/AddBasicInfoDrawer",
+      "model": "position",
+      "key": "positionId",
+      "visibleFlag": "f8b1f8a019754a84a26cc150b84d43ac",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "PositionGrade/AddBasicInfoDrawer",
+      "model": "positionGrade",
+      "key": "positionGradeId",
+      "visibleFlag": "5dac411b272649ff902f775c90e12e09",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Question/AddBasicInfoDrawer",
+      "model": "question",
+      "key": "questionId",
+      "visibleFlag": "094daf5864ef418c9e23455cef111145",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
 }

@@ -1,3 +1,108 @@
 {
-  "list": []
+  "list": [
+    {
+      "folder": "Position/ChangeSortModal",
+      "model": "position",
+      "key": "positionId",
+      "visibleFlag": "a0cc8a0bc2b24b6babf07c2d20cd8c53",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "PositionGrade/ChangeSortModal",
+      "model": "positionGrade",
+      "key": "positionGradeId",
+      "visibleFlag": "2779cdec846e4138b1d41084593172d9",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Questionnaire/ChangeSortModal",
+      "model": "questionnaire",
+      "key": "questionnaireId",
+      "visibleFlag": "50ab68a174d54706b012005b3aeccf36",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "QuestionnaireQuestion/ChangeSortModal",
+      "model": "questionnaireQuestion",
+      "key": "questionnaireQuestionId",
+      "visibleFlag": "25bf7881798541118e85d29e10e08d86",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "UserQuestionnaire/ChangeSortModal",
+      "model": "userQuestionnaire",
+      "key": "userQuestionnaireId",
+      "visibleFlag": "935c0b8a9ba24f1f897ced3e72851562",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "EmailSenderAgent/ChangeSortModal",
+      "model": "emailSenderAgent",
+      "key": "emailSenderAgentId",
+      "visibleFlag": "b4327a30b0544baf8c3938028098c19b",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Gallery/ChangeSortModal",
+      "model": "gallery",
+      "key": "galleryId",
+      "visibleFlag": "1de6598ed33f460c846115d1023519a6",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "GalleryCategory/ChangeSortModal",
+      "model": "galleryCategory",
+      "key": "galleryCategoryId",
+      "visibleFlag": "d531cd3035404a6b8c62c68ba593d7cc",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "QrCode/ChangeSortModal",
+      "model": "qrCode",
+      "key": "qrCodeId",
+      "visibleFlag": "703597963b8b4d36b343215c71a0b7e1",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "QrCodeCategory/ChangeSortModal",
+      "model": "qrCodeCategory",
+      "key": "qrCodeCategoryId",
+      "visibleFlag": "fd3703b6cda6481bababfd968cf35f18",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "CallCenter/ChangeSortModal",
+      "model": "callCenter",
+      "key": "callCenterId",
+      "visibleFlag": "68bad5bd1a6449b7bc146cc4f51add50",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "CallCenterCategory/ChangeSortModal",
+      "model": "callCenterCategory",
+      "key": "callCenterCategoryId",
+      "visibleFlag": "796ae68f63ab46d9accdecf6ac7ab27d",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "BusinessSet/ChangeSortModal",
+      "model": "businessSet",
+      "key": "businessSetId",
+      "visibleFlag": "c76f223f6c8b4c23a7630e86f837d799",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
 }

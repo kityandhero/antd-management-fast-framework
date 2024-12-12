@@ -2,279 +2,236 @@ import { Divider, Dropdown, InputNumber, Space, Switch } from 'antd';
 import React from 'react';
 
 import {
-  checkInCollection,
   checkStringIsNullOrWhiteSpace,
   isArray,
   isEmptyArray,
   isFunction,
   isUndefined,
-  toLower,
   toNumber,
   toString,
-  whetherNumber,
   whetherString,
   zeroString,
 } from 'easy-soft-utility';
 
 import {
-  CenterBox,
   FlexBox,
   iconBuilder,
   VerticalBox,
 } from 'antd-management-fast-component';
 
 import {
-  defaultConfig,
   highlightModeCollection,
   valueDisplayModeCollection,
 } from '../constant';
-import { adjustItem, getValueDisplayModeText } from '../tools';
+import { adjustCellConfig, getValueDisplayModeText } from '../tools';
+
+function ItemConfigBoxContainer({ showDivider = true, children }) {
+  return (
+    <div>
+      {children}
+
+      {showDivider ? <Divider style={{ margin: '6px 0' }} /> : null}
+    </div>
+  );
+}
 
 function ItemConfigBox(properties) {
   const { data, highlightMode, onChange: onChangeCallback } = properties;
 
   const {
-    fullLine,
-    currencyDisplay,
     firstPosition,
     width,
-    height,
+    spanRow,
+    spanColumn,
     valueDisplayMode,
     enumList,
-    type,
-  } = adjustItem(data);
+  } = adjustCellConfig(data);
 
   const widthAdjust =
     isUndefined(width) ||
     checkStringIsNullOrWhiteSpace(width) ||
     toNumber(width) <= 0
-      ? defaultConfig.width
+      ? '0'
       : width;
 
-  const heightAdjust =
-    isUndefined(height) ||
-    checkStringIsNullOrWhiteSpace(height) ||
-    toNumber(height) <= 0
-      ? defaultConfig.minHeight
-      : height;
+  const spanRowAdjust =
+    isUndefined(spanRow) ||
+    checkStringIsNullOrWhiteSpace(spanRow) ||
+    toNumber(spanRow) <= 0
+      ? '1'
+      : spanRow;
 
-  const fullLineAdjust = toNumber(fullLine);
-
-  const currencyDisplayAdjust = toNumber(currencyDisplay);
+  const spanColumnAdjust =
+    isUndefined(spanColumn) ||
+    checkStringIsNullOrWhiteSpace(spanColumn) ||
+    toNumber(spanColumn) <= 0
+      ? '1'
+      : spanColumn;
 
   return (
-    <div
-      style={{
-        height: '100%',
-      }}
-    >
-      <CenterBox>
-        <div
-          style={{
-            padding: '2px 6px',
-            backgroundColor: '#ccc',
-            borderRadius: '6px',
-            height: '36px',
-            overflow: 'hidden',
-          }}
-        >
-          <CenterBox>
-            <Space direction="horizontal" split={<Divider type="vertical" />}>
-              {highlightMode == highlightModeCollection.label ? (
-                <FlexBox
-                  flexAuto="left"
-                  left={<VerticalBox>行高：</VerticalBox>}
-                  right={
-                    <InputNumber
-                      style={{ width: '60px' }}
-                      value={heightAdjust}
-                      onChange={(o) => {
-                        if (!isFunction(onChangeCallback)) {
-                          return;
-                        }
+    <div>
+      <ItemConfigBoxContainer>
+        <FlexBox
+          flexAuto="left"
+          left={<VerticalBox>行首：</VerticalBox>}
+          right={
+            <Switch
+              checkedChildren="是"
+              unCheckedChildren="否"
+              checked={toString(firstPosition) === whetherString.yes}
+              onChange={(checked) => {
+                if (!isFunction(onChangeCallback)) {
+                  return;
+                }
+
+                onChangeCallback({
+                  ...data,
+                  firstPosition: checked ? whetherString.yes : whetherString.no,
+                });
+              }}
+            />
+          }
+        />
+      </ItemConfigBoxContainer>
+
+      <ItemConfigBoxContainer>
+        <FlexBox
+          flexAuto="left"
+          left={<VerticalBox>自动宽度：</VerticalBox>}
+          right={
+            <Switch
+              checkedChildren="是"
+              unCheckedChildren="否"
+              checked={toString(widthAdjust) === zeroString}
+              onChange={(checked) => {
+                if (!isFunction(onChangeCallback)) {
+                  return;
+                }
+
+                onChangeCallback({
+                  ...data,
+                  width: checked ? zeroString : '100',
+                });
+              }}
+            />
+          }
+        />
+      </ItemConfigBoxContainer>
+
+      <ItemConfigBoxContainer>
+        <FlexBox
+          flexAuto="left"
+          left={<VerticalBox>宽度：</VerticalBox>}
+          right={
+            <InputNumber
+              style={{ width: '60px' }}
+              value={widthAdjust}
+              disabled={toString(widthAdjust) === zeroString}
+              onChange={(o) => {
+                if (!isFunction(onChangeCallback)) {
+                  return;
+                }
+                onChangeCallback({
+                  ...data,
+                  width: toString(o),
+                });
+              }}
+            />
+          }
+        />
+      </ItemConfigBoxContainer>
+
+      {highlightMode == highlightModeCollection.value ? (
+        <>
+          {isArray(enumList) && !isEmptyArray(enumList) ? (
+            <ItemConfigBoxContainer>
+              <FlexBox
+                flexAuto="left"
+                left={<VerticalBox>值模式：</VerticalBox>}
+                right={
+                  <Dropdown
+                    menu={{
+                      items: [
+                        {
+                          label: '文本',
+                          key: valueDisplayModeCollection.text,
+                        },
+                        {
+                          label: '选项',
+                          key: valueDisplayModeCollection.enum,
+                        },
+                        {
+                          label: '金额',
+                          key: valueDisplayModeCollection.money,
+                        },
+                      ],
+                      onClick: ({ key }) => {
                         onChangeCallback({
                           ...data,
-                          height: toString(o),
+                          valueDisplayMode: key,
                         });
-                      }}
-                    />
-                  }
-                />
-              ) : null}
+                      },
+                    }}
+                  >
+                    <a onClick={(event) => event.preventDefault()}>
+                      <Space>
+                        {getValueDisplayModeText(valueDisplayMode)}
+                        {iconBuilder.down()}
+                      </Space>
+                    </a>
+                  </Dropdown>
+                }
+              />
+            </ItemConfigBoxContainer>
+          ) : null}
+        </>
+      ) : null}
 
-              {highlightMode == highlightModeCollection.value ||
-              highlightMode == highlightModeCollection.all ? (
-                <>
-                  {fullLineAdjust === whetherNumber.yes ? null : (
-                    <FlexBox
-                      flexAuto="left"
-                      left={<VerticalBox>行首：</VerticalBox>}
-                      right={
-                        <Switch
-                          checkedChildren="是"
-                          unCheckedChildren="否"
-                          checked={
-                            toString(firstPosition) === whetherString.yes
-                          }
-                          onChange={(checked) => {
-                            if (!isFunction(onChangeCallback)) {
-                              return;
-                            }
+      <ItemConfigBoxContainer>
+        <FlexBox
+          flexAuto="left"
+          left={<VerticalBox>跨行：</VerticalBox>}
+          right={
+            <InputNumber
+              style={{ width: '52px' }}
+              value={spanRowAdjust}
+              onChange={(o) => {
+                if (!isFunction(onChangeCallback)) {
+                  return;
+                }
 
-                            onChangeCallback({
-                              ...data,
-                              firstPosition: checked
-                                ? whetherString.yes
-                                : whetherString.no,
-                            });
-                          }}
-                        />
-                      }
-                    />
-                  )}
+                onChangeCallback({
+                  ...data,
+                  spanRow: toString(o),
+                });
+              }}
+            />
+          }
+        />
+      </ItemConfigBoxContainer>
 
-                  {fullLineAdjust === whetherNumber.yes ? null : (
-                    <FlexBox
-                      flexAuto="left"
-                      left={<VerticalBox>自动宽度：</VerticalBox>}
-                      right={
-                        <Switch
-                          checkedChildren="是"
-                          unCheckedChildren="否"
-                          checked={toString(widthAdjust) === zeroString}
-                          onChange={(checked) => {
-                            if (!isFunction(onChangeCallback)) {
-                              return;
-                            }
+      <ItemConfigBoxContainer showDivider={false}>
+        <FlexBox
+          flexAuto="left"
+          left={<VerticalBox>跨列：</VerticalBox>}
+          right={
+            <InputNumber
+              style={{ width: '52px' }}
+              value={spanColumnAdjust}
+              onChange={(o) => {
+                if (!isFunction(onChangeCallback)) {
+                  return;
+                }
 
-                            onChangeCallback({
-                              ...data,
-                              width: checked ? zeroString : '100',
-                            });
-                          }}
-                        />
-                      }
-                    />
-                  )}
-
-                  {fullLineAdjust === whetherNumber.yes ? null : (
-                    <FlexBox
-                      flexAuto="left"
-                      left={<VerticalBox>宽度：</VerticalBox>}
-                      right={
-                        <InputNumber
-                          style={{ width: '60px' }}
-                          value={widthAdjust}
-                          disabled={toString(widthAdjust) === zeroString}
-                          onChange={(o) => {
-                            if (!isFunction(onChangeCallback)) {
-                              return;
-                            }
-                            onChangeCallback({
-                              ...data,
-                              width: toString(o),
-                            });
-                          }}
-                        />
-                      }
-                    />
-                  )}
-
-                  {isArray(enumList) && !isEmptyArray(enumList) ? (
-                    <FlexBox
-                      flexAuto="left"
-                      left={<VerticalBox>模式：</VerticalBox>}
-                      right={
-                        <Dropdown
-                          menu={{
-                            items: [
-                              {
-                                label: '文本',
-                                key: valueDisplayModeCollection.text,
-                              },
-                              {
-                                label: '选项',
-                                key: valueDisplayModeCollection.enum,
-                              },
-                            ],
-                            onClick: ({ key }) => {
-                              onChangeCallback({
-                                ...data,
-                                valueDisplayMode: key,
-                              });
-                            },
-                          }}
-                        >
-                          <a onClick={(event) => event.preventDefault()}>
-                            <Space>
-                              {getValueDisplayModeText(valueDisplayMode)}
-                              {iconBuilder.down()}
-                            </Space>
-                          </a>
-                        </Dropdown>
-                      }
-                    />
-                  ) : null}
-
-                  {fullLineAdjust === whetherNumber.yes &&
-                  checkInCollection(['number', 'string'], toLower(type)) ? (
-                    <FlexBox
-                      flexAuto="left"
-                      left={<VerticalBox>金额：</VerticalBox>}
-                      right={
-                        <Switch
-                          checkedChildren="是"
-                          unCheckedChildren="否"
-                          checked={currencyDisplayAdjust === whetherNumber.yes}
-                          onChange={(checked) => {
-                            if (!isFunction(onChangeCallback)) {
-                              return;
-                            }
-
-                            onChangeCallback({
-                              ...data,
-                              currencyDisplay:
-                                fullLineAdjust === whetherNumber.yes
-                                  ? checked
-                                    ? whetherString.yes
-                                    : whetherString.no
-                                  : whetherString.no,
-                            });
-                          }}
-                        />
-                      }
-                    />
-                  ) : null}
-
-                  <FlexBox
-                    flexAuto="left"
-                    left={<VerticalBox>显示：</VerticalBox>}
-                    right={
-                      <Switch
-                        checkedChildren="行"
-                        unCheckedChildren="列"
-                        checked={fullLineAdjust === whetherNumber.yes}
-                        onChange={(checked) => {
-                          if (!isFunction(onChangeCallback)) {
-                            return;
-                          }
-
-                          onChangeCallback({
-                            ...data,
-                            fullLine: checked
-                              ? whetherString.yes
-                              : whetherString.no,
-                          });
-                        }}
-                      />
-                    }
-                  />
-                </>
-              ) : null}
-            </Space>
-          </CenterBox>
-        </div>
-      </CenterBox>
+                onChangeCallback({
+                  ...data,
+                  spanColumn: toString(o),
+                });
+              }}
+            />
+          }
+        />
+      </ItemConfigBoxContainer>
     </div>
   );
 }

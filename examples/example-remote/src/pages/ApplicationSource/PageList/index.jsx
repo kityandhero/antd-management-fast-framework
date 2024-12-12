@@ -5,11 +5,13 @@ import {
   convertCollection,
   getValueByKey,
   handleItem,
+  showSimpleErrorMessage,
   toNumber,
 } from 'easy-soft-utility';
 
 import {
   columnFacadeMode,
+  dropdownExpandItemType,
   getDerivedStateFromPropertiesForUrlParameters,
   listViewConfig,
   searchCardConfig,
@@ -54,13 +56,6 @@ class PageList extends MultiPage {
     };
   }
 
-  /**
-   * get derived state from props。
-   * @static
-   * @param {Object} nextProperties 即将更改的属性值
-   * @param {Object} previousState 之前的 state 值
-   * @returns {Object} 更新后的 state 值
-   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,
@@ -88,6 +83,7 @@ class PageList extends MultiPage {
       }
 
       default: {
+        showSimpleErrorMessage('can not find matched key');
         break;
       }
     }
@@ -270,8 +266,9 @@ class PageList extends MultiPage {
           title: '即将设为禁用，确定吗？',
         },
         {
-          withDivider: true,
-          uponDivider: true,
+          type: dropdownExpandItemType.divider,
+        },
+        {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
           text: '刷新缓存',

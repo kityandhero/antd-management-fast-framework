@@ -1,15 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import {
-  canToNumber,
-  checkInCollection,
-  filter,
-  isArray,
-  isEmptyArray,
-  isFunction,
-  toNumber,
-  toString,
-} from 'easy-soft-utility';
+import { canToNumber, isArray, isFunction, toNumber } from 'easy-soft-utility';
 
 import {
   CenterBox,
@@ -19,99 +10,34 @@ import {
   VerticalBox,
 } from 'antd-management-fast-component';
 
-import { LineApply } from './Items/LineApply';
-import { LineApprove } from './Items/LineApprove';
+import { CellApply } from './Cells/CellApply';
+import { CellAttention } from './Cells/CellAttention';
+import {
+  CellApproval,
+  CellEnum,
+  CellMoney,
+  CellRemark,
+  CellText,
+} from './Cells';
 import {
   colorDefault,
   colorStyle,
   documentTitleStyle,
   fontFamilyStyle,
-  labelFrontStyle,
-  lineStyle,
-  valueFrontStyle,
+  valueDisplayModeCollection,
 } from './constant';
 import { GeneralConfigBox } from './GeneralConfigBox';
-import { ItemConfigBox } from './ItemConfigBox';
-import { LineItem, LineRemark } from './Items';
-import {
-  adjustItem,
-  adjustItemCollection,
-  adjustValueCollection,
-} from './tools';
-
-function transferNodeList(approveList, allApproveProcessList) {
-  let nodeList = [];
-
-  const approveListAdjust = isArray(approveList) ? approveList : [];
-  const allApproveProcessListAdjust = isArray(allApproveProcessList)
-    ? allApproveProcessList
-    : [];
-
-  if (isEmptyArray(allApproveProcessListAdjust)) {
-    nodeList = [...approveListAdjust];
-  } else {
-    const approveNodeIdList = approveListAdjust.map((o) => o.nodeId);
-
-    for (const one of allApproveProcessListAdjust) {
-      const { nodeId } = {
-        nodeId: '',
-        ...one,
-      };
-
-      if (checkInCollection(approveNodeIdList, nodeId)) {
-        const listFilter = filter(approveListAdjust, (item) => {
-          const { nodeId: nodeIdItem } = {
-            nodeId: '',
-            ...item,
-          };
-
-          return nodeIdItem === nodeId;
-        });
-
-        if (listFilter.length > 0) {
-          nodeList.push(listFilter[0]);
-        } else {
-          nodeList.push(one);
-        }
-      } else {
-        nodeList.push(one);
-      }
-    }
-  }
-
-  const nodeListAdjust = nodeList.map((o) => {
-    const { nodeId, title, note, name, signet, time } = {
-      title: '',
-      note: '',
-      name: '',
-      signet: '',
-      time: '',
-      ...o,
-    };
-
-    return {
-      nodeId,
-      title,
-      note,
-      name,
-      signet,
-      time,
-    };
-  });
-
-  return nodeListAdjust;
-}
+import { adjustCellConfig } from './tools';
 
 const defaultProperties = {
   printAreaId: '',
   showToolbar: true,
-  showRemark: true,
   showTitle: true,
   general: {},
-  items: [],
-  values: {},
   style: null,
   color: colorDefault,
+  borderWidth: 1,
+  borderColor: '#000',
   title: '表格标题',
   titleContainerStyle: null,
   titleStyle: null,
@@ -126,16 +52,6 @@ const defaultProperties = {
   onItemsChange: null,
   onGeneralChange: null,
   designMode: false,
-  useRemark: false,
-  showApply: false,
-  applyList: [],
-  showAttention: false,
-  attentionList: [],
-  approveList: [],
-  allApproveProcessList: [],
-  remarkTitle: '备注',
-  remarkName: 'remark',
-  remarkList: [],
   showQRCode: false,
   qRCodeTitle: '防伪二维码:',
   qRCodeDescription: '扫码查看防伪标识',
@@ -153,7 +69,7 @@ class DocumentContent extends PureComponent {
 
     this.state = {
       ...this.state,
-      currentItem: null,
+      currentHighlighTag: '',
       currentHighlightMode: '',
     };
   }
@@ -274,8 +190,12 @@ class DocumentContent extends PureComponent {
     }
   };
 
-  onCellClick = (o, highlightMode) => {
-    this.setState({ currentItem: o, currentHighlightMode: highlightMode });
+  // eslint-disable-next-line no-unused-vars
+  onCellClick = ({ data, highlightMode, uniqueTag }) => {
+    this.setState({
+      currentHighlightMode: highlightMode,
+      currentHighlighTag: uniqueTag,
+    });
   };
 
   onGeneralChange = (o) => {
@@ -288,163 +208,35 @@ class DocumentContent extends PureComponent {
     onGeneralChangeCallback({ ...general, ...o });
   };
 
-  onItemChange = (item) => {
-    const { items, onItemsChange: onItemsChangeCallback } = this.props;
+  onConfigChange = (item) => {
+    const { onConfigChange: onConfigChangeCallback } = this.props;
 
-    if (!isFunction(onItemsChangeCallback)) {
+    if (!isFunction(onConfigChangeCallback)) {
       return;
     }
 
-    if (isArray(items)) {
-      const {
-        name,
-        fullLine,
-        currencyDisplay,
-        firstPosition,
-        width,
-        height,
-        valueDisplayMode,
-      } = adjustItem(item);
-
-      let current = null;
-
-      const itemsAdjust = items.map((o) => {
-        const { name: nameItem } = o;
-
-        if (nameItem === name) {
-          current = {
-            ...o,
-            fullLine: toString(fullLine),
-            currencyDisplay: toString(currencyDisplay),
-            firstPosition: toString(firstPosition),
-            width: toString(width),
-            height: toString(height),
-            valueDisplayMode: toString(valueDisplayMode),
-          };
-
-          return current;
-        } else {
-          return o;
-        }
-      });
-
-      if (current != null) {
-        this.setState({ currentItem: current });
-      }
-
-      onItemsChangeCallback(itemsAdjust);
-    }
+    onConfigChangeCallback(adjustCellConfig(item));
   };
 
   render() {
     const {
       printAreaId,
       showToolbar,
-      showRemark,
-      values: valuesSource,
-      general,
-      items: itemsSource,
+      generalConfig,
       style,
-      color,
-      labelColumnWidth,
-      labelColumnStyle,
-      labelContainerStyle,
-      valueColumnStyle,
-      valueContainerStyle,
+      borderWidth,
+      borderColor,
       title,
       titleContainerStyle,
       titleStyle,
       showTitle,
+      rows,
       designMode,
-      showApply,
-      applyList,
-      showAttention,
-      attentionList,
-      approveList,
-      allApproveProcessList,
-      remarkTitle,
-      remarkName,
-      remarkList,
       signetStyle,
     } = this.props;
-    const { currentItem, currentHighlightMode } = this.state;
+    const { currentHighlighTag } = this.state;
 
-    const { name: currentName } = { name: '', ...currentItem };
-
-    const values = adjustValueCollection(valuesSource);
-    const items = adjustItemCollection(itemsSource);
-
-    const lineAdjustStyle = {
-      borderBottom: `1px solid ${color}`,
-      ...lineStyle,
-    };
-
-    const labelBoxStyle = {
-      paddingTop: '12px',
-      paddingBottom: '12px',
-      paddingLeft: '10px',
-      paddingRight: '10px',
-      borderLeft: `1px solid ${color}`,
-      borderRight: `1px solid ${color}`,
-      width: `${labelColumnWidth}px`,
-      textAlign: 'center',
-      ...labelFrontStyle,
-      ...colorStyle,
-      ...fontFamilyStyle,
-      ...labelColumnStyle,
-    };
-
-    const valueBoxStyle = {
-      borderRight: `1px solid ${color}`,
-      ...valueFrontStyle,
-      ...colorStyle,
-      ...fontFamilyStyle,
-      ...valueColumnStyle,
-    };
-
-    const nodeListAdjust = transferNodeList(approveList, allApproveProcessList);
-
-    const applyListAdjust = (isArray(applyList) ? applyList : []).map((o) => {
-      const { nodeId, title, note, name, signet, time } = {
-        title: '',
-        note: '',
-        name: '',
-        signet: '',
-        time: '',
-        ...o,
-      };
-
-      return {
-        nodeId,
-        title,
-        note,
-        name,
-        signet,
-        time,
-      };
-    });
-
-    const attentionListAdjust = (
-      isArray(attentionList) ? attentionList : []
-    ).map((o) => {
-      const { nodeId, title, note, name, signet, time } = {
-        title: '',
-        note: '',
-        name: '',
-        signet: '',
-        time: '',
-        ...o,
-      };
-
-      return {
-        nodeId,
-        title,
-        note,
-        name,
-        signet,
-        time,
-      };
-    });
+    const rowCollection = isArray(rows) ? rows : [];
 
     return (
       <div
@@ -494,178 +286,197 @@ class DocumentContent extends PureComponent {
                 backgroundColor: 'rgba(0,0,0,0.6)',
               }}
             >
-              <FlexBox
-                flexAuto="right"
-                style={{
-                  height: '100%',
-                  marginLeft: '4px',
-                }}
-                left={
-                  <CenterBox>
-                    <GeneralConfigBox
-                      data={general}
-                      onChange={this.onGeneralChange}
-                    />
-                  </CenterBox>
-                }
-                right={
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'row-reverse',
-                    }}
-                  >
-                    {currentItem == null ? null : (
-                      <div style={{ height: '100%', marginRight: '4px' }}>
-                        <CenterBox>
-                          <ItemConfigBox
-                            data={currentItem}
-                            highlightMode={currentHighlightMode}
-                            onChange={this.onItemChange}
-                          />
-                        </CenterBox>
-                      </div>
-                    )}
-                  </div>
-                }
-              />
+              <CenterBox>
+                <GeneralConfigBox
+                  data={generalConfig}
+                  onChange={this.onGeneralChange}
+                />
+              </CenterBox>
             </div>
           ) : null}
         </div>
 
-        <div
+        <table
           style={{
-            borderTop: `1px solid ${color}`,
+            // borderTop: `1px solid ${color}`,
             ...style,
+            width: '100%',
           }}
+          border={borderWidth}
+          // eslint-disable-next-line react/no-unknown-property
+          bordercolor={borderColor}
         >
-          {items.map((item) => {
-            let itemAdjust;
+          <tbody>
+            {rowCollection.map((o, index) => {
+              return (
+                <tr key={`tr_${index}`}>
+                  {o.map((one, indexCell) => {
+                    const {
+                      uniqueTag,
+                      content,
+                      // width,
+                      highlightMode,
+                      spanRow,
+                      spanColumn,
+                      valueDisplayMode,
+                    } = one;
 
-            if (isArray(item)) {
-              if (item.length <= 0) {
-                return null;
-              } else {
-                itemAdjust = item[0];
-              }
-            } else {
-              itemAdjust = item;
-            }
+                    if (valueDisplayMode === valueDisplayModeCollection.text) {
+                      return (
+                        <CellText
+                          key={`tr_${index}_td_${indexCell}`}
+                          uniqueTag={uniqueTag}
+                          highlighTag={currentHighlighTag}
+                          content={content}
+                          data={one || {}}
+                          highlightMode={highlightMode}
+                          designMode={designMode || false}
+                          spanRow={spanRow}
+                          spanColumn={spanColumn}
+                          onClick={(o) => {
+                            this.onCellClick(o);
+                          }}
+                          onConfigChange={this.onConfigChange}
+                        />
+                      );
+                    }
 
-            const { key } = itemAdjust;
+                    if (valueDisplayMode === valueDisplayModeCollection.money) {
+                      return (
+                        <CellMoney
+                          key={`tr_${index}_td_${indexCell}`}
+                          uniqueTag={uniqueTag}
+                          highlighTag={currentHighlighTag}
+                          content={content}
+                          data={one || {}}
+                          highlightMode={highlightMode}
+                          designMode={designMode || false}
+                          spanRow={spanRow}
+                          spanColumn={spanColumn}
+                          onClick={(o) => {
+                            this.onCellClick(o);
+                          }}
+                          onConfigChange={this.onConfigChange}
+                        />
+                      );
+                    }
 
-            return (
-              <LineItem
-                key={key}
-                values={values}
-                general={general}
-                data={item}
-                currentName={currentName}
-                highlightMode={currentHighlightMode}
-                designMode={designMode}
-                lineStyle={lineAdjustStyle}
-                labelBoxStyle={labelBoxStyle}
-                valueBoxStyle={valueBoxStyle}
-                labelContainerStyle={labelContainerStyle}
-                valueContainerStyle={valueContainerStyle}
-                onClick={(o, highlightMode) => {
-                  this.onCellClick(o, highlightMode);
-                }}
-                onChange={this.onItemChange}
-              />
-            );
-          })}
+                    if (valueDisplayMode === valueDisplayModeCollection.enum) {
+                      return (
+                        <CellEnum
+                          key={`tr_${index}_td_${indexCell}`}
+                          uniqueTag={uniqueTag}
+                          highlighTag={currentHighlighTag}
+                          content={content}
+                          data={one || {}}
+                          highlightMode={highlightMode}
+                          designMode={designMode || false}
+                          spanRow={spanRow}
+                          spanColumn={spanColumn}
+                          onClick={(o) => {
+                            this.onCellClick(o);
+                          }}
+                          onConfigChange={this.onConfigChange}
+                        />
+                      );
+                    }
 
-          {showApply &&
-          isArray(applyListAdjust) &&
-          !isEmptyArray(applyListAdjust)
-            ? applyListAdjust.map((o, index) => {
-                return (
-                  <LineApply
-                    key={`attention_item_${index}`}
-                    data={o}
-                    general={general}
-                    currentName={currentName}
-                    highlightMode={currentHighlightMode}
-                    designMode={designMode}
-                    lineStyle={lineAdjustStyle}
-                    labelBoxStyle={labelBoxStyle}
-                    valueBoxStyle={valueBoxStyle}
-                    labelContainerStyle={labelContainerStyle}
-                    valueContainerStyle={valueContainerStyle}
-                    signetStyle={signetStyle}
-                  />
-                );
-              })
-            : null}
+                    if (valueDisplayMode === valueDisplayModeCollection.apply) {
+                      return (
+                        <CellApply
+                          key={`tr_${index}_td_${indexCell}`}
+                          uniqueTag={uniqueTag}
+                          highlighTag={currentHighlighTag}
+                          content={content}
+                          signetStyle={signetStyle}
+                          data={one || {}}
+                          highlightMode={highlightMode}
+                          designMode={designMode || false}
+                          spanRow={spanRow}
+                          spanColumn={spanColumn}
+                          onClick={(o) => {
+                            this.onCellClick(o);
+                          }}
+                          onConfigChange={this.onConfigChange}
+                        />
+                      );
+                    }
 
-          {showAttention &&
-          isArray(attentionListAdjust) &&
-          !isEmptyArray(attentionListAdjust)
-            ? attentionListAdjust.map((o, index) => {
-                return (
-                  <LineApprove
-                    key={`attention_item_${index}`}
-                    data={o}
-                    general={general}
-                    currentName={currentName}
-                    highlightMode={currentHighlightMode}
-                    designMode={designMode}
-                    lineStyle={lineAdjustStyle}
-                    labelBoxStyle={labelBoxStyle}
-                    valueBoxStyle={valueBoxStyle}
-                    labelContainerStyle={labelContainerStyle}
-                    valueContainerStyle={valueContainerStyle}
-                    signetStyle={signetStyle}
-                  />
-                );
-              })
-            : null}
+                    if (
+                      valueDisplayMode === valueDisplayModeCollection.attention
+                    ) {
+                      return (
+                        <CellAttention
+                          key={`tr_${index}_td_${indexCell}`}
+                          uniqueTag={uniqueTag}
+                          highlighTag={currentHighlighTag}
+                          content={content}
+                          signetStyle={signetStyle}
+                          data={one || {}}
+                          highlightMode={highlightMode}
+                          designMode={designMode || false}
+                          spanRow={spanRow}
+                          spanColumn={spanColumn}
+                          onClick={(o) => {
+                            this.onCellClick(o);
+                          }}
+                          onConfigChange={this.onConfigChange}
+                        />
+                      );
+                    }
 
-          {isArray(nodeListAdjust)
-            ? nodeListAdjust.map((o, index) => {
-                return (
-                  <LineApprove
-                    key={`approve_item_${index}`}
-                    data={o}
-                    general={general}
-                    currentName={currentName}
-                    highlightMode={currentHighlightMode}
-                    designMode={designMode}
-                    lineStyle={lineAdjustStyle}
-                    labelBoxStyle={labelBoxStyle}
-                    valueBoxStyle={valueBoxStyle}
-                    labelContainerStyle={labelContainerStyle}
-                    valueContainerStyle={valueContainerStyle}
-                    signetStyle={signetStyle}
-                  />
-                );
-              })
-            : null}
+                    if (
+                      valueDisplayMode === valueDisplayModeCollection.approval
+                    ) {
+                      return (
+                        <CellApproval
+                          key={`tr_${index}_td_${indexCell}`}
+                          uniqueTag={uniqueTag}
+                          highlighTag={currentHighlighTag}
+                          content={content}
+                          signetStyle={signetStyle}
+                          data={one || {}}
+                          highlightMode={highlightMode}
+                          designMode={designMode || false}
+                          spanRow={spanRow}
+                          spanColumn={spanColumn}
+                          onClick={(o) => {
+                            this.onCellClick(o);
+                          }}
+                          onConfigChange={this.onConfigChange}
+                        />
+                      );
+                    }
 
-          {showRemark ? (
-            <LineRemark
-              title={remarkTitle}
-              name={remarkName}
-              value={
-                isArray(remarkList)
-                  ? remarkList.map((o) => toString(o)).join('')
-                  : toString(remarkList)
-              }
-              general={general}
-              currentName={currentName}
-              highlightMode={currentHighlightMode}
-              designMode={designMode}
-              lineStyle={lineAdjustStyle}
-              labelBoxStyle={labelBoxStyle}
-              valueBoxStyle={valueBoxStyle}
-              labelContainerStyle={labelContainerStyle}
-              valueContainerStyle={valueContainerStyle}
-            />
-          ) : null}
-        </div>
+                    if (
+                      valueDisplayMode === valueDisplayModeCollection.remark
+                    ) {
+                      return (
+                        <CellRemark
+                          key={`tr_${index}_td_${indexCell}`}
+                          uniqueTag={uniqueTag}
+                          highlighTag={currentHighlighTag}
+                          content={content}
+                          data={one || {}}
+                          highlightMode={highlightMode}
+                          designMode={designMode || false}
+                          spanRow={spanRow}
+                          spanColumn={spanColumn}
+                          onClick={(o) => {
+                            this.onCellClick(o);
+                          }}
+                          onConfigChange={this.onConfigChange}
+                        />
+                      );
+                    }
+
+                    return null;
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
 
         {this.buildFooter()}
       </div>
@@ -678,3 +489,5 @@ DocumentContent.defaultProps = {
 };
 
 export { DocumentContent };
+
+export { highlightModeCollection, nodeApply, nodeAttention } from './constant';

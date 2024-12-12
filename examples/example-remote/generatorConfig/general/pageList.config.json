@@ -1,9 +1,346 @@
 {
   "list": [
     {
+      "folder": "Position/PageList",
+      "model": "position",
+      "key": "positionId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "PositionGrade/PageList",
+      "model": "positionGrade",
+      "key": "positionGradeId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "AdministrativeDivision/PageList",
+      "model": "administrativeDivision",
+      "key": "administrativeDivisionId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Question/PageList",
+      "model": "question",
+      "key": "questionId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "QuestionItem/PageList",
+      "model": "questionItem",
+      "key": "questionItemId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Questionnaire/PageList",
+      "model": "questionnaire",
+      "key": "questionnaireId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "QuestionnaireQuestion/PageList",
+      "model": "questionnaireQuestion",
+      "key": "questionnaireQuestionId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "UserQuestionnaire/PageList",
+      "model": "userQuestionnaire",
+      "key": "userQuestionnaireId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "KeyValueInfrastructure/PageList",
+      "model": "keyValueInfrastructure",
+      "key": "keyValueInfrastructureId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "KeyValueApplication/PageList",
+      "model": "keyValueApplication",
+      "key": "keyValueApplicationId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "KeyValueSection/PageList",
+      "model": "keyValueSection",
+      "key": "keyValueSectionId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "KeyValueWorkflow/PageList",
+      "model": "keyValueWorkflow",
+      "key": "keyValueWorkflowId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "AccessWay/PageList",
+      "model": "accessWay",
+      "key": "accessWayId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Application/PageList",
+      "model": "application",
+      "key": "applicationId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
       "folder": "ApplicationSource/PageList",
       "model": "applicationSource",
       "key": "applicationSourceId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "CallCenter/PageList",
+      "model": "callCenter",
+      "key": "callCenterId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "CallCenterCategory/PageList",
+      "model": "callCenterCategory",
+      "key": "callCenterCategoryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "BusinessSet/PageList",
+      "model": "businessSet",
+      "key": "businessSetId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+
+    {
+      "folder": "Department/PageList",
+      "model": "department",
+      "key": "departmentId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ErrorLog/PageList",
+      "model": "errorLog",
+      "key": "errorLogId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ExecuteLog/PageList",
+      "model": "executeLog",
+      "key": "executeLogId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Gallery/PageList",
+      "model": "gallery",
+      "key": "galleryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "GalleryCategory/PageList",
+      "model": "galleryCategory",
+      "key": "galleryCategoryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "GeneralDiscourse/PageList",
+      "model": "generalDiscourse",
+      "key": "generalDiscourseId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "GeneralLog/PageList",
+      "model": "generalLog",
+      "key": "generalLogId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "HostService/PageList",
+      "model": "hostService",
+      "key": "hostServiceId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "HostServiceLog/PageList",
+      "model": "hostServiceLog",
+      "key": "hostServiceLogId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "InternalTester/PageList",
+      "model": "internalTester",
+      "key": "internalTesterId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "MasterManager/PageList",
+      "model": "masterManager",
+      "key": "masterManagerId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "OptionPool/PageList",
+      "model": "optionPool",
+      "key": "optionPoolId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "PresetRole/PageList",
+      "model": "presetRole",
+      "key": "presetRoleId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "QrCode/PageList",
+      "model": "qrCode",
+      "key": "qrCodeId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "QrCodeCategory/PageList",
+      "model": "qrCodeCategory",
+      "key": "qrCodeCategoryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "QueueInfo/PageList",
+      "model": "queueInfo",
+      "key": "queueInfoId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Section/PageList",
+      "model": "section",
+      "key": "sectionId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SmsCategory/PageList",
+      "model": "smsCategory",
+      "key": "smsCategoryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SmsCategoryStatistic/PageList",
+      "model": "smsCategoryStatistic",
+      "key": "smsCategoryStatisticId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SmsLog/PageList",
+      "model": "smsLog",
+      "key": "smsLogId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Subsidiary/PageList",
+      "model": "subsidiary",
+      "key": "subsidiaryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Tag/PageList",
+      "model": "tag",
+      "key": "tagId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "UploadHistory/PageList",
+      "model": "uploadHistory",
+      "key": "uploadHistoryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "User/PageList",
+      "model": "user",
+      "key": "userId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "UserDevice/PageList",
+      "model": "userDevice",
+      "key": "userDeviceId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SqlEntity/PageList",
+      "model": "sqlEntity",
+      "key": "sqlEntityId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SqlEntity/PageListBusiness",
+      "model": "sqlEntity",
+      "key": "sqlEntityId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SqlEntity/PageListInfrastructure",
+      "model": "sqlEntity",
+      "key": "sqlEntityId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "WeChatMessageRecord/PageList",
+      "model": "weChatMessageRecord",
+      "key": "weChatMessageRecordId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "Workflow/PageList",
+      "model": "workflow",
+      "key": "workflowId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "WorkflowCase/PageList",
+      "model": "workflowCase",
+      "key": "workflowCaseId",
       "fileName": "index.jsx",
       "coverFile": false
     }

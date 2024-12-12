@@ -2,12 +2,17 @@ import React from 'react';
 import generatePDF from 'react-to-pdf';
 
 import {
+  checkInCollection,
   checkStringIsNullOrWhiteSpace,
   isArray,
   isFunction,
+  logConsole,
   logException,
   showOpenMessage,
+  showSimpleErrorMessage,
+  showSimpleWarningMessage,
   toMd5,
+  toString,
 } from 'easy-soft-utility';
 
 import {
@@ -15,16 +20,22 @@ import {
   buildButton,
   CenterBox,
   EverySpace,
+  FadeBox,
   iconBuilder,
   PageExtra,
+  SyntaxHighlighter,
 } from 'antd-management-fast-component';
 
 import {
+  adjustConfigureList,
   adjustSchemaData,
+  adjustValueCollection,
+  buildRowCell,
   getInitializeGeneral,
   getInitializeItem,
+  transferNodeList,
 } from './DocumentContent/tools';
-import { DocumentContent } from './DocumentContent';
+import { DocumentContent, highlightModeCollection } from './DocumentContent';
 
 import styles from './index.less';
 
@@ -51,6 +62,7 @@ const defaultProperties = {
   valueColumnStyle: null,
   valueContainerStyle: null,
   valueStyle: null,
+  formItems: [],
   showApply: false,
   applyList: [],
   showAttention: false,
@@ -59,7 +71,7 @@ const defaultProperties = {
   allApproveProcessList: [],
   showRemark: true,
   remarkTitle: '备注',
-  remarkName: 'remark',
+  remarkName: '6f45b65c785e476fa9ad072e541f4396',
   remarkList: [],
   showQRCode: false,
   qRCodeImage: '',
@@ -85,34 +97,72 @@ class DocumentPrintDesigner extends BaseComponent {
 
     this.state = {
       ...this.state,
+      configDrawerVisible: false,
       designMode: false,
       schemaTag: '',
-      generalOriginal: {},
-      itemsOriginal: [],
-      general: {},
-      items: [],
+      formItemsTag: '',
+      configureList: [],
+      generalConfig: {},
+      generalConfigOriginal: {},
+      formItemsOriginal: [],
+      formItems: [],
+      documentTempUrl: '',
     };
   }
 
   // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProperties, previousState) {
-    const { schema } = nextProperties;
-    const { schemaTag } = previousState;
+    const {
+      schema,
+      formItems,
+      applyList,
+      attentionList,
+      allApproveProcessList,
+      remarkTitle,
+      remarkName,
+    } = nextProperties;
+    const { schemaTag, formItemsTag } = previousState;
+
+    let needUpdate = false;
 
     if (toMd5(JSON.stringify(schema || {})) != schemaTag) {
-      const { general, items } = adjustSchemaData(schema);
-
-      return {
-        schemaTag: toMd5(JSON.stringify(schema || [])),
-        general,
-        items: [...items],
-        generalOriginal: general,
-        itemsOriginal: [...items],
-        documentTempUrl: '',
-      };
+      needUpdate = true;
     }
 
-    return null;
+    if (toMd5(JSON.stringify(formItems || {})) != formItemsTag) {
+      needUpdate = true;
+    }
+
+    if (!needUpdate) {
+      return null;
+    }
+
+    logConsole({}, 'DocumentPrintDesigner::getDerivedStateFromProps');
+
+    const { generalConfig, configureList: configureSourceList } =
+      adjustSchemaData(schema);
+
+    const { configureList } = adjustConfigureList({
+      configureList: configureSourceList,
+      formItems,
+      applyList,
+      attentionList,
+      allApproveProcessList,
+      remarkTitle,
+      remarkName,
+      schema,
+    });
+
+    return {
+      schemaTag: toMd5(JSON.stringify(schema || [])),
+      formItemsTag: toMd5(JSON.stringify(formItems || [])),
+      generalConfig: { ...generalConfig },
+      configureList: [...configureList],
+      formItems: [...formItems],
+      generalConfigOriginal: { ...generalConfig },
+      formItemsOriginal: [...formItems],
+      documentTempUrl: '',
+    };
   }
 
   getPrintId = () => {
@@ -150,8 +200,6 @@ class DocumentPrintDesigner extends BaseComponent {
       () => {
         generatePDF(that.getTargetDocumentElement, options)
           .then((o) => {
-            console.log(o);
-
             that.setState({
               documentTempUrl: o.output('bloburi'),
             });
@@ -172,40 +220,162 @@ class DocumentPrintDesigner extends BaseComponent {
   };
 
   initializeDesign = () => {
-    const { itemsOriginal } = this.state;
+    const {
+      schema,
+      formItems,
+      applyList,
+      attentionList,
+      allApproveProcessList,
+      remarkTitle,
+      remarkName,
+    } = this.props;
 
-    if (isArray(itemsOriginal)) {
-      const itemsAdjust = itemsOriginal.map((o) => {
-        return {
-          ...getInitializeItem(),
-          ...o,
-        };
-      });
+    const { configureList } = adjustConfigureList({
+      configureList: [],
+      formItems,
+      applyList,
+      attentionList,
+      allApproveProcessList,
+      remarkTitle,
+      remarkName,
+      schema,
+    });
 
-      this.setState({
-        general: getInitializeGeneral(),
-        items: [...itemsAdjust],
-      });
-    } else {
-      this.setState({ general: getInitializeGeneral(), items: [] });
-    }
+    this.setState({
+      // generalConfig: getInitializeGeneral(),
+      configureList: [...configureList],
+    });
   };
 
   reset = () => {
-    const { generalOriginal, itemsOriginal } = this.state;
+    const {
+      schema,
+      formItems,
+      applyList,
+      attentionList,
+      allApproveProcessList,
+      remarkTitle,
+      remarkName,
+    } = this.props;
+
+    const {
+      //  generalConfig,
+      configureList: configureSourceList,
+    } = adjustSchemaData(schema);
+
+    const { configureList } = adjustConfigureList({
+      configureList: configureSourceList,
+      formItems,
+      applyList,
+      attentionList,
+      allApproveProcessList,
+      remarkTitle,
+      remarkName,
+      schema,
+    });
 
     this.setState({
-      general: generalOriginal,
-      items: [...itemsOriginal],
+      // generalConfig: generalConfigOriginal,
+      configureList: [...configureList],
     });
   };
 
   onGeneralChange = (o) => {
-    this.setState({ general: o || {} });
+    this.setState({ generalConfig: o || {} });
   };
 
-  onItemsChange = (list) => {
-    this.setState({ items: [...list] });
+  onConfigChange = (o) => {
+    logConsole({ o }, 'DocumentPrintDesigner::onConfigChange');
+
+    const { configureList } = this.state;
+
+    const {
+      key: configKey,
+      highlightMode: configHighlightMode,
+      firstPosition,
+      width,
+      height,
+      spanRow,
+      spanColumn,
+    } = {
+      key: '',
+      highlightMode: '',
+      ...o,
+    };
+
+    if (checkStringIsNullOrWhiteSpace(configKey)) {
+      showSimpleErrorMessage('配置项的 key 不能为空');
+
+      return;
+    }
+
+    if (checkStringIsNullOrWhiteSpace(configHighlightMode)) {
+      showSimpleErrorMessage('配置项的 highlightMode 不能为空');
+
+      return;
+    }
+
+    if (
+      !checkInCollection(
+        [highlightModeCollection.label, highlightModeCollection.value],
+        configHighlightMode,
+      )
+    ) {
+      showSimpleErrorMessage(
+        `配置项的 highlightMode 值无效 -> ${configHighlightMode}`,
+      );
+
+      return;
+    }
+
+    let existConfig = false;
+    const configureChangedList = [];
+
+    for (const config of configureList) {
+      const { key } = { key: '', ...config };
+
+      const data = { ...config };
+
+      if (key !== configKey) {
+        configureChangedList.push(data);
+
+        continue;
+      }
+
+      if (configHighlightMode === highlightModeCollection.label) {
+        data.labelConfig = {
+          ...data.labelConfig,
+          firstPosition: toString(firstPosition),
+          width: toString(width),
+          height: toString(height),
+          spanRow: toString(spanRow),
+          spanColumn: toString(spanColumn),
+        };
+      }
+
+      if (configHighlightMode === highlightModeCollection.value) {
+        data.valueConfig = {
+          ...data.valueConfig,
+          firstPosition: toString(firstPosition),
+          width: toString(width),
+          height: toString(height),
+          spanRow: toString(spanRow),
+          spanColumn: toString(spanColumn),
+        };
+      }
+
+      configureChangedList.push(data);
+
+      existConfig = true;
+    }
+
+    if (!existConfig) {
+      showSimpleWarningMessage(`未匹配到配置项的 key -> ${configKey}`);
+
+      return;
+    }
+
+    this.setState({ configureList: [...configureChangedList] });
   };
 
   save = () => {
@@ -218,9 +388,11 @@ class DocumentPrintDesigner extends BaseComponent {
       return;
     }
 
-    const { general, items } = this.state;
+    const { generalConfig, configureList } = this.state;
 
-    onSave({ general, items });
+    logConsole({ generalConfig, configureList }, 'DocumentPrintDesigner::save');
+
+    onSave({ general: generalConfig, items: configureList });
   };
 
   openDesignMode = () => {
@@ -233,6 +405,98 @@ class DocumentPrintDesigner extends BaseComponent {
     this.setState({
       designMode: false,
     });
+  };
+
+  openConfigDrawer = () => {
+    this.setState({
+      configDrawerVisible: true,
+    });
+  };
+
+  closeConfigDrawer = () => {
+    this.setState({
+      configDrawerVisible: false,
+    });
+  };
+
+  buildRowCollection = () => {
+    const {
+      showRemark,
+      values: valuesSource,
+      generalConfig,
+      formItems,
+      showApply,
+      applyList,
+      showAttention,
+      attentionList,
+      approveList,
+      allApproveProcessList,
+      remarkTitle,
+      remarkName,
+      remarkList,
+    } = this.props;
+    const { configureList } = this.state;
+
+    const values = adjustValueCollection(valuesSource);
+
+    const nodeListAdjust = transferNodeList(approveList, allApproveProcessList);
+
+    const applyListAdjust = (isArray(applyList) ? applyList : []).map((o) => {
+      const { nodeId, title, note, name, signet, time } = {
+        title: '',
+        note: '',
+        name: '',
+        signet: '',
+        time: '',
+        ...o,
+      };
+
+      return {
+        nodeId,
+        title,
+        note,
+        name,
+        signet,
+        time,
+      };
+    });
+
+    const attentionListAdjust = (
+      isArray(attentionList) ? attentionList : []
+    ).map((o) => {
+      const { nodeId, title, note, name, signet, time } = {
+        title: '',
+        note: '',
+        name: '',
+        signet: '',
+        time: '',
+        ...o,
+      };
+
+      return {
+        nodeId,
+        title,
+        note,
+        name,
+        signet,
+        time,
+      };
+    });
+
+    const rows = buildRowCell({
+      generalConfig,
+      configureList,
+      formItems,
+      values,
+      applyList: showApply ? applyListAdjust : [],
+      attentionList: showAttention ? attentionListAdjust : [],
+      approveList: nodeListAdjust,
+      remarkTitle,
+      remarkName,
+      remarkList: showRemark ? remarkList : [],
+    });
+
+    return { rows };
   };
 
   renderPrintContainer = () => {
@@ -268,6 +532,11 @@ class DocumentPrintDesigner extends BaseComponent {
     const {
       showToolbar,
       showRemark,
+      showApply,
+      applyList,
+      showAttention,
+      attentionList,
+      allApproveProcessList,
       values,
       style,
       color,
@@ -282,15 +551,6 @@ class DocumentPrintDesigner extends BaseComponent {
       titleStyle,
       signetStyle,
       showTitle,
-      showApply,
-      applyList,
-      showAttention,
-      attentionList,
-      approveList,
-      allApproveProcessList,
-      remarkTitle,
-      remarkName,
-      remarkList,
       showQRCode,
       qRCodeTitle,
       qRCodeDescription,
@@ -304,47 +564,15 @@ class DocumentPrintDesigner extends BaseComponent {
       ...defaultProperties,
       ...this.props,
     };
-    const { designMode, general, items } = this.state;
+    const {
+      configDrawerVisible,
+      designMode,
+      generalConfig,
+      configureList,
+      formItems,
+    } = this.state;
 
-    const p = {
-      showToolbar,
-      showRemark,
-      values,
-      general,
-      items,
-      style,
-      color,
-      labelColumnWidth,
-      labelColumnStyle,
-      labelContainerStyle,
-      valueColumnStyle,
-      valueContainerStyle,
-      title,
-      titleContainerStyle,
-      titleStyle,
-      signetStyle,
-      showTitle,
-      showApply,
-      applyList,
-      showAttention,
-      attentionList,
-      approveList,
-      allApproveProcessList,
-      remarkTitle,
-      remarkName,
-      remarkList,
-      showQRCode,
-      qRCodeTitle,
-      qRCodeDescription,
-      qRCodeImage,
-      qRCodeHeight,
-      qRCodeStyle,
-      showSerialNumber,
-      serialNumberTitle,
-      serialNumberContent,
-      onGeneralChange: this.onGeneralChange,
-      onItemsChange: this.onItemsChange,
-    };
+    const { rows } = this.buildRowCollection();
 
     const that = this;
 
@@ -363,6 +591,28 @@ class DocumentPrintDesigner extends BaseComponent {
                     stick={false}
                     title="操作栏"
                     tools={[
+                      {
+                        hidden: configDrawerVisible || !designMode,
+                        component: buildButton({
+                          text: '开启数据配置板',
+                          size: 'small',
+                          icon: iconBuilder.closeCircle(),
+                          handleClick: () => {
+                            this.openConfigDrawer();
+                          },
+                        }),
+                      },
+                      {
+                        hidden: !configDrawerVisible || !designMode,
+                        component: buildButton({
+                          text: '关闭数据配置板',
+                          size: 'small',
+                          icon: iconBuilder.closeCircle(),
+                          handleClick: () => {
+                            this.closeConfigDrawer();
+                          },
+                        }),
+                      },
                       {
                         hidden: !canDesign || !designMode,
                         component: buildButton({
@@ -449,12 +699,90 @@ class DocumentPrintDesigner extends BaseComponent {
 
               <EverySpace size={10} direction="horizontal" />
 
-              <div>
+              <div style={{ position: 'relative', overflow: 'hidden' }}>
                 <DocumentContent
                   printAreaId={that.getPrintId()}
-                  {...p}
+                  showToolbar={showToolbar}
                   designMode={designMode}
+                  generalConfig={generalConfig}
+                  style={style}
+                  color={color}
+                  labelColumnWidth={labelColumnWidth}
+                  labelColumnStyle={labelColumnStyle}
+                  labelContainerStyle={labelContainerStyle}
+                  valueColumnStyle={valueColumnStyle}
+                  valueContainerStyle={valueContainerStyle}
+                  title={title}
+                  titleContainerStyle={titleContainerStyle}
+                  titleStyle={titleStyle}
+                  rows={rows}
+                  signetStyle={signetStyle}
+                  showTitle={showTitle}
+                  showQRCode={showQRCode}
+                  qRCodeTitle={qRCodeTitle}
+                  qRCodeDescription={qRCodeDescription}
+                  qRCodeImage={qRCodeImage}
+                  qRCodeHeight={qRCodeHeight}
+                  qRCodeStyle={qRCodeStyle}
+                  showSerialNumber={showSerialNumber}
+                  serialNumberTitle={serialNumberTitle}
+                  serialNumberContent={serialNumberContent}
+                  onGeneralChange={this.onGeneralChange}
+                  onConfigChange={(o) => {
+                    this.onConfigChange(o);
+                  }}
                 />
+
+                <FadeBox
+                  visible={configDrawerVisible}
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: '#ccc',
+                    zIndex: '101',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      background: '#fff',
+                      padding: '16px 16px 26px 16px',
+                      borderRadius: '10px',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <SyntaxHighlighter
+                      language="js"
+                      value={JSON.stringify(
+                        {
+                          generalConfig,
+                          configureList,
+                          formItems,
+                          showApply,
+                          applyList,
+                          showAttention,
+                          attentionList,
+                          allApproveProcessList,
+                          showRemark,
+                          values,
+                          rows,
+                        },
+                        null,
+                        2,
+                      )}
+                      other={{ showLineNumbers: true, wrapLines: true }}
+                      style={{
+                        height: '100%',
+                        marginLeft: '0px',
+                        marginRight: '0px',
+                      }}
+                    />
+                  </div>
+                </FadeBox>
               </div>
 
               {that.renderPrintContainer()}
@@ -473,3 +801,5 @@ DocumentPrintDesigner.defaultProps = {
 };
 
 export { DocumentPrintDesigner };
+
+export { nodeApply, nodeAttention } from './DocumentContent';

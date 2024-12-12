@@ -1,4 +1,20 @@
-import { whetherString, zeroString } from 'easy-soft-utility';
+export const nodeApply = {
+  nodeId: 'nodeApply',
+  title: '',
+  note: '',
+  name: '',
+  signet: '',
+  time: '',
+};
+
+export const nodeAttention = {
+  nodeId: 'nodeAttention',
+  title: '',
+  note: '',
+  name: '',
+  signet: '',
+  time: '',
+};
 
 export const fontFamilyStyle = {
   fontFamily: 'fangsong',
@@ -10,18 +26,11 @@ export const colorStyle = {
   color: colorDefault,
 };
 
-export const lineStyle = {};
-
 export const documentTitleStyle = {
   fontSize: '30px',
 };
 
-export const labelFrontStyle = {
-  fontSize: '20px',
-  lineHeight: '36px',
-};
-
-export const valueFrontStyle = {
+export const frontSizeStyle = {
   fontSize: '20px',
   lineHeight: '36px',
 };
@@ -30,25 +39,25 @@ export const highlightModeCollection = {
   none: 'none',
   label: 'label',
   value: 'value',
-  all: 'all',
 };
 
 export const currencyDisplayStyle = {
   borderBottom: '1px solid #999',
 };
 
-export const defaultConfig = {
-  labelWidth: '160',
-  width: zeroString,
-  minHeight: '50',
-  // height: 'auto',
-  fullLine: whetherString.yes,
-  currencyDisplay: whetherString.no,
-  firstPosition: whetherString.no,
-  enumList: [],
-};
-
 export const valueDisplayModeCollection = {
   text: 'text',
+  money: 'money',
+  apply: 'apply',
+  attention: 'attention',
+  approval: 'approval',
+  remark: 'remark',
   enum: 'enum',
+};
+
+export const tdPaddingStyle = {
+  paddingTop: '8px',
+  paddingBottom: '8px',
+  paddingLeft: '10px',
+  paddingRight: '10px',
 };

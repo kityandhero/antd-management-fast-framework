@@ -1,3 +1,60 @@
 {
-  "list": []
+  "list": [
+    {
+      "folder": "Position/OperateLogDrawer",
+      "model": "position",
+      "key": "positionId",
+      "visibleFlag": "6e2357dca2354c8ea3e086fcd61f2da8",
+      "coverFile": true
+    },
+    {
+      "folder": "PositionGrade/OperateLogDrawer",
+      "model": "positionGrade",
+      "key": "positionGradeId",
+      "visibleFlag": "6e2357dca2354c8ea3e086fcd61f2da8",
+      "coverFile": true
+    },
+    {
+      "folder": "QuestionItem/OperateLogDrawer",
+      "model": "questionItem",
+      "key": "questionItemId",
+      "visibleFlag": "ac29eca188234fab81615a669e3c3266",
+      "coverFile": true
+    },
+    {
+      "folder": "QuestionnaireQuestion/OperateLogDrawer",
+      "model": "questionnaireQuestion",
+      "key": "questionnaireQuestionId",
+      "visibleFlag": "0d4d853d21b44dd092fb58fe6d3d24d1",
+      "coverFile": true
+    },
+    {
+      "folder": "GalleryCategory/OperateLogDrawer",
+      "model": "galleryCategory",
+      "key": "galleryCategoryId",
+      "visibleFlag": "e5bb5d5bc34146119eab66af448bc1e0",
+      "coverFile": true
+    },
+    {
+      "folder": "QrCodeCategory/OperateLogDrawer",
+      "model": "qrCodeCategory",
+      "key": "qrCodeCategoryId",
+      "visibleFlag": "2dd108a72fa94f348fb445f49b3ca419",
+      "coverFile": true
+    },
+    {
+      "folder": "CallCenterCategory/OperateLogDrawer",
+      "model": "callCenterCategory",
+      "key": "callCenterCategoryId",
+      "visibleFlag": "7f7e0ff509a74702aa517162da46ccdc",
+      "coverFile": true
+    },
+    {
+      "folder": "BusinessSet/OperateLogDrawer",
+      "model": "businessSet",
+      "key": "businessSetId",
+      "visibleFlag": "29ec6fb069c74bb5afe6aba8d05ae751",
+      "coverFile": true
+    }
+  ]
 }

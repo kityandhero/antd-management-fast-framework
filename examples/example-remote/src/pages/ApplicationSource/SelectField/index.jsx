@@ -29,16 +29,15 @@ class SelectField extends BaseSelectFieldExtra {
   };
 
   renderPresetSelector = () => {
-    const { label } = this.props;
+    const { label } = {
+      label: '',
+      ...this.props,
+    };
 
     return (
       <SelectModal title={label} afterSelectSuccess={this.afterSelectSuccess} />
     );
   };
 }
-
-SelectField.defaultProps = {
-  ...BaseSelectFieldExtra.defaultProps,
-};
 
 export default SelectField;

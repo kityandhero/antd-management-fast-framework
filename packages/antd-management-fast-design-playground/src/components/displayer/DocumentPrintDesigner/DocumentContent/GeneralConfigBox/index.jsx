@@ -15,13 +15,11 @@ import {
   VerticalBox,
 } from 'antd-management-fast-component';
 
-import { defaultConfig } from '../constant';
-
 function GeneralConfigBox(properties) {
   const { data, onChange: onChangeCallback } = properties;
 
   const { labelWidth } = {
-    labelWidth: defaultConfig.labelWidth,
+    labelWidth: '0',
     ...data,
   };
 

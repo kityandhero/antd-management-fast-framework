@@ -8,6 +8,7 @@ import {
 } from 'antd-management-fast-framework';
 
 import {
+  buildNowTimeFieldItem,
   renderFormApplicationSourceCreateModeSelect,
   renderFormApplicationSourceTypeSelect,
 } from '../../../customSpecialComponents';
@@ -109,19 +110,18 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '其他信息',
+            text: '简介 - 描述 - 备注',
           },
           items: [
             {
               lg: 24,
               type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
-            },
-            {
-              type: cardConfig.contentItemType.nowTime,
+              require: false,
             },
           ],
         },
+        buildNowTimeFieldItem({}),
       ],
     };
   };

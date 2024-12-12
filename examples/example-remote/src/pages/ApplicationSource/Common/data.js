@@ -1,4 +1,4 @@
-import { formNameCollection } from 'antd-management-fast-common';
+import { formNameCollection } from '../../../customConfig';
 
 export const fieldData = {
   ...formNameCollection,
@@ -45,36 +45,6 @@ export const fieldData = {
   createModeNote: {
     label: '创建模式',
     name: 'createModeNote',
-    helper: '',
-  },
-  status: {
-    label: '状态',
-    name: 'status',
-    helper: '',
-  },
-  statusNote: {
-    label: '状态',
-    name: 'statusNote',
-    helper: '',
-  },
-  createOperatorId: {
-    label: '创建人标识',
-    name: 'createOperatorId',
-    helper: '',
-  },
-  createTime: {
-    label: '创建时间',
-    name: 'createTime',
-    helper: '',
-  },
-  updateOperatorId: {
-    label: '更新人标识',
-    name: 'updateOperatorId',
-    helper: '',
-  },
-  updateTime: {
-    label: '更新时间',
-    name: 'updateTime',
     helper: '',
   },
 };

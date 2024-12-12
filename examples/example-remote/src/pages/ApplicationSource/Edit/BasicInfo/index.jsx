@@ -1,9 +1,5 @@
 import { connect } from 'easy-soft-dva';
-import {
-  convertCollection,
-  formatCollection,
-  getValueByKey,
-} from 'easy-soft-utility';
+import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
 import {
   cardConfig,
@@ -13,6 +9,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../../customConfig';
 import {
+  buildUpdateTimeAndOperatorFieldItem,
   renderFormApplicationSourceCreateModeSelect,
   renderFormApplicationSourceTypeSelect,
 } from '../../../../customSpecialComponents';
@@ -25,9 +22,6 @@ import { TabPageBase } from '../../TabPageBase';
   schedulingControl,
 }))
 class Index extends TabPageBase {
-  // 在控制台显示组建内调用序列, 仅为进行开发辅助
-  showCallProcess = true;
-
   reloadHeaderOnSubmitSuccess = true;
 
   componentAuthority =
@@ -45,13 +39,6 @@ class Index extends TabPageBase {
     };
   }
 
-  /**
-   * get derived state from props。
-   * @static
-   * @param {Object} nextProperties 即将更改的属性值
-   * @param {Object} previousState 之前的 state 值
-   * @returns {Object} 更新后的 state 值
-   */
   static getDerivedStateFromProps(nextProperties, previousState) {
     return getDerivedStateFromPropertiesForUrlParameters(
       nextProperties,
@@ -212,66 +199,7 @@ class Index extends TabPageBase {
             },
           ],
         },
-        {
-          title: {
-            icon: iconBuilder.contacts(),
-            text: '操作信息',
-          },
-          items: [
-            {
-              lg: 24,
-              type: cardConfig.contentItemType.customGrid,
-              list: [
-                {
-                  span: 1,
-                  label: fieldData.createOperatorId.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.createOperatorId.name,
-                  }),
-                },
-                {
-                  span: 1,
-                  label: fieldData.createTime.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.createTime.name,
-                    format: formatCollection.datetime,
-                  }),
-                },
-                {
-                  span: 1,
-                  label: fieldData.updateOperatorId.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.updateOperatorId.name,
-                  }),
-                },
-                {
-                  span: 1,
-                  label: fieldData.updateTime.label,
-                  value: getValueByKey({
-                    data: metaData,
-                    key: fieldData.updateTime.name,
-                    format: formatCollection.datetime,
-                  }),
-                },
-              ],
-              props: {
-                size: 'small',
-                bordered: true,
-                column: 4,
-                emptyStyle: {
-                  color: '#cccccc',
-                },
-                emptyValue: '待完善',
-                labelStyle: {
-                  width: '80px',
-                },
-              },
-            },
-          ],
-        },
+        buildUpdateTimeAndOperatorFieldItem({ data: metaData, line: 1 }),
       ],
     };
   };

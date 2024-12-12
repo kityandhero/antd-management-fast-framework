@@ -1,7 +1,18 @@
 import { appendExtraBuilder } from 'easy-soft-utility';
 
-import { listModelBuilder as listCustomModelBuilder } from './custom';
-import { listModelBuilder as listGeneralModelBuilder } from './general';
+import {
+  listModelBuilder as listCustomModelBuilder,
+  modelTypeCollection as modelTypeCollectionCustom,
+} from './custom';
+import {
+  listModelBuilder as listGeneralModelBuilder,
+  modelTypeCollection as modelTypeCollectionGeneral,
+} from './general';
+
+export const modelTypeCollection = {
+  ...modelTypeCollectionGeneral,
+  ...modelTypeCollectionCustom,
+};
 
 function collectModelBuilder() {
   let listGeneral = listGeneralModelBuilder();

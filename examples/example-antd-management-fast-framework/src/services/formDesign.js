@@ -95,10 +95,8 @@ export async function getData(parameters) {
       data: {
         dataSchema: dataSchema ?? '',
         designSchema: designSchema ?? '',
-        documentSchema: {
-          general: documentGeneralSchema ?? {},
-          items: documentItemsSchema,
-        },
+        documentGeneralSchema: documentGeneralSchema ?? {},
+        documentItemsSchema: documentItemsSchema ?? {},
         listFormStorage: listFormStorage || [],
         formRemarkList: formRemarkList,
         formRemarkColor: formRemarkColor,
@@ -153,7 +151,17 @@ export async function setDataSchemaData(parameters) {
 export const setDocumentSchemaDataApiAddress = '/formDesign/setDocumentSchema';
 
 export async function setDocumentSchemaData(parameters) {
-  const { documentGeneralSchema, documentItemsSchema } = parameters;
+  const {
+    documentGeneralSchema: documentGeneralSchemaSource,
+    documentItemsSchema: documentItemsSchemaSource,
+  } = {
+    documentGeneralSchema: '',
+    documentItemsSchema: '',
+    ...parameters,
+  };
+
+  const documentGeneralSchema = JSON.parse(documentGeneralSchemaSource);
+  const documentItemsSchema = JSON.parse(documentItemsSchemaSource);
 
   saveJsonToLocalStorage(formDocumentGeneralSchemaKey, documentGeneralSchema);
 
@@ -166,8 +174,8 @@ export async function setDocumentSchemaData(parameters) {
     simulateRequestMaxDelay: 300,
     simulativeSuccessResponse: {
       data: {
-        general: documentGeneralSchema,
-        items: documentItemsSchema,
+        documentGeneralSchema: documentGeneralSchema,
+        documentItemsSchema: documentItemsSchema,
       },
     },
   });

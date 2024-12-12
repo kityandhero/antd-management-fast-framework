@@ -1,7 +1,11 @@
+import { Popover } from 'antd';
 import classNames from 'classnames';
 import React from 'react';
 
 import { isFunction } from 'easy-soft-utility';
+
+import { ItemConfigBox } from '../ItemConfigBox';
+import { adjustCellConfig } from '../tools';
 
 import styles from './index.less';
 
@@ -12,12 +16,15 @@ function CellMarker(properties) {
     highlight,
     highlightMode,
     onClick: onClickCallback,
+    onConfigChange,
   } = {
     useHover: true,
     ...properties,
   };
 
-  return (
+  const currentItem = adjustCellConfig(data);
+
+  const maker = (
     <div
       className={classNames(
         styles.cellMarker,
@@ -38,6 +45,31 @@ function CellMarker(properties) {
       }}
     ></div>
   );
+
+  if (highlight) {
+    return (
+      <Popover
+        // title="属性配置："
+        content={
+          <ItemConfigBox
+            data={currentItem}
+            highlightMode={highlightMode}
+            onChange={(o) => {
+              if (!isFunction(onConfigChange)) {
+                return;
+              }
+
+              onConfigChange(o);
+            }}
+          />
+        }
+      >
+        {maker}
+      </Popover>
+    );
+  }
+
+  return maker;
 }
 
 export { CellMarker };
