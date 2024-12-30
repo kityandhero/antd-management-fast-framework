@@ -1,6 +1,14 @@
+import { Space } from 'antd';
 import React, { PureComponent } from 'react';
 
-import { canToNumber, isArray, isFunction, toNumber } from 'easy-soft-utility';
+import {
+  canToNumber,
+  isArray,
+  isFunction,
+  toNumber,
+  toString,
+  whetherString,
+} from 'easy-soft-utility';
 
 import {
   CenterBox,
@@ -12,6 +20,7 @@ import {
 
 import { CellApply } from './Cells/CellApply';
 import { CellAttention } from './Cells/CellAttention';
+import { GeneralLabelColor } from './GeneralConfigs/GeneralLabelColor';
 import {
   CellApproval,
   CellEnum,
@@ -26,8 +35,17 @@ import {
   fontFamilyStyle,
   valueDisplayModeCollection,
 } from './constant';
-import { GeneralConfigBox } from './GeneralConfigBox';
-import { adjustCellConfig } from './tools';
+import {
+  GeneralFirstCellWidth,
+  GeneralGridColor,
+  GeneralSort,
+} from './GeneralConfigs';
+import { TitleMarker } from './TitleMarker';
+import {
+  adjustCellConfig,
+  adjustGeneralConfig,
+  adjustTitleConfig,
+} from './tools';
 
 const defaultProperties = {
   printAreaId: '',
@@ -61,6 +79,7 @@ const defaultProperties = {
   showSerialNumber: false,
   serialNumberTitle: '流水号',
   serialNumberContent: '',
+  onTitleConfigChange: null,
 };
 
 class DocumentContent extends PureComponent {
@@ -208,6 +227,17 @@ class DocumentContent extends PureComponent {
     onGeneralChangeCallback({ ...general, ...o });
   };
 
+  onTitleConfigChange = (o) => {
+    const { titleConfig, onTitleConfigChange: onTitleConfigChangeCallback } =
+      this.props;
+
+    if (!isFunction(onTitleConfigChangeCallback)) {
+      return;
+    }
+
+    onTitleConfigChangeCallback({ ...titleConfig, ...o });
+  };
+
   onConfigChange = (item) => {
     const { onConfigChange: onConfigChangeCallback } = this.props;
 
@@ -218,11 +248,22 @@ class DocumentContent extends PureComponent {
     onConfigChangeCallback(adjustCellConfig(item));
   };
 
+  onSortChange = (list) => {
+    const { onSortChange: onSortChangeCallback } = this.props;
+
+    if (!isFunction(onSortChangeCallback)) {
+      return;
+    }
+
+    onSortChangeCallback(list);
+  };
+
   render() {
     const {
       printAreaId,
       showToolbar,
       generalConfig,
+      titleConfig,
       style,
       borderWidth,
       borderColor,
@@ -230,6 +271,7 @@ class DocumentContent extends PureComponent {
       titleContainerStyle,
       titleStyle,
       showTitle,
+      configureList,
       rows,
       designMode,
       signetStyle,
@@ -237,6 +279,15 @@ class DocumentContent extends PureComponent {
     const { currentHighlighTag } = this.state;
 
     const rowCollection = isArray(rows) ? rows : [];
+
+    const { gridColor } = adjustGeneralConfig(generalConfig);
+
+    const {
+      fontSize: titleFontSize,
+      color: titleColor,
+      bold: titleBold,
+      fontFamily: titleFontFamily,
+    } = adjustTitleConfig(titleConfig);
 
     return (
       <div
@@ -263,13 +314,28 @@ class DocumentContent extends PureComponent {
             <CenterBox>
               <div
                 style={{
+                  position: 'relative',
                   textAlign: 'center',
                   ...documentTitleStyle,
                   ...colorStyle,
                   ...fontFamilyStyle,
                   ...titleStyle,
+                  fontSize: `${titleFontSize}px`,
+                  color: titleColor,
+                  fontWeight:
+                    toString(titleBold) === whetherString.yes
+                      ? 'bold'
+                      : 'normal',
+                  fontFamily: `${titleFontFamily},fangsong`,
                 }}
               >
+                {designMode ? (
+                  <TitleMarker
+                    data={titleConfig || {}}
+                    onChange={this.onTitleConfigChange}
+                  />
+                ) : null}
+
                 {title}
               </div>
             </CenterBox>
@@ -286,12 +352,36 @@ class DocumentContent extends PureComponent {
                 backgroundColor: 'rgba(0,0,0,0.6)',
               }}
             >
-              <CenterBox>
-                <GeneralConfigBox
-                  data={generalConfig}
-                  onChange={this.onGeneralChange}
+              <VerticalBox>
+                <FlexBox
+                  flexAuto="left"
+                  leftStyle={{ paddingLeft: '10px', color: '#fff' }}
+                  left={<VerticalBox>全局配置：</VerticalBox>}
+                  right={
+                    <Space>
+                      <GeneralFirstCellWidth
+                        data={adjustGeneralConfig(generalConfig)}
+                        onChange={this.onGeneralChange}
+                      />
+
+                      <GeneralSort
+                        configureList={configureList}
+                        onChange={this.onSortChange}
+                      />
+
+                      <GeneralGridColor
+                        data={adjustGeneralConfig(generalConfig)}
+                        onChange={this.onGeneralChange}
+                      />
+
+                      <GeneralLabelColor
+                        data={adjustGeneralConfig(generalConfig)}
+                        onChange={this.onGeneralChange}
+                      />
+                    </Space>
+                  }
                 />
-              </CenterBox>
+              </VerticalBox>
             </div>
           ) : null}
         </div>
@@ -300,6 +390,7 @@ class DocumentContent extends PureComponent {
           style={{
             // borderTop: `1px solid ${color}`,
             ...style,
+            borderColor: gridColor,
             width: '100%',
           }}
           border={borderWidth}
@@ -314,25 +405,46 @@ class DocumentContent extends PureComponent {
                     const {
                       uniqueTag,
                       content,
-                      // width,
+                      width,
                       highlightMode,
                       spanRow,
                       spanColumn,
                       valueDisplayMode,
+                      textAlign,
+                      textColor,
+                      enumList,
                     } = one;
+
+                    let widthAdjust = canToNumber(width) ? toNumber(width) : 0;
+
+                    if (indexCell === 0) {
+                      const { labelWidth } = generalConfig;
+
+                      widthAdjust =
+                        widthAdjust === 0
+                          ? canToNumber(labelWidth)
+                            ? toNumber(labelWidth)
+                            : 0
+                          : widthAdjust;
+                    }
 
                     if (valueDisplayMode === valueDisplayModeCollection.text) {
                       return (
                         <CellText
                           key={`tr_${index}_td_${indexCell}`}
                           uniqueTag={uniqueTag}
+                          width={widthAdjust}
                           highlighTag={currentHighlighTag}
                           content={content}
                           data={one || {}}
                           highlightMode={highlightMode}
+                          enumList={enumList}
+                          valueDisplayMode={valueDisplayMode}
                           designMode={designMode || false}
                           spanRow={spanRow}
                           spanColumn={spanColumn}
+                          textAlign={textAlign}
+                          textColor={textColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -346,13 +458,18 @@ class DocumentContent extends PureComponent {
                         <CellMoney
                           key={`tr_${index}_td_${indexCell}`}
                           uniqueTag={uniqueTag}
+                          width={widthAdjust}
                           highlighTag={currentHighlighTag}
                           content={content}
                           data={one || {}}
                           highlightMode={highlightMode}
+                          enumList={enumList}
+                          valueDisplayMode={valueDisplayMode}
                           designMode={designMode || false}
                           spanRow={spanRow}
                           spanColumn={spanColumn}
+                          textAlign={textAlign}
+                          textColor={textColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -366,13 +483,18 @@ class DocumentContent extends PureComponent {
                         <CellEnum
                           key={`tr_${index}_td_${indexCell}`}
                           uniqueTag={uniqueTag}
+                          width={widthAdjust}
                           highlighTag={currentHighlighTag}
                           content={content}
                           data={one || {}}
                           highlightMode={highlightMode}
+                          enumList={enumList}
+                          valueDisplayMode={valueDisplayMode}
                           designMode={designMode || false}
                           spanRow={spanRow}
                           spanColumn={spanColumn}
+                          textAlign={textAlign}
+                          textColor={textColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -386,14 +508,19 @@ class DocumentContent extends PureComponent {
                         <CellApply
                           key={`tr_${index}_td_${indexCell}`}
                           uniqueTag={uniqueTag}
+                          width={widthAdjust}
                           highlighTag={currentHighlighTag}
                           content={content}
                           signetStyle={signetStyle}
                           data={one || {}}
                           highlightMode={highlightMode}
+                          enumList={enumList}
+                          valueDisplayMode={valueDisplayMode}
                           designMode={designMode || false}
                           spanRow={spanRow}
                           spanColumn={spanColumn}
+                          textAlign={textAlign}
+                          textColor={textColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -409,14 +536,19 @@ class DocumentContent extends PureComponent {
                         <CellAttention
                           key={`tr_${index}_td_${indexCell}`}
                           uniqueTag={uniqueTag}
+                          width={widthAdjust}
                           highlighTag={currentHighlighTag}
                           content={content}
                           signetStyle={signetStyle}
                           data={one || {}}
                           highlightMode={highlightMode}
+                          enumList={enumList}
+                          valueDisplayMode={valueDisplayMode}
                           designMode={designMode || false}
                           spanRow={spanRow}
                           spanColumn={spanColumn}
+                          textAlign={textAlign}
+                          textColor={textColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -432,14 +564,19 @@ class DocumentContent extends PureComponent {
                         <CellApproval
                           key={`tr_${index}_td_${indexCell}`}
                           uniqueTag={uniqueTag}
+                          width={widthAdjust}
                           highlighTag={currentHighlighTag}
                           content={content}
                           signetStyle={signetStyle}
                           data={one || {}}
                           highlightMode={highlightMode}
+                          enumList={enumList}
+                          valueDisplayMode={valueDisplayMode}
                           designMode={designMode || false}
                           spanRow={spanRow}
                           spanColumn={spanColumn}
+                          textAlign={textAlign}
+                          textColor={textColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -455,13 +592,18 @@ class DocumentContent extends PureComponent {
                         <CellRemark
                           key={`tr_${index}_td_${indexCell}`}
                           uniqueTag={uniqueTag}
+                          width={widthAdjust}
                           highlighTag={currentHighlighTag}
                           content={content}
                           data={one || {}}
                           highlightMode={highlightMode}
+                          enumList={enumList}
+                          valueDisplayMode={valueDisplayMode}
                           designMode={designMode || false}
                           spanRow={spanRow}
                           spanColumn={spanColumn}
+                          textAlign={textAlign}
+                          textColor={textColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}

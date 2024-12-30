@@ -2,6 +2,7 @@ import { Divider, Dropdown, InputNumber, Space, Switch } from 'antd';
 import React from 'react';
 
 import {
+  checkInCollection,
   checkStringIsNullOrWhiteSpace,
   isArray,
   isEmptyArray,
@@ -19,10 +20,7 @@ import {
   VerticalBox,
 } from 'antd-management-fast-component';
 
-import {
-  highlightModeCollection,
-  valueDisplayModeCollection,
-} from '../constant';
+import { cellTypeCollection, valueDisplayModeCollection } from '../constant';
 import { adjustCellConfig, getValueDisplayModeText } from '../tools';
 
 function ItemConfigBoxContainer({ showDivider = true, children }) {
@@ -36,9 +34,10 @@ function ItemConfigBoxContainer({ showDivider = true, children }) {
 }
 
 function ItemConfigBox(properties) {
-  const { data, highlightMode, onChange: onChangeCallback } = properties;
+  const { data, onChange: onChangeCallback } = properties;
 
   const {
+    type,
     firstPosition,
     width,
     spanRow,
@@ -54,6 +53,8 @@ function ItemConfigBox(properties) {
       ? '0'
       : width;
 
+  const autoWidth = toString(widthAdjust) === zeroString;
+
   const spanRowAdjust =
     isUndefined(spanRow) ||
     checkStringIsNullOrWhiteSpace(spanRow) ||
@@ -68,6 +69,13 @@ function ItemConfigBox(properties) {
       ? '1'
       : spanColumn;
 
+  const firstPositionJudge =
+    !isUndefined(firstPosition) &&
+    !checkStringIsNullOrWhiteSpace(firstPosition) &&
+    toString(firstPosition) === whetherString.yes;
+
+  const isLabel = type === cellTypeCollection.label;
+
   return (
     <div>
       <ItemConfigBoxContainer>
@@ -78,7 +86,7 @@ function ItemConfigBox(properties) {
             <Switch
               checkedChildren="是"
               unCheckedChildren="否"
-              checked={toString(firstPosition) === whetherString.yes}
+              checked={firstPositionJudge}
               onChange={(checked) => {
                 if (!isFunction(onChangeCallback)) {
                   return;
@@ -94,96 +102,113 @@ function ItemConfigBox(properties) {
         />
       </ItemConfigBoxContainer>
 
-      <ItemConfigBoxContainer>
-        <FlexBox
-          flexAuto="left"
-          left={<VerticalBox>自动宽度：</VerticalBox>}
-          right={
-            <Switch
-              checkedChildren="是"
-              unCheckedChildren="否"
-              checked={toString(widthAdjust) === zeroString}
-              onChange={(checked) => {
-                if (!isFunction(onChangeCallback)) {
-                  return;
-                }
+      {isLabel && firstPositionJudge ? null : (
+        <ItemConfigBoxContainer>
+          <FlexBox
+            flexAuto="left"
+            left={<VerticalBox>自动宽度：</VerticalBox>}
+            right={
+              <Switch
+                checkedChildren="是"
+                unCheckedChildren="否"
+                checked={autoWidth}
+                onChange={(checked) => {
+                  if (!isFunction(onChangeCallback)) {
+                    return;
+                  }
 
-                onChangeCallback({
-                  ...data,
-                  width: checked ? zeroString : '100',
-                });
-              }}
-            />
-          }
-        />
-      </ItemConfigBoxContainer>
-
-      <ItemConfigBoxContainer>
-        <FlexBox
-          flexAuto="left"
-          left={<VerticalBox>宽度：</VerticalBox>}
-          right={
-            <InputNumber
-              style={{ width: '60px' }}
-              value={widthAdjust}
-              disabled={toString(widthAdjust) === zeroString}
-              onChange={(o) => {
-                if (!isFunction(onChangeCallback)) {
-                  return;
-                }
-                onChangeCallback({
-                  ...data,
-                  width: toString(o),
-                });
-              }}
-            />
-          }
-        />
-      </ItemConfigBoxContainer>
-
-      {highlightMode == highlightModeCollection.value ? (
-        <>
-          {isArray(enumList) && !isEmptyArray(enumList) ? (
-            <ItemConfigBoxContainer>
-              <FlexBox
-                flexAuto="left"
-                left={<VerticalBox>值模式：</VerticalBox>}
-                right={
-                  <Dropdown
-                    menu={{
-                      items: [
-                        {
-                          label: '文本',
-                          key: valueDisplayModeCollection.text,
-                        },
-                        {
-                          label: '选项',
-                          key: valueDisplayModeCollection.enum,
-                        },
-                        {
-                          label: '金额',
-                          key: valueDisplayModeCollection.money,
-                        },
-                      ],
-                      onClick: ({ key }) => {
-                        onChangeCallback({
-                          ...data,
-                          valueDisplayMode: key,
-                        });
-                      },
-                    }}
-                  >
-                    <a onClick={(event) => event.preventDefault()}>
-                      <Space>
-                        {getValueDisplayModeText(valueDisplayMode)}
-                        {iconBuilder.down()}
-                      </Space>
-                    </a>
-                  </Dropdown>
-                }
+                  onChangeCallback({
+                    ...data,
+                    width: checked ? zeroString : '100',
+                  });
+                }}
               />
-            </ItemConfigBoxContainer>
-          ) : null}
+            }
+          />
+        </ItemConfigBoxContainer>
+      )}
+
+      {isLabel && firstPositionJudge ? null : (
+        <ItemConfigBoxContainer>
+          <FlexBox
+            flexAuto="left"
+            left={<VerticalBox>宽度：</VerticalBox>}
+            right={
+              <InputNumber
+                style={{ width: '60px' }}
+                value={widthAdjust}
+                disabled={toString(widthAdjust) === zeroString}
+                onChange={(o) => {
+                  if (!isFunction(onChangeCallback)) {
+                    return;
+                  }
+                  onChangeCallback({
+                    ...data,
+                    width: toString(o),
+                  });
+                }}
+              />
+            }
+          />
+        </ItemConfigBoxContainer>
+      )}
+
+      {isLabel ? null : checkInCollection(
+          [
+            valueDisplayModeCollection.text,
+            valueDisplayModeCollection.money,
+            valueDisplayModeCollection.enum,
+          ],
+          valueDisplayMode,
+        ) ? (
+        <>
+          <ItemConfigBoxContainer>
+            <FlexBox
+              flexAuto="left"
+              left={<VerticalBox>值模式：</VerticalBox>}
+              right={
+                <Dropdown
+                  menu={{
+                    items: [
+                      {
+                        label: '文本',
+                        key: valueDisplayModeCollection.text,
+                      },
+                      ...(isArray(enumList) && !isEmptyArray(enumList)
+                        ? [
+                            {
+                              label: '选项',
+                              key: valueDisplayModeCollection.enum,
+                            },
+                          ]
+                        : []),
+                      ...(isArray(enumList) && !isEmptyArray(enumList)
+                        ? []
+                        : [
+                            {
+                              label: '金额',
+                              key: valueDisplayModeCollection.money,
+                            },
+                          ]),
+                    ],
+                    onClick: ({ key }) => {
+                      onChangeCallback({
+                        ...data,
+                        valueDisplayMode: key,
+                      });
+                    },
+                  }}
+                >
+                  <a onClick={(event) => event.preventDefault()}>
+                    <Space>
+                      {getValueDisplayModeText(valueDisplayMode)}
+                      {iconBuilder.down()}
+                    </Space>
+                  </a>
+                </Dropdown>
+              }
+            />
+          </ItemConfigBoxContainer>
         </>
       ) : null}
 

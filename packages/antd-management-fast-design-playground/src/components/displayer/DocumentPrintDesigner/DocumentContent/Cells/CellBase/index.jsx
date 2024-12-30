@@ -26,6 +26,8 @@ class CellBase extends PureComponent {
       spanRow: '1',
       spanColumn: '1',
       width: '0',
+      textAlign: 'left',
+      textColor: '#000',
       data: {},
       designMode: false,
       ...this.props,
@@ -37,7 +39,7 @@ class CellBase extends PureComponent {
   };
 
   buildContentBox = () => {
-    const { content } = this.getProperties();
+    const { textAlign, textColor, content } = this.getProperties();
 
     const contentAdjust = isString(content)
       ? content
@@ -51,7 +53,8 @@ class CellBase extends PureComponent {
           ...frontSizeStyle,
           ...colorStyle,
           ...fontFamilyStyle,
-          textAlign: 'center',
+          textAlign: textAlign,
+          color: textColor,
           borderRight: '0',
         }}
       >

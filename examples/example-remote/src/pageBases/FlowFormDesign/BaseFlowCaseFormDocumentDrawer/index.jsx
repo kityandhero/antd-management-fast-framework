@@ -102,13 +102,15 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       key: fieldDataFlowFormDesign.workflowFormDesignId.name,
     });
 
-    const { general, items } = {
+    const { general, title, items } = {
       general: {},
+      title: {},
       items: [],
       ...data,
     };
 
     delete general['general'];
+    delete general['title'];
     delete general['items'];
 
     const o = {};
@@ -118,6 +120,8 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
 
     o[fieldDataFlowFormDesign.documentGeneralSchema.name] =
       JSON.stringify(general);
+
+    o[fieldDataFlowFormDesign.documentTitleSchema.name] = JSON.stringify(title);
 
     o[fieldDataFlowFormDesign.documentItemSchema.name] = JSON.stringify(items);
 
@@ -196,8 +200,9 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       defaultValue: {},
     });
 
-    const { general } = {
+    const { general, title } = {
       general: {},
+      title: {},
       ...documentSchema,
     };
 
@@ -215,6 +220,7 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         values={isArray(values) ? values : []}
         schema={{
           general: general || {},
+          title: title || {},
           items,
         }}
         formItems={formItems}

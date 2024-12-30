@@ -12,7 +12,6 @@ import {
   isObject,
   isString,
   isUndefined,
-  logConsole,
   startsWith,
   toLower,
   toNumber,
@@ -23,6 +22,8 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  cellTypeCollection,
+  fontFamilyCollection,
   highlightModeCollection,
   valueDisplayModeCollection,
 } from './constant';
@@ -37,6 +38,7 @@ export function adjustFirstPosition(v) {
 
 function analysisTarget({
   target,
+  generalConfig,
   configureList,
   defaultValueDisplayMode = valueDisplayModeCollection.text,
   getKeyAction = null,
@@ -64,19 +66,26 @@ function analysisTarget({
     valueConfig = {},
     title,
     valueDisplayMode,
+    enumList,
   } = targetAdjust;
 
   labelConfig = isObject(labelConfig) ? labelConfig : {};
   valueConfig = isObject(valueConfig) ? valueConfig : {};
 
+  const { labelColor } = adjustGeneralConfig(generalConfig);
+
   const {
     firstPosition: firstPositionLabel,
+    width: widthLabel,
     spanRow: spanRowLabel,
     spanColumn: spanColumnLabel,
+    textAlign: textAlignLabel,
   } = {
     firstPosition: '1',
     spanRow: '1',
     spanColumn: '1',
+    width: '0',
+    textAlign: 'center',
     ...labelConfig,
   };
 
@@ -90,23 +99,33 @@ function analysisTarget({
       ? getGuid()
       : uniqueTagLabel,
     key,
+    type: cellTypeCollection.label,
     highlightMode: highlightModeCollection.label,
+    width: widthLabel,
     spanRow: spanRowLabel,
     spanColumn: spanColumnLabel,
     content: title,
     valueDisplayMode: valueDisplayModeCollection.text,
+    firstPosition: firstPositionLabelAdjust
+      ? whetherString.yes
+      : whetherString.no,
+    textAlign: textAlignLabel,
+    enumList,
+    textColor: labelColor,
   };
-
-  // logConsole({ valueConfig, item }, 'analysisCell:valueConfig');
 
   const {
     firstPosition: firstPositionValue,
+    width: widthValue,
     spanRow: spanRowValue,
     spanColumn: spanColumnValue,
+    textAlign: textAlignValue,
   } = {
     firstPosition: '0',
     spanRow: '1',
     spanColumn: '1',
+    width: '0',
+    textAlign: 'left',
     ...valueConfig,
   };
 
@@ -126,11 +145,19 @@ function analysisTarget({
       ? getGuid()
       : uniqueTagValue,
     key,
+    type: cellTypeCollection.value,
     highlightMode: highlightModeCollection.value,
+    width: widthValue,
     spanRow: spanRowValue,
     spanColumn: spanColumnValue,
     content: displayValue,
     valueDisplayMode,
+    firstPosition: firstPositionValueAdjust
+      ? whetherString.yes
+      : whetherString.no,
+    textAlign: textAlignValue,
+    enumList,
+    textColor: '#000',
   };
 
   return {
@@ -143,30 +170,45 @@ function analysisTarget({
 
 export function getInitializeGeneral() {
   return {
-    labelWidth: '0',
+    labelWidth: '160',
+    gridColor: '#000000',
+    labelColor: '#000000',
   };
 }
 
-export function getInitializeItem() {
+export function adjustGeneralConfig(o) {
   return {
-    title: '',
-    type: '',
-    name: '',
-    enumList: [],
-    valueDisplayMode: valueDisplayModeCollection.text,
-    labelConfig: {
-      firstPosition: whetherString.yes,
-      width: '0',
-      spanRow: '1',
-      spanColumn: '1',
-    },
-    valueConfig: {
-      firstPosition: whetherString.no,
-      width: '0',
-      spanRow: '1',
-      spanColumn: '1',
-    },
+    labelWidth: '160',
+    gridColor: '#000000',
+    labelColor: '#000000',
+    ...o,
   };
+}
+
+export function getInitializeTitleConfig() {
+  return {
+    fontSize: '30',
+    color: '#000000',
+    bold: '0',
+  };
+}
+
+export function adjustTitleConfig(o) {
+  const data = {
+    fontSize: '30',
+    color: '#000000',
+    bold: '0',
+    fontFamily: 'fangsong',
+    ...o,
+  };
+
+  const { fontFamily } = data;
+
+  if (!checkInCollection(fontFamilyCollection, fontFamily)) {
+    data.fontFamily = 'fangsong';
+  }
+
+  return data;
 }
 
 export function adjustCellConfig(data) {
@@ -332,8 +374,13 @@ export function adjustTarget({
 }
 
 export function adjustSchemaData(schema) {
-  const { general: generalConfig, items: configureList } = {
+  const {
+    general: generalConfig,
+    title: titleConfig,
+    items: configureList,
+  } = {
     general: {},
+    titleConfig: {},
     items: [],
     ...schema,
   };
@@ -341,6 +388,9 @@ export function adjustSchemaData(schema) {
   return {
     generalConfig: {
       ...generalConfig,
+    },
+    titleConfig: {
+      ...titleConfig,
     },
     configureList: [...configureList],
   };
@@ -361,275 +411,349 @@ export function buildRowCell({
   const rows = [];
   let cells = [];
 
-  // 拼装表单项
+  const listAll = [];
+
   for (const o of formItems) {
-    const { firstPositionLabel, labelData, firstPositionValue, valueData } =
-      analysisTarget({
-        target: o,
-        configureList,
-        defaultValueDisplayMode: valueDisplayModeCollection.text,
-        getKeyAction: () => {
-          const { name = '' } = { name: '', ...o };
+    const { name = '' } = { name: '', ...o };
 
-          return name;
-        },
-        getContentAction: ({ data, valueDisplayMode }) => {
-          return buildDisplayValue({
-            data,
-            valueDisplayMode,
-            values,
-          });
-        },
-      });
-
-    if (firstPositionLabel) {
-      if (isEmptyArray(cells)) {
-        cells = [];
-      } else {
-        rows.push([...cells]);
-
-        cells = [];
-      }
-    }
-
-    cells.push(labelData);
-
-    if (firstPositionValue) {
-      if (isEmptyArray(cells)) {
-        cells = [];
-      } else {
-        rows.push([...cells]);
-
-        cells = [];
-      }
-    }
-
-    cells.push(valueData);
+    listAll.push({ key: name, data: o, type: 'formItems' });
   }
 
-  // 拼装申请栏
   for (const o of applyList) {
-    const { firstPositionLabel, labelData, firstPositionValue, valueData } =
-      analysisTarget({
-        target: o,
-        configureList,
-        defaultValueDisplayMode: valueDisplayModeCollection.apply,
-        getKeyAction: () => {
-          const { nodeId = '' } = {
-            nodeId: '',
-            ...o,
-          };
+    const { nodeId = '' } = {
+      nodeId: '',
+      ...o,
+    };
 
-          return nodeId;
-        },
-        getContentAction: ({ data }) => {
-          const {
-            note = '',
-            signet = '',
-            time = '',
-          } = {
-            note: '',
-            signet: '',
-            time: '',
-            ...data,
-          };
-
-          return {
-            note,
-            signet,
-            time,
-          };
-        },
-      });
-
-    if (firstPositionLabel) {
-      if (isEmptyArray(cells)) {
-        cells = [];
-      } else {
-        rows.push([...cells]);
-
-        cells = [];
-      }
-    }
-
-    cells.push(labelData);
-
-    if (firstPositionValue) {
-      if (isEmptyArray(cells)) {
-        cells = [];
-      } else {
-        rows.push([...cells]);
-
-        cells = [];
-      }
-    }
-
-    cells.push(valueData);
+    listAll.push({ key: nodeId, data: o, type: 'applyList' });
   }
 
-  // 拼装经办栏
   for (const o of attentionList) {
-    const { firstPositionLabel, labelData, firstPositionValue, valueData } =
-      analysisTarget({
-        target: o,
-        configureList,
-        defaultValueDisplayMode: valueDisplayModeCollection.attention,
-        getKeyAction: () => {
-          const { nodeId = '' } = {
-            nodeId: '',
-            ...o,
-          };
+    const { nodeId = '' } = {
+      nodeId: '',
+      ...o,
+    };
 
-          return nodeId;
-        },
-        getContentAction: ({ data }) => {
-          const {
-            note = '',
-            signet = '',
-            time = '',
-          } = {
-            note: '',
-            signet: '',
-            time: '',
-            ...data,
-          };
-
-          return {
-            note,
-            signet,
-            time,
-          };
-        },
-      });
-
-    if (firstPositionLabel) {
-      if (isEmptyArray(cells)) {
-        cells = [];
-      } else {
-        rows.push([...cells]);
-
-        cells = [];
-      }
-    }
-
-    cells.push(labelData);
-
-    if (firstPositionValue) {
-      if (isEmptyArray(cells)) {
-        cells = [];
-      } else {
-        rows.push([...cells]);
-
-        cells = [];
-      }
-    }
-
-    cells.push(valueData);
+    listAll.push({ key: nodeId, data: o, type: 'attentionList' });
   }
 
-  // 拼装审批栏
   for (const o of approveList) {
-    const { firstPositionLabel, labelData, firstPositionValue, valueData } =
-      analysisTarget({
-        target: o,
-        configureList,
-        defaultValueDisplayMode: valueDisplayModeCollection.approval,
-        getKeyAction: () => {
-          const { nodeId = '' } = {
-            nodeId: '',
-            ...o,
-          };
+    const { nodeId = '' } = {
+      nodeId: '',
+      ...o,
+    };
 
-          return nodeId;
-        },
-        getContentAction: ({ data }) => {
-          const {
-            note = '',
-            signet = '',
-            time = '',
-          } = {
-            note: '',
-            signet: '',
-            time: '',
-            ...data,
-          };
-
-          return {
-            note,
-            signet,
-            time,
-          };
-        },
-      });
-
-    if (firstPositionLabel) {
-      if (isEmptyArray(cells)) {
-        cells = [];
-      } else {
-        rows.push([...cells]);
-
-        cells = [];
-      }
-    }
-
-    cells.push(labelData);
-
-    if (firstPositionValue) {
-      if (isEmptyArray(cells)) {
-        cells = [];
-      } else {
-        rows.push([...cells]);
-
-        cells = [];
-      }
-    }
-
-    cells.push(valueData);
+    listAll.push({ key: nodeId, data: o, type: 'approveList' });
   }
 
-  // 拼装备注栏
+  listAll.push({
+    key: remarkName,
+    data: {
+      title: remarkTitle,
+      name: remarkName,
+    },
+    type: 'remark',
+  });
 
-  const { firstPositionLabel, labelData, firstPositionValue, valueData } =
-    analysisTarget({
-      target: {
-        title: remarkTitle,
-        name: remarkName,
-      },
-      configureList,
-      defaultValueDisplayMode: valueDisplayModeCollection.remark,
-      getKeyAction: () => {
-        return remarkName;
-      },
-      getContentAction: () => {
-        return isArray(remarkList)
-          ? remarkList.map((o) => toString(o)).join('')
-          : toString(remarkList);
-      },
+  let listAllSorted = [];
+
+  const configureKeyList = configureList.map((o) => {
+    const { key } = { key: '', ...o };
+
+    return key;
+  });
+
+  for (const key of configureKeyList) {
+    const listTemplate = filter(listAll, (one) => {
+      const { key: keyItem } = one;
+
+      return toString(keyItem) === key;
     });
 
-  if (firstPositionLabel) {
-    if (isEmptyArray(cells)) {
-      cells = [];
-    } else {
-      rows.push([...cells]);
-
-      cells = [];
+    if (listTemplate) {
+      listAllSorted = [...listAllSorted, ...listTemplate];
     }
   }
 
-  cells.push(labelData);
+  const listOther = filter(listAll, (one) => {
+    const { key: keyItem } = one;
 
-  if (firstPositionValue) {
-    if (isEmptyArray(cells)) {
-      cells = [];
-    } else {
-      rows.push([...cells]);
+    return !checkInCollection(configureKeyList, keyItem);
+  });
 
-      cells = [];
+  listAllSorted = [...listAllSorted, ...listOther];
+
+  for (const o of listAllSorted) {
+    const { type, data: d } = o;
+
+    if (type === 'formItems') {
+      const { firstPositionLabel, labelData, firstPositionValue, valueData } =
+        analysisTarget({
+          target: d,
+          generalConfig,
+          configureList,
+          defaultValueDisplayMode: valueDisplayModeCollection.text,
+          getKeyAction: () => {
+            const { name = '' } = { name: '', ...d };
+
+            return name;
+          },
+          getContentAction: ({ data: one, valueDisplayMode }) => {
+            return buildDisplayValue({
+              data: one,
+              valueDisplayMode,
+              values,
+            });
+          },
+        });
+
+      if (firstPositionLabel) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(labelData);
+
+      if (firstPositionValue) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(valueData);
+    }
+
+    if (type === 'applyList') {
+      const { firstPositionLabel, labelData, firstPositionValue, valueData } =
+        analysisTarget({
+          target: d,
+          generalConfig,
+          configureList,
+          defaultValueDisplayMode: valueDisplayModeCollection.apply,
+          getKeyAction: () => {
+            const { nodeId = '' } = {
+              nodeId: '',
+              ...d,
+            };
+
+            return nodeId;
+          },
+          getContentAction: ({ data: one }) => {
+            const {
+              note = '',
+              signet = '',
+              time = '',
+            } = {
+              note: '',
+              signet: '',
+              time: '',
+              ...one,
+            };
+
+            return {
+              note,
+              signet,
+              time,
+            };
+          },
+        });
+
+      if (firstPositionLabel) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(labelData);
+
+      if (firstPositionValue) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(valueData);
+    }
+
+    if (type === 'attentionList') {
+      const { firstPositionLabel, labelData, firstPositionValue, valueData } =
+        analysisTarget({
+          target: d,
+          generalConfig,
+          configureList,
+          defaultValueDisplayMode: valueDisplayModeCollection.attention,
+          getKeyAction: () => {
+            const { nodeId = '' } = {
+              nodeId: '',
+              ...d,
+            };
+
+            return nodeId;
+          },
+          getContentAction: ({ data: one }) => {
+            const {
+              note = '',
+              signet = '',
+              time = '',
+            } = {
+              note: '',
+              signet: '',
+              time: '',
+              ...one,
+            };
+
+            return {
+              note,
+              signet,
+              time,
+            };
+          },
+        });
+
+      if (firstPositionLabel) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(labelData);
+
+      if (firstPositionValue) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(valueData);
+    }
+
+    if (type === 'approveList') {
+      const { firstPositionLabel, labelData, firstPositionValue, valueData } =
+        analysisTarget({
+          target: d,
+          generalConfig,
+          configureList,
+          defaultValueDisplayMode: valueDisplayModeCollection.approval,
+          getKeyAction: () => {
+            const { nodeId = '' } = {
+              nodeId: '',
+              ...d,
+            };
+
+            return nodeId;
+          },
+          getContentAction: ({ data: one }) => {
+            const {
+              note = '',
+              signet = '',
+              time = '',
+            } = {
+              note: '',
+              signet: '',
+              time: '',
+              ...one,
+            };
+
+            return {
+              note,
+              signet,
+              time,
+            };
+          },
+        });
+
+      if (firstPositionLabel) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(labelData);
+
+      if (firstPositionValue) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(valueData);
+    }
+
+    if (type === 'remark') {
+      const { firstPositionLabel, labelData, firstPositionValue, valueData } =
+        analysisTarget({
+          target: d,
+          generalConfig,
+          configureList,
+          defaultValueDisplayMode: valueDisplayModeCollection.remark,
+          getKeyAction: () => {
+            return remarkName;
+          },
+          getContentAction: () => {
+            return isArray(remarkList)
+              ? remarkList.map((o) => toString(o)).join('')
+              : toString(remarkList);
+          },
+        });
+
+      if (firstPositionLabel) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(labelData);
+
+      if (firstPositionValue) {
+        if (isEmptyArray(cells)) {
+          cells = [];
+        } else {
+          rows.push([...cells]);
+
+          cells = [];
+        }
+      }
+
+      cells.push(valueData);
     }
   }
-
-  cells.push(valueData);
 
   if (isEmptyArray(cells)) {
     cells = [];
@@ -737,6 +861,7 @@ export function buildDisplayValue({ data, valueDisplayMode, values }) {
 
         return {
           label,
+          value,
           checked: value == v || checkInCollection(vList, toString(value)),
         };
       })
@@ -840,4 +965,26 @@ export function transferNodeList(approveList, allApproveProcessList) {
   });
 
   return nodeListAdjust;
+}
+
+export function getFontFamilyName(fontFamily) {
+  const o = toLower(fontFamily);
+
+  switch (o) {
+    case 'fangsong': {
+      return '仿宋';
+    }
+
+    case 'fangsong_gb2312': {
+      return '仿宋GB2312';
+    }
+
+    case 'fzxiaobiaosong-b05s': {
+      return '方正小标宋';
+    }
+
+    default: {
+      return '未知';
+    }
+  }
 }

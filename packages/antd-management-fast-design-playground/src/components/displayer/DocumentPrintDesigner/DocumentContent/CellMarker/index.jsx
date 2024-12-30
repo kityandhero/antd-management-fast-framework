@@ -49,7 +49,6 @@ function CellMarker(properties) {
   if (highlight) {
     return (
       <Popover
-        // title="属性配置："
         content={
           <ItemConfigBox
             data={currentItem}

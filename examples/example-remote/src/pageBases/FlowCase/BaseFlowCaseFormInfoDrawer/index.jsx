@@ -1033,8 +1033,13 @@ class BaseFlowCaseFormInfoDrawer extends BaseUpdateDrawer {
       defaultValue: {},
     });
 
-    const { general, items: itemsSource } = {
+    const {
+      general,
+      title,
+      items: itemsSource,
+    } = {
       general: {},
+      title: {},
       items: [],
       ...documentSchema,
     };
@@ -1101,6 +1106,7 @@ class BaseFlowCaseFormInfoDrawer extends BaseUpdateDrawer {
           values={isArray(listFormStorage) ? listFormStorage : []}
           schema={{
             general: general || {},
+            title: title || {},
             items,
           }}
           approveList={isArray(listApprove) ? listApprove : []}

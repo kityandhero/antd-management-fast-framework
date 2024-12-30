@@ -70,8 +70,9 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
   };
 
   saveDocumentSchema = (data) => {
-    const { general, items } = {
+    const { general, title, items } = {
       general: {},
+      title: {},
       items: [],
       ...data,
     };
@@ -82,6 +83,8 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     const o = {};
 
     o['documentGeneralSchema'] = JSON.stringify(general);
+
+    o['documentTitleSchema'] = JSON.stringify(title);
 
     o['documentItemsSchema'] = JSON.stringify(items);
 
@@ -157,6 +160,12 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       defaultValue: {},
     });
 
+    const documentTitleSchema = getValueByKey({
+      data: metaData,
+      key: 'documentTitleSchema',
+      defaultValue: {},
+    });
+
     const documentItemsSchema = getValueByKey({
       data: metaData,
       key: 'documentItemsSchema',
@@ -208,6 +217,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         values: listFormStorage,
         schema: {
           general: documentGeneralSchema,
+          title: documentTitleSchema,
           items,
         },
       },
@@ -221,6 +231,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         values={listFormStorage}
         schema={{
           general: documentGeneralSchema,
+          title: documentTitleSchema,
           items,
         }}
         formItems={listDataSchema}
@@ -268,6 +279,12 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     const documentGeneralSchema = getValueByKey({
       data: metaData,
       key: 'documentGeneralSchema',
+      defaultValue: {},
+    });
+
+    const documentTitleSchema = getValueByKey({
+      data: metaData,
+      key: 'documentTitleSchema',
       defaultValue: {},
     });
 
@@ -337,6 +354,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     const data = {
       documentSchema: {
         general: documentGeneralSchema,
+        title: documentTitleSchema,
         items,
       },
       formItems: listDataSchema,

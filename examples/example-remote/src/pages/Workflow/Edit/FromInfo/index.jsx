@@ -8,8 +8,10 @@ import {
   convertCollection,
   datetimeFormat,
   formatDatetime,
+  getJsonFromLocalStorage,
   getNow,
   getValueByKey,
+  saveJsonToLocalStorage,
   showSimpleInfoMessage,
   whetherNumber,
 } from 'easy-soft-utility';
@@ -88,6 +90,20 @@ class BasicInfo extends TabPageBase {
     });
 
     setSchemaWithExternalData(designJson);
+  };
+
+  buildTemporaryFormDataKey = () => {
+    const { workflowId } = this.state;
+
+    return `temporary_workflowFormDesign_${workflowId}_data`;
+  };
+
+  saveTemporaryFormData = (o) => {
+    saveJsonToLocalStorage(this.buildTemporaryFormDataKey(), o);
+  };
+
+  getTemporaryFormData = () => {
+    return getJsonFromLocalStorage(this.buildTemporaryFormDataKey()) || null;
   };
 
   getApplicantConfig = () => {
@@ -268,6 +284,8 @@ class BasicInfo extends TabPageBase {
       defaultValue: '',
     });
 
+    const temporaryFormData = this.getTemporaryFormData();
+
     return {
       list: [
         {
@@ -341,6 +359,7 @@ class BasicInfo extends TabPageBase {
                 <div>
                   <SchemaDisplayer
                     {...designData}
+                    initialValues={temporaryFormData}
                     helpBoxProps={
                       {
                         // showNumber: false,
@@ -416,8 +435,12 @@ class BasicInfo extends TabPageBase {
                         </>
                       );
                     }}
-                    onSubmit={() => {
-                      showSimpleInfoMessage('示例: 点击提交按钮');
+                    onSubmit={(o) => {
+                      this.saveTemporaryFormData(o);
+
+                      showSimpleInfoMessage(
+                        '示例: 点击提交按钮 (表单数据已暂存)',
+                      );
                     }}
                   >
                     {hasDataSchema ? null : (

@@ -110,6 +110,11 @@ export const fieldDataFlowFormDesign = {
     name: 'documentGeneralSchema',
     helper: '',
   },
+  documentTitleSchema: {
+    label: '文档标题配置',
+    name: 'documentTitleSchema',
+    helper: '',
+  },
   documentItemSchema: {
     label: '文档项配置',
     name: 'documentItemSchema',

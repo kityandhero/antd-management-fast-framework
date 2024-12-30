@@ -47,7 +47,7 @@ export function buildColumnItem({
   }
 
   if ((dataTarget || null) == null) {
-    const text = `错误的列配置,缺少dataTarget:${stringifyJson(
+    const text = `错误的列配置, 缺少dataTarget:${stringifyJson(
       checkStringIsNullOrWhiteSpace(attachedTargetName)
         ? {
             column: columnConfig,
@@ -65,7 +65,7 @@ export function buildColumnItem({
     const { label, name, helper } = dataTarget;
 
     if ((label || null) == null || (name || null) == null) {
-      const text = `错误的列配置，dataTarget内容缺失:${stringifyJson(
+      const text = `错误的列配置, dataTarget内容缺失:${stringifyJson(
         checkStringIsNullOrWhiteSpace(attachedTargetName)
           ? {
               column: columnConfig,

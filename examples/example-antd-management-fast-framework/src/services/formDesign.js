@@ -16,6 +16,8 @@ const formDesignSchemaKey =
   'simple-form-design-schema-remote-35713f03ad864e71a34b44984e6a6263';
 const formDocumentGeneralSchemaKey =
   'simple-form-document-general-schema-remote-c8f8ac92604545b7b4adfb266169937d';
+const formDocumentTitleSchemaKey =
+  'simple-form-document-title-schema-remote-836d2fa096ba46448ea1039073876177';
 const formDocumentItemsSchemaKey =
   'simple-form-document-items-schema-remote-5fceb57ac251401a8dd811cb9d0f14e2';
 const formDataKey = 'simple-form-data-remote-e3cabeac8b4b4277adce624793b584c7';
@@ -49,6 +51,22 @@ export async function getData(parameters) {
     documentGeneralSchema = {};
 
     saveJsonToLocalStorage(formDocumentGeneralSchemaKey, documentGeneralSchema);
+  }
+
+  let documentTitleSchema = {};
+
+  try {
+    documentTitleSchema = getJsonFromLocalStorage(formDocumentTitleSchemaKey);
+
+    if (!isObject(documentTitleSchema)) {
+      documentTitleSchema = {};
+
+      saveJsonToLocalStorage(formDocumentTitleSchemaKey, documentTitleSchema);
+    }
+  } catch {
+    documentTitleSchema = {};
+
+    saveJsonToLocalStorage(formDocumentTitleSchemaKey, documentTitleSchema);
   }
 
   let documentItemsSchema = [];
@@ -96,6 +114,7 @@ export async function getData(parameters) {
         dataSchema: dataSchema ?? '',
         designSchema: designSchema ?? '',
         documentGeneralSchema: documentGeneralSchema ?? {},
+        documentTitleSchema: documentTitleSchema ?? {},
         documentItemsSchema: documentItemsSchema ?? {},
         listFormStorage: listFormStorage || [],
         formRemarkList: formRemarkList,
@@ -153,6 +172,7 @@ export const setDocumentSchemaDataApiAddress = '/formDesign/setDocumentSchema';
 export async function setDocumentSchemaData(parameters) {
   const {
     documentGeneralSchema: documentGeneralSchemaSource,
+    documentTitleSchema: documentTitleSchemaSource,
     documentItemsSchema: documentItemsSchemaSource,
   } = {
     documentGeneralSchema: '',
@@ -161,9 +181,12 @@ export async function setDocumentSchemaData(parameters) {
   };
 
   const documentGeneralSchema = JSON.parse(documentGeneralSchemaSource);
+  const documentTitleSchema = JSON.parse(documentTitleSchemaSource);
   const documentItemsSchema = JSON.parse(documentItemsSchemaSource);
 
   saveJsonToLocalStorage(formDocumentGeneralSchemaKey, documentGeneralSchema);
+
+  saveJsonToLocalStorage(formDocumentTitleSchemaKey, documentTitleSchema);
 
   saveJsonToLocalStorage(formDocumentItemsSchemaKey, documentItemsSchema);
 
@@ -175,6 +198,7 @@ export async function setDocumentSchemaData(parameters) {
     simulativeSuccessResponse: {
       data: {
         documentGeneralSchema: documentGeneralSchema,
+        documentTitleSchema: documentTitleSchema,
         documentItemsSchema: documentItemsSchema,
       },
     },

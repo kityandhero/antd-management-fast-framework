@@ -114,6 +114,8 @@ const descriptionTypeCollection = ['field', 'box'];
 class SchemaDisplayer extends PureComponent {
   fromTarget = null;
 
+  submitDataTemporary = {};
+
   getDescriptionType = (type) => {
     const v = checkInCollection(descriptionTypeCollection, type);
 
@@ -142,14 +144,18 @@ class SchemaDisplayer extends PureComponent {
     logTrace(o, buildPromptModuleInfoText('submitForm', 'trigger', 'onSubmit'));
 
     onSubmit(o);
+
+    this.submitDataTemporary = o;
   };
 
-  onSubmitSuccess = (o) => {
+  onSubmitSuccess = () => {
     const { afterSubmitSuccess } = this.props;
+
+    const submitData = this.submitDataTemporary || null;
 
     if (!isFunction(afterSubmitSuccess)) {
       logTrace(
-        o || null,
+        submitData,
         buildPromptModuleInfoText(
           'onSubmitSuccess',
           'trigger',
@@ -162,7 +168,7 @@ class SchemaDisplayer extends PureComponent {
     }
 
     logTrace(
-      o,
+      submitData,
       buildPromptModuleInfoText(
         'onSubmitSuccess',
         'trigger',
@@ -170,7 +176,7 @@ class SchemaDisplayer extends PureComponent {
       ),
     );
 
-    afterSubmitSuccess(o);
+    afterSubmitSuccess(submitData);
   };
 
   onSubmitFailed = (o) => {

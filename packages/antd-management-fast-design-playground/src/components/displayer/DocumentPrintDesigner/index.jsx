@@ -1,12 +1,13 @@
+import { Switch, Tooltip } from 'antd';
 import React from 'react';
 import generatePDF from 'react-to-pdf';
 
 import {
   checkInCollection,
   checkStringIsNullOrWhiteSpace,
+  filter,
   isArray,
   isFunction,
-  logConsole,
   logException,
   showOpenMessage,
   showSimpleErrorMessage,
@@ -24,15 +25,16 @@ import {
   iconBuilder,
   PageExtra,
   SyntaxHighlighter,
+  VerticalBox,
 } from 'antd-management-fast-component';
 
+import { valueDisplayModeCollection } from './DocumentContent/constant';
 import {
   adjustConfigureList,
   adjustSchemaData,
   adjustValueCollection,
   buildRowCell,
   getInitializeGeneral,
-  getInitializeItem,
   transferNodeList,
 } from './DocumentContent/tools';
 import { DocumentContent, highlightModeCollection } from './DocumentContent';
@@ -98,11 +100,13 @@ class DocumentPrintDesigner extends BaseComponent {
     this.state = {
       ...this.state,
       configDrawerVisible: false,
+      debugSwitch: false,
       designMode: false,
       schemaTag: '',
       formItemsTag: '',
       configureList: [],
       generalConfig: {},
+      titleConfig: {},
       generalConfigOriginal: {},
       formItemsOriginal: [],
       formItems: [],
@@ -137,10 +141,11 @@ class DocumentPrintDesigner extends BaseComponent {
       return null;
     }
 
-    logConsole({}, 'DocumentPrintDesigner::getDerivedStateFromProps');
-
-    const { generalConfig, configureList: configureSourceList } =
-      adjustSchemaData(schema);
+    const {
+      generalConfig,
+      titleConfig,
+      configureList: configureSourceList,
+    } = adjustSchemaData(schema);
 
     const { configureList } = adjustConfigureList({
       configureList: configureSourceList,
@@ -157,6 +162,7 @@ class DocumentPrintDesigner extends BaseComponent {
       schemaTag: toMd5(JSON.stringify(schema || [])),
       formItemsTag: toMd5(JSON.stringify(formItems || [])),
       generalConfig: { ...generalConfig },
+      titleConfig: { ...titleConfig },
       configureList: [...configureList],
       formItems: [...formItems],
       generalConfigOriginal: { ...generalConfig },
@@ -242,7 +248,7 @@ class DocumentPrintDesigner extends BaseComponent {
     });
 
     this.setState({
-      // generalConfig: getInitializeGeneral(),
+      generalConfig: getInitializeGeneral(),
       configureList: [...configureList],
     });
   };
@@ -284,14 +290,17 @@ class DocumentPrintDesigner extends BaseComponent {
     this.setState({ generalConfig: o || {} });
   };
 
-  onConfigChange = (o) => {
-    logConsole({ o }, 'DocumentPrintDesigner::onConfigChange');
+  onTitleConfigChange = (o) => {
+    this.setState({ titleConfig: o || {} });
+  };
 
+  onConfigChange = (o) => {
     const { configureList } = this.state;
 
     const {
       key: configKey,
       highlightMode: configHighlightMode,
+      valueDisplayMode,
       firstPosition,
       width,
       height,
@@ -300,6 +309,7 @@ class DocumentPrintDesigner extends BaseComponent {
     } = {
       key: '',
       highlightMode: '',
+      valueDisplayMode: valueDisplayModeCollection.text,
       ...o,
     };
 
@@ -342,6 +352,8 @@ class DocumentPrintDesigner extends BaseComponent {
         continue;
       }
 
+      data.valueDisplayMode = valueDisplayMode;
+
       if (configHighlightMode === highlightModeCollection.label) {
         data.labelConfig = {
           ...data.labelConfig,
@@ -378,6 +390,44 @@ class DocumentPrintDesigner extends BaseComponent {
     this.setState({ configureList: [...configureChangedList] });
   };
 
+  onSortChange = (list) => {
+    const { configureList } = this.state;
+
+    const listKey = list.map((o) => {
+      const { key } = { key: '', ...o };
+
+      return key;
+    });
+
+    const filterSort = filter(configureList, (one) => {
+      const { key: keyItem } = one;
+
+      return checkInCollection(listKey, keyItem);
+    });
+
+    const filterNoSort = filter(configureList, (one) => {
+      const { key: keyItem } = one;
+
+      return !checkInCollection(listKey, keyItem);
+    });
+
+    let listChanged = [];
+
+    for (const key of listKey) {
+      const l = filter(filterSort, (one) => {
+        const { key: keyItem } = one;
+
+        return toString(keyItem) === key;
+      });
+
+      listChanged = [...listChanged, ...l];
+    }
+
+    listChanged = [...listChanged, ...filterNoSort];
+
+    this.setState({ configureList: [...listChanged] });
+  };
+
   save = () => {
     const { onSave } = {
       ...defaultProperties,
@@ -388,11 +438,13 @@ class DocumentPrintDesigner extends BaseComponent {
       return;
     }
 
-    const { generalConfig, configureList } = this.state;
+    const { generalConfig, titleConfig, configureList } = this.state;
 
-    logConsole({ generalConfig, configureList }, 'DocumentPrintDesigner::save');
-
-    onSave({ general: generalConfig, items: configureList });
+    onSave({
+      general: generalConfig,
+      title: titleConfig,
+      items: configureList,
+    });
   };
 
   openDesignMode = () => {
@@ -423,7 +475,6 @@ class DocumentPrintDesigner extends BaseComponent {
     const {
       showRemark,
       values: valuesSource,
-      generalConfig,
       formItems,
       showApply,
       applyList,
@@ -435,7 +486,7 @@ class DocumentPrintDesigner extends BaseComponent {
       remarkName,
       remarkList,
     } = this.props;
-    const { configureList } = this.state;
+    const { generalConfig, configureList } = this.state;
 
     const values = adjustValueCollection(valuesSource);
 
@@ -566,8 +617,10 @@ class DocumentPrintDesigner extends BaseComponent {
     };
     const {
       configDrawerVisible,
+      debugSwitch,
       designMode,
       generalConfig,
+      titleConfig,
       configureList,
       formItems,
     } = this.state;
@@ -592,7 +645,33 @@ class DocumentPrintDesigner extends BaseComponent {
                     title="操作栏"
                     tools={[
                       {
-                        hidden: configDrawerVisible || !designMode,
+                        hidden: !designMode,
+                        component: (
+                          <VerticalBox>
+                            <div>
+                              <Tooltip
+                                placement="top"
+                                title={'开启调试后, 界面将会略有卡顿'}
+                              >
+                                <Switch
+                                  checkedChildren="调式-开"
+                                  unCheckedChildren="调式-关"
+                                  defaultChecked={debugSwitch}
+                                  // size="small"
+                                  onChange={() => {
+                                    this.setState({
+                                      debugSwitch: !debugSwitch,
+                                    });
+                                  }}
+                                />
+                              </Tooltip>
+                            </div>
+                          </VerticalBox>
+                        ),
+                      },
+                      {
+                        hidden:
+                          !debugSwitch || configDrawerVisible || !designMode,
                         component: buildButton({
                           text: '开启数据配置板',
                           size: 'small',
@@ -603,7 +682,8 @@ class DocumentPrintDesigner extends BaseComponent {
                         }),
                       },
                       {
-                        hidden: !configDrawerVisible || !designMode,
+                        hidden:
+                          !debugSwitch || !configDrawerVisible || !designMode,
                         component: buildButton({
                           text: '关闭数据配置板',
                           size: 'small',
@@ -715,6 +795,8 @@ class DocumentPrintDesigner extends BaseComponent {
                   title={title}
                   titleContainerStyle={titleContainerStyle}
                   titleStyle={titleStyle}
+                  titleConfig={titleConfig}
+                  configureList={configureList}
                   rows={rows}
                   signetStyle={signetStyle}
                   showTitle={showTitle}
@@ -728,61 +810,68 @@ class DocumentPrintDesigner extends BaseComponent {
                   serialNumberTitle={serialNumberTitle}
                   serialNumberContent={serialNumberContent}
                   onGeneralChange={this.onGeneralChange}
+                  onTitleConfigChange={this.onTitleConfigChange}
                   onConfigChange={(o) => {
                     this.onConfigChange(o);
                   }}
+                  onSortChange={(list) => {
+                    this.onSortChange(list);
+                  }}
                 />
 
-                <FadeBox
-                  visible={configDrawerVisible}
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: '#ccc',
-                    zIndex: '101',
-                  }}
-                >
-                  <div
+                {debugSwitch ? (
+                  <FadeBox
+                    visible={configDrawerVisible}
                     style={{
-                      width: '100%',
-                      height: '100%',
-                      background: '#fff',
-                      padding: '16px 16px 26px 16px',
-                      borderRadius: '10px',
-                      overflow: 'hidden',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      backgroundColor: '#ccc',
+                      zIndex: '101',
                     }}
                   >
-                    <SyntaxHighlighter
-                      language="js"
-                      value={JSON.stringify(
-                        {
-                          generalConfig,
-                          configureList,
-                          formItems,
-                          showApply,
-                          applyList,
-                          showAttention,
-                          attentionList,
-                          allApproveProcessList,
-                          showRemark,
-                          values,
-                          rows,
-                        },
-                        null,
-                        2,
-                      )}
-                      other={{ showLineNumbers: true, wrapLines: true }}
+                    <div
                       style={{
+                        width: '100%',
                         height: '100%',
-                        marginLeft: '0px',
-                        marginRight: '0px',
+                        background: '#fff',
+                        padding: '16px 16px 26px 16px',
+                        borderRadius: '10px',
+                        overflow: 'hidden',
                       }}
-                    />
-                  </div>
-                </FadeBox>
+                    >
+                      <SyntaxHighlighter
+                        language="js"
+                        value={JSON.stringify(
+                          {
+                            generalConfig,
+                            titleConfig,
+                            configureList,
+                            formItems,
+                            showApply,
+                            applyList,
+                            showAttention,
+                            attentionList,
+                            allApproveProcessList,
+                            showRemark,
+                            values,
+                            rows,
+                          },
+                          null,
+                          2,
+                        )}
+                        other={{ showLineNumbers: true, wrapLines: true }}
+                        style={{
+                          height: '100%',
+                          marginLeft: '0px',
+                          marginRight: '0px',
+                        }}
+                      />
+                    </div>
+                  </FadeBox>
+                ) : null}
               </div>
 
               {that.renderPrintContainer()}

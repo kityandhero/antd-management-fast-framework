@@ -1,43 +1,34 @@
-import { Checkbox, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 import React from 'react';
 
-import { checkInCollection, toString } from 'easy-soft-utility';
+import { ColorText, VerticalBox } from 'antd-management-fast-component';
 
-import { VerticalBox } from 'antd-management-fast-component';
-
-import { colorStyle, fontFamilyStyle } from '../../constant';
+import { fontFamilyStyle } from '../../constant';
 import { CellBase } from '../CellBase';
 
 class CellEnum extends CellBase {
   buildContentBox = () => {
-    const { enumList, valueList, content } = {
+    const { content } = {
       enumList: [],
       valueList: [],
       ...this.getProperties(),
     };
 
     return (
-      <Row style={{ height: '100%' }} wrap>
-        {enumList.map((o, index) => {
-          const { label, value } = o;
+      <Row style={{ height: '100%' }} wrap gutter={16}>
+        {content.map((o, index) => {
+          const { label, checked } = o;
 
           return (
             <Col key={`${name}_${index}`}>
               <VerticalBox>
-                <Checkbox
-                  value={value}
-                  checked={
-                    value == content ||
-                    checkInCollection(valueList, toString(content))
-                  }
-                  style={{
-                    fontSize: '16px',
-                    ...fontFamilyStyle,
-                    ...colorStyle,
-                  }}
-                >
-                  {label}
-                </Checkbox>
+                <ColorText
+                  textPrefix={checked ? '☑' : '⬜'}
+                  textPrefixStyle={{ paddingRight: '2px' }}
+                  separator=""
+                  text={label}
+                  textStyle={{ ...fontFamilyStyle, fontSize: '14px' }}
+                />
               </VerticalBox>
             </Col>
           );

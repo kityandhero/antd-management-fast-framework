@@ -41,6 +41,11 @@ export const highlightModeCollection = {
   value: 'value',
 };
 
+export const cellTypeCollection = {
+  label: 'label',
+  value: 'value',
+};
+
 export const currencyDisplayStyle = {
   borderBottom: '1px solid #999',
 };
@@ -61,3 +66,57 @@ export const tdPaddingStyle = {
   paddingLeft: '10px',
   paddingRight: '10px',
 };
+
+export const fontFamilyCollection = [
+  'fangsong',
+  'FangSong_GB2312',
+  'FZXiaoBiaoSong-B05S',
+];
+
+export const fontFamilyOptionCollection = [
+  {
+    label: '仿宋',
+    key: 'fangsong',
+  },
+  {
+    label: '仿宋GB2312',
+    key: 'FangSong_GB2312',
+  },
+  {
+    label: '方正小标宋',
+    key: 'FZXiaoBiaoSong-B05S',
+  },
+];
+
+export const presetColors = [
+  {
+    label: '纯色',
+    colors: [
+      '#000000',
+      '#FFFFFF',
+      '#0000FF',
+      '#ff0000',
+      '#00FF00',
+      '#808080',
+      '#FFFF00',
+      '#00FFFF',
+      '#FF00FF',
+      '#808080',
+    ],
+  },
+  {
+    label: '常用',
+    colors: [
+      '#F5222D',
+      '#FA8C16',
+      '#FADB14',
+      '#8BBB11',
+      '#52C41A',
+      '#13A8A8',
+      '#1677FF',
+      '#2F54EB',
+      '#722ED1',
+      '#EB2F96',
+    ],
+  },
+];
