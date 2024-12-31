@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.9.40
+
+### Patch Changes
+
+- Updated dependencies
+  - antd-management-fast-formily@1.0.114
+  - antd-management-fast-design-playground@1.0.167
+
 ## 1.9.39
 
 ### Patch Changes
