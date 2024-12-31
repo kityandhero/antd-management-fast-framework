@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-playground",
-  "version": "1.0.162",
+  "version": "1.0.163",
   "keywords": [
     "antd-management-fast-design-playground"
   ],
@@ -107,7 +107,7 @@
     "@types/react": "^19.0.2",
     "@types/react-color": "^3.0.13",
     "@types/react-dom": "^19.0.2",
-    "@typescript-eslint/parser": "^8.18.2",
+    "@typescript-eslint/parser": "^8.19.0",
     "antd": "^5.22.7",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.1",

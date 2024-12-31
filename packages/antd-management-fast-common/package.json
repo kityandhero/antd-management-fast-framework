@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-common",
-  "version": "2.6.130",
+  "version": "2.6.131",
   "description": "antd-management-fast-common",
   "keywords": [
     "antd-management-fast-common"
@@ -127,7 +127,7 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@types/shelljs": "^0.8.15",
-    "@typescript-eslint/parser": "^8.18.2",
+    "@typescript-eslint/parser": "^8.19.0",
     "autoprefixer": "^10.4.20",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.1",

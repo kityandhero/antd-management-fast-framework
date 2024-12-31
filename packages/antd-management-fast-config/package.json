@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-config",
-  "version": "1.1.108",
+  "version": "1.1.109",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -64,7 +64,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.2",
-    "@typescript-eslint/parser": "^8.18.2",
+    "@typescript-eslint/parser": "^8.19.0",
     "@umijs/max": "^4.4.2",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.1",

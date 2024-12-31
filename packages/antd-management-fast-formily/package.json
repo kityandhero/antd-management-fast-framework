@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-formily",
-  "version": "1.0.109",
+  "version": "1.0.110",
   "keywords": [
     "antd-management-fast-formily"
   ],
@@ -95,7 +95,7 @@
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
-    "@typescript-eslint/parser": "^8.18.2",
+    "@typescript-eslint/parser": "^8.19.0",
     "antd": "^5.22.7",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.1",

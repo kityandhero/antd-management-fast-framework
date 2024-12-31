@@ -1,6 +1,6 @@
 {
   "name": "example-remote",
-  "version": "1.4.158",
+  "version": "1.4.159",
   "private": true,
   "author": "",
   "scripts": {
@@ -102,7 +102,7 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@types/shelljs": "^0.8.15",
-    "@typescript-eslint/parser": "^8.18.2",
+    "@typescript-eslint/parser": "^8.19.0",
     "antd-management-fast-config": "workspace:*",
     "antd-management-fast-develop": "workspace:*",
     "babel-jest": "^29.7.0",
