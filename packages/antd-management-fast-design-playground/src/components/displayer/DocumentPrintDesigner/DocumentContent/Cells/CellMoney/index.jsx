@@ -4,7 +4,6 @@ import {
   canToNumber,
   checkStringIsNullOrWhiteSpace,
   formatMoneyToChinese,
-  logConsole,
   toNumber,
 } from 'easy-soft-utility';
 
@@ -31,8 +30,6 @@ class CellMoney extends CellBase {
     } else {
       contentAdjust = content;
     }
-
-    logConsole({ whetherZero, contentAdjust });
 
     if (!canToNumber(contentAdjust)) {
       return (
