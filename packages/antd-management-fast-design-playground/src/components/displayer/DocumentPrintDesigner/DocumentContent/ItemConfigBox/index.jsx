@@ -153,7 +153,19 @@ function ItemConfigBox(properties) {
         </ItemConfigBoxContainer>
       )}
 
-      {isLabel ? null : checkInCollection(
+      {isLabel ? (
+        <ItemConfigBoxContainer>
+          <FlexBox
+            flexAuto="left"
+            left={<VerticalBox>内容模式：</VerticalBox>}
+            right={
+              <VerticalBox>
+                {getValueDisplayModeText(valueDisplayMode)}
+              </VerticalBox>
+            }
+          />
+        </ItemConfigBoxContainer>
+      ) : checkInCollection(
           [
             valueDisplayModeCollection.text,
             valueDisplayModeCollection.money,
@@ -165,7 +177,7 @@ function ItemConfigBox(properties) {
           <ItemConfigBoxContainer>
             <FlexBox
               flexAuto="left"
-              left={<VerticalBox>值模式：</VerticalBox>}
+              left={<VerticalBox>内容模式：</VerticalBox>}
               right={
                 <Dropdown
                   menu={{
@@ -210,7 +222,19 @@ function ItemConfigBox(properties) {
             />
           </ItemConfigBoxContainer>
         </>
-      ) : null}
+      ) : (
+        <ItemConfigBoxContainer>
+          <FlexBox
+            flexAuto="left"
+            left={<VerticalBox>内容模式：</VerticalBox>}
+            right={
+              <VerticalBox>
+                {getValueDisplayModeText(valueDisplayMode)}
+              </VerticalBox>
+            }
+          />
+        </ItemConfigBoxContainer>
+      )}
 
       <ItemConfigBoxContainer>
         <FlexBox

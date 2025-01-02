@@ -1109,6 +1109,7 @@ class BaseFlowCaseFormInfoDrawer extends BaseUpdateDrawer {
             title: title || {},
             items,
           }}
+          formItems={listDataSchema}
           approveList={isArray(listApprove) ? listApprove : []}
           allApproveProcessList={listChainApprove}
           signetStyle={signetStyle}

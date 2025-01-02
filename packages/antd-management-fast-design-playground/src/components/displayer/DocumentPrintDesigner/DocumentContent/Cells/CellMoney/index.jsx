@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { canToNumber, formatMoneyToChinese, toNumber } from 'easy-soft-utility';
+import {
+  canToNumber,
+  checkStringIsNullOrWhiteSpace,
+  formatMoneyToChinese,
+  logConsole,
+  toNumber,
+} from 'easy-soft-utility';
 
 import { FlexBox, VerticalBox } from 'antd-management-fast-component';
 
@@ -16,7 +22,19 @@ class CellMoney extends CellBase {
   buildContentBox = () => {
     const { content } = this.getProperties();
 
-    if (!canToNumber(content)) {
+    let whetherZero = false;
+    let contentAdjust = '';
+
+    if (checkStringIsNullOrWhiteSpace(content)) {
+      whetherZero = true;
+      contentAdjust = 0;
+    } else {
+      contentAdjust = content;
+    }
+
+    logConsole({ whetherZero, contentAdjust });
+
+    if (!canToNumber(contentAdjust)) {
       return (
         <div
           style={{
@@ -29,7 +47,7 @@ class CellMoney extends CellBase {
             borderRight: '0',
           }}
         >
-          {`"${content}" 不能转化为货币形式`}
+          {`"${contentAdjust}" 不能转化为货币形式`}
         </div>
       );
     }
@@ -64,7 +82,9 @@ class CellMoney extends CellBase {
               >
                 人民币（大写）
                 <span style={currencyDisplayStyle}>
-                  {formatMoneyToChinese({ target: toNumber(content) })}
+                  {formatMoneyToChinese({
+                    target: whetherZero ? 0 : toNumber(contentAdjust),
+                  })}
                 </span>
               </div>
             </VerticalBox>
@@ -79,7 +99,7 @@ class CellMoney extends CellBase {
                   ...colorStyle,
                 }}
               >
-                小写￥<span style={currencyDisplayStyle}>{content}</span>
+                小写￥<span style={currencyDisplayStyle}>{contentAdjust}</span>
               </div>
             </VerticalBox>
           }

@@ -890,8 +890,16 @@ export function getValueDisplayModeText(valueDisplayMode) {
       return '金额';
     }
 
+    case valueDisplayModeCollection.apply: {
+      return '申请栏';
+    }
+
+    case valueDisplayModeCollection.attention: {
+      return '经办栏';
+    }
+
     case valueDisplayModeCollection.approval: {
-      return '审批';
+      return '审批栏';
     }
 
     case valueDisplayModeCollection.remark: {

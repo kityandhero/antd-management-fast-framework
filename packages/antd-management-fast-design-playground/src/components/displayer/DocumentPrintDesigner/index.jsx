@@ -352,8 +352,6 @@ class DocumentPrintDesigner extends BaseComponent {
         continue;
       }
 
-      data.valueDisplayMode = valueDisplayMode;
-
       if (configHighlightMode === highlightModeCollection.label) {
         data.labelConfig = {
           ...data.labelConfig,
@@ -366,6 +364,8 @@ class DocumentPrintDesigner extends BaseComponent {
       }
 
       if (configHighlightMode === highlightModeCollection.value) {
+        data.valueDisplayMode = valueDisplayMode;
+
         data.valueConfig = {
           ...data.valueConfig,
           firstPosition: toString(firstPosition),

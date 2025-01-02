@@ -895,6 +895,7 @@ class BasicInfo extends TabPageBase {
             title: title || {},
             items,
           }}
+          formItems={listDataSchema}
           approveList={isArray(listApprove) ? listApprove : []}
           allApproveProcessList={listChainApproveAdjust}
           signetStyle={signetStyle}

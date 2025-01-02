@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-config",
-  "version": "1.1.111",
+  "version": "1.1.112",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -65,7 +65,7 @@
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.3",
     "@typescript-eslint/parser": "^8.19.0",
-    "@umijs/max": "^4.4.2",
+    "@umijs/max": "^4.4.4",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^8.0.0",
@@ -107,6 +107,6 @@
     "stylelint-config-standard": "^36.0.1",
     "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
     "stylelint-order": "^6.0.4",
-    "umi": "^4.4.2"
+    "umi": "^4.4.4"
   }
 }
