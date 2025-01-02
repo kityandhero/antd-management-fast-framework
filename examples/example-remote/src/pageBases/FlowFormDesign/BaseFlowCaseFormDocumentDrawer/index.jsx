@@ -263,8 +263,9 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       defaultValue: {},
     });
 
-    const { general } = {
+    const { general, title } = {
       general: {},
+      title: {},
       ...documentSchema,
     };
 
@@ -279,6 +280,7 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     const data = {
       documentSchema: {
         general,
+        title,
         items,
       },
       formItems,
