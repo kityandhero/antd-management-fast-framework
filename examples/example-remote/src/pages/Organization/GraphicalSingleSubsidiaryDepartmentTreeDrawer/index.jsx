@@ -1,4 +1,4 @@
-import { OrganizationGraph } from '@ant-design/graphs';
+import { FlowGraph } from '@ant-design/graphs';
 
 import { connect } from 'easy-soft-dva';
 import { getValueByKey } from 'easy-soft-utility';
@@ -9,7 +9,7 @@ import {
 } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig';
-import { buildOrganizationGraphConfig } from '../../../utils';
+import { buildFlowGraphConfig } from '../../../utils';
 import { fieldData } from '../../Subsidiary/Common/data';
 
 const { BaseVerticalFlexDrawer } = DataDrawer;
@@ -69,8 +69,8 @@ class GraphicalSingleSubsidiaryDepartmentTreeDrawer extends BaseVerticalFlexDraw
           paddingTop: '20px',
         }}
       >
-        <OrganizationGraph
-          {...buildOrganizationGraphConfig()}
+        <FlowGraph
+          {...buildFlowGraphConfig()}
           data={
             metaData || {
               id: 'root',

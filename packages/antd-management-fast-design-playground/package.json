@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-playground",
-  "version": "1.0.167",
+  "version": "1.0.168",
   "keywords": [
     "antd-management-fast-design-playground"
   ],
@@ -78,12 +78,12 @@
     "classnames": "^2.5.1",
     "dateformat": "^5.0.3",
     "dayjs": "^1.11.13",
-    "easy-soft-dva": "^3.10.72",
-    "easy-soft-utility": "^2.8.77",
+    "easy-soft-dva": "^3.10.75",
+    "easy-soft-utility": "^2.8.78",
     "monaco-editor": "^0.52.2",
-    "react": "^19.0.0",
+    "react": "^18.3.1",
     "react-color": "^2.19.3",
-    "react-dom": "^19.0.0",
+    "react-dom": "^18.3.1",
     "react-to-pdf": "^1.0.1"
   },
   "devDependencies": {
@@ -103,7 +103,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@types/dateformat": "^5.0.2",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.3",
     "@types/react": "^19.0.2",
     "@types/react-color": "^3.0.13",
     "@types/react-dom": "^19.0.2",

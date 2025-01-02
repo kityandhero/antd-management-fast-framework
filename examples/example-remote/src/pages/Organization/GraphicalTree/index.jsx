@@ -1,4 +1,4 @@
-import { OrganizationGraph } from '@ant-design/graphs';
+import { FlowGraph } from '@ant-design/graphs';
 
 import { connect } from 'easy-soft-dva';
 
@@ -7,7 +7,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 import { DataForm } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig';
-import { buildOrganizationGraphConfig } from '../../../utils';
+import { buildFlowGraphConfig } from '../../../utils';
 
 const { BaseUpdateForm } = DataForm;
 
@@ -68,8 +68,8 @@ class AddBasicInfo extends BaseUpdateForm {
               lg: 24,
               type: cardConfig.contentItemType.component,
               component: metaData ? (
-                <OrganizationGraph
-                  {...buildOrganizationGraphConfig()}
+                <FlowGraph
+                  {...buildFlowGraphConfig()}
                   data={
                     metaData || {
                       id: 'root',

@@ -323,7 +323,7 @@ export function splitToGroup(array, size) {
   return result;
 }
 
-function getOrganizationGraphTextStyle(level) {
+function getFlowGraphTextStyle(level) {
   switch (level) {
     case 0: {
       return 20;
@@ -337,22 +337,22 @@ function getOrganizationGraphTextStyle(level) {
   }
 }
 
-function getOrganizationGraphRootTextAttributes() {
+function getFlowGraphRootTextAttributes() {
   return {
-    fontSize: getOrganizationGraphTextStyle(1),
+    fontSize: getFlowGraphTextStyle(1),
     fontWeight: 'bold',
     fill: '#fff',
   };
 }
 
-function getOrganizationGraphSecondTextStyle() {
+function getFlowGraphSecondTextStyle() {
   return {
-    fontSize: getOrganizationGraphTextStyle(2),
+    fontSize: getFlowGraphTextStyle(2),
     color: '#000',
   };
 }
 
-function getOrganizationGraphRootNodeStyle() {
+function getFlowGraphRootNodeStyle() {
   return {
     fill: '#1E88E5',
     stroke: '#1E88E5',
@@ -360,7 +360,7 @@ function getOrganizationGraphRootNodeStyle() {
   };
 }
 
-function getOrganizationGraphSecondNodeStyle() {
+function getFlowGraphSecondNodeStyle() {
   return {
     fill: '#e8e8e8',
     stroke: '#e8e8e8',
@@ -368,7 +368,7 @@ function getOrganizationGraphSecondNodeStyle() {
   };
 }
 
-function calcOrganizationGraphStringLength(text) {
+function calcFlowGraphStringLength(text) {
   let l = 0;
 
   for (let index = 0; index < text.length; index++) {
@@ -381,7 +381,7 @@ function calcOrganizationGraphStringLength(text) {
   return l;
 }
 
-export function buildOrganizationGraphConfig() {
+export function buildFlowGraphConfig() {
   return {
     height: 600,
     nodeCfg: {
@@ -395,8 +395,8 @@ export function buildOrganizationGraphConfig() {
           stroke: 'transparent',
           radius: 4,
           cursor: 'pointer',
-          ...(level === 0 ? getOrganizationGraphRootNodeStyle() : {}),
-          ...(level === 1 ? getOrganizationGraphSecondNodeStyle() : {}),
+          ...(level === 0 ? getFlowGraphRootNodeStyle() : {}),
+          ...(level === 1 ? getFlowGraphSecondNodeStyle() : {}),
         };
       },
       nodeStateStyles: {
@@ -413,11 +413,11 @@ export function buildOrganizationGraphConfig() {
             return {};
           }
           return {
-            fontSize: getOrganizationGraphTextStyle(),
+            fontSize: getFlowGraphTextStyle(),
             cursor: 'pointer',
             fill: href ? '#1890ff' : '#000',
-            ...(level === 0 ? getOrganizationGraphRootTextAttributes() : {}),
-            ...(level === 1 ? getOrganizationGraphSecondTextStyle() : {}),
+            ...(level === 0 ? getFlowGraphRootTextAttributes() : {}),
+            ...(level === 1 ? getFlowGraphSecondTextStyle() : {}),
           };
         },
       },
@@ -446,8 +446,8 @@ export function buildOrganizationGraphConfig() {
       direction: 'H',
       getWidth: (cfg) => {
         const { name, level } = cfg.value;
-        const fontSize = getOrganizationGraphTextStyle(level);
-        const width = (fontSize * calcOrganizationGraphStringLength(name)) / 2;
+        const fontSize = getFlowGraphTextStyle(level);
+        const width = (fontSize * calcFlowGraphStringLength(name)) / 2;
 
         return width;
       },

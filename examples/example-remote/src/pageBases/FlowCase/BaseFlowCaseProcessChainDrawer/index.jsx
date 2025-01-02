@@ -1,4 +1,4 @@
-import { OrganizationGraph } from '@ant-design/graphs';
+import { FlowGraph } from '@ant-design/graphs';
 
 import { convertCollection, getValueByKey } from 'easy-soft-utility';
 
@@ -149,7 +149,7 @@ class BaseFlowCaseProcessChainDrawer extends BaseVerticalFlexDrawer {
             paddingRight: '10px',
           }}
         >
-          <OrganizationGraph
+          <FlowGraph
             autoFit
             fitCenter
             animate

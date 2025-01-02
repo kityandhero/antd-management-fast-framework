@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-react",
-  "version": "1.0.102",
+  "version": "1.0.103",
   "keywords": [
     "antd-management-fast-design-react"
   ],
@@ -74,11 +74,11 @@
     "classnames": "^2.5.1",
     "dateformat": "^5.0.3",
     "dayjs": "^1.11.13",
-    "easy-soft-utility": "^2.8.77",
+    "easy-soft-utility": "^2.8.78",
     "monaco-editor": "^0.52.2",
-    "react": "^19.0.0",
+    "react": "^18.3.1",
     "react-color": "^2.19.3",
-    "react-dom": "^19.0.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
@@ -97,7 +97,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@types/dateformat": "^5.0.2",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.3",
     "@types/react": "^19.0.2",
     "@types/react-color": "^3.0.13",
     "@types/react-dom": "^19.0.2",
