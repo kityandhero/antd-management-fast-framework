@@ -999,6 +999,8 @@ class BasicInfo extends TabPageBase {
         <FlowCaseFormDocumentDrawer
           maskClosable
           canDesign={false}
+          showToolbar={false}
+          showIndependentPrint
           externalData={{
             workflowId: getValueByKey({
               data: metaData,

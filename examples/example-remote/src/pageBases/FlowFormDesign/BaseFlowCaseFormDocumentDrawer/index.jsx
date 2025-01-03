@@ -17,6 +17,8 @@ const { BaseVerticalFlexDrawer } = DataDrawer;
 
 const defaultProperties = {
   canDesign: false,
+  showToolbar: true,
+  showIndependentPrint: false,
   showApply: false,
   serialNumber: '',
   qRCodeImage: '',
@@ -174,6 +176,8 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
   renderPresetContentContainorInnerTop = () => {
     const {
       canDesign,
+      showToolbar,
+      showIndependentPrint,
       values,
       serialNumberContent,
       qRCodeImage,
@@ -213,6 +217,8 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     return (
       <DocumentPrintDesigner
         canDesign={canDesign}
+        showToolbar={showToolbar}
+        showIndependentPrint={showIndependentPrint}
         title={getValueByKey({
           data: metaData,
           key: fieldDataFlowFormDesign.workflowName.name,

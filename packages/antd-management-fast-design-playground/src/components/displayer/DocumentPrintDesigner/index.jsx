@@ -52,6 +52,7 @@ const defaultProperties = {
   style: null,
   showToolbar: true,
   canDesign: false,
+  showIndependentPrint: false,
   color: colorDefault,
   title: '表格标题',
   titleContainerStyle: null,
@@ -587,6 +588,7 @@ class DocumentPrintDesigner extends BaseComponent {
       showToolbar,
       showRemark,
       showApply,
+      showIndependentPrint,
       applyList,
       showAttention,
       attentionList,
@@ -821,6 +823,40 @@ class DocumentPrintDesigner extends BaseComponent {
                     this.onSortChange(list);
                   }}
                 />
+
+                {!showToolbar && showIndependentPrint ? (
+                  <Tooltip title="立即打印文档">
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        backgroundColor: '#fff',
+                        padding: '10px',
+                        zIndex: 100,
+                        fontSize: '18px',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() => {
+                        if (!that.printButtonCanOperate) {
+                          return;
+                        }
+
+                        showOpenMessage({
+                          text: '打印准备中，需要一点点时间，请稍等',
+                          duration: 600,
+                          onClose: () => {
+                            setTimeout(() => {
+                              this.generateDocument();
+                            }, 320);
+                          },
+                        });
+                      }}
+                    >
+                      {iconBuilder.printer()}
+                    </div>
+                  </Tooltip>
+                ) : null}
 
                 {debugSwitch ? (
                   <FadeBox

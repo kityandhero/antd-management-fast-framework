@@ -261,7 +261,7 @@ class DocumentContent extends PureComponent {
   render() {
     const {
       printAreaId,
-      showToolbar,
+      // showToolbar,
       generalConfig,
       titleConfig,
       style,
@@ -295,7 +295,8 @@ class DocumentContent extends PureComponent {
         style={{
           paddingLeft: '60px',
           paddingRight: '60px',
-          ...(showToolbar ? { paddingBottom: '40px' } : { paddingBottom: '0' }),
+          paddingBottom: '40px',
+          // ...(showToolbar ? { paddingBottom: '40px' } : { paddingBottom: '0' }),
           margin: '0 auto',
           width: '920px',
           backgroundColor: '#fff',
@@ -304,9 +305,11 @@ class DocumentContent extends PureComponent {
         <div
           style={{
             ...titleContainerStyle,
-            ...(showToolbar
-              ? { paddingTop: '50px', paddingBottom: '10px' }
-              : { paddingTop: '0', paddingBottom: '0' }),
+            paddingTop: '50px',
+            paddingBottom: '10px',
+            // ...(showToolbar
+            //   ? { paddingTop: '50px', paddingBottom: '10px' }
+            //   : { paddingTop: '0', paddingBottom: '0' }),
             position: 'relative',
           }}
         >
