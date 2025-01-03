@@ -1,4 +1,5 @@
 import {
+  canToNumber,
   checkInCollection,
   checkStringIsNullOrWhiteSpace,
   endsWith,
@@ -173,6 +174,7 @@ export function getInitializeGeneral() {
     labelWidth: '160',
     gridColor: '#000000',
     labelColor: '#000000',
+    remarkSwitch: whetherString.yes,
   };
 }
 
@@ -709,45 +711,52 @@ export function buildRowCell({
     }
 
     if (type === 'remark') {
-      const { firstPositionLabel, labelData, firstPositionValue, valueData } =
-        analysisTarget({
-          target: d,
-          generalConfig,
-          configureList,
-          defaultValueDisplayMode: valueDisplayModeCollection.remark,
-          getKeyAction: () => {
-            return remarkName;
-          },
-          getContentAction: () => {
-            return isArray(remarkList)
-              ? remarkList.map((o) => toString(o)).join('')
-              : toString(remarkList);
-          },
-        });
+      const { remarkSwitch } = adjustGeneralConfig(generalConfig);
 
-      if (firstPositionLabel) {
-        if (isEmptyArray(cells)) {
-          cells = [];
-        } else {
-          rows.push([...cells]);
+      if (
+        canToNumber(remarkSwitch) &&
+        toNumber(remarkSwitch) === whetherNumber.yes
+      ) {
+        const { firstPositionLabel, labelData, firstPositionValue, valueData } =
+          analysisTarget({
+            target: d,
+            generalConfig,
+            configureList,
+            defaultValueDisplayMode: valueDisplayModeCollection.remark,
+            getKeyAction: () => {
+              return remarkName;
+            },
+            getContentAction: () => {
+              return isArray(remarkList)
+                ? remarkList.map((o) => toString(o)).join('')
+                : toString(remarkList);
+            },
+          });
 
-          cells = [];
+        if (firstPositionLabel) {
+          if (isEmptyArray(cells)) {
+            cells = [];
+          } else {
+            rows.push([...cells]);
+
+            cells = [];
+          }
         }
-      }
 
-      cells.push(labelData);
+        cells.push(labelData);
 
-      if (firstPositionValue) {
-        if (isEmptyArray(cells)) {
-          cells = [];
-        } else {
-          rows.push([...cells]);
+        if (firstPositionValue) {
+          if (isEmptyArray(cells)) {
+            cells = [];
+          } else {
+            rows.push([...cells]);
 
-          cells = [];
+            cells = [];
+          }
         }
-      }
 
-      cells.push(valueData);
+        cells.push(valueData);
+      }
     }
   }
 

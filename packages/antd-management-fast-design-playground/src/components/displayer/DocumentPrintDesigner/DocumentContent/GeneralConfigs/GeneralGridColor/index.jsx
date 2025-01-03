@@ -21,7 +21,7 @@ function GeneralGridColor(properties) {
       <GeneralConfigContainer>
         <FlexBox
           flexAuto="left"
-          left={<VerticalBox>边框颜色：</VerticalBox>}
+          left={<VerticalBox>边框色：</VerticalBox>}
           right={
             <ColorPicker
               value={gridColor}

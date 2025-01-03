@@ -20,7 +20,9 @@ import {
 
 import { CellApply } from './Cells/CellApply';
 import { CellAttention } from './Cells/CellAttention';
+import { GeneralEllipsis } from './GeneralConfigs/GeneralEllipsis';
 import { GeneralLabelColor } from './GeneralConfigs/GeneralLabelColor';
+import { GeneralRemarkSwitch } from './GeneralConfigs/GeneralRemarkSwitch';
 import {
   CellApproval,
   CellEnum,
@@ -289,6 +291,8 @@ class DocumentContent extends PureComponent {
       fontFamily: titleFontFamily,
     } = adjustTitleConfig(titleConfig);
 
+    const that = this;
+
     return (
       <div
         id={printAreaId || ''}
@@ -359,27 +363,38 @@ class DocumentContent extends PureComponent {
                 <FlexBox
                   flexAuto="left"
                   leftStyle={{ paddingLeft: '10px', color: '#fff' }}
-                  left={<VerticalBox>全局配置：</VerticalBox>}
+                  left={<VerticalBox>全局：</VerticalBox>}
                   right={
                     <Space>
                       <GeneralFirstCellWidth
                         data={adjustGeneralConfig(generalConfig)}
-                        onChange={this.onGeneralChange}
+                        onChange={that.onGeneralChange}
                       />
 
                       <GeneralSort
                         configureList={configureList}
-                        onChange={this.onSortChange}
+                        onChange={that.onSortChange}
                       />
 
                       <GeneralGridColor
                         data={adjustGeneralConfig(generalConfig)}
-                        onChange={this.onGeneralChange}
+                        onChange={that.onGeneralChange}
                       />
 
                       <GeneralLabelColor
                         data={adjustGeneralConfig(generalConfig)}
-                        onChange={this.onGeneralChange}
+                        onChange={that.onGeneralChange}
+                      />
+
+                      <GeneralEllipsis
+                        items={[
+                          <GeneralRemarkSwitch
+                            key="b61b469c81a24109bb9d1aa7e59aa685"
+                            data={adjustGeneralConfig(generalConfig)}
+                            showDivider={false}
+                            onChange={that.onGeneralChange}
+                          />,
+                        ]}
                       />
                     </Space>
                   }

@@ -149,7 +149,7 @@ function TitleConfigBox(properties) {
         />
       </TitleConfigBoxContainer>
 
-      <TitleConfigBoxContainer>
+      <TitleConfigBoxContainer showDivider={false}>
         <FlexBox
           flexAuto="left"
           left={<VerticalBox>字体大小：</VerticalBox>}
