@@ -178,9 +178,7 @@ export function getInitializeGeneral() {
 
 export function adjustGeneralConfig(o) {
   return {
-    labelWidth: '160',
-    gridColor: '#000000',
-    labelColor: '#000000',
+    ...getInitializeGeneral(),
     ...o,
   };
 }
@@ -190,15 +188,13 @@ export function getInitializeTitleConfig() {
     fontSize: '30',
     color: '#000000',
     bold: '0',
+    fontFamily: 'fangsong',
   };
 }
 
 export function adjustTitleConfig(o) {
   const data = {
-    fontSize: '30',
-    color: '#000000',
-    bold: '0',
-    fontFamily: 'fangsong',
+    ...getInitializeTitleConfig(),
     ...o,
   };
 

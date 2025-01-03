@@ -35,6 +35,7 @@ import {
   adjustValueCollection,
   buildRowCell,
   getInitializeGeneral,
+  getInitializeTitleConfig,
   transferNodeList,
 } from './DocumentContent/tools';
 import { DocumentContent, highlightModeCollection } from './DocumentContent';
@@ -162,10 +163,11 @@ class DocumentPrintDesigner extends BaseComponent {
       schemaTag: toMd5(JSON.stringify(schema || [])),
       formItemsTag: toMd5(JSON.stringify(formItems || [])),
       generalConfig: { ...generalConfig },
+      generalConfigOriginal: { ...generalConfig },
       titleConfig: { ...titleConfig },
+      titleConfigOriginal: { ...titleConfig },
       configureList: [...configureList],
       formItems: [...formItems],
-      generalConfigOriginal: { ...generalConfig },
       formItemsOriginal: [...formItems],
       documentTempUrl: '',
     };
@@ -249,6 +251,7 @@ class DocumentPrintDesigner extends BaseComponent {
 
     this.setState({
       generalConfig: getInitializeGeneral(),
+      titleConfig: getInitializeTitleConfig(),
       configureList: [...configureList],
     });
   };
@@ -264,10 +267,9 @@ class DocumentPrintDesigner extends BaseComponent {
       remarkName,
     } = this.props;
 
-    const {
-      //  generalConfig,
-      configureList: configureSourceList,
-    } = adjustSchemaData(schema);
+    const { generalConfigOriginal, titleConfigOriginal } = this.state;
+
+    const { configureList: configureSourceList } = adjustSchemaData(schema);
 
     const { configureList } = adjustConfigureList({
       configureList: configureSourceList,
@@ -281,7 +283,8 @@ class DocumentPrintDesigner extends BaseComponent {
     });
 
     this.setState({
-      // generalConfig: generalConfigOriginal,
+      generalConfig: generalConfigOriginal,
+      titleConfig: titleConfigOriginal,
       configureList: [...configureList],
     });
   };
