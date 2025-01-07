@@ -36,7 +36,7 @@ function GeneralRemarkSwitch(properties) {
       <GeneralExtraConfigBoxContainer showDivider={showDivider}>
         <FlexBox
           flexAuto="left"
-          left={<VerticalBox>备注栏：</VerticalBox>}
+          left={<VerticalBox>表单备注栏：</VerticalBox>}
           right={
             <Switch
               checkedChildren="显示"
