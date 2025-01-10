@@ -332,7 +332,7 @@ class SchemaDisplayer extends Component {
               {showSubmit ? (
                 <Submit
                   form={this.fromTarget}
-                  icon={submitButtonIcon}
+                  icon={submitButtonIcon || iconBuilder.save()}
                   onSubmit={this.submitForm}
                   onSubmitSuccess={this.onSubmitSuccess}
                   onSubmitFailed={this.onSubmitFailed}
@@ -504,7 +504,7 @@ SchemaDisplayer.defaultProps = {
   // eslint-disable-next-line no-unused-vars
   showSubmit: false,
   showSubmitDivider: false,
-  submitButtonIcon: iconBuilder.save(),
+  submitButtonIcon: null,
   submitButtonText: 'submit',
   buttonBeforeSubmitBuilder: () => null,
   buttonAfterSubmitBuilder: () => null,
