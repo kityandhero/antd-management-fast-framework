@@ -5,6 +5,13 @@
 
 module.exports = {
   generalConfig: {
-    reject: ['eslint', 'eslint-plugin-unicorn', 'react', 'react-dom'],
+    reject: [
+      'eslint',
+      'eslint-plugin-unicorn',
+      'react',
+      'react-dom',
+      '@types/react',
+      '@types/react-dom',
+    ],
   },
 };
