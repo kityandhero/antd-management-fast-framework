@@ -24,7 +24,18 @@ function FlowProcessHistory(properties) {
     listItemConvert,
     nextData,
     nextDataConvert,
-  } = properties;
+  } = {
+    style: {},
+    title: '审批进度',
+    showTitle: false,
+    showLeftDivider: false,
+    canEdit: true,
+    list: [],
+    listItemConvert: null,
+    nextData: null,
+    nextDataConvert: null,
+    ...properties,
+  };
 
   const nextDataAdjust =
     nextData == null
@@ -194,17 +205,5 @@ function FlowProcessHistory(properties) {
     />
   );
 }
-
-FlowProcessHistory.defaultProps = {
-  style: {},
-  title: '审批进度',
-  showTitle: false,
-  showLeftDivider: false,
-  canEdit: true,
-  list: [],
-  listItemConvert: null,
-  nextData: null,
-  nextDataConvert: null,
-};
 
 export { FlowProcessHistory };

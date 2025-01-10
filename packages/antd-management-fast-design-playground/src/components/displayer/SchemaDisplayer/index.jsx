@@ -1,5 +1,5 @@
 import { Card, Divider, Rate, Slider } from 'antd';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
   ArrayCards,
   ArrayTable,
@@ -42,6 +42,7 @@ import {
   logTrace,
   mergeArrowText,
   mergeTextMessage,
+  toMd5,
   toString,
 } from 'easy-soft-utility';
 
@@ -107,14 +108,40 @@ function buildPromptModuleInfoText(text, ...messages) {
   );
 }
 
+function buildTag(o) {
+  return toMd5(JSON.stringify(o || {}));
+}
+
 const remarkName = '2ff73e227d264c06b951c037ce0f51ef';
 
 const descriptionTypeCollection = ['field', 'box'];
 
-class SchemaDisplayer extends PureComponent {
+class SchemaDisplayer extends Component {
   fromTarget = null;
 
   submitDataTemporary = {};
+
+  constructor(properties) {
+    super(properties);
+
+    this.state = {
+      ...this.state,
+      documentTempUrl: '',
+    };
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  shouldComponentUpdate(nextProperties, nextState) {
+    const { schema } = this.props;
+
+    const { schema: schemaNext } = nextProperties;
+
+    if (buildTag({ schema }) != buildTag({ schema: schemaNext })) {
+      this.fromTarget = null;
+    }
+
+    return true;
+  }
 
   getDescriptionType = (type) => {
     const v = checkInCollection(descriptionTypeCollection, type);
@@ -443,7 +470,7 @@ class SchemaDisplayer extends PureComponent {
             </FormItem>
           ) : null}
 
-          <SchemaField schema={schema} />
+          <SchemaField schema={{ ...schema }} />
 
           {children}
 

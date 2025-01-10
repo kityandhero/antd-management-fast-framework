@@ -63,6 +63,13 @@ class AddLineDrawer extends BaseAddDrawer {
     return d;
   };
 
+  executeAfterDoOtherWhenChangeVisibleToHide = () => {
+    this.setState({
+      fromId: '',
+      toId: '',
+    });
+  };
+
   afterFromNodeSelect = (d) => {
     const fromId = getValueByKey({
       data: d,

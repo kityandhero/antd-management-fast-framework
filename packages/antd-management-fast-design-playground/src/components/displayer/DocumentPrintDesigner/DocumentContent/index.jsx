@@ -3,8 +3,10 @@ import React, { PureComponent } from 'react';
 
 import {
   canToNumber,
+  checkStringIsNullOrWhiteSpace,
   isArray,
   isFunction,
+  isUndefined,
   toNumber,
   toString,
   whetherString,
@@ -40,7 +42,11 @@ import {
 import {
   GeneralFirstCellWidth,
   GeneralGridColor,
+  GeneralQRCodeSwitch,
+  GeneralRemarkTitle,
+  GeneralSerialNumberSwitch,
   GeneralSort,
+  GeneralTitleSwitch,
 } from './GeneralConfigs';
 import { TitleMarker } from './TitleMarker';
 import {
@@ -52,7 +58,6 @@ import {
 const defaultProperties = {
   printAreaId: '',
   showToolbar: true,
-  showTitle: true,
   general: {},
   style: null,
   color: colorDefault,
@@ -72,13 +77,11 @@ const defaultProperties = {
   onItemsChange: null,
   onGeneralChange: null,
   designMode: false,
-  showQRCode: false,
   qRCodeTitle: '防伪二维码:',
   qRCodeDescription: '扫码查看防伪标识',
   qRCodeImage: '',
   qRCodeHeight: 40,
   qRCodeStyle: {},
-  showSerialNumber: false,
   serialNumberTitle: '流水号',
   serialNumberContent: '',
   onTitleConfigChange: null,
@@ -97,13 +100,12 @@ class DocumentContent extends PureComponent {
 
   buildFooter = () => {
     const {
-      showQRCode,
+      generalConfig,
       qRCodeTitle,
       qRCodeDescription,
       qRCodeImage,
       qRCodeHeight,
       qRCodeStyle,
-      showSerialNumber,
       serialNumberTitle,
       serialNumberContent,
     } = this.props;
@@ -114,11 +116,24 @@ class DocumentContent extends PureComponent {
       ? toNumber(qRCodeHeight)
       : defaultProperties.qRCodeHeight;
 
-    if (!showQRCode && !showSerialNumber) {
+    const { qRCodeSwitch, serialNumberSwitch } =
+      adjustGeneralConfig(generalConfig);
+
+    const qRCodeSwitchJudge =
+      !isUndefined(qRCodeSwitch) &&
+      !checkStringIsNullOrWhiteSpace(qRCodeSwitch) &&
+      toString(qRCodeSwitch) === whetherString.yes;
+
+    const serialNumberSwitchJudge =
+      !isUndefined(serialNumberSwitch) &&
+      !checkStringIsNullOrWhiteSpace(serialNumberSwitch) &&
+      toString(serialNumberSwitch) === whetherString.yes;
+
+    if (!qRCodeSwitchJudge && !serialNumberSwitchJudge) {
       return null;
     }
 
-    if (showQRCode && showSerialNumber) {
+    if (qRCodeSwitchJudge && serialNumberSwitchJudge) {
       return (
         <div
           style={{
@@ -154,7 +169,7 @@ class DocumentContent extends PureComponent {
       );
     }
 
-    if (showSerialNumber) {
+    if (serialNumberSwitchJudge) {
       return (
         <div
           style={{
@@ -174,7 +189,7 @@ class DocumentContent extends PureComponent {
       );
     }
 
-    if (showQRCode) {
+    if (qRCodeSwitchJudge) {
       return (
         <div
           style={{
@@ -272,7 +287,6 @@ class DocumentContent extends PureComponent {
       title,
       titleContainerStyle,
       titleStyle,
-      showTitle,
       configureList,
       rows,
       designMode,
@@ -282,7 +296,7 @@ class DocumentContent extends PureComponent {
 
     const rowCollection = isArray(rows) ? rows : [];
 
-    const { gridColor } = adjustGeneralConfig(generalConfig);
+    const { gridColor, titleSwitch } = adjustGeneralConfig(generalConfig);
 
     const {
       fontSize: titleFontSize,
@@ -290,6 +304,11 @@ class DocumentContent extends PureComponent {
       bold: titleBold,
       fontFamily: titleFontFamily,
     } = adjustTitleConfig(titleConfig);
+
+    const titleSwitchJudge =
+      !isUndefined(titleSwitch) &&
+      !checkStringIsNullOrWhiteSpace(titleSwitch) &&
+      toString(titleSwitch) === whetherString.yes;
 
     const that = this;
 
@@ -317,7 +336,7 @@ class DocumentContent extends PureComponent {
             position: 'relative',
           }}
         >
-          {showTitle ? (
+          {titleSwitchJudge ? (
             <CenterBox>
               <div
                 style={{
@@ -388,8 +407,32 @@ class DocumentContent extends PureComponent {
 
                       <GeneralEllipsis
                         items={[
+                          <GeneralTitleSwitch
+                            key="3474b26be5f04b00b54a12f46a989978"
+                            data={adjustGeneralConfig(generalConfig)}
+                            showDivider
+                            onChange={that.onGeneralChange}
+                          />,
+                          <GeneralRemarkTitle
+                            key="dd663033dfdf46f6ba3725e823e44f03"
+                            data={adjustGeneralConfig(generalConfig)}
+                            showDivider
+                            onChange={that.onGeneralChange}
+                          />,
                           <GeneralRemarkSwitch
                             key="b61b469c81a24109bb9d1aa7e59aa685"
+                            data={adjustGeneralConfig(generalConfig)}
+                            showDivider
+                            onChange={that.onGeneralChange}
+                          />,
+                          <GeneralQRCodeSwitch
+                            key="a7236dcc76234878853164fbf14ecbbe"
+                            data={adjustGeneralConfig(generalConfig)}
+                            showDivider
+                            onChange={that.onGeneralChange}
+                          />,
+                          <GeneralSerialNumberSwitch
+                            key="85c02bc3f84947e79a1f828f6148f83c"
                             data={adjustGeneralConfig(generalConfig)}
                             showDivider={false}
                             onChange={that.onGeneralChange}

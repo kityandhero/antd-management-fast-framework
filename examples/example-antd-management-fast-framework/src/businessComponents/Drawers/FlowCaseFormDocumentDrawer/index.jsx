@@ -247,15 +247,11 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         //   height: '60px',
         //   top: '-10px',
         // }}
-        remarkTitle="备注"
-        remarkName="remark"
         remarkList={formRemarkList}
-        showQRCode
         qRCodeImage="http://file.oa.32306.net/general/image/1836587864801021952.png"
         qRCodeTitle="防伪二维码:'"
         qRCodeDescription="扫码查看防伪标识"
         qRCodeHeight={40}
-        showSerialNumber
         serialNumberTitle="审批流水号: "
         serialNumberContent="1836370789809655808"
         onSave={(data) => {

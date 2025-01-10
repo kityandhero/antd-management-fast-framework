@@ -1,8 +1,11 @@
 import { connect } from 'easy-soft-dva';
+import { convertCollection, getValueByKey, isArray } from 'easy-soft-utility';
 
 import { switchControlAssist } from 'antd-management-fast-framework';
 
 import { BaseFlowCaseFormDocumentDrawer } from '../../../pageBases';
+import { getChainByWorkflowAction } from '../../WorkflowDebugCase/Assist/action';
+import { fieldData as fieldDataWorkflowDebugCase } from '../../WorkflowDebugCase/Common/data';
 
 const visibleFlag = '010012cdadee4558bb71f2617793f2ef';
 
@@ -24,14 +27,64 @@ class FlowCaseFormDocumentDrawer extends BaseFlowCaseFormDocumentDrawer {
 
     this.state = {
       ...this.state,
-      listChainApprove: [],
+      allApproveProcessList: [],
     };
   }
 
-  getAllApproveProcessList = () => {
-    const { allApproveProcessList } = this.props;
+  loadChainApprove = () => {
+    const { externalData } = this.props;
 
-    return allApproveProcessList;
+    getChainByWorkflowAction({
+      target: this,
+      handleData: {
+        workflowId: getValueByKey({
+          data: externalData,
+          key: fieldDataWorkflowDebugCase.workflowId.name,
+        }),
+      },
+      successCallback: ({ target, remoteData }) => {
+        const listChainApprove = getValueByKey({
+          data: remoteData,
+          key: fieldDataWorkflowDebugCase.listChainApprove.name,
+          convert: convertCollection.array,
+        });
+
+        target.setState({
+          allApproveProcessList: listChainApprove,
+        });
+      },
+    });
+  };
+
+  reloadChainApprove = () => {
+    this.loadChainApprove();
+  };
+
+  executeAfterDoOtherWhenChangeVisibleToShow = () => {
+    this.loadChainApprove();
+  };
+
+  executeAfterDoOtherWhenChangeVisibleToHide = () => {
+    this.setState({
+      listChainApprove: [],
+    });
+  };
+
+  getAllApproveProcessList = () => {
+    const { allApproveProcessList } = this.state;
+
+    const allApproveProcessListAdjust = isArray(allApproveProcessList)
+      ? allApproveProcessList.map((o) => {
+          const { name } = { name: '', ...o };
+
+          return {
+            title: name,
+            ...o,
+          };
+        })
+      : [];
+
+    return allApproveProcessListAdjust;
   };
 }
 

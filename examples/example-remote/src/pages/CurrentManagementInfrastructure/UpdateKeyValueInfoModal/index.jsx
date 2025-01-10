@@ -3,7 +3,6 @@ import {
   convertCollection,
   createDayJsDatetime,
   getValueByKey,
-  logConsole,
 } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
@@ -143,8 +142,6 @@ class UpdateKeyValueInfoModal extends BaseUpdateModal {
               if ((v || null) == null) {
                 return null;
               }
-
-              logConsole(v);
 
               // if (!isDatetime(v)) {
               //   return null;

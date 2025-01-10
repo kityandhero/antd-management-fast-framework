@@ -120,3 +120,7 @@ export const presetColors = [
     ],
   },
 ];
+
+export const remarkName = '4e8ea39da6014d34a00b9a647bcc1587';
+
+export const remarkTitleDefault = '备注';

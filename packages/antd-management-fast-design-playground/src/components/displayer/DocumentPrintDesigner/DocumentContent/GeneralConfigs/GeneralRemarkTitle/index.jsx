@@ -1,20 +1,14 @@
-import { Switch } from 'antd';
+import { Input } from 'antd';
 import React from 'react';
 
-import {
-  checkStringIsNullOrWhiteSpace,
-  isFunction,
-  isUndefined,
-  toString,
-  whetherString,
-} from 'easy-soft-utility';
+import { isFunction } from 'easy-soft-utility';
 
 import { FlexBox, VerticalBox } from 'antd-management-fast-component';
 
 import { adjustGeneralConfig } from '../../tools';
 import { GeneralExtraConfigBoxContainer } from '../GeneralExtraConfigBoxContainer';
 
-function GeneralRemarkSwitch(properties) {
+function GeneralRemarkTitle(properties) {
   const {
     showDivider,
     data,
@@ -24,32 +18,28 @@ function GeneralRemarkSwitch(properties) {
     ...properties,
   };
 
-  const { remarkSwitch } = adjustGeneralConfig(data);
-
-  const remarkSwitchJudge =
-    !isUndefined(remarkSwitch) &&
-    !checkStringIsNullOrWhiteSpace(remarkSwitch) &&
-    toString(remarkSwitch) === whetherString.yes;
+  const { remarkTitle } = adjustGeneralConfig(data);
 
   return (
     <>
       <GeneralExtraConfigBoxContainer showDivider={showDivider}>
         <FlexBox
           flexAuto="left"
-          left={<VerticalBox>备注栏开关：</VerticalBox>}
+          left={<VerticalBox>备注栏标题：</VerticalBox>}
           right={
-            <Switch
-              checkedChildren="显示"
-              unCheckedChildren="隐藏"
-              checked={remarkSwitchJudge}
-              onChange={(checked) => {
+            <Input
+              placeholder="请输入标题, 默认名为“备注”"
+              value={remarkTitle}
+              onChange={(event) => {
                 if (!isFunction(onChangeCallback)) {
                   return;
                 }
 
+                const { value: v } = event.target;
+
                 onChangeCallback({
                   ...data,
-                  remarkSwitch: checked ? whetherString.yes : whetherString.no,
+                  remarkTitle: v,
                 });
               }}
             />
@@ -60,4 +50,4 @@ function GeneralRemarkSwitch(properties) {
   );
 }
 
-export { GeneralRemarkSwitch };
+export { GeneralRemarkTitle };

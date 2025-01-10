@@ -205,8 +205,6 @@ class SetApplicantStatementDrawer extends BaseUpdateDrawer {
                 <DocumentPrintDesigner
                   canDesign={false}
                   showToolbar={false}
-                  showTitle={false}
-                  showRemark={false}
                   showApply
                   applyList={listApply}
                   showAttention={false}

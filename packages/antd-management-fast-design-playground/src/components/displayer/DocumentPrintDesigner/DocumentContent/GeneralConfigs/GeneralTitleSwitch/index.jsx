@@ -14,7 +14,7 @@ import { FlexBox, VerticalBox } from 'antd-management-fast-component';
 import { adjustGeneralConfig } from '../../tools';
 import { GeneralExtraConfigBoxContainer } from '../GeneralExtraConfigBoxContainer';
 
-function GeneralRemarkSwitch(properties) {
+function GeneralTitleSwitch(properties) {
   const {
     showDivider,
     data,
@@ -24,24 +24,24 @@ function GeneralRemarkSwitch(properties) {
     ...properties,
   };
 
-  const { remarkSwitch } = adjustGeneralConfig(data);
+  const { titleSwitch } = adjustGeneralConfig(data);
 
-  const remarkSwitchJudge =
-    !isUndefined(remarkSwitch) &&
-    !checkStringIsNullOrWhiteSpace(remarkSwitch) &&
-    toString(remarkSwitch) === whetherString.yes;
+  const titleSwitchJudge =
+    !isUndefined(titleSwitch) &&
+    !checkStringIsNullOrWhiteSpace(titleSwitch) &&
+    toString(titleSwitch) === whetherString.yes;
 
   return (
     <>
       <GeneralExtraConfigBoxContainer showDivider={showDivider}>
         <FlexBox
           flexAuto="left"
-          left={<VerticalBox>备注栏开关：</VerticalBox>}
+          left={<VerticalBox>标题开关：</VerticalBox>}
           right={
             <Switch
               checkedChildren="显示"
               unCheckedChildren="隐藏"
-              checked={remarkSwitchJudge}
+              checked={titleSwitchJudge}
               onChange={(checked) => {
                 if (!isFunction(onChangeCallback)) {
                   return;
@@ -49,7 +49,7 @@ function GeneralRemarkSwitch(properties) {
 
                 onChangeCallback({
                   ...data,
-                  remarkSwitch: checked ? whetherString.yes : whetherString.no,
+                  titleSwitch: checked ? whetherString.yes : whetherString.no,
                 });
               }}
             />
@@ -60,4 +60,4 @@ function GeneralRemarkSwitch(properties) {
   );
 }
 
-export { GeneralRemarkSwitch };
+export { GeneralTitleSwitch };

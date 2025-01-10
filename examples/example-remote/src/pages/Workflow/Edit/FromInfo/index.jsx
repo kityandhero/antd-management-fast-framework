@@ -33,8 +33,6 @@ import {
 import {
   accessWayCollection,
   emptySignet,
-  listSimpleAllApproveProcess,
-  listSimpleApprove,
   simpleQRCode,
 } from '../../../../customConfig';
 import { fieldData as fieldDataWorkflowFormDesign } from '../../../WorkflowFormDesign/Common/data';
@@ -490,12 +488,11 @@ class BasicInfo extends TabPageBase {
           maskClosable
           canDesign
           values={[]}
-          approveList={listSimpleApprove}
-          allApproveProcessList={listSimpleAllApproveProcess}
           showApply={showApply}
           applyList={listApply}
           showAttention={showAttention}
           attentionList={listAttention}
+          approveList={[]}
           qRCodeImage={simpleQRCode}
           serialNumberContent={'1836370789809655808'}
           externalData={{ workflowId }}

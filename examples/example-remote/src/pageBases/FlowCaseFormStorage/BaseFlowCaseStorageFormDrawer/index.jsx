@@ -531,11 +531,7 @@ class BaseFlowCaseStorageFormDrawer extends BaseVerticalFlexDrawer {
           showRemark={
             !(!isArray(remarkSchemaList) || isEmptyArray(remarkSchemaList))
           }
-          remarkTitle="备注"
-          remarkName="remark"
           remarkList={remarkSchemaList}
-          showQRCode
-          showSerialNumber
           qRCodeImage={qRCodeImage}
           serialNumberTitle="审批流水号: "
           serialNumberContent={flowCaseId}

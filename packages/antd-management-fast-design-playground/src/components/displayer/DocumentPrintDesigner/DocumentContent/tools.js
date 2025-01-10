@@ -26,6 +26,8 @@ import {
   cellTypeCollection,
   fontFamilyCollection,
   highlightModeCollection,
+  remarkName,
+  remarkTitleDefault,
   valueDisplayModeCollection,
 } from './constant';
 
@@ -174,7 +176,11 @@ export function getInitializeGeneral() {
     labelWidth: '160',
     gridColor: '#000000',
     labelColor: '#000000',
+    titleSwitch: whetherString.yes,
+    remarkTitle: remarkTitleDefault,
     remarkSwitch: whetherString.yes,
+    qRCodeSwitch: whetherString.yes,
+    serialNumberSwitch: whetherString.yes,
   };
 }
 
@@ -222,14 +228,15 @@ export function adjustCellConfig(data) {
 }
 
 export function adjustConfigureList({
+  generalConfig,
   configureList,
   formItems,
   applyList,
   attentionList,
   allApproveProcessList,
-  remarkTitle,
-  remarkName,
 }) {
+  const { remarkTitle } = adjustGeneralConfig(generalConfig);
+
   const configureListAdjust = isArray(configureList) ? configureList : [];
 
   const configureInitialList = [
@@ -276,7 +283,9 @@ export function adjustConfigureList({
     adjustTarget({
       key: remarkName,
       target: {
-        title: remarkTitle,
+        title: checkStringIsNullOrWhiteSpace(remarkTitle)
+          ? remarkTitleDefault
+          : remarkTitle,
         name: remarkName,
       },
       configureList: [],
@@ -318,7 +327,36 @@ export function adjustConfigureList({
     configureFilterListAdjust.push(one);
   }
 
-  return { configureList: configureFilterListAdjust };
+  const configureFinalFilterList = configureFilterListAdjust.map((o) => {
+    const { key } = {
+      key: '',
+      ...o,
+    };
+
+    const listFilter = filter(configureInitialList, (one) => {
+      const { key: keyOne } = {
+        key: '',
+        ...one,
+      };
+
+      return keyOne === key;
+    });
+
+    if (isEmptyArray(listFilter)) {
+      return o;
+    }
+
+    const first = listFilter[0];
+
+    const { title: titleAdjust } = first;
+
+    return {
+      ...o,
+      title: titleAdjust,
+    };
+  });
+
+  return { configureList: configureFinalFilterList };
 }
 
 export function adjustTarget({
@@ -363,11 +401,22 @@ export function adjustTarget({
     return o;
   }
 
+  const { valueDisplayMode } = o;
+
   const configure = filterList[0];
+
+  let correctData = {};
+
+  if (valueDisplayMode === valueDisplayModeCollection.remark) {
+    const { title } = o;
+
+    correctData = { title };
+  }
 
   return {
     ...o,
     ...configure,
+    ...correctData,
   };
 }
 
@@ -402,10 +451,10 @@ export function buildRowCell({
   applyList,
   attentionList,
   approveList,
-  remarkTitle,
-  remarkName,
   remarkList,
 }) {
+  const { remarkTitle } = adjustGeneralConfig(generalConfig);
+
   const rows = [];
   let cells = [];
 
@@ -447,7 +496,9 @@ export function buildRowCell({
   listAll.push({
     key: remarkName,
     data: {
-      title: remarkTitle,
+      title: checkStringIsNullOrWhiteSpace(remarkTitle)
+        ? remarkTitleDefault
+        : remarkTitle,
       name: remarkName,
     },
     type: 'remark',

@@ -57,7 +57,6 @@ const defaultProperties = {
   title: '表格标题',
   titleContainerStyle: null,
   titleStyle: null,
-  showTitle: true,
   labelColumnWidth: 140,
   labelColumnStyle: null,
   labelContainerStyle: null,
@@ -74,16 +73,12 @@ const defaultProperties = {
   approveList: [],
   allApproveProcessList: [],
   showRemark: true,
-  remarkTitle: '备注',
-  remarkName: '6f45b65c785e476fa9ad072e541f4396',
   remarkList: [],
-  showQRCode: false,
   qRCodeImage: '',
   qRCodeTitle: '防伪二维码:',
   qRCodeDescription: '扫码查看防伪标识',
   qRCodeHeight: 40,
   qRCodeStyle: {},
-  showSerialNumber: false,
   serialNumberTitle: '流水号',
   serialNumberContent: '',
   onChange: null,
@@ -104,8 +99,7 @@ class DocumentPrintDesigner extends BaseComponent {
       configDrawerVisible: false,
       debugSwitch: false,
       designMode: false,
-      schemaTag: '',
-      formItemsTag: '',
+      configureBuildTag: '',
       configureList: [],
       generalConfig: {},
       titleConfig: {},
@@ -124,53 +118,52 @@ class DocumentPrintDesigner extends BaseComponent {
       applyList,
       attentionList,
       allApproveProcessList,
-      remarkTitle,
-      remarkName,
     } = nextProperties;
-    const { schemaTag, formItemsTag } = previousState;
+    const { configureBuildTag } = previousState;
 
-    let needUpdate = false;
-
-    if (toMd5(JSON.stringify(schema || {})) != schemaTag) {
-      needUpdate = true;
-    }
-
-    if (toMd5(JSON.stringify(formItems || {})) != formItemsTag) {
-      needUpdate = true;
-    }
-
-    if (!needUpdate) {
-      return null;
-    }
-
-    const {
-      generalConfig,
-      titleConfig,
-      configureList: configureSourceList,
-    } = adjustSchemaData(schema);
-
-    const { configureList } = adjustConfigureList({
-      configureList: configureSourceList,
+    const dataWillBuild = {
+      schema,
       formItems,
       applyList,
       attentionList,
       allApproveProcessList,
-      remarkTitle,
-      remarkName,
-      schema,
-    });
+    };
+
+    const configureBuildTagNext = toMd5(JSON.stringify(dataWillBuild || {}));
+
+    let data = {};
+
+    if (configureBuildTagNext != configureBuildTag) {
+      const {
+        generalConfig,
+        titleConfig,
+        configureList: configureSourceList,
+      } = adjustSchemaData(schema);
+
+      const { configureList } = adjustConfigureList({
+        generalConfig,
+        configureList: configureSourceList,
+        formItems,
+        applyList,
+        attentionList,
+        allApproveProcessList,
+      });
+
+      data = {
+        configureBuildTag: configureBuildTagNext,
+        generalConfig: { ...generalConfig },
+        generalConfigOriginal: { ...generalConfig },
+        titleConfig: { ...titleConfig },
+        titleConfigOriginal: { ...titleConfig },
+        configureList: [...configureList],
+        formItems: [...formItems],
+        formItemsOriginal: [...formItems],
+        documentTempUrl: '',
+      };
+    }
 
     return {
-      schemaTag: toMd5(JSON.stringify(schema || [])),
-      formItemsTag: toMd5(JSON.stringify(formItems || [])),
-      generalConfig: { ...generalConfig },
-      generalConfigOriginal: { ...generalConfig },
-      titleConfig: { ...titleConfig },
-      titleConfigOriginal: { ...titleConfig },
-      configureList: [...configureList],
-      formItems: [...formItems],
-      formItemsOriginal: [...formItems],
-      documentTempUrl: '',
+      ...data,
     };
   }
 
@@ -229,29 +222,22 @@ class DocumentPrintDesigner extends BaseComponent {
   };
 
   initializeDesign = () => {
-    const {
-      schema,
-      formItems,
-      applyList,
-      attentionList,
-      allApproveProcessList,
-      remarkTitle,
-      remarkName,
-    } = this.props;
+    const { formItems, applyList, attentionList, allApproveProcessList } =
+      this.props;
+
+    const generalConfig = getInitializeGeneral();
 
     const { configureList } = adjustConfigureList({
+      generalConfig,
       configureList: [],
       formItems,
       applyList,
       attentionList,
       allApproveProcessList,
-      remarkTitle,
-      remarkName,
-      schema,
     });
 
     this.setState({
-      generalConfig: getInitializeGeneral(),
+      generalConfig,
       titleConfig: getInitializeTitleConfig(),
       configureList: [...configureList],
     });
@@ -264,23 +250,20 @@ class DocumentPrintDesigner extends BaseComponent {
       applyList,
       attentionList,
       allApproveProcessList,
-      remarkTitle,
-      remarkName,
     } = this.props;
 
     const { generalConfigOriginal, titleConfigOriginal } = this.state;
 
-    const { configureList: configureSourceList } = adjustSchemaData(schema);
+    const { generalConfig, configureList: configureSourceList } =
+      adjustSchemaData(schema);
 
     const { configureList } = adjustConfigureList({
+      generalConfig: generalConfig,
       configureList: configureSourceList,
       formItems,
       applyList,
       attentionList,
       allApproveProcessList,
-      remarkTitle,
-      remarkName,
-      schema,
     });
 
     this.setState({
@@ -486,8 +469,6 @@ class DocumentPrintDesigner extends BaseComponent {
       attentionList,
       approveList,
       allApproveProcessList,
-      remarkTitle,
-      remarkName,
       remarkList,
     } = this.props;
     const { generalConfig, configureList } = this.state;
@@ -546,8 +527,6 @@ class DocumentPrintDesigner extends BaseComponent {
       applyList: showApply ? applyListAdjust : [],
       attentionList: showAttention ? attentionListAdjust : [],
       approveList: nodeListAdjust,
-      remarkTitle,
-      remarkName,
       remarkList: showRemark ? remarkList : [],
     });
 
@@ -606,14 +585,11 @@ class DocumentPrintDesigner extends BaseComponent {
       titleContainerStyle,
       titleStyle,
       signetStyle,
-      showTitle,
-      showQRCode,
       qRCodeTitle,
       qRCodeDescription,
       qRCodeImage,
       qRCodeHeight,
       qRCodeStyle,
-      showSerialNumber,
       serialNumberTitle,
       serialNumberContent,
     } = {
@@ -804,14 +780,11 @@ class DocumentPrintDesigner extends BaseComponent {
                   configureList={configureList}
                   rows={rows}
                   signetStyle={signetStyle}
-                  showTitle={showTitle}
-                  showQRCode={showQRCode}
                   qRCodeTitle={qRCodeTitle}
                   qRCodeDescription={qRCodeDescription}
                   qRCodeImage={qRCodeImage}
                   qRCodeHeight={qRCodeHeight}
                   qRCodeStyle={qRCodeStyle}
-                  showSerialNumber={showSerialNumber}
                   serialNumberTitle={serialNumberTitle}
                   serialNumberContent={serialNumberContent}
                   onGeneralChange={this.onGeneralChange}
@@ -931,3 +904,13 @@ DocumentPrintDesigner.defaultProps = {
 export { DocumentPrintDesigner };
 
 export { nodeApply, nodeAttention } from './DocumentContent';
+export {
+  CellApply,
+  CellApproval,
+  CellAttention,
+  CellBase,
+  CellEnum,
+  CellMoney,
+  CellRemark,
+  CellText,
+} from './DocumentContent/Cells';

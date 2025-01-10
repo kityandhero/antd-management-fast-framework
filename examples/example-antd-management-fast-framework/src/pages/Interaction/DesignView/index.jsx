@@ -23,8 +23,11 @@ import {
   iconBuilder,
 } from 'antd-management-fast-component';
 import {
+  CellApply,
+  CellApproval,
+  CellAttention,
+  CellText,
   DataDisplayer,
-  DocumentPrintDesigner,
   FileViewer,
   SchemaDisplayer,
   setSchemaWithExternalData,
@@ -222,6 +225,10 @@ class DesignView extends BaseUpdateForm {
         ? {}
         : JSON.parse(designJson)),
     };
+
+    const { showApply, listApply } = this.getApplicantConfig();
+
+    const { showAttention, listAttention } = this.getAttentionConfig();
 
     return {
       list: [
@@ -472,14 +479,92 @@ class DesignView extends BaseUpdateForm {
 
                   <Divider>审批信息</Divider>
 
-                  <DocumentPrintDesigner
-                    showToolbar={false}
-                    canDesign={false}
-                    showTitle={false}
-                    showRemark={false}
-                    approveList={listApprove}
-                    signetStyle={{ border: '1px solid #000' }}
-                  />
+                  <CenterBox>
+                    <table
+                      style={{
+                        width: '800px',
+                        borderColor: '#000',
+                        borderWidth: '1px',
+                        borderStyle: 'solid',
+                      }}
+                      border={'1px'}
+                    >
+                      <tbody>
+                        {showApply
+                          ? listApply.map((o, index) => {
+                              const { title, note, signet, time } = o;
+
+                              return (
+                                <tr key={`tr_${index}`}>
+                                  <CellText
+                                    width={160}
+                                    textAlign="center"
+                                    content={title}
+                                  />
+
+                                  <CellApply
+                                    signetStyle={{ border: '1px solid #000' }}
+                                    content={{
+                                      note,
+                                      signet,
+                                      time,
+                                    }}
+                                  />
+                                </tr>
+                              );
+                            })
+                          : null}
+
+                        {showAttention
+                          ? listAttention.map((o, index) => {
+                              const { title, note, signet, time } = o;
+
+                              return (
+                                <tr key={`tr_${index}`}>
+                                  <CellText
+                                    width={160}
+                                    textAlign="center"
+                                    content={title}
+                                  />
+
+                                  <CellAttention
+                                    signetStyle={{ border: '1px solid #000' }}
+                                    content={{
+                                      note,
+                                      signet,
+                                      time,
+                                    }}
+                                  />
+                                </tr>
+                              );
+                            })
+                          : null}
+
+                        {listApprove.map((o, index) => {
+                          const { title, note, signet, time } = o;
+
+                          return (
+                            <tr key={`tr_${index}`}>
+                              <CellText
+                                width={160}
+                                textAlign="center"
+                                content={title}
+                              />
+
+                              <CellApproval
+                                signetStyle={{ border: '1px solid #000' }}
+                                content={{
+                                  note,
+                                  signet,
+                                  time,
+                                }}
+                              />
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </CenterBox>
                 </div>
               ),
             },

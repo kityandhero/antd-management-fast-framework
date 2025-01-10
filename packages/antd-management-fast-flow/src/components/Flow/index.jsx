@@ -39,7 +39,18 @@ function Flow(properties) {
     edges: sourceEdges,
     updateViewConfig,
     onEdgeCreate,
-  } = properties;
+  } = {
+    canEdit: true,
+    multibranch: false,
+    nodeNameKey: 'nodeNameKey',
+    listInLineKey: 'listInLine',
+    listOutLineKey: 'listOutLine',
+    listApproverKey: 'listApprover',
+    approverNameKey: 'approverNameKey',
+    approverNameLabel: 'approverNameLabel',
+    onEdgeCreate: () => {},
+    ...properties,
+  };
 
   const sourceAdjustedNodes = isArray(sourceNodes) ? sourceNodes : [];
   const sourceAdjustedEdges = isArray(sourceEdges) ? sourceEdges : [];
@@ -145,18 +156,6 @@ function Flow(properties) {
     </ReactFlow>
   );
 }
-
-Flow.defaultProps = {
-  canEdit: true,
-  multibranch: false,
-  nodeNameKey: 'nodeNameKey',
-  listInLineKey: 'listInLine',
-  listOutLineKey: 'listOutLine',
-  listApproverKey: 'listApprover',
-  approverNameKey: 'approverNameKey',
-  approverNameLabel: 'approverNameLabel',
-  onEdgeCreate: () => {},
-};
 
 export { Flow };
 

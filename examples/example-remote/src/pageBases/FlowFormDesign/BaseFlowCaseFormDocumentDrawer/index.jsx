@@ -242,10 +242,7 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         showRemark={
           !(!isArray(remarkSchemaList) || isEmptyArray(remarkSchemaList))
         }
-        remarkTitle="备注"
         remarkList={remarkSchemaList}
-        showQRCode
-        showSerialNumber
         serialNumberTitle="审批流水号: "
         serialNumberContent={serialNumberContent}
         qRCodeImage={qRCodeImage}

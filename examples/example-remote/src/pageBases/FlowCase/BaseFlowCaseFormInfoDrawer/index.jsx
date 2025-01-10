@@ -959,16 +959,12 @@ class BaseFlowCaseFormInfoDrawer extends BaseUpdateDrawer {
         !isArray(listApprove) ||
         isEmptyArray(listApprove) ? null : (
           <DocumentPrintDesigner
-            showTitle={false}
-            showRemark={false}
             approveList={listApprove}
             signetStyle={signetStyle}
             showApply={showApply}
             applyList={listApply}
             showAttention={showAttention}
             attentionList={listAttention}
-            showQRCode
-            showSerialNumber
             qRCodeImage={qRCodeImage}
             serialNumberTitle="审批流水号: "
             serialNumberContent={flowCaseId}
@@ -1120,11 +1116,7 @@ class BaseFlowCaseFormInfoDrawer extends BaseUpdateDrawer {
           showRemark={
             !(!isArray(remarkSchemaList) || isEmptyArray(remarkSchemaList))
           }
-          remarkTitle="备注"
-          remarkName="remark"
           remarkList={remarkSchemaList}
-          showQRCode
-          showSerialNumber
           qRCodeImage={qRCodeImage}
           serialNumberTitle="审批流水号: "
           serialNumberContent={flowCaseId}
