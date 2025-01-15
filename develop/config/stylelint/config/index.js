@@ -24,6 +24,7 @@ module.exports = {
       'value-no-vendor-prefix': null,
       'color-function-notation': null,
       'function-no-unknown': null,
+      'media-query-no-invalid': null,
     },
   },
 };

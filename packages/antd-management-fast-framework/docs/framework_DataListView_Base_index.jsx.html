@@ -4249,14 +4249,14 @@ class Base extends AuthorizationWrapper {
   // eslint-disable-next-line no-unused-vars
   renderPresetTable = (config) => null;
 
-  renderPresetAlertContent = () => {
+  renderPresetAlertMessage = () => {
     return '';
   };
 
   renderPresetAlertOption = () => {};
 
   renderPresetAboveTable = () => {
-    const content = this.renderPresetAlertContent();
+    const content = this.renderPresetAlertMessage();
     const option = this.renderPresetAlertOption();
 
     if (!content &amp;&amp; !option) {

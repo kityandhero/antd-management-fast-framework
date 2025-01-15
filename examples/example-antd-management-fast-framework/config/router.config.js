@@ -161,6 +161,13 @@ export default [
         component: './List/ListView',
       },
       {
+        path: '/list/tableAlertView',
+        name: 'tableAlertView',
+        icon: 'bars',
+        useMini: true,
+        component: './List/TableAlertView',
+      },
+      {
         path: '/list/noneSearch',
         name: 'noneSearch',
         icon: 'bars',

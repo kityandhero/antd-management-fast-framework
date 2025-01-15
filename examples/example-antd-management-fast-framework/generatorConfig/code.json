@@ -279,6 +279,10 @@
       "sourceFilePath": "./src/pages/List/ListView/index.jsx"
     },
     {
+      "codeFilePath": "./src/pages/List/TableAlertView/codeSource.js",
+      "sourceFilePath": "./src/pages/List/TableAlertView/index.jsx"
+    },
+    {
       "codeFilePath": "./src/pages/List/TableView/codeSource.js",
       "sourceFilePath": "./src/pages/List/TableView/index.jsx"
     },

@@ -22,6 +22,13 @@ export const renderFurtherPrefixWhenNoCallProcess = 'hideCallProcess';
 export const emptyLogic = 'empty-logic';
 
 /**
+ * Empty logic.
+ * @constant {string}
+ * @default 'default-logic'
+ */
+export const defaultLogic = 'default-logic';
+
+/**
  * Whether list.
  * @constant {Object}
  */

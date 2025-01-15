@@ -104,6 +104,9 @@ class DescriptionGrid extends BaseComponent {
       };
     });
 
+    delete config.labelStyle;
+    delete config.contentStyle;
+
     return <Descriptions {...(config || {})} items={itemDataList} />;
   }
 }

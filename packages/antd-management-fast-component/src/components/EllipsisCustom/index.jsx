@@ -63,7 +63,7 @@ const EllipsisText = ({
 
   if (tooltip) {
     return (
-      <Tooltip overlayStyle={TooltipOverlayStyle} title={text}>
+      <Tooltip styles={{ root: TooltipOverlayStyle }} title={text}>
         <span>
           {displayText}
           {tail}
@@ -240,6 +240,13 @@ class EllipsisCustom extends Component {
       Math.random() * 100,
     )}`}`;
 
+    const tooltipAdjust = tooltip;
+
+    tooltipAdjust.styles = {
+      ...tooltipAdjust.styles,
+      root: TooltipOverlayStyle,
+    };
+
     // support document.body.style.webkitLineClamp
     if (isSupportLineClamp) {
       const style = `#${id}{-webkit-line-clamp:${lines};-webkit-box-orient: vertical;}`;
@@ -253,11 +260,7 @@ class EllipsisCustom extends Component {
       );
 
       return tooltip ? (
-        <Tooltip
-          {...tooltip}
-          overlayStyle={TooltipOverlayStyle}
-          title={children}
-        >
+        <Tooltip {...tooltipAdjust} title={children}>
           {node}
         </Tooltip>
       ) : (
@@ -276,11 +279,7 @@ class EllipsisCustom extends Component {
       <div {...restProperties} ref={this.handleRoot} className={cls}>
         <div ref={this.handleContent}>
           {tooltip ? (
-            <Tooltip
-              {...tooltip}
-              overlayStyle={TooltipOverlayStyle}
-              title={text}
-            >
+            <Tooltip {...tooltipAdjust} title={text}>
               {childNode}
             </Tooltip>
           ) : (

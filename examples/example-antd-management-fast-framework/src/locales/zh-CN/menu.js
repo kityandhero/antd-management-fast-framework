@@ -43,6 +43,9 @@ export default {
   'menu.list.tableView.tableSelectDropDownView': 'SelectDropView',
   'menu.list.tableView.tableSelectDropDownButtonView': 'SelectDropButtonView',
 
+  'menu.list.tableAlertView': '表格上方提示示例',
+  'menu.list.tableAlertView-mini': 'TableAlert',
+
   'menu.list.noneSearch': 'NoneSearch 示例',
   'menu.list.noneSearch-mini': 'NoneSearch',
   'menu.list.overlay': 'Overlay 示例',

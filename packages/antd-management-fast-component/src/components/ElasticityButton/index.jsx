@@ -74,7 +74,7 @@ class ElasticityButton extends BaseComponent {
           okText={okText}
           cancelText={cancelText}
           disabled={disabled}
-          overlayStyle={overlayStyle}
+          styles={{ root: overlayStyle }}
         >
           <Button
             className={className}
