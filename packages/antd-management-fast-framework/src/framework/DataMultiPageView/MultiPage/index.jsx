@@ -251,7 +251,7 @@ class MultiPage extends Base {
    * @param {Object} sorter
    */
   handleStandardTableChange = (pagination, filtersArgument, sorter, extra) => {
-    if (this.checkWorkDoing()) {
+    if (this.checkWorkDoing({})) {
       this.logCallTrack(
         {
           pagination,
@@ -354,7 +354,7 @@ class MultiPage extends Base {
   };
 
   handlePaginationChange = (page, pageSize) => {
-    if (this.checkWorkDoing()) {
+    if (this.checkWorkDoing({})) {
       return;
     }
 

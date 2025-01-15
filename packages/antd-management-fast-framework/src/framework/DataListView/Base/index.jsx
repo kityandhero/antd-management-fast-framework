@@ -434,7 +434,7 @@ class Base extends AuthorizationWrapper {
   handleSearch = () => {
     this.logCallTrack({}, primaryCallName, 'handleSearch');
 
-    if (this.checkWorkDoing()) {
+    if (this.checkWorkDoing({})) {
       this.logCallTrace(
         {},
         primaryCallName,

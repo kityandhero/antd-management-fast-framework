@@ -1601,18 +1601,26 @@ class InternalFlow extends Core {
   /**
    * 检测是否有作业正在处理中。
    * @function
+   * @param {Object} option 配置项。
+   * @param {Boolean} option.showMessage 是否显示工作中的提示，默认值为：true。
+   * @param {string} option.message 提示文字，默认值为：“数据正在处理中，请稍等一下再点哦”。
    * @returns {boolean} 检测结果。
    */
-  checkWorkDoing() {
+  checkWorkDoing({
+    showMessage = true,
+    message = '数据正在处理中，请稍等一下再点哦',
+  }) {
     this.logCallTrack({}, primaryCallName, 'checkWorkDoing');
 
     const { dataLoading, reloading, searching, refreshing, processing } =
       this.state;
 
     if (dataLoading || reloading || searching || refreshing || processing) {
-      const text = '数据正在处理中，请稍等一下再点哦';
+      if (showMessage) {
+        const text = message || '数据正在处理中，请稍等一下再点哦';
 
-      showSimpleErrorMessage(text);
+        showSimpleErrorMessage(text);
+      }
 
       return true;
     }
