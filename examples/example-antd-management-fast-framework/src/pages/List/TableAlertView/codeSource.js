@@ -1,4 +1,6 @@
-export const code = `import { connect } from 'easy-soft-dva';
+export const code = `import { Button } from 'antd';
+
+import { connect } from 'easy-soft-dva';
 import {
   checkHasAuthority,
   convertCollection,
@@ -59,7 +61,7 @@ class PageList extends MultiPage {
     this.state = {
       ...this.state,
       listViewMode: listViewConfig.viewMode.list,
-      pageTitle: '列表示例',
+      pageTitle: '表格上方提示示例',
       paramsKey: accessWayCollection.simple.pageList.paramsKey,
       loadApiPath: 'simple/pageList',
       dateRangeFieldName: '创建时间',
@@ -197,6 +199,28 @@ class PageList extends MultiPage {
 
   establishListViewItemLayout = () => {
     return 'vertical';
+  };
+
+  establishPresetAboveTableAlertMessage = () => {
+    return '这里是标题';
+  };
+
+  establishPresetAboveTableAlertDescription = () => {
+    return '这里是简介描述';
+  };
+
+  establishPresetAboveTableAlertAction = () => {
+    return (
+      <Button size="small" danger>
+        Detail
+      </Button>
+    );
+  };
+
+  establishPresetAboveTableAlertOption = () => {
+    return {
+      type: 'error',
+    };
   };
 
   // eslint-disable-next-line no-unused-vars
