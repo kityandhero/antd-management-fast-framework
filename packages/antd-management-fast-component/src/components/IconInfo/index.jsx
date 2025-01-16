@@ -4,7 +4,6 @@ import React from 'react';
 import {
   checkStringIsNullOrWhiteSpace,
   isFunction,
-  isObject,
   isString,
   toNumber,
 } from 'easy-soft-utility';
@@ -86,7 +85,9 @@ class IconInfo extends BaseComponent {
     };
 
     let textMerge = null;
-    let tooltipTitle = null;
+
+    const tooltipTitle = `${isString(textPrefix) && !checkStringIsNullOrWhiteSpace(textPrefix) ? textPrefix : ''}${isString(textPrefix) && !checkStringIsNullOrWhiteSpace(textPrefix) && isString(separator) && !checkStringIsNullOrWhiteSpace(separator) ? separator : ''}${isString(text) && !checkStringIsNullOrWhiteSpace(text) ? text : ''}`;
+
     let textAfterFormat = isString(text)
       ? isFunction(textFormat || null)
         ? textFormat(text)
@@ -106,16 +107,8 @@ class IconInfo extends BaseComponent {
         textAfterFormat
       );
 
-    const textAfterFormatForTooltip = isObject(textStyle) ? (
-      <Text style={{ ...styleMerge, ...textStyle }}>{text || ''}</Text>
-    ) : (
-      text || ''
-    );
-
     if (checkStringIsNullOrWhiteSpace(textPrefix)) {
       textMerge = textAfterFormatForShow;
-
-      tooltipTitle = textAfterFormatForTooltip;
     } else {
       const textPrefixAdjust = (
         <Text
@@ -164,22 +157,12 @@ class IconInfo extends BaseComponent {
             >{`${textPrefixAdjust}${separatorAdjust}${textAfterFormatForShow}`}</Text>
           );
         }
-
-        tooltipTitle = `${textPrefixAdjust}${separatorAdjust}${textAfterFormatForTooltip}`;
       } else {
         textMerge = (
           <>
             {textPrefixAdjust}
             {separatorAdjust}
             {textAfterFormatForShow}
-          </>
-        );
-
-        tooltipTitle = (
-          <>
-            {textPrefixAdjust}
-            {separatorAdjust}
-            {textAfterFormatForTooltip}
           </>
         );
       }
@@ -190,19 +173,20 @@ class IconInfo extends BaseComponent {
         <VerticalBox style={{ width: '100%' }}>{textMerge}</VerticalBox>
       );
 
-    const textArea = tooltip ? (
-      <Tooltip
-        title={tooltipTitle}
-        placement={tooltipPlacement}
-        {...(checkStringIsNullOrWhiteSpace(tooltipColor)
-          ? {}
-          : { color: tooltipPlacement })}
-      >
-        {textCore}
-      </Tooltip>
-    ) : (
-      textCore
-    );
+    const textArea =
+      tooltip && !checkStringIsNullOrWhiteSpace(tooltipTitle) ? (
+        <Tooltip
+          title={tooltipTitle}
+          placement={tooltipPlacement}
+          {...(checkStringIsNullOrWhiteSpace(tooltipColor)
+            ? {}
+            : { color: tooltipPlacement })}
+        >
+          {textCore}
+        </Tooltip>
+      ) : (
+        textCore
+      );
 
     let innerComponent = null;
 

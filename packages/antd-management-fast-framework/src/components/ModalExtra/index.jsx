@@ -1,7 +1,8 @@
-import { Button, Modal } from 'antd';
+import { Button, Modal, Tooltip } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { connect } from 'easy-soft-dva';
+import { checkStringIsNullOrWhiteSpace, isString } from 'easy-soft-utility';
 
 import styles from './index.less';
 
@@ -93,6 +94,30 @@ class ModalExtra extends PureComponent {
 
     const v = !!switchControl[flag];
     const styleCollection = this.buildStyles();
+    const title = this.renderPresetTitle();
+    const titleIsText = isString(title);
+
+    const textComponentInner = (
+      <span>
+        {icon}
+        {icon ? (
+          <>
+            <span className={styles.titleText} /> {title}
+          </>
+        ) : (
+          title
+        )}
+      </span>
+    );
+
+    const textComponentWrapper =
+      !titleIsText || checkStringIsNullOrWhiteSpace(title) ? (
+        textComponentInner
+      ) : (
+        <Tooltip title={title} placement="bottomLeft">
+          {textComponentInner}
+        </Tooltip>
+      );
 
     return (
       <Modal
@@ -100,18 +125,7 @@ class ModalExtra extends PureComponent {
         destroyOnClose={destroyOnClose || false}
         {...rest}
         styles={styleCollection}
-        title={
-          <span>
-            {icon}
-            {icon ? (
-              <>
-                <span className={styles.titleText} /> {this.renderPresetTitle()}
-              </>
-            ) : (
-              this.renderPresetTitle()
-            )}
-          </span>
-        }
+        title={textComponentWrapper}
       >
         {children}
       </Modal>

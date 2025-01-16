@@ -1,11 +1,15 @@
 import React, { PureComponent } from 'react';
 
+import { checkStringIsNullOrWhiteSpace, isString } from 'easy-soft-utility';
+
 import { IconInfo } from '../../IconInfo';
 import { VerticalBox } from '../../VerticalBox';
 
 class HeaderTitle extends PureComponent {
   render() {
     const { title, titlePrefix } = this.props;
+
+    const titleIsText = isString(title);
 
     return (
       <div
@@ -25,6 +29,8 @@ class HeaderTitle extends PureComponent {
             style={{
               fontSize: '18px',
             }}
+            tooltip={titleIsText && !checkStringIsNullOrWhiteSpace(title)}
+            tooltipPlacement="bottomLeft"
             textPrefix={titlePrefix}
             text={title}
             separatorStyle={{

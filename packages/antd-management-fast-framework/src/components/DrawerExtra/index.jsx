@@ -1,8 +1,12 @@
-import { Button, Drawer, Space } from 'antd';
+import { Button, Drawer, Space, Tooltip } from 'antd';
 import React, { Fragment, PureComponent } from 'react';
 
 import { connect } from 'easy-soft-dva';
-import { checkStringIsNullOrWhiteSpace, isArray } from 'easy-soft-utility';
+import {
+  checkStringIsNullOrWhiteSpace,
+  isArray,
+  isString,
+} from 'easy-soft-utility';
 
 import { Overlay } from 'antd-management-fast-component';
 
@@ -189,24 +193,38 @@ class DrawerExtra extends PureComponent {
     const styleCollection = this.buildStyles();
     const extra = this.renderExtra();
 
+    const title = this.renderPresetTitle();
+    const titleIsText = isString(title);
+
+    const textComponentInner = (
+      <span>
+        {icon}
+        {icon ? (
+          <>
+            <span className={styles.titleText} /> {title}
+          </>
+        ) : (
+          title
+        )}
+      </span>
+    );
+
+    const textComponentWrapper =
+      !titleIsText || checkStringIsNullOrWhiteSpace(title) ? (
+        textComponentInner
+      ) : (
+        <Tooltip title={title} placement="bottomLeft">
+          {textComponentInner}
+        </Tooltip>
+      );
+
     return (
       <Drawer
         open={v || false}
         destroyOnClose={destroyOnClose || false}
         {...rest}
         styles={styleCollection}
-        title={
-          <span>
-            {icon}
-            {icon ? (
-              <>
-                <span className={styles.titleText} /> {this.renderPresetTitle()}
-              </>
-            ) : (
-              this.renderPresetTitle()
-            )}
-          </span>
-        }
+        title={textComponentWrapper}
         extra={extra}
       >
         {children}
