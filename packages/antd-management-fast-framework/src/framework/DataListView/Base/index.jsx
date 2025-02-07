@@ -1195,6 +1195,17 @@ class Base extends AuthorizationWrapper {
     };
   };
 
+  establishPresetAboveTableAlertContainerStyle = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPresetAboveTableAlertContainerStyle',
+      emptyLogic,
+    );
+
+    return null;
+  };
+
   renderPresetAboveTable = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetAboveTable');
 
@@ -1239,9 +1250,18 @@ class Base extends AuthorizationWrapper {
       return null;
     }
 
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'establishPresetAboveTableAlertContainerStyle',
+    );
+
+    const containerStyle = this.establishPresetAboveTableAlertContainerStyle();
+
     return (
       <div
         className={classNames(`${classPrefix}_containorTable_alertContainor`)}
+        style={containerStyle}
       >
         <Alert {...option} message={message} description={description} />
       </div>

@@ -223,6 +223,12 @@ class PageList extends MultiPage {
     };
   };
 
+  establishPresetAboveTableAlertContainerStyle = () => {
+    return {
+      backgroundColor: '#fff',
+    };
+  };
+
   // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemExtra = (record, index) => {
     return buildListViewItemExtra({
