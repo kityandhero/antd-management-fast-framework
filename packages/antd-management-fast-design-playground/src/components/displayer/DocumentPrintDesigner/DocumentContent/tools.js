@@ -924,7 +924,7 @@ export function buildDisplayValue({ data, valueDisplayMode, values }) {
     : isArray(enumList) &&
         !isEmptyArray(enumList) &&
         valueDisplayMode === valueDisplayModeCollection.text
-      ? vText
+      ? vText || '无'
       : currencyDisplay === whetherString.yes &&
           checkInCollection(['number', 'string'], toLower(type)) &&
           isNumber(toNumber(v))
