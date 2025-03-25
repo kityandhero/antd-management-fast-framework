@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.9.64
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-design-playground@1.0.188
+  - antd-management-fast-design-react@1.0.117
+  - antd-management-fast-component@2.7.34
+  - antd-management-fast-framework@2.12.39
+  - antd-management-fast-formily@1.0.129
+  - antd-management-fast-common@2.6.147
+  - antd-management-fast-flow@1.0.117
+
 ## 1.9.63
 
 ### Patch Changes
