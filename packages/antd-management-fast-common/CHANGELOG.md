@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.6.150
+
+### Patch Changes
+
+- update
+
 ## 2.6.149
 
 ### Patch Changes
