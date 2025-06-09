@@ -942,6 +942,7 @@ class CardCollectionItemContent extends PureComponent {
                         autoSize: { minRows: 3, maxRows: 5 },
                         ...contentItem.innerProps,
                       }}
+                      actionBar={contentItem.actionBar || null}
                       addonBefore={contentItem.addonBefore || null}
                       addonBeforeStyle={contentItem.addonBeforeStyle || null}
                       addonAfter={contentItem.addonAfter || null}

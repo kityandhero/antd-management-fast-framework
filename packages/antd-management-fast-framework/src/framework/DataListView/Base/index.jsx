@@ -2054,7 +2054,7 @@ class Base extends AuthorizationWrapper {
               paddingBottom: hasPagination ? 0 : 24,
             },
           }}
-          bordered={false}
+          variant="borderless"
           className={classNames(`${classPrefix}_containorTable`)}
           extra={extraView}
         >
@@ -2100,7 +2100,7 @@ class Base extends AuthorizationWrapper {
                   ) : null}
 
                   <Card
-                    bordered={false}
+                    variant="borderless"
                     className={classNames(`${classPrefix}_containorSearch`)}
                   >
                     <div className={classNames(`${classPrefix}_tableListForm`)}>

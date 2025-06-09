@@ -396,7 +396,7 @@ class MultiPageModal extends MultiPage {
           {this.showSearchForm && (searchForm || null) != null ? (
             <div style={{ flex: 0 }}>
               <Card
-                bordered={false}
+                variant="borderless"
                 className={styles.containorSearch}
                 styles={{
                   body: {
@@ -453,7 +453,7 @@ class MultiPageModal extends MultiPage {
                   // height: 'calc(100vh - 103px)',
                 },
               }}
-              bordered={false}
+              variant="borderless"
               className={styles.containorTable}
               extra={
                 <Space

@@ -25,6 +25,7 @@ class OnlyShowTextareaItem extends PureComponent {
       addonBeforeStyle = null,
       addonAfter = null,
       addonAfterStyle = null,
+      actionBar = null,
     } = this.props;
 
     const title = label;
@@ -37,7 +38,7 @@ class OnlyShowTextareaItem extends PureComponent {
 
     const resultCheck = checkFromConfig({
       label: title,
-      name,
+      name: '697c2611138d40719e1e4d933f31ae9f',
       helper,
     });
 
@@ -45,7 +46,7 @@ class OnlyShowTextareaItem extends PureComponent {
       <Item
         {...formItemLayout}
         label={resultCheck.label}
-        name={resultCheck.name}
+        // name={resultCheck.name}
         extra={
           checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
             ? null
@@ -63,7 +64,24 @@ class OnlyShowTextareaItem extends PureComponent {
         addonAfter={addonAfter}
         addonAfterStyle={addonAfterStyle}
       >
-        <TextArea {...otherInnerProperties} value={value} />
+        <div
+          style={{
+            position: 'relative',
+          }}
+        >
+          <TextArea {...otherInnerProperties} value={value} />
+
+          <div
+            style={{
+              position: 'absolute',
+              right: '6px',
+              bottom: '3px',
+              zIndex: '1',
+            }}
+          >
+            {actionBar}
+          </div>
+        </div>
       </Item>
     );
   }

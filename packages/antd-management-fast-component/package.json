@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-component",
-  "version": "2.7.37",
+  "version": "2.7.38",
   "description": "antd-management-fast-component",
   "keywords": [
     "antd-management-fast-component"
@@ -61,6 +61,7 @@
     "@ant-design/icons": "^6.0.0",
     "@ant-design/pro-components": "^2.8.7",
     "@tanem/react-nprogress": "^5.0.55",
+    "@tinymce/miniature": "^6.0.0",
     "@tinymce/tinymce-react": "^6.2.0",
     "@umijs/max": "^4.4.11",
     "antd": "^5.25.3",

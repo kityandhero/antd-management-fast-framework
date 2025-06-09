@@ -145,6 +145,11 @@ export const fieldData = {
     name: 'description',
     helper: '文章的简介描述',
   },
+  description1: {
+    label: '简介描述',
+    name: 'description1',
+    helper: '文章的简介描述',
+  },
   image: {
     label: '正方形配图',
     name: 'image',

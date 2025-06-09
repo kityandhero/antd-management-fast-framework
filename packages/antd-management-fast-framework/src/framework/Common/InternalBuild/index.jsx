@@ -622,7 +622,7 @@ class InternalBuild extends InternalSwitchoverFlow {
           },
         }}
         size={size || 'default'}
-        bordered={bordered}
+        variant={bordered ? 'outlined' : 'borderless'}
         extra={
           hasExtraItems ? (
             mode === cardConfig.wrapperType.page && affix ? (

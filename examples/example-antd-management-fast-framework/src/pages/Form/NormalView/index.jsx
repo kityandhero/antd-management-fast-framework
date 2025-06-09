@@ -1,3 +1,5 @@
+import { Divider, Space } from 'antd';
+
 import { connect } from 'easy-soft-dva';
 import {
   formatCollection,
@@ -371,6 +373,8 @@ class NormalView extends BaseView {
     const values = {};
 
     values[fieldData.author.name] = '张三';
+    values[fieldData.description.name] =
+      '这是一段文本这是一段文本这是一段文本，这是一段文本这是一段文本这是一段文本这是一段文本这是一段文本这是一段文本，这是一段文本这是一段文本这是一段文本，这是一段文本这是一段文本这是一段文本这是一段文本这是一段文本这是一段文本。';
 
     return values;
   };
@@ -434,10 +438,7 @@ class NormalView extends BaseView {
               lg: 6,
               type: cardConfig.contentItemType.onlyShowInput,
               fieldData: fieldData.simpleId,
-              value: getValueByKey({
-                data: metaData,
-                key: fieldData.simpleId.name,
-              }),
+              value: '47d7e5584e5d4ff7920d28b',
               canCopy: true,
             },
             {
@@ -615,6 +616,60 @@ class NormalView extends BaseView {
               type: cardConfig.contentItemType.textarea,
               fieldData: fieldData.description,
               require: false,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.onlyShowTextarea,
+              fieldData: fieldData.description1,
+              value: '121',
+              actionBar: (
+                <Space split={<Divider type="vertical" />}>
+                  {buildButton({
+                    style: {
+                      border: '0px solid #d9d9d9',
+                      backgroundColor: '#fafafa',
+                      // height: '30px',
+                      paddingLeft: '0',
+                      paddingRight: '0',
+                    },
+                    icon: iconBuilder.read(),
+                    text: '按钮1',
+                    size: 'small',
+                    // disabled: !firstLoadSuccess,
+                    handleClick: () => {},
+                  })}
+
+                  {buildButton({
+                    style: {
+                      border: '0px solid #d9d9d9',
+                      backgroundColor: '#fafafa',
+                      // height: '30px',
+                      paddingLeft: '0',
+                      paddingRight: '0',
+                    },
+                    icon: iconBuilder.read(),
+                    text: '按钮2',
+                    size: 'small',
+                    // disabled: !firstLoadSuccess,
+                    handleClick: () => {},
+                  })}
+
+                  {buildButton({
+                    style: {
+                      border: '0px solid #d9d9d9',
+                      backgroundColor: '#fafafa',
+                      height: '30px',
+                      // paddingLeft: '0',
+                      paddingRight: '0',
+                    },
+                    icon: iconBuilder.read(),
+                    text: '按钮3',
+                    size: 'small',
+                    // disabled: !firstLoadSuccess,
+                    handleClick: () => {},
+                  })}
+                </Space>
+              ),
             },
           ],
           instruction: [

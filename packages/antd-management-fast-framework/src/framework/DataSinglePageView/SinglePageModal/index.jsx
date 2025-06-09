@@ -411,7 +411,7 @@ class SinglePageModal extends SinglePage {
           {this.showSearchForm && (searchForm || null) != null ? (
             <div style={{ flex: 0 }}>
               <Card
-                bordered={false}
+                variant="borderless"
                 className={styles.containorSearch}
                 styles={{
                   body: {
@@ -465,7 +465,7 @@ class SinglePageModal extends SinglePage {
                   overflow: 'hidden',
                 },
               }}
-              bordered={false}
+              variant="borderless"
               className={styles.containorTable}
               extra={
                 <Space

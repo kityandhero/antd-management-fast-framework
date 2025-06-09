@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-charts",
-  "version": "2.6.144",
+  "version": "2.6.145",
   "description": "antd-management-fast-charts",
   "keywords": [
     "antd-management-fast-charts"
@@ -61,6 +61,7 @@
     "@ant-design/icons": "^6.0.0",
     "@ant-design/pro-components": "^2.8.7",
     "@tanem/react-nprogress": "^5.0.55",
+    "@tinymce/miniature": "^6.0.0",
     "@tinymce/tinymce-react": "^6.2.0",
     "@umijs/max": "^4.4.11",
     "antd": "^5.25.3",

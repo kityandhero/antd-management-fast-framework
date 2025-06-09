@@ -37,7 +37,7 @@ class ToolBar extends PureComponent {
     const bar = (
       <Card
         title={<IconInfo icon={iconBuilder.tool()} text={title || '工具栏'} />}
-        bordered={false}
+        variant="borderless"
         styles={{
           body: {
             padding: 0,

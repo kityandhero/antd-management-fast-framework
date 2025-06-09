@@ -847,9 +847,12 @@ importers:
       '@tanem/react-nprogress':
         specifier: ^5.0.55
         version: 5.0.55(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tinymce/miniature':
+        specifier: ^6.0.0
+        version: 6.0.0(tinymce@7.9.1)
       '@tinymce/tinymce-react':
         specifier: ^6.2.0
-        version: 6.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 6.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tinymce@7.9.1)
       '@umijs/max':
         specifier: ^4.4.11
         version: 4.4.11(@babel/core@7.27.3)(@types/node@22.15.24)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(dva@2.5.0-beta.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.15.24)(babel-plugin-macros@3.1.0))(lightningcss@1.22.1)(postcss-less@6.0.0(postcss@8.5.4))(prettier@3.5.3)(rc-field-form@2.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.41.1)(terser@5.40.0)(type-fest@0.21.3)(typescript@5.8.3)(webpack@5.99.9)
@@ -1214,9 +1217,12 @@ importers:
       '@tanem/react-nprogress':
         specifier: ^5.0.55
         version: 5.0.55(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tinymce/miniature':
+        specifier: ^6.0.0
+        version: 6.0.0(tinymce@7.9.1)
       '@tinymce/tinymce-react':
         specifier: ^6.2.0
-        version: 6.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 6.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tinymce@7.9.1)
       '@umijs/max':
         specifier: ^4.4.11
         version: 4.4.11(@babel/core@7.27.3)(@types/node@22.15.24)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(dva@2.5.0-beta.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.15.24)(babel-plugin-macros@3.1.0))(lightningcss@1.22.1)(postcss-less@6.0.0(postcss@8.5.4))(prettier@3.5.3)(rc-field-form@2.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.41.1)(terser@5.40.0)(type-fest@0.21.3)(typescript@5.8.3)(webpack@5.99.9)
@@ -1575,9 +1581,12 @@ importers:
       '@tanem/react-nprogress':
         specifier: ^5.0.55
         version: 5.0.55(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tinymce/miniature':
+        specifier: ^6.0.0
+        version: 6.0.0(tinymce@7.9.1)
       '@tinymce/tinymce-react':
         specifier: ^6.2.0
-        version: 6.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 6.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tinymce@7.9.1)
       '@umijs/max':
         specifier: ^4.4.11
         version: 4.4.11(@babel/core@7.27.3)(@types/node@22.15.24)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(dva@2.5.0-beta.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.15.24)(babel-plugin-macros@3.1.0))(lightningcss@1.22.1)(postcss-less@6.0.0(postcss@8.5.4))(prettier@3.5.3)(rc-field-form@2.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.41.1)(terser@5.40.0)(type-fest@0.21.3)(typescript@5.8.3)(webpack@5.99.9)
@@ -4963,6 +4972,35 @@ packages:
   '@emotion/weak-memoize@0.4.0':
     resolution: {integrity: sha512-snKqtPW01tN0ui7yu9rGv69aJXr/a/Ywvl11sUjNtEcRc+ng/mQriFL0wLXMef74iHa/EkftbDzU9F8iFbH+zg==}
 
+  '@ephox/agar@8.0.1':
+    resolution: {integrity: sha512-2LR/u0oos9GadRoLFDVE6NRDV8Tl9+DYQyouVYn0+7afAYdouyw+nXaoTVG5nnvMG+ofsmldKOC82nJWu0a4kQ==}
+
+  '@ephox/bedrock-client@13.0.0':
+    resolution: {integrity: sha512-Zah4+o7wFmYO6x3AHiQ1fIYdWIKMAlgszFqKp+JYrmkmqQG9h25wk2izPvTvJ+UGrORU6W90PrDWuksE1XhcUw==}
+
+  '@ephox/bedrock-common@13.0.0':
+    resolution: {integrity: sha512-aJ3gtezZ0duGJAniT/+uWi0fFCJRqNdJjumxhCwOVTc2MSsXcyqn70s6FIlrp/Fw2QuyiEqxgormgrmBUbWNWA==}
+
+  '@ephox/dispute@1.0.16':
+    resolution: {integrity: sha512-qHy0c+TX4FZx6xI2EBoBqOjGlbtGqQlvK7uWMNCVkfXveJ/dWhjFKfxRR2fsIN/xOYDQ7uJ/GcD+oDpryxl1dA==}
+
+  '@ephox/jax@7.0.10':
+    resolution: {integrity: sha512-iDqR2M45ketsSdfQmrjy8xyqVGPiLUTs/FOYBmwUdbBNYifQx9sT2eKQrOmsVYuH6voZaoiXdA0EK8aqHcKGQg==}
+
+  '@ephox/katamari@9.1.6':
+    resolution: {integrity: sha512-7R7hcpiIWaDk4t731ppdr3X/hjLZkHTDjJCEgGgTS3ylddodGKtSMS91tISicYjKQXnB06GT+gJoOk3/McazIg==}
+
+  '@ephox/mcagar@9.0.1':
+    resolution: {integrity: sha512-iNMP8mkz8AtgiRceU4TAnstQje3RG8yxM/QoWKkriCeh6n5fe1sSfexFRVW3fwZ0bUrjTlyawSqoH0yhESqJjQ==}
+    peerDependencies:
+      tinymce: '>=4.0.0'
+
+  '@ephox/sand@6.0.10':
+    resolution: {integrity: sha512-q/2Xcjl1O5c9/HHxQiEKGZkGsC68WUjVP5ciDNKqrZd1s1BhA3VWbaubQxxBRt3SwKyBCukfS5gL53qkqTfbkg==}
+
+  '@ephox/sugar@9.3.1':
+    resolution: {integrity: sha512-NQMqDN0zC+IZGuhBuz/7RxncfJsmTBhCHgaqkHOJ5d1E0CIL9afIizBYQ0JSHS3osAb9woGGtwPobjCx3/Srpw==}
+
   '@esbuild-kit/cjs-loader@2.4.4':
     resolution: {integrity: sha512-NfsJX4PdzhwSkfJukczyUiZGc7zNNWZcEAyqeISpDnn0PTfzMJR1aR8xAIPskBejIxBJbIgCCMzbaYa9SXepIg==}
 
@@ -6362,6 +6400,9 @@ packages:
       react-native:
         optional: true
 
+  '@tinymce/miniature@6.0.0':
+    resolution: {integrity: sha512-bLpaTTgbyMHP3V8bucSxvCTVTUjRRk05zDgnlD5Hj2eo6hEyHT1FCqpuhdVLHx9mbCydrlAIhhsY8Ex6Hp8Qqg==}
+
   '@tinymce/tinymce-react@6.2.0':
     resolution: {integrity: sha512-uJtoZPZ89YoBlxPUpmyJXGU1VHzISwMiwDlr1mkYe9ESUfpH2DROLFTqk5GvB+SoFjmXsqyiTce4FBuv9T4bUQ==}
     peerDependencies:
@@ -6664,6 +6705,9 @@ packages:
 
   '@types/shelljs@0.8.16':
     resolution: {integrity: sha512-40SUXiH0tZfAg/oKkkGF1kdHPAmE4slv2xAmbfa8VtE6ztHYwdpW2phlzHTVdJh5JOGqA3Cx1Hzp7kxFalKHYA==}
+
+  '@types/sizzle@2.3.9':
+    resolution: {integrity: sha512-xzLEyKB50yqCUPUJkIsrVvoWNfFUbIZI+RspLWt8u+tIW/BetMBZtgV2LY/2o+tYH8dRvQ+eoPf3NdhQCcLE2w==}
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
@@ -8654,6 +8698,10 @@ packages:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
+  diff@5.2.0:
+    resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
+    engines: {node: '>=0.3.1'}
+
   diffie-hellman@5.0.3:
     resolution: {integrity: sha512-kqag/Nl+f3GwyK25fhUMYj81BUOrZ9IuJsjIcDE5icNM9FJHAVm3VcUDxdLPoQtTuUylWm6ZIknYJwwaPxsUzg==}
 
@@ -9314,6 +9362,10 @@ packages:
   external-editor@3.1.0:
     resolution: {integrity: sha512-hMQ4CX1p1izmuLYyZqLMO/qGNw10wSv9QDCPfzXfyFrOaCSSoRfqE1Kf1s5an66J5JZC62NewG+mK49jOCtQew==}
     engines: {node: '>=4'}
+
+  fast-check@2.25.0:
+    resolution: {integrity: sha512-wRUT2KD2lAmT75WNIJIHECawoUUMHM0I5jrlLXGtGeqmPL8jl/EldUDjY1VCp6fDY8yflyfUeIOsOBrIbIiArg==}
+    engines: {node: '>=8.0.0'}
 
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
@@ -12643,6 +12695,9 @@ packages:
   pure-color@1.3.0:
     resolution: {integrity: sha512-QFADYnsVoBMw1srW7OVKEYjG+MbIa49s54w1MA1EDY6r2r/sTcKKYqRX1f4GYvnXP7eN/Pe9HFcX+hwzmrXRHA==}
 
+  pure-rand@5.0.5:
+    resolution: {integrity: sha512-BwQpbqxSCBJVpamI6ydzcKqyFmnd5msMWUGvzXLm1aXvusbbgkbOto/EUPM00hjveJEaJtdbhUjKSzWRhQVkaw==}
+
   pure-rand@6.1.0:
     resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
 
@@ -13894,6 +13949,9 @@ packages:
   size-sensor@1.0.2:
     resolution: {integrity: sha512-2NCmWxY7A9pYKGXNBfteo4hy14gWu47rg5692peVMst6lQLPKrVjhY+UTEsPI5ceFRJSl3gVgMYaUi/hKuaiKw==}
 
+  sizzle@2.3.10:
+    resolution: {integrity: sha512-kPGev+SiByuzi/YPDTqCwdKLWCaN9+14ve86yH0gP6Efue04xjLYWJrcLC6y1buFyIVXkwHNXPsOTEd1MYVPbQ==}
+
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
@@ -14479,6 +14537,9 @@ packages:
   tinyglobby@0.2.14:
     resolution: {integrity: sha512-tX5e7OM1HnYr2+a2C/4V0htOcSQcoSTH9KgJnVvNm5zm/cyEWKJ7j7YutsH9CxMdtOkkLFy2AHrMci9IM8IPZQ==}
     engines: {node: '>=12.0.0'}
+
+  tinymce@7.9.1:
+    resolution: {integrity: sha512-zaOHwmiP1EqTeLRXAvVriDb00JYnfEjWGPdKEuac7MiZJ5aiDMZ4Unc98Gmajn+PBljOmO1GKV6G0KwWn3+k8A==}
 
   titleize@3.0.0:
     resolution: {integrity: sha512-KxVu8EYHDPBdUYdKZdKtU2aj2XfEx9AfjXxE/Aj0vT06w2icA09Vus1rh6eSu1y01akYg6BjIK/hxyLJINoMLQ==}
@@ -17411,6 +17472,56 @@ snapshots:
 
   '@emotion/weak-memoize@0.4.0': {}
 
+  '@ephox/agar@8.0.1':
+    dependencies:
+      '@ephox/bedrock-client': 13.0.0
+      '@ephox/bedrock-common': 13.0.0
+      '@ephox/jax': 7.0.10
+      '@ephox/sand': 6.0.10
+      '@ephox/sugar': 9.3.1
+      '@types/sizzle': 2.3.9
+      fast-check: 2.25.0
+      sizzle: 2.3.10
+
+  '@ephox/bedrock-client@13.0.0':
+    dependencies:
+      '@ephox/bedrock-common': 13.0.0
+      '@ephox/dispute': 1.0.16
+
+  '@ephox/bedrock-common@13.0.0':
+    dependencies:
+      diff: 5.2.0
+
+  '@ephox/dispute@1.0.16':
+    dependencies:
+      tslib: 2.8.1
+
+  '@ephox/jax@7.0.10':
+    dependencies:
+      '@ephox/katamari': 9.1.6
+
+  '@ephox/katamari@9.1.6':
+    dependencies:
+      '@ephox/dispute': 1.0.16
+
+  '@ephox/mcagar@9.0.1(tinymce@7.9.1)':
+    dependencies:
+      '@ephox/agar': 8.0.1
+      '@ephox/katamari': 9.1.6
+      '@ephox/sand': 6.0.10
+      '@ephox/sugar': 9.3.1
+      fast-check: 2.25.0
+      tinymce: 7.9.1
+
+  '@ephox/sand@6.0.10':
+    dependencies:
+      '@ephox/katamari': 9.1.6
+
+  '@ephox/sugar@9.3.1':
+    dependencies:
+      '@ephox/katamari': 9.1.6
+      '@ephox/sand': 6.0.10
+
   '@esbuild-kit/cjs-loader@2.4.4':
     dependencies:
       '@esbuild-kit/core-utils': 3.3.2
@@ -18844,11 +18955,22 @@ snapshots:
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
 
-  '@tinymce/tinymce-react@6.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@tinymce/miniature@6.0.0(tinymce@7.9.1)':
+    dependencies:
+      '@ephox/agar': 8.0.1
+      '@ephox/katamari': 9.1.6
+      '@ephox/mcagar': 9.0.1(tinymce@7.9.1)
+      '@ephox/sugar': 9.3.1
+    transitivePeerDependencies:
+      - tinymce
+
+  '@tinymce/tinymce-react@6.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tinymce@7.9.1)':
     dependencies:
       prop-types: 15.8.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      tinymce: 7.9.1
 
   '@trysound/sax@0.2.0': {}
 
@@ -19053,7 +19175,7 @@ snapshots:
 
   '@types/history@5.0.0':
     dependencies:
-      history: 4.10.1
+      history: 5.3.0
 
   '@types/hoist-non-react-statics@3.3.6':
     dependencies:
@@ -19162,7 +19284,7 @@ snapshots:
       '@types/history': 4.7.11
       '@types/react': 18.3.23
       '@types/react-router': 5.1.20
-      redux: 3.7.2
+      redux: 5.0.1
 
   '@types/react-router@5.1.20':
     dependencies:
@@ -19193,6 +19315,8 @@ snapshots:
       '@types/glob': 7.2.0
       '@types/node': 22.15.24
 
+  '@types/sizzle@2.3.9': {}
+
   '@types/stack-utils@2.0.3': {}
 
   '@types/stylis@4.2.5': {}
@@ -19221,6 +19345,25 @@ snapshots:
   '@types/yargs@17.0.33':
     dependencies:
       '@types/yargs-parser': 21.0.3
+
+  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.35.0)(typescript@5.8.3))(eslint@8.35.0)(typescript@5.8.3)':
+    dependencies:
+      '@eslint-community/regexpp': 4.12.1
+      '@typescript-eslint/parser': 5.62.0(eslint@8.35.0)(typescript@5.8.3)
+      '@typescript-eslint/scope-manager': 5.62.0
+      '@typescript-eslint/type-utils': 5.62.0(eslint@8.35.0)(typescript@5.8.3)
+      '@typescript-eslint/utils': 5.62.0(eslint@8.35.0)(typescript@5.8.3)
+      debug: 4.4.1
+      eslint: 8.35.0
+      graphemer: 1.4.0
+      ignore: 5.3.2
+      natural-compare-lite: 1.4.0
+      semver: 7.7.2
+      tsutils: 3.21.0(typescript@5.8.3)
+    optionalDependencies:
+      typescript: 5.8.3
+    transitivePeerDependencies:
+      - supports-color
 
   '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)':
     dependencies:
@@ -19319,10 +19462,22 @@ snapshots:
     dependencies:
       typescript: 5.8.3
 
-  '@typescript-eslint/type-utils@5.62.0(eslint@8.57.1)(typescript@5.8.3)':
+  '@typescript-eslint/type-utils@5.62.0(eslint@8.35.0)(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.8.3)
       '@typescript-eslint/utils': 5.62.0(eslint@8.35.0)(typescript@5.8.3)
+      debug: 4.4.1
+      eslint: 8.35.0
+      tsutils: 3.21.0(typescript@5.8.3)
+    optionalDependencies:
+      typescript: 5.8.3
+    transitivePeerDependencies:
+      - supports-color
+
+  '@typescript-eslint/type-utils@5.62.0(eslint@8.57.1)(typescript@5.8.3)':
+    dependencies:
+      '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.8.3)
+      '@typescript-eslint/utils': 5.62.0(eslint@8.57.1)(typescript@5.8.3)
       debug: 4.4.1
       eslint: 8.57.1
       tsutils: 3.21.0(typescript@5.8.3)
@@ -19382,7 +19537,7 @@ snapshots:
 
   '@typescript-eslint/utils@5.62.0(eslint@8.57.1)(typescript@5.8.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.7.0(eslint@8.35.0)
+      '@eslint-community/eslint-utils': 4.7.0(eslint@8.57.1)
       '@types/json-schema': 7.0.15
       '@types/semver': 7.7.0
       '@typescript-eslint/scope-manager': 5.62.0
@@ -19594,10 +19749,10 @@ snapshots:
       '@babel/core': 7.23.6
       '@babel/eslint-parser': 7.23.3(@babel/core@7.23.6)(eslint@8.35.0)
       '@stylelint/postcss-css-in-js': 0.38.0(postcss-syntax@0.36.2(postcss-less@6.0.0(postcss@8.5.4))(postcss@8.5.4))(postcss@8.5.4)
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@8.33.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.35.0)(typescript@5.8.3))(eslint@8.35.0)(typescript@5.8.3)
       '@typescript-eslint/parser': 5.62.0(eslint@8.35.0)(typescript@5.8.3)
       '@umijs/babel-preset-umi': 4.4.11
-      eslint-plugin-jest: 27.2.3(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.35.0)(typescript@5.8.3))(eslint@8.35.0)(typescript@5.8.3))(eslint@8.35.0)(jest@29.7.0(@types/node@22.15.24)(babel-plugin-macros@3.1.0))(typescript@5.8.3)
+      eslint-plugin-jest: 27.2.3(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@8.33.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.35.0)(jest@29.7.0(@types/node@22.15.24)(babel-plugin-macros@3.1.0))(typescript@5.8.3)
       eslint-plugin-react: 7.33.2(eslint@8.35.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.35.0)
       postcss: 8.5.4
@@ -21885,6 +22040,8 @@ snapshots:
 
   diff-sequences@29.6.3: {}
 
+  diff@5.2.0: {}
+
   diffie-hellman@5.0.3:
     dependencies:
       bn.js: 4.12.2
@@ -22534,7 +22691,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jest@27.2.3(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.35.0)(typescript@5.8.3))(eslint@8.35.0)(typescript@5.8.3))(eslint@8.35.0)(jest@29.7.0(@types/node@22.15.24)(babel-plugin-macros@3.1.0))(typescript@5.8.3):
+  eslint-plugin-jest@27.2.3(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@8.33.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.35.0)(jest@29.7.0(@types/node@22.15.24)(babel-plugin-macros@3.1.0))(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/utils': 5.62.0(eslint@8.35.0)(typescript@5.8.3)
       eslint: 8.35.0
@@ -22974,6 +23131,10 @@ snapshots:
       chardet: 0.7.0
       iconv-lite: 0.4.24
       tmp: 0.0.33
+
+  fast-check@2.25.0:
+    dependencies:
+      pure-rand: 5.0.5
 
   fast-deep-equal@3.1.3: {}
 
@@ -26533,6 +26694,8 @@ snapshots:
 
   pure-color@1.3.0: {}
 
+  pure-rand@5.0.5: {}
+
   pure-rand@6.1.0: {}
 
   qiankun@2.10.16:
@@ -28155,6 +28318,8 @@ snapshots:
 
   size-sensor@1.0.2: {}
 
+  sizzle@2.3.10: {}
+
   slash@3.0.0: {}
 
   slash@4.0.0: {}
@@ -28894,6 +29059,8 @@ snapshots:
     dependencies:
       fdir: 6.4.5(picomatch@4.0.2)
       picomatch: 4.0.2
+
+  tinymce@7.9.1: {}
 
   titleize@3.0.0: {}
 

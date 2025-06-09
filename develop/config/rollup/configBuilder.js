@@ -51,6 +51,7 @@ const externalCollection = [
   '@rollup/plugin-url',
   '@svgr/rollup',
   '@tanem/react-nprogress',
+  '@tinymce/miniature',
   '@tinymce/tinymce-react',
   '@umijs/max',
   'antd',
