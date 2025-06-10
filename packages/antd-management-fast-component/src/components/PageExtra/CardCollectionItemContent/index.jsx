@@ -967,10 +967,10 @@ class CardCollectionItemContent extends PureComponent {
                                 <ElasticityButton
                                   style={{
                                     border: '0px solid #d9d9d9',
-                                    backgroundColor: '#fafafa',
+                                    backgroundColor: '#f5f5f5',
                                     height: '30px',
                                   }}
-                                  // icon={null}
+                                  // icon={iconBuilder.copy()}
                                   showIcon={false}
                                   disabled={checkStringIsNullOrWhiteSpace(
                                     contentItem.value || '',

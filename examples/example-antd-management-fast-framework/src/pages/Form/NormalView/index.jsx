@@ -403,6 +403,14 @@ class NormalView extends BaseView {
             split: false,
             list: [
               {
+                buildType: cardConfig.extraBuildType.iconInfo,
+                icon: iconBuilder.infoCircle(),
+                text: '文本说明',
+              },
+              {
+                buildType: cardConfig.extraBuildType.divider,
+              },
+              {
                 buildType:
                   listViewConfig.dataContainerExtraActionBuildType
                     .generalButton,
@@ -658,8 +666,8 @@ class NormalView extends BaseView {
                     style: {
                       border: '0px solid #d9d9d9',
                       backgroundColor: '#fafafa',
-                      height: '30px',
-                      // paddingLeft: '0',
+                      // height: '30px',
+                      paddingLeft: '0',
                       paddingRight: '0',
                     },
                     icon: iconBuilder.read(),

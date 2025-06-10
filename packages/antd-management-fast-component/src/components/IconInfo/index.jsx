@@ -29,6 +29,8 @@ class IconInfo extends BaseComponent {
 
     return {
       display: block ? 'block' : 'inline-block',
+      ...(block ? {} : { paddingLeft: '4px' }),
+      ...(block ? {} : { paddingRight: '4px' }),
       ...(block ? { width: '100%' } : {}),
     };
   };
@@ -66,7 +68,9 @@ class IconInfo extends BaseComponent {
 
     const iconItem =
       (icon || null) == null ? null : (
-        <span style={iconStyleSource}>{icon}</span>
+        <VerticalBox>
+          <span style={iconStyleSource}>{icon}</span>
+        </VerticalBox>
       );
 
     let direction = directionValue || 'horizontal';

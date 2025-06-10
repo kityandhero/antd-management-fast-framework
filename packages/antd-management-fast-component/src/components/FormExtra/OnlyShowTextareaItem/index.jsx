@@ -74,9 +74,10 @@ class OnlyShowTextareaItem extends PureComponent {
           <div
             style={{
               position: 'absolute',
-              right: '6px',
-              bottom: '3px',
+              right: '4px',
+              bottom: '4px',
               zIndex: '1',
+              paddingRight: '4px',
             }}
           >
             {actionBar}

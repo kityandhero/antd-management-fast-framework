@@ -864,7 +864,7 @@ class InternalBuild extends InternalSwitchoverFlow {
 
             case extraBuildType.iconInfo: {
               itemAdjust = (
-                <div style={{ padding: '0 8px' }}>
+                <div style={{ padding: '0 4px' }}>
                   <IconInfo {...item} />
                 </div>
               );
