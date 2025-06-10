@@ -118,7 +118,7 @@ class Base extends AuthorizationWrapper {
 
   columnOperateVisible = true;
 
-  columnOperateWidth = 106;
+  columnOperateWidth = 114;
 
   columnOperateFixed = 'right';
 
