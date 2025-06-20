@@ -52,6 +52,8 @@ class Base extends BaseWindow {
    */
   contentWrapperType = contentConfig.wrapperType.drawer;
 
+  reloadWhenShow = true;
+
   /**
    * 构造函数
    * @param {Object} properties 属性值集合。

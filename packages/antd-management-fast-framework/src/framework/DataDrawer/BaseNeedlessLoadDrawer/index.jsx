@@ -13,6 +13,8 @@ const primaryCallName = 'DataDrawer::BaseNeedlessLoadDrawer';
  * @extends BaseFormDrawer
  */
 class BaseNeedlessLoadDrawer extends BaseFormDrawer {
+  reloadWhenShow = false;
+
   resetDataAfterLoad = false;
 
   showReloadButton = false;
