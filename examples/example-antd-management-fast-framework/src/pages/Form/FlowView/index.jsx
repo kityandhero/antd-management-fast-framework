@@ -458,6 +458,7 @@ const nodeList = (isArray(workflowNodeList) ? workflowNodeList : []).map(
         data: o,
         // isNext: '' === workflowNodeId,
         isNext: true,
+        footerBuilder: () => '页脚',
       },
     });
 

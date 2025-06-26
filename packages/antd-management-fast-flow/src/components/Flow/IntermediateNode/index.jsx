@@ -9,6 +9,8 @@ import {
   convertCollection,
   getValueByKey,
   isFunction,
+  isNull,
+  isUndefined,
 } from 'easy-soft-utility';
 
 import {
@@ -39,6 +41,7 @@ class IntermediateNode extends PureComponent {
       listApproverKey,
       approverNameKey,
       approverNameLabel,
+      footerBuilder,
       onAddApprover,
       onChange,
       onChangeBranchCondition,
@@ -53,6 +56,7 @@ class IntermediateNode extends PureComponent {
       listApproverKey: 'listApprover',
       approverNameKey: 'approverName',
       approverNameLabel: '',
+      footerBuilder: null,
       ...data,
     };
 
@@ -85,6 +89,12 @@ class IntermediateNode extends PureComponent {
     // });
 
     // const outLineCount = listOutLine.length;
+
+    let footer = null;
+
+    if (isFunction(footerBuilder)) {
+      footer = footerBuilder(dataSource);
+    }
 
     return (
       <>
@@ -296,6 +306,19 @@ class IntermediateNode extends PureComponent {
                     )}
                   </Space>
                 </div>
+
+                {!isUndefined(footer) && !isNull(footer) ? (
+                  <Divider style={{ margin: '6px 0' }} />
+                ) : null}
+
+                {!isUndefined(footer) && !isNull(footer) ? (
+                  <div
+                    className={`${styleClassPrefix + '-node-content-footer'}`}
+                  >
+                    {footer}
+                  </div>
+                ) : null}
+                <div></div>
               </div>
             </div>
           )}
