@@ -12,6 +12,7 @@ import {
   isString,
   mergeArrowText,
   showSimpleInfoMessage,
+  whetherNumber,
 } from 'easy-soft-utility';
 
 import { cardConfig, logTemplate } from 'antd-management-fast-common';
@@ -29,6 +30,8 @@ import {
   CellText,
   DataDisplayer,
   FileViewer,
+  nodeApply,
+  nodeAttention,
   SchemaDisplayer,
   setSchemaWithExternalData,
 } from 'antd-management-fast-design-playground';
@@ -137,6 +140,36 @@ class DesignView extends BaseUpdateForm {
         target.reloadData({});
       },
     });
+  };
+
+  getApplicantConfig = () => {
+    const applicantSignSwitch = whetherNumber.yes;
+
+    const listApply = [
+      {
+        ...nodeApply,
+      },
+    ];
+
+    return {
+      showApply: applicantSignSwitch === whetherNumber.yes,
+      listApply,
+    };
+  };
+
+  getAttentionConfig = () => {
+    const attentionSignSwitch = whetherNumber.yes;
+
+    const listAttention = [
+      {
+        ...nodeAttention,
+      },
+    ];
+
+    return {
+      showAttention: attentionSignSwitch === whetherNumber.yes,
+      listAttention,
+    };
   };
 
   showFlowCaseFormDocumentDrawer = () => {
