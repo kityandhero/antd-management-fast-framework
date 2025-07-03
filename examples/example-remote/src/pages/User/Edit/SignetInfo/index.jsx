@@ -132,8 +132,6 @@ class SignetInfo extends TabPageBase {
   establishCardCollectionConfig = () => {
     const { signet } = this.state;
 
-    console.log({ signet: signet || emptySignet });
-
     return {
       list: [
         {
