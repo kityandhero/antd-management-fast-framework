@@ -39,22 +39,22 @@ export async function updateFileStorageInfoData(parameters) {
   });
 }
 
-export const updateSmsInfoDataApiAddress =
-  '/currentManagementInfrastructure/updateSmsInfo';
-
-export async function updateSmsInfoData(parameters) {
-  return request({
-    api: updateSmsInfoDataApiAddress,
-    params: parameters,
-  });
-}
-
 export const updateFlowDebugUserIdDataApiAddress =
   '/currentManagementInfrastructure/updateFlowDebugUserId';
 
 export async function updateFlowDebugUserIdData(parameters) {
   return request({
     api: updateFlowDebugUserIdDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const updateFlowDebugSubsidiaryIdDataApiAddress =
+  '/currentManagementInfrastructure/updateFlowDebugSubsidiaryId';
+
+export async function updateFlowDebugSubsidiaryIdData(parameters) {
+  return request({
+    api: updateFlowDebugSubsidiaryIdDataApiAddress,
     params: parameters,
   });
 }
@@ -129,12 +129,22 @@ export async function testDiskSpaceMonitoringConfigData(parameters) {
   });
 }
 
-export const testDiskSpaceMonitoringEmailDataApiAddress =
-  '/currentManagementInfrastructure/testDiskSpaceMonitoringEmail';
+export const testDiskSpaceMonitoringAlarmEmailDataApiAddress =
+  '/currentManagementInfrastructure/testDiskSpaceMonitoringAlarmEmail';
 
-export async function testDiskSpaceMonitoringEmailData(parameters) {
+export async function testDiskSpaceMonitoringAlarmEmailData(parameters) {
   return request({
-    api: testDiskSpaceMonitoringEmailDataApiAddress,
+    api: testDiskSpaceMonitoringAlarmEmailDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const testDiskSpaceMonitoringDetectionEmailDataApiAddress =
+  '/currentManagementInfrastructure/testDiskSpaceMonitoringDetectionEmail';
+
+export async function testDiskSpaceMonitoringDetectionEmailData(parameters) {
+  return request({
+    api: testDiskSpaceMonitoringDetectionEmailDataApiAddress,
     params: parameters,
   });
 }
@@ -165,6 +175,36 @@ export const uploadImageDataApiAddress =
 export async function uploadImageData(parameters) {
   return request({
     api: uploadImageDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const getExecuteDebugInfoDataApiAddress =
+  '/currentManagementInfrastructure/getExecuteDebugInfo';
+
+export async function getExecuteDebugInfoData(parameters) {
+  return request({
+    api: getExecuteDebugInfoDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const startExecuteDebugDataApiAddress =
+  '/currentManagementInfrastructure/startExecuteDebug';
+
+export async function startExecuteDebugData(parameters) {
+  return request({
+    api: startExecuteDebugDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const stopExecuteDebugDataApiAddress =
+  '/currentManagementInfrastructure/stopExecuteDebug';
+
+export async function stopExecuteDebugData(parameters) {
+  return request({
+    api: stopExecuteDebugDataApiAddress,
     params: parameters,
   });
 }

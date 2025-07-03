@@ -7,6 +7,8 @@ import {
   convertCollection,
   filter,
   getValueByKey,
+  isArray,
+  isEmptyArray,
   toString,
   zeroString,
 } from 'easy-soft-utility';
@@ -21,6 +23,7 @@ import {
   fieldDataFlowCaseProcessHistory,
   flowBranchConditionItemTargetComparisonModelCollection,
   flowBranchConditionItemTargetTypeCollection,
+  flowDebugApproverModeCollection,
 } from '../../../customConfig';
 import {
   renderFormFlowBranchConditionItemTargetComparisonModeSelect,
@@ -28,11 +31,25 @@ import {
 } from '../../../customSpecialComponents';
 import { singleListAction } from '../../../pages/GeneralDiscourse/Assist/action';
 import { typeCollection } from '../../../pages/GeneralDiscourse/Common/data';
+import { singleListAction as singleListApproverAction } from '../../../pages/WorkflowNodeApprover/Assist/action';
+import { fieldData as fieldDataWorkflowNodeApprover } from '../../../pages/WorkflowNodeApprover/Common/data';
 
 const { BaseUpdateModal } = DataModal;
 
 // eslint-disable-next-line no-unused-vars
-function dataFormFieldConvert(o, index) {
+function dataFormFieldApproverConvert(o, index) {
+  const { userRealName, userId } = o;
+
+  return {
+    label: userRealName,
+    value: userId,
+    disabled: false,
+    ...o,
+  };
+}
+
+// eslint-disable-next-line no-unused-vars
+function dataFormFieldGeneralDiscourseConvert(o, index) {
   const { content, generalDiscourseId } = o;
 
   return {
@@ -43,9 +60,15 @@ function dataFormFieldConvert(o, index) {
   };
 }
 
+const approveUserName = '2fcc037383244eeb81d6c71053a79601';
+
 const generalDiscourseName = '991d90f0881b4e14909c7e8f270e593f';
 
 class BaseFlowCaseProcessHistoryPassModal extends BaseUpdateModal {
+  approveUserId = '';
+
+  approveUserRealName = '';
+
   constructor(properties, visibleFlag) {
     super(properties, visibleFlag);
 
@@ -55,11 +78,13 @@ class BaseFlowCaseProcessHistoryPassModal extends BaseUpdateModal {
       loadApiPath: '',
       submitApiPath: '',
       generalDiscourseList: [],
+      approverList: [],
     };
   }
 
   executeAfterDoOtherWhenChangeVisibleToShow = () => {
     this.loadGeneralDiscourseList();
+    this.loadApproverList();
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -87,6 +112,12 @@ class BaseFlowCaseProcessHistoryPassModal extends BaseUpdateModal {
     d[fieldDataFlowCaseProcessHistory.flowCaseId.name] =
       this.getFlowCaseId(externalData);
 
+    d[fieldDataFlowCaseProcessHistory.approveUserId.name] =
+      this.approveUserId ?? '';
+
+    delete d[generalDiscourseName];
+    delete d[approveUserName];
+
     return d;
   };
 
@@ -110,6 +141,74 @@ class BaseFlowCaseProcessHistoryPassModal extends BaseUpdateModal {
     this.loadGeneralDiscourseList();
   };
 
+  loadApproverList = () => {
+    const { externalData } = this.props;
+
+    const debugApproverMode = getValueByKey({
+      data: externalData,
+      key: fieldDataFlowCase.debugApproverMode.name,
+      convert: convertCollection.number,
+    });
+
+    if (debugApproverMode === flowDebugApproverModeCollection.debugUser) {
+      this.approveUserId = getValueByKey({
+        data: externalData,
+        key: fieldDataFlowCase.flowDebugUserId.name,
+        convert: convertCollection.string,
+      });
+      this.approveUserRealName = getValueByKey({
+        data: externalData,
+        key: fieldDataFlowCase.flowDebugUserRealName.name,
+        convert: convertCollection.string,
+      });
+    }
+
+    singleListApproverAction({
+      target: this,
+      handleData: {
+        workflowNodeId: getValueByKey({
+          data: externalData,
+          key: fieldDataFlowCase.nextApproveWorkflowNodeId.name,
+          defaultValue: '',
+        }),
+      },
+      successCallback: ({ target, remoteListData }) => {
+        if (
+          debugApproverMode ===
+            flowDebugApproverModeCollection.flowConfiguration &&
+          isArray(remoteListData) &&
+          !isEmptyArray(remoteListData) &&
+          remoteListData.length === 1
+        ) {
+          const firstData = remoteListData[0];
+
+          const userId = getValueByKey({
+            data: firstData,
+            key: fieldDataWorkflowNodeApprover.userId.name,
+            convert: convertCollection.string,
+          });
+
+          const userRealName = getValueByKey({
+            data: firstData,
+            key: fieldDataWorkflowNodeApprover.userRealName.name,
+            convert: convertCollection.string,
+          });
+
+          target.approveUserId = userId;
+          target.approveUserRealName = userRealName;
+        }
+
+        target.setState({
+          approverList: [...remoteListData],
+        });
+      },
+    });
+  };
+
+  reloadApproverList = () => {
+    this.loadApproverList();
+  };
+
   onGeneralDiscourseChange = (v, option) => {
     const { content } = option;
 
@@ -121,6 +220,10 @@ class BaseFlowCaseProcessHistoryPassModal extends BaseUpdateModal {
 
       this.setFormFieldsValue(data);
     }
+  };
+
+  onApproverChange = (v, option) => {
+    this.approveUserId = v;
   };
 
   buildTitleSubText = () => {
@@ -158,7 +261,13 @@ class BaseFlowCaseProcessHistoryPassModal extends BaseUpdateModal {
   };
 
   establishCardCollectionConfig = () => {
-    const { generalDiscourseList } = this.state;
+    const { externalData, generalDiscourseList, approverList } = this.state;
+
+    const debugApproverMode = getValueByKey({
+      data: externalData,
+      key: fieldDataFlowCase.debugApproverMode.name,
+      convert: convertCollection.number,
+    });
 
     return {
       list: [
@@ -170,6 +279,55 @@ class BaseFlowCaseProcessHistoryPassModal extends BaseUpdateModal {
           items: [
             {
               lg: 24,
+              type: cardConfig.contentItemType.onlyShowInput,
+              fieldData: {
+                label: '审批人',
+                name: approveUserName,
+                helper: '',
+              },
+              value: this.approveUserRealName,
+              hidden:
+                (debugApproverMode ===
+                  flowDebugApproverModeCollection.flowConfiguration &&
+                  approverList.length !== 1) ||
+                !checkHasAuthority(
+                  accessWayCollection.workflowNodeApprover.singleList
+                    .permission,
+                ),
+              require: true,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.select,
+              fieldData: {
+                label: '审批人',
+                name: approveUserName,
+                helper: '',
+              },
+              listData: approverList,
+              dataConvert: dataFormFieldApproverConvert,
+              onChange: this.onApproverChange,
+              addonAfter: buildButton({
+                text: '',
+                icon: iconBuilder.reload(),
+                handleClick: () => {
+                  this.reloadApproverList();
+                },
+              }),
+              hidden:
+                debugApproverMode ===
+                  flowDebugApproverModeCollection.debugUser ||
+                (debugApproverMode ===
+                  flowDebugApproverModeCollection.flowConfiguration &&
+                  approverList.length === 1) ||
+                !checkHasAuthority(
+                  accessWayCollection.workflowNodeApprover.singleList
+                    .permission,
+                ),
+              require: true,
+            },
+            {
+              lg: 24,
               type: cardConfig.contentItemType.select,
               fieldData: {
                 label: '快捷常用语',
@@ -177,7 +335,7 @@ class BaseFlowCaseProcessHistoryPassModal extends BaseUpdateModal {
                 helper: '',
               },
               listData: generalDiscourseList,
-              dataConvert: dataFormFieldConvert,
+              dataConvert: dataFormFieldGeneralDiscourseConvert,
               onChange: this.onGeneralDiscourseChange,
               addonAfter: buildButton({
                 text: '',

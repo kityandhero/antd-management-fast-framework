@@ -1,6 +1,14 @@
 {
   "list": [
     {
+      "folder": "SubsidiaryComplaintCategory/AddBasicInfoDrawer",
+      "model": "subsidiaryComplaintCategory",
+      "key": "subsidiaryComplaintCategoryId",
+      "visibleFlag": "4c976de054cb4e81ade85e3ec3766c66",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
       "folder": "Position/AddBasicInfoDrawer",
       "model": "position",
       "key": "positionId",

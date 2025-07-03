@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,17 +9,17 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  pageListLogData,
-  getData,
   addBasicInfoData,
-  updateBasicInfoData,
-  setEnableData,
-  setDisableData,
-  removeData,
-  refreshCacheData,
+  getData,
+  pageListData,
+  pageListLogData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeData,
+  setDisableData,
+  setEnableData,
+  singleListData,
+  updateBasicInfoData,
 } from '../../services/applicationVersion';
 
 export const applicationVersionTypeCollection = {

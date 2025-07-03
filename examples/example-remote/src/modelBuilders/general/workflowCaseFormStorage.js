@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,11 +9,11 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
   getData,
-  refreshCacheData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  singleListData,
 } from '../../services/workflowCaseFormStorage';
 
 export const workflowCaseFormStorageTypeCollection = {

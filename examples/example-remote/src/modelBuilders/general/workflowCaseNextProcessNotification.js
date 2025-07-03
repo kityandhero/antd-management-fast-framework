@@ -8,11 +8,11 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
   getData,
-  sendNotificationData,
+  pageListData,
   refreshCacheData,
+  sendNotificationData,
+  singleListData,
 } from '../../services/workflowCaseNextProcessNotification';
 
 export const workflowCaseNextProcessNotificationTypeCollection = {

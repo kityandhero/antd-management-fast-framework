@@ -8,11 +8,11 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
   getData,
+  pageListData,
+  removeAllData,
   removeData,
   removeMultiData,
-  removeAllData,
 } from '../../services/weChatMessageRecord';
 
 export const weChatMessageRecordTypeCollection = {

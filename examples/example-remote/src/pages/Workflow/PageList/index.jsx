@@ -9,6 +9,7 @@ import {
   handleItem,
   showSimpleErrorMessage,
   toNumber,
+  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -24,17 +25,18 @@ import { DataMultiPageView } from 'antd-management-fast-framework';
 import {
   accessWayCollection,
   flowStatusCollection,
+  simpleQRCode,
 } from '../../../customConfig';
 import {
   getBusinessModeName,
   getChannelName,
   getFlowEffectiveRangeName,
-  getFlowScopeName,
   getFlowStatusName,
   renderSearchBusinessModeSelect,
   renderSearchFlowScopeSelect,
   renderSearchFlowStatusSelect,
 } from '../../../customSpecialComponents';
+import { FlowCaseFormExampleDocumentDrawer } from '../../WorkflowFormDesign/FlowCaseFormExampleDocumentDrawer';
 import { AddOfficeAutomationArticleAuditDrawer } from '../AddOfficeAutomationArticleAuditDrawer';
 import { AddOfficeAutomationProcessApprovalDrawer } from '../AddOfficeAutomationProcessApprovalDrawer';
 import {
@@ -42,8 +44,13 @@ import {
   removeAction,
   setDisableAction,
   setEnableAction,
+  toggleAvailableOnMobileSwitchAction,
 } from '../Assist/action';
-import { getStatusBadge } from '../Assist/tools';
+import {
+  getSimpleApplicantConfig,
+  getSimpleAttentionConfig,
+  getStatusBadge,
+} from '../Assist/tools';
 import { fieldData } from '../Common/data';
 import { CreateDuplicateModal } from '../CreateDuplicateModal';
 import { UpdateChannelModal } from '../UpdateChannelModal';
@@ -62,11 +69,16 @@ class PageList extends MultiPage {
 
     this.state = {
       ...this.state,
+      tableScrollX: 1800,
       pageTitle: '流程列表',
       paramsKey: accessWayCollection.workflow.pageList.paramsKey,
       loadApiPath: 'workflow/pageList',
       dateRangeFieldName: '创建时间',
       currentRecord: null,
+      currentRecordShowApply: false,
+      currentRecordListApply: [],
+      currentRecordShowAttention: false,
+      currentRecordListAttention: [],
     };
   }
 
@@ -97,6 +109,38 @@ class PageList extends MultiPage {
     });
   };
 
+  handleItemAvailableOnMobileSwitch = ({ target, handleData, remoteData }) => {
+    const workflowId = getValueByKey({
+      data: handleData,
+      key: fieldData.workflowId.name,
+    });
+
+    handleItem({
+      target,
+      value: workflowId,
+      compareValueHandler: (o) => {
+        const { workflowId: v } = o;
+
+        return v;
+      },
+      handler: (d) => {
+        const o = d;
+
+        o[fieldData.availableOnMobileSwitch.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.availableOnMobileSwitch.name,
+        });
+
+        o[fieldData.availableOnMobileSwitchNote.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.availableOnMobileSwitchNote.name,
+        });
+
+        return d;
+      },
+    });
+  };
+
   handleMenuClick = ({ key, handleData }) => {
     switch (key) {
       case 'setChannel': {
@@ -104,13 +148,18 @@ class PageList extends MultiPage {
         break;
       }
 
-      case 'updateSort': {
-        this.showChangeSortModal(handleData);
+      case 'showCreateDuplicateModal': {
+        this.showCreateDuplicateModal(handleData);
         break;
       }
 
-      case 'showCreateDuplicateModal': {
-        this.showCreateDuplicateModal(handleData);
+      case 'showFlowCaseFormExampleDocumentDrawer': {
+        this.showFlowCaseFormExampleDocumentDrawer(handleData);
+        break;
+      }
+
+      case 'toggleAvailableOnMobileSwitch': {
+        this.toggleAvailableOnMobileSwitch(handleData);
         break;
       }
 
@@ -140,6 +189,24 @@ class PageList extends MultiPage {
         break;
       }
     }
+  };
+
+  /**
+   * 切换移动端是否可以发起审批
+   * @param {*} o 当前数据体
+   */
+  toggleAvailableOnMobileSwitch = (o) => {
+    toggleAvailableOnMobileSwitchAction({
+      target: this,
+      handleData: o,
+      successCallback: ({ target, handleData, remoteData }) => {
+        target.handleItemAvailableOnMobileSwitch({
+          target,
+          handleData,
+          remoteData,
+        });
+      },
+    });
   };
 
   setEnable = (item) => {
@@ -235,6 +302,24 @@ class PageList extends MultiPage {
     this.refreshDataWithReloadAnimalPrompt({});
   };
 
+  showFlowCaseFormExampleDocumentDrawer = (o) => {
+    const { showApply, listApply } = getSimpleApplicantConfig(o);
+    const { showAttention, listAttention } = getSimpleAttentionConfig(o);
+
+    this.setState(
+      {
+        currentRecord: o,
+        currentRecordShowApply: showApply,
+        currentRecordListApply: listApply,
+        currentRecordShowAttention: showAttention,
+        currentRecordListAttention: listAttention,
+      },
+      () => {
+        FlowCaseFormExampleDocumentDrawer.open();
+      },
+    );
+  };
+
   goToEdit = (item) => {
     const workflowId = getValueByKey({
       data: item,
@@ -314,6 +399,12 @@ class PageList extends MultiPage {
       convert: convertCollection.number,
     });
 
+    const availableOnMobileSwitch = getValueByKey({
+      data: record,
+      key: fieldData.availableOnMobileSwitch.name,
+      convert: convertCollection.number,
+    });
+
     return {
       size: 'small',
       text: '编辑',
@@ -342,6 +433,35 @@ class PageList extends MultiPage {
             accessWayCollection.workflow.createDuplicate.permission,
           ),
           text: '复制流程',
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          key: 'showFlowCaseFormExampleDocumentDrawer',
+          icon: iconBuilder.printer(),
+          hidden: !checkHasAuthority(
+            accessWayCollection.workflow.get.permission,
+          ),
+          text: '查看打印样例',
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          key: 'toggleAvailableOnMobileSwitch',
+          icon:
+            availableOnMobileSwitch === whetherNumber.yes
+              ? iconBuilder.pauseCircle()
+              : iconBuilder.enable(),
+
+          hidden: !checkHasAuthority(
+            accessWayCollection.workflow.toggleAvailableOnMobileSwitch
+              .permission,
+          ),
+          text: `${availableOnMobileSwitch === whetherNumber.yes ? '关闭' : '开放'}移动端发起审批`,
+          confirm: true,
+          title: `即将${availableOnMobileSwitch === whetherNumber.yes ? '关闭' : '开放'}移动端发起审批，确定吗？`,
         },
         {
           type: dropdownExpandItemType.divider,
@@ -411,23 +531,29 @@ class PageList extends MultiPage {
         });
       },
     },
+    // {
+    //   dataTarget: fieldData.scope,
+    //   width: 120,
+    //   showRichFacade: true,
+    //   emptyValue: '--',
+    //   facadeConfigBuilder: (value) => {
+    //     return {
+    //       color: buildRandomHexColor({
+    //         seed: toNumber(value) + 44,
+    //       }),
+    //     };
+    //   },
+    //   formatValue: (value) => {
+    //     return getFlowScopeName({
+    //       value: value,
+    //     });
+    //   },
+    // },
     {
-      dataTarget: fieldData.scope,
-      width: 120,
+      dataTarget: fieldData.effectiveRangeDescription,
+      width: 240,
       showRichFacade: true,
       emptyValue: '--',
-      facadeConfigBuilder: (value) => {
-        return {
-          color: buildRandomHexColor({
-            seed: toNumber(value) + 44,
-          }),
-        };
-      },
-      formatValue: (value) => {
-        return getFlowScopeName({
-          value: value,
-        });
-      },
     },
     {
       dataTarget: fieldData.effectiveRange,
@@ -444,6 +570,25 @@ class PageList extends MultiPage {
       formatValue: (value) => {
         return getFlowEffectiveRangeName({
           value: value,
+        });
+      },
+    },
+    {
+      dataTarget: fieldData.availableOnMobileSwitch,
+      width: 120,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfigBuilder: (value) => {
+        return {
+          color: buildRandomHexColor({
+            seed: toNumber(value) + 38,
+          }),
+        };
+      },
+      formatValue: (value, record) => {
+        return getValueByKey({
+          data: record,
+          key: fieldData.availableOnMobileSwitchNote.name,
         });
       },
     },
@@ -465,12 +610,12 @@ class PageList extends MultiPage {
         });
       },
     },
-    {
-      dataTarget: fieldData.creatorUserRealName,
-      width: 120,
-      showRichFacade: true,
-      emptyValue: '--',
-    },
+    // {
+    //   dataTarget: fieldData.creatorUserRealName,
+    //   width: 120,
+    //   showRichFacade: true,
+    //   emptyValue: '--',
+    // },
     {
       dataTarget: fieldData.status,
       width: 120,
@@ -501,7 +646,13 @@ class PageList extends MultiPage {
   ];
 
   renderPresetOther = () => {
-    const { currentRecord } = this.state;
+    const {
+      currentRecord,
+      currentRecordShowApply,
+      currentRecordListApply,
+      currentRecordShowAttention,
+      currentRecordListAttention,
+    } = this.state;
 
     return (
       <>
@@ -525,6 +676,20 @@ class PageList extends MultiPage {
           afterOK={() => {
             this.afterCreateDuplicateModalOk();
           }}
+        />
+
+        <FlowCaseFormExampleDocumentDrawer
+          maskClosable
+          canDesign={false}
+          values={[]}
+          showApply={currentRecordShowApply}
+          applyList={currentRecordListApply}
+          showAttention={currentRecordShowAttention}
+          attentionList={currentRecordListAttention}
+          approveList={[]}
+          qRCodeImage={simpleQRCode}
+          serialNumberContent={'1836370789809655808'}
+          externalData={currentRecord}
         />
       </>
     );

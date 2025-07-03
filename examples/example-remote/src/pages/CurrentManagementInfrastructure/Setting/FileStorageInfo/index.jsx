@@ -8,6 +8,9 @@ import {
 import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
+import { keyValueEditModeCollection } from '../../../../customConfig';
+import { modelTypeCollection } from '../../../../modelBuilders';
+import { buildInputItem } from '../../../../utils';
 import {
   toggleQiniuAudioSwitchAction,
   toggleQiniuFileSwitchAction,
@@ -16,6 +19,7 @@ import {
 } from '../../Assist/action';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
+import { UpdateKeyValueInfoModal } from '../../UpdateKeyValueInfoModal';
 
 @connect(({ currentManagementInfrastructure, schedulingControl }) => ({
   currentManagementInfrastructure,
@@ -29,8 +33,11 @@ class Index extends TabPageBase {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'currentManagementInfrastructure/get',
-      submitApiPath: 'currentManagementInfrastructure/updateFileStorageInfo',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
+      submitApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection
+          .updateFileStorageInfo,
       qiniuImageSwitch: false,
       qiniuVideoSwitch: false,
       qiniuAudioSwitch: false,
@@ -137,6 +144,25 @@ class Index extends TabPageBase {
     });
   };
 
+  showUpdateKeyValueInfoModal = ({
+    fieldData: targetFieldData,
+    editMode = keyValueEditModeCollection.string,
+  }) => {
+    this.setState(
+      {
+        targetFieldData,
+        keyValueEditMode: editMode,
+      },
+      () => {
+        UpdateKeyValueInfoModal.open();
+      },
+    );
+  };
+
+  afterUpdateKeyValueInfoModalOk = () => {
+    this.reloadData({});
+  };
+
   fillInitialValuesAfterLoad = ({
     // eslint-disable-next-line no-unused-vars
     metaData = null,
@@ -228,7 +254,7 @@ class Index extends TabPageBase {
   };
 
   establishCardCollectionConfig = () => {
-    const { metaData } = this.state;
+    const { firstLoadSuccess, metaData } = this.state;
 
     const localStorage = getValueByKey({
       data: metaData,
@@ -278,6 +304,22 @@ class Index extends TabPageBase {
       },
     });
 
+    const workflowStorage = getValueByKey({
+      data: metaData,
+      key: fieldData.workflowStorage.name,
+      formatBuilder: (v) => {
+        return `${generalStorage}${v}/`;
+      },
+    });
+
+    const workflowDebugStorage = getValueByKey({
+      data: metaData,
+      key: fieldData.workflowDebugStorage.name,
+      formatBuilder: (v) => {
+        return `${generalStorage}${v}/`;
+      },
+    });
+
     return {
       list: [
         {
@@ -292,42 +334,57 @@ class Index extends TabPageBase {
               {
                 buildType: cardConfig.extraBuildType.refresh,
               },
-              {
-                buildType: cardConfig.extraBuildType.save,
-              },
             ],
           },
           items: [
-            {
+            buildInputItem({
               lg: 24,
-              type: cardConfig.contentItemType.input,
+              firstLoadSuccess,
+              handleData: metaData,
               fieldData: fieldData.fileHost,
-              require: false,
-            },
-            {
+              editMode: keyValueEditModeCollection.string,
+              handleClick: this.showUpdateKeyValueInfoModal,
+            }),
+            buildInputItem({
               lg: 6,
-              type: cardConfig.contentItemType.inputNumber,
+              firstLoadSuccess,
+              handleData: metaData,
               fieldData: fieldData.imageUploadMaxSize,
-              require: true,
-            },
-            {
+              editMode: keyValueEditModeCollection.number,
+              handleClick: this.showUpdateKeyValueInfoModal,
+            }),
+            buildInputItem({
               lg: 6,
-              type: cardConfig.contentItemType.inputNumber,
+              firstLoadSuccess,
+              handleData: metaData,
               fieldData: fieldData.videoUploadMaxSize,
-              require: true,
-            },
-            {
+              editMode: keyValueEditModeCollection.number,
+              handleClick: this.showUpdateKeyValueInfoModal,
+            }),
+            buildInputItem({
               lg: 6,
-              type: cardConfig.contentItemType.inputNumber,
+              firstLoadSuccess,
+              handleData: metaData,
               fieldData: fieldData.audioUploadMaxSize,
-              require: true,
-            },
-            {
+              editMode: keyValueEditModeCollection.number,
+              handleClick: this.showUpdateKeyValueInfoModal,
+            }),
+            buildInputItem({
               lg: 6,
-              type: cardConfig.contentItemType.inputNumber,
+              firstLoadSuccess,
+              handleData: metaData,
               fieldData: fieldData.fileUploadMaxSize,
-              require: true,
-            },
+              editMode: keyValueEditModeCollection.number,
+              handleClick: this.showUpdateKeyValueInfoModal,
+            }),
+          ],
+        },
+        {
+          title: {
+            icon: iconBuilder.contacts(),
+            text: '本地存储信息',
+          },
+          items: [
             {
               lg: 12,
               type: cardConfig.contentItemType.onlyShowInput,
@@ -364,6 +421,18 @@ class Index extends TabPageBase {
               fieldData: fieldData.fileStorage,
               value: fileStorage,
             },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.onlyShowInput,
+              fieldData: fieldData.workflowStorage,
+              value: workflowStorage,
+            },
+            {
+              lg: 6,
+              type: cardConfig.contentItemType.onlyShowInput,
+              fieldData: fieldData.workflowDebugStorage,
+              value: workflowDebugStorage,
+            },
           ],
         },
         {
@@ -372,30 +441,38 @@ class Index extends TabPageBase {
             text: '七牛云配置与转存设置',
           },
           items: [
-            {
+            buildInputItem({
               lg: 24,
-              type: cardConfig.contentItemType.input,
+              firstLoadSuccess,
+              handleData: metaData,
               fieldData: fieldData.qiniu.accessKey,
-              require: false,
-            },
-            {
+              editMode: keyValueEditModeCollection.string,
+              handleClick: this.showUpdateKeyValueInfoModal,
+            }),
+            buildInputItem({
               lg: 24,
-              type: cardConfig.contentItemType.input,
+              firstLoadSuccess,
+              handleData: metaData,
               fieldData: fieldData.qiniu.secretKey,
-              require: false,
-            },
-            {
+              editMode: keyValueEditModeCollection.string,
+              handleClick: this.showUpdateKeyValueInfoModal,
+            }),
+            buildInputItem({
               lg: 24,
-              type: cardConfig.contentItemType.input,
+              firstLoadSuccess,
+              handleData: metaData,
               fieldData: fieldData.qiniu.bucket,
-              require: false,
-            },
-            {
+              editMode: keyValueEditModeCollection.string,
+              handleClick: this.showUpdateKeyValueInfoModal,
+            }),
+            buildInputItem({
               lg: 24,
-              type: cardConfig.contentItemType.input,
+              firstLoadSuccess,
+              handleData: metaData,
               fieldData: fieldData.qiniu.rootUrl,
-              require: false,
-            },
+              editMode: keyValueEditModeCollection.string,
+              handleClick: this.showUpdateKeyValueInfoModal,
+            }),
           ],
         },
         {
@@ -474,6 +551,25 @@ class Index extends TabPageBase {
         },
       ],
     };
+  };
+
+  renderPresetOther = () => {
+    const { keyValueEditMode, metaData, targetFieldData } = this.state;
+
+    return (
+      <>
+        <UpdateKeyValueInfoModal
+          externalData={{
+            currentData: metaData,
+            fieldData: targetFieldData,
+          }}
+          editMode={keyValueEditMode || keyValueEditModeCollection.string}
+          afterOK={() => {
+            this.afterUpdateKeyValueInfoModalOk();
+          }}
+        />
+      </>
+    );
   };
 }
 

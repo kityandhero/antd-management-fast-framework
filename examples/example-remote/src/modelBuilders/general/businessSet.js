@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,18 +9,18 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  addBasicInfoData,
+  getData,
   pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
+  removeData,
+  setDisableData,
+  setEnableData,
   singleListData,
   singleTreeListData,
-  getData,
-  addBasicInfoData,
   updateBasicInfoData,
   updateSortData,
-  setEnableData,
-  setDisableData,
-  removeData,
-  refreshCacheData,
-  pageListOperateLogData,
 } from '../../services/businessSet';
 
 export const businessSetTypeCollection = {

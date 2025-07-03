@@ -11,6 +11,26 @@ const fieldExtraData = {
     name: 'businessModeNote',
     helper: '',
   },
+  listQuestionUngrouped: {
+    label: '未分组题目集合',
+    name: 'listQuestionUngrouped',
+    helper: '',
+  },
+  listQuestionJudgment: {
+    label: '判断题目集合',
+    name: 'listQuestionJudgment',
+    helper: '',
+  },
+  listQuestionSingleSelect: {
+    label: '单选题目集合',
+    name: 'listQuestionSingleSelect',
+    helper: '',
+  },
+  listQuestionMultiSelect: {
+    label: '多选题目集合',
+    name: 'listQuestionMultiSelect',
+    helper: '',
+  },
 };
 
 export const fieldData = {

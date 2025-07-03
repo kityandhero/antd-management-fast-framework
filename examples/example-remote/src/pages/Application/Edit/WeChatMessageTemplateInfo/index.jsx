@@ -8,6 +8,7 @@ import {
   accessWayCollection,
   keyValueEditModeCollection,
 } from '../../../../customConfig';
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { buildInputItem } from '../../../../utils';
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
@@ -21,14 +22,14 @@ import { UpdateKeyValueInfoModal } from '../../UpdateKeyValueInfoModal';
 class WeChatMessageTemplateInfo extends TabPageBase {
   reloadHeaderOnSubmitSuccess = true;
 
-  componentAuthority = accessWayCollection.application.pageList.permission;
+  componentAuthority = accessWayCollection.application.getConfigure.permission;
 
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-      loadApiPath: 'application/getWeChatMessageTemplateConfig',
+      loadApiPath: modelTypeCollection.applicationTypeCollection.getConfigure,
       applicationId: null,
       targetFieldData: null,
       keyValueEditMode: keyValueEditModeCollection.string,

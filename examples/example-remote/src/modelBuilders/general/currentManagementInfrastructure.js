@@ -8,22 +8,26 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListDefaultImageData,
   getData,
+  getExecuteDebugInfoData,
+  pageListDefaultImageData,
+  refreshFrontEndApplicationConfigData,
+  startExecuteDebugData,
+  stopExecuteDebugData,
+  testDiskSpaceMonitoringAlarmEmailData,
+  testDiskSpaceMonitoringConfigData,
+  testDiskSpaceMonitoringDetectionEmailData,
+  testSecretKeyData,
+  toggleQiniuAudioSwitchData,
+  toggleQiniuFileSwitchData,
+  toggleQiniuImageSwitchData,
+  toggleQiniuVideoSwitchData,
   updateBasicInfoData,
   updateFileStorageInfoData,
-  updateSmsInfoData,
+  updateFlowDebugSubsidiaryIdData,
   updateFlowDebugUserIdData,
-  updateSecretKeyInfoData,
   updateKeyValueInfoData,
-  toggleQiniuImageSwitchData,
-  toggleQiniuAudioSwitchData,
-  toggleQiniuVideoSwitchData,
-  toggleQiniuFileSwitchData,
-  testDiskSpaceMonitoringConfigData,
-  testDiskSpaceMonitoringEmailData,
-  testSecretKeyData,
-  refreshFrontEndApplicationConfigData,
+  updateSecretKeyInfoData,
   uploadImageData,
 } from '../../services/currentManagementInfrastructure';
 
@@ -33,9 +37,10 @@ export const currentManagementInfrastructureTypeCollection = {
   updateBasicInfo: 'currentManagementInfrastructure/updateBasicInfo',
   updateFileStorageInfo:
     'currentManagementInfrastructure/updateFileStorageInfo',
-  updateSmsInfo: 'currentManagementInfrastructure/updateSmsInfo',
   updateFlowDebugUserId:
     'currentManagementInfrastructure/updateFlowDebugUserId',
+  updateFlowDebugSubsidiaryId:
+    'currentManagementInfrastructure/updateFlowDebugSubsidiaryId',
   updateSecretKeyInfo: 'currentManagementInfrastructure/updateSecretKeyInfo',
   updateKeyValueInfo: 'currentManagementInfrastructure/updateKeyValueInfo',
   toggleQiniuImageSwitch:
@@ -48,12 +53,17 @@ export const currentManagementInfrastructureTypeCollection = {
     'currentManagementInfrastructure/toggleQiniuFileSwitch',
   testDiskSpaceMonitoringConfig:
     'currentManagementInfrastructure/testDiskSpaceMonitoringConfig',
-  testDiskSpaceMonitoringEmail:
-    'currentManagementInfrastructure/testDiskSpaceMonitoringEmail',
+  testDiskSpaceMonitoringAlarmEmail:
+    'currentManagementInfrastructure/testDiskSpaceMonitoringAlarmEmail',
+  testDiskSpaceMonitoringDetectionEmail:
+    'currentManagementInfrastructure/testDiskSpaceMonitoringDetectionEmail',
   testSecretKey: 'currentManagementInfrastructure/testSecretKey',
   refreshFrontEndApplicationConfig:
     'currentManagementInfrastructure/refreshFrontEndApplicationConfig',
   uploadImage: 'currentManagementInfrastructure/uploadImage',
+  getExecuteDebugInfo: 'currentManagementInfrastructure/getExecuteDebugInfo',
+  startExecuteDebug: 'currentManagementInfrastructure/startExecuteDebug',
+  stopExecuteDebug: 'currentManagementInfrastructure/stopExecuteDebug',
 };
 
 export function buildModel() {
@@ -169,7 +179,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *updateSmsInfo(
+      *updateFlowDebugUserId(
         {
           payload,
           alias,
@@ -178,7 +188,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(updateSmsInfoData, payload);
+        const response = yield call(updateFlowDebugUserIdData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -195,7 +205,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *updateFlowDebugUserId(
+      *updateFlowDebugSubsidiaryId(
         {
           payload,
           alias,
@@ -204,7 +214,7 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(updateFlowDebugUserIdData, payload);
+        const response = yield call(updateFlowDebugSubsidiaryIdData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -403,7 +413,7 @@ export function buildModel() {
 
         return dataAdjust;
       },
-      *testDiskSpaceMonitoringEmail(
+      *testDiskSpaceMonitoringAlarmEmail(
         {
           payload,
           alias,
@@ -412,7 +422,39 @@ export function buildModel() {
         },
         { call, put },
       ) {
-        const response = yield call(testDiskSpaceMonitoringEmailData, payload);
+        const response = yield call(
+          testDiskSpaceMonitoringAlarmEmailData,
+          payload,
+        );
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *testDiskSpaceMonitoringDetectionEmail(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(
+          testDiskSpaceMonitoringDetectionEmailData,
+          payload,
+        );
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -494,6 +536,84 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(uploadImageData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *getExecuteDebugInfo(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(getExecuteDebugInfoData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *startExecuteDebug(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(startExecuteDebugData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *stopExecuteDebug(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(stopExecuteDebugData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

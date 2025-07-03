@@ -36,6 +36,26 @@ export async function getConfigureData(parameters) {
   });
 }
 
+export const getWechatApplicationAccessTokenDataApiAddress =
+  '/application/getWechatApplicationAccessToken';
+
+export async function getWechatApplicationAccessTokenData(parameters) {
+  return request({
+    api: getWechatApplicationAccessTokenDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const getUnlimitedWechatMicroApplicationQrCodeDataApiAddress =
+  '/application/getUnlimitedWechatMicroApplicationQrCode';
+
+export async function getUnlimitedWechatMicroApplicationQrCodeData(parameters) {
+  return request({
+    api: getUnlimitedWechatMicroApplicationQrCodeDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const updateBasicInfoDataApiAddress = '/application/updateBasicInfo';
 
 export async function updateBasicInfoData(parameters) {
@@ -81,6 +101,16 @@ export const updateMessageChannelApplicationInfoDataApiAddress =
 export async function updateMessageChannelApplicationInfoData(parameters) {
   return request({
     api: updateMessageChannelApplicationInfoDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const toggleCustomerAutomaticRegistrationDataApiAddress =
+  '/application/toggleCustomerAutomaticRegistration';
+
+export async function toggleCustomerAutomaticRegistrationData(parameters) {
+  return request({
+    api: toggleCustomerAutomaticRegistrationDataApiAddress,
     params: parameters,
   });
 }

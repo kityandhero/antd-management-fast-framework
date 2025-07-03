@@ -62,7 +62,7 @@ class PageListDrawer extends MultiPageSelectDrawer {
         {
           lg: 8,
           type: searchCardConfig.contentItemType.input,
-          fieldData: fieldData.nickname,
+          fieldData: fieldData.shortName,
         },
         {
           lg: 8,

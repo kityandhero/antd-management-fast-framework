@@ -8,9 +8,9 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   changeData,
+  getData,
+  pageListData,
   refreshAllStatusData,
 } from '../../services/hostService';
 

@@ -8,7 +8,11 @@ import {
 import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { keyValueEditModeCollection } from '../../../../customConfig';
+import {
+  accessWayCollection,
+  keyValueEditModeCollection,
+} from '../../../../customConfig';
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { buildInputItem, buildKeyTag } from '../../../../utils';
 import { updateKeyValueAction } from '../../Assist/action';
 import { fieldData } from '../../Common/data';
@@ -20,12 +24,14 @@ import { UpdateKeyValueInfoModal } from '../../UpdateKeyValueInfoModal';
   schedulingControl,
 }))
 class CheckInInfo extends TabPageBase {
+  componentAuthority = accessWayCollection.application.getConfigure.permission;
+
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-      loadApiPath: 'application/getCheckInConfig',
+      loadApiPath: modelTypeCollection.applicationTypeCollection.getConfigure,
       applicationId: null,
       targetFieldData: null,
       keyValueEditMode: keyValueEditModeCollection.string,

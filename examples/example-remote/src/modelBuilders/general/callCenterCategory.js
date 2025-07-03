@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,19 +9,19 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  singleTreeListData,
-  getData,
   addBasicInfoData,
-  updateBasicInfoData,
-  updateSortData,
-  setEnableData,
-  setDisableData,
+  getData,
+  pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
   removeData,
   removeSingleTreeListCacheData,
-  refreshCacheData,
-  pageListOperateLogData,
+  setDisableData,
+  setEnableData,
+  singleListData,
+  singleTreeListData,
+  updateBasicInfoData,
+  updateSortData,
 } from '../../services/callCenterCategory';
 
 export const callCenterCategoryTypeCollection = {

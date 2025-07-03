@@ -9,6 +9,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../../customConfig';
 import { renderFormApplicationCertificateTypeSelect } from '../../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
@@ -20,15 +21,17 @@ import { TabPageBase } from '../../TabPageBase';
 class WeChatPayCertificateInfo extends TabPageBase {
   reloadHeaderOnSubmitSuccess = true;
 
-  componentAuthority = accessWayCollection.application.pageList.permission;
+  componentAuthority = accessWayCollection.application.getConfigure.permission;
 
   constructor(properties) {
     super(properties);
 
     this.state = {
       ...this.state,
-      loadApiPath: 'application/get',
-      submitApiPath: 'application/updateWeChatPayCertificateInfo',
+      loadApiPath: modelTypeCollection.applicationTypeCollection.get,
+      submitApiPath:
+        modelTypeCollection.applicationTypeCollection
+          .updateWeChatPayCertificateInfo,
       applicationId: null,
       logo: '',
     };

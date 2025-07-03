@@ -8,12 +8,12 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
+  createTestExceptionData,
   getData,
+  pageListData,
+  removeAllData,
   removeData,
   removeMultiData,
-  removeAllData,
-  createTestExceptionData,
 } from '../../services/errorLog';
 
 export const errorLogTypeCollection = {

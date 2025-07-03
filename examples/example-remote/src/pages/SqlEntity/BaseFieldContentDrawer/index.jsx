@@ -1,4 +1,4 @@
-import { convertCollection, getValueByKey } from 'easy-soft-utility';
+import { getValueByKey } from 'easy-soft-utility';
 
 import { copyToClipboard, extraBuildType } from 'antd-management-fast-common';
 import {
@@ -48,14 +48,7 @@ class BaseFieldContentDrawer extends BaseVerticalFlexDrawer {
           text: '复制内容',
           disabled: this.checkInProgress(),
           handleClick: () => {
-            const { metaData } = that.state;
-
-            const fieldContent = getValueByKey({
-              data: metaData,
-              key: fieldData.fieldContent.name,
-              convert: convertCollection.string,
-              defaultValue: '',
-            });
+            const fieldContent = that.getFieldContent();
 
             copyToClipboard(fieldContent, false);
           },

@@ -30,7 +30,7 @@ class PageList extends MultiPage {
 
     this.state = {
       ...this.state,
-      pageTitle: '操作日志列表',
+      pageTitle: '用户登录日志列表',
       paramsKey: accessWayCollection.userLoginLog.pageList.paramsKey,
       loadApiPath: 'userLoginLog/pageList',
       dateRangeFieldName: '创建时间',

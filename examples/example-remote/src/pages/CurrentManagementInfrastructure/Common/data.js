@@ -25,17 +25,17 @@ export const fieldDataDefaultImage = {
 
 export const fieldDataHardDiskPartition = {
   freeSpace: {
-    label: '空余大小[GB]',
+    label: '空余大小【GB】',
     name: 'freeSpace',
     helper: '',
   },
   useSpace: {
-    label: '使用空间[GB]',
+    label: '已用空间【GB】',
     name: 'useSpace',
     helper: '',
   },
   totalSpace: {
-    label: '使用空间[GB]',
+    label: '总共空间【GB】',
     name: 'totalSpace',
     helper: '',
   },
@@ -55,6 +55,16 @@ const fieldExtraData = {
   listHardDiskPartition: {
     label: '磁盘信息',
     name: 'listHardDiskPartition',
+    helper: '',
+  },
+  executeCounter: {
+    label: '执行调试计数器',
+    name: 'executeCounter',
+    helper: '',
+  },
+  executeQueueCount: {
+    label: '执行调试队列总数',
+    name: 'executeQueueCount',
     helper: '',
   },
 };
@@ -97,34 +107,44 @@ export const fieldData = {
     helper: '本地文件存储域名, 仅使用本地存储时将附加到文件地址之前',
   },
   localStorage: {
-    label: '本地文件主仓',
+    label: '本地存储主仓',
     name: 'localStorage',
-    helper: '本地文件主仓, 用于组织部署文件夹映射, 不应构建在Url中',
+    helper: '本地存储主仓, 用于组织部署存储文件夹映射, 不应构建在Url中',
   },
   generalStorage: {
-    label: '本地通用文件主仓',
+    label: '本地通用存储主仓',
     name: 'generalStorage',
-    helper: '本地通用文件主仓',
+    helper: '本地通用存储主仓',
   },
   imageStorage: {
-    label: '本地通用文件图片仓',
+    label: '本地通用图片仓',
     name: 'imageStorage',
-    helper: '本地通用文件图片仓',
+    helper: '本地通用图片仓',
   },
   videoStorage: {
-    label: '本地通用文件视频仓',
+    label: '本地通用视频仓',
     name: 'videoStorage',
-    helper: '本地通用文件视频仓',
+    helper: '本地通用视频仓',
   },
   audioStorage: {
-    label: '本地通用文件音频仓',
+    label: '本地通用音频仓',
     name: 'audioStorage',
-    helper: '本地通用文件音频仓',
+    helper: '本地通用音频仓',
   },
   fileStorage: {
-    label: '本地通用文件文件仓',
+    label: '本地通用文件仓',
     name: 'fileStorage',
-    helper: '本地通用文件文件仓',
+    helper: '本地通用文件仓',
+  },
+  workflowStorage: {
+    label: '本地工作流仓',
+    name: 'workflowStorage',
+    helper: '本地工作流仓',
+  },
+  workflowDebugStorage: {
+    label: '本地工作流调试仓',
+    name: 'workflowDebugStorage',
+    helper: '本地工作流调试仓',
   },
   imageUploadMaxSize: {
     label: '图片文件上传限额 (MB)',
@@ -206,6 +226,11 @@ export const fieldData = {
     name: 'flowDebugUserId',
     helper: '',
   },
+  flowDebugSubsidiaryId: {
+    label: '用于流程调试的企业标识',
+    name: 'flowDebugSubsidiaryId',
+    helper: '',
+  },
   flowDebugApproverMode: {
     label: '用于流程调试的审批人模式',
     name: 'flowDebugApproverMode',
@@ -219,6 +244,16 @@ export const fieldData = {
   flowDebugUserRealName: {
     label: '用于流程调试的用户姓名',
     name: 'flowDebugUserRealName',
+    helper: '',
+  },
+  flowDebugSubsidiaryShortName: {
+    label: '用于流程调试的企业简称',
+    name: 'flowDebugSubsidiaryShortName',
+    helper: '',
+  },
+  flowDebugSubsidiaryFullName: {
+    label: '用于流程调试的企业全称',
+    name: 'flowDebugSubsidiaryFullName',
     helper: '',
   },
   flowApproveNotificationSmsSearchStartTime: {
@@ -339,72 +374,125 @@ export const fieldData = {
   diskSpaceMonitoringDriveLetter: {
     label: '磁盘空间监控盘符',
     name: 'diskSpaceMonitoringDriveLetter',
-    helper: '多盘符请用 ”,“ 符号分隔, 例如”E,F“.',
+    helper: '多盘符请用 ”,“ 符号分隔, 例如”E,F“, 注意使用英文逗号',
   },
-  diskSpaceMonitoringThreshold: {
-    label: '磁盘空间报警阈值[GB]',
-    name: 'diskSpaceMonitoringThreshold',
-    helper: '',
+  diskSpaceMonitoringAlarmThreshold: {
+    label: '磁盘空间预警阈值[GB]',
+    name: 'diskSpaceMonitoringAlarmThreshold',
+    helper: '键盘可用空间小于该阈值时发送预警信息',
   },
-  diskSpaceMonitoringSmsNotificationTemplate: {
-    label: '磁盘空间报警短信消息模板',
-    name: 'diskSpaceMonitoringSmsNotificationTemplate',
-    helper: '',
+  diskSpaceMonitoringAlarmSmsNotificationTemplate: {
+    label: '磁盘空间预警短信消息模板',
+    name: 'diskSpaceMonitoringAlarmSmsNotificationTemplate',
+    helper:
+      '消息模板示例: “磁盘可用空间紧张, {0}”, 占位符将替换为具体的磁盘信息, 若最终短信字数过多, 可能分为多条发送',
   },
-  diskSpaceMonitoringPhone: {
-    label: '磁盘空间报接收短信手机号码',
-    name: 'diskSpaceMonitoringPhone',
-    helper: '',
+  diskSpaceMonitoringAlarmPhone: {
+    label: '磁盘空间预警收短信手机号码',
+    name: 'diskSpaceMonitoringAlarmPhone',
+    helper: '配置接收预警信息的人员手机号码',
   },
-  diskSpaceMonitoringEmailNotificationTemplate: {
-    label: '磁盘空间报警邮件消息模板',
-    name: 'diskSpaceMonitoringEmailNotificationTemplate',
-    helper: '',
+  diskSpaceMonitoringAlarmEmailNotificationTemplate: {
+    label: '磁盘空间预警邮件消息模板',
+    name: 'diskSpaceMonitoringAlarmEmailNotificationTemplate',
+    helper:
+      '消息模板示例: “磁盘可用空间紧张, {0}”, 占位符将替换为具体的磁盘信息',
   },
-  diskSpaceMonitoringFromEmailName: {
-    label: '磁盘空间报警发送源邮箱邮件名',
-    name: 'diskSpaceMonitoringFromEmailName',
-    helper: '',
+  diskSpaceMonitoringAlarmFromEmailName: {
+    label: '磁盘空间预警发送源邮箱邮件名',
+    name: 'diskSpaceMonitoringAlarmFromEmailName',
+    helper: '要发送的邮件的名称',
   },
-  diskSpaceMonitoringFromEmailAddress: {
-    label: '磁盘空间报警发送源邮箱地址',
-    name: 'diskSpaceMonitoringFromEmailAddress',
-    helper: '',
+  diskSpaceMonitoringAlarmFromEmailAddress: {
+    label: '磁盘空间预警发送源邮箱地址',
+    name: 'diskSpaceMonitoringAlarmFromEmailAddress',
+    helper: '发送人的邮箱地址',
   },
-  diskSpaceMonitoringToEmailName: {
-    label: '磁盘空间报警发送给的邮箱邮件名',
-    name: 'diskSpaceMonitoringToEmailName',
-    helper: '',
+  diskSpaceMonitoringAlarmToEmailName: {
+    label: '磁盘空间预警发送给的邮箱邮件名',
+    name: 'diskSpaceMonitoringAlarmToEmailName',
+    helper: '接收人接收到的邮件的名称',
   },
-  diskSpaceMonitoringToEmailAddress: {
-    label: '磁盘空间报警发送给的邮箱地址',
-    name: 'diskSpaceMonitoringToEmailAddress',
-    helper: '',
+  diskSpaceMonitoringAlarmToEmailAddress: {
+    label: '磁盘空间预警发送给的邮箱地址',
+    name: 'diskSpaceMonitoringAlarmToEmailAddress',
+    helper: '接收邮件的邮箱地址',
   },
-  diskSpaceMonitoringEmailSmtpServerHost: {
-    label: '磁盘空间报警邮箱Smtp域名',
-    name: 'diskSpaceMonitoringEmailSmtpServerHost',
-    helper: '',
+  diskSpaceMonitoringAlarmEmailSmtpServerHost: {
+    label: '磁盘空间预警邮箱Smtp域名',
+    name: 'diskSpaceMonitoringAlarmEmailSmtpServerHost',
+    helper: '例如若使用smtp.qq.com, 使用SSL, 端口号465, 其他邮箱请查阅资料',
   },
-  diskSpaceMonitoringEmailSmtpServerPort: {
-    label: '磁盘空间报警邮箱Smtp端口',
-    name: 'diskSpaceMonitoringEmailSmtpServerPort',
-    helper: '',
+  diskSpaceMonitoringAlarmEmailSmtpServerPort: {
+    label: '磁盘空间预警邮箱Smtp端口',
+    name: 'diskSpaceMonitoringAlarmEmailSmtpServerPort',
+    helper: '例如若使用smtp.qq.com, 使用SSL, 端口号465, 其他邮箱请查阅资料',
   },
-  diskSpaceMonitoringEmailSmtpServerUseSsl: {
-    label: '磁盘空间报警邮箱Smtp是否使用SSL',
-    name: 'diskSpaceMonitoringEmailSmtpServerUseSsl',
-    helper: '',
+  diskSpaceMonitoringAlarmEmailSmtpServerUseSsl: {
+    label: '磁盘空间预警邮箱Smtp是否使用SSL',
+    name: 'diskSpaceMonitoringAlarmEmailSmtpServerUseSsl',
+    helper: '例如若使用smtp.qq.com, 使用SSL, 端口号465, 其他邮箱请查阅资料',
   },
-  diskSpaceMonitoringEmailSmtpServerAccount: {
-    label: '磁盘空间报警邮箱Smtp账户',
-    name: 'diskSpaceMonitoringEmailSmtpServerAccount',
-    helper: '',
+  diskSpaceMonitoringAlarmEmailSmtpServerAccount: {
+    label: '磁盘空间预警邮箱Smtp账户',
+    name: 'diskSpaceMonitoringAlarmEmailSmtpServerAccount',
+    helper: '发送邮件使用的邮箱账户',
   },
-  diskSpaceMonitoringEmailSmtpServerPassword: {
-    label: '磁盘空间报警邮箱Smtp密码',
-    name: 'diskSpaceMonitoringEmailSmtpServerPassword',
-    helper: '',
+  diskSpaceMonitoringAlarmEmailSmtpServerPassword: {
+    label: '磁盘空间预警邮箱Smtp密码',
+    name: 'diskSpaceMonitoringAlarmEmailSmtpServerPassword',
+    helper: '一般为授权码,例如QQ邮箱是设置里开启服务的时候给的授权码',
+  },
+  diskSpaceMonitoringDetectionEmailNotificationTemplate: {
+    label: '磁盘空间检测邮件消息模板',
+    name: 'diskSpaceMonitoringDetectionEmailNotificationTemplate',
+    helper:
+      '消息模板示例: “磁盘可用空间信息, {0}”, 占位符将替换为具体的磁盘信息',
+  },
+  diskSpaceMonitoringDetectionFromEmailName: {
+    label: '磁盘空间检测发送源邮箱邮件名',
+    name: 'diskSpaceMonitoringDetectionFromEmailName',
+    helper: '要发送的邮件的名称',
+  },
+  diskSpaceMonitoringDetectionFromEmailAddress: {
+    label: '磁盘空间检测发送源邮箱地址',
+    name: 'diskSpaceMonitoringDetectionFromEmailAddress',
+    helper: '发送人的邮箱地址',
+  },
+  diskSpaceMonitoringDetectionToEmailName: {
+    label: '磁盘空间检测发送给的邮箱邮件名',
+    name: 'diskSpaceMonitoringDetectionToEmailName',
+    helper: '接收人接收到的邮件的名称',
+  },
+  diskSpaceMonitoringDetectionToEmailAddress: {
+    label: '磁盘空间检测发送给的邮箱地址',
+    name: 'diskSpaceMonitoringDetectionToEmailAddress',
+    helper: '接收邮件的邮箱地址',
+  },
+  diskSpaceMonitoringDetectionEmailSmtpServerHost: {
+    label: '磁盘空间检测邮箱Smtp域名',
+    name: 'diskSpaceMonitoringDetectionEmailSmtpServerHost',
+    helper: '例如若使用smtp.qq.com, 使用SSL, 端口号465, 其他邮箱请查阅资料',
+  },
+  diskSpaceMonitoringDetectionEmailSmtpServerPort: {
+    label: '磁盘空间检测邮箱Smtp端口',
+    name: 'diskSpaceMonitoringDetectionEmailSmtpServerPort',
+    helper: '例如若使用smtp.qq.com, 使用SSL, 端口号465, 其他邮箱请查阅资料',
+  },
+  diskSpaceMonitoringDetectionEmailSmtpServerUseSsl: {
+    label: '磁盘空间检测邮箱Smtp是否使用SSL',
+    name: 'diskSpaceMonitoringDetectionEmailSmtpServerUseSsl',
+    helper: '例如若使用smtp.qq.com, 使用SSL, 端口号465, 其他邮箱请查阅资料',
+  },
+  diskSpaceMonitoringDetectionEmailSmtpServerAccount: {
+    label: '磁盘空间检测邮箱Smtp账户',
+    name: 'diskSpaceMonitoringDetectionEmailSmtpServerAccount',
+    helper: '发送邮件使用的邮箱账户',
+  },
+  diskSpaceMonitoringDetectionEmailSmtpServerPassword: {
+    label: '磁盘空间检测邮箱Smtp密码',
+    name: 'diskSpaceMonitoringDetectionEmailSmtpServerPassword',
+    helper: '一般为授权码,例如QQ邮箱是设置里开启服务的时候给的授权码',
   },
   scoreAlias: {
     label: '积分别名',
@@ -481,19 +569,49 @@ export const fieldData = {
   },
   sms: {
     label: '短信',
-    shortMessagingServiceKey: {
-      label: '短信平台Key',
-      name: 'shortMessagingServiceKey',
+    shortMessagingServiceEffective: {
+      label: '生效的短信服务供应商',
+      name: 'shortMessagingServiceEffective',
       helper: '',
     },
-    shortMessagingServiceSignature: {
-      label: '短信签名',
-      name: 'shortMessagingServiceSignature',
+    shortMessagingServiceEffectiveNote: {
+      label: '生效的短信服务供应商',
+      name: 'shortMessagingServiceEffectiveNote',
       helper: '',
     },
-    shortMessagingServiceVerificationCodeTemplate: {
-      label: '验证码短信模板',
-      name: 'shortMessagingServiceVerificationCodeTemplate',
+    shortMessagingServiceEffectiveTag: {
+      label: '生效的短信服务供应商',
+      name: 'shortMessagingServiceEffectiveTag',
+      helper: '',
+    },
+    shortMessagingServiceYunPianKey: {
+      label: '云片短信平台Key',
+      name: 'shortMessagingServiceYunPianKey',
+      helper: '',
+    },
+    shortMessagingServiceYunPianSignature: {
+      label: '云片短信签名',
+      name: 'shortMessagingServiceYunPianSignature',
+      helper: '',
+    },
+    shortMessagingServiceAliYunSignature: {
+      label: '阿里云短信签名',
+      name: 'shortMessagingServiceAliYunSignature',
+      helper: '',
+    },
+    shortMessagingServiceAliYunAccessKeyId: {
+      label: '阿里云短信平台KeyId',
+      name: 'shortMessagingServiceAliYunAccessKeyId',
+      helper: '',
+    },
+    shortMessagingServiceAliYunAccessKeySecret: {
+      label: '阿里云短信平台KeySecret',
+      name: 'shortMessagingServiceAliYunAccessKeySecret',
+      helper: '',
+    },
+    shortMessagingServiceAliYunEndpoint: {
+      label: '阿里云短信平台Endpoint',
+      name: 'shortMessagingServiceAliYunEndpoint',
       helper: '',
     },
   },

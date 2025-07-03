@@ -122,7 +122,7 @@
     {
       "apis": [
         {
-          "title": "地区列表",
+          "title": "分页列表",
           "api": "/administrativeDivision/pageList",
           "effect": "pageList",
           "service": "pageListData",
@@ -220,14 +220,14 @@
     {
       "apis": [
         {
-          "title": "应用列表",
+          "title": "分页列表",
           "api": "/application/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
-          "title": "已开通应用单列表",
+          "title": "已开通应用单页列表",
           "api": "/application/singleList",
           "effect": "singleList",
           "service": "singleListData",
@@ -245,6 +245,20 @@
           "api": "/application/getConfigure",
           "effect": "getConfigure",
           "service": "getConfigureData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取微信小程序AccessToken",
+          "api": "/application/getWechatApplicationAccessToken",
+          "effect": "getWechatApplicationAccessToken",
+          "service": "getWechatApplicationAccessTokenData",
+          "type": "singleData"
+        },
+        {
+          "title": "获取不限制的小程序码",
+          "api": "/application/getUnlimitedWechatMicroApplicationQrCode",
+          "effect": "getUnlimitedWechatMicroApplicationQrCode",
+          "service": "getUnlimitedWechatMicroApplicationQrCodeData",
           "type": "singleData"
         },
         {
@@ -280,6 +294,13 @@
           "api": "/application/updateMessageChannelApplicationInfo",
           "effect": "updateMessageChannelApplicationInfo",
           "service": "updateMessageChannelApplicationInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换顾客是否自动注册",
+          "api": "/application/toggleCustomerAutomaticRegistration",
+          "effect": "toggleCustomerAutomaticRegistration",
+          "service": "toggleCustomerAutomaticRegistrationData",
           "type": "singleData"
         },
         {
@@ -367,42 +388,42 @@
           "type": "singleData"
         },
         {
-          "title": "上传证书文件",
+          "title": "上传证书",
           "api": "/application/uploadCertificate",
           "effect": "uploadCertificate",
           "service": "uploadCertificateData",
           "type": "singleData"
         },
         {
-          "title": "获取自定义数据",
+          "title": "获取全局自定义数据",
           "api": "/application/getCustomGlobalData",
           "effect": "getCustomGlobalData",
           "service": "getCustomGlobalDataData",
           "type": "singleData"
         },
         {
-          "title": "获取自定义数据项",
+          "title": "获取全局自定义数据项",
           "api": "/application/getCustomGlobalDataItem",
           "effect": "getCustomGlobalDataItem",
           "service": "getCustomGlobalDataItemData",
           "type": "singleData"
         },
         {
-          "title": "增加自定义数据项",
+          "title": "增加全局自定义数据项",
           "api": "/application/addCustomGlobalDataItem",
           "effect": "addCustomGlobalDataItem",
           "service": "addCustomGlobalDataItemData",
           "type": "singleData"
         },
         {
-          "title": "更新自定义数据项",
+          "title": "更新全局自定义数据项",
           "api": "/application/updateCustomGlobalDataItem",
           "effect": "updateCustomGlobalDataItem",
           "service": "updateCustomGlobalDataItemData",
           "type": "singleData"
         },
         {
-          "title": "移除自定义数据项",
+          "title": "移除全局自定义数据项",
           "api": "/application/removeCustomGlobalDataItem",
           "effect": "removeCustomGlobalDataItem",
           "service": "removeCustomGlobalDataItemData",
@@ -419,6 +440,55 @@
       "cover": true,
       "title": "平台应用",
       "name": "application"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/applicationCustomerFeedback/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/applicationCustomerFeedback/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "回复信息",
+          "api": "/applicationCustomerFeedback/repay",
+          "effect": "repay",
+          "service": "repayData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除信息",
+          "api": "/applicationCustomerFeedback/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/applicationCustomerFeedback/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/applicationCustomerFeedback/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "应用顾客留言信息管理",
+      "name": "applicationCustomerFeedback"
     },
     {
       "apis": [
@@ -608,6 +678,55 @@
       "cover": true,
       "title": "平台应用源",
       "name": "applicationSource"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/applicationUserFeedback/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/applicationUserFeedback/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "回复信息",
+          "api": "/applicationUserFeedback/repay",
+          "effect": "repay",
+          "service": "repayData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除信息",
+          "api": "/applicationUserFeedback/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/applicationUserFeedback/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/applicationUserFeedback/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "应用用户留言信息管理",
+      "name": "applicationUserFeedback"
     },
     {
       "apis": [
@@ -1228,17 +1347,17 @@
           "type": "singleData"
         },
         {
-          "title": "设置短信发动信息",
-          "api": "/currentManagementInfrastructure/updateSmsInfo",
-          "effect": "updateSmsInfo",
-          "service": "updateSmsInfoData",
-          "type": "singleData"
-        },
-        {
           "title": "设置流程调试用户标识",
           "api": "/currentManagementInfrastructure/updateFlowDebugUserId",
           "effect": "updateFlowDebugUserId",
           "service": "updateFlowDebugUserIdData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置流程调试企业标识",
+          "api": "/currentManagementInfrastructure/updateFlowDebugSubsidiaryId",
+          "effect": "updateFlowDebugSubsidiaryId",
+          "service": "updateFlowDebugSubsidiaryIdData",
           "type": "singleData"
         },
         {
@@ -1291,10 +1410,17 @@
           "type": "singleData"
         },
         {
-          "title": "测试磁盘监控配置",
-          "api": "/currentManagementInfrastructure/testDiskSpaceMonitoringEmail",
-          "effect": "testDiskSpaceMonitoringEmail",
-          "service": "testDiskSpaceMonitoringEmailData",
+          "title": "测试磁盘监控报警邮件发送",
+          "api": "/currentManagementInfrastructure/testDiskSpaceMonitoringAlarmEmail",
+          "effect": "testDiskSpaceMonitoringAlarmEmail",
+          "service": "testDiskSpaceMonitoringAlarmEmailData",
+          "type": "singleData"
+        },
+        {
+          "title": "测试磁盘监控检测邮件发送",
+          "api": "/currentManagementInfrastructure/testDiskSpaceMonitoringDetectionEmail",
+          "effect": "testDiskSpaceMonitoringDetectionEmail",
+          "service": "testDiskSpaceMonitoringDetectionEmailData",
           "type": "singleData"
         },
         {
@@ -1317,11 +1443,179 @@
           "effect": "uploadImage",
           "service": "uploadImageData",
           "type": "singleData"
+        },
+        {
+          "title": "获取执行调试信息",
+          "api": "/currentManagementInfrastructure/getExecuteDebugInfo",
+          "effect": "getExecuteDebugInfo",
+          "service": "getExecuteDebugInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "开始执行调试",
+          "api": "/currentManagementInfrastructure/startExecuteDebug",
+          "effect": "startExecuteDebug",
+          "service": "startExecuteDebugData",
+          "type": "singleData"
+        },
+        {
+          "title": "停止执行调试",
+          "api": "/currentManagementInfrastructure/stopExecuteDebug",
+          "effect": "stopExecuteDebug",
+          "service": "stopExecuteDebugData",
+          "type": "singleData"
         }
       ],
       "cover": true,
       "title": "当前系统基础配置",
       "name": "currentManagementInfrastructure"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/customer/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/customer/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为启用",
+          "api": "/customer/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换手机号认证状态",
+          "api": "/customer/togglePhoneVerify",
+          "effect": "togglePhoneVerify",
+          "service": "togglePhoneVerifyData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为禁用",
+          "api": "/customer/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/customer/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/customer/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        },
+        {
+          "title": "",
+          "api": "/customer/uploadImage",
+          "effect": "uploadImage",
+          "service": "uploadImageData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "顾客信息",
+      "name": "customer"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/customerLoginLog/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "单页列表",
+          "api": "/customerLoginLog/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/customerLoginLog/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除",
+          "api": "/customerLoginLog/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/customerLoginLog/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/customerLoginLog/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "顾客登录日志管理",
+      "name": "customerLoginLog"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/customerWechatApplicationInfo/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/customerWechatApplicationInfo/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除",
+          "api": "/customerWechatApplicationInfo/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/customerWechatApplicationInfo/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        }
+      ],
+      "cover": true,
+      "title": "顾客微信信息",
+      "name": "customerWechatApplicationInfo"
     },
     {
       "apis": [
@@ -3125,6 +3419,13 @@
           "type": "singleData"
         },
         {
+          "title": "获取构建的试卷",
+          "api": "/questionnaire/getExaminationPaper",
+          "effect": "getExaminationPaper",
+          "service": "getExaminationPaperData",
+          "type": "singleData"
+        },
+        {
           "title": "新建",
           "api": "/questionnaire/addBasicInfo",
           "effect": "addBasicInfo",
@@ -3315,49 +3616,56 @@
       "apis": [
         {
           "title": "分页列表",
-          "api": "/questionnaireQuestion/pageList",
+          "api": "/questionnaireQuestionRelation/pageList",
           "effect": "pageList",
           "service": "pageListData",
           "type": "pageList"
         },
         {
           "title": "获取详情",
-          "api": "/questionnaireQuestion/get",
+          "api": "/questionnaireQuestionRelation/get",
           "effect": "get",
           "service": "getData",
           "type": "singleData"
         },
         {
           "title": "绑定关系",
-          "api": "/questionnaireQuestion/bindRelation",
+          "api": "/questionnaireQuestionRelation/bindRelation",
           "effect": "bindRelation",
           "service": "bindRelationData",
           "type": "singleData"
         },
         {
+          "title": "批量绑定关系",
+          "api": "/questionnaireQuestionRelation/bindBatchRelation",
+          "effect": "bindBatchRelation",
+          "service": "bindBatchRelationData",
+          "type": "singleData"
+        },
+        {
           "title": "解绑关系",
-          "api": "/questionnaireQuestion/unbindRelation",
+          "api": "/questionnaireQuestionRelation/unbindRelation",
           "effect": "unbindRelation",
           "service": "unbindRelationData",
           "type": "singleData"
         },
         {
           "title": "设置顺序",
-          "api": "/questionnaireQuestion/setBindSort",
+          "api": "/questionnaireQuestionRelation/setBindSort",
           "effect": "setBindSort",
           "service": "setBindSortData",
           "type": "singleData"
         },
         {
           "title": "设置积分",
-          "api": "/questionnaireQuestion/setBindScore",
+          "api": "/questionnaireQuestionRelation/setBindScore",
           "effect": "setBindScore",
           "service": "setBindScoreData",
           "type": "singleData"
         },
         {
           "title": "刷新数据",
-          "api": "/questionnaireQuestion/refreshCache",
+          "api": "/questionnaireQuestionRelation/refreshCache",
           "effect": "refreshCache",
           "service": "refreshCacheData",
           "type": "singleData"
@@ -3365,7 +3673,7 @@
       ],
       "cover": true,
       "title": "调查问卷与问题绑定",
-      "name": "questionnaireQuestion"
+      "name": "questionnaireQuestionRelation"
     },
     {
       "apis": [
@@ -3853,7 +4161,7 @@
           "type": "singleData"
         },
         {
-          "title": "移除角色",
+          "title": "移除",
           "api": "/smsCategory/remove",
           "effect": "remove",
           "service": "removeData",
@@ -4091,6 +4399,27 @@
           "type": "singleData"
         },
         {
+          "title": "切换举报开关",
+          "api": "/subsidiary/toggleComplaintSwitch",
+          "effect": "toggleComplaintSwitch",
+          "service": "toggleComplaintSwitchData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换投诉开关",
+          "api": "/subsidiary/toggleReportSwitch",
+          "effect": "toggleReportSwitch",
+          "service": "toggleReportSwitchData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换留言开关",
+          "api": "/subsidiary/toggleFeedbackSwitch",
+          "effect": "toggleFeedbackSwitch",
+          "service": "toggleFeedbackSwitchData",
+          "type": "singleData"
+        },
+        {
           "title": "设为启用",
           "api": "/subsidiary/setEnable",
           "effect": "setEnable",
@@ -4129,6 +4458,272 @@
       "cover": true,
       "title": "公司管理",
       "name": "subsidiary"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/subsidiaryComplaintCategory/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "单页列表",
+          "api": "/subsidiaryComplaintCategory/singleList",
+          "effect": "singleList",
+          "service": "singleListData",
+          "type": "singleList"
+        },
+        {
+          "title": "单页树型列表",
+          "api": "/subsidiaryComplaintCategory/singleTreeList",
+          "effect": "singleTreeList",
+          "service": "singleTreeListData",
+          "type": "singleList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/subsidiaryComplaintCategory/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "新建分类",
+          "api": "/subsidiaryComplaintCategory/addBasicInfo",
+          "effect": "addBasicInfo",
+          "service": "addBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "编辑信息",
+          "api": "/subsidiaryComplaintCategory/updateBasicInfo",
+          "effect": "updateBasicInfo",
+          "service": "updateBasicInfoData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置排序值",
+          "api": "/subsidiaryComplaintCategory/updateSort",
+          "effect": "updateSort",
+          "service": "updateSortData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为启用",
+          "api": "/subsidiaryComplaintCategory/setEnable",
+          "effect": "setEnable",
+          "service": "setEnableData",
+          "type": "singleData"
+        },
+        {
+          "title": "设为停用",
+          "api": "/subsidiaryComplaintCategory/setDisable",
+          "effect": "setDisable",
+          "service": "setDisableData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除",
+          "api": "/subsidiaryComplaintCategory/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除单页树型列表缓存",
+          "api": "/subsidiaryComplaintCategory/removeSingleTreeListCache",
+          "effect": "removeSingleTreeListCache",
+          "service": "removeSingleTreeListCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/subsidiaryComplaintCategory/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/subsidiaryComplaintCategory/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "短信类别管理",
+      "name": "subsidiaryComplaintCategory"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/subsidiaryComplaintMessage/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/subsidiaryComplaintMessage/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换是否核实信息",
+          "api": "/subsidiaryComplaintMessage/toggleConfirm",
+          "effect": "toggleConfirm",
+          "service": "toggleConfirmData",
+          "type": "singleData"
+        },
+        {
+          "title": "回复信息",
+          "api": "/subsidiaryComplaintMessage/repay",
+          "effect": "repay",
+          "service": "repayData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除信息",
+          "api": "/subsidiaryComplaintMessage/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/subsidiaryComplaintMessage/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/subsidiaryComplaintMessage/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "企业投诉信息管理",
+      "name": "subsidiaryComplaintMessage"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/subsidiaryFeedbackMessage/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/subsidiaryFeedbackMessage/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换是否核实信息",
+          "api": "/subsidiaryFeedbackMessage/toggleConfirm",
+          "effect": "toggleConfirm",
+          "service": "toggleConfirmData",
+          "type": "singleData"
+        },
+        {
+          "title": "回复信息",
+          "api": "/subsidiaryFeedbackMessage/repay",
+          "effect": "repay",
+          "service": "repayData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除信息",
+          "api": "/subsidiaryFeedbackMessage/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/subsidiaryFeedbackMessage/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/subsidiaryFeedbackMessage/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "企业留言信息管理",
+      "name": "subsidiaryFeedbackMessage"
+    },
+    {
+      "apis": [
+        {
+          "title": "分页列表",
+          "api": "/subsidiaryReportMessage/pageList",
+          "effect": "pageList",
+          "service": "pageListData",
+          "type": "pageList"
+        },
+        {
+          "title": "获取详情",
+          "api": "/subsidiaryReportMessage/get",
+          "effect": "get",
+          "service": "getData",
+          "type": "singleData"
+        },
+        {
+          "title": "切换是否核实信息",
+          "api": "/subsidiaryReportMessage/toggleConfirm",
+          "effect": "toggleConfirm",
+          "service": "toggleConfirmData",
+          "type": "singleData"
+        },
+        {
+          "title": "回复信息",
+          "api": "/subsidiaryReportMessage/repay",
+          "effect": "repay",
+          "service": "repayData",
+          "type": "singleData"
+        },
+        {
+          "title": "移除信息",
+          "api": "/subsidiaryReportMessage/remove",
+          "effect": "remove",
+          "service": "removeData",
+          "type": "singleData"
+        },
+        {
+          "title": "刷新缓存",
+          "api": "/subsidiaryReportMessage/refreshCache",
+          "effect": "refreshCache",
+          "service": "refreshCacheData",
+          "type": "singleData"
+        },
+        {
+          "title": "操作日志列表",
+          "api": "/subsidiaryReportMessage/pageListOperateLog",
+          "effect": "pageListOperateLog",
+          "service": "pageListOperateLogData",
+          "type": "pageList"
+        }
+      ],
+      "cover": true,
+      "title": "企业举报信息管理",
+      "name": "subsidiaryReportMessage"
     },
     {
       "apis": [
@@ -4980,6 +5575,13 @@
           "type": "singleData"
         },
         {
+          "title": "切换移动端是否可以发起审批",
+          "api": "/workflow/toggleAvailableOnMobileSwitch",
+          "effect": "toggleAvailableOnMobileSwitch",
+          "service": "toggleAvailableOnMobileSwitchData",
+          "type": "singleData"
+        },
+        {
           "title": "设置默认经办人",
           "api": "/workflow/setDefaultAttentionUser",
           "effect": "setDefaultAttentionUser",
@@ -5260,6 +5862,13 @@
           "type": "singleData"
         },
         {
+          "title": "切换是否紧急",
+          "api": "/workflowCase/toggleEmergency",
+          "effect": "toggleEmergency",
+          "service": "toggleEmergencyData",
+          "type": "singleData"
+        },
+        {
           "title": "设置所属企业",
           "api": "/workflowCase/setSubsidiaryId",
           "effect": "setSubsidiaryId",
@@ -5327,6 +5936,20 @@
           "api": "/workflowCase/forceEnd",
           "effect": "forceEnd",
           "service": "forceEndData",
+          "type": "singleData"
+        },
+        {
+          "title": "归档",
+          "api": "/workflowCase/archive",
+          "effect": "archive",
+          "service": "archiveData",
+          "type": "singleData"
+        },
+        {
+          "title": "取消归档",
+          "api": "/workflowCase/cancelArchive",
+          "effect": "cancelArchive",
+          "service": "cancelArchiveData",
           "type": "singleData"
         },
         {
@@ -5701,6 +6324,27 @@
           "type": "singleData"
         },
         {
+          "title": "切换是否紧急",
+          "api": "/workflowDebugCase/toggleEmergency",
+          "effect": "toggleEmergency",
+          "service": "toggleEmergencyData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置所属企业",
+          "api": "/workflowDebugCase/setSubsidiaryId",
+          "effect": "setSubsidiaryId",
+          "service": "setSubsidiaryIdData",
+          "type": "singleData"
+        },
+        {
+          "title": "设置提交人",
+          "api": "/workflowDebugCase/setUserId",
+          "effect": "setUserId",
+          "service": "setUserIdData",
+          "type": "singleData"
+        },
+        {
           "title": "设置申请陈述",
           "api": "/workflowDebugCase/setApplicantStatement",
           "effect": "setApplicantStatement",
@@ -5768,6 +6412,20 @@
           "api": "/workflowDebugCase/forceEnd",
           "effect": "forceEnd",
           "service": "forceEndData",
+          "type": "singleData"
+        },
+        {
+          "title": "归档",
+          "api": "/workflowDebugCase/archive",
+          "effect": "archive",
+          "service": "archiveData",
+          "type": "singleData"
+        },
+        {
+          "title": "取消归档",
+          "api": "/workflowDebugCase/cancelArchive",
+          "effect": "cancelArchive",
+          "service": "cancelArchiveData",
           "type": "singleData"
         },
         {

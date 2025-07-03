@@ -8,12 +8,12 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
-  setPrimaryData,
-  removeData,
+  getData,
+  pageListData,
   refreshCacheData,
+  removeData,
+  setPrimaryData,
 } from '../../services/userSubsidiaryInfo';
 
 export const userSubsidiaryInfoTypeCollection = {

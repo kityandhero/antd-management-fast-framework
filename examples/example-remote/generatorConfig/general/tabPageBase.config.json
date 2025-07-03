@@ -8,6 +8,55 @@
       "coverFile": true
     },
     {
+      "folder": "Customer/TabPageBase",
+      "model": "customer",
+      "key": "customerId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintCategory/TabPageBase",
+      "model": "subsidiaryComplaintCategory",
+      "key": "subsidiaryComplaintCategoryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintMessage/TabPageBase",
+      "model": "subsidiaryComplaintMessage",
+      "key": "subsidiaryComplaintMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryFeedbackMessage/TabPageBase",
+      "model": "subsidiaryFeedbackMessage",
+      "key": "subsidiaryFeedbackMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryReportMessage/TabPageBase",
+      "model": "subsidiaryReportMessage",
+      "key": "subsidiaryReportMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationUserFeedback/TabPageBase",
+      "model": "applicationUserFeedback",
+      "key": "applicationUserFeedbackId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationCustomerFeedback/TabPageBase",
+      "model": "applicationCustomerFeedback",
+      "key": "applicationCustomerFeedbackId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
       "folder": "Question/TabPageBase",
       "model": "question",
       "key": "questionId",

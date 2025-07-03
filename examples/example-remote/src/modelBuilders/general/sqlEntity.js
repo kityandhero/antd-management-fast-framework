@@ -8,10 +8,10 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListInfrastructureData,
-  pageListBusinessData,
-  getInfrastructureData,
   getBusinessData,
+  getInfrastructureData,
+  pageListBusinessData,
+  pageListInfrastructureData,
 } from '../../services/sqlEntity';
 
 export const sqlEntityTypeCollection = {

@@ -8,10 +8,10 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
   getData,
-  removeData,
+  pageListData,
   refreshCacheData,
+  removeData,
 } from '../../services/userWechatApplicationInfo';
 
 export const userWechatApplicationInfoTypeCollection = {

@@ -2,6 +2,7 @@ import { connect } from 'easy-soft-dva';
 
 import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
 
+import { modelTypeCollection } from '../../../../../modelBuilders';
 import BaseInnerPageList from '../../../../OperationLog/BaseInnerPageList';
 import {
   checkNeedUpdateAssist,
@@ -19,7 +20,7 @@ class PageList extends BaseInnerPageList {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'gallery/pageListOperateLog',
+      loadApiPath: modelTypeCollection.galleryTypeCollection.pageListOperateLog,
       dateRangeFieldName: '操作时间',
       galleryId: null,
       currentRecord: null,

@@ -45,6 +45,15 @@ export async function updateBasicInfoData(parameters) {
   });
 }
 
+export const toggleEmergencyDataApiAddress = '/workflowCase/toggleEmergency';
+
+export async function toggleEmergencyData(parameters) {
+  return request({
+    api: toggleEmergencyDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const setSubsidiaryIdDataApiAddress = '/workflowCase/setSubsidiaryId';
 
 export async function setSubsidiaryIdData(parameters) {
@@ -137,6 +146,24 @@ export const forceEndDataApiAddress = '/workflowCase/forceEnd';
 export async function forceEndData(parameters) {
   return request({
     api: forceEndDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const archiveDataApiAddress = '/workflowCase/archive';
+
+export async function archiveData(parameters) {
+  return request({
+    api: archiveDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const cancelArchiveDataApiAddress = '/workflowCase/cancelArchive';
+
+export async function cancelArchiveData(parameters) {
+  return request({
+    api: cancelArchiveDataApiAddress,
     params: parameters,
   });
 }

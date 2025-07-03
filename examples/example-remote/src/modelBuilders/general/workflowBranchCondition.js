@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,14 +9,14 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  getData,
   addBasicInfoData,
-  updateBasicInfoData,
+  getData,
+  pageListData,
+  pageListOperateLogData,
   refreshCacheData,
   removeData,
-  pageListOperateLogData,
+  singleListData,
+  updateBasicInfoData,
 } from '../../services/workflowBranchCondition';
 
 export const workflowBranchConditionTypeCollection = {

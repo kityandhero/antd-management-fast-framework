@@ -115,6 +115,35 @@ export async function closeResetAllApproveSwitchAction({
   });
 }
 
+export async function toggleEmergencyAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  // 验证必要参数是否存在
+  const workflowCaseId = getValueByKey({
+    data: handleData,
+    key: fieldData.workflowCaseId.name,
+  });
+
+  if (!workflowCaseId) {
+    console.warn('Missing required parameter: workflowCaseId');
+    return;
+  }
+
+  actionCore({
+    api: modelTypeCollection.workflowCaseTypeCollection.toggleEmergency,
+    params: {
+      workflowCaseId,
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
 export async function forceEndAction({
   target,
   handleData,
@@ -169,6 +198,50 @@ export async function repairSubsidiaryAction({
       workflowCaseId: getValueByKey({
         data: handleData,
         key: fieldData.workflowCaseId.name,
+      }),
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export async function archiveAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.workflowCaseTypeCollection.archive,
+    params: {
+      workflowDebugCaseId: getValueByKey({
+        data: handleData,
+        key: fieldData.workflowCaseId.name,
+        defaultValue: '',
+      }),
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export async function cancelArchiveAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.workflowCaseTypeCollection.cancelArchive,
+    params: {
+      workflowDebugCaseId: getValueByKey({
+        data: handleData,
+        key: fieldData.workflowCaseId.name,
+        defaultValue: '',
       }),
     },
     target,

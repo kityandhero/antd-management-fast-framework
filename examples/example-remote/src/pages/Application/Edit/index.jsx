@@ -1,11 +1,16 @@
 import { connect } from 'easy-soft-dva';
 import {
+  checkHasAuthority,
   convertCollection,
   getValueByKey,
   showSimpleErrorMessage,
+  whetherNumber,
 } from 'easy-soft-utility';
 
-import { getDerivedStateFromPropertiesForUrlParameters } from 'antd-management-fast-common';
+import {
+  dropdownExpandItemType,
+  getDerivedStateFromPropertiesForUrlParameters,
+} from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../customConfig';
@@ -14,20 +19,24 @@ import {
   getApplicationSourceStatusName,
   getApplicationTypeName,
 } from '../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../modelBuilders';
 import {
   refreshCacheAction,
   setStartAction,
   setStopAction,
+  toggleCustomerAutomaticRegistrationAction,
 } from '../Assist/action';
 import {
   checkNeedUpdateAssist,
   parseUrlParametersForSetState,
 } from '../Assist/config';
+import { BuildUnlimitedWechatMicroApplicationQrCodeDrawer } from '../BuildUnlimitedWechatMicroApplicationQrCodeDrawer';
 import { fieldData, statusCollection } from '../Common/data';
 import { TestSendSmsCaptchaModal } from '../TestSendSmsCaptchaModal';
 import { TestSendWechatTemplateMessageModal } from '../TestSendWechatTemplateMessageModal';
 import { TestSendWechatUniformMessageModal } from '../TestSendWechatUniformMessageModal';
 import { UpdateMessageChannelApplicationInfoModal } from '../UpdateMessageChannelApplicationInfoModal';
+import { UpdatePhoneVerifyModeModal } from '../UpdatePhoneVerifyModeModal';
 
 @connect(({ application, schedulingControl }) => ({
   application,
@@ -97,7 +106,7 @@ class Edit extends DataTabContainerSupplement {
     this.state = {
       ...this.state,
       pageTitle: '',
-      loadApiPath: 'application/get',
+      loadApiPath: modelTypeCollection.applicationTypeCollection.get,
       backPath: `/app/application/pageList/key`,
       applicationId: null,
     };
@@ -140,6 +149,24 @@ class Edit extends DataTabContainerSupplement {
         data: metaData,
         key: fieldData.name.name,
       }),
+    });
+  };
+
+  toggleCustomerAutomaticRegistration = (r) => {
+    toggleCustomerAutomaticRegistrationAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target, remoteData }) => {
+        const { metaData } = target.state;
+
+        metaData[fieldData.whetherCustomerAutomaticRegistration.name] =
+          getValueByKey({
+            data: remoteData,
+            key: fieldData.whetherCustomerAutomaticRegistration.name,
+          });
+
+        target.setState({ metaData });
+      },
     });
   };
 
@@ -188,37 +215,24 @@ class Edit extends DataTabContainerSupplement {
     UpdateMessageChannelApplicationInfoModal.open();
   };
 
-  showTestSendWechatTemplateMessageModal = (record) => {
-    this.setState(
-      {
-        currentRecord: record,
-      },
-      () => {
-        TestSendWechatTemplateMessageModal.open();
-      },
-    );
+  showTestSendWechatTemplateMessageModal = () => {
+    TestSendWechatTemplateMessageModal.open();
   };
 
-  showTestSendWechatUniformMessageModal = (record) => {
-    this.setState(
-      {
-        currentRecord: record,
-      },
-      () => {
-        TestSendWechatUniformMessageModal.open();
-      },
-    );
+  showTestSendWechatUniformMessageModal = () => {
+    TestSendWechatUniformMessageModal.open();
   };
 
-  showTestSendSmsCaptchaModal = (record) => {
-    this.setState(
-      {
-        currentRecord: record,
-      },
-      () => {
-        TestSendSmsCaptchaModal.open();
-      },
-    );
+  showTestSendSmsCaptchaModal = () => {
+    TestSendSmsCaptchaModal.open();
+  };
+
+  showBuildUnlimitedWechatMicroApplicationQrCodeDrawer = () => {
+    BuildUnlimitedWechatMicroApplicationQrCodeDrawer.open();
+  };
+
+  showUpdatePhoneVerifyModeModal = () => {
+    UpdatePhoneVerifyModeModal.open();
   };
 
   establishPageHeaderAvatarConfig = () => {
@@ -323,14 +337,26 @@ class Edit extends DataTabContainerSupplement {
 
     const that = this;
 
+    const whetherCustomerAutomaticRegistration = getValueByKey({
+      data: metaData,
+      key: fieldData.whetherCustomerAutomaticRegistration.name,
+      convert: convertCollection.number,
+    });
+
     return {
       disabled: this.checkInProgress(),
       handleMenuClick: ({ key, handleData }) => {
         switch (key) {
+          case 'toggleCustomerAutomaticRegistration': {
+            that.toggleCustomerAutomaticRegistration(handleData);
+            break;
+          }
+
           case 'testSendWechatTemplateMessage': {
             that.showTestSendWechatTemplateMessageModal(handleData);
             break;
           }
+
           case 'testSendWechatUniformMessage': {
             that.showTestSendWechatUniformMessageModal(handleData);
             break;
@@ -338,6 +364,18 @@ class Edit extends DataTabContainerSupplement {
 
           case 'testSendSmsCaptcha': {
             that.showTestSendSmsCaptchaModal(handleData);
+            break;
+          }
+
+          case 'buildUnlimitedWechatMicroApplicationQrCodeDrawer': {
+            that.showBuildUnlimitedWechatMicroApplicationQrCodeDrawer(
+              handleData,
+            );
+            break;
+          }
+
+          case 'updatePhoneVerifyMode': {
+            that.showUpdatePhoneVerifyModeModal(handleData);
             break;
           }
 
@@ -355,6 +393,31 @@ class Edit extends DataTabContainerSupplement {
       handleData: metaData,
       items: [
         {
+          key: 'updatePhoneVerifyMode',
+          icon: iconBuilder.phone(),
+          text: '配置手机号码验证方式',
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          key: 'toggleCustomerAutomaticRegistration',
+          icon: iconBuilder.swap(),
+          text:
+            whetherCustomerAutomaticRegistration === whetherNumber.yes
+              ? '禁止顾客自动注册'
+              : '允许顾客自动注册',
+          hidden: !checkHasAuthority(
+            accessWayCollection.application.toggleCustomerAutomaticRegistration
+              .permission,
+          ),
+          confirm: true,
+          title: `即将${whetherCustomerAutomaticRegistration === whetherNumber.yes ? '禁止顾客自动注册' : '允许顾客自动注册'}，确定吗？`,
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
           key: 'testSendWechatTemplateMessage',
           icon: iconBuilder.message(),
           text: '测试微信公众号模板消息',
@@ -369,6 +432,18 @@ class Edit extends DataTabContainerSupplement {
           icon: iconBuilder.message(),
           text: '测试短信验证码消息',
         },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          key: 'buildUnlimitedWechatMicroApplicationQrCodeDrawer',
+          icon: iconBuilder.qrCode(),
+          text: '构建小程序码',
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+
         {
           key: 'refreshCache',
           icon: iconBuilder.reload(),
@@ -427,6 +502,17 @@ class Edit extends DataTabContainerSupplement {
         }),
       },
       {
+        label: fieldData.whetherCustomerAutomaticRegistration.label,
+        value: getValueByKey({
+          data: metaData,
+          key: fieldData.whetherCustomerAutomaticRegistration.name,
+          convert: convertCollection.number,
+          formatBuilder: (v) => {
+            return v === whetherNumber.yes ? '是' : '否';
+          },
+        }),
+      },
+      {
         label: fieldData.type.label,
         value: getApplicationTypeName({
           value: getValueByKey({
@@ -450,6 +536,12 @@ class Edit extends DataTabContainerSupplement {
         <TestSendWechatUniformMessageModal externalData={metaData} />
 
         <TestSendSmsCaptchaModal externalData={metaData} />
+
+        <BuildUnlimitedWechatMicroApplicationQrCodeDrawer
+          externalData={metaData}
+        />
+
+        <UpdatePhoneVerifyModeModal externalData={metaData} />
       </>
     );
   };

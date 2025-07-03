@@ -8,15 +8,15 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
+  getData,
+  pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
+  setDisableData,
+  setEnableData,
   updateBasicInfoData,
   updateSortData,
-  setEnableData,
-  setDisableData,
-  refreshCacheData,
-  pageListOperateLogData,
 } from '../../services/optionPool';
 
 export const optionPoolTypeCollection = {

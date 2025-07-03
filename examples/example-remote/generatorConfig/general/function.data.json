@@ -21,6 +21,26 @@
       "name": "type"
     },
     {
+      "functionSegment": "CustomerStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "CustomerLoginStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "CustomerLoginLogStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "CustomerWechatApplicationInfoStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
       "functionSegment": "Channel",
       "label": "适用渠道",
       "name": "channel"
@@ -336,6 +356,31 @@
       "name": "aggregate"
     },
     {
+      "functionSegment": "SubsidiaryComplaintCategoryFlag",
+      "label": "类别标记",
+      "name": "subsidiaryComplaintCategoryFlag"
+    },
+    {
+      "functionSegment": "SubsidiaryComplaintCategoryStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "SubsidiaryComplaintMessageStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "SubsidiaryFeedbackMessageStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "SubsidiaryReportMessageStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
       "functionSegment": "HostServiceChangeType",
       "label": "变更类型",
       "name": "changeType"
@@ -577,6 +622,26 @@
     },
     {
       "functionSegment": "PositionGradeStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "ShortMessagingServiceProvider",
+      "label": "短信提供商",
+      "name": "shortMessagingServiceProvider"
+    },
+    {
+      "functionSegment": "PhoneVerifyMode",
+      "label": "手机号码校验模式",
+      "name": "phoneVerifyMode"
+    },
+    {
+      "functionSegment": "ApplicationUserFeedbackStatus",
+      "label": "状态",
+      "name": "status"
+    },
+    {
+      "functionSegment": "ApplicationCustomerFeedbackStatus",
       "label": "状态",
       "name": "status"
     }

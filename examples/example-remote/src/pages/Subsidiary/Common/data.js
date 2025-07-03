@@ -47,24 +47,34 @@ export const fieldData = {
     name: 'parentShortName',
     helper: '',
   },
-  status: {
-    label: '状态',
-    name: 'status',
-    helper: '用户状态',
-  },
-  statusNote: {
-    label: '状态',
-    name: 'statusNote',
-    helper: '用户状态',
-  },
-  createTime: {
-    label: '创建时间',
-    name: 'createTime',
+  complaintSwitch: {
+    label: '投诉开关',
+    name: 'complaintSwitch',
     helper: '',
   },
-  updateTime: {
-    label: '更新时间',
-    name: 'updateTime',
+  complaintSwitchNote: {
+    label: '投诉开关',
+    name: 'complaintSwitchNote',
+    helper: '',
+  },
+  reportSwitch: {
+    label: '举报开关',
+    name: 'reportSwitch',
+    helper: '',
+  },
+  reportSwitchNote: {
+    label: '举报开关',
+    name: 'reportSwitchNote',
+    helper: '',
+  },
+  feedbackSwitch: {
+    label: '留言开关',
+    name: 'feedbackSwitch',
+    helper: '',
+  },
+  feedbackSwitchNote: {
+    label: '留言开关',
+    name: 'feedbackSwitchNote',
     helper: '',
   },
 };

@@ -30,6 +30,37 @@ export const fieldData = {
     name: 'userId',
     helper: '',
   },
+
+  openId: {
+    label: 'OpenId',
+    name: 'openId',
+    helper: '',
+  },
+  unionId: {
+    label: 'UnionId',
+    name: 'unionId',
+    helper: '',
+  },
+  latitudeRegister: {
+    label: '注册维度',
+    name: 'latitudeRegister',
+    helper: '',
+  },
+  longitudeRegister: {
+    label: '注册经度',
+    name: 'longitudeRegister',
+    helper: '',
+  },
+  latitudeLastSignIn: {
+    label: '最后登录纬度',
+    name: 'latitudeLastSignIn',
+    helper: '',
+  },
+  longitudeLastSignIn: {
+    label: '最后登录经度',
+    name: 'longitudeLastSignIn',
+    helper: '',
+  },
   applicationId: {
     label: '应用标识',
     name: 'applicationId',

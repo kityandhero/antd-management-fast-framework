@@ -8,11 +8,11 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
-  updateBasicInfoData,
+  getData,
+  pageListData,
   refreshCacheData,
+  updateBasicInfoData,
 } from '../../services/articleNotificationApplication';
 
 export const articleNotificationApplicationTypeCollection = {

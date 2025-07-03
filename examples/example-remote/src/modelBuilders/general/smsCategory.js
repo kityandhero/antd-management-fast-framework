@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,17 +9,17 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  singleTreeListData,
-  getData,
   addBasicInfoData,
-  updateBasicInfoData,
-  setEnableData,
-  setDisableData,
+  getData,
+  pageListData,
+  refreshCacheData,
   removeData,
   removeSingleTreeListCacheData,
-  refreshCacheData,
+  setDisableData,
+  setEnableData,
+  singleListData,
+  singleTreeListData,
+  updateBasicInfoData,
 } from '../../services/smsCategory';
 
 export const smsCategoryTypeCollection = {

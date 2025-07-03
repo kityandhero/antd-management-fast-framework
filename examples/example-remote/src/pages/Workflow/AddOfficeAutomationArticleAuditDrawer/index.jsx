@@ -62,9 +62,15 @@ class AddOfficeAutomationArticleAuditDrawer extends BaseAddDrawer {
           },
           items: [
             {
-              lg: 18,
+              lg: 24,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.name,
+              require: true,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.title,
               require: true,
             },
           ],

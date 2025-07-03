@@ -7,6 +7,12 @@ function buildPlugin(api: IApi) {
   }));
 
   api.addEntryCodeAhead(() => `initializeDvaApplication()`);
+
+  api.modifyHTML(($) => {
+    $('body').addClass('antd-management-fast-html-body');
+
+    return $;
+  });
 }
 
 export default buildPlugin;

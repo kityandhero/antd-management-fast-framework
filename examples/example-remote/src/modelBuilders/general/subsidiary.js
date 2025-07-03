@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,19 +9,22 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  addBasicInfoData,
+  getData,
   pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
+  setDisableData,
+  setEnableData,
   singleListData,
   singleTreeListData,
-  getData,
-  addBasicInfoData,
+  toggleComplaintSwitchData,
+  toggleFeedbackSwitchData,
+  toggleReportSwitchData,
   updateBasicInfoData,
   updateParentIdData,
   updateSortData,
-  setEnableData,
-  setDisableData,
-  refreshCacheData,
   uploadImageData,
-  pageListOperateLogData,
 } from '../../services/subsidiary';
 
 export const subsidiaryTypeCollection = {
@@ -33,6 +36,9 @@ export const subsidiaryTypeCollection = {
   updateBasicInfo: 'subsidiary/updateBasicInfo',
   updateParentId: 'subsidiary/updateParentId',
   updateSort: 'subsidiary/updateSort',
+  toggleComplaintSwitch: 'subsidiary/toggleComplaintSwitch',
+  toggleReportSwitch: 'subsidiary/toggleReportSwitch',
+  toggleFeedbackSwitch: 'subsidiary/toggleFeedbackSwitch',
   setEnable: 'subsidiary/setEnable',
   setDisable: 'subsidiary/setDisable',
   refreshCache: 'subsidiary/refreshCache',
@@ -241,6 +247,84 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(updateSortData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *toggleComplaintSwitch(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(toggleComplaintSwitchData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *toggleReportSwitch(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(toggleReportSwitchData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *toggleFeedbackSwitch(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(toggleFeedbackSwitchData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

@@ -8,11 +8,11 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
-  removeData,
+  getData,
+  pageListData,
   refreshCacheData,
+  removeData,
 } from '../../services/workflowCaseUserMonitorConfiguration';
 
 export const workflowCaseUserMonitorConfigurationTypeCollection = {

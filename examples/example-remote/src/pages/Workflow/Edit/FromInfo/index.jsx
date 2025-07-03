@@ -6,14 +6,10 @@ import {
   checkHasAuthority,
   checkStringIsNullOrWhiteSpace,
   convertCollection,
-  datetimeFormat,
-  formatDatetime,
   getJsonFromLocalStorage,
-  getNow,
   getValueByKey,
   saveJsonToLocalStorage,
   showSimpleInfoMessage,
-  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -24,22 +20,20 @@ import { buildButton, iconBuilder } from 'antd-management-fast-component';
 import {
   DataDisplayer,
   FileViewer,
-  nodeApply,
-  nodeAttention,
   SchemaDisplayer,
   setSchemaWithExternalData,
 } from 'antd-management-fast-design-playground';
 
-import {
-  accessWayCollection,
-  emptySignet,
-  simpleQRCode,
-} from '../../../../customConfig';
+import { accessWayCollection, simpleQRCode } from '../../../../customConfig';
 import { fieldData as fieldDataWorkflowFormDesign } from '../../../WorkflowFormDesign/Common/data';
 import { DesignDrawer } from '../../../WorkflowFormDesign/DesignDrawer';
 import { FlowCaseFormDocumentDrawer } from '../../../WorkflowFormDesign/FlowCaseFormDocumentDrawer';
 import { RemarkEditDrawer } from '../../../WorkflowFormDesign/RemarkEditDrawer';
 import { parseUrlParametersForSetState } from '../../Assist/config';
+import {
+  getSimpleApplicantConfig,
+  getSimpleAttentionConfig,
+} from '../../Assist/tools';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
 
@@ -107,93 +101,13 @@ class BasicInfo extends TabPageBase {
   getApplicantConfig = () => {
     const { metaData } = this.state;
 
-    const applicantSignSwitch = getValueByKey({
-      data: metaData,
-      key: fieldData.applicantSignSwitch.name,
-      convert: convertCollection.number,
-    });
-
-    const applicantStatementTitle = getValueByKey({
-      data: metaData,
-      key: fieldData.defaultApplicantStatementTitle.name,
-      convert: convertCollection.string,
-    });
-
-    const applicantStatementContent = getValueByKey({
-      data: metaData,
-      key: fieldData.defaultApplicantStatementContent.name,
-      convert: convertCollection.string,
-    });
-
-    const listApply = [
-      {
-        ...nodeApply,
-        title: applicantStatementTitle,
-        note: applicantStatementContent,
-        signet: emptySignet,
-        time: formatDatetime({
-          data: getNow(),
-          format: datetimeFormat.yearMonthDayHourMinuteSecond,
-        }),
-      },
-    ];
-
-    return {
-      showApply: applicantSignSwitch === whetherNumber.yes,
-      listApply,
-    };
+    return getSimpleApplicantConfig(metaData);
   };
 
   getAttentionConfig = () => {
     const { metaData } = this.state;
 
-    const attentionSignSwitch = getValueByKey({
-      data: metaData,
-      key: fieldData.attentionSignSwitch.name,
-      convert: convertCollection.number,
-    });
-
-    const attentionStatementTitle = getValueByKey({
-      data: metaData,
-      key: fieldData.defaultAttentionStatementTitle.name,
-      convert: convertCollection.string,
-    });
-
-    const attentionStatementContent = getValueByKey({
-      data: metaData,
-      key: fieldData.defaultAttentionStatementContent.name,
-      convert: convertCollection.string,
-    });
-
-    const attentionUserSignet = getValueByKey({
-      data: metaData,
-      key: fieldData.defaultAttentionUserSignet.name,
-      convert: convertCollection.string,
-    });
-
-    const listAttention = [
-      {
-        ...nodeAttention,
-        title: attentionStatementTitle,
-        note: attentionStatementContent,
-        ...(checkStringIsNullOrWhiteSpace(attentionUserSignet)
-          ? {
-              signet: emptySignet,
-            }
-          : {
-              signet: attentionUserSignet,
-            }),
-        time: formatDatetime({
-          data: getNow(),
-          format: datetimeFormat.yearMonthDayHourMinuteSecond,
-        }),
-      },
-    ];
-
-    return {
-      showAttention: attentionSignSwitch === whetherNumber.yes,
-      listAttention,
-    };
+    return getSimpleAttentionConfig(metaData);
   };
 
   showDesignDrawer = () => {

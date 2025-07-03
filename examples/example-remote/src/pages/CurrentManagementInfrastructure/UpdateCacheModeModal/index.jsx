@@ -5,6 +5,7 @@ import { cardConfig } from 'antd-management-fast-common';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
 import { renderFormCacheModeSelect } from '../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData } from '../Common/data';
 
 const { BaseUpdateModal } = DataModal;
@@ -26,8 +27,11 @@ class UpdateCacheModeModal extends BaseUpdateModal {
     this.state = {
       ...this.state,
       pageTitle: '配置缓存模式',
-      loadApiPath: 'currentManagementInfrastructure/get',
-      submitApiPath: 'currentManagementInfrastructure/updateKeyValueInfo',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
+      submitApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection
+          .updateKeyValueInfo,
       cacheMode: '',
     };
   }

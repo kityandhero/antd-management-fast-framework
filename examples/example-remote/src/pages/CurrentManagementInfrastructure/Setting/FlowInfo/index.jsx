@@ -15,10 +15,16 @@ import {
   keyValueEditModeCollection,
 } from '../../../../customConfig';
 import { getFlowFormDisplayModeName } from '../../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { buildInputItem } from '../../../../utils';
+import { fieldData as fieldDataSubsidiary } from '../../../Subsidiary/Common/data';
+import { PageListSubsidiarySelectActionDrawer } from '../../../Subsidiary/PageListSelectActionDrawer';
 import { fieldData as fieldDataUser } from '../../../User/Common/data';
-import { PageListSelectActionDrawer } from '../../../User/PageListSelectActionDrawer';
-import { updateFlowDebugUserIdAction } from '../../Assist/action';
+import { PageListUserSelectActionDrawer } from '../../../User/PageListSelectActionDrawer';
+import {
+  updateFlowDebugSubsidiaryIdAction,
+  updateFlowDebugUserIdAction,
+} from '../../Assist/action';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
 import { UpdateKeyValueInfoModal } from '../../UpdateKeyValueInfoModal';
@@ -33,20 +39,10 @@ class Index extends TabPageBase {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'currentManagementInfrastructure/get',
-      submitApiPath: 'currentManagementInfrastructure/updateDebugUserId',
-      userId: '',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
     };
   }
-
-  supplementSubmitRequestParams = (o) => {
-    const d = o;
-    const { userId } = this.state;
-
-    d[fieldData.flowDebugUserId.name] = userId;
-
-    return d;
-  };
 
   doOtherAfterLoadSuccess = ({
     metaData = null,
@@ -80,26 +76,27 @@ class Index extends TabPageBase {
     });
   };
 
-  afterUserSelect = (d) => {
-    const userId = getValueByKey({
-      data: d,
-      key: fieldDataUser.userId.name,
-      defaultValue: '0',
-    });
-
-    this.setState({
-      userId: userId,
-    });
-  };
-
-  afterUserClearSelect = () => {
-    this.setState({
-      userId: '',
+  updateFlowDebugSubsidiaryId = (data) => {
+    updateFlowDebugSubsidiaryIdAction({
+      target: this,
+      handleData: {
+        flowDebugSubsidiaryId: getValueByKey({
+          data: data,
+          key: fieldDataSubsidiary.subsidiaryId.name,
+        }),
+      },
+      successCallback: ({ target }) => {
+        target.reloadData({});
+      },
     });
   };
 
-  showPageListSelectActionDrawer = () => {
-    PageListSelectActionDrawer.open();
+  showPageListUserSelectActionDrawer = () => {
+    PageListUserSelectActionDrawer.open();
+  };
+
+  showPageListSubsidiarySelectActionDrawer = () => {
+    PageListSubsidiarySelectActionDrawer.open();
   };
 
   showUpdateKeyValueInfoModal = ({
@@ -159,6 +156,19 @@ class Index extends TabPageBase {
 
     const flowDebugUser = `${flowDebugUserId} ${checkStringIsNullOrWhiteSpace(flowDebugUserRealName) ? '' : `【${flowDebugUserRealName}】`}`;
 
+    const flowDebugSubsidiaryId = getValueByKey({
+      data: metaData,
+      key: fieldData.flowDebugSubsidiaryId.name,
+      convert: convertCollection.string,
+    });
+
+    const flowDebugSubsidiaryShortName = getValueByKey({
+      data: metaData,
+      key: fieldData.flowDebugSubsidiaryShortName.name,
+    });
+
+    const flowDebugSubsidiary = `${flowDebugSubsidiaryId} ${checkStringIsNullOrWhiteSpace(flowDebugSubsidiaryShortName) ? '' : `【${flowDebugSubsidiaryShortName}】`}`;
+
     return {
       list: [
         {
@@ -217,15 +227,6 @@ class Index extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '流程经办陈述设置',
           },
-          hasExtra: true,
-          extra: {
-            affix: true,
-            list: [
-              {
-                buildType: cardConfig.extraBuildType.refresh,
-              },
-            ],
-          },
           items: [
             buildInputItem({
               firstLoadSuccess,
@@ -268,15 +269,6 @@ class Index extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '流程审批时间显示',
           },
-          hasExtra: true,
-          extra: {
-            affix: true,
-            list: [
-              {
-                buildType: cardConfig.extraBuildType.refresh,
-              },
-            ],
-          },
           items: [
             buildInputItem({
               firstLoadSuccess,
@@ -305,15 +297,6 @@ class Index extends TabPageBase {
             icon: iconBuilder.contacts(),
             text: '流程隐藏配置',
           },
-          hasExtra: true,
-          extra: {
-            affix: true,
-            list: [
-              {
-                buildType: cardConfig.extraBuildType.refresh,
-              },
-            ],
-          },
           items: [
             buildInputItem({
               firstLoadSuccess,
@@ -340,16 +323,7 @@ class Index extends TabPageBase {
         {
           title: {
             icon: iconBuilder.contacts(),
-            text: '流程调试用户设置',
-          },
-          hasExtra: true,
-          extra: {
-            affix: true,
-            list: [
-              {
-                buildType: cardConfig.extraBuildType.refresh,
-              },
-            ],
+            text: '流程调试设置',
           },
           items: [
             buildInputItem({
@@ -362,7 +336,19 @@ class Index extends TabPageBase {
                   .updateKeyValueInfo.permission,
               ),
               value: flowDebugUser,
-              handleClick: this.showPageListSelectActionDrawer,
+              handleClick: this.showPageListUserSelectActionDrawer,
+            }),
+            buildInputItem({
+              firstLoadSuccess,
+              handleData: metaData,
+              fieldData: fieldData.flowDebugSubsidiaryId,
+              editMode: keyValueEditModeCollection.string,
+              hidden: !checkHasAuthority(
+                accessWayCollection.currentManagementInfrastructure
+                  .updateKeyValueInfo.permission,
+              ),
+              value: flowDebugSubsidiary,
+              handleClick: this.showPageListSubsidiarySelectActionDrawer,
             }),
           ],
           instruction: [
@@ -562,9 +548,15 @@ class Index extends TabPageBase {
 
     return (
       <>
-        <PageListSelectActionDrawer
+        <PageListUserSelectActionDrawer
           afterSelect={(selectData) => {
             this.updateFlowDebugUserId(selectData);
+          }}
+        />
+
+        <PageListSubsidiarySelectActionDrawer
+          afterSelect={(selectData) => {
+            this.updateFlowDebugSubsidiaryId(selectData);
           }}
         />
 

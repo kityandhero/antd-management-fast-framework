@@ -125,6 +125,7 @@ class DesignDrawer extends BaseUpdateDrawer {
         name,
         enum: enumList,
       } = {
+        title: '',
         name: key,
         enum: [],
         ...value,

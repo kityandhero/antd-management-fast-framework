@@ -5,6 +5,28 @@ import { actionCore, confirmActionCore } from 'antd-management-fast-common';
 import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData } from '../Common/data';
 
+export async function singleListAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.workflowNodeApproverTypeCollection.singleList,
+    params: {
+      workflowNodeId: getValueByKey({
+        data: handleData,
+        key: fieldData.workflowNodeId.name,
+      }),
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+    showProcessing: false,
+  });
+}
+
 export async function removeAction({
   target,
   handleData,

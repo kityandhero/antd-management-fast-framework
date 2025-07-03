@@ -8,9 +8,9 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
+  getData,
+  pageListData,
   removeData,
 } from '../../services/internalTester';
 

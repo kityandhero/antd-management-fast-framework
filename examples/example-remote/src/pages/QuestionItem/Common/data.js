@@ -26,7 +26,7 @@ export const fieldData = {
     helper: '',
   },
   title: {
-    label: '项标题',
+    label: '项标标题',
     name: 'title',
     helper: '',
   },

@@ -1,7 +1,8 @@
-import { Checkbox, Radio, Space, Typography } from 'antd';
+import { Alert, Checkbox, Radio, Space, Typography } from 'antd';
 
 import { connect } from 'easy-soft-dva';
 import {
+  checkInCollection,
   convertCollection,
   getValueByKey,
   toNumber,
@@ -12,11 +13,12 @@ import {
   cardConfig,
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import { EverySpace, iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../../customConfig';
 import { fieldData as fieldDataQuestionItem } from '../../../QuestionItem/Common/data';
 import { parseUrlParametersForSetState } from '../../Assist/config';
+import { getTypeName } from '../../Assist/tools';
 import { fieldData, typeCollection } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
 
@@ -107,9 +109,10 @@ class Index extends TabPageBase {
       convert: convertCollection.number,
     });
 
+    // 题目是否正确（仅针对判断题类型题目）
     const whetherCorrect = getValueByKey({
       data: metaData,
-      key: fieldData.whetherCorrect.name,
+      key: fieldData.type.name,
       convert: convertCollection.number,
     });
 
@@ -118,6 +121,17 @@ class Index extends TabPageBase {
       key: fieldData.listItem.name,
       convert: convertCollection.array,
     });
+
+    // 正确选项是否存在(仅针对选择类型题目)
+    const whetherCorrectItemExist = listItem
+      .map((o) => {
+        return getValueByKey({
+          data: o,
+          key: fieldDataQuestionItem.whetherCorrect.name,
+          convert: convertCollection.number,
+        });
+      })
+      .includes(whetherNumber.yes);
 
     return {
       list: [
@@ -137,7 +151,7 @@ class Index extends TabPageBase {
                       data: metaData,
                       key: fieldData.title.name,
                       formatBuilder: (v) => {
-                        return `【题目】${v ?? ''}${type === typeCollection.judgment ? `（${whetherCorrect === whetherNumber.yes ? '✔' : '✖'}）` : ''}`;
+                        return `【${getTypeName(type)}】${v ?? ''}${type === typeCollection.judgment ? `（${whetherCorrect === whetherNumber.yes ? '✔' : '✖'}）` : ''}`;
                       },
                     })}
                   </Paragraph>
@@ -161,7 +175,6 @@ class Index extends TabPageBase {
                                   return toNumber(v) === whetherNumber.yes;
                                 },
                               })}
-                              disabled
                               style={{ color: '#000' }}
                             >
                               {getValueByKey({
@@ -188,7 +201,6 @@ class Index extends TabPageBase {
                                   return toNumber(v) === whetherNumber.yes;
                                 },
                               })}
-                              disabled
                               style={{ color: '#000' }}
                             >
                               {getValueByKey({
@@ -203,6 +215,21 @@ class Index extends TabPageBase {
                       })}
                     </Space>
                   </div>
+
+                  {checkInCollection(
+                    [typeCollection.singleSelect, typeCollection.multiSelect],
+                    type,
+                  ) && !whetherCorrectItemExist ? (
+                    <>
+                      <EverySpace size={10} direction="horizontal" />
+
+                      <Alert
+                        showIcon
+                        message="提示: 当前不存在正确的选项, 请检查选项设置."
+                        type="warning"
+                      />
+                    </>
+                  ) : null}
                 </>
               ),
             },

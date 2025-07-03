@@ -34,7 +34,7 @@ export const fileTypeCollection = {
  */
 export const flowDebugApproverModeCollection = {
   /**
-   * 全局适用
+   * 全局测试账户
    * value : 0
    */
   debugUser: 0,
@@ -44,6 +44,23 @@ export const flowDebugApproverModeCollection = {
    * value : 100
    */
   flowConfiguration: 100,
+};
+
+/**
+ * 流程调试申请人模式值集合
+ */
+export const flowDebugUserModeCollection = {
+  /**
+   * 全局测试账户
+   * value : 0
+   */
+  globalDebugUser: 0,
+
+  /**
+   * 流程配置的特定测试用户
+   * value : 100
+   */
+  specialDebugUser: 100,
 };
 
 export const flowEffectiveRangeCollection = {
@@ -266,16 +283,16 @@ export const flowNodeApproverModeCollection = {
  */
 export const flowNodeApproveModeCollection = {
   /**
-   * 或签【需要首个审批的人员同意即可】
+   * 或签【需要某位审批人员同意即可】
    * value : 0
    */
-  oneAgree: 0,
+  oneOfApproval: 0,
 
   /**
-   * 或签【需要全部审批的人员同意方可】
+   * 会签【需要全部审批人员同意方可】
    * value : 100
    */
-  allAgree: 100,
+  allApproval: 100,
 };
 
 /**

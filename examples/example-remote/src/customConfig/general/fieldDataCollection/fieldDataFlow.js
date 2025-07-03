@@ -36,6 +36,11 @@ const formExtraData = {
     name: 'defaultAttentionUserSignet',
     helper: '',
   },
+  effectiveRangeDescription: {
+    label: '生效对象',
+    name: 'effectiveRangeDescription',
+    helper: '',
+  },
 };
 
 export const fieldDataFlow = {
@@ -46,8 +51,13 @@ export const fieldDataFlow = {
     helper: '',
   },
   name: {
-    label: '名称',
+    label: '流程名称',
     name: 'name',
+    helper: '',
+  },
+  title: {
+    label: '表单标题',
+    name: 'title',
     helper: '',
   },
   description: {
@@ -170,6 +180,11 @@ export const fieldDataFlow = {
     name: 'globalDebugUserRealName',
     helper: '',
   },
+  globalDebugUserSignet: {
+    label: '全局调试人签名',
+    name: 'globalDebugUserSignet',
+    helper: '',
+  },
   whetherAllowMultibranch: {
     label: '允许多路分支',
     name: 'whetherAllowMultibranch',
@@ -188,6 +203,16 @@ export const fieldDataFlow = {
   whetherAllowMultiEndNote: {
     label: '是否允许多个终点',
     name: 'whetherAllowMultiEndNote',
+    helper: '',
+  },
+  availableOnMobileSwitch: {
+    label: '移动端可用开关',
+    name: 'availableOnMobileSwitch',
+    helper: '',
+  },
+  availableOnMobileSwitchNote: {
+    label: '移动端可用开关',
+    name: 'availableOnMobileSwitchNote',
     helper: '',
   },
   creatorUserId: {

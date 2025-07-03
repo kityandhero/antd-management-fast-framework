@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,19 +9,19 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  singleTreeListWithDefaultProvinceData,
-  refreshSingleTreeListWithDefaultProvinceCacheData,
-  singleTreeListWithDefaultCityData,
-  refreshSingleTreeListWithDefaultCityCacheData,
-  singleTreeListWithCrossingLevelData,
-  refreshSingleTreeListWithCrossingLevelCacheData,
   getData,
+  pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
+  refreshSingleTreeListWithCrossingLevelCacheData,
+  refreshSingleTreeListWithDefaultCityCacheData,
+  refreshSingleTreeListWithDefaultProvinceCacheData,
+  singleListData,
+  singleTreeListWithCrossingLevelData,
+  singleTreeListWithDefaultCityData,
+  singleTreeListWithDefaultProvinceData,
   updateBasicInfoData,
   updateLocationInfoData,
-  refreshCacheData,
-  pageListOperateLogData,
 } from '../../services/administrativeDivision';
 
 export const administrativeDivisionTypeCollection = {

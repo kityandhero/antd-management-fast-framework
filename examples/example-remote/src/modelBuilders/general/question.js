@@ -8,19 +8,19 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  pageListWithoutQuestionnaireData,
-  getData,
   addBasicInfoData,
+  getData,
+  pageListData,
+  pageListOperateLogData,
+  pageListWithoutQuestionnaireData,
+  practiceData,
+  refreshCacheData,
+  removeData,
+  setOfflineData,
+  setOnlineData,
+  updateAnswerData,
   updateBasicInfoData,
   updateWhetherCorrectData,
-  updateAnswerData,
-  setOnlineData,
-  setOfflineData,
-  removeData,
-  refreshCacheData,
-  practiceData,
-  pageListOperateLogData,
   uploadImageData,
 } from '../../services/question';
 

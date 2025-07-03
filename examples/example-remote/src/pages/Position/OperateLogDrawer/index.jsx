@@ -3,11 +3,12 @@ import { getValueByKey } from 'easy-soft-utility';
 
 import { switchControlAssist } from 'antd-management-fast-framework';
 
+import { modelTypeCollection } from '../../../modelBuilders';
 import { BasePageListDrawer } from '../../OperationLog/BasePageListDrawer';
 import { fieldData } from '../Common/data';
 
 // 显隐控制标记, 必须设置, 标记需要全局唯一
-const visibleFlag = '6e2357dca2354c8ea3e086fcd61f2da8';
+const visibleFlag = '54bf002239794e6ba5afd750d0e4d3fc';
 
 @connect(({ position, schedulingControl }) => ({
   position,
@@ -23,7 +24,8 @@ class OperateLogDrawer extends BasePageListDrawer {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'position/pageListOperateLog',
+      loadApiPath:
+        modelTypeCollection.positionTypeCollection.pageListOperateLog,
       positionId: null,
     };
   }

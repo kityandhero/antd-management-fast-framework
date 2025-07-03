@@ -1,6 +1,69 @@
 {
   "list": [
     {
+      "folder": "Customer/PageList",
+      "model": "customer",
+      "key": "customerId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "CustomerLoginLog/PageList",
+      "model": "customerLoginLog",
+      "key": "customerLoginLogId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "customerWechatApplicationInfo/PageList",
+      "model": "customerWechatApplicationInfo",
+      "key": "customerWechatApplicationInfoId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintCategory/PageList",
+      "model": "subsidiaryComplaintCategory",
+      "key": "subsidiaryComplaintCategoryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintMessage/PageList",
+      "model": "subsidiaryComplaintMessage",
+      "key": "subsidiaryComplaintMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryFeedbackMessage/PageList",
+      "model": "subsidiaryFeedbackMessage",
+      "key": "subsidiaryFeedbackMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationUserFeedback/PageList",
+      "model": "applicationUserFeedback",
+      "key": "applicationUserFeedbackId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationCustomerFeedback/PageList",
+      "model": "applicationCustomerFeedback",
+      "key": "applicationCustomerFeedbackId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryReportMessage/PageList",
+      "model": "subsidiaryReportMessage",
+      "key": "subsidiaryReportMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
       "folder": "Position/PageList",
       "model": "position",
       "key": "positionId",
@@ -43,9 +106,9 @@
       "coverFile": false
     },
     {
-      "folder": "QuestionnaireQuestion/PageList",
-      "model": "questionnaireQuestion",
-      "key": "questionnaireQuestionId",
+      "folder": "QuestionnaireQuestionRelation/PageList",
+      "model": "questionnaireQuestionRelation",
+      "key": "questionnaireQuestionRelationId",
       "fileName": "index.jsx",
       "coverFile": false
     },

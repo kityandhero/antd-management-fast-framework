@@ -8,15 +8,15 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
+  getData,
+  pageListData,
+  refreshCacheData,
+  removeData,
+  setOfflineData,
+  setOnlineData,
   updateBasicInfoData,
   updateSortData,
-  setOnlineData,
-  setOfflineData,
-  removeData,
-  refreshCacheData,
 } from '../../services/callCenter';
 
 export const callCenterTypeCollection = {

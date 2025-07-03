@@ -2,11 +2,13 @@ import React from 'react';
 
 import { connect } from 'easy-soft-dva';
 import {
+  buildRandomHexColor,
   checkHasAuthority,
   convertCollection,
   getValueByKey,
   handleItem,
   showSimpleErrorMessage,
+  toNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -24,10 +26,7 @@ import {
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig';
-import {
-  getSubsidiaryStatusName,
-  getTagStatusName,
-} from '../../../customSpecialComponents';
+import { getSubsidiaryStatusName } from '../../../customSpecialComponents';
 import { GraphicalSingleSubsidiaryDepartmentTreeDrawer } from '../../Organization/GraphicalSingleSubsidiaryDepartmentTreeDrawer';
 import {
   refreshCacheAction,
@@ -37,6 +36,9 @@ import {
 import { getStatusBadge } from '../Assist/tools';
 import { ChangeSortModal } from '../ChangeSortModal';
 import { fieldData, statusCollection } from '../Common/data';
+import { PageListOpenComplaintDrawer } from '../PageListOpenComplaintDrawer';
+import { PageListOpenFeedbackDrawer } from '../PageListOpenFeedbackDrawer';
+import { PageListOpenReportDrawer } from '../PageListOpenReportDrawer';
 
 const { MultiPage } = DataMultiPageView;
 
@@ -179,6 +181,18 @@ class PageList extends MultiPage {
     this.refreshDataWithReloadAnimalPrompt({});
   };
 
+  showPageListOpenComplaintDrawer = () => {
+    PageListOpenComplaintDrawer.open();
+  };
+
+  showPageListOpenReportDrawer = () => {
+    PageListOpenReportDrawer.open();
+  };
+
+  showPageListOpenFeedbackDrawer = () => {
+    PageListOpenFeedbackDrawer.open();
+  };
+
   goToAdd = () => {
     this.goToPath(`/organization/subsidiary/add`);
   };
@@ -231,6 +245,30 @@ class PageList extends MultiPage {
         icon: iconBuilder.plus(),
         text: '增加公司',
         handleClick: this.goToAdd,
+      },
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalExtraButton,
+        type: 'default',
+        icon: iconBuilder.unorderedList(),
+        text: '已开启投诉功能的企业列表',
+        handleClick: this.showPageListOpenComplaintDrawer,
+      },
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalExtraButton,
+        type: 'default',
+        icon: iconBuilder.unorderedList(),
+        text: '已开启举报功能的企业列表',
+        handleClick: this.showPageListOpenReportDrawer,
+      },
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalExtraButton,
+        type: 'default',
+        icon: iconBuilder.unorderedList(),
+        text: '已开启留言功能的企业列表',
+        handleClick: this.showPageListOpenFeedbackDrawer,
       },
     ];
   };
@@ -423,6 +461,63 @@ class PageList extends MultiPage {
       emptyValue: '--',
     },
     {
+      dataTarget: fieldData.complaintSwitchNote,
+      width: 80,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfigBuilder: (value, o) => {
+        const complaintSwitch = getValueByKey({
+          data: o,
+          key: fieldData.complaintSwitch.name,
+          convert: convertCollection.number,
+        });
+
+        return {
+          color: buildRandomHexColor({
+            seed: toNumber(complaintSwitch) * 25 + 47,
+          }),
+        };
+      },
+    },
+    {
+      dataTarget: fieldData.reportSwitchNote,
+      width: 80,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfigBuilder: (value, o) => {
+        const reportSwitch = getValueByKey({
+          data: o,
+          key: fieldData.reportSwitch.name,
+          convert: convertCollection.number,
+        });
+
+        return {
+          color: buildRandomHexColor({
+            seed: toNumber(reportSwitch) * 25 + 47,
+          }),
+        };
+      },
+    },
+    {
+      dataTarget: fieldData.feedbackSwitchNote,
+      width: 80,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfigBuilder: (value, o) => {
+        const feedbackSwitch = getValueByKey({
+          data: o,
+          key: fieldData.feedbackSwitch.name,
+          convert: convertCollection.number,
+        });
+
+        return {
+          color: buildRandomHexColor({
+            seed: toNumber(feedbackSwitch) * 25 + 47,
+          }),
+        };
+      },
+    },
+    {
       dataTarget: fieldData.status,
       width: 120,
       showRichFacade: true,
@@ -431,7 +526,7 @@ class PageList extends MultiPage {
       facadeConfigBuilder: (value) => {
         return {
           status: getStatusBadge(value),
-          text: getTagStatusName({
+          text: getSubsidiaryStatusName({
             value: value,
           }),
         };
@@ -478,6 +573,12 @@ class PageList extends MultiPage {
           maskClosable
           externalData={currentRecord}
         />
+
+        <PageListOpenComplaintDrawer />
+
+        <PageListOpenReportDrawer />
+
+        <PageListOpenFeedbackDrawer />
       </>
     );
   };

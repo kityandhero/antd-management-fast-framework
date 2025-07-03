@@ -9,7 +9,7 @@ import { getChainByWorkflowAction } from '../../WorkflowDebugCase/Assist/action'
 import { fieldData as fieldDataWorkflowDebugCase } from '../../WorkflowDebugCase/Common/data';
 import { AddAttachmentModal } from '../../WorkflowDebugCaseFormAttachment/AddAttachmentModal';
 import { removeAction } from '../../WorkflowDebugCaseFormAttachment/Assist/action';
-import { PreviewDrawer as WorkflowDebugCaseFormAttachmentPreviewDrawer } from '../../WorkflowDebugCaseFormAttachment/PreviewDrawer';
+import { AttachmentPreviewDrawer as WorkflowDebugCaseFormAttachmentPreviewDrawer } from '../../WorkflowDebugCaseFormAttachment/AttachmentPreviewDrawer';
 
 const visibleFlag = 'd5007ce0991442e4a553b3d2ab28f927';
 

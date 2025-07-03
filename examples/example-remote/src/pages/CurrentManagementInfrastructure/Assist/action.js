@@ -2,6 +2,7 @@ import { getValueByKey } from 'easy-soft-utility';
 
 import { actionCore } from 'antd-management-fast-common';
 
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldDataDefaultImage } from '../Common/data';
 
 export async function refreshKeyValueCacheAction({
@@ -12,7 +13,8 @@ export async function refreshKeyValueCacheAction({
   failCallback = null,
 }) {
   actionCore({
-    api: 'currentManagementInfrastructure/refreshKeyValueCache',
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .refreshKeyValueCache,
     params: {
       tag: getValueByKey({
         data: handleData,
@@ -35,7 +37,27 @@ export async function updateFlowDebugUserIdAction({
   failCallback = null,
 }) {
   actionCore({
-    api: 'currentManagementInfrastructure/updateFlowDebugUserId',
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .updateFlowDebugUserId,
+    params: handleData,
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+    failCallback,
+  });
+}
+
+export async function updateFlowDebugSubsidiaryIdAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+  failCallback = null,
+}) {
+  actionCore({
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .updateFlowDebugSubsidiaryId,
     params: handleData,
     target,
     handleData,
@@ -53,7 +75,8 @@ export async function toggleQiniuImageSwitchAction({
   failCallback = null,
 }) {
   actionCore({
-    api: 'currentManagementInfrastructure/toggleQiniuImageSwitch',
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .toggleQiniuImageSwitch,
     params: {},
     target,
     handleData,
@@ -71,7 +94,8 @@ export async function toggleQiniuAudioSwitchAction({
   failCallback = null,
 }) {
   actionCore({
-    api: 'currentManagementInfrastructure/toggleQiniuAudioSwitch',
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .toggleQiniuAudioSwitch,
     params: {},
     target,
     handleData,
@@ -89,7 +113,8 @@ export async function toggleQiniuVideoSwitchAction({
   failCallback = null,
 }) {
   actionCore({
-    api: 'currentManagementInfrastructure/toggleQiniuVideoSwitch',
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .toggleQiniuVideoSwitch,
     params: {},
     target,
     handleData,
@@ -107,7 +132,8 @@ export async function toggleQiniuFileSwitchAction({
   failCallback = null,
 }) {
   actionCore({
-    api: 'currentManagementInfrastructure/toggleQiniuFileSwitch',
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .toggleQiniuFileSwitch,
     params: {},
     target,
     handleData,
@@ -125,7 +151,8 @@ export async function testSecretKeyAction({
   failCallback = null,
 }) {
   actionCore({
-    api: 'currentManagementInfrastructure/testSecretKey',
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .testSecretKey,
     params: {},
     target,
     handleData,
@@ -143,7 +170,8 @@ export async function testDiskSpaceMonitoringConfigAction({
   failCallback = null,
 }) {
   actionCore({
-    api: 'currentManagementInfrastructure/testDiskSpaceMonitoringConfig',
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .testDiskSpaceMonitoringConfig,
     params: {},
     target,
     handleData,
@@ -153,7 +181,7 @@ export async function testDiskSpaceMonitoringConfigAction({
   });
 }
 
-export async function testDiskSpaceMonitoringEmailAction({
+export async function testDiskSpaceMonitoringAlarmEmailAction({
   target,
   handleData,
   successCallback,
@@ -161,7 +189,65 @@ export async function testDiskSpaceMonitoringEmailAction({
   failCallback = null,
 }) {
   actionCore({
-    api: 'currentManagementInfrastructure/testDiskSpaceMonitoringEmail',
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .testDiskSpaceMonitoringAlarmEmail,
+    params: {},
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+    failCallback,
+  });
+}
+
+export async function testDiskSpaceMonitoringDetectionEmailAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+  failCallback = null,
+}) {
+  actionCore({
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .testDiskSpaceMonitoringDetectionEmail,
+    params: {},
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+    failCallback,
+  });
+}
+
+export async function startExecuteDebugAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+  failCallback = null,
+}) {
+  actionCore({
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .startExecuteDebug,
+    params: {},
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+    failCallback,
+  });
+}
+
+export async function stopExecuteDebugAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+  failCallback = null,
+}) {
+  actionCore({
+    api: modelTypeCollection.currentManagementInfrastructureTypeCollection
+      .stopExecuteDebug,
     params: {},
     target,
     handleData,

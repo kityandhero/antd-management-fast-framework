@@ -1,6 +1,69 @@
 {
   "list": [
     {
+      "folder": "Customer/Common",
+      "model": "customer",
+      "key": "customerId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
+      "folder": "CustomerLoginLog/Common",
+      "model": "customerLoginLog",
+      "key": "customerLoginLogId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
+      "folder": "CustomerWechatApplicationInfo/Common",
+      "model": "customerWechatApplicationInfo",
+      "key": "customerWechatApplicationInfoId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintCategory/Common",
+      "model": "subsidiaryComplaintCategory",
+      "key": "subsidiaryComplaintCategoryId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintMessage/Common",
+      "model": "subsidiaryComplaintMessage",
+      "key": "subsidiaryComplaintMessageId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryFeedbackMessage/Common",
+      "model": "subsidiaryFeedbackMessage",
+      "key": "subsidiaryFeedbackMessageId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryReportMessage/Common",
+      "model": "subsidiaryReportMessage",
+      "key": "subsidiaryReportMessageId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationUserFeedback/Common",
+      "model": "applicationUserFeedback",
+      "key": "applicationUserFeedbackId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationCustomerFeedback/Common",
+      "model": "applicationCustomerFeedback",
+      "key": "applicationCustomerFeedbackId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
       "folder": "Position/Common",
       "model": "position",
       "key": "positionId",
@@ -50,9 +113,9 @@
       "coverFile": false
     },
     {
-      "folder": "QuestionnaireQuestion/Common",
-      "model": "questionnaireQuestion",
-      "key": "questionnaireQuestionId",
+      "folder": "QuestionnaireQuestionRelation/Common",
+      "model": "questionnaireQuestionRelation",
+      "key": "questionnaireQuestionRelationId",
       "fileName": "data.js",
       "coverFile": false
     },

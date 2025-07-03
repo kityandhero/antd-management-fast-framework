@@ -1,3 +1,4 @@
+export * from './fieldDataBaseSubsidiaryMessage';
 export * from './fieldDataCommon';
 export * from './fieldDataFlow';
 export * from './fieldDataFlowCase';

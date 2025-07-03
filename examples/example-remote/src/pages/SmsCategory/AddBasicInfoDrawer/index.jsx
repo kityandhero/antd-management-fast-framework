@@ -10,11 +10,11 @@ import {
 } from 'antd-management-fast-framework';
 
 import { buildNowTimeFieldItem } from '../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;
 const visibleFlag = '0d26b8fcba6a48d2b944717c75704180';
-
 @connect(({ smsCategory, schedulingControl }) => ({
   smsCategory,
   schedulingControl,
@@ -29,7 +29,7 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
 
     this.state = {
       ...this.state,
-      submitApiPath: 'smsCategory/addBasicInfo',
+      submitApiPath: modelTypeCollection.smsCategoryTypeCollection.addBasicInfo,
     };
   }
 

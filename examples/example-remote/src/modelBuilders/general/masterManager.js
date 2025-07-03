@@ -8,17 +8,17 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
-  updateBasicInfoData,
-  resetPasswordData,
-  setEnableData,
-  setDisableData,
   changePermissionData,
-  removeData,
-  refreshCacheData,
+  getData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeData,
+  resetPasswordData,
+  setDisableData,
+  setEnableData,
+  updateBasicInfoData,
   uploadImageData,
 } from '../../services/masterManager';
 

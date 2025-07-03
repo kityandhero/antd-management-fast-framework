@@ -2,10 +2,8 @@ import { connect } from 'easy-soft-dva';
 import {
   buildRandomHexColor,
   checkHasAuthority,
-  convertCollection,
   getValueByKey,
   toNumber,
-  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -20,14 +18,13 @@ import {
 
 import { accessWayCollection } from '../../../customConfig';
 import {
-  getBusinessModeName,
   getQuestionStatusName,
   getQuestionTypeName,
 } from '../../../customSpecialComponents';
-import { bindRelationAction } from '../../QuestionnaireQuestion/Assist/action';
-import { fieldData as fieldDataQuestionnaireQuestion } from '../../QuestionnaireQuestion/Common/data';
+import { bindRelationAction } from '../../QuestionnaireQuestionRelation/Assist/action';
+import { fieldData as fieldDataQuestionnaireQuestion } from '../../QuestionnaireQuestionRelation/Common/data';
 import { getStatusBadge } from '../Assist/tools';
-import { fieldData, typeCollection } from '../Common/data';
+import { fieldData } from '../Common/data';
 
 const { MultiPageDrawer } = DataMultiPageView;
 
@@ -64,6 +61,19 @@ class PageListBindQuestionnaireDrawer extends MultiPageDrawer {
     return super.getDerivedStateFromProps(nextProperties, previousState);
   }
 
+  supplementLoadRequestParams = (o) => {
+    const d = { ...o };
+    const { externalData } = this.state;
+
+    d[fieldDataQuestionnaireQuestion.questionnaireId.name] = getValueByKey({
+      data: externalData,
+      key: fieldDataQuestionnaireQuestion.questionnaireId.name,
+      defaultValue: '',
+    });
+
+    return d;
+  };
+
   bind = (item) => {
     const { externalData } = this.props;
 
@@ -97,7 +107,7 @@ class PageListBindQuestionnaireDrawer extends MultiPageDrawer {
         {
           lg: 16,
           type: searchCardConfig.contentItemType.input,
-          fieldData: fieldData.shortName,
+          fieldData: fieldData.title,
         },
         {
           lg: 8,
@@ -108,13 +118,24 @@ class PageListBindQuestionnaireDrawer extends MultiPageDrawer {
     };
   };
 
+  establishPresetAboveTableAlertMessage = () => {
+    return '此处仅列出不在问卷中的且位于启用状态的备选问题。';
+  };
+
+  establishPresetAboveTableAlertContainerStyle = () => {
+    return {
+      paddingBottom: '12px',
+    };
+  };
+
   establishListItemDropdownConfig = (record) => {
     return {
       size: 'small',
       icon: iconBuilder.select(),
       text: '绑定',
       disabled: !checkHasAuthority(
-        accessWayCollection.questionnaireQuestion.bindRelation.permission,
+        accessWayCollection.questionnaireQuestionRelation.bindRelation
+          .permission,
       ),
       handleButtonClick: () => {
         this.bind(record);
@@ -126,35 +147,10 @@ class PageListBindQuestionnaireDrawer extends MultiPageDrawer {
 
   getColumnWrapper = () => [
     {
-      dataTarget: fieldData.image,
-      width: 60,
-      showRichFacade: true,
-      facadeMode: columnFacadeMode.image,
-    },
-    {
       dataTarget: fieldData.title,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
-      formatValue: (value, record) => {
-        const type = getValueByKey({
-          data: record,
-          key: fieldData.type.name,
-          convert: convertCollection.number,
-        });
-
-        if (type !== typeCollection.judgment) {
-          return value;
-        }
-
-        const whetherCorrect = getValueByKey({
-          data: record,
-          key: fieldData.whetherCorrect.name,
-          convert: convertCollection.number,
-        });
-
-        return `（${whetherCorrect === whetherNumber.yes ? '✔' : '✖'}）${value}`;
-      },
     },
     {
       dataTarget: fieldData.type,
@@ -175,28 +171,16 @@ class PageListBindQuestionnaireDrawer extends MultiPageDrawer {
       },
     },
     {
+      dataTarget: fieldData.image,
+      width: 60,
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.image,
+    },
+    {
       dataTarget: fieldData.tagName,
       width: 100,
       showRichFacade: true,
       emptyValue: '--',
-    },
-    {
-      dataTarget: fieldData.businessMode,
-      width: 140,
-      showRichFacade: true,
-      emptyValue: '--',
-      facadeConfigBuilder: (value) => {
-        return {
-          color: buildRandomHexColor({
-            seed: toNumber(value) * 4 + 32,
-          }),
-        };
-      },
-      formatValue: (value) => {
-        return getBusinessModeName({
-          value: value,
-        });
-      },
     },
     {
       dataTarget: fieldData.status,

@@ -1,5 +1,10 @@
 import { connect } from 'easy-soft-dva';
-import { convertCollection, getValueByKey, toNumber } from 'easy-soft-utility';
+import {
+  checkHasAuthority,
+  convertCollection,
+  getValueByKey,
+  toNumber,
+} from 'easy-soft-utility';
 
 import {
   cardConfig,
@@ -9,6 +14,7 @@ import { iconBuilder } from 'antd-management-fast-component';
 
 import { accessWayCollection } from '../../../../customConfig';
 import { renderFormApplicationMerchantTypeSelect } from '../../../../customSpecialComponents';
+import { getWechatApplicationAccessTokenAction } from '../../Assist/action';
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
@@ -78,6 +84,27 @@ class WeChatApplicationInfo extends TabPageBase {
         subMerchantId: '',
       });
     }
+  };
+
+  getWechatApplicationAccessToken = () => {
+    const { applicationId } = this.state;
+
+    getWechatApplicationAccessTokenAction({
+      target: this,
+      handleData: {
+        applicationId,
+      },
+      successCallback: ({ target, remoteData }) => {
+        const { metaData } = target.state;
+
+        metaData[fieldData.accessToken.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.accessToken.name,
+        });
+
+        target.setState({ metaData });
+      },
+    });
   };
 
   fillInitialValuesAfterLoad = ({
@@ -216,6 +243,23 @@ class WeChatApplicationInfo extends TabPageBase {
           title: {
             icon: iconBuilder.clock(),
             text: 'AccessToken信息',
+          },
+          extra: {
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.generalExtraButton,
+                icon: iconBuilder.reload(),
+                text: '尝试获取AccessToken',
+                disabled: this.checkInProgress(),
+                hidden: !checkHasAuthority(
+                  accessWayCollection.application
+                    .getWechatApplicationAccessToken.permission,
+                ),
+                handleClick: () => {
+                  this.getWechatApplicationAccessToken();
+                },
+              },
+            ],
           },
           items: [
             {

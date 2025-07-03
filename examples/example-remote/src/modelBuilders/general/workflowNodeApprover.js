@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,14 +9,14 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  getData,
   addApproverBasicInfoData,
   addPositionGradeBasicInfoData,
-  removeData,
-  refreshCacheData,
+  getData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeData,
+  singleListData,
 } from '../../services/workflowNodeApprover';
 
 export const workflowNodeApproverTypeCollection = {

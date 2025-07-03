@@ -8,6 +8,55 @@
       "coverFile": false
     },
     {
+      "folder": "Customer/Edit/BasicInfo",
+      "model": "customer",
+      "key": "customerId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintCategory/Edit/BasicInfo",
+      "model": "subsidiaryComplaintCategory",
+      "key": "subsidiaryComplaintCategoryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintMessage/Edit/BasicInfo",
+      "model": "subsidiaryComplaintMessage",
+      "key": "subsidiaryComplaintMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryFeedbackMessage/Edit/BasicInfo",
+      "model": "subsidiaryFeedbackMessage",
+      "key": "subsidiaryFeedbackMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryReportMessage/Edit/BasicInfo",
+      "model": "subsidiaryReportMessage",
+      "key": "subsidiaryReportMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationUserFeedback/Edit/BasicInfo",
+      "model": "applicationUserFeedback",
+      "key": "applicationUserFeedbackId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationCustomerFeedback/Edit/BasicInfo",
+      "model": "applicationCustomerFeedback",
+      "key": "applicationCustomerFeedbackId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
       "folder": "Question/Edit/BasicInfo",
       "model": "question",
       "key": "questionId",

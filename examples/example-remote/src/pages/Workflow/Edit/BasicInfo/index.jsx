@@ -69,6 +69,11 @@ class BasicInfo extends TabPageBase {
         key: fieldData.name.name,
       });
 
+      values[fieldData.title.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.title.name,
+      });
+
       values[fieldData.description.name] = getValueByKey({
         data: metaData,
         key: fieldData.description.name,
@@ -105,6 +110,12 @@ class BasicInfo extends TabPageBase {
               lg: 24,
               type: cardConfig.contentItemType.input,
               fieldData: fieldData.name,
+              require: true,
+            },
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.title,
               require: true,
             },
             {

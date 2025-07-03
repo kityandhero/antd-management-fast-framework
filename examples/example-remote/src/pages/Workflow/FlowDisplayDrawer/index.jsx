@@ -1,12 +1,14 @@
 import { connect } from 'easy-soft-dva';
 import {
   checkInCollection,
+  checkStringIsNullOrWhiteSpace,
   convertCollection,
   getValueByKey,
   isArray,
   toLowerFirst,
 } from 'easy-soft-utility';
 
+import { ColorText } from 'antd-management-fast-component';
 import { adjustEdge, Flow } from 'antd-management-fast-flow';
 import {
   DataDrawer,
@@ -17,6 +19,7 @@ import {
   flowLineTypeCollection,
   flowNodeTypeCollection,
 } from '../../../customConfig';
+import { getFlowNodeApproveModeName } from '../../../customSpecialComponents';
 import { fieldData as fieldDataWorkflowLine } from '../../WorkflowLine/Common/data';
 import { fieldData as fieldDataWorkflowNode } from '../../WorkflowNode/Common/data';
 import { fieldData as fieldDataWorkflowNodeApprover } from '../../WorkflowNodeApprover/Common/data';
@@ -135,6 +138,42 @@ class FlowDisplayDrawer extends BaseVerticalFlexDrawer {
           ...viewConfig,
           data: {
             data: o,
+            footerBuilder: (data) => {
+              const approverMode = getValueByKey({
+                data: data,
+                key: fieldDataWorkflowNode.approveMode.name,
+                convert: convertCollection.number,
+                defaultValue: '',
+              });
+
+              const approverModeName = getFlowNodeApproveModeName({
+                value: approverMode,
+              });
+
+              if (checkStringIsNullOrWhiteSpace(approverModeName)) {
+                return null;
+              }
+
+              return (
+                <ColorText
+                  textPrefix="审批方式"
+                  text={approverModeName}
+                  color="#999"
+                  style={{
+                    fontSize: 10,
+                  }}
+                  textPrefixStyle={{
+                    color: '#999',
+                  }}
+                  separator="："
+                  separatorStyle={{
+                    paddingLeft: '2px',
+                    paddingRight: '0px',
+                    color: '#999',
+                  }}
+                />
+              );
+            },
           },
         };
 

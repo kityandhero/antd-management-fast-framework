@@ -15,8 +15,16 @@ import {
   switchControlAssist,
 } from 'antd-management-fast-framework';
 
-import { flowNodeApproverModeCollection } from '../../../customConfig';
-import { renderFormFlowNodeApproverModeSelect } from '../../../customSpecialComponents';
+import {
+  flowNodeApproveModeCollection,
+  flowNodeApproverModeCollection,
+} from '../../../customConfig';
+import {
+  getFlowNodeApproveModeName,
+  renderFormFlowNodeApproveModeSelect,
+  renderFormFlowNodeApproverModeSelect,
+} from '../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData } from '../Common/data';
 
 const { BaseUpdateDrawer } = DataDrawer;
@@ -40,8 +48,10 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
     this.state = {
       ...this.state,
       pageTitle: '编辑流程节点',
-      loadApiPath: 'workflowNode/get',
-      submitApiPath: 'workflowNode/updateBasicInfo',
+      loadApiPath: modelTypeCollection.workflowNodeTypeCollection.get,
+      submitApiPath:
+        modelTypeCollection.workflowNodeTypeCollection.updateBasicInfo,
+      approveModeSelectable: false,
     };
   }
 
@@ -72,7 +82,60 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
       key: fieldData.workflowNodeId.name,
     });
 
+    const approverMode = getValueByKey({
+      data: o,
+      key: fieldData.approverMode.name,
+      convert: convertCollection.string,
+      defaultValue: '',
+    });
+
+    if (approverMode != toString(flowNodeApproverModeCollection.designated)) {
+      d[fieldData.approveMode.name] = toString(
+        flowNodeApproveModeCollection.oneOfApproval,
+      );
+    }
+
     return d;
+  };
+
+  doOtherAfterLoadSuccess = ({
+    metaData = null,
+    // eslint-disable-next-line no-unused-vars
+    metaListData = [],
+    // eslint-disable-next-line no-unused-vars
+    metaExtra = null,
+    // eslint-disable-next-line no-unused-vars
+    metaOriginalData = null,
+  }) => {
+    const approverMode = getValueByKey({
+      data: metaData,
+      key: fieldData.approverMode.name,
+      defaultValue: '',
+    });
+
+    this.setState({
+      approveModeSelectable:
+        toString(approverMode) ===
+        toString(flowNodeApproverModeCollection.designated),
+    });
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  onApproverModeChange = (v, option) => {
+    const data = {};
+
+    if (toString(v) !== toString(flowNodeApproverModeCollection.designated)) {
+      data[fieldData.approveMode.name] = toString(
+        flowNodeApproveModeCollection.oneOfApproval,
+      );
+    }
+
+    this.setFormFieldsValue(data);
+
+    this.setState({
+      approveModeSelectable:
+        toString(v) === toString(flowNodeApproverModeCollection.designated),
+    });
   };
 
   renderPresetTitle = () => {
@@ -97,15 +160,21 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
         key: fieldData.name.name,
       });
 
+      values[fieldData.description.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.description.name,
+      });
+
       values[fieldData.approverMode.name] = getValueByKey({
         data: metaData,
         key: fieldData.approverMode.name,
         convert: convertCollection.string,
       });
 
-      values[fieldData.description.name] = getValueByKey({
+      values[fieldData.approveMode.name] = getValueByKey({
         data: metaData,
-        key: fieldData.description.name,
+        key: fieldData.approveMode.name,
+        convert: convertCollection.string,
       });
     }
 
@@ -113,7 +182,7 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
   };
 
   establishCardCollectionConfig = () => {
-    const { metaData } = this.state;
+    const { approveModeSelectable, metaData } = this.state;
 
     return {
       list: [
@@ -150,8 +219,26 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
 
                   return listAdjust;
                 },
+                onChange: this.onApproverModeChange,
               }),
               require: true,
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.component,
+              component: renderFormFlowNodeApproveModeSelect({}),
+              require: true,
+              hidden: !approveModeSelectable,
+            },
+            {
+              lg: 12,
+              type: cardConfig.contentItemType.onlyShowInput,
+              fieldData: fieldData.approveMode,
+              value: getFlowNodeApproveModeName({
+                value: toString(flowNodeApproveModeCollection.oneOfApproval),
+              }),
+              require: true,
+              hidden: approveModeSelectable,
             },
             {
               lg: 12,

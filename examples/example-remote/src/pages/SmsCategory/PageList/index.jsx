@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from 'easy-soft-dva';
 import {
+  checkHasAuthority,
   convertCollection,
   getValueByKey,
   handleItem,
@@ -24,6 +25,7 @@ import {
   getSmsCategoryStatusName,
   renderSearchSmsCategoryStatusSelect,
 } from '../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../modelBuilders';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import {
   refreshCacheAction,
@@ -49,7 +51,7 @@ class PageList extends MultiPage {
       ...this.state,
       paramsKey: accessWayCollection.smsCategory.pageList.paramsKey,
       pageTitle: '短信分类列表',
-      loadApiPath: 'smsCategory/pageList',
+      loadApiPath: modelTypeCollection.smsCategoryTypeCollection.pageList,
       currentRecord: null,
     };
   }
@@ -247,6 +249,9 @@ class PageList extends MultiPage {
           icon: iconBuilder.playCircle(),
           text: '设为启用',
           disabled: status === statusCollection.enable,
+          hidden: !checkHasAuthority(
+            accessWayCollection.smsCategory.setEnable.permission,
+          ),
           confirm: true,
           title: '即将设为启用，确定吗？',
         },
@@ -255,6 +260,9 @@ class PageList extends MultiPage {
           icon: iconBuilder.pauseCircle(),
           text: '设为禁用',
           disabled: status === statusCollection.disable,
+          hidden: !checkHasAuthority(
+            accessWayCollection.smsCategory.setDisable.permission,
+          ),
           confirm: true,
           title: '即将设为禁用，确定吗？',
         },

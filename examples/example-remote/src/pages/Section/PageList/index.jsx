@@ -414,6 +414,117 @@ class PageList extends MultiPage {
     };
   };
 
+  establishListItemDropdownConfig = (record) => {
+    const itemStatus = getValueByKey({
+      data: record,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
+    return {
+      size: 'small',
+      text: '编辑',
+      icon: iconBuilder.edit(),
+      disabled: !checkHasAuthority(accessWayCollection.section.get.permission),
+      handleButtonClick: ({ handleData }) => {
+        this.goToEdit(handleData);
+      },
+      handleData: record,
+      handleMenuClick: ({ key, handleData }) => {
+        this.handleMenuClick({ key, handleData });
+      },
+      items: [
+        {
+          key: 'setSort',
+          icon: iconBuilder.edit(),
+          text: '设置排序值',
+          hidden: !checkHasAuthority(
+            accessWayCollection.section.updateSort.permission,
+          ),
+        },
+        {
+          key: 'updateBusinessMode',
+          icon: iconBuilder.edit(),
+          text: '设置适用业务',
+          hidden: !checkHasAuthority(
+            accessWayCollection.section.updateBusinessMode.permission,
+          ),
+        },
+        {
+          key: 'toggleRecommend',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.swap(),
+          text: '切换推荐',
+          hidden: !checkHasAuthority(
+            accessWayCollection.section.toggleRecommend.permission,
+          ),
+          confirm: true,
+          title: '将要切换推荐设置，确定吗？',
+        },
+        {
+          key: 'toggleTop',
+          icon: iconBuilder.swap(),
+          text: '切换置顶',
+          hidden: !checkHasAuthority(
+            accessWayCollection.section.toggleTop.permission,
+          ),
+          confirm: true,
+          title: '将要切换置顶设置，确定吗？',
+        },
+        {
+          key: 'toggleVisible',
+          icon: iconBuilder.swap(),
+          text: '切换可见性',
+          hidden: !checkHasAuthority(
+            accessWayCollection.section.toggleVisible.permission,
+          ),
+          confirm: true,
+          title: '将要切换可见性设置，确定吗？',
+        },
+        {
+          key: 'setOnline',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.upload(),
+          text: '设为上线',
+          hidden: !checkHasAuthority(
+            accessWayCollection.section.setOnline.permission,
+          ),
+          disabled: itemStatus === statusCollection.online,
+          confirm: {
+            title: '即将设为上线，确定吗？',
+          },
+        },
+        {
+          key: 'setOffline',
+          icon: iconBuilder.download(),
+          text: '设为下线',
+          hidden: !checkHasAuthority(
+            accessWayCollection.section.setOffline.permission,
+          ),
+          disabled: itemStatus === statusCollection.offline,
+          confirm: {
+            title: '即将设为下线，确定吗？',
+          },
+        },
+        {
+          key: 'refreshCache',
+          withDivider: true,
+          uponDivider: true,
+          icon: iconBuilder.reload(),
+          text: '刷新缓存',
+          hidden: !checkHasAuthority(
+            accessWayCollection.section.refreshCache.permission,
+          ),
+          confirm: {
+            title: '即将刷新缓存，确定吗？',
+          },
+        },
+      ],
+    };
+  };
+
   getColumnWrapper = () => [
     {
       dataTarget: fieldData.name,
@@ -526,125 +637,6 @@ class PageList extends MultiPage {
       width: 120,
       showRichFacade: true,
       canCopy: true,
-    },
-    {
-      dataTarget: fieldData.customOperate,
-      width: 106,
-      fixed: 'right',
-      showRichFacade: true,
-      facadeMode: columnFacadeMode.dropdown,
-      configBuilder: (value, record) => {
-        const itemStatus = getValueByKey({
-          data: record,
-          key: fieldData.status.name,
-          convert: convertCollection.number,
-        });
-
-        return {
-          size: 'small',
-          text: '编辑',
-          icon: iconBuilder.edit(),
-          disabled: !checkHasAuthority(
-            accessWayCollection.section.get.permission,
-          ),
-          handleButtonClick: ({ handleData }) => {
-            this.goToEdit(handleData);
-          },
-          handleData: record,
-          handleMenuClick: ({ key, handleData }) => {
-            this.handleMenuClick({ key, handleData });
-          },
-          items: [
-            {
-              key: 'setSort',
-              icon: iconBuilder.edit(),
-              text: '设置排序值',
-              hidden: !checkHasAuthority(
-                accessWayCollection.section.updateSort.permission,
-              ),
-            },
-            {
-              key: 'updateBusinessMode',
-              icon: iconBuilder.edit(),
-              text: '设置适用业务',
-              hidden: !checkHasAuthority(
-                accessWayCollection.section.updateBusinessMode.permission,
-              ),
-            },
-            {
-              key: 'toggleRecommend',
-              withDivider: true,
-              uponDivider: true,
-              icon: iconBuilder.swap(),
-              text: '切换推荐',
-              hidden: !checkHasAuthority(
-                accessWayCollection.section.toggleRecommend.permission,
-              ),
-              confirm: true,
-              title: '将要切换推荐设置，确定吗？',
-            },
-            {
-              key: 'toggleTop',
-              icon: iconBuilder.swap(),
-              text: '切换置顶',
-              hidden: !checkHasAuthority(
-                accessWayCollection.section.toggleTop.permission,
-              ),
-              confirm: true,
-              title: '将要切换置顶设置，确定吗？',
-            },
-            {
-              key: 'toggleVisible',
-              icon: iconBuilder.swap(),
-              text: '切换可见性',
-              hidden: !checkHasAuthority(
-                accessWayCollection.section.toggleVisible.permission,
-              ),
-              confirm: true,
-              title: '将要切换可见性设置，确定吗？',
-            },
-            {
-              key: 'setOnline',
-              withDivider: true,
-              uponDivider: true,
-              icon: iconBuilder.upload(),
-              text: '设为上线',
-              hidden: !checkHasAuthority(
-                accessWayCollection.section.setOnline.permission,
-              ),
-              disabled: itemStatus === statusCollection.online,
-              confirm: {
-                title: '即将设为上线，确定吗？',
-              },
-            },
-            {
-              key: 'setOffline',
-              icon: iconBuilder.download(),
-              text: '设为下线',
-              hidden: !checkHasAuthority(
-                accessWayCollection.section.setOffline.permission,
-              ),
-              disabled: itemStatus === statusCollection.offline,
-              confirm: {
-                title: '即将设为下线，确定吗？',
-              },
-            },
-            {
-              key: 'refreshCache',
-              withDivider: true,
-              uponDivider: true,
-              icon: iconBuilder.reload(),
-              text: '刷新缓存',
-              hidden: !checkHasAuthority(
-                accessWayCollection.section.refreshCache.permission,
-              ),
-              confirm: {
-                title: '即将刷新缓存，确定吗？',
-              },
-            },
-          ],
-        };
-      },
     },
   ];
 

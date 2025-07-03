@@ -9,6 +9,7 @@ import {
 
 import { accessWayCollection } from '../../../customConfig';
 import { buildNowTimeFieldItem } from '../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData } from '../Common/data';
 
 const { BaseAddDrawer } = DataDrawer;
@@ -37,7 +38,9 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
     this.state = {
       ...this.state,
       pageTitle: '新增信息',
-      submitApiPath: '<%= o.model %>/addBasicInfo',
+      submitApiPath:
+        modelTypeCollection.<%= o.model %>TypeCollection
+          .addBasicInfo,
     };
   }
 

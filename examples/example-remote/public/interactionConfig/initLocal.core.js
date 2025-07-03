@@ -22,6 +22,8 @@ window.appInitCustomLocalCore = {
       'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
     name: 'simple user',
   },
+  // 快捷历史导航栏
+  useShortcutNavigation: true,
   applicationListData: [
     {
       key: '11',

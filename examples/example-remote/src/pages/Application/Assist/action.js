@@ -2,7 +2,25 @@ import { getValueByKey } from 'easy-soft-utility';
 
 import { actionCore } from 'antd-management-fast-common';
 
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData } from '../Common/data';
+
+export async function getWechatApplicationAccessTokenAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage = null,
+}) {
+  actionCore({
+    api: modelTypeCollection.applicationTypeCollection
+      .getWechatApplicationAccessToken,
+    params: handleData,
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
 
 export async function updateKeyValueAction({
   target,
@@ -11,8 +29,30 @@ export async function updateKeyValueAction({
   successMessage = null,
 }) {
   actionCore({
-    api: 'application/updateKeyValueInfo',
+    api: modelTypeCollection.applicationTypeCollection.updateKeyValueInfo,
     params: handleData,
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export function toggleCustomerAutomaticRegistrationAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.applicationTypeCollection
+      .toggleCustomerAutomaticRegistration,
+    params: {
+      applicationId: getValueByKey({
+        data: handleData,
+        key: fieldData.applicationId.name,
+      }),
+    },
     target,
     handleData,
     successCallback,
@@ -32,7 +72,7 @@ export async function setStartAction({
   });
 
   actionCore({
-    api: 'application/setStart',
+    api: modelTypeCollection.applicationTypeCollection.setStart,
     params: {
       applicationId: getValueByKey({
         data: handleData,
@@ -60,7 +100,7 @@ export async function setStopAction({
   const status = 0;
 
   actionCore({
-    api: 'application/setStop',
+    api: modelTypeCollection.applicationTypeCollection.setStop,
     params: {
       applicationId: getValueByKey({
         data: handleData,
@@ -82,7 +122,7 @@ export async function setOwnAction({
   successMessage = null,
 }) {
   actionCore({
-    api: 'application/setOwn',
+    api: modelTypeCollection.applicationTypeCollection.setOwn,
     params: {
       applicationSourceId: getValueByKey({
         data: handleData,
@@ -103,7 +143,7 @@ export async function refreshCacheAction({
   successMessage = null,
 }) {
   actionCore({
-    api: 'application/refreshCache',
+    api: modelTypeCollection.applicationTypeCollection.refreshCache,
     params: {
       applicationId: getValueByKey({
         data: handleData,
@@ -129,7 +169,7 @@ export async function testJiGuangSendDeviceAction({
   };
 
   actionCore({
-    api: 'application/testJiGuangSendDevice',
+    api: modelTypeCollection.applicationTypeCollection.testJiGuangSendDevice,
     params: {
       applicationId: applicationId || 0,
     },
@@ -153,11 +193,28 @@ export async function testSendWechatMessageAction({
   };
 
   actionCore({
-    api: 'application/testSendWechatMessage',
+    api: modelTypeCollection.applicationTypeCollection.testSendWechatMessage,
     params: {
       applicationId: applicationId || 0,
       userId: userId || 0,
     },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export async function getUnlimitedWechatMicroApplicationQrCodeAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.applicationTypeCollection
+      .getUnlimitedWechatMicroApplicationQrCode,
+    params: handleData,
     target,
     handleData,
     successCallback,
@@ -172,7 +229,8 @@ export async function removeCustomGlobalDataItemAction({
   successMessage = null,
 }) {
   actionCore({
-    api: 'application/removeCustomGlobalDataItem',
+    api: modelTypeCollection.applicationTypeCollection
+      .removeCustomGlobalDataItem,
     params: handleData,
     target,
     handleData,

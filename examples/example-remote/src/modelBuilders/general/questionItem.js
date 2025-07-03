@@ -8,14 +8,14 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
+  getData,
+  pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
+  removeData,
   updateBasicInfoData,
   updateSortData,
-  removeData,
-  refreshCacheData,
-  pageListOperateLogData,
   uploadImageData,
 } from '../../services/questionItem';
 

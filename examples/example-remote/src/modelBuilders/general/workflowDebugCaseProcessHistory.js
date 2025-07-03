@@ -8,14 +8,14 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
-  passData,
-  refuseData,
   cancelApproveData,
-  resetAllApproveData,
-  refreshCacheData,
+  getData,
+  pageListData,
   pageListOperateLogData,
+  passData,
+  refreshCacheData,
+  refuseData,
+  resetAllApproveData,
 } from '../../services/workflowDebugCaseProcessHistory';
 
 export const workflowDebugCaseProcessHistoryTypeCollection = {

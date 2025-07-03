@@ -7,6 +7,48 @@
       "coverFile": true
     },
     {
+      "folder": "Customer/Edit/OperateLog/PageList",
+      "model": "customer",
+      "key": "customerId",
+      "coverFile": true
+    },
+    {
+      "folder": "SubsidiaryComplaintCategory/Edit/OperateLog/PageList",
+      "model": "subsidiaryComplaintCategory",
+      "key": "subsidiaryComplaintCategoryId",
+      "coverFile": true
+    },
+    {
+      "folder": "SubsidiaryComplaintMessage/Edit/OperateLog/PageList",
+      "model": "subsidiaryComplaintMessage",
+      "key": "subsidiaryComplaintMessageId",
+      "coverFile": true
+    },
+    {
+      "folder": "SubsidiaryFeedbackMessage/Edit/OperateLog/PageList",
+      "model": "subsidiaryFeedbackMessage",
+      "key": "subsidiaryFeedbackMessageId",
+      "coverFile": true
+    },
+    {
+      "folder": "SubsidiaryReportMessage/Edit/OperateLog/PageList",
+      "model": "subsidiaryReportMessage",
+      "key": "subsidiaryReportMessageId",
+      "coverFile": true
+    },
+    {
+      "folder": "ApplicationUserFeedback/Edit/OperateLog/PageList",
+      "model": "applicationUserFeedback",
+      "key": "applicationUserFeedbackId",
+      "coverFile": true
+    },
+    {
+      "folder": "ApplicationCustomerFeedback/Edit/OperateLog/PageList",
+      "model": "applicationCustomerFeedback",
+      "key": "applicationCustomerFeedbackId",
+      "coverFile": true
+    },
+    {
       "folder": "Question/Edit/OperateLog/PageList",
       "model": "question",
       "key": "questionId",

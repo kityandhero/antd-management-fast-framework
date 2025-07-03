@@ -10,6 +10,7 @@ import {
   getMessageQueueModeName,
   getMessageQueueToStoreModeName,
 } from '../../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { buildInputItem } from '../../../../utils';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
@@ -27,7 +28,8 @@ class Index extends TabPageBase {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'currentManagementInfrastructure/get',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
     };
   }
 

@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,12 +9,12 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
   getData,
-  removeData,
-  refreshCacheData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeData,
+  singleListData,
 } from '../../services/userLoginLog';
 
 export const userLoginLogTypeCollection = {

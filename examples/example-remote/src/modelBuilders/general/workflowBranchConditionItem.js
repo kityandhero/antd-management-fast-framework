@@ -8,16 +8,16 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addFormFieldBasicInfoData,
   addRemoteCallBasicInfoData,
-  updateBasicInfoData,
-  setRemoteCallUrlData,
-  setRemoteCallParametersData,
+  getData,
+  pageListData,
+  pageListOperateLogData,
   refreshCacheData,
   removeData,
-  pageListOperateLogData,
+  setRemoteCallParametersData,
+  setRemoteCallUrlData,
+  updateBasicInfoData,
 } from '../../services/workflowBranchConditionItem';
 
 export const workflowBranchConditionItemTypeCollection = {

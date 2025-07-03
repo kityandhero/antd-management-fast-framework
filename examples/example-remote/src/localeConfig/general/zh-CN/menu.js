@@ -102,6 +102,74 @@ export const menuZhCNGeneral = {
   'menu.sms.smsCategoryStatistic.pageList': '统计列表',
   'menu.sms.smsCategoryStatistic.pageList-mini': '统计表',
 
+  'menu.subsidiaryMessages': '企业反馈',
+  'menu.subsidiaryMessages-mini': '反馈',
+
+  'menu.subsidiaryMessages.subsidiaryComplaintCategory': '投诉类别',
+  'menu.subsidiaryMessages.subsidiaryComplaintCategory-mini': '投诉类别',
+  'menu.subsidiaryMessages.subsidiaryComplaintCategory.pageList': '类别列表',
+  'menu.subsidiaryMessages.subsidiaryComplaintCategory.pageList-mini': '列表',
+
+  'menu.subsidiaryMessages.subsidiaryComplaintMessage': '投诉信息',
+  'menu.subsidiaryMessages.subsidiaryComplaintMessage-mini': '投诉信息',
+  'menu.subsidiaryMessages.subsidiaryComplaintMessage.pageList': '信息列表',
+  'menu.subsidiaryMessages.subsidiaryComplaintMessage.pageList-mini': '列表',
+  'menu.subsidiaryMessages.subsidiaryComplaintMessage.edit': '投诉详情',
+  'menu.subsidiaryMessages.subsidiaryComplaintMessage.edit.basicInfo':
+    '基本信息',
+  'menu.subsidiaryMessages.subsidiaryComplaintMessage.edit.operateLog':
+    '操作日志',
+  'menu.subsidiaryMessages.subsidiaryComplaintMessage.edit.operateLog.pageList':
+    '日志列表',
+
+  'menu.subsidiaryMessages.subsidiaryFeedbackMessage': '留言信息',
+  'menu.subsidiaryMessages.subsidiaryFeedbackMessage-mini': '留言',
+  'menu.subsidiaryMessages.subsidiaryFeedbackMessage.pageList': '信息列表',
+  'menu.subsidiaryMessages.subsidiaryFeedbackMessage.pageList-mini': '列表',
+  'menu.subsidiaryMessages.subsidiaryFeedbackMessage.edit': '留言详情',
+  'menu.subsidiaryMessages.subsidiaryFeedbackMessage.edit.basicInfo':
+    '基本信息',
+  'menu.subsidiaryMessages.subsidiaryFeedbackMessage.edit.operateLog':
+    '操作日志',
+  'menu.subsidiaryMessages.subsidiaryFeedbackMessage.edit.operateLog.pageList':
+    '日志列表',
+
+  'menu.subsidiaryMessages.subsidiaryReportMessage': '举报信息',
+  'menu.subsidiaryMessages.subsidiaryReportMessage-mini': '举报',
+  'menu.subsidiaryMessages.subsidiaryReportMessage.pageList': '信息列表',
+  'menu.subsidiaryMessages.subsidiaryReportMessage.pageList-mini': '列表',
+  'menu.subsidiaryMessages.subsidiaryReportMessage.edit': '举报详情',
+  'menu.subsidiaryMessages.subsidiaryReportMessage.edit.basicInfo': '基本信息',
+  'menu.subsidiaryMessages.subsidiaryReportMessage.edit.operateLog': '操作日志',
+  'menu.subsidiaryMessages.subsidiaryReportMessage.edit.operateLog.pageList':
+    '日志列表',
+
+  'menu.applicationFeedback': '应用反馈',
+  'menu.applicationFeedback-mini': '反馈',
+
+  'menu.applicationFeedback.applicationUserFeedback': '用户反馈',
+  'menu.applicationFeedback.applicationUserFeedback-mini': '用户',
+  'menu.applicationFeedback.applicationUserFeedback.pageList': '反馈列表',
+  'menu.applicationFeedback.applicationUserFeedback.pageList-mini': '列表',
+  'menu.applicationFeedback.applicationUserFeedback.edit': '反馈详情',
+  'menu.applicationFeedback.applicationUserFeedback.edit.basicInfo': '基本信息',
+  'menu.applicationFeedback.applicationUserFeedback.edit.operateLog':
+    '操作日志',
+  'menu.applicationFeedback.applicationUserFeedback.edit.operateLog.pageList':
+    '日志列表',
+
+  'menu.applicationFeedback.applicationCustomerFeedback': '顾客反馈',
+  'menu.applicationFeedback.applicationCustomerFeedback-mini': '顾客',
+  'menu.applicationFeedback.applicationCustomerFeedback.pageList': '反馈列表',
+  'menu.applicationFeedback.applicationCustomerFeedback.pageList-mini': '列表',
+  'menu.applicationFeedback.applicationCustomerFeedback.edit': '反馈详情',
+  'menu.applicationFeedback.applicationCustomerFeedback.edit.basicInfo':
+    '基本信息',
+  'menu.applicationFeedback.applicationCustomerFeedback.edit.operateLog':
+    '操作日志',
+  'menu.applicationFeedback.applicationCustomerFeedback.edit.operateLog.pageList':
+    '日志列表',
+
   'menu.services': '系统服务',
   'menu.services-mini': '服务',
 
@@ -343,8 +411,8 @@ export const menuZhCNGeneral = {
   'menu.survey.question.edit.operateLog': '操作日志',
   'menu.survey.question.edit.operateLog.pageList': '日志列表',
 
-  'menu.survey.questionItem': '问题库项管理',
-  'menu.survey.questionItem-mini': '问题库项',
+  'menu.survey.questionItem': '问题项管理',
+  'menu.survey.questionItem-mini': '问题项',
   'menu.survey.questionItem.pageList': '分页列表',
   'menu.survey.questionItem.pageList-mini': '列表',
 
@@ -358,6 +426,31 @@ export const menuZhCNGeneral = {
   'menu.survey.questionnaire.edit.question.pageList': '问题列表',
   'menu.survey.questionnaire.edit.operateLog': '操作日志',
   'menu.survey.questionnaire.edit.operateLog.pageList': '日志列表',
+
+  'menu.frontEndUser': '顾客管理',
+  'menu.frontEndUser-mini': '顾客',
+
+  'menu.frontEndUser.customer': '顾客信息',
+  'menu.frontEndUser.customer-mini': '顾客',
+  'menu.frontEndUser.customer.pageList': '顾客列表',
+  'menu.frontEndUser.customer.pageList-mini': '列表',
+  'menu.frontEndUser.customer.pageListSignet': '签章列表',
+  'menu.frontEndUser.customer.pageListSignet-mini': '签章',
+  'menu.frontEndUser.customer.edit': '顾客详情',
+  'menu.frontEndUser.customer.edit.basicInfo': '基本信息',
+  'menu.frontEndUser.customer.edit.operateLog': '操作日志',
+  'menu.frontEndUser.customer.edit.operateLog.pageList': '日志列表',
+
+  'menu.frontEndUser.customerLoginLog': '登录记录',
+  'menu.frontEndUser.customerLoginLog-mini': '登录',
+  'menu.frontEndUser.customerLoginLog.pageList': '登录列表',
+  'menu.frontEndUser.customerLoginLog.pageList-mini': '列表',
+
+  'menu.frontEndUser.customerWechatApplicationInfo': '顾客微信信息',
+  'menu.frontEndUser.customerWechatApplicationInfo-mini': '顾客微信',
+  'menu.frontEndUser.customerWechatApplicationInfo.pageList':
+    '顾客微信信息列表',
+  'menu.frontEndUser.customerWechatApplicationInfo.pageList-mini': '列表',
 
   'menu.person': '用户相关',
   'menu.person-mini': '用户',

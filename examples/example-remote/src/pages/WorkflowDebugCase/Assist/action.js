@@ -49,6 +49,33 @@ export async function addBasicInfoAction({
   });
 }
 
+export async function setSubsidiaryIdAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.workflowDebugCaseTypeCollection.setSubsidiaryId,
+    params: {
+      workflowDebugCaseId: getValueByKey({
+        data: handleData,
+        key: fieldData.workflowDebugCaseId.name,
+        defaultValue: '',
+      }),
+      subsidiaryId: getValueByKey({
+        data: handleData,
+        key: fieldData.subsidiaryId.name,
+        defaultValue: '',
+      }),
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
 export async function submitApprovalAction({
   target,
   handleData,
@@ -171,6 +198,72 @@ export async function forceEndAction({
 }) {
   actionCore({
     api: modelTypeCollection.workflowDebugCaseTypeCollection.forceEnd,
+    params: {
+      workflowDebugCaseId: getValueByKey({
+        data: handleData,
+        key: fieldData.workflowDebugCaseId.name,
+        defaultValue: '',
+      }),
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export async function toggleEmergencyAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.workflowDebugCaseTypeCollection.toggleEmergency,
+    params: {
+      workflowDebugCaseId: getValueByKey({
+        data: handleData,
+        key: fieldData.workflowDebugCaseId.name,
+        defaultValue: '',
+      }),
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export async function archiveAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.workflowDebugCaseTypeCollection.archive,
+    params: {
+      workflowDebugCaseId: getValueByKey({
+        data: handleData,
+        key: fieldData.workflowDebugCaseId.name,
+        defaultValue: '',
+      }),
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
+export async function cancelArchiveAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.workflowDebugCaseTypeCollection.cancelArchive,
     params: {
       workflowDebugCaseId: getValueByKey({
         data: handleData,

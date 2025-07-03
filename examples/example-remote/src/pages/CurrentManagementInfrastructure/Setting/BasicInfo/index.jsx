@@ -4,6 +4,7 @@ import { formatCollection, getValueByKey } from 'easy-soft-utility';
 import { cardConfig, getCorsDomain } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
 
@@ -19,8 +20,11 @@ class Index extends TabPageBase {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'currentManagementInfrastructure/get',
-      submitApiPath: 'currentManagementInfrastructure/updateBasicInfo',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
+      submitApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection
+          .updateBasicInfo,
       logo: '',
     };
   }

@@ -53,6 +53,7 @@ import {
   questionCreateModeCollection,
   statusCollection,
 } from '../Common/data';
+import { ExaminationPaperPreviewDrawer } from '../ExaminationPaperPreviewDrawer';
 
 const { MultiPage } = DataMultiPageView;
 const {
@@ -577,6 +578,9 @@ class PageList extends MultiPage {
           title: '将要切换置顶设置，确定吗？',
         },
         {
+          type: dropdownExpandItemType.divider,
+        },
+        {
           key: 'toggleVisible',
           icon: iconBuilder.swap(),
           text: '切换可见性',
@@ -587,6 +591,9 @@ class PageList extends MultiPage {
             ),
           confirm: true,
           title: '将要切换可见性设置，确定吗？',
+        },
+        {
+          type: dropdownExpandItemType.divider,
         },
         {
           key: 'toggleGroupDisplay',
@@ -921,6 +928,8 @@ class PageList extends MultiPage {
           externalData={currentRecord}
           afterOK={this.afterChangeSortModalOk}
         />
+
+        <ExaminationPaperPreviewDrawer externalData={currentRecord} />
       </>
     );
   };

@@ -8,22 +8,22 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  pageListAssemblyVerifyData,
-  getData,
-  getInfrastructurePermissionFileContentData,
-  getBusinessPermissionFileContentData,
-  getAllPermissionFileContentData,
-  getInfrastructureModelConfigFileContentData,
-  getBusinessModelConfigFileContentData,
-  getAllModelConfigFileContentData,
   getActionMapData,
-  getPermissionActionMapData,
+  getAllModelConfigFileContentData,
+  getAllPermissionFileContentData,
+  getBusinessModelConfigFileContentData,
+  getBusinessPermissionFileContentData,
+  getData,
+  getInfrastructureModelConfigFileContentData,
+  getInfrastructurePermissionFileContentData,
   getNonePermissionActionMapData,
-  testPermissionActionUniqueData,
-  testPermissionActionData,
-  removeData,
+  getPermissionActionMapData,
+  pageListAssemblyVerifyData,
+  pageListData,
   refreshCacheData,
+  removeData,
+  testPermissionActionData,
+  testPermissionActionUniqueData,
 } from '../../services/accessWay';
 
 export const accessWayTypeCollection = {

@@ -6,9 +6,11 @@ import {
   checkInCollection,
   checkStringIsNullOrWhiteSpace,
   convertCollection,
+  getGuid,
   getValueByKey,
   isArray,
   isEmptyArray,
+  logConsole,
   logException,
   showSimpleErrorMessage,
   whetherNumber,
@@ -51,8 +53,8 @@ import {
 } from '../../../../pageBases';
 import { buildFlowCaseFormInitialValues } from '../../../../utils';
 import { fieldData as fieldDataWorkflowCaseCarbonCopyNotification } from '../../../WorkflowCaseCarbonCopyNotification/Common/data';
+import { AttachmentPreviewDrawer as WorkflowCaseFormAttachmentPreviewDrawer } from '../../../WorkflowCaseFormAttachment/AttachmentPreviewDrawer';
 import { fieldData as fieldDataWorkflowCaseFormAttachment } from '../../../WorkflowCaseFormAttachment/Common/data';
-import { PreviewDrawer as WorkflowCaseFormAttachmentPreviewDrawer } from '../../../WorkflowCaseFormAttachment/PreviewDrawer';
 import { fieldData as fieldDataWorkflowCaseLatestApprove } from '../../../WorkflowCaseLatestApprove/Common/data';
 import { fieldData as fieldDataWorkflowCaseNextProcessApprove } from '../../../WorkflowCaseNextProcessApprove/Common/data';
 import { fieldData as fieldDataWorkflowCaseNextProcessNotification } from '../../../WorkflowCaseNextProcessNotification/Common/data';
@@ -68,8 +70,10 @@ import { TabPageBase } from '../../TabPageBase';
   workflowCase,
   schedulingControl,
 }))
-class BasicInfo extends TabPageBase {
+class FormInfo extends TabPageBase {
   useFormWrapper = false;
+
+  templateCounter = 0;
 
   componentAuthority = accessWayCollection.workflowCase.get.permission;
 
@@ -83,12 +87,15 @@ class BasicInfo extends TabPageBase {
       workflowCaseId: null,
       currentAttachment: null,
       workflowFormDesign: null,
+      nodeList: [],
+      edgeList: [],
       listChainApprove: [],
       listFormStorage: [],
       listProcessHistory: [],
       listApprove: [],
       listAttachment: [],
       useDocumentDisplay: false,
+      nodeApplyTemp: null,
     };
   }
 
@@ -150,6 +157,13 @@ class BasicInfo extends TabPageBase {
     // eslint-disable-next-line no-unused-vars
     metaOriginalData = null,
   }) => {
+    const approveBatchNumber = getValueByKey({
+      data: metaData,
+      key: fieldData.approveBatchNumber.name,
+      defaultValue: 0,
+      convert: convertCollection.number,
+    });
+
     const listFormStorage = getValueByKey({
       data: metaData,
       key: fieldData.listFormStorage.name,
@@ -177,7 +191,14 @@ class BasicInfo extends TabPageBase {
     });
 
     const { nodeList, edgeList, listApprove, listProcessHistory } =
-      adjustFlowCaseDataToState(metaData);
+      adjustFlowCaseDataToState(metaData, {
+        approveBatchNumber,
+        whetherFilterBatchNumber: true,
+      });
+
+    logConsole({
+      listProcessHistory,
+    });
 
     this.setState({
       nodeList: [...nodeList],
@@ -206,6 +227,22 @@ class BasicInfo extends TabPageBase {
     d[fieldData.workflowCaseId.name] = workflowCaseId;
 
     return d;
+  };
+
+  changeNodeApply = () => {
+    this.templateCounter = this.templateCounter + 1;
+
+    this.setState({
+      nodeApplyTemp: {
+        title: getGuid(),
+        note: '11111',
+        // note: getGuid(),
+        // signet:
+        //   this.templateCounter % 2 === 0
+        //     ? 'https://file.oa.32306.net/general/image/1876513865685143552.png'
+        //     : nodeApply.signet,
+      },
+    });
   };
 
   getApplicantConfig = () => {
@@ -239,7 +276,7 @@ class BasicInfo extends TabPageBase {
       {
         ...nodeApply,
         title: applicantStatementTitle,
-        note: applicantStatementContent,
+        // note: applicantStatementContent,
         ...(checkStringIsNullOrWhiteSpace(applicantUserSignet)
           ? {
               signet: emptySignet,
@@ -314,6 +351,54 @@ class BasicInfo extends TabPageBase {
     };
   };
 
+  getItems = () => {
+    const { workflowFormDesign } = this.state;
+
+    const documentSchema = getValueByKey({
+      data: workflowFormDesign,
+      key: fieldDataFlowFormDesign.documentSchema.name,
+      defaultValue: {},
+    });
+
+    const { items: itemsSource } = {
+      items: [],
+      ...documentSchema,
+    };
+
+    const dataSchema = getValueByKey({
+      data: workflowFormDesign,
+      key: fieldDataFlowFormDesign.dataSchema.name,
+      defaultValue: '[]',
+    });
+
+    let listDataSchema = [];
+
+    try {
+      listDataSchema = JSON.parse(dataSchema);
+    } catch (error) {
+      logException(error);
+    }
+
+    return { items: itemsSource, formItems: listDataSchema };
+  };
+
+  getAllApproveProcessList = () => {
+    const { listChainApprove } = this.state;
+
+    const listChainApproveAdjust = isArray(listChainApprove)
+      ? listChainApprove.map((o) => {
+          const { name } = { name: '', ...o };
+
+          return {
+            title: name,
+            ...o,
+          };
+        })
+      : [];
+
+    return listChainApproveAdjust;
+  };
+
   showWorkflowCaseFormAttachmentPreviewDrawer = (item) => {
     this.setState(
       {
@@ -383,6 +468,15 @@ class BasicInfo extends TabPageBase {
           extra: {
             affix: true,
             list: [
+              {
+                buildType: cardConfig.extraBuildType.generalExtraButton,
+                icon: iconBuilder.edit(),
+                text: '更改审批人信息',
+                disabled: this.checkInProgress(),
+                handleClick: () => {
+                  this.changeNodeApply();
+                },
+              },
               {
                 buildType: cardConfig.extraBuildType.generalExtraButton,
                 icon: iconBuilder.read(),
@@ -836,8 +930,8 @@ class BasicInfo extends TabPageBase {
       workflowFormDesign,
       listFormStorage,
       listApprove,
-      listChainApprove,
       listAttachment,
+      nodeApplyTemp,
     } = this.state;
 
     const workflowCaseId = getValueByKey({
@@ -864,77 +958,32 @@ class BasicInfo extends TabPageBase {
       defaultValue: {},
     });
 
-    const {
-      general,
-      title,
-      items: itemsSource,
-    } = {
+    const { general, title } = {
       general: {},
       title: {},
-      items: [],
       ...documentSchema,
     };
-
-    const dataSchema = getValueByKey({
-      data: workflowFormDesign,
-      key: fieldDataFlowFormDesign.dataSchema.name,
-      defaultValue: '[]',
-    });
-
-    let listDataSchema = [];
-
-    try {
-      listDataSchema = JSON.parse(dataSchema);
-    } catch (error) {
-      logException(error);
-    }
-
-    let items = [];
-
-    if (
-      isArray(itemsSource) &&
-      !isEmptyArray(itemsSource) &&
-      isArray(listDataSchema)
-    ) {
-      for (const o of listDataSchema) {
-        const { name } = { name: '', ...o };
-
-        if (checkStringIsNullOrWhiteSpace(name)) {
-          continue;
-        }
-
-        let config = {};
-
-        for (const one of itemsSource) {
-          const { name: nameOne } = { name: '', ...one };
-
-          if (nameOne === name) {
-            config = one;
-
-            break;
-          }
-        }
-
-        items.push({ ...config, ...o });
-      }
-    } else {
-      items = listDataSchema;
-    }
-
-    const listChainApproveAdjust = isArray(listChainApprove)
-      ? listChainApprove.map((o) => {
-          const { name } = { name: '', ...o };
-
-          return {
-            title: name,
-            ...o,
-          };
-        })
-      : [];
 
     const { showApply, listApply } = this.getApplicantConfig();
 
     const { showAttention, listAttention } = this.getAttentionConfig();
+
+    const allApproveProcessList = this.getAllApproveProcessList();
+
+    const { items, formItems } = this.getItems();
+
+    const nodeApplyTemporaryAdjust = {
+      ...listApply[0],
+      ...nodeApplyTemp,
+      note: '222',
+    };
+
+    logConsole({
+      items,
+      listApply,
+      listAttention,
+      nodeApplyTempAdjust: nodeApplyTemporaryAdjust,
+    });
 
     return (
       <>
@@ -943,7 +992,7 @@ class BasicInfo extends TabPageBase {
           showToolbar={false}
           title={getValueByKey({
             data: metaData,
-            key: fieldData.workflowName.name,
+            key: fieldData.workflowTitle.name,
           })}
           values={isArray(listFormStorage) ? listFormStorage : []}
           schema={{
@@ -951,14 +1000,19 @@ class BasicInfo extends TabPageBase {
             title: title || {},
             items,
           }}
-          formItems={listDataSchema}
+          formItems={formItems}
           approveList={isArray(listApprove) ? listApprove : []}
-          allApproveProcessList={listChainApproveAdjust}
+          allApproveProcessList={allApproveProcessList}
           signetStyle={signetStyle}
           showApply={showApply}
-          applyList={listApply}
+          // applyList={[nodeApplyTempAdjust]}
+          // applyList={listApply}
+          applyList={[nodeApply]}
           showAttention={showAttention}
-          attentionList={listAttention}
+          attentionList={[...listAttention]}
+          showRemark={
+            !(!isArray(remarkSchemaList) || isEmptyArray(remarkSchemaList))
+          }
           remarkList={remarkSchemaList}
           qRCodeImage={qRCodeImage}
           serialNumberTitle="审批流水号: "
@@ -1072,4 +1126,4 @@ class BasicInfo extends TabPageBase {
   };
 }
 
-export default BasicInfo;
+export default FormInfo;

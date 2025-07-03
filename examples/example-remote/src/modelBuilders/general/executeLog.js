@@ -8,12 +8,12 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
+  createTestLogData,
   getData,
+  pageListData,
+  removeAllData,
   removeData,
   removeMultiData,
-  removeAllData,
-  createTestLogData,
 } from '../../services/executeLog';
 
 export const executeLogTypeCollection = {

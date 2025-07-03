@@ -1,6 +1,7 @@
 import { connect } from 'easy-soft-dva';
 import {
   buildRandomHexColor,
+  checkHasAuthority,
   convertCollection,
   getValueByKey,
   handleItem,
@@ -302,6 +303,19 @@ class PageList extends MultiPage {
           text: '刷新缓存',
           confirm: true,
           title: '将要刷新缓存，确定吗？',
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          key: 'remove',
+          icon: iconBuilder.delete(),
+          text: '移除角色',
+          hidden: !checkHasAuthority(
+            accessWayCollection.presetRole.remove.permission,
+          ),
+          confirm: true,
+          title: '将要移除角色，确定吗？',
         },
       ],
     };

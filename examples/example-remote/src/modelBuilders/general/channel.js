@@ -1,14 +1,14 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
 } from 'easy-soft-utility';
 
-import { pageListData, singleListData, getData } from '../../services/channel';
+import { getData, pageListData, singleListData } from '../../services/channel';
 
 export const channelTypeCollection = {
   pageList: 'channel/pageList',

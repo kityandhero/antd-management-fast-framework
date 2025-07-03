@@ -29,6 +29,7 @@ import {
 } from 'antd-management-fast-design-playground';
 import { Flow, FlowProcessHistory } from 'antd-management-fast-flow';
 
+import { FilePreviewDrawer } from '../../../../components';
 import {
   accessWayCollection,
   emptySignet,
@@ -47,13 +48,18 @@ import {
   convertProcessHistoryItemData,
   convertProcessHistoryNextData,
 } from '../../../../pageBases';
+import { PageListSubsidiarySelectActionDrawer } from '../../../Subsidiary/PageListSelectActionDrawer';
 import {
+  archiveAction,
+  cancelArchiveAction,
   closeCancelApproveSwitchAction,
   closeResetAllApproveSwitchAction,
   forceEndAction,
   openCancelApproveSwitchAction,
   openResetAllApproveSwitchAction,
+  setSubsidiaryIdAction,
   submitApprovalAction,
+  toggleEmergencyAction,
 } from '../../../WorkflowDebugCase/Assist/action';
 import { fieldData } from '../../../WorkflowDebugCase/Common/data';
 import { WorkflowDebugCasePageListLatestApproveDrawer } from '../../../WorkflowDebugCase/PageListLatestApproveDrawer';
@@ -135,7 +141,10 @@ class DebugCaseInfo extends TabPageBase {
 
   doOtherAfterLoadSuccess = ({ metaData }) => {
     const { nodeList, edgeList, listApprove, listProcessHistory } =
-      adjustFlowCaseDataToState(metaData);
+      adjustFlowCaseDataToState(metaData, {
+        approveBatchNumber: 0,
+        whetherFilterBatchNumber: false,
+      });
 
     this.setState({
       nodeList: [...nodeList],
@@ -220,6 +229,36 @@ class DebugCaseInfo extends TabPageBase {
     });
   };
 
+  toggleEmergency = (r) => {
+    toggleEmergencyAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target }) => {
+        target.reloadData({});
+      },
+    });
+  };
+
+  archive = (o) => {
+    archiveAction({
+      target: this,
+      handleData: o,
+      successCallback: ({ target }) => {
+        target.reloadData({});
+      },
+    });
+  };
+
+  cancelArchive = (o) => {
+    cancelArchiveAction({
+      target: this,
+      handleData: o,
+      successCallback: ({ target }) => {
+        target.reloadData({});
+      },
+    });
+  };
+
   resetAllApprove = (o) => {
     resetAllApproveAction({
       target: this,
@@ -249,6 +288,29 @@ class DebugCaseInfo extends TabPageBase {
     sendNextProcessNotificationAction({
       target: this,
       handleData: o,
+      successCallback: ({ target }) => {
+        target.reloadData({});
+      },
+    });
+  };
+
+  setSubsidiaryId = (o) => {
+    const { metaData } = this.state;
+
+    setSubsidiaryIdAction({
+      target: this,
+      handleData: {
+        workflowDebugCaseId: getValueByKey({
+          data: metaData,
+          key: fieldData.workflowDebugCaseId.name,
+          convert: convertCollection.string,
+        }),
+        subsidiaryId: getValueByKey({
+          data: o,
+          key: fieldData.subsidiaryId.name,
+          convert: convertCollection.string,
+        }),
+      },
       successCallback: ({ target }) => {
         target.reloadData({});
       },
@@ -479,6 +541,14 @@ class DebugCaseInfo extends TabPageBase {
     });
   };
 
+  showArchiveDocumentDrawer = () => {
+    FilePreviewDrawer.open();
+  };
+
+  showPageListSubsidiarySelectActionDrawer = () => {
+    PageListSubsidiarySelectActionDrawer.open();
+  };
+
   fillInitialValuesAfterLoad = ({
     metaData = null,
     // eslint-disable-next-line no-unused-vars
@@ -590,6 +660,19 @@ class DebugCaseInfo extends TabPageBase {
       data: metaData,
       key: fieldData.debugApproverMode.name,
       convert: convertCollection.number,
+    });
+
+    const whetherArchive = getValueByKey({
+      data: metaData,
+      key: fieldData.whetherArchive.name,
+      convert: convertCollection.number,
+    });
+
+    const archiveUrl = getValueByKey({
+      data: metaData,
+      key: fieldData.archiveUrl.name,
+      convert: convertCollection.string,
+      defaultValue: '',
     });
 
     const status = getValueByKey({
@@ -737,8 +820,8 @@ class DebugCaseInfo extends TabPageBase {
               {
                 buildType: cardConfig.extraBuildType.generalExtraButton,
                 type: 'default',
-                icon: iconBuilder.read(),
-                text: '表单打印',
+                icon: iconBuilder.printer(),
+                text: '打印',
                 disabled:
                   !firstLoadSuccess ||
                   !checkHasAuthority(
@@ -755,6 +838,11 @@ class DebugCaseInfo extends TabPageBase {
                 buildType: cardConfig.extraBuildType.dropdownEllipsis,
                 handleMenuClick: ({ key, handleData }) => {
                   switch (key) {
+                    case 'showPageListSubsidiarySelectActionDrawer': {
+                      that.showPageListSubsidiarySelectActionDrawer(handleData);
+                      break;
+                    }
+
                     case 'showSetApplicantStatementDrawer': {
                       that.showSetApplicantStatementDrawer(handleData);
                       break;
@@ -785,6 +873,26 @@ class DebugCaseInfo extends TabPageBase {
                       break;
                     }
 
+                    case 'toggleEmergency': {
+                      that.toggleEmergency(handleData);
+                      break;
+                    }
+
+                    case 'archive': {
+                      that.archive(handleData);
+                      break;
+                    }
+
+                    case 'cancelArchive': {
+                      that.cancelArchive(handleData);
+                      break;
+                    }
+
+                    case 'previewArchive': {
+                      that.showArchiveDocumentDrawer(handleData);
+                      break;
+                    }
+
                     default: {
                       showSimpleErrorMessage('can not find matched key');
                       break;
@@ -793,6 +901,18 @@ class DebugCaseInfo extends TabPageBase {
                 },
                 handleData: metaData,
                 items: [
+                  {
+                    key: 'showPageListSubsidiarySelectActionDrawer',
+                    icon: iconBuilder.edit(),
+                    text: `设置实例归属企业`,
+                    hidden: !checkHasAuthority(
+                      accessWayCollection.workflowDebugCase.setSubsidiaryId
+                        .permission,
+                    ),
+                  },
+                  {
+                    type: dropdownExpandItemType.divider,
+                  },
                   {
                     key: 'showSetApplicantStatementDrawer',
                     icon: iconBuilder.edit(),
@@ -857,6 +977,66 @@ class DebugCaseInfo extends TabPageBase {
                         .permission,
                     ),
                   },
+                  {
+                    type: dropdownExpandItemType.divider,
+                  },
+                  {
+                    key: 'toggleEmergency',
+                    icon: iconBuilder.swap(),
+                    text: '切换紧急',
+                    hidden: !checkHasAuthority(
+                      accessWayCollection.workflowDebugCase.toggleEmergency
+                        .permission,
+                    ),
+                    disabled: !checkInCollection(
+                      [flowCaseStatusCollection.created],
+                      status,
+                    ),
+                    confirm: true,
+                    title:
+                      '将要切换紧急状态（位于紧急状态下的审批，会向审批人发送审批通知），确定吗？',
+                  },
+                  {
+                    type: dropdownExpandItemType.divider,
+                  },
+                  {
+                    key: 'archive',
+                    icon: iconBuilder.file(),
+                    text: '实例归档',
+                    hidden: !checkHasAuthority(
+                      accessWayCollection.workflowDebugCase.archive.permission,
+                    ),
+                    disabled:
+                      status !== flowCaseStatusCollection.success ||
+                      whetherArchive === whetherNumber.yes,
+                    confirm: true,
+                    title: '将要进行归档操作，确定吗？',
+                  },
+                  {
+                    key: 'cancelArchive',
+                    icon: iconBuilder.file(),
+                    text: '取消实例归档',
+                    hidden: !checkHasAuthority(
+                      accessWayCollection.workflowDebugCase.cancelArchive
+                        .permission,
+                    ),
+                    disabled:
+                      status !== flowCaseStatusCollection.success ||
+                      whetherArchive !== whetherNumber.yes,
+                    confirm: true,
+                    title: '将要进行取消归档操作，确定吗？',
+                  },
+                  {
+                    key: 'previewArchive',
+                    icon: iconBuilder.read(),
+                    text: '预览归档文件',
+                    hidden: !checkHasAuthority(
+                      accessWayCollection.workflowDebugCase.archive.permission,
+                    ),
+                    disabled:
+                      whetherArchive !== whetherNumber.yes ||
+                      checkStringIsNullOrWhiteSpace(archiveUrl),
+                  },
                 ],
               },
               {
@@ -897,11 +1077,19 @@ class DebugCaseInfo extends TabPageBase {
                   }),
                 },
                 {
-                  span: 3,
+                  span: 2,
                   label: fieldData.description.label,
                   value: getValueByKey({
                     data: metaData,
                     key: fieldData.description.name,
+                  }),
+                },
+                {
+                  span: 1,
+                  label: fieldData.whetherArchiveNote.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.whetherArchiveNote.name,
                   }),
                 },
                 {
@@ -917,9 +1105,25 @@ class DebugCaseInfo extends TabPageBase {
                   }),
                 },
                 {
-                  span: 3,
+                  span: 4,
+                  label: fieldData.archiveUrl.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.archiveUrl.name,
+                  }),
+                },
+                {
+                  span: 2,
                   label: fieldData.userRealName.label,
                   value: `${userRealName ?? ''}${checkStringIsNullOrWhiteSpace(userId) ? '' : toString(userId) === zeroString ? '' : ` [${userId}]`}`,
+                },
+                {
+                  span: 1,
+                  label: fieldData.whetherEmergencyNote.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.whetherEmergencyNote.name,
+                  }),
                 },
                 {
                   span: 1,
@@ -943,6 +1147,14 @@ class DebugCaseInfo extends TabPageBase {
                   value: getValueByKey({
                     data: metaData,
                     key: fieldData.userSubsidiaries.name,
+                  }),
+                },
+                {
+                  span: 4,
+                  label: fieldData.subsidiaryShortName.label,
+                  value: getValueByKey({
+                    data: metaData,
+                    key: fieldData.subsidiaryShortName.name,
                   }),
                 },
               ],
@@ -1700,6 +1912,13 @@ class DebugCaseInfo extends TabPageBase {
       convert: convertCollection.array,
     });
 
+    const archiveUrl = getValueByKey({
+      data: metaData,
+      key: fieldData.archiveUrl.name,
+      convert: convertCollection.string,
+      defaultValue: '',
+    });
+
     const { showApply, listApply } = this.getApplicantConfig();
 
     const { showAttention, listAttention } = this.getAttentionConfig();
@@ -1823,6 +2042,12 @@ class DebugCaseInfo extends TabPageBase {
           }}
         />
 
+        <PageListSubsidiarySelectActionDrawer
+          afterSelect={(selectData) => {
+            this.setSubsidiaryId(selectData);
+          }}
+        />
+
         <FlowDebugCaseFormDocumentDrawer
           maskClosable
           canDesign={false}
@@ -1842,6 +2067,8 @@ class DebugCaseInfo extends TabPageBase {
           qRCodeImage={qRCodeImage}
           serialNumberContent={workflowDebugCaseId}
         />
+
+        <FilePreviewDrawer url={archiveUrl} suffix="pdf" maskClosable />
       </>
     );
   };

@@ -43,6 +43,13 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     };
   }
 
+  getProperties = () => {
+    return {
+      ...defaultProperties,
+      ...this.props,
+    };
+  };
+
   supplementLoadRequestParams = (o) => {
     return {
       ...this.supplementRequestParams(o),
@@ -59,6 +66,10 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     });
 
     return d;
+  };
+
+  getApproveList = () => {
+    throw new Error('getApproveList need overrode to implement');
   };
 
   getAllApproveProcessList = () => {
@@ -137,10 +148,7 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
   };
 
   establishHelpConfig = () => {
-    const { canDesign } = {
-      ...defaultProperties,
-      ...this.props,
-    };
+    const { canDesign } = this.getProperties();
 
     const list = [];
 
@@ -186,10 +194,7 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       showAttention,
       attentionList,
       approveList,
-    } = {
-      ...defaultProperties,
-      ...this.props,
-    };
+    } = this.getProperties();
     const { metaData } = this.state;
 
     const remarkSchemaList = getValueByKey({
@@ -221,7 +226,7 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         showIndependentPrint={showIndependentPrint}
         title={getValueByKey({
           data: metaData,
-          key: fieldDataFlowFormDesign.workflowName.name,
+          key: fieldDataFlowFormDesign.workflowTitle.name,
         })}
         values={isArray(values) ? values : []}
         schema={{
@@ -236,9 +241,9 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         }
         signetStyle={signetStyle}
         showApply={showApply || false}
-        applyList={isArray(applyList) ? applyList : []}
+        applyList={isArray(applyList) ? [...applyList] : []}
         showAttention={showAttention || false}
-        attentionList={isArray(attentionList) ? attentionList : []}
+        attentionList={isArray(attentionList) ? [...attentionList] : []}
         showRemark={
           !(!isArray(remarkSchemaList) || isEmptyArray(remarkSchemaList))
         }
@@ -254,10 +259,7 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
   };
 
   renderOverlayContent = () => {
-    const { values } = {
-      ...defaultProperties,
-      ...this.props,
-    };
+    const { values } = this.getProperties();
     const { metaData } = this.state;
 
     const documentSchema = getValueByKey({

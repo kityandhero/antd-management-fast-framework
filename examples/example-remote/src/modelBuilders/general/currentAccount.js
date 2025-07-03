@@ -1,19 +1,19 @@
 import {
   getTacitlyState,
-  pretreatmentRemoteSingleData,
   pretreatmentRemoteListData,
   pretreatmentRemotePageListData,
+  pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
   reducerNameCollection,
 } from 'easy-soft-utility';
 
 import {
+  changePasswordData,
   getData,
   listNoticeData,
-  updateBasicInfoData,
-  changePasswordData,
   pageListLoginLogData,
+  updateBasicInfoData,
   uploadImageData,
 } from '../../services/currentAccount';
 

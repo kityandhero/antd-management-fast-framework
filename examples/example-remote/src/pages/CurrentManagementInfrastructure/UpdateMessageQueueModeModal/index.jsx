@@ -5,10 +5,10 @@ import { cardConfig } from 'antd-management-fast-common';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
 import { renderFormMessageQueueModeSelect } from '../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData } from '../Common/data';
 
 const { BaseUpdateModal } = DataModal;
-
 const visibleFlag = '0775733fd71944d582bd5ce995a0f4f8';
 
 @connect(({ currentManagementInfrastructure, schedulingControl }) => ({
@@ -26,8 +26,11 @@ class UpdateMessageQueueModeModal extends BaseUpdateModal {
     this.state = {
       ...this.state,
       pageTitle: '配置消息队列模式',
-      loadApiPath: 'currentManagementInfrastructure/get',
-      submitApiPath: 'currentManagementInfrastructure/updateKeyValueInfo',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
+      submitApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection
+          .updateKeyValueInfo,
       messageQueueMode: '',
     };
   }

@@ -8,16 +8,16 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
-  setPrimaryData,
-  setPositionData,
-  removePositionData,
-  setPositionGradeData,
-  removePositionGradeData,
-  removeData,
+  getData,
+  pageListData,
   refreshCacheData,
+  removeData,
+  removePositionData,
+  removePositionGradeData,
+  setPositionData,
+  setPositionGradeData,
+  setPrimaryData,
 } from '../../services/userDepartmentInfo';
 
 export const userDepartmentInfoTypeCollection = {

@@ -12,6 +12,7 @@ import {
 } from 'antd-management-fast-framework';
 
 import { accessWayCollection } from '../../../customConfig';
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData } from '../Common/data';
 
 const { MultiPageDrawer } = DataMultiPageView;
@@ -23,7 +24,7 @@ const visibleFlag = 'cf24e8f5c883418fbfac13a44cdbc500';
   user,
   schedulingControl,
 }))
-class PageListSelectActionDrawer extends MultiPageDrawer {
+class PageListUserSelectActionDrawer extends MultiPageDrawer {
   reloadWhenShow = true;
 
   componentAuthority = accessWayCollection.user.pageList.permission;
@@ -42,7 +43,7 @@ class PageListSelectActionDrawer extends MultiPageDrawer {
     this.state = {
       ...this.state,
       pageTitle: '请选择用户操作',
-      loadApiPath: 'user/pageList',
+      loadApiPath: modelTypeCollection.userTypeCollection.pageList,
       listViewMode: listViewConfig.viewMode.list,
     };
   }
@@ -52,7 +53,7 @@ class PageListSelectActionDrawer extends MultiPageDrawer {
   }
 
   onSelect = (selectData) => {
-    PageListSelectActionDrawer.close();
+    PageListUserSelectActionDrawer.close();
 
     const { afterSelect } = this.props;
 
@@ -155,4 +156,4 @@ class PageListSelectActionDrawer extends MultiPageDrawer {
   };
 }
 
-export { PageListSelectActionDrawer };
+export { PageListUserSelectActionDrawer };

@@ -8,11 +8,11 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
   getData,
-  resetAllApproveData,
-  refreshCacheData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  resetAllApproveData,
 } from '../../services/workflowCaseProcessHistory';
 
 export const workflowCaseProcessHistoryTypeCollection = {

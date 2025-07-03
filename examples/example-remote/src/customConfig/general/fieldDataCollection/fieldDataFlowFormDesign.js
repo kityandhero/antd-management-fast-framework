@@ -71,6 +71,21 @@ const formExtraData = {
     name: 'defaultAttentionStatementContent',
     helper: '',
   },
+  globalDebugUserId: {
+    label: '全局调试人标识',
+    name: 'globalDebugUserId',
+    helper: '',
+  },
+  globalDebugUserRealName: {
+    label: '全局调试人名称',
+    name: 'globalDebugUserRealName',
+    helper: '',
+  },
+  globalDebugUserSignet: {
+    label: '全局调试人签名',
+    name: 'globalDebugUserSignet',
+    helper: '',
+  },
 };
 
 export const fieldDataFlowFormDesign = {
@@ -88,6 +103,11 @@ export const fieldDataFlowFormDesign = {
   workflowName: {
     label: '流程名称',
     name: 'workflowName',
+    helper: '',
+  },
+  workflowTitle: {
+    label: '表单标题',
+    name: 'workflowTitle',
     helper: '',
   },
   designSchema: {

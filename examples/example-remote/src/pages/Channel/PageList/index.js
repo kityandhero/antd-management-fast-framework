@@ -55,14 +55,14 @@ class PageList extends MultiPage {
       emptyValue: '--',
     },
     {
-      dataTarget: fieldData.value,
-      width: 280,
+      dataTarget: fieldData.description,
+      align: 'left',
       showRichFacade: true,
       emptyValue: '--',
     },
     {
-      dataTarget: fieldData.description,
-      align: 'left',
+      dataTarget: fieldData.value,
+      width: 280,
       showRichFacade: true,
       emptyValue: '--',
     },

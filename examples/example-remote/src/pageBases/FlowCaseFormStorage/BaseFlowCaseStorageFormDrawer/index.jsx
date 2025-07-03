@@ -326,6 +326,37 @@ class BaseFlowCaseStorageFormDrawer extends BaseVerticalFlexDrawer {
     };
   };
 
+  getItems = () => {
+    const { workflowFormDesign } = this.state;
+
+    const documentSchema = getValueByKey({
+      data: workflowFormDesign,
+      key: fieldDataFlowFormDesign.documentSchema.name,
+      defaultValue: {},
+    });
+
+    const { items: itemsSource } = {
+      items: [],
+      ...documentSchema,
+    };
+
+    const dataSchema = getValueByKey({
+      data: workflowFormDesign,
+      key: fieldDataFlowFormDesign.dataSchema.name,
+      defaultValue: '[]',
+    });
+
+    let listDataSchema = [];
+
+    try {
+      listDataSchema = JSON.parse(dataSchema);
+    } catch (error) {
+      logException(error);
+    }
+
+    return { items: itemsSource, formItems: listDataSchema };
+  };
+
   showAddAttachmentModal = () => {
     throw new Error('showAddAttachmentModal need overrode to implement');
   };
@@ -433,62 +464,11 @@ class BaseFlowCaseStorageFormDrawer extends BaseVerticalFlexDrawer {
       defaultValue: {},
     });
 
-    const {
-      general,
-      title,
-      items: itemsSource,
-    } = {
+    const { general, title } = {
       general: {},
       title: {},
-      items: [],
       ...documentSchema,
     };
-
-    const dataSchema = getValueByKey({
-      data: workflowFormDesign,
-      key: fieldDataFlowFormDesign.dataSchema.name,
-      defaultValue: '[]',
-    });
-
-    let listDataSchema = [];
-
-    try {
-      listDataSchema = JSON.parse(dataSchema);
-    } catch (error) {
-      logException(error);
-    }
-
-    let items = [];
-
-    if (
-      isArray(itemsSource) &&
-      !isEmptyArray(itemsSource) &&
-      isArray(listDataSchema)
-    ) {
-      for (const o of listDataSchema) {
-        const { name } = { name: '', ...o };
-
-        if (checkStringIsNullOrWhiteSpace(name)) {
-          continue;
-        }
-
-        let config = {};
-
-        for (const one of itemsSource) {
-          const { name: nameOne } = { name: '', ...one };
-
-          if (nameOne === name) {
-            config = one;
-
-            break;
-          }
-        }
-
-        items.push({ ...config, ...o });
-      }
-    } else {
-      items = listDataSchema;
-    }
 
     const listChainApproveAdjust = isArray(listChainApprove)
       ? listChainApprove.map((o) => {
@@ -505,6 +485,8 @@ class BaseFlowCaseStorageFormDrawer extends BaseVerticalFlexDrawer {
 
     const { showAttention, listAttention } = this.getAttentionConfig();
 
+    const { items, formItems } = this.getItems();
+
     return (
       <>
         <DocumentPrintDesigner
@@ -512,15 +494,15 @@ class BaseFlowCaseStorageFormDrawer extends BaseVerticalFlexDrawer {
           showToolbar={false}
           title={getValueByKey({
             data: metaData,
-            key: fieldDataFlowCase.workflowName.name,
+            key: fieldDataFlowCase.workflowTitle.name,
           })}
           values={isArray(listFormStorage) ? listFormStorage : []}
           schema={{
             general: general || {},
             title: title || {},
-            items: itemsSource,
+            items,
           }}
-          formItems={listDataSchema}
+          formItems={formItems}
           approveList={isArray(listApprove) ? listApprove : []}
           allApproveProcessList={listChainApproveAdjust}
           signetStyle={signetStyle}

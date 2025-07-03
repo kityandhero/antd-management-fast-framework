@@ -1,3 +1,5 @@
+import { Tooltip } from 'antd';
+
 import { connect } from 'easy-soft-dva';
 import {
   buildRandomHexColor,
@@ -8,6 +10,7 @@ import {
   handleItem,
   showSimpleErrorMessage,
   toNumber,
+  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -17,7 +20,7 @@ import {
   searchCardConfig,
   unlimitedWithStringFlag,
 } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import { ColorText, iconBuilder } from 'antd-management-fast-component';
 import { DataMultiPageView } from 'antd-management-fast-framework';
 
 import {
@@ -37,6 +40,7 @@ import {
   hideAction,
   refreshCacheAction,
   repairSubsidiaryAction,
+  toggleEmergencyAction,
 } from '../Assist/action';
 import { fieldData } from '../Common/data';
 
@@ -54,6 +58,7 @@ class PageList extends MultiPage {
 
     this.state = {
       ...this.state,
+      tableScrollX: 1720,
       pageTitle: '流程实例列表',
       paramsKey: accessWayCollection.workflowCase.pageList.paramsKey,
       loadApiPath: 'workflowCase/pageList',
@@ -97,6 +102,12 @@ class PageList extends MultiPage {
         break;
       }
 
+      case 'toggleEmergency': {
+        this.toggleEmergency(handleData);
+
+        break;
+      }
+
       case 'hide': {
         this.hide(handleData);
 
@@ -122,6 +133,16 @@ class PageList extends MultiPage {
       handleData: r,
       successCallback: ({ target, handleData, remoteData }) => {
         target.handleItemStatus({ target, handleData, remoteData });
+      },
+    });
+  };
+
+  toggleEmergency = (r) => {
+    toggleEmergencyAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target }) => {
+        target.reloadData({});
       },
     });
   };
@@ -200,27 +221,32 @@ class PageList extends MultiPage {
     return {
       list: [
         {
-          lg: 5,
+          lg: 12,
           type: searchCardConfig.contentItemType.input,
           fieldData: fieldData.title,
         },
         {
-          lg: 5,
+          lg: 6,
           type: searchCardConfig.contentItemType.customSelect,
           component: renderSearchFlowScopeSelect({}),
         },
         {
-          lg: 5,
+          lg: 6,
           type: searchCardConfig.contentItemType.customSelect,
           component: renderSearchBusinessModeSelect({}),
         },
         {
-          lg: 5,
+          lg: 6,
+          type: searchCardConfig.contentItemType.whetherSelect,
+          fieldData: fieldData.whetherEmergency,
+        },
+        {
+          lg: 6,
           type: searchCardConfig.contentItemType.customSelect,
           component: renderSearchFlowStatusSelect({}),
         },
         {
-          lg: 4,
+          lg: 6,
           type: searchCardConfig.contentItemType.component,
           component: this.buildSearchCardButtonCore(),
         },
@@ -271,6 +297,24 @@ class PageList extends MultiPage {
           type: dropdownExpandItemType.divider,
         },
         {
+          key: 'toggleEmergency',
+          icon: iconBuilder.swap(),
+          text: '切换紧急',
+          hidden: !checkHasAuthority(
+            accessWayCollection.workflowCase.toggleEmergency.permission,
+          ),
+          disabled: !checkInCollection(
+            [flowCaseStatusCollection.created],
+            status,
+          ),
+          confirm: true,
+          title:
+            '将要切换紧急状态（位于紧急状态下的审批，会向审批人发送审批通知），确定吗？',
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
           key: 'hide',
           icon: iconBuilder.delete(),
           text: '移除审批',
@@ -296,10 +340,45 @@ class PageList extends MultiPage {
 
   getColumnWrapper = () => [
     {
+      dataTarget: { ...fieldData.workflowCaseId, label: '项目流水号' },
+      width: 120,
+      showRichFacade: true,
+      canCopy: true,
+    },
+    {
       dataTarget: fieldData.title,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
+      render: (value, record) => {
+        const whetherEmergency = getValueByKey({
+          data: record,
+          key: fieldData.whetherEmergency.name,
+          convert: convertCollection.number,
+        });
+
+        const valuePart =
+          whetherEmergency === whetherNumber.yes ? (
+            <ColorText
+              textPrefix="[紧急]"
+              textPrefixStyle={{
+                color: 'red',
+                paddingRight: '6px',
+              }}
+              separator=""
+              text={value}
+              multiLine
+            />
+          ) : (
+            <ColorText text={value} multiLine />
+          );
+
+        return (
+          <Tooltip placement="topLeft" title={value}>
+            <div>{valuePart}</div>
+          </Tooltip>
+        );
+      },
     },
     {
       dataTarget: fieldData.workflowName,
@@ -318,6 +397,25 @@ class PageList extends MultiPage {
       width: 140,
       showRichFacade: true,
       emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.whetherEmergencyNote,
+      width: 80,
+      showRichFacade: true,
+      emptyValue: '--',
+      facadeConfigBuilder: (value, o) => {
+        const whetherEmergency = getValueByKey({
+          data: o,
+          key: fieldData.whetherEmergency.name,
+          convert: convertCollection.number,
+        });
+
+        return {
+          color: buildRandomHexColor({
+            seed: toNumber(whetherEmergency) * 25 + 47,
+          }),
+        };
+      },
     },
     {
       dataTarget: fieldData.channel,
@@ -351,12 +449,6 @@ class PageList extends MultiPage {
           }),
         };
       },
-    },
-    {
-      dataTarget: fieldData.workflowCaseId,
-      width: 120,
-      showRichFacade: true,
-      canCopy: true,
     },
     {
       dataTarget: fieldData.createTime,

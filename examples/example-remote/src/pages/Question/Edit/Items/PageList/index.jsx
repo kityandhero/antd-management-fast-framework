@@ -4,8 +4,13 @@ import { connect } from 'easy-soft-dva';
 import {
   buildRandomHexColor,
   checkHasAuthority,
+  convertCollection,
+  getValueByKey,
+  isArray,
+  isEmptyArray,
   showSimpleErrorMessage,
   toNumber,
+  whetherNumber,
 } from 'easy-soft-utility';
 
 import {
@@ -41,6 +46,22 @@ const { InnerMultiPage } = DataMultiPageView;
 const {
   Whether: { getWhetherName },
 } = FunctionSupplement;
+
+function checkCorrectExist(list) {
+  if (!isArray(list) || isEmptyArray(list)) {
+    return false;
+  }
+
+  return list
+    .map((o) => {
+      return getValueByKey({
+        data: o,
+        key: fieldData.whetherCorrect.name,
+        convert: convertCollection.number,
+      });
+    })
+    .includes(whetherNumber.yes);
+}
 
 @connect(({ questionItem, schedulingControl }) => ({
   questionItem,
@@ -205,6 +226,28 @@ class PageList extends InnerMultiPage {
     ];
   };
 
+  establishPresetAboveTableAlertMessage = () => {
+    const { metaListData } = this.state;
+
+    const correctExist = checkCorrectExist(metaListData);
+
+    if (correctExist) {
+      return null;
+    }
+
+    if (this.checkWorkDoing({ showMessage: false })) {
+      return null;
+    }
+
+    return '当前页没有正确选项, 请注意！';
+  };
+
+  establishPresetAboveTableAlertOption = () => {
+    return {
+      type: 'warning',
+    };
+  };
+
   establishListItemDropdownConfig = (item) => {
     return {
       size: 'small',
@@ -261,16 +304,16 @@ class PageList extends InnerMultiPage {
 
   getColumnWrapper = () => [
     {
-      dataTarget: fieldData.image,
-      width: 60,
-      showRichFacade: true,
-      facadeMode: columnFacadeMode.image,
-    },
-    {
       dataTarget: fieldData.title,
       align: 'left',
       showRichFacade: true,
       emptyValue: '--',
+    },
+    {
+      dataTarget: fieldData.image,
+      width: 60,
+      showRichFacade: true,
+      facadeMode: columnFacadeMode.image,
     },
     {
       dataTarget: fieldData.whetherCorrect,

@@ -5,6 +5,7 @@ import { cardConfig } from 'antd-management-fast-common';
 import { CenterBox } from 'antd-management-fast-component';
 import { DataModal, switchControlAssist } from 'antd-management-fast-framework';
 
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData, fieldDataDefaultImage } from '../Common/data';
 
 const { BaseUpdateModal } = DataModal;
@@ -26,8 +27,11 @@ class UpdateDefaultImageModal extends BaseUpdateModal {
     this.state = {
       ...this.state,
       pageTitle: '设置键值信息',
-      loadApiPath: 'currentManagementInfrastructure/get',
-      submitApiPath: 'currentManagementInfrastructure/updateKeyValueInfo',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
+      submitApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection
+          .updateKeyValueInfo,
       image: '',
     };
   }

@@ -72,6 +72,36 @@ export async function updateSortData(parameters) {
   });
 }
 
+export const toggleComplaintSwitchDataApiAddress =
+  '/subsidiary/toggleComplaintSwitch';
+
+export async function toggleComplaintSwitchData(parameters) {
+  return request({
+    api: toggleComplaintSwitchDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const toggleReportSwitchDataApiAddress =
+  '/subsidiary/toggleReportSwitch';
+
+export async function toggleReportSwitchData(parameters) {
+  return request({
+    api: toggleReportSwitchDataApiAddress,
+    params: parameters,
+  });
+}
+
+export const toggleFeedbackSwitchDataApiAddress =
+  '/subsidiary/toggleFeedbackSwitch';
+
+export async function toggleFeedbackSwitchData(parameters) {
+  return request({
+    api: toggleFeedbackSwitchDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const setEnableDataApiAddress = '/subsidiary/setEnable';
 
 export async function setEnableData(parameters) {

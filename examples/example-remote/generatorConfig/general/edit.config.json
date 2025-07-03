@@ -9,6 +9,62 @@
       "coverFile": false
     },
     {
+      "folder": "Customer/Edit",
+      "name": "Customer",
+      "model": "customer",
+      "key": "customerId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintCategory/Edit",
+      "name": "SubsidiaryComplaintCategory",
+      "model": "subsidiaryComplaintCategory",
+      "key": "subsidiaryComplaintCategoryId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintMessage/Edit",
+      "name": "SubsidiaryComplaintMessage",
+      "model": "subsidiaryComplaintMessage",
+      "key": "subsidiaryComplaintMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryFeedbackMessage/Edit",
+      "name": "SubsidiaryFeedbackMessage",
+      "model": "subsidiaryFeedbackMessage",
+      "key": "subsidiaryFeedbackMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryReportMessage/Edit",
+      "name": "SubsidiaryReportMessage",
+      "model": "subsidiaryReportMessage",
+      "key": "subsidiaryReportMessageId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationUserFeedback/Edit",
+      "name": "ApplicationUserFeedback",
+      "model": "applicationUserFeedback",
+      "key": "applicationUserFeedbackId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationCustomerFeedback/Edit",
+      "name": "ApplicationCustomerFeedback",
+      "model": "applicationCustomerFeedback",
+      "key": "applicationCustomerFeedbackId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
       "folder": "Question/Edit",
       "name": "Question",
       "model": "question",

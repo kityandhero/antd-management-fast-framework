@@ -8,11 +8,11 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
   getData,
-  removeData,
-  refreshCacheData,
+  pageListData,
   refreshAllCacheData,
+  refreshCacheData,
+  removeData,
 } from '../../services/keyValueWorkflow';
 
 export const keyValueWorkflowTypeCollection = {

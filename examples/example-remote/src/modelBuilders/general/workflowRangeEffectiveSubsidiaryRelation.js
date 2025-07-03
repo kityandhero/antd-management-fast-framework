@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,14 +9,14 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  getData,
   addData,
-  removeData,
-  removeAllData,
-  refreshCacheData,
+  getData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeAllData,
+  removeData,
+  singleListData,
 } from '../../services/workflowRangeEffectiveSubsidiaryRelation';
 
 export const workflowRangeEffectiveSubsidiaryRelationTypeCollection = {

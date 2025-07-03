@@ -8,20 +8,20 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
-  updateBasicInfoData,
+  addNavigationItemData,
+  getData,
+  getNavigationItemData,
+  pageListData,
+  pageListOperateLogData,
   refreshCacheData,
   removeData,
-  getNavigationItemData,
-  addNavigationItemData,
-  updateNavigationItemData,
-  setNavigationCollectionSortData,
   removeNavigationItemData,
+  setNavigationCollectionSortData,
+  updateBasicInfoData,
+  updateNavigationItemData,
   uploadImageData,
   uploadVideoData,
-  pageListOperateLogData,
 } from '../../services/applicationNavigation';
 
 export const applicationNavigationTypeCollection = {

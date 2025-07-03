@@ -9,6 +9,7 @@ import {
 } from 'antd-management-fast-framework';
 
 import { buildUpdateTimeAndOperatorFieldItem } from '../../../customSpecialComponents';
+import { modelTypeCollection } from '../../../modelBuilders';
 import { fieldData } from '../Common/data';
 
 const { BaseUpdateDrawer } = DataDrawer;
@@ -30,8 +31,12 @@ class UpdateBasicInfoDrawer extends BaseUpdateDrawer {
     this.state = {
       ...this.state,
       pageTitle: '编辑信息',
-      loadApiPath: '<%= o.model%>/get',
-      submitApiPath: '<%= o.model%>/updateBasicInfo',
+      loadApiPath:
+        modelTypeCollection.<%= o.model %>TypeCollection
+          .get,
+      submitApiPath:
+        modelTypeCollection.<%= o.model %>TypeCollection
+          .updateBasicInfo,
     };
   }
 

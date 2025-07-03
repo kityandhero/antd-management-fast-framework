@@ -1,9 +1,11 @@
 import { connect } from 'easy-soft-dva';
+import { getValueByKey } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
 import { keyValueEditModeCollection } from '../../../../customConfig';
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { buildInputItem } from '../../../../utils';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
@@ -19,7 +21,8 @@ class Index extends TabPageBase {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'currentManagementInfrastructure/get',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
     };
   }
 
@@ -53,6 +56,13 @@ class Index extends TabPageBase {
     metaOriginalData = null,
   }) => {
     const values = {};
+
+    if (metaData != null) {
+      values[fieldData.tinymceScriptSrc.name] = getValueByKey({
+        data: metaData,
+        key: fieldData.tinymceScriptSrc.name,
+      });
+    }
 
     return values;
   };

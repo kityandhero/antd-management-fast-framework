@@ -8,24 +8,27 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  pageListUnderwayData,
-  getData,
-  getChainData,
-  updateBasicInfoData,
-  setSubsidiaryIdData,
-  setApplicantStatementData,
-  setAttentionUserData,
-  setAttentionStatementData,
-  hideData,
-  openCancelApproveSwitchData,
+  archiveData,
+  cancelArchiveData,
   closeCancelApproveSwitchData,
-  openResetAllApproveSwitchData,
   closeResetAllApproveSwitchData,
   forceEndData,
+  getChainData,
+  getData,
+  hideData,
+  openCancelApproveSwitchData,
+  openResetAllApproveSwitchData,
+  pageListData,
+  pageListOperateLogData,
+  pageListUnderwayData,
   refreshCacheData,
   repairSubsidiaryData,
-  pageListOperateLogData,
+  setApplicantStatementData,
+  setAttentionStatementData,
+  setAttentionUserData,
+  setSubsidiaryIdData,
+  toggleEmergencyData,
+  updateBasicInfoData,
 } from '../../services/workflowCase';
 
 export const workflowCaseTypeCollection = {
@@ -34,6 +37,7 @@ export const workflowCaseTypeCollection = {
   get: 'workflowCase/get',
   getChain: 'workflowCase/getChain',
   updateBasicInfo: 'workflowCase/updateBasicInfo',
+  toggleEmergency: 'workflowCase/toggleEmergency',
   setSubsidiaryId: 'workflowCase/setSubsidiaryId',
   setApplicantStatement: 'workflowCase/setApplicantStatement',
   setAttentionUser: 'workflowCase/setAttentionUser',
@@ -44,6 +48,8 @@ export const workflowCaseTypeCollection = {
   openResetAllApproveSwitch: 'workflowCase/openResetAllApproveSwitch',
   closeResetAllApproveSwitch: 'workflowCase/closeResetAllApproveSwitch',
   forceEnd: 'workflowCase/forceEnd',
+  archive: 'workflowCase/archive',
+  cancelArchive: 'workflowCase/cancelArchive',
   refreshCache: 'workflowCase/refreshCache',
   repairSubsidiary: 'workflowCase/repairSubsidiary',
   pageListOperateLog: 'workflowCase/pageListOperateLog',
@@ -172,6 +178,32 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(updateBasicInfoData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *toggleEmergency(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(toggleEmergencyData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,
@@ -432,6 +464,58 @@ export function buildModel() {
         { call, put },
       ) {
         const response = yield call(forceEndData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *archive(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(archiveData, payload);
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *cancelArchive(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(cancelArchiveData, payload);
 
         const dataAdjust = pretreatmentRemoteSingleData({
           source: response,

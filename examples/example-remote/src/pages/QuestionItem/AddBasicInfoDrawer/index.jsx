@@ -1,5 +1,5 @@
 import { connect } from 'easy-soft-dva';
-import { getValueByKey } from 'easy-soft-utility';
+import { getValueByKey, whetherString } from 'easy-soft-utility';
 
 import { cardConfig } from 'antd-management-fast-common';
 import {
@@ -79,6 +79,7 @@ class AddBasicInfoDrawer extends BaseAddDrawer {
     const values = {};
 
     values[fieldData.sort.name] = 0;
+    values[fieldData.whetherCorrect.name] = whetherString.no;
 
     return values;
   };

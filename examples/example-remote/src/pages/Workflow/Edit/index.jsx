@@ -42,6 +42,7 @@ import {
   setEnableAction,
   toggleApplicantSignSwitchAction,
   toggleAttentionSignSwitchAction,
+  toggleAvailableOnMobileSwitchAction,
 } from '../Assist/action';
 import {
   checkNeedUpdateAssist,
@@ -263,6 +264,32 @@ class Detail extends DataTabContainerSupplement {
     });
   };
 
+  /**
+   * 切换移动端是否可以发起审批
+   * @param {*} o 当前数据体
+   */
+  toggleAvailableOnMobileSwitch = (o) => {
+    toggleAvailableOnMobileSwitchAction({
+      target: this,
+      handleData: o,
+      successCallback: ({ target, remoteData }) => {
+        const { metaData } = target.state;
+
+        metaData[fieldData.availableOnMobileSwitch.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.availableOnMobileSwitch.name,
+        });
+
+        metaData[fieldData.attentionSignSwitchNote.name] = getValueByKey({
+          data: remoteData,
+          key: fieldData.attentionSignSwitchNote.name,
+        });
+
+        target.setState({ metaData });
+      },
+    });
+  };
+
   setEnable = (r) => {
     setEnableAction({
       target: this,
@@ -425,6 +452,12 @@ class Detail extends DataTabContainerSupplement {
       convert: convertCollection.number,
     });
 
+    const availableOnMobileSwitch = getValueByKey({
+      data: metaData,
+      key: fieldData.availableOnMobileSwitch.name,
+      convert: convertCollection.number,
+    });
+
     return [
       {
         color: 'blue',
@@ -435,6 +468,11 @@ class Detail extends DataTabContainerSupplement {
         color: 'yellow',
         text: '经办人签字',
         hidden: attentionSignSwitch !== whetherNumber.yes,
+      },
+      {
+        color: 'orange',
+        text: '移动端',
+        hidden: availableOnMobileSwitch !== whetherNumber.yes,
       },
     ];
   };
@@ -626,6 +664,12 @@ class Detail extends DataTabContainerSupplement {
       convert: convertCollection.number,
     });
 
+    const availableOnMobileSwitch = getValueByKey({
+      data: metaData,
+      key: fieldData.availableOnMobileSwitch.name,
+      convert: convertCollection.number,
+    });
+
     return {
       disabled: this.checkInProgress(),
       handleMenuClick: ({ key, handleData }) => {
@@ -672,6 +716,11 @@ class Detail extends DataTabContainerSupplement {
 
           case 'openMultiEnd': {
             that.showUpdateMultiEndModal(handleData);
+            break;
+          }
+
+          case 'toggleAvailableOnMobileSwitch': {
+            that.toggleAvailableOnMobileSwitch(handleData);
             break;
           }
 
@@ -803,6 +852,23 @@ class Detail extends DataTabContainerSupplement {
               key: fieldData.whetherAllowMultiEnd.name,
               convert: convertCollection.number,
             }) === whetherNumber.yes,
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          key: 'toggleAvailableOnMobileSwitch',
+          icon:
+            availableOnMobileSwitch === whetherNumber.yes
+              ? iconBuilder.pauseCircle()
+              : iconBuilder.enable(),
+          text: `${availableOnMobileSwitch === whetherNumber.yes ? '关闭' : '开放'}移动端发起审批`,
+          hidden: !checkHasAuthority(
+            accessWayCollection.workflow.toggleAvailableOnMobileSwitch
+              .permission,
+          ),
+          confirm: true,
+          title: `即将${availableOnMobileSwitch === whetherNumber.yes ? '关闭' : '开放'}移动端发起审批，确定吗？`,
         },
         {
           type: dropdownExpandItemType.divider,

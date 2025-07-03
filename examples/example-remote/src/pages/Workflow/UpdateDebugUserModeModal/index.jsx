@@ -26,7 +26,7 @@ class UpdateDebugUserModeModal extends BaseUpdateModal {
 
     this.state = {
       ...this.state,
-      pageTitle: '设置数据通道',
+      pageTitle: '配置调试发起人模式',
       loadApiPath: modelTypeCollection.workflowTypeCollection.get,
       submitApiPath:
         modelTypeCollection.workflowTypeCollection.setDebugUserMode,
@@ -128,6 +128,17 @@ class UpdateDebugUserModeModal extends BaseUpdateModal {
               require: true,
             },
           ],
+        },
+      ],
+    };
+  };
+
+  establishHelpConfig = () => {
+    return {
+      title: '操作提示',
+      list: [
+        {
+          text: '更改流程发起人模式后，测试实例的发起人以及归属企业将同步做出变化.',
         },
       ],
     };

@@ -7,7 +7,7 @@ import {
   reducerNameCollection,
 } from 'easy-soft-utility';
 
-import { pageListData, getData } from '../../services/smsCategoryStatistic';
+import { getData, pageListData } from '../../services/smsCategoryStatistic';
 
 export const smsCategoryStatisticTypeCollection = {
   pageList: 'smsCategoryStatistic/pageList',

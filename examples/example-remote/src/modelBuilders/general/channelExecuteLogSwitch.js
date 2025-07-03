@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,11 +9,11 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
   getData,
-  updateKeyValueInfoData,
+  pageListData,
   refreshCacheData,
+  singleListData,
+  updateKeyValueInfoData,
 } from '../../services/channelExecuteLogSwitch';
 
 export const channelExecuteLogSwitchTypeCollection = {

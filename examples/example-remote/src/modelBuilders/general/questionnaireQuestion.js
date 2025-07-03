@@ -8,13 +8,13 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   bindRelationData,
-  unbindRelationData,
-  setBindSortData,
-  setBindScoreData,
+  getData,
+  pageListData,
   refreshCacheData,
+  setBindScoreData,
+  setBindSortData,
+  unbindRelationData,
 } from '../../services/questionnaireQuestion';
 
 export const questionnaireQuestionTypeCollection = {

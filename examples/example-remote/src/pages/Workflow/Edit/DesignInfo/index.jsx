@@ -2,6 +2,7 @@ import { connect } from 'easy-soft-dva';
 import {
   checkHasAuthority,
   checkInCollection,
+  checkStringIsNullOrWhiteSpace,
   convertCollection,
   findIndex,
   getValueByKey,
@@ -15,7 +16,7 @@ import {
   cardConfig,
   getDerivedStateFromPropertiesForUrlParameters,
 } from 'antd-management-fast-common';
-import { iconBuilder } from 'antd-management-fast-component';
+import { ColorText, iconBuilder } from 'antd-management-fast-component';
 import { adjustEdge, Flow } from 'antd-management-fast-flow';
 
 import {
@@ -24,6 +25,7 @@ import {
   flowNodeApproverModeCollection,
   flowNodeTypeCollection,
 } from '../../../../customConfig';
+import { getFlowNodeApproveModeName } from '../../../../customSpecialComponents';
 import { BranchConditionDrawer } from '../../../WorkflowBranchCondition/BranchConditionDrawer';
 import { AddLineDrawer } from '../../../WorkflowLine/AddLineDrawer';
 import {
@@ -178,6 +180,42 @@ class Index extends TabPageBase {
           ...viewConfig,
           data: {
             data: o,
+            footerBuilder: (data) => {
+              const approverMode = getValueByKey({
+                data: data,
+                key: fieldDataWorkflowNode.approveMode.name,
+                convert: convertCollection.number,
+                defaultValue: '',
+              });
+
+              const approverModeName = getFlowNodeApproveModeName({
+                value: approverMode,
+              });
+
+              if (checkStringIsNullOrWhiteSpace(approverModeName)) {
+                return null;
+              }
+
+              return (
+                <ColorText
+                  textPrefix="审批方式"
+                  text={approverModeName}
+                  color="#999"
+                  style={{
+                    fontSize: 10,
+                  }}
+                  textPrefixStyle={{
+                    color: '#999',
+                  }}
+                  separator="："
+                  separatorStyle={{
+                    paddingLeft: '2px',
+                    paddingRight: '0px',
+                    color: '#999',
+                  }}
+                />
+              );
+            },
             onAddApprover: (data) => {
               const approverMode = getValueByKey({
                 data: data,

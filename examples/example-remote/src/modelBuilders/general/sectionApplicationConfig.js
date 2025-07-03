@@ -8,17 +8,17 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
-  updateBasicInfoData,
-  refreshCacheData,
-  removeData,
-  getConfigItemData,
   addConfigItemData,
-  updateConfigItemData,
-  removeConfigItemData,
+  getConfigItemData,
+  getData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeConfigItemData,
+  removeData,
+  updateBasicInfoData,
+  updateConfigItemData,
 } from '../../services/sectionApplicationConfig';
 
 export const sectionApplicationConfigTypeCollection = {

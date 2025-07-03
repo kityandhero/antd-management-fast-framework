@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,17 +9,17 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  getData,
   addBasicInfoData,
+  getData,
+  pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
+  removeData,
+  setDisableData,
+  setEnableData,
+  singleListData,
   updateBasicInfoData,
   updateSortData,
-  setEnableData,
-  setDisableData,
-  removeData,
-  refreshCacheData,
-  pageListOperateLogData,
 } from '../../services/emailSenderAgent';
 
 export const emailSenderAgentTypeCollection = {

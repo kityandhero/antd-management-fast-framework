@@ -1,6 +1,7 @@
 import { connect } from 'easy-soft-dva';
 import {
   checkHasAuthority,
+  checkInCollection,
   convertCollection,
   getValueByKey,
   showSimpleErrorMessage,
@@ -14,7 +15,10 @@ import {
 } from 'antd-management-fast-common';
 import { iconBuilder } from 'antd-management-fast-component';
 
-import { accessWayCollection } from '../../../customConfig';
+import {
+  accessWayCollection,
+  flowCaseStatusCollection,
+} from '../../../customConfig';
 import {
   DataTabContainerSupplement,
   getFlowCaseStatusName,
@@ -30,6 +34,7 @@ import {
   openCancelApproveSwitchAction,
   openResetAllApproveSwitchAction,
   refreshCacheAction,
+  toggleEmergencyAction,
 } from '../Assist/action';
 import {
   checkNeedUpdateAssist,
@@ -186,6 +191,16 @@ class Detail extends DataTabContainerSupplement {
     });
   };
 
+  toggleEmergency = (r) => {
+    toggleEmergencyAction({
+      target: this,
+      handleData: r,
+      successCallback: ({ target }) => {
+        target.reloadData({});
+      },
+    });
+  };
+
   refreshCache = (r) => {
     refreshCacheAction({
       target: this,
@@ -231,6 +246,15 @@ class Detail extends DataTabContainerSupplement {
 
   showWorkflowLinePageListDrawer = () => {
     WorkflowLinePageListDrawer.open();
+  };
+
+  goToWorkflow = (item) => {
+    const workflowId = getValueByKey({
+      data: item,
+      key: fieldData.workflowId.name,
+    });
+
+    this.goToPath(`/flow/workflow/edit/load/${workflowId}/key/basicInfo`);
   };
 
   establishPageHeaderTitlePrefix = () => {
@@ -444,6 +468,12 @@ class Detail extends DataTabContainerSupplement {
       convert: convertCollection.number,
     });
 
+    const status = getValueByKey({
+      data: metaData,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
     return {
       disabled: this.checkInProgress(),
       handleMenuClick: ({ key, handleData }) => {
@@ -460,6 +490,16 @@ class Detail extends DataTabContainerSupplement {
 
           case 'showSetAttentionStatementDrawer': {
             that.showSetAttentionStatementDrawer(handleData);
+            break;
+          }
+
+          case 'toggleEmergency': {
+            that.toggleEmergency(handleData);
+            break;
+          }
+
+          case 'goToWorkflow': {
+            that.goToWorkflow(handleData);
             break;
           }
 
@@ -507,6 +547,37 @@ class Detail extends DataTabContainerSupplement {
               .permission,
           ),
           disabled: attentionSignSwitch !== whetherNumber.yes,
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          key: 'toggleEmergency',
+          icon: iconBuilder.swap(),
+          text: '切换紧急',
+          hidden: !checkHasAuthority(
+            accessWayCollection.workflowCase.toggleEmergency.permission,
+          ),
+          disabled: !checkInCollection(
+            [flowCaseStatusCollection.created],
+            status,
+          ),
+          confirm: true,
+          title:
+            '将要切换紧急状态（位于紧急状态下的审批，会向审批人发送审批通知），确定吗？',
+        },
+        {
+          type: dropdownExpandItemType.divider,
+        },
+        {
+          key: 'goToWorkflow',
+          icon: iconBuilder.read(),
+          text: '查看流程配置',
+          hidden: !checkHasAuthority(
+            accessWayCollection.workflow.get.permission,
+          ),
+          confirm: true,
+          title: '即将跳转流程配置进行查看，确定吗？',
         },
         {
           type: dropdownExpandItemType.divider,
@@ -563,6 +634,13 @@ class Detail extends DataTabContainerSupplement {
         value: getValueByKey({
           data: metaData,
           key: fieldData.workflowName.name,
+        }),
+      },
+      {
+        label: fieldData.whetherEmergencyNote.label,
+        value: getValueByKey({
+          data: metaData,
+          key: fieldData.whetherEmergencyNote.name,
         }),
       },
       {

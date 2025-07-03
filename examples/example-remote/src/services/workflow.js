@@ -96,6 +96,16 @@ export async function toggleAttentionSignSwitchData(parameters) {
   });
 }
 
+export const toggleAvailableOnMobileSwitchDataApiAddress =
+  '/workflow/toggleAvailableOnMobileSwitch';
+
+export async function toggleAvailableOnMobileSwitchData(parameters) {
+  return request({
+    api: toggleAvailableOnMobileSwitchDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const setDefaultAttentionUserDataApiAddress =
   '/workflow/setDefaultAttentionUser';
 

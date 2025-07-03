@@ -92,12 +92,12 @@ export const fieldDataFlowNode = {
   },
   approveMode: {
     label: '审批模式',
-    name: 'approverMode',
+    name: 'approveMode',
     helper: '',
   },
   approveModeNote: {
     label: '审批模式',
-    name: 'approverModeNote',
+    name: 'approveModeNote',
     helper: '',
   },
   status: {

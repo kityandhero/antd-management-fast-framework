@@ -16,6 +16,7 @@ import {
   accessWayCollection,
   keyValueEditModeCollection,
 } from '../../../../customConfig';
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { buildInputDisplay, buildInputItem } from '../../../../utils';
 import { parseUrlParametersForSetState } from '../../Assist/config';
 import { fieldData } from '../../Common/data';
@@ -34,8 +35,9 @@ class ReadObtainScoreInfo extends TabPageBase {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'section/get',
-      submitApiPath: 'section/setReadSectionObtainScore',
+      loadApiPath: modelTypeCollection.sectionTypeCollection.getConfigure,
+      submitApiPath:
+        modelTypeCollection.sectionTypeCollection.setReadSectionObtainScore,
       obtainScoreByReadSwitch: 0,
     };
   }
@@ -121,6 +123,12 @@ class ReadObtainScoreInfo extends TabPageBase {
                 buildType: cardConfig.extraBuildType.iconInfo,
                 icon: iconBuilder.infoCircle(),
                 text: '全局信息仅为显示!',
+              },
+              {
+                buildType: cardConfig.extraBuildType.divider,
+              },
+              {
+                buildType: cardConfig.extraBuildType.refresh,
               },
             ],
           },

@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,34 +9,37 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  getData,
+  addCustomGlobalDataItemData,
   getConfigureData,
-  updateBasicInfoData,
-  updateWeChatApplicationInfoData,
-  updateWeChatPayCertificateInfoData,
-  updateKeyValueInfoData,
-  updateMessageChannelApplicationInfoData,
-  setStartData,
-  setStopData,
-  setOwnData,
-  testJiGuangSendDeviceData,
-  testSendWechatTemplateMessageData,
-  testSendWechatUniformMessageData,
-  testSendSmsCaptchaData,
-  refreshCacheData,
-  uploadImageData,
-  uploadVideoData,
-  uploadAudioData,
-  uploadFileData,
-  uploadCertificateData,
   getCustomGlobalDataData,
   getCustomGlobalDataItemData,
-  addCustomGlobalDataItemData,
-  updateCustomGlobalDataItemData,
-  removeCustomGlobalDataItemData,
+  getData,
+  getUnlimitedWechatMicroApplicationQrCodeData,
+  getWechatApplicationAccessTokenData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeCustomGlobalDataItemData,
+  setOwnData,
+  setStartData,
+  setStopData,
+  singleListData,
+  testJiGuangSendDeviceData,
+  testSendSmsCaptchaData,
+  testSendWechatTemplateMessageData,
+  testSendWechatUniformMessageData,
+  toggleCustomerAutomaticRegistrationData,
+  updateBasicInfoData,
+  updateCustomGlobalDataItemData,
+  updateKeyValueInfoData,
+  updateMessageChannelApplicationInfoData,
+  updateWeChatApplicationInfoData,
+  updateWeChatPayCertificateInfoData,
+  uploadAudioData,
+  uploadCertificateData,
+  uploadFileData,
+  uploadImageData,
+  uploadVideoData,
 } from '../../services/application';
 
 export const applicationTypeCollection = {
@@ -44,12 +47,18 @@ export const applicationTypeCollection = {
   singleList: 'application/singleList',
   get: 'application/get',
   getConfigure: 'application/getConfigure',
+  getWechatApplicationAccessToken:
+    'application/getWechatApplicationAccessToken',
+  getUnlimitedWechatMicroApplicationQrCode:
+    'application/getUnlimitedWechatMicroApplicationQrCode',
   updateBasicInfo: 'application/updateBasicInfo',
   updateWeChatApplicationInfo: 'application/updateWeChatApplicationInfo',
   updateWeChatPayCertificateInfo: 'application/updateWeChatPayCertificateInfo',
   updateKeyValueInfo: 'application/updateKeyValueInfo',
   updateMessageChannelApplicationInfo:
     'application/updateMessageChannelApplicationInfo',
+  toggleCustomerAutomaticRegistration:
+    'application/toggleCustomerAutomaticRegistration',
   setStart: 'application/setStart',
   setStop: 'application/setStop',
   setOwn: 'application/setOwn',
@@ -184,6 +193,64 @@ export function buildModel() {
 
         return dataAdjust;
       },
+      *getWechatApplicationAccessToken(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(
+          getWechatApplicationAccessTokenData,
+          payload,
+        );
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *getUnlimitedWechatMicroApplicationQrCode(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(
+          getUnlimitedWechatMicroApplicationQrCodeData,
+          payload,
+        );
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
       *updateBasicInfo(
         {
           payload,
@@ -302,6 +369,35 @@ export function buildModel() {
       ) {
         const response = yield call(
           updateMessageChannelApplicationInfoData,
+          payload,
+        );
+
+        const dataAdjust = pretreatmentRemoteSingleData({
+          source: response,
+          successCallback: pretreatmentSuccessCallback || null,
+          failCallback: pretreatmentFailCallback || null,
+        });
+
+        yield put({
+          type: reducerNameCollection.reducerRemoteData,
+          payload: dataAdjust,
+          alias,
+          ...reducerDefaultParameters,
+        });
+
+        return dataAdjust;
+      },
+      *toggleCustomerAutomaticRegistration(
+        {
+          payload,
+          alias,
+          pretreatmentSuccessCallback,
+          pretreatmentFailCallback,
+        },
+        { call, put },
+      ) {
+        const response = yield call(
+          toggleCustomerAutomaticRegistrationData,
           payload,
         );
 

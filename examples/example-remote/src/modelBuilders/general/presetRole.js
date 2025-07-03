@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,24 +9,24 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  listModuleData,
-  listTreeModuleData,
-  listSelectData,
-  getData,
+  addAllModuleData,
   addBasicInfoData,
-  updateBasicInfoData,
   addModuleData,
   addMultiModuleData,
-  addAllModuleData,
-  updateModuleData,
-  removeModuleData,
   clearModuleData,
-  setEnableData,
-  setDisableData,
-  removeData,
-  refreshCacheData,
+  getData,
+  listModuleData,
+  listSelectData,
+  listTreeModuleData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeData,
+  removeModuleData,
+  setDisableData,
+  setEnableData,
+  updateBasicInfoData,
+  updateModuleData,
 } from '../../services/presetRole';
 
 export const presetRoleTypeCollection = {

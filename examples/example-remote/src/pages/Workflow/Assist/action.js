@@ -47,6 +47,28 @@ export async function toggleAttentionSignSwitchAction({
   });
 }
 
+export async function toggleAvailableOnMobileSwitchAction({
+  target,
+  handleData,
+  successCallback,
+  successMessage,
+}) {
+  actionCore({
+    api: modelTypeCollection.workflowTypeCollection
+      .toggleAvailableOnMobileSwitch,
+    params: {
+      workflowId: getValueByKey({
+        data: handleData,
+        key: fieldData.workflowId.name,
+      }),
+    },
+    target,
+    handleData,
+    successCallback,
+    successMessage,
+  });
+}
+
 export async function setEnableAction({
   target,
   handleData,

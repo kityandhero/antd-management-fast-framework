@@ -980,6 +980,203 @@ export const emailSenderAgent = {
   ],
 };
 
+export const subsidiaryMessages = {
+  name: 'subsidiaryMessages',
+  icon: 'read',
+  path: '/subsidiaryMessages',
+  access: 'checkAccess',
+  authority: [
+    accessWayCollection.super.permission,
+    accessWayCollection.subsidiaryComplaintCategory.pageList.permission,
+    accessWayCollection.subsidiaryComplaintMessage.pageList.permission,
+    accessWayCollection.subsidiaryFeedbackMessage.pageList.permission,
+    accessWayCollection.subsidiaryReportMessage.pageList.permission,
+  ],
+  routes: [
+    {
+      name: 'subsidiaryComplaintCategory',
+      icon: 'bars',
+      hideChildrenInMenu: true,
+      path: '/subsidiaryMessages/subsidiaryComplaintCategory',
+      access: 'checkAccess',
+      authority: [
+        accessWayCollection.super.permission,
+        accessWayCollection.subsidiaryComplaintCategory.pageList.permission,
+      ],
+      routes: [
+        {
+          path: '/subsidiaryMessages/subsidiaryComplaintCategory',
+          redirect:
+            '/subsidiaryMessages/subsidiaryComplaintCategory/pageList/no',
+        },
+        {
+          path: '/subsidiaryMessages/subsidiaryComplaintCategory/pageList/:pageKey',
+          name: 'pageList',
+          hideInMenu: true,
+          component: './SubsidiaryComplaintCategory/PageList',
+        },
+      ],
+    },
+    {
+      name: 'subsidiaryComplaintMessage',
+      icon: 'bars',
+      hideChildrenInMenu: true,
+      path: '/subsidiaryMessages/subsidiaryComplaintMessage',
+      access: 'checkAccess',
+      authority: [
+        accessWayCollection.super.permission,
+        accessWayCollection.subsidiaryComplaintMessage.pageList.permission,
+      ],
+      routes: [
+        {
+          path: '/subsidiaryMessages/subsidiaryComplaintMessage',
+          redirect:
+            '/subsidiaryMessages/subsidiaryComplaintMessage/pageList/no',
+        },
+        {
+          path: '/subsidiaryMessages/subsidiaryComplaintMessage/pageList/:pageKey',
+          name: 'pageList',
+          hideInMenu: true,
+          component: './SubsidiaryComplaintMessage/PageList',
+        },
+        {
+          path: '/subsidiaryMessages/subsidiaryComplaintMessage/edit/:op/:id/:pageKey',
+          name: 'edit',
+          hideInMenu: true,
+          component: './SubsidiaryComplaintMessage/Edit',
+          routes: [
+            {
+              path: '/subsidiaryMessages/subsidiaryComplaintMessage/edit/:op/:id/:pageKey/basicInfo',
+              name: 'basicInfo',
+              component: './SubsidiaryComplaintMessage/Edit/BasicInfo',
+            },
+            {
+              path: '/subsidiaryMessages/subsidiaryComplaintMessage/edit/:op/:id/:pageKey/operateLog',
+              name: 'operateLog',
+              routes: [
+                {
+                  path: '/subsidiaryMessages/subsidiaryComplaintMessage/edit/:op/:id/:pageKey/operateLog',
+                  redirect:
+                    '/subsidiaryMessages/subsidiaryComplaintMessage/edit/:op/:id/:pageKey/operateLog/pageList',
+                },
+                {
+                  path: '/subsidiaryMessages/subsidiaryComplaintMessage/edit/:op/:id/:pageKey/operateLog/pageList',
+                  component:
+                    './SubsidiaryComplaintMessage/Edit/OperateLog/PageList',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'subsidiaryFeedbackMessage',
+      icon: 'bars',
+      path: '/subsidiaryMessages/subsidiaryFeedbackMessage',
+      hideChildrenInMenu: true,
+      access: 'checkAccess',
+      authority: [
+        accessWayCollection.super.permission,
+        accessWayCollection.subsidiaryFeedbackMessage.pageList.permission,
+      ],
+      routes: [
+        {
+          path: '/subsidiaryMessages/subsidiaryFeedbackMessage',
+          redirect: '/subsidiaryMessages/subsidiaryFeedbackMessage/pageList/no',
+        },
+        {
+          path: '/subsidiaryMessages/subsidiaryFeedbackMessage/pageList/:pageKey',
+          name: 'pageList',
+          hideInMenu: true,
+          component: './SubsidiaryFeedbackMessage/PageList',
+        },
+        {
+          path: '/subsidiaryMessages/subsidiaryFeedbackMessage/edit/:op/:id/:pageKey',
+          name: 'edit',
+          hideInMenu: true,
+          component: './SubsidiaryFeedbackMessage/Edit',
+          routes: [
+            {
+              path: '/subsidiaryMessages/subsidiaryFeedbackMessage/edit/:op/:id/:pageKey/basicInfo',
+              name: 'basicInfo',
+              component: './SubsidiaryFeedbackMessage/Edit/BasicInfo',
+            },
+            {
+              path: '/subsidiaryMessages/subsidiaryFeedbackMessage/edit/:op/:id/:pageKey/operateLog',
+              name: 'operateLog',
+              routes: [
+                {
+                  path: '/subsidiaryMessages/subsidiaryFeedbackMessage/edit/:op/:id/:pageKey/operateLog',
+                  redirect:
+                    '/subsidiaryMessages/subsidiaryFeedbackMessage/edit/:op/:id/:pageKey/operateLog/pageList',
+                },
+                {
+                  path: '/subsidiaryMessages/subsidiaryFeedbackMessage/edit/:op/:id/:pageKey/operateLog/pageList',
+                  component:
+                    './SubsidiaryFeedbackMessage/Edit/OperateLog/PageList',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'subsidiaryReportMessage',
+      icon: 'bars',
+      hideChildrenInMenu: true,
+      path: '/subsidiaryMessages/subsidiaryReportMessage',
+      access: 'checkAccess',
+      authority: [
+        accessWayCollection.super.permission,
+        accessWayCollection.subsidiaryReportMessage.pageList.permission,
+      ],
+      routes: [
+        {
+          path: '/subsidiaryMessages/subsidiaryReportMessage',
+          redirect: '/subsidiaryMessages/subsidiaryReportMessage/pageList/no',
+        },
+        {
+          path: '/subsidiaryMessages/subsidiaryReportMessage/pageList/:pageKey',
+          name: 'pageList',
+          hideInMenu: true,
+          component: './SubsidiaryReportMessage/PageList',
+        },
+        {
+          path: '/subsidiaryMessages/subsidiaryReportMessage/edit/:op/:id/:pageKey',
+          name: 'edit',
+          hideInMenu: true,
+          component: './SubsidiaryReportMessage/Edit',
+          routes: [
+            {
+              path: '/subsidiaryMessages/subsidiaryReportMessage/edit/:op/:id/:pageKey/basicInfo',
+              name: 'basicInfo',
+              component: './SubsidiaryReportMessage/Edit/BasicInfo',
+            },
+            {
+              path: '/subsidiaryMessages/subsidiaryReportMessage/edit/:op/:id/:pageKey/operateLog',
+              name: 'operateLog',
+              routes: [
+                {
+                  path: '/subsidiaryMessages/subsidiaryReportMessage/edit/:op/:id/:pageKey/operateLog',
+                  redirect:
+                    '/subsidiaryMessages/subsidiaryReportMessage/edit/:op/:id/:pageKey/operateLog/pageList',
+                },
+                {
+                  path: '/subsidiaryMessages/subsidiaryReportMessage/edit/:op/:id/:pageKey/operateLog/pageList',
+                  component:
+                    './SubsidiaryReportMessage/Edit/OperateLog/PageList',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
 export const question = {
   name: 'question',
   icon: 'reconciliation',
@@ -1898,6 +2095,121 @@ export const presetRole = {
   ],
 };
 
+export const customer = {
+  name: 'customer',
+  icon: 'user',
+  hideChildrenInMenu: true,
+  path: '/frontEndUser/customer',
+  access: 'checkAccess',
+  authority: [
+    accessWayCollection.super.permission,
+    accessWayCollection.customer.pageList.permission,
+  ],
+  routes: [
+    {
+      path: '/frontEndUser/customer',
+      redirect: '/frontEndUser/customer/pageList',
+    },
+    {
+      path: '/frontEndUser/customer/pageList',
+      name: 'pageList',
+      icon: 'bars',
+      redirect: '/frontEndUser/customer/pageList/no',
+    },
+    {
+      path: '/frontEndUser/customer/pageList/:pageKey',
+      hideInMenu: true,
+      component: './Customer/PageList',
+    },
+    {
+      path: '/frontEndUser/customer/edit/:op/:id/:pageKey',
+      name: 'edit',
+      hideInMenu: true,
+      component: './Customer/Edit',
+      routes: [
+        {
+          path: '/frontEndUser/customer/edit/:op/:id/:pageKey/basicInfo',
+          name: 'basicInfo',
+          component: './Customer/Edit/BasicInfo',
+        },
+        {
+          path: '/frontEndUser/customer/edit/:op/:id/:pageKey/operateLog',
+          name: 'operateLog',
+          routes: [
+            {
+              path: '/frontEndUser/customer/edit/:op/:id/:pageKey/operateLog',
+              redirect:
+                '/frontEndUser/customer/edit/:op/:id/:pageKey/operateLog/pageList',
+            },
+            {
+              path: '/frontEndUser/customer/edit/:op/:id/:pageKey/operateLog/pageList',
+              component: './Customer/Edit/OperateLog/PageList',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const customerLoginLog = {
+  name: 'customerLoginLog',
+  icon: 'user',
+  hideChildrenInMenu: true,
+  path: '/frontEndUser/customerLoginLog',
+  access: 'checkAccess',
+  authority: [
+    accessWayCollection.super.permission,
+    accessWayCollection.customerLoginLog.pageList.permission,
+  ],
+  routes: [
+    {
+      path: '/frontEndUser/customerLoginLog',
+      redirect: '/frontEndUser/customerLoginLog/pageList',
+    },
+    {
+      path: '/frontEndUser/customerLoginLog/pageList',
+      name: 'pageList',
+      icon: 'bars',
+      redirect: '/frontEndUser/customerLoginLog/pageList/no',
+    },
+    {
+      path: '/frontEndUser/customerLoginLog/pageList/:pageKey',
+      hideInMenu: true,
+      component: './CustomerLoginLog/PageList',
+    },
+  ],
+};
+
+export const customerWechatApplicationInfo = {
+  name: 'customerWechatApplicationInfo',
+  icon: 'user',
+  hideChildrenInMenu: true,
+  path: '/frontEndUser/customerWechatApplicationInfo',
+  access: 'checkAccess',
+  authority: [
+    accessWayCollection.super.permission,
+    accessWayCollection.customerWechatApplicationInfo.pageList.permission,
+  ],
+  routes: [
+    {
+      path: '/frontEndUser/customerWechatApplicationInfo',
+      redirect: '/frontEndUser/customerWechatApplicationInfo/pageList',
+    },
+    {
+      path: '/frontEndUser/customerWechatApplicationInfo/pageList',
+      name: 'pageList',
+      icon: 'bars',
+      redirect: '/frontEndUser/customerWechatApplicationInfo/pageList/no',
+    },
+    {
+      path: '/frontEndUser/customerWechatApplicationInfo/pageList/:pageKey',
+      hideInMenu: true,
+      component: './CustomerWechatApplicationInfo/PageList',
+    },
+  ],
+};
+
 export const user = {
   name: 'user',
   icon: 'user',
@@ -2506,6 +2818,134 @@ export const assistTools = {
     callCenterCategory,
     callCenter,
   ],
+};
+
+const applicationUserFeedback = {
+  name: 'applicationUserFeedback',
+  icon: 'reconciliation',
+  hideChildrenInMenu: true,
+  path: '/applicationFeedback/applicationUserFeedback',
+  access: 'checkAccess',
+  authority: [
+    accessWayCollection.super.permission,
+    accessWayCollection.applicationUserFeedback.pageList.permission,
+  ],
+  routes: [
+    {
+      path: '/applicationFeedback/applicationUserFeedback',
+      redirect: '/applicationFeedback/applicationUserFeedback/pageList',
+    },
+    {
+      path: '/applicationFeedback/applicationUserFeedback/pageList',
+      name: 'pageList',
+      icon: 'bars',
+      redirect: '/applicationFeedback/applicationUserFeedback/pageList/no',
+    },
+    {
+      path: '/applicationFeedback/applicationUserFeedback/pageList/:pageKey',
+      hideInMenu: true,
+      component: './ApplicationUserFeedback/PageList',
+    },
+    {
+      path: '/applicationFeedback/applicationUserFeedback/edit/:op/:id/:pageKey',
+      name: 'edit',
+      hideInMenu: true,
+      component: './ApplicationUserFeedback/Edit',
+      routes: [
+        {
+          path: '/applicationFeedback/applicationUserFeedback/edit/:op/:id/:pageKey/basicInfo',
+          name: 'basicInfo',
+          component: './ApplicationUserFeedback/Edit/BasicInfo',
+        },
+        {
+          path: '/applicationFeedback/applicationUserFeedback/edit/:op/:id/:pageKey/operateLog',
+          name: 'operateLog',
+          routes: [
+            {
+              path: '/applicationFeedback/applicationUserFeedback/edit/:op/:id/:pageKey/operateLog',
+              redirect:
+                '/applicationFeedback/applicationUserFeedback/edit/:op/:id/:pageKey/operateLog/pageList',
+            },
+            {
+              path: '/applicationFeedback/applicationUserFeedback/edit/:op/:id/:pageKey/operateLog/pageList',
+              component: './ApplicationUserFeedback/Edit/OperateLog/PageList',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+const applicationCustomerFeedback = {
+  name: 'applicationCustomerFeedback',
+  icon: 'reconciliation',
+  hideChildrenInMenu: true,
+  path: '/applicationFeedback/applicationCustomerFeedback',
+  access: 'checkAccess',
+  authority: [
+    accessWayCollection.super.permission,
+    accessWayCollection.applicationCustomerFeedback.pageList.permission,
+  ],
+  routes: [
+    {
+      path: '/applicationFeedback/applicationCustomerFeedback',
+      redirect: '/applicationFeedback/applicationCustomerFeedback/pageList',
+    },
+    {
+      path: '/applicationFeedback/applicationCustomerFeedback/pageList',
+      name: 'pageList',
+      icon: 'bars',
+      redirect: '/applicationFeedback/applicationCustomerFeedback/pageList/no',
+    },
+    {
+      path: '/applicationFeedback/applicationCustomerFeedback/pageList/:pageKey',
+      hideInMenu: true,
+      component: './ApplicationCustomerFeedback/PageList',
+    },
+    {
+      path: '/applicationFeedback/applicationCustomerFeedback/edit/:op/:id/:pageKey',
+      name: 'edit',
+      hideInMenu: true,
+      component: './ApplicationCustomerFeedback/Edit',
+      routes: [
+        {
+          path: '/applicationFeedback/applicationCustomerFeedback/edit/:op/:id/:pageKey/basicInfo',
+          name: 'basicInfo',
+          component: './ApplicationCustomerFeedback/Edit/BasicInfo',
+        },
+        {
+          path: '/applicationFeedback/applicationCustomerFeedback/edit/:op/:id/:pageKey/operateLog',
+          name: 'operateLog',
+          routes: [
+            {
+              path: '/applicationFeedback/applicationCustomerFeedback/edit/:op/:id/:pageKey/operateLog',
+              redirect:
+                '/applicationFeedback/applicationCustomerFeedback/edit/:op/:id/:pageKey/operateLog/pageList',
+            },
+            {
+              path: '/applicationFeedback/applicationCustomerFeedback/edit/:op/:id/:pageKey/operateLog/pageList',
+              component:
+                './ApplicationCustomerFeedback/Edit/OperateLog/PageList',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const applicationFeedback = {
+  name: 'applicationFeedback',
+  icon: 'reconciliation',
+  path: '/applicationFeedback',
+  access: 'checkAccess',
+  authority: [
+    accessWayCollection.super.permission,
+    accessWayCollection.applicationUserFeedback.pageList.permission,
+    accessWayCollection.applicationCustomerFeedback.pageList.permission,
+  ],
+  routes: [applicationUserFeedback, applicationCustomerFeedback],
 };
 
 const keyValueInfrastructure = {

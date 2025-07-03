@@ -8,6 +8,7 @@ import {
   accessWayCollection,
   keyValueEditModeCollection,
 } from '../../../../customConfig';
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { buildInputItem } from '../../../../utils';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
@@ -23,8 +24,8 @@ class Index extends TabPageBase {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'currentManagementInfrastructure/get',
-      submitApiPath: 'currentManagementInfrastructure/updateDebugUserId',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
     };
   }
 

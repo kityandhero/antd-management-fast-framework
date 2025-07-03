@@ -7,9 +7,9 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  getGraphicalTreeData,
   getGraphicalDirectDepartmentData,
   getGraphicalSingleSubsidiaryDepartmentData,
+  getGraphicalTreeData,
 } from '../../services/organization';
 
 export const organizationTypeCollection = {

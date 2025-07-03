@@ -12,6 +12,7 @@ import {
   accessWayCollection,
   keyValueEditModeCollection,
 } from '../../../../customConfig';
+import { modelTypeCollection } from '../../../../modelBuilders';
 import { buildInputItem } from '../../../../utils';
 import { fieldData } from '../../Common/data';
 import { TabPageBase } from '../../TabPageBase';
@@ -29,7 +30,8 @@ class ReadObtainScoreInfo extends TabPageBase {
 
     this.state = {
       ...this.state,
-      loadApiPath: 'currentManagementInfrastructure/get',
+      loadApiPath:
+        modelTypeCollection.currentManagementInfrastructureTypeCollection.get,
       obtainScoreByReadSwitch: 0,
     };
   }

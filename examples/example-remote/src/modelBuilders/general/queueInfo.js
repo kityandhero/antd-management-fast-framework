@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,14 +9,14 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  getData,
   pageListData,
   singleListData,
-  getData,
-  tryStartAllData,
-  trySendData,
-  tryPeekData,
   tryDequeueData,
+  tryPeekData,
   tryPurgeData,
+  trySendData,
+  tryStartAllData,
 } from '../../services/queueInfo';
 
 export const queueInfoTypeCollection = {

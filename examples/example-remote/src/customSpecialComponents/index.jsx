@@ -1,3 +1,4 @@
+export * from './BaseUpdateKeyValueInfoModal';
 export * from './CustomAssembly';
 export * from './DataTabContainerSupplement';
 export * from './FunctionSpecialCustomComponent';

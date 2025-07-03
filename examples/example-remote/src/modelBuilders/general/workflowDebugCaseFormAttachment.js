@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,13 +9,13 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  getData,
   addBasicInfoData,
-  removeData,
-  refreshCacheData,
+  getData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeData,
+  singleListData,
   uploadFileData,
 } from '../../services/workflowDebugCaseFormAttachment';
 

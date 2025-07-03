@@ -88,7 +88,7 @@ export const accessWayInfrastructureCollection = {
   },
   administrativeDivision: {
     pageList: {
-      title: '地区列表',
+      title: '分页列表',
       paramsKey: 'ab1c8083d52d3f07f6d3b81e47803658',
       permission: 'a8ffaed3293e486eb0c64ebba61c6242',
     },
@@ -135,12 +135,12 @@ export const accessWayInfrastructureCollection = {
   },
   application: {
     pageList: {
-      title: '应用列表',
+      title: '分页列表',
       paramsKey: 'bfa2378a8a696de5cb4cfbd77f4c9419',
       permission: 'a6910d0b30554237b2b8ad9360b130c2',
     },
     singleList: {
-      title: '已开通应用单列表',
+      title: '已开通应用单页列表',
       paramsKey: '5d4634180ec68e95fa9789fe14869765',
       permission: 'e27eec63fa6442348f7f77ded7d2ca79',
     },
@@ -153,6 +153,16 @@ export const accessWayInfrastructureCollection = {
       title: '获取配置详情',
       paramsKey: '53711e183688daea190f0058c31c81ac',
       permission: '6e7a3c9b3ab44b82a70daf1fc59d3c82',
+    },
+    getWechatApplicationAccessToken: {
+      title: '获取微信小程序AccessToken',
+      paramsKey: 'dd91f4a9477780584ef64747f6a51c91',
+      permission: '3ba89ab944fa41e2abf10982f33f4107',
+    },
+    getUnlimitedWechatMicroApplicationQrCode: {
+      title: '获取不限制的小程序码',
+      paramsKey: '3f186a4862eeb63f17d886d3e995f142',
+      permission: '503da8d2492e4e2f94e9bba46505aad4',
     },
     updateBasicInfo: {
       title: '更新信息',
@@ -178,6 +188,11 @@ export const accessWayInfrastructureCollection = {
       title: '关联消息应用',
       paramsKey: 'e89344ab356d4a847f23a7a64b4e7482',
       permission: 'f03bebe7d5104993bbb5eab95a30d1bd',
+    },
+    toggleCustomerAutomaticRegistration: {
+      title: '切换顾客是否自动注册',
+      paramsKey: 'fca74d406b484597d9cc3a682a5cc221',
+      permission: '9c3aba65e44b45e18245cd5447436255',
     },
     setStart: {
       title: '开始运营',
@@ -220,32 +235,32 @@ export const accessWayInfrastructureCollection = {
       permission: 'fbdee7b5a12b4a9bbb05def91c2ffb38',
     },
     uploadCertificate: {
-      title: '上传证书文件',
+      title: '上传证书',
       paramsKey: 'f4c09f7c57614d7c75f797f71b6e2107',
       permission: 'f773d5f89364490b9c24bff581fc56d1',
     },
     getCustomGlobalData: {
-      title: '获取自定义数据',
+      title: '获取全局自定义数据',
       paramsKey: 'f0b2fc4097a5bc772971b110fbb7a9f7',
       permission: 'd0a630333be5455d9d5787a046b3f100',
     },
     getCustomGlobalDataItem: {
-      title: '获取自定义数据项',
+      title: '获取全局自定义数据项',
       paramsKey: '91d518387881edc256f1cc4d7aa5db9e',
       permission: '107765a5fe9a4cf2998fa58296c13dbd',
     },
     addCustomGlobalDataItem: {
-      title: '增加自定义数据项',
+      title: '增加全局自定义数据项',
       paramsKey: 'e8346993e4a6dd16bb25edfa58480c5b',
       permission: '9c2eec3d909f4e4f9518063f3aa5bb3b',
     },
     updateCustomGlobalDataItem: {
-      title: '更新自定义数据项',
+      title: '更新全局自定义数据项',
       paramsKey: '745a0ebc34ba928b875d2971439f2d95',
       permission: 'bfcb4eaf2b9e43fab8955e94cc766d53',
     },
     removeCustomGlobalDataItem: {
-      title: '移除自定义数据项',
+      title: '移除全局自定义数据项',
       paramsKey: 'f819319ae946f0dbd5a1a3a60880e807',
       permission: 'e2197a6426f1450a82d75a3eb004573d',
     },
@@ -253,6 +268,38 @@ export const accessWayInfrastructureCollection = {
       title: '操作日志列表',
       paramsKey: '67c33ae27788071516e83d5a23e0dd96',
       permission: 'ce4be1a642c64abe885975759fa3c796',
+    },
+  },
+  applicationCustomerFeedback: {
+    pageList: {
+      title: '分页列表',
+      paramsKey: 'daecee51604a6ac816d75d44ce614d83',
+      permission: 'c5f3fe79c5dd435f93d9058282cefbae',
+    },
+    get: {
+      title: '获取详情',
+      paramsKey: '140c97dfb07c2d4213e79721cf30ef34',
+      permission: 'f9229300f6ca44cebbc009bce1359eb5',
+    },
+    repay: {
+      title: '回复信息',
+      paramsKey: 'd2ae9480a6f40e817c635dd8afaba99c',
+      permission: '5af22def2bd740719f3ca9774a86bc44',
+    },
+    remove: {
+      title: '移除信息',
+      paramsKey: '6d24de638af60756d8a6aa3f9720c8b2',
+      permission: '4e06b5b27f3f4ead85cd87dd5405a772',
+    },
+    refreshCache: {
+      title: '刷新缓存',
+      paramsKey: '8abcbb887e1e713e627aed9883edb00d',
+      permission: '2cf63e3dc7d345f9a1f001b22526dfd2',
+    },
+    pageListOperateLog: {
+      title: '操作日志列表',
+      paramsKey: '82ff3f4a7e5a0edab5c5930858b6f585',
+      permission: '45cb1138bd7c497193c729e13199deee',
     },
   },
   applicationNavigation: {
@@ -372,6 +419,38 @@ export const accessWayInfrastructureCollection = {
       title: '操作日志列表',
       paramsKey: '246f040f2f1c4a048a808e5189a2395a',
       permission: '34e2756badde440abd929d35f40642fd',
+    },
+  },
+  applicationUserFeedback: {
+    pageList: {
+      title: '分页列表',
+      paramsKey: '4c39b993728d4c92e0bb4dfbe10c718d',
+      permission: '39e59df9e5c94ac4921c6d74027eae66',
+    },
+    get: {
+      title: '获取详情',
+      paramsKey: 'd4ea03db5b27bcade6ec0905a271935a',
+      permission: '4ade536a30c947e5b729fad30908b37a',
+    },
+    repay: {
+      title: '回复信息',
+      paramsKey: '6fe036c653adcd1e780d4fedeba75b21',
+      permission: '8f661aa72c7a4e23abd3ff18a2ea49b0',
+    },
+    remove: {
+      title: '移除信息',
+      paramsKey: '314cd99425aac2fffd4a99895cc33901',
+      permission: '6b6f37bc63434a49a6a0b56830f902a2',
+    },
+    refreshCache: {
+      title: '刷新缓存',
+      paramsKey: 'c5e54e8e2787c823142f43a427bbf0e6',
+      permission: 'f48a60a2c9a64f52b8936cc489e904cc',
+    },
+    pageListOperateLog: {
+      title: '操作日志列表',
+      paramsKey: '42e673128c04ca610bcf46cbb3ecc02b',
+      permission: 'a07f8eda3e5c4511a696c9112b6f226b',
     },
   },
   applicationVersion: {
@@ -738,15 +817,15 @@ export const accessWayInfrastructureCollection = {
       paramsKey: 'fe39c7ad35a866c8e367d5d5f4209bd6',
       permission: '1e0471103f5a41dea0d9d20a924b55c9',
     },
-    updateSmsInfo: {
-      title: '设置短信发动信息',
-      paramsKey: '40700d504269efc1762a1239fb94bdf8',
-      permission: '8ed7d6f518af430e8e281ced2eca2ecd',
-    },
     updateFlowDebugUserId: {
       title: '设置流程调试用户标识',
       paramsKey: 'd738f282db02d6f9d7c56d5d7a92036d',
       permission: '51007e4409124e449bcf6b3ee1ab35bf',
+    },
+    updateFlowDebugSubsidiaryId: {
+      title: '设置流程调试企业标识',
+      paramsKey: 'ba6bc3e16086fbc5254e2ecefc557617',
+      permission: 'd02e83151a994205a5ae5c682e778b15',
     },
     updateSecretKeyInfo: {
       title: '设置系统密钥',
@@ -783,10 +862,15 @@ export const accessWayInfrastructureCollection = {
       paramsKey: '734d73efba87723ed36542e161599f03',
       permission: '9da8cba4ea3d47039ff8f1e9edfc5f80',
     },
-    testDiskSpaceMonitoringEmail: {
-      title: '测试磁盘监控配置',
+    testDiskSpaceMonitoringAlarmEmail: {
+      title: '测试磁盘监控报警邮件发送',
       paramsKey: '4913a9ac8997f429bc7efa6af328408c',
       permission: '61ef3526b378472192f59d734b300db3',
+    },
+    testDiskSpaceMonitoringDetectionEmail: {
+      title: '测试磁盘监控检测邮件发送',
+      paramsKey: '00f151624a0afaf5e8a131360cfcea82',
+      permission: '2076587fca1942b3be3d549e504e97b3',
     },
     testSecretKey: {
       title: '测试系统密钥',
@@ -802,6 +886,97 @@ export const accessWayInfrastructureCollection = {
       title: '上传图片',
       paramsKey: 'd20506e5bccd57c680d26c758909c883',
       permission: 'd66e8c15d42542fb8052dfc8ce55e9d3',
+    },
+  },
+  customer: {
+    pageList: {
+      title: '分页列表',
+      paramsKey: '5a51566a6c91e6bd9673682a2334c3f4',
+      permission: '0be19fe8c1374f7ea3ee56094d507399',
+    },
+    get: {
+      title: '获取详情',
+      paramsKey: '5d01daa5514216fdf92ae47261771b0f',
+      permission: 'aa87a908b5da4f65b0c910cdac23bdaa',
+    },
+    setEnable: {
+      title: '设为启用',
+      paramsKey: '41be02cf1f19a24ad0b669d7da87ed3b',
+      permission: '538cb2e360bf4165b9095171050dbbfc',
+    },
+    togglePhoneVerify: {
+      title: '切换手机号认证状态',
+      paramsKey: 'a0675567b60389a885f342531b7ad92f',
+      permission: 'bee3344f596a499b9901f69d1b87d14f',
+    },
+    setDisable: {
+      title: '设为禁用',
+      paramsKey: 'c2ef47d763687160e7b9fd96193328f6',
+      permission: '4919480c16ad4478936eb1cade9dbd58',
+    },
+    refreshCache: {
+      title: '刷新缓存',
+      paramsKey: '55c609342ce509f0529d9da03f1ff074',
+      permission: '5a06746efb32478aa607af70010d9c2b',
+    },
+    pageListOperateLog: {
+      title: '操作日志列表',
+      paramsKey: '3618b289140d86c367c8c6f216f74f03',
+      permission: '727f022ab086460b907e1fb549b841eb',
+    },
+  },
+  customerLoginLog: {
+    pageList: {
+      title: '分页列表',
+      paramsKey: 'd36b9bc03070a25e7aeabf388c356dc4',
+      permission: '11edb27b016e47908a1a1f5206c93281',
+    },
+    singleList: {
+      title: '单页列表',
+      paramsKey: '28e7617602e2315063f001ffdfac193a',
+      permission: '4dfd8edcf7034ad4933c9cae4e520ac6',
+    },
+    get: {
+      title: '获取详情',
+      paramsKey: '8d538ed098ac7041634b4a2a2c078a37',
+      permission: '02d26ae9dc4847d3b1929149a0b43480',
+    },
+    remove: {
+      title: '移除',
+      paramsKey: '6c8b39a58fbdc1bb00e4ff57f1790253',
+      permission: '3b5b0cd376394780b9b82808c1775555',
+    },
+    refreshCache: {
+      title: '刷新缓存',
+      paramsKey: '6759d1ee042e28e7d7fe40054a92b4ab',
+      permission: 'edc560cba5f14121902b63fcb6f688cd',
+    },
+    pageListOperateLog: {
+      title: '操作日志列表',
+      paramsKey: '4eb9502d8682b0433a159751bb1e13c3',
+      permission: '0537fdbed24f4280b1fddb2c8d0dd787',
+    },
+  },
+  customerWechatApplicationInfo: {
+    pageList: {
+      title: '分页列表',
+      paramsKey: 'c25a1b14216004d536df020027d9af2b',
+      permission: '7fb7f678d83b40c1ad2c8c28171e22f2',
+    },
+    get: {
+      title: '获取详情',
+      paramsKey: 'ee7ee6a2ed53c70a0c20a33afdb32ab3',
+      permission: '5ef2414017ee47638f3f4e565c8ed96d',
+    },
+    remove: {
+      title: '移除',
+      paramsKey: 'fad8bf7e9d2fdd5300f4f62f46ccb248',
+      permission: '187099583888455da5ba5f5e020a51b7',
+    },
+    refreshCache: {
+      title: '刷新缓存',
+      paramsKey: 'a16b39d189a136e2043c2965b615e6c3',
+      permission: 'fefc7e68ad6e4747850459ebcf8fffa9',
     },
   },
   department: {
@@ -1911,6 +2086,11 @@ export const accessWayInfrastructureCollection = {
       paramsKey: '152ed34a90d4b4070b80ca178f5fd85a',
       permission: '99183a2af4e14ffbbeae6bcda7fbe544',
     },
+    getExaminationPaper: {
+      title: '获取构建的试卷',
+      paramsKey: 'c3534af5144646fd22edf4605fe59d2e',
+      permission: '677d4140a6514acc9cfa40506f08a25d',
+    },
     addBasicInfo: {
       title: '新建',
       paramsKey: 'a39059b5ea5361ffd73ae7d610990c24',
@@ -2017,7 +2197,7 @@ export const accessWayInfrastructureCollection = {
       permission: '32ba22e77b65473a9ab9a49cc71d1299',
     },
   },
-  questionnaireQuestion: {
+  questionnaireQuestionRelation: {
     pageList: {
       title: '分页列表',
       paramsKey: '5fa46afe73b783f9fea5f400c16fb0a7',
@@ -2032,6 +2212,11 @@ export const accessWayInfrastructureCollection = {
       title: '绑定关系',
       paramsKey: '0f9d7be726abde6cfcfd3966e0a818e7',
       permission: '52e3b58b476b4a8684bf0073ce1d0bf8',
+    },
+    bindBatchRelation: {
+      title: '批量绑定关系',
+      paramsKey: '02d2bf4e3f9f50e8fd3a907f1b567a89',
+      permission: '5ff57edf54834128b56c6e8f2a7bb039',
     },
     unbindRelation: {
       title: '解绑关系',
@@ -2369,7 +2554,7 @@ export const accessWayInfrastructureCollection = {
       permission: '0edafa3b981740128b49c090876e1b60',
     },
     remove: {
-      title: '移除角色',
+      title: '移除',
       paramsKey: 'ce893b6fa9f28f727596a17227c9e2be',
       permission: '9bf1e8cf76f24cecb1caf28252f1ef58',
     },
@@ -2510,6 +2695,21 @@ export const accessWayInfrastructureCollection = {
       paramsKey: 'adf708e81b6bd4366f716ec0b99b8b62',
       permission: '8a8249fde2f5420489cefaa69e442970',
     },
+    toggleComplaintSwitch: {
+      title: '切换举报开关',
+      paramsKey: 'f7cd1bc7ce399482e37dc2feac254866',
+      permission: 'cd327a76ea7b4fc788ae6b9b78751df8',
+    },
+    toggleReportSwitch: {
+      title: '切换投诉开关',
+      paramsKey: 'b726720fcdb7a3412d0bbf76f76dfc28',
+      permission: '51768dc3cdc8411ca9d1784b1f0ccbc2',
+    },
+    toggleFeedbackSwitch: {
+      title: '切换留言开关',
+      paramsKey: 'f0cec33cdb642cbab335143eaf81c024',
+      permission: '2e8962506cc943818f697877b4cefb4f',
+    },
     setEnable: {
       title: '设为启用',
       paramsKey: 'ba8893586e1200f2cb559cfa969e4844',
@@ -2534,6 +2734,174 @@ export const accessWayInfrastructureCollection = {
       title: '操作日志列表',
       paramsKey: 'c1eabc1154c558a16a19b903c909fad1',
       permission: 'ff8a61e2aa134fcda8614456d52dcee3',
+    },
+  },
+  subsidiaryComplaintCategory: {
+    pageList: {
+      title: '分页列表',
+      paramsKey: '2f9e085a9e88f9b52c9d1b4e714f1678',
+      permission: '48ff85f445b5402a84780dd7df55e125',
+    },
+    get: {
+      title: '获取详情',
+      paramsKey: '918ce242cc69dfbc78190c60bdddbd84',
+      permission: '529dbbd6e0084ec29a3d80e94fe150b6',
+    },
+    addBasicInfo: {
+      title: '新建分类',
+      paramsKey: '6507ea35941f98ce5f48aef6c941b6a7',
+      permission: '858012c8bc324b4d8d02a9b14ca7acd3',
+    },
+    updateBasicInfo: {
+      title: '编辑信息',
+      paramsKey: 'f5582508326b6a46ab0b3e14d99dae68',
+      permission: '022d3a46101c4cc998237c8b837d8da5',
+    },
+    updateSort: {
+      title: '设置排序值',
+      paramsKey: 'bb6aa4442d2526f69a3be860d9d33f0b',
+      permission: 'def18ac451144f9b84d25640195548a1',
+    },
+    setEnable: {
+      title: '设为启用',
+      paramsKey: 'a6fb4eee9185c4cc8adc8e0ecf3a001e',
+      permission: '3c0250528e7a47cbb783035ac69388fd',
+    },
+    setDisable: {
+      title: '设为停用',
+      paramsKey: '42bc30d289ad00af5990c06e3e42f986',
+      permission: '0edafa3b981740128b49c090876e1b60',
+    },
+    remove: {
+      title: '移除',
+      paramsKey: 'ce893b6fa9f28f727596a17227c9e2be',
+      permission: '9bf1e8cf76f24cecb1caf28252f1ef58',
+    },
+    removeSingleTreeListCache: {
+      title: '移除单页树型列表缓存',
+      paramsKey: '351b38fb2a53d5e7003a685cdf26c3c9',
+      permission: 'df8527c2fac4465fb40a8ca08a48f736',
+    },
+    refreshCache: {
+      title: '刷新缓存',
+      paramsKey: '15a4faa9e6b6ad84c375ee8a284eccb6',
+      permission: 'e1ee0da99c6a4a2aa941f8513d0a16cb',
+    },
+    pageListOperateLog: {
+      title: '操作日志列表',
+      paramsKey: '54332204898708659c1d33e1c5bc9447',
+      permission: '5bffe179db1c4bc0892affd4276dfffe',
+    },
+  },
+  subsidiaryComplaintMessage: {
+    pageList: {
+      title: '分页列表',
+      paramsKey: 'a9544304f389804dbeafc073b22b5c3b',
+      permission: '1546480d963844878418a5598cd82ed3',
+    },
+    get: {
+      title: '获取详情',
+      paramsKey: '017480de268290368cc2700f23bb4a67',
+      permission: '509ae966481b432b9770f27cbaacdf62',
+    },
+    toggleConfirm: {
+      title: '切换是否核实信息',
+      paramsKey: '702a92320604af5d3b63a62aa6630952',
+      permission: '91a2389859a247cfb097b2c7025e8ff3',
+    },
+    repay: {
+      title: '回复信息',
+      paramsKey: 'a2132598b5577ef725b4385b62114420',
+      permission: '84d3164bea0f48168b16d66dc0845c3c',
+    },
+    remove: {
+      title: '移除信息',
+      paramsKey: '68d71d214e71de9773475abf72ee28f3',
+      permission: 'd437a8de9f6f479996895f9e07d42895',
+    },
+    refreshCache: {
+      title: '刷新缓存',
+      paramsKey: '0e44d6802e95553363449e3d90d6ae6b',
+      permission: '6276fdccd3024fc6a787b567363dd5a0',
+    },
+    pageListOperateLog: {
+      title: '操作日志列表',
+      paramsKey: '7ad0edcb4f310b39c620489d7eeaddfa',
+      permission: '368e6e0e38c9412ba694f4d9c311ec3f',
+    },
+  },
+  subsidiaryFeedbackMessage: {
+    pageList: {
+      title: '分页列表',
+      paramsKey: 'a7ae5feee678ae77f5fd070a9bb3d43b',
+      permission: '8ecbc839f6b046d6877227ba20e4accb',
+    },
+    get: {
+      title: '获取详情',
+      paramsKey: '51757d5961368e582afeeba4d8a28f3f',
+      permission: '395e6a4f841b4b79816c91a9361dea9a',
+    },
+    toggleConfirm: {
+      title: '切换是否核实信息',
+      paramsKey: 'c1f5debd360b81acafeb9c4da6f24663',
+      permission: 'a491444159d540968205f490b42d2a71',
+    },
+    repay: {
+      title: '回复信息',
+      paramsKey: '5deb1eef2fc7f6064db30700d92e83cc',
+      permission: '5af3e5ccb409466faa7ab21dfe3f8a37',
+    },
+    remove: {
+      title: '移除信息',
+      paramsKey: 'c518992fe93ab2c480bac5a481048499',
+      permission: '75103e6eb88c4d3ab5d1b317aa773855',
+    },
+    refreshCache: {
+      title: '刷新缓存',
+      paramsKey: 'fabc5251635c529ab5efd65788153149',
+      permission: '766f263a32db480d8ac04483a6d6269a',
+    },
+    pageListOperateLog: {
+      title: '操作日志列表',
+      paramsKey: '32d40297cfdaf17f80f32d1b8508cc52',
+      permission: 'bfd60d5b89624f40be230a271608fc84',
+    },
+  },
+  subsidiaryReportMessage: {
+    pageList: {
+      title: '分页列表',
+      paramsKey: 'f61d2fa06e9fdd3657b70af3c55e4d78',
+      permission: '9612f2e2e7584dc29674294a87812c91',
+    },
+    get: {
+      title: '获取详情',
+      paramsKey: 'c1281aa730921b038ddb21cc486b4211',
+      permission: 'c8ac72b832c84b99941ec40253abc685',
+    },
+    toggleConfirm: {
+      title: '切换是否核实信息',
+      paramsKey: '7a372a92d87cd8a77be15a7ea6aadc2e',
+      permission: 'b64d591d00444825942f37f57fb52bcc',
+    },
+    repay: {
+      title: '回复信息',
+      paramsKey: '5d47ae804b6c29678b2482e53ab3ada4',
+      permission: 'cf767aa0c8114f75aeabb7353f3b0533',
+    },
+    remove: {
+      title: '移除信息',
+      paramsKey: '394e263d3ecf725b3db5f224132058da',
+      permission: '11fa6ae304954e2ea848f115d6ff73a7',
+    },
+    refreshCache: {
+      title: '刷新缓存',
+      paramsKey: 'df7167e17572343da38a6f05c175b7ce',
+      permission: '86d84806ab424f5694c05e417e71a9eb',
+    },
+    pageListOperateLog: {
+      title: '操作日志列表',
+      paramsKey: 'b9f1dcff5dce0c846b08dba494ad01a0',
+      permission: '93d64334847545b98df1dbad1027cdb7',
     },
   },
   tag: {
@@ -3062,6 +3430,11 @@ export const accessWayInfrastructureCollection = {
       paramsKey: 'efdf9ceec60f05330dd080a12ea52971',
       permission: 'eb020733397b43cf8206d5d401d8268f',
     },
+    toggleAvailableOnMobileSwitch: {
+      title: '切换移动端是否可以发起审批',
+      paramsKey: '0f39443cb7141a7a8d90386e01e9eed9',
+      permission: '4ee565f47f144fcaadee2cdc67ec37ca',
+    },
     setDefaultAttentionUser: {
       title: '设置默认经办人',
       paramsKey: '7eb0cae56a988067233c75db67b2f95a',
@@ -3253,6 +3626,11 @@ export const accessWayInfrastructureCollection = {
       paramsKey: 'de50f43678789592f29822a691c9b000',
       permission: 'f950d65e12bf42c19f70d0bfecaeb6e7',
     },
+    toggleEmergency: {
+      title: '切换是否紧急',
+      paramsKey: '33b6022eb40fa20d2d3a0a8583514c9b',
+      permission: 'fce7744cbc044272bb8a22819f0c09f5',
+    },
     setSubsidiaryId: {
       title: '设置所属企业',
       paramsKey: 'f0fe1e5d06fcb3225e9773dd56f36497',
@@ -3302,6 +3680,16 @@ export const accessWayInfrastructureCollection = {
       title: '强制结束（即该次审批作废）',
       paramsKey: '2e4e08dea61b6cf6be094eb4c48230e0',
       permission: '836d2d7b58d742fbbe696932269bd760',
+    },
+    archive: {
+      title: '归档',
+      paramsKey: 'be75cdb8533b5ceccc099d89c480e831',
+      permission: 'a3c745e1ad7e4dc0a43af090b354b1db',
+    },
+    cancelArchive: {
+      title: '取消归档',
+      paramsKey: '833ab758ba47ea5c0eb3a3af4acf30bb',
+      permission: '5a738618da9f4db0a344a785468664a2',
     },
     refreshCache: {
       title: '刷新缓存',
@@ -3539,6 +3927,21 @@ export const accessWayInfrastructureCollection = {
       paramsKey: '6c8e55087a124f9888f8d0a3ea2a294f',
       permission: 'c9d58aadf7874c98ba1cd98b47ebe711',
     },
+    toggleEmergency: {
+      title: '切换是否紧急',
+      paramsKey: '744fff785448eed95e08ad1e7f37570b',
+      permission: '8048102ee683436f90a2da9419e9d858',
+    },
+    setSubsidiaryId: {
+      title: '设置所属企业',
+      paramsKey: 'ee1d6ed8cd3c4d765d8061a173f1d750',
+      permission: '6b8883d29a4148a5befe90650fdaef87',
+    },
+    setUserId: {
+      title: '设置提交人',
+      paramsKey: '71b32e0818a62ab6583d306082f74e11',
+      permission: '1834098de7464bb98f845a31bdb93206',
+    },
     setApplicantStatement: {
       title: '设置申请陈述',
       paramsKey: '1f15745abc6c1cd35f44b9d398cb616f',
@@ -3588,6 +3991,16 @@ export const accessWayInfrastructureCollection = {
       title: '强制结束（即该次审批作废）',
       paramsKey: 'e03974f34b4431ec3c98e48dded243ed',
       permission: '960eeeeaee2f429b977aec1ecfd94d64',
+    },
+    archive: {
+      title: '归档',
+      paramsKey: '1bcaaa7cf4ef32063f0c37887602a863',
+      permission: '196483e8351340eba56b9e73b964db0b',
+    },
+    cancelArchive: {
+      title: '取消归档',
+      paramsKey: '78699f801bc1fdf3ad2a8c2e92ba1d2c',
+      permission: 'b4bff96dcf49413bb43706c45bcb6f1f',
     },
     refreshCache: {
       title: '刷新缓存',

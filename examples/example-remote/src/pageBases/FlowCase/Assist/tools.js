@@ -1,5 +1,6 @@
 import {
   checkInCollection,
+  checkStringIsNullOrWhiteSpace,
   convertCollection,
   filter,
   getValueByKey,
@@ -7,9 +8,10 @@ import {
   isEmptyObject,
   isFunction,
   toLowerFirst,
+  toString,
 } from 'easy-soft-utility';
 
-import { iconBuilder } from 'antd-management-fast-component';
+import { ColorText, iconBuilder } from 'antd-management-fast-component';
 import { adjustEdge, adjustNode } from 'antd-management-fast-flow';
 
 import {
@@ -28,7 +30,10 @@ import {
   flowLineTypeCollection,
   flowNodeTypeCollection,
 } from '../../../customConfig';
-import { getChannelName } from '../../../customSpecialComponents';
+import {
+  getChannelName,
+  getFlowNodeApproveModeName,
+} from '../../../customSpecialComponents';
 
 export function getFlowCaseStatusBadge(status) {
   let result = 'default';
@@ -424,7 +429,7 @@ export function convertProcessHistoryNextData(o) {
   };
 }
 
-export function adjustFlowCaseDataToState(o) {
+export function adjustFlowCaseDataToState(o, options) {
   const { workflow } = {
     workflow: {
       workflowNodeList: [],
@@ -447,10 +452,18 @@ export function adjustFlowCaseDataToState(o) {
     defaultValue: [],
   });
 
+  const { approveBatchNumber, whetherFilterBatchNumber } = {
+    approveBatchNumber: 0,
+    whetherFilterBatchNumber: false,
+    ...options,
+  };
+
   const { nodeList, edgeList, listApprove } = adjustFlowCaseDataItemToState({
     workflow,
     nextApproveWorkflowNodeId,
     listProcessHistory,
+    approveBatchNumber,
+    whetherFilterBatchNumber,
   });
 
   return {
@@ -465,12 +478,26 @@ function adjustFlowCaseDataItemToState({
   workflow,
   nextApproveWorkflowNodeId,
   listProcessHistory,
+  approveBatchNumber = 0,
+  whetherFilterBatchNumber = false,
 }) {
   const listApprove = filter(listProcessHistory, (one) => {
-    const { approveActionMode } = {
+    const {
+      approveActionMode,
+      approveBatchNumber: processHistoryApproveBatchNumber,
+    } = {
       approveActionMode: 0,
+      approveBatchNumber: 0,
       ...one,
     };
+
+    if (whetherFilterBatchNumber) {
+      return (
+        approveActionMode === flowApproveActionModeCollection.manualControl &&
+        toString(processHistoryApproveBatchNumber) ===
+          toString(approveBatchNumber)
+      );
+    }
 
     return approveActionMode === flowApproveActionModeCollection.manualControl;
   }).map((o) => {
@@ -569,6 +596,42 @@ function adjustFlowCaseDataItemToState({
         data: {
           data: o,
           isNext: nextApproveWorkflowNodeId === workflowNodeId,
+          footerBuilder: (data) => {
+            const approverMode = getValueByKey({
+              data: data,
+              key: fieldDataFlowNode.approveMode.name,
+              convert: convertCollection.number,
+              defaultValue: '',
+            });
+
+            const approverModeName = getFlowNodeApproveModeName({
+              value: approverMode,
+            });
+
+            if (checkStringIsNullOrWhiteSpace(approverModeName)) {
+              return null;
+            }
+
+            return (
+              <ColorText
+                textPrefix="审批方式"
+                text={approverModeName}
+                color="#999"
+                style={{
+                  fontSize: 10,
+                }}
+                textPrefixStyle={{
+                  color: '#999',
+                }}
+                separator="："
+                separatorStyle={{
+                  paddingLeft: '2px',
+                  paddingRight: '0px',
+                  color: '#999',
+                }}
+              />
+            );
+          },
         },
       });
 

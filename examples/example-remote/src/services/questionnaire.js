@@ -18,6 +18,16 @@ export async function getData(parameters) {
   });
 }
 
+export const getExaminationPaperDataApiAddress =
+  '/questionnaire/getExaminationPaper';
+
+export async function getExaminationPaperData(parameters) {
+  return request({
+    api: getExaminationPaperDataApiAddress,
+    params: parameters,
+  });
+}
+
 export const addBasicInfoDataApiAddress = '/questionnaire/addBasicInfo';
 
 export async function addBasicInfoData(parameters) {

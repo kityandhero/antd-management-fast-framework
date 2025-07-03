@@ -44,6 +44,7 @@ import {
   questionCreateModeCollection,
   statusCollection,
 } from '../Common/data';
+import { ExaminationPaperPreviewDrawer } from '../ExaminationPaperPreviewDrawer';
 
 const {
   Whether: { getWhetherName },
@@ -250,6 +251,10 @@ class Edit extends DataTabContainerSupplement {
     ChangeBusinessModeModal.open();
   };
 
+  showExaminationPaperPreviewDrawer = () => {
+    ExaminationPaperPreviewDrawer.open();
+  };
+
   afterChangeBusinessModeModalOk = () => {
     this.refreshDataWithReloadAnimalPrompt({});
   };
@@ -378,6 +383,22 @@ class Edit extends DataTabContainerSupplement {
           },
           confirm: true,
           title: `即将${whetherGroupDisplay ? '取消分组显示设置' : '设为分组显示'}，确定吗？`,
+        },
+        {
+          buildType: extraBuildType.divider,
+        },
+        {
+          buildType: extraBuildType.generalExtraButton,
+          type: 'default',
+          icon: iconBuilder.profile(),
+          text: '试卷预览',
+          handleData: metaData,
+          hidden: !checkHasAuthority(
+            accessWayCollection.questionnaire.getExaminationPaper.permission,
+          ),
+          handleClick: ({ handleData }) => {
+            that.showExaminationPaperPreviewDrawer(handleData);
+          },
         },
         {
           buildType: extraBuildType.divider,
@@ -730,6 +751,8 @@ class Edit extends DataTabContainerSupplement {
           externalData={metaData}
           afterOK={this.afterChangeBusinessModeModalOk}
         />
+
+        <ExaminationPaperPreviewDrawer externalData={metaData} />
       </>
     );
   };

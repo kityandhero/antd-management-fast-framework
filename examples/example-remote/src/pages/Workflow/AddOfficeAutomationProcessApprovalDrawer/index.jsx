@@ -86,6 +86,12 @@ class AddOfficeAutomationProcessApprovalDrawer extends BaseAddDrawer {
             },
             {
               lg: 24,
+              type: cardConfig.contentItemType.input,
+              fieldData: fieldData.title,
+              require: true,
+            },
+            {
+              lg: 24,
               type: cardConfig.contentItemType.component,
               component: renderFormFlowEffectiveRangeSelect({}),
               require: true,

@@ -75,11 +75,6 @@ export const fieldData = {
     name: 'whetherCorrect',
     helper: '',
   },
-  businessMode: {
-    label: '适用业务',
-    name: 'businessMode',
-    helper: '',
-  },
   ...fieldExtraData,
 };
 

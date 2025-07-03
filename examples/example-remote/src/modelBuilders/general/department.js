@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,19 +9,19 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  addBasicInfoData,
+  getData,
   pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
+  setInvalidData,
+  setNormalData,
   singleListData,
   singleTreeListData,
-  getData,
-  addBasicInfoData,
   updateBasicInfoData,
   updateParentIdData,
-  updateSubsidiaryIdData,
   updateSortData,
-  setNormalData,
-  setInvalidData,
-  refreshCacheData,
-  pageListOperateLogData,
+  updateSubsidiaryIdData,
 } from '../../services/department';
 
 export const departmentTypeCollection = {

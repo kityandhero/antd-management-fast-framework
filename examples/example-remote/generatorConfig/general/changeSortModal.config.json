@@ -1,6 +1,14 @@
 {
   "list": [
     {
+      "folder": "SubsidiaryComplaintCategory/ChangeSortModal",
+      "model": "subsidiaryComplaintCategory",
+      "key": "subsidiaryComplaintCategoryId",
+      "visibleFlag": "2c5c8cd35c5c4184bd52f8bb32b8ce67",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
       "folder": "Position/ChangeSortModal",
       "model": "position",
       "key": "positionId",
@@ -25,9 +33,9 @@
       "coverFile": false
     },
     {
-      "folder": "QuestionnaireQuestion/ChangeSortModal",
-      "model": "questionnaireQuestion",
-      "key": "questionnaireQuestionId",
+      "folder": "QuestionnaireQuestionRelation/ChangeSortModal",
+      "model": "questionnaireQuestionRelation",
+      "key": "questionnaireQuestionRelationId",
       "visibleFlag": "25bf7881798541118e85d29e10e08d86",
       "fileName": "index.jsx",
       "coverFile": false

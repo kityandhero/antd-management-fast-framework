@@ -8,10 +8,10 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
   getByFlowCaseIdData,
+  pageListData,
   refreshCacheData,
+  singleListData,
 } from '../../services/workflowDebugCaseNextProcessProgress';
 
 export const workflowDebugCaseNextProcessProgressTypeCollection = {

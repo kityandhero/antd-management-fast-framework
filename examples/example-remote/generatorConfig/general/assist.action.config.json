@@ -1,6 +1,69 @@
 {
   "list": [
     {
+      "folder": "Customer/Assist",
+      "model": "customer",
+      "key": "customerId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
+      "folder": "CustomerLoginLog/Assist",
+      "model": "customerLoginLog",
+      "key": "customerLoginLogId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
+      "folder": "CustomerWechatApplicationInfo/Assist",
+      "model": "customerWechatApplicationInfo",
+      "key": "customerWechatApplicationInfoId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintCategory/Assist",
+      "model": "subsidiaryComplaintCategory",
+      "key": "subsidiaryComplaintCategoryId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryComplaintMessage/Assist",
+      "model": "subsidiaryComplaintMessage",
+      "key": "subsidiaryComplaintMessageId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryFeedbackMessage/Assist",
+      "model": "subsidiaryFeedbackMessage",
+      "key": "subsidiaryFeedbackMessageId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
+      "folder": "SubsidiaryReportMessage/Assist",
+      "model": "subsidiaryReportMessage",
+      "key": "subsidiaryReportMessageId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationUserFeedback/Assist",
+      "model": "applicationUserFeedback",
+      "key": "applicationUserFeedbackId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
+      "folder": "ApplicationCustomerFeedback/Assist",
+      "model": "applicationCustomerFeedback",
+      "key": "applicationCustomerFeedbackId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
       "folder": "Position/Assist",
       "model": "position",
       "key": "positionId",
@@ -50,9 +113,9 @@
       "coverFile": false
     },
     {
-      "folder": "QuestionnaireQuestion/Assist",
-      "model": "questionnaireQuestion",
-      "key": "questionnaireQuestionId",
+      "folder": "QuestionnaireQuestionRelation/Assist",
+      "model": "questionnaireQuestionRelation",
+      "key": "questionnaireQuestionRelationId",
       "fileName": "action.js",
       "coverFile": false
     },

@@ -1,7 +1,7 @@
 import {
   getTacitlyState,
-  pretreatmentRemotePageListData,
   pretreatmentRemoteListData,
+  pretreatmentRemotePageListData,
   pretreatmentRemoteSingleData,
   reducerCollection,
   reducerDefaultParameters,
@@ -9,13 +9,13 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  singleListData,
-  getData,
-  addData,
   addBatchData,
-  removeData,
+  addData,
+  getData,
+  pageListData,
   refreshCacheData,
+  removeData,
+  singleListData,
 } from '../../services/questionTagRelation';
 
 export const questionTagRelationTypeCollection = {

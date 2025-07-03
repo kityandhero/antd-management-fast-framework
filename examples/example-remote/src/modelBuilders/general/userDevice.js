@@ -8,12 +8,12 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
-  removeData,
-  refreshCacheData,
+  getData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeData,
 } from '../../services/userDevice';
 
 export const userDeviceTypeCollection = {

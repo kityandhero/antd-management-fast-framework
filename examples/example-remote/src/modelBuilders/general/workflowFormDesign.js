@@ -8,15 +8,15 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
-  getByWorkflowData,
   addBasicInfoData,
+  getByWorkflowData,
+  getData,
+  pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
   updateBasicInfoData,
   updateDocumentSchemaData,
   updateRemarkSchemaData,
-  refreshCacheData,
-  pageListOperateLogData,
 } from '../../services/workflowFormDesign';
 
 export const workflowFormDesignTypeCollection = {

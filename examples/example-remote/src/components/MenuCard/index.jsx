@@ -16,7 +16,6 @@ const MenuCard = () => {
         }}
         type="vertical"
       />
-
       <Popover
         placement="bottom"
         overlayStyle={{

@@ -8,11 +8,11 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
   getData,
-  removeData,
-  refreshCacheData,
+  pageListData,
   pageListOperateLogData,
+  refreshCacheData,
+  removeData,
 } from '../../services/cloudStorage';
 
 export const cloudStorageTypeCollection = {

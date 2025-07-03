@@ -8,16 +8,16 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
-  getData,
   addBasicInfoData,
+  getData,
+  pageListData,
+  pageListOperateLogData,
+  refreshCacheData,
+  removeData,
+  setOfflineData,
+  setOnlineData,
   updateBasicInfoData,
   updateSortData,
-  setOnlineData,
-  setOfflineData,
-  removeData,
-  refreshCacheData,
-  pageListOperateLogData,
   uploadImageData,
 } from '../../services/qrCode';
 

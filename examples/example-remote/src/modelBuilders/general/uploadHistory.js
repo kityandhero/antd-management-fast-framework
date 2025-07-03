@@ -8,14 +8,14 @@ import {
 } from 'easy-soft-utility';
 
 import {
-  pageListData,
   getData,
-  removeData,
+  pageListData,
   refreshCacheData,
-  uploadImageData,
-  uploadVideoData,
+  removeData,
   uploadAudioData,
   uploadFileData,
+  uploadImageData,
+  uploadVideoData,
 } from '../../services/uploadHistory';
 
 export const uploadHistoryTypeCollection = {
