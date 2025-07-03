@@ -6,11 +6,9 @@ import {
   checkInCollection,
   checkStringIsNullOrWhiteSpace,
   convertCollection,
-  getGuid,
   getValueByKey,
   isArray,
   isEmptyArray,
-  logConsole,
   logException,
   showSimpleErrorMessage,
   whetherNumber,
@@ -95,7 +93,6 @@ class FormInfo extends TabPageBase {
       listApprove: [],
       listAttachment: [],
       useDocumentDisplay: false,
-      nodeApplyTemp: null,
     };
   }
 
@@ -196,10 +193,6 @@ class FormInfo extends TabPageBase {
         whetherFilterBatchNumber: true,
       });
 
-    logConsole({
-      listProcessHistory,
-    });
-
     this.setState({
       nodeList: [...nodeList],
       edgeList: [...edgeList],
@@ -227,22 +220,6 @@ class FormInfo extends TabPageBase {
     d[fieldData.workflowCaseId.name] = workflowCaseId;
 
     return d;
-  };
-
-  changeNodeApply = () => {
-    this.templateCounter = this.templateCounter + 1;
-
-    this.setState({
-      nodeApplyTemp: {
-        title: getGuid(),
-        note: '11111',
-        // note: getGuid(),
-        // signet:
-        //   this.templateCounter % 2 === 0
-        //     ? 'https://file.oa.32306.net/general/image/1876513865685143552.png'
-        //     : nodeApply.signet,
-      },
-    });
   };
 
   getApplicantConfig = () => {
@@ -276,7 +253,7 @@ class FormInfo extends TabPageBase {
       {
         ...nodeApply,
         title: applicantStatementTitle,
-        // note: applicantStatementContent,
+        note: applicantStatementContent,
         ...(checkStringIsNullOrWhiteSpace(applicantUserSignet)
           ? {
               signet: emptySignet,
@@ -931,7 +908,6 @@ class FormInfo extends TabPageBase {
       listFormStorage,
       listApprove,
       listAttachment,
-      nodeApplyTemp,
     } = this.state;
 
     const workflowCaseId = getValueByKey({
@@ -972,19 +948,6 @@ class FormInfo extends TabPageBase {
 
     const { items, formItems } = this.getItems();
 
-    const nodeApplyTemporaryAdjust = {
-      ...listApply[0],
-      ...nodeApplyTemp,
-      note: '222',
-    };
-
-    logConsole({
-      items,
-      listApply,
-      listAttention,
-      nodeApplyTempAdjust: nodeApplyTemporaryAdjust,
-    });
-
     return (
       <>
         <DocumentPrintDesigner
@@ -1006,8 +969,8 @@ class FormInfo extends TabPageBase {
           signetStyle={signetStyle}
           showApply={showApply}
           // applyList={[nodeApplyTempAdjust]}
-          // applyList={listApply}
-          applyList={[nodeApply]}
+          applyList={listApply}
+          // applyList={[nodeApply]}
           showAttention={showAttention}
           attentionList={[...listAttention]}
           showRemark={

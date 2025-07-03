@@ -70,6 +70,7 @@ function analysisTarget({
     title,
     valueDisplayMode,
     enumList,
+    extraData,
   } = targetAdjust;
 
   labelConfig = isObject(labelConfig) ? labelConfig : {};
@@ -137,7 +138,7 @@ function analysisTarget({
   }
 
   const displayValue = getContentAction({
-    data: targetAdjust,
+    data: extraData,
     valueDisplayMode,
   });
 
@@ -382,6 +383,7 @@ export function adjustTarget({
     enumList: [],
     valueDisplayMode: defaultValueDisplayMode,
     ...target,
+    extraData: target,
     key,
     labelConfig: {
       firstPosition: whetherString.yes,
@@ -398,7 +400,7 @@ export function adjustTarget({
   };
 
   if (isEmptyArray(filterList)) {
-    return o;
+    return filterItemData(o);
   }
 
   const { valueDisplayMode } = o;
@@ -413,11 +415,11 @@ export function adjustTarget({
     correctData = { title };
   }
 
-  return {
+  return filterItemData({
     ...o,
     ...configure,
     ...correctData,
-  };
+  });
 }
 
 export function adjustSchemaData(schema) {
@@ -432,6 +434,12 @@ export function adjustSchemaData(schema) {
     ...schema,
   };
 
+  let configureListAdjust = [];
+
+  if (isArray(configureList)) {
+    configureListAdjust = configureList.map((o) => filterItemConfig(o));
+  }
+
   return {
     generalConfig: {
       ...generalConfig,
@@ -439,7 +447,7 @@ export function adjustSchemaData(schema) {
     titleConfig: {
       ...titleConfig,
     },
-    configureList: [...configureList],
+    configureList: [...configureListAdjust],
   };
 }
 
@@ -1051,4 +1059,76 @@ export function getFontFamilyName(fontFamily) {
       return '未知';
     }
   }
+}
+
+export function filterItemConfig(o) {
+  const { title, enumList, valueDisplayMode, key, labelConfig, valueConfig } = {
+    title: '',
+    enumList: [],
+    valueDisplayMode: valueDisplayModeCollection.text,
+    key: '',
+    labelConfig: {
+      firstPosition: whetherString.yes,
+      width: '0',
+      spanRow: '1',
+      spanColumn: '1',
+    },
+    valueConfig: {
+      firstPosition: whetherString.no,
+      width: '0',
+      spanRow: '1',
+      spanColumn: '1',
+    },
+    ...o,
+  };
+
+  return {
+    title,
+    enumList,
+    valueDisplayMode,
+    key,
+    labelConfig,
+    valueConfig,
+  };
+}
+
+export function filterItemData(o) {
+  const {
+    title,
+    enumList,
+    valueDisplayMode,
+    key,
+    labelConfig,
+    valueConfig,
+    extraData,
+  } = {
+    title: '',
+    enumList: [],
+    valueDisplayMode: valueDisplayModeCollection.text,
+    key: '',
+    extraData: {},
+    labelConfig: {
+      firstPosition: whetherString.yes,
+      width: '0',
+      spanRow: '1',
+      spanColumn: '1',
+    },
+    valueConfig: {
+      firstPosition: whetherString.no,
+      width: '0',
+      spanRow: '1',
+      spanColumn: '1',
+    },
+    ...o,
+  };
+
+  return {
+    title,
+    enumList,
+    valueDisplayMode,
+    key,
+    labelConfig,
+    valueConfig,
+    extraData,
+  };
 }

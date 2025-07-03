@@ -914,3 +914,4 @@ export {
   CellRemark,
   CellText,
 } from './DocumentContent/Cells';
+export { filterItemConfig } from './DocumentContent/tools';

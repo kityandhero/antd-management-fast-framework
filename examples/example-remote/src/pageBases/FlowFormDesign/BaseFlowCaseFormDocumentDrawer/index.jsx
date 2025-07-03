@@ -7,7 +7,10 @@ import {
 } from 'easy-soft-utility';
 
 import { SyntaxHighlighter } from 'antd-management-fast-component';
-import { DocumentPrintDesigner } from 'antd-management-fast-design-playground';
+import {
+  DocumentPrintDesigner,
+  filterItemConfig,
+} from 'antd-management-fast-design-playground';
 import { DataDrawer } from 'antd-management-fast-framework';
 
 import { fieldDataFlowFormDesign, signetStyle } from '../../../customConfig';
@@ -286,7 +289,7 @@ class BaseFlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       documentSchema: {
         general,
         title,
-        items,
+        items: isArray(items) ? items.map((o) => filterItemConfig(o)) : [],
       },
       formItems,
       values: isArray(values) ? values : [],
