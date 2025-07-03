@@ -49,3 +49,4 @@ rollup.config-*.cjs
 pnpm-lock.yaml
 CNAME
 LICENSE
+package.json

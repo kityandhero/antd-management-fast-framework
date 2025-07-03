@@ -34,6 +34,7 @@ import {
   adjustSchemaData,
   adjustValueCollection,
   buildRowCell,
+  filterItemConfig,
   getInitializeGeneral,
   getInitializeTitleConfig,
   transferNodeList,
@@ -901,6 +902,8 @@ DocumentPrintDesigner.defaultProps = {
   ...defaultProperties,
 };
 
+const filterDocumentPrintDesignerItemConfig = filterItemConfig;
+
 export { DocumentPrintDesigner };
 
 export { nodeApply, nodeAttention } from './DocumentContent';
@@ -914,4 +917,4 @@ export {
   CellRemark,
   CellText,
 } from './DocumentContent/Cells';
-export { filterItemConfig } from './DocumentContent/tools';
+export { filterDocumentPrintDesignerItemConfig };
