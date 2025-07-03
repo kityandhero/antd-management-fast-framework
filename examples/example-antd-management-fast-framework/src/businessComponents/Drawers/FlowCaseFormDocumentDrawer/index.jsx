@@ -2,13 +2,15 @@ import { connect } from 'easy-soft-dva';
 import {
   checkStringIsNullOrWhiteSpace,
   convertCollection,
+  getGuid,
   getValueByKey,
   isArray,
   isEmptyArray,
   logException,
 } from 'easy-soft-utility';
 
-import { SyntaxHighlighter } from 'antd-management-fast-component';
+import { extraBuildType } from 'antd-management-fast-common';
+import { iconBuilder, SyntaxHighlighter } from 'antd-management-fast-component';
 import { DocumentPrintDesigner } from 'antd-management-fast-design-playground';
 import {
   DataDrawer,
@@ -34,7 +36,9 @@ const visibleFlag = '8513c5de635245ff962933f8ad3f9214';
   schedulingControl,
 }))
 class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
-  showCallProcess = true;
+  // showCallProcess = true;
+
+  templateCounter = 0;
 
   static open() {
     switchControlAssist.open(visibleFlag);
@@ -54,6 +58,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       width: 1024,
       overlayButtonOpenText: '查看数据',
       overlayButtonCloseText: '关闭数据',
+      nodeApplyTemp: listApply[0],
     };
   }
 
@@ -97,6 +102,39 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
     });
   };
 
+  changeNodeApply = () => {
+    const o = listApply[0];
+
+    this.templateCounter = this.templateCounter + 1;
+
+    this.setState({
+      nodeApplyTemp: {
+        ...o,
+        note: `${o.note}-${getGuid()}`,
+        signet:
+          this.templateCounter % 2 === 0
+            ? 'https://file.oa.32306.net/general/image/1876513865685143552.png'
+            : o.signet,
+      },
+    });
+  };
+
+  establishExtraActionConfig = () => {
+    return {
+      list: [
+        {
+          buildType: extraBuildType.generalExtraButton,
+          icon: iconBuilder.edit(),
+          text: '更改审批人信息',
+          disabled: this.checkInProgress(),
+          handleClick: () => {
+            this.changeNodeApply();
+          },
+        },
+      ],
+    };
+  };
+
   establishHelpConfig = () => {
     const { canDesign } = {
       canDesign: false,
@@ -135,7 +173,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
       canDesign: false,
       ...this.props,
     };
-    const { metaData } = this.state;
+    const { metaData, nodeApplyTemp } = this.state;
 
     const { listFormStorage } = {
       listFormStorage: [],
@@ -236,7 +274,7 @@ class FlowCaseFormDocumentDrawer extends BaseVerticalFlexDrawer {
         }}
         formItems={listDataSchema}
         showApply
-        applyList={listApply}
+        applyList={[nodeApplyTemp]}
         showAttention
         attentionList={listAttention}
         approveList={listApprove}

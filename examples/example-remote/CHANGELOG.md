@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.4.197
+
+### Patch Changes
+
+- Updated dependencies
+  - antd-management-fast-design-playground@1.0.198
+
 ## 1.4.196
 
 ### Patch Changes

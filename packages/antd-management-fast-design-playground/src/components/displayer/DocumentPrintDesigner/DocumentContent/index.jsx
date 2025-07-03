@@ -295,8 +295,9 @@ class DocumentContent extends PureComponent {
     const { currentHighlighTag } = this.state;
 
     const rowCollection = isArray(rows) ? rows : [];
+    const generalConfigAdjust = adjustGeneralConfig(generalConfig);
 
-    const { gridColor, titleSwitch } = adjustGeneralConfig(generalConfig);
+    const { gridColor, titleSwitch } = generalConfigAdjust;
 
     const {
       fontSize: titleFontSize,
@@ -386,7 +387,7 @@ class DocumentContent extends PureComponent {
                   right={
                     <Space>
                       <GeneralFirstCellWidth
-                        data={adjustGeneralConfig(generalConfig)}
+                        data={generalConfigAdjust}
                         onChange={that.onGeneralChange}
                       />
 
@@ -396,12 +397,12 @@ class DocumentContent extends PureComponent {
                       />
 
                       <GeneralGridColor
-                        data={adjustGeneralConfig(generalConfig)}
+                        data={generalConfigAdjust}
                         onChange={that.onGeneralChange}
                       />
 
                       <GeneralLabelColor
-                        data={adjustGeneralConfig(generalConfig)}
+                        data={generalConfigAdjust}
                         onChange={that.onGeneralChange}
                       />
 
@@ -409,31 +410,31 @@ class DocumentContent extends PureComponent {
                         items={[
                           <GeneralTitleSwitch
                             key="3474b26be5f04b00b54a12f46a989978"
-                            data={adjustGeneralConfig(generalConfig)}
+                            data={generalConfigAdjust}
                             showDivider
                             onChange={that.onGeneralChange}
                           />,
                           <GeneralRemarkTitle
                             key="dd663033dfdf46f6ba3725e823e44f03"
-                            data={adjustGeneralConfig(generalConfig)}
+                            data={generalConfigAdjust}
                             showDivider
                             onChange={that.onGeneralChange}
                           />,
                           <GeneralRemarkSwitch
                             key="b61b469c81a24109bb9d1aa7e59aa685"
-                            data={adjustGeneralConfig(generalConfig)}
+                            data={generalConfigAdjust}
                             showDivider
                             onChange={that.onGeneralChange}
                           />,
                           <GeneralQRCodeSwitch
                             key="a7236dcc76234878853164fbf14ecbbe"
-                            data={adjustGeneralConfig(generalConfig)}
+                            data={generalConfigAdjust}
                             showDivider
                             onChange={that.onGeneralChange}
                           />,
                           <GeneralSerialNumberSwitch
                             key="85c02bc3f84947e79a1f828f6148f83c"
-                            data={adjustGeneralConfig(generalConfig)}
+                            data={generalConfigAdjust}
                             showDivider={false}
                             onChange={that.onGeneralChange}
                           />,
@@ -479,7 +480,7 @@ class DocumentContent extends PureComponent {
                     let widthAdjust = canToNumber(width) ? toNumber(width) : 0;
 
                     if (indexCell === 0) {
-                      const { labelWidth } = generalConfig;
+                      const { labelWidth } = generalConfigAdjust;
 
                       widthAdjust =
                         widthAdjust === 0
