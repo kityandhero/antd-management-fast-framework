@@ -724,7 +724,7 @@ export function buildRowCell({
 
             return nodeId;
           },
-          getContentAction: ({ data: one }) => {
+          getContentAction: () => {
             const {
               note = '',
               signet = '',
@@ -733,7 +733,7 @@ export function buildRowCell({
               note: '',
               signet: '',
               time: '',
-              ...one,
+              ...d,
             };
 
             return {

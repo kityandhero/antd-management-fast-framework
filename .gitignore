@@ -34,3 +34,4 @@ pnpm-lock.yaml
 .eslintcache
 /.nx
 /packages/antd-management-fast-develop/temp
+/examples/remote
