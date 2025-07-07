@@ -456,6 +456,7 @@ export function buildRowCell({
   configureList,
   formItems,
   values,
+  valueTexts,
   applyList,
   attentionList,
   approveList,
@@ -560,6 +561,7 @@ export function buildRowCell({
               data: one,
               valueDisplayMode,
               values,
+              valueTexts,
             });
           },
         });
@@ -831,15 +833,18 @@ export function buildRowCell({
 }
 
 export function adjustValueCollection(values, otherData = []) {
-  let result = {};
+  let valueList = {};
+  let valueTextList = {};
 
   if (isArray(values)) {
     const v = {};
+    const vText = {};
 
     for (const o of values) {
-      const { name, value } = {
+      const { name, value, displayValue } = {
         name: '',
         value: '',
+        displayValue: '',
         ...o,
       };
 
@@ -848,27 +853,51 @@ export function adjustValueCollection(values, otherData = []) {
       }
 
       v[name] = value ?? '';
+      vText[name] = displayValue ?? '';
     }
 
-    result = v;
+    valueList = v;
+    valueTextList = vText;
   } else {
-    result = values | {};
+    valueList = values | {};
+    valueTextList = values | {};
   }
 
   if (isArray(otherData) && !isEmptyArray(otherData)) {
     const o = adjustValueCollection(otherData, []);
 
-    result = {
-      ...result,
+    valueList = {
+      ...valueList,
+      ...o,
+    };
+
+    valueTextList = {
+      ...valueTextList,
       ...o,
     };
   }
 
-  return result;
+  return {
+    values: valueList,
+    valueTexts: valueTextList,
+  };
 }
 
-export function buildDisplayValue({ data, valueDisplayMode, values }) {
+export function buildDisplayValue({
+  data,
+  valueDisplayMode,
+  values,
+  valueTexts,
+}) {
   const { name, type, currencyDisplay, enumList } = { ...data };
+
+  if (checkStringIsNullOrWhiteSpace(name)) {
+    return '';
+  }
+
+  if (valueDisplayMode === valueDisplayModeCollection.text) {
+    return valueTexts[name] ?? '';
+  }
 
   let v = '';
   let vList = [];

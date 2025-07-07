@@ -474,7 +474,7 @@ class DocumentPrintDesigner extends BaseComponent {
     } = this.props;
     const { generalConfig, configureList } = this.state;
 
-    const values = adjustValueCollection(valuesSource);
+    const { values, valueTexts } = adjustValueCollection(valuesSource);
 
     const nodeListAdjust = transferNodeList(approveList, allApproveProcessList);
 
@@ -525,6 +525,7 @@ class DocumentPrintDesigner extends BaseComponent {
       configureList,
       formItems,
       values,
+      valueTexts,
       applyList: showApply ? applyListAdjust : [],
       attentionList: showAttention ? attentionListAdjust : [],
       approveList: nodeListAdjust,
