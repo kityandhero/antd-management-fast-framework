@@ -21,7 +21,35 @@ import {
   VerticalBox,
 } from 'antd-management-fast-component';
 
+const defaultProperties = {
+  label: '',
+  previewButtonText: '查看',
+  previewButtonIcon: null,
+  list: [],
+  canPreview: true,
+  canUpload: false,
+  canCopyUrl: true,
+  canDownload: true,
+  canRemove: false,
+  showUrl: false,
+  splitHeight: 0,
+  dataTransfer: (o) => o,
+  extraColumns: null,
+  nameRender: null,
+  urlRender: null,
+  onItemClick: null,
+  onUploadButtonClick: null,
+  onRemove: () => {},
+};
+
 class FileViewer extends PureComponent {
+  getProperties = () => {
+    return {
+      ...defaultProperties,
+      ...this.props,
+    };
+  };
+
   handleMenuClick = ({ key, handleData }) => {
     const { onRemove } = this.props;
 
@@ -69,13 +97,59 @@ class FileViewer extends PureComponent {
     }
   };
 
+  buildMenu = (o) => {
+    const { canCopyUrl, canDownload, canRemove } = this.getProperties();
+
+    const menuItems = [];
+
+    const {
+      canCopyUrl: canCopyUrlItem,
+      canDownload: canDownloadItem,
+      canRemove: canRemoveItem,
+    } = {
+      canCopyUrl: true,
+      canDownload: true,
+      canRemove: true,
+      ...o,
+    };
+
+    if (canCopyUrl && canCopyUrlItem) {
+      menuItems.push({
+        key: 'copyUrl',
+        icon: iconBuilder.download(),
+        text: '复制链接',
+      });
+    }
+
+    if (canDownload && canDownloadItem) {
+      menuItems.push({
+        key: 'download',
+        icon: iconBuilder.download(),
+        text: '下载附件',
+      });
+    }
+
+    if (canRemove && canRemoveItem) {
+      menuItems.push({
+        key: 'removeItem',
+        icon: iconBuilder.delete(),
+        text: '删除附件',
+        confirm: true,
+        title: '将要删除附件，确定吗？',
+        placement: 'bottomRight',
+      });
+    }
+
+    return menuItems;
+  };
+
   render() {
     const {
       label,
-      canCopyUrl,
+      previewButtonText,
+      previewButtonIcon,
+      canPreview,
       canUpload,
-      canDownload,
-      canRemove,
       showUrl,
       splitHeight,
       list,
@@ -85,7 +159,7 @@ class FileViewer extends PureComponent {
       urlRender,
       onUploadButtonClick,
       onItemClick,
-    } = this.props;
+    } = this.getProperties();
 
     const listAdjust = (!isArray(list) || isEmptyArray(list) ? [] : list).map(
       (o) => {
@@ -98,35 +172,6 @@ class FileViewer extends PureComponent {
     );
 
     const fileCount = listAdjust.length;
-
-    const menuItems = [];
-
-    if (canCopyUrl) {
-      menuItems.push({
-        key: 'copyUrl',
-        icon: iconBuilder.download(),
-        text: '复制链接',
-      });
-    }
-
-    if (canDownload) {
-      menuItems.push({
-        key: 'download',
-        icon: iconBuilder.download(),
-        text: '下载附件',
-      });
-    }
-
-    if (canRemove) {
-      menuItems.push({
-        key: 'removeItem',
-        icon: iconBuilder.delete(),
-        text: '删除附件',
-        confirm: true,
-        title: '将要删除附件，确定吗？',
-        placement: 'bottomRight',
-      });
-    }
 
     let columns = [
       {
@@ -158,23 +203,31 @@ class FileViewer extends PureComponent {
       align: 'center',
       key: 'action',
       width: '110px',
-      render: (_, record) => (
-        <Space size="middle">
-          {buildDropdownButton({
-            size: 'small',
-            text: '查看',
-            icon: iconBuilder.read(),
-            handleButtonClick: ({ handleData }) => {
-              onItemClick(handleData);
-            },
-            handleData: record,
-            handleMenuClick: ({ key, handleData }) => {
-              this.handleMenuClick({ key, handleData });
-            },
-            items: menuItems,
-          })}
-        </Space>
-      ),
+      render: (_, record) => {
+        const { canPreview: canPreviewItem } = {
+          canPreview: true,
+          ...record,
+        };
+
+        return (
+          <Space size="middle">
+            {buildDropdownButton({
+              size: 'small',
+              text: previewButtonText ?? '查看',
+              icon: previewButtonIcon ?? iconBuilder.read(),
+              disabled: !canPreview || !canPreviewItem,
+              handleButtonClick: ({ handleData }) => {
+                onItemClick(handleData);
+              },
+              handleData: record,
+              handleMenuClick: ({ key, handleData }) => {
+                this.handleMenuClick({ key, handleData });
+              },
+              items: this.buildMenu(record),
+            })}
+          </Space>
+        );
+      },
     });
 
     return (
@@ -235,21 +288,7 @@ class FileViewer extends PureComponent {
 }
 
 FileViewer.defaultProps = {
-  label: '',
-  list: [],
-  canUpload: false,
-  canCopyUrl: true,
-  canDownload: true,
-  canRemove: false,
-  showUrl: false,
-  splitHeight: 0,
-  dataTransfer: (o) => o,
-  extraColumns: null,
-  nameRender: null,
-  urlRender: null,
-  onItemClick: null,
-  onUploadButtonClick: null,
-  onRemove: () => {},
+  ...defaultProperties,
 };
 
 export { FileViewer };

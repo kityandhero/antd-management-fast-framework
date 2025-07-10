@@ -374,9 +374,11 @@ class DesignView extends BaseUpdateForm {
                     }) => {
                       return (
                         <FileViewer
+                          canPreview={false}
                           canUpload
                           canRemove
                           showUrl
+                          previewButtonText="预览"
                           list={listAttachment}
                           dataTransfer={(o) => {
                             return {
