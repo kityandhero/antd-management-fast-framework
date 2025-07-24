@@ -91,7 +91,8 @@ class CellMoney extends CellBase {
               <div
                 style={{
                   ...frontSizeStyle,
-                  fontSize: '16px',
+                  fontSize: '20px',
+                  fontWeight: 'bold',
                   ...fontFamilyStyle,
                   ...colorStyle,
                 }}

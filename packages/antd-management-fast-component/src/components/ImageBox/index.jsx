@@ -479,9 +479,13 @@ class ImageBox extends BaseComponent {
 }
 
 ImageBox.defaultProps = {
+  showOverlay: false,
+  loadingEffect: false,
   fillHeight: true,
+  hideWhenLoadError: false,
   preview: false,
   previewSimpleMask: false,
+  clickAction: null,
 };
 
 export { ImageBox };

@@ -600,8 +600,15 @@ export function buildFlexRadio({
   );
 }
 
-export function buildTagList({ list = [] }) {
-  return <ElasticityTagList list={list} />;
+export function buildTagList({
+  wrap = false,
+  size = 'small',
+  split = null,
+  list = [],
+}) {
+  return (
+    <ElasticityTagList wrap={wrap} size={size} split={split} list={list} />
+  );
 }
 
 export function buildStatusBar({ actionList = [], extra = null }) {

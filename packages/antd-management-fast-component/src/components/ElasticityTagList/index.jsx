@@ -13,7 +13,7 @@ class ElasticityTagList extends BaseComponent {
    * @returns {Object} 渲染结果
    */
   renderFurther() {
-    const { list } = this.props;
+    const { wrap, size, split, list } = this.props;
 
     if (!isArray(list)) {
       return null;
@@ -48,7 +48,7 @@ class ElasticityTagList extends BaseComponent {
     }
 
     return (
-      <Space>
+      <Space wrap={wrap} size={size} split={split}>
         {tagList.map((o) => {
           const { key, text, color } = o;
 
@@ -66,6 +66,9 @@ class ElasticityTagList extends BaseComponent {
 }
 
 ElasticityTagList.defaultProps = {
+  wrap: false,
+  size: 'small',
+  split: null,
   list: [],
 };
 
