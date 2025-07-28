@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-react",
-  "version": "1.0.133",
+  "version": "1.0.134",
   "keywords": [
     "antd-management-fast-design-react"
   ],
@@ -74,7 +74,7 @@
     "classnames": "^2.5.1",
     "dateformat": "^5.0.3",
     "dayjs": "^1.11.13",
-    "easy-soft-utility": "^2.8.93",
+    "easy-soft-utility": "^2.8.94",
     "monaco-editor": "^0.52.2",
     "react": "^18.3.1",
     "react-color": "^2.19.3",
@@ -106,7 +106,7 @@
     "babel-jest": "^30.0.5",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.0.0",
     "cz-git": "^1.12.0",
     "docdash": "^2.0.2",
     "easy-soft-develop": "^2.1.293",

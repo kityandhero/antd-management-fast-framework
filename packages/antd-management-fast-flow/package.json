@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-flow",
-  "version": "1.0.134",
+  "version": "1.0.135",
   "keywords": [
     "antd-management-fast-flow"
   ],
@@ -61,7 +61,7 @@
     "antd-management-fast-common": "workspace:*",
     "antd-management-fast-component": "workspace:*",
     "classnames": "^2.5.1",
-    "easy-soft-utility": "^2.8.93",
+    "easy-soft-utility": "^2.8.94",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "reactflow": "^11.11.4"
@@ -89,7 +89,7 @@
     "babel-jest": "^30.0.5",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.0.0",
     "cz-git": "^1.12.0",
     "docdash": "^2.0.2",
     "easy-soft-develop": "^2.1.293",

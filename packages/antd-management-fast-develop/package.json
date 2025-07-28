@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.1.152",
+  "version": "1.1.153",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -80,7 +80,7 @@
     "babel-jest": "^30.0.5",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.0.0",
     "cz-git": "^1.12.0",
     "docdash": "^2.0.2",
     "easy-soft-develop": "^2.1.293",

@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   buildPromptModuleInfo,
   checkStringIsNullOrWhiteSpace,
+  checkWhetherDevelopmentEnvironment,
   getToken,
   isString,
   logDebug,
@@ -76,7 +77,9 @@ export async function request({
     urlChange = url.includes(corsUrl) ? url : `${corsUrl}${url}`;
   }
 
-  trySendNearestLocalhostNotify({ text: corsUrl });
+  if (checkWhetherDevelopmentEnvironment()) {
+    trySendNearestLocalhostNotify({ text: corsUrl });
+  }
 
   if (!isString(urlChange)) {
     logObject({ urlChange });

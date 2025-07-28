@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.7.52
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-common@2.6.165
+
 ## 2.7.51
 
 ### Patch Changes
