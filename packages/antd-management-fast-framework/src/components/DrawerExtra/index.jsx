@@ -31,7 +31,7 @@ class DrawerExtra extends PureComponent {
       titlePrefix: null,
       title: null,
       subtitle: null,
-      destroyOnClose: false,
+      destroyOnHidden: false,
       overlayContent: null,
       overlayButtonOpenText: '打开浮层',
       overlayButtonCloseText: '关闭浮层',
@@ -185,7 +185,7 @@ class DrawerExtra extends PureComponent {
   };
 
   render() {
-    const { flag, switchControl, children, icon, destroyOnClose, ...rest } =
+    const { flag, switchControl, children, icon, destroyOnHidden, ...rest } =
       this.getProperties();
 
     const v = !!switchControl[flag];
@@ -221,7 +221,7 @@ class DrawerExtra extends PureComponent {
     return (
       <Drawer
         open={v || false}
-        destroyOnClose={destroyOnClose || false}
+        destroyOnHidden={destroyOnHidden || false}
         {...rest}
         styles={styleCollection}
         title={textComponentWrapper}

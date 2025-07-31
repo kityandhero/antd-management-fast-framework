@@ -15,7 +15,7 @@ class ModalExtra extends PureComponent {
       icon: null,
       titlePrefix: null,
       title: null,
-      destroyOnClose: false,
+      destroyOnHidden: false,
       ...this.props,
     };
   };
@@ -89,7 +89,7 @@ class ModalExtra extends PureComponent {
   };
 
   render() {
-    const { flag, switchControl, children, icon, destroyOnClose, ...rest } =
+    const { flag, switchControl, children, icon, destroyOnHidden, ...rest } =
       this.getProperties();
 
     const v = !!switchControl[flag];
@@ -122,7 +122,7 @@ class ModalExtra extends PureComponent {
     return (
       <Modal
         open={v || false}
-        destroyOnClose={destroyOnClose || false}
+        destroyOnHidden={destroyOnHidden || false}
         {...rest}
         styles={styleCollection}
         title={textComponentWrapper}

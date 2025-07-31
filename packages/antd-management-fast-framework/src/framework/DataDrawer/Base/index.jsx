@@ -584,7 +584,7 @@ class Base extends BaseWindow {
         titlePrefix={this.buildTitlePrevText()}
         title={this.buildTitleText()}
         subtitle={this.buildTitleSubText()}
-        destroyOnClose={this.destroyOnClose || false}
+        destroyOnHidden={this.destroyOnHidden || false}
         width={width}
         height={height}
         placement={placement}

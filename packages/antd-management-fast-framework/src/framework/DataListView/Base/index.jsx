@@ -46,6 +46,8 @@ import {
   buildColumnList,
   buildDropdown,
   buildFlexSelect,
+  buildListViewItemInner,
+  buildListViewItemInnerWithDropdownButton,
   convertOptionOrRadioData,
   ElasticityTreeSelect,
   EverySpace,
@@ -1693,6 +1695,19 @@ class Base extends AuthorizationWrapper {
   renderPresetListViewItem = (record, index) => {
     this.logCallTrack({}, primaryCallName, 'renderPresetListViewItem');
 
+    const listViewItemLayout = this.establishListViewItemLayout();
+
+    if (listViewItemLayout !== 'vertical') {
+      return (
+        <List.Item
+          actions={this.renderPresetListViewItemActions(record, index)}
+          extra={<div>{this.renderPresetListViewItemExtra(record, index)}</div>}
+        >
+          {this.renderPresetListViewItemInner(record, index)}
+        </List.Item>
+      );
+    }
+
     return (
       <List.Item
         actions={this.renderPresetListViewItemActions(record, index)}
@@ -1704,12 +1719,44 @@ class Base extends AuthorizationWrapper {
   };
 
   // eslint-disable-next-line no-unused-vars
-  renderPresetListViewItemInner = (record, index) => {
-    const text = 'renderPresetListViewItemInner 需要重载实现';
+  establishPresetListViewItemInnerConfig = (record, index) => {
+    const text = 'establishPresetListViewItemInnerConfig 需要重载实现';
 
     showSimpleRuntimeError(text);
 
-    return null;
+    return {};
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  renderPresetListViewItemInner = (item, index) => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetListViewItemInner');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'renderPresetListViewItemInner',
+      'establishPresetListViewItemInnerConfig',
+    );
+
+    const listViewItemInnerConfig = this.establishPresetListViewItemInnerConfig(
+      item,
+      index,
+    );
+
+    const listViewItemLayout = this.establishListViewItemLayout();
+
+    if (listViewItemLayout !== 'vertical') {
+      return buildListViewItemInner({
+        ...listViewItemInnerConfig,
+        layout: listViewItemLayout,
+      });
+    }
+
+    return buildListViewItemInnerWithDropdownButton({
+      ...listViewItemInnerConfig,
+      extra: this.establishListItemDropdownConfig(item),
+      layout: listViewItemLayout,
+    });
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -1723,19 +1770,34 @@ class Base extends AuthorizationWrapper {
       index,
     );
 
-    let actionSelect = null;
-
     if (this.showListViewItemActionSelect || false) {
-      actionSelect = this.renderPresetListViewItemActionSelect(record, index);
+      const actionSelect = this.renderPresetListViewItemActionSelect(
+        record,
+        index,
+      );
+
+      const list = [
+        ...(isArray(actionOthers) ? actionOthers : []),
+        ...(actionSelect == null ? [] : [actionSelect]),
+      ];
+
+      return list.length === 0 ? null : list;
+    } else {
+      let listItemDropdown = null;
+
+      const listViewItemLayout = this.establishListViewItemLayout();
+
+      if (listViewItemLayout !== 'vertical') {
+        listItemDropdown = this.renderPresetListItemDropdown(record);
+      }
+
+      const list = [
+        ...(isArray(actionOthers) ? actionOthers : []),
+        ...(listItemDropdown == null ? [] : [listItemDropdown]),
+      ];
+
+      return list.length === 0 ? null : list;
     }
-
-    if (actionSelect == null) {
-      return [...(isArray(actionOthers) ? actionOthers : [])];
-    }
-
-    const list = [...(isArray(actionOthers) ? actionOthers : []), actionSelect];
-
-    return list.length === 0 ? null : list;
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -2141,6 +2203,10 @@ class Base extends AuthorizationWrapper {
 
   renderPresetListItemDropdown = (record) => {
     const config = this.establishListItemDropdownConfig(record);
+
+    if (config == null) {
+      return null;
+    }
 
     config.placement = 'topRight';
 

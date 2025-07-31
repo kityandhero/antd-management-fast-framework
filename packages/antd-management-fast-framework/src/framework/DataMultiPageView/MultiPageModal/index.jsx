@@ -655,7 +655,7 @@ class MultiPageModal extends MultiPage {
         titlePrefix={this.buildTitlePrevText()}
         title={this.buildTitleText()}
         subtitle={this.buildTitleSubText()}
-        destroyOnClose={false}
+        destroyOnHidden={false}
         className={classNames(
           styles.containorBox,
           styles.multiPageContainorBox,

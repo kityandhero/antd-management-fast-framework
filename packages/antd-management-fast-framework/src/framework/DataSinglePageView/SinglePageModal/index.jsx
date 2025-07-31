@@ -684,7 +684,7 @@ class SinglePageModal extends SinglePage {
         title={this.buildTitleText()}
         subtitle={this.buildTitleSubText()}
         footer={null}
-        destroyOnClose={false}
+        destroyOnHidden={false}
         className={classNames(
           styles.containorBox,
           ...this.executeModalClassNames(),

@@ -1,7 +1,8 @@
-import { Avatar, Divider, List, Space, Typography } from 'antd';
+import { Avatar, Typography } from 'antd';
 
 import {
   checkStringIsNullOrWhiteSpace,
+  convertCollection,
   formatCollection,
   getValueByKey,
   whetherNumber,
@@ -10,10 +11,12 @@ import {
 import {
   columnFacadeMode,
   columnPlaceholder,
+  defaultEmptyImage,
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
 import {
+  buildListViewItemExtra,
   ColorText,
   convertOptionOrRadioData,
   iconBuilder,
@@ -49,6 +52,7 @@ class BaseSimpleMultiPageSelectModal extends MultiPageSelectModal {
       loadApiPath: 'simple/pageList',
       // 设置默认试图模式为 table
       listViewMode: listViewConfig.viewMode.table,
+      listViewItemLayout: 'horizontal',
       // table 显示模式行长度, 合理设置可以提升美观以及用户体验，超出可见区域将显示滚动条
       tableScrollX: 1220,
       sourceCode: '',
@@ -80,6 +84,12 @@ class BaseSimpleMultiPageSelectModal extends MultiPageSelectModal {
     return result;
   };
 
+  establishListViewItemLayout = () => {
+    const { listViewItemLayout } = this.state;
+
+    return listViewItemLayout;
+  };
+
   // 配置搜索框
   establishSearchCardConfig = () => {
     return {
@@ -98,11 +108,47 @@ class BaseSimpleMultiPageSelectModal extends MultiPageSelectModal {
     };
   };
 
+  renderPresetListViewItemExtra = (record, index) => {
+    return buildListViewItemExtra({
+      index,
+      imageUrl: getValueByKey({
+        data: record,
+        key: fieldData.image.name,
+        defaultValue: defaultEmptyImage,
+      }),
+    });
+  };
+
   // 配置动作集合
   establishDataContainerExtraActionCollectionConfig = () => {
-    const { listViewMode } = this.state;
+    const { listViewMode, listViewItemLayout } = this.state;
 
     return [
+      {
+        buildType: listViewConfig.dataContainerExtraActionBuildType.flexSelect,
+        label: '列表布局',
+        size: 'small',
+        defaultValue: listViewItemLayout,
+        style: { width: '190px' },
+        hidden: listViewMode !== listViewConfig.viewMode.list,
+        list: [
+          {
+            flag: 'horizontal',
+            name: '水平布局',
+            availability: whetherNumber.yes,
+          },
+          {
+            flag: 'vertical',
+            name: '垂直布局',
+            availability: whetherNumber.yes,
+          },
+        ],
+        dataConvert: convertOptionOrRadioData,
+        // eslint-disable-next-line no-unused-vars
+        onChange: (v, option) => {
+          this.setState({ listViewItemLayout: v });
+        },
+      },
       {
         buildType: listViewConfig.dataContainerExtraActionBuildType.flexSelect,
         label: '显示模式',
@@ -143,7 +189,7 @@ class BaseSimpleMultiPageSelectModal extends MultiPageSelectModal {
 
   // 配置列表显示模式构建逻辑
   // eslint-disable-next-line no-unused-vars
-  renderPresetListViewItemInner = (item, index) => {
+  establishPresetListViewItemInnerConfig = (item, index) => {
     const simpleId = getValueByKey({
       data: item,
       key: fieldData.simpleId.name,
@@ -159,45 +205,90 @@ class BaseSimpleMultiPageSelectModal extends MultiPageSelectModal {
       key: fieldData.title.name,
     });
 
+    const description = getValueByKey({
+      data: item,
+      key: fieldData.description.name,
+      defaultValue: '暂无简介',
+    });
+
+    const contentData = getValueByKey({
+      data: item,
+      key: fieldData.contentData.name,
+      defaultValue: '暂无详情',
+    });
+
+    const status = getValueByKey({
+      data: item,
+      key: fieldData.status.name,
+      convert: convertCollection.number,
+    });
+
     const createTime = getValueByKey({
       data: item,
       key: fieldData.createTime.name,
       format: formatCollection.datetime,
     });
 
-    return (
-      <>
-        <List.Item.Meta
-          avatar={
-            checkStringIsNullOrWhiteSpace(image) ? (
-              <Avatar icon={iconBuilder.user()} />
-            ) : (
-              <Avatar src={image} />
-            )
-          }
-          title={
-            <>
-              <Text>{title}</Text>
-            </>
-          }
-          description={
-            <Space split={<Divider type="vertical" />}>
-              <ColorText
-                textPrefix={fieldData.simpleId.label}
-                separator=": "
-                text={<Text copyable>{simpleId}</Text>}
-              />
+    const config = {
+      image: checkStringIsNullOrWhiteSpace(image) ? (
+        <Avatar icon={iconBuilder.user()} />
+      ) : (
+        <Avatar src={image} />
+      ),
+      title: {
+        label: '标题前缀',
+        text: title || '无标题',
+      },
+      descriptionList: [
+        {
+          label: fieldData.description.label,
+          text: description || '无描述',
+          color: '#999999',
+        },
+        {
+          label: fieldData.contentData.label,
+          text: contentData || '无内容',
+          color: '#999999',
+          extra: (
+            <ColorText
+              textPrefix={fieldData.status.label}
+              text={getSimpleStatusName({
+                value: status,
+              })}
+              randomColor
+              randomSeed={status}
+              separatorStyle={{
+                paddingRight: '4px',
+              }}
+              seedOffset={18}
+            />
+          ),
+        },
+      ],
+      actionList: [
+        {
+          label: fieldData.simpleId.label,
+          text: simpleId,
+          canCopy: true,
+          color: '#999999',
+        },
+        {
+          label: '其他',
+          text: (
+            <div>
+              <Text copyable>示例文字</Text>
+            </div>
+          ),
+        },
+        {
+          label: fieldData.createTime.label,
+          text: createTime,
+          color: '#999999',
+        },
+      ],
+    };
 
-              <ColorText
-                textPrefix={fieldData.createTime.label}
-                separator=": "
-                text={createTime}
-              />
-            </Space>
-          }
-        />
-      </>
-    );
+    return config;
   };
 
   // 配置 table 显示模式数据列

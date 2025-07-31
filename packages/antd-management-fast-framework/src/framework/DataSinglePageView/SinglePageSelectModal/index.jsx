@@ -291,6 +291,7 @@ class SinglePageSelectModal extends SinglePageModal {
       confirm: this.confirmSelect,
       index,
       selectData: item,
+      selectButtonType: 'default',
       selectCallback: (data) => that.selectRecord({ handleData: data || null }),
     });
   };

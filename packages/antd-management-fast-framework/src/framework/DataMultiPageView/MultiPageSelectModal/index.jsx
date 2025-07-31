@@ -12,6 +12,8 @@ import {
 } from 'antd-management-fast-common';
 import {
   buildListViewItemActionSelect,
+  buildListViewItemInner,
+  buildListViewItemInnerWithSelectButton,
   iconBuilder,
 } from 'antd-management-fast-component';
 
@@ -150,6 +152,43 @@ class MultiPageSelectModal extends MultiPageModal {
     this.execSelect();
   };
 
+  // eslint-disable-next-line no-unused-vars
+  renderPresetListViewItemInner = (item, index) => {
+    this.logCallTrack({}, primaryCallName, 'renderPresetListViewItemInner');
+
+    this.logCallTrace(
+      {},
+      primaryCallName,
+      'renderPresetListViewItemInner',
+      'establishPresetListViewItemInnerConfig',
+    );
+
+    const listViewItemInnerConfig = this.establishPresetListViewItemInnerConfig(
+      item,
+      index,
+    );
+
+    const listViewItemLayout = this.establishListViewItemLayout();
+
+    const that = this;
+
+    if (listViewItemLayout !== 'vertical') {
+      return buildListViewItemInner({
+        ...listViewItemInnerConfig,
+        layout: listViewItemLayout,
+      });
+    }
+
+    return buildListViewItemInnerWithSelectButton({
+      ...listViewItemInnerConfig,
+      layout: listViewItemLayout,
+      confirm: this.confirmSelect,
+      selectData: item,
+      selectButtonType: 'default',
+      selectCallback: (data) => that.selectRecord({ handleData: data || null }),
+    });
+  };
+
   establishListItemDropdownConfig = (record) => {
     return {
       size: 'small',
@@ -262,12 +301,19 @@ class MultiPageSelectModal extends MultiPageModal {
   };
 
   renderPresetListViewItemActionSelect = (item, index) => {
+    const listViewItemLayout = this.establishListViewItemLayout();
+
+    if (listViewItemLayout === 'vertical') {
+      return null;
+    }
+
     const that = this;
 
     return buildListViewItemActionSelect({
-      confirm: this.confirmSelect,
+      confirm: that.confirmSelect,
       index,
       selectData: item,
+      selectButtonType: 'default',
       selectCallback: (data) => that.selectRecord({ handleData: data || null }),
     });
   };

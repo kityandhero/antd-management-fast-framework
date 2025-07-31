@@ -1,4 +1,4 @@
-import { Avatar, Divider, List, Space, Typography } from 'antd';
+import { Avatar, Typography } from 'antd';
 
 import { connect } from 'easy-soft-dva';
 import {
@@ -13,7 +13,7 @@ import {
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
-import { ColorText, iconBuilder } from 'antd-management-fast-component';
+import { iconBuilder } from 'antd-management-fast-component';
 import {
   DataSinglePageView,
   switchControlAssist,
@@ -27,7 +27,7 @@ import {
 } from '../../../customSpecialComponents';
 
 const { Text } = Typography;
-const { SinglePageDrawer } = DataSinglePageView;
+const { SinglePageSelectDrawer } = DataSinglePageView;
 
 const visibleFlag = 'c9ad8f7b4f874cbab64ae0a0e1f305fd';
 
@@ -35,7 +35,7 @@ const visibleFlag = 'c9ad8f7b4f874cbab64ae0a0e1f305fd';
   simple,
   schedulingControl,
 }))
-class SingleListDrawer extends SinglePageDrawer {
+class SingleListDrawer extends SinglePageSelectDrawer {
   reloadWhenShow = true;
 
   componentAuthority = accessWayCollection.simple.singleList.permission;
@@ -108,61 +108,69 @@ class SingleListDrawer extends SinglePageDrawer {
   };
 
   // eslint-disable-next-line no-unused-vars
-  renderPresetListViewItemInner = (item, index) => {
+  establishPresetListViewItemInnerConfig = (data, index) => {
     const simpleId = getValueByKey({
-      data: item,
+      data: data,
       key: fieldData.simpleId.name,
     });
 
-    const image = getValueByKey({
-      data: item,
-      key: fieldData.image.name,
-    });
-
     const title = getValueByKey({
-      data: item,
+      data: data,
       key: fieldData.title.name,
     });
 
+    const image = getValueByKey({
+      data: data,
+      key: fieldData.image.name,
+    });
+
     const createTime = getValueByKey({
-      data: item,
+      data: data,
       key: fieldData.createTime.name,
       format: formatCollection.datetime,
     });
 
-    return (
-      <>
-        <List.Item.Meta
-          avatar={
-            checkStringIsNullOrWhiteSpace(image) ? (
-              <Avatar icon={iconBuilder.user()} />
-            ) : (
-              <Avatar src={image} />
-            )
-          }
-          title={
-            <>
-              <Text>{title}</Text>
-            </>
-          }
-          description={
-            <Space split={<Divider type="vertical" />}>
-              <ColorText
-                textPrefix={fieldData.simpleId.label}
-                separator=": "
-                text={<Text copyable>{simpleId}</Text>}
-              />
-
-              <ColorText
-                textPrefix={fieldData.createTime.label}
-                separator=": "
-                text={createTime}
-              />
-            </Space>
-          }
-        />
-      </>
-    );
+    return {
+      image: checkStringIsNullOrWhiteSpace(image) ? (
+        <Avatar icon={iconBuilder.user()} />
+      ) : (
+        <Avatar src={image} />
+      ),
+      title: {
+        text: title,
+      },
+      descriptionList: [
+        {
+          label: fieldData.description.label,
+          text: getValueByKey({
+            data: data,
+            key: fieldData.description.name,
+          }),
+          color: '#999999',
+        },
+      ],
+      actionList: [
+        {
+          label: fieldData.simpleId.label,
+          text: simpleId,
+          canCopy: true,
+          color: '#999999',
+        },
+        {
+          label: '其他',
+          text: (
+            <div>
+              <Text copyable>示例文字</Text>
+            </div>
+          ),
+        },
+        {
+          label: fieldData.createTime.label,
+          text: createTime,
+          color: '#999999',
+        },
+      ],
+    };
   };
 
   getColumnWrapper = () => [
@@ -222,16 +230,6 @@ class SingleListDrawer extends SinglePageDrawer {
       emptyValue: '--',
     },
     columnPlaceholder,
-    {
-      dataTarget: fieldData.customOperate,
-      width: 106,
-      fixed: 'right',
-      render: (text, record) => {
-        return this.renderPresetSelectButton({
-          handleData: record,
-        });
-      },
-    },
   ];
 }
 

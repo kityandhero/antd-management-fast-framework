@@ -1,9 +1,11 @@
-import { List } from 'antd';
+import { Avatar, Typography } from 'antd';
 
 import { connect } from 'easy-soft-dva';
 import {
   checkHasAuthority,
+  checkStringIsNullOrWhiteSpace,
   convertCollection,
+  formatCollection,
   getValueByKey,
   handleItem,
   showInfoMessage,
@@ -14,6 +16,7 @@ import {
   cardConfig,
   columnFacadeMode,
   columnPlaceholder,
+  defaultEmptyImage,
   extraBuildType,
   listViewConfig,
   searchCardConfig,
@@ -23,6 +26,7 @@ import {
   buildButton,
   buildCustomGrid,
   buildFlexRadio,
+  buildListViewItemExtra,
   iconBuilder,
 } from 'antd-management-fast-component';
 import { DataSinglePageView } from 'antd-management-fast-framework';
@@ -46,6 +50,7 @@ import ChangeSortModal from '../ChangeSortModal';
 import SingleListDrawer from '../SingleListDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 
+const { Text } = Typography;
 const { SinglePage } = DataSinglePageView;
 
 @connect(({ simple, schedulingControl }) => ({
@@ -659,22 +664,79 @@ class SingleList extends SinglePage {
     };
   };
 
+  renderPresetListViewItemExtra = (record, index) => {
+    return buildListViewItemExtra({
+      index,
+      imageUrl: getValueByKey({
+        data: record,
+        key: fieldData.image.name,
+        defaultValue: defaultEmptyImage,
+      }),
+    });
+  };
+
   // eslint-disable-next-line no-unused-vars
-  renderPresetListViewItemInner = (r, index) => {
-    return (
-      <>
-        <List.Item.Meta
-          title={getValueByKey({
-            data: r,
-            key: fieldData.title.name,
-          })}
-          description={getValueByKey({
-            data: r,
+  establishPresetListViewItemInnerConfig = (data, index) => {
+    const simpleId = getValueByKey({
+      data: data,
+      key: fieldData.simpleId.name,
+    });
+
+    const image = getValueByKey({
+      data: data,
+      key: fieldData.image.name,
+    });
+
+    const createTime = getValueByKey({
+      data: data,
+      key: fieldData.createTime.name,
+      format: formatCollection.datetime,
+    });
+
+    return {
+      image: checkStringIsNullOrWhiteSpace(image) ? (
+        <Avatar icon={iconBuilder.user()} />
+      ) : (
+        <Avatar src={image} />
+      ),
+      title: {
+        text: getValueByKey({
+          data: data,
+          key: fieldData.title.name,
+        }),
+      },
+      descriptionList: [
+        {
+          label: fieldData.description.label,
+          text: getValueByKey({
+            data: data,
             key: fieldData.description.name,
-          })}
-        />
-      </>
-    );
+          }),
+          color: '#999999',
+        },
+      ],
+      actionList: [
+        {
+          label: fieldData.simpleId.label,
+          text: simpleId,
+          canCopy: true,
+          color: '#999999',
+        },
+        {
+          label: '其他',
+          text: (
+            <div>
+              <Text copyable>示例文字</Text>
+            </div>
+          ),
+        },
+        {
+          label: fieldData.createTime.label,
+          text: createTime,
+          color: '#999999',
+        },
+      ],
+    };
   };
 
   getColumnWrapper = () => [

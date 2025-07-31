@@ -270,6 +270,7 @@ class SinglePageSelectDrawer extends SinglePageDrawer {
       confirm: this.confirmSelect,
       index,
       selectData: item,
+      selectButtonType: 'default',
       selectCallback: (data) => that.selectRecord({ handleData: data || null }),
     });
   };

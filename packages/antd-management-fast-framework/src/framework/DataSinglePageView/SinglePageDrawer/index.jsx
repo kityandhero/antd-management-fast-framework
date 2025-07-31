@@ -669,7 +669,7 @@ class SinglePageDrawer extends SinglePage {
         titlePrefix={this.buildTitlePrevText()}
         title={this.buildTitleText()}
         subtitle={this.buildTitleSubText()}
-        destroyOnClose={false}
+        destroyOnHidden={false}
         className={styles.containorBox}
         width={width}
         placement="right"

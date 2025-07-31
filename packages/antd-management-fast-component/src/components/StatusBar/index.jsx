@@ -1,4 +1,4 @@
-import { Col, Divider, Row } from 'antd';
+import { Col, Divider, Row, Space } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { isArray, showSimpleRuntimeError } from 'easy-soft-utility';
@@ -17,8 +17,6 @@ class StatusBar extends PureComponent {
       actionList = [];
     }
 
-    const actionCount = actionList.length;
-
     actionList = actionList.map((o, index) => {
       return { ...o, key: `status_bar_action_${index}` };
     });
@@ -31,32 +29,20 @@ class StatusBar extends PureComponent {
             color: '#999',
           }}
         >
-          {actionList.map((o, index) => {
-            if (index !== actionCount - 1) {
-              return (
-                <div
-                  key={o.key}
-                  style={{
-                    display: 'inline-block',
-                  }}
-                >
-                  {o}
-                  <Divider type="vertical" />
-                </div>
-              );
-            }
-
-            return (
-              <div
-                key={o.key}
+          <Space
+            wrap
+            split={
+              <Divider
+                type="vertical"
                 style={{
-                  display: 'inline-block',
+                  marginLeft: '0',
+                  marginRight: '0',
                 }}
-              >
-                {o}
-              </div>
-            );
-          })}
+              />
+            }
+          >
+            {actionList.map((o) => o)}
+          </Space>
         </Col>
 
         {extra == null ? null : <Col flex>{extra}</Col>}

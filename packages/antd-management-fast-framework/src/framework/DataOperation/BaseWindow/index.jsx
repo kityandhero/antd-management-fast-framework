@@ -65,7 +65,7 @@ class BaseWindow extends Base {
    * 关闭后是否立即销毁, 默认 false
    * @member {boolean}
    */
-  destroyOnClose = false;
+  destroyOnHidden = false;
 
   /**
    * 构造函数

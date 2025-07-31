@@ -197,7 +197,7 @@ export const ReactionsSetter = (properties) => {
         maskTransitionName=""
         open={modalVisible}
         onCancel={closeModal}
-        destroyOnClose
+        destroyOnHidden
         onOk={() => {
           form.submit((values) => {
             properties.onChange?.(values);

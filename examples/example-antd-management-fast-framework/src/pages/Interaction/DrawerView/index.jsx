@@ -409,14 +409,17 @@ class DrawerView extends BaseView {
         />
 
         <SimpleMultiPageConfirmSelectDrawer
+          width={880}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
         <SimpleMultiPageSingleSelectDrawer
+          width={880}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 
         <SimpleMultiPageMultiSelectDrawer
+          width={880}
           afterSelectSuccess={this.afterSelectSuccess}
         />
 

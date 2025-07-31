@@ -1,10 +1,12 @@
-import { List } from 'antd';
+import { Avatar, Typography } from 'antd';
 
 import { connect } from 'easy-soft-dva';
 import {
   buildRandomHexColor,
   checkHasAuthority,
+  checkStringIsNullOrWhiteSpace,
   convertCollection,
+  formatCollection,
   getValueByKey,
   handleItem,
   isArray,
@@ -17,6 +19,7 @@ import {
   cardConfig,
   columnFacadeMode,
   columnPlaceholder,
+  defaultEmptyImage,
   dropdownExpandItemType,
   extraBuildType,
   listViewConfig,
@@ -28,6 +31,7 @@ import {
   buildColorText,
   buildCustomGrid,
   buildFlexRadio,
+  buildListViewItemExtra,
   buildTagList,
   iconBuilder,
   RowExpandTable,
@@ -58,6 +62,7 @@ import ChangeSortModal from '../ChangeSortModal';
 import SimpleSelectField from '../SelectField';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 
+const { Text } = Typography;
 const { MultiPage } = DataMultiPageView;
 
 @connect(({ simple, schedulingControl }) => ({
@@ -823,22 +828,85 @@ class PageList extends MultiPage {
     };
   };
 
+  establishListViewItemLayout = () => {
+    // return 'horizontal';
+
+    return 'vertical';
+  };
+
+  renderPresetListViewItemExtra = (record, index) => {
+    return buildListViewItemExtra({
+      index,
+      imageUrl: getValueByKey({
+        data: record,
+        key: fieldData.image.name,
+        defaultValue: defaultEmptyImage,
+      }),
+    });
+  };
+
   // eslint-disable-next-line no-unused-vars
-  renderPresetListViewItemInner = (data, index) => {
-    return (
-      <>
-        <List.Item.Meta
-          title={getValueByKey({
-            data: data,
-            key: fieldData.title.name,
-          })}
-          description={getValueByKey({
+  establishPresetListViewItemInnerConfig = (data, index) => {
+    const simpleId = getValueByKey({
+      data: data,
+      key: fieldData.simpleId.name,
+    });
+
+    const image = getValueByKey({
+      data: data,
+      key: fieldData.image.name,
+    });
+
+    const createTime = getValueByKey({
+      data: data,
+      key: fieldData.createTime.name,
+      format: formatCollection.datetime,
+    });
+
+    return {
+      image: checkStringIsNullOrWhiteSpace(image) ? (
+        <Avatar icon={iconBuilder.user()} />
+      ) : (
+        <Avatar src={image} />
+      ),
+      title: {
+        text: getValueByKey({
+          data: data,
+          key: fieldData.title.name,
+        }),
+      },
+      descriptionList: [
+        {
+          label: fieldData.description.label,
+          text: getValueByKey({
             data: data,
             key: fieldData.description.name,
-          })}
-        />
-      </>
-    );
+          }),
+          color: '#999999',
+        },
+      ],
+      actionList: [
+        {
+          label: fieldData.simpleId.label,
+          text: simpleId,
+          canCopy: true,
+          color: '#999999',
+        },
+        {
+          label: '其他',
+          text: (
+            <div>
+              <Text copyable>示例文字</Text>
+            </div>
+          ),
+        },
+        {
+          label: fieldData.createTime.label,
+          text: createTime,
+          color: '#999999',
+        },
+      ],
+    };
   };
 
   establishListItemDropdownConfig = (record) => {

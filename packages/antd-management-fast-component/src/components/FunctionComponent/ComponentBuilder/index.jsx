@@ -627,6 +627,7 @@ export function buildStatusBar({ actionList = [], extra = null }) {
       return (
         <IconInfo
           key={`action_${index}`}
+          block
           textPrefix={label}
           text={text || emptyText}
           textStyle={textStyle}
@@ -668,6 +669,7 @@ export function buildListViewItemExtra({
  * @param {Object} option.statusBarWrapperStyle statusBar style.
  */
 export function buildListViewItemInner({
+  layout = 'vertical',
   image = null,
   title = {},
   descriptionList = [],
@@ -695,6 +697,66 @@ export function buildListViewItemInner({
     return { label, text, color: color || '', extra };
   });
 
+  if (layout === 'vertical') {
+    return (
+      <>
+        <List.Item.Meta
+          avatar={
+            image == null ||
+            checkStringIsNullOrWhiteSpace(image) ? null : isString(image) ? (
+              <Avatar src={image} />
+            ) : (
+              <Avatar icon={image} />
+            )
+          }
+          title={
+            <ColorText
+              multiLine
+              textPrefix={titleLabel}
+              text={titleText}
+              separatorStyle={{
+                paddingLeft: '3px',
+                paddingRight: '5px',
+              }}
+            />
+          }
+          description={
+            <>
+              {descriptionListAdjust.map((o, index) => {
+                const { label, text, color, extra } = o;
+
+                return (
+                  <div key={`description_${index}`}>
+                    <FlexBox
+                      flexAuto="left"
+                      left={
+                        <ColorText
+                          multiLine
+                          textPrefix={label}
+                          text={text}
+                          color={color}
+                          separatorStyle={{
+                            paddingLeft: '3px',
+                            paddingRight: '5px',
+                          }}
+                        />
+                      }
+                      right={extra}
+                    />
+                  </div>
+                );
+              })}
+            </>
+          }
+        />
+
+        <div style={statusBarWrapperStyle}>
+          {buildStatusBar({ actionList, extra })}
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <List.Item.Meta
@@ -708,6 +770,7 @@ export function buildListViewItemInner({
         }
         title={
           <ColorText
+            multiLine
             textPrefix={titleLabel}
             text={titleText}
             separatorStyle={{
@@ -723,26 +786,37 @@ export function buildListViewItemInner({
 
               return (
                 <div key={`description_${index}`}>
-                  <FlexText
-                    textPrefix={label}
-                    text={text}
-                    color={color}
-                    separatorStyle={{
-                      paddingLeft: '3px',
-                      paddingRight: '5px',
-                    }}
-                    extra={extra}
+                  <FlexBox
+                    flexAuto="left"
+                    left={
+                      <ColorText
+                        multiLine
+                        textPrefix={label}
+                        text={text}
+                        color={color}
+                        separatorStyle={{
+                          paddingLeft: '3px',
+                          paddingRight: '5px',
+                        }}
+                      />
+                    }
+                    right={extra}
                   />
                 </div>
               );
             })}
+
+            <div
+              style={{
+                ...statusBarWrapperStyle,
+                marginTop: '4px',
+              }}
+            >
+              {buildStatusBar({ actionList, extra })}
+            </div>
           </>
         }
       />
-
-      <div style={statusBarWrapperStyle}>
-        {buildStatusBar({ actionList, extra })}
-      </div>
     </>
   );
 }
@@ -756,6 +830,7 @@ export function buildListViewItemInner({
  * @param {Object} option.statusBarWrapperStyle statusBar
  */
 export function buildListViewItemInnerWithDropdownButton({
+  layout = 'vertical',
   image = null,
   title = {},
   descriptionList = [],
@@ -764,6 +839,7 @@ export function buildListViewItemInnerWithDropdownButton({
   statusBarWrapperStyle = {},
 }) {
   return buildListViewItemInner({
+    layout,
     image,
     title,
     descriptionList,
@@ -783,15 +859,18 @@ export function buildListViewItemInnerWithDropdownButton({
  * @param {Function} option.selectCallback the callback after selected, like (data)=>{}.
  */
 export function buildListViewItemInnerWithSelectButton({
+  layout = 'vertical',
   image = null,
   title = {},
   descriptionList = [],
   actionList = [],
   confirm = false,
+  selectButtonType = 'link',
   selectData,
   selectCallback = null,
 }) {
   return buildListViewItemInner({
+    layout,
     image,
     title,
     descriptionList,
@@ -799,6 +878,7 @@ export function buildListViewItemInnerWithSelectButton({
     extra: buildListViewItemActionSelect({
       confirm,
       selectData,
+      selectButtonType,
       selectCallback,
     }),
   });
@@ -813,6 +893,7 @@ export function buildListViewItemInnerWithSelectButton({
 export function buildListViewItemActionSelect({
   confirm = false,
   selectData,
+  selectButtonType = 'link',
   selectCallback = null,
 }) {
   if (!isFunction(selectCallback)) {
@@ -824,11 +905,11 @@ export function buildListViewItemActionSelect({
   return buildButton({
     confirm,
     size: 'small',
-    type: 'link',
+    type: selectButtonType || 'link',
     icon: iconBuilder.import(),
     text: '选取',
     showIcon: true,
-    title: '确定选择此项吗？',
+    title: confirm ? '确定选择此项吗？' : '即将选择此项',
     handleClick: ({ handleData }) => {
       if (isFunction(selectCallback)) {
         selectCallback(handleData);
