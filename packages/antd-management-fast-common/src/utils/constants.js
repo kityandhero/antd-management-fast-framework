@@ -270,6 +270,11 @@ export const listViewConfig = {
     generalExtraColorPicker: 'generalExtraColorPicker',
 
     /**
+     * divider
+     */
+    divider: 'divider',
+
+    /**
      * 指定渲染自定义组件，组件由配置传入
      */
     component: 'component',
