@@ -185,6 +185,7 @@ class GeneralSort extends PureComponent {
         </GeneralConfigContainer>
 
         <Modal
+          width={980}
           title="文档数据排序"
           open={sortModalVisible}
           onOk={this.onOk}
