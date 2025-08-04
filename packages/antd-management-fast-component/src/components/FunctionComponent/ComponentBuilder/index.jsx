@@ -1,4 +1,13 @@
-import { Alert, Avatar, Button, ColorPicker, Dropdown, List, Tree } from 'antd';
+import {
+  Alert,
+  Avatar,
+  Button,
+  ColorPicker,
+  Dropdown,
+  List,
+  Space,
+  Tree,
+} from 'antd';
 import React from 'react';
 import ReactPlayer from 'react-player';
 
@@ -30,8 +39,6 @@ import { IconInfo } from '../../IconInfo';
 import { JsonView } from '../../JsonView';
 import { StatusBar } from '../../StatusBar';
 import { VerticalBox } from '../../VerticalBox';
-
-const ButtonGroup = Button.Group;
 
 export function buildDropdownMenu({
   label = '名称',
@@ -364,7 +371,7 @@ export function buildButtonGroup({ buttons = [] }) {
   }
 
   return (
-    <ButtonGroup>
+    <Space.Compact>
       {buttons.map((item, index) => {
         const { hidden } = { hidden: false, ...item };
 
@@ -378,7 +385,7 @@ export function buildButtonGroup({ buttons = [] }) {
 
         return buildDropdown(item);
       })}
-    </ButtonGroup>
+    </Space.Compact>
   );
 }
 

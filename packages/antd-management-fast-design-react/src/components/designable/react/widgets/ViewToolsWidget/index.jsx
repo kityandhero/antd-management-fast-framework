@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import cls from 'classnames';
 import React from 'react';
 import { observer } from '@formily/reactive-react';
@@ -11,7 +11,7 @@ export const ViewToolsWidget = observer(({ use, style, className }) => {
   const prefix = usePrefix('view-tools');
 
   return (
-    <Button.Group style={style} className={cls(prefix, className)}>
+    <Space.Compact style={style} className={cls(prefix, className)}>
       {use?.includes('DESIGNABLE') && (
         <Button
           disabled={workbench.type === 'DESIGNABLE'}
@@ -59,7 +59,7 @@ export const ViewToolsWidget = observer(({ use, style, className }) => {
           <IconWidget infer="Play" />
         </Button>
       )}
-    </Button.Group>
+    </Space.Compact>
   );
 });
 

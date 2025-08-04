@@ -1,5 +1,17 @@
 # antd-management-fast-design-react
 
+## 1.0.136
+
+### Patch Changes
+
+- update
+
+## 1.0.135
+
+### Patch Changes
+
+- update
+
 ## 1.0.134
 
 ### Patch Changes

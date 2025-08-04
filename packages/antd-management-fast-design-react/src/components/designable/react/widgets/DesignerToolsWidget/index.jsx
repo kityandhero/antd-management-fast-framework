@@ -1,4 +1,4 @@
-import { Button, InputNumber } from 'antd';
+import { Button, InputNumber, Space } from 'antd';
 import cls from 'classnames';
 import React, { Fragment, useRef } from 'react';
 import { CursorType, ScreenType } from '@designable/core';
@@ -25,7 +25,7 @@ export const DesignerToolsWidget = observer((properties) => {
   const renderHistoryController = () => {
     if (!properties?.use?.includes('HISTORY')) return null;
     return (
-      <Button.Group size="small" style={{ marginRight: 20 }}>
+      <Space.Compact size="small" style={{ marginRight: 20 }}>
         <Button
           size="small"
           disabled={!history?.allowUndo}
@@ -45,7 +45,7 @@ export const DesignerToolsWidget = observer((properties) => {
         >
           <IconWidget infer="Redo" />
         </Button>
-      </Button.Group>
+      </Space.Compact>
     );
   };
 
@@ -58,7 +58,7 @@ export const DesignerToolsWidget = observer((properties) => {
     }
 
     return (
-      <Button.Group size="small" style={{ marginRight: 20 }}>
+      <Space.Compact size="small" style={{ marginRight: 20 }}>
         <Button
           size="small"
           disabled={cursor.type === CursorType.Move}
@@ -78,7 +78,7 @@ export const DesignerToolsWidget = observer((properties) => {
         >
           <IconWidget infer="Selection" />
         </Button>
-      </Button.Group>
+      </Space.Compact>
     );
   };
 
@@ -147,7 +147,7 @@ export const DesignerToolsWidget = observer((properties) => {
     }
 
     return (
-      <Button.Group size="small" style={{ marginRight: 20 }}>
+      <Space.Compact size="small" style={{ marginRight: 20 }}>
         <Button
           size="small"
           disabled={screen.type === ScreenType.PC}
@@ -177,7 +177,7 @@ export const DesignerToolsWidget = observer((properties) => {
         >
           <IconWidget infer="Responsive" />
         </Button>
-      </Button.Group>
+      </Space.Compact>
     );
   };
 
