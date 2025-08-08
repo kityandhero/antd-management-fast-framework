@@ -27,6 +27,7 @@ const defaultProperties = {
   previewButtonIcon: null,
   list: [],
   canPreview: true,
+  canSupplement: false,
   canUpload: false,
   canCopyUrl: true,
   canDownload: true,
@@ -39,6 +40,7 @@ const defaultProperties = {
   urlRender: null,
   onItemClick: null,
   onUploadButtonClick: null,
+  onSupplementButtonClick: null,
   onRemove: () => {},
 };
 
@@ -150,6 +152,7 @@ class FileViewer extends PureComponent {
       previewButtonIcon,
       canPreview,
       canUpload,
+      canSupplement,
       showUrl,
       splitHeight,
       list,
@@ -158,6 +161,7 @@ class FileViewer extends PureComponent {
       nameRender,
       urlRender,
       onUploadButtonClick,
+      onSupplementButtonClick,
       onItemClick,
     } = this.getProperties();
 
@@ -263,6 +267,20 @@ class FileViewer extends PureComponent {
                     }}
                   >
                     上传附件
+                  </Button>
+                ) : null}
+
+                {canSupplement ? (
+                  <Button
+                    type="default"
+                    size="small"
+                    onClick={(event) => {
+                      if (isFunction(onSupplementButtonClick)) {
+                        onSupplementButtonClick(event);
+                      }
+                    }}
+                  >
+                    追加附件
                   </Button>
                 ) : null}
               </Space>
