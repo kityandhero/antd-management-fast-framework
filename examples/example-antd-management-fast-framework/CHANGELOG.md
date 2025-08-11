@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.9.90
+
+### Patch Changes
+
+- Updated dependencies
+  - antd-management-fast-flow@1.0.141
+
 ## 1.9.89
 
 ### Patch Changes

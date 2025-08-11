@@ -24,10 +24,10 @@ const EndNode = (properties) => {
 
   const {
     data: dataSource,
-    canEdit,
+    canRemove,
     onRemove,
   } = {
-    canEdit: false,
+    canRemove: false,
     ...data,
   };
 
@@ -77,7 +77,7 @@ const EndNode = (properties) => {
               </VerticalBox>
             }
             right={
-              canEdit ? (
+              canRemove ? (
                 <Space>
                   <button
                     style={{

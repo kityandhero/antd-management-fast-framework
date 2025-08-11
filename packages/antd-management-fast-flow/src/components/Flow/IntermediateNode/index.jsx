@@ -34,6 +34,8 @@ class IntermediateNode extends PureComponent {
       data: dataSource,
       isNext,
       canEdit,
+      canEditApprover,
+      canListApprover,
       multibranch,
       nodeNameKey,
       // listInLineKey,
@@ -43,12 +45,15 @@ class IntermediateNode extends PureComponent {
       approverNameLabel,
       footerBuilder,
       onAddApprover,
+      onEditApprover,
+      onListApprover,
       onChange,
       onChangeBranchCondition,
       onRemove,
       onRemoveApprover,
     } = {
       canEdit: false,
+      canEditApprover: false,
       multibranch: false,
       nodeNameKey: 'nodeNameKey',
       listInLineKey: 'listInLine',
@@ -131,6 +136,9 @@ class IntermediateNode extends PureComponent {
                   </div>
                 </VerticalBox>
               }
+              rightStyle={{
+                paddingLeft: '10px',
+              }}
               right={
                 canEdit ? (
                   <Space>
@@ -153,6 +161,28 @@ class IntermediateNode extends PureComponent {
                     >
                       {iconBuilder.plusCircle()}
                     </button>
+
+                    {canListApprover ? (
+                      <button
+                        style={{
+                          padding: '1px 4px',
+                          fontSize: '12px',
+                          backgroundColor: 'transparent',
+                          borderRadius: '5px',
+                          borderColor: '#fff',
+                        }}
+                        title="审批人列表"
+                        onClick={(event) => {
+                          event.stopPropagation();
+
+                          if (isFunction(onListApprover)) {
+                            onListApprover(dataSource);
+                          }
+                        }}
+                      >
+                        {iconBuilder.unorderedList()}
+                      </button>
+                    ) : null}
 
                     <button
                       style={{
@@ -262,16 +292,36 @@ class IntermediateNode extends PureComponent {
                             right={
                               canEdit ? (
                                 <Space
-                                  split={
-                                    <Divider
-                                      type="vertical"
-                                      style={{
-                                        marginLeft: '1px',
-                                        marginRight: '1px',
-                                      }}
-                                    />
-                                  }
+                                // split={
+                                //   <Divider
+                                //     type="vertical"
+                                //     style={{
+                                //       marginLeft: '1px',
+                                //       marginRight: '1px',
+                                //     }}
+                                //   />
+                                // }
                                 >
+                                  {canEditApprover ? (
+                                    <Button
+                                      size="small"
+                                      style={{
+                                        padding: '0.5px 5px',
+                                        fontSize: '12px',
+                                      }}
+                                      title="编辑审批人或职级"
+                                      onClick={(event) => {
+                                        event.stopPropagation();
+
+                                        if (isFunction(onEditApprover)) {
+                                          onEditApprover(o);
+                                        }
+                                      }}
+                                    >
+                                      {iconBuilder.edit()}
+                                    </Button>
+                                  ) : null}
+
                                   <Button
                                     size="small"
                                     style={{
