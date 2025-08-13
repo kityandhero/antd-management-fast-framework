@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-flow",
-  "version": "1.0.141",
+  "version": "1.0.143",
   "keywords": [
     "antd-management-fast-flow"
   ],
@@ -57,11 +57,11 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "antd": "^5.26.7",
+    "antd": "^5.27.0",
     "antd-management-fast-common": "workspace:*",
     "antd-management-fast-component": "workspace:*",
     "classnames": "^2.5.1",
-    "easy-soft-utility": "^2.8.95",
+    "easy-soft-utility": "^2.8.96",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "reactflow": "^11.11.4"
@@ -82,17 +82,17 @@
     "@commitlint/config-pnpm-scopes": "^19.8.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.2.0",
+    "@types/node": "^24.2.1",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
-    "@typescript-eslint/parser": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.1",
     "babel-jest": "^30.0.5",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
     "cross-env": "^10.0.0",
     "cz-git": "^1.12.0",
     "docdash": "^2.0.2",
-    "easy-soft-develop": "^2.1.295",
+    "easy-soft-develop": "^2.1.298",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -112,7 +112,7 @@
     "husky": "^9.1.7",
     "jest": "^30.0.5",
     "jsdoc": "^4.0.4",
-    "lint-staged": "^16.1.4",
+    "lint-staged": "^16.1.5",
     "npm-check-updates": "^18.0.2",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.2.0",

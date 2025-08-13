@@ -43,6 +43,7 @@ function remoteAction({
   handleData,
   failCallback,
   successCallback,
+  showSuccessMessage = true,
   successMessage,
   successMessageBuilder,
   showProcessing = false,
@@ -82,20 +83,22 @@ function remoteAction({
           ...data,
         };
 
-        let messageText = successMessage;
+        if (showSuccessMessage) {
+          let messageText = successMessage;
 
-        if (isFunction(successMessageBuilder)) {
-          messageText = successMessageBuilder({
-            handleData,
-            remoteListData: isArray(remoteListData) ? remoteListData : [],
-            remoteData: remoteData || null,
-            remoteExtraData: remoteExtraData || null,
-            remoteOriginal: data,
-          });
-        }
+          if (isFunction(successMessageBuilder)) {
+            messageText = successMessageBuilder({
+              handleData,
+              remoteListData: isArray(remoteListData) ? remoteListData : [],
+              remoteData: remoteData || null,
+              remoteExtraData: remoteExtraData || null,
+              remoteOriginal: data,
+            });
+          }
 
-        if (!checkStringIsNullOrWhiteSpace(messageText)) {
-          showSimpleSuccessNotification(messageText);
+          if (!checkStringIsNullOrWhiteSpace(messageText)) {
+            showSimpleSuccessNotification(messageText);
+          }
         }
 
         if (isFunction(successCallback)) {
@@ -310,6 +313,7 @@ export async function actionCore({
   completeProcess = null,
   failCallback = null,
   successCallback = null,
+  showSuccessMessage = true,
   successMessage = '数据已经操作成功，请进行后续操作。',
   successMessageBuilder = null,
 }) {
@@ -364,6 +368,7 @@ export async function actionCore({
       target,
       failCallback,
       successCallback,
+      showSuccessMessage,
       successMessage,
       successMessageBuilder,
       showProcessing,
@@ -379,6 +384,7 @@ export async function actionCore({
         handleData,
         target,
         failCallback,
+        showSuccessMessage,
         successMessage,
         successMessageBuilder,
         showProcessing,
