@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Bar = ({ progress, animationDuration }) => (
+const Bar = ({ progress = 1, animationDuration = 800 }) => (
   <div
     style={{
       background: '#29d',
@@ -28,10 +28,5 @@ const Bar = ({ progress, animationDuration }) => (
     />
   </div>
 );
-
-Bar.defaultProps = {
-  animationDuration: 800,
-  progress: 1,
-};
 
 export { Bar };

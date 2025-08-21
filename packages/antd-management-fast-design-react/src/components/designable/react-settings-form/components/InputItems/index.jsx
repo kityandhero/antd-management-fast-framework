@@ -9,20 +9,24 @@ const InputItemsContext = React.createContext(null);
 
 export const InputItems = (properties) => {
   const prefix = usePrefix('input-items');
+
+  const propertiesAdjust = {
+    width: '100%',
+    className: null,
+    style: null,
+    ...properties,
+  };
+
   return (
-    <InputItemsContext.Provider value={properties}>
+    <InputItemsContext.Provider value={propertiesAdjust}>
       <div
-        className={cls(prefix, properties.className)}
-        style={properties.style}
+        className={cls(prefix, propertiesAdjust.className)}
+        style={propertiesAdjust.style}
       >
-        {properties.children}
+        {propertiesAdjust.children}
       </div>
     </InputItemsContext.Provider>
   );
-};
-
-InputItems.defaultProps = {
-  width: '100%',
 };
 
 const Item = (properties) => {

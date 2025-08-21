@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Container = ({ animationDuration, children, isFinished }) => (
+const Container = ({
+  animationDuration = 800,
+  isFinished = true,
+  children,
+}) => (
   <div
     style={{
       opacity: isFinished ? 0 : 1,
@@ -11,10 +15,5 @@ const Container = ({ animationDuration, children, isFinished }) => (
     {children}
   </div>
 );
-
-Container.defaultProps = {
-  animationDuration: 800,
-  isFinished: true,
-};
 
 export { Container };

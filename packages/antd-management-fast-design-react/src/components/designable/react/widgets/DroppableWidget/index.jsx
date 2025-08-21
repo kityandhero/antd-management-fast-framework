@@ -12,7 +12,7 @@ export const DroppableWidget = observer(
     node,
     actions,
     height,
-    placeholder,
+    placeholder = true,
     style,
     className,
     hasChildren: hasChildrenProperty,
@@ -46,7 +46,3 @@ export const DroppableWidget = observer(
     );
   },
 );
-
-DroppableWidget.defaultProps = {
-  placeholder: true,
-};

@@ -14,24 +14,30 @@ export const Designer = (properties) => {
   const engine = useDesigner();
   const reference = useRef();
 
+  const propertiesAdjust = {
+    prefixCls: 'dn-',
+    theme: 'light',
+    ...properties,
+  };
+
   useEffect(() => {
-    if (properties.engine) {
+    if (propertiesAdjust.engine) {
       if (
-        properties.engine &&
+        propertiesAdjust.engine &&
         reference.current &&
-        properties.engine !== reference.current
+        propertiesAdjust.engine !== reference.current
       ) {
         reference.current.unmount();
       }
-      properties.engine.mount();
-      reference.current = properties.engine;
+      propertiesAdjust.engine.mount();
+      reference.current = propertiesAdjust.engine;
     }
     return () => {
-      if (properties.engine) {
-        properties.engine.unmount();
+      if (propertiesAdjust.engine) {
+        propertiesAdjust.engine.unmount();
       }
     };
-  }, [properties.engine]);
+  }, [propertiesAdjust.engine]);
 
   if (engine)
     throw new Error(
@@ -39,16 +45,11 @@ export const Designer = (properties) => {
     );
 
   return (
-    <Layout {...properties}>
-      <DesignerEngineContext.Provider value={properties.engine}>
-        {properties.children}
+    <Layout {...propertiesAdjust}>
+      <DesignerEngineContext.Provider value={propertiesAdjust.engine}>
+        {propertiesAdjust.children}
         <GhostWidget />
       </DesignerEngineContext.Provider>
     </Layout>
   );
-};
-
-Designer.defaultProps = {
-  prefixCls: 'dn-',
-  theme: 'light',
 };

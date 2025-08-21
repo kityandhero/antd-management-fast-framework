@@ -8,41 +8,43 @@ export const Layout = (properties) => {
   const layout = useContext(DesignerLayoutContext);
   const reference = useRef();
 
+  const propertiesAdjust = {
+    theme: 'light',
+    prefixCls: 'dn-',
+    position: 'fixed',
+    ...properties,
+  };
+
   useLayoutEffect(() => {
     if (reference.current) {
-      each(properties.variables, (value, key) => {
+      each(propertiesAdjust.variables, (value, key) => {
         reference.current?.style.setProperty(`--${key}`, value);
       });
     }
   }, []);
 
   if (layout) {
-    return <Fragment>{properties.children}</Fragment>;
+    return <Fragment>{propertiesAdjust.children}</Fragment>;
   }
 
   return (
     <div
       ref={reference}
       className={cls({
-        [`${properties.prefixCls}app`]: true,
-        [`${properties.prefixCls}${properties.theme}`]: properties.theme,
+        [`${propertiesAdjust.prefixCls}app`]: true,
+        [`${propertiesAdjust.prefixCls}${propertiesAdjust.theme}`]:
+          propertiesAdjust.theme,
       })}
     >
       <DesignerLayoutContext.Provider
         value={{
-          theme: properties.theme,
-          prefixCls: properties.prefixCls,
-          position: properties.position,
+          theme: propertiesAdjust.theme,
+          prefixCls: propertiesAdjust.prefixCls,
+          position: propertiesAdjust.position,
         }}
       >
-        {properties.children}
+        {propertiesAdjust.children}
       </DesignerLayoutContext.Provider>
     </div>
   );
-};
-
-Layout.defaultProps = {
-  theme: 'light',
-  prefixCls: 'dn-',
-  position: 'fixed',
 };

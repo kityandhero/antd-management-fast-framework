@@ -10,13 +10,15 @@ export const EmptyWidget = observer((properties) => {
   const tree = useTree();
   const prefix = usePrefix('empty');
 
+  const { dragTipsDirection } = { dragTipsDirection: 'left', ...properties };
+
   const renderEmpty = () => {
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div className="animations">
           <IconWidget
             infer={
-              properties.dragTipsDirection === 'left'
+              dragTipsDirection === 'left'
                 ? 'DragLeftSourceAnimation'
                 : 'DragRightSourceAnimation'
             }
@@ -52,7 +54,3 @@ export const EmptyWidget = observer((properties) => {
 
   return null;
 });
-
-EmptyWidget.defaultProps = {
-  dragTipsDirection: 'left',
-};

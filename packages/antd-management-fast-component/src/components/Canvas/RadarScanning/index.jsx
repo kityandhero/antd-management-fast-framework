@@ -98,7 +98,7 @@ class RadarScanning extends Core {
   createOrb = (mx, my) => {
     const dx = this.canvasWidth / 2 - mx;
     const dy = this.canvasHeight / 2 - my;
-    const distribution = Math.sqrt(dx * dx + dy * dy);
+    const distribution = Math.hypot(dx, dy);
     const angle = Math.atan2(dy, dx);
 
     const o = {

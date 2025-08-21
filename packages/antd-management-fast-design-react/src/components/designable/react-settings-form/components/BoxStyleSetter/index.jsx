@@ -54,44 +54,56 @@ export const BoxStyleSetter = observer((properties) => {
   const prefix = usePrefix('box-style-setter');
 
   const FoldItemAny = FoldItem;
+
+  const propertiesAdjust = {
+    labels: [
+      <IconWidget infer="Top" size={16} key="1" />,
+      <IconWidget infer="Right" size={16} key="2" />,
+      <IconWidget infer="Bottom" size={16} key="3" />,
+      <IconWidget infer="Left" size={16} key="4" />,
+    ],
+    className: null,
+    ...properties,
+  };
+
   return (
     <FoldItemAny
-      className={cls(prefix, properties.className)}
+      className={cls(prefix, propertiesAdjust.className)}
       label={field.title}
     >
       <FoldItemAny.Base>
         <SizeInput
-          {...createPositionHandler('all', properties)}
+          {...createPositionHandler('all', propertiesAdjust)}
           exclude={['inherit', 'auto']}
         />
       </FoldItemAny.Base>
 
       <FoldItemAny.Extra>
         <InputItems width="50%">
-          <InputItems.Item icon={properties?.labels?.[0]}>
+          <InputItems.Item icon={propertiesAdjust?.labels?.[0]}>
             <SizeInput
-              {...createPositionHandler('top', properties)}
+              {...createPositionHandler('top', propertiesAdjust)}
               exclude={['inherit', 'auto']}
             />
           </InputItems.Item>
 
-          <InputItems.Item icon={properties?.labels?.[1]}>
+          <InputItems.Item icon={propertiesAdjust?.labels?.[1]}>
             <SizeInput
-              {...createPositionHandler('right', properties)}
+              {...createPositionHandler('right', propertiesAdjust)}
               exclude={['inherit', 'auto']}
             />
           </InputItems.Item>
 
-          <InputItems.Item icon={properties?.labels?.[2]}>
+          <InputItems.Item icon={propertiesAdjust?.labels?.[2]}>
             <SizeInput
-              {...createPositionHandler('bottom', properties)}
+              {...createPositionHandler('bottom', propertiesAdjust)}
               exclude={['inherit', 'auto']}
             />
           </InputItems.Item>
 
-          <InputItems.Item icon={properties?.labels?.[3]}>
+          <InputItems.Item icon={propertiesAdjust?.labels?.[3]}>
             <SizeInput
-              {...createPositionHandler('left', properties)}
+              {...createPositionHandler('left', propertiesAdjust)}
               exclude={['inherit', 'auto']}
             />
           </InputItems.Item>
@@ -100,12 +112,3 @@ export const BoxStyleSetter = observer((properties) => {
     </FoldItemAny>
   );
 });
-
-BoxStyleSetter.defaultProps = {
-  labels: [
-    <IconWidget infer="Top" size={16} key="1" />,
-    <IconWidget infer="Right" size={16} key="2" />,
-    <IconWidget infer="Bottom" size={16} key="3" />,
-    <IconWidget infer="Left" size={16} key="4" />,
-  ],
-};

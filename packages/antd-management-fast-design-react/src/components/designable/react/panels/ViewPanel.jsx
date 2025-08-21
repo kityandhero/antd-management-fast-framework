@@ -10,6 +10,8 @@ export const ViewPanel = observer((properties) => {
   const workbench = useWorkbench();
   const tree = useTree();
 
+  const { scrollable } = { scrollable: true, ...properties };
+
   useEffect(() => {
     if (workbench.type === properties.type) {
       requestIdle(() => {
@@ -44,7 +46,7 @@ export const ViewPanel = observer((properties) => {
   return (
     <div
       style={{
-        overflow: properties.scrollable ? 'overlay' : 'hidden',
+        overflow: scrollable ? 'overlay' : 'hidden',
         height: '100%',
         cursor: 'auto',
         userSelect: 'text',
@@ -54,7 +56,3 @@ export const ViewPanel = observer((properties) => {
     </div>
   );
 });
-
-ViewPanel.defaultProps = {
-  scrollable: true,
-};

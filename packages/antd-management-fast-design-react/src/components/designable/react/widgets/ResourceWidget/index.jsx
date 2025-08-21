@@ -12,7 +12,13 @@ import './styles.less';
 
 export const ResourceWidget = observer((properties) => {
   const prefix = usePrefix('resource');
-  const [expand, setExpand] = useState(properties.defaultExpand);
+
+  const { defaultExpand } = {
+    defaultExpand: true,
+    ...properties,
+  };
+
+  const [expand, setExpand] = useState(defaultExpand);
 
   const renderNode = (source) => {
     const { node, icon, title, thumb, span } = source;
@@ -102,7 +108,3 @@ export const ResourceWidget = observer((properties) => {
     </div>
   );
 });
-
-ResourceWidget.defaultProps = {
-  defaultExpand: true,
-};

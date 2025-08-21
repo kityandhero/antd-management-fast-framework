@@ -22,8 +22,14 @@ export const DesignerToolsWidget = observer((properties) => {
   const history = useHistory();
   const sizeReference = useRef({});
   const prefix = usePrefix('designer-tools');
+
+  const { use } = {
+    use: ['HISTORY', 'CURSOR', 'SCREEN_TYPE'],
+    ...properties,
+  };
+
   const renderHistoryController = () => {
-    if (!properties?.use?.includes('HISTORY')) return null;
+    if (!use?.includes('HISTORY')) return null;
     return (
       <Space.Compact size="small" style={{ marginRight: 20 }}>
         <Button
@@ -53,7 +59,7 @@ export const DesignerToolsWidget = observer((properties) => {
     if (workbench.type !== 'DESIGNABLE') {
       return null;
     }
-    if (!properties?.use?.includes('CURSOR')) {
+    if (!use?.includes('CURSOR')) {
       return null;
     }
 
@@ -83,7 +89,7 @@ export const DesignerToolsWidget = observer((properties) => {
   };
 
   const renderResponsiveController = () => {
-    if (!properties?.use?.includes('SCREEN_TYPE')) {
+    if (!use?.includes('SCREEN_TYPE')) {
       return null;
     }
     if (screen.type !== ScreenType.Responsive) {
@@ -142,7 +148,7 @@ export const DesignerToolsWidget = observer((properties) => {
   };
 
   const renderScreenTypeController = () => {
-    if (!properties?.use?.includes('SCREEN_TYPE')) {
+    if (!use?.includes('SCREEN_TYPE')) {
       return null;
     }
 
@@ -182,7 +188,7 @@ export const DesignerToolsWidget = observer((properties) => {
   };
 
   const renderMobileController = () => {
-    if (!properties?.use?.includes('SCREEN_TYPE')) {
+    if (!use?.includes('SCREEN_TYPE')) {
       return null;
     }
     if (screen.type !== ScreenType.Mobile) {
