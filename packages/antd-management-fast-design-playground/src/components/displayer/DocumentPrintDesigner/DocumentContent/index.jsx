@@ -627,6 +627,7 @@ class DocumentContent extends PureComponent {
                           key={`tr_${index}_td_${indexCell}`}
                           uniqueTag={uniqueTag}
                           width={widthAdjust}
+                          lineColor={gridColor}
                           highlighTag={currentHighlighTag}
                           content={content}
                           signetStyle={signetStyle}

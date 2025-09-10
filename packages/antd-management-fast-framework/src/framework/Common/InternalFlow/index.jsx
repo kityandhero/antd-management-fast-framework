@@ -2536,7 +2536,7 @@ class InternalFlow extends Core {
    * @function
    * @returns {Object} 配置数据
    * @example
-   * establishExtraActionConfig = () => { return { component: null }; }
+   * establishPageHeaderContentComponentConfig = () => { return { component: null }; }
    */
   establishPageHeaderContentComponentConfig = () => {
     return {

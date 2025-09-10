@@ -228,6 +228,40 @@ export function adjustCellConfig(data) {
   };
 }
 
+export function adjustApproveList(list) {
+  let listNodeId = [];
+
+  if (isArray(list) && !isEmptyArray(list)) {
+    listNodeId = list.map((o) => {
+      const { nodeId } = {
+        nodeId: '',
+        ...o,
+      };
+
+      return nodeId;
+    });
+
+    listNodeId = [...new Set(listNodeId)];
+  }
+
+  return listNodeId.map((o) => {
+    const l = filter(list, (one) => {
+      const { nodeId } = {
+        nodeId: '',
+        ...one,
+      };
+
+      return toString(nodeId) === o;
+    });
+
+    return {
+      nodeId: o,
+      count: l.length,
+      items: l,
+    };
+  });
+}
+
 export function adjustConfigureList({
   generalConfig,
   configureList,
@@ -727,22 +761,12 @@ export function buildRowCell({
             return nodeId;
           },
           getContentAction: () => {
-            const {
-              note = '',
-              signet = '',
-              time = '',
-            } = {
-              note: '',
-              signet: '',
-              time: '',
+            const { items = [] } = {
+              items: [],
               ...d,
             };
 
-            return {
-              note,
-              signet,
-              time,
-            };
+            return items;
           },
         });
 
@@ -1008,7 +1032,27 @@ export function getValueDisplayModeText(valueDisplayMode) {
 export function transferNodeList(approveList, allApproveProcessList) {
   let nodeList = [];
 
-  const approveListAdjust = isArray(approveList) ? approveList : [];
+  const approveListAdjust = adjustApproveList(
+    (isArray(approveList) ? approveList : []).map((o) => {
+      const { nodeId, title, note, name, signet, time } = {
+        title: '',
+        note: '',
+        name: '',
+        signet: '',
+        time: '',
+        ...o,
+      };
+
+      return {
+        nodeId,
+        title,
+        note,
+        name,
+        signet,
+        time,
+      };
+    }),
+  );
   const allApproveProcessListAdjust = isArray(allApproveProcessList)
     ? allApproveProcessList
     : [];
@@ -1045,27 +1089,7 @@ export function transferNodeList(approveList, allApproveProcessList) {
     }
   }
 
-  const nodeListAdjust = nodeList.map((o) => {
-    const { nodeId, title, note, name, signet, time } = {
-      title: '',
-      note: '',
-      name: '',
-      signet: '',
-      time: '',
-      ...o,
-    };
-
-    return {
-      nodeId,
-      title,
-      note,
-      name,
-      signet,
-      time,
-    };
-  });
-
-  return nodeListAdjust;
+  return nodeList;
 }
 
 export function getFontFamilyName(fontFamily) {
