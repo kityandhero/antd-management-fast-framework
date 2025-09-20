@@ -53,6 +53,7 @@ export const currencyDisplayStyle = {
 export const valueDisplayModeCollection = {
   text: 'text',
   money: 'money',
+  table: 'table',
   apply: 'apply',
   attention: 'attention',
   approval: 'approval',

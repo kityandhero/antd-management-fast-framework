@@ -5,4 +5,5 @@ export * from './CellBase';
 export * from './CellEnum';
 export * from './CellMoney';
 export * from './CellRemark';
+export * from './CellTable';
 export * from './CellText';

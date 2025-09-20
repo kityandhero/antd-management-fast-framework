@@ -116,6 +116,7 @@ function analysisTarget({
     textAlign: textAlignLabel,
     enumList,
     textColor: labelColor,
+    extraData,
   };
 
   const {
@@ -162,6 +163,7 @@ function analysisTarget({
     textAlign: textAlignValue,
     enumList,
     textColor: '#000',
+    extraData,
   };
 
   return {
@@ -432,6 +434,12 @@ export function adjustTarget({
       spanColumn: '1',
     },
   };
+
+  const { type, items } = target;
+
+  if (type === 'array' && isArray(items) && !isEmptyArray(items)) {
+    o.valueDisplayMode = valueDisplayModeCollection.table;
+  }
 
   if (isEmptyArray(filterList)) {
     return filterItemData(o);

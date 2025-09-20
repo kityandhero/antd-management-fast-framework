@@ -30,6 +30,7 @@ import {
   CellEnum,
   CellMoney,
   CellRemark,
+  CellTable,
   CellText,
 } from './Cells';
 import {
@@ -507,6 +508,8 @@ class DocumentContent extends PureComponent {
                           spanColumn={spanColumn}
                           textAlign={textAlign}
                           textColor={textColor}
+                          border={borderWidth}
+                          borderColor={gridColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -532,6 +535,8 @@ class DocumentContent extends PureComponent {
                           spanColumn={spanColumn}
                           textAlign={textAlign}
                           textColor={textColor}
+                          border={borderWidth}
+                          borderColor={gridColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -557,6 +562,35 @@ class DocumentContent extends PureComponent {
                           spanColumn={spanColumn}
                           textAlign={textAlign}
                           textColor={textColor}
+                          border={borderWidth}
+                          borderColor={gridColor}
+                          onClick={(o) => {
+                            this.onCellClick(o);
+                          }}
+                          onConfigChange={this.onConfigChange}
+                        />
+                      );
+                    }
+
+                    if (valueDisplayMode === valueDisplayModeCollection.table) {
+                      return (
+                        <CellTable
+                          key={`tr_${index}_td_${indexCell}`}
+                          uniqueTag={uniqueTag}
+                          width={widthAdjust}
+                          highlighTag={currentHighlighTag}
+                          content={content}
+                          data={one || {}}
+                          highlightMode={highlightMode}
+                          enumList={enumList}
+                          valueDisplayMode={valueDisplayMode}
+                          designMode={designMode || false}
+                          spanRow={spanRow}
+                          spanColumn={spanColumn}
+                          textAlign={textAlign}
+                          textColor={textColor}
+                          border={borderWidth}
+                          borderColor={gridColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -583,6 +617,8 @@ class DocumentContent extends PureComponent {
                           spanColumn={spanColumn}
                           textAlign={textAlign}
                           textColor={textColor}
+                          border={borderWidth}
+                          borderColor={gridColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -611,6 +647,8 @@ class DocumentContent extends PureComponent {
                           spanColumn={spanColumn}
                           textAlign={textAlign}
                           textColor={textColor}
+                          border={borderWidth}
+                          borderColor={gridColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -640,6 +678,8 @@ class DocumentContent extends PureComponent {
                           spanColumn={spanColumn}
                           textAlign={textAlign}
                           textColor={textColor}
+                          border={borderWidth}
+                          borderColor={gridColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
@@ -667,6 +707,8 @@ class DocumentContent extends PureComponent {
                           spanColumn={spanColumn}
                           textAlign={textAlign}
                           textColor={textColor}
+                          border={borderWidth}
+                          borderColor={gridColor}
                           onClick={(o) => {
                             this.onCellClick(o);
                           }}
