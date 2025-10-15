@@ -210,6 +210,7 @@ class CellTable extends CellBase {
               })}
             </tr>
           </thead>
+
           <tbody>
             {buildRowList(listAdjust, itemsAdjust, {
               rowCount,
