@@ -1753,8 +1753,8 @@ class Base extends AuthorizationWrapper {
     }
 
     return buildListViewItemInnerWithDropdownButton({
-      ...listViewItemInnerConfig,
       extra: this.establishListItemDropdownConfig(item),
+      ...listViewItemInnerConfig,
       layout: listViewItemLayout,
     });
   };
