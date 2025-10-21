@@ -693,7 +693,12 @@ export function buildListViewItemInner({
   const descriptionListAdjust = (
     isArray(descriptionList) ? descriptionList : []
   ).map((o) => {
-    const { label, text, color, extra } = {
+    const {
+      label: labelItem,
+      text: textItem,
+      color,
+      extra: extraItem,
+    } = {
       label: '',
       text: '',
       extra: null,
@@ -701,7 +706,12 @@ export function buildListViewItemInner({
       ...o,
     };
 
-    return { label, text, color: color || '', extra };
+    return {
+      label: labelItem,
+      text: textItem,
+      color: color || '',
+      extra: extraItem,
+    };
   });
 
   if (layout === 'vertical') {
@@ -730,7 +740,12 @@ export function buildListViewItemInner({
           description={
             <>
               {descriptionListAdjust.map((o, index) => {
-                const { label, text, color, extra } = o;
+                const {
+                  label: labelItem,
+                  text: textItem,
+                  color: colorItem,
+                  extra: extraItem,
+                } = o;
 
                 return (
                   <div key={`description_${index}`}>
@@ -739,16 +754,16 @@ export function buildListViewItemInner({
                       left={
                         <ColorText
                           multiLine
-                          textPrefix={label}
-                          text={text}
-                          color={color}
+                          textPrefix={labelItem}
+                          text={textItem}
+                          color={colorItem}
                           separatorStyle={{
                             paddingLeft: '3px',
                             paddingRight: '5px',
                           }}
                         />
                       }
-                      right={extra}
+                      right={extraItem}
                     />
                   </div>
                 );
@@ -789,7 +804,12 @@ export function buildListViewItemInner({
         description={
           <>
             {descriptionListAdjust.map((o, index) => {
-              const { label, text, color, extra } = o;
+              const {
+                label: labelItem,
+                text: textItem,
+                color: colorItem,
+                extra: extraItem,
+              } = o;
 
               return (
                 <div key={`description_${index}`}>
@@ -798,16 +818,16 @@ export function buildListViewItemInner({
                     left={
                       <ColorText
                         multiLine
-                        textPrefix={label}
-                        text={text}
-                        color={color}
+                        textPrefix={labelItem}
+                        text={textItem}
+                        color={colorItem}
                         separatorStyle={{
                           paddingLeft: '3px',
                           paddingRight: '5px',
                         }}
                       />
                     }
-                    right={extra}
+                    right={extraItem}
                   />
                 </div>
               );
