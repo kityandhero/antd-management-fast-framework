@@ -157,7 +157,11 @@ class PageWrapper extends PureComponent {
                     paddingBottom: '7px',
                     borderBottom: '1px solid #f1f1f1',
                   }}
-                  left={<div>{originBreadcrumb}</div>}
+                  left={
+                    <div className="antd-management-fast-breadcrumb">
+                      {originBreadcrumb}
+                    </div>
+                  }
                   right={
                     useShortcutNavigation == false ||
                     shortcutNavigation == null ? null : (
@@ -168,7 +172,11 @@ class PageWrapper extends PureComponent {
                           <FlexBox
                             flexAuto="left"
                             left={<div></div>}
-                            right={<div>{shortcutNavigation}</div>}
+                            right={
+                              <div className="antd-management-fast-shortcutNavigation">
+                                {shortcutNavigation}
+                              </div>
+                            }
                           />
                         }
                       />
