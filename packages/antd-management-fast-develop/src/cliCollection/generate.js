@@ -76,6 +76,19 @@ exports.run = function (s, o) {
           coverFile: true,
         },
       );
+    } else {
+      writeFileSync(
+        `${relativeFolder}/${folderName}/index.jsx`,
+        `/**
+ * 占位函数
+ */
+export function empty${folderName}() {
+  return null;
+}`,
+        {
+          coverFile: true,
+        },
+      );
     }
 
     const cmdEslint = `npx eslint --fix --cache --ext .js,.jsx,.ts,.tsx ${relativeFolder}/`;
