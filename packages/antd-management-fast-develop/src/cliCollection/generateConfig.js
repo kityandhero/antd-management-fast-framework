@@ -54,14 +54,6 @@ exports.run = function (s, o) {
   if (crateFileSuccess) {
     promptLine();
 
-    const cmdEslint = `npx eslint --fix --cache --ext .js,.jsx,.ts,.tsx ./`;
-
-    promptInfo(`Eslint generated file: "${cmdEslint}".`);
-
-    exec(cmdEslint);
-
-    promptLine();
-
     const cmdFormat = `npx prettier --cache --write ./`;
 
     promptInfo(`Format generated file: "${cmdFormat}".`);
