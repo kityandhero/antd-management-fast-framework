@@ -1,0 +1,18 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/Common",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "fileName": "data.js",
+      "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleTwo/Common",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "fileName": "data.js",
+      "coverFile": false
+    }
+  ]
+}

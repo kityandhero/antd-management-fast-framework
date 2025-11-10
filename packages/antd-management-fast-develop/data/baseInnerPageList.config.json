@@ -1,0 +1,18 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/BaseInnerPageList",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleTwo/BaseInnerPageList",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
+}

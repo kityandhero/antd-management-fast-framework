@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/ChangeImageModal",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "visibleFlag": "4af2b8d1e313476398179230e285a1d0",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleTwo/ChangeImageModal",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "visibleFlag": "3e9fff5bd6ad4b75aa0f3224e167be71",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
+}

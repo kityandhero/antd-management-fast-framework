@@ -1,0 +1,18 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/Assist",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "fileName": "action.js",
+      "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleTwo/Assist",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "fileName": "action.js",
+      "coverFile": false
+    }
+  ]
+}

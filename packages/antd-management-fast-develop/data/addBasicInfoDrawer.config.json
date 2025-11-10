@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/AddBasicInfoDrawer",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "visibleFlag": "a189d0df47b749a38940a137869d1d8a",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleTwo/AddBasicInfoDrawer",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "visibleFlag": "3427a21e36494042b05f5e5326c7f854",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
+}

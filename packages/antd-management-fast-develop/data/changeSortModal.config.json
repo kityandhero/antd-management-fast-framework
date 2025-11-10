@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/ChangeSortModal",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "visibleFlag": "22028155962f4497a992975c73aabb16",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleTwo/ChangeSortModal",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "visibleFlag": "791b3edbefde48cb95dbd466dd32a976",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
+}

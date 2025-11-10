@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/Edit",
+      "name": "SimpleOne",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleTwo/Edit",
+      "name": "SimpleTwo",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
+}

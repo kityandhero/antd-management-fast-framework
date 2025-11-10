@@ -8,6 +8,7 @@ const { Command } = require('commander');
 const { getArgCollection } = require('easy-soft-develop');
 
 const generator = require('../src/cliCollection/generate');
+const generateConfig = require('../src/cliCollection/generateConfig');
 const templateGenerator = require('../src/cliCollection/generateTemplate');
 
 const program = new Command();
@@ -27,6 +28,14 @@ program
   )
   .action((a, o) => {
     generator.run(a, o);
+  });
+
+program
+  .command('generateConfig')
+  .description('generate config file')
+  .option('--dataPath <string>', 'data json source file path')
+  .action((a, o) => {
+    generateConfig.run(a, o);
   });
 
 program

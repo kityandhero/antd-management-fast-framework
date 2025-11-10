@@ -51,7 +51,7 @@ function adjustSource(o) {
 
     promptEmptyLine();
 
-    throw new Error('data has not key "functionSegment"');
+    throw new Error('data has not key "folder"');
   }
 
   return d;

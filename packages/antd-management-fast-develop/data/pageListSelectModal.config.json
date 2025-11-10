@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/PageListSelectModal",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "visibleFlag": "78828f38d966480a99dfaf55913916c8",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleTwo/PageListSelectModal",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "visibleFlag": "cf755c8c91f945e69c0f2d5e16be69b4",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
+}

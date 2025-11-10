@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/PageListDrawer",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "visibleFlag": "3fd4fabef7674516ba682815d005fab3",
+      "fileName": "index.jsx",
+      "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleTwo/PageListDrawer",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "visibleFlag": "a4d0b0dfb36b4913bf885e903622fb3d",
+      "fileName": "index.jsx",
+      "coverFile": false
+    }
+  ]
+}

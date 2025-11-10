@@ -1,0 +1,18 @@
+{
+  "list": [
+    {
+      "folder": "custom/SimpleOne/Edit/OperateLog/PageList",
+      "model": "simpleOne",
+      "key": "simpleOneId",
+      "fileName": "index.jsx",
+      "coverFile": true
+    },
+    {
+      "folder": "custom/SimpleTwo/Edit/OperateLog/PageList",
+      "model": "simpleTwo",
+      "key": "simpleTwoId",
+      "fileName": "index.jsx",
+      "coverFile": true
+    }
+  ]
+}

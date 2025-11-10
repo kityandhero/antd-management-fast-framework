@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.1.163",
+  "version": "1.1.164",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -22,6 +22,7 @@
     "publish:npm": "npm publish --registry https://registry.npmjs.org/",
     "test:ejs:generate": "node ./bin/cli.js generate --dataPath ./src/data.json --dataExtraPath ./src/data.extra.json",
     "test:ejs:generateByTemplate": "node ./bin/cli.js generateByTemplate --dataPath ./data/generateByTemplate.data.json --templatePath ./data/generateByTemplate.template.ejs --relativeFolder ./temp",
+    "test:ejs:generateConfig": "node ./bin/cli.js generateConfig --dataPath ./data/testGenerateConfig.config.json",
     "z:auto:adjust:file": "echo can exec some file adjust command with here",
     "z:jsdoc:clear": "npx easy-soft-develop rimraf --path ./docs",
     "prez:jsdoc:generate": "npm run z:jsdoc:clear",
@@ -55,7 +56,8 @@
     "commander": "^14.0.2",
     "ejs": "^3.1.10",
     "rimraf": "^6.1.0",
-    "umi": "^4.5.3"
+    "umi": "^4.5.3",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
