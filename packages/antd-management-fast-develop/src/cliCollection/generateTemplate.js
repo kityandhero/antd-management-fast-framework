@@ -62,13 +62,13 @@ exports.run = function (s, o) {
   }
 
   if (crateFileSuccess) {
-    promptLine();
+    // promptLine();
 
-    const cmdEslint = `npx eslint --fix --cache --ext .js,.jsx,.ts,.tsx ${relativeFolder}/`;
+    // const cmdEslint = `npx eslint --fix --cache --ext .js,.jsx,.ts,.tsx ${relativeFolder}/`;
 
-    promptInfo(`Eslint generated file: "${cmdEslint}".`);
+    // promptInfo(`Eslint generated file: "${cmdEslint}".`);
 
-    exec(cmdEslint);
+    // exec(cmdEslint);
 
     promptLine();
 
