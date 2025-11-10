@@ -82,7 +82,7 @@ exports.run = function (s, o) {
         `/**
  * 占位函数
  */
-export function empty${folderName}() {
+export function Pure${folderName}Placeholder() {
   return null;
 }`,
         {
