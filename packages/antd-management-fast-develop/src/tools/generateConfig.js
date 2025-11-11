@@ -59,6 +59,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/AddBasicInfoDrawer`,
+        name: folder,
         model: model,
         key: key,
         visibleFlag: uuid.v4().replaceAll('-', ''),
@@ -84,6 +85,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/Assist`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'action.js',
@@ -108,6 +110,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/Assist`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'config.js',
@@ -132,6 +135,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/Assist`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'tools.js',
@@ -156,6 +160,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/Common`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'data.js',
@@ -180,6 +185,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/ChangeImageModal`,
+        name: folder,
         model: model,
         key: key,
         visibleFlag: uuid.v4().replaceAll('-', ''),
@@ -205,6 +211,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/ChangeSortModal`,
+        name: folder,
         model: model,
         key: key,
         visibleFlag: uuid.v4().replaceAll('-', ''),
@@ -230,6 +237,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/Edit/BasicInfo`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'index.jsx',
@@ -279,6 +287,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/OperateLogDrawer`,
+        name: folder,
         model: model,
         key: key,
         visibleFlag: uuid.v4().replaceAll('-', ''),
@@ -304,6 +313,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/Edit/OperateLog/PageList`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'index.jsx',
@@ -328,6 +338,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/PageList`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'index.jsx',
@@ -352,6 +363,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/PageListDrawer`,
+        name: folder,
         model: model,
         key: key,
         visibleFlag: uuid.v4().replaceAll('-', ''),
@@ -377,6 +389,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/BaseInnerPageList`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'index.jsx',
@@ -401,6 +414,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/PageListSelectDrawer`,
+        name: folder,
         model: model,
         key: key,
         visibleFlag: uuid.v4().replaceAll('-', ''),
@@ -426,6 +440,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/PageListSelectModal`,
+        name: folder,
         model: model,
         key: key,
         visibleFlag: uuid.v4().replaceAll('-', ''),
@@ -451,6 +466,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/PageListSelectActionDrawer`,
+        name: folder,
         model: model,
         key: key,
         visibleFlag: uuid.v4().replaceAll('-', ''),
@@ -476,6 +492,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/SelectDrawerField`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'index.jsx',
@@ -500,6 +517,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/SelectModalField`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'index.jsx',
@@ -524,6 +542,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/TabPageBase`,
+        name: folder,
         model: model,
         key: key,
         fileName: 'index.jsx',
@@ -548,6 +567,7 @@ function generateAddBasicInfoDrawerConfig(list, mainFolder, path) {
     buildCallback: ({ mainFolder, folder, model, key }) => {
       return {
         folder: `${mainFolder}/${folder}/UpdateBasicInfoDrawer`,
+        name: folder,
         model: model,
         key: key,
         visibleFlag: uuid.v4().replaceAll('-', ''),
