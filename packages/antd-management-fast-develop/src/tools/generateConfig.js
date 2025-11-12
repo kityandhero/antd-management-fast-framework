@@ -657,8 +657,6 @@ function generateConfigCore({
         ...first,
       };
 
-      console.log({ filePath, listOriginal, listOriginalFilter });
-
       if (!checkStringIsEmpty(visibleFlagAdjust)) {
         data.visibleFlag = visibleFlagAdjust;
       }
