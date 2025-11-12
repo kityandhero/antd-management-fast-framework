@@ -52,6 +52,32 @@
       "selectDrawerField": true,
       "selectModalField": true,
       "updateBasicInfoDrawer": true
+    },
+    {
+      "folder": "SimpleThree",
+      "model": "simpleThree",
+      "key": "simpleThreeId",
+      "action": true,
+      "config": true,
+      "tools": true,
+      "data": true,
+      "addBasicInfoDrawer": true,
+      "changeImageModal": false,
+      "changeSortModal": false,
+      "tabPageBase": false,
+      "edit": false,
+      "basicInfo": false,
+      "operateLogDrawer": false,
+      "operateLogInnerPageList": false,
+      "pageList": false,
+      "pageListDrawer": false,
+      "baseInnerPageList": false,
+      "pageListSelectDrawer": false,
+      "pageListSelectModal": false,
+      "pageListSelectActionDrawer": false,
+      "selectDrawerField": false,
+      "selectModalField": false,
+      "updateBasicInfoDrawer": false
     }
   ]
 }

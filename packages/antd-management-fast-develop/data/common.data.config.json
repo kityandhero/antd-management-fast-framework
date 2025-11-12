@@ -15,6 +15,14 @@
       "key": "simpleTwoId",
       "fileName": "data.js",
       "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleThree/Common",
+      "name": "SimpleThree",
+      "model": "simpleThree",
+      "key": "simpleThreeId",
+      "fileName": "data.js",
+      "coverFile": false
     }
   ]
 }

@@ -17,6 +17,15 @@
       "visibleFlag": "3427a21e36494042b05f5e5326c7f854",
       "fileName": "index.jsx",
       "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleThree/AddBasicInfoDrawer",
+      "name": "SimpleThree",
+      "model": "simpleThree",
+      "key": "simpleThreeId",
+      "visibleFlag": "faf9943b4faa4c52b59640ecb144ebf9",
+      "fileName": "index.jsx",
+      "coverFile": false
     }
   ]
 }

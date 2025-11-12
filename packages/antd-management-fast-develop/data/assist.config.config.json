@@ -15,6 +15,14 @@
       "key": "simpleTwoId",
       "fileName": "config.js",
       "coverFile": false
+    },
+    {
+      "folder": "custom/SimpleThree/Assist",
+      "name": "SimpleThree",
+      "model": "simpleThree",
+      "key": "simpleThreeId",
+      "fileName": "config.js",
+      "coverFile": false
     }
   ]
 }
