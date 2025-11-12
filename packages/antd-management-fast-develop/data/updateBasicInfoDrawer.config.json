@@ -2,6 +2,7 @@
   "list": [
     {
       "folder": "custom/SimpleOne/UpdateBasicInfoDrawer",
+      "name": "SimpleOne",
       "model": "simpleOne",
       "key": "simpleOneId",
       "visibleFlag": "640ad3c36c0c463ca7fd93af877989b0",
@@ -10,6 +11,7 @@
     },
     {
       "folder": "custom/SimpleTwo/UpdateBasicInfoDrawer",
+      "name": "SimpleTwo",
       "model": "simpleTwo",
       "key": "simpleTwoId",
       "visibleFlag": "b7b7c1e2460842baa077fb5adb48e9d4",

@@ -2,6 +2,7 @@
   "list": [
     {
       "folder": "custom/SimpleOne/TabPageBase",
+      "name": "SimpleOne",
       "model": "simpleOne",
       "key": "simpleOneId",
       "fileName": "index.jsx",
@@ -9,6 +10,7 @@
     },
     {
       "folder": "custom/SimpleTwo/TabPageBase",
+      "name": "SimpleTwo",
       "model": "simpleTwo",
       "key": "simpleTwoId",
       "fileName": "index.jsx",

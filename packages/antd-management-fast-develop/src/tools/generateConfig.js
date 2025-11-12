@@ -7,7 +7,9 @@ const {
   promptSuccess,
   promptWarn,
   promptEmptyLine,
+  readJsonFileSync,
   writeJsonFileSync,
+  checkStringIsEmpty,
 } = require('easy-soft-develop');
 
 const configDefined = {
@@ -590,6 +592,22 @@ function generateConfigCore({
 }) {
   const listResult = [];
 
+  const filePath = `${path}/../${fileName}`;
+
+  let listOriginal = [];
+
+  try {
+    let dataSource = readJsonFileSync(filePath);
+
+    if (Array.isArray(dataSource.list)) {
+      listOriginal = dataSource.list;
+    }
+  } catch (error_) {
+    // ignore
+
+    console.log(error_);
+  }
+
   for (const o of list) {
     const judgeResult = judgeCallback(o);
 
@@ -599,21 +617,61 @@ function generateConfigCore({
 
     const { folder, model, key } = o;
 
-    listResult.push(
-      buildCallback({
-        mainFolder,
-        folder,
-        model,
-        key,
-      }),
-    );
+    const data = buildCallback({
+      mainFolder,
+      folder,
+      model,
+      key,
+    });
+
+    const { folder: folderAdjust, fileName: fileNameAdjust } = {
+      folder: '',
+      fileName: '',
+      ...data,
+    };
+
+    const listOriginalFilter = [];
+
+    for (const one of listOriginal) {
+      const { folder: folderItem, fileName: fileNameItem } = {
+        folder: '',
+        fileName: '',
+        ...one,
+      };
+
+      if (
+        !checkStringIsEmpty(folderItem) &&
+        !checkStringIsEmpty(fileNameItem) &&
+        folderItem === folderAdjust &&
+        fileNameItem === fileNameAdjust
+      ) {
+        listOriginalFilter.push(one);
+      }
+    }
+
+    if (listOriginalFilter.length > 0) {
+      const first = listOriginalFilter[0];
+
+      const { visibleFlag: visibleFlagAdjust } = {
+        visibleFlag: '',
+        ...first,
+      };
+
+      console.log({ filePath, listOriginal, listOriginalFilter });
+
+      if (!checkStringIsEmpty(visibleFlagAdjust)) {
+        data.visibleFlag = visibleFlagAdjust;
+      }
+    }
+
+    listResult.push(data);
   }
 
   const result = {};
 
   result.list = listResult;
 
-  writeJsonFileSync(`${path}/../${fileName}`, result, {
+  writeJsonFileSync(filePath, result, {
     coverFile: true,
   });
 

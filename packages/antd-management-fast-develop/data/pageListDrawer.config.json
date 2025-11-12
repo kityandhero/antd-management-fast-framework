@@ -2,6 +2,7 @@
   "list": [
     {
       "folder": "custom/SimpleOne/PageListDrawer",
+      "name": "SimpleOne",
       "model": "simpleOne",
       "key": "simpleOneId",
       "visibleFlag": "3fd4fabef7674516ba682815d005fab3",
@@ -10,6 +11,7 @@
     },
     {
       "folder": "custom/SimpleTwo/PageListDrawer",
+      "name": "SimpleTwo",
       "model": "simpleTwo",
       "key": "simpleTwoId",
       "visibleFlag": "a4d0b0dfb36b4913bf885e903622fb3d",

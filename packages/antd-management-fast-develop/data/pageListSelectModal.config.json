@@ -2,6 +2,7 @@
   "list": [
     {
       "folder": "custom/SimpleOne/PageListSelectModal",
+      "name": "SimpleOne",
       "model": "simpleOne",
       "key": "simpleOneId",
       "visibleFlag": "78828f38d966480a99dfaf55913916c8",
@@ -10,6 +11,7 @@
     },
     {
       "folder": "custom/SimpleTwo/PageListSelectModal",
+      "name": "SimpleTwo",
       "model": "simpleTwo",
       "key": "simpleTwoId",
       "visibleFlag": "cf755c8c91f945e69c0f2d5e16be69b4",

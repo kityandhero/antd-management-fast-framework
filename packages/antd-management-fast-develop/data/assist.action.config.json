@@ -2,6 +2,7 @@
   "list": [
     {
       "folder": "custom/SimpleOne/Assist",
+      "name": "SimpleOne",
       "model": "simpleOne",
       "key": "simpleOneId",
       "fileName": "action.js",
@@ -9,6 +10,7 @@
     },
     {
       "folder": "custom/SimpleTwo/Assist",
+      "name": "SimpleTwo",
       "model": "simpleTwo",
       "key": "simpleTwoId",
       "fileName": "action.js",
