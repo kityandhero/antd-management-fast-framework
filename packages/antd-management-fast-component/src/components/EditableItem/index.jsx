@@ -42,11 +42,13 @@ class EditableItem extends PureComponent {
               onChange={this.handleChange}
               onPressEnter={this.check}
             />
+
             <CheckOutlined className={styles.icon} onClick={this.check} />
           </div>
         ) : (
           <div className={styles.wrapper}>
             <span>{value || ' '}</span>
+
             <EditOutlined className={styles.icon} onClick={this.edit} />
           </div>
         )}

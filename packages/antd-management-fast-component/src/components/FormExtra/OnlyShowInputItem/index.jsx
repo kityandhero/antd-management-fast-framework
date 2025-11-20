@@ -21,6 +21,7 @@ class OnlyShowInputItem extends PureComponent {
       innerProps: innerProperties = { disabled: true },
       formItemLayout = {},
       hidden = false,
+      required = false,
       addonBefore = null,
       addonBeforeStyle = null,
       addonAfter = null,
@@ -30,7 +31,6 @@ class OnlyShowInputItem extends PureComponent {
     const title = label;
 
     const otherInputProperties = {
-      addonBefore: icon,
       placeholder: '暂无数据',
       value: checkStringIsNullOrWhiteSpace(value || '') ? '' : value,
       ...innerProperties,
@@ -53,11 +53,12 @@ class OnlyShowInputItem extends PureComponent {
         }
         rules={[
           {
-            required: false,
+            required,
             message: buildFieldDescription(resultCheck.label),
           },
         ]}
         hidden={hidden}
+        icon={icon}
         addonBefore={addonBefore}
         addonBeforeStyle={addonBeforeStyle}
         addonAfter={addonAfter}
@@ -77,6 +78,7 @@ OnlyShowInputItem.defaultProps = {
   innerProps: { disabled: true },
   formItemLayout: {},
   hidden: false,
+  required: false,
   addonBefore: null,
   addonBeforeStyle: null,
   addonAfter: null,

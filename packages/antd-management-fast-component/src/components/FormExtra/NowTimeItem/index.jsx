@@ -58,6 +58,7 @@ class NowTimeItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        icon={iconBuilder.form()}
         addonBefore={addonBefore}
         addonBeforeStyle={addonBeforeStyle}
         addonAfter={addonAfter}
@@ -68,7 +69,6 @@ class NowTimeItem extends PureComponent {
             data: new Date(),
             format: datetimeFormat.yearMonthDayHourMinute,
           })}
-          addonBefore={iconBuilder.form()}
           disabled
           placeholder={buildFieldDescription(resultCheck.label)}
         />

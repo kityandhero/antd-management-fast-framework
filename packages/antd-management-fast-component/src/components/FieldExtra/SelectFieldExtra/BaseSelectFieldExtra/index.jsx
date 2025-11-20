@@ -1,4 +1,4 @@
-import { Button, Divider } from 'antd';
+import { Button, Space, Tooltip } from 'antd';
 import React from 'react';
 
 import {
@@ -92,6 +92,7 @@ class BaseSelectFieldExtra extends BaseComponent {
       placeholder,
       formItemLayout,
       showClear,
+      required,
     } = this.props;
     const { selectData } = this.state;
 
@@ -107,54 +108,31 @@ class BaseSelectFieldExtra extends BaseComponent {
         value={v}
         helper={helper || null}
         icon={iconBuilder.form()}
+        required={required || false}
         innerProps={{
           placeholder: placeholder || buildFieldDescription(label, '选择'),
           readOnly: true,
-          addonAfter: (
-            <>
-              <Button
-                style={{
-                  border: '0px solid #d9d9d9',
-                  backgroundColor: '#fafafa',
-                  height: '30px',
-                  paddingLeft: 0,
-                  paddingRight: 0,
-                }}
-                title={buildFieldDescription(label, '选择')}
-                onClick={(event) => this.showSelect(event)}
-              >
-                {iconBuilder.search()}
-              </Button>
-
-              {showClear ? (
-                <Divider
-                  type="vertical"
-                  style={{
-                    paddingLeft: 2,
-                    paddingRight: 2,
-                  }}
-                />
-              ) : null}
-
-              {showClear ? (
-                <Button
-                  style={{
-                    border: '0px solid #d9d9d9',
-                    backgroundColor: '#fafafa',
-                    height: '30px',
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                  }}
-                  disabled={selectData == null}
-                  title="清除选择"
-                  onClick={() => this.clearSelect()}
-                >
-                  {iconBuilder.closeCircle()}
-                </Button>
-              ) : null}
-            </>
-          ),
         }}
+        addonAfter={
+          <Space.Compact block>
+            <Tooltip title={buildFieldDescription(label, '选择')}>
+              <Button
+                icon={iconBuilder.search()}
+                onClick={(event) => this.showSelect(event)}
+              />
+            </Tooltip>
+
+            {showClear ? (
+              <Tooltip title="清除选择">
+                <Button
+                  disabled={selectData == null}
+                  icon={iconBuilder.closeCircle()}
+                  onClick={() => this.clearSelect()}
+                />
+              </Tooltip>
+            ) : null}
+          </Space.Compact>
+        }
         formItemLayout={formItemLayout}
       />
     );

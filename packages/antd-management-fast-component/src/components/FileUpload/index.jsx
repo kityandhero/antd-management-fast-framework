@@ -342,13 +342,13 @@ class FileUpload extends PureComponent {
 
     return (
       <>
-        <Input
-          disabled
-          addonBefore={iconBuilder.link()}
-          addonAfter={addonAfter}
-          value={fileUrl}
-          placeholder="当前未设置文件地址"
-        />
+        <Space.Compact block>
+          <Space.Addon>{iconBuilder.link()}</Space.Addon>
+
+          <Input disabled value={fileUrl} placeholder="当前未设置文件地址" />
+
+          <Space.Addon>{addonAfter}</Space.Addon>
+        </Space.Compact>
 
         <Modal
           title={

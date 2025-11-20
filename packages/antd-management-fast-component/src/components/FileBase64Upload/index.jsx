@@ -1,4 +1,4 @@
-import { Button, Input, Upload } from 'antd';
+import { Button, Input, Space, Upload } from 'antd';
 import React, { PureComponent } from 'react';
 
 import {
@@ -103,32 +103,34 @@ class FileBase64Upload extends PureComponent {
     };
 
     return (
-      <Input
-        readOnly
-        addonBefore={iconBuilder.file()}
-        placeholder={`请选择上传${uploadText || '文件'}`}
-        value={base64}
-        addonAfter={
-          <>
-            <Upload {...uploadProperties}>
-              <Button
-                style={{
-                  border: '0px solid #d9d9d9',
-                  backgroundColor: '#fafafa',
-                  height: '30px',
-                  paddingLeft: 0,
-                  paddingRight: 0,
-                }}
-                disabled={uploading}
-                title={`选择${uploadText || '文件'}`}
-              >
-                {uploading ? iconBuilder.loading() : iconBuilder.upload()}
-                {uploading ? '正在上传' : `选择${uploadText || '文件'}`}
-              </Button>
-            </Upload>
-          </>
-        }
-      />
+      <Space.Compact>
+        <Space.Addon>{iconBuilder.file()}</Space.Addon>
+
+        <Input
+          readOnly
+          placeholder={`请选择上传${uploadText || '文件'}`}
+          value={base64}
+        />
+
+        <Space.Addon>
+          <Upload {...uploadProperties}>
+            <Button
+              style={{
+                border: '0px solid #d9d9d9',
+                backgroundColor: '#fafafa',
+                height: '30px',
+                paddingLeft: 0,
+                paddingRight: 0,
+              }}
+              disabled={uploading}
+              title={`选择${uploadText || '文件'}`}
+            >
+              {uploading ? iconBuilder.loading() : iconBuilder.upload()}
+              {uploading ? '正在上传' : `选择${uploadText || '文件'}`}
+            </Button>
+          </Upload>
+        </Space.Addon>
+      </Space.Compact>
     );
   }
 }

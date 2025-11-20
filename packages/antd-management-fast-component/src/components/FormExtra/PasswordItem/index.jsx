@@ -31,7 +31,6 @@ class PasswordItem extends PureComponent {
     } = this.props;
 
     const otherInnerProperties = {
-      addonBefore: icon,
       placeholder: buildFieldDescription(label, '输入'),
       ...innerProperties,
     };
@@ -59,6 +58,7 @@ class PasswordItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        icon={icon}
         addonBefore={addonBefore}
         addonBeforeStyle={addonBeforeStyle}
         addonAfter={addonAfter}

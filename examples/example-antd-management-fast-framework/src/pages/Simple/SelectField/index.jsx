@@ -1,5 +1,3 @@
-import { connect } from 'easy-soft-dva';
-
 import { FieldExtra } from 'antd-management-fast-component';
 
 import PageListDrawer from '../PageListDrawer';
@@ -8,10 +6,6 @@ const {
   SelectFieldExtra: { BaseSelectFieldExtra },
 } = FieldExtra;
 
-@connect(({ simple, schedulingControl }) => ({
-  simple,
-  schedulingControl,
-}))
 class SelectField extends BaseSelectFieldExtra {
   selectValueText = (data) => {
     const { title } = {

@@ -1,5 +1,20 @@
 # antd-management-fast-formily
 
+## 1.0.162
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-component@2.7.67
+
+## 1.0.161
+
+### Patch Changes
+
+- Updated dependencies
+  - antd-management-fast-component@2.7.66
+
 ## 1.0.160
 
 ### Patch Changes

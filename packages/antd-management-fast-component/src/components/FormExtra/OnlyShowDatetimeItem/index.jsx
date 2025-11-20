@@ -52,13 +52,13 @@ class OnlyShowDatetimeItem extends PureComponent {
             : buildFieldHelper(resultCheck.helper)
         }
         hidden={hidden}
+        icon={iconBuilder.form()}
         addonBefore={addonBefore}
         addonBeforeStyle={addonBeforeStyle}
         addonAfter={addonAfter}
         addonAfterStyle={addonAfterStyle}
       >
         <Input
-          addonBefore={iconBuilder.form()}
           disabled
           placeholder={buildFieldDescription(resultCheck.label)}
         />

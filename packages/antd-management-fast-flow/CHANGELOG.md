@@ -1,5 +1,20 @@
 # antd-management-fast-flow
 
+## 1.0.151
+
+### Patch Changes
+
+- update
+- Updated dependencies
+  - antd-management-fast-component@2.7.67
+
+## 1.0.150
+
+### Patch Changes
+
+- Updated dependencies
+  - antd-management-fast-component@2.7.66
+
 ## 1.0.149
 
 ### Patch Changes

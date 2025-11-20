@@ -1,4 +1,4 @@
-import { Input, Space } from 'antd';
+import { Input } from 'antd';
 import React, { PureComponent } from 'react';
 
 import {
@@ -46,34 +46,6 @@ class InputItem extends PureComponent {
       helper,
     });
 
-    if (icon == null) {
-      return (
-        <Item
-          {...formItemLayout}
-          label={resultCheck.label}
-          name={resultCheck.name}
-          extra={
-            checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
-              ? null
-              : buildFieldHelper(resultCheck.helper)
-          }
-          rules={[
-            {
-              required,
-              message: buildFieldDescription(resultCheck.label),
-            },
-          ]}
-          hidden={hidden}
-          addonBefore={addonBefore}
-          addonBeforeStyle={addonBeforeStyle}
-          addonAfter={addonAfter}
-          addonAfterStyle={addonAfterStyle}
-        >
-          <Input {...otherInnerProperties} />
-        </Item>
-      );
-    }
-
     return (
       <Item
         {...formItemLayout}
@@ -91,16 +63,13 @@ class InputItem extends PureComponent {
           },
         ]}
         hidden={hidden}
+        icon={icon}
         addonBefore={addonBefore}
         addonBeforeStyle={addonBeforeStyle}
         addonAfter={addonAfter}
         addonAfterStyle={addonAfterStyle}
       >
-        <Space.Compact>
-          {/* <Space.Addon>{icon}</Space.Addon> */}
-          {icon}
-          <Input {...otherInnerProperties} />
-        </Space.Compact>
+        <Input {...otherInnerProperties} />
       </Item>
     );
   }

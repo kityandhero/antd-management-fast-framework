@@ -1,4 +1,4 @@
-import { Form } from 'antd';
+import { Form, Space } from 'antd';
 import React from 'react';
 
 import { isFunction } from 'easy-soft-utility';
@@ -13,19 +13,31 @@ const { Item: FormItem } = Form;
 function renderWithAddon(
   c,
   {
+    icon = null,
     addonBefore = null,
     addonBeforeStyle = null,
     addonAfter = null,
     addonAfterStyle = null,
   },
 ) {
+  const innerAdjust =
+    icon == null ? (
+      c
+    ) : (
+      <Space.Compact block>
+        <Space.Addon>{icon}</Space.Addon>
+
+        {c}
+      </Space.Compact>
+    );
+
   const childWithAddonAfter =
     addonAfter == null ? (
-      c
+      innerAdjust
     ) : (
       <FlexBox
         flexAuto={'left'}
-        left={c}
+        left={innerAdjust}
         rightStyle={{
           paddingLeft: '10px',
           ...addonAfterStyle,
@@ -57,6 +69,7 @@ export function Item(properties) {
     hidden,
     render,
     children,
+    icon = null,
     addonBefore = null,
     addonBeforeStyle = null,
     addonAfter = null,
@@ -68,11 +81,15 @@ export function Item(properties) {
     <HiddenWrapper hidden={hidden}>
       <FormItem {...rest}>
         {React.isValidElement(children) &&
-        (isFunction(render) || addonBefore != null || addonAfter != null) ? (
+        (isFunction(render) ||
+          icon != null ||
+          addonBefore != null ||
+          addonAfter != null) ? (
           <ItemChildren
             render={(c) => {
               if (isFunction(render)) {
                 return renderWithAddon(render(c), {
+                  icon,
                   addonBefore,
                   addonBeforeStyle,
                   addonAfter,
@@ -81,6 +98,7 @@ export function Item(properties) {
               }
 
               return renderWithAddon(c, {
+                icon,
                 addonBefore,
                 addonBeforeStyle,
                 addonAfter,

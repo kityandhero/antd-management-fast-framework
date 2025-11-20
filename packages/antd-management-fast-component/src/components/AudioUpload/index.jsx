@@ -404,13 +404,13 @@ class AudioUpload extends PureComponent {
 
     return (
       <>
-        <Input
-          disabled
-          addonBefore={iconBuilder.sound()}
-          addonAfter={addonAfter}
-          value={audioUrl}
-          placeholder="当前未设置音频地址"
-        />
+        <Space.Compact block>
+          <Space.Addon>{iconBuilder.sound()}</Space.Addon>
+
+          <Input disabled value={audioUrl} placeholder="当前未设置音频地址" />
+
+          <Space.Addon>{addonAfter}</Space.Addon>
+        </Space.Compact>
 
         <Modal
           title={<IconInfo icon={iconBuilder.sound()} text="音频预览" />}

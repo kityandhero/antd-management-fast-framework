@@ -404,13 +404,13 @@ class VideoUpload extends PureComponent {
 
     return (
       <>
-        <Input
-          disabled
-          addonBefore={iconBuilder.videoCamera()}
-          addonAfter={addonAfter}
-          value={videoUrl}
-          placeholder="当前未设置视频地址"
-        />
+        <Space.Compact block>
+          <Space.Addon>{iconBuilder.sound()}</Space.Addon>
+
+          <Input disabled value={videoUrl} placeholder="当前未设置视频地址" />
+
+          <Space.Addon>{addonAfter}</Space.Addon>
+        </Space.Compact>
 
         <Modal
           title={<IconInfo icon={iconBuilder.videoCamera()} text="视频预览" />}
