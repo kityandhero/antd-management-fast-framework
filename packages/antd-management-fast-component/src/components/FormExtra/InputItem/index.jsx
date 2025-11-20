@@ -1,4 +1,4 @@
-import { Input } from 'antd';
+import { Input, Space } from 'antd';
 import React, { PureComponent } from 'react';
 
 import {
@@ -33,7 +33,6 @@ class InputItem extends PureComponent {
     const title = label;
 
     const otherInnerProperties = {
-      addonBefore: icon,
       placeholder: canOperate
         ? buildFieldDescription(title, reminderPrefix)
         : '暂无数据',
@@ -46,6 +45,34 @@ class InputItem extends PureComponent {
       name,
       helper,
     });
+
+    if (icon == null) {
+      return (
+        <Item
+          {...formItemLayout}
+          label={resultCheck.label}
+          name={resultCheck.name}
+          extra={
+            checkStringIsNullOrWhiteSpace(resultCheck.helper || '')
+              ? null
+              : buildFieldHelper(resultCheck.helper)
+          }
+          rules={[
+            {
+              required,
+              message: buildFieldDescription(resultCheck.label),
+            },
+          ]}
+          hidden={hidden}
+          addonBefore={addonBefore}
+          addonBeforeStyle={addonBeforeStyle}
+          addonAfter={addonAfter}
+          addonAfterStyle={addonAfterStyle}
+        >
+          <Input {...otherInnerProperties} />
+        </Item>
+      );
+    }
 
     return (
       <Item
@@ -69,7 +96,11 @@ class InputItem extends PureComponent {
         addonAfter={addonAfter}
         addonAfterStyle={addonAfterStyle}
       >
-        <Input {...otherInnerProperties} />
+        <Space.Compact>
+          {/* <Space.Addon>{icon}</Space.Addon> */}
+          {icon}
+          <Input {...otherInnerProperties} />
+        </Space.Compact>
       </Item>
     );
   }

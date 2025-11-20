@@ -49,6 +49,7 @@ function buildConfig({ packageJson: packageImport, config = {} }) {
           '@tanem/react-nprogress',
           '@umijs/max',
           'antd',
+          'antd-management-fast-charts',
           'antd-management-fast-common',
           'antd-management-fast-component',
           'antd-management-fast-design-playground',

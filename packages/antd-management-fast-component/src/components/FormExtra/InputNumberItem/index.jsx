@@ -1,4 +1,4 @@
-import { InputNumber } from 'antd';
+import { InputNumber, Space } from 'antd';
 import React, { PureComponent } from 'react';
 
 import {
@@ -32,7 +32,6 @@ class InputNumberItem extends PureComponent {
     const title = label;
 
     const otherInnerProperties = {
-      addonBefore: icon,
       style: { width: '100%' },
       min: 0,
       placeholder: buildFieldDescription(title, '输入'),
@@ -45,6 +44,17 @@ class InputNumberItem extends PureComponent {
       name,
       helper,
     });
+
+    const innerComponent =
+      icon == null ? (
+        <InputNumber {...otherInnerProperties} />
+      ) : (
+        <Space.Compact>
+          {icon}
+
+          <InputNumber {...otherInnerProperties} />
+        </Space.Compact>
+      );
 
     return (
       <Item
@@ -68,7 +78,7 @@ class InputNumberItem extends PureComponent {
         addonAfter={addonAfter}
         addonAfterStyle={addonAfterStyle}
       >
-        <InputNumber {...otherInnerProperties} />
+        {innerComponent}
       </Item>
     );
   }
