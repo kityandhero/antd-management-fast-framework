@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-flow",
-  "version": "1.0.152",
+  "version": "1.0.153",
   "keywords": [
     "antd-management-fast-flow"
   ],
@@ -57,7 +57,7 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "antd": "^6.0.0",
+    "antd": "^5.29.1",
     "antd-management-fast-common": "workspace:*",
     "antd-management-fast-component": "workspace:*",
     "classnames": "^2.5.1",
