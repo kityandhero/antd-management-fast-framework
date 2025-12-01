@@ -367,7 +367,6 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
       for (
         var a = b(a.nextSibling, 0), e;
         (e = a.parentNode) && e.nodeType === 1;
-
       )
         a = e;
       d.push(a);
@@ -438,7 +437,6 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
         for (
           var z = d[n], f = d[n + 1], b = n + 2;
           b + 2 <= g && d[b + 1] === f;
-
         )
           b += 2;
         d[r++] = z;

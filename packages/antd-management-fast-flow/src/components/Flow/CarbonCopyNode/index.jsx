@@ -35,8 +35,8 @@ class CarbonCopyNode extends PureComponent {
       nodeNameKey,
       // listInLineKey,
       listApproverKey,
-      approverNameKey,
-      approverNameLabel,
+      carbonCopyNameKey,
+      carbonCopyNameLabel,
       onAddApprover,
       onChange,
       onRemove,
@@ -47,8 +47,8 @@ class CarbonCopyNode extends PureComponent {
       nodeNameKey: 'nodeNameKey',
       listInLineKey: 'listInLine',
       listApproverKey: 'listApprover',
-      approverNameKey: 'name',
-      approverNameLabel: '',
+      carbonCopyNameKey: 'name',
+      carbonCopyNameLabel: 'carbonCopy',
       ...data,
     };
 
@@ -192,7 +192,7 @@ class CarbonCopyNode extends PureComponent {
                       listApprover.map((o, index) => {
                         const userRealName = getValueByKey({
                           data: o,
-                          key: approverNameKey,
+                          key: carbonCopyNameKey,
                           defaultValue: '',
                         });
 
@@ -202,7 +202,7 @@ class CarbonCopyNode extends PureComponent {
                             flexAuto="left"
                             left={
                               <ColorText
-                                textPrefix={approverNameLabel}
+                                textPrefix={carbonCopyNameLabel}
                                 text={userRealName || '未设置'}
                                 separatorStyle={{
                                   paddingRight: '3px',

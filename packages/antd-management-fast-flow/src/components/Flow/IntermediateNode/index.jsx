@@ -60,7 +60,7 @@ class IntermediateNode extends PureComponent {
       listOutLineKey: 'listOutLine',
       listApproverKey: 'listApprover',
       approverNameKey: 'approverName',
-      approverNameLabel: '',
+      approverNameLabel: 'approver',
       footerBuilder: null,
       ...data,
     };

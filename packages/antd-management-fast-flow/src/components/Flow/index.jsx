@@ -35,6 +35,8 @@ function Flow(properties) {
     listApproverKey,
     approverNameKey,
     approverNameLabel,
+    carbonCopyNameKey,
+    carbonCopyNameLabel,
     nodes: sourceNodes,
     edges: sourceEdges,
     updateViewConfig,
@@ -48,6 +50,8 @@ function Flow(properties) {
     listApproverKey: 'listApprover',
     approverNameKey: 'approverNameKey',
     approverNameLabel: 'approverNameLabel',
+    carbonCopyNameKey: 'carbonCopyNameKey',
+    carbonCopyNameLabel: 'carbonCopyNameLabel',
     onEdgeCreate: () => {},
     ...properties,
   };
@@ -73,6 +77,8 @@ function Flow(properties) {
     o.data.listApproverKey = listApproverKey;
     o.data.approverNameKey = approverNameKey;
     o.data.approverNameLabel = approverNameLabel;
+    o.data.carbonCopyNameKey = carbonCopyNameKey;
+    o.data.carbonCopyNameLabel = carbonCopyNameLabel;
 
     return o;
   });

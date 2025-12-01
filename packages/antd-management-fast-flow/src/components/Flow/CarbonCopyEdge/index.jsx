@@ -49,7 +49,9 @@ class CarbonCopyEdge extends PureComponent {
     const {
       data: dataSource,
       canEdit,
+      multibranch,
       onChange,
+      onChangeBranchCondition,
       onRemove,
     } = {
       canEdit: false,
@@ -111,6 +113,25 @@ class CarbonCopyEdge extends PureComponent {
                   }}
                 >
                   {iconBuilder.edit()}
+                </button>
+              ) : null}
+
+              {multibranch ? (
+                <button
+                  style={{
+                    padding: '0.5px 4px',
+                    fontSize: '12px',
+                  }}
+                  title="点击变更绑定的抄送条件"
+                  onClick={(event) => {
+                    event.stopPropagation();
+
+                    if (isFunction(onChangeBranchCondition)) {
+                      onChangeBranchCondition(dataSource);
+                    }
+                  }}
+                >
+                  {iconBuilder.nodeIndex()}
                 </button>
               ) : null}
 
