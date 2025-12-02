@@ -52,7 +52,7 @@ exports.run = function (s, o) {
   if (!checkStringIsEmpty(dataPath)) {
     const data = readJsonFileSync(dataPath);
 
-    if (isObject(data) && Array.isArray(data.list)) {
+    if (isObject(data) && Array.isArray(data.list) && data.list.length > 0) {
       promptInfo('File will generate, please wait a moment.');
 
       generate(data.list, templateContent, relativeFolder);
