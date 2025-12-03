@@ -6,7 +6,6 @@
 module.exports = {
   generalConfig: {
     reject: [
-      'antd',
       'eslint',
       'eslint-plugin-unicorn',
       'react',

@@ -163,7 +163,7 @@
     "@svgr/rollup": "^8.1.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",
-    "@typescript-eslint/parser": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.1",
     "autoprefixer": "^10.4.22",
     "babel-jest": "^30.2.0",
     "commitizen": "^4.3.1",

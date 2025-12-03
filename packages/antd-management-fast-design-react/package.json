@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-design-react",
-  "version": "1.0.147",
+  "version": "1.0.148",
   "keywords": [
     "antd-management-fast-design-react"
   ],
@@ -101,8 +101,8 @@
     "@types/react": "^18.3.1",
     "@types/react-color": "^3.0.13",
     "@types/react-dom": "^18.3.1",
-    "@typescript-eslint/parser": "^8.48.0",
-    "antd": "^5.29.1",
+    "@typescript-eslint/parser": "^8.48.1",
+    "antd": "^6.0.1",
     "babel-jest": "^30.2.0",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",

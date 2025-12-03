@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.1.172",
+  "version": "1.1.173",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -52,11 +52,11 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "@umijs/max": "^4.6.0",
+    "@umijs/max": "^4.6.2",
     "commander": "^14.0.2",
     "ejs": "^3.1.10",
     "rimraf": "^6.1.2",
-    "umi": "^4.6.0",
+    "umi": "^4.6.2",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
@@ -78,7 +78,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",
-    "@typescript-eslint/parser": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.1",
     "babel-jest": "^30.2.0",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",

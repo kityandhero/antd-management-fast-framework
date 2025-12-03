@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-common",
-  "version": "2.6.177",
+  "version": "2.6.178",
   "description": "antd-management-fast-common",
   "keywords": [
     "antd-management-fast-common"
@@ -63,8 +63,8 @@
     "@tanem/react-nprogress": "^5.0.56",
     "@tinymce/miniature": "^6.0.0",
     "@tinymce/tinymce-react": "^6.3.0",
-    "@umijs/max": "^4.6.0",
-    "antd": "^5.29.1",
+    "@umijs/max": "^4.6.2",
+    "antd": "^6.0.1",
     "array-move": "^4.0.0",
     "axios": "^1.13.2",
     "bizcharts": "^4.1.23",
@@ -89,7 +89,7 @@
     "react-json-view": "^1.21.3",
     "react-player": "^3.4.0",
     "react-syntax-highlighter": "^16.1.0",
-    "umi": "^4.6.0"
+    "umi": "^4.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
@@ -128,7 +128,7 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@types/shelljs": "^0.8.17",
-    "@typescript-eslint/parser": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.1",
     "autoprefixer": "^10.4.22",
     "babel-jest": "^30.2.0",
     "commitizen": "^4.3.1",

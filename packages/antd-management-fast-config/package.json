@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-config",
-  "version": "1.1.152",
+  "version": "1.1.153",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -64,8 +64,8 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",
-    "@typescript-eslint/parser": "^8.48.0",
-    "@umijs/max": "^4.6.0",
+    "@typescript-eslint/parser": "^8.48.1",
+    "@umijs/max": "^4.6.2",
     "babel-jest": "^30.2.0",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
@@ -107,6 +107,6 @@
     "stylelint-config-standard": "^39.0.1",
     "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
     "stylelint-order": "^7.0.0",
-    "umi": "^4.6.0"
+    "umi": "^4.6.2"
   }
 }
