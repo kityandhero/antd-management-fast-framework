@@ -6,6 +6,7 @@ import {
   checkInCollection,
   checkStringIsNullOrWhiteSpace,
   distinctAdjacent,
+  filter,
   getGuid,
   isArray,
   isFunction,
@@ -38,7 +39,16 @@ class ElasticityMenu extends BaseComponent {
       throw new Error('buildMenu : items must be array');
     }
 
-    const itemsAdjust = distinctAdjacent(items, (o) => {
+    const itemsFiltered = filter(items, (one) => {
+      const { hidden } = {
+        hidden: false,
+        ...one,
+      };
+
+      return !!hidden != true;
+    });
+
+    const itemsAdjust = distinctAdjacent(itemsFiltered, (o) => {
       const { type } = {
         type: dropdownExpandItemType.item,
         ...o,
