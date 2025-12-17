@@ -5,6 +5,7 @@ import React from 'react';
 import {
   checkInCollection,
   checkStringIsNullOrWhiteSpace,
+  distinctAdjacent,
   getGuid,
   isArray,
   isFunction,
@@ -37,10 +38,19 @@ class ElasticityMenu extends BaseComponent {
       throw new Error('buildMenu : items must be array');
     }
 
+    const itemsAdjust = distinctAdjacent(items, (o) => {
+      const { type } = {
+        type: dropdownExpandItemType.item,
+        ...o,
+      };
+
+      return type === dropdownExpandItemType.divider;
+    });
+
     let listItem = [];
     let previousItem = null;
 
-    for (const o of items || []) {
+    for (const o of itemsAdjust || []) {
       const d = {
         withDivider: false,
         uponDivider: true,
