@@ -160,7 +160,11 @@ class ElasticityDropdown extends BaseComponent {
         }
         title={itemPanelTitle}
         classNames={{ root: overlayClassNameAdjust }}
-        styles={{ body: { padding: 0 } }}
+        styles={{
+          container: {
+            padding: 0,
+          },
+        }}
       >
         {popoverButton}
       </Popover>

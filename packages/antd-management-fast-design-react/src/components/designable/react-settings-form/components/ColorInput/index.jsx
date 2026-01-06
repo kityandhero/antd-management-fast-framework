@@ -22,7 +22,11 @@ export const ColorInput = (properties) => {
           <Popover
             autoAdjustOverflow
             trigger="click"
-            styles={{ body: { padding: 0 } }}
+            styles={{
+              container: {
+                padding: 0,
+              },
+            }}
             getPopupContainer={() => container.current}
             content={
               <SketchPicker
