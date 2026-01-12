@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isArray, isBoolean, isFunction } from 'easy-soft-utility';
+import { isArray, isBoolean, isFunction, isUndefined } from 'easy-soft-utility';
 
 import { listViewConfig } from 'antd-management-fast-common';
 
@@ -58,7 +58,6 @@ export function adjustTableExpandConfig({ list, config }) {
       expandedRowRender: expandedRowRenderCustom,
     } = {
       // 判断当前列表数据，如若列表所有数据都不需要显示展开按钮，则忽略其他配置
-
       checkNeedExpander: null,
       rowExpandable: false,
       expandPlaceholderIcon: iconBuilder.borderOuter({
@@ -94,14 +93,19 @@ export function adjustTableExpandConfig({ list, config }) {
     const expandableConfig = checkNeedExpanderResult
       ? {
           rowExpandable,
-          expandIcon: ({
-            expandable: canExpand,
-            expanded,
-            onExpand,
-            record,
-          }) => {
-            if (!canExpand && (expandPlaceholderIcon || null) != null) {
-              return expandPlaceholderIcon || null;
+          expandIcon: (p) => {
+            const { expandable: canExpand, expanded, onExpand, record } = p;
+
+            if (!canExpand) {
+              if (isUndefined(canExpand)) {
+                return null;
+              }
+
+              if ((expandPlaceholderIcon || null) == null) {
+                return null;
+              }
+
+              return expandPlaceholderIcon;
             }
 
             if (expandIconRotate) {

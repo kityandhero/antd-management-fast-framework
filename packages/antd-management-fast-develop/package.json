@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.1.176",
+  "version": "1.1.177",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -52,11 +52,11 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "@umijs/max": "^4.6.19",
+    "@umijs/max": "^4.6.22",
     "commander": "^14.0.2",
     "ejs": "^3.1.10",
     "rimraf": "^6.1.2",
-    "umi": "^4.6.19",
+    "umi": "^4.6.22",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
@@ -72,12 +72,12 @@
     "@babel/preset-react": "^7.28.5",
     "@babel/runtime": "^7.28.4",
     "@changesets/cli": "^2.29.8",
-    "@commitlint/cli": "^20.3.0",
-    "@commitlint/config-conventional": "^20.3.0",
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
     "@commitlint/config-pnpm-scopes": "^20.1.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.0.3",
+    "@types/node": "^25.0.6",
     "@typescript-eslint/parser": "^8.52.0",
     "babel-jest": "^30.2.0",
     "commitizen": "^4.3.1",
@@ -85,7 +85,7 @@
     "cross-env": "^10.1.0",
     "cz-git": "^1.12.0",
     "docdash": "^2.0.2",
-    "easy-soft-develop": "^2.2.7",
+    "easy-soft-develop": "^2.2.9",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",

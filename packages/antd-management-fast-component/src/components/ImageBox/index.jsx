@@ -255,7 +255,7 @@ class ImageBox extends BaseComponent {
       imageLoadSuccess && !checkStringIsNullOrWhiteSpace(src) && preview
         ? previewSimpleMask
           ? {
-              mask: React.createElement(
+              cover: React.createElement(
                 'div',
                 {},
                 React.createElement(EyeOutlined, null),
