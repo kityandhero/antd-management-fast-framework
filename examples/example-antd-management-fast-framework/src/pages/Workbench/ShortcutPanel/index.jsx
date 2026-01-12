@@ -47,7 +47,7 @@ class ShortcutPanel extends BaseView {
               lg: 24,
               type: cardConfig.contentItemType.component,
               component: (
-                <Space style={{ width: '100%' }} direction="vertical">
+                <Space style={{ width: '100%' }} orientation="vertical">
                   <Button onClick={this.goToPageList}>文章管理</Button>
                   <Button
                     onClick={() => {

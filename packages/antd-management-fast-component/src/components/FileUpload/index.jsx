@@ -284,7 +284,7 @@ class FileUpload extends PureComponent {
     ];
 
     const addonAfter = (
-      <Space split={<Divider type="vertical" />}>
+      <Space separator={<Divider orientation="vertical" />}>
         <Tooltip key="showChangeUrlTip" placement="top" title="上传文件">
           <Upload {...uploadProperties}>
             <Button

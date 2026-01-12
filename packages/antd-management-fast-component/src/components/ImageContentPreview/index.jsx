@@ -51,7 +51,7 @@ class ImageContentPreview extends BaseComponent {
       return (
         <Drawer
           title="图片详情预览"
-          width={380}
+          size={380}
           placement="left"
           open={visible}
           closable
@@ -82,7 +82,7 @@ class ImageContentPreview extends BaseComponent {
       return (
         <Drawer
           title="图片详情预览"
-          width={380}
+          size={380}
           placement="left"
           open={visible}
           closable
@@ -107,7 +107,7 @@ class ImageContentPreview extends BaseComponent {
       return (
         <Drawer
           title="图片详情预览"
-          width={380}
+          size={380}
           placement="left"
           open={visible}
           closable
@@ -130,7 +130,7 @@ class ImageContentPreview extends BaseComponent {
     return (
       <Drawer
         title="图片详情预览"
-        width={380}
+        size={380}
         placement="left"
         open={visible}
         closable

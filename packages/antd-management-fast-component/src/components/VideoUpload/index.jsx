@@ -325,7 +325,7 @@ class VideoUpload extends PureComponent {
     ];
 
     const addonAfter = (
-      <Space split={<Divider type="vertical" />}>
+      <Space separator={<Divider orientation="vertical" />}>
         {showPreview ? (
           <Tooltip key="showVideoTip" placement="top" title="播放视频预览">
             <Button

@@ -200,7 +200,7 @@ function FlowProcessHistory(properties) {
     <FlexBox
       style={{ ...style, height: '100%' }}
       flexAuto="right"
-      left={<Divider type="vertical" style={{ height: '100%' }} />}
+      left={<Divider orientation="vertical" style={{ height: '100%' }} />}
       right={rightComponent}
     />
   );

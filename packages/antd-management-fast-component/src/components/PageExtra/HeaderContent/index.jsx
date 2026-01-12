@@ -94,7 +94,7 @@ class HeaderContent extends PureComponent {
     }
 
     return (
-      <Space style={{ width: '100%' }} direction="vertical">
+      <Space style={{ width: '100%' }} orientation="vertical">
         {list.map((item) => {
           const { key, component } = item;
 

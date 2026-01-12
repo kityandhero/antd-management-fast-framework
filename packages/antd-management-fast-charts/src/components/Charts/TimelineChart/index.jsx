@@ -40,7 +40,7 @@ const TimelineChart = (properties) => {
   const ds = new DataSet({
     state: {
       start: data[0].x,
-      end: data[data.length - 1].x,
+      end: data.at(-1).x,
     },
   });
   const dv = ds.createView();

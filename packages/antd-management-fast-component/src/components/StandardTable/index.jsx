@@ -127,7 +127,7 @@ class StandardTable extends PureComponent {
       ) : (
         <div style={{ paddingBottom: '10px' }}>
           <Alert
-            message={
+            title={
               <>
                 已选择
                 <Link
@@ -185,7 +185,6 @@ class StandardTable extends PureComponent {
         dataSource={list}
         pagination={paginationProperties}
         onChange={this.handleTableChange}
-        defaultExpandAllRows
         {...rest}
         loading={false}
       />

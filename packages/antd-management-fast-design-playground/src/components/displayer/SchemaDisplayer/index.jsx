@@ -243,7 +243,7 @@ class SchemaDisplayer extends Component {
     }
 
     return (
-      <Space direction="vertical">
+      <Space orientation="vertical">
         {descriptions.map((o, index) => {
           const { text } = o;
           const key = `index_${index}`;
@@ -379,7 +379,7 @@ class SchemaDisplayer extends Component {
           />
         ) : (
           <FormItem label={<div></div>} colon={false}>
-            <Divider orientation="left" plain>
+            <Divider titlePlacement="left" plain>
               {descriptionTitleText}
             </Divider>
 
@@ -420,7 +420,7 @@ class SchemaDisplayer extends Component {
         </Field>
       ) : (
         <FormItem label={<div></div>} colon={false}>
-          <Divider orientation="left" plain>
+          <Divider titlePlacement="left" plain>
             {descriptionUpperLabel}
           </Divider>
 
@@ -453,7 +453,7 @@ class SchemaDisplayer extends Component {
         </Field>
       ) : (
         <FormItem label={<div></div>} colon={false}>
-          <Divider orientation="left" plain>
+          <Divider titlePlacement="left" plain>
             {descriptionNetherLabel}
           </Divider>
 

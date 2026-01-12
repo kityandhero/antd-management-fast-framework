@@ -67,8 +67,8 @@ class Base extends BaseWindow {
     this.state = {
       ...defaultState,
       title: '',
-      width: 820,
-      height: 256,
+      size: 820,
+      // height: 256,
       visible: false,
       dataLoading: false,
       showBottomBar: false,
@@ -448,7 +448,7 @@ class Base extends BaseWindow {
             }
 
             case drawerConfig.bottomBarBuildType.divider: {
-              itemAdjust = <Divider type="vertical" />;
+              itemAdjust = <Divider orientation="vertical" />;
               break;
             }
 
@@ -500,7 +500,7 @@ class Base extends BaseWindow {
                     }}
                     left={
                       <Space
-                        split={<Divider type="vertical" />}
+                        separator={<Divider orientation="vertical" />}
                         style={{ height: '100%' }}
                       >
                         {bottomBarLeftBox}
@@ -510,7 +510,7 @@ class Base extends BaseWindow {
                   />
                 }
                 right={
-                  <Space split={<Divider type="vertical" />}>
+                  <Space separator={<Divider orientation="vertical" />}>
                     {bottomBarRightBox}
                   </Space>
                 }
@@ -566,8 +566,8 @@ class Base extends BaseWindow {
     }
 
     const {
-      width,
-      height,
+      size,
+      // height,
       showBottomBar,
       placement,
       overlayButtonOpenText,
@@ -585,8 +585,8 @@ class Base extends BaseWindow {
         title={this.buildTitleText()}
         subtitle={this.buildTitleSubText()}
         destroyOnHidden={this.destroyOnHidden || false}
-        width={width}
-        height={height}
+        size={size}
+        // height={height}
         placement={placement}
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         overlayContent={this.renderOverlayContent()}

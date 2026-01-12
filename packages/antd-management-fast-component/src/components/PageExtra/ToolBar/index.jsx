@@ -44,7 +44,7 @@ class ToolBar extends PureComponent {
           },
         }}
         extra={
-          <Space split={<Divider type="vertical" />}>
+          <Space separator={<Divider orientation="vertical" />}>
             {toolList.map((o) => {
               const { hidden } = { hidden: false, ...o };
 

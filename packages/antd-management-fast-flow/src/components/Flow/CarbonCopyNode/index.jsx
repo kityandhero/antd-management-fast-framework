@@ -184,9 +184,9 @@ class CarbonCopyNode extends PureComponent {
               <div className={`${styleClassPrefix + '-node-content-inner'}`}>
                 <div className={`${styleClassPrefix + '-node-content-info'}`}>
                   <Space
-                    direction="vertical"
+                    orientation="vertical"
                     style={{ width: '100%' }}
-                    split={<Divider style={{ margin: '0' }} />}
+                    separator={<Divider style={{ margin: '0' }} />}
                   >
                     {hasApprover &&
                       listApprover.map((o, index) => {
@@ -220,9 +220,9 @@ class CarbonCopyNode extends PureComponent {
                             right={
                               canEdit ? (
                                 <Space
-                                  split={
+                                  separator={
                                     <Divider
-                                      type="vertical"
+                                      orientation="vertical"
                                       style={{
                                         marginLeft: '1px',
                                         marginRight: '1px',

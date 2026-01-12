@@ -325,7 +325,7 @@ class AudioUpload extends PureComponent {
     ];
 
     const addonAfter = (
-      <Space split={<Divider type="vertical" />}>
+      <Space separator={<Divider orientation="vertical" />}>
         {showPreview ? (
           <Tooltip key="showAudioTip" placement="top" title="播放音频预览">
             <Button

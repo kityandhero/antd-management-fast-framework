@@ -15,8 +15,14 @@ class TabBarExtraBox extends PureComponent {
 
     return (
       <Space
-        split={
-          isBoolean(split) ? split ? <Divider type="vertical" /> : null : split
+        separator={
+          isBoolean(split) ? (
+            split ? (
+              <Divider orientation="vertical" />
+            ) : null
+          ) : (
+            split
+          )
         }
       >
         {listItem}

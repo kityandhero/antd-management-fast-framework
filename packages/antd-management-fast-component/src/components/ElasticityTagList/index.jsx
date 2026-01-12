@@ -48,7 +48,7 @@ class ElasticityTagList extends BaseComponent {
     }
 
     return (
-      <Space wrap={wrap} size={size} split={split}>
+      <Space wrap={wrap} size={size} separator={split}>
         {tagList.map((o) => {
           const { key, text, color } = o;
 

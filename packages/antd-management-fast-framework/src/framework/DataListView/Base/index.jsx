@@ -1040,7 +1040,10 @@ class Base extends AuthorizationWrapper {
     const { tableSize } = this.state;
 
     const columns = this.getColumnMerged();
-    const expandable = this.establishTableExpandableConfig();
+    const expandable = {
+      defaultExpandAllRows: false,
+      ...this.establishTableExpandableConfig(),
+    };
 
     const result = {
       ...this.establishTableAdditionalConfig(),
@@ -1321,7 +1324,7 @@ class Base extends AuthorizationWrapper {
     }
 
     return (
-      <Space split={<Divider type="vertical" />}>
+      <Space separator={<Divider orientation="vertical" />}>
         {actions.map((item) => {
           return item;
         })}
@@ -1923,7 +1926,7 @@ class Base extends AuthorizationWrapper {
 
     return (
       <LoadingOverlay flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}>
-        <Space style={{ width: '100%' }} direction="vertical" size={14}>
+        <Space style={{ width: '100%' }} orientation="vertical" size={14}>
           {itemCount > 0 ? (
             listItem.map((o, index) => {
               return this.buildCardCollectionItem({
@@ -1958,7 +1961,7 @@ class Base extends AuthorizationWrapper {
 
     return (
       <LoadingOverlay flag={[this.viewLoadingFlag, this.viewRefreshingFlag]}>
-        <Space style={{ width: '100%' }} direction="vertical" size={14}>
+        <Space style={{ width: '100%' }} orientation="vertical" size={14}>
           {itemCount > 0 ? (
             listItem.map((o, index) => {
               return (
@@ -2050,7 +2053,10 @@ class Base extends AuthorizationWrapper {
 
     const extraView = affix ? (
       <Affix offsetTop={toNumber(offsetTop)}>
-        <Space direction="horizontal" split={<Divider type="vertical" />}>
+        <Space
+          orientation="horizontal"
+          separator={<Divider orientation="vertical" />}
+        >
           {extraAction}
 
           {batchAction}
@@ -2059,7 +2065,10 @@ class Base extends AuthorizationWrapper {
         </Space>
       </Affix>
     ) : (
-      <Space direction="horizontal" split={<Divider type="vertical" />}>
+      <Space
+        orientation="horizontal"
+        separator={<Divider orientation="vertical" />}
+      >
         {extraAction}
 
         {batchAction}

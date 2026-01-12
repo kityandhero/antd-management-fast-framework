@@ -168,6 +168,8 @@ class SinglePage extends Base {
    * 不要在框架之外重载或覆盖该该函数，否则分页视图将功能异常
    */
   establishViewPaginationConfig = () => {
+    this.logCallTrack({}, primaryCallName, 'establishViewPaginationConfig');
+
     const list = this.establishViewDataSource();
 
     const paginationConfig = { total: (list || []).length };
@@ -189,15 +191,46 @@ class SinglePage extends Base {
       'handlePaginationChange',
     );
 
+    this.logCallTrace(
+      {
+        pageNo: page,
+        pageSize: size,
+        frontendPageNo: page,
+      },
+      primaryCallName,
+      'handlePaginationChange',
+      'trigger',
+      'setPageValue',
+    );
+
     this.setPageValue({
       pageNo: page,
       pageSize: size,
       frontendPageNo: page,
     });
 
+    this.logCallTrace(
+      {
+        page,
+        size,
+      },
+      primaryCallName,
+      'handlePaginationChange',
+      'trigger',
+      'handleAdditionalPaginationChange',
+    );
+
     this.handleAdditionalPaginationChange(page, size);
 
     if (this.getCanUseFrontendPagination()) {
+      this.logCallTrace(
+        {},
+        primaryCallName,
+        'handlePaginationChange',
+        'trigger',
+        'increaseCounter',
+      );
+
       this.increaseCounter({});
     }
   };
@@ -215,7 +248,7 @@ class SinglePage extends Base {
     sorter,
     extra,
   ) => {
-    const { current: frontendPageNoSource } = pagination;
+    const { current: frontendPageNoSource, pageSize } = pagination;
 
     const frontendPageNo = toNumber(frontendPageNoSource);
 
@@ -231,10 +264,24 @@ class SinglePage extends Base {
       'handleAdditionalStandardTableChange',
     );
 
+    this.logCallTrace(
+      {
+        pageNo: frontendPageNo,
+        frontendPageNo,
+      },
+      primaryCallName,
+      'handleAdditionalStandardTableChange',
+      'trigger',
+      'setPageValue',
+    );
+
     this.setPageValue({
       pageNo: frontendPageNo,
+      pageSize,
       frontendPageNo,
     });
+
+    this.increaseCounter({});
   };
 
   /**

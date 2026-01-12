@@ -89,7 +89,7 @@ class ContentBox extends PureComponent {
     if ((toolbar || null) != null || (bottom || null) != null) {
       return (
         <div style={{ overflowX: 'hidden' }}>
-          <Space style={{ width: '100%' }} direction="vertical" size={14}>
+          <Space style={{ width: '100%' }} orientation="vertical" size={14}>
             {toolbar}
 
             {inner}

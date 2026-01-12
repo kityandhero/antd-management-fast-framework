@@ -188,7 +188,7 @@ class BaseSimpleSinglePageModal extends SinglePageSelectModal {
             </>
           }
           description={
-            <Space split={<Divider type="vertical" />}>
+            <Space separator={<Divider orientation="vertical" />}>
               <ColorText
                 textPrefix={fieldData.simpleId.label}
                 separator=": "

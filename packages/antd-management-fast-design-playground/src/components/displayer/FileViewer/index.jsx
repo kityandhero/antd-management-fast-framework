@@ -249,7 +249,10 @@ class FileViewer extends PureComponent {
           }
           right={
             <div>
-              <Space direction="horizontal" split={<Divider type="vertical" />}>
+              <Space
+                orientation="horizontal"
+                separator={<Divider orientation="vertical" />}
+              >
                 <ColorText
                   textPrefix="附件数量"
                   separatorStyle={{ padding: '0 4px 0 2px' }}

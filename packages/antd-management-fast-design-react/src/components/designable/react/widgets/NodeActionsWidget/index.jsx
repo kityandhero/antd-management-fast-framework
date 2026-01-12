@@ -17,7 +17,9 @@ const NodeActionsWidgetInner = observer((properties) => {
   return (
     <div className={cls(prefix, properties.className)} style={properties.style}>
       <div className={prefix + '-content'}>
-        <Space split={<Divider type="vertical" />}>{properties.children}</Space>
+        <Space separator={<Divider orientation="vertical" />}>
+          {properties.children}
+        </Space>
       </div>
     </div>
   );

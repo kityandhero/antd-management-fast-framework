@@ -458,8 +458,8 @@ class MultiPageDrawer extends MultiPage {
               className={styles.containorTable}
               extra={
                 <Space
-                  direction="horizontal"
-                  split={<Divider type="vertical" />}
+                  orientation="horizontal"
+                  separator={<Divider orientation="vertical" />}
                 >
                   {extraAction}
 
@@ -653,7 +653,7 @@ class MultiPageDrawer extends MultiPage {
         subtitle={this.buildTitleSubText()}
         destroyOnHidden={false}
         className={styles.containorBox}
-        width={width}
+        size={width}
         placement="right"
         overlayContent={this.renderOverlayContent()}
         overlayButtonOpenText={overlayButtonOpenText}

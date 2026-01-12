@@ -107,7 +107,7 @@ class Pie extends Component {
                       }}
                     />
                     <span className={styles.legendTitle}>{item.x}</span>
-                    <Divider type="vertical" />
+                    <Divider orientation="vertical" />
                     <span className={styles.percent}>
                       {`${((totalValue || 0) > 0
                         ? (Number.isNaN(item.y / totalValue)

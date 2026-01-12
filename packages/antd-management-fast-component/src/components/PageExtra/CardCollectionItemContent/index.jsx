@@ -1177,10 +1177,10 @@ class CardCollectionItemContent extends PureComponent {
 
                   {type === cardConfig.contentItemType.actionList ? (
                     <Space
-                      split={
+                      separator={
                         isBoolean(contentItem.split || false) ? (
                           contentItem.split || false ? (
-                            <Divider type="vertical" />
+                            <Divider orientation="vertical" />
                           ) : null
                         ) : (
                           contentItem.split

@@ -631,7 +631,7 @@ class NormalView extends BaseView {
               fieldData: fieldData.description1,
               value: '121',
               actionBar: (
-                <Space split={<Divider type="vertical" />}>
+                <Space separator={<Divider orientation="vertical" />}>
                   {buildButton({
                     style: {
                       border: '0px solid #d9d9d9',

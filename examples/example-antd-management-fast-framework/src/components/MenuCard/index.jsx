@@ -14,7 +14,7 @@ const MenuCard = () => {
         style={{
           height: '1.5em',
         }}
-        type="vertical"
+        orientation="vertical"
       />
       <Popover
         placement="bottom"

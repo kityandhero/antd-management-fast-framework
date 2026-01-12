@@ -457,8 +457,8 @@ class MultiPageModal extends MultiPage {
               className={styles.containorTable}
               extra={
                 <Space
-                  direction="horizontal"
-                  split={<Divider type="vertical" />}
+                  orientation="horizontal"
+                  separator={<Divider orientation="vertical" />}
                 >
                   {extraAction}
 

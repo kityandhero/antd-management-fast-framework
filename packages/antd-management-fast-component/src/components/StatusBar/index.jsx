@@ -31,9 +31,9 @@ class StatusBar extends PureComponent {
         >
           <Space
             wrap
-            split={
+            separator={
               <Divider
-                type="vertical"
+                orientation="vertical"
                 style={{
                   marginLeft: '0',
                   marginRight: '0',

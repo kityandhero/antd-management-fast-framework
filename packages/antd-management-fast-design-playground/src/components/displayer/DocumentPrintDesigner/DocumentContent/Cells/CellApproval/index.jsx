@@ -27,10 +27,10 @@ class CellApproval extends CellBase {
     if (isArray(content)) {
       return (
         <Space
-          direction="vertical"
+          orientation="vertical"
           style={{ width: '100%' }}
           size={[0]}
-          split={<Line color={lineColor || '#000'} height={1} />}
+          separator={<Line color={lineColor || '#000'} height={1} />}
         >
           {content.map((o, index) => {
             const { nodeId = '' } = {

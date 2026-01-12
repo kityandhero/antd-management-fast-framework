@@ -256,9 +256,9 @@ class IntermediateNode extends PureComponent {
               <div className={`${styleClassPrefix + '-node-content-inner'}`}>
                 <div className={`${styleClassPrefix + '-node-content-info'}`}>
                   <Space
-                    direction="vertical"
+                    orientation="vertical"
                     style={{ width: '100%' }}
-                    split={<Divider style={{ margin: '0' }} />}
+                    separator={<Divider style={{ margin: '0' }} />}
                   >
                     {hasApprover &&
                       listApprover.map((o, index) => {

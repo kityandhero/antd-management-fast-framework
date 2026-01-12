@@ -85,7 +85,7 @@ class HelpBox extends PureComponent {
         {showTitle ? (
           showDivider ? (
             <Divider
-              orientation="left"
+              titlePlacement="left"
               plain
               style={{
                 marginTop: 4,

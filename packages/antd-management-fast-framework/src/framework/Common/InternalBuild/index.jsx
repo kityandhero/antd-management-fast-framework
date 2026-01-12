@@ -179,7 +179,7 @@ class InternalBuild extends InternalSwitchoverFlow {
 
     const inner =
       listData.length > 1 ? (
-        <Space style={{ width: '100%' }} direction="vertical" size={16}>
+        <Space style={{ width: '100%' }} orientation="vertical" size={16}>
           {listData.map((item, index) => {
             if (React.isValidElement(item)) {
               return (
@@ -628,10 +628,10 @@ class InternalBuild extends InternalSwitchoverFlow {
             mode === cardConfig.wrapperType.page && affix ? (
               <Affix offsetTop={20}>
                 <Space
-                  split={
+                  separator={
                     isBoolean(split) ? (
                       split ? (
-                        <Divider type="vertical" />
+                        <Divider orientation="vertical" />
                       ) : null
                     ) : (
                       split
@@ -644,10 +644,10 @@ class InternalBuild extends InternalSwitchoverFlow {
             ) : (
               <>
                 <Space
-                  split={
+                  separator={
                     isBoolean(split) ? (
                       split ? (
-                        <Divider type="vertical" />
+                        <Divider orientation="vertical" />
                       ) : null
                     ) : (
                       split
@@ -881,7 +881,7 @@ class InternalBuild extends InternalSwitchoverFlow {
             }
 
             case extraBuildType.divider: {
-              itemAdjust = <Divider type="vertical" />;
+              itemAdjust = <Divider orientation="vertical" />;
               break;
             }
 
@@ -996,9 +996,9 @@ class InternalBuild extends InternalSwitchoverFlow {
 
     return (
       <Space
-        split={
+        separator={
           !!this.showExtraActionDivider || false ? (
-            <Divider type="vertical" />
+            <Divider orientation="vertical" />
           ) : null
         }
       >
