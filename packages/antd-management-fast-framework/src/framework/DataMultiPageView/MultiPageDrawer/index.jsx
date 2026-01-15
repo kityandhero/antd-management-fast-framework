@@ -653,7 +653,7 @@ class MultiPageDrawer extends MultiPage {
         subtitle={this.buildTitleSubText()}
         destroyOnHidden={false}
         className={styles.containorBox}
-        size={width}
+        width={width}
         placement="right"
         overlayContent={this.renderOverlayContent()}
         overlayButtonOpenText={overlayButtonOpenText}

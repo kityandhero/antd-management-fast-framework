@@ -3,9 +3,11 @@ import React, { Fragment, PureComponent } from 'react';
 
 import { connect } from 'easy-soft-dva';
 import {
+  checkInCollection,
   checkStringIsNullOrWhiteSpace,
   isArray,
   isString,
+  toLower,
 } from 'easy-soft-utility';
 
 import { Overlay } from 'antd-management-fast-component';
@@ -37,6 +39,23 @@ class DrawerExtra extends PureComponent {
       overlayButtonCloseText: '关闭浮层',
       ...this.props,
     };
+  };
+
+  getSize = () => {
+    const { placement, width, height } = {
+      placement: 'right',
+      ...this.getProperties(),
+    };
+
+    if (checkInCollection(['top', 'bottom'], toLower(placement))) {
+      return height;
+    }
+
+    if (checkInCollection(['left', 'right'], toLower(placement))) {
+      return width;
+    }
+
+    return 'default';
   };
 
   buildBodyStyle = () => {
@@ -188,6 +207,8 @@ class DrawerExtra extends PureComponent {
     const { flag, switchControl, children, icon, destroyOnHidden, ...rest } =
       this.getProperties();
 
+    const size = this.getSize();
+
     const v = !!switchControl[flag];
 
     const styleCollection = this.buildStyles();
@@ -222,6 +243,7 @@ class DrawerExtra extends PureComponent {
       <Drawer
         open={v || false}
         destroyOnHidden={destroyOnHidden || false}
+        size={size}
         {...rest}
         styles={styleCollection}
         title={textComponentWrapper}

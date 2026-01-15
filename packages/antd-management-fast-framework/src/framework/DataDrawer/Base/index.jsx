@@ -67,8 +67,8 @@ class Base extends BaseWindow {
     this.state = {
       ...defaultState,
       title: '',
-      size: 820,
-      // height: 256,
+      width: 820,
+      height: 256,
       visible: false,
       dataLoading: false,
       showBottomBar: false,
@@ -566,8 +566,8 @@ class Base extends BaseWindow {
     }
 
     const {
-      size,
-      // height,
+      width,
+      height,
       showBottomBar,
       placement,
       overlayButtonOpenText,
@@ -585,8 +585,8 @@ class Base extends BaseWindow {
         title={this.buildTitleText()}
         subtitle={this.buildTitleSubText()}
         destroyOnHidden={this.destroyOnHidden || false}
-        size={size}
-        // height={height}
+        width={width}
+        height={height}
         placement={placement}
         maskClosable={isUndefined(maskClosable) ? false : maskClosable}
         overlayContent={this.renderOverlayContent()}
