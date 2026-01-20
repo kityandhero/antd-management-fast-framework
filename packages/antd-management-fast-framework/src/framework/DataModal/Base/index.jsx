@@ -318,7 +318,7 @@ class Base extends BaseWindow {
 
     const subInfo = checkStringIsNullOrWhiteSpace(subText) ? null : (
       <Alert
-        message={`${subTextPrefix}${subText}`}
+        title={`${subTextPrefix}${subText}`}
         style={{ textAlign: subTextAlign }}
         type="info"
       />

@@ -1268,7 +1268,7 @@ class Base extends AuthorizationWrapper {
         className={classNames(`${classPrefix}_containorTable_alertContainor`)}
         style={containerStyle}
       >
-        <Alert {...option} message={message} description={description} />
+        <Alert {...option} title={message} description={description} />
       </div>
     );
   };

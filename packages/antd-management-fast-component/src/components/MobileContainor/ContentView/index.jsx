@@ -50,7 +50,7 @@ class ContentView extends PureComponent {
 
     const alert = (
       <Alert
-        message={alertMessage}
+        title={alertMessage}
         description={alertDescription}
         type={alertType}
         showIcon={!!alertIcon}

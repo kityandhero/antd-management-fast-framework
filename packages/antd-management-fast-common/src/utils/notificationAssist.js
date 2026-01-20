@@ -76,7 +76,7 @@ export function notify({
     switch (type) {
       case notificationTypeCollection.open: {
         notification.open({
-          message: title,
+          title: title,
           description,
           placement: placementAdjust,
           duration: durationAdjust,
@@ -88,7 +88,7 @@ export function notify({
 
       case notificationTypeCollection.loading: {
         notification.open({
-          message: title,
+          title: title,
           description,
           placement: placementAdjust,
           duration: durationAdjust,
@@ -100,7 +100,7 @@ export function notify({
 
       case notificationTypeCollection.info: {
         notification.info({
-          message: title,
+          title: title,
           description,
           placement: placementAdjust,
           duration: durationAdjust,
@@ -112,7 +112,7 @@ export function notify({
 
       case notificationTypeCollection.warn: {
         notification.warning({
-          message: title,
+          title: title,
           description,
           placement: placementAdjust,
           duration: durationAdjust,
@@ -124,7 +124,7 @@ export function notify({
 
       case notificationTypeCollection.warning: {
         notification.warning({
-          message: title,
+          title: title,
           description,
           placement: placementAdjust,
           duration: durationAdjust,
@@ -136,7 +136,7 @@ export function notify({
 
       case notificationTypeCollection.success: {
         notification.success({
-          message: title,
+          title: title,
           description,
           placement: placementAdjust,
           duration: durationAdjust,
@@ -148,7 +148,7 @@ export function notify({
 
       case notificationTypeCollection.error: {
         notification.error({
-          message: title,
+          title: title,
           description,
           placement: placementAdjust,
           duration: durationAdjust,
@@ -160,7 +160,7 @@ export function notify({
 
       default: {
         notification.open({
-          message: title,
+          title: title,
           description,
           placement: placementAdjust,
           duration: durationAdjust,

@@ -95,7 +95,7 @@ function FlowProcessHistory(properties) {
               : 'gray'
             : 'gray'),
         dot: icon,
-        children: (
+        content: (
           <>
             {checkStringIsNullOrWhiteSpace(title) ? null : (
               <Paragraph>
@@ -161,7 +161,7 @@ function FlowProcessHistory(properties) {
       topStyle={{
         paddingBottom: '6px',
       }}
-      top={showTitle ? <Alert message={`${boxTitle}：`} type="info" /> : null}
+      top={showTitle ? <Alert title={`${boxTitle}：`} type="info" /> : null}
       bottom={
         showTitle ? (
           <div
