@@ -1003,7 +1003,6 @@ class CardCollectionItemContent extends PureComponent {
                       icon={contentItem.icon || iconBuilder.form()}
                       innerProps={{
                         ...contentItem.innerProps,
-
                         disabled: true,
                         placeholder: `暂无${fieldData.label}信息`,
                       }}
