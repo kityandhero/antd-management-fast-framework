@@ -42,6 +42,7 @@ class IconInfo extends BaseComponent {
       tooltip: tooltipValue,
       tooltipColor,
       tooltipPlacement,
+      tooltipTitle: tooltipTitleSource,
       ellipsis: ellipsisValue,
       textPrefix,
       textPrefixStyle,
@@ -90,7 +91,9 @@ class IconInfo extends BaseComponent {
 
     let textMerge = null;
 
-    const tooltipTitle = `${isString(textPrefix) && !checkStringIsNullOrWhiteSpace(textPrefix) ? textPrefix : ''}${isString(textPrefix) && !checkStringIsNullOrWhiteSpace(textPrefix) && isString(separator) && !checkStringIsNullOrWhiteSpace(separator) ? separator : ''}${isString(text) && !checkStringIsNullOrWhiteSpace(text) ? text : ''}`;
+    const tooltipTitle = checkStringIsNullOrWhiteSpace(tooltipTitleSource)
+      ? `${isString(textPrefix) && !checkStringIsNullOrWhiteSpace(textPrefix) ? textPrefix : ''}${isString(textPrefix) && !checkStringIsNullOrWhiteSpace(textPrefix) && isString(separator) && !checkStringIsNullOrWhiteSpace(separator) ? separator : ''}${isString(text) && !checkStringIsNullOrWhiteSpace(text) ? text : ''}`
+      : tooltipTitleSource;
 
     let textAfterFormat = isString(text)
       ? isFunction(textFormat || null)
@@ -451,6 +454,7 @@ IconInfo.defaultProps = {
   tooltip: false,
   tooltipColor: null,
   tooltipPlacement: 'top',
+  tooltipTitle: '',
   ellipsis: true,
   icon: null,
   iconPosition: 'left',
