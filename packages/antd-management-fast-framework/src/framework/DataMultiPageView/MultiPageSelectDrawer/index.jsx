@@ -68,6 +68,10 @@ class MultiPageSelectDrawer extends MultiPageDrawer {
 
     if (!showSelect) {
       this.selectListData = [];
+
+      this.setState({
+        selectedDataTableDataRows: [],
+      });
     }
   };
 
