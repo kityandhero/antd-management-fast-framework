@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-formily",
-  "version": "1.0.177",
+  "version": "1.0.178",
   "keywords": [
     "antd-management-fast-formily"
   ],
@@ -96,8 +96,8 @@
     "@types/node": "^25.2.2",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
-    "@typescript-eslint/parser": "^8.54.0",
-    "antd": "^6.2.3",
+    "@typescript-eslint/parser": "^8.55.0",
+    "antd": "^6.3.0",
     "babel-jest": "^30.2.0",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
@@ -131,7 +131,7 @@
     "prettier-plugin-packagejson": "^3.0.0",
     "react-refresh": "0.18.0",
     "rimraf": "^6.1.2",
-    "stylelint": "^17.1.1",
+    "stylelint": "^17.2.0",
     "stylelint-config-css-modules": "^4.6.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^40.0.0",

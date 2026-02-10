@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-component",
-  "version": "2.7.82",
+  "version": "2.7.83",
   "description": "antd-management-fast-component",
   "keywords": [
     "antd-management-fast-component"
@@ -63,8 +63,8 @@
     "@tanem/react-nprogress": "^5.0.60",
     "@tinymce/miniature": "^6.0.0",
     "@tinymce/tinymce-react": "^6.3.0",
-    "@umijs/max": "^4.6.27",
-    "antd": "^6.2.3",
+    "@umijs/max": "^4.6.28",
+    "antd": "^6.3.0",
     "antd-management-fast-common": "workspace:*",
     "array-move": "^4.0.0",
     "axios": "^1.13.5",
@@ -90,7 +90,7 @@
     "react-json-view": "^1.21.3",
     "react-player": "^3.4.0",
     "react-syntax-highlighter": "^16.1.0",
-    "umi": "^4.6.27"
+    "umi": "^4.6.28"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
@@ -129,7 +129,7 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@types/shelljs": "^0.10.0",
-    "@typescript-eslint/parser": "^8.54.0",
+    "@typescript-eslint/parser": "^8.55.0",
     "autoprefixer": "^10.4.24",
     "babel-jest": "^30.2.0",
     "commitizen": "^4.3.1",
@@ -174,7 +174,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-serve": "^3.0.0",
     "rollup-plugin-typescript2": "^0.36.0",
-    "stylelint": "^17.1.1",
+    "stylelint": "^17.2.0",
     "stylelint-config-css-modules": "^4.6.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^40.0.0",

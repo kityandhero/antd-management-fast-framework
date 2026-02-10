@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.1.181",
+  "version": "1.1.182",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -52,11 +52,11 @@
     "z:tsc:build": "echo show tsc version and create declaration file && tsc -v && tsc -p ./tsconfig.types.json && echo declaration file generate complete"
   },
   "dependencies": {
-    "@umijs/max": "^4.6.27",
+    "@umijs/max": "^4.6.28",
     "commander": "^14.0.3",
     "ejs": "^4.0.1",
     "rimraf": "^6.1.2",
-    "umi": "^4.6.27",
+    "umi": "^4.6.28",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
@@ -78,7 +78,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.2.2",
-    "@typescript-eslint/parser": "^8.54.0",
+    "@typescript-eslint/parser": "^8.55.0",
     "babel-jest": "^30.2.0",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
@@ -114,7 +114,7 @@
     "react-dnd": "^16.0.1",
     "react-refresh": "0.18.0",
     "rimraf": "^6.1.2",
-    "stylelint": "^17.1.1",
+    "stylelint": "^17.2.0",
     "stylelint-config-css-modules": "^4.6.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^40.0.0",
