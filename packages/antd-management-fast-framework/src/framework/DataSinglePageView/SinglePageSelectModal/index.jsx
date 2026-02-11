@@ -45,6 +45,11 @@ class SinglePageSelectModal extends SinglePageModal {
   useFrontendPagination = false;
 
   /**
+   * 是否保持选中状态
+   */
+  whetherKeepSelect = false;
+
+  /**
    * 指定使用选择二次确认模式, 默认 false, 不使用二次选择确认时可不用特殊指定
    * @member {boolean}
    */
@@ -68,27 +73,22 @@ class SinglePageSelectModal extends SinglePageModal {
   }
 
   /**
-   * 切换为显示状态后，doOtherWhenChangeVisibleToShow 执行后的附加逻辑，如无必要，请勿重写。
+   * 切换为隐藏状态后，doOtherWhenChangeVisibleToHide 执行后的附加逻辑，如无必要，请勿重写。
    * @function
    */
-  executeAfterDoOtherWhenChangeVisibleToShow = () => {
+  executeAfterDoOtherWhenChangeVisibleToHide = () => {
     this.logCallTrack(
       {},
       primaryCallName,
-      'executeAfterDoOtherWhenChangeVisibleToShow',
+      'executeAfterDoOtherWhenChangeVisibleToHide',
     );
 
-    this.logCallTrace(
-      {},
-      primaryCallName,
-      'executeAfterDoOtherWhenChangeVisibleToShow',
-      'reset selectListData => [] when showSelect is false',
-    );
-
-    const { showSelect } = this.state;
-
-    if (!showSelect) {
+    if (!this.whetherKeepSelect) {
       this.selectListData = [];
+
+      this.setState({
+        selectedDataTableDataRows: [],
+      });
     }
   };
 
