@@ -588,7 +588,9 @@ class Base extends BaseWindow {
         width={width}
         height={height}
         placement={placement}
-        maskClosable={isUndefined(maskClosable) ? false : maskClosable}
+        mask={{
+          closable: isUndefined(maskClosable) ? false : maskClosable,
+        }}
         overlayContent={this.renderOverlayContent()}
         overlayButtonOpenText={overlayButtonOpenText}
         overlayButtonCloseText={overlayButtonCloseText}

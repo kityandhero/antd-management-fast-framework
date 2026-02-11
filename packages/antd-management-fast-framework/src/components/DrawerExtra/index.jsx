@@ -239,6 +239,9 @@ class DrawerExtra extends PureComponent {
         </Tooltip>
       );
 
+    delete rest.width;
+    delete rest.height;
+
     return (
       <Drawer
         open={v || false}

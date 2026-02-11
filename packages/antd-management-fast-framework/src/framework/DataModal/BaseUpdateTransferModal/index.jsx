@@ -115,8 +115,10 @@ class BaseUpdateTransferModal extends BaseUpdateModal {
               component: (
                 <div>
                   <Transfer
-                    listStyle={{
-                      width: 312,
+                    styles={{
+                      section: {
+                        width: 312,
+                      },
                     }}
                     dataSource={this.buildDataSource()}
                     titles={this.buildTransferTitle()}

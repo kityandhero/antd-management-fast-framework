@@ -344,7 +344,9 @@ class Base extends BaseWindow {
         styles={{
           body: this.getModalBodyStyle(),
         }}
-        maskClosable={isUndefined(maskClosable) ? false : maskClosable}
+        mask={{
+          closable: isUndefined(maskClosable) ? false : maskClosable,
+        }}
         zIndex={1001}
         okButtonProps={this.buildOkButtonProps()}
         onOk={(event) => {
