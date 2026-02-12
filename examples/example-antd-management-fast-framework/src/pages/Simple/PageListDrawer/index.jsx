@@ -8,13 +8,21 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  cardConfig,
   columnFacadeMode,
   columnPlaceholder,
   listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
-import { ColorText, iconBuilder } from 'antd-management-fast-component';
-import { DataMultiPageView } from 'antd-management-fast-framework';
+import {
+  buildColorText,
+  ColorText,
+  iconBuilder,
+} from 'antd-management-fast-component';
+import {
+  DataMultiPageView,
+  switchControlAssist,
+} from 'antd-management-fast-framework';
 
 import { fieldData, statusCollection } from '../../../businessData/data';
 import { accessWayCollection } from '../../../customConfig';
@@ -37,6 +45,10 @@ class PageListDrawer extends MultiPageSelectDrawer {
   reloadWhenShow = true;
 
   componentAuthority = accessWayCollection.simple.pageList.permission;
+
+  static open() {
+    switchControlAssist.open(visibleFlag);
+  }
 
   constructor(properties) {
     super(properties, visibleFlag);
@@ -82,6 +94,110 @@ class PageListDrawer extends MultiPageSelectDrawer {
     }
 
     return result;
+  };
+
+  establishPageContentLayoutSiderConfig = () => {
+    return {
+      position: 'left',
+    };
+  };
+
+  establishSiderTopAreaConfig = () => {
+    return {
+      mode: cardConfig.wrapperType.page,
+      list: [
+        {
+          title: {
+            text: '基本信息',
+            subText: buildColorText({
+              textPrefix: '文本前缀',
+              text: '附属文本',
+              color: '#8909ef',
+              wrapperBuilder: (c) => {
+                return <>【{c}】</>;
+              },
+            }),
+          },
+          extra: {
+            list: [
+              {
+                buildType: cardConfig.extraBuildType.refresh,
+                size: 'small',
+              },
+            ],
+          },
+          items: [
+            {
+              lg: 24,
+              type: cardConfig.contentItemType.tree,
+              showLine: true,
+              switcherIcon: iconBuilder.down(),
+              defaultExpandedKeys: ['0-0-0'],
+              listData: [
+                {
+                  title: 'parent 1',
+                  key: '0-0',
+                  children: [
+                    {
+                      title: 'parent 1-0',
+                      key: '0-0-0',
+                      children: [
+                        {
+                          title: 'leaf',
+                          key: '0-0-0-0',
+                        },
+                        {
+                          title: 'leaf',
+                          key: '0-0-0-1',
+                        },
+                        {
+                          title: 'leaf',
+                          key: '0-0-0-2',
+                        },
+                      ],
+                    },
+                    {
+                      title: 'parent 1-1',
+                      key: '0-0-1',
+                      children: [
+                        {
+                          title: 'leaf',
+                          key: '0-0-1-0',
+                        },
+                      ],
+                    },
+                    {
+                      title: 'parent 1-2',
+                      key: '0-0-2',
+                      children: [
+                        {
+                          title: 'leaf',
+                          key: '0-0-2-0',
+                        },
+                        {
+                          title: 'leaf',
+                          key: '0-0-2-1',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              innerProps: {
+                defaultExpandAll: true,
+              },
+              onSelect: (
+                selectedKeys,
+                o,
+                { selectedNodes, node, treeData },
+              ) => {
+                console.log({ selectedNodes, node, treeData });
+              },
+            },
+          ],
+        },
+      ],
+    };
   };
 
   establishSearchCardConfig = () => {

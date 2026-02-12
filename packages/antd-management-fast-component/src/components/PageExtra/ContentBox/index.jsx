@@ -13,12 +13,13 @@ class ContentBox extends PureComponent {
       siderConfig = null,
       siderBody = null,
       toolbar,
+      contentConfig = null,
       contentBody = null,
       contentClassName,
       bottom,
     } = this.props;
 
-    const { position: positionSource } = {
+    const { position: positionSource, style: styleSider } = {
       position: 'left',
       ...siderConfig,
     };
@@ -34,6 +35,7 @@ class ContentBox extends PureComponent {
         borderRadius: '4px',
         overflowX: 'auto',
         overflowY: 'hidden',
+        ...styleSider,
         ...(siderPosition === 'left'
           ? { marginRight: '16px' }
           : { marginLeft: '16px' }),
@@ -41,10 +43,17 @@ class ContentBox extends PureComponent {
       ...(checkObjectIsNullOrEmpty(siderConfig) ? {} : siderConfig),
     };
 
+    const { style: styleLayout } = layoutConfig;
+
+    const { style: styleContent } = contentConfig;
+
+    delete layoutConfig.style;
+
     const layoutConfigAdjust = {
       breakpoint: 'sm',
       style: {
         backgroundColor: '#f0f2f5',
+        ...styleLayout,
         minHeight: 'auto',
       },
       ...(checkObjectIsNullOrEmpty(layoutConfig) ? {} : layoutConfig),
@@ -62,6 +71,7 @@ class ContentBox extends PureComponent {
           <Content
             style={{
               backgroundColor: '#fff',
+              ...styleContent,
               borderRadius: '4px',
             }}
             className={classNames(
@@ -108,6 +118,7 @@ ContentBox.defaultProps = {
   layoutConfig: {},
   siderConfig: {},
   siderBody: null,
+  contentConfig: {},
   contentBody: null,
   contentClassName: '',
   toolbar: null,

@@ -2418,6 +2418,13 @@ class InternalFlow extends Core {
    * establishToolBarConfig = () => { return null; }
    */
   establishToolBarConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishToolBarConfig',
+      emptyLogic,
+    );
+
     return null;
   };
 
@@ -2429,6 +2436,8 @@ class InternalFlow extends Core {
    * establishHelpConfig = () => { return null; }
    */
   establishHelpConfig = () => {
+    this.logCallTrack({}, primaryCallName, 'establishHelpConfig', emptyLogic);
+
     return null;
   };
 
@@ -2440,6 +2449,13 @@ class InternalFlow extends Core {
    * establishSiderTopAreaConfig = () => { return null; }
    */
   establishSiderTopAreaConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishSiderTopAreaConfig',
+      emptyLogic,
+    );
+
     return null;
   };
 
@@ -2451,6 +2467,13 @@ class InternalFlow extends Core {
    * establishPageContentLayoutSiderConfig = () => { return null; }
    */
   establishSiderBottomAreaConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishSiderBottomAreaConfig',
+      emptyLogic,
+    );
+
     return null;
   };
 
@@ -2462,6 +2485,31 @@ class InternalFlow extends Core {
    * establishPageContentLayoutSiderConfig = () => { return {}; }
    */
   establishPageContentLayoutSiderConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageContentLayoutSiderConfig',
+      emptyLogic,
+    );
+
+    return {};
+  };
+
+  /**
+   * 构建页面内容侧栏布局配置，默认为空逻辑，可根据需要重载。
+   * @function
+   * @returns {Object} 配置数据
+   * @example
+   * establishPageContentLayoutSiderConfig = () => { return {}; }
+   */
+  establishPageContentLayoutContentConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageContentLayoutContentConfig',
+      emptyLogic,
+    );
+
     return {};
   };
 
@@ -2473,6 +2521,13 @@ class InternalFlow extends Core {
    * establishPageHeaderSubTitle = () => { return {}; }
    */
   establishPageContentLayoutConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageContentLayoutConfig',
+      emptyLogic,
+    );
+
     return {};
   };
 
@@ -2483,7 +2538,16 @@ class InternalFlow extends Core {
    * @example
    * establishPageHeaderSubTitle = () => ''
    */
-  establishPageHeaderTitlePrefix = () => '';
+  establishPageHeaderTitlePrefix = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageHeaderTitlePrefix',
+      emptyLogic,
+    );
+
+    return '';
+  };
 
   /**
    * 构建页面头部子标题，默认为空逻辑，可根据需要重载。
@@ -2492,7 +2556,16 @@ class InternalFlow extends Core {
    * @example
    * establishPageHeaderSubTitle = () => ''
    */
-  establishPageHeaderSubTitle = () => '';
+  establishPageHeaderSubTitle = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageHeaderSubTitle',
+      emptyLogic,
+    );
+
+    return '';
+  };
 
   /**
    * 构建页面头部内容表格配置，默认为空逻辑，可根据需要重载。
@@ -2502,6 +2575,13 @@ class InternalFlow extends Core {
    * establishPageHeaderContentGridConfig = () => { return { gridConfig: null }; }
    */
   establishPageHeaderContentGridConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageHeaderContentGridConfig',
+      emptyLogic,
+    );
+
     return {
       gridConfig: null,
     };
@@ -2515,6 +2595,13 @@ class InternalFlow extends Core {
    * establishPageHeaderContentActionConfig = () => { return { paragraph: null }; }
    */
   establishPageHeaderContentParagraphConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageHeaderContentParagraphConfig',
+      emptyLogic,
+    );
+
     return { paragraph: null };
   };
 
@@ -2526,6 +2613,13 @@ class InternalFlow extends Core {
    * establishPageHeaderContentActionConfig = () => { return { actions: [] }; }
    */
   establishPageHeaderContentActionConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageHeaderContentActionConfig',
+      emptyLogic,
+    );
+
     return {
       actions: [],
     };
@@ -2539,6 +2633,13 @@ class InternalFlow extends Core {
    * establishPageHeaderContentComponentConfig = () => { return { component: null }; }
    */
   establishPageHeaderContentComponentConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageHeaderContentComponentConfig',
+      emptyLogic,
+    );
+
     return {
       component: null,
     };
@@ -2551,7 +2652,16 @@ class InternalFlow extends Core {
    * @example
    * establishExtraActionConfig = () => null
    */
-  establishExtraActionConfig = () => null;
+  establishExtraActionConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishPageHeaderContentComponentConfig',
+      emptyLogic,
+    );
+
+    return null;
+  };
 
   /**
    * 构建Extra区域动作组配置，默认为空逻辑，可根据需要重载。
@@ -2560,7 +2670,16 @@ class InternalFlow extends Core {
    * @example
    * establishExtraActionGroupConfig = () => null
    */
-  establishExtraActionGroupConfig = () => null;
+  establishExtraActionGroupConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishExtraActionGroupConfig',
+      emptyLogic,
+    );
+
+    return null;
+  };
 
   /**
    * 构建Extra区域下拉动作配置，默认为空逻辑，可根据需要重载。
@@ -2569,7 +2688,16 @@ class InternalFlow extends Core {
    * @example
    * establishExtraActionEllipsisConfig = () => null
    */
-  establishExtraActionEllipsisConfig = () => null;
+  establishExtraActionEllipsisConfig = () => {
+    this.logCallTrack(
+      {},
+      primaryCallName,
+      'establishExtraActionEllipsisConfig',
+      emptyLogic,
+    );
+
+    return null;
+  };
 }
 
 export { InternalFlow };

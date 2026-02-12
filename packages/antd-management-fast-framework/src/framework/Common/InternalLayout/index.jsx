@@ -151,6 +151,7 @@ class InternalLayout extends InternalBuild {
         siderConfig={this.establishPageContentLayoutSiderConfig()}
         siderBody={siderBody}
         toolbar={toolbar}
+        contentConfig={this.establishPageContentLayoutContentConfig()}
         contentBody={contentBody}
         contentClassName={`preset-page-body-content-${this.contentWrapperType}`}
         bottom={bottom}

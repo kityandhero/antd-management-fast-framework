@@ -4,6 +4,7 @@ import QueueAnim from 'rc-queue-anim';
 import React from 'react';
 
 import {
+  checkObjectIsNullOrEmpty,
   checkStringIsNullOrWhiteSpace,
   isFunction,
   logCallTrack,
@@ -12,12 +13,14 @@ import {
 } from 'easy-soft-utility';
 
 import {
+  cardConfig,
   contentConfig,
   emptyLogic,
   listViewConfig,
   renderFurtherColorWhenNoCallProcess,
   renderFurtherPrefixWhenNoCallProcess,
 } from 'antd-management-fast-common';
+import { PageExtra } from 'antd-management-fast-component';
 
 import {
   DrawerExtra,
@@ -31,6 +34,8 @@ import { RefreshButton } from '../../DataListView/RefreshButton';
 import { MultiPage } from '../MultiPage';
 
 import styles from '../../DataListView/Drawer/index.less';
+
+const { ContentBox, SiderBox } = PageExtra;
 
 const primaryCallName = 'DataMultiPageView::MultiPageDrawer';
 
@@ -644,6 +649,49 @@ class MultiPageDrawer extends MultiPage {
 
     const that = this;
 
+    const layoutConfig = this.establishPageContentLayoutConfig() ?? {};
+    const siderConfig = this.establishPageContentLayoutSiderConfig() ?? {};
+    const contentConfig = this.establishPageContentLayoutContentConfig();
+
+    layoutConfig.style = {
+      ...layoutConfig.style,
+      height: '100%',
+    };
+
+    siderConfig.style = {
+      ...siderConfig.style,
+      marginTop: '24px',
+      borderRadius: 0,
+    };
+
+    siderConfig.theme = 'light';
+
+    contentConfig.style = {
+      ...contentConfig.style,
+      height: '100%',
+    };
+
+    const siderTop = this.renderPresetSiderTopArea();
+    const siderBottom = this.renderPresetSiderBottomArea();
+
+    const siderBody =
+      checkObjectIsNullOrEmpty(siderTop) &&
+      checkObjectIsNullOrEmpty(siderBottom) ? null : (
+        <SiderBox
+          top={siderTop}
+          bottom={
+            checkObjectIsNullOrEmpty(siderTop)
+              ? siderBottom
+              : checkObjectIsNullOrEmpty(siderBottom)
+                ? this.buildCardCollectionArea({
+                    mode: cardConfig.wrapperType.page,
+                    list: [{}],
+                  })
+                : siderBottom
+          }
+        />
+      );
+
     return (
       <DrawerExtra
         flag={this.getVisibleFlag()}
@@ -676,7 +724,13 @@ class MultiPageDrawer extends MultiPage {
               height: '100%',
             }}
           >
-            {this.renderPresetDrawerInner()}
+            <ContentBox
+              layoutConfig={layoutConfig}
+              siderConfig={siderConfig}
+              siderBody={siderBody}
+              contentConfig={contentConfig}
+              contentBody={this.renderPresetDrawerInner()}
+            />
           </div>
         ) : null}
 
@@ -686,7 +740,13 @@ class MultiPageDrawer extends MultiPage {
               height: 'calc(100vh - 55px)',
             }}
           >
-            {this.renderPresetDrawerInner()}
+            <ContentBox
+              layoutConfig={layoutConfig}
+              siderConfig={siderConfig}
+              siderBody={siderBody}
+              contentConfig={contentConfig}
+              contentBody={this.renderPresetDrawerInner()}
+            />
           </div>
         ) : null}
 
@@ -696,7 +756,13 @@ class MultiPageDrawer extends MultiPage {
               height: 'calc(100vh - 55px)',
             }}
           >
-            {this.renderPresetDrawerInner()}
+            <ContentBox
+              layoutConfig={layoutConfig}
+              siderConfig={siderConfig}
+              siderBody={siderBody}
+              contentConfig={contentConfig}
+              contentBody={this.renderPresetDrawerInner()}
+            />
           </div>
         ) : null}
 
@@ -706,7 +772,13 @@ class MultiPageDrawer extends MultiPage {
               height: 'calc(100vh - 55px)',
             }}
           >
-            {this.renderPresetDrawerInner()}
+            <ContentBox
+              layoutConfig={layoutConfig}
+              siderConfig={siderConfig}
+              siderBody={siderBody}
+              contentConfig={contentConfig}
+              contentBody={this.renderPresetDrawerInner()}
+            />
           </div>
         ) : null}
       </DrawerExtra>

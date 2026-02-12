@@ -47,6 +47,7 @@ import {
 } from '../../../customSpecialComponents';
 import AddBasicInfoDrawer from '../AddBasicInfoDrawer';
 import ChangeSortModal from '../ChangeSortModal';
+import PageListDrawer from '../PageListDrawer';
 import SingleListDrawer from '../SingleListDrawer';
 import UpdateBasicInfoDrawer from '../UpdateBasicInfoDrawer';
 
@@ -169,6 +170,10 @@ class SingleList extends SinglePage {
 
   showSingleListDrawer = () => {
     SingleListDrawer.open();
+  };
+
+  showPageListDrawer = () => {
+    PageListDrawer.open();
   };
 
   afterSingleListDrawerOk = () => {
@@ -460,7 +465,18 @@ class SingleList extends SinglePage {
         text: '侧拉单页列表',
         handleClick: this.showSingleListDrawer,
         hidden: !checkHasAuthority(
-          accessWayCollection.simple.addBasicInfo.permission,
+          accessWayCollection.simple.singleList.permission,
+        ),
+      },
+      {
+        buildType:
+          listViewConfig.dataContainerExtraActionBuildType.generalButton,
+        type: 'primary',
+        icon: iconBuilder.sortAscending(),
+        text: '侧拉分页列表',
+        handleClick: this.showPageListDrawer,
+        hidden: !checkHasAuthority(
+          accessWayCollection.simple.pageList.permission,
         ),
       },
       {
@@ -822,9 +838,16 @@ class SingleList extends SinglePage {
     return (
       <>
         <SingleListDrawer
-          width={1200}
+          width={1400}
           afterOK={() => {
             this.showSingleListDrawer();
+          }}
+        />
+
+        <PageListDrawer
+          width={1400}
+          afterOK={() => {
+            this.showPageListDrawer();
           }}
         />
 
