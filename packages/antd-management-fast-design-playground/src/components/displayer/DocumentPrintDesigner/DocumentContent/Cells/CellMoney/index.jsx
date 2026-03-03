@@ -7,7 +7,7 @@ import {
   toNumber,
 } from 'easy-soft-utility';
 
-import { FlexBox, VerticalBox } from 'antd-management-fast-component';
+import { EverySpace } from 'antd-management-fast-component';
 
 import {
   colorStyle,
@@ -61,7 +61,43 @@ class CellMoney extends CellBase {
           borderRight: '0',
         }}
       >
-        <FlexBox
+        <div
+          style={{
+            ...frontSizeStyle,
+            textAlign: 'left',
+            fontSize: '20px',
+            fontWeight: 'bold',
+            ...fontFamilyStyle,
+            ...colorStyle,
+          }}
+        >
+          小写：￥
+          <span style={currencyDisplayStyle}>
+            {(Math.floor(toNumber(contentAdjust) * 100) / 100).toFixed(2)}
+          </span>
+        </div>
+
+        <EverySpace size={10} direction="horizontal" />
+
+        <div
+          style={{
+            ...frontSizeStyle,
+            textAlign: 'left',
+            fontSize: '20px',
+            fontWeight: 'bold',
+            ...fontFamilyStyle,
+            ...colorStyle,
+          }}
+        >
+          人民币（大写）：
+          <span style={currencyDisplayStyle}>
+            {formatMoneyToChinese({
+              target: whetherZero ? 0 : toNumber(contentAdjust),
+            })}
+          </span>
+        </div>
+
+        {/* <FlexBox
           flexAuto="left"
           style={{
             width: '100%',
@@ -77,7 +113,7 @@ class CellMoney extends CellBase {
                   ...colorStyle,
                 }}
               >
-                人民币（大写）
+                人民币（大写）：
                 <span style={currencyDisplayStyle}>
                   {formatMoneyToChinese({
                     target: whetherZero ? 0 : toNumber(contentAdjust),
@@ -97,11 +133,14 @@ class CellMoney extends CellBase {
                   ...colorStyle,
                 }}
               >
-                小写￥<span style={currencyDisplayStyle}>{contentAdjust}</span>
+                小写：￥
+                <span style={currencyDisplayStyle}>
+                  {(Math.floor(toNumber(contentAdjust) * 100) / 100).toFixed(2)}
+                </span>
               </div>
             </VerticalBox>
           }
-        />
+        /> */}
       </div>
     );
   };
