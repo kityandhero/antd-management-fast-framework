@@ -61,6 +61,7 @@ class LoadingOverlay extends PureComponent {
     return (
       <Spin
         spinning={result}
+        // style={fill ? { height: '100%', width: '100%' } : {}}
         styles={{ root: fill ? { height: '100%', width: '100%' } : {} }}
         classNames={{ root: fill ? (styles.fill ?? null) : null }}
       >
