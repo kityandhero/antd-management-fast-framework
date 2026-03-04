@@ -5,12 +5,12 @@ import {
   checkStringIsNullOrWhiteSpace,
   formatCollection,
   getValueByKey,
+  showSimpleInfoMessage,
 } from 'easy-soft-utility';
 
 import {
   columnFacadeMode,
   columnPlaceholder,
-  listViewConfig,
   searchCardConfig,
 } from 'antd-management-fast-common';
 import { ColorText, iconBuilder } from 'antd-management-fast-component';
@@ -52,7 +52,7 @@ class PageListDrawer extends MultiPageSelectDrawer {
       ...this.state,
       pageTitle: '请选择文章',
       loadApiPath: 'simple/pageList',
-      listViewMode: listViewConfig.viewMode.list,
+      // listViewMode: listViewConfig.viewMode.list,
       tableScrollY: 600,
     };
   }
@@ -212,6 +212,19 @@ class PageListDrawer extends MultiPageSelectDrawer {
     };
   };
 
+  establishListItemDropdownConfig = (record) => {
+    return {
+      size: 'small',
+      text: '编辑',
+      placement: 'topRight',
+      icon: iconBuilder.form(),
+      handleButtonClick: () => {
+        showSimpleInfoMessage('click button');
+      },
+      handleData: record,
+    };
+  };
+
   // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemInner = (item, index) => {
     const simpleId = getValueByKey({
@@ -327,16 +340,6 @@ class PageListDrawer extends MultiPageSelectDrawer {
       emptyValue: '--',
     },
     columnPlaceholder,
-    {
-      dataTarget: fieldData.customOperate,
-      width: 106,
-      fixed: 'right',
-      render: (text, record) => {
-        return this.renderPresetSelectButton({
-          handleData: record,
-        });
-      },
-    },
   ];
 }
 
