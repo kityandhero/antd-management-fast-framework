@@ -20,6 +20,7 @@
     "build:core-component-compression-skip": "cd packages/antd-management-fast-component && npm run build:rollup:skipCompression",
     "build:core-design-compression-skip": "cd packages/antd-management-fast-design-playground && npm run build:rollup:skipCompression",
     "build:core-design-playground-compression": "cd packages/antd-management-fast-design-playground && npm run build:rollup",
+    "build:core-design-playground-compression-skip": "cd packages/antd-management-fast-design-playground && npm run build:rollup:skipCompression",
     "build:core-design-react-compression": "cd packages/antd-management-fast-design-react && npm run build:rollup",
     "build:core-design-react-compression-skip": "cd packages/antd-management-fast-design-react && npm run build:rollup:skipCompression",
     "build:core-flow-compression": "cd packages/antd-management-fast-flow && npm run build:rollup",

@@ -186,6 +186,7 @@ class StandardTable extends PureComponent {
         pagination={paginationProperties}
         onChange={this.handleTableChange}
         {...rest}
+        className={'amf-standard-table'}
         loading={false}
       />
     );
