@@ -73,7 +73,7 @@ class CellMoney extends CellBase {
         >
           小写：￥
           <span style={currencyDisplayStyle}>
-            {(Math.floor(toNumber(contentAdjust) * 100) / 100).toFixed(2)}
+            {((toNumber(contentAdjust) * 100) / 100).toFixed(2)}
           </span>
         </div>
 

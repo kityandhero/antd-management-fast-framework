@@ -66,6 +66,8 @@ class TinymceWrapper extends PureComponent {
 
     const config = {
       language: language || '',
+      //close upgrade button
+      promotion: false,
       height: 690,
       // plugins_ignore:
       //   'tinydrive powerpaste imagetools advcode formatpainter pageembed permanentpen casechange checklist advtable export tinymcespellchecker linkchecker mentions tinycomments toc',

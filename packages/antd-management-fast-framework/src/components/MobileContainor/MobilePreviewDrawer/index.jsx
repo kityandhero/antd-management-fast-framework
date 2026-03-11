@@ -42,7 +42,7 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
     return iconBuilder.picture();
   };
 
-  renderPresetTitle = () => {
+  getPresetPageTitle = () => {
     return '设备预览';
   };
 
@@ -76,17 +76,22 @@ class MobilePreviewDrawer extends BaseNeedlessLoadDrawer {
           defaultValue: mobileType,
           list: listConfig,
           dataConvert: (o) => {
-            const { label, flag: value } = {
-              label: '',
+            const {
+              name,
+              alias,
+              flag: value,
+            } = {
+              name: '',
+              alias: '',
               flag: '',
               ...o,
             };
 
             return {
               ...o,
-              label,
+              label: name,
               value,
-              alias: label,
+              alias: alias,
             };
           },
           onChange: (v) => {
