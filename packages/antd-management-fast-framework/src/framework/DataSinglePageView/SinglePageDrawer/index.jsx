@@ -692,16 +692,16 @@ class SinglePageDrawer extends SinglePage {
       checkObjectIsNullOrEmpty(siderTop) &&
       checkObjectIsNullOrEmpty(siderBottom) ? null : (
         <SiderBox
-          top={siderTop}
+          top={siderTop ?? <div />}
           bottom={
             checkObjectIsNullOrEmpty(siderTop)
-              ? siderBottom
+              ? (siderBottom ?? <div />)
               : checkObjectIsNullOrEmpty(siderBottom)
                 ? this.buildCardCollectionArea({
                     mode: cardConfig.wrapperType.page,
                     list: [{}],
                   })
-                : siderBottom
+                : (siderBottom ?? <div />)
           }
         />
       );

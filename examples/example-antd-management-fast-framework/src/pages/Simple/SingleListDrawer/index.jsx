@@ -125,7 +125,6 @@ class SingleListDrawer extends SinglePageSelectDrawer {
             {
               lg: 24,
               type: cardConfig.contentItemType.tree,
-              showLine: true,
               switcherIcon: iconBuilder.down(),
               defaultExpandedKeys: ['0-0-0'],
               listData: [

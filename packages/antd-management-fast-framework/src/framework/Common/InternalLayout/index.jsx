@@ -61,13 +61,17 @@ class InternalLayout extends InternalBuild {
   renderPresetSiderBottomArea = () => {
     this.logCallTrack({}, primaryCallName, 'renderPresetSiderBottomArea');
 
-    const config = this.establishSiderBottomAreaConfig();
+    const configOrComponent = this.establishSiderBottomAreaConfig();
 
-    if (config == null) {
+    if (configOrComponent == null) {
       return null;
     }
 
-    return this.buildCardCollectionArea(config);
+    if (React.isValidElement(configOrComponent)) {
+      return configOrComponent;
+    }
+
+    return this.buildCardCollectionArea(configOrComponent);
   };
 
   /**
