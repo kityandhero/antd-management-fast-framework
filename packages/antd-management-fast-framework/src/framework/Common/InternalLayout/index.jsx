@@ -124,7 +124,7 @@ class InternalLayout extends InternalBuild {
     const siderBody =
       checkObjectIsNullOrEmpty(siderTop) &&
       checkObjectIsNullOrEmpty(siderBottom) ? null : (
-        <SiderBox top={siderTop} bottom={siderBottom} />
+        <SiderBox top={siderTop ?? <div />} bottom={siderBottom ?? <div />} />
       );
 
     const toolbar =
