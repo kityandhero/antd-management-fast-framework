@@ -74,19 +74,17 @@ class FigureRange extends PureComponent {
     const max = toNumber(maxData);
     const value = toNumber(valueData);
 
-    if (
-      !(
-        type === figureRangeType.unlimited.flag ||
-        type === figureRangeType.zero.flag ||
-        type === figureRangeType.eq.flag ||
-        type === figureRangeType.gt.flag ||
-        type === figureRangeType.gte.flag ||
-        type === figureRangeType.le.flag ||
-        type === figureRangeType.lte.flag ||
-        type === figureRangeType.between.flag ||
-        type === figureRangeType.except.flag
-      )
-    ) {
+    if (!(
+      type === figureRangeType.unlimited.flag ||
+      type === figureRangeType.zero.flag ||
+      type === figureRangeType.eq.flag ||
+      type === figureRangeType.gt.flag ||
+      type === figureRangeType.gte.flag ||
+      type === figureRangeType.le.flag ||
+      type === figureRangeType.lte.flag ||
+      type === figureRangeType.between.flag ||
+      type === figureRangeType.except.flag
+    )) {
       return {
         type: figureRangeType.unlimited.flag,
         min: null,

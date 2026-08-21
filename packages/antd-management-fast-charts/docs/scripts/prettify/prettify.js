@@ -246,7 +246,7 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
       ) {
         var r = e[d],
           n = r[3];
-        if (n) for (var k = n.length; --k >= 0; ) h[n.charAt(k)] = r;
+        if (n) for (var k = n.length; --k >= 0;) h[n.charAt(k)] = r;
         r = r[1];
         n = '' + r;
         p.hasOwnProperty(n) || (l.push(r), (p[n] = q));
@@ -363,7 +363,7 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
         }
         return e;
       }
-      for (; !a.nextSibling; ) if (((a = a.parentNode), !a)) return;
+      for (; !a.nextSibling;) if (((a = a.parentNode), !a)) return;
       for (
         var a = b(a.nextSibling, 0), e;
         (e = a.parentNode) && e.nodeType === 1;
@@ -382,7 +382,7 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
           .getComputedStyle(a, q)
           .getPropertyValue('white-space'));
     var p = l && 'pre' === l.substring(0, 3);
-    for (l = s.createElement('LI'); a.firstChild; ) l.appendChild(a.firstChild);
+    for (l = s.createElement('LI'); a.firstChild;) l.appendChild(a.firstChild);
     for (var d = [l], g = 0; g < d.length; ++g) e(d[g]);
     m === (m | 0) && d[0].setAttribute('value', m);
     var r = s.createElement('OL');
@@ -395,7 +395,7 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
     a.appendChild(r);
   }
   function k(a, m) {
-    for (var e = m.length; --e >= 0; ) {
+    for (var e = m.length; --e >= 0;) {
       var h = m[e];
       A.hasOwnProperty(h)
         ? window.console &&
@@ -430,10 +430,10 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
         a = 0;
       d[g] = s;
       var r, n;
-      for (n = r = 0; n < g; )
+      for (n = r = 0; n < g;)
         d[n] !== d[n + 2] ? ((d[r++] = d[n++]), (d[r++] = d[n++])) : (n += 2);
       g = r;
-      for (n = r = 0; n < g; ) {
+      for (n = r = 0; n < g;) {
         for (
           var z = d[n], f = d[n + 1], b = n + 2;
           b + 2 <= g && d[b + 1] === f;
@@ -443,7 +443,7 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
         d[r++] = f;
         n = b;
       }
-      for (d.length = r; h < p; ) {
+      for (d.length = r; h < p;) {
         var o = l[h + 2] || s,
           c = d[a + 2] || s,
           b = Math.min(o, c),

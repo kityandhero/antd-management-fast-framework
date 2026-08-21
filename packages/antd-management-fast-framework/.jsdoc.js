@@ -1,7 +1,8 @@
-/* eslint-disable no-undef */
-/* eslint-disable import/no-commonjs */
+/**
+generate by easy-soft-develop
+*/
+
 /* eslint-disable unicorn/prefer-module */
-/* eslint-disable no-useless-escape */
 
 const { generalConfig } = require('../../develop/config/jsdoc/config');
 
