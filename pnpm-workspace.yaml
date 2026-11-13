@@ -9,6 +9,7 @@ minimumReleaseAge: 1
 minimumReleaseAgeStrict: true
 
 allowBuilds:
+  '@parcel/watcher': true
   core-js: true
   core-js-pure: true
   es5-ext: true

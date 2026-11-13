@@ -1,5 +1,11 @@
 # antd-management-fast-design-react
 
+## 1.0.165
+
+### Patch Changes
+
+- add money format
+
 ## 1.0.164
 
 ### Patch Changes

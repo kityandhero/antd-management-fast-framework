@@ -1,5 +1,16 @@
 # antd-management-fast-design-playground
 
+## 1.0.250
+
+### Patch Changes
+
+- add money format
+- Updated dependencies
+  - antd-management-fast-common@2.6.193
+  - antd-management-fast-component@2.7.94
+  - antd-management-fast-design-react@1.0.165
+  - antd-management-fast-formily@1.0.189
+
 ## 1.0.249
 
 ### Patch Changes

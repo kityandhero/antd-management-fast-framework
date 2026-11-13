@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.6.193
+
+### Patch Changes
+
+- add money format
+
 ## 2.6.192
 
 ### Patch Changes

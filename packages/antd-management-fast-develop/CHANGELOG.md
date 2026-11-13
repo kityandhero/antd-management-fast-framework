@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.188
+
+### Patch Changes
+
+- add money format
+
 ## 1.1.187
 
 ### Patch Changes

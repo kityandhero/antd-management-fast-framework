@@ -1,5 +1,14 @@
 # antd-management-fast-flow
 
+## 1.0.178
+
+### Patch Changes
+
+- add money format
+- Updated dependencies
+  - antd-management-fast-common@2.6.193
+  - antd-management-fast-component@2.7.94
+
 ## 1.0.177
 
 ### Patch Changes

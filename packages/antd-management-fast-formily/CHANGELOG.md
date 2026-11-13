@@ -1,5 +1,15 @@
 # antd-management-fast-formily
 
+## 1.0.189
+
+### Patch Changes
+
+- add money format
+- Updated dependencies
+  - antd-management-fast-common@2.6.193
+  - antd-management-fast-component@2.7.94
+  - antd-management-fast-design-react@1.0.165
+
 ## 1.0.188
 
 ### Patch Changes

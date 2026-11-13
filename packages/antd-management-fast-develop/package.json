@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-develop",
-  "version": "1.1.187",
+  "version": "1.1.188",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -124,6 +124,7 @@
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^3.0.0",
-    "stylelint-order": "^8.1.1"
+    "stylelint-order": "^8.1.1",
+    "typescript": "^5.9.3"
   }
 }

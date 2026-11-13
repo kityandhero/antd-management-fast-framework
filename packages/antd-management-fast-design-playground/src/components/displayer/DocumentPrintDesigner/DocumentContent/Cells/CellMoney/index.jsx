@@ -19,7 +19,7 @@ import { CellBase } from '../CellBase';
 
 class CellMoney extends CellBase {
   buildContentBox = () => {
-    const { content } = this.getProperties();
+    const { formatMoney, content } = this.getProperties();
 
     let whetherZero = false;
     let contentAdjust = '';
@@ -73,7 +73,9 @@ class CellMoney extends CellBase {
         >
           小写：￥
           <span style={currencyDisplayStyle}>
-            {((toNumber(contentAdjust) * 100) / 100).toFixed(2)}
+            {formatMoney
+              ? ((toNumber(contentAdjust) * 100) / 100).toFixed(2)
+              : contentAdjust}
           </span>
         </div>
 

@@ -292,6 +292,7 @@ class DocumentContent extends PureComponent {
       rows,
       designMode,
       signetStyle,
+      formatMoney,
     } = this.props;
     const { currentHighlighTag } = this.state;
 
@@ -525,6 +526,7 @@ class DocumentContent extends PureComponent {
                           uniqueTag={uniqueTag}
                           width={widthAdjust}
                           highlighTag={currentHighlighTag}
+                          formatMoney={formatMoney}
                           content={content}
                           data={one || {}}
                           highlightMode={highlightMode}

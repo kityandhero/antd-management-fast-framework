@@ -82,6 +82,7 @@ const defaultProperties = {
   qRCodeStyle: {},
   serialNumberTitle: '流水号',
   serialNumberContent: '',
+  formatMoney: false,
   onChange: null,
 };
 
@@ -111,7 +112,6 @@ class DocumentPrintDesigner extends BaseComponent {
     };
   }
 
-  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromProps(nextProperties, previousState) {
     const {
       schema,

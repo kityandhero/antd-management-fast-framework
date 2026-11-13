@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.6.201
+
+### Patch Changes
+
+- add money format
+- Updated dependencies
+  - antd-management-fast-common@2.6.193
+  - antd-management-fast-component@2.7.94
+
 ## 2.6.200
 
 ### Patch Changes

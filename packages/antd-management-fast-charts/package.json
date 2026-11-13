@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-charts",
-  "version": "2.6.200",
+  "version": "2.6.201",
   "description": "antd-management-fast-charts",
   "keywords": [
     "antd-management-fast-charts"
@@ -187,6 +187,6 @@
     "stylelint-config-standard": "^40.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^3.0.0",
     "stylelint-order": "^8.1.1",
-    "typescript": "^7.0.2"
+    "typescript": "^5.9.3"
   }
 }
