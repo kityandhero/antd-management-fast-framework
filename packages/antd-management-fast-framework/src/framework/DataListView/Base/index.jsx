@@ -668,7 +668,7 @@ class Base extends AuthorizationWrapper {
 
     let lg = (lgValue || 6) <= 0 ? 6 : lgValue;
 
-    lg = lg > 24 ? 24 : lg;
+    lg = Math.min(lg, 24);
 
     return (
       <Col key={contentItemKey} lg={lg || 6} md={md} sm={sm} xs={xs}>
@@ -1144,10 +1144,8 @@ class Base extends AuthorizationWrapper {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
   onBatchActionClick = null;
 
-  // eslint-disable-next-line no-unused-vars
   onBatchActionSelect = null;
 
   // eslint-disable-next-line no-unused-vars
@@ -1459,13 +1457,9 @@ class Base extends AuthorizationWrapper {
    * @returns build开始得方法不应再框架外部进行重写
    */
   buildPageSizeOptionList = () => {
-    let pageSizeList = [10, 20, 50, 100];
+    let pageSizeList = [10, 20, 50, 100, toNumber(this.pageSizeAdditional)];
 
-    pageSizeList.push(toNumber(this.pageSizeAdditional));
-
-    pageSizeList = [...new Set(pageSizeList)].sort((a, b) => {
-      return a - b;
-    });
+    pageSizeList = [...new Set(pageSizeList)].toSorted((a, b) => a - b);
 
     return pageSizeList;
   };
@@ -1730,7 +1724,6 @@ class Base extends AuthorizationWrapper {
     return {};
   };
 
-  // eslint-disable-next-line no-unused-vars
   renderPresetListViewItemInner = (item, index) => {
     this.logCallTrack({}, primaryCallName, 'renderPresetListViewItemInner');
 
@@ -1879,11 +1872,10 @@ class Base extends AuthorizationWrapper {
       }),
       showPagination:
         this.useRemotePagination || !!this.getCanUseFrontendPagination(),
-    };
-
-    standardTableCustomOption.data = {
-      list: this.adjustViewDataSource(),
-      pagination: this.supplementPaginationConfig(),
+      data: {
+        list: this.adjustViewDataSource(),
+        pagination: this.supplementPaginationConfig(),
+      },
     };
 
     if ((styleSet || null) != null) {

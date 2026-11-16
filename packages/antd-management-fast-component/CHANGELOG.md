@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.7.96
+
+### Patch Changes
+
+- update
+
+## 2.7.95
+
+### Patch Changes
+
+- update
+
 ## 2.7.94
 
 ### Patch Changes

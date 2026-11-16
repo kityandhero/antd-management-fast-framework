@@ -241,7 +241,6 @@ class PageList extends MultiPage {
   };
 
   afterChangeSortModalOk = ({
-    // eslint-disable-next-line no-unused-vars
     singleData,
     // eslint-disable-next-line no-unused-vars
     listData,
@@ -428,10 +427,10 @@ class PageList extends MultiPage {
   };
 
   fillSearchCardInitialValues = () => {
-    const values = {};
-
-    values[fieldData.renderType.name] = unlimitedWithStringFlag.key;
-    values[fieldData.status.name] = unlimitedWithStringFlag.key;
+    const values = {
+      [fieldData.renderType.name]: unlimitedWithStringFlag.key,
+      [fieldData.status.name]: unlimitedWithStringFlag.key,
+    };
 
     return values;
   };
