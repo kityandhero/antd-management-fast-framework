@@ -20,7 +20,7 @@
     "declarationDir": "es",
     "emitDeclarationOnly": true
   },
-  "include": ["develop/**/*"],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "build",

@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-formily",
-  "version": "1.0.194",
+  "version": "1.0.195",
   "keywords": [
     "antd-management-fast-formily"
   ],
@@ -142,6 +142,6 @@
     "stylelint-config-standard": "^40.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^3.0.0",
     "stylelint-order": "^8.1.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }

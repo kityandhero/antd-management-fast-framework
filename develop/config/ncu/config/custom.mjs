@@ -40,6 +40,7 @@ export const config = {
     'react-dom',
     '@types/react',
     '@types/react-dom',
+    'typescript',
   ],
   patch: [],
   reject: [],

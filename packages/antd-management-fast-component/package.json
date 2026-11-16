@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-component",
-  "version": "2.7.98",
+  "version": "2.7.99",
   "description": "antd-management-fast-component",
   "keywords": [
     "antd-management-fast-component"
@@ -185,6 +185,6 @@
     "stylelint-config-standard": "^40.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^3.0.0",
     "stylelint-order": "^8.1.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }

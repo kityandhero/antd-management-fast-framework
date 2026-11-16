@@ -1,6 +1,6 @@
 {
   "name": "antd-management-fast-framework",
-  "version": "2.12.111",
+  "version": "2.12.112",
   "description": "antd-management-fast-framework",
   "homepage": "https://github.com/kityandhero/antd-management-fast-framework#readme",
   "license": "ISC",
@@ -164,6 +164,6 @@
     "stylelint-config-standard": "^40.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^3.0.0",
     "stylelint-order": "^8.1.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }
