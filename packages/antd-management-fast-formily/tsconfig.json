@@ -26,11 +26,7 @@
       // "@@/*": ["./example/.umi/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "../antd-management-fast-framework/src/utils/configAssist.js",
-    "src/utils/httpAssist.js"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "build",
