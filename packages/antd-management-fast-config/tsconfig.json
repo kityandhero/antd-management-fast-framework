@@ -5,6 +5,8 @@
     "target": "esnext",
     "lib": ["esnext", "dom"],
     "sourceMap": true,
+    "inlineSources": true,
+    "declarationMap": true,
     "baseUrl": ".",
     "jsx": "react",
     "resolveJsonModule": true,
