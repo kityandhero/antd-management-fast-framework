@@ -26,11 +26,7 @@
       "@@/*": ["./example/.umi/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "../antd-management-fast-component/src/components/StandardTable",
-    "../antd-management-fast-common/src/components/InteractionAssemble"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "build",
