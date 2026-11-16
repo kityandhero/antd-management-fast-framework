@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
     "module": "esnext",
     "target": "esnext",
     "lib": ["esnext", "dom"],
     "sourceMap": true,
-    "baseUrl": ".",
     "jsx": "react",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -17,7 +17,7 @@
     "experimentalDecorators": true,
     "strict": true,
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "es",
     "emitDeclarationOnly": true
   },
   "include": ["develop/**/*"],
